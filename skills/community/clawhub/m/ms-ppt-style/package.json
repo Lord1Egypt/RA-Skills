@@ -1,0 +1,23 @@
+{
+  "name": "ms-ppt-style",
+  "version": "1.0.0",
+  "description": "Morgan Stanley classic PPT style generator for OpenClaw/WorkBuddy/QClaw",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test.js"
+  },
+  "keywords": [
+    "pptx",
+    "morgan-stanley",
+    "presentation",
+    "finance",
+    "openclaw",
+    "workbuddy",
+    "qclaw"
+  ],
+  "author": "QClaw",
+  "license": "MIT",
+  "dependencies": {
+    "pptxgenjs": "^3.12.0"
+  }
+}

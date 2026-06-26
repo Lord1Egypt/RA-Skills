@@ -1,0 +1,163 @@
+{
+  "_meta": {
+    "default_voice": "xiaoxiao_lively",
+    "format": {
+      "voice_id": {
+        "name": "Edge-TTS 引擎音色名 (zh-CN-xxxNeural)",
+        "description": "人类可读描述",
+        "gender": "Female/Male",
+        "source": "official(默认参数) / custom(已调参)",
+        "rate": "语速偏移 (custom 音色必填)",
+        "pitch": "音高偏移 (custom 音色必填)",
+        "volume": "音量偏移 (custom 音色必填)",
+        "base": "基于哪个官方音色 (custom 音色)"
+      }
+    }
+  },
+
+  "xiaoxiao": {
+    "name": "zh-CN-XiaoxiaoNeural",
+    "description": "女声",
+    "gender": "Female",
+    "source": "official"
+  },
+  "xiaoyi": {
+    "name": "zh-CN-XiaoyiNeural",
+    "description": "女声",
+    "gender": "Female",
+    "source": "official"
+  },
+  "yunjian": {
+    "name": "zh-CN-YunjianNeural",
+    "description": "男声",
+    "gender": "Male",
+    "source": "official"
+  },
+  "yunxi": {
+    "name": "zh-CN-YunxiNeural",
+    "description": "男声",
+    "gender": "Male",
+    "source": "official"
+  },
+  "yunxia": {
+    "name": "zh-CN-YunxiaNeural",
+    "description": "男声",
+    "gender": "Male",
+    "source": "official"
+  },
+  "yunyang": {
+    "name": "zh-CN-YunyangNeural",
+    "description": "男声",
+    "gender": "Male",
+    "source": "official"
+  },
+  "liaoning_xiaobei": {
+    "name": "zh-CN-liaoning-XiaobeiNeural",
+    "description": "女声 辽宁方言",
+    "gender": "Female",
+    "source": "official"
+  },
+  "shaanxi_xiaoni": {
+    "name": "zh-CN-shaanxi-XiaoniNeural",
+    "description": "女声 陕西方言",
+    "gender": "Female",
+    "source": "official"
+  },
+  "hk_hiuGaai": {
+    "name": "zh-HK-HiuGaaiNeural",
+    "description": "女声 粤语",
+    "gender": "Female",
+    "source": "official"
+  },
+  "hk_hiuMaan": {
+    "name": "zh-HK-HiuMaanNeural",
+    "description": "女声 粤语",
+    "gender": "Female",
+    "source": "official"
+  },
+  "hk_wanLung": {
+    "name": "zh-HK-WanLungNeural",
+    "description": "男声 粤语",
+    "gender": "Male",
+    "source": "official"
+  },
+  "tw_hsiaoChen": {
+    "name": "zh-TW-HsiaoChenNeural",
+    "description": "女声 台湾",
+    "gender": "Female",
+    "source": "official"
+  },
+  "tw_hsiaoYu": {
+    "name": "zh-TW-HsiaoYuNeural",
+    "description": "女声 台湾",
+    "gender": "Female",
+    "source": "official"
+  },
+  "tw_yunJhe": {
+    "name": "zh-TW-YunJheNeural",
+    "description": "男声 台湾",
+    "gender": "Male",
+    "source": "official"
+  },
+
+  "xiaoxiao_lively": {
+    "name": "zh-CN-XiaoxiaoNeural",
+    "description": "女声 活泼偏高音 日常对话",
+    "gender": "Female",
+    "source": "custom",
+    "base": "xiaoxiao",
+    "rate": "+8%",
+    "pitch": "+10Hz",
+    "volume": "+5%"
+  },
+  "xiaoxiao_gentle": {
+    "name": "zh-CN-XiaoxiaoNeural",
+    "description": "女声 甜美温柔 软萌",
+    "gender": "Female",
+    "source": "custom",
+    "base": "xiaoxiao",
+    "rate": "+5%",
+    "pitch": "+4Hz",
+    "volume": "+0%"
+  },
+  "xiaoxiao_fast": {
+    "name": "zh-CN-XiaoxiaoNeural",
+    "description": "女声 快速明亮 适合播报",
+    "gender": "Female",
+    "source": "custom",
+    "base": "xiaoxiao",
+    "rate": "+15%",
+    "pitch": "+2Hz",
+    "volume": "+10%"
+  },
+  "xiaoxiao_slow": {
+    "name": "zh-CN-XiaoxiaoNeural",
+    "description": "女声 温柔慢速 低沉稳重",
+    "gender": "Female",
+    "source": "custom",
+    "base": "xiaoxiao",
+    "rate": "+5%",
+    "pitch": "-2Hz",
+    "volume": "+0%"
+  },
+  "xiaoyi_lively": {
+    "name": "zh-CN-XiaoyiNeural",
+    "description": "女声 卡通元气 萝莉音",
+    "gender": "Female",
+    "source": "custom",
+    "base": "xiaoyi",
+    "rate": "+15%",
+    "pitch": "+5Hz",
+    "volume": "+10%"
+  },
+  "yunxi_sunny": {
+    "name": "zh-CN-YunxiNeural",
+    "description": "男声 阳光活泼 年轻感",
+    "gender": "Male",
+    "source": "custom",
+    "base": "yunxi",
+    "rate": "+15%",
+    "pitch": "+3Hz",
+    "volume": "+5%"
+  }
+}

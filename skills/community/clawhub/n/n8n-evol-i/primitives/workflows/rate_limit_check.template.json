@@ -1,0 +1,71 @@
+{
+  "name": "{{@env:displayName}} Rate Limit Check{{@env:workflowNamePostfix}}",
+  "nodes": [
+    {
+      "id": "{{@uuid:rl-trigger}}",
+      "name": "Execute Workflow Trigger",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1.1,
+      "position": [240, 300],
+      "parameters": {
+        "inputSource": "passthrough"
+      }
+    },
+    {
+      "id": "{{@uuid:rl-prep}}",
+      "name": "Build Bucket Key",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [460, 300],
+      "parameters": {
+        "language": "javaScript",
+        "jsCode": "// @n8n-evol-I:primitive — exempt from pure-function discipline\nconst scope = $json.scope || 'default';\nconst limit = typeof $json.limit === 'number' ? $json.limit : 10;\nconst windowSeconds = typeof $json.windowSeconds === 'number' ? $json.windowSeconds : 60;\nconst bucket = Math.floor(Date.now() / (windowSeconds * 1000));\nconst key = `n8n-ratelimit-${scope}-${bucket}`;\nreturn [{ json: { scope, limit, windowSeconds, key } }];\n"
+      }
+    },
+    {
+      "id": "{{@uuid:rl-incr}}",
+      "name": "Redis INCR",
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [680, 300],
+      "parameters": {
+        "operation": "incr",
+        "key": "={{ $json.key }}",
+        "expire": true,
+        "ttl": "={{ $json.windowSeconds }}",
+        "options": {}
+      },
+      "credentials": {
+        "redis": {
+          "id": "{{@env:credentials.redis.id}}",
+          "name": "{{@env:credentials.redis.name}}"
+        }
+      }
+    },
+    {
+      "id": "{{@uuid:rl-result}}",
+      "name": "Build Result",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [900, 300],
+      "parameters": {
+        "language": "javaScript",
+        "jsCode": "// @n8n-evol-I:primitive — exempt from pure-function discipline\nconst prev = $('Build Bucket Key').first().json;\nconst incrOut = $json;\nconst count = typeof incrOut[prev.key] === 'number' ? incrOut[prev.key] : 0;\nconst allowed = count <= prev.limit;\nreturn [{ json: { allowed, scope: prev.scope, count, limit: prev.limit } }];\n"
+      }
+    }
+  ],
+  "connections": {
+    "Execute Workflow Trigger": {
+      "main": [[{ "node": "Build Bucket Key", "type": "main", "index": 0 }]]
+    },
+    "Build Bucket Key": {
+      "main": [[{ "node": "Redis INCR", "type": "main", "index": 0 }]]
+    },
+    "Redis INCR": {
+      "main": [[{ "node": "Build Result", "type": "main", "index": 0 }]]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  }
+}

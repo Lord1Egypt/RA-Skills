@@ -1,0 +1,61 @@
+{
+  "name": "mjolnir-brain",
+  "version": "3.0.2",
+  "description": "AI Agent Self-Evolving Memory System — 100% local core, optional network features (opt-in)",
+  "keywords": [
+    "ai-agent",
+    "memory",
+    "self-learning",
+    "openclaw",
+    "strategy-registry",
+    "write-through",
+    "local-first"
+  ],
+  "author": "king6381",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/king6381/mjolnir-brain"
+  },
+  "homepage": "https://github.com/king6381/mjolnir-brain#readme",
+  "bugs": {
+    "url": "https://github.com/king6381/mjolnir-brain/issues"
+  },
+  "os": [
+    "linux",
+    "darwin"
+  ],
+  "env": {
+    "MJOLNIR_BRAIN_WORKSPACE": {
+      "description": "可选：覆盖工作空间路径",
+      "required": false,
+      "default": "$HOME/.openclaw/workspace"
+    },
+    "MJOLNIR_USER": {
+      "description": "可选：多用户模式用户名",
+      "required": false
+    },
+    "WEBDAV_URL": {
+      "description": "可选：WebDAV 备份地址",
+      "required": false
+    },
+    "WEBDAV_USER": {
+      "description": "可选：WebDAV 用户名",
+      "required": false
+    },
+    "WEBDAV_PASS": {
+      "description": "可选：WebDAV 密码",
+      "required": false
+    },
+    "SSH_HOST": {
+      "description": "可选：SSH 备份主机",
+      "required": false
+    },
+    "SSH_PATH": {
+      "description": "可选：SSH 备份路径",
+      "required": false
+    }
+  },
+  "scripts_note": "所有脚本均为 opt-in，默认不启用",
+  "security_note": "核心功能 100% 本地运行，网络功能需手动配置"
+}

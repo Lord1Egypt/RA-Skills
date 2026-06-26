@@ -1,0 +1,13 @@
+{
+  "name": "mxchip-smart-control",
+  "version": "1.0.2",
+  "description": "Control smart home devices configured in Smart Plus APP. Use when you need to: (1) Query devices and scenes (lights, AC, switches), (2) Control device power (turn on/off), (3) Control air conditioner (temperature, mode), (4) Trigger smart scenes. Requires MXCHIP_OAUTH_TOKEN environment variable.",
+  "author": "Shanghai MXCHIP Information Technology Co., Ltd. (上海庆科信息技术有限公司)",
+  "homepage": "https://www.mxchip.com/",
+  "credentials": {
+    "primary": "MXCHIP_OAUTH_TOKEN",
+    "required": ["MXCHIP_OAUTH_TOKEN"],
+    "description": "OAuth2 token from Smart Plus APP. Get at: https://app.api.cloud.mxchip.com:2443/oauth2/mcp/oauth"
+  },
+  "license": "MIT-0"
+}

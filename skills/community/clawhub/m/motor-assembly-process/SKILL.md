@@ -1,35 +1,190 @@
 ---
-name: "Motor Assembly Process"
-description: "电机装配工艺助手 | 生成军用电机装配作业指导书，覆盖转子装配、定子嵌线、轴承装配、动平衡、终检全流程"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/motor-assembly-process"
-sourceUrl: "https://clawhub.ai/skills/motor-assembly-process"
+name: motor-assembly-process
+description: 电机装配工艺助手 | 生成军用电机装配作业指导书，覆盖转子装配、定子嵌线、轴承装配、动平衡、终检全流程
+version: 1.2.0
+tags: [motor, assembly, manufacturing, process, military, gjb, quality]
+category: motor-engineering
 ---
 
-# Motor Assembly Process
+# 电机装配工艺助手 v1.2
 
-> 电机装配工艺助手 | 生成军用电机装配作业指导书，覆盖转子装配、定子嵌线、轴承装配、动平衡、终检全流程
+针对军用电机装配全流程，生成标准作业指导书，包含工艺流程、工装设备、检验标准、常见问题处理。
+**v1.2新增：装配检查清单脚本(assembly_checklist.py)、轴承装配增强、GJB质量记录规范。**
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/motor-assembly-process`
-- **Source URL:** [https://clawhub.ai/skills/motor-assembly-process](https://clawhub.ai/skills/motor-assembly-process)
+## 装配流程总览
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/motor-assembly-process
 ```
+来料检验
+    ↓
+转子铁心装配（FRM-ASM-001）
+    ↓
+转子磁钢安装（永磁电机，FRM-ASM-002）
+    ↓
+转子动平衡（FRM-ASM-003）
+    ↓
+定子嵌线（定子绕组制作，FRM-EM-001）
+    ↓
+定子浸漆/灌封
+    ↓
+定转子装配
+    ↓
+轴承装配（FRM-ASM-004）
+    ↓
+端盖装配
+    ↓
+动平衡（整机）
+    ↓
+电气测试（FRM-ASM-005）
+    ↓
+终检
+    ↓
+入库
+```
+
+## 装配检查清单脚本
+
+```bash
+# 转子装配检查清单
+python scripts/assembly_checklist.py --stage rotor
+
+# 定子装配检查清单
+python scripts/assembly_checklist.py --stage stator
+
+# 轴承装配检查清单
+python scripts/assembly_checklist.py --stage bearing
+
+# 整机终检清单（完整）
+python scripts/assembly_checklist.py --stage full --output checklist_full.txt
+
+# 交互模式（逐项确认）
+python scripts/assembly_checklist.py --stage full --interactive
+```
+
+## 一、转子铁心装配
+
+### 检验项目
+
+| 检验项 | 要求 | 方法 |
+|--------|------|------|
+| 外径 | D±IT8 | 卡尺 |
+| 内径 | d+H7 | 塞规 |
+| 槽形 | 符合图样 | 样板 |
+| 叠压系数 | ≥0.95 | 测量计算 |
+
+### 压装作业要点
+
+- 设备：油压机（压力≥50kN），工装：上压模、下心轴
+- 压装压力：5~10MPa
+- 保压时间：≥30s
+- 不得强行敲击铁心，压装后铁心不得有松动
+
+## 二、永磁体安装
+
+### 磁钢安装方式
+
+| 安装方式 | 适用场景 | 工艺要点 |
+|---------|---------|---------|
+| 压入式 | 表贴式磁钢 | 磁钢先充磁，禁止敲击 |
+| 粘接式 | 内嵌式磁钢 | 环氧胶固化 |
+| 绑扎式 | 高速转子 | 玻璃纤维绑扎 |
+
+### 安全警示
+
+⚠️ 已充磁磁钢：禁止接近磁性存储介质（硬盘、磁卡等）2m以内
+⚠️ 禁止用铁制工具直接敲击磁钢
+⚠️ 装配区应无磁性杂物，操作者佩戴防护眼镜
+
+## 三、转子动平衡
+
+### 平衡等级参考
+
+| 转子类型 | 平衡等级 | 最大残余不平衡量 |
+|---------|---------|---------------|
+| 普通转子 | G6.3 | 6.3mm/s |
+| 电机转子 | G2.5 | 2.5mm/s |
+| 精密主轴 | G1.0 | 1.0mm/s |
+| 高速（>10000rpm） | G0.4 | 0.4mm/s |
+
+## 四、定子嵌线
+
+详见 `WI-EM-001` 定子绕组嵌线作业指导书（`gjb-document-generator` 技能中）。
+
+## 五、定子浸漆/灌封
+
+### 工艺流程
+
+```
+预烘(120℃×2h) → 真空浸漆(-0.08MPa, 15~30min)
+    → 滴干(≥30min) → 固化(130℃×4h) → 检验
+```
+
+### 安全要求
+
+⚠️ 浸漆区禁烟火，配备灭火器
+⚠️ 操作者戴防护手套、护目镜
+⚠️ 废漆按规定回收处理
+
+## 六、轴承装配
+
+### 轴承检查项
+
+| 检查项 | 要求 |
+|-------|------|
+| 轴承型号 | 符合图样 |
+| 精度等级 | P0/P6（一般用途）|
+| 游隙 | C3（高温电机）|
+| 滚动体 | 无损伤、无异常声响 |
+| 润滑脂 | 符合温度等级 |
+
+### 压装作业要点
+
+- 轴承加热：油浴加热至80~100℃（≤120℃），或感应加热
+- 压装力沿轴承内圈施加，禁止外圈受力
+- 加热温度≤120℃，防止轴承硬度降低
+- 禁止用锤子直接敲击轴承
+
+## 七、整机装配
+
+### 螺栓力矩参考
+
+| 螺栓规格 | 力矩（N·m）|
+|---------|------------|
+| M3 | 1.2~1.5 |
+| M4 | 2.5~3.0 |
+| M5 | 4.0~5.0 |
+| M6 | 8.0~10.0 |
+| M8 | 18.0~22.0 |
+| M10 | 35.0~42.0 |
+
+## 八、电气测试
+
+| 测试项目 | 要求 | 设备 |
+|---------|------|------|
+| 绝缘电阻 | ≥100MΩ | 兆欧表500V |
+| 耐压试验 | 1500V/1mA/1min | 耐压仪 |
+| 空载电流 | ≤额定电流30% | 功率分析仪 |
+| 空载转速 | 额定转速±5% | 转速表 |
+| 振动 | ≤2.8mm/s(G6.3) | 振动仪 |
+| 噪音 | ≤65dB(A) | 声级计 |
+
+## 九、质量记录（GJB规范）
+
+| 记录名称 | 表单编号 | 保存期限 |
+|---------|---------|---------|
+| 转子铁心压装记录 | FRM-ASM-001 | 5年 |
+| 磁钢安装记录 | FRM-ASM-002 | 10年 |
+| 动平衡记录 | FRM-ASM-003 | 10年 |
+| 定子嵌线检验记录 | FRM-EM-001 | 10年 |
+| 轴承装配记录 | FRM-ASM-004 | 5年 |
+| 整机测试报告 | FRM-ASM-005 | 10年 |
+
+## 十、常见问题与处理
+
+| 问题 | 可能原因 | 处理方法 |
+|------|---------|---------|
+| 转子入定子困难 | 气隙不均、磁钢突出 | 重新检测磁钢高度 |
+| 轴承异响 | 轴承损坏、装配倾斜 | 更换轴承、检查同轴度 |
+| 动平衡超差 | 配重不够、平衡块松动 | 重新平衡、紧固配重 |
+| 绝缘电阻低 | 绕组受潮、绝缘破损 | 重新浸漆、检测绕组 |
+| 振动超标 | 转子不平衡、轴承问题 | 动平衡、换轴承 |
+| 噪音超标 | 轴承损坏、共振 | 换轴承、改变安装刚度 |

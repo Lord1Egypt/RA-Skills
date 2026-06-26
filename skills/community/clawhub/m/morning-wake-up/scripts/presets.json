@@ -1,0 +1,27 @@
+{
+  "sunny": {
+    "wmo_codes": [0, 1],
+    "favorite": "Morning Sunshine",
+    "volume": 18
+  },
+  "cloudy": {
+    "wmo_codes": [2, 3, 45, 48],
+    "favorite": "Cloudy Morning",
+    "volume": 15
+  },
+  "rain": {
+    "wmo_codes": [51, 53, 55, 56, 57, 61, 63, 65, 66, 67, 80, 81, 82],
+    "favorite": "Rainy Day",
+    "volume": 12
+  },
+  "snow": {
+    "wmo_codes": [71, 73, 75, 77, 85, 86],
+    "favorite": "Winter Morning",
+    "volume": 12
+  },
+  "storm": {
+    "wmo_codes": [95, 96, 99],
+    "favorite": "Storm Chaser",
+    "volume": 10
+  }
+}

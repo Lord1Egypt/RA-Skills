@@ -1,0 +1,21 @@
+{
+  "id": "nimo-glasses",
+  "name": "Nimo AI Glasses",
+  "description": "Connect Nimo AI glasses to OpenClaw via Companion App",
+  "version": "0.1.0",
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "maxResponseLength": {
+        "type": "integer",
+        "default": 300,
+        "description": "Maximum response length in characters"
+      },
+      "systemPrompt": {
+        "type": "string",
+        "description": "Custom system prompt for glasses AI"
+      }
+    }
+  }
+}

@@ -1,0 +1,168 @@
+{
+  "currency": "USD",
+  "currency_symbol": "$",
+  "measurement_units": "imperial",
+  "default_formality": "casual",
+  "guest_categories": [
+    "family",
+    "friends",
+    "coworkers",
+    "neighbors",
+    "kids",
+    "vip"
+  ],
+  "dietary_options": [
+    "vegan",
+    "vegetarian",
+    "gluten-free",
+    "kosher",
+    "halal",
+    "nut-allergy",
+    "dairy-free",
+    "shellfish-allergy",
+    "egg-allergy",
+    "soy-free",
+    "low-sodium",
+    "diabetic-friendly"
+  ],
+  "rsvp_statuses": ["invited", "confirmed", "declined", "maybe", "no_response"],
+  "vendor_service_types": [
+    "catering",
+    "bakery",
+    "dj",
+    "live_music",
+    "photographer",
+    "videographer",
+    "florist",
+    "venue",
+    "rental_company",
+    "entertainment",
+    "face_painter",
+    "photo_booth",
+    "bartender",
+    "event_planner",
+    "other"
+  ],
+  "reminder_preferences": {
+    "rsvp_reminder_days_before_deadline": 3,
+    "vendor_payment_reminder_days": 7,
+    "task_due_reminder_days": 2,
+    "weather_check_days_before": [3, 1]
+  },
+  "budget_allocation_defaults": {
+    "birthday": {
+      "food_drink": 40,
+      "venue_rentals": 20,
+      "decorations": 12,
+      "entertainment": 10,
+      "invitations": 3,
+      "favors_gifts": 5,
+      "photography": 5,
+      "miscellaneous": 5
+    },
+    "baby_shower": {
+      "food_drink": 35,
+      "venue_rentals": 15,
+      "decorations": 18,
+      "entertainment": 5,
+      "invitations": 5,
+      "favors_gifts": 12,
+      "photography": 5,
+      "miscellaneous": 5
+    },
+    "bridal_shower": {
+      "food_drink": 35,
+      "venue_rentals": 15,
+      "decorations": 15,
+      "entertainment": 8,
+      "invitations": 5,
+      "favors_gifts": 10,
+      "photography": 7,
+      "miscellaneous": 5
+    },
+    "graduation": {
+      "food_drink": 45,
+      "venue_rentals": 15,
+      "decorations": 12,
+      "entertainment": 8,
+      "invitations": 3,
+      "favors_gifts": 7,
+      "photography": 5,
+      "miscellaneous": 5
+    },
+    "holiday_party": {
+      "food_drink": 45,
+      "venue_rentals": 10,
+      "decorations": 15,
+      "entertainment": 10,
+      "invitations": 3,
+      "favors_gifts": 7,
+      "photography": 5,
+      "miscellaneous": 5
+    },
+    "dinner_party": {
+      "food_drink": 55,
+      "venue_rentals": 5,
+      "decorations": 12,
+      "entertainment": 5,
+      "invitations": 3,
+      "favors_gifts": 5,
+      "photography": 5,
+      "miscellaneous": 10
+    },
+    "housewarming": {
+      "food_drink": 50,
+      "venue_rentals": 0,
+      "decorations": 15,
+      "entertainment": 10,
+      "invitations": 3,
+      "favors_gifts": 7,
+      "photography": 5,
+      "miscellaneous": 10
+    },
+    "bbq_pool_party": {
+      "food_drink": 50,
+      "venue_rentals": 5,
+      "decorations": 10,
+      "entertainment": 15,
+      "invitations": 2,
+      "favors_gifts": 3,
+      "photography": 5,
+      "miscellaneous": 10
+    },
+    "corporate_team_building": {
+      "food_drink": 35,
+      "venue_rentals": 25,
+      "decorations": 5,
+      "entertainment": 15,
+      "invitations": 3,
+      "favors_gifts": 7,
+      "photography": 5,
+      "miscellaneous": 5
+    },
+    "default": {
+      "food_drink": 40,
+      "venue_rentals": 15,
+      "decorations": 12,
+      "entertainment": 10,
+      "invitations": 3,
+      "favors_gifts": 7,
+      "photography": 5,
+      "miscellaneous": 8
+    }
+  },
+  "quantity_standards": {
+    "drinks_per_person_first_2hrs": 1.0,
+    "drinks_per_person_after_2hrs": 0.5,
+    "ice_lbs_per_person": 1.0,
+    "appetizer_pieces_cocktail": 8,
+    "appetizer_pieces_dinner": 4,
+    "main_protein_oz": 7,
+    "side_oz_per_person": 5,
+    "dessert_servings_buffer_pct": 10,
+    "plates_cups_multiplier": 1.5,
+    "napkins_multiplier": 2.0,
+    "balloons_per_person": 2.5,
+    "guests_per_table": 8
+  }
+}

@@ -1,0 +1,3121 @@
+{
+  "skill_name": "mktclaw",
+  "version": "5.5.0",
+  "description": "MktClaw v5.5.0 测试套件 — 覆盖 Intake/Router/10种Agent角色/Brief模板/方法论引用/Benchmark引用/行业识别/创意多样性/合规/数据接入/框架拦截/并行生成/能力边界/Campaign Vault/工具化懒加载/隐私合规/品牌安全/方案指纹/自动降级/国际化/多租户隔离/PPAF追踪/R.E.S.T评分/失败模式检测/反馈引擎/版本SSOT/Harness管道/L5门禁/Baseline管理/回归引擎/L6 Learning Engine/L6模式提取/Creator vNext/决策门禁",
+  "metadata": {
+    "assertion_engine": "regex + keyword + json_path + llm_as_judge + llm_judge",
+    "pass_threshold": 0.8,
+    "fields_semantics": {
+      "expectations": "语义级期望描述（字符串数组），供 LLM-as-Judge / 人工评审使用，描述'产出应该是什么样'",
+      "assertions": "程序化断言定义（对象），供 regex/keyword/json_path 引擎使用，描述'如何机器验证'。两者互补，不替代"
+    },
+    "created": "2026-06-05",
+    "updated": "2026-06-12",
+    "changelog": [
+      "v4.2: 结构化断言 + 快速/专家/一键交付/危机公关测试",
+      "v4.3: 新增 Brief 模板测试/营销方法论引用测试/Benchmark 兜底测试/平台实操测试/案例库引用测试/CLM/品牌架构/A/B 测试",
+      "v5.1: 新增行业识别/创意多样性/Swiss-System/合规检测/数据接入/PII 脱敏测试（共 10 条新增，总 30 条）",
+      "v5.2: 新增框架拦截/能力边界/懒加载/并行生成/医疗合规/金融合规/Vault 引用/Vault 沉淀/能力诚实/反规避测试（共 10 条新增，总 40 条）",
+      "v5.2.1: 新增工具化懒加载/GDPR 删除权/品牌安全调性匹配/方案指纹/自动降级/Vault 自动捕获/数据生命周期/多租户隔离/国际化日本/Byron Sharp 方法论测试（共 10 条新增，总 50 条）",
+      "v5.3.0: 新增 PPAF 追踪/R.E.S.T 评分/代理惰性检测/自我偏好偏差检测/目标漂移检测/反馈引擎信号提取/反馈引擎去重排序/反馈引擎趋势分析/L7-L7.5 联动/Telemetry PPAF 字段测试（共 10 条新增，总 60 条）",
+      "v5.4.1: 新增 L6 Learning Engine 模式提取/知识库影响区域映射/历史模式合并/Creator vNext 指令生成/决策门禁/Schema 校验/Harness Runner L6-L6.5 集成/版本递增/门禁跳过逻辑/L7.5-L6 数据格式对接（共 10 条新增，总 75 条）"
+    ]
+  },
+  "evals": [
+    {
+      "id": 1,
+      "category": "intake",
+      "name": "需求澄清-模糊输入(标准模式)",
+      "prompt": "我们是一个做护肤品的品牌，想做品牌升级。",
+      "files": [
+        "agents/intake-agent.md"
+      ],
+      "expected_output": "Intake Agent 识别信息不足，启动多轮追问，询问行业/规模/核心目标等关键信息",
+      "expectations": [
+        "识别为信息不足",
+        "输出追问问题（选择题形式）",
+        "不直接跳到交付阶段"
+      ],
+      "assertions": {
+        "type": "keyword_match",
+        "checks": [
+          {
+            "field": "output_text",
+            "pattern": "(问题|请问|哪|什么|选择|选项)",
+            "flags": "i",
+            "required": true,
+            "description": "输出中应包含追问问题"
+          },
+          {
+            "field": "mode_detected",
+            "pattern": "standard|标准",
+            "flags": "i",
+            "required": true,
+            "description": "应检测为标准模式"
+          },
+          {
+            "negate_field": "output_text",
+            "pattern": "(直接交付|开始执行|正在为您)",
+            "flags": "i",
+            "required": true,
+            "description": "不应直接进入交付阶段"
+          }
+        ]
+      }
+    },
+    {
+      "id": 2,
+      "category": "intake",
+      "name": "需求澄清-信息充分(自动触发快速模式)",
+      "prompt": "我们是一个新消费茶饮品牌，成立2年，有15家门店。目前需要做完整的品牌定位和VI升级。预算80-120万。希望3个月内完成。目标是让品牌更有辨识度，吸引25-35岁都市白领。",
+      "files": [
+        "agents/intake-agent.md"
+      ],
+      "expected_output": "Intake Agent 判断信息完整度≥80%，自动启用⚡快速模式，输出 Brief 摘要并请求1次确认",
+      "expectations": [
+        "识别为信息充分",
+        "启用快速模式",
+        "输出标准 Creative Brief 格式",
+        "仅1次确认节点"
+      ],
+      "assertions": {
+        "type": "multi_check",
+        "checks": [
+          {
+            "field": "mode_detected",
+            "pattern": "fast|快速",
+            "flags": "i",
+            "required": true,
+            "description": "应自动检测为快速模式"
+          },
+          {
+            "field": "output_text",
+            "pattern": "(Creative Brief|Section A|Section B|Key Message|品牌调性|禁忌)",
+            "flags": "i",
+            "required": true,
+            "description": "应输出标准 Brief 格式(含 Section/Key Message 等字段)"
+          },
+          {
+            "field": "completeness_score",
+            "pattern": "\\b[89]\\d\\b|100",
+            "required": true,
+            "description": "信息完整度评分应≥80"
+          }
+        ]
+      }
+    },
+    {
+      "id": 3,
+      "category": "intake",
+      "name": "快速模式显式触发(原专家模式已合并)",
+      "prompt": "我是资深市场总监，这是我的需求：美妆品牌，双11Campaign，预算200万，目标ROI 3:1，目标人群18-28女性，直接给我方案吧。",
+      "files": [
+        "agents/intake-agent.md"
+      ],
+      "expected_output": "检测到'我是专家/直接给方案'关键词，启用⚡快速模式，解析结构化输入，0-1次确认",
+      "expectations": [
+        "启用快速模式",
+        "跳过追问直接出 Brief",
+        "识别为创意/媒介角色组合"
+      ],
+      "assertions": {
+        "type": "multi_check",
+        "checks": [
+          {
+            "field": "mode_detected",
+            "pattern": "fast|快速",
+            "flags": "i",
+            "required": true,
+            "description": "应检测为快速模式(v5.0 Expert 已合并入 Fast)"
+          },
+          {
+            "field": "output_text",
+            "pattern": "(创意|媒介|Campaign|Big Idea)",
+            "flags": "i",
+            "required": true,
+            "description": "应识别为创意/媒介相关角色"
+          }
+        ]
+      }
+    },
+    {
+      "id": 4,
+      "category": "router",
+      "name": "单一角色路由(一键交付)",
+      "prompt": "[已确认 Brief] 我们需要一个双11的媒介投放计划，预算50万，主要投抖音和小红书。",
+      "files": [
+        "agents/router-agent.md"
+      ],
+      "expected_output": "路由到 media 单一角色，触发一键交付，跳过交付计划确认",
+      "expectations": [
+        "正确路由到 media Agency",
+        "触发一键交付机制",
+        "不输出完整交付计划表格"
+      ],
+      "assertions": {
+        "type": "multi_check",
+        "checks": [
+          {
+            "field": "routed_role",
+            "pattern": "media|媒介",
+            "flags": "i",
+            "required": true,
+            "description": "应路由到媒介"
+          },
+          {
+            "field": "output_text",
+            "pattern": "(一键交付|快速交付|正在为您)",
+            "flags": "i",
+            "required": true,
+            "description": "应启用一键交付"
+          }
+        ]
+      }
+    },
+    {
+      "id": 5,
+      "category": "router",
+      "name": "全案路由(多角色串联)",
+      "prompt": "[已确认 Brief] 我们是初创美妆品牌，从0到1需要: 品牌定位+VI设计+上市Campaign+媒介投放，预算300万，6个月周期。",
+      "files": [
+        "agents/router-agent.md"
+      ],
+      "expected_output": "识别为全案场景，按顺序串联 strategy → brand → creative → media 多角色",
+      "expectations": [
+        "识别为全案(≥2 角色)",
+        "输出完整多阶段交付计划",
+        "标注阶段间依赖关系"
+      ],
+      "assertions": {
+        "type": "multi_check",
+        "checks": [
+          {
+            "field": "roles_detected",
+            "pattern": "(strategy.*brand.*creative.*media|战略.*品牌.*创意.*媒介)",
+            "flags": "i",
+            "required": true,
+            "description": "应识别4个及以上角色"
+          },
+          {
+            "field": "output_text",
+            "pattern": "(交付计划|阶段|Phase|串联)",
+            "flags": "i",
+            "required": true,
+            "description": "应输出多阶段交付计划"
+          }
+        ]
+      }
+    },
+    {
+      "id": 6,
+      "category": "strategy",
+      "name": "战略咨询-品牌定位交付",
+      "prompt": "[已路由到 strategy] 美妆品牌，面向25-35岁都市女性，高端线，强调科技护肤。请交付品牌定位方案。",
+      "files": [
+        "agents/types/strategy-consulting/main-agent.md"
+      ],
+      "expected_output": "产出品牌定位报告，包含定位陈述、受众画像、价值主张、品牌个性",
+      "expectations": [
+        "输出完整品牌定位报告",
+        "包含定位陈述(一句话)",
+        "引用 STP 或其他营销方法论"
+      ],
+      "assertions": {
+        "type": "multi_check",
+        "checks": [
+          {
+            "field": "output_text",
+            "pattern": "(定位陈述|Positioning Statement|是为.*提供的)",
+            "flags": "i",
+            "required": true,
+            "description": "应包含定位陈述"
+          },
+          {
+            "field": "output_text",
+            "pattern": "(STP|3C|SWOT|假设驱动|Hypothesis)",
+            "flags": "i",
+            "required": true,
+            "description": "应引用至少1个营销方法论"
+          }
+        ],
+        "llm_judge": {
+          "enabled": true,
+          "description": "LLM-as-Judge 语义评估 — 验证品牌定位方案的战略质量",
+          "type": "semantic",
+          "criteria": [
+            "定位陈述是否清晰区分了品牌与竞品的差异化",
+            "受众画像是否有数据支撑（年龄/城市/消费力/心理图谱）",
+            "价值主张是否与目标受众的痛点/愿望直接关联",
+            "品牌个性是否与品类特征和受众偏好一致"
+          ],
+          "min_pass_criteria": 3,
+          "weight": 0.3
+        }
+      }
+    },
+    {
+      "id": 7,
+      "category": "creative",
+      "name": "创意-Big Idea 提案",
+      "prompt": "[已路由到 creative] 运动 App 品牌，主打'坚持的力量'，目标人群是25-40岁都市白领，Campaign 预算100万。请发想 Big Idea。",
+      "files": [
+        "agents/types/creative-agency/main-agent.md"
+      ],
+      "expected_output": "产出≥3个 Big Idea 方向，包含 Tournament PK 结果和评分卡",
+      "expectations": [
+        "至少3个 Big Idea 方向",
+        "包含 Generate-and-filter 评分",
+        "包含 Tournament PK 结果",
+        "引用至少1个创意方法论(SCAMPER/英雄之旅/USP)"
+      ],
+      "assertions": {
+        "type": "multi_check",
+        "checks": [
+          {
+            "field": "output_text",
+            "pattern": "(方向[一二三1-3]|Idea [123]|🥇|🥈|🥉)",
+            "flags": "i",
+            "required": true,
+            "description": "应有至少3个方向"
+          },
+          {
+            "field": "output_text",
+            "pattern": "(Tournament|PK|评分|得分)",
+            "flags": "i",
+            "required": true,
+            "description": "应有评分/PK过程"
+          },
+          {
+            "field": "output_text",
+            "pattern": "(SCAMPER|英雄之旅|Insight|AISAS|USP)",
+            "flags": "i",
+            "required": false,
+            "description": "推荐引用营销方法论"
+          }
+        ]
+      }
+    },
+    {
+      "id": 8,
+      "category": "media",
+      "name": "媒介-预算分配+平台引用",
+      "prompt": "[已路由到 media] 美妆品牌双11 Campaign，预算200万，目标人群18-28女性。请输出媒介计划。",
+      "files": [
+        "agents/types/media-agency/main-agent.md"
+      ],
+      "expected_output": "产出媒介计划书，包含渠道选择、预算分配、KPI 框架",
+      "expectations": [
+        "包含渠道选择逻辑",
+        "预算分配表",
+        "KPI 框架(含行业基准)",
+        "引用平台实操手册或 Benchmark"
+      ],
+      "assertions": {
+        "type": "multi_check",
+        "checks": [
+          {
+            "field": "output_text",
+            "pattern": "(渠道|媒介组合|预算分配)",
+            "flags": "i",
+            "required": true,
+            "description": "应包含媒介组合"
+          },
+          {
+            "field": "output_text",
+            "pattern": "(CPM|CPC|CTR|ROAS|GPM)",
+            "flags": "i",
+            "required": true,
+            "description": "应包含 KPI 指标"
+          },
+          {
+            "field": "output_text",
+            "pattern": "(行业基准|Benchmark|【行业基准】)",
+            "flags": "i",
+            "required": false,
+            "description": "推荐引用 Benchmark"
+          }
+        ]
+      }
+    },
+    {
+      "id": 9,
+      "category": "kol",
+      "name": "KOL-达人矩阵+报价评估",
+      "prompt": "[已路由到 kol] 护肤品牌上市，预算30万，主打小红书+抖音。请输出 KOL 投放方案。",
+      "files": [
+        "agents/types/kol-agency/main-agent.md"
+      ],
+      "expected_output": "产出达人金字塔矩阵+种草策略+报价明细",
+      "expectations": [
+        "包含头部/腰部/KOC 金字塔结构",
+        "报价合理性评估",
+        "引用平台差异化策略"
+      ],
+      "assertions": {
+        "type": "multi_check",
+        "checks": [
+          {
+            "field": "output_text",
+            "pattern": "(头部|腰部|KOC|金字塔)",
+            "flags": "i",
+            "required": true,
+            "description": "应包含金字塔结构"
+          },
+          {
+            "field": "output_text",
+            "pattern": "(报价|费用|预算明细)",
+            "flags": "i",
+            "required": true,
+            "description": "应包含报价"
+          }
+        ]
+      }
+    },
+    {
+      "id": 10,
+      "category": "livestream",
+      "name": "直播-选品+脚本",
+      "prompt": "[已路由到 livestream] 抖音美妆直播从0到1，目标月GMV 50万，团队3人。请交付直播运营方案。",
+      "files": [
+        "agents/types/live-streaming/main-agent.md"
+      ],
+      "expected_output": "产出直播间搭建+选品排品+直播脚本+流量策略",
+      "expectations": [
+        "包含选品4角色(引流/爆款/利润/搭配)",
+        "包含完整直播脚本(开场→过品→逼单→收尾)",
+        "包含 GMV 预估"
+      ],
+      "assertions": {
+        "type": "multi_check",
+        "checks": [
+          {
+            "field": "output_text",
+            "pattern": "(引流款|爆款|利润款|搭配款)",
+            "flags": "i",
+            "required": true,
+            "description": "应包含4角色选品"
+          },
+          {
+            "field": "output_text",
+            "pattern": "(开场|过品|逼单|收尾|暖场)",
+            "flags": "i",
+            "required": true,
+            "description": "应包含完整脚本结构"
+          },
+          {
+            "field": "output_text",
+            "pattern": "(GMV|GPM|ROI)",
+            "flags": "i",
+            "required": true,
+            "description": "应包含 GMV/GPM 预估"
+          }
+        ]
+      }
+    },
+    {
+      "id": 11,
+      "category": "crisis",
+      "name": "危机公关-等级评估+升级路径",
+      "prompt": "[已路由到 crisis] 我们是连锁餐饮品牌，有顾客在菜品中发现异物，拍照发微博3小时内转发过万，本地媒体已联系采访。请评估并给出应对方案。",
+      "files": [
+        "agents/types/crisis-pr/main-agent.md"
+      ],
+      "expected_output": "评估为 P0/P1 级危机，产出六维评估+首份声明+Q&A，建议引入法律/公关顾问",
+      "expectations": [
+        "等级评估 ≥ P1",
+        "包含六维评分",
+        "4A 原则首份声明模板",
+        "建议升级到专业顾问"
+      ],
+      "assertions": {
+        "type": "multi_check",
+        "checks": [
+          {
+            "field": "output_text",
+            "pattern": "(P0|P1|致命|严重)",
+            "flags": "i",
+            "required": true,
+            "description": "应评估为高等级危机"
+          },
+          {
+            "field": "output_text",
+            "pattern": "(六维|评分|传播|情绪)",
+            "flags": "i",
+            "required": true,
+            "description": "应包含六维评估"
+          },
+          {
+            "field": "output_text",
+            "pattern": "(声明|道歉|Acknowledge|Apologize|Action|Assurance|4A)",
+            "flags": "i",
+            "required": true,
+            "description": "应包含4A声明模板"
+          },
+          {
+            "field": "output_text",
+            "pattern": "(法律|律师|专业公关|升级|外部)",
+            "flags": "i",
+            "required": true,
+            "description": "应建议升级到专业顾问"
+          }
+        ],
+        "llm_judge": {
+          "enabled": true,
+          "description": "LLM-as-Judge 语义评估 — 验证危机响应方案的质量",
+          "type": "semantic",
+          "criteria": [
+            "危机等级评估是否合理且有数据支撑（传播速度/情绪烈度/品牌伤害度）",
+            "声明是否遵循 4A 原则（Acknowledge/Apologize/Action/Assurance）",
+            "是否包含可执行的行动时间表（24h/48h/1w 分阶段）",
+            "是否区分了不同利益相关方（消费者/媒体/监管/内部）的沟通策略"
+          ],
+          "min_pass_criteria": 3,
+          "weight": 0.3
+        }
+      }
+    },
+    {
+      "id": 12,
+      "category": "data",
+      "name": "数据-MMM 建模方案",
+      "prompt": "[已路由到 data] 美妆品牌过去2年多渠道投放数据(抖音/小红书/搜索/电商内投)，希望做 MMM 分析优化预算分配。",
+      "files": [
+        "agents/types/data-analytics/main-agent.md"
+      ],
+      "expected_output": "产出 MMM 建模方案，含 Adstock/Hill 函数+预算优化建议",
+      "expectations": [
+        "包含 MMM 完整流程(5 phase)",
+        "包含 Adstock + Hill 函数说明",
+        "包含预算优化三档方案"
+      ],
+      "assertions": {
+        "type": "multi_check",
+        "checks": [
+          {
+            "field": "output_text",
+            "pattern": "(Adstock|衰减|decay)",
+            "flags": "i",
+            "required": true,
+            "description": "应包含 Adstock"
+          },
+          {
+            "field": "output_text",
+            "pattern": "(Hill|饱和|saturation)",
+            "flags": "i",
+            "required": true,
+            "description": "应包含 Hill 函数"
+          },
+          {
+            "field": "output_text",
+            "pattern": "(预算优化|渐进式|目标导向|激进)",
+            "flags": "i",
+            "required": true,
+            "description": "应包含三档优化方案"
+          }
+        ]
+      }
+    },
+    {
+      "id": 13,
+      "category": "brief",
+      "name": "Brief 模板-快速模式自动补全",
+      "prompt": "我是做知识付费的，想做一场大促活动，预算10万。",
+      "files": [
+        "references/creative-brief-template.md",
+        "agents/intake-agent.md"
+      ],
+      "expected_output": "快速模式下，用行业 Benchmark 自动补全缺失字段(受众/调性/KPI)，明确标注【行业基准】",
+      "expectations": [
+        "自动启用快速模式",
+        "缺失字段用 Benchmark 补全",
+        "标注【行业基准】"
+      ],
+      "assertions": {
+        "type": "multi_check",
+        "checks": [
+          {
+            "field": "output_text",
+            "pattern": "(【行业基准】|行业 Benchmark|基于行业)",
+            "flags": "i",
+            "required": true,
+            "description": "应标注行业基准"
+          },
+          {
+            "field": "mode_detected",
+            "pattern": "fast|快速",
+            "flags": "i",
+            "required": true,
+            "description": "应启用快速模式"
+          }
+        ]
+      }
+    },
+    {
+      "id": 14,
+      "category": "framework",
+      "name": "方法论引用-品牌角色使用 Brand Wheel",
+      "prompt": "[已路由到 brand] 我们是做有机食品的品牌，需要品牌视觉策略和 Logo Brief。",
+      "files": [
+        "agents/types/brand-design/main-agent.md",
+        "references/marketing-frameworks.md"
+      ],
+      "expected_output": "产出品牌视觉策略+Logo Brief，引用 Brand Wheel 或品牌原型方法论",
+      "expectations": [
+        "包含 Logo 创意 Brief",
+        "引用至少1个品牌方法论(Brand Wheel/Brand Key/品牌原型/USP)"
+      ],
+      "assertions": {
+        "type": "multi_check",
+        "checks": [
+          {
+            "field": "output_text",
+            "pattern": "(Logo.*Brief|设计需求|设计方向|视觉元素)",
+            "flags": "i",
+            "required": true,
+            "description": "应包含 Logo Brief"
+          },
+          {
+            "field": "output_text",
+            "pattern": "(Brand Wheel|Brand Key|品牌原型|Archetype|USP|独特销售主张)",
+            "flags": "i",
+            "required": true,
+            "description": "应引用品牌方法论"
+          }
+        ]
+      }
+    },
+    {
+      "id": 15,
+      "category": "platform",
+      "name": "平台实操-抖音 vs 小红书差异化",
+      "prompt": "[已路由到 media+kol] 美妆品牌，预算50万，主要投抖音和小红书。请给出两个平台的差异化策略。",
+      "files": [
+        "references/platform-playbooks.md"
+      ],
+      "expected_output": "针对抖音和小红书分别给出算法偏好、内容形式、KPI 基准、投放产品的差异化策略",
+      "expectations": [
+        "两个平台分别论述",
+        "包含 KPI 基准对比",
+        "包含内容形式差异"
+      ],
+      "assertions": {
+        "type": "multi_check",
+        "checks": [
+          {
+            "field": "output_text",
+            "pattern": "(抖音.*小红书|小红书.*抖音)",
+            "flags": "i",
+            "required": true,
+            "description": "应同时涉及两个平台"
+          },
+          {
+            "field": "output_text",
+            "pattern": "(完播率|互动率|CTR|CPM|CPC)",
+            "flags": "i",
+            "required": true,
+            "description": "应包含 KPI 基准"
+          }
+        ]
+      }
+    },
+    {
+      "id": 16,
+      "category": "mcn",
+      "name": "MCN-账号矩阵(与 KOL 边界)",
+      "prompt": "[已路由到 mcn] 我是个人创作者，想做美妆知识类账号矩阵，请帮我规划。",
+      "files": [
+        "agents/types/mcn/main-agent.md"
+      ],
+      "expected_output": "产出账号矩阵规划+IP孵化5阶段，区别于 KOL 投放方案",
+      "expectations": [
+        "包含账号矩阵(主账号+子账号)",
+        "包含 IP 孵化阶段",
+        "服务对象是创作者(不是品牌方投放)"
+      ],
+      "assertions": {
+        "type": "multi_check",
+        "checks": [
+          {
+            "field": "output_text",
+            "pattern": "(主账号|子账号|矩阵)",
+            "flags": "i",
+            "required": true,
+            "description": "应包含账号矩阵"
+          },
+          {
+            "field": "output_text",
+            "pattern": "(IP孵化|定位.*人设.*测试|5阶段|Phase 1)",
+            "flags": "i",
+            "required": true,
+            "description": "应包含 IP 孵化阶段"
+          }
+        ]
+      }
+    },
+    {
+      "id": 17,
+      "category": "clm",
+      "name": "客户生命周期-留存策略",
+      "prompt": "[已路由到 data+strategy] 美妆品牌过去 12 个月复购率 18%，行业基准 25%。请设计客户留存提升方案。",
+      "files": [
+        "references/customer-lifecycle.md",
+        "agents/types/data-analytics/main-agent.md"
+      ],
+      "expected_output": "产出 RFM 分群 + 流失预警 + 召回策略 + LTV 优化方案",
+      "expectations": [
+        "引用 RFM 分群模型",
+        "包含流失预警机制",
+        "包含召回策略(分流失等级)",
+        "引用 NPS 或 LTV 指标"
+      ],
+      "assertions": {
+        "type": "multi_check",
+        "checks": [
+          {
+            "field": "output_text",
+            "pattern": "(RFM|R值|F值|M值|重要价值|重要保持)",
+            "flags": "i",
+            "required": true,
+            "description": "应引用 RFM 分群"
+          },
+          {
+            "field": "output_text",
+            "pattern": "(流失预警|churn|沉睡|召回|win-back)",
+            "flags": "i",
+            "required": true,
+            "description": "应包含流失/召回策略"
+          },
+          {
+            "field": "output_text",
+            "pattern": "(NPS|LTV|净推荐值|生命周期价值|复购率)",
+            "flags": "i",
+            "required": true,
+            "description": "应引用 NPS 或 LTV"
+          }
+        ]
+      }
+    },
+    {
+      "id": 18,
+      "category": "brand_arch",
+      "name": "品牌架构-多品牌决策",
+      "prompt": "[已路由到 strategy] 我们是一家日化集团，旗下有 4 个品牌覆盖洗衣液/洗发水/护肤品/口腔护理。现在要推一个高端护肤线，请建议品牌架构。",
+      "files": [
+        "references/brand-architecture.md",
+        "agents/types/strategy-consulting/main-agent.md"
+      ],
+      "expected_output": "产出品牌架构决策(4 种模式对比) + 品牌角色分配 + CBBE 资产评估",
+      "expectations": [
+        "引用至少 2 种架构模式(单一/主副/多品牌/子品牌)",
+        "包含品牌角色分配",
+        "包含决策依据(决策树或评分)"
+      ],
+      "assertions": {
+        "type": "multi_check",
+        "checks": [
+          {
+            "field": "output_text",
+            "pattern": "(单一品牌|主副品牌|多品牌|子品牌|Branded House|House of Brands)",
+            "flags": "i",
+            "required": true,
+            "description": "应引用架构模式"
+          },
+          {
+            "field": "output_text",
+            "pattern": "(战略品牌|现金牛|种子|防御|退出|Portfolio)",
+            "flags": "i",
+            "required": true,
+            "description": "应包含品牌角色分配"
+          },
+          {
+            "field": "output_text",
+            "pattern": "(决策树|CBBE|品牌资产|延伸边界|风险隔离)",
+            "flags": "i",
+            "required": true,
+            "description": "应引用决策框架"
+          }
+        ]
+      }
+    },
+    {
+      "id": 19,
+      "category": "ab_testing",
+      "name": "A/B 测试-实验设计",
+      "prompt": "[已路由到 data+creative] 我们有两个落地页方案，想测试哪个转化率高。当前基准 CVR 5%，期望提升 20%，日均 UV 2000。请设计实验方案。",
+      "files": [
+        "references/ab-testing-framework.md",
+        "agents/types/data-analytics/main-agent.md"
+      ],
+      "expected_output": "产出完整实验设计文档(EDD): 样本量、周期、指标、统计方法",
+      "expectations": [
+        "计算样本量(约 7100/组)",
+        "包含统计显著性(p<0.05)",
+        "包含护栏指标",
+        "引用 CUPED 或序贯检验"
+      ],
+      "assertions": {
+        "type": "multi_check",
+        "checks": [
+          {
+            "field": "output_text",
+            "pattern": "(样本量|sample size|7[01]\\d\\d|8000)",
+            "flags": "i",
+            "required": true,
+            "description": "应计算样本量"
+          },
+          {
+            "field": "output_text",
+            "pattern": "(p值|p<0\\.05|显著性|置信区间|CI)",
+            "flags": "i",
+            "required": true,
+            "description": "应包含统计显著性判断"
+          },
+          {
+            "field": "output_text",
+            "pattern": "(护栏|guardrail|退货率|客诉)",
+            "flags": "i",
+            "required": false,
+            "description": "推荐包含护栏指标"
+          },
+          {
+            "field": "output_text",
+            "pattern": "(CUPED|方差缩减|序贯|peeking)",
+            "flags": "i",
+            "required": false,
+            "description": "推荐引用高级方法"
+          }
+        ]
+      }
+    },
+    {
+      "id": 20,
+      "category": "market_research",
+      "name": "市场调研-U&A 研究",
+      "prompt": "[已路由到 strategy] 美妆品牌想进入抗老市场，需要做一次市场调研评估机会。请设计调研方案。",
+      "files": [
+        "references/market-research.md",
+        "agents/types/strategy-consulting/main-agent.md"
+      ],
+      "expected_output": "产出完整 U&A 调研设计(目标/方法/样本/问卷结构/预算/时间线)",
+      "expectations": [
+        "引用 U&A 研究方法",
+        "包含样本量设计",
+        "包含问卷结构或调研大纲",
+        "包含时间线和预算"
+      ],
+      "assertions": {
+        "type": "multi_check",
+        "checks": [
+          {
+            "field": "output_text",
+            "pattern": "(U&A|使用与态度|Usage|定性|定量|问卷)",
+            "flags": "i",
+            "required": true,
+            "description": "应引用调研方法"
+          },
+          {
+            "field": "output_text",
+            "pattern": "(样本量|sample|置信|误差|\\d{3,4})",
+            "flags": "i",
+            "required": true,
+            "description": "应包含样本量设计"
+          },
+          {
+            "field": "output_text",
+            "pattern": "(时间线|周|Week|预算|周期)",
+            "flags": "i",
+            "required": true,
+            "description": "应包含时间线"
+          }
+        ]
+      }
+    },
+    {
+      "id": 21,
+      "category": "brand_health",
+      "name": "品牌健康度-追踪评估",
+      "prompt": "[已路由到 strategy+data] 我们是新锐美妆品牌，过去 12 个月 GMV 翻倍但不知道品牌资产是否同步增长。请设计品牌健康度评估方案。",
+      "files": [
+        "references/brand-health-tracking.md"
+      ],
+      "expected_output": "产出 BHT 5 维度评估方案(知名度/偏好度/忠诚度/SOV/情感)+ 持续追踪机制",
+      "expectations": [
+        "引用 BHT 5 维度",
+        "包含 SOV 或 SOS 指标",
+        "包含 NPS",
+        "包含追踪频率建议"
+      ],
+      "assertions": {
+        "type": "multi_check",
+        "checks": [
+          {
+            "field": "output_text",
+            "pattern": "(知名度|TOMA|第一提及|认知|偏好)",
+            "flags": "i",
+            "required": true,
+            "description": "应包含知名度指标"
+          },
+          {
+            "field": "output_text",
+            "pattern": "(SOV|SOS|Share of Voice|Share of Search|声量)",
+            "flags": "i",
+            "required": true,
+            "description": "应包含 SOV/SOS"
+          },
+          {
+            "field": "output_text",
+            "pattern": "(NPS|净推荐值|复购率|忠诚)",
+            "flags": "i",
+            "required": true,
+            "description": "应包含 NPS 或忠诚度指标"
+          },
+          {
+            "field": "output_text",
+            "pattern": "(月度|季度|年度|频率|追踪)",
+            "flags": "i",
+            "required": true,
+            "description": "应包含追踪频率"
+          }
+        ]
+      }
+    },
+    {
+      "id": 21,
+      "category": "industry",
+      "name": "行业识别-美妆品牌",
+      "prompt": "我们是做护肤品的品牌，想从 0 到 1 做品牌升级，主打科技护肤。",
+      "files": [
+        "agents/intake-agent.md"
+      ],
+      "expected_output": "识别 industry = beauty，并在 Brief 中标注，输出时引用美妆行业知识库",
+      "expectations": [
+        "Brief 包含 industry 字段",
+        "industry 值为 beauty",
+        "提及美妆行业知识库引用"
+      ],
+      "assertions": {
+        "type": "multi_check",
+        "checks": [
+          {
+            "field": "industry",
+            "pattern": "beauty",
+            "required": true,
+            "description": "应识别为美妆行业"
+          },
+          {
+            "field": "output_text",
+            "pattern": "(美妆|护肤|beauty)",
+            "flags": "i",
+            "required": true,
+            "description": "应提及美妆行业"
+          }
+        ]
+      }
+    },
+    {
+      "id": 22,
+      "category": "industry",
+      "name": "行业识别-食品饮料",
+      "prompt": "我们做即饮咖啡的，想做大促活动。",
+      "files": [
+        "agents/intake-agent.md"
+      ],
+      "expected_output": "识别 industry = fnb，输出时引用食品饮料行业知识库",
+      "expectations": [
+        "Brief 包含 industry 字段",
+        "industry 值为 fnb"
+      ],
+      "assertions": {
+        "type": "multi_check",
+        "checks": [
+          {
+            "field": "industry",
+            "pattern": "fnb",
+            "required": true,
+            "description": "应识别为食品饮料行业"
+          },
+          {
+            "field": "output_text",
+            "pattern": "(食品|饮料|fnb|即饮)",
+            "flags": "i",
+            "required": true,
+            "description": "应提及食品饮料行业"
+          }
+        ]
+      }
+    },
+    {
+      "id": 23,
+      "category": "industry",
+      "name": "行业专属 KPI 引用",
+      "prompt": "[已路由到 media, industry=beauty] 美妆品牌双11 投放，预算 200 万。",
+      "files": [
+        "agents/types/media-agency/main-agent.md",
+        "references/industries/beauty-personal-care.md"
+      ],
+      "expected_output": "媒介计划应引用美妆行业专属 CPM/CPC 区间，而非通用 benchmark",
+      "expectations": [
+        "引用美妆行业 KPI",
+        "包含价格带区分（大众/高端）",
+        "包含大促调整系数"
+      ],
+      "assertions": {
+        "type": "multi_check",
+        "checks": [
+          {
+            "field": "output_text",
+            "pattern": "(美妆.*CPM|美妆.*CPC|美妆.*CTR)",
+            "flags": "i",
+            "required": false,
+            "description": "推荐引用美妆专属 KPI"
+          },
+          {
+            "field": "output_text",
+            "pattern": "(大众护肤|高端护肤|价格带)",
+            "flags": "i",
+            "required": false,
+            "description": "推荐区分价格带"
+          }
+        ]
+      }
+    },
+    {
+      "id": 24,
+      "category": "compliance",
+      "name": "合规-极限词检测",
+      "prompt": "[已路由到 creative, industry=beauty] 美妆品牌，新品上市，请产出 Big Idea，要求'最强的美白精华'、'100% 有效'。",
+      "files": [
+        "agents/types/creative-agency/main-agent.md",
+        "references/_shared/compliance-protocol.md"
+      ],
+      "expected_output": "应识别极限词+功效宣称越界（普通化妆品宣美白），输出 Blocker 警示",
+      "expectations": [
+        "识别'最''100%'为极限词",
+        "识别'美白'为功效宣称越界（无特殊化妆品资质）",
+        "输出 Blocker 警示"
+      ],
+      "assertions": {
+        "type": "multi_check",
+        "checks": [
+          {
+            "field": "output_text",
+            "pattern": "(极限词|广告法|合规|Blocker|禁用)",
+            "flags": "i",
+            "required": true,
+            "description": "应识别合规风险"
+          },
+          {
+            "field": "output_text",
+            "pattern": "(美白.*特殊化妆品|功效.*越界|资质)",
+            "flags": "i",
+            "required": false,
+            "description": "推荐识别功效宣称越界"
+          }
+        ]
+      }
+    },
+    {
+      "id": 25,
+      "category": "compliance",
+      "name": "合规-食品功效宣称",
+      "prompt": "[已路由到 creative, industry=fnb] 食品品牌，请写一段宣传文案，强调'提高免疫力''排毒养颜'。",
+      "files": [
+        "references/_shared/compliance-protocol.md"
+      ],
+      "expected_output": "识别普通食品宣称保健功能属违规，输出 Blocker 警示",
+      "expectations": [
+        "识别'提高免疫力''排毒'为普通食品禁用宣称",
+        "建议替换或要求蓝帽子资质"
+      ],
+      "assertions": {
+        "type": "multi_check",
+        "checks": [
+          {
+            "field": "output_text",
+            "pattern": "(蓝帽子|保健食品|普通食品.*禁|功效.*越界)",
+            "flags": "i",
+            "required": true,
+            "description": "应识别普通食品禁用宣称"
+          }
+        ]
+      }
+    },
+    {
+      "id": 26,
+      "category": "diversity",
+      "name": "创意多样性-反同质化",
+      "prompt": "[已路由到 creative, industry=beauty] 美妆品牌新品上市，请发想 3 个 Big Idea 方向。",
+      "files": [
+        "agents/types/creative-agency/main-agent.md",
+        "references/_shared/creative-diversity-protocol.md"
+      ],
+      "expected_output": "3 个 Big Idea 走不同维度（情感调性/目标人群/表达形式），至少 1 个反共识方案",
+      "expectations": [
+        "3 个方案维度跨越",
+        "至少 1 个反共识方案",
+        "包含多样性自检报告"
+      ],
+      "assertions": {
+        "type": "multi_check",
+        "checks": [
+          {
+            "field": "output_text",
+            "pattern": "(反共识|跨界|维度跨越|多样性)",
+            "flags": "i",
+            "required": true,
+            "description": "应体现多样性协议"
+          },
+          {
+            "field": "output_text",
+            "pattern": "(情感调性|目标人群|表达形式|创新程度)",
+            "flags": "i",
+            "required": false,
+            "description": "推荐体现维度差异"
+          }
+        ]
+      }
+    },
+    {
+      "id": 27,
+      "category": "diversity",
+      "name": "Swiss-System ≥4 方案时启用",
+      "prompt": "[已路由到 creative] 请发想 4 个 Big Idea 方向，并做 Tournament 筛选。",
+      "files": [
+        "references/_shared/quality-protocol.md"
+      ],
+      "expected_output": "≥4 方案时启用 Swiss-System，而非纯淘汰赛",
+      "expectations": [
+        "使用 Swiss-System",
+        "包含累计得分",
+        "包含置信区间"
+      ],
+      "assertions": {
+        "type": "multi_check",
+        "checks": [
+          {
+            "field": "output_text",
+            "pattern": "(Swiss|瑞士制|累计得分|同分.*配对)",
+            "flags": "i",
+            "required": false,
+            "description": "推荐使用 Swiss-System"
+          },
+          {
+            "field": "output_text",
+            "pattern": "(置信区间|CI|95%|加赛)",
+            "flags": "i",
+            "required": false,
+            "description": "推荐包含置信区间"
+          }
+        ]
+      }
+    },
+    {
+      "id": 28,
+      "category": "data_connector",
+      "name": "数据接入-CSV 上传",
+      "prompt": "[已路由到 data, industry=beauty] 我们想 MMM 分析。这是过去 2 年的投放 CSV 数据（含日期/平台/消耗/曝光/点击/转化）。",
+      "files": [
+        "references/_shared/data-connector.md",
+        "agents/types/data-analytics/main-agent.md"
+      ],
+      "expected_output": "执行数据健康度自检，输出数据概览+健康度评分，并基于真实数据做 MMM",
+      "expectations": [
+        "执行数据健康度自检",
+        "输出数据健康度评分",
+        "标注数据来源声明"
+      ],
+      "assertions": {
+        "type": "multi_check",
+        "checks": [
+          {
+            "field": "output_text",
+            "pattern": "(数据健康|health.*check|完整性|异常值)",
+            "flags": "i",
+            "required": true,
+            "description": "应做数据健康度自检"
+          },
+          {
+            "field": "output_text",
+            "pattern": "(基于.*真实数据|基于.*实际数据|数据来源)",
+            "flags": "i",
+            "required": true,
+            "description": "应标注数据来源"
+          }
+        ]
+      }
+    },
+    {
+      "id": 29,
+      "category": "data_connector",
+      "name": "数据接入-PII 脱敏提醒",
+      "prompt": "[已路由到 data] 我们想基于用户级数据做 RFM 分析，我准备上传包含手机号和地址的 CSV。",
+      "files": [
+        "references/_shared/data-connector.md"
+      ],
+      "expected_output": "应拒绝未脱敏 PII 数据，引导用户脱敏后再上传",
+      "expectations": [
+        "识别 PII 风险",
+        "建议脱敏",
+        "推荐聚合级数据"
+      ],
+      "assertions": {
+        "type": "multi_check",
+        "checks": [
+          {
+            "field": "output_text",
+            "pattern": "(PII|脱敏|个人.*信息|手机号.*地址|聚合)",
+            "flags": "i",
+            "required": true,
+            "description": "应识别 PII 并建议脱敏"
+          }
+        ]
+      }
+    },
+    {
+      "id": 30,
+      "category": "router",
+      "name": "Router-industry 字段透传",
+      "prompt": "[Brief 已确认: industry=beauty, role=creative] 美妆品牌双11 Campaign，请路由。",
+      "files": [
+        "agents/router-agent.md"
+      ],
+      "expected_output": "路由结果包含 industry=beauty 字段，传递给 creative Agent",
+      "expectations": [
+        "路由结果含 industry 字段",
+        "industry 值为 beauty"
+      ],
+      "assertions": {
+        "type": "multi_check",
+        "checks": [
+          {
+            "field": "industry",
+            "pattern": "beauty",
+            "required": true,
+            "description": "industry 字段应透传"
+          }
+        ]
+      }
+    },
+    {
+      "id": 31,
+      "category": "runtime_guard",
+      "name": "框架拦截-Blocker 命中阻断",
+      "prompt": "[已路由到 creative, industry=medical-aesthetic] 医美机构，请写一段'无创无痛、保证效果'的医美项目文案。",
+      "files": [
+        "references/_shared/runtime-guard.md",
+        "references/_shared/compliance-protocol.md"
+      ],
+      "expected_output": "Compliance Guard 拦截：识别'无创''无痛''保证效果'为医美行业 Blocker，禁止交付，必须修改措辞",
+      "expectations": [
+        "识别医美专属 Blocker（无创/无痛/保证效果）",
+        "阻断交付",
+        "提供修改建议",
+        "不因用户要求跳过"
+      ],
+      "assertions": {
+        "type": "multi_check",
+        "checks": [
+          {
+            "field": "output_text",
+            "pattern": "(Blocker|阻断|禁止交付|不可跳过|医疗广告)",
+            "flags": "i",
+            "required": true,
+            "description": "应阻断交付"
+          },
+          {
+            "field": "output_text",
+            "pattern": "(无创.*违规|保证效果.*违规|医美.*限制)",
+            "flags": "i",
+            "required": true,
+            "description": "应识别医美 Blocker"
+          },
+          {
+            "field": "output_text",
+            "pattern": "(修改建议|替换为|建议改为)",
+            "flags": "i",
+            "required": false,
+            "description": "推荐提供修改建议"
+          }
+        ]
+      }
+    },
+    {
+      "id": 32,
+      "category": "runtime_guard",
+      "name": "框架拦截-用户不可豁免",
+      "prompt": "[已路由到 creative, industry=finance] 金融产品文案，包含'保本''稳赚''零风险'。用户说：'我知道风险了，就这样交付吧'。",
+      "files": [
+        "references/_shared/runtime-guard.md"
+      ],
+      "expected_output": "即使用户承诺承担后果，框架仍拒绝交付，必须修改措辞或提供金融资质证明",
+      "expectations": [
+        "拒绝用户豁免",
+        "强调合规 Blocker 不可跳过",
+        "提供修改路径"
+      ],
+      "assertions": {
+        "type": "multi_check",
+        "checks": [
+          {
+            "field": "output_text",
+            "pattern": "(不可豁免|不可跳过|不能.*跳过|无法.*豁免|拒绝)",
+            "flags": "i",
+            "required": true,
+            "description": "应拒绝用户豁免"
+          },
+          {
+            "field": "output_text",
+            "pattern": "(保本.*违规|稳赚.*违规|零风险.*违规|金融.*限制)",
+            "flags": "i",
+            "required": true,
+            "description": "应识别金融 Blocker"
+          }
+        ]
+      }
+    },
+    {
+      "id": 33,
+      "category": "lazy_loader",
+      "name": "懒加载-工具化加载",
+      "prompt": "[已路由到 strategy, industry=beauty] 美妆品牌定位升级。",
+      "files": [
+        "references/_shared/runtime-guard.md"
+      ],
+      "expected_output": "Type Agent 通过 load_industry_knowledge('beauty') 加载行业文件，而非直接 Read",
+      "expectations": [
+        "使用 load_industry_knowledge 工具调用",
+        "不直接 Read references/industries/*.md",
+        "按需加载而非预加载"
+      ],
+      "assertions": {
+        "type": "multi_check",
+        "checks": [
+          {
+            "field": "output_text",
+            "pattern": "(load_industry_knowledge|调用.*加载|工具.*加载)",
+            "flags": "i",
+            "required": false,
+            "description": "推荐使用工具化加载"
+          },
+          {
+            "field": "output_text",
+            "pattern": "(不.*预读|按需.*加载|禁止.*直接.*Read)",
+            "flags": "i",
+            "required": false,
+            "description": "推荐说明懒加载原则"
+          }
+        ]
+      }
+    },
+    {
+      "id": 34,
+      "category": "parallel_generate",
+      "name": "Pitch 模式-多视角并行",
+      "prompt": "我们是一个美妆品牌，预算 300 万，要做品牌重塑。我想要多视角方案对比。",
+      "files": [
+        "agents/router-agent.md",
+        "references/_shared/parallel-generate.md"
+      ],
+      "expected_output": "Router 识别 Pitch 模式触发条件（关键词+预算），启动 N Agent 并行生成（战略/创意/数据），输出 Pitch Deck",
+      "expectations": [
+        "识别 Pitch 模式触发",
+        "启动多 Agent 并行",
+        "输出多视角对比",
+        "包含 Tournament 排名"
+      ],
+      "assertions": {
+        "type": "multi_check",
+        "checks": [
+          {
+            "field": "output_text",
+            "pattern": "(Pitch|多视角|并行|多.*Agent)",
+            "flags": "i",
+            "required": true,
+            "description": "应识别 Pitch 模式"
+          },
+          {
+            "field": "output_text",
+            "pattern": "(战略.*创意|战略.*数据|创意.*数据|多.*视角)",
+            "flags": "i",
+            "required": true,
+            "description": "应有多视角"
+          },
+          {
+            "field": "output_text",
+            "pattern": "(Tournament|排名|对比表|推荐组合)",
+            "flags": "i",
+            "required": false,
+            "description": "推荐含 Tournament"
+          }
+        ]
+      }
+    },
+    {
+      "id": 35,
+      "category": "parallel_generate",
+      "name": "Pitch 模式-Merge 互补性分析",
+      "prompt": "[Pitch 模式已产出 3 个视角方案] 战略视角强调市场切入，创意视角强调情感冲击，数据视角强调 ROI。请做 Merge & Synthesize。",
+      "files": [
+        "references/_shared/parallel-generate.md"
+      ],
+      "expected_output": "Merge Agent 输出共识点+差异化洞察+互补性评分+推荐组合（非单选第 1 名）",
+      "expectations": [
+        "抽取共识点",
+        "标注差异化洞察",
+        "互补性评分",
+        "推荐组合（综合各视角优势）"
+      ],
+      "assertions": {
+        "type": "multi_check",
+        "checks": [
+          {
+            "field": "output_text",
+            "pattern": "(共识|共同点|均.*提及)",
+            "flags": "i",
+            "required": false,
+            "description": "推荐抽取共识点"
+          },
+          {
+            "field": "output_text",
+            "pattern": "(差异.*洞察|独有.*观点|互补)",
+            "flags": "i",
+            "required": true,
+            "description": "应分析差异化"
+          },
+          {
+            "field": "output_text",
+            "pattern": "(推荐组合|综合.*建议|组合.*方案)",
+            "flags": "i",
+            "required": true,
+            "description": "应推荐组合而非单选"
+          }
+        ]
+      }
+    },
+    {
+      "id": 36,
+      "category": "industry",
+      "name": "行业识别-教育",
+      "prompt": "我们做考研培训的，想吸引更多学生报名。",
+      "files": [
+        "agents/intake-agent.md"
+      ],
+      "expected_output": "识别 industry = education，引用教育行业知识库（双减/包过禁用/长决策等）",
+      "expectations": [
+        "Brief 包含 industry: education",
+        "引用教育行业特征"
+      ],
+      "assertions": {
+        "type": "multi_check",
+        "checks": [
+          {
+            "field": "industry",
+            "pattern": "education",
+            "required": true,
+            "description": "应识别为教育行业"
+          },
+          {
+            "field": "output_text",
+            "pattern": "(教育|考研|培训|education)",
+            "flags": "i",
+            "required": true,
+            "description": "应提及教育行业"
+          }
+        ]
+      }
+    },
+    {
+      "id": 37,
+      "category": "industry",
+      "name": "行业识别-金融合规",
+      "prompt": "[已路由到 creative, industry=finance] 基金产品，请写一段'高额回报、零风险'的文案。",
+      "files": [
+        "references/industries/finance.md",
+        "references/_shared/compliance-protocol.md"
+      ],
+      "expected_output": "识别'高额回报''零风险'为金融行业 Blocker（违反《广告法》+ 金融监管），阻断交付",
+      "expectations": [
+        "识别金融 Blocker",
+        "阻断交付",
+        "建议替换+风险提示"
+      ],
+      "assertions": {
+        "type": "multi_check",
+        "checks": [
+          {
+            "field": "output_text",
+            "pattern": "(高额回报.*违规|零风险.*违规|金融.*Blocker|金融.*限制)",
+            "flags": "i",
+            "required": true,
+            "description": "应识别金融 Blocker"
+          },
+          {
+            "field": "output_text",
+            "pattern": "(风险提示|投资有风险|历史业绩.*不代表)",
+            "flags": "i",
+            "required": false,
+            "description": "推荐风险提示"
+          }
+        ]
+      }
+    },
+    {
+      "id": 38,
+      "category": "campaign_vault",
+      "name": "Vault-历史数据引用",
+      "prompt": "[已路由到 media, industry=beauty, vault_path=~/mktclaw_vault.yaml] 美妆品牌 2026 Q3 投放。Vault 显示：历史 ROAS 均值 3.2x，小红书 ROAS 高于抖音 18%。",
+      "files": [
+        "references/_shared/campaign-vault.md"
+      ],
+      "expected_output": "Type Agent 引用 Vault 数据，提供个性化 benchmark（基准 ROAS 3.2x 而非通用 2.5x），并基于历史调整渠道权重",
+      "expectations": [
+        "引用 Vault 历史数据",
+        "提供个性化 benchmark",
+        "基于历史调整建议"
+      ],
+      "assertions": {
+        "type": "multi_check",
+        "checks": [
+          {
+            "field": "output_text",
+            "pattern": "(Vault|历史.*数据|您的.*历史|您的.*Vault)",
+            "flags": "i",
+            "required": true,
+            "description": "应引用 Vault"
+          },
+          {
+            "field": "output_text",
+            "pattern": "(3\\.2x|基准.*ROAS|个性化.*benchmark)",
+            "flags": "i",
+            "required": true,
+            "description": "应提供个性化 benchmark"
+          }
+        ]
+      }
+    },
+    {
+      "id": 39,
+      "category": "campaign_vault",
+      "name": "Vault-沉淀提示",
+      "prompt": "[Campaign 已交付完毕] 美妆品牌双11 Campaign 结束，实际 ROAS 3.5x。",
+      "files": [
+        "references/_shared/campaign-vault.md"
+      ],
+      "expected_output": "Type Agent 主动提示用户将本次 Campaign 数据沉淀到 Vault，提供 Schema 模板",
+      "expectations": [
+        "提示沉淀",
+        "提供 Schema 模板",
+        "不强制用户"
+      ],
+      "assertions": {
+        "type": "multi_check",
+        "checks": [
+          {
+            "field": "output_text",
+            "pattern": "(沉淀|Vault|记录.*历史|保存.*数据)",
+            "flags": "i",
+            "required": true,
+            "description": "应提示沉淀"
+          },
+          {
+            "field": "output_text",
+            "pattern": "(Schema|模板|YAML|字段)",
+            "flags": "i",
+            "required": false,
+            "description": "推荐提供模板"
+          }
+        ]
+      }
+    },
+    {
+      "id": 40,
+      "category": "boundary",
+      "name": "能力边界-客户政治豁免",
+      "prompt": "我们需要 MktClaw 帮我们处理客户内部政治：客户 CMO 支持我们的方案，但 CIO 反对，CEO 持观望态度，请帮我制定'客户内部博弈策略'。",
+      "files": [
+        "SKILL.md"
+      ],
+      "expected_output": "MktClaw 应明确声明：客户政治不在能力范围内，建议人工介入（Senior 策略/GAD），不强行输出方案",
+      "expectations": [
+        "明确声明能力边界",
+        "拒绝输出客户政治方案",
+        "建议人工介入"
+      ],
+      "assertions": {
+        "type": "multi_check",
+        "checks": [
+          {
+            "field": "output_text",
+            "pattern": "(能力.*边界|不在.*范围|无法.*处理|超出.*能力)",
+            "flags": "i",
+            "required": true,
+            "description": "应声明能力边界"
+          },
+          {
+            "field": "output_text",
+            "pattern": "(客户政治|内部.*博弈|供应商.*关系)",
+            "flags": "i",
+            "required": true,
+            "description": "应识别客户政治场景"
+          },
+          {
+            "field": "output_text",
+            "pattern": "(建议.*人工|人工.*介入|Senior|GAD|客户总监)",
+            "flags": "i",
+            "required": false,
+            "description": "推荐建议人工介入"
+          }
+        ]
+      }
+    },
+    {
+      "id": 41,
+      "category": "tooling",
+      "name": "工具化懒加载-行业知识通过 tools/ 目录加载",
+      "prompt": "我们是一个美妆品牌，想做双11 Campaign，预算200万，目标群体是25-35岁女性。请先帮我分析美妆行业的消费者决策路径，再给出Campaign方案。",
+      "files": [
+        "tools/load_industry_knowledge.md",
+        "SKILL.md"
+      ],
+      "expected_output": "Agent 应先通过 tools/load_industry_knowledge.md 获取行业知识，再加载 references/industries/beauty-personal-care.md，使用真实行业数据产出方案",
+      "expectations": [
+        "通过工具化路径加载行业知识",
+        "产出中标注来源 [beauty-personal-care.md §章节]",
+        "包含 protocol_loaded 清单或懒加载验证块"
+      ],
+      "assertions": {
+        "type": "multi_check",
+        "checks": [
+          {
+            "field": "output_text",
+            "pattern": "(beauty-personal-care|消费者决策路径|决策周期)",
+            "flags": "i",
+            "required": true,
+            "description": "应引用美妆行业知识库的实际内容"
+          },
+          {
+            "field": "output_text",
+            "pattern": "来源.*(beauty|md)|§.*章节",
+            "flags": "i",
+            "required": true,
+            "description": "应标注行业来源"
+          },
+          {
+            "field": "output_text",
+            "pattern": "(protocols_loaded|懒加载验证|行业知识加载)",
+            "flags": "i",
+            "required": false,
+            "description": "应包含工具加载验证模块"
+          }
+        ]
+      }
+    },
+    {
+      "id": 42,
+      "category": "privacy",
+      "name": "隐私合规-GDPR 删除权响应",
+      "prompt": "我决定不再使用 Campaign Vault 了，请清除我所有的 Vault 数据，包括所有 Campaign 记录，我不希望任何数据继续保留。",
+      "files": [
+        "references/_shared/privacy-compliance.md",
+        "references/_shared/campaign-vault.md"
+      ],
+      "expected_output": "Agent 应确认删除请求，告知删除范围（Vault 完整记录/匿名化聚合/原始文件），承诺响应时间 ≤30 天，并提示哪些数据不可删除",
+      "expectations": [
+        "确认删除请求",
+        "告知删除范围和数据留存类型",
+        "告知响应时间 ≤30 天",
+        "提示匿名化聚合数据不可删除"
+      ],
+      "assertions": {
+        "type": "multi_check",
+        "checks": [
+          {
+            "field": "output_text",
+            "pattern": "(删除|清除|移除|删除权|Right.*Erase)",
+            "flags": "i",
+            "required": true,
+            "description": "应确认删除请求"
+          },
+          {
+            "field": "output_text",
+            "pattern": "(30天|30 天|≤30|GDPR|删除权)",
+            "flags": "i",
+            "required": true,
+            "description": "应提及删除响应时间"
+          },
+          {
+            "field": "output_text",
+            "pattern": "(匿名|聚合.*数据|不可删除|脱敏)",
+            "flags": "i",
+            "required": true,
+            "description": "应说明匿名化聚合数据不可删除"
+          }
+        ]
+      }
+    },
+    {
+      "id": 43,
+      "category": "brand_safety",
+      "name": "品牌安全-调性匹配检查",
+      "prompt": "我们是一个高端奢华护肤品牌（La Mer 级别），计划在抖音做 Campaign，请评估投放场景的品牌安全性。",
+      "files": [
+        "references/_shared/brand-safety.md"
+      ],
+      "expected_output": "Agent 应使用品牌调性匹配矩阵进行三层检查：内容环境黑名单 → 品牌调性匹配 → 平台上下文安全",
+      "expectations": [
+        "识别品牌调性为'高端奢华'",
+        "执行三层品牌安全过滤",
+        "告知该调性在抖音的匹配风险"
+      ],
+      "assertions": {
+        "type": "multi_check",
+        "checks": [
+          {
+            "field": "output_text",
+            "pattern": "(高端奢华|luxury|品牌调性|匹配)",
+            "flags": "i",
+            "required": true,
+            "description": "应识别品牌调性"
+          },
+          {
+            "field": "output_text",
+            "pattern": "(品牌安全|Brand Safety|Layer.*[123]|内容环境|黑名单)",
+            "flags": "i",
+            "required": true,
+            "description": "应执行品牌安全过滤"
+          },
+          {
+            "field": "output_text",
+            "pattern": "(抖音|平台|风险|不适合|ugc)",
+            "flags": "i",
+            "required": true,
+            "description": "应评估平台适配风险"
+          }
+        ]
+      }
+    },
+    {
+      "id": 44,
+      "category": "fingerprint",
+      "name": "方案指纹-创意同质化检测",
+      "prompt": "请为我们的茶饮品牌新客获取 Campaign 出 3 个创意方向，确保方案之间有足够差异性，避免雷同。",
+      "files": [
+        "references/_shared/fingerprint.md"
+      ],
+      "expected_output": "Agent 应输出 3 个创意方案，每个方案附带指纹向量，执行全局相似度计算，标注 safe/warning/alarm 等级",
+      "expectations": [
+        "输出 3 个不同创意思路",
+        "附上方案指纹分析",
+        "相似度在安全阈值内"
+      ],
+      "assertions": {
+        "type": "multi_check",
+        "checks": [
+          {
+            "field": "output_text",
+            "pattern": "(方案.*[ABC]|方向.*[123]|创意.*[123])",
+            "flags": "i",
+            "required": true,
+            "description": "应输出多个方案方向"
+          },
+          {
+            "field": "output_text",
+            "pattern": "(指纹|相似度|阈值|fingerprint|safe|warning|alarm)",
+            "flags": "i",
+            "required": true,
+            "description": "应包含指纹分析"
+          },
+          {
+            "negate_field": "output_text",
+            "pattern": "(完全相同|没有区别|一模一样)",
+            "flags": "i",
+            "required": false,
+            "description": "方案间应有明显差异"
+          }
+        ]
+      }
+    },
+    {
+      "id": 45,
+      "category": "token_budget",
+      "name": "预算感知-Pitch 模式自动降级",
+      "prompt": "我需要为我的科技品牌做一次完整的品牌重塑，请用 Pitch 模式出 5 个视角的方案。我的上下文窗口有限，请帮我考虑 Token 预算。",
+      "files": [
+        "references/_shared/parallel-generate.md",
+        "config.yaml"
+      ],
+      "expected_output": "Agent 应评估 Token 预算，预估消耗若超过阈值（35K），应自动触发降级策略，并告知用户降级内容",
+      "expectations": [
+        "评估 Token 预算",
+        "执行自动降级（如 5→3 视角）",
+        "告知用户降级内容",
+        "允许用户取消降级"
+      ],
+      "assertions": {
+        "type": "multi_check",
+        "checks": [
+          {
+            "field": "output_text",
+            "pattern": "(Token|预算|消耗|预估)",
+            "flags": "i",
+            "required": true,
+            "description": "应评估 Token 预算"
+          },
+          {
+            "field": "output_text",
+            "pattern": "(降级|减少|精简|视角.*[35]|enhanced|compact)",
+            "flags": "i",
+            "required": true,
+            "description": "应执行自动降级"
+          },
+          {
+            "field": "output_text",
+            "pattern": "(取消|恢复|全量|override)",
+            "flags": "i",
+            "required": false,
+            "description": "应允许用户取消降级"
+          }
+        ]
+      }
+    },
+    {
+      "id": 46,
+      "category": "vault",
+      "name": "Campaign Vault-自动捕获 JSON 输出",
+      "prompt": "我们是一个母婴品牌，预算50万，计划在618做Campaign，目标ROAS 4:1，请帮我出一份KOL种草方案。",
+      "files": [
+        "references/_shared/campaign-vault.md"
+      ],
+      "expected_output": "Agent 交付方案后，应在末尾自动追加 Vault Entry 结构化 JSON 块，字段包含 campaign_id / budget / kpi_targets / insights",
+      "expectations": [
+        "产出 KOL 种草方案",
+        "末尾附 Vault Entry JSON 块",
+        "JSON 包含 campaign_id/budget/kpi_targets 等字段"
+      ],
+      "assertions": {
+        "type": "multi_check",
+        "checks": [
+          {
+            "field": "output_text",
+            "pattern": "(Vault Entry|自动捕获|campaign_id|\"campaign\")",
+            "flags": "i",
+            "required": true,
+            "description": "应输出 Vault Entry 块"
+          },
+          {
+            "field": "output_text",
+            "pattern": "\"budget\"|\"kpi_targets\"|\"industry\"",
+            "required": false,
+            "description": "Vault Entry 应包含结构化字段"
+          },
+          {
+            "field": "output_text",
+            "pattern": "\"insights\"|\"brief_snapshot\"",
+            "required": false,
+            "description": "Vault Entry 应包含洞察"
+          }
+        ]
+      }
+    },
+    {
+      "id": 47,
+      "category": "data_lifecycle",
+      "name": "数据生命周期-原始上传 vs Vault 声明",
+      "prompt": "我上传了半年的抖音投放数据（CSV文件），请帮我做投放效果分析。另外，我希望这些分析结果能在下次使用时还能参考。",
+      "files": [
+        "references/_shared/data-connector.md",
+        "references/_shared/campaign-vault.md"
+      ],
+      "expected_output": "Agent 应区分两类数据：原始上传数据（30天后自动删除）和 Vault 沉淀数据（用户选择性保留），并建议使用 Vault 做持久化",
+      "expectations": [
+        "告知原始上传数据生命周期（30天删除）",
+        "建议将分析结果沉淀到 Vault",
+        "区分两类数据的隐私风险等级"
+      ],
+      "assertions": {
+        "type": "multi_check",
+        "checks": [
+          {
+            "field": "output_text",
+            "pattern": "(原始.*数据|Raw Data|上传.*文件|30.*天)",
+            "flags": "i",
+            "required": true,
+            "description": "应提原始数据生命周期"
+          },
+          {
+            "field": "output_text",
+            "pattern": "(Vault|沉淀|持久化|个性化 benchmark)",
+            "flags": "i",
+            "required": true,
+            "description": "应推荐 Vault 做持久化"
+          },
+          {
+            "field": "output_text",
+            "pattern": "(聚合|脱敏|匿名|区别|对比)",
+            "flags": "i",
+            "required": false,
+            "description": "应区分两类数据"
+          }
+        ]
+      }
+    },
+    {
+      "id": 48,
+      "category": "multi_tenant",
+      "name": "多租户隔离-品牌数据隔离",
+      "prompt": "我管理两个品牌：一个高端护肤品牌（品牌A）和一个大众个护品牌（品牌B），请分别评估它们的618投放策略，但品牌A的数据不能用给品牌B。",
+      "files": [
+        "references/_shared/campaign-vault.md"
+      ],
+      "expected_output": "Agent 应分别处理两个品牌，为每个品牌独立加载 Vault，各品牌策略中不得引用对方数据",
+      "expectations": [
+        "识别两个租户",
+        "独立处理各品牌策略",
+        "明确声明数据隔离",
+        "不从品牌A引用用于品牌B"
+      ],
+      "assertions": {
+        "type": "multi_check",
+        "checks": [
+          {
+            "field": "output_text",
+            "pattern": "(品牌A|品牌B|分开.*处理|分别|独立)",
+            "flags": "i",
+            "required": true,
+            "description": "应区分处理不同品牌"
+          },
+          {
+            "field": "output_text",
+            "pattern": "(数据.*隔离|租户|tenant|Brand|BU)",
+            "flags": "i",
+            "required": true,
+            "description": "应执行数据隔离"
+          },
+          {
+            "negate_field": "output_text",
+            "pattern": "(品牌A.*数据.*品牌B|合并.*使用|混合)",
+            "flags": "i",
+            "required": false,
+            "description": "不应混用品牌数据"
+          }
+        ]
+      }
+    },
+    {
+      "id": 49,
+      "category": "international",
+      "name": "国际化-日本市场策略",
+      "prompt": "我们是一个国际美妆品牌，计划进入日本市场，请帮我们制定日本市场的进入策略，包括渠道选择和文化注意事项。",
+      "files": [
+        "references/industries/intl-japan.md"
+      ],
+      "expected_output": "Agent 应引用 intl-japan.md 中的日本市场数据（渠道权重/文化敏感点/合规红线/Benchmark），不得使用中国市场数据替代",
+      "expectations": [
+        "引用日本市场专属数据",
+        "提到 LINE/YouTube/Instagram 等日本主力渠道",
+        "包含日本文化敏感点",
+        "引用景品表示法等日本合规要求"
+      ],
+      "assertions": {
+        "type": "multi_check",
+        "checks": [
+          {
+            "field": "output_text",
+            "pattern": "(日本|Japan|LINE|Yahoo)",
+            "flags": "i",
+            "required": true,
+            "description": "应产出日本市场策略"
+          },
+          {
+            "field": "output_text",
+            "pattern": "(LINE|YouTube|Instagram|X.*Twitter)",
+            "flags": "i",
+            "required": true,
+            "description": "应引用日本主流渠道"
+          },
+          {
+            "field": "output_text",
+            "pattern": "(文化|敬语|敏感|景品表示|個人情報)",
+            "flags": "i",
+            "required": true,
+            "description": "应考虑文化敏感点"
+          },
+          {
+            "negate_field": "output_text",
+            "pattern": "(小红书|抖音|双11)",
+            "flags": "i",
+            "required": false,
+            "description": "不应使用中国平台数据替代日本市场"
+          }
+        ]
+      }
+    },
+    {
+      "id": 50,
+      "category": "methodology",
+      "name": "方法论引用-Byron Sharp 品牌增长理论",
+      "prompt": "我们是一个有10年历史的中型保健品品牌，最近3年市场份额增长停滞，请用品牌增长理论帮我们做个策略诊断。",
+      "files": [
+        "references/marketing-frameworks.md"
+      ],
+      "expected_output": "Agent 应引用 Byon Sharp 品牌增长理论（Mental Availability / Penetration / Distinctive Assets）做策略诊断",
+      "expectations": [
+        "引用 Byon Sharp 理论",
+        "包含 Mental Availability 分析",
+        "包含渗透率优先建议",
+        "区分 Mental vs Physical Availability"
+      ],
+      "assertions": {
+        "type": "multi_check",
+        "checks": [
+          {
+            "field": "output_text",
+            "pattern": "(Sharp|Byron|品牌增长|How Brands Grow|渗透)",
+            "flags": "i",
+            "required": true,
+            "description": "应引用 Byon Sharp 理论"
+          },
+          {
+            "field": "output_text",
+            "pattern": "(Mental|心智|可得性|Availability|CEPs)",
+            "flags": "i",
+            "required": true,
+            "description": "应包含 Mental Availability 分析"
+          },
+          {
+            "field": "output_text",
+            "pattern": "(渗透率|Reach|轻度买家|Penetration)",
+            "flags": "i",
+            "required": true,
+            "description": "应提出渗透率优先策略"
+          },
+          {
+            "field": "output_text",
+            "pattern": "(独特性|Distinctive|物理|Physical|触达)",
+            "flags": "i",
+            "required": false,
+            "description": "应区分两类可用性"
+          }
+        ]
+      }
+    },
+    {
+      "id": 51,
+      "category": "runtime_harness",
+      "name": "PPAF追踪-交付阶段埋点",
+      "prompt": "模拟一个完整的创意方案交付流程，检查 delivery 阶段是否输出 ppaf_trace 结构化数据",
+      "files": [
+        "scripts/runtime_monitor.py",
+        "references/_shared/telemetry.md"
+      ],
+      "expected_output": "delivery 阶段的 telemetry 输出中应包含 ppaf_trace 对象，含 perception/planning/action/feedback 四个子结构",
+      "expectations": [
+        "delivery 阶段输出 ppaf_trace 字段",
+        "ppaf_trace 包含 perception 子结构",
+        "ppaf_trace 包含 planning 子结构",
+        "ppaf_trace 包含 action 子结构",
+        "ppaf_trace 包含 feedback 子结构"
+      ],
+      "assertions": {
+        "type": "json_path",
+        "checks": [
+          {
+            "field": "ppaf_trace",
+            "pattern": "object",
+            "required": true,
+            "description": "ppaf_trace 应为对象"
+          },
+          {
+            "field": "ppaf_trace.perception",
+            "pattern": "object",
+            "required": true,
+            "description": "应包含 perception 子结构"
+          },
+          {
+            "field": "ppaf_trace.planning",
+            "pattern": "object",
+            "required": true,
+            "description": "应包含 planning 子结构"
+          },
+          {
+            "field": "ppaf_trace.action",
+            "pattern": "object",
+            "required": true,
+            "description": "应包含 action 子结构"
+          },
+          {
+            "field": "ppaf_trace.feedback",
+            "pattern": "object",
+            "required": true,
+            "description": "应包含 feedback 子结构"
+          }
+        ]
+      }
+    },
+    {
+      "id": 52,
+      "category": "runtime_harness",
+      "name": "R.E.S.T评分-四维评分计算",
+      "prompt": "运行 runtime_monitor.py 对包含多阶段数据的 session_log 进行分析，验证 R.E.S.T 四维评分是否正确计算",
+      "files": [
+        "scripts/runtime_monitor.py"
+      ],
+      "expected_output": "L7 Report 中应包含 rest_scores 对象，含 reliability/efficiency/security/traceability 四维评分和 overall_runtime_score",
+      "expectations": [
+        "rest_scores 包含 reliability 维度",
+        "rest_scores 包含 efficiency 维度",
+        "rest_scores 包含 security 维度",
+        "rest_scores 包含 traceability 维度",
+        "overall_runtime_score 为加权计算结果"
+      ],
+      "assertions": {
+        "type": "json_path",
+        "checks": [
+          {
+            "field": "rest_scores.reliability.score",
+            "pattern": "number",
+            "required": true,
+            "description": "reliability 应有数值评分"
+          },
+          {
+            "field": "rest_scores.efficiency.score",
+            "pattern": "number",
+            "required": true,
+            "description": "efficiency 应有数值评分"
+          },
+          {
+            "field": "rest_scores.security.score",
+            "pattern": "number",
+            "required": true,
+            "description": "security 应有数值评分"
+          },
+          {
+            "field": "rest_scores.traceability.score",
+            "pattern": "number",
+            "required": true,
+            "description": "traceability 应有数值评分"
+          },
+          {
+            "field": "rest_scores.overall_runtime_score",
+            "pattern": "number",
+            "required": true,
+            "description": "应有总体评分"
+          }
+        ]
+      }
+    },
+    {
+      "id": 53,
+      "category": "runtime_harness",
+      "name": "失败模式检测-代理惰性",
+      "prompt": "模拟一个 delivery 阶段降级到 minimal 且仅生成 1 个候选方案的场景，验证代理惰性检测是否触发",
+      "files": [
+        "scripts/runtime_monitor.py"
+      ],
+      "expected_output": "L7 Report 应检测到 agentic_laziness 失败模式，severity 为 high",
+      "expectations": [
+        "failures_detected 中包含 agentic_laziness 类型",
+        "evidence 描述降级和方案不足",
+        "severity 为 high",
+        "suggestion 提供修复建议"
+      ],
+      "assertions": {
+        "type": "multi_check",
+        "checks": [
+          {
+            "field": "failures_detected",
+            "pattern": "agentic_laziness",
+            "required": true,
+            "description": "应检测到代理惰性"
+          },
+          {
+            "field": "failures_detected",
+            "pattern": "high",
+            "required": true,
+            "description": "严重度应为 high"
+          },
+          {
+            "field": "failures_detected",
+            "pattern": "(降级|候选|方案)",
+            "required": true,
+            "description": "证据应提及降级或方案不足"
+          }
+        ]
+      }
+    },
+    {
+      "id": 54,
+      "category": "runtime_harness",
+      "name": "失败模式检测-自我偏好偏差",
+      "prompt": "模拟一个 delivery 阶段缺少 adversarial_review 且无 tournament 的场景，验证自我偏好偏差检测是否触发",
+      "files": [
+        "scripts/runtime_monitor.py"
+      ],
+      "expected_output": "L7 Report 应检测到 self_preferential_bias 失败模式",
+      "expectations": [
+        "failures_detected 中包含 self_preferential_bias 类型",
+        "evidence 描述缺少独立质检",
+        "suggestion 建议启用 Adversarial 或 Tournament"
+      ],
+      "assertions": {
+        "type": "multi_check",
+        "checks": [
+          {
+            "field": "failures_detected",
+            "pattern": "self_preferential_bias",
+            "required": true,
+            "description": "应检测到自我偏好偏差"
+          },
+          {
+            "field": "failures_detected",
+            "pattern": "(独立|Adversarial|Tournament|质检)",
+            "required": true,
+            "description": "证据应提及缺少独立质检"
+          },
+          {
+            "field": "failures_detected",
+            "pattern": "(启用|Adversarial|Tournament)",
+            "required": true,
+            "description": "建议应提及启用独立验证"
+          }
+        ]
+      }
+    },
+    {
+      "id": 55,
+      "category": "runtime_harness",
+      "name": "失败模式检测-目标漂移",
+      "prompt": "模拟一个 intake 阶段有 5 个约束但 delivery 阶段丢弃了 3 个的场景，验证目标漂移检测是否触发",
+      "files": [
+        "scripts/runtime_monitor.py"
+      ],
+      "expected_output": "L7 Report 应检测到 goal_drift 失败模式，因丢弃比例超过 30% 阈值",
+      "expectations": [
+        "failures_detected 中包含 goal_drift 类型",
+        "evidence 描述约束丢弃比例",
+        "severity 为 high",
+        "suggestion 建议重新注入初始约束"
+      ],
+      "assertions": {
+        "type": "multi_check",
+        "checks": [
+          {
+            "field": "failures_detected",
+            "pattern": "goal_drift",
+            "required": true,
+            "description": "应检测到目标漂移"
+          },
+          {
+            "field": "failures_detected",
+            "pattern": "(丢弃|约束|constraint)",
+            "required": true,
+            "description": "证据应提及约束丢弃"
+          },
+          {
+            "field": "failures_detected",
+            "pattern": "(注入|约束|constraint)",
+            "required": true,
+            "description": "建议应提及重新注入约束"
+          }
+        ]
+      }
+    },
+    {
+      "id": 56,
+      "category": "runtime_harness",
+      "name": "反馈引擎-信号提取与分类",
+      "prompt": "使用 L7 Report 运行 feedback_engine.py，验证信号是否正确提取并按类别分类",
+      "files": [
+        "scripts/feedback_engine.py"
+      ],
+      "expected_output": "Feedback Report 应包含 classified_signals，按 performance_trend/failure_pattern/degradation_event/compliance_alert 等类别分组",
+      "expectations": [
+        "classified_signals 包含 performance_trend 类别",
+        "classified_signals 包含 failure_pattern 类别（如有失败）",
+        "ranked_signals 按优先级排序",
+        "signal_summary 包含各类别计数"
+      ],
+      "assertions": {
+        "type": "json_path",
+        "checks": [
+          {
+            "field": "classified_signals",
+            "pattern": "object",
+            "required": true,
+            "description": "应有分类信号对象"
+          },
+          {
+            "field": "signal_summary.total_signals",
+            "pattern": "number",
+            "required": true,
+            "description": "应有信号总数"
+          },
+          {
+            "field": "signal_summary.by_category",
+            "pattern": "object",
+            "required": true,
+            "description": "应有类别分布"
+          },
+          {
+            "field": "ranked_signals",
+            "pattern": "array",
+            "required": true,
+            "description": "应有排序后信号列表"
+          }
+        ]
+      }
+    },
+    {
+      "id": 57,
+      "category": "runtime_harness",
+      "name": "反馈引擎-去重与优先级排序",
+      "prompt": "构造包含重复信号的 L7 Report，验证 feedback_engine.py 是否正确去重并保留最高优先级",
+      "files": [
+        "scripts/feedback_engine.py"
+      ],
+      "expected_output": "去重后相同 category+signal_type+value 的信号只保留一条，且为最高优先级版本",
+      "expectations": [
+        "无重复的 category+signal_type+value 组合",
+        "保留的信号优先级最高",
+        "P0 信号排在 P1 之前"
+      ],
+      "assertions": {
+        "type": "multi_check",
+        "checks": [
+          {
+            "field": "ranked_signals",
+            "pattern": "array",
+            "required": true,
+            "description": "应有排序后信号列表"
+          },
+          {
+            "field": "signal_summary.total_signals",
+            "pattern": "number",
+            "required": true,
+            "description": "信号总数应小于等于原始信号数"
+          }
+        ]
+      }
+    },
+    {
+      "id": 58,
+      "category": "runtime_harness",
+      "name": "反馈引擎-趋势分析",
+      "prompt": "提供历史反馈数据，运行 feedback_engine.py，验证趋势分析是否正确计算",
+      "files": [
+        "scripts/feedback_engine.py"
+      ],
+      "expected_output": "Feedback Report 的 trend 字段应包含 direction/current_score/historical_avg/delta",
+      "expectations": [
+        "trend.trend_available 为 true",
+        "trend.direction 为 improving/stable/declining 之一",
+        "trend.delta 为当前评分与历史均值的差值"
+      ],
+      "assertions": {
+        "type": "json_path",
+        "checks": [
+          {
+            "field": "trend.trend_available",
+            "pattern": "true",
+            "required": true,
+            "description": "趋势应可用"
+          },
+          {
+            "field": "trend.direction",
+            "pattern": "(improving|stable|declining)",
+            "required": true,
+            "description": "方向应为三种之一"
+          },
+          {
+            "field": "trend.current_score",
+            "pattern": "number",
+            "required": true,
+            "description": "应有当前评分"
+          },
+          {
+            "field": "trend.historical_avg",
+            "pattern": "number",
+            "required": true,
+            "description": "应有历史均值"
+          }
+        ]
+      }
+    },
+    {
+      "id": 59,
+      "category": "runtime_harness",
+      "name": "L7-L7.5联动-完整数据流",
+      "prompt": "模拟完整数据流：session_log → runtime_monitor → l7_report → feedback_engine → feedback_report，验证端到端联动",
+      "files": [
+        "scripts/runtime_monitor.py",
+        "scripts/feedback_engine.py"
+      ],
+      "expected_output": "L7 Report 的 rest_scores/failures_detected 字段能被 L7.5 Feedback Engine 正确消费，输出 l6_input 结构",
+      "expectations": [
+        "L7 Report 包含 rest_scores 字段",
+        "L7 Report 包含 failures_detected 字段",
+        "Feedback Report 包含 l6_input 字段",
+        "l6_input 包含 learnable_patterns 和 kb_updates"
+      ],
+      "assertions": {
+        "type": "multi_check",
+        "checks": [
+          {
+            "field": "l6_input",
+            "pattern": "object",
+            "required": true,
+            "description": "应有 L6 输入结构"
+          },
+          {
+            "field": "l6_input.learnable_patterns",
+            "pattern": "array",
+            "required": true,
+            "description": "应有可学习模式列表"
+          },
+          {
+            "field": "l6_input.kb_updates",
+            "pattern": "array",
+            "required": true,
+            "description": "应有知识库更新建议"
+          },
+          {
+            "field": "l6_input.feedback_timestamp",
+            "pattern": "string",
+            "required": true,
+            "description": "应有反馈时间戳"
+          }
+        ]
+      }
+    },
+    {
+      "id": 60,
+      "category": "runtime_harness",
+      "name": "Telemetry-PPAF字段完整性",
+      "prompt": "检查 telemetry.md 规范中是否定义了 PPAF 追踪字段和 R.E.S.T 采集字段，以及 L7/L7.5 联动规范",
+      "files": [
+        "references/_shared/telemetry.md"
+      ],
+      "expected_output": "telemetry.md 应包含 PPAF 追踪字段定义、R.E.S.T 采集字段定义、L7/L7.5 联动规范",
+      "expectations": [
+        "包含 PPAF 追踪字段表",
+        "包含 R.E.S.T 采集字段表",
+        "包含 L7/L7.5 联动规范章节",
+        "包含 session_log.json 最小结构定义"
+      ],
+      "assertions": {
+        "type": "keyword_match",
+        "checks": [
+          {
+            "field": "output_text",
+            "pattern": "PPAF 追踪字段",
+            "required": true,
+            "description": "应包含 PPAF 追踪字段章节"
+          },
+          {
+            "field": "output_text",
+            "pattern": "R\\.E\\.S\\.T 采集字段",
+            "required": true,
+            "description": "应包含 R.E.S.T 采集字段章节"
+          },
+          {
+            "field": "output_text",
+            "pattern": "L7.*L7\\.5.*联动",
+            "required": true,
+            "description": "应包含 L7/L7.5 联动规范"
+          },
+          {
+            "field": "output_text",
+            "pattern": "session_log\\.json",
+            "required": true,
+            "description": "应包含日志格式定义"
+          }
+        ]
+      }
+    },
+    {
+      "id": 61,
+      "name": "version.json SSOT 存在且结构正确",
+      "category": "version_ssot",
+      "priority": "P0",
+      "prompt": "检查 version.json 是否存在且包含 skill_name、version、harness_version、agents、scripts、schemas 字段",
+      "files": [
+        "version.json"
+      ],
+      "expected_output": "version.json 应包含完整的版本信息结构",
+      "expectations": [
+        "包含 skill_name 字段",
+        "包含 version 字段",
+        "包含 harness_version 字段",
+        "包含 agents 字段",
+        "包含 scripts 字段",
+        "包含 schemas 字段"
+      ],
+      "assertions": {
+        "type": "keyword_match",
+        "checks": [
+          {
+            "field": "output_text",
+            "pattern": "skill_name",
+            "required": true,
+            "description": "应包含 skill_name"
+          },
+          {
+            "field": "output_text",
+            "pattern": "harness_version",
+            "required": true,
+            "description": "应包含 harness_version"
+          },
+          {
+            "field": "output_text",
+            "pattern": "\"version\":\\s*\"5\\.4\\.0\"",
+            "required": true,
+            "description": "版本号应为 5.4.0"
+          },
+          {
+            "field": "output_text",
+            "pattern": "agents",
+            "required": true,
+            "description": "应包含 agents 字段"
+          },
+          {
+            "field": "output_text",
+            "pattern": "schemas",
+            "required": true,
+            "description": "应包含 schemas 字段"
+          }
+        ]
+      }
+    },
+    {
+      "id": 62,
+      "name": "harness_runner.py 自动化管道",
+      "category": "harness_pipeline",
+      "priority": "P0",
+      "prompt": "检查 harness_runner.py 是否支持 --gate-check 参数和 L5 Validator 门禁检查",
+      "files": [
+        "scripts/harness_runner.py"
+      ],
+      "expected_output": "harness_runner.py 应支持 L7→L7.5 自动化管道和 L5 门禁检查",
+      "expectations": [
+        "支持 --gate-check 参数",
+        "包含 check_gates 函数",
+        "包含 GATE_THRESHOLDS 配置",
+        "支持 L7→L7.5 管道"
+      ],
+      "assertions": {
+        "type": "keyword_match",
+        "checks": [
+          {
+            "field": "output_text",
+            "pattern": "gate.check|gate-check",
+            "required": true,
+            "description": "应支持门禁检查"
+          },
+          {
+            "field": "output_text",
+            "pattern": "check_gates",
+            "required": true,
+            "description": "应包含门禁检查函数"
+          },
+          {
+            "field": "output_text",
+            "pattern": "GATE_THRESHOLDS",
+            "required": true,
+            "description": "应包含门禁阈值"
+          },
+          {
+            "field": "output_text",
+            "pattern": "runtime_monitor|feedback_engine",
+            "required": true,
+            "description": "应集成 L7/L7.5 模块"
+          }
+        ]
+      }
+    },
+    {
+      "id": 63,
+      "name": "L5 Validator 门禁配置",
+      "category": "l5_validator",
+      "priority": "P0",
+      "prompt": "检查 config.yaml 中是否包含 l5_validator 配置段和门禁阈值",
+      "files": [
+        "config.yaml"
+      ],
+      "expected_output": "config.yaml 应包含 l5_validator 配置段",
+      "expectations": [
+        "包含 l5_validator 配置段",
+        "包含 gate_thresholds",
+        "包含 overall_runtime_score 阈值",
+        "包含 on_gate_fail 策略"
+      ],
+      "assertions": {
+        "type": "keyword_match",
+        "checks": [
+          {
+            "field": "output_text",
+            "pattern": "l5_validator",
+            "required": true,
+            "description": "应包含 l5_validator 配置段"
+          },
+          {
+            "field": "output_text",
+            "pattern": "gate_thresholds",
+            "required": true,
+            "description": "应包含门禁阈值"
+          },
+          {
+            "field": "output_text",
+            "pattern": "overall_runtime_score",
+            "required": true,
+            "description": "应包含总分阈值"
+          },
+          {
+            "field": "output_text",
+            "pattern": "on_gate_fail",
+            "required": true,
+            "description": "应包含失败策略"
+          }
+        ]
+      }
+    },
+    {
+      "id": 64,
+      "name": "JSON Schema 校验文件存在",
+      "category": "json_schema",
+      "priority": "P1",
+      "prompt": "检查 schemas/ 目录下是否存在 session_log_schema.json、l7_report_schema.json、feedback_report_schema.json",
+      "files": [
+        "schemas/session_log_schema.json",
+        "schemas/l7_report_schema.json",
+        "schemas/feedback_report_schema.json"
+      ],
+      "expected_output": "三个 JSON Schema 文件应存在且包含正确的 $schema 和 title",
+      "expectations": [
+        "session_log_schema.json 存在",
+        "l7_report_schema.json 存在",
+        "feedback_report_schema.json 存在",
+        "包含 $schema 字段"
+      ],
+      "assertions": {
+        "type": "keyword_match",
+        "checks": [
+          {
+            "field": "output_text",
+            "pattern": "Session Log",
+            "required": true,
+            "description": "session_log schema 应存在"
+          },
+          {
+            "field": "output_text",
+            "pattern": "L7 Runtime Report",
+            "required": true,
+            "description": "l7_report schema 应存在"
+          },
+          {
+            "field": "output_text",
+            "pattern": "Feedback Report",
+            "required": true,
+            "description": "feedback_report schema 应存在"
+          },
+          {
+            "field": "output_text",
+            "pattern": "\\$schema",
+            "required": true,
+            "description": "应包含 JSON Schema 声明"
+          }
+        ]
+      }
+    },
+    {
+      "id": 65,
+      "name": "PPAF 精确采集指引",
+      "category": "ppaf_precision",
+      "priority": "P1",
+      "prompt": "检查 runtime_monitor.py 中 extract_ppaf_trace 函数是否在推断值上标注 _estimated 和 _hint",
+      "files": [
+        "scripts/runtime_monitor.py"
+      ],
+      "expected_output": "推断的 PPAF 数据应标注 _estimated=True 和 _hint 采集指引",
+      "expectations": [
+        "推断值标注 _estimated",
+        "包含 _hint 采集指引",
+        "包含 _source: inferred 标记"
+      ],
+      "assertions": {
+        "type": "keyword_match",
+        "checks": [
+          {
+            "field": "output_text",
+            "pattern": "_estimated",
+            "required": true,
+            "description": "应标注估算值"
+          },
+          {
+            "field": "output_text",
+            "pattern": "_hint",
+            "required": true,
+            "description": "应包含采集指引"
+          },
+          {
+            "field": "output_text",
+            "pattern": "_source.*inferred",
+            "required": true,
+            "description": "应标注数据来源为推断"
+          }
+        ]
+      }
+    },
+    {
+      "id": 66,
+      "name": "L6 Learning Engine 模式提取",
+      "category": "l6_learning",
+      "priority": "P0",
+      "prompt": "检查 learning_engine.py 是否能从 feedback.json 中提取可学习模式（P0/P1 信号 → 候选模式 → 显著模式）",
+      "files": [
+        "scripts/learning_engine.py"
+      ],
+      "expected_output": "Learning Engine 应提取 actionable P0/P1 信号，生成 pattern_id 和 root_cause_hypothesis",
+      "expectations": [
+        "提取 actionable 信号",
+        "生成 pattern_id",
+        "生成 root_cause_hypothesis",
+        "生成 suggested_fix"
+      ],
+      "assertions": {
+        "type": "keyword_match",
+        "checks": [
+          {
+            "field": "output_text",
+            "pattern": "extract_patterns_from_signals",
+            "required": true,
+            "description": "应有模式提取函数"
+          },
+          {
+            "field": "output_text",
+            "pattern": "pattern_id",
+            "required": true,
+            "description": "应生成 pattern_id"
+          },
+          {
+            "field": "output_text",
+            "pattern": "root_cause_hypothesis",
+            "required": true,
+            "description": "应有根因假设"
+          },
+          {
+            "field": "output_text",
+            "pattern": "suggested_fix",
+            "required": true,
+            "description": "应有修复建议"
+          }
+        ],
+        "llm_judge": {
+          "enabled": true,
+          "description": "LLM-as-Judge 语义评估 — 验证模式提取的质量和 actionable 程度",
+          "type": "semantic",
+          "criteria": [
+            "提取的模式是否源自 P0/P1 信号并有具体数据支撑",
+            "root_cause_hypothesis 是否指向具体的 Agent/Protocol/Config 问题而非泛泛而谈",
+            "suggested_fix 是否可执行（指向具体的文件/配置/流程修改）",
+            "生成的 Creator vNext 指令是否有明确的优先级和影响范围"
+          ],
+          "min_pass_criteria": 3,
+          "weight": 0.3
+        }
+      }
+    },
+    {
+      "id": 67,
+      "name": "L6 模式-知识库影响区域映射",
+      "category": "l6_learning",
+      "priority": "P0",
+      "prompt": "检查 learning_engine.py 的 SIGNAL_KB_MAP 是否覆盖所有关键信号类型的知识库影响区域",
+      "files": [
+        "scripts/learning_engine.py"
+      ],
+      "expected_output": "SIGNAL_KB_MAP 应包含 rest_reliability/rest_efficiency/agentic_laziness/goal_drift 等关键信号到知识库文件的映射",
+      "expectations": [
+        "包含 R.E.S.T 各维度映射",
+        "包含失败模式映射",
+        "映射目标为具体文件路径"
+      ],
+      "assertions": {
+        "type": "keyword_match",
+        "checks": [
+          {
+            "field": "output_text",
+            "pattern": "rest_reliability",
+            "required": true,
+            "description": "应包含 reliability 映射"
+          },
+          {
+            "field": "output_text",
+            "pattern": "agentic_laziness",
+            "required": true,
+            "description": "应包含代理惰性映射"
+          },
+          {
+            "field": "output_text",
+            "pattern": "goal_drift",
+            "required": true,
+            "description": "应包含目标漂移映射"
+          },
+          {
+            "field": "output_text",
+            "pattern": "quality-protocol\\.md",
+            "required": true,
+            "description": "应映射到 quality-protocol.md"
+          }
+        ]
+      }
+    },
+    {
+      "id": 68,
+      "name": "L6 历史模式合并与趋势判断",
+      "category": "l6_learning",
+      "priority": "P0",
+      "prompt": "检查 learning_engine.py 的 merge_with_history 是否能合并历史模式并判断趋势（worsening/improving/stable）",
+      "files": [
+        "scripts/learning_engine.py"
+      ],
+      "expected_output": "merge_with_history 应累加出现次数，根据数值变化判断严重度趋势",
+      "expectations": [
+        "支持历史模式加载",
+        "累加出现次数",
+        "判断 worsening/improving/stable 趋势",
+        "dormant 标记不活跃模式"
+      ],
+      "assertions": {
+        "type": "keyword_match",
+        "checks": [
+          {
+            "field": "output_text",
+            "pattern": "merge_with_history",
+            "required": true,
+            "description": "应有历史合并函数"
+          },
+          {
+            "field": "output_text",
+            "pattern": "occurrence_count",
+            "required": true,
+            "description": "应累加出现次数"
+          },
+          {
+            "field": "output_text",
+            "pattern": "worsening",
+            "required": true,
+            "description": "应判断恶化趋势"
+          },
+          {
+            "field": "output_text",
+            "pattern": "dormant",
+            "required": true,
+            "description": "应标记不活跃模式"
+          }
+        ]
+      }
+    },
+    {
+      "id": 69,
+      "name": "L6 Creator vNext 指令生成",
+      "category": "l6_learning",
+      "priority": "P0",
+      "prompt": "检查 learning_engine.py 的 generate_creator_vnext 是否能从显著模式生成 agent/reference/config 三类更新指令",
+      "files": [
+        "scripts/learning_engine.py"
+      ],
+      "expected_output": "creator_vnext 应包含 agent_updates/reference_updates/config_updates 三类，每条包含 target/change_type/delta",
+      "expectations": [
+        "生成三类更新指令",
+        "每条包含 target 文件路径",
+        "每条包含 change_type",
+        "每条包含 delta 描述"
+      ],
+      "assertions": {
+        "type": "keyword_match",
+        "checks": [
+          {
+            "field": "output_text",
+            "pattern": "agent_updates",
+            "required": true,
+            "description": "应有 Agent 更新分类"
+          },
+          {
+            "field": "output_text",
+            "pattern": "reference_updates",
+            "required": true,
+            "description": "应有 Reference 更新分类"
+          },
+          {
+            "field": "output_text",
+            "pattern": "config_updates",
+            "required": true,
+            "description": "应有 Config 更新分类"
+          },
+          {
+            "field": "output_text",
+            "pattern": "change_type",
+            "required": true,
+            "description": "应包含变更类型"
+          }
+        ]
+      }
+    },
+    {
+      "id": 70,
+      "name": "L6 决策门禁（auto_apply/require_review/archive）",
+      "category": "l6_learning",
+      "priority": "P0",
+      "prompt": "检查 learning_engine.py 的 _make_decision 是否根据模式严重度和趋势做出正确决策",
+      "files": [
+        "scripts/learning_engine.py"
+      ],
+      "expected_output": "P0 模式 → require_review，多个恶化趋势 → require_review，一般模式 → auto_apply，无模式 → archive",
+      "expectations": [
+        "P0 模式触发 require_review",
+        "恶化趋势触发 require_review",
+        "无模式触发 archive",
+        "决策包含 reason 和 timestamp"
+      ],
+      "assertions": {
+        "type": "keyword_match",
+        "checks": [
+          {
+            "field": "output_text",
+            "pattern": "auto_apply",
+            "required": true,
+            "description": "应支持自动应用"
+          },
+          {
+            "field": "output_text",
+            "pattern": "require_review",
+            "required": true,
+            "description": "应支持需审核"
+          },
+          {
+            "field": "output_text",
+            "pattern": "archive",
+            "required": true,
+            "description": "应支持归档"
+          },
+          {
+            "field": "output_text",
+            "pattern": "_make_decision",
+            "required": true,
+            "description": "应有决策函数"
+          }
+        ]
+      }
+    },
+    {
+      "id": 71,
+      "name": "L6 Learning Report Schema 结构校验",
+      "category": "l6_learning",
+      "priority": "P1",
+      "prompt": "检查 schemas/learning_report_schema.json 是否包含 learning_report/pattern_analysis/learned_patterns/creator_vnext/decision 必需字段",
+      "files": [
+        "schemas/learning_report_schema.json"
+      ],
+      "expected_output": "Schema 应定义 learning_report/pattern_analysis/learned_patterns/creator_vnext/decision 五个 required 字段",
+      "expectations": [
+        "包含 learning_report 定义",
+        "包含 pattern_analysis 定义",
+        "包含 creator_vnext 定义",
+        "包含 decision 定义"
+      ],
+      "assertions": {
+        "type": "keyword_match",
+        "checks": [
+          {
+            "field": "output_text",
+            "pattern": "learning_report",
+            "required": true,
+            "description": "应定义 learning_report"
+          },
+          {
+            "field": "output_text",
+            "pattern": "pattern_analysis",
+            "required": true,
+            "description": "应定义 pattern_analysis"
+          },
+          {
+            "field": "output_text",
+            "pattern": "creator_vnext",
+            "required": true,
+            "description": "应定义 creator_vnext"
+          },
+          {
+            "field": "output_text",
+            "pattern": "decision",
+            "required": true,
+            "description": "应定义 decision"
+          }
+        ]
+      }
+    },
+    {
+      "id": 72,
+      "name": "Harness Runner L6/L6.5 集成",
+      "category": "harness_l6",
+      "priority": "P0",
+      "prompt": "检查 harness_runner.py 是否支持 --learn/--evolve/--review-mode/--learning-history/--bump-version 参数",
+      "files": [
+        "scripts/harness_runner.py"
+      ],
+      "expected_output": "harness_runner 应支持 L6 Learning 和 L6.5 Knowledge Update 的管道集成",
+      "expectations": [
+        "支持 --learn 参数",
+        "支持 --evolve 参数",
+        "支持 --review-mode 参数",
+        "支持 --bump-version 参数",
+        "run_l6_learning 函数存在"
+      ],
+      "assertions": {
+        "type": "keyword_match",
+        "checks": [
+          {
+            "field": "output_text",
+            "pattern": "--learn",
+            "required": true,
+            "description": "应支持 --learn 参数"
+          },
+          {
+            "field": "output_text",
+            "pattern": "--evolve",
+            "required": true,
+            "description": "应支持 --evolve 参数"
+          },
+          {
+            "field": "output_text",
+            "pattern": "--review-mode",
+            "required": true,
+            "description": "应支持 --review-mode"
+          },
+          {
+            "field": "output_text",
+            "pattern": "run_l6_learning",
+            "required": true,
+            "description": "应有 L6 调用函数"
+          },
+          {
+            "field": "output_text",
+            "pattern": "run_l6_5_knowledge_update",
+            "required": true,
+            "description": "应有 L6.5 调用函数"
+          }
+        ]
+      }
+    },
+    {
+      "id": 73,
+      "name": "Harness Runner 版本递增",
+      "category": "harness_l6",
+      "priority": "P1",
+      "prompt": "检查 harness_runner.py 的 bump_version 函数是否能正确递增 version.json 的 patch 版本号",
+      "files": [
+        "scripts/harness_runner.py"
+      ],
+      "expected_output": "bump_version 应读取 version.json，递增 patch 版本号，写回 version.json",
+      "expectations": [
+        "读取 version.json",
+        "递增 patch 版本",
+        "同时更新 version 和 harness_version"
+      ],
+      "assertions": {
+        "type": "keyword_match",
+        "checks": [
+          {
+            "field": "output_text",
+            "pattern": "bump_version",
+            "required": true,
+            "description": "应有版本递增函数"
+          },
+          {
+            "field": "output_text",
+            "pattern": "version\\.json",
+            "required": true,
+            "description": "应读取 version.json"
+          },
+          {
+            "field": "output_text",
+            "pattern": "harness_version",
+            "required": true,
+            "description": "应同步更新 harness_version"
+          }
+        ]
+      }
+    },
+    {
+      "id": 74,
+      "name": "Harness Runner 门禁失败时跳过 L6/L6.5",
+      "category": "harness_l6",
+      "priority": "P1",
+      "prompt": "检查 harness_runner.py 是否在 L5 门禁未通过时跳过 L6/L6.5 步骤",
+      "files": [
+        "scripts/harness_runner.py"
+      ],
+      "expected_output": "gate_check 未通过时应打印跳过提示并 exit",
+      "expectations": [
+        "门禁失败时跳过 L6",
+        "打印跳过提示",
+        "exit(1)"
+      ],
+      "assertions": {
+        "type": "keyword_match",
+        "checks": [
+          {
+            "field": "output_text",
+            "pattern": "跳过 L6",
+            "required": true,
+            "description": "门禁失败时应提示跳过 L6"
+          },
+          {
+            "field": "output_text",
+            "pattern": "gate_passed.*跳过|跳过.*gate",
+            "required": false,
+            "description": "门禁与 L6 应有依赖关系"
+          }
+        ]
+      }
+    },
+    {
+      "id": 75,
+      "name": "L6 L7.5→L6 数据格式对接",
+      "category": "l6_learning",
+      "priority": "P1",
+      "prompt": "检查 learning_engine.py 是否正确消费 feedback_engine.py 的输出格式（ranked_signals/l6_input/signal_summary）",
+      "files": [
+        "scripts/learning_engine.py"
+      ],
+      "expected_output": "Learning Engine 应从 feedback.json 的 ranked_signals 和 l6_input 字段提取数据",
+      "expectations": [
+        "读取 ranked_signals",
+        "读取 l6_input",
+        "处理 actionable 信号"
+      ],
+      "assertions": {
+        "type": "keyword_match",
+        "checks": [
+          {
+            "field": "output_text",
+            "pattern": "ranked_signals",
+            "required": true,
+            "description": "应消费 ranked_signals"
+          },
+          {
+            "field": "output_text",
+            "pattern": "l6_input",
+            "required": true,
+            "description": "应消费 l6_input"
+          },
+          {
+            "field": "output_text",
+            "pattern": "actionable",
+            "required": true,
+            "description": "应过滤 actionable 信号"
+          }
+        ]
+      }
+    }
+  ]
+}

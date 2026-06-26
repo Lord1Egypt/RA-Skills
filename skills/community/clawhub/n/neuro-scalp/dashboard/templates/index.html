@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>NeuroScalp Live Command</title>
+    <script src="https://cdn.plot.ly/plotly-2.24.1.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { background-color: #0f172a; color: #e2e8f0; font-family: 'Courier New', monospace; }
+        .card { background-color: #1e293b; border: 1px solid #334155; border-radius: 8px; padding: 15px; }
+    </style>
+</head>
+<body class="p-5">
+
+    <div class="flex justify-between items-center mb-5">
+        <h1 class="text-3xl font-bold text-emerald-400">🧠 NeuroScalp <span class="text-sm text-gray-400">v1.0.0</span></h1>
+        <div class="flex gap-4">
+            <div id="status-dot" class="w-3 h-3 rounded-full bg-red-500 animate-pulse"></div>
+            <span id="connection-status">Disconnected</span>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-4 gap-4 mb-6">
+        <div class="card">
+            <div class="text-gray-400 text-xs">TOTAL PNL</div>
+            <div id="pnl-display" class="text-2xl font-bold text-gray-200">$0.00</div>
+        </div>
+        <div class="card">
+            <div class="text-gray-400 text-xs">SHARPE RATIO</div>
+            <div id="sharpe-display" class="text-2xl font-bold text-blue-400">0.00</div>
+        </div>
+        <div class="card">
+            <div class="text-gray-400 text-xs">WIN RATE</div>
+            <div id="winrate-display" class="text-2xl font-bold text-purple-400">0%</div>
+        </div>
+        <div class="card">
+            <div class="text-gray-400 text-xs">MODEL CONFIDENCE</div>
+            <div id="confidence-display" class="text-2xl font-bold text-yellow-400">0.00</div>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-2 gap-4 h-96">
+        <div class="card" id="price-chart"></div>
+        <div class="card" id="pnl-chart"></div>
+    </div>
+
+    <div class="card mt-4 h-48 overflow-y-scroll" id="log-console">
+        <div class="text-xs text-gray-500 mb-2">SYSTEM LOGS</div>
+    </div>
+
+    <script>
+        // --- 1. Setup Charts ---
+        const priceLayout = {
+            title: 'Market Price & Signals',
+            paper_bgcolor: 'rgba(0,0,0,0)',
+            plot_bgcolor: 'rgba(0,0,0,0)',
+            font: { color: '#94a3b8' },
+            xaxis: { showgrid: false },
+            yaxis: { showgrid: true, gridcolor: '#334155' }
+        };
+        Plotly.newPlot('price-chart', [{ y: [], type: 'scatter', line: {color: '#22c55e'} }], priceLayout);
+
+        const pnlLayout = {
+            title: 'Equity Curve',
+            paper_bgcolor: 'rgba(0,0,0,0)',
+            plot_bgcolor: 'rgba(0,0,0,0)',
+            font: { color: '#94a3b8' },
+            xaxis: { showgrid: false },
+            yaxis: { showgrid: true, gridcolor: '#334155' }
+        };
+        Plotly.newPlot('pnl-chart', [{ y: [], type: 'scatter', fill: 'tozeroy', line: {color: '#3b82f6'} }], pnlLayout);
+
+        // --- 2. WebSocket Logic ---
+        const ws = new WebSocket(`ws://${window.location.host}/ws/metrics`);
+        const logConsole = document.getElementById('log-console');
+
+        ws.onopen = () => {
+            document.getElementById('connection-status').innerText = "Connected";
+            document.getElementById('status-dot').classList.replace('bg-red-500', 'bg-emerald-500');
+        };
+
+        ws.onmessage = (event) => {
+            const msg = JSON.parse(event.data);
+            const channel = msg.type;
+            const data = msg.data;
+
+            // Handle Ticks (Price Updates)
+            if (channel.includes('tick')) {
+                Plotly.extendTraces('price-chart', { y: [[data.last_price]] }, [0]);
+                // Keep chart window fixed (last 100 points)
+                // (Implementation detail: limit array size logic here)
+            }
+
+            // Handle System Metrics (PnL, Sharpe)
+            if (channel === 'system_metrics') {
+                document.getElementById('pnl-display').innerText = `$${data.total_pnl.toFixed(2)}`;
+                document.getElementById('sharpe-display').innerText = data.sharpe.toFixed(2);
+                document.getElementById('winrate-display').innerText = `${(data.win_rate * 100).toFixed(1)}%`;
+                
+                Plotly.extendTraces('pnl-chart', { y: [[data.total_pnl]] }, [0]);
+            }
+
+            // Handle Trade Events (Logs)
+            if (channel === 'trade_events') {
+                const logEntry = document.createElement('div');
+                logEntry.className = 'text-xs text-emerald-300 font-mono mb-1';
+                logEntry.innerText = `[${new Date().toLocaleTimeString()}] ${data.side.toUpperCase()} ${data.amount} @ ${data.price}`;
+                logConsole.prepend(logEntry);
+            }
+        };
+    </script>
+</body>
+</html>

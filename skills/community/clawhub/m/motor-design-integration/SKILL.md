@@ -1,35 +1,263 @@
 ---
-name: "电机设计一体化工作流"
-description: "电机设计一体化工作流 | 串联极槽配合→磁路计算→Maxwell仿真→FOC参数配置全流程，输出完整设计报告。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/motor-design-integration"
-sourceUrl: "https://clawhub.ai/skills/motor-design-integration"
+name: motor-design-integration
+description: 电机设计一体化工作流 | 串联极槽配合→磁路计算→Maxwell仿真→FOC参数配置全流程，输出完整设计报告。
 ---
 
 # 电机设计一体化工作流
 
-> 电机设计一体化工作流 | 串联极槽配合→磁路计算→Maxwell仿真→FOC参数配置全流程，输出完整设计报告。
+覆盖从需求规格到 FOC 驱动参数配置的完整电机设计流程，整合极槽配合计算、磁路估算、Maxwell 仿真方案、FOC 参数生成。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/motor-design-integration`
-- **Source URL:** [https://clawhub.ai/skills/motor-design-integration](https://clawhub.ai/skills/motor-design-integration)
+## 设计流程总览
 
-## Overview
+```
+客户需求
+    ↓
+[1] 需求分析 → 目标功率/转速/转矩/尺寸
+    ↓
+[2] 极槽配合选型 → 确定 Q/2p/q/Kw
+    ↓
+[3] 磁路计算 → Bg/Φg/工作点/Ke/Kt
+    ↓
+[4] Maxwell 仿真 → 验证 Bg/T/损耗/温升
+    ↓
+[5] 绕组详细设计 → Ns/线径/槽满率
+    ↓
+[6] FOC 参数配置 → R/L/Ke/np/PI参数
+    ↓
+输出：完整设计报告 + FOC配置代码
+```
 
+## 第一步：需求分析与目标设定
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/motor-design-integration
+### 输入清单
+
+| 参数 | 说明 | 示例 |
+|------|------|------|
+| 额定功率 P | W | 200 |
+| 额定转速 n | rpm | 3000 |
+| 额定转矩 T | Nm | 0.64 |
+| 额定电压 Vdc | V | 48 |
+| 额定电流 Idc | A | 5 |
+| 外径限制 D_max | mm | 60 |
+| 长度限制 L_max | mm | 80 |
+| 工作温度 T_max | ℃ | 85 |
+| 控制方式 | FOC/SVPWM/方波 | FOC |
+
+### 派生目标计算
+
+```python
+# 转矩 → 功率
+P = T * n * 2 * math.pi / 60  # W
+
+# 体积估算（经验公式）
+# P_out ≈ K * D² * L * n / 60
+# K ≈ 0.3~0.5（电机常数，与效率和磁密相关）
+V_target = P / (0.4 * 3000 / 60)  # 估算体积 cm³
+
+# 外径 → 铁心长度（给定外径约束）
+D = min(D_max - 6, 54)  # 扣除机壳厚度
+L = V_target / (math.pi * (D/2)**2)
+```
+
+## 第二步：极槽配合选型
+
+### 选型规则
+
+| 规则 | 说明 | 依据 |
+|------|------|------|
+| q ≥ 1 | 每极每相至少1槽 | 避免分数槽过大漏磁 |
+| 槽数 Q ≥ 2p | 每极至少1槽 | 基本要求 |
+| Q/2p ≠ 整数 | 分数槽可降低齿槽转矩 | 经验 |
+| 极数选择 | 2极：高速；4极：中高；8极：低速大力矩 | 应用场景 |
+| 优先整数槽 | q=1, 2, 3... 漏磁小 | 工艺 |
+
+### 典型极槽配合推荐
+
+| 转速段 | 推荐极数 | 推荐槽数 | q值 | 特点 |
+|--------|---------|---------|-----|------|
+| >6000 rpm | 2极 | 12/18 | 2~3 | 端部短、高速好 |
+| 3000~6000 | 4极 | 24/36 | 2~3 | 平衡好 |
+| 1000~3000 | 6极 | 36/54 | 2~3 | 低转速 |
+| <1000 rpm | 8极 | 36/48/72 | 1.5~3 | 低速大力矩 |
+
+### 极槽配合计算
+
+```javascript
+// 调用 motor-parameter-calculator
+const ps = calculatePoleSlot(poles=8, slots=36, phases=3);
+// 输出：q=1.5, Kw=0.933, y=15槽(短距93.8%)
+```
+
+## 第三步：磁路初算
+
+### 初算输入
+
+```python
+params = {
+    'poles': 8, 'Q': 36, 'm': 3,
+    'L': 60, 'delta': 0.5, 'Di': 54,
+    'hm': 3, 'Br': 1.25, 'Hc': 955,
+    'bm': 17, 'Ns': 28, 'a': 2
+}
+result = calculate_mec(**params)
+// 输出：Bg=0.78T, Bm/Br=62%, Ke=43V, Kt=0.163Nm/A
+```
+
+### 验算检查清单
+
+```
+□ 气隙磁密 Bg：0.7~1.0T 合理
+□ 齿部磁密 Bt：<1.8T
+□ 轭部磁密 By：<1.6T
+□ Bm/Br > 55%：无退磁风险
+□ Ke @ nr：< 0.9×Vdc（电压裕量）
+```
+
+## 第四步：Maxwell 仿真方案
+
+### 仿真矩阵
+
+| 仿真类型 | 目标 | 求解器 | 关键设置 |
+|---------|------|--------|---------|
+| 静磁场 | Bg/工作点 | Maxwell 2D Magnetostatic | 参数化 theta |
+| 瞬态（空载） | 反电动势/齿槽 | Maxwell 2D Transient | 0电流, 3000rpm |
+| 瞬态（额定） | 额定转矩/损耗 | Maxwell 2D Transient | Id=0, Iq=额定 |
+| 涡流场 | 高速损耗 | Maxwell 2D Eddy Current | 高速段 |
+
+### 网格配置（8极36槽参考）
+
+```
+气隙：0.08mm（最高优先）
+永磁体：0.15mm
+定子齿：0.2mm
+定子轭：0.5mm
+外空气包：2mm
+预期单元数：5~15万
+```
+
+### 仿真结果提取项
+
+```
+1. 气隙磁密 Bg(theta) → 傅里叶分解 → 谐波含量
+2. 反电动势 E(theta) → 有效值/THD
+3. 齿槽转矩 T_cog → 峰值/周期
+4. 额定转矩 T_avg → vs 估算值对比
+5. 铁损 P_fe → 频率分布
+6. 铜损 P_cu → I²R
+```
+
+## 第五步：绕组详细设计
+
+### 线规选择
+
+```python
+# 槽满率约束
+slot_area = 槽宽 × 槽深  # mm²
+slot_fill = 0.5  # 目标槽满率50%
+usable_area = slot_area * slot_fill
+
+# 选定导线
+# 每槽导体数 Ns = 28（示例）
+# 单匝截面积 ≈ usable_area / Ns
+area_per_turn = usable_area / Ns  # mm²
+d_wire = 2 * math.sqrt(area_per_turn / math.pi)  # mm
+# 选标准AWG线规：AWG18 (0.823mm²) 或 AWG20 (0.518mm²)
+```
+
+### 端部尺寸估算
+
+```python
+# 端部伸出长度（经验）
+L_end = 0.3 * tau + 10  # mm
+# 绕组总长度 ≈ 2*L + 2*L_end
+```
+
+## 第六步：FOC 参数配置
+
+### 参数汇总表
+
+```
+【电机参数卡】
+型号：___________
+极对数 np = ___
+额定电压 Vdc = ___ V
+额定电流 Idc = ___ A
+额定转速 nr = ___ rpm
+额定转矩 T_rated = ___ Nm
+
+【电参数 @ 20℃】
+相电阻 R = ___ Ω
+d轴电感 Ld = ___ mH
+q轴电感 Lq = ___ mH
+反电动势常数 Ke = ___ V/(rad/s)
+磁链常数 Ψm = ___ Wb
+转矩常数 Kt = ___ Nm/A
+
+【温度修正】(铜 +0.4%/℃)
+R_75℃ = R × 1.22 = ___ Ω
+
+【控制器参数】
+电流环带宽 ≈ R/L × 0.5 = ___ Hz
+速度环带宽 ≈ 电流环带宽 / 10 = ___ Hz
+```
+
+### FOC配置代码（STM32 / Arduino）
+
+详见 `foc-parameter-identifier` 技能的 `references/foc_platform_examples.md`
+
+## 设计报告输出模板
+
+```markdown
+# 电机设计报告
+
+## 1. 设计输入
+| 参数 | 目标值 | 说明 |
+|------|--------|------|
+| 额定功率 | 200W | |
+| 额定转速 | 3000rpm | |
+| 额定转矩 | 0.64Nm | |
+| 母线电压 | DC48V | |
+| 外径限制 | ≤60mm | |
+
+## 2. 极槽配合方案
+- 极数：8极（2p=8）
+- 槽数：36槽（Q=36）
+- 每极每相槽数：q=1.5（分数槽集中绕组）
+- 绕组系数：Kw=0.933
+- 节距：y=15槽（5/6短距）
+
+## 3. 主要尺寸
+| 尺寸 | 数值 | 说明 |
+|------|------|------|
+| 定子外径 | 58mm | |
+| 定子内径 | 54mm | |
+| 铁心长度 | 60mm | |
+| 气隙长度 | 0.5mm | |
+| 永磁体厚度 | 3mm | N42SH |
+
+## 4. 磁路计算结果
+| 参数 | 计算值 | 目标 | 状态 |
+|------|--------|------|------|
+| 气隙磁密 Bg | 0.78T | 0.7~0.9T | ✅ |
+| 工作点 Bm/Br | 62% | >55% | ✅ |
+| 反电动势 Ke | 43V | <43V | ✅ |
+| 转矩常数 Kt | 0.163Nm/A | - | 参考 |
+
+## 5. Maxwell 仿真结果
+| 仿真项 | 仿真值 | 目标 | 状态 |
+|--------|--------|------|------|
+| Bg | 0.81T | 0.7~0.9T | ✅ |
+| 齿槽转矩 | 0.02Nm | <0.05Nm | ✅ |
+| 额定转矩 | 0.68Nm | >0.64Nm | ✅ |
+| 铁损@50Hz | 8.5W | - | 参考 |
+
+## 6. FOC 参数配置
+- R = 0.52Ω @ 20℃（75℃修正后 0.63Ω）
+- L = 5.6mH
+- Ke = 0.082V/(rad/s)
+- 电流环带宽 ≈ 93Hz
+- 速度环带宽 ≈ 9.3Hz
+
+## 7. 结论
+设计满足目标要求，可进入详细设计阶段。
 ```

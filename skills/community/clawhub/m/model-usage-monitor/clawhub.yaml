@@ -1,0 +1,12 @@
+name: model-usage-monitor
+version: 1.0.1
+metadata:
+  title: "Model Usage Monitor"
+  description: |
+    Monitor OpenClaw model usage, estimate costs, calculate cache hit rate, and send hourly alerts on cost spikes.
+  powered_by: "halfmoon82"
+license:
+  spdx: MIT-0
+  url: https://opensource.org/licenses/MIT-0
+tags:
+  - monitoring\n  - cost\n  - model\n  - alerts\n  - analytics

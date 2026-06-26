@@ -1,0 +1,45 @@
+diff --git a/ui/src/ui/app-render.ts b/ui/src/ui/app-render.ts
+index 3e087d28e..4172a83f5 100644
+--- a/ui/src/ui/app-render.ts
++++ b/ui/src/ui/app-render.ts
+@@ -394,7 +394,7 @@ export function renderApp(state: AppViewState) {
+                   }}
+                 >${icons.arrowDown} Updates Available</button>`
+                 : html`
+-                    <span class="update-btn update-btn--current" title="Running latest version">✓ Up to Date</span>
++                    <div class="pill pill--current" title="Running latest version"><span class="statusDot ok"></span><span>Up to Date</span></div>
+                   `
+           }
+           ${renderThemeToggle(state)}
+@@ -1327,6 +1327,23 @@ export function renderApp(state: AppViewState) {
+                   if (state.agentsPanel === "skills") {
+                     void loadAgentSkills(state, agentId);
+                   }
++                  if (state.agentsPanel === "tools" && state.agentToolsSubTab === "pipedream" && state.client) {
++                    const setPd = (
++                      fn: (prev: typeof state.agentPipedreamState) => typeof state.agentPipedreamState,
++                    ) => {
++                      state.agentPipedreamState = fn(state.agentPipedreamState);
++                    };
++                    state.agentPipedreamState = { loading: true };
++                    void loadAgentPipedreamState(state.client, agentId, setPd);
++                  }
++                  if (state.agentsPanel === "tools" && state.agentToolsSubTab === "zapier" && state.client) {
++                    const setZp = (
++                      fn: (prev: typeof state.agentZapierState) => typeof state.agentZapierState,
++                    ) => {
++                      state.agentZapierState = fn(state.agentZapierState);
++                    };
++                    void loadAgentZapierState(state.client, agentId, setZp);
++                  }
+                 },
+                 onSelectPanel: (panel) => {
+                   state.agentsPanel = panel;
+@@ -1917,6 +1934,7 @@ export function renderApp(state: AppViewState) {
+                 onSplitRatioChange: (ratio: number) => state.handleSplitRatioChange(ratio),
+                 assistantName: state.assistantName,
+                 assistantAvatar: state.assistantAvatar,
++                chatAuthMode: (state as unknown as { chatAuthMode?: string | null }).chatAuthMode as "oauth" | "api" | "fallback" | "unknown" | null | undefined,
+               })
+             : nothing
+         }

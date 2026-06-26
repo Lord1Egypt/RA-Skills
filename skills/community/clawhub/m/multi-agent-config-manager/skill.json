@@ -1,0 +1,11 @@
+{
+  "name": "multi-agent-orchestrator",
+  "version": "7.2.0",
+  "description": "多代理编排引擎 v7.2 - 紧急修复版（环境自适应 + 自动配置）。支持提纲确认、任务分解、分支执行、验证审核、返工迭代、智能决策。v7.2 修复：不依赖环境变量/自动创建工作区目录/自动创建代理配置/清理临时文件。",
+  "main": "index.js",
+  "type": "module",
+  "triggerWords": ["多代理", "multi-agent", "代理编排", "深度研究", "目标分解", "任务委派", "工作流", "agent orchestrate", "multi agent"],
+  "license": "MIT",
+  "author": "OpenClaw",
+  "changelog": "v7.2: 紧急修复（不依赖环境变量/自动创建工作区目录/自动创建代理配置/清理临时文件/修复 index.js 导入）| v7.1: 稳定性增强（主动轮询监控防止子代理丢失误判/1 小时超时触发降级/完整轮询日志审计/PollMonitor 类/文件写入验证增强）| v7.0: 环境验证系统 + 模型特征自定义 + 第三方自适应部署 + v7 审计修复"
+}

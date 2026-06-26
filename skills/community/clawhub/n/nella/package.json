@@ -1,0 +1,94 @@
+{
+  "name": "@getnella/mcp",
+  "version": "0.2.7",
+  "description": "Nella MCP Server — codebase intelligence for AI coding agents. Grounded search, persistent context, and deep code understanding via the Model Context Protocol.",
+  "type": "commonjs",
+  "bin": {
+    "nella": "dist/cli.js",
+    "mcp": "dist/mcp/server.js"
+  },
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "require": "./dist/index.js"
+    },
+    "./mcp": {
+      "types": "./dist/mcp/index.d.ts",
+      "require": "./dist/mcp/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "claude-plugin",
+    "README.md"
+  ],
+  "keywords": [
+    "coding-agent",
+    "ai",
+    "cli",
+    "mcp",
+    "model-context-protocol",
+    "codebase-intelligence",
+    "nella"
+  ],
+  "author": "Nella Labs",
+  "license": "SEE LICENSE IN LICENSE",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nella-labs/nella.git",
+    "directory": "packages/nella"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@clack/prompts": "^1.1.0",
+    "@modelcontextprotocol/sdk": "^1.26.0",
+    "@typescript-eslint/typescript-estree": "^7.0.0",
+    "chalk": "^4.1.2",
+    "cli-table3": "^0.6.5",
+    "dotenv": "^16.6.1",
+    "figures": "^3.2.0",
+    "minimatch": "^10.2.4",
+    "natural": "^6.10.0"
+  },
+  "optionalDependencies": {
+    "@google-cloud/storage": "^7.7.0",
+    "@msgpack/msgpack": "^3.0.0",
+    "@opentelemetry/api": "^1.9.0",
+    "@opentelemetry/exporter-trace-otlp-http": "^0.212.0",
+    "@opentelemetry/resources": "^1.30.0",
+    "@opentelemetry/sdk-node": "^0.212.0",
+    "@opentelemetry/sdk-trace-base": "^1.30.0",
+    "@supabase/supabase-js": "^2.39.0",
+    "better-sqlite3": "^11.0.0",
+    "express": "^4.18.0",
+    "hnswlib-node": "^3.0.0",
+    "ioredis": "^5.9.3",
+    "onnxruntime-node": "^1.17.0",
+    "pg": "^8.11.0",
+    "usearch": "^2.12.0",
+    "ws": "^8.16.0"
+  },
+  "devDependencies": {
+    "@types/figures": "^3.0.3",
+    "@types/node": "^20.0.0",
+    "@types/ws": "^8.5.0",
+    "tsup": "^8.5.1",
+    "typescript": "^5.3.0",
+    "@usenella/core": "0.0.0"
+  },
+  "scripts": {
+    "build": "tsup",
+    "build:tsc": "tsc",
+    "test": "tsx --test src/mcp/tools/__tests__/*.test.ts src/mcp/utils/__tests__/*.test.ts",
+    "test:ci": "tsx --test src/mcp/tools/__tests__/*.test.ts src/mcp/utils/__tests__/*.test.ts",
+    "dev": "tsup --watch",
+    "start:mcp": "node dist/mcp/server.js"
+  }
+}

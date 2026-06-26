@@ -1,0 +1,36 @@
+{
+  "load": {
+    "highMessageCount": 100,
+    "highRequestRate": 10,
+    "highCpuUsage": 80,
+    "highMemoryUsage": 80,
+    "lowMessageCount": 20,
+    "lowRequestRate": 2,
+    "lowActiveTime": 30,
+    "weights": {
+      "messageCount": 0.4,
+      "requestRate": 0.4,
+      "cpuUsage": 0.1,
+      "memoryUsage": 0.1
+    }
+  },
+  "scaling": {
+    "minSessions": 1,
+    "maxSessions": 10,
+    "scaleUpThreshold": 0.8,
+    "scaleDownThreshold": 0.3,
+    "cooldownMinutes": 5,
+    "mergeMinSessions": 2,
+    "loadBalancingEnabled": true
+  },
+  "monitoring": {
+    "checkIntervalSeconds": 30,
+    "metricsRetentionHours": 24,
+    "enableLoadBalancing": true,
+    "balanceThreshold": 0.3
+  },
+  "naming": {
+    "prefix": "session",
+    "includeTimestamp": true
+  }
+}

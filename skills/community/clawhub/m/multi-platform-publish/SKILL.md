@@ -1,35 +1,134 @@
+# 多平台内容生成技能
+
+## 功能
+根据不同平台特性，生成适配的配图和文案
+
+## 平台特性
+
+### 微信公众号
+- 配图尺寸：宽度900px内，竖版9:16
+- 文案风格：深度、干货、700字+
+- 标题：严肃、吸引但不标题党
+- 配图：封面图 + 详情页长图
+
+### 小红书
+- 配图尺寸：宽度1080px，竖版9:16（1:1也可以）
+- 文案风格：口语化、"兄弟们"、emoji、悬念式标题
+- 结尾引导互动："你们觉得呢？""评论区告诉我"
+- 标签：#虾闯天下 + 相关话题
+- 配图：封面图（抓眼球）+ 详情页长图
+
+### 抖音/视频号
+- 配图尺寸：宽度1080px，竖版9:16
+- 文案风格：短、冲击力强，前3秒关键
+- 配图：封面图 + 字幕SRT
+
+### B站
+- 配图尺寸：**多种比例都支持**
+  - 竖版：9:16（手机竖屏）
+  - 横版：16:9（标准）、4:3（老格式）
+  - 方版：1:1
+- 文案风格：弹幕文化、年轻人、口语化
+- 配图：封面图（最重要！决定点击率）+ 章节图
+- 标题：B站用户喜欢有梗、有趣的标题
+
 ---
-name: "Multi Platform Publish"
-description: "根据不同平台要求，生成符合尺寸和风格的封面图、详情长图及文案，支持微信公众号、小红书、抖音和B站发布内容。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/multi-platform-publish"
-sourceUrl: "https://clawhub.ai/skills/multi-platform-publish"
----
 
-# Multi Platform Publish
+## 封面图生成方式
 
-> 根据不同平台要求，生成符合尺寸和风格的封面图、详情长图及文案，支持微信公众号、小红书、抖音和B站发布内容。
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/multi-platform-publish`
-- **Source URL:** [https://clawhub.ai/skills/multi-platform-publish](https://clawhub.ai/skills/multi-platform-publish)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
+### 固定接口（不推荐用于多平台）
 ```bash
-hermes skills install clawhub/multi-platform-publish
+curl -X POST "http://localhost:3710/api/content/render" \
+  -d '{"cover_word":"标签","cover_title":"标题","cover_description":"描述","cover_emoji":"🤖"}'
 ```
+⚠️ 尺寸固定，不能自定义宽高比例
+
+### HTML模板方式（推荐用于多平台）✅
+用 render-text 接口，可以自定义任意尺寸：
+```bash
+# 竖版9:16
+{"html":"<div class=cover>...</div>", "width":750, "height":1333}
+
+# 横版16:9
+{"html":"<div class=cover>...</div>", "width":1920, "height":1080}
+
+# 方版1:1
+{"html":"<div class=cover>...</div>", "width":1080, "height":1080}
+```
+
+**生成多平台封面时，必须用HTML模板方式！**
+
+---
+
+## 生成流程
+
+### 1. 收集需求
+- 内容主题
+- 目标平台（可多选）
+- 是否有特殊要求
+
+### 2. 生成配图（按平台）
+使用 MakeContents render-text 生成不同尺寸：
+
+| 平台 | 比例 | 尺寸(px) |
+|------|------|----------|
+| 公众号 | 9:16 | 750×1333 |
+| 小红书 | 9:16 | 1080×1920 |
+| 抖音 | 9:16 | 1080×1920 |
+| B站-竖版 | 9:16 | 1080×1920 |
+| B站-横版 | 16:9 | 1920×1080 |
+| B站-方版 | 1:1 | 1080×1080 |
+
+### 3. 生成文案
+按平台风格调整：
+- 标题
+- 开头的钩子
+- 正文结构
+- 结尾引导
+
+### 4. 输出
+- 图片文件（按平台分类）
+- 文案文字
+- 你复制粘贴到各平台发布
+
+---
+
+## 常用模板
+
+### 详情页长图（通用）
+路径：`skills/auto-contents/references/templates/detail-page-gray.html`
+
+### 工具栈图
+路径：`skills/auto-contents/references/templates/tool-stack.html`
+
+---
+
+## 平台封面尺寸速查
+
+| 平台 | 比例 | 尺寸(px) | 用途 |
+|------|------|----------|------|
+| 公众号 | 9:16 | 750×1333 | 手机阅读 |
+| 小红书 | 9:16 / 1:1 | 1080×1920 / 1080×1080 | 手机浏览 |
+| 抖音 | 9:16 | 1080×1920 | 手机竖屏 |
+| B站-竖版 | 9:16 | 1080×1920 | 手机 |
+| B站-横版 | 16:9 | 1920×1080 | 电脑 |
+| B站-横版 | 4:3 | 1440×1080 | 老格式 |
+| B站-方版 | 1:1 | 1080×1080 | 方图 |
+
+---
+
+## 注意事项
+
+### 各平台风格差异
+| 要素 | 公众号 | 小红书 | 抖音 | B站 |
+|------|--------|--------|------|-----|
+| 标题 | 严肃 | 悬念+提问 | 冲击力 | 有梗有趣 |
+| 开头 | 开门见山 | "兄弟们" | 前3秒关键 | 吸引眼球 |
+| 结尾 | 引导关注 | 引导互动 | 引导点赞 | 引导三连 |
+| 标签 | 不需要 | 必须加 | 可选 | 可选 |
+
+### 发布前检查清单
+- [ ] 图片尺寸对不对
+- [ ] 文案风格对不对
+- [ ] 小红书/B站标签加了没
+- [ ] 预览一下再发

@@ -1,35 +1,26 @@
 ---
-name: "my_stock_longbridge_skill"
-description: "长桥证券(Longbridge)OpenAPI 集成与交易管理技能"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/my-stock-longbridge-skill"
-sourceUrl: "https://clawhub.ai/skills/my-stock-longbridge-skill"
+name: my_stock_longbridge_skill
+description: 长桥证券(Longbridge)OpenAPI 集成与交易管理技能
+version: 1.0.1
+author: 老大
 ---
 
 # my_stock_longbridge_skill
 
-> 长桥证券(Longbridge)OpenAPI 集成与交易管理技能
+## Purpose
+Longbridge OpenAPI integration for automated stock management.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/my-stock-longbridge-skill`
-- **Source URL:** [https://clawhub.ai/skills/my-stock-longbridge-skill](https://clawhub.ai/skills/my-stock-longbridge-skill)
+## Setup
+1. Configure credentials via `openclaw secrets configure`.
+2. Ensure `longbridge` is installed (`pip install -r requirements.txt`).
 
-## Overview
+## Functions
+- `trade`: Execute, Modify, Cancel orders.
+  - Supports Market Orders (MO) by default.
+  - Supports Limit Orders (LO) when `order_type=OrderType.LO` and `price` is provided.
+- `market`: Real-time quotes.
+- `account`: Asset & Position tracking.
+- `push`: Real-time streaming handler.
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/my-stock-longbridge-skill
-```
+---
+_Warning: Do not hardcode credentials._

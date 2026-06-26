@@ -1,0 +1,14 @@
+{
+  "name": "neckr0ik-polymarket-paper",
+  "version": 1.0.0,
+  "description": "Paper trading platform for Polymarket. Practice prediction market trading with virtual money, learn strategies, track performance.",
+  "author": "Neckr0ik",
+  "license": "MIT",
+  "keywords": [
+    "polymarket",
+    "paper-trading",
+    "prediction-markets",
+    "practice",
+    "learning"
+  ]
+}

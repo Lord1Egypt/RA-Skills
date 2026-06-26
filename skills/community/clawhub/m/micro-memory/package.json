@@ -1,0 +1,63 @@
+{
+  "name": "micro-memory",
+  "version": "4.0.2",
+  "description": "🧠 Micro Memory - Intelligent memory system with strength decay, associative networks, spaced repetition, health reports, compression and archiving. 智能记忆系统，支持强度衰减、关联网络、间隔重复、健康报告、压缩归档。"
+  "author": "Clawdbot",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "bin": {
+    "memory": "dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "test": "node dist/index.js stats"
+  },
+  "files": [
+    "dist/",
+    "config/",
+    "store/",
+    "README.md",
+    "SKILL.md"
+  ],
+  "keywords": [
+    "clawdbot",
+    "memory",
+    "knowledge",
+    "notes",
+    "spaced-repetition"
+  ],
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "clawdbot": {
+    "skill": true,
+    "version": "3.1.1",
+    "semver": "3.1.1",
+    "entry": "dist/index.js",
+    "triggers": [
+      "记录",
+      "记住",
+      "add memory",
+      "添加记忆",
+      "搜索记忆",
+      "search memory",
+      "找找之前",
+      "列出记忆",
+      "list memory",
+      "我的记忆",
+      "删除记忆",
+      "edit memory",
+      "记忆统计",
+      "memory stats",
+      "记忆健康",
+      "memory health",
+      "复习记忆",
+      "memory review"
+    ]
+  },
+  "devDependencies": {
+    "@types/node": "^25.5.2",
+    "typescript": "^6.0.2"
+  }
+}

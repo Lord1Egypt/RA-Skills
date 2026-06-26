@@ -1,35 +1,157 @@
 ---
-name: "姓名五格数理测算"
-description: "Automation skill for 姓名五格数理测算."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/name-wuge"
-sourceUrl: "https://clawhub.ai/skills/name-wuge"
----
+name: name-wuge
+description: 姓名五格数理测算（天格/人格/地格/外格/总格）。当用户发送姓名要求算命、测名、五格、数理、笔画、姓名分析时触发。也支持直接发送 "李明" 或 "张伟 测名" 格式。
 
-# 姓名五格数理测算
+## 输出规则
 
-> Automation skill for 姓名五格数理测算.
+**⚠️ 繁简转换死律（2026-04-19 制定）：**
+- **测命时**：用户发送任何名字（简体/繁体混写）→ **强制先转繁体** → 再查康熙字典笔画
+- **公司名时**：同上，先转繁体再查
+- **起名时**：用繁体笔画计算出吉的组合 → **结果转简体** 给用户
+- **输出时**：繁简双版同时展示（简体名【繁体名】），笔画全部以繁体康熙字典为准
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/name-wuge`
-- **Source URL:** [https://clawhub.ai/skills/name-wuge](https://clawhub.ai/skills/name-wuge)
+**为什么这么做**：康熙字典笔画以繁体为准，简体 "陈"=13画但繁体 "陳"=16画，差之毫厘谬以千里。
 
-## Overview
+**姓名生成默认规则（除非用户指定"五格全吉"）：**
+- ✅ 只保**总格为吉**
+- ✅ 其他四格（天格/人格/地格/外格）**随机搭配，不做要求**
+- ✅ 可包含单名（单名=名字仅一字）
+- ✅ **音韵筛选**：名字韵母不能全同，过滤难听组合
+- ✅ 每个姓氏最多取1-2个，避免套公式
+- 这样名字更好听、选择更多
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/name-wuge
+**输出格式（随机生成时，繁简双版）：**
 ```
+  姓名              天格 人格 地格 外格 总格  吉凶     评分
+  石章卢（石章卢）  天 6人16地16外 6总21  天吉人吉地吉外吉总吉  95.0分
+  (笔画以康熙繁体核算，名字已转简体输出)
+```
+
+**当用户指定"五格全吉"时：**
+- 天格/人格/地格/外格/总格全部为吉
+
+## 触发方式
+
+用户发送姓名即可，不需要完整指令：
+
+- "李明" → 姓李名明
+- "张伟 测名" / "测名 张伟" / "算命 张伟"
+- "李云帆 五格" / "姓名分析 李云帆"
+- 直接说"测一下这个名字好不好"（需提取姓名）
+- "测公司名：阿里巴巴" / "公司名 腾讯" → 公司名总格测算
+- "批量取名 石" / "生成名字 李" / "帮我想名字" → 姓名批量生成（默认总格吉）
+- "生成名字 李 五格全吉" → 五格全吉版本
+- "生成公司名 3字 总格25" → 公司名批量生成
+- "随机生成10个名字" / "帮我想一些好听的名字" → 纯随机姓名生成（默认总格吉，可含单名，音韵好听）
+
+## 批量生成功能
+
+```python
+# 姓名批量生成
+from scripts.name_generator import run_generate
+
+# 五格全吉
+print(run_generate(surname="石", given_len=2))
+
+# 指定某格达标（如人格=15）
+print(run_generate(surname="石", target_ges={"人格": 15}))
+
+# 纯随机生成五格全吉姓名
+from scripts.name_generator import run_random_names
+print(run_random_names(count=10))
+
+# 公司名批量生成
+print(run_generate(company_length=3, company_target_zong=25))
+```
+
+### 直接调用 Python 脚本
+
+```python
+# 姓名五格
+from scripts.name_wuge import run
+print(run("李", "明华"))
+
+# 公司名总格
+from scripts.name_wuge import run_company
+print(run_company("阿里巴巴"))
+```
+
+### 参数说明
+
+| 参数 | 类型 | 默认 | 说明 |
+|------|------|------|------|
+| surname | str | 必填 | 姓氏，单字或双字复姓 |
+| given | str | 必填 | 名字，1-2字 |
+| auto_download | bool | True | 遇生僻字自动下载完整康熙字典 |
+| preload_full | bool | False | 提前加载完整字典（批量测算时用）|
+
+### 批量测算
+
+```python
+from name_wuge import run, ensure_full_data
+
+ensure_full_data()  # 一次性加载，后续不再重复下载
+names = [("王","芳"), ("陈","浩然"), ("刘","婷婷")]
+for s, g in names:
+    print(run(s, g))
+```
+
+### 单独查笔画（不计算五格）
+
+```python
+from name_wuge import query_strokes
+
+print(query_strokes("李明华"))
+# {'李': 7, '明': 8, '华': 14}
+```
+
+## 五格计算规则
+
+| 格 | 计算规则 |
+|----|----------|
+| 天格 | 单姓=姓末字笔画+1，复姓=姓1笔画+姓2笔画 |
+| 人格 | 姓末字笔画+名首字笔画 |
+| 地格 | 单名=名笔画+1，双名=名1+名2笔画 |
+| 外格 | 天格+地格-人格 |
+| 总格 | 所有汉字笔画相加（姓+名全部字的笔画之和） |
+
+## 数据来源
+
+- **81数理**：cnk3x/bys (Apache-2.0)
+- **康熙笔画**：breezyreeds/kangxi-strokecount (MIT)
+
+## 降级策略
+
+1. **L1 内置**：~200 常见姓名字，零延迟
+2. **L2 缓存**：首次下载后存 JSON，毫秒级加载
+3. **L3 下载**：63,696 字完整康熙字典（~3MB）
+4. **L4 降级**：下载失败仅用内置字典，不崩溃
+
+## 输出示例（繁简双版）
+
+```
+-------------------------------------
+  name: 陈星任（陳星任）      source: full kangxi
+  strokes: 陳=16画  星=9画  任=6画  (康熙繁体笔画)
+-------------------------------------
+  格      数理    吉凶     解释
+  天格    17    吉       排除万难，有贵人助
+  人格    25    吉       天时地利，名利双收
+  地格    15    吉       谦恭做事，外得人和
+  外格    7     吉       独营生意，和气吉祥
+  总格    31    吉       能得人望，排除万难
+-------------------------------------
+  overall score:  89.0 / 100
+-------------------------------------
+```
+
+## 繁简转换依赖
+
+- `opencc-python-reimplemented`（已内置，无需手动安装）
+- 静默处理无繁简差异的字（已有繁简差异的字才转换）
+
+## 注意事项
+
+- 复姓（欧阳、司马等）自动识别
+- 生僻字自动触发 L3 下载，无需手动干预
+- 罕见字确实查不到时，抛出 `ValueError` 说明哪些字缺失

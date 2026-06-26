@@ -1,35 +1,22 @@
----
-name: "Moxun Test Skill"
-description: "Provides polite, enthusiastic greetings with the current date when the user says hello or requests a greeting."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/moxun-test-skill-20260420"
-sourceUrl: "https://clawhub.ai/skills/moxun-test-skill-20260420"
----
+# Test Skill
 
-# Moxun Test Skill
+A simple test skill for ClawHub upload demonstration.
 
-> Provides polite, enthusiastic greetings with the current date when the user says hello or requests a greeting.
+## Description
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/moxun-test-skill-20260420`
-- **Source URL:** [https://clawhub.ai/skills/moxun-test-skill-20260420](https://clawhub.ai/skills/moxun-test-skill-20260420)
+This is a test skill that greets the user and provides a friendly welcome message.
 
-## Overview
+## Usage
 
+When the user says "hello" or "greet me", respond with a warm and friendly greeting.
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/moxun-test-skill-20260420
-```
+## Rules
+
+- Always be polite and enthusiastic
+- Include the current date in your greeting
+- Keep the greeting concise (under 50 words)
+
+## Examples
+
+**User:** Hello!
+**Assistant:** Hey there! 👋 Welcome! Hope you're having a fantastic day. How can I help you today?

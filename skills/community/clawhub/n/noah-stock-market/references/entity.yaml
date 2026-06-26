@@ -1,0 +1,5022 @@
+
+components:
+  schemas:
+    AnalysisUSStocks:
+      type: object
+      description: 美股分析
+      properties:
+        targetPricePrediction:
+          $ref: '#/components/schemas/TargetPricePrediction'
+        recommendedByUSStockAnalysts:
+          $ref: '#/components/schemas/RecommendedByUSStockAnalysts'
+
+    TargetPricePrediction:
+      type: object
+      description: 目标价预测
+      properties:
+        high:
+          type: number
+          description: 最高目标价
+        mean:
+          type: number
+          description: 平均目标价
+        low:
+          type: number
+          description: 最低目标价
+        lastPrice:
+          type: number
+          description: 最新价
+        numOfEstimates:
+          type: string
+          description: 预测机构数量
+
+    RecommendedByUSStockAnalysts:
+      type: object
+      description: 美股分析师推荐相关统计
+      properties:
+        numberOfAnalystsOneWeekAgo:
+          type: string
+          description: 一周前分析师数量
+        averageRating:
+          type: string
+          description: 平均评级
+        averageRatingData:
+          type: number
+          description: 平均评级数据
+        oneWeekAgo:
+          $ref: '#/components/schemas/RecommendationsNumResp'
+          description: 一周前
+        oneMonthAgo:
+          $ref: '#/components/schemas/RecommendationsNumResp'
+          description: 一月前
+        twoMonthAgo:
+          $ref: '#/components/schemas/RecommendationsNumResp'
+          description: 二月前
+        threeMonthAgo:
+          $ref: '#/components/schemas/RecommendationsNumResp'
+          description: 三月前
+
+    RecommendationsNumResp:
+      type: object
+      description: 各评级档位数量
+      properties:
+        strongBuy:
+          type: string
+          description: 强烈买入
+        buy:
+          type: string
+          description: 买入
+        hold:
+          type: string
+          description: 持有
+        sell:
+          type: string
+          description: 卖出
+        strongSell:
+          type: string
+          description: 强烈卖出
+
+    SecQuoteExtendIndexDto:
+      type: object
+      description: 证券扩展行情指标（ES sec_extend_index / SecQuoteExtendIndexDto）
+      properties:
+        # --- Securities ---
+        unique_code:
+          type: string
+          description: 唯一码
+        code:
+          type: string
+        name:
+          type: string
+        market_code:
+          type: string
+        genera_type_code:
+          type: string
+        detail_type_code:
+          type: string
+        listed_sector_code:
+          type: string
+        # --- QuoteExtendIndexDto ---
+        sec_id:
+          type: string
+        listed_status_code:
+          type: string
+        isin:
+          type: string
+        exg_code:
+          type: string
+        agg_exg_code:
+          type: string
+        listed_date_numeral:
+          type: integer
+          format: int32
+        delisted_date_numeral:
+          type: integer
+          format: int32
+        tra_curr_unit_code:
+          type: string
+        realtime_flag:
+          type: string
+          description: 实时性标识，1 实时；2 延时
+        # --- SecQuoteExtendIndexDto ---
+        id:
+          type: string
+        trading_unit:
+          type: integer
+          format: int32
+        # 板块
+        raise_percent5_days:
+          type: number
+          format: double
+        raise_percent10_days:
+          type: number
+          format: double
+        raise_percent20_days:
+          type: number
+          format: double
+        # 股票等
+        avg:
+          type: number
+          format: double
+        raise_speed:
+          type: number
+          format: double
+        entrust_ratio:
+          type: number
+          format: double
+        dy_profit:
+          type: number
+          format: double
+        st_profit:
+          type: number
+          format: double
+        pe_dynamic:
+          type: number
+          format: double
+        pe_static:
+          type: number
+          format: double
+        net_asset_per_share:
+          type: number
+          format: double
+        net_asset_exc_min_pro:
+          type: number
+          format: double
+        pna_ratio:
+          type: number
+          format: double
+        total_capital:
+          type: integer
+          format: int64
+        high_price52_weeks:
+          type: number
+          format: double
+        low_price52_weeks:
+          type: number
+          format: double
+        trade_vol_avg_pre5_days:
+          type: number
+          format: double
+        up_limit_time:
+          type: string
+          format: date-time
+        down_limit_time:
+          type: string
+          format: date-time
+        last_opend_board_time:
+          type: string
+          format: date-time
+        close_deal_ratio:
+          type: number
+          format: double
+        up_limit:
+          type: number
+          format: double
+        down_limit:
+          type: number
+          format: double
+        hk_listed_shares:
+          type: integer
+          format: int64
+        hk_market_value:
+          type: number
+          format: double
+        dividend_ttm:
+          type: number
+          format: double
+        dividend_ratio_ttm:
+          type: number
+          format: double
+        dividend_lfy:
+          type: number
+          format: double
+        dividend_ratio_lfy:
+          type: number
+          format: double
+        avg_five_dividend_ratio:
+          type: number
+          format: double
+        # 基金
+        iopv:
+          type: number
+          format: double
+        overflow_ratio:
+          type: number
+          format: double
+        net_value:
+          type: number
+          format: double
+        asset_size:
+          type: number
+          format: double
+        share_issued:
+          type: number
+          format: double
+        # 债券
+        cbsk_code:
+          type: string
+        stock_current:
+          type: number
+          format: double
+        stock_change_range:
+          type: number
+          format: double
+        stagflation_percent:
+          type: number
+          format: double
+        convert_bond_price:
+          type: number
+          format: double
+        discount:
+          type: number
+          format: double
+        double_low:
+          type: number
+          format: double
+        convert_bond_date:
+          type: string
+          format: date-time
+        convert_bond_rate:
+          type: string
+        remain_days:
+          type: integer
+          format: int32
+        pure_bond_premium_ratio:
+          type: number
+          format: double
+        purebond_value:
+          type: number
+          format: double
+        remaining_amount:
+          type: number
+          format: double
+        # 权证
+        target_price:
+          type: number
+          format: double
+        perc_of_still_out:
+          type: number
+          format: double
+        ent_ratio:
+          type: number
+          format: double
+        exercise_price:
+          type: number
+          format: double
+        leverage_ratio:
+          type: number
+          format: double
+        break_even_price:
+          type: number
+          format: double
+        effective_gearing:
+          type: number
+          format: double
+        maturity_day:
+          type: string
+          format: date-time
+        last_trade_day:
+          type: string
+          format: date-time
+        p_str_price_spread:
+          type: number
+          format: double
+        p_str_price:
+          type: number
+          format: double
+        lower_strike:
+          type: number
+          format: double
+        upper_strike:
+          type: number
+          format: double
+        delta:
+          type: number
+          format: double
+        implied_volatility:
+          type: number
+          format: double
+        ent_price:
+          type: number
+          format: double
+        in_or_out_price:
+          type: number
+          format: double
+        in_or_out:
+          type: string
+        # 公共 + 行情
+        pe_ratio:
+          type: number
+          format: double
+        circulation_value:
+          type: number
+          format: double
+        market_value:
+          type: number
+          format: double
+        trade_capital:
+          type: integer
+          format: int64
+        amplitude:
+          type: number
+          format: double
+        profit:
+          type: number
+          format: double
+        volume_ratio:
+          type: number
+          format: double
+        exchange:
+          type: number
+          format: double
+        premium_ratio:
+          type: number
+          format: double
+        profit_per_lot:
+          type: number
+          format: double
+        all_raise_percent:
+          type: number
+          format: double
+        pre_close1y:
+          type: number
+          format: double
+        raise_percent1y:
+          type: number
+          format: double
+        pre_close3y:
+          type: number
+          format: double
+        raise_percent3y:
+          type: number
+          format: double
+        pre_close5y:
+          type: number
+          format: double
+        raise_percent5y:
+          type: number
+          format: double
+        pre_close1m:
+          type: number
+          format: double
+        raise_percent1m:
+          type: number
+          format: double
+        pre_close3m:
+          type: number
+          format: double
+        raise_percent3m:
+          type: number
+          format: double
+        pre_close6m:
+          type: number
+          format: double
+        raise_percent6m:
+          type: number
+          format: double
+        pre_close_current1m:
+          type: number
+          format: double
+        pre_close_current1w:
+          type: number
+          format: double
+        pre_close_current1q:
+          type: number
+          format: double
+        raise_percent_current1m:
+          type: number
+          format: double
+        pre_close_ytd:
+          type: number
+          format: double
+        raise_percent_ytd:
+          type: number
+          format: double
+        trade_local_date_time:
+          type: string
+          format: date-time
+        quote_date_time:
+          type: string
+        last_price:
+          type: number
+          format: double
+        high_price:
+          type: number
+          format: double
+        low_price:
+          type: number
+          format: double
+        open_price:
+          type: number
+          format: double
+        pre_close:
+          type: number
+          format: double
+        raise:
+          type: number
+          format: double
+        raise_percent:
+          type: number
+          format: double
+        total_trade_vol:
+          type: integer
+          format: int64
+        total_turnover:
+          type: number
+          format: double
+        pre_raise_percent:
+          type: number
+          format: double
+        tags:
+          type: string
+        created_time:
+          type: integer
+          format: int64
+        modified_time:
+          type: integer
+          format: int64
+        inner:
+          type: number
+          format: double
+        outer:
+          type: number
+          format: double
+        decrease_num:
+          type: integer
+          format: int32
+        increase_num:
+          type: integer
+          format: int32
+        not_change_num:
+          type: integer
+          format: int32
+        delay_decrease_num:
+          type: integer
+          format: int32
+        delay_increase_num:
+          type: integer
+          format: int32
+        delay_not_change_num:
+          type: integer
+          format: int32
+        stock_code:
+          type: string
+        stock_name:
+          type: string
+        stock_raise:
+          type: number
+          format: double
+        stock_raise_percent:
+          type: number
+          format: double
+        delay_stock_code:
+          type: string
+        delay_stock_name:
+          type: string
+        delay_stock_raise:
+          type: number
+          format: double
+        delay_stock_raise_percent:
+          type: number
+          format: double
+        up_limit_num:
+          type: integer
+          format: int32
+        down_limit_num:
+          type: integer
+          format: int32
+        down_num:
+          type: integer
+          format: int32
+        up_num:
+          type: integer
+          format: int32
+        main_net_inflow:
+          type: number
+          format: double
+        st_status:
+          type: string
+        industry:
+          type: string
+        concept:
+          type: string
+        index:
+          type: string
+        last_ut_opend_board_time:
+          type: string
+          format: date-time
+        nominal_price:
+          type: number
+          format: double
+        connect_status:
+          type: string
+        warrant_character_code:
+          type: integer
+          format: int32
+        target_code:
+          type: string
+        target_name:
+          type: string
+        classification_code:
+          type: string
+        foreign_exchange_code:
+          type: string
+        tracking_index_code:
+          type: string
+        direction:
+          type: string
+        etf_type_code:
+          type: string
+        etf_sub_type:
+          type: string
+        roe:
+          type: number
+          format: double
+        raise_percent_one_year:
+          type: number
+          format: double
+        cn_concept:
+          type: string
+        star:
+          type: string
+        bid1_price:
+          type: number
+          format: double
+        ask1_price:
+          type: number
+          format: double
+        currency_one_code:
+          type: string
+        currency_second_code:
+          type: string
+        exchange_rate_type_code:
+          type: integer
+          format: int32
+        common_fx_type_code:
+          type: integer
+          format: int32
+        inverse_fx_unique_code:
+          type: string
+        source_currency:
+          type: string
+        target_currency:
+          type: string
+        order_num:
+          type: integer
+          format: int32
+        base_order_num:
+          type: integer
+          format: int32
+        listed_capital:
+          type: integer
+          format: int64
+        net_profit:
+          type: number
+          format: double
+        to_cash_div_rw:
+          type: number
+          format: double
+        eps:
+          type: number
+          format: double
+        diluted_eps:
+          type: number
+          format: double
+        avg_five_dividend:
+          type: number
+          format: double
+        sum_four_eps_ttm:
+          type: number
+          format: double
+          description: 近4季度每股盈利TTM（SG）
+    RankResp:
+      type: object
+      description: 排行榜/行情返回（secRank）
+      properties:
+        uniqueCode:
+          type: string
+          description: 唯一编码
+        nominalPrice:
+          type: number
+          format: decimal
+          description: 参考价
+        lastPrice:
+          type: number
+          format: decimal
+          description: 当前价
+        raisePercent:
+          type: number
+          format: decimal
+          description: 涨跌幅
+        raise:
+          type: number
+          format: decimal
+          description: 涨跌值
+        exchange:
+          type: number
+          format: decimal
+          description: 换手率
+        raiseSpeed:
+          type: number
+          format: decimal
+          description: 涨速
+        mainNetInflow:
+          type: number
+          format: decimal
+          description: 主力资金净流入
+        totalTradeVol:
+          type: integer
+          format: int64
+          description: 成交量
+        totalTurnover:
+          type: number
+          format: decimal
+          description: 成交额
+        volumeRatio:
+          type: number
+          format: decimal
+          description: 量比
+        entrustRatio:
+          type: number
+          format: decimal
+          description: 委比
+        amplitude:
+          type: number
+          format: decimal
+          description: 振幅
+        highPrice:
+          type: number
+          format: decimal
+          description: 最高
+        lowPrice:
+          type: number
+          format: decimal
+          description: 最低
+        openPrice:
+          type: number
+          format: decimal
+          description: 今开
+        preClose:
+          type: number
+          format: decimal
+          description: 昨收
+        peDynamic:
+          type: number
+          format: decimal
+          description: 市盈率动
+        peRatio:
+          type: number
+          format: decimal
+          description: 市盈率ttm
+        circulationValue:
+          type: number
+          format: decimal
+          description: 流通值
+        marketValue:
+          type: number
+          format: decimal
+          description: 总市值
+        generaType:
+          type: integer
+          description: 类别
+        detailType:
+          type: integer
+          description: 子类型
+        tags:
+          type: string
+          description: 标签
+        pnaRatio:
+          type: number
+          format: decimal
+          description: 市净率
+        roe:
+          type: number
+          format: decimal
+        raisePercentOneYear:
+          type: number
+          format: decimal
+          description: 近一年涨幅
+        targetPrice:
+          type: number
+          format: decimal
+          description: 相关资产最新价
+        percOfStillOut:
+          type: number
+          format: decimal
+          description: 街货比
+        premiumRatio:
+          type: number
+          format: decimal
+          description: 溢价率
+        entRatio:
+          type: number
+          format: decimal
+          description: 换股比率
+        exercisePrice:
+          type: number
+          format: decimal
+          description: 行使价
+        leverageRatio:
+          type: number
+          format: decimal
+          description: 杠杆比率
+        breakEvenPrice:
+          type: number
+          format: decimal
+          description: 打和点
+        effectiveGearing:
+          type: number
+          format: decimal
+          description: 有效杠杆
+        maturityDay:
+          type: string
+          format: date-time
+          description: 到期日
+        pStrPriceSpread:
+          type: number
+          format: decimal
+          description: 距收回价
+        pStrPrice:
+          type: number
+          format: decimal
+          description: 收回价
+        bid1Price:
+          type: number
+          format: decimal
+          description: 申买1-价格
+        ask1Price:
+          type: number
+          format: decimal
+          description: 申卖1-价格
+        currencyOneCode:
+          type: string
+          description: 货币对1
+        currencySecondCode:
+          type: string
+          description: 货币对2
+        exchangeRateTypeCode:
+          type: integer
+          description: 汇率类型，0：不确定；1：直接汇率；2：交叉汇率
+        commonFxTypeCode:
+          type: integer
+          description: 常用汇率，0：不是；3：常用汇率
+        inverseFxUniqueCode:
+          type: string
+          description: 反向汇率证券代码
+        sourceCurrency:
+          type: string
+          description: 货币兑换源币种
+        targetCurrency:
+          type: string
+          description: 货币兑换目标币种
+        orderNum:
+          type: integer
+          description: 排序编号
+        baseOrderNum:
+          type: integer
+          description: 基准排序编号
+        preClose1y:
+          type: number
+          format: decimal
+          description: 近1年第一个交易日的昨收价
+        raisePercent1y:
+          type: number
+          format: decimal
+        preClose3y:
+          type: number
+          format: decimal
+        raisePercent3y:
+          type: number
+          format: decimal
+        preClose5y:
+          type: number
+          format: decimal
+        raisePercent5y:
+          type: number
+          format: decimal
+        prePrice1m:
+          type: number
+          format: decimal
+        raisePercent1m:
+          type: number
+          format: decimal
+        preClose3m:
+          type: number
+          format: decimal
+        raisePercent3m:
+          type: number
+          format: decimal
+        preClose6m:
+          type: number
+          format: decimal
+        raisePercent6m:
+          type: number
+          format: decimal
+        prePriceCurrent1m:
+          type: number
+          format: decimal
+        raisePercentCurrent1m:
+          type: number
+          format: decimal
+        preCloseYtd:
+          type: number
+          format: decimal
+        raisePercentYtd:
+          type: number
+          format: decimal
+        tradeCapital:
+          type: integer
+          format: int64
+          description: 流通股
+        totalCapital:
+          type: integer
+          format: int64
+          description: 总股本
+        listedCapital:
+          type: integer
+          format: int64
+          description: 已上市股本
+        netAssetPerShare:
+          type: number
+          format: decimal
+        rollingNetProfit:
+          type: number
+          format: decimal
+        netProfit:
+          type: number
+          format: decimal
+        toCashDivRw:
+          type: number
+          format: decimal
+        eps:
+          type: number
+          format: decimal
+        dilutedEps:
+          type: number
+          format: decimal
+        profit:
+          type: number
+          format: decimal
+        dyProfit:
+          type: number
+          format: decimal
+        stProfit:
+          type: number
+          format: decimal
+        dividendTtm:
+          type: number
+          format: decimal
+        dividendRatioTtm:
+          type: number
+          format: decimal
+        dividendLfy:
+          type: number
+          format: decimal
+        dividendRatioLfy:
+          type: number
+          format: decimal
+        avgFiveDividend:
+          type: number
+          format: decimal
+        assetSize:
+          type: number
+          format: decimal
+        shareIssued:
+          type: number
+          format: decimal
+    CodeList:
+      type: array
+      items:
+        type: string
+
+    SecResponseList:
+      type: object
+      description: 请求结果封装类
+      properties:
+        success:
+          type: boolean
+          description: 请求结果是否成功
+        code:
+          type: integer
+          description: 错误代码
+        msg:
+          type: string
+          description: 返回提示信息
+        data:
+          description: 返回查询的数据
+          oneOf:
+            - $ref: "#/components/schemas/DataList"
+
+    SecResponseData:
+      type: object
+      description: 请求结果封装类
+      properties:
+        success:
+          type: boolean
+          description: 请求结果是否成功
+        code:
+          type: integer
+          description: 错误代码
+        msg:
+          type: string
+          description: 返回提示信息
+        data:
+          description: 返回查询的数据
+          oneOf:
+            - $ref: "#/components/schemas/OrderBook"
+            - $ref: "#/components/schemas/BrokerQueue"
+            - $ref: "#/components/schemas/AnalysisUSStocks"
+            - $ref: "#/components/schemas/HKStockFinancial"
+            - $ref: "#/components/schemas/USStockFinancial"
+
+    DataList:
+      type: array
+      items:
+        oneOf:
+          - $ref: "#/components/schemas/RankResp"
+          - $ref: "#/components/schemas/SecQuoteExtendIndexDto"
+          - $ref: "#/components/schemas/MarketQuote"
+          - $ref: "#/components/schemas/KlineItem"
+          - $ref: "#/components/schemas/StockTimeData"
+          - $ref: "#/components/schemas/TickerItem"
+          - $ref: "#/components/schemas/MarketStatus"
+          - $ref: "#/components/schemas/CapitalFlowItem"
+          - $ref: "#/components/schemas/OptionChainItem"
+          - $ref: "#/components/schemas/OptionExpirationItem"
+          - $ref: "#/components/schemas/WarrantItem"
+          - $ref: "#/components/schemas/PlateItem"
+          - $ref: "#/components/schemas/PlateStockItem"
+          - $ref: "#/components/schemas/StockBasicInfoItem"
+          - $ref: "#/components/schemas/IpoItem"
+          - $ref: "#/components/schemas/TradingDayItem"
+          - $ref: "#/components/schemas/GlobalStateItem"
+          - $ref: "#/components/schemas/StockFilterItem"
+          - $ref: "#/components/schemas/SecStockFilter"
+          - $ref: "#/components/schemas/CandleOpenApiDotResp"
+          - $ref: "#/components/schemas/MxShareholderOpenApiIncRedHoldResp"
+
+    MarketStatus:
+      type: object
+      description: 市场状态
+      properties:
+        code:
+          type: string
+          description: 股票代码
+        stock_name:
+          type: string
+          description: 股票名称
+        market_state:
+          type: string
+          description: 市场状态
+          allOf:
+            - $ref: "enum.yaml#/MarketTradingState"
+
+    MxShareholderOpenApiIncRedHoldResp:
+      type: object
+      description: 股东增持减持持仓明细（MxShareholderOpenApiIncRedHoldResp）
+      properties:
+        id:
+          type: string
+          description: 记录/主体标识
+        name:
+          type: string
+          description: 股东名称
+        transDate:
+          type: string
+          description: 交易或变更日期（字符串）
+        adjSharesTraded:
+          type: number
+          format: decimal
+          description: 调整后成交股数
+        changedAmount:
+          type: number
+          format: decimal
+          description: 变动金额
+        holdSumBefEvent:
+          type: number
+          format: decimal
+          description: 事件前持股合计
+        holdSumAfEvent:
+          type: number
+          format: decimal
+          description: 事件后持股合计
+        variableQuantityRatio:
+          type: number
+          format: decimal
+          description: 变动数量比例
+        uniqueCode:
+          type: string
+          description: 证券唯一码
+        secName:
+          type: string
+          description: 证券名称
+        exgCode:
+          type: string
+          description: 交易所代码
+
+    CapitalFlowItem:
+      type: object
+      description: 资金流向数据项
+      properties:
+        in_flow:
+          type: number
+          format: decimal
+          description: 整体净流入
+        main_in_flow:
+          type: number
+          format: decimal
+          description: 主力大单净流入
+        super_in_flow:
+          type: number
+          format: decimal
+          description: 特大单净流入
+        big_in_flow:
+          type: number
+          format: decimal
+          description: 大单净流入
+        mid_in_flow:
+          type: number
+          format: decimal
+          description: 中单净流入
+        sml_in_flow:
+          type: number
+          format: decimal
+          description: 小单净流入
+        capital_flow_item_time:
+          type: string
+          description: 开始时间
+        last_valid_time:
+          type: string
+          description: 数据最后有效时间
+
+    StockTimeData:
+      type: object
+      description: 股票时间行情数据
+      properties:
+        code:
+          type: string
+          description: 股票代码
+        name:
+          type: string
+          description: 股票名称
+        time:
+          type: string
+          description: 时间
+        is_blank:
+          type: boolean
+          description: 数据状态
+        opened_mins:
+          type: integer
+          description: 零点到当前多少分钟
+        cur_price:
+          type: number
+          format: decimal
+          description: 当前价格
+        last_close:
+          type: number
+          format: decimal
+          description: 昨天收盘的价格
+        avg_price:
+          type: number
+          format: decimal
+          description: 平均价格
+        volume:
+          type: number
+          format: decimal
+          description: 成交量
+        turnover:
+          type: number
+          format: decimal
+          description: 成交金额
+
+    KlineItem:
+      type: object
+      description: 股票行情数据
+      properties:
+        code:
+          type: string
+          description: 股票代码
+        name:
+          type: string
+          description: 股票名称
+        time_key:
+          type: string
+          description: 时间
+        open:
+          type: number
+          format: decimal
+          description: 开盘价
+        close:
+          type: number
+          format: decimal
+          description: 收盘价
+        high:
+          type: number
+          format: decimal
+          description: 最高价
+        low:
+          type: number
+          format: decimal
+          description: 最低价
+        volume:
+          type: integer
+          description: 成交量
+        turnover:
+          type: number
+          format: decimal
+          description: 成交额
+        pe_ratio:
+          type: number
+          format: decimal
+          description: 市盈率
+        turnover_rate:
+          type: number
+          format: decimal
+          description: 换手率
+        last_close:
+          type: number
+          format: decimal
+          description: 昨收价
+
+    CandleOpenApiDotResp:
+      type: object
+      description: K 线/蜡烛图单点行情（CandleDotResp）
+      properties:
+        uniqueCode:
+          type: string
+          description: 证券唯一码
+        type:
+          type: string
+          description: 类型
+        afType:
+          type: string
+          description: 复权类型等
+        preClose:
+          type: number
+          format: decimal
+          description: 昨收价
+        highPrice:
+          type: number
+          format: decimal
+          description: 最高价
+        lowPrice:
+          type: number
+          format: decimal
+          description: 最低价
+        openPrice:
+          type: number
+          format: decimal
+          description: 开盘价
+        closePrice:
+          type: number
+          format: decimal
+          description: 收盘价
+        raisePercent:
+          type: number
+          format: decimal
+          description: 涨跌幅
+        raise:
+          type: number
+          format: decimal
+          description: 涨跌额
+        tradeDateTime:
+          type: string
+          description: 交易时间（字符串，如 yyyyMMddHHmmssSSS）
+        tradeVol:
+          type: integer
+          format: int64
+          description: 成交量
+        tradeVolBd:
+          type: number
+          format: decimal
+          description: 成交量（BigDecimal）
+        tradeCount:
+          type: integer
+          format: int64
+          description: 成交笔数
+        turnover:
+          type: number
+          format: decimal
+          description: 成交额
+        phTradeVol:
+          type: number
+          format: decimal
+          description: 盘后成交量等
+        phTurnover:
+          type: number
+          format: decimal
+          description: 盘后成交额等
+        amplitude:
+          type: number
+          format: decimal
+          description: 振幅
+        exchange:
+          type: number
+          format: decimal
+          description: 委比
+        currTurnover:
+          type: number
+          format: decimal
+          description: 当前成交额
+        currTradeVol:
+          type: integer
+          format: int64
+          description: 当前成交量
+        currTradeVolBd:
+          type: number
+          format: decimal
+          description: 当前成交量（BigDecimal）
+        sequenceNo:
+          type: integer
+          format: int64
+          description: 序号
+        tradingStageType:
+          type: string
+          description: 交易阶段类型
+        realtimeFlag:
+          type: string
+          description: 实时性标识
+        totalShares:
+          type: integer
+          format: int64
+          description: 总股本
+        marketValue:
+          type: number
+          format: decimal
+          description: 市值
+
+    OrderBook:
+      type: object
+      properties:
+        code:
+          type: string
+          description: 股票代码
+        name:
+          type: string
+          description: 股票名称
+        svr_recv_time_bid:
+          type: string
+          description: 诺亚服务器从交易所收到买盘数据的时间
+        svr_recv_time_ask:
+          type: string
+          description: 诺亚服务器从交易所收到卖盘数据的时间
+        bid:
+          type: array
+          items:
+            $ref: '#/components/schemas/Order'
+        ask:
+          type: array
+          items:
+            $ref: '#/components/schemas/Order'
+
+    TickerItem:
+      type: object
+      description: 逐笔成交数据
+      properties:
+        code:
+          type: string
+          description: 股票代码
+        name:
+          type: string
+          description: 股票名称
+        sequence:
+          type: integer
+          description: 逐笔序号
+        time:
+          type: string
+          description: 成交时间
+        price:
+          type: number
+          format: decimal
+          description: 成交价格
+        volume:
+          type: integer
+          description: 成交数量
+        turnover:
+          type: number
+          format: decimal
+          description: 成交金额
+        ticker_direction:
+          type: string
+          description: 逐笔方向
+          allOf:
+            - $ref: 'enum.yaml#/TickerDirect'
+        type:
+          type: string
+          description: 逐笔类型
+          allOf:
+            - $ref: 'enum.yaml#/TickerType'
+
+    Order:
+      type: object
+      properties:
+        price:
+          type: number
+          description: 委托价格
+        quantity:
+          type: number
+          description: 委托数量
+        order_quantity:
+          type: number
+          description: 委托订单数
+        details:
+          type: object
+
+    MarketQuote:
+      type: object
+      properties:
+        code:
+          type: string
+          description: 股票代码
+        name:
+          type: string
+          description: 股票名称
+        data_date:
+          type: string
+          description: 日期
+        data_time:
+          type: string
+          description: 当前价更新时间
+        last_price:
+          type: number
+          format: decimal
+          description: 最新价格
+
+        open_price:
+          type: number
+          format: decimal
+          description: 今日开盘价
+        high_price:
+          type: number
+          format: decimal
+          description: 最高价格
+        low_price:
+          type: number
+          format: decimal
+          description: 最低价格
+        prev_close_price:
+          type: number
+          format: decimal
+          description: 昨收盘价格
+        volume:
+          type: integer
+          description: 成交数量
+        turnover:
+          type: number
+          format: decimal
+          description: 成交金额
+        turnover_rate:
+          type: number
+          format: decimal
+          description: 换手率
+        amplitude:
+          type: number
+          format: decimal
+          description: 振幅
+        suspension:
+          type: boolean
+          description: 是否停牌
+        listing_date:
+          type: string
+          description: 上市日期
+        price_spread:
+          type: number
+          format: decimal
+          description: 当前向上的价差
+
+        dark_status:
+          allOf:
+            - $ref: "enum.yaml#/DarkStatus"
+          description: 暗盘交易状态 (DarkStatus)
+        sec_status:
+          allOf:
+            - $ref: "enum.yaml#/SecurityStatus"
+          description: 股票状态 (SecurityStatus)
+
+        strike_price:
+          type: number
+          format: decimal
+          description: 行权价
+        contract_size:
+          type: number
+          format: decimal
+          description: 每份合约数
+        open_interest:
+          type: integer
+          description: 未平仓合约数
+        implied_volatility:
+          type: number
+          format: decimal
+          description: 隐含波动率
+        premium:
+          type: number
+          format: decimal
+          description: 溢价
+        delta:
+          type: number
+          format: decimal
+          description: 希腊值 Delta
+        gamma:
+          type: number
+          format: decimal
+          description: 希腊值 Gamma
+        vega:
+          type: number
+          format: decimal
+          description: 希腊值 Vega
+        theta:
+          type: number
+          format: decimal
+          description: 希腊值 Theta
+        rho:
+          type: number
+          format: decimal
+          description: 希腊值 Rho
+
+        index_option_type:
+          allOf:
+            - $ref: "enum.yaml#/IndexOptionType"
+          description: 指数期权类型 (IndexOptionType)
+        net_open_interest:
+          type: integer
+          description: 净未平仓合约数
+        expiry_date_distance:
+          type: integer
+          description: 距离到期日天数
+        contract_nominal_value:
+          type: number
+          format: decimal
+          description: 合约名义金额
+        owner_lot_multiplier:
+          type: number
+          format: decimal
+          description: 相等正股手数
+        option_area_type:
+          allOf:
+            - $ref: "enum.yaml#/OptionAreaType"
+          description: 期权类型 (按行权时间) (OptionAreaType)
+        contract_multiplier:
+          type: number
+          format: decimal
+          description: 合约乘数
+
+        pre_price:
+          type: number
+          format: decimal
+          description: 盘前价格
+        pre_high_price:
+          type: number
+          format: decimal
+          description: 盘前最高价
+        pre_low_price:
+          type: number
+          format: decimal
+          description: 盘前最低价
+        pre_volume:
+          type: integer
+          description: 盘前成交量
+        pre_turnover:
+          type: number
+          format: decimal
+          description: 盘前成交额
+        pre_change_val:
+          type: number
+          format: decimal
+          description: 盘前涨跌额
+        pre_change_rate:
+          type: number
+          format: decimal
+          description: 盘前涨跌幅
+        pre_amplitude:
+          type: number
+          format: decimal
+          description: 盘前振幅
+
+        after_price:
+          type: number
+          format: decimal
+          description: 盘后价格
+        after_high_price:
+          type: number
+          format: decimal
+          description: 盘后最高价
+        after_low_price:
+          type: number
+          format: decimal
+          description: 盘后最低价
+        after_volume:
+          type: integer
+          description: 盘后成交量
+        after_turnover:
+          type: number
+          format: decimal
+          description: 盘后成交额
+        after_change_val:
+          type: number
+          format: decimal
+          description: 盘后涨跌额
+        after_change_rate:
+          type: number
+          format: decimal
+          description: 盘后涨跌幅
+        after_amplitude:
+          type: number
+          format: decimal
+          description: 盘后振幅
+
+        overnight_price:
+          type: number
+          format: decimal
+          description: 夜盘价格
+        overnight_high_price:
+          type: number
+          format: decimal
+          description: 夜盘最高价
+        overnight_low_price:
+          type: number
+          format: decimal
+          description: 夜盘最低价
+        overnight_volume:
+          type: integer
+          description: 夜盘成交量
+        overnight_turnover:
+          type: number
+          format: decimal
+          description: 夜盘成交额
+        overnight_change_val:
+          type: number
+          format: decimal
+          description: 夜盘涨跌额
+        overnight_change_rate:
+          type: number
+          format: decimal
+          description: 夜盘涨跌幅
+        overnight_amplitude:
+          type: number
+          format: decimal
+          description: 夜盘振幅
+
+        last_settle_price:
+          type: number
+          format: decimal
+          description: 昨结
+        position:
+          type: number
+          format: decimal
+          description: 持仓量
+        position_change:
+          type: number
+          format: decimal
+          description: 日增仓
+
+    BrokerQueue:
+      type: object
+      description: 买卖盘经济队列
+      properties:
+        bid_frame_table:
+          type: array
+          description: 返回买盘经纪队列数据
+          items:
+            $ref: "#/components/schemas/BidBrokerOrderItem"
+        ask_frame_table:
+          type: array
+          description: 返回卖盘经纪队列数据
+          items:
+            $ref: "#/components/schemas/AskBrokerOrderItem"
+
+    AskBrokerOrderItem:
+      type: object
+      description: 经纪卖盘订单信息
+      properties:
+        code:
+          type: string
+          description: 股票代码
+        name:
+          type: string
+          description: 股票名称
+        ask_broker_id:
+          type: integer
+          description: 经纪卖盘ID
+        ask_broker_name:
+          type: string
+          description: 经纪卖盘名称
+        ask_broker_pos:
+          type: integer
+          description: 经纪档位
+        order_id:
+          type: integer
+          description: 交易所订单ID
+        order_volume:
+          type: integer
+          description: 单笔委托数量
+
+    BidBrokerOrderItem:
+      type: object
+      description: 经纪买盘订单信息
+      properties:
+        code:
+          type: string
+          description: 股票代码
+        name:
+          type: string
+          description: 股票名称
+        bid_broker_id:
+          type: integer
+          description: 经纪买盘 ID
+        bid_broker_name:
+          type: string
+          description: 经纪买盘名称
+        bid_broker_pos:
+          type: integer
+          description: 经纪档位
+        order_id:
+          type: integer
+          description: 交易所订单 ID
+        order_volume:
+          type: integer
+          description: 单笔委托数量
+
+    OptionChainItem:
+      type: object
+      description: 期权链单项（参考 Futu get_option_chain）
+      properties:
+        code:
+          type: string
+          description: 期权合约代码
+        name:
+          type: string
+          description: 期权名称
+        lot_size:
+          type: integer
+          description: 每手股数/每份合约股数
+        stock_owner:
+          type: string
+          description: 标的股代码
+        strike_time:
+          type: string
+          description: 行权日 yyyy-MM-dd
+        strike_price:
+          type: number
+          format: decimal
+          description: 行权价
+        option_type:
+          type: string
+          description: 期权类型
+        suspension:
+          type: boolean
+          description: 是否停牌
+        stock_id:
+          type: integer
+          description: 股票 ID
+
+    OptionExpirationItem:
+      type: object
+      description: 期权到期日（参考 Futu get_option_expiration_date）
+      properties:
+        expiration_date:
+          type: string
+          description: 到期日 yyyy-MM-dd
+
+    WarrantItem:
+      type: object
+      description: 窝轮/牛熊证/界内证单项（参考 Futu get_warrant，港股）
+      properties:
+        code:
+          type: string
+          description: 窝轮代码
+        name:
+          type: string
+          description: 名称
+        stock_owner:
+          type: string
+          description: 所属正股代码
+        warrant_type:
+          type: string
+          description: 窝轮类型
+        maturity_time:
+          type: string
+          description: 到期日 yyyy-MM-dd
+        list_time:
+          type: string
+          description: 上市时间 yyyy-MM-dd
+        last_trade_time:
+          type: string
+          description: 最后交易日 yyyy-MM-dd
+        strike_price:
+          type: number
+          format: decimal
+          description: 行使价
+        recovery_price:
+          type: number
+          format: decimal
+          description: 收回价（牛熊证）
+        conversion_ratio:
+          type: number
+          format: decimal
+          description: 换股比率
+        lot_size:
+          type: integer
+          description: 每手数量
+        cur_price:
+          type: number
+          format: decimal
+          description: 当前价
+        last_close_price:
+          type: number
+          format: decimal
+          description: 昨收价
+        premium:
+          type: number
+          format: decimal
+          description: 溢价（百分比）
+        leverage_ratio:
+          type: number
+          format: decimal
+          description: 杠杆比率
+        volume:
+          type: integer
+          description: 成交量
+        turnover:
+          type: number
+          format: decimal
+          description: 成交额
+
+    PlateItem:
+      type: object
+      description: 板块信息（对应 Futu get_plate_list）
+      properties:
+        code:
+          type: string
+          description: 板块代码
+        plate_name:
+          type: string
+          description: 板块名称
+        plate_id:
+          type: string
+          description: 板块 ID
+
+    PlateStockItem:
+      type: object
+      description: 板块内股票（对应 Futu get_plate_stock）
+      properties:
+        code:
+          type: string
+          description: 股票代码
+        stock_name:
+          type: string
+          description: 股票名称
+        lot_size:
+          type: integer
+          description: 每手股数
+        list_time:
+          type: string
+          description: 上市时间 yyyy-MM-dd
+        stock_id:
+          type: string
+          description: 股票 ID
+
+    StockBasicInfoItem:
+      type: object
+      description: 股票静态信息（对应 Futu get_stock_basicinfo / GetStaticInfo）
+      properties:
+        code:
+          type: string
+          description: 股票代码
+        name:
+          type: string
+          description: 股票名称
+        lot_size:
+          type: integer
+          description: 每手股数
+        listing_date:
+          type: string
+          description: 上市日期 yyyy-MM-dd
+        stock_id:
+          type: integer
+          description: 股票 ID
+        delisting:
+          type: boolean
+          description: 是否退市
+
+    IpoItem:
+      type: object
+      description: IPO 信息（对应 Futu get_ipo_list）
+      properties:
+        code:
+          type: string
+          description: 股票代码
+        name:
+          type: string
+          description: 股票名称
+        list_time:
+          type: string
+          description: 上市日期（美股是预计上市日期）
+        list_timestamp:
+          type: integer
+          format: int64
+          description: 上市日期时间戳（美股是预计上市日期时间戳）
+        apply_code:
+          type: string
+          description: 申购代码（A股适用）
+        issue_size:
+          type: integer
+          description: 发行总数（A股适用/发行量，非 A 股适用情况请以返回为空为准）
+        online_issue_size:
+          type: integer
+          description: 网上发行量（A股适用/发行量，非 A 股适用情况请以返回为空为准）
+        apply_upper_limit:
+          type: integer
+          description: 申购上限（A股适用/申购上限）
+        apply_limit_market_value:
+          type: integer
+          description: 顶格申购需配市值（A股适用）
+        is_estimate_ipo_price:
+          type: boolean
+          description: 是否预估发行价（A股适用）
+        ipo_price:
+          type: number
+          format: decimal
+          description: 发行价（A股适用）
+        industry_pe_rate:
+          type: number
+          format: decimal
+          description: 行业市盈率（A股适用）
+        is_estimate_winning_ratio:
+          type: boolean
+          description: 是否预估中签率（A股适用）
+        winning_ratio:
+          type: number
+          format: decimal
+          description: 中签率（A股适用）
+        issue_pe_rate:
+          type: number
+          format: decimal
+          description: 发行市盈率（A股适用）
+        apply_time:
+          type: string
+          description: 申购开始日期（A股适用）
+        apply_timestamp:
+          type: integer
+          format: int64
+          description: 申购开始日期时间戳（A股适用）
+        winning_time:
+          type: string
+          description: 公布中签日期（A股适用）
+        winning_timestamp:
+          type: integer
+          format: int64
+          description: 公布中签日期时间戳（A股适用）
+        is_has_won:
+          type: boolean
+          description: 是否已经公布中签号（A股适用）
+        winning_num_data:
+          type: string
+          description: 中签号数据（A股适用）
+        ipo_price_min:
+          type: number
+          format: decimal
+          description: 最低发行价（港股/美股适用情况以返回为空为准）
+        ipo_price_max:
+          type: number
+          format: decimal
+          description: 最高发行价（港股/美股适用情况以返回为空为准）
+        list_price:
+          type: number
+          format: decimal
+          description: 上市价格（港股适用）
+        lot_size:
+          type: integer
+          description: 每手股数
+        entrance_price:
+          type: number
+          format: decimal
+          description: 入场费（港股适用）
+        is_subscribe_status:
+          type: boolean
+          description: 是否为认购状态
+        apply_end_time:
+          type: string
+          description: 预计/实际申购结束日期（港股/美股/其他市场以返回为空为准）
+        apply_end_timestamp:
+          type: integer
+          format: int64
+          description: 预计/实际申购结束日期时间戳
+
+    TradingDayItem:
+      type: object
+      description: 交易日（对应 Futu request_trading_days）
+      properties:
+        date:
+          type: string
+          description: 日期 yyyy-MM-dd
+        is_trading_day:
+          type: boolean
+          description: 是否交易日
+
+    GlobalStateItem:
+      type: object
+      description: 全局市场状态（对应 Futu get_global_state）
+      properties:
+        market:
+          type: string
+          description: 市场
+        market_state:
+          type: string
+          description: 市场状态
+        trade_session:
+          type: string
+          description: 交易时段
+
+    SecStockFilter:
+      type: object
+      description: 条件选股合并结果（量化策略 StockFilterQuantitativeStrategy + 扩展行情 SecQuoteExtendIndexDto）
+      properties:
+        agg_exg_code:
+          type: string
+          description: aggExgCode (String)
+        all_raise_percent:
+          type: number
+          format: decimal
+          description: allRaisePercent (BigDecimal)
+        amplitude:
+          type: number
+          format: decimal
+          description: amplitude (BigDecimal)
+        ask1_price:
+          type: number
+          format: decimal
+          description: ask1Price (BigDecimal)
+        asset_size:
+          type: number
+          format: decimal
+          description: assetSize (BigDecimal)
+        avg:
+          type: number
+          format: decimal
+          description: avg (BigDecimal)
+        avg_five_dividend:
+          type: number
+          format: decimal
+          description: avgFiveDividend (BigDecimal)
+        avg_five_dividend_ratio:
+          type: number
+          format: decimal
+          description: avgFiveDividendRatio (BigDecimal)
+        base_order_num:
+          type: integer
+          description: baseOrderNum (Integer)
+        bid1_price:
+          type: number
+          format: decimal
+          description: bid1Price (BigDecimal)
+        boll_break_lower:
+          type: boolean
+          description: bollBreakLower (Boolean)
+        boll_break_upper:
+          type: boolean
+          description: bollBreakUpper (Boolean)
+        boll_cross_middle_down:
+          type: boolean
+          description: bollCrossMiddleDown (Boolean)
+        boll_cross_middle_up:
+          type: boolean
+          description: bollCrossMiddleUp (Boolean)
+        break_even_price:
+          type: number
+          format: decimal
+          description: breakEvenPrice (BigDecimal)
+        cbsk_code:
+          type: string
+          description: cbskCode (String)
+        circulation_value:
+          type: number
+          format: decimal
+          description: circulationValue (BigDecimal)
+        classification_code:
+          type: string
+          description: classificationCode (String)
+        close:
+          type: number
+          format: decimal
+          description: close (BigDecimal)
+        close_deal_ratio:
+          type: number
+          format: decimal
+          description: closeDealRatio (BigDecimal)
+        cn_concept:
+          type: string
+          description: cnConcept (String)
+        code:
+          type: string
+          description: code (String)
+        common_fx_type_code:
+          type: integer
+          description: commonFxTypeCode (Integer)
+        concept:
+          type: string
+          description: concept (String)
+        connect_status:
+          type: string
+          description: connectStatus (String)
+        convert_bond_date:
+          type: string
+          format: date-time
+          description: convertBondDate (Date)
+        convert_bond_price:
+          type: number
+          format: decimal
+          description: convertBondPrice (BigDecimal)
+        convert_bond_rate:
+          type: string
+          description: convertBondRate (String)
+        created_time:
+          type: integer
+          format: int64
+          description: createdTime (Long)
+        currency_one_code:
+          type: string
+          description: currencyOneCode (String)
+        currency_second_code:
+          type: string
+          description: currencySecondCode (String)
+        d:
+          type: number
+          format: decimal
+          description: d (BigDecimal)
+        dea:
+          type: number
+          format: decimal
+          description: dea (BigDecimal)
+        decrease_num:
+          type: integer
+          description: decreaseNum (Integer)
+        delay_decrease_num:
+          type: integer
+          description: delayDecreaseNum (Integer)
+        delay_increase_num:
+          type: integer
+          description: delayIncreaseNum (Integer)
+        delay_not_change_num:
+          type: integer
+          description: delayNotChangeNum (Integer)
+        delay_stock_code:
+          type: string
+          description: delayStockCode (String)
+        delay_stock_name:
+          type: string
+          description: delayStockName (String)
+        delay_stock_raise:
+          type: number
+          format: decimal
+          description: delayStockRaise (BigDecimal)
+        delay_stock_raise_percent:
+          type: number
+          format: decimal
+          description: delayStockRaisePercent (BigDecimal)
+        delisted_date_numeral:
+          type: integer
+          description: delistedDateNumeral (Integer)
+        delta:
+          type: number
+          format: decimal
+          description: delta (BigDecimal)
+        detail_type_code:
+          type: string
+          description: detailTypeCode (String)
+        dif:
+          type: number
+          format: decimal
+          description: dif (BigDecimal)
+        diluted_eps:
+          type: number
+          format: decimal
+          description: dilutedEps (BigDecimal)
+        direction:
+          type: string
+          description: direction (String)
+        discount:
+          type: number
+          format: decimal
+          description: discount (BigDecimal)
+        dividend_lfy:
+          type: number
+          format: decimal
+          description: dividendLfy (BigDecimal)
+        dividend_ratio_lfy:
+          type: number
+          format: decimal
+          description: dividendRatioLfy (BigDecimal)
+        dividend_ratio_ttm:
+          type: number
+          format: decimal
+          description: dividendRatioTtm (BigDecimal)
+        dividend_ttm:
+          type: number
+          format: decimal
+          description: dividendTtm (BigDecimal)
+        double_low:
+          type: number
+          format: decimal
+          description: doubleLow (BigDecimal)
+        down_limit:
+          type: number
+          format: decimal
+          description: downLimit (BigDecimal)
+        down_limit_num:
+          type: integer
+          description: downLimitNum (Integer)
+        down_limit_time:
+          type: string
+          format: date-time
+          description: downLimitTime (Date)
+        down_num:
+          type: integer
+          description: downNum (Integer)
+        dy_profit:
+          type: number
+          format: decimal
+          description: dyProfit (BigDecimal)
+        effective_gearing:
+          type: number
+          format: decimal
+          description: effectiveGearing (BigDecimal)
+        ema10:
+          type: number
+          format: decimal
+          description: ema10 (BigDecimal)
+        ema12:
+          type: number
+          format: decimal
+          description: ema12 (BigDecimal)
+        ema20:
+          type: number
+          format: decimal
+          description: ema20 (BigDecimal)
+        ema26:
+          type: number
+          format: decimal
+          description: ema26 (BigDecimal)
+        ema30:
+          type: number
+          format: decimal
+          description: ema30 (BigDecimal)
+        ema5:
+          type: number
+          format: decimal
+          description: ema5 (BigDecimal)
+        ema60:
+          type: number
+          format: decimal
+          description: ema60 (BigDecimal)
+        ema_long:
+          type: boolean
+          description: emaLong (Boolean)
+        ema_short:
+          type: boolean
+          description: emaShort (Boolean)
+        ent_price:
+          type: number
+          format: decimal
+          description: entPrice (BigDecimal)
+        ent_ratio:
+          type: number
+          format: decimal
+          description: entRatio (BigDecimal)
+        entrust_ratio:
+          type: number
+          format: decimal
+          description: entrustRatio (BigDecimal)
+        eps:
+          type: number
+          format: decimal
+          description: eps (BigDecimal)
+        etf_sub_type:
+          type: string
+          description: etfSubType (String)
+        etf_type_code:
+          type: string
+          description: etfTypeCode (String)
+        exchange:
+          type: number
+          format: decimal
+          description: exchange (BigDecimal)
+        exchange_rate_type_code:
+          type: integer
+          description: exchangeRateTypeCode (Integer)
+        exercise_price:
+          type: number
+          format: decimal
+          description: exercisePrice (BigDecimal)
+        exg_code:
+          type: string
+          description: exgCode (String)
+        foreign_exchange_code:
+          type: string
+          description: foreignExchangeCode (String)
+        genera_type_code:
+          type: string
+          description: generaTypeCode (String)
+        high_price:
+          type: number
+          format: decimal
+          description: highPrice (BigDecimal)
+        high_price52_weeks:
+          type: number
+          format: decimal
+          description: highPrice52Weeks (BigDecimal)
+        hk_listed_shares:
+          type: integer
+          format: int64
+          description: hkListedShares (Long)
+        hk_market_value:
+          type: number
+          format: decimal
+          description: hkMarketValue (BigDecimal)
+        id:
+          type: string
+          description: id (String)
+        implied_volatility:
+          type: number
+          format: decimal
+          description: impliedVolatility (BigDecimal)
+        in_or_out:
+          type: string
+          description: inOrOut (String)
+        in_or_out_price:
+          type: number
+          format: decimal
+          description: inOrOutPrice (BigDecimal)
+        increase_num:
+          type: integer
+          description: increaseNum (Integer)
+        index:
+          type: string
+          description: index (String)
+        industry:
+          type: string
+          description: industry (String)
+        inner:
+          type: number
+          format: decimal
+          description: inner (BigDecimal)
+        inverse_fx_unique_code:
+          type: string
+          description: inverseFxUniqueCode (String)
+        iopv:
+          type: number
+          format: decimal
+          description: iopv (BigDecimal)
+        isin:
+          type: string
+          description: isin (String)
+        j:
+          type: number
+          format: decimal
+          description: j (BigDecimal)
+        k:
+          type: number
+          format: decimal
+          description: k (BigDecimal)
+        kdj_death_cross_high:
+          type: boolean
+          description: kdjDeathCrossHigh (Boolean)
+        kdj_gold_cross_low:
+          type: boolean
+          description: kdjGoldCrossLow (Boolean)
+        last_opend_board_time:
+          type: string
+          format: date-time
+          description: lastOpendBoardTime (Date)
+        last_price:
+          type: number
+          format: decimal
+          description: lastPrice (BigDecimal)
+        last_trade_day:
+          type: string
+          format: date-time
+          description: lastTradeDay (Date)
+        last_ut_opend_board_time:
+          type: string
+          format: date-time
+          description: lastUtOpendBoardTime (Date)
+        lb:
+          type: number
+          format: decimal
+          description: lb (BigDecimal)
+        leverage_ratio:
+          type: number
+          format: decimal
+          description: leverageRatio (BigDecimal)
+        listed_capital:
+          type: integer
+          format: int64
+          description: listedCapital (Long)
+        listed_date_numeral:
+          type: integer
+          description: listedDateNumeral (Integer)
+        listed_sector_code:
+          type: string
+          description: listedSectorCode (String)
+        listed_status_code:
+          type: string
+          description: listedStatusCode (String)
+        long_rsi:
+          type: number
+          format: decimal
+          description: longRSI (BigDecimal)
+        low_price:
+          type: number
+          format: decimal
+          description: lowPrice (BigDecimal)
+        low_price52_weeks:
+          type: number
+          format: decimal
+          description: lowPrice52Weeks (BigDecimal)
+        lower_strike:
+          type: number
+          format: decimal
+          description: lowerStrike (BigDecimal)
+        ma10:
+          type: number
+          format: decimal
+          description: ma10 (BigDecimal)
+        ma20:
+          type: number
+          format: decimal
+          description: ma20 (BigDecimal)
+        ma30:
+          type: number
+          format: decimal
+          description: ma30 (BigDecimal)
+        ma5:
+          type: number
+          format: decimal
+          description: ma5 (BigDecimal)
+        ma60:
+          type: number
+          format: decimal
+          description: ma60 (BigDecimal)
+        ma_long:
+          type: boolean
+          description: maLong (Boolean)
+        ma_short:
+          type: boolean
+          description: maShort (Boolean)
+        macd:
+          type: number
+          format: decimal
+          description: macd (BigDecimal)
+        macd_death_cross_high:
+          type: boolean
+          description: macdDeathCrossHigh (Boolean)
+        macd_gold_cross_low:
+          type: boolean
+          description: macdGoldCrossLow (Boolean)
+        main_net_inflow:
+          type: number
+          format: decimal
+          description: mainNetInflow (BigDecimal)
+        market_code:
+          type: string
+          description: marketCode (String)
+        market_value:
+          type: number
+          format: decimal
+          description: marketValue (BigDecimal)
+        maturity_day:
+          type: string
+          format: date-time
+          description: maturityDay (Date)
+        mb:
+          type: number
+          format: decimal
+          description: mb (BigDecimal)
+        modified_time:
+          type: integer
+          format: int64
+          description: modifiedTime (Long)
+        name:
+          type: string
+          description: name (String)
+        net_asset_exc_min_pro:
+          type: number
+          format: decimal
+          description: netAssetExcMinPro (BigDecimal)
+        net_asset_per_share:
+          type: number
+          format: decimal
+          description: netAssetPerShare (BigDecimal)
+        net_profit:
+          type: number
+          format: decimal
+          description: netProfit (BigDecimal)
+        net_value:
+          type: number
+          format: decimal
+          description: netValue (BigDecimal)
+        nominal_price:
+          type: number
+          format: decimal
+          description: nominalPrice (BigDecimal)
+        not_change_num:
+          type: integer
+          description: notChangeNum (Integer)
+        open_price:
+          type: number
+          format: decimal
+          description: openPrice (BigDecimal)
+        order_num:
+          type: integer
+          description: orderNum (Integer)
+        outer:
+          type: number
+          format: decimal
+          description: outer (BigDecimal)
+        overflow_ratio:
+          type: number
+          format: decimal
+          description: overflowRatio (BigDecimal)
+        p_str_price:
+          type: number
+          format: decimal
+          description: pStrPrice (BigDecimal)
+        p_str_price_spread:
+          type: number
+          format: decimal
+          description: pStrPriceSpread (BigDecimal)
+        pe_dynamic:
+          type: number
+          format: decimal
+          description: peDynamic (BigDecimal)
+        pe_ratio:
+          type: number
+          format: decimal
+          description: peRatio (BigDecimal)
+        pe_static:
+          type: number
+          format: decimal
+          description: peStatic (BigDecimal)
+        peak:
+          type: boolean
+          description: peak (Boolean)
+        perc_of_still_out:
+          type: number
+          format: decimal
+          description: percOfStillOut (BigDecimal)
+        pna_ratio:
+          type: number
+          format: decimal
+          description: pnaRatio (BigDecimal)
+        pre_close:
+          type: number
+          format: decimal
+          description: preClose (BigDecimal)
+        pre_close1m:
+          type: number
+          format: decimal
+          description: preClose1m (BigDecimal)
+        pre_close1y:
+          type: number
+          format: decimal
+          description: preClose1y (BigDecimal)
+        pre_close3m:
+          type: number
+          format: decimal
+          description: preClose3m (BigDecimal)
+        pre_close3y:
+          type: number
+          format: decimal
+          description: preClose3y (BigDecimal)
+        pre_close5y:
+          type: number
+          format: decimal
+          description: preClose5y (BigDecimal)
+        pre_close6m:
+          type: number
+          format: decimal
+          description: preClose6m (BigDecimal)
+        pre_close_current1m:
+          type: number
+          format: decimal
+          description: preCloseCurrent1m (BigDecimal)
+        pre_close_current1q:
+          type: number
+          format: decimal
+          description: preCloseCurrent1q (BigDecimal)
+        pre_close_current1w:
+          type: number
+          format: decimal
+          description: preCloseCurrent1w (BigDecimal)
+        pre_close_ytd:
+          type: number
+          format: decimal
+          description: preCloseYtd (BigDecimal)
+        pre_raise_percent:
+          type: number
+          format: decimal
+          description: preRaisePercent (BigDecimal)
+        premium_ratio:
+          type: number
+          format: decimal
+          description: premiumRatio (BigDecimal)
+        profit:
+          type: number
+          format: decimal
+          description: profit (BigDecimal)
+        profit_per_lot:
+          type: number
+          format: decimal
+          description: profitPerLot (BigDecimal)
+        pure_bond_premium_ratio:
+          type: number
+          format: decimal
+          description: pureBondPremiumRatio (BigDecimal)
+        purebond_value:
+          type: number
+          format: decimal
+          description: purebondValue (BigDecimal)
+        quote_date_time:
+          type: string
+          description: quoteDateTime (String)
+        raise:
+          type: number
+          format: decimal
+          description: raise (BigDecimal)
+        raise_percent:
+          type: number
+          format: decimal
+          description: raisePercent (BigDecimal)
+        raise_percent10_days:
+          type: number
+          format: decimal
+          description: raisePercent10Days (BigDecimal)
+        raise_percent1m:
+          type: number
+          format: decimal
+          description: raisePercent1m (BigDecimal)
+        raise_percent1y:
+          type: number
+          format: decimal
+          description: raisePercent1y (BigDecimal)
+        raise_percent20_days:
+          type: number
+          format: decimal
+          description: raisePercent20Days (BigDecimal)
+        raise_percent3m:
+          type: number
+          format: decimal
+          description: raisePercent3m (BigDecimal)
+        raise_percent3y:
+          type: number
+          format: decimal
+          description: raisePercent3y (BigDecimal)
+        raise_percent5_days:
+          type: number
+          format: decimal
+          description: raisePercent5Days (BigDecimal)
+        raise_percent5y:
+          type: number
+          format: decimal
+          description: raisePercent5y (BigDecimal)
+        raise_percent6m:
+          type: number
+          format: decimal
+          description: raisePercent6m (BigDecimal)
+        raise_percent_current1m:
+          type: number
+          format: decimal
+          description: raisePercentCurrent1m (BigDecimal)
+        raise_percent_one_year:
+          type: number
+          format: decimal
+          description: raisePercentOneYear (BigDecimal)
+        raise_percent_ytd:
+          type: number
+          format: decimal
+          description: raisePercentYtd (BigDecimal)
+        raise_speed:
+          type: number
+          format: decimal
+          description: raiseSpeed (BigDecimal)
+        realtime_flag:
+          type: string
+          description: realtimeFlag (String)
+        remain_days:
+          type: integer
+          description: remainDays (Integer)
+        remaining_amount:
+          type: number
+          format: decimal
+          description: remainingAmount (BigDecimal)
+        roe:
+          type: number
+          format: decimal
+          description: roe (BigDecimal)
+        rsi_death_cross_high:
+          type: boolean
+          description: rsiDeathCrossHigh (Boolean)
+        rsi_gold_cross_low:
+          type: boolean
+          description: rsiGoldCrossLow (Boolean)
+        rsv:
+          type: number
+          format: decimal
+          description: rsv (BigDecimal)
+        sd:
+          type: number
+          format: decimal
+          description: sd (BigDecimal)
+        sec_id:
+          type: string
+          description: secId (String)
+        share_issued:
+          type: number
+          format: decimal
+          description: shareIssued (BigDecimal)
+        short_rsi:
+          type: number
+          format: decimal
+          description: shortRSI (BigDecimal)
+        source_currency:
+          type: string
+          description: sourceCurrency (String)
+        st_profit:
+          type: number
+          format: decimal
+          description: stProfit (BigDecimal)
+        st_status:
+          type: string
+          description: stStatus (String)
+        stagflation_percent:
+          type: number
+          format: decimal
+          description: stagflationPercent (BigDecimal)
+        star:
+          type: string
+          description: star (String)
+        stock_change_range:
+          type: number
+          format: decimal
+          description: stockChangeRange (BigDecimal)
+        stock_code:
+          type: string
+          description: stockCode (String)
+        stock_current:
+          type: number
+          format: decimal
+          description: stockCurrent (BigDecimal)
+        stock_name:
+          type: string
+          description: stockName (String)
+        stock_raise:
+          type: number
+          format: decimal
+          description: stockRaise (BigDecimal)
+        stock_raise_percent:
+          type: number
+          format: decimal
+          description: stockRaisePercent (BigDecimal)
+        tags:
+          type: string
+          description: tags (String)
+        target_code:
+          type: string
+          description: targetCode (String)
+        target_currency:
+          type: string
+          description: targetCurrency (String)
+        target_name:
+          type: string
+          description: targetName (String)
+        target_price:
+          type: number
+          format: decimal
+          description: targetPrice (BigDecimal)
+        to_cash_div_rw:
+          type: number
+          format: decimal
+          description: toCashDivRw (BigDecimal)
+        total_capital:
+          type: integer
+          format: int64
+          description: totalCapital (Long)
+        total_trade_vol:
+          type: integer
+          format: int64
+          description: totalTradeVol (Long)
+        total_turnover:
+          type: number
+          format: decimal
+          description: totalTurnover (BigDecimal)
+        tra_curr_unit_code:
+          type: string
+          description: traCurrUnitCode (String)
+        tracking_index_code:
+          type: string
+          description: trackingIndexCode (String)
+        trade_capital:
+          type: integer
+          format: int64
+          description: tradeCapital (Long)
+        trade_date_time:
+          type: string
+          description: tradeDateTime (String)
+        trade_local_date_time:
+          type: string
+          format: date-time
+          description: tradeLocalDateTime (LocalDateTime)
+        trade_vol_avg_pre5_days:
+          type: number
+          format: decimal
+          description: tradeVolAvgPre5Days (BigDecimal)
+        trough:
+          type: boolean
+          description: trough (Boolean)
+        type:
+          type: string
+          description: type (String)
+        ub:
+          type: number
+          format: decimal
+          description: ub (BigDecimal)
+        unique_code:
+          type: string
+          description: uniqueCode (String)
+        up_limit:
+          type: number
+          format: decimal
+          description: upLimit (BigDecimal)
+        up_limit_num:
+          type: integer
+          description: upLimitNum (Integer)
+        up_limit_time:
+          type: string
+          format: date-time
+          description: upLimitTime (Date)
+        up_num:
+          type: integer
+          description: upNum (Integer)
+        upper_strike:
+          type: number
+          format: decimal
+          description: upperStrike (BigDecimal)
+        volume_ratio:
+          type: number
+          format: decimal
+          description: volumeRatio (BigDecimal)
+        warrant_character_code:
+          type: integer
+          description: warrantCharacterCode (Integer)
+    StockFilterItem:
+      type: object
+      description: 条件选股结果项（对应 Futu get_stock_filter）
+      properties:
+        code:
+          type: string
+          description: 股票代码
+
+    SimpleFilter:
+      type: object
+      description: 简单属性筛选条件（SimpleFilter）
+      properties:
+        filter_type:
+          type: string
+          description: 多态类型，必须为 SIMPLE（与 discriminator mapping 一致）
+        stock_field:
+          $ref: "enum.yaml#/StockField"
+        filter_min:
+          type: number
+          format: decimal
+          description: 区间下限（闭区间），不传默认为 -∞
+        filter_max:
+          type: number
+          format: decimal
+          description: 区间上限（闭区间），不传默认为 +∞
+        eq_value:
+          type: string
+          description: 等于值，不传默认为空
+        is_no_filter:
+          type: boolean
+          description: 该字段是否不需要筛选（不传默认为不筛选）
+        sort:
+          $ref: "enum.yaml#/SortDir"
+      required:
+        - filter_type
+        - stock_field
+
+    FinancialFilter:
+      type: object
+      description: 财务属性筛选条件（FinancialFilter）
+      properties:
+        filter_type:
+          type: string
+          description: 多态类型，必须为 FINANCIAL（与 discriminator mapping 一致）
+        stock_field:
+          $ref: "enum.yaml#/FinancialStockField"
+        filter_min:
+          type: number
+          format: decimal
+          description: 区间下限（闭区间），不传默认为 -∞
+        filter_max:
+          type: number
+          format: decimal
+          description: 区间上限（闭区间），不传默认为 +∞
+        is_no_filter:
+          type: boolean
+          description: 该字段是否不需要筛选（不传默认为不筛选）
+        sort:
+          $ref: "enum.yaml#/SortDir"
+        quarter:
+          $ref: "enum.yaml#/FinancialQuarter"
+      required:
+        - filter_type
+        - stock_field
+        - quarter
+
+    PatternFilter:
+      type: object
+      description: 形态技术指标筛选条件（PatternFilter）
+      properties:
+        filter_type:
+          type: string
+          description: 多态类型，必须为 PATTERN（与 discriminator mapping 一致）
+        stock_field:
+          $ref: "enum.yaml#/PatternStockField"
+        ktype:
+          $ref: "enum.yaml#/KLType"
+        consecutive_period:
+          type: integer
+          default: 0
+          description: 筛选连续周期（consecutive_period）
+        is_no_filter:
+          type: boolean
+          description: 该字段是否不需要筛选（不传默认为不筛选）
+      required:
+        - filter_type
+        - stock_field
+        - ktype
+
+    CustomIndicatorFilter:
+      type: object
+      description: 自定义技术指标筛选条件（CustomIndicatorFilter）
+      properties:
+        filter_type:
+          type: string
+          description: 多态类型，必须为 CUSTOM_INDICATOR（与 discriminator mapping 一致）
+        stock_field1:
+          $ref: "enum.yaml#/CustomStockField"
+        stock_field1_para:
+          type: array
+          description: 自定义指标参数（根据指标类型传参）
+          items:
+            type: integer
+        relative_position:
+          $ref: "enum.yaml#/RelativePosition"
+        stock_field2:
+          $ref: "enum.yaml#/CustomStockField"
+        stock_field2_para:
+          type: array
+          description: 自定义指标参数（根据指标类型传参）
+          items:
+            type: integer
+        value:
+          type: number
+          format: decimal
+          description: 自定义数值（当 stock_field2 选择自定义数值时为必传参数）
+        ktype:
+          $ref: "enum.yaml#/KLType"
+        consecutive_period:
+          type: integer
+          description: 筛选连续周期（consecutive_period）
+        is_no_filter:
+          type: boolean
+          description: 该字段是否不需要筛选（不传默认为不筛选）
+      required:
+        - filter_type
+        - stock_field1
+        - stock_field2
+        - relative_position
+        - ktype
+
+    StockFilterCondition:
+      description: 条件选股筛选条件（多态，依赖 filter_type 反序列化）
+      oneOf:
+        - $ref: "#/components/schemas/SimpleFilter"
+        - $ref: "#/components/schemas/FinancialFilter"
+        - $ref: "#/components/schemas/PatternFilter"
+        - $ref: "#/components/schemas/CustomIndicatorFilter"
+      discriminator:
+        propertyName: filter_type
+        mapping:
+          SIMPLE: "#/components/schemas/SimpleFilter"
+          FINANCIAL: "#/components/schemas/FinancialFilter"
+          PATTERN: "#/components/schemas/PatternFilter"
+          CUSTOM_INDICATOR: "#/components/schemas/CustomIndicatorFilter"
+
+    StockFilterConfig:
+      type: object
+      description: 条件选股请求体（POST /quote/get_stock_filter）
+      properties:
+        market:
+          $ref: "enum.yaml#/Markets"
+        filter_list:
+          type: array
+          description: 筛选条件列表（SimpleFilter / FinancialFilter / PatternFilter / CustomIndicatorFilter）
+          items:
+            $ref: "#/components/schemas/StockFilterCondition"
+        sort_field:
+          $ref: 'enum.yaml#/QuoteSortField'
+        ascend:
+          type: boolean
+          description: 是否升序
+        page:
+          type: integer
+          description: 分页页码（从 0 起，与现有服务逻辑一致）
+        page_size:
+          type: integer
+          description: 每页条数
+      required:
+        - market
+
+    HKStockFinancial:
+      type: object
+      properties:
+        hkStockFinancialIndicatorResp:
+          type: array
+          items:
+            $ref: "#/components/schemas/HkOpenApiStockFinancialIndicator"
+        hkIncomeStatementResp:
+          $ref: "#/components/schemas/HkOpenApiIncomeStatement"
+        hkBalanceSheetResp:
+          $ref: "#/components/schemas/HkOpenApiBalanceSheet"
+        hkCashflowStatementResp:
+          $ref: "#/components/schemas/HkOpenApiCashflowStatement"
+
+    HkOpenApiStockFinancialIndicator:
+      type: object
+      description: 港股财务指标
+      properties:
+        basicEps:
+          type: number
+          description: 每股收益EPS-基本(元/股)
+        basicEps1y:
+          type: number
+          description: 基本每股收益(年增长率)(%)
+        basicEps3y:
+          type: number
+          description: 基本每股收益(近3年增长率)(%)
+        beginDate:
+          type: string
+          format: date-time
+          description: 起始日期
+        cashFlowPs:
+          type: number
+          description: 每股净现金流量(元/股)
+        currentAssetsToTa:
+          type: number
+          description: 流动资产/总资产(%)
+        currentAssetsTurnoverRate:
+          type: number
+          description: 流动资产周转率(次)
+        currentLiabilityToTl:
+          type: number
+          description: 流动负债/负债合计(%)
+        currentRatio:
+          type: number
+          description: 流动比率
+        debtAssetsRatio:
+          type: number
+          description: 资产负债率
+        debtEquityRatio:
+          type: number
+          description: 产权比率
+        dilutedEps:
+          type: number
+          description: 每股收益EPS-稀释(元/股)
+        dividendPs:
+          type: number
+          description: 每股派息(含税/人民币元)
+        dividendRatio:
+          type: number
+          description: 派息比率(%)
+        earningBeforeTaxRatio:
+          type: number
+          description: 税前利润率(%)
+        ebtgr1y:
+          type: number
+          description: 税前利润(年增长率)(%)
+        ebtgr3y:
+          type: number
+          description: 税前利润(近3年增长率)(%)
+        endDate:
+          type: string
+          format: date-time
+          description: 日期
+        equityGr1y:
+          type: number
+          description: 股东权益(年增长率)(%)
+        equityGr3y:
+          type: number
+          description: 股东权益(近3年增长率)(%)
+        equityMultipler:
+          type: number
+          description: 权益乘数
+        fiscalYear:
+          type: string
+          format: date-time
+          description: 财政年度
+        fixedAssetTurnoverRate:
+          type: number
+          description: 固定资产周转率(次)
+        grossIncomeGr1y:
+          type: number
+          description: 毛利(年增长率)(%)
+        grossIncomeGr3y:
+          type: number
+          description: 毛利(近3年增长率)(%)
+        grossIncomeRatio:
+          type: number
+          description: 销售毛利率
+        inventoryTurnoverRate:
+          type: number
+          description: 存货周转率
+        liabilityGr1y:
+          type: number
+          description: 负债合计(年增长率)(%)
+        liabilityGr3y:
+          type: number
+          description: 负债合计(近3年增长率)(%)
+        mainIncomePs:
+          type: number
+          description: 每股主营业务收入(元/股)
+        netAssetPs:
+          type: number
+          description: 每股净资产BPS(元/股)
+        netAssetPs1y:
+          type: number
+          description: 每股净资产(年增长率)(%)
+        netAssetPs3y:
+          type: number
+          description: 每股净资产(近3年增长率)(%)
+        netProfitGr1y:
+          type: number
+          description: 净利润(年增长率)(%)
+        netProfitGr3y:
+          type: number
+          description: 净利润(近3年增长率)(%)
+        netProfitRatio:
+          type: number
+          description: 销售净利率
+        nonCurrentAssetsToTa:
+          type: number
+          description: 非流动资产/总资产(%)
+        nonCurrentLiabilityToTl:
+          type: number
+          description: 非流动负债/负债合计(%)
+        npParentCompanyGr1y:
+          type: number
+          description: 归属母公司股东的净利润(年增长率)(%)
+        npParentCompanyGr3y:
+          type: number
+          description: 归属母公司股东的净利润(近3年增长率)(%)
+        opToTl:
+          type: number
+          description: 营业利润／负债合计
+        operCashFlowPs:
+          type: number
+          description: 每股经营活动现金流量(元/股)
+        operCashFlowToCl:
+          type: number
+          description: 经营活动产生的现金流量净额／流动负债
+        operCashFlowToTl:
+          type: number
+          description: 经营活动产生的现金流量净额／负债合计
+        operCashToTp:
+          type: number
+          description: 经营活动产生的现金流量净额／营业收入(%)
+        operProfitGr1y:
+          type: number
+          description: 营业利润(年增长率)(%)
+        operProfitGr3y:
+          type: number
+          description: 营业利润(近3年增长率)(%)
+        operProfitToCl:
+          type: number
+          description: 营业利润／流动负债
+        operProfitToTp:
+          type: number
+          description: 营业利润／利润总额(%)
+        operatingProfitRatio:
+          type: number
+          description: 营业利润率
+        operatingRevenueGr1y:
+          type: number
+          description: 营业收入(年增长率)(%)
+        operatingRevenueGr3y:
+          type: number
+          description: 营业收入(近3年增长率)(%)
+        orgId:
+          type: string
+          description: 港股财务指标 @author @date 2021-08-14 / @Data public class HkStockFinancialIndicatorResp
+            { /** 机构ID
+        quickRatio:
+          type: number
+          description: 速动比率
+        reportPeriodType:
+          type: string
+          description: 报告期类型
+        reportPeriodTypeCode:
+          type: string
+          description: 报告期类型编码
+        roa:
+          type: number
+          description: 资产净利率
+        roeWeighted:
+          type: number
+          description: 净资产收益率(加权)
+        seWithoutMiGr1y:
+          type: number
+          description: 归属母公司股东的权益(年增长率)(%)
+        seWithoutMiGr3y:
+          type: number
+          description: 归属母公司股东的权益(近3年增长率)(%)
+        seWithoutMiToTl:
+          type: number
+          description: 归属母公司股东的权益/负债合计(%)
+        taxToTp:
+          type: number
+          description: 税项／利润总额(%)
+        totalAssetGr1y:
+          type: number
+          description: 资产总计(年增长率)(%)
+        totalAssetGr3y:
+          type: number
+          description: 资产总计(近3年增长率)(%)
+        totalAssetTurnoverRate:
+          type: number
+          description: 总资产周转率(次)
+        yoyGrowthInBasicEps:
+          type: number
+          description: yoy_growth_in_basic_eps 基本每股收益同比增长
+    HkOpenApiIncomeStatement:
+      type: object
+      description: 港股利润表
+      properties:
+        accountingStandards:
+          type: integer
+          format: int32
+          description: accounting_standards 会计准则
+        adjItemsAftaxProfit:
+          type: number
+          description: adj_items_aftax_profit 除税后溢利调整项目(元)
+        adjItemsBefDedImp:
+          type: number
+          description: adj_items_bef_ded_imp 扣除减值前调整项目(元)
+        adjItemsEBefTax:
+          type: number
+          description: adj_items_e_bef_tax 溢利调整项目(元)
+        adjItemsIncome:
+          type: number
+          description: adj_items_income 收入调整项目(元)
+        adjItemsOPAfImp:
+          type: number
+          description: adj_items_o_p_af_imp 扣除减值后调整项目(元)
+        adjItemsOpeProfit:
+          type: number
+          description: adj_items_ope_profit 经营溢利调整项目(元)
+        adjItemsOperatRevenue:
+          type: number
+          description: adj_items_operat_revenue 经营收入调整项目(元)
+        adjItemsOperateProfit:
+          type: number
+          description: adj_items_operate_profit 经营溢利调整项目(元)
+        adjItemsProfTSholders:
+          type: number
+          description: adj_items_prof_t_sholders 股东应占溢利调整项目(元)
+        adjItemsProfits:
+          type: number
+          description: adj_items_profits 溢利调整项目(元)
+        admExpensesAe:
+          type: number
+          description: adm_expenses_ae 管理费用-行政费用(元)
+        affiliatedComFrofit:
+          type: number
+          description: affiliated_com_frofit 应占联营公司溢利(元)
+        aftaxProfitFCBusi:
+          type: number
+          description: aftax_profit_f_c_busi 持续经营业务税后利润(元)
+        aftaxProfitFNCBusi:
+          type: number
+          description: aftax_profit_f_n_c_busi 非持续经营业务税后溢利(元)
+        amortReinsuExpend:
+          type: number
+          description: amort_reinsu_expend 摊回分保费用(元)
+        attriToMSholdFCBprof:
+          type: number
+          description: attri_to_m_shold_f_c_bprof 少数股东应占来自持续业务溢利(元)
+        attriToMSholdFNCBprof:
+          type: number
+          description: attri_to_m_shold_f_n_c_bprof 少数股东应占来自非持续业务溢利(元)
+        attriToProfAssAJVent:
+          type: number
+          description: attri_to_prof_ass_a_j_vent 应占联营企业和合营企业收益(元)
+        attriToProfJVent:
+          type: number
+          description: attri_to_prof_j_vent 应占合营公司溢利(元)
+        attriToSholdFCBprof:
+          type: number
+          description: attri_to_shold_f_c_bprof 股东应占来自持续业务溢利(元)
+        attriToSholdFNCBprof:
+          type: number
+          description: attri_to_shold_f_n_c_bprof 股东应占来自非持续业务溢利(元)
+        bankIncome:
+          type: number
+          description: bank_income 银行业务收入(元)
+        beginDate:
+          type: string
+          format: date-time
+          description: begin_date 开始日期
+        commissionIncome:
+          type: number
+          description: commission_income 佣金收入(元)
+        companyNature:
+          type: string
+          description: company_nature 企业性质
+        companyNatureCode:
+          type: integer
+          format: int32
+          description: company_nature_code 企业性质编码：1-普通，2-金融，3-保险
+        cooperateBusProfit:
+          type: number
+          description: cooperate_bus_profit 应占共同控制实体溢利(元)
+        currencyUnit:
+          type: integer
+          format: int32
+          description: currency_unit 货币类别
+        deferredTax:
+          type: number
+          description: deferred_tax 递延税项(元)
+        depDividerSale:
+          type: number
+          description: dep_divider_sale 折旧与摊销(元)
+        devalAndAccBadDebt:
+          type: number
+          description: deval_and_acc_bad_debt 减值及拨备(元)
+        dividend:
+          type: number
+          description: dividend 股息(元)
+        dividendIncome:
+          type: number
+          description: dividend_income 股息收入(元)
+        dividendPerShare:
+          type: number
+          description: dividend_per_share 每股股息(元)
+        earningAfterTax:
+          type: number
+          description: earning_after_tax 除税后溢利(元)
+        earningBeforeTax:
+          type: number
+          description: earning_before_tax 除税前溢利(元)
+        empTurnover:
+          type: number
+          description: emp_turnover 员工支销(元)
+        endDate:
+          type: string
+          format: date-time
+          description: end_date 截止日期
+        eps:
+          type: number
+          description: eps 每股摊薄盈利(元)
+        epsBasic:
+          type: number
+          description: eps_basic 每股基本盈利(元)
+        exchangeGains:
+          type: number
+          description: exchange_gains 汇兑损益-收入(元)
+        expOnInsBusOthExp:
+          type: number
+          description: exp_on_ins_bus_oth_exp 保险业务支出及其他费用(元)
+        finAssetsIncome:
+          type: number
+          description: fin_assets_income 金融资产收益(元)
+        financialExpenseBTax:
+          type: number
+          description: financial_expense_b_tax 财务费用-税前(元)
+        financingIncome:
+          type: number
+          description: financing_income 融资收入(元)
+        fiscalYear:
+          type: string
+          format: date-time
+          description: fiscal_year 财政年度
+        fundingCost:
+          type: number
+          description: funding_cost 融资成本(元)
+        grossProfit:
+          type: number
+          description: gross_profit 毛利(元)
+        infoPublDate:
+          type: string
+          format: date-time
+          description: info_publ_date 信息发布日期
+        infoSource:
+          type: string
+          description: info_source 信息来源
+        infoSourceCode:
+          $ref: 'enum.yaml#/DateTypeConvertUtil'
+        investmentIncome:
+          type: number
+          description: investment_income 投资收入(元)
+        jointVenturesProfit:
+          type: number
+          description: joint_ventures_profit 应占合营公司溢利(元)
+        mark:
+          type: integer
+          format: int32
+          description: mark 合并调整标志
+        minorityProfit:
+          type: number
+          description: minority_profit 少数股东损益(元)
+        netIFInsAtFairValue:
+          type: number
+          description: net_i_f_ins_at_fair_value 以公平值列账的金融工具净收益(元)
+        netInsClaAPolHoldLiab:
+          type: number
+          description: net_ins_cla_a_pol_hold_liab 保险索偿净额及保单持有负债(元)
+        netInterestIncome:
+          type: number
+          description: net_interest_income 净利息收入(元)
+        netPayAClaims:
+          type: number
+          description: net_pay_a_claims 给付及赔付净额(元)
+        netPremIncRealized:
+          type: number
+          description: net_prem_inc_realized 已实现净保费收入(元)
+        netRemittance:
+          type: number
+          description: net_remittance 汇兑净额(元)
+        netRentIncome:
+          type: number
+          description: net_rent_income 租金净收入(元)
+        netServiceIncome:
+          type: number
+          description: net_service_income 净服务费收入(元)
+        netTransIncome:
+          type: number
+          description: net_trans_income 交易净收入(元)
+        npDispAffilComp:
+          type: number
+          description: np_disp_affil_comp 出售附属公司净溢利(元)
+        npDispAvaFSaleSecu:
+          type: number
+          description: np_disp_ava_f_sale_secu 出售可供出售证券净溢利(元)
+        npDispFixedAssets:
+          type: number
+          description: np_disp_fixed_assets 出售固定资产净溢利(元)
+        npDispInvestProp:
+          type: number
+          description: np_disp_invest_prop 出售投资物业净溢利(元)
+        opeExpenseAe:
+          type: number
+          description: ope_expense_ae 管理费用-销售费用(元)
+        opeInterestExpense:
+          type: number
+          description: ope_interest_expense 营运利息支出(元)
+        opeProfitAfDedImp:
+          type: number
+          description: ope_profit_af_ded_imp 扣除减值后经营溢利(元)
+        opeProfitBefDedImp:
+          type: number
+          description: ope_profit_bef_ded_imp 扣除减值前经营溢利(元)
+        operExpenses:
+          type: number
+          description: oper_expenses 营运支出(元)
+        operatingIncome:
+          type: number
+          description: operating_income 营业收入(元)
+        operatingPayoutAD:
+          type: number
+          description: operating_payout_a_d 营业支出-扣除减值后(元)
+        operatingPayoutBD:
+          type: number
+          description: operating_payout_b_d 营业支出-扣除减值前(元)
+        operatingProfit:
+          type: number
+          description: operating_profit 经营溢利(元)
+        operatingRevenue:
+          type: number
+          description: operating_revenue 经营收入(元)
+        orgId:
+          type: string
+          description: 港股利润表 @author @date 2022-05-07 01:50:15 / @Data public class HkIncomeStatementResp
+            { /** org_id 机构ID
+        periodMark:
+          $ref: 'enum.yaml#/PeriodMark'
+        profitDispOfAssets:
+          type: number
+          description: profit_disp_of_assets 出售资产溢利(元)
+        profitToShareholders:
+          type: number
+          description: profit_to_shareholders 股东应占溢利(元)
+        rAndDExpensesAe:
+          type: number
+          description: r_and_d_expenses_ae 管理费用-研发支出(元)
+        revaluationSurplus:
+          type: number
+          description: revaluation_surplus 重估盈余(元)
+        salesCost:
+          type: number
+          description: sales_cost 销售成本(元)
+        secuAndInvestIncome:
+          type: number
+          description: secu_and_invest_income 证券交易及投资净收入(元)
+        speItemsAftaxProfit:
+          type: number
+          description: spe_items_aftax_profit 除税后溢利特殊项目(元)
+        speItemsBefDedImp:
+          type: number
+          description: spe_items_bef_ded_imp 扣除减值前特殊项目(元)
+        speItemsEBefTax:
+          type: number
+          description: spe_items_e_bef_tax 溢利特殊项目(元)
+        speItemsIncome:
+          type: number
+          description: spe_items_income 收入特殊项目(元)
+        speItemsOPAfImp:
+          type: number
+          description: spe_items_o_p_af_imp 扣除减值后特殊项目(元)
+        speItemsOpeProfit:
+          type: number
+          description: spe_items_ope_profit 经营溢利其他项目(元)
+        speItemsOperatRevenue:
+          type: number
+          description: spe_items_operat_revenue 经营收入特殊项目(元)
+        speItemsOperateProfit:
+          type: number
+          description: spe_items_operate_profit 经营溢利特殊项目(元)
+        speItemsProfTSholders:
+          type: number
+          description: spe_items_prof_t_sholders 股东应占溢利其他项目(元)
+        speItemsProfits:
+          type: number
+          description: spe_items_profits 溢利特殊项目(元)
+        tax:
+          type: number
+          description: tax 税项(元)
+        totalIncome:
+          type: number
+          description: total_income 收入合计(元)
+        totalPayCompExp:
+          type: number
+          description: total_pay_comp_exp 给付、赔付及费用总计(元)
+        turnover:
+          type: number
+          description: turnover 营业额(元)
+        yoyGrowtAftaxProfitFcBusi:
+          type: number
+          description: yoy_growt_aftax_profit_fc_busi 净利润同比增长
+    HkOpenApiBalanceSheet:
+      type: object
+      description: 港股资产负债表
+      properties:
+        aAdjItems:
+          type: number
+          description: a_adj_items 资产调整项目(元)
+        aExcepItems:
+          type: number
+          description: a_excep_items 资产特殊项目(元)
+        accountReceivables:
+          type: number
+          description: account_receivables 应收帐款(元)
+        accountingStandards:
+          type: integer
+          format: int32
+          description: accounting_standards 会计准则
+        accountsPayable:
+          type: number
+          description: accounts_payable 应付帐款(元)
+        addEquityInstruments:
+          type: number
+          description: add_equity_instruments 额外股本工具(元)
+        advanceInsurance:
+          type: number
+          description: advance_insurance 预收保费(元)
+        advancePayment:
+          type: number
+          description: advance_payment 预付款项(元)
+        advanceReceipts:
+          type: number
+          description: advance_receipts 预收款项(元)
+        advancesTCusts:
+          type: number
+          description: advances_t_custs 客户垫款(元)
+        assetLessCLiability:
+          type: number
+          description: asset_less_c_liability 总资产减流动负债(元)
+        assetLessTLiability:
+          type: number
+          description: asset_less_t_liability 总资产减总负债(元)
+        assetToSold:
+          type: number
+          description: asset_to_sold 待出售之资产(元)
+        associateFundRece:
+          type: number
+          description: associate_fund_rece 应收关联方款项(元)
+        bFinInstAmsPayable:
+          type: number
+          description: b_fin_inst_ams_payable 应付银行及其他金融机构款项(元)
+        bFinInstDepBorMoney:
+          type: number
+          description: b_fin_inst_dep_bor_money 同业及其他金融机构存放及拆入款项(元)
+        bankLoansAndOverdraft:
+          type: number
+          description: bank_loans_and_overdraft 银行贷款及透支(元)
+        beginDate:
+          type: string
+          format: date-time
+          description: begin_date 起始日期
+        billReceivable:
+          type: number
+          description: bill_receivable 应收票据(元)
+        borFromCentralBank:
+          type: number
+          description: bor_from_central_bank 向中央银行借款(元)
+        borrowingCapital:
+          type: number
+          description: borrowing_capital 拆入资金(元)
+        borrowings:
+          type: number
+          description: borrowings 贷款(元)
+        boughtSellbackAssets:
+          type: number
+          description: bought_sellback_assets 买入返售金融资产(元)
+        boughtSellbackSecu:
+          type: number
+          description: bought_sellback_secu 买入返售证券(元)
+        cAAdjItems:
+          type: number
+          description: c_a_adj_items 流动资产调整项目(元)
+        cAExcepItems:
+          type: number
+          description: c_a_excep_items 流动资产特殊项目(元)
+        cLAdjItems:
+          type: number
+          description: c_l_adj_items 流动负债调整项目(元)
+        cLExcepItems:
+          type: number
+          description: c_l_excep_items 流动负债特殊项目(元)
+        cWrksCliMonReceCA:
+          type: number
+          description: c_wrks_cli_mon_rece_c_a 应收合约客户款项-流动资产(元)
+        cWrksCliMonReceNCA:
+          type: number
+          description: c_wrks_cli_mon_rece_n_c_a 应收合约客户款项-非流动资产(元)
+        capitalReserveFund:
+          type: number
+          description: capital_reserve_fund 资本公积(元)
+        cash:
+          type: number
+          description: cash 现金及等价物(元)
+        cashHoldings:
+          type: number
+          description: cash_holdings 库存现金及短期资金(元)
+        coBusinessEquity:
+          type: number
+          description: co_business_equity 共同控制实体权益(元)
+        companyNature:
+          type: string
+          description: company_nature 企业性质
+        companyNatureCode:
+          type: integer
+          format: int32
+          description: company_nature_code 企业性质编码：1-普通，2-金融，3-保险
+        conBillAndBond:
+          type: number
+          description: con_bill_and_bond 可转换票据及债券(元)
+        construInProcess:
+          type: number
+          description: constru_in_process 在建工程(元)
+        curIncTaxLiab:
+          type: number
+          description: cur_inc_tax_liab 当期所得税负债(元)
+        currencyUnit:
+          type: integer
+          format: int32
+          description: currency_unit 货币单位
+        customerDeposits:
+          type: number
+          description: customer_deposits 客户存款(元)
+        debtInstruIssued:
+          type: number
+          description: debt_instru_issued 已发行债务工具(元)
+        debtsSecurities:
+          type: number
+          description: debts_securities 债务证券(元)
+        deferredProceedsCL:
+          type: number
+          description: deferred_proceeds_c_l 递延收入-流动负债(元)
+        deferredTaxAssets:
+          type: number
+          description: deferred_tax_assets 递延税项资产(元)
+        deferredTaxLiability:
+          type: number
+          description: deferred_tax_liability 递延税项负债(元)
+        depositCard:
+          type: number
+          description: deposit_card 所持存款证(元)
+        depositCardIA:
+          type: number
+          description: deposit_card_i_a 存款证(元)
+        depositInCentralBank:
+          type: number
+          description: deposit_in_central_bank 存放中央银行款项(元)
+        depositOfInsured:
+          type: number
+          description: deposit_of_insured 保户储金(元)
+        derFinInstsCA:
+          type: number
+          description: der_fin_insts_c_a 衍生金融工具-流动资产(元)
+        derFinInstsCL:
+          type: number
+          description: der_fin_insts_c_l 衍生金融工具-流动负债(元)
+        derFinInstsNCA:
+          type: number
+          description: der_fin_insts_n_c_a 衍生金融工具-非流动资产(元)
+        derFinInstsNCL:
+          type: number
+          description: der_fin_insts_n_c_l 衍生金融工具-非流动负债(元)
+        deriFinAssets:
+          type: number
+          description: deri_fin_assets 衍生性金融资产(元)
+        derivativeLiability:
+          type: number
+          description: derivative_liability 衍生金融负债(元)
+        deveAndForSalePro:
+          type: number
+          description: deve_and_for_sale_pro 发展中及待售物业(元)
+        developmentExpenditure:
+          type: number
+          description: development_expenditure 开发支出(元)
+        diviForInsured:
+          type: number
+          description: divi_for_insured 应付保户红利(元)
+        dividendPayable:
+          type: number
+          description: dividend_payable 应付股利(元)
+        endDate:
+          type: string
+          format: date-time
+          description: end_date 日期
+        equUTFundInvPort:
+          type: number
+          description: equ_u_t_fund_inv_port 股本证券及单位信托基金投资组合(元)
+        exchangeReserve:
+          type: number
+          description: exchange_reserve 汇兑储备(元)
+        fAccruedBadDebtCL:
+          type: number
+          description: f_accrued_bad_debt_c_l 拨备-流动负债(元)
+        fAssociateFundRecCL:
+          type: number
+          description: f_associate_fund_rec_c_l 应付关连方款项-流动负债(元)
+        fFinanceLeaseOwesCL:
+          type: number
+          description: f_finance_lease_owes_c_l 融资租赁负债-流动负债(元)
+        fOrganizationDepposit:
+          type: number
+          description: f_organization_depposit 银行同业及其他金融机构存款(负债)(元)
+        fOtherLoanCL:
+          type: number
+          description: f_other_loan_c_l 其他贷款-流动负债(元)
+        finAetAtFValTPL:
+          type: number
+          description: fin_aet_at_f_val_t_p_l 按公平值入损益金融资产(元)
+        finAetAtFValTPLCA:
+          type: number
+          description: fin_aet_at_f_val_t_p_l_c_a 按公平值入损益金融资产-流动资产(元)
+        finAetAtFValTPLNCA:
+          type: number
+          description: fin_aet_at_f_val_t_p_l_n_c_a 按公平值入损益金融资产-非流动资产(元)
+        financialOrgDeposits:
+          type: number
+          description: financial_org_deposits 银行同业及其他金融机构存款(元)
+        finliabAtFV:
+          type: number
+          description: finliab_at_f_v 以公平值计入损益金融负债(元)
+        fiscalYear:
+          type: string
+          format: date-time
+          description: fiscal_year 财政年度
+        fixedAssets:
+          type: number
+          description: fixed_assets 固定资产(元)
+        fixedDeposit:
+          type: number
+          description: fixed_deposit 定期存款(元)
+        fixedDepositCA:
+          type: number
+          description: fixed_deposit_c_a 定期存款-流动资产(元)
+        fixedDepositNCA:
+          type: number
+          description: fixed_deposit_n_c_a 定期存款-非流动资产(元)
+        goodWill:
+          type: number
+          description: good_will 商誉(元)
+        hForSaleAssetsCA:
+          type: number
+          description: h_for_sale_assets_c_a 可供出售金融资产-流动资产(元)
+        heldToMatuInv:
+          type: number
+          description: held_to_matu_inv 持至到期投资(元)
+        holdForSaleAssets:
+          type: number
+          description: hold_for_sale_assets 可供出售金融资产(元)
+        holdForSaleAssetsNCA:
+          type: number
+          description: hold_for_sale_assets_n_c_a 可供出售金融资产-非流动资产(元)
+        holdProfit:
+          type: number
+          description: hold_profit 保留溢利(元)
+        holdToMatInv:
+          type: number
+          description: hold_to_mat_inv 持有至到期投资(元)
+        hongkongDollar:
+          type: number
+          description: hongkong_dollar 香港特区政府流通纸币(元)
+        infoPublDate:
+          type: string
+          format: date-time
+          description: info_publ_date 信息发布日期
+        infoSource:
+          type: string
+          description: info_source 信息来源
+        infoSourceCode:
+          $ref: 'enum.yaml#/DateTypeConvertUtil'
+        insAndOthRece:
+          type: number
+          description: ins_and_oth_rece 保险及其他应收款项(元)
+        insContract:
+          type: number
+          description: ins_contract 保险合同(元)
+        insOtherReceCA:
+          type: number
+          description: ins_other_rece_c_a 保险及其他应收款项-流动资产(元)
+        insOtherReceNCA:
+          type: number
+          description: ins_other_rece_n_c_a 保险及其他应收款项-非流动资产(元)
+        insurAccPayable:
+          type: number
+          description: insur_acc_payable 保险应付账款(元)
+        insurAccPayableNCL:
+          type: number
+          description: insur_acc_payable_n_c_l 保险应付账款-非流动负债(元)
+        insuranceReceivables:
+          type: number
+          description: insurance_receivables 应收保费(元)
+        insurerImpawnLoan:
+          type: number
+          description: insurer_impawn_loan 保户质押贷款(元)
+        intangibleAssets:
+          type: number
+          description: intangible_assets 无形资产(元)
+        interestPayable:
+          type: number
+          description: interest_payable 应付利息(元)
+        interestReceivables:
+          type: number
+          description: interest_receivables 应收利息(元)
+        invInAsJointVen:
+          type: number
+          description: inv_in_as_joint_ven 于联营企业和合营企业的投资(元)
+        inveContLiaCL:
+          type: number
+          description: inve_cont_lia_c_l 投资合同负债-流动负债(元)
+        inveContLiaNCL:
+          type: number
+          description: inve_cont_lia_n_c_l 投资合约负债-非流动负债(元)
+        inventories:
+          type: number
+          description: Inventories 存货(元)
+        investContract:
+          type: number
+          description: invest_contract 投资合同(元)
+        investInJointVen:
+          type: number
+          description: invest_in_joint_ven 对合营企业的投资(元)
+        investInLoansAndRece:
+          type: number
+          description: invest_in_loans_and_rece 归入贷款及应收款的投资(元)
+        investInRece:
+          type: number
+          description: invest_in_rece 应收款项类投资(元)
+        investIncRece:
+          type: number
+          description: invest_inc_rece 应收投资收益(元)
+        investProperty:
+          type: number
+          description: invest_property 投资物业(元)
+        issuedDepositCard:
+          type: number
+          description: issued_deposit_card 已发行存款证(元)
+        issuedbond:
+          type: number
+          description: issuedbond 已发行债券(元)
+        jointVenturesEquity:
+          type: number
+          description: joint_ventures_equity 合营公司权益(元)
+        lAdjuItems:
+          type: number
+          description: l_adju_items 负债调整项目(元)
+        lExcepItems:
+          type: number
+          description: l_excep_items 负债特殊项目(元)
+        lFromOthBanksCL:
+          type: number
+          description: l_from_oth_banks_c_l 拆入资金-流动负债(元)
+        lFromOthBanksNCL:
+          type: number
+          description: l_from_oth_banks_n_c_l 拆入资金-非流动负债(元)
+        lTAccountPayable:
+          type: number
+          description: l_t_account_payable 长期应付款(元)
+        lTInvestments:
+          type: number
+          description: l_t_investments 长期投资(元)
+        landUsufruct:
+          type: number
+          description: land_usufruct 土地使用权(元)
+        lendCapital:
+          type: number
+          description: lend_capital 拆出资金(元)
+        lendingCapital:
+          type: number
+          description: lending_capital 借贷资本(元)
+        loansAndOtherPayment:
+          type: number
+          description: loans_and_other_payment 客户贷款及其他款项(元)
+        loansOtherRece:
+          type: number
+          description: loans_other_rece 贷款及其他账项(元)
+        longSalariesPay:
+          type: number
+          description: long_salaries_pay 长期应付职工薪酬(元)
+        longtermLoan:
+          type: number
+          description: longterm_loan 长期银行贷款(元)
+        longtermReceivableAccount:
+          type: number
+          description: longterm_receivable_account 长期应收款(元)
+        mark:
+          type: integer
+          format: int32
+          description: mark 备注说明
+        minorityInterests:
+          type: number
+          description: minority_interests 非控股权益(元)
+        mortagageDeposit:
+          type: number
+          description: mortagage_deposit 已抵押存款(元)
+        mortagageDepositNCA:
+          type: number
+          description: mortagage_deposit_n_c_a 已抵押存款-非流动资产(元)
+        nCAAdjItems:
+          type: number
+          description: n_c_a_adj_items 非流动资产调整项目(元)
+        nCAExcepItems:
+          type: number
+          description: n_c_a_excep_items 非流动资产特殊项目(元)
+        nCLAdjItems:
+          type: number
+          description: n_c_l_adj_items 非流动负债调整项目(元)
+        nCLExcepItems:
+          type: number
+          description: n_c_l_excep_items 非流动负债特殊项目(元)
+        nFOtherLoanNCL:
+          type: number
+          description: n_f_other_loan_n_c_l 其他贷款-非流动负债(元)
+        negaGoodWill:
+          type: number
+          description: nega_good_will 负商誉(元)
+        netCurrentLiability:
+          type: number
+          description: net_current_liability 净流动资产(元)
+        nfAccruedBadDebtNCL:
+          type: number
+          description: nf_accrued_bad_debt_n_c_l 拨备-非流动负债(元)
+        nfAssociateFundRecNCL:
+          type: number
+          description: nf_associate_fund_rec_n_c_l 应付关联方款项-非流动负债(元)
+        nfDeferredProceedsNCL:
+          type: number
+          description: nf_deferred_proceeds_n_c_l 递延收入-非流动负债(元)
+        nfFinanceLeaseOwesNCL:
+          type: number
+          description: nf_finance_lease_owes_n_c_l 融资租赁负债-非流动负债(元)
+        notDecidedReserves:
+          type: number
+          description: not_decided_reserves 未决赔款准备(元)
+        notDecidedReservesCL:
+          type: number
+          description: not_decided_reserves_c_l 未决赔款准备-流动负债(元)
+        notDecidedReservesNCL:
+          type: number
+          description: not_decided_reserves_n_c_l 未决赔款准备-非流动负债(元)
+        notMatuRiskReserves:
+          type: number
+          description: not_matu_risk_reserves 未到期风险准备金(元)
+        notesPayable:
+          type: number
+          description: notes_payable 应付票据(元)
+        oSecuInvestment:
+          type: number
+          description: o_secu_investment 其他证券投资(元)
+        orgId:
+          type: string
+          description: 港股资产负债表 @author @date 2022-05-07 01:50:15 / @Data public class
+            HkBalanceSheetResp { /** org_id 机构ID
+        otherAccounetrece:
+          type: number
+          description: other_accounetrece 预付款按金及其他应收款(元)
+        otherAccountAndPrepare:
+          type: number
+          description: other_account_and_prepare 其他帐项及准备(元)
+        otherAssets:
+          type: number
+          description: other_assets 资产其他项目
+        otherCurrentAssets:
+          type: number
+          description: other_current_assets 其他流动资产(元)
+        otherCurrentLiability:
+          type: number
+          description: other_current_liability 其他流动负债(元)
+        otherEquityinstruments:
+          type: number
+          description: other_equityinstruments 其他权益工具(元)
+        otherFeesPayable:
+          type: number
+          description: other_fees_payable 其他应付款及应计费用(元)
+        otherInvestment:
+          type: number
+          description: other_investment 其他投资(元)
+        otherLiability:
+          type: number
+          description: other_liability 负债其他项目
+        otherNonCurrentAssets:
+          type: number
+          description: other_non_current_assets 其他非流动资产(元)
+        otherNonCurrentLiab:
+          type: number
+          description: other_non_current_liab 其他非流动负债(元)
+        otherReserve:
+          type: number
+          description: other_reserve 其他储备(元)
+        owesCertiOfGovHK:
+          type: number
+          description: owes_certi_of_gov_h_k 香港特区政府负债证明书(元)
+        periodMark:
+          $ref: 'enum.yaml#/PeriodMark'
+        prepaidLeasePays:
+          type: number
+          description: prepaid_lease_pays 预付租赁付款(元)
+        prepaidRentCA:
+          type: number
+          description: prepaid_rent_c_a 预付租金-流动资产(元)
+        prepaidRentNCA:
+          type: number
+          description: prepaid_rent_n_c_a 预付租金-非流动资产(元)
+        rMetal:
+          type: number
+          description: r_metal 贵金属(元)
+        recoverTax:
+          type: number
+          description: recover_tax 可收回税项(元)
+        refCapDeposit:
+          type: number
+          description: ref_cap_deposit 存出资本保证金(元)
+        reinPremPayable:
+          type: number
+          description: rein_prem_payable 应付再保险保费(元)
+        reinsAssets:
+          type: number
+          description: reins_assets 再保险资产(元)
+        reinsuranceReceivables:
+          type: number
+          description: reinsurance_receivables 应收分保账款(元)
+        reserve:
+          type: number
+          description: reserve 储备(元)
+        reserveDeposits:
+          type: number
+          description: reserve_deposits 法定存款(元)
+        reserveFund:
+          type: number
+          description: reserve_fund 法定储备(元)
+        retBfitsResp:
+          type: number
+          description: ret_bfits_resp 退休福利责任(元)
+        retainedProfit:
+          type: number
+          description: retained_profit 未分配利润(元)
+        revaluationReserve:
+          type: number
+          description: revaluation_reserve 重估储备(元)
+        sBbSecuProceeds:
+          type: number
+          description: s_bb_secu_proceeds 卖出回购金融资产款(元)
+        sEAdjItems:
+          type: number
+          description: s_e_adj_items 股东权益调整项目(元)
+        sEExcepItems:
+          type: number
+          description: s_e_excep_items 股东权益特殊项目(元)
+        salariesPayable:
+          type: number
+          description: salaries_payable 应付职工薪酬(元)
+        secuInvestment:
+          type: number
+          description: secu_investment 证券投资(元)
+        shareCapital:
+          type: number
+          description: share_capital 股本(元)
+        shareholderEquity:
+          type: number
+          description: shareholder_equity 股东权益(元)
+        shortTermDeposit:
+          type: number
+          description: short_term_deposit 短期存款(元)
+        shortTermInvest:
+          type: number
+          description: short_term_invest 短期投资(元)
+        shortTermLoan:
+          type: number
+          description: short_term_loan 短期借款(元)
+        simulantAllotDividend:
+          type: number
+          description: simulant_allot_dividend 拟派股息(元)
+        soldRepoSecuProceeds:
+          type: number
+          description: sold_repo_secu_proceeds 卖出回购证券(元)
+        stockPremium:
+          type: number
+          description: stock_premium 股本溢价(元)
+        subCompanyEquity:
+          type: number
+          description: sub_company_equity 联营公司权益(元)
+        subordDebt:
+          type: number
+          description: subord_debt 后偿负债(元)
+        subordDebtIL:
+          type: number
+          description: subord_debt_i_l 应付次级债(元)
+        subsAndOtherEquity:
+          type: number
+          description: subs_and_other_equity 附属公司及其他权益(元)
+        suppCompEquity:
+          type: number
+          description: supp_comp_equity 附属公司权益(元)
+        taxPayable:
+          type: number
+          description: tax_payable 应交税项(元)
+        taxReceivable:
+          type: number
+          description: tax_receivable 预缴及应收税项(元)
+        taxesPayable:
+          type: number
+          description: taxes_payable 应付税项(元)
+        totalAssets:
+          type: number
+          description: total_assets 总资产(元)
+        totalCurrentAssets:
+          type: number
+          description: total_current_assets 流动资产合计(元)
+        totalCurrentLiability:
+          type: number
+          description: total_current_liability 流动负债合计(元)
+        totalIntANCTLiability:
+          type: number
+          description: total_int_a_n_c_t_liability 总权益及非流动负债(元)
+        totalIntATotalLiab:
+          type: number
+          description: total_int_a_total_liab 总权益及总负债(元)
+        totalInterests:
+          type: number
+          description: total_interests 总权益(元)
+        totalLiability:
+          type: number
+          description: total_liability 总负债(元)
+        totalNonCurrentAssets:
+          type: number
+          description: total_non_current_assets 非流动资产合计(元)
+        totalNonCurrentLiab:
+          type: number
+          description: total_non_current_liab 非流动负债合计(元)
+        tradeBill:
+          type: number
+          description: trade_bill 贸易票据(元)
+        tradingAssets:
+          type: number
+          description: trading_assets 交易性金融资产(元)
+        unearnedPremiumReserve:
+          type: number
+          description: unearned_premium_reserve 未到期责任准备金(元)
+        workshopAndEquipment:
+          type: number
+          description: workshop_and_equipment 物业厂房及设备(元)
+        yoyGrowthInTotalAssets:
+          type: number
+          description: yoy_growth_in_total_assets 总资产同比增长
+        yoyGrowthInTotalLiability:
+          type: number
+          description: yoy_growth_in_total_liability 总负债同比增长
+    HkOpenApiCashflowStatement:
+      type: object
+      description: 港股现金流量
+      properties:
+        absorbInvestIncome:
+          type: number
+          description: 吸收投资所得(元)
+        accPayableChange:
+          type: number
+          description: 应付帐款增加(减少)(元)
+        accRePayableChange:
+          type: number
+          description: 应付分保帐款增(减)(元)
+        accReceivChange:
+          type: number
+          description: 应收帐款(增加)减少(元)
+        accountingStandards:
+          type: integer
+          format: int32
+          description: 会计准则
+        adjItemsManageAdj:
+          type: number
+          description: 经营调整调整项目(元)
+        adjItemsOpeBusi:
+          type: number
+          description: 经营业务调整项目(元)
+        adjItemsWCapChange:
+          type: number
+          description: 营运资本变动其他项目(元)
+        advPaymentChange:
+          type: number
+          description: 预付款项(增)减(元)
+        advReceiptsChange:
+          type: number
+          description: 预收款项增(减)(元)
+        affilCompProfAloss:
+          type: number
+          description: 应占附属公司(盈)亏(元)
+        bBackSFAssetsChange:
+          type: number
+          description: 买入返售金融资产(增)减(元)
+        bankDepositChange:
+          type: number
+          description: 银行存款(增)减(元)
+        bankDeposits:
+          type: number
+          description: 银行存款(元)
+        beginDate:
+          type: string
+          format: date-time
+          description: 开始日期
+        beginPeriodCash:
+          type: number
+          description: 期初现金(元)
+        bfaafValOnPLChange:
+          type: number
+          description: 按公平值计入损益的金融资产(增)减(元)
+        bflafValOnPLChange:
+          type: number
+          description: 按公平值计入损益的金融负债增(减)(元)
+        borFromCBChange:
+          type: number
+          description: 向中央银行借款增(减)(元)
+        cInFVofDerFinInst:
+          type: number
+          description: 衍生金融工具公平值(增)减(元)
+        cInFVofInvPropert:
+          type: number
+          description: 其中:投资物业公平值(增)减(元)
+        cInFVofOtherAssets:
+          type: number
+          description: 其他公平值变动(元)
+        cashABankBalances:
+          type: number
+          description: 现金及银行结余(元)
+        cashAndOtherBefFin:
+          type: number
+          description: 融资前现金其他项目(元)
+        cashCashEquival:
+          type: number
+          description: 现金及现金等值项目结余(元)
+        cashEndPer:
+          type: number
+          description: 期末现金(元)
+        cashReceiptsFOpe:
+          type: number
+          description: 经营业务现金收入(元)
+        chinaIncomeTaxPaid:
+          type: number
+          description: 已缴中国所得税(元)
+        companyType:
+          type: integer
+          format: int32
+          description: 公司类别
+        currencyUnit:
+          type: integer
+          format: int32
+          description: 货币类别
+        cusDepositsChange:
+          type: number
+          description: 客戶存款增(减)(元)
+        depDividerSale:
+          type: number
+          description: '折旧及摊销(元):'
+        depositChange:
+          type: number
+          description: 存款减少(增加)(元)
+        depreciation:
+          type: number
+          description: 其中:折旧(元)
+        derFinInstChange:
+          type: number
+          description: 衍生金融工具(增)减(元)
+        devalAndAccBadDebt:
+          type: number
+          description: '减值与拨备(元):'
+        devalofAvaForSaleInv:
+          type: number
+          description: 可供出售投资减值(回拨)(元)
+        devalofGoodwill:
+          type: number
+          description: 商誉减值(元)1
+        devalofInventories:
+          type: number
+          description: 存货减值(回拨)(元)
+        devalofOthers:
+          type: number
+          description: 其他减值与拨备(元)
+        devalofProPlEquip:
+          type: number
+          description: 其中:物业、厂房及设备减值(回拨)(元)
+        devalofTradeRece:
+          type: number
+          description: 应收贸易账款减值(回拨)(元)
+        disinvestmentCash:
+          type: number
+          description: 收回投资所得现金(元)
+        dividendIncomeAd:
+          type: number
+          description: 股息(收入)-调整(元)
+        dividendPaidBo:
+          type: number
+          description: 己付股息-经营(元)
+        dividendPaidFB:
+          type: number
+          description: 已付股息-融资(元)
+        dividendsRecBo:
+          type: number
+          description: 已收股息-经营(元)
+        dividendsRecIb:
+          type: number
+          description: 已收股息-投资(元)
+        earningBeforeTax:
+          type: number
+          description: 除税前溢利(元)
+        effectOfRate:
+          type: number
+          description: 汇率影响(元)
+        endDate:
+          type: string
+          format: date-time
+          description: 截止日期
+        exchangeIncome:
+          type: number
+          description: 汇兑损(益)(元)
+        faafValOnPlChange:
+          type: number
+          description: 按公平值计入损益的金融资产(增)减(元)
+        financeAdjustedItems:
+          type: number
+          description: 融资业务调整项目(元)
+        financeAdjustedOther:
+          type: number
+          description: 融资业务其他项目(元)
+        financeAndSpeItems:
+          type: number
+          description: 融资费用等特殊项目(元)
+        financialExpense:
+          type: number
+          description: 财务费用(元)
+        fiscalYear:
+          type: string
+          format: date-time
+          description: 财政年度
+        flafValOnPlChange:
+          type: number
+          description: 按公平值计入损益的金融负债增(减)(元)
+        hkProfitsTaxPaid:
+          type: number
+          description: 已缴香港利得税(元)
+        infoPublDate:
+          type: string
+          format: date-time
+          description: 信息发布日期
+        infoSource:
+          type: string
+          description: 信息来源
+        infoSourceCode:
+          $ref: 'enum.yaml#/DateTypeConvertUtil'
+        insertTime:
+          type: string
+          format: date-time
+          description: 发布时间
+        insuContLiabChange:
+          type: number
+          description: 保险合同负债增(减)(元)
+        insuReceivChange:
+          type: number
+          description: 保险业务应收款(增)减(元)
+        intangibleAssetAmort:
+          type: number
+          description: 无形资产摊销(元)1
+        interestExpAd:
+          type: number
+          description: 利息支出-调整(元)
+        interestIncomeAd:
+          type: number
+          description: 利息(收入)-调整(元)
+        interestPaidBo:
+          type: number
+          description: 已付利息-经营(元)
+        interestPaidCb:
+          type: number
+          description: 支付利息-现金结存(元)
+        interestPaidFB:
+          type: number
+          description: 已付利息-融资(元)
+        interestRecBo:
+          type: number
+          description: 已收利息-经营(元)
+        interestRecCb:
+          type: number
+          description: 收取利息-现金结存(元)
+        interestRecIb:
+          type: number
+          description: 已收利息-投资(元)
+        inventoryChange:
+          type: number
+          description: 存货(增加)减少(元)
+        investAdjustedItems:
+          type: number
+          description: 投资业务调整项目(元)
+        investAdjustedOther:
+          type: number
+          description: 投资业务特殊项目(元)
+        investPaymentCash:
+          type: number
+          description: 投资支付现金(元)
+        investProfAloss:
+          type: number
+          description: 投资损(益)(元)
+        issExpAPayOfRedSecu:
+          type: number
+          description: 发行费用及赎回证券支出(元)
+        issueBonds:
+          type: number
+          description: 发行债券(元)
+        issueShares:
+          type: number
+          description: 发行股份(元)
+        itemsPeriod:
+          type: number
+          description: 期间变动其他项目(元)
+        loanReceivableChange:
+          type: number
+          description: 应收贷款(增)减(元)
+        loansAAdvanChange:
+          type: number
+          description: 发放贷款及垫款(增)减(元)
+        mark:
+          type: integer
+          format: int32
+          description: 合并调整标志
+        netCash:
+          type: number
+          description: 现金净额(元)
+        netCashBeforFinance:
+          type: number
+          description: 融资前现金净额(元)
+        netCashFromFinance:
+          type: number
+          description: 融资业务现金净额(元)
+        netInvbusiCFlow:
+          type: number
+          description: 投资业务现金净额(元)
+        netOpeCFlow:
+          type: number
+          description: 经营业务现金净额(元)
+        newLoan:
+          type: number
+          description: 新增借款(元)
+        opeProBefChgInOpeCap:
+          type: number
+          description: 经营资金变动前经营溢利(元)
+        orgId:
+          type: string
+          description: 港股现金流量 @author @date 2021-08-14 / @Data public class HkCashflowStatementResp
+            { /** 机构ID
+        otherDepDividerSale:
+          type: number
+          description: 其他折旧及摊销(元)
+        otherItemsAffectNc:
+          type: number
+          description: 影响现金净额其他项目(元)
+        otherTaxes:
+          type: number
+          description: 其他税项(元)
+        periodMark:
+          $ref: 'enum.yaml#/PeriodMark'
+        pledgedDepositChange:
+          type: number
+          description: 已抵押银行存款(增)减(元)
+        proUnderDevelChange:
+          type: number
+          description: 发展中物业(增)减(元)
+        profDispOfAFSaleInv:
+          type: number
+          description: 其中:出售可供出售投资损(益)(元)
+        profDispOfAffCEqu:
+          type: number
+          description: 出售附属公司权益损(益)(元)
+        profDispOfOthAssets:
+          type: number
+          description: 出售其他资产损(益)(元)
+        profDispOfProPlEquip:
+          type: number
+          description: 出售物业、机器及设备损(益)(元)
+        profitDispOfAssets:
+          type: number
+          description: '出售资产损(益)(元):'
+        purAffCompanies:
+          type: number
+          description: 收购附属公司(元)
+        purCapitalAssents:
+          type: number
+          description: 购买固定资产(元)
+        purIntassets:
+          type: number
+          description: 购买无形资产(元)
+        refund:
+          type: number
+          description: 偿还借款(元)
+        restrictCashChange:
+          type: number
+          description: 受限制现金(增)减(元)
+        revaluationSurplus:
+          type: number
+          description: '重估盈余(元):'
+        speItemsManageAdj:
+          type: number
+          description: 经营调整特殊项目(元)
+        speItemsOpeAchange:
+          type: number
+          description: 经营资产变动其他项目(元)
+        speItemsOpeBusi:
+          type: number
+          description: 经营业务其他项目(元)
+        speItemsOpeLchange:
+          type: number
+          description: 经营负债变动其他项目(元)
+        speItemsWCapChange:
+          type: number
+          description: 营运资金变动调整项目(元)
+        unrealExchangeIncome:
+          type: number
+          description: 未实现汇兑损(益)(元)
+        updateTime:
+          type: string
+          format: date-time
+          description: 更新时间
+        vendAffCompanies:
+          type: number
+          description: 出售附属公司(元)
+        vendCapitalAssents:
+          type: number
+          description: 出售固定资产(元)
+        vendIntassets:
+          type: number
+          description: 出售无形资产(元)
+        yoyGrowthInNetOpeCFlow:
+          type: number
+          description: yoy_growth_in_net_op_cash_flow 现金流同比增长
+
+    USStockFinancial:
+      type: object
+      properties:
+        usMainFinancialInfoResp:
+          $ref: "#/components/schemas/UsOpenApiMainFinancialInfoResp"
+        usCashFlowResp:
+          $ref: "#/components/schemas/UsOpenApiCashFlowResp"
+        usBalanceSheetResp:
+          $ref: "#/components/schemas/UsOpenApiBalanceSheetResp"
+        usIncomeStatementResp:
+          $ref: "#/components/schemas/UsOpenApiIncomeStatementResp"
+
+    UsOpenApiCashFlowResp:
+      type: object
+      description: 美股现金流量表
+      properties:
+        acquisitionOfFixedAssets:
+          type: number
+        amortizationOfGross:
+          type: number
+        cashDividendPayment:
+          type: number
+        cashFlowFromFinancingActivities:
+          type: number
+        cashFlowFromInvestingActivities:
+          type: number
+        cashFlowFromOperActivities:
+          type: number
+        cashIncome:
+          type: number
+        cashInterestPayment:
+          type: number
+        cashOutlay:
+          type: number
+        cashTaxPayment:
+          type: number
+        changesInWorkingCapital:
+          type: number
+        companyNature:
+          type: string
+        companyNatureCode:
+          type: integer
+          format: int32
+        createdTime:
+          type: string
+          format: date-time
+        deferredTax:
+          type: number
+        endDate:
+          type: string
+          format: date-time
+        exchangeRate:
+          type: number
+        exchangeRateDate:
+          type: string
+          format: date-time
+        financingProject:
+          type: number
+        fiscalPeriodNumber:
+          type: integer
+          format: int32
+        fiscalYear:
+          type: integer
+          format: int32
+        infoSource:
+          type: string
+        infoSourceCode:
+          $ref: 'enum.yaml#/InfoSourceEnum'
+        insertTime:
+          type: string
+          format: date-time
+        isDeleted:
+          type: integer
+          format: int32
+          description: 0/1 等，对应 Java Byte
+        modifiedTime:
+          type: string
+          format: date-time
+        netBorrowing:
+          type: number
+        netCashFlowOfIssuedOrEliminatedShares:
+          type: number
+        noncashItems:
+          type: number
+        orgId:
+          type: string
+        periodLength:
+          type: string
+        periodMark:
+          $ref: 'enum.yaml#/PeriodMark'
+        reportingCurrency:
+          type: string
+        retainedProfits:
+          type: number
+        totalCashFlowsFromOtherInvestments:
+          type: number
+        totalOfDepreciationAndConsumption:
+          type: number
+        updateTime:
+          type: string
+          format: date-time
+        yoyGrowthInNetOpCashFlow:
+          type: number
+      required:
+      - createdTime
+      - endDate
+      - fiscalYear
+      - isDeleted
+      - modifiedTime
+      - orgId
+      - periodMark
+      - updateTime
+    UsOpenApiMainFinancialInfoResp:
+      type: object
+      description: 美股主要财务指标
+      properties:
+        createdTime:
+          type: string
+          format: date-time
+        dividendPerShare:
+          type: number
+        dividendPerShareAdr:
+          type: number
+        endDate:
+          type: string
+          format: date-time
+        eps:
+          type: number
+        epsAdr:
+          type: number
+        epsBasic:
+          type: number
+        epsBasicAdr:
+          type: number
+        exchangeRate:
+          type: number
+        exchangeRateDate:
+          type: string
+          format: date-time
+        infoSource:
+          type: string
+        infoSourceCode:
+          $ref: 'enum.yaml#/InfoSourceEnum'
+        isDeleted:
+          type: integer
+          format: int32
+          description: 0/1 等，对应 Java Byte
+        modifiedTime:
+          type: string
+          format: date-time
+        netAssetValuePerShare:
+          type: number
+        netAssetValuePerShareAdr:
+          type: number
+        netOperatingCashFlowPerShare:
+          type: number
+        netOperatingCashFlowPerShareAdr:
+          type: number
+        operatingIncomePerShare:
+          type: number
+        operatingIncomePerShareAdr:
+          type: number
+        orgId:
+          type: string
+        priceCurrency:
+          type: string
+        reportingCurrency:
+          type: string
+        yoyGrowthInBasicEps:
+          type: number
+      required:
+      - createdTime
+      - isDeleted
+      - modifiedTime
+      - orgId
+    UsOpenApiBalanceSheetResp:
+      type: object
+      description: 美股资产负债表
+      properties:
+        accountsPayable:
+          type: number
+        accruedCharge:
+          type: number
+        accruedUnpaid:
+          type: number
+        accumulatedDepreciation:
+          type: number
+        borrowingAmount:
+          type: number
+        capitalReserve:
+          type: number
+        capitalizedLease:
+          type: number
+        cash:
+          type: number
+        cashAndCashEquivalents:
+          type: number
+        cashAndShortTermInvestments:
+          type: number
+        companyNature:
+          type: string
+        companyNatureCode:
+          type: integer
+          format: int32
+        costOfDeferredPolicyPurchase:
+          type: number
+        createdTime:
+          type: string
+          format: date-time
+        currentInvestment:
+          type: number
+        deferredIncomeTax:
+          type: number
+        depositAmount:
+          type: number
+        depositBankCashAndFunds:
+          type: number
+        endDate:
+          type: string
+          format: date-time
+        esopDebtGuarantee:
+          type: number
+        exchangeRate:
+          type: number
+        exchangeRateDate:
+          type: string
+          format: date-time
+        fiscalPeriodNumber:
+          type: integer
+          format: int32
+        fiscalYear:
+          type: integer
+          format: int32
+        fundedDebt:
+          type: number
+        immobilisations:
+          type: number
+        infoSource:
+          type: string
+        infoSourceCode:
+          $ref: 'enum.yaml#/InfoSourceEnum'
+        insertTime:
+          type: string
+          format: date-time
+        isDeleted:
+          type: integer
+          format: int32
+          description: 0/1 等，对应 Java Byte
+        longTermLiabilitiesOrCapitalizedLeasesDueWithin1y:
+          type: number
+        minorityEquity:
+          type: number
+        modifiedTime:
+          type: string
+          format: date-time
+        netAmountTotalUtilitiesPlantAndEquipment:
+          type: number
+        netCredit:
+          type: number
+        netIntangibleAssets:
+          type: number
+        netReceivables:
+          type: number
+        netValueOfFixedAssets:
+          type: number
+        netValueOfGoodwill:
+          type: number
+        notesPayableOrShortTermDebt:
+          type: number
+        notesReceivableLongTerm:
+          type: number
+        orgId:
+          type: string
+        periodMark:
+          $ref: 'enum.yaml#/PeriodMark'
+        permanentInvestment:
+          type: number
+        premiumReceivable:
+          type: number
+        prepayment:
+          type: number
+        reportingCurrency:
+          type: string
+        retainedEarnings:
+          type: number
+        totalAssets:
+          type: number
+        totalCommonStock:
+          type: number
+        totalCurrentAssets:
+          type: number
+        totalCurrentLiabilities:
+          type: number
+        totalInventory:
+          type: number
+        totalLiabilities:
+          type: number
+        totalLiabilitiesAndShareholdersEquity:
+          type: number
+        totalLongTermBorrowings:
+          type: number
+        totalNonCallablePreferredStock:
+          type: number
+        totalOfOtherEarningAssets:
+          type: number
+        totalOfOtherInterestBearingLiabilities:
+          type: number
+        totalOtherAssets:
+          type: number
+        totalOtherCurrentAssets:
+          type: number
+        totalOtherCurrentLiabilities:
+          type: number
+        totalOtherInterests:
+          type: number
+        totalOtherLiabilities:
+          type: number
+        totalOtherLongTermAssets:
+          type: number
+        totalOutstandingSharesOrdinaryShares:
+          type: number
+        totalOutstandingSharesPreferredShares:
+          type: number
+        totalPolicyLiabilities:
+          type: number
+        totalReceivables:
+          type: number
+        totalRedeemablePreferredStock:
+          type: number
+        totalShareholdersEquity:
+          type: number
+        totalShortTermBorrowings:
+          type: number
+        treasuryStockCommonStock:
+          type: number
+        unrealizedGainsOrLosses:
+          type: number
+        updateTime:
+          type: string
+          format: date-time
+      required:
+      - createdTime
+      - endDate
+      - fiscalYear
+      - isDeleted
+      - modifiedTime
+      - orgId
+      - periodMark
+      - updateTime
+    UsOpenApiIncomeStatementResp:
+      type: object
+      description: 美股利润表
+      properties:
+        allowanceForLoanLossesAdjustedForNetInterestIncome:
+          type: number
+        allowanceOfFundsUsedDuringConstruction:
+          type: number
+        amortizationOfPolicyPurchaseCosts:
+          type: number
+        companyNature:
+          type: string
+        companyNatureCode:
+          type: integer
+          format: int32
+        depreciationAndAmortization:
+          type: number
+        developmentAndResearchFees:
+          type: number
+        dilutedEps:
+          type: number
+        dilutedEpsAdr:
+          type: number
+        dilutedNetIncome:
+          type: number
+        dilutedWeightedAvgShares:
+          type: number
+        dividendPerShare:
+          type: number
+        dividendPerShareAdr:
+          type: number
+        endDate:
+          type: string
+          format: date-time
+        eps:
+          type: number
+        exchangeRate:
+          type: number
+        exchangeRateDate:
+          type: string
+          format: date-time
+        fiscalPeriodNumber:
+          type: integer
+          format: int32
+        fiscalYear:
+          type: integer
+          format: int32
+        fuelCost:
+          type: number
+        gainsAndLossesOnAssetSales:
+          type: number
+        grossPremiumIncome:
+          type: number
+        grossProfit:
+          type: number
+        infoSource:
+          type: string
+        infoSourceCode:
+          $ref: 'enum.yaml#/InfoSourceEnum'
+        insertTime:
+          type: string
+          format: date-time
+        interestExpTotal:
+          type: number
+        interestRevenue:
+          type: number
+        loanLossReserves:
+          type: number
+        mainBusinessIncome:
+          type: number
+        minorityEquity:
+          type: number
+        netInterestExpeSubBusinessIncome:
+          type: number
+        netInterestExpeSubNonbusinessIncome:
+          type: number
+        netInterestIncome:
+          type: number
+        netInvestmentRevenue:
+          type: number
+        netProfitAfterTax:
+          type: number
+        netProfitBeforeTax:
+          type: number
+        nonInterestExpe:
+          type: number
+        nonInterestIncome:
+          type: number
+        nonRecurringIncome:
+          type: number
+        operatingAndMaintenanceCost:
+          type: number
+        operationRevenue:
+          type: number
+        orgId:
+          type: string
+        otherTotalIncome:
+          type: number
+        periodLength:
+          type: string
+        periodMark:
+          $ref: 'enum.yaml#/PeriodMark'
+        provisionForIncomeTax:
+          type: number
+        realizedAndUnrealizedRevenue:
+          type: number
+        reportingCurrency:
+          type: string
+        revenueOfStockholdersAfterDeductSpecialItems:
+          type: number
+        revenueOfStockholdersBeforeDeductSpecialItems:
+          type: number
+        sellingAndManageExpTotal:
+          type: number
+        subsidiaryInterest:
+          type: number
+        totalCostOfRevenue:
+          type: number
+        totalIncome:
+          type: number
+        totalOperatingExpe:
+          type: number
+        totalOtherOperatingExpe:
+          type: number
+        updateTime:
+          type: string
+          format: date-time
+        yoyGrowthInNetProfit:
+          type: number
+      required:
+      - endDate
+      - fiscalYear
+      - orgId
+      - periodMark
+      - updateTime
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: Token

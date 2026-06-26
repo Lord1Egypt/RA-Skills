@@ -1,0 +1,10 @@
+{
+  "id": "microsoft-azure",
+  "label": "Microsoft Azure TTS",
+  "type": "cloud",
+  "description": "企业场景常见，适合稳定多语种语音合成。",
+  "confirmationFields": ["provider", "voice", "language", "speed", "fallbackProvider"],
+  "voiceRequired": true,
+  "supportsLocalFallback": true,
+  "envHints": ["AZURE_SPEECH_KEY", "AZURE_SPEECH_REGION"]
+}

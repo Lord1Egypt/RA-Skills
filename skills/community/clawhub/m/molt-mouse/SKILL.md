@@ -1,35 +1,17 @@
 ---
-name: "desktop mouse"
-description: "Local mouse control via ydotool wrapper"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/molt-mouse"
-sourceUrl: "https://clawhub.ai/skills/molt-mouse"
+name: desktop-mouse
+description: Local mouse control via ydotool wrapper
+metadata: {"moltbot":{"emoji":"","os":["linux"],"requires":{"bins":["molt-mouse"]}}}
+user-invocable: false
 ---
+When the user asks to move/click the mouse:
+- Use the exec tool with host=gateway.
+- ONLY run commands that start with: `molt-mouse ...`
+- Supported:
+  - `molt-mouse move <dx> <dy>`
+  - `molt-mouse abs <x> <y>`
+  - `molt-mouse click left|right|middle`
+  - `molt-mouse click 0x40` # left button down (hold)
+  - `molt-mouse click 0x80` # left button up (release)
+- If numbers are missing/ambiguous, ask the user.
 
-# desktop mouse
-
-> Local mouse control via ydotool wrapper
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/molt-mouse`
-- **Source URL:** [https://clawhub.ai/skills/molt-mouse](https://clawhub.ai/skills/molt-mouse)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/molt-mouse
-```

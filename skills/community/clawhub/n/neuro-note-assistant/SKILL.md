@@ -1,35 +1,32 @@
----
-name: "神經科病歷助手"
-description: "自動將神經科門診病歷文本結構化，提取主訴、病史、檢查、診斷及治療建議。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/neuro-note-assistant"
-sourceUrl: "https://clawhub.ai/skills/neuro-note-assistant"
----
+# 神經科病歷結構化助手
 
-# 神經科病歷助手
+將門診病歷輸入，自動輸出結構化總結，包括診斷同建議。
 
-> 自動將神經科門診病歷文本結構化，提取主訴、病史、檢查、診斷及治療建議。
+## 使用方式
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/neuro-note-assistant`
-- **Source URL:** [https://clawhub.ai/skills/neuro-note-assistant](https://clawhub.ai/skills/neuro-note-assistant)
+1. 輸入門診病歷原始文字
+2. AI會自動提取：
+   - 主訴 (Chief Complaint)
+   - 病史 (History of Present Illness)
+   - 檢查發現 (Physical Exam Findings)
+   - 診斷 (Assessment)
+   - 治療建議 (Plan)
 
-## Overview
+## 範例輸入
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/neuro-note-assistant
 ```
+患者男性，65歲，主訴右側肢體無力3小時。既往有高血壓、糖尿病病史。查體：血壓180/100mmHg，右上肢肌力2級，右下肢肌力3級...
+```
+
+## 輸出示例
+
+- 結構化病歷摘要
+- 可能的診斷
+- 進一步檢查建議
+- 治療方案建議
+
+## 適用對象
+
+- 神經內科醫生
+- 門診護士
+- 醫學生成AI愛好者

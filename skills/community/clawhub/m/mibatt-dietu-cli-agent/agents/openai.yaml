@@ -1,0 +1,4 @@
+interface:
+  display_name: "Dietu CLI Agent"
+  short_description: "Operate Dietu CLI for A-share workflows"
+  default_prompt: "Use $mibatt-dietu-cli-agent to authenticate to Dietu, pick the right CLI command, and return structured output for an A-share workflow."

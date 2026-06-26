@@ -1,0 +1,6 @@
+{
+  "focus": "single_goal_only",
+  "execution": "continuous",
+  "priority": "high_impact_only",
+  "optimization": "constant"
+}

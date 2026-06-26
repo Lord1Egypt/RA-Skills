@@ -1,0 +1,16 @@
+{
+  "skill_id": "notetaker",
+  "display_name": "NoteTaker Pro",
+  "description": "Smart note-taking with full-text search, tagging, templates, and multi-source capture.",
+  "icon": "StickyNote",
+  "accent_color": "#14b8a6",
+  "sidebar": { "route": "/notes", "label": "Notes", "icon": "StickyNote", "children": [{"label":"All Notes","route":"/notes"},{"label":"Tags","route":"/notes/tags","icon":"Tags"},{"label":"Templates","route":"/notes/templates","icon":"FileTemplate"}] },
+  "database": { "prefix": "nt", "tables": [
+    { "name": "nt_notes", "description": "Notes with full-text search", "columns": [{"name":"id","type":"UUID","primary_key":true},{"name":"user_id","type":"UUID"},{"name":"title","type":"TEXT"},{"name":"content_full","type":"TEXT"},{"name":"content_preview","type":"TEXT"},{"name":"category","type":"TEXT","default":"general"},{"name":"tags","type":"TEXT[]","default":"{}"},{"name":"priority","type":"TEXT","default":"normal"},{"name":"source_type","type":"TEXT","default":"manual"},{"name":"is_pinned","type":"BOOLEAN","default":false},{"name":"is_archived","type":"BOOLEAN","default":false},{"name":"created_at","type":"TIMESTAMPTZ"},{"name":"updated_at","type":"TIMESTAMPTZ"}], "indexes": [{"name":"idx_nt_notes_user","columns":["user_id","updated_at DESC"]},{"name":"idx_nt_notes_tags","columns":["tags"],"type":"gin"},{"name":"idx_nt_notes_category","columns":["user_id","category"]}] },
+    { "name": "nt_tags", "description": "Tag taxonomy", "columns": [{"name":"id","type":"UUID","primary_key":true},{"name":"user_id","type":"UUID"},{"name":"tag_name","type":"TEXT"},{"name":"color","type":"TEXT"},{"name":"usage_count","type":"INTEGER","default":0},{"name":"created_at","type":"TIMESTAMPTZ"}], "indexes": [] },
+    { "name": "nt_note_templates", "description": "Note templates", "columns": [{"name":"id","type":"UUID","primary_key":true},{"name":"user_id","type":"UUID"},{"name":"name","type":"TEXT"},{"name":"description","type":"TEXT"},{"name":"fields","type":"JSONB","default":"[]"},{"name":"created_at","type":"TIMESTAMPTZ"},{"name":"updated_at","type":"TIMESTAMPTZ"}], "indexes": [] }
+  ] },
+  "widgets": [{ "id": "recent-notes", "type": "list", "title": "Recent Notes", "description": "Latest notes at a glance", "size": "1x1" }],
+  "settings": [{ "key": "default_category", "label": "Default Category", "type": "text", "default": "general" }],
+  "sync": { "mode": "json", "source_files": ["notetaker-pro/data/"] }
+}

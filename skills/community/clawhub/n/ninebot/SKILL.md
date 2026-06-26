@@ -1,35 +1,58 @@
 ---
-name: "Ninebot"
-description: "九号电动车/平衡车集成技能 - 用于与 Ninebot 设备交互、诊断、配置和故障排除"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ninebot"
-sourceUrl: "https://clawhub.ai/skills/ninebot"
+name: Ninebot
+description: 九号电动车/平衡车集成技能 - 用于与 Ninebot 设备交互、诊断、配置和故障排除
 ---
 
-# Ninebot
+# Ninebot Skill
 
-> 九号电动车/平衡车集成技能 - 用于与 Ninebot 设备交互、诊断、配置和故障排除
+九号设备集成技能，提供与 Ninebot 电动滑板车、平衡车和电动自行车交互的统一接口。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ninebot`
-- **Source URL:** [https://clawhub.ai/skills/ninebot](https://clawhub.ai/skills/ninebot)
+## 适用场景
 
-## Overview
+- 连接 Ninebot 设备进行诊断
+- 读取设备状态、电池信息、行驶数据
+- 配置车辆参数（速度限制、尾灯等）
+- 排查常见故障
+- 导出骑行统计数据
 
+## 功能概览
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/ninebot
+| 功能 | 描述 |
+|------|------|
+| 设备连接 | 通过蓝牙连接 Ninebot 设备 |
+| 状态查询 | 获取电池、里程、固件版本等信息 |
+| 参数配置 | 修改速度限制、灯效等设置 |
+| 故障诊断 | 分析错误码并提供解决方案 |
+
+## 使用方法
+
+### 连接设备
+
 ```
+九号连接 [设备名称]
+```
+
+### 查询状态
+
+```
+九号状态
+九号电池
+九号里程
+```
+
+### 常用命令
+
+- `九号诊断` - 运行完整诊断
+- `九号固件` - 查看固件版本
+- `九号重置` - 恢复出厂设置
+
+## 示例对话
+
+> 用户: 我的九号车连不上手机了
+> 技能: 先尝试重启设备蓝牙，如果仍无法连接，运行 `九号诊断` 检查设备状态
+
+## 注意事项
+
+1. 确保设备电量 > 20%
+2. 某些参数修改需要停车状态
+3. 固件升级前备份当前配置

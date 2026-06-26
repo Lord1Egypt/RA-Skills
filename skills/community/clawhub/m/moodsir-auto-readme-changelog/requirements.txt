@@ -1,0 +1,13 @@
+# AI Doc Generator
+
+## 依赖说明
+
+本项目为纯 Python 实现，**无任何第三方依赖**。
+
+只需 Python 3.6+ 即可运行。
+
+如需 Web API 版本，可自行添加：
+```
+# fastapi
+# uvicorn
+```

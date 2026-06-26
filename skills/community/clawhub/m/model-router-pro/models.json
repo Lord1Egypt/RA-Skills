@@ -1,0 +1,247 @@
+{
+  "models": [
+    {
+      "id": "moonshot/kimi-k2.5",
+      "cost": 3,
+      "capabilities": {
+        "code": 8.0,
+        "reasoning": 8.0,
+        "agentic": 8.5
+      }
+    },
+    {
+      "id": "minimax/MiniMax-M2.5",
+      "cost": 1,
+      "capabilities": {
+        "code": 7.5,
+        "reasoning": 7.0,
+        "agentic": 7.0
+      }
+    },
+    {
+      "id": "minimax/MiniMax-M2.7",
+      "cost": 1,
+      "capabilities": {
+        "code": 8.0,
+        "reasoning": 7.5,
+        "agentic": 7.0
+      }
+    },
+    {
+      "id": "qwen/qwen3.6-plus",
+      "cost": 3,
+      "capabilities": {
+        "code": 8.0,
+        "reasoning": 8.0,
+        "agentic": 7.5
+      }
+    },
+    {
+      "id": "qwen/qwen3.5-plus",
+      "cost": 2,
+      "capabilities": {
+        "code": 7.5,
+        "reasoning": 7.5,
+        "agentic": 7.0
+      }
+    },
+    {
+      "id": "qwen/qwen3-max-2026-01-23",
+      "cost": 4,
+      "capabilities": {
+        "code": 8.5,
+        "reasoning": 8.5,
+        "agentic": 8.0
+      }
+    },
+    {
+      "id": "qwen/qwen3-coder-next",
+      "cost": 3,
+      "capabilities": {
+        "code": 9.0,
+        "reasoning": 7.5,
+        "agentic": 8.0
+      }
+    },
+    {
+      "id": "qwen/qwen3-coder-plus",
+      "cost": 4,
+      "capabilities": {
+        "code": 9.5,
+        "reasoning": 8.0,
+        "agentic": 8.5
+      }
+    },
+    {
+      "id": "qwen/MiniMax-M2.5",
+      "cost": 1,
+      "capabilities": {
+        "code": 7.5,
+        "reasoning": 7.0,
+        "agentic": 7.0
+      }
+    },
+    {
+      "id": "qwen/glm-5",
+      "cost": 4,
+      "capabilities": {
+        "code": 8.0,
+        "reasoning": 8.5,
+        "agentic": 8.0
+      }
+    },
+    {
+      "id": "qwen/glm-4.7",
+      "cost": 2,
+      "capabilities": {
+        "code": 7.5,
+        "reasoning": 7.5,
+        "agentic": 7.0
+      }
+    },
+    {
+      "id": "qwen/kimi-k2.5",
+      "cost": 3,
+      "capabilities": {
+        "code": 8.0,
+        "reasoning": 8.0,
+        "agentic": 8.5
+      }
+    },
+    {
+      "id": "modelstudio/qwen3.6-plus",
+      "cost": 3,
+      "capabilities": {
+        "code": 8.0,
+        "reasoning": 8.0,
+        "agentic": 7.5
+      }
+    },
+    {
+      "id": "modelstudio/qwen3.5-plus",
+      "cost": 2,
+      "capabilities": {
+        "code": 7.5,
+        "reasoning": 7.5,
+        "agentic": 7.0
+      }
+    },
+    {
+      "id": "modelstudio/qwen3-max-2026-01-23",
+      "cost": 4,
+      "capabilities": {
+        "code": 8.5,
+        "reasoning": 8.5,
+        "agentic": 8.0
+      }
+    },
+    {
+      "id": "modelstudio/qwen3-coder-next",
+      "cost": 3,
+      "capabilities": {
+        "code": 9.0,
+        "reasoning": 7.5,
+        "agentic": 8.0
+      }
+    },
+    {
+      "id": "modelstudio/qwen3-coder-plus",
+      "cost": 4,
+      "capabilities": {
+        "code": 9.5,
+        "reasoning": 8.0,
+        "agentic": 8.5
+      }
+    },
+    {
+      "id": "modelstudio/MiniMax-M2.5",
+      "cost": 1,
+      "capabilities": {
+        "code": 7.5,
+        "reasoning": 7.0,
+        "agentic": 7.0
+      }
+    },
+    {
+      "id": "modelstudio/glm-5",
+      "cost": 4,
+      "capabilities": {
+        "code": 8.0,
+        "reasoning": 8.5,
+        "agentic": 8.0
+      }
+    },
+    {
+      "id": "modelstudio/glm-4.7",
+      "cost": 2,
+      "capabilities": {
+        "code": 7.5,
+        "reasoning": 7.5,
+        "agentic": 7.0
+      }
+    },
+    {
+      "id": "modelstudio/kimi-k2.5",
+      "cost": 3,
+      "capabilities": {
+        "code": 8.0,
+        "reasoning": 8.0,
+        "agentic": 8.5
+      }
+    },
+    {
+      "id": "zai/glm-5.1",
+      "cost": 2,
+      "capabilities": {
+        "code": 8.5,
+        "reasoning": 9.0,
+        "agentic": 8.5
+      }
+    },
+    {
+      "id": "zai/glm-5-turbo",
+      "cost": 2,
+      "capabilities": {
+        "code": 7.5,
+        "reasoning": 7.5,
+        "agentic": 7.5
+      }
+    },
+    {
+      "id": "zai/glm-5v-turbo",
+      "cost": 2,
+      "capabilities": {
+        "code": 7.5,
+        "reasoning": 7.5,
+        "agentic": 7.5
+      }
+    },
+    {
+      "id": "xiaomi/mimo-v2-flash",
+      "cost": 1,
+      "capabilities": {
+        "code": 6.5,
+        "reasoning": 6.5,
+        "agentic": 6.0
+      }
+    },
+    {
+      "id": "xiaomi/mimo-v2-omni",
+      "cost": 3,
+      "capabilities": {
+        "code": 7.5,
+        "reasoning": 7.5,
+        "agentic": 7.5
+      }
+    },
+    {
+      "id": "xiaomi/mimo-v2-pro",
+      "cost": 3,
+      "capabilities": {
+        "code": 7.5,
+        "reasoning": 7.5,
+        "agentic": 7.0
+      }
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "name": "neogriffin",
+  "version": "2.1.0",
+  "description": "Multi-chain security API for autonomous AI agents — Solana + Base",
+  "license": "BSL-1.1",
+  "homepage": "https://api.neogriffin.dev",
+  "repository": "https://github.com/Cazaboock9/neogriffin-public",
+  "author": "@dagomint",
+  "keywords": ["security", "ai-agents", "solana", "prompt-injection", "defi", "web3"]
+}

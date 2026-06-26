@@ -1,0 +1,15 @@
+{
+  "name": "多 Agent 混合层级隔离架构 1.0",
+  "version": "1.0.0",
+  "description": "OpenClaw 多 Agent 协作架构 - 混合层级 + 物理隔离 + 逻辑隔离的完美组合",
+  "type": "skill",
+  "author": "用户 154215",
+  "tags": ["架构", "多 Agent", "协作", "隔离", "任务流转"],
+  "main": "SKILL.md",
+  "files": [
+    "SKILL.md",
+    "README.md",
+    "templates/",
+    "docs/"
+  ]
+}

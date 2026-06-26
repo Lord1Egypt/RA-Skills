@@ -1,0 +1,14 @@
+{
+  "id": "signal-stage",
+  "label": "Signal Stage",
+  "description": "深色科技感，适合 AI、产品、工具介绍。",
+  "theme": "signal-ink",
+  "stageClass": "template-signal-stage",
+  "panelBg": "rgba(10, 15, 28, 0.74)",
+  "panelOutline": "rgba(148, 163, 184, 0.18)",
+  "stageBorder": "rgba(255, 255, 255, 0.06)",
+  "stageRadius": 30,
+  "cardRadius": 28,
+  "chipRadius": 999,
+  "quoteFontStyle": "normal"
+}

@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenClaw 子代理管理</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        header {
+            background: white;
+            padding: 20px 30px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header h1 {
+            color: #333;
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        header h1::before {
+            content: '🤖';
+            font-size: 28px;
+        }
+
+        .stats-bar {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .stat-card h3 {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .stat-card .value {
+            font-size: 32px;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 400px;
+            gap: 20px;
+        }
+
+        @media (max-width: 1024px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .panel {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .panel-header {
+            background: #f8f9fa;
+            padding: 15px 20px;
+            border-bottom: 1px solid #e9ecef;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .panel-header h2 {
+            color: #333;
+            font-size: 18px;
+        }
+
+        .panel-body {
+            padding: 20px;
+        }
+
+        /* 用户列表表格 */
+        .user-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .user-table th,
+        .user-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .user-table th {
+            background: #f8f9fa;
+            color: #666;
+            font-weight: 600;
+            font-size: 13px;
+        }
+
+        .user-table tr:hover {
+            background: #f8f9fa;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .status-active {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .status-completed {
+            background: #e2e3e5;
+            color: #383d41;
+        }
+
+        .status-pending {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+
+        .btn-primary {
+            background: #667eea;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #5568d3;
+        }
+
+        .btn-danger {
+            background: #dc3545;
+            color: white;
+        }
+
+        .btn-danger:hover {
+            background: #c82333;
+        }
+
+        .btn-success {
+            background: #28a745;
+            color: white;
+        }
+
+        .btn-success:hover {
+            background: #218838;
+        }
+
+        /* 配额表单 */
+        .quota-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .form-group label {
+            font-size: 13px;
+            color: #666;
+            font-weight: 600;
+        }
+
+        .form-group input,
+        .form-group select {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        /* 使用统计图表 */
+        .usage-chart {
+            margin-top: 20px;
+        }
+
+        .progress-bar {
+            background: #e9ecef;
+            border-radius: 10px;
+            height: 20px;
+            overflow: hidden;
+            margin-top: 5px;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            border-radius: 10px;
+            transition: width 0.3s ease;
+        }
+
+        .usage-item {
+            margin-bottom: 15px;
+        }
+
+        .usage-label {
+            display: flex;
+            justify-content: space-between;
+            font-size: 13px;
+            color: #666;
+            margin-bottom: 5px;
+        }
+
+        /* 操作日志 */
+        .log-container {
+            max-height: 300px;
+            overflow-y: auto;
+            background: #f8f9fa;
+            border-radius: 6px;
+            padding: 10px;
+        }
+
+        .log-entry {
+            padding: 8px;
+            border-bottom: 1px solid #e9ecef;
+            font-size: 12px;
+            color: #666;
+        }
+
+        .log-entry:last-child {
+            border-bottom: none;
+        }
+
+        .log-time {
+            color: #999;
+            margin-right: 8px;
+        }
+
+        /* 模态框 */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            max-width: 500px;
+            width: 90%;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .modal-header h3 {
+            color: #333;
+            font-size: 18px;
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #999;
+        }
+
+        .modal-close:hover {
+            color: #333;
+        }
+
+        /* 刷新按钮 */
+        .refresh-btn {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .refresh-btn:hover {
+            background: #5568d3;
+        }
+
+        .refresh-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        .loading {
+            display: inline-block;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* 空状态 */
+        .empty-state {
+            text-align: center;
+            padding: 40px;
+            color: #999;
+        }
+
+        .empty-state::before {
+            content: '📭';
+            font-size: 48px;
+            display: block;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>OpenClaw 子代理管理</h1>
+            <button class="refresh-btn" onclick="refreshData()" id="refreshBtn">
+                <span>🔄</span> 刷新数据
+            </button>
+        </header>
+
+        <!-- 统计栏 -->
+        <div class="stats-bar">
+            <div class="stat-card">
+                <h3>总用户数</h3>
+                <div class="value" id="totalUsers">0</div>
+            </div>
+            <div class="stat-card">
+                <h3>活跃子代理</h3>
+                <div class="value" id="activeAgents">0</div>
+            </div>
+            <div class="stat-card">
+                <h3>总消息数</h3>
+                <div class="value" id="totalMessages">0</div>
+            </div>
+            <div class="stat-card">
+                <h3>总 Token 使用</h3>
+                <div class="value" id="totalTokens">0</div>
+            </div>
+        </div>
+
+        <!-- 主内容区 -->
+        <div class="main-content">
+            <!-- 用户列表 -->
+            <div class="panel">
+                <div class="panel-header">
+                    <h2>📋 用户列表</h2>
+                    <button class="btn btn-primary" onclick="showCreateModal()">+ 新建用户</button>
+                </div>
+                <div class="panel-body" style="padding: 0;">
+                    <table class="user-table">
+                        <thead>
+                            <tr>
+                                <th>用户 ID</th>
+                                <th>用户名</th>
+                                <th>状态</th>
+                                <th>消息数</th>
+                                <th>最后活跃</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody id="userTableBody">
+                            <!-- 动态填充 -->
+                        </tbody>
+                    </table>
+                    <div class="empty-state" id="emptyState" style="display: none;">
+                        暂无用户数据
+                    </div>
+                </div>
+            </div>
+
+            <!-- 右侧面板 -->
+            <div style="display: flex; flex-direction: column; gap: 20px;">
+                <!-- 配额管理 -->
+                <div class="panel">
+                    <div class="panel-header">
+                        <h2>⚙️ 配额管理</h2>
+                    </div>
+                    <div class="panel-body">
+                        <div class="quota-form">
+                            <div class="form-group">
+                                <label>选择用户</label>
+                                <select id="quotaUserSelect" onchange="loadUserQuota()">
+                                    <option value="">-- 选择用户 --</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>磁盘配额 (MB)</label>
+                                <input type="number" id="diskQuota" value="100" min="10" max="10000">
+                            </div>
+                            <div class="form-group">
+                                <label>Token 配额</label>
+                                <input type="number" id="tokenQuota" value="100000" min="1000" max="10000000">
+                            </div>
+                            <div class="form-group">
+                                <label>每日消息配额</label>
+                                <input type="number" id="messageQuota" value="1000" min="10" max="10000">
+                            </div>
+                            <div class="form-group">
+                                <label>Session 超时 (小时)</label>
+                                <input type="number" id="sessionTimeout" value="24" min="1" max="168">
+                            </div>
+                            <button class="btn btn-success" onclick="updateQuota()">💾 保存配额</button>
+                        </div>
+
+                        <div class="usage-chart" id="usageChart" style="display: none;">
+                            <h3 style="margin: 20px 0 15px; font-size: 14px; color: #666;">📊 使用情况</h3>
+                            <div class="usage-item">
+                                <div class="usage-label">
+                                    <span>磁盘使用</span>
+                                    <span id="diskUsageText">0 / 100 MB</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" id="diskProgress" style="width: 0%"></div>
+                                </div>
+                            </div>
+                            <div class="usage-item">
+                                <div class="usage-label">
+                                    <span>Token 使用</span>
+                                    <span id="tokenUsageText">0 / 100000</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" id="tokenProgress" style="width: 0%"></div>
+                                </div>
+                            </div>
+                            <div class="usage-item">
+                                <div class="usage-label">
+                                    <span>消息使用 (今日)</span>
+                                    <span id="messageUsageText">0 / 1000</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" id="messageProgress" style="width: 0%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 操作日志 -->
+                <div class="panel">
+                    <div class="panel-header">
+                        <h2>📝 操作日志</h2>
+                    </div>
+                    <div class="panel-body">
+                        <div class="log-container" id="logContainer">
+                            <div class="log-entry">
+                                <span class="log-time">系统就绪</span>
+                                等待操作...
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 创建用户模态框 -->
+    <div class="modal" id="createModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>🆕 创建新用户</h3>
+                <button class="modal-close" onclick="closeCreateModal()">&times;</button>
+            </div>
+            <div class="quota-form">
+                <div class="form-group">
+                    <label>用户 ID</label>
+                    <input type="text" id="newUserId" placeholder="例如：ou_xxxxxxxxxx">
+                </div>
+                <div class="form-group">
+                    <label>用户名</label>
+                    <input type="text" id="newUserName" placeholder="例如：张三">
+                </div>
+                <div class="form-group">
+                    <label>磁盘配额 (MB)</label>
+                    <input type="number" id="newDiskQuota" value="100" min="10" max="10000">
+                </div>
+                <div class="form-group">
+                    <label>Token 配额</label>
+                    <input type="number" id="newTokenQuota" value="100000" min="1000" max="10000000">
+                </div>
+                <div class="form-group">
+                    <label>每日消息配额</label>
+                    <input type="number" id="newMessageQuota" value="1000" min="10" max="10000">
+                </div>
+                <button class="btn btn-primary" onclick="createUser()">✅ 创建用户</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 全局数据
+        let routerData = {};
+        let quotaData = {};
+        let logs = [];
+
+        // 初始化
+        document.addEventListener('DOMContentLoaded', () => {
+            refreshData();
+            addLog('系统初始化完成');
+        });
+
+        // 添加日志
+        function addLog(message) {
+            const now = new Date();
+            const timeStr = now.toLocaleTimeString('zh-CN', { hour12: false });
+            logs.unshift({ time: timeStr, message });
+            
+            const container = document.getElementById('logContainer');
+            container.innerHTML = logs.slice(0, 20).map(log => `
+                <div class="log-entry">
+                    <span class="log-time">${log.time}</span>
+                    ${log.message}
+                </div>
+            `).join('');
+        }
+
+        // 刷新数据
+        async function refreshData() {
+            const btn = document.getElementById('refreshBtn');
+            btn.disabled = true;
+            btn.innerHTML = '<span class="loading">🔄</span> 刷新中...';
+
+            try {
+                // 调用后端 API 获取数据
+                const response = await fetch('/api/data');
+                const data = await response.json();
+                
+                routerData = data.router || {};
+                quotaData = data.quota || {};
+                
+                renderUserTable();
+                updateUserSelect();
+                updateStats();
+                
+                addLog('数据刷新成功');
+            } catch (error) {
+                console.error('刷新数据失败:', error);
+                addLog('❌ 数据刷新失败：' + error.message);
+                
+                // 演示模式：使用模拟数据
+                loadDemoData();
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = '<span>🔄</span> 刷新数据';
+            }
+        }
+
+        // 加载演示数据（当 API 不可用时）
+        function loadDemoData() {
+            routerData = {
+                "ou_b96f5424607baf3a0455b55e0f4a2213": {
+                    userId: "ou_b96f5424607baf3a0455b55e0f4a2213",
+                    userName: "老刘",
+                    sessionKey: "7783c42e-e974-490a-9609-607327c4509f",
+                    status: "active",
+                    messageCount: 156,
+                    lastActiveAt: new Date().toISOString(),
+                    createdAt: "2026-03-12T02:00:13.267Z"
+                },
+                "ou_ba3410ec9024501b3383141a5ba7bec4": {
+                    userId: "ou_ba3410ec9024501b3383141a5ba7bec4",
+                    userName: "孙哥",
+                    sessionKey: "3acf516e-cc9f-4ad3-b242-7cfb12450458",
+                    status: "completed",
+                    messageCount: 42,
+                    lastActiveAt: new Date(Date.now() - 3600000).toISOString(),
+                    createdAt: "2026-03-12T02:30:12.844Z"
+                }
+            };
+            
+            quotaData = {
+                "ou_b96f5424607baf3a0455b55e0f4a2213": {
+                    diskQuotaMB: 100,
+                    tokenQuota: 100000,
+                    messageQuota: 1000,
+                    used: {
+                        disk: 45,
+                        tokens: 52340,
+                        messages: 156
+                    }
+                }
+            };
+            
+            renderUserTable();
+            updateUserSelect();
+            updateStats();
+            addLog('⚠️ 使用演示数据（API 不可用）');
+        }
+
+        // 渲染用户表格
+        function renderUserTable() {
+            const tbody = document.getElementById('userTableBody');
+            const emptyState = document.getElementById('emptyState');
+            
+            const users = Object.values(routerData);
+            
+            if (users.length === 0) {
+                tbody.innerHTML = '';
+                emptyState.style.display = 'block';
+                return;
+            }
+            
+            emptyState.style.display = 'none';
+            tbody.innerHTML = users.map(user => {
+                const lastActive = new Date(user.lastActiveAt);
+                const timeStr = lastActive.toLocaleString('zh-CN', { 
+                    month: '2-digit', 
+                    day: '2-digit', 
+                    hour: '2-digit', 
+                    minute: '2-digit' 
+                });
+                
+                const statusClass = `status-${user.status}`;
+                const statusText = user.status === 'active' ? '🟢 活跃' : 
+                                  user.status === 'completed' ? '⚪ 已完成' : '🟡 等待中';
+                
+                return `
+                    <tr>
+                        <td style="font-family: monospace; font-size: 12px;">${user.userId.substring(0, 20)}...</td>
+                        <td>${user.userName || '未知'}</td>
+                        <td><span class="status-badge ${statusClass}">${statusText}</span></td>
+                        <td>${user.messageCount || 0}</td>
+                        <td>${timeStr}</td>
+                        <td>
+                            <button class="btn btn-primary" onclick="selectUser('${user.userId}')">管理</button>
+                            <button class="btn btn-danger" onclick="deleteUser('${user.userId}')" style="margin-left: 5px;">删除</button>
+                        </td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        // 更新用户选择框
+        function updateUserSelect() {
+            const select = document.getElementById('quotaUserSelect');
+            const users = Object.values(routerData);
+            
+            select.innerHTML = '<option value="">-- 选择用户 --</option>' +
+                users.map(user => `
+                    <option value="${user.userId}">${user.userName || user.userId}</option>
+                `).join('');
+        }
+
+        // 更新统计
+        function updateStats() {
+            const users = Object.values(routerData);
+            
+            document.getElementById('totalUsers').textContent = users.length;
+            document.getElementById('activeAgents').textContent = 
+                users.filter(u => u.status === 'active').length;
+            document.getElementById('totalMessages').textContent = 
+                users.reduce((sum, u) => sum + (u.messageCount || 0), 0);
+            
+            // 计算总 token 使用
+            let totalTokens = 0;
+            users.forEach(user => {
+                const quota = quotaData[user.userId];
+                if (quota && quota.used) {
+                    totalTokens += quota.used.tokens || 0;
+                }
+            });
+            document.getElementById('totalTokens').textContent = totalTokens.toLocaleString();
+        }
+
+        // 加载用户配额
+        function loadUserQuota() {
+            const userId = document.getElementById('quotaUserSelect').value;
+            const usageChart = document.getElementById('usageChart');
+            
+            if (!userId) {
+                usageChart.style.display = 'none';
+                return;
+            }
+            
+            const quota = quotaData[userId];
+            if (quota) {
+                document.getElementById('diskQuota').value = quota.diskQuotaMB || 100;
+                document.getElementById('tokenQuota').value = quota.tokenQuota || 100000;
+                document.getElementById('messageQuota').value = quota.messageQuota || 1000;
+                document.getElementById('sessionTimeout').value = quota.sessionTimeoutHours || 24;
+                
+                // 显示使用情况
+                usageChart.style.display = 'block';
+                updateUsageChart(quota);
+            } else {
+                usageChart.style.display = 'none';
+            }
+        }
+
+        // 更新使用图表
+        function updateUsageChart(quota) {
+            const used = quota.used || { disk: 0, tokens: 0, messages: 0 };
+            
+            // 磁盘
+            const diskPercent = Math.min(100, (used.disk / quota.diskQuotaMB) * 100);
+            document.getElementById('diskProgress').style.width = diskPercent + '%';
+            document.getElementById('diskUsageText').textContent = `${used.disk} / ${quota.diskQuotaMB} MB`;
+            
+            // Token
+            const tokenPercent = Math.min(100, (used.tokens / quota.tokenQuota) * 100);
+            document.getElementById('tokenProgress').style.width = tokenPercent + '%';
+            document.getElementById('tokenUsageText').textContent = `${used.tokens.toLocaleString()} / ${quota.tokenQuota.toLocaleString()}`;
+            
+            // 消息
+            const messagePercent = Math.min(100, (used.messages / quota.messageQuota) * 100);
+            document.getElementById('messageProgress').style.width = messagePercent + '%';
+            document.getElementById('messageUsageText').textContent = `${used.messages} / ${quota.messageQuota}`;
+        }
+
+        // 选择用户
+        function selectUser(userId) {
+            document.getElementById('quotaUserSelect').value = userId;
+            loadUserQuota();
+            addLog(`选择用户：${userId}`);
+        }
+
+        // 更新配额
+        async function updateQuota() {
+            const userId = document.getElementById('quotaUserSelect').value;
+            if (!userId) {
+                alert('请先选择用户');
+                return;
+            }
+            
+            const newQuota = {
+                diskQuotaMB: parseInt(document.getElementById('diskQuota').value),
+                tokenQuota: parseInt(document.getElementById('tokenQuota').value),
+                messageQuota: parseInt(document.getElementById('messageQuota').value),
+                sessionTimeoutHours: parseInt(document.getElementById('sessionTimeout').value)
+            };
+            
+            try {
+                const response = await fetch('/api/quota', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ userId, quota: newQuota })
+                });
+                
+                const result = await response.json();
+                if (result.success) {
+                    addLog(`✅ 更新用户配额成功：${userId}`);
+                    alert('配额更新成功！');
+                    refreshData();
+                } else {
+                    throw new Error(result.error || '更新失败');
+                }
+            } catch (error) {
+                console.error('更新配额失败:', error);
+                addLog('❌ 更新配额失败：' + error.message);
+                alert('更新失败：' + error.message);
+            }
+        }
+
+        // 创建用户
+        function showCreateModal() {
+            document.getElementById('createModal').classList.add('active');
+        }
+
+        function closeCreateModal() {
+            document.getElementById('createModal').classList.remove('active');
+        }
+
+        async function createUser() {
+            const userId = document.getElementById('newUserId').value.trim();
+            const userName = document.getElementById('newUserName').value.trim();
+            
+            if (!userId || !userName) {
+                alert('请填写用户 ID 和用户名');
+                return;
+            }
+            
+            const newQuota = {
+                diskQuotaMB: parseInt(document.getElementById('newDiskQuota').value),
+                tokenQuota: parseInt(document.getElementById('newTokenQuota').value),
+                messageQuota: parseInt(document.getElementById('newMessageQuota').value)
+            };
+            
+            try {
+                const response = await fetch('/api/user', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ userId, userName, quota: newQuota })
+                });
+                
+                const result = await response.json();
+                if (result.success) {
+                    addLog(`✅ 创建用户成功：${userName} (${userId})`);
+                    alert('用户创建成功！');
+                    closeCreateModal();
+                    refreshData();
+                } else {
+                    throw new Error(result.error || '创建失败');
+                }
+            } catch (error) {
+                console.error('创建用户失败:', error);
+                addLog('❌ 创建用户失败：' + error.message);
+                alert('创建失败：' + error.message);
+            }
+        }
+
+        // 删除用户
+        async function deleteUser(userId) {
+            if (!confirm(`确定要删除用户 ${userId} 吗？此操作不可恢复！`)) {
+                return;
+            }
+            
+            try {
+                const response = await fetch('/api/user', {
+                    method: 'DELETE',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ userId })
+                });
+                
+                const result = await response.json();
+                if (result.success) {
+                    addLog(`✅ 删除用户成功：${userId}`);
+                    refreshData();
+                } else {
+                    throw new Error(result.error || '删除失败');
+                }
+            } catch (error) {
+                console.error('删除用户失败:', error);
+                addLog('❌ 删除用户失败：' + error.message);
+                alert('删除失败：' + error.message);
+            }
+        }
+
+        // 关闭模态框（点击外部）
+        document.getElementById('createModal').addEventListener('click', (e) => {
+            if (e.target.id === 'createModal') {
+                closeCreateModal();
+            }
+        });
+    </script>
+</body>
+</html>

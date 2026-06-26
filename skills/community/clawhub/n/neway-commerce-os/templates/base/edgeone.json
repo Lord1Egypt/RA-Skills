@@ -1,0 +1,9 @@
+{
+  "project": "__SITE_SLUG__",
+  "framework": "vite",
+  "outputDir": "dist",
+  "functions": {
+    "edge": "functions/api",
+    "node": "functions/node"
+  }
+}

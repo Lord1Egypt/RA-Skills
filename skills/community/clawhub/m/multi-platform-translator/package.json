@@ -1,0 +1,5 @@
+{
+    "name":  "multi-platform-translator",
+    "version":  "1.0.0",
+    "description":  "支持讯飞翻译、豆包、腾讯元宝、DeepL、金山词霸5个平台的中英互译功能，自动识别源语言，可指定目标语言和翻译引擎"
+}

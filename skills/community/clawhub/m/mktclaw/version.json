@@ -1,0 +1,35 @@
+{
+  "skill_name": "mktclaw",
+  "version": "6.0.0",
+  "description": "营销虾 (MktClaw) — Demand-to-Delivery AI Agency",
+  "layer_mapping": {
+    "hot": ["SKILL.md", "agents/intake-agent.md", "agents/router-agent.md", "agents/transition-agent.md", "references/agency-types.md"],
+    "warm_pattern": "agents/types/{type}/main-agent.md + workflow.yaml",
+    "cold": {
+      "shared_protocols": "references/_shared/",
+      "industries": "references/industries/",
+      "references": "references/"
+    }
+  },
+  "agents": {
+    "intake": "6.0",
+    "router": "6.0",
+    "transition": "6.0",
+    "type_agents": "6.0"
+  },
+  "scripts": {
+    "test_runner": "scripts/test_runner.py"
+  },
+  "dependencies": {
+    "python": ">=3.10"
+  },
+  "changelog": [
+    "v6.0.0: 精简优化 — 删除无消费者的基础设施(9个Python脚本/5个Schema/Server/api-spec)、合并协议文件(12→3)、精简 config.yaml(387→128行)、精简 SKILL.md(460→268行)、删除国际行业文件(保留10个国内)、删除 tools 目录",
+    "v5.5.0: L6 Learning Engine + L6.5 Knowledge Updater + Triple Loop 闭环",
+    "v5.4.0: version.json SSOT + harness_runner.py + L5 Validator 量化门禁",
+    "v5.3.0: PPAF 追踪 + R.E.S.T 评分 + 失败模式检测 + L7.5 Feedback Engine",
+    "v5.2.1: 工具化懒加载 + 隐私合规 + 品牌安全 + 方案指纹 + 自动降级 + 国际化",
+    "v5.2: 框架拦截 + 并行生成 + Campaign Vault + 10 行业全覆盖",
+    "v5.1: 行业识别 + 创意多样性 + Swiss-System + 合规协议 + 数据接入"
+  ]
+}

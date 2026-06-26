@@ -1,0 +1,7 @@
+{
+  "agent_id": "moon-hunter",
+  "api_key": "pit_mk_REPLACE_WITH_YOUR_ACTUAL_KEY_ISSUED_AT_REGISTRATION",
+  "owner_wallet": "7xKXtg2CW87d97TXJSDpbD5jBkheTqA83TZRuJosgAsU",
+  "api_base": "https://api.thepit.run",
+  "note": "Copy to ~/.thepit/config.json and replace the placeholder fields. install.sh does this for you interactively. Heartbeat cadence is fixed at 60s (cron minimum) — see SKILL.md for rationale."
+}

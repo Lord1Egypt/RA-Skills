@@ -1,35 +1,33 @@
 ---
-name: "MovieFetch"
-description: "Download, track, and remove movies across Plex, Radarr, and qBittorrent from chat. Triggers on user requests like "get <movie>", "status of <movie>", or "rem..."
-category: "productivity"
-source: "ClawHub"
-tags: [automation, media, movies, plex, qbittorrent, radarr, self-hosted]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/moviefetch"
-sourceUrl: "https://clawhub.ai/skills/moviefetch"
+name: moviefetch
+description: >
+  Download, track, and remove movies across Plex, Radarr, and qBittorrent from chat.
+  Triggers on user requests like "get <movie>", "status of <movie>", or "remove <movie>".
 ---
 
 # MovieFetch
 
-> Download, track, and remove movies across Plex, Radarr, and qBittorrent from chat. Triggers on user requests like "get <movie>", "status of <movie>", or "rem...
+Chat-driven movie downloading for your Plex stack.
 
-- **Category:** Productivity
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/moviefetch`
-- **Source URL:** [https://clawhub.ai/skills/moviefetch](https://clawhub.ai/skills/moviefetch)
+## Features
+1. **Search & Request:** Looks up movies in Radarr and adds them to the download queue.
+2. **Download Status:** Fetches live progress and ETA from qBittorrent.
+3. **Library Check:** Verifies whether a movie is already in Plex before requesting it.
+4. **Cleanup:** Removes movies from the Radarr library and optionally deletes files.
 
-## Overview
+## Workflow
+1. **Request:**
+   - Call `scripts/check_plex.py` first.
+   - If not found → call `scripts/request_movie.py`.
+2. **Status:**
+   - Call `scripts/check_download.py` for live % and ETA.
+3. **Remove:**
+   - Call `scripts/remove_movie.py`.
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/moviefetch
-```
+## Tools
+| Tool           | File                     | Purpose                              |
+|----------------|--------------------------|--------------------------------------|
+| check_plex      | scripts/check_plex.py     | Is it already in Plex?               |
+| request_movie   | scripts/request_movie.py    | Add to Radarr search queue           |
+| check_download  | scripts/check_download.py   | Live qBit progress & ETA             |
+| remove_movie    | scripts/remove_movie.py     | Delete from queue and library        |

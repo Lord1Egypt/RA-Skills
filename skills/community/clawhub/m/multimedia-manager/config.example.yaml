@@ -1,0 +1,57 @@
+# Multimedia Management Assistant Configuration
+# Copy this file from config.example.yaml and customize.
+# Sensitive values (auth_token) should use environment variables.
+
+server:
+  host: "127.0.0.1"
+  port: 9876
+  # Auth token is read from IMAGE_VAULT_TOKEN env var.
+  # Set it in your .env file, not here.
+
+storage:
+  # Paths are relative to this skill's parent directory by default.
+  # Override with absolute paths if needed.
+  vault_dir: "~/.image-vault"
+  data_dir: ""  # auto-detected from skill directory
+  db_path: ""   # auto: <vault_dir>/image_vault.db
+  max_vault_size_gb: 50
+
+thumbnails:
+  max_width: 480
+  max_height: 480
+  quality: 85
+  format: "JPEG"
+
+trash:
+  auto_cleanup_days: 30
+  enabled: true
+
+search:
+  default_limit: 100
+  semantic_enabled: true
+  synonym_expansion: true
+  fts_enabled: true
+
+face_recognition:
+  engine: "insightface"
+  similarity_threshold: 0.55
+  min_face_size: 30
+  crop_padding: 0.3
+  crop_size: 256
+
+duplicates:
+  similarity_threshold: 0.92
+  auto_detect: false
+
+cache:
+  default_ttl_seconds: 60
+  tags_ttl_seconds: 300
+  stats_ttl_seconds: 120
+
+task_queue:
+  max_concurrent: 2
+  retry_count: 3
+
+notifications:
+  summary_mode: true
+  verbose: false

@@ -1,35 +1,27 @@
 ---
-name: "model-info"
-description: "Get 100% accurate current model details including model name, provider, API endpoint, and session status"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/model-info"
-sourceUrl: "https://clawhub.ai/skills/model-info"
+name: model-info
+description: Get 100% accurate current model details including model name, provider, API endpoint, and session status
+version: 1.0.0
+author: AutoClaw
 ---
 
-# model-info
+# Model Info Skill
 
-> Get 100% accurate current model details including model name, provider, API endpoint, and session status
+Provides accurate, real-time information about the currently active AI model.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/model-info`
-- **Source URL:** [https://clawhub.ai/skills/model-info](https://clawhub.ai/skills/model-info)
+## Usage
 
-## Overview
+Simply ask: **"model info"** or **"what model"** or **"model status"**
 
+## What it Returns
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/model-info
-```
+- **Model Name:** Full model ID (e.g., stepfun-ai/step-3.5-flash)
+- **Provider:** Which provider/API it's running on (Nvidia, OpenRouter, etc.)
+- **API Key Type:** The API key source
+- **Session Status:** Active session info
+- **Cost & Tokens:** Current session usage stats
+- **Runtime Configuration:** Think mode, elevated status, etc.
+
+## Accuracy
+
+100% accurate - pulls directly from `session_status` command output, the same system that tracks your current runtime.

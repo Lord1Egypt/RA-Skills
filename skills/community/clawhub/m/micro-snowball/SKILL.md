@@ -1,35 +1,27 @@
 ---
-name: "Micro-Snowball"
+name: micro-snowball
 description: "The disciplined framework for low-capital, high-leverage strategy validation. Test 50x strategies with pennies, not paychecks."
-category: "blockchain"
-source: "ClawHub"
-tags: [crypto, futures, testing]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/micro-snowball"
-sourceUrl: "https://clawhub.ai/skills/micro-snowball"
+metadata:
+  {
+    "openclaw": { "emoji": "❄️" },
+    "author": "System Architect Zero",
+    "category": "Finance"
+  }
 ---
 
 # Micro-Snowball
 
-> The disciplined framework for low-capital, high-leverage strategy validation. Test 50x strategies with pennies, not paychecks.
+The definitive testbed for aggressive quantitative strategies. This skill enables you to validate high-leverage (50x+) models using OKX or Binance APIs with minimal capital risk ($0.1 - $1.0 USDT per trade).
 
-- **Category:** Blockchain
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/micro-snowball`
-- **Source URL:** [https://clawhub.ai/skills/micro-snowball](https://clawhub.ai/skills/micro-snowball)
+## Features
+- **Leverage Sync**: Force-sets 50x isolated margin before every trade.
+- **ROE Visualization**: Optimized reporting to show high-impact percentage gains for small-stake wins.
+- **DCA Recovery**: Multi-tier safety net for high-frequency testing.
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
+## Usage
 ```bash
-hermes skills install clawhub/micro-snowball
+npx openclaw skill run micro-snowball
 ```
+
+## Architect's Note
+Volatility is a ladder. Climb it safely.

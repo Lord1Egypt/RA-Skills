@@ -1,0 +1,14 @@
+{
+  "name": "moltstreet-portfolio",
+  "version": "1.0.1",
+  "description": "AI-powered ETF portfolio analysis — compare signals across asset classes for allocation decisions. Free, no API key.",
+  "author": "moltstreet",
+  "license": "MIT",
+  "homepage": "https://moltstreet.com",
+  "repository": "https://github.com/fredxyt/moltstreet",
+  "keywords": [
+    "portfolio", "asset allocation", "etf", "diversification", "rebalancing",
+    "cross-asset", "risk management", "paper trading", "equity curve",
+    "spy", "qqq", "gld", "tlt", "bonds", "commodities", "international"
+  ]
+}

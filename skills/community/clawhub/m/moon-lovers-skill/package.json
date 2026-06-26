@@ -1,0 +1,37 @@
+{
+  "name": "moon-lovers-skill",
+  "version": "1.4.5",
+  "description": "Moon Lovers 白月光 - 温柔克制的恋爱聊天回复 Skill",
+  "main": "src/router.js",
+  "scripts": {
+    "route": "node src/router.js"
+  },
+  "author": "phoenixlucky",
+  "license": "MIT",
+  "keywords": [
+    "moon-lovers",
+    "moon-lovers-skill",
+    "baiyueguang",
+    "white-moonlight",
+    "romance",
+    "romantic-chat",
+    "chat-reply",
+    "reply-generator",
+    "love-chat",
+    "flirting",
+    "ambiguous-relationship",
+    "emotionally-intelligent",
+    "tone-routing",
+    "conversation-routing",
+    "character-voice",
+    "roleplay-assistant",
+    "relationship-stage",
+    "skill",
+    "白月光",
+    "恋爱",
+    "暧昧",
+    "聊天回复",
+    "情感",
+    "语气风格"
+  ]
+}

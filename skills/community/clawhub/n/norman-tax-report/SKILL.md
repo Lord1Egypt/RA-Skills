@@ -1,35 +1,38 @@
 ---
-name: "Norman: Tax Report"
-description: "Review and manage German tax reports including VAT (Umsatzsteuer), income tax prepayments, and Finanzamt submissions. Use when the user asks about taxes, Ste..."
-category: "domain"
-source: "ClawHub"
-tags: [finance, finanzamt, mcp, norman, taxes, vat]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/norman-tax-report"
-sourceUrl: "https://clawhub.ai/skills/norman-tax-report"
+name: tax-report
+description: Review and manage German tax reports including VAT (Umsatzsteuer), income tax prepayments, and Finanzamt submissions. Use when the user asks about taxes, Steuern, VAT, USt, Finanzamt, or tax filing.
+version: 1.0.0
+disable-model-invocation: true
+argument-hint: "[period or tax type]"
+metadata:
+  openclaw:
+    emoji: "\U0001F3E6"
+    homepage: https://norman.finance
+    requires:
+      mcp:
+        - norman-finance
 ---
 
-# Norman: Tax Report
+Help the user with their German tax obligations:
 
-> Review and manage German tax reports including VAT (Umsatzsteuer), income tax prepayments, and Finanzamt submissions. Use when the user asks about taxes, Ste...
+1. **Overview**: Call `list_tax_reports` to see all tax reports and their statuses (draft, validated, submitted)
 
-- **Category:** Business & Finance
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/norman-tax-report`
-- **Source URL:** [https://clawhub.ai/skills/norman-tax-report](https://clawhub.ai/skills/norman-tax-report)
+2. **Next deadline**: Call `get_vat_next_report` to show the next upcoming VAT filing deadline
 
-## Overview
+3. **Specific report**: If the user asks about a specific period, call `get_tax_report` with the report ID to see details including:
+   - Reporting period
+   - Revenue and VAT amounts
+   - Status (draft, ready, submitted)
+   - Finanzamt submission status
 
+4. **Preview before submission**: Call `generate_finanzamt_preview` to show the user exactly what will be sent to the Finanzamt. Let them review all figures.
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/norman-tax-report
-```
+5. **Submit**: Only when the user explicitly confirms, call `submit_tax_report` to file with the Finanzamt via ELSTER.
+
+6. **Tax settings**: Call `list_tax_settings` to review VAT registration, filing frequency, and other tax configuration.
+
+Important warnings:
+- ALWAYS show a preview before submitting to the Finanzamt
+- Tax submissions are IRREVERSIBLE - make sure the user explicitly confirms
+- Remind the user of filing deadlines (monthly: 10th of following month, quarterly: 10th of following quarter month)
+- If tax numbers need validation, use `validate_tax_number`

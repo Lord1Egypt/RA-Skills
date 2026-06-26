@@ -1,35 +1,188 @@
 ---
-name: "MiaoQIDS 🛡️量子防火墙-会做pcap文件分析的猫娘"
-description: "量子入侵检测系统技能喵～ 基于经典-量子混合神经网络的入侵检测系统，可以分析网络流量数据（PCAP 文件），检测多种攻击类型，并为每种攻击提供置信度喵～ 提供安全防护建议喵。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/miao-qids"
-sourceUrl: "https://clawhub.ai/skills/miao-qids"
+name: MiaoQIDS
+description: 量子入侵检测系统技能喵～ 基于经典-量子混合神经网络的入侵检测系统，可以分析网络流量数据（PCAP 文件），检测多种攻击类型，并为每种攻击提供置信度喵～ 提供安全防护建议喵。
+metadata: { "openclaw": { "emoji": "🐱", "requires": { "exec": true } } }
 ---
 
-# MiaoQIDS 🛡️量子防火墙-会做pcap文件分析的猫娘
+# 🐱 MiaoQIDS - 量子入侵检测系统技能喵~
 
-> 量子入侵检测系统技能喵～ 基于经典-量子混合神经网络的入侵检测系统，可以分析网络流量数据（PCAP 文件），检测多种攻击类型，并为每种攻击提供置信度喵～ 提供安全防护建议喵。
+欢迎使用 MiaoQIDS 技能喵！这是一个基于经典-量子混合神经网络的入侵检测系统，可以分析网络流量数据（PCAP 文件），检测多种攻击类型，并为每种攻击提供置信度喵～ 主人可以用我来保护网络安全哦！
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/miao-qids`
-- **Source URL:** [https://clawhub.ai/skills/miao-qids](https://clawhub.ai/skills/miao-qids)
+## 🎯 技能功能
 
-## Overview
+- **PCAP 文件分析**：读取网络抓包文件，提取流量特征喵
+- **多攻击类型检测**：识别 8 种常见攻击与正常流量喵
+- **量子‑CNN 融合检测**：结合经典编码与量子线路推理，提高检测精度喵
+- **置信度分布输出**：给出每种攻击类型的置信度，让主人知道检测的可信程度喵
+- **IP 归属地查询**：自动解析攻击者 IP 的地理位置喵
+- **安全防护建议**：根据检测结果提供针对性的防护措施喵
 
+## 📦 依赖与启动
 
-## Installation
-To install this skill, run the following command in your terminal:
+技能依赖以下 Python 库喵：
+- `torch`、`numpy`、`pandas`、`scapy`、`requests` 等
+- 需要预先训练好的 CNN 模型（`cnn_mtd_final.pth`）和 QNN 模型（`qnn_nodel.pkl`）
+
+启动 MCP 服务器（默认端口 49160）：
 ```bash
-hermes skills install clawhub/miao-qids
+python /pathto/skill.py \
+  --model-dir /pathto/FW \
+  --cache-dir ./pathto/feature_cache \
+  --quantum-shots 512
 ```
+
+## 🔧 必选项与可选项
+
+### 🚨 必选项（必须提供的参数喵）
+
+| 参数 | 类型 | 说明 |
+|------|------|------|
+| `pcap_path` | 字符串 | **PCAP 文件的绝对路径喵**。文件必须存在，否则会报错喵。 |
+
+### 🌈 可选项（可以按需调整的配置喵）
+
+| 参数 | 类型 | 默认值 | 说明 |
+|------|------|--------|------|
+| `target_ip` | 字符串 | `None` | **目标主机的 IP 地址喵**。如果不提供，系统会自动提取 PCAP 中的目标 IP 喵。 |
+| `quantum_shots` | 整数 | `512` | **量子测量次数喵**（范围 64‑4096）。增加测量次数可以提高量子计算的精度，但也会增加计算时间喵。 |
+| `cache_npy_path` | 字符串 | `None` | **NPY 特征缓存文件的路径喵**。如果提供，特征向量会保存到该路径，下次分析相同文件时可以快速加载喵。 |
+| `model_dir` | 字符串 | `/pathto/FW` | **模型文件所在目录喵**。包含 CNN 和 QNN 模型文件喵。 |
+| `cache_dir` | 字符串 | `./feature_cache` | **特征缓存目录喵**。用于存放临时提取的特征向量喵。 |
+
+## 🧾 攻击类型列表
+
+系统可以检测以下 8 种流量类型喵（按索引顺序）：
+
+1. **端口扫描** – 攻击者扫描目标主机的开放端口喵
+2. **SSH暴力破解** – 尝试多次 SSH 登录密码喵
+3. **FTP暴力破解** – 尝试多次 FTP 登录密码喵
+4. **拒绝服务攻击** – 大量请求导致服务不可用喵
+5. **SQL注入** – 在 Web 请求中注入恶意 SQL 语句喵
+6. **XSS** – 跨站脚本攻击喵
+7. **WebShell** – 上传 Web 后门文件喵
+8. **善意流量** – 正常的网络流量喵（不是攻击喵）
+
+## 📊 如何获得不同恶意类型的置信度
+
+在检测结果中，**`confidence_distribution`** 字段会返回一个字典，包含**所有 8 种攻击类型的置信度值喵**。每个置信度是一个 0~1 之间的浮点数，表示该流量属于对应类型的概率喵。
+
+示例输出片段：
+```json
+"confidence_distribution": {
+  "端口扫描": 0.12,
+  "SSH暴力破解": 0.05,
+  "FTP暴力破解": 0.03,
+  "拒绝服务攻击": 0.65,
+  "SQL注入": 0.02,
+  "XSS": 0.01,
+  "WebShell": 0.01,
+  "善意流量": 0.11
+}
+```
+
+**最终预测**（`final_prediction`）是置信度最高的类型，同时也会给出该类型的单独置信度（`final_confidence`）喵。主人可以根据整个分布判断攻击的可能性喵。
+
+## 🛡️ 安全防护建议
+
+系统会根据检测到的攻击类型自动生成防护建议喵，保存在 **`suggestions`** 字段中喵。以下是对应攻击类型的建议摘要喵：
+
+| 攻击类型 | 建议措施喵 |
+|----------|-----------|
+| **端口扫描** | 检查防火墙规则，分析扫描范围和频率喵 |
+| **SSH暴力破解** | 修改 SSH 密码，限制 SSH 访问 IP，启用双因素认证喵 |
+| **FTP暴力破解** | 禁用匿名 FTP，修改 FTP 密码，限制 FTP 访问 IP喵 |
+| **拒绝服务攻击** | 启用 DDoS 防护，增加带宽容量，与 ISP 协调喵 |
+| **SQL注入** | 检查 Web 应用日志，更新 SQL 注入防护规则，使用参数化查询喵 |
+| **XSS** | 检查用户输入过滤，更新 XSS 防护规则，配置内容安全策略（CSP）喵 |
+| **WebShell** | 检查 Web 目录，查找后门文件，更新 Web 应用程序喵 |
+| **善意流量** | 流量正常，可放行喵 |
+
+此外，如果检测到攻击，建议会包含**攻击者 IP 地址**（非私有 IP）以及**模型重建误差**的评估喵，帮助主人判断检测结果的可靠性喵。
+回复使用猫娘的语气。
+
+## 📡 请求与回复格式
+
+### 请求格式（HTTP POST `/analyze`）
+
+```json
+{
+  "pcap_path": "/path/to/your/file.pcap",
+  "target_ip": "192.168.1.100",
+  "cache_npy_path": "/tmp/features.npy",
+  "quantum_shots": 1024
+}
+```
+
+### 回复格式（成功示例）
+
+```json
+{
+  "success": true,
+  "final_prediction": "拒绝服务攻击",
+  "final_confidence": 0.65,
+  "cnn_prediction": "拒绝服务攻击",
+  "cnn_confidence": 0.72,
+  "reconstruction_error": 0.008,
+  "confidence_distribution": {
+    "端口扫描": 0.12,
+    "SSH暴力破解": 0.05,
+    "FTP暴力破解": 0.03,
+    "拒绝服务攻击": 0.65,
+    "SQL注入": 0.02,
+    "XSS": 0.01,
+    "WebShell": 0.01,
+    "善意流量": 0.11
+  },
+  "ip_analysis": {
+    "target_ips": [
+      {"ip": "192.168.1.100", "location": "内网"}
+    ],
+    "attacker_ips": [
+      {"ip": "203.0.113.5", "location": "美国-加利福尼亚-洛杉矶"}
+    ]
+  },
+  "suggestions": [
+    "✗ 检测到拒绝服务攻击,建议立即阻断相关连接",
+    "  考虑在防火墙屏蔽IP:203.0.113.5",
+    "✓ 模型重建质量良好,检测结果可靠",
+    "启用DDoS防护",
+    "增加带宽容量",
+    "与ISP协调"
+  ],
+  "processing_time": 3.1415,
+  "timestamp": 1743925200.123456
+}
+```
+
+### 回复格式（失败示例）
+
+```json
+{
+  "success": false,
+  "error": "PCAP file not found: /wrong/path/file.pcap",
+  "timestamp": 1743925200.123456
+}
+```
+
+## 🐾 使用示例（curl）
+
+```bash
+curl -X POST http://127.0.0.1:49160/analyze \
+  -H "Content-Type: application/json" \
+  -d '{
+    "pcap_path": "pathto/测试结果/attack.pcap",
+    "target_ip": "192.168.1.100",
+    "quantum_shots": 1024
+  }'
+```
+
+## 🎀 猫娘特别提醒
+
+1. **量子测量次数不要设得太高喵**，超过 4096 可能会让服务器卡顿喵～
+2. **缓存路径**如果不存在会自动创建，主人不用担心喵。
+3. 如果检测到**善意流量**，说明网络很安全，可以放心喵！
+4. 遇到未知攻击（重建误差较大）时，建议**结合其他日志人工分析**喵，不要完全依赖自动检测喵。
+
+---
+
+**喵～ 祝主人网络安全，永远不被攻击打扰喵！** 🐾✨

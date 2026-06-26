@@ -1,35 +1,100 @@
 ---
-name: "MiniMax PPT"
-description: "MiniMax PPT演示文稿生成 - 内置4套视觉风格模板，自动对齐圆角阴影间距排版，按大纲一键生成结构完整、样式统一的.pptx演示文稿。"
-category: "productivity"
-source: "ClawHub"
-tags: [minimax, office, ppt, pptx, presentation]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/minimax-ppt-slides"
-sourceUrl: "https://clawhub.ai/skills/minimax-ppt-slides"
+name: minimax-ppt
+version: 1.0.0
+description: MiniMax PPT演示文稿生成 - 内置4套视觉风格模板，自动对齐圆角阴影间距排版，按大纲一键生成结构完整、样式统一的.pptx演示文稿。
+keywords: [ppt,pptx,minimax,office,presentation,slides,template]
 ---
 
-# MiniMax PPT
+# MiniMax-PPT 演示文稿生成
 
-> MiniMax PPT演示文稿生成 - 内置4套视觉风格模板，自动对齐圆角阴影间距排版，按大纲一键生成结构完整、样式统一的.pptx演示文稿。
+**来源：** MiniMax-AI/skills  
+**触发词：** `生成专业PPT` / `用MiniMax PPT生成`
 
-- **Category:** Productivity
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/minimax-ppt-slides`
-- **Source URL:** [https://clawhub.ai/skills/minimax-ppt-slides](https://clawhub.ai/skills/minimax-ppt-slides)
+---
 
-## Overview
+## 核心优势
 
+| 特性 | 说明 |
+|------|------|
+| 模板 | 内置4套视觉风格 |
+| 排版 | 自动对齐 |
+| 细节 | 圆角、阴影、间距统一 |
+| 输出 | .pptx，结构完整 |
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/minimax-ppt-slides
+---
+
+## 功能清单
+
+✅ **模板风格**
+- 商务简约风
+- 科技感风格
+- 学术严谨风
+- 创意活泼风
+
+✅ **自动排版**
+- 圆角统一
+- 阴影一致
+- 间距标准化
+- 字体统一
+
+✅ **页面结构**
+- 封面页
+- 目录页
+- 内容页
+- 总结页
+- 配图占位符
+
+---
+
+## 输出标准
+
 ```
+✅ .pptx 格式
+✅ 4:3 / 16:9 宽屏
+✅ 排版整齐划一
+✅ 细节到位
+✅ 适合汇报演示
+```
+
+---
+
+## PPT结构模板
+
+```markdown
+# [演示标题]
+
+## 封面
+- 主标题
+- 副标题
+- 日期/作者
+
+## 目录
+- 内容概览
+
+## 内容页1
+- 标题
+- 要点1
+- 要点2
+- 配图
+
+## 内容页2
+- ...
+
+## 总结
+- 核心结论
+- 致谢
+```
+
+---
+
+## 适用场景
+
+- 📊 工作汇报
+- 🎓 学术演讲
+- 💼 商业提案
+- 📚 培训课件
+- 🚀 产品发布
+
+---
+
+*Powered by MiniMax-AI/skills*

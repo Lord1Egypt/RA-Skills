@@ -1,35 +1,35 @@
 ---
-name: "Moodring"
+name: "moodring"
+version: "2.0.4"
 description: "Reference tool for life — covers intro, quickstart, patterns and more. Quick lookup for Moodring concepts, best practices, and implementation patterns."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/moodring"
-sourceUrl: "https://clawhub.ai/skills/moodring"
+author: "BytesAgain"
+homepage: "https://bytesagain.com"
+source: "https://github.com/bytesagain/ai-skills"
+tags: [moodring, reference]
+category: "life"
 ---
 
 # Moodring
 
-> Reference tool for life — covers intro, quickstart, patterns and more. Quick lookup for Moodring concepts, best practices, and implementation patterns.
+Reference tool for life — covers intro, quickstart, patterns and more. Quick lookup for Moodring concepts, best practices, and implementation patterns. No API keys or credentials required.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/moodring`
-- **Source URL:** [https://clawhub.ai/skills/moodring](https://clawhub.ai/skills/moodring)
+## Commands
 
-## Overview
+| Command | Description |
+|---------|-------------|
+| `intro` | intro reference |
+| `quickstart` | quickstart reference |
+| `patterns` | patterns reference |
+| `debugging` | debugging reference |
+| `performance` | performance reference |
+| `security` | security reference |
+| `migration` | migration reference |
+| `cheatsheet` | cheatsheet reference |
 
+## Output Format
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/moodring
-```
+All commands output plain-text reference documentation via heredoc. No external API calls, no credentials needed, no network access.
+
+---
+
+*Powered by BytesAgain | bytesagain.com | hello@bytesagain.com*

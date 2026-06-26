@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>词霸每日一句 · 朋友圈上图下文版</title>
+  <style>
+    :root { --ink: #18130f; --muted: #7c6e5d; --paper: #fbf3e7; --accent: #b68546; --shadow: 0 30px 90px rgba(43,32,21,.23), 0 12px 34px rgba(43,32,21,.15); }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; width: 100%; min-height: 100%; }
+    body { display: grid; place-items: center; min-height: 100vh; background: linear-gradient(135deg, #e8dfd3, #f9f2e8 48%, #dfd2c1); color: var(--ink); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif; }
+    .card { width: [[WIDTH]]px; height: [[HEIGHT]]px; position: relative; overflow: hidden; border-radius: 34px; background: var(--paper); box-shadow: var(--shadow); isolation: isolate; }
+    .card::before { content: ""; position: absolute; inset: 0; z-index: 20; pointer-events: none; opacity: .32; background-image: linear-gradient(90deg, rgba(72,52,32,.04) 1px, transparent 1px), linear-gradient(rgba(72,52,32,.033) 1px, transparent 1px), radial-gradient(circle, rgba(72,52,32,.09) 0 1px, transparent 1.45px); background-size: 34px 34px, 34px 34px, 8px 8px; mix-blend-mode: multiply; }
+    .card::after { content: ""; position: absolute; inset: 12px; z-index: 30; pointer-events: none; border: 1px solid rgba(88,70,48,.16); border-radius: 26px; }
+    .image-section { position: relative; height: 46%; z-index: 1; overflow: hidden; background: #ddd; clip-path: polygon(0 0, 100% 0, 100% 91%, 92% 96%, 84% 92%, 75% 99%, 65% 93%, 55% 98%, 44% 92%, 34% 99%, 23% 93%, 13% 98%, 0 92%); box-shadow: 0 16px 34px rgba(48,35,21,.16); }
+    .image-section img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .image-section::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,.07), transparent 44%, rgba(0,0,0,.28)); pointer-events: none; }
+    .topbar { position: absolute; top: 24px; left: 24px; right: 24px; z-index: 6; display: flex; align-items: flex-start; justify-content: space-between; gap: 14px; }
+    .stamp { display: inline-flex; align-items: center; gap: 8px; padding: 10px 14px; color: #211812; background: rgba(244,218,176,.92); box-shadow: 0 10px 22px rgba(35,25,15,.18); clip-path: polygon(3% 0, 100% 7%, 96% 100%, 0 92%); transform: rotate(-2.5deg); font-weight: 800; font-size: 14px; letter-spacing: .08em; white-space: nowrap; }
+    .stamp svg { width: 20px; height: 20px; flex: 0 0 auto; }
+    .issue { min-width: 92px; padding: 10px 12px; text-align: center; color: #211812; background: rgba(255,248,235,.92); box-shadow: 0 12px 24px rgba(35,25,15,.18); clip-path: polygon(7% 0, 100% 8%, 93% 100%, 0 92%); transform: rotate(2deg); }
+    .issue b { display: block; font-family: Georgia, serif; font-size: 31px; line-height: .92; }
+    .issue span { display: block; margin-top: 5px; color: var(--muted); font-size: 10px; letter-spacing: .14em; text-transform: uppercase; }
+    .image-title { position: absolute; left: 28px; bottom: 36px; z-index: 5; color: #fffaf2; text-shadow: 0 6px 22px rgba(0,0,0,.38); pointer-events: none; }
+    .image-title .big { font-family: Georgia, "Times New Roman", "Songti SC", serif; font-size: 76px; line-height: .78; letter-spacing: -.08em; text-transform: uppercase; }
+    .image-title .sub { margin-top: 10px; font-size: 11px; letter-spacing: .32em; font-weight: 800; text-transform: uppercase; opacity: .93; }
+    .content-section { position: relative; height: 54%; z-index: 2; padding: 26px 24px 22px; display: flex; flex-direction: column; background: linear-gradient(120deg, rgba(255,255,255,.58), transparent 38%), radial-gradient(circle at 88% 12%, rgba(255,255,255,.82), transparent 21%), var(--paper); }
+    .content-section::before { content: ""; position: absolute; left: -22px; bottom: 28px; width: 132px; height: 190px; background: repeating-linear-gradient(103deg, rgba(87,66,40,.13) 0 2px, transparent 2px 11px), linear-gradient(145deg, #e4cda8, #f5e4c4); clip-path: polygon(0 9%, 86% 0, 100% 16%, 88% 26%, 100% 40%, 82% 55%, 98% 69%, 80% 83%, 91% 100%, 0 92%); opacity: .45; transform: rotate(-8deg); pointer-events: none; }
+    .paper-box { position: relative; flex: 1; min-height: 0; display: flex; flex-direction: column; justify-content: space-between; padding: 28px 26px 22px; background: rgba(255,250,242,.86); box-shadow: 0 16px 30px rgba(48,35,21,.11), inset 0 1px rgba(255,255,255,.78); clip-path: polygon(0 4%, 9% 0, 18% 3%, 30% 0, 42% 3%, 54% 1%, 67% 4%, 79% 1%, 91% 3%, 100% 0, 98% 100%, 88% 97%, 77% 100%, 64% 97%, 51% 100%, 38% 96%, 25% 100%, 12% 97%, 0 100%); }
+    .quote-mark { height: 38px; color: rgba(154,126,87,.68); font-family: Georgia, serif; font-size: 78px; line-height: .58; }
+    h1 { margin: 10px 0 14px; font-family: Georgia, "Times New Roman", "Songti SC", serif; font-size: [[QUOTE_SIZE]]px; line-height: 1.02; letter-spacing: -.048em; text-wrap: balance; }
+    .rule { width: 68px; height: 4px; margin: 0 0 15px; border-radius: 999px; background: var(--accent); opacity: .78; }
+    .cn { margin: 0; color: #29231f; font-size: 24px; line-height: 1.5; font-weight: 560; text-wrap: balance; }
+    .footer { display: grid; grid-template-columns: 1fr auto; gap: 16px; align-items: end; margin-top: 20px; }
+    .source-meta { min-width: 0; }
+    .translation { display: inline-flex; align-items: center; gap: 8px; color: var(--muted); font-size: 16px; border-bottom: 2px solid rgba(126,111,86,.32); padding: 0 12px 6px 0; max-width: 100%; }
+    .translation svg { width: 23px; height: 23px; flex: 0 0 auto; }
+    .date-line { margin-top: 10px; color: var(--muted); font-family: Georgia, "Times New Roman", serif; font-size: 19px; letter-spacing: .03em; white-space: nowrap; }
+    .qr-card { position: relative; width: 128px; padding: 8px 8px 9px; background: #f1e2ca; box-shadow: 0 12px 24px rgba(54,40,24,.14); clip-path: polygon(5% 0, 100% 6%, 95% 100%, 0 94%); text-align: center; transform: rotate(-1.5deg); }
+    .qr-card::before { content: ""; position: absolute; width: 18px; height: 18px; right: 12px; top: -8px; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #fff1aa 0 12%, #c7962d 48%, #805319 100%); box-shadow: 0 4px 8px rgba(70,45,14,.34); }
+    .qr-card img { display: block; width: 110px; height: 110px; margin: 0 auto 6px; border-radius: 8px; background: #fff; padding: 4px; }
+    .qr-card small { display: block; color: #4d3e2c; font-size: 10px; line-height: 1.22; letter-spacing: .04em; font-weight: 800; }
+    .tape { position: absolute; z-index: 7; width: 112px; height: 34px; background: linear-gradient(90deg, transparent 0 8%, rgba(255,255,255,.2) 8% 11%, transparent 11% 20%), rgba(214,184,128,.72); box-shadow: 0 8px 16px rgba(61,45,28,.14); clip-path: polygon(7% 0, 100% 9%, 93% 100%, 0 84%); mix-blend-mode: multiply; }
+    .tape.a { right: 22px; top: calc(46% - 24px); transform: rotate(24deg); }
+    .tape.b { left: 20px; top: calc(46% + 8px); transform: rotate(-14deg); }
+    .status { position: absolute; right: 22px; bottom: 10px; z-index: 31; font-size: 10px; color: rgba(58,46,33,.56); letter-spacing: .1em; text-transform: uppercase; }
+  </style>
+</head>
+<body>
+  <main class="card" id="card">
+    <section class="image-section">
+      <img src="[[HERO_URI]]" alt="[[HERO_ALT]]" />
+      <header class="topbar">
+        <div class="stamp">
+          <svg viewBox="0 0 48 48" fill="none" aria-hidden="true"><path d="M12 38C19 22 28 12 40 8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M18 29c-6-7-8-13-6-18 7 4 9 10 6 18Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M25 20c-2-8 0-13 5-16 3 6 2 11-5 16Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M30 17c7-2 12-1 15 3-5 4-10 3-15-3Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+          <span>[[CAPTION]]</span>
+        </div>
+        <aside class="issue"><b>[[ISSUE_DAY]]</b><span>[[ISSUE_TEXT]]</span></aside>
+      </header>
+      <section class="image-title"><div class="big">Daily<br/>Line</div><div class="sub">Moments Edition</div></section>
+    </section>
+    <div class="tape a" aria-hidden="true"></div><div class="tape b" aria-hidden="true"></div>
+    <section class="content-section">
+      <div class="paper-box">
+        <div><div class="quote-mark" aria-hidden="true">“</div><h1>[[CONTENT]]</h1><div class="rule" aria-hidden="true"></div><p class="cn">[[NOTE]]</p></div>
+        <footer class="footer">
+          <div class="source-meta"><div class="translation"><svg viewBox="0 0 48 48" fill="none" aria-hidden="true"><path d="M12 38C19 22 28 12 40 8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M18 29c-6-7-8-13-6-18 7 4 9 10 6 18Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M30 17c7-2 12-1 15 3-5 4-10 3-15-3Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg><span>[[TRANSLATION]]</span></div><div class="date-line"><time datetime="[[DATELINE]]">[[DATELINE]]</time></div></div>
+          <div class="qr-card" title="长按识别二维码，听 TTS 发音"><img src="[[QR_URI]]" alt="TTS 发音二维码" /><small>长按识别<br/>听发音</small></div>
+        </footer>
+      </div>
+    </section>
+    <div class="status">[[STATUS]]</div>
+  </main>
+</body>
+</html>

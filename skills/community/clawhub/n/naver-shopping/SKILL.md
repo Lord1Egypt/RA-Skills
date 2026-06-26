@@ -1,35 +1,33 @@
 ---
-name: "Naver Shopping Search"
-description: "Search for products on Naver Shopping. Use when the user wants to find product prices, links, or compare items in the Korean market."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/naver-shopping"
-sourceUrl: "https://clawhub.ai/skills/naver-shopping"
+name: naver-shopping
+description: Search for products on Naver Shopping. Use when the user wants to find product prices, links, or compare items in the Korean market.
 ---
 
 # Naver Shopping Search
 
-> Search for products on Naver Shopping. Use when the user wants to find product prices, links, or compare items in the Korean market.
+Use this skill to search for products on Naver Shopping using the Naver Search API.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/naver-shopping`
-- **Source URL:** [https://clawhub.ai/skills/naver-shopping](https://clawhub.ai/skills/naver-shopping)
+## Usage
 
-## Overview
+Run the search script with a query:
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/naver-shopping
+/Users/dryoo/.openclaw/workspace/skills/naver-shopping/scripts/search_shopping.py "상품명"
 ```
+
+### Options
+
+- `--display <number>`: Number of results to show (default: 5, max: 100)
+- `--sort <sim|date|asc|dsc>`: Sort order (sim: similarity, date: date, asc: price ascending, dsc: price descending)
+
+### Example
+
+```bash
+/Users/dryoo/.openclaw/workspace/skills/naver-shopping/scripts/search_shopping.py "아이폰 16" --display 3 --sort asc
+```
+
+## Environment Variables
+
+Requires the following in `.env`:
+- `NAVER_Client_ID`
+- `NAVER_Client_Secret`

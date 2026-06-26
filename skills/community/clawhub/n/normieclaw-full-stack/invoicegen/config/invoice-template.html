@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invoice {{INVOICE_NUMBER}}</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 40px;
+            color: #333;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid {{BRAND_COLOR|#0F172A}};
+        }
+        .logo {
+            max-width: 150px;
+            max-height: 80px;
+            object-fit: contain;
+        }
+        .business-details {
+            text-align: right;
+            font-size: 14px;
+            color: #555;
+        }
+        .invoice-title {
+            font-size: 32px;
+            font-weight: bold;
+            color: {{BRAND_COLOR|#0F172A}};
+            margin: 0 0 10px 0;
+        }
+        .meta-container {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 40px;
+        }
+        .client-details {
+            font-size: 14px;
+        }
+        .invoice-meta {
+            text-align: right;
+            font-size: 14px;
+        }
+        .meta-label {
+            font-weight: bold;
+            color: #555;
+            display: inline-block;
+            width: 100px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 30px;
+        }
+        th {
+            background-color: #f8f9fa;
+            border-bottom: 2px solid #ddd;
+            padding: 12px;
+            text-align: left;
+            font-size: 14px;
+            color: #555;
+            text-transform: uppercase;
+        }
+        td {
+            padding: 12px;
+            border-bottom: 1px solid #eee;
+            font-size: 14px;
+        }
+        .amount-col {
+            text-align: right;
+        }
+        .totals {
+            width: 50%;
+            margin-left: auto;
+            border-collapse: collapse;
+        }
+        .totals td {
+            padding: 8px 12px;
+            border: none;
+        }
+        .totals .label {
+            text-align: right;
+            font-weight: bold;
+            color: #555;
+        }
+        .totals .value {
+            text-align: right;
+        }
+        .totals .grand-total {
+            font-size: 18px;
+            font-weight: bold;
+            color: {{BRAND_COLOR|#0F172A}};
+            border-top: 2px solid {{BRAND_COLOR|#0F172A}};
+            padding-top: 12px;
+        }
+        .footer {
+            margin-top: 60px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+            font-size: 12px;
+            color: #777;
+        }
+        .payment-info {
+            margin-bottom: 10px;
+        }
+        .payment-label {
+            font-weight: bold;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div>
+                <!-- IF LOGO --><img src="{{LOGO_PATH}}" alt="Logo" class="logo"><!-- END IF -->
+                <!-- IF NO LOGO --><h2 style="margin:0;color:{{BRAND_COLOR|#0F172A}};">{{BUSINESS_NAME}}</h2><!-- END IF -->
+            </div>
+            <div class="business-details">
+                <strong>{{BUSINESS_NAME}}</strong><br>
+                {{BUSINESS_ADDRESS}}<br>
+                {{BUSINESS_EMAIL}}<br>
+                {{TAX_ID}}
+            </div>
+        </div>
+
+        <div class="meta-container">
+            <div class="client-details">
+                <div style="color:#777;font-size:12px;text-transform:uppercase;margin-bottom:5px;">Billed To:</div>
+                <strong>{{CLIENT_NAME}}</strong><br>
+                {{CLIENT_ADDRESS}}<br>
+                {{CLIENT_EMAIL}}
+            </div>
+            <div class="invoice-meta">
+                <h1 class="invoice-title">INVOICE</h1>
+                <div><span class="meta-label">Invoice #:</span> {{INVOICE_NUMBER}}</div>
+                <div><span class="meta-label">Date:</span> {{ISSUE_DATE}}</div>
+                <div><span class="meta-label">Due Date:</span> {{DUE_DATE}}</div>
+            </div>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Description</th>
+                    <th style="width:10%;text-align:center;">Qty</th>
+                    <th style="width:15%;text-align:right;">Rate</th>
+                    <th style="width:20%;text-align:right;">Amount</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- LINE ITEMS INJECTED HERE -->
+                <!-- Example format:
+                <tr>
+                    <td>Website Design</td>
+                    <td style="text-align:center;">10</td>
+                    <td class="amount-col">$100.00</td>
+                    <td class="amount-col">$1,000.00</td>
+                </tr>
+                -->
+                {{LINE_ITEMS_HTML}}
+            </tbody>
+        </table>
+
+        <table class="totals">
+            <tr>
+                <td class="label">Subtotal:</td>
+                <td class="value">{{CURRENCY_SYMBOL}}{{SUBTOTAL}}</td>
+            </tr>
+            <!-- IF TAX -->
+            <tr>
+                <td class="label">Tax ({{TAX_RATE}}%):</td>
+                <td class="value">{{CURRENCY_SYMBOL}}{{TAX_AMOUNT}}</td>
+            </tr>
+            <!-- END IF -->
+            <tr>
+                <td class="label grand-total">Total Due:</td>
+                <td class="value grand-total">{{CURRENCY_SYMBOL}}{{TOTAL}}</td>
+            </tr>
+        </table>
+
+        <div class="footer">
+            <div class="payment-info">
+                <span class="payment-label">Payment Instructions:</span><br>
+                {{PAYMENT_DETAILS}}
+            </div>
+            <div style="margin-top:20px;text-align:center;">
+                Thank you for your business!
+            </div>
+        </div>
+    </div>
+</body>
+</html>

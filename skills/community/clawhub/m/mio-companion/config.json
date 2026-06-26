@@ -1,0 +1,27 @@
+{
+    "name": "mio-companion",
+    "version": "1.0.0",
+    "description": "Mio Companion - 主动陪伴学习技能",
+    "author": "澪白 (Mio)",
+    "triggers": [
+        "陪我聊天",
+        "主动聊天",
+        "查看习惯",
+        "查看待办",
+        "执行任务",
+        "heartbeat",
+        "定时检查"
+    ],
+    "dataDir": "mio-companion-data",
+    "settings": {
+        "freeHours": [12, 13, 14, 18, 19, 20, 21, 22],
+        "chatProbability": 0.3,
+        "maxTodos": 50,
+        "logRetention": 100
+    },
+    "cron": {
+        "enabled": true,
+        "interval": 14400000,
+        "task": "定时检查用户状态"
+    }
+}

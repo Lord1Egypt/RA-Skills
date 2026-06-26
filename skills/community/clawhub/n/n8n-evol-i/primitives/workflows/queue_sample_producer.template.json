@@ -1,0 +1,80 @@
+{
+  "name": "{{@env:displayName}} Queue Sample Producer{{@env:workflowNamePostfix}}",
+  "nodes": [
+    {
+      "id": "{{@uuid:qsp-webhook}}",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [240, 300],
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "queue-sample-producer",
+        "responseMode": "lastNode",
+        "options": {}
+      },
+      "webhookId": "{{@uuid:qsp-webhook-public}}"
+    },
+    {
+      "id": "{{@uuid:qsp-generate}}",
+      "name": "Generate Test Payloads",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [460, 300],
+      "parameters": {
+        "language": "javaScript",
+        "jsCode": "// Emits 5 test messages tagged for the per-tag behaviour in the\n// paired Queue Sample Consumer:\n//   - 3 'happy' messages → succeed on first delivery\n//   - 1 'transient_fail_once' → fails on delivery_count=1, succeeds on delivery_count=2 (exercises XAUTOCLAIM retry)\n//   - 1 'poison' → fails on every delivery (exercises max_retries → DLQ)\n// Streamed-name is taken from the webhook's optional `?stream=...` query\n// param so the same producer can be pointed at multiple test streams without\n// editing the template. Defaults to 'test-stream'.\nconst stream = $input.first().json.query?.stream || 'test-stream';\nconst payloads = [\n  { tag: 'happy', idx: 1 },\n  { tag: 'happy', idx: 2 },\n  { tag: 'transient_fail_once', idx: 3 },\n  { tag: 'happy', idx: 4 },\n  { tag: 'poison', idx: 5 },\n];\nreturn payloads.map(p => ({ json: { stream, payload: p } }));"
+      }
+    },
+    {
+      "id": "{{@uuid:qsp-publish}}",
+      "name": "Queue Publish",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.2,
+      "position": [680, 300],
+      "parameters": {
+        "source": "database",
+        "workflowId": {
+          "__rl": true,
+          "value": "{{@env:workflows.queue_publish.id}}",
+          "mode": "id"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "stream": "={{ $json.stream }}",
+            "payload": "={{ $json.payload }}",
+            "max_len": null,
+            "approximate": true
+          }
+        },
+        "options": {}
+      }
+    },
+    {
+      "id": "{{@uuid:qsp-summary}}",
+      "name": "Build Summary",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [900, 300],
+      "parameters": {
+        "language": "javaScript",
+        "jsCode": "// Aggregate the message_ids returned by the per-item Queue Publish calls\n// into a single summary item for the webhook response.\nconst items = $input.all();\nreturn [{ json: {\n  published_count: items.length,\n  stream: items[0]?.json?.stream,\n  message_ids: items.map(i => i.json.message_id),\n} }];"
+      }
+    }
+  ],
+  "connections": {
+    "Webhook": {
+      "main": [[{"node": "Generate Test Payloads", "type": "main", "index": 0}]]
+    },
+    "Generate Test Payloads": {
+      "main": [[{"node": "Queue Publish", "type": "main", "index": 0}]]
+    },
+    "Queue Publish": {
+      "main": [[{"node": "Build Summary", "type": "main", "index": 0}]]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  }
+}

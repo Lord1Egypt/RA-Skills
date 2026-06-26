@@ -1,0 +1,17 @@
+{
+  "name": "neckr0ik-code-generator",
+  "version": "1.0.0",
+  "description": "Generate boilerplate code for common patterns. Creates project scaffolds, CRUD operations, API clients, database models, tests.",
+  "author": "Neckr0ik",
+  "license": "MIT",
+  "keywords": [
+    "code-generator",
+    "scaffold",
+    "boilerplate",
+    "crud",
+    "automation"
+  ],
+  "dependencies": {
+    "pyyaml": ">=6.0"
+  }
+}

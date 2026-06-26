@@ -1,0 +1,35 @@
+{
+  "slug": "openclaw-json-repair",
+  "name": "JSON Repair",
+  "description": "自动修复格式错误的 JSON（尾随逗号、未引号键、注释等）",
+  "version": "1.0.0",
+  "tags": [
+    "json",
+    "repair",
+    "fix",
+    "parser"
+  ],
+  "author": "OpenClaw Team",
+  "license": "MIT",
+  "files": [
+    "SKILL.md",
+    "README.md",
+    "scripts/",
+    "references/"
+  ],
+  "main": "SKILL.md",
+  "engines": {
+    "openclaw": ">=1.0.0"
+  },
+  "optimization": {
+    "optimized": true,
+    "date": "2026-03-16",
+    "principles": [
+      "karpathy-minimalism",
+      "education-first",
+      "test-coverage"
+    ],
+    "quality_score": 93.8,
+    "batch": "2026-03-16-mass-optimization"
+  }
+}

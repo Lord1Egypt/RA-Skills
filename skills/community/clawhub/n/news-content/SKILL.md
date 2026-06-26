@@ -1,35 +1,30 @@
 ---
-name: "news-content"
-description: "Input a news URL to efficiently extract the body, title, author, and date using a remote API."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/news-content"
-sourceUrl: "https://clawhub.ai/skills/news-content"
+name: news-content-extractor
+description: Input a news URL to efficiently extract the body, title, author, and date using a remote API.
+metadata: {"openclaw": {"requires": {"bins": ["node"], "env": ["EASYALPHA_API_KEY", "NEWS_EXTRACTOR_SERVER_URL"]}}}
 ---
 
-# news-content
+# News Content Extractor (Pro Version)
 
-> Input a news URL to efficiently extract the body, title, author, and date using a remote API.
+This is a news content extraction Skill using a client-server architecture.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/news-content`
-- **Source URL:** [https://clawhub.ai/skills/news-content](https://clawhub.ai/skills/news-content)
+## Features
+- **Zero Local Dependencies**: Uses Node.js for the client, so no complex Python libraries need to be installed locally.
+- **Authentication**: Core API calls are protected by `EASYALPHA_API_KEY`.
+- **High-Performance Parsing**: Powered by a remote backend service based on `trafilatura`.
 
-## Overview
+## Configuration Requirements
 
+The following environment variables must be set to use this Skill:
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/news-content
-```
+1. `EASYALPHA_API_KEY`: Your authentication token. Obtainable from: https://easyalpha.duckdns.org
+2. `NEWS_EXTRACTOR_SERVER_URL`: (Optional) The backend server address. Defaults to the production API: https://easyalpha.duckdns.org/api/v1/extract
+
+## Usage
+
+**User**: "Scrape the content of this page: https://www.bbc.com/news/uk-12345678"
+
+**Agent Behavior**:
+- Runs `node scripts/extract_news.js https://www.bbc.com/news/uk-12345678`
+- The script automatically includes the Token and sends the request to the server.
+- Parses and displays the results.

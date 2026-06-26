@@ -1,0 +1,28 @@
+{
+  "lastCheck": "2026-03-12T04:07:58.244Z",
+  "subagents": {
+    "active": 10,
+    "status": "ok"
+  },
+  "quotas": {
+    "usersChecked": 4,
+    "status": "ok"
+  },
+  "gateway": {
+    "status": "ok",
+    "healthy": true,
+    "alerts": []
+  },
+  "alertsCount": 1,
+  "lastAlerts": [
+    {
+      "type": "quota_exceeded",
+      "userId": "ou_test_quota_user",
+      "resource": "message",
+      "usage": 100,
+      "quota": 100,
+      "percent": 100,
+      "message": "消息配额已用尽 (100/100)"
+    }
+  ]
+}

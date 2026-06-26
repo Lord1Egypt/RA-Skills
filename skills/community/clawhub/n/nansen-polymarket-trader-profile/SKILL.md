@@ -1,35 +1,43 @@
 ---
-name: "Nansen Polymarket Trader Profile"
+name: nansen-polymarket-trader-profile
 description: "What is a Polymarket trader betting on? Trades by address, PnL breakdown, and market context. Use when analysing a specific Polymarket wallet."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/nansen-polymarket-trader-profile"
-sourceUrl: "https://clawhub.ai/skills/nansen-polymarket-trader-profile"
+metadata:
+  openclaw:
+    requires:
+      env:
+        - NANSEN_API_KEY
+      bins:
+        - nansen
+    primaryEnv: NANSEN_API_KEY
+    install:
+      - kind: node
+        package: nansen-cli
+        bins: [nansen]
+allowed-tools: Bash(nansen:*)
 ---
 
-# Nansen Polymarket Trader Profile
+# Polymarket Wallet Activity
 
-> What is a Polymarket trader betting on? Trades by address, PnL breakdown, and market context. Use when analysing a specific Polymarket wallet.
+**Answers:** "What is this Polymarket trader betting on? Are they profitable?"
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/nansen-polymarket-trader-profile`
-- **Source URL:** [https://clawhub.ai/skills/nansen-polymarket-trader-profile](https://clawhub.ai/skills/nansen-polymarket-trader-profile)
+**Finding an active trader address:** Source from `trades-by-market` (guarantees trade history) rather than `top-holders` (position holders may have no recorded trades):
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/nansen-polymarket-trader-profile
+# Step 1: find active traders from a market
+nansen research pm trades-by-market --market-id <market_id> --limit 5
+# → seller/buyer addresses with confirmed trade history — use one as ADDR below
 ```
+
+```bash
+ADDR=<polymarket_address>
+
+nansen research pm trades-by-address --address $ADDR --limit 20
+# → timestamp, market_question, event_title, taker_action, side, size, price, usdc_value
+
+nansen research pm pnl-by-address --address $ADDR --limit 20
+# → question, event_title, side_held, net_buy_cost_usd, unrealized_value_usd, total_pnl_usd, market_resolved
+```
+
+Note: addresses sourced from `top-holders` may return empty trade history — use `trades-by-market` to find addresses with confirmed activity.
+
+Look at PnL across resolved vs unresolved markets to gauge trader skill. Large positions in trending categories signal conviction.

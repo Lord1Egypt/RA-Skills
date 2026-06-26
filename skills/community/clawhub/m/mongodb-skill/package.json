@@ -1,0 +1,49 @@
+{
+  "name": "mongodb-skill",
+  "version": "1.0.0",
+  "description": "MongoDB 文档数据库管理技能。通过自然语言查询、管理 MongoDB，支持文档查询、、聚合操作、索引管理、地理空间查询等功能。",
+  "author": "ryanlee-gemini <ryanlee.gemini@gmail.com>",
+  "license": "MIT",
+  "keywords": [
+    "mongodb",
+    "mongo",
+    "database",
+    "nosql",
+    "document-database",
+    "aggregation",
+    "geospatial",
+    "db-management"
+  ],
+  "openclaw": {
+    "category": "database",
+    "requires": {
+      "bins": ["mongosh", "mongodump", "mongorestore"],
+      "python": ["pymongo"]
+    },
+    "install": [
+      {
+        "id": "mongodb-client",
+        "kind": "system",
+        "label": "Install MongoDB Client",
+        "commands": {
+          "ubuntu": "sudo apt update && sudo apt install -y mongodb-clients",
+          "macos": "brew install mongodb-community-shell"
+        }
+      },
+      {
+        "id": "pymongo",
+        "kind": "python",
+        "package": "pymongo",
+        "label": "Install PyMongo"
+      }
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ryanlee-gemini/mongodb-skill"
+  },
+  "homepage": "https://clawhub.com/skills/mongodb-skill",
+  "bugs": {
+    "url": "https://github.com/ryanlee-gemini/mongodb-skill/issues"
+  }
+}

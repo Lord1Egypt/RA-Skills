@@ -1,0 +1,37 @@
+{
+  "_meta": {
+    "version": "1.0.0",
+    "description": "Legal disclaimer templates for Monet Works content. Used by auto-remediate.py.",
+    "last_updated": "2026-03-07"
+  },
+  "financial": {
+    "short": "*Disclaimer: This content is for informational purposes only and does not constitute financial, investment, or legal advice. Past performance is not indicative of future results.*",
+    "full": "*Disclaimer: This content is for informational purposes only and does not constitute financial, investment, or legal advice. Past performance is not indicative of future results. Always consult a qualified financial advisor before making investment decisions.*",
+    "separator": "\n\n---\n\n",
+    "detection_keywords": ["invest", "portfolio", "stock", "market", "return", "asset", "equity", "fund", "trading", "financial", "revenue", "profit", "yield", "dividend"]
+  },
+  "investment": {
+    "short": "*Disclaimer: This material is for educational purposes only and is not investment advice.*",
+    "full": "*Disclaimer: This material is provided for educational purposes only and should not be construed as investment advice or a recommendation to buy or sell any security. Investing involves risk, including the possible loss of principal. Consult your investment advisor before acting on any information contained herein.*",
+    "separator": "\n\n---\n\n",
+    "detection_keywords": ["buy", "sell", "hold", "recommendation", "target price", "price target", "bullish", "bearish", "position", "allocation"]
+  },
+  "health": {
+    "short": "*Disclaimer: This content is for informational purposes only and does not constitute medical advice. Consult a healthcare professional before making health decisions.*",
+    "full": "*Disclaimer: This content is for informational purposes only and should not be considered a substitute for professional medical advice, diagnosis, or treatment. Always seek the guidance of your physician or other qualified health provider with any questions you may have regarding a medical condition.*",
+    "separator": "\n\n---\n\n",
+    "detection_keywords": ["health", "medical", "treatment", "diagnosis", "symptom", "drug", "medication", "doctor", "clinical", "therapy"]
+  },
+  "general": {
+    "short": "*Disclaimer: The views expressed are for informational purposes only and do not constitute professional advice.*",
+    "full": "*Disclaimer: The views expressed in this content are for informational purposes only and do not constitute professional advice. Readers should exercise their own judgment before acting on any information presented here.*",
+    "separator": "\n\n---\n\n",
+    "detection_keywords": []
+  },
+  "legal": {
+    "short": "*Disclaimer: This is not legal advice. Consult a qualified attorney for legal guidance specific to your situation.*",
+    "full": "*Disclaimer: This content is provided for informational purposes only and does not constitute legal advice, nor does it create an attorney-client relationship. Always consult a licensed attorney in your jurisdiction for advice specific to your circumstances.*",
+    "separator": "\n\n---\n\n",
+    "detection_keywords": ["law", "legal", "attorney", "lawsuit", "contract", "liability", "court", "regulation", "compliance", "rights"]
+  }
+}

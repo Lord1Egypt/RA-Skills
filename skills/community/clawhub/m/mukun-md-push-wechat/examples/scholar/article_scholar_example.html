@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+/* 代码块浏览器端预览样式（微信平台自有 code-snippet CSS 白名单，此 style 仅用于浏览器预览） */
+.code-snippet__fix{position:relative;margin:12px 0 18px;border-radius:6px;overflow:hidden;font-size:13px;line-height:1.6}
+.code-snippet__fix .code-snippet__js{font-family:'SF Mono','Fira Code','Consolas','Menlo',monospace}
+.code-snippet__line-index{position:absolute;top:0;left:0;width:40px;padding:12px 0;margin:0;list-style:none;text-align:right;background:#2b3137;color:#636d83;font-size:12px;line-height:1.6;border-right:1px solid #3a3f47;box-sizing:border-box}
+.code-snippet__line-index li{padding:0 8px 0 0}
+pre.code-snippet__js{margin:0;padding:12px 12px 12px 52px;background:#282c34;color:#abb2bf;overflow-x:auto;white-space:pre}
+pre.code-snippet__js code{display:block;font-family:inherit}
+.code-snippet__keyword{color:#c678dd;font-weight:bold}
+.code-snippet__built_in{color:#e5c07b}
+.code-snippet__string{color:#98c379}
+.code-snippet__number{color:#d19a66}
+.code-snippet__comment{color:#5c6370;font-style:italic}
+.code-snippet__title{color:#61afef}
+.code-snippet__subst{color:#56b6c2}
+</style>
+</head>
+<body style="margin:0;padding:0;font-family:-apple-system,'PingFang SC','Microsoft YaHei',sans-serif;text-indent:0">
+<section style="background:#ffffff;padding:20px 16px">
+
+<!-- 正文区域 -->
+<section style="font-size:15px;line-height:2em;letter-spacing:1px;padding:0 4px 20px 4px;color:#333333;background:transparent">
+<h2 style="margin:24px 0 14px 0;padding:12px 14px;font-size:17px;font-weight:bold;color:#9b59b6;background:#f8f0fb;border-left:5px solid #9b59b6;border-radius:4px;line-height:1.6;display:block">为什么要自动化周报</h2>
+<p style="margin:0 0 14px 0;text-indent:2em">每周五下午写周报大概是程序员最头疼的事之一：翻聊天记录、回忆本周做了什么、整理进展、汇总风险... 我估了一下，每周至少花 <b style="font-weight:bold;color:#333333">2 小时</b>在这件事上。一年下来就是 100 多小时。</p>
+<section style="margin:16px 0;padding:14px 16px;background:#f8f8f8;border-left:4px solid #9b59b6"><p style="margin:0;font-size:14px;font-style:italic;color:#888;line-height:1.9">如果说有什么任务最适合交给 AI 来做，周报绝对是其中之一——它的格式固定、信息来源明确、不需要创造性思考。</p></section>
+<h2 style="margin:24px 0 14px 0;padding:12px 14px;font-size:17px;font-weight:bold;color:#9b59b6;background:#f8f0fb;border-left:5px solid #9b59b6;border-radius:4px;line-height:1.6;display:block">整体思路</h2>
+<p style="margin:0 0 14px 0;text-indent:2em">自动化周报的核心流程其实很简单：</p>
+<ol start="1" style="margin:0 0 14px 0;padding-left:24px"><li value="1" style="margin:0 0 6px 0;line-height:1.9"><b style="font-weight:bold;color:#333333">收集</b>：从 Git 提交记录、项目管理工具、聊天记录中提取本周工作内容</li><li value="2" style="margin:0 0 6px 0;line-height:1.9"><b style="font-weight:bold;color:#333333">整理</b>：用 LLM 对收集到的信息进行归纳、分类、去重</li><li value="3" style="margin:0 0 6px 0;line-height:1.9"><b style="font-weight:bold;color:#333333">生成</b>：按固定模板生成结构化的周报文档</li><li value="4" style="margin:0 0 6px 0;line-height:1.9"><b style="font-weight:bold;color:#333333">推送</b>：自动发送到飞书/钉钉/企业微信</li></ol>
+<h2 style="margin:24px 0 14px 0;padding:12px 14px;font-size:17px;font-weight:bold;color:#9b59b6;background:#f8f0fb;border-left:5px solid #9b59b6;border-radius:4px;line-height:1.6;display:block">技术选型</h2>
+<p style="margin:0 0 14px 0;text-indent:2em">我最终选用的技术栈如下：</p>
+<table style="width:100%;border-collapse:collapse;margin:16px 0;font-size:14px">
+  <thead>
+    <tr>
+      <th style="padding:10px 12px;border:1px solid #ddd;background:#f8f8f8;font-weight:bold;color:#333333;font-size:13px">环节</th>
+      <th style="padding:10px 12px;border:1px solid #ddd;background:#f8f8f8;font-weight:bold;color:#333333;font-size:13px">方案</th>
+      <th style="padding:10px 12px;border:1px solid #ddd;background:#f8f8f8;font-weight:bold;color:#333333;font-size:13px">理由</th>
+    </tr>
+  </thead>
+  <tbody style="padding:10px 12px">
+    <tr>
+      <td style="padding:10px 12px;border:1px solid #ddd;background:#fff">编排框架</td>
+      <td style="padding:10px 12px;border:1px solid #ddd;background:#fff">LangGraph</td>
+      <td style="padding:10px 12px;border:1px solid #ddd;background:#fff">支持复杂的状态机和条件分支</td>
+    </tr>
+    <tr>
+      <td style="padding:10px 12px;border:1px solid #ddd;background:#fafafa">LLM</td>
+      <td style="padding:10px 12px;border:1px solid #ddd;background:#fafafa">GPT-4o-mini</td>
+      <td style="padding:10px 12px;border:1px solid #ddd;background:#fafafa">性价比高，处理结构化任务足够</td>
+    </tr>
+    <tr>
+      <td style="padding:10px 12px;border:1px solid #ddd;background:#fff">Git 信息提取</td>
+      <td style="padding:10px 12px;border:1px solid #ddd;background:#fff">GitPython</td>
+      <td style="padding:10px 12px;border:1px solid #ddd;background:#fff">成熟稳定的 Git 操作库</td>
+    </tr>
+    <tr>
+      <td style="padding:10px 12px;border:1px solid #ddd;background:#fafafa">飞书推送</td>
+      <td style="padding:10px 12px;border:1px solid #ddd;background:#fafafa">飞书开放 API</td>
+      <td style="padding:10px 12px;border:1px solid #ddd;background:#fafafa">官方 SDK，文档完善</td>
+    </tr>
+    <tr>
+      <td style="padding:10px 12px;border:1px solid #ddd;background:#fff">定时触发</td>
+      <td style="padding:10px 12px;border:1px solid #ddd;background:#fff">APScheduler</td>
+      <td style="padding:10px 12px;border:1px solid #ddd;background:#fff">轻量级定时任务框架</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 style="margin:24px 0 14px 0;padding:12px 14px;font-size:17px;font-weight:bold;color:#9b59b6;background:#f8f0fb;border-left:5px solid #9b59b6;border-radius:4px;line-height:1.6;display:block">收集模块的实现</h2>
+<p style="margin:0 0 14px 0;text-indent:2em">收集模块是整个 Agent 的基础。核心代码如下：</p>
+<section class="code-snippet__fix code-snippet__js">
+<ul class="code-snippet__line-index code-snippet__js"><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li></ul>
+<pre class="code-snippet__js" data-lang="python">
+<code><span leaf=""><span class="code-snippet__keyword">def</span> <span class="code-snippet__title">collect_git_commits</span>(repo_path: <span class="code-snippet__built_in">str</span>, since: <span class="code-snippet__built_in">str</span>) -&gt; <span class="code-snippet__built_in">list</span>[<span class="code-snippet__built_in">dict</span>]:</span></code>
+<code><span leaf="">    <span class="code-snippet__string">"""从 Git 仓库收集指定日期之后的提交记录"""</span></span></code>
+<code><span leaf="">    repo = git.Repo(repo_path)</span></code>
+<code><span leaf="">    commits = []</span></code>
+<code><span leaf="">    <span class="code-snippet__keyword">for</span> commit in repo.iter_commits(since=since):</span></code>
+<code><span leaf="">        commits.append({</span></code>
+<code><span leaf="">            <span class="code-snippet__string">"</span><span class="code-snippet__string">hash</span><span class="code-snippet__string">"</span>: commit.hexsha[:<span class="code-snippet__number">8</span>],</span></code>
+<code><span leaf="">            <span class="code-snippet__string">"</span><span class="code-snippet__string">message</span><span class="code-snippet__string">"</span>: commit.message.strip(),</span></code>
+<code><span leaf="">            <span class="code-snippet__string">"</span><span class="code-snippet__string">date</span><span class="code-snippet__string">"</span>: commit.committed_datetime.isoformat(),</span></code>
+<code><span leaf="">            <span class="code-snippet__string">"</span><span class="code-snippet__string">author</span><span class="code-snippet__string">"</span>: commit.author.name,</span></code>
+<code><span leaf="">        })</span></code>
+<code><span leaf="">    <span class="code-snippet__keyword">return</span> commits</span></code>
+</pre>
+</section>
+<p style="margin:0 0 14px 0;text-indent:2em"><b style="font-weight:bold;color:#333333">关键点</b>：</p>
+<ul style="margin:0 0 14px 0;padding-left:24px"><li style="margin:0 0 6px 0;line-height:1.9">使用 <code style="font-size:13px;background:#f5f5f5;color:#9b59b6;padding:2px 6px">since</code> 参数过滤本周的提交，避免处理过多历史数据</li><li style="margin:0 0 6px 0;line-height:1.9">提取 commit message 的第一行作为摘要，减少 LLM 的输入噪声</li><li style="margin:0 0 6px 0;line-height:1.9">保留 hash 方便溯源</li></ul>
+<section style="margin:16px 0;padding:14px 16px;background:#f8f8f8;border-left:4px solid #9b59b6"><p style="margin:0;font-size:14px;font-style:italic;color:#888;line-height:1.9">如果你的团队使用 Conventional Commits 规范（如 <code style="font-size:13px;background:#f5f5f5;color:#9b59b6;padding:2px 6px">feat: xxx</code>、<code style="font-size:13px;background:#f5f5f5;color:#9b59b6;padding:2px 6px">fix: xxx</code>），收集后的信息质量会高很多，建议推广。</p></section>
+<h2 style="margin:24px 0 14px 0;padding:12px 14px;font-size:17px;font-weight:bold;color:#9b59b6;background:#f8f0fb;border-left:5px solid #9b59b6;border-radius:4px;line-height:1.6;display:block">整理模块：让 LLM 做归纳</h2>
+<p style="margin:0 0 14px 0;text-indent:2em">收集到的原始信息通常是碎片化的，需要 LLM 来归纳整理。我设计了一个专门的 Prompt：</p>
+<section class="code-snippet__fix code-snippet__js">
+<ul class="code-snippet__line-index code-snippet__js"><li></li><li></li><li></li><li></li><li></li><li></li></ul>
+<pre class="code-snippet__js">
+<code><span leaf="">你是一个周报助手。根据以下 Git 提交记录和任务卡片信息，</span></code>
+<code><span leaf="">按「已完成」「进行中」「遇到的风险」三个类别进行归纳。</span></code>
+<code><span leaf="">每条不超过 50 字，用动宾短语开头。</span></code>
+<code><span leaf="">&#8203;</span></code>
+<code><span leaf="">原始信息：</span></code>
+<code><span leaf="">{raw_data}</span></code>
+</pre>
+</section>
+<p style="margin:0 0 14px 0;text-indent:2em">经过测试，GPT-4o-mini 在这个任务上的表现非常稳定，归纳准确率在 <b style="font-weight:bold;color:#333333">90%</b> 以上。</p>
+<h2 style="margin:24px 0 14px 0;padding:12px 14px;font-size:17px;font-weight:bold;color:#9b59b6;background:#f8f0fb;border-left:5px solid #9b59b6;border-radius:4px;line-height:1.6;display:block">推送到飞书</h2>
+<p style="margin:0 0 14px 0;text-indent:2em">生成周报后，通过飞书 Webhook 推送到指定群聊：</p>
+<section class="code-snippet__fix code-snippet__js">
+<ul class="code-snippet__line-index code-snippet__js"><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li></ul>
+<pre class="code-snippet__js" data-lang="python">
+<code><span leaf=""><span class="code-snippet__keyword">def</span> <span class="code-snippet__title">send_to_feishu</span>(webhook_url: <span class="code-snippet__built_in">str</span>, content: <span class="code-snippet__built_in">str</span>):</span></code>
+<code><span leaf="">    <span class="code-snippet__string">"""通过飞书 Webhook 发送消息"""</span></span></code>
+<code><span leaf="">    payload = {</span></code>
+<code><span leaf="">        <span class="code-snippet__string">"</span><span class="code-snippet__string">msg_type</span><span class="code-snippet__string">"</span>: <span class="code-snippet__string">"</span><span class="code-snippet__string">interactive</span><span class="code-snippet__string">"</span>,</span></code>
+<code><span leaf="">        <span class="code-snippet__string">"</span><span class="code-snippet__string">card</span><span class="code-snippet__string">"</span>: {</span></code>
+<code><span leaf="">            <span class="code-snippet__string">"</span><span class="code-snippet__string">header</span><span class="code-snippet__string">"</span>: {<span class="code-snippet__string">"</span><span class="code-snippet__string">title</span><span class="code-snippet__string">"</span>: {<span class="code-snippet__string">"</span><span class="code-snippet__string">content</span><span class="code-snippet__string">"</span>: <span class="code-snippet__string">"</span><span class="code-snippet__string">本周工作周报</span><span class="code-snippet__string">"</span>}},</span></code>
+<code><span leaf="">            <span class="code-snippet__string">"</span><span class="code-snippet__string">elements</span><span class="code-snippet__string">"</span>: [{<span class="code-snippet__string">"</span><span class="code-snippet__string">tag</span><span class="code-snippet__string">"</span>: <span class="code-snippet__string">"</span><span class="code-snippet__string">markdown</span><span class="code-snippet__string">"</span>, <span class="code-snippet__string">"</span><span class="code-snippet__string">content</span><span class="code-snippet__string">"</span>: content}],</span></code>
+<code><span leaf="">        },</span></code>
+<code><span leaf="">    }</span></code>
+<code><span leaf="">    requests.post(webhook_url, json=payload)</span></code>
+</pre>
+</section>
+<h2 style="margin:24px 0 14px 0;padding:12px 14px;font-size:17px;font-weight:bold;color:#9b59b6;background:#f8f0fb;border-left:5px solid #9b59b6;border-radius:4px;line-height:1.6;display:block">最终效果</h2>
+<p style="margin:0 0 14px 0;text-indent:2em">部署上线后，每周五下午 5 点自动执行，2 分钟内完成全部流程：</p>
+<ul style="margin:0 0 14px 0;padding-left:24px"><li style="margin:0 0 6px 0;line-height:1.9">自动拉取本周 Git 提交：约 200 条</li><li style="margin:0 0 6px 0;line-height:1.9">LLM 归纳整理：约 30 秒</li><li style="margin:0 0 6px 0;line-height:1.9">生成飞书卡片：即时</li><li style="margin:0 0 6px 0;line-height:1.9">推送到群聊：即时</li></ul>
+<p style="margin:0 0 14px 0;text-indent:2em"><b style="font-weight:bold;color:#333333">每周节省约 2 小时</b>，周报质量比手写的更好——因为 AI 不会遗漏任何一条提交。</p>
+<h2 style="margin:24px 0 14px 0;padding:12px 14px;font-size:17px;font-weight:bold;color:#9b59b6;background:#f8f0fb;border-left:5px solid #9b59b6;border-radius:4px;line-height:1.6;display:block">下一步优化</h2>
+<ul style="margin:0 0 14px 0;padding-left:24px"><li style="margin:0 0 6px 0;line-height:1.9">接入 Jira/Tapd 自动拉取任务状态</li><li style="margin:0 0 6px 0;line-height:1.9">支持多仓库聚合</li><li style="margin:0 0 6px 0;line-height:1.9">增加与上周对比差异高亮</li><li style="margin:0 0 6px 0;line-height:1.9">支持 Agent 主动提问补充信息</li></ul>
+</section>
+
+
+
+
+
+</section>
+</body>
+</html>

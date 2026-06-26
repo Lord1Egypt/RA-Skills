@@ -1,35 +1,18 @@
----
-name: "My Skill"
-description: "Provides current weather information for a specified location using a weather API."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/my-skill-20260414"
-sourceUrl: "https://clawhub.ai/skills/my-skill-20260414"
----
+name: weather-skill
+description: Fetches the current weather information for a specified location using a weather API.name: weather-skill
+description: Fetches the current weather information for a specified location using a weather API.name: weather-skill
+description: Fetches the current weather information for a specified location using a weather API.name: weather-skill
+description: Fetches the current weather information for a specified location using a weather API.name: weather-skill
+description: Fetches the current weather information for a specified location using a weather API.name: weather-skill
+description: Fetches the current weather information for a specified location using a weather API.
 
 # My Skill
 
-> Provides current weather information for a specified location using a weather API.
+这是一个简单的测试技能。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/my-skill-20260414`
-- **Source URL:** [https://clawhub.ai/skills/my-skill-20260414](https://clawhub.ai/skills/my-skill-20260414)
+## 功能描述
 
-## Overview
+- 支持在飞书群组和私聊中使用
+- 可以接收用户消息并进行回复
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/my-skill-20260414
-```
+欢迎在飞书里 @机器人 测试我。

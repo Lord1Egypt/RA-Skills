@@ -1,0 +1,44 @@
+#!/usr/bin/env python3
+"""Archive a deployed workflow on its env's n8n instance.
+
+Wraps `POST /api/v1/workflows/{id}/archive`, which n8n added to the public REST
+API in 2026-Q1. Idempotent: archiving an already-archived workflow returns 200.
+"""
+import argparse
+import sys
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).parent.parent))
+
+from helpers.workspace import workspace_root
+from helpers.config import load_yaml, load_env, get_config_value
+from helpers.n8n_client import ensure_client
+
+
+def _resolve_workflow_id(env_name: str, workflow_key: str, workspace: Path) -> str:
+    data = load_yaml(env_name, workspace)
+    try:
+        return str(get_config_value(data, f"workflows.{workflow_key}.id"))
+    except KeyError:
+        raise SystemExit(
+            f"No workflow id for key '{workflow_key}' in env '{env_name}'."
+        )
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--workspace", default=None)
+    parser.add_argument("--env", required=True)
+    parser.add_argument("--workflow-key", required=True, dest="workflow_key")
+    args = parser.parse_args()
+
+    ws = workspace_root(args.workspace)
+    load_env(args.env, ws)
+    wf_id = _resolve_workflow_id(args.env, args.workflow_key, ws)
+    client = ensure_client(args.env, ws)
+    client.post(f"workflows/{wf_id}/archive")
+    print(f"Archived workflow '{args.workflow_key}' (id={wf_id}) on env '{args.env}'")
+
+
+if __name__ == "__main__":
+    main()

@@ -1,0 +1,57 @@
+{
+  "name": "myxz-image-translator",
+  "version": "1.1.0",
+  "description": "妙言小智(PicTech.cc)为OpenClaw等开发的专业级AI图片翻译skill。支持批量处理、语种自动映射、主图保护及秒传缓存功能。",
+  "main": "dist/index.js",
+  "author": "妙言小智(PicTech.cc)",
+  "config": {
+    "type": "object",
+    "properties": {
+      "vk": {
+        "type": "string",
+        "title": "API 密钥 (VK)",
+        "description": "在 https://www.pictech.cc 获取，只需填写一次"
+      }
+    },
+    "required": [
+      "vk"
+    ]
+  },
+  "params": [
+    {
+      "name": "input",
+      "type": "string",
+      "label": "输入资源",
+      "placeholder": "支持单个/多个URL、本地图片路径或整个文件夹",
+      "required": true
+    },
+    {
+      "name": "saveDir",
+      "type": "string",
+      "label": "保存目录 (可选)",
+      "placeholder": "留空默认保存在 myxz-result 目录下",
+      "required": false
+    },
+    {
+      "name": "sourceLanguage",
+      "type": "string",
+      "label": "源语言",
+      "default": "中文",
+      "placeholder": "支持：中文、繁体、英文、日文、泰文、俄文、德文、法文等"
+    },
+    {
+      "name": "targetLanguage",
+      "type": "string",
+      "label": "目标语言",
+      "default": "英文",
+      "placeholder": "支持：英、日、韩、泰、俄、葡、西、法、德、意、波、荷、土、越、印尼、马、菲"
+    },
+    {
+      "name": "mainImageProtection",
+      "type": "boolean",
+      "label": "主图保护模式",
+      "default": false,
+      "placeholder": "开启后将智能识别并保护商品上的文字不被翻译"
+    }
+  ]
+}

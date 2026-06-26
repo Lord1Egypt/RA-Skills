@@ -1,0 +1,37 @@
+{
+  "name": "noodle-create-writing",
+  "version": "1.0.0",
+  "description": "自媒体文章生成技能 - 根据关键词自动搜索、汇总数据、生成抖音/小红书/微博文章",
+  "main": "scripts/generate-article.js",
+  "scripts": {
+    "start": "node scripts/generate-article.js",
+    "test": "node scripts/generate-article.js \"测试主题\" --keywords \"测试\" --dry-run",
+    "douyin": "node scripts/generate-article.js",
+    "xiaohongshu": "node scripts/generate-article.js --platform xiaohongshu",
+    "weibo": "node scripts/generate-article.js --platform weibo"
+  },
+  "keywords": [
+    "自媒体",
+    "文章生成",
+    "美食",
+    "面食",
+    "抖音",
+    "小红书",
+    "微博",
+    "内容创作"
+  ],
+  "author": "飞云儿",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^1.6.0",
+    "cheerio": "^1.0.0",
+    "marked": "^12.0.0",
+    "yargs": "^17.7.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

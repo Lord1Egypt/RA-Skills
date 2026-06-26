@@ -1,35 +1,11 @@
----
-name: "my_send_email"
-description: "Send an email by specifying the receiver's address, subject, and content."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/mysendemail"
-sourceUrl: "https://clawhub.ai/skills/mysendemail"
----
+# ð§ Send Email Skill
+## Usage
+- Trigger: "发送邮件给xxx"、"给yfzhao@Cloudtrend.com.cn发邮件"、"用邮件通知我结果"
+- Parameters:
+  - receiver: 收件人邮箱（必填）
+  - subject: 邮件主题（必填）
+  - content: 邮件内容（必填）
 
-# my_send_email
-
-> Send an email by specifying the receiver's address, subject, and content.
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/mysendemail`
-- **Source URL:** [https://clawhub.ai/skills/mysendemail](https://clawhub.ai/skills/mysendemail)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
+## Example
 ```bash
-hermes skills install clawhub/mysendemail
-```
+python3 send_mail.py yfzhao@Cloudtrend.com.cn "测试邮件" "这是OpenClaw发送的测试内容"

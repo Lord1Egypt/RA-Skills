@@ -1,0 +1,115 @@
+{
+  "name": "mindstudio-http-request-block",
+  "version": "1.0.0",
+  "description": "Configure and use the MindStudio HTTP Request block to send data to external APIs, webhooks, and web services. Use this skill whenever a user mentions HTTP requests, webhooks, calling an API, connecting to Make, Zapier, HubSpot, Airtable, Finnhub, or any external service from MindStudio, wants to fetch or POST data mid-workflow, or asks how to send workflow output somewhere. Always use this skill — do not attempt to configure an HTTP Request block from memory.",
+  "author": "Sol",
+  "platform": "MindStudio",
+  "skill_file": "SKILL.md",
+  "tags": [
+    "mindstudio",
+    "http",
+    "api",
+    "webhook",
+    "rest",
+    "make",
+    "zapier",
+    "integration",
+    "fetch",
+    "post",
+    "patch",
+    "delete",
+    "automation",
+    "workflow"
+  ],
+  "scenarios": [
+    {
+      "id": "fetch_data",
+      "label": "Fetch Data",
+      "method": "GET",
+      "description": "Retrieve data from a third-party API without modifying any resources"
+    },
+    {
+      "id": "send_data",
+      "label": "Send Data",
+      "method": "POST",
+      "description": "Submit JSON payloads, form data, or AI output to an external backend"
+    },
+    {
+      "id": "update_record",
+      "label": "Update or Modify",
+      "method": "PATCH",
+      "description": "Partially update an existing record in an external system"
+    },
+    {
+      "id": "replace_record",
+      "label": "Replace Record",
+      "method": "PUT",
+      "description": "Fully replace an existing resource in an external system"
+    },
+    {
+      "id": "delete_resource",
+      "label": "Delete Resource",
+      "method": "DELETE",
+      "description": "Remove a record or resource from an external service"
+    },
+    {
+      "id": "trigger_external",
+      "label": "Trigger External System",
+      "method": "POST",
+      "description": "Fire a webhook or trigger an external automation pipeline"
+    }
+  ],
+  "supported_methods": ["GET", "POST", "PATCH", "PUT", "DELETE", "HEAD", "OPTIONS"],
+  "supported_content_types": [
+    "application/json",
+    "application/x-www-form-urlencoded",
+    "multipart/form-data",
+    "text/plain",
+    "text/HTML",
+    "application/XML",
+    "custom",
+    "none"
+  ],
+  "output_fields": {
+    "ok": "Boolean — true if response status is in the 2xx range",
+    "status": "Number — numeric HTTP status code",
+    "statusText": "String — status description",
+    "response": "String — full response body as a raw string"
+  },
+  "trigger_phrases": [
+    "HTTP request",
+    "webhook",
+    "POST to",
+    "GET from",
+    "call an API",
+    "connect to Make",
+    "connect to Zapier",
+    "connect to HubSpot",
+    "connect to Airtable",
+    "connect to Finnhub",
+    "send data to",
+    "fetch data from",
+    "update a record",
+    "delete a record",
+    "trigger an automation",
+    "send workflow output"
+  ],
+  "files": [
+    {
+      "name": "SKILL.md",
+      "description": "Full skill instruction set used by the AI"
+    },
+    {
+      "name": "README.md",
+      "description": "Overview, usage guide, and quick reference"
+    },
+    {
+      "name": "examples.md",
+      "description": "Real-world configuration examples for all five scenarios"
+    },
+    {
+      "name": "skill.json",
+      "description": "Skill metadata for registry and tooling"
+    }
+  ]
+}

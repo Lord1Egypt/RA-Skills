@@ -1,0 +1,91 @@
+{
+  "_comment": "Security Team Configuration — Customize this for your environment",
+
+  "_comment_scan_dirs": "Add relative paths to your code/project directories to scan for secrets. Example: 'projects/my-app'",
+  "scan_directories": [],
+
+  "_comment_domains": "Add full URLs to health-check. Example: 'https://myapp.com', 'https://api.myapp.com/health'",
+  "domains": [],
+
+  "services": [
+    {
+      "_comment": "Example service definition — replace with your actual services",
+      "name": "Ollama",
+      "port": 11434,
+      "health_endpoint": "http://localhost:11434/",
+      "enabled": false
+    },
+    {
+      "name": "Qdrant",
+      "port": 6333,
+      "health_endpoint": "http://localhost:6333/collections",
+      "enabled": false
+    }
+  ],
+
+  "thresholds": {
+    "disk_warning_percent": 85,
+    "disk_critical_percent": 95,
+    "memory_md_warn_bytes": 51200,
+    "ssl_warn_days": 30,
+    "ssl_critical_days": 7,
+    "qmd_stale_warn_hours": 24,
+    "qmd_stale_critical_hours": 72,
+    "npm_audit_critical_threshold": 1,
+    "npm_audit_high_threshold": 5
+  },
+
+  "memory_checks": {
+    "memory_md": true,
+    "daily_notes": true,
+    "qmd": false,
+    "qdrant": false,
+    "_comment": "Enable qmd/qdrant if you use those systems. Set to true after installation."
+  },
+
+  "false_positive_patterns": [
+    "process\\.env\\.",
+    "\\$\\{?[A-Z_]+\\}?",
+    "YOUR_API_KEY_HERE",
+    "sk-[a-z]+-example",
+    "\\.env\\.example",
+    "CHANGEME",
+    "xxxx",
+    "placeholder"
+  ],
+
+  "secret_patterns": [
+    "sk-[a-zA-Z0-9]{20,}",
+    "AKIA[A-Z0-9]{16}",
+    "eyJ[a-zA-Z0-9_-]{30,}\\.[a-zA-Z0-9_-]+",
+    "ghp_[a-zA-Z0-9]{36}",
+    "gho_[a-zA-Z0-9]{36}",
+    "xoxb-[a-zA-Z0-9-]+",
+    "xoxp-[a-zA-Z0-9-]+",
+    "glpat-[a-zA-Z0-9_-]{20}",
+    "sk_live_[a-zA-Z0-9]{24,}",
+    "rk_live_[a-zA-Z0-9]{24,}",
+    "SG\\.[a-zA-Z0-9_-]{22}\\.[a-zA-Z0-9_-]{43}"
+  ],
+
+  "scan_excludes": [
+    "node_modules",
+    ".git",
+    "vendor",
+    "dist",
+    "build",
+    "__pycache__",
+    ".venv",
+    "*.min.js",
+    "*.bundle.js",
+    "package-lock.json",
+    "yarn.lock"
+  ],
+
+  "schedule": {
+    "_comment": "Informational only — actual scheduling is done via cron or Trigger.dev",
+    "preferred_time": "03:00",
+    "timezone": "America/Denver",
+    "frequency": "daily"
+  }
+}

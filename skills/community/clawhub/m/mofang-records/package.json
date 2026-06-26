@@ -1,0 +1,24 @@
+{
+  "name": "mofang-records",
+  "version": "3.1.0",
+  "description": "Magicflu/Mofang records and BPM CLI skill for OpenClaw, Claude Code, Codex, Trae, and Trae CN",
+  "type": "module",
+  "bin": {
+    "mofang-records": "./cli.mjs"
+  },
+  "scripts": {
+    "build": "node node_modules/typescript/lib/tsc.js",
+    "pack": "npm run build && node ../scripts/pack-skill.mjs",
+    "typecheck": "node node_modules/typescript/lib/tsc.js --noEmit",
+    "cli": "node cli.mjs",
+    "smoke:cli": "node scripts/smoke-cli-validation.mjs",
+    "seed:ai-demo": "node docs/scripts/seed-ai-demo-data.mjs"
+  },
+  "dependencies": {
+    "node-fetch": "^3.3.2"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "typescript": "^5.3.0"
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "models": {
+    "providers": {
+      "mlx-local": {
+        "baseUrl": "http://localhost:8080/v1",
+        "apiKey": "local-mlx",
+        "api": "openai-completions",
+        "models": [
+          {
+            "id": "mlx-community/Qwen3.5-4B-OptiQ-4bit",
+            "name": "Local Qwen3.5 4B (MLX)",
+            "reasoning": false,
+            "input": ["text"],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 128000,
+            "maxTokens": 8192
+          }
+        ]
+      }
+    }
+  },
+  "agents": {
+    "defaults": {
+      "model": {
+        "primary": "baiduqianfancodingplan/qianfan-code-latest",
+        "fallbacks": [
+          "mlx-local/mlx-community/Qwen3.5-4B-OptiQ-4bit"
+        ]
+      },
+      "models": {
+        "mlx-local/mlx-community/Qwen3.5-4B-OptiQ-4bit": {
+          "alias": "Qwen3.5-4B-MLX"
+        }
+      }
+    }
+  }
+}

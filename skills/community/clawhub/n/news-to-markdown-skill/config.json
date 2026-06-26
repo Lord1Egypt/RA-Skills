@@ -1,0 +1,74 @@
+{
+  "name": "news-to-markdown",
+  "version": "3.3.1",
+  "requiredEnvVars": [],
+  "skill": {
+    "name": "news-to-markdown",
+    "version": "3.3.1",
+    "enabled": true,
+    "autoInvoke": false
+  },
+  "commands": {
+    "convert": {
+      "script": "./scripts/run.js",
+      "args": ["convert"],
+      "description": "将新闻文章转换为 Markdown"
+    }
+  },
+  "environment": {
+    "required": [
+      "NODE_VERSION>=18.0.0"
+    ],
+    "optional": []
+  },
+  "install": {
+    "type": "npm",
+    "package": "news-to-markdown",
+    "version": "3.3.1",
+    "execution": "node scripts/run.js convert",
+    "global": true,
+    "autoInstall": false,
+    "autoUpdate": false,
+    "riskLevel": "moderate",
+    "riskReason": "Skill 插件路径在进程内 require() 已安装的第三方 npm 包，存在供应链风险。使用前请审计源码并显式安装固定版本。",
+    "requiresApproval": true,
+    "preinstall": "npm install -g news-to-markdown@3.3.1",
+    "source": {
+      "type": "npm",
+      "registry": "https://registry.npmjs.org",
+      "package": "news-to-markdown",
+      "repository": "https://github.com/sipingme/news-to-markdown",
+      "license": "MIT",
+      "audit": "https://github.com/sipingme/news-to-markdown/blob/main/src/index.ts"
+    },
+    "verification": {
+      "command": "node scripts/run.js help",
+      "expectedOutput": "news-to-markdown-skill v3.3.1"
+    }
+  },
+  "dependencies": {
+    "npm": [
+      "news-to-markdown@3.3.1"
+    ],
+    "note": "Pinned to exact version. Skill plugin path requires `npm install -g news-to-markdown@3.3.1` before invocation; the launcher (scripts/run.js) resolves the installed module and runs it in-process with no subprocess and no version drift."
+  },
+  "permissions": {
+    "filesystem": {
+      "read": ["*.html", "*.htm", "*.md", "./images/", "./output/"],
+      "write": ["*.md", "./images/"]
+    },
+    "network": {
+      "domains": [
+        "registry.npmjs.org",
+        "*.toutiao.com",
+        "*.toutiaoimg.com",
+        "*.weixin.qq.com",
+        "*.xiaohongshu.com",
+        "*.xhscdn.com",
+        "*.36kr.com",
+        "*.zhihu.com"
+      ],
+      "note": "仅访问支持的新闻平台域名"
+    }
+  }
+}

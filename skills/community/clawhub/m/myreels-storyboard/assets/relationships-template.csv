@@ -1,0 +1,4 @@
+relationship_id,character_a_id,character_a_name,character_b_id,character_b_name,relationship_type,visual_relation,emotional_relation,blocking_pattern,interaction_pattern,prompt_hint
+R001,C001,尤纪,C002,肯,对立,对峙剪影,敌意与压迫感,"面对面站位，保留清晰对抗轴线","正面对峙，战术压迫，镜像式站位","same scene, opposing stances, visual tension between both characters, face-to-face blocking, hostile emotional pressure"
+R002,C001,尤纪,C003,侦察犬一号,盟友,并肩协作剪影,信任与互相支援,"协作站位，前后景层次清晰，便于阅读团队关系","并肩移动，协同动作，彼此支援","same scene, cooperative blocking, readable teamwork silhouette, supportive emotional tone"
+R003,C002,肯,C003,侦察犬一号,对立,猎人与守卫式剪影,互不信任与压迫感,"错位游走距离，捕猎者与守卫者的对抗间距","绕行试探，威胁评估，防御性拦截","same scene, tense spacing between rival fighter and scout robot dog, defensive guard posture, hostile pressure"

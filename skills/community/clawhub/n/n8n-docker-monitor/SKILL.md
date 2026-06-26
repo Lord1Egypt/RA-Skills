@@ -1,35 +1,29 @@
 ---
-name: "N8N Docker Monitor"
-description: "Automation skill for N8N Docker Monitor."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/n8n-docker-monitor"
-sourceUrl: "https://clawhub.ai/skills/n8n-docker-monitor"
----
+name: n8n-monitor
+description: Monitoramento operacional do N8N via Docker.
+version: 1.0.0
+author: yesong-Hue
+homepage: https://clawhub.ai/yesong-Hue/n8n-monitor
+tags: [n8n, docker, monitoring, automation]
+readme: |
+  # n8n-monitor
 
-# N8N Docker Monitor
+Monitoramento operacional do N8N via Docker.
 
-> Automation skill for N8N Docker Monitor.
+## Capabilities
+- Verificar status dos containers N8N
+- Ler logs recentes
+- Checar saúde do container
+- Analisar uso de CPU e memória
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/n8n-docker-monitor`
-- **Source URL:** [https://clawhub.ai/skills/n8n-docker-monitor](https://clawhub.ai/skills/n8n-docker-monitor)
+## Commands
+- docker ps | grep n8n
+- docker logs --tail 50 n8n
+- docker inspect --format='{{.State.Health.Status}}' n8n
+- docker stats --no-stream n8n
 
-## Overview
+## Output
+Respostas em Markdown, com tabelas simples e status claro.
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/n8n-docker-monitor
-```
+## Status
+active

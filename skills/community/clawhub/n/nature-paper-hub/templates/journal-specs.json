@@ -1,0 +1,292 @@
+{
+  "journals": {
+    "nature": {
+      "name": "Nature",
+      "url": "https://www.nature.com/nature/for-authors",
+      "impact_factor": 63.7,
+      "acceptance_rate": "~8%",
+      "article_types": {
+        "article": {
+          "body_words": 3000,
+          "abstract_words": 150,
+          "figures": 6,
+          "references": 30,
+          "methods_words": 3000,
+          "methods_location": "after_references",
+          "notes": "Methods sits after references; Extended Data up to 10 items"
+        },
+        "letter": {
+          "body_words": 1500,
+          "abstract_words": 150,
+          "figures": 4,
+          "references": 30
+        }
+      },
+      "style": "numbered",
+      "template_search": "site:nature.com filetype:pdf OR arxiv.org nature journal article"
+    },
+    "nature_materials": {
+      "name": "Nature Materials",
+      "url": "https://www.nature.com/nmat/for-authors",
+      "impact_factor": 37.2,
+      "acceptance_rate": "~9%",
+      "article_types": {
+        "article": {
+          "body_words": 3000,
+          "abstract_words": 150,
+          "figures": 6,
+          "references": 50,
+          "methods_words": 3000,
+          "methods_location": "after_references"
+        },
+        "letter": {
+          "body_words": 1500,
+          "abstract_words": 150,
+          "figures": 4,
+          "references": 30
+        }
+      },
+      "style": "numbered",
+      "scope": "Materials science: synthesis, characterization, properties, applications"
+    },
+    "nature_chemistry": {
+      "name": "Nature Chemistry",
+      "url": "https://www.nature.com/nchem/for-authors",
+      "impact_factor": 19.2,
+      "acceptance_rate": "~9%",
+      "article_types": {
+        "article": {
+          "body_words": 3000,
+          "abstract_words": 150,
+          "figures": 6,
+          "references": 50,
+          "methods_words": 3000,
+          "methods_location": "after_references"
+        },
+        "letter": {
+          "body_words": 1500,
+          "abstract_words": 150,
+          "figures": 4,
+          "references": 30
+        }
+      },
+      "style": "numbered",
+      "scope": "Chemical research across all disciplines"
+    },
+    "nature_energy": {
+      "name": "Nature Energy",
+      "url": "https://www.nature.com/nenergy/for-authors",
+      "impact_factor": 60.9,
+      "acceptance_rate": "~8%",
+      "article_types": {
+        "article": {
+          "body_words": 3000,
+          "abstract_words": 150,
+          "figures": 6,
+          "references": 50,
+          "methods_words": 3000,
+          "methods_location": "after_references"
+        }
+      },
+      "style": "numbered",
+      "scope": "Energy generation, distribution, storage, conversion, efficiency, policy"
+    },
+    "nature_catalysis": {
+      "name": "Nature Catalysis",
+      "url": "https://www.nature.com/natcatal/for-authors",
+      "impact_factor": 37.8,
+      "acceptance_rate": "~8%",
+      "article_types": {
+        "article": {
+          "body_words": 3000,
+          "abstract_words": 150,
+          "figures": 6,
+          "references": 50,
+          "methods_words": 3000,
+          "methods_location": "after_references"
+        }
+      },
+      "style": "numbered",
+      "scope": "Catalysis: heterogeneous, homogeneous, enzymatic, electrocatalysis, photocatalysis"
+    },
+    "nature_sustainability": {
+      "name": "Nature Sustainability",
+      "url": "https://www.nature.com/natsustain/for-authors",
+      "impact_factor": 25.1,
+      "acceptance_rate": "~10%",
+      "article_types": {
+        "article": {
+          "body_words": 4000,
+          "abstract_words": 200,
+          "figures": 8,
+          "references": 60
+        }
+      },
+      "style": "numbered",
+      "scope": "Sustainability science: environment, society, economics"
+    },
+    "nature_communications": {
+      "name": "Nature Communications",
+      "url": "https://www.nature.com/ncomms/for-authors",
+      "impact_factor": 15.7,
+      "acceptance_rate": "~20%",
+      "open_access": true,
+      "article_types": {
+        "article": {
+          "body_words": 5000,
+          "body_includes_methods": true,
+          "abstract_words": 200,
+          "figures": 10,
+          "references": 60,
+          "methods_location": "within_main_text"
+        }
+      },
+      "style": "numbered",
+      "scope": "All natural sciences — most flexible Nature journal"
+    },
+    "nature_methods": {
+      "name": "Nature Methods",
+      "url": "https://www.nature.com/nmeth/for-authors",
+      "impact_factor": 32.1,
+      "acceptance_rate": "~8-10%",
+      "article_types": {
+        "article": {
+          "body_words": 3000,
+          "abstract_words": 150,
+          "figures": 6,
+          "references": 50,
+          "methods_words": 3000,
+          "methods_location": "after_references",
+          "notes": "Methods description lives in Online Methods after refs"
+        }
+      },
+      "style": "numbered",
+      "scope": "Novel experimental/computational methods for life sciences"
+    },
+    "nature_computational_science": {
+      "name": "Nature Computational Science",
+      "url": "https://www.nature.com/natcomputsci/for-authors",
+      "impact_factor": 12.0,
+      "acceptance_rate": "~12%",
+      "article_types": {
+        "article": {
+          "body_words": 5000,
+          "abstract_words": 200,
+          "figures": 8,
+          "references": 60
+        }
+      },
+      "style": "numbered",
+      "scope": "Algorithms, software, computational approaches across all sciences"
+    },
+
+    "nature_chemical_engineering": {
+      "name": "Nature Chemical Engineering",
+      "url": "https://www.nature.com/natchemeng/for-authors",
+      "impact_factor": 13.0,
+      "acceptance_rate": "~8%",
+      "article_types": {
+        "article": {
+          "body_words": 3500,
+          "body_excludes": "abstract, Methods, references, figure legends",
+          "abstract_words": 150,
+          "abstract_unreferenced": true,
+          "figures": 6,
+          "extended_data": 10,
+          "references": 50,
+          "methods_location": "online_methods_after_discussion",
+          "methods_words": null,
+          "structure": ["Introduction (no heading)", "Results", "Discussion or Conclusions", "Online Methods"],
+          "notes": "Methods = Online Methods, placed after Discussion. Results and Methods have topical subheadings; Discussion has none."
+        },
+        "analysis": {
+          "body_words": 3500,
+          "abstract_words": 150,
+          "figures": 6,
+          "extended_data": 10,
+          "references": 50
+        },
+        "correspondence": {
+          "words_range": "300-800",
+          "figures": 1,
+          "references": 10
+        }
+      },
+      "style": "numbered",
+      "scope": "Chemical engineering: process design, reaction engineering, separations, transport phenomena, scale-up"
+    },
+
+    "nature_machine_intelligence": {
+      "name": "Nature Machine Intelligence",
+      "url": "https://www.nature.com/natmachintell/for-authors",
+      "impact_factor": 23.9,
+      "acceptance_rate": "~8%",
+      "article_types": {
+        "article": {
+          "body_words": 3500,
+          "body_excludes": "abstract, Methods, references, figure legends",
+          "abstract_words": 150,
+          "abstract_unreferenced": true,
+          "figures": 6,
+          "references": 50,
+          "methods_location": "after_discussion",
+          "structure": ["Introduction (no heading)", "Results", "Discussion", "Methods"],
+          "notes": "Results and Methods have topical subheadings; Discussion does not. Also accepts Analysis format (100-150 word abstract)."
+        },
+        "analysis": {
+          "body_words": 3500,
+          "abstract_words_range": "100-150",
+          "figures": 6,
+          "references": 50
+        },
+        "correspondence": {
+          "words_range": "500-1000",
+          "figures": 1,
+          "references": 10
+        },
+        "review": {
+          "body_words_range": "3000-4000",
+          "references": 100,
+          "notes": "≤10% of refs should have short annotations explaining key contributions"
+        }
+      },
+      "style": "numbered",
+      "scope": "Machine learning, deep learning, robotics, AI, computer vision, NLP, reinforcement learning"
+    },
+
+    "nature_synthesis": {
+      "name": "Nature Synthesis",
+      "url": "https://www.nature.com/natsynth/for-authors",
+      "impact_factor": 20.0,
+      "acceptance_rate": "~8%",
+      "article_types": {
+        "article": {
+          "body_words": 3000,
+          "body_excludes": "abstract, methods, references, figure/table captions",
+          "abstract_words": 150,
+          "abstract_unreferenced": true,
+          "figures": 6,
+          "references": 50,
+          "methods_location": "after_discussion",
+          "methods_words": 3000,
+          "structure": ["Introduction (no heading)", "Results", "Discussion", "Conclusions (optional)", "Methods"],
+          "special_rules": [
+            "NO schemes — use figures instead (unique to Nature Synthesis)",
+            "Methods section CANNOT contain figures or tables — use Extended Data or SI",
+            "Results and Discussion can be combined as 'Results and Discussion' with subheadings",
+            "Discussion should be succinct with NO subheadings",
+            "Non-graphical equations permitted in Methods"
+          ],
+          "notes": "Only one article type (Article). Spans short communications to full studies."
+        },
+        "correspondence": {
+          "words_range": "300-800",
+          "figures": 1,
+          "references": 10
+        }
+      },
+      "style": "numbered",
+      "scope": "Synthetic chemistry and materials synthesis: total synthesis, synthetic methodology, automated synthesis, retrosynthetic analysis"
+    }
+  }
+}

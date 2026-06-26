@@ -1,35 +1,30 @@
 ---
-name: "Cancel Dispatch Run"
-description: "Cancel an active interactive dispatch run by run-id from slash command cancel. Use when user wants to stop a dispatchi or ralph-loop task immediately."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/miniade-cancel"
-sourceUrl: "https://clawhub.ai/skills/miniade-cancel"
+name: cancel
+description: Cancel an active interactive dispatch run by run-id from slash command cancel. Use when user wants to stop a dispatchi or ralph-loop task immediately.
 ---
 
-# Cancel Dispatch Run
+Run `{baseDir}/scripts/run_cancel.sh` with user args.
 
-> Cancel an active interactive dispatch run by run-id from slash command cancel. Use when user wants to stop a dispatchi or ralph-loop task immediately.
+## Contract
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/miniade-cancel`
-- **Source URL:** [https://clawhub.ai/skills/miniade-cancel](https://clawhub.ai/skills/miniade-cancel)
+- Format: `/cancel <run-id>`
+- Also supports: `/cancel <project>/<run-id>`
 
-## Overview
+## Local config
 
+- optional env file: `${OPENCLAW_DISPATCH_ENV:-<workspace>/skills/dispatch.env.local}`
+- supports OpenClaw `skills.entries.cancel.env` injection
+- script is self-contained
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/miniade-cancel
-```
+## Security disclosure
+
+- Reads only allowlisted env keys from `dispatch.env.local` using key=value parsing (no `source`).
+- Sends tmux keystrokes only to the run session resolved from local metadata.
+- Updates local run metadata (`status=cancelled`, `exit_code=130`).
+
+## Behavior
+
+1. Resolve run-id to exactly one result directory.
+2. Send `/ralph-loop:cancel-ralph` to that tmux session.
+3. Perform hard-cancel by requesting `/exit` and killing tmux session.
+4. Return success or precise error.

@@ -1,35 +1,35 @@
 ---
-name: "Nansen Fund Tracker"
+name: nansen-fund-tracker
 description: "What are crypto funds and VCs holding right now? Cross-chain fund portfolios and net accumulation signals."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/nansen-fund-tracker"
-sourceUrl: "https://clawhub.ai/skills/nansen-fund-tracker"
+metadata:
+  openclaw:
+    requires:
+      env:
+        - NANSEN_API_KEY
+      bins:
+        - nansen
+    primaryEnv: NANSEN_API_KEY
+    install:
+      - kind: node
+        package: nansen-cli
+        bins: [nansen]
+allowed-tools: Bash(nansen:*)
 ---
 
-# Nansen Fund Tracker
+# Fund Watch
 
-> What are crypto funds and VCs holding right now? Cross-chain fund portfolios and net accumulation signals.
+**Answers:** "What are crypto funds and VCs holding right now?"
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/nansen-fund-tracker`
-- **Source URL:** [https://clawhub.ai/skills/nansen-fund-tracker](https://clawhub.ai/skills/nansen-fund-tracker)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/nansen-fund-tracker
+nansen research smart-money holdings --chain ethereum --labels "Fund" --limit 20
+# → token_symbol, value_usd, holders_count, balance_24h_percent_change, share_of_holdings_percent
+
+nansen research smart-money holdings --chain solana --labels "Fund" --limit 20
+
+nansen research smart-money netflow --chain ethereum --labels "Fund" --limit 10
+# → token_symbol, net_flow_1h/24h/7d/30d_usd, market_cap_usd, trader_count
+
+nansen research smart-money netflow --chain solana --labels "Fund" --limit 10
 ```
+
+Cross-reference holdings with netflow to see directional conviction. Positive net_flow_24h = active accumulation.

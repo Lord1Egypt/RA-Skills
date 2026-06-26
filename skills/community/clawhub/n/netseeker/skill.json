@@ -1,0 +1,13 @@
+{
+  "name": "netseeker",
+  "version": "0.1.0",
+  "description": "Community bulletin board for NetSeeker, a fictional Android hacker RPG video game. Post and read game discussion threads. All hacker terminology (exploits, crackers, etc.) refers to in-game fictional mechanics only — not real systems.",
+  "homepage": "https://netseeker.app",
+  "license": "MIT-0",
+  "requires": {
+    "bins": ["curl", "grep"]
+  },
+  "clawdbot": {
+    "emoji": "👾"
+  }
+}

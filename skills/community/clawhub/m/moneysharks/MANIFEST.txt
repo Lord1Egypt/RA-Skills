@@ -1,0 +1,73 @@
+moneysharks.skill packaging manifest
+
+Core:
+- SKILL.md
+
+References:
+- references/onboarding.md
+- references/aster-skill-map.md
+- references/strategy-framework.md
+- references/confluence-model.md
+- references/leverage-policy.md
+- references/risk-policy.md
+- references/execution-playbook.md
+- references/websocket-loop.md
+- references/cron-automation.md
+- references/review-and-learning.md
+- references/aster-readonly-integration.md
+- references/proposal-flow.md
+- references/live-execution-boundary.md
+- references/approval-execution.md
+- references/deployment.md
+- references/emergency-controls.md
+- references/packaging.md
+
+Scripts (production core — 24/7 live trading):
+- scripts/autonomous_runner.py         ← main 24/7 entry point (called by cron)
+- scripts/trade_loop.py                ← single-symbol execution loop
+- scripts/market_scan_from_aster.py    ← multi-TF klines + account scan
+- scripts/compute_features.py          ← EMA, RSI, ATR, MACD indicators
+- scripts/compute_signal.py            ← long/short/wait/hold/close signal
+- scripts/compute_confluence.py        ← 9-point confluence scoring
+- scripts/recommend_leverage.py        ← volatility-adjusted leverage
+- scripts/size_position.py             ← risk-based position sizing
+- scripts/risk_checks.py               ← hard limit enforcement
+- scripts/live_execution_adapter.py    ← live order execution (place_bracket)
+- scripts/aster_readonly_client.py     ← Aster DEX API client (reads + writes)
+- scripts/position_monitor.py          ← detects closed positions, records PnL
+- scripts/trailing_stop.py             ← ATR-trail and breakeven stop management
+- scripts/fetch_trade_outcomes.py      ← backfill realised PnL from income history
+- scripts/review_trades.py             ← post-trade performance analysis
+- scripts/update_metrics.py            ← learning metrics + adaptive leverage
+- scripts/journal_trade.py             ← append to trades.json
+- scripts/validate_config.py           ← config validation
+- scripts/reconcile_state.py           ← sync state with live Aster account
+
+Scripts (setup and operations):
+- scripts/onboarding.py                ← interactive onboarding CLI
+- scripts/register_crons.py            ← generate cron job JSON with real paths
+- scripts/halt.py                      ← emergency halt
+- scripts/resume.py                    ← resume from halt
+- scripts/status.py                    ← agent status report
+
+Scripts (approval / paper / proposal flows):
+- scripts/paper_runner.py              ← paper mode runner
+- scripts/approval_runner.py           ← approval mode proposal emitter
+- scripts/approval_watch_runner.py     ← approval watcher loop
+- scripts/aster_proposal_runner.py     ← real-data approval-gated proposal
+- scripts/prepare_order.py             ← order preparation helper
+
+Examples/Templates:
+- config.example.json
+- state.example.json
+- trades.example.json
+- openclaw-cron-templates.json
+- scripts/sample_market.json
+- scripts/sample_context.json
+- scripts/approval_request.example.json
+- scripts/approval_granted.example.json
+- scripts/cron_examples.txt
+
+Setup:
+- install.sh
+- requirements.txt

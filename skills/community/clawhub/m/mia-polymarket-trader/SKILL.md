@@ -1,35 +1,35 @@
 ---
-name: "Mia Polymarket Trader"
-description: "AI agent for automated prediction market trading on Polymarket"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/mia-polymarket-trader"
-sourceUrl: "https://clawhub.ai/skills/mia-polymarket-trader"
+name: mia-polymarket-trader
+description: AI agent for automated prediction market trading on Polymarket
+homepage: https://polymarket.com
+metadata:
+  clawdbot:
+    emoji: 💎
+    tags: ["trading", "crypto", "predictions", "ai-agent"]
 ---
 
 # Mia Polymarket Trader
 
-> AI agent for automated prediction market trading on Polymarket
+AI agent that autonomously trades on Polymarket prediction markets.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/mia-polymarket-trader`
-- **Source URL:** [https://clawhub.ai/skills/mia-polymarket-trader](https://clawhub.ai/skills/mia-polymarket-trader)
+## Features
+- Market analysis using AI
+- Arbitrage opportunity detection
+- Automated trade execution
+- Risk management
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
+## Setup
 ```bash
-hermes skills install clawhub/mia-polymarket-trader
+export POLYMARKET_API_KEY="your-key"
+export POLYMARKET_PRIVATE_KEY="your-wallet-key"
+mia-polymarket analyze --market "tech-ai"
+mia-polymarket trade --market-id "xxx" --position "yes" --amount 10
 ```
+
+## Safety
+- Max 5% portfolio per trade
+- Stop-loss at 20%
+- Daily reporting
+
+## Author
+MiaBloomx 💎

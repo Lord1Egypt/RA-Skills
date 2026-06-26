@@ -1,0 +1,19 @@
+[
+  {
+    "id": 18611,
+    "fullname": "Algorithms",
+    "shortname": "CSCI270",
+    "startdate": 1710000000,
+    "enddate": 1741536000,
+    "visible": 1
+  },
+  {
+    "id": 18838,
+    "fullname": "Discrete Mathematics",
+    "shortname": "MATH201",
+    "startdate": 1710000000,
+    "enddate": 1741536000,
+    "visible": 1
+  }
+]
+

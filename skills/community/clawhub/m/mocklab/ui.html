@@ -1,0 +1,1306 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <title>MockLab——智能接口工具箱</title>
+  <script
+    src="https://cdn.xjietiao.com/dir_mkteditor/activity/new_common/js/jquery.2.1.4.min.js?max_age=31536000"></script>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+  <div class="app">
+    <div class="header">
+      <div class="logo-group">
+        <div class="logo-icon">
+          <svg t="1775024858677" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
+            p-id="7692" width="200" height="200">
+            <path
+              d="M101.35 76.46H76.46C69.58 76.46 64 82.04 64 88.92v572.41c0 6.89 5.57 12.46 12.46 12.46h24.89c6.87 0.02 12.44-5.54 12.46-12.4V88.92c0-6.89-5.6-12.46-12.46-12.46zM947.54 76.46h-24.89c-6.88 0-12.46 5.58-12.46 12.46v572.41c0 6.89 5.54 12.46 12.46 12.46h24.89c6.88 0 12.46-5.58 12.46-12.46V88.92c0-6.89-5.6-12.46-12.46-12.46zM140.7 76.46v570.85c0 47.26 29.43 94.97 71.76 120.2l301.58 180.03 296.85-177.18c44.85-26.8 76.47-75.79 76.47-123.06V76.46H140.7z m551.84 534.57h-64.18v-237.7l-82.72 237.7h-69.41l-78.44-237.7v237.7h-64.18v-317.1h98.41l78.92 247.69 83.2-247.69h98.41v317.1z"
+              fill="#ffffff" p-id="7693"></path>
+          </svg>
+        </div>
+        <div class="logo-text">
+          <div class="brand">MockLab</div>
+          <div class="slogan">智能接口工具箱</div>
+        </div>
+      </div>
+
+      <select id="proj-select">
+        <!-- <option value="">-- 选择项目 --</option> -->
+      </select>
+
+      <div style="display:flex;gap:6px;">
+        <button class="btn btn-outline" style="font-size:11px;padding:4px 10px" onclick="exportSchema()">📥 导出Schema</button>
+        <button class="btn btn-outline" style="font-size:11px;padding:4px 10px" onclick="importSchema()">📤 导入Schema</button>
+        <input type="file" id="import-file" accept=".json" style="display:none" onchange="handleImportFile(event)">
+      </div>
+
+      <div class="header-right">
+        <button class="btn btn-outline" onclick="clearState()">清空状态</button>
+        <button class="btn btn-outline" onclick="location.reload()">刷新</button>
+      </div>
+    </div>
+    <div class="main">
+      <div class="sidebar">
+        <div class="sidebar-header" style="display:flex;align-items:center;justify-content:space-between">
+          <span>接口列表</span>
+          <button onclick="newCustomIface()"
+            style="font-size:10px;padding:3px 8px;background:#667eea;color:white;border:none;border-radius:4px;cursor:pointer">+
+            新建</button>
+        </div>
+        <div class="iface-list" id="iface-list">
+          <div class="eh" style="font-size:12px">
+            <div class="ic">📡</div>选择项目
+          </div>
+        </div>
+      </div>
+      <div class="content">
+        <div class="content-top">
+          <div class="editor-panel">
+            <div class="panel-header" id="editor-hdr" style="display:none">
+              <span class="mth-badge badge-post" id="mth-badge">POST</span>
+              <span id="iface-path"
+                style="font-family:monospace;font-size:12px;color:#334155;word-break:break-all"></span>
+              <span id="iface-name" style="margin-left:8px;color:#94a3b8;font-size:12px"></span>
+            </div>
+          </div>
+        </div>
+        <div class="settings-bar" id="settings-bar">
+          <!-- 延迟配置 -->
+          <div class="sg">
+            <label>延迟</label>
+            <input type="checkbox" id="in-delay-on" style="width:14px;height:14px;cursor:pointer">
+            <input id="in-delay-min" placeholder="最小ms" style="width:70px" type="number" min="0">
+            <span>-</span>
+            <input id="in-delay-max" placeholder="最大ms" style="width:70px" type="number" min="0">
+            <span class="hint">ms</span>
+          </div>
+          <!-- 错误注入配置 -->
+          <div class="sg">
+            <label>错误</label>
+            <input type="checkbox" id="in-err-on" style="width:14px;height:14px;cursor:pointer">
+            <select id="in-err-type"
+              style="font-size:12px;padding:4px 6px;border:1.5px solid #c7d2fe;border-radius:5px">
+              <option value="500">500</option>
+              <option value="400">400</option>
+              <option value="401">401</option>
+              <option value="403">403</option>
+              <option value="404">404</option>
+              <option value="429">429</option>
+              <option value="timeout">timeout</option>
+              <option value="network_error">network_error</option>
+              <option value="rate_limit">rate_limit</option>
+            </select>
+            <input id="in-err-prob" placeholder="概率" style="width:55px" type="number" min="0.001" max="1" step="0.01"
+              value="1">
+            <input id="in-err-code" placeholder="错误码" style="width:80px">
+            <input id="in-err-msg" placeholder="错误消息" style="width:120px">
+            <span class="updated" id="updated-msg">已保存</span>
+          </div>
+          <!-- 请求头配置 -->
+          <div class="sg" style="flex-wrap:wrap;gap:4px">
+            <label>请求头</label>
+            <div id="req-headers-container" style="display:flex;flex-wrap:wrap;gap:4px;flex:1">
+              <!-- 动态添加请求头行 -->
+            </div>
+            <button onclick="addReqHeader()" style="font-size:11px;padding:4px 8px;background:#e2e8f0;color:#475569;border:1px solid #cbd5e1;border-radius:4px;cursor:pointer">+</button>
+          </div>
+          <!-- Seed 配置 -->
+          <div class="sg">
+            <label>Seed</label>
+            <input id="in-seed" type="number" placeholder="留空则随机" style="width:120px">
+            <span class="hint" style="font-size:10px;color:#94a3b8">固定Seed可重现数据</span>
+          </div>
+          <button class="btn"
+            style="font-size:11px;padding:4px 12px;background:#667eea;color:white;border:none;border-radius:5px;cursor:pointer"
+            onclick="saveSettings()">保存</button>
+        </div>
+
+        <div class="editor-body" id="editor-body">
+          <div class="eh">
+            <div class="ic">👈</div>从左侧选择一个接口
+          </div>
+        </div>
+      </div>
+      <div class="resp-panel">
+        <div class="resp-header">
+          <div class="resp-header-left">
+            <span style="font-weight:600;font-size:13px">响应结果</span>
+            <span class="sb" id="status-badge" style="display:none"></span>
+          </div>
+          <div style="display:flex;gap:6px">
+            <button class="btn btn-outline" style="font-size:11px;padding:4px 10px" onclick="fmtResp()">格式化</button>
+            <button class="btn btn-outline" style="font-size:11px;padding:4px 10px" onclick="cpResp()">复制</button>
+          </div>
+        </div>
+        <div class="resp-body" id="resp-body">
+          <div class="eh" style="color:#666">
+            <div class="ic">📋</div>点击发送请求后查看响应
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="action-bar" id="action-bar" style="display:none">
+      <div style="font-size:12px;color:#888" id="req-summary"></div>
+      <div>
+        <input id="proxy-url" type="text" placeholder="代理目标地址（留空则用Mock数据）" style="flex:1;width:500px;padding:10px;border:1.5px solid #e2e8f0;border-radius:5px;font-size:12px;margin-right: 10px;">
+        <button class="btn-primary" id="send-btn" onclick="sendReq()">🚀 发送请求</button>
+      </div>
+    </div>
+
+    <div class="bottom-bar">
+      <span>🏃 MockLab 运行中</span>
+      <span id="proj-info">-</span>
+      <span id="iface-count">0 个接口</span>
+    </div>
+  </div>
+
+  <!-- 自定义接口编辑弹窗 -->
+  <div class="ci-modal" id="ci-modal">
+    <div class="ci-modal-inner">
+      <div class="ci-modal-hdr">
+        <span class="title" id="ci-modal-title">新建接口</span>
+        <button class="ci-modal-close" onclick="closeCIModal()">×</button>
+      </div>
+      <div class="ci-modal-body">
+        <div class="ci-row">
+          <label>请求方式</label>
+          <select id="ci-method">
+            <option value="GET">GET</option>
+            <option value="POST" selected>POST</option>
+            <option value="PUT">PUT</option>
+            <option value="DELETE">DELETE</option>
+          </select>
+          <label style="flex:0 0 40px">路径</label>
+          <input id="ci-path" type="text" placeholder="/api/your/path">
+        </div>
+        <div class="ci-row">
+          <label>接口名称</label>
+          <input id="ci-name" type="text" placeholder="可选，如：用户列表接口" style="flex:2">
+          <button onclick="delCustomIface()" id="ci-del-btn"
+            style="display:none;background:#fee2e2;color:#dc2626;border:1px solid #fecaca;padding:8px 12px;border-radius:6px;font-size:13px;cursor:pointer">删除</button>
+        </div>
+        <div class="ci-row" style="align-items: start;">
+          <div class="ci-section">
+            <div class="ci-section-hdr">请求参数 <span style="opacity:0.7;font-weight:400;font-size:11px">(留空则无请求体)</span>
+            </div>
+            <div class="ci-section-body" id="ci-req-fields"></div>
+            <button class="ci-add-field" onclick="addCIField('ci-req-fields')">+ 添加字段</button>
+          </div>
+          <div class="ci-section">
+            <div class="ci-section-hdr">响应参数 <span style="opacity:0.7;font-weight:400;font-size:11px">(必填，至少一个)</span>
+            </div>
+            <div class="ci-section-body" id="ci-resp-fields"></div>
+            <button class="ci-add-field" onclick="addCIField('ci-resp-fields')">+ 添加字段</button>
+          </div>
+        </div>
+      </div>
+      <div class="ci-modal-foot">
+        <button onclick="closeCIModal()"
+          style="padding:9px 20px;background:#f5f5f5;border:1px solid #e2e8f2;border-radius:6px;font-size:13px;cursor:pointer">取消</button>
+        <button onclick="sendCustomReq()"
+          style="padding:9px 20px;background:#dcfce7;color:#166534;border:1px solid #bbf7d0;border-radius:6px;font-size:13px;cursor:pointer">🚀
+          测试</button>
+        <button onclick="saveCustomIface()"
+          style="padding:9px 24px;background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);color:white;border:none;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer">保存</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast 通知容器 -->
+  <div class="toast-container" id="toast-container"></div>
+</body>
+
+</html>
+<script>
+  var curProj = "", curIface = null, interfaces = [];
+
+  function eH(s) { if (s == null) return ""; return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;") }
+  function eA(s) { if (s == null) return ""; return String(s).replace(/"/g, "&quot;").replace(/'/g, "&#39;") }
+
+  // Toast 通知系统
+  var toastList = [];
+  function showToast(message, type, duration) {
+    type = type || "info";
+    duration = duration || 3500;
+    var icons = { success: "✓", error: "✕", warning: "⚠", info: "ℹ" };
+    var toast = document.createElement("div");
+    toast.className = "toast toast-" + type;
+    toast.innerHTML = '<span class="toast-icon">' + icons[type] + '</span>' +
+      '<span class="toast-content">' + message + '</span>' +
+      '<button class="toast-close" onclick="dismissToast(this)">×</button>' +
+      '<div class="toast-progress" style="width:100%"></div>';
+    document.getElementById("toast-container").appendChild(toast);
+    var progress = toast.querySelector(".toast-progress");
+    progress.style.transition = "width " + duration + "ms linear";
+    requestAnimationFrame(function () {
+      toast.classList.add("show");
+      progress.style.width = "0%";
+    });
+    var timer = setTimeout(function () { dismissToast(toast.querySelector(".toast-close")); }, duration);
+    toast.querySelector(".toast-close").onclick = function () { clearTimeout(timer); dismissToast(this); };
+    toastList.push(toast);
+  }
+  function dismissToast(btn) {
+    var toast = btn.closest ? btn.closest(".toast") : btn.parentElement;
+    if (!toast || !toast.classList.contains("show")) return;
+    toast.classList.remove("show");
+    toast.classList.add("hiding");
+    setTimeout(function () { if (toast.parentElement) toast.parentElement.removeChild(toast); }, 350);
+  }
+
+  // Pretty-print a JSON object/string for display in the syntax-highlighter
+  function pp(json) {
+    if (typeof json === "string") {
+      try { json = JSON.parse(json); } catch (e) { return json; }
+    }
+    return JSON.stringify(json, null, 2);
+  }
+
+  // Syntax highlight JSON string
+  function sh(json) {
+    var text = typeof json === "string" ? json : JSON.stringify(json, null, 2);
+    text = text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+    var res = "", inStr = false, sc = "", i = 0;
+    while (i < text.length) {
+      var c = text[i];
+      if (!inStr) {
+        if (c === '"') { inStr = true; sc = '"'; res += '<span class="s">"'; }
+        else if (c === "{" || c === "}") res += "<span class='br'>" + c + "</span>";
+        else if (c === "[" || c === "]") res += "<span class='br'>" + c + "</span>";
+        else if (c === ":") res += "<span class='k'>:</span>";
+        else if (c === ",") res += "<span class='br'>,</span>";
+        else if (c === "t" && text.slice(i, i + 4) === "true") { res += "<span class='bo'>true</span>"; i += 4; continue; }
+        else if (c === "f" && text.slice(i, i + 5) === "false") { res += "<span class='bo'>false</span>"; i += 5; continue; }
+        else if (c === "n" && text.slice(i, i + 4) === "null") { res += "<span class='bo'>null</span>"; i += 4; continue; }
+        else if ((c === "-" || (c >= "0" && c <= "9"))) { var n = c; i++; while (i < text.length && (text[i] >= "0" && text[i] <= "9" || text[i] === "." || text[i] === "e" || text[i] === "E" || text[i] === "+" || text[i] === "-")) { n += text[i]; i++; } res += "<span class='n'>" + n + "</span>"; continue; }
+        else res += c; i++; continue;
+      } else {
+        if (c === "\\" && i + 1 < text.length) { res += text[i] + text[i + 1]; i += 2; }
+        else if (c === sc) { res += '"</span>'; inStr = false; i++; }
+        else { res += c; i++; }
+      }
+    }
+    return res;
+  }
+
+  async function init() {
+    var r = await fetch("/mock/projects"); var j = await r.json();
+    if (j.code !== 0 || !j.data || !j.data.length) return;
+    var sel = $("#proj-select");
+    j.data.forEach(function (p) { var o = document.createElement("option"); o.value = p.name; $(o).text(p.name + " (" + p.count + " 个接口)"); sel.append(o); });
+    sel.value = j.data[0].name;
+    await selProj(j.data[0].name);
+    $(sel).change(function () { selProj(this.value); });
+  }
+
+  async function selProj(n) {
+    if (!n) return; curProj = n; curIface = null;
+    // 重置右侧面板
+    $("#editor-hdr").css("display", "none");
+    $("#settings-bar").removeClass("visible");
+    $("#action-bar").css("display", "none");
+    $("#editor-body").html('<div class="eh"><div class="ic">👈</div>从左侧选择一个接口</div>');
+    $("#resp-body").html('<div class="eh" style="color:#666"><div class="ic">📋</div>点击发送请求后查看响应</div>');
+    $("#status-badge").css("display", "none");
+    var r = await fetch("/mock/project/" + encodeURIComponent(n)); var j = await r.json();
+    if (j.code !== 0) return;
+    interfaces = j.data || []; renderList();
+    $("#iface-count").text(interfaces.length + " 个接口");
+    $("#proj-info").text(n);
+  }
+
+  function loadIfaceToModal(path) {
+    $(".iface-item").each(function () { $(this).toggleClass("active", $(this).data("path") === path); });
+    // 同时请求 example 和 project-full，等两者都完成后才打开弹窗
+    Promise.all([
+      fetch("/mock/example/" + encodeURIComponent(curProj) + "/" + encodeURIComponent(path.replace(/^\//, ''))).then(function (r) { return r.json(); }),
+      fetch("/mock/project-full/" + encodeURIComponent(curProj)).then(function (r) { return r.json(); })
+    ]).then(function (results) {
+      var j = results[0], pf = results[1];
+      if (j.code !== 0) { showToast((j.error || "加载失败") + "", "error"); return; }
+      // 预先把 project-full 的 inner_schemas 加载好，避免异步时序问题
+      if (pf.code === 0 && pf.data && pf.data.inner_schemas) {
+        _innerSchemas = pf.data.inner_schemas;
+      }
+      j.data._isProject = true;
+      enterCIMode(j.data);
+    }).catch(function (e) {
+      showToast("加载失败: " + e.message, "error");
+    });
+  }
+
+  function renderList() {
+    var lst = $("#iface-list"); lst.html("");
+    // 项目接口
+    interfaces.forEach(function (iface) {
+      var div = document.createElement("div"); div.className = "iface-item"; div.dataset.path = iface.path; div.dataset.custom = "false";
+      var m = (iface.method || "POST").toUpperCase();
+      var nm = iface.name || iface.path; if (nm.length > 24) nm = nm.substring(0, 24) + "…";
+      $(div).html('<span class="mth mth-' + m.toLowerCase() + '">' + m + '</span><span style="flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="' + eA(iface.name || iface.path) + '">' + eH(nm) + '</span><button class="ib-edit" onclick="event.stopPropagation();loadIfaceToModal(\'' + eA(iface.path) + '\')" title="编辑">✎</button>');
+      div.onclick = function () { selIface(iface.path, false); }; lst.append(div);
+    });
+    // 自定义接口
+    renderCustomList();
+  }
+
+  async function renderCustomList() {
+    var lst = $("#iface-list");
+    try {
+      var r = await fetch("/mock/custom"); var j = await r.json();
+      if (j.code !== 0) return;
+      j.data.forEach(function (iface) {
+        var div = document.createElement("div"); div.className = "iface-item"; div.dataset.path = iface.path; div.dataset.custom = "true";
+        var m = (iface.method || "POST").toUpperCase();
+        var nm = iface.name || iface.path; if (nm.length > 24) nm = nm.substring(0, 24) + "…";
+        $(div).html('<span style="font-size:10px;font-weight:700;padding:2px 5px;border-radius:3px;background:#fef3c7;color:#92400e;flex-shrink:0">自定义</span><span style="flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="' + eA(iface.path) + '">' + eH(nm) + '</span><button class="ib-edit" onclick="event.stopPropagation();openCIModal(\'' + eA(iface.path) + '\')" title="编辑">✎</button>');
+        div.onclick = function () { selectCustomIface(iface.path); }; 
+        lst.append(div);
+      });
+    } catch (e) { }
+  }
+
+  // 点击自定义接口列表项 → 设置为当前接口（可发送请求），不打开编辑框
+  async function selectCustomIface(path) {
+    $(".iface-item").each(function () { $(this).toggleClass("active", $(this).data("path") === path); });
+    var r = await fetch("/mock/custom/" + encodeURIComponent(path.replace(/^\//, '')));
+    var j = await r.json();
+    if (j.code !== 0) { showToast((j.error || "加载失败") + "", "error"); return; }
+    curIface = j.data;
+    curIface._isProject = false;  // 标记为自定义接口
+    renderEditor(); renderSettings();
+    $("#editor-hdr").css("display", "flex");
+    $("#settings-bar").addClass("visible");
+    $("#action-bar").css("display", "flex");
+    $("#send-btn").prop("disabled", false);
+    var m = (curIface.method || "POST").toUpperCase();
+    var mb = $("#mth-badge"); mb.text(m).attr("class", "mth-badge badge-" + m.toLowerCase());
+    $("#iface-path").text(curIface.path || "");
+    $("#iface-name").text(curIface.name || "");
+  }
+
+  // 点击编辑按钮 → 打开编辑弹窗
+  async function openCIModal(path) {
+    $(".iface-item").each(function () { $(this).toggleClass("active", $(this).data("path") === path); });
+    var r = await fetch("/mock/custom/" + encodeURIComponent(path.replace(/^\//, '')));
+    var j = await r.json();
+    if (j.code !== 0) { showToast((j.error || "加载失败") + "", "error"); return; }
+    j.data._isProject = false;  // 标记为自定义接口
+    enterCIMode(j.data);
+  }
+
+  async function selIface(path, isCustom) {
+    if (isCustom) {
+      // 加载自定义接口到 CI 编辑器
+      $(".iface-item").each(function () { $(this).toggleClass("active", $(this).data("path") === path); });
+      var r = await fetch("/mock/custom/" + encodeURIComponent(path.replace(/^\//, '')));
+      var j = await r.json();
+      if (j.code !== 0) { showToast((j.error || "加载失败") + "", "error"); return; }
+      j.data._isProject = false;
+      enterCIMode(j.data);
+    } else {
+      // 普通项目接口
+      $(".iface-item").each(function () { $(this).toggleClass("active", $(this).data("path") === path); });
+      var r = await fetch("/mock/example/" + encodeURIComponent(curProj) + "/" + encodeURIComponent(path.replace(/^\//, '')));
+      var j = await r.json();
+      if (j.code !== 0) { showToast((j.error || "加载失败") + "", "error"); return; }
+      // 合并原始字段和生成的示例值
+      var data = j.data;
+      var exMap = {};
+      (data.req_example || []).forEach(function (ex) { exMap[ex.name] = ex; });
+      data.req_fields = (data.req_fields || []).map(function (f) { return Object.assign({}, f, exMap[f.name] || {}); });
+      var respExMap = {};
+      (data.resp_example || []).forEach(function (ex) { respExMap[ex.name] = ex; });
+      data.resp_fields = (data.resp_fields || []).map(function (f) { return Object.assign({}, f, respExMap[f.name] || {}); });
+      curIface = data;
+      curIface._isProject = true;  // 标记为项目接口
+      renderEditor(); renderSettings();
+      $("#editor-hdr").css("display", "flex");
+      $("#settings-bar").addClass("visible");
+      $("#action-bar").css("display", "flex");
+      $("#send-btn").prop("disabled", false);
+      var m = (curIface.method || "POST").toUpperCase();
+      var mb = $("#mth-badge"); mb.text(m).attr("class", "mth-badge badge-" + m.toLowerCase());
+      $("#iface-path").text(curIface.path);
+      $("#iface-name").text(curIface.name || "");
+      $("#resp-body").html('<div class="eh" style="color:#666"><div class="ic">📋</div>点击发送请求查看响应</div>');
+      $("#status-badge").css("display", "none");
+    }
+  }
+
+  function renderSettings() {
+    if (!curIface) return;
+    // delay: "300-800" 或 "" 或 null
+    var d = curIface.delay || "";
+    var dOn = d && d !== "0";
+    var dParts = d.split("-");
+    $("#in-delay-on").prop("checked", dOn);
+    $("#in-delay-min").val(dParts[0] || "");
+    $("#in-delay-max").val(dParts[1] || "");
+
+    // error: "500@1.0:ERR001:消息" 或 "" 或 null
+    var e = curIface.error || "";
+    var eOn = e && e !== "0" && e !== "";
+    $("#in-err-on").prop("checked", eOn);
+    // 从 error 字符串解析（兼容旧格式）
+    if (e) {
+      var eParts = e.split("@");
+      var httpCode = eParts[0] || "500";
+      var probStr = "1";
+      var errCode = "";
+      var errMsg = "";
+      if (eParts.length > 1) {
+        var rest = eParts[1].split(":");
+        probStr = rest[0] || "1";
+        if (rest.length > 1) errCode = rest[1] || "";
+        if (rest.length > 2) errMsg = rest.slice(2).join(":") || "";
+      }
+      $("#in-err-type").val(httpCode || "500");
+      $("#in-err-prob").val(probStr || "1");
+      $("#in-err-code").val(errCode || "");
+      $("#in-err-msg").val(errMsg || "");
+    } else {
+      $("#in-err-type").val("500");
+      $("#in-err-prob").val("1");
+      $("#in-err-code").val("");
+      $("#in-err-msg").val("");
+    }
+    $("#updated-msg").removeClass("show");
+  }
+
+  async function saveSettings() {
+    if (!curIface) return;
+    // 延迟
+    var delayOn = $("#in-delay-on").prop("checked");
+    var delayMin = $("#in-delay-min").val();
+    var delayMax = $("#in-delay-max").val();
+    var delay = "";
+    if (delayOn) {
+      if (delayMin && delayMax) delay = delayMin + "-" + delayMax;
+      else if (delayMin) delay = delayMin;
+    }
+
+    // 错误注入
+    var errOn = $("#in-err-on").prop("checked");
+    var errType = $("#in-err-type").val();
+    var errProb = $("#in-err-prob").val() || "1";
+    var errCode = $("#in-err-code").val();
+    var errMsg = $("#in-err-msg").val();
+    var error = "";
+    if (errOn) {
+      error = errType;
+      if (errProb && parseFloat(errProb) < 1) error += "@" + errProb;
+      if (errCode || errMsg) {
+        error += ":" + errCode;
+        if (errMsg) error += ":" + errMsg;
+      }
+    }
+
+    var payload = { project: curProj, path: curIface.path, delay: delay, error: error };
+    var r = await fetch("/mock/update-iface", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) });
+    var j = await r.json();
+    if (j.code === 0) {
+      curIface.delay = delay;
+      curIface.error = error;
+      var msg = $("#updated-msg");
+      msg.addClass("show");
+      setTimeout(function () { msg.removeClass("show"); }, 2000);
+    } else {
+      showToast("保存失败: " + (j.error || "未知错误"), "error");
+    }
+  }
+
+  function renderEditor() {
+    if (!curIface) return;
+    var body = $("#editor-body");
+    var fields = curIface.req_fields || []; var html = "";
+    fields.forEach(function (f) {
+      var isSkip = f.rule === "skip" || f.rule === "ignore";
+      var isFixed = f.rule && f.rule.startsWith("fixed:");
+      var isRef = f.is_ref || (f.rule && f.rule.startsWith("sequence:"));
+      var isNested = f.rule && (f.rule.startsWith("nested:") || f.rule.startsWith("object:") || f.rule.startsWith("array:"));
+      var isDynamic = f.is_dynamic || (f.rule && (f.rule.startsWith("mirror") || f.rule.startsWith("body:") || f.rule.startsWith("path:") || f.rule.startsWith("query:") || f.rule.startsWith("header:") || f.rule.startsWith("state:")));
+      var val = f.example;
+      // For nested/object/array, example is already a JSON string
+      var displayVal = "";
+      if (isNested && val) {
+        displayVal = typeof val === "string" ? val : JSON.stringify(val, null, 2);
+      } else {
+        displayVal = val !== undefined && val !== null ? String(val) : "";
+      }
+      // fixed:xxx 字段：若 example 为空，从 rule 中提取固定值作为默认显示值
+      if (isFixed && displayVal === "") {
+        var ruleVal = f.rule.split(":")[1] || "";
+        if (ruleVal) displayVal = ruleVal;
+      }
+      // fixed: 空值（schema中未填固定值）→ 可编辑，让用户手动输入
+      var isFixedEmpty = isFixed && displayVal === "";
+      var ro = isSkip; var cls = isSkip ? "fi sk" : "fi"; var disp = isSkip ? "none" : "";
+      var badges = [];
+      if (f.required) badges.push('<span class="b-r">必填</span>'); else badges.push('<span class="b-o">选填</span>');
+      if (isSkip) badges.push('<span class="b-s">skip</span>');
+      if (isRef) badges.push('<span class="b-rf">序列</span>');
+      if (isNested) badges.push('<span class="b-nested">嵌套</span>');
+      if (isDynamic) badges.push('<span class="b-dyn">动态</span>');
+      html += '<div class="fg" style="display:' + disp + '">';
+      html += '<div class="fl">';
+      html += '<span class="fn">' + eH(f.name) + '</span>';
+      badges.forEach(function (b) { html += b; });
+      if (f.desc) html += '<span class="fd">(' + eH(f.desc) + ')</span>';
+      html += '</div>';
+      if (isNested) {
+        // Show as textarea for JSON editing, plus a collapsible preview
+        html += '<textarea class="' + cls + '" id="f_' + eA(f.name) + '" style="min-height:380px" ' + (ro ? "readonly" : "") + ' oninput="updSum()">' + eA(displayVal) + '</textarea>';
+        html += '<div class="nested-preview" id="pv_' + eA(f.name) + '"><pre style="margin:0;white-space:pre-wrap;word-break:break-all">' + pp(displayVal) + '</pre></div>';
+      } else {
+        var placeholder = isFixedEmpty ? "请输入固定值" : "";
+        html += '<input type="text" class="' + cls + '" id="f_' + eA(f.name) + '" value="' + eA(displayVal) + '" ' + (ro ? "readonly" : "") + (placeholder ? ' placeholder="' + placeholder + '"' : '') + ' oninput="updSum()">';
+      }
+      html += '</div>';
+    });
+    if (!fields.length) html = '<div class="eh"><div class="ic">📭</div>该接口无请求参数</div>';
+    body.html(html); updSum();
+  }
+
+  function updSum() {
+    if (!curIface) return;
+    var fields = curIface.req_fields || [];
+    var total = fields.filter(function (f) { return f.rule !== "skip"; }).length;
+    var filled = fields.filter(function (f) {
+      if (f.rule === "skip") return false;
+      var el = $("#f_" + f.name); return el.length && el.val();
+    }).length;
+    $("#req-summary").text(total > 0 ? "已填写 " + filled + "/" + total + " 个参数" : "");
+  }
+
+  async function sendReq() {
+    if (!curIface) return;
+
+    // ── 1. 收集请求参数 ───────────────────
+    var req = {};
+    var missingFields = [];
+    (curIface.req_fields || []).forEach(function (f) {
+      if (f.rule === "skip") return;
+      var el = $("#f_" + f.name); if (!el.length) return;
+      var val = el.val();
+      // Parse JSON for nested fields
+      if (f.rule && (f.rule.startsWith("nested:") || f.rule.startsWith("object:") || f.rule.startsWith("array:"))) {
+        try { val = JSON.parse(val); } catch (e) { }
+      }
+      req[f.name] = val;
+      // 校验必填字段（val 可能是数字或其他类型，需要转字符串判断）
+      if (f.required && (!val || String(val).trim() === "")) {
+        missingFields.push(f.name);
+      }
+    });
+
+    // ── 2. 必填校验 ─────────────────────
+    if (missingFields.length > 0) {
+      showToast("请填写必填字段: " + missingFields.join(", "), "warning");
+      return;
+    }
+
+    // ── 3. 收集请求头 ───────────────────
+    var customHeaders = {};
+    _reqHeaders.forEach(function (h) {
+      if (h.key && h.key.trim()) {
+        customHeaders[h.key.trim()] = h.value || "";
+      }
+    });
+
+    // ── 4. 获取 Seed ────────────────────
+    var seed = getSeed();
+
+    $("#resp-body").html('<div class="eh" style="color:#888"><div class="ic">⏳</div>请求中...</div>');
+    try {
+      var targetUrl = $("#proxy-url").val().trim();
+      var r;
+      if (targetUrl) {
+        // 代理转发模式：直接把请求发送到真实目标地址（浏览器直连）
+        var proxyFetchOptions = {
+          method: curIface.method || "POST",
+          headers: Object.assign({}, customHeaders, { "Content-Type": "application/json" }),
+          body: JSON.stringify(req)
+        };
+        r = await fetch(targetUrl, proxyFetchOptions);
+      } else {
+        // Mock 模式：使用内置 Mock 数据
+        // 自定义请求头通过 X-Custom-Headers 头传递（JSON 编码）
+        var fetchHeaders = { "Content-Type": "application/json" };
+        if (Object.keys(customHeaders).length > 0) {
+          fetchHeaders["X-Custom-Headers"] = JSON.stringify(customHeaders);
+        }
+        var fetchOptions = { method: "POST", headers: fetchHeaders };
+        var fetchBody = { req: req };
+        if (seed !== null) fetchBody.seed = seed;
+        fetchOptions.body = JSON.stringify(fetchBody);
+        r = await fetch("/mock/call/" + encodeURIComponent(curProj) + "/" + encodeURIComponent(curIface.path.replace(/^\//, '')), fetchOptions);
+      }
+      var text = await r.text();
+      var sb = $("#status-badge"); sb.css("display", "").attr("class", "sb " + (r.ok ? "s-ok" : "s-err")).text(r.status + " " + r.statusText);
+      // Prettify the JSON before highlighting
+      var pretty = "";
+      try { var obj = JSON.parse(text); pretty = JSON.stringify(obj, null, 2); } catch (e) { pretty = text; }
+      $("#resp-body").html("<pre>" + sh(pretty) + "</pre>");
+    } catch (e) { $("#resp-body").html('<div class="eh" style="color:#f87171"><div class="ic">❌</div>' + eH(e.message) + '</div>'); }
+  }
+
+  async function clearState() { await fetch("/mock/state", { method: "DELETE" }); showToast("状态已清空", "success"); }
+
+  function fmtResp() {
+    var pre = $("#resp-body pre")[0];
+    if (pre) {
+      try {
+        var obj = JSON.parse($(pre).text() || "");
+        $("#resp-body").html("<pre>" + sh(JSON.stringify(obj, null, 2)) + "</pre>");
+      } catch (e) { }
+    }
+  }
+
+  function cpResp() {
+    var pre = $("#resp-body pre")[0];
+    if (pre) { navigator.clipboard.writeText($(pre).text()).then(function () { showToast("已复制到剪贴板", "success"); }); }
+  }
+
+  // ── Schema 导入/导出 ────────────────────────
+  function exportSchema() {
+    if (!curProj) { showToast("请先选择一个项目", "warning"); return; }
+    fetch("/mock/project-full/" + encodeURIComponent(curProj))
+      .then(function (r) { return r.json(); })
+      .then(function (j) {
+        if (j.code !== 0) { showToast("导出失败: " + (j.error || "未知错误"), "error"); return; }
+        var blob = new Blob([JSON.stringify(j.data, null, 2)], { type: "application/json" });
+        var url = URL.createObjectURL(blob);
+        var a = document.createElement("a");
+        a.href = url;
+        a.download = curProj + ".json";
+        a.click();
+        URL.revokeObjectURL(url);
+        showToast("已导出: " + curProj + ".json", "success");
+      })
+      .catch(function (e) { showToast("导出失败: " + e.message, "error"); });
+  }
+
+  function importSchema() {
+    $("#import-file").click();
+  }
+
+  window.handleImportFile = function (event) {
+    var file = event.target.files[0];
+    if (!file) return;
+    var reader = new FileReader();
+    reader.onload = function (e) {
+      try {
+        var schema = JSON.parse(e.target.result);
+        var name = schema.name || prompt("请输入项目名称：");
+        if (!name) return;
+        fetch("/mock/load", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ name: name, schema: schema })
+        })
+          .then(function (r) { return r.json(); })
+          .then(function (j) {
+            if (j.code !== 0) { showToast("导入失败: " + (j.error || "未知错误"), "error"); return; }
+            showToast("已导入: " + name, "success");
+            // 刷新项目列表
+            location.reload();
+          })
+          .catch(function (e) { showToast("导入失败: " + e.message, "error"); });
+      } catch (e) {
+        showToast("JSON 解析失败: " + e.message, "error");
+      }
+    };
+    reader.readAsText(file);
+    // 清空 input 值，允许重复导入同一文件
+    event.target.value = "";
+  };
+
+  // ── 请求头管理 ────────────────────────
+  var _reqHeaders = [];  // [{key, value}, ...]
+
+  function addReqHeader(key, value) {
+    key = key || "";
+    value = value || "";
+    var id = "rh_" + Date.now();
+    _reqHeaders.push({ id: id, key: key, value: value });
+    renderReqHeaders();
+  }
+
+  function removeReqHeader(id) {
+    _reqHeaders = _reqHeaders.filter(function (h) { return h.id !== id; });
+    renderReqHeaders();
+  }
+
+  function renderReqHeaders() {
+    var container = $("#req-headers-container");
+    var html = "";
+    _reqHeaders.forEach(function (h) {
+      html += '<div style="display:flex;gap:4px;align-items:center">'
+        + '<input type="text" placeholder="Header-Name" value="' + eA(h.key) + '" onchange="updateReqHeader(\'' + h.id + '\',\'key\',this.value)" style="flex:1;min-width:100px;padding:4px 6px;border:1.5px solid #cbd5e1;border-radius:4px;font-size:11px">'
+        + '<span style="color:#94a3b8">:</span>'
+        + '<input type="text" placeholder="value" value="' + eA(h.value) + '" onchange="updateReqHeader(\'' + h.id + '\',\'value\',this.value)" style="flex:2;min-width:120px;padding:4px 6px;border:1.5px solid #cbd5e1;border-radius:4px;font-size:11px">'
+        + '<button onclick="removeReqHeader(\'' + h.id + '\')" style="background:#fee2e2;color:#dc2626;border:1px solid #fecaca;padding:2px 6px;border-radius:3px;font-size:11px;cursor:pointer">×</button>'
+        + '</div>';
+    });
+    container.html(html);
+  }
+
+  window.updateReqHeader = function (id, field, val) {
+    var h = _reqHeaders.find(function (x) { return x.id === id; });
+    if (h) h[field] = val;
+  };
+
+  window.addReqHeader = addReqHeader;
+  window.removeReqHeader = removeReqHeader;
+
+  // ── Seed 配置 ────────────────────────
+  function getSeed() {
+    var seed = $("#in-seed").val();
+    return seed ? parseInt(seed) : null;
+  }
+
+  // ── 自定义 Mock 接口 ────────────────────────
+  var editingCI = null; // 当前编辑的自定义接口 path，null=新建
+
+  function newCustomIface() {
+    editingCI = null;
+    curIface = { _isProject: false };  // 标记为新建的自定义接口
+    $("#ci-modal-title").text("新建接口");
+    $("#ci-method").val("POST");
+    $("#ci-path").val("");
+    $("#ci-name").val("");
+    $("#ci-del-btn").css("display", "none");
+    $("#ci-req-fields").html(getCIFieldRowHTML());
+    $("#ci-resp-fields").html(getCIFieldRowHTML());
+    $("#ci-modal").addClass("show");
+    bindCIFieldEvents();
+  }
+
+  var _innerSchemas = {};  // 当前项目的 inner_schemas（加载后缓存）
+
+  function enterCIMode(iface) {
+    editingCI = iface.path;
+    curIface = iface;  // 统一管理当前编辑的接口
+    $("#ci-modal-title").text("编辑接口");
+    $("#ci-method").val((iface.method || "POST").toUpperCase());
+    $("#ci-path").val(iface.path);
+    $("#ci-name").val(iface.name || "");
+    $("#ci-del-btn").css("display", iface._isProject ? "none" : "");
+
+    // 渲染字段（暂不处理嵌套，嵌套在 bindCIFieldEvents 后单独处理）
+    var reqContainer = $("#ci-req-fields");
+    reqContainer.html("");
+    (iface.req_fields || []).forEach(function (f) {
+      reqContainer.html(reqContainer.html() + getCIFieldRowHTML(f.name, f.rule, f.when, f.when && f.when.sub_rule));
+    });
+    if (!reqContainer.html()) reqContainer.html(getCIFieldRowHTML());
+
+    var respContainer = $("#ci-resp-fields");
+    respContainer.html("");
+    (iface.resp_fields || []).forEach(function (f) {
+      respContainer.html(respContainer.html() + getCIFieldRowHTML(f.name, f.rule, f.when, f.when && f.when.sub_rule));
+    });
+    if (!respContainer.html()) respContainer.html(getCIFieldRowHTML());
+
+    $("#ci-modal").addClass("show");
+    bindCIFieldEvents();
+
+    // 如果是项目接口且 _innerSchemas 已预加载，立即填充 JSON textarea
+    if (iface._isProject && _innerSchemas && Object.keys(_innerSchemas).length) {
+      fillNestedJSONTextareas($("#ci-req-fields"));
+      fillNestedJSONTextareas($("#ci-resp-fields"));
+    }
+  }
+
+  // 填充所有 nested/object/array 字段的 JSON textarea
+  function fillNestedJSONTextareas(container) {
+    // _innerSchemas 未加载时不覆盖 textarea 内容（初始 render 时 textarea 为空）
+    if (!_innerSchemas || !Object.keys(_innerSchemas).length) return;
+    container.find(".ci-field-row").each(function () {
+      var row = this;
+      var ruleEl = row.querySelector(".ci-rrule");
+      if (!ruleEl) return;
+      var p = parseRule(ruleEl.value);
+      if (["nested", "object", "array"].indexOf(p.type) < 0) return;
+      var schemaName = p.param;
+      if (!schemaName) return;
+      var extraDiv = row.nextElementSibling;
+      if (!extraDiv || !extraDiv.classList.contains("ci-rule-extra")) return;
+      var $wrap = $(extraDiv).find(".ci-nested-json-wrap");
+      if (!$wrap.length) return;
+      $wrap.css("display", "block");
+      var $ta = $wrap.find(".ci-nested-json");
+      $ta.attr("data-schema", schemaName);
+      var subFields = _getInnerFields(schemaName);
+      if (subFields && subFields.length) {
+        $ta.val(JSON.stringify(subFields, null, 2));
+      }
+    });
+  }
+
+  // 获取 inner_schemas 中的字段列表
+  function _getInnerFields(schemaName) {
+    if (!_innerSchemas || !_innerSchemas[schemaName]) return null;
+    var schema = _innerSchemas[schemaName];
+    return Array.isArray(schema) ? schema : (schema.fields || []);
+  }
+
+  function getRuleOptions() {
+    return '<optgroup label="── 基础类型 ──"><option value="string">string</option><option value="number">number</option><option value="skip">skip</option></optgroup>'
+      + '<optgroup label="── 固定/随机 ──"><option value="fixed:">fixed:xxx（固定值）</option><option value="random:">random:N（随机数字）</option><option value="sequence:">sequence:key（序列号）</option><option value="token:">token:N（随机字符串）</option><option value="timestamp:ms">timestamp:ms（时间戳）</option></optgroup>'
+      + '<optgroup label="── 个人信息 ──"><option value="phone">phone（手机号）</option><option value="idcard">idcard（身份证）</option><option value="name">name（姓名）</option><option value="plate">plate（车牌号）</option></optgroup>'
+      + '<optgroup label="── 数值/日期 ──"><option value="amount:">amount:lo-hi（金额）</option><option value="rate:">rate:lo-hi（利率）</option><option value="date:">date:格式（日期）</option><option value="enum:">enum:a,b,c（枚举）</option></optgroup>'
+      + '<optgroup label="── 嵌套结构 ──"><option value="nested:">nested:xxx（嵌套对象）</option><option value="object:">object:xxx（对象）</option><option value="array:">array:xxx（对象数组）</option></optgroup>'
+      + '<optgroup label="── 动态取值 ──"><option value="mirror">mirror（取请求值）</option><option value="body:">body:字段路径</option><option value="path:">path:路径参数</option><option value="query:">query:查询参数</option><option value="header:">header:请求头</option><option value="state:">state:状态值</option></optgroup>'
+      + '<optgroup label="── 条件字段 ──"><option value="when">when:条件</option></optgroup>';
+  }
+
+  // 从 rule 字符串中提取类型和参数，如 "fixed:test" → {type:"fixed", param:"test"}
+  function parseRule(rule) {
+    if (!rule) return { type: "string", param: "" };
+    var idx = rule.indexOf(":");
+    if (idx < 0) return { type: rule, param: "" };
+    return { type: rule.substring(0, idx), param: rule.substring(idx + 1) };
+  }
+
+  // when 专用二级规则选择器（满足条件后的值规则）
+  function getWhenSubRuleOptions(selected) {
+    var opts = '<option value="">-- 选择值规则 --</option>'
+      + '<option value="fixed:">固定值</option>'
+      + '<option value="random:">随机数字</option>'
+      + '<option value="phone">手机号</option>'
+      + '<option value="idcard">身份证</option>'
+      + '<option value="name">姓名</option>'
+      + '<option value="plate">车牌号</option>'
+      + '<option value="enum:">枚举值</option>'
+      + '<option value="sequence:">序列号</option>'
+      + '<option value="token:">Token</option>'
+      + '<option value="amount:">金额</option>'
+      + '<option value="rate:">利率</option>'
+      + '<option value="date:">日期</option>'
+      + '<option value="timestamp:ms">时间戳</option>'
+      + '<option value="nested:">嵌套对象</option>'
+      + '<option value="array:">对象数组</option>';
+    if (selected && opts.indexOf('value="' + selected + '"') >= 0) opts = opts.replace('value="' + selected + '"', 'value="' + selected + '" selected');
+    return opts;
+  }
+
+  // 根据 rule 类型生成对应的参数输入控件
+  function getRuleConfigHTML(rule, whenCond, subRule) {
+    var p = parseRule(rule);
+    var whenOpMap = { eq: "等于", ne: "不等于", gt: "大于", lt: "小于", contains: "包含", exists: "存在", not_exists: "不存在" };
+    var whenOps = '<option value="eq">等于</option><option value="ne">不等于</option><option value="gt">大于</option><option value="lt">小于</option><option value="contains">包含</option><option value="exists">存在</option><option value="not_exists">不存在</option>';
+    var whenVal = whenCond ? whenCond.value : "";
+    var whenField = whenCond ? whenCond.field : "";
+    var whenOp = whenCond ? whenCond.op : "eq";
+    whenOps = whenOps.replace('value="' + whenOp + '"', 'value="' + whenOp + '" selected');
+    var subRuleVal = subRule || "";
+    var subOpts = getWhenSubRuleOptions(subRuleVal.split(":")[0] + ":");
+    // 生成 ci-sub-rule-extra 的初始内容（编辑已有 when 字段时）
+    var srType = subRuleVal.split(":")[0] + ":";
+    var initSubVal = subRule ? subRule.split(":")[1] || "" : "";
+    var initExtra = "";
+    if (srType === "amount:" || srType === "rate:") {
+      var parts = (initSubVal || "").split("-");
+      initExtra = '<input class="ci-param" value="' + eH(parts[0] || "") + '" placeholder="最小值" style="flex:0 0 70px;padding:4px 6px;border:1.5px solid #c7d2fe;border-radius:4px;font-size:12px"><span style="color:#667eea">~</span><input class="ci-param2" value="' + eH(parts[1] || "") + '" placeholder="最大值" style="flex:0 0 70px;padding:4px 6px;border:1.5px solid #c7d2fe;border-radius:4px;font-size:12px">';
+    } else if (["fixed:", "random:", "sequence:", "token:", "date:", "enum:", "nested:", "object:", "array:", "body:", "path:", "query:", "header:", "state:"].indexOf(srType) >= 0) {
+      initExtra = '<input class="ci-param" value="' + eH(initSubVal) + '" placeholder="请输入值" style="flex:1;padding:4px 6px;border:1.5px solid #c7d2fe;border-radius:4px;font-size:12px">';
+    } else if (["phone", "idcard", "name", "plate", "timestamp:ms"].indexOf(srType) >= 0) {
+      initExtra = '<span style="color:#667eea;font-size:11px">自动生成，无需输入</span>';
+    } else {
+      initExtra = '<span style="color:#999;font-size:11px">请选择值规则</span>';
+    }
+    var whenBlock = '<div style="margin-bottom:6px"><div style="color:#e65100;font-weight:700;font-size:11px;margin-bottom:4px">✦ 条件：满足以下条件时才返回此字段</div>'
+      + '<div class="ci-when-row" style="flex-wrap:wrap">'
+      + '<label style="color:#e65100;font-weight:600;white-space:nowrap;font-size:12px">当</label>'
+      + '<input class="ci-when-field" value="' + eH(whenField) + '" placeholder="如 body.is_vip" style="flex:1;min-width:120px;padding:4px 6px;border:1.5px solid #ffe0b2;border-radius:4px;font-size:12px">'
+      + '<select class="ci-when-op" style="flex:0 0 90px;padding:4px 6px;border:1.5px solid #ffe0b2;border-radius:4px;font-size:12px">' + whenOps + '</select>'
+      + '<input class="ci-when-val" value="' + eH(whenVal) + '" placeholder="值" style="flex:0 0 80px;padding:4px 6px;border:1.5px solid #ffe0b2;border-radius:4px;font-size:12px">'
+      + '</div>'
+      + '<div style="display:flex;align-items:center;gap:6px;margin-top:6px">'
+      + '<label style="color:#667eea;font-weight:600;white-space:nowrap;font-size:12px">则值:</label>'
+      + '<select class="ci-sub-rule" style="flex:0 0 140px;padding:4px 6px;border:1.5px solid #c7d2fe;border-radius:4px;font-size:12px">' + subOpts + '</select>'
+      + '<div class="ci-sub-rule-extra" data-subrule="' + eH(subRuleVal) + '" style="flex:1;display:inline-flex;gap:4px;align-items:center">' + initExtra + '</div>'
+      + '</div></div>';
+    switch (p.type) {
+      case "fixed": { var fixedVal = p.param === "value" ? "" : p.param; return '<input class="ci-param" value="' + eH(fixedVal) + '" placeholder="固定值" style="flex:1;padding:4px 6px;border:1.5px solid #c7d2fe;border-radius:4px;font-size:12px">'; }
+      case "random": return '<input class="ci-param" value="' + eH(p.param) + '" placeholder="位数，如 6" style="flex:0 0 80px;padding:4px 6px;border:1.5px solid #c7d2fe;border-radius:4px;font-size:12px">';
+      case "sequence": return '<input class="ci-param" value="' + eH(p.param) + '" placeholder="key，如 order_no" style="flex:1;padding:4px 6px;border:1.5px solid #c7d2fe;border-radius:4px;font-size:12px">';
+      case "token": return '<input class="ci-param" value="' + eH(p.param) + '" placeholder="长度，如 32" style="flex:0 0 80px;padding:4px 6px;border:1.5px solid #c7d2fe;border-radius:4px;font-size:12px">';
+      case "amount": { var am = p.param ? p.param.split("-") : ["100", "1000"]; return '<input class="ci-param" value="' + eH(am[0] || "") + '" placeholder="最小值" style="flex:0 0 80px;padding:4px 6px;border:1.5px solid #c7d2fe;border-radius:4px;font-size:12px"><span style="color:#667eea">~</span><input class="ci-param2" value="' + eH(am[1] || "") + '" placeholder="最大值" style="flex:0 0 80px;padding:4px 6px;border:1.5px solid #c7d2fe;border-radius:4px;font-size:12px">'; }
+      case "rate": { var rt = p.param ? p.param.split("-") : ["3", "24"]; return '<input class="ci-param" value="' + eH(rt[0] || "") + '" placeholder="最小值" style="flex:0 0 60px;padding:4px 6px;border:1.5px solid #c7d2fe;border-radius:4px;font-size:12px"><span style="color:#667eea">~</span><input class="ci-param2" value="' + eH(rt[1] || "") + '" placeholder="最大值" style="flex:0 0 60px;padding:4px 6px;border:1.5px solid #c7d2fe;border-radius:4px;font-size:12px">'; }
+      case "date": return '<input class="ci-param" value="' + eH(p.param) + '" placeholder="格式，如 yyyy-MM-dd" style="flex:1;padding:4px 6px;border:1.5px solid #c7d2fe;border-radius:4px;font-size:12px">';
+      case "enum": return '<input class="ci-param" value="' + eH(p.param) + '" placeholder="枚举值，逗号分隔，如 a,b,c" style="flex:1;padding:4px 6px;border:1.5px solid #c7d2fe;border-radius:4px;font-size:12px">';
+      case "nested": case "object": case "array": {
+        // 显示 schema 名称输入 + 下方 JSON 编辑区
+        // _innerSchemas 在 loadIfaceToModal 中已预加载，此时可以直接读取并填充
+        var schemaName = p.param || "";
+        var subFields = _getInnerFields(schemaName);
+        var hasSchema = !!(subFields && subFields.length);
+        var initVal = hasSchema ? eA(JSON.stringify(subFields, null, 2)) : "";
+        var wrapDisplay = hasSchema ? "block" : "none";
+        return '<input class="ci-param" value="' + eH(schemaName) + '" placeholder="schema 名称，如 loanApplyCreate_req" style="flex:1;padding:4px 6px;border:1.5px solid #c7d2fe;border-radius:4px;font-size:12px">'
+          + '<div class="ci-nested-json-wrap" style="width:100%;margin-top:6px;display:' + wrapDisplay + '">'
+          + '<textarea class="ci-nested-json" data-schema="' + eH(schemaName) + '">' + initVal + '</textarea>'
+          + '<div style="font-size:11px;color:#888;margin-top:4px">直接在 JSON 中编辑字段名和规则，如 { "out_apply_no": "sequence:out_apply_no" }</div>'
+          + '</div>';
+      }
+      case "body": case "path": case "query": case "header": case "state": return '<input class="ci-param" value="' + eH(p.param) + '" placeholder="字段路径，如 data.order_id" style="flex:1;padding:4px 6px;border:1.5px solid #c7d2fe;border-radius:4px;font-size:12px">';
+      case "when": return whenBlock;
+      default: return "";
+    }
+  }
+
+  // 从配置控件中重建 rule 字符串
+  function rebuildRule(row) {
+    var ruleEl = row.querySelector(".ci-rrule");
+    var rule = ruleEl.value;
+    var p = parseRule(rule);
+    var extraDiv = row.nextElementSibling;
+    var paramEl = extraDiv ? extraDiv.querySelector(".ci-param") : null;
+    var param2El = extraDiv ? extraDiv.querySelector(".ci-param2") : null;
+    var whenField = extraDiv ? extraDiv.querySelector(".ci-when-field") : null;
+    var whenOp = extraDiv ? extraDiv.querySelector(".ci-when-op") : null;
+    var whenVal = extraDiv ? extraDiv.querySelector(".ci-when-val") : null;
+    var whenCond = null;
+    if (whenField && whenField.value) {
+      whenCond = { field: whenField.value, op: whenOp ? whenOp.value : "eq", value: whenVal ? whenVal.value : "" };
+    }
+    if (p.type === "when") {
+      // when 特殊处理：需要从二级规则选择器取实际值规则
+      var subRuleEl = extraDiv ? extraDiv.querySelector(".ci-sub-rule") : null;
+      var subParamEl = extraDiv ? extraDiv.querySelector(".ci-param") : null;
+      var subParam2El = extraDiv ? extraDiv.querySelector(".ci-param2") : null;
+      var subExtraDiv = extraDiv ? extraDiv.querySelector(".ci-sub-rule-extra") : null;
+      var dataSubrule = subExtraDiv ? (subExtraDiv.getAttribute("data-subrule") || "") : "";
+      var subVal = (subParamEl ? subParamEl.value.trim() : "");
+      if (subParam2El) subVal = subVal + "-" + (subParam2El.value.trim() || "");
+      var subRuleType = subRuleEl ? (subRuleEl.value.split(":")[0] + ":") : "";
+      // 若 subVal 为空但 dataSubrule 有完整值（type+val），则取其值部分
+      if (!subVal && dataSubrule && dataSubrule.split(":")[0] + ":" === subRuleType) {
+        subVal = dataSubrule.split(":")[1] || "";
+      }
+      var finalRule = subRuleType && subVal ? subRuleType + subVal : (subRuleType ? subRuleType : "fixed:");
+      // whenCond 不能为空，至少要有默认值；且 finalRule 必须写回 whenCond.sub_rule
+      if (!whenCond) whenCond = { field: "", op: "eq", value: "" };
+      whenCond.sub_rule = finalRule;
+      return { rule: "when", when: whenCond, subRule: finalRule };
+    }
+    if (paramEl === null) return { rule: rule, when: whenCond };
+    var val = paramEl.value.trim();
+    if (p.type === "amount" && param2El) {
+      val = val + "-" + (param2El.value.trim() || "");
+    }
+    if (p.type === "rate" && param2El) {
+      val = val + "-" + (param2El.value.trim() || "");
+    }
+    // nested/object/array：从 JSON textarea 提取并更新 inner_schemas
+    if (["nested", "object", "array"].indexOf(p.type) >= 0 && extraDiv) {
+      var $ta = $(extraDiv).find(".ci-nested-json");
+      if ($ta.length) {
+        var jsonStr = $ta.val() || "[]";
+        try {
+          var parsed = JSON.parse(jsonStr);
+          var schemaName = val;
+          _innerSchemas[schemaName] = parsed;
+        } catch (e) {
+          showToast("JSON 格式错误：" + e.message, "error");
+        }
+      }
+    }
+    var finalRule = p.type && val ? p.type + ":" + val : (p.type || rule);
+    return { rule: finalRule, when: whenCond };
+  }
+
+  // 规则类型是否需要显示配置区域
+  function ruleNeedsConfig(rule) {
+    var p = parseRule(rule);
+    return ["fixed", "random", "sequence", "token", "amount", "rate", "date", "enum", "nested", "object", "array", "body", "path", "query", "header", "state", "when"].indexOf(p.type) >= 0;
+  }
+
+  // 生成字段行 HTML
+  function getCIFieldRowHTML(name, rule, whenCond, subRule) {
+    var p = parseRule(rule);
+    var opts = getRuleOptions();
+    // 先移除已有的 selected，避免重复
+    opts = opts.replace(/\s*selected/, '');
+    // ruleVal 形如 "fixed:"、"when"（when没有冒号）等
+    var ruleVal = p.type ? p.type + ":" : "string";
+    // 当 ruleVal 是 "when:" 时，option value 是 "when"（无冒号），需要特殊处理
+    var matchVal = (ruleVal === "when:") ? "when" : ruleVal;
+    // 精确匹配：只匹配 "fixed:" 或 "when" 等，避免匹配 "fixed:value"
+    opts = opts.replace(new RegExp('value="(' + matchVal.replace(/:/, '\\:') + ')([^\"]*)"'), 'value="$1$2" selected');
+    var showExtra = ruleNeedsConfig(rule) ? "flex" : "none";
+    var configHTML = getRuleConfigHTML(rule, whenCond, subRule);
+    var toggleBtn = '<button class="ci-toggle" type="button" style="background:#f0f4ff;border:1.5px solid #c7d2fe;border-radius:5px;color:#667eea;font-size:11px;padding:4px 8px;cursor:pointer;flex-shrink:0">⚙</button>';
+    return '<div class="ci-field-row">'
+      + '<input class="ci-rname" placeholder="字段名" value="' + (name || "") + '" style="flex:1;padding:6px 8px;border:1.5px solid #e2e8f0;border-radius:5px;font-size:12px">'
+      + '<select class="ci-rrule" style="flex:0 0 160px;padding:6px 8px;border:1.5px solid #e2e8f0;border-radius:5px;font-size:12px">' + opts + '</select>'
+      + toggleBtn
+      + '<button class="ci-del" type="button">×</button>'
+      + '</div>'
+      + '<div class="ci-rule-extra" style="display:' + (showExtra ? 'flex' : 'none') + ';padding:6px 8px;background:#f0f4ff;border-radius:5px;margin-bottom:6px;align-items:center;gap:6px;flex-wrap:wrap">'
+      + configHTML
+      + '</div>';
+  }
+
+  // 用 jQuery 绑定事件（页面加载后调用一次）
+  function bindCIFieldEvents() {
+    $("#ci-req-fields, #ci-resp-fields").undelegate().delegate(".ci-rrule", "change", function () {
+      onCIRuleChange(this);
+    }).delegate(".ci-toggle", "click", function () {
+      toggleCIConfig(this);
+    }).delegate(".ci-del", "click", function () {
+      delCIField(this);
+    }).delegate(".ci-sub-rule", "change", function () {
+      onWhenSubRuleChange(this);
+    // nested/object/array 的 schema 名称变更时：更新 JSON textarea
+    }).delegate(".ci-rule-extra > .ci-param", "input", function () {
+      var $extra = $(this).closest(".ci-rule-extra");
+      var $row = $extra.prev(".ci-field-row");
+      var ruleEl = $row[0] && $row[0].querySelector(".ci-rrule");
+      if (!ruleEl) return;
+      var p = parseRule(ruleEl.value);
+      if (["nested", "object", "array"].indexOf(p.type) < 0) return;
+      var schemaName = $(this).val().trim();
+      var $wrap = $extra.find(".ci-nested-json-wrap");
+      if (!$wrap.length) return;
+      $wrap.css("display", "block");
+      var $ta = $wrap.find(".ci-nested-json");
+      $ta.attr("data-schema", schemaName);
+      var subFields = _getInnerFields(schemaName);
+      // 只有当 _innerSchemas 已加载且找到了对应 schema 时才填充，否则清空让用户手动编辑
+      if (subFields && subFields.length) {
+        $ta.val(JSON.stringify(subFields, null, 2));
+      } else if (!schemaName) {
+        $ta.val("");
+      }
+    }).delegate(".ci-param, .ci-param2", "input", function () {
+      // 实时更新 data-subrule，确保保存时能取到用户输入的最新值
+      var $extraDiv = $(this).closest(".ci-sub-rule-extra");
+      if ($extraDiv.length) {
+        var $sel = $extraDiv.prevAll(".ci-when-row").find(".ci-sub-rule");
+        var subRuleType = $sel.length ? $sel.val() : "";
+        var $p1 = $extraDiv.find(".ci-param");
+        var $p2 = $extraDiv.find(".ci-param2");
+        var v1 = $p1.length ? $p1.val().trim() : "";
+        var v2 = $p2 && $p2.length ? $p2.val().trim() : "";
+        var combined = (subRuleType === "amount:" || subRuleType === "rate:") ? (v1 + "-" + v2) : v1;
+        $extraDiv.attr("data-subrule", subRuleType + combined);
+      }
+    });
+  }
+
+  function toggleCIConfig(btn) {
+    var $extra = $(btn).closest(".ci-field-row").next(".ci-rule-extra");
+    if ($extra.length) $extra.toggle();
+  }
+
+  function onCIRuleChange(sel) {
+    var $extra = $(sel).closest(".ci-field-row").next(".ci-rule-extra");
+    var rule = $(sel).val();
+    var needsConfig = ruleNeedsConfig(rule);
+    if (needsConfig) {
+      $extra.show().html(getRuleConfigHTML(rule));
+      // 重新绑定二级规则选择器事件（innerHTML 替换后需重新绑定）
+      $extra.find(".ci-sub-rule").off("change").on("change", function () { onWhenSubRuleChange(this); });
+      // nested/object/array：自动显示 JSON 编辑区
+      var p = parseRule(rule);
+      if (["nested", "object", "array"].indexOf(p.type) >= 0) {
+        $extra.find(".ci-nested-json-wrap").css("display", "block");
+      }
+    } else {
+      $extra.hide().html("");
+    }
+  }
+
+  // when 的二级规则选择器变化时，更新值输入控件
+  function onWhenSubRuleChange(sel) {
+    var $extraDiv = $(sel).parent().find(".ci-sub-rule-extra");
+    if (!$extraDiv.length) { console.error("ci-sub-rule-extra not found"); return; }
+    var subRuleType = $(sel).val();
+    // 始终从当前 DOM 读取用户已输入的值（避免复用旧值）
+    var $paramInput = $extraDiv.find(".ci-param");
+    var $paramInput2 = $extraDiv.find(".ci-param2");
+    var curVal = $paramInput.length ? $paramInput.val().trim() : "";
+    var curVal2 = $paramInput2 && $paramInput2.length ? $paramInput2.val().trim() : "";
+    var existingSubVal = $extraDiv.data("subrule") || "";
+    var prevType = existingSubVal ? existingSubVal.split(":")[0] + ":" : "";
+    // 切换类型时：如果类型变了，清空旧值；如果类型没变，保留用户当前输入
+    var valToKeep = (subRuleType === prevType) ? curVal : "";
+    var inputVal = "";
+    if (subRuleType === "amount:" || subRuleType === "rate:") {
+      var parts = (valToKeep || "").split("-");
+      inputVal = '<input class="ci-param" value="' + eH(parts[0] || "") + '" placeholder="最小值" style="flex:0 0 70px;padding:4px 6px;border:1.5px solid #c7d2fe;border-radius:4px;font-size:12px"><span style="color:#667eea">~</span><input class="ci-param2" value="' + eH(parts[1] || "") + '" placeholder="最大值" style="flex:0 0 70px;padding:4px 6px;border:1.5px solid #c7d2fe;border-radius:4px;font-size:12px">';
+    } else if (["fixed:", "random:", "sequence:", "token:", "date:", "enum:", "nested:", "object:", "array:", "body:", "path:", "query:", "header:", "state:"].indexOf(subRuleType) >= 0) {
+      inputVal = '<input class="ci-param" value="' + eH(valToKeep) + '" placeholder="请输入值" style="flex:1;padding:4px 6px;border:1.5px solid #c7d2fe;border-radius:4px;font-size:12px">';
+    } else if (["phone", "idcard", "name", "plate", "timestamp:ms"].indexOf(subRuleType) >= 0) {
+      inputVal = '<span style="color:#667eea;font-size:11px">自动生成，无需输入</span>';
+    } else {
+      inputVal = '<span style="color:#999;font-size:11px">请选择值规则</span>';
+    }
+    // 把完整 subrule（类型+值）存到 data-subrule，供 rebuildRule 兜底使用
+    var fullSubRule = subRuleType;
+    $extraDiv.attr("data-subrule", fullSubRule).html(inputVal);
+  }
+
+  function addCIField(containerId) {
+    $("#" + containerId).append(getCIFieldRowHTML());
+  }
+
+  function delCIField(btn) {
+    var $row = $(btn).closest(".ci-field-row");
+    $row.next(".ci-rule-extra").remove();
+    $row.remove();
+  }
+
+  async function saveCustomIface() {
+    var method = $("#ci-method").val();
+    var path = "/" + ($("#ci-path").val() || "").trim().replace(/^\/+/, "");
+    var name = $("#ci-name").val().trim();
+    if (!path || path == "/") { showToast("路径不能为空", "warning"); return; }
+    var req_fields = [];
+    $("#ci-req-fields .ci-field-row").each(function () {
+      var row = this;
+      var n = (row.querySelector(".ci-rname").value || "").trim();
+      if (!n) return;
+      var result = rebuildRule(row);
+      var field = { name: n, rule: result.rule };
+      if (result.when) {
+        field.when = result.when;
+        if (result.subRule) field.when.sub_rule = result.subRule;
+      }
+      req_fields.push(field);
+    });
+    var resp_fields = [];
+    $("#ci-resp-fields .ci-field-row").each(function () {
+      var row = this;
+      var n = (row.querySelector(".ci-rname").value || "").trim();
+      if (!n) return;
+      var result = rebuildRule(row);
+      var field = { name: n, rule: result.rule };
+      if (result.when) {
+        field.when = result.when;
+        if (result.subRule) field.when.sub_rule = result.subRule;
+      }
+      resp_fields.push(field);
+    });
+    if (!resp_fields.length) { showToast("响应字段至少要有一个", "warning"); return; }
+    // 校验 when 条件的 sub_rule 完整性
+    var allFields = [].concat(req_fields).concat(resp_fields);
+    for (var i = 0; i < allFields.length; i++) {
+      var f = allFields[i];
+      if (f.rule === "when" && f.when && f.when.sub_rule) {
+        var sr = f.when.sub_rule;
+        // fixed:/random:/sequence:/token:/date:/enum:/nested:/object:/array: 必须有实际值
+        var typeWithoutValue = sr.match(/^(fixed|random|sequence|token|date|enum|nested|object|array):$/);
+        if (typeWithoutValue) {
+          var fname = f.name || "(未命名字段)";
+          showToast("字段「" + fname + "」的条件值规则「" + typeWithoutValue[0] + "」缺少实际值，请点击 ⚙ 展开并填写", "warning"); return;
+        }
+      }
+    }
+    var payload = { method: method, path: path, name: name, req_fields: req_fields, resp_fields: resp_fields };
+    var isEdit = !!editingCI;
+
+    // 根据接口类型选择不同的 API
+    var isProjectIface = curIface && curIface._isProject;
+    // 项目接口：带上 inner_schemas（嵌套字段 JSON 编辑器的修改结果）
+    if (isProjectIface && _innerSchemas && Object.keys(_innerSchemas).length) {
+      payload.inner_schemas = _innerSchemas;
+    }
+    var url, httpMethod;
+
+    if (isProjectIface) {
+      // 项目接口 → 更新到项目 Schema
+      url = "/mock/project/" + encodeURIComponent(curProj) + "/interface";
+      httpMethod = "PUT";
+    } else {
+      // 自定义接口 → 写入 custom_store
+      url = isEdit ? "/mock/custom/" + encodeURIComponent(editingCI.replace(/^\//, "")) : "/mock/custom";
+      httpMethod = isEdit ? "PUT" : "POST";
+    }
+
+    try {
+      var r = await fetch(url, { method: httpMethod, headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) });
+      var j = await r.json();
+      if (j.code !== 0) { showToast(j.error || "保存失败", "error"); return; }
+      // 保存成功后更新 editingCI（仅限自定义接口，path 变了需要用新 path 作为 key）
+      if (!isProjectIface) {
+        editingCI = j.data && j.data.path ? ("/" + j.data.path.replace(/^\/+/, "")) : editingCI;
+      }
+      cancelCIMode();
+      if (!isProjectIface && !isEdit) {
+        renderCustomList();
+      }
+      renderList();  // 刷新完整列表
+      // 保存后重新加载当前接口，刷新主面板示例值
+      if (curIface && curIface.path === path) {
+        if (isProjectIface) {
+          await selIface(path, false);
+        } else {
+          await selectCustomIface(path);
+        }
+      }
+      showToast("接口已保存: " + path, "success");
+    } catch (e) { showToast("请求失败: " + e.message, "error"); }
+  }
+
+  async function sendCustomReq() {
+    var path = $("#ci-path").val().trim();
+    if (!path) { showToast("路径不能为空", "warning"); return; }
+    path = "/" + path.replace(/^\/+/, "");
+    var req = {};
+    $("#ci-req-fields .ci-field-row").each(function () {
+      var row = this;
+      var n = (row.querySelector(".ci-rname").value || "").trim();
+      var r = row.querySelector(".ci-rrule").value;
+      if (n && r !== "skip") req[n] = "[mock:" + r + "]";
+    });
+    $("#resp-body").html('<div class="eh" style="color:#888"><div class="ic">⏳</div>请求中...</div>');
+    try {
+      // 根据当前编辑的是项目接口还是自定义接口，选择正确的调用路径
+      var callUrl;
+      if (curIface && curIface._isProject) {
+        // 项目接口 → 用 curProj 路由
+        callUrl = "/mock/call/" + encodeURIComponent(curProj) + "/" + encodeURIComponent(path.replace(/^\//, ''));
+      } else {
+        // 自定义接口 → 用 _custom 路由
+        callUrl = "/mock/call/_custom/" + encodeURIComponent(path.replace(/^\//, ''));
+      }
+      var r = await fetch(callUrl, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(req) });
+      var text = await r.text();
+      var sb = $("#status-badge"); sb.css("display", "").attr("class", "sb " + (r.ok ? "s-ok" : "s-err")).text(r.status + " " + r.statusText);
+      var pretty = "";
+      try { var obj = JSON.parse(text); pretty = JSON.stringify(obj, null, 2); } catch (e) { pretty = text; }
+      $("#resp-body").html("<pre>" + sh(pretty) + "</pre>");
+    } catch (e) { $("#resp-body").html('<div class="eh" style="color:#f87171"><div class="ic">❌</div>' + eH(e.message) + '</div>'); }
+  }
+
+  async function delCustomIface() {
+    if (!editingCI) return;
+    if (!confirm("确认删除接口: " + editingCI + "？")) return;
+    try {
+      var r = await fetch("/mock/custom/" + encodeURIComponent(editingCI.replace(/^\//, "")), { method: "DELETE" });
+      var j = await r.json();
+      if (j.code !== 0) { showToast(j.error || "删除失败", "error"); return; }
+      cancelCIMode();
+      renderCustomList();
+      showToast("接口已删除", "success");
+    } catch (e) { showToast("请求失败: " + e.message, "error"); }
+  }
+
+  function cancelCIMode() {
+    $("#ci-modal").removeClass("show");
+  }
+
+  function closeCIModal() {
+    $("#ci-modal").removeClass("show");
+  }
+
+
+  init();
+</script>

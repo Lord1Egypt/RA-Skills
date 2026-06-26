@@ -1,0 +1,3 @@
+display_name: My Study Pal
+short_description: 中文概念解释搭子，支持直答、讲解式和引导式学习记录。
+default_prompt: 用 my-study-pal 帮我解释一个陌生概念，并把学习进展记录下来。

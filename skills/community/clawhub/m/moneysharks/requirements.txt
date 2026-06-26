@@ -1,0 +1,26 @@
+# MoneySharks — Python dependencies
+#
+# All core functionality uses Python 3.10+ standard library only.
+# No pip install required for the trading engine.
+#
+# Standard library modules used:
+#   json, os, sys, pathlib, subprocess, hashlib, hmac,
+#   urllib.request, urllib.parse, urllib.error,
+#   time, datetime, math, collections
+#
+# ── Optional: enhanced features ──
+# Uncomment below if you want to use these optional integrations:
+#
+# For WebSocket real-time data feed (instead of REST polling):
+#   websockets>=11.0
+#
+# For advanced technical analysis (alternative to built-in indicators):
+#   numpy>=1.24.0
+#   pandas>=2.0.0
+#   pandas-ta>=0.3.14b0
+#
+# For sentiment analysis (if enabled in config):
+#   requests>=2.31.0
+#
+# Python version requirement: 3.10+
+# (uses match-case and union type hints)

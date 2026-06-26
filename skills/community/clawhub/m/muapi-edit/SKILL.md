@@ -1,35 +1,50 @@
 ---
-name: "muapi-media-editing"
-description: "Edit and enhance images and videos with AI via muapi.ai — prompt-based editing, upscaling, background removal, face swap, lipsync, video effects, and more"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/muapi-edit"
-sourceUrl: "https://clawhub.ai/skills/muapi-edit"
+slug: muapi-edit
+name: muapi-media-editing
+version: "0.1.0"
+description: Edit and enhance images and videos with AI via muapi.ai — prompt-based editing, upscaling, background removal, face swap, lipsync, video effects, and more
+acceptLicenseTerms: true
 ---
 
-# muapi-media-editing
+# ✏️ MuAPI Media Editing & Enhancement
 
-> Edit and enhance images and videos with AI via muapi.ai — prompt-based editing, upscaling, background removal, face swap, lipsync, video effects, and more
+**Advanced editing and enhancement operations for images and videos.**
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/muapi-edit`
-- **Source URL:** [https://clawhub.ai/skills/muapi-edit](https://clawhub.ai/skills/muapi-edit)
+Apply AI-powered edits, enhancements, and effects to existing media. Supports prompt-based editing with Flux Kontext, GPT-4o, and Midjourney, plus one-click operations like upscaling and background removal.
 
-## Overview
+## Available Scripts
 
+| Script | Description |
+| :--- | :--- |
+| `edit-image.sh` | Prompt-based image editing (Flux Kontext, GPT-4o, Midjourney, Qwen, and more) |
+| `enhance-image.sh` | One-click operations: upscale, background removal, face swap, colorize, Ghibli style, product shots |
+| `lipsync.sh` | Sync video lip movement to audio (Sync Labs, LatentSync, Creatify, Veed) |
+| `video-effects.sh` | Video/image effects: Wan AI, face swap, dance, dress change, Luma modify/reframe |
 
-## Installation
-To install this skill, run the following command in your terminal:
+## Quick Start
+
 ```bash
-hermes skills install clawhub/muapi-edit
+# Edit an image with a prompt
+bash edit-image.sh --image-url "https://..." --prompt "add sunglasses" --model flux-kontext-pro
+
+# Upscale an image
+bash enhance-image.sh --op upscale --image-url "https://..."
+
+# Remove background
+bash enhance-image.sh --op background-remove --image-url "https://..."
+
+# Lipsync a video
+bash lipsync.sh --video-url "https://..." --audio-url "https://..." --model sync
+
+# Apply dance effect
+bash video-effects.sh --op dance --image-url "https://..." --audio-url "https://..."
 ```
+
+## Common Flags
+
+All scripts support: `--async`, `--json`, `--timeout N`, `--help`
+
+## Requirements
+
+- `MUAPI_KEY` environment variable (set via `core/platform/setup.sh`)
+- `curl`, `jq`, `python3`

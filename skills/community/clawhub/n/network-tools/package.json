@@ -1,0 +1,8 @@
+{
+  "name": "network-tools",
+  "version": "2.0.0",
+  "description": "Enhanced Network Tools Skill for AI Agents - comprehensive network toolkit without API keys",
+  "keywords": ["network", "curl", "wget", "aria2", "dns", "ping", "traceroute", "whois", "youtube-dl"],
+  "author": "savior-li",
+  "license": "MIT"
+}

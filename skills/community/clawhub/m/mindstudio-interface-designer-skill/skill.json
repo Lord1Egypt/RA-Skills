@@ -1,0 +1,75 @@
+{
+  "name": "mindstudio-interface-designer-skill",
+  "version": "2.0.0",
+  "displayName": "MindStudio Interface Designer Skill",
+  "description": "Master Claude Code skill for building production-grade React interfaces inside the MindStudio Interface Designer. Interviews the user first, maps inputs to MindStudio workflow variables, wires the bridge correctly, commits to a bold aesthetic direction, and delivers accessible, performant components that compile and advance the workflow on submit.",
+  "author": "Sol",
+  "license": "MIT",
+  "skillFile": "SKILL.md",
+  "tags": [
+    "MindStudio",
+    "Interface Designer",
+    "React",
+    "Frontend",
+    "UI",
+    "UX",
+    "Design System",
+    "Tailwind",
+    "shadcn",
+    "Accessibility",
+    "Performance",
+    "Animation",
+    "Workflow",
+    "Bridge"
+  ],
+  "environment": {
+    "platform": "MindStudio Interface Designer",
+    "runtime": "React (client-side)",
+    "tunnel": "MindStudio local tunnel + Claude Code",
+    "requiredFiles": ["./bridge"]
+  },
+  "capabilities": [
+    "discovery-interview",
+    "variable-mapping",
+    "bridge-wiring",
+    "aesthetic-direction",
+    "design-system-generation",
+    "accessibility-enforcement",
+    "react-performance-optimization",
+    "pre-delivery-checklist",
+    "multi-step-wizards",
+    "responsive-layout",
+    "light-dark-mode",
+    "animation-and-motion"
+  ],
+  "aestheticArchetypes": [
+    "refined-minimal",
+    "luxury-editorial",
+    "dark-technical",
+    "warm-approachable",
+    "bold-brutalist",
+    "glassmorphic",
+    "bento-grid",
+    "retro-futuristic",
+    "claymorphic",
+    "organic-natural"
+  ],
+  "supportedInterfaceTypes": [
+    "input-form",
+    "multi-step-wizard",
+    "onboarding-flow",
+    "chat-interface",
+    "dashboard",
+    "data-display",
+    "creative-tool"
+  ],
+  "bridgeIntegration": {
+    "imports": ["submit", "useIsRunning", "useTemplateVariables", "uploadFile", "requestFile"],
+    "requiredImports": ["submit", "useIsRunning"],
+    "submitPattern": "submit(formData)",
+    "loadingPattern": "useIsRunning()",
+    "forbidden": ["window.MindStudio.submit", "manual setTimeout loading state"]
+  },
+  "examples": "EXAMPLES.md",
+  "readme": "README.md"
+}

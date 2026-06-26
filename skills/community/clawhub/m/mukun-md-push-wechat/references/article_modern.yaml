@@ -1,0 +1,15 @@
+# 文章模式 — 科技蓝紫样式（白底 + 蓝紫胶囊标题 + 深蓝封面）
+# 适用场景：AI 科技、技术前沿、现代风格文章
+# 触发词：科技 / 蓝紫 / 科技蓝紫 / 蓝紫渐变 / AI / 技术 / 现代 / 前沿 / 潮流 / 深蓝封面
+style:
+    article:
+        bg: "#ffffff"
+        text: "rgb(50,55,65)"
+        accent: "rgb(88,101,242)"
+        tag_bg: "rgb(88,101,242)"
+        tag_txt: "#ffffff"
+        bold: "rgb(30,33,40)"
+        title_font_size: "24px"
+        text_font_size: "16px"
+        h2_font_size: "18px"
+        cover_label: "AI TECH INSIGHT"

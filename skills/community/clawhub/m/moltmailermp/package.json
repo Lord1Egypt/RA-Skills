@@ -1,0 +1,27 @@
+{
+  "type": "module",
+  "scripts": {
+    "setup": "ts-node setup.ts",
+    "login": "ts-node scripts/loginToEtherMail.ts",
+    "complete-onboarding": "ts-node scripts/completeOnboarding.ts",
+    "list-mailboxes": "ts-node scripts/listMailboxes.ts",
+    "search-emails": "ts-node scripts/searchEmails.ts",
+    "get-email": "ts-node scripts/getEmailContent.ts",
+    "mark-read": "ts-node scripts/markAsRead.ts",
+    "send-email": "ts-node scripts/sendEmail.ts",
+    "reply-email": "ts-node scripts/replyToEmail.ts",
+    "list-aliases": "ts-node scripts/listAliases.ts",
+    "get-referral-code": "ts-node scripts/getReferralCode.ts",
+    "get-earned-coins": "ts-node scripts/getEarnedCoins.ts"
+  },
+  "dependencies": {
+    "axios": "^1.13.4",
+    "enquirer": "^2.4.1",
+    "ethers": "^6.16.0"
+  },
+  "devDependencies": {
+    "@types/node": "^25.2.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3"
+  }
+}

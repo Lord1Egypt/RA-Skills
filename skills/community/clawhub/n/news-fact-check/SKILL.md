@@ -1,35 +1,93 @@
 ---
-name: "新闻事实核查"
-description: "新闻事实核查与真伪辨别助手。当用户需要验证新闻真实性、查证消息来源、核实事件真伪时使用。包括：(1) 给定新闻内容进行真伪判断 (2) 提供的事实核查方法和步骤 (3) 帮助用户建立批判性思维习惯"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/news-fact-check"
-sourceUrl: "https://clawhub.ai/skills/news-fact-check"
+AIGC:
+    ContentProducer: Minimax Agent AI
+    ContentPropagator: Minimax Agent AI
+    Label: AIGC
+    ProduceID: 353a1fa62d9e026ed1e119c32ab2e30b
+    PropagateID: 353a1fa62d9e026ed1e119c32ab2e30b
+    ReservedCode1: 3044022033cbb6252fc5d80f939363e84f1e1b3e96884b5b02e1aef41b9ec5ad2fe11a51022060e1cf1c3e77a5e9c11e2d3619ab01f2e739c9bf95964d2aa3e496050d27c8ae
+    ReservedCode2: 3044022030b657224bf9bb8ebc476de998ac6527132e87ec57c7a0b090441f9b314cacaa0220437688bfc1238ae1b7eaca7c99de7f231ba0bd880c100ccc101443209b735a9b
+description: 新闻事实核查与真伪辨别助手。当用户需要验证新闻真实性、查证消息来源、核实事件真伪时使用。包括：(1) 给定新闻内容进行真伪判断 (2) 提供的事实核查方法和步骤 (3) 帮助用户建立批判性思维习惯
+name: news-fact-check
 ---
 
 # 新闻事实核查
 
-> 新闻事实核查与真伪辨别助手。当用户需要验证新闻真实性、查证消息来源、核实事件真伪时使用。包括：(1) 给定新闻内容进行真伪判断 (2) 提供的事实核查方法和步骤 (3) 帮助用户建立批判性思维习惯
+## 核心原则
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/news-fact-check`
-- **Source URL:** [https://clawhub.ai/skills/news-fact-check](https://clawhub.ai/skills/news-fact-check)
+**先怀疑，后验证**。不要假设任何新闻是真实的或假的，始终通过证据来判断。
 
-## Overview
+## 核查流程
 
+### 第一步：识别关键声明
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/news-fact-check
+从新闻中提取可验证的核心事实主张（Claims），包括：
+- 具体的人物、地点、时间、数据
+- 直接引语和归属来源
+- 事件的核心事实
+
+### 第二步：多源验证
+
+对每个关键声明进行交叉核实：
+
+1. **权威新闻源比对**：对比 BBC, Reuters, AP, 新华社等权威媒体是否报道
+2. **官方信息核查**：查找政府部门、机构、企业的正式声明
+3. **事实核查网站**：使用以下专业工具：
+   - [Snopes](https://snopes.com)
+   - [PolitiFact](https://politifact.com)
+   - [FactCheck.org](https://factcheck.org)
+   - [中国谣言粉碎机](https://piyao.sina.cn/)
+   - [腾讯新闻较真](https://news.qq.com/zt2020/page/feiyan.htm)
+4. **图片/视频验证**：使用 Google Images 反向搜索或 InVID/WeVerify 工具
+
+### 第三步：评估来源可靠性
+
+检查原始信息来源的可信度：
+- 媒体声誉和历史准确性
+- 是否有明确的消息源
+- 报道是否包含多方观点
+- 出版时间是否最新
+- 是否有明显的偏见或煽动性语言
+
+### 第四步：给出结论
+
+根据证据强度，给出以下结论之一：
+- **已证实为真**：有多处独立可靠来源证实
+- **已证实为假**：有明确证据证明为虚假信息
+- **部分属实**：声明中包含真实成分但有误导性细节
+- **无法核实**：缺乏足够证据做出判断
+- **误导性**：技术上可能为真但呈现方式具有误导性
+
+## 输出格式
+
+完成核查后，以以下格式呈现：
+
 ```
+📋 核查结论：[结论类型]
+
+🔍 关键发现：
+- [发现1]
+- [发现2]
+
+📚 证据来源：
+- [来源1]
+- [来源2]
+
+⚠️ 注意事项：
+- [任何可能影响判断的因素]
+```
+
+## 常见红旗特征
+
+以下特征提示新闻可能不可靠：
+- 来源模糊或不存在
+- 情绪化、煽动性语言
+- 单一来源，无其他媒体跟进
+- 声称"独家报道"但无原始链接
+- 使用模糊的时间表述（如"近日"）
+- 图片、视频可能为旧素材或移花接木
+- 要求立即转发分享
+
+## 参考资源
+
+如需更详细的核查方法论和工具列表，参见 [references/methods.md](references/methods.md)。

@@ -1,0 +1,72 @@
+{
+  "version": 1,
+  "jobs": [
+    {
+      "id": "daily-leader-routine",
+      "agentId": null,
+      "sessionKey": "agent:main:main",
+      "name": "daily-leader-routine",
+      "description": "Leader reviews daily notes, consolidates memory, scans tasks",
+      "enabled": true,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 20 * * *"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "[CRON:DAILY] Daily routine: 1) Verify today's memory/YYYY-MM-DD.md exists — create if missing. 2) Review yesterday's memory file, consolidate significant items to MEMORY.md. 3) Check social notifications/mentions needing response. 4) Scan tasks/ for any stale in-progress tasks. Use message tool to deliver summary to owner if noteworthy."
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "telegram",
+        "to": "{{OPERATIONS_CHANNEL}}"
+      }
+    },
+    {
+      "id": "weekly-leader-review",
+      "agentId": null,
+      "sessionKey": "agent:main:main",
+      "name": "weekly-leader-review",
+      "description": "Leader reviews knowledge base, agent performance, and memory weekly",
+      "enabled": true,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 20 * * 0"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "[CRON:WEEKLY] Weekly review: 1) Review this week's daily memory files → update MEMORY.md with curated insights. 2) Check shared/ files for outdated information. 3) Check each brand profile.md for empty/template-only sections — flag to owner. 4) Review agent performance — any tuning notes? Read each sub-agent's MEMORY.md (workspace-creator/, workspace-researcher/, workspace-engineer/, workspace-worker/) for insights worth consolidating to Leader MEMORY.md or shared/. 5) Verify brand-registry.md is in sync with brand directories. Use message tool to deliver report to owner."
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "telegram",
+        "to": "{{OPERATIONS_CHANNEL}}"
+      }
+    },
+    {
+      "id": "stale-task-check",
+      "agentId": null,
+      "sessionKey": "agent:main:main",
+      "name": "stale-task-check",
+      "description": "Scan tasks/ directory for stale dispatched tasks and recover lost agent callbacks",
+      "enabled": true,
+      "schedule": {
+        "kind": "cron",
+        "expr": "*/10 * * * *"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "[CRON:TASK_CHECK] 定期任務檢查。用 exec 執行 `ls tasks/*.md` 掃描 active task files（排除 archive/）。對每個 [⏳] 步驟，若 dispatched 超過 15 分鐘，執行 sessions_history 檢查 agent session。已完成但未 callback → 更新 task file → edit status message（解析 route 欄位 split on : → to = chatId, threadId = threadId，用 message action:edit messageId:telegram_status_msg）→ cascade 下一步 → 交付 owner。Agent session 不存在或無活動 → 自動重新 dispatch（用 sessions_list 取當前 session key，從 task file 重建 brief）。Max 2 次自動重派，超過則通知 owner。Status message recovery：若 task in_progress 但 telegram_status_msg 為空 → 補發 kickoff status message 並記錄 messageId。若 step 已完成但 status message icon 未更新 → 補 edit。Agent 仍在執行且超過 30 分鐘 → 用 message tool 通知 owner。無待處理項目 → 回覆 HEARTBEAT_OK。"
+      },
+      "delivery": {
+        "mode": "none"
+      }
+    }
+  ]
+}

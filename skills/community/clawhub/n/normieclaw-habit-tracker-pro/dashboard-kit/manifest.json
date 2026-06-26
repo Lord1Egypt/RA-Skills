@@ -1,0 +1,68 @@
+{
+  "name": "Habit Tracker Pro Dashboard Kit",
+  "version": "1.0.0",
+  "tool": "habit-tracker-pro",
+  "prefix": "ht_",
+  "data_source": "~/.normieclaw/habit-tracker-pro",
+  "widgets": [
+    {
+      "id": "ht_habit_grid",
+      "name": "Habit Grid",
+      "description": "GitHub-style contribution chart showing daily completions per habit",
+      "type": "grid",
+      "default_range_days": 90,
+      "data_files": ["completions.json", "habits.json"],
+      "size": { "cols": 12, "rows": 4 }
+    },
+    {
+      "id": "ht_streak_board",
+      "name": "Streak Board",
+      "description": "Habits ranked by current streak with longest streak and completion rate",
+      "type": "table",
+      "data_files": ["habits.json", "streaks.json"],
+      "size": { "cols": 6, "rows": 3 }
+    },
+    {
+      "id": "ht_weekly_trends",
+      "name": "Weekly Trends",
+      "description": "Line chart of completion rates per habit over the last 8 weeks",
+      "type": "line_chart",
+      "default_range_weeks": 8,
+      "data_files": ["completions.json", "habits.json"],
+      "size": { "cols": 6, "rows": 3 }
+    },
+    {
+      "id": "ht_pattern_insights",
+      "name": "Pattern Insights",
+      "description": "Top behavioral insights from pattern analysis",
+      "type": "card_list",
+      "max_items": 5,
+      "data_files": ["patterns.json"],
+      "size": { "cols": 6, "rows": 2 }
+    },
+    {
+      "id": "ht_daily_summary",
+      "name": "Today's Status",
+      "description": "Quick view of today's habit status — done, pending, missed",
+      "type": "status_list",
+      "data_files": ["completions.json", "habits.json"],
+      "size": { "cols": 6, "rows": 2 }
+    },
+    {
+      "id": "ht_category_breakdown",
+      "name": "Category Performance",
+      "description": "Completion rates grouped by habit category",
+      "type": "bar_chart",
+      "data_files": ["completions.json", "habits.json"],
+      "size": { "cols": 6, "rows": 2 }
+    }
+  ],
+  "refresh_interval_minutes": 60,
+  "theme": {
+    "completed_color": "#22c55e",
+    "missed_color": "#94a3b8",
+    "pending_color": "#facc15",
+    "streak_highlight": "#f97316",
+    "insight_accent": "#8b5cf6"
+  }
+}

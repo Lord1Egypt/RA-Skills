@@ -1,35 +1,29 @@
----
-name: "Net Scan Education"
-description: "Offers safe educational content on network scanning concepts, including learning plans, explanations, and lab checklists without performing real scans."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/net-scan-education"
-sourceUrl: "https://clawhub.ai/skills/net-scan-education"
----
+# Skill: net-scan-education
 
-# Net Scan Education
+Objective
+- Provide a safe, educational agent skill focused on learning network scanning concepts (e.g., Nmap) without performing any real scans or accessing external networks.
+- Emphasize defensive security education, policy compliance, and proper authorization.
 
-> Offers safe educational content on network scanning concepts, including learning plans, explanations, and lab checklists without performing real scans.
+Scope & Guardrails
+- Non-operational outputs only: explanations, learning plans, lab setup checklists, and sample prompts.
+- All actions must be explicitly authorized by a requestor and kept within a controlled lab environment.
+- Logs and audit trails of prompts and responses are maintained.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/net-scan-education`
-- **Source URL:** [https://clawhub.ai/skills/net-scan-education](https://clawhub.ai/skills/net-scan-education)
+Interfaces
+- Invocation: via a chat prompt or command like: explain net-scan basics, provide a learning plan, or generate a lab setup checklist.
+- Outputs: non-operational text, templates, checklists, and doc generation.
 
-## Overview
+Data Model
+- State: learning progress, last prompt, sample prompts.
+- Artifacts: generated docs (markdown/text), templates.
 
+Testing
+- Unit tests for plain text outputs and template generation; ensure no sensitive commands or URLs are produced.
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/net-scan-education
-```
+Publish
+- Optional: publish to clawhub or keep local for iteration.
+
+Test Prompts (examples)
+- Explain how to safely learn Nmap in a lab without performing any scans.
+- Generate a 2-week learning plan for network scanning in a controlled environment.
+- Provide a lab setup checklist for a defensive learning lab.

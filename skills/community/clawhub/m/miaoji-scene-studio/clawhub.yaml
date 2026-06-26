@@ -1,0 +1,15 @@
+name: miaoji-scene-studio
+version: 1.0.0
+display_name: 秒技·原生场景图工作室
+description: 辅助用户生成TikTok原生感场景图的AI绘图提示词与构图方案，解决商业内容视觉疲劳痛点
+category: creative_tools
+tags:
+  - 场景图
+  - TikTok
+  - 电商
+  - 提示词生成
+  - 内容创作
+author: miaoji
+license: MIT
+homepage: https://xiaping.coze.site
+source: clawhub

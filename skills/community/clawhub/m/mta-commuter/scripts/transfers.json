@@ -1,0 +1,43 @@
+{
+  "Penn Station": {
+    "commuter_rail": ["lirr"],
+    "subway_stations": [
+      {"name": "34 St-Penn Station", "lines": ["1", "2", "3"], "walk_min": 3},
+      {"name": "34 St-Penn Station", "lines": ["A", "C", "E"], "walk_min": 4}
+    ]
+  },
+  "Grand Central": {
+    "commuter_rail": ["mnr"],
+    "subway_stations": [
+      {"name": "Grand Central-42 St", "lines": ["4", "5", "6", "6X"], "walk_min": 3},
+      {"name": "Grand Central-42 St", "lines": ["7"], "walk_min": 5},
+      {"name": "Grand Central-42 St", "lines": ["S"], "walk_min": 4}
+    ]
+  },
+  "Atlantic Terminal": {
+    "commuter_rail": ["lirr"],
+    "subway_stations": [
+      {"name": "Atlantic Av-Barclays Ctr", "lines": ["2", "3", "4", "5"], "walk_min": 3},
+      {"name": "Atlantic Av-Barclays Ctr", "lines": ["B", "D", "N", "Q", "R"], "walk_min": 4}
+    ]
+  },
+  "Jamaica": {
+    "commuter_rail": ["lirr"],
+    "subway_stations": [
+      {"name": "Sutphin Blvd-Archer Av-JFK Airport", "lines": ["E", "J", "Z"], "walk_min": 5}
+    ]
+  },
+  "Woodside": {
+    "commuter_rail": ["lirr"],
+    "subway_stations": [
+      {"name": "61 St-Woodside", "lines": ["7"], "walk_min": 3}
+    ]
+  },
+  "Harlem-125 St": {
+    "commuter_rail": ["mnr"],
+    "subway_stations": [
+      {"name": "125 St", "lines": ["4", "5", "6"], "walk_min": 4},
+      {"name": "125 St", "lines": ["2", "3"], "walk_min": 5}
+    ]
+  }
+}

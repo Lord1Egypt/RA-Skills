@@ -1,0 +1,33 @@
+{
+  "network": "xlayerTestnet",
+  "chainId": 1952,
+  "rpc": "https://xlayertestrpc.okx.com",
+  "explorer": "https://www.oklink.com/xlayer-test",
+  "contracts": {
+    "registry": "0x283F7591963E6C5C97a0153b5803928A056FaA87",
+    "accessControl": "0x3E2B82827e6ECf3E49EcD13e83ce38C554624C97",
+    "tokenManager": "0x59383270f38C522B974F04162C04bA9277Faa52e",
+    "userProfileCredit": "0x6bB86eFf5A0DD1Bac148DB9925b7733C1c0B88d4",
+    "categoryManager": "0x90dC091D683ffBDEC6c807BBb780d1932F22fD11",
+    "referralSystem": "0xa17b4E146C6B0c56eA5BA0c07ed40A262362d7d0",
+    "core": "0xe3647A175e78bE6adFd7304f6C46e3615aCDcF96",
+    "bidding": "0x023eE5F84C044E3f6D147867b85f0E43f33ef0d9",
+    "helper": "0xcc22708236583f0D304c81fa626eD976294c5A89",
+    "priceOracle": "0x4C4D550Fd8b82A02e1B9d63effc97895099004f7",
+    "queryHelper": "0xE7D9d979Ebf376AaD774768Ae88FFE72863B2117",
+    "niumaToken": "0x77F2A7eF998b7814b1739F7Cc8158F81d5c11b59"
+  },
+  "tokens": {
+    "NIUMA": {
+      "address": "0x77F2A7eF998b7814b1739F7Cc8158F81d5c11b59",
+      "decimals": 18,
+      "symbol": "NIUMA"
+    },
+    "OKB": {
+      "address": "0x0000000000000000000000000000000000000000",
+      "decimals": 18,
+      "symbol": "OKB",
+      "isNative": true
+    }
+  }
+}

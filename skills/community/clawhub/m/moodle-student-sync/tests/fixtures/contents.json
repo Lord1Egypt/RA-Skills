@@ -1,0 +1,17 @@
+[
+  {
+    "id": 313361,
+    "name": "Week 1: Introduction",
+    "visible": 1,
+    "section": 0,
+    "modules": [
+      {
+        "id": 568428,
+        "name": "Lecture 1 Slides",
+        "modname": "resource",
+        "url": "https://moodle.example.edu/mod/resource/view.php?id=568428"
+      }
+    ]
+  }
+]
+

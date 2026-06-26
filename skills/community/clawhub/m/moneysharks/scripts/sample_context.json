@@ -1,0 +1,14 @@
+{
+  "trend": "up",
+  "momentum": "up",
+  "high_volatility": false,
+  "checks": {
+    "trend_alignment": true,
+    "momentum_confirmation": true,
+    "volume_confirmation": true,
+    "structure_quality": true,
+    "reward_risk_ok": true,
+    "market_context_ok": false,
+    "exposure_capacity_ok": true
+  }
+}

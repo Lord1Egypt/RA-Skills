@@ -1,0 +1,196 @@
+{
+  "$comment": "OpenClaw skill manifest for muhaven-rwa-skill. Mirrors the SKILL.md frontmatter in machine-readable form. ClawSecure permissions block is forward-compatible with NemoClaw runtime sandbox (OpenClaw issues #28298 / #28360). Network deny-by-default + filesystem deny-all + spawn deny-all is the lethal-trifecta defense (P8 forthcoming).",
+  "schema_version": "1.0",
+  "name": "muhaven-rwa-skill",
+  "display_name": "MuHaven RWA Portfolio",
+  "version": "0.1.4",
+  "description": "Confidential RWA portfolio agent on Fhenix CoFHE. Reads encrypted balances, stages buy + claim intents, never auto-submits. Three-tier confirmation surface (inline / Mini App OTP / passkey deep-link) keyed on intent notional.",
+  "license": "MIT",
+  "homepage": "https://muhaven.app",
+  "documentation": "https://github.com/hasToDev/muhaven/tree/master/packages/openclaw-skill",
+  "support": "https://github.com/hasToDev/muhaven/issues",
+  "keywords": [
+    "fhe",
+    "fhenix",
+    "rwa",
+    "muhaven",
+    "openclaw",
+    "confidential-defi",
+    "erc-3643"
+  ],
+  "authors": [
+    {
+      "name": "MuHaven",
+      "email": "hello@muhaven.app",
+      "url": "https://muhaven.app"
+    }
+  ],
+  "compatibility": {
+    "platforms": ["darwin", "win32", "linux"],
+    "runtimes": {
+      "node": ">=20"
+    },
+    "openclaw_runtime": {
+      "$comment_calendar_versioning": "The npm-published `openclaw` package uses calendar versioning (e.g. 2026.5.7), not semver. The pre-2026-05-11 manifest assumed the NemoClaw-style semver range (0.4.0 / 0.5.x); that range is meaningless against the actual runtime. Range below pins the calendar major-minor at which §3 Path (a) A.4 was validated. Future-runtime adopters should bump `min` to the lowest calendar version that ships the `mcp.command/args` + `${__dirname}` template resolver the skill relies on.",
+      "min": "2026.5.0",
+      "tested": "2026.5.x"
+    }
+  },
+  "runtime": {
+    "type": "node",
+    "entry_point": "dist/index.cjs",
+    "args": []
+  },
+  "permissions": {
+    "network": {
+      "$comment_egress_advisory_in_host_native": "Allowlist intentionally pins production origins only — the published artifact is prod-targeted. Staging rehearsals (§3 Path (a) A.3-A.7 in AGENTIC_TEST_PLAN.md) install the same signed tarball with a `user_config.backend_url=https://api-stage.muhaven.app` override and rely on plain OpenClaw's `sandbox.fallback: host_native` posture (manifest permissions become advisory metadata, not kernel-enforced). Defense-in-depth in host_native mode lives in the bin shim's deny-default behavior + the broker daemon's JWT-scope check. A future kernel-enforced runtime would reject the staging override; that is intentional — production artifact stays production-pure.",
+      "deny_default": true,
+      "egress_allowlist": [
+        "https://api.muhaven.app",
+        "https://muhaven.app"
+      ],
+      "ingress_listen": []
+    },
+    "filesystem": {
+      "read": [],
+      "write": []
+    },
+    "process": {
+      "spawn": [],
+      "stdio": "manifest_only"
+    },
+    "secrets": {
+      "storage": "os_keychain",
+      "deny_paste_ui": true,
+      "references": [
+        {
+          "name": "muhaven_jwt",
+          "owner": "muhaven-broker",
+          "scope": ["mcp.read.*", "mcp.propose.*"]
+        }
+      ]
+    },
+    "telemetry": {
+      "deny_default": true
+    }
+  },
+  "sandbox": {
+    "runtime": "nemoclaw",
+    "fallback": "host_native",
+    "$comment_forward_compat": "Per OpenClaw issues #28298 (permissions schema) and #28360 (sandbox boot ABI). When the runtime doesn't recognize a field, it MUST treat unknown permissions as deny — not allow. Verified on NemoClaw 0.5.0 release notes.",
+    "$comment_runtime_decision": "Operator runtime decision 2026-05-11 (c8aba6d) shifted §3 Path (a) A.4 from NemoClaw to plain OpenClaw via `npm install -g openclaw@latest`. The `runtime: nemoclaw` field above stays as the preferred runtime claim; `fallback: host_native` is what actually runs today. Sandbox + permissions become advisory in host_native mode. Promote to NemoClaw once the homelab is willing to host the NVIDIA OpenShell + GPU stack."
+  },
+  "mcp": {
+    "bundled": "@muhaven/mcp",
+    "bundled_version": "0.1.5",
+    "transport": "stdio",
+    "command": "node",
+    "$comment_args_template_resolver": "`${__dirname}` is the MCPB-canonical template token (resolves to the skill's install-time root). Plain OpenClaw's manifest resolver behavior is empirically verified during §3 Path (a) A.4 (operator-driven). The bin shim is the launch target (NOT `dist/index.cjs` directly) because it wraps `runOpenClawSkill()` in `.then(...) .catch(err => process.stderr.write(\"fatal: \" + err.stack))` — direct-launch of `dist/index.cjs` would crash silently on an unhandled rejection. If a runtime fails to expand `${__dirname}`, the `runtime.entry_point: dist/index.cjs` field at manifest line 40 is the documented fallback hook.",
+    "args": ["${__dirname}/bin/muhaven-rwa-skill.cjs"],
+    "env": {
+      "MUHAVEN_BACKEND_URL": "${user_config.backend_url}",
+      "MUHAVEN_DASHBOARD_URL": "${user_config.dashboard_url}",
+      "MUHAVEN_BROKER_ENDPOINT": "${user_config.broker_endpoint}",
+      "MUHAVEN_READ_ONLY": "${user_config.read_only}",
+      "$comment_skill_version_env": "MUHAVEN_OPENCLAW_SKILL_VERSION is intentionally NOT pre-set here. The bin shim's runOpenClawSkill() does `process.env.MUHAVEN_OPENCLAW_SKILL_VERSION = resolveSkillVersion()` at boot — the value comes from the `__SKILL_VERSION__` tsup-injected build-time constant (which itself reads `packages/openclaw-skill/package.json#version`). Hardcoding a literal here was the 5th drift site; the bin override always wins and a stale literal here only confuses install-time inspection."
+    },
+    "tool_subset": [
+      "muhaven.read.portfolio",
+      "muhaven.read.yields",
+      "muhaven.read.distribution",
+      "muhaven.read.tokens",
+      "muhaven.read.audit",
+      "muhaven.read.protection_coverage",
+      "muhaven.read.kyc_attestation",
+      "muhaven.position.buy",
+      "muhaven.position.claim",
+      "muhaven.policy.pause",
+      "muhaven.policy.session_key_status"
+    ],
+    "tool_subset_excluded": [
+      "muhaven.position.sell",
+      "muhaven.position.rebalance",
+      "muhaven.policy.set_tier",
+      "muhaven.policy.audit_export",
+      "muhaven.issuer.distribute_yield",
+      "muhaven.issuer.kyc_add",
+      "muhaven.issuer.kyc_remove",
+      "muhaven.issuer.unpause_token",
+      "muhaven.issuer.audit_query",
+      "muhaven.governance.propose",
+      "muhaven.governance.cast_vote"
+    ]
+  },
+  "tools": [
+    { "name": "muhaven.read.portfolio", "description": "Encrypted-balance portfolio summary; aggregates only.", "sensitive": false },
+    { "name": "muhaven.read.yields", "description": "Per-token yield history (cleartext aggregates).", "sensitive": false },
+    { "name": "muhaven.read.distribution", "description": "Distribution status for a (token, epoch).", "sensitive": false },
+    { "name": "muhaven.read.tokens", "description": "RWA tokens the user holds.", "sensitive": false },
+    { "name": "muhaven.read.audit", "description": "User's tiered-autonomy audit log.", "sensitive": false },
+    { "name": "muhaven.read.protection_coverage", "description": "Read DefaultProtection coverage for an RWA token (reserveRateBps + status). Public aggregates only.", "sensitive": false },
+    { "name": "muhaven.read.kyc_attestation", "description": "Read-only informational explainer for MuHaven cross-chain KYC attestations.", "sensitive": false },
+    { "name": "muhaven.position.buy", "description": "Stage a Subscription buy — emits intent for three-tier confirmation. NEVER auto-submits.", "sensitive": true },
+    { "name": "muhaven.position.claim", "description": "Stage a yield claim — emits intent for three-tier confirmation. NEVER auto-submits.", "sensitive": true },
+    { "name": "muhaven.policy.pause", "description": "Activate /pause kill-switch (uninstallPlugin). NEVER auto-submits — requires user confirmation.", "sensitive": true },
+    { "name": "muhaven.policy.session_key_status", "description": "Inspect ZeroDev session-key state.", "sensitive": false }
+  ],
+  "user_config": [
+    {
+      "key": "backend_url",
+      "type": "string",
+      "title": "MuHaven backend URL",
+      "description": "Backend host. Default: https://api.muhaven.app (production).",
+      "default": "https://api.muhaven.app",
+      "sensitive": false
+    },
+    {
+      "key": "dashboard_url",
+      "type": "string",
+      "title": "MuHaven dashboard URL",
+      "description": "Dashboard origin used by deep-link confirmations and the device-code authorization page (/link). Hardcoded for phishing resistance — do not change unless you know what you are doing.",
+      "default": "https://muhaven.app",
+      "sensitive": false
+    },
+    {
+      "key": "broker_endpoint",
+      "type": "string",
+      "title": "muhaven-broker IPC endpoint",
+      "description": "Path to the broker's Unix socket (POSIX) or named pipe (Windows). Leave blank for the per-user default.",
+      "default": "",
+      "sensitive": false
+    },
+    {
+      "key": "read_only",
+      "type": "boolean",
+      "title": "Read-only mode",
+      "description": "When enabled, only the muhaven.read.* toolset is exposed; position.* and policy.* tools are not registered.",
+      "default": false,
+      "sensitive": false
+    }
+  ],
+  "publishing": {
+    "registry": "clawhub",
+    "trusted_publishing": {
+      "provider": "github",
+      "repository": "hasToDev/muhaven",
+      "workflow": ".github/workflows/openclaw-skill-publish.yml",
+      "oidc_audience": "openclaw://clawhub-trusted-publish"
+    },
+    "signing": {
+      "provider": "sigstore",
+      "transparency_log": "rekor.sigstore.dev",
+      "expected_artifact": "muhaven-rwa-skill-${version}.tgz",
+      "expected_bundle": "muhaven-rwa-skill-${version}.tgz.sigstore"
+    },
+    "policy": {
+      "required_reviewers": 2,
+      "block_unsigned": true,
+      "block_unscanned": true
+    }
+  },
+  "scanning": {
+    "openclaw_skills_publish_scan": true,
+    "snyk_mcp_scan": true,
+    "scan_artifact": "scan-report.json"
+  }
+}

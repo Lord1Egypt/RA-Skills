@@ -1,0 +1,6 @@
+{
+  "provider": "minimax",
+  "music_model": "music-2.6",
+  "cover_model": "music-cover",
+  "api_key": "YOUR_MINIMAX_API_KEY"
+}

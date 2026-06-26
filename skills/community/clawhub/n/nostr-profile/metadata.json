@@ -1,0 +1,48 @@
+{
+  "slug": "nostr-profile",
+  "name": "nostr-profile",
+  "version": "0.2.0",
+  "summary": "Nostr profile management for AI agents \u2014 publish, read, and update kind 0 metadata on any relay",
+  "author": {
+    "name": "Humanjava Enterprises",
+    "url": "https://huje.tools"
+  },
+  "license": "MIT",
+  "acceptLicenseTerms": true,
+  "repository": "https://github.com/HumanjavaEnterprises/huje.nostrprofile.OC-python.src",
+  "tags": [
+    "nostr",
+    "profile",
+    "identity",
+    "metadata",
+    "nip-01",
+    "nip-05",
+    "ai-identity",
+    "sovereign"
+  ],
+  "install": {
+    "pip": "nostr-profile"
+  },
+  "requires": {
+    "python": ">=3.10"
+  },
+  "dependencies": [
+    "nostrkey>=0.1.1"
+  ],
+  "env": {
+    "NOSTRKEY_PASSPHRASE": {
+      "description": "Passphrase to decrypt the agent's identity file for signing profile events",
+      "required": true,
+      "sensitive": true
+    },
+    "NOSTR_RELAY": {
+      "description": "Relay URL to publish/read profiles (default: wss://relay.nostrkeep.com)",
+      "required": false
+    }
+  },
+  "categories": [
+    "identity",
+    "communication",
+    "productivity"
+  ]
+}

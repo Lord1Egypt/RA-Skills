@@ -1,0 +1,29 @@
+{
+  "sources": [
+    {
+      "name": "TechCrunch",
+      "url": "https://techcrunch.com/feed/",
+      "category": "technology"
+    },
+    {
+      "name": "The Verge",
+      "url": "https://www.theverge.com/rss/index.xml",
+      "category": "technology"
+    },
+    {
+      "name": "Reuters - Technology",
+      "url": "https://www.reutersagency.com/feed/?taxonomy=markets&post_type=reuters-best",
+      "category": "business"
+    },
+    {
+      "name": "Hacker News",
+      "url": "https://news.ycombinator.com/rss",
+      "category": "technology"
+    }
+  ],
+  "settings": {
+    "max_articles_per_source": 5,
+    "summary_max_length": 300,
+    "fetch_timeout_seconds": 30
+  }
+}

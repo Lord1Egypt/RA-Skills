@@ -1,0 +1,37 @@
+{
+  "schoolInfo": [
+    {
+      "head": [
+        {
+          "list_total_count": 2
+        },
+        {
+          "RESULT": {
+            "CODE": "INFO-000",
+            "MESSAGE": "정상 처리되었습니다."
+          }
+        }
+      ]
+    },
+    {
+      "row": [
+        {
+          "ATPT_OFCDC_SC_CODE": "B10",
+          "ATPT_OFCDC_SC_NM": "서울특별시교육청",
+          "SD_SCHUL_CODE": "7010057",
+          "SCHUL_NM": "가락고등학교",
+          "SCHUL_KND_SC_NM": "고등학교",
+          "LCTN_SC_NM": "서울특별시"
+        },
+        {
+          "ATPT_OFCDC_SC_CODE": "B10",
+          "ATPT_OFCDC_SC_NM": "서울특별시교육청",
+          "SD_SCHUL_CODE": "7130165",
+          "SCHUL_NM": "가락중학교",
+          "SCHUL_KND_SC_NM": "중학교",
+          "LCTN_SC_NM": "서울특별시"
+        }
+      ]
+    }
+  ]
+}

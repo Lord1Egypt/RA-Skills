@@ -1,0 +1,60 @@
+{
+  "_comment": "Copy this file to changelog-watcher/watchlist.json and edit it. Remove this _comment field.",
+  "watch": [
+    {
+      "source": "github",
+      "owner": "nodejs",
+      "repo": "node",
+      "name": "Node.js",
+      "include_prereleases": false
+    },
+    {
+      "source": "github",
+      "owner": "python",
+      "repo": "cpython",
+      "name": "Python",
+      "include_prereleases": false
+    },
+    {
+      "source": "github",
+      "owner": "neovim",
+      "repo": "neovim",
+      "name": "Neovim",
+      "include_prereleases": false
+    },
+    {
+      "source": "github",
+      "owner": "ollama",
+      "repo": "ollama",
+      "name": "Ollama",
+      "include_prereleases": false
+    },
+    {
+      "source": "github",
+      "owner": "anthropics",
+      "repo": "anthropic-sdk-python",
+      "name": "Anthropic Python SDK",
+      "include_prereleases": false
+    },
+    {
+      "source": "npm",
+      "package": "next",
+      "name": "Next.js"
+    },
+    {
+      "source": "npm",
+      "package": "typescript",
+      "name": "TypeScript"
+    },
+    {
+      "source": "npm",
+      "package": "express",
+      "name": "Express"
+    },
+    {
+      "source": "npm",
+      "package": "@anthropic-ai/sdk",
+      "name": "Anthropic JS SDK"
+    }
+  ]
+}

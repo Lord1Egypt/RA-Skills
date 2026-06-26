@@ -1,0 +1,75 @@
+{
+  "name": "{{@env:displayName}} Queue Publish{{@env:workflowNamePostfix}}",
+  "nodes": [
+    {
+      "id": "{{@uuid:qp-trigger}}",
+      "name": "Execute Workflow Trigger",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1.1,
+      "position": [-16, 0],
+      "parameters": {
+        "inputSource": "passthrough"
+      }
+    },
+    {
+      "id": "{{@uuid:qp-context}}",
+      "name": "Build Publish Context",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [208, 0],
+      "parameters": {
+        "language": "javaScript",
+        "jsCode": "// @n8n-evol-I:primitive — exempt from pure-function discipline\n// Build the Upstash REST command body for XADD. Payload is JSON.stringify'd\n// into a single 'payload' field — Streams require flat string field/value pairs.\n// Caller-supplied max_len becomes 'MAXLEN ~ <n>' (approximate trimming, much\n// cheaper than exact). approximate=false uses 'MAXLEN <n>' (exact).\nconst stream = $json.stream;\nif (!stream || typeof stream !== 'string') {\n  throw new Error(\"queue_publish: 'stream' is required and must be a string\");\n}\nconst payload = typeof $json.payload === 'string' ? $json.payload : JSON.stringify($json.payload || {});\nconst maxLen = (typeof $json.max_len === 'number' && $json.max_len > 0) ? $json.max_len : null;\nconst approximate = $json.approximate !== false;\nconst cmd = ['XADD', stream];\nif (maxLen !== null) {\n  cmd.push('MAXLEN');\n  if (approximate) cmd.push('~');\n  cmd.push(String(maxLen));\n}\ncmd.push('*', 'payload', payload, 'enqueued_at', new Date().toISOString());\nreturn [{ json: { stream, cmd, payload_str: payload } }];\n"
+      }
+    },
+    {
+      "id": "{{@uuid:qp-xadd}}",
+      "name": "XADD Message",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [432, 0],
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $env.UPSTASH_REDIS_REST_URL }}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "contentType": "json",
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify($('Build Publish Context').first().json.cmd) }}",
+        "options": {}
+      },
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "{{@env:credentials.redis_rest.id}}",
+          "name": "{{@env:credentials.redis_rest.name}}"
+        }
+      }
+    },
+    {
+      "id": "{{@uuid:qp-output}}",
+      "name": "Build Publish Output",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [656, 0],
+      "parameters": {
+        "language": "javaScript",
+        "jsCode": "// @n8n-evol-I:primitive — exempt from pure-function discipline\nconst ctx = $('Build Publish Context').first().json;\nconst resp = $json;\nif (resp && resp.error) {\n  throw new Error(`queue_publish XADD failed for stream='${ctx.stream}': ${resp.error}`);\n}\nconst messageId = resp ? resp.result : null;\nreturn [{ json: { stream: ctx.stream, message_id: messageId, published: true } }];\n"
+      }
+    }
+  ],
+  "connections": {
+    "Execute Workflow Trigger": {
+      "main": [[{ "node": "Build Publish Context", "type": "main", "index": 0 }]]
+    },
+    "Build Publish Context": {
+      "main": [[{ "node": "XADD Message", "type": "main", "index": 0 }]]
+    },
+    "XADD Message": {
+      "main": [[{ "node": "Build Publish Output", "type": "main", "index": 0 }]]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  }
+}

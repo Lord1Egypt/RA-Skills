@@ -1,0 +1,122 @@
+{
+  "$comment": "ClawSecure-style runtime config for muhaven-rwa-skill. Loaded by the NemoClaw sandbox at boot and supplements the manifest's permissions block. Values here are NOT user-configurable — they ship with the signed skill bundle and any change forces a re-publish + re-sign + re-scan.",
+  "$schema": "https://openclaw.dev/schemas/clawsecure/1.0.json",
+  "schema_version": "1.0",
+  "skill": "muhaven-rwa-skill",
+  "version": "0.1.0",
+  "execution": {
+    "user": "skill-runner",
+    "cwd": "/run/openclaw/muhaven-rwa-skill",
+    "umask": "0077",
+    "rlimit": {
+      "fsize_bytes": 0,
+      "nofile": 64,
+      "nproc": 0,
+      "memory_bytes": 268435456
+    }
+  },
+  "network": {
+    "$comment_egress_advisory_in_host_native": "Mirrors manifest.json#permissions.network — prod hosts only. Staging rehearsals (§3 Path (a) in AGENTIC_TEST_PLAN.md) install the same signed artifact with `user_config.backend_url=https://api-stage.muhaven.app` and rely on plain OpenClaw `sandbox.fallback: host_native` (advisory, not kernel-enforced). A future runtime that enforces this allowlist would block the staging override; that is intentional — the published artifact is prod-pure.",
+    "egress_allowlist": [
+      {
+        "host": "api.muhaven.app",
+        "port": 443,
+        "protocol": "https",
+        "purpose": "MuHaven backend — REST API + agent policy + intent confirmation"
+      },
+      {
+        "host": "muhaven.app",
+        "port": 443,
+        "protocol": "https",
+        "purpose": "MuHaven dashboard origin — deep-link target for >$5K confirmations and device-code authorization (/link)"
+      }
+    ],
+    "egress_default": "deny",
+    "ingress_listen": "deny",
+    "dns": {
+      "resolver": "system",
+      "deny_dynamic_allowlist_resolution": true
+    }
+  },
+  "filesystem": {
+    "read": [],
+    "write": [],
+    "tmp_read_write": "deny",
+    "follow_symlinks": false
+  },
+  "process": {
+    "exec": "deny",
+    "fork": "deny",
+    "ptrace": "deny",
+    "signals_inbound": ["SIGTERM", "SIGINT"],
+    "signals_outbound": "deny"
+  },
+  "ipc": {
+    "unix_socket": {
+      "$comment_path_pattern_alignment": "Path pattern mirrors `defaultBrokerEndpoint()` in `@muhaven/mcp/src/config.ts` (POSIX: `${HOME}/.muhaven/broker.sock`; Windows: named pipe). The pre-2026-05-12 pattern `${XDG_RUNTIME_DIR:-/run/user/${UID}}/muhaven-broker.sock` failed silently on macOS (no `XDG_RUNTIME_DIR` default + no `/run/user/${UID}`) and Windows (no `$UID`), so a kernel-enforced runtime would have refused the broker IPC on those platforms. Today this field is host_native-advisory, but it now aligns with the broker code so a future kernel-enforced runtime passes through.",
+      "allow_connect": [
+        {
+          "purpose": "muhaven-broker daemon",
+          "path_pattern": "${HOME}/.muhaven/broker.sock",
+          "windows_named_pipe": "\\\\.\\pipe\\muhaven-broker-*"
+        }
+      ]
+    },
+    "shared_memory": "deny"
+  },
+  "secrets": {
+    "storage_backend": "os_keychain",
+    "deny_paste_ui": true,
+    "deny_env_block": true,
+    "deny_clipboard_io": true,
+    "references": [
+      {
+        "name": "muhaven_jwt",
+        "owner": "muhaven-broker",
+        "audience": ["mcp.read.*", "mcp.propose.*"],
+        "ttl_sec": 86400
+      }
+    ]
+  },
+  "telemetry": {
+    "stdout_capture": "audit_only",
+    "stderr_capture": "audit_only",
+    "stdout_egress": "deny",
+    "stderr_egress": "deny",
+    "metrics": "deny"
+  },
+  "audit": {
+    "tool_invocations": "log",
+    "denied_egress": "log_and_block",
+    "denied_filesystem": "log_and_block",
+    "denied_spawn": "log_and_block"
+  },
+  "post_install_review": {
+    "$comment": "ClawHub displays this checklist on first install — investor must explicitly tick each item before the skill becomes active. Mirrors OpenClaw's user-consent screen for sensitive permissions.",
+    "items": [
+      {
+        "id": "broker-required",
+        "title": "muhaven-broker daemon must be running and authenticated.",
+        "doc_ref": "https://github.com/hasToDev/muhaven/blob/master/packages/mcp/README.md"
+      },
+      {
+        "id": "broker-bin-on-path",
+        "title": "muhaven-broker binary reachable on $PATH. ClawHub install only resolves the skill bin into a runtime-local node_modules; the broker (shipped in @muhaven/mcp) may not be on $PATH unless installed separately via `npm install -g @muhaven/mcp`.",
+        "doc_ref": "https://github.com/hasToDev/muhaven/blob/master/packages/openclaw-skill/SKILL.md#how-to-install"
+      },
+      {
+        "id": "no-auto-submit",
+        "title": "This skill never moves funds without your confirmation. Three-tier dispatch is enforced server-side."
+      },
+      {
+        "id": "deny-default-egress",
+        "title": "Network egress is allowlisted to MuHaven origins only. Any other endpoint is blocked at the runtime."
+      },
+      {
+        "id": "no-secret-paste",
+        "title": "JWT lives in your OS keychain via the broker. The skill cannot prompt you to paste a token."
+      }
+    ]
+  },
+  "$comment_unknown_field_handling": "Per OpenClaw issue #28298: unknown fields in this document MUST be treated as deny by the runtime. Never as allow. Forward-compat upgrades that introduce new permission types are gated by manifest.compatibility.openclaw_runtime.min."
+}

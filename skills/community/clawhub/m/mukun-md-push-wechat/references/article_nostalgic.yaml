@@ -1,0 +1,19 @@
+# 文章模式 — 泛黄怀旧样式（古卷泛黄底色 + 深棕胶囊标题）
+# 适用场景：历史文化、成语典故、叙事长文
+# 触发词：怀旧 / 泛黄 / 古风 / 古卷 / 黄底 / 暖黄 / 米黄底 / 历史 / 典籍 / 复古
+style:
+    article:
+        bg: "#f0e4c8"
+        card: "#f5ecd5"
+        dark: "#3d2b1f"
+        heading: "#2c1a0e"
+        accent: "#8b5e3c"
+        rule: "#c9b99a"
+        caption: "#a08c6a"
+        hero_bg: "#2c1a0e"
+        title_font_size: "26px"
+        text_font_size: "17px"
+        h2_font_size: "19px"
+        cover_label: "中华典故 · 历史长卷"
+        footer: "泛黄旧卷 · 品读千古"
+        ending_lines: []

@@ -1,0 +1,40 @@
+{
+  "skill_id": "travel-planner",
+  "display_name": "Travel Planner Pro",
+  "description": "Complete trip planning with itineraries, budgets, packing lists, and loyalty programs.",
+  "icon": "Plane",
+  "accent_color": "#1e3a5f",
+  "sidebar": {
+    "route": "/travel",
+    "label": "Travel",
+    "icon": "Plane",
+    "children": [
+      { "label": "Trips", "route": "/travel" },
+      { "label": "Itinerary", "route": "/travel/itinerary", "icon": "Map" },
+      { "label": "Budget", "route": "/travel/budget", "icon": "Wallet" },
+      { "label": "Packing", "route": "/travel/packing", "icon": "Luggage" },
+      { "label": "Archive", "route": "/travel/archive", "icon": "Archive" }
+    ]
+  },
+  "database": {
+    "prefix": "tp",
+    "tables": [
+      { "name": "tp_profiles", "description": "Travel preferences", "columns": [{"name":"id","type":"UUID","primary_key":true},{"name":"user_id","type":"UUID","references":"auth.users(id)"},{"name":"pace_preference","type":"TEXT","default":"moderate"},{"name":"budget_style","type":"TEXT","default":"mid-range"},{"name":"home_airport","type":"TEXT"},{"name":"travel_style","type":"TEXT[]","default":"{}"},{"name":"created_at","type":"TIMESTAMPTZ"},{"name":"updated_at","type":"TIMESTAMPTZ"}], "indexes": [{"name":"idx_tp_profiles_user","columns":["user_id"]}] },
+      { "name": "tp_trips", "description": "Trip records", "columns": [{"name":"id","type":"UUID","primary_key":true},{"name":"profile_id","type":"UUID","references":"tp_profiles(id)"},{"name":"destination","type":"TEXT"},{"name":"start_date","type":"DATE"},{"name":"end_date","type":"DATE"},{"name":"budget_total_cents","type":"INTEGER"},{"name":"currency","type":"TEXT","default":"USD"},{"name":"status","type":"TEXT","default":"planning"},{"name":"cover_image_url","type":"TEXT"},{"name":"notes","type":"TEXT"},{"name":"created_at","type":"TIMESTAMPTZ"},{"name":"updated_at","type":"TIMESTAMPTZ"}], "indexes": [{"name":"idx_tp_trips_profile","columns":["profile_id","start_date DESC"]}] },
+      { "name": "tp_trip_days", "description": "Day-by-day itinerary", "columns": [{"name":"id","type":"UUID","primary_key":true},{"name":"trip_id","type":"UUID","references":"tp_trips(id)"},{"name":"day_number","type":"INTEGER"},{"name":"date","type":"DATE"},{"name":"theme","type":"TEXT"},{"name":"weather","type":"JSONB"},{"name":"notes","type":"TEXT"}], "indexes": [{"name":"idx_tp_trip_days_trip","columns":["trip_id","day_number"]}] },
+      { "name": "tp_activities", "description": "Planned activities", "columns": [{"name":"id","type":"UUID","primary_key":true},{"name":"day_id","type":"UUID","references":"tp_trip_days(id)"},{"name":"time_slot","type":"TEXT"},{"name":"title","type":"TEXT"},{"name":"location","type":"TEXT"},{"name":"cost_estimate_cents","type":"INTEGER"},{"name":"booked","type":"BOOLEAN","default":false},{"name":"confirmation_number","type":"TEXT"},{"name":"notes","type":"TEXT"},{"name":"sort_order","type":"INTEGER","default":0}], "indexes": [] },
+      { "name": "tp_trip_budgets", "description": "Trip budget by category", "columns": [{"name":"id","type":"UUID","primary_key":true},{"name":"trip_id","type":"UUID","references":"tp_trips(id)"},{"name":"category","type":"TEXT"},{"name":"estimated_cents","type":"INTEGER","default":0},{"name":"booked_cents","type":"INTEGER","default":0},{"name":"actual_cents","type":"INTEGER","default":0}], "indexes": [] },
+      { "name": "tp_packing_items", "description": "Packing checklist items", "columns": [{"name":"id","type":"UUID","primary_key":true},{"name":"trip_id","type":"UUID","references":"tp_trips(id)"},{"name":"category","type":"TEXT"},{"name":"item","type":"TEXT"},{"name":"packed","type":"BOOLEAN","default":false},{"name":"sort_order","type":"INTEGER","default":0}], "indexes": [] },
+      { "name": "tp_companions", "description": "Travel companions", "columns": [{"name":"id","type":"UUID","primary_key":true},{"name":"profile_id","type":"UUID","references":"tp_profiles(id)"},{"name":"name","type":"TEXT"},{"name":"relationship","type":"TEXT"},{"name":"created_at","type":"TIMESTAMPTZ"}], "indexes": [] },
+      { "name": "tp_loyalty_programs", "description": "Loyalty program memberships", "columns": [{"name":"id","type":"UUID","primary_key":true},{"name":"profile_id","type":"UUID","references":"tp_profiles(id)"},{"name":"program","type":"TEXT"},{"name":"tier","type":"TEXT"},{"name":"member_number","type":"TEXT"},{"name":"points","type":"INTEGER","default":0},{"name":"created_at","type":"TIMESTAMPTZ"},{"name":"updated_at","type":"TIMESTAMPTZ"}], "indexes": [] }
+    ]
+  },
+  "widgets": [
+    { "id": "next-trip", "type": "card", "title": "Next Trip", "description": "Upcoming trip countdown and details", "size": "2x1" }
+  ],
+  "settings": [
+    { "key": "home_airport", "label": "Home Airport Code", "type": "text", "default": "" },
+    { "key": "pace_preference", "label": "Travel Pace", "type": "select", "default": "moderate" }
+  ],
+  "sync": { "mode": "direct", "source_files": [] }
+}

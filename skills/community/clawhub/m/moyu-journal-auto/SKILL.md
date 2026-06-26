@@ -1,35 +1,71 @@
 ---
-name: "moyu-journal-auto"
-description: "职场摸鱼党福音！每天说“今天摸鱼了”，自动统计摸鱼时长、心得吐槽、伪装工作日志、周排行榜。幽默解压，社死级生产力伪装。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/moyu-journal-auto"
-sourceUrl: "https://clawhub.ai/skills/moyu-journal-auto"
+name: 摸鱼日记自动整理器
+description: 职场摸鱼党福音！每天说“今天摸鱼了”，自动统计摸鱼时长、心得吐槽、伪装工作日志、周排行榜。幽默解压，社死级生产力伪装。
+version: 1.0.0
+homepage: https://x.com/walletgonegirl   # 可选，放你的 X 或小红书链接
+tags: ["fun", "productivity", "humor", "journal", "moyu"]
+user-invocable: true   # 允许用户直接说“用摸鱼日记”调用
 ---
 
-# moyu-journal-auto
+# 摸鱼日记自动整理器 (Moyu Journal Auto)
 
-> 职场摸鱼党福音！每天说“今天摸鱼了”，自动统计摸鱼时长、心得吐槽、伪装工作日志、周排行榜。幽默解压，社死级生产力伪装。
+## 何时触发这个 Skill
+- 用户说类似“今天摸鱼了”“记录今天摸鱼”“摸鱼日记”“帮我总结摸鱼”“今天划水了”等句子时，立刻激活。
+- 每天结束时（晚上8点后或用户说“下班了”）优先检查是否已触发。
+- 支持周总结：说“摸鱼周报”“本周摸鱼排行”时触发周模式。
+- 忽略无关对话，只在明确提到“摸鱼”“划水”“偷懒”“发呆”“刷手机”等时介入。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/moyu-journal-auto`
-- **Source URL:** [https://clawhub.ai/skills/moyu-journal-auto](https://clawhub.ai/skills/moyu-journal-auto)
+## 核心能力（必须严格遵守顺序）
+1. **记录触发**：用户说“今天摸鱼了”或类似 → 立即记录当前时间作为“摸鱼开始/结束标记”。用文件存储：
+   - 创建/追加到文件：`~/.openclaw/moyu-journal/daily/$(date +%Y-%m-%d).json`
+   - 内容格式：{"date": "YYYY-MM-DD", "sessions": [{"start": "HH:MM", "end": "HH:MM", "duration_min": N, "note": "用户输入"}]}
 
-## Overview
+2. **今日摸鱼统计**：
+   - 计算当天所有摸鱼 session 的总时长（分钟）。
+   - 回顾当天聊天记录、浏览器历史（如果允许）、日历事件，推测摸鱼活动（e.g. “刷小红书 2h”“玩游戏 1h”）。
+   - 输出格式（幽默吐槽风）：
+     “今日摸鱼时长：3小时47分钟（占上班时间 62%）！
+     主要罪魁祸首：小红书种草 + 原神抽卡
+     摸鱼心得：人生苦短，及时摸鱼。今天又成功苟到下班，耶~”
+
+3. **伪装高效工作日志**（老板版）：
+   - 把摸鱼时间“美化”成正经工作：
+     “今日工作总结：深入研究行业趋势（浏览资料 2h），优化个人知识体系（游戏测试 1h），完成高强度脑暴（发呆 47min）。效率满分！”
+
+4. **周总结摸鱼排行榜**（周模式）：
+   - 扫描最近7天文件，统计：
+     - 总摸鱼时长
+     - Top3 摸鱼活动/App（从笔记/历史推测）
+     - 输出：
+       “本周摸鱼王者榜：
+       1. 小红书 - 12h 34min
+       2. B站 - 8h 22min
+       3. 发呆 - 5h 59min
+       总摸鱼：28小时！下周继续冲！”
+
+## 所需工具/权限（请用户提前开启）
+- 文件读写：allow_filesystem = true（读写 ~/.openclaw/moyu-journal/）
+- 记忆回顾：使用长期记忆或聊天历史查询当天/本周对话。
+- 可选：浏览器历史、日历（如果用户开启相关工具）。
+- 无需外部 API，纯本地。
+
+## 示例对话
+用户：今天摸鱼了，刷了2小时小红书
+龙虾：已记录！摸鱼 session +2h。等会儿下班再总结哦~
+（到晚上）
+用户：摸鱼日记
+龙虾：今日摸鱼报告出炉！时长：2h15min... [完整输出]
+
+用户：本周摸鱼排行
+龙虾：周摸鱼王者诞生！[排行榜]
+
+## 边界 & 安全处理
+- 如果当天无记录：友好提醒“今天还没摸鱼？要不要现在开始~”
+- 隐私：所有数据只存本地 ~/.openclaw/moyu-journal/，永不上云（除非用户付费扩展云备份）。
+- 幽默但不过火：保持轻松解压，不涉及敏感职场攻击。
+- 错误时：输出“摸鱼系统罢工了... 可能是权限没开，检查下文件访问权限吧~”
+
+祝你摸鱼愉快，生产力-100%！
 
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/moyu-journal-auto
-```
+

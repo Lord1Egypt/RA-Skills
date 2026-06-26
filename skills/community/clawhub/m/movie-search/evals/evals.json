@@ -1,0 +1,20 @@
+{
+  "skill_name": "movie-search",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "帮我找《黑暗骑士》的下载资源",
+      "expected_output": "返回《黑暗骑士》(The Dark Knight, 2008)的下载链接，包含 YTS 磁力链接、1337x 和 TPB 搜索链接，以及国内在线平台链接"
+    },
+    {
+      "id": 2,
+      "prompt": "流浪地球2 有没有资源可以下载？",
+      "expected_output": "返回《流浪地球2》(The Wandering Earth II, 2023)的资源链接，包含 BT/磁力下载链接、国内视频平台（爱奇艺/腾讯视频等）搜索链接"
+    },
+    {
+      "id": 3,
+      "prompt": "I want to download Breaking Bad, where can I find it?",
+      "expected_output": "返回 Breaking Bad 剧集的下载链接，包含 EZTV、1337x 等剧集资源，以及 Netflix/Amazon 等正版平台链接"
+    }
+  ]
+}

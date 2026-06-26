@@ -1,0 +1,57 @@
+{
+  "slug": "nexlink",
+  "name": "NexLink — Nextcloud, Exchange & YouTube Connector for OpenClaw",
+  "version": "0.15.9",
+  "description": "Enterprise-grade connector for Nextcloud, Microsoft Exchange, and YouTube. Email, calendar, tasks, file management, document understanding, transcript extraction, contacts, analytics — with built-in security confirmations and least-privilege defaults.",
+  "author": "Firma de AI",
+  "homepage": "https://firmade.ai",
+  "repository": "https://github.com/asistent-alex/openclaw-nexlink",
+  "license": "MIT-0",
+  "categories": ["Workflows", "Automation", "Dev Tools", "Data & APIs"],
+  "links": {
+    "repository": "https://github.com/asistent-alex/openclaw-nexlink",
+    "homepage": "https://firmade.ai",
+    "support": "https://firmade.it",
+    "changelog": "https://github.com/asistent-alex/openclaw-nexlink/blob/main/CHANGELOG.md",
+    "security": "https://github.com/asistent-alex/openclaw-nexlink/blob/main/SECURITY.md",
+    "readme": "https://github.com/asistent-alex/openclaw-nexlink#readme",
+    "issues": "https://github.com/asistent-alex/openclaw-nexlink/issues",
+    "releases": "https://github.com/asistent-alex/openclaw-nexlink/releases"
+  },
+  "badges": [
+    {
+      "label": "version",
+      "message": "0.15.8",
+      "color": "blue",
+      "link": "https://github.com/asistent-alex/openclaw-nexlink"
+    },
+    {
+      "label": "license",
+      "message": "MIT-0",
+      "color": "yellow",
+      "link": "https://opensource.org/licenses/MIT"
+    },
+    {
+      "label": "security",
+      "message": "audited",
+      "color": "brightgreen",
+      "link": "https://github.com/asistent-alex/openclaw-nexlink/blob/main/SECURITY.md"
+    }
+  ],
+  "keywords": [
+    "nextcloud", "exchange", "youtube", "email", "calendar", "tasks",
+    "files", "contacts", "analytics", "transcript", "document-understanding",
+    "security", "least-privilege", "workflow"
+  ],
+  "env": [
+    "EXCHANGE_SERVER",
+    "EXCHANGE_USERNAME",
+    "EXCHANGE_PASSWORD",
+    "EXCHANGE_EMAIL",
+    "OWNER_EMAIL",
+    "NEXTCLOUD_URL",
+    "NEXTCLOUD_USERNAME",
+    "NEXTCLOUD_APP_PASSWORD",
+    "NEXLINK_BRANDING"
+  ]
+}

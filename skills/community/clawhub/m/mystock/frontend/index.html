@@ -1,0 +1,2976 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyStock - 我的股票</title>
+    <link rel="stylesheet" href="https://unpkg.com/element-plus/dist/index.css">
+
+    <!-- ============================================================
+         📦 第一部分：CSS 样式
+         ============================================================
+         - 1. CSS 变量定义（主题颜色、间距等）
+         - 2. 全局样式
+         - 3. 布局样式（头部、主体、三栏布局）
+         - 4. 组件样式（面板、表格、按钮）
+         - 5. 功能样式（对话、备忘、打板分析）
+         - 6. 主题样式（深色模式、灰度模式）
+         - 7. 响应式样式
+         ============================================================ -->
+    <style>
+        :root {
+            /* 默认主题（正常） */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f5f7fa;
+            --bg-tertiary: #f0f2f5;
+            --text-primary: #303133;
+            --text-secondary: #606266;
+            --text-tertiary: #909399;
+            --border-color: #ebeef5;
+            --price-up: #f56c6c;
+            --price-down: #67c23a;
+            --shadow: rgba(0,0,0,0.08);
+        }
+
+        [data-theme="grayscale"] {
+            /* 去红绿色模式 - 使用滤镜自动去色 */
+            filter: saturate(0) brightness(1.05);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', Arial, sans-serif;
+            background: var(--bg-secondary);
+            min-height: 100vh;
+        }
+
+        .app-container {
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            padding: 10px;
+            gap: 10px;
+        }
+
+        .header-section {
+            background: var(--bg-primary);
+            padding: 10px 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px var(--shadow);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-shrink: 0;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .header-controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .theme-toggle {
+            cursor: pointer;
+            padding: 6px 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            background: var(--bg-primary);
+            color: var(--text-secondary);
+            font-size: 13px;
+            transition: all 0.3s;
+        }
+
+        .theme-toggle:hover {
+            background: var(--bg-tertiary);
+            color: var(--text-primary);
+        }
+
+        .main-content {
+            display: flex;
+            flex: 1;
+            min-height: 0;
+            gap: 0;
+        }
+
+        .stock-panel {
+            min-width: 200px;
+            max-width: 50%;
+        }
+
+        .resize-handle {
+            width: 10px;
+            cursor: col-resize;
+            background: transparent;
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        .resize-handle::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 4px;
+            height: 40px;
+            background: var(--border-color);
+            border-radius: 2px;
+            opacity: 0.5;
+            transition: opacity 0.2s;
+        }
+
+        .resize-handle:hover::after {
+            opacity: 1;
+            background: var(--text-tertiary);
+        }
+
+        .resize-handle.active::after {
+            opacity: 1;
+            background: #409eff;
+        }
+
+        .stock-panel {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            padding: 12px;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .panel-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            flex-shrink: 0;
+        }
+
+        .panel-title {
+            font-size: 15px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .stock-table-container {
+            flex: 1;
+            overflow-y: auto;
+            overflow-x: auto;
+        }
+
+        .stock-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+        }
+
+        .stock-table th {
+            background: var(--bg-tertiary);
+            padding: 8px 10px;
+            text-align: left;
+            font-weight: 600;
+            color: var(--text-secondary);
+            border-bottom: 2px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            white-space: nowrap;
+        }
+
+        .stock-table td {
+            padding: 6px 10px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .stock-table tr:hover {
+            background: var(--bg-tertiary);
+        }
+
+        .stock-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .stock-row {
+            position: relative;
+        }
+
+        .stock-row:hover {
+            background: #f5f7fa;
+        }
+
+        .stock-row:hover .action-buttons {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .action-buttons {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 2s ease, visibility 2s;
+            display: flex;
+            gap: 3px;
+            z-index: 10;
+            background: white;
+            padding: 2px;
+            border-radius: 4px;
+        }
+
+        .action-buttons-inline {
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 2s ease, visibility 2s;
+            display: flex;
+            gap: 3px;
+            justify-content: center;
+        }
+
+        .stock-row:hover .action-buttons-inline {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .action-btn {
+            padding: 4px 8px;
+            border: 1px solid var(--border-color);
+            background: var(--bg-primary);
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 11px;
+            color: var(--text-secondary);
+            transition: all 0.2s;
+        }
+
+        .action-btn:hover {
+            background: var(--text-tertiary);
+            color: white;
+            border-color: var(--text-tertiary);
+        }
+
+        .action-btn:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+
+        .action-btn:disabled:hover {
+            background: white;
+            color: #606266;
+            border-color: #dcdfe6;
+        }
+
+        .action-btn-delete {
+            color: var(--price-up);
+            border-color: var(--border-color);
+        }
+
+        .action-btn-delete:hover {
+            background: var(--price-up);
+            color: white;
+            border-color: var(--price-up);
+        }
+
+        .action-btn-memo {
+            color: var(--text-tertiary);
+            border-color: var(--border-color);
+        }
+
+        .action-btn-memo:hover {
+            background: #409eff;
+            color: white;
+            border-color: #409eff;
+        }
+
+        .highlight-stock {
+            background: var(--bg-tertiary) !important;
+        }
+
+        .highlight-text {
+            font-weight: 700 !important;
+        }
+
+        .history-list {
+            padding: 10px 0;
+        }
+
+        .history-item {
+            background: white;
+            border-radius: 4px;
+            padding: 6px 8px;
+            margin-bottom: 4px;
+            border: 1px solid var(--border-color);
+        }
+
+        .history-main {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2px;
+        }
+
+        .history-name {
+            font-weight: 600;
+            color: var(--text-primary);
+            font-size: 12px;
+        }
+
+        .history-from {
+            font-size: 10px;
+            color: var(--text-tertiary);
+            background: var(--bg-tertiary);
+            padding: 1px 4px;
+            border-radius: 3px;
+        }
+
+        .history-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .history-time {
+            font-size: 10px;
+            color: var(--text-tertiary);
+        }
+
+        .memo-list {
+            padding: 10px 0;
+        }
+
+        .memo-item {
+            background: var(--bg-primary);
+            border-radius: 4px;
+            padding: 8px;
+            margin-bottom: 6px;
+            border: 1px solid var(--border-color);
+        }
+
+        .memo-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 4px;
+        }
+
+        .memo-name {
+            font-weight: 600;
+            color: var(--text-primary);
+            font-size: 12px;
+        }
+
+        .memo-from {
+            font-size: 10px;
+            color: var(--text-tertiary);
+            background: var(--bg-tertiary);
+            padding: 1px 6px;
+            border-radius: 3px;
+        }
+
+        .memo-content {
+            color: var(--text-secondary);
+            font-size: 12px;
+            line-height: 1.4;
+            margin-bottom: 4px;
+        }
+
+        .memo-time {
+            font-size: 10px;
+            color: var(--text-tertiary);
+        }
+
+        .price-up {
+            color: var(--price-up);
+        }
+
+        .price-down {
+            color: var(--price-down);
+        }
+
+        .loading-price {
+            color: var(--text-tertiary);
+            font-style: italic;
+        }
+
+        .price-updating {
+            opacity: 0.6;
+        }
+
+        .chat-section {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            padding: 12px;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .alert-section {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 12px;
+            flex-shrink: 0;
+        }
+
+        .alert-header {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .alert-stock {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 10px;
+            background: var(--bg-primary);
+            border-radius: 6px;
+            margin-right: 8px;
+            margin-bottom: 8px;
+            font-size: 13px;
+            border: 1px solid var(--border-color);
+        }
+
+        .alert-stock-name {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .alert-stock-up {
+            color: var(--price-up);
+            font-weight: 600;
+        }
+
+        .alert-stock-down {
+            color: var(--price-down);
+            font-weight: 600;
+        }
+
+        .alert-tabs {
+            height: 100%;
+        }
+
+        .alert-tabs .el-tabs__header {
+            margin-bottom: 8px;
+        }
+
+        .alert-tabs .el-tabs__item {
+            font-size: 13px;
+            padding: 0 12px;
+            height: 30px;
+            line-height: 30px;
+        }
+
+        .alert-tabs .el-tabs__content {
+            padding: 0;
+        }
+
+        .insight-container {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .insight-input-area {
+            margin-bottom: 6px;
+        }
+
+        .insight-list {
+            flex: 1;
+            overflow-y: auto;
+            max-height: 250px;
+        }
+
+        .insight-item {
+            background: white;
+            border-radius: 4px;
+            padding: 6px 8px;
+            margin-bottom: 4px;
+            border: 1px solid var(--border-color);
+        }
+
+        .insight-content {
+            font-size: 12px;
+            color: var(--text-primary);
+            line-height: 1.4;
+            margin-bottom: 2px;
+        }
+
+        .insight-meta {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .insight-time {
+            font-size: 10px;
+            color: var(--text-tertiary);
+        }
+
+        .insight-delete-btn {
+            padding: 0 4px !important;
+            min-width: 18px !important;
+            height: 18px !important;
+            font-size: 12px !important;
+            line-height: 18px !important;
+            font-weight: bold;
+        }
+
+        .analysis-section {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 12px;
+            flex-shrink: 0;
+            min-height: 150px;
+        }
+
+        .analysis-header {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .analysis-content {
+            color: var(--text-secondary);
+            font-size: 13px;
+            text-align: left;
+            padding: 10px;
+            overflow-y: auto;
+            max-height: 300px;
+        }
+
+        .limit-up-summary {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 12px;
+        }
+
+        .summary-item {
+            flex: 1;
+            background: var(--bg-primary);
+            padding: 10px;
+            border-radius: 6px;
+            text-align: center;
+            box-shadow: 0 1px 3px var(--shadow);
+        }
+
+        .summary-label {
+            display: block;
+            font-size: 12px;
+            color: var(--text-tertiary);
+            margin-bottom: 4px;
+        }
+
+        .summary-value {
+            display: block;
+            font-size: 20px;
+            font-weight: bold;
+            color: var(--price-up);
+        }
+
+        .limit-up-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+            padding: 8px 10px;
+            background: var(--bg-tertiary);
+            border-radius: 6px;
+            border: 1px solid #fde2e2;
+        }
+
+        .limit-up-summary-compact {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            flex-shrink: 0;
+        }
+
+        .summary-value-compact {
+            font-size: 18px;
+            font-weight: bold;
+            color: var(--price-up);
+        }
+
+        .time-distribution-compact {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+
+        .time-tag {
+            background: var(--bg-tertiary);
+            color: var(--text-secondary);
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+
+        .time-distribution {
+            margin-bottom: 12px;
+        }
+
+        /* 打板分析详情弹窗样式 */
+        .limit-up-detail {
+            max-height: 70vh;
+            overflow-y: auto;
+        }
+
+        .detail-stats {
+            margin-bottom: 20px;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .stat-card .stat-label {
+            font-size: 12px;
+            opacity: 0.9;
+            margin-bottom: 8px;
+        }
+
+        .stat-card .stat-value {
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .stat-card .stat-value.highlight {
+            color: #ffd700;
+        }
+
+        .stat-card .stat-value.success {
+            color: #90EE90;
+        }
+
+        .detail-section {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: var(--bg-secondary);
+            border-radius: 8px;
+        }
+
+        .section-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .time-distribution .el-tag {
+            margin-right: 8px;
+            margin-bottom: 8px;
+        }
+
+        .stock-name-link {
+            color: var(--price-up);
+            cursor: pointer;
+            font-weight: 500;
+        }
+
+        .stock-name-link:hover {
+            text-decoration: underline;
+        }
+
+        .detail-section.tips {
+            background: #fff8e6;
+        }
+
+        .detail-section.tips ul {
+            margin: 0;
+            padding-left: 20px;
+            font-size: 13px;
+            color: #666;
+        }
+
+        .detail-section.tips li {
+            margin-bottom: 6px;
+        }
+
+        /* 股东动态样式 */
+        .shareholder-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .shareholder-content {
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .shareholder-section {
+            margin-bottom: 12px;
+        }
+
+        .shareholder-section-title {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            margin-bottom: 6px;
+        }
+
+        .shareholder-list-compact {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .shareholder-item-compact {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 4px 8px;
+            background: var(--bg-secondary);
+            border-radius: 4px;
+            font-size: 11px;
+        }
+
+        .shareholder-name {
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+
+        .shareholder-percent {
+            color: #e6a23c;
+            font-weight: 600;
+        }
+
+        .shareholder-progress {
+            color: #409eff;
+            font-size: 10px;
+        }
+
+        .shareholder-detail {
+            max-height: 70vh;
+            overflow-y: auto;
+        }
+
+        .loading-spinner {
+            width: 40px;
+            height: 40px;
+            margin: 0 auto;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #409eff;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .time-title {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+        }
+
+        .time-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .sector-breakdown {
+            margin-bottom: 12px;
+        }
+
+        .sector-title {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+        }
+
+        .sector-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .sector-tag {
+            background: var(--bg-tertiary);
+            color: var(--text-secondary);
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+        }
+
+        .first-limit-list {
+            background: var(--bg-primary);
+            border-radius: 6px;
+            padding: 10px;
+        }
+
+        .first-limit-title {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--price-up);
+            margin-bottom: 8px;
+        }
+
+        .first-limit-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .first-limit-item:last-child {
+            border-bottom: none;
+        }
+
+        .stock-name {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .stock-code {
+            color: var(--text-tertiary);
+            font-size: 11px;
+        }
+
+        .stock-score {
+            margin-left: auto;
+            background: var(--bg-tertiary);
+            color: var(--price-up);
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-size: 11px;
+            font-weight: bold;
+        }
+
+        .stock-main {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 3px;
+        }
+
+        .stock-detail {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 11px;
+            color: #909399;
+        }
+
+        .stock-time {
+            color: #409eff;
+            font-weight: 500;
+        }
+
+        .stock-features {
+            color: #909399;
+            font-size: 10px;
+        }
+
+        .chat-header {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--border-color);
+            flex-shrink: 0;
+        }
+
+        .chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 8px 0;
+        }
+
+        .chat-message {
+            margin-bottom: 10px;
+        }
+
+        .chat-message.user {
+            text-align: right;
+        }
+
+        .chat-message.assistant {
+            text-align: left;
+        }
+
+        .message-content {
+            display: inline-block;
+            padding: 8px 12px;
+            border-radius: 8px;
+            max-width: 85%;
+            white-space: pre-wrap;
+            line-height: 1.5;
+            font-size: 13px;
+        }
+
+        .chat-message.user .message-content {
+            background: #409eff;
+            color: white;
+        }
+
+        .chat-message.assistant .message-content {
+            background: #f4f4f5;
+            color: #303133;
+        }
+
+        .chat-input {
+            display: flex;
+            gap: 8px;
+            margin-top: 10px;
+            flex-shrink: 0;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 40px 20px;
+            color: #909399;
+        }
+
+        .stats-row {
+            display: flex;
+            gap: 15px;
+            font-size: 12px;
+            color: #606266;
+        }
+
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .stat-value {
+            font-weight: 600;
+            color: #303133;
+        }
+
+        .hold-header {
+            color: var(--text-primary);
+        }
+
+        .watch-header {
+            color: var(--text-secondary);
+        }
+
+        .add-stock-results {
+            max-height: 300px;
+            overflow-y: auto;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+        }
+
+        .add-stock-item {
+            padding: 10px 12px;
+            cursor: pointer;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .add-stock-item:last-child {
+            border-bottom: none;
+        }
+
+        .add-stock-item:hover {
+            background: var(--bg-tertiary);
+        }
+
+        .add-stock-name {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .add-stock-code {
+            font-size: 12px;
+            color: var(--text-tertiary);
+        }
+
+        /* ============================================================
+           CSS 样式结束
+           ============================================================ */
+    </style>
+</head>
+
+<!-- ============================================================
+     📦 第二部分：HTML 模板
+     ============================================================
+     - 1. 头部区域（刷新控制、主题切换）
+     - 2. 主体区域（三栏布局）
+     -    2.1 持仓面板
+     -    2.2 观察面板
+     -    2.3 对话区域（提醒、备忘、感悟、打板分析）
+     - 3. 弹窗组件（添加股票、备忘、打板详情）
+     ============================================================ -->
+<body>
+    <div id="app" class="app-container">
+        <div class="header-section">
+            <div class="header-left">
+                <div class="header-controls">
+                    <el-switch
+                        v-model="autoRefresh"
+                        active-text="自动刷新"
+                        inactive-text="手动"
+                        size="small"
+                        @change="handleAutoRefreshChange"
+                    ></el-switch>
+
+                    <el-select v-if="autoRefresh" v-model="refreshInterval" size="small" style="width: 100px;" @change="startAutoRefresh">
+                        <el-option label="5秒" :value="5000"></el-option>
+                        <el-option label="10秒" :value="10000"></el-option>
+                        <el-option label="30秒" :value="30000"></el-option>
+                    </el-select>
+
+                    <el-button v-if="!autoRefresh" type="primary" size="small" @click="fetchPrices">
+                        刷新
+                    </el-button>
+
+                    <el-tag v-if="lastUpdate" type="info" size="small">
+                        {{ lastUpdate }}
+                    </el-tag>
+
+                    <el-tag v-if="autoRefresh && refreshCountdown > 0" type="warning" size="small">
+                        {{ Math.ceil(refreshCountdown / 1000) }}s
+                    </el-tag>
+                </div>
+
+                <div class="stats-row">
+                    <div class="stat-item">
+                        <span>📈</span>
+                        <span>持仓:</span>
+                        <span class="stat-value">{{ portfolio.length }}</span>
+                    </div>
+                    <div class="stat-item">
+                        <span>👁️</span>
+                        <span>观察:</span>
+                        <span class="stat-value">{{ watchlist.length }}</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="header-right">
+                <button class="theme-toggle" @click="toggleTheme">
+                    {{ isGrayscaleMode ? '🎨' : '⚪' }}
+                </button>
+                <el-button size="small" @click="showHistoryModal = true">
+                    🗑️ 回收站 {{ stockHistory.length > 0 ? `(${stockHistory.length})` : '' }}
+                </el-button>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <div class="stock-panel" :style="{ flex: `0 0 ${panelWidths.first}`, maxWidth: `${panelWidths.first}` }">
+                <div class="panel-header">
+                    <div class="panel-title">
+                        <span class="hold-header">📈</span>
+                        <span>持仓</span>
+                        <el-tag type="success" size="small">{{ portfolio.length }} 只</el-tag>
+                    </div>
+                    <el-button size="small" @click="openAddStockModal('portfolio')" title="添加股票">➕</el-button>
+                </div>
+
+                <div v-if="portfolio.length === 0" class="empty-state">
+                    暂无持仓
+                </div>
+
+                <div v-else class="stock-table-container">
+                    <table class="stock-table">
+                        <thead>
+                            <tr>
+                                <th>名称</th>
+                                <th style="text-align: right;">现价</th>
+                                <th style="text-align: right;">涨跌幅</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="(stock, index) in portfolio" :key="stock.ticker" class="stock-row" :class="{ 'highlight-stock': Math.abs(stock.change_percent) >= 3 && stock.price !== null }">
+                                <td :style="Math.abs(stock.change_percent) >= 3 && stock.price !== null ? 'font-weight: 700;' : 'font-weight: 400;'">
+                                    {{ stock.name }}
+                                </td>
+                                <td style="text-align: right;" :style="Math.abs(stock.change_percent) >= 3 && stock.price !== null ? 'font-weight: 700;' : 'font-weight: 400;'" :class="{ 'loading-price': stock.price === null }">
+                                    <span v-if="stock.price === null">--</span>
+                                    <span v-else>¥{{ stock.price.toFixed(2) }}</span>
+                                </td>
+                                <td class="price-action-cell" :class="{ 'price-up': stock.change >= 0 && stock.price !== null, 'price-down': stock.change < 0 && stock.price !== null, 'loading-price': stock.price === null, 'highlight-text': Math.abs(stock.change_percent) >= 3 && stock.price !== null }" style="text-align: right; font-weight: 400; position: relative;">
+                                    <span v-if="stock.price === null">--</span>
+                                    <span v-else :style="Math.abs(stock.change_percent) >= 3 ? 'font-weight: 700;' : 'font-weight: 400;'">{{ stock.change_percent >= 0 ? '+' : '' }}{{ stock.change_percent.toFixed(2) }}%</span>
+                                    <div class="action-buttons">
+                                        <button class="action-btn" @click="moveTop('portfolio', index)" :disabled="index === 0" title="置顶">⤒</button>
+                                        <button class="action-btn" @click="moveUp('portfolio', index)" :disabled="index === 0" title="上移">⇧</button>
+                                        <button class="action-btn" @click="moveDown('portfolio', index)" :disabled="index === portfolio.length - 1" title="下移">⇩</button>
+                                        <button class="action-btn action-btn-delete" @click="deleteStock('portfolio', index)" title="删除">×</button>
+                                        <button class="action-btn action-btn-memo" @click="openMemo('portfolio', index)" title="备忘">{{ stock.memo ? '📝' : '📄' }}</button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="resize-handle" @mousedown="startResize($event, 1)"></div>
+
+            <div class="stock-panel" :style="{ flex: `0 0 ${panelWidths.second}`, maxWidth: `${panelWidths.second}` }">
+                <div class="panel-header">
+                    <div class="panel-title">
+                        <span class="watch-header">👁️</span>
+                        <span>观察</span>
+                        <el-tag type="warning" size="small">{{ watchlist.length }} 只</el-tag>
+                    </div>
+                    <el-button size="small" @click="openAddStockModal('watchlist')" title="添加股票">➕</el-button>
+                </div>
+
+                <div v-if="watchlist.length === 0" class="empty-state">
+                    暂无观察股票
+                </div>
+
+                <div v-else class="stock-table-container">
+                    <table class="stock-table">
+                        <thead>
+                            <tr>
+                                <th>名称</th>
+                                <th style="text-align: right;">现价</th>
+                                <th style="text-align: right;">涨跌幅</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="(stock, index) in watchlist" :key="stock.ticker" class="stock-row" :class="{ 'highlight-stock': Math.abs(stock.change_percent) >= 3 && stock.price !== null }">
+                                <td :style="Math.abs(stock.change_percent) >= 3 && stock.price !== null ? 'font-weight: 700;' : 'font-weight: 400;'">
+                                    {{ stock.name }}
+                                </td>
+                                <td style="text-align: right;" :style="Math.abs(stock.change_percent) >= 3 && stock.price !== null ? 'font-weight: 700;' : 'font-weight: 400;'" :class="{ 'loading-price': stock.price === null }">
+                                    <span v-if="stock.price === null">--</span>
+                                    <span v-else>¥{{ stock.price.toFixed(2) }}</span>
+                                </td>
+                                <td class="price-action-cell" :class="{ 'price-up': stock.change >= 0 && stock.price !== null, 'price-down': stock.change < 0 && stock.price !== null, 'loading-price': stock.price === null, 'highlight-text': Math.abs(stock.change_percent) >= 3 && stock.price !== null }" style="text-align: right; font-weight: 400; position: relative;">
+                                    <span v-if="stock.price === null">--</span>
+                                    <span v-else :style="Math.abs(stock.change_percent) >= 3 ? 'font-weight: 700;' : 'font-weight: 400;'">{{ stock.change_percent >= 0 ? '+' : '' }}{{ stock.change_percent.toFixed(2) }}%</span>
+                                    <div class="action-buttons">
+                                        <button class="action-btn" @click="moveTop('watchlist', index)" :disabled="index === 0" title="置顶">⤒</button>
+                                        <button class="action-btn" @click="moveUp('watchlist', index)" :disabled="index === 0" title="上移">⇧</button>
+                                        <button class="action-btn" @click="moveDown('watchlist', index)" :disabled="index === watchlist.length - 1" title="下移">⇩</button>
+                                        <button class="action-btn action-btn-delete" @click="deleteStock('watchlist', index)" title="删除">×</button>
+                                        <button class="action-btn action-btn-memo" @click="openMemo('watchlist', index)" title="备忘">{{ stock.memo ? '📝' : '📄' }}</button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="resize-handle" @mousedown="startResize($event, 2)"></div>
+
+            <div class="chat-section" :style="{ flex: '1 1 auto' }">
+                <div class="alert-section">
+                    <el-tabs v-model="activeAlertTab" class="alert-tabs" @tab-change="handleTabChange">
+                        <el-tab-pane label="🔥 重点关注" name="focus">
+                            <div v-if="priceLoading" style="text-align: center; padding: 10px; color: #909399;">
+                                {{ updateProgress || '加载中...' }}
+                            </div>
+                            <div v-else-if="alertStocks.length > 0">
+                                <span v-for="stock in alertStocks" :key="stock.ticker" class="alert-stock">
+                                    <span class="alert-stock-name">{{ stock.name }}</span>
+                                    <span :class="stock.change_percent >= 0 ? 'alert-stock-up' : 'alert-stock-down'">
+                                        {{ stock.change_percent >= 0 ? '+' : '' }}{{ stock.change_percent.toFixed(2) }}%
+                                    </span>
+                                </span>
+                            </div>
+                            <div v-else style="color: #909399; font-size: 13px; text-align: center; padding: 10px;">
+                                暂无重点关注（涨跌幅超过3%）
+                            </div>
+                        </el-tab-pane>
+                        <el-tab-pane label="💡 我又悟了" name="insight">
+                            <div class="insight-container">
+                                <div class="insight-input-area">
+                                    <el-input
+                                        v-model="insightInput"
+                                        type="textarea"
+                                        :rows="1"
+                                        placeholder="记录感悟..."
+                                        @keydown.ctrl.enter="addInsight"
+                                    ></el-input>
+                                    <el-button
+                                        type="primary"
+                                        size="mini"
+                                        @click="addInsight"
+                                        :disabled="!insightInput.trim()"
+                                        style="margin-top: 4px;"
+                                    >
+                                        保存
+                                    </el-button>
+                                </div>
+                                <div class="insight-list">
+                                    <div v-if="insights.length === 0" style="color: #909399; font-size: 12px; text-align: center; padding: 15px;">
+                                        暂无感悟记录
+                                    </div>
+                                    <div v-else>
+                                        <div v-for="(insight, index) in insights" :key="index" class="insight-item">
+                                            <div class="insight-content">{{ insight.content }}</div>
+                                            <div class="insight-meta">
+                                                <span class="insight-time">{{ insight.time }}</span>
+                                                <el-button
+                                                    type="danger"
+                                                    size="mini"
+                                                    @click="deleteInsight(index)"
+                                                    class="insight-delete-btn"
+                                                >×</el-button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </el-tab-pane>
+
+                        <el-tab-pane label="📝 我的备忘" name="memo">
+                            <div class="memo-list" v-if="allMemos.length > 0">
+                                <div v-for="(item, index) in allMemos" :key="index" class="memo-item">
+                                    <div class="memo-header">
+                                        <span class="memo-name">{{ item.name }}</span>
+                                        <span class="memo-from">{{ item.from === 'portfolio' ? '📈 持仓' : '👁️ 观察' }}</span>
+                                    </div>
+                                    <div class="memo-content">{{ item.memo }}</div>
+                                    <div class="memo-time">更新时间：{{ formatTime(item.updated_at) }}</div>
+                                </div>
+                            </div>
+                            <div v-else class="empty-state" style="padding: 40px; text-align: center; color: #909399;">
+                                暂无备忘记录
+                            </div>
+                        </el-tab-pane>
+                    </el-tabs>
+                </div>
+
+                <div class="analysis-section">
+                    <div class="analysis-header">
+                        <el-radio-group v-model="activeAnalysisTab" size="small" @change="handleAnalysisTabChange">
+                            <el-radio-button label="limitup">📊 打板分析</el-radio-button>
+                            <el-radio-button label="shareholder">💰 股东动态</el-radio-button>
+                            <el-radio-button label="doublefive">🎯 双五</el-radio-button>
+                        </el-radio-group>
+                        <div style="margin-left: auto; display: flex; gap: 8px;">
+                            <el-button size="small" @click="showLimitUpDetail = true" :disabled="!limitUpAnalysis" v-if="activeAnalysisTab === 'limitup'">
+                                详情
+                            </el-button>
+                            <el-button size="small" @click="showShareholderDetail = true" :disabled="!shareholderActivity" v-if="activeAnalysisTab === 'shareholder'">
+                                详情
+                            </el-button>
+                            <el-button size="small" @click="showDoubleFiveDetail = true" :disabled="!doubleFiveStocks" v-if="activeAnalysisTab === 'doublefive'">
+                                详情
+                            </el-button>
+                            <el-button size="small" @click="handleRefresh" :loading="activeAnalysisTab === 'limitup' ? limitUpLoading : (activeAnalysisTab === 'shareholder' ? shareholderLoading : doubleFiveLoading)">
+                                刷新
+                            </el-button>
+                        </div>
+                    </div>
+
+                    <!-- 打板分析内容 -->
+                    <div class="analysis-content" v-if="activeAnalysisTab === 'limitup'">
+                        <div v-if="limitUpAnalysis">
+                            <div class="limit-up-header">
+                                <div class="limit-up-summary-compact">
+                                    <span class="summary-label">首板</span>
+                                    <span class="summary-value-compact">{{ limitUpAnalysis.total_count || 0 }}</span>
+                                </div>
+                                <div class="time-distribution-compact" v-if="limitUpAnalysis.summary">
+                                    <span class="time-tag" v-if="limitUpAnalysis.summary.morning_9 > 0">
+                                        9前:{{ limitUpAnalysis.summary.morning_9 }}
+                                    </span>
+                                    <span class="time-tag" v-if="limitUpAnalysis.summary.morning > 0">
+                                        9-10:{{ limitUpAnalysis.summary.morning }}
+                                    </span>
+                                    <span class="time-tag" v-if="limitUpAnalysis.summary.noon > 0">
+                                        10-13:{{ limitUpAnalysis.summary.noon }}
+                                    </span>
+                                    <span class="time-tag" v-if="limitUpAnalysis.summary.afternoon > 0">
+                                        13后:{{ limitUpAnalysis.summary.afternoon }}
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="first-limit-list" v-if="limitUpAnalysis.first_limit_candidates?.length">
+                                <div class="first-limit-title">🔥 首板候选TOP10</div>
+                                <div v-for="stock in limitUpAnalysis.first_limit_candidates.slice(0, 10)" :key="stock.code" class="first-limit-item">
+                                    <div class="stock-main">
+                                        <span class="stock-name">{{ stock.name }}</span>
+                                        <span class="stock-score">★{{ stock.first_limit_score }}</span>
+                                    </div>
+                                    <div class="stock-detail">
+                                        <span class="stock-time">{{ stock.first_limit_time }}</span>
+                                        <span class="stock-features">{{ stock.features?.slice(0, 2).join(', ') }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div v-else-if="limitUpLoading" style="text-align: center; padding: 20px; color: #909399;">
+                            正在加载打板分析数据...
+                        </div>
+                        <div v-else style="text-align: center; padding: 20px; color: #909399;">
+                            点击下方刷新按钮获取打板分析数据
+                        </div>
+                    </div>
+
+                    <!-- 股东动态内容 -->
+                    <div class="analysis-content" v-if="activeAnalysisTab === 'shareholder'">
+                        <div v-if="shareholderActivity" class="shareholder-content">
+                            <div class="shareholder-section">
+                                <div class="shareholder-section-title">📈 股东增持 ({{ shareholderActivity.shareholding_increase?.total || 0 }}只)</div>
+                                <div class="shareholder-list-compact">
+                                    <div v-for="(item, idx) in shareholderActivity.shareholding_increase?.items?.slice(0, 5)" :key="idx" class="shareholder-item-compact">
+                                        <span class="shareholder-name">{{ item['股票简称'] }}</span>
+                                        <span class="shareholder-percent">{{ parseFloat(item['大股东变动占流通股比合计'] || 0).toFixed(2) }}%</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="shareholder-section">
+                                <div class="shareholder-section-title">🔄 回购概念 ({{ shareholderActivity.buyback?.total || 0 }}只)</div>
+                                <div class="shareholder-list-compact">
+                                    <div v-for="(item, idx) in shareholderActivity.buyback?.items?.slice(0, 5)" :key="idx" class="shareholder-item-compact">
+                                        <span class="shareholder-name">{{ item['股票简称'] }}</span>
+                                        <span class="shareholder-progress">{{ item['回购方案进度'] || '-' }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div v-else-if="shareholderLoading" style="text-align: center; padding: 20px; color: #909399;">
+                            正在加载股东动态数据...
+                        </div>
+                        <div v-else style="text-align: center; padding: 20px; color: #909399;">
+                            点击右侧刷新按钮获取股东动态数据
+                        </div>
+                    </div>
+
+                    <!-- 双五内容 -->
+                    <div class="analysis-content" v-if="activeAnalysisTab === 'doublefive'">
+                        <div v-if="doubleFiveStocks" class="shareholder-content">
+                            <div class="shareholder-section">
+                                <div class="shareholder-section-title">🎯 双五股票 ({{ doubleFiveStocks.total || 0 }}只)</div>
+                                <div style="margin-bottom: 12px; color: #606266; font-size: 13px;">
+                                    条件：PE&lt;6 且 股息率&gt;4%
+                                </div>
+                                <div class="shareholder-list-compact">
+                                    <div v-for="(item, idx) in doubleFiveStocks.items?.slice(0, 5)" :key="idx" class="shareholder-item-compact">
+                                        <span class="shareholder-name">{{ item['股票简称'] }}</span>
+                                        <span style="color: #67C23A; font-weight: 600;">PE: {{ typeof item['市盈率(pe)'] === 'number' ? item['市盈率(pe)'].toFixed(2) : '-' }}</span>
+                                        <span style="color: #E6A23C; font-weight: 600;">股息: {{ typeof item['股息率(近12个月)'] === 'number' ? item['股息率(近12个月)'].toFixed(2) : '-' }}%</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div v-else-if="doubleFiveLoading" style="text-align: center; padding: 20px; color: #909399;">
+                            正在加载双五股票数据...
+                        </div>
+                        <div v-else style="text-align: center; padding: 20px; color: #909399;">
+                            点击右侧刷新按钮获取双五股票数据
+                        </div>
+                    </div>
+                </div>
+
+                <div class="chat-header">💬 智能对话</div>
+
+                <div class="chat-messages" ref="chatMessages">
+                    <div
+                        v-for="(msg, index) in chatHistory"
+                        :key="index"
+                        :class="['chat-message', msg.role]"
+                    >
+                        <div class="message-content">{{ msg.content }}</div>
+                    </div>
+                </div>
+
+                <div class="chat-input">
+                    <el-input
+                        v-model="chatInput"
+                        placeholder="输入您的问题..."
+                        size="small"
+                        @keyup.enter="sendMessage"
+                        :disabled="chatLoading"
+                    ></el-input>
+                    <el-button
+                        type="primary"
+                        size="small"
+                        @click="sendMessage"
+                        :loading="chatLoading"
+                    >
+                        发送
+                    </el-button>
+                </div>
+            </div>
+        </div>
+
+        <el-dialog
+            v-model="showHistoryModal"
+            title="🗑️ 回收站"
+            width="500px"
+        >
+            <div v-if="loadingHistory" style="text-align: center; padding: 40px; color: #909399;">
+                加载中...
+            </div>
+            <div v-else-if="stockHistory.length === 0" class="empty-state" style="padding: 40px;">
+                暂无历史记录
+            </div>
+            <div v-else class="history-list" style="max-height: 500px; overflow-y: auto;">
+                <div v-for="(item, index) in stockHistory" :key="index" class="history-item">
+                    <div class="history-main">
+                        <span class="history-name">{{ item.name }}</span>
+                        <span class="history-from">{{ item.from === 'portfolio' ? '持仓' : '观察' }}</span>
+                    </div>
+                    <div class="history-meta">
+                        <span class="history-time">{{ formatTime(item.deleted_at) }}</span>
+                        <div style="display: flex; gap: 4px;">
+                            <button class="action-btn" @click="restoreStock(index)" title="恢复">恢复</button>
+                            <button class="action-btn action-btn-delete" @click="removeHistory(index)" title="彻底删除">×</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </el-dialog>
+
+        <el-dialog
+            v-model="showMemoModal"
+            :title="'📝 ' + (currentMemoStock ? currentMemoStock.name : '') + ' - 备忘'"
+            width="400px"
+        >
+            <el-input
+                v-model="currentMemoText"
+                type="textarea"
+                :rows="4"
+                placeholder="记录这只股票的相关信息..."
+            ></el-input>
+            <div style="margin-top: 15px; display: flex; justify-content: flex-end; gap: 10px;">
+                <el-button @click="showMemoModal = false">取消</el-button>
+                <el-button type="primary" @click="saveMemo">保存</el-button>
+            </div>
+        </el-dialog>
+
+        <!-- 打板分析详情弹窗 -->
+        <el-dialog
+            v-model="showLimitUpDetail"
+            title="📊 打板分析详情"
+            width="900px"
+            top="5vh"
+        >
+            <div v-if="limitUpAnalysis" class="limit-up-detail">
+                <!-- 统计概览 -->
+                <div class="detail-stats">
+                    <el-row :gutter="20">
+                        <el-col :span="6">
+                            <div class="stat-card">
+                                <div class="stat-label">首板总数</div>
+                                <div class="stat-value">{{ limitUpAnalysis.total_count || 0 }}</div>
+                            </div>
+                        </el-col>
+                        <el-col :span="6">
+                            <div class="stat-card">
+                                <div class="stat-label">9点前涨停</div>
+                                <div class="stat-value highlight">{{ limitUpAnalysis.summary?.morning_9 || 0 }}</div>
+                            </div>
+                        </el-col>
+                        <el-col :span="6">
+                            <div class="stat-card">
+                                <div class="stat-label">9-10点涨停</div>
+                                <div class="stat-value">{{ limitUpAnalysis.summary?.morning || 0 }}</div>
+                            </div>
+                        </el-col>
+                        <el-col :span="6">
+                            <div class="stat-card">
+                                <div class="stat-label">强势封板(0开板)</div>
+                                <div class="stat-value success">{{ limitUpAnalysis.summary?.strong_seal || 0 }}</div>
+                            </div>
+                        </el-col>
+                    </el-row>
+                </div>
+
+                <!-- 时间分布 -->
+                <div class="detail-section">
+                    <div class="section-title">⏰ 涨停时间分布</div>
+                    <div class="time-distribution">
+                        <el-tag v-if="limitUpAnalysis.summary?.morning_9 > 0" type="danger" effect="dark">
+                            9点前: {{ limitUpAnalysis.summary.morning_9 }}只
+                        </el-tag>
+                        <el-tag v-if="limitUpAnalysis.summary?.morning > 0" type="warning" effect="dark">
+                            9-10点: {{ limitUpAnalysis.summary.morning }}只
+                        </el-tag>
+                        <el-tag v-if="limitUpAnalysis.summary?.noon > 0" type="info">
+                            10-13点: {{ limitUpAnalysis.summary.noon }}只
+                        </el-tag>
+                        <el-tag v-if="limitUpAnalysis.summary?.afternoon > 0" type="info">
+                            13点后: {{ limitUpAnalysis.summary.afternoon }}只
+                        </el-tag>
+                    </div>
+                </div>
+
+                <!-- 首板候选列表 -->
+                <div class="detail-section">
+                    <div class="section-title">🔥 首板候选 TOP20</div>
+                    <el-table :data="limitUpAnalysis.first_limit_candidates?.slice(0, 20)" stripe style="width: 100%" size="small">
+                        <el-table-column prop="name" label="股票" width="100">
+                            <template #default="{ row }">
+                                <span class="stock-name-link" @click="addStockSearch = row.name; showAddStockModal = true; addStockTarget = 'watchlist'">
+                                    {{ row.name }}
+                                </span>
+                            </template>
+                        </el-table-column>
+                        <el-table-column prop="code" label="代码" width="100" />
+                        <el-table-column prop="price" label="现价" width="80">
+                            <template #default="{ row }">
+                                ¥{{ row.price?.toFixed(2) }}
+                            </template>
+                        </el-table-column>
+                        <el-table-column prop="first_limit_score" label="评分" width="80">
+                            <template #default="{ row }">
+                                <el-tag :type="row.first_limit_score >= 5 ? 'success' : row.first_limit_score >= 3 ? 'warning' : 'info'" effect="dark">
+                                    ★{{ row.first_limit_score }}
+                                </el-tag>
+                            </template>
+                        </el-table-column>
+                        <el-table-column prop="first_limit_time" label="首板时间" width="100" />
+                        <el-table-column prop="seal_volume" label="封单量" width="100">
+                            <template #default="{ row }">
+                                {{ row.seal_volume ? (row.seal_volume / 10000).toFixed(1) + '万手' : '-' }}
+                            </template>
+                        </el-table-column>
+                        <el-table-column prop="open_times" label="开板次数" width="100">
+                            <template #default="{ row }">
+                                <el-tag :type="row.open_times === 0 ? 'success' : row.open_times <= 2 ? 'warning' : 'danger'">
+                                    {{ row.open_times }}次
+                                </el-tag>
+                            </template>
+                        </el-table-column>
+                        <el-table-column prop="features" label="特征">
+                            <template #default="{ row }">
+                                <span v-for="(f, idx) in (row.features || []).slice(0, 3)" :key="idx">
+                                    <el-tag size="small" type="info" style="margin-right: 4px;">{{ f }}</el-tag>
+                                </span>
+                            </template>
+                        </el-table-column>
+                    </el-table>
+                </div>
+
+                <!-- 评分说明 -->
+                <div class="detail-section tips">
+                    <div class="section-title">💡 评分规则说明</div>
+                    <ul>
+                        <li><strong>★5分以上：</strong>早盘强势涨停，无开板，封单量大于1万手</li>
+                        <li><strong>★3-4分：</strong>9-10点涨停，0-2次开板</li>
+                        <li><strong>★1-2分：</strong>午后涨停，有开板</li>
+                        <li><strong>封单量：</strong>封单量越大，封板越强势</li>
+                        <li><strong>开板次数：</strong>0次为最强，1-2次为一般，超过3次需谨慎</li>
+                    </ul>
+                </div>
+            </div>
+            <div v-else-if="limitUpLoading" style="text-align: center; padding: 60px 40px;">
+                <div class="loading-spinner"></div>
+                <div style="margin-top: 16px; color: #909399;">正在加载打板数据，请稍候...</div>
+            </div>
+            <div v-else style="text-align: center; padding: 40px;">
+                <el-empty description="暂无数据，请先点击刷新获取数据" />
+            </div>
+        </el-dialog>
+
+        <!-- 股东动态详情弹窗 -->
+        <el-dialog
+            v-model="showShareholderDetail"
+            title="💰 股东动态详情"
+            width="900px"
+            top="5vh"
+        >
+            <div v-if="shareholderActivity" class="shareholder-detail">
+                <el-radio-group v-model="shareholderDetailTab" size="small" style="margin-bottom: 15px;">
+                    <el-radio-button label="shareholding">
+                        📈 股东增持 ({{ shareholderActivity.shareholding_increase?.total || 0 }})
+                    </el-radio-button>
+                    <el-radio-button label="buyback">
+                        🔄 回购概念 ({{ shareholderActivity.buyback?.total || 0 }})
+                    </el-radio-button>
+                    <el-radio-button label="executive">
+                        👔 高管增持 ({{ shareholderActivity.executive_increase?.total || 0 }})
+                    </el-radio-button>
+                </el-radio-group>
+
+                <!-- 股东增持表格 -->
+                <el-table v-show="shareholderDetailTab === 'shareholding'" :data="shareholdingList" stripe size="small" max-height="400">
+                    <el-table-column label="序号" width="60" align="center">
+                        <template #default="{ $index }">
+                            {{ (shareholderPage.shareholding - 1) * pageSize + $index + 1 }}
+                        </template>
+                    </el-table-column>
+                    <el-table-column prop="股票简称" label="股票" min-width="100">
+                        <template #default="{ row }">
+                            <span class="stock-name-link" @click="addStockSearch = row['股票简称']; showAddStockModal = true; addStockTarget = 'watchlist'">
+                                {{ row['股票简称'] }}
+                            </span>
+                        </template>
+                    </el-table-column>
+                    <el-table-column label="现价" width="80">
+                        <template #default="{ row }">
+                            ¥{{ typeof row['最新价'] === 'number' ? row['最新价'].toFixed(2) : row['最新价'] }}
+                        </template>
+                    </el-table-column>
+                    <el-table-column label="涨跌幅" width="80">
+                        <template #default="{ row }">
+                            <span :style="{ color: parseFloat(row['最新涨跌幅']) >= 0 ? '#f56c6c' : '#67c23a' }">
+                                {{ formatPercent(row['最新涨跌幅']) }}
+                            </span>
+                        </template>
+                    </el-table-column>
+                    <el-table-column label="增持比例" width="90">
+                        <template #default="{ row }">
+                            <span style="color: #e6a23c; font-weight: bold;">
+                                {{ typeof row['大股东变动占流通股比合计'] === 'number' ? parseFloat(row['大股东变动占流通股比合计']).toFixed(2) + '%' : '-' }}
+                            </span>
+                        </template>
+                    </el-table-column>
+                    <el-table-column label="增持市值" min-width="100">
+                        <template #default="{ row }">
+                            <span style="color: #409eff; font-weight: 500;">
+                                {{ formatMoney(row['大股东变动市值合计']) }}
+                            </span>
+                        </template>
+                    </el-table-column>
+                </el-table>
+                <el-pagination v-show="shareholderDetailTab === 'shareholding'"
+                    v-model:current-page="shareholderPage.shareholding"
+                    :page-size="pageSize"
+                    :total="shareholderActivity.shareholding_increase?.total || 0"
+                    layout="prev, pager, next"
+                    small
+                    style="margin-top: 10px; text-align: center;">
+                </el-pagination>
+
+                <!-- 回购概念表格 -->
+                <div v-show="shareholderDetailTab === 'buyback' && !buybackList?.length" style="text-align: center; padding: 20px; color: #909399;">
+                    暂无数据（总计: {{ shareholderActivity.buyback?.total || 0 }}条）
+                </div>
+                <el-table v-show="shareholderDetailTab === 'buyback'" :data="buybackList" stripe size="small" max-height="400">
+                    <el-table-column label="序号" width="60" align="center">
+                        <template #default="{ $index }">
+                            {{ (shareholderPage.buyback - 1) * pageSize + $index + 1 }}
+                        </template>
+                    </el-table-column>
+                    <el-table-column prop="股票简称" label="股票" min-width="100">
+                        <template #default="{ row }">
+                            <span class="stock-name-link" @click="addStockSearch = row['股票简称']; showAddStockModal = true; addStockTarget = 'watchlist'">
+                                {{ row['股票简称'] }}
+                            </span>
+                        </template>
+                    </el-table-column>
+                    <el-table-column label="现价" width="80">
+                        <template #default="{ row }">
+                            ¥{{ typeof row['最新价'] === 'number' ? row['最新价'].toFixed(2) : row['最新价'] }}
+                        </template>
+                    </el-table-column>
+                    <el-table-column label="涨跌幅" width="80">
+                        <template #default="{ row }">
+                            <span :style="{ color: parseFloat(row['最新涨跌幅']) >= 0 ? '#f56c6c' : '#67c23a' }">
+                                {{ formatPercent(row['最新涨跌幅']) }}
+                            </span>
+                        </template>
+                    </el-table-column>
+                    <el-table-column label="预案日期" width="95">
+                        <template #default="{ row }">
+                            {{ row['回购董事会预案公告日'] || '-' }}
+                        </template>
+                    </el-table-column>
+                    <el-table-column label="进度" width="80">
+                        <template #default="{ row }">
+                            <el-tag :type="getBuybackStatusType(row['回购方案进度'])" size="small">
+                                {{ row['回购方案进度'] || '-' }}
+                            </el-tag>
+                        </template>
+                    </el-table-column>
+                    <el-table-column label="拟回购金额" min-width="100">
+                        <template #default="{ row }">
+                            <span style="color: #e6a23c; font-weight: 500;">
+                                {{ formatMoney(row['拟回购资金总额']) }}
+                            </span>
+                        </template>
+                    </el-table-column>
+                </el-table>
+                <el-pagination v-show="shareholderDetailTab === 'buyback'"
+                    v-model:current-page="shareholderPage.buyback"
+                    :page-size="pageSize"
+                    :total="shareholderActivity.buyback?.total || 0"
+                    layout="prev, pager, next"
+                    small
+                    style="margin-top: 10px; text-align: center;">
+                </el-pagination>
+
+                <!-- 高管增持表格 -->
+                <div v-show="shareholderDetailTab === 'executive' && !executiveList?.length" style="text-align: center; padding: 20px; color: #909399;">
+                    暂无数据（总计: {{ shareholderActivity.executive_increase?.total || 0 }}条）
+                </div>
+                <el-table v-show="shareholderDetailTab === 'executive'" :data="executiveList" stripe size="small" max-height="400">
+                    <el-table-column label="序号" width="60" align="center">
+                        <template #default="{ $index }">
+                            {{ (shareholderPage.executive - 1) * pageSize + $index + 1 }}
+                        </template>
+                    </el-table-column>
+                    <el-table-column prop="股票简称" label="股票" min-width="100">
+                        <template #default="{ row }">
+                            <span class="stock-name-link" @click="addStockSearch = row['股票简称']; showAddStockModal = true; addStockTarget = 'watchlist'">
+                                {{ row['股票简称'] }}
+                            </span>
+                        </template>
+                    </el-table-column>
+                    <el-table-column label="现价" width="80">
+                        <template #default="{ row }">
+                            ¥{{ typeof row['最新价'] === 'number' ? row['最新价'].toFixed(2) : row['最新价'] }}
+                        </template>
+                    </el-table-column>
+                    <el-table-column label="涨跌幅" width="80">
+                        <template #default="{ row }">
+                            <span :style="{ color: parseFloat(row['最新涨跌幅']) >= 0 ? '#f56c6c' : '#67c23a' }">
+                                {{ formatPercent(row['最新涨跌幅']) }}
+                            </span>
+                        </template>
+                    </el-table-column>
+                    <el-table-column label="增持比例" width="90">
+                        <template #default="{ row }">
+                            <span style="color: #e6a23c; font-weight: bold;">
+                                {{ typeof row['高管变动占流通股比合计'] === 'number' ? parseFloat(row['高管变动占流通股比合计']).toFixed(3) + '%' : '-' }}
+                            </span>
+                        </template>
+                    </el-table-column>
+                    <el-table-column label="增持市值" min-width="100">
+                        <template #default="{ row }">
+                            <span style="color: #409eff; font-weight: 500;">
+                                {{ formatMoney(row['高管变动市值合计']) }}
+                            </span>
+                        </template>
+                    </el-table-column>
+                </el-table>
+                <el-pagination v-show="shareholderDetailTab === 'executive'"
+                    v-model:current-page="shareholderPage.executive"
+                    :page-size="pageSize"
+                    :total="shareholderActivity.executive_increase?.total || 0"
+                    layout="prev, pager, next"
+                    small
+                    style="margin-top: 10px; text-align: center;">
+                </el-pagination>
+            </div>
+            <div v-else-if="shareholderLoading" style="text-align: center; padding: 60px 40px;">
+                <div class="loading-spinner"></div>
+                <div style="margin-top: 16px; color: #909399;">正在加载数据，请稍候...</div>
+            </div>
+            <div v-else style="text-align: center; padding: 40px;">
+                <el-empty description="暂无数据，请先点击刷新获取数据" />
+            </div>
+        </el-dialog>
+
+        <!-- 双五详情弹窗 -->
+        <el-dialog
+            v-model="showDoubleFiveDetail"
+            title="🎯 双五股票详情"
+            width="900px"
+            top="5vh"
+        >
+            <div v-if="doubleFiveStocks" style="margin-bottom: 15px;">
+                <div style="font-size: 14px; color: #606266; margin-bottom: 10px;">
+                    <strong>筛选条件：</strong>PE &lt; 6 且 股息率 &gt; 4%
+                </div>
+                <div style="font-size: 14px; color: #606266; margin-bottom: 10px;">
+                    <strong>双五含义：</strong>PE接近5，股息率接近5%
+                </div>
+                <div style="font-size: 14px; color: #909399; margin-bottom: 15px;">
+                    共 {{ doubleFiveStocks.total }} 只股票 | 更新时间：{{ doubleFiveStocks.timestamp }}
+                </div>
+
+                <el-table :data="doubleFiveList" stripe size="small" max-height="500" style="width: 100%;">
+                    <el-table-column label="序号" width="60" align="center">
+                        <template #default="{ $index }">
+                            {{ (doubleFivePage - 1) * pageSize + $index + 1 }}
+                        </template>
+                    </el-table-column>
+                    <el-table-column prop="股票简称" label="股票" min-width="120">
+                        <template #default="{ row }">
+                            <span class="stock-name-link" @click="addStockSearch = row['股票简称']; showAddStockModal = true; addStockTarget = 'watchlist'">
+                                {{ row['股票简称'] }}
+                            </span>
+                        </template>
+                    </el-table-column>
+                    <el-table-column prop="股票代码" label="代码" width="100" />
+                    <el-table-column label="现价" width="80">
+                        <template #default="{ row }">
+                            ¥{{ typeof row['最新价'] === 'number' ? row['最新价'].toFixed(2) : row['最新价'] }}
+                        </template>
+                    </el-table-column>
+                    <el-table-column label="涨跌幅" width="80">
+                        <template #default="{ row }">
+                            <span :style="{ color: parseFloat(row['最新涨跌幅']) >= 0 ? '#f56c6c' : '#67c23a' }">
+                                {{ formatPercent(row['最新涨跌幅']) }}
+                            </span>
+                        </template>
+                    </el-table-column>
+                    <el-table-column label="市盈率(PE)" width="100">
+                        <template #default="{ row }">
+                            <span style="color: #409eff; font-weight: 600;">
+                                {{ typeof row['市盈率(pe)'] === 'number' ? row['市盈率(pe)'].toFixed(2) : '-' }}
+                            </span>
+                        </template>
+                    </el-table-column>
+                    <el-table-column label="股息率(%)" width="100">
+                        <template #default="{ row }">
+                            <span style="color: #e6a23c; font-weight: 600;">
+                                {{ typeof row['股息率(近12个月)'] === 'number' ? row['股息率(近12个月)'].toFixed(2) : '-' }}%
+                            </span>
+                        </template>
+                    </el-table-column>
+                    <el-table-column label="总市值" min-width="120">
+                        <template #default="{ row }">
+                            <span style="color: #909399;">
+                                {{ formatMarketCap(row['总市值']) }}
+                            </span>
+                        </template>
+                    </el-table-column>
+                </el-table>
+
+                <el-pagination
+                    v-model:current-page="doubleFivePage"
+                    :page-size="pageSize"
+                    :total="doubleFiveStocks.total || 0"
+                    layout="prev, pager, next"
+                    small
+                    style="margin-top: 15px; text-align: center;">
+                </el-pagination>
+            </div>
+            <div v-else-if="doubleFiveLoading" style="text-align: center; padding: 40px; color: #909399;">
+                <div style="margin-top: 16px;">正在加载数据，请稍候...</div>
+            </div>
+            <div v-else style="text-align: center; padding: 40px;">
+                <el-empty description="暂无数据，请先点击刷新获取数据" />
+            </div>
+        </el-dialog>
+
+        <el-dialog
+            v-model="showAddStockModal"
+            :title="addStockTitle"
+            width="450px"
+        >
+            <div style="margin-bottom: 15px;">
+                <el-input
+                    v-model="addStockSearch"
+                    placeholder="输入股票名称或代码搜索..."
+                    @input="searchStock"
+                    clearable
+                >
+                    <template #prefix>
+                        <span>🔍</span>
+                    </template>
+                </el-input>
+            </div>
+
+            <div v-if="addStockLoading" style="text-align: center; padding: 20px; color: #909399;">
+                搜索中...
+            </div>
+
+            <div v-else-if="addStockResults.length > 0" class="add-stock-results">
+                <div
+                    v-for="stock in addStockResults"
+                    :key="stock.code"
+                    class="add-stock-item"
+                    @click="selectStock(stock)"
+                >
+                    <span class="add-stock-name">{{ stock.name }}</span>
+                    <span class="add-stock-code">{{ stock.code }}</span>
+                </div>
+            </div>
+
+            <div v-else-if="addStockSearch && !addStockLoading" style="text-align: center; padding: 20px; color: #909399;">
+                未找到匹配的股票
+            </div>
+
+            <div v-if="selectedStock" style="margin-top: 15px; padding: 10px; background: var(--bg-tertiary); border-radius: 6px;">
+                <div style="font-weight: 600; margin-bottom: 5px;">
+                    已选择：{{ selectedStock.name }}
+                </div>
+                <div style="font-size: 12px; color: var(--text-tertiary);">
+                    代码：{{ selectedStock.code }}
+                </div>
+            </div>
+
+            <template #footer>
+                <el-button @click="showAddStockModal = false">取消</el-button>
+                <el-button type="primary" @click="confirmAddStock" :disabled="!selectedStock">确认添加</el-button>
+            </template>
+        </el-dialog>
+    </div>
+
+    <!-- ============================================================
+         HTML 模板结束
+         ============================================================ -->
+
+    <!-- ============================================================
+         📦 第三部分：JavaScript 代码
+         ============================================================
+         - 1. Vue 应用创建和挂载
+         - 2. API 配置和常量
+         - 3. 数据状态定义（ref/reactive）
+         - 4. 计算属性（computed）
+         - 5. 方法函数
+         -    5.1 数据加载方法
+         -    5.2 股票操作方法
+         -    5.3 弹窗控制方法
+         -    5.4 面板调整方法
+         - 6. 生命周期钩子
+         ============================================================ -->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://unpkg.com/element-plus"></script>
+    <script src="https://unpkg.com/@element-plus/icons-vue"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+    <script>
+        const { createApp, ref, computed, onMounted, onUnmounted, nextTick } = Vue;
+
+        const app = createApp({
+            setup() {
+                const portfolio = ref([]);
+                const watchlist = ref([]);
+                const chatHistory = ref([]);
+                const chatInput = ref('');
+                const chatLoading = ref(false);
+                const lastUpdate = ref('');
+                const priceLoading = ref(false);
+                const updateProgress = ref('');
+                const limitUpAnalysis = ref(null);
+                const limitUpLoading = ref(false);
+                const showLimitUpDetail = ref(false);
+                const shareholderActivity = ref(null);
+                const shareholderLoading = ref(false);
+                const showShareholderDetail = ref(false);
+                const shareholderDetailTab = ref('shareholding');
+                const shareholderPage = ref({
+                    shareholding: 1,
+                    buyback: 1,
+                    executive: 1
+                });
+                const pageSize = 15;
+
+                // 双五股票数据
+                const doubleFiveStocks = ref(null);
+                const doubleFiveLoading = ref(false);
+                const showDoubleFiveDetail = ref(false);
+                const doubleFivePage = ref(1);
+
+                const doubleFiveList = computed(() => {
+                    if (!doubleFiveStocks.value?.items) {
+                        return [];
+                    }
+                    const start = (doubleFivePage.value - 1) * pageSize;
+                    return doubleFiveStocks.value.items.slice(start, start + pageSize);
+                });
+                
+                const shareholdingList = computed(() => {
+                    if (!shareholderActivity.value?.shareholding_increase?.items) {
+                        console.log('shareholdingList: 无数据');
+                        return [];
+                    }
+                    const start = (shareholderPage.value.shareholding - 1) * pageSize;
+                    const data = shareholderActivity.value.shareholding_increase.items.slice(start, start + pageSize);
+                    console.log('shareholdingList:', data.length, '条');
+                    return data;
+                });
+                
+                const buybackList = computed(() => {
+                    if (!shareholderActivity.value?.buyback?.items) {
+                        console.log('buybackList: 无数据');
+                        return [];
+                    }
+                    const start = (shareholderPage.value.buyback - 1) * pageSize;
+                    const data = shareholderActivity.value.buyback.items.slice(start, start + pageSize);
+                    console.log('buybackList:', data.length, '条');
+                    return data;
+                });
+                
+                const executiveList = computed(() => {
+                    if (!shareholderActivity.value?.executive_increase?.items) {
+                        console.log('executiveList: 无数据');
+                        return [];
+                    }
+                    const start = (shareholderPage.value.executive - 1) * pageSize;
+                    const data = shareholderActivity.value.executive_increase.items.slice(start, start + pageSize);
+                    console.log('executiveList:', data.length, '条');
+                    return data;
+                });
+                const activeAlertTab = ref('focus');
+                const activeAnalysisTab = ref('limitup');
+                const insightInput = ref('');
+                const insights = ref([]);
+                const stockHistory = ref([]);
+                const loadingHistory = ref(false);
+                const showHistoryModal = ref(false);
+                const showMemoModal = ref(false);
+                const currentMemoStock = ref(null);
+                const currentMemoStockIndex = ref(null);
+                const currentMemoStockList = ref(null);
+                const currentMemoText = ref('');
+                const showAddStockModal = ref(false);
+                const addStockTarget = ref('portfolio');
+                const addStockSearch = ref('');
+                const addStockResults = ref([]);
+                const addStockLoading = ref(false);
+                const selectedStock = ref(null);
+                const addStockTitle = computed(() => {
+                    return addStockTarget.value === 'portfolio' ? '➕ 添加到持仓' : '➕ 添加到观察';
+                });
+
+                // 获取所有备忘（计算属性）
+                const allMemos = computed(() => {
+                    const memos = [];
+
+                    portfolio.value.forEach(stock => {
+                        if (stock.memo) {
+                            memos.push({
+                                name: stock.name,
+                                code: stock.code,
+                                from: 'portfolio',
+                                memo: stock.memo,
+                                updated_at: stock.updated_at
+                            });
+                        }
+                    });
+
+                    watchlist.value.forEach(stock => {
+                        if (stock.memo) {
+                            memos.push({
+                                name: stock.name,
+                                code: stock.code,
+                                from: 'watchlist',
+                                memo: stock.memo,
+                                updated_at: stock.updated_at
+                            });
+                        }
+                    });
+
+                    return memos;
+                });
+
+                // 筛选涨跌幅超过3%的股票
+                const alertStocks = computed(() => {
+                    const threshold = 3.0;
+                    const allStocks = [...portfolio.value, ...watchlist.value];
+                    return allStocks.filter(stock => {
+                        return stock.price !== null &&
+                               stock.change_percent !== null &&
+                               Math.abs(stock.change_percent) >= threshold;
+                    }).sort((a, b) => Math.abs(b.change_percent) - Math.abs(a.change_percent));
+                });
+
+                // 排序功能
+                const moveUp = async (listName, index) => {
+                    if (index > 0) {
+                        const list = listName === 'portfolio' ? portfolio : watchlist;
+                        const temp = list.value[index];
+                        list.value[index] = list.value[index - 1];
+                        list.value[index - 1] = temp;
+                        await saveStockOrder(listName, list.value);
+                    }
+                };
+
+                const moveDown = async (listName, index) => {
+                    const list = listName === 'portfolio' ? portfolio : watchlist;
+                    if (index < list.value.length - 1) {
+                        const temp = list.value[index];
+                        list.value[index] = list.value[index + 1];
+                        list.value[index + 1] = temp;
+                        await saveStockOrder(listName, list.value);
+                    }
+                };
+
+                const deleteStock = async (listName, index) => {
+                    if (!confirm('确定要删除这只股票吗？')) return;
+
+                    const list = listName === 'portfolio' ? portfolio : watchlist;
+                    const stock = list.value[index];
+
+                    if (stock) {
+                        try {
+                            await fetch(`${API_BASE}/api/stock-history`, {
+                                method: 'POST',
+                                headers: { 'Content-Type': 'application/json' },
+                                body: JSON.stringify({
+                                    name: stock.name,
+                                    code: stock.code,
+                                    from: listName
+                                })
+                            });
+                            list.value.splice(index, 1);
+                            await saveStockOrder(listName, list.value);
+                        } catch (error) {
+                            console.error('删除股票失败:', error);
+                            alert('删除失败，请重试');
+                        }
+                    }
+                };
+
+                const moveTop = async (listName, index) => {
+                    if (index > 0) {
+                        const list = listName === 'portfolio' ? portfolio : watchlist;
+                        const stock = list.value.splice(index, 1)[0];
+                        list.value.unshift(stock);
+                        await saveStockOrder(listName, list.value);
+                    }
+                };
+
+                const saveStockOrder = async (listName, stocks) => {
+                    try {
+                        const order = stocks.map(s => s.code);  // 保存 code 而不是 name
+                        await fetch(`${API_BASE}/api/stock-order/${listName}`, {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({ order: order })
+                        });
+                    } catch (error) {
+                        console.error('保存排序失败:', error);
+                    }
+                };
+
+                const autoRefresh = ref(false);
+                const refreshInterval = ref(10000);
+                const refreshCountdown = ref(0);
+                let refreshTimer = null;
+                let countdownTimer = null;
+
+                // 面板宽度拖拽调整
+                const isResizing = ref(false);
+                const resizeIndex = ref(0);
+                const panelWidths = ref({
+                    first: localStorage.getItem('panelWidth1') || '33%',
+                    second: localStorage.getItem('panelWidth2') || '33%'
+                });
+
+                const startResize = (event, index) => {
+                    isResizing.value = true;
+                    resizeIndex.value = index;
+                    document.body.style.cursor = 'col-resize';
+                    document.body.style.userSelect = 'none';
+                };
+
+                const handleResize = (event) => {
+                    if (!isResizing.value) return;
+
+                    const container = document.querySelector('.main-content');
+                    if (!container) return;
+
+                    const containerRect = container.getBoundingClientRect();
+                    const mouseX = event.clientX - containerRect.left;
+                    const percentage = (mouseX / containerRect.width) * 100;
+
+                    if (resizeIndex.value === 1) {
+                        // 第一个分隔条：调整第一栏宽度
+                        const width = Math.max(15, Math.min(50, percentage));
+                        panelWidths.value.first = `${width}%`;
+                    } else if (resizeIndex.value === 2) {
+                        // 第二个分隔条：调整第二栏宽度
+                        const secondPercentage = Math.max(15, Math.min(50, percentage - parseFloat(panelWidths.value.first)));
+                        panelWidths.value.second = `${secondPercentage}%`;
+                    }
+                };
+
+                const stopResize = () => {
+                    if (isResizing.value) {
+                        isResizing.value = false;
+                        document.body.style.cursor = '';
+                        document.body.style.userSelect = '';
+                        // 保存到 localStorage
+                        localStorage.setItem('panelWidth1', panelWidths.value.first);
+                        localStorage.setItem('panelWidth2', panelWidths.value.second);
+                    }
+                };
+
+                const isGrayscaleMode = ref(localStorage.getItem('grayscaleMode') === 'true');
+
+                const toggleTheme = () => {
+                    isGrayscaleMode.value = !isGrayscaleMode.value;
+                    localStorage.setItem('grayscaleMode', isGrayscaleMode.value);
+                    if (isGrayscaleMode.value) {
+                        document.documentElement.setAttribute('data-theme', 'grayscale');
+                    } else {
+                        document.documentElement.removeAttribute('data-theme');
+                    }
+                };
+
+                // 页面加载时应用保存的灰度模式
+                if (isGrayscaleMode.value) {
+                    document.documentElement.setAttribute('data-theme', 'grayscale');
+                }
+
+                const chatMessages = ref(null);
+
+                const API_BASE = 'http://127.0.0.1:8000';
+
+                // Fetch辅助函数
+                const fetchJson = async (url) => {
+                    const response = await fetch(url);
+                    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+                    return response.json();
+                };
+
+                /* ─────────────────────────────────────────
+                   📦 5. 方法函数
+                   ───────────────────────────────────────── */
+
+                // 5.1 数据加载方法
+                const loadStockList = async () => {
+                    try {
+                        const data = await fetchJson(`${API_BASE}/api/stock-list`);
+                        portfolio.value = data.portfolio || [];
+                        watchlist.value = data.watchlist || [];
+                    } catch (error) {
+                        console.error('获取股票列表失败:', error);
+                    }
+                };
+
+                // 获取实时价格 - 批量获取，直接更新
+                const fetchPrices = async () => {
+                    priceLoading.value = true;
+                    const now = new Date();
+                    lastUpdate.value = now.toLocaleTimeString('zh-CN', {
+                        hour: '2-digit',
+                        minute: '2-digit',
+                        second: '2-digit'
+                    });
+
+                    // 并行获取所有数据（使用批量API）
+                    const [portfolioRes, watchlistRes] = await Promise.all([
+                        fetchJson(`${API_BASE}/api/portfolio`),
+                        fetchJson(`${API_BASE}/api/watchlist`)
+                    ]);
+
+                    // 合并数据，保留 memo 等字段
+                    const newPortfolio = portfolioRes.portfolio || [];
+                    const newWatchlist = watchlistRes.watchlist || [];
+
+                    // 更新持仓，保留原有 memo
+                    portfolio.value = portfolio.value.map(stock => {
+                        const updated = newPortfolio.find(s => s.code === stock.code);
+                        return updated ? { ...stock, ...updated } : stock;
+                    });
+
+                    // 更新观察列表
+                    watchlist.value = watchlist.value.map(stock => {
+                        const updated = newWatchlist.find(s => s.code === stock.code);
+                        return updated ? { ...stock, ...updated } : stock;
+                    });
+
+                    priceLoading.value = false;
+                };
+
+                // 感悟管理
+                const fetchInsights = async () => {
+                    try {
+                        console.log('正在获取感悟数据...');
+                        const data = await fetchJson(`${API_BASE}/api/insights`);
+                        console.log('感悟数据响应:', data);
+                        insights.value = data.insights || [];
+                        console.log('当前感悟列表:', insights.value);
+                    } catch (error) {
+                        console.error('获取感悟失败:', error);
+                        insights.value = [];
+                    }
+                };
+
+                const addInsight = async () => {
+                    if (!insightInput.value.trim()) return;
+
+                    const now = new Date();
+                    const time = now.toLocaleString('zh-CN', {
+                        year: 'numeric',
+                        month: '2-digit',
+                        day: '2-digit',
+                        hour: '2-digit',
+                        minute: '2-digit'
+                    });
+
+                    const newInsight = {
+                        content: insightInput.value.trim(),
+                        time: time
+                    };
+
+                    try {
+                        const response = await fetch(`${API_BASE}/api/insights`, {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify(newInsight)
+                        });
+                        const data = await response.json();
+                        insights.value = data.insights || [];
+                        insightInput.value = '';
+                    } catch (error) {
+                        console.error('保存感悟失败:', error);
+                        alert('保存失败，请重试');
+                    }
+                };
+
+                // 加载历史记录
+                const fetchHistory = async () => {
+                    loadingHistory.value = true;
+                    try {
+                        const response = await fetch(`${API_BASE}/api/stock-history`);
+                        const data = await response.json();
+                        stockHistory.value = data.history || [];
+                    } catch (error) {
+                        console.error('获取历史记录失败:', error);
+                        stockHistory.value = [];
+                    }
+                    loadingHistory.value = false;
+                };
+
+                // 加载备忘
+                // 格式化时间
+                const formatTime = (isoTime) => {
+                    if (!isoTime) return '';
+                    const date = new Date(isoTime);
+                    return date.toLocaleString('zh-CN', {
+                        year: 'numeric',
+                        month: '2-digit',
+                        day: '2-digit',
+                        hour: '2-digit',
+                        minute: '2-digit'
+                    });
+                };
+
+                // 恢复股票
+                const restoreStock = async (index) => {
+                    const item = stockHistory.value[index];
+                    if (!item) return;
+
+                    try {
+                        await fetch(`${API_BASE}/api/stock-restore`, {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({
+                                name: item.name,
+                                code: item.code,
+                                from: item.from,
+                                history_index: index
+                            })
+                        });
+                        stockHistory.value.splice(index, 1);
+                    } catch (error) {
+                        console.error('恢复股票失败:', error);
+                        alert('恢复失败，请重试');
+                    }
+                };
+
+                // 删除历史记录
+                const removeHistory = async (index) => {
+                    if (!confirm('确定要彻底删除这条记录吗？')) return;
+
+                    try {
+                        await fetch(`${API_BASE}/api/stock-history/${index}`, {
+                            method: 'DELETE'
+                        });
+                        stockHistory.value.splice(index, 1);
+                    } catch (error) {
+                        console.error('删除历史记录失败:', error);
+                        alert('删除失败，请重试');
+                    }
+                };
+
+                // 打开备忘
+                const openMemo = (listName, index) => {
+                    const list = listName === 'portfolio' ? portfolio : watchlist;
+                    currentMemoStock.value = list.value[index];
+                    currentMemoStockIndex.value = index;
+                    currentMemoStockList.value = listName;
+                    currentMemoText.value = list.value[index].memo || '';
+                    showMemoModal.value = true;
+                };
+
+                // 保存备忘
+                const saveMemo = async () => {
+                    if (!currentMemoStock.value) return;
+
+                    const stock = currentMemoStock.value;
+                    const memoText = currentMemoText.value.trim();
+
+                    try {
+                        await fetch(`${API_BASE}/api/stock-memo`, {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({
+                                name: stock.name,
+                                code: stock.code,
+                                memo: memoText
+                            })
+                        });
+
+                        const list = currentMemoStockList.value === 'portfolio' ? portfolio : watchlist;
+                        list.value[currentMemoStockIndex.value].memo = memoText;
+
+                        showMemoModal.value = false;
+                    } catch (error) {
+                        console.error('保存备忘失败:', error);
+                        alert('保存失败，请重试');
+                    }
+                };
+
+                // 打开添加股票弹窗
+                const openAddStockModal = (target) => {
+                    addStockTarget.value = target;
+                    addStockSearch.value = '';
+                    addStockResults.value = [];
+                    selectedStock.value = null;
+                    showAddStockModal.value = true;
+                };
+
+                // 搜索股票（优先本地缓存，备用外部API）
+                const searchStock = async () => {
+                    const keyword = addStockSearch.value.trim();
+                    if (!keyword) {
+                        addStockResults.value = [];
+                        return;
+                    }
+
+                    addStockLoading.value = true;
+                    try {
+                        const results = [];
+
+                        // 1. 优先从本地缓存搜索（code为主键）
+                        const response = await fetch(`${API_BASE}/api/all-stock-codes`);
+                        const data = await response.json();
+                        const allCodes = data.stock_codes || {};
+
+                        const keywordLower = keyword.toLowerCase();
+
+                        // 新数据结构: {code: {name, aliases}}
+                        for (const [code, info] of Object.entries(allCodes)) {
+                            // 检查code是否匹配
+                            if (code.toLowerCase().includes(keywordLower)) {
+                                results.push({
+                                    name: info.name,
+                                    code: code,
+                                    type: ''
+                                });
+                                continue;
+                            }
+
+                            // 检查name是否匹配
+                            if (info.name && info.name.toLowerCase().includes(keywordLower)) {
+                                results.push({
+                                    name: info.name,
+                                    code: code,
+                                    type: ''
+                                });
+                                continue;
+                            }
+
+                            // 检查aliases是否匹配
+                            if (info.aliases && Array.isArray(info.aliases)) {
+                                for (const alias of info.aliases) {
+                                    if (alias.toLowerCase().includes(keywordLower)) {
+                                        results.push({
+                                            name: info.name,
+                                            code: code,
+                                            type: ''
+                                        });
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+
+                        // 2. 如果本地没有结果，尝试外部API
+                        if (results.length === 0) {
+                            // 尝试新浪JSONP API
+                            const sinaUrl = `https://suggest3.sinajs.cn/suggest/type=11,12,13,14&key=${encodeURIComponent(keyword)}`;
+
+                            await new Promise((resolve) => {
+                                const script = document.createElement('script');
+                                script.src = sinaUrl;
+                                script.onload = () => {
+                                    const val = window.suggestvalue || '';
+                                    if (val && val !== '""' && val !== '";"') {
+                                        const items = val.split(',');
+                                        for (let i = 0; i < items.length; i += 5) {
+                                            if (i + 4 < items.length && items[i + 1]) {
+                                                results.push({
+                                                    name: items[i + 1],
+                                                    code: items[i + 3],
+                                                    type: items[i + 2]
+                                                });
+                                            }
+                                        }
+                                    }
+                                    resolve();
+                                };
+                                script.onerror = resolve;
+                                setTimeout(resolve, 2000);
+                                document.head.appendChild(script);
+                                setTimeout(() => script.remove(), 3000);
+                            });
+                        }
+
+                        addStockResults.value = results.slice(0, 10);
+
+                    } catch (error) {
+                        console.error('搜索股票失败:', error);
+                        addStockResults.value = [];
+                    }
+                    addStockLoading.value = false;
+                };
+
+                // 选择股票
+                const selectStock = (stock) => {
+                    selectedStock.value = stock;
+                };
+
+                // 确认添加股票
+                const confirmAddStock = async () => {
+                    if (!selectedStock.value) return;
+
+                    const stock = selectedStock.value;
+                    const target = addStockTarget.value;
+                    const list = target === 'portfolio' ? portfolio : watchlist;
+
+                    try {
+                        await fetch(`${API_BASE}/api/add-stock`, {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({
+                                name: stock.name,
+                                code: stock.code,
+                                target: target
+                            })
+                        });
+
+                        list.value.push({
+                            ticker: stock.name,
+                            code: stock.code,
+                            name: stock.name,
+                            price: null,
+                            previous_close: null,
+                            change: null,
+                            change_percent: null
+                        });
+
+                        showAddStockModal.value = false;
+                        selectedStock.value = null;
+                        addStockSearch.value = '';
+                        addStockResults.value = [];
+
+                        await fetch(`${API_BASE}/api/stock-order/${target}`, {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({
+                                order: list.value.map(s => s.code)
+                            })
+                        });
+                    } catch (error) {
+                        console.error('添加股票失败:', error);
+                        alert('添加失败，请重试');
+                    }
+                };
+
+                const deleteInsight = async (index) => {
+                    try {
+                        const response = await fetch(`${API_BASE}/api/insights/${index}`, {
+                            method: 'DELETE'
+                        });
+                        const data = await response.json();
+                        insights.value = data.insights || [];
+                    } catch (error) {
+                        console.error('删除感悟失败:', error);
+                        alert('删除失败，请重试');
+                    }
+                };
+
+                // 获取打板分析数据
+                const fetchLimitUpAnalysis = async () => {
+                    limitUpLoading.value = true;
+                    try {
+                        const data = await fetchJson(`${API_BASE}/api/limit-up-analysis`);
+                        limitUpAnalysis.value = data;
+                    } catch (error) {
+                        console.error('获取打板分析失败:', error);
+                        limitUpAnalysis.value = {
+                            success: false,
+                            message: '获取数据失败，请稍后重试'
+                        };
+                    }
+                    limitUpLoading.value = false;
+                };
+
+                // 获取股东动态数据
+                const fetchShareholderActivity = async () => {
+                    shareholderLoading.value = true;
+                    try {
+                        const response = await fetch(`${API_BASE}/api/shareholder-activity`);
+                        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+                        const data = await response.json();
+                        console.log('股东动态数据已获取:', {
+                            shareholding_increase: data.shareholding_increase?.total,
+                            buyback: data.buyback?.total,
+                            executive_increase: data.executive_increase?.total
+                        });
+                        shareholderActivity.value = data;
+                    } catch (error) {
+                        console.error('获取股东动态失败:', error);
+                        ElMessage.error('获取数据失败，请稍后重试');
+                    }
+                    shareholderLoading.value = false;
+                };
+
+                // 格式化金额单位
+                const formatMoney = (value) => {
+                    if (!value) return '-';
+                    const num = typeof value === 'string' ? parseFloat(value) : value;
+                    if (isNaN(num)) return '-';
+                    if (num >= 100000000) {
+                        return (num / 100000000).toFixed(2) + '亿';
+                    } else if (num >= 10000) {
+                        return (num / 10000).toFixed(0) + '万';
+                    }
+                    return num.toFixed(2);
+                };
+
+                // 格式化市值（统一转为亿）
+                const formatMarketCap = (value) => {
+                    if (!value) return '-';
+                    const num = typeof value === 'string' ? parseFloat(value) : value;
+                    if (isNaN(num)) return '-';
+                    if (num >= 100000000) {
+                        return (num / 100000000).toFixed(2) + '亿';
+                    }
+                    return num.toFixed(2);
+                };
+
+                // 格式化涨跌幅百分比
+                const formatPercent = (value) => {
+                    if (!value && value !== 0) return '-';
+                    const num = typeof value === 'string' ? parseFloat(value) : value;
+                    if (isNaN(num)) return '-';
+                    const sign = num >= 0 ? '+' : '';
+                    return sign + num.toFixed(2) + '%';
+                };
+
+                // 获取回购状态类型
+                const getBuybackStatusType = (status) => {
+                    if (status === '实施回购') return 'success';
+                    if (status === '完成') return 'info';
+                    return 'warning';
+                };
+
+                // 格式化股数单位
+                const formatStockNum = (value) => {
+                    if (!value) return '-';
+                    const num = typeof value === 'string' ? parseFloat(value) : value;
+                    if (isNaN(num)) return '-';
+                    if (num >= 100000000) {
+                        return (num / 100000000).toFixed(2) + '亿股';
+                    } else if (num >= 10000) {
+                        return (num / 10000).toFixed(0) + '万股';
+                    }
+                    return num.toFixed(0) + '股';
+                };
+
+                // Tab切换处理
+                const handleTabChange = (tabName) => {
+                    if (tabName === 'shareholder' && !shareholderActivity.value) {
+                        fetchShareholderActivity();
+                    }
+                };
+
+                // 分析模块Tab切换（自动刷新）
+                const handleAnalysisTabChange = (tabName) => {
+                    if (tabName === 'shareholder' && !shareholderActivity.value) {
+                        fetchShareholderActivity();
+                    }
+                };
+
+                // 分析模块刷新
+                const handleRefresh = () => {
+                    if (activeAnalysisTab.value === 'limitup') {
+                        fetchLimitUpAnalysis();
+                    } else if (activeAnalysisTab.value === 'shareholder') {
+                        fetchShareholderActivity();
+                    } else if (activeAnalysisTab.value === 'doublefive') {
+                        fetchDoubleFiveStocks();
+                    }
+                };
+
+                // 获取双五股票
+                const fetchDoubleFiveStocks = async () => {
+                    doubleFiveLoading.value = true;
+                    try {
+                        const response = await fetch(`${API_BASE}/api/double-five-stocks`);
+                        const data = await response.json();
+                        doubleFiveStocks.value = data;
+                    } catch (error) {
+                        console.error('获取双五股票失败:', error);
+                    } finally {
+                        doubleFiveLoading.value = false;
+                    }
+                };
+
+                const sendMessage = async () => {
+                    if (!chatInput.value.trim() || chatLoading.value) return;
+
+                    const userMessage = chatInput.value.trim();
+                    chatInput.value = '';
+
+                    chatHistory.value.push({
+                        role: 'user',
+                        content: userMessage
+                    });
+
+                    await nextTick();
+                    scrollToBottom();
+
+                    chatLoading.value = true;
+                    try {
+                        const response = await fetch(`${API_BASE}/api/chat`, {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({
+                                message: userMessage,
+                                history: chatHistory.value.slice(0, -1)
+                            })
+                        });
+                        const data = await response.json();
+
+                        chatHistory.value.push({
+                            role: 'assistant',
+                            content: data.response
+                        });
+
+                        await nextTick();
+                        scrollToBottom();
+                    } catch (error) {
+                        console.error('发送消息失败:', error);
+                        chatHistory.value.push({
+                            role: 'assistant',
+                            content: '抱歉，发生了错误。请检查后端服务是否运行。'
+                        });
+                    } finally {
+                        chatLoading.value = false;
+                    }
+                };
+
+                const scrollToBottom = () => {
+                    if (chatMessages.value) {
+                        chatMessages.value.scrollTop = chatMessages.value.scrollHeight;
+                    }
+                };
+
+                const startAutoRefresh = () => {
+                    stopAutoRefresh();
+
+                    if (!autoRefresh.value) return;
+
+                    refreshTimer = setInterval(() => {
+                        fetchPrices();
+                        refreshCountdown.value = refreshInterval.value;
+                        startCountdown();
+                    }, refreshInterval.value);
+
+                    refreshCountdown.value = refreshInterval.value;
+                    startCountdown();
+                };
+
+                const startCountdown = () => {
+                    stopCountdown();
+
+                    countdownTimer = setInterval(() => {
+                        refreshCountdown.value -= 1000;
+                        if (refreshCountdown.value <= 0) {
+                            refreshCountdown.value = 0;
+                        }
+                    }, 1000);
+                };
+
+                const stopCountdown = () => {
+                    if (countdownTimer) {
+                        clearInterval(countdownTimer);
+                        countdownTimer = null;
+                    }
+                };
+
+                const stopAutoRefresh = () => {
+                    if (refreshTimer) {
+                        clearInterval(refreshTimer);
+                        refreshTimer = null;
+                    }
+                    stopCountdown();
+                    refreshCountdown.value = 0;
+                };
+
+                const handleAutoRefreshChange = (value) => {
+                    if (value) {
+                        startAutoRefresh();
+                    } else {
+                        stopAutoRefresh();
+                    }
+                };
+
+                /* ─────────────────────────────────────────
+                   📦 6. 生命周期钩子
+                   ───────────────────────────────────────── */
+                onMounted(async () => {
+                    // 第一步：加载股票列表（已包含备忘信息）
+                    await loadStockList();
+                    // 第二步：异步获取实时价格
+                    fetchPrices();
+                    // 第三步：延迟加载打板分析（后台慢查询）
+                    setTimeout(() => fetchLimitUpAnalysis(), 100);
+                    // 第四步：延迟加载股东动态（后台慢查询）
+                    setTimeout(() => fetchShareholderActivity(), 200);
+                    // 第五步：延迟加载双五模块（后台慢查询）
+                    setTimeout(() => fetchDoubleFiveStocks(), 300);
+                    // 第六步：加载感悟数据
+                    fetchInsights();
+                    // 第七步：加载历史记录
+                    fetchHistory();
+                    // 添加全局拖拽事件监听
+                    document.addEventListener('mousemove', handleResize);
+                    document.addEventListener('mouseup', stopResize);
+                });
+
+                onUnmounted(() => {
+                    stopAutoRefresh();
+                    document.removeEventListener('mousemove', handleResize);
+                    document.removeEventListener('mouseup', stopResize);
+                });
+
+                /* ─────────────────────────────────────────
+                   📦 7. 返回给模板的属性和方法
+                   ───────────────────────────────────────── */
+                return {
+                    portfolio,
+                    watchlist,
+                    chatHistory,
+                    chatInput,
+                    chatLoading,
+                    lastUpdate,
+                    priceLoading,
+                    updateProgress,
+                    alertStocks,
+                    autoRefresh,
+                    refreshInterval,
+                    isGrayscaleMode,
+                    toggleTheme,
+                    startResize,
+                    panelWidths,
+                    refreshCountdown,
+                    chatMessages,
+                    limitUpAnalysis,
+                    limitUpLoading,
+                    showLimitUpDetail,
+                    shareholderActivity,
+                    shareholderLoading,
+                    showShareholderDetail,
+                    shareholderDetailTab,
+                    shareholdingList,
+                    buybackList,
+                    executiveList,
+                    fetchShareholderActivity,
+                    doubleFiveStocks,
+                    doubleFiveLoading,
+                    showDoubleFiveDetail,
+                    doubleFiveList,
+                    doubleFivePage,
+                    fetchDoubleFiveStocks,
+                    handleTabChange,
+                    handleRefresh,
+                    handleAnalysisTabChange,
+                    formatMoney,
+                    formatMarketCap,
+                    formatStockNum,
+                    formatPercent,
+                    getBuybackStatusType,
+                    activeAlertTab,
+                    shareholderPage,
+                    pageSize,
+                    activeAnalysisTab,
+                    insightInput,
+                    stockHistory,
+                    loadingHistory,
+                    showHistoryModal,
+                    showMemoModal,
+                    currentMemoText,
+                    allMemos,
+                    showAddStockModal,
+                    addStockSearch,
+                    addStockResults,
+                    addStockLoading,
+                    selectedStock,
+                    openAddStockModal,
+                    searchStock,
+                    selectStock,
+                    confirmAddStock,
+                    moveUp,
+                    moveDown,
+                    moveTop,
+                    deleteStock,
+                    insights,
+                    loadStockList,
+                    fetchPrices,
+                    sendMessage,
+                    handleAutoRefreshChange,
+                    fetchHistory,
+                    formatTime,
+                    restoreStock,
+                    removeHistory,
+                    openMemo,
+                    saveMemo,
+                    startAutoRefresh,
+                    fetchLimitUpAnalysis,
+                    fetchInsights,
+                    addInsight,
+                    deleteInsight
+                };
+            }
+        });
+
+        app.use(ElementPlus);
+        app.mount('#app');
+    </script>
+</body>
+</html>

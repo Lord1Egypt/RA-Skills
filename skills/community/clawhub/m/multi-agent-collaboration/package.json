@@ -1,0 +1,29 @@
+{
+  "name": "ai-collaboration-system",
+  "version": "2.0.0",
+  "description": "AI协作操作系统 Claude Grade 增强版。补齐分层记忆检索、多Agent Coordinator、Verification、安全闸门和成本治理。",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/example.js",
+    "test": "node dist/example.js"
+  },
+  "keywords": [
+    "ai-collaboration",
+    "memory-system",
+    "signal-recognition",
+    "workflow-asset",
+    "goal-tracking",
+    "claude-grade",
+    "verification-agent",
+    "safety-pipeline",
+    "cost-governor"
+  ],
+  "author": "AI",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^18.0.0",
+    "typescript": "^4.9.0"
+  }
+}

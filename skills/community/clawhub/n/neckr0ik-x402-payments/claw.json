@@ -1,0 +1,16 @@
+{
+  "name": "neckr0ik-x402-payments",
+  "version": "1.0.0",
+  "description": "x402 payment protocol for AI agents. Enables autonomous micropayments using HTTP 402 status codes and stablecoins.",
+  "author": "Neckr0ik",
+  "license": "MIT",
+  "keywords": [
+    "x402",
+    "payments",
+    "ai-agents",
+    "stablecoins",
+    "http402",
+    "micropayments",
+    "blockchain"
+  ]
+}

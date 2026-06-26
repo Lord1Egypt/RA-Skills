@@ -1,35 +1,61 @@
 ---
-name: "Nm Archetypes Architecture Paradigm Pipeline"
-description: "Applies pipes-and-filters for sequential data transformations"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/nm-archetypes-architecture-paradigm-pipeline"
-sourceUrl: "https://clawhub.ai/skills/nm-archetypes-architecture-paradigm-pipeline"
+name: architecture-paradigm-pipeline
+description: Applies pipes-and-filters for sequential data transformations
+version: 1.9.8
+triggers:
+  - architecture
+  - pipeline
+  - pipes-filters
+  - ETL
+  - streaming
+  - data-processing
+  - data flows through discrete stages like ETL
+  - streaming analytics
+  - or CI/CD pipelines
+metadata: {"openclaw": {"homepage": "https://github.com/athola/claude-night-market/tree/master/plugins/archetypes", "emoji": "\ud83c\udfd7\ufe0f"}}
+source: claude-night-market
+source_plugin: archetypes
 ---
 
-# Nm Archetypes Architecture Paradigm Pipeline
-
-> Applies pipes-and-filters for sequential data transformations
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/nm-archetypes-architecture-paradigm-pipeline`
-- **Source URL:** [https://clawhub.ai/skills/nm-archetypes-architecture-paradigm-pipeline](https://clawhub.ai/skills/nm-archetypes-architecture-paradigm-pipeline)
-
-## Overview
+> **Night Market Skill** — ported from [claude-night-market/archetypes](https://github.com/athola/claude-night-market/tree/master/plugins/archetypes). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
 
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/nm-archetypes-architecture-paradigm-pipeline
-```
+# The Pipeline (Pipes and Filters) Paradigm
+
+## When to Employ This Paradigm
+- When data must flow through a fixed sequence of discrete transformations, such as in ETL jobs, streaming analytics, or CI/CD pipelines.
+- When reusing individual processing stages is needed, either independently or to scale bottleneck stages separately from others.
+- When failure isolation between stages is a critical requirement.
+
+## Adoption Steps
+1. **Define Filters**: Design each stage (filter) to perform a single, well-defined transformation. Each filter must have a clear input and output data schema.
+2. **Connect via Pipes**: Connect the filters using "pipes," which can be implemented as streams, message queues, or in-memory channels. validate these pipes support back-pressure and buffering.
+3. **Maintain Stateless Filters**: Where possible, design filters to be stateless. Any required state should be persisted externally or managed at the boundaries of the pipeline.
+4. **Instrument Each Stage**: Implement monitoring for each filter to track key metrics such as latency, throughput, and error rates.
+5. **Orchestrate Deployments**: Design the deployment strategy to allow each stage to be scaled horizontally and upgraded independently.
+
+## Key Deliverables
+- An Architecture Decision Record (ADR) documenting the filters, the chosen pipe technology, the error-handling strategy, and the tools for replaying data.
+- A suite of contract tests for each filter, plus integration tests that cover representative end-to-end pipeline executions.
+- Observability dashboards that visualize stage-level Key Performance Indicators (KPIs).
+
+## Risks & Mitigations
+- **Single-Stage Bottlenecks**:
+  - **Mitigation**: Implement auto-scaling for individual filters. If a single filter remains a bottleneck, consider refactoring it into a more granular sub-pipeline.
+- **Schema Drift Between Stages**:
+  - **Mitigation**: Centralize schema definitions in a shared repository and enforce compatibility tests as part of the CI/CD process to prevent breaking changes.
+- **Back-Pressure Failures**:
+  - **Mitigation**: Conduct rigorous load testing to simulate high-volume scenarios. Validate that buffering, retry logic, and back-pressure mechanisms behave as expected under stress.
+
+## Concrete Components
+
+These vocabulary items name the concrete tools and abstractions
+that show up when the paradigm is implemented. They are not
+required dependencies and they are not part of the skill's
+``tools:`` frontmatter (which is reserved for Claude Code tool
+restrictions). Use this list to disambiguate during architecture
+discussions.
+
+- ``stream-processor`` -- the runtime that executes a filter (e.g. Flink, Apache Beam, Faust)
+- ``message-queue`` -- the durable pipe between filters (e.g. Kafka, RabbitMQ, in-memory channel)
+- ``data-validator`` -- schema-checks every record at filter input and output

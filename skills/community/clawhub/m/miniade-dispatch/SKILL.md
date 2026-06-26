@@ -1,35 +1,33 @@
 ---
-name: "Dispatch (Claude Code)"
-description: "Launch non-blocking Claude Code headless tasks from slash command dispatch. Use when user requests async coding jobs and does not require slash-only Claude p..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/miniade-dispatch"
-sourceUrl: "https://clawhub.ai/skills/miniade-dispatch"
+name: dispatch
+description: Launch non-blocking Claude Code headless tasks from slash command dispatch. Use when user requests async coding jobs and does not require slash-only Claude plugins.
 ---
 
-# Dispatch (Claude Code)
+Run `{baseDir}/scripts/run_dispatch.sh` with user args.
 
-> Launch non-blocking Claude Code headless tasks from slash command dispatch. Use when user requests async coding jobs and does not require slash-only Claude p...
+## Contract
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/miniade-dispatch`
-- **Source URL:** [https://clawhub.ai/skills/miniade-dispatch](https://clawhub.ai/skills/miniade-dispatch)
+- Format: `/dispatch <project> <task-name> <prompt...>`
+- Workdir mapping: `${REPOS_ROOT:-/home/miniade/repos}/<project>`
+- Agent Teams policy: on-demand (enabled only if prompt contains Agent Team signals)
+- Safety: headless runs enforce timeout via `DISPATCH_TIMEOUT_SEC` (default 7200s)
 
-## Overview
+## Local config
 
+- optional env file: `${OPENCLAW_DISPATCH_ENV:-<workspace>/skills/dispatch.env.local}`
+- supports OpenClaw `skills.entries.dispatch.env` injection
+- script is self-contained (bundled `dispatch.sh` + `claude_code_run.py`)
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/miniade-dispatch
-```
+## Security disclosure
+
+- Reads only allowlisted env keys from `dispatch.env.local` using key=value parsing (no `source`).
+- Starts a background local process (`nohup`) and writes logs/results under configured paths.
+- Network callback is **disabled by default**; enable only with `ENABLE_CALLBACK=1` and explicit group settings.
+- Does not download remote code at runtime.
+
+## Behavior
+
+1. Validate args and return usage if incomplete.
+2. Start task in background (non-blocking).
+3. Return one-line launch summary with run-id and log path.
+4. Do not run extra validation unless requested.

@@ -1,0 +1,11 @@
+{
+  "id": "multi-agent-chat",
+  "name": "Multi Agent Group Chat",
+  "description": "子 Agent 完成任务后自动将回复发送到来源群聊，支持 Telegram/飞书，无需配置群 ID",
+  "version": "2.0.0",
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {}
+  }
+}

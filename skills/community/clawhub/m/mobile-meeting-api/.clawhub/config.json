@@ -1,0 +1,19 @@
+{
+  "name": "mobile-meeting",
+  "version": "1.0.0",
+  "description": "移动会议API集成",
+  "author": "mobilemeeting",
+  "license": "MIT",
+  "includes": [
+    "SKILL.md",
+    "references/**",
+    "examples/**",
+    "scripts/**"
+  ],
+  "excludes": [
+    "node_modules/**",
+    ".git/**",
+    "*.log",
+    "*.tmp"
+  ]
+}

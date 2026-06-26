@@ -1,0 +1,27 @@
+# Neutral Dialogue Example
+# Multi-role TTS Skill Test Script
+
+RoleA: Hello, I am Role A, your assistant.
+RoleB: I am Role B, here to support you.
+Narrator: Narrator ready, starting recording.
+
+RoleA: Today we will discuss the project plan.
+RoleB: Project planning is important, I'll help throughout.
+Narrator: Environment check complete, all systems ready.
+
+RoleA: Let's review the timeline first.
+RoleB: The timeline looks good, we're on schedule.
+Narrator: Discussion progressing, notes being taken.
+
+RoleA: Next, let's check the budget allocation.
+RoleB: Budget is within limits, good management.
+Narrator: Financial review complete, all approved.
+
+RoleA: Any other items to discuss?
+RoleB: I think we covered everything important.
+Narrator: Meeting summary: productive discussion.
+
+# End
+RoleA: Thank you for your participation.
+RoleB: Looking forward to next meeting.
+Narrator: Recording complete, meeting ended.

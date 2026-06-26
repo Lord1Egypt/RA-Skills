@@ -1,0 +1,20 @@
+exchange:
+  name: "okx"
+  testnet: true
+  # ⚠️ API 密钥请使用环境变量设置
+  # OKX_API_KEY, OKX_SECRET, OKX_PASSPHRASE
+  api_key: "${OKX_API_KEY}"
+  api_secret: "${OKX_SECRET}"
+  passphrase: "${OKX_PASSPHRASE}"
+  pairs: ["BTC-USDT-SWAP", "ETH-USDT-SWAP"]
+  leverage: 10
+
+risk:
+  max_drawdown_daily: 0.03 # 3%
+  max_position_size_usd: 10000
+  stop_loss_pct: 0.002 # 0.2%
+  daily_kill_switch: true
+
+ml:
+  retrain_interval_minutes: 60
+  lookback_window: 100

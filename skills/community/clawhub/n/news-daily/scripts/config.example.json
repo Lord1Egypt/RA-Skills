@@ -1,0 +1,10 @@
+{
+  "webhook_url": "https://open.feishu.cn/open-apis/bot/v2/hook/你的Webhook地址",
+  "date": "today",
+  "categories": {
+    "国内": 10,
+    "国际": 10,
+    "科技": 10,
+    "AI": 10
+  }
+}

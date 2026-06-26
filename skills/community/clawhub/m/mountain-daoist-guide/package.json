@@ -1,0 +1,11 @@
+{
+  "name": "mountain-daoist-guide",
+  "version": "2.1.0",
+  "description": "Daily guide using Eastern philosophy (24 solar terms, Taoism) without superstition",
+  "author": "PsyVector",
+  "homepage": "https://iheaven.org",
+  "price": "$9.90",
+  "tags": ["productivity", "taoism", "chinese-tradition", "daily-routine", "mindfulness"],
+  "kernel": "H2",
+  "scenario": "S5"
+}

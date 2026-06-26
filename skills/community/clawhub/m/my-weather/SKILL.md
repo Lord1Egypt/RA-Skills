@@ -1,35 +1,33 @@
----
-name: "My Weather"
-description: "Provides current weather conditions for any city, airport code, or zip code using wttr.in without requiring an API key."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/my-weather"
-sourceUrl: "https://clawhub.ai/skills/my-weather"
----
-
 # My Weather
 
-> Provides current weather conditions for any city, airport code, or zip code using wttr.in without requiring an API key.
+Get current weather using wttr.in (no API key required).
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/my-weather`
-- **Source URL:** [https://clawhub.ai/skills/my-weather](https://clawhub.ai/skills/my-weather)
+## Example
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/my-weather
+curl -s "wttr.in/78023?format=3"
+# Output: San Antonio: ⛅️ +28°C
 ```
+
+## Location
+
+Use city name, airport code, or zip code:
+
+```bash
+curl -s "wttr.in/London?format=3"
+curl -s "wttr.in/JFK?format=3"
+curl -s "wttr.in/78023?format=3"
+```
+
+## Format options
+
+- `?format=3` - Compact one-liner
+- `?format=%l:+%c+%t+%h+%w` - Custom format
+- `?T` - Full forecast
+- `?0` - Current only
+- `?1` - Today only
+
+## Units
+
+- `?m` - Metric
+- `?u` - USCS

@@ -1,0 +1,33 @@
+vendor_key,region,product_name,plan_name,required,is_active
+alibaba,cn,Coding Plan,Pro,true,true
+anthropic,global,Claude,Free,true,true
+anthropic,global,Claude,Pro,true,true
+anthropic,global,Claude,Max,true,true
+cursor,global,Cursor,Hobby,true,true
+cursor,global,Cursor,Pro,true,true
+cursor,global,Cursor,Pro+,true,true
+cursor,global,Cursor,Ultra,true,true
+github-copilot,global,GitHub Copilot,Free,true,true
+github-copilot,global,GitHub Copilot,Pro,true,true
+github-copilot,global,GitHub Copilot,Pro+,true,true
+google,global,Google AI Plans,Google AI Plus,true,true
+google,global,Google AI Plans,Google AI Pro,true,true
+google,global,Google AI Plans,Google AI Ultra,true,true
+kimi,cn,Kimi Code,Andante,true,true
+kimi,cn,Kimi Code,Moderato,true,true
+kimi,cn,Kimi Code,Allegretto,true,true
+kimi,cn,Kimi Code,Allegro,true,true
+openai,global,ChatGPT,免费版,true,true
+openai,global,ChatGPT,Go,true,true
+openai,global,ChatGPT,Plus,true,true
+openai,global,ChatGPT,Pro,true,true
+windsurf,global,Windsurf,Free,true,true
+windsurf,global,Windsurf,Pro,true,true
+windsurf,global,Windsurf,Max,true,true
+windsurf,global,Windsurf,Teams,true,true
+zhipu,cn,GLM Coding Plan,Lite,true,true
+zhipu,cn,GLM Coding Plan,Pro,true,true
+zhipu,cn,GLM Coding Plan,Max,true,true
+zhipu,global,GLM Coding Plan,Lite,true,true
+zhipu,global,GLM Coding Plan,Pro,true,true
+zhipu,global,GLM Coding Plan,Max,true,true

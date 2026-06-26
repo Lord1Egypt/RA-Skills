@@ -1,0 +1,35 @@
+{
+  "name": "multi-agent-intercom",
+  "version": "1.0.0",
+  "description": "Enables peer-to-peer cross-communication between isolated OpenClaw agents. Resolves the limitation of sessions_send which cannot cross agent boundaries.",
+  "type": "commonjs",
+  "main": "scripts/intercom.py",
+  "scripts": {
+    "setup": "python scripts/intercom.py setup",
+    "list": "python scripts/intercom.py list",
+    "test": "python --version"
+  },
+  "keywords": [
+    "multi-agent",
+    "intercom",
+    "communication",
+    "openclaw",
+    "peer-to-peer",
+    "messaging",
+    "automation"
+  ],
+  "author": "OpenClaw",
+  "license": "MIT",
+  "engines": {
+    "python": ">=3.8.0",
+    "openclaw": ">=2026.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/multi-agent-intercom.git"
+  },
+  "homepage": "https://clawhub.com/skills/multi-agent-intercom",
+  "bugs": {
+    "url": "https://github.com/openclaw/multi-agent-intercom/issues"
+  }
+}

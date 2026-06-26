@@ -1,0 +1,37 @@
+{
+  "keyword": "mdls",
+  "models": [
+    "opus4",
+    "pro",
+    "sonnet",
+    "deepseek",
+    "gpt4",
+    "grok",
+    "kimi",
+    "sonnet46",
+    "gpt5pro",
+    "qwenmax",
+    "mistral"
+  ],
+  "judgeModel": "gemini31or",
+  "outputDir": "~/.openclaw/workspace/modelshow-private",
+  "parallel": true,
+  "timeoutSeconds": 360,
+  "minSuccessful": 2,
+  "showTopN": 10,
+  "includeResponseText": true,
+  "includeMetadata": true,
+  "abbreviationLength": 5,
+  "judgeCriteria": [
+    "accuracy",
+    "clarity",
+    "completeness",
+    "usefulness"
+  ],
+  "judgeThinking": "medium",
+  "systemPrompt": "You are a helpful AI assistant. Answer the following query directly and concisely.",
+  "blindJudging": true,
+  "blindJudgingLabels": "alphabetic",
+  "shuffleBlindOrder": true,
+  "includeAnonymizationKey": true
+}

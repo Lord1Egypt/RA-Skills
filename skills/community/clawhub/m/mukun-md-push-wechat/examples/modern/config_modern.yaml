@@ -1,0 +1,20 @@
+# 现代化配色 —— AI 科技文章专用
+# 特点：冷色调蓝紫、高对比、科技感渐变
+style:
+    article:
+        theme: modern
+        # 背景
+        bg: "#ffffff"
+        # 文字色：深邃灰蓝
+        text: "rgb(50,55,65)"
+        # 强调色：科技蓝紫
+        accent: "rgb(88,101,242)"
+        tag_bg: "rgb(88,101,242)"
+        tag_txt: "#ffffff"
+        bold: "rgb(30,33,40)"
+        # 字号
+        title_font_size: "24px"
+        text_font_size: "16px"
+        h2_font_size: "18px"
+        # 封面文字
+        cover_label: "AI TECH INSIGHT"

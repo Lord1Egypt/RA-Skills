@@ -1,0 +1,18 @@
+{
+  "name": "neckr0ik-automation-templates",
+  "version": "1.0.0",
+  "description": "Ready-to-use automation templates for n8n, Make.com, and Zapier. Pre-built workflows for common use cases.",
+  "author": "Neckr0ik",
+  "license": "MIT",
+  "keywords": [
+    "automation",
+    "n8n",
+    "make",
+    "zapier",
+    "workflows",
+    "templates"
+  ],
+  "dependencies": {
+    "pyyaml": ">=6.0"
+  }
+}

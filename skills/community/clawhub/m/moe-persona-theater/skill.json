@@ -1,0 +1,54 @@
+{
+  "name": "OpenClaw 萌系人格剧场",
+  "emoji": "🎭",
+  "description": "一个偏二次元、ACG 萌系角色扮演风格的人格切换技能，内置 6 条角色声线，适合陪聊、安抚与技术任务场景。",
+  "category": "ai-experience",
+  "version": "1.0.0",
+  "readme": "README.md",
+  "tags": [
+    "openclaw",
+    "skill",
+    "persona",
+    "roleplay",
+    "anime",
+    "acg",
+    "moe",
+    "characters",
+    "conversation",
+    "switching"
+  ],
+  "features": [
+    "6 条内置二次元角色声线",
+    "支持简称映射与当前状态保存",
+    "适合闲聊、陪伴、安抚与技术任务场景",
+    "多轮对话一致性规则",
+    "本地调度脚本 switchboard.py",
+    "萌系、戏剧感与陪伴感并存的 ACG 风格表达"
+  ],
+  "highlights": [
+    "傲娇、毒舌、女仆、魔女、猫娘、青梅 6 条不同互动声线",
+    "适合喜欢二次元设定感和角色陪伴感的用户",
+    "技术任务中保持角色外壳，同时优先清晰与可执行",
+    "支持多轮对话中的熟悉度变化与情绪收放"
+  ],
+  "voices": {
+    "soft-cute": [
+      "aojiao"
+    ],
+    "sharp": [
+      "xuejie"
+    ],
+    "gentle": [
+      "nvpu"
+    ],
+    "dramatic": [
+      "monv"
+    ],
+    "relaxed": [
+      "maoniang"
+    ],
+    "energetic": [
+      "qingmei"
+    ]
+  }
+}

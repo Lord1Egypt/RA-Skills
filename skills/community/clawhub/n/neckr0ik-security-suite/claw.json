@@ -1,0 +1,21 @@
+{
+  "name": "neckr0ik-security-suite",
+  "version": "1.0.0",
+  "description": "Complete security suite for OpenClaw skills. Includes scanner, fixer, and compliance reports for SOC2, HIPAA, PCI-DSS, and GDPR.",
+  "author": "Neckr0ik",
+  "license": "MIT",
+  "keywords": [
+    "security",
+    "compliance",
+    "soc2",
+    "hipaa",
+    "pci",
+    "gdpr",
+    "audit",
+    "clawhub"
+  ],
+  "dependencies": [
+    "neckr0ik-security-scanner",
+    "neckr0ik-security-fixer"
+  ]
+}

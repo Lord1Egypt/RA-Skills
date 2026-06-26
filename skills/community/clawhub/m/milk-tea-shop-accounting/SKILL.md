@@ -1,35 +1,40 @@
----
-name: "奶茶店老板专属的收支流水分析工具，只需要上传流水记录（文字/图片/Excel），自动帮你算出现金利润、成本结构、经营分析报告，零学习成本。"
-description: "自动分析奶茶店收支流水，支持多格式上传，计算现金利润与成本结构，生成经营分析报告，无需会计知识。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/milk-tea-shop-accounting"
-sourceUrl: "https://clawhub.ai/skills/milk-tea-shop-accounting"
----
-
-# 奶茶店老板专属的收支流水分析工具，只需要上传流水记录（文字/图片/Excel），自动帮你算出现金利润、成本结构、经营分析报告，零学习成本。
-
-> 自动分析奶茶店收支流水，支持多格式上传，计算现金利润与成本结构，生成经营分析报告，无需会计知识。
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/milk-tea-shop-accounting`
-- **Source URL:** [https://clawhub.ai/skills/milk-tea-shop-accounting](https://clawhub.ai/skills/milk-tea-shop-accounting)
-
-## Overview
+\# 奶茶店收支流水分析助手
 
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/milk-tea-shop-accounting
-```
+
+\## 技能介绍
+
+奶茶店老板专属的收支流水分析工具，零学习成本，只需要上传你的流水记录，自动帮你算出现金利润、成本结构、经营分析报告。
+
+
+
+\## 功能特点
+
+✅ \*\*多格式支持\*\*：支持文字、图片OCR结果、Excel导出文本等多种流水格式
+
+✅ \*\*自动分类\*\*：自动识别收入（堂食/外卖/团购）和支出（原材料/房租/人工/水电）
+
+✅ \*\*智能计算\*\*：自动计算净利润、毛利率、成本结构占比
+
+✅ \*\*个性化建议\*\*：根据经营数据给出优化建议，帮你提升利润
+
+✅ \*\*零学习成本\*\*：不需要懂会计，只要把流水发过来就行
+
+
+
+\## 使用方法
+
+1\. 调用技能，把你的收支流水记录粘贴到`flow\_content`参数里
+
+2\. 可选选择统计周期`period`：day（日）/week（周）/month（月），默认month
+
+3\. 几秒钟就能得到完整的经营分析报告
+
+
+
+\## 示例
+
+\### 输入：
+
+
+

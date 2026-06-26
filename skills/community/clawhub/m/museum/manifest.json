@@ -1,0 +1,24 @@
+{
+  "name": "museum",
+  "version": "1.0.0",
+  "description": "A skill for reading, querying, and managing museum database operations",
+  "author": "OpenClaw Community",
+  "license": "MIT",
+  "minClawVersion": "2026.1.0",
+  "commands": [
+    {
+      "name": "museum",
+      "description": "Museum data operations tool",
+      "entry": "museum.py"
+    }
+  ],
+  "env": {
+    "MYSQL_HOST": "Database host",
+    "MYSQL_USER": "Database username",
+    "MYSQL_PSWD": "Database password",
+    "DATABASE": "Database name (default: museumcheck)"
+  },
+  "tags": ["database", "mysql", "museum", "data-collection"],
+  "homepage": "",
+  "repository": ""
+}

@@ -1,0 +1,26 @@
+{
+  "skill_name": "necessity-pain-point-selection",
+  "evals": [
+    {
+      "id": 0,
+      "eval_name": "car-storage-pain-point-selection",
+      "prompt": "We’re planning to do car storage products and want to decide subcategory based on real user complaints. Can you walk me through the logic and give a ready-to-use pain summary table template?",
+      "expected_output": "Explain how to derive pains from reviews/negative reviews, give steps for necessity VOC-based selection, and output at least a table template with « pain label | typical review summary | selection/improvement implication »; can reference refs or script.",
+      "files": []
+    },
+    {
+      "id": 1,
+      "eval_name": "existing-product-improvement-from-reviews",
+      "prompt": "We have a multi-use kitchen shear; bad reviews often say it won’t cut chicken bone and rusts after a few months. How do we turn these into improvement points and priorities?",
+      "expected_output": "Turn « won’t cut » and « rusts » into actionable pains and map to material/structure/instructions; separate low-cost (PDP, instructions) from high-cost (material/supplier); give priority or next steps.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "eval_name": "review-source-and-mining",
+      "prompt": "Where do we get reviews and how do we mine pain points? We do storage boxes and cleaning tools and want to use reviews for selection.",
+      "expected_output": "Explain review sources (own/competitor/compliant), prioritize bad/mid reviews, data cleaning and pain-label flow; can cite review_mining_guide or pain_point_framework and suggest pain_point_extractor for bulk.",
+      "files": []
+    }
+  ]
+}

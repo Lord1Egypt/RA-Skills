@@ -1,0 +1,26 @@
+{
+  "name": "代币列表",
+  "endpoint": "POST /vs-token/list",
+  "description": "获取ValueScan支持的代币列表，支持按代币全称或代币简称进行模糊搜索",
+  "credits_cost": 1,
+  "needToken": false,
+  "use_case": "这是基础接口，用于获取代币的vsTokenId，该ID是调用其他代币相关接口的必要参数。重要提示：当用户输入代币名称时，若存在多个同名或相近的代币（如不同链、不同标准），需引导用户选择目标代币，并缓存代币名称与vsTokenId的对应关系，以便后续接口调用时直接引用",
+  "params": {
+    "search": { "type": "string", "req": false, "desc": "搜索关键字（符号，支持模糊匹配），最大长度100字符，大小写不敏感" }
+  },
+  "response": {
+    "id": { "type": "long", "actualType": "long", "desc": "代币ID（即vsTokenId，用于其他接口调用）" },
+    "symbol": { "type": "string", "actualType": "string", "desc": "代币符号（如BTC, ETH）" },
+    "name": { "type": "string", "actualType": "string", "desc": "代币名称（如Bitcoin, Ethereum）" }
+  },
+  "example": {
+    "req": { "search": "btc" },
+    "res": {
+      "code": 200,
+      "data": [
+        { "id": 1, "symbol": "BTC", "name": "Bitcoin" },
+        { "id": 33652, "symbol": "LBTC", "name": "Lombard Staked BTC" }
+      ]
+    }
+  }
+}

@@ -1,0 +1,26 @@
+[
+  {
+    "timestamp": "2026-03-26T14:12:18.600197+00:00",
+    "metrics": {
+      "avg_ping_ms": 23.76,
+      "max_ping_ms": 27.58,
+      "avg_packet_loss_pct": 0.0,
+      "avg_dns_ms": 19.44,
+      "system_dns_ms": 7.11,
+      "cloudflare_dns_ms": 28.17,
+      "google_dns_ms": 23.04
+    }
+  },
+  {
+    "timestamp": "2026-03-26T14:16:43.733992+00:00",
+    "metrics": {
+      "avg_ping_ms": 24.12,
+      "max_ping_ms": 30.39,
+      "avg_packet_loss_pct": 0.0,
+      "avg_dns_ms": 21.23,
+      "system_dns_ms": 11.45,
+      "cloudflare_dns_ms": 28.02,
+      "google_dns_ms": 24.21
+    }
+  }
+]

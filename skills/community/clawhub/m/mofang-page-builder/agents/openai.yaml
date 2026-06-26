@@ -1,0 +1,7 @@
+interface:
+  display_name: "Mofang Page Builder"
+  short_description: "Build Magicflu/Mofang jsonv2 pages"
+  default_prompt: "Use $mofang-page-builder to build a Magicflu/Mofang web-table page from real field definitions."
+
+policy:
+  allow_implicit_invocation: true

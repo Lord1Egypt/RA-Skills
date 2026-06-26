@@ -1,0 +1,41 @@
+{
+  "skill_name": "mobile-atc",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Mobile CVR is 0.9% and desktop is 2.1% same month. Shopify PDP has a big hero image, long bullet list, and ATC only once below the fold on my iPhone 13. Help.",
+      "expected_output": "0-100 above-fold score with rubric; button layout rec; copy trim table 2+ rows; scroll simulation; blind spots; note 50%+ gap.",
+      "files": [],
+      "expectations": [
+        "Includes Above-fold visibility score with a 0-100 numeric score and stated rubric or criteria",
+        "Includes Button layout recommendation section with concrete placement suggestions",
+        "Includes a before/after copy comparison in table form with at least two rows or two distinct blocks",
+        "Includes scroll path simulation described as simulated or equivalent narrative",
+        "Includes click blind spots with at least three bullets or items",
+        "Addresses mobile vs desktop conversion gap context explicitly"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "We don't have screenshots yet but want a checklist before launch. Mobile might trail desktop.",
+      "expected_output": "Template score rubric; generic illustrative score labeled; layout options; empty trim table; simulation framework.",
+      "files": [],
+      "expectations": [
+        "Provides above-fold scoring framework or template with 0-100 scale explanation",
+        "Provides button layout recommendations applicable without a specific URL",
+        "Provides copy trim before/after table structure or examples clearly marked as illustrative",
+        "Does not claim scores for a specific live page without data"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Fix this Python pandas groupby error: KeyError on column 'region'.",
+      "expected_output": "Code help only; no full mobile ATC diagnostic package.",
+      "files": [],
+      "expectations": [
+        "Does not deliver the full mandatory above-fold score plus button layout plus copy trim table as the primary output",
+        "Does not force mobile PDP friction analysis for a pure pandas programming question"
+      ]
+    }
+  ]
+}

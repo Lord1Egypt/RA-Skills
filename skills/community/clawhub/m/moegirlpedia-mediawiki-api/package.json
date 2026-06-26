@@ -1,0 +1,44 @@
+{
+  "name": "openclaw-skill-moegirlpedia-mediawiki-api",
+  "version": "0.7.0",
+  "description": "OpenClaw skill runtime for authenticated Moegirlpedia MediaWiki API access",
+  "license": "Apache-2.0",
+  "homepage": "https://github.com/AnnAngela/moegirlpedia-mediawiki-api",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AnnAngela/moegirlpedia-mediawiki-api.git"
+  },
+  "private": true,
+  "type": "module",
+  "bin": {
+    "moegirlpedia-mediawiki-api": "./dist/index.js"
+  },
+  "files": [
+    "dist/**",
+    "scripts/run.sh",
+    "SKILL.md"
+  ],
+  "scripts": {
+    "build": "bash scripts/build-release.sh",
+    "lint": "eslint .",
+    "release": "bash scripts/release.sh",
+    "start": "node dist/index.js",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "engines": {
+    "node": "^24.11"
+  },
+  "dependencies": {
+    "tough-cookie": "^6.0.1"
+  },
+  "devDependencies": {
+    "@annangela/eslint-config": "^11.0.0",
+    "@types/node": "^24.10.1",
+    "clawhub": "0.9.0",
+    "esbuild": "^0.28.0",
+    "types-mediawiki-api": "^2.0.0",
+    "typescript": "^6.0.2",
+    "vitest": "^4.1.4"
+  }
+}

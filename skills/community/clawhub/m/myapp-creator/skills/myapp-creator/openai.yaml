@@ -1,0 +1,132 @@
+tools:
+  - name: myapp_register
+    description: |
+      创建一个新应用。LLM agent 应已生成完整的 html_content / app_name / features，
+      该工具仅负责通过 HTTP 把它们落到 fe-service（上传 BOS、写库）。
+    parameters:
+      type: object
+      required:
+        - dumi_id
+        - cuid
+        - query
+        - app_name
+        - html_content
+        - features
+      properties:
+        dumi_id:
+          type: string
+          description: 小度用户 ID（从对话上下文注入）
+        cuid:
+          type: string
+          description: 设备 ID（从对话上下文注入，可空字符串）
+        query:
+          type: string
+          maxLength: 500
+          description: 用户的原始描述
+        app_name:
+          type: string
+          maxLength: 16
+          description: 应用名，≤16 字
+        html_content:
+          type: string
+          description: 完整可独立打开的单文件 HTML，≤60KB
+        features:
+          type: array
+          items:
+            type: string
+            maxLength: 30
+          minItems: 1
+          maxItems: 12
+          description: 当前版本功能点列表
+        icon_base64:
+          type: ["string", "null"]
+          description: 可选的应用图标（PNG base64），不传则为空
+        tag:
+          type: string
+          enum: ["app", "doc"]
+          description: 内容类型，应用类（交互式HTML）填 "app"，文件类（文档/PPT/表格）填 "doc"；不传默认 "app"
+
+  - name: myapp_update
+    description: |
+      更新已有应用。调用前必须先调 myapp_get 取旧 features，再合并用户新需求。
+    parameters:
+      type: object
+      required:
+        - app_id
+        - query
+        - html_content
+        - features
+      properties:
+        app_id:
+          type: integer
+          description: 要更新的应用 ID
+        query:
+          type: string
+          description: 本次更新的用户描述
+        html_content:
+          type: string
+          description: 新版完整 HTML
+        features:
+          type: array
+          items:
+            type: string
+          minItems: 1
+          maxItems: 12
+          description: 新版功能全集（不是 diff）
+        icon_base64:
+          type: ["string", "null"]
+        tag:
+          type: string
+          enum: ["app", "doc"]
+          description: 内容类型，应用类填 "app"，文件类填 "doc"；不传则保留原值
+
+  - name: myapp_get
+    description: |
+      读取应用详情，主要用于更新流程中拿到旧 features 列表。
+    parameters:
+      type: object
+      required:
+        - app_id
+      properties:
+        app_id:
+          type: integer
+    returns:
+      type: object
+      properties:
+        app_name:
+          type: string
+        query:
+          type: string
+        features:
+          type: array
+          items:
+            type: string
+        tag:
+          type: string
+          description: 内容类型，"app" 或 "doc"
+        version:
+          type: integer
+        html_url:
+          type: string
+
+  - name: myapp_ping
+    description: |
+      技能安装就绪自检。安装完成后调一次，使 fe-service 知晓本 dumi_id 的 skill 已可用。
+    parameters:
+      type: object
+      required:
+        - session_id
+        - dumi_id
+        - cuid
+        - skill_version
+      properties:
+        session_id:
+          type: string
+          description: install_prompt 中带过来的安装会话 ID
+        dumi_id:
+          type: string
+        cuid:
+          type: string
+        skill_version:
+          type: string
+          description: 本 skill 自身版本，如 "1.0.0"

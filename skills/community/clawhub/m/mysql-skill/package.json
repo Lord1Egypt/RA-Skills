@@ -1,0 +1,40 @@
+{
+  "name": "mysql-skill",
+  "version": "1.0.0",
+  "description": "MySQL 数据库管理技能。通过自然语言查询、管理 MySQL 数据库，支持 SELECT/INSERT/UPDATE/DELETE、表管理、备份恢复等操作。",
+  "author": "ryanlee-gemini <ryanlee.gemini@gmail.com>",
+  "license": "MIT",
+  "keywords": [
+    "mysql",
+    "database",
+    "sql",
+    "query",
+    "backup",
+    "db-management"
+  ],
+  "openclaw": {
+    "category": "database",
+    "requires": {
+      "bins": ["mysql", "mysqldump"]
+    },
+    "install": [
+      {
+        "id": "mysql-client",
+        "kind": "system",
+        "label": "Install MySQL Client",
+        "commands": {
+          "ubuntu": "sudo apt update && sudo apt install -y mysql-client",
+          "macos": "brew install mysql-client"
+        }
+      }
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ryanlee-gemini/mysql-skill"
+  },
+  "homepage": "https://clawhub.com/skills/mysql-skill",
+  "bugs": {
+    "url": "https://github.com/ryanlee-gemini/mysql-skill/issues"
+  }
+}

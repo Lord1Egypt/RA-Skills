@@ -1,0 +1,48 @@
+{
+  "name": "moraia",
+  "version": "0.0.1",
+  "description": "Moria for OpenClaw agents",
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "pool:create": "npx tsx scripts/pool.ts create",
+    "pool:mintto": "npx tsx scripts/pool.ts mintto",
+    "pool:dammv2": "npx tsx scripts/pool.ts dammv2",
+    "claim:fee": "npx tsx scripts/claim.ts fee",
+    "claim:token": "npx tsx scripts/claim.ts token",
+    "wallet:show": "npx tsx scripts/wallet.ts show",
+    "wallet:sol": "npx tsx scripts/wallet.ts sol",
+    "wallet:tokens": "npx tsx scripts/wallet.ts tokens",
+    "wallet:created": "npx tsx scripts/wallet.ts created",
+    "wallet:deposit": "npx tsx scripts/wallet.ts deposit",
+    "wallet:mintto": "npx tsx scripts/wallet.ts mintto",
+    "trade:buy": "npx tsx scripts/trade.ts buy",
+    "trade:sell": "npx tsx scripts/trade.ts sell",
+    "swap:mintto": "npx tsx scripts/swap.ts mintto",
+    "swap:refund": "npx tsx scripts/swap.ts refund",
+    "config:check": "npx tsx scripts/config.ts check",
+    "config:set": "npx tsx scripts/config.ts set"
+  },
+  "dependencies": {
+    "@coral-xyz/anchor": "^0.32.1",
+    "@meteora-ag/cp-amm-sdk": "^1.3.9",
+    "@moria/moria-sdk": "./lib/@moria/moria-sdk",
+    "@solana/spl-token": "^0.4.9",
+    "@solana/web3.js": "^1.98.0",
+    "bn.js": "^5.2.3",
+    "bs58": "^6.0.0",
+    "decimal.js": "^10.5.0",
+    "json5": "^2.2.3",
+    "qrcode": "^1.5.4",
+    "utf-8-validate": "^5.0.10",
+    "tsx": "^4.21.0"
+  },
+  "devDependencies": {
+    "@types/bn.js": "^5.1.0",
+    "@types/bs58": "^4.0.4",
+    "@types/node": "^22.19.13",
+    "@types/qrcode": "^1.5.6",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3"
+  }
+}

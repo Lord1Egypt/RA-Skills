@@ -1,0 +1,1233 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>multi-writing-skills - Claude Code Skill 案例教程</title>
+    <style>
+        :root {
+            --bg-primary: #0d1117;
+            --bg-secondary: #161b22;
+            --bg-tertiary: #21262d;
+            --text-primary: #e6edf3;
+            --text-secondary: #8b949e;
+            --accent: #58a6ff;
+            --accent-hover: #79c0ff;
+            --border: #30363d;
+            --code-bg: #0d1117;
+            --success: #3fb950;
+            --warning: #d29922;
+            --danger: #f85149;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
+            border-bottom: 1px solid var(--border);
+            padding: 60px 0 80px;
+            text-align: center;
+        }
+
+        .header-badge {
+            display: inline-block;
+            background: var(--accent);
+            color: var(--bg-primary);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .header h1 {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            background: linear-gradient(90deg, var(--text-primary) 0%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .header p {
+            font-size: 18px;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Navigation */
+        .nav {
+            background: var(--bg-secondary);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-list {
+            display: flex;
+            gap: 8px;
+            padding: 12px 0;
+            overflow-x: auto;
+            scrollbar-width: none;
+        }
+
+        .nav-list::-webkit-scrollbar {
+            display: none;
+        }
+
+        .nav-item {
+            padding: 8px 16px;
+            border-radius: 6px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 14px;
+            white-space: nowrap;
+            transition: all 0.2s;
+        }
+
+        .nav-item:hover {
+            background: var(--bg-tertiary);
+            color: var(--text-primary);
+        }
+
+        .nav-item.active {
+            background: var(--accent);
+            color: var(--bg-primary);
+        }
+
+        /* Main Content */
+        .main {
+            padding: 60px 0;
+        }
+
+        section {
+            margin-bottom: 80px;
+        }
+
+        h2 {
+            font-size: 28px;
+            margin-bottom: 24px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid var(--accent);
+            display: inline-block;
+        }
+
+        h3 {
+            font-size: 20px;
+            margin: 32px 0 16px;
+            color: var(--accent);
+        }
+
+        h4 {
+            font-size: 16px;
+            margin: 24px 0 12px;
+            color: var(--text-primary);
+        }
+
+        p {
+            margin-bottom: 16px;
+            color: var(--text-secondary);
+        }
+
+        /* Cards */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 24px 0;
+        }
+
+        .card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            transition: transform 0.2s, border-color 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            border-color: var(--accent);
+        }
+
+        .card-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--bg-tertiary);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 16px;
+            font-size: 24px;
+        }
+
+        .card h4 {
+            font-size: 16px;
+            margin-bottom: 8px;
+        }
+
+        .card p {
+            font-size: 14px;
+            margin: 0;
+        }
+
+        /* Problem & Solution */
+        .problem-solution {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin: 24px 0;
+        }
+
+        .problem-box {
+            background: rgba(248, 81, 73, 0.1);
+            border: 1px solid var(--danger);
+            border-radius: 12px;
+            padding: 24px;
+        }
+
+        .solution-box {
+            background: rgba(63, 185, 80, 0.1);
+            border: 1px solid var(--success);
+            border-radius: 12px;
+            padding: 24px;
+        }
+
+        .problem-box h4 {
+            color: var(--danger);
+        }
+
+        .solution-box h4 {
+            color: var(--success);
+        }
+
+        /* Comparison */
+        .comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin: 24px 0;
+        }
+
+        .before-box, .after-box {
+            border-radius: 12px;
+            padding: 24px;
+        }
+
+        .before-box {
+            background: rgba(248, 81, 73, 0.05);
+            border: 1px solid var(--danger);
+        }
+
+        .after-box {
+            background: rgba(63, 185, 80, 0.05);
+            border: 1px solid var(--success);
+        }
+
+        .before-box h4 {
+            color: var(--danger);
+        }
+
+        .after-box h4 {
+            color: var(--success);
+        }
+
+        .comparison-label {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .before-box .comparison-label {
+            background: var(--danger);
+            color: white;
+        }
+
+        .after-box .comparison-label {
+            background: var(--success);
+            color: white;
+        }
+
+        /* Code Blocks */
+        pre {
+            background: var(--code-bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 20px;
+            overflow-x: auto;
+            margin: 16px 0;
+        }
+
+        code {
+            font-family: 'SF Mono', Monaco, 'Cascadia Code', Consolas, monospace;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .code-block {
+            position: relative;
+        }
+
+        .code-block pre {
+            padding-top: 40px;
+        }
+
+        .code-block .lang-badge {
+            position: absolute;
+            top: 12px;
+            left: 16px;
+            background: var(--bg-tertiary);
+            color: var(--text-secondary);
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+        }
+
+        .inline-code {
+            background: var(--bg-tertiary);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 14px;
+            color: var(--accent);
+        }
+
+        /* Table */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 24px 0;
+        }
+
+        th, td {
+            padding: 12px 16px;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+
+        th {
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        td {
+            color: var(--text-secondary);
+        }
+
+        tr:hover td {
+            background: var(--bg-secondary);
+        }
+
+        /* Feature List */
+        .feature-list {
+            list-style: none;
+        }
+
+        .feature-list li {
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .feature-list li::before {
+            content: "✓";
+            color: var(--success);
+            font-weight: bold;
+        }
+
+        /* Callout */
+        .callout {
+            background: var(--bg-secondary);
+            border-left: 4px solid var(--accent);
+            padding: 20px;
+            border-radius: 0 8px 8px 0;
+            margin: 24px 0;
+        }
+
+        .callout-title {
+            font-weight: 600;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .callout.warning {
+            border-left-color: var(--warning);
+        }
+
+        .callout.success {
+            border-left-color: var(--success);
+        }
+
+        .callout.danger {
+            border-left-color: var(--danger);
+        }
+
+        /* Steps */
+        .steps {
+            counter-reset: step;
+        }
+
+        .step {
+            position: relative;
+            padding-left: 60px;
+            margin-bottom: 32px;
+        }
+
+        .step::before {
+            counter-increment: step;
+            content: counter(step);
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 40px;
+            height: 40px;
+            background: var(--accent);
+            color: var(--bg-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+        }
+
+        .step-content {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+        }
+
+        .step-content h4 {
+            margin-top: 0;
+        }
+
+        /* Flow Diagram */
+        .flow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            margin: 32px 0;
+            flex-wrap: wrap;
+        }
+
+        .flow-item {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 16px 24px;
+            text-align: center;
+        }
+
+        .flow-arrow {
+            color: var(--accent);
+            font-size: 24px;
+        }
+
+        /* Natural Language Examples */
+        .nl-example {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 16px 0;
+        }
+
+        .nl-example .label {
+            font-size: 12px;
+            color: var(--accent);
+            margin-bottom: 8px;
+        }
+
+        .nl-example .example {
+            font-size: 16px;
+            color: var(--text-primary);
+            font-style: italic;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border);
+            padding: 40px 0;
+            text-align: center;
+            color: var(--text-secondary);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 32px;
+            }
+
+            h2 {
+                font-size: 24px;
+            }
+
+            .card-grid,
+            .problem-solution,
+            .comparison {
+                grid-template-columns: 1fr;
+            }
+
+            .flow {
+                flex-direction: column;
+            }
+
+            .flow-arrow {
+                transform: rotate(90deg);
+            }
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-primary);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--bg-tertiary);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--border);
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <span class="header-badge">Claude Code Skill</span>
+            <h1>multi-writing-skills</h1>
+            <p>多平台 Markdown 发布工具，支持微信公众号、知乎、今日头条的 Markdown 文章转换与发布</p>
+        </div>
+    </header>
+
+    <nav class="nav">
+        <div class="container">
+            <div class="nav-list">
+                <a href="#overview" class="nav-item active">概述</a>
+                <a href="#why" class="nav-item">为什么使用</a>
+                <a href="#problems" class="nav-item">问题与解决</a>
+                <a href="#comparison" class="nav-item">效果对比</a>
+                <a href="#natural-lang" class="nav-item">自然语言</a>
+                <a href="#quickstart" class="nav-item">快速开始</a>
+                <a href="#openclaw" class="nav-item">openclaw 教程</a>
+                <a href="#features" class="nav-item">功能特性</a>
+                <a href="#ai-writing" class="nav-item">AI 写作</a>
+                <a href="#humanizer" class="nav-item">AI 去痕</a>
+                <a href="#skill-meta" class="nav-item">Skill 元数据</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main">
+        <div class="container">
+            <section id="overview">
+                <h2>概述</h2>
+                <p><code class="inline-code">multi-writing-skills</code> 是一个 Claude Code Skill，用于将 Markdown 文章发布到多个内容平台。它支持微信公众号、知乎、今日头条等主流内容平台，提供 Markdown 转换、AI 写作、AI 去痕等功能。</p>
+
+                <div class="flow">
+                    <div class="flow-item">📝 编写 Markdown</div>
+                    <span class="flow-arrow">→</span>
+                    <div class="flow-item">🔄 格式转换</div>
+                    <span class="flow-arrow">→</span>
+                    <div class="flow-item">📤 发布平台</div>
+                    <span class="flow-arrow">→</span>
+                    <div class="flow-item">✅ 完成</div>
+                </div>
+
+                <div class="callout">
+                    <div class="callout-title">💡 核心能力</div>
+                    <p style="margin:0">用自然语言描述你的需求，AI 自动完成文章转换、发布、去痕、封面生成等全流程工作。</p>
+                </div>
+            </section>
+
+            <section id="why">
+                <h2>为什么使用</h2>
+                <p>内容创作者在不同平台发布文章时面临诸多挑战，multi-writing-skills 旨在解决这些问题。</p>
+
+                <div class="card-grid">
+                    <div class="card">
+                        <div class="card-icon">⏱️</div>
+                        <h4>节省时间</h4>
+                        <p>手动复制粘贴、调整格式、代码高亮等重复性工作，AI 自动完成，每次发布节省 30+ 分钟</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">🎨</div>
+                        <h4>美观排版</h4>
+                        <p>微信公众号代码块显示问题、格式错乱？内置多种主题，自动美化排版</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">🤖</div>
+                        <h4>AI 加持</h4>
+                        <p>不会写文章？AI 帮你写。担心 AI 味太重？AI 帮你去痕</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">🌐</div>
+                        <h4>一键多平台</h4>
+                        <p>一份 Markdown，多平台发布。自动适配各平台格式要求</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">🔒</div>
+                        <h4>本地处理</h4>
+                        <p>配置存储在本地，支持环境变量 Sensitive 信息不外泄</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">💬</div>
+                        <h4>自然语言交互</h4>
+                        <p>不用记命令，说出你的需求即可。Claude Code 帮你解析并执行</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="problems">
+                <h2>问题与解决</h2>
+                <p>以下是内容创作者在实际工作中遇到的典型问题，以及 multi-writing-skills 提供的解决方案。</p>
+
+                <h3>问题 1：微信公众号代码块显示</h3>
+                <div class="problem-solution">
+                    <div class="problem-box">
+                        <h4>❌ 传统方式的问题</h4>
+                        <p>直接复制 Markdown 到公众号，代码块缩进混乱、语法高亮丢失、排版变得乱七八糟。</p>
+                        <p style="margin-top: 12px; font-size: 14px;">代码显示效果：</p>
+                        <pre style="margin-top: 8px; font-size: 12px;"><code>def hello():
+    print("Hello")
+# 缩进丢失，格式错乱</code></pre>
+                    </div>
+                    <div class="solution-box">
+                        <h4>✓ multi-writing-skills 解决方案</h4>
+                        <p>自动将代码块转换为微信支持的格式，保留语法高亮和缩进。</p>
+                        <p style="margin-top: 12px; font-size: 14px;">转换后效果：</p>
+                        <pre style="margin-top: 8px; font-size: 12px; background: #1a1a1a;"><code>def hello():
+    print("Hello")
+# 完美显示代码</code></pre>
+                    </div>
+                </div>
+
+                <h3>问题 2：多平台格式适配</h3>
+                <div class="problem-solution">
+                    <div class="problem-box">
+                        <h4>❌ 传统方式的问题</h4>
+                        <p>同一篇文章需要手动调整格式以适应不同平台：</p>
+                        <ul style="margin-top: 8px; font-size: 14px; color: var(--text-secondary);">
+                            <li>知乎：需要 Markdown 格式</li>
+                            <li>微信公众号：需要 HTML 格式</li>
+                            <li>今日头条：需要特定格式</li>
+                        </ul>
+                        <p style="margin-top: 12px; color: var(--text-secondary);">维护多份文档，改动一处需要同步多处。</p>
+                    </div>
+                    <div class="solution-box">
+                        <h4>✓ multi-writing-skills 解决方案</h4>
+                        <p>一份 Markdown，自动转换为您指定的平台格式：</p>
+                        <div class="code-block" style="margin-top: 12px;">
+                            <span class="lang-badge">bash</span>
+                            <pre style="font-size: 12px;"><code># 一条命令发布到所有平台
+openclaw convert article.md --platform wechat
+openclaw convert article.md --platform zhihu
+openclaw convert article.md --platform toutiao</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>问题 3：AI 写作痕迹检测</h3>
+                <div class="problem-solution">
+                    <div class="problem-box">
+                        <h4>❌ 传统方式的问题</h4>
+                        <p>直接使用 AI 生成的文章容易被检测平台识别为 AI 内容，特征包括：</p>
+                        <ul style="margin-top: 8px; font-size: 14px; color: var(--text-secondary);">
+                            <li>过于规整的句式结构</li>
+                            <li>频繁使用"首先、其次、最后"</li>
+                            <li>缺乏个人观点和情感</li>
+                            <li>句子长度过于均匀</li>
+                        </ul>
+                    </div>
+                    <div class="solution-box">
+                        <h4>✓ multi-writing-skills 解决方案</h4>
+                        <p>AI 去痕功能自动检测并改写：</p>
+                        <div class="code-block" style="margin-top: 12px;">
+                            <span class="lang-badge">bash</span>
+                            <pre style="font-size: 12px;"><code># 轻度去痕
+openclaw humanize article.md --intensity light
+
+# 中度去痕
+openclaw humanize article.md --intensity medium
+
+# 重度去痕
+openclaw humanize article.md --intensity heavy</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="comparison">
+                <h2>效果对比</h2>
+                <p>使用 multi-writing-skills 前后的工作流程对比。</p>
+
+                <h3>发布工作流对比</h3>
+                <div class="comparison">
+                    <div class="before-box">
+                        <span class="comparison-label">Before</span>
+                        <h4>传统手动方式</h4>
+                        <ol style="margin: 16px 0; padding-left: 20px; color: var(--text-secondary);">
+                            <li>在 Markdown 编辑器写文章</li>
+                            <li>复制内容到各平台</li>
+                            <li>手动调整代码块格式</li>
+                            <li>逐个上传图片</li>
+                            <li>调整排版样式</li>
+                            <li>预览检查</li>
+                            <li>发布</li>
+                        </ol>
+                        <p style="color: var(--danger); font-weight: 600;">⏱️ 耗时：30-60 分钟/篇</p>
+                    </div>
+                    <div class="after-box">
+                        <span class="comparison-label">After</span>
+                        <h4>使用 multi-writing-skills</h4>
+                        <ol style="margin: 16px 0; padding-left: 20px; color: var(--text-secondary);">
+                            <li>写 Markdown 文章</li>
+                            <li>告诉 Claude："发布到微信公众号"</li>
+                            <li>确认发布</li>
+                        </ol>
+                        <p style="color: var(--success); font-weight: 600;">⏱️ 耗时：2-3 分钟/篇</p>
+                    </div>
+                </div>
+
+                <h3>代码块显示对比</h3>
+                <div class="comparison">
+                    <div class="before-box">
+                        <span class="comparison-label">Before</span>
+                        <h4>直接复制到公众号</h4>
+                        <pre style="font-size: 13px; margin-top: 16px;"><code>function fibonacci(n) {
+  if (n <= 1) return n;
+    return fibonacci(n - 1)
+  + fibonacci(n - 2);
+}
+# 缩进丢失，格式混乱</code></pre>
+                    </div>
+                    <div class="after-box">
+                        <span class="comparison-label">After</span>
+                        <h4>使用 openclaw convert</h4>
+                        <pre style="font-size: 13px; margin-top: 16px; background: #1e1e1e;"><code>function fibonacci(n) {
+    if (n <= 1) return n;
+    return fibonacci(n - 1)
+        + fibonacci(n - 2);
+}
+# 语法高亮，缩进完美</code></pre>
+                    </div>
+                </div>
+
+                <h3>AI 去痕效果对比</h3>
+                <div class="comparison">
+                    <div class="before-box">
+                        <span class="comparison-label">Before</span>
+                        <h4>原始 AI 生成内容</h4>
+                        <p style="margin-top: 16px; font-size: 14px; color: var(--text-secondary); font-style: italic;">
+                            "首先，我们需要了解 Python 的基本语法。其次，Python 是一种高级编程语言。最后，Python 具有简洁易读的特点。"
+                        </p>
+                        <p style="margin-top: 12px; font-size: 12px; color: var(--danger);">
+                            ⚠️ AI 检测风险：高 | 过渡词规律 | 缺乏个人色彩
+                        </p>
+                    </div>
+                    <div class="after-box">
+                        <span class="comparison-label">After</span>
+                        <h4>AI 去痕后</h4>
+                        <p style="margin-top: 16px; font-size: 14px; color: var(--text-secondary); font-style: italic;">
+                            "Python 入门其实不难。我学 Python 的时候，第一件事就是搞清楚它的语法有多简洁。用多了你就会发现，同样的功能，Python 写的代码往往比别的语言短一大截。"
+                        </p>
+                        <p style="margin-top: 12px; font-size: 12px; color: var(--success);">
+                            ✓ AI 检测风险：低 | 自然表达 | 口语化
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="natural-lang">
+                <h2>支持自然语言</h2>
+                <p>multi-writing-skills 支持用自然语言与 Claude Code 交互，无需记忆复杂的命令参数。</p>
+
+                <h3>发布文章</h3>
+                <div class="nl-example">
+                    <div class="label">用户说：</div>
+                    <div class="example">"帮我把这篇 article.md 发布到微信公众号"</div>
+                </div>
+                <div class="nl-example">
+                    <div class="label">系统自动执行：</div>
+                    <div class="example">openclaw convert article.md --draft --platform wechat</div>
+                </div>
+
+                <h3>AI 写作</h3>
+                <div class="nl-example">
+                    <div class="label">用户说：</div>
+                    <div class="example">"用故事风格写一篇关于程序员成长的文章"</div>
+                </div>
+                <div class="nl-example">
+                    <div class="label">系统自动执行：</div>
+                    <div class="example">openclaw write "程序员成长" --style storytelling --length medium</div>
+                </div>
+
+                <h3>AI 去痕</h3>
+                <div class="nl-example">
+                    <div class="label">用户说：</div>
+                    <div class="example">"给这篇文章去痕，让它读起来更自然"</div>
+                </div>
+                <div class="nl-example">
+                    <div class="label">系统自动执行：</div>
+                    <div class="example">openclaw humanize article.md --intensity medium</div>
+                </div>
+
+                <h3>生成封面</h3>
+                <div class="nl-example">
+                    <div class="label">用户说：</div>
+                    <div class="example">"给这篇文章生成一个科技感的封面图"</div>
+                </div>
+                <div class="nl-example">
+                    <div class="label">系统自动执行：</div>
+                    <div class="example">openclaw generate-image "科技感" --style futuristic</div>
+                </div>
+
+                <div class="callout">
+                    <div class="callout-title">💡 提示</div>
+                    <p style="margin:0">在 Claude Code 中，只需用自然的语言描述你的需求，Skill 会自动解析并调用相应的命令。</p>
+                </div>
+            </section>
+
+            <section id="quickstart">
+                <h2>快速开始</h2>
+
+                <div class="steps">
+                    <div class="step">
+                        <div class="step-content">
+                            <h4>第一步：安装工具</h4>
+                            <div class="code-block">
+                                <span class="lang-badge">bash</span>
+                                <pre><code># 使用 pip 安装
+pip install multi-writing-skills
+
+# 或使用 uv
+uv tool install multi-writing-skills</code></pre>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-content">
+                            <h4>第二步：配置凭证</h4>
+                            <p>首次使用时，运行以下命令初始化配置：</p>
+                            <div class="code-block">
+                                <span class="lang-badge">bash</span>
+                                <pre><code>openclaw config init</code></pre>
+                            </div>
+                            <p style="margin-top: 16px;">然后设置各平台的凭证：</p>
+                            <div class="code-block">
+                                <span class="lang-badge">bash</span>
+                                <pre><code># 微信公众号
+openclaw config set wechat.app_id <你的AppID>
+openclaw config set wechat.app_secret <你的AppSecret>
+
+# 知乎
+openclaw config set zhihu.cookie <你的Cookie>
+
+# 今日头条
+openclaw config set toutiao.cookie <你的Cookie></code></pre>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-content">
+                            <h4>第三步：开始使用</h4>
+                            <p>用自然语言告诉 Claude Code 你的需求：</p>
+                            <div class="nl-example" style="margin-top: 12px;">
+                                <div class="label">你说：</div>
+                                <div class="example">"转换 article.md 为公众号格式"</div>
+                            </div>
+                            <p style="margin-top: 16px;">或者直接使用 CLI：</p>
+                            <div class="code-block">
+                                <span class="lang-badge">bash</span>
+                                <pre><code>openclaw convert article.md --draft --platform wechat</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="openclaw">
+                <h2>openclaw 使用教程</h2>
+                <p><code class="inline-code">openclaw</code> 是 multi-writing-skills 的命令行工具，提供完整的配置管理和发布功能。</p>
+
+                <h3>配置命令</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>命令</th>
+                            <th>说明</th>
+                            <th>示例</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code class="inline-code">openclaw config init</code></td>
+                            <td>初始化配置文件</td>
+                            <td>在 ~/.multi-writing-skills/ 创建配置</td>
+                        </tr>
+                        <tr>
+                            <td><code class="inline-code">openclaw config set</code></td>
+                            <td>设置配置项</td>
+                            <td>openclaw config set wechat.app_id xxx</td>
+                        </tr>
+                        <tr>
+                            <td><code class="inline-code">openclaw config list</code></td>
+                            <td>列出所有配置</td>
+                            <td>查看当前配置状态</td>
+                        </tr>
+                        <tr>
+                            <td><code class="inline-code">openclaw config edit</code></td>
+                            <td>编辑配置文件</td>
+                            <td>直接打开 YAML 编辑</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>转换命令</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>命令</th>
+                            <th>说明</th>
+                            <th>示例</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code class="inline-code">openclaw convert</code></td>
+                            <td>转换 Markdown 文件</td>
+                            <td>openclaw convert article.md</td>
+                        </tr>
+                        <tr>
+                            <td><code class="inline-code">--platform</code></td>
+                            <td>指定平台</td>
+                            <td>--platform wechat|zhihu|toutiao</td>
+                        </tr>
+                        <tr>
+                            <td><code class="inline-code">--draft</code></td>
+                            <td>发布到草稿箱</td>
+                            <td>--draft</td>
+                        </tr>
+                        <tr>
+                            <td><code class="inline-code">--theme</code></td>
+                            <td>指定主题</td>
+                            <td>--theme blue|orange|green</td>
+                        </tr>
+                        <tr>
+                            <td><code class="inline-code">-o, --output</code></td>
+                            <td>指定输出文件</td>
+                            <td>-o output.html</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>AI 写作命令</h3>
+                <div class="code-block">
+                    <span class="lang-badge">bash</span>
+                    <pre><code># 基础写作
+openclaw write "写一篇关于Python的文章"
+
+# 指定风格和长度
+openclaw write "写一篇关于Python的文章" --style technical --length long
+
+# 改写现有内容
+openclaw rewrite article.md --style casual</code></pre>
+                </div>
+
+                <h3>AI 去痕命令</h3>
+                <div class="code-block">
+                    <span class="lang-badge">bash</span>
+                    <pre><code># 默认中度去痕
+openclaw humanize article.md -o article_clean.md
+
+# 指定强度
+openclaw humanize article.md --intensity light
+openclaw humanize article.md --intensity medium
+openclaw humanize article.md --intensity heavy
+
+# 指定 Provider
+openclaw humanize article.md --provider qwen</code></pre>
+                </div>
+
+                <h3>图片生成命令</h3>
+                <div class="code-block">
+                    <span class="lang-badge">bash</span>
+                    <pre><code># 基础图片生成
+openclaw generate-image "一只在海边看日落的猫"
+
+# 指定 Provider 和尺寸
+openclaw generate-image "科技感城市" --provider minimax --size 1024x1024 -o cover.png
+
+# 使用中文提示词
+openclaw generate-image "古风山水画" --provider modelscope</code></pre>
+                </div>
+
+                <h3>完整工作流示例</h3>
+                <div class="code-block">
+                    <span class="lang-badge">bash</span>
+                    <pre><code># 1. 初始化配置（仅首次需要）
+openclaw config init
+
+# 2. 配置微信公众号凭证
+openclaw config set wechat.app_id wx_xxxxx
+openclaw config set wechat.app_secret xxxxx
+
+# 3. 写一篇技术文章
+openclaw write "Python 异步编程教程" --style technical --length long -o article.md
+
+# 4. 给文章去痕
+openclaw humanize article.md --intensity light -o article_clean.md
+
+# 5. 生成封面图
+openclaw generate-image "Python 编程" --provider minimax -o cover.png
+
+# 6. 发布到微信公众号
+openclaw convert article_clean.md --draft --platform wechat --theme blue</code></pre>
+                </div>
+
+                <div class="callout success">
+                    <div class="callout-title">✓ 提示</div>
+                    <p style="margin:0">使用 <code class="inline-code">openclaw --help</code> 或 <code class="inline-code">openclaw &lt;command&gt; --help</code> 查看详细帮助信息。</p>
+                </div>
+            </section>
+
+            <section id="features">
+                <h2>功能特性</h2>
+                <div class="card-grid">
+                    <div class="card">
+                        <div class="card-icon">📝</div>
+                        <h4>Markdown 转换</h4>
+                        <p>支持基础模式、API 模式、AI 模式三种转换方式</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">🌐</div>
+                        <h4>多平台发布</h4>
+                        <p>微信公众号、知乎、今日头条草稿箱</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">💻</div>
+                        <h4>代码块格式化</h4>
+                        <p>自动处理缩进，微信公众号完美展示</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">✍️</div>
+                        <h4>AI 写作助手</h4>
+                        <p>5 种写作风格，灵活适配不同场景</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">🧹</div>
+                        <h4>AI 去痕</h4>
+                        <p>3 种强度可选，支持多种 Provider</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">🖼️</div>
+                        <h4>图片生成</h4>
+                        <p>ModelScope、Minimax、DALL-E、Gemini</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="ai-writing">
+                <h2>AI 写作风格</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>风格</th>
+                            <th>参数值</th>
+                            <th>描述</th>
+                            <th>适用场景</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Dan Koe</td>
+                            <td><code class="inline-code">dan-koe</code></td>
+                            <td>简洁、直接、实用</td>
+                            <td>个人成长、效率类</td>
+                        </tr>
+                        <tr>
+                            <td>技术风格</td>
+                            <td><code class="inline-code">technical</code></td>
+                            <td>严谨、详细、专业</td>
+                            <td>技术教程、深度分析</td>
+                        </tr>
+                        <tr>
+                            <td>随意风格</td>
+                            <td><code class="inline-code">casual</code></td>
+                            <td>轻松、亲切、口语化</td>
+                            <td>生活类、个人博客</td>
+                        </tr>
+                        <tr>
+                            <td>正式风格</td>
+                            <td><code class="inline-code">formal</code></td>
+                            <td>严肃、规范、学术</td>
+                            <td>专业论文、正式报告</td>
+                        </tr>
+                        <tr>
+                            <td>故事风格</td>
+                            <td><code class="inline-code">storytelling</code></td>
+                            <td>叙事、引人入胜</td>
+                            <td>情感类、案例分享</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <section id="humanizer">
+                <h2>AI 去痕详解</h2>
+
+                <h3>去痕强度</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>强度</th>
+                            <th>参数</th>
+                            <th>说明</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>轻度</td>
+                            <td><code class="inline-code">--intensity light</code></td>
+                            <td>保持原文结构，只调整表达方式</td>
+                        </tr>
+                        <tr>
+                            <td>中度</td>
+                            <td><code class="inline-code">--intensity medium</code></td>
+                            <td>适度改写，增加自然表达</td>
+                        </tr>
+                        <tr>
+                            <td>重度</td>
+                            <td><code class="inline-code">--intensity heavy</code></td>
+                            <td>全面改写，重新组织语言</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>支持的 Provider</h3>
+                <p>openai、qwen（通义千问）、doubao（豆包）、minimax、moonshot、zhipu（智谱）、hunyuan（腾讯混元）、yi（零一万物）</p>
+
+                <div class="callout warning">
+                    <div class="callout-title">⚠️ AI 写作特征</div>
+                    <p style="margin:0">去痕功能会检测并去除：过于规整的句式、频繁过渡词、缺乏个人观点、过度被动语态、句子长度均匀、缺少口语化表达。</p>
+                </div>
+            </section>
+
+            <section id="skill-meta">
+                <h2>Skill 元数据</h2>
+                <p>Skill 通过 <code class="inline-code">SKILL.md</code> 文件定义元数据，用于 Claude Code 自动识别和触发：</p>
+                <div class="code-block">
+                    <span class="lang-badge">markdown</span>
+                    <pre><code># multi-writing-skills
+
+多平台 Markdown 发布工具，支持微信公众号、知乎、今日头条。
+
+## 功能特性
+
+- **Markdown 转换**: 基础模式、API 模式、AI 模式
+- **多平台发布**: 微信公众号、知乎、今日头条
+- **代码块格式化**: 自动处理缩进和换行
+- **AI 写作助手**: 5种写作风格支持
+- **AI 去痕**: 去除 AI 写作痕迹
+- **图片生成**: 支持多种 Provider
+
+## 触发条件
+
+当用户需要以下操作时自动触发：
+- 将 Markdown 文章发布到微信公众号、知乎或今日头条
+- 转换 Markdown 为公众号格式 HTML
+- 使用 AI 写作、改写或去痕
+- 生成文章封面图片
+
+## 使用方式
+
+在 Claude Code 中直接用自然语言描述你的需求即可。</code></pre>
+                </div>
+
+                <h3>SKILL.md 结构</h3>
+                <ul class="feature-list">
+                    <li><strong>标题</strong> - Skill 名称，使用 kebab-case 命名</li>
+                    <li><strong>功能特性</strong> - 列出所有支持的功能</li>
+                    <li><strong>触发条件</strong> - 说明何时自动触发此 Skill</li>
+                    <li><strong>使用方式</strong> - 如何使用此 Skill</li>
+                </ul>
+            </section>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>multi-writing-skills &copy; 2024 | MIT License</p>
+            <p style="margin-top: 8px; font-size: 14px;">Built with Claude Code</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scroll and active nav
+        document.querySelectorAll('.nav-item').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                document.querySelector(targetId).scrollIntoView({ behavior: 'smooth' });
+
+                document.querySelectorAll('.nav-item').forEach(l => l.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+
+        // Intersection Observer for active nav
+        const sections = document.querySelectorAll('section');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const id = '#' + entry.target.id;
+                    document.querySelectorAll('.nav-item').forEach(l => {
+                        l.classList.toggle('active', l.getAttribute('href') === id);
+                    });
+                }
+            });
+        }, { threshold: 0.3 });
+
+        sections.forEach(section => observer.observe(section));
+    </script>
+</body>
+</html>

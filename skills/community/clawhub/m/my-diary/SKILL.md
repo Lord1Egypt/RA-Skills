@@ -1,35 +1,100 @@
 ---
-name: "My Diary"
-description: "个人日记管理技能。用于记录日记、查询日记、查看日记列表、删除日记等操作。当用户说"写入日记"、"查看日记"、"列出日记"、"删除日记"时触发此技能。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/my-diary"
-sourceUrl: "https://clawhub.ai/skills/my-diary"
+AIGC:
+    ContentProducer: Minimax Agent AI
+    ContentPropagator: Minimax Agent AI
+    Label: AIGC
+    ProduceID: 286144e5fc1f5629a70e6c0669393a38
+    PropagateID: 286144e5fc1f5629a70e6c0669393a38
+    ReservedCode1: 3045022100eddf38bb28b4f63a252a1736e5cbbd35d44fbc7a51d416067a08da8a91f084fd02207db5e6204aa023996b5eb757e9f6766ac8bab385ebfb15884c9e90809e16fbe5
+    ReservedCode2: 3046022100cb4699180d984b19fb0f33a53726a9463dc916b9fd547eb747b971c77f28d48c02210099bd99b6b2c20cc8461cc52f1d45866a4d146e568863d89d1ff2f168124a57bc
+description: 个人日记管理技能。用于记录日记、查询日记、查看日记列表、删除日记等操作。当用户说"写入日记"、"查看日记"、"列出日记"、"删除日记"时触发此技能。
+name: my-diary
 ---
 
-# My Diary
+# 我的日记 (my-diary)
 
-> 个人日记管理技能。用于记录日记、查询日记、查看日记列表、删除日记等操作。当用户说"写入日记"、"查看日记"、"列出日记"、"删除日记"时触发此技能。
+管理个人日记，支持写入、查询、列表、删除功能。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/my-diary`
-- **Source URL:** [https://clawhub.ai/skills/my-diary](https://clawhub.ai/skills/my-diary)
+## 存储位置
 
-## Overview
+日记文件保存在：`D:\Nancy\MyWork\WorkBuddyWorkSpace\diary\my-diary.json`
 
+## 功能命令
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/my-diary
+### 1. 写入日记
+
+用户说："写入日记：xxxxx" 或 "记日记：xxxxx"
+
+操作：
+1. 读取现有日记文件（或创建新文件）
+2. 生成日记ID（时间戳）
+3. 添加新日记条目：{id, content, created_at}
+4. 写入文件
+5. 告知用户保存成功
+
+```json
+{
+  "id": "1700000000000",
+  "content": "日记内容",
+  "created_at": "2026-03-15 14:30:00"
+}
 ```
+
+### 2. 查看日记
+
+用户说："查看日记" 或 "我的日记" 或 "查询日记"
+
+操作：
+1. 读取日记文件
+2. 按时间倒序列出所有日记
+3. 显示每个日记的：日期、内容摘要
+4. 询问用户想看哪一篇的完整内容
+
+### 3. 查看单篇日记
+
+用户说："查看第X篇日记" 或 "查看2026年3月15日的日记"
+
+操作：
+1. 根据ID或日期查找日记
+2. 显示完整内容
+
+### 4. 删除日记
+
+用户说："删除日记" 或 "删除第X篇日记"
+
+操作：
+1. 列出日记供选择
+2. 确认删除
+3. 从文件中移除
+4. 告知删除成功
+
+### 5. 搜索日记
+
+用户说："搜索日记：关键词"
+
+操作：
+1. 读取日记文件
+2. 搜索包含关键词的日记
+3. 显示匹配结果
+
+## 日记格式
+
+```json
+{
+  "version": "1.0",
+  "entries": [
+    {
+      "id": "1700000000000",
+      "content": "今天是个好日子...",
+      "created_at": "2026-03-15 14:30:00"
+    }
+  ]
+}
+```
+
+## 注意事项
+
+- 每次写入自动记录时间
+- 日记按时间倒序排列
+- 删除前需要确认
+- 搜索不区分大小写

@@ -1,35 +1,41 @@
 ---
-name: "Mood Simulator"
-description: "情绪状态模拟器v4：评估用户当前情绪状态、能量水平、专注度，支持实时情绪追踪。触发条件：情绪转折、能量变化、专注度调整。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/mood-simulator"
-sourceUrl: "https://clawhub.ai/skills/mood-simulator"
+name: mood-simulator
+description: 情绪状态模拟器v4：评估用户当前情绪状态、能量水平、专注度，支持实时情绪追踪。触发条件：情绪转折、能量变化、专注度调整。
 ---
 
-# Mood Simulator
+# Mood Simulator - 情绪状态模拟器
 
-> 情绪状态模拟器v4：评估用户当前情绪状态、能量水平、专注度，支持实时情绪追踪。触发条件：情绪转折、能量变化、专注度调整。
+## 使用方法
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/mood-simulator`
-- **Source URL:** [https://clawhub.ai/skills/mood-simulator](https://clawhub.ai/skills/mood-simulator)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
+### 直接调用
 ```bash
-hermes skills install clawhub/mood-simulator
+node scripts/simulator.js <命令> [选项]
 ```
+
+### 信号处理模式
+```bash
+node scripts/simulator.js --process-signal <signal>
+```
+
+## 命令
+
+- `simulate [选项]` - 模拟情绪状态
+- `adjust [选项]` - 调整情绪参数
+- `track` - 追踪情绪变化
+
+## 示例
+
+```bash
+# 模拟情绪
+node scripts/simulator.js simulate --energy 70 --focus 80
+
+# 调整时间因子
+node scripts/simulator.js adjust --time-factor morning
+
+# 信号处理
+node scripts/simulator.js --process-signal transition
+```
+
+## 与proactive-engine集成
+
+该skill通过`--process-signal`参数与proactive-engine信号系统集成，支持实时情绪追踪和能量警报。

@@ -1,35 +1,152 @@
 ---
-name: "Myway Personal OS"
-description: "Set up Myway, a self-hosted personal AI home screen, using OpenClaw as the AI backend. Use this skill when the user wants to install Myway with OpenClaw, con..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/myway-personal-os"
-sourceUrl: "https://clawhub.ai/skills/myway-personal-os"
+name: myway-openclaw
+description: >
+  Set up Myway, a self-hosted personal AI home screen, using OpenClaw as the AI backend.
+  Use this skill when the user wants to install Myway with OpenClaw, configure their personal
+  dashboard, or troubleshoot a Myway + OpenClaw setup. Requires Node.js 22+ and yarn.
+license: MIT
+compatibility: Linux, macOS. Requires Node.js 22+, yarn, and OpenClaw installed locally.
+metadata:
+  author: uchibeke
+  version: 0.1.0
+  tags: personal-ai, home-screen, self-hosted, openclaw, dashboard
 ---
 
-# Myway Personal OS
+# Myway + OpenClaw Setup
 
-> Set up Myway, a self-hosted personal AI home screen, using OpenClaw as the AI backend. Use this skill when the user wants to install Myway with OpenClaw, con...
+Myway is a self-hosted personal AI home screen — a local-first PWA that gives you a
+phone-style dashboard powered by AI. This skill sets it up using **OpenClaw** as the
+AI backend.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/myway-personal-os`
-- **Source URL:** [https://clawhub.ai/skills/myway-personal-os](https://clawhub.ai/skills/myway-personal-os)
+## When to use this skill
 
-## Overview
+- User wants to install Myway and already has OpenClaw running locally
+- User asks about setting up a personal AI dashboard with OpenClaw
+- User wants to configure or reconfigure their Myway + OpenClaw connection
 
+## Prerequisites
+
+Check these before starting:
+
+1. **Node.js 22+** — run `node -v` to verify (must show v22 or higher)
+2. **yarn** — run `yarn -v` to verify. If missing: `npm install -g yarn`
+3. **OpenClaw** — run `openclaw gateway status` or check if `~/.openclaw/openclaw.json` exists
+
+If prerequisites fail, stop and help the user install them first.
 
 ## Installation
-To install this skill, run the following command in your terminal:
+
+Optionally ask the user for:
+1. Their OpenClaw gateway URL (default: `http://localhost:18789`)
+2. A gateway token (usually not needed for localhost)
+3. A directory for the file browser (default: `~/vault`)
+4. Where to install (directory name, default: `myway`)
+
+Then run the setup:
+
 ```bash
-hermes skills install clawhub/myway-personal-os
+npx @uchibeke/myway <directory> \
+  --ai-mode openclaw \
+  --openclaw-url http://localhost:18789 \
+  --root ~/vault \
+  --port 48291 \
+  --start
 ```
+
+All flags are optional except `--ai-mode openclaw`. Defaults:
+- directory: `myway`
+- `--openclaw-url`: `http://localhost:18789`
+- `--openclaw-token`: empty (not needed for localhost)
+- `--root`: `~/vault`
+- `--port`: `48291`
+
+Add `--no-aport` to skip APort guardrails setup.
+
+The command will:
+1. Scaffold a new directory with the Myway source
+2. Install dependencies (2-5 minutes)
+3. Write `.env.local` with the provided config
+4. Initialize the database
+5. Build for production (1-2 minutes)
+6. Start the server and open the browser (if `--start` is passed)
+
+**Important**: This command takes 3-7 minutes to complete. Do not interrupt it.
+
+### Verify it worked
+
+After the command completes with `--start`, the server should be running. Verify:
+
+```bash
+curl -s -o /dev/null -w "%{http_code}" http://localhost:48291/
+```
+
+Should return `200`. If the user didn't pass `--start`:
+
+```bash
+cd <directory>
+yarn start
+```
+
+### Background running with PM2
+
+For long-running deployments:
+
+```bash
+cd <directory>
+cp ecosystem.config.cjs.example ecosystem.config.cjs
+pm2 start ecosystem.config.cjs
+```
+
+## Reconfiguring
+
+To reconfigure an existing install:
+
+```bash
+cd <existing-myway-directory>
+npx @uchibeke/myway --setup \
+  --ai-mode openclaw \
+  --openclaw-url http://localhost:18789
+```
+
+Or edit `.env.local` directly, then rebuild:
+
+```bash
+cd <existing-myway-directory>
+# Edit .env.local with new values
+yarn build
+# Restart: yarn start, or pm2 restart myway
+```
+
+## OpenClaw connection details
+
+Myway connects to OpenClaw via its gateway API:
+
+- **Default URL**: `http://localhost:18789`
+- **Config file**: `~/.openclaw/openclaw.json` (auto-detected at runtime)
+- **Auth**: Optional gateway token, not needed for localhost setups
+- **How it works**: Myway sends chat/skill requests to OpenClaw's gateway, which routes them to the configured AI model
+
+## Troubleshooting
+
+| Problem | Fix |
+|---------|-----|
+| OpenClaw not detected | Run `openclaw gateway status` to verify it's running |
+| Connection refused | Check `OPENCLAW_BASE_URL` in `.env.local` matches `openclaw gateway status` output |
+| Port already in use | Change `PORT` in `.env.local` or: `fuser -k 48291/tcp` |
+| Black screen after restart | Run `pm2 logs myway --err`. Usually EADDRINUSE — kill stale process and restart PM2 |
+| Build fails | Ensure Node.js 22+ and run `yarn install` first |
+| Command hangs | Normal — dependency install takes 2-5 min, build takes 1-2 min |
+
+## Environment variables
+
+All config lives in `<directory>/.env.local`. Key variables for OpenClaw mode:
+
+```env
+PORT=48291
+MYWAY_ROOT=~/vault
+OPENCLAW_BASE_URL=http://localhost:18789
+# OPENCLAW_GATEWAY_TOKEN=  # only if gateway requires auth
+MYWAY_SECRET=<auto-generated>
+```
+
+See `.env.local.example` in the install directory for all options (Google OAuth, Telegram, TTS, etc.).

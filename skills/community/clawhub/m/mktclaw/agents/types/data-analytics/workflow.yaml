@@ -1,0 +1,106 @@
+name: data-analytics-delivery
+version: "4.0"
+description: 数据分析交付工作流 - AI扮演数据分析顾问，逐步交付数据诊断、分析框架、深度报告、优化建议等成果
+
+input:
+  type: object
+  required:
+    - requirement_summary
+  properties:
+    requirement_summary:
+      type: object
+    delivery_plan:
+      type: object
+
+steps:
+  # ══════════════════════════════════
+  # STEP 1: 数据现状诊断
+  # ══════════════════════════════════
+  - id: data_diagnosis
+    agent: agents/types/data-analytics/main-agent
+    action: diagnose_data_status
+    description: 数据诊断：数据源盘点、数据质量评估(完整性/时效性/归因准确性)、采集缺口识别、基础设施建议
+    input:
+      requirement_summary: "{{input.requirement_summary}}"
+    output: data_diagnosis_report
+    checkpoint:
+      format: markdown
+      confirm: true
+      confirm_message: "请确认数据范围和分析方向？"
+
+  # ══════════════════════════════════
+  # STEP 2: 分析框架设计
+  # ══════════════════════════════════
+  - id: analysis_framework
+    agent: agents/types/data-analytics/main-agent
+    action: design_analysis_framework
+    description: 设计分析框架：分析维度定义(L1-L4层次)、指标体系、归因模型选择、看板架构
+    input:
+      requirement_summary: "{{input.requirement_summary}}"
+      diagnosis: "{{data_diagnosis.output.data_diagnosis_report}}"
+    output: analysis_framework_doc
+    checkpoint:
+      format: markdown
+      confirm: true
+      confirm_message: "请确认指标体系和归因逻辑？"
+
+  # ══════════════════════════════════
+  # STEP 3: 深度分析报告
+  # ══════════════════════════════════
+  - id: deep_analysis
+    agent: agents/types/data-analytics/main-agent
+    action: conduct_deep_analysis
+    description: 深度分析：渠道效率对比、趋势分析、异常归因、核心发现Top5(附数据支撑)、渠道协同效应
+    input:
+      requirement_summary: "{{input.requirement_summary}}"
+      diagnosis: "{{data_diagnosis.output.data_diagnosis_report}}"
+      framework: "{{analysis_framework.output.analysis_framework_doc}}"
+    output: deep_analysis_report
+    checkpoint:
+      format: markdown
+      confirm: true
+      confirm_message: "请确认核心发现和分析结论？"
+
+  # ══════════════════════════════════
+  # STEP 4: 优化建议与行动方案
+  # ══════════════════════════════════
+  - id: optimization_plan
+    agent: agents/types/data-analytics/main-agent
+    action: generate_optimization_plan
+    description: 生成优化方案：优先级排序(P0/P1/P2)的建议清单、预期效果量化、实施路径、KPI追踪表
+    input:
+      requirement_summary: "{{input.requirement_summary}}"
+      framework: "{{analysis_framework.output.analysis_framework_doc}}"
+      analysis: "{{deep_analysis.output.deep_analysis_report}}"
+    output: optimization_action_plan
+    checkpoint:
+      format: markdown
+      confirm: true
+      confirm_message: "请确认优先级和行动计划？"
+
+  # ══════════════════════════════════
+  # STEP 5: 质量自检
+  # ══════════════════════════════════
+  - id: quality_check
+    agent: agents/types/data-analytics/main-agent
+    reference: references/_shared/quality-protocol.md
+    action: quality_assessment
+    description: 对所有交付物进行质量自检（数据支撑充分性/分析深度/建议可操作性/逻辑严谨性）
+    input:
+      deliverables:
+        diagnosis: "{{data_diagnosis.output.data_diagnosis_report}}"
+        framework: "{{analysis_framework.output.analysis_framework_doc}}"
+        analysis: "{{deep_analysis.output.deep_analysis_report}}"
+        optimization: "{{optimization_plan.output.optimization_action_plan}}"
+    output: quality_report
+
+output:
+  deliverables:
+    diagnosis: "{{data_diagnosis.output.data_diagnosis_report}}"
+    framework: "{{analysis_framework.output.analysis_framework_doc}}"
+    analysis: "{{deep_analysis.output.deep_analysis_report}}"
+    optimization: "{{optimization_plan.output.optimization_action_plan}}"
+  quality: "{{quality_check.output.quality_report}}"
+  metadata:
+    workflow_version: "4.0"
+    role: "data-analytics"

@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Node Connection Doctor - ClawHub 发布</title>
+  <style>
+    body { font-family: sans-serif; max-width: 800px; margin: 40px auto; padding: 20px; }
+    .field { margin: 20px 0; }
+    label { display: block; font-weight: bold; margin-bottom: 5px; }
+    input, textarea, select { width: 100%; padding: 8px; margin-bottom: 10px; border: 1px solid #ddd; border-radius: 4px; }
+    textarea { height: 150px; font-family: monospace; }
+    .note { background: #f0f0f0; padding: 10px; border-radius: 4px; margin: 10px 0; font-size: 14px; }
+    .warning { background: #fff3cd; padding: 10px; border-radius: 4px; margin: 10px 0; }
+    button { background: #28a745; color: white; border: none; padding: 12px 24px; cursor: pointer; border-radius: 4px; font-size: 16px; }
+    button:hover { background: #218838; }
+  </style>
+</head>
+<body>
+  <h1>🚀 Node Connection Doctor - ClawHub 发布表单</h1>
+
+  <div class="note">
+    <strong>操作步骤:</strong>
+    <ol>
+      <li>复制此文件中每个字段的值</li>
+      <li>在 ClawHub 发布页面粘贴</li>
+      <li>上传 <code>node-connection-doctor.zip</code></li>
+      <li>提交审核</li>
+    </ol>
+  </div>
+
+  <!-- 这个页面需要手动在浏览器打开 ClawHub 发布页后填写 -->
+
+  <h2>📋 表单字段 (复制以下内容)</h2>
+
+  <div class="field">
+    <label>Skill ID</label>
+    <input type="text" value="node-connection-doctor" readonly onclick="this.select()">
+  </div>
+
+  <div class="field">
+    <label>Name</label>
+    <input type="text" value="Node Connection Doctor" readonly onclick="this.select()">
+  </div>
+
+  <div class="field">
+    <label>Version</label>
+    <input type="text" value="1.0.0" readonly onclick="this.select()">
+  </div>
+
+  <div class="field">
+    <label>Category</label>
+    <select disabled>
+      <option selected>Troubleshooting</option>
+    </select>
+    <small>选择: Troubleshooting</small>
+  </div>
+
+  <div class="field">
+    <label>Tags (逗号分隔)</label>
+    <input type="text" value="node, connection, diagnose, fix, gateway, tailscale" readonly onclick="this.select()">
+  </div>
+
+  <div class="field">
+    <label>Description (完整)</label>
+    <textarea readonly rows="20" onclick="this.select()">
+# 🛠️ Node Connection Doctor
+
+[![OpenClaw Skill](https://img.shields.io/badge/OpenClaw-Skill-blue)](https://clawhub.com)
+
+**Automatically diagnose and fix OpenClaw node connection issues in 2 minutes.**
+
+## 🎯 Problem It Solves
+
+**Before**: You spend 30+ minutes trying to:
+- Scan QR code → fails
+- Manual pairing → "unauthorized" or "invalid token"
+- Check logs → confusing error messages
+- Search Discord → outdated solutions
+
+**After**: Run this skill once → get specific fix commands → problem solved
+
+## ✨ Features
+
+| Feature | Benefit |
+|---------|---------|
+| 🔍 **Auto Diagnosis** | Checks 20+ common issues (gateway status, pairing config, Tailscale, firewall) |
+| 📋 **Fix Recommendations** | Provides exact CLI commands for your specific error |
+| ⚡ **One-Click Fix** | (Optional) Automatically executes safe fixes (reset token, restart gateway) |
+| 📊 **Diagnostic Report** | Exportable summary for support or future reference |
+
+## 💰 Pricing
+
+| Plan | Price | Best For |
+|------|-------|----------|
+| Single Diagnostic | $5 | One-time issue, quick check |
+| Full Repair Service | $15 | Most users - diagnosis + auto-fix |
+| Enterprise API | $50/month | Businesses, multiple nodes |
+
+## 🚀 Quick Start
+
+### 1. Diagnose
+```yaml
+skill: node-connection-doctor
+input:
+  mode: diagnose
+  verbose: true
+```
+
+Output example:
+```yaml
+diagnosis:
+  gateway_status: "stopped"
+  pairing_config: "missing"
+  tailscale: "connected"
+recommendations:
+  - "Run: openclaw gateway start"
+  - "Run: openclaw node pair --reset-token"
+  - "Check: plugins.entries.device-pair.config.publicUrl"
+```
+
+### 2. Fix (Optional)
+```yaml
+skill: node-connection-doctor
+input:
+  mode: fix
+  auto_confirm: false  # Requires your confirmation
+```
+
+## 📖 Full Documentation
+
+See [SKILL.md](SKILL.md) for complete usage guide and technical details.
+
+## 🔧 Requirements
+
+- OpenClaw v2026.3.23 or later
+- Node.js (local or remote)
+- No external dependencies
+
+## 💡 Support
+
+- Issues: [GitHub Issues](https://github.com/...)
+- Community: [OpenClaw Discord](https://discord.gg/clawd)
+
+---
+
+**Made with ❤️ by JARVIS**
+
+*Want a custom skill? DM me on Discord (@JARVIS)*
+    </textarea>
+  </div>
+
+  <div class="field">
+    <label>Examples (YAML 格式)</label>
+    <textarea readonly rows="8" onclick="this.select()">
+**Basic diagnosis**
+
+```yaml
+skill: node-connection-doctor
+input:
+  mode: diagnose
+  verbose: true
+```
+
+**Fix with confirmation**
+
+```yaml
+skill: node-connection-doctor
+input:
+  mode: fix
+  auto_confirm: false
+```
+    </textarea>
+  </div>
+
+  <div class="field">
+    <label>Requirements</label>
+    <input type="text" value="OpenClaw >= v2026.3.23" readonly onclick="this.select()">
+  </div>
+
+  <div class="warning">
+    <strong>⚠️ 文件上传:</strong> 你需要手动上传 <code>skills/node-connection-doctor.zip</code> (69 KB)
+  </div>
+
+  <div class="field">
+    <label>ZIP 文件路径</label>
+    <code>D:\OpenClaw\.openclaw\workspace\skills\node-connection-doctor.zip</code>
+  </div>
+
+  <hr>
+
+  <p>
+    <strong>操作流程:</strong><br>
+    1. 打开 <a href="https://clawhub.ai/publish-skill" target="_blank">https://clawhub.ai/publish-skill</a><br>
+    2. 登录你的账户<br>
+    3. 按 Ctrl+A 全选上面的每个字段，复制后粘贴到对应表单<br>
+    4. 上传 ZIP 文件<br>
+    5. 勾选确认条款，点击提交
+  </p>
+
+  <button onclick="window.print()">🖨️ 打印此页面</button>
+
+</body>
+</html>

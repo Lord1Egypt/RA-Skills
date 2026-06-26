@@ -1,35 +1,24 @@
 ---
-name: "Log Analyzer"
-description: "Read a log file, extract ERROR/WARN/CRITICAL lines, group similar messages, and produce a concise summary report. Use when analyzing application logs, agent..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/neo1307-log-analyzer"
-sourceUrl: "https://clawhub.ai/skills/neo1307-log-analyzer"
+name: log-analyzer
+description: Read a log file, extract ERROR/WARN/CRITICAL lines, group similar messages, and produce a concise summary report. Use when analyzing application logs, agent logs, service logs, or audit outputs for repeated failures, warning clusters, or critical events.
 ---
 
 # Log Analyzer
 
-> Read a log file, extract ERROR/WARN/CRITICAL lines, group similar messages, and produce a concise summary report. Use when analyzing application logs, agent...
+Read a target log file, isolate important severity lines, group similar messages, and emit a Markdown summary.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/neo1307-log-analyzer`
-- **Source URL:** [https://clawhub.ai/skills/neo1307-log-analyzer](https://clawhub.ai/skills/neo1307-log-analyzer)
+## Workflow
 
-## Overview
+1. Confirm the input log path.
+2. Run `index.js` with `--input <logfile>` and optional `--out <report.md>`.
+3. Review the grouped output for dominant error families.
+4. Use the report as a triage artifact, not as the only source of truth.
 
+## Output
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/neo1307-log-analyzer
-```
+Always include:
+- total scanned lines
+- WARN / ERROR / CRITICAL counts
+- grouped issue buckets
+- sample lines
+- suggested first checks

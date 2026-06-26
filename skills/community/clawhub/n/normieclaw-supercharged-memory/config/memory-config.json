@@ -1,0 +1,67 @@
+{
+  "_comment": "Supercharged Memory configuration. Edit these values to customize behavior.",
+
+  "memory_md": {
+    "_comment": "Controls for MEMORY.md — the curated long-term memory file.",
+    "max_memory_md_chars": 6000,
+    "warn_at_chars": 5000
+  },
+
+  "daily_notes": {
+    "_comment": "Controls for daily session log files (memory/YYYY-MM-DD.md).",
+    "auto_create": true,
+    "include_session_summary": true,
+    "stale_alert_after_hour": 14
+  },
+
+  "consolidation": {
+    "_comment": "How often the agent reviews daily notes and promotes content to MEMORY.md.",
+    "interval_hours": 24,
+    "lookback_days": 7,
+    "max_promotions_per_cycle": 10,
+    "auto_prune_outdated": true
+  },
+
+  "qmd": {
+    "_comment": "QMD search engine settings. Collections are auto-discovered.",
+    "enabled": true,
+    "reindex_interval_hours": 2,
+    "default_collections": ["workspace", "memory"],
+    "skip_directories": ["node_modules", ".git", "__pycache__", "dist", "build"],
+    "fallback_to_grep": true
+  },
+
+  "vector_db": {
+    "_comment": "Optional Mem0/Qdrant upgrade. Set enabled=true after completing the upgrade setup.",
+    "enabled": false,
+    "provider": "qdrant",
+    "host": "localhost",
+    "port": 6333,
+    "collection_name": "user_memory",
+    "embedding_model_dims": 1536,
+    "venv_path": "",
+    "user_id": "",
+    "capture_interval_hours": 2,
+    "capture_message_window": 40,
+    "capture_overlap": 10
+  },
+
+  "health_check": {
+    "_comment": "Thresholds for the daily health check.",
+    "memory_md_stale_hours": 48,
+    "reindex_overdue_hours": 3,
+    "daily_notes_required_after_hour": 14,
+    "alert_on_missing_collections": true
+  },
+
+  "session_start": {
+    "_comment": "Files loaded during the boot sequence. Order matters.",
+    "boot_files": [
+      "SOUL.md",
+      "USER.md",
+      "MEMORY.md"
+    ],
+    "load_today_notes": true,
+    "load_yesterday_notes": true
+  }
+}

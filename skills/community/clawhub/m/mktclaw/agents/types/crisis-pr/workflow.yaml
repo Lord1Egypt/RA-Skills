@@ -1,0 +1,39 @@
+name: crisis_pr_workflow
+description: 危机公关交付工作流 — 自动触发快速模式
+steps:
+  - id: intake
+    agent: agents/intake-agent.md
+    description: 危机需求快速收集（自动启用⚡快速模式）
+    input:
+      user_input: "{{input.user_input}}"
+    output: requirement_summary
+    mode_override: fast  # 危机场景强制快速模式
+
+  - id: routing
+    agent: agents/router-agent.md
+    description: 路由到危机公关角色（最高优先级）
+    input:
+      requirement_summary: "{{intake.output.requirement_summary}}"
+    output: delivery_plan
+    one_click: true  # 危机场景一键交付
+
+  - id: crisis_assessment
+    agent: agents/types/crisis-pr/main-agent.md
+    description: 危机评估报告 + 应对策略
+    input:
+      requirement_summary: "{{intake.output.requirement_summary}}"
+      delivery_plan: "{{routing.output.delivery_plan}}"
+    output: crisis_report
+    checkpoint:
+      confirm: true
+      confirm_message: "请确认危机评估报告和应对策略"
+
+  - id: statement_delivery
+    agent: agents/types/crisis-pr/main-agent.md
+    description: 公关声明 + 媒体Q&A + 后续修复方案
+    input:
+      crisis_report: "{{crisis_assessment.output.crisis_report}}"
+    output: final_deliverables
+    checkpoint:
+      confirm: true
+      confirm_message: "请确认公关声明和沟通材料"

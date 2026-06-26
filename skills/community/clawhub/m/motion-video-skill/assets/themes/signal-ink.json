@@ -1,0 +1,17 @@
+{
+  "id": "signal-ink",
+  "label": "Signal Ink",
+  "description": "深色科技橙蓝配色，适合 AI 和产品介绍。",
+  "fontDisplay": "'Avenir Next', 'PingFang SC', 'Microsoft YaHei', sans-serif",
+  "fontBody": "'Avenir Next', 'PingFang SC', 'Microsoft YaHei', sans-serif",
+  "bg": "radial-gradient(circle at 18% 18%, rgba(255,140,66,0.18), transparent 32%), radial-gradient(circle at 82% 22%, rgba(89,227,255,0.14), transparent 28%), linear-gradient(140deg, #07111F 0%, #0B1730 48%, #08111B 100%)",
+  "surface": "rgba(8, 19, 34, 0.60)",
+  "surfaceStrong": "rgba(15, 28, 49, 0.90)",
+  "textPrimary": "#F8FAFC",
+  "textSecondary": "#CBD5E1",
+  "accent": "#FF8C42",
+  "accentSoft": "rgba(255, 140, 66, 0.18)",
+  "accentAlt": "#59E3FF",
+  "outline": "rgba(148, 163, 184, 0.22)",
+  "shadow": "0 24px 64px rgba(2, 6, 23, 0.36)"
+}

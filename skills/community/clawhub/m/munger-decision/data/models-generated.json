@@ -1,0 +1,1721 @@
+{
+  "version": "1.0",
+  "total": 83,
+  "models": [
+    {
+      "id": "01",
+      "name": "第一性原理",
+      "category": "core",
+      "description": "回归事物最基本的真理，从源头推导而非类比推理。",
+      "questions": [
+        "这个决策最基本的假设是什么？",
+        "去掉所有约定俗成，从零出发最优解是什么？",
+        "哪些你认为理所当然的假设其实可以被质疑？"
+      ],
+      "keywords": [
+        "第一性原理",
+        "本质",
+        "基础",
+        "假设",
+        "源头"
+      ],
+      "scoring": {
+        "high": "从基本原理推导，不依赖类比",
+        "medium": "部分基于原理分析",
+        "low": "主要依赖类比和惯例"
+      }
+    },
+    {
+      "id": "02",
+      "name": "机会成本",
+      "category": "core",
+      "description": "选择某个方案时放弃的最佳替代方案的价值。",
+      "questions": [
+        "如果选择这个方案，你放弃了什么最佳机会？",
+        "这笔资金/时间/精力的最佳替代用途是什么？",
+        "与最佳替代方案相比，这个选择是否更优？"
+      ],
+      "keywords": [
+        "机会成本",
+        "替代",
+        "放弃",
+        "比较"
+      ],
+      "scoring": {
+        "high": "明确识别了最佳替代方案",
+        "medium": "考虑了部分替代方案",
+        "low": "未考虑机会成本"
+      }
+    },
+    {
+      "id": "03",
+      "name": "多元思维模型",
+      "category": "core",
+      "description": "从多个学科借鉴思维工具，构建格栅模型，交叉验证决策。",
+      "questions": [
+        "这个问题可以从哪些不同学科角度来分析？",
+        "用不同的思维模型交叉验证，结论是否一致？",
+        "你是否只用了单一框架来思考这个问题？"
+      ],
+      "keywords": [
+        "多元",
+        "跨学科",
+        "格栅",
+        "多角度"
+      ],
+      "scoring": {
+        "high": "使用了多个视角，结论一致",
+        "medium": "使用了2-3个视角",
+        "low": "仅用单一框架"
+      }
+    },
+    {
+      "id": "04",
+      "name": "临界质量",
+      "category": "systems",
+      "description": "系统达到自我维持或爆发增长所需的最小规模或能量。",
+      "questions": [
+        "这个系统是否已达到临界质量？",
+        "还需要多少投入才能达到临界点？",
+        "达到临界质量后会发生什么？"
+      ],
+      "keywords": [
+        "临界点",
+        "规模效应",
+        "爆发增长",
+        "自我维持",
+        "网络效应"
+      ],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      }
+    },
+    {
+      "id": "05",
+      "name": "准备启动",
+      "category": "systems",
+      "description": "充分准备后快速执行，避免过度计划或仓促行动。",
+      "questions": [
+        "准备工作是否充分？",
+        "启动时机是否成熟？",
+        "是否陷入了过度准备的陷阱？"
+      ],
+      "keywords": [
+        "准备",
+        "启动",
+        "时机",
+        "执行",
+        "行动"
+      ],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      }
+    },
+    {
+      "id": "06",
+      "name": "能力圈",
+      "category": "core",
+      "description": "只在自己真正理解的领域做决策，清楚知道自己能力的边界。",
+      "questions": [
+        "你对这个领域的了解程度如何（1-10分）？",
+        "你能清晰解释这个业务/行业的核心逻辑吗？",
+        "你能预测这个领域未来3年的发展方向吗？"
+      ],
+      "keywords": [
+        "能力圈",
+        "边界",
+        "了解",
+        "专业",
+        "理解"
+      ],
+      "scoring": {
+        "8-10": "在能力圈内，可以决策",
+        "5-7": "边缘地带，需谨慎",
+        "1-4": "超出能力圈，建议回避"
+      }
+    },
+    {
+      "id": "07",
+      "name": "逆向思维",
+      "category": "core",
+      "description": "反过来想——通过思考如何失败来避免失败，寻找问题的反面。",
+      "questions": [
+        "什么情况会导致这个决策彻底失败？",
+        "如果要让这件事搞砸，你会怎么做？",
+        "从失败的角度，哪些风险被你忽视了？"
+      ],
+      "keywords": [
+        "逆向",
+        "反过来",
+        "失败",
+        "风险",
+        "避免"
+      ],
+      "scoring": {
+        "high": "识别了主要失败路径并有应对方案",
+        "medium": "识别了部分风险",
+        "low": "未做逆向分析"
+      }
+    },
+    {
+      "id": "08",
+      "name": "第一性原理",
+      "category": "core",
+      "description": "第一性原理的核心概念和应用。",
+      "questions": [
+        "这个决策中第一性原理如何影响结果？",
+        "从第一性原理的角度，你会得出什么结论？",
+        "第一性原理可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [
+        "第一性原理",
+        "First Principles"
+      ],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      }
+    },
+    {
+      "id": "09",
+      "name": "护城河",
+      "category": "core",
+      "description": "企业长期保持竞争优势的结构性壁垒。",
+      "questions": [
+        "这个业务的核心竞争优势是什么？",
+        "竞争对手需要多长时间和多少资源才能复制？",
+        "5年后这个护城河会更宽还是更窄？"
+      ],
+      "keywords": [
+        "护城河",
+        "竞争优势",
+        "壁垒",
+        "可持续",
+        "差异化"
+      ],
+      "scoring": {
+        "high": "有清晰且持续的竞争优势",
+        "medium": "有一定壁垒但不稳固",
+        "low": "缺乏竞争壁垒"
+      }
+    },
+    {
+      "id": "10",
+      "name": "安全边际",
+      "category": "core",
+      "description": "价格与价值之间足够大的差距，为判断错误留出容错空间。",
+      "questions": [
+        "当前价格与内在价值的差距是多少？",
+        "如果你的估值偏差30%，这个决策还成立吗？",
+        "最坏情况下，你会损失多少？"
+      ],
+      "keywords": [
+        "安全边际",
+        "容错",
+        "折扣",
+        "价值",
+        "风险"
+      ],
+      "scoring": {
+        "high": "有30%以上的安全边际",
+        "medium": "有10-30%的安全边际",
+        "low": "安全边际不足"
+      }
+    },
+    {
+      "id": "11",
+      "name": "Lollapalooza 效应",
+      "category": "business",
+      "description": "多种心理倾向共同作用时产生的极端非线性效应。",
+      "questions": [
+        "有哪些心理倾向在同时作用？",
+        "这些倾向的叠加会产生什么极端结果？",
+        "如何利用或避免 Lollapalooza 效应？"
+      ],
+      "keywords": [
+        "多重因素",
+        "非线性",
+        "叠加效应",
+        "极端结果",
+        "心理倾向"
+      ],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      }
+    },
+    {
+      "id": "12",
+      "name": "确认偏误",
+      "category": "psychology",
+      "description": "人们倾向于寻找支持既有信念的信息，忽视相反证据。",
+      "questions": [
+        "你是否主动寻找了反对这个决策的证据？",
+        "支持这个决策的信息是否来自多个独立来源？",
+        "你是否找过最强的反方意见？"
+      ],
+      "keywords": [
+        "确认偏误",
+        "偏见",
+        "证据",
+        "客观",
+        "反对意见"
+      ],
+      "scoring": {
+        "high": "主动寻找并认真考虑了反面证据",
+        "medium": "考虑了部分反面意见",
+        "low": "主要关注支持性信息"
+      }
+    },
+    {
+      "id": "13",
+      "name": "锚定效应",
+      "category": "psychology",
+      "description": "人们过度依赖接收到的第一个信息（锚点）来做后续判断。",
+      "questions": [
+        "你的判断是否被初始信息锚定了？",
+        "如果抛开第一印象，结论会改变吗？",
+        "这个锚点是否合理？"
+      ],
+      "keywords": [
+        "锚定",
+        "第一印象",
+        "初始信息",
+        "参考点",
+        "调整不足"
+      ],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      }
+    },
+    {
+      "id": "14",
+      "name": "损失厌恶",
+      "category": "psychology",
+      "description": "损失带来的痛苦强度是同等收益带来快乐的两倍以上。",
+      "questions": [
+        "你是否因为害怕损失而错过机会？",
+        "如果用收益视角看，决策会改变吗？",
+        "这个决策是理性权衡还是情绪反应？"
+      ],
+      "keywords": [
+        "损失",
+        "厌恶",
+        "风险规避",
+        "处置效应",
+        "前景理论"
+      ],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      }
+    },
+    {
+      "id": "15",
+      "name": "社会认同",
+      "category": "psychology",
+      "description": "人们倾向于模仿他人的行为，尤其在不确定时。",
+      "questions": [
+        "你是否因为\"大家都这么做\"而做决策？",
+        "如果独立思考，你会做出不同选择吗？",
+        "这个\"共识\"是否经过验证？"
+      ],
+      "keywords": [
+        "从众",
+        "模仿",
+        "群体行为",
+        "社会证明",
+        "羊群效应"
+      ],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      }
+    },
+    {
+      "id": "16",
+      "name": "稀缺性",
+      "category": "psychology",
+      "description": "稀缺性的核心概念和应用。",
+      "questions": [
+        "这个决策中稀缺性如何影响结果？",
+        "从稀缺性的角度，你会得出什么结论？",
+        "稀缺性可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [
+        "稀缺性",
+        "Scarcity"
+      ],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      }
+    },
+    {
+      "id": "17",
+      "name": "权威影响",
+      "category": "psychology",
+      "description": "权威影响的核心概念和应用。",
+      "questions": [
+        "这个决策中权威影响如何影响结果？",
+        "从权威影响的角度，你会得出什么结论？",
+        "权威影响可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [
+        "权威影响",
+        "Authority Influence"
+      ],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      }
+    },
+    {
+      "id": "18",
+      "name": "承诺一致",
+      "category": "psychology",
+      "description": "承诺一致的核心概念和应用。",
+      "questions": [
+        "这个决策中承诺一致如何影响结果？",
+        "从承诺一致的角度，你会得出什么结论？",
+        "承诺一致可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [
+        "承诺一致",
+        "Commitment and Consistency"
+      ],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      }
+    },
+    {
+      "id": "19",
+      "name": "喜好原理",
+      "category": "psychology",
+      "description": "喜好原理的核心概念和应用。",
+      "questions": [
+        "这个决策中喜好原理如何影响结果？",
+        "从喜好原理的角度，你会得出什么结论？",
+        "喜好原理可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [
+        "喜好原理",
+        "Liking Principle"
+      ],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      }
+    },
+    {
+      "id": "20",
+      "name": "对比原理",
+      "category": "psychology",
+      "description": "对比原理的核心概念和应用。",
+      "questions": [
+        "这个决策中对比原理如何影响结果？",
+        "从对比原理的角度，你会得出什么结论？",
+        "对比原理可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [
+        "对比原理",
+        "Contrast Principle"
+      ],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      }
+    },
+    {
+      "id": "21",
+      "name": "可得性启发",
+      "category": "psychology",
+      "description": "可得性启发的核心概念和应用。",
+      "questions": [
+        "这个决策中可得性启发如何影响结果？",
+        "从可得性启发的角度，你会得出什么结论？",
+        "可得性启发可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [
+        "可得性启发",
+        "Availability Heuristic"
+      ],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      }
+    },
+    {
+      "id": "22",
+      "name": "代表性启发",
+      "category": "psychology",
+      "description": "代表性启发的核心概念和应用。",
+      "questions": [
+        "这个决策中代表性启发如何影响结果？",
+        "从代表性启发的角度，你会得出什么结论？",
+        "代表性启发可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [
+        "代表性启发",
+        "Representativeness Heuristic"
+      ],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      }
+    },
+    {
+      "id": "23",
+      "name": "沉没成本",
+      "category": "psychology",
+      "description": "已经发生且无法收回的成本，不应影响未来决策。",
+      "questions": [
+        "你是否因为已投入而继续错误决策？",
+        "如果从零开始，你还会做这个选择吗？",
+        "哪些是沉没成本，哪些是未来成本？"
+      ],
+      "keywords": [
+        "沉没成本",
+        "已投入",
+        "不可收回",
+        "理性决策",
+        "止损"
+      ],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      }
+    },
+    {
+      "id": "24",
+      "name": "框架效应",
+      "category": "psychology",
+      "description": "框架效应的核心概念和应用。",
+      "questions": [
+        "这个决策中框架效应如何影响结果？",
+        "从框架效应的角度，你会得出什么结论？",
+        "框架效应可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [
+        "框架效应",
+        "Framing Effect"
+      ],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      }
+    },
+    {
+      "id": "25",
+      "name": "后见之明",
+      "category": "psychology",
+      "description": "后见之明的核心概念和应用。",
+      "questions": [
+        "这个决策中后见之明如何影响结果？",
+        "从后见之明的角度，你会得出什么结论？",
+        "后见之明可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [
+        "后见之明",
+        "Hindsight Bias"
+      ],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      }
+    },
+    {
+      "id": "26",
+      "name": "过度自信偏差",
+      "category": "psychology",
+      "description": "过度自信偏差的核心概念和应用。",
+      "questions": [
+        "这个决策中过度自信偏差如何影响结果？",
+        "从过度自信偏差的角度，你会得出什么结论？",
+        "过度自信偏差可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [
+        "过度自信偏差",
+        "Overconfidence Bias"
+      ],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      }
+    },
+    {
+      "id": "27",
+      "name": "禀赋效应",
+      "category": "psychology",
+      "description": "禀赋效应的核心概念和应用。",
+      "questions": [
+        "这个决策中禀赋效应如何影响结果？",
+        "从禀赋效应的角度，你会得出什么结论？",
+        "禀赋效应可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [
+        "禀赋效应",
+        "Endowment Effect"
+      ],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      }
+    },
+    {
+      "id": "28",
+      "name": "现状偏误",
+      "category": "psychology",
+      "description": "现状偏误的核心概念和应用。",
+      "questions": [
+        "这个决策中现状偏误如何影响结果？",
+        "从现状偏误的角度，你会得出什么结论？",
+        "现状偏误可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [
+        "现状偏误",
+        "Status Quo Bias"
+      ],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      }
+    },
+    {
+      "id": "29",
+      "name": "赌徒谬误",
+      "category": "psychology",
+      "description": "赌徒谬误的核心概念和应用。",
+      "questions": [
+        "这个决策中赌徒谬误如何影响结果？",
+        "从赌徒谬误的角度，你会得出什么结论？",
+        "赌徒谬误可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [
+        "赌徒谬误",
+        "Gambler's Fallacy"
+      ],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      }
+    },
+    {
+      "id": "30",
+      "name": "光环效应",
+      "category": "psychology",
+      "description": "光环效应的核心概念和应用。",
+      "questions": [
+        "这个决策中光环效应如何影响结果？",
+        "从光环效应的角度，你会得出什么结论？",
+        "光环效应可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [
+        "光环效应",
+        "Halo Effect"
+      ],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      }
+    },
+    {
+      "id": "31",
+      "name": "均值回归",
+      "category": "core",
+      "description": "均值回归的核心概念和应用。",
+      "questions": [
+        "这个决策中均值回归如何影响结果？",
+        "从均值回归的角度，你会得出什么结论？",
+        "均值回归可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [
+        "均值回归",
+        "Regression to the Mean"
+      ],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      }
+    },
+    {
+      "id": "32",
+      "name": "激励机制",
+      "category": "core",
+      "description": "激励机制的核心概念和应用。",
+      "questions": [
+        "这个决策中激励机制如何影响结果？",
+        "从激励机制的角度，你会得出什么结论？",
+        "激励机制可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [
+        "激励机制",
+        "Incentive Bias"
+      ],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      }
+    },
+    {
+      "id": "33",
+      "name": "二阶思维",
+      "category": "systems",
+      "description": "二阶思维的核心概念和应用。",
+      "questions": [
+        "这个决策中二阶思维如何影响结果？",
+        "从二阶思维的角度，你会得出什么结论？",
+        "二阶思维可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [
+        "二阶思维",
+        "Second-Order Thinking"
+      ],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      }
+    },
+    {
+      "id": "34",
+      "name": "地图不是疆域",
+      "category": "systems",
+      "description": "地图不是疆域的核心概念和应用。",
+      "questions": [
+        "这个决策中地图不是疆域如何影响结果？",
+        "从地图不是疆域的角度，你会得出什么结论？",
+        "地图不是疆域可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [
+        "地图不是疆域",
+        "Map is Not Territory"
+      ],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      }
+    },
+    {
+      "id": "35",
+      "name": "奥卡姆剃刀",
+      "category": "systems",
+      "description": "奥卡姆剃刀的核心概念和应用。",
+      "questions": [
+        "这个决策中奥卡姆剃刀如何影响结果？",
+        "从奥卡姆剃刀的角度，你会得出什么结论？",
+        "奥卡姆剃刀可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [
+        "奥卡姆剃刀",
+        "Occam's Razor"
+      ],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      }
+    },
+    {
+      "id": "36",
+      "name": "汉隆剃刀",
+      "category": "systems",
+      "description": "汉隆剃刀的核心概念和应用。",
+      "questions": [
+        "这个决策中汉隆剃刀如何影响结果？",
+        "从汉隆剃刀的角度，你会得出什么结论？",
+        "汉隆剃刀可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [
+        "汉隆剃刀",
+        "Hanlon's Razor"
+      ],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      }
+    },
+    {
+      "id": "37",
+      "name": "博弈论",
+      "category": "systems",
+      "description": "博弈论的核心概念和应用。",
+      "questions": [
+        "这个决策中博弈论如何影响结果？",
+        "从博弈论的角度，你会得出什么结论？",
+        "博弈论可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [
+        "博弈论",
+        "Game Theory"
+      ],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      }
+    },
+    {
+      "id": "38",
+      "name": "幂律分布",
+      "category": "systems",
+      "description": "幂律分布的核心概念和应用。",
+      "questions": [
+        "这个决策中幂律分布如何影响结果？",
+        "从幂律分布的角度，你会得出什么结论？",
+        "幂律分布可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [
+        "幂律分布",
+        "Power Law Distribution"
+      ],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      }
+    },
+    {
+      "id": "39",
+      "name": "反脆弱",
+      "category": "systems",
+      "description": "反脆弱的核心概念和应用。",
+      "questions": [
+        "这个决策中反脆弱如何影响结果？",
+        "从反脆弱的角度，你会得出什么结论？",
+        "反脆弱可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [
+        "反脆弱",
+        "Antifragile"
+      ],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      }
+    },
+    {
+      "id": "40",
+      "name": "黑天鹅",
+      "category": "systems",
+      "description": "黑天鹅的核心概念和应用。",
+      "questions": [
+        "这个决策中黑天鹅如何影响结果？",
+        "从黑天鹅的角度，你会得出什么结论？",
+        "黑天鹅可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [
+        "黑天鹅",
+        "Black Swan"
+      ],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      }
+    },
+    {
+      "id": "41",
+      "name": "幸存者偏差",
+      "category": "psychology",
+      "description": "幸存者偏差的核心概念和应用。",
+      "questions": [
+        "这个决策中幸存者偏差如何影响结果？",
+        "从幸存者偏差的角度，你会得出什么结论？",
+        "幸存者偏差可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [
+        "幸存者偏差",
+        "Survivorship Bias"
+      ],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      }
+    },
+    {
+      "id": "42",
+      "name": "达克效应",
+      "category": "psychology",
+      "description": "达克效应的核心概念和应用。",
+      "questions": [
+        "这个决策中达克效应如何影响结果？",
+        "从达克效应的角度，你会得出什么结论？",
+        "达克效应可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [
+        "达克效应",
+        "Dunning-Kruger Effect"
+      ],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      }
+    },
+    {
+      "id": "43",
+      "name": "激励机制",
+      "category": "core",
+      "description": "人们的行为由激励驱动，理解激励机制是预测行为的关键。",
+      "questions": [
+        "这个决策中各方的激励是什么？",
+        "谁的利益与你一致？谁的利益与你冲突？",
+        "如果改变激励结构，行为会如何变化？"
+      ],
+      "keywords": [
+        "激励",
+        "利益",
+        "动机",
+        "驱动",
+        "机制"
+      ],
+      "scoring": {
+        "high": "清晰理解各方激励并做出相应安排",
+        "medium": "考虑了主要激励因素",
+        "low": "未分析激励机制"
+      }
+    },
+    {
+      "id": "44",
+      "name": "市场先生",
+      "category": "core",
+      "description": "市场短期是情绪投票机，长期是价值称重机，利用市场的非理性而非被其支配。",
+      "questions": [
+        "当前市场情绪是恐慌还是贪婪？",
+        "市场先生今天给出的价格反映的是情绪还是价值？",
+        "你是在利用市场的非理性，还是被它带着走？"
+      ],
+      "keywords": [
+        "市场先生",
+        "情绪",
+        "价格",
+        "价值",
+        "非理性"
+      ],
+      "scoring": {
+        "high": "能区分市场情绪与内在价值",
+        "medium": "部分受市场情绪影响",
+        "low": "主要跟随市场情绪"
+      }
+    },
+    {
+      "id": "45",
+      "name": "回归均值",
+      "category": "core",
+      "description": "极端表现（好或坏）往往会回归到平均水平，不要过度外推极端情况。",
+      "questions": [
+        "当前表现是否极端？是否代表真实水平？",
+        "如果表现回归均值，这个决策的逻辑还成立吗？",
+        "你是否对近期趋势过度外推？"
+      ],
+      "keywords": [
+        "均值回归",
+        "极端",
+        "平均",
+        "回归",
+        "趋势"
+      ],
+      "scoring": {
+        "high": "已考虑均值回归的影响",
+        "medium": "有所考虑但分析不充分",
+        "low": "直接外推当前趋势"
+      }
+    },
+    {
+      "id": "46",
+      "name": "边际思维",
+      "category": "investing",
+      "description": "边际思维的核心概念和应用。",
+      "questions": [
+        "这个决策中边际思维如何影响结果？",
+        "从边际思维的角度，你会得出什么结论？",
+        "边际思维可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [
+        "边际思维",
+        "Marginal Thinking"
+      ],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      }
+    },
+    {
+      "id": "47",
+      "name": "供需关系",
+      "category": "investing",
+      "description": "供需关系的核心概念和应用。",
+      "questions": [
+        "这个决策中供需关系如何影响结果？",
+        "从供需关系的角度，你会得出什么结论？",
+        "供需关系可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [
+        "供需关系",
+        "Supply and Demand"
+      ],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      }
+    },
+    {
+      "id": "48",
+      "name": "复利效应",
+      "category": "core",
+      "description": "长期持续的增长会产生惊人的复利效果，时间是最重要的变量。",
+      "questions": [
+        "这个决策的长期复利效应是什么？",
+        "10年后，这个选择的复利结果会是什么？",
+        "你是在追求短期回报还是长期复利？"
+      ],
+      "keywords": [
+        "复利",
+        "长期",
+        "持续",
+        "积累",
+        "时间"
+      ],
+      "scoring": {
+        "high": "有清晰的长期复利逻辑",
+        "medium": "考虑了中期影响",
+        "low": "主要关注短期结果"
+      }
+    },
+    {
+      "id": "49",
+      "name": "杠杆",
+      "category": "business",
+      "description": "杠杆的核心概念和应用。",
+      "questions": [
+        "这个决策中杠杆如何影响结果？",
+        "从杠杆的角度，你会得出什么结论？",
+        "杠杆可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [
+        "杠杆",
+        "Leverage"
+      ],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      }
+    },
+    {
+      "id": "50",
+      "name": "非对称风险",
+      "category": "business",
+      "description": "非对称风险的核心概念和应用。",
+      "questions": [
+        "这个决策中非对称风险如何影响结果？",
+        "从非对称风险的角度，你会得出什么结论？",
+        "非对称风险可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [
+        "非对称风险",
+        "Asymmetric Risk"
+      ],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      }
+    },
+    {
+      "id": "51",
+      "name": "比较优势",
+      "category": "business",
+      "description": "比较优势的核心概念和应用。",
+      "questions": [
+        "这个决策中比较优势如何影响结果？",
+        "从比较优势的角度，你会得出什么结论？",
+        "比较优势可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [
+        "比较优势",
+        "Comparative Advantage"
+      ],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      }
+    },
+    {
+      "id": "52",
+      "name": "叙事谬误",
+      "category": "systems",
+      "description": "叙事谬误的核心概念和应用。",
+      "questions": [
+        "这个决策中叙事谬误如何影响结果？",
+        "从叙事谬误的角度，你会得出什么结论？",
+        "叙事谬误可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [
+        "叙事谬误",
+        "Narrative Fallacy"
+      ],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      }
+    },
+    {
+      "id": "53",
+      "name": "边际递减",
+      "category": "systems",
+      "description": "边际递减的核心概念和应用。",
+      "questions": [
+        "这个决策中边际递减如何影响结果？",
+        "从边际递减的角度，你会得出什么结论？",
+        "边际递减可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [
+        "边际递减",
+        "Diminishing Returns"
+      ],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      }
+    },
+    {
+      "id": "54",
+      "name": "近因效应",
+      "category": "psychology",
+      "description": "近因效应的核心概念和应用。",
+      "questions": [
+        "这个决策中近因效应如何影响结果？",
+        "从近因效应的角度，你会得出什么结论？",
+        "近因效应可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [
+        "近因效应",
+        "Recency Bias"
+      ],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      }
+    },
+    {
+      "id": "55",
+      "name": "弹性",
+      "category": "systems",
+      "description": "弹性的核心概念和应用。",
+      "questions": [
+        "这个决策中弹性如何影响结果？",
+        "从弹性的角度，你会得出什么结论？",
+        "弹性可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [
+        "弹性",
+        "Elasticity"
+      ],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      }
+    },
+    {
+      "id": "56",
+      "name": "从众效应",
+      "category": "psychology",
+      "description": "从众效应的核心概念和应用。",
+      "questions": [
+        "这个决策中从众效应如何影响结果？",
+        "从从众效应的角度，你会得出什么结论？",
+        "从众效应可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [
+        "从众效应",
+        "Bandwagon Effect"
+      ],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      }
+    },
+    {
+      "id": "57",
+      "name": "创造性破坏",
+      "category": "business",
+      "description": "创造性破坏的核心概念和应用。",
+      "questions": [
+        "这个决策中创造性破坏如何影响结果？",
+        "从创造性破坏的角度，你会得出什么结论？",
+        "创造性破坏可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [
+        "创造性破坏",
+        "Creative Destruction"
+      ],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      }
+    },
+    {
+      "id": "58",
+      "name": "峰终定律",
+      "category": "psychology",
+      "description": "峰终定律的核心概念和应用。",
+      "questions": [
+        "这个决策中峰终定律如何影响结果？",
+        "从峰终定律的角度，你会得出什么结论？",
+        "峰终定律可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [
+        "峰终定律",
+        "Peak-End Rule"
+      ],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      }
+    },
+    {
+      "id": "59",
+      "name": "利益攸关",
+      "category": "systems",
+      "description": "利益攸关的核心概念和应用。",
+      "questions": [
+        "这个决策中利益攸关如何影响结果？",
+        "从利益攸关的角度，你会得出什么结论？",
+        "利益攸关可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [
+        "利益攸关",
+        "Skin in the Game"
+      ],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      }
+    },
+    {
+      "id": "60",
+      "name": "遍历性",
+      "category": "systems",
+      "description": "遍历性的核心概念和应用。",
+      "questions": [
+        "这个决策中遍历性如何影响结果？",
+        "从遍历性的角度，你会得出什么结论？",
+        "遍历性可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [
+        "遍历性",
+        "Ergodicity"
+      ],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      }
+    },
+    {
+      "id": "61",
+      "name": "冗余",
+      "category": "systems",
+      "description": "冗余的核心概念和应用。",
+      "questions": [
+        "这个决策中冗余如何影响结果？",
+        "从冗余的角度，你会得出什么结论？",
+        "冗余可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [
+        "冗余",
+        "Redundancy"
+      ],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      }
+    },
+    {
+      "id": "62",
+      "name": "压力影响",
+      "category": "psychology",
+      "description": "压力影响的核心概念和应用。",
+      "questions": [
+        "这个决策中压力影响如何影响结果？",
+        "从压力影响的角度，你会得出什么结论？",
+        "压力影响可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [
+        "压力影响",
+        "Stress-Influence Tendency"
+      ],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      }
+    },
+    {
+      "id": "63",
+      "name": "被剥夺超级反应",
+      "category": "psychology",
+      "description": "被剥夺超级反应的核心概念和应用。",
+      "questions": [
+        "这个决策中被剥夺超级反应如何影响结果？",
+        "从被剥夺超级反应的角度，你会得出什么结论？",
+        "被剥夺超级反应可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [
+        "被剥夺超级反应",
+        "Deprival-Superreaction Tendency"
+      ],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      }
+    },
+    {
+      "id": "64",
+      "name": "嫉妒倾向",
+      "category": "psychology",
+      "description": "嫉妒倾向的核心概念和应用。",
+      "questions": [
+        "这个决策中嫉妒倾向如何影响结果？",
+        "从嫉妒倾向的角度，你会得出什么结论？",
+        "嫉妒倾向可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [
+        "嫉妒倾向",
+        "Envy/Jealousy Tendency"
+      ],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      }
+    },
+    {
+      "id": "65",
+      "name": "巴甫洛夫联想",
+      "category": "psychology",
+      "description": "巴甫洛夫联想的核心概念和应用。",
+      "questions": [
+        "这个决策中巴甫洛夫联想如何影响结果？",
+        "从巴甫洛夫联想的角度，你会得出什么结论？",
+        "巴甫洛夫联想可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [
+        "巴甫洛夫联想",
+        "Pavlovian Association"
+      ],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      }
+    },
+    {
+      "id": "66",
+      "name": "简单痛苦规避",
+      "category": "psychology",
+      "description": "简单痛苦规避的核心概念和应用。",
+      "questions": [
+        "这个决策中简单痛苦规避如何影响结果？",
+        "从简单痛苦规避的角度，你会得出什么结论？",
+        "简单痛苦规避可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [
+        "简单痛苦规避",
+        "Simple Pain-Avoiding Tendency"
+      ],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      }
+    },
+    {
+      "id": "67",
+      "name": "好奇心倾向",
+      "category": "psychology",
+      "description": "好奇心倾向的核心概念和应用。",
+      "questions": [
+        "这个决策中好奇心倾向如何影响结果？",
+        "从好奇心倾向的角度，你会得出什么结论？",
+        "好奇心倾向可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [
+        "好奇心倾向",
+        "Curiosity Tendency"
+      ],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      }
+    },
+    {
+      "id": "68",
+      "name": "互惠倾向",
+      "category": "psychology",
+      "description": "互惠倾向的核心概念和应用。",
+      "questions": [
+        "这个决策中互惠倾向如何影响结果？",
+        "从互惠倾向的角度，你会得出什么结论？",
+        "互惠倾向可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [
+        "互惠倾向",
+        "Reciprocity Tendency"
+      ],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      }
+    },
+    {
+      "id": "69",
+      "name": "尊重理由倾向",
+      "category": "psychology",
+      "description": "尊重理由倾向的核心概念和应用。",
+      "questions": [
+        "这个决策中尊重理由倾向如何影响结果？",
+        "从尊重理由倾向的角度，你会得出什么结论？",
+        "尊重理由倾向可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [
+        "尊重理由倾向",
+        "Reason-Respecting Tendency"
+      ],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      }
+    },
+    {
+      "id": "70",
+      "name": "格栅理论",
+      "category": "systems",
+      "description": "格栅理论的核心概念和应用。",
+      "questions": [
+        "这个决策中格栅理论如何影响结果？",
+        "从格栅理论的角度，你会得出什么结论？",
+        "格栅理论可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [
+        "格栅理论",
+        "Latticework of Mental Models"
+      ],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      }
+    },
+    {
+      "id": "71",
+      "name": "系统思维",
+      "category": "systems",
+      "description": "系统思维的核心概念和应用。",
+      "questions": [
+        "这个决策中系统思维如何影响结果？",
+        "从系统思维的角度，你会得出什么结论？",
+        "系统思维可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [
+        "系统思维",
+        "Systems Thinking"
+      ],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      }
+    },
+    {
+      "id": "72",
+      "name": "熵增定律",
+      "category": "systems",
+      "description": "熵增定律的核心概念和应用。",
+      "questions": [
+        "这个决策中熵增定律如何影响结果？",
+        "从熵增定律的角度，你会得出什么结论？",
+        "熵增定律可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [
+        "熵增定律",
+        "Entropy"
+      ],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      }
+    },
+    {
+      "id": "73",
+      "name": "影响圈/关注圈",
+      "category": "systems",
+      "description": "影响圈/关注圈的核心概念和应用。",
+      "questions": [
+        "这个决策中影响圈/关注圈如何影响结果？",
+        "从影响圈/关注圈的角度，你会得出什么结论？",
+        "影响圈/关注圈可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [
+        "影响圈/关注圈",
+        "Circle of Control"
+      ],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      }
+    },
+    {
+      "id": "74",
+      "name": "帕累托原则",
+      "category": "systems",
+      "description": "帕累托原则的核心概念和应用。",
+      "questions": [
+        "这个决策中帕累托原则如何影响结果？",
+        "从帕累托原则的角度，你会得出什么结论？",
+        "帕累托原则可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [
+        "帕累托原则",
+        "Pareto Principle / 80-20 Rule"
+      ],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      }
+    },
+    {
+      "id": "75",
+      "name": "知识复利",
+      "category": "systems",
+      "description": "知识复利的核心概念和应用。",
+      "questions": [
+        "这个决策中知识复利如何影响结果？",
+        "从知识复利的角度，你会得出什么结论？",
+        "知识复利可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [
+        "知识复利",
+        "Compounding Knowledge"
+      ],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      }
+    },
+    {
+      "id": "76",
+      "name": "权威错误影响",
+      "category": "psychology",
+      "description": "权威错误影响的核心概念和应用。",
+      "questions": [
+        "这个决策中权威错误影响如何影响结果？",
+        "从权威错误影响的角度，你会得出什么结论？",
+        "权威错误影响可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [
+        "权威错误影响",
+        "Authority-Misinfluence Tendency"
+      ],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      }
+    },
+    {
+      "id": "77",
+      "name": "废话倾向",
+      "category": "psychology",
+      "description": "废话倾向的核心概念和应用。",
+      "questions": [
+        "这个决策中废话倾向如何影响结果？",
+        "从废话倾向的角度，你会得出什么结论？",
+        "废话倾向可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [
+        "废话倾向",
+        "Twaddle Tendency"
+      ],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      }
+    },
+    {
+      "id": "78",
+      "name": "康德式公平倾向",
+      "category": "psychology",
+      "description": "康德式公平倾向的核心概念和应用。",
+      "questions": [
+        "这个决策中康德式公平倾向如何影响结果？",
+        "从康德式公平倾向的角度，你会得出什么结论？",
+        "康德式公平倾向可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [
+        "康德式公平倾向",
+        "Kantian Fairness Tendency"
+      ],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      }
+    },
+    {
+      "id": "79",
+      "name": "容错设计",
+      "category": "systems",
+      "description": "容错设计的核心概念和应用。",
+      "questions": [
+        "这个决策中容错设计如何影响结果？",
+        "从容错设计的角度，你会得出什么结论？",
+        "容错设计可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [
+        "容错设计",
+        "Margin of Error"
+      ],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      }
+    },
+    {
+      "id": "80",
+      "name": "耐心",
+      "category": "systems",
+      "description": "耐心的核心概念和应用。",
+      "questions": [
+        "这个决策中耐心如何影响结果？",
+        "从耐心的角度，你会得出什么结论？",
+        "耐心可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [
+        "耐心",
+        "Patience"
+      ],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      }
+    },
+    {
+      "id": "81",
+      "name": "知识谦逊",
+      "category": "systems",
+      "description": "知识谦逊的核心概念和应用。",
+      "questions": [
+        "这个决策中知识谦逊如何影响结果？",
+        "从知识谦逊的角度，你会得出什么结论？",
+        "知识谦逊可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [
+        "知识谦逊",
+        "Intellectual Humility"
+      ],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      }
+    },
+    {
+      "id": "82",
+      "name": "延迟满足",
+      "category": "systems",
+      "description": "延迟满足的核心概念和应用。",
+      "questions": [
+        "这个决策中延迟满足如何影响结果？",
+        "从延迟满足的角度，你会得出什么结论？",
+        "延迟满足可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [
+        "延迟满足",
+        "Delayed Gratification"
+      ],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      }
+    },
+    {
+      "id": "83",
+      "name": "什么都不做",
+      "category": "systems",
+      "description": "什么都不做的核心概念和应用。",
+      "questions": [
+        "这个决策中什么都不做如何影响结果？",
+        "从什么都不做的角度，你会得出什么结论？",
+        "什么都不做可能让你忽视哪些重要信息？"
+      ],
+      "keywords": [
+        "什么都不做",
+        "Do Nothing"
+      ],
+      "scoring": {
+        "high": "高度相关",
+        "medium": "中等相关",
+        "low": "低度相关"
+      }
+    }
+  ]
+}

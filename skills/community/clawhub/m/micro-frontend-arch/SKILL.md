@@ -1,35 +1,32 @@
 ---
-name: "Micro-Frontend Architecture"
-description: "Micro-frontend architecture design and implementation guide. Use when: designing micro-frontend architecture, choosing between Module Federation/qiankun/sing..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/micro-frontend-arch"
-sourceUrl: "https://clawhub.ai/skills/micro-frontend-arch"
+name: micro-frontend-arch
+description: "Micro-frontend architecture design and implementation guide. Use when: designing micro-frontend architecture, choosing between Module Federation/qiankun/single-spa/wujie, splitting monolith into sub-apps, implementing style isolation, setting up inter-app communication, or deploying micro-frontends independently."
 ---
 
 # Micro-Frontend Architecture
 
-> Micro-frontend architecture design and implementation guide. Use when: designing micro-frontend architecture, choosing between Module Federation/qiankun/sing...
+## Framework Selection
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/micro-frontend-arch`
-- **Source URL:** [https://clawhub.ai/skills/micro-frontend-arch](https://clawhub.ai/skills/micro-frontend-arch)
+| Scenario | Recommended |
+|----------|-------------|
+| New project, Webpack 5 | Module Federation |
+| Legacy jQuery/Vue2 migration | qiankun |
+| Multi-framework coexistence | single-spa |
+| Need JS sandbox + style isolation | wujie |
 
-## Overview
+## Core Workflow
 
+1. **Design** → Define app boundaries, shared dependencies, routing strategy
+2. **Setup** → Configure main app shell + sub-apps (see framework-specific refs)
+3. **Communication** → Choose communication pattern (see references/communication.md)
+4. **Style Isolation** → Prevent CSS conflicts (see references/style-isolation.md)
+5. **Deploy** → Independent CI/CD per sub-app (see references/deployment.md)
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/micro-frontend-arch
-```
+## References
+
+- **references/module-federation.md** — Webpack Module Federation config & patterns
+- **references/qiankun.md** — qiankun registration, sandbox, lifecycle hooks
+- **references/single-spa.md** — single-spa root config & app registration
+- **references/communication.md** — Props, CustomEvent, shared store patterns
+- **references/style-isolation.md** — Shadow DOM, CSS Modules, scoped strategies
+- **references/deployment.md** — Independent deploy, CDN, versioning strategy

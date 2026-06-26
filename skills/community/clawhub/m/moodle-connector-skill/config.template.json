@@ -1,0 +1,28 @@
+{
+  "_comment": "Moodle connector config for mytimes.taylors.edu.my - TEMPLATE",
+  "moodle": {
+    "base_url": "https://mytimes.taylors.edu.my",
+    "web_service_token": ""
+  },
+  "microsoft": {
+    "tenant_id": "common",
+    "client_id": "",
+    "scopes": ["openid", "profile", "email", "offline_access"]
+  },
+  "credentials": {
+    "storage_file": "credentials.enc"
+  },
+  "cache": {
+    "dir": "cache",
+    "pdf_ttl_days": 7,
+    "api_ttl_seconds": 300,
+    "max_size_mb": 500
+  },
+  "output": {
+    "format": "markdown",
+    "include_grades": true,
+    "include_assignments": true,
+    "include_announcements": true,
+    "include_materials": true
+  }
+}

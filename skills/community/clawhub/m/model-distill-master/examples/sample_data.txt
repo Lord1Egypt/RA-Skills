@@ -1,0 +1,23 @@
+# 示例数据格式说明
+
+训练数据应为 JSONL 格式，每行一个样本：
+
+{"input": "问题内容", "output": "带CoT的详细回答"}
+
+## 数学推理示例
+
+{"input": "15 × 24 = ?", "output": "思考过程：\n1. 24 = 20 + 4\n2. 15 × 20 = 300\n3. 15 × 4 = 60\n4. 300 + 60 = 360\n\n答案：360"}
+
+{"input": "一个长方形长12米，宽8米，求面积。", "output": "思考过程：\n1. 长方形面积 = 长 × 宽\n2. 面积 = 12 × 8\n3. 12 × 8 = 96\n\n答案：96平方米"}
+
+## 代码生成示例
+
+{"input": "写一个Python函数，计算斐波那契数列第n项", "output": "思考过程：\n1. 斐波那契数列定义：F(0)=0, F(1)=1, F(n)=F(n-1)+F(n-2)\n2. 使用递归或迭代实现\n3. 考虑边界条件和效率\n\n代码：\n```python\ndef fibonacci(n):\n    if n <= 0:\n        return 0\n    if n == 1:\n        return 1\n    a, b = 0, 1\n    for _ in range(2, n + 1):\n        a, b = b, a + b\n    return b\n```"}
+
+## 通用格式要求
+
+- 文件扩展名：.jsonl
+- 编码：UTF-8
+- 每行一个有效的 JSON 对象
+- 必须包含字段：input, output
+- 可选字段：task_type, difficulty, capability_type

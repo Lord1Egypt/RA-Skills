@@ -1,0 +1,26 @@
+[
+  {
+    "title_pattern": "Rain on the Desk",
+    "mood": ["intimate", "domestic", "soft-focus"],
+    "genre": "lo-fi room theme",
+    "why_it_works": "Warm harmony, unhurried rhythm, and a single melodic instrument keep the cue personal rather than cinematic."
+  },
+  {
+    "title_pattern": "Neon City Signal",
+    "mood": ["electric", "night", "motion"],
+    "genre": "synthwave postcard",
+    "why_it_works": "Minor harmony, steady pulse, and brighter lead timbres match city/night imagery."
+  },
+  {
+    "title_pattern": "Love Lightly Held",
+    "mood": ["tender", "uncertain", "resolved"],
+    "genre": "cinematic waltz",
+    "why_it_works": "Triple meter and a descending coda make the emotional landing feel deliberate."
+  },
+  {
+    "title_pattern": "Garden Light",
+    "mood": ["airy", "still", "open"],
+    "genre": "ambient web miniature",
+    "why_it_works": "Sparse texture and add9 harmony let the piece feel like atmosphere instead of a song demanding attention."
+  }
+]

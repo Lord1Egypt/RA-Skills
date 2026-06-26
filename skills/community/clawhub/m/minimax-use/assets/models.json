@@ -1,0 +1,81 @@
+{
+  "models": [
+    {
+      "id": "MiniMax-M2.7",
+      "name": "MiniMax M2.7",
+      "description": "Latest MiniMax model with enhanced reasoning and generation capabilities",
+      "context_length": 200000,
+      "supports_streaming": true,
+      "supports_vision": false
+    },
+    {
+      "id": "MiniMax-M2.7-highspeed",
+      "name": "MiniMax M2.7 High Speed",
+      "description": "Optimized version of M2.7 for faster responses",
+      "context_length": 200000,
+      "supports_streaming": true,
+      "supports_vision": false
+    },
+    {
+      "id": "MiniMax-M2.5",
+      "name": "MiniMax M2.5",
+      "description": "Previous generation model with strong performance",
+      "context_length": 100000,
+      "supports_streaming": true,
+      "supports_vision": false
+    },
+    {
+      "id": "MiniMax-M2.5-highspeed",
+      "name": "MiniMax M2.5 High Speed",
+      "description": "Optimized version of M2.5 for faster responses",
+      "context_length": 100000,
+      "supports_streaming": true,
+      "supports_vision": false
+    },
+    {
+      "id": "MiniMax-M2.1",
+      "name": "MiniMax M2.1",
+      "description": "Efficient model for standard tasks",
+      "context_length": 32000,
+      "supports_streaming": true,
+      "supports_vision": false
+    },
+    {
+      "id": "MiniMax-M2.1-highspeed",
+      "name": "MiniMax M2.1 High Speed",
+      "description": "Optimized version of M2.1 for faster responses",
+      "context_length": 32000,
+      "supports_streaming": true,
+      "supports_vision": false
+    },
+    {
+      "id": "MiniMax-M2",
+      "name": "MiniMax M2",
+      "description": "Base M2 model",
+      "context_length": 32000,
+      "supports_streaming": true,
+      "supports_vision": false
+    }
+  ],
+  "vision_models": [
+    {
+      "id": "MiniMax-Text-01-VLM",
+      "name": "MiniMax Text-01 VLM",
+      "description": "Vision-language model for image understanding",
+      "supports_vision": true
+    }
+  ],
+  "supported_languages": [
+    "English",
+    "Chinese",
+    "Japanese",
+    "Korean",
+    "French",
+    "German",
+    "Spanish",
+    "Portuguese",
+    "Russian",
+    "Arabic",
+    "Hindi"
+  ]
+}

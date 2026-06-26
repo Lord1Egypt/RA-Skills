@@ -1,0 +1,6 @@
+schema_version: v1
+name: new-openclaw-docs
+interface:
+  display_name: OpenClaw Docs
+  short_description: Answer OpenClaw docs questions with cached fetch/search and config snippets
+  default_prompt: Use OpenClaw docs scripts to search/fetch evidence, then answer with concrete paths and source links.

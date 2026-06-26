@@ -1,0 +1,4 @@
+interface:
+  display_name: "M-Pesa Daraja"
+  short_description: "Build and test Safaricom M-Pesa Daraja integrations."
+  default_prompt: "Use the M-Pesa Daraja skill to design, implement, or test an M-Pesa payment integration safely."

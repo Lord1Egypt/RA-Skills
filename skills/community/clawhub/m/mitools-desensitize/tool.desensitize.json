@@ -1,0 +1,19 @@
+{
+  "name": "desensitize",
+  "description": "对文本进行脱敏处理",
+  "command": "python3 ~/.workbuddy/skills/mitools-desensitize/desensitize.py desensitize",
+  "args": [
+    {
+      "name": "text",
+      "description": "要脱敏的文本内容",
+      "required": true,
+      "type": "string"
+    },
+    {
+      "name": "level",
+      "description": "脱敏级别（基础脱敏/高级脱敏）",
+      "required": false,
+      "type": "string"
+    }
+  ]
+}

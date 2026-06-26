@@ -1,0 +1,14 @@
+# 新股分析工具依赖
+
+# 核心依赖
+requests>=2.28.0
+beautifulsoup4>=4.11.0
+lxml>=4.9.0
+pandas>=1.5.0
+pyyaml>=6.0
+python-dotenv>=0.21.0
+
+# 开发依赖（可选）
+pytest>=7.0.0
+black>=22.0.0
+flake8>=5.0.0

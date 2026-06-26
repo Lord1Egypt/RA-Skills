@@ -1,0 +1,75 @@
+{
+  "createdAt": "2026-05-02T05:32:05.043Z",
+  "sourceDir": "/root/.openclaw/workspace/input/skill_repo",
+  "outputDir": "/root/.openclaw/workspace/skills/clawhub-publisher-cli/.clawhub-publisher/weather-brief",
+  "slug": "weather-brief",
+  "summary": {
+    "filesCopied": 9,
+    "filesRemoved": 0,
+    "errors": 0,
+    "warnings": 0,
+    "info": 0
+  },
+  "copiedFiles": [
+    ".github/workflows/validate.yml",
+    ".gitignore",
+    "README.md",
+    "SKILL.md",
+    "assets/icons/weather-brief.txt",
+    "assets/prompt.txt",
+    "examples/request.json",
+    "hooks/prepare.sh",
+    "hooks/validate.sh"
+  ],
+  "removedFiles": [],
+  "issues": [],
+  "stats": {
+    "fileCount": 9,
+    "emptyFiles": 0,
+    "likelyHookFiles": 2,
+    "binaryFiles": 0,
+    "docsFiles": 1
+  },
+  "metadata": {
+    "frontmatterRaw": {
+      "name": "weather-brief",
+      "slug": "weather-brief",
+      "version": "0.2.0",
+      "description": "Concise daily weather briefing for OpenClaw.",
+      "author": "OpenClaw Labs",
+      "license": "MIT",
+      "entrypoint": "hooks/prepare.sh",
+      "hooks": {
+        "prepare": "hooks/prepare.sh",
+        "validate": "hooks/validate.sh"
+      },
+      "assets": [
+        "assets/prompt.txt",
+        "assets/icons/weather-brief.txt"
+      ],
+      "examples": [
+        "examples/request.json"
+      ],
+      "tags": [
+        "weather",
+        "local",
+        "briefing"
+      ],
+      "publish": {
+        "registry": "local",
+        "visibility": "private"
+      }
+    },
+    "name": "weather-brief",
+    "description": "Concise daily weather briefing for OpenClaw.",
+    "tags": [
+      "weather",
+      "local",
+      "briefing"
+    ],
+    "hooks": []
+  },
+  "recommendations": [
+    "Package looks healthy. Consider shipping a zip alongside the publish for manual backup/testing."
+  ]
+}

@@ -1,35 +1,63 @@
 ---
-name: "Near Faucet"
-description: "OpenClaw skill for requesting NEAR testnet tokens via faucet. Provides faucet requests, status checking, and balance queries with rate limiting."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/near-faucet"
-sourceUrl: "https://clawhub.ai/skills/near-faucet"
+name: near-faucet
+description: OpenClaw skill for requesting NEAR testnet tokens via faucet. Provides faucet requests, status checking, and balance queries with rate limiting.
 ---
 
-# Near Faucet
+# NEAR Testnet Faucet Skill
 
-> OpenClaw skill for requesting NEAR testnet tokens via faucet. Provides faucet requests, status checking, and balance queries with rate limiting.
+Simple faucet integration for NEAR testnet tokens.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/near-faucet`
-- **Source URL:** [https://clawhub.ai/skills/near-faucet](https://clawhub.ai/skills/near-faucet)
+## Description
 
-## Overview
+This skill provides easy access to NEAR testnet tokens via faucet requests. Includes rate limiting to prevent abuse.
 
+## Features
+
+- Request NEAR testnet tokens
+- Check faucet request status
+- Rate limiting per address
+- Simple CLI commands
+
+## Commands
+
+### `near-faucet request [account_id]`
+Request testnet NEAR tokens for an account.
+
+**Parameters:**
+- `account_id` - NEAR account ID (optional, uses default if configured)
+
+**Example:**
+```bash
+near-faucet request myaccount.testnet
+```
+
+### `near-faucet status [request_id]`
+Check the status of a faucet request.
+
+**Parameters:**
+- `request_id` - Request ID to check (optional, shows latest if omitted)
+
+### `near-faucet balance [account_id]`
+Check testnet balance for an account.
+
+## Configuration
+
+Set your default account via environment variable or config:
+```bash
+export NEAR_ACCOUNT="myaccount.testnet"
+```
 
 ## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/near-faucet
-```
+
+The skill is automatically installed in your OpenClaw skills directory.
+
+## Rate Limits
+
+- 1 request per account per 24 hours
+- Maximum 10 NEAR per request
+- Request queue processing time: ~1-5 minutes
+
+## References
+
+- NEAR Testnet Faucet: https://wallet.testnet.near.org/
+- NEAR CLI: https://docs.near.org/tools/near-cli

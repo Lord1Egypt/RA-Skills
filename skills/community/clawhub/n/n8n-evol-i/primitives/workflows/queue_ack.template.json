@@ -1,0 +1,276 @@
+{
+  "name": "{{@env:displayName}} Queue Ack{{@env:workflowNamePostfix}}",
+  "nodes": [
+    {
+      "id": "{{@uuid:qa-trigger}}",
+      "name": "Execute Workflow Trigger",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1.1,
+      "position": [-16, 0],
+      "parameters": {
+        "workflowInputs": {
+          "values": [
+            { "name": "stream" },
+            { "name": "group" },
+            { "name": "message_id" },
+            { "name": "success", "type": "boolean" }
+          ]
+        }
+      }
+    },
+    {
+      "id": "{{@uuid:qa-context}}",
+      "name": "Build Ack Context",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [208, 0],
+      "parameters": {
+        "language": "javaScript",
+        "jsCode": "// @n8n-evol-I:primitive — exempt from pure-function discipline\nconst stream = $json.stream;\nconst group = $json.group;\nconst messageId = $json.message_id;\nif (!stream || !group || !messageId) {\n  throw new Error(\"queue_ack: stream, group, message_id are required\");\n}\nconst success = $json.success === true;\nconst inflightKey = `q:${stream}:inflight`;\nconst permitKey = `q:${stream}:permits:${messageId}`;\nreturn [{ json: { stream, group, messageId, success, inflightKey, permitKey } }];\n"
+      }
+    },
+    {
+      "id": "{{@uuid:qa-get-permit}}",
+      "name": "GET Permit Sidecar",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [432, 0],
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $env.UPSTASH_REDIS_REST_URL }}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "contentType": "json",
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify(['GET', $('Build Ack Context').first().json.permitKey]) }}",
+        "options": {}
+      },
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "{{@env:credentials.redis_rest.id}}",
+          "name": "{{@env:credentials.redis_rest.name}}"
+        }
+      }
+    },
+    {
+      "id": "{{@uuid:qa-verify}}",
+      "name": "Verify Permit",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [656, 0],
+      "parameters": {
+        "language": "javaScript",
+        "jsCode": "// @n8n-evol-I:primitive — exempt from pure-function discipline\nconst ctx = $('Build Ack Context').first().json;\nconst resp = $json;\nconst value = resp ? resp.result : null;\nconst exists = value !== null && value !== undefined && value !== '';\nreturn [{ json: { ...ctx, permit_exists: exists, permit_value: value } }];\n"
+      }
+    },
+    {
+      "id": "{{@uuid:qa-if-exists}}",
+      "name": "Permit Exists?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [880, 0],
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "{{@uuid:qa-cond-exists}}",
+              "leftValue": "={{ $json.permit_exists === true }}",
+              "rightValue": true,
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      }
+    },
+    {
+      "id": "{{@uuid:qa-idempotent}}",
+      "name": "Idempotent Output",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1104, 192],
+      "parameters": {
+        "language": "javaScript",
+        "jsCode": "// @n8n-evol-I:primitive — exempt from pure-function discipline\nconst ctx = $('Build Ack Context').first().json;\nreturn [{ json: { acked: true, idempotent: true, stream: ctx.stream, group: ctx.group, message_id: ctx.messageId, reason: 'permit absent — already acked or expired' } }];\n"
+      }
+    },
+    {
+      "id": "{{@uuid:qa-if-success}}",
+      "name": "Should XACK?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [1104, -192],
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "{{@uuid:qa-cond-success}}",
+              "leftValue": "={{ $json.success === true }}",
+              "rightValue": true,
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      }
+    },
+    {
+      "id": "{{@uuid:qa-xack}}",
+      "name": "XACK Main",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [1328, -288],
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $env.UPSTASH_REDIS_REST_URL }}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "contentType": "json",
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify(['XACK', $('Build Ack Context').first().json.stream, $('Build Ack Context').first().json.group, $('Build Ack Context').first().json.messageId]) }}",
+        "options": {}
+      },
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "{{@env:credentials.redis_rest.id}}",
+          "name": "{{@env:credentials.redis_rest.name}}"
+        }
+      }
+    },
+    {
+      "id": "{{@uuid:qa-skip-xack}}",
+      "name": "Skip XACK Marker",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1328, -96],
+      "parameters": {
+        "language": "javaScript",
+        "jsCode": "// @n8n-evol-I:primitive — exempt from pure-function discipline\n// success=false: do not XACK; the message stays in the PEL and will be\n// redelivered by the next XAUTOCLAIM after claim_idle_ms. We still release\n// the permit so a fresh consumer can process the redelivered message.\nconst ctx = $('Build Ack Context').first().json;\nreturn [{ json: { ...ctx, xacked: false } }];\n"
+      }
+    },
+    {
+      "id": "{{@uuid:qa-decr}}",
+      "name": "DECR Inflight",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [1552, -192],
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $env.UPSTASH_REDIS_REST_URL }}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "contentType": "json",
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify(['DECR', $('Build Ack Context').first().json.inflightKey]) }}",
+        "options": {}
+      },
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "{{@env:credentials.redis_rest.id}}",
+          "name": "{{@env:credentials.redis_rest.name}}"
+        }
+      }
+    },
+    {
+      "id": "{{@uuid:qa-del-permit}}",
+      "name": "DEL Permit Sidecar",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [1776, -192],
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $env.UPSTASH_REDIS_REST_URL }}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "contentType": "json",
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify(['DEL', $('Build Ack Context').first().json.permitKey]) }}",
+        "options": {}
+      },
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "{{@env:credentials.redis_rest.id}}",
+          "name": "{{@env:credentials.redis_rest.name}}"
+        }
+      }
+    },
+    {
+      "id": "{{@uuid:qa-output}}",
+      "name": "Build Ack Output",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [2000, -192],
+      "parameters": {
+        "language": "javaScript",
+        "jsCode": "// @n8n-evol-I:primitive — exempt from pure-function discipline\nconst ctx = $('Build Ack Context').first().json;\nconst xacked = ctx.success === true;\nconst decrResp = $('DECR Inflight').first().json;\nconst newCount = (decrResp && typeof decrResp.result === 'number') ? decrResp.result : null;\nreturn [{ json: {\n  acked: true, idempotent: false, stream: ctx.stream, group: ctx.group,\n  message_id: ctx.messageId, xacked, success: ctx.success, inflight_count_after: newCount,\n}}];\n"
+      }
+    }
+  ],
+  "connections": {
+    "Execute Workflow Trigger": {
+      "main": [[{ "node": "Build Ack Context", "type": "main", "index": 0 }]]
+    },
+    "Build Ack Context": {
+      "main": [[{ "node": "GET Permit Sidecar", "type": "main", "index": 0 }]]
+    },
+    "GET Permit Sidecar": {
+      "main": [[{ "node": "Verify Permit", "type": "main", "index": 0 }]]
+    },
+    "Verify Permit": {
+      "main": [[{ "node": "Permit Exists?", "type": "main", "index": 0 }]]
+    },
+    "Permit Exists?": {
+      "main": [
+        [{ "node": "Should XACK?", "type": "main", "index": 0 }],
+        [{ "node": "Idempotent Output", "type": "main", "index": 0 }]
+      ]
+    },
+    "Should XACK?": {
+      "main": [
+        [{ "node": "XACK Main", "type": "main", "index": 0 }],
+        [{ "node": "Skip XACK Marker", "type": "main", "index": 0 }]
+      ]
+    },
+    "XACK Main": {
+      "main": [[{ "node": "DECR Inflight", "type": "main", "index": 0 }]]
+    },
+    "Skip XACK Marker": {
+      "main": [[{ "node": "DECR Inflight", "type": "main", "index": 0 }]]
+    },
+    "DECR Inflight": {
+      "main": [[{ "node": "DEL Permit Sidecar", "type": "main", "index": 0 }]]
+    },
+    "DEL Permit Sidecar": {
+      "main": [[{ "node": "Build Ack Output", "type": "main", "index": 0 }]]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  }
+}

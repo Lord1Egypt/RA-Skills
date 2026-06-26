@@ -1,0 +1,148 @@
+# Lobster template
+# Close to implementable. Adjust field names and hook syntax to Lobster's official format.
+
+template: approval_recovery_v2
+version: 0.1
+purpose: >
+  Gate side-effecting steps behind structured approval and enable deterministic resume
+  from persisted task-store state after interruption.
+
+inputs:
+  task_id: string
+  attempt_id: string
+  requested_action: string
+  requested_by: string
+  side_effect_kind: enum[write_external, deploy, merge, notify, destructive_edit, other]
+  idempotency_key: string
+  rollback_hint: string?
+
+load_context:
+  - tool: task_get
+    args:
+      task_id: "{{ task_id }}"
+    save_as: task
+
+approval_request:
+  title: "Approval required: {{ requested_action }}"
+  audience: ["human-approver"]
+  body: |
+    Task: {{ task.title }} ({{ task.id }})
+    Phase: {{ task.phase.current }}
+    Requested by: {{ requested_by }}
+    Attempt: {{ attempt_id }}
+    Side effect: {{ side_effect_kind }}
+    Idempotency key: {{ idempotency_key }}
+
+    Goal:
+    {{ task.spec.goal }}
+
+    Acceptance criteria:
+    {% for item in task.spec.acceptance_criteria %}
+    - {{ item }}
+    {% endfor %}
+
+    Latest spec review: {{ task.reviews.spec.latest_verdict }}
+    Latest quality review: {{ task.reviews.quality.latest_verdict }}
+
+    Latest artifact:
+    {{ task.artifacts.primary.latest.uri }}
+
+    Rollback hint:
+    {{ rollback_hint or "none provided" }}
+
+  on_open:
+    - tool: task_request_approval
+      args:
+        task_id: "{{ task_id }}"
+        attempt_id: "{{ attempt_id }}"
+        requested_action: "{{ requested_action }}"
+        side_effect_kind: "{{ side_effect_kind }}"
+        idempotency_key: "{{ idempotency_key }}"
+        status: "pending"
+
+allowed_decisions:
+  - approve
+  - reject
+  - request_changes
+
+on_decision:
+  - tool: task_resolve_approval
+    args:
+      task_id: "{{ task_id }}"
+      approval_id: "{{ lobster.approval.id }}"
+      resolution: "{{ lobster.decision }}"
+      resolved_by: "{{ lobster.actor }}"
+      note: "{{ lobster.comment }}"
+
+resume_policy:
+  strategy: resume_from_store
+  description: >
+    Never reconstruct execution state from chat history. Resume only from task-store phase,
+    attempt, approval, and checkpoint records.
+
+resume_branches:
+  - when: task.phase.current == "awaiting_approval" and task.approvals.latest.status == "approved"
+    actions:
+      - tool: task_record_checkpoint
+        args:
+          task_id: "{{ task_id }}"
+          attempt_id: "{{ attempt_id }}"
+          checkpoint_type: "resume_granted"
+          payload:
+            resumed_by: "{{ lobster.actor }}"
+            idempotency_key: "{{ idempotency_key }}"
+      - emit:
+          action: "resume_executor"
+          payload:
+            task_id: "{{ task_id }}"
+            attempt_id: "{{ attempt_id }}"
+            idempotency_key: "{{ idempotency_key }}"
+
+  - when: task.phase.current == "awaiting_approval" and task.approvals.latest.status in ["rejected", "request_changes"]
+    actions:
+      - tool: task_record_checkpoint
+        args:
+          task_id: "{{ task_id }}"
+          attempt_id: "{{ attempt_id }}"
+          checkpoint_type: "resume_blocked"
+          payload:
+            decision: "{{ task.approvals.latest.status }}"
+            note: "{{ task.approvals.latest.note }}"
+      - emit:
+          action: "return_to_orchestrator"
+          payload:
+            task_id: "{{ task_id }}"
+            suggested_phase: "execution_ready"
+
+recovery:
+  on_worker_crash:
+    - tool: task_record_checkpoint
+      args:
+        task_id: "{{ task_id }}"
+        attempt_id: "{{ attempt_id }}"
+        checkpoint_type: "worker_crash_detected"
+        payload:
+          idempotency_key: "{{ idempotency_key }}"
+    - emit:
+        action: "ask_orchestrator_for_resume_decision"
+        payload:
+          task_id: "{{ task_id }}"
+          attempt_id: "{{ attempt_id }}"
+
+  on_duplicate_side_effect_attempt:
+    - tool: task_record_checkpoint
+      args:
+        task_id: "{{ task_id }}"
+        attempt_id: "{{ attempt_id }}"
+        checkpoint_type: "duplicate_effect_prevented"
+        payload:
+          idempotency_key: "{{ idempotency_key }}"
+    - emit:
+        action: "skip_duplicate_effect"
+        payload:
+          task_id: "{{ task_id }}"
+
+constraints:
+  - "Lobster may request/resolve approvals and emit resume signals."
+  - "Lobster must not finalize completed/failed/circuit_open phase."
+  - "Orchestrator remains the only phase owner."

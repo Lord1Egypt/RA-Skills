@@ -1,35 +1,282 @@
 ---
-name: "明歌内训课内容加工"
-description: "内训课内容加工工作流。从飞书文档读取课程素材（参与用户表 + 评论区 + 逐字稿），生成四版本文档（蒸馏版、总结版、复盘版、3 点改进稿）。使用场景：用户说"开始加工"、"处理课程"、"生成四版本"、"帮我复盘"、"帮我蒸馏"、"帮我总结"、"帮我改进"并提供飞书文档链接时触发。无论使用哪个触发词，均生成全部四个版本。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/mingge-meetingreview"
-sourceUrl: "https://clawhub.ai/skills/mingge-meetingreview"
+name: Mingge_MeetingReview
+description: 内训课内容加工工作流。从飞书文档读取课程素材（参与用户表 + 评论区 + 逐字稿），生成四版本文档（蒸馏版、总结版、复盘版、3 点改进稿）。使用场景：用户说"开始加工"、"处理课程"、"生成四版本"、"帮我复盘"、"帮我蒸馏"、"帮我总结"、"帮我改进"并提供飞书文档链接时触发。无论使用哪个触发词，均生成全部四个版本。
 ---
 
-# 明歌内训课内容加工
+# Mingge_MeetingReview
 
-> 内训课内容加工工作流。从飞书文档读取课程素材（参与用户表 + 评论区 + 逐字稿），生成四版本文档（蒸馏版、总结版、复盘版、3 点改进稿）。使用场景：用户说"开始加工"、"处理课程"、"生成四版本"、"帮我复盘"、"帮我蒸馏"、"帮我总结"、"帮我改进"并提供飞书文档链接时触发。无论使用哪个触发词，均生成全部四个版本。
+> 内训课内容加工工作流 v3.4
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/mingge-meetingreview`
-- **Source URL:** [https://clawhub.ai/skills/mingge-meetingreview](https://clawhub.ai/skills/mingge-meetingreview)
+## 快速开始
 
-## Overview
+**触发条件**：用户提供飞书文档链接 + 以下任一指令
+- `开始加工` / `处理课程` / `生成四版本`
+- `帮我复盘` / `帮我蒸馏` / `帮我总结` / `帮我改进`
 
+**注意**：无论使用哪个触发词，均生成全部四个版本。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/mingge-meetingreview
+**示例**：
 ```
+帮我复盘 https://my.feishu.cn/wiki/xxxxx
+帮我蒸馏 https://my.feishu.cn/wiki/xxxxx
+帮我总结 https://my.feishu.cn/wiki/xxxxx
+帮我改进 https://my.feishu.cn/wiki/xxxxx
+开始加工 https://my.feishu.cn/wiki/xxxxx
+```
+
+**输入要求**：飞书文档包含三个部分
+- 参与用户名单
+- 评论区内容（带时间戳）
+- 课程逐字稿
+
+**输出**：四个版本文档
+1. 蒸馏版 - 去水词、保留全部有效内容
+2. 总结版 - 核心观点 + 案例 + 高频问题
+3. 复盘版 - 六个办公室主任维度分析
+4. 3 点改进稿 - 针对 3 个环节的重写逐字稿
+
+---
+
+## 工作流程
+
+### 第 1 步：读取原始素材
+
+```bash
+# 从用户提供的飞书文档链接提取 wiki token
+# ⚠️ 必须先用 feishu_wiki action=get 获取 node_token 和 space_id！
+feishu_wiki action=get token=<从链接提取的 token>
+```
+
+**⚠️ 关键：必须用 feishu_wiki 读取，才能获取 node_token 和 space_id！**
+
+从返回结果中提取三个关键参数：
+- `node_token` — 用于创建子节点时的 `parent_node_token`（⚠️ 这个最重要！）
+- `space_id` — 创建子节点时必须提供
+- `obj_token` — 用于读取文档内容
+
+```bash
+# 用 obj_token 读取文档内容
+feishu_doc action=read doc_token=<obj_token>
+```
+
+**识别内容结构**：
+- 参与用户表 → 提取学员名单
+- 评论区 → 提取时间戳 + 用户 + 评论内容
+- 逐字稿 → 提取完整课程文本
+
+### 第 2 步：生成蒸馏版
+
+**处理逻辑**：
+- 删除口头禅（"那个"、"然后"、"嗯"）
+- 合并重复表达
+- 保留案例、数据、方法论、金句
+- 按课程章节分段
+
+**输出结构**：
+```markdown
+# 【课程名称】蒸馏版
+
+## 第 X 章：章节标题
+- 核心内容（已删除口头禅和重复）
+- 关键案例
+- 重要数据/方法论
+```
+
+### 第 3 步：生成总结版
+
+**输出结构**：
+```markdown
+# 【课程名称】核心总结
+
+📊 课程概况（时间、时长、参与人数）
+🎯 核心观点（3-5 个，每点 100 字）
+💡 关键案例摘要
+❓ 学员高频问题 TOP5
+```
+
+### 第 4 步：生成复盘版
+
+**输出结构**：
+```markdown
+# 【课程名称】专业复盘
+
+## 一、内容维度分析（逻辑、案例、密度、结构）
+## 二、表达维度分析（节奏、互动、情绪、口语化）
+## 三、学员维度分析（参与度、障碍点、反馈、画像）
+## 四、六个办公室主任维度分析
+  - C 总（前额叶皮层）- 总经理
+  - 杏总（杏仁核）- 保安队长
+  - 鸡哥（基底神经节）- 自动驾驶
+  - 多多哥（多巴胺系统）- 快乐制造机
+  - 海马体 - 记忆中枢
+  - 导爷（岛叶）- 防御机制
+## 五、综合改进建议
+```
+
+**六个办公室主任分析要点**：
+- 每个老干部独立评分（⭐⭐⭐⭐⭐）
+- 从逐字稿引用具体"高光时刻"
+- 给出针对性改进建议
+
+### 第 5 步：生成 3 点改进逐字稿
+
+**流程**：
+1. 从复盘版提取 3 个最值得改进的片段
+2. 分析原稿问题（冗余/模糊/缺案例）
+3. 重写该片段逐字稿（标注修改理由）
+4. 对比展示：原稿 vs 改进稿
+
+**输出结构**：
+```markdown
+# 【课程名称】3 点改进稿
+
+## 改进点 1：[具体环节名称]
+📍 原稿位置：第 X 分钟 - 第 Y 分钟
+⚠️ 问题分析：[说明原稿存在的问题]
+🧠 涉及老干部：[C 总/杏总/鸡哥/多多哥/海马体/导爷]
+✅ 改进稿：[重写的完整逐字稿]
+📝 修改理由：[说明为什么这样改更好]
+```
+
+### 第 6 步：创建飞书文档并写入
+
+**⚠️ 关键：必须使用 feishu_wiki 创建子节点，不能用 feishu_doc！**
+
+`feishu_doc` 创建的是独立文档，无法指定父节点。
+`feishu_wiki` 创建的是知识库子节点，可以指定 `parent_node_token`。
+
+**创建文档（必须用 feishu_wiki）**：
+```bash
+# ⚠️ 必须用 feishu_wiki，不能用 feishu_doc
+# 参数：parent_node_token=<原始素材的 node_token>
+# 参数：space_id=<原始素材的 space_id>
+
+feishu_wiki action=create title="【课程名】蒸馏版" parent_node_token=<原始素材 node_token> space_id=<space_id>
+feishu_wiki action=create title="【课程名】总结版" parent_node_token=<原始素材 node_token> space_id=<space_id>
+feishu_wiki action=create title="【课程名】复盘版" parent_node_token=<原始素材 node_token> space_id=<space_id>
+feishu_wiki action=create title="【课程名】3 点改进稿" parent_node_token=<原始素材 node_token> space_id=<space_id>
+```
+
+**写入内容**：
+```bash
+# 从 feishu_wiki 返回结果中获取 obj_token（即文档 token）
+# 然后用 feishu_doc 写入内容
+feishu_doc action=write doc_token=<obj_token> content=<完整内容>
+```
+
+**完整流程**：
+1. 从原始素材文档读取时，同时获取 `node_token` 和 `space_id`
+2. 用 `feishu_wiki action=create` 创建 4 个子节点（指定 `parent_node_token` 和 `space_id`）
+3. 从返回结果中获取每个子节点的 `obj_token`
+4. 用 `feishu_doc action=write` 将内容写入对应的 `obj_token`
+
+### 第 7 步：汇报完成
+
+**回复格式**：
+```
+✅ 【课程名称】加工完成！
+
+📄 蒸馏版：https://...
+📄 总结版：https://...
+📄 复盘版：https://...
+📄 3 点改进稿：https://...
+
+📁 归档位置：<父节点路径>
+
+💡 复盘发现：<1-2 个核心洞察>
+```
+
+---
+
+## 六个办公室主任框架详解
+
+**详细分析维度**：参见 [references/six-brains.md](references/six-brains.md)
+
+**快速参考**：
+
+| 老干部 | 职责 | 讨好策略 | 触发信号 |
+|--------|------|---------|---------|
+| C 总 | 理性分析、逻辑、规划 | 清晰逻辑、数据支撑、可执行步骤 | "哦"的顿悟 |
+| 杏总 | 情绪、恐惧、战斗或逃跑 | 骇人故事、强烈画面感、意外奖赏 | "我勒个去" |
+| 鸡哥 | 习惯、自动驾驶 | 重复强化、仪式感、互动设计 | 无意识行为 |
+| 多多哥 | 奖赏、愉悦感、动机 | 即时反馈、惊喜彩蛋、幽默 | "哈哈"一笑 |
+| 海马体 | 记忆归档、经验提取 | 记忆锚点、结构框架、场景调用 | "记住了" |
+| 导爷 | 痛苦防御、恐惧失去 | 避免强迫感、抚平顾虑、给选择权 | 不触发逃离 |
+
+**理想配比**：50% 情绪 + 20% 逻辑 + 20% 结构 + 10% 干货
+
+---
+
+## 文档命名规范
+
+```
+【课程名】原始素材
+【课程名】蒸馏版
+【课程名】总结版
+【课程名】复盘版
+【课程名】3 点改进稿
+```
+
+**课程名格式**：`MM 月 DD 日 + 课程主题`
+- 示例：`4 月 10 日 OpenClaw 部署课`
+
+---
+
+## 处理时间预估
+
+- **蒸馏版**：1-2 分钟
+- **总结版**：1-2 分钟
+- **复盘版**：3-5 分钟（六个办公室主任分析耗时）
+- **3 点改进稿**：2-3 分钟
+- **总计**：7-12 分钟/期课程
+
+---
+
+## 特殊要求处理
+
+**用户可添加特殊要求**：
+```
+帮我复盘 https://...
+要求：
+- 复盘版重点分析杏总和 C 总
+- 改进稿优先优化开场 10 分钟
+
+帮我蒸馏 https://...
+要求：
+- 蒸馏版按章节分段，每段加小标题
+```
+
+**处理逻辑**：
+1. 解析用户要求
+2. 调整对应版本的分析重点
+3. 在回复中确认已理解要求
+
+---
+
+## 错误处理
+
+**常见问题**：
+
+1. **文档为空**
+   - 提示："文档内容为空，请确认是否已写入素材"
+   
+2. **结构不完整**
+   - 提示："文档缺少 [评论区/逐字稿]，请补充后重新加工"
+   
+3. **权限不足**
+   - 提示："无权访问该文档，请确认已分享权限"
+
+---
+
+## 相关技能
+
+- [feishu-doc](feishu-doc/SKILL.md) - 飞书文档读写操作
+- [feishu-wiki](feishu-wiki/SKILL.md) - 飞书知识库管理
+
+---
+
+**技能版本**：3.4
+**创建时间**：2026-04-11
+**更新时间**：2026-04-25
+**作者**：明歌
+**微信**：mingge-ai

@@ -1,0 +1,251 @@
+{
+  "name": "SwarmOrchestrator",
+  "version": "5.12.7",
+  "description": "Local Python orchestration skill: multi-agent workflows via shared blackboard file, permission gating, token budget scripts, and persistent project context. The bundled Python scripts make no network calls and have zero third-party dependencies. The parent repository also contains a TypeScript engine (not included in this skill bundle). Workflow delegations via the host platform's sessions_send may invoke external model APIs.",
+  "author": "Network-AI Community",
+  "homepage": "https://network-ai.org",
+  "repository": "https://github.com/Jovancoding/Network-AI",  "source": "https://github.com/Jovancoding/Network-AI",  "license": "MIT",
+  "tags": ["multi-agent", "swarm", "orchestration", "governance", "audit", "permissions", "security", "blackboard", "budget", "local-only"],
+  "runtime": "python",
+  "entrypoint": "scripts/swarm_guard.py",
+  "gateway": "local",
+  "install": {
+    "description": "No install step required. All Python scripts use standard library only (zero third-party packages). Simply ensure python3 is available and run scripts directly from the scripts/ directory.",
+    "python": {
+      "requirements": "requirements.txt",
+      "requirements_note": "requirements.txt contains zero required packages. All scripts use Python stdlib only.",
+      "install_command": "# No install needed",
+      "scripts": ["scripts/blackboard.py", "scripts/swarm_guard.py", "scripts/check_permission.py", "scripts/validate_token.py", "scripts/revoke_token.py", "scripts/context_manager.py"],
+      "note": "All scripts run locally only. No external network calls. No third-party dependencies."
+    }
+  },
+  "capabilities": {
+    "delegate_task": {
+      "description": "Delegate a task to a specialized sub-agent within the swarm",
+      "parameters": {
+        "targetAgent": {
+          "type": "string",
+          "required": true,
+          "description": "The identifier of the target agent to receive the task"
+        },
+        "taskPayload": {
+          "type": "object",
+          "required": true,
+          "description": "The task context, instructions, and any required data"
+        },
+        "priority": {
+          "type": "string",
+          "enum": ["low", "normal", "high", "critical"],
+          "default": "normal",
+          "description": "Task priority level for queue ordering"
+        },
+        "timeout": {
+          "type": "number",
+          "default": 30000,
+          "description": "Maximum execution time in milliseconds"
+        },
+        "requiresAuth": {
+          "type": "boolean",
+          "default": false,
+          "description": "Whether this task requires a permission grant (via check_permission.py)"
+        }
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "taskId": { "type": "string" },
+          "status": { "type": "string" },
+          "result": { "type": "any" },
+          "agentTrace": { "type": "array" }
+        }
+      }
+    },
+    "query_swarm_state": {
+      "description": "Query the current state of the agent swarm, including active tasks, blackboard contents, and agent availability",
+      "parameters": {
+        "scope": {
+          "type": "string",
+          "enum": ["all", "agents", "tasks", "blackboard", "permissions"],
+          "default": "all",
+          "description": "The scope of state information to retrieve"
+        },
+        "agentFilter": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Optional list of agent IDs to filter results"
+        },
+        "includeHistory": {
+          "type": "boolean",
+          "default": false,
+          "description": "Include historical task execution data"
+        }
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "timestamp": { "type": "string" },
+          "activeAgents": { "type": "array" },
+          "pendingTasks": { "type": "array" },
+          "blackboardSnapshot": { "type": "object" },
+          "permissionGrants": { "type": "array" }
+        }
+      }
+    },
+    "spawn_parallel_agents": {
+      "description": "Spawn multiple sub-agents in parallel for complex task decomposition",
+      "parameters": {
+        "tasks": {
+          "type": "array",
+          "required": true,
+          "items": {
+            "type": "object",
+            "properties": {
+              "agentType": { "type": "string" },
+              "taskPayload": { "type": "object" }
+            }
+          },
+          "description": "Array of parallel tasks to execute"
+        },
+        "synthesisStrategy": {
+          "type": "string",
+          "enum": ["merge", "vote", "chain", "first-success"],
+          "default": "merge",
+          "description": "How to combine results from parallel agents"
+        }
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "synthesizedResult": { "type": "any" },
+          "individualResults": { "type": "array" },
+          "executionMetrics": { "type": "object" }
+        }
+      }
+    },
+    "request_permission": {
+      "description": "Request permission for sensitive operations via the local permission gating script",
+      "parameters": {
+        "resourceType": {
+          "type": "string",
+          "enum": ["DATABASE", "PAYMENTS", "EMAIL", "FILE_EXPORT"],
+          "required": true,
+          "description": "The type of protected resource being requested"
+        },
+        "justification": {
+          "type": "string",
+          "required": true,
+          "description": "Reason for requesting access"
+        },
+        "scope": {
+          "type": "string",
+          "description": "Specific scope of access needed"
+        }
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "granted": { "type": "boolean" },
+          "grantToken": { "type": "string" },
+          "expiresAt": { "type": "string" },
+          "restrictions": { "type": "array" }
+        }
+      }
+    },
+    "update_blackboard": {
+      "description": "Write or update entries on the shared blackboard for cross-agent coordination",
+      "parameters": {
+        "key": {
+          "type": "string",
+          "required": true,
+          "description": "The blackboard entry key"
+        },
+        "value": {
+          "type": "any",
+          "required": true,
+          "description": "The data to store"
+        },
+        "ttl": {
+          "type": "number",
+          "description": "Time-to-live in seconds (optional)"
+        }
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "success": { "type": "boolean" },
+          "previousValue": { "type": "any" }
+        }
+      }
+    },
+    "inject_context": {
+      "description": "Read the persistent project context file and return a formatted markdown block for injection into an agent system prompt. This is Layer 3 (long-lived) memory — architecture decisions, goals, tech stack, milestones, and banned approaches that every agent in the swarm should know.",
+      "parameters": {},
+      "returns": {
+        "type": "object",
+        "properties": {
+          "contextMarkdown": { "type": "string", "description": "Formatted markdown block ready to prepend to an agent system prompt" },
+          "updatedAt": { "type": "string", "description": "ISO timestamp of last context update" }
+        }
+      }
+    },
+    "update_context": {
+      "description": "Persist a decision, milestone update, stack entry, goal, or banned approach to the project context file (Layer 3 memory). Changes are appended and survive across sessions.",
+      "parameters": {
+        "section": {
+          "type": "string",
+          "required": true,
+          "enum": ["decisions", "milestones", "stack", "goals", "banned", "project"],
+          "description": "The context section to update"
+        },
+        "add": {
+          "type": "any",
+          "description": "Item to append (JSON object or plain string, depending on section)"
+        },
+        "set": {
+          "type": "object",
+          "description": "Key-value pairs to merge into the section (use for stack and project)"
+        },
+        "complete": {
+          "type": "string",
+          "description": "Milestone name to mark completed (milestones section only)"
+        }
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "success": { "type": "boolean" },
+          "section": { "type": "string" }
+        }
+      }
+    }
+  },
+  "permissions": {
+    "required": ["local_filesystem", "internal_skill_calls"],
+    "optional": ["external_api_access"],
+    "permissionGating": {
+      "enabled": true,
+      "protectedResources": ["DATABASE", "PAYMENTS", "EMAIL", "FILE_EXPORT"],
+      "note": "Permission checks are implemented locally via scripts/check_permission.py using weighted scoring (justification 40%, trust 30%, risk 30%). No external auth service."
+    }
+  },
+  "dependencies": {},
+  "config": {
+    "blackboardPath": "./swarm-blackboard.md",
+    "maxParallelAgents": null,
+    "maxParallelAgents_default": "Infinity (no hard cap since v4.0.0 — set to a positive integer to enforce a limit)",
+    "defaultTimeout": 30000,
+    "enableTracing": true
+  },
+  "env": {},
+  "privacy": {
+    "audit_log": {
+      "path": "data/audit_log.jsonl",
+      "scope": "local-only",
+      "description": "Append-only JSONL audit log recording operation metadata (agentId, action, timestamp, outcome). Stays in local data/ directory. No data is sent externally by this skill.",
+      "contains": ["agentId", "action", "timestamp", "outcome", "resource", "justification (free-text, agent-provided)"],
+      "pii_warning": "Justification fields are free-text and may contain user-supplied content. Do not put PII, secrets, or credentials in justification strings. Restrict file permissions on data/ and rotate logs periodically.",
+      "does_not_contain": ["API keys", "external endpoints"]
+    }
+  }
+}
+

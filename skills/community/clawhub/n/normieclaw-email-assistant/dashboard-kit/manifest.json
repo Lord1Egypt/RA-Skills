@@ -1,0 +1,17 @@
+{
+  "skill_id": "email-assistant",
+  "display_name": "Email Assistant",
+  "description": "AI email triage with priority scoring, draft generation, and VIP sender management.",
+  "icon": "Mail",
+  "accent_color": "#14b8a6",
+  "sidebar": { "route": "/email", "label": "Email", "icon": "Mail", "children": [{"label":"Inbox","route":"/email"},{"label":"Priority Queue","route":"/email/priority","icon":"AlertCircle"},{"label":"Drafts","route":"/email/drafts","icon":"PenSquare"},{"label":"VIP Senders","route":"/email/vip","icon":"Star"},{"label":"Analytics","route":"/email/analytics","icon":"BarChart3"}] },
+  "database": { "prefix": "ea", "tables": [
+    { "name": "ea_email_triage", "description": "Triaged email summaries", "columns": [{"name":"id","type":"UUID","primary_key":true},{"name":"user_id","type":"UUID"},{"name":"message_id","type":"TEXT"},{"name":"sender_email","type":"TEXT"},{"name":"sender_name","type":"TEXT"},{"name":"subject","type":"TEXT"},{"name":"summary","type":"TEXT"},{"name":"priority","type":"TEXT","default":"normal"},{"name":"category","type":"TEXT"},{"name":"action_needed","type":"TEXT"},{"name":"status","type":"TEXT","default":"new"},{"name":"received_at","type":"TIMESTAMPTZ"},{"name":"created_at","type":"TIMESTAMPTZ"},{"name":"updated_at","type":"TIMESTAMPTZ"}], "indexes": [{"name":"idx_ea_email_triage_user","columns":["user_id","priority","created_at DESC"]},{"name":"idx_ea_email_triage_status","columns":["user_id","status"]}] },
+    { "name": "ea_email_drafts", "description": "AI-drafted replies", "columns": [{"name":"id","type":"UUID","primary_key":true},{"name":"user_id","type":"UUID"},{"name":"triage_id","type":"UUID"},{"name":"to_address","type":"TEXT"},{"name":"subject","type":"TEXT"},{"name":"draft_body","type":"TEXT"},{"name":"tone_score","type":"NUMERIC(3,2)"},{"name":"status","type":"TEXT","default":"draft"},{"name":"created_at","type":"TIMESTAMPTZ"},{"name":"updated_at","type":"TIMESTAMPTZ"}], "indexes": [{"name":"idx_ea_email_drafts_user","columns":["user_id","status"]}] },
+    { "name": "ea_vip_senders", "description": "VIP sender configuration", "columns": [{"name":"id","type":"UUID","primary_key":true},{"name":"user_id","type":"UUID"},{"name":"email","type":"TEXT"},{"name":"domain","type":"TEXT"},{"name":"label","type":"TEXT","default":"VIP"},{"name":"escalation","type":"TEXT","default":"notify"},{"name":"created_at","type":"TIMESTAMPTZ"}], "indexes": [] },
+    { "name": "ea_email_digests", "description": "Daily email digest summaries", "columns": [{"name":"id","type":"UUID","primary_key":true},{"name":"user_id","type":"UUID"},{"name":"digest_date","type":"DATE"},{"name":"total_received","type":"INTEGER","default":0},{"name":"urgent_count","type":"INTEGER","default":0},{"name":"triaged_count","type":"INTEGER","default":0},{"name":"summary","type":"TEXT"},{"name":"created_at","type":"TIMESTAMPTZ"}], "indexes": [] }
+  ] },
+  "widgets": [{ "id": "email-urgent", "type": "stat", "title": "Urgent Emails", "description": "Unactioned urgent emails", "size": "1x1" }],
+  "settings": [{ "key": "auto_triage", "label": "Auto-Triage", "type": "toggle", "default": true },{ "key": "vip_escalation", "label": "VIP Escalation", "type": "select", "default": "notify" }],
+  "sync": { "mode": "direct", "source_files": [] }
+}

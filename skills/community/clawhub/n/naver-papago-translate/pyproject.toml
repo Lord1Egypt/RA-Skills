@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "naver-papago-translate"
+version = "0.1.0"
+description = "Simple CLI and Python API for Naver Papago NMT translation"
+readme = "README.md"
+authors = [{ name = "Chloe Park" }]
+license = { text = "MIT" }
+requires-python = ">=3.8"
+dependencies = [
+  "requests>=2.28.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/ChloePark85/naver-papago-translate"
+
+[project.scripts]
+papago-translate = "papago_translate.cli:main"

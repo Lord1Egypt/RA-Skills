@@ -1,0 +1,14 @@
+{
+  "name": "mock",
+  "version": "1.0.0",
+  "description": "Safe RPM Package Build Environment skill using Mock | RPM 安全构建环境技能",
+  "author": "OS Build Agent",
+  "license": "MIT",
+  "keywords": ["mock", "rpm", "build", "chroot", "fedora", "rhel"],
+  "clawhub": {
+    "type": "skill",
+    "category": "development",
+    "tags": ["mock", "rpm", "build", "chroot", "devops"],
+    "icon": "🔒"
+  }
+}

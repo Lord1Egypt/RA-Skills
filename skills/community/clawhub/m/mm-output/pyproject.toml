@@ -1,0 +1,63 @@
+[project]
+name = "mm-output"
+version = "1.0.0"
+description = "mm-output - PDF/Markdown to HTML/PDF/PNG/DOCX converter"
+readme = "README.md"
+requires-python = ">=3.12"
+license = {text = "MIT"}
+authors = [
+    {name = "yanzexuan"}
+]
+
+dependencies = [
+    "torch==2.9.1",
+    "torchvision==0.24.1",
+    "numpy==2.3.5",
+    "transformers==4.57.6",
+    "marker-pdf==1.10.2",
+    "surya-ocr==0.17.1",
+    "Pillow>=10.0.0",
+    "markdown>=3.5.0",
+    "openai>=1.0.0",
+    "python-dotenv>=1.0.0",
+    "requests>=2.31.0",
+    "playwright>=1.40.0",
+    "python-docx>=1.1.0",
+    "beautifulsoup4>=4.12.0",
+    "python-pptx>=0.6.23",
+    "google-generativeai>=0.3.0",
+    "accelerate>=1.0.0",
+    "einops>=0.8.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "black>=23.0.0",
+    "ruff>=0.1.0",
+]
+
+[project.scripts]
+postergen = "run:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+only-include = ["run.py", "parser_unit.py", "renderer_unit.py"]
+
+[tool.uv]
+python-preference = "managed"
+
+[tool.uv.pip]
+no-deps = false
+
+[tool.black]
+line-length = 100
+target-version = ['py312']
+
+[tool.ruff]
+line-length = 100
+select = ["E", "F", "I"]
+ignore = ["E501"]

@@ -1,0 +1,56 @@
+{
+  "slug": "nostrsocial",
+  "name": "NostrSocial",
+  "version": "0.1.3",
+  "summary": "Social awareness for AI entities \u2014 contacts, trust tiers, and identity verification over Nostr",
+  "author": {
+    "name": "Humanjava Enterprises",
+    "url": "https://loginwithnostr.com/openclaw"
+  },
+  "license": "MIT",
+  "acceptLicenseTerms": true,
+  "repository": "https://github.com/HumanjavaEnterprises/nostrsocial.app.OC-python.src",
+  "tags": [
+    "nostr",
+    "social",
+    "contacts",
+    "trust",
+    "identity",
+    "ai-identity",
+    "sovereign"
+  ],
+  "install": {
+    "pip": "nostrsocial"
+  },
+  "requires": {
+    "python": ">=3.10"
+  },
+  "dependencies": [
+    "nostrkey>=0.1.0"
+  ],
+  "categories": [
+    "social",
+    "communication",
+    "identity"
+  ],
+  "env": [
+    {
+      "name": "NOSTR_NSEC",
+      "description": "Nostr private key (nsec) for the entity's identity. Load via NostrKey \u2014 never hardcode.",
+      "required": false,
+      "sensitive": true
+    },
+    {
+      "name": "NOSTR_RELAY",
+      "description": "Preferred Nostr relay URL for publishing contact events and verification challenges.",
+      "required": false,
+      "sensitive": false
+    },
+    {
+      "name": "NOSTRKEY_PASSPHRASE",
+      "description": "Passphrase for decrypting a NostrKey identity file, if using encrypted storage.",
+      "required": false,
+      "sensitive": true
+    }
+  ]
+}

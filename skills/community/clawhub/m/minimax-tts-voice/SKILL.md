@@ -1,35 +1,38 @@
 ---
-name: "minimax-tts"
-description: "Use MiniMax speech-2.8-hd model for high-quality text-to-speech synthesis. Supports multiple Chinese and English voices. Install when needed."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/minimax-tts-voice"
-sourceUrl: "https://clawhub.ai/skills/minimax-tts-voice"
+name: minimax-tts
+description: Use MiniMax speech-2.8-hd model for high-quality text-to-speech synthesis. Supports multiple Chinese and English voices. Install when needed.
+homepage: https://platform.minimax.io
+metadata: {"clawdbot":{"emoji":"🔊","requires":{"bins":["python"]}}}
 ---
 
-# minimax-tts
+# MiniMax Text-to-Speech
 
-> Use MiniMax speech-2.8-hd model for high-quality text-to-speech synthesis. Supports multiple Chinese and English voices. Install when needed.
+Call via: `python scripts/minimax_media.py tts "<text>" [options]`
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/minimax-tts-voice`
-- **Source URL:** [https://clawhub.ai/skills/minimax-tts-voice](https://clawhub.ai/skills/minimax-tts-voice)
+## Usage
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/minimax-tts-voice
+python scripts/minimax_media.py tts "你好，這是語音測試。" --voice female-tianmei --speed 1.0
 ```
+
+## Options
+
+- `--voice`: Voice ID (see below)
+- `--speed`: Speech speed 0.5 ~ 2.0 (default: 1.0)
+- `--output`: Output MP3 file path
+
+## Available Voices
+
+| Voice ID | Language | Gender |
+|----------|----------|--------|
+| female-tianmei | Chinese | Female |
+| male-qn-qingse | Chinese | Male |
+| male-qn-jianbin | Chinese | Male |
+| English_expressive_narrator | English | Male |
+
+Returns: `{"audio_path": "...", "size_bytes": ..., "duration_hint": "..."}`
+
+## Environment
+
+- `MINIMAX_API_KEY` — required
+- `MINIMAX_BASE_URL` — optional (default: https://api.minimax.io)

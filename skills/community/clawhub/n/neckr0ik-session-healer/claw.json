@@ -1,0 +1,15 @@
+{
+  "name": "neckr0ik-session-healer",
+  "version": "1.0.0",
+  "description": "Auto-heal locked OpenClaw session files. Detects stale locks, clears them safely, and recovers corrupted sessions.",
+  "author": "Neckr0ik",
+  "license": "MIT",
+  "keywords": [
+    "openclaw",
+    "session",
+    "lock",
+    "heal",
+    "recovery",
+    "debug"
+  ]
+}

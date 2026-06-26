@@ -1,35 +1,215 @@
 ---
-name: "My Work Profile Cross Agent"
-description: "我的工作画像（跨agent抽练和应用）。让agent抽练和应用对我的理解，包括我的岗位职责、我负责业务领域的关键知识。让agent更懂我（而不是agent只懂自己的定位），结合两方面的信息，进行互补。本地跨agent共享存储，切换agent软件画像不丢失。用户主动输出知识或正常对话解决问题均走同一套逻辑：加载知识..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/my-work-profile-cross-agent"
-sourceUrl: "https://clawhub.ai/skills/my-work-profile-cross-agent"
+name: my-work-profile-cross-agent
+description: "我的工作画像（跨agent抽练和应用）。让agent抽练和应用对我的理解，包括我的岗位职责、我负责业务领域的关键知识。让agent更懂我（而不是agent只懂自己的定位），结合两方面的信息，进行互补。本地跨agent共享存储，切换agent软件画像不丢失。用户主动输出知识或正常对话解决问题均走同一套逻辑：加载知识库让回答更专业，同时从对话中提取新知识。"
 ---
 
-# My Work Profile Cross Agent
+# 我的工作画像
 
-> 我的工作画像（跨agent抽练和应用）。让agent抽练和应用对我的理解，包括我的岗位职责、我负责业务领域的关键知识。让agent更懂我（而不是agent只懂自己的定位），结合两方面的信息，进行互补。本地跨agent共享存储，切换agent软件画像不丢失。用户主动输出知识或正常对话解决问题均走同一套逻辑：加载知识...
+跨agent持续抽练和应用用户对岗位职责与业务领域关键知识的理解。让agent先懂用户再懂自己，形成互补。本地跨agent共享存储，切换agent软件画像信息不丢失，一起维护和使用。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/my-work-profile-cross-agent`
-- **Source URL:** [https://clawhub.ai/skills/my-work-profile-cross-agent](https://clawhub.ai/skills/my-work-profile-cross-agent)
+## 数据目录
 
-## Overview
+根目录：`~/myWorkProfileCrossAgent/`（`~` = Windows `$env:USERPROFILE` / Linux `$HOME`），首次使用时自动创建。
 
+| 文件 | 用途 | 对话时加载 |
+|------|------|:----------:|
+| `userProfile.md` | 用户画像（职位/职责/业务/风格/技术栈，<2KB） | ✅ 必加载 |
+| `domains/index.md` | 领域索引（领域名+关键词+排除词+文件路径，<2KB） | ✅ 必加载 |
+| `domains/[领域名].md` | 各领域关键诀窍（单文件上限见 config） | ✅ 按需（关键词匹配） |
+| `config.txt` | 开关及频率配置 | ✅ |
+| `changelog.md` | 变更日志（按日期倒序，每次新增后删除90天前的条目） | ❌ |
+| `logs/execute_log_{yyyyMMddHHmmss}.txt` | 执行总结日志（保留7天，超期自动清理） | ❌ |
+| `errorRecord.md` | 异常日志 | ❌ |
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/my-work-profile-cross-agent
+## 配置文件
+
+`~/myWorkProfileCrossAgent/config.txt`：
+
 ```
+autoUpdate=on
+logRetainDays=7
+domainFileMaxKB=100
+switchPromptMaxPerDay=2
+switchPromptCount=0
+switchPromptDate=
+```
+
+| 字段 | 说明 | 默认值 |
+|------|------|:------:|
+| `autoUpdate` | `on`=自动更新，`off`=询问更新 | `on` |
+| `logRetainDays` | 日志文件保留天数 | `7` |
+| `domainFileMaxKB` | 单个领域文件上限（KB），超限时压缩合并 | `100` |
+| `switchPromptMaxPerDay` | 每日🔀切换提示最大次数 | `2` |
+| `switchPromptCount` | 当日已展示🔀切换提示的次数 | `0` |
+| `switchPromptDate` | 当前日期（`yyyyMMdd`），日期变化时重置 count | 空 |
+
+## 快捷指令
+
+用户输入以下指令时，直接执行对应操作：
+
+| 指令 | 动作 |
+|------|------|
+| `查看我的工作画像` | 完整输出 `userProfile.md` 内容 + 领域列表（领域名+关键词+条目数） |
+| `这条不对：xxx，应该是：yyy` | 立即在对应文件中修正该条目，并回复确认 |
+| `删除领域：xxx` | 删除对应领域文件和 index 中的条目 |
+
+## 工作流程
+
+每次对话严格按三步执行：
+
+### Step 1：加载知识（静默）
+
+1. **必加载**：读取 `userProfile.md` + `domains/index.md`
+2. **按需加载**：根据用户提问匹配 index 中关键词（命中关键词且未命中排除关键词），读取 1-3 个最相关的 `domains/[领域名].md`
+3. 将画像+领域诀窍融入回答背景。文件不存在则跳过。**不告知用户正在读取。**
+
+### Step 2：执行对话
+
+正常回答，将知识自然融入，不提及知识系统运作。
+
+### Step 3：提取与更新知识（对话结束后）
+
+1. **分析对话**，提取两类信息：
+   - **用户属性**（→ `userProfile.md`）：职位、职责、负责业务、工作风格、偏好、技术栈
+   - **领域诀窍**（→ `domains/[领域名].md` + `index.md`）：业务领域关键诀窍
+
+2. **判断是否有收获**：
+   - **无收获 → 完全静默**，不输出任何执行总结，不生成日志文件
+   - **有收获 → 继续以下步骤**
+
+3. **去重检查**：写入前先读取目标文件，语义相似的已有条目则跳过
+
+4. **读取 `config.txt`**，按模式执行：
+
+| | autoUpdate=on（自动更新） | autoUpdate=off（询问更新） |
+|--|--|--|
+| 写入 | 直接写入文件 | 仅收集，等用户确认 |
+| 写入规则 | 新信息→追加，矛盾→以本次为准，无新信息→不修改 | 同左（确认后执行） |
+| 写入范围 | userProfile / domains/*.md / index.md / changelog.md | 同左 |
+| 输出 | 日志路径 + 🔀切换提示（受频率限制） | 🔘写入确认 + 日志路径 + 🔀切换提示（受频率限制） |
+
+5. **生成执行日志** → 写入 `logs/execute_log_{时间戳}.txt`
+6. **日志清理**：删除 `logs/` 下超过 `logRetainDays` 天的日志文件
+7. **🔀 切换提示频率控制**：当日展示次数 < `switchPromptMaxPerDay` 时才输出切换提示，展示后 `switchPromptCount+1`，日期变化时重置
+
+## 领域文件管理
+
+| 规则 | 说明 |
+|------|------|
+| 单文件上限 | `domainFileMaxKB`（默认100KB），超限时执行压缩合并（同类项合并、过时项归档） |
+| 条目时间戳 | 每条诀窍记录写入日期，格式：`- [YYYY-MM-DD] 诀窍内容` |
+| 过期标记 | 超过 90 天未被引用的条目前加 `[待确认]` |
+| 归档 | 超过 180 天的 `[待确认]` 条目移至文件末尾「已归档」区块 |
+
+## 提取红线
+
+### 只收两类信息
+
+| 类别 | 写入位置 | 判断标准 |
+|------|---------|---------|
+| 用户岗位职责理解 | `userProfile.md` | 三个月后还有用 |
+| 业务领域关键诀窍 | `domains/[领域名].md` | 三个月后还有用 |
+
+**禁止收录流水事件**（「谁什么时候说了什么干了什么」），示例：
+
+| ❌ 禁止 | ✅ 可以 |
+|--------|--------|
+| 「昨天和XX开了个会」 | 「用户负责与供应商谈判」 |
+| 「今天帮用户改了一段代码」 | 「用户开发习惯：批量脚本做系统性修改」 |
+| 「用户说最近很忙」 | 「用户工作节奏：季度末集中上线期」 |
+
+### 敏感信息过滤（强制）
+
+以下信息绝对不记录：手机号、邮箱、账号、密码、APPID/ClientID、密钥/Token、银行卡/身份证、服务器凭据（SSH Key/数据库连接串/IP）。
+
+- 提取时自动跳过
+- 用户主动要求记住→礼貌拒绝
+- 已有记录中意外包含→下次更新时清除，记录到 `errorRecord.md`
+
+### 提取原则
+
+- 只记录高置信度信息，不做过度推断
+- 用户明确纠正时立即更新
+- 领域分类用用户视角的业务方向
+
+## 输出格式
+
+### 有知识收获时
+
+**步骤 A**：写入日志文件 `~/myWorkProfileCrossAgent/logs/execute_log_{yyyyMMddHHmmss}.txt`
+
+日志内容：
+```
+【我的工作画像skill执行总结】
+时间：yyyy-MM-dd HH:mm:ss
+模式：autoUpdate=on / autoUpdate=off
+
+📖 本次使用的知识库信息：
+- [引用的用户画像/领域诀窍，无引用则写「本次对话未引用已有知识库内容」]
+
+📝 本次会话收获：
+用户属性变化：[新增/更新 具体内容，或「无新增用户属性」]
+领域知识变化：[新增/更新 领域名：诀窍，或「无新增领域知识」]
+
+操作结果：已自动更新 / 待用户确认 / 用户跳过
+
+--- 以下内容仅 autoUpdate=off 模式且有待确认内容时追加 ---
+📋 待确认写入的具体内容：
+userProfile.md 变更：[具体条目]
+domains/[领域名].md 变更：[具体条目]
+domains/index.md 变更：[如有新领域，列出索引条目]
+```
+
+**步骤 B**：向用户输出简要总结
+
+autoUpdate=on：
+```
+---
+**【我的工作画像skill执行总结】**
+
+📄 日志：{日志文件完整本地路径}
+
+[🔀 知识更新模式：自动更新 | 切换为询问更新？]  ← 受频率限制，当日≤2次时才显示此行
+
+💬 提示：本技能发挥作用，会额外消耗少量 token/积分。如需停用，可在智能体的技能管理中关闭。
+```
+
+autoUpdate=off（比上面多一行写入确认）：
+```
+---
+**【我的工作画像skill执行总结】**
+
+📄 日志：{日志文件完整本地路径}
+
+🔘 是否将以上知识写入记录？
+
+[🔀 知识更新模式：询问更新 | 切换为自动更新？]  ← 受频率限制
+
+💬 提示：本技能发挥作用，会额外消耗少量 token/积分。如需停用，可在智能体的技能管理中关闭。
+```
+
+### 无知识收获时
+
+**完全静默，不输出任何内容。**
+
+### 开关交互
+
+| 用户回复 | 动作 | 回复 |
+|---------|------|------|
+| 肯定词（是/切换/关闭/开启） | 更新 `config.txt` | `✅ 已切换为{目标模式}模式...` |
+| 否定词或无回复 | 不做操作 | — |
+
+## 错误处理
+
+| 原则 | 说明 |
+|------|------|
+| 不影响对话 | 提取失败时正常回答 |
+| 不重试 | 单次失败跳过 |
+| 不报错给用户 | 静默记录到 `errorRecord.md` |
+
+错误格式：`- [YYYY-MM-DD HH:MM] [错误类型] 错误详情 | 上下文：简要描述`
+
+## 参考文件
+
+- [format-spec.md](references/format-spec.md) — 文件格式详细规范
+- [examples.md](references/examples.md) — 提取示例与场景演示

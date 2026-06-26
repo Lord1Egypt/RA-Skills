@@ -1,0 +1,27 @@
+{
+  "name": "motion-video-skill",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Local structured toolchain for Web motion video preview and mp4 export.",
+  "type": "commonjs",
+  "scripts": {
+    "validate": "node scripts/validate_movie.js samples/example-movie.json",
+    "preview": "node scripts/render_preview.js samples/example-movie.json outputs/example-preview.html",
+    "export": "node scripts/export_video.js samples/example-movie.json outputs/example.mp4 --confirm",
+    "project:new": "node scripts/init_project.js demo-video \"Demo Motion Video\" --template signal-stage",
+    "project:build": "node scripts/build_project.js projects/demo-video",
+    "catalog": "node scripts/list_catalog.js",
+    "timing:sync": "node scripts/sync_timings.js samples/example-movie.json",
+    "tts:configure": "node scripts/configure_tts.js projects/demo-video --provider system --language zh-CN",
+    "tts:synthesize": "node scripts/synthesize_voice.js projects/demo-video",
+    "tts:set-secret": "node scripts/set_provider_secret.js minimax \"$MINIMAX_API_KEY\"",
+    "tts:list-voices": "node scripts/list_tts_voices.js minimax zh",
+    "audio:sync": "node scripts/sync_audio_durations.js projects/demo-video",
+    "audio:build": "node scripts/build_audio_track.js projects/demo-video",
+    "video:mux": "node scripts/mux_video_audio.js projects/demo-video",
+    "video:voice": "node scripts/build_voice_video.js projects/demo-video --confirm-export"
+  },
+  "dependencies": {
+    "playwright": "^1.54.2"
+  }
+}

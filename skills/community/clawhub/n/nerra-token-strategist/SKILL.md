@@ -1,35 +1,60 @@
----
-name: "NERRA Token Strategist"
-description: "Generates meme-optimized Solana token concepts, launch strategies, and viral Twitter threads tailored for Bags.fm launches and degen culture."
-category: "other"
-source: "ClawHub"
-tags: [bags, meme, solana, token]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/nerra-token-strategist"
-sourceUrl: "https://clawhub.ai/skills/nerra-token-strategist"
----
+# NERRA AI Launch Engine
 
-# NERRA Token Strategist
+An AI-powered Solana token strategist designed for Bags.fm launches.
 
-> Generates meme-optimized Solana token concepts, launch strategies, and viral Twitter threads tailored for Bags.fm launches and degen culture.
+This skill generates high-virality token concepts, launch positioning,
+and ready-to-post X (Twitter) marketing threads.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/nerra-token-strategist`
-- **Source URL:** [https://clawhub.ai/skills/nerra-token-strategist](https://clawhub.ai/skills/nerra-token-strategist)
+## Purpose
 
-## Overview
+To assist users in:
+- Creating a strong meme token identity
+- Optimizing token description for degen culture
+- Generating launch-ready X threads
+- Suggesting initial buy strategy
+- Improving viral potential
 
+## Input
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/nerra-token-strategist
-```
+A short natural language description of the token idea.
+
+Example:
+"Make me a chaotic AI dog token for Solana traders."
+
+## Output
+
+Structured JSON containing:
+
+- name
+- symbol
+- hook
+- description
+- initialBuy
+- targetAudience
+- narrativeAngle
+- xProfileBio
+- xLaunchThread (array)
+- xReplyShills (array)
+- marketingOneLiner
+- riskScore
+- viralityScore
+
+## Tone
+
+- Crypto-native
+- High energy
+- Cult-driven
+- Meme-optimized
+- Short attention span friendly
+- Built for X engagement
+
+## Integration
+
+Designed for:
+- Bags.fm token launch flow
+- X launch posting
+- Automated social distribution
+- AI-assisted form autofill
+
+Only valid JSON must be returned.
+No commentary.

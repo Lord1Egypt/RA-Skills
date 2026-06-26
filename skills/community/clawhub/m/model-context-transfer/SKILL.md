@@ -1,35 +1,127 @@
 ---
-name: "Model Context Transfer"
-description: "模型切换时的上下文传递技能。当需要切换AI模型或Agent时，确保新模型能完整接收之前的对话记忆、任务状态和关键信息，实现无缝衔接。"
-category: "other"
-source: "ClawHub"
-tags: [context, handover, memory, model-switch, transfer]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/model-context-transfer"
-sourceUrl: "https://clawhub.ai/skills/model-context-transfer"
+name: model-context-transfer
+description: 模型切换时的上下文传递技能。当需要切换AI模型或Agent时，确保新模型能完整接收之前的对话记忆、任务状态和关键信息，实现无缝衔接。
 ---
 
-# Model Context Transfer
+# Model Context Transfer（模型切换上下文传递）
 
-> 模型切换时的上下文传递技能。当需要切换AI模型或Agent时，确保新模型能完整接收之前的对话记忆、任务状态和关键信息，实现无缝衔接。
+## 触发场景
+- 切换不同AI模型（如 MiniMax-M2.7 → GLM-5）
+- Agent A 交接任务给 Agent B
+- QQ/微信等频道切换 Agent
+- 长时间对话后模型记忆丢失
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/model-context-transfer`
-- **Source URL:** [https://clawhub.ai/skills/model-context-transfer](https://clawhub.ai/skills/model-context-transfer)
+## 核心原则
 
-## Overview
+### 1. 交接信息完整性
+确保新模型接收：
+- **项目背景**：在做什么？
+- **当前状态**：做到哪了？
+- **关键约束**：不能做什么？优先级？
+- **待处理事项**：接下来要做什么？
 
+### 2. 交接格式
+用结构化的 `CONTEXT_TRANSFER` 格式传递：
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/model-context-transfer
 ```
+## CONTEXT_TRANSFER
+
+### 项目/任务
+[简要描述]
+
+### 当前状态
+- ✅ 已完成：[列出]
+- 🔄 进行中：[列出]
+- ⏳ 待处理：[列出]
+
+### 关键信息
+- 关键决策：[记录]
+- 约束条件：[记录]
+- API/文件路径：[记录]
+
+### 团队架构
+[当前涉及的Agent及其职责]
+
+### 下一步
+[具体行动项，优先级排序]
+```
+
+### 3. 传递时机
+- **主动触发**：当用户说"切换模型"、"换Agent"、"让XX来处理"
+- **被动触发**：检测到上下文超过 80% 时，需要换模型续接
+- **定期总结**：每完成一个里程碑，主动输出 `CONTEXT_TRANSFER` 备份
+
+## 使用方法
+
+### 场景1：临时切换模型完成任务
+当需要用不同模型处理时：
+1. 当前模型生成 `CONTEXT_TRANSFER` 总结
+2. 将总结发送给新模型
+3. 新模型基于总结继续工作
+4. 完成后反向传递结果
+
+### 场景2：Agent 交接
+当 Agent A 要把任务交给 Agent B：
+1. Agent A 输出完整 `CONTEXT_TRANSFER`
+2. Agent B 读取并确认理解
+3. Agent B 继续执行
+
+### 场景3：长期项目记忆维护
+对于持续项目，定期更新：
+- 每次重要决策后更新 `MEMORY.md`
+- 使用 `CONTEXT_TRANSFER` 格式记录当前进度
+- 确保任何模型接手都能快速上手
+
+## 模板文件
+
+### 快速交接模板
+```markdown
+## CONTEXT_TRANSFER
+
+**项目**: [项目名称]
+**时间**: [交接时间]
+**交接人**: [Agent名称]
+**接收人**: [Agent名称]
+
+### 📍 当前状态
+- 进度：[百分比/阶段]
+- 已完成：[]
+- 进行中：[]
+- 遇阻：[]
+
+### 📌 关键信息
+- 核心目标：[]
+- 重要决策：[]
+- 约束条件：[]
+- 文件路径：[]
+- API/工具：[]
+
+### 👥 团队角色
+- [Agent名]：负责XXX
+- [Agent名]：负责XXX
+
+### 🎯 下一步（优先级排序）
+1. [优先级1]
+2. [优先级2]
+3. [优先级3]
+
+### ⚠️ 注意事项
+- 不能做：[]
+- 敏感信息：[]
+- 依赖项：[]
+```
+
+## 与 MEMORY.md 的关系
+- `MEMORY.md`：长期记忆，项目全貌
+- `CONTEXT_TRANSFER`：短期交接，当前状态
+
+两者配合使用，确保模型切换无缝衔接。
+
+## 质量检查清单
+交接前确认：
+- [ ] 项目背景清晰
+- [ ] 当前进度明确
+- [ ] 关键约束已记录
+- [ ] 文件/路径/凭据已交接
+- [ ] 下一步行动具体可执行
+- [ ] 潜在风险已标注

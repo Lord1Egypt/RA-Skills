@@ -1,0 +1,9 @@
+{
+  "slug": "nl-to-sql-query-builder",
+  "name": "NL-to-SQL Query Builder",
+  "version": "1.0.0",
+  "description": "Production-grade natural language to SQL system for OpenClaw — battle-tested with 100+ daily users across 10+ domains",
+  "author": "Abhinas Neupane",
+  "tags": ["nl-to-sql", "database", "query-builder", "openclaw", "ai"],
+  "pricing": { "type": "one-time", "value": 149 }
+}

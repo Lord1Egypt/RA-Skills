@@ -1,0 +1,80 @@
+{
+  "kind": "naver-real-estate-seed-input",
+  "schema_version": 1,
+  "description": "서울 주요 단지 seed 생성용 입력 예시",
+  "seeds": [
+    {
+      "name": "리센츠",
+      "city": "서울특별시",
+      "district": "송파구",
+      "neighborhood": "잠실동",
+      "aliases": ["잠실 리센츠", "잠실리센츠"],
+      "note": "verified baseline; 생성기 동작 검증용"
+    },
+    {
+      "name": "엘스",
+      "city": "서울특별시",
+      "district": "송파구",
+      "neighborhood": "잠실동",
+      "aliases": ["잠실 엘스", "잠실엘스"]
+    },
+    {
+      "name": "트리지움",
+      "city": "서울특별시",
+      "district": "송파구",
+      "neighborhood": "잠실동",
+      "aliases": ["잠실 트리지움", "잠실트리지움"]
+    },
+    {
+      "name": "은마",
+      "city": "서울특별시",
+      "district": "강남구",
+      "neighborhood": "대치동",
+      "aliases": ["은마아파트", "대치 은마"]
+    },
+    {
+      "name": "래미안대치팰리스",
+      "city": "서울특별시",
+      "district": "강남구",
+      "neighborhood": "대치동",
+      "aliases": ["대치 팰리스", "대치래미안팰리스", "래미안 대치팰리스"]
+    },
+    {
+      "name": "아크로리버파크",
+      "city": "서울특별시",
+      "district": "서초구",
+      "neighborhood": "반포동",
+      "aliases": ["반포 아크로리버파크", "반포아크로리버파크"]
+    },
+    {
+      "name": "래미안원베일리",
+      "city": "서울특별시",
+      "district": "서초구",
+      "neighborhood": "반포동",
+      "aliases": ["반포 원베일리", "원베일리"]
+    },
+    {
+      "name": "목동신시가지7단지",
+      "city": "서울특별시",
+      "district": "양천구",
+      "neighborhood": "목동",
+      "aliases": ["목동 7단지", "목동신시가지7", "목동신시가지 7단지"]
+    },
+    {
+      "name": "신월시영아파트",
+      "city": "서울특별시",
+      "district": "양천구",
+      "neighborhood": "신월동",
+      "aliases": ["신월시영", "양천 신월시영"],
+      "note": "tricky alias 케이스"
+    },
+    {
+      "name": "답십리두산위브",
+      "city": "서울특별시",
+      "district": "동대문구",
+      "neighborhood": "답십리동",
+      "aliases": ["두산위브", "답십리 두산위브", "답십리두산위브아파트"],
+      "note": "실사용 자연어 질의 fallback 강화용. complex ID 수동 확보 전까지 reference seed로 운영"
+    }
+  ]
+}

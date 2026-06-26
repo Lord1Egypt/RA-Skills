@@ -1,0 +1,8 @@
+{
+  "label": "示例表",
+  "fields": [
+    { "type": "serial", "name": "id", "label": "序号", "required": "false" },
+    { "type": "text", "name": "mingcheng", "label": "名称", "required": "false", "editable": "true" },
+    { "type": "number", "name": "jine", "label": "金额", "required": "false", "editable": "true" }
+  ]
+}

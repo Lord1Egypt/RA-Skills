@@ -1,0 +1,15 @@
+{
+  "events": [
+    {
+      "id": 1,
+      "name": "Assignment 1 deadline",
+      "timesort": 1743000000,
+      "timestart": 1743000000,
+      "course": {
+        "id": 18611,
+        "fullname": "Algorithms"
+      }
+    }
+  ]
+}
+

@@ -1,35 +1,140 @@
 ---
-name: "Nanning"
-description: "全面介绍南宁市的技能包：景点、美食、交通、文化、购物、宜居信息一网打尽。南宁被称为"绿城"，是广西壮族自治区首府。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/nanning"
-sourceUrl: "https://clawhub.ai/skills/nanning"
+name: nanning
+version: 1.0.0
+description: 全面介绍南宁市的技能包：景点、美食、交通、文化、购物、宜居信息一网打尽。南宁被称为"绿城"，是广西壮族自治区首府。
+homepage: https://clawhub.ai
+metadata:
+  openclaw:
+    emoji: "🏙️"
+    requires:
+      bins: []
 ---
 
-# Nanning
+# Nanning 技能包
 
-> 全面介绍南宁市的技能包：景点、美食、交通、文化、购物、宜居信息一网打尽。南宁被称为"绿城"，是广西壮族自治区首府。
+## 简介
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/nanning`
-- **Source URL:** [https://clawhub.ai/skills/nanning](https://clawhub.ai/skills/nanning)
+Nanning（南宁）是广西壮族自治区首府，被誉为"绿城"。这是一个全面的南宁市信息查询技能包，帮助用户了解南宁的方方面面——从旅游景点到地道美食，从交通出行到文化习俗，是您探索这座中国南部宜居城市的一站式助手。
 
-## Overview
+## 功能特点
 
+- **景点推荐**：青秀山、南湖公园、扬美古镇等知名景点详细介绍
+- **美食指南**：老友粉、柠檬鸭、卷筒粉等南宁特色美食推荐
+- **交通信息**：机场、火车站、地铁、公交等出行指南
+- **文化介绍**：壮族文化、博览会历史、民俗节庆
+- **购物指南**：朝阳广场、万象城、会展中心商圈
+- **宜居指南**：气候特点、房价水平、教育医疗资源
+- **实时查询**：获取最新城市信息和实用建议
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/nanning
+## 使用场景
+
+1. **旅游规划**：查询南宁必游景点和最佳路线
+2. **美食探索**：寻找地道的南宁特色小吃和餐厅
+3. **商务出行**：了解会展中心、会议场地和交通安排
+4. **定居咨询**：了解南宁的生活成本、教育医疗资源
+5. **文化体验**：探索壮族文化和地方节庆活动
+6. **周末休闲**：发现适合一日游的周边目的地
+
+## 命令用法
+
+### 景点查询
 ```
+nanning spots [关键词]
+nanning attractions [关键词]
+```
+查询南宁主要景点信息，支持按类型筛选（自然风光、历史古迹、主题公园等）
+
+### 美食推荐
+```
+nanning food [类型]
+nanning food --popular
+```
+搜索南宁特色美食，--popular 显示人气榜单
+
+### 交通指南
+```
+nanning transport
+nanning metro
+nanning airport
+```
+获取机场、火车站、地铁、公交等交通信息
+
+### 文化介绍
+```
+nanning culture
+nanning festivals
+nanning history
+```
+了解南宁的历史文化、民俗节庆
+
+### 购物指南
+```
+nanning shopping
+nanning malls
+```
+推荐南宁主要商圈和购物中心
+
+### 宜居信息
+```
+nanning living
+nanning weather
+nanning cost
+```
+查询气候、生活成本、教育医疗等宜居信息
+
+### 实用信息
+```
+nanning info
+nanning help
+```
+显示所有可用命令和帮助信息
+
+## 南宁简介
+
+### 城市定位
+- **广西壮族自治区首府**
+- **北部湾经济区核心城市**
+- **中国-东盟博览会永久举办地**
+
+### 别称美誉
+- **绿城**：城市绿化覆盖率极高，满城绿意盎然
+- **邕城**：因邕江穿城而过而得名
+
+### 地理概况
+- 位于广西南部，邕江沿岸
+- 亚热带季风气候，夏长冬短
+- 总面积约2.21万平方公里
+- 常住人口约900万
+
+### 著名地标
+- **青秀山**：国家5A级景区，绿城绿肺
+- **南湖公园**：市区内综合性公园
+- **广西民族博物馆**：展示壮族文化
+- **会展中心**：中国-东盟博览会会场
+
+### 特色美食
+- **老友粉**：南宁最具代表性的特色小吃
+- **柠檬鸭**：武鸣地区的特色菜
+- **卷筒粉**：越南风味的南宁街头美食
+- **酸嘢**：酸味腌渍蔬果小吃
+
+### 交通枢纽
+- **吴圩国际机场**：4E级国际机场
+- **南宁站/南宁东站**：高铁枢纽
+- **地铁**：已开通多条线路
+
+## 技术栈
+
+- Node.js
+- JavaScript (ES6+)
+- 模块化架构设计
+
+## 相关资源
+
+- 中国-东盟博览会官网
+- 南宁旅游网
+- 广西文化和旅游厅
+
+## 许可证
+
+MIT License

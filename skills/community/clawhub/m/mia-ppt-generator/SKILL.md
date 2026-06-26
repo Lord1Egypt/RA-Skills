@@ -1,35 +1,54 @@
 ---
-name: "PPT Generator"
-description: "生成HTML格式的PPT演示文稿。使用场景：(1) 用户需要创建可分享的网页版PPT；(2) 用户需要离线可用的演示文稿；(3) 用户提到"HTML PPT"、"网页PPT"、"在线PPT"等关键词。接收用户输入：PPT主题内容、风格参考资料（支持图片/文件上传）、目标受众，然后生成可下载的HTML文件。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/mia-ppt-generator"
-sourceUrl: "https://clawhub.ai/skills/mia-ppt-generator"
+name: html-ppt-generator
+description: 生成HTML格式的PPT演示文稿。使用场景：(1) 用户需要创建可分享的网页版PPT；(2) 用户需要离线可用的演示文稿；(3) 用户提到"HTML PPT"、"网页PPT"、"在线PPT"等关键词。接收用户输入：PPT主题内容、风格参考资料（支持图片/文件上传）、目标受众，然后生成可下载的HTML文件。
 ---
 
-# PPT Generator
+# HTML PPT Generator
 
-> 生成HTML格式的PPT演示文稿。使用场景：(1) 用户需要创建可分享的网页版PPT；(2) 用户需要离线可用的演示文稿；(3) 用户提到"HTML PPT"、"网页PPT"、"在线PPT"等关键词。接收用户输入：PPT主题内容、风格参考资料（支持图片/文件上传）、目标受众，然后生成可下载的HTML文件。
+生成基于 Reveal.js 的HTML格式PPT演示文稿。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/mia-ppt-generator`
-- **Source URL:** [https://clawhub.ai/skills/mia-ppt-generator](https://clawhub.ai/skills/mia-ppt-generator)
+## 工作流程
 
-## Overview
+### 1. 收集用户信息
 
+向用户确认以下信息：
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/mia-ppt-generator
-```
+1. **PPT主要内容**：要讲解的核心主题和要点
+2. **风格/参考资料**：希望参考的视觉风格，支持上传图片和文件作为参考
+3. **目标受众**：面向谁（决定内容深度和语言风格）
+
+### 2. 收集完成后
+
+调用 `feishu_im_bot_image` 工具下载用户上传的图片参考。
+
+### 3. 生成PPT
+
+基于用户提供的信息，生成HTML文件。PPT应包含：
+- 封面页（标题、副标题、演讲者信息）
+- 目录页
+- 内容页（根据主题要点展开，每页都要有相关的图标/图片）
+- 总结页
+- 结束页
+
+**视觉设计原则**：
+- 每页都要有相关的图片、图标或icon
+- 使用公开的图标库（如Font Awesome）丰富视觉效果
+- 如果有产品图片，尽量从官网获取真实产品图
+- 简洁专业的布局
+- 适合目标受众的视觉风格
+- 清晰的层次结构
+- 合理的配色
+
+**图标资源**：
+- Font Awesome: https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.css
+- 苹果产品图片: 从 apple.com.cn 相关产品页面获取
+
+### 4. 输出
+
+将生成的HTML文件保存到本地，并将文件发送给用户。
+
+## 使用的技术
+
+- **Reveal.js**: 流行的HTML演示框架
+- 单文件HTML，包含内联CSS和脚本
+- 支持键盘导航、过渡动画等功能

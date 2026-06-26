@@ -1,35 +1,70 @@
 ---
-name: "Native Monday"
-description: "Read and query Monday.com boards, items, workspaces, and users directly via the Monday.com GraphQL API. Use when you need project/task data, board contents,..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/native-monday"
-sourceUrl: "https://clawhub.ai/skills/native-monday"
+name: monday
+description: "Read and query Monday.com boards, items, workspaces, and users directly via the Monday.com GraphQL API. Use when you need project/task data, board contents, or team info. Calls api.monday.com directly with no third-party proxy."
+metadata:
+  openclaw:
+    requires:
+      env:
+        - MONDAY_API_TOKEN
+      bins:
+        - python3
+    primaryEnv: MONDAY_API_TOKEN
+    files:
+      - "scripts/*"
 ---
 
-# Native Monday
+# Monday.com
 
-> Read and query Monday.com boards, items, workspaces, and users directly via the Monday.com GraphQL API. Use when you need project/task data, board contents,...
+Read boards, items, and workspaces directly via `api.monday.com` (GraphQL).
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/native-monday`
-- **Source URL:** [https://clawhub.ai/skills/native-monday](https://clawhub.ai/skills/native-monday)
+## Setup (one-time)
 
-## Overview
+1. In Monday.com, click your **profile picture** (top right)
+2. Select **Developers** — this opens the Developer Center
+3. Click **API token → Show**
+4. Copy your personal token
+5. Set the environment variable:
+   ```
+   MONDAY_API_TOKEN=your_token_here
+   ```
 
+## Commands
 
-## Installation
-To install this skill, run the following command in your terminal:
+### Get your account info
 ```bash
-hermes skills install clawhub/native-monday
+python3 /mnt/skills/user/monday/scripts/monday.py me
 ```
+
+### List all boards
+```bash
+python3 /mnt/skills/user/monday/scripts/monday.py list-boards
+python3 /mnt/skills/user/monday/scripts/monday.py list-boards --limit 50
+```
+
+### Get board details (columns, groups)
+```bash
+python3 /mnt/skills/user/monday/scripts/monday.py get-board <board_id>
+```
+
+### List items on a board
+```bash
+python3 /mnt/skills/user/monday/scripts/monday.py list-items <board_id>
+python3 /mnt/skills/user/monday/scripts/monday.py list-items <board_id> --limit 50
+```
+
+### List workspaces
+```bash
+python3 /mnt/skills/user/monday/scripts/monday.py list-workspaces
+```
+
+### List users
+```bash
+python3 /mnt/skills/user/monday/scripts/monday.py list-users
+```
+
+## Notes
+
+- Free plan: 2 seats, unlimited boards. API access works on free.
+- Board IDs are numeric — find them in the board URL or via `list-boards`.
+- Monday uses GraphQL only (single endpoint). No REST API.
+- API version pinned to `2024-04`.

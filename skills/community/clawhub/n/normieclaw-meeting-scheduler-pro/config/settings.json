@@ -1,0 +1,47 @@
+{
+  "availability": {
+    "working_hours": {
+      "start": "09:00",
+      "end": "17:00",
+      "timezone": "America/New_York"
+    },
+    "buffer_minutes": 15,
+    "no_meeting_blocks": [
+      {
+        "day": "Wednesday",
+        "start": "09:00",
+        "end": "12:00",
+        "label": "Deep work"
+      }
+    ],
+    "preferred_times": {
+      "external_calls": "morning",
+      "internal_meetings": "afternoon"
+    },
+    "max_meetings_per_day": 6,
+    "lunch_block": {
+      "start": "12:00",
+      "end": "13:00"
+    }
+  },
+  "meeting_defaults": {
+    "duration_minutes": 30,
+    "video_link": "",
+    "reminder_minutes": 10
+  },
+  "prep": {
+    "auto_prep": true,
+    "include_web_search": true,
+    "include_email_context": true
+  },
+  "followup": {
+    "auto_prompt": true,
+    "create_tasks": true,
+    "draft_email": true
+  },
+  "notes_directory": "meeting-notes",
+  "integrations": {
+    "relationship_buddy": false,
+    "project_manager_pro": false
+  }
+}

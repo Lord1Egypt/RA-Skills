@@ -1,35 +1,37 @@
 ---
-name: "Nansen Defi Positions"
+name: nansen-defi-positions
 description: "What DeFi positions does a wallet hold? Protocol-by-protocol breakdown of assets, debts, and rewards across chains."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/nansen-defi-positions"
-sourceUrl: "https://clawhub.ai/skills/nansen-defi-positions"
+metadata:
+  openclaw:
+    requires:
+      env:
+        - NANSEN_API_KEY
+      bins:
+        - nansen
+    primaryEnv: NANSEN_API_KEY
+    install:
+      - kind: node
+        package: nansen-cli
+        bins: [nansen]
+allowed-tools: Bash(nansen:*)
 ---
 
-# Nansen Defi Positions
+# DeFi Exposure
 
-> What DeFi positions does a wallet hold? Protocol-by-protocol breakdown of assets, debts, and rewards across chains.
+**Answers:** "What DeFi positions does this wallet have across protocols?"
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/nansen-defi-positions`
-- **Source URL:** [https://clawhub.ai/skills/nansen-defi-positions](https://clawhub.ai/skills/nansen-defi-positions)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/nansen-defi-positions
+ADDR=<address>
+
+nansen research portfolio defi --wallet $ADDR
+# → protocol_name, chain, total_value_usd, total_assets_usd, total_debts_usd, total_rewards_usd, tokens
+
+nansen research profiler balance --address $ADDR --chain ethereum
+# → token_symbol, token_name, token_amount, value_usd per holding
+
+nansen research profiler balance --address $ADDR --chain base
 ```
+
+Combine DeFi positions (lending, LPs, staking) with spot balances for a complete picture of on-chain exposure.
+
+Note: portfolio defi may return empty for wallets with no tracked DeFi positions.

@@ -1,35 +1,32 @@
 ---
-name: "Memory Vault"
-description: "Enables autonomous agents to store, retrieve, and recall long-term, durable memory fragments and state across independent sessions."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ndpsoftware-memory-vault"
-sourceUrl: "https://clawhub.ai/skills/ndpsoftware-memory-vault"
+title: "NDP Memory Vault"
+slug: "memory-vault"
+category: "skills"
+tags: ["long-term-memory", "persistent-vault", "headless-storage", "state recall"]
+version: "1.0.0"
+agent_type: ["any"]
+author: "ndpsoftware"
+endpoint_url: "https://memory-vault.ndpsoftware.com"
+auth_type: "bearer_token"
 ---
 
-# Memory Vault
+# NDP Memory Vault Skill
 
-> Enables autonomous agents to store, retrieve, and recall long-term, durable memory fragments and state across independent sessions.
+This skill connects autonomous bots (eg. OpenClaw) to the persistent cloud storage backend.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ndpsoftware-memory-vault`
-- **Source URL:** [https://clawhub.ai/skills/ndpsoftware-memory-vault](https://clawhub.ai/skills/ndpsoftware-memory-vault)
+## Programmatic Capabilities
 
-## Overview
+Agents can use this endpoint to append logs, retain vector fragments, and recall state variables across independent, headless environment lifecycles.
 
+## Intended Use
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/ndpsoftware-memory-vault
-```
+- Store durable notes and execution state.
+- Retrieve prior context between sessions.
+- Keep lightweight memory fragments for long-running agents.
+- Persist agent preferences, project notes, and task state.
+- Cache reusable context for headless or multi-step workflows.
+- Record compact summaries that can be recalled later.
+
+## Search Keywords
+
+OpenClaw, bot memory, agent memory, persistent memory, long-term context, session memory, durable memory, knowledge vault, state recall, notes, reminders, storage, vector fragments, session state, persistent storage, headless agent, autonomous bot

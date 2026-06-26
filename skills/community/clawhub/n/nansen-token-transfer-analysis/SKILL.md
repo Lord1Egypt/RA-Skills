@@ -1,35 +1,40 @@
 ---
-name: "Nansen Token Transfer Analysis"
+name: nansen-token-transfer-analysis
 description: "Where is this token moving and why? Large transfers, flow trends over time, and breakdown by wallet label."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/nansen-token-transfer-analysis"
-sourceUrl: "https://clawhub.ai/skills/nansen-token-transfer-analysis"
+metadata:
+  openclaw:
+    requires:
+      env:
+        - NANSEN_API_KEY
+      bins:
+        - nansen
+    primaryEnv: NANSEN_API_KEY
+    install:
+      - kind: node
+        package: nansen-cli
+        bins: [nansen]
+allowed-tools: Bash(nansen:*)
 ---
 
-# Nansen Token Transfer Analysis
+# Token Forensics
 
-> Where is this token moving and why? Large transfers, flow trends over time, and breakdown by wallet label.
+**Answers:** "Where is this token moving? Who is sending it and where?"
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/nansen-token-transfer-analysis`
-- **Source URL:** [https://clawhub.ai/skills/nansen-token-transfer-analysis](https://clawhub.ai/skills/nansen-token-transfer-analysis)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/nansen-token-transfer-analysis
+TOKEN=<address> CHAIN=ethereum
+# Examples: UNI on ethereum (0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984)
+#           BONK on solana (DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263)
+# Note: token flows does NOT support stablecoins (USDC, USDT, etc.) — use non-stablecoin tokens
+
+nansen research token transfers --token $TOKEN --chain $CHAIN --days 7 --limit 20
+# → from_address_label, to_address_label, transfer_amount, transfer_value_usd
+
+nansen research token flows --token $TOKEN --chain $CHAIN --days 7 --limit 20
+# → date, price_usd, holders_count, total_inflows_count, total_outflows_count
+# ⚠ Returns HTTP 422 for stablecoins — skip this command if TOKEN is a stablecoin
+
+nansen research token flow-intelligence --token $TOKEN --chain $CHAIN
+# → net_flow_usd per label: smart_trader, whale, exchange, fresh_wallets, public_figure
 ```
+
+Rising exchange_net_flow + large transfers to exchange addresses = potential sell pressure. Fresh wallet inflows may signal new interest or wash trading.

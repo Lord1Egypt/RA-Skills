@@ -1,0 +1,41 @@
+{
+  "skill_name": "nail-b3g1-promo",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "We sell nail polish (cat-eye and matte lines) and want to run a 'buy 3 get 1 free' offer. Qualifying products are the whole nail polish collection. We're on Shopify. What rule do you recommend and how do we automate it? Include PDP and cart copy.",
+      "expected_output": "B3G1 rule (3 paid, 1 free cheapest), automation option (cart or campaign), at least one PDP and one cart copy line. Scope = nail polish collection.",
+      "files": [],
+      "expectations": [
+        "The output includes a B3G1 rule (qualifying quantity 3, free item 1, qualifying products stated).",
+        "The output states or implies cheapest-of-4-free or equivalent free-item logic.",
+        "The output includes an automation option (cart rule, campaign, or app).",
+        "The output includes at least one ready-to-use PDP copy line.",
+        "The output includes at least one cart copy line or cart display description.",
+        "Qualifying scope is limited to nail polish or the collection named."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "How do I set up buy 3 get 1 free for press-on nails on Shopify? We want it to run automatically in the cart when someone adds 4 items. We use Rijoy for loyalty.",
+      "expected_output": "B3G1 rule for press-on, cart auto-apply recommendation, and a note on Rijoy integration or campaign usage.",
+      "files": [],
+      "expectations": [
+        "The output includes a B3G1 rule definition (qualifying products, free-item logic).",
+        "The output recommends or describes cart auto-apply when 4 items are in cart.",
+        "The output mentions Rijoy or loyalty/campaign integration."
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "We want a weekend-only B3G1 for our gel-effect nail polish. Margin is tight so we need to exclude the new launch. Suggest the rule, automation trigger, and one banner line.",
+      "expected_output": "B3G1 rule with exclusions (new launch), time-bound (weekend), automation trigger, and one ready-to-use banner copy line.",
+      "files": [],
+      "expectations": [
+        "The output includes a B3G1 rule with an exclusion (e.g. new launch).",
+        "The output specifies time-bound (weekend) or campaign trigger.",
+        "The output includes at least one banner or promotional copy line."
+      ]
+    }
+  ]
+}

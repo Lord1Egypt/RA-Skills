@@ -1,35 +1,42 @@
----
-name: "Neuro Scalp"
-description: "AI-driven high-frequency crypto scalping bot for OKX with reinforcement learning, dynamic risk control, and real-time market data monitoring."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/neuro-scalp"
-sourceUrl: "https://clawhub.ai/skills/neuro-scalp"
----
+# Neuro Scalp - AI 加密货币剥头皮交易机器人
 
-# Neuro Scalp
+## 🤖 技能描述
 
-> AI-driven high-frequency crypto scalping bot for OKX with reinforcement learning, dynamic risk control, and real-time market data monitoring.
+AI 驱动的高频量化交易机器人，专为加密货币剥头皮策略设计。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/neuro-scalp`
-- **Source URL:** [https://clawhub.ai/skills/neuro-scalp](https://clawhub.ai/skills/neuro-scalp)
+### ✨ 核心功能
+- **交易平台**: OKX 合约/现货（支持测试网）
+- **运行模式**: 7x24 全自动交易
+- **AI 核心**: 强化学习 (PPO/SAC) + LSTM + 在线学习
+- **交易策略**: 订单簿失衡、流动性扫描、均值回归、动量策略
+- **风控系统**: 动态仓位管理、自动止损、每日熔断机制
 
-## Overview
+### 🛠️ 技术架构
+- **数据层**: WebSocket 实时行情、Redis 高速缓存
+- **特征工程**: 订单簿失衡、微价格、波动率压缩检测
+- **执行引擎**: PostOnly 挂单、滑点控制
+- **监控面板**: FastAPI + Plotly 实时可视化
 
+### 📦 安装说明
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/neuro-scalp
-```
+1. 克隆技能：`clawhub install neuro-scalp`
+2. 安装依赖：`pip install -r requirements.txt`
+3. 配置环境变量：`cp .env.example .env`
+4. 运行：`python main.py`
+
+### ⚠️ 风险提示
+
+- 仅供学习研究使用
+- 实盘交易存在风险
+- 建议先测试网验证
+- 务必设置合理止损
+
+### 💰 定价
+
+- **基础版**: 免费（测试网 + 基础策略）
+- **高级版**: $9.99/月（实盘 + 全部功能）
+- **终身版**: $49.99（一次买断）
+
+### 📝 版本
+
+v1.0.0 | MIT License

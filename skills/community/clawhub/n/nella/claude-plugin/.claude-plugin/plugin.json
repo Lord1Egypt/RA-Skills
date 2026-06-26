@@ -1,0 +1,8 @@
+{
+  "name": "nella",
+  "description": "Nella — codebase intelligence for AI coding agents. Adds /nella slash command for code search, context tracking, assumptions, and dependency checking.",
+  "author": {
+    "name": "Nella Labs",
+    "url": "https://github.com/usenella"
+  }
+}

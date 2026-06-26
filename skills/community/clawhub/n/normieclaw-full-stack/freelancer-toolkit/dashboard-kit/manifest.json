@@ -1,0 +1,65 @@
+{
+  "name": "Freelancer Toolkit Dashboard",
+  "version": "1.0.0",
+  "prefix": "ft_",
+  "description": "Dashboard widgets for freelance time tracking, client billing, and project profitability.",
+  "data_source": "~/.freelancer-toolkit/",
+  "widgets": [
+    {
+      "id": "ft_hours_by_client",
+      "name": "Hours by Client",
+      "type": "donut_chart",
+      "description": "Donut chart showing hours logged per client for the current month.",
+      "data_files": ["time-entries.json", "clients.json"],
+      "refresh_interval": "1h",
+      "size": "medium"
+    },
+    {
+      "id": "ft_weekly_trend",
+      "name": "Weekly Hours Trend",
+      "type": "bar_chart",
+      "description": "Bar chart of total hours logged per week over the past 8 weeks. Stacked by billable vs non-billable.",
+      "data_files": ["time-entries.json"],
+      "refresh_interval": "1h",
+      "size": "wide"
+    },
+    {
+      "id": "ft_profitability_table",
+      "name": "Project Profitability",
+      "type": "table",
+      "description": "Table of active projects showing quoted price, hours logged, budget percentage, and effective hourly rate. Color-coded: green (on track), yellow (80%+ budget), red (over budget).",
+      "data_files": ["projects.json", "time-entries.json"],
+      "refresh_interval": "1h",
+      "size": "wide",
+      "columns": [
+        "project_name",
+        "client_name",
+        "billing_type",
+        "quoted_price",
+        "hours_logged",
+        "budget_pct",
+        "effective_rate",
+        "status_indicator"
+      ]
+    },
+    {
+      "id": "ft_unbilled_alert",
+      "name": "Unbilled Hours Alert",
+      "type": "alert_cards",
+      "description": "Alert cards for clients with significant unbilled hours. Shows client name, unbilled hours, estimated unbilled amount, and days since last invoice.",
+      "data_files": ["time-entries.json", "clients.json"],
+      "refresh_interval": "6h",
+      "size": "medium",
+      "threshold_hours": 20
+    },
+    {
+      "id": "ft_revenue_pipeline",
+      "name": "Revenue Pipeline",
+      "type": "stacked_bar",
+      "description": "Stacked bar chart per client showing three segments: paid (green), billed but unpaid (yellow), and unbilled tracked time (red). Gives a full picture of revenue flow.",
+      "data_files": ["clients.json", "time-entries.json", "projects.json"],
+      "refresh_interval": "6h",
+      "size": "wide"
+    }
+  ]
+}

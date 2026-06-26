@@ -1,0 +1,121 @@
+{
+  "skill": "language-tutor-pro",
+  "prefix": "lt_",
+  "version": "1.0.0",
+  "icon": "🎓",
+  "label": "Language Tutor",
+  "route": "/language-tutor",
+  "data_source": "data/dashboard-export.json",
+  "refresh_command": "bash scripts/export-progress.sh",
+  "tables": [
+    {
+      "name": "lt_sessions",
+      "source": "data/sessions.jsonl",
+      "description": "Session log with type, duration, language, errors, and new vocabulary count.",
+      "columns": [
+        { "key": "id", "type": "string", "label": "Session ID" },
+        { "key": "date", "type": "date", "label": "Date" },
+        { "key": "language", "type": "string", "label": "Language" },
+        { "key": "type", "type": "string", "label": "Session Type" },
+        { "key": "duration_minutes", "type": "number", "label": "Duration (min)" },
+        { "key": "new_vocab", "type": "number", "label": "New Words" },
+        { "key": "errors_corrected", "type": "number", "label": "Errors" },
+        { "key": "grammar_points", "type": "array", "label": "Grammar Points" }
+      ]
+    },
+    {
+      "name": "lt_vocabulary",
+      "source": "data/vocabulary.jsonl",
+      "description": "Full vocabulary ledger with SRS state.",
+      "columns": [
+        { "key": "word", "type": "string", "label": "Word" },
+        { "key": "translation", "type": "string", "label": "Translation" },
+        { "key": "language", "type": "string", "label": "Language" },
+        { "key": "level", "type": "string", "label": "Level" },
+        { "key": "added", "type": "date", "label": "Added" },
+        { "key": "next_review", "type": "date", "label": "Next Review" },
+        { "key": "interval_days", "type": "number", "label": "Interval" },
+        { "key": "ease_factor", "type": "number", "label": "Ease" },
+        { "key": "correct_streak", "type": "number", "label": "Streak" },
+        { "key": "tags", "type": "array", "label": "Tags" }
+      ]
+    },
+    {
+      "name": "lt_grammar",
+      "source": "data/grammar.jsonl",
+      "description": "Grammar tracker with status and error rates.",
+      "columns": [
+        { "key": "rule", "type": "string", "label": "Rule" },
+        { "key": "language", "type": "string", "label": "Language" },
+        { "key": "level", "type": "string", "label": "Level" },
+        { "key": "status", "type": "string", "label": "Status" },
+        { "key": "examples_seen", "type": "number", "label": "Examples" },
+        { "key": "errors", "type": "number", "label": "Errors" },
+        { "key": "last_practiced", "type": "date", "label": "Last Practiced" }
+      ]
+    },
+    {
+      "name": "lt_progress",
+      "source": "data/dashboard-export.json",
+      "path": "learner.languages",
+      "description": "Aggregate progress metrics per language.",
+      "columns": [
+        { "key": "language", "type": "string", "label": "Language" },
+        { "key": "level", "type": "string", "label": "CEFR Level" },
+        { "key": "vocabulary_total", "type": "number", "label": "Total Vocab" },
+        { "key": "vocabulary_mastered", "type": "number", "label": "Mastered Vocab" },
+        { "key": "grammar_rules_total", "type": "number", "label": "Grammar Rules" },
+        { "key": "grammar_mastered", "type": "number", "label": "Grammar Mastered" },
+        { "key": "total_sessions", "type": "number", "label": "Sessions" },
+        { "key": "total_minutes", "type": "number", "label": "Minutes" },
+        { "key": "current_streak", "type": "number", "label": "Streak" },
+        { "key": "avg_accuracy", "type": "number", "label": "Accuracy" }
+      ]
+    }
+  ],
+  "widgets": [
+    {
+      "type": "stat",
+      "label": "Current Streak",
+      "source": "lt_progress",
+      "field": "current_streak",
+      "suffix": " days"
+    },
+    {
+      "type": "stat",
+      "label": "Words Learned",
+      "source": "lt_progress",
+      "field": "vocabulary_total"
+    },
+    {
+      "type": "stat",
+      "label": "Grammar Mastered",
+      "source": "lt_progress",
+      "field": "grammar_mastered"
+    },
+    {
+      "type": "chart",
+      "chart_type": "line",
+      "label": "Vocabulary Growth",
+      "source": "lt_sessions",
+      "x": "date",
+      "y": "new_vocab",
+      "cumulative": true
+    },
+    {
+      "type": "chart",
+      "chart_type": "bar",
+      "label": "Session Activity",
+      "source": "lt_sessions",
+      "x": "date",
+      "y": "duration_minutes"
+    },
+    {
+      "type": "chart",
+      "chart_type": "doughnut",
+      "label": "Grammar Status",
+      "source": "lt_grammar",
+      "group_by": "status"
+    }
+  ]
+}

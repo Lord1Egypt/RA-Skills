@@ -1,0 +1,171 @@
+# ─────────────────────────────────────────────────────────────
+# ClawHub Tool Manifest — https://clawhub.ai
+# ─────────────────────────────────────────────────────────────
+
+name: mindclaw
+display_name: MindClaw
+version: 0.3.1
+description: >
+  Persistent memory and knowledge graph for AI agents.
+  Remember everything, forget nothing.
+  Fully integrated with OpenClaw: syncs to MEMORY.md, imports daily logs,
+  and uses the same hybrid BM25 + semantic search pipeline.
+
+author: Blue8x
+license: MIT
+homepage: https://github.com/Blue8x/Clawtion
+repository: https://github.com/Blue8x/Clawtion
+
+# ── Compatibility ────────────────────────────────────────────
+
+runtime: python
+python_requires: ">=3.10"
+install_command: pip install mindclaw[mcp]
+entry_point: mindclaw.mcp_server:serve
+transport: stdio
+agent_install_command: pip install mindclaw[mcp] && mindclaw mcp install
+
+# ── Categories & tags ────────────────────────────────────────
+
+category: memory
+tags:
+  - memory
+  - knowledge-graph
+  - agent-tool
+  - sqlite
+  - recall
+  - capture
+  - mcp
+  - openclaw-native
+
+# ── OpenClaw integration ─────────────────────────────────────
+
+openclaw:
+  memory_bridge: true          # writes to MEMORY.md; readable by memory_search
+  search_compat: bm25+semantic  # mirrors OpenClaw hybrid pipeline
+  namespace_support: true       # per-agent isolation via --agent flag
+
+# ── Capabilities exposed to agent runtimes ───────────────────
+
+capabilities:
+  - name: remember
+    description: Store a new memory with optional importance, tags, category, and pin flag
+    usage: mindclaw remember "<content>" -c <category> -t <tags> -i <importance> [--pin]
+
+  - name: recall
+    description: Search memories — BM25 + Ollama semantic (if running). Supports --decay and --mmr.
+    usage: mindclaw recall "<query>" -n <limit> [--decay] [--halflife 30] [--mmr]
+
+  - name: setup
+    description: Interactive setup wizard — configure workspace, agent name, DB path, MCP registration, and initial sync in one command
+    usage: mindclaw setup
+
+  - name: sync
+    description: Export memories to OpenClaw's MEMORY.md so they appear in native memory_search
+    usage: mindclaw sync [--to PATH] [--workspace PATH]
+
+  - name: md-import
+    description: Import memories from an OpenClaw MEMORY.md or YYYY-MM-DD.md daily log
+    usage: mindclaw md-import <file> [--source label]
+
+  - name: get
+    description: Retrieve a single memory by ID
+    usage: mindclaw get <id>
+
+  - name: list
+    description: List memories with filters (category, tag, pinned)
+    usage: mindclaw list -c <category> -t <tag> -n <limit> [--pinned]
+
+  - name: forget
+    description: Archive or hard-delete a memory (pinned memories are protected)
+    usage: mindclaw forget <id> [--hard]
+
+  - name: pin
+    description: Pin a memory so it is never decayed or auto-archived
+    usage: mindclaw pin <id>
+
+  - name: unpin
+    description: Remove pin from a memory
+    usage: mindclaw unpin <id>
+
+  - name: confirm
+    description: Reinforce a memory, boosting its importance score
+    usage: mindclaw confirm <id>
+
+  - name: link
+    description: Create a relation between two memories
+    usage: mindclaw link <source_id> <target_id> -r <relation> [-b]
+
+  - name: graph
+    description: Show knowledge subgraph around a memory
+    usage: mindclaw graph <id> -d <depth> [--json]
+
+  - name: capture
+    description: Auto-extract memories from text (decisions, errors, preferences, TODOs)
+    usage: mindclaw capture "<text>" [--dry-run]
+
+  - name: timeline
+    description: Show memories created in the last N hours in chronological order
+    usage: mindclaw timeline --hours <N> -n <limit>
+
+  - name: context
+    description: Build a token-limited context block ready for LLM prompt injection
+    usage: mindclaw context "<query>" --max-tokens <N> --format markdown|plain|xml
+
+  - name: conflicts
+    description: Check if content conflicts with existing memories before storing
+    usage: mindclaw conflicts "<content>"
+
+  - name: consolidate
+    description: Find and merge near-duplicate memories automatically
+    usage: mindclaw consolidate [--threshold 0.85]
+
+  - name: stats
+    description: Show memory store statistics including pinned count and agent breakdown
+    usage: mindclaw stats
+
+  - name: decay
+    description: Apply importance decay and archive stale memories (pinned are skipped)
+    usage: mindclaw decay --threshold <value>
+
+  - name: export
+    description: Export all memories to JSON
+    usage: mindclaw export -o <file>
+
+  - name: import
+    description: Import memories from JSON backup
+    usage: mindclaw import <file> [--replace]
+
+  - name: mcp_install
+    description: Register MindClaw as an MCP tool in Claude Desktop or OpenClaw
+    usage: mindclaw mcp install --target claude|openclaw
+
+  - name: setup_mindclaw
+    description: "[MCP tool] One-call setup: save config, register OpenClaw MCP, initial sync — designed for agent onboarding"
+
+  - name: sync_openclaw
+    description: "[MCP tool] Sync memories to OpenClaw MEMORY.md in one tool call"
+
+  - name: import_markdown
+    description: "[MCP tool] Import bullets from any OpenClaw Markdown memory file"
+
+# ── Configuration ────────────────────────────────────────────
+
+config:  config_file:
+    description: Persistent config file (written by `mindclaw setup`)
+    default: ~/.mindclaw/config.json  db_path:
+    description: Path to SQLite database
+    default: ~/.mindclaw/memory.db
+    env: MINDCLAW_DB
+  agent_id:
+    description: Default agent namespace
+    default: ""
+    env: MINDCLAW_AGENT
+  openclaw_workspace:
+    description: Path to OpenClaw workspace for sync
+    default: ~/.openclaw/workspace
+    env: MINDCLAW_OPENCLAW_WORKSPACE
+
+# ── Health check ─────────────────────────────────────────────
+
+healthcheck: mindclaw stats

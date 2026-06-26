@@ -1,0 +1,19 @@
+{
+  "name": "multi-role",
+  "version": "1.0.0",
+  "description": "为 AI Agent 提供多角色协作治理框架，内置大管家、产品经理、研发、测试、CTO、内容运营、行政助理 7 种角色宪法与 SOP，支持角色切换、并行任务调度、迭代复盘和质量评分，适合复杂任务的结构化协作场景。",
+  "author": "OpenClaw Team",
+  "license": "MIT",
+  "keywords": [
+    "multi-agent",
+    "multi-role",
+    "governance",
+    "workflow",
+    "parallel",
+    "sop"
+  ],
+  "openclaw": {
+    "minVersion": "2026.3.0",
+    "skillId": "multi-role"
+  }
+}

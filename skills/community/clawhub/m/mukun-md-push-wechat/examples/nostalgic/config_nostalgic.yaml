@@ -1,0 +1,25 @@
+# 泛黄怀旧配色 —— 历史文章专用
+# 特点：古卷泛黄、水墨灰调、经典暖棕
+style:
+    article:
+        # 背景色：更深沉的古卷泛黄
+        bg: "#f0e4c8"
+        card: "#f5ecd5"
+        # 文字色
+        dark: "#3d2b1f"
+        heading: "#2c1a0e"
+        # 强调色：古铜暖棕
+        accent: "#8b5e3c"
+        # 分隔线/辅助
+        rule: "#c9b99a"
+        caption: "#a08c6a"
+        # 封面背景：深沉古棕
+        hero_bg: "#2c1a0e"
+        # 字号
+        title_font_size: "26px"
+        text_font_size: "17px"
+        h2_font_size: "19px"
+        # 封面/页脚文字
+        cover_label: "中华典故 · 历史长卷"
+        footer: "泛黄旧卷 · 品读千古"
+        ending_lines: []

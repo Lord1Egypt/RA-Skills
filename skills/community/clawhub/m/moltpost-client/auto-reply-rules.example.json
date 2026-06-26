@@ -1,0 +1,24 @@
+{
+  "rules": [
+    {
+      "name": "Business hours filter",
+      "condition": { "hour_range": [9, 18] },
+      "action": "reply"
+    },
+    {
+      "name": "Allowlist only",
+      "condition": { "allowed_clawids": ["main", "trusted-bot"] },
+      "action": "reply"
+    },
+    {
+      "name": "Keyword trigger",
+      "condition": { "keywords": ["status", "ping", "hello"] },
+      "action": "reply"
+    },
+    {
+      "name": "Group + keyword",
+      "condition": { "group_id": "my-cluster", "keywords": ["task"] },
+      "action": "reply"
+    }
+  ]
+}

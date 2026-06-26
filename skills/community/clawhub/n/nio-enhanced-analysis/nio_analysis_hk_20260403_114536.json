@@ -1,0 +1,117 @@
+{
+  "market": "港股 (09866.HK)",
+  "analysis_time": "2026-04-03 11:45:36",
+  "price_data": {
+    "symbol": "09866.HK",
+    "name": "蔚来-SW",
+    "market": "HKEX",
+    "currency": "HKD",
+    "current_price": 48.76,
+    "change": 0.06,
+    "change_percent": 0.13,
+    "open": 48.42,
+    "high": 49.62,
+    "low": 47.84,
+    "volume": "5.9M",
+    "market_cap": "85.3B HKD",
+    "timestamp": "2026-04-03 11:45:36"
+  },
+  "technical_analysis": {
+    "trend": "上涨趋势",
+    "trend_strength": "强势",
+    "support_levels": [
+      47.0,
+      45.5,
+      44.0
+    ],
+    "resistance_levels": [
+      50.0,
+      52.0,
+      55.0
+    ],
+    "ma_20": 48.0,
+    "ma_50": 46.5,
+    "rsi": 62,
+    "rsi_signal": "中性",
+    "volume_trend": "缩量"
+  },
+  "news_sentiment": {
+    "news_items": [
+      {
+        "title": "蔚来3月交付量同比增长25%，超出市场预期",
+        "source": "财经网",
+        "sentiment": "positive",
+        "impact": "high",
+        "summary": "蔚来汽车公布3月交付数据，共交付新车12,850辆，同比增长25%，环比增长15%，超出市场预期的12,000辆。"
+      },
+      {
+        "title": "蔚来获中东主权基金追加投资5亿美元",
+        "source": "路透社",
+        "sentiment": "positive",
+        "impact": "medium",
+        "summary": "阿联酋主权财富基金Mubadala宣布向蔚来追加投资5亿美元，显示对蔚来长期发展的信心。"
+      },
+      {
+        "title": "新能源汽车价格战持续，蔚来面临竞争压力",
+        "source": "华尔街见闻",
+        "sentiment": "neutral",
+        "impact": "medium",
+        "summary": "随着特斯拉再次降价，国内新能源汽车价格战加剧，蔚来面临更大的市场竞争压力。"
+      },
+      {
+        "title": "蔚来电池租赁服务用户突破50万",
+        "source": "新浪财经",
+        "sentiment": "positive",
+        "impact": "low",
+        "summary": "蔚来电池租赁服务BaaS用户数量突破50万，显示其商业模式得到市场认可。"
+      }
+    ],
+    "sentiment_score": 0.75,
+    "overall_sentiment": "积极",
+    "key_theme": "交付量增长、资本支持、行业竞争"
+  },
+  "market_sentiment": {
+    "analyst_ratings": {
+      "buy": 12,
+      "hold": 8,
+      "sell": 3,
+      "average_target": 7.2,
+      "upside_potential": "19%"
+    },
+    "social_sentiment": {
+      "twitter_bullish": 65,
+      "twitter_bearish": 25,
+      "twitter_neutral": 10,
+      "trending_topics": [
+        "#NIO",
+        "#EVstocks",
+        "#蔚来"
+      ]
+    },
+    "institutional_activity": {
+      "net_buying": "轻度净买入",
+      "major_buyers": [
+        "BlackRock",
+        "Vanguard",
+        "Fidelity"
+      ],
+      "options_activity": "看涨期权活跃度增加"
+    }
+  },
+  "trading_recommendation": {
+    "recommendation": "买入",
+    "confidence": "高",
+    "reasoning": "技术面良好，新闻情绪积极，分析师普遍看好",
+    "target_price": 56.07,
+    "stop_loss": 44.86,
+    "position_sizing": "建议仓位：不超过总资金的5%",
+    "time_horizon": "1-3个月",
+    "risk_level": "中等",
+    "key_risks": [
+      "行业竞争加剧",
+      "宏观经济波动",
+      "政策变化风险",
+      "供应链风险"
+    ]
+  }
+}

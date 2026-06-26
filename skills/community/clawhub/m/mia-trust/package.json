@@ -1,0 +1,31 @@
+{
+  "name": "mia-trust",
+  "version": "1.0.0",
+  "description": "MIA-Trust - Memory-Intelligent Assistant Trust Pipeline（信任守门+记忆进化 pipeline）",
+  "type": "module",
+  "bin": {
+    "mia-trust": "./run.mjs"
+  },
+  "keywords": [
+    "memory",
+    "planner",
+    "trust",
+    "security",
+    "pipeline",
+    "guard",
+    "openclaw"
+  ],
+  "license": "ISC",
+  "scripts": {
+    "install-trust-exp": "node _sync_trust_exp.mjs",
+    "postinstall": "npm run install-trust-exp"
+  },
+  "dependencies": {
+    "node-fetch": "^3.3.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourname/mia-trust"
+  },
+  "homepage": "https://github.com/yourname/mia-trust"
+}

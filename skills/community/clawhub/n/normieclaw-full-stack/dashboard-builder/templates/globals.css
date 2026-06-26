@@ -1,0 +1,98 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
+@layer base {
+  :root {
+    /* Backgrounds */
+    --bg-950: #050816;
+    --bg-900: #0a1220;
+    --bg-850: #101826;
+
+    /* Surfaces */
+    --surface-1: #0d1320cc;
+    --surface-2: #ffffff0d;
+    --surface-3: #ffffff14;
+
+    /* Borders */
+    --border-soft: #ffffff17;
+    --border-strong: #ffffff29;
+
+    /* Text */
+    --text-1: #f6f7fb;
+    --text-2: #ecf0f7d6;
+    --text-3: #c9d0e09e;
+
+    /* Accent — Teal (Primary) */
+    --teal-500: #14b8a6;
+    --teal-400: #2dd4bf;
+    --teal-300: #5eead4;
+
+    /* Accent — Orange (Secondary / Warnings) */
+    --orange-500: #f97316;
+    --orange-400: #fb923c;
+
+    /* Status Colors */
+    --status-success: #22c55e;
+    --status-warning: #eab308;
+    --status-error: #ef4444;
+    --status-info: #3b82f6;
+
+    /* Shadows */
+    --shadow-card: 0 0 0 1px rgba(20, 184, 166, 0.14), 0 20px 60px rgba(6, 182, 212, 0.16);
+    --shadow-card-hover: 0 0 0 1px rgba(20, 184, 166, 0.25), 0 25px 70px rgba(6, 182, 212, 0.22);
+    --shadow-orange: 0 0 0 1px rgba(249, 115, 22, 0.14), 0 20px 60px rgba(249, 115, 22, 0.16);
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
+    --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.5);
+  }
+
+  * {
+    border-color: var(--border-soft);
+  }
+
+  body {
+    background-color: var(--bg-950);
+    color: var(--text-1);
+    font-family: 'Manrope', 'Inter', system-ui, -apple-system, sans-serif;
+  }
+
+  /* Scrollbar styling */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--border-strong);
+    border-radius: 3px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--text-3);
+  }
+}
+
+@layer components {
+  .noise-overlay {
+    position: relative;
+  }
+
+  .noise-overlay::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url('/noise.svg');
+    background-repeat: repeat;
+    opacity: 0.03;
+    pointer-events: none;
+    border-radius: inherit;
+    z-index: 1;
+  }
+}

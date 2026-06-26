@@ -1,0 +1,35 @@
+{
+  "name": "newspulse",
+  "version": "0.1.2",
+  "description": "📰 NewsPulse - 加密货币新闻聚合，10+ 媒体源实时推送",
+  "main": "scripts/news.mjs",
+  "type": "module",
+  "scripts": {
+    "news": "node scripts/news.mjs",
+    "search": "node scripts/search.mjs",
+    "test": "node scripts/news.mjs --limit 10"
+  },
+  "keywords": [
+    "crypto",
+    "news",
+    "media",
+    "rss",
+    "coindesk",
+    "cointelegraph"
+  ],
+  "author": "@gztanht",
+  "license": "MIT",
+  "dependencies": {
+    "node-fetch": "^3.3.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gztanht/newspulse"
+  },
+  "homepage": "https://clawhub.com/skills/newspulse",
+  "funding": {
+    "type": "crypto",
+    "usdt": "0x33f943e71c7b7c4e88802a68e62cca91dab65ad9",
+    "usdc": "0xcb5173e3f5c2e32265fbbcaec8d26d49bf290e44"
+  }
+}

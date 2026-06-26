@@ -1,0 +1,35 @@
+# 多角色音频生成器Skill使用说明
+
+## 安装状态：
+✅ Edge TTS已安装（在虚拟环境中）
+✅ FFmpeg已安装
+✅ Python3已安装
+
+## 使用方法：
+1. 激活虚拟环境：
+   ```
+   source venv/bin/activate
+   ```
+
+2. 运行生成器：
+   ```
+   ./scripts/multirole-generator-final.sh --help
+   ```
+
+3. 生成音频：
+   ```
+   ./scripts/multirole-generator-final.sh --input 脚本文件.txt --output 音频文件.mp3
+   ```
+
+## 虚拟环境路径：
+- `venv/bin/activate`
+- `venv/bin/edge-tts`
+
+## 测试命令：
+```
+source venv/bin/activate
+edge-tts --text "测试" --write-media test.mp3
+```
+
+## 注意：
+安装脚本可能检测不到虚拟环境中的edge-tts，但实际已安装可用。

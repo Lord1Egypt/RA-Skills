@@ -1,0 +1,80 @@
+{
+  "failures": [
+    {
+      "id": "f1a2b3c4-d5e6-7890-abcd-ef1234567890",
+      "timestamp": "2024-11-15T14:30:00",
+      "printer": "Bambu Lab P1S",
+      "material": "PETG",
+      "material_brand": "Polymaker",
+      "failure_type": "stringing",
+      "description": "Heavy stringing between towers on the calibration print. Lots of wispy hairs everywhere.",
+      "slicer_settings": {
+        "temperature": 235,
+        "bed_temp": 80,
+        "retraction_distance_mm": 1.0,
+        "retraction_speed_mms": 45,
+        "print_speed_mms": 200,
+        "cooling_fan_pct": 80
+      },
+      "fixed_by": "Reduced temperature to 230°C and enabled wipe on loop. Also dried filament for 4 hours at 55°C.",
+      "notes": "PETG from the new spool had been sitting out for 3 weeks. Suspect moisture was a factor."
+    },
+    {
+      "id": "a9b8c7d6-e5f4-3210-fedc-ba9876543210",
+      "timestamp": "2024-11-20T09:15:00",
+      "printer": "Prusa MK4",
+      "material": "PLA",
+      "material_brand": "Prusament",
+      "failure_type": "warping",
+      "description": "Corner of a 200x80mm flat plate lifted during print around layer 15. Used smooth PEI sheet.",
+      "slicer_settings": {
+        "temperature": 215,
+        "bed_temp": 60,
+        "retraction_distance_mm": 3.5,
+        "retraction_speed_mms": 45,
+        "print_speed_mms": 180,
+        "brim_width_mm": 0
+      },
+      "fixed_by": "Added 10mm brim, raised bed temp to 65°C, disabled cooling for first 5 layers.",
+      "notes": "No brim was the main issue. Large flat part needs brim on smooth PEI."
+    },
+    {
+      "id": "11223344-5566-7788-99aa-bbccddeeff00",
+      "timestamp": "2024-11-28T16:45:00",
+      "printer": "Bambu Lab P1S",
+      "material": "PETG",
+      "material_brand": "Polymaker",
+      "failure_type": "stringing",
+      "description": "Stringing again on a vase print. Not as bad as last time but still present.",
+      "slicer_settings": {
+        "temperature": 230,
+        "bed_temp": 80,
+        "retraction_distance_mm": 1.0,
+        "retraction_speed_mms": 45,
+        "print_speed_mms": 150,
+        "cooling_fan_pct": 90
+      },
+      "fixed_by": "Reduced temp to 225°C.",
+      "notes": "Same PETG spool, dried. Still some stringing. May need to try 220°C."
+    },
+    {
+      "id": "aabbccdd-eeff-0011-2233-445566778899",
+      "timestamp": "2024-12-05T11:00:00",
+      "printer": "Prusa MK4",
+      "material": "ABS",
+      "material_brand": "Hatchbox",
+      "failure_type": "layer_adhesion",
+      "description": "Print cracked along layer lines when I tried to remove the supports. Very brittle.",
+      "slicer_settings": {
+        "temperature": 240,
+        "bed_temp": 100,
+        "retraction_distance_mm": 3.0,
+        "retraction_speed_mms": 40,
+        "print_speed_mms": 60,
+        "cooling_fan_pct": 30
+      },
+      "fixed_by": "Raised temp to 250°C and turned fan off entirely. Added enclosure blanket.",
+      "notes": "ABS needs no fan and as little cooling as possible for good layer bonding."
+    }
+  ]
+}

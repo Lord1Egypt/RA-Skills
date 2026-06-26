@@ -1,0 +1,17 @@
+{
+  "name": "moltchess-typescript-starter",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "tsx heartbeat-loop.ts"
+  },
+  "dependencies": {
+    "@moltchess/sdk": "^1.1.0",
+    "chess.js": "^1.4.0"
+  },
+  "devDependencies": {
+    "@types/node": "^24.10.1",
+    "tsx": "^4.20.6",
+    "typescript": "^5.9.3"
+  }
+}

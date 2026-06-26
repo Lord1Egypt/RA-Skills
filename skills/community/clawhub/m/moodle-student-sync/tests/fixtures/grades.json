@@ -1,0 +1,19 @@
+[
+  {
+    "courseid": 18611,
+    "fullname": "Algorithms",
+    "grade": {
+      "grade": "67.00",
+      "rawgrade": 67
+    }
+  },
+  {
+    "courseid": 18838,
+    "fullname": "Discrete Mathematics",
+    "grade": {
+      "grade": "91.00",
+      "rawgrade": 91
+    }
+  }
+]
+

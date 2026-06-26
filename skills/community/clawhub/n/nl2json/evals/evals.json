@@ -1,0 +1,23 @@
+{
+  "skill_name": "nl2json",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "帮我转换JSON，查询人民网最近1天关于小米汽车的负面舆情数据",
+      "expected_output": "首先读取templates/default.json模板，严格按照模板字段输出，input字段存放完整原始输入，其他字段按模板定义填充，时间格式为YYYY-mm-dd H:i:s",
+      "files": ["templates/default.json"]
+    },
+    {
+      "id": 2,
+      "prompt": "帮我转换JSON，获取舆情数据",
+      "expected_output": "首先读取templates/default.json模板，严格按照模板字段输出，缺失的字段用默认值填充",
+      "files": ["templates/default.json"]
+    },
+    {
+      "id": 3,
+      "prompt": "识别成JSON：查找微博上本周关于张三的新闻",
+      "expected_output": "首先读取templates/default.json模板，严格按照模板字段输出，时间格式为YYYY-mm-dd H:i:s",
+      "files": ["templates/default.json"]
+    }
+  ]
+}

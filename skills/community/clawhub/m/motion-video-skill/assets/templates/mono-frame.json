@@ -1,0 +1,14 @@
+{
+  "id": "mono-frame",
+  "label": "Mono Frame",
+  "description": "极简黑白框架，适合访谈摘要、观点表达、理性风展示。",
+  "theme": "mono-slate",
+  "stageClass": "template-mono-frame",
+  "panelBg": "rgba(20, 24, 27, 0.84)",
+  "panelOutline": "rgba(255, 255, 255, 0.12)",
+  "stageBorder": "rgba(255, 255, 255, 0.10)",
+  "stageRadius": 22,
+  "cardRadius": 18,
+  "chipRadius": 10,
+  "quoteFontStyle": "normal"
+}

@@ -1,35 +1,102 @@
 ---
-name: "Modified Code Review"
-description: "Reviews user-modified code (diffs/PRs), provides best-practice recommendations, analyzes cost-effectiveness of the approach, and outputs a code score. Use wh..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/modified-code-review"
-sourceUrl: "https://clawhub.ai/skills/modified-code-review"
+name: modified-code-review
+description: Reviews user-modified code (diffs/PRs), provides best-practice recommendations, analyzes cost-effectiveness of the approach, and outputs a code score. Use when the user asks to review their changes, 审查/评审修改的代码, 代码评审, or wants 最佳实践/性价比/代码评分.
 ---
 
-# Modified Code Review
+# 修改代码评审（Modified Code Review）
 
-> Reviews user-modified code (diffs/PRs), provides best-practice recommendations, analyzes cost-effectiveness of the approach, and outputs a code score. Use wh...
+对用户修改的代码进行评审，给出最佳实践建议、修改方案性价比分析，并输出代码评分。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/modified-code-review`
-- **Source URL:** [https://clawhub.ai/skills/modified-code-review](https://clawhub.ai/skills/modified-code-review)
+## 触发场景
 
-## Overview
+- 用户要求「review 我修改的代码」「审查修改」「代码评审」
+- 用户需要「最佳实践方案」「修改方案性价比」「代码评分」
+- 用户提供 git diff、PR 或指定文件/改动范围
 
+## 执行流程
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/modified-code-review
+### 1. 获取改动范围
+
+- 若用户未指定：先看 `git status` / `git diff` 或当前打开/选中的文件
+- 明确本次评审的文件与改动内容（新增、修改、删除）
+
+### 2. 评审维度
+
+按以下维度分析修改，并给出结论与建议：
+
+| 维度 | 关注点 |
+|------|------|
+| **正确性** | 逻辑是否正确、边界与异常是否考虑、是否有明显 bug |
+| **可读性** | 命名、结构、注释是否清晰，是否符合项目风格 |
+| **可维护性** | 是否易扩展、是否过度耦合、重复代码 |
+| **性能** | 是否有不必要的计算、内存/请求是否合理 |
+| **安全** | 输入校验、敏感数据、XSS/注入等 |
+| **测试** | 关键路径是否有测试、用例是否合理 |
+
+### 3. 最佳实践建议
+
+- 每条建议标明：**必须改** / **建议改** / **可选优化**
+- 若与项目约定（如 CLAUDE.md、ESLint、现有模式）冲突，以项目约定为准并说明
+- 建议附带简短理由和（如适用）示例代码片段
+
+### 4. 修改方案性价比
+
+对主要修改方案做「性价比」评估：
+
+- **收益**：可维护性、性能、可读性、风险降低等
+- **成本**：改动量、影响范围、回归风险、时间预估
+- **结论**：高性价比（建议优先）/ 中性价比（可选）/ 低性价比（暂不推荐），并简述原因
+
+### 5. 代码评分
+
+**先列 Blockers，再给评分**——有 Blocker 时评分仅供参考，不能用分数掩盖必须修的问题。
+
+| 分数区间 | 等级 | 含义 |
+|----------|------|------|
+| 90–100 | A 优秀 | 可直接合并，仅有个别小建议 |
+| 75–89 | B 良好 | 整体达标，有若干改进点 |
+| 60–74 | C 合格 | 能用但建议按优先级修复/优化 |
+| 40–59 | D 需改进 | 存在明显问题，建议修改后再合 |
+| 0–39 | E 不达标 | 存在严重问题，需重构或重做 |
+
+评分需结合：正确性权重最高，其次可维护性/可读性，再考虑性能与安全。
+
+## 输出模板
+
+按以下结构组织回复（可用中文）：
+
+```markdown
+## 修改代码评审报告
+
+### 一、改动概览
+- 涉及文件与变更类型
+- 主要改动摘要（1–3 句）
+
+### 二、评审结论（按维度）
+- 正确性：…
+- 可读性：…
+- 可维护性：…
+- 性能：…
+- 安全：…
+- 测试：…
+
+### 三、最佳实践建议
+- [必须改] …
+- [建议改] …
+- [可选优化] …
+
+### 四、修改方案性价比
+- 方案/建议 1：收益 vs 成本 → 性价比结论
+- （其他主要方案按需）
+
+### 五、代码评分
+- **Blockers（必须改，不改不能合）**：…（无则写"无"）
+- **分数**：XX / 100（等级：X）
+- **一句话总结**：…
 ```
+
+## 注意事项
+
+- 评审基于用户提供的 diff/文件/上下文，不臆测未展示的代码
+- 与项目技术栈、既有风格一致（如 Next.js、TypeScript、Zustand、Tailwind 等）
+- 性价比与评分需简要说明依据，便于用户决策

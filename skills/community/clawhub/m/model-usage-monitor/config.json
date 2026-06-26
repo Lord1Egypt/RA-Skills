@@ -1,0 +1,26 @@
+{
+  "name": "model-usage-monitor",
+  "version": "1.0.0",
+  "description": "OpenClaw 模型使用监控与告警技能",
+  "author": "DeepEye",
+  "triggers": ["模型监控", "model monitor", "token usage", "模型使用"],
+  "entry": "setup.py",
+  "files": [
+    "SKILL.md",
+    "monitor.py",
+    "setup.py",
+    "config.json"
+  ],
+  "dependencies": [],
+  "ollama_only": true,
+  "config": {
+    "alert_thresholds": {
+      "opus_calls_per_hour": 5,
+      "opus_cost_per_hour": 0.50,
+      "total_cost_per_hour": 2.00
+    },
+    "check_interval": "0 * * * *",
+    "model": "ollama/qwen3.5:9b-it-q4_K_M",
+    "session_target": "isolated"
+  }
+}

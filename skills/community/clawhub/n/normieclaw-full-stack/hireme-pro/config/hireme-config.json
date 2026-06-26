@@ -1,0 +1,33 @@
+{
+  "user_name": "",
+  "default_template": "modern",
+  "template_preferences": {
+    "accent_color": "#2563eb",
+    "font_style": "sans-serif",
+    "section_order": ["summary", "experience", "education", "skills", "certifications", "projects", "volunteer"],
+    "include_photo": false
+  },
+  "job_search": {
+    "target_roles": [],
+    "target_industries": [],
+    "target_locations": [],
+    "remote_preference": "flexible",
+    "salary_minimum": null,
+    "experience_level": "mid"
+  },
+  "resume_defaults": {
+    "max_pages": 2,
+    "include_address": false,
+    "include_phone": true,
+    "include_linkedin": true,
+    "include_portfolio": false,
+    "date_format": "MMM YYYY"
+  },
+  "application_tracking": {
+    "follow_up_days": 7,
+    "auto_remind": true
+  },
+  "skills_to_highlight": [],
+  "industries_worked_in": [],
+  "years_of_experience": null
+}

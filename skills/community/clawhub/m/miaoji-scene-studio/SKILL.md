@@ -1,35 +1,169 @@
+# 秒技·原生场景图工作室
+
+## 技能定位
+
+**核心能力**：秒级生成适配TikTok原生感的场景图AI绘图提示词与构图方案
+
+**价值主张**：帮助用户将白底产品图转化为具有平台原生感的场景图提示词，解决商业内容视觉疲劳、点击率低的痛点
+
+**目标用户**：
+- 跨境电商卖家（TikTok Shop/亚马逊）
+- 社媒内容创作者
+- 独立站运营者
+
 ---
-name: "Miaoji Scene Studio"
-description: "快速生成适配TikTok等平台的产品场景图AI绘图提示词与构图方案，提升内容真实感与点击率。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/miaoji-scene-studio"
-sourceUrl: "https://clawhub.ai/skills/miaoji-scene-studio"
----
 
-# Miaoji Scene Studio
+## 功能模块
 
-> 快速生成适配TikTok等平台的产品场景图AI绘图提示词与构图方案，提升内容真实感与点击率。
+### 1. 场景图提示词生成器
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/miaoji-scene-studio`
-- **Source URL:** [https://clawhub.ai/skills/miaoji-scene-studio](https://clawhub.ai/skills/miaoji-scene-studio)
+**输入**：
+- 产品描述/品类名称
+- 目标平台（TikTok/Instagram/小红书，默认TikTok）
+- 可选：产品颜色/材质/使用场景偏好
 
-## Overview
+**输出**：
+- 中文场景描述（用于理解）
+- 英文AI绘图提示词（用于实际操作）
+- 构图方案（光线、角度、商品占比）
+- 风格指令建议
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/miaoji-scene-studio
+**示例输出格式**：
 ```
+【场景方案】防晒帽
+
+📍 场景描述：
+海边度假风，阳光自然洒落，模特手持展示，
+无明显商业广告感，商品占比约75%
+
+🎨 AI绘图提示词（英文）：
+"Outdoor beach scene, summer vibes, natural sunlight,
+model holding sun hat, candid lifestyle photography,
+product occupies 75% frame, warm color tones,
+no text overlay, authentic TikTok aesthetic"
+
+💡 构图建议：
+• 光线：自然阳光，侧逆光
+• 角度：微微俯视，手持特写
+• 占比：商品75%，场景25%
+• 风格：真实感、生活化、无修图痕迹
+
+📋 平台适配度：⭐⭐⭐⭐⭐ (TikTok原生)
+```
+
+### 2. 平台适配模板库
+
+| 平台 | 场景风格 | 商品占比 | 色调偏好 | 避雷要点 |
+|------|---------|---------|---------|---------|
+| TikTok | 真实生活、随手拍感 | 60-80% | 暖色/自然 | 避免过度精修、明显广告植入感 |
+| Instagram | 精致生活、艺术感 | 50-70% | 高饱和/莫兰迪 | 避免低质量自拍感 |
+| 小红书 | 种草场景、沉浸体验 | 70-85% | 氛围感/暖调 | 避免纯产品图、无场景 |
+
+### 3. 内容偏好适配指南
+
+**TikTok限流风险元素（适配策略）**：
+- ❌ 纯白底产品图 → ✅ 添加生活场景
+- ❌ 明显的价格标签/促销文字 → ✅ 去除商业元素
+- ❌ 过度精修/商业摄影风 → ✅ 真实感/随手拍感
+- ❌ 单品孤立展示 → ✅ 融入使用场景
+
+**推荐元素**：
+- 真实使用场景
+- 自然光线
+- 适度背景虚化
+- 人物/环境互动
+
+### 4. 多风格测试方案
+
+为同一产品生成3种不同风格场景提示词，便于用户A/B测试：
+
+1. **自然生活型**：强调真实使用场景
+2. **氛围感型**：强调光影和情绪
+3. **高质感型**：强调材质和细节
+
+---
+
+## 使用流程
+
+### 基础使用
+
+```
+用户：帮我生成防晒帽的场景图提示词
+
+助手：
+【秒技·场景图工作室】
+
+📦 产品：防晒帽
+🎯 平台：TikTok（默认）
+
+🌊 方案A：海边度假风
+...
+
+🏠 方案B：户外运动风
+...
+
+☕ 方案C：都市休闲风
+...
+```
+
+### 进阶使用
+
+```
+用户：生成小红书风格的包包场景图提示词，要有高级感
+
+助手：生成3个不同档位的方案供选择
+```
+
+---
+
+## 技术说明
+
+- 本技能专注于**提示词生成**，输出结果可用于任意AI绘图工具
+- 提示词经过优化，适配主流AI绘图工具的理解方式
+- 不涉及任何图片生成、修改或处理能力
+
+---
+
+## 场景模板参考
+
+详见 `references/scene-templates.md`
+
+
+## 交付标准
+
+优秀的输出应该让你一眼看到：
+
+- 每张场景图有明确的转化目的（种草/信任/差异化）
+- 构图描述包含前景、中景、背景的完整层次
+- 提示词可直接用于AI绘图工具生成图片
+- 标注每张图在Listing中的推荐位置
+- 区分吸引点击的场景图和建立信任的场景图
+
+如果输出缺少以上任何一项，建议补充后再交付。
+
+## 不适用场景
+
+本技能不适用于以下情况：
+- 需要实际生成图片（本技能只生成AI绘图提示词，不生成图片）
+- 纯品牌情绪板设计（需专业的品牌设计工具）
+- 视频内容创作（需视频脚本和剪辑工具）
+
+## 安全边界声明
+
+本技能为纯构图方案专家，所有提示词内容由用户自主决定如何使用。本技能不生成任何图片文件，不连接任何图片平台接口，不存储任何图像数据，不自动同步或推送内容。
+
+---
+
+## 相关技能推荐
+
+- **miaoji-video-script**：场景图提示词生成后可快速转化为视频脚本
+- **miaoji-model-shot**：场景图中的人物模特方案补充
+- **miaoji-asin-clinic**：一站式体检，定位视觉问题
+
+---
+
+## Pro升级推荐
+
+**想要完整的视觉策略方案？**
+
+- **miaoji-scene-studio-pro**：Pro升级版，包含A/B测试方案/平台适配规格/季节性场景库/同类视觉差距分析等高级功能

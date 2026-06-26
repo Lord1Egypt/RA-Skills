@@ -1,0 +1,36 @@
+{
+  "name": "mp-publisher",
+  "version": "1.0.0",
+  "description": "公众号文章发布完整工作流：选题生成 → 撰稿 → 审稿 → 配图 → 发布草稿",
+  "author": "吴曦",
+  "license": "MIT",
+  "keywords": [
+    "wechat",
+    "公众号",
+    "article",
+    "publishing",
+    "workflow",
+    "AI"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/mp-publisher"
+  },
+  "engines": {
+    "openclaw": ">=1.0.0"
+  },
+  "files": [
+    "SKILL.md",
+    "scripts/",
+    "templates/",
+    "lib/"
+  ],
+  "config": {
+    "env": [
+      "WECHAT_APP_ID",
+      "WECHAT_APP_SECRET",
+      "DMX_API_KEY"
+    ],
+    "setup": "scripts/setup.sh"
+  }
+}

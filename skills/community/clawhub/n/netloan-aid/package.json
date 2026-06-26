@@ -1,0 +1,16 @@
+{
+  "name": "netloan-aid",
+  "version": "1.0.0",
+  "description": "网贷还款援助助手 - AI 生成还款方案 + 法规参考",
+  "main": "netloan-aid.js",
+  "bin": {
+    "netloan-aid": "./netloan-aid.js"
+  },
+  "dependencies": {},
+  "scripts": {
+    "start": "node netloan-aid.js"
+  },
+  "keywords": ["网贷", "还款", "法律援助", "债务", "协商"],
+  "author": "大王",
+  "license": "MIT-0"
+}

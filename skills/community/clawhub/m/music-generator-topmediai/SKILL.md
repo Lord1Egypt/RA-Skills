@@ -1,35 +1,41 @@
 ---
-name: "Topmediai AI Music Generator"
-description: "Generate AI music, BGM, or lyrics via TopMediai API. Supports auto polling and two-stage output (preview first, then final full audio) for generation tasks."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/music-generator-topmediai"
-sourceUrl: "https://clawhub.ai/skills/music-generator-topmediai"
+name: music-generator-topmediai
+description: |
+  Generate AI music, BGM, or lyrics via TopMediai API. Supports auto polling and two-stage output
+  (preview first, then final full audio) for generation tasks.
+author: TopMediai
 ---
 
-# Topmediai AI Music Generator
+# Music Generator TopMediai Skill
 
-> Generate AI music, BGM, or lyrics via TopMediai API. Supports auto polling and two-stage output (preview first, then final full audio) for generation tasks.
+## Capability Overview
+This skill supports:
+1) Generate a full song with lyrics
+2) Generate pure background music (BGM)
+3) Generate lyrics only
+4) Query music generation tasks
+5) Convert song_id to MP4
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/music-generator-topmediai`
-- **Source URL:** [https://clawhub.ai/skills/music-generator-topmediai](https://clawhub.ai/skills/music-generator-topmediai)
+## Preflight Check (Mandatory)
+- Configure `TOPMEDIAI_API_KEY` in `<skill_root>/.env`
+- Optional: `TOPMEDIAI_BASE_URL` (default `https://api.topmediai.com`)
+- If key is missing, stop and ask user to configure.
 
-## Overview
+## Command
+- Main command: `/music_generator_topmediai`
+  - `mode=normal` (default): lyrics -> submit -> poll preview/full
+  - `mode=bgm`: instrumental generation -> poll preview/full
+  - `mode=lyrics`: lyrics only
 
+## API Endpoints Used
+- Generate lyrics: `POST {BASE_URL}/v1/lyrics`
+- Submit generation: `POST {BASE_URL}/v3/music/generate`
+- Query tasks: `GET {BASE_URL}/v3/music/tasks?ids=<id[,id2,...]>`
+- Generate MP4 by song_id: `POST {BASE_URL}/v3/music/generate-mp4?song_id=<song_id>`
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/music-generator-topmediai
-```
+## Return Event Conventions
+- `lyrics_ready`
+- `submitted`
+- `preview_ready`
+- `full_ready`
+- `failed` / `timeout`

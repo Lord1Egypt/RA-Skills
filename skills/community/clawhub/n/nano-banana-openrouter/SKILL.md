@@ -1,35 +1,43 @@
----
-name: "Nano Banana Openrouter"
-description: "Generate images with Google's Nano Banana Gemini 2.5 Flash Image model via OpenRouter API using text prompts."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/nano-banana-openrouter"
-sourceUrl: "https://clawhub.ai/skills/nano-banana-openrouter"
----
+# Nano Banana OpenRouter Skill
 
-# Nano Banana Openrouter
+Generate images using Google's **Nano Banana** (Gemini 2.5 Flash Image) models via **OpenRouter API**.
 
-> Generate images with Google's Nano Banana Gemini 2.5 Flash Image model via OpenRouter API using text prompts.
+## Configuration
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/nano-banana-openrouter`
-- **Source URL:** [https://clawhub.ai/skills/nano-banana-openrouter](https://clawhub.ai/skills/nano-banana-openrouter)
+Add the following to your `openclaw.json` (or set the env var `OPENROUTER_API_KEY`):
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/nano-banana-openrouter
+```json
+{
+  "skills": {
+    "entries": {
+      "nano-banana-openrouter": {
+        "enabled": true,
+        "config": {
+          "apiKey": "sk-or-v1-..."  
+        },
+        "env": {
+          "OPENROUTER_API_KEY": "sk-or-v1-..."
+        }
+      }
+    }
+  }
+}
 ```
+
+## Usage
+
+**Tool Name:** `nano_banana_generate`
+
+**Examples:**
+- "Generate a cyberpunk dragon using Nano Banana."
+- "Draw a landscape in 16:9 aspect ratio."
+- "Use the preview model to generate a logo for a coffee shop."
+
+## Models
+
+- **Default:** `google/gemini-2.0-flash-exp:free` (Free tier, robust text/code, experimental image support)
+- **High Quality:** `google/gemini-2.5-flash-image-preview` (The specific "Nano Banana" image model, paid/credits required)
+
+## Notes
+- OpenRouter requires the `HTTP-Referer` and `X-Title` headers (included in this skill).
+- `modalities: ["image"]` is sent automatically.

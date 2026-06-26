@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://modellix.ai/schemas/task-result.schema.json",
+  "title": "ModellixTaskResult",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["mode_used", "task_id", "status", "resources", "raw"],
+  "properties": {
+    "mode_used": {
+      "type": "string",
+      "enum": ["cli", "rest"]
+    },
+    "task_id": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["pending", "processing", "success", "failed"]
+    },
+    "model_id": {
+      "type": ["string", "null"]
+    },
+    "resources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": true,
+        "required": ["url", "type"],
+        "properties": {
+          "url": { "type": "string" },
+          "type": { "type": "string" },
+          "width": { "type": ["number", "null"] },
+          "height": { "type": ["number", "null"] },
+          "format": { "type": ["string", "null"] },
+          "role": { "type": ["string", "null"] }
+        }
+      }
+    },
+    "raw": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["submit", "poll"],
+      "properties": {
+        "submit": { "type": "object", "additionalProperties": true },
+        "poll": { "type": "object", "additionalProperties": true }
+      }
+    }
+  }
+}

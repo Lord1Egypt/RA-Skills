@@ -1,0 +1,7 @@
+{
+  "name": "movie-poster-generator",
+  "version": "1.0.1",
+  "type": "module",
+  "description": "Movie Poster Generator — AI-powered movie poster generator ai",
+  "license": "MIT"
+}

@@ -1,0 +1,89 @@
+# Modern Portfolio Theory — Default Configuration
+# Copy this file to portfolios/<name>/config.yaml and customize.
+
+portfolio:
+  name: "default"
+  initial_investment: 100000
+  assets:
+    - XLC   # Communication Services
+    - XLY   # Consumer Discretionary
+    - XLP   # Consumer Staples
+    - XLE   # Energy
+    - XLF   # Financials
+    - XLV   # Health Care
+    - XLI   # Industrials
+    - XLB   # Materials
+    - XLRE  # Real Estate
+    - XLK   # Technology
+    - XLU   # Utilities
+    - GLD   # Gold
+    - DBC   # Commodities
+    - TLT   # Long-Term Treasuries
+  benchmark: SPY  # Any valid ticker; e.g. QQQ, IWM, VTI, AGG
+
+data:
+  # Lookback window for estimating returns and covariance.
+  # Longer (5-7yr) captures more market regimes but may include stale data.
+  # Shorter (2-3yr) is more responsive but noisier / less stable.
+  # Minimum 2 years required for reliable covariance estimation.
+  lookback_years: 5
+  frequency: daily
+  # adjusted  — prices corrected for splits/dividends; reflects total return (recommended)
+  # unadjusted — raw trading prices; reflects price return only
+  price_type: adjusted
+
+optimization:
+  method: max_sharpe  # max_sharpe | min_variance | efficient_frontier | risk_parity
+  risk_free_rate: auto  # "auto" fetches 3-month US Treasury yield, or set a float like 0.05
+  expected_returns: mean_historical  # mean_historical | exp_weighted | black_litterman
+  covariance: ledoit_wolf  # sample | ledoit_wolf
+  constraints:
+    long_only: true
+    max_weight: 0.40
+    min_weight: 0.0
+
+backtest:
+  backtest_years: 5  # how many years to simulate (separate from lookback for optimization)
+  start_date: null   # null = derive from backtest_years; or "2019-01-01"
+  end_date: null     # null = today
+  rebalancing_strategies:
+    - monthly
+    - quarterly
+    - yearly
+    - dynamic
+  dynamic_threshold: 0.05   # 5% weight drift triggers rebalance
+  transaction_cost: 0.001   # 0.1% per trade
+  include_buy_and_hold: true
+
+rebalancing:
+  strategy: recommended  # recommended | monthly | quarterly | yearly | dynamic
+
+reports:
+  formats:
+    - html
+    - terminal
+  charts:
+    - efficient_frontier
+    - correlation_heatmap
+    - weights
+    - equity_curves
+    - drawdown
+    - rolling_sharpe
+
+monitoring:
+  # Performance report frequency: weekly | monthly | none
+  # Set up a cron job with scripts/cron_performance.sh to automate
+  frequency: none
+
+# Email notifications (optional) — fill in SMTP details to receive portfolio reports by email.
+# Use ${ENV_VAR} syntax for secrets (e.g. smtp_password: "${SMTP_PASSWORD}").
+# Set notifications.method to "email" or "both" to activate.
+email:
+  enabled: false
+  smtp_host: null
+  smtp_port: 587
+  smtp_use_tls: true
+  smtp_user: null
+  smtp_password: null
+  sender: null
+  recipients: []

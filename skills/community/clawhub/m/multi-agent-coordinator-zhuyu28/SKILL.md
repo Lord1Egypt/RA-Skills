@@ -1,35 +1,16 @@
 ---
-name: "Multi Agent Coordinator Zhuyu28"
-description: "Coordinate and manage multiple AI agents working together on complex tasks. Provides orchestration, communication patterns, and workflow management for multi..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/multi-agent-coordinator-zhuyu28"
-sourceUrl: "https://clawhub.ai/skills/multi-agent-coordinator-zhuyu28"
+name: multi-agent-coordinator-zhuyu28
+description: Coordinate and manage multiple AI agents working together on complex tasks. Provides orchestration, communication patterns, and workflow management for multi-agent systems.
 ---
 
-# Multi Agent Coordinator Zhuyu28
+# Multi-Agent Coordinator
 
-> Coordinate and manage multiple AI agents working together on complex tasks. Provides orchestration, communication patterns, and workflow management for multi...
+Orchestrate and coordinate multiple AI agents to work together on complex, multi-step tasks that require specialized capabilities from different agents.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/multi-agent-coordinator-zhuyu28`
-- **Source URL:** [https://clawhub.ai/skills/multi-agent-coordinator-zhuyu28](https://clawhub.ai/skills/multi-agent-coordinator-zhuyu28)
+## When to Use
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/multi-agent-coordinator-zhuyu28
-```
+- Complex workflows requiring multiple specialized agents
+- Task decomposition and delegation across agent teams
+- Coordinating agents with different skills and capabilities
+- Managing agent communication and data flow
+- Implementing multi-agent collaboration patterns

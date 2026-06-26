@@ -1,0 +1,270 @@
+{
+  "defaultEngine": "google",
+  "presets": {
+    "balanced": [
+      "google",
+      "bing-int",
+      "brave"
+    ],
+    "cn-research": [
+      "baidu",
+      "sogou",
+      "toutiao"
+    ],
+    "privacy": [
+      "duckduckgo",
+      "startpage",
+      "brave",
+      "qwant"
+    ],
+    "knowledge": [
+      "wolframalpha",
+      "google",
+      "bing-int"
+    ]
+  },
+  "engines": [
+    {
+      "id": "baidu",
+      "name": "Baidu",
+      "aliases": [
+        "bd"
+      ],
+      "url": "https://www.baidu.com/s?wd={query}",
+      "region": "cn",
+      "supports": {
+        "time": false,
+        "lang": false,
+        "safe": false
+      }
+    },
+    {
+      "id": "bing-cn",
+      "name": "Bing CN",
+      "aliases": [
+        "bingcn"
+      ],
+      "url": "https://cn.bing.com/search?q={query}&ensearch=0",
+      "region": "cn",
+      "supports": {
+        "time": true,
+        "lang": true,
+        "safe": true
+      }
+    },
+    {
+      "id": "bing-int",
+      "name": "Bing INT",
+      "aliases": [
+        "bing",
+        "bingglobal"
+      ],
+      "url": "https://cn.bing.com/search?q={query}&ensearch=1",
+      "region": "global",
+      "supports": {
+        "time": true,
+        "lang": true,
+        "safe": true
+      }
+    },
+    {
+      "id": "360",
+      "name": "360 Search",
+      "aliases": [
+        "so",
+        "haosou"
+      ],
+      "url": "https://www.so.com/s?q={query}",
+      "region": "cn",
+      "supports": {
+        "time": false,
+        "lang": false,
+        "safe": false
+      }
+    },
+    {
+      "id": "sogou",
+      "name": "Sogou",
+      "aliases": [
+        "sg"
+      ],
+      "url": "https://www.sogou.com/web?query={query}",
+      "region": "cn",
+      "supports": {
+        "time": false,
+        "lang": false,
+        "safe": false
+      }
+    },
+    {
+      "id": "wechat",
+      "name": "WeChat Search",
+      "aliases": [
+        "wx",
+        "weixin"
+      ],
+      "url": "https://weixin.sogou.com/weixin?type=2&query={query}",
+      "region": "cn",
+      "supports": {
+        "time": false,
+        "lang": false,
+        "safe": false
+      }
+    },
+    {
+      "id": "toutiao",
+      "name": "Toutiao",
+      "aliases": [
+        "tt"
+      ],
+      "url": "https://so.toutiao.com/search?keyword={query}",
+      "region": "cn",
+      "supports": {
+        "time": false,
+        "lang": false,
+        "safe": false
+      }
+    },
+    {
+      "id": "jisilu",
+      "name": "Jisilu",
+      "aliases": [
+        "jsl"
+      ],
+      "url": "https://www.jisilu.cn/explore/?keyword={query}",
+      "region": "cn",
+      "supports": {
+        "time": false,
+        "lang": false,
+        "safe": false
+      }
+    },
+    {
+      "id": "google",
+      "name": "Google",
+      "aliases": [
+        "g"
+      ],
+      "url": "https://www.google.com/search?q={query}",
+      "region": "global",
+      "supports": {
+        "time": true,
+        "lang": true,
+        "safe": true
+      }
+    },
+    {
+      "id": "google-hk",
+      "name": "Google HK",
+      "aliases": [
+        "ghk"
+      ],
+      "url": "https://www.google.com.hk/search?q={query}",
+      "region": "global",
+      "supports": {
+        "time": true,
+        "lang": true,
+        "safe": true
+      }
+    },
+    {
+      "id": "duckduckgo",
+      "name": "DuckDuckGo",
+      "aliases": [
+        "ddg"
+      ],
+      "url": "https://duckduckgo.com/html/?q={query}",
+      "region": "global",
+      "supports": {
+        "time": false,
+        "lang": false,
+        "safe": true
+      }
+    },
+    {
+      "id": "yahoo",
+      "name": "Yahoo Search",
+      "aliases": [
+        "yh"
+      ],
+      "url": "https://search.yahoo.com/search?p={query}",
+      "region": "global",
+      "supports": {
+        "time": false,
+        "lang": false,
+        "safe": false
+      }
+    },
+    {
+      "id": "startpage",
+      "name": "Startpage",
+      "aliases": [
+        "sp"
+      ],
+      "url": "https://www.startpage.com/sp/search?query={query}",
+      "region": "global",
+      "supports": {
+        "time": false,
+        "lang": false,
+        "safe": false
+      }
+    },
+    {
+      "id": "brave",
+      "name": "Brave Search",
+      "aliases": [
+        "br"
+      ],
+      "url": "https://search.brave.com/search?q={query}",
+      "region": "global",
+      "supports": {
+        "time": true,
+        "lang": false,
+        "safe": false
+      }
+    },
+    {
+      "id": "ecosia",
+      "name": "Ecosia",
+      "aliases": [
+        "eco"
+      ],
+      "url": "https://www.ecosia.org/search?q={query}",
+      "region": "global",
+      "supports": {
+        "time": false,
+        "lang": false,
+        "safe": false
+      }
+    },
+    {
+      "id": "qwant",
+      "name": "Qwant",
+      "aliases": [
+        "qw"
+      ],
+      "url": "https://www.qwant.com/?q={query}",
+      "region": "global",
+      "supports": {
+        "time": false,
+        "lang": false,
+        "safe": false
+      }
+    },
+    {
+      "id": "wolframalpha",
+      "name": "WolframAlpha",
+      "aliases": [
+        "wa",
+        "wolf"
+      ],
+      "url": "https://www.wolframalpha.com/input?i={query}",
+      "region": "global",
+      "supports": {
+        "time": false,
+        "lang": false,
+        "safe": false
+      }
+    }
+  ]
+}

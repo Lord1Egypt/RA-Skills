@@ -1,0 +1,54 @@
+{
+  "skill_id": "meal-planner",
+  "display_name": "Meal Planner Pro",
+  "description": "Intelligent meal planning with household profiles, grocery lists, and recipe management.",
+  "icon": "UtensilsCrossed",
+  "accent_color": "#14b8a6",
+  "sidebar": {
+    "route": "/meals",
+    "label": "Meal Planner",
+    "icon": "UtensilsCrossed",
+    "children": [
+      { "label": "Weekly Plan", "route": "/meals" },
+      { "label": "Calendar", "route": "/meals/calendar", "icon": "Calendar" },
+      { "label": "Grocery List", "route": "/meals/grocery", "icon": "ShoppingCart" },
+      { "label": "Recipes", "route": "/meals/recipes", "icon": "BookOpen" },
+      { "label": "Freezer", "route": "/meals/freezer", "icon": "Snowflake" }
+    ]
+  },
+  "database": {
+    "prefix": "mp",
+    "tables": [
+      { "name": "mp_households", "description": "Household groups", "columns": [{"name":"id","type":"UUID","primary_key":true},{"name":"user_id","type":"UUID","references":"auth.users(id)"},{"name":"name","type":"TEXT"},{"name":"budget_preference","type":"TEXT","default":"moderate"},{"name":"created_at","type":"TIMESTAMPTZ"},{"name":"updated_at","type":"TIMESTAMPTZ"}], "indexes": [] },
+      { "name": "mp_members", "description": "Household members with dietary info", "columns": [{"name":"id","type":"UUID","primary_key":true},{"name":"household_id","type":"UUID","references":"mp_households(id)"},{"name":"name","type":"TEXT"},{"name":"role","type":"TEXT"},{"name":"allergies","type":"TEXT[]"},{"name":"dislikes","type":"TEXT[]"},{"name":"adventurousness","type":"INTEGER"},{"name":"created_at","type":"TIMESTAMPTZ"},{"name":"updated_at","type":"TIMESTAMPTZ"}], "indexes": [] },
+      { "name": "mp_recipes", "description": "Recipe library", "columns": [{"name":"id","type":"UUID","primary_key":true},{"name":"user_id","type":"UUID","references":"auth.users(id)"},{"name":"name","type":"TEXT"},{"name":"instructions","type":"JSONB"},{"name":"prep_time_minutes","type":"INTEGER"},{"name":"cook_time_minutes","type":"INTEGER"},{"name":"servings","type":"INTEGER"},{"name":"cuisine","type":"TEXT"},{"name":"difficulty","type":"TEXT"},{"name":"tags","type":"TEXT[]"},{"name":"created_at","type":"TIMESTAMPTZ"},{"name":"updated_at","type":"TIMESTAMPTZ"}], "indexes": [{"name":"idx_mp_recipes_user","columns":["user_id"]}] },
+      { "name": "mp_recipe_ingredients", "description": "Recipe ingredients", "columns": [{"name":"id","type":"UUID","primary_key":true},{"name":"recipe_id","type":"UUID","references":"mp_recipes(id)"},{"name":"name","type":"TEXT"},{"name":"quantity","type":"NUMERIC(10,2)"},{"name":"unit","type":"TEXT"},{"name":"sort_order","type":"INTEGER"}], "indexes": [] },
+      { "name": "mp_meal_plans", "description": "Weekly meal plans", "columns": [{"name":"id","type":"UUID","primary_key":true},{"name":"household_id","type":"UUID","references":"mp_households(id)"},{"name":"week_start","type":"DATE"},{"name":"status","type":"TEXT","default":"draft"},{"name":"created_at","type":"TIMESTAMPTZ"},{"name":"updated_at","type":"TIMESTAMPTZ"}], "indexes": [{"name":"idx_mp_meal_plans_household","columns":["household_id","week_start DESC"]}] },
+      { "name": "mp_meal_slots", "description": "Individual meal assignments", "columns": [{"name":"id","type":"UUID","primary_key":true},{"name":"meal_plan_id","type":"UUID","references":"mp_meal_plans(id)"},{"name":"day","type":"INTEGER"},{"name":"meal_type","type":"TEXT"},{"name":"recipe_id","type":"UUID","references":"mp_recipes(id)"},{"name":"custom_meal","type":"TEXT"},{"name":"notes","type":"TEXT"}], "indexes": [{"name":"idx_mp_meal_slots_plan","columns":["meal_plan_id"]}] },
+      { "name": "mp_meal_slot_members", "description": "Who eats which meals", "columns": [{"name":"meal_slot_id","type":"UUID","references":"mp_meal_slots(id)"},{"name":"member_id","type":"UUID","references":"mp_members(id)"}], "indexes": [] },
+      { "name": "mp_ratings", "description": "Meal ratings from household members", "columns": [{"name":"id","type":"UUID","primary_key":true},{"name":"meal_slot_id","type":"UUID"},{"name":"member_id","type":"UUID"},{"name":"recipe_id","type":"UUID"},{"name":"score","type":"INTEGER"},{"name":"comment","type":"TEXT"},{"name":"created_at","type":"TIMESTAMPTZ"}], "indexes": [] },
+      { "name": "mp_grocery_lists", "description": "Generated grocery lists", "columns": [{"name":"id","type":"UUID","primary_key":true},{"name":"meal_plan_id","type":"UUID","references":"mp_meal_plans(id)"},{"name":"estimated_total_cents","type":"INTEGER"},{"name":"status","type":"TEXT","default":"pending"},{"name":"created_at","type":"TIMESTAMPTZ"},{"name":"updated_at","type":"TIMESTAMPTZ"}], "indexes": [] },
+      { "name": "mp_grocery_items", "description": "Items on grocery lists", "columns": [{"name":"id","type":"UUID","primary_key":true},{"name":"grocery_list_id","type":"UUID","references":"mp_grocery_lists(id)"},{"name":"name","type":"TEXT"},{"name":"quantity","type":"NUMERIC(10,2)"},{"name":"unit","type":"TEXT"},{"name":"store","type":"TEXT"},{"name":"category","type":"TEXT"},{"name":"checked","type":"BOOLEAN","default":false},{"name":"sort_order","type":"INTEGER"}], "indexes": [{"name":"idx_mp_grocery_items_list","columns":["grocery_list_id"]}] },
+      { "name": "mp_stores", "description": "Preferred stores", "columns": [{"name":"id","type":"UUID","primary_key":true},{"name":"household_id","type":"UUID"},{"name":"name","type":"TEXT"},{"name":"role","type":"TEXT"},{"name":"color","type":"TEXT"},{"name":"created_at","type":"TIMESTAMPTZ"}], "indexes": [] },
+      { "name": "mp_freezer_items", "description": "Freezer inventory", "columns": [{"name":"id","type":"UUID","primary_key":true},{"name":"household_id","type":"UUID"},{"name":"name","type":"TEXT"},{"name":"quantity","type":"TEXT"},{"name":"added_date","type":"DATE"},{"name":"expiry_date","type":"DATE"},{"name":"notes","type":"TEXT"},{"name":"created_at","type":"TIMESTAMPTZ"}], "indexes": [] },
+      { "name": "mp_dietary_preferences", "description": "Household dietary preferences", "columns": [{"name":"id","type":"UUID","primary_key":true},{"name":"household_id","type":"UUID"},{"name":"key","type":"TEXT"},{"name":"label","type":"TEXT"},{"name":"is_active","type":"BOOLEAN"},{"name":"created_at","type":"TIMESTAMPTZ"}], "indexes": [] },
+      { "name": "mp_flagged_recipes", "description": "AI-flagged recipe suggestions", "columns": [{"name":"id","type":"UUID","primary_key":true},{"name":"household_id","type":"UUID"},{"name":"recipe_id","type":"UUID"},{"name":"match_score","type":"NUMERIC(3,2)"},{"name":"source","type":"TEXT"},{"name":"created_at","type":"TIMESTAMPTZ"}], "indexes": [] },
+      { "name": "mp_chat_messages", "description": "Meal planning chat history", "columns": [{"name":"id","type":"UUID","primary_key":true},{"name":"meal_plan_id","type":"UUID"},{"name":"role","type":"TEXT"},{"name":"content","type":"TEXT"},{"name":"created_at","type":"TIMESTAMPTZ"}], "indexes": [] },
+      { "name": "mp_pantry_staples", "description": "Pantry staple items", "columns": [{"name":"id","type":"UUID","primary_key":true},{"name":"household_id","type":"UUID"},{"name":"name","type":"TEXT"},{"name":"times_marked_have","type":"INTEGER","default":0},{"name":"created_at","type":"TIMESTAMPTZ"}], "indexes": [] }
+    ]
+  },
+  "widgets": [
+    {
+      "id": "todays-meals",
+      "type": "list",
+      "title": "Today's Meals",
+      "description": "What's on the menu today",
+      "size": "2x1"
+    }
+  ],
+  "settings": [
+    { "key": "household_size", "label": "Household Size", "type": "number", "default": 2 },
+    { "key": "budget_level", "label": "Budget Level", "type": "select", "default": "moderate" }
+  ],
+  "sync": { "mode": "direct", "source_files": [] }
+}

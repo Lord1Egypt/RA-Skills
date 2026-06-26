@@ -1,0 +1,19 @@
+{
+  "name": "MoltStreet SPY",
+  "version": "1.0.1",
+  "description": "AI signals for SPY, QQQ, DIA, IWM — US stock market index outlook with multi-analyst debate. Free, no API key.",
+  "homepage": "https://moltstreet.com",
+  "documentation": "https://moltstreet.com/skill.md",
+  "api": {
+    "base_url": "https://moltstreet.com/api/v1",
+    "auth": { "required": false }
+  },
+  "capabilities": [
+    { "name": "SPY Summary", "endpoint": "/ticker-summary/SPY", "method": "GET", "auth_required": false },
+    { "name": "QQQ Summary", "endpoint": "/ticker-summary/QQQ", "method": "GET", "auth_required": false },
+    { "name": "DIA Summary", "endpoint": "/ticker-summary/DIA", "method": "GET", "auth_required": false },
+    { "name": "IWM Summary", "endpoint": "/ticker-summary/IWM", "method": "GET", "auth_required": false },
+    { "name": "SPY AI Context", "endpoint": "/llm-context/SPY", "method": "GET", "auth_required": false }
+  ],
+  "disclaimer": { "text": "AI-generated. Not financial advice.", "url": "https://moltstreet.com/disclaimer" }
+}

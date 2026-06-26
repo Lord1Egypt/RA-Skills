@@ -1,0 +1,73 @@
+# ClawHub 技能配置文件
+
+name: multi-user-privacy
+version: 0.9.0
+description: 企业级多用户管理系统 - 为 OpenClaw 提供完整的多用户隔离、配额管理、监控告警和 Web 管理界面（完全免费开源）
+
+author:
+  name: 狗子 🐶
+  contact: ou_b96f5424607baf3a0455b55e0f4a2213
+
+category: Security & Privacy
+tags:
+  - privacy
+  - security
+  - multi-user
+  - permission
+  - isolation
+  - enterprise
+  - monitoring
+  - web-admin
+  - quota-management
+  - free
+  - open-source
+
+pricing:
+  model: free
+  note: |
+    🆓 完全免费，开源共享
+    所有功能免费使用，无用户数限制
+
+requirements:
+  - nodejs >= 14.0.0
+  - python >= 3.8.0
+  - openclaw >= 1.0.0
+
+files:
+  include:
+    - privacy-guard.js
+    - gateway-hook.js
+    - sensitive-word-loader.js
+    - sensitive-word-manager.js
+    - sensitive-words.txt
+    - subagent-integration.js
+    - auto-mount.js
+    - auto-create-subagents.sh
+    - scripts/
+    - quota-manager/
+    - monitoring/
+    - web-admin/
+    - session-persistence/
+    - auto-scaling/
+    - SKILL.md
+    - README.md
+    - STRUCTURE.md
+    - docs/
+  exclude:
+    - node_modules/
+    - __pycache__/
+    - "*.log"
+    - "*.pid"
+    - .git/
+    - .pending-sessions.json
+    - .quota-db.json
+    - .router-db.json
+
+scripts:
+  post-install: node auto-mount.js
+
+license: MIT
+repository: https://github.com/lz84/multi-user-privacy
+homepage: https://github.com/lz84/multi-user-privacy#readme
+bugs: https://github.com/lz84/multi-user-privacy/issues
+changelog: https://github.com/lz84/multi-user-privacy/releases

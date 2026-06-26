@@ -1,35 +1,104 @@
 ---
-name: "Mood"
-description: "Mood and emotional wellness reference — mood science, regulation strategies, journaling techniques, emotional literacy. Use when understanding emotional patt..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/mood"
-sourceUrl: "https://clawhub.ai/skills/mood"
+name: "mood"
+version: "1.0.0"
+description: "Mood and emotional wellness reference — mood science, regulation strategies, journaling techniques, emotional literacy. Use when understanding emotional patterns, designing mood tracking systems, or improving emotional regulation."
+author: "BytesAgain"
+homepage: "https://bytesagain.com"
+source: "https://github.com/bytesagain/ai-skills"
+tags: [mood, emotions, wellness, mental-health, emotional-regulation, journaling, psychology]
+category: "general"
 ---
 
-# Mood
+# Mood — Mood & Emotional Wellness Reference
 
-> Mood and emotional wellness reference — mood science, regulation strategies, journaling techniques, emotional literacy. Use when understanding emotional patt...
+Quick-reference skill for understanding mood science, emotional regulation, and wellness practices.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/mood`
-- **Source URL:** [https://clawhub.ai/skills/mood](https://clawhub.ai/skills/mood)
+## When to Use
 
-## Overview
+- Understanding the science of moods and emotions
+- Learning emotional regulation techniques
+- Designing mood tracking or journaling systems
+- Identifying mood patterns and triggers
+- Building emotional literacy and resilience
 
+## Commands
 
-## Installation
-To install this skill, run the following command in your terminal:
+### `intro`
+
 ```bash
-hermes skills install clawhub/mood
+scripts/script.sh intro
 ```
+
+Mood science fundamentals — emotions vs moods, affect theory, neuroscience basics.
+
+### `wheel`
+
+```bash
+scripts/script.sh wheel
+```
+
+Emotion taxonomy — Plutchik's wheel, granular emotion vocabulary, intensity levels.
+
+### `regulation`
+
+```bash
+scripts/script.sh regulation
+```
+
+Emotional regulation strategies — CBT techniques, reappraisal, grounding, distress tolerance.
+
+### `triggers`
+
+```bash
+scripts/script.sh triggers
+```
+
+Mood triggers — HALT framework, environmental factors, cognitive distortions.
+
+### `journaling`
+
+```bash
+scripts/script.sh journaling
+```
+
+Mood journaling techniques — structured prompts, tracking patterns, gratitude practice.
+
+### `lifestyle`
+
+```bash
+scripts/script.sh lifestyle
+```
+
+Lifestyle factors — sleep, exercise, nutrition, social connection, nature exposure.
+
+### `tracking`
+
+```bash
+scripts/script.sh tracking
+```
+
+Mood tracking systems — scales, frequency, pattern recognition, data visualization.
+
+### `resilience`
+
+```bash
+scripts/script.sh resilience
+```
+
+Building emotional resilience — stress inoculation, growth mindset, social support.
+
+### `help`
+
+```bash
+scripts/script.sh help
+```
+
+### `version`
+
+```bash
+scripts/script.sh version
+```
+
+---
+
+*Powered by BytesAgain | bytesagain.com | hello@bytesagain.com*

@@ -1,0 +1,14 @@
+{
+  "skill_id": "skill_multi_model_response_comparator",
+  "source_type": "original",
+  "sources": [
+    {
+      "type": "internal_authoring",
+      "ref": "idea://batch1/multi-model-response-comparator",
+      "title": "Batch 1 skill concept"
+    }
+  ],
+  "license_status": "acceptable",
+  "provenance_confidence": "high",
+  "transformation_summary": "Originally authored as a Crazyrouter-native skill concept for model comparison workflows."
+}

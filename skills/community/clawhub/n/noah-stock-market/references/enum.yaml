@@ -1,0 +1,954 @@
+TickerDirect:
+  type: string
+  description: |
+    逐笔成交方向
+    - NONE: 未知
+    - BUY: 外盘
+    - SELL: 内盘
+    - NEUTRAL: 中性盘
+  enum:
+    - NONE
+    - BUY
+    - SELL
+    - NEUTRAL
+
+QuoteSortField:
+  type: string
+  description: 行情/排序字段
+  enum:
+    - lastPrice
+    - raisePercent
+    - raise
+    - exchange
+    - raiseSpeed
+    - mainNetInflow
+    - totalTradeVol
+    - totalTurnover
+    - volumeRatio
+    - entrustRatio
+    - amplitude
+    - highPrice
+    - lowPrice
+    - openPrice
+    - preClose
+    - peDynamic
+    - peRatio
+    - circulationValue
+    - marketValue
+    - iopv
+    - nominalPrice
+    - stockRaisePercent
+    - increaseNum
+    - roe
+    - pnaRatio
+    - raisePercentOneYear
+    - leverageRatio
+    - maturityDay
+    - exercisePrice
+    - percOfStillOut
+    - premiumRatio
+    - effectiveGearing
+    - pStrPrice
+    - pStrPriceSpread
+    - bid1Price
+    - ask1Price
+    - currencyOneCode
+    - currencySecondCode
+    - orderNum
+    - baseOrderNum
+    - raisePercent1y
+    - raisePercent1m
+    - raisePercentYtd
+    - assetSize
+    - shareIssued
+
+Markets:
+  type: string
+  enum:
+    - HK
+    - SG
+    - US
+
+TickerType:
+  type: string
+  description: |
+    逐笔类型枚举
+    
+    枚举说明：
+    - UNKNOWN: 未知
+    - AUTO_MATCH: 自动对盘
+    - LATE: 开市前成交盘
+    - NON_AUTO_MATCH: 非自动对盘
+    - INTER_AUTO_MATCH: 同一证券商自动对盘
+    - INTER_NON_AUTO_MATCH: 同一证券商非自动对盘
+    - ODD_LOT: 碎股交易
+    - AUCTION: 竞价交易
+    - BULK: 批量交易
+    - CRASH: 现金交易
+    - CROSS_MARKET: 跨市场交易
+    - BULK_SOLD: 批量卖出
+    - FREE_ON_BOARD: 离价交易
+    - RULE127_OR155: 第127条交易（纽交所规则）或第155条交易
+    - DELAY: 延迟交易
+    - MARKET_CENTER_CLOSE_PRICE: 中央收市价
+    - NEXT_DAY: 隔日交易
+    - MARKET_CENTER_OPENING: 中央开盘价交易
+    - PRIOR_REFERENCE_PRICE: 前参考价
+    - MARKET_CENTER_OPEN_PRICE: 中央开盘价
+    - SELLER: 卖方
+    - T: T类交易（盘前和盘后交易）
+    - EXTENDED_TRADING_HOURS: 延长交易时段
+    - CONTINGENT: 合单交易
+    - AVERAGE_PRICE: 平均价成交
+    - OTC_SOLD: 场外售出
+    - ODD_LOT_CROSS_MARKET: 碎股跨市场交易
+    - DERIVATIVELY_PRICED: 衍生工具定价
+    - REOPENINGP_RICED: 再开盘定价
+    - CLOSING_PRICED: 收盘定价
+    - COMPREHENSIVE_DELAY_PRICE: 综合延迟价格
+    - OVERSEAS: 交易的一方不是香港交易所的成员，属于场外交易
+  enum:
+    - UNKNOWN
+    - AUTO_MATCH
+    - LATE
+    - NON_AUTO_MATCH
+    - INTER_AUTO_MATCH
+    - INTER_NON_AUTO_MATCH
+    - ODD_LOT
+    - AUCTION
+    - BULK
+    - CRASH
+    - CROSS_MARKET
+    - BULK_SOLD
+    - FREE_ON_BOARD
+    - RULE127_OR155
+    - DELAY
+    - MARKET_CENTER_CLOSE_PRICE
+    - NEXT_DAY
+    - MARKET_CENTER_OPENING
+    - PRIOR_REFERENCE_PRICE
+    - MARKET_CENTER_OPEN_PRICE
+    - SELLER
+    - T
+    - EXTENDED_TRADING_HOURS
+    - CONTINGENT
+    - AVERAGE_PRICE
+    - OTC_SOLD
+    - ODD_LOT_CROSS_MARKET
+    - DERIVATIVELY_PRICED
+    - REOPENINGP_RICED
+    - CLOSING_PRICED
+    - COMPREHENSIVE_DELAY_PRICE
+    - OVERSEAS
+
+DarkStatus:
+  type: string
+  description: |
+    暗盘状态：
+    - NONE: 无暗盘交易
+    - TRADING: 暗盘交易中
+    - END: 暗盘交易结束
+  enum:
+    - NONE
+    - TRADING
+    - END
+  example: NONE
+
+AssetClass:
+  type: string
+  enum:
+    - UNKNOW #未知
+    - STOCK #股票
+    - BOND #债券
+    - COMMODITY #商品
+    - CURRENCY_MARKET #货币市场
+    - FUTURE #期货
+    - SWAO #掉期（互换）
+
+SecurityStatus:
+  type: string
+  enum:
+    - NONE #未知
+    - NORMAL #正常状态
+    - LISTING #待上市
+    - PURCHASING #申购中
+    - SUBSCRIBING #认购中
+    - BEFORE_DRAK_TRADE_OPENING #暗盘开盘前
+    - DRAK_TRADING #暗盘交易中
+    - DRAK_TRADE_END #暗盘已收盘
+    - TO_BE_OPEN #待开盘
+    - SUSPENDED #停牌
+    - CALLED #已收回
+    - EXPIRED_LAST_TRADING_DATE #已过最后交易日
+    - EXPIRED #已过期
+    - DELISTED #已退市
+    - CHANGE_TO_TEMPORARY_CODE #公司行动中，交易关闭，转至临时代码交易
+    - TEMPORARY_CODE_TRADE_END #临时买卖结束，交易关闭
+    - CHANGED_PLATE_TRADE_END #已转板，旧代码交易关闭
+    - CHANGED_CODE_TRADE_END #已换代码，旧代码交易关闭
+    - RECOVERABLE_CIRCUIT_BREAKER #可恢复性熔断
+    - UN_RECOVERABLE_CIRCUIT_BREAKER #不可恢复性熔断
+    - AFTER_COMBINATION #盘后撮合
+    - AFTER_TRANSATION #盘后交易
+
+OptionAreaType:
+  type: string
+  enum:
+    - NONE #未知
+    - AMERICAN #美式
+    - EUROPEAN #欧式
+    - BERMUDA #百慕大
+
+IndexOptionType:
+  type: string
+  enum:
+    - NONE #未知
+    - NORMAL #普通的指数期权
+    - SMALL #小型指数期权
+
+OptionType:
+  type: string
+  enum:
+    - ALL #所有
+    - CALL #看涨期权
+    - PUT #看跌期权
+
+PriceType:
+  type: string
+  enum:
+    - UNKNOW #未知
+    - OUTSIDE #价外，界内证表示界外
+    - WITH_IN #价内，界内证表示界内
+
+WrtType:
+  type: string
+  enum:
+    - NONE #未知
+    - CALL #认购涡轮
+    - PUT #认估涡轮
+    - BULL #牛证
+    - BEAR #熊证
+    - INLINE #界内证
+
+AuType:
+  type: string
+  description: |
+    - NONE 不复权
+    - QFQ 前复权
+    - HFQ 后复权
+  enum:
+    - NONE
+    - QFQ
+    - HFQ
+
+MarketTradingState:
+  type: string
+  enum:
+    - NONE
+    - AUCTION
+    - WAITING_OPEN
+    - MORNING
+    - REST
+    - AFTERNOON
+    - CLOSED
+    - PRE_MARKET_BEGIN
+    - PRE_MARKET_END
+    - AFTER_HOURS_BEGIN
+    - AFTER_HOURS_END
+    - OVERNIGHT
+    - NIGHT_OPEN
+    - NIGHT_END
+    - NIGHT
+    - TRADE_AT_LAST
+    - FUTURE_DAY_OPEN
+    - FUTURE_DAY_BREAK
+    - FUTURE_DAY_CLOSE
+    - FUTURE_DAY_WAIT_OPEN
+    - HK_CAS
+    - FUTURE_NIGHT_WAIT
+    - FUTURE_AFTERNOON
+    - FUTURE_SWITCH_DATE
+    - FUTURE_OPEN
+    - FUTURE_BREAK
+    - FUTURE_BREAK_OVER
+    - FUTURE_CLOSE
+  descriptions: ｜
+    - NONE 无交易
+    - AUCTION 盘前竞价
+    - WAITING_OPEN 等待开盘
+    - MORNING 早盘
+    - REST 午间休市
+    - AFTERNOON 午盘/持续交易时段
+    - CLOSED 收盘
+    - PRE_MARKET_BEGIN 美股盘前交易时段开始
+    - PRE_MARKET_END 美股盘前交易时段结束
+    - AFTER_HOURS_BEGIN 美股盘后交易时段开始
+    - AFTER_HOURS_END 美股盘后交易时段结束
+    - OVERNIGHT 美股夜盘交易时段
+    - NIGHT_OPEN 夜市交易时段开始
+    - NIGHT_END 夜市交易时段结束
+    - NIGHT 美指期权夜市交易时段
+    - TRADE_AT_LAST 美指期权盘尾交易时段
+    - FUTURE_DAY_OPEN 日市交易时段
+    - FUTURE_DAY_BREAK 日市休市
+    - FUTURE_DAY_CLOSE 日市收盘
+    - FUTURE_DAY_WAIT_OPEN 期货待开盘
+    - HK_CAS 港股盘后竞价
+    - FUTURE_NIGHT_WAIT 夜市等待开盘（已废弃）
+    - FUTURE_AFTERNOON 期货下午开盘（已废弃）
+    - FUTURE_SWITCH_DATE 美期待开盘
+    - FUTURE_OPEN 美期交易时段
+    - FUTURE_BREAK 美期中盘休息
+    - FUTURE_BREAK_OVER 美期休息后交易时段
+    - FUTURE_CLOSE 美期收盘
+
+KLType:
+  type: string
+  description: |
+    - NONE 未知
+    - K_1M 1分钟K线
+    - K_DAY 日K
+    - K_WEEK 周K
+    - K_MON 月K
+    - K_YEAR 年K
+    - K_5M 5分钟K线
+    - K_15M 15分钟K线
+    - K_30M 30分钟K线
+    - K_60M 60分钟K线
+    - K_3M 3分钟K线
+    - K_QUARTER 季K
+  enum:
+    - NONE
+    - K_1_M
+    - K_DAY
+    - K_WEEK
+    - K_MON
+    - K_YEAR
+    - K_5_M
+    - K_15_M
+    - K_30_M
+    - K_60_M
+    - K_120_M
+    - K_QUARTER
+
+PeriodType:
+  type: string
+  description: |
+    - INTRADAY 实时
+    - DAY 日
+    - WEEK 周
+    - MONTH 月
+  enum:
+    - INTRADAY
+    - DAY
+    - WEEK
+    - MONTH
+  example: DAY
+
+# ---------- 衍生品（参考 Futu OpenAPI） ----------
+OptionCondType:
+  type: string
+  description: 期权价内外类型
+  enum:
+    - ALL
+    - IN
+    - OUT
+
+WarrantSortField:
+  type: string
+  description: 窝轮筛选排序字段
+  enum:
+    - CODE
+    - CUR_PRICE
+    - PREMIUM
+    - LEVERAGE_RATIO
+    - DELTA
+    - IMPLIED
+    - MATURITY_TIME
+    - STRIKE_PRICE
+    - VOLUME
+    - TURNOVER
+
+# 全市场筛选
+Market:
+  type: string
+  description: 市场（Futu 行情）
+  enum:
+    - HK
+    - US
+    - SH
+    - SZ
+    - BK
+    - SG
+    - JPN
+    - FRA
+    - GER
+    - FX
+    - BKHK
+    - BKUS
+    - UK
+    - CC
+    - PJ
+
+PlateClass:
+  type: string
+  description: 板块分类（get_plate_list）
+  enum:
+    - ALL
+    - INDUSTRY
+    - REGION
+    - CONCEPT
+    - OTHER
+
+SecurityType:
+  type: string
+  description: 证券类型（get_stock_basicinfo）
+  enum:
+    - STOCK
+    - IDX
+    - ETF
+    - WARRANT
+    - BOND
+    - ALL
+
+PlateStockSortField:
+  description: 板块内股票排序字段（get_plate_stock）
+  type: string
+  enum:
+    - 2070001
+    - 2070002
+    - 2070003
+    - 2070004
+    - 2070005
+    - 2070006
+    - 2070007
+    - 2070101
+    - 2070102
+    - 2070103
+    - 2070201
+    - 2070202
+    - 2070203
+    - 2070204
+    - 2070205
+    - 2070210
+    - 2070220
+    - 2070230
+    - 2070240
+
+PlateCode:
+  type: string
+  description: 板块代码（listed_sector_code）
+  enum:
+    - 2070001
+    - 2070002
+    - 2070003
+    - 2070004
+    - 2070005
+    - 2070006
+    - 2070007
+    - 2070101
+    - 2070102
+    - 2070103
+    - 2070201
+    - 2070202
+    - 2070203
+    - 2070204
+    - 2070205
+    - 2070210
+    - 2070220
+    - 2070230
+    - 2070240
+
+StockField:
+  type: string
+  description: |
+    股票字段
+    - NONE: 未知
+    - STOCK_CODE: 股票代码，不能填区间上下限值。
+    - STOCK_NAME: 股票名称，不能填区间上下限值。
+    - CUR_PRICE: 最新价
+    - CUR_PRICE_TO_HIGHEST52_WEEKS_RATIO: 离 52 周高点百分比
+    - CUR_PRICE_TO_LOWEST52_WEEKS_RATIO: 离 52 周低点百分比
+    - HIGH_PRICE_TO_HIGHEST52_WEEKS_RATIO: (今日最高-52周最高)/52周最高
+    - LOW_PRICE_TO_LOWEST52_WEEKS_RATIO: (今日最低-52周最低)/52周最低
+    - VOLUME_RATIO: 量比
+    - BID_ASK_RATIO: 委比
+    - LOT_PRICE: 每手价格
+    - MARKET_VALUE: 市值
+    - PE_ANNUAL: 市盈率（静态）
+    - PE_TTM: 市盈率TTM
+    - PB_RATIO: 市净率
+    - CHANGE_RATE_5MIN: 5分钟涨跌幅
+    - CHANGE_RATE_BEGIN_YEAR: 年初至今涨跌幅
+    - PS_TTM: 市销率TTM
+    - PCF_TTM: 市现率TTM
+    - TOTAL_SHARE: 总股本
+    - FLOAT_SHARE: 流通股本
+    - FLOAT_MARKET_VAL: 流通市值
+    - CHANGE_RATE: 涨跌幅
+    - AMPLITUDE: 振幅
+    - VOLUME: 日均成交量
+    - TURNOVER: 日均成交额
+    - TURNOVER_RATE: 换手率
+  enum:
+    - NONE
+    - STOCK_CODE
+    - STOCK_NAME
+    - CUR_PRICE
+    - CUR_PRICE_TO_HIGHEST52_WEEKS_RATIO
+    - CUR_PRICE_TO_LOWEST52_WEEKS_RATIO
+    - HIGH_PRICE_TO_HIGHEST52_WEEKS_RATIO
+    - LOW_PRICE_TO_LOWEST52_WEEKS_RATIO
+    - VOLUME_RATIO
+    - BID_ASK_RATIO
+    - LOT_PRICE
+    - MARKET_VALUE
+    - PE_ANNUAL
+    - PE_TTM
+    - PB_RATIO
+    - CHANGE_RATE_5MIN
+    - CHANGE_RATE_BEGIN_YEAR
+    - PS_TTM
+    - PCF_TTM
+    - TOTAL_SHARE
+    - FLOAT_SHARE
+    - FLOAT_MARKET_VAL
+    - CHANGE_RATE
+    - AMPLITUDE
+    - VOLUME
+    - TURNOVER
+    - TURNOVER_RATE
+
+SortDir:
+  type: string
+  description: 排序方向（SortDir）
+  enum:
+    - ASCEND
+    - DESCEND
+
+RelativePosition:
+  type: string
+  description: 相对位置（RelativePosition）
+  enum:
+    - UNKNOWN
+    - MORE
+    - LESS
+    - CROSS_UP
+    - CROSS_DOWN
+
+FinancialQuarter:
+  type: string
+  description: 财报累积时间（FinancialQuarter）
+  enum:
+    - UNKNOWN
+    - ANNUAL
+    - FIRST_QUARTER
+    - INTERIM
+    - THIRD_QUARTER
+    - MOST_RECENT_QUARTER
+
+FinancialStockField:
+  type: string
+  description: |
+    财务过滤属性
+    - NONE: 未知
+    - NET_PROFIT: 净利润
+    - NET_PROFIT_GROWTH: 净利润增长率
+    - SUM_OF_BUSINESS: 营业收入
+    - SUM_OF_BUSINESS_GROWTH: 营收同比增长率
+    - NET_PROFIT_RATE: 净利率
+    - GROSS_PROFIT_RATE: 毛利率
+    - DEBT_ASSET_RATE: 资产负债率
+    - RETURN_ON_EQUITY_RATE: 净资产收益率
+    - ROIC: 投入资本回报率
+    - ROA_TTM: 资产回报率 TTM
+    - EBIT_TTM: 息税前利润 TTM
+    - EBITDA: 税息折旧及摊销前利润
+    - OPERATING_MARGIN_TTM: 营业利润率 TTM
+    - EBIT_MARGIN: EBIT 利润率
+    - EBITDA_MARGIN: EBITDA 利润率
+    - FINANCIAL_COST_RATE: 财务成本率
+    - OPERATING_PROFIT_TTM: 营业利润 TTM
+    - SHAREHOLDER_NET_PROFIT_TTM: 归属于母公司的净利润
+    - NET_PROFIT_CASH_COVER_TTM: 盈利中的现金收入比例
+    - CURRENT_RATIO: 流动比率
+    - QUICK_RATIO: 速动比率
+    - CURRENT_ASSET_RATIO: 流动资产率
+    - CURRENT_DEBT_RATIO: 流动负债率
+    - EQUITY_MULTIPLIER: 权益乘数
+    - PROPERTY_RATIO: 产权比率
+    - CASH_AND_CASH_EQUIVALENTS: 现金和现金等价物
+    - TOTAL_ASSET_TURNOVER: 总资产周转率
+    - FIXED_ASSET_TURNOVER: 固定资产周转率
+    - INVENTORY_TURNOVER: 存货周转率
+    - OPERATING_CASH_FLOW_TTM: 经营活动现金流 TTM
+    - ACCOUNTS_RECEIVABLE: 应收账款净额
+    - EBIT_GROWTH_RATE: EBIT 同比增长率
+    - OPERATING_PROFIT_GROWTH_RATE: 营业利润同比增长率
+    - TOTAL_ASSETS_GROWTH_RATE: 总资产同比增长率
+    - PROFIT_TO_SHAREHOLDERS_GROWTH_RATE: 归母净利润同比增长率
+    - PROFIT_BEFORE_TAX_GROWTH_RATE: 总利润同比增长率
+    - EPS_GROWTH_RATE: EPS 同比增长率
+    - ROE_GROWTH_RATE: ROE 同比增长率
+    - ROIC_GROWTH_RATE: ROIC 同比增长率
+    - NOCF_GROWTH_RATE: 经营现金流同比增长率
+    - NOCF_PER_SHARE_GROWTH_RATE: 每股经营现金流同比增长率
+    - OPERATING_REVENUE_CASH_COVER: 经营现金收入比
+    - OPERATING_PROFIT_TO_TOTAL_PROFIT: 营业利润占比
+    - BASIC_EPS: 基本每股收益
+    - DILUTED_EPS: 稀释每股收益
+    - NOCF_PER_SHARE: 每股经营现金净流量
+  enum:
+    - NONE
+    - NET_PROFIT
+    - NET_PROFIT_GROWTH
+    - SUM_OF_BUSINESS
+    - SUM_OF_BUSINESS_GROWTH
+    - NET_PROFIT_RATE
+    - GROSS_PROFIT_RATE
+    - DEBT_ASSET_RATE
+    - RETURN_ON_EQUITY_RATE
+    - ROIC
+    - ROA_TTM
+    - EBIT_TTM
+    - EBITDA
+    - OPERATING_MARGIN_TTM
+    - EBIT_MARGIN
+    - EBITDA_MARGIN
+    - FINANCIAL_COST_RATE
+    - OPERATING_PROFIT_TTM
+    - SHAREHOLDER_NET_PROFIT_TTM
+    - NET_PROFIT_CASH_COVER_TTM
+    - CURRENT_RATIO
+    - QUICK_RATIO
+    - CURRENT_ASSET_RATIO
+    - CURRENT_DEBT_RATIO
+    - EQUITY_MULTIPLIER
+    - PROPERTY_RATIO
+    - CASH_AND_CASH_EQUIVALENTS
+    - TOTAL_ASSET_TURNOVER
+    - FIXED_ASSET_TURNOVER
+    - INVENTORY_TURNOVER
+    - OPERATING_CASH_FLOW_TTM
+    - ACCOUNTS_RECEIVABLE
+    - EBIT_GROWTH_RATE
+    - OPERATING_PROFIT_GROWTH_RATE
+    - TOTAL_ASSETS_GROWTH_RATE
+    - PROFIT_TO_SHAREHOLDERS_GROWTH_RATE
+    - PROFIT_BEFORE_TAX_GROWTH_RATE
+    - EPS_GROWTH_RATE
+    - ROE_GROWTH_RATE
+    - ROIC_GROWTH_RATE
+    - NOCF_GROWTH_RATE
+    - NOCF_PER_SHARE_GROWTH_RATE
+    - OPERATING_REVENUE_CASH_COVER
+    - OPERATING_PROFIT_TO_TOTAL_PROFIT
+    - BASIC_EPS
+    - DILUTED_EPS
+    - NOCF_PER_SHARE
+
+PatternStockField:
+  type: string
+  description: |
+    形态技术指标属性
+    - NONE: 未知
+    - MA_ALIGNMENT_LONG: MA多头排列（连续两天MA5>MA10>MA20>MA30>MA60，且当日收盘价大于前一天收盘价）
+    - MA_ALIGNMENT_SHORT: MA空头排列（连续两天MA5<MA10<MA20<MA30<MA60，且当日收盘价小于前一天收盘价）
+    - EMA_ALIGNMENT_LONG: EMA多头排列（连续两天EMA5>EMA10>EMA20>EMA30>EMA60，且当日收盘价大于前一天收盘价）
+    - EMA_ALIGNMENT_SHORT: EMA空头排列（连续两天EMA5<EMA10<EMA20<EMA30<EMA60，且当日收盘价小于前一天收盘价）
+    - RSI_GOLD_CROSS_LOW: RSI低位金叉（50以下，短线RSI上穿长线RSI）
+    - RSI_DEATH_CROSS_HIGH: RSI高位死叉（50以上，短线RSI下穿长线RSI）
+    - RSI_TOP_DIVERGENCE: RSI顶背离
+    - RSI_BOTTOM_DIVERGENCE: RSI底背离
+    - KDJ_GOLD_CROSS_LOW: KDJ低位金叉
+    - KDJ_DEATH_CROSS_HIGH: KDJ高位死叉
+    - KDJ_TOP_DIVERGENCE: KDJ顶背离
+    - KDJ_BOTTOM_DIVERGENCE: KDJ底背离
+    - MACD_GOLD_CROSS_LOW: MACD低位金叉
+    - MACD_DEATH_CROSS_HIGH: MACD高位死叉
+    - MACD_TOP_DIVERGENCE: MACD顶背离
+    - MACD_BOTTOM_DIVERGENCE: MACD底背离
+    - BOLL_BREAK_UPPER: BOLL突破上轨
+    - BOLL_BREAK_LOWER: BOLL突破下轨
+    - BOLL_CROSS_MIDDLE_UP: BOLL向上破中轨
+    - BOLL_CROSS_MIDDLE_DOWN: BOLL向下破中轨
+  enum:
+    - NONE
+    - MA_ALIGNMENT_LONG
+    - MA_ALIGNMENT_SHORT
+    - EMA_ALIGNMENT_LONG
+    - EMA_ALIGNMENT_SHORT
+    - RSI_GOLD_CROSS_LOW
+    - RSI_DEATH_CROSS_HIGH
+    - RSI_TOP_DIVERGENCE
+    - RSI_BOTTOM_DIVERGENCE
+    - KDJ_GOLD_CROSS_LOW
+    - KDJ_DEATH_CROSS_HIGH
+    - KDJ_TOP_DIVERGENCE
+    - KDJ_BOTTOM_DIVERGENCE
+    - MACD_GOLD_CROSS_LOW
+    - MACD_DEATH_CROSS_HIGH
+    - MACD_TOP_DIVERGENCE
+    - MACD_BOTTOM_DIVERGENCE
+    - BOLL_BREAK_UPPER
+    - BOLL_BREAK_LOWER
+    - BOLL_CROSS_MIDDLE_UP
+    - BOLL_CROSS_MIDDLE_DOWN
+
+CustomStockField:
+  type: string
+  description: |
+    自定义技术指标属性（stock_field1）
+    - NONE: 未知
+    - PRICE: 最新价格
+    - MA: 简单均线
+    - MA5: 5日简单均线（不建议使用）
+    - MA10: 10日简单均线（不建议使用）
+    - MA20: 20日简单均线（不建议使用）
+    - MA30: 30日简单均线（不建议使用）
+    - MA60: 60日简单均线（不建议使用）
+    - MA120: 120日简单均线（不建议使用）
+    - MA250: 250日简单均线（不建议使用）
+    - RSI: RSI（默认参数为[12]）
+    - EMA: 指数移动均线
+    - EMA5: 5日指数移动均线（不建议使用）
+    - EMA10: 10日指数移动均线（不建议使用）
+    - EMA20: 20日指数移动均线（不建议使用）
+    - EMA30: 30日指数移动均线（不建议使用）
+    - EMA60: 60日指数移动均线（不建议使用）
+    - EMA120: 120日指数移动均线（不建议使用）
+    - EMA250: 250日指数移动均线（不建议使用）
+    - KDJ_K: KDJ 指标的 K 值（默认参数[9,3,3]）
+    - KDJ_D: KDJ 指标的 D 值（默认参数[9,3,3]）
+    - KDJ_J: KDJ 指标的 J 值（默认参数[9,3,3]）
+    - MACD_DIFF: MACD DIFF 值（默认参数[12,26,9]）
+    - MACD_DEA: MACD DEA 值（默认参数[12,26,9]）
+    - MACD: MACD 值（默认参数[12,26,9]）
+    - BOLL_UPPER: BOLL UPPER 值（默认参数[20,2]）
+    - BOLL_MIDDLER: BOLL MIDDLER 值（默认参数[20,2]）
+    - BOLL_LOWER: BOLL LOWER 值（默认参数[20,2]）
+  enum:
+    - NONE
+    - PRICE
+    - MA
+    - MA5
+    - MA10
+    - MA20
+    - MA30
+    - MA60
+    - MA120
+    - MA250
+    - RSI
+    - EMA
+    - EMA5
+    - EMA10
+    - EMA20
+    - EMA30
+    - EMA60
+    - EMA120
+    - EMA250
+    - KDJ_K
+    - KDJ_D
+    - KDJ_J
+    - MACD_DIFF
+    - MACD_DEA
+    - MACD
+    - BOLL_UPPER
+    - BOLL_MIDDLER
+    - BOLL_LOWER
+
+PeriodMark:
+  type: integer
+  format: int32
+  description: |
+    报告期类型编码（周期），对应 infos-api `PeriodMarkEnum`。
+    - 13140001: 1个月 (T13140001)
+    - 13140002: 2个月 (T13140002)
+    - 13140003: 3个月 (T13140003)
+    - 13140004: 4个月 (T13140004)
+    - 13140005: 5个月 (T13140005)
+    - 13140006: 6个月 (T13140006)；Java 中 T13140007 也使用该 code，解析 `of(code)` 时与 6 个月相同
+    - 13140008: 8个月 (T13140008)
+    - 13140009: 9个月 (T13140009)
+    - 13140010: 10个月 (T13140010)
+    - 13140011: 11个月 (T13140011)
+    - 13140012: 年度 (T13140012)
+    - 13140013: 13个月 (T13140013)
+    - 13140014: 14个月 (T13140014)
+    - 13140015: 15个月 (T13140015)
+    - 13140016: 16个月 (T13140016)
+    - 13140017: 17个月 (T13140017)
+    - 13140018: 18个月 (T13140018)
+    - 13140090: 季度 (T13140090)
+    - 13140099: 其他 (T13140099)
+  enum:
+    - 13140001
+    - 13140002
+    - 13140003
+    - 13140004
+    - 13140005
+    - 13140006
+    - 13140008
+    - 13140009
+    - 13140010
+    - 13140011
+    - 13140012
+    - 13140013
+    - 13140014
+    - 13140015
+    - 13140016
+    - 13140017
+    - 13140018
+    - 13140090
+    - 13140099
+  x-enum-varnames:
+    - T13140001
+    - T13140002
+    - T13140003
+    - T13140004
+    - T13140005
+    - T13140006
+    - T13140008
+    - T13140009
+    - T13140010
+    - T13140011
+    - T13140012
+    - T13140013
+    - T13140014
+    - T13140015
+    - T13140016
+    - T13140017
+    - T13140018
+    - T13140090
+    - T13140099
+
+InfoSourceEnum:
+  type: integer
+  format: int32
+  description: |
+    信息来源编码，对应 infos-api `InfoSourceEnum`（info_source_code）。
+    - 19260002: 第一季报 (T19260002)
+    - 19260003: 中期报告 (T19260003)
+    - 19260004: 第三季报 (T19260004)
+    - 19260005: 年度报告 (T19260005)
+    - 19260006: 第二季报 (T19260006)
+    - 19260007: 第四季报 (T19260007)
+    - 19260008: 第五季报 (T19260008)
+    - 19260009: 定期报告 (T19260009)
+    - 19260010: 申请版本 (T19260010)
+    - 19260011: 聆讯后资料集 (T19260011)
+    - 19260012: 招股章程 (T19260012)
+    - 19260013: 临时公告 (T19260013)
+    - 19260027: 配发结果 (T19260027)
+    - 19260028: 修改已刊发的财务报表及报告 (T19260028)
+    - 19260029: 修正重大错误而做出的前期调整 (T19260029)
+    - 19260030: 修订已刊发初步业绩的资料 (T19260030)
+    - 19260032: 内幕消息-年度报告 (T19260032)
+    - 19260033: 内幕消息-第一季报 (T19260033)
+    - 19260034: 内幕消息-第二季报 (T19260034)
+    - 19260035: 内幕消息-第三季报 (T19260035)
+    - 19260036: 内幕消息-第四季报 (T19260036)
+    - 19260037: 内幕消息-中期报告 (T19260037)
+    - 19260038: 内幕消息-申请版本 (T19260038)
+    - 19260039: 内幕消息-招股章程 (T19260039)
+    - 19260040: 内幕消息-聆讯后资料集 (T19260040)
+    - 19260041: 内幕消息-其他 (T19260041)
+  enum:
+    - 19260002
+    - 19260003
+    - 19260004
+    - 19260005
+    - 19260006
+    - 19260007
+    - 19260008
+    - 19260009
+    - 19260010
+    - 19260011
+    - 19260012
+    - 19260013
+    - 19260027
+    - 19260028
+    - 19260029
+    - 19260030
+    - 19260032
+    - 19260033
+    - 19260034
+    - 19260035
+    - 19260036
+    - 19260037
+    - 19260038
+    - 19260039
+    - 19260040
+    - 19260041
+  x-enum-varnames:
+    - T19260002
+    - T19260003
+    - T19260004
+    - T19260005
+    - T19260006
+    - T19260007
+    - T19260008
+    - T19260009
+    - T19260010
+    - T19260011
+    - T19260012
+    - T19260013
+    - T19260027
+    - T19260028
+    - T19260029
+    - T19260030
+    - T19260032
+    - T19260033
+    - T19260034
+    - T19260035
+    - T19260036
+    - T19260037
+    - T19260038
+    - T19260039
+    - T19260040
+    - T19260041
+
+DateTypeConvertUtil:
+  type: integer
+  format: int32
+  description: |
+    - 1 第一季报
+    - 2 中期报告
+    - 3 第三季报
+    - 4 年报
+    - 5 第二季报
+    - 7 第四季报
+  enum:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 7
+  x-enum-varnames:
+    - DT1
+    - DT2
+    - DT3
+    - DT4
+    - DT5
+    - DT7
+
+ShareholderRedHoldEnum:
+  type: integer
+  format: int32
+  description: |
+    股东增减持排序/展示字段（ShareholderRedHoldEnum）
+    - 1001 事件日期
+    - 1002 变动股数
+    - 1003 变动金额
+    - 1004 近N个月涨跌幅
+  enum:
+    - 1001
+    - 1002
+    - 1003
+    - 1004
+  x-enum-varnames:
+    - EVENT_DATE
+    - ADJ_SHARES_TRADED
+    - CHANGE_AMOUNT
+    - RAISE_PERCENT

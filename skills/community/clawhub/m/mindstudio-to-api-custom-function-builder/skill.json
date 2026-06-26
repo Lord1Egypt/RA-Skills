@@ -1,0 +1,24 @@
+{
+  "name": "mindstudio-to-api-custom-function-builder",
+  "version": "1.1.0",
+  "displayName": "MindStudio To API Custom Function Builder",
+  "description": "Generates complete MindStudio Run Function integrations (Code Tab, Configuration Tab, Test Data Tab) for any API. Includes Sandbox-safe patterns, auth templates, and output variable best practices.",
+  "author": "Sol",
+  "license": "MIT",
+  "tags": ["mindstudio", "api", "integration", "workflow", "automation", "run-function"],
+  "compatibility": {
+    "claude": ["claude.ai", "claude-code"]
+  },
+  "triggers": [
+    "MindStudio",
+    "Run Function",
+    "connect API to MindStudio",
+    "build MindStudio function",
+    "MindStudio workflow",
+    "custom function MindStudio"
+  ],
+  "changelog": {
+    "1.1.0": "Added URLSearchParams Sandbox limitation to Common Mistakes. Added full list of unavailable Node/browser APIs in Sandbox notes.",
+    "1.0.0": "Initial release. Covers Code Tab, Configuration Tab, Test Data Tab generation. Includes auth patterns, Sandbox vs VM guidance, and output variable naming best practices."
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "skill_name": "ministry-weekly",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Hey, need content for this Sunday. Pastor Mike is preaching on John 11:1-44, theme is resurrection hope. It's Easter Sunday so we have two services at 9am and 11am. We also have a special guest choir from Atlanta First Baptist and there's a free lunch after the 11am service.",
+      "expected_output": "A bulletin draft, three social posts, and a weekly email -- all reflecting Easter energy, the John 11 scripture, two service times, guest choir, and the post-service lunch."
+    },
+    {
+      "id": 2,
+      "prompt": "Sunday sermon is Proverbs 3:5-6, trust and leaning on God. Pretty normal Sunday, 10am service. We have a potluck after and the youth group is selling candy bars as a fundraiser. Church name is Grace Fellowship.",
+      "expected_output": "Content package for Grace Fellowship with the Proverbs text, warm everyday-Sunday tone, potluck and youth fundraiser mentioned in bulletin and email."
+    },
+    {
+      "id": 3,
+      "prompt": "We're doing a baptism service this week. Romans 6:1-11. Pastor wants to really emphasize new life and new beginnings. Also need to announce that VBS registration opens next Monday -- it's called SonRise VBS. Sunday at 10:30.",
+      "expected_output": "Bulletin, social posts, and email centered on baptism and new life theme, Romans 6 scripture, VBS registration announcement prominently included."
+    }
+  ]
+}

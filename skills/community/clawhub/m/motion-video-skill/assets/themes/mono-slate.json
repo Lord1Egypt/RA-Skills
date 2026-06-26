@@ -1,0 +1,17 @@
+{
+  "id": "mono-slate",
+  "label": "Mono Slate",
+  "description": "黑白克制的理性风，适合观点和访谈摘要。",
+  "fontDisplay": "'Avenir Next', 'PingFang SC', 'Microsoft YaHei', sans-serif",
+  "fontBody": "'Avenir Next', 'PingFang SC', 'Microsoft YaHei', sans-serif",
+  "bg": "linear-gradient(180deg, #101214 0%, #171A1D 100%)",
+  "surface": "rgba(24, 28, 31, 0.78)",
+  "surfaceStrong": "rgba(20, 23, 27, 0.96)",
+  "textPrimary": "#F5F7FA",
+  "textSecondary": "#D1D5DB",
+  "accent": "#F8FAFC",
+  "accentSoft": "rgba(248, 250, 252, 0.10)",
+  "accentAlt": "#94A3B8",
+  "outline": "rgba(255, 255, 255, 0.12)",
+  "shadow": "0 18px 44px rgba(0, 0, 0, 0.32)"
+}

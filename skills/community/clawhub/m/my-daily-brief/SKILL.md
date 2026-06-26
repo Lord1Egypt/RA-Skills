@@ -1,35 +1,28 @@
 ---
-name: "My Daily Brief"
-description: "每日早报技能，生成天气+热点简报。 Use when: 用户说“今日简报”“今天热点”，或早上8点定时触发。 NOT for: 详细天气预报、深度新闻分析。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/my-daily-brief"
-sourceUrl: "https://clawhub.ai/skills/my-daily-brief"
+name: my-daily-brief
+description: >
+  每日早报技能，生成天气+热点简报。
+  Use when: 用户说“今日简报”“今天热点”，或早上8点定时触发。
+  NOT for: 详细天气预报、深度新闻分析。
 ---
 
-# My Daily Brief
+# Daily Brief Skill
 
-> 每日早报技能，生成天气+热点简报。 Use when: 用户说“今日简报”“今天热点”，或早上8点定时触发。 NOT for: 详细天气预报、深度新闻分析。
+## When to Run
+- 用户说“今日简报”“今天热点”“有什么新闻”
+- 每天早上 11:22（通过 cron 定时触发）
+- 需要快速了解今日信息时
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/my-daily-brief`
-- **Source URL:** [https://clawhub.ai/skills/my-daily-brief](https://clawhub.ai/skills/my-daily-brief)
+## Workflow
+1. 获取北京天气：
+   curl "https://wttr.in/Beijin?format=3"
+2. 获取百度首页上热搜词条前 50条 标题
+3. 按指定格式整理输出
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/my-daily-brief
-```
+## Output Format
+📅 今日简报
+🌤 天气：{天气结果}
+🔥 百度 热搜：
+1. {标题}
+2. {标题}
+...

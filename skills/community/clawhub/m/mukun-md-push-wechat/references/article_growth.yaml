@@ -1,0 +1,22 @@
+# 文章模式 — 角标绿条样式（白底 + 黄色编号角标 + 绿色标签块 + 粗底线）
+# 适用场景：清单型文章、步骤拆解、资讯解读、运营日报
+# 触发词：角标 / 角标绿条 / 角标编号 / 编号角标 / badge / 清单 / 步骤 / 运营 / 资讯 / 拆解 / 模块化 / 绿底封面
+style:
+    article:
+        bg: "#ffffff"
+        text: "#2c2c2c"
+        accent: "#2f9d62"
+        hero_bg: "#2f9d62"
+        hero_title_color: "#ffffff"
+        bold: "#1f1f1f"
+        rule: "#dfe8e2"
+        caption: "#8a938d"
+        title_font_size: "24px"
+        text_font_size: "16px"
+        h2_font_size: "18px"
+        cover_label: "WEEKLY INSIGHT"
+        footer: ""
+        h2_style: "badge_block"
+        h2_badge_bg: "#f7b731"
+        h2_badge_text: "#ffffff"
+        ending_lines: []

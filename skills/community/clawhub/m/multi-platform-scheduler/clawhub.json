@@ -1,0 +1,16 @@
+{
+  "name": "multi-platform-scheduler",
+  "displayName": "Multi-Platform Social Media Scheduler",
+  "version": "1.0.0",
+  "description": "Professional multi-platform social media content scheduler for Twitter, LinkedIn, Instagram, TikTok, YouTube, and more with unified content calendar, smart scheduling, and cross-platform analytics.",
+  "author": "ahmed181283",
+  "license": "MIT",
+  "pricing": {
+    "model": "subscription",
+    "price": 9900,
+    "interval": "monthly"
+  },
+  "tags": ["social-media", "scheduling", "twitter", "linkedin", "instagram", "tiktok", "youtube", "content-calendar"],
+  "minOpenClawVersion": "1.0.0",
+  "category": "marketing"
+}

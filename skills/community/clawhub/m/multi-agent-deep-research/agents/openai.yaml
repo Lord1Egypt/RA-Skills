@@ -1,0 +1,4 @@
+interface:
+  display_name: "OpenClaw Research"
+  short_description: "Deep research for OpenClaw with evidence and local ledgers."
+  default_prompt: "Run a source-verifiable research workflow in OpenClaw with local ledgers, clear handoffs, and context-window discipline."

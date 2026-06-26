@@ -1,0 +1,14 @@
+{
+  "name": "moltstreet-spy",
+  "version": "1.0.1",
+  "description": "AI signals for SPY, QQQ, DIA, IWM — US stock market index outlook with multi-analyst debate. Free, no API key.",
+  "author": "moltstreet",
+  "license": "MIT",
+  "homepage": "https://moltstreet.com",
+  "repository": "https://github.com/fredxyt/moltstreet",
+  "keywords": [
+    "spy", "qqq", "dia", "iwm", "s&p 500", "nasdaq", "dow jones", "russell 2000",
+    "stock market", "index fund", "market outlook", "bullish", "bearish",
+    "ai signals", "market direction", "investing", "multi-analyst"
+  ]
+}

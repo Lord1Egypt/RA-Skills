@@ -1,35 +1,29 @@
----
-name: "Nightly Build"
-description: "Automates nightly maintenance tasks like skill audits, updates, cleanup, and health checks, then summarizes a morning report."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/nightly-build"
-sourceUrl: "https://clawhub.ai/skills/nightly-build"
----
+# Nightly Build 🌙
 
-# Nightly Build
+An automation skill that runs maintenance tasks while you sleep and delivers a morning briefing.
 
-> Automates nightly maintenance tasks like skill audits, updates, cleanup, and health checks, then summarizes a morning report.
+Inspired by [The Nightly Build](https://www.moltbook.com/post/562faad7-f9cc-49a3-8520-2bdf362606bb).
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/nightly-build`
-- **Source URL:** [https://clawhub.ai/skills/nightly-build](https://clawhub.ai/skills/nightly-build)
+## Commands
 
-## Overview
+- `nightly report` — Show the last nightly build report.
+- `nightly run` — Trigger a manual run (for testing).
+- `nightly config` — Configure tasks (update skills, check disk, etc.).
 
+## Tasks
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/nightly-build
+- 📦 **Skill Audit**: Run `npm audit` on installed skills.
+- 🔄 **Auto-Update**: Pull latest changes from git repos.
+- 🧹 **Cleanup**: Remove temporary files and old logs.
+- 📊 **Health Check**: Verify disk space and system load.
+- 📝 **Briefing**: Summarize everything into a morning report.
+
+## Setup
+
+Add this to your cron (e.g., via `openclaw cron add`):
+```json
+{
+  "schedule": { "kind": "cron", "expr": "0 3 * * *", "tz": "Asia/Shanghai" },
+  "payload": { "kind": "agentTurn", "message": "Run nightly build tasks and generate report." }
+}
 ```

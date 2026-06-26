@@ -1,0 +1,47 @@
+[
+  {
+    "userId": "ou_test",
+    "userName": "测试用户",
+    "label": "测试用户的专属助手",
+    "task": "为测试用户提供专属助手服务，遵守多用户隐私保护规则",
+    "createdAt": "2026-03-12T03:48:24.632Z",
+    "status": "pending",
+    "lastError": "Command failed: openclaw sessions spawn --task=\"为测试用户提供专属助手服务，遵守多用户隐私保护规则\" --label=\"测试用户的专属助手\" --runtime=\"subagent\" --mode=\"session\"\nerror: unknown option '--task=为测试用户提供专属助手服务，遵守多用户隐私保护规则'\n"
+  },
+  {
+    "userId": "ou_test_existing_user",
+    "userName": "现有用户",
+    "label": "现有用户的专属助手",
+    "task": "为现有用户提供专属助手服务，遵守多用户隐私保护规则",
+    "createdAt": "2026-03-12T03:48:27.029Z",
+    "status": "pending",
+    "lastError": "Command failed: openclaw sessions spawn --task=\"为现有用户提供专属助手服务，遵守多用户隐私保护规则\" --label=\"现有用户的专属助手\" --runtime=\"subagent\" --mode=\"session\"\nerror: unknown option '--task=为现有用户提供专属助手服务，遵守多用户隐私保护规则'\n"
+  },
+  {
+    "userId": "ou_test_existing_user",
+    "userName": "现有用户",
+    "label": "现有用户的专属助手",
+    "task": "为现有用户提供专属助手服务，遵守多用户隐私保护规则",
+    "createdAt": "2026-03-12T03:48:30.623Z",
+    "status": "pending",
+    "lastError": "Command failed: openclaw sessions spawn --task=\"为现有用户提供专属助手服务，遵守多用户隐私保护规则\" --label=\"现有用户的专属助手\" --runtime=\"subagent\" --mode=\"session\"\nerror: unknown option '--task=为现有用户提供专属助手服务，遵守多用户隐私保护规则'\n"
+  },
+  {
+    "userId": "ou_test_pending_user",
+    "userName": "Pending 测试用户",
+    "label": "Pending 测试用户的专属助手",
+    "task": "为 Pending 测试用户提供专属助手服务",
+    "createdAt": "2026-03-12T03:48:34.199Z",
+    "status": "pending",
+    "lastError": "Command failed: openclaw sessions spawn --task=\"为 Pending 测试用户提供专属助手服务\" --label=\"Pending 测试用户的专属助手\" --runtime=\"subagent\" --mode=\"session\"\nerror: unknown option '--task=为 Pending 测试用户提供专属助手服务'\n"
+  },
+  {
+    "userId": "ou_test_pending_user",
+    "userName": "Pending 测试用户",
+    "label": "Pending 测试用户的专属助手",
+    "task": "为 Pending 测试用户提供专属助手服务",
+    "createdAt": "2026-03-12T03:50:22.060Z",
+    "status": "pending",
+    "lastError": "Command failed: openclaw sessions spawn --task=\"为 Pending 测试用户提供专属助手服务\" --label=\"Pending 测试用户的专属助手\" --runtime=\"subagent\" --mode=\"session\"\nerror: unknown option '--task=为 Pending 测试用户提供专属助手服务'\n"
+  }
+]

@@ -1,0 +1,12 @@
+{
+  "name": "my-weather-helper",
+  "version": "1.0.0",
+  "description": "一个简单的天气查询辅助技能",
+  "author": "你的名字",
+  "skills": [
+    {
+      "action": "query_weather",
+      "description": "当用户询问天气时，引导用户提供城市名并调用搜索工具"
+    }
+  ]
+}

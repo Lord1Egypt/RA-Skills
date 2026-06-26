@@ -1,35 +1,98 @@
 ---
-name: "mitools-desensitize"
-description: "数据脱敏工具，支持手机号、身份证、银行卡、邮箱、IP地址、中文姓名等多种敏感信息脱敏"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/mitools-desensitize"
-sourceUrl: "https://clawhub.ai/skills/mitools-desensitize"
+name: mitools-desensitize
+description: 数据脱敏工具，支持手机号、身份证、银行卡、邮箱、IP地址、中文姓名等多种敏感信息脱敏
+version: 1.0.0
+author: WorkBuddy
+license: MIT
+requires:
+  - python3
 ---
 
-# mitools-desensitize
+# 数据脱敏工具 (mitools-desensitize)
 
-> 数据脱敏工具，支持手机号、身份证、银行卡、邮箱、IP地址、中文姓名等多种敏感信息脱敏
+基于正则表达式的数据脱敏工具，支持多种敏感信息类型的自动识别和脱敏处理。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/mitools-desensitize`
-- **Source URL:** [https://clawhub.ai/skills/mitools-desensitize](https://clawhub.ai/skills/mitools-desensitize)
+## 功能特性
 
-## Overview
+- 📱 **手机号脱敏** - 保留前3位和后3位，中间用*号替代
+- 🆔 **身份证号脱敏** - 保留前3位和后3位，中间用*号替代
+- 💳 **银行卡脱敏** - 保留前2位，其余用*号替代
+- 📧 **邮箱脱敏** - 保留前2位，后面用***替代
+- 👤 **中文姓名脱敏** - 保留姓氏，后面用**替代
+- 🌐 **IP地址脱敏** - 替换为伪IP地址（139.1.2.xxx）
+- 📁 **路径用户名脱敏** - 替换路径中的用户名为demo01/demo02等
+- 🔢 **长串数字脱敏** - 6位以上连续数字替换为等长伪数字
+- 📝 **字段名脱敏** - 敏感字段名首字保留，后面用**替代
+- 🔄 **通配符规则** - 支持自定义通配符替换规则
+- ↩️ **数据还原** - 支持根据映射表还原脱敏数据
 
+## 使用方法
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/mitools-desensitize
+### 1. 对文本进行脱敏
+
 ```
+脱敏 <文本内容>
+```
+
+示例：
+```
+脱敏 张三的手机号是13812345678，邮箱是zhangsan@example.com
+```
+
+### 2. 对文件进行脱敏
+
+```
+脱敏文件 <文件路径>
+```
+
+示例：
+```
+脱敏文件 ./user_data.log
+```
+
+### 3. 根据映射还原数据
+
+```
+脱敏还原 <脱敏后文本> <映射JSON>
+```
+
+示例：
+```
+脱敏还原 "张**的手机号是138*****678" '{"username": {"张三": "demo01"}}'
+```
+
+### 4. 查看支持的脱敏规则
+
+```
+脱敏规则列表
+```
+
+## 支持的脱敏规则
+
+| 规则名称 | 说明 | 示例 |
+|---------|------|------|
+| phone | 手机号脱敏 | 13812345678 → 138*****678 |
+| idcard | 身份证号脱敏 | 110101199001011234 → 110******234 |
+| bankcard | 银行卡脱敏 | 6222021234567890123 → 62** **** **** **** *** |
+| email | 邮箱脱敏 | zhangsan@example.com → zh***@***.com |
+| chinese_name | 中文姓名脱敏 | 张三 → 张** |
+| ip | IP地址脱敏 | 192.168.1.1 → 139.1.2.100 |
+| path_user | 路径用户名脱敏 | /home/zhangsan → /home/demo01 |
+| digit_sequence | 长串数字脱敏 | 1234567890 → 0000000001 |
+| chinese_field | 字段名脱敏 | 手机号 → 手** |
+| wildcard | 通配符规则 | dev*23 → dev31 |
+
+## 配置文件
+
+工具会自动生成 `desensitize_config.json` 配置文件，包含：
+
+- `levels`: 脱敏级别配置，定义应用哪些规则
+- `wildcard_rules`: 通配符替换规则
+- `custom_rules`: 自定义正则规则
+
+## 使用场景
+
+- 日志脱敏 - 清理生产环境日志中的敏感信息
+- 数据分享 - 脱敏后分享给第三方
+- 测试数据 - 生成脱敏的测试数据集
+- 文档处理 - 清理文档中的敏感信息

@@ -1,35 +1,66 @@
 ---
-name: "Nm Abstract Shared Patterns"
-description: "Provide reusable patterns for validation, error handling, scaffolding. Use for skill consistency"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/nm-abstract-shared-patterns"
-sourceUrl: "https://clawhub.ai/skills/nm-abstract-shared-patterns"
+name: shared-patterns
+description: |
+  Provide reusable patterns for validation, error handling, scaffolding. Use for skill consistency
+version: 1.9.8
+triggers:
+  - patterns
+  - templates
+  - shared
+  - validation
+  - reusable
+metadata: {"openclaw": {"homepage": "https://github.com/athola/claude-night-market/tree/master/plugins/abstract", "emoji": "\ud83e\udd9e"}}
+source: claude-night-market
+source_plugin: abstract
 ---
 
-# Nm Abstract Shared Patterns
-
-> Provide reusable patterns for validation, error handling, scaffolding. Use for skill consistency
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/nm-abstract-shared-patterns`
-- **Source URL:** [https://clawhub.ai/skills/nm-abstract-shared-patterns](https://clawhub.ai/skills/nm-abstract-shared-patterns)
-
-## Overview
+> **Night Market Skill** — ported from [claude-night-market/abstract](https://github.com/athola/claude-night-market/tree/master/plugins/abstract). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
 
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/nm-abstract-shared-patterns
+# Shared Patterns
+
+Reusable patterns and templates for skill and hook development.
+
+## Purpose
+
+This skill provides shared patterns that are referenced by other skills in the abstract plugin. It follows DRY principles by centralizing common patterns.
+
+## Pattern Categories
+
+### Validation Patterns
+
+See [modules/validation-patterns.md](modules/validation-patterns.md) for:
+- Input validation templates
+- Schema validation patterns
+- Error reporting formats
+
+### Error Handling
+
+See [modules/error-handling.md](modules/error-handling.md) for:
+- Exception hierarchies
+- Error message formatting
+- Recovery strategies
+
+### Testing Templates
+
+See [modules/testing-templates.md](modules/testing-templates.md) for:
+- Unit test scaffolding
+- Integration test patterns
+- Mock fixtures
+
+### Workflow Patterns
+
+See [modules/workflow-patterns.md](modules/workflow-patterns.md) for:
+- Checklist templates
+- Feedback loop patterns
+- Progressive disclosure structures
+
+## Usage
+
+Reference these patterns from other skills:
+
+```markdown
+For validation patterns, see the `shared-patterns` skill's
+[validation-patterns](../shared-patterns/modules/validation-patterns.md) module.
 ```
+**Verification:** Run the command with `--help` flag to verify availability.

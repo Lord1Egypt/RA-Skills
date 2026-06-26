@@ -1,0 +1,4 @@
+interface:
+  display_name: "Model Pricing Sync"
+  short_description: "采集模型与代码工具价格页面，补两张提取表，并同步到飞书普通电子表格"
+  default_prompt: "Use $model-pricing-sync to collect pricing pages into artifacts/<run_dir>/collected/pages/*.md, fill extracted/api_pricing.csv and extracted/subscription_plans.csv from those markdown files, then run push. Push should use artifacts/latest_run.json by default and only needs --run-dir when revisiting an older run."

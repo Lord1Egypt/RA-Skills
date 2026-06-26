@@ -1,0 +1,67 @@
+{
+  "version": "1.0.0",
+  "tool": "habit-tracker-pro",
+  "checkin_schedule": {
+    "morning": {
+      "time": "08:00",
+      "enabled": true,
+      "label": "Morning check-in"
+    },
+    "evening": {
+      "time": "21:00",
+      "enabled": true,
+      "label": "Evening check-in"
+    }
+  },
+  "timezone": "America/Denver",
+  "tone_level": 3,
+  "tone_descriptions": {
+    "1": "Gentle encouragement — soft, supportive, always positive",
+    "2": "Mostly encouraging — light nudges on misses",
+    "3": "Honest and balanced — celebrate wins, acknowledge misses directly",
+    "4": "Straight shooter — minimal sugarcoating, direct observations",
+    "5": "No filter — blunt, no-nonsense, just the data and the truth"
+  },
+  "weekly_report": {
+    "enabled": true,
+    "day": "sunday",
+    "time": "19:00"
+  },
+  "streak_rules": {
+    "grace_period_days": 0,
+    "freeze_enabled": true,
+    "count_only_scheduled_days": true
+  },
+  "pattern_analysis": {
+    "min_days_required": 14,
+    "auto_surface_insights": true,
+    "reanalyze_interval_days": 7
+  },
+  "habits_defaults": {
+    "frequency_type": "daily",
+    "time_preference": "morning",
+    "category": "uncategorized",
+    "auto_complete": false
+  },
+  "cross_tool_sync": {
+    "enabled": true,
+    "sources": {
+      "trainer-buddy:workout": {
+        "maps_to_category": "fitness",
+        "description": "Gym, running, yoga, and workout habits"
+      },
+      "health-buddy:meditation": {
+        "maps_to_category": "wellness",
+        "description": "Meditation and mindfulness habits"
+      },
+      "health-buddy:supplements": {
+        "maps_to_category": "wellness",
+        "description": "Supplement and vitamin habits"
+      }
+    }
+  },
+  "data_directory": "~/.normieclaw/habit-tracker-pro",
+  "archive_after_days": 365,
+  "max_habits_recommended": 10,
+  "starter_habits_recommended": "3-5"
+}

@@ -1,0 +1,11 @@
+{
+  "embedding": {
+    "provider": "openai",
+    "model": "text-embedding-3-small",
+    "dimensions": 1536,
+    "api_key": "your-api-key-here",
+    "endpoint": null,
+    "batch_size": 32,
+    "metadata_fields": ["title", "tags", "category", "mood", "color_tone"]
+  }
+}

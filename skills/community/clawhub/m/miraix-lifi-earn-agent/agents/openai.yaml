@@ -1,0 +1,8 @@
+interface:
+  display_name: "Miraix LI.FI Earn Agent"
+  short_description: "Find vaults, prepare deposits, and explain receipt tokens."
+  brand_color: "#0e2a23"
+  default_prompt: "Use $miraix-lifi-earn-agent to choose the safest USDC vault with LI.FI Earn, prepare a Composer deposit, and explain where the deposited funds went."
+
+policy:
+  allow_implicit_invocation: true

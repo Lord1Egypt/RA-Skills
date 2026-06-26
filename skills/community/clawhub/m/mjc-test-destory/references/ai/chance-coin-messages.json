@@ -1,0 +1,50 @@
+{
+  "name": "机会代币消息列表",
+  "endpoint": "POST /ai/getChanceCoinMessageList",
+  "description": "获取AI通过多数据维度，对当前行情下具有上涨潜力的代币的追踪消息数据",
+  "credits_cost": 3,
+  "needToken": true,
+  "use_case": "适用于当前行情下，对有上涨行情机会的代币，进行AI实时追踪的消息查询，适用于了解主力动作（入场、增持、减持、出逃等）",
+  "params": {
+    "vsTokenId": { "type": "long", "req": true, "desc": "代币ID" }
+  },
+  "response": {
+    "updateTime": { "type": "long", "actualType": "long", "desc": "更新时间" },
+    "vsTokenId": { "type": "long", "actualType": "string", "desc": "代币ID" },
+    "symbol": { "type": "string", "actualType": "string", "desc": "代币符号" },
+    "name": { "type": "string", "actualType": "string", "desc": "代币名称" },
+    "chanceMessageType": { "type": "integer", "actualType": "integer", "desc": "预测类型" },
+    "scoring": { "type": "number", "actualType": "number", "desc": "得分" },
+    "grade": { "type": "integer", "actualType": "integer", "desc": "等级" },
+    "price": { "type": "number", "actualType": "string", "desc": "币价" },
+    "percentChange24h": { "type": "number", "actualType": "number", "desc": "24小时涨跌幅" },
+    "gains": { "type": "number", "actualType": "number", "desc": "涨幅" },
+    "decline": { "type": "number", "actualType": "number", "desc": "跌幅" }
+  },
+  "field_meta": {
+    "chanceMessageType": { "meaning": "机会消息类型", "advice": "标识主力动作类型，如入场、增持、减持、出逃等" },
+    "scoring": { "meaning": "机会得分", "advice": "该信号的综合评分，分数越高信号越强" },
+    "grade": { "meaning": "机会等级", "advice": "信号等级划分，用于筛选重要信号" }
+  },
+  "example": {
+    "req": { "vsTokenId": 23335 },
+    "res": {
+      "code": 200,
+      "data": [
+        {
+          "updateTime": 1773071700000,
+          "vsTokenId": "23335",
+          "symbol": "THE",
+          "name": "THENA",
+          "chanceMessageType": 30,
+          "scoring": 0.0,
+          "grade": 2,
+          "price": "0.2742",
+          "percentChange24h": 6.18,
+          "gains": 5.07,
+          "decline": 0.36
+        }
+      ]
+    }
+  }
+}

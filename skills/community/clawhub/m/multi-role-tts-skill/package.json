@@ -1,0 +1,51 @@
+{
+  "name": "multirole-tts-skill",
+  "version": "1.0.1",
+  "description": "OpenClaw多角色音频生成器Skill全家桶版 - 通用专业的多角色对话音频生成工具",
+  "main": "scripts/multirole-generator-final.sh",
+  "scripts": {
+    "test": "./scripts/multirole-generator-final.sh --script examples/basic-dialogue.txt --output test-output.mp3",
+    "example": "./scripts/multirole-generator-final.sh --script examples/service-dialogue.txt --output example-output.mp3",
+    "generate": "python generate-audio.py"
+  },
+  "keywords": [
+    "openclaw",
+    "skill",
+    "tts",
+    "audio",
+    "multirole",
+    "dialogue",
+    "spatial-audio",
+    "全家桶版",
+    "通用工具"
+  ],
+  "author": "迷人花花 (Huahua)",
+  "license": "MIT",
+  "dependencies": {
+    "edge-tts": ">=6.1.0",
+    "ffmpeg": "system dependency"
+  },
+  "engines": {
+    "node": ">=14.0.0",
+    "openclaw": ">=1.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/multirole-tts-skill.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yourusername/multirole-tts-skill/issues"
+  },
+  "homepage": "https://github.com/yourusername/multirole-tts-skill#readme",
+  "files": [
+    "scripts/",
+    "examples/",
+    "docs/",
+    "README.md",
+    "SKILL.md",
+    "package.json",
+    "generate-audio.py",
+    "install.sh",
+    "usage-instructions.txt"
+  ]
+}

@@ -1,0 +1,10 @@
+name: musk-insider-pro
+version: 1.0.1
+description: 全球首个马斯克实时情报简报，由 AI 自动提炼。
+entrypoint: python bare.py
+
+http:
+  port: 8080
+  path: /invoke
+
+# 这里严禁出现 env: required，确保平台直接放行

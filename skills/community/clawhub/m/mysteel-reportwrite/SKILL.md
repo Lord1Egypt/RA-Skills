@@ -1,35 +1,227 @@
 ---
-name: "Mysteel_ReportWrite"
-description: "自动生成大宗商品研究报告，基于钢联数据库实时数据与专业框架；当用户明确要求写报告、撰写研报、生成分析报告等明确表达时使用"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/mysteel-reportwrite"
-sourceUrl: "https://clawhub.ai/skills/mysteel-reportwrite"
+name: Mysteel_ReportWrite
+description: 自动生成大宗商品研究报告，基于钢联数据库实时数据与专业框架；当用户明确要求写报告、撰写研报、生成分析报告等明确表达时使用
+dependency:
+  python:
+    - requests>=2.28.0
 ---
 
-# Mysteel_ReportWrite
+# 大宗商品市场研报撰写
 
-> 自动生成大宗商品研究报告，基于钢联数据库实时数据与专业框架；当用户明确要求写报告、撰写研报、生成分析报告等明确表达时使用
+## 任务目标
+- 本 Skill 用于：自动化生成大宗商品市场研究报告
+- 能力包含：
+  - 数据实时检索：与Mysteel钢联数据库打通，实时查询价格、库存、开工率、进出口等基本面数据
+  - 专业框架输出：内置行业通用的研究报告框架，如日报、周报、深度分析、策略报告等
+  - 可溯源的生成：生成内容附带数据来源或推理依据，确保专业写作的准确性
+- 触发条件：用户明确要求写报告、撰写研报、生成分析报告等
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/mysteel-reportwrite`
-- **Source URL:** [https://clawhub.ai/skills/mysteel-reportwrite](https://clawhub.ai/skills/mysteel-reportwrite)
+## 前置准备
+- 凭证配置：需要配置钢联API密钥
+  - 获取方式：联系钢联内部获取 api_key
+  - 配置方式：在 `references/api_key.md` 文件中配置（将 `YOUR_API_KEY_HERE` 替换为实际的API密钥）
 
-## Overview
+### 依赖说明
+本Skill需要Python环境和requests库：
+```python
+requests>=2.28.0
+```
 
+### 环境要求
+- Python版本：>= 3.6
+- 依赖库：requests（用于HTTP请求）
 
-## Installation
-To install this skill, run the following command in your terminal:
+### 凭证配置
+本Skill需要钢联API密钥进行认证。如果尚未配置凭证，系统会提示您输入API密钥。
+
+## 操作步骤
+
+### 步骤1：判断触发条件
+智能体判断用户问题是否属于研报撰写场景，识别关键词：
+- "写一篇XX报告"
+- "分析XX市场"
+- "XX价格走势"
+- "XX供需分析"
+- "策略报告"
+
+### 步骤2：检查凭证配置（强制执行）
+**重要：此步骤为强制性前置条件，必须完成才能继续后续流程**
+
+智能体必须执行以下操作：
+1. 检查`references/api_key.md`文件是否存在
+2. 如果存在，读取其中的api_key（文件格式：第一行注释，第二行为api_key）
+3. 校验逻辑：
+   - 如果文件不存在 → **立即终止流程**，提示用户："未检测到API密钥配置文件，请提供钢联API密钥以继续"
+   - 如果api_key为占位符（如"YOUR_API_KEY_HERE"） → **立即终止流程**，提示用户："检测到API密钥为占位符，请提供有效的钢联API密钥"
+   - 如果api_key为空 → **立即终止流程**，提示用户："API密钥为空，请提供钢联API密钥"
+
+**严禁行为**：
+- ❌ 不得在凭证校验失败后继续执行后续步骤
+- ❌ 不得尝试通过其他方式回答用户的研报需求
+- ❌ 不得绕过凭证检查直接调用API
+- ❌ 必须等待用户提供有效密钥后才能继续
+
+**正确流程**：
+用户输入密钥 → 智能体更新`references/api_key.md`文件 → 重新执行步骤2校验 → 校验通过后进入步骤3
+
+### 步骤3：调用钢联API生成研报梗概
+
+**重要说明**：
+- 调用响应式接口获取研报梗概
+- 接口执行时间约90秒，请耐心等待
+- 使用exec_shell执行命令，获取JSON格式结果
+
+执行脚本调用钢联研报接口：
 ```bash
-hermes skills install clawhub/mysteel-reportwrite
+python scripts/call_mysteel_api.py --query "<用户研报撰写目标>"
+```
+
+脚本执行流程：
+1. 发送请求到钢联研报梗概生成接口（响应式）
+2. 等待梗概生成完成（约90秒，最长2分钟）
+3. 直接返回JSON格式结果
+
+**成功时返回**：
+```json
+{
+  "success": true,
+  "outline": "研报梗概内容...",
+  "api_response": {...}
+}
+```
+
+**失败时返回**：
+```json
+{
+  "success": false,
+  "error": "错误信息",
+  "error_code": "错误代码（如token_invalid）",
+  "retryable": true/false
+}
+```
+
+### 步骤4：丰富研报内容
+
+智能体基于步骤3返回的研报梗概，按照研报书面要求丰富内容：
+
+**研报结构要求**：
+1. **报告标题**：清晰、专业的报告标题
+2. **执行摘要**：概括核心观点和结论（200-300字）
+3. **市场概况**：
+   - 近期价格走势
+   - 市场供需情况
+   - 关键影响因素
+4. **供需分析**：
+   - 供应端分析：产量、库存、开工率等
+   - 需求端分析：消费量、下游需求变化等
+   - 进出口情况
+5. **趋势预测**：
+   - 短期走势预测（1-3个月）
+   - 中长期趋势判断
+   - 关键风险因素
+6. **策略建议**：
+   - 投资策略建议
+   - 风险提示
+7. **数据来源**：说明数据来源和统计周期
+
+**撰写要求**：
+- 语言专业、客观、准确
+- 数据引用清晰，标明来源和时间
+- 逻辑结构严谨，层次分明
+- 图表数据可适当用文字描述
+- 避免主观臆断，基于数据分析
+
+### 步骤5：输出完整研报
+
+智能体将丰富后的研报以Markdown格式输出给用户。
+
+## 资源索引
+- 必要脚本：
+  - [scripts/call_mysteel_api.py](scripts/call_mysteel_api.py)：调用钢联研报API，获取研报梗概
+- 领域参考：
+  - [references/api_key.md](references/api_key.md)：API密钥配置文件（第一行注释，第二行为api_key）
+  - [references/api_usage_guide.md](references/api_usage_guide.md)：API使用说明与错误处理指南
+
+## 注意事项
+
+### 凭证配置（强制要求）
+- **凭证校验失败时必须终止流程**，严禁继续执行或尝试其他方式回答用户
+- 用户必须提供有效的钢联API密钥才能使用本Skill
+- 智能体在检测到凭证问题后，应立即提示用户输入密钥并终止后续流程
+
+### 环境要求
+- 确保Python版本 >= 3.6，requests库已安装
+- 如遇到ImportError，请执行：pip install requests
+
+### 其他注意事项
+- API调用为响应式接口，生成梗概约90秒，请耐心等待
+- 接口支持错误重试机制（自动重试一次）
+- 智能体需要基于梗概内容进行二次丰富，确保研报结构完整、内容专业
+- 所有生成内容应基于数据分析，避免主观臆断
+- 如遇到超时或网络错误，脚本会提供明确的错误信息
+
+## 使用示例
+
+### 示例1：撰写螺纹钢市场分析报告（完整流程）
+```
+用户：我想写一篇螺纹钢市场分析的研究报告
+
+执行流程：
+1. 智能体识别研报撰写需求
+2. 检查凭证配置：
+   - 读取references/api_key.md文件
+   - 校验api_key是否有效
+   - 如果校验失败 → 终止流程，提示用户输入密钥
+   - 如果校验通过 → 继续步骤3
+3. 调用脚本获取梗概：
+   exec_shell("python scripts/call_mysteel_api.py --query \"我想写一篇螺纹钢市场分析的研究报告\"")
+4. 解析返回结果，获取outline字段
+5. 基于梗概丰富研报内容，按照研报结构要求撰写
+6. 输出完整研报
+```
+
+### 示例2：撰写铜价走势周报
+```
+用户：帮我生成一份铜价走势周报
+
+执行流程：
+1. 智能体识别研报撰写需求
+2. 检查凭证配置：校验通过
+3. 调用脚本获取梗概：
+   exec_shell("python scripts/call_mysteel_api.py --query \"帮我生成一份铜价走势周报\"")
+4. 解析返回结果，获取outline字段
+5. 基于梗概丰富研报内容，按照周报格式撰写
+6. 输出完整周报
+```
+
+### 示例3：撰写铁矿石供需分析深度报告
+```
+用户：我需要一份铁矿石供需分析的深度报告
+
+执行流程：
+1. 智能体识别研报撰写需求
+2. 检查凭证配置：校验通过
+3. 调用脚本获取梗概：
+   exec_shell("python scripts/call_mysteel_api.py --query \"我需要一份铁矿石供需分析的深度报告\"")
+4. 解析返回结果，获取outline字段
+5. 基于梗概丰富研报内容，按照深度报告格式撰写
+6. 输出完整报告
+```
+
+### 示例4：凭证校验失败处理
+```
+用户：帮我生成一份铝材市场分析报告
+
+执行流程：
+1. 智能体识别研报撰写需求
+2. 检查凭证配置：
+   - 读取references/api_key.md文件
+   - 发现文件不存在或api_key为占位符
+   - **立即终止流程**
+   - 提示用户："未检测到有效的API密钥配置，请提供钢联API密钥以继续生成报告"
+   
+用户输入密钥后：
+3. 智能体更新references/api_key.md文件
+4. 重新执行步骤2校验
+5. 校验通过后继续后续流程
 ```

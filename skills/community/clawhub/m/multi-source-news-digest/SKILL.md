@@ -1,35 +1,68 @@
----
-name: "Multi Source Tech News Digest"
-description: "Aggregates and scores technology news daily from 100+ RSS feeds, GitHub releases, and web sources, providing customizable, filtered tech news digests."
-category: "github"
-source: "ClawHub"
-tags: [awesome-list, clawdbot, digest, github, moltbot, news, openclaw, openclaw-plugin, rss, tech]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/multi-source-news-digest"
-sourceUrl: "https://clawhub.ai/skills/multi-source-news-digest"
----
-
 # Multi Source Tech News Digest
 
-> Aggregates and scores technology news daily from 100+ RSS feeds, GitHub releases, and web sources, providing customizable, filtered tech news digests.
+A comprehensive OpenClaw skill for aggregating, scoring, and delivering technology news from 109+ sources including RSS feeds, GitHub releases, and web sources.
 
-- **Category:** GitHub
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/multi-source-news-digest`
-- **Source URL:** [https://clawhub.ai/skills/multi-source-news-digest](https://clawhub.ai/skills/multi-source-news-digest)
+## Features
 
-## Overview
-
+- **Multi-source aggregation**: RSS feeds, GitHub releases, web sources
+- **Intelligent scoring**: Automatically scores news based on tech keywords and source credibility
+- **Configurable**: Easy to customize sources and scoring thresholds
+- **Daily digests**: Generates formatted daily news summaries
+- **Filtering**: Filters low-quality news based on configurable thresholds
 
 ## Installation
-To install this skill, run the following command in your terminal:
+
 ```bash
-hermes skills install clawhub/multi-source-news-digest
+clawhub install multi-source-news-digest
 ```
+
+## Usage
+
+```bash
+# Generate daily digest
+python skill.py digest
+
+# List all news items
+python skill.py list
+
+# Force refresh news data
+python skill.py refresh
+```
+
+## Configuration
+
+Edit `config.json` to customize:
+
+- `rss_sources`: List of RSS feed URLs
+- `github_repos`: GitHub repositories to monitor
+- `web_sources`: Web pages to scrape
+- `max_news_per_source`: Maximum news items per source
+- `min_score_threshold`: Minimum score threshold for news filtering
+
+## Sources
+
+Default sources include:
+- RSS: TechCrunch, Wired, The Verge, Ars Technica, ZDNet
+- GitHub: Trending repositories
+- Web: Google News, Techmeme
+
+## Scoring System
+
+News items are scored based on:
+- Tech keywords (AI, machine learning, blockchain, etc.)
+- Summary length and quality
+- Source credibility
+
+## Testing
+
+```bash
+python test_skill.py
+```
+
+## Author
+
+hesamsheikh
+
+## License
+
+MIT

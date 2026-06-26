@@ -1,0 +1,1 @@
+This file exists only as a reminder: style switching is handled by SKILL.md instructions, not by executable state. The active style is whichever MBTI type the user most recently specified in the conversation.

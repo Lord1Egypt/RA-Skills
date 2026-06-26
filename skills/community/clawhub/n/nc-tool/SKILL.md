@@ -1,35 +1,23 @@
 ---
-name: "Nc Tool"
-description: "Read and write data across network connections using TCP or UDP. Use for network debugging, port scanning, and data transfer."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/nc-tool"
-sourceUrl: "https://clawhub.ai/skills/nc-tool"
+name: nc-tool
+description: Read and write data across network connections using TCP or UDP. Use for network debugging, port scanning, and data transfer.
 ---
+# NC - Netcat Network Utility
 
-# Nc Tool
+Read from and write to network connections using TCP or UDP. Versatile tool for network diagnostics, port testing, and simple data transfer.
 
-> Read and write data across network connections using TCP or UDP. Use for network debugging, port scanning, and data transfer.
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/nc-tool`
-- **Source URL:** [https://clawhub.ai/skills/nc-tool](https://clawhub.ai/skills/nc-tool)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
+## Usage
 ```bash
-hermes skills install clawhub/nc-tool
+nc-tool [options] <host> <port>
+```
+## Features
+- TCP and UDP connections
+- Port scanning
+- Listen mode for receiving connections
+- Data transfer and piping
+## Examples
+```bash
+nc-tool -v example.com 80
+nc-tool -l -p 8080
+nc-tool -z host 20-80
 ```

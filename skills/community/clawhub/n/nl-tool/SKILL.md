@@ -1,35 +1,29 @@
 ---
-name: "Nl Tool"
-description: "Number lines of text files, showing line numbers alongside content. Use for reference, indexing, and code line numbering."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/nl-tool"
-sourceUrl: "https://clawhub.ai/skills/nl-tool"
+name: nl-tool
+description: Number lines of text files, showing line numbers alongside content. Use for reference, indexing, and code line numbering.
 ---
+# NL - Line Numbering Utility
 
-# Nl Tool
+Add line numbers to text files. Supports configurable number formats, starting values, and numbering schemes. Useful for code review, document reference, and log analysis.
 
-> Number lines of text files, showing line numbers alongside content. Use for reference, indexing, and code line numbering.
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/nl-tool`
-- **Source URL:** [https://clawhub.ai/skills/nl-tool](https://clawhub.ai/skills/nl-tool)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
+## Usage
 ```bash
-hermes skills install clawhub/nl-tool
+nl-tool [options] <file>
+```
+
+## Options
+
+- `-ba`: Number all lines (including blank)
+- `-bt`: Number non-empty lines only (default)
+- `-v N`: Start numbering from N
+- `-i N`: Increment by N for each line
+
+## Examples
+
+```bash
+# Number all lines including blanks
+nl-tool -ba script.sh
+
+# Start from 100
+nl-tool -v 100 data.txt
 ```

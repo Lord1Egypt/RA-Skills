@@ -1,0 +1,106 @@
+name: mcn-delivery
+version: "4.0"
+description: MCN运营交付工作流 - AI扮演MCN运营顾问，逐步交付账号矩阵、内容策略、变现路径等MCN运营成果
+
+input:
+  type: object
+  required:
+    - requirement_summary
+  properties:
+    requirement_summary:
+      type: object
+    delivery_plan:
+      type: object
+
+steps:
+  # ══════════════════════════════════
+  # STEP 1: MCN运营诊断与策略
+  # ══════════════════════════════════
+  - id: mcn_diagnosis
+    agent: agents/types/mcn/main-agent
+    action: diagnose_and_strategize
+    description: 运营诊断：现状评估(团队/内容/预算/资产)、赛道机会分析、目标设定、资源盘点
+    input:
+      requirement_summary: "{{input.requirement_summary}}"
+    output: diagnosis_report
+    checkpoint:
+      format: markdown
+      confirm: true
+      confirm_message: "请确认赛道选择和目标设定？"
+
+  # ══════════════════════════════════
+  # STEP 2: 账号矩阵规划
+  # ══════════════════════════════════
+  - id: account_matrix
+    agent: agents/types/mcn/main-agent
+    action: design_account_matrix
+    description: 规划账号矩阵：主账号+子账号定位、平台分配、人设设计、内容分工、变现方式
+    input:
+      requirement_summary: "{{input.requirement_summary}}"
+      diagnosis: "{{mcn_diagnosis.output.diagnosis_report}}"
+    output: account_matrix_plan
+    checkpoint:
+      format: markdown
+      confirm: true
+      confirm_message: "请确认账号定位和人设设计？"
+
+  # ══════════════════════════════════
+  # STEP 3: 内容策略方案
+  # ══════════════════════════════════
+  - id: content_strategy
+    agent: agents/types/mcn/main-agent
+    action: develop_content_strategy
+    description: 制定内容策略：内容方向库(按优先级)、发布节奏、爆款公式模板、投流策略
+    input:
+      requirement_summary: "{{input.requirement_summary}}"
+      diagnosis: "{{mcn_diagnosis.output.diagnosis_report}}"
+      matrix: "{{account_matrix.output.account_matrix_plan}}"
+    output: content_strategy_doc
+    checkpoint:
+      format: markdown
+      confirm: true
+      confirm_message: "请确认内容方向和发布节奏？"
+
+  # ══════════════════════════════════
+  # STEP 4: 变现模式设计与路径图
+  # ══════════════════════════════════
+  - id: monetization_plan
+    agent: agents/types/mcn/main-agent
+    action: design_monetization_path
+    description: 设计变现路径：阶段性变现计划(种子/成长/成熟/头部)、收入模型测算、关键里程碑
+    input:
+      requirement_summary: "{{input.requirement_summary}}"
+      matrix: "{{account_matrix.output.account_matrix_plan}}"
+      content: "{{content_strategy.output.content_strategy_doc}}"
+    output: monetization_roadmap
+    checkpoint:
+      format: markdown
+      confirm: true
+      confirm_message: "请确认变现路径和时间预期？"
+
+  # ══════════════════════════════════
+  # STEP 5: 质量自检
+  # ══════════════════════════════════
+  - id: quality_check
+    agent: agents/types/mcn/main-agent
+    reference: references/_shared/quality-protocol.md
+    action: quality_assessment
+    description: 对所有交付物进行质量自检（策略可行性/矩阵合理性/变现可达性/阶段衔接）
+    input:
+      deliverables:
+        diagnosis: "{{mcn_diagnosis.output.diagnosis_report}}"
+        matrix: "{{account_matrix.output.account_matrix_plan}}"
+        content: "{{content_strategy.output.content_strategy_doc}}"
+        monetization: "{{monetization_plan.output.monetization_roadmap}}"
+    output: quality_report
+
+output:
+  deliverables:
+    diagnosis: "{{mcn_diagnosis.output.diagnosis_report}}"
+    account_matrix: "{{account_matrix.output.account_matrix_plan}}"
+    content_strategy: "{{content_strategy.output.content_strategy_doc}}"
+    monetization_roadmap: "{{monetization_plan.output.monetization_roadmap}}"
+  quality: "{{quality_check.output.quality_report}}"
+  metadata:
+    workflow_version: "4.0"
+    role: "mcn"

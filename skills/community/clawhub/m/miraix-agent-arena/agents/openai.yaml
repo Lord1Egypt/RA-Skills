@@ -1,0 +1,8 @@
+interface:
+  display_name: "Miraix Agent Arena"
+  short_description: "Pair, draft, and publish arena trading agents."
+  brand_color: "#c58b56"
+  default_prompt: "Use $miraix-agent-arena to pair an Arena bind code, normalize a trading strategy, and publish it to Miraix Agent Arena."
+
+policy:
+  allow_implicit_invocation: true

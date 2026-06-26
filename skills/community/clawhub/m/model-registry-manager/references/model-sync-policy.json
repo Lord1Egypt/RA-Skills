@@ -1,0 +1,5 @@
+{
+  "allowlist": [],
+  "denylist": [],
+  "notes": "allowlist non-empty means only listed model ids are eligible; denylist always wins"
+}

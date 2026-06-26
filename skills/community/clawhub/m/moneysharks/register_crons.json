@@ -1,0 +1,110 @@
+{
+  "autonomous_live_scan": {
+    "name": "moneysharks-autonomous-live-scan",
+    "sessionTarget": "isolated",
+    "enabled": false,
+    "schedule": {
+      "kind": "cron",
+      "expr": "*/2 * * * *",
+      "tz": "UTC"
+    },
+    "payload": {
+      "kind": "agentTurn",
+      "message": "MONEYSHARKS AUTONOMOUS CYCLE. Run: `python3 /ABSOLUTE/PATH/TO/moneysharks/scripts/autonomous_runner.py /ABSOLUTE/PATH/TO/moneysharks/config.example.json`. Parse the JSON output. If ok=false and status=circuit_breaker or halted, announce an alert. If ok=true, log silently (no announcement unless there are execution errors). report the summary.",
+      "timeoutSeconds": 120
+    },
+    "delivery": {
+      "mode": "none"
+    }
+  },
+  "autonomous_review": {
+    "name": "moneysharks-post-trade-review",
+    "sessionTarget": "isolated",
+    "enabled": false,
+    "schedule": {
+      "kind": "cron",
+      "expr": "*/30 * * * *",
+      "tz": "UTC"
+    },
+    "payload": {
+      "kind": "agentTurn",
+      "message": "MONEYSHARKS REVIEW CYCLE. Run: `python3 /ABSOLUTE/PATH/TO/moneysharks/scripts/fetch_trade_outcomes.py /ABSOLUTE/PATH/TO/moneysharks/trades.json`. Then run: `python3 /ABSOLUTE/PATH/TO/moneysharks/scripts/review_trades.py < /ABSOLUTE/PATH/TO/moneysharks/trades.json`. Summarize win rate, avg PnL, loss streaks, and any lessons applied. No announcement unless win_rate < 40% or max_loss_streak >= 3.",
+      "timeoutSeconds": 60
+    },
+    "delivery": {
+      "mode": "none"
+    }
+  },
+  "autonomous_daily_summary": {
+    "name": "moneysharks-daily-summary",
+    "sessionTarget": "isolated",
+    "enabled": false,
+    "schedule": {
+      "kind": "cron",
+      "expr": "0 0 * * *",
+      "tz": "UTC"
+    },
+    "payload": {
+      "kind": "agentTurn",
+      "message": "MONEYSHARKS DAILY SUMMARY. Run: `python3 /ABSOLUTE/PATH/TO/moneysharks/scripts/status.py /ABSOLUTE/PATH/TO/moneysharks/config.example.json`. Then run: `python3 /ABSOLUTE/PATH/TO/moneysharks/scripts/review_trades.py < /ABSOLUTE/PATH/TO/moneysharks/trades.json`. Generate a concise daily trading summary: total trades, win rate, total PnL, today's PnL, best/worst trades, symbols traded, leverage range, any circuit breaker or halt events, and lessons learned today. Announce this summary.",
+      "timeoutSeconds": 120
+    },
+    "delivery": {
+      "mode": "announce"
+    }
+  },
+  "halt_check": {
+    "name": "moneysharks-halt-check",
+    "sessionTarget": "isolated",
+    "enabled": false,
+    "schedule": {
+      "kind": "cron",
+      "expr": "*/15 * * * *",
+      "tz": "UTC"
+    },
+    "payload": {
+      "kind": "agentTurn",
+      "message": "MONEYSHARKS HEALTH CHECK. Run: `python3 /ABSOLUTE/PATH/TO/moneysharks/scripts/status.py /ABSOLUTE/PATH/TO/moneysharks/config.example.json --json`. Parse the output. If halt=true OR circuit_breaker=true OR consecutive_errors >= 3, announce an urgent alert immediately with the error details. If daily_loss >= 80% of max_daily_loss, warn the user. Otherwise confirm healthy (no announcement needed).",
+      "timeoutSeconds": 30
+    },
+    "delivery": {
+      "mode": "announce"
+    }
+  },
+  "paper_market_scan": {
+    "name": "moneysharks-paper-market-scan",
+    "sessionTarget": "isolated",
+    "enabled": false,
+    "schedule": {
+      "kind": "cron",
+      "expr": "*/5 * * * *",
+      "tz": "UTC"
+    },
+    "payload": {
+      "kind": "agentTurn",
+      "message": "MONEYSHARKS PAPER SCAN. Run: `python3 /ABSOLUTE/PATH/TO/moneysharks/scripts/autonomous_runner.py /ABSOLUTE/PATH/TO/moneysharks/config.example.json`. Config is in paper mode — no real orders. Log the scan decisions silently.",
+      "timeoutSeconds": 90
+    },
+    "delivery": {
+      "mode": "none"
+    }
+  },
+  "paper_review_cycle": {
+    "name": "moneysharks-paper-review-cycle",
+    "sessionTarget": "isolated",
+    "enabled": false,
+    "schedule": {
+      "kind": "cron",
+      "expr": "*/30 * * * *",
+      "tz": "UTC"
+    },
+    "payload": {
+      "kind": "agentTurn",
+      "message": "MONEYSHARKS PAPER REVIEW. Run: `python3 /ABSOLUTE/PATH/TO/moneysharks/scripts/fetch_trade_outcomes.py /ABSOLUTE/PATH/TO/moneysharks/trades.json --paper`. Then: `python3 /ABSOLUTE/PATH/TO/moneysharks/scripts/review_trades.py < /ABSOLUTE/PATH/TO/moneysharks/trades.json`. Summarize paper trading performance.",
+      "timeoutSeconds": 60
+    },
+    "delivery": {
+      "mode": "none"
+    }
+  }
+}

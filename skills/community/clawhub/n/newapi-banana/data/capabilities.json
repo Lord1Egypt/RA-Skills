@@ -1,0 +1,65 @@
+{
+  "version": "2024-01-01",
+  "total": 2,
+  "endpoints": [
+    {
+      "endpoint": "text-to-image",
+      "name_cn": "文生图",
+      "name_en": "Text to Image",
+      "task": "text-to-image",
+      "output_type": "image",
+      "category": "image",
+      "popularity": 1,
+      "tags": ["image", "generation"],
+      "params": [
+        {
+          "key": "prompt",
+          "type": "STRING",
+          "required": true
+        },
+        {
+          "key": "model",
+          "type": "STRING",
+          "required": false,
+          "default": "nano-banana",
+          "options": ["nano-banana", "nano-banana-2", "nano-banana-fast", "nano-banana-pro", "gemini-3-pro-image-preview"]
+        },
+        {
+          "key": "aspect_ratio",
+          "type": "STRING",
+          "required": false,
+          "default": "auto",
+          "options": ["auto", "1:1", "16:9", "9:16", "4:3", "3:4", "3:2", "2:3", "5:4", "4:5", "21:9"]
+        }
+      ]
+    },
+    {
+      "endpoint": "image-to-image",
+      "name_cn": "图生图",
+      "name_en": "Image to Image",
+      "task": "image-to-image",
+      "output_type": "image",
+      "category": "image",
+      "popularity": 2,
+      "tags": ["image", "edit"],
+      "params": [
+        {
+          "key": "prompt",
+          "type": "STRING",
+          "required": true
+        },
+        {
+          "key": "image",
+          "type": "IMAGE",
+          "required": true
+        },
+        {
+          "key": "model",
+          "type": "STRING",
+          "required": false,
+          "default": "nano-banana-pro"
+        }
+      ]
+    }
+  ]
+}

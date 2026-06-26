@@ -1,0 +1,20 @@
+# 文章模式 — 青绿引号样式（米白底 + 青绿引号线，大 Q + 引号包裹标题）
+# 适用场景：文艺随笔、杂志专栏、经验复盘
+# 触发词：青绿 / 青绿引号 / 引号标题 / 引号线 / 文艺 / 杂志 / 专栏 / 清爽 / 雅致 / 小清新
+style:
+    article:
+        bg: "#f8f8f6"
+        text: "#2f3437"
+        accent: "#12a57a"
+        hero_bg: "#ffffff"
+        hero_title_color: "#1f2d2b"
+        bold: "#1f2d2b"
+        rule: "#d9e4df"
+        caption: "#8b9691"
+        title_font_size: "25px"
+        text_font_size: "16px"
+        h2_font_size: "30px"
+        cover_label: "COLUMN NOTE"
+        footer: ""
+        h2_style: "quote_line"
+        ending_lines: []

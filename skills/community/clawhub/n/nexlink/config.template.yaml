@@ -1,0 +1,19 @@
+# NexLink Configuration Template
+# Copy this file to config.yaml and fill in your values
+
+exchange:
+  # Exchange Server URL (EWS endpoint)
+  server: https://mail.example.com/EWS/Exchange.asmx
+
+  # Credentials (use environment variables for security)
+  username: ${EXCHANGE_USERNAME}
+  password: ${EXCHANGE_PASSWORD}
+
+  # Email address
+  email: ${EXCHANGE_EMAIL}
+
+  # SSL verification (set to false for self-signed certificates)
+  verify_ssl: true
+
+# Optional: Timezone for calendar operations
+# timezone: Europe/Bucharest

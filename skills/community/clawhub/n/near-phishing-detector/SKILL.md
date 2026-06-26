@@ -1,35 +1,36 @@
 ---
-name: "NEAR Phishing Detector"
-description: "Detect potential phishing URLs and suspicious contracts targeting NEAR users."
-category: "security"
-source: "ClawHub"
-tags: [near, phishing, security]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/near-phishing-detector"
-sourceUrl: "https://clawhub.ai/skills/near-phishing-detector"
+name: near-phishing-detector
+description: Detect potential phishing URLs and suspicious contracts targeting NEAR users.
+metadata: {"author":"mastrophot","version":"0.1.0","homepage":"https://github.com/mastrophot/near-phishing-detector"}
 ---
 
-# NEAR Phishing Detector
+# NEAR Phishing Detector Skill
 
-> Detect potential phishing URLs and suspicious contracts targeting NEAR users.
+Implementation entrypoint: `{baseDir}/dist/index.js`
 
-- **Category:** Security
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/near-phishing-detector`
-- **Source URL:** [https://clawhub.ai/skills/near-phishing-detector](https://clawhub.ai/skills/near-phishing-detector)
+Use this skill to quickly score suspicious links/contracts and generate actionable phishing reports.
 
-## Overview
+## Commands
 
+```python
+@skill.command("near_phishing_check_url")
+async def check_url(url: str) -> dict:
+    """Check if URL is potential phishing"""
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/near-phishing-detector
+@skill.command("near_phishing_check_contract")
+async def check_contract(contract: str) -> dict:
+    """Check if contract is suspicious"""
+
+@skill.command("near_phishing_report")
+async def report_phishing(url: str, details: str) -> dict:
+    """Report phishing attempt"""
+
+@skill.command("near_phishing_database")
+async def get_known_scams() -> list:
+    """Get database of known scams"""
 ```
+
+## Notes
+
+- Designed for detection assistance, not legal determination.
+- Always verify with official NEAR channels before acting on high-risk links.

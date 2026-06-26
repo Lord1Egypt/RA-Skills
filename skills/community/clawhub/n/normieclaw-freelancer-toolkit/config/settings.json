@@ -1,0 +1,26 @@
+{
+  "default_hourly_rate": 75,
+  "currency": "USD",
+  "currency_symbol": "$",
+  "week_start": "monday",
+  "billing_period": "monthly",
+  "categories": [
+    "design",
+    "development",
+    "consulting",
+    "meetings",
+    "admin",
+    "writing",
+    "research"
+  ],
+  "non_billable_categories": [
+    "admin",
+    "internal"
+  ],
+  "weekly_summary_day": "monday",
+  "invoicegen_integration": true,
+  "rounding": "nearest_quarter",
+  "budget_alert_threshold": 0.8,
+  "unbilled_hours_alert": 20,
+  "timezone": "America/New_York"
+}

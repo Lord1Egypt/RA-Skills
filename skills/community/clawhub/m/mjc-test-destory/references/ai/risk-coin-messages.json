@@ -1,0 +1,50 @@
+{
+  "name": "风险代币消息列表",
+  "endpoint": "POST /ai/getRiskCoinMessageList",
+  "description": "获取AI通过多数据维度，对当前行情下具有下跌风险趋势的代币的追踪消息数据",
+  "credits_cost": 3,
+  "needToken": true,
+  "use_case": "适用于当前行情下，对有下跌行情风险的代币，进行AI实时追踪的消息查询，适用于了解出货预警、下跌风险、反弹等风险信号",
+  "params": {
+    "vsTokenId": { "type": "long", "req": true, "desc": "代币ID" }
+  },
+  "response": {
+    "updateTime": { "type": "long", "actualType": "long", "desc": "更新时间" },
+    "vsTokenId": { "type": "long", "actualType": "string", "desc": "代币ID" },
+    "symbol": { "type": "string", "actualType": "string", "desc": "代币符号" },
+    "name": { "type": "string", "actualType": "string", "desc": "代币名称" },
+    "riskMessageType": { "type": "integer", "actualType": "integer", "desc": "预测类型" },
+    "scoring": { "type": "number", "actualType": "number", "desc": "得分" },
+    "grade": { "type": "integer", "actualType": "integer", "desc": "等级" },
+    "price": { "type": "number", "actualType": "string", "desc": "币价" },
+    "percentChange24h": { "type": "number", "actualType": "number", "desc": "24小时涨跌幅" },
+    "riskDecline": { "type": "number", "actualType": "number", "desc": "风险跌幅" },
+    "rebound": { "type": "number", "actualType": "number", "desc": "反弹" }
+  },
+  "field_meta": {
+    "riskMessageType": { "meaning": "风险消息类型", "advice": "标识风险信号类型，如出货预警、下跌风险、反弹等" },
+    "riskDecline": { "meaning": "风险跌幅", "advice": "推送后价格下跌幅度，用于验证风险预警准确性" },
+    "rebound": { "meaning": "反弹幅度", "advice": "价格下跌后的反弹程度" }
+  },
+  "example": {
+    "req": { "vsTokenId": 38178 },
+    "res": {
+      "code": 200,
+      "data": [
+        {
+          "updateTime": 1771317300000,
+          "vsTokenId": "38178",
+          "symbol": "TRUTH",
+          "name": "Swarm Network",
+          "riskMessageType": 19,
+          "scoring": "",
+          "grade": "",
+          "price": "0.0118",
+          "percentChange24h": -2.32,
+          "riskDecline": 26.38,
+          "rebound": 6.61
+        }
+      ]
+    }
+  }
+}

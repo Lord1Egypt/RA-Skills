@@ -1,0 +1,40 @@
+{
+  "name": "next-from-knowledge",
+  "version": "1.0.0",
+  "description": "NextFromKnowledge - turn notes, research, meeting summaries, and knowledge graph outputs into the next action, plan, decision, or experiment",
+  "main": "src/index.js",
+  "bin": {
+    "next-from-knowledge": "./bin/cli.js",
+    "nfk": "./bin/cli.js"
+  },
+  "scripts": {
+    "start": "node bin/cli.js",
+    "test": "node test/test.js",
+    "publish:clawhub": "sh ./scripts/publish.sh"
+  },
+  "keywords": [
+    "knowledge",
+    "action",
+    "planning",
+    "decision",
+    "experiment",
+    "notes",
+    "meeting-notes",
+    "knowledge-graph",
+    "productivity",
+    "chief-of-staff"
+  ],
+  "author": "openclaw",
+  "license": "MIT",
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/harrylabsj/openclaw-skill-next-from-knowledge"
+  },
+  "bugs": {
+    "url": "https://github.com/harrylabsj/openclaw-skill-next-from-knowledge/issues"
+  },
+  "homepage": "https://github.com/harrylabsj/openclaw-skill-next-from-knowledge#readme"
+}

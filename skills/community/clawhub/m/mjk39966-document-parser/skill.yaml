@@ -1,0 +1,12 @@
+﻿name: document_parser
+version: 1.0.0
+description: Document Parser for Word and PDF
+author: OpenClaw
+skills:
+  - name: ParseDocument
+    description: Parse Word (.docx) and PDF documents
+    entry: main.py
+    types:
+      - docx
+      - doc
+      - pdf

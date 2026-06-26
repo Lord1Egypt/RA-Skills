@@ -1,0 +1,114 @@
+{
+  "name": "morning-radar",
+  "version": "1.0.0",
+  "description": "通用资讯自动收集与推送工具，支持百度AI搜索和飞书推送",
+  "author": "",
+  "license": "MIT",
+  "type": "skill",
+  "entry": "index.js",
+  "runtime": "node",
+  "requires": {
+    "node": ">=18.0.0",
+    "openclaw": ">=2025.0.0"
+  },
+  "env": {
+    "required": [
+      {
+        "name": "BAIDU_API_KEY",
+        "description": "百度千帆AI搜索API Key",
+        "example": "bce-v3/ALTAK-xxxxx"
+      },
+      {
+        "name": "FEISHU_APP_ID",
+        "description": "飞书应用App ID",
+        "example": "cli_xxxxxxxxxx"
+      },
+      {
+        "name": "FEISHU_APP_SECRET",
+        "description": "飞书应用App Secret",
+        "example": "xxxxxxxxxx"
+      },
+      {
+        "name": "FEISHU_RECEIVER_OPEN_ID",
+        "description": "飞书接收者Open ID",
+        "example": "ou_xxxxxxxxxx"
+      }
+    ],
+    "optional": [
+      {
+        "name": "RADAR_QUERIES",
+        "description": "搜索查询主题，逗号分隔",
+        "default": "AI人工智能,大模型,智能体",
+        "example": "科技新闻,财经资讯,行业动态"
+      },
+      {
+        "name": "RADAR_KEYWORDS",
+        "description": "过滤关键词，逗号分隔",
+        "default": "AI,大模型,Agent,人工智能",
+        "example": "科技,投资,市场,创新"
+      },
+      {
+        "name": "RADAR_TITLE",
+        "description": "简报标题",
+        "default": "🌅 晨间资讯简报",
+        "example": "📈 财经晨间简报"
+      },
+      {
+        "name": "RADAR_SOURCE_NAME",
+        "description": "来源名称",
+        "default": "百度智能搜索",
+        "example": "综合搜索"
+      },
+      {
+        "name": "RADAR_MAX_RESULTS",
+        "description": "每次搜索最大结果数",
+        "default": "10",
+        "example": "15"
+      },
+      {
+        "name": "RADAR_MAX_ITEMS",
+        "description": "最终输出最大条数",
+        "default": "15",
+        "example": "20"
+      }
+    ]
+  },
+  "config": {
+    "files": ["config.json"],
+    "optional": true
+  },
+  "permissions": {
+    "network": ["qianfan.baidubce.com", "open.feishu.cn"],
+    "filesystem": "read-only"
+  },
+  "install": {
+    "steps": [
+      "复制skill到OpenClaw skills目录",
+      "配置必需的环境变量（BAIDU_API_KEY, FEISHU_APP_ID, FEISHU_APP_SECRET, FEISHU_RECEIVER_OPEN_ID）",
+      "（可选）配置搜索主题和关键词环境变量",
+      "（可选）设置定时任务"
+    ],
+    "note": "需要百度千帆AI搜索API Key和飞书开放平台应用"
+  },
+  "usage": {
+    "command": "morning-radar [configPath]",
+    "examples": [
+      {
+        "command": "morning-radar",
+        "description": "使用环境变量配置运行"
+      },
+      {
+        "command": "morning-radar ./my-config.json",
+        "description": "使用指定配置文件运行"
+      }
+    ]
+  },
+  "cron": {
+    "supported": true,
+    "example": "0 7 * * *",
+    "description": "建议每天早上7点运行"
+  },
+  "tags": ["news", "search", "feishu", "baidu", "push", "daily"],
+  "homepage": "",
+  "repository": ""
+}

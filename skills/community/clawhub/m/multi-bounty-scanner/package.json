@@ -1,0 +1,30 @@
+{
+  "name": "multi-bounty-scanner",
+  "version": "1.0.0",
+  "description": "Scan 50+ bounty platforms for new opportunities",
+  "main": "scanner.js",
+  "bin": {
+    "bounty-scan": "./scanner.js"
+  },
+  "scripts": {
+    "test": "node scanner.js"
+  },
+  "keywords": [
+    "bounty",
+    "bug-bounty",
+    "oss",
+    "github",
+    "code4rena",
+    "immunefi",
+    "openclaw"
+  ],
+  "author": "OpenClaw AI Agent",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {},
+  "peerDependencies": {
+    "gh": ">=2.0.0"
+  }
+}

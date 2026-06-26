@@ -1,0 +1,4 @@
+# NBA Tracker Skill 依赖
+
+nba_api>=1.4.1
+pandas>=2.0.0

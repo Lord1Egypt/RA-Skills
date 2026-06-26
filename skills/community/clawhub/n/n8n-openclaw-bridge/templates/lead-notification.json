@@ -1,0 +1,99 @@
+{
+  "name": "Agent: Lead Notification Pipeline",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "new-lead",
+        "responseMode": "lastNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [250, 300],
+      "id": "webhook-lead",
+      "name": "New Lead Webhook"
+    },
+    {
+      "parameters": {
+        "functionCode": "const lead = $input.all()[0].json;\nconst score = lead.score || 0;\nconst priority = score >= 80 ? 'HIGH' : score >= 50 ? 'MEDIUM' : 'LOW';\n\nreturn [{\n  json: {\n    ...lead,\n    priority,\n    received_at: new Date().toISOString(),\n    formatted: `🎯 New Lead (${priority})\\n\\nBusiness: ${lead.business_name}\\nContact: ${lead.contact}\\nEmail: ${lead.email}\\nScore: ${score}/100\\nSource: ${lead.source}\\nNotes: ${lead.notes || 'None'}`\n  }\n}];"
+      },
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [450, 300],
+      "id": "process-lead",
+      "name": "Process & Score"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "number": [
+            {
+              "value1": "={{ $json.score }}",
+              "operation": "largerEqual",
+              "value2": 70
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [650, 300],
+      "id": "check-score",
+      "name": "High Priority?"
+    },
+    {
+      "parameters": {
+        "resource": "message",
+        "chatId": "={{ $env.TELEGRAM_CHAT_ID }}",
+        "text": "={{ $json.formatted }}",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1,
+      "position": [850, 200],
+      "id": "notify-telegram",
+      "name": "Alert: Telegram"
+    },
+    {
+      "parameters": {
+        "url": "={{ $env.GOOGLE_SHEETS_WEBHOOK }}",
+        "method": "POST",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            { "name": "business_name", "value": "={{ $json.business_name }}" },
+            { "name": "contact", "value": "={{ $json.contact }}" },
+            { "name": "email", "value": "={{ $json.email }}" },
+            { "name": "score", "value": "={{ $json.score }}" },
+            { "name": "priority", "value": "={{ $json.priority }}" },
+            { "name": "source", "value": "={{ $json.source }}" },
+            { "name": "received_at", "value": "={{ $json.received_at }}" }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [850, 400],
+      "id": "log-to-sheet",
+      "name": "Log to Sheet"
+    }
+  ],
+  "connections": {
+    "New Lead Webhook": {
+      "main": [[{ "node": "Process & Score", "type": "main", "index": 0 }]]
+    },
+    "Process & Score": {
+      "main": [[{ "node": "High Priority?", "type": "main", "index": 0 }]]
+    },
+    "High Priority?": {
+      "main": [
+        [{ "node": "Alert: Telegram", "type": "main", "index": 0 }],
+        [{ "node": "Log to Sheet", "type": "main", "index": 0 }]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  }
+}

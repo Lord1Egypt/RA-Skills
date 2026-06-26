@@ -1,0 +1,22 @@
+schema:
+ cache_ttl_hours: 24
+ sample_size: 5                    # 采样节点数用于属性推断
+
+query_generation:
+ default_limit: 100
+ max_limit: 1000
+ max_path_depth: 4
+ fuzzy_match_threshold: 0.8
+
+security:
+ allow_write_operations: false     # 是否允许生成写操作查询（需二次确认）
+ sensitive_properties:
+   - password
+   - token
+   - secret_key
+   - id_card
+   - phone_number               # 脱敏处理
+
+output:
+ default_format: table             # table | graph | json
+ max_cell_length: 100              # 表格单元格最大长度

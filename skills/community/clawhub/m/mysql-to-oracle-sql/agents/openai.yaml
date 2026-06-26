@@ -1,0 +1,4 @@
+interface:
+  display_name: "MySQL To Oracle SQL"
+  short_description: "Convert MySQL SQL to Oracle SQL with strict rules"
+  default_prompt: "Convert MySQL SQL to Oracle SQL. Enforce NVARCHAR2 for string columns, never output DEFAULT '', add DEFAULT NULL for nullable columns, map BIGINT to NUMBER(20), and generate primary keys as ALTER TABLE ... ADD CONSTRAINT BWCT_SYS_C######## PRIMARY KEY (...)."

@@ -1,0 +1,51 @@
+# ClawHub Configuration for miaoji-asin-clinic-pro
+
+metadata:
+  name: miaoji-asin-clinic-pro
+  version: 1.0.2
+  display_name: 秒技·ASIN一键诊所Pro版
+  description: |
+    亚马逊ASIN诊所升级版，90天行动计划+竞品对标+季节性优化日历。
+    从五维诊断升级为可执行的长期作战方案，包含月度复诊模板和Prime Day冲刺清单。
+    基础功能可使用 miaoji-asin-clinic 免费版。
+  author: 秒技工作室
+  homepage: https://xiaping.coze.site
+  repository: https://xiaping.coze.site/skills/miaoji-asin-clinic-pro
+
+category: business
+
+tags:
+  - ASIN诊断
+  - 90天计划
+  - 竞品对标
+  - 亚马逊运营
+  - 跨境电商
+  - 战略规划
+  - 季节性优化
+  - Prime Day
+
+bins: []
+
+screenshots:
+  - description: 90天行动计划示例
+    url: ""
+
+keywords:
+  - amazon
+  - asin
+  - 90天计划
+  - 竞品对标
+  - 亚马逊运营
+  - 跨境电商
+  - 战略规划
+  - Prime Day
+
+license: MIT
+
+documentation:
+  - title: 使用指南
+    url: ./README.md
+  - title: 90天行动计划模板
+    url: ./references/90day-plan-template.md
+  - title: 季节性日历参考
+    url: ./references/seasonal-calendar.md

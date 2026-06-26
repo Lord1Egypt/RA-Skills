@@ -1,0 +1,45 @@
+vendor_key,region,product_name,model_name,required,is_active
+alibaba,cn,阿里云百炼,Qwen3.6-Max-Preview,true,true
+alibaba,cn,阿里云百炼,Qwen3.6-Plus,true,true
+alibaba,cn,阿里云百炼,Qwen3.6-Flash,true,true
+anthropic,global,Claude API,Claude Opus 4.7,true,true
+anthropic,global,Claude API,Claude Opus 4.6,true,true
+anthropic,global,Claude API,Claude Sonnet 4.6,true,true
+anthropic,global,Claude API,Claude Haiku 4.5,true,true
+baidu,cn,百度千帆,ERNIE-5.0-Thinking-Latest,true,true
+baidu,cn,百度千帆,ERNIE-5.0,true,true
+baidu,cn,百度千帆,ERNIE-4.5-Turbo-32K,true,true
+baidu,cn,百度千帆,ERNIE-4.5-Turbo-VL-32K,true,true
+bytedance,cn,火山方舟,doubao-seed-2.0-pro,true,true
+bytedance,cn,火山方舟,doubao-seed-2.0-code,true,true
+bytedance,cn,火山方舟,doubao-seed-1.8,true,true
+bytedance,cn,火山方舟,doubao-seed-1.6,true,true
+deepseek,global,DeepSeek API,deepseek-chat,true,true
+deepseek,global,DeepSeek API,deepseek-reasoner,true,true
+google,global,Gemini API,gemini-3.1-pro-preview,true,true
+google,global,Gemini API,gemini-3.1-flash-lite-preview,true,true
+google,global,Gemini API,gemini-2.5-pro,true,true
+google,global,Gemini API,gemini-2.5-flash,true,true
+kimi,cn,Kimi API,kimi-k2.6,true,true
+kimi,cn,Kimi API,kimi-k2.5,true,true
+kimi,cn,Kimi API,kimi-k2,true,true
+minimax,global,MiniMax API,MiniMax-M2.7,true,true
+minimax,global,MiniMax API,MiniMax-M2.7-highspeed,true,true
+minimax,global,MiniMax API,MiniMax-M2.5,true,true
+openai,global,OpenAI API,gpt-5.4,true,true
+openai,global,OpenAI API,gpt-5.4-mini,true,true
+openai,global,OpenAI API,gpt-5.4-nano,true,true
+openai,global,OpenAI API,gpt-5.4-pro,true,true
+tencent,cn,腾讯混元,Tencent HY 2.0 Think,true,true
+tencent,cn,腾讯混元,Tencent HY 2.0 Instruct,true,true
+tencent,cn,腾讯混元,Hunyuan-T1,true,true
+tencent,cn,腾讯混元,Hunyuan-TurboS,true,true
+xai,global,xAI API,grok-4.20,true,true
+xai,global,xAI API,grok-4.20-multi-agent,true,true
+xai,global,xAI API,grok-4.1-fast,true,true
+zhipu,cn,智谱AI开放平台,GLM-5.1,true,true
+zhipu,cn,智谱AI开放平台,GLM-5-Turbo,true,true
+zhipu,cn,智谱AI开放平台,GLM-5,true,true
+zhipu,global,Z.AI API,GLM-5.1,true,true
+zhipu,global,Z.AI API,GLM-5-Turbo,true,true
+zhipu,global,Z.AI API,GLM-5,true,true

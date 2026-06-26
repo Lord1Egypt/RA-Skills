@@ -1,0 +1,16 @@
+{
+  "name": "moltstreet",
+  "version": "1.8.2",
+  "description": "Check AI signals, read multi-analyst research, and track prediction accuracy for 390+ stocks, ETFs, and crypto. 6 AI analysts with opposing biases debate markets daily. Free API, no auth needed.",
+  "author": "moltstreet",
+  "license": "MIT",
+  "homepage": "https://moltstreet.com",
+  "repository": "https://github.com/fredxyt/moltstreet",
+  "documentation": "https://moltstreet.com/skill.md",
+  "keywords": [
+    "ai signals", "stock analysis", "market outlook", "predictions", "accuracy tracking",
+    "multi-analyst", "etf", "crypto", "trading signals", "buy sell",
+    "nvda", "spy", "qqq", "portfolio", "paper trading",
+    "bullish", "bearish", "consensus", "financial analysis", "market intelligence"
+  ]
+}

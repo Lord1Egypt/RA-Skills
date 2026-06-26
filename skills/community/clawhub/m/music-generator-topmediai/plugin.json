@@ -1,0 +1,69 @@
+{
+  "name": "music_generator_topmediai",
+  "description": "Generate AI music or lyrics via TopMediai API; auto-polls and returns preview first, then full audio.",
+  "metadata": {
+    "env": {
+      "required": ["TOPMEDIAI_API_KEY"],
+      "optional": ["TOPMEDIAI_BASE_URL"]
+    }
+  },
+  "commands": [
+    {
+      "name": "music_generator_topmediai",
+      "description": "One command: /music_generator_topmediai mode=normal|bgm|lyrics (default: normal)",
+      "options": [
+        { "name": "mode",   "description": "normal|bgm|lyrics (default: normal)", "type": "string", "required": false },
+        { "name": "prompt", "description": "Main natural-language request/prompt", "type": "string", "required": true },
+        { "name": "style",  "description": "Music style (default: Pop)", "type": "string", "required": false },
+        { "name": "mv",     "description": "Model version (default: v5.0)", "type": "string", "required": false },
+        { "name": "gender", "description": "Vocal gender male/female (default: male)", "type": "string", "required": false }
+      ],
+      "exec": {
+        "type": "process",
+        "command": "python3",
+        "args": [
+          "~/.openclaw/workspace/skills/music-generator-topmediai/scripts/dispatch_music_generator.py",
+          "--mode", "${mode}",
+          "--prompt", "${prompt}",
+          "--style", "${style}",
+          "--mv", "${mv}",
+          "--gender", "${gender}"
+        ],
+        "cwd": "~/.openclaw/workspace"
+      },
+      "response": { "type": "text", "template": "Result: ${result}" }
+    },
+    {
+      "name": "topmediai_task_query",
+      "description": "Query music task status by ids (comma-separated)",
+      "options": [ { "name": "ids", "description": "task ids, comma-separated", "type": "string", "required": true } ],
+      "exec": {
+        "type": "process",
+        "command": "python3",
+        "args": [
+          "~/.openclaw/workspace/skills/music-generator-topmediai/scripts/run_topmediai.py",
+          "query",
+          "--ids", "${ids}"
+        ],
+        "cwd": "~/.openclaw/workspace"
+      },
+      "response": { "type": "text", "template": "Task status: ${result}" }
+    },
+    {
+      "name": "topmediai_generate_mp4",
+      "description": "Generate MP4 for a finished song id",
+      "options": [ { "name": "song_id", "description": "song id", "type": "string", "required": true } ],
+      "exec": {
+        "type": "process",
+        "command": "python3",
+        "args": [
+          "~/.openclaw/workspace/skills/music-generator-topmediai/scripts/run_topmediai.py",
+          "mp4",
+          "--song_id", "${song_id}"
+        ],
+        "cwd": "~/.openclaw/workspace"
+      },
+      "response": { "type": "text", "template": "MP4 result: ${result}" }
+    }
+  ]
+}

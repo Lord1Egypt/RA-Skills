@@ -1,35 +1,44 @@
 ---
-name: "多智能体联合研究框架"
-description: "多智能体联合研究框架Skill，支持多领域专家协同完成复杂研究项目，包含任务分配、进度跟踪、质量管控、成果同步全流程能力"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/multi-agent-research"
-sourceUrl: "https://clawhub.ai/skills/multi-agent-research"
+name: multi-agent-research
+description: 多智能体联合研究框架Skill，支持多领域专家协同完成复杂研究项目，包含任务分配、进度跟踪、质量管控、成果同步全流程能力
+metadata:
+  openclaw:
+    requires: { "bins": ["openclaw"] }
+    install: []
 ---
 
-# 多智能体联合研究框架
+# 多智能体联合研究框架 Skill (v1.0)
 
-> 多智能体联合研究框架Skill，支持多领域专家协同完成复杂研究项目，包含任务分配、进度跟踪、质量管控、成果同步全流程能力
+## 核心功能
+这套Skill支持多领域专家智能体协同完成复杂研究项目，实现全流程标准化管理：
+1. 研究任务自动拆解与分配到对应领域专家
+2. 多智能体任务进度自动跟踪与汇总
+3. 研究成果质量自动检查与校准
+4. 最终成果自动同步与归档
+5. 跨专家研究结论自动交叉验证
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/multi-agent-research`
-- **Source URL:** [https://clawhub.ai/skills/multi-agent-research](https://clawhub.ai/skills/multi-agent-research)
+## 适用场景
+- 行业研究报告撰写
+- 商业项目可行性分析
+- 产品市场调研项目
+- 政策研究与趋势分析
+- 复杂问题多维度评估
 
-## Overview
+## 核心方法体系
+1. 专家分工模型：市场运营/产品研究/客户分析三类专家角色标准化协作
+2. 五轮沟通机制：任务下达-疑问澄清-初稿提交-意见反馈-终稿交付标准化流程
+3. 质量管控体系：三级质量检查（自检/交叉检/项目经理终审）
+4. 成果同步机制：自动同步到指定云存储位置，生成版本记录
 
+## 使用方法
+1. 配置项目研究目标与交付要求
+2. 执行 `multi-agent-research start --project <项目名> --deadline <截止时间>`
+3. 系统自动分配任务到对应专家智能体
+4. 执行 `multi-agent-research status` 查看实时进度
+5. 研究完成后自动交付标准化成果包
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/multi-agent-research
-```
+## 输出成果规范
+- 研究报告：Markdown格式，包含数据来源、分析过程、结论建议
+- 支撑材料：原始数据、引用文献、中间分析过程文件
+- 质量报告：三级质量检查结果记录
+- 版本记录：完整迭代过程日志

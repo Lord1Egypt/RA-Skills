@@ -1,35 +1,46 @@
 ---
-name: "News Sentiment Analysis"
-description: "区分"真利好"和"假利好"，避免追高被套。用于A股消息面分析。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/news-sentiment-analysis"
-sourceUrl: "https://clawhub.ai/skills/news-sentiment-analysis"
+name: news-sentiment-analysis
+description: 区分"真利好"和"假利好"，避免追高被套。用于A股消息面分析。
+version: 1.0.0
 ---
 
-# News Sentiment Analysis
+# 消息面分级解读 Skill
 
-> 区分"真利好"和"假利好"，避免追高被套。用于A股消息面分析。
+## 核心能力
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/news-sentiment-analysis`
-- **Source URL:** [https://clawhub.ai/skills/news-sentiment-analysis](https://clawhub.ai/skills/news-sentiment-analysis)
+区分"真利好"和"假利好"，避免追高被套。
 
-## Overview
+## 利好分级规则
 
+### 一级利好（可重仓追涨）
+- 国家级政策落地（如降息、行业扶持）
+- 龙头股直接受益
+- **操作建议**：可重仓追涨
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/news-sentiment-analysis
-```
+### 二级利好（轻仓参与）
+- 行业事件（如产业链涨价、技术突破）
+- 板块联动性强
+- **操作建议**：轻仓参与
+
+### 无效利好（观望为主）
+- 公司常规公告（如股东增持、战略合作）
+- 无资金承接
+- **操作建议**：观望为主
+
+## 实战规则
+
+### 补贴类利好判断
+看到"某公司获政府补贴"公告时：
+1. 判断补贴金额占净利润的比例
+2. 比例 < 5% 为无效利好
+3. 再看板块资金流向
+
+### 追高避坑
+- 利好发布后已涨停2次以上，谨慎追
+- 利好发布但无资金承接，及时止盈
+
+## 触发场景
+
+- "这个利好是真的吗"
+- "能追吗"
+- "这个公告是利好还是利空"

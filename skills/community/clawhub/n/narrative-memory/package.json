@@ -1,0 +1,59 @@
+{
+  "name": "narrative-memory",
+  "version": "0.3.0",
+  "description": "叙事记忆系统：捕捉生命中有意义的时刻，编织成连贯的个人叙事。支持独立CLI和proactive-engine协作。",
+  "main": "scripts/narrative.js",
+  "scripts": {
+    "start": "node scripts/narrative.js",
+    "test": "node scripts/test-basic.js",
+    "cli": "node bin/soul_narrative.js",
+    "add-example": "node bin/soul_narrative.js add \"测试叙事记忆\" --category milestone --importance 0.7 --tags test,demo",
+    "timeline-example": "node bin/soul_narrative.js timeline --start 2026-01-01 --limit 5",
+    "stats-example": "node bin/soul_narrative.js stats",
+    "patterns-example": "node bin/soul_narrative.js patterns",
+    "signal-test": "node bin/soul_narrative.js --process-signal milestone",
+    "install-local": "npm link",
+    "config-show": "node scripts/utils/config-loader.js show",
+    "config-reset": "node scripts/utils/config-loader.js resetToDefaults"
+  },
+  "dependencies": {
+    "chalk": "^5.6.2",
+    "commander": "^11.1.0",
+    "date-fns": "^3.6.0",
+    "natural": "^6.11.2"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0"
+  },
+  "keywords": [
+    "soul-system",
+    "narrative-memory",
+    "life-logging",
+    "pattern-recognition",
+    "memory-system",
+    "cli-tool",
+    "ai-assistant",
+    "proactive-engine"
+  ],
+  "author": "soul-system",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zhaoguoqiang-hub/soul-system"
+  },
+  "homepage": "https://github.com/zhaoguoqiang-hub/soul-system/tree/main/packages/narrative-memory",
+  "bugs": {
+    "url": "https://github.com/zhaoguoqiang-hub/soul-system/issues"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "files": [
+    "bin/",
+    "scripts/",
+    "references/",
+    "SKILL.md",
+    "package.json",
+    "README.md"
+  ]
+}

@@ -1,0 +1,48 @@
+{
+  "database": {
+    "host": "localhost",
+    "port": 3306,
+    "user": "root",
+    "password": "MySQL@123456",
+    "database": "bid_analysis_db",
+    "charset": "utf8mb4",
+    "pool_size": 5,
+    "autocommit": true
+  },
+  "skill": {
+    "name": "bid-analysis-skill",
+    "version": "1.0.0",
+    "auto_create_tables": true,
+    "backup_enabled": true,
+    "backup_path": "/var/backup/bid_analysis",
+    "log_level": "INFO",
+    "max_file_size_mb": 50
+  },
+  "parsing": {
+    "excel_sheet_name": "Sheet1",
+    "date_format": "%Y年%m月%d日",
+    "currency_symbol": "¥",
+    "default_province": "未知",
+    "default_city": "未知"
+  },
+  "analysis": {
+    "high_value_threshold": 1000000,
+    "urgent_days_threshold": 7,
+    "generate_reports": true,
+    "report_format": "excel",
+    "send_notifications": false
+  },
+  "notifications": {
+    "enabled": false,
+    "email": "1975467035@qq.com",
+    "telegram_bot_token": "",
+    "telegram_chat_id": "",
+    "reminder_hours_before": [24, 2]
+  },
+  "export": {
+    "excel_template": "references/excel-template.xlsx",
+    "csv_delimiter": ",",
+    "encoding": "utf-8-sig",
+    "include_timestamps": true
+  }
+}

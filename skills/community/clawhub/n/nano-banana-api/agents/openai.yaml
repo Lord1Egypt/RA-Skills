@@ -1,0 +1,4 @@
+interface:
+  display_name: "Nano Banana API"
+  short_description: "Call Nano Banana image generation API"
+  default_prompt: "Use $nano-banana-api to generate images with the Nano Banana REST API."

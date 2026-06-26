@@ -1,0 +1,30 @@
+{
+  "name": "ming",
+  "version": "1.1.0",
+  "description": "中国传统命理参考工具，提供简化八字、五行、生肖配对和姓名学分析，并明确娱乐参考与算法限制。",
+  "author": "Harry",
+  "license": "MIT-0",
+  "keywords": [
+    "命理",
+    "八字",
+    "五行",
+    "算命",
+    "运势",
+    "姓名学",
+    "生肖",
+    "择日",
+    "中国传统",
+    "fortune-telling",
+    "bazi",
+    "chinese-astrology"
+  ],
+  "categories": [
+    "lifestyle",
+    "entertainment",
+    "culture"
+  ],
+  "homepage": "https://github.com/harrylabsj/ming",
+  "repository": "https://github.com/harrylabsj/ming",
+  "bugs": "https://github.com/harrylabsj/ming/issues",
+  "icon": "🔮"
+}

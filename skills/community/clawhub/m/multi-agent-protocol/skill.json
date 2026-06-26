@@ -1,0 +1,20 @@
+{
+  "name": "multi-agent-protocol",
+  "version": "2.0.0",
+  "description": "OpenClaw-native v2 protocol for multi-agent delivery. Keeps spec-first, dual review gates, and retry/circuit breaker, while replacing fixed session memory, blackboard.json, and beads/git assumptions with OpenProse orchestration, Lobster approval/recovery, typed task-store tools, SQLite/event log state, and ACP integration.",
+  "keywords": [
+    "multi-agent",
+    "orchestration",
+    "spec-first",
+    "circuit-breaker",
+    "openprose",
+    "lobster",
+    "sqlite",
+    "acp",
+    "review",
+    "fault-tolerance",
+    "typed-tools",
+    "openclaw-native"
+  ],
+  "license": "MIT"
+}

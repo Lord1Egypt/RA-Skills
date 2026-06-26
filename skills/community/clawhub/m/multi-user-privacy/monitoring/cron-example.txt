@@ -1,0 +1,31 @@
+# OpenClaw 监控告警系统 Cron 配置示例
+
+# 方法 1: 使用 crontab 定时执行检查（推荐）
+# 每分钟检查一次
+* * * * * cd /home/user/.openclaw/workspace/monitoring && node monitor.js check >> /home/user/.openclaw/workspace/logs/monitor-cron.log 2>&1
+
+# 每 5 分钟检查一次
+*/5 * * * * cd /home/user/.openclaw/workspace/monitoring && node monitor.js check >> /home/user/.openclaw/workspace/logs/monitor-cron.log 2>&1
+
+# 每 15 分钟检查一次
+*/15 * * * * cd /home/user/.openclaw/workspace/monitoring && node monitor.js check >> /home/user/.openclaw/workspace/logs/monitor-cron.log 2>&1
+
+# 方法 2: 使用 systemd timer（更现代的方式）
+# 创建文件：/etc/systemd/system/openclaw-monitor.timer
+# [Unit]
+# Description=Run OpenClaw Monitor every minute
+# 
+# [Timer]
+# OnBootSec=1min
+# OnUnitActiveSec=1min
+# Unit=openclaw-monitor@%i.service
+# 
+# [Install]
+# WantedBy=timers.target
+
+# 启用 timer:
+# sudo systemctl enable openclaw-monitor.timer
+# sudo systemctl start openclaw-monitor.timer
+
+# 查看 timer 状态:
+# systemctl list-timers

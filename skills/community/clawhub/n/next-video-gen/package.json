@@ -1,0 +1,23 @@
+{
+  "name": "next-video-gen",
+  "version": "1.0.0",
+  "description": "豆包 Next Video Gen — text-to-image, text-to-video, image-to-video, video-to-video with Seedance 2.0",
+  "files": [
+    "SKILL.md",
+    "_meta.json",
+    "scripts/",
+    "references/",
+    "LICENSE"
+  ],
+  "keywords": ["seedance", "video-generation", "image-generation", "ai-video", "doubao", "volcengine", "bytedance", "next-video-gen"],
+  "author": "vennduan",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vennduan/next-video-gen"
+  },
+  "homepage": "https://github.com/vennduan/next-video-gen",
+  "engines": {
+    "node": ">=16"
+  }
+}

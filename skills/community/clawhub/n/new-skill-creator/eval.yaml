@@ -1,0 +1,52 @@
+version: "1"
+defaults:
+  trials: 3
+  timeout: 180
+  threshold: 0.8
+
+cases:
+  - id: explicit-trigger-skill-creator
+    prompt: |
+      Use the skill-creator skill to help me build a new skill from scratch and scaffold the directory for me.
+    expect:
+      should_trigger: true
+
+  - id: implicit-trigger-new-skill-authoring
+    prompt: |
+      I have a workflow idea and need to turn it into a publishable ClawHub skill with SKILL.md, references, and scripts.
+    expect:
+      should_trigger: true
+
+  - id: negative-trigger-existing-skill-review
+    prompt: |
+      Review this existing skill for SEO and quality issues, but do not create a new skill or scaffold any files.
+    expect:
+      should_trigger: false
+
+  - id: structure-check
+    prompt: |
+      Verify that this skill package includes the scaffold script and the writing references needed to create a new skill.
+    expect:
+      files_exist:
+        - SKILL.md
+        - scripts/init_skill.py
+        - references/skill-anatomy.md
+        - references/writing-guide.md
+        - references/examples.md
+
+  - id: scaffold-command-docs
+    prompt: |
+      Confirm that the documentation includes the init_skill scaffold command and the phase-based workflow.
+    expect:
+      body_contains:
+        - "python3 {baseDir}/scripts/init_skill.py <skill-name> --path <output-dir>"
+        - "### Phase 1: Understand the Need"
+        - "### Phase 5: Verify and Optimize"
+
+  - id: content-boundary-guidance
+    prompt: |
+      Confirm that the skill tells the assistant when not to use it and points to skill-test and skill-seo for adjacent tasks.
+    expect:
+      body_contains:
+        - "Testing or evaluating an existing skill: use `skill-test`"
+        - "Optimizing search visibility of an existing skill: use `skill-seo`"

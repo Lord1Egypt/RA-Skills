@@ -1,0 +1,13 @@
+{
+  "name": "minimax-pdf-ocr",
+  "version": "1.0.0",
+  "description": "使用 MiniMax Vision API 识别 PDF/图片中的文字",
+  "main": "pdf-ocr-minimax.js",
+  "scripts": {
+    "ocr": "node pdf-ocr-minimax.js"
+  },
+  "dependencies": {},
+  "engines": {
+    "node": ">=18"
+  }
+}

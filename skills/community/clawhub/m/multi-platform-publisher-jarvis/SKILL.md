@@ -1,35 +1,58 @@
----
-name: "Multi Platform Publisher Jarvis"
-description: "提供多平台内容发布、数据分析与粉丝互动管理，支持热点追踪和排期，助力社交媒体一站式运营。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/multi-platform-publisher-jarvis"
-sourceUrl: "https://clawhub.ai/skills/multi-platform-publisher-jarvis"
----
+# Social Media Manager - 社交媒体管理助手
 
-# Multi Platform Publisher Jarvis
+## 功能描述
+一站式社交媒体管理工具，支持多平台内容发布、数据分析、粉丝互动。
 
-> 提供多平台内容发布、数据分析与粉丝互动管理，支持热点追踪和排期，助力社交媒体一站式运营。
+## 使用场景
+- 多平台内容同步发布
+- 社交媒体数据分析
+- 粉丝互动管理
+- 热点追踪
+- 内容排期管理
+- KOL/KOC 数据分析
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/multi-platform-publisher-jarvis`
-- **Source URL:** [https://clawhub.ai/skills/multi-platform-publisher-jarvis](https://clawhub.ai/skills/multi-platform-publisher-jarvis)
+## 命令
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/multi-platform-publisher-jarvis
+### 多平台发布
 ```
+发布内容 内容=文章.md 平台=微博，公众号，知乎 定时=2026-03-29 09:00
+```
+
+### 数据分析
+```
+获取数据 平台=微博 账号=@xxx 时间范围=7 天
+```
+
+### 粉丝互动
+```
+回复评论 平台=微博 时间范围=1 小时 情感=正面优先
+```
+
+### 热点追踪
+```
+追踪热点 关键词=AI 平台=微博，知乎 时间=24 小时
+```
+
+## 支持平台
+- 微博
+- 微信公众号
+- 知乎
+- 小红书
+- 抖音
+- B 站
+- 头条号
+
+## 功能模块
+- 内容发布
+- 数据看板
+- 粉丝管理
+- 热点监控
+- 竞品分析
+- 排期日历
+
+## 特性
+- 多平台统一管理
+- 自动发布
+- 数据可视化
+- 情感分析
+- 智能推荐

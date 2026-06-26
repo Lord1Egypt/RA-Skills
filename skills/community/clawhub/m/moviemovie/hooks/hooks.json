@@ -1,0 +1,16 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"${CLAUDE_SKILL_DIR}/scripts/status.py\"",
+            "timeout": 8
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,35 +1,53 @@
----
-name: "Ml Pipeline Starter"
-description: "Build and deploy production ML pipelines with data processing, model training, evaluation, and deployment using TensorFlow, PyTorch, or Scikit-learn."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ml-pipeline-starter"
-sourceUrl: "https://clawhub.ai/skills/ml-pipeline-starter"
----
+# ML Pipeline Starter
 
-# Ml Pipeline Starter
+Build production ML pipelines.
 
-> Build and deploy production ML pipelines with data processing, model training, evaluation, and deployment using TensorFlow, PyTorch, or Scikit-learn.
+## Features
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ml-pipeline-starter`
-- **Source URL:** [https://clawhub.ai/skills/ml-pipeline-starter](https://clawhub.ai/skills/ml-pipeline-starter)
+### Data Processing
+- Data validation
+- Feature engineering
+- Data augmentation
 
-## Overview
+### Model Training
+- Hyperparameter tuning
+- Cross-validation
+- Model versioning
 
+### Evaluation
+- Metrics tracking
+- Bias detection
+- Performance monitoring
 
-## Installation
-To install this skill, run the following command in your terminal:
+### Deployment
+- Model serving
+- A/B testing
+- Rollback support
+
+## Quick Start
+
 ```bash
-hermes skills install clawhub/ml-pipeline-starter
+# Create pipeline
+./ml-pipeline.sh create my-model
+
+# Train
+./ml-pipeline.sh train my-model
+
+# Deploy
+./ml-pipeline.sh deploy my-model production
 ```
+
+## Frameworks
+
+- TensorFlow
+- PyTorch
+- Scikit-learn
+
+## Requirements
+
+- Python 3.8+
+- Docker
+
+## Author
+
+Sunshine-del-ux

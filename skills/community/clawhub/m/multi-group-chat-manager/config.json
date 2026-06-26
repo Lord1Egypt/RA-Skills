@@ -1,0 +1,43 @@
+{
+  "_note_version": "multi-group-chat-manager v1.0.0 通用配置文件",
+  "_note_usage": "首次部署请参考 SKILL.md 中的初始化流程配置各项参数。修改后只需重启，所有 Python 脚本自动生效。",
+
+  "session": {
+    "recovery_window_hours": 24,
+    "recovery_max_messages": 1000,
+    "default_max_messages": 100
+  },
+
+  "profiling": {
+    "min_update_interval": 300,
+    "auto_dedup": true,
+    "max_items_per_field": 50,
+    "output_language": "zh-CN"
+  },
+
+  "memory": {
+    "lambda_decay": 0.05,
+    "alpha_boost": 0.2,
+    "score_threshold": 0.15,
+    "new_memory_score": 0.8,
+    "auto_decay_interval": 86400
+  },
+
+  "onebot": {
+    "base_url": "http://127.0.0.1:3000",
+    "timeout": 10,
+    "groups": {}
+  },
+
+  "affection": {
+    "default_score": 50,
+    "small_group_default_score": 85,
+    "small_group_ids": [],
+    "brief_query_hours": 24,
+    "detail_max_entries": 20,
+    "min_score": 0,
+    "max_score": 100,
+    "lock_timeout": 10,
+    "lock_stale_seconds": 5
+  }
+}

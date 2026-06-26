@@ -1,0 +1,8 @@
+interface:
+  display_name: "Miraix Binance Agent Firewall"
+  short_description: "Audit Binance AI trading prompts before they touch account permissions."
+  brand_color: "#f0b90b"
+  default_prompt: "Use $miraix-binance-agent-firewall to audit a Binance trading prompt, return Pass/Warn/Block, recommend guardrails and permissions, and include a safe rewrite for the operator."
+
+policy:
+  allow_implicit_invocation: true

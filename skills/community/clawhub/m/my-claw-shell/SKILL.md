@@ -1,35 +1,45 @@
----
-name: "My Claw Shell"
-description: "Runs shell commands inside a dedicated tmux session named claw, returning the command output while restricting dangerous commands without confirmation."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/my-claw-shell"
-sourceUrl: "https://clawhub.ai/skills/my-claw-shell"
----
+# claw-shell-kali
 
-# My Claw Shell
+ALWAYS USES TMUX SESSION `claw`.
 
-> Runs shell commands inside a dedicated tmux session named claw, returning the command output while restricting dangerous commands without confirmation.
+## PURPOSE
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/my-claw-shell`
-- **Source URL:** [https://clawhub.ai/skills/my-claw-shell](https://clawhub.ai/skills/my-claw-shell)
+- RUN SHELL COMMANDS INSIDE TMUX SESSION `claw`
+- NEVER TOUCH ANY OTHER SESSION
+- READ OUTPUT BACK TO THE AGENT
 
-## Overview
+## INTERFACE
 
+### Tool: `claw_shell_run`
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/my-claw-shell
-```
+**Inputs:**
+
+- `command` (string, required): shell command to run inside session `claw`.
+
+**Behavior:**
+
+1. Attach to tmux session `claw` (create it if missing: `tmux new -s claw -d`).
+2. Send the command followed by Enter.
+3. Capture the latest pane output.
+4. Return the captured output to the agent.
+
+## SAFETY
+
+- DO NOT RUN:
+  - `sudo`
+  - `rm` (without explicit user approval)
+  - `reboot`, `shutdown`, or destructive system-level commands
+- IF THE COMMAND CONTAINS ANY OF THE ABOVE:
+  - ASK USER FOR CONFIRMATION BEFORE EXECUTING.
+
+## EXAMPLES
+
+- SAFE:
+  - `ls -la`
+  - `bird read https://x.com/...`
+  - `git status`
+
+- DANGEROUS (ASK FIRST):
+  - `rm -rf ...`
+  - `docker system prune -a`
+  - `chmod -R ...`

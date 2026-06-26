@@ -1,0 +1,39 @@
+{
+  "skill_id": "skill_multi_model_response_comparator",
+  "evaluation_version": "1.1",
+  "scenarios": [
+    {
+      "id": "writing_support_email",
+      "task": "Compare 3 model outputs for a refund-related customer support email.",
+      "expected_properties": [
+        "identifies strengths and weaknesses per model",
+        "distinguishes tone from correctness",
+        "gives a use-case-based recommendation instead of declaring one universal winner"
+      ]
+    },
+    {
+      "id": "coding_retry_function",
+      "task": "Compare 3 model outputs for a Python retry utility with exponential backoff.",
+      "expected_properties": [
+        "evaluates correctness and implementation completeness",
+        "flags edge cases or missing error handling",
+        "recommends best model for production code vs draft code"
+      ]
+    },
+    {
+      "id": "seo_blog_outline",
+      "task": "Compare low-cost vs premium model outputs for a developer-facing SEO outline.",
+      "expected_properties": [
+        "compares structure and usefulness",
+        "mentions likely cost-quality tradeoff",
+        "recommends a split workflow if appropriate"
+      ]
+    }
+  ],
+  "summary": {
+    "with_skill_score": 4,
+    "without_skill_score": 2,
+    "delta": 2,
+    "confidence": "medium"
+  }
+}

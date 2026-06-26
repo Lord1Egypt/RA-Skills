@@ -1,35 +1,99 @@
----
-name: "Mini Crm"
-description: "轻量级客户管理工具，支持客户资料管理、跟进记录、成交追踪、数据分析与提醒通知，适合个人和小团队使用。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/mini-crm"
-sourceUrl: "https://clawhub.ai/skills/mini-crm"
----
+# Mini-CRM Skill
 
-# Mini Crm
+轻量级客户管理系统，个人/小团队适用。
 
-> 轻量级客户管理工具，支持客户资料管理、跟进记录、成交追踪、数据分析与提醒通知，适合个人和小团队使用。
+## 功能
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/mini-crm`
-- **Source URL:** [https://clawhub.ai/skills/mini-crm](https://clawhub.ai/skills/mini-crm)
+- 客户信息管理
+- 跟进记录
+- 成交追踪
+- 数据分析
+- 提醒通知
 
-## Overview
+## 使用方式
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/mini-crm
 ```
+添加新客户：张总，微信 zhang123，预算 ¥50,000
+```
+
+```
+查看张总的跟进记录
+```
+
+```
+生成本月客户报告
+```
+
+## 数据结构
+
+```json
+{
+  "customers": [
+    {
+      "id": "C001",
+      "name": "张总",
+      "company": "ABC 公司",
+      "wechat": "zhang123",
+      "email": "zhang@abc.com",
+      "budget": 50000,
+      "status": "negotiating",
+      "source": "掘金文章",
+      "created": "2026-03-01",
+      "last_contact": "2026-03-10",
+      "interactions": [
+        {
+          "date": "2026-03-01",
+          "type": "首次咨询",
+          "content": "询问网站开发服务"
+        },
+        {
+          "date": "2026-03-05",
+          "type": "报价",
+          "content": "发送报价 ¥35,000"
+        }
+      ]
+    }
+  ]
+}
+```
+
+## 输出格式
+
+```
+📊 客户管理看板
+
+## 客户概览
+- 总客户：127 人
+- 洽谈中：45 人
+- 已成交：32 人
+- 已流失：12 人
+
+## 漏斗分析
+咨询 → 报价 → 成交
+127 → 89 → 32
+转化率：25%
+
+## 本月新增
+- 新客户：15 人
+- 来源：掘金 10 人，知乎 3 人，推荐 2 人
+
+## 待跟进（按优先级）
+1. 张总 - 3 天未联系 - 预算 ¥50,000
+2. 李经理 - 2 天未联系 - 预算 ¥30,000
+3. 王先生 - 1 天未联系 - 预算 ¥15,000
+
+## 本月成交
+1. 赵总 - ¥35,000 - 网站开发
+2. 钱经理 - ¥28,000 - 小程序
+3. 孙先生 - ¥18,000 - APP 开发
+
+## 收入统计
+- 本月成交：¥81,000
+- 本月回款：¥65,000
+- 待收款：¥16,000
+```
+
+---
+
+创建时间：2026-03-11
+作者：ClawMart

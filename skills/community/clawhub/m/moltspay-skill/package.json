@@ -1,0 +1,36 @@
+{
+  "name": "moltspay-skill",
+  "version": "1.0.0",
+  "description": "MoltsPay skill for OpenClaw - pay for AI services with USDC/USDT (8 chains: Base, Polygon, BNB, opBNB, Solana, Tempo) or CNY via Alipay (MoltsPay 2.0)",
+  "keywords": [
+    "openclaw",
+    "skill",
+    "moltspay",
+    "crypto",
+    "payments",
+    "ai"
+  ],
+  "author": "Zen7 Labs",
+  "license": "MIT-0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Yaqing2023/moltspay-skill"
+  },
+  "scripts": {
+    "setup": "node scripts/setup.js",
+    "postinstall": "node scripts/setup.js"
+  },
+  "openclaw": {
+    "skill": true,
+    "setup": "node scripts/setup.js",
+    "triggers": [
+      "pay",
+      "buy",
+      "purchase",
+      "video",
+      "generate",
+      "wallet",
+      "balance"
+    ]
+  }
+}

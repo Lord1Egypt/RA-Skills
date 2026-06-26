@@ -1,0 +1,13 @@
+{
+  "skill_id": "skill_multi_model_response_comparator",
+  "slug": "multi-model-response-comparator",
+  "title": "Multi-Model Response Comparator",
+  "summary": "Compare responses from multiple AI models for the same task and summarize tradeoffs in quality, style, likely cost, and best-fit use cases.",
+  "category": "model_ops",
+  "archetype": "response_comparator",
+  "variant": "multi_model_eval",
+  "version": "0.2.0",
+  "tags": ["models", "evaluation", "comparison", "crazyrouter", "benchmarking"],
+  "status": "draft",
+  "visibility": "internal"
+}

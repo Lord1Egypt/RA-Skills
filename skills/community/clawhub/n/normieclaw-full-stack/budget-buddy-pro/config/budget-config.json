@@ -1,0 +1,103 @@
+{
+  "currency": "USD",
+  "currency_symbol": "$",
+  "default_framework": "50/30/20",
+  "alert_thresholds": {
+    "warning_percent": 80,
+    "critical_percent": 95
+  },
+  "default_categories": [
+    {
+      "name": "Housing",
+      "group": "needs",
+      "subcategories": ["Rent/Mortgage", "Utilities", "Insurance", "Maintenance"]
+    },
+    {
+      "name": "Transportation",
+      "group": "needs",
+      "subcategories": ["Gas", "Public Transit", "Rideshare", "Car Payment", "Car Insurance", "Parking"]
+    },
+    {
+      "name": "Groceries",
+      "group": "needs",
+      "subcategories": ["Food", "Household Supplies"]
+    },
+    {
+      "name": "Healthcare",
+      "group": "needs",
+      "subcategories": ["Insurance", "Doctor", "Pharmacy", "Dental", "Vision"]
+    },
+    {
+      "name": "Dining Out",
+      "group": "wants",
+      "subcategories": ["Restaurants", "Coffee Shops", "Fast Food", "Bars", "Delivery"]
+    },
+    {
+      "name": "Entertainment",
+      "group": "wants",
+      "subcategories": ["Streaming", "Movies", "Events", "Hobbies", "Games"]
+    },
+    {
+      "name": "Shopping",
+      "group": "wants",
+      "subcategories": ["Clothing", "Electronics", "Home Decor", "Online Shopping"]
+    },
+    {
+      "name": "Subscriptions",
+      "group": "wants",
+      "subcategories": ["Software", "Media", "Memberships", "Newsletters"]
+    },
+    {
+      "name": "Personal Care",
+      "group": "wants",
+      "subcategories": ["Haircut", "Gym", "Skincare", "Wellness"]
+    },
+    {
+      "name": "Travel",
+      "group": "wants",
+      "subcategories": ["Flights", "Hotels", "Vacation Activities", "Travel Insurance"]
+    },
+    {
+      "name": "Education",
+      "group": "needs",
+      "subcategories": ["Tuition", "Books", "Courses", "Student Loans"]
+    },
+    {
+      "name": "Savings",
+      "group": "savings",
+      "subcategories": ["Emergency Fund", "Retirement", "Investments", "General Savings"]
+    },
+    {
+      "name": "Debt Payments",
+      "group": "needs",
+      "subcategories": ["Credit Card", "Student Loan", "Personal Loan", "Auto Loan"]
+    },
+    {
+      "name": "Gifts & Donations",
+      "group": "wants",
+      "subcategories": ["Gifts", "Charity", "Tips"]
+    },
+    {
+      "name": "Pets",
+      "group": "wants",
+      "subcategories": ["Food", "Vet", "Supplies", "Grooming"]
+    },
+    {
+      "name": "Kids",
+      "group": "needs",
+      "subcategories": ["Childcare", "School", "Activities", "Supplies"]
+    },
+    {
+      "name": "Income",
+      "group": "income",
+      "subcategories": ["Salary", "Freelance", "Side Hustle", "Investment Returns", "Refunds", "Other"]
+    },
+    {
+      "name": "Uncategorized",
+      "group": "other",
+      "subcategories": []
+    }
+  ],
+  "vendor_aliases": [],
+  "custom_rules": []
+}

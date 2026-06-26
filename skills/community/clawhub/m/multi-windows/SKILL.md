@@ -1,35 +1,91 @@
----
-name: "多窗口模式"
-description: "多窗口工作台，管理多个独立工作窗口，切换时可自动保存和恢复工作进度"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/multi-windows"
-sourceUrl: "https://clawhub.ai/skills/multi-windows"
+# work-windows — 多窗口工作台 🪟
+
+> Manage multiple independent work windows with context isolation
+
+一个帮助你管理多个独立工作窗口的技能，每个窗口有独立的上下文，切换时可以自动保存和恢复工作进度。
+
 ---
 
-# 多窗口模式
+## 📋 Changelog
 
-> 多窗口工作台，管理多个独立工作窗口，切换时可自动保存和恢复工作进度
+### v1.1 (2026-03-25)
+- **切换时自动保存对话历史** — 读取当前 session 的 transcript.jsonl 保存到窗口目录
+- **切回时加载历史** — 切换到窗口时自动显示之前保存的对话记录
+- **真正上下文隔离** — 每个窗口有独立的 transcript，不会污染其他窗口
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/multi-windows`
-- **Source URL:** [https://clawhub.ai/skills/multi-windows](https://clawhub.ai/skills/multi-windows)
+### v1.0 (2026-03-14) - 初始版本
+- 多窗口管理基础功能
+- 开窗口、切窗口、列窗口、完成窗口
 
-## Overview
+---
 
+## ✨ 核心功能
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/multi-windows
+| 功能 | 说明 |
+|------|------|
+| 开窗口 | 创建新窗口，分配独立 session |
+| 切窗口 | 自动保存当前对话 + 加载历史 |
+| 列窗口 | 列出所有窗口及状态 |
+| 查窗口 | 按时间段查询历史窗口 |
+| 完成窗口 | 标记窗口完成 |
+| 保存摘要 | 保存工作进度 |
+
+---
+
+## 🗂️ 窗口目录结构
+
 ```
+memory/tasks/
+├── tasks.json              # 窗口索引
+├── current.json            # 当前窗口
+├── {ID}{名称}/
+│   ├── meta.json           # 窗口元信息
+│   ├── summary.md          # 工作摘要
+│   └── output/
+│       └── transcript.jsonl # 完整对话历史
+```
+
+---
+
+## 📖 命令指南
+
+### 开窗口 / Create Window
+
+```
+你说：开窗口 调研报告
+
+回复：✅ 已创建窗口 0314-4（调研报告）
+```
+
+### 列窗口 / List Windows
+
+```
+你说：列窗口
+
+回复：📋 窗口列表：...
+```
+
+### 切窗口 / Switch Window
+
+```
+你说：切到 0315-3
+
+回复：
+🔄 已切换到窗口 0315-3（知识库设计）
+
+📜 历史对话：
+**user**: ...
+**assistant**: ...
+```
+
+### 保存摘要
+
+```
+你说：保存摘要 完成了需求分析，待做UI设计
+
+回复：✅ 已更新工作摘要
+```
+
+---
+
+有问题随时问！😊

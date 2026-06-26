@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>App ID鉴权 - Signature生成</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/crypto-js.min.js"></script>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 24px;
+        }
+        .main-container {
+            display: flex;
+            gap: 20px;
+            min-height: 500px;
+        }
+        .left-panel, .right-panel {
+            flex: 1;
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        .section-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #4CAF50;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #555;
+        }
+        .required::after {
+            content: " *";
+            color: #e74c3c;
+        }
+        input[type="text"],
+        input[type="number"] {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
+        input:focus {
+            outline: none;
+            border-color: #4CAF50;
+        }
+        .field-hint {
+            display: block;
+            margin-top: 5px;
+            font-size: 12px;
+            color: #888;
+        }
+        .computed-value {
+            display: block;
+            margin-top: 8px;
+            padding: 8px 12px;
+            background: #e8f5e9;
+            border-radius: 4px;
+            font-size: 13px;
+            color: #2e7d32;
+            font-family: monospace;
+            word-break: break-all;
+        }
+        .btn-primary {
+            display: block;
+            width: 100%;
+            padding: 12px 24px;
+            margin-top: 30px;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #4CAF50;
+            color: white;
+            transition: background-color 0.3s;
+        }
+        .btn-primary:hover {
+            background-color: #45a049;
+        }
+        .right-panel {
+            display: flex;
+            flex-direction: column;
+        }
+        .result-content {
+            flex: 1;
+        }
+        .result-item {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 6px;
+            border-left: 4px solid #2196F3;
+        }
+        .result-label {
+            font-weight: 600;
+            color: #1976d2;
+            font-size: 13px;
+            margin-bottom: 8px;
+            display: block;
+        }
+        .result-value {
+            font-family: monospace;
+            font-size: 13px;
+            color: #333;
+            word-break: break-all;
+            line-height: 1.5;
+        }
+        .authorization-box {
+            margin-top: 25px;
+            padding: 20px;
+            background: #e3f2fd;
+            border-radius: 6px;
+            border: 2px solid #2196F3;
+        }
+        .authorization-label {
+            font-weight: 600;
+            color: #1976d2;
+            font-size: 14px;
+            margin-bottom: 10px;
+            display: block;
+        }
+        .authorization-value {
+            font-family: monospace;
+            font-size: 12px;
+            color: #333;
+            word-break: break-all;
+            line-height: 1.6;
+            background: white;
+            padding: 12px;
+            border-radius: 4px;
+            border: 1px solid #bbdefb;
+        }
+        .copy-btn {
+            margin-top: 10px;
+            padding: 8px 20px;
+            font-size: 13px;
+            background: #2196F3;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .copy-btn:hover {
+            background: #1976D2;
+        }
+        .copy-btn.copied {
+            background: #4CAF50;
+        }
+        .empty-state {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            font-size: 14px;
+            text-align: center;
+        }
+        .error {
+            color: #e74c3c;
+            font-size: 13px;
+            margin-top: 10px;
+            padding: 10px;
+            background: #ffebee;
+            border-radius: 4px;
+            display: none;
+        }
+        .error.show {
+            display: block;
+        }
+        @media (max-width: 900px) {
+            .main-container {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>App ID 鉴权 - Signature 生成</h1>
+    
+    <div class="main-container">
+        <!-- 左侧面板：表单 -->
+        <div class="left-panel">
+            <div class="section-title">签名参数</div>
+            
+            <div class="form-group">
+                <label for="appId" class="required">App ID</label>
+                <input type="text" id="appId" placeholder="请输入App ID">
+                <span class="field-hint">应用ID，用于计算signature和access</span>
+            </div>
+            
+            <div class="form-group">
+                <label for="appKey" class="required">App Key</label>
+                <input type="text" id="appKey" placeholder="请输入App Key">
+                <span class="field-hint">应用密钥，用于计算HMAC-SHA256签名</span>
+            </div>
+            
+            <div class="form-group">
+                <label for="userId">User ID</label>
+                <input type="text" id="userId" placeholder="请输入User ID" value="user1">
+                <span class="field-hint">第三方用户ID，默认值为 user1</span>
+            </div>
+            
+            <div class="form-group">
+                <label for="expireMinutes" class="required">有效时长</label>
+                <input type="number" id="expireMinutes" placeholder="分钟数" value="10" min="1">
+                <span class="computed-value" id="expireTimeDisplay">ExpireTime: 计算中...</span>
+                <span class="field-hint">输入分钟数，系统自动计算Unix时间戳</span>
+            </div>
+            
+            <div class="form-group">
+                <label for="nonce">Nonce</label>
+                <input type="text" id="nonce" placeholder="留空自动生成32位UUID">
+                <span class="field-hint">随机字符串（32-64位），留空时自动生成32位UUID</span>
+            </div>
+            
+            <div id="errorMsg" class="error"></div>
+            
+            <button type="button" class="btn-primary" onclick="generateSignature()">计算 Signature</button>
+        </div>
+        
+        <!-- 右侧面板：计算结果 -->
+        <div class="right-panel">
+            <div class="section-title">计算结果</div>
+            
+            <div class="result-content" id="emptyState">
+                <div class="empty-state">
+                    点击左侧"计算 Signature"按钮<br>查看计算结果
+                </div>
+            </div>
+            
+            <div class="result-content" id="resultState" style="display: none;">
+                <div class="result-item">
+                    <span class="result-label">Nonce 实际值</span>
+                    <span class="result-value" id="resultNonce"></span>
+                </div>
+                
+                <div class="result-item">
+                    <span class="result-label">ExpireTime 实际值</span>
+                    <span class="result-value" id="resultExpireTime"></span>
+                </div>
+                
+                <div class="result-item">
+                    <span class="result-label">签名字符串</span>
+                    <span class="result-value" id="resultSignString"></span>
+                </div>
+                
+                <div class="authorization-box">
+                    <span class="authorization-label">Authorization Header</span>
+                    <div class="authorization-value" id="resultAuthorization"></div>
+                    <button class="copy-btn" onclick="copyAuthorization()">复制</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 生成32位UUID
+        function generateUUID() {
+            return 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+                var r = Math.random() * 16 | 0,
+                    v = c == 'x' ? r : (r & 0x3 | 0x8);
+                return v.toString(16);
+            });
+        }
+        
+        // 计算并显示ExpireTime
+        function updateExpireTime() {
+            const minutes = parseInt(document.getElementById('expireMinutes').value) || 10;
+            const now = Math.floor(Date.now() / 1000);
+            const expireTime = now + minutes * 60;
+            document.getElementById('expireTimeDisplay').textContent = `ExpireTime: ${expireTime} (${minutes}分钟后)`;
+            return expireTime;
+        }
+        
+        // 监听分钟数变化
+        document.getElementById('expireMinutes').addEventListener('input', updateExpireTime);
+        
+        // 页面加载时初始化
+        window.onload = function() {
+            document.getElementById('nonce').value = generateUUID();
+            updateExpireTime();
+        };
+        
+        // 生成Signature
+        function generateSignature() {
+            const errorMsg = document.getElementById('errorMsg');
+            errorMsg.textContent = '';
+            errorMsg.classList.remove('show');
+            
+            const appId = document.getElementById('appId').value.trim();
+            const appKey = document.getElementById('appKey').value.trim();
+            const userId = document.getElementById('userId').value.trim();
+            const minutes = parseInt(document.getElementById('expireMinutes').value);
+            let nonce = document.getElementById('nonce').value.trim();
+            
+            // 验证必填参数
+            if (!appId) {
+                errorMsg.textContent = '请填写 App ID';
+                errorMsg.classList.add('show');
+                return;
+            }
+            if (!appKey) {
+                errorMsg.textContent = '请填写 App Key';
+                errorMsg.classList.add('show');
+                return;
+            }
+            if (!minutes || minutes < 1) {
+                errorMsg.textContent = '请填写有效的分钟数（至少1分钟）';
+                errorMsg.classList.add('show');
+                return;
+            }
+            
+            // 如果nonce为空，自动生成
+            if (!nonce) {
+                nonce = generateUUID();
+                document.getElementById('nonce').value = nonce;
+            }
+            
+            // 验证nonce长度
+            if (nonce.length < 32 || nonce.length > 64) {
+                errorMsg.textContent = 'Nonce 长度必须在 32-64 位之间';
+                errorMsg.classList.add('show');
+                return;
+            }
+            
+            try {
+                // 计算expireTime
+                const now = Math.floor(Date.now() / 1000);
+                const expireTime = now + minutes * 60;
+                
+                // 构建签名字符串
+                const signString = appId + ":" + userId + ":" + expireTime + ":" + nonce;
+                
+                // 计算 HMAC-SHA256
+                const hmac = CryptoJS.HmacSHA256(signString, appKey);
+                
+                // Hex编码
+                const signature = hmac.toString(CryptoJS.enc.Hex);
+                
+                // Base64编码 appId
+                const access = CryptoJS.enc.Base64.stringify(CryptoJS.enc.Utf8.parse(appId));
+                
+                // 构建 Authorization 头
+                const authorization = `HMAC-SHA256 signature=${signature},access=${access}`;
+                
+                // 显示结果
+                document.getElementById('resultNonce').textContent = nonce;
+                document.getElementById('resultExpireTime').textContent = expireTime + ` (${minutes}分钟后过期)`;
+                document.getElementById('resultSignString').textContent = signString;
+                document.getElementById('resultAuthorization').textContent = authorization;
+                
+                // 切换显示
+                document.getElementById('emptyState').style.display = 'none';
+                document.getElementById('resultState').style.display = 'block';
+                
+                // 更新显示的ExpireTime
+                updateExpireTime();
+                
+            } catch (error) {
+                errorMsg.textContent = '计算 Signature 失败: ' + error.message;
+                errorMsg.classList.add('show');
+            }
+        }
+        
+        // 复制Authorization到剪贴板
+        function copyAuthorization() {
+            const authText = document.getElementById('resultAuthorization').textContent;
+            navigator.clipboard.writeText(authText).then(function() {
+                const btn = document.querySelector('.copy-btn');
+                btn.textContent = '已复制';
+                btn.classList.add('copied');
+                setTimeout(() => {
+                    btn.textContent = '复制';
+                    btn.classList.remove('copied');
+                }, 2000);
+            }).catch(function(err) {
+                alert('复制失败: ' + err);
+            });
+        }
+    </script>
+</body>
+</html>

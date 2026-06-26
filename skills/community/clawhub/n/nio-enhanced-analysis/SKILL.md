@@ -1,35 +1,75 @@
 ---
-name: "Nio Enhanced Analysis"
-description: "增强版NIO股票分析，包括实时价格、技术分析、新闻情绪、操作建议"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/nio-enhanced-analysis"
-sourceUrl: "https://clawhub.ai/skills/nio-enhanced-analysis"
+name: nio-enhanced-analysis
+description: 增强版NIO股票分析，包括实时价格、技术分析、新闻情绪、操作建议
+version: 1.0.0
+commands:
+  - /nio_analysis - 分析NIO股票（美股和港股），包括新闻情绪和操作建议
 ---
 
-# Nio Enhanced Analysis
+# NIO增强分析技能
 
-> 增强版NIO股票分析，包括实时价格、技术分析、新闻情绪、操作建议
+## 功能特点
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/nio-enhanced-analysis`
-- **Source URL:** [https://clawhub.ai/skills/nio-enhanced-analysis](https://clawhub.ai/skills/nio-enhanced-analysis)
+### 1. 实时价格分析
+- NIO美股 (NYSE:NIO) 实时价格
+- 蔚来港股 (09866.HK) 实时价格
+- 涨跌幅、成交量、市值等关键指标
 
-## Overview
+### 2. 技术分析
+- 支撑位和阻力位分析
+- 趋势判断（上涨/下跌/盘整）
+- 技术指标（RSI、MACD、移动平均线）
+- 成交量分析
 
+### 3. 新闻情绪分析
+- 当日重大新闻摘要
+- 新闻情绪评分（正面/中性/负面）
+- 新闻影响力评估
+- 相关行业新闻
 
-## Installation
-To install this skill, run the following command in your terminal:
+### 4. 市场情绪分析
+- 社交媒体情绪（Twitter/X）
+- 分析师评级变化
+- 机构持仓变化
+- 期权市场情绪
+
+### 5. 操作建议
+- 买入/持有/卖出建议
+- 目标价格区间
+- 止损位建议
+- 仓位管理建议
+- 风险提示
+
+## 使用方法
+
+### 基本命令
 ```bash
-hermes skills install clawhub/nio-enhanced-analysis
+# 分析NIO美股
+/nio_analysis us
+
+# 分析NIO港股
+/nio_analysis hk
+
+# 分析两者并对比
+/nio_analysis all
 ```
+
+### 输出格式
+每次分析包含以下部分：
+1. 📊 **实时数据** - 价格、涨跌幅、成交量
+2. 📈 **技术分析** - 趋势、支撑阻力、技术指标
+3. 📰 **新闻摘要** - 当日重大新闻和情绪
+4. 😊 **市场情绪** - 社交媒体和分析师情绪
+5. 💡 **操作建议** - 具体买卖建议和风险管理
+
+## 数据来源
+- 股票数据：Yahoo Finance、腾讯财经、新浪财经
+- 新闻数据：Google News、财经媒体
+- 情绪数据：Twitter/X、分析师报告
+- 技术分析：基于价格数据的计算
+
+## 注意事项
+1. 本分析仅供参考，不构成投资建议
+2. 股市有风险，投资需谨慎
+3. 建议结合其他分析工具和自身判断
+4. 实时数据可能延迟，请以交易所数据为准

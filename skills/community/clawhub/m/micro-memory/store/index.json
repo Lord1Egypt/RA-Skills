@@ -1,0 +1,54 @@
+{
+  "memories": [
+    {
+      "id": 1,
+      "content": "\" 测试 TypeScript 原生技能\\ --tag=tech --type=longterm --importance=5",
+      "type": "shortterm",
+      "importance": 3,
+      "timestamp": "2026-04-07 14:02",
+      "strength": {
+        "level": "stable",
+        "score": 50,
+        "lastReinforced": "2026-04-07 14:02"
+      }
+    },
+    {
+      "id": 2,
+      "content": "\" 测试 TypeScript 原生技能\\ --tag tech --type longterm --importance 5",
+      "type": "shortterm",
+      "importance": 3,
+      "timestamp": "2026-04-07 14:04",
+      "strength": {
+        "level": "stable",
+        "score": 50,
+        "lastReinforced": "2026-04-07 14:04"
+      }
+    },
+    {
+      "id": 3,
+      "content": "\" 测试 TypeScript 原生技能\\ --tag=tech --type=longterm --importance=5",
+      "type": "shortterm",
+      "importance": 3,
+      "timestamp": "2026-04-07 14:05",
+      "strength": {
+        "level": "stable",
+        "score": 50,
+        "lastReinforced": "2026-04-07 14:05"
+      }
+    },
+    {
+      "id": 4,
+      "content": "测试TypeScript原生技能",
+      "tag": "tech",
+      "type": "longterm",
+      "importance": 5,
+      "timestamp": "2026-04-07 14:06",
+      "strength": {
+        "level": "stable",
+        "score": 50,
+        "lastReinforced": "2026-04-07 14:06"
+      }
+    }
+  ],
+  "nextId": 5
+}

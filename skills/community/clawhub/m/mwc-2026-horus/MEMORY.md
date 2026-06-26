@@ -1,0 +1,9 @@
+Mobile World Congress 2026 (MWC 2026) is underway at Fira Gran Via, L'Hospitalet de Llobregat, Barcelona, running 3–6 March 2026. This is the world's largest mobile and connectivity exhibition, hosting over 100,000 attendees from 200+ countries and 2,400+ exhibitors. The event is organised by GSMA and is a critical signal venue for the global telecommunications and semiconductor industry.
+
+Samsung unveiled the Galaxy S26 series and Galaxy Z Fold 8 at its Unpacked event on 3 March, with the Snapdragon 8 Elite Gen2 powering flagship devices. Qualcomm announced expanded 5G Advanced chipset partnerships with major OEMs. Ericsson and Nokia both presented their 6G technology roadmaps, targeting commercial deployment between 2030–2032. AI integration into network infrastructure was the dominant cross-sector theme across halls.
+
+Key geopolitical and regulatory tensions at MWC 2026 include: EU AI Act compliance requirements impacting device manufacturers, ongoing US-China restrictions on semiconductor exports affecting Huawei and SMIC participation, and GSMA lobbying for unified global spectrum allocation policy. The event serves as a de facto policy forum for telecom regulators and standards bodies.
+
+Logistics and security: El Prat Airport (BCN) is operating at full capacity with flight delays averaging 35 minutes. Ground transport around Fira Gran Via is congested, with dedicated shuttle lanes activated. Barcelona city police and Mossos d'Esquadra have deployed elevated security presence. No credible threat indicators as of 6 March 2026.
+
+Market signals: Semiconductor and telecom equities are outperforming broader indices during MWC week. QCOM +3.2%, ERIC +2.1%, NOK +1.8% on positive product announcements. AI infrastructure plays (NVDA, AVGO) maintaining elevated valuations. Consumer electronics supply chain monitoring active given Taiwan Strait baseline tension and ongoing China export control environment.

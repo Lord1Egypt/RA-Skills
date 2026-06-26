@@ -1,0 +1,8 @@
+interface:
+  display_name: "Motion Video Maker"
+  short_description: "Generate motion videos with guided style and TTS choices."
+  brand_color: "#FF8C42"
+  default_prompt: "Use $motion-video-maker to turn my text or script into a structured motion-video project, guide me through template and TTS choices with concrete options, derive timing strictly from narration, show a preview first, and export only after I explicitly confirm."
+
+policy:
+  allow_implicit_invocation: true

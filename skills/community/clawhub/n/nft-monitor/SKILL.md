@@ -1,35 +1,38 @@
 ---
-name: "NFT Monitor"
-description: "NFT 监控 - 实时追踪稀有 NFT 和价格异动"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/nft-monitor"
-sourceUrl: "https://clawhub.ai/skills/nft-monitor"
+name: nft-monitor
+description: NFT 监控 - 实时追踪稀有 NFT 和价格异动
+version: 1.0.0
+emoji: 🤖
+license: MIT-0
+metadata:
+  openclaw:
+    requires:
+      env: []
+      bins: ["curl"]
+    primaryEnv: bash
 ---
 
-# NFT Monitor
+# nft-monitor
 
-> NFT 监控 - 实时追踪稀有 NFT 和价格异动
+NFT 监控 - 实时追踪稀有 NFT 和价格异动
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/nft-monitor`
-- **Source URL:** [https://clawhub.ai/skills/nft-monitor](https://clawhub.ai/skills/nft-monitor)
+## 价格：$250 USDC
 
-## Overview
+## 功能特性
+- 自动化执行，7x24 小时运行
+- API 集成，支持主流平台
+- 配置灵活，易于定制
+- 实时监控，自动优化
 
-
-## Installation
-To install this skill, run the following command in your terminal:
+## 安装方式
 ```bash
-hermes skills install clawhub/nft-monitor
+clawhub install nft-monitor
 ```
+
+## 使用示例
+详见文档
+
+## 收益潜力
+- 预期月收益：$500-$((250 * 4))
+- 回本周期：1-2 个月
+- 边际成本：几乎为零

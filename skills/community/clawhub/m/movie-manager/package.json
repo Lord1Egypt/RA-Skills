@@ -1,0 +1,27 @@
+{
+  "name": "movie-manager",
+  "version": "1.0.0",
+  "description": "Organizes movie recommendations in Obsidian and generates suggestions based on user profile.",
+  "type": "skill",
+  "homepage": "https://github.com/adnXone/movie-manager",
+  "author": "adnXone",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/adnXone/movie-manager"
+  },
+  "keywords": [
+    "obsidian",
+    "movie",
+    "recommendation",
+    "openclaw",
+    "skill"
+  ],
+  "metadata": {
+    "openclaw": {
+      "emoji": "🎬",
+      "tags": ["entertainment", "organization", "personal-assistant", "obsidian"],
+      "language": "en"
+    }
+  }
+}

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>魔方网表 - 表单页示例</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; margin: 20px; max-width: 600px; }
+    .config { background: #f5f5f5; padding: 12px; margin-bottom: 16px; border-radius: 6px; font-size: 13px; }
+    label { display: block; margin-top: 12px; font-weight: 500; }
+    input, textarea { width: 100%; padding: 8px; margin-top: 4px; }
+    button { margin-top: 16px; padding: 10px 24px; cursor: pointer; }
+    .msg { margin-top: 12px; padding: 10px; border-radius: 4px; }
+    .msg.success { background: #d4edda; color: #155724; }
+    .msg.error { background: #f8d7da; color: #721c24; }
+  </style>
+</head>
+<body>
+  <h1>魔方网表 - 表单页示例（新增记录）</h1>
+
+  <!-- 步骤 0: 配置区 -->
+  <div class="config">
+    <strong>配置说明</strong>：请将 YOUR_SPACE_ID、YOUR_FORM_ID 替换为实际值。本地 mock 时设置 apiBase，同域部署时 apiBase 设为 ''。字段 name 必须来自 fielddef。
+  </div>
+
+  <form id="form">
+    <!-- 按需添加表单项，name 属性必须为字段的英文标识（name），不能是中文 label -->
+    <label>名称 (mingcheng) <input type="text" name="mingcheng" placeholder="请输入名称" /></label>
+    <label>金额 (jine) <input type="number" name="jine" placeholder="请输入金额" step="0.01" /></label>
+    <button type="submit">提交</button>
+  </form>
+
+  <div id="msg" class="msg" style="display:none;"></div>
+
+  <script>
+    // ========== 配置区 ==========
+    const CONFIG = {
+      apiBase: '',
+      spaceId: 'YOUR_SPACE_ID',
+      formId: 'YOUR_FORM_ID'
+    };
+
+    // ========== 步骤 1: 构建创建记录 API 路径 ==========
+    function getCreateUrl() {
+      const path = `/magicflu/service/s/jsonv2/${CONFIG.spaceId}/forms/${CONFIG.formId}/records`;
+      const origin = CONFIG.apiBase ? CONFIG.apiBase.replace(/\/$/, '') : '';
+      return `${origin}${path}`;
+    }
+
+    // ========== 步骤 2: 从表单收集数据（仅包含有值的可编辑字段） ==========
+    // 注意：提交的 key 必须用字段的 name，不能用 label
+    function collectFormData(form) {
+      const data = {};
+      const inputs = form.querySelectorAll('input[name], textarea[name]');
+      for (const el of inputs) {
+        const name = el.name;
+        if (!name) continue;
+        let val = el.value?.trim();
+        if (val === '') continue;
+        if (el.type === 'number') {
+          val = parseFloat(val);
+          if (!Number.isFinite(val)) continue;
+        }
+        data[name] = val;
+      }
+      return data;
+    }
+
+    // ========== 步骤 3: 提交创建记录 ==========
+    async function submitRecord(data) {
+      const url = getCreateUrl();
+      const res = await fetch(url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+
+      const json = await res.json().catch(() => ({}));
+
+      if (!res.ok) {
+        throw new Error(json.errmsg || '请求失败，请检查网络或空间/表单 ID。');
+      }
+      if (json.errcode && json.errcode !== '0') {
+        throw new Error(json.errmsg || '提交失败');
+      }
+      return json.id;
+    }
+
+    // ========== 步骤 4: 显示消息 ==========
+    function showMsg(text, isError) {
+      const msg = document.getElementById('msg');
+      msg.textContent = text;
+      msg.className = 'msg ' + (isError ? 'error' : 'success');
+      msg.style.display = 'block';
+    }
+
+    // ========== 表单提交 ==========
+    document.getElementById('form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const form = e.target;
+      const data = collectFormData(form);
+
+      if (Object.keys(data).length === 0) {
+        showMsg('请至少填写一个字段。', true);
+        return;
+      }
+
+      try {
+        const id = await submitRecord(data);
+        showMsg('提交成功，记录 ID：' + id, false);
+        form.reset();
+      } catch (err) {
+        showMsg(err.message || '提交失败，请重试。', true);
+      }
+    });
+  </script>
+</body>
+</html>

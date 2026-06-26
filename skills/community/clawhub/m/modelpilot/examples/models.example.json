@@ -1,0 +1,11 @@
+{
+  "version": "1.5.0",
+  "current_model": "example-current:latest",
+  "candidate_models": [
+    "example-candidate-a:latest",
+    "example-candidate-b:nothink"
+  ],
+  "target_workflow": "fictional local document summary workflow",
+  "notes": "Use installed local Ollama models only. Do not pull or download models from this file."
+}
+

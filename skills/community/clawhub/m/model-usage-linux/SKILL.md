@@ -1,35 +1,34 @@
 ---
-name: "Model Usage Linux"
-description: "Track OpenClaw AI token usage and cost per model on Linux by parsing session JSONL files. Use when asked about: token usage, API cost, how much has been spen..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/model-usage-linux"
-sourceUrl: "https://clawhub.ai/skills/model-usage-linux"
+name: model-usage-linux
+description: "Track OpenClaw AI token usage and cost per model on Linux by parsing session JSONL files. Use when asked about: token usage, API cost, how much has been spent, which model was used most, usage summary, billing, cost breakdown. Linux replacement for the macOS-only model-usage/CodexBar skill."
 ---
 
-# Model Usage Linux
+# Model Usage (Linux)
 
-> Track OpenClaw AI token usage and cost per model on Linux by parsing session JSONL files. Use when asked about: token usage, API cost, how much has been spen...
+Parse OpenClaw session files to summarize token usage and cost per model.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/model-usage-linux`
-- **Source URL:** [https://clawhub.ai/skills/model-usage-linux](https://clawhub.ai/skills/model-usage-linux)
+## Quick start
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/model-usage-linux
+python3 {baseDir}/scripts/usage.py
 ```
+
+## Options
+
+```bash
+# JSON output
+python3 {baseDir}/scripts/usage.py --format json
+
+# Custom sessions dir
+python3 {baseDir}/scripts/usage.py --sessions-dir ~/.openclaw/agents/main/sessions
+```
+
+## Output
+
+Shows per-model breakdown:
+- Turns (assistant replies)
+- Input / output tokens
+- Cache read / write tokens
+- Cost in USD
+
+Sessions live at: `~/.openclaw/agents/main/sessions/*.jsonl`

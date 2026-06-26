@@ -1,0 +1,5 @@
+interface:
+  display_name: "Nexus Ciba Wechat"
+  short_description: "Generate 词霸每日一句 HTML/PNG cards with TTS QR codes."
+  icon: "📰"
+  primary_color: "#b68546"

@@ -1,0 +1,5 @@
+─────────────────────────
+{index}. 【{title}】
+   💡 {summary}
+   📰 来源：{source}
+   ⭐ 可信度：{credibility}（{credibility_reason}）

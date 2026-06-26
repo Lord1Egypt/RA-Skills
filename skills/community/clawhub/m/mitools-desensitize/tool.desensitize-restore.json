@@ -1,0 +1,19 @@
+{
+  "name": "desensitize-restore",
+  "description": "根据映射表还原脱敏数据",
+  "command": "python3 ~/.workbuddy/skills/mitools-desensitize/desensitize.py restore",
+  "args": [
+    {
+      "name": "text",
+      "description": "脱敏后的文本",
+      "required": true,
+      "type": "string"
+    },
+    {
+      "name": "mapping",
+      "description": "映射表JSON字符串",
+      "required": true,
+      "type": "string"
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "name": "ningyao-voice-launcher",
+  "version": "0.1.0",
+  "description": "OpenClaw skill and local launcher template for a Ningyao-style Chinese voice companion.",
+  "author": "Ningyao / OpenClaw Assistant",
+  "license": "MIT",
+  "category": "skills",
+  "files": [
+    "SKILL.md",
+    "scripts",
+    "assets",
+    "README.md",
+    "LICENSE"
+  ]
+}

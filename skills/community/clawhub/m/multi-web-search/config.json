@@ -1,0 +1,91 @@
+{
+  "name": "multi-web-search",
+  "version": "3.4.0",
+  "engines": [
+    {"name": "Google", "url": "https://www.google.com/search?q={keyword}", "region": "global", "privacy": false},
+    {"name": "Google HK", "url": "https://www.google.com.hk/search?q={keyword}", "region": "global", "privacy": false},
+    {"name": "Brave", "url": "https://search.brave.com/search?q={keyword}", "region": "global", "privacy": true},
+    {"name": "DuckDuckGo", "url": "https://duckduckgo.com/html/?q={keyword}", "region": "global", "privacy": true},
+    {"name": "Bing", "url": "https://www.bing.com/search?q={keyword}", "region": "global", "privacy": false},
+    {"name": "Yahoo", "url": "https://search.yahoo.com/search?p={keyword}", "region": "global", "privacy": false},
+    {"name": "Startpage", "url": "https://www.startpage.com/sp/search?query={keyword}", "region": "global", "privacy": true},
+    {"name": "Ecosia", "url": "https://www.ecosia.org/search?q={keyword}", "region": "global", "privacy": true},
+    {"name": "Qwant", "url": "https://www.qwant.com/?q={keyword}", "region": "global", "privacy": true},
+    {"name": "Yandex", "url": "https://yandex.com/search/?text={keyword}", "region": "global", "privacy": false},
+    {"name": "Mojeek", "url": "https://www.mojeek.com/search?q={keyword}", "region": "global", "privacy": true},
+    {"name": "Baidu", "url": "https://www.baidu.com/s?wd={keyword}", "region": "cn", "privacy": false},
+    {"name": "Bing CN", "url": "https://cn.bing.com/search?q={keyword}&ensearch=0", "region": "cn", "privacy": false},
+    {"name": "Bing INT", "url": "https://cn.bing.com/search?q={keyword}&ensearch=1", "region": "cn", "privacy": false},
+    {"name": "360", "url": "https://www.so.com/s?q={keyword}", "region": "cn", "privacy": false},
+    {"name": "Sogou", "url": "https://sogou.com/web?query={keyword}", "region": "cn", "privacy": false},
+    {"name": "WeChat", "url": "https://wx.sogou.com/weixin?type=2&query={keyword}", "region": "cn", "privacy": false},
+    {"name": "Shenma", "url": "https://m.sm.cn/s?q={keyword}", "region": "cn", "privacy": false},
+    {"name": "Wikipedia", "url": "https://en.wikipedia.org/w/index.php?search={keyword}", "region": "global", "type": "knowledge"},
+    {"name": "WolframAlpha", "url": "https://www.wolframalpha.com/input?i={keyword}", "region": "global", "type": "computational"}
+  ],
+  "search_types": {
+    "text": {
+      "description": "Standard web search",
+      "supported_engines": "all"
+    },
+    "images": {
+      "description": "Image search with size/color/type filters",
+      "supported_engines": ["google", "brave", "bing", "duckduckgo"],
+      "parameters": ["size", "color", "type", "layout", "license"]
+    },
+    "news": {
+      "description": "News aggregation with time filters",
+      "supported_engines": ["google", "brave", "bing"],
+      "parameters": ["time_filter"]
+    },
+    "videos": {
+      "description": "Video search with duration/resolution filters",
+      "supported_engines": ["google", "bing"],
+      "parameters": ["resolution", "duration"]
+    },
+    "books": {
+      "description": "Book search",
+      "supported_engines": ["google"],
+      "parameters": []
+    }
+  },
+  "features": {
+    "dht": {
+      "enabled": true,
+      "description": "DHT network acceleration for 90% faster repeated queries",
+      "requires": "ddgs[dht]"
+    },
+    "proxy": {
+      "enabled": true,
+      "description": "Proxy support for bypassing restrictions",
+      "parameter": "--proxy / -pr"
+    },
+    "cache": {
+      "enabled": true,
+      "ttl": 3600,
+      "description": "Result caching with 1-hour TTL"
+    },
+    "scoring": {
+      "enabled": true,
+      "description": "Relevance-based result ranking"
+    },
+    "fallback": {
+      "enabled": true,
+      "description": "Automatic fallback to web_fetch when ddgs unavailable",
+      "layers": ["ddgs", "DuckDuckGo Lite", "web_fetch HTML parsing"]
+    },
+    "time_filter": {
+      "enabled": true,
+      "values": ["hour", "day", "week", "month", "year"],
+      "supported_engines": ["google", "brave", "bing", "startpage"]
+    },
+    "site_filter": {
+      "enabled": true,
+      "operator": "site:",
+      "example": "site:github.com machine learning"
+    }
+  },
+  "privacy_engines": ["brave", "duckduckgo", "startpage", "ecosia", "qwant", "mojeek"],
+  "free_engines": ["brave", "duckduckgo", "startpage", "yahoo", "ecosia", "qwant", "yandex", "wikipedia", "mojeek"],
+  "requires_api_key": false
+}

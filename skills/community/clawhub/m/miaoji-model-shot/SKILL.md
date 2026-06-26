@@ -1,35 +1,223 @@
----
-name: "Miaoji Model Shot"
-description: "基于服装描述快速生成专业模特拍摄构图方案和AI绘图提示词，高效规划新品展示方案与拍摄指导。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/miaoji-model-shot"
-sourceUrl: "https://clawhub.ai/skills/miaoji-model-shot"
----
+# 秒技·AI模特图方案 (miaoji-model-shot)
 
-# Miaoji Model Shot
+## 一句话介绍
+输入服装/配饰描述，秒级输出模特实拍感展示的构图方案和AI绘图提示词，赋能产品快速测款。
 
-> 基于服装描述快速生成专业模特拍摄构图方案和AI绘图提示词，高效规划新品展示方案与拍摄指导。
+## 核心定位
+**不是AI生成模特，而是拍摄构图方案专家**
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/miaoji-model-shot`
-- **Source URL:** [https://clawhub.ai/skills/miaoji-model-shot](https://clawhub.ai/skills/miaoji-model-shot)
+| 传统方式 | 本技能方案 |
+|---------|-----------|
+| 欧美模特拍摄：$3000+/天 | 零成本方案输出 |
+| 拍摄周期：3-7天 | 秒级生成方案 |
+| 单款单次测试 | 1天可规划100款新品 |
 
-## Overview
+## 核心功能
 
+### 1. 模特展示提示词生成器
+输入：服装品类 + 款式特征 + 目标风格
+输出：专业级AI绘图提示词
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/miaoji-model-shot
+**包含维度**：
+- 模特特征（年龄/发型/体型/肤色建议）
+- 场景设定（街拍/咖啡厅/户外/室内）
+- 光线描述（自然光/柔光/逆光）
+- 构图角度（正面/侧面/背面/特写）
+- 风格氛围（活力/优雅/慵懒/高级感）
+
+### 2. 场景适配模板
+
+#### 日常休闲风 (Casual Daily)
 ```
+场景：城市街景、咖啡厅、公园步道
+光线：自然日光，午后柔光
+模特：20-30岁，随性姿态，自然表情
+风格：轻松自在，生活感
+```
+
+#### 商务通勤风 (Business Professional)
+```
+场景：写字楼、会议室、城市建筑
+光线：专业柔光，室内环境光
+模特：25-40岁，挺拔姿态，自信表情
+风格：干练专业，高级质感
+```
+
+#### 运动户外风 (Sport & Outdoor)
+```
+场景：健身房、跑道、山野、沙滩
+光线：自然强光，清晨/黄昏
+模特：20-35岁，动感姿态，活力表情
+风格：充满能量，健康活力
+```
+
+#### 约会浪漫风 (Date Romance)
+```
+场景：海边、日落、餐厅、花园
+光线：暖色调，黄昏/烛光
+模特：22-32岁，优雅姿态，温柔表情
+风格：浪漫温馨，情调氛围
+```
+
+### 3. 多角度构图方案
+单款产品输出4-6张完整方案：
+
+| 序号 | 角度 | 构图描述 | 适用场景 |
+|-----|------|---------|---------|
+| 1 | 正面全身 | 站立正面展示整体版型 | 主图/详情页 |
+| 2 | 侧面全身 | 侧身45°展示轮廓线条 | 详情页/搭配 |
+| 3 | 背面全身 | 转身展示背部设计 | 详情页 |
+| 4 | 场景中景 | 融入生活场景的半身/全身 | 社交媒体 |
+| 5 | 细节特写 | 面料/工艺/配件近拍 | 详情页卖点 |
+| 6 | 搭配展示 | 与其他单品的组合效果 | 穿搭推荐 |
+
+### 4. 测款加速规划
+
+**批次规划建议**：
+- 单次规划：1-5款精细方案
+- 快速测款：6-20款批量方案
+- 批量上新：21-100款模板化方案
+
+**效率对比**：
+| 方式 | 100款新品耗时 |
+|-----|--------------|
+| 传统拍摄 | 30-60天 |
+| 纯AI生成 | 品质不可控 |
+| 本方案 | 1天完成规划 |
+
+## 输入示例
+
+### 最小输入
+```
+品类：女士连衣裙
+风格：约会浪漫
+```
+
+### 完整输入
+```
+品类：女士连衣裙
+款式：碎花吊带，收腰设计
+材质：雪纺面料，轻薄透气
+颜色：浅粉色底+白色碎花
+风格：约会浪漫
+目标场景：海边日落
+```
+
+## 输出示例
+
+### 输出1：AI绘图提示词
+
+**正面全身构图**：
+```
+A young woman in her late twenties, wearing a light pink and white floral sundress with a cinched waist design, standing at golden hour on a beach. The dress flows gently in the sea breeze. Natural backlighting creates a soft halo effect. Shot from front, full body in frame. Dreamy, romantic atmosphere. Professional fashion photography style, soft colors, high-end fashion magazine aesthetic.
+```
+
+**场景中景构图**：
+```
+A beautiful woman walking along the beach shoreline at sunset, wearing the same pink floral dress. The camera captures her from waist up, with the ocean and orange-pink sky as background. Wind blowing the dress slightly. Warm golden light, romantic mood. Lifestyle fashion photography.
+```
+
+### 输出2：完整拍摄方案
+
+**方案名称**：约会浪漫风连衣裙展示方案
+
+**模特建议**：
+- 年龄：22-28岁
+- 发型：长发披肩或松散扎发
+- 体型：标准身材
+- 肤色：不限
+
+**场景清单**：
+1. 海边沙滩（主场景）
+2. 海岸礁石（次场景）
+3. 附近咖啡厅/民宿（室内补光）
+
+**光线时段**：
+- 黄金时段：日落前1小时
+- 备选：清晨日出
+
+**构图数量**：6张
+- 正面全身×1
+- 侧面全身×1
+- 背面全身×1
+- 场景中景×2
+- 细节特写×1
+
+**道具建议**：
+- 草帽、太阳镜
+- 简约凉鞋
+- 草编手提包
+
+## 使用场景
+
+### 适用人群
+- 电商卖家（淘宝/天猫/京东/拼多多）
+- 服装品牌方
+- 独立设计师
+- 快时尚买手
+
+### 适用阶段
+- 新品上架前的展示方案规划
+- 老品重新定位的新展示方案
+- 社交媒体内容创作参考
+- 视觉团队拍摄的指导方案
+
+### 交付成果
+1. 每款产品的完整构图方案文档
+2. 对应AI绘图提示词（可直接用于MJ/SD等工具）
+3. 拍摄落地清单（场景/光线/角度/道具）
+4. 批次规划时间表（如需）
+
+## 价值主张
+
+**让每一次上新都有专业的展示方案支撑**
+
+传统与本方案对比：
+- ❌ 拍图贵、周期长、试错成本高
+- ✅ 方案秒出、成本可控、批量高效
+
+**核心不是替代拍摄，而是让拍摄有据可依、效率翻倍。**
+
+---
+
+*本技能专注于产品展示方案设计，输出内容可作为拍摄指导或AI绘图参考。*
+
+
+## 交付标准
+
+优秀的输出应该让你一眼看到：
+
+- 构图方案包含至少3个不同角度
+- 提示词包含光线、姿势、服装、表情等细节描述
+- 标注每组图的拍摄优先级排序
+- 适合服装配饰品类的模特展示需求
+- 区分白底图和场景图的构图差异
+
+如果输出缺少以上任何一项，建议补充后再交付。
+
+## 不适用场景
+
+本技能不适用于以下情况：
+- 需要实际生成图片或人物替换（本技能只输出构图方案和AI提示词）
+- 非服装配饰类产品（本技能专注于服装品类的模特展示）
+- 需要精确的人物肖像复制（AI生成具有随机性，无法保证精确复制）
+
+## 安全边界声明
+
+本技能为纯模特方案设计工具，所有构图方案由用户自主决定如何使用。本技能不生成任何图片文件，不连接任何图片平台接口，不存储任何图像数据，不自动同步或推送内容。
+
+---
+
+## 相关技能推荐
+
+- **miaoji-scene-studio**：模特图可转化为完整的场景图方案
+- **miaoji-compliance-copy**：确保模特展示的配套文案合规
+- **miaoji-asin-clinic**：一站式体检，评估整体Listing健康度
+
+---
+
+## Pro升级推荐
+
+**想要完整的拍摄战役方案？**
+
+- **miaoji-model-shot-pro**：Pro升级版，包含完整拍摄计划/季节性拍摄日历/多场景组合/同类视觉反超方案等高级功能

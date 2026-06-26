@@ -1,35 +1,27 @@
 ---
-name: "Ml Experiment Tracker"
-description: "Plan reproducible ML experiment runs with explicit parameters, metrics, and artifacts. Use before model training to standardize tracking-ready experiment def..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ml-experiment-tracker"
-sourceUrl: "https://clawhub.ai/skills/ml-experiment-tracker"
+name: ml-experiment-tracker
+description: Plan reproducible ML experiment runs with explicit parameters, metrics, and artifacts. Use before model training to standardize tracking-ready experiment definitions.
 ---
 
-# Ml Experiment Tracker
-
-> Plan reproducible ML experiment runs with explicit parameters, metrics, and artifacts. Use before model training to standardize tracking-ready experiment def...
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ml-experiment-tracker`
-- **Source URL:** [https://clawhub.ai/skills/ml-experiment-tracker](https://clawhub.ai/skills/ml-experiment-tracker)
+# ML Experiment Tracker
 
 ## Overview
 
+Generate structured experiment plans that can be logged consistently in experiment tracking systems.
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/ml-experiment-tracker
-```
+## Workflow
+
+1. Define dataset, target task, model family, and parameter search space.
+2. Define metrics and acceptance thresholds before training.
+3. Produce run plan with version and artifact expectations.
+4. Export the run plan for execution in tracking tools.
+
+## Use Bundled Resources
+
+- Run `scripts/build_experiment_plan.py` to generate consistent run plans.
+- Read `references/tracking-guide.md` for reproducibility checklist.
+
+## Guardrails
+
+- Keep inputs explicit and machine-readable.
+- Always include metrics and baseline criteria.

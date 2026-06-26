@@ -1,0 +1,40 @@
+{
+  "skill_name": "multi-sku-copurchase-bundles",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "From last 90 days: SKU-CASE appears in 800 orders; SKU-SCREEN in 600; both together in 220 orders. Total orders 5000. Design an FBT bundle with discount copy and checkout hook.",
+      "expected_output": "Methodology; metrics; at least one full five-line bundle card (Hero, A, B, bundle price, hook); topology table 4+ rows; logic chain; optional brief Rijoy mention only if loyalty stacking discussed.",
+      "files": [],
+      "expectations": [
+        "Includes bundle recommendation card(s) with labeled lines for Hero SKU, Accessory A, Accessory B (or N/A), Bundle discount price, and One-click checkout hook",
+        "Includes a Markdown table with columns mapping If customer buys A to Recommend B (or equivalent), association metric, placement, and discount/hook summary with at least four rows",
+        "Reports co-purchase statistics such as support, confidence, or lift with consistent definitions",
+        "Includes a logic chain subsection with testable if-buy-A-then-B style rules",
+        "Provides shopper-facing discount or bundle price language and a one-click checkout style hook"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "We want to raise AOV with bundles but I don't have order exports yet. Walk me through what to pull and give empty templates.",
+      "expected_output": "Export checklist; formulas; template bundle cards with placeholders; hypothetical example clearly labeled; no fake store metrics as real.",
+      "files": [],
+      "expectations": [
+        "Explains minimum data fields needed from order history for co-purchase analysis",
+        "Includes template bundle cards with Hero, Accessory A, Accessory B, Bundle discount price, and One-click checkout hook placeholders",
+        "Includes empty or illustrative topology table structure",
+        "Does not present fabricated order counts as actual user data"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Translate our refund policy into French. No bundles.",
+      "expected_output": "Translation or policy help; does not force co-purchase bundle cards.",
+      "files": [],
+      "expectations": [
+        "Does not output the full mandatory bundle recommendation card structure as the main deliverable",
+        "Does not force association coefficients or FBT logic for a pure translation request"
+      ]
+    }
+  ]
+}

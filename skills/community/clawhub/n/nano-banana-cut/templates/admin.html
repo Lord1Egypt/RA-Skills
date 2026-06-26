@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>任务管理后台</title>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+        body {
+            background: #f5f7fa;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .header h1 {
+            font-size: 24px;
+            color: #333;
+        }
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+        .btn-primary {
+            background: #2ed573;
+            color: #fff;
+        }
+        .btn-primary:hover {
+            background: #26bd64;
+        }
+        .btn-warning {
+            background: #ffa502;
+            color: #fff;
+        }
+        .btn-warning:hover {
+            background: #e69500;
+        }
+        .btn-danger {
+            background: #ff4757;
+            color: #fff;
+        }
+        .btn-danger:hover {
+            background: #e8414f;
+        }
+        .btn-sm {
+            padding: 4px 8px;
+            font-size: 12px;
+        }
+        .table-container {
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+            overflow: hidden;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 12px 16px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+            max-width: 300px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        th {
+            background: #f8f9fa;
+            font-weight: 600;
+            color: #333;
+            position: sticky;
+            top: 0;
+        }
+        tr:hover {
+            background: #f5f7fa;
+        }
+        .status-badge {
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            color: #fff;
+        }
+        .status-1 { background: #ffa502; } /* 处理中 */
+        .status-10 { background: #2ed573; } /* 成功 */
+        .status-99 { background: #ff4757; } /* 失败 */
+        .status-0 { background: #a4b0be; } /* 无效 */
+        .error-text {
+            color: #ff4757;
+            font-size: 12px;
+        }
+        .prompt-text {
+            font-size: 12px;
+            color: #666;
+        }
+        .footer {
+            margin-top: 20px;
+            text-align: right;
+        }
+        .toast {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 12px 24px;
+            border-radius: 8px;
+            color: #fff;
+            font-size: 14px;
+            z-index: 2000;
+            animation: slideDown 0.3s ease;
+        }
+        .toast.success { background: #2ed573; }
+        .toast.error { background: #ff4757; }
+        @keyframes slideDown {
+            from { top: 0; opacity: 0; }
+            to { top: 20px; opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🔧 任务管理后台</h1>
+            <button class="btn btn-primary" id="refresh-btn">
+                <i class="fa fa-refresh"></i> 刷新数据
+            </button>
+        </div>
+
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>模型</th>
+                        <th>生成时间</th>
+                        <th>状态</th>
+                        <th>提示词</th>
+                        <th>宫格数</th>
+                        <th>分辨率</th>
+                        <th>质量</th>
+                        <th>Task ID</th>
+                        <th>保存路径</th>
+                        <th>错误信息</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody id="works-table">
+                </tbody>
+            </table>
+        </div>
+
+        <div class="footer">
+            <button class="btn btn-primary" id="export-btn">
+                <i class="fa fa-download"></i> 导出所有数据到本地
+            </button>
+        </div>
+    </div>
+
+    <script>
+        let worksData = [];
+
+        // 显示提示
+        function showToast(msg, type = 'success') {
+            const toast = $(`<div class="toast ${type}">${msg}</div>`);
+            $('body').append(toast);
+            setTimeout(() => toast.remove(), 3000);
+        }
+
+        // 加载数据
+        function loadWorks() {
+            $.get('/api/admin/works', function(res) {
+                if (res.success) {
+                    worksData = res.data;
+                    renderTable(worksData);
+                    showToast('数据加载成功');
+                } else {
+                    showToast('加载失败：' + res.msg, 'error');
+                }
+            }).fail(function() {
+                showToast('网络错误', 'error');
+            });
+        }
+
+        // 渲染表格
+        function renderTable(data) {
+            const tbody = $('#works-table');
+            tbody.empty();
+            data.forEach(work => {
+                const statusText = {
+                    0: '无效',
+                    1: '处理中',
+                    10: '成功',
+                    99: '失败'
+                }[work.state] || '未知';
+                
+                const tr = $(`
+                    <tr>
+                        <td>${work.id}</td>
+                        <td>${work.model || '-'}</td>
+                        <td>${work.date || '-'}</td>
+                        <td><span class="status-badge status-${work.state}">${statusText}</span></td>
+                        <td><span class="prompt-text" title="${work.prompt || '-'}">${work.prompt ? work.prompt.substring(0, 30) + '...' : '-'}</span></td>
+                        <td>${work.num || 1} 宫格</td>
+                        <td>${work.ratio || '-'}</td>
+                        <td>${work.quality || '-'}</td>
+                        <td><span title="${work.task_id || '-'}">${work.task_id ? work.task_id.substring(0, 15) + '...' : '-'}</span></td>
+                        <td><span title="${work.path || '-'}">${work.path ? work.path.substring(0, 20) + '...' : '-'}</span></td>
+                        <td><span class="error-text" title="${work.error || '-'}">${work.error ? work.error.substring(0, 20) + '...' : '-'}</span></td>
+                        <td>
+                            <div style="display:flex;gap:4px;">
+                                ${work.state == 1 ? `<button class="btn btn-secondary btn-sm close-btn" data-id="${work.id}">关闭</button>` : ''}
+                                ${work.task_id ? `<button class="btn btn-warning btn-sm retry-btn" data-id="${work.id}">重试</button>` : ''}
+                                <button class="btn btn-danger btn-sm delete-btn" data-id="${work.id}">删除</button>
+                            </div>
+                        </td>
+                    </tr>
+                `);
+                tbody.append(tr);
+            });
+
+            // 绑定重试按钮事件
+            $('.retry-btn').on('click', function() {
+                const id = $(this).data('id');
+                if (!confirm('确定要重新查询该任务吗？')) return;
+                $.post(`/api/admin/retry/${id}`, function(res) {
+                    if (res.success) {
+                        showToast(res.msg);
+                        setTimeout(loadWorks, 1000);
+                    } else {
+                        showToast(res.msg, 'error');
+                    }
+                }).fail(function() {
+                    showToast('网络错误', 'error');
+                });
+            });
+
+            // 绑定关闭任务按钮事件
+            $('.close-btn').on('click', function() {
+                const id = $(this).data('id');
+                if (!confirm('确定要关闭该处理中任务吗？关闭后状态变为失败，不再处理。')) return;
+                $.post(`/api/admin/close/${id}`, function(res) {
+                    if (res.success) {
+                        showToast(res.msg);
+                        setTimeout(loadWorks, 1000);
+                    } else {
+                        showToast(res.msg, 'error');
+                    }
+                }).fail(function() {
+                    showToast('网络错误', 'error');
+                });
+            });
+
+            // 绑定删除任务按钮事件
+            $('.delete-btn').on('click', function() {
+                const id = $(this).data('id');
+                if (!confirm('确定要删除该任务吗？此操作不可恢复！')) return;
+                $.post(`/api/admin/delete/${id}`, function(res) {
+                    if (res.success) {
+                        showToast(res.msg);
+                        setTimeout(loadWorks, 1000);
+                    } else {
+                        showToast(res.msg, 'error');
+                    }
+                }).fail(function() {
+                    showToast('网络错误', 'error');
+                });
+            });
+        }
+
+        // 导出数据
+        $('#export-btn').on('click', function() {
+            const dataStr = JSON.stringify(worksData, null, 2);
+            const blob = new Blob([dataStr], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `banana-cut-tasks-${new Date().toISOString().split('T')[0]}.json`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+            showToast('数据导出成功');
+        });
+
+        // 刷新按钮
+        $('#refresh-btn').on('click', loadWorks);
+
+        // 页面加载完成后加载数据
+        $(document).ready(loadWorks);
+    </script>
+</body>
+</html>

@@ -1,0 +1,20 @@
+{
+  "slug": "news-based-stock-research-skill",
+  "name": "News Based Stock Research Skill",
+  "version": "0.1.0",
+  "tags": [
+    "stocks",
+    "news",
+    "research",
+    "paper-trading",
+    "risk"
+  ],
+  "category": "Finance Research",
+  "changelog": [
+    {
+      "version": "0.1.0",
+      "date": "2026-06-02",
+      "notes": "Generated from local idea bank (no AI). Pending Telegram approval."
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "name": "nanobanana-plus",
+  "version": "1.5.3",
+  "description": "OpenClaw skill wrapper for nanobanana-plus HTTP API.",
+  "type": "module",
+  "author": "webkubor",
+  "license": "Apache-2.0",
+  "homepage": "https://github.com/webkubor/nanobanana-plus"
+}

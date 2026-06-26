@@ -1,0 +1,17 @@
+{
+  "skill_id": "plant-doctor",
+  "display_name": "Plant Doctor",
+  "description": "Plant care management with watering schedules, health diagnostics, and location tracking.",
+  "icon": "Sprout",
+  "accent_color": "#22c55e",
+  "sidebar": { "route": "/plants", "label": "Plants", "icon": "Sprout", "children": [{"label":"Gallery","route":"/plants"},{"label":"Care Calendar","route":"/plants/calendar","icon":"Calendar"},{"label":"Rooms","route":"/plants/rooms","icon":"Home"}] },
+  "database": { "prefix": "pd", "tables": [
+    { "name": "pd_locations", "description": "Rooms/locations for plants", "columns": [{"name":"id","type":"UUID","primary_key":true},{"name":"user_id","type":"UUID"},{"name":"name","type":"TEXT"},{"name":"light_level","type":"TEXT","default":"medium"},{"name":"humidity","type":"TEXT","default":"normal"},{"name":"notes","type":"TEXT"},{"name":"created_at","type":"TIMESTAMPTZ"},{"name":"updated_at","type":"TIMESTAMPTZ"}], "indexes": [] },
+    { "name": "pd_plants", "description": "Plant inventory", "columns": [{"name":"id","type":"UUID","primary_key":true},{"name":"user_id","type":"UUID"},{"name":"name","type":"TEXT"},{"name":"species","type":"TEXT"},{"name":"location_id","type":"UUID","references":"pd_locations(id)"},{"name":"image_url","type":"TEXT"},{"name":"acquired_date","type":"DATE"},{"name":"status","type":"TEXT","default":"healthy"},{"name":"notes","type":"TEXT"},{"name":"created_at","type":"TIMESTAMPTZ"},{"name":"updated_at","type":"TIMESTAMPTZ"}], "indexes": [{"name":"idx_pd_plants_user","columns":["user_id"]}] },
+    { "name": "pd_care_schedules", "description": "Care action schedules", "columns": [{"name":"id","type":"UUID","primary_key":true},{"name":"plant_id","type":"UUID","references":"pd_plants(id)"},{"name":"action_type","type":"TEXT"},{"name":"frequency_days","type":"INTEGER"},{"name":"next_due","type":"DATE"},{"name":"last_done","type":"DATE"},{"name":"notes","type":"TEXT"},{"name":"created_at","type":"TIMESTAMPTZ"},{"name":"updated_at","type":"TIMESTAMPTZ"}], "indexes": [{"name":"idx_pd_care_schedules_due","columns":["next_due"]}] },
+    { "name": "pd_health_logs", "description": "Plant health check logs", "columns": [{"name":"id","type":"UUID","primary_key":true},{"name":"plant_id","type":"UUID","references":"pd_plants(id)"},{"name":"log_date","type":"DATE"},{"name":"diagnosis","type":"TEXT"},{"name":"symptoms","type":"TEXT[]","default":"{}"},{"name":"treatment_applied","type":"TEXT"},{"name":"image_url","type":"TEXT"},{"name":"notes","type":"TEXT"},{"name":"created_at","type":"TIMESTAMPTZ"}], "indexes": [{"name":"idx_pd_health_logs_plant","columns":["plant_id","log_date DESC"]}] }
+  ] },
+  "widgets": [{ "id": "plants-needing-care", "type": "list", "title": "Plants Need Care", "description": "Plants with overdue care tasks", "size": "1x1" }],
+  "settings": [{ "key": "reminder_time", "label": "Care Reminder Time", "type": "text", "default": "08:00" }],
+  "sync": { "mode": "direct", "source_files": [] }
+}

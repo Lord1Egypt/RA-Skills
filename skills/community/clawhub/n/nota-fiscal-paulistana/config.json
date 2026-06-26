@@ -1,0 +1,22 @@
+{
+  "certificado": "MEUCertificado.p12",
+  "senha_certificado": "",
+  "cnpj_prestador": "MEUCNPJ",
+  "inscricao_municipal": "Minhainscricao",
+  "codigo_servico": "Meucodigo",
+  "aliquota_servicos": 0.02,
+  "tributacao_rps": "T",
+  "serie_rps": "XY",
+  "retencoes_federais": {
+    "ir": 1.5,
+    "pis": 0.65,
+    "cofins": 3.0,
+    "csll": 1.0,
+    "inss": 0.0
+  },
+  "limites_retencao": {
+    "irrf": 10.0,
+    "csrf": 10.0
+  },
+  "mensagem_padrao": ""
+}

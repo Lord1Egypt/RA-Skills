@@ -1,0 +1,109 @@
+{
+  "name": "Project Nirvana",
+  "id": "nirvana",
+  "version": "0.1.1",
+  "description": "Local-first AI sovereignty. Works out-of-box with bundled model (qwen2.5:7b). Privacy-preserving routing, zero API keys required. Cloud fallback optional.",
+  "author": {
+    "name": "Shiva (via ClawOfShiva)",
+    "contact": "https://www.moltbook.com/@clawofshiva"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ShivaClaw/nirvana-plugin.git"
+  },
+  "license": "MIT",
+  "keywords": [
+    "local-inference",
+    "ollama",
+    "privacy",
+    "ai-sovereignty",
+    "query-routing",
+    "cloud-fallback",
+    "agent-infrastructure"
+  ],
+  "type": "plugin",
+  "implements": [
+    "model-provider",
+    "query-router",
+    "privacy-enforcer"
+  ],
+  "dependencies": {
+    "openclaw": ">=2026.3.0",
+    "docker": ">=24.0",
+    "node": ">=18.0"
+  },
+  "capabilities": {
+    "ollama": {
+      "install": true,
+      "manage": true,
+      "healthCheck": true
+    },
+    "routing": {
+      "localFirst": true,
+      "cloudFallback": true,
+      "decisionEngine": true
+    },
+    "privacy": {
+      "contextStripping": true,
+      "identityProtection": true,
+      "auditLog": true
+    },
+    "integration": {
+      "responseIntegration": true,
+      "memorySync": true,
+      "caching": true
+    }
+  },
+  "configuration": {
+    "schema": "config.schema.json",
+    "required": [
+      "nirvana.ollama.endpoint"
+    ],
+    "defaults": {
+      "nirvana.ollama.enabled": true,
+      "nirvana.routing.localFirst": true,
+      "nirvana.privacy.enforceContextBoundary": true
+    }
+  },
+  "permissions": {
+    "read": [
+      "SOUL.md",
+      "USER.md",
+      "MEMORY.md",
+      "AGENTS.md",
+      "SESSION-STATE.md"
+    ],
+    "write": [
+      "memory/*",
+      "SESSION-STATE.md"
+    ],
+    "execute": [
+      "docker",
+      "ollama-api"
+    ]
+  },
+  "hooks": {
+    "on-query": "router.route",
+    "on-response": "responseIntegrator.integrate",
+    "on-config-change": "ollama-manager.reconfigure"
+  },
+  "entry": {
+    "main": "src/index.js",
+    "types": "src/types.d.ts"
+  },
+  "metadata": {
+    "tier": "production",
+    "category": "infrastructure",
+    "tags": [
+      "ai-agent",
+      "local-inference",
+      "privacy",
+      "sovereignty",
+      "routing"
+    ],
+    "relatedPlugins": [
+      "lossless-claw",
+      "trident-memory"
+    ]
+  }
+}

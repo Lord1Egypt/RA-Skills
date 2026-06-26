@@ -1,0 +1,21 @@
+[
+  {
+    "code": "920069",
+    "name": "普昂医疗",
+    "abbr_name": "普昂医疗",
+    "market_code": "北交所",
+    "market": "北交所",
+    "market_type": "其他",
+    "exchange": "未知",
+    "apply_date": "2026-03-18",
+    "issue_price": 18.38,
+    "issue_pe": 14.53,
+    "apply_code": "920069",
+    "online_apply_upper": 476200,
+    "top_apply_marketcap": 875.2556,
+    "issue_num": 1058.28,
+    "main_business": "专业从事糖尿病护理、通用给药输注、微创介入类医疗器械的研发、生产和销售",
+    "data_source": "eastmoney_detailed",
+    "fetch_time": "2026-03-16T20:22:26.446275"
+  }
+]

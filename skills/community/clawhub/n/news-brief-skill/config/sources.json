@@ -1,0 +1,50 @@
+{
+  "tech": {
+    "36kr": {
+      "primary_domain": "36kr.com",
+      "backup_domains": ["m.36kr.com", "36kr.cn"],
+      "last_check": "2026-04-17",
+      "status": "active",
+      "failure_count": 0,
+      "description": "36氪 - 科技创业媒体"
+    },
+    "huxiu": {
+      "primary_domain": "huxiu.com",
+      "backup_domains": ["m.huxiu.com"],
+      "last_check": "2026-04-17", 
+      "status": "active",
+      "failure_count": 0,
+      "description": "虎嗅网 - 商业科技媒体"
+    }
+  },
+  "finance": {
+    "eastmoney": {
+      "primary_domain": "eastmoney.com",
+      "backup_domains": ["www.eastmoney.com", "fund.eastmoney.com"],
+      "last_check": "2026-04-17",
+      "status": "active", 
+      "failure_count": 0,
+      "description": "东方财富网 - 财经金融媒体"
+    }
+  },
+  "politics": {
+    "people": {
+      "primary_domain": "people.com.cn",
+      "backup_domains": ["www.people.com.cn", "politics.people.com.cn"],
+      "last_check": "2026-04-17",
+      "status": "active",
+      "failure_count": 0, 
+      "description": "人民网 - 官方时政媒体"
+    }
+  },
+  "general": {
+    "sina": {
+      "primary_domain": "sina.com.cn",
+      "backup_domains": ["news.sina.com.cn"],
+      "last_check": "2026-04-17",
+      "status": "active",
+      "failure_count": 0,
+      "description": "新浪新闻 - 综合新闻门户"
+    }
+  }
+}

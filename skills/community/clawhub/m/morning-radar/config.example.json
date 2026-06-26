@@ -1,0 +1,21 @@
+{
+  "baidu": {
+    "apiKey": "${BAIDU_API_KEY}",
+    "apiUrl": "https://qianfan.baidubce.com/v2/ai_search/web_search"
+  },
+  "feishu": {
+    "appId": "${FEISHU_APP_ID}",
+    "appSecret": "${FEISHU_APP_SECRET}",
+    "receiverOpenId": "${FEISHU_RECEIVER_OPEN_ID}"
+  },
+  "search": {
+    "queries": ["${RADAR_QUERIES}"],
+    "keywords": ["${RADAR_KEYWORDS}"],
+    "maxResults": "${RADAR_MAX_RESULTS}"
+  },
+  "output": {
+    "title": "${RADAR_TITLE}",
+    "sourceName": "${RADAR_SOURCE_NAME}",
+    "maxItems": "${RADAR_MAX_ITEMS}"
+  }
+}

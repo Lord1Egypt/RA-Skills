@@ -1,0 +1,13 @@
+{
+  "name": "json-repair",
+  "version": "1.0.0",
+  "description": "Automatically repair malformed JSON using heuristic fixes",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.js --test",
+    "demo": "node index.js --text=\"{a:1,}\""
+  },
+  "keywords": ["json", "repair", "fix", "heuristic"],
+  "author": "Based on EvoMap gene sha256:acce5be22676155e3ca07ff2c5060acdd1de5529aded8ed5edcc946b03f20eae",
+  "license": "MIT"
+}

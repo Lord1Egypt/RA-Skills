@@ -1,35 +1,83 @@
 ---
-name: "n8n工作流自动化"
-description: "n8n工作流自动化工具包，包含上百种常用工作流模板，支持一键导入、批量管理、定时任务配置、工作流备份恢复等功能，开箱即用。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/n8n-workflow-cn"
-sourceUrl: "https://clawhub.ai/skills/n8n-workflow-cn"
+name: n8n-workflow-automation
+version: 1.0.0
+description: n8n工作流自动化工具包，包含上百种常用工作流模板，支持一键导入、批量管理、定时任务配置、工作流备份恢复等功能，开箱即用。
+metadata:
+  author: kowl64
+  category: productivity
+  capabilities:
+    - 常用工作流模板一键导入到n8n
+    - 工作流批量导出备份、一键恢复
+    - 定时任务批量配置管理
+    - 工作流运行状态监控、异常告警
+    - 支持企业微信/钉钉/飞书/邮件等常用节点模板
+    - 内置数据同步、消息推送、自动化办公等场景模板
 ---
 
-# n8n工作流自动化
+# n8n 工作流自动化工具包
 
-> n8n工作流自动化工具包，包含上百种常用工作流模板，支持一键导入、批量管理、定时任务配置、工作流备份恢复等功能，开箱即用。
+内置上百种开箱即用的工作流模板，不需要从零开始搭建工作流，一键导入即可使用，覆盖日常办公、数据处理、消息推送、系统集成等绝大多数场景。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/n8n-workflow-cn`
-- **Source URL:** [https://clawhub.ai/skills/n8n-workflow-cn](https://clawhub.ai/skills/n8n-workflow-cn)
+## 📦 内置工作流模板
+### 1. 办公自动化类
+| 模板名称 | 功能说明 |
+|---------|---------|
+| **邮件自动处理** | 自动收邮件、分类、提取附件、自动回复、转发到指定群 |
+| **日报/周报自动生成** | 自动汇总工作记录、生成日报周报、定时发送给上级 |
+| **会议纪要自动整理** | 自动识别会议录音转文字、提取核心要点、生成结构化纪要、发送给参会人 |
+| **考勤自动统计** | 自动汇总打卡数据、计算迟到早退、生成考勤报表 |
+| **报销自动审核** | 自动识别报销单信息、校验规则、自动通过/驳回、生成报销统计 |
 
-## Overview
+### 2. 消息推送类
+| 模板名称 | 功能说明 |
+|---------|---------|
+| **企业微信消息推送** | 支持文本、图片、文件、卡片消息推送，支持@指定人、群机器人 |
+| **钉钉/飞书消息推送** | 同企业微信功能，适配钉钉/飞书接口 |
+| **多渠道消息聚合** | 自动把邮件、系统通知、监控告警统一推送到指定渠道 |
+| **定时提醒任务** | 支持自定义时间提醒，比如生日提醒、待办提醒、还款提醒等 |
 
+### 3. 数据同步类
+| 模板名称 | 功能说明 |
+|---------|---------|
+| **Excel数据自动同步到数据库** | 定时读取Excel文件、自动同步到MySQL/Oracle等数据库 |
+| **多系统数据自动同步** | 支持OA/CRM/ERP等系统之间数据自动同步、字段映射转换 |
+| **数据备份自动化** | 定时备份数据库、文件、工作流配置，自动上传到云存储 |
+| **数据报表自动生成** | 定时从多数据源拉取数据、生成报表、发送给指定人员 |
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/n8n-workflow-cn
+### 4. 监控告警类
+| 模板名称 | 功能说明 |
+|---------|---------|
+| **网站/接口监控** | 定时监控网站/接口可用性，异常时自动推送告警 |
+| **服务器监控** | 监控CPU/内存/磁盘/网络使用率，异常告警 |
+| **业务指标监控** | 自定义业务指标阈值，异常时自动告警 |
+| **日志监控告警** | 自动扫描日志关键词，匹配到异常时推送告警 |
+
+## 🚀 使用方法
+### 基础命令
+```powershell
+# 查看所有可用模板
+n8n-cli list-templates
+
+# 导入指定模板到n8n
+n8n-cli import --template "邮件自动处理" --url "http://localhost:5678" --api-key "你的n8n API Key"
+
+# 导出所有工作流备份
+n8n-cli export --output "D:\n8n备份" --url "http://localhost:5678" --api-key "你的n8n API Key"
+
+# 批量配置定时任务
+n8n-cli schedule --workflow "数据同步" --cron "0 0 * * *" --url "http://localhost:5678" --api-key "你的n8n API Key"
+
+# 监控工作流运行状态
+n8n-cli monitor --url "http://localhost:5678" --api-key "你的n8n API Key" --alarm-channel "企业微信" --webhook "你的群机器人webhook地址"
 ```
+
+### 获取n8n API Key的方法
+1. 打开n8n界面，点击右上角头像 → 「个人资料」
+2. 找到「API密钥」→ 点击「创建新密钥」
+3. 复制生成的密钥即可使用
+
+## 📝 示例：导入邮件自动处理工作流
+```powershell
+n8n-cli import --template "邮件自动处理" --url "http://localhost:5678" --api-key "n8n_api_xxxxxx"
+```
+导入完成后，直接在n8n界面修改邮箱账号密码、接收人等配置即可使用，不需要重新搭建流程。

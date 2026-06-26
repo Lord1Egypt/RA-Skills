@@ -1,0 +1,153 @@
+{
+  "status": "partial",
+  "original_verdict": "REVISE",
+  "content_id": "post-001",
+  "total_issues": 5,
+  "auto_fixed_count": 4,
+  "human_review_count": 1,
+  "original_word_count": 197,
+  "final_word_count": 255,
+  "changes": [
+    {
+      "issue_type": "missing_disclaimer",
+      "original_text": "",
+      "fixed_text": "*Disclaimer: This content is for informational purposes only and does not constitute financial, investment, or legal advice. Past performance is not indicative of future results. Always consult a qualified financial advisor before making investment decisions.*",
+      "auto_fixed": true,
+      "reason": "Injected financial disclaimer from template library.",
+      "action": "injected",
+      "template_used": "financial.full"
+    },
+    {
+      "issue_type": "banned_phrase",
+      "original_text": "This is a game-changer for investors.",
+      "fixed_text": "Replaced 19 occurrence(s)",
+      "auto_fixed": true,
+      "reason": "Substituted 19 banned phrase(s) with approved alternatives.",
+      "action": "replaced",
+      "replacements": [
+        {
+          "phrase": "at the end of the day",
+          "replacement": "ultimately",
+          "occurrences": 1
+        },
+        {
+          "phrase": "actionable insights",
+          "replacement": "practical recommendations",
+          "occurrences": 1
+        },
+        {
+          "phrase": "low-hanging fruit",
+          "replacement": "readily available opportunities",
+          "occurrences": 1
+        },
+        {
+          "phrase": "paradigm shift",
+          "replacement": "fundamental change",
+          "occurrences": 1
+        },
+        {
+          "phrase": "revolutionary",
+          "replacement": "innovative",
+          "occurrences": 1
+        },
+        {
+          "phrase": "best-in-class",
+          "replacement": "top-tier",
+          "occurrences": 1
+        },
+        {
+          "phrase": "game-changer",
+          "replacement": "significant development",
+          "occurrences": 1
+        },
+        {
+          "phrase": "game changer",
+          "replacement": "significant development",
+          "occurrences": 1
+        },
+        {
+          "phrase": "cutting-edge",
+          "replacement": "advanced",
+          "occurrences": 1
+        },
+        {
+          "phrase": "circle back",
+          "replacement": "follow up",
+          "occurrences": 1
+        },
+        {
+          "phrase": "world-class",
+          "replacement": "high-quality",
+          "occurrences": 1
+        },
+        {
+          "phrase": "leveraging",
+          "replacement": "using",
+          "occurrences": 1
+        },
+        {
+          "phrase": "deep dive",
+          "replacement": "in-depth analysis",
+          "occurrences": 1
+        },
+        {
+          "phrase": "leverage",
+          "replacement": "use",
+          "occurrences": 1
+        },
+        {
+          "phrase": "scalable",
+          "replacement": "adaptable",
+          "occurrences": 1
+        },
+        {
+          "phrase": "holistic",
+          "replacement": "comprehensive",
+          "occurrences": 1
+        },
+        {
+          "phrase": "disrupt",
+          "replacement": "reshape",
+          "occurrences": 1
+        },
+        {
+          "phrase": "synergy",
+          "replacement": "collaboration",
+          "occurrences": 1
+        },
+        {
+          "phrase": "robust",
+          "replacement": "strong",
+          "occurrences": 1
+        }
+      ]
+    },
+    {
+      "issue_type": "banned_phrase",
+      "original_text": "revolutionary approach to portfolio management",
+      "fixed_text": "(already fixed in a prior banned_phrase pass)",
+      "auto_fixed": true,
+      "reason": "Banned phrase was already replaced by an earlier fix pass \u2014 no action needed.",
+      "action": "already_fixed"
+    },
+    {
+      "issue_type": "missing_cta",
+      "original_text": "",
+      "fixed_text": "**Ready to put these insights to work?** Subscribe to our newsletter for weekly market analysis, or book a free consultation to discuss your portfolio strategy.",
+      "auto_fixed": true,
+      "reason": "Appended financial/default CTA template.",
+      "action": "appended",
+      "template_used": "financial.default"
+    },
+    {
+      "issue_type": "tone_misalignment",
+      "original_text": "I'm super excited to share this amazing strategy with you guys!",
+      "fixed_text": "",
+      "auto_fixed": false,
+      "reason": "Tone adjustments require editorial judgment to preserve brand voice and audience fit.",
+      "action": "requires_human_review",
+      "severity": "major",
+      "description": "Tone is too casual for a financial audience. Uses first-person informal language throughout."
+    }
+  ]
+}

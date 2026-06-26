@@ -1,0 +1,100 @@
+{
+  "version": "1.0.0",
+  "based_on": "oh-my-codex",
+  "agents": {
+    "architect": {
+      "name": "Architect",
+      "emoji": "🧠",
+      "model": "sub2api-openai/gpt-5.5",
+      "fallback": "sub2api-openai/gpt-5.2-pro",
+      "role": "系统设计、架构决策、复杂推理、疑难分析",
+      "strengths": ["reasoning", "architecture", "planning"],
+      "cost_tier": "high"
+    },
+    "coder": {
+      "name": "Coder",
+      "emoji": "💻",
+      "model": "sub2api-openai/gpt-5.3-codex",
+      "fallback": "sub2api-openai/gpt-5.4",
+      "role": "代码生成、重构、调试",
+      "strengths": ["code_generation", "refactoring", "debugging"],
+      "cost_tier": "high"
+    },
+    "executor": {
+      "name": "Executor",
+      "emoji": "⚡",
+      "model": "mimo/mimo-v2.5-pro",
+      "fallback": "sub2api-openai/gpt-5.4-mini",
+      "role": "快速编码、实现功能、大文件处理",
+      "strengths": ["speed", "large_context", "free"],
+      "cost_tier": "low"
+    },
+    "reviewer": {
+      "name": "Reviewer",
+      "emoji": "🔍",
+      "model": "sub2api-openai/gpt-5.5",
+      "fallback": "sensenova/deepseek-v4-flash",
+      "role": "代码审查、安全检查、性能优化建议",
+      "strengths": ["review", "security", "quality"],
+      "cost_tier": "high"
+    },
+    "quick": {
+      "name": "Quick",
+      "emoji": "⚡",
+      "model": "sub2api-openai/gpt-5.4-mini",
+      "fallback": "mimo/mimo-v2.5-pro",
+      "role": "简单问答、格式转换、文档生成",
+      "strengths": ["speed", "simple_tasks"],
+      "cost_tier": "low"
+    },
+    "chinese": {
+      "name": "Chinese Expert",
+      "emoji": "🌏",
+      "model": "local-qwen/gpt-4o",
+      "fallback": "mimo/mimo-v2.5-pro",
+      "role": "中文文档、中文注释、本地化",
+      "strengths": ["chinese", "localization"],
+      "cost_tier": "low"
+    },
+    "image": {
+      "name": "Image Generator",
+      "emoji": "🎨",
+      "model": "sub2api-openai/gpt-image-2",
+      "fallback": "sub2api-openai/gpt-image-1.5",
+      "role": "文生图、图像编辑",
+      "strengths": ["image_generation"],
+      "cost_tier": "medium"
+    }
+  },
+  "teams": {
+    "plan-execute-review": {
+      "name": "Plan-Execute-Review",
+      "description": "经典三阶段：规划 → 执行 → 审查",
+      "stages": [
+        { "agent": "architect", "task": "分析需求，制定实现计划" },
+        { "agent": "coder", "task": "按计划编码实现", "parallel": true },
+        { "agent": "reviewer", "task": "审查代码，提出修改建议" },
+        { "agent": "executor", "task": "根据审查意见修复" }
+      ]
+    },
+    "parallel-explore": {
+      "name": "Parallel Explore",
+      "description": "并行探索多个方案",
+      "stages": [
+        { "agent": "architect", "task": "分析方案 A" },
+        { "agent": "executor", "task": "分析方案 B", "parallel": true },
+        { "agent": "chinese", "task": "从中文语境分析方案 C", "parallel": true }
+      ]
+    },
+    "swarm-fix": {
+      "name": "Swarm Fix",
+      "description": "批量修复错误",
+      "stages": [
+        { "agent": "coder", "task": "修复模块 A 的错误" },
+        { "agent": "quick", "task": "修复模块 B 的错误", "parallel": true },
+        { "agent": "executor", "task": "修复模块 C 的错误", "parallel": true },
+        { "agent": "reviewer", "task": "验证所有修复" }
+      ]
+    }
+  }
+}

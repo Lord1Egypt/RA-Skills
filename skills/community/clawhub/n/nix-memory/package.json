@@ -1,0 +1,29 @@
+{
+    "name": "nix-memory",
+    "version": "1.0.0",
+    "description": "Agent identity persistence and memory integrity for OpenClaw. Identity hashing, drift detection, continuity scoring.",
+    "author": "Nix (@earntoshi)",
+    "license": "MIT",
+    "keywords": [
+        "memory",
+        "identity",
+        "persistence",
+        "drift-detection",
+        "integrity",
+        "continuity",
+        "agent-memory"
+    ],
+    "clawhub": {
+        "category": "memory",
+        "tags": ["identity", "memory", "integrity", "drift", "continuity"],
+        "compatibility": ">=2025.1.0"
+    },
+    "scripts": {
+        "setup": "bash scripts/setup.sh",
+        "watch": "bash scripts/watch.sh",
+        "verify": "bash scripts/continuity-score.sh",
+        "identity": "bash scripts/identity-hash.sh",
+        "memory": "bash scripts/memory-verify.sh",
+        "drift": "bash scripts/drift-detect.sh"
+    }
+}

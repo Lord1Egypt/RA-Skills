@@ -1,0 +1,62 @@
+{
+  "skill_id": "expense-report",
+  "display_name": "Expense Report Pro",
+  "description": "AI expense tracker with receipt scanning, categorization, and PDF report generation.",
+  "icon": "Receipt",
+  "accent_color": "#14b8a6",
+  "sidebar": {
+    "route": "/expenses",
+    "label": "Expenses",
+    "icon": "Receipt",
+    "children": [
+      { "label": "All Expenses", "route": "/expenses" },
+      { "label": "Reports", "route": "/expenses/reports", "icon": "FileBarChart" },
+      { "label": "Budgets", "route": "/expenses/budgets", "icon": "PiggyBank" }
+    ]
+  },
+  "database": {
+    "prefix": "exp",
+    "tables": [
+      {
+        "name": "exp_expenses",
+        "description": "All expense records with category, amount, and status",
+        "columns": [
+          { "name": "id", "type": "UUID", "primary_key": true },
+          { "name": "user_id", "type": "UUID", "references": "auth.users(id)" },
+          { "name": "date", "type": "DATE" },
+          { "name": "vendor", "type": "TEXT" },
+          { "name": "category", "type": "TEXT" },
+          { "name": "subcategory", "type": "TEXT" },
+          { "name": "amount_cents", "type": "INTEGER" },
+          { "name": "currency", "type": "TEXT", "default": "USD" },
+          { "name": "payment_method", "type": "TEXT" },
+          { "name": "receipt_url", "type": "TEXT" },
+          { "name": "notes", "type": "TEXT" },
+          { "name": "tags", "type": "TEXT[]", "default": "{}" },
+          { "name": "is_reimbursable", "type": "BOOLEAN", "default": false },
+          { "name": "status", "type": "TEXT", "default": "logged", "check": "logged,submitted,approved,reimbursed" },
+          { "name": "created_at", "type": "TIMESTAMPTZ" },
+          { "name": "updated_at", "type": "TIMESTAMPTZ" }
+        ],
+        "indexes": [
+          { "name": "idx_exp_expenses_user_date", "columns": ["user_id", "date DESC"] },
+          { "name": "idx_exp_expenses_category", "columns": ["user_id", "category"] }
+        ]
+      }
+    ]
+  },
+  "widgets": [
+    {
+      "id": "monthly-spend",
+      "type": "stat",
+      "title": "Spent This Month",
+      "description": "Total expenses for the current month",
+      "size": "1x1"
+    }
+  ],
+  "settings": [
+    { "key": "default_currency", "label": "Default Currency", "type": "select", "default": "USD" },
+    { "key": "receipt_auto_scan", "label": "Auto-Scan Receipts", "type": "toggle", "default": true }
+  ],
+  "sync": { "mode": "direct", "source_files": [] }
+}

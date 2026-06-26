@@ -1,0 +1,6 @@
+{
+  "name": "monero-profitability-calculator",
+  "version": "1.0.0",
+  "description": "Simple calculator to estimate Monero mining profitability based on hardware and electricity costs",
+  "main": "SKILL.md"
+}

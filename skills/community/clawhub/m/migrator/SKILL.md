@@ -1,35 +1,34 @@
 ---
-name: "Migrator"
-description: "Securely migrate OpenClaw Agent (config, memory, skills) to a new machine."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/migrator"
-sourceUrl: "https://clawhub.ai/skills/migrator"
+name: migrator
+description: Securely migrate OpenClaw Agent (config, memory, skills) to a new machine.
 ---
 
-# Migrator
+# OpenClaw Migrator
 
-> Securely migrate OpenClaw Agent (config, memory, skills) to a new machine.
+A utility to package an Agent's state into a portable, encrypted archive (`.oca`) for migration.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/migrator`
-- **Source URL:** [https://clawhub.ai/skills/migrator](https://clawhub.ai/skills/migrator)
+## Features
 
-## Overview
+- **Encrypted Archive**: Uses AES-256-GCM + auth tag for confidentiality and integrity.
+- **Path Normalization**: Restores workspace path using `manifest.json` metadata.
+- **Dependency Manifest**: Captures system dependencies (Brewfile) to ensure the new environment matches.
 
+## Usage
 
-## Installation
-To install this skill, run the following command in your terminal:
+### Export (On Old Machine)
+
 ```bash
-hermes skills install clawhub/migrator
+migrator export --out my-agent.oca --password "secret"
 ```
+
+### Import (On New Machine)
+
+```bash
+migrator import --in my-agent.oca --password "secret"
+```
+
+## Security
+
+This skill handles sensitive data (`openclaw.json`, `auth.token`). 
+The export process **always** requires a password to encrypt the archive.
+Unencrypted exports are **disabled** by design.

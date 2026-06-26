@@ -1,35 +1,42 @@
 ---
-name: "mty-frontend-design-zh"
-description: "创建具有高设计质量、独特且可用于生产的前端界面。当用户要求构建 Web 组件、页面、海报或应用（如网站、落地页、仪表盘、React 组件、HTML/CSS 布局，或美化任何 Web UI）时使用。生成有创意、精致的代码与 UI 设计，避免通用 AI 审美。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/mty-frontend-design-zh"
-sourceUrl: "https://clawhub.ai/skills/mty-frontend-design-zh"
+name: frontend-design-zh
+description: 创建具有高设计质量、独特且可用于生产的前端界面。当用户要求构建 Web 组件、页面、海报或应用（如网站、落地页、仪表盘、React 组件、HTML/CSS 布局，或美化任何 Web UI）时使用。生成有创意、精致的代码与 UI 设计，避免通用 AI 审美。
+license: 完整条款见 LICENSE.txt
 ---
 
-# mty-frontend-design-zh
+本技能指导创建独特、可用于生产的前端界面，避免千篇一律的「AI 风格」审美。实现真正可用的代码，并特别关注美学细节与创意选择。
 
-> 创建具有高设计质量、独特且可用于生产的前端界面。当用户要求构建 Web 组件、页面、海报或应用（如网站、落地页、仪表盘、React 组件、HTML/CSS 布局，或美化任何 Web UI）时使用。生成有创意、精致的代码与 UI 设计，避免通用 AI 审美。
+用户提供前端需求：要构建的组件、页面、应用或界面。可能包含用途、受众或技术约束等上下文。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/mty-frontend-design-zh`
-- **Source URL:** [https://clawhub.ai/skills/mty-frontend-design-zh](https://clawhub.ai/skills/mty-frontend-design-zh)
+## 设计思路
 
-## Overview
+编码前，理解上下文并确定**大胆**的美学方向：
+- **目的**：该界面解决什么问题？谁在使用？
+- **调性**：选择一种极致风格：极简、极繁、复古未来、有机自然、奢华精致、趣味玩具感、杂志编辑风、粗野主义、装饰艺术几何、柔和粉彩、工业实用主义等。用这些作为灵感，但设计出忠于所选美学方向的作品。
+- **约束**：技术要求（框架、性能、无障碍）。
+- **差异化**：什么让人**过目不忘**？用户会记住的那一点是什么？
 
+**关键**：选择清晰的概念方向并精准执行。大胆的极繁与克制的极简都可行——核心是刻意与意图，而非强度。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/mty-frontend-design-zh
-```
+然后实现可用的代码（HTML/CSS/JS、React、Vue 等），要求：
+- 可用于生产、功能完整
+- 视觉冲击力强、令人难忘
+- 风格统一、有明确美学观点
+- 细节打磨到位
+
+## 前端美学指南
+
+关注：
+- **字体**：选择美观、独特、有趣的字体。避免 Arial、Inter 等通用字体；选择能提升前端美感的、有特色的字体；出其不意、有性格的字体搭配。将特色展示字体与精致正文字体搭配。
+- **色彩与主题**：坚持统一的美学。用 CSS 变量保证一致性。主色 + 鲜明点缀色优于 timid、均匀分布的配色。
+- **动效**：用动画做效果与微交互。HTML 优先用纯 CSS 方案。React 可用 Motion 库。聚焦高影响力时刻：一次编排得当的页面加载（staggered reveals、animation-delay）比零散的微交互更能带来愉悦。用滚动触发和 hover 状态制造惊喜。
+- **空间与布局**：非常规布局。不对称。重叠。斜向流动。打破网格的元素。大量留白或受控的密度。
+- **背景与视觉细节**：营造氛围与层次，而非默认纯色。添加与整体美学匹配的情境效果与纹理。运用渐变网格、噪点纹理、几何图案、分层透明、戏剧性阴影、装饰边框、自定义光标、颗粒叠加等创意形式。
+
+**禁止**使用通用 AI 审美：过度使用的字体（Inter、Roboto、Arial、系统字体）、陈词滥调的配色（尤其是白底紫渐变）、可预测的布局与组件模式、缺乏情境特色的套娃设计。
+
+创造性解读并做出出人意料的选择，让设计真正贴合情境。每个设计都应不同。在明暗主题、不同字体、不同美学之间变化。**切勿**在多次生成中趋同于常见选择（例如 Space Grotesk）。
+
+**重要**：实现复杂度要与美学愿景匹配。极繁设计需要更丰富的代码、大量动画与效果。极简或精致设计需要克制、精准，以及对方距、字体和细微细节的精心把控。优雅来自对愿景的良好执行。
+
+记住：Claude 具备出色的创意能力。不要保守，充分展现跳出框架思考、全力投入独特愿景时能创造出的成果。

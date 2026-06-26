@@ -1,0 +1,13 @@
+{
+  "id": "minimax",
+  "label": "MiniMax TTS",
+  "type": "cloud",
+  "description": "适合中文短视频和更有表现力的配音需求。",
+  "confirmationFields": ["provider", "voice", "language", "speed", "fallbackProvider"],
+  "voiceRequired": true,
+  "supportsLocalFallback": true,
+  "implementedAdapter": true,
+  "defaultModel": "speech-2.8-hd",
+  "defaultFormat": "mp3",
+  "envHints": ["MINIMAX_API_KEY"]
+}

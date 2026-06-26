@@ -1,0 +1,13 @@
+{
+  "name": "voice-chat-local",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.21.2",
+    "openai": "^4.89.0"
+  }
+}

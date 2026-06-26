@@ -1,0 +1,100 @@
+{
+  "name": "memory-system",
+  "version": "1.0.2",
+  "displayName": "Memory System",
+  "description": "完整记忆系统 - 文件系统记忆 + 向量搜索 + 自动加载 + Memory Flush",
+  "author": {
+    "name": "团宝 (openclaw)",
+    "url": "https://github.com/openclaw"
+  },
+  "tags": ["memory", "persistence", "vector-search", "ollama"],
+  "dependencies": {
+    "ollama": ">=0.3.0",
+    "nomic-embed-text": "latest"
+  },
+  "config": {
+    "memoryDir": {
+      "type": "string",
+      "default": "~/.openclaw/workspace/memory",
+      "description": "记忆文件存储目录"
+    },
+    "flushMode": {
+      "type": "string",
+      "enum": ["safeguard", "manual", "disabled"],
+      "default": "safeguard",
+      "description": "内存 flush 模式"
+    },
+    "softThresholdTokens": {
+      "type": "number",
+      "default": 300000,
+      "description": "触发 flush 的 token 阈值"
+    },
+    "vectorEnabled": {
+      "type": "boolean",
+      "default": true,
+      "description": "是否启用向量搜索"
+    },
+    "embeddingModel": {
+      "type": "string",
+      "default": "nomic-embed-text",
+      "description": "向量嵌入模型"
+    }
+  },
+  "tools": [
+    {
+      "name": "memory_search",
+      "description": "语义搜索记忆",
+      "parameters": {
+        "query": {
+          "type": "string",
+          "description": "搜索关键词"
+        },
+        "topK": {
+          "type": "number",
+          "default": 5,
+          "description": "返回结果数量"
+        },
+        "group": {
+          "type": "string",
+          "optional": true,
+          "description": "群组 ID（可选）"
+        }
+      }
+    },
+    {
+      "name": "memory_get",
+      "description": "读取记忆文件",
+      "parameters": {
+        "path": {
+          "type": "string",
+          "description": "文件路径（相对于 memoryDir）"
+        },
+        "from": {
+          "type": "number",
+          "optional": true,
+          "description": "起始行号"
+        },
+        "lines": {
+          "type": "number",
+          "optional": true,
+          "description": "读取行数"
+        }
+      }
+    }
+  ],
+  "hooks": {
+    "onSessionStart": {
+      "description": "会话启动时自动加载记忆",
+      "files": ["MEMORY.md", "memory/{date}.md", "memory/{yesterday}.md"]
+    },
+    "onSessionEnd": {
+      "description": "会话结束时自动保存记忆",
+      "action": "flush"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/memory-system-skill"
+  },
+  "license": "MIT"
+}

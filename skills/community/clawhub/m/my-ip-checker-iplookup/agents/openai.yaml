@@ -1,0 +1,4 @@
+interface:
+  display_name: "MyIPChecker IP Info"
+  short_description: "Look up public MyIPChecker IP metadata"
+  default_prompt: "Use this skill to make real requests to https://myipchecker.ai/api/ip, look up metadata for a specific IPv4 address with the ip query parameter, fetch caller-IP metadata when ip is omitted, and explain or troubleshoot the JSON returned by the deployed MyIPChecker API."

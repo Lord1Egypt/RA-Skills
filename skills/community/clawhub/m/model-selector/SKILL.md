@@ -1,35 +1,32 @@
 ---
-name: "Model-Selector"
-description: "A powerful model routing skill that analyzes query intent and cost-efficiency to select the optimal LLM (Elite/Balanced/Basic) before execution."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/model-selector"
-sourceUrl: "https://clawhub.ai/skills/model-selector"
+name: Semantic Model Orchestrator
+description: A powerful model routing skill that analyzes query intent and cost-efficiency to select the optimal LLM (Elite/Balanced/Basic) before execution.
+version: 1.0.0
+author: Ray
+tags: [llm-ops, routing, efficiency, selection]
 ---
 
-# Model-Selector
+# Semantic Model Orchestrator
 
-> A powerful model routing skill that analyzes query intent and cost-efficiency to select the optimal LLM (Elite/Balanced/Basic) before execution.
+This skill provides an intelligent middle layer for AI agents to decide which model tier should handle a specific task. By using semantic analysis, it categorized queries into **Elite**, **Balanced**, or **Basic** levels.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/model-selector`
-- **Source URL:** [https://clawhub.ai/skills/model-selector](https://clawhub.ai/skills/model-selector)
+## Features
+- **Semantic Intent Recognition**: Uses vector embeddings to detect query complexity.
+- **Cost-Efficiency Orchestration**: Routes queries to **Elite**, **Balanced**, or **Basic** models.
+- **ClawHub Optimized**: Default tiers for Claude 3.5 Sonnet, GPT-4o-mini, and DeepSeek.
+- **Rolling Adjustment**: Built-in logic to refine intent keywords from user history.
+- **Multi-Provider Support**: Supports OpenAI, Anthropic, Gemini, and DeepSeek.
 
-## Overview
+## Model Tiers
+- **Elite**: `anthropic/claude-3-5-sonnet-latest`
+- **Balanced**: `openai/gpt-4o-mini`
+- **Basic**: `deepseek/deepseek-chat`
 
+## Usage
+Add this skill to your agent's capability list. The agent will call the `get_optimal_model` tool before making main LLM calls to optimize performance and budget.
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/model-selector
+### Example Tool Call
+```python
+result = router.analyze_and_route("Design a high-scalable microservices architecture for a fintech app.")
+# Returns: {"tier": "ELITE", "suggested_model": "anthropic/claude-3-5-sonnet-latest"}
 ```

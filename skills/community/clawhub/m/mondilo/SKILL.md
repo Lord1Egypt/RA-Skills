@@ -1,35 +1,24 @@
 ---
-name: "mbk"
-description: "Command-line tool to list, inspect, and verify skill availability and eligibility with moltbot skills commands."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/mondilo"
-sourceUrl: "https://clawhub.ai/skills/mondilo"
+summary: "CLI reference for `moltbot skills` (list/info/check) and skill eligibility"
+read_when:
+  - You want to see which skills are available and ready to run
+  - You want to debug missing binaries/env/config for skills
 ---
 
-# mbk
+# `moltbot skills`
 
-> Command-line tool to list, inspect, and verify skill availability and eligibility with moltbot skills commands.
+Inspect skills (bundled + workspace + managed overrides) and see what’s eligible vs missing requirements.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/mondilo`
-- **Source URL:** [https://clawhub.ai/skills/mondilo](https://clawhub.ai/skills/mondilo)
+Related:
+- Skills system: [Skills](/tools/skills)
+- Skills config: [Skills config](/tools/skills-config)
+- ClawdHub installs: [ClawdHub](/tools/clawdhub)
 
-## Overview
+## Commands
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/mondilo
+moltbot skills list
+moltbot skills list --eligible
+moltbot skills info <name>
+moltbot skills check
 ```

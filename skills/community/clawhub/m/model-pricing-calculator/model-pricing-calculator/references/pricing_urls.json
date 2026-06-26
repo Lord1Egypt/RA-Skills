@@ -1,0 +1,14 @@
+{
+  "urls": [
+    {
+      "name": "12AI",
+      "pricing_page": "https://new.12ai.org/pricing",
+      "api_endpoint": "https://new.12ai.org/api/pricing"
+    },
+    {
+      "name": "PackyAPI",
+      "pricing_page": "https://www.packyapi.com/pricing",
+      "api_endpoint": "https://www.packyapi.com/api/pricing"
+    }
+  ]
+}

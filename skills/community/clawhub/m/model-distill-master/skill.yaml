@@ -1,0 +1,60 @@
+name: model-distill-master
+display_name: 模型蒸馏大师
+description: |
+  将大模型能力迁移到小模型的完整工作流。
+  支持自适应蒸馏、课程学习、能力感知、对抗训练、多维度评估。
+version: 1.0.0
+author: nuwa-skill-team
+license: MIT
+homepage: https://github.com/nuwa-skill/model-distill-master
+tags:
+  - model-distillation
+  - knowledge-distillation
+  - gemma
+  - qlora
+  - machine-learning
+  - ai
+  - education
+triggers:
+  - 蒸馏模型
+  - 把模型蒸馏到
+  - 压缩模型
+  - 做小模型
+  - 教师模型分析
+  - model distillation
+  - knowledge distillation
+requirements:
+  hardware:
+    min_gpu_memory: 16GB
+    recommended_gpu_memory: 24GB
+    disk_space: 20GB
+  software:
+    - python>=3.9
+    - torch>=2.0.0
+    - transformers>=4.30.0
+    - accelerate>=0.20.0
+    - peft>=0.4.0
+    - bitsandbytes>=0.41.0
+entry_point:
+  skill_file: SKILL.md
+  type: agentic_protocol
+
+features:
+  - 自适应蒸馏损失（动态温度/alpha调度）
+  - 课程式学习（三级难度数据生成）
+  - 教师模型深度分析（6维度能力测绘）
+  - 对抗样本挖掘（找出学生易错样本）
+  - 多维度评估（保持率/风格/泛化/效率）
+  - 诚实边界生成（模型能力透明化）
+  - 智能诊断（自动检测训练问题）
+  - 能力感知蒸馏（不同能力不同策略）
+  - 交互式策略选择（人机协同决策）
+  - 可视化报告（雷达图/曲线/对比图）
+  - 一键部署（HF/GGUF/ONNX格式）
+
+default_model:
+  name: gemma-3-4b-it
+  provider: google
+  parameters: 4B
+  context_length: 8192
+  license: permissive

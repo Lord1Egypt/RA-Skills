@@ -1,35 +1,21 @@
 ---
-name: "NeuralEntropy"
-description: "Simulates and decodes neural spike activity into cursor movement (BCI)."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/neuralink-decoder"
-sourceUrl: "https://clawhub.ai/skills/neuralink-decoder"
+name: neuralink-decoder
+description: Simulates and decodes neural spike activity into cursor movement (BCI).
+author: tempguest
+version: 0.1.0
+license: MIT
 ---
 
-# NeuralEntropy
+# Neuralink Decoder Skill
 
-> Simulates and decodes neural spike activity into cursor movement (BCI).
+This skill simulates a Brain-Computer Interface (BCI).
+It generates synthetic neural spiking data based on cosine tuning (motor cortex model) and uses a linear decoder to reconstruct cursor velocity.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/neuralink-decoder`
-- **Source URL:** [https://clawhub.ai/skills/neuralink-decoder](https://clawhub.ai/skills/neuralink-decoder)
+## Features
+- **Neural Simulator**: Generates realistic spike trains for 64 neurons.
+- **Decoder**: Maps spike rates to 2D velocity ($v_x, v_y$).
+- **Visualization**: Prints the decoded trajectory.
 
-## Overview
+## Commands
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/neuralink-decoder
-```
+- `decode`: Run the simulation and decoding loop.

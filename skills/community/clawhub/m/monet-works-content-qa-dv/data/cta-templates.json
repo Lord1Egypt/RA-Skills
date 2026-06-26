@@ -1,0 +1,39 @@
+{
+  "_meta": {
+    "version": "1.0.0",
+    "description": "Call-to-action templates by content type. Used by auto-remediate.py.",
+    "last_updated": "2026-03-07"
+  },
+  "financial": {
+    "default": "\n\n**Ready to put these insights to work?** Subscribe to our newsletter for weekly market analysis, or book a free consultation to discuss your portfolio strategy.",
+    "newsletter": "\n\n**Found this useful?** Subscribe for weekly market analysis delivered straight to your inbox.",
+    "consultation": "\n\n**Want a second opinion on your portfolio?** Book a free 30-minute consultation with our team.",
+    "download": "\n\n**Get the full picture.** Download our free financial planning guide to build a strategy tailored to your goals.",
+    "detection_signals": ["subscribe", "sign up", "newsletter", "book a", "schedule", "download", "contact us", "learn more", "get started", "free consultation", "free guide"]
+  },
+  "investment": {
+    "default": "\n\n**Take the next step.** Download our free investment guide or schedule a call with a portfolio specialist to build a strategy tailored to your goals.",
+    "newsletter": "\n\n**Stay ahead of the market.** Subscribe for investment insights and analysis every week.",
+    "consultation": "\n\n**Ready to invest with conviction?** Schedule a call with an investment specialist today.",
+    "download": "\n\n**Get the full playbook.** Download our free investment framework used by over 10,000 investors.",
+    "detection_signals": ["subscribe", "sign up", "newsletter", "book a", "schedule", "download", "contact us", "learn more", "get started", "free consultation", "free guide"]
+  },
+  "general": {
+    "default": "\n\n**Want to learn more?** Contact us today or explore our resource library for additional insights.",
+    "newsletter": "\n\n**Enjoyed this? Subscribe** for weekly insights delivered to your inbox.",
+    "community": "\n\n**Join the conversation.** Share your thoughts in the comments or connect with us directly.",
+    "website": "\n\n**Curious to see what we're building?** Visit our website to explore our full suite of tools and resources.",
+    "detection_signals": ["subscribe", "sign up", "follow", "join", "contact", "reach out", "visit", "read more", "learn more", "get started", "click here", "explore"]
+  },
+  "linkedin": {
+    "default": "\n\nWhat's your take? Drop a comment below — I read every one.",
+    "engagement": "\n\nAgree or disagree? I'd genuinely like to know.",
+    "soft": "\n\nIf this resonated, share it with someone who needs to hear it.",
+    "detection_signals": ["comment", "share", "follow", "connect", "like", "repost", "thoughts?", "what do you think"]
+  },
+  "twitter": {
+    "default": "\n\nHot take? Pushback welcome. RT if this changed how you see it.",
+    "soft": "\n\nFollow for more. No fluff, just signal.",
+    "detection_signals": ["retweet", "rt", "follow", "reply", "thread", "quote"]
+  }
+}

@@ -1,35 +1,311 @@
 ---
-name: "must-play-recommendations"
-description: "为用户推荐城市的必玩景点。当用户询问某个城市有什么好玩的、景点推荐、必去景点、旅游攻略时触发。核心能力是基于 FlyAI CLI 获取城市的5A级景区和热门好评景点，提供详细推荐信息。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/must-play-recommendations"
-sourceUrl: "https://clawhub.ai/skills/must-play-recommendations"
+name: must-play-recommendations
+description: 为用户推荐城市的必玩景点。当用户询问某个城市有什么好玩的、景点推荐、必去景点、旅游攻略时触发。核心能力是基于 FlyAI CLI 获取城市的5A级景区和热门好评景点，提供详细推荐信息。
+triggers:
+  - 有什么好玩
+  - 景点推荐
+  - 必去景点
+  - 必玩景点
+  - 旅游推荐
+  - 玩什么
+  - 去哪玩
+  - 5A景区
+  - 名胜古迹
 ---
 
-# must-play-recommendations
+# 必玩景点推荐 Skill
 
-> 为用户推荐城市的必玩景点。当用户询问某个城市有什么好玩的、景点推荐、必去景点、旅游攻略时触发。核心能力是基于 FlyAI CLI 获取城市的5A级景区和热门好评景点，提供详细推荐信息。
+## 概述
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/must-play-recommendations`
-- **Source URL:** [https://clawhub.ai/skills/must-play-recommendations](https://clawhub.ai/skills/must-play-recommendations)
+本技能为用户提供城市必玩景点的智能推荐服务。聚焦热门、打卡地、高品质景点，通过 FlyAI CLI 融合多数据源获取景点信息，以友好的 Markdown 格式输出所有推荐景点。
 
-## Overview
+---
 
+## 推荐定位与策略
 
-## Installation
-To install this skill, run the following command in your terminal:
+**核心定位**：聚焦热门、打卡地、高品质景点，为用户提供最具价值的旅行体验推荐。
+
+**推荐优先级**：
+1. **5A级景区** - 国家最高等级认证，全部输出
+2. **热门好评** - ai-search 获取的人气景点
+3. **补充推荐** - 不足5个时用4A补充
+
+**禁止行为**：
+- ❌ 无脑推荐免费景点
+- ❌ 以"性价比"为由推荐低品质景点
+- ❌ 推荐冷门、无特色景点
+
+---
+
+## 工作流程
+
+### Step 1: 解析用户输入
+
+1. 从用户请求中提取城市名称
+2. 确认城市名称的有效性（支持中国主要城市）
+3. 判断是否需要特定类别筛选（如历史古迹、自然风光等）
+
+### Step 2: 获取5A级景区（核心推荐）
+
+使用 FlyAI CLI 的 `search-poi` 命令获取城市5A级景区：
+
 ```bash
-hermes skills install clawhub/must-play-recommendations
+flyai search-poi --city-name "{城市名称}" --poi-level 5
 ```
+
+**处理逻辑**：
+- 返回所有获取到的5A级景区，不限制数量
+- 提取字段：name, address, category, poiLevel, freePoiStatus, ticketInfo, jumpUrl, mainPic
+
+### Step 3: 获取热门好评景区
+
+使用 FlyAI CLI 的 `ai-search` 命令获取热门好评景点：
+
+```bash
+flyai ai-search --query "{城市名称}有什么好玩的景点推荐"
+```
+
+**解析文本提取信息**：
+- 景点名称
+- 景区描述（特色亮点）
+- 游玩时长建议
+- 交通指南
+- 预订链接
+
+### Step 4: 数据融合与去重
+
+**融合策略**：
+1. 以 search-poi 的5A级景区为基础
+2. 尝试从 ai-search 匹配补充：景区描述、游玩时长、交通指南
+3. 添加 ai-search 中不在5A列表的热门好评景点
+
+**去重逻辑**：
+- 按名称精确匹配
+- 模糊匹配（去除"景区"、"风景区"等后缀）
+- 优先保留5A级景区的完整信息
+
+### Step 5: 补充逻辑
+
+如果 5A级景区 + 热门好评景区 总计不足5个：
+```bash
+flyai search-poi --city-name "{城市名称}" --poi-level 4
+```
+- 补充4A级景区至总数5个
+
+### Step 6: 整合输出
+
+将所有景点数据整合为友好的 Markdown 格式输出。
+
+---
+
+## 数据来源说明
+
+### search-poi 返回字段
+
+| 字段 | 说明 | 使用方式 |
+|-----|------|---------|
+| name | 景点名称 | 直接使用 |
+| poiLevel | 景点等级（5A/4A/3A） | 直接使用 |
+| category | 类别 | 直接使用 |
+| address | 地址 | 直接使用 |
+| freePoiStatus | 是否免费 | 整合到门票信息 |
+| ticketInfo | 门票信息 | 整合到门票信息 |
+| jumpUrl | 预订链接 | 直接使用 |
+| mainPic | 主图 | 直接使用 |
+
+### ai-search 返回信息（文本解析）
+
+| 信息 | 说明 | 使用方式 |
+|-----|------|---------|
+| 景点名称 | 标题提取 | 匹配和去重 |
+| 特色描述 | 如"桥上摩天轮、俯瞰天津市景" | 景区描述 |
+| 游览时间 | 如"约2小时" | 游玩时长建议 |
+| 地址 | 地址信息 | 补充地址 |
+| 交通信息 | 如"地铁3号线和平路站" | 交通指南 |
+| 预订链接 | 链接地址 | 匹配关联 |
+
+---
+
+## 输出格式规范
+
+### Markdown 输出结构
+
+```markdown
+# {城市}必玩景点推荐
+
+> 基于 fly.ai 实时结果 | 生成时间: {timestamp}
+
+共推荐 **{total}** 个景点，其中5A级 **{5aCount}** 个，热门好评 **{hotCount}** 个。
+
+---
+
+## 5A级景区
+
+### 1. {景点名称} (5A)
+
+![]({mainPic})
+
+> {景区描述}
+
+**类别**: {category}
+**地址**: {address}
+**门票**: {门票信息}
+**游玩时长**: {duration}
+**交通指南**: {traffic}
+**标签**: {tags}
+
+[点击预订]({jumpUrl})
+
+---
+
+## 热门好评推荐
+
+### 3. {景点名称}
+
+![]({mainPic})
+
+> {景区描述}
+
+**类别**: {category}
+**地址**: {address}
+**门票**: {门票信息}
+**游玩时长**: {duration}
+**交通指南**: {traffic}
+**标签**: {tags}
+
+[点击预订]({jumpUrl})
+
+---
+
+> 基于 fly.ai 实时结果 | 生成时间: {timestamp}
+```
+
+### 景点卡片格式
+
+每个景点按以下格式输出：
+
+```markdown
+### {rank}. {景点名称} ({等级})
+
+![]({mainPic})
+
+> {景区描述}
+
+**类别**: {category}
+**地址**: {address}
+**门票**: {门票信息}
+**游玩时长**: {duration}
+**交通指南**: {traffic}
+**标签**: {tags}
+
+[点击预订]({jumpUrl})
+```
+
+### 门票信息整合规则
+
+| freePoiStatus | ticketInfo | 显示内容 |
+|---------------|------------|---------|
+| `FREE` | - | 免费开放 |
+| `NOT_FREE` | 有值 | 收费（{ticketName}） |
+| `NOT_FREE` | 无值 | 收费（具体价格请查询） |
+| `UNKNOWN` | - | 价格请以景区为准 |
+
+### 字段说明
+
+| 字段 | 说明 |
+|-----|------|
+| 名称 | 景点名称 |
+| 等级 | 景点等级（5A/4A/3A/热门好评） |
+| 类别 | 景点类别 |
+| 地址 | 景点地址 |
+| 门票 | 整合后的门票信息 |
+| 景区描述 | 特色亮点介绍 |
+| 游玩时长 | 建议游览时间 |
+| 交通指南 | 地铁/公交等交通信息 |
+| 预订链接 | 点击跳转预订 |
+| 主图 | 景点图片 |
+| 标签 | 景点特色标签 |
+
+---
+
+## 推荐理由生成规则
+
+根据景点特征自动生成景区描述：
+
+| 等级+类别 | 推荐描述模板 |
+|---------|-------------|
+| 5A + 地标 | "{城市}标志性打卡地，来{城市}必去的经典景点" |
+| 5A + 历史文化 | "深厚历史文化底蕴，体验{城市}独特的人文魅力" |
+| 5A + 自然风光 | "绝美自然风光，摄影爱好者和旅行打卡的绝佳选择" |
+| 5A + 主题乐园 | "热门游乐体验，适合亲子/年轻人打卡游玩" |
+| 4A + 高热度 | "人气爆棚的打卡胜地，游客好评如潮" |
+| 特色体验 | "独特体验项目，{城市}旅行不可错过的精彩亮点" |
+
+**类别映射规则**：
+- `historic site` / `ancient town` / `temple` / `museum` / `memorial` → 历史文化
+- `nature` / `lake` / `forest` / `canyon` / `beach` / `island` → 自然风光
+- `theme park` / `water park` / `zoo` / `aquarium` → 主题乐园
+- `landmark` → 地标
+
+---
+
+## 规则与约束
+
+### 必须遵守
+
+1. **5A级全输出**: 所有5A级景区必须全部输出
+2. **融合ai-search**: 使用 ai-search 获取热门好评景点
+3. **补充至5个**: 5A+好评不足5个时，用4A补充
+4. **信息丰富**: 包含景区描述、游玩时长、交通指南
+5. **门票整合**: 整合免费和价格信息
+
+### 禁止操作
+
+1. 禁止虚构景点信息
+2. 禁止无脑推荐免费景点
+3. 禁止以"性价比"为由推荐低品质景点
+4. 禁止在没有数据时返回空内容
+5. 禁止省略5A级景区
+
+---
+
+## 扩展性设计
+
+**扩展维度**：推荐依据和数据源的扩展能力
+
+**未来可扩展的推荐维度**：
+
+| 数据源 | 扩展内容 | 增强推荐价值 |
+|-------|---------|-------------|
+| 小红书文章 | 热门打卡笔记 | 真实用户体验、网红打卡点 |
+| 大众点评 | 用户评分口碑 | 真实评价、游玩体验反馈 |
+| 携程/马蜂窝 | 游记攻略热度 | 行程推荐、必玩榜单排名 |
+
+---
+
+## 错误处理
+
+### 错误输出格式
+
+```markdown
+# 抱歉，未找到相关景点
+
+**错误信息**: 未找到城市'{城市名称}'的景点数据
+
+**建议**: 请确认城市名称是否正确，或尝试使用附近城市名称
+```
+
+### 错误类型
+
+| 错误码 | 说明 | 处理建议 |
+|-------|------|---------|
+| `CITY_NOT_FOUND` | 城市无景点数据 | 提示用户检查城市名 |
+| `FLYAI_ERROR` | FlyAI CLI调用失败 | 检查CLI安装状态 |
+| `NO_ATTRACTIONS` | 无可用景点数据 | 尝试其他搜索方式 |
+| `INVALID_INPUT` | 输入无效 | 提示用户提供城市名 |
+
+---
+
+## 相关资源
+
+- [FlyAI CLI 详细文档](./flyai-readme.md)

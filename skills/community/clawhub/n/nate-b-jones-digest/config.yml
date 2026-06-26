@@ -1,0 +1,28 @@
+channel:
+  url: https://www.youtube.com/@NateBJones
+  uploads_playlist_id: ''
+  poll_cron: 5 9 * * *
+outputs:
+  email:
+    enabled: true
+    to:
+    - richard@saito.tech
+    cc: []
+  chat:
+    enabled: true
+    targets:
+    - telegram
+  doc:
+    enabled: false
+    type: google-doc
+    share_with:
+    - richard@saito.tech
+    path: digests/nate-b-jones/{{date}}.md
+transcripts:
+  prefer_languages:
+  - en
+  whisper_model: medium
+  keep_audio: false
+logging:
+  last_video_file: logs/nate-b-jones-last-video.txt
+  archive_dir: logs/nate-b-jones-digests

@@ -1,0 +1,96 @@
+{
+  // Gateway Configuration
+  gateway: {
+    enabled: true,
+    port: 18789,
+    mode: "local",
+    bind: "0.0.0.0",
+    auth: {
+      mode: "token"
+    }
+  },
+
+  // Agent Configuration
+  agents: {
+    defaults: {
+      model: "volcengine/kimi-k2.5",
+      thinking: {
+        enabled: true,
+        level: "medium"
+      },
+      workspace: "~/.openclaw/workspace",
+      compaction: {
+        mode: "safeguard"
+      },
+      maxConcurrent: 4,
+      subagents: {
+        maxConcurrent: 8
+      }
+    }
+  },
+
+  // Model Providers
+  models: {
+    providers: {
+      anthropic: {
+        baseUrl: "https://api.anthropic.com",
+        apiKey: "${ANTHROPIC_API_KEY}",
+        models: [
+          { id: "claude-opus-4-6", name: "Claude Opus 4.6", contextWindow: 200000 },
+          { id: "claude-sonnet-4-6", name: "Claude Sonnet 4.6", contextWindow: 200000 }
+        ]
+      },
+      volcengine: {
+        baseUrl: "https://ark.cn-beijing.volces.com/api/coding/v3",
+        apiKey: "${VOLCENGINE_API_KEY}",
+        models: [
+          { id: "kimi-k2.5", name: "Kimi K2.5", contextWindow: 128000 }
+        ]
+      },
+      openai: {
+        baseUrl: "https://api.openai.com/v1",
+        apiKey: "${OPENAI_API_KEY}",
+        models: [
+          { id: "gpt-5.2", name: "GPT-5.2", contextWindow: 128000 },
+          { id: "o3", name: "O3", contextWindow: 200000 }
+        ]
+      }
+    }
+  },
+
+  // Telegram Channel
+  telegram: {
+    enabled: true,
+    botToken: "${TELEGRAM_BOT_TOKEN}",
+    dmPolicy: "open",
+    streaming: "partial",
+    allowFrom: ["*"]
+  },
+
+  // Skills Configuration
+  skills: {
+    install: {
+      nodeManager: "npm"
+    },
+    entries: {}
+  },
+
+  // Memory System
+  memory: {
+    enabled: true,
+    provider: "lancedb"
+  },
+
+  // Browser Automation
+  browser: {
+    enabled: true,
+    headless: false,
+    color: "#FF4500"
+  },
+
+  // Canvas Workspace
+  canvas: {
+    enabled: true,
+    a2ui: true
+  }
+}

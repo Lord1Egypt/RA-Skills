@@ -1,35 +1,33 @@
----
-name: "朋友圈文案生成器"
-description: "专业生成多风格朋友圈文案，支持日常分享、产品推广、人设打造、互动话题及节日营销场景。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/moments-copywriter"
-sourceUrl: "https://clawhub.ai/skills/moments-copywriter"
----
-
 # 朋友圈文案生成器
 
-> 专业生成多风格朋友圈文案，支持日常分享、产品推广、人设打造、互动话题及节日营销场景。
+## 技能简介
+专业的朋友圈文案生成工具，帮助用户生成吸引点赞评论的优质朋友圈内容。支持多种文案风格和场景类型。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/moments-copywriter`
-- **Source URL:** [https://clawhub.ai/skills/moments-copywriter](https://clawhub.ai/skills/moments-copywriter)
+## 核心功能
+1. **日常分享**：生活感悟、美食打卡、旅行记录等日常文案
+2. **产品推广**：微商、电商、代购等推广文案（软广/硬广）
+3. **人设打造**：打造个人IP的系列朋友圈文案
+4. **互动话题**：引发评论的讨论性话题
+5. **节日营销**：节日节气祝福文案
 
-## Overview
+## 适用场景
+- 微商朋友圈运营
+- 个人IP打造
+- 实体店宣传
+- 社群运营
+- 私域流量运营
 
+## 文案风格
+- 温暖治愈系
+- 搞笑幽默系
+- 专业干货系
+- 精致生活系
+- 情感共鸣系
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/moments-copywriter
-```
+## 输出格式
+生成的朋友圈文案包括：
+- 主文案内容
+- 配套emoji
+- 发布时间建议
+- 配图建议
+- 互动引导语

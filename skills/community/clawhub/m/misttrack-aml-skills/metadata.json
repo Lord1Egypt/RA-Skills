@@ -1,0 +1,68 @@
+{
+  "version": "1.5.0",
+  "organization": "SlowMist",
+  "homepage": "https://github.com/slowmist/misttrack-skills",
+  "source": "https://github.com/slowmist/misttrack-skills",
+  "date": "March 2026",
+  "abstract": "MistTrack OpenAPI Toolkit—an AI-powered agent toolkit driven by the MistTrack Anti-Money Laundering (AML) tracking system. It supports cryptocurrency address risk scoring (AML/KYT/KYA), address tag lookup, address overviews, address profiling, transaction investigation, behavioral analysis, and counterparty analysis. The toolkit also includes multi-signature (multisig) address identification and permission analysis—detecting Gnosis Safe wallets on ETH/EVM chains, TRON native permission multisig, and Bitcoin P2SH/P2WSH/P2TR address formats. The toolkit supports over 200 tokens across more than 20 blockchains, including BTC, ETH, TRX, BNB, and SOL.",
+  "supported_apis": [
+    "v1/status",
+    "v1/address_labels",
+    "v1/address_overview",
+    "v2/risk_score",
+    "v2/risk_score_create_task",
+    "v2/risk_score_query_task",
+    "v1/transactions_investigation",
+    "v1/address_action",
+    "v1/address_trace",
+    "v1/address_counterparty"
+  ],
+  "references": [
+    "https://misttrack.io/",
+    "https://docs.misttrack.io/",
+    "https://docs.misttrack.io/openapi/overview",
+    "https://dashboard.misttrack.io"
+  ],
+  "environment_variables": [
+    {
+      "name": "MISTTRACK_API_KEY",
+      "required": false,
+      "sensitive": true,
+      "description": "MistTrack API key for authenticating all API requests (recommended). All scripts prioritize this variable. If absent, x402 pay-per-use via scripts/pay.py --key-file is the alternative. Obtain at https://dashboard.misttrack.io/apikeys"
+    }
+  ],
+  "python_dependencies": [
+    "requests>=2.28",
+    "eth-account>=0.8",
+    "eth-abi>=4.0",
+    "eth-utils>=2.0",
+    "solders>=0.18",
+    "base58>=2.1"
+  ],
+  "payment_capability": {
+    "can_sign_transactions": true,
+    "can_broadcast_transactions": true,
+    "affected_script": "scripts/pay.py",
+    "trigger": "--key-file <path> passed at invocation time; X402_PRIVATE_KEY env var is refused",
+    "networks": ["EVM (EIP-3009 USDC)", "Solana (partial signing)"],
+    "per_call_cap_usdc": 1.00
+  },
+  "runtime_enforcements": [
+    {
+      "protection": "per_call_payment_cap",
+      "detail": "$1.00 USDC hard cap enforced in build_payment_payload(); amounts above 1_000_000 units are rejected before signing",
+      "enforced_in_code": true
+    },
+    {
+      "protection": "env_key_refused",
+      "detail": "pay.py refuses to run if X402_PRIVATE_KEY is present in the environment; private keys must be supplied via --key-file <path> at invocation time — the key is read from a permission-restricted file and never appears on the command line",
+      "enforced_in_code": true
+    },
+    {
+      "protection": "disable_model_calls",
+      "detail": "skills/payment.md sets disable_model_calls: true — advisory signal to agent platforms to block autonomous invocation; enforcement is harness-dependent, not guaranteed by this package",
+      "enforced_in_code": false
+    }
+  ],
+  "security_notes": "Core AML scripts (risk_check, batch_risk_check, transfer_security_check, address_investigation, multisig_analysis) are read-only; they make GET/POST requests to openapi.misttrack.io only. scripts/pay.py can sign and broadcast on-chain USDC transactions when --key-file is supplied. Runtime code enforces: (1) $1.00 USDC per-call hard cap; (2) pay.py exits with an error if X402_PRIVATE_KEY is present in the environment. Private keys must be supplied via --key-file <path> at invocation time; the key is read from a permission-restricted file and never appears on the command line or in environment variables. X402_PRIVATE_KEY is not a supported input method. Recommended: use MISTTRACK_API_KEY for all normal usage."
+}

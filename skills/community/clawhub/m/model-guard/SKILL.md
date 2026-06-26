@@ -1,35 +1,12 @@
----
-name: "Model Guard"
-description: "Monitors Anti-Gravity model quotas and automatically switches to the model with highest quota or falls back to gemini-flash if all are below 20%."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/model-guard"
-sourceUrl: "https://clawhub.ai/skills/model-guard"
----
-
 # Model Guard
 
-> Monitors Anti-Gravity model quotas and automatically switches to the model with highest quota or falls back to gemini-flash if all are below 20%.
+Automatically monitors Anti-Gravity model quotas and switches the default model to the one with the highest remaining quota. If all Anti-Gravity models are below 20%, it falls back to the native `gemini-flash` model.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/model-guard`
-- **Source URL:** [https://clawhub.ai/skills/model-guard](https://clawhub.ai/skills/model-guard)
+## Usage
 
-## Overview
+- **Manual trigger**: `model-guard`
+- **Auto trigger**: Designed to be run via `cron` or `heartbeat`.
 
+## Configuration
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/model-guard
-```
+Edit `guard.js` to change the `THRESHOLD` (default 20%) or `FALLBACK_MODEL`.

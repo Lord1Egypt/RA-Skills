@@ -1,0 +1,15 @@
+{
+  "name": "neckr0ik-polymarket-trader",
+  "version": "1.0.0",
+  "description": "Detect arbitrage opportunities on Polymarket. Monitor spread arbitrage, cross-market correlations, news-driven opportunities.",
+  "author": "Neckr0ik",
+  "license": "MIT",
+  "keywords": [
+    "polymarket",
+    "arbitrage",
+    "prediction-markets",
+    "trading",
+    "defi"
+  ],
+  "dependencies": {}
+}

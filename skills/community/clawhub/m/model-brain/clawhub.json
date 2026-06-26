@@ -1,0 +1,42 @@
+{
+  "name": "model-brain",
+  "version": "0.1.2",
+  "title": "Model Brain - Cost-Aware Bankr Model Router",
+  "description": "Deterministic Bankr/OpenClaw routing skill that picks the right model per message based on task type, risk, and cost. Sends deterministic workflows to zero-LLM, cheap chat to MiniMax, routine wallet operations to Claude Sonnet, code to GPT-5.2 Codex, and explicit high-stakes work to Claude Opus.",
+  "author": "aaigotchi",
+  "tags": [
+    "bankr",
+    "openclaw",
+    "llm",
+    "routing",
+    "automation",
+    "ai-agent",
+    "cost-optimization"
+  ],
+  "repository": "https://github.com/aaigotchi/model-brain",
+  "dependencies": {
+    "python3": "required"
+  },
+  "features": [
+    "\ud83e\udde0 Per-message model routing",
+    "\ud83d\udcb8 Cost-aware low-risk routing with MiniMax",
+    "\ud83e\uddfe Routine wallet ops routed to Claude Sonnet",
+    "\ud83d\udee0\ufe0f Code tasks routed to GPT-5.2 Codex",
+    "\ud83d\udee1\ufe0f Explicit high-stakes escalation to Claude Opus",
+    "\u2699\ufe0f Zero-LLM bypass for deterministic workflows",
+    "\ud83d\udd0c Wrapper entrypoint for aaigotchi integration"
+  ],
+  "installation": {
+    "steps": [
+      "Clone or install the skill into OpenClaw skills",
+      "Use scripts/select_model.sh or scripts/route_message.py",
+      "Integrate the wrapper before Bankr model selection in your agent flow"
+    ]
+  },
+  "usage": "Run scripts/select_model.sh with a message and optional flags to get the recommended route, fallback, or env-style output.",
+  "tested": true,
+  "testDate": "2026-03-22",
+  "compatibility": {
+    "openclaw": ">=0.1.0"
+  }
+}

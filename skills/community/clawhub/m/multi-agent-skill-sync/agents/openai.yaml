@@ -1,0 +1,4 @@
+interface:
+  display_name: "Skill Sync"
+  short_description: "One source of truth for local AI agent skills"
+  default_prompt: "Use $skill-sync when the user wants to audit skills across Codex, Claude, OpenClaw, OpenCode, workspace skills, and shared roots, then score hygiene, review shared or conflicting installs, and preview or apply a safe canonical-source convergence, migration, or restore plan."

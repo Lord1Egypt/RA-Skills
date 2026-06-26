@@ -1,35 +1,35 @@
 ---
-name: "Norman: Manage Clients"
-description: "Manage business clients - list, search, create, or update client information. Use when the user mentions clients, contacts, customers, Kunden, or needs to ma..."
-category: "productivity"
-source: "ClawHub"
-tags: [clients, crm, finance, mcp, norman]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/norman-manage-clients"
-sourceUrl: "https://clawhub.ai/skills/norman-manage-clients"
+name: manage-clients
+description: Manage business clients - list, search, create, or update client information. Use when the user mentions clients, contacts, customers, Kunden, or needs to manage their client database.
+version: 1.0.0
+metadata:
+  openclaw:
+    emoji: "\U0001F465"
+    homepage: https://norman.finance
+    requires:
+      mcp:
+        - norman-finance
 ---
 
-# Norman: Manage Clients
+Help the user manage their client database:
 
-> Manage business clients - list, search, create, or update client information. Use when the user mentions clients, contacts, customers, Kunden, or needs to ma...
+## Listing and searching
+- Call `list_clients` to show all clients
+- Present results in a clean table format: Name, Email, Phone, Outstanding balance
 
-- **Category:** Productivity
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/norman-manage-clients`
-- **Source URL:** [https://clawhub.ai/skills/norman-manage-clients](https://clawhub.ai/skills/norman-manage-clients)
+## Creating a new client
+When creating a client with `create_client`, gather:
+- **Required**: Client name (company or individual)
+- **Recommended**: Email, phone, address (street, city, postal code, country)
+- **Optional**: Tax ID (Steuernummer), VAT ID (USt-IdNr.), payment terms, notes
+- For German businesses: ask about Kleinunternehmer status if relevant
 
-## Overview
+## Updating a client
+- Call `get_client` first to show current details
+- Call `update_client` with only the fields that need changing
+- Confirm changes with the user before updating
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/norman-manage-clients
-```
+## Best practices
+- Always verify client details before creating invoices
+- For EU clients, the VAT ID (USt-IdNr.) is important for reverse charge invoices
+- Suggest cleaning up duplicate clients if detected

@@ -1,0 +1,30 @@
+{
+  "name": "moodle-connector",
+  "version": "2.0.0",
+  "description": "Moodle REST API client, batch downloader, and MCP server for Claude Code integration. SSO-enabled with Azure AD, Google, and SAML support.",
+  "author": "Jabir Iliyas Suraj-Deen <jabirsrj8@protonmail.com>",
+  "license": "MIT",
+  "homepage": "https://github.com/Jabir-Srj/moodle-connector",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Jabir-Srj/moodle-connector.git"
+  },
+  "keywords": [
+    "moodle",
+    "education",
+    "lms",
+    "api",
+    "batch-download",
+    "mcp",
+    "claude-code",
+    "rest-api",
+    "sso",
+    "azure-ad",
+    "oauth",
+    "saml",
+    "headless"
+  ],
+  "scripts": {
+    "install": "pip install -r requirements.txt && playwright install chromium"
+  }
+}

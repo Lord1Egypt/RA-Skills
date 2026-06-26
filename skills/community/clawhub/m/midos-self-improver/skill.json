@@ -1,0 +1,36 @@
+{
+  "name": "midos-self-improver",
+  "version": "1.0.0",
+  "description": "Structured learning pipeline with 6-layer quality scoring. Log errors, corrections, and patterns with automatic promotion to project memory.",
+  "created_at": "2026-03-04",
+  "updated_at": "2026-03-04",
+  "published": false,
+  "clawhub_url": "",
+  "source_tools": ["hooks/pattern_harvester.py", "hooks/memory_protocol.py", "tools/normalize_naming.py"],
+  "competitors": [
+    {"slug": "self-improving-agent", "author": "pskoett", "downloads": 101000, "weakness": "2-tier promotion, no quality scoring, no dedup"},
+    {"slug": "proactive-agent", "author": "halthelobster", "downloads": 53700, "weakness": "Self-improvement is a side section, not the core"}
+  ],
+  "unique_features": [
+    "Quality-gated promotion (blocks low-quality learnings from polluting memory)",
+    "Automatic dedup via content hashing",
+    "Categorized logging (correction, knowledge_gap, best_practice, error, pattern)",
+    "Promotion requires evidence of recurrence, not just manual decision",
+    "Works with any agent (Claude Code, OpenClaw, Codex, Copilot)"
+  ],
+  "backlog_id": "BL-251",
+  "releases": [
+    {
+      "version": "1.0.0",
+      "date": "2026-03-04",
+      "bump": "major",
+      "message": "Initial release"
+    }
+  ],
+  "metrics": {
+    "downloads": 0,
+    "installs": 0,
+    "stars": 0,
+    "last_checked": ""
+  }
+}

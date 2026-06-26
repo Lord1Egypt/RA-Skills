@@ -1,35 +1,29 @@
 ---
-name: "Minimax Vision Search"
-description: "Analyze images and search the web using MiniMax MCP tools"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/minimax-vision-search"
-sourceUrl: "https://clawhub.ai/skills/minimax-vision-search"
+name: minimax-vision-search
+description: Analyze images and search the web using MiniMax MCP tools
+metadata:
+  openclaw:
+    requires:
+      bins: [uvx]
+      env: [MINIMAX_API_KEY, MINIMAX_API_HOST]
+  homepage: https://github.com/daowuu/minimax-vision-search
 ---
 
-# Minimax Vision Search
+# MiniMax Vision & Search MCP
 
-> Analyze images and search the web using MiniMax MCP tools
+## Prerequisites
+- Install uv (recommended via Homebrew): `brew install uv`
+- Set your API key: `export MINIMAX_API_KEY=your_key`
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/minimax-vision-search`
-- **Source URL:** [https://clawhub.ai/skills/minimax-vision-search](https://clawhub.ai/skills/minimax-vision-search)
+## Quick Start
+Image: `python3 scripts/understand_image.py <path_or_url> "<prompt>"`
+Search: `python3 scripts/web_search.py <query> [limit]`
 
-## Overview
+## Image Sources
+- Local file: /path/to/image.jpg
+- URL: https://example.com/image.jpg
+- Telegram: auto-saved to ~/.openclaw/media/inbound/
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/minimax-vision-search
-```
+## Tips
+- Telegram → auto-saved → analyzed
+- Webchat image NOT supported directly

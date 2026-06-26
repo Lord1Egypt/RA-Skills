@@ -1,0 +1,11 @@
+{
+  "_comment": "Copy this file to config.json and edit it, or set the same values via environment variables.",
+  "MC_HOST": "localhost",
+  "MC_PORT": "25565",
+  "MC_BOT_USERNAME": "ClawBot",
+  "MC_BRIDGE_PORT": "3001",
+  "MC_VERSION": "1.21.1",
+  "MC_AUTH": "offline",
+  "_auth_note": "Use MC_AUTH=offline for local/offline servers; use MC_AUTH=microsoft for authenticated servers.",
+  "_port_note": "For singleplayer, use ESC -> Open to LAN and copy the random port into MC_PORT."
+}

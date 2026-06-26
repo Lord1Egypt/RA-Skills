@@ -1,35 +1,1085 @@
 ---
-name: "MOCI — Memory-bound OpenClaw Identity"
-description: "Generate, validate, export, and manage MOCI — the identity system for OpenClaw agents. Use this skill whenever the user mentions MOCI identity, agent ID, moc..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/moci"
-sourceUrl: "https://clawhub.ai/skills/moci"
+name: moci
+description: >
+  Generate, validate, export, and manage MOCI — the identity system for OpenClaw agents.
+  Use this skill whenever the user mentions MOCI identity, agent ID, moci, agent registration,
+  identity verification, memory-based auth, agent authentication, or needs to create/verify/export
+  an OpenClaw agent identity. Also trigger when the user asks about agent cloning detection,
+  memory chain verification, identity portability, recovery phrases for OpenClaw agents, ACP provenance
+  integration, multi-agent identity, agent trust scores, or NIST agent identity compliance.
+  This skill handles the full lifecycle: ID generation, memory ring management, dual-factor
+  verification (key + memory), identity export/import, ACP/MCP protocol integration, trust
+  scoring, and OpenClaw Gateway configuration.
 ---
 
-# MOCI — Memory-bound OpenClaw Identity
-
-> Generate, validate, export, and manage MOCI — the identity system for OpenClaw agents. Use this skill whenever the user mentions MOCI identity, agent ID, moc...
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/moci`
-- **Source URL:** [https://clawhub.ai/skills/moci](https://clawhub.ai/skills/moci)
+# MOCI: Memory-bound OpenClaw Identity
 
 ## Overview
 
+MOCI is a multi-layer identity system for OpenClaw agents. It combines cryptographic ID
+generation with a memory-chain verification mechanism, creating an identity that is both
+machine-verifiable and human-readable.
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/moci
+Core principle: **Identity = Key File + Memory Chain**. Neither alone is sufficient.
+A stolen key without memory fails the continuity check. A copied memory without the key
+can't sign anything. Together they form an unforgeable, clone-resistant identity.
+
+---
+
+## 1. ID Format Specification
+
+### Structure
+
 ```
+CW-{NAME}.{SUFFIX}-{CRC}
+```
+
+| Segment | Length  | Source       | Purpose                        |
+|---------|---------|--------------|--------------------------------|
+| CW      | 2 char  | Fixed prefix | Protocol identifier            |
+| NAME    | 2-12    | User-chosen  | Human-readable vanity name     |
+| SUFFIX  | 6 char  | CSPRNG       | Uniqueness discriminator       |
+| CRC     | 2 char  | CRC-8 algo   | Typo detection checksum        |
+
+- The dot (`.`) separates user-chosen from system-assigned segments.
+- All segments use **Crockford Base32** charset: `0123456789ABCDEFGHJKMNPQRSTVWXYZ`
+  (no O, I, L, U — avoids ambiguity in verbal/manual transmission).
+- Hyphens (`-`) are structural separators, included in CRC computation.
+
+### Examples
+
+```
+CW-NOVA.R7KMX2-E2    # User chose "NOVA", 6-char suffix, checksum "E2"
+CW-APEX.T3JQN8-7N    # Different user, same name allowed
+CW-9F4K.M2PXW3-AH    # Auto-generated name (no user input)
+```
+
+### Premium Tier (v2)
+
+Short names without suffix are reserved as premium scarce assets:
+
+```
+CW-NOVA-E2            # No dot = premium reserved name, globally unique
+CW-NOVA.R7KM-E2      # Dot = open tier, always available
+```
+
+
+---
+
+## 2. ID Generation Algorithm
+
+### Step-by-step
+
+```
+1. Validate name:
+   - If user-provided: check length (2-12), check blocked-name list
+     (profanity, system reserved: ADMIN, ROOT, SYSTEM, OPENCLAW, etc.)
+   - If omitted: auto-generate 4 random Base32 chars
+
+2. Collect seeds:
+   - timestamp  = Date.now()               // millisecond epoch
+   - entropy    = CSPRNG(rejection sampling) // bias-free Base32
+   - name       = validated user input OR random(4)
+
+3. Encode suffix (6 chars for ~30 bits entropy):
+   - suffix = randomBase32(6)              // was 4, increased for collision resistance
+
+4. Assemble body:
+   - body = "CW-" + name + "." + suffix
+
+5. Compute checksum:
+   - crc = CRC-8/CCITT(body)
+   - checksum = base32_crockford(crc >> 5) + base32_crockford(crc & 31)
+
+6. Final ID:
+   - moci_id = body + "-" + checksum
+
+7. Derive Layer 0 hash:
+   - Tier 1 (default): secret = deriveDeviceFingerprint(moci_id)
+     fingerprint = keccak256(device_salt + hostname + homedir + platform + moci_id)
+     device_salt = 256-bit CSPRNG random, generated once, stored at ~/.openclaw/.moci-device-salt
+   - Tier 2 (passphrase): secret = user passphrase
+   - layer0 = keccak256(moci_id + "|" + secret)
+
+8. Genesis hash (Ring 3 root):
+   - genesis_nonce = randomBase32(8)         // 40 bits extra entropy
+   - genesis_input = "genesis|" + moci_id + "|" + timestamp + "|" + layer0 + "|" + nonce
+   - genesis_hash = keccak256(genesis_input)
+   - NOTE: layer0 hash is included — attacker cannot forge genesis without the secret
+```
+
+### Device Salt (Tier 1 security)
+
+On first run, a 256-bit random file is created at `~/.openclaw/.moci-device-salt`
+(file permission 0o600, owner-only). This salt is:
+- Generated by CSPRNG — unforgeable even if all other device attributes are known
+- Never transmitted, never logged, never included in the identity file
+- Automatically created — user does zero configuration
+- The reason Tier 1 is secure against remote/opportunistic attacks despite
+  having no passphrase (attacker needs filesystem access to read the salt)
+
+For Docker: salt is generated at runtime (NOT in the image). Mount `~/.openclaw/`
+as a volume to persist across container rebuilds.
+
+### CRC-8 Implementation
+
+```javascript
+function crc8(str) {
+  let crc = 0;
+  for (let i = 0; i < str.length; i++) {
+    crc ^= str.charCodeAt(i);
+    for (let j = 0; j < 8; j++) {
+      crc = (crc & 0x80) ? ((crc << 1) ^ 0x07) & 0xFF : (crc << 1) & 0xFF;
+    }
+  }
+  return crc;
+}
+```
+
+CRC-8/CCITT detects: all single-char typos (100%), adjacent swaps (99.6%),
+burst errors up to 8 bits (100%).
+
+Note: CRC is for typo detection, NOT security. Validation error messages
+never reveal the expected checksum (prevents enumeration attacks).
+
+### Name Validation
+
+Names are checked against a blocked list before registration:
+- Profanity and offensive terms
+- System-reserved names: ADMIN, ROOT, SYSTEM, OPENCLAW, GATEWAY, SERVER
+- Programming reserved words: NULL, UNDEFINED, NAN, TRUE, FALSE
+
+### Uniqueness Guarantee
+
+The NAME segment is NOT unique — multiple agents can share the same name.
+The full ID (NAME + SUFFIX + CRC) is globally unique. In display contexts:
+- Casual: show name only (`CW-NOVA`)
+- Disambiguation: show name + suffix (`CW-NOVA.R7KMX2`)
+- Formal/API: show full ID (`CW-NOVA.R7KMX2-E2`)
+
+Collision handling: if a generated full ID already exists in the registry,
+re-roll the SUFFIX (new entropy) and recompute. With 6-char suffix:
+probability ≈ 1 in 1,073,741,824 per timestamp second.
+
+---
+
+## 3. Memory Ring System
+
+Memory serves as the second factor of identity — proof of continuous existence.
+It uses a concentric ring model to prevent unbounded growth.
+
+### Ring Architecture
+
+```
+Ring 0 (Hot)     — Last 24h     — Full detail       — 8 KB default  — Flushed daily
+Ring 1 (Warm)    — Last 30 days — Summarized         — 4-12 KB       — Cap: 30 entries
+Ring 2 (Cool)    — Last year    — Key events only    — 2-6 KB        — Cap: 50 entries
+Ring 3 (Archive) — Lifetime     — Hash chain only    — 1-2 KB        — Grows 32 bytes/month
+```
+
+**Total budget cap: 32 KB** (default, configurable up to 64 KB for high-frequency agents).
+
+Ring 0 capacity is configurable per identity:
+```
+Default agent:           8 KB Ring 0,  32 KB total  (10-20 conversations/day)
+High-frequency agent:   16 KB Ring 0,  48 KB total  (100+ conversations/day)
+Maximum:                32 KB Ring 0,  64 KB total  (heavy trading/customer service bots)
+```
+Set via: `openclaw moci generate --ring0-budget 16384 --total-budget 49152`
+
+### Ring Promotion Cycle
+
+Runs every 24 hours (or on-demand before identity verification):
+
+```
+1. Ring 0 → Ring 1:
+   - AI summarizes day's interactions into 1-3 bullet points
+   - Example: "47 conversations about React" → one entry
+   - Deduplicate against existing Ring 1 entries
+   - Fallback: if summarizer is unavailable after 3 retries,
+     use simple concatenation + truncation (lower quality, chain intact)
+
+2. Ring 1 → Ring 2 (entries older than 30 days):
+   - Distill to key-event bullets only
+   - Merge similar entries: "prefers TypeScript" stored once
+
+3. Ring 2 → Ring 3 (entries older than 1 year):
+   - Compute: ring3_hash_N = keccak256(ring3_hash_{N-1} + ring2_monthly_digest)
+   - Append hash to chain (with input_digest stored for recomputation)
+   - Delete source entries from Ring 2
+```
+
+### Ring 3 — The Identity Chain
+
+```
+hash_0 = keccak256("genesis|" + moci_id + "|" + created_at
+         + "|" + layer0_hash + "|" + genesis_nonce)
+hash_1 = keccak256(hash_0 + ring2_digest_month1)
+hash_2 = keccak256(hash_1 + ring2_digest_month2)
+...
+hash_N = current identity fingerprint
+```
+
+Note: genesis hash includes layer0_hash (secret material) and a random nonce,
+making it impossible to forge without the original key.
+
+This is a merkle chain. Each link depends on ALL previous ones.
+You cannot fabricate a history. The latest hash IS the identity proof.
+
+Growth rate: 32 bytes/month = 384 bytes/year = 3.84 KB over 10 years.
+
+### Compression Strategies
+
+Three levels prevent bloat:
+
+1. **Semantic compression**: AI summarizes repeated patterns into single entries.
+   "Had 47 conversations about React" → 1 line, not 47.
+
+2. **Structural deduplication**: Stable preferences stored once.
+   "User prefers dark mode" is never duplicated across ring promotions.
+
+3. **Cryptographic compression**: Old memories become 32-byte hashes.
+   Infinite history, fixed storage cost.
+
+### Agent Performance Impact
+
+- Ring 0 + Ring 1 loaded on every session (~6-20 KB = working memory)
+- Ring 2 + Ring 3 lazy-loaded only for identity verification or deep recall
+- Total load time: negligible (64 KB max, smaller than a typical avatar image)
+
+### Production Resilience
+
+**Normal restart (Gateway graceful shutdown):**
+```
+1. SIGTERM received → save current identity to disk (atomic write)
+2. Flush audit log buffer
+3. Release file locks
+4. Exit cleanly
+→ On restart: load identity.enc → verify Ring 3 chain → resume
+→ Zero data loss. All memories, chain state, and meta are on disk.
+```
+
+**Abnormal crash (kill -9, OOM, power loss):**
+```
+1. Atomic writes guarantee: file is either complete-new or complete-old, never half
+2. Automatic backup: identity.enc.bak updated on every successful save
+3. Breadcrumb 1-behind tolerance:
+   If breadcrumb == identity.counter - 1, auto-repair (crash during save)
+   If breadcrumb < identity.counter - 1, real rollback attack → reject
+4. Worst case loss: the single most recent memory that was in RAM but not yet saved
+   (window: ~5ms between addMemory() in-memory push and save() to disk)
+→ Identity itself is never lost or corrupted.
+```
+
+**Summarizer outage (LLM unavailable during promotion):**
+```
+1. Retry with exponential backoff: 1s → 5s → 30s → 5min (max 3 retries)
+2. After retries exhausted: fallback to simple concatenation summarizer
+   (lower quality summaries, but chain doesn't break)
+3. Audit log: "promotion_fallback" event so owner knows quality degraded
+4. Ring 0 overflow: at 90% capacity with promotion failing,
+   drop lowest-priority entries (source="heartbeat") before rejecting writes
+5. "moci status" shows: "⚠ Promotion overdue by N days" if last promotion > 48h ago
+```
+
+**Disk full:**
+```
+1. Before every write: check available space
+2. If below 1MB: enter read-only emergency mode
+   - Stop writing memories and audit log
+   - All read operations still work (verify, status, CIT verify)
+   - Log "DISK_FULL" warning to stderr (once, not per-operation)
+3. Resume normal operation when space becomes available
+```
+
+**File system without permission support (FAT32, some network drives):**
+```
+Warning: mode 0o600 is silently ignored on these file systems.
+Identity files may be readable by other users on the same machine.
+For production deployments, use a file system that supports Unix permissions
+(ext4, APFS, NTFS with ACLs). This is documented in README.
+```
+
+### Memory Chain Security
+
+The memory chain is the foundation of MOCI's clone resistance. If it can be
+injected, tampered with, flooded, or manipulated by the agent itself, the entire
+identity system collapses.
+
+**Full implementation details: read `references/memory-security.md`**
+(sections 3a–3k with code samples, attack/defense pairs, and edge case solutions).
+
+Summary of all mechanisms:
+
+```
+3a. Write-Gate         → Caller token auth, HMAC per entry, allowlist
+3b. Anti-Injection     → 3-layer sanitizer (input cleaning / hardened prompt / output validation)
+3c. Anti-Tamper        → AES-256-GCM file encryption, chain recomputation on load
+3d. Anti-Rollback      → Breadcrumb file with monotonic promotion counter
+3e. Anti-Flood         → Adaptive rate limits (3x per-agent baseline, not fixed thresholds)
+3f. Anti-Replay        → Monotonic sequence number baked into each HMAC
+3g. Agent Self-Mod     → Agent NEVER has write access; writes are Gateway-level only
+3h. Promotion Checks   → Pre-check HMACs + post-check chain integrity
+3i. Key Management     → Tier 1 auto (device fingerprint) / Tier 2 passphrase / Tier 3 HSM
+3j. Gateway Defense    → Adaptive anomaly detection, soft degradation (never hard-freeze)
+3k. Edge Cases         → Model upgrade markers, monotonic clock, promotion locking, export key bundling
+```
+
+**Trust model at a glance:**
+
+```
+WHO can write?       → Only Gateway, heartbeat, moci skill (allowlist)
+WHAT can be written? → Max 1KB per entry, sanitized, rate-limited
+HOW is it sealed?    → HMAC per entry, AES-256-GCM per file, breadcrumb counter
+HOW is key managed?  → Tier 1 auto / Tier 2 passphrase / Tier 3 HSM (zero install at all tiers)
+WHO CANNOT write?    → The agent itself, other skills, external callers
+WHAT detects issues? → GCM tag, HMAC check, chain recompute, breadcrumb, adaptive anomaly
+HOW does it degrade? → Soft (flag → notify → quarantine), never hard-freeze
+OTHER SKILLS?        → MOCI is a leaf node, never blocks other skills
+```
+
+**Key management passphrase retrieval priority** (no extra software needed):
+
+```
+1. Environment variable:   MOCI_PASSPHRASE=...        (Docker, CI/CD, VPS)
+2. Config command:          passphrase_command: "..."      (Vault, AWS SM, pass)
+3. System keychain:         auto-detected if available     (macOS/Win/Linux desktop)
+4. Interactive prompt:      "Enter passphrase: ********"   (local desktop with TTY)
+5. Fallback:                Tier 1 device fingerprint      (no passphrase, no export)
+```
+
+---
+
+## 4. Dual-Factor Authentication
+
+### The Principle
+
+```
+Identity proof requires BOTH:
+  Factor 1: Cryptographic key (the key file / export package)
+  Factor 2: Memory chain continuity (Ring 3 hash matches)
+```
+
+| Scenario              | Key file | Memory chain | Result                    |
+|-----------------------|----------|--------------|---------------------------|
+| Legitimate agent       | Valid    | Matches      | Authenticated             |
+| Stolen key only       | Valid    | Mismatch     | Rejected — no history     |
+| Copied memory only    | Missing  | Present      | Rejected — can't sign     |
+| Clone (key + snapshot)| Valid    | Diverges 24h | Fork detected, quarantine |
+
+### Verification Challenge Protocol
+
+```
+1. Server sends: random nonce + "provide ring3_hash_N"
+2. Agent computes hash_N from its local memory chain
+3. Agent signs (nonce + hash_N) with its session key
+4. Server verifies:
+   a. Signature valid? (key factor)
+   b. hash_N matches stored digest? (memory factor)
+   c. Both pass → authenticated
+   d. Signature valid but hash mismatch → FORK DETECTED
+5. On fork: quarantine both instances, alert owner
+```
+
+### Anti-Clone Defense
+
+This is the core innovation. A clone starts from a key + memory snapshot but
+immediately diverges from the original because the real Agent keeps accumulating
+new Ring 0 memories. Within one promotion cycle (24h), the Ring 3 chains diverge.
+
+Detection timeline:
+- Clone created at T=0, snapshot of memory at T=0
+- Real agent has new interactions from T=0 to T+24h
+- At T+24h, Ring 0 flushes → Ring 1 updates → Ring 3 hash advances
+- Clone's Ring 3 hash_N ≠ Real agent's hash_N → fork detected
+- Both instances quarantined until owner resolves
+
+---
+
+## 5. Infrastructure Tiers
+
+### v0 — Serverless (local only)
+
+Everything runs on-device. No network required.
+
+```
+Skill file stores:
+{
+  "moci_id": "CW-NOVA.R7KM-E2",
+  "layer0_hash": keccak256(moci_id + local_passphrase),
+  "memory": {
+    "ring0": [...],
+    "ring1": [...],
+    "ring2": [...],
+    "ring3_chain": ["hash_0", "hash_1", ...]
+  },
+  "created_at": 1711234567000,
+  "version": "0.1.0"
+}
+```
+
+Limitations: no cross-device sync, no multi-agent coordination, no recovery
+if device is lost (unless mnemonic is backed up separately).
+
+### v1 — Lightweight Relay
+
+A key-value store (Cloudflare KV, IPFS pin, GitHub Gist) maps MOCI to
+its current Ring 3 digest. Enables cross-device sync and basic recovery.
+
+### v2 — Full Identity Server
+
+Required for: multi-agent coordination, enterprise namespaces, token rotation,
+rate limiting, audit trail, HSM-backed secrets, blind indexing.
+
+---
+
+## 6. Identity Export & Import
+
+### Export Package
+
+Three export methods, all AES-256-GCM encrypted with user passphrase:
+
+1. **File export**: `.enc` file with opaque filename (hash-based, does not
+   contain the MOCI). Example: `moci-export-a7f3e21b.enc`
+
+2. **QR code**: Compressed + encrypted payload for device-to-device transfer.
+
+3. **Recovery phrase**: 12-word BIP-39 style mnemonic that derives the
+   encryption key. This is the "break glass" recovery method.
+   Example: `moci orbit frame pulse drift nexus spark veil ridge echo bloom gate`
+
+### Import Flow
+
+```
+1. User provides export file/QR/mnemonic + passphrase
+2. Decrypt package → extract key + memory
+3. Verify Ring 3 chain integrity (each hash depends on predecessor)
+4. If chain is valid → identity restored
+5. If chain has gaps → partial restore, flag for owner review
+```
+
+### Security Rules for Export
+
+- Recovery phrase NEVER touches the server (derived locally)
+- The system NEVER asks for the recovery phrase in any flow
+- Display warnings during export: "MOCI will never ask for these words"
+- Consider Shamir secret sharing (2-of-3 splits) for high-value identities
+
+---
+
+## 7. Security Threat Matrix
+
+Read `references/threat-matrix.md` for the full analysis of all 10 identified
+threat vectors including severity ratings and mitigation status.
+
+### Critical priorities (must address before production):
+
+1. **Token replay attack** — Stolen auth token reused for impersonation.
+   Mitigation: time-bound JWT (15-min), nonce per request, token rotation.
+
+2. **Registration server compromise** — Attacker controls ID issuance.
+   Mitigation: HSM for server secret, multi-sig registration (2-of-3), merkle audit log.
+
+3. **ID enumeration** — Brute-force scanning for valid IDs.
+   Mitigation: Rate-limit validation endpoints, timing-safe comparison, server-side CRC pepper.
+
+4. **Agent tool-call ID leakage** — Agent discovers its own ID via tool outputs.
+   Mitigation: Redaction proxy strips MOCI patterns from all tool responses.
+
+5. **Cross-agent impersonation** — Agent A claims to be Agent B in multi-agent flows.
+   Mitigation: Transport-layer signing, identity never in message content.
+
+6. **Recovery phrase social engineering** — Owner tricked into revealing mnemonic.
+   Mitigation: Education flow during first export, optional Shamir splitting.
+
+7. **Database leak of Layer 0 hashes** — Breach exposes hash mapping table.
+   Mitigation: Per-row encryption, blind indexing (HMAC-based lookups).
+
+8. **Session token rotation failure** — Stale tokens expand attack window.
+   Mitigation: Rotate every 15 min or N calls, sliding-window validity.
+
+9. **Name squatting / impersonation** — Confusable name registration.
+   Mitigation: Crockford Base32 removes O/I/L, add confusable detection layer.
+
+10. **Identity marketplace** — Trading MOCIs for reputation arbitrage.
+    Mitigation: Behavioral binding, anomaly detection on pattern changes.
+
+---
+
+## 8. MOCI in Skill Context: Identity Token (CIT)
+
+### The problem with plaintext headers
+
+Passing identity as HTTP headers (`X-MOCI: ...`) is insecure — headers
+can be forged by any client, proxy, or malicious skill in the request chain.
+A skill that trusts a header is trusting a sticky note.
+
+### Solution: MOCI Identity Token (CIT)
+
+The Gateway issues a **short-lived, HMAC-signed token** for each skill call.
+The skill verifies the signature independently. It trusts the cryptography,
+not the header.
+
+```
+CIT payload:
+{
+  moci_id:      "CW-NOVA.R7KMX2-E2",
+  ring3_head:   "a8f3c2...",            // memory chain head
+  trust_score:  72,
+  issued_at:    1711234567000,
+  expires_at:   1711234627000,          // +60 seconds TTL
+  nonce:        "x9f3k2m8",            // single-use, prevents replay
+  skill_target: "skill:weather"        // bound to one specific skill
+}
+
+Signature:
+  sig = HMAC-SHA256(JSON.stringify(payload), GATEWAY_SIGNING_KEY)
+
+Delivered as two headers:
+  X-MOCI-Token: base64(payload)
+  X-MOCI-Sig:   sig
+```
+
+### What each field prevents
+
+| Field | Prevents | How |
+|-------|----------|-----|
+| `expires_at` (60s TTL) | Token replay from logs | Stale after 60 seconds |
+| `nonce` | Replay within TTL window | Skill tracks seen nonces, rejects duplicates |
+| `skill_target` | Skill-to-skill impersonation | Token for skill:weather rejected by skill:email |
+| `HMAC signature` | Header forgery | Only Gateway holds the signing key |
+| `ring3_head` | Clone using stolen token | Memory chain digest must match current state |
+
+### 5 forgery attacks and why CIT blocks them all
+
+```
+Attack 1 — Header injection:
+  Attacker sets X-MOCI-Token manually.
+  → Signature check fails (no signing key). BLOCKED.
+
+Attack 2 — Session replay:
+  Attacker captures token from logs.
+  → Token expired (60s TTL) or nonce already seen. BLOCKED.
+
+Attack 3 — Skill-to-skill impersonation:
+  Skill A passes its token to Skill B.
+  → skill_target mismatch. BLOCKED.
+
+Attack 4 — CRC brute force:
+  Attacker generates valid-format MOCI.
+  → No signed token for that ID. BLOCKED.
+
+Attack 5 — Prompt injection:
+  Agent text claims different identity.
+  → Skill reads identity from signed token, not agent text. BLOCKED.
+```
+
+### How a skill verifies identity (3 lines)
+
+```javascript
+import { verifyCIT } from "moci";
+
+async function handleRequest(req) {
+  const identity = await verifyCIT(
+    req.headers["x-moci-token"],
+    req.headers["x-moci-sig"],
+    { mySkillId: "skill:weather", verifyKey: VERIFY_KEY }
+  );
+  if (!identity.valid) return { error: "Identity verification failed" };
+
+  // identity.mociId     → "CW-NOVA.R7KMX2-E2" (verified, unforgeable)
+  // identity.trustScore → 72 (verified)
+  // identity.ring3Head  → "a8f3c2..." (verified)
+}
+```
+
+### Key distribution and hardening
+
+**v0: HMAC-SHA256 with per-skill keys + key pinning + scoped TTL**
+
+Each skill gets its own unique HMAC key. Compromising one skill's key cannot
+forge tokens for other skills. This is adequate for single-machine deployments
+(95%+ of OpenClaw users).
+
+```
+Key generation (on skill install):
+  Gateway generates: HMAC_KEY = randomBytes(32)
+  Writes to: ~/.openclaw/skills/{skill-name}/.moci-verify-key (mode 0o600)
+  Each skill has a DIFFERENT key. 50 skills = 50 independent keys.
+
+Key pinning (on first verification):
+  Skill computes: pin = sha256(HMAC_KEY)
+  Stores pin in: ~/.openclaw/skills/{skill-name}/.moci-key-pin
+  On every subsequent startup:
+    if sha256(current_key) !== stored_pin → REFUSE TO VERIFY
+    Log: "CIT key changed unexpectedly. Run: openclaw moci repin-key skill:X"
+  This detects silent key replacement by an attacker.
+
+Scoped TTL (per skill class):
+  Skills declare their expected operation duration at install:
+  {
+    "identity": { "cit_max_ttl": 60 }    // quick skill (default)
+    "identity": { "cit_max_ttl": 300 }   // long-running skill (max 5 min)
+  }
+  Gateway sets: expires_at = now + min(skill.cit_max_ttl, 300) * 1000
+  Hard cap: 300 seconds. No skill can request more.
+```
+
+**v1: Ed25519 asymmetric signing**
+
+When skills run on different machines, HMAC's shared-key model breaks —
+a skill with the key can forge tokens. Ed25519 fixes this:
+
+```
+Gateway holds: private key (signs CIT, never leaves the process)
+Skills hold:   public key (verifies CIT, CANNOT forge)
+
+sig = Ed25519.sign(payload, privateKey)      // Gateway
+valid = Ed25519.verify(payload, sig, pubKey) // Skill
+
+Node.js built-in: crypto.sign('ed25519', ...) since v15. Zero dependencies.
+32-byte public key, 64-byte signature, microsecond computation.
+One public key for all skills (no per-skill key management).
+```
+
+**v2: Token binding + HSM**
+
+Tokens are bound to their transport context — extracted tokens can't be
+replayed in a different context:
+
+```
+CIT payload (v2 fields):
+{
+  ...existing fields...,
+  session_id:   "sess_7f3a...",           // bound to Gateway session
+  request_hash: keccak256(request_body),  // bound to this specific request
+}
+
+Token stolen from one session → mismatch in another session.
+Token stolen for one request → mismatch for a different request.
+This is the same principle as OAuth 2.0 DPoP (RFC 9449).
+
+Private key stored in HSM (AWS CloudHSM / YubiHSM).
+Never in application memory. Near-zero forgery risk.
+```
+
+### CIT security properties by tier
+
+```
+             v0 (HMAC)           v1 (Ed25519)      v2 (Ed25519+HSM)
+Signing:     HMAC-SHA256         Ed25519            Ed25519 in HSM
+Key scope:   Per-skill key       1 public key       Cert chain per skill
+Key pinning: File-based pin      Pin + rotation     CA trust chain
+TTL:         Per-skill 60-300s   + token refresh    + per-request
+Nonce store: In-memory           File-persisted     Redis/shared
+Binding:     skill_target only   + session_id       + request_hash
+Forgery:     Requires fs access  Public key only    Key in hardware
+```
+
+### The agent still cannot see its own identity
+
+The CIT is exchanged between Gateway and skill at the transport layer.
+The agent's context window still receives only:
+
+```
+authenticated: true
+session_valid: true
+```
+
+The agent CANNOT access its own MOCI, CIT token, or verification key
+through any tool call, prompt injection, or API response. The redaction
+proxy strips all identity patterns (including CIT payloads) before they
+reach the agent.
+
+### Skill operations
+
+This skill supports these operations when invoked:
+
+- `generate` — Create a new MOCI (with optional name input)
+- `validate` — Check if a MOCI string is well-formed (CRC check)
+- `verify` — Full dual-factor verification (key + memory chain)
+- `verify-cit` — Verify a MOCI Identity Token from another skill
+- `export` — Package identity for transfer (requires owner passphrase)
+- `import` — Restore identity from export package
+- `rotate` — Advance Ring 0 → Ring 1 promotion (manual trigger)
+- `rotate-key` — Regenerate CIT signing/verify keys
+- `repin-key` — Accept a new verify key after key rotation
+- `status` — Show current ring sizes, last promotion time, chain length
+
+---
+
+## 9. ACP Provenance Integration
+
+OpenClaw 3.8+ includes ACP Provenance — metadata attached to incoming ACP sessions
+that identifies who sent a request. MOCI serves as the identity data source for
+ACP Provenance, turning it from "I know where this came from" into "I can
+cryptographically verify who this is."
+
+### How it works
+
+ACP Provenance has three modes: `off`, `meta`, `meta+receipt`.
+MOCI hooks into the `meta` and `meta+receipt` modes:
+
+```
+# Enable ACP Provenance with MOCI backing
+openclaw acp --provenance meta
+
+# With receipt (auditable chain of who triggered what)
+openclaw acp --provenance meta+receipt
+```
+
+When MOCI is installed, the provenance metadata is enriched:
+
+```json
+{
+  "provenance": {
+    "origin": "acp",
+    "session_trace_id": "sess_7f3a...",
+    "moci_id": "CW-NOVA.R7KM-E2",
+    "ring3_head": "a8f3c2...",
+    "trust_score": 87,
+    "verified_at": "2026-03-22T10:30:00Z"
+  }
+}
+```
+
+Without MOCI, ACP Provenance only knows "this came from gateway X."
+With MOCI, it knows "this came from a specific, verified agent with a
+continuous memory chain of N months."
+
+### Multi-agent identity verification
+
+In multi-agent workflows where Agent A delegates to Agent B:
+
+```
+1. Agent A sends ACP message to Agent B
+2. Gateway attaches A's MOCI provenance to the message
+3. Agent B's runtime verifies:
+   a. A's CRC is valid (instant, no network)
+   b. A's Ring 3 digest matches the last known value (fork check)
+   c. A's trust score meets B's minimum threshold
+4. If all pass → message processed
+5. If fork detected → message quarantined, owner alerted
+```
+
+This solves the cross-agent impersonation problem (Threat #7) at the protocol level.
+
+---
+
+## 10. OpenClaw Gateway Integration
+
+### Configuration
+
+Add MOCI to your `~/.openclaw/openclaw.json`:
+
+```json
+{
+  "skills": {
+    "moci": {
+      "enabled": true,
+      "config": {
+        "identity_file": "~/.openclaw/moci-identity.enc",
+        "auto_promote": true,
+        "promote_schedule": "0 4 * * *",
+        "trust_score_enabled": true,
+        "acp_provenance": "meta+receipt",
+        "redaction_patterns": [
+          "CW-[A-Z0-9]{2,12}\\.[A-Z0-9]{4}-[A-Z0-9]{2}"
+        ]
+      }
+    }
+  }
+}
+```
+
+### Key configuration fields
+
+| Field | Default | Purpose |
+|-------|---------|---------|
+| `identity_file` | `~/.openclaw/moci-identity.enc` | Encrypted identity + memory store |
+| `auto_promote` | `true` | Automatically run ring promotion on schedule |
+| `promote_schedule` | `0 4 * * *` | Cron expression for ring promotion (4am daily) |
+| `trust_score_enabled` | `false` | Compute and expose trust score in ACP metadata |
+| `acp_provenance` | `off` | ACP Provenance mode: `off`, `meta`, `meta+receipt` |
+| `redaction_patterns` | `[]` | Regex patterns to strip from agent tool outputs |
+
+### Heartbeat integration
+
+Use OpenClaw's heartbeat system to trigger ring promotion automatically:
+
+```yaml
+# In agent config
+heartbeat:
+  enabled: true
+  schedule: "0 4 * * *"   # 4am daily
+  task: |
+    Run moci rotate to promote memory rings.
+    After promotion, report status with moci status.
+    If ring3_chain_length increased, log the new hash.
+```
+
+### Multi-agent shared memory isolation
+
+When multiple agents share a workspace via OpenClaw's shared memory:
+
+```yaml
+# Agent A — has its own MOCI
+shared:
+  - path: ~/.openclaw/shared/pipeline
+    access: readwrite
+
+# Agent B — different MOCI, same shared path
+shared:
+  - path: ~/.openclaw/shared/pipeline
+    access: readwrite
+```
+
+MOCI ensures identity isolation even in shared memory scenarios:
+- Each agent's memory rings are stored in its OWN identity file, never in shared paths
+- Shared memory is for collaboration data (task outputs, research briefs)
+- Identity data (rings, keys, hashes) never touches shared paths
+- If Agent A writes to shared memory, ACP Provenance tags the write with A's MOCI
+
+### First-time setup flow
+
+```bash
+# 1. Install the skill
+openclaw skill install moci
+
+# 2. Generate identity (interactive)
+openclaw moci generate
+# → Choose a name? (or press Enter for auto): NOVA
+# → Set a passphrase for encryption: ********
+# → Identity created: CW-NOVA.R7KM-E2
+# → Saved to ~/.openclaw/moci-identity.enc
+
+# 3. Verify it works
+openclaw moci status
+# → MOCI: CW-NOVA.R7KM-E2
+# → Age: 0 days
+# → Ring 0: 0 entries | Ring 1: 0 | Ring 2: 0 | Ring 3: 1 hash
+# → Trust score: 10 (new identity)
+
+# 4. Enable ACP Provenance (optional)
+openclaw acp --provenance meta+receipt
+```
+
+---
+
+## 11. Trust Score System
+
+Trust score is a computed metric derived from the memory chain. It quantifies
+how "established" and "continuous" an identity is. Higher scores mean the agent
+has a longer, unbroken history of verified interactions.
+
+### Scoring formula
+
+```
+trust_score = base + age_bonus + continuity_bonus + verification_bonus
+
+Where:
+  base            = 10                          (every new identity starts here)
+  age_bonus       = min(ring3_chain_length * 3, 30)   (max 30 points for 10+ months)
+  continuity_bonus = consecutive_promotions * 2        (max 40 points for 20+ unbroken)
+  verification_bonus = successful_verifications / 10   (max 20 points)
+
+  Total range: 10 — 100
+```
+
+### What breaks continuity
+
+- Missing a scheduled ring promotion (agent was offline for 48h+)
+- Fork detection event (even if resolved)
+- Identity import from backup (resets continuity counter, not age)
+- Manual Ring 3 tampering (chain integrity check fails)
+
+### Trust score tiers
+
+| Score | Tier | Meaning |
+|-------|------|---------|
+| 10-24 | New | Just registered, no history |
+| 25-49 | Established | Active for 1-3 months |
+| 50-74 | Trusted | 3-6 months continuous operation |
+| 75-89 | Veteran | 6+ months, strong continuity |
+| 90-100 | Core | 10+ months, zero interruptions |
+
+### Usage in access control
+
+Other skills and agents can gate actions based on trust score:
+
+```yaml
+# Example: only accept delegated tasks from agents with trust >= 50
+acp:
+  provenance: meta
+  min_trust_score: 50
+  action_on_low_trust: reject_with_reason
+```
+
+---
+
+
+---
+
+## 12. Identity Lifecycle Management
+
+Details available in the protocol specification.
+
+Identity states: `active → suspended → revoked → deleted`
+
+```
+suspend:  CIT tokens stop being issued. Owner can resume. Reversible.
+revoke:   Ring 3 gets REVOKED terminator hash. Permanent. Cannot be undone.
+delete:   Secure file wipe + tombstone. Prevents re-registration of same ID.
+```
+
+CLI: `openclaw moci suspend | resume | revoke --confirm | delete --confirm`
+
+---
+
+## 13. Owner / Sponsor Binding
+
+Details available in the protocol specification.
+
+Optional link between MOCI and a human owner. Stored as salted hash only
+(no plaintext PII). Not mandatory for v0 — prompted at Tier 2 upgrade.
+
+```
+meta.owner_hash = keccak256(owner_email + device_salt)  // can't be reversed
+meta.owner_type = "email" | "github" | "custom"
+```
+
+Enables: recovery, accountability, enterprise admin control, compliance.
+Privacy: hash is not PII, GDPR-compatible, never in CIT or ACP metadata.
+
+---
+
+## 14. Delegation Chain Tracking
+
+Details available in the protocol specification.
+
+CIT tokens carry a `delegation_chain` array recording the full authority path:
+
+```
+human (user@email.com) → CW-NOVA → CW-APEX → skill:weather
+```
+
+Each link added by Gateway (agents cannot modify the chain).
+Skills can enforce max chain depth (default: 5). Enables full audit traceability.
+
+---
+
+## 15. Structured Audit Log
+
+Details available in the protocol specification.
+
+Append-only JSONL at `~/.openclaw/.moci-audit.jsonl`:
+
+```
+Events logged: identity_created, cit_issued/verified/rejected, memory_write,
+promotion, anomaly_detected, key_rotation, status_change, fork_detected,
+export_created, delegation_chain_created
+```
+
+Properties: append-only, auto-rotating (1MB), tamper-detected (HMAC chain).
+CLI: `openclaw moci audit-tail | audit-query | audit-export | audit-verify`
+Compliance: SOC 2, HIPAA, GDPR, NIST mapped.
+
+## 16. Competitive Landscape & Differentiation
+
+### Existing solutions in the OpenClaw ecosystem
+
+| Skill | What it does | How MOCI differs |
+|-------|-------------|---------------------|
+| `agent-signet-id` | External trust score + API key | MOCI is self-sovereign, no external dependency |
+| `identity-persistence` | Structured identity graph | MOCI adds cryptographic verification + memory chain |
+| `identity-resolver` | Cross-channel user resolution | MOCI is agent identity, not user identity |
+| `hyperstack` | Provenance graph (what agent knew) | MOCI proves WHO the agent is, not WHAT it knew |
+| Billions Verified Identity | Human-backed verification | MOCI is autonomous, no human attestation required |
+
+### MOCI's unique differentiator
+
+No existing solution uses **memory continuity as an identity factor**.
+Every competitor relies on static credentials (API keys, tokens, certificates).
+MOCI is the only system where identity is proven by ongoing lived experience
+— making it the only clone-resistant agent identity protocol.
+
+### Industry alignment
+
+NIST's AI Agent Standards Initiative (Feb 2026) identifies three pillars:
+agent interoperability, agent security research, and agent identity infrastructure.
+MOCI directly addresses the third pillar.
+
+The NIST concept paper on "AI Agent Identity and Authorization" calls for
+identity mechanisms adapted to agents' unique attributes: ephemeral lifespans,
+delegated authority, and cross-domain execution. MOCI's memory ring system
+addresses the first (identity survives restarts), dual-factor auth addresses
+the second (delegation requires both key and memory), and ACP integration
+addresses the third (identity travels across agent boundaries).
+
+---
+
+## 17. NIST Compliance Mapping
+
+Mapping MOCI capabilities to NIST AI Agent Identity requirements
+(based on the NIST CAISI concept paper, February 2026).
+
+| NIST Requirement | MOCI Coverage | Status |
+|-----------------|-----------------|--------|
+| Unique agent identification | MOCI format (CW-NAME.SUFFIX-CRC) | Ready |
+| Agent authentication | Dual-factor: key + memory chain | Ready |
+| Authorization scoping | Trust score + CIT scopes (v2) | Partial |
+| Audit trail | Structured audit log (JSONL + HMAC chain) | Ready |
+| Credential lifecycle | CIT TTL + key rotation + identity lifecycle | Ready |
+| Cross-domain identity | ACP Provenance carries MOCI across agents | Ready |
+| Delegation tracking | Delegation chain in CIT tokens | Ready |
+| Identity revocation | Suspend / revoke / delete + tombstone | Ready |
+| Non-repudiation | Ring 3 hash chain + audit log HMAC chain | Ready |
+| Privacy preservation | Owner hash (no PII), agent never sees own ID | Ready |
+| Accountability | Owner / sponsor binding (optional) | Ready |
+
+### Compliance documentation
+
+For regulated deployments, MOCI provides:
+
+1. **Identity provenance report**: Export a signed document showing
+   the full Ring 3 chain with timestamps, proving continuous existence.
+
+2. **Fork detection audit log**: Every fork event, resolution, and
+   quarantine action is logged with timestamps and involved MOCIs.
+
+3. **Trust score history**: Monthly snapshots of trust score changes,
+   showing the agent's reliability trajectory over time.
+
+Generate compliance reports:
+
+```bash
+openclaw moci compliance-report --format json --output report.json
+openclaw moci compliance-report --format pdf --output report.pdf
+```
+
+---
+
+## 18. Implementation Checklist
+
+### v0 (MVP — no server)
+- [ ] ID generation function (Crockford Base32 + CRC-8 + rejection sampling)
+- [ ] Device salt generation (256-bit CSPRNG, auto on first run)
+- [ ] Name validation (blocked names, length check)
+- [ ] Memory ring data structure (JSON in skill file)
+- [ ] Ring promotion cycle (daily flush)
+- [ ] Memory chain security (write-gate, HMAC, sanitizer, rate limits)
+- [ ] Local key derivation (device fingerprint Tier 1 / passphrase Tier 2)
+- [ ] Export to encrypted file (opaque filename, includes meta)
+- [ ] Import from encrypted file (HMAC re-signing, meta restore)
+- [ ] Validate function (CRC check, no expected-value leakage)
+- [ ] CIT creation + verification (per-skill key, key pinning, scoped TTL)
+- [ ] Trust score computation (local)
+- [ ] Identity lifecycle (suspend / revoke / delete / tombstone)
+- [ ] Owner binding (optional, hash-only, prompted at Tier 2 upgrade)
+- [ ] Structured audit log (JSONL, append-only, HMAC chain, rotation)
+- [ ] `openclaw moci` CLI commands (all operations)
+
+### v1+ (planned)
+
+Future versions will add cross-device sync, asymmetric signing, and enterprise features.
+Details will be published as development progresses.

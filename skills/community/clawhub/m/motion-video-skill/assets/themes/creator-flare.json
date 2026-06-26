@@ -1,0 +1,17 @@
+{
+  "id": "creator-flare",
+  "label": "Creator Flare",
+  "description": "高饱和霓虹撞色，适合短视频和社媒亮点讲解。",
+  "fontDisplay": "'Avenir Next', 'PingFang SC', 'Microsoft YaHei', sans-serif",
+  "fontBody": "'Avenir Next', 'PingFang SC', 'Microsoft YaHei', sans-serif",
+  "bg": "radial-gradient(circle at 20% 18%, rgba(255, 99, 132, 0.20), transparent 30%), radial-gradient(circle at 82% 14%, rgba(84, 214, 255, 0.18), transparent 24%), linear-gradient(135deg, #130E25 0%, #241341 50%, #120B20 100%)",
+  "surface": "rgba(33, 20, 58, 0.62)",
+  "surfaceStrong": "rgba(39, 24, 66, 0.92)",
+  "textPrimary": "#FFF7FB",
+  "textSecondary": "#F0DDF8",
+  "accent": "#FF5D8F",
+  "accentSoft": "rgba(255, 93, 143, 0.18)",
+  "accentAlt": "#54D6FF",
+  "outline": "rgba(255, 255, 255, 0.18)",
+  "shadow": "0 24px 60px rgba(12, 5, 25, 0.32)"
+}

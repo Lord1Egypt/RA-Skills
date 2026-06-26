@@ -1,0 +1,15 @@
+{
+  "name": "nft-floor-price-monitor",
+  "version": "1.0.0",
+  "description": "Monitor NFT collection floor prices and send Discord DM alerts when floors hit target levels",
+  "main": "scripts/floor_monitor.py",
+  "scripts": {
+    "start": "uv run python scripts/floor_monitor.py --help"
+  },
+  "keywords": ["nft", "floor-price", "blur", "opensea", "monitor", "alerts"],
+  "author": "9527Craft",
+  "license": "MIT",
+  "dependencies": {
+    "requests": ">=2.28.0"
+  }
+}

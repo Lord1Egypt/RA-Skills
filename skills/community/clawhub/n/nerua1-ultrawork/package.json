@@ -1,0 +1,21 @@
+{
+  "name": "ultrawork",
+  "version": "1.0.0",
+  "description": "High-performance task execution with PID tracking",
+  "author": "nerua1 <nerudek.vibecoder@gmail.com>",
+  "license": "MIT",
+  "type": "skill",
+  "main": "SKILL.md",
+  "keywords": ["openclaw", "skill", "ai-agent"],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nerua1/ultrawork"
+  },
+  "bugs": {
+    "url": "https://github.com/nerua1/ultrawork/issues"
+  },
+  "homepage": "https://github.com/nerua1/ultrawork#readme",
+  "engines": {
+    "openclaw": ">=2026.4.0"
+  }
+}

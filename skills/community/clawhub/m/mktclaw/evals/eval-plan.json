@@ -1,0 +1,70 @@
+{
+  "skill_name": "mktclaw",
+  "version": "5.5.0",
+  "plan_version": "2.0",
+  "updated": "2026-06-14",
+  "description": "MktClaw v5.5.0 评测计划 — 覆盖 Intake/Router/10种Agent角色/Brief模板/方法论/Triple Loop (L7-L6.5)/合规/国际化",
+  "goals": [
+    "验证 Intake Agent 能正确识别两种工作模式(快速/标准)",
+    "验证 Router 能正确路由到 10 种 Agent 角色",
+    "验证 Brief 模板在快速模式下被正确使用",
+    "验证各 Agent 能引用经典营销方法论",
+    "验证 Benchmark 数据被正确引用兜底",
+    "验证危机公关强制升级路径被触发",
+    "验证 Triple Loop 闭环 (L7 Monitor → L7.5 Feedback → L6 Learning → L6.5 Update)",
+    "验证 L5 Validator 量化门禁",
+    "验证国际化 8 个海外市场行业知识引用"
+  ],
+  "coverage_dimensions": {
+    "mode_coverage": {
+      "description": "两种工作模式全部覆盖",
+      "target_evals": [1, 2, 3, 13],
+      "expected_pass_rate": ">=85%"
+    },
+    "role_coverage": {
+      "description": "10 种 Agent 角色全部覆盖",
+      "target_evals": [6, 7, 8, 9, 10, 11, 12, 14, 15, 16],
+      "expected_pass_rate": ">=80%"
+    },
+    "triple_loop": {
+      "description": "Triple Loop 全链路 (L7→L7.5→L6→L6.5) 覆盖",
+      "target_evals": [61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75],
+      "expected_pass_rate": ">=80%"
+    },
+    "compliance": {
+      "description": "合规性检查(广告法/行业/平台三层)",
+      "target_evals": [7, 11, 15, 33, 34, 37],
+      "expected_pass_rate": ">=90%"
+    },
+    "international": {
+      "description": "国际化市场知识引用覆盖",
+      "target_evals": [48, 49, 50],
+      "expected_pass_rate": ">=75%"
+    }
+  },
+  "run_strategy": {
+    "iterations_per_eval": 3,
+    "total_runs": 75,
+    "estimated_tokens": 350000,
+    "estimated_minutes": 150,
+    "configs": ["with_skill", "without_skill"]
+  },
+  "quality_gates": {
+    "pass_threshold": 0.8,
+    "min_role_coverage": 0.8,
+    "delta_vs_baseline": "+0.30",
+    "critical_evals_must_pass": [1, 2, 4, 11, 61, 66]
+  },
+  "changelog": [
+    {
+      "version": "1.0",
+      "date": "2026-06-06",
+      "changes": "v4.3 新增 Brief/方法论/Benchmark/平台测试用例"
+    },
+    {
+      "version": "2.0",
+      "date": "2026-06-14",
+      "changes": "v5.5.0 更新：新增 Triple Loop 覆盖/国际化覆盖/L5门禁/合并为两种工作模式，eval 总数从 50 增至 75"
+    }
+  ]
+}

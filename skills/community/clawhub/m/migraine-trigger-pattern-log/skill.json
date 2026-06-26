@@ -1,0 +1,46 @@
+{
+  "slug": "migraine-trigger-pattern-log",
+  "name": "Migraine Trigger Pattern Log",
+  "displayName": "Migraine Trigger Pattern Log",
+  "version": "1.0.1",
+  "type": "prompt-flow",
+  "description": "Create a clinician-friendly migraine or recurring headache pattern log with episode timelines, possible context factors, medication response tracking, red-flag guidance, and an appointment summary.",
+  "author": "Golden Bean / coder",
+  "license": "MIT-0",
+  "category": "Health, Routine, and Fitness",
+  "triggerKeywords": [
+    "migraine trigger log",
+    "migraine tracker",
+    "headache pattern log",
+    "headache diary",
+    "migraine appointment summary",
+    "migraine symptoms tracker",
+    "migraine possible triggers",
+    "headache doctor prep",
+    "migraine medication response log",
+    "recurring headache notes"
+  ],
+  "tags": [
+    "health-literacy",
+    "migraine",
+    "headache",
+    "self-observation",
+    "doctor-prep",
+    "pattern-log"
+  ],
+  "language": "en",
+  "contentType": "document-only",
+  "hasExecutableCode": false,
+  "no_code_execution": true,
+  "no_network": true,
+  "no_credentials": true,
+  "requires_api": false,
+  "requiresApi": false,
+  "requires": {},
+  "file_count": 3,
+  "files": [
+    "SKILL.md",
+    "skill.json",
+    "ACCEPTANCE.md"
+  ]
+}

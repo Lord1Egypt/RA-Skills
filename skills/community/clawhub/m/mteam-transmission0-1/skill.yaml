@@ -1,0 +1,36 @@
+name: mteam_transmission_downloader
+version: "1.0.0"
+description: "通过 M-Team API 搜索影视种子，并发送到本地 Transmission 下载。"
+author: "Your Name"
+
+tools:
+  - name: search_mteam_torrents
+    description: |
+      当用户想要看某部电影、剧集或动漫时调用此工具。
+      它会在 M-Team 中搜索资源，并返回做种人数最多的前5个结果。
+      拿到结果后，你需要将这 5 个结果清晰地列出来，并询问用户想要下载哪一个序号。
+    parameters:
+      type: object
+      properties:
+        keyword:
+          type: string
+          description: "用户想要搜索的影视剧名称，例如 '奥本海默'"
+      required:
+        - keyword
+
+  - name: download_torrent
+    description: |
+      当用户从搜索结果中明确选择了一个种子后调用此工具。
+      它会下载对应的种子并将其推送到 Transmission 中。
+    parameters:
+      type: object
+      properties:
+        torrent_id:
+          type: string
+          description: "用户选择的种子的唯一 ID"
+        category:
+          type: string
+          description: "种子的分类 ID，用于判断下载目录"
+      required:
+        - torrent_id
+        - category

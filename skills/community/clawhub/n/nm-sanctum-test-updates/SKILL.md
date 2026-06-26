@@ -1,35 +1,381 @@
 ---
-name: "Nm Sanctum Test Updates"
-description: "Update, generate, and validate tests using git-workspace-review for change context"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/nm-sanctum-test-updates"
-sourceUrl: "https://clawhub.ai/skills/nm-sanctum-test-updates"
+name: test-updates
+description: |
+  Updates, generates, and validates tests using git-workspace context and TDD/BDD methodology
+version: 1.9.8
+triggers:
+  - tdd
+  - bdd
+  - testing
+  - quality-assurance
+  - test-generation
+  - pytest
+  - code changes require new or updated test coverage
+metadata: {"openclaw": {"homepage": "https://github.com/athola/claude-night-market/tree/master/plugins/sanctum", "emoji": "\ud83e\udd9e", "requires": {"config": ["night-market.test-driven-development", "night-market.git-workspace-review", "night-market.file-analysis"]}}}
+source: claude-night-market
+source_plugin: sanctum
 ---
 
-# Nm Sanctum Test Updates
+> **Night Market Skill** — ported from [claude-night-market/sanctum](https://github.com/athola/claude-night-market/tree/master/plugins/sanctum). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
 
-> Update, generate, and validate tests using git-workspace-review for change context
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/nm-sanctum-test-updates`
-- **Source URL:** [https://clawhub.ai/skills/nm-sanctum-test-updates](https://clawhub.ai/skills/nm-sanctum-test-updates)
+## Table of Contents
+
+- [Overview](#overview)
+- [Core Philosophy](#core-philosophy)
+- [What It Is](#what-it-is)
+- [Quick Start](#quick-start)
+- [Quick Checklist for First Time Use](#quick-checklist-for-first-time-use)
+- [detailed Test Update](#detailed-test-update)
+- [Targeted Test Updates](#targeted-test-updates)
+- [TDD for New Features](#tdd-for-new-features)
+- [Using the Scripts Directly](#using-the-scripts-directly)
+- [When to Use It](#when-to-use-it)
+- [Workflow Integration](#workflow-integration)
+- [Phase 1: Discovery](#phase-1:-discovery)
+- [Phase 2: Strategy](#phase-2:-strategy)
+- [Phase 3: Implementation](#phase-3:-implementation)
+- [Phase 4: Validation](#phase-4:-validation)
+- [Quality Assurance](#quality-assurance)
+- [Examples](#examples)
+- [BDD-Style Test Generation](#bdd-style-test-generation)
+- [Test Enhancement](#test-enhancement)
+- [Integration with Existing Skills](#integration-with-existing-skills)
+- [Success Metrics](#success-metrics)
+- [Troubleshooting FAQ](#troubleshooting-faq)
+- [Common Issues](#common-issues)
+- [Performance Tips](#performance-tips)
+- [Getting Help](#getting-help)
+
+
+# Test Updates and Maintenance
 
 ## Overview
 
+detailed test management system that applies TDD/BDD principles to maintain, generate, and enhance tests across codebases. This skill practices what it preaches - it uses TDD principles for its own development and serves as a living example of best practices.
 
-## Installation
-To install this skill, run the following command in your terminal:
+### Core Philosophy
+
+- **RED-GREEN-REFACTOR**: Strict adherence to TDD cycle
+- **Behavior-First**: BDD patterns that describe what code should do
+- **Invariant-Encoding**: Tests guard design decisions, not just behavior
+- **Meta Dogfooding**: The skill's own tests demonstrate the principles it teaches
+- **Quality Gates**: detailed validation before considering tests complete
+
+## What It Is
+
+A modular test management system that:
+- Discovers what needs testing or updating
+- Generates tests following TDD principles
+- Enhances existing tests with BDD patterns
+- Validate test quality through multiple lenses
+
+## Quick Start
+
+### Quick Checklist for First Time Use
+- [ ] validate pytest is installed (`pip install pytest`)
+- [ ] Have your source code in `src/` or similar directory
+- [ ] Create a `tests/` directory if it doesn't exist
+- [ ] Run `Skill(sanctum:git-workspace-review)` first to understand changes
+- [ ] Start with `Skill(test-updates) --target <specific-module>` for focused updates
+
+### detailed Test Update
 ```bash
-hermes skills install clawhub/nm-sanctum-test-updates
+# Run full test update workflow
+Skill(test-updates)
 ```
+**Verification:** Run `pytest -v` to verify tests pass.
+
+### Targeted Test Updates
+```bash
+# Update tests for specific paths
+Skill(test-updates) --target src/sanctum/agents
+Skill(test-updates) --target tests/test_commit_messages.py
+```
+**Verification:** Run `pytest -v` to verify tests pass.
+
+### TDD for New Features
+```bash
+# Apply TDD to new code
+Skill(test-updates) --tdd-only --target new_feature.py
+```
+**Verification:** Run `pytest -v` to verify tests pass.
+
+### Using the Scripts Directly
+
+**Human-Readable Output:**
+```bash
+# Analyze test coverage gaps
+python plugins/sanctum/scripts/test_analyzer.py --scan src/
+
+# Generate test scaffolding
+python plugins/sanctum/scripts/test_generator.py \
+    --source src/my_module.py --style pytest_bdd
+
+# Check test quality
+python plugins/sanctum/scripts/quality_checker.py \
+    --validate tests/test_my_module.py
+```
+**Verification:** Run `pytest -v` to verify tests pass.
+
+**Programmatic Output (for Claude Code):**
+```bash
+# Get JSON output for programmatic parsing - test_analyzer
+python plugins/sanctum/scripts/test_analyzer.py \
+    --scan src/ --output-json
+
+# Returns:
+# {
+#   "success": true,
+#   "data": {
+#     "source_files": ["src/module.py", ...],
+#     "test_files": ["tests/test_module.py", ...],
+#     "uncovered_files": ["module_without_tests", ...],
+#     "coverage_gaps": [{"file": "...", "reason": "..."}]
+#   }
+# }
+
+# Get JSON output - test_generator
+python plugins/sanctum/scripts/test_generator.py \
+    --source src/my_module.py --output-json
+
+# Returns:
+# {
+#   "success": true,
+#   "data": {
+#     "test_file": "path/to/test_my_module.py",
+#     "source_file": "src/my_module.py",
+#     "style": "pytest_bdd",
+#     "fixtures_included": true,
+#     "edge_cases_included": true,
+#     "error_cases_included": true
+#   }
+# }
+
+# Get JSON output - quality_checker
+python plugins/sanctum/scripts/quality_checker.py \
+    --validate tests/test_my_module.py --output-json
+
+# Returns:
+# {
+#   "success": true,
+#   "data": {
+#     "static_analysis": {...},
+#     "dynamic_validation": {...},
+#     "metrics": {...},
+#     "quality_score": 85,
+#     "quality_level": "QualityLevel.GOOD",
+#     "recommendations": [...]
+#   }
+# }
+```
+**Verification:** Run `pytest -v` to verify tests pass.
+
+## When To Use It
+
+**Use this skill when you need to:**
+- Update tests after code changes
+- Generate tests for new features
+- Improve existing test quality
+- validate detailed test coverage
+
+**Perfect for:**
+- Pre-commit test validation
+- CI/CD pipeline integration
+- Refactoring with test safety
+- Onboarding new developers
+
+## When NOT To Use
+
+- Auditing
+  test suites - use pensive:test-review
+- Writing production code
+  - focus on implementation first
+- Auditing
+  test suites - use pensive:test-review
+- Writing production code
+  - focus on implementation first
+
+## Workflow Integration
+
+### Phase 1: Discovery
+1. Scan codebase for test gaps
+2. Analyze recent changes
+3. Identify broken or outdated tests
+
+See `modules/test-discovery.md` for detection patterns.
+
+### Phase 2: Strategy
+1. Choose appropriate BDD style (see `modules/bdd-patterns.md`)
+2. Plan test structure
+3. Define quality criteria
+4. Identify design invariants to encode as tests
+
+### Phase 2.5: Invariant-Encoding Tests
+
+Before writing behavioral tests, identify the design
+invariants that the code relies on and write tests
+that would break if those invariants were violated.
+
+**What to encode:**
+
+- Module boundary constraints (A never imports from B)
+- Data flow direction (events flow publisher-to-subscriber,
+  never the reverse)
+- API contract shapes (public interfaces don't change
+  without versioning)
+- Data structure choices (if a map was chosen over a list,
+  test the properties that justify that choice)
+- Error handling strategies (fail-fast boundaries, recovery
+  zones)
+
+**Example:**
+
+```python
+def test_plugins_never_import_from_other_plugins():
+    """Encode the invariant: plugins are independent modules.
+
+    If this test breaks, someone is coupling plugins
+    directly. Present the 3 options to a human:
+    1. Preserve: revert the import, keep plugins independent
+    2. Layer: add a shared interface in leyline instead
+    3. Revise: merge the plugins (requires ADR)
+    """
+    for plugin_dir in plugin_dirs:
+        imports = extract_imports(plugin_dir)
+        for imp in imports:
+            assert not imp.startswith("plugins."), (
+                f"{plugin_dir} imports {imp} — "
+                f"violates plugin independence invariant"
+            )
+```
+
+**Why this matters:** Tests that encode invariants are
+load-bearing. When an agent later encounters a feature
+that clashes with the invariant, the test failure forces
+a conscious decision rather than a silent drift. Without
+these tests, bad invariant decisions compound until the
+codebase is unsalvageable.
+
+**When updating existing tests:**
+
+If an invariant-encoding test needs to change, do NOT
+silently update the assertion. Flag it for human review
+with the three options: preserve the invariant, layer
+on top, or revise the invariant. This is a judgment
+call that requires human wisdom — models default to
+the "average" of training data and get these wrong far
+too often.
+
+### Phase 3: Implementation
+1. Write failing tests (RED) - see `modules/tdd-workflow.md`
+2. Implement minimal passing code (GREEN)
+3. Refactor for clarity (REFACTOR)
+
+See `modules/test-generation.md` for generation templates.
+
+### Phase 4: Validation
+1. Static analysis and linting
+2. Dynamic test execution
+3. Coverage and quality metrics
+
+See `modules/quality-validation.md` for validation criteria.
+
+## Quality Assurance
+
+The skill applies multiple quality checks:
+- **Static**: Linting, type checking, pattern validation
+- **Dynamic**: Test execution in sandboxed environments
+- **Metrics**: Coverage, mutation score, complexity analysis
+- **Invariant**: Verify design-decision tests are not weakened
+- **Review**: Structured checklists for peer validation
+
+## Examples
+
+### BDD-Style Test Generation
+
+See `modules/bdd-patterns.md` for additional patterns.
+```python
+class TestGitWorkflow:
+    """BDD-style tests for Git workflow operations."""
+
+    def test_commit_workflow_with_staged_changes(self):
+        """
+        GIVEN a Git repository with staged changes
+        WHEN the user runs the commit workflow
+        THEN it should create a commit with proper message format
+        AND all tests should pass
+        """
+        # Test implementation following TDD principles
+        pass
+```
+**Verification:** Run `pytest -v` to verify tests pass.
+
+### Test Enhancement
+- Add edge cases and error scenarios
+- Include performance benchmarks
+- Add mutation testing for robustness
+
+See `modules/test-enhancement.md` for enhancement strategies.
+
+## Integration with Existing Skills
+
+1. **git-workspace-review**: Get context of changes
+2. **file-analysis**: Understand code structure
+3. **test-driven-development**: Apply strict TDD discipline
+4. **skills-eval**: Validate quality and compliance
+
+## Success Metrics
+
+- Test coverage > 85%
+- All tests follow BDD patterns
+- Zero broken tests in CI
+- Mutation score > 80%
+
+## Troubleshooting FAQ
+
+### Common Issues
+
+**Q: Tests are failing after generation**
+A: This is expected! The skill follows TDD principles - generated tests are designed to fail first. Follow the RED-GREEN-REFACTOR cycle:
+1. Run the test and confirm it fails for the right reason
+2. Implement minimal code to make it pass
+3. Refactor for clarity
+
+**Q: Quality score is low despite having tests**
+A: Check for these common issues:
+- Missing BDD patterns (Given/When/Then)
+- Vague assertions like `assert result is not None`
+- Tests without documentation
+- Long, complex tests (>50 lines)
+
+**Q: Generated tests don't match my code structure**
+A: The scripts analyze AST patterns and may need guidance:
+- Use `--style` flag to match your preferred BDD style
+- Check that source files have proper function/class definitions
+- Review the generated scaffolding and customize as needed
+
+**Q: Mutation testing takes too long**
+A: Mutation testing is resource-intensive:
+- Use `--quick-mutation` flag for subset testing
+- Focus on critical modules first
+- Run overnight for detailed analysis
+
+**Q: Can't find tests for my file**
+A: The analyzer uses naming conventions:
+- Source: `my_module.py` → Test: `test_my_module.py`
+- Check that test files follow pytest naming patterns
+- validate test directory structure is standard
+
+### Performance Tips
+
+- **Large codebases**: Use `--target` to focus on specific directories
+- **CI integration**: Run validation in parallel with other checks
+- **Memory usage**: Process files in batches for very large projects
+
+### Getting Help
+
+1. Check script outputs for detailed error messages
+2. Use `--verbose` flag for more information
+3. Review the validation report for specific recommendations
+4. Start with small modules to understand patterns before scaling

@@ -1,35 +1,44 @@
----
-name: "MiniMax MCP Search"
-description: "Perform real-time web searches and analyze images using MiniMax MCP with input prompts and flexible image sources."
-category: "creative"
-source: "ClawHub"
-tags: [image, mcp, minimax, search]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/minimax-mcp-v2"
-sourceUrl: "https://clawhub.ai/skills/minimax-mcp-v2"
----
+# MiniMax MCP Search Skill
 
-# MiniMax MCP Search
+## 功能
 
-> Perform real-time web searches and analyze images using MiniMax MCP with input prompts and flexible image sources.
+使用 MiniMax MCP 进行网络搜索和图像理解。通过 mcporter 调用 MiniMax Coding Plan MCP 服务。
 
-- **Category:** Creative
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/minimax-mcp-v2`
-- **Source URL:** [https://clawhub.ai/skills/minimax-mcp-v2](https://clawhub.ai/skills/minimax-mcp-v2)
+## 工具
 
-## Overview
+### 1. web_search - 网络搜索
 
+使用 MiniMax MCP 进行实时网络搜索，返回搜索结果和相关链接。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/minimax-mcp-v2
+**参数：**
+- `query` (string, 必需): 搜索关键词，建议 3-5 个关键词
+
+**返回：** 搜索结果列表，包含标题、链接、摘要和日期
+
+### 2. understand_image - 图像理解
+
+使用 MiniMax MCP 分析图片内容，支持本地文件路径和 HTTP/HTTPS URL。
+
+**参数：**
+- `image_path` (string, 必需): 图片路径，支持本地路径或 URL
+- `prompt` (string, 必需): 分析要求
+
+**支持格式：** JPEG、PNG、WebP
+
+## 使用方法
+
+**网络搜索示例：**
 ```
+搜索：最新AI新闻
+```
+
+**图像理解示例：**
+```
+分析图片：/path/to/image.jpg，描述图片内容
+```
+
+## 注意事项
+
+- 需要先安装 mcporter：`npm install -g mcporter`
+- 首次使用需配置 MiniMax API Key（已在配置文件中设置）
+- 图像理解支持本地文件和 HTTP/HTTPS URL

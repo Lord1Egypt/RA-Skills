@@ -1,0 +1,31 @@
+{
+  "lirr": {
+    "name": "Long Island Rail Road",
+    "short_name": "LIRR",
+    "type": "commuter_rail",
+    "gtfs_url": "https://rrgtfsfeeds.s3.amazonaws.com/gtfslirr.zip",
+    "gtfs_rt_url": "https://api-endpoint.mta.info/Dataservice/mtagtfsfeeds/lirr%2Fgtfs-lirr",
+    "alerts_url": "https://api-endpoint.mta.info/Dataservice/mtagtfsfeeds/camsys%2Fall-alerts",
+    "alerts_agency_id": "LI",
+    "cache_dir": ".lirr_cache"
+  },
+  "mnr": {
+    "name": "Metro-North Railroad",
+    "short_name": "MNR",
+    "type": "commuter_rail",
+    "gtfs_url": "https://rrgtfsfeeds.s3.amazonaws.com/gtfsmnr.zip",
+    "gtfs_rt_url": "https://api-endpoint.mta.info/Dataservice/mtagtfsfeeds/mnr%2Fgtfs-mnr",
+    "alerts_url": "https://api-endpoint.mta.info/Dataservice/mtagtfsfeeds/camsys%2Fall-alerts",
+    "alerts_agency_id": "MNR",
+    "cache_dir": ".mnr_cache"
+  },
+  "subway": {
+    "name": "NYC Subway",
+    "short_name": "Subway",
+    "type": "subway",
+    "gtfs_url": "http://web.mta.info/developers/data/nyct/subway/google_transit.zip",
+    "alerts_url": "https://api-endpoint.mta.info/Dataservice/mtagtfsfeeds/camsys%2Fall-alerts",
+    "alerts_agency_id": "MTASBWY",
+    "cache_dir": ".subway_cache"
+  }
+}

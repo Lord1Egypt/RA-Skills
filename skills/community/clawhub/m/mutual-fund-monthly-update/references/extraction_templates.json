@@ -1,0 +1,82 @@
+{
+  "version": "2.2.2",
+  "description": "基金PDF数据提取模板配置",
+  "funds": {
+    "华夏": {
+      "pdf_patterns": ["华夏", "华夏基金"],
+      "sheet_name": "华夏"
+    },
+    "南方东英": {
+      "pdf_patterns": ["南方东英", "南方"],
+      "sheet_name": "南方东英"
+    },
+    "易方达": {
+      "pdf_patterns": ["易方达"],
+      "sheet_name": "易方达"
+    },
+    "汇丰亚洲债券": {
+      "pdf_patterns": ["汇丰亚洲债券", "汇丰亚洲高收益债券"],
+      "sheet_name": "汇丰亚洲债券"
+    },
+    "汇丰亚洲高收益": {
+      "pdf_patterns": ["汇丰亚洲高收益"],
+      "sheet_name": "汇丰亚洲高收益"
+    },
+    "汇丰亚洲多元资产高入息": {
+      "pdf_patterns": ["汇丰亚洲高入息", "汇丰亚洲多元资产"],
+      "sheet_name": "汇丰亚洲多元资产高入息"
+    },
+    "博时": {
+      "pdf_patterns": ["博时"],
+      "sheet_name": "博时"
+    },
+    "弘收": {
+      "pdf_patterns": ["弘收"],
+      "sheet_name": "弘收"
+    },
+    "高腾": {
+      "pdf_patterns": ["高腾"],
+      "sheet_name": "高腾亚洲"
+    },
+    "海通亚洲": {
+      "pdf_patterns": ["海通"],
+      "sheet_name": "海通亚洲"
+    },
+    "东亚联丰亚洲债券及货币": {
+      "pdf_patterns": ["东亚联丰亚洲债券"],
+      "sheet_name": "东亚联丰亚洲债券及货币"
+    },
+    "东亚联丰亚洲策略": {
+      "pdf_patterns": ["东亚联丰亚洲策略"],
+      "sheet_name": "东亚联丰亚洲策略"
+    },
+    "摩根亚洲": {
+      "pdf_patterns": ["摩根亚洲债券"],
+      "sheet_name": "摩根亚洲"
+    },
+    "摩根国际": {
+      "pdf_patterns": ["摩根国际"],
+      "sheet_name": "摩根国际"
+    },
+    "中银香港全天候中国高息": {
+      "pdf_patterns": ["中银香港全天候中国"],
+      "sheet_name": "中银香港全天候中国高息"
+    },
+    "中银香港全天候亚洲": {
+      "pdf_patterns": ["中银香港全天候亚洲"],
+      "sheet_name": "中银香港全天候亚洲"
+    }
+  },
+  "extraction_fields": {
+    "core_metrics": {
+      "久期": ["久期", "组合久期", "平均存续期", "Duration"],
+      "到期收益率": ["到期收益率", "YTM", "平均最低孳息率", "Yield"],
+      "基金规模": ["基金规模", "资产净值", "AUM", "总资产值"]
+    },
+    "distribution": {
+      "行业分布": ["行业分布", "行业配置", "Sector"],
+      "地区分布": ["地区分布", "地区配置", "区域分布", "Geographic"],
+      "信用评级分布": ["信用评级分布", "评级分布", "信贷评级"]
+    }
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "name": "Ming",
+  "slug": "ming",
+  "version": "1.1.0",
+  "description": "Chinese traditional metaphysics reference tool with simplified BaZi, Five Elements, zodiac matching, and name analysis for cultural/entertainment use.",
+  "author": "harrylabsj",
+  "license": "MIT-0",
+  "language": "zh",
+  "tags": ["bazi", "five-elements", "zodiac", "name-analysis", "traditional-culture"],
+  "trigger_keywords": [
+    "八字",
+    "五行",
+    "生肖配对",
+    "姓名学",
+    "命理"
+  ],
+  "requires_api": false,
+  "requires_network": false,
+  "readiness": "stable",
+  "safety": "Cultural and entertainment reference only; not scientific prediction or professional advice."
+}

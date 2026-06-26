@@ -1,0 +1,4 @@
+interface:
+  display_name: "Multi-Agent Collaboration Claude Grade"
+  short_description: "Claude Code 风格的多智能体协作技能，补齐记忆检索、验证、安全和成本治理"
+  default_prompt: "Use this skill to run a coordinator-led multi-agent workflow with retrieved memory, safety audit, verification evidence, and cost-aware execution."

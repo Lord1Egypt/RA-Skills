@@ -1,0 +1,811 @@
+{
+  "AI/Tech": {
+    "keywords": [
+      "AI",
+      "artificial intelligence",
+      "machine learning",
+      "deep learning",
+      "LLM",
+      "large language model",
+      "GPT",
+      "GPT-4",
+      "GPT-5",
+      "Claude",
+      "ChatGPT",
+      "Gemini",
+      "generative AI",
+      "AGI",
+      "artificial general intelligence",
+      "neural networks",
+      "transformers",
+      "computer vision",
+      "NLP",
+      "natural language processing",
+      "reinforcement learning",
+      "tech trends",
+      "tech innovation",
+      "OpenAI",
+      "Anthropic",
+      "Google AI",
+      "DeepMind",
+      "Meta AI",
+      "Microsoft AI",
+      "AI agents",
+      "autonomous agents",
+      "AI safety",
+      "AI alignment",
+      "prompt engineering",
+      "fine-tuning",
+      "RAG",
+      "retrieval augmented generation",
+      "multimodal AI",
+      "text-to-image",
+      "DALL-E",
+      "Midjourney",
+      "Stable Diffusion",
+      "AI chip",
+      "GPU",
+      "TPU",
+      "NVIDIA",
+      "semiconductor",
+      "AI infrastructure",
+      "edge computing",
+      "AI hardware"
+    ],
+    "default_sources": [
+      {
+        "name": "TechCrunch",
+        "url": "techcrunch.com",
+        "priority": 1
+      },
+      {
+        "name": "MIT Tech Review",
+        "url": "technologyreview.com",
+        "priority": 1
+      },
+      {
+        "name": "Ars Technica",
+        "url": "arstechnica.com",
+        "priority": 2
+      },
+      {
+        "name": "The Verge",
+        "url": "theverge.com",
+        "priority": 2
+      },
+      {
+        "name": "Hacker News",
+        "url": "news.ycombinator.com",
+        "priority": 2
+      },
+      {
+        "name": "VentureBeat",
+        "url": "venturebeat.com",
+        "priority": 2
+      },
+      {
+        "name": "The Information",
+        "url": "theinformation.com",
+        "priority": 1
+      },
+      {
+        "name": "a16z AI",
+        "url": "a16z.com",
+        "priority": 1
+      }
+    ]
+  },
+  "Business Strategy": {
+    "keywords": [
+      "business model",
+      "business strategy",
+      "M&A",
+      "mergers and acquisitions",
+      "disruption",
+      "disruptive innovation",
+      "innovation",
+      "competitive advantage",
+      "competitive moat",
+      "market strategy",
+      "go-to-market",
+      "GTM",
+      "corporate strategy",
+      "strategic planning",
+      "digital transformation",
+      "platform economics",
+      "network effects",
+      "two-sided marketplace",
+      "aggregation theory",
+      "value chain",
+      "supply chain",
+      "vertical integration",
+      "horizontal integration",
+      "business development",
+      "partnership",
+      "strategic alliance",
+      "market expansion",
+      "product-market fit",
+      "PMF",
+      "unit economics",
+      "customer acquisition cost",
+      "CAC",
+      "lifetime value",
+      "LTV",
+      "churn rate",
+      "retention",
+      "growth strategy",
+      "pricing strategy",
+      "freemium",
+      "subscription model",
+      "SaaS",
+      "B2B",
+      "B2C",
+      "enterprise sales"
+    ],
+    "default_sources": [
+      {
+        "name": "McKinsey",
+        "url": "mckinsey.com",
+        "priority": 1
+      },
+      {
+        "name": "HBR",
+        "url": "hbr.org",
+        "priority": 1
+      },
+      {
+        "name": "WSJ",
+        "url": "wsj.com",
+        "priority": 1
+      },
+      {
+        "name": "Financial Times",
+        "url": "ft.com",
+        "priority": 1
+      },
+      {
+        "name": "Bloomberg",
+        "url": "bloomberg.com",
+        "priority": 1
+      },
+      {
+        "name": "Strategy+Business",
+        "url": "strategy-business.com",
+        "priority": 2
+      },
+      {
+        "name": "BCG",
+        "url": "bcg.com",
+        "priority": 2
+      },
+      {
+        "name": "Bain",
+        "url": "bain.com",
+        "priority": 2
+      },
+      {
+        "name": "Benedict Evans",
+        "url": "ben-evans.com",
+        "priority": 1
+      },
+      {
+        "name": "Stratechery",
+        "url": "stratechery.com",
+        "priority": 1
+      }
+    ]
+  },
+  "Finance/Crypto": {
+    "keywords": [
+      "finance",
+      "financial markets",
+      "stock market",
+      "equity market",
+      "bond market",
+      "trading",
+      "algorithmic trading",
+      "high-frequency trading",
+      "investment",
+      "investing",
+      "investor",
+      "institutional investor",
+      "retail investor",
+      "venture capital",
+      "VC",
+      "private equity",
+      "PE",
+      "startup funding",
+      "seed funding",
+      "angel investor",
+      "IPO",
+      "initial public offering",
+      "SPAC",
+      "direct listing",
+      "Series A",
+      "Series B",
+      "Series C",
+      "late-stage funding",
+      "unicorn",
+      "decacorn",
+      "valuation",
+      "cap table",
+      "liquidation preference",
+      "crypto",
+      "cryptocurrency",
+      "bitcoin",
+      "BTC",
+      "ethereum",
+      "ETH",
+      "altcoin",
+      "blockchain",
+      "distributed ledger",
+      "DeFi",
+      "decentralized finance",
+      "DEX",
+      "decentralized exchange",
+      "AMM",
+      "automated market maker",
+      "yield farming",
+      "staking",
+      "Web3",
+      "NFT",
+      "non-fungible token",
+      "digital assets",
+      "tokenomics",
+      "smart contract",
+      "layer 1",
+      "layer 2",
+      "scaling",
+      "fintech",
+      "financial technology",
+      "neobank",
+      "payment processing",
+      "cross-border payment",
+      "remittance",
+      "BNPL",
+      "buy now pay later",
+      "financial trends",
+      "economic trends",
+      "macroeconomics",
+      "GDP",
+      "recession",
+      "inflation",
+      "deflation",
+      "interest rates",
+      "monetary policy",
+      "Federal Reserve",
+      "Fed",
+      "central bank",
+      "ECB",
+      "quantitative easing",
+      "QE",
+      "fiscal policy",
+      "treasury",
+      "bond yield",
+      "forex",
+      "currency",
+      "emerging markets"
+    ],
+    "default_sources": [
+      {
+        "name": "Bloomberg",
+        "url": "bloomberg.com",
+        "priority": 1
+      },
+      {
+        "name": "CoinDesk",
+        "url": "coindesk.com",
+        "priority": 1
+      },
+      {
+        "name": "Financial Times",
+        "url": "ft.com",
+        "priority": 1
+      },
+      {
+        "name": "Reuters",
+        "url": "reuters.com",
+        "priority": 1
+      },
+      {
+        "name": "WSJ",
+        "url": "wsj.com",
+        "priority": 1
+      },
+      {
+        "name": "The Block",
+        "url": "theblock.co",
+        "priority": 2
+      },
+      {
+        "name": "Decrypt",
+        "url": "decrypt.co",
+        "priority": 2
+      },
+      {
+        "name": "CoinTelegraph",
+        "url": "cointelegraph.com",
+        "priority": 2
+      },
+      {
+        "name": "The Information",
+        "url": "theinformation.com",
+        "priority": 1
+      },
+      {
+        "name": "Axios Markets",
+        "url": "axios.com",
+        "priority": 2
+      },
+      {
+        "name": "Morningstar",
+        "url": "morningstar.com",
+        "priority": 1
+      },
+      {
+        "name": "Seeking Alpha",
+        "url": "seekingalpha.com",
+        "priority": 2
+      }
+    ]
+  },
+  "Health/Bio": {
+    "keywords": [
+      "biotech",
+      "biotechnology",
+      "biopharma",
+      "pharma",
+      "pharmaceutical",
+      "life sciences",
+      "health tech",
+      "healthtech",
+      "digital health",
+      "telemedicine",
+      "telehealth",
+      "remote patient monitoring",
+      "medical AI",
+      "clinical decision support",
+      "drug discovery",
+      "drug development",
+      "clinical trials",
+      "phase 1",
+      "phase 2",
+      "phase 3",
+      "FDA approval",
+      "EMA approval",
+      "regulatory approval",
+      "orphan drug",
+      "rare disease",
+      "CRISPR",
+      "gene editing",
+      "gene therapy",
+      "cell therapy",
+      "CAR-T",
+      "immunotherapy",
+      "precision medicine",
+      "personalized medicine",
+      "genomics",
+      "proteomics",
+      "biomarker",
+      "diagnostic",
+      "point-of-care testing",
+      "medical imaging",
+      "radiology AI",
+      "healthcare innovation",
+      "value-based care",
+      "population health",
+      "medical devices",
+      "wearable",
+      "biosensor",
+      "continuous glucose monitor",
+      "CGM",
+      "implantable device",
+      "surgical robotics",
+      "health insurance",
+      "payer",
+      "healthcare IT",
+      "EHR",
+      "electronic health record",
+      "interoperability",
+      "HIPAA",
+      "health data privacy"
+    ],
+    "default_sources": [
+      {
+        "name": "STAT News",
+        "url": "statnews.com",
+        "priority": 1
+      },
+      {
+        "name": "Nature",
+        "url": "nature.com",
+        "priority": 1
+      },
+      {
+        "name": "Science",
+        "url": "science.org",
+        "priority": 1
+      },
+      {
+        "name": "Cell",
+        "url": "cell.com",
+        "priority": 2
+      },
+      {
+        "name": "The Lancet",
+        "url": "thelancet.com",
+        "priority": 1
+      },
+      {
+        "name": "NEJM",
+        "url": "nejm.org",
+        "priority": 1
+      },
+      {
+        "name": "MedTech Dive",
+        "url": "medtechdive.com",
+        "priority": 2
+      },
+      {
+        "name": "Fierce Biotech",
+        "url": "fiercebiotech.com",
+        "priority": 2
+      },
+      {
+        "name": "Endpoints News",
+        "url": "endpts.com",
+        "priority": 2
+      },
+      {
+        "name": "BioPharma Dive",
+        "url": "biopharmadive.com",
+        "priority": 2
+      }
+    ]
+  },
+  "Energy/Climate": {
+    "keywords": [
+      "renewable energy",
+      "clean energy",
+      "green energy",
+      "solar energy",
+      "solar panel",
+      "photovoltaic",
+      "PV",
+      "wind energy",
+      "wind turbine",
+      "offshore wind",
+      "onshore wind",
+      "nuclear energy",
+      "nuclear reactor",
+      "SMR",
+      "small modular reactor",
+      "fusion energy",
+      "battery technology",
+      "lithium-ion battery",
+      "solid-state battery",
+      "energy storage",
+      "grid-scale storage",
+      "EV",
+      "electric vehicle",
+      "BEV",
+      "battery electric vehicle",
+      "PHEV",
+      "plug-in hybrid",
+      "charging infrastructure",
+      "fast charging",
+      "climate tech",
+      "climate technology",
+      "climate change mitigation",
+      "climate adaptation",
+      "carbon capture",
+      "CCS",
+      "carbon sequestration",
+      "direct air capture",
+      "DAC",
+      "carbon credit",
+      "carbon offset",
+      "carbon neutral",
+      "net zero",
+      "net-zero emissions",
+      "decarbonization",
+      "sustainability",
+      "sustainable development",
+      "ESG",
+      "environmental social governance",
+      "circular economy",
+      "hydrogen economy",
+      "green hydrogen",
+      "blue hydrogen",
+      "fuel cell",
+      "grid modernization",
+      "smart grid",
+      "transmission",
+      "distribution",
+      "power generation",
+      "baseload power",
+      "peak power",
+      "demand response",
+      "energy efficiency",
+      "energy transition",
+      "oil and gas",
+      "fossil fuel",
+      "renewable portfolio standard",
+      "RPS",
+      "feed-in tariff",
+      "tax credit",
+      "IRA",
+      "Inflation Reduction Act"
+    ],
+    "default_sources": [
+      {
+        "name": "Canary Media",
+        "url": "canarymedia.com",
+        "priority": 1
+      },
+      {
+        "name": "Greentech Media",
+        "url": "greentechmedia.com",
+        "priority": 2
+      },
+      {
+        "name": "Energy Storage News",
+        "url": "energy-storage.news",
+        "priority": 2
+      },
+      {
+        "name": "CleanTechnica",
+        "url": "cleantechnica.com",
+        "priority": 2
+      },
+      {
+        "name": "Utility Dive",
+        "url": "utilitydive.com",
+        "priority": 2
+      },
+      {
+        "name": "GreenBiz",
+        "url": "greenbiz.com",
+        "priority": 2
+      },
+      {
+        "name": "Carbon Brief",
+        "url": "carbonbrief.org",
+        "priority": 1
+      },
+      {
+        "name": "Bloomberg NEF",
+        "url": "about.bnef.com",
+        "priority": 1
+      }
+    ]
+  },
+  "Policy/Regulation": {
+    "keywords": [
+      "AI regulation",
+      "AI governance",
+      "AI ethics",
+      "responsible AI",
+      "AI safety",
+      "AI risk",
+      "AI alignment",
+      "existential risk",
+      "antitrust",
+      "anti-competitive",
+      "monopoly",
+      "market power",
+      "competition law",
+      "merger review",
+      "regulatory approval",
+      "data privacy",
+      "data protection",
+      "GDPR",
+      "CCPA",
+      "privacy law",
+      "surveillance",
+      "facial recognition",
+      "content moderation",
+      "misinformation",
+      "disinformation",
+      "platform liability",
+      "Section 230",
+      "government policy",
+      "tech policy",
+      "digital policy",
+      "cybersecurity",
+      "national security",
+      "export control",
+      "sanctions",
+      "trade war",
+      "regulatory compliance",
+      "lobbying",
+      "government affairs",
+      "legislation",
+      "bill",
+      "law",
+      "Congress",
+      "Senate",
+      "House",
+      "EU regulation",
+      "European Commission",
+      "Digital Services Act",
+      "DSA",
+      "Digital Markets Act",
+      "DMA",
+      "AI Act",
+      "China regulation",
+      "GDPR fine",
+      "enforcement action",
+      "antitrust lawsuit",
+      "regulatory investigation"
+    ],
+    "default_sources": [
+      {
+        "name": "Politico",
+        "url": "politico.com",
+        "priority": 1
+      },
+      {
+        "name": "The Verge Policy",
+        "url": "theverge.com",
+        "priority": 2
+      },
+      {
+        "name": "Axios",
+        "url": "axios.com",
+        "priority": 2
+      },
+      {
+        "name": "Bloomberg Government",
+        "url": "bgov.com",
+        "priority": 1
+      },
+      {
+        "name": "Lawfare",
+        "url": "lawfaremedia.org",
+        "priority": 1
+      },
+      {
+        "name": "TechCrunch Policy",
+        "url": "techcrunch.com",
+        "priority": 2
+      },
+      {
+        "name": "The Information",
+        "url": "theinformation.com",
+        "priority": 2
+      },
+      {
+        "name": "MLex",
+        "url": "mlexwatch.com",
+        "priority": 2
+      },
+      {
+        "name": "CSET Georgetown",
+        "url": "cset.georgetown.edu",
+        "priority": 1
+      },
+      {
+        "name": "AI Now Institute",
+        "url": "ainowinstitute.org",
+        "priority": 2
+      }
+    ]
+  },
+  "Product Design": {
+    "keywords": [
+      "UX",
+      "user experience",
+      "UI",
+      "user interface",
+      "product design",
+      "design thinking",
+      "human-centered design",
+      "interaction design",
+      "IxD",
+      "visual design",
+      "graphic design",
+      "design system",
+      "component library",
+      "design tokens",
+      "accessibility",
+      "a11y",
+      "WCAG",
+      "usability",
+      "user research",
+      "UX research",
+      "qualitative research",
+      "quantitative research",
+      "user testing",
+      "usability testing",
+      "A/B testing",
+      "user interview",
+      "persona",
+      "user journey",
+      "journey map",
+      "wireframe",
+      "prototype",
+      "high-fidelity prototype",
+      "low-fidelity prototype",
+      "mockup",
+      "Figma",
+      "Sketch",
+      "Adobe XD",
+      "Framer",
+      "design ops",
+      "design workflow",
+      "design collaboration",
+      "design critique",
+      "design review",
+      "design QA",
+      "design handoff",
+      "design leadership",
+      "design management",
+      "design culture",
+      "design maturity",
+      "information architecture",
+      "IA",
+      "navigation",
+      "onboarding",
+      "empty state",
+      "error state",
+      "loading state",
+      "micro-interaction",
+      "animation",
+      "motion design",
+      "responsive design",
+      "mobile-first",
+      "progressive enhancement",
+      "design sprint",
+      "lean UX",
+      "agile UX"
+    ],
+    "default_sources": [
+      {
+        "name": "Nielsen Norman Group",
+        "url": "nngroup.com",
+        "priority": 1
+      },
+      {
+        "name": "Smashing Magazine",
+        "url": "smashingmagazine.com",
+        "priority": 2
+      },
+      {
+        "name": "A List Apart",
+        "url": "alistapart.com",
+        "priority": 2
+      },
+      {
+        "name": "Design Better",
+        "url": "designbetter.co",
+        "priority": 2
+      },
+      {
+        "name": "UX Collective",
+        "url": "uxdesign.cc",
+        "priority": 2
+      },
+      {
+        "name": "Interaction Design Foundation",
+        "url": "interaction-design.org",
+        "priority": 2
+      },
+      {
+        "name": "UX Booth",
+        "url": "uxbooth.com",
+        "priority": 2
+      },
+      {
+        "name": "UX Planet",
+        "url": "uxplanet.org",
+        "priority": 2
+      },
+      {
+        "name": "Lenny's Newsletter",
+        "url": "lennysnewsletter.com",
+        "priority": 1
+      }
+    ]
+  }
+}

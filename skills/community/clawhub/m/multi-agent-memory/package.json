@@ -1,0 +1,25 @@
+{
+  "name": "multi-agent-memory",
+  "version": "1.0.0",
+  "description": "多 agent 共享记忆与项目协作架构。支持项目状态隔离、知识库共享、跨项目搜索、版本控制、里程碑跟踪、周报和交接文档。",
+  "author": "COMMANDER",
+  "license": "MIT",
+  "keywords": [
+    "multi-agent",
+    "collaboration",
+    "memory",
+    "project-management",
+    "knowledge-sharing",
+    "milestone-tracking",
+    "openclaw",
+    "agent-skill"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/brucey0017-cloud/multi-agent-memory.git"
+  },
+  "bugs": {
+    "url": "https://github.com/brucey0017-cloud/multi-agent-memory/issues"
+  },
+  "homepage": "https://github.com/brucey0017-cloud/multi-agent-memory#readme"
+}

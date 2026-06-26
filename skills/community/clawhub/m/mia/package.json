@@ -1,0 +1,15 @@
+{
+  "name": "mia",
+  "version": "1.0.0",
+  "description": "MIA (Memory-Intelligent Assistant) - 智能记忆助手系统",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": ["memory", "planner", "feedback", "assistant", "openclaw"],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "node-fetch": "^3.3.2"
+  }
+}

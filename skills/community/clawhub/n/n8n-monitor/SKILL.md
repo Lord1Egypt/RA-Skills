@@ -1,35 +1,21 @@
----
-name: "N8n Monitor"
-description: "Monitora o estado, saúde, logs recentes e uso de CPU/memória dos containers N8N via comandos Docker."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/n8n-monitor"
-sourceUrl: "https://clawhub.ai/skills/n8n-monitor"
----
+# Skill: n8n-monitor
 
-# N8n Monitor
+Monitoramento operacional do N8N via Docker.
 
-> Monitora o estado, saúde, logs recentes e uso de CPU/memória dos containers N8N via comandos Docker.
+## Capabilities
+- Verificar status dos containers N8N
+- Ler logs recentes
+- Checar saúde do container
+- Analisar uso de CPU e memória
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/n8n-monitor`
-- **Source URL:** [https://clawhub.ai/skills/n8n-monitor](https://clawhub.ai/skills/n8n-monitor)
+## Commands
+- docker ps | grep n8n
+- docker logs --tail 50 n8n
+- docker inspect --format='{{.State.Health.Status}}' n8n
+- docker stats --no-stream n8n
 
-## Overview
+## Output
+Respostas em Markdown, com tabelas simples e status claro.
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/n8n-monitor
-```
+## Status
+active

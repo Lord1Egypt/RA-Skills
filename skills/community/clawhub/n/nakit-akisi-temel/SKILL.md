@@ -1,35 +1,42 @@
 ---
-name: "Nakit Akisi Temel"
-description: "Şirketler için nakit akışı yönetimi ve vergi planlaması rehberi. Nakit akış tablosu oluşturma, runway analizi, tahsilat takibi, vergi/SGK rezervi ayırma, en..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/nakit-akisi-temel"
-sourceUrl: "https://clawhub.ai/skills/nakit-akisi-temel"
+name: nakit-akisi-temel
+description: Şirketler için nakit akışı yönetimi ve vergi planlaması rehberi. Nakit akış tablosu oluşturma, runway analizi, tahsilat takibi, vergi/SGK rezervi ayırma, en sık yapılan 10 nakit yönetimi hatası. Use when asked about cash flow management, nakit akışı, runway calculation, or financial planning for Turkish SMEs.
+version: "1.0"
+author: Tech Consulting (techsmmm.com)
+tags: [nakit-akisi, cash-flow, runway, vergi-planlama, kdr, sgk, finansal-planlama]
 ---
 
-# Nakit Akisi Temel
+# Nakit Akışı ve Vergi Planlaması
 
-> Şirketler için nakit akışı yönetimi ve vergi planlaması rehberi. Nakit akış tablosu oluşturma, runway analizi, tahsilat takibi, vergi/SGK rezervi ayırma, en...
+Bu skill, Türkiye'deki şirketler için nakit akışı yönetimini, 6 aylık nakit akış tablosu oluşturmayı, runway hesaplamasını ve nakit planlamasında yapılan yaygın hataları kapsar.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/nakit-akisi-temel`
-- **Source URL:** [https://clawhub.ai/skills/nakit-akisi-temel](https://clawhub.ai/skills/nakit-akisi-temel)
+## Bu Skill Ne Zaman Tetiklenir?
 
-## Overview
+- "Nakit akışı tablosu nasıl hazırlanır?"
+- "Runway nedir, nasıl hesaplanır?"
+- "Kâr ediyorum ama param neden yok?"
+- "Vergi ve SGK için ne kadar rezerv ayırmalıyım?"
+- "Nakit sıkışıklığından nasıl çıkılır?"
+- "Şirketim kaç ay dayanır?"
+- Nakit yönetimi veya KOBİ finansal planlamasıyla ilgili sorular
 
+## Nasıl Kullanılır?
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/nakit-akisi-temel
+1. `references/nakit_akis_rehberi.md` → Neden nakit akışı planlaması gerekir (5 temel neden)
+2. `references/nakit_akis_tablosu.md` → Örnek 6 aylık nakit akış tablosu + runway hesaplama
+3. `references/nakit_hatalari.md` → 10 temel nakit/vergi planlama hatası
+
+## Temel Kavram
+
+> "Kâr kâğıt üzerindedir, nakit gerçektir."
+> "Bilanço/Gelir Tablosu geçmişi anlatır, nakit akışı şimdi ve geleceği gösterir."
+
+**Runway Formülü:**
 ```
+Runway (ay) = Mevcut Nakit / Aylık Ortalama Gider
+```
+
+---
+
+> **Kaynak:** Şirket 101 — Tech Consulting (techsmmm.com)
+> © 2025 Her hakkı saklıdır. Kaynak gösterilmeden çoğaltılamaz.

@@ -1,35 +1,88 @@
 ---
-name: "Mingshu Classifier"
+name: mingshu-classifier
 description: "对文件进行分类分级。根据 GB/T 35273 个人信息安全规范，扫描指定目录下的文件，自动识别敏感等级并打标签。支持基于文件名和文件内容双重检测，覆盖 docx/txt/md/csv/json 等多种格式。触发词：文件分类、分级、打标签、敏感分级、数据分级、信息分级、文件扫描、合规检查、隐私评估、PII分类。"
-category: "security"
-source: "ClawHub"
-tags: [GB35273, PII, compliance, mingshu, security]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/mingshu-classifier"
-sourceUrl: "https://clawhub.ai/skills/mingshu-classifier"
 ---
 
-# Mingshu Classifier
+# 明数分类分级 - Mingshu Classifier
 
-> 对文件进行分类分级。根据 GB/T 35273 个人信息安全规范，扫描指定目录下的文件，自动识别敏感等级并打标签。支持基于文件名和文件内容双重检测，覆盖 docx/txt/md/csv/json 等多种格式。触发词：文件分类、分级、打标签、敏感分级、数据分级、信息分级、文件扫描、合规检查、隐私评估、PII分类。
+基于 GB/T 35273《个人信息安全规范》，对目录下的文件进行自动分类分级和打标签。
 
-- **Category:** Security
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/mingshu-classifier`
-- **Source URL:** [https://clawhub.ai/skills/mingshu-classifier](https://clawhub.ai/skills/mingshu-classifier)
+## 适用场景
 
-## Overview
+- 扫描目录下的文件并自动识别敏感等级
+- 对文件进行合规分级打标签
+- 检查文件命名是否符合数据安全规范
+- 批量评估文件的个人信息敏感程度
 
+## 分级标准
 
-## Installation
-To install this skill, run the following command in your terminal:
+依据 GB/T 35273，将文件按个人信息敏感程度分为两个类别：
+
+| 类别 | 名称 | 说明 |
+|------|------|------|
+| S | 敏感个人信息 | 包含敏感个人信息（身份证、银行卡、生物识别、行踪轨迹、通讯录等） |
+| G | 一般个人信息 | 包含一般个人信息（姓名、手机号、邮箱、用户信息等）或不涉及个人信息 |
+
+## 工作流程
+
+### 1. 获取用户输入
+
+确认以下信息：
+- **目标目录**：要扫描的目录路径（必填）
+- **文件类型过滤**：默认扫描 .docx，可通过 glob 模式扩展（如 `*.docx`、`*.pdf`）
+- **输出格式**：默认输出到终端，支持导出为 CSV/JSON
+
+### 2. 执行扫描
+
+调用扫描脚本：
+
 ```bash
-hermes skills install clawhub/mingshu-classifier
+python3 scripts/scan_files.py <target_directory> [--pattern "*.docx"] [--output result.csv] [--format csv] [--name-only]
 ```
+
+脚本会：
+1. 递归遍历目标目录
+2. 提取文件名和文件内容中的文本
+3. 分别对文件名和文件内容进行关键词匹配
+4. S 类优先：文件名或内容中任一命中 S 类关键词即归为 S 类
+5. 输出分类分级结果（含文件名关键词和内容关键词分别标注）
+
+参数说明：
+- `--name-only`：仅基于文件名判断，不读取文件内容（速度更快）
+
+### 3. 展示结果
+
+将扫描结果以表格形式展示给用户，包含：
+- 文件路径
+- 文件名
+- 敏感类别（S/G）
+- 文件名匹配的关键词
+- 文件内容匹配的关键词
+- 匹配来源（文件名/内容/文件名+内容）
+- 建议处理方式
+
+### 4. 输出报告（可选）
+
+如果用户指定了 `--output` 参数，将结果导出为文件：
+- CSV 格式（默认）
+- JSON 格式
+
+## 关键词规则
+
+详细的关键词分级规则存储在 `references/classification_rules.md` 中，按以下逻辑匹配：
+
+1. 对文件名（不含扩展名）和文件内容分别进行关键词匹配
+2. S 类优先：文件名或内容中任一命中 S 类关键词即归为 S 类
+3. 仅命中一般个人信息关键词的文件归类为 G 类
+4. 未命中任何关键词的文件默认为 G 类（一般个人信息）
+
+## 依赖
+
+- `python-docx`：用于读取 .docx 文件内容（如未安装，自动降级为仅文件名模式）
+
+## 注意事项
+
+- 分级结果仅供参考，建议结合实际文件内容复核
+- 扫描过程为只读操作，不会修改任何文件
+- 支持中文和英文文件名和内容
+- .doc（旧格式）和 .pdf 暂不支持内容读取，仅基于文件名判断

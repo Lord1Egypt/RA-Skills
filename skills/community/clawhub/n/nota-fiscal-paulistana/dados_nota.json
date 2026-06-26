@@ -1,0 +1,15 @@
+{
+  "numero_rps": "1000",
+  "data_emissao": "2026-03-06",
+  "valor_servicos": 10.00,
+  "valor_deducoes": 0.00,
+  "iss_retido": "N",
+  "status_rps": "N",
+  "calcular_retencoes": true,
+  "indicador_tomador": 3,
+  "documento_tomador": "",
+  "razao_social_tomador": "",
+  "email_tomador": "",
+  "endereco_tomador": {},
+  "discriminacao": "Servicos médicos"
+}

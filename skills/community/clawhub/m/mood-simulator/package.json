@@ -1,0 +1,42 @@
+{
+  "name": "mood-simulator",
+  "version": "0.5.0",
+  "description": "情绪状态模拟器：基于时间、内容和历史的综合情绪评估，智能调整回应风格，支持独立CLI和proactive-engine协作。",
+  "main": "scripts/mood.js",
+  "scripts": {
+    "start": "node scripts/mood.js",
+    "test": "node scripts/test-basic.js",
+    "cli": "node bin/soul_mood.js",
+    "analyze-example": "node bin/soul_mood.js analyze --text \"今天工作顺利\"",
+    "energy-example": "node bin/soul_mood.js energy --time \"2026-04-02T10:00:00Z\"",
+    "response-example": "node bin/soul_mood.js response --mood positive --energy 85",
+    "signal-test": "node bin/soul_mood.js --process-signal interaction_started"
+  },
+  "dependencies": {
+    "date-fns": "^3.6.0",
+    "commander": "^11.0.0",
+    "chalk": "^5.3.0"
+  },
+  "keywords": [
+    "soul-system",
+    "mood-simulator",
+    "emotion-analysis",
+    "energy-calculation",
+    "response-strategy",
+    "cli-tool",
+    "proactive-engine"
+  ],
+  "author": "soul-system",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zhaoguoqiang-hub/soul-system"
+  },
+  "homepage": "https://github.com/zhaoguoqiang-hub/soul-system/tree/main/packages/mood-simulator",
+  "bugs": {
+    "url": "https://github.com/zhaoguoqiang-hub/soul-system/issues"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}

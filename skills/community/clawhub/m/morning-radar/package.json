@@ -1,0 +1,25 @@
+{
+  "name": "morning-radar",
+  "version": "1.0.0",
+  "description": "晨间AI资讯自动收集与推送工具",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js",
+    "test": "node test.js"
+  },
+  "keywords": [
+    "openclaw",
+    "skill",
+    "ai",
+    "news",
+    "feishu",
+    "baidu"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {},
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

@@ -1,35 +1,122 @@
----
-name: "Movie Recommender - 电影推荐"
-description: "根据用户心情、类型、演员、导演或年份，推荐电影并查询豆瓣评分，支持观影记录管理和相似电影推荐。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/movie-recommender"
-sourceUrl: "https://clawhub.ai/skills/movie-recommender"
----
+# 🎬 Movie Recommender - 电影推荐助手
 
-# Movie Recommender - 电影推荐
+## 触发规则
 
-> 根据用户心情、类型、演员、导演或年份，推荐电影并查询豆瓣评分，支持观影记录管理和相似电影推荐。
+**关键词：**
+- 推荐电影、电影推荐、看什么电影
+- 根据心情推荐、周末看电影
+- 豆瓣评分、电影评分
+- 类似 XXX 的电影
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/movie-recommender`
-- **Source URL:** [https://clawhub.ai/skills/movie-recommender](https://clawhub.ai/skills/movie-recommender)
+**场景：**
+- 用户想看电影但不知道选什么
+- 用户描述心情/偏好求推荐
+- 用户查询某部电影的评分/信息
+- 用户想找类似某部的电影
 
-## Overview
+## 功能描述
 
+### 核心功能
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/movie-recommender
+1. **智能电影推荐**
+   - 根据心情推荐（开心/难过/放松/刺激）
+   - 根据类型推荐（科幻/爱情/悬疑/喜剧）
+   - 根据演员/导演推荐
+   - 根据年代推荐（经典老片/最新上映）
+
+2. **豆瓣评分查询**
+   - 实时查询电影评分
+   - 显示评分人数、短评
+   - 显示导演、演员、时长
+
+3. **观影记录管理**
+   - 记录已看电影
+   - 添加想看清单
+   - 写简短影评
+
+4. **相似电影推荐**
+   - "喜欢《星际穿越》，推荐类似的"
+   - 基于类型、风格、导演推荐
+
+### 推荐维度
+
+- 🎭 类型：科幻、爱情、悬疑、喜剧、动作、恐怖、纪录片
+- 😊 心情：开心、难过、放松、刺激、治愈、烧脑
+- 🌍 地区：国产、欧美、日韩、印度
+- 📅 年代：2020s、2010s、经典老片
+- ⏱️ 时长：短片 (<60min)、标准 (90-120min)、长篇 (>150min)
+
+## 权限需求
+
+- [x] 网络访问（豆瓣 API/爬虫）
+- [x] 文件读写（观影记录存储）
+- [ ] 外部 API（可选：豆瓣 API）
+
+## 数据源
+
+- 豆瓣电影（主）
+- IMDb（备用）
+- TMDB（备用）
+
+## 示例对话
+
 ```
+用户：推荐几部好看的电影
+助手：你想看什么类型的？科幻、爱情、悬疑还是喜剧？或者告诉我你现在的心情~
+
+用户：今天有点累，想看点轻松的
+助手：推荐这 3 部治愈系喜剧：
+1. 《绿皮书》(2018) ⭐8.9 - 温暖治愈的公路片
+2. 《三傻大闹宝莱坞》(2009) ⭐9.2 - 搞笑又有深度
+3. 《触不可及》(2011) ⭐9.3 - 法式幽默，暖心故事
+
+用户：查一下《星际穿越》的评分
+助手：《星际穿越》Interstellar (2014)
+⭐ 豆瓣评分：9.4 (230 万人评分)
+🎬 导演：克里斯托弗·诺兰
+🎭 主演：马修·麦康纳 / 安妮·海瑟薇
+⏱️ 时长：169 分钟
+📝 简介：地球环境恶化，一组探险者穿越虫洞寻找新家园...
+
+用户：喜欢《星际穿越》，推荐类似的
+助手：基于《星际穿越》的科幻烧脑风格，推荐：
+1. 《盗梦空间》⭐9.4 - 诺兰经典，梦境嵌套
+2. 《降临》⭐7.8 - 语言学科幻，哲学思考
+3. 《火星救援》⭐8.5 - 硬核科幻，乐观求生
+```
+
+## 数据存储
+
+```json
+// ~/.openclaw/workspace/movie-recommender/watched.json
+{
+  "watched": [
+    {
+      "title": "星际穿越",
+      "date": "2026-03-16",
+      "rating": 5,
+      "comment": "太震撼了！"
+    }
+  ],
+  "want_to_watch": [
+    {
+      "title": "奥本海默",
+      "added_date": "2026-03-15"
+    }
+  ]
+}
+```
+
+## 待办事项
+
+- [ ] 实现豆瓣电影爬虫
+- [ ] 实现推荐算法
+- [ ] 创建观影记录存储
+- [ ] 添加命令行交互
+- [ ] 测试推荐准确性
+
+---
+
+**版本：** 1.0.0
+**创建日期：** 2026-03-16
+**作者：** 小鬼 👻

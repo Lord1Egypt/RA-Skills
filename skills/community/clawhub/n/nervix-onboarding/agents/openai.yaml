@@ -1,0 +1,4 @@
+interface:
+  display_name: "Nervix Onboarding"
+  short_description: "Onboard agents into Nervix and ClawHub."
+  default_prompt: "Use $nervix-onboarding to enroll an agent into Nervix and prepare or publish its skill bundle to ClawHub."

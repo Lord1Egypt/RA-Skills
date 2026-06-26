@@ -1,0 +1,111 @@
+﻿openapi: 3.0.3
+info:
+  title: 股票交易开放接口
+  version: 1.0.0
+  description: |
+    股票交易开放接口。
+    所有 controller 接口统一采用 `success / msg / code / data` 结构返回，
+    controller 层负责封装成功响应和失败响应，业务数据始终位于 `data` 字段中。
+
+    鉴权方式：所有 `/trade/**` 接口都需要在请求 header 中传入 `Authorization: Bearer <token>`。
+    `token` 由 `securities-open-api` 签发。
+
+tags:
+  - name: Trade
+    description: 交易、账户、资产持仓、订单、成交相关接口。
+
+security:
+  - bearerAuth: []
+
+paths:
+  /trade/get_account_info:
+    get:
+      tags: [Trade]
+      operationId: getAccountInfo
+      summary: 获取账户信息
+  /trade/get_positions:
+    get:
+      tags: [Trade]
+      operationId: getPositions
+      summary: 获取持仓列表
+      description: |
+        查询当前持仓数据。
+        请求 header 需传入 `Authorization: Bearer <token>`。
+        `market` 为必填参数，用于向下游传递查询市场并返回对应市场持仓。
+  /trade/get_stock_amount:
+    get:
+      tags: [Trade]
+      operationId: getStockAmount
+      summary: 获取证券可买可卖数量
+  /trade/max_enable_buy_amt:
+    get:
+      tags: [Trade]
+      operationId: getMaxEnableBuyAmt
+      summary: 查询融资最大可买数量
+  /trade/get_sec_asset:
+    get:
+      tags: [Trade]
+      operationId: getSecAsset
+      summary: 获取证券资产
+  /trade/get_sec_capital_flow:
+    get:
+      tags: [Trade]
+      operationId: getSecCapitalFlow
+      summary: 获取证券资金流水
+  /trade/get_order_list:
+    get:
+      tags: [Trade]
+      operationId: getOrderList
+      summary: 获取当日订单列表
+  /trade/get_today_order_list:
+    get:
+      tags: [Trade]
+      operationId: getTodayOrderList
+      summary: 获取当日订单列表(未完成)
+  /trade/get_history_order_list:
+    get:
+      tags: [Trade]
+      operationId: getHistoryOrderList
+      summary: 获取历史订单列表
+  /trade/get_today_deal_list:
+    get:
+      tags: [Trade]
+      operationId: getTodayDealList
+      summary: 获取当日成交列表
+  /trade/get_history_deal_list:
+    get:
+      tags: [Trade]
+      operationId: getHistoryDealList
+      summary: 获取历史成交列表
+  /trade/get_finished_order_list:
+    get:
+      tags: [Trade]
+      operationId: getFinishedOrderList
+      summary: 获取已完成订单列表
+  /trade/get_order_detail:
+    get:
+      tags: [Trade]
+      operationId: getOrderDetail
+      summary: 获取订单详情
+  /trade/get_order_fee_detail:
+    get:
+      tags: [Trade]
+      operationId: getOrderFeeDetail
+      summary: 获取订单费用详情
+  /trade/order_fee_query:
+    post:
+      tags: [Trade]
+      operationId: orderFeeQuery
+      summary: 查询下单预估费用
+  /trade/query_push_data:
+    post:
+      tags: [Trade]
+      operationId: queryPushData
+      summary: 查询推送数据
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

@@ -1,35 +1,39 @@
 ---
-name: "Nansen Perp Trader Profile"
+name: nansen-perp-trader-profile
 description: "Deep dive on a Hyperliquid perp trader. Identity, open positions, recent trades, and overall PnL."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/nansen-perp-trader-profile"
-sourceUrl: "https://clawhub.ai/skills/nansen-perp-trader-profile"
+metadata:
+  openclaw:
+    requires:
+      env:
+        - NANSEN_API_KEY
+      bins:
+        - nansen
+    primaryEnv: NANSEN_API_KEY
+    install:
+      - kind: node
+        package: nansen-cli
+        bins: [nansen]
+allowed-tools: Bash(nansen:*)
 ---
 
-# Nansen Perp Trader Profile
+# Perp Trader
 
-> Deep dive on a Hyperliquid perp trader. Identity, open positions, recent trades, and overall PnL.
+**Answers:** "What is this perp trader doing? What are their positions and track record?"
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/nansen-perp-trader-profile`
-- **Source URL:** [https://clawhub.ai/skills/nansen-perp-trader-profile](https://clawhub.ai/skills/nansen-perp-trader-profile)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/nansen-perp-trader-profile
+ADDR=<address>
+
+nansen research profiler labels --address $ADDR --chain ethereum
+# → label, category (identity, SM labels)
+
+nansen research profiler perp-positions --address $ADDR
+# → asset_positions, margin_summary_account_value_usd, margin_summary_total_margin_used_usd
+
+nansen research profiler perp-trades --address $ADDR --days 7 --limit 20
+# → timestamp, token_symbol, side, action (Open/Close/Reduce), price, size, value_usd, closed_pnl, fee_usd
+
+nansen research perp leaderboard --days 7 --limit 50
+# → trader_address, total_pnl, roi, account_value (check if ADDR appears)
 ```
+
+Cross-reference perp-trades with perp-positions to see if the trader is scaling in/out. Leaderboard shows relative standing.

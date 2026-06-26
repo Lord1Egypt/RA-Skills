@@ -1,0 +1,26 @@
+{
+  "id": "nano-gpt",
+  "name": "NanoGPT",
+  "version": "0.1.0",
+  "description": "NanoGPT provider plugin — AI model aggregator with OpenAI-compatible API",
+  "providers": ["nano-gpt"],
+  "providerAuthChoices": [
+    {
+      "provider": "nano-gpt",
+      "method": "api-key",
+      "choiceId": "nano-gpt-api-key",
+      "choiceLabel": "NanoGPT API key",
+      "groupId": "nano-gpt",
+      "groupLabel": "NanoGPT",
+      "optionKey": "nanoGptApiKey",
+      "cliFlag": "--nano-gpt-api-key",
+      "cliOption": "--nano-gpt-api-key <key>",
+      "cliDescription": "NanoGPT API key (get yours at nano-gpt.com)",
+      "onboardingScopes": ["text-inference"]
+    }
+  ],
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false
+  }
+}

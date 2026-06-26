@@ -1,35 +1,112 @@
 ---
-name: "Motor"
+name: "motor"
+version: "1.0.0"
 description: "Motor specification and selection tool"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/motor"
-sourceUrl: "https://clawhub.ai/skills/motor"
+author: "BytesAgain"
+homepage: "https://bytesagain.com"
+source: "https://github.com/bytesagain/ai-skills"
+tags: [motor, industrial, cli, tool]
+category: "industrial"
 ---
 
-# Motor
+# motor
 
-> Motor specification and selection tool
+Motor specification and selection tool
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/motor`
-- **Source URL:** [https://clawhub.ai/skills/motor](https://clawhub.ai/skills/motor)
+## Commands
 
-## Overview
+### `status`
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/motor
+scripts/script.sh status
 ```
+
+Show current status
+
+### `add`
+
+```bash
+scripts/script.sh add
+```
+
+Add new entry
+
+### `list`
+
+```bash
+scripts/script.sh list
+```
+
+List all entries
+
+### `search`
+
+```bash
+scripts/script.sh search
+```
+
+Search entries
+
+### `remove`
+
+```bash
+scripts/script.sh remove
+```
+
+Remove entry by number
+
+### `export`
+
+```bash
+scripts/script.sh export
+```
+
+Export data to file
+
+### `stats`
+
+```bash
+scripts/script.sh stats
+```
+
+Show statistics
+
+### `config`
+
+```bash
+scripts/script.sh config
+```
+
+View or set config
+
+### `help`
+
+```bash
+scripts/script.sh help
+```
+
+### `version`
+
+```bash
+scripts/script.sh version
+```
+
+## Configuration
+
+Use `scripts/script.sh config <key> <value>` to set preferences.
+
+| Variable | Required | Description |
+|----------|----------|-------------|
+| `MOTOR_DIR` | No | Data directory (default: ~/.motor/) |
+
+## Data Storage
+
+All data stored in `~/.motor/` using JSONL format (one JSON object per line).
+
+## Output
+
+Structured output to stdout. Exit code 0 on success, 1 on error.
+
+---
+
+*Powered by BytesAgain | bytesagain.com | hello@bytesagain.com*

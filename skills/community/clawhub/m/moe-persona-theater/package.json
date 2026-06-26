@@ -1,0 +1,56 @@
+{
+  "name": "@openclaw/moe-persona-theater",
+  "version": "1.0.0",
+  "description": "An ACG-style character switching skill for OpenClaw with 6 anime-inspired role voices, local state handling, and balanced technical output.",
+  "keywords": [
+    "openclaw",
+    "skill",
+    "persona",
+    "roleplay",
+    "anime",
+    "acg",
+    "moe",
+    "character",
+    "switchboard",
+    "conversation"
+  ],
+  "license": "MIT",
+  "openclaw": {
+    "skill": true,
+    "triggers": [
+      "切换到",
+      "切到",
+      "进入人格模式",
+      "现在是什么人格",
+      "列出可用人格",
+      "恢复默认"
+    ],
+    "capabilities": [
+      "character-switching",
+      "role-consistency",
+      "conversation-style-control",
+      "anime-style-roleplay"
+    ],
+    "voices": 6,
+    "requirements": {
+      "bins": [
+        "python"
+      ],
+      "env": {}
+    }
+  },
+  "files": [
+    "SKILL.md",
+    "README.md",
+    "CHANGELOG.md",
+    "guide.md",
+    "notes.md",
+    "roster.md",
+    "scenes.md",
+    "skill.json",
+    "package.json",
+    "LICENSE",
+    "scripts/",
+    "voices/"
+  ]
+}

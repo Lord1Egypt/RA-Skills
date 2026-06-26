@@ -1,0 +1,20 @@
+{
+  "name": "multi-agent-en",
+  "version": "1.0.0",
+  "description": "Generic Multi-Agent Dispatcher (English): Turns the main agent into a pure dispatcher that delegates all work to 5 persistent sub-agents via sessions_spawn. Round-robin scheduling, reply-before-spawn protocol, fixed sessionKey reuse. No theme lock-in — fully customizable dispatcher role and sub-agent names.",
+  "author": "cloudboy",
+  "homepage": "https://clawhub.ai",
+  "keywords": [
+    "multi-agent",
+    "dispatcher",
+    "sessions_spawn",
+    "round-robin",
+    "generic",
+    "english",
+    "coordinator",
+    "task-delegation",
+    "sub-agents",
+    "parallel",
+    "orchestration"
+  ]
+}

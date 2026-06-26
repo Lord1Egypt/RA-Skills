@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Helvetica Neue', Arial, sans-serif; color: #1a1a1a; line-height: 1.5; }
+  .container { display: flex; min-height: 100vh; }
+  .sidebar { width: 260px; background: #1e293b; color: #e2e8f0; padding: 36px 24px; }
+  .sidebar h1 { font-size: 24px; font-weight: 700; color: #fff; margin-bottom: 6px; }
+  .sidebar .tagline { font-size: 13px; color: #94a3b8; margin-bottom: 24px; }
+  .sidebar .section-title { font-size: 11px; text-transform: uppercase; letter-spacing: 2px; color: #64748b; margin-bottom: 8px; margin-top: 20px; }
+  .sidebar .contact-item { font-size: 13px; margin-bottom: 6px; color: #cbd5e1; }
+  .sidebar .skill-tag { display: inline-block; background: #334155; color: #e2e8f0; padding: 3px 10px; border-radius: 12px; font-size: 12px; margin: 3px 3px 3px 0; }
+  .main { flex: 1; padding: 36px 32px; }
+  .main .section { margin-bottom: 24px; }
+  .main .section-title { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: #2563eb; border-bottom: 2px solid #2563eb; padding-bottom: 4px; margin-bottom: 14px; }
+  .summary { font-size: 14px; color: #475569; line-height: 1.7; }
+  .experience-entry { margin-bottom: 18px; }
+  .entry-header { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; }
+  .entry-header h3 { font-size: 16px; font-weight: 600; color: #1e293b; }
+  .company { font-size: 14px; color: #64748b; }
+  .dates { font-size: 13px; color: #94a3b8; }
+  ul { margin: 6px 0 0 18px; }
+  li { font-size: 14px; margin-bottom: 4px; color: #334155; }
+  .education-entry { margin-bottom: 10px; }
+  .education-entry h3 { font-size: 15px; font-weight: 600; color: #1e293b; }
+  .institution { font-size: 13px; color: #64748b; }
+</style>
+</head>
+<body>
+  <div class="container">
+    <div class="sidebar">
+      <h1>{{name}}</h1>
+      <div class="tagline">{{contact.location}}</div>
+
+      <div class="section-title">Contact</div>
+      <div class="contact-item">{{contact.email}}</div>
+      <div class="contact-item">{{contact.phone}}</div>
+      <div class="contact-item">{{contact.linkedin}}</div>
+
+      <div class="section-title">Skills</div>
+      <div>{{skills_list}}</div>
+    </div>
+
+    <div class="main">
+      <div class="section">
+        <div class="section-title">Summary</div>
+        <p class="summary">{{summary}}</p>
+      </div>
+
+      <div class="section">
+        <div class="section-title">Experience</div>
+        {{experience_section}}
+      </div>
+
+      <div class="section">
+        <div class="section-title">Education</div>
+        {{education_section}}
+      </div>
+    </div>
+  </div>
+</body>
+</html>

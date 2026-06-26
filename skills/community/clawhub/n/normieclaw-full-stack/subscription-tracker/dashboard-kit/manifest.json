@@ -1,0 +1,112 @@
+{
+  "tool": "subscription-tracker",
+  "version": "1.0.0",
+  "prefix": "st_",
+  "display_name": "Subscription Tracker",
+  "description": "Track and manage recurring subscriptions from bank statements",
+  "data_source": "~/.normieclaw/subscription-tracker/subscriptions.json",
+  "refresh_interval": "daily",
+  "widgets": [
+    {
+      "id": "st_monthly_spend",
+      "type": "stat",
+      "label": "Monthly Subscriptions",
+      "description": "Total monthly subscription spend across all active subscriptions",
+      "unit": "currency",
+      "query": "sum(subscriptions[status=active, frequency=monthly].amount) + sum(subscriptions[status=active, frequency=annual].amount / 12)",
+      "format": "$%.2f",
+      "trend": "lower_is_better",
+      "size": "small"
+    },
+    {
+      "id": "st_annual_spend",
+      "type": "stat",
+      "label": "Annual Projected",
+      "description": "Projected annual subscription spend",
+      "unit": "currency",
+      "query": "sum(subscriptions[status=active, frequency=monthly].amount * 12) + sum(subscriptions[status=active, frequency=annual].amount)",
+      "format": "$%.2f",
+      "trend": "lower_is_better",
+      "size": "small"
+    },
+    {
+      "id": "st_sub_count",
+      "type": "stat",
+      "label": "Active Subscriptions",
+      "description": "Number of active tracked subscriptions",
+      "query": "count(subscriptions[status=active])",
+      "format": "%d",
+      "trend": "neutral",
+      "size": "small"
+    },
+    {
+      "id": "st_savings",
+      "type": "stat",
+      "label": "Annual Savings",
+      "description": "Total annual savings from cancelled subscriptions",
+      "unit": "currency",
+      "query": "sum(cancelled[].annual_savings)",
+      "format": "$%.2f",
+      "trend": "higher_is_better",
+      "highlight_color": "#22c55e",
+      "size": "small"
+    },
+    {
+      "id": "st_category_breakdown",
+      "type": "pie",
+      "label": "Spend by Category",
+      "description": "Subscription spend broken down by category",
+      "query": "group_by(subscriptions[status=active], category, sum(amount))",
+      "colors": {
+        "streaming": "#ef4444",
+        "music": "#8b5cf6",
+        "ai_tools": "#3b82f6",
+        "cloud_storage": "#06b6d4",
+        "productivity": "#f59e0b",
+        "fitness": "#22c55e",
+        "news": "#6366f1",
+        "gaming": "#ec4899",
+        "vpn": "#14b8a6",
+        "design": "#f97316",
+        "education": "#a855f7",
+        "health": "#10b981",
+        "other": "#6b7280"
+      },
+      "size": "medium"
+    },
+    {
+      "id": "st_upcoming_renewals",
+      "type": "list",
+      "label": "Upcoming Renewals",
+      "description": "Subscriptions renewing in the next 7 days",
+      "query": "subscriptions[status=active, next_renewal <= today+7d] | sort_by(next_renewal)",
+      "columns": ["next_renewal:Date", "service:Service", "amount:Amount"],
+      "max_items": 10,
+      "empty_message": "No renewals in the next 7 days ✅",
+      "size": "medium"
+    },
+    {
+      "id": "st_price_changes",
+      "type": "list",
+      "label": "Recent Price Changes",
+      "description": "Subscriptions where the last charge differed from the previous amount",
+      "query": "subscriptions[status=active, len(previous_amounts) > 1, previous_amounts[-1] != previous_amounts[-2]]",
+      "columns": ["service:Service", "previous_amounts[-2]:Was", "amount:Now", "delta:Change"],
+      "max_items": 5,
+      "empty_message": "No price changes detected",
+      "size": "medium"
+    },
+    {
+      "id": "st_trend",
+      "type": "line",
+      "label": "Monthly Spend Trend",
+      "description": "Total monthly subscription spend over time",
+      "query": "timeseries(monthly_totals, 6m)",
+      "x_axis": "month",
+      "y_axis": "total_spend",
+      "y_format": "$%.0f",
+      "color": "#3b82f6",
+      "size": "large"
+    }
+  ]
+}

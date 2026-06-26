@@ -1,0 +1,4 @@
+interface:
+  display_name: "Mongolian AI"
+  short_description: "Mongolian translation, chat, OCR, ASR, and TTS"
+  default_prompt: "Use $mongolian-ai for a Mongolian-language translation, chat, OCR, ASR, or TTS task."

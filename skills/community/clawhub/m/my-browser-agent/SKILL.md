@@ -1,35 +1,20 @@
----
-name: "My Browser Agent"
-description: "Automate browsing with Playwright to visit URLs, capture screenshots, retrieve page titles, and interact with elements (clicking coming soon)."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/my-browser-agent"
-sourceUrl: "https://clawhub.ai/skills/my-browser-agent"
----
+# my-browser-agent
 
-# My Browser Agent
+A custom browser automation skill using Playwright.
 
-> Automate browsing with Playwright to visit URLs, capture screenshots, retrieve page titles, and interact with elements (clicking coming soon).
+## Features
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/my-browser-agent`
-- **Source URL:** [https://clawhub.ai/skills/my-browser-agent](https://clawhub.ai/skills/my-browser-agent)
+- Visit any URL
+- Take screenshots
+- Get page title
+- Click elements (future)
 
-## Overview
+## Usage
 
+Call with:
+- `url`: The URL to visit (required)
+- `action`: Optional action like "screenshot", "title", "click"
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/my-browser-agent
-```
+## Example
+
+> Use my-browser-agent to visit https://www.bilibili.com and take a screenshot.

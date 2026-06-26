@@ -1,0 +1,20 @@
+{
+  "dimensions": {
+    "weights": {
+      "codePresence": 0.15,
+      "reasoningMarkers": 0.18
+    },
+    "thresholds": {
+      "simpleTokens": 50,
+      "complexTokens": 300
+    }
+  },
+  "tiers": {
+    "simpleMedium": -0.15,
+    "mediumComplex": 0.15,
+    "complexReasoning": 0.55
+  },
+  "profiles": {
+    "default": "auto"
+  }
+}

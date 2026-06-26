@@ -1,0 +1,11 @@
+{
+  "name": "myxz-rmbg-skill",
+  "type": "module",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "@seald-io/nedb": "^4.1.2",
+    "axios": "^1.15.2",
+    "form-data": "^4.0.5"
+  }
+}

@@ -1,0 +1,106 @@
+name: kol-agency-delivery
+version: "4.0"
+description: KOL营销交付工作流 - AI扮演KOL营销顾问，逐步交付达人矩阵、种草策略、投放排期等KOL营销成果
+
+input:
+  type: object
+  required:
+    - requirement_summary
+  properties:
+    requirement_summary:
+      type: object
+    delivery_plan:
+      type: object
+
+steps:
+  # ══════════════════════════════════
+  # STEP 1: KOL整体策略
+  # ══════════════════════════════════
+  - id: kol_strategy
+    agent: agents/types/kol-agency/main-agent
+    action: develop_kol_strategy
+    description: 制定KOL整体策略：营销目标拆解、平台选择逻辑、达人金字塔结构、预算框架
+    input:
+      requirement_summary: "{{input.requirement_summary}}"
+    output: kol_strategy_doc
+    checkpoint:
+      format: markdown
+      confirm: true
+      confirm_message: "请确认平台选择和金字塔结构？"
+
+  # ══════════════════════════════════
+  # STEP 2: 达人矩阵方案
+  # ══════════════════════════════════
+  - id: influencer_matrix
+    agent: agents/types/kol-agency/main-agent
+    action: design_influencer_matrix
+    description: 设计达人矩阵：各层级数量/粉丝区间/单价/职责/筛选标准/示例达人类型
+    input:
+      requirement_summary: "{{input.requirement_summary}}"
+      strategy: "{{kol_strategy.output.kol_strategy_doc}}"
+    output: influencer_matrix_plan
+    checkpoint:
+      format: markdown
+      confirm: true
+      confirm_message: "请确认层级配比和预算分配？"
+
+  # ══════════════════════════════════
+  # STEP 3: 种草内容策略
+  # ══════════════════════════════════
+  - id: content_strategy
+    agent: agents/types/kol-agency/main-agent
+    action: define_content_strategy
+    description: 定义种草策略：内容形式矩阵、Brief模板要点、内容方向库、避坑指南
+    input:
+      requirement_summary: "{{input.requirement_summary}}"
+      strategy: "{{kol_strategy.output.kol_strategy_doc}}"
+      matrix: "{{influencer_matrix.output.influencer_matrix_plan}}"
+    output: content_strategy_doc
+    checkpoint:
+      format: markdown
+      confirm: true
+      confirm_message: "请确认内容方向和Brief要点？"
+
+  # ══════════════════════════════════
+  # STEP 4: 投放排期与预算明细
+  # ══════════════════════════════════
+  - id: deployment_plan
+    agent: agents/types/kol-agency/main-agent
+    action: create_deployment_schedule
+    description: 制定投放排期：分阶段时间表(预热/种草/爆发/长尾)、各达人费用明细、总预算汇总、效果预估
+    input:
+      requirement_summary: "{{input.requirement_summary}}"
+      matrix: "{{influencer_matrix.output.influencer_matrix_plan}}"
+      content: "{{content_strategy.output.content_strategy_doc}}"
+    output: deployment_schedule
+    checkpoint:
+      format: markdown
+      confirm: true
+      confirm_message: "请确认时间线和总预算？"
+
+  # ══════════════════════════════════
+  # STEP 5: 质量自检
+  # ══════════════════════════════════
+  - id: quality_check
+    agent: agents/types/kol-agency/main-agent
+    reference: references/_shared/quality-protocol.md
+    action: quality_assessment
+    description: 对所有交付物进行质量自检（策略合理性/矩阵可行性/内容适配性/预算准确性）
+    input:
+      deliverables:
+        strategy: "{{kol_strategy.output.kol_strategy_doc}}"
+        matrix: "{{influencer_matrix.output.influencer_matrix_plan}}"
+        content: "{{content_strategy.output.content_strategy_doc}}"
+        schedule: "{{deployment_plan.output.deployment_schedule}}"
+    output: quality_report
+
+output:
+  deliverables:
+    strategy: "{{kol_strategy.output.kol_strategy_doc}}"
+    influencer_matrix: "{{influencer_matrix.output.influencer_matrix_plan}}"
+    content_strategy: "{{content_strategy.output.content_strategy_doc}}"
+    deployment_schedule: "{{deployment_plan.output.deployment_schedule}}"
+  quality: "{{quality_check.output.quality_report}}"
+  metadata:
+    workflow_version: "4.0"
+    role: "kol-agency"

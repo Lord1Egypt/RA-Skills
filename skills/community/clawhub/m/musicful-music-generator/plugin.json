@@ -1,0 +1,137 @@
+{
+  "name": "music_generator",
+  "description": "Generate AI music or lyrics from natural language; auto-polls and returns preview first, then full audio.",
+  "metadata": {
+    "env": {
+      "required": ["MUSICFUL_API_KEY"],
+      "optional": ["MUSICFUL_BASE_URL"]
+    }
+  },
+  "commands": [
+    {
+      "name": "music_generator",
+      "description": "One command: /music_generator mode=normal|bgm|lyrics (default: normal)",
+      "options": [
+        { "name": "mode",   "description": "normal|bgm|lyrics (default: normal)", "type": "string", "required": false },
+        { "name": "prompt", "description": "Main natural-language request/prompt", "type": "string", "required": true },
+        { "name": "style",  "description": "Music style (default: Pop)", "type": "string", "required": false },
+        { "name": "mv",     "description": "Model version (default: MFV2.0)", "type": "string", "required": false },
+        { "name": "gender", "description": "Vocal gender male/female (default: male)", "type": "string", "required": false }
+      ],
+      "exec": {
+        "type": "process",
+        "command": "python3",
+        "args": [
+          "~/.openclaw/workspace/skills/musicful-music-generator/scripts/dispatch_music_generator.py",
+          "--mode", "${mode}",
+          "--prompt", "${prompt}",
+          "--style", "${style}",
+          "--mv", "${mv}",
+          "--gender", "${gender}"
+        ],
+        "cwd": "~/.openclaw/workspace"
+      },
+      "response": { "type": "text", "template": "Result: ${result}" }
+    },
+    {
+      "name": "music_generate_auto",
+      "description": "Generate background/auto music (no lyrics)",
+      "options": [
+        { "name": "style", "description": "Music style", "type": "string", "required": false },
+        { "name": "mv",    "description": "Model version (default v5.0)", "type": "string", "required": false },
+        { "name": "instrumental", "description": "1 for BGM", "type": "integer", "required": false },
+        { "name": "gender", "description": "male/female", "type": "string", "required": false }
+      ],
+      "exec": {
+        "type": "process",
+        "command": "python3",
+        "args": [
+          "~/.openclaw/workspace/skills/musicful-music-generator/scripts/run_musicful.py",
+          "auto",
+          "--style", "${style}",
+          "--mv", "${mv}",
+          "--instrumental", "${instrumental}",
+          "--gender", "${gender}"
+        ],
+        "cwd": "~/.openclaw/workspace"
+      },
+      "response": { "type": "text", "template": "Submitted auto generation, result: ${result}" }
+    },
+    {
+      "name": "music_generate_custom",
+      "description": "Generate music with provided lyrics",
+      "options": [
+        { "name": "lyrics", "description": "Lyrics text", "type": "string", "required": true },
+        { "name": "title",  "description": "Title (optional)", "type": "string", "required": false },
+        { "name": "style",  "description": "Music style", "type": "string", "required": false },
+        { "name": "mv",     "description": "Model version (default v5.0)", "type": "string", "required": false },
+        { "name": "instrumental", "description": "0 or 1", "type": "integer", "required": false },
+        { "name": "gender", "description": "male/female", "type": "string", "required": false }
+      ],
+      "exec": {
+        "type": "process",
+        "command": "python3",
+        "args": [
+          "~/.openclaw/workspace/skills/musicful-music-generator/scripts/run_musicful.py",
+          "custom",
+          "--lyrics", "${lyrics}",
+          "--title", "${title}",
+          "--style", "${style}",
+          "--mv", "${mv}",
+          "--instrumental", "${instrumental}",
+          "--gender", "${gender}"
+        ],
+        "cwd": "~/.openclaw/workspace"
+      },
+      "response": { "type": "text", "template": "Submitted lyrics-based generation, result: ${result}" }
+    },
+    {
+      "name": "music_generate_lyrics",
+      "description": "Generate lyrics only",
+      "options": [ { "name": "prompt", "description": "Lyrics description", "type": "string", "required": true } ],
+      "exec": {
+        "type": "process",
+        "command": "python3",
+        "args": [
+          "~/.openclaw/workspace/skills/musicful-music-generator/scripts/run_musicful.py",
+          "lyrics",
+          "--prompt", "${prompt}"
+        ],
+        "cwd": "~/.openclaw/workspace"
+      },
+      "response": { "type": "text", "template": "Lyrics result: ${result}" }
+    },
+    {
+      "name": "music_task_query",
+      "description": "Query music task status by ids (comma-separated)",
+      "options": [ { "name": "ids", "description": "task ids, comma-separated", "type": "string", "required": true } ],
+      "exec": {
+        "type": "process",
+        "command": "python3",
+        "args": [
+          "~/.openclaw/workspace/skills/musicful-music-generator/scripts/run_musicful.py",
+          "query",
+          "--ids", "${ids}"
+        ],
+        "cwd": "~/.openclaw/workspace"
+      },
+      "response": { "type": "text", "template": "Task status: ${result}" }
+    },
+    {
+      "name": "music_generate_mp4",
+      "description": "Generate MP4 for a finished task",
+      "options": [ { "name": "id", "description": "task id", "type": "string", "required": true } ],
+      "exec": {
+        "type": "process",
+        "command": "python3",
+        "args": [
+          "~/.openclaw/workspace/skills/musicful-music-generator/scripts/run_musicful.py",
+          "mp4",
+          "--id", "${id}"
+        ],
+        "cwd": "~/.openclaw/workspace"
+      },
+      "response": { "type": "text", "template": "MP4 result: ${result}" }
+    }
+  ]
+}

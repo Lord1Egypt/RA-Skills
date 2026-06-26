@@ -1,0 +1,30 @@
+{
+  "triage_rules": [],
+  "vip_senders": [],
+  "check_frequency": {
+    "mode": "on_demand",
+    "schedule": [],
+    "timezone": "America/Denver",
+    "quiet_hours": {
+      "start": "22:00",
+      "end": "07:00"
+    },
+    "vip_override_quiet": true
+  },
+  "classification": {
+    "urgent_keywords": ["ASAP", "urgent", "by end of day", "immediately", "deadline"],
+    "archive_senders": [],
+    "archive_keywords": ["unsubscribe", "no-reply", "noreply", "do-not-reply"]
+  },
+  "digest": {
+    "retention_days": 90,
+    "include_already_addressed": true,
+    "max_emails_per_batch": 50
+  },
+  "phishing": {
+    "flag_credential_requests": true,
+    "flag_mismatched_senders": true,
+    "flag_typosquat_domains": true,
+    "suspicious_tlds": [".xyz", ".top", ".click", ".loan", ".work"]
+  }
+}

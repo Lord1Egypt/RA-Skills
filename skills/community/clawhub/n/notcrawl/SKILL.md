@@ -1,35 +1,42 @@
 ---
-name: "Notcrawl"
+name: notcrawl
 description: "Notion archive: search, sync freshness, pages/databases, Markdown exports, SQL counts, and Notcrawl repo work."
-category: "other"
-source: "ClawHub"
-tags: [archive, crawler, local-first, paperchase]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/notcrawl"
-sourceUrl: "https://clawhub.ai/skills/notcrawl"
+metadata:
+  openclaw:
+    homepage: https://github.com/openclaw/notcrawl
+    requires:
+      bins:
+        - notcrawl
+    install:
+      - kind: go
+        module: github.com/openclaw/notcrawl/cmd/notcrawl@latest
+        bins:
+          - notcrawl
 ---
 
 # Notcrawl
 
-> Notion archive: search, sync freshness, pages/databases, Markdown exports, SQL counts, and Notcrawl repo work.
+Use local Notion archive data before browsing or live Notion API calls. Check freshness for recent/current questions:
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/notcrawl`
-- **Source URL:** [https://clawhub.ai/skills/notcrawl](https://clawhub.ai/skills/notcrawl)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/notcrawl
+notcrawl doctor
+notcrawl status --json
 ```
+
+Refresh only when stale or asked:
+
+```bash
+notcrawl sync --source desktop
+notcrawl sync --source api
+```
+
+Query with bounded reads:
+
+```bash
+notcrawl search "query"
+notcrawl databases
+notcrawl report
+notcrawl sql "select count(*) from pages;"
+```
+
+Report workspace/teamspace, page/database titles, absolute date spans, counts, and known gaps. Use read-only SQL only; never mutate the archive. API mode requires `NOTION_TOKEN`; do not assume token availability.

@@ -1,0 +1,19 @@
+{
+  "name": "mimo-web-search",
+  "version": "1.0.0",
+  "description": "MiMo 联网搜索技能 - 使用小米 MiMo 模型的联网搜索功能进行实时信息搜索",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test.js"
+  },
+  "keywords": [
+    "mimo",
+    "web-search",
+    "xiaomi",
+    "ai",
+    "search"
+  ],
+  "author": "OpenClaw",
+  "license": "MIT",
+  "dependencies": {}
+}

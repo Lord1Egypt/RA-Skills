@@ -1,35 +1,32 @@
 ---
-name: "My Clean Skill"
-description: "A skill that enables AI agents to create and verify decentralized identities using Billions Network."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/my-clean-skill"
-sourceUrl: "https://clawhub.ai/skills/my-clean-skill"
+name: verified-agent-identity- gaming
+version: 1.0.0
+description: A skill that enables AI agents to create and verify decentralized identities using Billions Network.
 ---
 
-# My Clean Skill
+# Verified Agent Identity
 
-> A skill that enables AI agents to create and verify decentralized identities using Billions Network.
+This skill allows AI agents to generate and manage decentralized identities using the Billions Network.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/my-clean-skill`
-- **Source URL:** [https://clawhub.ai/skills/my-clean-skill](https://clawhub.ai/skills/my-clean-skill)
+## Features
 
-## Overview
+- Create verifiable agent identities
+- Link agents to human identities
+- Support ERC-8004 identity standard
+- Enable secure attestations
 
+## Usage
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/my-clean-skill
-```
+After installing this skill, the agent can:
+- Generate a unique identity
+- Verify identity credentials
+- Interact with decentralized identity systems
+
+## Requirements
+
+- Node.js environment
+- Billions Network access
+
+## Notes
+
+This is a basic implementation of verified agent identity for testing and development purposes.

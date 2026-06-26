@@ -1,0 +1,107 @@
+@echo off
+chcp 65001 >nul
+net session >nul 2>&1
+if %ERRORLEVEL% neq 0 (
+    echo Administrator rights are required. Relaunching...
+    powershell -NoProfile -Command "Start-Process -FilePath '%~f0' -Verb RunAs"
+    exit /b
+)
+
+setlocal enabledelayedexpansion
+cd /d "%~dp0"
+
+title NapCat QQ Bridge Launcher
+
+set "NAPCAT_HOME=%~dp0napcat"
+if not exist "%NAPCAT_HOME%\logs" mkdir "%NAPCAT_HOME%\logs"
+
+netstat -ano | findstr ":__NAPCAT_API_PORT__ " | findstr "LISTENING" >nul 2>&1
+if !ERRORLEVEL! == 0 (
+    echo NapCat already appears to be running on __NAPCAT_API_PORT__.
+    exit /b 0
+)
+netstat -ano | findstr ":__NAPCAT_WS_PORT__ " | findstr "LISTENING" >nul 2>&1
+if !ERRORLEVEL! == 0 (
+    echo NapCat already appears to be running on __NAPCAT_WS_PORT__.
+    exit /b 0
+)
+
+echo ========================================
+echo   NapCat QQ Bridge Launcher
+echo ========================================
+echo.
+
+echo [1/3] Starting OpenClaw container...
+wsl -d __WSL_DISTRO__ -- docker start __CONTAINER_NAME__ >nul 2>&1
+wsl -d __WSL_DISTRO__ -- docker exec __CONTAINER_NAME__ sh -lc "pgrep -f 'openclaw gateway run' >/dev/null 2>&1 || pgrep -f 'openclaw-gateway' >/dev/null 2>&1 || (HOST=0.0.0.0 openclaw gateway run --bind lan --verbose >/tmp/openclaw-gateway.log 2>&1 &)" >nul 2>&1
+
+set "GW_READY=0"
+for /L %%i in (1,1,12) do (
+    if "!GW_READY!"=="0" (
+        timeout /t 2 /nobreak >nul
+        curl -sf http://127.0.0.1:__OPENCLAW_PORT__/health >nul 2>&1
+        if !ERRORLEVEL! == 0 set "GW_READY=1"
+    )
+)
+if "!GW_READY!"=="1" (
+    echo   OpenClaw gateway: OK
+) else (
+    echo   OpenClaw gateway: still warming up
+)
+echo.
+
+echo [2/3] Starting bridge...
+start "QQ Bridge" /min cmd /c "cd /d "%NAPCAT_HOME%" && node bridge.mjs > logs\bridge-runtime.log 2>&1"
+
+set "BR_READY=0"
+for /L %%i in (1,1,8) do (
+    if "!BR_READY!"=="0" (
+        timeout /t 1 /nobreak >nul
+        curl -sf http://127.0.0.1:__BRIDGE_PORT__/health >nul 2>&1
+        if !ERRORLEVEL! == 0 set "BR_READY=1"
+    )
+)
+if "!BR_READY!"=="1" (
+    echo   Bridge: OK
+) else (
+    echo   Bridge: still warming up
+)
+echo.
+
+echo [3/3] Starting NapCat...
+set "RETSTRING="
+for /f "tokens=2*" %%a in ('reg query "HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall\QQ" /v "UninstallString" 2^>nul') do (
+    set "RETSTRING=%%~b"
+)
+if not defined RETSTRING (
+    for /f "tokens=2*" %%a in ('reg query "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\QQ" /v "UninstallString" 2^>nul') do (
+        set "RETSTRING=%%~b"
+    )
+)
+
+for %%a in ("%RETSTRING%") do (
+    set "QQ_DIR=%%~dpa"
+)
+set "QQ_PATH=%QQ_DIR%QQ.exe"
+
+if not exist "%QQ_PATH%" (
+    echo QQ.exe was not found. Install Tencent.QQ.NT first, then rerun this launcher.
+    pause
+    exit /b 1
+)
+
+set "NAPCAT_LOAD_PATH=%NAPCAT_HOME%\loadNapCat.js"
+set "NAPCAT_INJECT_PATH=%NAPCAT_HOME%\NapCatWinBootHook.dll"
+set "NAPCAT_LAUNCHER_PATH=%NAPCAT_HOME%\NapCatWinBootMain.exe"
+set "NAPCAT_MAIN_PATH=%NAPCAT_HOME%\napcat.mjs"
+set "NAPCAT_MAIN_URL=%NAPCAT_MAIN_PATH:\=/%"
+set "NAPCAT_QUICK_ACCOUNT=__BOT_QQ__"
+echo (async () =^> {await import("file:///%NAPCAT_MAIN_URL%")})() > "%NAPCAT_LOAD_PATH%"
+
+echo   Launching QQ with NapCat injection...
+echo.
+echo Close this window to stop the foreground NapCat session.
+echo A QR code may still be required if QQ refuses fast login.
+echo.
+"%NAPCAT_LAUNCHER_PATH%" "%QQ_PATH%" "%NAPCAT_INJECT_PATH%" -q __BOT_QQ__
+pause

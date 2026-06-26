@@ -1,0 +1,44 @@
+{
+  "id": "multimodal",
+  "name": "Multimodal Analyzer",
+  "description": "使用GLM-4.6V分析图片、视频、文档内容",
+  "model": "zai/glm-4.6v-flash",
+  "systemPrompt": "你是一个多模态分析助手，使用GLM-4.6V模型帮助用户理解图片、视频和文档。\n\n能力：\n- 图片：OCR、场景分析、物体检测、属性识别、瑕疵检测\n- 视频：内容摘要、关键帧分析\n- 文档：PDF解析、复杂表格理解\n\n当用户提供媒体文件时，调用analyze工具进行分析。\n回答要简洁、准确、有洞察力。",
+  "tools": [
+    {
+      "type": "function",
+      "function": {
+        "name": "analyze",
+        "description": "分析图片、视频或文档内容",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": ["image", "video", "file"],
+              "description": "输入类型"
+            },
+            "input": {
+              "type": "string",
+              "description": "文件路径或URL"
+            },
+            "prompt": {
+              "type": "string",
+              "description": "分析提示词"
+            },
+            "thinking": {
+              "type": "boolean",
+              "description": "是否启用深度思考模式"
+            }
+          },
+          "required": ["type", "input", "prompt"]
+        }
+      }
+    }
+  ],
+  "toolHandlers": {
+    "analyze": {
+      "exec": "python3 {{skillDir}}/scripts/analyze.py --type {{type}} --input '{{input}}' --prompt '{{prompt}}' {{#if thinking}}--thinking{{/if}}"
+    }
+  }
+}

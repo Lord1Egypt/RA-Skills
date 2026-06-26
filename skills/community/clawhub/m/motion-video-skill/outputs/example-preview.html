@@ -1,0 +1,865 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Web 动画讲解视频 Demo</title>
+  <style>:root {
+  --page-bg: #08111b;
+  --panel-bg: rgba(10, 15, 28, 0.74);
+  --panel-outline: rgba(148, 163, 184, 0.18);
+  --panel-text: #e2e8f0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+  background: var(--page-bg);
+  color: var(--panel-text);
+  font-family: "Avenir Next", "PingFang SC", "Microsoft YaHei", sans-serif;
+}
+
+body {
+  padding: 28px;
+}
+
+.page {
+  width: min(100%, 1480px);
+  margin: 0 auto;
+}
+
+.preview-shell {
+  display: grid;
+  gap: 18px;
+  justify-items: center;
+}
+
+.stage-shell {
+  width: min(100%, 1280px);
+  overflow-x: auto;
+}
+
+.stage {
+  position: relative;
+  width: 1280px;
+  height: 720px;
+  overflow: hidden;
+  border-radius: var(--movie-stage-radius, 30px);
+  background: var(--movie-bg);
+  box-shadow: var(--movie-shadow);
+  border: 1px solid var(--movie-stage-border, rgba(255, 255, 255, 0.06));
+  isolation: isolate;
+}
+
+.stage::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(transparent 95%, rgba(255, 255, 255, 0.03) 100%),
+    linear-gradient(90deg, transparent 95%, rgba(255, 255, 255, 0.03) 100%);
+  background-size: 100% 56px, 56px 100%;
+  opacity: 0.26;
+  pointer-events: none;
+}
+
+.stage::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 20% 20%, var(--movie-accent-soft), transparent 26%),
+    radial-gradient(circle at 76% 18%, rgba(255, 255, 255, 0.05), transparent 22%);
+  pointer-events: none;
+}
+
+.stage.template-signal-stage::before {
+  background:
+    linear-gradient(transparent 95%, rgba(255, 255, 255, 0.03) 100%),
+    linear-gradient(90deg, transparent 95%, rgba(255, 255, 255, 0.03) 100%);
+  background-size: 100% 56px, 56px 100%;
+  opacity: 0.26;
+}
+
+.stage.template-signal-stage::after {
+  background:
+    radial-gradient(circle at 20% 20%, var(--movie-accent-soft), transparent 26%),
+    radial-gradient(circle at 76% 18%, rgba(255, 255, 255, 0.05), transparent 22%);
+}
+
+.stage.template-editorial-board::before {
+  background:
+    linear-gradient(180deg, rgba(122, 74, 52, 0.09), rgba(122, 74, 52, 0.02)),
+    repeating-linear-gradient(0deg, transparent 0 38px, rgba(122, 74, 52, 0.05) 38px 39px);
+  opacity: 0.42;
+}
+
+.stage.template-editorial-board::after {
+  background:
+    radial-gradient(circle at 82% 18%, rgba(255, 215, 170, 0.34), transparent 20%),
+    linear-gradient(180deg, transparent, rgba(255, 255, 255, 0.18));
+}
+
+.stage.template-creator-pop::before {
+  background:
+    linear-gradient(132deg, transparent 0 38%, rgba(255, 93, 143, 0.18) 38% 44%, transparent 44% 100%),
+    linear-gradient(312deg, transparent 0 52%, rgba(84, 214, 255, 0.14) 52% 58%, transparent 58% 100%);
+  opacity: 0.9;
+}
+
+.stage.template-creator-pop::after {
+  background:
+    radial-gradient(circle at 18% 18%, rgba(255, 93, 143, 0.24), transparent 24%),
+    radial-gradient(circle at 80% 16%, rgba(84, 214, 255, 0.20), transparent 20%);
+}
+
+.stage.template-mono-frame::before {
+  inset: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: calc(var(--movie-stage-radius, 30px) - 6px);
+  background: none;
+  opacity: 1;
+}
+
+.stage.template-mono-frame::after {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.02), transparent 26%),
+    radial-gradient(circle at 80% 18%, rgba(255, 255, 255, 0.08), transparent 20%);
+}
+
+.scene {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  pointer-events: none;
+  will-change: opacity, transform, clip-path, filter;
+}
+
+.scene-content {
+  position: absolute;
+  inset: 0;
+}
+
+.element {
+  position: absolute;
+  display: block;
+  transform-origin: center left;
+  will-change: opacity, transform, clip-path, box-shadow, filter;
+}
+
+.element.title,
+.element.subtitle,
+.element.text,
+.element.quote,
+.element.chip,
+.element.stat {
+  white-space: pre-line;
+}
+
+.element.title {
+  font-size: 64px;
+  line-height: 1.04;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+}
+
+.element.subtitle {
+  font-size: 28px;
+  line-height: 1.24;
+  font-weight: 600;
+  color: var(--movie-text-secondary);
+}
+
+.element.text,
+.element.quote,
+.element.bullet-list {
+  font-size: 26px;
+  line-height: 1.42;
+  color: var(--movie-text-secondary);
+}
+
+.element.quote {
+  padding: 20px 24px;
+  border-radius: var(--movie-card-radius, 28px);
+  border: 1px solid var(--movie-outline);
+  background: var(--movie-surface);
+  font-style: var(--movie-quote-font-style, normal);
+}
+
+.element.chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 18px;
+  min-height: 38px;
+  border-radius: var(--movie-chip-radius, 999px);
+  background: var(--movie-accent-soft);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: var(--movie-accent);
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.element.shape {
+  border-radius: var(--movie-card-radius, 28px);
+  background: var(--movie-surface);
+  border: 1px solid var(--movie-outline);
+}
+
+.element.stat {
+  padding: 22px 24px;
+  border-radius: var(--movie-card-radius, 28px);
+  background: var(--movie-surfaceStrong);
+  border: 1px solid var(--movie-outline);
+}
+
+.stat-value {
+  font-size: 86px;
+  line-height: 0.95;
+  font-weight: 800;
+  letter-spacing: -0.06em;
+  color: var(--movie-accent);
+}
+
+.stat-label {
+  margin-top: 14px;
+  font-size: 22px;
+  line-height: 1.3;
+  color: var(--movie-text-secondary);
+}
+
+.element.bullet-list ul {
+  margin: 0;
+  padding-left: 1.2em;
+  display: grid;
+  gap: 18px;
+}
+
+.element.bullet-list li::marker {
+  color: var(--movie-accent);
+}
+
+.subtitle-layer {
+  position: absolute;
+  left: 50%;
+  bottom: 34px;
+  z-index: 30;
+  width: min(82%, 960px);
+  transform: translate3d(-50%, 16px, 0);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 120ms linear;
+}
+
+.subtitle-text {
+  width: 100%;
+  padding: 18px 24px;
+  border-radius: 22px;
+  font-family: var(--movie-font-body);
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.34;
+  text-align: center;
+  color: #f8fafc;
+  background: rgba(6, 11, 22, 0.72);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  box-shadow: 0 24px 58px rgba(2, 6, 23, 0.28);
+  backdrop-filter: blur(18px);
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: var(--subtitle-max-lines, 2);
+}
+
+.subtitle-layer[data-visible="false"] {
+  opacity: 0;
+}
+
+.subtitle-preset-bottom-band .subtitle-text {
+  background:
+    linear-gradient(180deg, rgba(10, 16, 28, 0.86), rgba(10, 16, 28, 0.62));
+}
+
+.subtitle-preset-short-video-pop {
+  bottom: 50px;
+  width: min(76%, 920px);
+}
+
+.subtitle-preset-short-video-pop .subtitle-text {
+  padding: 20px 28px;
+  border-radius: 26px;
+  font-size: 34px;
+  font-weight: 800;
+  line-height: 1.26;
+  letter-spacing: -0.02em;
+  color: #fff8fb;
+  background:
+    linear-gradient(135deg, rgba(255, 93, 143, 0.90), rgba(84, 214, 255, 0.82));
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  box-shadow: 0 26px 70px rgba(8, 9, 22, 0.34);
+}
+
+.subtitle-preset-minimal-center {
+  bottom: 72px;
+  width: min(72%, 860px);
+}
+
+.subtitle-preset-minimal-center .subtitle-text {
+  padding: 14px 18px;
+  border-radius: 0;
+  font-size: 26px;
+  font-weight: 600;
+  letter-spacing: 0;
+  background: rgba(0, 0, 0, 0.18);
+  border: 0;
+  box-shadow: none;
+  text-shadow: 0 8px 24px rgba(0, 0, 0, 0.34);
+}
+
+.controls {
+  width: min(100%, 1280px);
+  display: grid;
+  gap: 12px;
+  padding: 16px 18px 18px;
+  border-radius: 22px;
+  background: var(--movie-panel-bg, var(--panel-bg));
+  border: 1px solid var(--movie-panel-outline, var(--panel-outline));
+  backdrop-filter: blur(16px);
+}
+
+.controls-top {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.meta {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.meta-chip {
+  display: inline-flex;
+  align-items: center;
+  min-height: 34px;
+  padding: 0 12px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--movie-panel-outline, var(--panel-outline));
+  font-size: 13px;
+  color: var(--panel-text);
+}
+
+.stage.template-editorial-board .element.chip {
+  text-transform: none;
+  letter-spacing: 0.06em;
+  font-size: 15px;
+}
+
+.stage.template-creator-pop .element.chip {
+  text-transform: none;
+  letter-spacing: 0.08em;
+}
+
+.stage.template-creator-pop .element.title {
+  text-shadow: 0 10px 30px rgba(0, 0, 0, 0.24);
+}
+
+.stage.template-mono-frame .element.chip,
+.stage.template-mono-frame .element.stat,
+.stage.template-mono-frame .element.quote,
+.stage.template-mono-frame .element.shape {
+  box-shadow: none;
+}
+
+.controls button {
+  min-height: 38px;
+  padding: 0 16px;
+  border: 0;
+  border-radius: 999px;
+  font-weight: 700;
+  color: #08111b;
+  background: #f8fafc;
+  cursor: pointer;
+}
+
+.timeline {
+  width: 100%;
+}
+
+input[type="range"] {
+  width: 100%;
+}
+
+.time-readout {
+  font-size: 14px;
+  color: #cbd5e1;
+}
+</style>
+</head>
+<body>
+  <main class="page">
+    <section class="preview-shell">
+      <div class="stage-shell">
+        <div
+          id="stage"
+          class="stage template-signal-stage"
+          style="--movie-bg:radial-gradient(circle at 18% 18%, rgba(255,140,66,0.18), transparent 32%), radial-gradient(circle at 82% 22%, rgba(89,227,255,0.14), transparent 28%), linear-gradient(140deg, #07111F 0%, #0B1730 48%, #08111B 100%);--movie-surface:rgba(8, 19, 34, 0.60);--movie-surfaceStrong:rgba(15, 28, 49, 0.90);--movie-text-primary:#F8FAFC;--movie-text-secondary:#CBD5E1;--movie-accent:#FF8C42;--movie-accent-soft:rgba(255, 140, 66, 0.18);--movie-accent-alt:#59E3FF;--movie-outline:rgba(148, 163, 184, 0.22);--movie-shadow:0 24px 64px rgba(2, 6, 23, 0.36);--movie-font-display:&#39;Avenir Next&#39;, &#39;PingFang SC&#39;, &#39;Microsoft YaHei&#39;, sans-serif;--movie-font-body:&#39;Avenir Next&#39;, &#39;PingFang SC&#39;, &#39;Microsoft YaHei&#39;, sans-serif;--movie-panel-bg:rgba(10, 15, 28, 0.74);--movie-panel-outline:rgba(148, 163, 184, 0.18);--movie-stage-border:rgba(255, 255, 255, 0.06);--movie-stage-radius:30px;--movie-card-radius:28px;--movie-chip-radius:999px;--movie-quote-font-style:normal;"
+        >
+          <div id="subtitle-layer" class="subtitle-layer subtitle-preset-bottom-band" style="--subtitle-max-lines:2;">
+            <div id="subtitle-text" class="subtitle-text"></div>
+          </div>
+        </div>
+      </div>
+      <div class="controls">
+        <div class="controls-top">
+          <div class="meta">
+            <span class="meta-chip">Web 动画讲解视频 Demo</span>
+            <span class="meta-chip">Signal Stage</span>
+            <span class="meta-chip">4 scenes</span>
+            <span class="meta-chip">subtitles 7</span>
+            <span class="meta-chip">00:22</span>
+            <span class="meta-chip">30 fps</span>
+            <span class="meta-chip">673 frames</span>
+          </div>
+          <button id="play-toggle" type="button">Play</button>
+        </div>
+        <div class="time-readout" id="time-readout">00:00 / 00:22</div>
+        <div class="timeline">
+          <input id="timeline-range" type="range" min="0" max="22408" value="0" step="1" />
+        </div>
+      </div>
+    </section>
+  </main>
+  <script>
+    const MOVIE = {"meta":{"title":"Web 动画讲解视频 Demo","theme":"signal-ink","template":"signal-stage","ratio":"16:9","fps":30,"width":1280,"height":720},"scenes":[{"id":"scene-01","label":"开场","type":"hero","durationMs":5726,"narration":"先用一句话说明，为什么要把字幕做成会讲解的画面。","elements":[{"id":"scene-01-chip","type":"chip","text":"motion explainer","x":92,"y":86,"w":220,"h":42,"animation":{"effect":"fade","startMs":43,"durationMs":408}},{"id":"scene-01-title","type":"title","text":"把一句说明\n变成会带节奏的讲解动画","x":90,"y":146,"w":700,"h":186,"animation":{"effect":"fade-up","startMs":130,"durationMs":815}},{"id":"scene-01-subtitle","type":"subtitle","text":"先理解文本，再把重点做成镜头、字幕和动效。","x":92,"y":366,"w":612,"h":86,"animation":{"effect":"fade","startMs":1560,"durationMs":670}},{"id":"scene-01-shape","type":"shape","x":850,"y":128,"w":314,"h":420,"style":{"background":"linear-gradient(180deg, rgba(255,140,66,0.26), rgba(89,227,255,0.10))","borderRadius":36},"animation":{"effect":"pop","startMs":70,"durationMs":718}},{"id":"scene-01-quote","type":"quote","text":"不是做一页页静态卡片，而是让每个重点在正确的时刻出现。","x":820,"y":188,"w":368,"h":240,"animation":{"effect":"slide-right","startMs":4450,"durationMs":856}}],"timingMode":"auto","cues":[{"id":"scene-01-cue-01","text":"先用一句话说明，","startMs":180,"endMs":1560},{"id":"scene-01-cue-02","text":"为什么要把字幕做成会讲解的画面。","startMs":1560,"endMs":4540}],"transition":{"enterEffect":"zoom-out","exitEffect":"fade","enterDurationMs":360,"exitDurationMs":220}},{"id":"scene-02","label":"步骤","type":"steps","durationMs":5284,"narration":"把文案拆成节拍，再给每个节拍配一个镜头模板。","elements":[{"id":"scene-02-title","type":"title","text":"一个稳定流程，先做这三步","x":92,"y":104,"w":760,"h":92,"style":{"fontSize":56},"animation":{"effect":"slide-left","startMs":130,"durationMs":804}},{"id":"scene-02-list","type":"bullet-list","items":["提炼一句主结论，别把所有信息同时端上来","把原文拆成 4 到 8 个讲解节拍","给每个节拍匹配合适的动效版式"],"x":100,"y":226,"w":620,"h":302,"animation":{"effect":"fade-up","startMs":1560,"durationMs":937,"itemStaggerMs":460}},{"id":"scene-02-card","type":"shape","x":780,"y":162,"w":404,"h":366,"style":{"background":"rgba(15, 28, 49, 0.88)","borderRadius":34},"animation":{"effect":"clip-up","startMs":73,"durationMs":748}},{"id":"scene-02-text","type":"text","text":"好的讲解动效，核心不是炫，而是让观众在每一秒只看见当前最重要的东西。","x":820,"y":214,"w":318,"h":210,"animation":{"effect":"fade","startMs":4100,"durationMs":764}}],"timingMode":"auto","cues":[{"id":"scene-02-cue-01","text":"把文案拆成节拍，","startMs":180,"endMs":1560},{"id":"scene-02-cue-02","text":"再给每个节拍配一个镜头模板。","startMs":1560,"endMs":4180}],"transition":{"enterEffect":"lift-up","exitEffect":"fade","enterDurationMs":300,"exitDurationMs":220}},{"id":"scene-03","label":"结果","type":"stat","durationMs":5298,"narration":"最后用数字或一句结论做记忆点。","elements":[{"id":"scene-03-title","type":"subtitle","text":"最后一定要留一个能被记住的结果","x":96,"y":100,"w":620,"h":54,"animation":{"effect":"fade","startMs":2890,"durationMs":628}},{"id":"scene-03-stat","type":"stat","value":"3x","text":"重点理解速度提升","x":88,"y":180,"w":420,"h":244,"animation":{"effect":"pop","startMs":130,"durationMs":779}},{"id":"scene-03-quote","type":"quote","text":"字幕、图形和镜头节奏一起工作，视频就不只是“把字放上去”。","x":586,"y":184,"w":536,"h":210,"animation":{"effect":"slide-right","startMs":4024,"durationMs":854}}],"timingMode":"auto","cues":[{"id":"scene-03-cue-01","text":"最后用数字或一句结论做记忆点。","startMs":180,"endMs":2980}],"transition":{"enterEffect":"zoom-in","exitEffect":"fade","enterDurationMs":280,"exitDurationMs":220}},{"id":"scene-04","label":"结尾","type":"closing","durationMs":6100,"narration":"最后收束，强调这个 skill 可以从文本直接生成讲解动画并输出视频。","elements":[{"id":"scene-04-title","type":"title","text":"文本进来，镜头和动效自己排好","x":104,"y":188,"w":820,"h":124,"style":{"fontSize":60},"animation":{"effect":"fade-up","startMs":130,"durationMs":798}},{"id":"scene-04-subtitle","type":"subtitle","text":"这就是 Motion Video Maker 的目标能力。","x":108,"y":344,"w":560,"h":64,"animation":{"effect":"fade","startMs":1311,"durationMs":622}},{"id":"scene-04-chip","type":"chip","text":"export mp4","x":106,"y":454,"w":180,"h":42,"animation":{"effect":"pop","startMs":43,"durationMs":458}}],"timingMode":"auto","cues":[{"id":"scene-04-cue-01","text":"最后收束，","startMs":180,"endMs":1304},{"id":"scene-04-cue-02","text":"强调这个 skill 可以从文本直接生成讲解动画并输出视频。","startMs":1304,"endMs":5520}],"transition":{"enterEffect":"iris-in","exitEffect":"fade","enterDurationMs":340,"exitDurationMs":260}}],"subtitles":{"enabled":true,"source":"scene-cues","stylePreset":"bottom-band","maxLines":2,"tracks":[{"id":"subtitle-scene-01-cue-01","sceneId":"scene-01","cueId":"scene-01-cue-01","text":"先用一句话说明，","startMs":180,"endMs":1560},{"id":"subtitle-scene-01-cue-02","sceneId":"scene-01","cueId":"scene-01-cue-02","text":"为什么要把字幕做成会讲解的画面。","startMs":1560,"endMs":4540},{"id":"subtitle-scene-02-cue-01","sceneId":"scene-02","cueId":"scene-02-cue-01","text":"把文案拆成节拍，","startMs":180,"endMs":1560},{"id":"subtitle-scene-02-cue-02","sceneId":"scene-02","cueId":"scene-02-cue-02","text":"再给每个节拍配一个镜头模板。","startMs":1560,"endMs":4180},{"id":"subtitle-scene-03-cue-01","sceneId":"scene-03","cueId":"scene-03-cue-01","text":"最后用数字或一句结论做记忆点。","startMs":180,"endMs":2980},{"id":"subtitle-scene-04-cue-01","sceneId":"scene-04","cueId":"scene-04-cue-01","text":"最后收束，","startMs":180,"endMs":1304},{"id":"subtitle-scene-04-cue-02","sceneId":"scene-04","cueId":"scene-04-cue-02","text":"强调这个 skill 可以从文本直接生成讲解动画并输出视频。","startMs":1304,"endMs":5520}]}};
+    const TIMELINE = {"scenes":[{"id":"scene-01","label":"开场","type":"hero","durationMs":5726,"narration":"先用一句话说明，为什么要把字幕做成会讲解的画面。","elements":[{"id":"scene-01-chip","type":"chip","text":"motion explainer","x":92,"y":86,"w":220,"h":42,"animation":{"effect":"fade","startMs":43,"durationMs":408}},{"id":"scene-01-title","type":"title","text":"把一句说明\n变成会带节奏的讲解动画","x":90,"y":146,"w":700,"h":186,"animation":{"effect":"fade-up","startMs":130,"durationMs":815}},{"id":"scene-01-subtitle","type":"subtitle","text":"先理解文本，再把重点做成镜头、字幕和动效。","x":92,"y":366,"w":612,"h":86,"animation":{"effect":"fade","startMs":1560,"durationMs":670}},{"id":"scene-01-shape","type":"shape","x":850,"y":128,"w":314,"h":420,"style":{"background":"linear-gradient(180deg, rgba(255,140,66,0.26), rgba(89,227,255,0.10))","borderRadius":36},"animation":{"effect":"pop","startMs":70,"durationMs":718}},{"id":"scene-01-quote","type":"quote","text":"不是做一页页静态卡片，而是让每个重点在正确的时刻出现。","x":820,"y":188,"w":368,"h":240,"animation":{"effect":"slide-right","startMs":4450,"durationMs":856}}],"timingMode":"auto","cues":[{"id":"scene-01-cue-01","text":"先用一句话说明，","startMs":180,"endMs":1560},{"id":"scene-01-cue-02","text":"为什么要把字幕做成会讲解的画面。","startMs":1560,"endMs":4540}],"transition":{"enterEffect":"zoom-out","exitEffect":"fade","enterDurationMs":360,"exitDurationMs":220},"startMs":0,"endMs":5726},{"id":"scene-02","label":"步骤","type":"steps","durationMs":5284,"narration":"把文案拆成节拍，再给每个节拍配一个镜头模板。","elements":[{"id":"scene-02-title","type":"title","text":"一个稳定流程，先做这三步","x":92,"y":104,"w":760,"h":92,"style":{"fontSize":56},"animation":{"effect":"slide-left","startMs":130,"durationMs":804}},{"id":"scene-02-list","type":"bullet-list","items":["提炼一句主结论，别把所有信息同时端上来","把原文拆成 4 到 8 个讲解节拍","给每个节拍匹配合适的动效版式"],"x":100,"y":226,"w":620,"h":302,"animation":{"effect":"fade-up","startMs":1560,"durationMs":937,"itemStaggerMs":460}},{"id":"scene-02-card","type":"shape","x":780,"y":162,"w":404,"h":366,"style":{"background":"rgba(15, 28, 49, 0.88)","borderRadius":34},"animation":{"effect":"clip-up","startMs":73,"durationMs":748}},{"id":"scene-02-text","type":"text","text":"好的讲解动效，核心不是炫，而是让观众在每一秒只看见当前最重要的东西。","x":820,"y":214,"w":318,"h":210,"animation":{"effect":"fade","startMs":4100,"durationMs":764}}],"timingMode":"auto","cues":[{"id":"scene-02-cue-01","text":"把文案拆成节拍，","startMs":180,"endMs":1560},{"id":"scene-02-cue-02","text":"再给每个节拍配一个镜头模板。","startMs":1560,"endMs":4180}],"transition":{"enterEffect":"lift-up","exitEffect":"fade","enterDurationMs":300,"exitDurationMs":220},"startMs":5726,"endMs":11010},{"id":"scene-03","label":"结果","type":"stat","durationMs":5298,"narration":"最后用数字或一句结论做记忆点。","elements":[{"id":"scene-03-title","type":"subtitle","text":"最后一定要留一个能被记住的结果","x":96,"y":100,"w":620,"h":54,"animation":{"effect":"fade","startMs":2890,"durationMs":628}},{"id":"scene-03-stat","type":"stat","value":"3x","text":"重点理解速度提升","x":88,"y":180,"w":420,"h":244,"animation":{"effect":"pop","startMs":130,"durationMs":779}},{"id":"scene-03-quote","type":"quote","text":"字幕、图形和镜头节奏一起工作，视频就不只是“把字放上去”。","x":586,"y":184,"w":536,"h":210,"animation":{"effect":"slide-right","startMs":4024,"durationMs":854}}],"timingMode":"auto","cues":[{"id":"scene-03-cue-01","text":"最后用数字或一句结论做记忆点。","startMs":180,"endMs":2980}],"transition":{"enterEffect":"zoom-in","exitEffect":"fade","enterDurationMs":280,"exitDurationMs":220},"startMs":11010,"endMs":16308},{"id":"scene-04","label":"结尾","type":"closing","durationMs":6100,"narration":"最后收束，强调这个 skill 可以从文本直接生成讲解动画并输出视频。","elements":[{"id":"scene-04-title","type":"title","text":"文本进来，镜头和动效自己排好","x":104,"y":188,"w":820,"h":124,"style":{"fontSize":60},"animation":{"effect":"fade-up","startMs":130,"durationMs":798}},{"id":"scene-04-subtitle","type":"subtitle","text":"这就是 Motion Video Maker 的目标能力。","x":108,"y":344,"w":560,"h":64,"animation":{"effect":"fade","startMs":1311,"durationMs":622}},{"id":"scene-04-chip","type":"chip","text":"export mp4","x":106,"y":454,"w":180,"h":42,"animation":{"effect":"pop","startMs":43,"durationMs":458}}],"timingMode":"auto","cues":[{"id":"scene-04-cue-01","text":"最后收束，","startMs":180,"endMs":1304},{"id":"scene-04-cue-02","text":"强调这个 skill 可以从文本直接生成讲解动画并输出视频。","startMs":1304,"endMs":5520}],"transition":{"enterEffect":"iris-in","exitEffect":"fade","enterDurationMs":340,"exitDurationMs":260},"startMs":16308,"endMs":22408}],"totalDurationMs":22408};
+    const STAGE_WIDTH = 1280;
+    const STAGE_HEIGHT = 720;
+    const DEFAULT_FONT_DISPLAY = "'Avenir Next', 'PingFang SC', 'Microsoft YaHei', sans-serif";
+    const DEFAULT_FONT_BODY = "'Avenir Next', 'PingFang SC', 'Microsoft YaHei', sans-serif";
+
+    const stage = document.getElementById("stage");
+    const playToggle = document.getElementById("play-toggle");
+    const timelineRange = document.getElementById("timeline-range");
+    const timeReadout = document.getElementById("time-readout");
+    const subtitleLayer = document.getElementById("subtitle-layer");
+    const subtitleText = document.getElementById("subtitle-text");
+
+    let isPlaying = false;
+    let currentTimeMs = 0;
+    let rafId = null;
+    let lastTick = null;
+    const sceneViews = [];
+    const sceneStartMap = new Map(TIMELINE.scenes.map((scene) => [scene.id, scene.startMs]));
+    const subtitleTrack =
+      MOVIE.subtitles && MOVIE.subtitles.enabled !== false && Array.isArray(MOVIE.subtitles.tracks)
+        ? MOVIE.subtitles.tracks
+            .map((track) => {
+              const sceneStartMs = sceneStartMap.get(track.sceneId) || 0;
+              return {
+                ...track,
+                globalStartMs: sceneStartMs + track.startMs,
+                globalEndMs: sceneStartMs + track.endMs
+              };
+            })
+            .sort((left, right) => left.globalStartMs - right.globalStartMs)
+        : [];
+
+    function clamp(value, min, max) {
+      return Math.max(min, Math.min(max, value));
+    }
+
+    function formatDurationMs(ms) {
+      const totalSeconds = Math.max(0, Math.floor(ms / 1000));
+      const minutes = Math.floor(totalSeconds / 60);
+      const seconds = totalSeconds % 60;
+      return String(minutes).padStart(2, "0") + ":" + String(seconds).padStart(2, "0");
+    }
+
+    function easeOutCubic(value) {
+      return 1 - Math.pow(1 - value, 3);
+    }
+
+    function applyRect(node, element) {
+      node.style.left = element.x + "px";
+      node.style.top = element.y + "px";
+      node.style.width = element.w + "px";
+      node.style.height = element.h + "px";
+    }
+
+    function applyStyle(node, style = {}, fallbackType) {
+      node.style.color = style.color || "";
+      node.style.background = style.background || "";
+      node.style.fontSize = style.fontSize ? style.fontSize + "px" : "";
+      node.style.fontWeight = style.fontWeight || "";
+      node.style.textAlign = style.textAlign || "";
+      node.style.lineHeight = style.lineHeight ? String(style.lineHeight) : "";
+      node.style.letterSpacing = style.letterSpacing || "";
+      node.style.borderRadius = style.borderRadius ? style.borderRadius + "px" : "";
+      node.style.padding = style.padding ? style.padding + "px" : "";
+      node.style.border = style.borderColor ? "1px solid " + style.borderColor : "";
+      node.style.opacity = style.opacity !== undefined ? String(style.opacity) : "";
+      node.style.fontFamily = fallbackType === "title" ? DEFAULT_FONT_DISPLAY : DEFAULT_FONT_BODY;
+    }
+
+    function createElementNode(element) {
+      const node = document.createElement("div");
+      node.className = "element " + element.type;
+      node.dataset.elementType = element.type;
+      applyRect(node, element);
+      applyStyle(node, element.style || {}, element.type);
+
+      if (element.type === "bullet-list") {
+        const list = document.createElement("ul");
+        const itemNodes = [];
+        for (const item of element.items || []) {
+          const li = document.createElement("li");
+          li.textContent = item;
+          list.appendChild(li);
+          itemNodes.push(li);
+        }
+        node.appendChild(list);
+        node.__items = itemNodes;
+      } else if (element.type === "stat") {
+        const value = document.createElement("div");
+        value.className = "stat-value";
+        value.textContent = element.value || "";
+        const label = document.createElement("div");
+        label.className = "stat-label";
+        label.textContent = element.text || "";
+        node.appendChild(value);
+        node.appendChild(label);
+      } else if (element.type === "shape") {
+        node.setAttribute("aria-hidden", "true");
+      } else {
+        node.textContent = element.text || "";
+      }
+
+      return node;
+    }
+
+    function createSceneView(scene) {
+      const sceneNode = document.createElement("section");
+      sceneNode.className = "scene";
+      const contentNode = document.createElement("div");
+      contentNode.className = "scene-content";
+      sceneNode.appendChild(contentNode);
+
+      if (scene.background && scene.background.gradient) {
+        sceneNode.style.background = scene.background.gradient;
+      }
+
+      const elementViews = [];
+      for (const element of scene.elements || []) {
+        const node = createElementNode(element);
+        contentNode.appendChild(node);
+        elementViews.push({ element, node });
+      }
+
+      stage.appendChild(sceneNode);
+      return { scene, node: sceneNode, elementViews };
+    }
+
+    function animationConfig(element) {
+      const animation = element.animation || {};
+      return {
+        effect: animation.effect || "fade",
+        startMs: Number.isFinite(animation.startMs) ? animation.startMs : 0,
+        durationMs: Number.isFinite(animation.durationMs) ? animation.durationMs : 500,
+        itemStaggerMs: Number.isFinite(animation.itemStaggerMs) ? animation.itemStaggerMs : 0
+      };
+    }
+
+    function transitionConfig(scene) {
+      const transition = scene.transition || {};
+      return {
+        enterEffect: transition.enterEffect || "fade",
+        exitEffect: transition.exitEffect || "fade",
+        enterDurationMs: Number.isFinite(transition.enterDurationMs) ? transition.enterDurationMs : 280,
+        exitDurationMs: Number.isFinite(transition.exitDurationMs) ? transition.exitDurationMs : 220
+      };
+    }
+
+    function getEffectState(effect, progress) {
+      const eased = easeOutCubic(progress);
+      const visible = progress > 0.001;
+      const hidden = 1 - eased;
+      const state = {
+        opacity: visible ? eased : 0,
+        transform: "translate3d(0, 0, 0) scale(1)",
+        clipPath: "inset(0 0 0 0 round 0px)",
+        boxShadow: "",
+        filter: ""
+      };
+
+      if (effect === "fade-up") {
+        state.transform = "translate3d(0, " + Math.round(hidden * 32) + "px, 0)";
+      } else if (effect === "slide-left") {
+        state.transform = "translate3d(" + Math.round(hidden * 42) + "px, 0, 0)";
+      } else if (effect === "slide-right") {
+        state.transform = "translate3d(" + Math.round(-hidden * 42) + "px, 0, 0)";
+      } else if (effect === "pop") {
+        state.transform = "translate3d(0, 0, 0) scale(" + (0.84 + eased * 0.16).toFixed(3) + ")";
+      } else if (effect === "clip-up") {
+        state.opacity = visible ? 1 : 0;
+        state.clipPath = "inset(" + Math.round(hidden * 100) + "% 0 0 0 round 0px)";
+      } else if (effect === "zoom-in") {
+        state.transform = "translate3d(0, 0, 0) scale(" + (1.12 - eased * 0.12).toFixed(3) + ")";
+      } else if (effect === "blur-in") {
+        state.transform = "translate3d(0, " + Math.round(hidden * 18) + "px, 0) scale(" + (0.97 + eased * 0.03).toFixed(3) + ")";
+        state.filter = "blur(" + (hidden * 16).toFixed(1) + "px)";
+      } else if (effect === "glow-pop") {
+        state.opacity = visible ? 0.6 + eased * 0.4 : 0;
+        state.transform = "translate3d(0, 0, 0) scale(" + (0.72 + eased * 0.28).toFixed(3) + ")";
+        state.boxShadow = "0 0 " + Math.round(34 + eased * 16) + "px rgba(255, 255, 255, 0.16)";
+      } else if (effect === "swing-up") {
+        state.transform =
+          "translate3d(0, " + Math.round(hidden * 30) + "px, 0) rotate(" + (-hidden * 6).toFixed(2) + "deg)";
+      } else if (effect === "reveal-right") {
+        state.opacity = visible ? 1 : 0;
+        state.clipPath = "inset(0 " + Math.round(hidden * 100) + "% 0 0 round 0px)";
+      } else if (effect === "reveal-down") {
+        state.opacity = visible ? 1 : 0;
+        state.clipPath = "inset(0 0 " + Math.round(hidden * 100) + "% 0 round 0px)";
+      }
+
+      return state;
+    }
+
+    function getSceneTransitionState(effect, progress, phase) {
+      const eased = easeOutCubic(progress);
+      const hidden = 1 - eased;
+      const direction = phase === "exit" ? -1 : 1;
+      const state = {
+        opacity: eased,
+        transform: "translate3d(0, 0, 0) scale(1)",
+        clipPath: "inset(0 0 0 0 round 0px)",
+        filter: ""
+      };
+
+      if (effect === "slide-left") {
+        state.transform = "translate3d(" + Math.round(hidden * 74 * direction) + "px, 0, 0)";
+      } else if (effect === "slide-right") {
+        state.transform = "translate3d(" + Math.round(-hidden * 74 * direction) + "px, 0, 0)";
+      } else if (effect === "lift-up") {
+        state.transform = "translate3d(0, " + Math.round(hidden * 68) + "px, 0)";
+      } else if (effect === "zoom-in") {
+        state.transform = "translate3d(0, 0, 0) scale(" + (1.1 - eased * 0.1).toFixed(3) + ")";
+      } else if (effect === "zoom-out") {
+        state.transform = "translate3d(0, 0, 0) scale(" + (0.92 + eased * 0.08).toFixed(3) + ")";
+      } else if (effect === "blur-in") {
+        state.filter = "blur(" + (hidden * 18).toFixed(1) + "px)";
+        state.transform = "translate3d(0, " + Math.round(hidden * 30) + "px, 0)";
+      } else if (effect === "wipe-left") {
+        state.opacity = 1;
+        state.clipPath = "inset(0 " + Math.round(hidden * 100) + "% 0 0 round 0px)";
+      } else if (effect === "wipe-up") {
+        state.opacity = 1;
+        state.clipPath = "inset(" + Math.round(hidden * 100) + "% 0 0 0 round 0px)";
+      } else if (effect === "iris-in") {
+        state.opacity = 1;
+        state.clipPath = "circle(" + (20 + eased * 86).toFixed(2) + "% at 50% 50%)";
+      }
+
+      if (phase === "exit" && (effect === "fade" || effect === "blur-in")) {
+        state.opacity = progress;
+      }
+
+      return state;
+    }
+
+    function getSceneFrameState(scene, localTime) {
+      const transition = transitionConfig(scene);
+      if (localTime <= transition.enterDurationMs) {
+        const progress = clamp(localTime / transition.enterDurationMs, 0, 1);
+        return getSceneTransitionState(transition.enterEffect, progress, "enter");
+      }
+      if (scene.durationMs - localTime <= transition.exitDurationMs) {
+        const progress = clamp((scene.durationMs - localTime) / transition.exitDurationMs, 0, 1);
+        return getSceneTransitionState(transition.exitEffect, progress, "exit");
+      }
+
+      return {
+        opacity: 1,
+        transform: "translate3d(0, 0, 0) scale(1)",
+        clipPath: "inset(0 0 0 0 round 0px)",
+        filter: ""
+      };
+    }
+
+    function findActiveSubtitle(timeMs) {
+      for (const track of subtitleTrack) {
+        if (timeMs >= track.globalStartMs && timeMs <= track.globalEndMs) {
+          return track;
+        }
+      }
+      return null;
+    }
+
+    function renderSubtitle(timeMs) {
+      if (!subtitleTrack.length) {
+        subtitleLayer.dataset.visible = "false";
+        subtitleText.textContent = "";
+        subtitleLayer.style.opacity = "0";
+        subtitleLayer.style.transform = "translate3d(-50%, 16px, 0) scale(0.98)";
+        return;
+      }
+
+      const activeTrack = findActiveSubtitle(timeMs);
+      if (!activeTrack) {
+        subtitleLayer.dataset.visible = "false";
+        subtitleText.textContent = "";
+        subtitleLayer.style.opacity = "0";
+        subtitleLayer.style.transform = "translate3d(-50%, 16px, 0) scale(0.98)";
+        return;
+      }
+
+      const durationMs = Math.max(240, activeTrack.globalEndMs - activeTrack.globalStartMs);
+      const fadeIn = clamp((timeMs - activeTrack.globalStartMs) / 140, 0, 1);
+      const fadeOut = clamp((activeTrack.globalEndMs - timeMs) / 180, 0, 1);
+      const visibility = Math.min(fadeIn, fadeOut);
+      const progress = clamp((timeMs - activeTrack.globalStartMs) / durationMs, 0, 1);
+      const eased = easeOutCubic(progress);
+
+      subtitleLayer.dataset.visible = "true";
+      subtitleText.textContent = activeTrack.text;
+      subtitleLayer.style.opacity = String(visibility);
+      subtitleLayer.style.transform =
+        "translate3d(-50%, " + Math.round((1 - eased) * 10) + "px, 0) scale(" + (0.98 + eased * 0.02).toFixed(3) + ")";
+    }
+
+    function applyElementFrame(view, localTime) {
+      const element = view.element;
+      const node = view.node;
+      const animation = animationConfig(element);
+      const progress = clamp((localTime - animation.startMs) / animation.durationMs, 0, 1);
+      const state = getEffectState(animation.effect, progress);
+
+      node.style.opacity = String(state.opacity);
+      node.style.transform = state.transform;
+      node.style.clipPath = state.clipPath;
+      node.style.boxShadow = state.boxShadow;
+      node.style.filter = state.filter;
+
+      if (element.type === "bullet-list" && Array.isArray(node.__items) && node.__items.length > 0) {
+        node.__items.forEach((itemNode, itemIndex) => {
+          const itemStart = animation.startMs + itemIndex * animation.itemStaggerMs;
+          const itemProgress = clamp((localTime - itemStart) / animation.durationMs, 0, 1);
+          const itemState = getEffectState(animation.effect, itemProgress);
+          itemNode.style.opacity = String(itemState.opacity);
+          itemNode.style.transform = itemState.transform;
+          itemNode.style.clipPath = itemState.clipPath;
+          itemNode.style.filter = itemState.filter;
+        });
+      }
+    }
+
+    function renderAt(timeMs) {
+      currentTimeMs = clamp(timeMs, 0, TIMELINE.totalDurationMs);
+      timelineRange.value = String(currentTimeMs);
+      timeReadout.textContent = formatDurationMs(currentTimeMs) + " / " + formatDurationMs(TIMELINE.totalDurationMs);
+
+      for (const view of sceneViews) {
+        const localTime = currentTimeMs - view.scene.startMs;
+        const isActive = localTime >= 0 && localTime <= view.scene.durationMs;
+        if (!isActive) {
+          view.node.style.opacity = "0";
+          view.node.style.transform = "translate3d(0, 0, 0) scale(1)";
+          view.node.style.clipPath = "inset(0 0 0 0 round 0px)";
+          view.node.style.filter = "";
+          continue;
+        }
+
+        const sceneState = getSceneFrameState(view.scene, localTime);
+        view.node.style.opacity = String(sceneState.opacity);
+        view.node.style.transform = sceneState.transform;
+        view.node.style.clipPath = sceneState.clipPath;
+        view.node.style.filter = sceneState.filter;
+
+        for (const elementView of view.elementViews) {
+          applyElementFrame(elementView, localTime);
+        }
+      }
+
+      renderSubtitle(currentTimeMs);
+    }
+
+    function tick(timestamp) {
+      if (!isPlaying) {
+        return;
+      }
+
+      if (lastTick === null) {
+        lastTick = timestamp;
+      }
+
+      const delta = timestamp - lastTick;
+      lastTick = timestamp;
+      const nextTime = currentTimeMs + delta;
+
+      if (nextTime >= TIMELINE.totalDurationMs) {
+        renderAt(TIMELINE.totalDurationMs);
+        isPlaying = false;
+        playToggle.textContent = "Play";
+        lastTick = null;
+        rafId = null;
+        return;
+      }
+
+      renderAt(nextTime);
+      rafId = window.requestAnimationFrame(tick);
+    }
+
+    function setPlaying(nextValue) {
+      isPlaying = nextValue;
+      playToggle.textContent = isPlaying ? "Pause" : "Play";
+      if (isPlaying) {
+        lastTick = null;
+        rafId = window.requestAnimationFrame(tick);
+      } else if (rafId !== null) {
+        window.cancelAnimationFrame(rafId);
+        rafId = null;
+      }
+    }
+
+    function bootstrap() {
+      for (const scene of TIMELINE.scenes) {
+        sceneViews.push(createSceneView(scene));
+      }
+
+      playToggle.addEventListener("click", () => {
+        if (currentTimeMs >= TIMELINE.totalDurationMs && !isPlaying) {
+          renderAt(0);
+        }
+        setPlaying(!isPlaying);
+      });
+
+      timelineRange.addEventListener("input", () => {
+        setPlaying(false);
+        renderAt(Number(timelineRange.value));
+      });
+
+      renderAt(0);
+      window.__setMovieTime = (ms) => {
+        setPlaying(false);
+        renderAt(ms);
+      };
+      window.__getMovieDuration = () => TIMELINE.totalDurationMs;
+      window.__MOVIE_READY = true;
+    }
+
+    bootstrap();
+  </script>
+</body>
+</html>

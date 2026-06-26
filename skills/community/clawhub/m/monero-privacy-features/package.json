@@ -1,0 +1,6 @@
+{
+  "name": "monero-privacy-features",
+  "version": "1.0.0",
+  "description": "Explanation of Monero's privacy technology and how it works",
+  "main": "SKILL.md"
+}

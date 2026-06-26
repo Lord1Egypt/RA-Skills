@@ -1,0 +1,14 @@
+{
+  "skill_id": "docuscan",
+  "display_name": "DocuScan",
+  "description": "Document scanning and OCR with AI-powered classification, search, and extraction.",
+  "icon": "ScanLine",
+  "accent_color": "#14b8a6",
+  "sidebar": { "route": "/documents", "label": "Documents", "icon": "ScanLine", "children": [{"label":"Library","route":"/documents"},{"label":"Search","route":"/documents/search","icon":"Search"}] },
+  "database": { "prefix": "ds", "tables": [
+    { "name": "ds_scans", "description": "Scanned document records with OCR text", "columns": [{"name":"id","type":"UUID","primary_key":true},{"name":"user_id","type":"UUID"},{"name":"filename","type":"TEXT"},{"name":"document_type","type":"TEXT","default":"other"},{"name":"extracted_markdown","type":"TEXT"},{"name":"extracted_text","type":"TEXT"},{"name":"ai_summary","type":"TEXT"},{"name":"pdf_path","type":"TEXT"},{"name":"storage_path","type":"TEXT"},{"name":"tags","type":"JSONB","default":"[]"},{"name":"metadata","type":"JSONB","default":"{}"},{"name":"created_at","type":"TIMESTAMPTZ"},{"name":"updated_at","type":"TIMESTAMPTZ"}], "indexes": [{"name":"idx_ds_scans_user","columns":["user_id","created_at DESC"]},{"name":"idx_ds_scans_type","columns":["user_id","document_type"]}] }
+  ] },
+  "widgets": [{ "id": "recent-scans", "type": "list", "title": "Recent Scans", "description": "Latest scanned documents", "size": "1x1" }],
+  "settings": [{ "key": "auto_classify", "label": "Auto-Classify Documents", "type": "toggle", "default": true }],
+  "sync": { "mode": "direct", "source_files": [] }
+}

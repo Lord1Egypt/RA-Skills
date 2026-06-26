@@ -1,0 +1,4 @@
+interface:
+  display_name: "NeoDB"
+  short_description: "Search, mark, rate, review books, movies, music, games on NeoDB"
+  default_prompt: "Use $neodb to search, mark, and review items on my NeoDB shelf."

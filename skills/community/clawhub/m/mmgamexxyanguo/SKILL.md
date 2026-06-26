@@ -1,35 +1,85 @@
----
-name: "mmgamexxyanguo"
-description: "自动化批量上传游戏素材到微信游戏运营平台 mmgame，支持图片批量和组合素材逐个上传两种模式。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/mmgamexxyanguo"
-sourceUrl: "https://clawhub.ai/skills/mmgamexxyanguo"
----
+# mmgame-material-upload
 
-# mmgamexxyanguo
+微信游戏运营平台（mmgame.woa.com）素材批量上传工具。
 
-> 自动化批量上传游戏素材到微信游戏运营平台 mmgame，支持图片批量和组合素材逐个上传两种模式。
+## 功能
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/mmgamexxyanguo`
-- **Source URL:** [https://clawhub.ai/skills/mmgamexxyanguo](https://clawhub.ai/skills/mmgamexxyanguo)
+通过 Playwright 浏览器自动化，在 mmgame 平台上批量上传游戏素材，支持两种上传模式：
 
-## Overview
+- **图片素材批量上传**：一次选多文件（如找游戏卡），使用 `setInputFiles` 批量上传，8张约30秒
+- **组合素材逐个上传**：需填写素材名称（如统一卡片/通投卡），自动填写+上传+提交
 
+## 适用场景
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/mmgamexxyanguo
+- 需要批量上传游戏素材到微信游戏运营平台
+- 定期更新游戏运营素材（统一卡片、找游戏卡等）
+- 多模板、多分类的素材管理
+
+## 支持的素材类型
+
+| 模板 | 分类 | 上传模式 | 尺寸 | 大小限制 |
+|------|------|---------|------|---------|
+| 新版游戏库首卡-窄卡片（通投卡） | 组合素材 | 逐个上传 | 900×383 | ≤120KB |
+| 红点首卡-新版游戏库-16:9图片 | 图片素材 | 批量上传 | 750×422 | ≤100KB |
+| 其他模板 | 按需配置 | 按需选择 | - | - |
+
+## 使用方法
+
+### 1. 准备工作
+- 确保浏览器已登录 mmgame.woa.com
+- 已选择目标游戏（如"三角洲行动"）
+- 素材文件已放到 workspace 目录
+
+### 2. 告诉 AI 助手
+只需说明素材类型、文件位置和数量即可：
+
+> "帮我把 X:\微信素材\ 下的5张统一卡片和3张找游戏卡上传到三角洲行动"
+
+AI 助手会自动：
+1. 复制文件到工作区
+2. 生成上传配置
+3. 按正确流程导航并上传
+4. 报告上传结果
+
+### 3. 高级用法（直接使用脚本）
+创建配置文件 `upload-config.json`：
+
+```json
+{
+  "workDir": "C:/Users/Administrator/.openclaw/workspace",
+  "tasks": [
+    {
+      "name": "统一卡片",
+      "category": "组合素材",
+      "template": "新版游戏库首卡-窄卡片（通投卡）",
+      "uploadMode": "single",
+      "files": ["统一卡片-1.jpg", "统一卡片-2.jpg"]
+    },
+    {
+      "name": "找游戏卡",
+      "category": "图片素材",
+      "template": "红点首卡-新版游戏库-16:9图片",
+      "uploadMode": "batch",
+      "files": ["找游戏卡-1.jpg", "找游戏卡-2.jpg"]
+    }
+  ]
+}
 ```
+
+执行：
+```bash
+node scripts/upload.js upload-config.json
+```
+
+## 前置依赖
+
+- OpenClaw + Playwright MCP（browser-operation skill）
+- 已登录 mmgame.woa.com 的浏览器会话
+- Node.js 运行环境（OpenClaw 内置）
+
+## 注意事项
+
+- 素材文件必须在 workspace 目录下（Playwright MCP 文件访问限制）
+- 组合素材名称最长 25 字符
+- 图片素材提前 1 天、视频素材提前 3 天提交审核
+- 上传后素材进入待审核状态，可在"个人工作台-申请管理-素材申请"查看进度

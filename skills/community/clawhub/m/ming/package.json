@@ -1,0 +1,17 @@
+{
+  "name": "ming-skill",
+  "version": "1.1.0",
+  "description": "中国传统命理参考工具，提供简化八字、五行、生肖配对和姓名学分析",
+  "main": "SKILL.md",
+  "scripts": {},
+  "keywords": [
+    "openclaw",
+    "skill",
+    "ming",
+    "bazi",
+    "fortune"
+  ],
+  "author": "Harry",
+  "license": "MIT-0",
+  "repository": "https://github.com/harrylabsj/ming"
+}

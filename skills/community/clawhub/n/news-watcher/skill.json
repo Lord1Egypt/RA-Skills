@@ -1,0 +1,58 @@
+{
+  "name": "news-watcher",
+  "version": "1.0.3",
+  "description": "实时监听 CoinDesk / PANews 虚拟货币新闻，新文章发布后自动抓取全文、AI 总结并推送 Telegram。无需第三方 API Key 或账号登录。完全开源透明：https://github.com/vvxer/openclaw-news-watcher",
+  "author": "vvxer",
+  "license": "MIT-0",
+  "keywords": ["crypto", "news", "playwright", "monitor", "telegram", "realtime", "open-source"],
+  "engines": {
+    "openclaw": ">=2026.2.0"
+  },
+  "requires": {
+    "bins": ["node"],
+    "env": [
+      "OPENCLAW_MJS",
+      "TELEGRAM_USER_ID",
+      "CHROME_PATH",
+      "PLAYWRIGHT_HEADLESS"
+    ]
+  },
+  "tools": [
+    {
+      "name": "news_watch",
+      "command": "node scripts/watch-news.js",
+      "description": "实时监听 CoinDesk / PANews 加密货币新闻。检测到新文章后自动抓取全文、AI 总结并推送 Telegram。完整源码与运行截图见 GitHub：https://github.com/vvxer/openclaw-news-watcher",
+      "params": {
+        "site": {
+          "type": "string",
+          "description": "要监听的网站：coindesk（默认）或 panews",
+          "default": "coindesk"
+        },
+        "check_interval": {
+          "type": "number",
+          "description": "检查间隔（秒），默认 60",
+          "default": 60
+        }
+      }
+    }
+  ],
+  "env": {
+    "OPENCLAW_MJS": {
+      "description": "必填：openclaw.mjs 的完整路径，用于调用 AI Agent 和发送 Telegram 消息",
+      "required": true
+    },
+    "TELEGRAM_USER_ID": {
+      "description": "必填：Telegram 收件人 Chat ID，消息将发送至此账号",
+      "required": true
+    },
+    "CHROME_PATH": {
+      "description": "可选：本地 Chrome/Chromium 可执行路径。未设置时按平台自动检测（Win/Mac/Linux）",
+      "required": false
+    },
+    "PLAYWRIGHT_HEADLESS": {
+      "description": "可选：设为 false 可显示浏览器窗口（调试用），默认 true",
+      "default": "true",
+      "required": false
+    }
+  }
+}

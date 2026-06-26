@@ -1,0 +1,1206 @@
+{
+  "kind": "naver-real-estate-candidate-seed-generation",
+  "schema_version": 1,
+  "generated_at": 1773965554,
+  "source_input": "C:\\Users\\김태완\\.openclaw\\workspace\\skills\\naver-real-estate-search\\references\\seoul-major-complexes.seed-input.json",
+  "entry_count": 1,
+  "unresolved_count": 6,
+  "entries": [
+    {
+      "complex_id": "1147",
+      "name": "리센츠",
+      "address": "서울특별시 송파구 잠실동",
+      "household_count": 5563,
+      "aliases": [
+        "리센츠",
+        "리센츠아파트",
+        "리센츠단지",
+        "잠실 리센츠",
+        "잠실리센츠",
+        "잠실리센츠아파트",
+        "잠실리센츠단지",
+        "서울특별시 리센츠",
+        "서울특별시리센츠",
+        "서울특별시리센츠아파트",
+        "서울특별시리센츠단지",
+        "송파구 리센츠",
+        "송파구리센츠",
+        "송파구리센츠아파트",
+        "송파구리센츠단지",
+        "잠실동 리센츠",
+        "잠실동리센츠",
+        "잠실동리센츠아파트",
+        "잠실동리센츠단지",
+        "서울 리센츠",
+        "서울리센츠",
+        "서울리센츠아파트",
+        "서울리센츠단지",
+        "송파구 잠실동 리센츠",
+        "송파구잠실동리센츠",
+        "송파구잠실동리센츠아파트",
+        "송파구잠실동리센츠단지"
+      ],
+      "note": "verified baseline; 생성기 동작 검증용",
+      "source": "generated:web-search+detail",
+      "learned_from": "build_candidate_seeds.py",
+      "confidence": 1.0,
+      "verification_status": "verified"
+    }
+  ],
+  "unresolved": [
+    {
+      "name": "은마",
+      "district": "강남구",
+      "neighborhood": "대치동",
+      "aliases": [
+        "은마",
+        "은마아파트",
+        "은마단지",
+        "대치 은마",
+        "대치은마",
+        "대치은마아파트",
+        "대치은마단지",
+        "서울특별시 은마",
+        "서울특별시은마",
+        "서울특별시은마아파트",
+        "서울특별시은마단지",
+        "강남구 은마",
+        "강남구은마",
+        "강남구은마아파트",
+        "강남구은마단지",
+        "대치동 은마",
+        "대치동은마",
+        "대치동은마아파트",
+        "대치동은마단지",
+        "서울 은마",
+        "서울은마",
+        "서울은마아파트",
+        "서울은마단지",
+        "강남구 대치동 은마",
+        "강남구대치동은마",
+        "강남구대치동은마아파트",
+        "강남구대치동은마단지"
+      ],
+      "verification_status": "unresolved",
+      "confidence": 0.0,
+      "blocked_reasons": []
+    },
+    {
+      "name": "래미안대치팰리스",
+      "district": "강남구",
+      "neighborhood": "대치동",
+      "aliases": [
+        "래미안대치팰리스",
+        "래미안대치팰리스아파트",
+        "래미안대치팰리스단지",
+        "대치 팰리스",
+        "대치팰리스",
+        "대치팰리스아파트",
+        "대치팰리스단지",
+        "대치래미안팰리스",
+        "대치래미안팰리스아파트",
+        "대치래미안팰리스단지",
+        "래미안 대치팰리스",
+        "서울특별시 래미안대치팰리스",
+        "서울특별시래미안대치팰리스",
+        "서울특별시래미안대치팰리스아파트",
+        "서울특별시래미안대치팰리스단지",
+        "강남구 래미안대치팰리스",
+        "강남구래미안대치팰리스",
+        "강남구래미안대치팰리스아파트",
+        "강남구래미안대치팰리스단지",
+        "대치동 래미안대치팰리스",
+        "대치동래미안대치팰리스",
+        "대치동래미안대치팰리스아파트",
+        "대치동래미안대치팰리스단지",
+        "서울 래미안대치팰리스",
+        "서울래미안대치팰리스",
+        "서울래미안대치팰리스아파트",
+        "서울래미안대치팰리스단지",
+        "강남구 대치동 래미안대치팰리스",
+        "강남구대치동래미안대치팰리스",
+        "강남구대치동래미안대치팰리스아파트"
+      ],
+      "verification_status": "unresolved",
+      "confidence": 0.0,
+      "blocked_reasons": []
+    },
+    {
+      "name": "아크로리버파크",
+      "district": "서초구",
+      "neighborhood": "반포동",
+      "aliases": [
+        "아크로리버파크",
+        "아크로리버파크아파트",
+        "아크로리버파크단지",
+        "반포 아크로리버파크",
+        "반포아크로리버파크",
+        "반포아크로리버파크아파트",
+        "반포아크로리버파크단지",
+        "서울특별시 아크로리버파크",
+        "서울특별시아크로리버파크",
+        "서울특별시아크로리버파크아파트",
+        "서울특별시아크로리버파크단지",
+        "서초구 아크로리버파크",
+        "서초구아크로리버파크",
+        "서초구아크로리버파크아파트",
+        "서초구아크로리버파크단지",
+        "반포동 아크로리버파크",
+        "반포동아크로리버파크",
+        "반포동아크로리버파크아파트",
+        "반포동아크로리버파크단지",
+        "서울 아크로리버파크",
+        "서울아크로리버파크",
+        "서울아크로리버파크아파트",
+        "서울아크로리버파크단지",
+        "서초구 반포동 아크로리버파크",
+        "서초구반포동아크로리버파크",
+        "서초구반포동아크로리버파크아파트",
+        "서초구반포동아크로리버파크단지"
+      ],
+      "verification_status": "unresolved",
+      "confidence": 0.0,
+      "blocked_reasons": []
+    },
+    {
+      "name": "래미안원베일리",
+      "district": "서초구",
+      "neighborhood": "반포동",
+      "aliases": [
+        "래미안원베일리",
+        "래미안원베일리아파트",
+        "래미안원베일리단지",
+        "반포 원베일리",
+        "반포원베일리",
+        "반포원베일리아파트",
+        "반포원베일리단지",
+        "원베일리",
+        "원베일리아파트",
+        "원베일리단지",
+        "서울특별시 래미안원베일리",
+        "서울특별시래미안원베일리",
+        "서울특별시래미안원베일리아파트",
+        "서울특별시래미안원베일리단지",
+        "서초구 래미안원베일리",
+        "서초구래미안원베일리",
+        "서초구래미안원베일리아파트",
+        "서초구래미안원베일리단지",
+        "반포동 래미안원베일리",
+        "반포동래미안원베일리",
+        "반포동래미안원베일리아파트",
+        "반포동래미안원베일리단지",
+        "서울 래미안원베일리",
+        "서울래미안원베일리",
+        "서울래미안원베일리아파트",
+        "서울래미안원베일리단지",
+        "서초구 반포동 래미안원베일리",
+        "서초구반포동래미안원베일리",
+        "서초구반포동래미안원베일리아파트",
+        "서초구반포동래미안원베일리단지"
+      ],
+      "verification_status": "unresolved",
+      "confidence": 0.0,
+      "blocked_reasons": []
+    },
+    {
+      "name": "목동신시가지7단지",
+      "district": "양천구",
+      "neighborhood": "목동",
+      "aliases": [
+        "목동신시가지7단지",
+        "목동신시가지7",
+        "목동신시가지7아파트",
+        "목동 7단지",
+        "목동 7",
+        "목동7",
+        "목동7아파트",
+        "목동7단지",
+        "목동신시가지 7단지",
+        "목동신시가지 7",
+        "서울특별시 목동신시가지7단지",
+        "서울특별시 목동신시가지7",
+        "서울특별시목동신시가지7",
+        "서울특별시목동신시가지7아파트",
+        "서울특별시목동신시가지7단지",
+        "양천구 목동신시가지7단지",
+        "양천구 목동신시가지7",
+        "양천구목동신시가지7",
+        "양천구목동신시가지7아파트",
+        "양천구목동신시가지7단지",
+        "목동 목동신시가지7단지",
+        "목동 목동신시가지7",
+        "목동목동신시가지7",
+        "목동목동신시가지7아파트",
+        "목동목동신시가지7단지",
+        "서울 목동신시가지7단지",
+        "서울 목동신시가지7",
+        "서울목동신시가지7",
+        "서울목동신시가지7아파트",
+        "서울목동신시가지7단지"
+      ],
+      "verification_status": "unresolved",
+      "confidence": 0.0,
+      "blocked_reasons": []
+    },
+    {
+      "name": "신월시영아파트",
+      "district": "양천구",
+      "neighborhood": "신월동",
+      "aliases": [
+        "신월시영아파트",
+        "신월시영",
+        "신월시영단지",
+        "양천 신월시영",
+        "양천신월시영",
+        "양천신월시영아파트",
+        "양천신월시영단지",
+        "서울특별시 신월시영아파트",
+        "서울특별시신월시영",
+        "서울특별시신월시영아파트",
+        "서울특별시신월시영단지",
+        "서울특별시 신월시영",
+        "양천구 신월시영아파트",
+        "양천구신월시영",
+        "양천구신월시영아파트",
+        "양천구신월시영단지",
+        "양천구 신월시영",
+        "신월동 신월시영아파트",
+        "신월동신월시영",
+        "신월동신월시영아파트",
+        "신월동신월시영단지",
+        "신월동 신월시영",
+        "서울 신월시영아파트",
+        "서울신월시영",
+        "서울신월시영아파트",
+        "서울신월시영단지",
+        "서울 신월시영",
+        "양천구 신월동 신월시영아파트",
+        "양천구신월동신월시영",
+        "양천구신월동신월시영아파트"
+      ],
+      "verification_status": "blocked",
+      "confidence": 0.0,
+      "blocked_reasons": [
+        "네이버 검색 HTML 후보 탐색이 차단되었습니다: HTTP 403"
+      ]
+    }
+  ],
+  "results": [
+    {
+      "name": "리센츠",
+      "district": "송파구",
+      "neighborhood": "잠실동",
+      "seed_input": {
+        "name": "리센츠",
+        "city": "서울특별시",
+        "district": "송파구",
+        "neighborhood": "잠실동",
+        "aliases": [
+          "잠실 리센츠",
+          "잠실리센츠"
+        ],
+        "note": "verified baseline; 생성기 동작 검증용"
+      },
+      "complex_id": "1147",
+      "address": "서울특별시 송파구 잠실동",
+      "household_count": 5563,
+      "aliases": [
+        "리센츠",
+        "리센츠아파트",
+        "리센츠단지",
+        "잠실 리센츠",
+        "잠실리센츠",
+        "잠실리센츠아파트",
+        "잠실리센츠단지",
+        "서울특별시 리센츠",
+        "서울특별시리센츠",
+        "서울특별시리센츠아파트",
+        "서울특별시리센츠단지",
+        "송파구 리센츠",
+        "송파구리센츠",
+        "송파구리센츠아파트",
+        "송파구리센츠단지",
+        "잠실동 리센츠",
+        "잠실동리센츠",
+        "잠실동리센츠아파트",
+        "잠실동리센츠단지",
+        "서울 리센츠",
+        "서울리센츠",
+        "서울리센츠아파트",
+        "서울리센츠단지",
+        "송파구 잠실동 리센츠",
+        "송파구잠실동리센츠",
+        "송파구잠실동리센츠아파트",
+        "송파구잠실동리센츠단지"
+      ],
+      "verification_status": "verified",
+      "confidence": 1.0,
+      "source": "generated:web-search+detail",
+      "learned_from": "build_candidate_seeds.py",
+      "note": "verified baseline; 생성기 동작 검증용",
+      "candidate_pool": [
+        {
+          "complex_id": "1147",
+          "query": "리센츠",
+          "discovery_source": "baseline-seed",
+          "status": "verified",
+          "confidence": 1.0,
+          "verification_reasons": [
+            "baseline-seed-match"
+          ],
+          "complex": {
+            "complex_id": "1147",
+            "name": "리센츠",
+            "address": "서울특별시 송파구 잠실동",
+            "household_count": 5563
+          }
+        }
+      ],
+      "evidence": [
+        {
+          "query": "리센츠",
+          "status": "baseline-seed-hit",
+          "ids": [
+            "1147"
+          ]
+        },
+        {
+          "query": "서울특별시 송파구 잠실동 리센츠 네이버 부동산",
+          "status": "cache-hit",
+          "source": "candidate-cache",
+          "ids": [
+            "1147"
+          ]
+        }
+      ],
+      "blocked_reasons": []
+    },
+    {
+      "name": "엘스",
+      "district": "송파구",
+      "neighborhood": "잠실동",
+      "seed_input": {
+        "name": "엘스",
+        "city": "서울특별시",
+        "district": "송파구",
+        "neighborhood": "잠실동",
+        "aliases": [
+          "잠실 엘스",
+          "잠실엘스"
+        ]
+      },
+      "complex_id": "1147",
+      "address": "",
+      "household_count": null,
+      "aliases": [
+        "엘스",
+        "엘스아파트",
+        "엘스단지",
+        "잠실 엘스",
+        "잠실엘스",
+        "잠실엘스아파트",
+        "잠실엘스단지",
+        "서울특별시 엘스",
+        "서울특별시엘스",
+        "서울특별시엘스아파트",
+        "서울특별시엘스단지",
+        "송파구 엘스",
+        "송파구엘스",
+        "송파구엘스아파트",
+        "송파구엘스단지",
+        "잠실동 엘스",
+        "잠실동엘스",
+        "잠실동엘스아파트",
+        "잠실동엘스단지",
+        "서울 엘스",
+        "서울엘스",
+        "서울엘스아파트",
+        "서울엘스단지",
+        "송파구 잠실동 엘스",
+        "송파구잠실동엘스",
+        "송파구잠실동엘스아파트",
+        "송파구잠실동엘스단지"
+      ],
+      "verification_status": "unverified",
+      "confidence": 0.0,
+      "source": "generated:web-search+detail",
+      "learned_from": "build_candidate_seeds.py",
+      "note": "generated candidate seed",
+      "candidate_pool": [
+        {
+          "complex_id": "1147",
+          "query": "서울특별시 송파구 잠실동 잠실 엘스 네이버 부동산",
+          "discovery_source": "candidate-cache",
+          "status": "unverified",
+          "confidence": 0.0,
+          "verification_reasons": [
+            "detail-fetch-failed:SearchError"
+          ],
+          "error": "네이버 부동산 API가 429(요청 제한)를 반환했습니다. 단일 단지 URL/ID를 우선 사용하거나, 후보 단지부터 1~3개로 좁혀 다시 시도해 주세요.",
+          "complex": {
+            "complex_id": "1147"
+          }
+        }
+      ],
+      "evidence": [
+        {
+          "ids": [],
+          "status": "ok",
+          "query": "서울특별시 송파구 잠실동 엘스 네이버 부동산"
+        },
+        {
+          "ids": [],
+          "status": "ok",
+          "query": "송파구 잠실동 엘스 네이버 부동산"
+        },
+        {
+          "ids": [],
+          "status": "ok",
+          "query": "송파구 엘스 네이버 부동산"
+        },
+        {
+          "ids": [],
+          "status": "ok",
+          "query": "엘스 네이버 부동산 아파트"
+        },
+        {
+          "ids": [],
+          "status": "ok",
+          "query": "site:new.land.naver.com/complexes 송파구 엘스"
+        },
+        {
+          "query": "서울특별시 송파구 잠실동 잠실 엘스 네이버 부동산",
+          "status": "cache-hit",
+          "source": "candidate-cache",
+          "ids": [
+            "1147"
+          ]
+        },
+        {
+          "ids": [],
+          "status": "ok",
+          "query": "서울특별시 송파구 잠실동 잠실 엘스 네이버 부동산"
+        },
+        {
+          "query": "송파구 잠실동 잠실 엘스 네이버 부동산",
+          "status": "cache-hit",
+          "source": "candidate-cache",
+          "ids": [
+            "1147"
+          ]
+        }
+      ],
+      "blocked_reasons": []
+    },
+    {
+      "name": "트리지움",
+      "district": "송파구",
+      "neighborhood": "잠실동",
+      "seed_input": {
+        "name": "트리지움",
+        "city": "서울특별시",
+        "district": "송파구",
+        "neighborhood": "잠실동",
+        "aliases": [
+          "잠실 트리지움",
+          "잠실트리지움"
+        ]
+      },
+      "complex_id": "1147",
+      "address": "",
+      "household_count": null,
+      "aliases": [
+        "트리지움",
+        "트리지움아파트",
+        "트리지움단지",
+        "잠실 트리지움",
+        "잠실트리지움",
+        "잠실트리지움아파트",
+        "잠실트리지움단지",
+        "서울특별시 트리지움",
+        "서울특별시트리지움",
+        "서울특별시트리지움아파트",
+        "서울특별시트리지움단지",
+        "송파구 트리지움",
+        "송파구트리지움",
+        "송파구트리지움아파트",
+        "송파구트리지움단지",
+        "잠실동 트리지움",
+        "잠실동트리지움",
+        "잠실동트리지움아파트",
+        "잠실동트리지움단지",
+        "서울 트리지움",
+        "서울트리지움",
+        "서울트리지움아파트",
+        "서울트리지움단지",
+        "송파구 잠실동 트리지움",
+        "송파구잠실동트리지움",
+        "송파구잠실동트리지움아파트",
+        "송파구잠실동트리지움단지"
+      ],
+      "verification_status": "unverified",
+      "confidence": 0.0,
+      "source": "generated:web-search+detail",
+      "learned_from": "build_candidate_seeds.py",
+      "note": "generated candidate seed",
+      "candidate_pool": [
+        {
+          "complex_id": "1147",
+          "query": "서울특별시 송파구 잠실동 잠실 트리지움 네이버 부동산",
+          "discovery_source": "candidate-cache",
+          "status": "unverified",
+          "confidence": 0.0,
+          "verification_reasons": [
+            "detail-fetch-failed:SearchError"
+          ],
+          "error": "네이버 부동산 API가 429(요청 제한)를 반환했습니다. 단일 단지 URL/ID를 우선 사용하거나, 후보 단지부터 1~3개로 좁혀 다시 시도해 주세요.",
+          "complex": {
+            "complex_id": "1147"
+          }
+        }
+      ],
+      "evidence": [
+        {
+          "ids": [],
+          "status": "ok",
+          "query": "서울특별시 송파구 잠실동 트리지움 네이버 부동산"
+        },
+        {
+          "ids": [],
+          "status": "ok",
+          "query": "송파구 잠실동 트리지움 네이버 부동산"
+        },
+        {
+          "ids": [],
+          "status": "ok",
+          "query": "송파구 트리지움 네이버 부동산"
+        },
+        {
+          "ids": [],
+          "status": "ok",
+          "query": "트리지움 네이버 부동산 아파트"
+        },
+        {
+          "ids": [],
+          "status": "ok",
+          "query": "site:new.land.naver.com/complexes 송파구 트리지움"
+        },
+        {
+          "query": "서울특별시 송파구 잠실동 잠실 트리지움 네이버 부동산",
+          "status": "cache-hit",
+          "source": "candidate-cache",
+          "ids": [
+            "1147"
+          ]
+        },
+        {
+          "ids": [],
+          "status": "ok",
+          "query": "서울특별시 송파구 잠실동 잠실 트리지움 네이버 부동산"
+        },
+        {
+          "query": "송파구 잠실동 잠실 트리지움 네이버 부동산",
+          "status": "cache-hit",
+          "source": "candidate-cache",
+          "ids": [
+            "1147"
+          ]
+        }
+      ],
+      "blocked_reasons": []
+    },
+    {
+      "name": "은마",
+      "district": "강남구",
+      "neighborhood": "대치동",
+      "seed_input": {
+        "name": "은마",
+        "city": "서울특별시",
+        "district": "강남구",
+        "neighborhood": "대치동",
+        "aliases": [
+          "은마아파트",
+          "대치 은마"
+        ]
+      },
+      "complex_id": null,
+      "address": "",
+      "household_count": null,
+      "aliases": [
+        "은마",
+        "은마아파트",
+        "은마단지",
+        "대치 은마",
+        "대치은마",
+        "대치은마아파트",
+        "대치은마단지",
+        "서울특별시 은마",
+        "서울특별시은마",
+        "서울특별시은마아파트",
+        "서울특별시은마단지",
+        "강남구 은마",
+        "강남구은마",
+        "강남구은마아파트",
+        "강남구은마단지",
+        "대치동 은마",
+        "대치동은마",
+        "대치동은마아파트",
+        "대치동은마단지",
+        "서울 은마",
+        "서울은마",
+        "서울은마아파트",
+        "서울은마단지",
+        "강남구 대치동 은마",
+        "강남구대치동은마",
+        "강남구대치동은마아파트",
+        "강남구대치동은마단지"
+      ],
+      "verification_status": "unresolved",
+      "confidence": 0.0,
+      "source": "generated:web-search+detail",
+      "learned_from": "build_candidate_seeds.py",
+      "note": "generated candidate seed",
+      "candidate_pool": [],
+      "evidence": [
+        {
+          "ids": [],
+          "status": "ok",
+          "query": "서울특별시 강남구 대치동 은마 네이버 부동산"
+        },
+        {
+          "ids": [],
+          "status": "ok",
+          "query": "강남구 대치동 은마 네이버 부동산"
+        },
+        {
+          "ids": [],
+          "status": "ok",
+          "query": "강남구 은마 네이버 부동산"
+        },
+        {
+          "ids": [],
+          "status": "ok",
+          "query": "은마 네이버 부동산 아파트"
+        },
+        {
+          "ids": [],
+          "status": "ok",
+          "query": "site:new.land.naver.com/complexes 강남구 은마"
+        },
+        {
+          "ids": [],
+          "status": "ok",
+          "query": "서울특별시 강남구 대치동 은마아파트 네이버 부동산"
+        },
+        {
+          "ids": [],
+          "status": "ok",
+          "query": "강남구 대치동 은마아파트 네이버 부동산"
+        },
+        {
+          "ids": [],
+          "status": "ok",
+          "query": "강남구 은마아파트 네이버 부동산"
+        }
+      ],
+      "blocked_reasons": []
+    },
+    {
+      "name": "래미안대치팰리스",
+      "district": "강남구",
+      "neighborhood": "대치동",
+      "seed_input": {
+        "name": "래미안대치팰리스",
+        "city": "서울특별시",
+        "district": "강남구",
+        "neighborhood": "대치동",
+        "aliases": [
+          "대치 팰리스",
+          "대치래미안팰리스",
+          "래미안 대치팰리스"
+        ]
+      },
+      "complex_id": null,
+      "address": "",
+      "household_count": null,
+      "aliases": [
+        "래미안대치팰리스",
+        "래미안대치팰리스아파트",
+        "래미안대치팰리스단지",
+        "대치 팰리스",
+        "대치팰리스",
+        "대치팰리스아파트",
+        "대치팰리스단지",
+        "대치래미안팰리스",
+        "대치래미안팰리스아파트",
+        "대치래미안팰리스단지",
+        "래미안 대치팰리스",
+        "서울특별시 래미안대치팰리스",
+        "서울특별시래미안대치팰리스",
+        "서울특별시래미안대치팰리스아파트",
+        "서울특별시래미안대치팰리스단지",
+        "강남구 래미안대치팰리스",
+        "강남구래미안대치팰리스",
+        "강남구래미안대치팰리스아파트",
+        "강남구래미안대치팰리스단지",
+        "대치동 래미안대치팰리스",
+        "대치동래미안대치팰리스",
+        "대치동래미안대치팰리스아파트",
+        "대치동래미안대치팰리스단지",
+        "서울 래미안대치팰리스",
+        "서울래미안대치팰리스",
+        "서울래미안대치팰리스아파트",
+        "서울래미안대치팰리스단지",
+        "강남구 대치동 래미안대치팰리스",
+        "강남구대치동래미안대치팰리스",
+        "강남구대치동래미안대치팰리스아파트"
+      ],
+      "verification_status": "unresolved",
+      "confidence": 0.0,
+      "source": "generated:web-search+detail",
+      "learned_from": "build_candidate_seeds.py",
+      "note": "generated candidate seed",
+      "candidate_pool": [],
+      "evidence": [
+        {
+          "ids": [],
+          "status": "ok",
+          "query": "서울특별시 강남구 대치동 래미안대치팰리스 네이버 부동산"
+        },
+        {
+          "ids": [],
+          "status": "ok",
+          "query": "강남구 대치동 래미안대치팰리스 네이버 부동산"
+        },
+        {
+          "ids": [],
+          "status": "ok",
+          "query": "강남구 래미안대치팰리스 네이버 부동산"
+        },
+        {
+          "ids": [],
+          "status": "ok",
+          "query": "래미안대치팰리스 네이버 부동산 아파트"
+        },
+        {
+          "ids": [],
+          "status": "ok",
+          "query": "site:new.land.naver.com/complexes 강남구 래미안대치팰리스"
+        },
+        {
+          "ids": [],
+          "status": "ok",
+          "query": "서울특별시 강남구 대치동 대치 팰리스 네이버 부동산"
+        },
+        {
+          "ids": [],
+          "status": "ok",
+          "query": "강남구 대치동 대치 팰리스 네이버 부동산"
+        },
+        {
+          "ids": [],
+          "status": "ok",
+          "query": "강남구 대치 팰리스 네이버 부동산"
+        }
+      ],
+      "blocked_reasons": []
+    },
+    {
+      "name": "아크로리버파크",
+      "district": "서초구",
+      "neighborhood": "반포동",
+      "seed_input": {
+        "name": "아크로리버파크",
+        "city": "서울특별시",
+        "district": "서초구",
+        "neighborhood": "반포동",
+        "aliases": [
+          "반포 아크로리버파크",
+          "반포아크로리버파크"
+        ]
+      },
+      "complex_id": null,
+      "address": "",
+      "household_count": null,
+      "aliases": [
+        "아크로리버파크",
+        "아크로리버파크아파트",
+        "아크로리버파크단지",
+        "반포 아크로리버파크",
+        "반포아크로리버파크",
+        "반포아크로리버파크아파트",
+        "반포아크로리버파크단지",
+        "서울특별시 아크로리버파크",
+        "서울특별시아크로리버파크",
+        "서울특별시아크로리버파크아파트",
+        "서울특별시아크로리버파크단지",
+        "서초구 아크로리버파크",
+        "서초구아크로리버파크",
+        "서초구아크로리버파크아파트",
+        "서초구아크로리버파크단지",
+        "반포동 아크로리버파크",
+        "반포동아크로리버파크",
+        "반포동아크로리버파크아파트",
+        "반포동아크로리버파크단지",
+        "서울 아크로리버파크",
+        "서울아크로리버파크",
+        "서울아크로리버파크아파트",
+        "서울아크로리버파크단지",
+        "서초구 반포동 아크로리버파크",
+        "서초구반포동아크로리버파크",
+        "서초구반포동아크로리버파크아파트",
+        "서초구반포동아크로리버파크단지"
+      ],
+      "verification_status": "unresolved",
+      "confidence": 0.0,
+      "source": "generated:web-search+detail",
+      "learned_from": "build_candidate_seeds.py",
+      "note": "generated candidate seed",
+      "candidate_pool": [],
+      "evidence": [
+        {
+          "ids": [],
+          "status": "ok",
+          "query": "서울특별시 서초구 반포동 아크로리버파크 네이버 부동산"
+        },
+        {
+          "ids": [],
+          "status": "ok",
+          "query": "서초구 반포동 아크로리버파크 네이버 부동산"
+        },
+        {
+          "ids": [],
+          "status": "ok",
+          "query": "서초구 아크로리버파크 네이버 부동산"
+        },
+        {
+          "ids": [],
+          "status": "ok",
+          "query": "아크로리버파크 네이버 부동산 아파트"
+        },
+        {
+          "ids": [],
+          "status": "ok",
+          "query": "site:new.land.naver.com/complexes 서초구 아크로리버파크"
+        },
+        {
+          "ids": [],
+          "status": "ok",
+          "query": "서울특별시 서초구 반포동 반포 아크로리버파크 네이버 부동산"
+        },
+        {
+          "ids": [],
+          "status": "ok",
+          "query": "서초구 반포동 반포 아크로리버파크 네이버 부동산"
+        },
+        {
+          "ids": [],
+          "status": "ok",
+          "query": "서초구 반포 아크로리버파크 네이버 부동산"
+        }
+      ],
+      "blocked_reasons": []
+    },
+    {
+      "name": "래미안원베일리",
+      "district": "서초구",
+      "neighborhood": "반포동",
+      "seed_input": {
+        "name": "래미안원베일리",
+        "city": "서울특별시",
+        "district": "서초구",
+        "neighborhood": "반포동",
+        "aliases": [
+          "반포 원베일리",
+          "원베일리"
+        ]
+      },
+      "complex_id": null,
+      "address": "",
+      "household_count": null,
+      "aliases": [
+        "래미안원베일리",
+        "래미안원베일리아파트",
+        "래미안원베일리단지",
+        "반포 원베일리",
+        "반포원베일리",
+        "반포원베일리아파트",
+        "반포원베일리단지",
+        "원베일리",
+        "원베일리아파트",
+        "원베일리단지",
+        "서울특별시 래미안원베일리",
+        "서울특별시래미안원베일리",
+        "서울특별시래미안원베일리아파트",
+        "서울특별시래미안원베일리단지",
+        "서초구 래미안원베일리",
+        "서초구래미안원베일리",
+        "서초구래미안원베일리아파트",
+        "서초구래미안원베일리단지",
+        "반포동 래미안원베일리",
+        "반포동래미안원베일리",
+        "반포동래미안원베일리아파트",
+        "반포동래미안원베일리단지",
+        "서울 래미안원베일리",
+        "서울래미안원베일리",
+        "서울래미안원베일리아파트",
+        "서울래미안원베일리단지",
+        "서초구 반포동 래미안원베일리",
+        "서초구반포동래미안원베일리",
+        "서초구반포동래미안원베일리아파트",
+        "서초구반포동래미안원베일리단지"
+      ],
+      "verification_status": "unresolved",
+      "confidence": 0.0,
+      "source": "generated:web-search+detail",
+      "learned_from": "build_candidate_seeds.py",
+      "note": "generated candidate seed",
+      "candidate_pool": [],
+      "evidence": [
+        {
+          "ids": [],
+          "status": "ok",
+          "query": "서울특별시 서초구 반포동 래미안원베일리 네이버 부동산"
+        },
+        {
+          "ids": [],
+          "status": "ok",
+          "query": "서초구 반포동 래미안원베일리 네이버 부동산"
+        },
+        {
+          "ids": [],
+          "status": "ok",
+          "query": "서초구 래미안원베일리 네이버 부동산"
+        },
+        {
+          "ids": [],
+          "status": "ok",
+          "query": "래미안원베일리 네이버 부동산 아파트"
+        },
+        {
+          "ids": [],
+          "status": "ok",
+          "query": "site:new.land.naver.com/complexes 서초구 래미안원베일리"
+        },
+        {
+          "ids": [],
+          "status": "ok",
+          "query": "서울특별시 서초구 반포동 반포 원베일리 네이버 부동산"
+        },
+        {
+          "ids": [],
+          "status": "ok",
+          "query": "서초구 반포동 반포 원베일리 네이버 부동산"
+        },
+        {
+          "ids": [],
+          "status": "ok",
+          "query": "서초구 반포 원베일리 네이버 부동산"
+        }
+      ],
+      "blocked_reasons": []
+    },
+    {
+      "name": "목동신시가지7단지",
+      "district": "양천구",
+      "neighborhood": "목동",
+      "seed_input": {
+        "name": "목동신시가지7단지",
+        "city": "서울특별시",
+        "district": "양천구",
+        "neighborhood": "목동",
+        "aliases": [
+          "목동 7단지",
+          "목동신시가지7",
+          "목동신시가지 7단지"
+        ]
+      },
+      "complex_id": null,
+      "address": "",
+      "household_count": null,
+      "aliases": [
+        "목동신시가지7단지",
+        "목동신시가지7",
+        "목동신시가지7아파트",
+        "목동 7단지",
+        "목동 7",
+        "목동7",
+        "목동7아파트",
+        "목동7단지",
+        "목동신시가지 7단지",
+        "목동신시가지 7",
+        "서울특별시 목동신시가지7단지",
+        "서울특별시 목동신시가지7",
+        "서울특별시목동신시가지7",
+        "서울특별시목동신시가지7아파트",
+        "서울특별시목동신시가지7단지",
+        "양천구 목동신시가지7단지",
+        "양천구 목동신시가지7",
+        "양천구목동신시가지7",
+        "양천구목동신시가지7아파트",
+        "양천구목동신시가지7단지",
+        "목동 목동신시가지7단지",
+        "목동 목동신시가지7",
+        "목동목동신시가지7",
+        "목동목동신시가지7아파트",
+        "목동목동신시가지7단지",
+        "서울 목동신시가지7단지",
+        "서울 목동신시가지7",
+        "서울목동신시가지7",
+        "서울목동신시가지7아파트",
+        "서울목동신시가지7단지"
+      ],
+      "verification_status": "unresolved",
+      "confidence": 0.0,
+      "source": "generated:web-search+detail",
+      "learned_from": "build_candidate_seeds.py",
+      "note": "generated candidate seed",
+      "candidate_pool": [],
+      "evidence": [
+        {
+          "ids": [],
+          "status": "ok",
+          "query": "서울특별시 양천구 목동 목동신시가지7단지 네이버 부동산"
+        },
+        {
+          "ids": [],
+          "status": "ok",
+          "query": "양천구 목동 목동신시가지7단지 네이버 부동산"
+        },
+        {
+          "ids": [],
+          "status": "ok",
+          "query": "양천구 목동신시가지7단지 네이버 부동산"
+        },
+        {
+          "ids": [],
+          "status": "ok",
+          "query": "목동신시가지7단지 네이버 부동산 아파트"
+        },
+        {
+          "ids": [],
+          "status": "ok",
+          "query": "site:new.land.naver.com/complexes 양천구 목동신시가지7단지"
+        },
+        {
+          "ids": [],
+          "status": "ok",
+          "query": "서울특별시 양천구 목동 목동 7단지 네이버 부동산"
+        },
+        {
+          "ids": [],
+          "status": "ok",
+          "query": "양천구 목동 목동 7단지 네이버 부동산"
+        },
+        {
+          "ids": [],
+          "status": "ok",
+          "query": "양천구 목동 7단지 네이버 부동산"
+        }
+      ],
+      "blocked_reasons": []
+    },
+    {
+      "name": "신월시영아파트",
+      "district": "양천구",
+      "neighborhood": "신월동",
+      "seed_input": {
+        "name": "신월시영아파트",
+        "city": "서울특별시",
+        "district": "양천구",
+        "neighborhood": "신월동",
+        "aliases": [
+          "신월시영",
+          "양천 신월시영"
+        ],
+        "note": "tricky alias 케이스"
+      },
+      "complex_id": null,
+      "address": "",
+      "household_count": null,
+      "aliases": [
+        "신월시영아파트",
+        "신월시영",
+        "신월시영단지",
+        "양천 신월시영",
+        "양천신월시영",
+        "양천신월시영아파트",
+        "양천신월시영단지",
+        "서울특별시 신월시영아파트",
+        "서울특별시신월시영",
+        "서울특별시신월시영아파트",
+        "서울특별시신월시영단지",
+        "서울특별시 신월시영",
+        "양천구 신월시영아파트",
+        "양천구신월시영",
+        "양천구신월시영아파트",
+        "양천구신월시영단지",
+        "양천구 신월시영",
+        "신월동 신월시영아파트",
+        "신월동신월시영",
+        "신월동신월시영아파트",
+        "신월동신월시영단지",
+        "신월동 신월시영",
+        "서울 신월시영아파트",
+        "서울신월시영",
+        "서울신월시영아파트",
+        "서울신월시영단지",
+        "서울 신월시영",
+        "양천구 신월동 신월시영아파트",
+        "양천구신월동신월시영",
+        "양천구신월동신월시영아파트"
+      ],
+      "verification_status": "blocked",
+      "confidence": 0.0,
+      "source": "generated:web-search+detail",
+      "learned_from": "build_candidate_seeds.py",
+      "note": "tricky alias 케이스",
+      "candidate_pool": [],
+      "evidence": [
+        {
+          "ids": [],
+          "status": "ok",
+          "query": "서울특별시 양천구 신월동 신월시영아파트 네이버 부동산"
+        },
+        {
+          "ids": [],
+          "status": "ok",
+          "query": "양천구 신월동 신월시영아파트 네이버 부동산"
+        },
+        {
+          "ids": [],
+          "status": "ok",
+          "query": "양천구 신월시영아파트 네이버 부동산"
+        },
+        {
+          "ids": [],
+          "status": "ok",
+          "query": "신월시영아파트 네이버 부동산 아파트"
+        },
+        {
+          "ids": [],
+          "status": "ok",
+          "query": "site:new.land.naver.com/complexes 양천구 신월시영아파트"
+        },
+        {
+          "ids": [],
+          "status": "ok",
+          "query": "서울특별시 양천구 신월동 신월시영 네이버 부동산"
+        },
+        {
+          "ids": [],
+          "status": "ok",
+          "query": "양천구 신월동 신월시영 네이버 부동산"
+        },
+        {
+          "ids": [],
+          "status": "ok",
+          "query": "양천구 신월시영 네이버 부동산"
+        }
+      ],
+      "blocked_reasons": [
+        "네이버 검색 HTML 후보 탐색이 차단되었습니다: HTTP 403"
+      ]
+    }
+  ]
+}

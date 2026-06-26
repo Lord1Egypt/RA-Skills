@@ -1,0 +1,16 @@
+{
+  "name": "multi-agent-teams",
+  "version": "2.0.0",
+  "description": "交互式部署多 Agent 团队协作架构，支持自定义团队结构",
+  "author": "CXLight",
+  "license": "MIT",
+  "keywords": ["openclaw", "skill", "multi-agent", "teams", "collaboration"],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MaybeMarvel/MyClaw.git",
+    "directory": "skills/multi-agent-teams"
+  },
+  "engines": {
+    "openclaw": ">=2026.1.6"
+  }
+}

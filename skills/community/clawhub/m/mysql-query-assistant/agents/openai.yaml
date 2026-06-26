@@ -1,0 +1,4 @@
+interface:
+  display_name: "MySQL Query Assistant"
+  short_description: "Translate natural language into validated MySQL queries against a live database"
+  category: "developer"

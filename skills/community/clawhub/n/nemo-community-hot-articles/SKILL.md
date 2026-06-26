@@ -1,35 +1,21 @@
 ---
-name: "Nemo社区热文"
-description: "Get trending articles from Nemo community/从Nemo社区获取热门文章 (no API key required)."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/nemo-community-hot-articles"
-sourceUrl: "https://clawhub.ai/skills/nemo-community-hot-articles"
+name: nemo-community-hot-articles
+description: Get trending articles from Nemo community/从Nemo社区获取热门文章 (no API key required).
+homepage: https://www.link-nemo.com/popular
+metadata: {"clawdbot":{"emoji":"🔥","requires":{"bins":["curl"]}}}
 ---
 
-# Nemo社区热文
+# Nemo Community Hot Articles
 
-> Get trending articles from Nemo community/从Nemo社区获取热门文章 (no API key required).
+Free service, no API keys needed. Fetch trending posts from Nemo community.
+免费服务，无需API秘钥，即可从Nemo社区获取热门文章
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/nemo-community-hot-articles`
-- **Source URL:** [https://clawhub.ai/skills/nemo-community-hot-articles](https://clawhub.ai/skills/nemo-community-hot-articles)
+## Popular Articles API/热门文章API
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
+Quick one-liner:
 ```bash
-hermes skills install clawhub/nemo-community-hot-articles
-```
+curl -s "https://www.link-nemo.com/api/popular/article" | jq '.data[0:3] | .[] | {title, section, hot, url}'
+# Output:
+# {"title":"文章标题","section":"早报","hot":457, "url": "文章链接"}
+# {"title":"另一篇热文","section":"资讯","hot":389, "url": "文章链接"}
+# ...

@@ -1,0 +1,48 @@
+{
+  "name": "mood-cli",
+  "version": "1.0.0",
+  "description": "情绪分析 CLI 工具 - 用天气可视化你的心情",
+  "triggers": {
+    "type": "regex",
+    "patterns": [
+      "^mood\\s*$",
+      "^mood\\s+.+",
+      "^心情\\s*$",
+      "^心情\\s+.+",
+      "^情绪\\s*$",
+      "^情绪\\s+.+",
+      "^今天心情\\s*.+",
+      "分析情绪",
+      "心情怎么样",
+      "情绪分析",
+      "心情好吗",
+      "帮我看看.*情绪",
+      "看看我的心情",
+      "记录心情",
+      "心情统计",
+      "心情历史",
+      "心情周报",
+      "analyze mood",
+      "my mood",
+      "how am I feeling"
+    ],
+    "flags": "i"
+  },
+  "action": {
+    "type": "exec",
+    "command": "mood",
+    "extractArg": true,
+    "showHelp": {
+      "patterns": ["^mood\\s*$", "^心情\\s*$", "^情绪\\s*$"],
+      "command": "node ~/.agents/skills/mood-cli/help.js"
+    }
+  },
+  "output": {
+    "format": "text",
+    "prefix": "☁️ 情绪分析："
+  },
+  "help": {
+    "command": "node ~/.agents/skills/mood-cli/help.js",
+    "triggers": ["mood 帮助", "mood help", "心情帮助", "帮助"]
+  }
+}

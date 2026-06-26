@@ -1,0 +1,18 @@
+pre-commit:
+  parallel: true
+  commands:
+    migratesafe-migration-scan:
+      glob: "*.{sql,rb,py,js,ts,xml}"
+      run: |
+        MIGRATESAFE_SKILL_DIR="${MIGRATESAFE_SKILL_DIR:-$HOME/.openclaw/skills/migratesafe}"
+        if [[ -f "$MIGRATESAFE_SKILL_DIR/scripts/analyzer.sh" ]]; then
+          source "$MIGRATESAFE_SKILL_DIR/scripts/patterns.sh"
+          source "$MIGRATESAFE_SKILL_DIR/scripts/analyzer.sh"
+          hook_migration_scan
+        else
+          echo "[MigrateSafe] Skill not found at $MIGRATESAFE_SKILL_DIR -- skipping"
+        fi
+      fail_text: |
+        Destructive migration operations detected!
+        Run 'migratesafe scan' to see details.
+        Or 'git commit --no-verify' to skip (NOT recommended).

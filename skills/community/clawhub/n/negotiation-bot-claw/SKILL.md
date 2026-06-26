@@ -1,35 +1,119 @@
 ---
-name: "多轮商务谈判虾"
-description: "多轮商务谈判虾 — 规模化供应商谈判机器人。通过邮件与供应商进行多轮博弈，争取最优采购价格和条款。 **当以下情况时使用此 Skill**： (1) 需要向多家供应商批量发送询价邮件 (2) 需要对供应商报价进行多轮议价、压价 (3) 需要根据采购量、付款周期、交货时间等条件动态调整谈判策略 (4) 需要利用竞价..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/negotiation-bot-claw"
-sourceUrl: "https://clawhub.ai/skills/negotiation-bot-claw"
+name: negotiation-bot-claw
+description: |
+  多轮商务谈判虾 — 规模化供应商谈判机器人。通过邮件与供应商进行多轮博弈，争取最优采购价格和条款。
+
+  **当以下情况时使用此 Skill**：
+  (1) 需要向多家供应商批量发送询价邮件
+  (2) 需要对供应商报价进行多轮议价、压价
+  (3) 需要根据采购量、付款周期、交货时间等条件动态调整谈判策略
+  (4) 需要利用竞价施压（"已有更低报价"）促使供应商降价
+  (5) 需要汇总所有供应商报价并推荐最优方案
+  (6) 用户提到"供应商谈判"、"询价"、"议价"、"压价"、"采购谈判"、"多轮谈判"、"批量询价"、"底价"、"商务谈判"、"报价对比"、"供应商博弈"、"采购降本"、"谈判策略"、"规模化谈判"
 ---
 
-# 多轮商务谈判虾
+# 多轮商务谈判虾 (negotiation-bot-claw)
 
-> 多轮商务谈判虾 — 规模化供应商谈判机器人。通过邮件与供应商进行多轮博弈，争取最优采购价格和条款。 **当以下情况时使用此 Skill**： (1) 需要向多家供应商批量发送询价邮件 (2) 需要对供应商报价进行多轮议价、压价 (3) 需要根据采购量、付款周期、交货时间等条件动态调整谈判策略 (4) 需要利用竞价...
+规模化谈判机器 — 同时与多家供应商进行多轮邮件博弈，用规模化优势换取最优价格。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/negotiation-bot-claw`
-- **Source URL:** [https://clawhub.ai/skills/negotiation-bot-claw](https://clawhub.ai/skills/negotiation-bot-claw)
+## 核心理念
 
-## Overview
+谈判是概率游戏：发起的谈判越多，拿到底价的机会越大。人工谈判一天顶多谈10家，本 Skill 可同时谈100家。
 
+## 工作流程
 
-## Installation
-To install this skill, run the following command in your terminal:
+### 步骤 1：收集谈判输入
+
+接受两种输入格式：
+
+**结构化输入（推荐）**：供应商列表 CSV/Excel
+- 必填字段：供应商名称、联系邮箱、产品/服务类型
+- 可选字段：历史报价、目标价格、谈判优先级
+
+**自然语言输入**：
+- "帮我向这批供应商询价，目标价格比现在低15%"
+- "和这家供应商谈一下，看能不能把账期延长到60天"
+
+### 步骤 2：制定谈判策略
+
+为每个供应商制定个性化策略：
+- 初始报价目标（通常比目标价高5-10%，留让步空间）
+- 底线价格（不可突破的最低接受价）
+- 让步节奏（每轮让步幅度）
+- 施压话术（参考 `references/negotiation-scripts.md`）
+
+参考 `references/price-benchmarks.md` 了解各品类合理议价空间。
+参考 `references/supplier-profiles.md` 了解供应商历史行为。
+
+### 步骤 3：首轮询价
+
+使用 `scripts/email-negotiator.sh` 批量发送询价邮件：
+
 ```bash
-hermes skills install clawhub/negotiation-bot-claw
+./scripts/email-negotiator.sh send \
+  --template inquiry \
+  --suppliers ./config/suppliers.csv \
+  --product "笔记本电脑" \
+  --quantity 100 \
+  --target-price 4500
 ```
+
+邮件内容要点：
+- 明确采购需求（品类、数量、规格）
+- 说明交货要求和付款条件
+- 语气专业，留有议价空间（不要直接说出目标价）
+
+### 步骤 4：解析供应商回复
+
+```bash
+./scripts/email-negotiator.sh parse --inbox --output ./reports/quotes.csv
+```
+
+自动提取：价格、交货期、付款条件、备注。生成报价对比表。
+
+### 步骤 5：多轮议价
+
+根据报价情况分层处理：
+
+| 报价情况 | 策略 | 话术参考 |
+|---------|------|---------|
+| 高于目标价20%+ | 直接告知报价偏高，要求调整 | `negotiation-scripts.md` → 压价话术 |
+| 高于目标价5-20% | 暗示已有更优报价，希望再考虑 | `negotiation-scripts.md` → 竞价施压 |
+| 接近目标价 | 尝试进一步压价或优化条款 | `negotiation-scripts.md` → 条款优化 |
+
+```bash
+# 发起第二轮压价
+./scripts/email-negotiator.sh negotiate --round 2 --strategy pressure
+
+# 发起第三轮（最终轮）
+./scripts/email-negotiator.sh negotiate --round 3 --strategy final
+```
+
+**关键原则**：通常不超过3轮，避免过度施压导致供应商放弃。
+
+### 步骤 6：汇总结果
+
+生成最终报价对比表，包含：
+- 各供应商最终报价
+- 让步幅度（首轮报价 vs 最终报价）
+- 谈判轮次
+- 推荐方案（综合价格、交货期、付款条件）
+
+## 环境依赖
+
+- `bash` + `curl` + `python3`
+- IMAP/SMTP 邮件服务（企业邮箱）
+- 飞书插件（推送谈判进展，可选）
+
+## 注意事项
+
+- 仅支持邮件谈判，不支持电话/面谈
+- 使用企业邮箱发送，避免被识别为垃圾邮件
+- 供应商3天未回复 → 自动标记"无响应"并催促
+- 复杂谈判场景（大额采购、技术细节、法务条款）需人工介入
+
+## 与其他 Skill 协作
+
+- **strategy-advisor-claw**：谈判完成后，将报价数据传给策略顾问虾做最终选择
+- **auto-data-analysis-claw**：分析历史谈判数据，优化策略
+- **cross-platform-messenger-claw**：将谈判进展推送到采购团队

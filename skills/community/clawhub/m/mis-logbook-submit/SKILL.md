@@ -1,35 +1,18 @@
 ---
-name: "MIS Logbook Submit"
-description: "Submit a daily PENS MIS Kerja Praktek logbook entry at online.mis.pens.ac.id after an approval-first workflow. Gather same-day work evidence, synthesize conc..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/mis-logbook-submit"
-sourceUrl: "https://clawhub.ai/skills/mis-logbook-submit"
+name: mis-logbook-submit
+description: Submit a daily PENS MIS Kerja Praktek logbook entry at online.mis.pens.ac.id after an approval-first workflow. Gather same-day work evidence, synthesize concise Indonesian activity text for the Kegiatan/Materi field, sign in with local secrets, navigate to Entry Logbook KP, save the entry, and verify the new row appears. Use when inspecting, preparing, or submitting MIS KP logbooks.
 ---
 
-# MIS Logbook Submit
+# MIS logbook submit
 
-> Submit a daily PENS MIS Kerja Praktek logbook entry at online.mis.pens.ac.id after an approval-first workflow. Gather same-day work evidence, synthesize conc...
+Read `references/workflow.md` before doing real work.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/mis-logbook-submit`
-- **Source URL:** [https://clawhub.ai/skills/mis-logbook-submit](https://clawhub.ai/skills/mis-logbook-submit)
+## Core rules
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/mis-logbook-submit
-```
+- Use local secrets for login, never ask for or echo credentials in chat.
+- Prefer browser automation with Playwright.
+- Write `Kegiatan/Materi` in natural Indonesian.
+- Respect the approval-first flow when a pending draft exists.
+- Keep the text under the form limit and avoid literal `SELECT`, `INSERT`, `UPDATE`, and `DELETE` because the page may reject them.
+- Check for an existing row before creating a new one.
+- Verify both the success state and the saved row after submit.

@@ -1,35 +1,36 @@
 ---
-name: "my_stock_report_mgnt_skill"
-description: "当且仅当用户明确提到“分析报告多维表”或“my_stock_report_mgnt_skill”时触发。专门用于美股分析报告结论在钉钉多维表（dingtalk-ai-table）中的结构化归档（新增）与检索（查询）。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/my-stock-report-mgnt-skill"
-sourceUrl: "https://clawhub.ai/skills/my-stock-report-mgnt-skill"
+name: my_stock_report_mgnt_skill
+description: 当且仅当用户明确提到“分析报告多维表”或“my_stock_report_mgnt_skill”时触发。专门用于美股分析报告结论在钉钉多维表（dingtalk-ai-table）中的结构化归档（新增）与检索（查询）。
 ---
 
-# my_stock_report_mgnt_skill
+# my_stock_report_mgnt_skill (股票分析报告管理)
 
-> 当且仅当用户明确提到“分析报告多维表”或“my_stock_report_mgnt_skill”时触发。专门用于美股分析报告结论在钉钉多维表（dingtalk-ai-table）中的结构化归档（新增）与检索（查询）。
+## 核心定位
+此技能是分析报告归档与检索的调度中枢。它不直接操作钉钉 API，而是通过调用底层的 `dingtalk-ai-table` 技能来完成多维表的读写操作。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/my-stock-report-mgnt-skill`
-- **Source URL:** [https://clawhub.ai/skills/my-stock-report-mgnt-skill](https://clawhub.ai/skills/my-stock-report-mgnt-skill)
+## 触发条件
+- 只有当用户明确提到“**分析报告多维表**”或技能名称“**my_stock_report_mgnt_skill**”时，才使用此技能。
 
-## Overview
+## 目标数据源
+- **Base ID**: `1OQX0akWmxpyBpnaCQQQoYkY8GlDd3mE`
+- **Sheet ID**: `Shule1J`
 
+## 表格字段规范 (Schema)
+在执行“新增记录”前，必须严格校验以下 6 个字段是否全部收集完毕且符合格式要求：
+1. **标的**: 美股标的简码（必须自动转为大写，如 AAPL）。
+2. **分析时间**: 时间格式必须为 `YYYYMMDD_HHMMSS`（年月是_时分秒，如 20260325_123000）。
+3. **分析结论**: 报告核心结论（如 BUY、SELL、HOLD 等）。
+4. **分析摘要**: 总结内容的纯文本，**必须限制在 300 字以内**。如超出，须先由 AI 浓缩提炼。
+5. **结论文档**: 上传到钉钉的分析报告结论文档 URL 链接。
+6. **完整文档**: 上传到钉钉的分析报告完整文档 URL 链接。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/my-stock-report-mgnt-skill
-```
+## 核心能力与工作流
+
+### 1. 新增记录 (Insert)
+- **拦截校验**：检查上述 6 个字段是否缺失或格式不符。如果有缺失，挂起操作并询问用户要求补充。绝不能插入“脏数据”。
+- **执行新增**：在尾部追加新记录。构建形如 `{"标的": "AAPL", "分析时间": "20260325_123000", ...}` 的 `fields` 结构，并交由 `dingtalk-ai-table` 提供的脚本执行 API 新增。
+
+### 2. 精细查询 (Query)
+- **多条件过滤**：解析用户的自然语言（例如“查询特斯拉的BUY报告”），提取出查询维度（如标的=TSLA，结论=BUY）。
+- **执行查询**：通过 `dingtalk-ai-table` 获取该表的所有记录，并在本地按提取的条件进行精确或模糊匹配过滤。
+- **展示结果**：将过滤后的结果以清晰的 Markdown 表格形式展示给用户。

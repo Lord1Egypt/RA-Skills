@@ -1,35 +1,201 @@
----
-name: "Multi-Platform Poster"
-description: "一键发布内容到微信、微博、知乎、小红书和抖音，支持格式自动适配、定时发布及效果数据追踪分析。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/multi-platform-poster"
-sourceUrl: "https://clawhub.ai/skills/multi-platform-poster"
----
-
 # Multi-Platform Poster
 
-> 一键发布内容到微信、微博、知乎、小红书和抖音，支持格式自动适配、定时发布及效果数据追踪分析。
+一键发布内容到多个社交平台 (微信/微博/知乎/小红书/抖音)。支持自动适配各平台格式、定时发布、数据追踪。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/multi-platform-poster`
-- **Source URL:** [https://clawhub.ai/skills/multi-platform-poster](https://clawhub.ai/skills/multi-platform-poster)
+## 触发词
 
-## Overview
+- 多平台发布
+- 一键分发
+- 跨平台 posting
+- 社交媒体矩阵
+- 批量发布
+- 多平台同步
 
+## 核心功能
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/multi-platform-poster
+### 1. 多平台适配
+
+| 平台 | 内容类型 | 格式要求 | 自动适配 |
+|------|---------|---------|---------|
+| 微信公众号 | 图文 | Markdown → HTML | ✅ |
+| 微博 | 短文本 + 图片 | ≤140 字 | ✅ 自动截断 |
+| 知乎 | 长文/回答 | Markdown | ✅ |
+| 小红书 | 图文笔记 | 标题 + 正文 + 标签 | ✅ |
+| 抖音 | 视频描述 | 短文本 + 话题 | ✅ |
+
+### 2. 内容智能转换
+
 ```
+输入：一篇 Markdown 文章
+↓
+自动处理:
+- 提取标题和正文
+- 压缩/扩展内容适配各平台
+- 生成平台专属标签
+- 优化图片尺寸和格式
+↓
+输出：5 个平台适配版本
+```
+
+### 3. 发布策略
+
+- **同时发布**: 所有平台立即发布
+- **错峰发布**: 根据各平台最佳时间自动排期
+- **A/B 测试**: 不同平台用不同标题/封面
+
+### 4. 数据追踪
+
+- 各平台阅读量/点赞/评论统计
+- 最佳表现平台分析
+- 内容效果对比报告
+
+## 配置说明
+
+### 环境变量
+
+```bash
+# 微信公众号 (可选)
+WECHAT_APP_ID=your_app_id
+WECHAT_APP_SECRET=your_app_secret
+
+# 微博开发者 (可选)
+WEIBO_APP_KEY=your_app_key
+WEIBO_APP_SECRET=your_app_secret
+
+# 知乎 (可选)
+ZHIHU_CLIENT_ID=your_client_id
+ZHIHU_CLIENT_SECRET=your_client_secret
+
+# 小红书 (可选)
+XIAOHONGSHU_API_KEY=your_api_key
+
+# 抖音 (可选)
+DOUYIN_CLIENT_KEY=your_client_key
+DOUYIN_CLIENT_SECRET=your_client_secret
+```
+
+### 本地配置
+
+在 `TOOLS.md` 中添加:
+
+```markdown
+### 多平台发布配置
+
+- 默认发布平台：微信、微博、知乎
+- 最佳发布时间：微信 (20:00)、微博 (12:00)、知乎 (09:00)
+- 内容风格：专业 + 亲和
+```
+
+## 使用示例
+
+### 基础用法
+
+```
+一键发布这篇文章到所有平台
+```
+
+### 指定平台
+
+```
+发布到微信和知乎，微博稍后发
+```
+
+### 定时发布
+
+```
+明天上午 9 点发布到所有平台
+```
+
+### A/B 测试
+
+```
+用两个不同标题测试发布，看哪个效果好
+```
+
+## 输出格式
+
+### 发布确认
+
+```
+✅ 多平台发布准备完成
+
+📱 目标平台 (5 个):
+• 微信公众号 - 图文 (已适配)
+• 微博 - 短文本 (140 字，已压缩)
+• 知乎 - 长文 (已格式化)
+• 小红书 - 笔记 (已加标签)
+• 抖音 - 视频描述 (已优化)
+
+📊 内容统计:
+• 原标题：《小龙虾变现计划》
+• 总字数：3,500 字
+• 图片：5 张 (已压缩)
+• 标签：#创业 #副业 #AI #自动化
+
+⏰ 发布时间:
+• 立即发布：微信、知乎
+• 定时发布：微博 (12:00)、小红书 (18:00)、抖音 (20:00)
+
+确认发布？[是/否/修改]
+```
+
+### 发布结果
+
+```
+✅ 发布成功!
+
+平台          状态    链接
+微信公众号    ✅      https://mp.weixin.qq.com/s/xxx
+微博          ✅      https://weibo.com/xxx
+知乎          ✅      https://zhihu.com/question/xxx
+小红书        ⏳      待审核
+抖音          ✅      https://douyin.com/video/xxx
+
+📈 实时数据 (每小时更新):
+• 总阅读：1,234
+• 总点赞：89
+• 总评论：23
+• 最佳平台：知乎 (567 阅读)
+```
+
+## 错误处理
+
+| 错误 | 原因 | 解决方案 |
+|------|------|---------|
+| 平台 API 失败 | 认证过期 | 自动重试 + 提醒重新授权 |
+| 内容审核未通过 | 敏感词 | 标记问题内容，建议修改 |
+| 图片上传失败 | 尺寸过大 | 自动压缩后重试 |
+| 频率限制 | 发布太频繁 | 自动排队，稍后发布 |
+
+## 定价策略
+
+| 版本 | 价格 | 功能 |
+|------|------|------|
+| 免费版 | $0 | 2 个平台，手动发布 |
+| 专业版 | $12.99/月 | 5 个平台，定时发布，基础数据 |
+| 团队版 | $39.99/月 | 无限平台，A/B 测试，完整分析 |
+
+## 开发优先级
+
+- [x] 技能框架和文档
+- [ ] 微信公众号 API 集成
+- [ ] 微博 API 集成
+- [ ] 知乎 API 集成
+- [ ] 小红书 API 集成
+- [ ] 抖音 API 集成
+- [ ] 内容智能转换算法
+- [ ] 定时发布调度器
+- [ ] 数据追踪面板
+
+## 依赖技能
+
+- wechat-article-publisher (微信公众号发布)
+- humanizer (内容人性化改写)
+- image (图片处理)
+
+## 更新日志
+
+### v0.1.0 (2026-03-14)
+- 初始框架创建
+- 完成 SKILL.md 和 README.md
+- 设计多平台适配逻辑

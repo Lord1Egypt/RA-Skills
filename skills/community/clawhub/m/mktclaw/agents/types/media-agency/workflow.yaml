@@ -1,0 +1,110 @@
+name: media-agency-delivery
+version: "4.0"
+description: 媒介策划交付工作流 - AI扮演媒介策划总监，逐步交付媒介环境分析、媒介计划书、预算分配、KPI框架等成果
+
+input:
+  type: object
+  required:
+    - requirement_summary
+  properties:
+    requirement_summary:
+      type: object
+    delivery_plan:
+      type: object
+    upstream_campaign:
+      type: object
+      description: 上游Campaign方案（如有）
+
+steps:
+  # ══════════════════════════════════
+  # STEP 1: 媒介环境分析
+  # ══════════════════════════════════
+  - id: media_environment
+    agent: agents/types/media-agency/main-agent
+    action: analyze_media_environment
+    description: 分析媒介环境：行业投放趋势、竞品媒介策略、渠道机会判断、用户触媒习惯
+    input:
+      requirement_summary: "{{input.requirement_summary}}"
+      upstream_campaign: "{{input.upstream_campaign}}"
+    output: media_environment_report
+    checkpoint:
+      format: markdown
+      confirm: true
+      confirm_message: "请确认市场判断和渠道选择方向？"
+
+  # ══════════════════════════════════
+  # STEP 2: 媒介计划书
+  # ══════════════════════════════════
+  - id: media_plan
+    agent: agents/types/media-agency/main-agent
+    action: develop_media_plan
+    description: 制定媒介计划书：渠道选择逻辑、媒介组合策略、投放节奏、定向策略、素材方向
+    input:
+      requirement_summary: "{{input.requirement_summary}}"
+      environment: "{{media_environment.output.media_environment_report}}"
+    output: media_plan_document
+    checkpoint:
+      format: markdown
+      confirm: true
+      confirm_message: "请确认媒介组合和投放策略？"
+
+  # ══════════════════════════════════
+  # STEP 3: 预算分配方案
+  # ══════════════════════════════════
+  - id: budget_allocation
+    agent: agents/types/media-agency/main-agent
+    action: allocate_budget
+    description: 预算分配：总预算拆解(渠道×阶段)、弹性预算机制、风险预留比例
+    input:
+      requirement_summary: "{{input.requirement_summary}}"
+      environment: "{{media_environment.output.media_environment_report}}"
+      media_plan: "{{media_plan.output.media_plan_document}}"
+    output: budget_allocation_plan
+    checkpoint:
+      format: markdown
+      confirm: true
+      confirm_message: "请确认预算切分和机动比例？"
+
+  # ══════════════════════════════════
+  # STEP 4: KPI框架与效果预估
+  # ══════════════════════════════════
+  - id: kpi_framework
+    agent: agents/types/media-agency/main-agent
+    action: define_kpi_and_forecast
+    description: 建立KPI框架：分层指标体系(曝光/互动/转化/效果/品牌)、计算公式、三档效果预估(保守/基准/乐观)
+    input:
+      requirement_summary: "{{input.requirement_summary}}"
+      media_plan: "{{media_plan.output.media_plan_document}}"
+      budget: "{{budget_allocation.output.budget_allocation_plan}}"
+    output: kpi_and_forecast
+    checkpoint:
+      format: markdown
+      confirm: true
+      confirm_message: "请确认目标和衡量方式？"
+
+  # ══════════════════════════════════
+  # STEP 5: 质量自检
+  # ══════════════════════════════════
+  - id: quality_check
+    agent: agents/types/media-agency/main-agent
+    reference: references/_shared/quality-protocol.md
+    action: quality_assessment
+    description: 对所有交付物进行质量自检（数据支撑充分性/逻辑一致性/可执行性/风险覆盖）
+    input:
+      deliverables:
+        environment: "{{media_environment.output.media_environment_report}}"
+        plan: "{{media_plan.output.media_plan_document}}"
+        budget: "{{budget_allocation.output.budget_allocation_plan}}"
+        kpi: "{{kpi_framework.output.kpi_and_forecast}}"
+    output: quality_report
+
+output:
+  deliverables:
+    environment_analysis: "{{media_environment.output.media_environment_report}}"
+    media_plan: "{{media_plan.output.media_plan_document}}"
+    budget_allocation: "{{budget_allocation.output.budget_allocation_plan}}"
+    kpi_forecast: "{{kpi_framework.output.kpi_and_forecast}}"
+  quality: "{{quality_check.output.quality_report}}"
+  metadata:
+    workflow_version: "4.0"
+    role: "media-agency"

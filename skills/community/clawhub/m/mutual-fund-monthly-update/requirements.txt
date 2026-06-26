@@ -1,0 +1,7 @@
+# Core dependencies
+pdfplumber>=0.7.0
+openpyxl>=3.0.0
+
+# Optional: OCR for chart extraction
+pytesseract>=0.3.10
+Pillow>=9.0.0

@@ -1,0 +1,4 @@
+interface:
+  display_name: "MiniMax Coding Plan"
+  short_description: "Use MiniMax native search and image understanding"
+  default_prompt: "Use $minimax-coding-plan to search the web with MiniMax or analyze an image with MiniMax Coding Plan."

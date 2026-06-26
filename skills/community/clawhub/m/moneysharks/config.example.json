@@ -1,0 +1,43 @@
+{
+  "_comment": "MoneySharks config — copy to config.json and fill in your values. Never commit config.json with real credentials.",
+
+  "mode": "paper",
+  "autonomous_live_consent": false,
+
+  "allowed_symbols": ["BTCUSDT", "ETHUSDT", "SOLUSDT"],
+
+  "base_value_per_trade": 100,
+  "risk_pct_per_trade": 0.01,
+
+  "min_leverage": 2,
+  "max_leverage": 10,
+  "max_notional_per_trade": 500,
+  "max_total_exposure": 2000,
+  "max_concurrent_positions": 3,
+  "max_daily_loss": 100,
+
+  "allow_short": true,
+  "require_stop_loss": true,
+  "require_take_profit": true,
+  "min_reward_risk": 1.5,
+  "cooldown_after_close_sec": 120,
+  "minimum_hold_sec": 60,
+
+  "cron": {
+    "enabled": true,
+    "scan_interval_minutes": 2,
+    "review_interval_minutes": 30,
+    "daily_summary_hour": 0
+  },
+
+  "sentiment": {
+    "enabled": false,
+    "weight": 0.1
+  },
+
+  "execution": {
+    "cancel_on_halt": true,
+    "flatten_on_emergency_stop": false,
+    "require_human_approval_for_live_orders": false
+  }
+}

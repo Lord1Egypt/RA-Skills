@@ -1,0 +1,32 @@
+@echo off
+chcp 65001 >nul
+setlocal enabledelayedexpansion
+cd /d "%~dp0"
+
+title NapCat QQ Bridge Stopper
+
+echo ========================================
+echo   NapCat QQ Bridge Stopper
+echo ========================================
+echo.
+
+echo [1/3] Stopping bridge...
+taskkill /fi "WINDOWTITLE eq QQ Bridge*" /f >nul 2>&1
+for /f "tokens=2" %%a in ('wmic process where "commandline like '%%bridge.mjs%%'" get processid /value 2^>nul ^| findstr "="') do (
+    taskkill /pid %%a /f >nul 2>&1
+)
+echo   Bridge stopped
+echo.
+
+echo [2/3] Stopping NapCat / QQ...
+taskkill /im QQ.exe /f >nul 2>&1
+echo   QQ stopped
+echo.
+
+echo [3/3] Stopping OpenClaw gateway...
+wsl -d __WSL_DISTRO__ -- docker exec __CONTAINER_NAME__ sh -lc "pkill -f 'openclaw gateway run' 2>/dev/null || pkill -f 'openclaw-gateway' 2>/dev/null || true" >nul 2>&1
+echo   OpenClaw gateway stopped
+echo.
+
+echo Done.
+pause

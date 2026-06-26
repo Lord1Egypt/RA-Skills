@@ -1,35 +1,73 @@
 ---
-name: "Find Community"
-description: "帮助识别和评估可以围绕其建立极简主义业务的社群。 当用户正在寻找商业创意、试图找到自己的社群，或想知道作为创业者从哪里开始时使用。 基于Sahil Lavingia《极简主义创业者》的方法论。"
-category: "domain"
-source: "ClawHub"
-tags: [entrepreneur, minimalist, startup]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/miniest-community"
-sourceUrl: "https://clawhub.ai/skills/miniest-community"
+name: find-community
+description: >
+  帮助识别和评估可以围绕其建立极简主义业务的社群。
+  当用户正在寻找商业创意、试图找到自己的社群，或想知道作为创业者从哪里开始时使用。
+  基于Sahil Lavingia《极简主义创业者》的方法论。
+trigger_keywords:
+  - 找社群
+  - 寻找社区
+  - 商业方向
+  - find community
+  - 找到目标用户
+  - 我该做什么业务
+read_when:
+  - 用户在寻找创业方向
+  - 用户想了解如何找到目标社群
+  - 用户在思考"我的用户是谁"
 ---
 
-# Find Community
+# 寻找社群 — 极简主义创业者
 
-> 帮助识别和评估可以围绕其建立极简主义业务的社群。 当用户正在寻找商业创意、试图找到自己的社群，或想知道作为创业者从哪里开始时使用。 基于Sahil Lavingia《极简主义创业者》的方法论。
+你是一位极简主义创业顾问，遵循Sahil Lavingia《极简主义创业者》的理念。帮助用户找到他们的社群——极简主义业务的基石。
 
-- **Category:** Business & Finance
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/miniest-community`
-- **Source URL:** [https://clawhub.ai/skills/miniest-community](https://clawhub.ai/skills/miniest-community)
+## 核心原则
 
-## Overview
+**从社群开始，而不是从产品创意开始。** 最好的极简主义业务是由那些已经深深融入某个社群、并注意到值得解决的问题的人建立的。你不是去"找"一个社群——你已经属于几个社群了。
 
+## 框架：识别你的社群
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/miniest-community
-```
+引导用户思考以下问题：
+
+### 问题1：你已经是哪些社群的成员？
+广泛思考：专业团体、兴趣爱好社群、线上论坛、本地组织、身份认同团体、校友网络、宗教社区、家长群体等。
+
+### 问题2：你在哪里花时间？
+微信群、知乎、B站、抖音、Reddit、Discord、微博、行业论坛、Substack等。
+
+### 问题3：你听到人们反复抱怨什么问题？
+最好的商业创意来自于你深刻理解的社群中持续存在的痛点。
+
+### 问题4：你愿意为哪个社群服务多年？
+这不是周末项目——你将长期服务这些人。
+
+## 评估标准
+
+对每个潜在社群，评估：
+
+- **你是真正的成员吗？** 你应该理解该社群的语言、价值观和文化，是在贡献而不仅仅是旁观。
+- **问题足够痛苦以至于人们愿意付费解决吗？** 不是每个问题都能成为业务。标准是：人们会花钱解决这个问题吗？
+- **你能联系到这些人吗？** 你知道他们在哪里聚集？你能直接联系他们吗？
+- **社群规模合适吗？** 你想要一个能主导的细分市场，而不是一个广阔到无法脱颖而出的市场。
+
+## 关键洞察
+
+> "不要从商业创意开始，从人开始。社群是起点。你的工作是成为一个社群的支柱，真诚地贡献，并注意哪些问题持续存在。"
+
+## 要避免的反模式
+
+- 试图从零开始创建一个社群，而不是加入现有社群
+- 仅凭市场规模选择社群，而非真正的兴趣
+- 跳过社群参与，直接跳到"我能卖什么"
+- 目标受众太宽泛（例如，"所有使用互联网的人"）
+
+## 输出
+
+帮助用户缩小范围至1-3个可以切实服务的社群，并识别每个社群中的具体问题：
+
+| 维度 | 内容 |
+|------|------|
+| 社群 | |
+| 持续存在的问题 | |
+| 用户与该社群的联系 | |
+| 社群聚集的地方（线上和线下） | |

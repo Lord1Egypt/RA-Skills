@@ -1,35 +1,74 @@
 ---
-name: "基金月报信息提取"
-description: "基金月报信息提取。支持单文件上传和批量处理文件夹。自动学习Excel模板，从PDF月报提取数据，生成两份Excel（PDF信息Excel + 用户模板Excel）。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/mutual-fund-monthly-update"
-sourceUrl: "https://clawhub.ai/skills/mutual-fund-monthly-update"
+name: mutual-fund-monthly-update
+description: 基金月报信息提取。支持单文件上传和批量处理文件夹。自动学习Excel模板，从PDF月报提取数据，生成两份Excel（PDF信息Excel + 用户模板Excel）。
+version: 2.2.2
+author: Yujing2013
+tags: [基金, 月报, Excel, PDF, 模板, 批量处理]
 ---
 
 # 基金月报信息提取
 
-> 基金月报信息提取。支持单文件上传和批量处理文件夹。自动学习Excel模板，从PDF月报提取数据，生成两份Excel（PDF信息Excel + 用户模板Excel）。
+**一句话说明**：上传Excel模板和PDF月报，AI自动提取数据并按模板格式生成新Excel。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/mutual-fund-monthly-update`
-- **Source URL:** [https://clawhub.ai/skills/mutual-fund-monthly-update](https://clawhub.ai/skills/mutual-fund-monthly-update)
+---
 
-## Overview
+## 输入
 
+| 类型 | 说明 | 必需 |
+|-----|------|------|
+| Excel模板 | 用户自定义的Excel格式 | 可选 |
+| PDF文件 | 基金月报PDF（支持文本/图表/扫描版） | 必需 |
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/mutual-fund-monthly-update
+**两种上传方式：**
+
+1. **逐个上传文件**：发送完所有文件后说"**好了**"或"**开始处理**"
+2. **批量处理文件夹**：提供文件夹路径，AI自动扫描处理
+
+---
+
+## 输出
+
+**AI自动生成两份Excel：**
+
+| 文件 | 说明 |
+|-----|------|
+| **PDF信息Excel** | AI格式，不同基金分不同Sheet，同一基金不同时间在同一Sheet |
+| **用户模板Excel** | 按用户模板格式填充，保持原有样式和公式 |
+
+---
+
+## 产品功能
+
+✅ **智能提取**：文本+OCR双重提取，确保图表数据不遗漏
+✅ **模板学习**：自动学习用户Excel模板，精确填入数据
+✅ **批量处理**：支持文件夹批量处理，一次处理多个基金
+✅ **自动分类**：自动识别基金名称和日期，智能分类
+✅ **格式保持**：保持模板原有的数据类型、样式、公式
+✅ **模糊匹配**：字段名智能匹配，适应不同表述方式
+
+**提取的数据：**
+- 核心指标：久期、YTM、基金规模
+- 分布数据：行业分布、地区分布、信用评级分布
+- 其他：十大持仓、派息记录、基金表现
+
+---
+
+## 快速开始
+
 ```
+方式1：上传文件
+用户：[发送模板.xlsx] + [发送PDF文件]
+用户：好了
+AI：[生成两份Excel]
+
+方式2：批量处理
+用户：请处理这个文件夹：/path/to/folder/
+AI：[扫描 → 提取 → 生成Excel]
+```
+
+---
+
+## 详细说明
+
+- `references/` - 技术文档（模板学习、字段映射、OCR规则、批量处理、交互规则）
+- `SECURITY_REVIEW.md` - 安全评估报告

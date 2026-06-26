@@ -1,0 +1,56 @@
+{
+  "schema_version": "1.0",
+  "description": "角色评分数据模板 — 记录每次迭代后各角色的评分变化",
+  "iteration_id": "{第N次迭代}",
+  "report_date": "{报告日期}",
+  "scores": [
+    {
+      "role_name": "大管家",
+      "current_score": 100,
+      "delta": 0,
+      "error_count": 0,
+      "error_details": [],
+      "highlights": [],
+      "notes": "{备注}"
+    },
+    {
+      "role_name": "产品经理",
+      "current_score": 100,
+      "delta": 0,
+      "error_count": 0,
+      "error_details": [],
+      "highlights": [],
+      "notes": "{备注}"
+    },
+    {
+      "role_name": "研发",
+      "current_score": 100,
+      "delta": 0,
+      "error_count": 0,
+      "error_details": [],
+      "highlights": [],
+      "notes": "{备注}"
+    },
+    {
+      "role_name": "测试",
+      "current_score": 100,
+      "delta": 0,
+      "error_count": 0,
+      "error_details": [],
+      "highlights": [],
+      "notes": "{备注}"
+    },
+    {
+      "role_name": "内容运营",
+      "current_score": 100,
+      "delta": 0,
+      "error_count": 0,
+      "error_details": [],
+      "highlights": [],
+      "notes": "{备注}"
+    }
+  ],
+  "rebuild_threshold": 3,
+  "rebuild_triggered": [],
+  "summary": "{本次迭代评分总结}"
+}

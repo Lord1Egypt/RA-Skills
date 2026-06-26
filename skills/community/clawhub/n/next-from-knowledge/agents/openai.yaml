@@ -1,0 +1,4 @@
+interface:
+  display_name: "NextFromKnowledge"
+  short_description: "知识行动官：把知识、笔记、调研和图谱结果变成下一步动作、计划或决策"
+  default_prompt: "Use $next-from-knowledge to turn my notes, research, meeting summaries, documents, or knowledge graph outputs into the next action, a prioritized plan, a decision, or the smallest high-leverage experiment, and answer in Chinese."

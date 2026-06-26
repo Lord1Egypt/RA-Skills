@@ -1,0 +1,50 @@
+{
+  "name": "代币流向",
+  "endpoint": "POST /trade/getCoinTradeFlow",
+  "description": "获取代币在链上的持仓地址与中心化交易所（CEX）之间的资金流入/流出及变化率数据",
+  "credits_cost": 2,
+  "needToken": true,
+  "use_case": "适用于判断市场情绪和资金流向趋势，适用于链上资金与交易所资金交互分析",
+  "update_frequency": "每天更新一次",
+  "params": {
+    "vsTokenId": { "type": "long", "req": true, "desc": "代币ID" }
+  },
+  "response": {
+    "vsTokenId": { "type": "long", "actualType": "string", "desc": "代币ID" },
+    "symbol": { "type": "string", "actualType": "string", "desc": "代币符号" },
+    "name": { "type": "string", "actualType": "string", "desc": "代币名称" },
+    "coinTradeFlowDataV1Vos": {
+      "type": "array",
+      "desc": "交易所数据列表",
+      "item": {
+        "timeRange": { "type": "string", "actualType": "string", "desc": "时间范围" },
+        "timeParticleEnum": { "type": "integer", "actualType": "integer", "desc": "统计时间粒度" },
+        "tradeIn": { "type": "number", "actualType": "string", "desc": "交易流入金额(USD)" },
+        "tradeOut": { "type": "number", "actualType": "string", "desc": "交易流出金额(USD)" },
+        "tradeInNumber": { "type": "number", "actualType": "string", "desc": "交易流入数量" },
+        "tradeOutNumber": { "type": "number", "actualType": "string", "desc": "交易流出数量" },
+        "tradeInflow": { "type": "number", "actualType": "string", "desc": "交易净流入金额(USD)" },
+        "tradeAmount": { "type": "number", "actualType": "string", "desc": "交易量(USD)" },
+        "tradeInflowChange": { "type": "number", "actualType": "number", "desc": "交易净流入变化率" }
+      }
+    }
+  },
+  "field_meta": {
+    "tradeInflow": { "meaning": "交易净流入", "advice": "正值表示资金流入，负值表示资金流出，持续正值表示主力在吸筹" },
+    "tradeInflowChange": { "meaning": "净流入变化率", "advice": "反映资金流入速度的增减，正值加速流入，负值加速流出" }
+  },
+  "example": {
+    "req": { "vsTokenId": 1 },
+    "res": {
+      "code": 200,
+      "data": {
+        "vsTokenId": "1",
+        "symbol": "BTC",
+        "name": "Bitcoin",
+        "coinTradeFlowDataV1Vos": [
+          { "timeRange": "H1", "timeParticleEnum": 101, "tradeIn": "18287486.34", "tradeOut": "20431186.01", "tradeInNumber": "261.06", "tradeOutNumber": "292.25", "tradeInflow": "-2143699.66", "tradeAmount": "38718672.35", "tradeInflowChange": -1.05 }
+        ]
+      }
+    }
+  }
+}

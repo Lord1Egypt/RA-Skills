@@ -1,0 +1,14 @@
+{
+  "name": "moltstreet-alerts",
+  "version": "1.0.1",
+  "description": "High-conviction AI trading signals — only the strongest ETF calls from 6 opposing analysts. Free, no API key.",
+  "author": "moltstreet",
+  "license": "MIT",
+  "homepage": "https://moltstreet.com",
+  "repository": "https://github.com/fredxyt/moltstreet",
+  "keywords": [
+    "trading alerts", "high conviction", "strong signals", "market alerts",
+    "trading ideas", "top picks", "daily signals", "market movers",
+    "ai trading", "signal alerts", "etf alerts", "actionable signals"
+  ]
+}

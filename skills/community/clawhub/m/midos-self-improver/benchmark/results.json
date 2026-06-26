@@ -1,0 +1,61 @@
+{
+  "slug": "midos-self-improver",
+  "version": "1.0.0",
+  "run_at": "2026-03-04T17:52:41.421199+00:00",
+  "dimensions": {
+    "completeness": {
+      "score": 10.0,
+      "max": 10,
+      "sections": {
+        "frontmatter": true,
+        "description": true,
+        "quick_start": true,
+        "usage": true,
+        "examples": true,
+        "footer": true
+      }
+    },
+    "depth": {
+      "score": 10,
+      "max": 10,
+      "lines": 309,
+      "code_blocks": 13,
+      "tables": 10,
+      "headers": 41,
+      "size_kb": 10.6
+    },
+    "differentiation": {
+      "score": 10,
+      "max": 10,
+      "competitors": 2,
+      "unique_features": 5
+    },
+    "security": {
+      "score": 10,
+      "max": 10,
+      "issues": []
+    },
+    "testability": {
+      "score": 5,
+      "max": 10,
+      "test_files": 1
+    }
+  },
+  "competitors": [
+    {
+      "slug": "self-improving-agent",
+      "author": "pskoett",
+      "downloads": 101000,
+      "weakness": "2-tier promotion, no quality scoring, no dedup"
+    },
+    {
+      "slug": "proactive-agent",
+      "author": "halthelobster",
+      "downloads": 53700,
+      "weakness": "Self-improvement is a side section, not the core"
+    }
+  ],
+  "score": 9.5,
+  "max_score": 10.0,
+  "grade": "A+"
+}

@@ -1,0 +1,136 @@
+{
+  "name": "{{@env:displayName}} Queue Sample Consumer{{@env:workflowNamePostfix}}",
+  "nodes": [
+    {
+      "id": "{{@uuid:qsc-schedule}}",
+      "name": "Schedule Trigger",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.3,
+      "position": [240, 300],
+      "parameters": {
+        "rule": {
+          "interval": [
+            { "field": "seconds", "secondsInterval": 10 }
+          ]
+        }
+      }
+    },
+    {
+      "id": "{{@uuid:qsc-pop}}",
+      "name": "Queue Pop",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.2,
+      "position": [460, 300],
+      "parameters": {
+        "source": "database",
+        "workflowId": {
+          "__rl": true,
+          "value": "{{@env:workflows.queue_pop.id}}",
+          "mode": "id"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "stream": "={{ 'test-stream' }}",
+            "group": "={{ 'test-stream-cg' }}",
+            "consumer": "={{ 'test-stream-c-' + $execution.id }}",
+            "max_concurrency": 2,
+            "max_retries": 2,
+            "dlq_enabled": true,
+            "batch_size": 1,
+            "claim_idle_ms": 15000,
+            "caller_execution_id": "={{ $execution.id }}"
+          }
+        },
+        "options": {}
+      }
+    },
+    {
+      "id": "{{@uuid:qsc-has-message}}",
+      "name": "Has Message?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [680, 300],
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "{{@uuid:qsc-has-message-cond}}",
+              "leftValue": "={{ $json.empty !== true && $json.at_capacity !== true && $json.dlq_routed !== true }}",
+              "rightValue": true,
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      }
+    },
+    {
+      "id": "{{@uuid:qsc-simulate}}",
+      "name": "Simulate Per-Tag Behaviour",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [900, 200],
+      "parameters": {
+        "language": "javaScript",
+        "jsCode": "// Sample-consumer simulation. Per-tag behaviour driven by the message's\n// `payload.tag` and Redis-tracked `delivery_count`:\n//   - 'happy'                  → success every delivery\n//   - 'transient_fail_once'    → fail on delivery_count=1, succeed on >=2\n//   - 'poison'                 → fail every delivery (max_retries pushes to DLQ)\nconst pop = $json;\nconst payload = (pop.payload && typeof pop.payload === 'object')\n  ? pop.payload\n  : (typeof pop.payload === 'string' ? JSON.parse(pop.payload || '{}') : {});\nconst tag = payload.tag;\nconst deliveryCount = typeof pop.delivery_count === 'number' ? pop.delivery_count : 1;\n\nlet success;\nlet reason;\nif (tag === 'happy') {\n  success = true;\n  reason = 'happy path';\n} else if (tag === 'transient_fail_once') {\n  success = deliveryCount >= 2;\n  reason = success ? 'transient recovered on retry' : 'transient first delivery';\n} else if (tag === 'poison') {\n  success = false;\n  reason = 'poison — will reach DLQ after max_retries';\n} else {\n  success = true;\n  reason = `untagged (tag=${tag}) — treated as happy`;\n}\n\nreturn [{ json: {\n  stream: pop.stream,\n  group: pop.group,\n  message_id: pop.message_id,\n  delivery_count: deliveryCount,\n  tag,\n  success,\n  reason,\n} }];"
+      }
+    },
+    {
+      "id": "{{@uuid:qsc-ack}}",
+      "name": "Queue Ack",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.2,
+      "position": [1120, 200],
+      "parameters": {
+        "source": "database",
+        "workflowId": {
+          "__rl": true,
+          "value": "{{@env:workflows.queue_ack.id}}",
+          "mode": "id"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "stream": "={{ $json.stream }}",
+            "group": "={{ $json.group }}",
+            "message_id": "={{ $json.message_id }}",
+            "success": "={{ $json.success }}"
+          }
+        },
+        "options": {}
+      }
+    }
+  ],
+  "connections": {
+    "Schedule Trigger": {
+      "main": [[{"node": "Queue Pop", "type": "main", "index": 0}]]
+    },
+    "Queue Pop": {
+      "main": [[{"node": "Has Message?", "type": "main", "index": 0}]]
+    },
+    "Has Message?": {
+      "main": [
+        [{"node": "Simulate Per-Tag Behaviour", "type": "main", "index": 0}],
+        []
+      ]
+    },
+    "Simulate Per-Tag Behaviour": {
+      "main": [[{"node": "Queue Ack", "type": "main", "index": 0}]]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  }
+}

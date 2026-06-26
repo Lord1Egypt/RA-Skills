@@ -1,0 +1,9 @@
+{
+  "name": "multi-agent-engine-v8",
+  "version": "8.2.1",
+  "description": "Multi-Agent Orchestrator v8.2.1 - Enhanced stability (Node.js v24 compatibility, lazy environment detection, third-party environment adaptation). Supports goal-driven research, task decomposition, parallel execution, validation review, and smart decisions.",
+  "main": "index.js",
+  "type": "module",
+  "license": "MIT",
+  "author": "OpenClaw"
+}

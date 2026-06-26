@@ -1,0 +1,265 @@
+# ═══════════════════════════════════════════════════════════════
+# MktClaw v4.0 - 全案并行交付工作流
+# Multi-Role Parallel Delivery for Full-Case Scenarios
+# ═══════════════════════════════════════════════════════════════
+
+name: agency-hub-parallel-delivery
+version: "4.0"
+description: >
+  全案并行交付工作流 - AI同时扮演多个代理角色，按依赖关系分阶段交付工作成果。
+  当检测到全案需求（涉及≥2种代理角色）时触发。
+
+trigger_conditions:
+  - condition: multi_role_detected
+    check: "{{routing.output.delivery_plan.is_full_case == true}}"
+    description: Router检测到多角色全案需求
+
+  - condition: keywords_matched
+    check: |
+      {{input contains any of ['全案', '一站式', '整合方案', '全套',
+      '从0到1', 'comprehensive', 'full-service', 'end-to-end']}}
+    description: 用户输入包含全案相关关键词
+
+  - condition: multiple_roles
+    check: "{{routing.output.delivery_plan.roles.length >= 2}}"
+    description: 交付计划涉及≥2种代理角色
+
+workflow:
+  # ════════════════════════════════════════════
+  # PHASE 0: 交付计划分析
+  # ════════════════════════════════════════════
+  - phase: delivery_planning
+    id: step-0-plan
+    agent: agents/router-agent
+    description: 分析全案需求的角色依赖关系，确定可并行和需串行的交付阶段
+
+    input:
+      requirement_summary: "{{intake.output.requirement_summary}}"
+      delivery_plan: "{{routing.output.delivery_plan}}"
+
+    output: parallel_delivery_plan
+    output_schema:
+      roles:
+        type: array
+        description: 需要扮演的角色列表
+      dependencies:
+        type: object
+        description: 各角色之间的依赖关系（上游交付物是下游输入）
+      phases:
+        type: array
+        description: 分阶段交付计划
+
+    checkpoint:
+      enabled: true
+      format: markdown
+      confirm_with_user: true
+      confirmation_message: "请确认全案交付计划是否合适？"
+
+  # ════════════════════════════════════════════
+  # PHASE 1: 第一批交付（无上游依赖的角色）
+  # ════════════════════════════════════════════
+  - phase: delivery_phase1
+    id: step-1-initial
+    description: 第一批无依赖的角色并行交付工作成果
+
+    execution_mode:
+      strategy: parallel
+      max_concurrent: 4
+      fail_strategy: continue_others
+      timeout_per_branch: 60000
+
+    branches:
+      # --- 战略咨询顾问 ---
+      - branch_id: d_strategy
+        workflow_ref: agents/types/strategy-consulting/workflow.yaml
+        priority: 1
+        activation_conditions:
+          - "{{parallel_delivery_plan.output.roles contains 'strategy'}}"
+          - "{{parallel_delivery_plan.output.dependencies.strategy == []}}"
+        input_mapping:
+          requirement_summary: "{{intake.output.requirement_summary}}"
+        output_key: strategy_deliverables
+        checkpoint:
+          confirm: true
+          confirm_message: "请确认品牌定位方案"
+
+      # --- 品牌设计顾问（可与战略并行启动初步方向）---
+      - branch_id: d_brand
+        workflow_ref: agents/types/brand-design/workflow.yaml
+        priority: 2
+        activation_conditions:
+          - "{{parallel_delivery_plan.output.roles contains 'brand'}}"
+          - "{{parallel_delivery_plan.output.dependencies.brand == []}}"
+        input_mapping:
+          requirement_summary: "{{intake.output.requirement_summary}}"
+        output_key: brand_deliverables
+        checkpoint:
+          confirm: true
+          confirm_message: "请确认VI方向"
+
+      # --- 数据分析（市场洞察方向）---
+      - branch_id: d_data
+        workflow_ref: agents/types/data-analytics/workflow.yaml
+        priority: 4
+        activation_conditions:
+          - "{{parallel_delivery_plan.output.roles contains 'data'}}"
+          - "{{parallel_delivery_plan.output.dependencies.data == []}}"
+        input_mapping:
+          requirement_summary: "{{intake.output.requirement_summary}}"
+        output_key: data_deliverables
+        checkpoint:
+          confirm: true
+
+  # ════════════════════════════════════════════
+  # PHASE 2: 第二批交付（依赖上游输出的角色）
+  # ════════════════════════════════════════════
+  - phase: delivery_phase2
+    id: step-2-dependent
+    description: 第二批有依赖的角色，基于上游交付物继续工作
+
+    execution_mode:
+      strategy: parallel
+      max_concurrent: 3
+      fail_strategy: continue_others
+      timeout_per_branch: 60000
+      wait_for_dependencies: true
+
+    branches:
+      # --- 创意总监（依赖品牌定位/VI）---
+      - branch_id: d_creative
+        workflow_ref: agents/types/creative-agency/workflow.yaml
+        priority: 1
+        depends_on:
+          - step-1-initial.outputs.d_strategy
+          - step-1-initial.outputs.d_brand
+        activation_conditions:
+          - "{{parallel_delivery_plan.output.roles contains 'creative'}}"
+        input_mapping:
+          requirement_summary: "{{intake.output.requirement_summary}}"
+          upstream_brand_positioning: "{{step-1-initial.outputs.d_strategy.deliverables}}"
+          upstream_vi_direction: "{{step-1-initial.outputs.d_brand.deliverables}}"
+        output_key: creative_deliverables
+        checkpoint:
+          confirm: true
+          confirm_message: "请确认Big Idea方向"
+
+      # --- KOL营销（可与创意并行）---
+      - branch_id: d_kol
+        workflow_ref: agents/types/kol-agency/workflow.yaml
+        priority: 2
+        activation_conditions:
+          - "{{parallel_delivery_plan.output.roles contains 'kol'}}"
+        input_mapping:
+          requirement_summary: "{{intake.output.requirement_summary}}"
+        output_key: kol_deliverables
+        checkpoint:
+          confirm: true
+
+  # ════════════════════════════════════════════
+  # PHASE 3: 第三批交付（内容/媒介/直播）
+  # ════════════════════════════════════════════
+  - phase: delivery_phase3
+    id: step-3-execution
+    description: 第三批执行层面的角色
+
+    execution_mode:
+      strategy: parallel
+      max_concurrent: 3
+      fail_strategy: continue_others
+      timeout_per_branch: 60000
+      wait_for_dependencies: true
+
+    branches:
+      # --- 内容制作（依赖创意方案）---
+      - branch_id: d_content
+        workflow_ref: agents/types/content-production/workflow.yaml
+        priority: 1
+        depends_on:
+          - step-2-dependent.outputs.d_creative
+        activation_conditions:
+          - "{{parallel_delivery_plan.output.roles contains 'content'}}"
+        input_mapping:
+          requirement_summary: "{{intake.output.requirement_summary}}"
+          upstream_creative_brief: "{{step-2-dependent.outputs.d_creative.deliverables}}"
+        output_key: content_deliverables
+        checkpoint:
+          confirm: true
+
+      # --- 媒介投放（依赖创意+内容）---
+      - branch_id: d_media
+        workflow_ref: agents/types/media-agency/workflow.yaml
+        priority: 2
+        depends_on:
+          - step-2-dependent.outputs.d_creative
+        activation_conditions:
+          - "{{parallel_delivery_plan.output.roles contains 'media'}}"
+        input_mapping:
+          requirement_summary: "{{intake.output.requirement_summary}}"
+          upstream_campaign: "{{step-2-dependent.outputs.d_creative.deliverables}}"
+        output_key: media_deliverables
+        checkpoint:
+          confirm: true
+
+      # --- 直播运营 ---
+      - branch_id: d_livestream
+        workflow_ref: agents/types/live-streaming/workflow.yaml
+        priority: 3
+        activation_conditions:
+          - "{{parallel_delivery_plan.output.roles contains 'livestream'}}"
+        input_mapping:
+          requirement_summary: "{{intake.output.requirement_summary}}"
+        output_key: livestream_deliverables
+        checkpoint:
+          confirm: true
+
+  # ════════════════════════════════════════════
+  # PHASE 4: 全案整合
+  # ════════════════════════════════════════════
+  - phase: integration
+    id: step-4-integrate
+    agent: agents/transition-agent
+    description: 整合所有阶段交付物，确保全链路一致性
+
+    input:
+      requirement_summary: "{{intake.output.requirement_summary}}"
+      delivery_plan: "{{step-0-plan.output.parallel_delivery_plan}}"
+      all_deliverables:
+        strategy: "{{step-1-initial.outputs.d_strategy}}"
+        brand: "{{step-1-initial.outputs.d_brand}}"
+        creative: "{{step-2-dependent.outputs.d_creative}}"
+        content: "{{step-3-execution.outputs.d_content}}"
+        media: "{{step-3-execution.outputs.d_media}}"
+        kol: "{{step-2-dependent.outputs.d_kol}}"
+        livestream: "{{step-3-execution.outputs.d_livestream}}"
+        data: "{{step-1-initial.outputs.d_data}}"
+
+    output: integrated_full_case_deliverables
+    checkpoint:
+      enabled: true
+      format: markdown
+      confirm_with_user: true
+      confirmation_message: "请确认全案整合交付物是否符合预期？"
+
+error_handling:
+  branch_failure:
+    default_strategy: "continue_others"
+    allow_partial_output: true
+    log_failures: true
+
+  timeouts:
+    per_branch_ms: 60000
+    total_workflow_ms: 300000
+
+  conflict_resolution:
+    budget_conflicts: "use_user_provided"
+    timeline_conflicts: "take_max_duration"
+    deliverable_conflicts: "flag_for_review"
+
+performance_metrics:
+  track_metrics:
+    - name: total_delivery_time_ms
+      description: 全案交付总耗时
+    - name: branches_completed_count
+      description: 成功完成的分支数
+    - name: branches_failed_count
+      description: 失败的分支数

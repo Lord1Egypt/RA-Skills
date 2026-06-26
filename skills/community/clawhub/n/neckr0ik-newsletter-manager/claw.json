@@ -1,0 +1,16 @@
+{
+  "name": "neckr0ik-newsletter-manager",
+  "version": "1.0.0",
+  "description": "Manage newsletters with AI-generated content. Create, schedule, and send newsletters automatically. Supports multiple platforms (Substack, Beehiiv, ConvertKit).",
+  "author": "Neckr0ik",
+  "license": "MIT",
+  "keywords": [
+    "newsletter",
+    "email",
+    "substack",
+    "beehiiv",
+    "convertkit",
+    "automation",
+    "content-generation"
+  ]
+}

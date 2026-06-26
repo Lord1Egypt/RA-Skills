@@ -1,0 +1,22 @@
+{
+  "name": "mobile-code-review-pro",
+  "version": "1.0.0",
+  "description": "Expert-level code review for React Native and native iOS/Android applications",
+  "author": "App Incubator",
+  "license": "Commercial",
+  "keywords": [
+    "mobile",
+    "code-review",
+    "react-native",
+    "ios",
+    "android",
+    "performance",
+    "security",
+    "architecture"
+  ],
+  "files": [
+    "SKILL.md",
+    "templates/code-review-checklist.md",
+    "clawhub.yaml"
+  ]
+}

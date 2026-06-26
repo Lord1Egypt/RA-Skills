@@ -1,35 +1,66 @@
 ---
-name: "NBTI"
-description: "NBTI 脑干缺失人格测试。回答8个离谱问题，测出你的精神状态人格。触发词：NBTI、脑干测试、精神状态测试、测测我的精神状态。当用户提到 NBTI、想测精神状态、或有人分享了 NBTI 结果时触发。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/nbti"
-sourceUrl: "https://clawhub.ai/skills/nbti"
+name: nbti
+description: NBTI 脑干缺失人格测试。回答8个离谱问题，测出你的精神状态人格。触发词：NBTI、脑干测试、精神状态测试、测测我的精神状态。当用户提到 NBTI、想测精神状态、或有人分享了 NBTI 结果时触发。
 ---
 
-# NBTI
+# NBTI — 你的脑干还在吗？
 
-> NBTI 脑干缺失人格测试。回答8个离谱问题，测出你的精神状态人格。触发词：NBTI、脑干测试、精神状态测试、测测我的精神状态。当用户提到 NBTI、想测精神状态、或有人分享了 NBTI 结果时触发。
+当代青年精神状态普查。8道题，测出你的脑干缺失程度和人格类型。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/nbti`
-- **Source URL:** [https://clawhub.ai/skills/nbti](https://clawhub.ai/skills/nbti)
+**NBTI = 脑干缺失行为类型指标 (Neurological Brain-loss Type Indicator)**
 
-## Overview
+没有科学依据，但比你做过的任何心理测试都准。
 
+## 测试流程
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/nbti
+1. 告诉用户："来测测你的脑干还在不在！只需要回答8个问题，凭第一反应选，别思考，思考就不准了。"
+2. 从 `references/questions.md` 随机抽取 8 道不重复的题目。
+3. **逐题提问**，等用户回复后记录得分，再出下一题。
+4. 8题结束后，根据得分映射到人格类型（见 `references/types.md`）。
+5. 生成结果卡片：
+
 ```
+🧠 你的NBTI人格类型：[搞笑代号] — [中文名]
+
+[一段300字以内的人格解读，够抽象够好笑，像在照镜子]
+
+💊 临床症状：
+• [症状1]
+• [症状2]
+• [症状3]
+
+🫂 最适合和你做朋友的类型：[另一个类型]
+⚠️ 建议远离的类型：[另一个类型]
+
+— 本测试由NBTI脑科学研究所（不存在的）出品，结果不具有任何医学参考价值 —
+
+```
+
+## 出题风格
+
+- 问题要**发疯、抽象、直击灵魂**
+- 选项要**让人笑着笑着就哭了**
+- 参考：打工人日常、精神状态meme、互联网抽象文化、当代青年生存实录
+- 每个选项都要像真实会做的选择
+- 中文提问，中文结果
+- **绝对不能正经**
+
+## 得分计算
+
+四个维度，每题选项对应不同维度加分：
+
+- **N** (Numb) 麻木 — 对生活的感知钝化程度，越高越"活人微死"
+- **B** (Broken) 碎裂 — 精神状态的破碎程度，越高越人格分裂
+- **T** (Tired) 耗竭 — 生命能量储备，越高越电量1%
+- **I** (Ironic) 反讽 — 用阴阳怪气自我保护的熟练度
+
+取最高两个维度组合确定类型。如果某个维度远超其他（超过第二高50%以上），则为"纯"类型。共30种类型，见 `references/types.md`。
+
+## 注意事项
+
+- 强调"只需要回答8个问题"
+- 题目随机，每次不一样
+- 解读个性化，结合用户回答加点料
+- 如果用户半途放弃："你连8道题都做不完，果然是XX型，确诊了"
+- 结果要适合截图发朋友圈——这是传播的关键
+- 人格代号要好记、好传播、适合当标签用

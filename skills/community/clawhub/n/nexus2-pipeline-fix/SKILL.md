@@ -1,35 +1,29 @@
----
-name: "Nexus2 Pipeline Fix"
-description: "Fixes JSON serialization of pandas Timestamps and ensures fresh fixture ingestion for accurate Nexus2 sports predictions."
-category: "other"
-source: "ClawHub"
-tags: [fix, prediction, sports]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/nexus2-pipeline-fix"
-sourceUrl: "https://clawhub.ai/skills/nexus2-pipeline-fix"
----
+# Nexus2 Pipeline Fix — Sports Prediction Engine
 
-# Nexus2 Pipeline Fix
+## What This Fixes
+Two critical bugs in the Nexus2 sports prediction pipeline that caused phantom predictions and JSON serialization crashes.
 
-> Fixes JSON serialization of pandas Timestamps and ensures fresh fixture ingestion for accurate Nexus2 sports predictions.
+### Bug 1: Timestamp Serialization Crash
+**File:** `publishing/publisher.py`  
+**Problem:** `json.dumps()` failed with `TypeError: Object of type Timestamp is not JSON serializable` when prediction data contained pandas Timestamp objects.  
+**Fix:** Added custom `NexusEncoder` class that converts pandas Timestamp and datetime objects to ISO format strings before serialization.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/nexus2-pipeline-fix`
-- **Source URL:** [https://clawhub.ai/skills/nexus2-pipeline-fix](https://clawhub.ai/skills/nexus2-pipeline-fix)
+### Bug 2: Stale Fixture Ingestion
+**File:** `nexus.py`  
+**Problem:** Scraped fixtures were ingested into an isolated local `NexusDataLoader()` instance instead of `self.data_loader`. Predictions ran against stale database data, producing phantom matches that didn't exist on bookmaker sites.  
+**Fix:** Changed ingestion to use `self.data_loader.ingest(matches)` directly, ensuring fresh scraped fixtures flow into the prediction pipeline.
 
-## Overview
+## How to Apply
+1. Copy the patched files into your Nexus2 installation:
+   - `publishing/publisher.py` — adds `NexusEncoder` class
+   - `nexus.py` — fixes fixture ingestion in `predict()` method
+2. Restart the prediction pipeline: `python nexus.py --predict`
+3. Verify output matches live bookmaker fixtures
 
+## Result
+- Predictions now match real SportyBet/SofaScore fixtures
+- No more JSON serialization crashes
+- Fresh fixtures ingested before each prediction run
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/nexus2-pipeline-fix
-```
+## Author
+TKDigital ( Imperial Court / OpenClaw )

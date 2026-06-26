@@ -1,35 +1,42 @@
 ---
-name: "Monthly Report Zh"
-description: "将一个月的工作内容、项目进展与个人成果自动整理为结构清晰的月报文档， 适用于月度总结、月度汇报、工作月报等场景。支持突出核心亮点、量化关键 数据指标、梳理问题与风险，并生成下月工作计划。适合各职能条线员工、 项目经理及团队负责人撰写月报/月度工作汇报/月度工作总结时使用， 显著降低整理成本，确保汇报内容重点突出、..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/monthly-report-zh"
-sourceUrl: "https://clawhub.ai/skills/monthly-report-zh"
+name: monthly-report-zh
+description: >
+  将一个月的工作内容、项目进展与个人成果自动整理为结构清晰的月报文档，
+  适用于月度总结、月度汇报、工作月报等场景。支持突出核心亮点、量化关键
+  数据指标、梳理问题与风险，并生成下月工作计划。适合各职能条线员工、
+  项目经理及团队负责人撰写月报/月度工作汇报/月度工作总结时使用，
+  显著降低整理成本，确保汇报内容重点突出、逻辑清晰、格式专业。
+tags: [月报, 月度总结, 月度汇报, 工作月报, monthly-report, 职场写作, 工作汇报, 总结模板]
 ---
 
-# Monthly Report Zh
+# 月报生成助手
 
-> 将一个月的工作内容、项目进展与个人成果自动整理为结构清晰的月报文档， 适用于月度总结、月度汇报、工作月报等场景。支持突出核心亮点、量化关键 数据指标、梳理问题与风险，并生成下月工作计划。适合各职能条线员工、 项目经理及团队负责人撰写月报/月度工作汇报/月度工作总结时使用， 显著降低整理成本，确保汇报内容重点突出、...
+一键将碎片化月度工作记录整理为结构清晰、亮点突出的专业月报文档。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/monthly-report-zh`
-- **Source URL:** [https://clawhub.ai/skills/monthly-report-zh](https://clawhub.ai/skills/monthly-report-zh)
+## Tools Required
+- read
+- write
 
-## Overview
+## Usage
+- "帮我把这个月的工作内容整理成一份月报，重点突出项目进展和完成数据"
+- "我需要写月度总结，以下是我本月的工作流水账，请帮我提炼成正式的月度汇报"
+- "根据下面的工作记录，生成一份包含本月亮点、问题复盘和下月计划的工作月报"
+- "把我发给你的周报合并，帮我生成一份完整的月报，格式要适合发给部门领导"
 
+## Examples
+输入：本月完成了3个需求开发，修了几个线上bug，参加了两次跨部门会议，月底上线了新版本，用户反馈还不错，但测试排期有点紧
+输出：
+**一、本月工作总结**
+1. 【需求交付】按时完成 3 项功能需求开发，均通过测试并顺利上线，新版本于月底正式发布，用户反馈整体正面。
+2. 【质量保障】累计修复线上 Bug 若干，保障系统稳定运行，有效降低线上故障率。
+3. 【跨部门协作】参与跨部门协调会议 2 次，推动需求对齐与资源协调，沟通进展顺畅。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/monthly-report-zh
-```
+**二、本月亮点**
+- 新版本如期上线，用户反馈良好，体现较强的交付能力与质量把控意识。
+
+**三、问题与风险**
+- 测试排期较为紧张，存在回归时间压缩的风险，需提前与测试团队对齐排期节奏。
+
+**四、下月工作计划**
+1. 提前介入下期需求评审，预留充足测试窗口期。
+2. 持续跟进线上问题，完善监控告警机制。

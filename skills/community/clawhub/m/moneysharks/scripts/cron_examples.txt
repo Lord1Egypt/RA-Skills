@@ -1,0 +1,10 @@
+# Example cron-style invocations
+
+# every 5 minutes: market scan in paper mode
+*/5 * * * * /usr/bin/env python3 /path/to/moneysharks-skill/scripts/paper_runner.py /path/to/config.json /path/to/market.json /path/to/context.json
+
+# every 30 minutes: review journal
+*/30 * * * * cat /path/to/trades.json | /usr/bin/env python3 /path/to/moneysharks-skill/scripts/review_trades.py
+
+# daily metrics update (example pipeline)
+0 20 * * * cat /path/to/review.json | /usr/bin/env python3 /path/to/moneysharks-skill/scripts/update_metrics.py

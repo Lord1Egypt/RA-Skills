@@ -4,10 +4,42 @@
 
 [![Total Skills](https://img.shields.io/badge/Total%20Skills-90,896-blue.svg)](#)
 [![Offline Folders](https://img.shields.io/badge/Offline%20Folders-79,455%20(88%25)-success.svg)](#-offline-content--downloading)
-[![Built-in Skills](https://img.shields.io/badge/Built--in-75-green.svg)](#)
-[![Optional Skills](https://img.shields.io/badge/Optional-95-yellow.svg)](#)
-[![Community Skills](https://img.shields.io/badge/Community-90,726-orange.svg)](#)
+[![PyPI](https://img.shields.io/pypi/v/ra-skills?label=pip%20ra-skills&color=3776AB)](https://pypi.org/project/ra-skills/)
+[![npm](https://img.shields.io/npm/v/ra-skills?label=npm%20ra-skills&color=CB3837)](https://www.npmjs.com/package/ra-skills)
 [![License: MIT](https://img.shields.io/badge/License-MIT-purple.svg)](LICENSE)
+
+---
+
+## ⚡ Install the search tool (pip / npm)
+
+Don't want to clone 90k skills? Install the lightweight **`ra-skills`** CLI — it bundles the metadata index so you can **search offline**, then **download any skill's full folder on demand**.
+
+```bash
+pip install ra-skills          # Python   →  https://pypi.org/project/ra-skills/
+npm install -g ra-skills       # Node.js  →  https://www.npmjs.com/package/ra-skills
+```
+
+```bash
+ra-skills search github --limit 5     # search 90,896 skills by keyword (offline)
+ra-skills search "" --source ClawHub  # filter by source/category
+ra-skills show apple-notes            # show one skill's metadata
+ra-skills stats                       # registry totals by source
+ra-skills get aso-playbook            # download the FULL skill folder from GitHub
+```
+
+Python / JS API:
+
+```python
+from ra_skills import search, stats, download
+search("security", source="ClawHub", limit=5)   # -> list of skill dicts
+download("aso-playbook", dest="./skills")        # -> full folder on disk
+```
+
+```js
+const { search, download } = require('ra-skills');
+search('security', { source: 'ClawHub', limit: 5 });
+await download('aso-playbook', './skills');
+```
 
 ---
 

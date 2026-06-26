@@ -1,35 +1,97 @@
 ---
-name: "security-audit"
-description: "Indexed by skills.sh from netresearch/security-audit-skill"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "netresearch"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/netresearch/security-audit-skill/security-audit"
-sourceUrl: "https://skills.sh/netresearch/security-audit-skill/security-audit"
+name: security-audit
+description: "Use when conducting security assessments — OWASP Top 10 / API / LLM, CWE Top 25, CVSS scoring — auditing PHP/TYPO3 (v14.3 LTS: #109585, HashService removal, Authorize/RateLimit), APIs, frontend, Terraform/K8s/Docker IaC, AWS/Azure/GCP cloud, AI agent configs, or scanning dependencies."
+license: "(MIT AND CC-BY-SA-4.0). See LICENSE-MIT and LICENSE-CC-BY-SA-4.0"
+compatibility: "Requires grep, jq, gh CLI."
+metadata:
+  author: Netresearch DTT GmbH
+  version: "2.10.3"
+  repository: https://github.com/netresearch/security-audit-skill
+allowed-tools: Bash(grep:*) Bash(jq:*) Bash(gh:*) Read Glob Grep
 ---
 
-# security-audit
+# Security Audit Skill
 
-> Indexed by skills.sh from netresearch/security-audit-skill
+Security audit patterns (OWASP Top 10, LLM Top 10 2025, CWE Top 25 2025, CVSS v4.0), cloud/IaC, GitHub security. 80+ PHP/TYPO3 checkpoints (v14.3 LTS in `typo3-security.md`).
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** netresearch
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/netresearch/security-audit-skill/security-audit`
-- **Source URL:** [https://skills.sh/netresearch/security-audit-skill/security-audit](https://skills.sh/netresearch/security-audit-skill/security-audit)
+## Expertise Areas
 
-## Overview
+- **Vulnerabilities**: XXE, SQLi, XSS, CSRF, command injection, path traversal, file upload, deserialization, SSRF, SSTI, JWT, type juggling
+- **Standards**: OWASP Top 10 / API / LLM (2025), CWE Top 25, CVSS v3.1/v4.0, OWASP ASVS
+- **Cloud & IaC**: AWS, Azure, GCP; Terraform, Kubernetes, Docker, Helm
+- **API & Frontend**: REST/GraphQL authZ, rate limits, mass assignment, CSP, DOM-XSS
+- **AI Agents**: SKILL.md/AGENTS.md/CLAUDE.md/mcp.json/hooks.json audit; prompt injection; excessive agency
 
+## Reference Files (in `references/`, `.md` implied)
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/netresearch/security-audit-skill/security-audit
+- **Core**: owasp-top10, cwe-top25, xxe-prevention, cvss-scoring, api-key-encryption
+- **Prevention**: deserialization-prevention, path-traversal-prevention, file-upload-security, input-validation, error-message-sanitization
+- **Architecture**: authentication-patterns, security-headers, security-logging, cryptography-guide, security-invariants
+- **Language features** (`*-security-features`): php, python, javascript-typescript, nodejs, java, csharp, go, rust, ruby
+- **Frameworks** (`*-security`): typo3, typo3-fluid, typo3-typoscript, symfony, laravel, django, flask, fastapi, spring, dotnet, blazor, rails, gin, react, vue, angular, nextjs, nuxt, express, nestjs
+- **Mobile**: android-sdk-security, ios-sdk-security
+- **Cloud & IaC**: aws-security, azure-security, gcp-security, iac-security
+- **API & Frontend**: api-security, frontend-security
+- **AI Agent**: llm-security (OWASP LLM Top 10 2025)
+- **Shared**: framework-security
+- **Threats**: modern-attacks, cve-patterns, cve-database
+- **DevSecOps**: ci-security-pipeline, supply-chain-security, automated-scanning, gha-security, git-history-secrets
+- **Incident**: supply-chain-incident-response
+
+## Quick Patterns
+
+**XML parsing (prevent XXE):**
+```php
+$doc->loadXML($input, LIBXML_NONET);
 ```
+
+**SQL (prevent injection):**
+```php
+$stmt = $pdo->prepare('SELECT * FROM users WHERE id = ?');
+$stmt->execute([$id]);
+```
+
+**Output (prevent XSS):**
+```php
+echo htmlspecialchars($input, ENT_QUOTES | ENT_HTML5, 'UTF-8');
+```
+
+**API keys, passwords, randomness:**
+```php
+$n = random_bytes(SODIUM_CRYPTO_SECRETBOX_NONCEBYTES);
+$enc = 'enc:' . base64_encode($n . sodium_crypto_secretbox($apiKey, $n, $key));
+password_hash($pw, PASSWORD_ARGON2ID);
+bin2hex(random_bytes(32));   // never mt_rand/rand
+```
+
+Automated scanners: `references/automated-scanning.md`.
+
+## Security Checklist
+
+- [ ] `semgrep`/`opengrep`, `trivy fs --severity HIGH,CRITICAL`, `gitleaks` clean
+- [ ] bcrypt/Argon2 passwords, CSRF on state changes, TLS 1.2+
+- [ ] Server-side input validation; parameterized SQL; XML entities off
+- [ ] Output encoding + CSP; no unserialize() on user input
+- [ ] API keys encrypted; exception messages sanitized
+- [ ] Secrets out of VCS; audit logging on
+- [ ] Uploads validated, renamed, outside web root
+- [ ] Headers HSTS + X-Content-Type-Options; dependencies scanned
+
+## GitHub Actions Security
+
+- **NEVER** interpolate `${{ inputs.* }}` / `${{ github.event.* }}` in `run:` — use `env:`
+- Dependency triage: upgrade > override > dismiss. Full patterns: `references/gha-security.md`.
+
+## Verification
+
+```bash
+./scripts/security-audit-dispatcher.sh /path/to/project  # auto-detect stack
+./scripts/security-audit.sh /path/to/project             # PHP-only
+./scripts/github-security-audit.sh owner/repo            # GH repo
+```
+
+Dispatcher detects the stack from indicator files and runs matching `scripts/scanners/*.sh` (17 ecosystems; see `references/` index).
+
+---
+
+> Contributing: https://github.com/netresearch/security-audit-skill

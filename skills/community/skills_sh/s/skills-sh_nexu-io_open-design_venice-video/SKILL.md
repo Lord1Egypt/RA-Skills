@@ -1,35 +1,41 @@
 ---
-name: "venice-video"
-description: "Indexed by skills.sh from nexu-io/open-design"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "nexu-io"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/nexu-io/open-design/venice-video"
-sourceUrl: "https://skills.sh/nexu-io/open-design/venice-video"
+name: venice-video
+description: |
+  Video generation and transcription workflows via the Venice.ai API.
+triggers:
+  - "venice video"
+  - "venice video gen"
+  - "venice transcribe"
+od:
+  mode: video
+  category: video-generation
+  upstream: "https://github.com/veniceai/skills"
 ---
 
 # venice-video
 
-> Indexed by skills.sh from nexu-io/open-design
+> Curated from the Venice.ai team.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** nexu-io
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/nexu-io/open-design/venice-video`
-- **Source URL:** [https://skills.sh/nexu-io/open-design/venice-video](https://skills.sh/nexu-io/open-design/venice-video)
+## What it does
 
-## Overview
+Video generation and transcription workflows via the Venice.ai API.
 
+## Source
 
-## Installation
-To install this skill, run the following command in your terminal:
+- Upstream: https://github.com/veniceai/skills
+- Category: `video-generation`
+
+## How to use
+
+This catalogue entry advertises the skill in Open Design so the agent
+discovers it during planning. To run the full upstream workflow with
+its original assets, scripts, and references, install the upstream
+bundle into your active agent's skills directory:
+
 ```bash
-hermes skills install skills-sh/nexu-io/open-design/venice-video
+# Inspect the upstream README for exact paths
+open https://github.com/veniceai/skills
 ```
+
+Then ask the agent to invoke this skill by name (`venice-video`) or with
+one of the trigger phrases listed in this skill's frontmatter.

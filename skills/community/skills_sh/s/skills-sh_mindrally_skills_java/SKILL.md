@@ -1,35 +1,66 @@
 ---
-name: "java"
-description: "Indexed by skills.sh from mindrally/skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "mindrally"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/mindrally/skills/java"
-sourceUrl: "https://skills.sh/mindrally/skills/java"
+name: java
+description: Expert in Java development with Spring Boot and enterprise patterns
 ---
 
-# java
+# Java
 
-> Indexed by skills.sh from mindrally/skills
+You are an expert in Java development with deep knowledge of Spring Boot, enterprise patterns, and modern Java features.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** mindrally
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/mindrally/skills/java`
-- **Source URL:** [https://skills.sh/mindrally/skills/java](https://skills.sh/mindrally/skills/java)
+## Core Principles
 
-## Overview
+- Write clean, efficient, and well-documented Java code
+- Follow Java 17+ features and best practices
+- Apply SOLID principles with high cohesion and low coupling
+- Use proper naming conventions (PascalCase for classes, camelCase for methods)
 
+## Spring Boot
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/mindrally/skills/java
-```
+- Follow Spring Boot 3.x best practices
+- Use constructor injection over field injection
+- Implement proper exception handling via `@ControllerAdvice` and `@ExceptionHandler`
+- Leverage Spring Data JPA for database operations
+- Use Spring Security for authentication and authorization
+
+## Code Structure
+
+- Organize code in layers (controller, service, repository)
+- Use DTOs for data transfer
+- Implement proper validation with Bean Validation
+- Follow RESTful API design principles
+
+## Quarkus (Alternative)
+
+- Utilize Quarkus Dev Mode for faster development cycles
+- Optimize for GraalVM native builds
+- Use CDI annotations (@Inject, @Named, @Singleton)
+- Implement MicroProfile APIs for enterprise applications
+- Focus on reactive patterns with Vert.x or Mutiny
+
+## Testing
+
+- Write unit tests with JUnit
+- Use Mockito for mocking dependencies
+- Implement integration tests
+- Follow test-driven development practices
+
+## Performance
+
+- Use connection pooling
+- Implement caching strategies
+- Optimize database queries
+- Profile and monitor applications
+
+## Error Handling
+
+- Use proper exception hierarchy
+- Implement global exception handling
+- Return meaningful error responses
+- Log errors appropriately
+
+## Dependencies
+
+- Spring Boot, Spring Framework
+- Maven or Gradle
+- JUnit, Mockito
+- Quarkus, Jakarta EE, MicroProfile (alternative stack)

@@ -1,35 +1,31 @@
 ---
-name: "git-pushing"
-description: "Indexed by skills.sh from mhattingpete/claude-skills-marketplace"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "mhattingpete"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/mhattingpete/claude-skills-marketplace/git-pushing"
-sourceUrl: "https://skills.sh/mhattingpete/claude-skills-marketplace/git-pushing"
+name: git-pushing
+description: Stage, commit, and push git changes with conventional commit messages. Use when user wants to commit and push changes, mentions pushing to remote, or asks to save and push their work. Also activates when user says "push changes", "commit and push", "push this", "push to github", or similar git workflow requests.
 ---
 
-# git-pushing
+# Git Push Workflow
 
-> Indexed by skills.sh from mhattingpete/claude-skills-marketplace
+Stage all changes, create a conventional commit, and push to the remote branch.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** mhattingpete
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/mhattingpete/claude-skills-marketplace/git-pushing`
-- **Source URL:** [https://skills.sh/mhattingpete/claude-skills-marketplace/git-pushing](https://skills.sh/mhattingpete/claude-skills-marketplace/git-pushing)
+## When to Use
 
-## Overview
+Automatically activate when the user:
+- Explicitly asks to push changes ("push this", "commit and push")
+- Mentions saving work to remote ("save to github", "push to remote")
+- Completes a feature and wants to share it
+- Says phrases like "let's push this up" or "commit these changes"
 
+## Workflow
 
-## Installation
-To install this skill, run the following command in your terminal:
+**ALWAYS use the script** - do NOT use manual git commands:
+
 ```bash
-hermes skills install skills-sh/mhattingpete/claude-skills-marketplace/git-pushing
+bash skills/git-pushing/scripts/smart_commit.sh
 ```
+
+With custom message:
+```bash
+bash skills/git-pushing/scripts/smart_commit.sh "feat: add feature"
+```
+
+Script handles: staging, conventional commit message, Claude footer, push with -u flag.

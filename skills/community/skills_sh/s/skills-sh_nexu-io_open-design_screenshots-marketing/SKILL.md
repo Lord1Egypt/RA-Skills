@@ -1,35 +1,42 @@
 ---
-name: "screenshots-marketing"
-description: "Indexed by skills.sh from nexu-io/open-design"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "nexu-io"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/nexu-io/open-design/screenshots-marketing"
-sourceUrl: "https://skills.sh/nexu-io/open-design/screenshots-marketing"
+name: screenshots-marketing
+description: |
+  Generate marketing screenshots with Playwright. Useful for landing-page hero shots, App Store screenshots, and changelog visuals.
+triggers:
+  - "marketing screenshot"
+  - "playwright screenshot"
+  - "hero shot"
+  - "app store screenshot"
+od:
+  mode: image
+  category: screenshots
+  upstream: "https://github.com/Shpigford/screenshots"
 ---
 
 # screenshots-marketing
 
-> Indexed by skills.sh from nexu-io/open-design
+> Curated from @Shpigford.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** nexu-io
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/nexu-io/open-design/screenshots-marketing`
-- **Source URL:** [https://skills.sh/nexu-io/open-design/screenshots-marketing](https://skills.sh/nexu-io/open-design/screenshots-marketing)
+## What it does
 
-## Overview
+Generate marketing screenshots with Playwright. Useful for landing-page hero shots, App Store screenshots, and changelog visuals.
 
+## Source
 
-## Installation
-To install this skill, run the following command in your terminal:
+- Upstream: https://github.com/Shpigford/screenshots
+- Category: `screenshots`
+
+## How to use
+
+This catalogue entry advertises the skill in Open Design so the agent
+discovers it during planning. To run the full upstream workflow with
+its original assets, scripts, and references, install the upstream
+bundle into your active agent's skills directory:
+
 ```bash
-hermes skills install skills-sh/nexu-io/open-design/screenshots-marketing
+# Inspect the upstream README for exact paths
+open https://github.com/Shpigford/screenshots
 ```
+
+Then ask the agent to invoke this skill by name (`screenshots-marketing`) or with
+one of the trigger phrases listed in this skill's frontmatter.

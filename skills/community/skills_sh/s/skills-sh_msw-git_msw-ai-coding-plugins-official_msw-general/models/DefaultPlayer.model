@@ -1,0 +1,284 @@
+{
+  "Id": "",
+  "GameId": "",
+  "EntryKey": "model://defaultplayer",
+  "ContentType": "x-mod/model",
+  "Content": "",
+  "Usage": 0,
+  "UsePublish": 1,
+  "UseService": 0,
+  "CoreVersion": "",
+  "StudioVersion": "",
+  "DynamicLoading": 0,
+  "ContentProto": {
+    "Use": "Json",
+    "Json": {
+      "Version": 2,
+      "Name": "DefaultPlayer",
+      "BaseModelId": "player",
+      "Id": "defaultplayer",
+      "Components": [
+        "script.PlayerHit",
+        "script.PlayerAttack"
+      ],
+      "Properties": [],
+      "Values": [
+        {
+          "TargetType": null,
+          "Name": "speed",
+          "ValueType": {
+            "$type": "MODNativeType",
+            "type": "System.Single, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+          },
+          "Value": 1.0
+        },
+        {
+          "TargetType": null,
+          "Name": "jumpForce",
+          "ValueType": {
+            "$type": "MODNativeType",
+            "type": "System.Single, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+          },
+          "Value": 1.0
+        },
+        {
+          "TargetType": null,
+          "Name": "walkAcceleration",
+          "ValueType": {
+            "$type": "MODNativeType",
+            "type": "System.Single, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+          },
+          "Value": 1.0
+        },
+        {
+          "TargetType": null,
+          "Name": "gravity",
+          "ValueType": {
+            "$type": "MODNativeType",
+            "type": "System.Single, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+          },
+          "Value": 1.0
+        },
+        {
+          "TargetType": null,
+          "Name": "cameraDeadZone",
+          "ValueType": {
+            "$type": "MODNativeType",
+            "type": "MOD.Core.MODVector2, MOD.Core, Version=1.11.0.0, Culture=neutral, PublicKeyToken=null"
+          },
+          "Value": {
+            "$type": "MOD.Core.MODVector2, MOD.Core",
+            "x": 0.052,
+            "y": 0.08
+          }
+        },
+        {
+          "TargetType": null,
+          "Name": "cameraSoftZone",
+          "ValueType": {
+            "$type": "MODNativeType",
+            "type": "MOD.Core.MODVector2, MOD.Core, Version=1.11.0.0, Culture=neutral, PublicKeyToken=null"
+          },
+          "Value": {
+            "$type": "MOD.Core.MODVector2, MOD.Core",
+            "x": 0.268,
+            "y": 0.7
+          }
+        },
+        {
+          "TargetType": null,
+          "Name": "cameraDamping",
+          "ValueType": {
+            "$type": "MODNativeType",
+            "type": "MOD.Core.MODVector2, MOD.Core, Version=1.11.0.0, Culture=neutral, PublicKeyToken=null"
+          },
+          "Value": {
+            "$type": "MOD.Core.MODVector2, MOD.Core",
+            "x": 2.5,
+            "y": 3.9
+          }
+        },
+        {
+          "TargetType": null,
+          "Name": "cameraScreen",
+          "ValueType": {
+            "$type": "MODNativeType",
+            "type": "MOD.Core.MODVector2, MOD.Core, Version=1.11.0.0, Culture=neutral, PublicKeyToken=null"
+          },
+          "Value": {
+            "$type": "MOD.Core.MODVector2, MOD.Core",
+            "x": 0.5,
+            "y": 0.655
+          }
+        },
+        {
+          "TargetType": null,
+          "Name": "cameraDutch",
+          "ValueType": {
+            "$type": "MODNativeType",
+            "type": "System.Single, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+          },
+          "Value": 0.0
+        },
+        {
+          "TargetType": null,
+          "Name": "cameraOffset",
+          "ValueType": {
+            "$type": "MODNativeType",
+            "type": "MOD.Core.MODVector2, MOD.Core, Version=1.11.0.0, Culture=neutral, PublicKeyToken=null"
+          },
+          "Value": {
+            "$type": "MOD.Core.MODVector2, MOD.Core",
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        {
+          "TargetType": null,
+          "Name": "nameTag",
+          "ValueType": {
+            "$type": "MODNativeType",
+            "type": "System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+          },
+          "Value": ""
+        },
+        {
+          "TargetType": null,
+          "Name": "damageSkinId",
+          "ValueType": {
+            "$type": "MODNativeType",
+            "type": "MOD.Core.MODDataRef, MOD.Core, Version=1.11.0.0, Culture=neutral, PublicKeyToken=null"
+          },
+          "Value": {
+            "$type": "MOD.Core.MODDataRef, MOD.Core",
+            "DataId": "6ba67548f43f48f29eb23dafd0766383"
+          }
+        },
+        {
+          "TargetType": null,
+          "Name": "damageDelayPerAttack",
+          "ValueType": {
+            "$type": "MODNativeType",
+            "type": "System.Single, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+          },
+          "Value": 0.05
+        },
+        {
+          "TargetType": null,
+          "Name": "triggerBodyBoxSize",
+          "ValueType": {
+            "$type": "MODNativeType",
+            "type": "MOD.Core.MODVector2, MOD.Core, Version=1.11.0.0, Culture=neutral, PublicKeyToken=null"
+          },
+          "Value": {
+            "$type": "MOD.Core.MODVector2, MOD.Core",
+            "x": 0.66,
+            "y": 0.7
+          }
+        },
+        {
+          "TargetType": null,
+          "Name": "triggerBodyBoxOffset",
+          "ValueType": {
+            "$type": "MODNativeType",
+            "type": "MOD.Core.MODVector2, MOD.Core, Version=1.11.0.0, Culture=neutral, PublicKeyToken=null"
+          },
+          "Value": {
+            "$type": "MOD.Core.MODVector2, MOD.Core",
+            "x": 0.0,
+            "y": 0.35
+          }
+        },
+        {
+          "TargetType": null,
+          "Name": "triggerBodyColliderOffset",
+          "ValueType": {
+            "$type": "MODNativeType",
+            "type": "MOD.Core.MODVector2, MOD.Core, Version=1.11.0.0, Culture=neutral, PublicKeyToken=null"
+          },
+          "Value": {
+            "$type": "MOD.Core.MODVector2, MOD.Core",
+            "x": 0.0,
+            "y": 0.35
+          }
+        },
+        {
+          "TargetType": null,
+          "Name": "maxHp",
+          "ValueType": {
+            "$type": "MODNativeType",
+            "type": "System.Int64, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+          },
+          "Value": 1000
+        },
+        {
+          "TargetType": "MOD.Core.CameraComponent",
+          "Name": "ZoomRatioMax",
+          "ValueType": {
+            "$type": "MODNativeType",
+            "type": "System.Single, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+          },
+          "Value": 500.0
+        },
+        {
+          "TargetType": "script.PlayerHit",
+          "Name": "CollisionGroup",
+          "ValueType": {
+            "$type": "MODNativeType",
+            "type": "MOD.Core.Physics.CollisionGroup, MOD.Core, Version=1.11.0.0, Culture=neutral, PublicKeyToken=null"
+          },
+          "Value": {
+            "$type": "MOD.Core.Physics.CollisionGroup, MOD.Core",
+            "Id": "0639c22a20d34ec88be45b43fee3e333"
+          }
+        },
+        {
+          "TargetType": "script.PlayerHit",
+          "Name": "BoxSize",
+          "ValueType": {
+            "$type": "MODNativeType",
+            "type": "MOD.Core.MODVector2, MOD.Core, Version=1.11.0.0, Culture=neutral, PublicKeyToken=null"
+          },
+          "Value": {
+            "$type": "MOD.Core.MODVector2, MOD.Core",
+            "x": 0.45,
+            "y": 0.7
+          }
+        },
+        {
+          "TargetType": "script.PlayerHit",
+          "Name": "ColliderOffset",
+          "ValueType": {
+            "$type": "MODNativeType",
+            "type": "MOD.Core.MODVector2, MOD.Core, Version=1.11.0.0, Culture=neutral, PublicKeyToken=null"
+          },
+          "Value": {
+            "$type": "MOD.Core.MODVector2, MOD.Core",
+            "x": 0.0,
+            "y": 0.35
+          }
+        },
+        {
+          "TargetType": "MOD.Core.MovementComponent",
+          "Name": "JumpForce",
+          "ValueType": {
+            "$type": "MODNativeType",
+            "type": "System.Single, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+          },
+          "Value": 1.0
+        },
+        {
+          "TargetType": "MOD.Core.MovementComponent",
+          "Name": "InputSpeed",
+          "ValueType": {
+            "$type": "MODNativeType",
+            "type": "System.Single, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+          },
+          "Value": 1.0
+        }
+      ],
+      "EventLinks": [],
+      "Children": []
+    }
+  }
+}

@@ -1,35 +1,43 @@
 ---
-name: "copywriting"
-description: "Indexed by skills.sh from nexu-io/open-design"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "nexu-io"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/nexu-io/open-design/copywriting"
-sourceUrl: "https://skills.sh/nexu-io/open-design/copywriting"
+name: copywriting
+description: |
+  Write and rewrite marketing copy for landing pages, homepages, and ads. Useful as a copy chief partner during launches.
+triggers:
+  - "copywriting"
+  - "landing copy"
+  - "ad copy"
+  - "homepage copy"
+  - "rewrite copy"
+od:
+  mode: design-system
+  category: marketing-creative
+  upstream: "https://github.com/coreyhaines31/marketingskills"
 ---
 
 # copywriting
 
-> Indexed by skills.sh from nexu-io/open-design
+> Curated from Corey Haines.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** nexu-io
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/nexu-io/open-design/copywriting`
-- **Source URL:** [https://skills.sh/nexu-io/open-design/copywriting](https://skills.sh/nexu-io/open-design/copywriting)
+## What it does
 
-## Overview
+Write and rewrite marketing copy for landing pages, homepages, and ads. Useful as a copy chief partner during launches.
 
+## Source
 
-## Installation
-To install this skill, run the following command in your terminal:
+- Upstream: https://github.com/coreyhaines31/marketingskills
+- Category: `marketing-creative`
+
+## How to use
+
+This catalogue entry advertises the skill in Open Design so the agent
+discovers it during planning. To run the full upstream workflow with
+its original assets, scripts, and references, install the upstream
+bundle into your active agent's skills directory:
+
 ```bash
-hermes skills install skills-sh/nexu-io/open-design/copywriting
+# Inspect the upstream README for exact paths
+open https://github.com/coreyhaines31/marketingskills
 ```
+
+Then ask the agent to invoke this skill by name (`copywriting`) or with
+one of the trigger phrases listed in this skill's frontmatter.

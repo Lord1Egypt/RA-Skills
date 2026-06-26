@@ -1,35 +1,89 @@
 ---
-name: "desktop"
-description: "Indexed by skills.sh from lobehub/lobe-chat"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "lobehub"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/lobehub/lobe-chat/desktop"
-sourceUrl: "https://skills.sh/lobehub/lobe-chat/desktop"
+name: desktop
+description: Electron desktop development guide — IPC handlers, controllers, preload scripts, window/menu management.
+disable-model-invocation: true
 ---
 
-# desktop
+# Desktop Development Guide
 
-> Indexed by skills.sh from lobehub/lobe-chat
+## Architecture Overview
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** lobehub
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/lobehub/lobe-chat/desktop`
-- **Source URL:** [https://skills.sh/lobehub/lobe-chat/desktop](https://skills.sh/lobehub/lobe-chat/desktop)
+LobeHub desktop is built on Electron with main-renderer architecture:
 
-## Overview
+1. **Main Process** (`apps/desktop/src/main`): App lifecycle, system APIs, window management
+2. **Renderer Process**: Reuses web code from `src/`
+3. **Preload Scripts** (`apps/desktop/src/preload`): Securely expose main process to renderer
 
+## Adding New Desktop Features
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/lobehub/lobe-chat/desktop
+### 1. Create Controller
+
+Location: `apps/desktop/src/main/controllers/`
+
+```typescript
+import { ControllerModule, IpcMethod } from '@/controllers';
+
+export default class NewFeatureCtr extends ControllerModule {
+  static override readonly groupName = 'newFeature';
+
+  @IpcMethod()
+  async doSomething(params: SomeParams): Promise<SomeResult> {
+    // Implementation
+    return { success: true };
+  }
+}
 ```
+
+Register in `apps/desktop/src/main/controllers/registry.ts`.
+
+### 2. Define IPC Types
+
+Location: `packages/electron-client-ipc/src/types.ts`
+
+```typescript
+export interface SomeParams {
+  /* ... */
+}
+export interface SomeResult {
+  success: boolean;
+  error?: string;
+}
+```
+
+### 3. Create Renderer Service
+
+Location: `src/services/electron/`
+
+```typescript
+import { ensureElectronIpc } from '@/utils/electron/ipc';
+
+const ipc = ensureElectronIpc();
+
+export const newFeatureService = async (params: SomeParams) => {
+  return ipc.newFeature.doSomething(params);
+};
+```
+
+### 4. Implement Store Action
+
+Location: `src/store/`
+
+### 5. Add Tests
+
+Location: `apps/desktop/src/main/controllers/__tests__/`
+
+## Detailed Guides
+
+See `references/` for specific topics:
+
+- **Feature implementation**: `references/feature-implementation.md`
+- **Local tools workflow**: `references/local-tools.md`
+- **Menu configuration**: `references/menu-config.md`
+- **Window management**: `references/window-management.md`
+
+## Best Practices
+
+1. **Security**: Validate inputs, limit exposed APIs
+2. **Performance**: Use async methods, batch data transfers
+3. **UX**: Add progress indicators, provide error feedback
+4. **Code organization**: Follow existing patterns, add documentation

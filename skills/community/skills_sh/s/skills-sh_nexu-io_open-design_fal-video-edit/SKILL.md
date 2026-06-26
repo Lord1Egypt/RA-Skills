@@ -1,35 +1,43 @@
 ---
-name: "fal-video-edit"
-description: "Indexed by skills.sh from nexu-io/open-design"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "nexu-io"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/nexu-io/open-design/fal-video-edit"
-sourceUrl: "https://skills.sh/nexu-io/open-design/fal-video-edit"
+name: fal-video-edit
+description: |
+  Edit existing videos using AI — remix style, upscale, remove background, and add audio via fal.ai's hosted video models.
+triggers:
+  - "fal video edit"
+  - "video upscale"
+  - "video style transfer"
+  - "remove video bg"
+  - "video remix"
+od:
+  mode: video
+  category: video-generation
+  upstream: "https://github.com/fal-ai-community/skills"
 ---
 
 # fal-video-edit
 
-> Indexed by skills.sh from nexu-io/open-design
+> Curated from the fal.ai community team.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** nexu-io
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/nexu-io/open-design/fal-video-edit`
-- **Source URL:** [https://skills.sh/nexu-io/open-design/fal-video-edit](https://skills.sh/nexu-io/open-design/fal-video-edit)
+## What it does
 
-## Overview
+Edit existing videos using AI — remix style, upscale, remove background, and add audio via fal.ai's hosted video models.
 
+## Source
 
-## Installation
-To install this skill, run the following command in your terminal:
+- Upstream: https://github.com/fal-ai-community/skills
+- Category: `video-generation`
+
+## How to use
+
+This catalogue entry advertises the skill in Open Design so the agent
+discovers it during planning. To run the full upstream workflow with
+its original assets, scripts, and references, install the upstream
+bundle into your active agent's skills directory:
+
 ```bash
-hermes skills install skills-sh/nexu-io/open-design/fal-video-edit
+# Inspect the upstream README for exact paths
+open https://github.com/fal-ai-community/skills
 ```
+
+Then ask the agent to invoke this skill by name (`fal-video-edit`) or with
+one of the trigger phrases listed in this skill's frontmatter.

@@ -1,0 +1,22 @@
+{
+  "HomePage": {
+    "title": "Hello world!"
+  },
+  "LandingPage": {
+    "title": "App Name",
+    "navbar": {
+      "home": "Home",
+      "about": "About"
+    }
+  },
+  "BackToHomeButton": {
+    "buttonText": "Back to Home",
+    "tooltip": "Return to the main page"
+  },
+  "Navigation": {
+    "links": {
+      "home": "Home",
+      "about": "About"
+    }
+  }
+}

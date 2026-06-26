@@ -1,35 +1,19 @@
 ---
-name: "playwright-dev"
-description: "Indexed by skills.sh from microsoft/playwright"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "microsoft"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/microsoft/playwright/playwright-dev"
-sourceUrl: "https://skills.sh/microsoft/playwright/playwright-dev"
+name: playwright-dev
+description: Explains how to develop Playwright - add APIs, MCP tools, CLI commands, and vendor dependencies.
 ---
 
-# playwright-dev
+# Playwright Development Guide
 
-> Indexed by skills.sh from microsoft/playwright
+See [CLAUDE.md](../../../CLAUDE.md) for monorepo structure, build/test/lint commands, and coding conventions.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** microsoft
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/microsoft/playwright/playwright-dev`
-- **Source URL:** [https://skills.sh/microsoft/playwright/playwright-dev](https://skills.sh/microsoft/playwright/playwright-dev)
+## Detailed Guides
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/microsoft/playwright/playwright-dev
-```
+- [Library Architecture](library.md) — client/server/dispatcher structure, protocol layer, DEPS rules
+- [Adding and Modifying APIs](api.md) — define API docs, implement client/server, add tests
+- [MCP Tools and CLI Commands](tools.md) — add MCP tools, CLI commands, config options
+- [Vendor Dependencies & Bundling](vendor.md) — utilsBundle, coreBundle, babelBundle; adding vendored npm packages; DEPS.list; `check_deps`
+- [Updating WebKit Safari Version](webkit-safari-version.md) — update the Safari version string in the WebKit user-agent
+- [WebView (iOS Safari) Backend](webview.md) — `webkit/webview/` against stock Mobile Safari; provisional-target pause/resume; what's upstream vs Playwright patches; local + CI test setup
+- [Bisecting Across Published Versions](bisect-published-versions.md) — reproduce regressions side-by-side from npm and diff `node_modules/playwright/lib/` between versions
+- [Dashboard](dashboard.md) - the UI powering the "playwright cli show" command, and how to work on it

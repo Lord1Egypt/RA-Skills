@@ -1,35 +1,43 @@
 ---
-name: "threejs"
-description: "Indexed by skills.sh from nexu-io/open-design"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "nexu-io"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/nexu-io/open-design/threejs"
-sourceUrl: "https://skills.sh/nexu-io/open-design/threejs"
+name: threejs
+description: |
+  Three.js skills for creating 3D elements and interactive experiences in the browser — scenes, materials, controls, and post-processing.
+triggers:
+  - "threejs"
+  - "three.js"
+  - "3d web"
+  - "webgl scene"
+  - "3d interactive"
+od:
+  mode: prototype
+  category: 3d-shaders
+  upstream: "https://github.com/CloudAI-X/threejs-skills"
 ---
 
 # threejs
 
-> Indexed by skills.sh from nexu-io/open-design
+> Curated from CloudAI-X.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** nexu-io
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/nexu-io/open-design/threejs`
-- **Source URL:** [https://skills.sh/nexu-io/open-design/threejs](https://skills.sh/nexu-io/open-design/threejs)
+## What it does
 
-## Overview
+Three.js skills for creating 3D elements and interactive experiences in the browser — scenes, materials, controls, and post-processing.
 
+## Source
 
-## Installation
-To install this skill, run the following command in your terminal:
+- Upstream: https://github.com/CloudAI-X/threejs-skills
+- Category: `3d-shaders`
+
+## How to use
+
+This catalogue entry advertises the skill in Open Design so the agent
+discovers it during planning. To run the full upstream workflow with
+its original assets, scripts, and references, install the upstream
+bundle into your active agent's skills directory:
+
 ```bash
-hermes skills install skills-sh/nexu-io/open-design/threejs
+# Inspect the upstream README for exact paths
+open https://github.com/CloudAI-X/threejs-skills
 ```
+
+Then ask the agent to invoke this skill by name (`threejs`) or with
+one of the trigger phrases listed in this skill's frontmatter.

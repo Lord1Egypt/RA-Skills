@@ -1,35 +1,42 @@
 ---
-name: "competitive-ads-extractor"
-description: "Indexed by skills.sh from nexu-io/open-design"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "nexu-io"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/nexu-io/open-design/competitive-ads-extractor"
-sourceUrl: "https://skills.sh/nexu-io/open-design/competitive-ads-extractor"
+name: competitive-ads-extractor
+description: |
+  Extract and analyze competitors' ads from ad libraries to understand messaging and creative approaches that resonate.
+triggers:
+  - "competitive ads"
+  - "ad library extract"
+  - "competitor creative"
+  - "ad teardown"
+od:
+  mode: design-system
+  category: marketing-creative
+  upstream: "https://github.com/ComposioHQ/awesome-claude-skills/tree/master/competitive-ads-extractor"
 ---
 
 # competitive-ads-extractor
 
-> Indexed by skills.sh from nexu-io/open-design
+> Curated from ComposioHQ awesome-claude-skills.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** nexu-io
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/nexu-io/open-design/competitive-ads-extractor`
-- **Source URL:** [https://skills.sh/nexu-io/open-design/competitive-ads-extractor](https://skills.sh/nexu-io/open-design/competitive-ads-extractor)
+## What it does
 
-## Overview
+Extract and analyze competitors' ads from ad libraries to understand messaging and creative approaches that resonate.
 
+## Source
 
-## Installation
-To install this skill, run the following command in your terminal:
+- Upstream: https://github.com/ComposioHQ/awesome-claude-skills/tree/master/competitive-ads-extractor
+- Category: `marketing-creative`
+
+## How to use
+
+This catalogue entry advertises the skill in Open Design so the agent
+discovers it during planning. To run the full upstream workflow with
+its original assets, scripts, and references, install the upstream
+bundle into your active agent's skills directory:
+
 ```bash
-hermes skills install skills-sh/nexu-io/open-design/competitive-ads-extractor
+# Inspect the upstream README for exact paths
+open https://github.com/ComposioHQ/awesome-claude-skills/tree/master/competitive-ads-extractor
 ```
+
+Then ask the agent to invoke this skill by name (`competitive-ads-extractor`) or with
+one of the trigger phrases listed in this skill's frontmatter.

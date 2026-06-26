@@ -1,0 +1,142 @@
+{
+  "Id": "",
+  "GameId": "",
+  "EntryKey": "model://uisprite",
+  "ContentType": "x-mod/model",
+  "Content": "",
+  "Usage": 0,
+  "UsePublish": 1,
+  "UseService": 0,
+  "CoreVersion": "26.5.0.0",
+  "StudioVersion": "0.1.0.0",
+  "DynamicLoading": 0,
+  "ContentProto": {
+    "Use": "Json",
+    "Json": {
+      "Version": 1,
+      "Name": "UISprite",
+      "BaseModelId": null,
+      "Id": "uisprite",
+      "Components": [
+        "MOD.Core.UITransformComponent",
+        "MOD.Core.SpriteGUIRendererComponent"
+      ],
+      "Properties": [
+        {
+          "Type": {
+            "$type": "MODNativeType",
+            "type": "MOD.Core.MODVector2, MOD.Core, Version=26.5.0.0, Culture=neutral, PublicKeyToken=null"
+          },
+          "Name": "RectSize",
+          "DisplayName": "RectSize",
+          "ShowInInspector": true,
+          "Link": {
+            "Target": {
+              "$type": "MODNativeType",
+              "type": "MOD.Core.UITransformComponent, MOD.Core, Version=26.5.0.0, Culture=neutral, PublicKeyToken=null"
+            },
+            "Property": "RectSize"
+          }
+        },
+        {
+          "Type": {
+            "$type": "MODNativeType",
+            "type": "MOD.Core.MODDataRef, MOD.Core, Version=26.5.0.0, Culture=neutral, PublicKeyToken=null"
+          },
+          "Name": "ImageRUID",
+          "DisplayName": "ImageRUID",
+          "ShowInInspector": true,
+          "Link": {
+            "Target": {
+              "$type": "MODNativeType",
+              "type": "MOD.Core.SpriteGUIRendererComponent, MOD.Core, Version=26.5.0.0, Culture=neutral, PublicKeyToken=null"
+            },
+            "Property": "ImageRUID"
+          }
+        },
+        {
+          "Type": {
+            "$type": "MODNativeType",
+            "type": "MOD.Core.MODColor, MOD.Core, Version=26.5.0.0, Culture=neutral, PublicKeyToken=null"
+          },
+          "Name": "Color",
+          "DisplayName": "Color",
+          "ShowInInspector": true,
+          "Link": {
+            "Target": {
+              "$type": "MODNativeType",
+              "type": "MOD.Core.SpriteGUIRendererComponent, MOD.Core, Version=26.5.0.0, Culture=neutral, PublicKeyToken=null"
+            },
+            "Property": "Color"
+          }
+        }
+      ],
+      "Values": [
+        {
+          "TargetType": "MOD.Core.UITransformComponent",
+          "Name": "anchoredPosition",
+          "ValueType": {
+            "$type": "MODNativeType",
+            "type": "MOD.Core.MODVector2, MOD.Core, Version=26.5.0.0, Culture=neutral, PublicKeyToken=null"
+          },
+          "Value": {
+            "$type": "MOD.Core.MODVector2, MOD.Core",
+            "x": 0.0,
+            "y": 0.0
+          }
+        },
+        {
+          "TargetType": "MOD.Core.UITransformComponent",
+          "Name": "RectSize",
+          "ValueType": {
+            "$type": "MODNativeType",
+            "type": "MOD.Core.MODVector2, MOD.Core, Version=26.5.0.0, Culture=neutral, PublicKeyToken=null"
+          },
+          "Value": {
+            "$type": "MOD.Core.MODVector2, MOD.Core",
+            "x": 100.0,
+            "y": 100.0
+          }
+        },
+        {
+          "TargetType": "MOD.Core.UITransformComponent",
+          "Name": "AlignmentOption",
+          "ValueType": {
+            "$type": "MODNativeType",
+            "type": "MOD.Core.AlignmentType, MOD.Core, Version=26.5.0.0, Culture=neutral, PublicKeyToken=null"
+          },
+          "Value": 0
+        },
+        {
+          "TargetType": "MOD.Core.SpriteGUIRendererComponent",
+          "Name": "ImageRUID",
+          "ValueType": {
+            "$type": "MODNativeType",
+            "type": "MOD.Core.MODDataRef, MOD.Core, Version=26.5.0.0, Culture=neutral, PublicKeyToken=null"
+          },
+          "Value": {
+            "$type": "MOD.Core.MODDataRef, MOD.Core",
+            "DataId": ""
+          }
+        },
+        {
+          "TargetType": "MOD.Core.SpriteGUIRendererComponent",
+          "Name": "Color",
+          "ValueType": {
+            "$type": "MODNativeType",
+            "type": "MOD.Core.MODColor, MOD.Core, Version=26.5.0.0, Culture=neutral, PublicKeyToken=null"
+          },
+          "Value": {
+            "$type": "MOD.Core.MODColor, MOD.Core",
+            "r": 1.0,
+            "g": 1.0,
+            "b": 1.0,
+            "a": 1.0
+          }
+        }
+      ],
+      "EventLinks": [],
+      "Children": []
+    }
+  }
+}

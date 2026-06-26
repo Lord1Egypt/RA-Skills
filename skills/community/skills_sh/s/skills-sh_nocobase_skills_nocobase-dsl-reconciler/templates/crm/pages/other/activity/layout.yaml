@@ -1,0 +1,32 @@
+blocks:
+  - key: filterForm
+    type: filterForm
+    coll: nb_crm_activities
+    fields:
+      - field: subject
+        label: Search
+    field_layout:
+      - - subject
+  - key: table
+    type: table
+    coll: nb_crm_activities
+    fields:
+      - field: subject
+        clickToOpen: true
+      - type
+      - activity_date
+      - lead
+      - customer
+      - opportunity
+      - contact
+      - owner
+    actions:
+      - filter
+      - refresh
+      - addNew
+      - type: ai
+        employee: viz
+        tasks_file: ./ai/activity_table_tasks.yaml
+layout:
+  - - filterForm
+  - - table

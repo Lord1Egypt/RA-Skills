@@ -1,35 +1,38 @@
 ---
-name: "nansen-holder-analysis"
-description: "Indexed by skills.sh from nansen-ai/nansen-cli"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "nansen-ai"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/nansen-ai/nansen-cli/nansen-holder-analysis"
-sourceUrl: "https://skills.sh/nansen-ai/nansen-cli/nansen-holder-analysis"
+name: nansen-holder-analysis
+description: "Is this token held by quality wallets or retail noise? SM holder ratio, flow breakdown by label, and recent buyer quality."
+metadata:
+  openclaw:
+    requires:
+      env:
+        - NANSEN_API_KEY
+      bins:
+        - nansen
+    primaryEnv: NANSEN_API_KEY
+    install:
+      - kind: node
+        package: nansen-cli
+        bins: [nansen]
+allowed-tools: Bash(nansen:*)
 ---
 
-# nansen-holder-analysis
+# Holder Quality
 
-> Indexed by skills.sh from nansen-ai/nansen-cli
+**Answers:** "Is this token held by quality wallets or retail noise?"
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** nansen-ai
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/nansen-ai/nansen-cli/nansen-holder-analysis`
-- **Source URL:** [https://skills.sh/nansen-ai/nansen-cli/nansen-holder-analysis](https://skills.sh/nansen-ai/nansen-cli/nansen-holder-analysis)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install skills-sh/nansen-ai/nansen-cli/nansen-holder-analysis
+TOKEN=<address> CHAIN=ethereum
+
+nansen research token holders --token $TOKEN --chain $CHAIN --smart-money --limit 20
+# → address, address_label, value_usd, ownership_percentage, balance_change_24h/7d/30d
+
+nansen research token flow-intelligence --token $TOKEN --chain $CHAIN
+# → net_flow_usd and wallet_count per label: smart_trader, whale, exchange, fresh_wallets
+
+nansen research token who-bought-sold --token $TOKEN --chain $CHAIN --limit 20
+# → address, address_label, bought/sold_volume_usd, bought/sold_token_volume, trade_volume_usd
 ```
+
+Red flag: high fresh_wallets flow + low SM holders. Green flag: Fund/Smart Trader labels in top 20.
+
+Note: holders endpoint does not support native/wrapped tokens. Use a specific token contract address.

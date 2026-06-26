@@ -1,35 +1,24 @@
 ---
-name: "ctx-insight"
-description: "Indexed by skills.sh from mksglu/context-mode"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "mksglu"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/mksglu/context-mode/ctx-insight"
-sourceUrl: "https://skills.sh/mksglu/context-mode/ctx-insight"
+name: ctx-insight
+description: |
+  Open the context-mode Insight dashboard in your default browser.
+  Insight is the hosted analytics layer for AI-assisted engineering teams —
+  per-engineer productive rate, retry waste, blocker detection, role-narrowed views.
+  Trigger: /context-mode:ctx-insight
+user-invocable: true
 ---
 
-# ctx-insight
+# Context Mode Insight
 
-> Indexed by skills.sh from mksglu/context-mode
+Open the hosted Insight dashboard in the user's default browser.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** mksglu
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/mksglu/context-mode/ctx-insight`
-- **Source URL:** [https://skills.sh/mksglu/context-mode/ctx-insight](https://skills.sh/mksglu/context-mode/ctx-insight)
+## Instructions
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/mksglu/context-mode/ctx-insight
-```
+1. Call the `ctx_insight` MCP tool (no parameters). It opens
+   <https://context-mode.com/insight> in the default browser and returns a
+   confirmation line.
+2. Display the tool's output to the user.
+3. Tell the user:
+   - "Insight opened at https://context-mode.com/insight"
+   - The landing page at context-mode.com/insight is the single source of truth for sign-in and pricing details.
+   - If the browser did not open automatically, share the URL so they can open it manually.

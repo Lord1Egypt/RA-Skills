@@ -1,0 +1,54 @@
+# Materialize v0.32
+## v0.32.0
+
+* Add support for replicating tables that contain unsupported types in the
+  [PostgreSQL source](/sql/create-source/postgres/), using the new `TEXT
+  COLUMNS` option:
+
+  ```mzsql
+  CREATE SOURCE mz_source
+	FROM POSTGRES CONNECTION pg_connection (
+	  PUBLICATION 'mz_source',
+	  TEXT COLUMNS (tbl.col_of_unsupported_type)
+	) FOR ALL TABLES
+  WITH (SIZE = '3xsmall');
+  ```
+
+  Any columns specified via this option will be treated as `text` in
+  Materialize regardless of the original PostgreSQL type. Examples of
+  unsupported types that can now be ingested are `enum`,
+  arbitrary precision `numeric`, `money`, and `citext`.
+
+* Improve error message for unexpected or mismatched type catalog errors,
+  specifying the catalog item type:
+
+  ```mzsql
+  DROP VIEW mz_table;
+
+  ERROR:  "materialize.public.mz_table" is a table not a view
+  ```
+
+* Fix a bug in the [`#>>` `jsonb` operator](/sql/types/jsonb/#operators) that
+  caused an error when specifying an array index that does not exist, instead
+  of returning `NULL` ([#15978](https://github.com/MaterializeInc/materialize/issues/15978)).
+
+* Fix a bug where relations in `pg_catalog` and `information_schema` would
+  contain information about all databases, rather than just the current
+  database ([#15841](https://github.com/MaterializeInc/materialize/issues/15841)).
+
+* **Private preview.** Add support for
+  [AWS PrivateLink connections](/sql/create-connection/#aws-privatelink),
+  which establish links to
+  [AWS PrivateLink](https://aws.amazon.com/privatelink/) services.
+
+## Patch releases
+
+### v0.32.4
+
+* Stabilize the performance of ad hoc `SELECT` statements against unindexed
+  objects in large clusters ([#16090](https://github.com/MaterializeInc/materialize/issues/16090)).
+
+* Fix a bug that caused query performance on unindexed objects to slowly degrade
+  over time ([#16127](https://github.com/MaterializeInc/materialize/issues/16127)).
+
+* Fix a bug in predicate pushdown that could result in incorrect query plans ([#16147](https://github.com/MaterializeInc/materialize/issues/16147)).

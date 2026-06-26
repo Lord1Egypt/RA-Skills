@@ -1,0 +1,48 @@
+{
+  "Id": "",
+  "GameId": "",
+  "EntryKey": "model://uigroup",
+  "ContentType": "x-mod/model",
+  "Content": "",
+  "Usage": 0,
+  "UsePublish": 1,
+  "UseService": 0,
+  "CoreVersion": "26.5.0.0",
+  "StudioVersion": "0.1.0.0",
+  "DynamicLoading": 0,
+  "ContentProto": {
+    "Use": "Json",
+    "Json": {
+      "Version": 1,
+      "Name": "UIGroup",
+      "BaseModelId": null,
+      "Id": "uigroup",
+      "Components": [
+        "MOD.Core.UITransformComponent",
+        "MOD.Core.UIGroupComponent",
+        "MOD.Core.CanvasGroupComponent"
+      ],
+      "Properties": [
+        {
+          "Type": {
+            "$type": "MODNativeType",
+            "type": "System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+          },
+          "Name": "DefaultShow",
+          "DisplayName": "DefaultShow",
+          "ShowInInspector": true,
+          "Link": {
+            "Target": {
+              "$type": "MODNativeType",
+              "type": "MOD.Core.UIGroupComponent, MOD.Core, Version=26.5.0.0, Culture=neutral, PublicKeyToken=null"
+            },
+            "Property": "DefaultShow"
+          }
+        }
+      ],
+      "Values": [],
+      "EventLinks": [],
+      "Children": []
+    }
+  }
+}

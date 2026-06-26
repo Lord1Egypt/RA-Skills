@@ -1,35 +1,42 @@
 ---
-name: "figma-create-design-system-rules"
-description: "Indexed by skills.sh from nexu-io/open-design"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "nexu-io"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/nexu-io/open-design/figma-create-design-system-rules"
-sourceUrl: "https://skills.sh/nexu-io/open-design/figma-create-design-system-rules"
+name: figma-create-design-system-rules
+description: |
+  Generate project-specific design system rules for Figma-to-code workflows. Useful for capturing tokens, naming, and lint rules in one source.
+triggers:
+  - "figma rules"
+  - "design system rules"
+  - "figma to code rules"
+  - "figma tokens"
+od:
+  mode: design-system
+  category: figma
+  upstream: "https://github.com/figma/skills"
 ---
 
 # figma-create-design-system-rules
 
-> Indexed by skills.sh from nexu-io/open-design
+> Curated from Figma's MCP server guide.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** nexu-io
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/nexu-io/open-design/figma-create-design-system-rules`
-- **Source URL:** [https://skills.sh/nexu-io/open-design/figma-create-design-system-rules](https://skills.sh/nexu-io/open-design/figma-create-design-system-rules)
+## What it does
 
-## Overview
+Generate project-specific design system rules for Figma-to-code workflows. Useful for capturing tokens, naming, and lint rules in one source.
 
+## Source
 
-## Installation
-To install this skill, run the following command in your terminal:
+- Upstream: https://github.com/figma/skills
+- Category: `figma`
+
+## How to use
+
+This catalogue entry advertises the skill in Open Design so the agent
+discovers it during planning. To run the full upstream workflow with
+its original assets, scripts, and references, install the upstream
+bundle into your active agent's skills directory:
+
 ```bash
-hermes skills install skills-sh/nexu-io/open-design/figma-create-design-system-rules
+# Inspect the upstream README for exact paths
+open https://github.com/figma/skills
 ```
+
+Then ask the agent to invoke this skill by name (`figma-create-design-system-rules`) or with
+one of the trigger phrases listed in this skill's frontmatter.

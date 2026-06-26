@@ -1,35 +1,43 @@
 ---
-name: "ai-music-album"
-description: "Indexed by skills.sh from nexu-io/open-design"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "nexu-io"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/nexu-io/open-design/ai-music-album"
-sourceUrl: "https://skills.sh/nexu-io/open-design/ai-music-album"
+name: ai-music-album
+description: |
+  Full-lifecycle AI music album production — concept, lyric drafting, track sequencing, and export. Useful for indie album experiments and brand soundtracks.
+triggers:
+  - "ai music"
+  - "music album"
+  - "lyric writing"
+  - "track sequencing"
+  - "album production"
+od:
+  mode: audio
+  category: audio-music
+  upstream: "https://github.com/bitwize-music-studio/claude-ai-music-skills"
 ---
 
 # ai-music-album
 
-> Indexed by skills.sh from nexu-io/open-design
+> Curated from bitwize-music-studio.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** nexu-io
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/nexu-io/open-design/ai-music-album`
-- **Source URL:** [https://skills.sh/nexu-io/open-design/ai-music-album](https://skills.sh/nexu-io/open-design/ai-music-album)
+## What it does
 
-## Overview
+Full-lifecycle AI music album production — concept, lyric drafting, track sequencing, and export. Useful for indie album experiments and brand soundtracks.
 
+## Source
 
-## Installation
-To install this skill, run the following command in your terminal:
+- Upstream: https://github.com/bitwize-music-studio/claude-ai-music-skills
+- Category: `audio-music`
+
+## How to use
+
+This catalogue entry advertises the skill in Open Design so the agent
+discovers it during planning. To run the full upstream workflow with
+its original assets, scripts, and references, install the upstream
+bundle into your active agent's skills directory:
+
 ```bash
-hermes skills install skills-sh/nexu-io/open-design/ai-music-album
+# Inspect the upstream README for exact paths
+open https://github.com/bitwize-music-studio/claude-ai-music-skills
 ```
+
+Then ask the agent to invoke this skill by name (`ai-music-album`) or with
+one of the trigger phrases listed in this skill's frontmatter.

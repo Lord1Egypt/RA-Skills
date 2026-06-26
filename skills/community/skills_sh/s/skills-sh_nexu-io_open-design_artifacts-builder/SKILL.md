@@ -1,35 +1,42 @@
 ---
-name: "artifacts-builder"
-description: "Indexed by skills.sh from nexu-io/open-design"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "nexu-io"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/nexu-io/open-design/artifacts-builder"
-sourceUrl: "https://skills.sh/nexu-io/open-design/artifacts-builder"
+name: artifacts-builder
+description: |
+  Suite of tools for creating elaborate, multi-component claude.ai HTML artifacts using modern frontend web technologies (React, Tailwind CSS, shadcn/ui).
+triggers:
+  - "artifacts builder"
+  - "html artifact"
+  - "multi component artifact"
+  - "react artifact"
+od:
+  mode: prototype
+  category: web-artifacts
+  upstream: "https://github.com/ComposioHQ/awesome-claude-skills/tree/master/artifacts-builder"
 ---
 
 # artifacts-builder
 
-> Indexed by skills.sh from nexu-io/open-design
+> Curated from ComposioHQ awesome-claude-skills.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** nexu-io
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/nexu-io/open-design/artifacts-builder`
-- **Source URL:** [https://skills.sh/nexu-io/open-design/artifacts-builder](https://skills.sh/nexu-io/open-design/artifacts-builder)
+## What it does
 
-## Overview
+Suite of tools for creating elaborate, multi-component claude.ai HTML artifacts using modern frontend web technologies (React, Tailwind CSS, shadcn/ui).
 
+## Source
 
-## Installation
-To install this skill, run the following command in your terminal:
+- Upstream: https://github.com/ComposioHQ/awesome-claude-skills/tree/master/artifacts-builder
+- Category: `web-artifacts`
+
+## How to use
+
+This catalogue entry advertises the skill in Open Design so the agent
+discovers it during planning. To run the full upstream workflow with
+its original assets, scripts, and references, install the upstream
+bundle into your active agent's skills directory:
+
 ```bash
-hermes skills install skills-sh/nexu-io/open-design/artifacts-builder
+# Inspect the upstream README for exact paths
+open https://github.com/ComposioHQ/awesome-claude-skills/tree/master/artifacts-builder
 ```
+
+Then ask the agent to invoke this skill by name (`artifacts-builder`) or with
+one of the trigger phrases listed in this skill's frontmatter.

@@ -1,35 +1,25 @@
 ---
-name: "new-user"
-description: "Indexed by skills.sh from medusajs/medusa-agent-skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "medusajs"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/medusajs/medusa-agent-skills/new-user"
-sourceUrl: "https://skills.sh/medusajs/medusa-agent-skills/new-user"
+name: new-user
+description: Create an admin user in Medusa
+argument-hint: <email> <password>
+allowed-tools: Bash(npx medusa user:*)
 ---
 
-# new-user
+# Create Admin User
 
-> Indexed by skills.sh from medusajs/medusa-agent-skills
+Create a new admin user in Medusa with the specified email and password.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** medusajs
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/medusajs/medusa-agent-skills/new-user`
-- **Source URL:** [https://skills.sh/medusajs/medusa-agent-skills/new-user](https://skills.sh/medusajs/medusa-agent-skills/new-user)
+The user will provide two arguments:
+- First argument: email address
+- Second argument: password
 
-## Overview
+For example: `/medusa-dev:user admin@test.com supersecret`
 
+Use the Bash tool to execute the command `npx medusa user -e <email> -p <password>`, replacing `<email>` with the first argument and `<password>` with the second argument.
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/medusajs/medusa-agent-skills/new-user
-```
+Report the results to the user, including:
+
+- Confirmation that the admin user was created successfully
+- The email address of the created user
+- Any errors that occurred
+- Next steps (e.g., logging in to the admin dashboard)

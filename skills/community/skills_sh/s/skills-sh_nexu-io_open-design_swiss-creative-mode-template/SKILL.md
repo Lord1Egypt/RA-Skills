@@ -1,35 +1,79 @@
 ---
-name: "swiss-creative-mode-template"
-description: "Indexed by skills.sh from nexu-io/open-design"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "nexu-io"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/nexu-io/open-design/swiss-creative-mode-template"
-sourceUrl: "https://skills.sh/nexu-io/open-design/swiss-creative-mode-template"
+name: swiss-creative-mode-template
+description: |
+  Swiss-inspired creative-mode presentation template skill with bold editorial
+  typography, high-contrast geometric cards, interactive slide navigation,
+  theme switching, hotspot overlays, and palette choreography in a single-file
+  HTML artifact. Use when users ask for a premium presentation-style landing,
+  a Swiss/brutalist deck look, or a creative launch page with rich interactions.
+triggers:
+  - "swiss creative mode template"
+  - "editorial presentation template"
+  - "brutalist deck style html"
+  - "creative mode deck"
+  - "瑞士风演示模板"
+  - "高级设计语言模板"
+od:
+  mode: template
+  surface: video
+  type: hyperframes
+  platform: desktop
+  preview:
+    type: html
+    entry: index.html
+    reload: debounce-100
+  design_system:
+    requires: true
+    sections: [color, typography, layout, components]
+  outputs:
+    primary: index.html
+    secondary:
+      - template.html
+      - example.html
+  capabilities_required:
+    - file_write
 ---
 
-# swiss-creative-mode-template
+# Swiss Creative Mode Template
 
-> Indexed by skills.sh from nexu-io/open-design
+Produce a premium Swiss/editorial-style HTML template with strong visual rhythm
+and meaningful interactions, then emit it as a single-file artifact.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** nexu-io
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/nexu-io/open-design/swiss-creative-mode-template`
-- **Source URL:** [https://skills.sh/nexu-io/open-design/swiss-creative-mode-template](https://skills.sh/nexu-io/open-design/swiss-creative-mode-template)
+## Resource map
 
-## Overview
+```text
+swiss-creative-mode-template/
+├── SKILL.md
+├── assets/
+│   └── template.html
+├── references/
+│   └── checklist.md
+└── example.html
+```
 
+## Workflow
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/nexu-io/open-design/swiss-creative-mode-template
+1. Read active `DESIGN.md` and map palette/type/layout decisions into root CSS variables.
+2. Copy `assets/template.html` to `index.html`.
+3. Keep this structure intact:
+   - Hero scene with bold title and geometric frame.
+   - Four-step process card row.
+   - Stack/architecture diagram scene.
+4. Keep these interactions working:
+   - Prev/next slide navigation + dot nav.
+   - Theme toggle (paper/dark).
+   - Palette cycle button (changes accent colors across the template).
+   - Hotspot toggle for annotations/details.
+5. Keep output self-contained (`<!doctype html>`, inline CSS/JS, no external runtime dependency).
+6. Validate against `references/checklist.md` before emitting.
+
+## Output contract
+
+One short sentence before artifact, then:
+
+```xml
+<artifact identifier="swiss-creative-mode" type="text/html" title="Swiss Creative Mode Template">
+<!doctype html>
+<html>...</html>
+</artifact>
 ```

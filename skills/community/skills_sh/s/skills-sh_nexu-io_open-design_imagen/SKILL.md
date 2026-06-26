@@ -1,35 +1,43 @@
 ---
-name: "imagen"
-description: "Indexed by skills.sh from nexu-io/open-design"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "nexu-io"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/nexu-io/open-design/imagen"
-sourceUrl: "https://skills.sh/nexu-io/open-design/imagen"
+name: imagen
+description: |
+  Generate images using Google Gemini's image generation API for UI mockups, icons, illustrations, and visual assets.
+triggers:
+  - "gemini image"
+  - "imagen"
+  - "google image gen"
+  - "illustration"
+  - "icon"
+od:
+  mode: image
+  category: image-generation
+  upstream: "https://github.com/sanjay3290/imagen"
 ---
 
 # imagen
 
-> Indexed by skills.sh from nexu-io/open-design
+> Curated from @sanjay3290.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** nexu-io
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/nexu-io/open-design/imagen`
-- **Source URL:** [https://skills.sh/nexu-io/open-design/imagen](https://skills.sh/nexu-io/open-design/imagen)
+## What it does
 
-## Overview
+Generate images using Google Gemini's image generation API for UI mockups, icons, illustrations, and visual assets.
 
+## Source
 
-## Installation
-To install this skill, run the following command in your terminal:
+- Upstream: https://github.com/sanjay3290/imagen
+- Category: `image-generation`
+
+## How to use
+
+This catalogue entry advertises the skill in Open Design so the agent
+discovers it during planning. To run the full upstream workflow with
+its original assets, scripts, and references, install the upstream
+bundle into your active agent's skills directory:
+
 ```bash
-hermes skills install skills-sh/nexu-io/open-design/imagen
+# Inspect the upstream README for exact paths
+open https://github.com/sanjay3290/imagen
 ```
+
+Then ask the agent to invoke this skill by name (`imagen`) or with
+one of the trigger phrases listed in this skill's frontmatter.

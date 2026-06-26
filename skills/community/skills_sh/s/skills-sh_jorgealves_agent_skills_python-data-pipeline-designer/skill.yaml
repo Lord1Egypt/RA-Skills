@@ -1,0 +1,24 @@
+name: python-data-pipeline-designer
+version: 1.0.0
+description: Design ETL workflows with data validation using tools like Pandas, Dask, or PySpark. Use when building robust data processing systems in Python.
+inputs:
+  project_path:
+    type: string
+    description: Path to the Python project directory.
+    required: true
+outputs:
+  report:
+    type: string
+    description: A detailed report of the analysis or actions performed.
+capabilities:
+  - Automated analysis of Python project structure.
+  - Integration with standard Python tooling.
+constraints:
+  - Requires a valid Python environment.
+security:
+  - Operates locally on source files.
+examples:
+  - input:
+      project_path: "."
+    output:
+      report: "Analysis complete. No issues found."

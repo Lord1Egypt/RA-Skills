@@ -1,35 +1,68 @@
 ---
-name: "python-uv"
-description: "Indexed by skills.sh from mindrally/skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "mindrally"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/mindrally/skills/python-uv"
-sourceUrl: "https://skills.sh/mindrally/skills/python-uv"
+name: python-uv
+description: Guidelines for Python dependency management using uv, the fast Python package installer and resolver.
 ---
 
-# python-uv
+# Python Package Management with uv
 
-> Indexed by skills.sh from mindrally/skills
+You are an expert in Python development with uv package management.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** mindrally
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/mindrally/skills/python-uv`
-- **Source URL:** [https://skills.sh/mindrally/skills/python-uv](https://skills.sh/mindrally/skills/python-uv)
+## Core Directive
 
-## Overview
+All Python dependencies must be installed, synchronized, and locked using `uv`.
 
+Never use `pip`, `pip-tools`, or `poetry` directly for dependency management.
 
-## Installation
-To install this skill, run the following command in your terminal:
+## Dependency Management Commands
+
+For standard projects:
+
 ```bash
-hermes skills install skills-sh/mindrally/skills/python-uv
+uv add <package>
+uv remove <package>
+uv sync
 ```
+
+## Script Management
+
+Execute scripts with proper dependency handling:
+
+```bash
+uv run script.py
+```
+
+### Manual Inline Metadata Configuration
+
+Scripts can specify dependencies via comment blocks:
+
+```python
+# /// script
+# requires-python = ">=3.12"
+# dependencies = [
+#   "torch",
+#   "torchvision",
+#   "opencv-python",
+#   "numpy",
+#   "matplotlib",
+#   "Pillow",
+#   "timm",
+# ]
+# ///
+print("some python code")
+```
+
+### CLI-Based Script Dependencies
+
+```bash
+uv add package-name --script script.py
+uv remove package-name --script script.py
+uv sync --script script.py
+```
+
+## Key Principles
+
+1. Always use `uv` for all package operations
+2. Prefer inline script metadata for standalone scripts
+3. Use `uv run` to execute scripts with their dependencies
+4. Keep dependencies locked and synchronized across environments
+5. Never fall back to pip or other package managers

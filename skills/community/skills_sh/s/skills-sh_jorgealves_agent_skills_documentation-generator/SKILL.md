@@ -1,35 +1,18 @@
 ---
-name: "documentation-generator"
-description: "Indexed by skills.sh from jorgealves/agent_skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "jorgealves"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/jorgealves/agent_skills/documentation-generator"
-sourceUrl: "https://skills.sh/jorgealves/agent_skills/documentation-generator"
+name: documentation-generator
+description: Analyzes source code to automatically generate technical documentation and architecture diagrams. Use to maintain up-to-date API references and onboarding materials for engineering teams.
 ---
+# Documentation Generator
 
-# documentation-generator
+## Purpose and Intent
+The `documentation-generator` ensures that software projects remain maintainable by automatically creating and updating technical documentation directly from the source code.
 
-> Indexed by skills.sh from jorgealves/agent_skills
+## When to Use
+- **Post-Development**: Run after a feature is completed to ensure the API docs are up to date.
+- **Onboarding**: Use to generate architecture diagrams and overviews for new team members.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** jorgealves
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/jorgealves/agent_skills/documentation-generator`
-- **Source URL:** [https://skills.sh/jorgealves/agent_skills/documentation-generator](https://skills.sh/jorgealves/agent_skills/documentation-generator)
+## When NOT to Use
+- **High-Level Strategy**: This tool generates technical docs; it cannot write "Business Requirements" or "Product Vision" documents.
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/jorgealves/agent_skills/documentation-generator
-```
+## Security and Data-Handling Considerations
+- Operates locally; does not upload source code to external servers.

@@ -1,35 +1,42 @@
 ---
-name: "screenshot"
-description: "Indexed by skills.sh from nexu-io/open-design"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "nexu-io"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/nexu-io/open-design/screenshot"
-sourceUrl: "https://skills.sh/nexu-io/open-design/screenshot"
+name: screenshot
+description: |
+  Capture desktop, app windows, or pixel regions across OS platforms. Useful for marketing screenshots, design reviews, and bug reports.
+triggers:
+  - "screenshot"
+  - "capture screen"
+  - "window screenshot"
+  - "pixel region capture"
+od:
+  mode: image
+  category: screenshots
+  upstream: "https://github.com/openai/skills"
 ---
 
 # screenshot
 
-> Indexed by skills.sh from nexu-io/open-design
+> Curated from OpenAI's skills repository.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** nexu-io
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/nexu-io/open-design/screenshot`
-- **Source URL:** [https://skills.sh/nexu-io/open-design/screenshot](https://skills.sh/nexu-io/open-design/screenshot)
+## What it does
 
-## Overview
+Capture desktop, app windows, or pixel regions across OS platforms. Useful for marketing screenshots, design reviews, and bug reports.
 
+## Source
 
-## Installation
-To install this skill, run the following command in your terminal:
+- Upstream: https://github.com/openai/skills
+- Category: `screenshots`
+
+## How to use
+
+This catalogue entry advertises the skill in Open Design so the agent
+discovers it during planning. To run the full upstream workflow with
+its original assets, scripts, and references, install the upstream
+bundle into your active agent's skills directory:
+
 ```bash
-hermes skills install skills-sh/nexu-io/open-design/screenshot
+# Inspect the upstream README for exact paths
+open https://github.com/openai/skills
 ```
+
+Then ask the agent to invoke this skill by name (`screenshot`) or with
+one of the trigger phrases listed in this skill's frontmatter.

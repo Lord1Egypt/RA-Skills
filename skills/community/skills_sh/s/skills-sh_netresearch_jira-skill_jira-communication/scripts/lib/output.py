@@ -1,0 +1,240 @@
+"""Output formatting utilities for Jira CLI scripts."""
+
+import json
+import sys
+from typing import Any
+
+# === INLINE_START: output ===
+
+
+def _ensure_utf8_streams() -> None:
+    """Reconfigure stdout/stderr to UTF-8 on Windows.
+
+    Windows consoles default to a locale-specific encoding (e.g. cp1252)
+    that cannot represent Unicode symbols used in status messages (✓, ✗, ⚠).
+    This causes 'charmap' codec errors *after* a Jira API call has already
+    succeeded, making the script exit non-zero and tempting callers to retry
+    — which creates duplicate issues/comments.
+
+    Called once at module import so every script that imports output.py
+    benefits automatically.
+    """
+    if sys.platform == "win32":
+        for stream_name in ("stdout", "stderr"):
+            stream = getattr(sys, stream_name)
+            if hasattr(stream, "reconfigure"):
+                stream.reconfigure(encoding="utf-8", errors="replace")
+
+
+_ensure_utf8_streams()
+
+
+def format_json(data: Any, indent: int = 2) -> str:
+    """Format data as JSON string.
+
+    Args:
+        data: Data to format
+        indent: Indentation level
+
+    Returns:
+        JSON formatted string
+    """
+    return json.dumps(data, indent=indent, default=str)
+
+
+def format_table(data: list, columns: list | None = None) -> str:
+    """Format list of dicts as ASCII table.
+
+    Args:
+        data: List of dictionaries
+        columns: Optional list of column names to include
+
+    Returns:
+        ASCII table string
+    """
+    if not data:
+        return "(no data)"
+
+    # Determine columns
+    if columns is None:
+        columns = list(data[0].keys()) if isinstance(data[0], dict) else ["value"]
+
+    # Calculate column widths
+    widths = {col: len(col) for col in columns}
+    for row in data:
+        if isinstance(row, dict):
+            for col in columns:
+                val = str(row.get(col, ""))
+                widths[col] = max(widths[col], len(val))
+
+    # Build table
+    lines = []
+
+    # Header
+    header = " | ".join(col.ljust(widths[col]) for col in columns)
+    lines.append(header)
+    lines.append("-+-".join("-" * widths[col] for col in columns))
+
+    # Rows
+    for row in data:
+        if isinstance(row, dict):
+            line = " | ".join(str(row.get(col, "")).ljust(widths[col]) for col in columns)
+        else:
+            line = str(row)
+        lines.append(line)
+
+    return "\n".join(lines)
+
+
+def compact_json(data: Any) -> Any:
+    """Recursively drop keys whose value is None or an empty list.
+
+    Motivation: Jira issue payloads include 100+ `customfield_*` entries
+    that are typically null on any given issue, bloating `--json` output
+    to 50+ KB for a single issue. This helper removes the noise without
+    touching meaningful falsy values (0, False, "").
+
+    Rules:
+        * dict values that are `None` or `[]` are dropped
+        * lists are mapped element-wise
+        * everything else (including 0, False, "") passes through
+        * the input is not mutated
+
+    Args:
+        data: Any JSON-like value (dict, list, scalar).
+
+    Returns:
+        A new structure with null/empty-list entries removed.
+    """
+    if isinstance(data, dict):
+        return {
+            k: compact_json(v) for k, v in data.items() if v is not None and not (isinstance(v, list) and len(v) == 0)
+        }
+    if isinstance(data, list):
+        return [compact_json(item) for item in data]
+    return data
+
+
+def format_output(data: Any, as_json: bool = False, quiet: bool = False) -> None:
+    """Format and print output based on flags.
+
+    Args:
+        data: Data to output
+        as_json: Output as JSON if True
+        quiet: Minimal output if True
+    """
+    if quiet:
+        if isinstance(data, dict) and "key" in data:
+            print(data["key"])
+        elif isinstance(data, list) and data and isinstance(data[0], dict) and "key" in data[0]:
+            for item in data:
+                print(item.get("key", ""))
+        else:
+            print(data if isinstance(data, str) else format_json(data))
+        return
+
+    if as_json:
+        print(format_json(data))
+        return
+
+    # Human-readable format
+    if isinstance(data, dict):
+        _print_dict(data)
+    elif isinstance(data, list):
+        if data and isinstance(data[0], dict):
+            print(format_table(data))
+        else:
+            for item in data:
+                print(item)
+    else:
+        print(data)
+
+
+def _print_dict(data: dict, indent: int = 0) -> None:
+    """Pretty print a dictionary."""
+    prefix = "  " * indent
+    for key, value in data.items():
+        if isinstance(value, dict):
+            print(f"{prefix}{key}:")
+            _print_dict(value, indent + 1)
+        elif isinstance(value, list):
+            print(f"{prefix}{key}: {', '.join(str(v) for v in value[:5])}")
+            if len(value) > 5:
+                print(f"{prefix}  ... and {len(value) - 5} more")
+        else:
+            print(f"{prefix}{key}: {value}")
+
+
+def error(message: str, suggestion: str | None = None) -> None:
+    """Print error message with optional suggestion.
+
+    Args:
+        message: Error message
+        suggestion: Optional suggestion for resolution
+    """
+    print(f"✗ {message}", file=sys.stderr)
+    if suggestion:
+        print(f"\n  {suggestion}", file=sys.stderr)
+
+
+def success(message: str) -> None:
+    """Print success message."""
+    print(f"✓ {message}")
+
+
+def warning(message: str) -> None:
+    """Print warning message."""
+    print(f"⚠ {message}", file=sys.stderr)
+
+
+def extract_adf_text(adf) -> str:
+    """Extract plain text from Atlassian Document Format.
+
+    Recursively traverses all ADF node types (paragraphs, headings, lists,
+    code blocks, blockquotes, tables, etc.) to extract text content.
+
+    Args:
+        adf: ADF dictionary or any other value
+
+    Returns:
+        Extracted plain text string
+    """
+    if not isinstance(adf, dict):
+        return str(adf)
+
+    parts = _extract_text_recursive(adf)
+    return " ".join(parts)
+
+
+def _extract_text_recursive(node) -> list:
+    """Recursively extract text from any ADF node."""
+    parts = []
+    if isinstance(node, dict):
+        if node.get("type") == "text":
+            text = node.get("text", "")
+            if text:
+                parts.append(text)
+        for child in node.get("content", []):
+            parts.extend(_extract_text_recursive(child))
+    return parts
+
+
+def comment_to_text(comment) -> str:
+    """Normalize a Jira comment field to plain text.
+
+    Comments come in three shapes:
+      - None / missing on the issue → empty string
+      - Server/DC: plain string (already plain text)
+      - Cloud: ADF dictionary → extracted via extract_adf_text()
+
+    Used by callers that render worklog/issue comments for terminal output,
+    where a raw ADF dict would print as ``{'type': 'doc', ...}``.
+    """
+    if comment is None:
+        return ""
+    if isinstance(comment, dict):
+        return extract_adf_text(comment) or ""
+    return str(comment)
+
+
+# === INLINE_END: output ===

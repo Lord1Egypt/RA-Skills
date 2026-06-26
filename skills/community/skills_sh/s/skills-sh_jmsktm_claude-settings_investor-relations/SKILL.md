@@ -1,35 +1,45 @@
 ---
-name: "investor-relations"
-description: "Indexed by skills.sh from jmsktm/claude-settings"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "jmsktm"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/jmsktm/claude-settings/investor-relations"
-sourceUrl: "https://skills.sh/jmsktm/claude-settings/investor-relations"
+name: Investor Relations
+slug: investor-relations
+description: Manage investor communications, pitch materials, and fundraising processes
+category: business
+complexity: advanced
+version: "1.0.0"
+author: "ID8Labs"
+triggers:
+  - "investor update"
+  - "pitch deck"
+  - "fundraising"
+tags:
+  - investor-relations
+  - fundraising
+  - startup
 ---
 
-# investor-relations
+# Investor Relations
 
-> Indexed by skills.sh from jmsktm/claude-settings
+Manage investor communications and fundraising processes professionally. From pitch decks to investor updates, build and maintain strong investor relationships.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** jmsktm
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/jmsktm/claude-settings/investor-relations`
-- **Source URL:** [https://skills.sh/jmsktm/claude-settings/investor-relations](https://skills.sh/jmsktm/claude-settings/investor-relations)
+## Core Workflows
 
-## Overview
+### Workflow 1: Fundraising Prep
+1. **Materials** - Create pitch deck and data room
+2. **Story** - Craft compelling narrative
+3. **Financials** - Prepare projections and metrics
+4. **Target List** - Research and prioritize investors
+5. **Outreach** - Warm intros and cold outreach
 
+### Workflow 2: Investor Updates
+1. **Metrics** - Compile key performance indicators
+2. **Highlights** - Share wins and progress
+3. **Challenges** - Be transparent about obstacles
+4. **Asks** - Specific requests for help
+5. **Distribution** - Send consistent updates
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/jmsktm/claude-settings/investor-relations
-```
+## Quick Reference
+
+| Action | Command |
+|--------|---------|
+| Create update | "Draft investor update for [month]" |
+| Pitch deck | "Create pitch deck for [company]" |
+| Data room | "Set up investor data room" |

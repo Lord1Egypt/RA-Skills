@@ -1,35 +1,23 @@
 ---
-name: "db-generate"
-description: "Indexed by skills.sh from medusajs/medusa-agent-skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "medusajs"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/medusajs/medusa-agent-skills/db-generate"
-sourceUrl: "https://skills.sh/medusajs/medusa-agent-skills/db-generate"
+name: db-generate
+description: Generate database migrations for a Medusa module
+argument-hint: <module-name>
+allowed-tools: Bash(npx medusa db:generate:*)
 ---
 
-# db-generate
+# Generate Database Migrations
 
-> Indexed by skills.sh from medusajs/medusa-agent-skills
+Generate database migrations for the specified Medusa module.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** medusajs
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/medusajs/medusa-agent-skills/db-generate`
-- **Source URL:** [https://skills.sh/medusajs/medusa-agent-skills/db-generate](https://skills.sh/medusajs/medusa-agent-skills/db-generate)
+The user will provide the module name as an argument (e.g., `brand`, `product`, `custom-module`).
 
-## Overview
+For example: `/medusa-dev:db-generate brand`
 
+Use the Bash tool to execute the command `npx medusa db:generate <module-name>`, replacing `<module-name>` with the provided argument.
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/medusajs/medusa-agent-skills/db-generate
-```
+Report the results to the user, including:
+
+- The module name for which migrations were generated
+- Migration file name or location
+- Any errors or warnings
+- Next steps (running `npx medusa db:migrate` to apply the migrations)

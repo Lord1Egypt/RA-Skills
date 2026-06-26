@@ -1,35 +1,43 @@
 ---
-name: "venice-audio-music"
-description: "Indexed by skills.sh from nexu-io/open-design"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "nexu-io"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/nexu-io/open-design/venice-audio-music"
-sourceUrl: "https://skills.sh/nexu-io/open-design/venice-audio-music"
+name: venice-audio-music
+description: |
+  Music generation queueing, retrieval, and completion endpoints via Venice.ai. Suited for jingles, background loops, and prototype scoring.
+triggers:
+  - "venice music"
+  - "music gen"
+  - "jingle"
+  - "background loop"
+  - "score"
+od:
+  mode: audio
+  category: audio-music
+  upstream: "https://github.com/veniceai/skills"
 ---
 
 # venice-audio-music
 
-> Indexed by skills.sh from nexu-io/open-design
+> Curated from the Venice.ai team.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** nexu-io
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/nexu-io/open-design/venice-audio-music`
-- **Source URL:** [https://skills.sh/nexu-io/open-design/venice-audio-music](https://skills.sh/nexu-io/open-design/venice-audio-music)
+## What it does
 
-## Overview
+Music generation queueing, retrieval, and completion endpoints via Venice.ai. Suited for jingles, background loops, and prototype scoring.
 
+## Source
 
-## Installation
-To install this skill, run the following command in your terminal:
+- Upstream: https://github.com/veniceai/skills
+- Category: `audio-music`
+
+## How to use
+
+This catalogue entry advertises the skill in Open Design so the agent
+discovers it during planning. To run the full upstream workflow with
+its original assets, scripts, and references, install the upstream
+bundle into your active agent's skills directory:
+
 ```bash
-hermes skills install skills-sh/nexu-io/open-design/venice-audio-music
+# Inspect the upstream README for exact paths
+open https://github.com/veniceai/skills
 ```
+
+Then ask the agent to invoke this skill by name (`venice-audio-music`) or with
+one of the trigger phrases listed in this skill's frontmatter.

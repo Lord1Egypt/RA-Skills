@@ -1,35 +1,42 @@
 ---
-name: "hand-drawn-diagrams"
-description: "Indexed by skills.sh from nexu-io/open-design"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "nexu-io"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/nexu-io/open-design/hand-drawn-diagrams"
-sourceUrl: "https://skills.sh/nexu-io/open-design/hand-drawn-diagrams"
+name: hand-drawn-diagrams
+description: |
+  Generate hand-drawn Excalidraw diagrams from a prompt — animated SVG, hosted edit link, and PNG export. Works with Claude Code, Codex, Gemini CLI, and any agent supporting standard skill paths.
+triggers:
+  - "excalidraw"
+  - "hand drawn diagram"
+  - "sketch diagram"
+  - "whiteboard diagram"
+od:
+  mode: prototype
+  category: diagrams
+  upstream: "https://github.com/muthuishere/hand-drawn-diagrams"
 ---
 
 # hand-drawn-diagrams
 
-> Indexed by skills.sh from nexu-io/open-design
+> Curated from @muthuishere.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** nexu-io
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/nexu-io/open-design/hand-drawn-diagrams`
-- **Source URL:** [https://skills.sh/nexu-io/open-design/hand-drawn-diagrams](https://skills.sh/nexu-io/open-design/hand-drawn-diagrams)
+## What it does
 
-## Overview
+Generate hand-drawn Excalidraw diagrams from a prompt — animated SVG, hosted edit link, and PNG export. Works with Claude Code, Codex, Gemini CLI, and any agent supporting standard skill paths.
 
+## Source
 
-## Installation
-To install this skill, run the following command in your terminal:
+- Upstream: https://github.com/muthuishere/hand-drawn-diagrams
+- Category: `diagrams`
+
+## How to use
+
+This catalogue entry advertises the skill in Open Design so the agent
+discovers it during planning. To run the full upstream workflow with
+its original assets, scripts, and references, install the upstream
+bundle into your active agent's skills directory:
+
 ```bash
-hermes skills install skills-sh/nexu-io/open-design/hand-drawn-diagrams
+# Inspect the upstream README for exact paths
+open https://github.com/muthuishere/hand-drawn-diagrams
 ```
+
+Then ask the agent to invoke this skill by name (`hand-drawn-diagrams`) or with
+one of the trigger phrases listed in this skill's frontmatter.

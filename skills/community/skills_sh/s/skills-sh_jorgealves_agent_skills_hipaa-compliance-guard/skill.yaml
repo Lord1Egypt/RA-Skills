@@ -1,0 +1,48 @@
+name: hipaa-compliance-guard
+version: 1.0.0
+description: Audits HealthTech applications for HIPAA technical safeguards like encryption and audit logging. Use when reviewing healthcare infrastructure or ensuring PHI is handled according to legal security standards.
+inputs:
+  project_root:
+    type: string
+    description: Path to the codebase or configuration directory.
+    required: true
+  cloud_provider:
+    type: string
+    enum: [aws, gcp, azure]
+    description: The cloud infrastructure provider being used.
+outputs:
+  compliance_score:
+    type: integer
+    description: A score from 0-100 based on detected safeguards.
+  findings:
+    type: array
+    items:
+      type: object
+      properties:
+        category:
+          type: string
+        status:
+          type: string
+          enum: [compliant, violation, warning]
+        description:
+          type: string
+capabilities:
+  - Terraform/CloudFormation configuration scanning.
+  - PHI entry point identification in code models.
+  - Audit logging presence verification.
+constraints:
+  - Technical risk assessment only; not legal advice.
+  - Limited to visible configuration files.
+security:
+  - MUST NOT ingest actual patient data (PHI).
+  - Audits patterns and infrastructure only.
+examples:
+  - input:
+      project_root: "./infra"
+      cloud_provider: "aws"
+    output:
+      compliance_score: 85
+      findings:
+        - category: "Encryption"
+          status: "compliant"
+          description: "S3 buckets have encryption enabled."

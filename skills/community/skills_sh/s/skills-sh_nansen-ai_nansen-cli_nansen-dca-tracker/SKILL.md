@@ -1,35 +1,38 @@
 ---
-name: "nansen-dca-tracker"
-description: "Indexed by skills.sh from nansen-ai/nansen-cli"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "nansen-ai"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/nansen-ai/nansen-cli/nansen-dca-tracker"
-sourceUrl: "https://skills.sh/nansen-ai/nansen-cli/nansen-dca-tracker"
+name: nansen-dca-tracker
+description: "What tokens are whales dollar-cost averaging into? Jupiter DCA strategies by smart money and target token fundamentals."
+metadata:
+  openclaw:
+    requires:
+      env:
+        - NANSEN_API_KEY
+      bins:
+        - nansen
+    primaryEnv: NANSEN_API_KEY
+    install:
+      - kind: node
+        package: nansen-cli
+        bins: [nansen]
+allowed-tools: Bash(nansen:*)
 ---
 
-# nansen-dca-tracker
+# DCA Watch
 
-> Indexed by skills.sh from nansen-ai/nansen-cli
+**Answers:** "What tokens are whales dollar-cost averaging into on Solana?"
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** nansen-ai
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/nansen-ai/nansen-cli/nansen-dca-tracker`
-- **Source URL:** [https://skills.sh/nansen-ai/nansen-cli/nansen-dca-tracker](https://skills.sh/nansen-ai/nansen-cli/nansen-dca-tracker)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install skills-sh/nansen-ai/nansen-cli/nansen-dca-tracker
+nansen research smart-money dcas --limit 20
+# → trader_address, trader_address_label, input/output_token_symbol, deposit_value_usd, dca_status, dca_created_at
+
+# For each top DCA target, check token fundamentals
+TARGET=<output_token_address>
+nansen research token info --token $TARGET --chain solana
+# → name, symbol, price, market_cap, token_details
+
+nansen research token flow-intelligence --token $TARGET --chain solana
+# → net_flow_usd per label: smart_trader, whale, exchange, fresh_wallets
 ```
+
+To see DCA strategies targeting a specific token: `nansen research token jup-dca --token $TARGET`
+
+DCAs show long-term conviction — SM DCA targets with positive smart_trader_net_flow = high-confidence accumulation.

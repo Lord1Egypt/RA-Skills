@@ -1,35 +1,24 @@
 ---
-name: "python-data-pipeline-designer"
-description: "Indexed by skills.sh from jorgealves/agent_skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "jorgealves"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/jorgealves/agent_skills/python-data-pipeline-designer"
-sourceUrl: "https://skills.sh/jorgealves/agent_skills/python-data-pipeline-designer"
+name: python-data-pipeline-designer
+description: Design ETL workflows with data validation using tools like Pandas, Dask, or PySpark. Use when building robust data processing systems in Python.
 ---
+# Python Data Pipeline Designer
 
-# python-data-pipeline-designer
+## Purpose and Intent
+Design ETL workflows with data validation using tools like Pandas, Dask, or PySpark. Use when building robust data processing systems in Python.
 
-> Indexed by skills.sh from jorgealves/agent_skills
+## When to Use
+- **Project Setup**: When initializing a new Python project.
+- **Continuous Integration**: As part of automated build and test pipelines.
+- **Legacy Refactoring**: When updating older Python codebases to modern standards.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** jorgealves
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/jorgealves/agent_skills/python-data-pipeline-designer`
-- **Source URL:** [https://skills.sh/jorgealves/agent_skills/python-data-pipeline-designer](https://skills.sh/jorgealves/agent_skills/python-data-pipeline-designer)
+## When NOT to Use
+- **Non-Python Projects**: This tool is specialized for the Python ecosystem.
 
-## Overview
+## Error Conditions and Edge Cases
+- **Missing Requirements**: If the project lacks a requirements.txt or pyproject.toml.
+- **Incompatible Versions**: If the project uses a Python version not supported by the tools.
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/jorgealves/agent_skills/python-data-pipeline-designer
-```
+## Security and Data-Handling Considerations
+- All analysis is performed locally.
+- No source code or credentials are ever transmitted externally.

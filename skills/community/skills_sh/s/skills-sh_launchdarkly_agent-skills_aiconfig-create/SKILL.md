@@ -1,35 +1,15 @@
 ---
-name: "aiconfig-create"
-description: "Indexed by skills.sh from launchdarkly/agent-skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "launchdarkly"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/launchdarkly/agent-skills/aiconfig-create"
-sourceUrl: "https://skills.sh/launchdarkly/agent-skills/aiconfig-create"
+name: aiconfig-create
+description: "DEPRECATED redirect — this skill was renamed to configs-create. Do not use this skill; invoke configs-create instead. Kept only so old references to aiconfig-create still point users to the new name."
+license: Apache-2.0
+metadata:
+  version: 0.1.0
 ---
 
-# aiconfig-create
+# Deprecated — renamed to `configs-create`
 
-> Indexed by skills.sh from launchdarkly/agent-skills
+This skill has been renamed. **Do not follow any instructions here and do not perform the task from this skill.**
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** launchdarkly
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/launchdarkly/agent-skills/aiconfig-create`
-- **Source URL:** [https://skills.sh/launchdarkly/agent-skills/aiconfig-create](https://skills.sh/launchdarkly/agent-skills/aiconfig-create)
+Invoke the **`configs-create`** skill instead — it contains the current, complete instructions.
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/launchdarkly/agent-skills/aiconfig-create
-```
+If you arrived here from an old reference (documentation, a saved prompt, or automation), update it from `aiconfig-create` to `configs-create`.

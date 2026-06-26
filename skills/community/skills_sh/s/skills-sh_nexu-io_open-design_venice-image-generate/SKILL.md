@@ -1,35 +1,41 @@
 ---
-name: "venice-image-generate"
-description: "Indexed by skills.sh from nexu-io/open-design"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "nexu-io"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/nexu-io/open-design/venice-image-generate"
-sourceUrl: "https://skills.sh/nexu-io/open-design/venice-image-generate"
+name: venice-image-generate
+description: |
+  Image generation endpoints and available styles via the Venice.ai API.
+triggers:
+  - "venice image"
+  - "venice generate"
+  - "venice ai image"
+od:
+  mode: image
+  category: image-generation
+  upstream: "https://github.com/veniceai/skills"
 ---
 
 # venice-image-generate
 
-> Indexed by skills.sh from nexu-io/open-design
+> Curated from the Venice.ai team.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** nexu-io
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/nexu-io/open-design/venice-image-generate`
-- **Source URL:** [https://skills.sh/nexu-io/open-design/venice-image-generate](https://skills.sh/nexu-io/open-design/venice-image-generate)
+## What it does
 
-## Overview
+Image generation endpoints and available styles via the Venice.ai API.
 
+## Source
 
-## Installation
-To install this skill, run the following command in your terminal:
+- Upstream: https://github.com/veniceai/skills
+- Category: `image-generation`
+
+## How to use
+
+This catalogue entry advertises the skill in Open Design so the agent
+discovers it during planning. To run the full upstream workflow with
+its original assets, scripts, and references, install the upstream
+bundle into your active agent's skills directory:
+
 ```bash
-hermes skills install skills-sh/nexu-io/open-design/venice-image-generate
+# Inspect the upstream README for exact paths
+open https://github.com/veniceai/skills
 ```
+
+Then ask the agent to invoke this skill by name (`venice-image-generate`) or with
+one of the trigger phrases listed in this skill's frontmatter.

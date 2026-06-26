@@ -1,0 +1,166 @@
+# Troubleshooting Guide
+
+## When to load
+
+Load this reference whenever any script returns a non-zero exit code related to authentication, SSL, connectivity, or environment configuration — typically surfaced as HTTP 401/403, certificate errors, or `JIRA_URL` not set.
+
+## Setup Validation
+
+Always start with:
+```bash
+uv run scripts/core/jira-validate.py --verbose
+```
+
+### Exit Codes
+| Code | Meaning | Action |
+|------|---------|--------|
+| 0 | All checks passed | Ready to use |
+| 1 | Runtime dependency missing | Install `uv` |
+| 2 | Environment config error | Check `~/.env.jira` |
+| 3 | Connectivity/auth failure | Verify credentials |
+
+## Configuration
+
+Scripts load configuration in priority order:
+1. Explicit `--env-file` parameter (if provided)
+2. `~/.jira/profiles.json` (if exists) — supports multiple Jira instances with auto-resolution from issue key, URL, or `.jira-profile` file (see `references/multi-profile.md`)
+3. `~/.env.jira` file (legacy single-instance config)
+4. Environment variables (fallback for missing values)
+
+You can use any of these approaches. For multiple Jira instances, use `~/.jira/profiles.json`.
+
+### Option A: Environment File
+
+Create `~/.env.jira`:
+
+### Jira Cloud
+```bash
+JIRA_URL=https://yourcompany.atlassian.net
+JIRA_USERNAME=your-email@example.com
+JIRA_API_TOKEN=your-api-token-here
+```
+
+### Jira Server/Data Center
+```bash
+JIRA_URL=https://jira.yourcompany.com
+JIRA_PERSONAL_TOKEN=your-personal-access-token
+```
+
+### Option B: Environment Variables
+
+Export variables directly (useful in CI/CD or when credentials are managed externally):
+
+```bash
+# Jira Cloud
+export JIRA_URL=https://yourcompany.atlassian.net
+export JIRA_USERNAME=your-email@example.com
+export JIRA_API_TOKEN=your-api-token-here
+
+# Or Jira Server/DC
+export JIRA_URL=https://jira.yourcompany.com
+export JIRA_PERSONAL_TOKEN=your-personal-access-token
+```
+
+## Common Errors
+
+### "Configuration errors: Missing required"
+
+**Cause**: Required variables not found in file or environment.
+
+**Fix**:
+1. Check `~/.env.jira` exists with correct values, OR
+2. Verify environment variables are exported
+3. Variable names are case-sensitive
+4. No quotes around values needed in `.env.jira`
+
+### "Failed to connect to Jira"
+
+**Cause**: Network, URL, or SSL issues.
+
+**Fix**:
+1. Verify URL is correct (include `https://`)
+2. Test URL in browser
+3. Check VPN if on corporate network
+4. For self-signed certs, may need `JIRA_VERIFY_SSL=false`
+
+### "401 Unauthorized"
+
+**Cause**: Invalid credentials.
+
+**Cloud Fix**:
+1. Generate new API token at https://id.atlassian.com/manage-profile/security/api-tokens
+2. Use email as `JIRA_USERNAME`, not display name
+
+**Server/DC Fix**:
+1. Create PAT in Jira: Profile → Personal Access Tokens
+2. Use only `JIRA_PERSONAL_TOKEN`, not username/password
+
+### "403 Forbidden"
+
+**Cause**: Valid auth but no permission.
+
+**Fix**:
+1. Verify account has project access
+2. Check if IP allowlisting blocks API access
+3. Confirm API access not disabled by admin
+
+### "No such option: --json"
+
+**Cause**: Flag placed after subcommand.
+
+**Fix**: Move flags before subcommand:
+```bash
+# Wrong
+uv run scripts/core/jira-issue.py get PROJ-123 --json
+
+# Correct
+uv run scripts/core/jira-issue.py --json get PROJ-123
+```
+
+### "Transition 'X' not available" (passing the transition ID)
+
+**Cause**: `jira-transition.py do` expects the **target status name**, not the numeric transition ID that `jira-transition.py list` prints in its leftmost column.
+
+**Fix**: Pass the destination status, in quotes:
+```bash
+# Wrong — 311 is the transition ID from `list`
+uv run scripts/workflow/jira-transition.py do PROJ-123 311
+
+# Correct — the To-Status name
+uv run scripts/workflow/jira-transition.py do PROJ-123 "Resolved"
+```
+When two transitions share a name but differ by icon (e.g. "✅ QA" → Resolved vs "❌ QA" → Reopened), disambiguate by passing the **target status** ("Resolved" / "Reopened"), which is unique.
+
+### "Issue does not exist"
+
+**Cause**: Wrong key or no permission.
+
+**Fix**:
+1. Verify issue key spelling and case
+2. Confirm you have "Browse" permission on project
+3. Check if issue was moved/deleted
+
+### "Field 'xyz' cannot be set"
+
+**Cause**: Field not editable or wrong format.
+
+**Fix**:
+1. Use `jira-fields.py search xyz` to find correct field ID
+2. Check field is on the edit screen for that issue type
+3. Verify field format (some need `{"name": "value"}`)
+
+## Debug Mode
+
+Add `--debug` for full stack traces:
+```bash
+uv run scripts/core/jira-issue.py --debug get PROJ-123
+```
+
+## Auth Mode Detection
+
+Scripts auto-detect auth mode:
+- If `JIRA_PERSONAL_TOKEN` set → Server/DC PAT auth
+- If `JIRA_USERNAME` + `JIRA_API_TOKEN` set → Cloud basic auth
+- URL containing `.atlassian.net` → Cloud mode
+
+Override with `JIRA_CLOUD=true` or `JIRA_CLOUD=false`.

@@ -1,35 +1,43 @@
 ---
-name: "remotion"
-description: "Indexed by skills.sh from nexu-io/open-design"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "nexu-io"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/nexu-io/open-design/remotion"
-sourceUrl: "https://skills.sh/nexu-io/open-design/remotion"
+name: remotion
+description: |
+  Programmatic video creation with React. Useful for branded explainers, social cuts, dashboards-to-video, and reproducible motion graphics.
+triggers:
+  - "remotion"
+  - "react video"
+  - "programmatic video"
+  - "motion graphics"
+  - "video composition"
+od:
+  mode: video
+  category: video-generation
+  upstream: "https://github.com/remotion-dev/remotion"
 ---
 
 # remotion
 
-> Indexed by skills.sh from nexu-io/open-design
+> Curated from the Remotion team.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** nexu-io
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/nexu-io/open-design/remotion`
-- **Source URL:** [https://skills.sh/nexu-io/open-design/remotion](https://skills.sh/nexu-io/open-design/remotion)
+## What it does
 
-## Overview
+Programmatic video creation with React. Useful for branded explainers, social cuts, dashboards-to-video, and reproducible motion graphics.
 
+## Source
 
-## Installation
-To install this skill, run the following command in your terminal:
+- Upstream: https://github.com/remotion-dev/remotion
+- Category: `video-generation`
+
+## How to use
+
+This catalogue entry advertises the skill in Open Design so the agent
+discovers it during planning. To run the full upstream workflow with
+its original assets, scripts, and references, install the upstream
+bundle into your active agent's skills directory:
+
 ```bash
-hermes skills install skills-sh/nexu-io/open-design/remotion
+# Inspect the upstream README for exact paths
+open https://github.com/remotion-dev/remotion
 ```
+
+Then ask the agent to invoke this skill by name (`remotion`) or with
+one of the trigger phrases listed in this skill's frontmatter.

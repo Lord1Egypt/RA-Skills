@@ -1,35 +1,42 @@
 ---
-name: "shadcn-ui"
-description: "Indexed by skills.sh from nexu-io/open-design"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "nexu-io"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/nexu-io/open-design/shadcn-ui"
-sourceUrl: "https://skills.sh/nexu-io/open-design/shadcn-ui"
+name: shadcn-ui
+description: |
+  Build UI components with shadcn/ui. Pairs with the Stitch design loop to ship structured, accessible components quickly.
+triggers:
+  - "shadcn"
+  - "shadcn ui"
+  - "shadcn components"
+  - "accessible components"
+od:
+  mode: design-system
+  category: design-systems
+  upstream: "https://github.com/google-labs-code/skills"
 ---
 
 # shadcn-ui
 
-> Indexed by skills.sh from nexu-io/open-design
+> Curated from Google Labs (Stitch).
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** nexu-io
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/nexu-io/open-design/shadcn-ui`
-- **Source URL:** [https://skills.sh/nexu-io/open-design/shadcn-ui](https://skills.sh/nexu-io/open-design/shadcn-ui)
+## What it does
 
-## Overview
+Build UI components with shadcn/ui. Pairs with the Stitch design loop to ship structured, accessible components quickly.
 
+## Source
 
-## Installation
-To install this skill, run the following command in your terminal:
+- Upstream: https://github.com/google-labs-code/skills
+- Category: `design-systems`
+
+## How to use
+
+This catalogue entry advertises the skill in Open Design so the agent
+discovers it during planning. To run the full upstream workflow with
+its original assets, scripts, and references, install the upstream
+bundle into your active agent's skills directory:
+
 ```bash
-hermes skills install skills-sh/nexu-io/open-design/shadcn-ui
+# Inspect the upstream README for exact paths
+open https://github.com/google-labs-code/skills
 ```
+
+Then ask the agent to invoke this skill by name (`shadcn-ui`) or with
+one of the trigger phrases listed in this skill's frontmatter.

@@ -1,35 +1,43 @@
 ---
-name: "paywall-upgrade-cro"
-description: "Indexed by skills.sh from nexu-io/open-design"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "nexu-io"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/nexu-io/open-design/paywall-upgrade-cro"
-sourceUrl: "https://skills.sh/nexu-io/open-design/paywall-upgrade-cro"
+name: paywall-upgrade-cro
+description: |
+  Design and optimize upgrade screens, paywalls, and upsell modals. Useful for SaaS conversion design and pricing-page experiments.
+triggers:
+  - "paywall"
+  - "upgrade screen"
+  - "cro paywall"
+  - "upsell modal"
+  - "pricing screen"
+od:
+  mode: design-system
+  category: marketing-creative
+  upstream: "https://github.com/coreyhaines31/marketingskills"
 ---
 
 # paywall-upgrade-cro
 
-> Indexed by skills.sh from nexu-io/open-design
+> Curated from Corey Haines.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** nexu-io
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/nexu-io/open-design/paywall-upgrade-cro`
-- **Source URL:** [https://skills.sh/nexu-io/open-design/paywall-upgrade-cro](https://skills.sh/nexu-io/open-design/paywall-upgrade-cro)
+## What it does
 
-## Overview
+Design and optimize upgrade screens, paywalls, and upsell modals. Useful for SaaS conversion design and pricing-page experiments.
 
+## Source
 
-## Installation
-To install this skill, run the following command in your terminal:
+- Upstream: https://github.com/coreyhaines31/marketingskills
+- Category: `marketing-creative`
+
+## How to use
+
+This catalogue entry advertises the skill in Open Design so the agent
+discovers it during planning. To run the full upstream workflow with
+its original assets, scripts, and references, install the upstream
+bundle into your active agent's skills directory:
+
 ```bash
-hermes skills install skills-sh/nexu-io/open-design/paywall-upgrade-cro
+# Inspect the upstream README for exact paths
+open https://github.com/coreyhaines31/marketingskills
 ```
+
+Then ask the agent to invoke this skill by name (`paywall-upgrade-cro`) or with
+one of the trigger phrases listed in this skill's frontmatter.

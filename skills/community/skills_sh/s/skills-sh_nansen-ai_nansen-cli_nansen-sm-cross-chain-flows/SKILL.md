@@ -1,35 +1,27 @@
 ---
-name: "nansen-sm-cross-chain-flows"
-description: "Indexed by skills.sh from nansen-ai/nansen-cli"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "nansen-ai"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/nansen-ai/nansen-cli/nansen-sm-cross-chain-flows"
-sourceUrl: "https://skills.sh/nansen-ai/nansen-cli/nansen-sm-cross-chain-flows"
+name: nansen-sm-cross-chain-flows
+description: "Is SM buying this token on one chain but selling on another? Detect capital rotation."
+metadata:
+  openclaw:
+    requires:
+      env:
+        - NANSEN_API_KEY
+      bins:
+        - nansen
+    primaryEnv: NANSEN_API_KEY
+    install:
+      - kind: node
+        package: nansen-cli
+        bins: [nansen]
+allowed-tools: Bash(nansen:*)
 ---
-
-# nansen-sm-cross-chain-flows
-
-> Indexed by skills.sh from nansen-ai/nansen-cli
-
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** nansen-ai
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/nansen-ai/nansen-cli/nansen-sm-cross-chain-flows`
-- **Source URL:** [https://skills.sh/nansen-ai/nansen-cli/nansen-sm-cross-chain-flows](https://skills.sh/nansen-ai/nansen-cli/nansen-sm-cross-chain-flows)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install skills-sh/nansen-ai/nansen-cli/nansen-sm-cross-chain-flows
+TOKEN_SYMBOL=<symbol e.g. "AAVE"> CHAINS=(ethereum solana base bnb)
+for chain in "${CHAINS[@]}"; do
+  nansen research smart-money netflow --chain $chain --limit 200
+  # Filter by token_symbol; → net_flow_1h_usd, net_flow_24h_usd, net_flow_7d_usd, net_flow_30d_usd
+done
 ```
+Absent from results = SM activity below threshold on that chain, not necessarily unsupported. Use --limit 200; --limit 100 silently drops mid-tier tokens.
+ETH+ & SOL− = rotating from SOL→ETH. One chain positive only = chain-specific play.
+24h/7d divergence across chains is the rotation signal, not 1h.

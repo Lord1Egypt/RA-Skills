@@ -1,35 +1,54 @@
 ---
-name: "kernel-cli"
-description: "Indexed by skills.sh from kernel/skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "kernel"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/kernel/skills/kernel-cli"
-sourceUrl: "https://skills.sh/kernel/skills/kernel-cli"
+name: kernel-cli
+description: Complete guide to Kernel CLI - cloud browser platform with automation, deployment, and management
 ---
 
-# kernel-cli
+# Kernel CLI
 
-> Indexed by skills.sh from kernel/skills
-
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** kernel
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/kernel/skills/kernel-cli`
-- **Source URL:** [https://skills.sh/kernel/skills/kernel-cli](https://skills.sh/kernel/skills/kernel-cli)
-
-## Overview
-
+The Kernel CLI provides command-line access to Kernel's cloud browser platform for browser automation, serverless app deployment, and infrastructure management.
 
 ## Installation
-To install this skill, run the following command in your terminal:
+
+- Homebrew: `brew install kernel/tap/kernel` (>=v0.13.4)
+- npm: `npm install -g @onkernel/cli` (>=v0.13.4)
+
+## Authentication
+
+- **Preferred:** Set `KERNEL_API_KEY` environment variable
+- **Fallback:** Run `kernel login` for interactive OAuth
+
+## Quick Start
+
 ```bash
-hermes skills install skills-sh/kernel/skills/kernel-cli
+# Authenticate
+export KERNEL_API_KEY=your_api_key
+
+# Create a browser session
+kernel browsers create -o json
+
+# Run Playwright automation (use `return` to get a value back)
+kernel browsers playwright execute <session_id> '
+  await page.goto("https://example.com");
+  return await page.evaluate(() => document.title);
+'
+
+# Take a screenshot
+kernel browsers computer screenshot <session_id> --to screenshot.png
+
+# Cleanup
+kernel browsers delete <session_id>
 ```
+
+## References
+
+- [Browser Management](./references/browser-management.md) - Create, list, view, and delete browser sessions
+- [App Deployment](./references/app-deployment.md) - Deploy TypeScript/Python apps and invoke actions
+- [Computer Controls](./references/computer-controls.md) - OS-level mouse, keyboard, and screenshot capabilities
+- [Process Execution](./references/process-execution.md) - Execute and manage processes in browser VMs
+- [Profiles](./references/profiles.md) - Manage persistent browser profiles
+- [Managed Auth](./references/managed-auth.md) - Auth connections, login sessions, credential providers, auto re-authentication
+- [Proxies](./references/proxies.md) - Create and manage datacenter, ISP, residential, and mobile proxies
+- [Browser Pools](./references/browser-pools.md) - Manage pre-warmed browser pools
+- [Extensions](./references/extensions.md) - Upload and manage Chrome extensions
+- [Replays](./references/replays.md) - Record and download video replays
+- [Filesystem Operations](./references/filesystem-ops.md) - Read, write, upload, and download files

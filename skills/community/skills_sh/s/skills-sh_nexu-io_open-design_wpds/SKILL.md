@@ -1,35 +1,42 @@
 ---
-name: "wpds"
-description: "Indexed by skills.sh from nexu-io/open-design"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "nexu-io"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/nexu-io/open-design/wpds"
-sourceUrl: "https://skills.sh/nexu-io/open-design/wpds"
+name: wpds
+description: |
+  WordPress Design System. Apply WordPress's official design tokens, typography, and component patterns to themes and sites.
+triggers:
+  - "wpds"
+  - "wordpress design"
+  - "wp tokens"
+  - "wp design system"
+od:
+  mode: design-system
+  category: design-systems
+  upstream: "https://github.com/WordPress/skills"
 ---
 
 # wpds
 
-> Indexed by skills.sh from nexu-io/open-design
+> Curated from the WordPress development team.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** nexu-io
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/nexu-io/open-design/wpds`
-- **Source URL:** [https://skills.sh/nexu-io/open-design/wpds](https://skills.sh/nexu-io/open-design/wpds)
+## What it does
 
-## Overview
+WordPress Design System. Apply WordPress's official design tokens, typography, and component patterns to themes and sites.
 
+## Source
 
-## Installation
-To install this skill, run the following command in your terminal:
+- Upstream: https://github.com/WordPress/skills
+- Category: `design-systems`
+
+## How to use
+
+This catalogue entry advertises the skill in Open Design so the agent
+discovers it during planning. To run the full upstream workflow with
+its original assets, scripts, and references, install the upstream
+bundle into your active agent's skills directory:
+
 ```bash
-hermes skills install skills-sh/nexu-io/open-design/wpds
+# Inspect the upstream README for exact paths
+open https://github.com/WordPress/skills
 ```
+
+Then ask the agent to invoke this skill by name (`wpds`) or with
+one of the trigger phrases listed in this skill's frontmatter.

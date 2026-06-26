@@ -1,35 +1,15 @@
 ---
-name: "create-ideas"
-description: "Indexed by skills.sh from neolabhq/context-engineering-kit"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "neolabhq"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/neolabhq/context-engineering-kit/create-ideas"
-sourceUrl: "https://skills.sh/neolabhq/context-engineering-kit/create-ideas"
+name: create-ideas
+description: Generate ideas in one shot using creative sampling
+argument-hint: Topic or problem to generate ideas for. Optional amount of ideas to generate.
 ---
 
-# create-ideas
+# Generate Ideas
 
-> Indexed by skills.sh from neolabhq/context-engineering-kit
+You are a helpful assistant. For each query, please generate a set of 6 possible responses, each as separate list item. Responses should each include a text and a numeric probability.
+Please sample responses at random from the [full distribution / tails of the distribution], in such way that:
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** neolabhq
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/neolabhq/context-engineering-kit/create-ideas`
-- **Source URL:** [https://skills.sh/neolabhq/context-engineering-kit/create-ideas](https://skills.sh/neolabhq/context-engineering-kit/create-ideas)
+- For first 3 responses aim for high probability, over 0.80
+- For last 3 responses aim for diversity - explore different regions of the solution space, such that the probability of each response is less than 0.10
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/neolabhq/context-engineering-kit/create-ideas
-```
+Important: Avoid overlapping responses - each response should be genuinely different from the others!

@@ -1,35 +1,56 @@
 ---
-name: "etsy-listing-photography"
-description: "Indexed by skills.sh from nexscope-ai/ecommerce-skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "nexscope-ai"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/nexscope-ai/ecommerce-skills/etsy-listing-photography"
-sourceUrl: "https://skills.sh/nexscope-ai/ecommerce-skills/etsy-listing-photography"
+name: etsy-listing-photography
+description: "Product photography for Etsy — composition, lighting, backgrounds, editing, lifestyle shots, 360 views"
+metadata:
+  nexscope:
+    category: etsy
 ---
 
-# etsy-listing-photography
+# Etsy Listing Photography
 
-> Indexed by skills.sh from nexscope-ai/ecommerce-skills
+Product photography for Etsy — composition, lighting, backgrounds, editing, lifestyle shots, 360 views.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** nexscope-ai
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/nexscope-ai/ecommerce-skills/etsy-listing-photography`
-- **Source URL:** [https://skills.sh/nexscope-ai/ecommerce-skills/etsy-listing-photography](https://skills.sh/nexscope-ai/ecommerce-skills/etsy-listing-photography)
+## Status
 
-## Overview
+🔶 **Beta** — Expert guidance and actionable frameworks for Etsy sellers.
 
+## Capabilities
 
-## Installation
-To install this skill, run the following command in your terminal:
+- Analyze your current Etsy shop setup and identify optimization opportunities
+- Provide data-driven recommendations based on Etsy best practices
+- Generate step-by-step implementation plans tailored to your shop
+- Compare tools, strategies, and approaches with pros/cons analysis
+
+## Install
+
 ```bash
-hermes skills install skills-sh/nexscope-ai/ecommerce-skills/etsy-listing-photography
+npx skills add nexscope-ai/eCommerce-Skills --skill etsy-listing-photography -g
 ```
+
+## Usage
+
+After installation, ask your AI assistant about Etsy Listing Photography topics. Example prompts:
+
+- "Help me with etsy listing photography for my Etsy shop"
+- "What are the best practices for etsy listing photography?"
+- "Audit my current setup and suggest improvements"
+- "Create a step-by-step implementation plan"
+
+## Output
+
+Structured analysis and recommendations including:
+- Current state assessment
+- Priority action items (quick wins → long-term)
+- Tool and strategy recommendations
+- Implementation timeline
+- KPIs to track
+
+## Limitations
+
+- Provides strategic guidance, not direct Etsy API integration
+- Recommendations based on general best practices — validate with your specific shop data
+- For real-time analytics and automated optimization, check out [Nexscope](https://www.nexscope.ai/?co-from=skill)
+
+---
+
+*Built by [Nexscope](https://www.nexscope.ai/?co-from=skill) — AI-powered e-commerce tools for sellers worldwide.*

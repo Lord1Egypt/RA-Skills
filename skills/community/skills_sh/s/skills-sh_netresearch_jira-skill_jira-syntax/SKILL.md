@@ -1,35 +1,89 @@
 ---
-name: "jira-syntax"
-description: "Indexed by skills.sh from netresearch/jira-skill"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "netresearch"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/netresearch/jira-skill/jira-syntax"
-sourceUrl: "https://skills.sh/netresearch/jira-skill/jira-syntax"
+name: jira-syntax
+description: "Use when writing or formatting Jira descriptions, comments, or any text destined for Jira. Converts Markdown to Jira wiki markup, provides templates (bug reports, feature requests), and validates syntax before submission. Trigger on any Jira content authoring task."
+license: "(MIT AND CC-BY-SA-4.0). See LICENSE-MIT and LICENSE-CC-BY-SA-4.0"
+metadata:
+  author: Netresearch DTT GmbH
+  version: "3.18.1"
+  repository: https://github.com/netresearch/jira-skill
 ---
 
-# jira-syntax
+# Jira Syntax
 
-> Indexed by skills.sh from netresearch/jira-skill
+Jira wiki markup syntax, templates, and validation. For API operations, use the **jira-communication** skill.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** netresearch
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/netresearch/jira-skill/jira-syntax`
-- **Source URL:** [https://skills.sh/netresearch/jira-skill/jira-syntax](https://skills.sh/netresearch/jira-skill/jira-syntax)
+## Quick Syntax Reference
 
-## Overview
+| Jira Syntax | Purpose | NOT this (Markdown) |
+|-------------|---------|---------------------|
+| `h2. Title` | Heading | `## Title` |
+| `*bold*` | Bold | `**bold**` |
+| `_italic_` | Italic | `*italic*` |
+| `{{code}}` | Inline code | `` `code` `` |
+| `{code:java}...{code}` | Code block | ``` ```java ``` |
+| `[text\|url]` | Link | `[text](url)` |
+| `[PROJ-123]` | Issue link | - |
+| `[~username]` | User mention | `@username` |
+| `* item` | Bullet list | `- item` |
+| `# item` | Numbered list | `1. item` |
+| `\|\|Header\|\|` | Table header | `\|Header\|` |
 
+See `references/jira-syntax-quick-reference.md` for complete syntax documentation.
 
-## Installation
-To install this skill, run the following command in your terminal:
+## Available Templates
+
+### Bug Report
+**Path**: `templates/bug-report-template.md`
+
+Sections: Environment, Steps to Reproduce, Expected/Actual Behavior, Error Messages, Technical Notes
+
+### Feature Request
+**Path**: `templates/feature-request-template.md`
+
+Sections: Overview, User Stories, Acceptance Criteria, Technical Approach, Success Metrics
+
+## Syntax Validation
+
+Run before submitting to Jira:
 ```bash
-hermes skills install skills-sh/netresearch/jira-skill/jira-syntax
+${CLAUDE_SKILL_DIR}/scripts/validate-jira-syntax.sh path/to/content.txt
 ```
+
+### Validation Checklist
+- [ ] Headings: `h2. Title` (space after period)
+- [ ] Bold: `*text*` (single asterisk)
+- [ ] Code blocks: `{code:language}...{code}`
+- [ ] Lists: `*` for bullets, `#` for numbers
+- [ ] Links: `[label|url]` or `[PROJ-123]`
+- [ ] Tables: `||Header||` and `|Cell|`
+- [ ] Colors: `{color:red}text{color}`
+- [ ] Panels: `{panel:title=X}...{panel}`
+
+### Common Mistakes
+
+| ❌ Wrong | ✅ Correct |
+|---------|-----------|
+| `## Heading` | `h2. Heading` |
+| `**bold**` | `*bold*` |
+| `` `code` `` | `{{code}}` |
+| `[text](url)` | `[text\|url]` |
+| `- bullet` | `* bullet` |
+| `h2.Title` | `h2. Title` |
+| `MR !42` (bare GitLab ref) | `[MR 42\|url]` or full `group/project!42` — a bare `!…!` is image markup |
+
+## Integration with jira-communication Skill
+
+**Workflow:**
+1. Get template from jira-syntax
+2. Fill content using Jira wiki markup
+3. Validate with `${CLAUDE_SKILL_DIR}/scripts/validate-jira-syntax.sh`
+4. Submit via jira-communication skill
+
+## References
+
+- `references/jira-syntax-quick-reference.md` - Complete syntax documentation
+- `references/cross-project-refs.md` - GitLab cross-project ref convention (`group/project!N`, `group/project#N`, `group/project@tag`) when linking to GitLab from Jira
+- `templates/bug-report-template.md` - Bug report template
+- `templates/feature-request-template.md` - Feature request template
+- `${CLAUDE_SKILL_DIR}/scripts/validate-jira-syntax.sh` - Automated syntax checker
+- [Official Jira Wiki Markup](https://jira.atlassian.com/secure/WikiRendererHelpAction.jspa?section=all)

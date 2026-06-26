@@ -1,35 +1,43 @@
 ---
-name: "nanobanana-ppt"
-description: "Indexed by skills.sh from nexu-io/open-design"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "nexu-io"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/nexu-io/open-design/nanobanana-ppt"
-sourceUrl: "https://skills.sh/nexu-io/open-design/nanobanana-ppt"
+name: nanobanana-ppt
+description: |
+  AI-powered PPT generation with document analysis and styled images via the NanoBanana stack. Combines image generation with structured deck output.
+triggers:
+  - "nanobanana ppt"
+  - "ai ppt"
+  - "styled ppt"
+  - "document to ppt"
+  - "banana ppt"
+od:
+  mode: deck
+  category: image-generation
+  upstream: "https://github.com/op7418/NanoBanana-PPT-Skills"
 ---
 
 # nanobanana-ppt
 
-> Indexed by skills.sh from nexu-io/open-design
+> Curated from @op7418.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** nexu-io
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/nexu-io/open-design/nanobanana-ppt`
-- **Source URL:** [https://skills.sh/nexu-io/open-design/nanobanana-ppt](https://skills.sh/nexu-io/open-design/nanobanana-ppt)
+## What it does
 
-## Overview
+AI-powered PPT generation with document analysis and styled images via the NanoBanana stack. Combines image generation with structured deck output.
 
+## Source
 
-## Installation
-To install this skill, run the following command in your terminal:
+- Upstream: https://github.com/op7418/NanoBanana-PPT-Skills
+- Category: `image-generation`
+
+## How to use
+
+This catalogue entry advertises the skill in Open Design so the agent
+discovers it during planning. To run the full upstream workflow with
+its original assets, scripts, and references, install the upstream
+bundle into your active agent's skills directory:
+
 ```bash
-hermes skills install skills-sh/nexu-io/open-design/nanobanana-ppt
+# Inspect the upstream README for exact paths
+open https://github.com/op7418/NanoBanana-PPT-Skills
 ```
+
+Then ask the agent to invoke this skill by name (`nanobanana-ppt`) or with
+one of the trigger phrases listed in this skill's frontmatter.

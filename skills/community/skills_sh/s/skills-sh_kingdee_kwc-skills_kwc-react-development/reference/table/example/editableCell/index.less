@@ -1,0 +1,75 @@
+.table-custom-cell {
+  width: 100%;
+  margin: 6px 0;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.table-editClass {
+  width: 100%;
+  border-radius: var(--sl-input-border-radius-medium);
+  padding: 5px 8px;
+  border: 1px solid var(--sl-c-table-edit-cell-border-color);
+  background-color: var(--sl-c-table-edit-cell-background-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  sl-icon {
+    display: none;
+  }
+  &:hover {
+    border-radius: 2px;
+    sl-icon {
+      display: block;
+    }
+  }
+  > * {
+    width: 100%;
+  }
+  .select-cell {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    > .icon ::part(svg) {
+      font-size: var(--sl-font-size-medium);
+      color: var(--sl-color-neutral-600);
+    }
+  }
+}
+
+.radio-group {
+  display: flex;
+  gap: 8px;
+}
+
+.cell-radio-group::part(form-control-input) {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.checkbox-group {
+  display: flex;
+  gap: 8px;
+  flex-wrap: nowrap;
+}
+
+.date-range-cell {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  > span {
+    flex-shrink: 0;
+    color: var(--sl-color-neutral-500);
+  }
+}
+
+.custom-cell-table {
+  --sl-c-table-edit-cell-border-color: transparent;
+}
+
+.custom-cell-table ::part(table-body-row):hover {
+  --sl-c-table-edit-cell-border-color: var(--sl-input-border-color);
+  --sl-c-table-edit-cell-background-color: var(--sl-input-background-color);
+}

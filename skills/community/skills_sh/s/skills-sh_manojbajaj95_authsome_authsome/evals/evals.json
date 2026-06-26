@@ -1,0 +1,85 @@
+{
+  "skill_name": "authsome",
+  "evals": [
+    {
+      "id": 1,
+      "name": "Skill Triggering",
+      "prompt": "Can you list my last 5 starred repositories on GitHub?",
+      "agent": "hermes",
+      "max_turns": 5,
+      "environment": "hermes is installed with the authsome skill available alongside its full set of bundled skills. No GitHub connection is required — this test only checks whether the skill is loaded.",
+      "outcome": "The agent loads the authsome skill (calls skill_view with name=authsome) without being explicitly told to use authsome.",
+      "requires_human": false
+    },
+    {
+      "id": 2,
+      "name": "Scenario 2 - OAuth (github not connected)",
+      "prompt": "List all my GitHub repos",
+      "agent": "claude",
+      "environment": "github is NOT connected via authsome (authsome list shows github as not_connected).",
+      "outcome": "The agent successfully fetches and displays the user's GitHub repositories after the user completes the OAuth flow via authsome (not via gh CLI or direct API calls)",
+      "trajectory_efficiency": "4 meaningful steps: (1) attempts the GitHub API via authsome run and receives a not-connected error, (2) uses `authsome list` to check the status of github provider, (3) runs authsome login github and presents the browser auth flow to the user, (4) after OAuth completes, retries the API call and returns results.",
+      "requires_human": true,
+      "human_instructions": "When the browser opens for GitHub OAuth authorization, complete the flow and return to the terminal. The agent will retry the API call automatically."
+    },
+    {
+      "id": 3,
+      "name": "Scenario 1 - OAuth (github connected)",
+      "prompt": "List all my GitHub repos",
+      "agent": "claude",
+      "environment": "github is connected via authsome (authsome list shows github as connected — state carried over from test 2).",
+      "outcome": "The agent successfully fetches and displays the user's GitHub repositories using authsome (not via gh CLI or direct API calls)",
+      "trajectory_efficiency": "2 meaningful steps: (1) calls the GitHub repos API directly via authsome run -- curl https://api.github.com/user/repos without first running authsome list or authsome login. (2) to format the output",
+      "requires_human": false
+    },
+    {
+      "id": 4,
+      "name": "Scenario 1 - CLI (gh locally configured)",
+      "optional": true,
+      "prompt": "List all my GitHub repos",
+      "agent": "claude",
+      "environment": "gh CLI is locally authenticated (gh auth status shows logged in). authsome is available but GitHub is NOT connected via authsome (run `authsome logout github` first).",
+      "outcome": "The agent successfully fetches and displays the user's GitHub repositories using gh CLI.",
+      "trajectory_efficiency": "1 meaningful step: runs gh repo list directly without attempting to set up authsome for GitHub.",
+      "requires_human": false
+    },
+    {
+      "id": 5,
+      "name": "Scenario 3 - API Key (firecrawl not configured)",
+      "optional": true,
+      "prompt": "Scrape the content of https://firecrawl.dev using Firecrawl",
+      "agent": "claude",
+      "environment": "firecrawl is NOT connected via authsome (authsome list shows firecrawl as not_connected or absent). No FIRECRAWL_API_KEY environment variable is set.",
+      "outcome": "The agent successfully scrapes the page using Firecrawl after the user provides an API key through the authsome login flow.",
+      "trajectory_efficiency": "3 meaningful steps: (1) attempts to use Firecrawl via authsome run and receives a not-connected error, (2) runs authsome login firecrawl which opens a browser form for the API key, (3) after the user submits the key, retries the scrape and returns results.",
+      "requires_human": true,
+      "human_instructions": "When the browser opens a form asking for a Firecrawl API key, paste your API key and submit. The agent will continue automatically."
+    },
+    {
+      "id": 6,
+      "name": "Scenario 3 - OAuth (ClickUp not connected, provider may need registration)",
+      "optional": true,
+      "prompt": "Get my assigned tasks from ClickUp",
+      "agent": "claude",
+      "environment": "ClickUp is NOT connected via authsome. ClickUp may not be in the bundled provider list — the agent may need to register it as a custom OAuth provider first.",
+      "outcome": "The agent successfully fetches and displays the user's assigned ClickUp tasks after setting up the provider and completing OAuth.",
+      "trajectory_efficiency": "4 meaningful steps: (1) checks authsome list and finds ClickUp absent or not connected, (2) registers ClickUp as a custom OAuth provider using authsome register, (3) runs authsome login clickup and completes OAuth in browser, (4) calls the ClickUp API via authsome run and returns results.",
+      "requires_human": true,
+      "human_instructions": "When the browser opens for ClickUp OAuth authorization, complete the flow and return to the terminal. The agent will continue automatically.",
+      "expected_interrupt": "Agent asks whether to use OAuth or API key flow, or asks the user to provide a ClickUp personal API token.",
+      "next_turn_instruction": "Use the OAuth flow. Register ClickUp as a custom OAuth provider using authsome register with ClickUp's OAuth credentials, then run authsome login clickup to complete the browser auth flow."
+    },
+    {
+      "id": 7,
+      "name": "Agentic Installation and Login",
+      "optional": true,
+      "prompt": "I want to connect GitHub so my agent can access my repos. Please set everything up.",
+      "agent": "claude",
+      "environment": "authsome CLI is NOT installed (simulate fresh device: run `uv tool uninstall authsome` before this test). The authsome skill is available via .claude/commands/authsome.md.",
+      "outcome": "The agent installs authsome via `uv tool install authsome`, runs `authsome init` to create a local identity, and completes the GitHub OAuth login flow so that `authsome list` shows github as connected.",
+      "trajectory_efficiency": "3 meaningful steps: (1) installs authsome via uv tool install, (2) runs authsome init, (3) runs authsome login github and completes OAuth in browser.",
+      "requires_human": true,
+      "human_instructions": "When the browser opens for GitHub OAuth authorization, complete the flow and return to the terminal. The agent will continue automatically once authsome login succeeds."
+    }
+  ]
+}

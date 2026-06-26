@@ -1,35 +1,35 @@
 ---
-name: "nansen-fund-tracker"
-description: "Indexed by skills.sh from nansen-ai/nansen-cli"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "nansen-ai"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/nansen-ai/nansen-cli/nansen-fund-tracker"
-sourceUrl: "https://skills.sh/nansen-ai/nansen-cli/nansen-fund-tracker"
+name: nansen-fund-tracker
+description: "What are crypto funds and VCs holding right now? Cross-chain fund portfolios and net accumulation signals."
+metadata:
+  openclaw:
+    requires:
+      env:
+        - NANSEN_API_KEY
+      bins:
+        - nansen
+    primaryEnv: NANSEN_API_KEY
+    install:
+      - kind: node
+        package: nansen-cli
+        bins: [nansen]
+allowed-tools: Bash(nansen:*)
 ---
 
-# nansen-fund-tracker
+# Fund Watch
 
-> Indexed by skills.sh from nansen-ai/nansen-cli
+**Answers:** "What are crypto funds and VCs holding right now?"
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** nansen-ai
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/nansen-ai/nansen-cli/nansen-fund-tracker`
-- **Source URL:** [https://skills.sh/nansen-ai/nansen-cli/nansen-fund-tracker](https://skills.sh/nansen-ai/nansen-cli/nansen-fund-tracker)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install skills-sh/nansen-ai/nansen-cli/nansen-fund-tracker
+nansen research smart-money holdings --chain ethereum --labels "Fund" --limit 20
+# → token_symbol, value_usd, holders_count, balance_24h_percent_change, share_of_holdings_percent
+
+nansen research smart-money holdings --chain solana --labels "Fund" --limit 20
+
+nansen research smart-money netflow --chain ethereum --labels "Fund" --limit 10
+# → token_symbol, net_flow_1h/24h/7d/30d_usd, market_cap_usd, trader_count
+
+nansen research smart-money netflow --chain solana --labels "Fund" --limit 10
 ```
+
+Cross-reference holdings with netflow to see directional conviction. Positive net_flow_24h = active accumulation.

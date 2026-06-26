@@ -1,0 +1,24 @@
+{
+  "version": "1.3.0",
+  "organization": "Python Best Practices",
+  "date": "April 2026",
+  "pythonVersion": ">=3.11",
+  "abstract": "Python software engineering guidelines for agent consumption. 70 rules across 8 categories, prioritized by impact from data modeling and error handling down to naming and import hygiene. Each rule is observational — it describes the pattern and what it costs, shows incorrect and correct code, and cites primary sources where the rule depends on language or library behavior. Rules assume Python 3.11+ as a baseline; rules depending on a higher version (e.g., 3.13 for warnings.deprecated) are called out inline. A rule match is a signal, not a verdict: most rules are design preferences for new code rather than bugs to fix across the repo.",
+  "references": [
+    "https://docs.python.org/3/library/typing.html",
+    "https://docs.python.org/3/library/dataclasses.html",
+    "https://docs.python.org/3/library/exceptions.html",
+    "https://docs.python.org/3/reference/simple_stmts.html#the-assert-statement",
+    "https://docs.pydantic.dev/",
+    "https://mypy.readthedocs.io/",
+    "https://docs.astral.sh/ruff/",
+    "https://peps.python.org/pep-0008/",
+    "https://peps.python.org/pep-0544/",
+    "https://peps.python.org/pep-0604/",
+    "https://peps.python.org/pep-0615/",
+    "https://peps.python.org/pep-0661/",
+    "https://peps.python.org/pep-0695/",
+    "https://peps.python.org/pep-0702/",
+    "https://github.com/pydantic/pydantic-ai"
+  ]
+}

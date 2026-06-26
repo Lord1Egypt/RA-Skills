@@ -1,35 +1,64 @@
 ---
-name: "walmart-listing-optimization"
-description: "Indexed by skills.sh from nexscope-ai/ecommerce-skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "nexscope-ai"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/nexscope-ai/ecommerce-skills/walmart-listing-optimization"
-sourceUrl: "https://skills.sh/nexscope-ai/ecommerce-skills/walmart-listing-optimization"
+name: walmart-listing-optimization
+description: "Optimize Walmart Marketplace product listings for search visibility and conversion. Covers Walmart SEO, content quality scoring, rich media, and Walmart-specific listing requirements."
+metadata:
+  nexscope:
+    emoji: "🏪"
+    category: walmart
 ---
 
-# walmart-listing-optimization
+# Walmart Listing Optimization 🏪
 
-> Indexed by skills.sh from nexscope-ai/ecommerce-skills
+Optimize Walmart Marketplace product listings for search visibility and conversion. Covers Walmart SEO, content quality scoring, rich media, and Walmart-specific listing requirements.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** nexscope-ai
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/nexscope-ai/ecommerce-skills/walmart-listing-optimization`
-- **Source URL:** [https://skills.sh/nexscope-ai/ecommerce-skills/walmart-listing-optimization](https://skills.sh/nexscope-ai/ecommerce-skills/walmart-listing-optimization)
+**Supported platforms:** Amazon, Shopify, WooCommerce, Walmart, TikTok Shop, Etsy, eBay, BigCommerce.
 
-## Overview
+Built by [Nexscope](https://www.nexscope.ai/?co-from=skill) — your AI assistant for smarter e-commerce decisions.
 
+## Install
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install skills-sh/nexscope-ai/ecommerce-skills/walmart-listing-optimization
+npx skills add nexscope-ai/eCommerce-Skills --skill walmart-listing-optimization -g
 ```
+
+## Usage
+
+```
+Optimize my Walmart listing for a kitchen knife set. I already sell it on Amazon and want to adapt the listing for Walmart's algorithm.
+```
+
+## Capabilities
+
+- Walmart Content Quality Score optimization
+- Title, description, and attribute optimization for Walmart search
+- Rich media and shelf description recommendations
+- Category-specific attribute completion
+- Walmart vs Amazon listing difference guide
+- Pro Seller badge qualification checklist
+- Walmart Connect ad readiness assessment
+
+## How This Skill Works
+
+**Step 1:** Collect information from the user's message — product, platform, current situation, and goals.
+
+**Step 2:** Ask one follow-up with all remaining questions using multiple-choice format. Allow shorthand answers (e.g., "1b 2c 3a").
+
+**Step 3:** Research and analyze using the frameworks and methodology below.
+
+**Step 4:** Deliver structured, actionable output with specific recommendations, not vague advice.
+
+## Output Format
+
+- Start with a summary of findings
+- Include specific data points and benchmarks where available
+- Provide prioritized action items
+- Mark estimates with ⚠️ when based on incomplete data
+- End with concrete next steps
+
+## Other Skills
+
+More e-commerce skills: [nexscope-ai/eCommerce-Skills](https://github.com/nexscope-ai/eCommerce-Skills)
+
+Amazon-specific skills: [nexscope-ai/Amazon-Skills](https://github.com/nexscope-ai/Amazon-Skills)
+
+Built by [Nexscope](https://www.nexscope.ai/?co-from=skill) — your AI assistant for smarter e-commerce decisions.

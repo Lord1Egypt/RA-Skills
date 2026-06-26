@@ -1,35 +1,34 @@
 ---
-name: "nansen-general-search"
-description: "Indexed by skills.sh from nansen-ai/nansen-cli"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "nansen-ai"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/nansen-ai/nansen-cli/nansen-general-search"
-sourceUrl: "https://skills.sh/nansen-ai/nansen-cli/nansen-general-search"
+name: nansen-general-search
+description: Search for tokens or entities by name. Use when you have a token name and need the full address, or want to find an entity.
+metadata:
+  openclaw:
+    requires:
+      env:
+        - NANSEN_API_KEY
+      bins:
+        - nansen
+    primaryEnv: NANSEN_API_KEY
+    install:
+      - kind: node
+        package: nansen-cli
+        bins: [nansen]
+allowed-tools: Bash(nansen:*)
 ---
 
-# nansen-general-search
+# Search
 
-> Indexed by skills.sh from nansen-ai/nansen-cli
-
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** nansen-ai
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/nansen-ai/nansen-cli/nansen-general-search`
-- **Source URL:** [https://skills.sh/nansen-ai/nansen-cli/nansen-general-search](https://skills.sh/nansen-ai/nansen-cli/nansen-general-search)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install skills-sh/nansen-ai/nansen-cli/nansen-general-search
+nansen research search "jupiter" --type token
+nansen research search "Vitalik" --type entity --limit 5
+nansen research search "bonk" --chain solana --fields address,name,symbol,chain
 ```
+
+| Flag | Purpose |
+|------|---------|
+| `--type` | `token` or `entity` |
+| `--chain` | Filter by chain |
+| `--limit` | Number of results (default 25, max 50) |
+| `--fields` | Select specific output fields |
+
+Case-insensitive. Does NOT match by address — use `profiler labels` for address lookup.

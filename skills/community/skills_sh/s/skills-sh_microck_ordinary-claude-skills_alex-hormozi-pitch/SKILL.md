@@ -1,35 +1,65 @@
 ---
-name: "alex-hormozi-pitch"
-description: "Indexed by skills.sh from microck/ordinary-claude-skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "microck"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/microck/ordinary-claude-skills/alex-hormozi-pitch"
-sourceUrl: "https://skills.sh/microck/ordinary-claude-skills/alex-hormozi-pitch"
+name: alex-hormozi-pitch
+description: Create irresistible offers and pitches using Alex Hormozi's methodology from $100M Offers. Guides through value equation, guarantee frameworks, pricing psychology, and creating offers "too good not to take" for any product or service.
 ---
 
-# alex-hormozi-pitch
+# Alex Hormozi Pitch Skill
 
-> Indexed by skills.sh from microck/ordinary-claude-skills
+## When to Activate This Skill
+- Create compelling offer or pitch
+- Design irresistible value proposition
+- Structure pricing and guarantees
+- Build "too good not to take" offer
+- Apply Hormozi frameworks
+- Optimize existing offer
+- Create Grand Slam Offer
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** microck
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/microck/ordinary-claude-skills/alex-hormozi-pitch`
-- **Source URL:** [https://skills.sh/microck/ordinary-claude-skills/alex-hormozi-pitch](https://skills.sh/microck/ordinary-claude-skills/alex-hormozi-pitch)
+## What This Skill Does
 
-## Overview
+Guides you through Alex Hormozi's systematic approach to creating offers so compelling that prospects feel stupid saying no, using proven frameworks from "$100M Offers".
 
+## How to Execute
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/microck/ordinary-claude-skills/alex-hormozi-pitch
+**Execute the `/create-hormozi-pitch` slash command**, which provides:
+
+1. Interactive guided process through Hormozi's frameworks
+2. Value Equation optimization (Dream Outcome, Perceived Likelihood, Time Delay, Effort & Sacrifice)
+3. Guarantee framework selection and structuring
+4. Value stack and bonus construction
+5. Scarcity and urgency implementation
+6. Objection elimination strategies
+7. Complete pitch output ready to use
+
+## Core Frameworks Applied
+
+### The Value Equation
 ```
+Value = (Dream Outcome × Perceived Likelihood) / (Time Delay × Effort & Sacrifice)
+```
+
+### Four Guarantee Types
+- Unconditional (money-back)
+- Conditional (performance-based)
+- Outcome-based (results-tied)
+- Anti-guarantee (all sales final)
+
+### MAGIC Naming Formula
+- **M**ake it about them
+- **A**nnounce the avatar
+- **G**ive them a goal
+- **I**ndicate a time interval
+- **C**omplete with container word
+
+## Use Cases
+
+- Product launches
+- Service offerings
+- Consulting proposals
+- Course creation
+- High-ticket sales
+- Lead magnets
+- Upsells and downsells
+
+## Full Workflow Reference
+
+For complete step-by-step instructions: `read ${PAI_DIR}/commands/create-hormozi-pitch.md`

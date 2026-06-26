@@ -1,0 +1,49 @@
+name: pii-sanitizer
+version: 1.0.0
+description: Detects and redacts Personally Identifiable Information (PII) like emails, phone numbers, and credit cards. Use when cleaning logs, datasets, or communications to comply with GDPR/CCPA privacy standards.
+inputs:
+  input_data:
+    type: string
+    description: The raw text or data string to be sanitized.
+    required: true
+  redaction_style:
+    type: string
+    enum: [mask, replace, hash]
+    default: mask
+  pii_types:
+    type: array
+    items:
+      type: string
+    description: Specific PII types to look for (e.g., [email, phone, address]).
+outputs:
+  sanitized_data:
+    type: string
+    description: The data with PII successfully redacted.
+  detection_summary:
+    type: array
+    items:
+      type: object
+      properties:
+        type:
+          type: string
+        count:
+          type: integer
+capabilities:
+  - Regex and NLP-based detection of common PII formats.
+  - Support for international formats.
+  - Preservation of data structures (JSON/XML).
+constraints:
+  - Potential for false positives in unstructured text.
+  - Cannot guarantee 100% removal in creative text formats.
+security:
+  - Input data MUST NOT be stored or logged.
+  - Processing happens in-memory only.
+examples:
+  - input:
+      input_data: "User contact is john.doe@example.com"
+      redaction_style: "mask"
+    output:
+      sanitized_data: "User contact is [EMAIL]"
+      detection_summary:
+        - type: "email"
+          count: 1

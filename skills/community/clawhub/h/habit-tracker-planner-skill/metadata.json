@@ -1,0 +1,19 @@
+{
+  "slug": "habit-tracker-planner-skill",
+  "name": "Habit Tracker Planner Skill",
+  "version": "0.1.0",
+  "tags": [
+    "habit-tracker-planner",
+    "health",
+    "openclaw",
+    "templates"
+  ],
+  "category": "Health & Habits",
+  "changelog": [
+    {
+      "version": "0.1.0",
+      "date": "2026-05-16",
+      "notes": "Generated from local idea bank (no AI). Pending Telegram approval."
+    }
+  ]
+}

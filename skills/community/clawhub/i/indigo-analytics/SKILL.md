@@ -1,35 +1,34 @@
 ---
-name: "Indigo Analytics"
+name: indigo-analytics
 description: "Query TVL, protocol statistics, APR rewards, and DEX yield data for the Indigo Protocol."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/indigo-analytics"
-sourceUrl: "https://clawhub.ai/skills/indigo-analytics"
+allowed-tools: Read, Glob, Grep
+license: MIT
+metadata:
+  author: indigoprotocol
+  version: '0.1.0'
 ---
 
-# Indigo Analytics
+# Protocol Analytics
 
-> Query TVL, protocol statistics, APR rewards, and DEX yield data for the Indigo Protocol.
+Query TVL, protocol statistics, APR rewards, and DEX yield data for the Indigo Protocol on Cardano.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/indigo-analytics`
-- **Source URL:** [https://clawhub.ai/skills/indigo-analytics](https://clawhub.ai/skills/indigo-analytics)
+## MCP Tools
 
-## Overview
+| Tool | Description |
+|------|-------------|
+| `get_tvl` | Get the total value locked in Indigo Protocol |
+| `get_protocol_stats` | Get protocol-wide statistics and metrics |
+| `get_apr_rewards` | Get APR reward rates across Indigo pools |
+| `get_apr_by_key` | Get APR reward rate for a specific pool key |
+| `get_dex_yields` | Get current DEX yield data for Indigo iAsset pairs |
 
+## Sub-Skills
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/indigo-analytics
-```
+- [TVL & Stats](sub-skills/tvl-stats.md) — Total value locked and protocol statistics
+- [APR Rewards](sub-skills/apr-rewards.md) — APR reward rates for pools
+- [DEX Yields](sub-skills/dex-yields.md) — DEX yield data for iAsset pairs
+
+## References
+
+- [MCP Tools Reference](references/mcp-tools.md) — Detailed tool parameters and return types
+- [Analytics Concepts](references/concepts.md) — TVL, APR/APY, pool types, and data sources

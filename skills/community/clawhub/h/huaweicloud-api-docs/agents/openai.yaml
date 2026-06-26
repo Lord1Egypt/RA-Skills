@@ -1,0 +1,4 @@
+interface:
+  display_name: "HuaweiCloud API Docs"
+  short_description: "Search Huawei Cloud API docs"
+  default_prompt: "Use $huaweicloud-api-docs to find and summarize official Huawei Cloud API docs for a service such as OBS, ECS, or VPC."

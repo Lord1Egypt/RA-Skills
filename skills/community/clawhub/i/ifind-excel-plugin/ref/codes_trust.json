@@ -1,0 +1,92 @@
+[
+  {
+    "code": "ths_actual_issue_scale_trust",
+    "name": "实际发行规模",
+    "description": "基本资料",
+    "params": ""
+  },
+  {
+    "code": "ths_close_period_explain_trust",
+    "name": "封闭期说明",
+    "description": "基本资料",
+    "params": ""
+  },
+  {
+    "code": "ths_duration_y_trust",
+    "name": "存续期(年)",
+    "description": "基本资料",
+    "params": ""
+  },
+  {
+    "code": "ths_fore_max_issue_scale_trust",
+    "name": "预计最大发行规模",
+    "description": "基本资料",
+    "params": ""
+  },
+  {
+    "code": "ths_fore_yeild_up_limit_y_trust",
+    "name": "预计年收益率上限",
+    "description": "基本资料",
+    "params": ""
+  },
+  {
+    "code": "ths_income_distribute_method_trust",
+    "name": "收益分配方式",
+    "description": "基本资料",
+    "params": ""
+  },
+  {
+    "code": "ths_invest_consult_trust",
+    "name": "投资顾问",
+    "description": "基本资料",
+    "params": ""
+  },
+  {
+    "code": "ths_is_sun_private_placement_trust",
+    "name": "是否为阳光私募",
+    "description": "基本资料",
+    "params": ""
+  },
+  {
+    "code": "ths_low_add_amt_trust",
+    "name": "最低追加金额",
+    "description": "基本资料",
+    "params": ""
+  },
+  {
+    "code": "ths_mandate_fee_rate_trust",
+    "name": "托管费率",
+    "description": "基本资料",
+    "params": ""
+  },
+  {
+    "code": "ths_product_thscode_trust",
+    "name": "产品同花顺代码",
+    "description": "基本资料",
+    "params": ""
+  },
+  {
+    "code": "ths_redemp_rate_explain_trust",
+    "name": "赎回费率说明",
+    "description": "基本资料",
+    "params": ""
+  },
+  {
+    "code": "ths_subscription_rate_explain_trust",
+    "name": "认购费率说明",
+    "description": "基本资料",
+    "params": ""
+  },
+  {
+    "code": "ths_threshold_amt_trust",
+    "name": "起点金额",
+    "description": "基本资料",
+    "params": ""
+  },
+  {
+    "code": "ths_trustee_fix_manage_fee_rate_trust",
+    "name": "受托人固定管理费率",
+    "description": "基本资料",
+    "params": ""
+  }
+]

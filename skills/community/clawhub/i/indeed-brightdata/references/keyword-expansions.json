@@ -1,0 +1,12 @@
+{
+  "cybersecurity": ["cybersecurity", "security engineer", "information security", "SOC analyst", "security analyst", "infosec", "penetration tester", "cyber security"],
+  "data science": ["data scientist", "machine learning engineer", "ML engineer", "data analyst", "AI engineer", "deep learning"],
+  "nursing": ["registered nurse", "RN", "LPN", "nurse practitioner", "NP", "travel nurse"],
+  "software engineer": ["software engineer", "software developer", "backend engineer", "full stack developer", "SDE"],
+  "project manager": ["project manager", "program manager", "scrum master", "agile coach", "PM"],
+  "recruiter": ["recruiter", "talent acquisition", "hiring manager", "staffing specialist", "sourcer"],
+  "warehouse": ["warehouse associate", "warehouse worker", "fulfillment", "logistics", "picker packer"],
+  "accounting": ["accountant", "CPA", "bookkeeper", "financial analyst", "auditor", "tax preparer"],
+  "sales": ["sales representative", "account executive", "BDR", "SDR", "business development", "account manager"],
+  "marketing": ["marketing manager", "digital marketing", "content marketing", "growth marketing", "SEO specialist"]
+}

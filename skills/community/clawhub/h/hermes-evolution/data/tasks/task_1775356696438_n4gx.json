@@ -1,0 +1,19 @@
+{
+  "id": "task_1775356696438_n4gx",
+  "title": "09:00 小红书热门话题汇总",
+  "description": "5个热门话题，推送到飞书群",
+  "source": "scheduled",
+  "assignedTo": "Marketing",
+  "status": "done",
+  "priority": "P0",
+  "intent": "content_creation",
+  "subtasks": [],
+  "createdAt": "2026-04-05T02:38:16.438Z",
+  "updatedAt": "2026-04-05T02:38:29.735Z",
+  "stateChangedAt": "2026-04-05T02:38:29.735Z",
+  "createdBy": "sensen",
+  "result": "✅ 已推送飞书群 | 阅读量待统计",
+  "error": null,
+  "timeoutCount": 0,
+  "alerts": []
+}

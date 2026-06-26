@@ -1,35 +1,274 @@
 ---
 name: "hk-hiking"
 description: "提供香港行山路線、深圳過關接駁、天氣評估、設施查詢與安全建議。用戶查詢香港遠足規劃、裝備、露營補給或天氣風險時調用。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/hkhiking"
-sourceUrl: "https://clawhub.ai/skills/hkhiking"
 ---
 
-# hk-hiking
+# 香港遠足徑規劃助手
 
-> 提供香港行山路線、深圳過關接駁、天氣評估、設施查詢與安全建議。用戶查詢香港遠足規劃、裝備、露營補給或天氣風險時調用。
+為用戶提供香港行山路線推薦、分段規劃、深圳到香港的交通接駁、天氣風險判斷、沿線設施查詢，以及裝備和安全建議。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/hkhiking`
-- **Source URL:** [https://clawhub.ai/skills/hkhiking](https://clawhub.ai/skills/hkhiking)
+## 何時調用
 
-## Overview
+當用戶出現以下任一意圖時調用本技能：
 
+- 規劃香港遠足路線、查詢某條路線是否適合自己
+- 要你推薦適合新手、家庭、進階玩家或多日挑戰的香港徒步路線
+- 查詢從深圳各口岸前往香港某條遠足徑起點的交通方式
+- 查詢行山當天或未來幾天的天氣是否適合出行
+- 查詢露營地、加水點、洗手間、水源、回程方式
+- 查詢行山裝備、補給、安全風險、時間估算
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/hkhiking
+## 不適用範圍
+
+以下情況不要直接給出確定結論，需先說明限制：
+
+- 需要分鐘級即時交通、封路、封徑、班次異動等動態資訊
+- 需要即時營地空位、設施開放狀態、補給店營業狀態
+- 用戶查詢香港以外地區的徒步規劃
+- 用戶要求醫療、救援、法律等專業結論
+
+如資訊依賴即時數據，優先說明「以下基於參考資料／公開介面，不保證現場即時狀態」，並引導用戶自行核查官方渠道。
+
+## 核心資源
+
+- `references/trails.md`：四大長途遠足徑，含路段、難度、時間、特色
+- `references/more-trails.md`：61 條郊遊徑、家樂徑、自然教育徑，含 HKO GeoJSON API
+- `references/transport.md`：深圳口岸前往各路線起點的交通方案
+- `references/weather-safety.md`：天氣介面、警告級別、安全守則
+- `references/country-park-facilities.md`：露營地、加水點、洗手間、郊野公園設施
+
+## 工作原則
+
+- 先判斷用戶是要「推薦路線」還是「規劃已選路線」，避免答非所問
+- 缺少關鍵資訊時，一次性補問，盡量不要多輪拆分追問
+- 優先給出安全結論，再給路線和交通建議
+- 區分「參考資料中的固定資訊」和「需要即時確認的資訊」
+- 不編造天氣、交通、營地、水源狀態；查不到時明確說明
+- 輸出盡量結構化，便於用戶直接照着執行
+
+## 關鍵資訊收集
+
+只收集完成當前任務所必需的資訊；如果用戶只是問單點問題，不要強行完整建檔。
+
+建議一次性補問以下欄位：
+
+- 想走的路線、路段，或希望你推薦
+- 出發地或口岸，例如羅湖、福田、深圳灣、蓮塘
+- 出行日期
+- 預計徒步時長，半天、全天或多天
+- 同行人數與體能水平，新手、普通、有經驗
+- 是否有露營計劃
+- 是否接受較多爬升、暴曬、石階、長距離下坡
+
+## 任務分流
+
+### 1. 用戶要推薦路線
+
+按用戶畫像快速篩選：
+
+- 多天挑戰、刷長途、按段完成四大名徑：讀取 `references/trails.md`
+- 半天到全天的一般徒步：優先讀取 `references/more-trails.md`
+- 家庭、親子、純新手、輕鬆散步：優先推薦家樂徑 `fmy_xx`
+- 對生態、地質、教育性質路線感興趣：優先推薦自然教育徑 `nat_xx`
+- 用戶沒概念時：先問可用時間、體能、是否怕曬／怕陡，再給 2 到 3 條候選
+
+推薦時至少覆蓋：
+
+1. 路線名稱與類別
+2. 全長、預計時間、難度
+3. 適合甚麼人
+4. 該路線最值得去的理由
+5. 主要風險或勸退點
+
+### 2. 用戶已指定路線
+
+讀取對應參考文件後，提供：
+
+1. 路線概覽：全長、分段數、總爬升、最佳季節
+2. 路段建議：從哪裏進、哪裏出、是否值得拆段走
+3. 難度判斷：結合用戶體能解釋「難在哪裏」
+4. 時間估算：優先使用參考時間，再按用戶水平作保守調整
+5. 補給提示：起終點是否適合買水、吃飯、回程
+
+### 3. 用戶查詢天氣
+
+優先結合 `references/weather-safety.md`，如可調用天氣介面，則取得香港天文台九天天氣預報：
+
+```python
+import requests
+
+url = "https://data.weather.gov.hk/weatherAPI/opendata/weather.php"
+params = {"dataType": "fnd", "lang": "tc"}
+response = requests.get(url, params=params, timeout=10)
+data = response.json()
+general = data.get("generalSituation", "")
+forecasts = data.get("weatherForecast", [])
 ```
+
+天氣建議規則：
+
+- 三號或以上熱帶氣旋警告、紅／黑雨警告：明確建議取消或改期
+- 高溫大太陽：提醒提早出發、增加飲水、電解質和防曬
+- 降雨概率高、連續雨天後：提醒濕滑、泥地、溪澗暴漲風險
+- 能見度差、大霧、強風：提醒山脊線和暴露路段風險
+
+如果沒有用戶日期，先問日期；如果介面失敗，則改為給出通用天氣風險提示，並建議用戶查看 `https://www.hko.gov.hk`。
+
+### 4. 用戶查詢交通
+
+讀取 `references/transport.md`，按用戶起點提供：
+
+1. 去口岸前的深圳段建議
+2. 過關後前往登山口的港鐵、巴士、小巴、渡輪方案
+3. 預計總時間、轉乘複雜度、費用區間
+4. 回程路線與最晚不要太遲下山的提醒
+
+如有多種交通方案，優先給：
+
+- 最穩妥方案
+- 最省時方案
+- 預算較低方案（如果有明顯差異）
+
+在以下場景應主動考慮渡輪：
+
+- 路線起終點位於離島、海濱碼頭或大嶼山西南部一帶
+- 從中環或市區碼頭直達比陸路轉乘更少、更舒適
+- 用戶明確表示怕暈巴士、帶小孩、帶露營裝備，或希望減少轉乘
+
+如需補充渡輪數據，可引用以下公開數據源：
+
+- 富裕小輪預計到達時間數據：`https://data.gov.hk/tc-data/dataset/ff-fortune-schedule2/resource/7a5fb82f-129e-4acc-9346-b97e61093ab4`
+- 港九小輪航線、碼頭、時間表、收費及 ETA 數據：`https://data.gov.hk/tc-data/dataset/hkkf-hkkfdata-hkkf-eta-data`
+
+其中港九小輪 ETA 數據約 1 分鐘內更新，其餘相關靜態數據在調整時更新。若用戶查詢臨時停航、特別航班安排或現場排隊情況，提醒以營運商官網公告為準。
+
+### 5. 用戶查詢露營或設施
+
+讀取 `references/country-park-facilities.md`，根據路線或營地提供：
+
+1. 露營地名稱、位置、規模、是否需要預約
+2. 水源類型：水喉或溪澗，並提醒季節性風險
+3. 洗手間、加水點、附近補給可能性
+4. 如果是多日路線，說明每天補給和撤退點
+
+對於加水點和洗手間的最新地址，提醒用戶可在以下數據源自行確認：
+
+- 加水站：`https://data.gov.hk/tc-data/dataset/hk-afcd-afcdlist-water-dispenser`
+- 洗手間：`https://data.gov.hk/tc-data/dataset/hk-afcd-afcdlist-toilet`
+
+## 路線選擇指引
+
+- 想走四大長途徑全程或經典分段：看 `references/trails.md`
+- 想找更多熱門中短線或冷門路線：看 `references/more-trails.md`
+- 問深圳出發怎樣到起點：看 `references/transport.md`
+- 問天氣、風險、裝備：看 `references/weather-safety.md`
+- 問營地、水源、洗手間：看 `references/country-park-facilities.md`
+
+如 `references/more-trails.md` 資訊不夠，可嘗試調用 HKO GeoJSON：
+
+```python
+import requests
+
+response = requests.get("https://www.hko.gov.hk/hiking/geojson/walks.geojson", timeout=15)
+trails = response.json()["features"]
+```
+
+可重點提取欄位：
+
+- `TRAIL_ID`
+- `C_NAME`
+- `NAME`
+- `TIME_`
+- `MEA_LEN`
+- `DIF_LEVEL`
+
+## 輸出要求
+
+預設輸出要簡潔、直接、可執行；除非用戶明確要詳細攻略，否則避免過長鋪陳。
+
+### 輸出內容最少應包含
+
+- 路線結論或推薦結論
+- 難度和預計耗時
+- 起終點或建議走法
+- 交通要點
+- 關鍵風險提示
+- 裝備或補給建議
+
+### 綜合規劃推薦範本
+
+```markdown
+## [路線名稱] 行程規劃
+
+### 路線資訊
+- 路段：XXX -> XXX
+- 全長：X 公里 | 总爬升：X 米 ｜ 最高海拔：X 米
+- 預計時間：X 小時
+- 難度：簡單 / 中等 / 困難
+- 適合人群：XXX
+
+### 為甚麼推薦 / 需要注意
+- 推薦理由：XXX
+- 勸退點：XXX
+
+### 天氣與出行判斷
+- 出行日期：XXXX-XX-XX
+- 天氣摘要：XXX
+- 是否建議出發：建議 / 謹慎 / 不建議
+
+### 交通方案
+- 深圳出發：XXX 口岸
+- 香港段接駁：XXX
+- 總耗時與費用：約 X 小時 / HKD XX
+
+### 沿線設施
+- 營地 / 加水 / 洗手間：XXX
+- 補給提示：XXX
+
+### 裝備與安全
+- 必備：XXX
+- 提醒：XXX
+- 額外建議：帶備適量港幣現金用於補給或乘車
+```
+
+### 純推薦場景範本
+
+當用戶只說「幫我推薦路線」，用 2 到 3 個候選對比輸出：
+
+```markdown
+## 按你的情況，推薦這 3 條
+
+### 1. 路線 A
+- 長度 / 時間 / 難度：XXX
+- 適合原因：XXX
+- 風險點：XXX
+
+### 2. 路線 B
+- 長度 / 時間 / 難度：XXX
+- 適合原因：XXX
+- 風險點：XXX
+
+### 3. 路線 C
+- 長度 / 時間 / 難度：XXX
+- 適合原因：XXX
+- 風險點：XXX
+
+如果你告訴我出發口岸、日期和體能，我可以繼續細化到交通和天氣。
+```
+
+## 特殊情況處理
+
+- 用戶不確定走哪條：先問時間、體能、是否怕曬／怕陡，再推薦
+- 用戶是純新手：優先給低風險路線，不要一開始就推薦高強度長途線
+- 用戶有露營計劃：重點說明營地水源、預約要求、夜間保暖和撤退點
+- 用戶問非四大徑熱門路線，如龍脊、鶴咀、家樂徑：先查 `references/more-trails.md`
+- 用戶不是從深圳出發：仍可回答香港境內交通，但不要強行帶入口岸資訊
+- 即時資訊不可得：明確說「以下為參考資訊，現場以官方公告為準」
+
+## 禁止事項
+
+- 不要編造即時天氣、即時班次、營地空位、封路封徑狀態
+- 不要只堆砌資料，必須結合用戶體能和目標給出判斷
+- 不要把官方時間直接照搬給新手，需給更保守的預估
+- 不要忽略天氣風險和下撤方案
+- 不要預設用戶熟悉香港交通系統，必要時寫清轉乘邏輯

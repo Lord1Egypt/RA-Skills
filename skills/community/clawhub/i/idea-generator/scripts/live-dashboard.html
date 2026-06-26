@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>创意工作台</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#09090b;color:#fafafa;min-height:100vh}
+  .container{max-width:1400px;margin:0 auto;padding:24px}
+  
+  /* Header */
+  .header{display:flex;justify-content:space-between;align-items:center;padding:16px 0;border-bottom:1px solid #27272a;margin-bottom:24px}
+  .header-left{display:flex;align-items:center;gap:12px}
+  .status-dot{width:8px;height:8px;border-radius:50%;background:#71717a}
+  .status-dot.running{background:#22c55e;box-shadow:0 0 8px #22c55e}
+  .status-dot.connected{background:#22c55e}
+  .topic{font-size:14px;color:#a1a1aa}
+  .connection{font-size:12px;color:#52525b;display:flex;align-items:center;gap:6px}
+  .connection-dot{width:6px;height:6px;border-radius:50%;background:#22c55e}
+  .btn-reconnect{background:#27272a;color:#a1a1aa;border:1px solid #3f3f46;border-radius:5px;padding:3px 10px;font-size:11px;cursor:pointer;transition:all .15s;display:none}
+  .btn-reconnect:hover{background:#3f3f46;color:#fafafa}
+  
+  /* Input Row - All in one line */
+  .input-row{display:flex;gap:12px;align-items:stretch;margin-bottom:20px}
+  .input-row textarea{flex:1;background:#18181b;border:1px solid #27272a;border-radius:8px;padding:12px 16px;color:#fafafa;font-size:14px;resize:none;min-height:48px;line-height:20px;font-family:inherit;overflow:hidden;scrollbar-width:none}
+  .input-row textarea::-webkit-scrollbar{display:none}
+  .input-row textarea:focus{outline:none;border-color:#3f3f46}
+  .input-row textarea::placeholder{color:#52525b}
+  .input-group{display:flex;align-items:stretch;gap:8px}
+  .rounds-input{width:80px;background:#18181b;border:1px solid #27272a;border-radius:8px;padding:0 30px 0 12px;color:#fafafa;font-size:14px;text-align:center;position:relative;-moz-appearance:textfield}
+  .rounds-input::-webkit-outer-spin-button,.rounds-input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+  .rounds-input:focus{outline:none;border-color:#3f3f46}
+  
+  /* Buttons */
+  .btn{border:none;border-radius:8px;padding:0 24px;font-size:14px;font-weight:500;cursor:pointer;transition:all .15s;white-space:nowrap;display:flex;align-items:center;justify-content:center}
+  .btn-start{background:#fafafa;color:#09090b}
+  .btn-start:hover{background:#e4e4e7}
+  .btn-start:disabled{opacity:.4;cursor:not-allowed}
+  .btn-stop{background:#dc2626;color:#fff}
+  .btn-stop:hover{background:#b91c1c}
+  .btn-stop:disabled{opacity:.4;cursor:not-allowed}
+  .btn-ghost{background:transparent;color:#71717a;border:1px solid #27272a;padding:6px 12px;font-size:13px;border-radius:6px}
+  .btn-ghost:hover{border-color:#3f3f46;color:#fafafa}
+  
+  /* Main Content */
+  .main{display:grid;grid-template-columns:1fr 320px;gap:16px;height:calc(100vh - 200px)}
+  
+  /* Panels */
+  .panel{background:#18181b;border:1px solid #27272a;border-radius:12px;overflow:hidden;display:flex;flex-direction:column}
+  .panel-header{padding:14px 16px;border-bottom:1px solid #27272a;display:flex;justify-content:space-between;align-items:center;font-size:13px;font-weight:500;color:#a1a1aa}
+  .panel-body{flex:1;overflow-y:auto;padding:16px}
+  
+  /* Scrollbar */
+  .panel-body::-webkit-scrollbar{width:4px}
+  .panel-body::-webkit-scrollbar-track{background:transparent}
+  .panel-body::-webkit-scrollbar-thumb{background:#27272a;border-radius:2px}
+  .panel-body::-webkit-scrollbar-thumb:hover{background:#3f3f46}
+  
+  /* Cards */
+  .card{background:#09090b;border:1px solid #27272a;border-radius:8px;padding:14px;margin-bottom:12px;position:relative}
+  .card-title{font-weight:500;margin-bottom:6px;padding-right:20px}
+  .card-desc{font-size:13px;color:#71717a;line-height:1.5}
+  .card-score{color:#22c55e;font-weight:600;font-size:13px;margin-top:8px}
+  .card-delete{position:absolute;top:10px;right:10px;background:none;border:none;color:#52525b;cursor:pointer;font-size:18px;line-height:1}
+  .card-delete:hover{color:#dc2626}
+  
+  /* Round Section */
+  .round-section{border:1px solid #27272a;border-radius:8px;margin-bottom:16px;overflow:hidden}
+  .round-header{padding:12px 14px;background:#09090b;border-bottom:1px solid #27272a;display:flex;justify-content:space-between;font-size:13px;font-weight:500}
+  .round-content{padding:14px}
+  
+  /* Content Blocks */
+  .block{margin-bottom:14px}
+  .block-label{font-size:11px;color:#52525b;margin-bottom:6px;text-transform:uppercase;letter-spacing:.5px}
+  .block-content{background:#09090b;border:1px solid #27272a;border-radius:6px;padding:10px;font-size:13px;color:#a1a1aa;line-height:1.6}
+  
+  /* States */
+  .empty{color:#52525b;text-align:center;padding:60px 20px;font-size:13px}
+  .error{color:#dc2626;font-size:13px}
+  .hint{text-align:center;font-size:12px;color:#a1a1aa;opacity:0.85;padding:16px 0 24px;pointer-events:none}
+</style>
+</head>
+<body>
+<div class="container">
+  <!-- Header -->
+  <div class="header">
+    <div class="header-left">
+      <div class="status-dot" id="dot"></div>
+      <span class="topic" id="topic">待机</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:16px">
+      <div class="connection">
+        <div class="connection-dot" id="conn-dot"></div>
+        <span id="conn-status">已连接</span>
+        <button class="btn-reconnect" id="btn-reconnect" onclick="reconnect()">重连</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Input Row: All in one line -->
+  <div class="input-row">
+    <textarea id="input-topic" placeholder="输入创意需求，例如：母亲节情感营销、新品推广策划..."></textarea>
+    <div class="input-group">
+      <span style="font-size:13px;color:#71717a;white-space:nowrap;align-self:center">迭代轮数</span>
+      <div style="position:relative;display:flex;align-items:stretch">
+        <input type="number" class="rounds-input" id="input-rounds" value="3" min="1">
+        <div style="position:absolute;right:4px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:0">
+          <button onclick="$('input-rounds').stepUp()" style="background:none;border:none;color:#71717a;cursor:pointer;padding:2px 6px;line-height:1;font-size:10px;transition:color .15s" onmouseover="this.style.color='#fafafa'" onmouseout="this.style.color='#71717a'">▲</button>
+          <button onclick="$('input-rounds').stepDown()" style="background:none;border:none;color:#71717a;cursor:pointer;padding:2px 6px;line-height:1;font-size:10px;transition:color .15s" onmouseover="this.style.color='#fafafa'" onmouseout="this.style.color='#71717a'">▼</button>
+        </div>
+      </div>
+    </div>
+    <button class="btn btn-start" id="btn-start">开始</button>
+    <button class="btn btn-stop" id="btn-stop" style="display:none">停止</button>
+  </div>
+  <div id="error-msg" class="error" style="display:none;margin-bottom:16px"></div>
+
+  <!-- Main Content -->
+  <div class="main">
+    <!-- Left: Process -->
+    <div class="panel">
+      <div class="panel-header">
+        <span>创意过程</span>
+        <button class="btn-ghost" id="btn-clear-process">清空</button>
+      </div>
+      <div class="panel-body" id="stream">
+        <div class="empty">等待启动</div>
+      </div>
+    </div>
+    
+    <!-- Right: Pool -->
+    <div class="panel">
+      <div class="panel-header">
+        <span>创意池 <span id="pool-count"></span></span>
+        <button class="btn-ghost" id="btn-clear-pool">清空</button>
+      </div>
+      <div class="panel-body" id="pool">
+        <div class="empty">暂无创意</div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="hint">提示：如果点击开始后没有正常启动，尝试在openclaw前端输入"重启工作台"，然后再测试</div>
+<script>
+var API = location.origin + '/';
+function $(id){return document.getElementById(id)}
+
+function render(d){
+  $('topic').textContent=d.topic||'待机';
+  $('dot').className='status-dot'+(d.status==='running'?' running':d.status==='done'?' connected':'');
+  var isRunning = d.status==='running';
+  $('btn-start').style.display=isRunning?'none':'inline-block';
+  $('btn-start').disabled=false;
+  $('btn-stop').style.display=isRunning?'inline-block':'none';
+  
+  // Pool - 按分数排序显示（保留原始索引用于删除）
+  var pool=d.progress?.pool||[];
+  var poolWithIdx=pool.map((p,i)=>({...p,_origIdx:i}));
+  poolWithIdx.sort((a,b)=>(b.total||0)-(a.total||0));
+  $('pool-count').textContent='('+pool.length+')';
+  $('pool').innerHTML=pool.length?poolWithIdx.map((p)=>{
+    var score=p.total||0;
+    var pstatus=p.status||'';
+    var isPending=pstatus==='pending'||(score===0&&!pstatus);
+    var scoreHtml=isPending
+      ?'<div style="color:#71717a;font-size:13px;margin-top:8px">待评分</div>'
+      :'<div class="card-score" style="color:'+(score>=90?'#22c55e':'#ef4444')+'">'+score+'分</div>';
+    return '<div class="card"><button class="card-delete" onclick="removeIdea('+p._origIdx+')" title="删除此创意">✕</button><div class="card-title">'+( p.创意||'')+' </div><div class="card-desc">'+(p.创意描述||'')+' </div>'+scoreHtml+'</div>';
+  }).join(''):'<div class="empty">暂无创意</div>';
+  
+  // Process
+  var rounds=d.rounds||[];
+  if(rounds.length){
+    $('stream').innerHTML=rounds.map((r,ri)=>{
+      if(!r)return '';
+      var pass=r.evaluation?.passed?.length||0,total=r.ideas?.length||0;
+      var h='<div class="round-section"><div class="round-header"><span>第'+(ri+1)+'轮</span><span>'+pass+'/'+total+' 入围</span></div><div class="round-content">';
+      if(r.thinking?.content)h+='<div class="block"><div class="block-label">思考</div><div class="block-content">'+r.thinking.content.replace(/\n/g,'<br>')+'</div></div>';
+      if(r.searches?.length)h+='<div class="block"><div class="block-label">搜索</div>'+r.searches.map(s=>'<div class="block-content" style="margin-bottom:8px"><strong style="color:#a1a1aa">'+s.kw+'</strong><br>'+s.findings.replace(/\|/g,'<br>')+'</div>').join('')+'</div>';
+      if(r.ideas?.length)h+='<div class="block"><div class="block-label">创意</div>'+r.ideas.map(idea=>{
+        var score=idea.total||0;
+        var istatus=idea.status||'';
+        var isIdeaPending=istatus==='pending'||(score===0&&!istatus);
+        var ideaScoreHtml=isIdeaPending
+          ?'<span style="color:#71717a;font-size:13px">待评分</span>'
+          :'<span style="color:'+(score>=90?'#22c55e':'#ef4444')+';font-size:14px;font-weight:600">'+score+'分</span>';
+        return '<div class="card"><div style="display:flex;justify-content:space-between"><span class="card-title">'+(idea.创意||'')+'</span>'+ideaScoreHtml+'</div><div class="card-desc">'+(idea.创意描述||'')+'</div>'+(idea.feedback?'<div style="font-size:12px;color:#52525b;margin-top:6px">→ '+idea.feedback+'</div>':'')+  '</div>';
+      }).join('')+'</div>';
+      if(r.feedback?.content)h+='<div class="block"><div class="block-label">反馈</div><div class="block-content">'+r.feedback.content.replace(/\|/g,'<br>')+'</div></div>';
+      return h+'</div></div>';
+    }).join('');
+  }else{
+    $('stream').innerHTML='<div class="empty">'+(d.status==='running'?'AI 思考中...':'等待启动')+'</div>';
+  }
+}
+
+function setConnected(yes){
+  if(yes){
+    $('conn-dot').style.background='#22c55e';
+    $('conn-status').textContent='已连接';
+    $('btn-reconnect').style.display='none';
+  }else{
+    $('conn-dot').style.background='#dc2626';
+    $('conn-status').textContent='已断开';
+    $('btn-reconnect').style.display='inline-block';
+    $('btn-start').style.display='inline-block';
+    $('btn-start').disabled=false;
+    $('btn-stop').style.display='none';
+  }
+}
+
+function reconnect(){
+  $('btn-reconnect').textContent='重连中...';
+  $('btn-reconnect').disabled=true;
+  fetchState().finally(()=>{
+    $('btn-reconnect').textContent='重连';
+    $('btn-reconnect').disabled=false;
+  });
+}
+
+function fetchState(){
+  return fetch(API+'state.json?t='+Date.now()).then(r=>r.json()).then(d=>{
+    setConnected(true);
+    render(d);
+  }).catch(()=>{
+    setConnected(false);
+  });
+}
+
+function start(){
+  var topic=$('input-topic').value.trim();
+  var rounds=parseInt($('input-rounds').value)||3;
+  if(!topic){$('error-msg').textContent='请输入创意需求';$('error-msg').style.display='block';return}
+  $('error-msg').style.display='none';
+  $('btn-start').disabled=true;
+  $('btn-start').textContent='启动中...';
+  fetch(API+'run',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({topic,rounds})})
+  .then(r=>r.json())
+  .then(d=>{
+    if(d.error){$('error-msg').textContent=d.error;$('error-msg').style.display='block';}
+    else if(d.ready){
+      // 只更新过程面板，不清空创意池
+      $('stream').innerHTML='<div class="empty" style="color:#22c55e;padding:40px 20px"><div style="font-size:16px;margin-bottom:12px">✓ 任务已创建</div><div style="font-size:13px;color:#a1a1aa;margin-bottom:16px">AI 正在新对话中执行创意生成...</div>'+(d.session_id?'<div style="font-size:12px;color:#52525b">Session: '+d.session_id+'</div>':'')+'</div>';
+    }
+  })
+  .catch(e=>{$('error-msg').textContent='连接失败：'+e.message;$('error-msg').style.display='block';})
+  .finally(()=>{$('btn-start').disabled=false;$('btn-start').textContent='开始'});
+}
+
+function stop(){
+  // 立即本地更新 UI
+  $('btn-stop').disabled=true;
+  $('btn-stop').textContent='停止中...';
+  $('dot').className='status-dot';
+  fetch(API+'stop',{method:'POST'})
+  .then(r=>r.json())
+  .then(()=>{
+    // 停止成功，更新进程面板显示提示
+    $('stream').innerHTML='<div class="empty" style="color:#ef4444">任务已停止</div>';
+    fetchState();
+  })
+  .catch(()=>{
+    // 即使请求失败，也强制恢复 UI
+    $('btn-start').style.display='inline-block';
+    $('btn-stop').style.display='none';
+    $('btn-start').disabled=false;
+  })
+  .finally(()=>{
+    $('btn-stop').disabled=false;
+    $('btn-stop').textContent='停止';
+  });
+}
+
+function reset(){
+  $('input-topic').value='';
+  fetch(API+'reset',{method:'POST'});
+}
+
+function clearProcess(){fetch(API+'clear/process',{method:'POST'}).then(()=>fetchState())}
+function clearPool(){fetch(API+'clear/pool',{method:'POST'}).then(()=>fetchState())}
+function removeIdea(origIdx){fetch(API+'idea/remove',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({idx:origIdx})}).then(()=>fetchState())}
+
+$('btn-start').addEventListener('click',start);
+$('btn-stop').addEventListener('click',stop);
+$('btn-clear-process').addEventListener('click',clearProcess);
+$('btn-clear-pool').addEventListener('click',clearPool);
+
+// Auto-resize textarea
+var ta=$('input-topic');
+ta.addEventListener('input',function(){this.style.height='auto';this.style.height=Math.max(48,this.scrollHeight)+'px'});
+ta.style.height='48px';
+
+fetchState();
+setInterval(fetchState,1000);
+</script>
+</body>
+</html>

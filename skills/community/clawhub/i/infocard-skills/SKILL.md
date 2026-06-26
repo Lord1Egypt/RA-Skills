@@ -1,35 +1,178 @@
 ---
-name: "Infocard Skills"
-description: "Generate high-density editorial HTML info cards in a modern magazine and Swiss-international style, then capture them as ratio-specific screenshots. Use when..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/infocard-skills"
-sourceUrl: "https://clawhub.ai/skills/infocard-skills"
+name: editorial-card-screenshot
+description: "Generate high-density editorial HTML info cards in a modern magazine and Swiss-international style, then capture them as ratio-specific screenshots. Use when the user provides text or core information and wants: (1) a complete responsive HTML info card, (2) the design to follow the stored editorial prompt, (3) output in fixed visual ratios such as 3:4, 4:3, 1:1, 16:9, 9:16, 2.35:1, 3:1, or 5:2, or (4) both HTML and a rendered PNG cover/card from the same content."
+metadata: {"clawdbot":{"requires":{"bins":["google-chrome","chromium","chrome"]}}}
 ---
 
-# Infocard Skills
-
-> Generate high-density editorial HTML info cards in a modern magazine and Swiss-international style, then capture them as ratio-specific screenshots. Use when...
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/infocard-skills`
-- **Source URL:** [https://clawhub.ai/skills/infocard-skills](https://clawhub.ai/skills/infocard-skills)
+# Editorial Card Screenshot
 
 ## Overview
 
+Turn source text into a compact, high-contrast HTML information card that follows the user's editorial prompt, then render a screenshot in one of the supported aspect ratios.
 
-## Installation
-To install this skill, run the following command in your terminal:
+Always preserve three output stages unless the user explicitly asks to skip one:
+1. Write one sentence judging the information density as high, medium, or low.
+2. Output the complete HTML with embedded CSS.
+3. Self-check that body text remains readable on mobile.
+
+## Workflow
+
+### 1. Analyze Content Density
+
+Choose layout strategy from the content itself:
+- Use "big-character" composition when content is sparse and a single phrase, number, or hook can carry the page.
+- Use a two-column or three-column editorial grid when content is dense and needs stronger hierarchy.
+- Use oversized numbers, heavy rules, tinted blocks, and pull-quote scale to avoid dead space.
+- Do not force dense content into evenly weighted tiles. Build primary blocks, secondary blocks, and lighter supporting blocks.
+- Match structure to content type:
+  - Ranking / recommendation content: allow asymmetric hero + structured list.
+  - Tutorial / analysis / interpretation content: group into overview, core judgment, interpretation, boundary, and conclusion.
+
+Before compressing content, first change the layout skeleton.
+- Ratio changes should primarily change reading path, hierarchy, and module arrangement.
+- Do not treat ratio changes as a reason to delete content by default.
+- Only compress, group, or summarize when the current ratio cannot hold the content clearly after layout has already been restructured.
+
+### 2. Apply the Stored Editorial Rules
+
+Use these defaults unless the user overrides them:
+- Import Google Fonts:
+  ```html
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@700;900&family=Noto+Sans+SC:wght@400;500;700&family=Oswald:wght@500;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  ```
+- Keep body text at `18px` to `20px` on a 900px-wide composition.
+- Keep meta/tag text at `13px` minimum.
+- Use compact spacing: container padding `40px` to `50px`, component gaps `30px` to `40px`, line-height `1.5` to `1.6`.
+- Add visual weight with `4px` to `6px` accent rules, subtle gray planes, and `4%` noise overlays.
+- Favor `#f5f3ed` or similar warm-paper backgrounds unless the user supplies another palette.
+- Preserve breathing room. Do not shrink outer margins so much that the card loses composure.
+- For title zones, prefer larger line-height and clearer separation from subtitle / summary blocks.
+- In dense right-side modules, reduce font weight slightly so the page stays clear without feeling heavy.
+- Use stronger internal structure inside blocks: subheads, bullets, numbered lines, compare rows, or secondary labels.
+- Avoid equal-weight boxes when the card is dense. At least one module should feel visually heavier than the others.
+
+### 3. Choose the Right Layout Skeleton
+
+Pick ratio-specific structure before writing final copy.
+
+#### `4:3`
+- Best for full analytical spread or ranked lists.
+- Prefer: hero + summary band + dense two-column list + stronger footer.
+- Use one main judgment block before the list so the page does not become a flat wall of 10 equal items.
+
+#### `3:4`
+- Keep the same information ambition, but change the reading path.
+- Prefer: title band + insight row + mixed large/small body modules.
+- Use mixed scales: one heavy primary block, one or two medium blocks, and smaller support blocks.
+- Do not let the whole portrait card collapse into a long single column.
+
+#### `1:1`
+- Best for ability map, grouped comparison, or balanced editorial overview.
+- Prefer: strong hero + one heavier quadrant + three supporting quadrants + dense footer strip.
+- Square layouts should feel centered and modular, not evenly tiled.
+
+#### Wide covers (`3:1`, `5:2`, `2.35:1`)
+- Reduce paragraph length aggressively.
+- Use fewer but larger blocks, stronger headlines, and short support lines.
+
+### 4. Build HTML for Rendering
+
+When HTML will be screenshotted, design the page as a fixed-size canvas instead of a responsive webpage:
+- Match the exact pixel dimensions of the selected ratio preset from `references/ratios.md`.
+- Treat the card as a design board with explicit `width` and `height`, not as a fluid `100vw / 100vh` layout.
+- Remove browser-default margins with `html, body { margin: 0; }`.
+- Make the card itself fill the screenshot viewport exactly.
+- Avoid interactions, sticky headers, or long scrolling sections.
+- Use fixed pixel wrappers, for example:
+  ```css
+  .frame {
+    width: 2000px;
+    height: 1500px;
+  }
+
+  .card {
+    width: 100%;
+    height: 100%;
+    padding: 48px;
+    background: #f5f3ed;
+  }
+  ```
+
+Do not rely on `100vw`, `100vh`, or responsive container widths as the primary design size for screenshot output.
+
+If the user asks only for HTML, still make the layout screenshot-ready.
+
+Use these structural heuristics when composing the card:
+- Fill the proportion intentionally. Rebalance layout according to width / height instead of scaling one static template.
+- In `4:3` landscape, asymmetric left-right layouts often work best for dense analytical content.
+- In `3:4` portrait, use portrait-friendly mixed grids rather than a single narrow column.
+- Keep title, subtitle, summary, and modules separated by explicit rows or bands so they do not collide.
+- If using numbered modules, keep numbers visually weak enough that they never collide with titles.
+- If a section becomes visually monotonous, introduce contrast through hierarchy changes rather than decorative clutter.
+- Let big modules carry richer copy than small modules. Do not give every block the same amount of text.
+
+### 5. Capture the Screenshot
+
+Use the bundled shell script when the user wants a PNG output:
 ```bash
-hermes skills install clawhub/infocard-skills
+./scripts/capture_card.sh input.html output.png 3:4
 ```
+
+Supported ratios and render sizes live in [references/ratios.md](references/ratios.md).
+
+The rendering helper requires a local Chrome or Chromium binary.
+It first respects `CHROME_BIN` when set, then falls back to common binary names and a macOS Chrome app path.
+
+Before running the script:
+- Save the generated HTML to a local file.
+- Ensure the page is self-contained except for fonts.
+- If you keep the default font imports, rendering will request Google Fonts over the network.
+- Ensure the HTML uses a fixed-size design canvas that matches the chosen ratio preset.
+- Ensure the viewport composition already matches the requested ratio.
+
+### 6. Ratio Policy
+
+Accept only these ratio presets:
+- `3:4`
+- `4:3`
+- `1:1`
+- `16:9`
+- `9:16`
+- `2.35:1`
+- `3:1`
+- `5:2`
+
+If the user gives a ratio outside this set, ask them to map it to the nearest supported preset rather than inventing a new one.
+
+## Output Contract
+
+When responding to a card-generation request:
+- Start with exactly one sentence describing information density.
+- Then output complete HTML in one code block.
+- If the user also requested an image, state the ratio used and the screenshot command after the HTML.
+- Keep prose short; the HTML is the deliverable.
+
+## Resources
+
+### `references/ratios.md`
+Open this when you need the exact preset names or capture dimensions.
+
+### `references/editorial-card-prompt.md`
+Use this as the canonical prompt spec when the user wants the latest validated editorial-card behavior.
+
+### `scripts/capture_card.sh`
+Run this to capture a PNG from a local HTML file using a supported ratio preset.
+It requires a local Chrome or Chromium binary or an explicit `CHROME_BIN` override.
+
+### `assets/card-template.html`
+Use this as a starting shell when you want a minimal ratio-ready HTML canvas before filling in real content.
+
+## Failure Checks
+
+Before finalizing HTML or PNG, explicitly reject the result if any of these happen:
+- The title overlaps, visually collides with, or blocks summary/body content.
+- The title becomes a narrow vertical strip when more horizontal width is available.
+- Dense cards are split into too many equal-weight boxes.
+- Large blocks contain too little copy and read like empty containers.
+- The canvas shows large areas of dead space that could be filled by stronger hierarchy, richer block content, or a heavier main module.
+- The PNG feels meaningfully emptier than the HTML layout intent.

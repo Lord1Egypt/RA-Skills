@@ -1,0 +1,38 @@
+{
+  "name": "hot-search",
+  "version": "1.0.0",
+  "description": "Hot Search - OpenClaw 稳定搜索技能，专为金融数据和市场行情设计。支持多引擎聚合搜索（必应国内/国际、Yandex、Swisscows），集成 Trading Economics 等权威数据源。无需 API 密钥，免费无限次使用。",
+  "author": "FishSome",
+  "author_email": "fishsomes@gmail.com",
+  "license": "MIT",
+  "keywords": ["search", "financial-data", "oil-price", "market-data", "multi-engine", "openclaw", "hot-search"],
+  "main": "search_skill.py",
+  "repository": "https://github.com/fishsomes/hot-search",
+  "homepage": "https://clawhub.ai/skills/hot-search",
+  "requirements": "requirements.txt",
+  "usage": "python3 search_skill.py <关键词> [引擎名]",
+  "examples": [
+    "python3 search_skill.py \"原油价格\" all",
+    "python3 search_skill.py \"Oman crude oil price\" bing_global",
+    "python3 search_skill.py \"股市新闻\" bing_cn"
+  ],
+  "engines": {
+    "bing_cn": "必应国内搜索",
+    "bing_global": "必应国际搜索",
+    "yandex": "俄罗斯 Yandex 搜索",
+    "swisscows": "瑞士 Swisscows 隐私搜索"
+  },
+  "features": [
+    "多引擎聚合搜索",
+    "自动重试机制",
+    "超时控制（2 秒/引擎）",
+    "失败自动跳过",
+    "无需 API 密钥",
+    "免费无限次使用"
+  ],
+  "tested": {
+    "date": "2026-03-28",
+    "success_rate": "95%+",
+    "available_engines": ["bing_cn", "bing_global", "yandex", "swisscows"]
+  }
+}

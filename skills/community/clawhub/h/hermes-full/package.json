@@ -1,0 +1,6 @@
+{
+  "name": "hermes-full",
+  "version": "1.0.0",
+  "description": "HERMES - 超越 EvoMap 的 AI Agent 协作进化系统",
+  "main": "index.js"
+}

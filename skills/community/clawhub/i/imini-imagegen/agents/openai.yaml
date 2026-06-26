@@ -1,0 +1,6 @@
+interface:
+  display_name: "IMINI ImageGen"
+  short_description: "Generate images through the imini API"
+  default_prompt: "Use $imini-imagegen to generate images through the imini Nano Banana API."
+policy:
+  allow_implicit_invocation: true

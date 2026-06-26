@@ -1,0 +1,137 @@
+{
+  "name": "inspiration-case-figure-guide",
+  "display_name": "Inspiration Case Figure Guide",
+  "version": "3.0.0",
+  "license": "MIT-0",
+  "description": "A reusable production-grade skill for designing, prompting, generating, critiquing, and integrating research-paper inspiration figures: motivating cases, problem teasers, failure examples, before/after contrasts, scenario storyboards, observation-to-hypothesis diagrams, and reviewer-facing limitation cases. Generated from research-paper-figure-skill-factory v1.0.1 with full-feasible local PDF coverage, startup-plan-only first replies, strict text/image separation, all-step/current-position state footers, optional sample images, 4-6 text candidates usually 6, mandatory visual-candidate setup, IMAGE_ONLY candidate-board generation, candidate-review selection, ChatGPT web Create image through ChatGPT Images 2.0, and Codex $imagegen first.",
+  "entrypoint": "SKILL.md",
+  "openclaw": {
+    "skillKey": "inspiration-case-figure-guide"
+  },
+  "tags": [
+    "research-figure",
+    "inspiration-figure",
+    "motivating-example",
+    "problem-teaser",
+    "case-walkthrough",
+    "failure-case",
+    "intro-figure",
+    "candidate-image-bridge",
+    "imagegen",
+    "chatgpt-images-2",
+    "clawhub",
+    "openclaw"
+  ],
+  "generated_from": {
+    "guide": "research-paper-figure-skill-factory",
+    "guide_version": "1.0.1",
+    "source_zip": "E:/论文作图元skill/research-paper-figure-skill-factory-v1.0.1-skill.zip",
+    "source_corpus_notes": "references/source-corpus-notes.md",
+    "initial_corpus_manifest": "references/initial-corpus-manifest.md",
+    "evidence_map_index": "references/evidence-map-index.md",
+    "builder_time_acquisition_report": "references/builder-time-acquisition-report.md",
+    "evidence_sufficiency_level": "full_taxonomy",
+    "lock_grade": "production_grade",
+    "lock_basis": "full_taxonomy",
+    "initial_corpus_total_candidate_pdf_count": 7631,
+    "initial_corpus_accessible_pdf_count": 7631,
+    "initial_corpus_processed_pdf_count": 7631,
+    "initial_corpus_skipped_pdf_count": 0,
+    "initial_corpus_coverage_scope": "all_accessible_relevant_pdfs",
+    "total_local_pdf_records": 7631,
+    "verified_official_oral_pdfs": 3356,
+    "supplemental_local_pdfs": 4275,
+    "figure_captions_extracted": 146071,
+    "diagram_relevant_caption_count": 119534,
+    "multi_label_figure_count": 93088,
+    "representative_rendered_page_count": 96,
+    "representative_pages_are_audit_aids_only": true,
+    "inspiration_case_keyword_and_label_hits": 48536,
+    "inspiration_case_paper_count": 7021,
+    "inspiration_case_first_figure_paper_count": 2958,
+    "inspiration_case_label_counts": {
+      "evidence_board": 30611,
+      "case_walkthrough": 23288,
+      "mechanism_intuition": 17413,
+      "failure_limitation": 9628,
+      "taxonomy_design_space": 2405,
+      "data_benchmark_protocol": 10385
+    },
+    "known_limitations": [
+      "Evidence extraction used automated PDF text/caption extraction, title/caption multi-label classification, and keyword filtering over the full local corpus; it is not exhaustive manual annotation of every visual element.",
+      "The inspiration/case subset is intentionally broad because real papers express inspiration through examples, failures, observations, comparisons, scenarios, and evidence boards rather than one stable caption keyword.",
+      "Supplemental local PDFs support taxonomy breadth but are not counted as verified official oral PDFs.",
+      "For a very narrow venue, domain, or visual style, ask for sample images or refresh with closer domain papers before final publication-critical rendering."
+    ]
+  },
+  "workflow_policy": {
+    "first_reply_mode": "STARTUP_PLAN_ONLY_TEXT_ONLY",
+    "required_steps": [
+      {"step": "S0", "mode": "STARTUP_PLAN_ONLY_TEXT_ONLY", "purpose": "startup_plan"},
+      {"step": "P1", "mode": "TEXT_ONLY", "purpose": "material_intake"},
+      {"step": "P2", "mode": "TEXT_ONLY", "purpose": "inspiration_need_diagnosis_and_routing"},
+      {"step": "P3", "mode": "TEXT_ONLY", "purpose": "reader_effect_and_text_candidates"},
+      {"step": "P4", "mode": "TEXT_ONLY", "purpose": "visual_candidate_board_setup"},
+      {"step": "P5", "mode": "IMAGE_ONLY", "purpose": "candidate_board_generation"},
+      {"step": "P6", "mode": "TEXT_ONLY", "purpose": "candidate_review_and_direction_lock"},
+      {"step": "P7", "mode": "TEXT_ONLY", "purpose": "final_image_brief"},
+      {"step": "P8", "mode": "IMAGE_ONLY", "purpose": "formal_generation"},
+      {"step": "P9", "mode": "TEXT_ONLY", "purpose": "review_caption_body_text"}
+    ],
+    "candidate_image_bridge_required_after_multi_option_text": true,
+    "candidate_image_bridge_skippable_only_by_explicit_user_text_only_choice": true
+  },
+  "candidate_policy": {
+    "text_candidates_default": 6,
+    "text_candidates_min": 4,
+    "text_candidates_max": 6,
+    "candidate_board_images_default": 6,
+    "candidate_board_images_min": 4,
+    "candidate_board_images_max": 6,
+    "formal_image_candidates_default": 6,
+    "formal_image_candidates_min": 4,
+    "formal_image_candidates_max": 6,
+    "if_user_says_generate_without_count": "default_to_6_images",
+    "single_image_only_when_explicit": true,
+    "always_prompt_for_multi_candidate_images": true,
+    "multi_option_next_prompt_prefers_candidate_images": true,
+    "after_multi_option_text_first_prompt": "ask_to_generate_or_display_6_candidate_images_or_schematic_candidates",
+    "required_bridge_steps": [
+      "TEXT_ONLY_candidate_board_setup",
+      "IMAGE_ONLY_candidate_board_generation",
+      "TEXT_ONLY_candidate_review_and_direction_lock"
+    ]
+  },
+  "rendering_policy": {
+    "chatgpt_web": "Use Create image through ChatGPT Images 2.0",
+    "codex_priority": "$imagegen",
+    "codex_fallback": "ChatGPT Images 2.0 API or another approved image-generation API",
+    "allowed_bitmap_outputs": ["png", "jpg", "jpeg", "webp"],
+    "forbidden_visual_outputs": [
+      "svg",
+      "mermaid",
+      "tikz",
+      "graphviz",
+      "html_css_diagram",
+      "canvas_diagram",
+      "matplotlib_figure",
+      "code_generated_figure"
+    ]
+  },
+  "navigation_policy": {
+    "recommended_prompt_prefix": "请使用**inspiration-case-figure-guide**，执行，根据当前状态，下一步执行：",
+    "unknown_next_prompt": "请使用**inspiration-case-figure-guide**，根据当前状态，提供下一步提问建议。",
+    "after_multi_option_text_first_prompt": "请使用**inspiration-case-figure-guide**，执行，根据当前状态，下一步执行：生成 6 张候选图/示意图供我比较选择。",
+    "state_source_default": "active_session_history",
+    "all_steps_and_current_position_required": true
+  },
+  "text_image_turn_policy": {
+    "no_image_on_first_reply": true,
+    "first_user_message_image_request_still_startup_text_only": true,
+    "no_text_and_image_same_turn": true,
+    "text_turn_stops_before_image_generation": true,
+    "image_turn_has_no_prose_or_state": true,
+    "user_must_confirm_after_text_prompt_before_image_generation": true,
+    "next_text_reply_records_previous_image_only_outputs": true
+  }
+}

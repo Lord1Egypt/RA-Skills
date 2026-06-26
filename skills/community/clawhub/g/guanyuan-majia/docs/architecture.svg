@@ -1,0 +1,272 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 920" font-family="-apple-system, 'PingFang SC', 'Segoe UI', 'Microsoft YaHei', sans-serif">
+  <defs>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="3" stdDeviation="8" flood-opacity="0.06"/>
+    </filter>
+    <filter id="newGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="4" stdDeviation="10" flood-opacity="0.18" flood-color="#ec4899"/>
+    </filter>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f8fafc"/>
+      <stop offset="100%" stop-color="#eef2f7"/>
+    </linearGradient>
+    <linearGradient id="newBadge" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#ec4899"/>
+      <stop offset="100%" stop-color="#8b5cf6"/>
+    </linearGradient>
+    <linearGradient id="officialBand" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f6f9ff"/>
+      <stop offset="100%" stop-color="#eef4ff"/>
+    </linearGradient>
+    <marker id="arrowDown" markerWidth="10" markerHeight="10" refX="5" refY="8" orient="auto">
+      <path d="M1 1 L5 8 L9 1" fill="none" stroke="#94a3b8" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <marker id="arrowUp" markerWidth="10" markerHeight="10" refX="5" refY="2" orient="auto">
+      <path d="M1 9 L5 2 L9 9" fill="none" stroke="#3b82f6" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
+
+  <rect width="1440" height="920" fill="url(#bg)"/>
+
+  <!-- Header -->
+  <text x="720" y="50" text-anchor="middle" font-size="30" font-weight="700" fill="#0f172a">观远 BI · 马甲实战版 · 全链路 Agent Skill</text>
+  <g transform="translate(720, 64)">
+    <rect x="-86" y="0" width="172" height="24" rx="12" fill="#0f172a"/>
+    <text x="0" y="16" text-anchor="middle" font-size="12" font-weight="700" fill="#fef3c7">v3.1.0  ·  2026-06-11</text>
+  </g>
+  <text x="720" y="112" text-anchor="middle" font-size="13.5" fill="#475569">官方全家桶之上的实战增益层　·　标准活路由官方，硬骨头落到本 skill 三支柱</text>
+  <text x="720" y="132" text-anchor="middle" font-size="11.5" fill="#94a3b8">工具无关 (Claude Code · OpenClaw · Codex · Hermes/gbrain)　·　前置 npm i -g @guandata/guanskill</text>
+
+  <!-- ================= UPPER HALF: Official suite routing layer ================= -->
+  <g transform="translate(55, 156)">
+    <rect width="1330" height="208" rx="14" fill="url(#officialBand)" stroke="#dbeafe" filter="url(#shadow)"/>
+
+    <!-- Band header -->
+    <g transform="translate(0, 8)">
+      <rect width="6" height="40" rx="3" fill="#3b82f6"/>
+      <text x="24" y="22" font-size="16" font-weight="700" fill="#0f172a">官方全家桶 · 路由层</text>
+      <text x="24" y="40" font-size="11.5" fill="#64748b">标准活（查数 / 建卡 / ETL / 数据流 / 数据源 / 截图 / 管理）一律向上路由给官方 5 件套</text>
+    </g>
+    <g transform="translate(1056, 14)">
+      <rect width="258" height="40" rx="8" fill="#ffffff" stroke="#bfdbfe"/>
+      <text x="16" y="18" font-size="11" font-weight="700" fill="#2563eb">@guandata/guanskill</text>
+      <text x="16" y="33" font-size="10" fill="#64748b">一键聚合包 · install-skill 装齐 5 命令</text>
+    </g>
+
+    <!-- 5 official skill mini cards -->
+    <!-- width 162, height 124, top y=64, x = 20 / 302 / 584 / 866 / 1148 -->
+
+    <!-- guancli -->
+    <g transform="translate(20, 64)">
+      <rect width="162" height="124" rx="10" fill="#ffffff" stroke="#e2e8f0" filter="url(#shadow)"/>
+      <rect width="162" height="6" rx="3" fill="#3b82f6"/>
+      <text x="14" y="32" font-size="13.5" font-weight="700" fill="#0f172a">guancli</text>
+      <g transform="translate(96, 20)">
+        <rect width="52" height="16" rx="8" fill="#eff6ff"/>
+        <text x="26" y="12" text-anchor="middle" font-size="9.5" font-weight="700" fill="#2563eb">1.0.32</text>
+      </g>
+      <text x="14" y="54" font-size="11" font-weight="600" fill="#334155">查数 · 只读中枢</text>
+      <text x="14" y="74" font-size="10.5" fill="#64748b">ETL / dsId / page</text>
+      <text x="14" y="91" font-size="10.5" fill="#64748b">血缘 · execute-sql</text>
+      <text x="14" y="108" font-size="10.5" fill="#64748b">metric · form CRUD</text>
+    </g>
+
+    <!-- guanvis -->
+    <g transform="translate(302, 64)">
+      <rect width="162" height="124" rx="10" fill="#ffffff" stroke="#e2e8f0" filter="url(#shadow)"/>
+      <rect width="162" height="6" rx="3" fill="#8b5cf6"/>
+      <text x="14" y="32" font-size="13.5" font-weight="700" fill="#0f172a">guanvis</text>
+      <g transform="translate(96, 20)">
+        <rect width="52" height="16" rx="8" fill="#f5f3ff"/>
+        <text x="26" y="12" text-anchor="middle" font-size="9.5" font-weight="700" fill="#7c3aed">0.1.23</text>
+      </g>
+      <text x="14" y="54" font-size="11" font-weight="600" fill="#334155">建卡 · 发布 · 截图</text>
+      <text x="14" y="74" font-size="10.5" fill="#64748b">74 图表 JS DSL</text>
+      <text x="14" y="91" font-size="10.5" fill="#64748b">pack / publish</text>
+      <text x="14" y="108" font-size="10.5" fill="#64748b">screenshot 出 PNG</text>
+    </g>
+
+    <!-- guanetl -->
+    <g transform="translate(584, 64)">
+      <rect width="162" height="124" rx="10" fill="#ffffff" stroke="#e2e8f0" filter="url(#shadow)"/>
+      <rect width="162" height="6" rx="3" fill="#10b981"/>
+      <text x="14" y="32" font-size="13.5" font-weight="700" fill="#0f172a">guanetl</text>
+      <g transform="translate(96, 20)">
+        <rect width="52" height="16" rx="8" fill="#ecfdf5"/>
+        <text x="26" y="12" text-anchor="middle" font-size="9.5" font-weight="700" fill="#059669">0.1.13</text>
+      </g>
+      <text x="14" y="54" font-size="11" font-weight="600" fill="#334155">ETL 写操作闭环</text>
+      <text x="14" y="74" font-size="10.5" fill="#64748b">新建 / 改 / lint</text>
+      <text x="14" y="91" font-size="10.5" fill="#64748b">preview / save / run</text>
+      <text x="14" y="108" font-size="10.5" fill="#64748b">schedule / delete</text>
+    </g>
+
+    <!-- guanwf -->
+    <g transform="translate(866, 64)">
+      <rect width="162" height="124" rx="10" fill="#ffffff" stroke="#e2e8f0" filter="url(#shadow)"/>
+      <rect width="162" height="6" rx="3" fill="#10b981"/>
+      <text x="14" y="32" font-size="13.5" font-weight="700" fill="#0f172a">guanwf</text>
+      <g transform="translate(96, 20)">
+        <rect width="52" height="16" rx="8" fill="#ecfdf5"/>
+        <text x="26" y="12" text-anchor="middle" font-size="9.5" font-weight="700" fill="#059669">0.1.4</text>
+      </g>
+      <text x="14" y="54" font-size="11" font-weight="600" fill="#334155">工作流数据流</text>
+      <text x="14" y="74" font-size="10.5" fill="#64748b">Dataflow 建 / 编</text>
+      <text x="14" y="91" font-size="10.5" fill="#64748b">DB 直连回写</text>
+      <text x="14" y="108" font-size="10.5" fill="#64748b">增量输出</text>
+    </g>
+
+    <!-- guands -->
+    <g transform="translate(1148, 64)">
+      <rect width="162" height="124" rx="10" fill="#ffffff" stroke="#e2e8f0" filter="url(#shadow)"/>
+      <rect width="162" height="6" rx="3" fill="#0ea5e9"/>
+      <text x="14" y="32" font-size="13.5" font-weight="700" fill="#0f172a">guands</text>
+      <g transform="translate(96, 20)">
+        <rect width="52" height="16" rx="8" fill="#f0f9ff"/>
+        <text x="26" y="12" text-anchor="middle" font-size="9.5" font-weight="700" fill="#0284c7">0.1.14</text>
+      </g>
+      <text x="14" y="54" font-size="11" font-weight="600" fill="#334155">数据源 · 数据集</text>
+      <text x="14" y="74" font-size="10.5" fill="#64748b">建连 MySQL/PG</text>
+      <text x="14" y="91" font-size="10.5" fill="#64748b">create / import</text>
+      <text x="14" y="108" font-size="10.5" fill="#64748b">replace-data · 调度</text>
+    </g>
+  </g>
+
+  <!-- ================= MIDDLE: routing relationship ================= -->
+  <g transform="translate(0, 376)">
+    <!-- up arrow: standard work routes up -->
+    <line x1="430" y1="44" x2="430" y2="6" stroke="#3b82f6" stroke-width="2" stroke-dasharray="5 4" marker-end="url(#arrowUp)"/>
+    <g transform="translate(446, 12)">
+      <rect width="208" height="28" rx="14" fill="#eff6ff" stroke="#bfdbfe"/>
+      <text x="104" y="18" text-anchor="middle" font-size="11.5" font-weight="700" fill="#2563eb">标准活 ↑ 路由官方全家桶</text>
+    </g>
+
+    <!-- down arrow: hard bones fall down -->
+    <line x1="1010" y1="6" x2="1010" y2="44" stroke="#94a3b8" stroke-width="2" stroke-dasharray="5 4" marker-end="url(#arrowDown)"/>
+    <g transform="translate(786, 12)">
+      <rect width="216" height="28" rx="14" fill="#fdf2f8" stroke="#fbcfe8"/>
+      <text x="108" y="18" text-anchor="middle" font-size="11.5" font-weight="700" fill="#be185d">官方够不着的硬骨头 ↓ 落本 skill</text>
+    </g>
+  </g>
+
+  <!-- ================= LOWER HALF: majia-guanyuan 3 pillars ================= -->
+  <!-- section label -->
+  <g transform="translate(55, 430)">
+    <rect width="6" height="22" rx="3" fill="#10b981"/>
+    <text x="20" y="11" font-size="15" font-weight="700" fill="#0f172a">majia-guanyuan 实战增益层</text>
+    <g transform="translate(248, -4)">
+      <rect width="64" height="18" rx="9" fill="#0f172a"/>
+      <text x="32" y="13" text-anchor="middle" font-size="10.5" font-weight="700" fill="#fef3c7">本 skill 3.1.0</text>
+    </g>
+    <text x="332" y="11" font-size="11.5" fill="#64748b">官方 DSL / 命令覆盖不到的硬骨头 · 三大支柱</text>
+  </g>
+
+  <!-- Pillar 1: 官方盲区层 -->
+  <g transform="translate(55, 452)">
+    <rect width="430" height="372" rx="14" fill="#ffffff" stroke="#e2e8f0" filter="url(#shadow)"/>
+    <rect width="430" height="8" rx="3" fill="#10b981"/>
+    <text x="24" y="44" font-size="11" fill="#10b981" font-weight="700" letter-spacing="1.5">支柱 ① · 官方盲区层</text>
+    <text x="24" y="76" font-size="21" font-weight="700" fill="#0f172a">引擎级踩坑绕过</text>
+    <text x="24" y="99" font-size="12" fill="#64748b">官方高层 DSL + 黑盒够不着的硬 hack</text>
+    <line x1="24" y1="118" x2="406" y2="118" stroke="#f1f5f9"/>
+
+    <!-- Part C -->
+    <g transform="translate(24, 132)">
+      <rect width="382" height="50" rx="8" fill="#f8fafc"/>
+      <text x="14" y="22" font-size="12.5" font-weight="700" fill="#334155">Part C · 既有页注入排障</text>
+      <text x="14" y="40" font-size="10.5" fill="#64748b">renderChart 契约 / payload_json / 固定卡 overlay z-index</text>
+    </g>
+    <!-- Part C-12 -->
+    <g transform="translate(24, 190)">
+      <rect width="382" height="50" rx="8" fill="#f8fafc"/>
+      <text x="14" y="22" font-size="12.5" font-weight="700" fill="#334155">Part C-12 · descriptor patch + 设计底线</text>
+      <text x="14" y="40" font-size="10.5" fill="#64748b">selector 联 dataView · 视觉底线/反 AI 味红线 · .bak 备份</text>
+    </g>
+    <!-- Part D -->
+    <g transform="translate(24, 248)">
+      <rect width="382" height="50" rx="8" fill="#f8fafc"/>
+      <text x="14" y="22" font-size="12.5" font-weight="700" fill="#334155">Part D · v7 状态机绕过</text>
+      <text x="14" y="40" font-size="10.5" fill="#64748b">草稿-发布分离 / 60004 / 节点化静默坑 / phoneLayout</text>
+    </g>
+    <!-- Part E -->
+    <g transform="translate(24, 306)">
+      <rect width="382" height="50" rx="8" fill="#f8fafc"/>
+      <text x="14" y="22" font-size="12.5" font-weight="700" fill="#334155">Part E · SuperApp 反向工程</text>
+      <text x="14" y="40" font-size="10.5" fill="#64748b">form 建表 /survey-engine · LLM 中转三路径 · fetch 绕 unwrap</text>
+    </g>
+  </g>
+
+  <!-- Pillar 2: 方法论层 -->
+  <g transform="translate(505, 452)">
+    <rect width="430" height="372" rx="14" fill="#ffffff" stroke="#e2e8f0" filter="url(#shadow)"/>
+    <rect width="430" height="8" rx="3" fill="#8b5cf6"/>
+    <text x="24" y="44" font-size="11" fill="#8b5cf6" font-weight="700" letter-spacing="1.5">支柱 ② · 方法论层</text>
+    <text x="24" y="76" font-size="21" font-weight="700" fill="#0f172a">范式判断 · 哲学层</text>
+    <text x="24" y="99" font-size="12" fill="#64748b">不是操作手册，是该不该做 / 怎么取舍</text>
+    <line x1="24" y1="118" x2="406" y2="118" stroke="#f1f5f9"/>
+
+    <!-- AI-native ADS -->
+    <g transform="translate(24, 132)" filter="url(#newGlow)">
+      <rect width="382" height="116" rx="10" fill="#ffffff" stroke="url(#newBadge)" stroke-width="2"/>
+      <g transform="translate(14, 14)">
+        <rect width="120" height="18" rx="9" fill="url(#newBadge)"/>
+        <text x="60" y="13" text-anchor="middle" font-size="10" font-weight="800" fill="#ffffff" letter-spacing="0.5">AI-NATIVE ADS</text>
+      </g>
+      <text x="146" y="27" font-size="10.5" fill="#8b5cf6" font-weight="600">哲学层文档</text>
+      <text x="14" y="56" font-size="11" fill="#475569">客户问"想给 BI 接 AI" → 判断 治理 vs 重搭</text>
+      <text x="14" y="76" font-size="11" fill="#475569">7 条 AI-friendly 字段约束 · ODS+DWD 不动 / ADS 重建</text>
+      <text x="14" y="96" font-size="11" fill="#475569">预算分配 30% + 30% + 40% · 反模式 8 条</text>
+    </g>
+
+    <!-- Part B governance -->
+    <g transform="translate(24, 258)">
+      <rect width="382" height="40" rx="8" fill="#f8fafc"/>
+      <text x="14" y="18" font-size="12.5" font-weight="700" fill="#334155">Part B · 治理判断</text>
+      <text x="14" y="33" font-size="10.5" fill="#64748b">依赖图 + 循环检测 + 8 维去留 / ODS·DIM·DWD·DWS·APP 分层</text>
+    </g>
+    <!-- 10 errors + B-17 -->
+    <g transform="translate(24, 306)">
+      <rect width="382" height="50" rx="8" fill="#fef3c7"/>
+      <text x="14" y="22" font-size="12.5" font-weight="700" fill="#b45309">10 类引擎报错 + B-17 全链路重写</text>
+      <text x="14" y="40" font-size="10.5" fill="#a16207">&lt;&gt; NULL 吞行 · CTE 中文别名 · UNION 列差 · ExecPlan 双跑切流</text>
+    </g>
+  </g>
+
+  <!-- Pillar 3: 业务层 -->
+  <g transform="translate(955, 452)">
+    <rect width="430" height="372" rx="14" fill="#ffffff" stroke="#e2e8f0" filter="url(#shadow)"/>
+    <rect width="430" height="8" rx="3" fill="#f59e0b"/>
+    <text x="24" y="44" font-size="11" fill="#f59e0b" font-weight="700" letter-spacing="1.5">支柱 ③ · 业务层</text>
+    <text x="24" y="76" font-size="21" font-weight="700" fill="#0f172a">餐饮连锁 BI 公式库</text>
+    <text x="24" y="99" font-size="12" fill="#64748b">蒸馏自两段餐饮 BI 履职 · 全脱敏</text>
+    <line x1="24" y1="118" x2="406" y2="118" stroke="#f1f5f9"/>
+
+    <!-- 60+ SQL -->
+    <g transform="translate(24, 132)">
+      <rect width="382" height="50" rx="8" fill="#f8fafc"/>
+      <text x="14" y="22" font-size="12.5" font-weight="700" fill="#334155">60+ 业务 SQL 公式</text>
+      <text x="14" y="40" font-size="10.5" fill="#64748b">复购率 / RFM / AC / ADS / Comp 老店 / 新老客 / 用餐时段</text>
+    </g>
+    <!-- DWD 范式 -->
+    <g transform="translate(24, 190)">
+      <rect width="382" height="50" rx="8" fill="#f8fafc"/>
+      <text x="14" y="22" font-size="12.5" font-weight="700" fill="#334155">DWD 宽表工程范式</text>
+      <text x="14" y="40" font-size="10.5" fill="#64748b">10-CTE 宽表底座 / 财务双源对账 / 评价 pipeline</text>
+    </g>
+    <!-- 39 ETL catalog -->
+    <g transform="translate(24, 248)">
+      <rect width="382" height="50" rx="8" fill="#f8fafc"/>
+      <text x="14" y="22" font-size="12.5" font-weight="700" fill="#334155">39 个生产 ETL 索引</text>
+      <text x="14" y="40" font-size="10.5" fill="#64748b">11 业务域分类 + 节点/输入/输出/SQL 速查 + 复用决策表</text>
+    </g>
+    <!-- field dict -->
+    <g transform="translate(24, 306)">
+      <rect width="382" height="50" rx="8" fill="#fffbeb"/>
+      <text x="14" y="22" font-size="12.5" font-weight="700" fill="#b45309">字段词典 + 5 条最常踩坑</text>
+      <text x="14" y="40" font-size="10.5" fill="#a16207">和路由层/各 Part 正交 · 按业务领域分而非平台操作分</text>
+    </g>
+  </g>
+
+  <!-- Footer install commands -->
+  <text x="720" y="900" text-anchor="middle" font-size="11" fill="#94a3b8">install: gh skill install maojiebc/majia-guanyuan · npx skills add maojiebc/majia-guanyuan · /plugin marketplace add maojiebc/majia-guanyuan · npm i @supermajia/majia-guanyuan</text>
+</svg>

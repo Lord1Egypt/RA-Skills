@@ -1,0 +1,12 @@
+{
+  "name": "IELTS Speaking Coach",
+  "tagline": "Full-featured IELTS speaking coach with audio pronunciation scoring, mock exams, and ZPD learning paths",
+  "description": "An OpenClaw skill that acts as an IELTS Speaking Examiner and Tutor. Evaluates spoken English on Fluency & Coherence, Lexical Resource, Grammar, and Pronunciation (Band 1-9) using official descriptors. Supports audio input for real pronunciation scoring via ffmpeg + ASR. Features include: Part 1/2/3 practice, full mock exam simulation, ZPD-based personalized learning paths, adaptive difficulty, grammar corrections, vocabulary upgrades, pronunciation guidance for Chinese speakers, 42 difficulty-tagged cue cards, and spoken-register model answers.",
+  "category": "productivity",
+  "tags": ["ielts", "english", "speaking", "education", "language-learning", "assessment", "pronunciation", "audio"],
+  "version": "1.1.2",
+  "license": "MIT",
+  "pricing": "free",
+  "support_url": "https://github.com/kevin0818-lxd/ielts-speaking-coach/issues",
+  "homepage": "https://github.com/kevin0818-lxd/ielts-speaking-coach"
+}

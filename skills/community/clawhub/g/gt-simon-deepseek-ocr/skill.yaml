@@ -1,0 +1,17 @@
+name: ocr.extract_text
+display_name: DeepSeek OCR
+description: OCR skill
+type: ocr
+
+inputs:
+  image:
+    type: string
+    required: true
+
+outputs:
+  text:
+    type: string
+
+runtime:
+  entry: handler.py
+  function: run

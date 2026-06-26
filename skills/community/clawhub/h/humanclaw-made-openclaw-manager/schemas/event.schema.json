@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Event",
+  "type": "object",
+  "required": ["event_id", "session_id", "run_id", "event_type", "timestamp"],
+  "properties": {
+    "event_id": { "type": "string" },
+    "session_id": { "type": "string" },
+    "run_id": { "type": "string" },
+    "event_type": { "type": "string" },
+    "timestamp": { "type": "string" },
+    "payload": { "type": "object" }
+  }
+}
+

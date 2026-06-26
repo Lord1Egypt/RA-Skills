@@ -1,0 +1,542 @@
+{
+  "version": "4.0.8",
+  "description": "Security detection rules for ICT skill auditor",
+  "rules": [
+    {
+      "id": "credential-harvest",
+      "name": "凭证收集",
+      "severity": "critical",
+      "patterns": {
+        "py": [
+          "os\\.environ|getenv"
+        ],
+        "sh": [
+          "\\$API_KEY|\\$SECRET|\\$TOKEN|\\$PASSWORD"
+        ],
+        "js": [
+          "process\\.env",
+          "apiKey|api_key|secretKey",
+          "\\.env"
+        ],
+        "go": [
+          "os\\.Getenv|os\\.LookupEnv"
+        ],
+        "rs": [
+          "os\\.env|std\\.env"
+        ],
+        "java": [
+          "System\\.getenv|System\\.getProperty"
+        ]
+      }
+    },
+    {
+      "id": "code-execution",
+      "name": "代码执行",
+      "severity": "critical",
+      "patterns": {
+        "py": [
+          "eval\\s*\\(|exec\\s*\\(",
+          "subprocess\\.call.*shell\\s*=\\s*True",
+          "os\\.system|os\\.popen",
+          "__import__\\s*\\("
+        ],
+        "sh": [
+          "eval\\s+",
+          "exec\\s+"
+        ],
+        "js": [
+          "eval\\s*\\(",
+          "child_process|spawn\\(|execSync",
+          "Function\\s*\\(",
+          "require\\s*\\(\\s*['\\\"]child_process"
+        ],
+        "go": [
+          "exec\\.Command.*shell\\s*=\\s*true",
+          "exec\\.Command.*\\\"sh\\\"",
+          "exec\\.Command.*\\\"-c\\\"",
+          "syscall\\.Exec"
+        ],
+        "rs": [
+          "Command::new.*shell|Command::new.*\"sh\"",
+          "std::process::Command.*arg.*\"-c\"",
+          "eval\\(|execute\\("
+        ],
+        "java": [
+          "Runtime\\.getRuntime\\(\\)\\.exec",
+          "ProcessBuilder.*shell",
+          "System\\.exec\\("
+        ]
+      }
+    },
+    {
+      "id": "exfiltration-url",
+      "name": "数据外泄URL",
+      "severity": "critical",
+      "patterns": {
+        "all": [
+          "webhook\\.site|requestbin|ngrok\\.io",
+          "pipedream\\.net|hookbin|beeceptor",
+          "requestcatcher|postb\\.in|httpbin\\.org",
+          "myjson\\.com|jsonblob\\.io"
+        ]
+      }
+    },
+    {
+      "id": "base64-obfuscation",
+      "name": "Base64混淆",
+      "severity": "medium",
+      "patterns": {
+        "py": [
+          "atob\\(|btoa\\(|base64\\.decode"
+        ],
+        "sh": [
+          "base64\\s+-d|base64\\s+--decode"
+        ],
+        "js": [
+          "atob\\(|btoa\\(|Buffer\\.from.*base64"
+        ],
+        "go": [
+          "encoding\\/base64\\.NewDecoder",
+          "DecodeString|EncodeToString"
+        ]
+      }
+    },
+    {
+      "id": "sensitive-fs",
+      "name": "敏感文件系统",
+      "severity": "critical",
+      "patterns": {
+        "py": [
+          "/etc/passwd|/etc/shadow",
+          "~/.ssh|~/.gnupg|~/.aws"
+        ],
+        "sh": [
+          "/etc/passwd|/etc/shadow",
+          "~\\/\\.ssh|~\\/\\.gnupg"
+        ],
+        "js": [
+          "\\/etc\\/passwd",
+          "\\.ssh\\/|\\.gnupg\\/"
+        ],
+        "go": [
+          "\\/etc\\/passwd|\\/etc\\/shadow",
+          "\\.ssh\\/|\\.gnupg\\/|\\.aws\\/"
+        ],
+        "rs": [
+          "\\/etc\\/passwd|\\/etc\\/shadow",
+          "\\.ssh\\/|\\.gnupg\\/"
+        ],
+        "java": [
+          "\\/etc\\/passwd|\\/etc\\/shadow",
+          "\\.ssh\\/|\\.gnupg\\/"
+        ]
+      }
+    },
+    {
+      "id": "crypto-wallet",
+      "name": "加密钱包地址",
+      "severity": "critical",
+      "patterns": {
+        "all": [
+          "0x[a-fA-F0-9]{40}",
+          "bc1[a-zA-HJ-NP-Z0-9]{39,59}",
+          "[13][a-km-zA-HJ-NP-Z1-9]{25,34}"
+        ]
+      }
+    },
+    {
+      "id": "dependency-confusion",
+      "name": "依赖混淆",
+      "severity": "high",
+      "patterns": {
+        "all": [
+          "@internal|@private|@corp|@company",
+          "-internal-|-private-",
+          "requets|reqeusts|lodasg|loadsh|colosr|axois"
+        ]
+      }
+    },
+    {
+      "id": "install-hook",
+      "name": "安装钩子",
+      "severity": "medium",
+      "patterns": {
+        "all": [
+          "postinstall|preinstall|post_install|pre_install",
+          "setup\\.py.*install"
+        ]
+      }
+    },
+    {
+      "id": "symlink-attack",
+      "name": "Symlink攻击",
+      "severity": "critical",
+      "patterns": {
+        "py": [
+          "os\\.symlink|fs\\.symlinkSync"
+        ],
+        "sh": [
+          "ln\\s+-s"
+        ],
+        "js": [
+          "fs\\.symlink|symlink\\("
+        ]
+      }
+    },
+    {
+      "id": "time-bomb",
+      "name": "时间炸弹",
+      "severity": "medium",
+      "patterns": {
+        "py": [
+          "Date\\.now|datetime\\.now",
+          "setTimeout|setInterval"
+        ],
+        "sh": [
+          "at\\s+|crontab"
+        ],
+        "js": [
+          "setTimeout|setInterval|Date\\.now"
+        ]
+      }
+    },
+    {
+      "id": "remote-exec",
+      "name": "远程脚本执行",
+      "severity": "critical",
+      "patterns": {
+        "all": [
+          "curl\\s+.*\\|\\s*bash|wget\\s+.*\\|\\s*bash",
+          "curl\\s+.*sh\\b|wget\\s+.*sh\\b"
+        ]
+      }
+    },
+    {
+      "id": "telemetry",
+      "name": "遥测追踪",
+      "severity": "medium",
+      "patterns": {
+        "all": [
+          "google-analytics|gtag|ga\\(",
+          "segment\\.|mixpanel|amplitude|hotjar"
+        ]
+      }
+    },
+    {
+      "id": "prompt-injection",
+      "name": "提示词注入",
+      "severity": "critical",
+      "patterns": {
+        "all": [
+          "ignore.*previous instructions",
+          "disregard.*previous|forget your rules",
+          "you are now |act as |pretend to be",
+          "override.*(safety|security|rules)"
+        ]
+      }
+    },
+    {
+      "id": "stealth-exfil",
+      "name": "隐蔽数据外发",
+      "severity": "critical",
+      "patterns": {
+        "all": [
+          "send.*(data|files?|secrets?|tokens?) to",
+          "POST.*(data|files?|secrets?)"
+        ]
+      }
+    },
+    {
+      "id": "container-escape",
+      "name": "容器逃逸",
+      "severity": "critical",
+      "patterns": {
+        "all": [
+          "docker.*socket|\\.docker\\.sock",
+          "cgroup\\.escape|\\.namespace"
+        ]
+      }
+    },
+    {
+      "id": "ssh-remote",
+      "name": "SSH远程连接",
+      "severity": "medium",
+      "patterns": {
+        "all": [
+          "ssh\\s+-|scp\\s+",
+          "paramiko|netmiko",
+          "fabric\\.operations"
+        ]
+      }
+    },
+    {
+      "id": "privilege-escalation",
+      "name": "权限提升",
+      "severity": "critical",
+      "patterns": {
+        "all": [
+          "sudo\\s+",
+          "chmod\\s+777",
+          "setuid|setgid",
+          "chown\\s+"
+        ]
+      }
+    },
+    {
+      "id": "hidden-file",
+      "name": "隐藏文件",
+      "severity": "warning",
+      "patterns": {
+        "all": [
+          "\\s\\.\\w+\\s",
+          "open\\s*\\(\\s*[\"\\']\\/\\\\.\\w+"
+        ]
+      }
+    },
+    {
+      "id": "unusual-ports",
+      "name": "非寻常端口",
+      "severity": "warning",
+      "patterns": {
+        "all": [
+          ":4444",
+          ":5555",
+          ":6666",
+          ":7777",
+          ":8888",
+          ":9999",
+          ":1337",
+          ":31337",
+          ":31338"
+        ]
+      }
+    },
+    {
+      "id": "user-sensitive-files",
+      "name": "访问用户敏感文件",
+      "severity": "critical",
+      "patterns": {
+        "all": [
+          "MEMORY\\.md",
+          "USER\\.md",
+          "SOUL\\.md",
+          "IDENTITY\\.md",
+          "\\.claw.*config"
+        ]
+      }
+    },
+    {
+      "id": "obfuscated-code",
+      "name": "代码混淆",
+      "severity": "critical",
+      "patterns": {
+        "all": [
+          "eval\\s*\\(.*base64",
+          "decode\\s*\\(.*atob",
+          "Function\\s*\\(\\s*[\"\\'].*\\\\x"
+        ]
+      }
+    },
+    {
+      "id": "browser-sensitive",
+      "name": "浏览器敏感数据",
+      "severity": "critical",
+      "patterns": {
+        "all": [
+          "cookie|session",
+          "localStorage",
+          "sessionStorage",
+          "\\.cookie"
+        ]
+      }
+    },
+    {
+      "id": "unsafe-random-go",
+      "name": "不安全随机数(Go)",
+      "severity": "high",
+      "patterns": {
+        "go": [
+          "math\\/rand\\.New",
+          "rand\\.Intn\\(|rand\\.Int\\(\\)",
+          "rand\\.Read\\("
+        ]
+      }
+    },
+    {
+      "id": "sql-injection-go",
+      "name": "SQL注入风险(Go)",
+      "severity": "critical",
+      "patterns": {
+        "go": [
+          "fmt\\.Sprintf.*SELECT|fmt\\.Sprintf.*INSERT|fmt\\.Sprintf.*UPDATE|fmt\\.Sprintf.*DELETE",
+          "string\\(.*\\+\\s*[\"\\"
+        ]
+      }
+    },
+    {
+      "id": "hardcoded-keys-go",
+      "name": "硬编码密钥(Go)",
+      "severity": "critical",
+      "patterns": {
+        "go": [
+          "[\"\\'](sk-|pk_live_|pk_test_)[a-zA-Z0-9]+"
+        ]
+      }
+    },
+    {
+      "id": "no-https-go",
+      "name": "未使用HTTPS(Go)",
+      "severity": "high",
+      "patterns": {
+        "go": []
+      }
+    },
+    {
+      "id": "template-injection-go",
+      "name": "模板注入(Go)",
+      "severity": "critical",
+      "patterns": {
+        "go": [
+          "template\\.HTML\\(|template\\.HTML\\.Render",
+          "html\\/template\\.New.*\\.Parse.*user",
+          "\\.Execute.*\\.HTML\\("
+        ]
+      }
+    },
+    {
+      "id": "unsafe-block-rs",
+      "name": "Rust不安全代码块",
+      "severity": "medium",
+      "patterns": {
+        "rs": [
+          "unsafe\\s*\\{",
+          "unsafe\\s+fn",
+          "unsafe\\s+impl",
+          "unsafe\\s+trait"
+        ]
+      }
+    },
+    {
+      "id": "hardcoded-seed-rs",
+      "name": "Rust硬编码随机种子",
+      "severity": "high",
+      "patterns": {
+        "rs": [
+          "Seed::from",
+          "rand::Seed",
+          "OsRng::from_seed",
+          "from_entropy\\(\\)"
+        ]
+      }
+    },
+    {
+      "id": "memory-safety-rs",
+      "name": "Rust内存安全问题",
+      "severity": "medium",
+      "patterns": {
+        "rs": [
+          "\\.unwrap\\(\\)",
+          "\\.expect\\("
+        ]
+      }
+    },
+    {
+      "id": "sql-injection-java",
+      "name": "Java SQL注入",
+      "severity": "critical",
+      "patterns": {
+        "java": [
+          "statement\\.executeQuery.*\\+",
+          "createStatement\\(\\)\\.executeQuery.*\\+",
+          "PreparedStatement.*\\+\\s*[\"\\']"
+        ]
+      }
+    },
+    {
+      "id": "hardcoded-creds-java",
+      "name": "Java硬编码凭证",
+      "severity": "critical",
+      "patterns": {
+        "java": []
+      }
+    },
+    {
+      "id": "insecure-deserialization-java",
+      "name": "Java不安全反序列化",
+      "severity": "critical",
+      "patterns": {
+        "java": [
+          "ObjectInputStream",
+          "\\.readObject\\(\\)",
+          "XMLDecoder",
+          "YAML\\.load",
+          "ObjectMapper\\.readValue"
+        ]
+      }
+    },
+    {
+      "id": "xxe-java",
+      "name": "Java XXE攻击",
+      "severity": "critical",
+      "patterns": {
+        "java": [
+          "DocumentBuilderFactory\\.newInstance",
+          "SAXParserFactory\\.newInstance",
+          "TransformerFactory\\.newInstance",
+          "XMLReader.*setFeature"
+        ]
+      }
+    }
+  ],
+  "net_patterns": {
+    "py": [
+      "urllib|requests\\.|http\\.|https\\.",
+      "os\\.system.*curl|wget"
+    ],
+    "sh": [
+      "curl |wget |fetch ",
+      "http|https"
+    ],
+    "js": [
+      "axios|fetch|request|got\\("
+    ]
+  },
+  "false_positive_patterns": [],
+  "supported_languages": {
+    ".py": "py",
+    ".sh": "sh",
+    ".bash": "sh",
+    ".js": "js",
+    ".mjs": "js",
+    ".cjs": "js",
+    ".ts": "ts",
+    ".tsx": "ts",
+    ".jsx": "ts",
+    ".go": "go",
+    ".rs": "rs",
+    ".java": "java",
+    ".kt": "java"
+  },
+  "required_skill_sections": [
+    "描述",
+    "使用方法",
+    "功能"
+  ],
+  "auditor_files": [
+    "SKILL.md",
+    "ict.py",
+    "skill_auditor.py",
+    "audit.sh",
+    "inspect.sh",
+    "trust_score.py",
+    "run_tests.py",
+    "rules.py",
+    "rules.json",
+    "false_positive_filter.py",
+    "sensitive_info_scanner.py",
+    "ast_analyzer.py",
+    "dependency_scanner.py",
+    "incremental_scanner.py",
+    "rule_loader.py"
+  ]
+}

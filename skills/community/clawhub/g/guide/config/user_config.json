@@ -1,0 +1,20 @@
+{
+  "_comment": "用户配置文件 - 请填入您的 API 信息",
+  "_note": "首次使用请复制 user_config.example.json 并填写真实信息",
+
+  "api": {
+    "base_url": "",
+    "api_key": "",
+    "model_narration": "",
+    "model_style": "",
+    "timeout": 60
+  },
+
+  "last_used": {
+    "relic_name": "",
+    "museum": "",
+    "user_profile": "",
+    "user_question": "",
+    "style": ""
+  }
+}

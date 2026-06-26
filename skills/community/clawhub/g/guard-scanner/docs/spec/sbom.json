@@ -1,0 +1,33 @@
+{
+  "bomFormat": "CycloneDX-like",
+  "specVersion": "0.1",
+  "metadata": {
+    "component": {
+      "name": "@guava-parity/guard-scanner",
+      "version": "14.0.0"
+    },
+    "generatedAt": "2026-03-10T10:00:34.350Z"
+  },
+  "components": [
+    {
+      "name": "@types/node",
+      "version": "22.19.11",
+      "license": "MIT"
+    },
+    {
+      "name": "typescript",
+      "version": "5.9.3",
+      "license": "Apache-2.0"
+    },
+    {
+      "name": "undici-types",
+      "version": "6.21.0",
+      "license": "MIT"
+    },
+    {
+      "name": "ws",
+      "version": "8.19.0",
+      "license": "MIT"
+    }
+  ]
+}

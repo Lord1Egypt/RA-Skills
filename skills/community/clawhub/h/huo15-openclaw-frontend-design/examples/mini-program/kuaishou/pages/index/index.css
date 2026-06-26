@@ -1,0 +1,144 @@
+.page {
+  min-height: 100vh;
+}
+
+.hero {
+  position: relative;
+  margin: 24rpx 24rpx 32rpx;
+  padding: 56rpx 40rpx;
+  border-radius: 32rpx;
+  overflow: hidden;
+  background: var(--paper-2);
+}
+.hero-bg {
+  position: absolute;
+  right: -80rpx;
+  top: -80rpx;
+  width: 320rpx;
+  height: 320rpx;
+  border-radius: 50%;
+  background: radial-gradient(circle, #fbbf24, transparent 70%);
+  opacity: 0.5;
+}
+.hero-content {
+  position: relative;
+  z-index: 1;
+}
+.hero-kicker {
+  display: block;
+  font-size: 22rpx;
+  color: var(--accent);
+  letter-spacing: 4rpx;
+  text-transform: uppercase;
+  font-weight: 500;
+  margin-bottom: 16rpx;
+}
+.hero-title {
+  display: block;
+  font-size: 64rpx;
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -1rpx;
+  white-space: pre-line;
+  margin-bottom: 32rpx;
+}
+.hero-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8rpx;
+  background: var(--ink);
+  color: var(--paper);
+  padding: 18rpx 36rpx;
+  border-radius: 999rpx;
+  font-size: 26rpx;
+  font-weight: 500;
+}
+.hero-cta .arrow {
+  color: var(--paper);
+  font-size: 26rpx;
+}
+
+.chips {
+  white-space: nowrap;
+  padding: 0 24rpx 32rpx;
+}
+.chip {
+  display: inline-block;
+  padding: 14rpx 32rpx;
+  margin-right: 16rpx;
+  border-radius: 999rpx;
+  background: var(--card);
+  color: var(--ink);
+  font-size: 26rpx;
+  font-weight: 500;
+  border: 1rpx solid var(--sep);
+}
+.chip.selected {
+  background: var(--ink);
+  color: var(--paper);
+  border-color: var(--ink);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24rpx;
+  padding: 0 24rpx;
+}
+.card {
+  background: var(--card);
+  border-radius: 24rpx;
+  overflow: hidden;
+  border: 1rpx solid var(--sep);
+}
+.img {
+  width: 100%;
+  height: 280rpx;
+  position: relative;
+}
+.img-tag {
+  position: absolute;
+  top: 16rpx;
+  left: 16rpx;
+  background: rgba(255, 255, 255, 0.92);
+  color: var(--ink);
+  font-size: 20rpx;
+  font-weight: 600;
+  padding: 4rpx 14rpx;
+  border-radius: 999rpx;
+}
+.info {
+  padding: 20rpx 24rpx 24rpx;
+}
+.name {
+  display: -webkit-box;
+  font-size: 28rpx;
+  font-weight: 600;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  line-height: 1.4;
+  min-height: 78rpx;
+}
+.meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-top: 14rpx;
+}
+.price {
+  font-size: 32rpx;
+  font-weight: 700;
+  color: var(--accent);
+}
+.sold {
+  font-size: 22rpx;
+  color: var(--mute);
+}
+.footer-note {
+  display: block;
+  font-size: 22rpx;
+  color: var(--mute);
+  margin: 40rpx 24rpx 32rpx;
+  line-height: 1.7;
+}

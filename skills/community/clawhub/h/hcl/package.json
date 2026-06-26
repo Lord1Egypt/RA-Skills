@@ -1,0 +1,53 @@
+{
+  "name": "humancanhelp",
+  "version": "1.1.1",
+  "description": "Local human-in-the-loop handoff for blocked visual or interactive AI workflow steps via CDP tabs or VNC desktops",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/metalony/humancanhelp.git"
+  },
+  "homepage": "https://github.com/metalony/humancanhelp#readme",
+  "bugs": {
+    "url": "https://github.com/metalony/humancanhelp/issues"
+  },
+  "bin": {
+    "hcl": "./dist/index.js",
+    "humancanhelp": "./dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsx src/index.ts",
+    "start": "node dist/index.js start",
+    "prepublishOnly": "npm run build"
+  },
+  "dependencies": {
+    "ws": "^8.18.0"
+  },
+  "devDependencies": {
+    "@types/ws": "^8.18.0",
+    "@types/node": "^22.0.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.7.0"
+  },
+  "files": [
+    "dist",
+    "SKILL.md",
+    "src/humancanhelp.png"
+  ],
+  "keywords": [
+    "human-in-the-loop",
+    "browser-automation",
+    "cdp",
+    "vnc",
+    "human-help",
+    "ai",
+    "playwright",
+    "puppeteer",
+    "claude-code",
+    "skill"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "license": "MIT"
+}

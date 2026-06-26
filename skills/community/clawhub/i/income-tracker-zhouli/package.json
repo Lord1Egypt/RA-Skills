@@ -1,0 +1,33 @@
+{
+  "name": "income-tracker",
+  "version": "1.0.0",
+  "description": "收入追踪器 - 多平台收入记录、统计分析、趋势图表",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test.js",
+    "demo": "node demo.js"
+  },
+  "keywords": [
+    "income",
+    "tracker",
+    "finance",
+    "analytics",
+    "visualization"
+  ],
+  "author": "clawd",
+  "license": "MIT",
+  "dependencies": {
+    "asciichart": "^1.5.25",
+    "chalk": "^4.1.2",
+    "dayjs": "^1.11.10"
+  },
+  "devDependencies": {},
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/clawhub/income-tracker"
+  },
+  "homepage": "https://clawhub.com/skills/income-tracker"
+}

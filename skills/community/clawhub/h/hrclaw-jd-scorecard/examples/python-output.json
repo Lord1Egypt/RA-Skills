@@ -1,0 +1,70 @@
+{
+  "role_title": "Python Development Engineer",
+  "summary": "面向 Python 后端岗位的评分卡，重点看 Python 开发能力、Linux / Shell、常见中间件和基本安全意识。",
+  "filters": {
+    "location": "杭州",
+    "years_min": 3,
+    "education_min": "本科"
+  },
+  "must_have": [
+    "Python 开发经验",
+    "3年以上开发经验",
+    "Linux",
+    "Shell",
+    "Redis",
+    "Kafka",
+    "Elasticsearch"
+  ],
+  "nice_to_have": [
+    "Java 协作经验",
+    "后端服务设计",
+    "安全意识",
+    "架构设计能力",
+    "需求分析能力",
+    "排障经验"
+  ],
+  "exclude": [
+    "纯前端岗位",
+    "无 Python 经验",
+    "无 Linux 使用经验"
+  ],
+  "weights": {
+    "must_have": 42,
+    "nice_to_have": 12,
+    "title_match": 12,
+    "industry_match": 8,
+    "experience": 14,
+    "education": 7,
+    "location": 5
+  },
+  "thresholds": {
+    "recommend_min": 75,
+    "review_min": 55
+  },
+  "interview_questions": [
+    "你最近做的一个 Python 后端项目，核心职责是什么？",
+    "你在 Linux 上最常用的排障命令有哪些，分别解决什么问题？",
+    "你怎么用 Redis 或 Kafka 处理高频数据流？",
+    "讲一个你和 Java 或其他后端服务协作的例子。",
+    "如果线上接口慢了，你会按什么顺序排查？",
+    "你做过哪些安全相关的基础工作？",
+    "你怎么判断一个候选人是做过 Python 开发，还是只会写脚本？",
+    "你在需求不清楚时，怎么和产品和研发对齐？"
+  ],
+  "red_flags": [
+    "只会写脚本，不会服务开发",
+    "Linux 和 Shell 回答很空",
+    "说得出中间件名字，但讲不清使用场景",
+    "没有任何线上排障或协作经验",
+    "3年以上经验但没有完整项目链路"
+  ],
+  "assumptions": [
+    "该 JD 默认是后端开发岗位，不包含纯数据分析或纯运维职责。",
+    "若岗位更偏基础设施，可提高 Linux / 安全相关权重。"
+  ],
+  "next_steps": [
+    "把 JD 粘贴到 skill 中生成正式评分卡。",
+    "用历史简历样本校准 Python、Linux 和中间件权重。",
+    "把推荐样本和拒绝样本统一成团队口径。"
+  ]
+}

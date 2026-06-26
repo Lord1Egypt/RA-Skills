@@ -1,35 +1,31 @@
 ---
-name: "Ibotta返利助手"
-description: "Ibotta线下超市与线上购物返利工具，通过拍摄购物小票获得品牌返利，覆盖2000+品牌，已IPO上市。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ibotta"
-sourceUrl: "https://clawhub.ai/skills/ibotta"
+name: Ibotta返利助手
+description: Ibotta线下超市与线上购物返利工具，通过拍摄购物小票获得品牌返利，覆盖2000+品牌，已IPO上市。
+version: 0.1.0
 ---
 
 # Ibotta返利助手
 
-> Ibotta线下超市与线上购物返利工具，通过拍摄购物小票获得品牌返利，覆盖2000+品牌，已IPO上市。
+Ibotta线下超市与线上购物返利工具。独创的"拍小票返利"模式，用户在超市购物后拍摄小票即可获得品牌商提供的返利，同时支持线上购物返利，覆盖2000+品牌，4000万+下载量，2024年已IPO上市。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ibotta`
-- **Source URL:** [https://clawhub.ai/skills/ibotta](https://clawhub.ai/skills/ibotta)
+## 触发词
 
-## Overview
+ibotta、ibotta返利、拍小票返利、超市返利、ibotta cashback、线下返利
 
+## 计划实现能力
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/ibotta
+- **拍小票返利**：超市购物后拍小票获得返利
+- **线上返利**：在线购物也可获得返利
+- **品牌任务**：完成品牌指定任务获得额外奖励
+- **团队奖励**：邀请好友一起使用获得奖励
+
+## 输出格式
+
+```
+🧾 Ibotta返利查询
+
+品牌：[品牌名称]
+返利金额：$[金额]
+任务要求：[购买指定商品]
+适用商店：[Walmart/Target/Kroger等]
 ```

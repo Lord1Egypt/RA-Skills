@@ -1,35 +1,50 @@
 ---
-name: "Gws Docs Write"
+name: gws-docs-write
 description: "Google Docs: Append text to a document."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/gws-docs-write"
-sourceUrl: "https://clawhub.ai/skills/gws-docs-write"
+metadata:
+  version: 0.22.5
+  openclaw:
+    category: "productivity"
+    requires:
+      bins:
+        - gws
+    cliHelp: "gws docs +write --help"
 ---
 
-# Gws Docs Write
+# docs +write
 
-> Google Docs: Append text to a document.
+> **PREREQUISITE:** Read `../gws-shared/SKILL.md` for auth, global flags, and security rules. If missing, run `gws generate-skills` to create it.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/gws-docs-write`
-- **Source URL:** [https://clawhub.ai/skills/gws-docs-write](https://clawhub.ai/skills/gws-docs-write)
+Append text to a document
 
-## Overview
+## Usage
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/gws-docs-write
+gws docs +write --document <ID> --text <TEXT>
 ```
+
+## Flags
+
+| Flag | Required | Default | Description |
+|------|----------|---------|-------------|
+| `--document` | ✓ | — | Document ID |
+| `--text` | ✓ | — | Text to append (plain text) |
+
+## Examples
+
+```bash
+gws docs +write --document DOC_ID --text 'Hello, world!'
+```
+
+## Tips
+
+- Text is inserted at the end of the document body.
+- For rich formatting, use the raw batchUpdate API instead.
+
+> [!CAUTION]
+> This is a **write** command — confirm with the user before executing.
+
+## See Also
+
+- [gws-shared](../gws-shared/SKILL.md) — Global flags and auth
+- [gws-docs](../gws-docs/SKILL.md) — All read and write google docs commands

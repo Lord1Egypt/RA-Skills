@@ -1,0 +1,13 @@
+[project]
+name = "google-analytics-and-search-improve"
+version = "0.1.0"
+description = "Scripts for Google Analytics, Search Console, and Bing Webmaster data collection & site auditing"
+requires-python = ">=3.12"
+dependencies = [
+    "google-api-python-client",
+    "google-auth",
+    "google-analytics-data",
+    "python-dotenv",
+    "requests",
+    "matplotlib",
+]

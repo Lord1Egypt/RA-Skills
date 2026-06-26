@@ -1,0 +1,105 @@
+/* huo15-markdown-export — Typora Night
+ * 流派:Dark UI
+ * 适合:夜间阅读 / 投影演示 / 暗色环境
+ * 关键差异化:中性深底(非冷蓝)+ 系统字体(非 Inter,反 AI Slop)+ 琥珀色代码 accent
+ *
+ * v0.4.0 修红线:
+ * - 字体 "Inter" → 走 _tokens 默认 sans 栈(去 Slop)
+ * - 背景 #1f2329(冷蓝) → #121212(中性深)
+ * v0.4.1 修 Type 3 字体 PDF 渲染浅灰问题:
+ * - _tokens.css sans 栈剔除 -apple-system / PingFang SC,改用 Open Sans / Helvetica Neue
+ *   (Apple 受保护字体在 Headless Chromium PDF 走 Type 3 路径,部分 reader 渲成浅灰)
+ * - 加 @media print 自动反色为浅底深字(原暗底浅字打印时 1.4:1 看不清)
+ */
+
+:root {
+  /* === 主题 token override === */
+  --font-body:     var(--font-sans);
+  --font-heading:  var(--font-sans);
+  --color-bg:      #121212;
+  --color-fg:      #d8d8d8;
+  --color-muted:   #8a8a8a;
+  --color-rule:    #2e2e2e;
+  --color-rule-soft: #1d1d1d;
+  --color-accent:  #6cb6ff;
+  --color-accent-soft: rgba(108, 182, 255, 0.10);
+  --color-code-bg: #1d1d1d;
+  --color-mark:    #5a4a00;
+  --quote-bar-color: #3a3f47;
+  --quote-bg:      rgba(108, 182, 255, 0.06);
+  --quote-fg:      var(--color-muted);
+  --table-th-bg:   rgba(108, 182, 255, 0.10);
+  --table-stripe-bg: rgba(255, 255, 255, 0.02);
+  --measure:       var(--measure-normal);
+  --leading:       var(--lh-cn);
+  --fs-base:       16px;
+}
+
+/* === Dark UI 特征 === */
+
+.markdown-body h1, .markdown-body h2, .markdown-body h3,
+.markdown-body h4, .markdown-body h5, .markdown-body h6 {
+  font-weight: 600;
+  color: #f0f0f0;
+}
+.markdown-body h1 { padding-bottom: 0.3em; border-bottom: 1px solid var(--color-rule); }
+.markdown-body h2 { padding-bottom: 0.3em; border-bottom: 1px solid var(--color-rule); }
+
+.markdown-body a { text-decoration: none; }
+.markdown-body a:hover { text-decoration: underline; }
+
+.markdown-body strong { color: #ffffff; font-weight: 600; }
+
+.markdown-body code { color: #ffb454; }
+.markdown-body mark { color: #fff2a8; }
+
+/* mermaid 图反白底,暗色主题下数据图保持可读 */
+.mermaid {
+  background: #ffffff;
+  padding: 1em;
+  border-radius: 6px;
+}
+
+/* === @media print:暗主题导出 PDF 时自动反色为浅底深字 ===
+ * 原本暗底浅字(对比 11:1)适合屏幕,但 PDF 打印模式下
+ * pdf-print.css 历史曾强制白底 → 浅字看不清(WCAG 1.4:1)。
+ * 改造:不再依赖 pdf-print.css 强制白底,本主题在 print 模式下主动切回
+ * 浅底深字版,跟 typora-newsprint 视觉风格一致(衬线灰阶,无装饰)。
+ * 屏幕预览仍是暗色;只有 PDF 自动转浅。
+ */
+@media print {
+  :root {
+    --color-bg:      #ffffff;
+    --color-fg:      #1a1a1a;
+    --color-muted:   #595959;
+    --color-rule:    #d1d5da;
+    --color-rule-soft: #e5e7eb;
+    --color-accent:  #0969da;
+    --color-accent-soft: rgba(9, 105, 218, 0.08);
+    --color-code-bg: #f6f8fa;
+    --color-mark:    #fff2a8;
+    --quote-bar-color: #d1d5da;
+    --quote-bg:      #f6f8fa;
+    --quote-fg:      #595959;
+    --table-th-bg:   #f6f8fa;
+    --table-stripe-bg: #fafafa;
+  }
+  html, body {
+    background: #ffffff !important;
+    color: #1a1a1a !important;
+  }
+  .markdown-body h1, .markdown-body h2, .markdown-body h3,
+  .markdown-body h4, .markdown-body h5, .markdown-body h6 {
+    color: #1a1a1a !important;
+    border-color: #d1d5da !important;
+  }
+  .markdown-body strong { color: #1a1a1a !important; }
+  .markdown-body code { color: #1a1a1a !important; background: #f6f8fa !important; }
+  .markdown-body pre {
+    background: #f6f8fa !important;
+    color: #1a1a1a !important;
+  }
+  .markdown-body pre code { color: #1a1a1a !important; }
+  .markdown-body a { color: #0969da !important; }
+  .mermaid { background: #ffffff !important; }
+}

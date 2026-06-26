@@ -1,0 +1,22 @@
+{
+  "name": "hk-stock-predictor",
+  "displayName": "HK Stock Predictor",
+  "tagline": "Analyze HK stocks and generate prediction-ready questions",
+  "description": "Analyzes Hong Kong listed stocks using market context, fundamentals, technicals, southbound flows, AH premium, liquidity, and catalysts, then turns the research into time-bounded and externally resolvable prediction candidates.",
+  "category": "finance",
+  "tags": [
+    "latest",
+    "hong-kong-stocks",
+    "finance",
+    "market-analysis",
+    "prediction",
+    "workflow"
+  ],
+  "version": "1.0.0",
+  "license": "MIT-0",
+  "entry": "SKILL.md",
+  "repository": "https://www.hkex.com.hk/",
+  "support": {
+    "website": "https://www.hkex.com.hk/"
+  }
+}

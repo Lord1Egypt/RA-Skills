@@ -1,0 +1,64 @@
+{
+  "name": "@huo15/huo15-openclaw-enhance",
+  "version": "6.7.13",
+  "publishConfig": {
+    "access": "public"
+  },
+  "description": "\u706b\u4e00\u4e94\u00b7\u514b\u52b3\u5fb7\u00b7\u9f99\u867e\u589e\u5f3a\u63d2\u4ef6 v6.7.13 \u2014 large-file-bridge \u515c\u5e95\u6b7b\u5faa\u73af\u4fee\u590d + \u7528\u6237\u4e0a\u4f20\u540e\u6d41\u7a0b\u5f15\u5bfc\uff1a\u5b9e\u6d4b\u7528\u6237\u300e\u6211\u5df2\u7ecf\u4e0a\u4f20\u597d\u4e86\u300f\u2192 AI \u6ca1\u8c03 enhance_upload_check \u53cd\u800c\u88ab\u515c\u5e95 hook \u53c8\u585e\u4e86\u4e00\u4efd\u4e0a\u4f20\u94fe\u63a5\uff08\u6b7b\u5faa\u73af\uff09\u3002\u6839\u56e0\uff1abefore_agent_reply \u6bcf\u8f6e\u90fd\u89e6\u53d1\uff0cinjectedSessions \u6709 entry + body \u4e0d\u542b URL \u2192 \u5f3a\u5236 appendText \u94fe\u63a5\u3002\u4fee\u6cd5\uff1a(1) injectedSessions entry \u52a0 replyAppendUsed \u6807\u8bb0\uff0c\u6bcf\u6b21 inject \u515c\u5e95\u53ea fire \u4e00\u6b21\uff1b(2) prompt \u589e\u5f3a\u300e\u7528\u6237\u4e0a\u4f20\u540e\u5904\u7406\u6d41\u7a0b\u300f\u6bb5\uff0c\u660e\u786e\u544a\u77e5 LLM \u770b\u5230\u300e\u4f20\u5b8c\u4e86 / \u4e0a\u4f20\u597d\u4e86\u300f\u5fc5\u987b enhance_upload_check({token}) \u2192 Read \u2192 \u5904\u7406\u4efb\u52a1\uff0c\u4e25\u7981\u518d\u53d1\u94fe\u63a5 / \u53cd\u95ee / \u5168\u76d8\u626b\u3002\u7ee7\u627f v6.7.12 token \u81ea\u52a8\u751f\u6210 + v6.7.11 prompt \u547d\u4ee4\u5f0f + v6.7.9 baseUrl \u591a\u6e90\u89e3\u6790\u3002",
+  "type": "module",
+  "main": "./dist/index.js",
+  "openclaw": {
+    "extensions": [
+      "./index.ts"
+    ],
+    "build": {
+      "openclawVersion": "2026.4.29"
+    },
+    "compat": {
+      "pluginApi": ">=2026.4.24"
+    }
+  },
+  "bin": {
+    "openclaw-enhance-setup": "./scripts/setup.sh"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "release": "bash scripts/release.sh",
+    "prepublishOnly": "npm run typecheck && npm run build",
+    "postinstall": "node scripts/postinstall.cjs",
+    "build": "tsc && cp package.json dist/ && cp openclaw.plugin.json dist/ 2>/dev/null || true"
+  },
+  "keywords": [
+    "openclaw",
+    "plugin",
+    "enhance",
+    "memory",
+    "safety",
+    "agent"
+  ],
+  "author": "jobzhao15",
+  "license": "MIT",
+  "peerDependencies": {
+    "openclaw": "^2026.4.24"
+  },
+  "dependencies": {
+    "@sinclair/typebox": "^0.34.49",
+    "better-sqlite3": "^11.0.0"
+  },
+  "devDependencies": {
+    "@types/better-sqlite3": "^7.6.0",
+    "typescript": "^5.5.0"
+  },
+  "files": [
+    "index.ts",
+    "openclaw.plugin.json",
+    "src/**/*",
+    "templates/**/*",
+    "scripts/**/*",
+    "dist/**/*"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://cnb.cool/huo15/ai/huo15-openclaw-enhance"
+  }
+}

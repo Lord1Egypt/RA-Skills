@@ -1,35 +1,90 @@
 ---
-name: "商业计划书(体验版)"
-description: "专业商业计划书生成工具，互动问答模式，多轮对话系统构建完整商业计划书"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/hutian-opc-business-plan-trial"
-sourceUrl: "https://clawhub.ai/skills/hutian-opc-business-plan-trial"
+name: opc-business-plan
+description: 专业商业计划书生成工具，互动问答模式，多轮对话系统构建完整商业计划书
+license: MIT
+compatibility:
+  - claude-code
+  - copilot
+  - cursor
+  - openclaw
+  - coze
+author: 胡田
+version: 1.0.0
 ---
 
-# 商业计划书(体验版)
+# 商业计划书生成技能
 
-> 专业商业计划书生成工具，互动问答模式，多轮对话系统构建完整商业计划书
+## 技能概述
+专业的商业计划书生成工具，采用**互动问答模式**，通过多轮对话系统性地收集信息，逐步完善并生成结构完整、数据翔实、逻辑严密的PPT商业计划书。适用于融资路演、技术转化、市场准入规划、企业战略输出等场景。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/hutian-opc-business-plan-trial`
-- **Source URL:** [https://clawhub.ai/skills/hutian-opc-business-plan-trial](https://clawhub.ai/skills/hutian-opc-business-plan-trial)
+---
 
-## Overview
+## 核心方法：互动问答模式
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/hutian-opc-business-plan-trial
+### 工作流程
 ```
+用户输入初步信息 → AI追问引导补充 → 信息多轮迭代完善 → PPT计划书交付
+```
+
+### 交互原则
+1. **循序渐进**：从核心到外围逐步深入
+2. **引导式提问**：每个问题都有明确目的
+3. **验证确认**：确保理解准确
+4. **结构化输出**：最终生成标准化PPT
+
+---
+
+## 必备五大模块
+
+生成商业计划书必须包含以下五大模块：
+
+### 模块一：市场分析
+- 市场规模测算（TAM/SAM/SOM）
+- 竞争格局分析
+- 目标客户画像
+- 市场进入策略
+
+### 模块二：可行性分析
+- 技术可行性评估
+- 商业可行性评估
+- 运营可行性评估
+
+### 模块三：财务分析
+- 收入预测（3-5年）
+- 成本结构分析
+- 利润预测与盈亏平衡点
+- 关键财务指标（LTV/CAC/IRR等）
+
+### 模块四：人财物分析
+- 核心团队介绍
+- 资金需求规划
+- 资源配置方案
+
+### 模块五：风控分析
+- 市场/技术/竞争/政策/运营风险识别与应对
+
+---
+
+## 输出：PPT商业计划书（15-20页）
+
+**标准结构**：
+- 封面与执行摘要（2页）
+- 问题与方案（2-3页）
+- 市场分析（2-3页）
+- 产品与可行性（2-3页）
+- 财务分析（2-3页）
+- 团队与风控（2-3页）
+- 附录（1-2页）
+
+---
+
+## 使用方式
+
+1. **初始输入**：提供项目初步信息（项目描述/BP草稿/产品介绍）
+2. **互动完善**：按五大模块逐个收集关键信息
+3. **确认校验**：梳理完整框架并确认
+4. **PPT生成**：生成专业PPT商业计划书
+
+---
+
+💡 想获得完整功能体验？升级[WorkBuddy基本版]或[Coze满血版]

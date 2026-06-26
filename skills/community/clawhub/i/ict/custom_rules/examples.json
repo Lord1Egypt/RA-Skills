@@ -1,0 +1,53 @@
+{
+  "version": "1.0.0",
+  "rules": [
+    {
+      "id": "unsafe-random",
+      "name": "不安全随机数",
+      "description": "使用 Math.random() 或 random 模块生成密码/令牌",
+      "patterns": {
+        "py": ["random\\.(random|randint)\\("],
+        "js": ["Math\\.random\\(\\);?"]
+      },
+      "severity": "high"
+    },
+    {
+      "id": "sql-injection-risk",
+      "name": "SQL注入风险",
+      "description": "字符串拼接 SQL 语句",
+      "patterns": {
+        "py": ["(execute|exec|query|cursor\\.execute)\\s*\\([^)]*\\+[^)]*\\)"],
+        "js": ["(execute|query|cursor)\\s*\\([^)]*\\+"]
+      },
+      "severity": "critical"
+    },
+    {
+      "id": "debug-mode",
+      "name": "调试模式开启",
+      "description": "代码中包含调试开关或测试凭证",
+      "patterns": {
+        "all": ["DEBUG\\s*=\\s*True", "debug\\s*:\\s*true", "TESTING\\s*=\\s*True"]
+      },
+      "severity": "medium"
+    },
+    {
+      "id": "hardcoded-ip",
+      "name": "硬编码IP地址",
+      "description": "代码中包含硬编码的服务器 IP",
+      "patterns": {
+        "all": ["\\b(?:\\d{1,3}\\.){3}\\d{1,3}\\b"]
+      },
+      "severity": "low"
+    },
+    {
+      "id": "print-secret",
+      "name": "敏感信息打印",
+      "description": "print 或 console.log 输出敏感变量",
+      "patterns": {
+        "py": ["print\\s*\\(.*(?:password|secret|token|key|credential)"],
+        "js": ["console\\.(log|info|debug)\\s*\\(.*(?:password|secret|token|key|credential)"]
+      },
+      "severity": "high"
+    }
+  ]
+}

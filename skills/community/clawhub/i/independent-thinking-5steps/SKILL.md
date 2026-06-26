@@ -1,35 +1,99 @@
 ---
-name: "独立思考五部曲"
-description: "独立思考五部曲。触发场景：**架构讨论、排错、复盘、决策、不确定知识点**。日常闲聊、确认、打招呼、简单问答 → 直接回答，不查向量、不 thinking、不走五步曲。与沟通五部曲并行通用。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/independent-thinking-5steps"
-sourceUrl: "https://clawhub.ai/skills/independent-thinking-5steps"
+name: independent-thinking-5steps
+description: 独立思考五部曲。触发场景：**架构讨论、排错、复盘、决策、不确定知识点**。日常闲聊、确认、打招呼、简单问答 → 直接回答，不查向量、不 thinking、不走五步曲。与沟通五部曲并行通用。
 ---
 
 # 独立思考五部曲
 
-> 独立思考五部曲。触发场景：**架构讨论、排错、复盘、决策、不确定知识点**。日常闲聊、确认、打招呼、简单问答 → 直接回答，不查向量、不 thinking、不走五步曲。与沟通五部曲并行通用。
+> 底层核心准则 · 与沟通五部曲同级并行
+> 自验驱动的深度决策方法论
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/independent-thinking-5steps`
-- **Source URL:** [https://clawhub.ai/skills/independent-thinking-5steps](https://clawhub.ai/skills/independent-thinking-5steps)
+## 核心定位
 
-## Overview
+**自验 = 用自己过去的总和（向量+wiki）替代当下他人在场**
 
+独立思考五部曲是沟通五部曲的"镜像"——结构相同，验证介质不同：
+- 沟通五部曲 → **他验**（对方实时反馈）
+- 独立思考五部曲 → **自验**（向量+wiki 历史知识库）
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/independent-thinking-5steps
+---
+
+## 五步法结构（听→想→说→做→看）
+
+### 1. 听：直觉接收
+接收问题/刺激，让直觉碎片在模糊空间自由碰撞，等待模式自然浮现。
+
+### 2. 想：向量溯源 + wiki扩展
+开口/动手前，先向量检索历史经验和踩坑教训，再 wiki 扩展连接到已有知识网络，形成全局独立判断。
+
+**向量调用规范（强制）：**
 ```
+# 唯一正确格式
+python3 /Users/markma01/.openclaw/workspace/scripts/query_vector.py "<检索词>"
+
+# 禁止以下所有格式
+cd /path && python3 script.py
+echo "query" | python3 script.py
+```
+
+### 3. 说：有据表达 + wiki校验
+将思考结论结构化输出，同步 wiki 校验论点是否与已有知识对齐，逻辑连贯、不主观臆断。
+
+**注意**：独立思考的"说"不是汇报（无实时对方），而是将脑内推理外化为可供后续追溯的书面结论。
+
+### 4. 做：向量校验
+执行前用向量核对步骤、风险与适配方案，完成自检后再动手。
+
+### 5. 看：wiki 知识关联
+复盘时检索 wiki 连接已有经验，把新经验织入知识网络，防止重复踩坑。
+
+---
+
+## 检查点矩阵
+
+| 阶段 | 检查点 | 他验/自验 |
+|------|--------|----------|
+| 听 | 直觉接收，等待模式浮现 | 自验 |
+| 想 | 向量溯源 + wiki扩展 | 自验 |
+| 说 | wiki连接已有论点 | 自验 |
+| 做 | 向量核对步骤 | 自验 |
+| 看 | wiki连接已有经验 | 自验 |
+
+---
+
+## 强制执行规则
+
+1. **仅在触发场景下执行**（架构讨论、排错、复盘、决策、不确定知识点）
+2. **日常闲聊、确认、打招呼、简单问答** → 直接回答，不查向量、不 thinking、不走五步曲
+3. **永久禁用系统自带 Memory Search**，仅使用专属后台向量系统（`query_vector.py` / ChromaDB）
+4. 「看」的输出必须闭环存入 wiki，为下次「想」提供素材
+5. **适时触发**：复杂任务全程检查点，简单任务降低检查点密度
+
+---
+
+## 与沟通五部曲的关系
+
+| 维度 | 沟通五部曲 | 独立思考五部曲 |
+|------|-----------|--------------|
+| **核心** | 他验 | 自验 |
+| 验证介质 | 对方实时反馈 | 向量 + wiki 历史知识库 |
+| 侧重 | 互动、汇报、方案讨论 | 思考、决策、复盘 |
+| 并行 | 对外沟通用 | 对内思考用 |
+
+两者合并，才是完整的「想清楚 → 说出来 → 做到位 → 固下来」闭环。
+
+---
+
+## 快速触发检查清单
+
+每次开口/动手前自检：
+- [ ] 已调用 `query_vector.py` 检索相关历史经验
+- [ ] 「想」的结论有向量事实支撑 + wiki 扩展
+- [ ] 「说」的论点已 wiki 校验
+- [ ] 「做」的方案经向量校验无已知风险
+- [ ] 「看」的结果已连接 wiki 并计划存入
+
+---
+
+*本 skill 为小蜂独立思考核心准则，与「沟通五部曲」同级并行。*
+*v5.0（2026-04-17）：升级为五部曲，融入 wiki 检查点，厘清他验/自验定位*

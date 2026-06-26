@@ -1,0 +1,22 @@
+{
+  "name": "discord-drizzle-starter",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "tsx src/index.ts",
+    "drizzle:generate": "drizzle-kit generate",
+    "drizzle:push": "drizzle-kit push"
+  },
+  "dependencies": {
+    "dotenv": "^16.6.1",
+    "drizzle-orm": "^0.44.5",
+    "pg": "^8.16.3"
+  },
+  "devDependencies": {
+    "drizzle-kit": "^0.31.4",
+    "tsx": "^4.20.5",
+    "typescript": "^5.9.2",
+    "@types/node": "^24.3.0"
+  }
+}

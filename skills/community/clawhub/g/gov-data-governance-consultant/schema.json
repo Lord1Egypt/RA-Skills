@@ -1,0 +1,32 @@
+{
+  "name": "gov_data_governance_consultant",
+  "description": "政务数据治理与运营咨询专家，支持全网政策检索、架构规划、运营模式设计与实施路径建议",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "query_topic": {
+        "type": "string",
+        "description": "具体咨询问题（例：市级数据局如何开展公共数据授权运营/省级一体化大数据中心建设规划）"
+      },
+      "region_level": {
+        "type": "string",
+        "enum": ["国家级", "省级", "市级", "区县级"],
+        "description": "行政层级，用于匹配对应事权、财政规模与建设重点"
+      },
+      "focus_area": {
+        "type": "string",
+        "enum": ["数据治理", "数据运营", "数据要素", "平台建设", "制度规范", "安全合规", "应用场景", "综合规划"],
+        "description": "聚焦领域，用于缩小检索与输出范围"
+      },
+      "search_depth": {
+        "type": "string",
+        "enum": ["quick", "standard", "deep"],
+        "description": "检索深度（quick:快速概览/standard:标准分析/deep:深度调研含案例对比）"
+      }
+    },
+    "required": ["query_topic"],
+    "additionalProperties": false
+  },
+  "output_format": "markdown",
+  "strict_mode": true
+}

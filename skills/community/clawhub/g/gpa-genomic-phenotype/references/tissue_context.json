@@ -1,0 +1,181 @@
+{
+  "description": "Tissue/organ context profiles for DGRA relevance assessment. v0.4: genes are no longer hardcoded here — tissue relevance is fetched live from GTEx API. This file now only contains irreplaceable clinical rules and gene lists.",
+  "version": "0.4",
+  "default_profile": "general",
+  "profiles": {
+    "general": {
+      "display_name": "通用健康筛查 / General Health Screening",
+      "gtex_tissue": null,
+      "fast_track_rule": "非必需基因 + ClinVar良性/意义不明 + gnomAD常见 → Tier 3",
+      "special_gene_lists": {
+        "cancer_predisposition": ["BRCA1", "BRCA2", "TP53", "PTEN", "APC", "MLH1", "MSH2", "MSH6", "PMS2", "ATM", "CHEK2", "PALB2", "NBN", "BARD1", "RAD51C", "RAD51D", "BRIP1", "CDH1", "STK11", "CDKN2A", "CDKN2B"],
+        "cardiac_safety": ["SCN5A", "KCNQ1", "KCNH2", "KCNE1", "KCNE2", "RYR2", "CASQ2", "CALM1", "CALM2", "CALM3", "TRDN", "DSP", "PKP2", "DSG2", "DSC2", "JUP", "TMEM43", "DES", "LMNA", "PLN", "RANGRF", "TGFB3", "TTN"],
+        "drug_metabolism": ["CYP2D6", "CYP2C19", "CYP3A4", "CYP3A5", "ABCB1", "SLC22A1", "SLC22A2", "TPMT", "DPYD", "UGT1A1", "CYP2C9", "CYP2B6", "CYP2E1", "CYP1A2", "NAT2", "G6PD", "VKORC1", "SLCO1B1", "CYP2C8", "CYP3A7", "CYP4F2", "CYP2A6", "CYP2J2", "CYP2S1", "CYP3A43", "CYP4A11", "CYP4A22", "CYP17A1"],
+        "coagulation": ["VWF", "F8", "F9", "F7", "F10", "F11", "F12", "F13A1", "F13B", "PROC", "PROS1", "SERPINC1", "SERPIND1", "PLG", "THBD", "SERPINA10"],
+        "immunodeficiency": ["IL2RG", "JAK3", "RAG1", "RAG2", "DCLRE1C", "PRKDC", "LIG4", "NHEJ1", "AK2", "RMRP", "ADA", "PNP", "CD3G", "CD3D", "CD3E", "ZAP70", "CORO1A", "CIITA", "RFX5", "RFXAP", "RFXANK", "TAP1", "TAP2", "TAPBP"]
+      },
+      "tier_rules": {
+        "tier_1_conditions": [
+          "纯合截断 + 癌症易感性基因 → 高外显率癌症综合征风险",
+          "ClinVar致病 + cardiac_safety基因 → 心源性猝死/心律失常风险评估",
+          "ClinVar致病 + 严重免疫缺陷基因 → 感染风险/疫苗接种评估",
+          "ClinVar致病 + 凝血因子基因 → 出血/血栓风险评估"
+        ],
+        "tier_2_conditions": [
+          "杂合癌症易感性基因 → 携带者筛查，家族癌症风险评估",
+          "ClinVar致病 + none基因 → 个体自身健康风险",
+          "药物代谢基因多态性 → 用药剂量调整指导",
+          "免疫缺陷基因杂合 → 免疫状态评估"
+        ],
+        "tier_3_conditions": [
+          "none基因 + ClinVar良性/意义不明 + gnomAD常见",
+          "旁系补偿基因",
+          "低外显率变异",
+          "药物代谢常见多态性（如CYP2D6*1/*2）"
+        ]
+      }
+    },
+    "hematopoietic": {
+      "display_name": "造血系统 / 造血干细胞移植",
+      "gtex_tissue": "Bone Marrow",
+      "gtex_tissues": ["Bone Marrow", "Whole Blood", "Spleen", "Thymus", "Cells - EBV-transformed lymphocytes"],
+      "fast_track_rule": "GTEx表达≈0且无造血功能 → Tier 3",
+      "special_gene_lists": {
+        "drug_metabolism": ["CYP2D6", "CYP2C19", "CYP3A4", "CYP3A5", "ABCB1", "SLC22A1", "SLC22A2", "NT5C2", "TPMT", "DPD", "UGT1A1"],
+        "coagulation": ["VWF", "F8", "F9", "F7", "F10", "F11", "F12", "F13A1", "F13B", "PROC", "PROS1", "SERPINC1", "SERPIND1", "PLG", "THBD"],
+        "fa_dna_repair": ["FANCA", "FANCB", "FANCC", "FANCD2", "FANCE", "FANCF", "FANCG", "FANCI", "FANCJ", "FANCL", "FANCM", "FANCN", "FANCO", "FANCP"],
+        "kir_cluster": ["KIR2DL1", "KIR2DL2", "KIR2DL3", "KIR2DL4", "KIR2DL5", "KIR2DS1", "KIR2DS2", "KIR2DS3", "KIR2DS4", "KIR2DS5", "KIR3DL1", "KIR3DL2", "KIR3DL3", "KIR3DS1"]
+      },
+      "tier_rules": {
+        "tier_1_conditions": [
+          "纯合截断 + primary基因 → 确认表型一致性",
+          "多击基因相位未知 → 顺式vs反式",
+          "ClinVar致病 + coagulation基因 → 采集出血风险评估",
+          "ClinVar致病 + fa_dna_repair基因 → 移植后骨髓衰竭风险"
+        ],
+        "tier_2_conditions": [
+          "杂合primary基因 → 50%功能通常足够，需知情",
+          "ClinVar致病 + none基因 → 供者自身健康风险（非造血）",
+          "drug_metabolism基因 → 移植后药物浓度监测"
+        ],
+        "tier_3_conditions": [
+          "none基因 + ClinVar良性/意义不明 + gnomAD常见",
+          "旁系补偿基因",
+          "KIR基因杂合丢失（常见多态性）"
+        ]
+      }
+    },
+    "cardiovascular": {
+      "display_name": "心血管系统",
+      "gtex_tissue": "Heart - Left Ventricle",
+      "gtex_tissues": ["Heart - Left Ventricle", "Heart - Atrial Appendage", "Heart - Right Ventricle", "Artery - Aorta", "Artery - Coronary"],
+      "fast_track_rule": "GTEx心脏表达≈0且无心血管功能 → Tier 3",
+      "special_gene_lists": {
+        "cardiomyopathy": ["MYH7", "MYBPC3", "TNNT2", "TNNI3", "TPM1", "ACTC1", "PRKAG2", "GLA", "LAMP2", "PTPN11"],
+        "ion_channel": ["SCN5A", "KCNQ1", "KCNH2", "KCNE1", "KCNE2", "KCNJ2", "CACNA1C", "CAV3", "SCN4B"],
+        "aortopathy": ["FBN1", "COL3A1", "ACTA2", "MYH11", "SMAD3", "TGFB2", "TGFB3", "LOX", "EFEMP2", "FOXE3"],
+        "arrhythmia": ["RYR2", "CASQ2", "TRDN", "CALM1", "CALM2", "CALM3", "SCN5A", "KCNQ1", "KCNH2"]
+      },
+      "tier_rules": {
+        "tier_1_conditions": [
+          "纯合截断 + primary心血管基因 → 确认表型",
+          "ClinVar致病 + aortopathy基因 → 主动脉夹层/瘤风险评估",
+          "ClinVar致病 + ion_channel基因 → 猝死风险评估"
+        ],
+        "tier_2_conditions": [
+          "杂合primary基因 → 携带者筛查",
+          "ClinVar致病 + none基因 → 供者自身健康",
+          "drug代谢基因 → 心血管药物（β阻滞剂/抗凝）浓度"
+        ],
+        "tier_3_conditions": [
+          "none基因 + 良性/常见多态性",
+          "旁系补偿"
+        ]
+      }
+    },
+    "hepatic": {
+      "display_name": "肝脏功能 / 肝移植",
+      "gtex_tissue": "Liver",
+      "gtex_tissues": ["Liver", "Small Intestine - Terminal Ileum", "Colon - Transverse", "Stomach"],
+      "fast_track_rule": "GTEx肝脏表达≈0且无肝功能 → Tier 3",
+      "special_gene_lists": {
+        "bilirubin_metabolism": ["UGT1A1", "UGT1A3", "UGT1A4", "UGT1A6", "UGT1A9", "UGT2B7"],
+        "cyp450": ["CYP1A2", "CYP2A6", "CYP2B6", "CYP2C8", "CYP2C9", "CYP2C19", "CYP2D6", "CYP2E1", "CYP3A4", "CYP3A5"],
+        "cholestatic": ["ABCB11", "ATP8B1", "ABCB4", "TJP2", "NR1H4", "FXR", "SERPINA1"],
+        "hemochromatosis": ["HFE", "HJV", "HAMP", "TFR2", "SLC40A1"]
+      },
+      "tier_rules": {
+        "tier_1_conditions": [
+          "纯合截断 + primary肝代谢基因 → 确认表型",
+          "ClinVar致病 + cholestatic基因 → 移植后胆汁淤积风险",
+          "ClinVar致病 + hemochromatosis → 铁过载评估"
+        ],
+        "tier_2_conditions": [
+          "杂合primary基因 → 携带者",
+          "CYP450多态性 → 肝移植后药物代谢调整"
+        ],
+        "tier_3_conditions": [
+          "none基因 + 良性多态性"
+        ]
+      }
+    },
+    "renal": {
+      "display_name": "肾脏功能 / 肾移植",
+      "gtex_tissue": "Kidney - Cortex",
+      "gtex_tissues": ["Kidney - Cortex", "Kidney - Medulla", "Bladder"],
+      "fast_track_rule": "GTEx肾脏表达≈0且无肾功能 → Tier 3",
+      "special_gene_lists": {
+        "glomerular": ["NPHS1", "NPHS2", "WT1", "LAMB2", "PLCE1", "CD2AP", "TRPC6", "ACTN4"],
+        "tubular": ["SLC12A3", "SLC12A1", "KCNJ1", "UMOD", "MUC1", "REN", "SLC3A1", "SLC7A9"],
+        "cystic": ["PKD1", "PKD2", "PKHD1", "HNF1B", "GANAB", "DNAJB11"],
+        "complement": ["CFH", "CFI", "CFB", "C3", "THBD", "DGKE", "CD46"]
+      },
+      "tier_rules": {
+        "tier_1_conditions": [
+          "纯合截断 + primary肾基因 → 确认表型",
+          "ClinVar致病 + cystic基因 → 移植后新发囊肿风险",
+          "APOL1风险纯合 → 非洲裔供者FSGS风险"
+        ],
+        "tier_2_conditions": [
+          "杂合Alport基因 → X连锁携带者/AD携带者",
+          "杂合PKD1 → ADPKD携带者"
+        ],
+        "tier_3_conditions": [
+          "none基因 + 良性"
+        ]
+      }
+    },
+    "neurological": {
+      "display_name": "神经系统",
+      "gtex_tissue": "Brain - Cortex",
+      "gtex_tissues": ["Brain - Cortex", "Brain - Cerebellum", "Brain - Hippocampus", "Brain - Frontal Cortex (BA9)", "Brain - Caudate (basal ganglia)"],
+      "fast_track_rule": "GTEx脑表达≈0且无神经功能 → Tier 3",
+      "special_gene_lists": {
+        "trinucleotide_repeat": ["HTT", "ATXN1", "ATXN2", "ATXN3", "ATXN7", "C9orf72", "DMPK", "FXN", "FMR1"],
+        "motor_neuron": ["SOD1", "TARDBP", "FUS", "C9orf72", "TBK1", "CCNF", "NEK1", "KIF5A"],
+        "parkinsonism": ["SNCA", "PARK2", "PINK1", "DJ1", "LRRK2", "GBA", "VPS35"],
+        "peripheral_neuropathy": ["PMP22", "MFN2", "MPZ", "GJB1", "HSPB1", "HSPB8", "BSCL2"]
+      },
+      "tier_rules": {
+        "tier_1_conditions": [
+          "纯合截断 + primary神经基因 → 确认表型",
+          "trinucleotide_repeat基因 → 需重复数/ anticipation评估",
+          "ClinVar致病 + 神经退行基因 → 年龄相关 penetrance评估"
+        ],
+        "tier_2_conditions": [
+          "杂合primary基因 → 携带者",
+          "药物代谢基因 → 神经药物浓度"
+        ],
+        "tier_3_conditions": [
+          "none基因 + 良性"
+        ]
+      }
+    }
+  },
+  "_notes": [
+    "v0.4: genes块已从所有profile中删除。组织相关性由GTEx API实时查询（RPKM阈值自动分类）。",
+    "本文件仅保留：临床规则(tier_rules)、特殊基因列表(special_gene_lists)、GTEx组织映射(gtex_tissue)。",
+    "GTEx API失败时，gene relevance回退为'unknown'，保守评估（不fast-track）。",
+    "如需覆盖特定基因的GTEx盲区，可在references/gtex_override.json中定义（尚未实现）。"
+  ]
+}

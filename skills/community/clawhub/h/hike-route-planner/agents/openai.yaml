@@ -1,0 +1,4 @@
+interface:
+  display_name: "徒步路线规划"
+  short_description: "规划完整徒步方案与领队执行清单，覆盖路线、交通、安全、费用与组织安排"
+  default_prompt: "使用 $hike-route-planner 规划徒步活动；若缺少具体路线、出发时间或人数，先用一句话补问，再生成完整方案。"

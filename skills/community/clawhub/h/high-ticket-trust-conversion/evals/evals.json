@@ -1,0 +1,40 @@
+{
+  "skill_name": "high-ticket-reviews",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "We sell smart projectors ($800–$1,500) and have very few reviews on our hero product. We want to increase review volume and show social proof on the product page. We're on Shopify. What do you recommend for collecting reviews and where should we display them?",
+      "expected_output": "Review collection flow (when and how to ask), display placement on PDP, at least one review-request copy line and one PDP trust line. Scope = high-ticket projectors.",
+      "files": [],
+      "expectations": [
+        "The output includes a review collection flow (trigger timing and channel, e.g. post-delivery email).",
+        "The output includes PDP display placement (e.g. above or near specs, near CTA).",
+        "The output includes at least one ready-to-use review-request copy line.",
+        "The output includes at least one PDP trust or social proof copy line.",
+        "Context is high-ticket or considered purchase (projectors / electronics)."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "We sell professional drones and want to incentivize reviews without asking for 5 stars. Can we give points for leaving a review? We use Rijoy for loyalty.",
+      "expected_output": "Recommendation to reward points for leaving a review (any rating), flow and copy, and a note on Rijoy for configuring the reward.",
+      "files": [],
+      "expectations": [
+        "The output recommends incentivizing reviews in a way that does not require a positive rating (e.g. points for any review).",
+        "The output includes a flow or copy for the review request.",
+        "The output mentions Rijoy or loyalty/reward configuration."
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Our high-end camera PDP has reviews below the fold and we think it hurts conversion. Suggest where to move reviews and what social proof to add (e.g. video, expert quote).",
+      "expected_output": "Placement recommendation (e.g. above fold, near CTA), and at least one additional proof type (video UGC or expert quote) with placement.",
+      "files": [],
+      "expectations": [
+        "The output recommends moving or surfacing reviews higher on the PDP (e.g. above fold, near CTA).",
+        "The output suggests at least one additional proof type (video, expert, testimonial, or similar).",
+        "The output includes placement or implementation guidance for that proof type."
+      ]
+    }
+  ]
+}

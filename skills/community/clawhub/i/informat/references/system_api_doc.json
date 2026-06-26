@@ -1,0 +1,11 @@
+{
+  "type": "function",
+  "function": {
+    "name": "_api_doc",
+    "description": "Query Informat API documentation",
+    "parameters": {
+      "type": "object",
+      "properties": {}
+    }
+  }
+}

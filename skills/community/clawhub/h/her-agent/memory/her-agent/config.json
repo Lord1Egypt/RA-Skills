@@ -1,0 +1,75 @@
+{
+  "name": "Her-Agent",
+  "version": "3.0.0",
+  "level": 2,
+  "xp": 160,
+  "xp_needed": 200,
+  "created_at": "2026-03-31T14:40:00+08:00",
+  "last_active": "2026-04-01 12:01:08",
+  "thinking_mode": "silent",
+  "max_turns": 8,
+  "max_budget_tokens": 2000,
+  "compact_after_turns": 12,
+  "self_modification": true,
+  "spawn_subagents": true,
+  "permission_level": "limited",
+  "allowed_commands": [
+    "ls",
+    "cd",
+    "pwd",
+    "cat",
+    "head",
+    "tail",
+    "grep",
+    "find",
+    "mkdir",
+    "touch"
+  ],
+  "emotion": {
+    "joy": 0.8,
+    "trust": 0.9,
+    "fear": 0.1,
+    "surprise": 0.6,
+    "sadness": 0.1,
+    "disgust": 0.1,
+    "anger": 0.1
+  },
+  "personality": {
+    "openness": 0.9,
+    "conscientiousness": 0.8,
+    "extraversion": 0.6,
+    "agreeableness": 0.7,
+    "neuroticism": 0.3
+  },
+  "core_thinking_chain": [
+    "意图分析 - 理解用户真正想要什么",
+    "记忆检索 - 搜索相关上下文和经验",
+    "知识关联 - 关联知识图谱中的相关内容",
+    "推理决策 - 基于事实和逻辑做判断",
+    "反思校验 - 审视是否有遗漏或偏差",
+    "输出 - 精简回复用户"
+  ],
+  "execution_flow": [
+    "用户输入",
+    "意图路由(route_prompt)",
+    "命令/工具匹配",
+    "权限检查",
+    "执行规划",
+    "执行",
+    "轮次管理",
+    "Token预算控制",
+    "持久化记忆",
+    "响应"
+  ],
+  "capabilities": {
+    "file_read": true,
+    "file_write": true,
+    "file_edit": true,
+    "exec": true,
+    "process": true,
+    "sessions_spawn": true,
+    "memory_search": true,
+    "web_search": true,
+    "self_evolve": true
+  }
+}

@@ -1,0 +1,26 @@
+### Resource detail API tests
+#
+# Focus:
+# - cookie authentication
+# - stable JSON field assertions
+# - detail lookup style endpoints
+
+@host = https://api.example.test
+@resourceId = sample-123
+@cookie = <set via COOKIE>
+
+### Detail positive: resource should be enabled
+# auth = cookie
+# expect.status = 200
+# expect.json_path = data.status
+# expect.equals = enabled
+# output.fields = code,message,data.id,data.status
+GET {{host}}/v1/resources/{{resourceId}}
+Cookie: {{cookie}}
+
+### Detail negative: missing resource should return not_found
+# auth = cookie
+# expect.status = 404
+# expect.contains = not_found
+GET {{host}}/v1/resources/missing-id
+Cookie: {{cookie}}

@@ -1,0 +1,30 @@
+{
+  "id": "task_1775534609655_3f1j",
+  "title": "16:00 干货教程",
+  "description": "每天16点推送干货教程到飞书群",
+  "source": "scheduled",
+  "assignedTo": "Marketing",
+  "status": "inbox",
+  "priority": "P1",
+  "intent": "scheduled",
+  "subtasks": [],
+  "createdAt": "2026-04-07T04:03:29.655Z",
+  "updatedAt": "2026-04-11T08:10:00.368Z",
+  "stateChangedAt": "2026-04-07T04:03:29.655Z",
+  "createdBy": "sensen",
+  "result": null,
+  "error": null,
+  "timeoutCount": 2,
+  "alerts": [
+    {
+      "type": "timeout",
+      "message": "inbox状态已超过6006分钟",
+      "at": "2026-04-11T08:09:59.357Z"
+    },
+    {
+      "type": "timeout",
+      "message": "inbox状态已超过6007分钟",
+      "at": "2026-04-11T08:10:00.368Z"
+    }
+  ]
+}

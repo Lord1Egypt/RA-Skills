@@ -1,0 +1,33 @@
+{
+  "name": "song_tea",
+  "version": "3.1.0",
+  "description": "宋韵东方茶饮品牌套件示例 — 用于 RECIPES.md 食谱 1",
+  "colors": [
+    "#2C5F2D",
+    "#97BC62",
+    "#F7F4EA",
+    "#3E2723"
+  ],
+  "fonts": [
+    "Songti SC",
+    "Source Han Serif",
+    "Noto Serif CJK SC"
+  ],
+  "keywords": [
+    "宋韵",
+    "极简",
+    "留白",
+    "文人画",
+    "山水意境",
+    "克制"
+  ],
+  "forbidden": [
+    "modern digital",
+    "neon",
+    "cyberpunk",
+    "harsh contrast",
+    "saturated cartoon"
+  ],
+  "logo_description": "minimal seal-script chinese character on parchment",
+  "use_count": 0
+}

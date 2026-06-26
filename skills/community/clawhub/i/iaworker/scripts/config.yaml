@@ -1,0 +1,24 @@
+tts:
+  engine: "gtts"          # "gtts" (online) or "pyttsx3" (offline)
+  lang: "en"
+  speed: 1.0              # 0.5 = slow, 2.0 = fast
+  volume: 1.0             # 0.0 to 1.0
+  enabled: true
+
+display:
+  use_rich: true          # Pretty terminal output (requires rich library)
+  color: "cyan"           # Step highlight color
+  show_icons: true        # Show ✅ ⚠️ 🔧 icons
+
+analysis:
+  default_task: "auto"
+  frame_skip: 10
+  confidence_threshold: 0.6
+  fallback_on_error: true
+
+step_delivery:
+  auto_speak: true
+  wait_confirmation: false
+  speak_difficulty: true
+  speak_time_estimate: true
+  confirmation_prompt: "Press Enter to continue to the next step..."

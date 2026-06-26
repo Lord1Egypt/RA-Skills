@@ -1,0 +1,10 @@
+interface:
+  display_name: "JD Scorecard"
+  short_description: "Turn JDs into scorecards or score PDF resumes against them"
+  icon_small: "./assets/icon-small.jpg"
+  icon_large: "./assets/logo.jpg"
+  brand_color: "#A11D1D"
+  default_prompt: "Use $jd-scorecard to turn this JD into a concise hiring scorecard, score an uploaded PDF resume against an existing scorecard, or render a Feishu/DingTalk-friendly markdown view when the user asks for a chat display. If a PDF resume is attached, extract the text first, then return the scoring JSON unless the user explicitly requests the chat view."
+
+policy:
+  allow_implicit_invocation: true

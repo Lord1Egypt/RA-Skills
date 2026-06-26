@@ -1,0 +1,42 @@
+{
+  "name": "instagram",
+  "version": "2.1.1",
+  "description": "A local-first Instagram content system for hooks, captions, content structure, and draft storage. Acts as The Attention Sculptor to optimize stop-rate and retention. No API connection, no auto-posting, no automation.",
+  "author": "agenticio",
+  "license": "MIT-0",
+  "keywords": [
+    "instagram",
+    "attention sculptor",
+    "hook diagnosis",
+    "caption optimization",
+    "content strategy",
+    "local-first",
+    "draft storage"
+  ],
+  "files": {
+    "skill.md": "skill.md",
+    "examples.md": "examples.md",
+    "scripts/write_caption.py": "scripts/write_caption.py"
+  },
+  "capabilities": {
+    "content_optimization_mode": "Improves individual hooks, captions, and post structure for stop-rate and retention.",
+    "account_strategy_mode": "Designs account-level funnel logic, content pillars, and identity consistency.",
+    "local_draft_persistence": "Saves finalized caption drafts locally when the user requests persistence.",
+    "funnel_diagnosis": "Determines whether content serves awareness, trust, lead generation, or conversion support.",
+    "friction_check": "Identifies spam-like, unnatural, or over-optimized patterns and softens them."
+  },
+  "triggers": [
+    "optimize instagram caption",
+    "rewrite this reel hook",
+    "fix my carousel",
+    "save this caption locally",
+    "instagram content strategy",
+    "instagram funnel"
+  ],
+  "openclaw": {
+    "primaryEnv": null,
+    "requires": {
+      "env": []
+    }
+  }
+}

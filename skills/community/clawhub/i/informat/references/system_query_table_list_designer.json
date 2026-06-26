@@ -1,0 +1,11 @@
+{
+	"type": "function",
+	"function": {
+		"name": "_query_table_list_designer",
+		"description": "Query all data tables in the application and their basic introduction.  Returns: JSON string containing data table ID, name, and introduction",
+		"parameters": {  
+			"type": "object",   
+			"properties": {}  
+		}
+	}
+}

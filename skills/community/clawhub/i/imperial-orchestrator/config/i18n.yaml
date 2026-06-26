@@ -1,0 +1,284 @@
+# Imperial Orchestrator · 多语言适配
+# 7 国语言：中文(zh)、英语(en)、日语(ja)、韩语(ko)、西班牙语(es)、法语(fr)、德语(de)
+
+languages:
+  - zh
+  - en
+  - ja
+  - ko
+  - es
+  - fr
+  - de
+
+default_language: zh
+
+# ── 角色官衔翻译 ──────────────────────────────────────────────────────
+
+role_titles:
+  router-chief:
+    zh: 中枢总管
+    en: Chief Router
+    ja: 中枢総管
+    ko: 중추총관
+    es: Director Central
+    fr: Directeur Central
+    de: Zentraldirektor
+
+  cabinet-planner:
+    zh: 内阁首辅
+    en: Chief Strategist
+    ja: 内閣首輔
+    ko: 내각수보
+    es: Estratega Jefe
+    fr: Stratège en Chef
+    de: Chefstratege
+
+  censor-review:
+    zh: 都御史
+    en: Chief Censor
+    ja: 都御史
+    ko: 도어사
+    es: Censor Jefe
+    fr: Censeur en Chef
+    de: Oberzensor
+
+  ministry-coding:
+    zh: 工部尚书
+    en: Minister of Engineering
+    ja: 工部尚書
+    ko: 공부상서
+    es: Ministro de Ingeniería
+    fr: Ministre de l'Ingénierie
+    de: Minister für Technik
+
+  ministry-ops:
+    zh: 工部侍郎（营缮司）
+    en: Deputy Minister of Infrastructure
+    ja: 工部侍郎（営繕司）
+    ko: 공부시랑（영선사）
+    es: Viceministro de Infraestructura
+    fr: Vice-Ministre des Infrastructures
+    de: Vizeminister für Infrastruktur
+
+  ministry-security:
+    zh: 兵部尚书
+    en: Minister of Defense
+    ja: 兵部尚書
+    ko: 병부상서
+    es: Ministro de Defensa
+    fr: Ministre de la Défense
+    de: Verteidigungsminister
+
+  ministry-writing:
+    zh: 礼部尚书
+    en: Minister of Culture
+    ja: 礼部尚書
+    ko: 예부상서
+    es: Ministro de Cultura
+    fr: Ministre de la Culture
+    de: Kulturminister
+
+  ministry-legal:
+    zh: 刑部尚书
+    en: Minister of Justice
+    ja: 刑部尚書
+    ko: 형부상서
+    es: Ministro de Justicia
+    fr: Ministre de la Justice
+    de: Justizminister
+
+  ministry-finance:
+    zh: 户部尚书
+    en: Minister of Revenue
+    ja: 戸部尚書
+    ko: 호부상서
+    es: Ministro de Hacienda
+    fr: Ministre des Finances
+    de: Finanzminister
+
+  emergency-scribe:
+    zh: 急递铺令
+    en: Emergency Courier
+    ja: 急递舗令
+    ko: 급체포령
+    es: Correo de Emergencia
+    fr: Courrier d'Urgence
+    de: Notfallkurier
+
+# ── 执行模式翻译 ──────────────────────────────────────────────────────
+
+modes:
+  direct:
+    zh: 直接执行
+    en: Direct Execution
+    ja: 直接実行
+    ko: 직접 실행
+    es: Ejecución Directa
+    fr: Exécution Directe
+    de: Direkte Ausführung
+
+  plan_then_execute:
+    zh: 先规划后执行
+    en: Plan then Execute
+    ja: 計画後実行
+    ko: 계획 후 실행
+    es: Planificar y Ejecutar
+    fr: Planifier puis Exécuter
+    de: Planen dann Ausführen
+
+  multi_agent:
+    zh: 多智能体协同
+    en: Multi-Agent Collaboration
+    ja: マルチエージェント協調
+    ko: 다중 에이전트 협업
+    es: Colaboración Multi-Agente
+    fr: Collaboration Multi-Agent
+    de: Multi-Agenten-Zusammenarbeit
+
+  degraded:
+    zh: 降级生存模式
+    en: Degraded Survival Mode
+    ja: 縮退サバイバルモード
+    ko: 저하 생존 모드
+    es: Modo de Supervivencia Degradado
+    fr: Mode de Survie Dégradé
+    de: Degradierter Überlebensmodus
+
+# ── 系统消息翻译 ──────────────────────────────────────────────────────
+
+messages:
+  routing_to:
+    zh: "任务已路由至 {title}（{role}），使用模型 {model}"
+    en: "Task routed to {title} ({role}), using model {model}"
+    ja: "タスクを{title}（{role}）にルーティング、モデル {model} を使用"
+    ko: "작업을 {title}({role})로 라우팅, 모델 {model} 사용"
+    es: "Tarea enrutada a {title} ({role}), usando modelo {model}"
+    fr: "Tâche routée vers {title} ({role}), utilisant le modèle {model}"
+    de: "Aufgabe an {title} ({role}) weitergeleitet, Modell {model}"
+
+  fallback_triggered:
+    zh: "⚠️ 主模型失败，降级到: {model}"
+    en: "⚠️ Primary model failed, falling back to: {model}"
+    ja: "⚠️ メインモデル失敗、フォールバック先: {model}"
+    ko: "⚠️ 기본 모델 실패, 대체 모델로 전환: {model}"
+    es: "⚠️ Modelo principal falló, respaldo: {model}"
+    fr: "⚠️ Modèle principal échoué, repli sur: {model}"
+    de: "⚠️ Primärmodell fehlgeschlagen, Fallback auf: {model}"
+
+  all_models_failed:
+    zh: "❌ 所有 {count} 个模型均失败"
+    en: "❌ All {count} models failed"
+    ja: "❌ 全 {count} モデルが失敗"
+    ko: "❌ 모든 {count}개 모델 실패"
+    es: "❌ Los {count} modelos fallaron"
+    fr: "❌ Les {count} modèles ont échoué"
+    de: "❌ Alle {count} Modelle fehlgeschlagen"
+
+  review_pass:
+    zh: "✅ 审核通过"
+    en: "✅ Review passed"
+    ja: "✅ 審査通過"
+    ko: "✅ 검토 통과"
+    es: "✅ Revisión aprobada"
+    fr: "✅ Revue validée"
+    de: "✅ Überprüfung bestanden"
+
+  review_reject:
+    zh: "❌ 审核驳回"
+    en: "❌ Review rejected"
+    ja: "❌ 審査却下"
+    ko: "❌ 검토 거부"
+    es: "❌ Revisión rechazada"
+    fr: "❌ Revue rejetée"
+    de: "❌ Überprüfung abgelehnt"
+
+  review_revise:
+    zh: "⚠️ 需要修改"
+    en: "⚠️ Revision needed"
+    ja: "⚠️ 修正が必要"
+    ko: "⚠️ 수정 필요"
+    es: "⚠️ Revisión necesaria"
+    fr: "⚠️ Révision nécessaire"
+    de: "⚠️ Überarbeitung nötig"
+
+  no_api_key:
+    zh: "未找到 provider '{provider}' 的 API Key"
+    en: "No API key found for provider '{provider}'"
+    ja: "プロバイダー '{provider}' の API キーが見つかりません"
+    ko: "프로바이더 '{provider}'의 API 키를 찾을 수 없습니다"
+    es: "No se encontró clave API para el proveedor '{provider}'"
+    fr: "Clé API introuvable pour le fournisseur '{provider}'"
+    de: "Kein API-Schlüssel für Anbieter '{provider}' gefunden"
+
+  health_summary:
+    zh: "探活完成: {healthy}✅ 健康  {auth_dead}🔴 认证失败  {timeout}⏱️ 超时  {down}❌ 宕机  / {total} 总计"
+    en: "Probe complete: {healthy}✅ healthy  {auth_dead}🔴 auth dead  {timeout}⏱️ timeout  {down}❌ down  / {total} total"
+    ja: "探索完了: {healthy}✅ 正常  {auth_dead}🔴 認証失敗  {timeout}⏱️ タイムアウト  {down}❌ ダウン  / {total} 合計"
+    ko: "탐색 완료: {healthy}✅ 정상  {auth_dead}🔴 인증 실패  {timeout}⏱️ 시간 초과  {down}❌ 다운  / {total} 총계"
+    es: "Sondeo completo: {healthy}✅ sanos  {auth_dead}🔴 auth muerto  {timeout}⏱️ timeout  {down}❌ caídos  / {total} total"
+    fr: "Sondage terminé: {healthy}✅ sains  {auth_dead}🔴 auth mort  {timeout}⏱️ timeout  {down}❌ hors service  / {total} total"
+    de: "Prüfung abgeschlossen: {healthy}✅ gesund  {auth_dead}🔴 Auth tot  {timeout}⏱️ Timeout  {down}❌ ausgefallen  / {total} gesamt"
+
+  benchmark_start:
+    zh: "🧪 开始基准测试: {models} 模型 × {categories} 类别 = {total} 项测试"
+    en: "🧪 Starting benchmark: {models} models × {categories} categories = {total} tests"
+    ja: "🧪 ベンチマーク開始: {models} モデル × {categories} カテゴリ = {total} テスト"
+    ko: "🧪 벤치마크 시작: {models} 모델 × {categories} 카테고리 = {total} 테스트"
+    es: "🧪 Iniciando benchmark: {models} modelos × {categories} categorías = {total} pruebas"
+    fr: "🧪 Démarrage du benchmark: {models} modèles × {categories} catégories = {total} tests"
+    de: "🧪 Benchmark gestartet: {models} Modelle × {categories} Kategorien = {total} Tests"
+
+  stats_line:
+    zh: "📊 {model} | tokens: {tokens} | 成本: ${cost} | 延迟: {latency}ms"
+    en: "📊 {model} | tokens: {tokens} | cost: ${cost} | latency: {latency}ms"
+    ja: "📊 {model} | トークン: {tokens} | コスト: ${cost} | 遅延: {latency}ms"
+    ko: "📊 {model} | 토큰: {tokens} | 비용: ${cost} | 지연: {latency}ms"
+    es: "📊 {model} | tokens: {tokens} | costo: ${cost} | latencia: {latency}ms"
+    fr: "📊 {model} | tokens: {tokens} | coût: ${cost} | latence: {latency}ms"
+    de: "📊 {model} | Tokens: {tokens} | Kosten: ${cost} | Latenz: {latency}ms"
+
+# ── 路由关键词（多语言触发） ──────────────────────────────────────────
+
+# 除中英文外的其他语言关键词，用于增强路由匹配
+routing_keywords_i18n:
+  coding:
+    ja: [コード, バグ, デバッグ, 関数, リファクタリング, コンパイル, アルゴリズム]
+    ko: [코드, 버그, 디버그, 함수, 리팩토링, 컴파일, 알고리즘]
+    es: [código, error, depurar, función, refactorizar, compilar, algoritmo]
+    fr: [code, bogue, déboguer, fonction, refactoriser, compiler, algorithme]
+    de: [Code, Fehler, debuggen, Funktion, refaktorieren, kompilieren, Algorithmus]
+
+  ops:
+    ja: [デプロイ, サーバー, コンテナ, ネットワーク, 運用]
+    ko: [배포, 서버, 컨테이너, 네트워크, 운영]
+    es: [desplegar, servidor, contenedor, red, operaciones]
+    fr: [déployer, serveur, conteneur, réseau, opérations]
+    de: [bereitstellen, Server, Container, Netzwerk, Betrieb]
+
+  security:
+    ja: [セキュリティ, 脆弱性, 監査, 脅威, 侵入]
+    ko: [보안, 취약점, 감사, 위협, 침투]
+    es: [seguridad, vulnerabilidad, auditoría, amenaza, penetración]
+    fr: [sécurité, vulnérabilité, audit, menace, pénétration]
+    de: [Sicherheit, Schwachstelle, Audit, Bedrohung, Penetration]
+
+  writing:
+    ja: [文章, ブログ, ドキュメント, 翻訳, コピーライティング]
+    ko: [글쓰기, 블로그, 문서, 번역, 카피라이팅]
+    es: [escritura, blog, documento, traducción, redacción]
+    fr: [écriture, blog, document, traduction, rédaction]
+    de: [Schreiben, Blog, Dokument, Übersetzung, Werbetexte]
+
+  legal:
+    ja: [契約, 条項, コンプライアンス, プライバシー, 法律]
+    ko: [계약, 조항, 컴플라이언스, 프라이버시, 법률]
+    es: [contrato, cláusula, cumplimiento, privacidad, legal]
+    fr: [contrat, clause, conformité, confidentialité, juridique]
+    de: [Vertrag, Klausel, Compliance, Datenschutz, Recht]
+
+  finance:
+    ja: [価格, 利益, 予算, 収益, 原価]
+    ko: [가격, 이익, 예산, 수익, 원가]
+    es: [precio, beneficio, presupuesto, ingresos, costo]
+    fr: [prix, bénéfice, budget, revenus, coût]
+    de: [Preis, Gewinn, Budget, Einnahmen, Kosten]

@@ -1,35 +1,22 @@
 ---
-name: "Hle Reasoning Wrapper"
-description: "Wraps HLE benchmark questions in a structured Chain-of-Thought (CoT) reasoning process. Use when answering HLE questions to ensure strict step-by-step logic..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/hle-reasoning-wrapper"
-sourceUrl: "https://clawhub.ai/skills/hle-reasoning-wrapper"
+name: hle-reasoning-wrapper
+description: Wraps HLE benchmark questions in a structured Chain-of-Thought (CoT) reasoning process. Use when answering HLE questions to ensure strict step-by-step logic and format compliance.
 ---
 
-# Hle Reasoning Wrapper
+# HLE Reasoning Wrapper
 
-> Wraps HLE benchmark questions in a structured Chain-of-Thought (CoT) reasoning process. Use when answering HLE questions to ensure strict step-by-step logic...
+Enforces a structured reasoning process for Humanity's Last Exam (HLE) questions.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/hle-reasoning-wrapper`
-- **Source URL:** [https://clawhub.ai/skills/hle-reasoning-wrapper](https://clawhub.ai/skills/hle-reasoning-wrapper)
+## Usage
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/hle-reasoning-wrapper
+```javascript
+const hle = require('./index');
+const prompt = hle.formatPrompt("What is the speed of light?");
+// Use prompt with LLM
+const result = hle.validateOutput(llmResponse);
 ```
+
+## Logic
+
+1.  **Format Prompt**: Injects required structure (Thought/Answer).
+2.  **Validate Output**: Ensures the model followed the structure.

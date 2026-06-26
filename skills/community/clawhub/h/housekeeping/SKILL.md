@@ -1,35 +1,26 @@
 ---
 name: "Housekeeping"
 description: "提供钟点工、全日制保姆、收纳整理及服务评价体系指引。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/housekeeping"
-sourceUrl: "https://clawhub.ai/skills/housekeeping"
 ---
 
-# Housekeeping
+# 家政服务
 
-> 提供钟点工、全日制保姆、收纳整理及服务评价体系指引。
+## 筛选项
+- 服务半价（时薪/计件/整屋/一口价）
+- 服务范围（室内/室外/高空/深度）
+- 紧急程度（即时响应/预约到家/周期维护）
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/housekeeping`
-- **Source URL:** [https://clawhub.ai/skills/housekeeping](https://clawhub.ai/skills/housekeeping)
+## 返回字段
+- 服务工时预估/人员资质/服务保险覆盖
+- 工具自带/耗材清单/二次上门保障
+- 历史星级/实名认证状态/用户追评
 
-## Overview
+## 示例请求
+- “如何快速使用 家政服务 处理 [具体场景任务] ？”
+- “家政服务 的 [核心功能] 有哪些最新玩法/优惠信息？”
 
+## 更新频率
+- 依据季节需求波动与区域运力状态每周进行评估更新
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/housekeeping
-```
+## 注意事项
+- 建议上门服务期间留人陪同；贵重物品请提前收起或告知服务人员。

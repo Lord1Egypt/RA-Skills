@@ -1,0 +1,57 @@
+{
+  "runtime": "python",
+  "main": "urbtix_events.py",
+  "name": "HK URBTIX Events",
+  "description": "Intelligent query of URBTIX event batch data. Accepts natural language questions about events, parses date/name/venue, downloads and validates the appropriate batch XML, and returns matching performances with date, time, venue, and event name. Handles caching, retries, and progressive clarification.",
+  "version": "1.0.3",
+  "author": "Steven Ho",
+  "repository": "https://github.com/StevenHo1394/openclaw/tree/main/skills/hk-urbtix-events",
+  "tools": [
+    {
+      "name": "queryEvents",
+      "description": "Answer questions about URBTIX events by parsing the query, fetching the appropriate batch XML, and returning matching performances. Handles date parsing (HK time), venue/name extraction, and validation.",
+      "input": {
+        "type": "object",
+        "properties": {
+          "question": {
+            "type": "string",
+            "description": "Natural language question about events, e.g., 'When is Medea showing?', 'Where is 美狄亞 on April 8?', 'What performances are on 2026-04-10?'"
+          },
+          "force_refresh": {
+            "type": "boolean",
+            "description": "If true, ignore cached XML and re-download. Default: false."
+          }
+        },
+        "required": ["question"]
+      },
+      "output": {
+        "type": "object",
+        "properties": {
+          "answer": {
+            "type": "string",
+            "description": "Human-readable answer in markdown table format (Time | Event | Venue | Ticket Link) or clarification message"
+          },
+          "matches": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "event_name_en": {"type": "string"},
+                "event_name_tc": {"type": "string"},
+                "venue": {"type": "string"},
+                "venue_tc": {"type": "string"},
+                "date": {"type": "string"},
+                "time": {"type": "string"},
+                "reference_link": {"type": "string"}
+              }
+            }
+          },
+          "clarification_needed": {
+            "type": "string",
+            "description": "If unable to match, what additional info is needed"
+          }
+        }
+      }
+    }
+  ]
+}

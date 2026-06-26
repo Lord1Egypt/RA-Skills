@@ -1,35 +1,29 @@
 ---
-name: "Gumroad Product Page Generator"
-description: "Generates Gumroad product page content from a simple spec."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/gumroad-page-gen-dv"
-sourceUrl: "https://clawhub.ai/skills/gumroad-page-gen-dv"
+id: 'gumroad-page-gen'
+name: 'Gumroad Page Generator'
+description: 'Generates Gumroad product page content from a simple spec.'
+version: '1.0.0'
+author: 'DaVinci'
+last_amended_at: null
+trigger_patterns: []
+pre_conditions:
+  git_repo_required: false
+  tools_available: []
+expected_output_format: 'natural_language'
 ---
 
-# Gumroad Product Page Generator
+# Gumroad Page Generator
 
-> Generates Gumroad product page content from a simple spec.
+Generates Gumroad product page content from a simple spec.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/gumroad-page-gen-dv`
-- **Source URL:** [https://clawhub.ai/skills/gumroad-page-gen-dv](https://clawhub.ai/skills/gumroad-page-gen-dv)
+## Usage
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/gumroad-page-gen-dv
+gumroad-page-gen create \
+  --product-name "AI Tax Optimizer" \
+  --target-audience "Software Engineers with RSUs" \
+  --pain-points "AMT, tax drag, complex tax code" \
+  --solution "Optimize your RSU tax strategy with AI." \
+  --features "AMT calculator, harvest planner, state tax analysis" \
+  --price 49
 ```

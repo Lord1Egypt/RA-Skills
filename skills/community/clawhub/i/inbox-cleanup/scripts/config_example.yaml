@@ -1,0 +1,34 @@
+# inbox_cleanup config — copy this and customise for your inbox
+
+# Domains to DELETE (permanently expunge)
+delete_domains:
+  - github.com
+  - noreply.github.com
+  - gitlab.com
+  # Add any domain you want to hard-delete
+
+# Domains to ARCHIVE (move to archive folder, remove from inbox)
+archive_domains:
+  - notion.so
+  - substack.com
+  - medium.com
+  - hashnode.com
+  # Add newsletter/SaaS domains to archive
+
+# Keywords in subject line → ARCHIVE
+archive_keywords:
+  - newsletter
+  - digest
+  - weekly
+  - roundup
+  - unsubscribe
+
+# Regex patterns in subject line → DELETE
+delete_subject_patterns:
+  # - "^\\[GitHub\\] "    # GitHub notifications
+  # - "Your receipt from"
+
+# Domains to explicitly LEAVE (override archive/delete rules)
+leave_domains:
+  - mybank.com
+  - important-service.com

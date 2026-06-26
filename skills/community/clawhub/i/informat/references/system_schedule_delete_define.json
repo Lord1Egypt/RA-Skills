@@ -1,0 +1,18 @@
+{
+  "type": "function",
+  "function": {
+    "name": "_schedule_delete_define",
+    "description": "Delete the specified scheduled task. (Dangerous operation, only call when explicitly requested by the user)",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Scheduled task ID"
+        }
+      },
+      "required": ["id"],
+      "additionalProperties": false
+    }
+  }
+}

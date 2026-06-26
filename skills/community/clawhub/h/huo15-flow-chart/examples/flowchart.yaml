@@ -1,0 +1,31 @@
+type: flowchart
+title: 用户下单流程
+direction: TB
+
+nodes:
+  - id: n_start
+    label: 开始
+    shape: stadium
+  - id: login
+    label: 用户登录
+  - id: check
+    label: "是否有商品?"
+    shape: diamond
+  - id: add
+    label: 选购商品
+  - id: pay
+    label: 结算付款
+  - id: confirm
+    label: 订单确认
+  - id: n_end
+    label: 结束
+    shape: stadium
+
+edges:
+  - { from: n_start, to: login }
+  - { from: login, to: check }
+  - { from: check, to: add, label: 否 }
+  - { from: check, to: pay, label: 是 }
+  - { from: add, to: check }
+  - { from: pay, to: confirm }
+  - { from: confirm, to: n_end }

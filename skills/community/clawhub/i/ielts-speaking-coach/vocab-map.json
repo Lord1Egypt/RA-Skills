@@ -1,0 +1,239 @@
+{
+  "_meta": {
+    "description": "Context-aware vocabulary upgrades from backend CONTEXT_VOCAB. PRIORITY: Look up base word + detected context first; use default when no topic match. diff=1-5 (difficulty), reg=spoken|neutral|formal|academic. Part 1/2: prefer spoken/neutral. Part 3: formal/academic OK.",
+    "usage": "1. Detect topic from transcript keywords (see context_keywords). 2. For each weak word, check if base form exists here. 3. Use context-specific row if topic matches; else default. 4. Pick alternatives by user band (d ≤ band+1) and Part register. Keys: w=word, d=difficulty 1-5, r=register.",
+    "context_keywords": {
+      "food": ["eat", "taste", "delicious", "meal", "restaurant", "dish", "flavor", "cooking", "cuisine", "lunch", "dinner", "breakfast"],
+      "person": ["man", "woman", "friend", "teacher", "parent", "people", "guy", "girl", "personality", "character", "neighbor", "colleague"],
+      "idea": ["plan", "thought", "concept", "theory", "suggestion", "proposal", "strategy", "opinion", "belief", "view"],
+      "health": ["sick", "ill", "doctor", "medicine", "hospital", "pain", "body", "exercise", "diet", "fitness", "wellbeing"],
+      "weather": ["rain", "sun", "cloud", "storm", "wind", "snow", "temperature", "climate", "forecast", "hot", "cold"],
+      "performance": ["job", "work", "exam", "test", "result", "score", "play", "music", "movie", "acting", "presentation"],
+      "situation": ["problem", "issue", "event", "circumstance", "case", "scenario", "condition", "state"],
+      "behavior": ["act", "rude", "polite", "kind", "mean", "attitude", "conduct", "manner", "behave"],
+      "achievement": ["win", "success", "goal", "award", "prize", "accomplish", "finish", "complete", "succeed"],
+      "necessary": ["need", "must", "require", "essential", "vital", "important"],
+      "future": ["will", "going to", "plan", "dream", "goal", "career", "life", "tomorrow", "year", "aspirations"],
+      "deep": ["why", "reason", "philosophy", "meaning", "understand", "learn", "study", "analyze", "reflect"],
+      "scope": ["project", "area", "field", "range", "cover", "include", "involve", "extent"],
+      "impact": ["change", "affect", "effect", "result", "consequence", "outcome", "influence"],
+      "quality": ["product", "item", "material", "make", "brand", "standard"],
+      "love": ["heart", "romance", "passion", "family", "marriage", "relationship"],
+      "admire": ["hero", "idol", "leader", "role model", "inspiration"],
+      "process": ["system", "method", "way", "procedure", "workflow", "operation"],
+      "serious": ["danger", "threat", "emergency", "urgent", "critical", "severe"],
+      "obstacle": ["block", "stop", "prevent", "hinder", "limit", "restrict"],
+      "complex": ["hard", "difficult", "confusing", "complicated", "tricky"],
+      "book": ["read", "story", "novel", "author", "plot", "character", "literature"]
+    }
+  },
+  "good": {
+    "default": [{"w": "solid", "d": 2, "r": "spoken"}, {"w": "decent", "d": 2, "r": "spoken"}, {"w": "positive", "d": 2, "r": "neutral"}, {"w": "worthwhile", "d": 3, "r": "neutral"}],
+    "food": [{"w": "delicious", "d": 2, "r": "spoken"}, {"w": "tasty", "d": 1, "r": "spoken"}, {"w": "flavourful", "d": 3, "r": "neutral"}, {"w": "scrumptious", "d": 4, "r": "spoken"}],
+    "person": [{"w": "supportive", "d": 2, "r": "spoken"}, {"w": "reliable", "d": 2, "r": "neutral"}, {"w": "considerate", "d": 3, "r": "neutral"}, {"w": "dedicated", "d": 3, "r": "neutral"}],
+    "idea": [{"w": "sound", "d": 2, "r": "neutral"}, {"w": "smart", "d": 1, "r": "spoken"}, {"w": "innovative", "d": 3, "r": "neutral"}],
+    "health": [{"w": "healthy", "d": 1, "r": "spoken"}, {"w": "fit", "d": 1, "r": "spoken"}, {"w": "sound", "d": 2, "r": "neutral"}],
+    "performance": [{"w": "outstanding", "d": 3, "r": "neutral"}, {"w": "brilliant", "d": 2, "r": "spoken"}, {"w": "top-notch", "d": 3, "r": "spoken"}],
+    "weather": [{"w": "lovely", "d": 1, "r": "spoken"}, {"w": "pleasant", "d": 2, "r": "neutral"}, {"w": "gorgeous", "d": 2, "r": "spoken"}]
+  },
+  "bad": {
+    "default": [{"w": "rough", "d": 2, "r": "spoken"}, {"w": "poor", "d": 1, "r": "neutral"}, {"w": "not great", "d": 1, "r": "spoken"}, {"w": "disappointing", "d": 2, "r": "neutral"}],
+    "weather": [{"w": "awful", "d": 1, "r": "spoken"}, {"w": "terrible", "d": 1, "r": "spoken"}, {"w": "harsh", "d": 2, "r": "neutral"}],
+    "situation": [{"w": "tricky", "d": 2, "r": "spoken"}, {"w": "tough", "d": 1, "r": "spoken"}, {"w": "messy", "d": 2, "r": "spoken"}],
+    "behavior": [{"w": "rude", "d": 1, "r": "spoken"}, {"w": "inappropriate", "d": 3, "r": "neutral"}, {"w": "unacceptable", "d": 2, "r": "neutral"}],
+    "health": [{"w": "poor", "d": 1, "r": "neutral"}, {"w": "getting worse", "d": 1, "r": "spoken"}, {"w": "deteriorating", "d": 4, "r": "formal"}],
+    "quality": [{"w": "rubbish", "d": 2, "r": "spoken"}, {"w": "shoddy", "d": 3, "r": "spoken"}, {"w": "inferior", "d": 3, "r": "neutral"}]
+  },
+  "happy": {
+    "default": [{"w": "pleased", "d": 2, "r": "neutral"}, {"w": "glad", "d": 1, "r": "spoken"}, {"w": "content", "d": 2, "r": "neutral"}, {"w": "chuffed", "d": 3, "r": "spoken"}],
+    "extremely": [{"w": "thrilled", "d": 3, "r": "spoken"}, {"w": "over the moon", "d": 3, "r": "spoken"}, {"w": "ecstatic", "d": 4, "r": "spoken"}],
+    "peaceful": [{"w": "relaxed", "d": 1, "r": "spoken"}, {"w": "at ease", "d": 2, "r": "spoken"}, {"w": "calm", "d": 1, "r": "neutral"}],
+    "achievement": [{"w": "proud", "d": 1, "r": "spoken"}, {"w": "fulfilled", "d": 3, "r": "neutral"}, {"w": "buzzing", "d": 3, "r": "spoken"}]
+  },
+  "important": {
+    "default": [{"w": "key", "d": 1, "r": "spoken"}, {"w": "crucial", "d": 3, "r": "neutral"}, {"w": "meaningful", "d": 2, "r": "neutral"}, {"w": "a big deal", "d": 2, "r": "spoken"}, {"w": "paramount", "d": 4, "r": "formal"}, {"w": "indispensable", "d": 5, "r": "academic"}],
+    "necessary": [{"w": "essential", "d": 3, "r": "neutral"}, {"w": "crucial", "d": 3, "r": "neutral"}, {"w": "vital", "d": 3, "r": "neutral"}],
+    "center": [{"w": "central", "d": 2, "r": "neutral"}, {"w": "core", "d": 2, "r": "spoken"}, {"w": "pivotal", "d": 4, "r": "formal"}],
+    "future": [{"w": "life-changing", "d": 2, "r": "spoken"}, {"w": "far-reaching", "d": 4, "r": "formal"}, {"w": "game-changing", "d": 3, "r": "spoken"}]
+  },
+  "think": {
+    "default": [{"w": "feel", "d": 1, "r": "spoken"}, {"w": "believe", "d": 1, "r": "neutral"}, {"w": "reckon", "d": 3, "r": "spoken"}, {"w": "figure", "d": 2, "r": "spoken"}],
+    "opinion": [{"w": "reckon", "d": 3, "r": "spoken"}, {"w": "suppose", "d": 2, "r": "spoken"}, {"w": "would say", "d": 2, "r": "spoken"}],
+    "deep": [{"w": "reflect on", "d": 3, "r": "neutral"}, {"w": "mull over", "d": 3, "r": "spoken"}, {"w": "contemplate", "d": 4, "r": "formal"}],
+    "guess": [{"w": "guess", "d": 1, "r": "spoken"}, {"w": "suspect", "d": 3, "r": "neutral"}, {"w": "speculate", "d": 4, "r": "formal"}]
+  },
+  "big": {
+    "default": [{"w": "huge", "d": 1, "r": "spoken"}, {"w": "massive", "d": 2, "r": "spoken"}, {"w": "major", "d": 2, "r": "neutral"}, {"w": "enormous", "d": 3, "r": "neutral"}],
+    "size": [{"w": "massive", "d": 2, "r": "spoken"}, {"w": "gigantic", "d": 3, "r": "spoken"}, {"w": "enormous", "d": 3, "r": "neutral"}],
+    "scope": [{"w": "wide-ranging", "d": 3, "r": "neutral"}, {"w": "broad", "d": 2, "r": "neutral"}, {"w": "extensive", "d": 3, "r": "formal"}],
+    "impact": [{"w": "huge", "d": 1, "r": "spoken"}, {"w": "major", "d": 2, "r": "neutral"}, {"w": "significant", "d": 3, "r": "formal"}]
+  },
+  "like": {
+    "default": [{"w": "enjoy", "d": 1, "r": "neutral"}, {"w": "be into", "d": 2, "r": "spoken"}, {"w": "be fond of", "d": 3, "r": "neutral"}, {"w": "prefer", "d": 2, "r": "neutral"}],
+    "love": [{"w": "adore", "d": 3, "r": "spoken"}, {"w": "be crazy about", "d": 2, "r": "spoken"}, {"w": "be passionate about", "d": 3, "r": "neutral"}],
+    "admire": [{"w": "look up to", "d": 2, "r": "spoken"}, {"w": "respect", "d": 2, "r": "neutral"}, {"w": "admire", "d": 3, "r": "neutral"}],
+    "food": [{"w": "love", "d": 1, "r": "spoken"}, {"w": "be a fan of", "d": 2, "r": "spoken"}, {"w": "have a taste for", "d": 3, "r": "spoken"}]
+  },
+  "help": {
+    "default": [{"w": "give a hand", "d": 2, "r": "spoken"}, {"w": "support", "d": 2, "r": "neutral"}, {"w": "pitch in", "d": 3, "r": "spoken"}, {"w": "back up", "d": 2, "r": "spoken"}],
+    "problem": [{"w": "sort out", "d": 2, "r": "spoken"}, {"w": "deal with", "d": 2, "r": "spoken"}, {"w": "fix", "d": 1, "r": "spoken"}],
+    "person": [{"w": "lend a hand", "d": 2, "r": "spoken"}, {"w": "guide", "d": 2, "r": "neutral"}, {"w": "mentor", "d": 3, "r": "neutral"}],
+    "process": [{"w": "speed up", "d": 2, "r": "spoken"}, {"w": "make easier", "d": 1, "r": "spoken"}, {"w": "streamline", "d": 4, "r": "formal"}]
+  },
+  "problem": {
+    "default": [{"w": "issue", "d": 2, "r": "neutral"}, {"w": "challenge", "d": 2, "r": "neutral"}, {"w": "hassle", "d": 2, "r": "spoken"}, {"w": "headache", "d": 2, "r": "spoken"}],
+    "serious": [{"w": "crisis", "d": 3, "r": "neutral"}, {"w": "nightmare", "d": 2, "r": "spoken"}, {"w": "dilemma", "d": 3, "r": "neutral"}],
+    "obstacle": [{"w": "hurdle", "d": 3, "r": "spoken"}, {"w": "stumbling block", "d": 3, "r": "spoken"}, {"w": "barrier", "d": 3, "r": "neutral"}],
+    "complex": [{"w": "tricky situation", "d": 2, "r": "spoken"}, {"w": "complication", "d": 3, "r": "neutral"}, {"w": "mess", "d": 1, "r": "spoken"}]
+  },
+  "interesting": {
+    "default": [{"w": "fascinating", "d": 3, "r": "neutral"}, {"w": "cool", "d": 1, "r": "spoken"}, {"w": "engaging", "d": 3, "r": "neutral"}, {"w": "eye-opening", "d": 3, "r": "spoken"}, {"w": "captivating", "d": 4, "r": "neutral"}, {"w": "intriguing", "d": 4, "r": "neutral"}, {"w": "compelling", "d": 4, "r": "formal"}],
+    "book": [{"w": "gripping", "d": 4, "r": "spoken"}, {"w": "a real page-turner", "d": 3, "r": "spoken"}, {"w": "unputdownable", "d": 4, "r": "spoken"}],
+    "person": [{"w": "fascinating", "d": 3, "r": "neutral"}, {"w": "charismatic", "d": 4, "r": "neutral"}, {"w": "one of a kind", "d": 2, "r": "spoken"}],
+    "idea": [{"w": "thought-provoking", "d": 4, "r": "neutral"}, {"w": "intriguing", "d": 4, "r": "neutral"}, {"w": "mind-blowing", "d": 3, "r": "spoken"}]
+  },
+  "get": {
+    "default": [{"w": "pick up", "d": 2, "r": "spoken"}, {"w": "grab", "d": 1, "r": "spoken"}, {"w": "receive", "d": 2, "r": "neutral"}, {"w": "land", "d": 2, "r": "spoken"}],
+    "understand": [{"w": "grasp", "d": 3, "r": "spoken"}, {"w": "figure out", "d": 2, "r": "spoken"}, {"w": "wrap my head around", "d": 3, "r": "spoken"}],
+    "become": [{"w": "turn", "d": 1, "r": "neutral"}, {"w": "grow", "d": 1, "r": "neutral"}, {"w": "end up", "d": 2, "r": "spoken"}],
+    "arrive": [{"w": "reach", "d": 2, "r": "neutral"}, {"w": "make it to", "d": 2, "r": "spoken"}, {"w": "show up at", "d": 2, "r": "spoken"}]
+  },
+  "do": {
+    "default": [{"w": "handle", "d": 2, "r": "spoken"}, {"w": "take care of", "d": 2, "r": "spoken"}, {"w": "get done", "d": 1, "r": "spoken"}, {"w": "work on", "d": 1, "r": "spoken"}],
+    "activity": [{"w": "get into", "d": 2, "r": "spoken"}, {"w": "take part in", "d": 2, "r": "neutral"}, {"w": "try out", "d": 2, "r": "spoken"}],
+    "job": [{"w": "finish", "d": 1, "r": "spoken"}, {"w": "complete", "d": 2, "r": "neutral"}, {"w": "wrap up", "d": 2, "r": "spoken"}],
+    "research": [{"w": "look into", "d": 2, "r": "spoken"}, {"w": "explore", "d": 3, "r": "neutral"}, {"w": "dig into", "d": 3, "r": "spoken"}]
+  },
+  "nice": {
+    "default": [{"w": "lovely", "d": 1, "r": "spoken"}, {"w": "pleasant", "d": 2, "r": "neutral"}, {"w": "great", "d": 1, "r": "spoken"}, {"w": "enjoyable", "d": 2, "r": "neutral"}],
+    "person": [{"w": "lovely", "d": 1, "r": "spoken"}, {"w": "friendly", "d": 1, "r": "spoken"}, {"w": "warm", "d": 2, "r": "spoken"}, {"w": "kind-hearted", "d": 3, "r": "spoken"}],
+    "weather": [{"w": "gorgeous", "d": 2, "r": "spoken"}, {"w": "lovely", "d": 1, "r": "spoken"}, {"w": "mild", "d": 3, "r": "neutral"}],
+    "appearance": [{"w": "gorgeous", "d": 2, "r": "spoken"}, {"w": "attractive", "d": 2, "r": "neutral"}, {"w": "good-looking", "d": 2, "r": "spoken"}]
+  },
+  "lot": {
+    "default": [{"w": "loads", "d": 2, "r": "spoken"}, {"w": "tons", "d": 2, "r": "spoken"}, {"w": "quite a few", "d": 2, "r": "spoken"}, {"w": "plenty", "d": 2, "r": "neutral"}],
+    "quantity": [{"w": "loads of", "d": 2, "r": "spoken"}, {"w": "heaps of", "d": 2, "r": "spoken"}, {"w": "tons of", "d": 2, "r": "spoken"}],
+    "degree": [{"w": "a great deal", "d": 3, "r": "neutral"}, {"w": "quite a bit", "d": 2, "r": "spoken"}, {"w": "way more", "d": 2, "r": "spoken"}]
+  },
+  "say": {
+    "default": [{"w": "mention", "d": 2, "r": "neutral"}, {"w": "point out", "d": 2, "r": "spoken"}, {"w": "go on about", "d": 2, "r": "spoken"}, {"w": "bring up", "d": 2, "r": "spoken"}],
+    "opinion": [{"w": "argue", "d": 3, "r": "neutral"}, {"w": "claim", "d": 2, "r": "neutral"}, {"w": "reckon", "d": 3, "r": "spoken"}],
+    "reply": [{"w": "answer", "d": 1, "r": "neutral"}, {"w": "come back with", "d": 2, "r": "spoken"}, {"w": "respond", "d": 3, "r": "neutral"}],
+    "suggest": [{"w": "hint at", "d": 3, "r": "spoken"}, {"w": "imply", "d": 4, "r": "neutral"}, {"w": "suggest", "d": 2, "r": "neutral"}]
+  },
+  "really": {
+    "default": [{"w": "genuinely", "d": 3, "r": "neutral"}, {"w": "truly", "d": 2, "r": "neutral"}, {"w": "honestly", "d": 2, "r": "spoken"}, {"w": "seriously", "d": 2, "r": "spoken"}],
+    "very": [{"w": "incredibly", "d": 3, "r": "spoken"}, {"w": "extremely", "d": 3, "r": "neutral"}, {"w": "absolutely", "d": 2, "r": "spoken"}],
+    "fact": [{"w": "honestly", "d": 2, "r": "spoken"}, {"w": "actually", "d": 1, "r": "spoken"}, {"w": "in fact", "d": 2, "r": "neutral"}]
+  },
+  "want": {
+    "default": [{"w": "would like to", "d": 2, "r": "neutral"}, {"w": "am keen to", "d": 3, "r": "neutral"}, {"w": "am eager to", "d": 3, "r": "neutral"}],
+    "future": [{"w": "aspire to", "d": 4, "r": "formal"}, {"w": "am hoping to", "d": 2, "r": "spoken"}, {"w": "aim to", "d": 3, "r": "neutral"}]
+  },
+  "need": {
+    "default": [{"w": "require", "d": 3, "r": "formal"}, {"w": "have to", "d": 1, "r": "spoken"}, {"w": "must", "d": 2, "r": "neutral"}],
+    "society": [{"w": "demand", "d": 3, "r": "formal"}, {"w": "call for", "d": 3, "r": "neutral"}, {"w": "necessitate", "d": 5, "r": "academic"}]
+  },
+  "feel": {
+    "default": [{"w": "sense", "d": 3, "r": "neutral"}, {"w": "experience", "d": 3, "r": "neutral"}, {"w": "perceive", "d": 4, "r": "formal"}],
+    "emotion": [{"w": "am struck by", "d": 3, "r": "spoken"}, {"w": "find myself", "d": 2, "r": "spoken"}, {"w": "am drawn to", "d": 3, "r": "neutral"}]
+  },
+  "make": {
+    "default": [{"w": "create", "d": 2, "r": "neutral"}, {"w": "produce", "d": 3, "r": "neutral"}, {"w": "develop", "d": 3, "r": "neutral"}],
+    "decision": [{"w": "reach", "d": 3, "r": "neutral"}, {"w": "arrive at", "d": 3, "r": "formal"}, {"w": "come to", "d": 2, "r": "spoken"}]
+  },
+  "know": {
+    "default": [{"w": "understand", "d": 2, "r": "neutral"}, {"w": "recognise", "d": 3, "r": "neutral"}, {"w": "am aware of", "d": 3, "r": "formal"}],
+    "deep": [{"w": "appreciate", "d": 3, "r": "neutral"}, {"w": "grasp", "d": 3, "r": "neutral"}, {"w": "comprehend", "d": 4, "r": "formal"}]
+  },
+  "see": {
+    "default": [{"w": "notice", "d": 2, "r": "neutral"}, {"w": "observe", "d": 3, "r": "neutral"}, {"w": "spot", "d": 2, "r": "spoken"}],
+    "deep": [{"w": "recognise", "d": 3, "r": "neutral"}, {"w": "perceive", "d": 4, "r": "formal"}, {"w": "identify", "d": 3, "r": "neutral"}]
+  },
+  "try": {
+    "default": [{"w": "attempt", "d": 3, "r": "neutral"}, {"w": "have a go at", "d": 2, "r": "spoken"}, {"w": "make an effort to", "d": 3, "r": "neutral"}],
+    "experience": [{"w": "experiment with", "d": 3, "r": "neutral"}, {"w": "explore", "d": 3, "r": "neutral"}, {"w": "sample", "d": 3, "r": "neutral"}]
+  },
+  "use": {
+    "default": [{"w": "utilise", "d": 3, "r": "formal"}, {"w": "employ", "d": 4, "r": "formal"}, {"w": "make use of", "d": 2, "r": "spoken"}],
+    "technology": [{"w": "rely on", "d": 2, "r": "spoken"}, {"w": "take advantage of", "d": 3, "r": "neutral"}, {"w": "leverage", "d": 4, "r": "formal"}]
+  },
+  "work": {
+    "default": [{"w": "function", "d": 3, "r": "neutral"}, {"w": "operate", "d": 3, "r": "neutral"}, {"w": "perform", "d": 3, "r": "neutral"}],
+    "career": [{"w": "be employed", "d": 3, "r": "neutral"}, {"w": "pursue a career in", "d": 4, "r": "formal"}, {"w": "specialise in", "d": 4, "r": "formal"}]
+  },
+  "give": {
+    "default": [{"w": "provide", "d": 3, "r": "neutral"}, {"w": "offer", "d": 2, "r": "neutral"}, {"w": "present", "d": 3, "r": "formal"}],
+    "education": [{"w": "equip with", "d": 4, "r": "formal"}, {"w": "expose to", "d": 3, "r": "neutral"}, {"w": "grant", "d": 4, "r": "formal"}]
+  },
+  "take": {
+    "default": [{"w": "require", "d": 3, "r": "neutral"}, {"w": "demand", "d": 3, "r": "formal"}, {"w": "involve", "d": 3, "r": "neutral"}],
+    "decision": [{"w": "adopt", "d": 3, "r": "neutral"}, {"w": "embrace", "d": 3, "r": "neutral"}, {"w": "undertake", "d": 4, "r": "formal"}]
+  },
+  "tell": {
+    "default": [{"w": "inform", "d": 3, "r": "formal"}, {"w": "explain to", "d": 2, "r": "neutral"}, {"w": "share with", "d": 2, "r": "spoken"}],
+    "story": [{"w": "narrate", "d": 4, "r": "formal"}, {"w": "describe", "d": 2, "r": "neutral"}, {"w": "recount", "d": 4, "r": "formal"}]
+  },
+  "show": {
+    "default": [{"w": "demonstrate", "d": 3, "r": "neutral"}, {"w": "illustrate", "d": 4, "r": "formal"}, {"w": "reveal", "d": 3, "r": "neutral"}],
+    "data": [{"w": "indicate", "d": 3, "r": "formal"}, {"w": "suggest", "d": 2, "r": "neutral"}, {"w": "highlight", "d": 3, "r": "neutral"}]
+  },
+  "become": {
+    "default": [{"w": "turn into", "d": 2, "r": "spoken"}, {"w": "develop into", "d": 3, "r": "neutral"}, {"w": "evolve into", "d": 4, "r": "formal"}],
+    "society": [{"w": "emerge as", "d": 4, "r": "formal"}, {"w": "transform into", "d": 3, "r": "neutral"}, {"w": "grow into", "d": 2, "r": "spoken"}]
+  },
+  "difficult": {
+    "default": [{"w": "challenging", "d": 3, "r": "neutral"}, {"w": "demanding", "d": 3, "r": "neutral"}, {"w": "tough", "d": 2, "r": "spoken"}],
+    "deep": [{"w": "complex", "d": 3, "r": "neutral"}, {"w": "intricate", "d": 4, "r": "formal"}, {"w": "daunting", "d": 4, "r": "neutral"}]
+  },
+  "look": {
+    "default": [{"w": "appear", "d": 2, "r": "neutral"}, {"w": "seem", "d": 2, "r": "neutral"}, {"w": "come across as", "d": 3, "r": "spoken"}],
+    "person": [{"w": "gorgeous", "d": 3, "r": "spoken"}, {"w": "impressive", "d": 3, "r": "neutral"}, {"w": "appealing", "d": 3, "r": "neutral"}],
+    "place": [{"w": "picturesque", "d": 4, "r": "formal"}, {"w": "peaceful and scenic", "d": 3, "r": "neutral"}, {"w": "stunning", "d": 3, "r": "spoken"}]
+  },
+  "go": {
+    "default": [{"w": "head to", "d": 2, "r": "spoken"}, {"w": "visit", "d": 2, "r": "neutral"}, {"w": "venture", "d": 4, "r": "neutral"}],
+    "experience": [{"w": "explore", "d": 3, "r": "neutral"}, {"w": "check out", "d": 2, "r": "spoken"}, {"w": "hang out at", "d": 2, "r": "spoken"}]
+  },
+  "enjoy": {
+    "default": [{"w": "am quite into", "d": 3, "r": "spoken"}, {"w": "am a big fan of", "d": 2, "r": "spoken"}, {"w": "fancy", "d": 3, "r": "spoken"}],
+    "experience": [{"w": "appreciate", "d": 3, "r": "neutral"}, {"w": "cherish", "d": 4, "r": "neutral"}, {"w": "value", "d": 3, "r": "neutral"}]
+  },
+  "change": {
+    "default": [{"w": "transform", "d": 3, "r": "neutral"}, {"w": "evolve", "d": 4, "r": "formal"}, {"w": "shift", "d": 3, "r": "neutral"}],
+    "society": [{"w": "revolutionise", "d": 4, "r": "formal"}, {"w": "reshape", "d": 4, "r": "neutral"}, {"w": "make a difference", "d": 2, "r": "spoken"}]
+  },
+  "spend": {
+    "default": [{"w": "invest", "d": 3, "r": "neutral"}, {"w": "dedicate", "d": 3, "r": "neutral"}, {"w": "devote", "d": 4, "r": "formal"}],
+    "time": [{"w": "quality time", "d": 2, "r": "spoken"}, {"w": "precious time", "d": 3, "r": "neutral"}, {"w": "allocate", "d": 4, "r": "formal"}]
+  },
+  "learn": {
+    "default": [{"w": "pick up", "d": 2, "r": "spoken"}, {"w": "acquire", "d": 3, "r": "neutral"}, {"w": "gain", "d": 2, "r": "neutral"}],
+    "education": [{"w": "figure out", "d": 2, "r": "spoken"}, {"w": "master", "d": 3, "r": "neutral"}, {"w": "get the hang of", "d": 2, "r": "spoken"}]
+  },
+  "talk": {
+    "default": [{"w": "have conversations about", "d": 2, "r": "spoken"}, {"w": "chat with", "d": 1, "r": "spoken"}, {"w": "communicate with", "d": 3, "r": "neutral"}],
+    "deep": [{"w": "share thoughts with", "d": 3, "r": "neutral"}, {"w": "discuss", "d": 3, "r": "neutral"}, {"w": "exchange ideas", "d": 3, "r": "neutral"}]
+  },
+  "believe": {
+    "default": [{"w": "I am convinced", "d": 3, "r": "neutral"}, {"w": "it is clear to me that", "d": 3, "r": "neutral"}, {"w": "I am aware that", "d": 3, "r": "neutral"}],
+    "deep": [{"w": "to the best of my knowledge", "d": 4, "r": "formal"}, {"w": "it seems to me that", "d": 3, "r": "neutral"}, {"w": "as far as I know", "d": 2, "r": "spoken"}]
+  },
+  "start": {
+    "default": [{"w": "kick off", "d": 2, "r": "spoken"}, {"w": "embark on", "d": 4, "r": "formal"}, {"w": "get into", "d": 2, "r": "spoken"}],
+    "experience": [{"w": "venture into", "d": 4, "r": "neutral"}, {"w": "dive into", "d": 3, "r": "spoken"}, {"w": "launch", "d": 3, "r": "neutral"}]
+  },
+  "beautiful": {
+    "default": [{"w": "stunning", "d": 3, "r": "spoken"}, {"w": "gorgeous", "d": 3, "r": "spoken"}, {"w": "lovely", "d": 2, "r": "spoken"}],
+    "place": [{"w": "picturesque", "d": 4, "r": "neutral"}, {"w": "breathtaking", "d": 3, "r": "neutral"}, {"w": "peaceful and scenic", "d": 3, "r": "neutral"}],
+    "person": [{"w": "exquisite", "d": 4, "r": "formal"}, {"w": "striking", "d": 3, "r": "neutral"}, {"w": "radiant", "d": 4, "r": "neutral"}]
+  },
+  "boring": {
+    "default": [{"w": "mundane", "d": 4, "r": "neutral"}, {"w": "tedious", "d": 4, "r": "neutral"}, {"w": "dull", "d": 2, "r": "spoken"}],
+    "experience": [{"w": "monotonous", "d": 4, "r": "neutral"}, {"w": "uninspiring", "d": 4, "r": "neutral"}, {"w": "mind-numbing", "d": 3, "r": "spoken"}]
+  },
+  "surprised": {
+    "default": [{"w": "mind-blowing", "d": 3, "r": "spoken"}, {"w": "astonishing", "d": 3, "r": "neutral"}, {"w": "taken aback", "d": 3, "r": "neutral"}],
+    "experience": [{"w": "striking", "d": 3, "r": "neutral"}, {"w": "jaw-dropping", "d": 3, "r": "spoken"}, {"w": "a real eye-opener", "d": 3, "r": "spoken"}]
+  }
+}

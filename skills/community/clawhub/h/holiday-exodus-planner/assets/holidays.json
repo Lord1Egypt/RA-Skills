@@ -1,0 +1,270 @@
+{
+  "version": "1.0",
+  "default_language": "zh-CN",
+  "system": "holiday_exodus_planner",
+  "holidays": [
+    {
+      "id": "new_year",
+      "name": "元旦",
+      "keywords": ["元旦", "新年", "1月1日", "跨年"],
+      "typical_dates": "1月1日",
+      "typical_duration_days": 3,
+      "crowd_level": "C",
+      "crowd_label": "较低拥挤",
+      "notes": "通常放假 3 天（含周末调休），适合短途",
+      "price_surge": {
+        "transport": 1.2,
+        "hotel": 1.3
+      },
+      "peak_travel_days": {
+        "outbound": "假期首日",
+        "return": "假期末日"
+      },
+      "optimal_strategy": "不需要请假，选择 2-3 天短途即可",
+      "weather_note": "全国大部分地区寒冷，适合南方或温泉类目的地"
+    },
+    {
+      "id": "spring_festival",
+      "name": "春节",
+      "keywords": ["春节", "过年", "年假", "回家过年", "春运"],
+      "typical_dates": "农历正月初一前后",
+      "typical_duration_days": 7,
+      "crowd_level": "S",
+      "crowd_label": "极高拥挤",
+      "notes": "通常放假 7 天，春运期间交通压力极大",
+      "price_surge": {
+        "transport": 2.5,
+        "hotel": 2.0
+      },
+      "peak_travel_days": {
+        "outbound": "除夕前 2-3 天",
+        "return": "初五至初七"
+      },
+      "optimal_strategy": "如果不回家，建议初三后出发旅行，或选择反向旅游（去别人回家的城市）",
+      "weather_note": "南方温暖，北方严寒，海南/云南/东南亚是热门方向"
+    },
+    {
+      "id": "qingming",
+      "name": "清明节",
+      "keywords": ["清明", "清明节", "踏青", "4月"],
+      "typical_dates": "4月4日或4月5日前后",
+      "typical_duration_days": 3,
+      "crowd_level": "C",
+      "crowd_label": "较低拥挤",
+      "notes": "通常放假 3 天，春季踏青好时节",
+      "price_surge": {
+        "transport": 1.3,
+        "hotel": 1.4
+      },
+      "peak_travel_days": {
+        "outbound": "假期首日",
+        "return": "假期末日"
+      },
+      "optimal_strategy": "3 天足够短途游，请 1-2 天假可延长至 5 天",
+      "weather_note": "全国大部分地区春暖花开，适合户外和赏花"
+    },
+    {
+      "id": "labor_day",
+      "name": "五一劳动节",
+      "keywords": ["五一", "劳动节", "51", "5.1", "五月"],
+      "typical_dates": "5月1日-5月5日",
+      "typical_duration_days": 5,
+      "crowd_level": "A",
+      "crowd_label": "高拥挤",
+      "notes": "通常放假 5 天，全国旅游高峰期之一",
+      "price_surge": {
+        "transport": 1.8,
+        "hotel": 2.5
+      },
+      "peak_travel_days": {
+        "outbound": "4月30日晚 - 5月1日",
+        "return": "5月4日 - 5月5日"
+      },
+      "optimal_strategy": "请 4 月 30 日或 28-30 日假，提前出发；或 5 月 2 日后错峰出发",
+      "weather_note": "全国大部分地区气温适宜，是一年中最佳出行季节之一"
+    },
+    {
+      "id": "dragon_boat",
+      "name": "端午节",
+      "keywords": ["端午", "端午节", "龙舟", "粽子", "五月初五"],
+      "typical_dates": "农历五月初五（通常 6 月）",
+      "typical_duration_days": 3,
+      "crowd_level": "B",
+      "crowd_label": "中等拥挤",
+      "notes": "通常放假 3 天，初夏时节",
+      "price_surge": {
+        "transport": 1.4,
+        "hotel": 1.6
+      },
+      "peak_travel_days": {
+        "outbound": "假期首日",
+        "return": "假期末日"
+      },
+      "optimal_strategy": "请 1-2 天假拼出 5 天假期，性价比高",
+      "weather_note": "南方梅雨季需注意，北方和西部天气较好"
+    },
+    {
+      "id": "mid_autumn",
+      "name": "中秋节",
+      "keywords": ["中秋", "中秋节", "赏月", "月饼", "八月十五"],
+      "typical_dates": "农历八月十五（通常 9-10 月）",
+      "typical_duration_days": 3,
+      "crowd_level": "B",
+      "crowd_label": "中等拥挤",
+      "notes": "通常放假 3 天，有时与国庆相连",
+      "price_surge": {
+        "transport": 1.4,
+        "hotel": 1.5
+      },
+      "peak_travel_days": {
+        "outbound": "假期首日",
+        "return": "假期末日"
+      },
+      "optimal_strategy": "如果与国庆相连则参照国庆策略；独立成假时适合 2-3 天短途",
+      "weather_note": "秋高气爽，全国大部分地区气候宜人，适合户外"
+    },
+    {
+      "id": "national_day",
+      "name": "国庆节",
+      "keywords": ["国庆", "国庆节", "十一", "10.1", "黄金周", "7天长假"],
+      "typical_dates": "10月1日-10月7日",
+      "typical_duration_days": 7,
+      "crowd_level": "S",
+      "crowd_label": "极高拥挤",
+      "notes": "放假 7 天，全年最大旅游高峰",
+      "price_surge": {
+        "transport": 2.0,
+        "hotel": 3.0
+      },
+      "peak_travel_days": {
+        "outbound": "9月30日晚 - 10月1日",
+        "return": "10月6日 - 10月7日"
+      },
+      "optimal_strategy": "请 9 月 29-30 日假提前走，或 10 月 4 日后错峰出发；选二三线城市避开人流",
+      "weather_note": "全国大部分地区秋季气候宜人，南方仍较热"
+    }
+  ],
+  "destination_tiers": {
+    "tier_1_hot": {
+      "label": "一线热门（拥挤高、溢价高）",
+      "cities": [
+        {"name": "三亚", "tags": ["海边", "度假"], "peak_hotel_surge": 3.0},
+        {"name": "丽江", "tags": ["古城", "自然"], "peak_hotel_surge": 2.5},
+        {"name": "厦门", "tags": ["海边", "文艺"], "peak_hotel_surge": 2.5},
+        {"name": "成都", "tags": ["美食", "城市"], "peak_hotel_surge": 2.0},
+        {"name": "西安", "tags": ["历史", "美食"], "peak_hotel_surge": 2.0},
+        {"name": "杭州", "tags": ["自然", "城市"], "peak_hotel_surge": 2.0},
+        {"name": "重庆", "tags": ["美食", "城市"], "peak_hotel_surge": 1.8},
+        {"name": "北京", "tags": ["历史", "城市"], "peak_hotel_surge": 1.8},
+        {"name": "大理", "tags": ["自然", "文艺"], "peak_hotel_surge": 2.5},
+        {"name": "桂林", "tags": ["自然", "山水"], "peak_hotel_surge": 2.0}
+      ]
+    },
+    "tier_2_alternative": {
+      "label": "二线特色（体验好、性价比高）",
+      "cities": [
+        {"name": "泉州", "tags": ["文化", "美食", "世遗"], "vs_hot": "厦门替代"},
+        {"name": "潮汕", "tags": ["美食", "文化"], "vs_hot": "广州/厦门替代"},
+        {"name": "长沙", "tags": ["美食", "城市", "夜生活"], "vs_hot": "成都替代"},
+        {"name": "贵阳", "tags": ["美食", "自然", "凉爽"], "vs_hot": "成都/重庆替代"},
+        {"name": "洛阳", "tags": ["历史", "文化", "牡丹"], "vs_hot": "西安替代"},
+        {"name": "南京", "tags": ["历史", "美食", "城市"], "vs_hot": "杭州替代"},
+        {"name": "福州", "tags": ["美食", "温泉", "文化"], "vs_hot": "厦门替代"},
+        {"name": "昆明", "tags": ["气候", "自然", "美食"], "vs_hot": "大理/丽江替代"},
+        {"name": "青岛", "tags": ["海边", "啤酒", "城市"], "vs_hot": "三亚替代（夏季）"},
+        {"name": "武汉", "tags": ["美食", "历史", "城市"], "vs_hot": "长沙替代"},
+        {"name": "扬州", "tags": ["美食", "园林", "慢城"], "vs_hot": "杭州替代"},
+        {"name": "太原", "tags": ["面食", "历史", "古建"], "vs_hot": "西安替代"}
+      ]
+    },
+    "tier_3_hidden": {
+      "label": "三线小众（人少、独特体验）",
+      "cities": [
+        {"name": "平潭", "tags": ["海岛", "蓝眼泪"], "best_season": "4-6月"},
+        {"name": "荔波", "tags": ["自然", "喀斯特"], "best_season": "5-10月"},
+        {"name": "腾冲", "tags": ["温泉", "火山", "边境"], "best_season": "10-3月"},
+        {"name": "恩施", "tags": ["自然", "峡谷", "土家族"], "best_season": "4-10月"},
+        {"name": "阆中", "tags": ["古城", "历史", "安静"], "best_season": "全年"},
+        {"name": "甘南", "tags": ["草原", "藏区", "自然"], "best_season": "6-9月"},
+        {"name": "霞浦", "tags": ["海边", "摄影", "滩涂"], "best_season": "4-6月"},
+        {"name": "柳州", "tags": ["螺蛳粉", "山水", "工业"], "best_season": "3-5月"},
+        {"name": "泸沽湖", "tags": ["湖泊", "自然", "摩梭"], "best_season": "3-11月"},
+        {"name": "镇远", "tags": ["古镇", "苗族", "山水"], "best_season": "4-10月"},
+        {"name": "台州", "tags": ["海鲜", "海岛", "古城"], "best_season": "5-10月"},
+        {"name": "景德镇", "tags": ["陶瓷", "文化", "文艺"], "best_season": "全年"}
+      ]
+    }
+  },
+  "leave_strategy_templates": {
+    "no_leave": {
+      "label": "不请假",
+      "description": "仅使用法定假期，选择短途或错峰日期"
+    },
+    "leave_1": {
+      "label": "请 1 天假",
+      "description": "拼出更长假期，通常可多 1-2 天行程"
+    },
+    "leave_2": {
+      "label": "请 2 天假",
+      "description": "适合中距离目的地，性价比最高的拼假方案"
+    },
+    "leave_3_plus": {
+      "label": "请 3 天及以上",
+      "description": "适合远距离或深度游，需评估请假成本"
+    }
+  },
+  "budget_reference": {
+    "transport": {
+      "high_speed_rail_per_1000km": {"economy": 400, "business": 800},
+      "flight_per_1000km": {"economy_advance": 500, "economy_peak": 1200}
+    },
+    "hotel_per_night": {
+      "budget": {"min": 100, "max": 200, "label": "经济型"},
+      "comfort": {"min": 250, "max": 500, "label": "舒适型"},
+      "premium": {"min": 500, "max": 1200, "label": "品质型"}
+    },
+    "daily_misc": {
+      "tier_1_city": {"min": 150, "max": 300},
+      "tier_2_city": {"min": 100, "max": 200},
+      "tier_3_city": {"min": 80, "max": 150}
+    }
+  },
+  "crowd_avoidance_rules": [
+    {
+      "rule": "avoid_first_day_departure",
+      "description": "避开假期首日出发",
+      "crowd_reduction": "30-40%",
+      "cost_reduction": "20-30%"
+    },
+    {
+      "rule": "avoid_last_day_return",
+      "description": "避开假期末日返程",
+      "crowd_reduction": "40-50%",
+      "cost_reduction": "15-25%"
+    },
+    {
+      "rule": "depart_1_day_early",
+      "description": "提前 1 天出发（需请假或利用周末）",
+      "crowd_reduction": "30%",
+      "cost_reduction": "25%"
+    },
+    {
+      "rule": "return_1_day_late",
+      "description": "推迟 1 天返程（需请假或利用周末）",
+      "crowd_reduction": "25%",
+      "cost_reduction": "20%"
+    },
+    {
+      "rule": "choose_tier2_destination",
+      "description": "选择二线替代目的地",
+      "crowd_reduction": "50-70%",
+      "cost_reduction": "30-50%"
+    },
+    {
+      "rule": "choose_tier3_destination",
+      "description": "选择三线小众目的地",
+      "crowd_reduction": "70-90%",
+      "cost_reduction": "40-60%"
+    }
+  ]
+}

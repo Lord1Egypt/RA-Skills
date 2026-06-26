@@ -1,35 +1,31 @@
 ---
-name: "Indigo Governance"
+name: indigo-governance
 description: "Query Indigo Protocol governance data including protocol parameters, polls, ."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/indigo-governance"
-sourceUrl: "https://clawhub.ai/skills/indigo-governance"
+allowed-tools: Read, Glob, Grep
+license: MIT
+metadata:
+  author: indigoprotocol
+  version: '0.1.0'
 ---
 
-# Indigo Governance
+# Governance & Params
 
-> Query Indigo Protocol governance data including protocol parameters, polls, .
+Query Indigo Protocol governance data including protocol parameters, temperature checks, polls.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/indigo-governance`
-- **Source URL:** [https://clawhub.ai/skills/indigo-governance](https://clawhub.ai/skills/indigo-governance)
+## MCP Tools
 
-## Overview
+| Tool | Description |
+|------|-------------|
+| `get_protocol_params` | Get current Indigo Protocol parameters |
+| `get_temperature_checks` | Get active governance temperature checks |
+| `get_polls` | Get governance polls and voting data |
 
+## Sub-Skills
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/indigo-governance
-```
+- [Protocol Params](sub-skills/protocol-params.md) — Query protocol parameters
+- [Polls](sub-skills/polls.md) — Temperature checks and governance polls
+
+## References
+
+- [MCP Tools Reference](references/mcp-tools.md) — Detailed tool parameters and return types
+- [Governance Concepts](references/concepts.md) — Voting process, protocol parameters, 

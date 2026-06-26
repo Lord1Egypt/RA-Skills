@@ -1,0 +1,46 @@
+{
+  "name": "@insentek/openapi-skill",
+  "version": "1.2.2",
+  "description": "Bootstrap insentek-openapi skill for OpenClaw and Claude Code",
+  "keywords": [
+    "insentek",
+    "openapi",
+    "skill",
+    "agent",
+    "claude",
+    "openclaw",
+    "iot"
+  ],
+  "homepage": "https://github.com/insentek/insentek-api-skills#readme",
+  "bugs": {
+    "url": "https://github.com/insentek/insentek-api-skills/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/insentek/insentek-api-skills.git",
+    "directory": "packages/insentek-skill-cli"
+  },
+  "license": "MIT",
+  "author": "Insentek",
+  "type": "module",
+  "bin": {
+    "insentek-api-skill": "bin/insentek-api-skill.js"
+  },
+  "files": [
+    "bin",
+    "lib",
+    "assets"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "sync-assets": "node scripts/sync-assets.js",
+    "prepublishOnly": "npm run sync-assets",
+    "test": "node --test test/*.test.js"
+  },
+  "dependencies": {
+    "@inquirer/prompts": "^7.5.1",
+    "commander": "^13.1.0"
+  }
+}

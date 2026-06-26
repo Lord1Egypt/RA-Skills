@@ -1,0 +1,40 @@
+{
+  "name": "retro-future",
+  "displayName": "RETRO-FUTURE · 复古未来",
+  "version": "1.0.0",
+  "color": {
+    "bg": "oklch(0.13 0.04 280)",
+    "ink": "oklch(0.96 0.04 110)",
+    "neonCyan": "oklch(0.85 0.18 195)",
+    "neonMagenta": "oklch(0.72 0.25 5)",
+    "rule": "oklch(0.35 0.1 280)"
+  },
+  "colorHex": {
+    "bg": "#1c1a3a",
+    "ink": "#f8f3c4",
+    "neonCyan": "#2cd9d5",
+    "neonMagenta": "#ee2657",
+    "rule": "#3a3170"
+  },
+  "typography": {
+    "display": "Major Mono Display 400",
+    "body": "VT323 400"
+  },
+  "spacing": { "xs": 4, "sm": 8, "md": 16, "lg": 32, "xl": 48, "2xl": 96 },
+  "radius": { "none": 0, "sm": 0, "md": 0, "lg": 4 },
+  "shadow": {
+    "neonCyan": "0 0 8px oklch(0.85 0.18 195), 0 0 24px oklch(0.85 0.18 195 / .5)",
+    "neonMagenta": "0 0 8px oklch(0.72 0.25 5), 0 0 24px oklch(0.72 0.25 5 / .5)"
+  },
+  "redLineWaiver": ["bg 用深紫蓝纯色（非渐变模糊），不犯红线 #2 / #11；霓虹效果靠 text-shadow 双层叠加，不靠 backdrop-blur（红线 #10 合规）"],
+  "examplePath": "../examples/retro-future/index.html",
+  "motion": {
+    "duration": { "blink": 1000, "fast": 200 },
+    "easing": {
+      "step2": "steps(2, end)",
+      "linear": "linear"
+    },
+    "stagger": { "tight": 50 },
+    "philosophy": "CRT 闪烁 + 无缓动 — 用 step2 模拟显像管刷新、1s blink 周期循环（光标 / 状态指示）；继承 brutalist 禁缓动函数"
+  }
+}

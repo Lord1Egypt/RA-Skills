@@ -1,0 +1,6 @@
+interface:
+  display_name: "HotTrender Basic Crawler"
+  short_description: "四地区每日热点与自定义关键词爬取"
+  default_prompt: "Use $hottrender-dingtalk-bot to fetch four-region daily trends or custom keyword hotspots with the bundled basic crawler runtime."
+policy:
+  allow_implicit_invocation: true

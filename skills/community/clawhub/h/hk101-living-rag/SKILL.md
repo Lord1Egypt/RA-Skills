@@ -1,35 +1,13 @@
----
-name: "HK-101 Living RAG"
-description: "Provides answers by retrieving and synthesizing information from local text or markdown files using a retrieval-augmented generation approach."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/hk101-living-rag"
-sourceUrl: "https://clawhub.ai/skills/hk101-living-rag"
----
+# claw-rag
+Simple RAG over local text/markdown.
 
-# HK-101 Living RAG
+## Inputs
+- query (string): question to answer.
+- docsPath (string, optional): folder of docs (default ./docs relative to CWD).
+- k (number, optional): number of top matches (default 3).
 
-> Provides answers by retrieving and synthesizing information from local text or markdown files using a retrieval-augmented generation approach.
+## Output
+- answer: synthesized answer from matches.
+- matches: [{path, score, snippet}...]
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/hk101-living-rag`
-- **Source URL:** [https://clawhub.ai/skills/hk101-living-rag](https://clawhub.ai/skills/hk101-living-rag)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/hk101-living-rag
-```
+Requires: OPENAI_API_KEY in env.

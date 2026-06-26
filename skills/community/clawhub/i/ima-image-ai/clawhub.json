@@ -1,0 +1,195 @@
+{
+  "name": "IMA AI Image Generator — Text to Image, Image to Image, AI Art, GPT Image 2, SeeDream, Midjourney, Nano Banana",
+  "tagline": "AI image generator with GPT Image 2, SeeDream 4.5, Midjourney, Nano Banana 2/Pro. Text-to-image, image-to-image, AI art, 1K/2K/4K resolution.",
+  "description": "AI image generator with premier models: GPT Image 2, SeeDream 4.5, Midjourney, Nano Banana 2, Nano Banana Pro. Image generator supporting text-to-image, image-to-image, style transfer, and AI art creation. Use as AI art generator for illustrations, product photo generator for e-commerce, or character design tool for creative projects. AI image generation with 1K/2K/4K resolution, custom aspect ratios, recommended default model selection, and live catalog binding. Better alternative to DALL-E, Stable Diffusion, or Midjourney APIs directly.",
+  "category": "file-generation",
+  "requiredEnvVars": ["IMA_API_KEY"],
+  "credentialNotice": "The IMA API key is required at runtime (--api-key or IMA_API_KEY). It is sent to api.imastudio.com (generation) and, for image_to_image with local files, to imapi.liveme.com (upload). Both are IMA Studio. Obtain keys at https://www.imaclaw.ai/. Use a scoped/test key for initial testing.",
+  "optionalDependencyNote": "This skill works standalone. Some agents may optionally consult ima-knowledge-ai reference files (~/.openclaw/skills/ima-knowledge-ai/references/*) for continuity guidance, but setup, default model selection, and core runtime behavior do not depend on that skill.",
+  "requires": {
+    "env": ["IMA_API_KEY"],
+    "primaryCredential": "IMA_API_KEY",
+    "credentialNote": "IMA_API_KEY is required at runtime. It is sent to api.imastudio.com and, for local image uploads, to imapi.liveme.com."
+  },
+  "localPaths": {
+    "readWrite": [
+      "~/.openclaw/memory/ima_prefs.json",
+      "~/.openclaw/logs/ima_skills/"
+    ],
+    "purpose": "Preferences (model defaults) and generation logs; logs auto-deleted after 7 days. User can delete anytime."
+  },
+  "persistence": {
+    "readWrite": [
+      "~/.openclaw/memory/ima_prefs.json",
+      "~/.openclaw/logs/ima_skills/"
+    ],
+    "retention": "Logs are auto-cleaned after 7 days; preferences remain until user deletes them."
+  },
+  "instructionScope": {
+    "crossSkillReadOptional": [
+      "~/.openclaw/skills/ima-knowledge-ai/references/*"
+    ]
+  },
+  "supported_models": [
+    "SeeDream",
+    "SeeDream 4.5",
+    "GPT Image 2",
+    "gpt-image-2",
+    "Midjourney",
+    "MJ",
+    "Nano Banana",
+    "Nano Banana 2",
+    "Nano Banana Pro",
+    "text-to-image",
+    "image-to-image",
+    "t2i",
+    "i2i",
+    "可梦",
+    "香蕉",
+    "doubao-seedream",
+    "gemini-image"
+  ],
+  "tags": [
+    "ima-studio",
+    "image-generation",
+    "text-to-image",
+    "image-to-image",
+    "ai-art",
+    "ai-image-generator",
+    "image-generator",
+    "art-generator",
+    "seedream",
+    "midjourney",
+    "nano-banana",
+    "seedream-4.5",
+    "nano-banana-2",
+    "nano-banana-pro",
+    "product-photos",
+    "character-design",
+    "logo-design",
+    "poster",
+    "social-media-graphics",
+    "style-transfer",
+    "ai-painting",
+    "ai-drawing",
+    "illustration"
+  ],
+  "version": "1.0.8",
+  "license": "MIT",
+  "pricing": "free",
+  "author": {
+    "name": "IMA Studio",
+    "url": "https://www.imaclaw.ai/"
+  },
+  "keywords": [
+    "image generation",
+    "text to image",
+    "image to image",
+    "AI image generator",
+    "image generator",
+    "AI art generator",
+    "art generator",
+    "ima studio",
+    "seedream",
+    "see dream",
+    "seedream 4.5",
+    "midjourney",
+    "gpt-image-2",
+    "gpt image 2",
+    "mj",
+    "nano banana",
+    "nano banana 2",
+    "nano banana pro",
+    "ai art",
+    "product photos",
+    "character design",
+    "logo design",
+    "t2i",
+    "i2i",
+    "style transfer",
+    "AI painting",
+    "AI drawing",
+    "text to picture",
+    "photo to art",
+    "AI illustration",
+    "画图",
+    "AI绘画",
+    "文生图",
+    "图生图",
+    "可梦",
+    "香蕉",
+    "doubao",
+    "gemini image"
+  ],
+  "search_optimized_terms": [
+    "seedream",
+    "gpt-image-2",
+    "gpt image 2",
+    "midjourney",
+    "nano banana",
+    "see dream",
+    "mj",
+    "text to image",
+    "image to image",
+    "image generation",
+    "AI image",
+    "AI art",
+    "art generator",
+    "image generator",
+    "AI drawing",
+    "AI painting",
+    "t2i",
+    "i2i",
+    "可梦",
+    "香蕉",
+    "画图",
+    "AI绘画"
+  ],
+  "related_skills": [
+    "ima-knowledge-ai",
+    "ima-video-ai",
+    "ima-all-ai",
+    "ima-resource-skill"
+  ],
+  "use_cases": [
+    "AI image generation, text-to-image, image-to-image",
+    "AI art and illustration creation",
+    "Product photos for e-commerce",
+    "Character design and avatar creation",
+    "Logo design and brand assets",
+    "Poster and social media graphics",
+    "Style transfer and photo transformation",
+    "Multi-resolution 1K/2K/4K output"
+  ],
+  "recommended_models": {
+    "text_to_image": {
+      "model_id": "gpt-image-2",
+      "label": "GPT Image 2",
+      "summary": "平台默认推荐的文生图投放首选，低成本起量、出图稳定，适合商品主图、活动海报、促销 Banner、种草图等电商投放素材生产。",
+      "features": [
+        "三档质量可选，适合测款快速铺量，也能兼顾高质量成片",
+        "覆盖主流横版、竖版、方图比例，适配主图、详情页、Banner 与社媒投放素材",
+        "支持 png / jpeg / webp 输出，方便上架、投放和二次设计复用"
+      ]
+    },
+    "image_to_image": {
+      "model_id": "gpt-image-2",
+      "label": "GPT Image 2",
+      "summary": "平台默认推荐的改图投放首选，重绘稳定、风格统一，适合商品精修、换背景、卖点强化、营销图翻新等电商投放场景。",
+      "features": [
+        "三档质量可选，适合测款快速铺量，也能兼顾高质量成片",
+        "覆盖主流横版、竖版、方图比例，适配主图、详情页、Banner 与社媒投放素材",
+        "支持 png / jpeg / webp 输出，方便上架、投放和二次设计复用"
+      ]
+    }
+  },
+  "key_features": [
+    "GPT Image 2, SeeDream 4.5, Midjourney, Nano Banana 2/Pro one-stop access",
+    "Text-to-image, image-to-image, visual consistency support",
+    "1K/2K/4K resolution with custom aspect ratios",
+    "Recommended default model selection with live product-list binding",
+    "Bootstrap setup and doctor self-check entrypoints for new users",
+    "Fast generation with automatic retry and error recovery",
+    "Live catalog credit rules support lower-cost to higher-detail options at runtime"
+  ]
+}

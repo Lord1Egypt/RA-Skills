@@ -1,0 +1,16 @@
+﻿name: industry-scenario-generator
+version: 1.0.0
+description: 琛屼笟鍦烘櫙鏂规鑷姩鐢熸垚 - 杈撳叆琛屼笟+浜у搧鏂瑰悜锛岃嚜鍔ㄨ緭鍑鸿涓氱棝鐐瑰垎鏋?鍏稿瀷鍦烘櫙鐢ㄤ緥+PPT绱犳潗+浜ゆ祦璇濇湳
+author: Dick Dunkel
+homepage: https://clawhub.ai/skills/industry-scenario-generator
+license: MIT-0
+tags:
+  - sales
+  - scenarios
+  - industry
+  - ppt
+category: sales
+dependencies: []
+entry: SKILL.md
+files:
+  - SKILL.md

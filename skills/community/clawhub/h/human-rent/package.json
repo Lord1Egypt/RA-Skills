@@ -1,0 +1,49 @@
+{
+  "name": "@clawhub/human-rent",
+  "version": "0.2.1",
+  "description": "Human-as-a-Service for OpenClaw - Dispatch verified human agents to perform physical world tasks",
+  "main": "lib/dispatch.js",
+  "bin": {
+    "human-rent": "./bin/human-rent.sh"
+  },
+  "files": [
+    "bin/",
+    "lib/",
+    "_meta.json",
+    "SKILL.md",
+    "README.md",
+    "INSTALLATION.md",
+    "CHANGELOG.md",
+    "LICENSE.md"
+  ],
+  "scripts": {
+    "test": "node bin/human-rent.js test",
+    "postinstall": "echo '\n✅ human-rent installed successfully!\n\nNext steps:\n1. Set up credentials: https://www.zhenrent.com/api/keys\n2. Export environment variables:\n   export ZHENRENT_API_KEY=\"your-key\"\n   export ZHENRENT_API_SECRET=\"your-secret\"\n3. Test connection: human-rent test\n4. Dispatch tasks: human-rent dispatch \"your instruction\"\n\nDocumentation: https://github.com/ZhenRobotics/openclaw-human-rent\n'"
+  },
+  "keywords": [
+    "human-as-a-service",
+    "physical-verification",
+    "openclaw",
+    "ai-agent",
+    "hybrid-intelligence",
+    "task-dispatch",
+    "human-in-the-loop",
+    "physical-world",
+    "clawhub"
+  ],
+  "author": "ZhenStaff",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ZhenRobotics/openclaw-human-rent.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ZhenRobotics/openclaw-human-rent/issues"
+  },
+  "homepage": "https://www.zhenrent.com",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}

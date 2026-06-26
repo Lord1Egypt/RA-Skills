@@ -1,0 +1,76 @@
+{
+  "zh": {
+    "name": "工作可视化",
+    "description": "将Hermes Agent的工作过程可视化 - 包括任务进度、技能使用、代码改动、会话统计等",
+    "category": "productivity",
+    "features": {
+      "task_progress": "任务进度追踪 - 实时查看当前任务完成情况",
+      "work_stats": "工作统计分析 - 了解技能使用频率、工具调用次数等",
+      "code_changes": "代码改动追踪 - 可视化代码编辑历史和影响范围",
+      "session_summary": "会话总结 - 自动生成工作摘要和关键指标",
+      "performance_monitor": "性能监控 - 监控AI工作的效率和资源使用"
+    },
+    "commands": {
+      "session_summary": "会话摘要",
+      "generate_report": "生成报告",
+      "skill_stats": "技能统计",
+      "monitor": "实时监控",
+      "export_report": "导出报告"
+    },
+    "output": {
+      "title": "Hermes 工作可视化摘要",
+      "task_progress": "任务进度概览",
+      "skill_usage": "技能使用统计",
+      "tool_calls": "工具调用统计",
+      "code_changes": "代码改动统计",
+      "session_summary": "会话摘要",
+      "report_generated": "报告生成完成",
+      "exporting": "正在生成报告...",
+      "report_saved": "报告已保存到"
+    },
+    "charts": {
+      "most_used_skills": "最常用技能",
+      "tool_usage": "工具使用",
+      "call_count": "调用次数",
+      "percentage": "占比",
+      "total_calls": "总工具调用次数"
+    }
+  },
+  "en": {
+    "name": "Work Visualization",
+    "description": "Visualize Hermes Agent's work process - including task progress, skill usage, code changes, session statistics, and more",
+    "category": "productivity",
+    "features": {
+      "task_progress": "Task Progress Tracking - View current task completion status in real-time",
+      "work_stats": "Work Statistics Analysis - Understand skill usage frequency, tool call counts, etc.",
+      "code_changes": "Code Change Tracking - Visualize code editing history and impact scope",
+      "session_summary": "Session Summary - Automatically generate work summaries and key metrics",
+      "performance_monitor": "Performance Monitoring - Monitor AI work efficiency and resource usage"
+    },
+    "commands": {
+      "session_summary": "Session Summary",
+      "generate_report": "Generate Report",
+      "skill_stats": "Skill Statistics",
+      "monitor": "Real-time Monitor",
+      "export_report": "Export Report"
+    },
+    "output": {
+      "title": "Hermes Work Visualization Summary",
+      "task_progress": "Task Progress Overview",
+      "skill_usage": "Skill Usage Statistics",
+      "tool_calls": "Tool Call Statistics",
+      "code_changes": "Code Change Statistics",
+      "session_summary": "Session Summary",
+      "report_generated": "Report generation completed",
+      "exporting": "Generating report...",
+      "report_saved": "Report saved to"
+    },
+    "charts": {
+      "most_used_skills": "Most Used Skills",
+      "tool_usage": "Tool Usage",
+      "call_count": "Call Count",
+      "percentage": "Percentage",
+      "total_calls": "Total Tool Calls"
+    }
+  }
+}

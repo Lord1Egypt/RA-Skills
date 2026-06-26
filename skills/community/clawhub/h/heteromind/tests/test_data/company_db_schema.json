@@ -1,0 +1,81 @@
+{
+  "database": "company_db",
+  "description": "Company employee and project management database",
+  "tables": [
+    {
+      "name": "employees",
+      "description": "Employee information",
+      "columns": [
+        {"name": "id", "type": "INT", "primary_key": true, "description": "Employee ID"},
+        {"name": "name", "type": "VARCHAR(100)", "description": "Employee name"},
+        {"name": "email", "type": "VARCHAR(100)", "description": "Email address"},
+        {"name": "department_id", "type": "INT", "foreign_key": {"table": "departments", "column": "id"}, "description": "Department ID"},
+        {"name": "salary", "type": "DECIMAL(10,2)", "description": "Annual salary"},
+        {"name": "hire_date", "type": "DATE", "description": "Date of hire"},
+        {"name": "title", "type": "VARCHAR(50)", "description": "Job title"}
+      ]
+    },
+    {
+      "name": "departments",
+      "description": "Department information",
+      "columns": [
+        {"name": "id", "type": "INT", "primary_key": true, "description": "Department ID"},
+        {"name": "name", "type": "VARCHAR(100)", "description": "Department name"},
+        {"name": "location", "type": "VARCHAR(100)", "description": "Office location"},
+        {"name": "budget", "type": "DECIMAL(12,2)", "description": "Annual department budget"}
+      ]
+    },
+    {
+      "name": "projects",
+      "description": "Project information",
+      "columns": [
+        {"name": "id", "type": "INT", "primary_key": true, "description": "Project ID"},
+        {"name": "name", "type": "VARCHAR(200)", "description": "Project name"},
+        {"name": "department_id", "type": "INT", "foreign_key": {"table": "departments", "column": "id"}, "description": "Owning department"},
+        {"name": "budget", "type": "DECIMAL(12,2)", "description": "Project budget"},
+        {"name": "start_date", "type": "DATE", "description": "Project start date"},
+        {"name": "status", "type": "VARCHAR(20)", "description": "Project status: active, completed, on_hold"}
+      ]
+    },
+    {
+      "name": "employee_projects",
+      "description": "Employee project assignments",
+      "columns": [
+        {"name": "employee_id", "type": "INT", "foreign_key": {"table": "employees", "column": "id"}, "description": "Employee ID"},
+        {"name": "project_id", "type": "INT", "foreign_key": {"table": "projects", "column": "id"}, "description": "Project ID"},
+        {"name": "role", "type": "VARCHAR(50)", "description": "Role in project"},
+        {"name": "allocation", "type": "DECIMAL(3,2)", "description": "Time allocation (0.0-1.0)"}
+      ]
+    }
+  ],
+  "relationships": [
+    {
+      "from_table": "employees",
+      "from_column": "department_id",
+      "to_table": "departments",
+      "to_column": "id",
+      "type": "many_to_one"
+    },
+    {
+      "from_table": "projects",
+      "from_column": "department_id",
+      "to_table": "departments",
+      "to_column": "id",
+      "type": "many_to_one"
+    },
+    {
+      "from_table": "employee_projects",
+      "from_column": "employee_id",
+      "to_table": "employees",
+      "to_column": "id",
+      "type": "many_to_one"
+    },
+    {
+      "from_table": "employee_projects",
+      "from_column": "project_id",
+      "to_table": "projects",
+      "to_column": "id",
+      "type": "many_to_one"
+    }
+  ]
+}

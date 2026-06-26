@@ -1,35 +1,50 @@
 ---
-name: "Install Shared Skill"
-description: "Install OpenClaw skills at the local/system level so they are shared by all agents. Uses the clawhub CLI to fetch and install skills into the global OpenClaw..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/install-shared-skill"
-sourceUrl: "https://clawhub.ai/skills/install-shared-skill"
+name: install-shared-skill
+description: |
+  Install OpenClaw skills at the local/system level so they are shared by all agents. Uses the clawhub CLI to fetch and install skills into the global OpenClaw skills directory (not workspace-scoped).
+allowed-tools:
+  - install_skill
+  - install_shared_skill
+metadata:
+  openclaw:
+    user-invocable: true
 ---
 
-# Install Shared Skill
+# Shared Skill Installer (ClawHub)
 
-> Install OpenClaw skills at the local/system level so they are shared by all agents. Uses the clawhub CLI to fetch and install skills into the global OpenClaw...
+## Tool: install_skill
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/install-shared-skill`
-- **Source URL:** [https://clawhub.ai/skills/install-shared-skill](https://clawhub.ai/skills/install-shared-skill)
+Install a skill using the clawhub CLI.
 
-## Overview
+**Parameters:**
+- `skill_name` (string, required): The name of the skill to install
 
+**Behavior:**
+- Executes: `clawhub install <skill_name> --workdir ./`
+- Returns the raw terminal output (stdout + stderr) as the tool result
+- Non-zero exit codes are captured and returned as part of the output
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/install-shared-skill
+**Example usage:**
 ```
+/install_skill nano-pdf
+```
+
+This runs: `clawhub install nano-pdf --workdir ./`
+
+## Tool: install_shared_skill
+
+Alias of `install_skill` — identical functionality.
+
+**Parameters:**
+- `skill_name` (string, required): The name of the skill to install
+
+**Behavior:**
+- Executes: `clawhub install <skill_name> --workdir ./`
+- Returns the raw terminal output (stdout + stderr) as the tool result
+
+**Example usage:**
+```
+/install_shared_skill nano-pdf
+```
+
+This runs: `clawhub install nano-pdf --workdir ./`

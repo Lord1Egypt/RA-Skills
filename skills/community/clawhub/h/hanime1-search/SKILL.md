@@ -1,35 +1,37 @@
 ---
-name: "my skill"
-description: "当作者提及hanime是否更新时，或者miuuuu是否更新时，h站是否更新，调用此技能。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/hanime1-search"
-sourceUrl: "https://clawhub.ai/skills/hanime1-search"
+name: hanime-search
+description: 当作者提及hanime是否更新时，或者miuuuu是否更新时，h站是否更新，调用此技能。
+
 ---
 
-# my skill
+## 用法（Windows / PowerShell）
 
-> 当作者提及hanime是否更新时，或者miuuuu是否更新时，h站是否更新，调用此技能。
+从工作区根目录运行（示例）：
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/hanime1-search`
-- **Source URL:** [https://clawhub.ai/skills/hanime1-search](https://clawhub.ai/skills/hanime1-search)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/hanime1-search
+python ".openclaw/workspace/skills/hanime-search/scripts/web_page_title_scraper.py" 
 ```
+
+常用可选参数：
+
+- 等待动态内容加载（秒）：
+
+```bash
+python ".openclaw/workspace/skills/hanime-search/scripts/web_page_title_scraper.py"
+```
+
+- JSON 输出（便于程序消费）：
+
+```bash
+python ".openclaw/workspace/skills/hanime-search/scripts/web_page_title_scraper.py" 
+```
+
+- 自定义 CSS 选择器（逗号分隔，按顺序尝试，先命中先用）：
+
+```bash
+python ".openclaw/workspace/skills/hanime-search/scripts/web_page_title_scraper.py" 
+```
+
+## 输出约定
+
+

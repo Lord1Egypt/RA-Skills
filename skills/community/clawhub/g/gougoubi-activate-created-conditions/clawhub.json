@@ -1,0 +1,26 @@
+{
+  "name": "gougoubi-activate-created-conditions",
+  "displayName": "Gougoubi Activate Created Conditions",
+  "tagline": "Activate all CREATED Gougoubi conditions under a proposal",
+  "description": "Use when users want to activate a Gougoubi proposal or vote on all CREATED conditions. Checks committee membership, can auto-stake the minimum join amount, and returns structured voting results.",
+  "category": "crypto",
+  "tags": [
+    "latest",
+    "gougoubi",
+    "prediction-market",
+    "evm",
+    "committee",
+    "vote",
+    "activation",
+    "bsc",
+    "pipeline",
+    "pbft"
+  ],
+  "version": "1.0.0",
+  "license": "MIT-0",
+  "entry": "SKILL.md",
+  "repository": "https://github.com/gougoubi/gougoubi",
+  "support": {
+    "website": "https://gougoubi.ai"
+  }
+}

@@ -1,35 +1,93 @@
 ---
-name: "技术尽调(体验版)"
-description: "技术尽调初筛工具，用于投资前的技术可行性评估、团队背景核查、专利验证。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/hutian-opc-technical-dd-trial"
-sourceUrl: "https://clawhub.ai/skills/hutian-opc-technical-dd-trial"
+name: opc-technical-due-diligence
+description: 技术尽调初筛工具，用于投资前的技术可行性评估、团队背景核查、专利验证。
+license: MIT
+version: 1.0.0
 ---
 
-# 技术尽调(体验版)
+# 技术尽调初筛工具 (Tech Due Diligence)
 
-> 技术尽调初筛工具，用于投资前的技术可行性评估、团队背景核查、专利验证。
+## 技能介绍
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/hutian-opc-technical-dd-trial`
-- **Source URL:** [https://clawhub.ai/skills/hutian-opc-technical-dd-trial](https://clawhub.ai/skills/hutian-opc-technical-dd-trial)
+### 适用场景
+- 技术项目投资前的初筛评估
+- 科技创新项目的真实性核查
+- 技术团队/公司的尽职调查
+- 专利和技术声明的可信度验证
 
-## Overview
+### 核心能力
+1. **技术可行性评估**：基于物理定律和现有技术水平判断技术是否可行
+2. **团队背景核查**：验证核心成员的学术和职业履历真实性
+3. **专利备案验证**：核实专利的真实性、法律状态和保护范围
+4. **商业模式分析**：评估商业逻辑的闭环性和盈利可行性
 
+---
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/hutian-opc-technical-dd-trial
-```
+## 尽调框架（核心方法论）
+
+### 第一层：材料完整性检查
+
+| 检查项 | 检查要点 | 红旗信号 |
+|--------|----------|----------|
+| 项目代号/备案号 | 是否可查询、来源是否权威 | 无备案或无法核验 |
+| 团队成员 | LinkedIn/学术主页是否可查、履历是否一致 | 无可查记录、履历矛盾 |
+| 专利信息 | 专利号是否真实、申请人是否匹配 | 伪造专利号、保护期已过 |
+| 技术参数 | 是否有具体数值、数据来源 | 模糊描述、无数据支撑 |
+
+---
+
+### 第二层：技术可行性分析
+
+#### 2.1 物理定律核查
+**核心原则**：技术参数是否违反已知的物理定律
+
+| 技术领域 | 关键物理边界 | 常见虚假参数 |
+|----------|--------------|--------------|
+| 电池 | 能量密度 ≤ 500 Wh/kg | 声称 1000+ Wh/kg |
+| 超导 | 室温超导需满足零电阻+迈斯纳效应 | 仅测电阻 |
+| 量子计算 | 量子比特数 vs 逻辑门保真度 | 仅宣传比特数 |
+| 核聚变 | Q值 < 1 (目前) | 声称Q > 10 |
+
+#### 2.2 技术成熟度评估 (TRL)
+
+| TRL等级 | 定义 | 典型产出 |
+|---------|------|----------|
+| TRL 1-3 | 基础研究，风险极高 | 论文、专利申请、仿真 |
+| TRL 4-6 | 工程化阶段，需大量资金 | 工程样机、测试板 |
+| TRL 7-9 | 商业化前期，可信度较高 | 原型、示范项目 |
+
+---
+
+### 第三层：商业逻辑验证
+
+| 要素 | 检查项 |
+|------|--------|
+| 价值主张 | 是否清晰、可量化 |
+| 客户细分 | 目标客户是否明确 |
+| 核心资源 | 技术壁垒是否足够 |
+| 成本结构 | 成本是否可控 |
+
+---
+
+### 第四层：风险识别与评级
+
+| 评级 | 定义 | 建议 |
+|------|------|------|
+| 🟢 低风险 | 通过四层验证，逻辑自洽 | 可进入深度尽调 |
+| 🟡 中风险 | 部分存疑，需进一步核实 | 建议补充尽调 |
+| 🟠 高风险 | 多项红旗信号 | 建议回避或极度谨慎 |
+| 🔴 极高风险 | 明显违反物理定律或造假 | 强烈建议回避 |
+
+---
+
+## 红旗信号速查
+
+- ❌ 能量密度超过物理极限
+- ❌ 核心成员无可查履历
+- ❌ 专利号无法在官方库验证
+- ❌ 声称革命性突破但无同行评审
+- ❌ 商业模式画布有明显漏洞
+
+---
+
+💡 想获得完整功能体验？升级[WorkBuddy基本版]或[Coze满血版]

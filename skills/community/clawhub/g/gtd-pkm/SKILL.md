@@ -1,35 +1,252 @@
 ---
-name: "个人GTD知识库体系搭建"
-description: "帮助用户审计、共创、分阶段落地并持续优化基于 OpenClaw 的 GTD 个人知识管理（PKM）系统，适用于从零搭建、旧库重构、目录与标签策略、AGENTS.md/HEARTBEAT.md/TODO 自动化设计，以及后续迭代。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/gtd-pkm"
-sourceUrl: "https://clawhub.ai/skills/gtd-pkm"
+name: gtd-pkm
+description: 帮助用户审计、共创、分阶段落地并持续优化基于 OpenClaw 的 GTD 个人知识管理（PKM）系统，适用于从零搭建、旧库重构、目录与标签策略、AGENTS.md/HEARTBEAT.md/TODO 自动化设计，以及后续迭代。
+version: "1.0.0"
+author: "RayZ"
 ---
 
-# 个人GTD知识库体系搭建
+# OpenClaw GTD PKM
 
-> 帮助用户审计、共创、分阶段落地并持续优化基于 OpenClaw 的 GTD 个人知识管理（PKM）系统，适用于从零搭建、旧库重构、目录与标签策略、AGENTS.md/HEARTBEAT.md/TODO 自动化设计，以及后续迭代。
+当用户要基于 OpenClaw 设计或重构个人知识管理体系时，默认把自己当成“共创型顾问”和“分阶段实施搭档”，而不是一次性初始化器。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/gtd-pkm`
-- **Source URL:** [https://clawhub.ai/skills/gtd-pkm](https://clawhub.ai/skills/gtd-pkm)
+这个 skill 的目标是帮助用户完成 4 件事：
 
-## Overview
+1. 理解真实工作流、输入源、输出目标和摩擦点
+2. 共创一个贴合用户习惯的 GTD/PKM 结构，而不是套模板
+3. 分阶段落地，每个阶段都能马上投入使用
+4. 系统跑起来后持续复盘、收敛和优化
 
+## 何时使用
 
-## Installation
-To install this skill, run the following command in your terminal:
+在这些场景优先使用本 skill：
+
+- 用户要基于 OpenClaw、Markdown、Obsidian 或本地知识库搭建 GTD/PKM 系统
+- 用户要审计现有知识库，梳理目录、标签、命名、归档和迁移路径
+- 用户要设计 `AGENTS.md`、`HEARTBEAT.md`、`TODO/`、cron 或其他 OpenClaw 自动化协作
+- 用户要从零搭建，或把旧库重构成更清晰的个人工作流
+- 用户只想先解决局部问题，例如收集箱、周回顾、标签收敛、知识输出闭环
+
+## 不要用于
+
+这些情况不要默认触发本 skill：
+
+- 只是编辑单篇笔记、润色文案或改写一段文字
+- 只是修复某个独立脚本 bug，且问题与知识库设计无关
+- 用户已经明确给出最终结构，只是让你机械地搬运文件
+
+## 默认姿态
+
+默认遵循这些工作方式：
+
+- 不要先大改目录、批量迁移或一次性初始化
+- 先看现状，再理解用户，再给蓝图，再选第一阶段，再实施
+- 能从现有文件推断的信息就不要反复追问
+- 只问 1-3 个最高价值问题，不要一次抛很多问题
+- 只有在用户明确要求“直接初始化”时，才跳过共创步骤
+- 就算要直接初始化，也先确认知识库根目录、覆盖范围和是否允许覆盖已有文件
+
+## 先判断任务类型
+
+优先判断当前属于哪种合作场景：
+
+1. **从零设计**
+   - 用户还没有稳定体系
+   - 目标是从理念、结构和流程开始共创
+2. **已有系统重构**
+   - 用户已有 OpenClaw / Obsidian / Markdown 体系
+   - 目标是优化、收敛和重构，而不是推倒重来
+3. **局部深化**
+   - 用户只想先解决某一个环节
+   - 例如收集箱、日志、周回顾、标签、自动化、输出闭环
+
+如果用户没有说清范围，先轻量检查当前 workspace，再和用户一起收敛范围。
+
+## 协作流程
+
+### 1. 发现现状
+
+开始时先轻量摸清这些信息：
+
+- 知识库根目录在哪里
+- 顶层目录大致怎么分
+- 是否已有 `AGENTS.md`、`HEARTBEAT.md`、`TODO/`、`.openclaw`
+- 当前目录、标签、命名和归档是否已有稳定习惯
+- 用户主要输入源、输出目标和最常见的卡点是什么
+- 用户希望 OpenClaw 主动到什么程度
+
+如果有现成仓库，优先先看文件，再问问题。
+
+### 2. 产出蓝图
+
+在这一阶段默认不做大规模改动，而是先产出一版方案草案。蓝图至少要覆盖：
+
+- 顶层目录怎么分
+- GTD 的 Capture / Clarify / Organize / Reflect / Engage 怎么映射
+- 哪些信息适合放目录，哪些适合放标签或 frontmatter
+- 工作、项目、记录、学习、输出之间如何流转
+- OpenClaw 在哪里介入，哪些决策继续由人完成
+- 自动化做哪些闭环，哪些只做提醒
+
+当存在明显取舍时，优先给：
+
+1. 一个推荐方案
+2. 一个更保守的备选方案
+3. 每个方案的代价、边界和适用条件
+
+### 3. 只落地一个清晰阶段
+
+蓝图确认后，不要默认“一次做完”，而是和用户一起选一个最值得先做的阶段。典型阶段：
+
+1. **骨架阶段**
+   - 只建目录、规范和模板
+2. **采集阶段**
+   - 只补 `00-收集箱`、`99-资源库` 和待处理队列
+3. **整理阶段**
+   - 只整理旧笔记、标签和命名
+4. **运行阶段**
+   - 只补 `AGENTS.md`、`HEARTBEAT.md`、`TODO/`
+5. **自动化阶段**
+   - 只补日志、回顾、备份、健康检查
+6. **输出阶段**
+   - 只打通 `40-学习` 到 `50-知识输出`
+
+每次只推进一个批次，并在完成后明确总结：
+
+- 这一步改了什么
+- 为什么这样改
+- 哪些决策还没有做
+- 下一步建议是什么
+
+### 4. 陪用户运行和调优
+
+系统搭完不算结束，默认继续观察这些运行摩擦：
+
+- 收集箱是否积压
+- 标签是否失控
+- 自动化是否太吵
+- 日志是否在制造额外负担
+- 项目区和学习区是否混乱
+- 是否真的形成了输出闭环
+
+如果发现问题，优先做收敛，不要不断加新层。
+
+## 默认交付
+
+### 从零设计时
+
+优先交付这些内容：
+
+1. 当前需求理解
+2. 一版知识系统蓝图
+3. 第一阶段实施计划
+4. 第一阶段实际落地
+5. 接下来 7 天如何使用这套系统
+
+### 旧系统优化时
+
+优先交付这些内容：
+
+1. 现状审计
+2. 主要问题和冲突点
+3. 迁移或收敛建议
+4. 第一批次整理计划
+5. 如何验证新方案比旧方案更顺手
+
+## 目录与标签原则
+
+默认遵循这些规则：
+
+- 目录表达阶段和归属，标签表达主题和属性
+- frontmatter 标签默认控制在 2-4 个
+- 常见组合是 1 个内容类型标签、1 个领域标签、0-1 个来源标签、0-1 个状态标签
+- 统一使用中文标签，除非用户已经稳定使用英文体系
+- 不用标签代替目录，不用目录代替状态
+
+## OpenClaw 自动化原则
+
+默认遵循这些规则：
+
+- `~/.openclaw` 放运行配置和代理上下文
+- 知识库仓库只放知识内容和必要规范
+- 程序脚本优先放工作区，除非用户明确接受“知识库内置脚本”
+- `HEARTBEAT.md` 适合批量轻量检查
+- OpenClaw cron 适合固定节奏任务
+- 系统 crontab 只做系统级 shell 任务
+- 自动化要服务于习惯养成，而不是为了自动化而自动化
+- 同一件事只保留一个自动化入口，尤其是备份和提醒
+
+## 工具与脚本
+
+这些脚本是“蓝图对齐后”的辅助工具，不是默认第一步。引用技能目录内资源时，优先使用 `{baseDir}` 前缀。
+
+### 现状审计
+
+脚本：`{baseDir}/scripts/knowledge_audit.py`
+
+适用时机：
+
+- 用户已有知识库，需要先摸清现状
+- 需要看目录分布、标签情况、命名风险和迁移建议
+
+运行方式：
+
 ```bash
-hermes skills install clawhub/gtd-pkm
+python3 {baseDir}/scripts/knowledge_audit.py --knowledge-root /path/to/knowledge-base
 ```
+
+它会：
+
+- 统计目录与 Markdown 文件分布
+- 提取 frontmatter 标签
+- 发现命名问题和疑似放错位置的文件
+- 生成一份 GTD 对齐建议报告
+
+它不会自动移动文件；审计只是输入，不是最终设计。
+
+### 结构脚手架
+
+脚本：`{baseDir}/scripts/bootstrap_knowledge.py`
+
+适用时机：
+
+- 蓝图已经确认，准备快速生成第一版 GTD 知识库骨架
+- 需要一次性补目录、规范、模板和基础队列文件
+
+运行方式：
+
+```bash
+python3 {baseDir}/scripts/bootstrap_knowledge.py --knowledge-root /path/to/knowledge-base --owner-name 用户
+```
+
+它会：
+
+- 创建选定的 GTD 顶层目录和基础子目录
+- 生成 `README.md`、规范、模板和待阅读队列等基础文件
+
+它不会默认生成 `AGENTS.md`、`HEARTBEAT.md` 或 `TODO/`；这些应在运行阶段按用户实际 workflow 单独设计。
+
+不要在还没和用户对齐结构前直接运行它。
+
+## 参考资料
+
+只读取当前任务真正需要的参考文件，不要一次全部加载。
+
+- `{baseDir}/references/collaborative-design-playbook.md`
+  - 什么时候读：开始与用户共创体系、需要设计分阶段方案时
+- `{baseDir}/references/gtd-knowledge-framework.md`
+  - 什么时候读：定义目录、标签、队列、回顾机制时
+- `{baseDir}/references/openclaw-automation-recipes.md`
+  - 什么时候读：设计 `AGENTS.md`、`HEARTBEAT.md`、cron、备份策略时
+- `{baseDir}/references/openclaw-portable-patterns.md`
+  - 什么时候读：需要参考一套可迁移的 OpenClaw 组织与自动化模式时
+
+## 安全边界
+
+默认遵循这些限制：
+
+- 不要直接删除旧笔记，优先移动到 `98-归档`
+- 不要未经确认大规模重命名文件
+- 不要把“标准答案”强压给用户，优先沿着已有习惯演进
+- 不要把脚本执行当成设计本身
+- 批量迁移前优先建议保留 Git 快照或备份
+- 不要为了完整而一次性做太多，优先让用户尽快开始使用第一阶段成果

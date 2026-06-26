@@ -1,0 +1,171 @@
+#!/usr/bin/env python3
+"""Build a portable bundle manifest from a BYOC workspace and its MCP server."""
+
+from __future__ import annotations
+
+import argparse
+import json
+import re
+from datetime import datetime, timezone
+from pathlib import Path
+from typing import Any
+
+IGNORE_DIRS = {".git", "__pycache__", ".venv", "venv"}
+CORE_FILES = [
+    "context_manifest.yaml",
+    "governance_policy.md",
+    "eval_scorecard.md",
+    "feedback_log.md",
+    "README.md",
+]
+
+
+def utc_now() -> str:
+    return datetime.now(timezone.utc).isoformat()
+
+
+def read_text(path: Path) -> str:
+    return path.read_text(encoding="utf-8")
+
+
+def list_files(root: Path, relative_dir: str) -> list[str]:
+    base = root / relative_dir
+    if not base.exists():
+        return []
+
+    results: list[str] = []
+    for path in sorted(base.rglob("*")):
+        if any(part in IGNORE_DIRS for part in path.parts):
+            continue
+        if path.is_file():
+            results.append(str(path.relative_to(root)))
+    return results
+
+
+def load_manifest_summary(root: Path) -> dict[str, str]:
+    manifest_path = root / "context_manifest.yaml"
+    if not manifest_path.exists():
+        return {
+            "context_system_name": "unknown",
+            "ownership_mode": "unknown",
+            "primary_goal": "unknown",
+        }
+
+    text = read_text(manifest_path)
+
+    def extract(key: str, default: str = "unknown") -> str:
+        match = re.search(rf"^{re.escape(key)}:\s*\"?(.*?)\"?\s*$", text, re.MULTILINE)
+        return match.group(1).strip() if match else default
+
+    return {
+        "context_system_name": extract("context_system_name"),
+        "ownership_mode": extract("ownership_mode"),
+        "primary_goal": extract("primary_goal"),
+    }
+
+
+def parse_markdown_table(lines: list[str], heading: str) -> dict[str, str]:
+    in_section = False
+    table_lines: list[str] = []
+
+    for line in lines:
+        if line.strip() == heading:
+            in_section = True
+            continue
+        if in_section and line.startswith("## "):
+            break
+        if in_section and line.strip().startswith("|"):
+            table_lines.append(line.strip())
+
+    rows: dict[str, str] = {}
+    for raw_line in table_lines[2:]:
+        parts = [part.strip() for part in raw_line.strip("|").split("|")]
+        if len(parts) >= 2:
+            rows[parts[0]] = parts[1]
+    return rows
+
+
+def parse_memory_object(path: Path, root: Path) -> dict[str, Any]:
+    text = read_text(path)
+    lines = text.splitlines()
+    identity = parse_markdown_table(lines, "## Identity")
+    retrieval = parse_markdown_table(lines, "## Retrieval contract")
+    writeback = parse_markdown_table(lines, "## Writeback contract")
+
+    return {
+        "object_id": identity.get("Object ID", path.stem),
+        "memory_type": identity.get("Memory type", "unknown"),
+        "owner_scope": identity.get("Owner scope", "unknown"),
+        "source": identity.get("Source", "unknown"),
+        "status": identity.get("Status", "unknown"),
+        "last_updated": identity.get("Last updated", "unknown"),
+        "retrieval_form": retrieval.get("Retrieval form", "unknown"),
+        "writeback_trigger": writeback.get("Writeback trigger", "unknown"),
+        "path": str(path.relative_to(root)),
+    }
+
+
+
+def build_manifest(root: Path) -> dict[str, Any]:
+    memory_dir = root / "memory_objects"
+    memory_objects = []
+    if memory_dir.exists():
+        for path in sorted(memory_dir.rglob("*.md")):
+            memory_objects.append(parse_memory_object(path, root))
+
+    artifacts = list_files(root, "artifacts")
+    server_files = list_files(root, "mcp_server")
+    tools_files = list_files(root, "tools")
+    core_files = [relative for relative in CORE_FILES if (root / relative).exists()]
+    manifest_summary = load_manifest_summary(root)
+
+    return {
+        "generated_at": utc_now(),
+        "workspace": str(root),
+        "manifest_summary": manifest_summary,
+        "core_files": core_files,
+        "memory_objects": memory_objects,
+        "artifacts": artifacts,
+        "server_files": server_files,
+        "tools_files": tools_files,
+        "feedback_log_present": (root / "feedback_log.md").exists(),
+        "counts": {
+            "core_files": len(core_files),
+            "memory_objects": len(memory_objects),
+            "artifacts": len(artifacts),
+            "server_files": len(server_files),
+            "tools_files": len(tools_files),
+        },
+        "notes": [
+            "This manifest is a portability aid, not a full backup format.",
+            "Review ownership, redaction, deletion, and access-control constraints before external handoff.",
+            "The MCP server files are indexed so the receiving runtime can reconstruct the live BYOC interface as well as the stored context.",
+        ],
+    }
+
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser(description="Generate a portable context bundle manifest.")
+    parser.add_argument("workspace", help="Portable context workspace directory")
+    parser.add_argument("--output", help="Output manifest path; defaults to bundles/context_bundle_manifest.json")
+    args = parser.parse_args()
+
+    root = Path(args.workspace).expanduser().resolve()
+    if not root.exists():
+        raise SystemExit(f"Workspace does not exist: {root}")
+
+    output = Path(args.output).expanduser().resolve() if args.output else root / "bundles" / "context_bundle_manifest.json"
+    output.parent.mkdir(parents=True, exist_ok=True)
+
+    manifest = build_manifest(root)
+    output.write_text(json.dumps(manifest, indent=2) + "\n", encoding="utf-8")
+
+    print(f"Wrote bundle manifest: {output}")
+    print(f"Memory objects indexed: {manifest['counts']['memory_objects']}")
+    print(f"Artifacts indexed: {manifest['counts']['artifacts']}")
+    print(f"Server files indexed: {manifest['counts']['server_files']}")
+
+
+if __name__ == "__main__":
+    main()

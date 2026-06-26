@@ -1,0 +1,4 @@
+interface:
+  display_name: "HH Application Packet Reviewer"
+  short_description: "Review HH.ru application packet wording"
+  default_prompt: "Use $hh-openclaw-proposal-submitter to review an HH.ru application packet for clear human-submission readiness, applicant-facing wording, and missing approval details."

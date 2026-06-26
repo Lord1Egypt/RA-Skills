@@ -1,0 +1,21 @@
+{
+  "name": "holdings-analysis",
+  "version": "1.0.0",
+  "description": "持仓诊断与分析系统 - 买入评分+卖出评分+PASS/FAIL状态，支持持仓趋势追踪和分批止盈止损",
+  "author": "ts30",
+  "tags": ["股票", "持仓", "技术分析", "风险管理"],
+  "main": "check_holdings_v4.py",
+  "scripts": {
+    "analyze": "python check_holdings_v4.py",
+    "detail": "python check_holdings_detail.py"
+  },
+  "dependencies": {
+    "python": ">=3.8",
+    "pandas": ">=1.0.0",
+    "numpy": ">=1.0.0"
+  },
+  "config": {
+    "buy_threshold": 55,
+    "sell_threshold": 25
+  }
+}

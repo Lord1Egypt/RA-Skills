@@ -1,0 +1,175 @@
+{
+  "schema_version": "1.0",
+  "skill": "incident-response",
+  "description": "Trigger test cases for incident-response skill.",
+  "test_cases": [
+    {
+      "id": "investigate-en-001",
+      "group": "investigate",
+      "polarity": "positive",
+      "utterance": "investigate binding loss",
+      "expected_mode": "investigate",
+      "notes": "Primary English trigger"
+    },
+    {
+      "id": "investigate-en-002",
+      "group": "investigate",
+      "polarity": "positive",
+      "utterance": "investigate gateway crash",
+      "expected_mode": "investigate",
+      "notes": "Gateway crash trigger"
+    },
+    {
+      "id": "investigate-en-003",
+      "group": "investigate",
+      "polarity": "positive",
+      "utterance": "investigate why agent stopped responding",
+      "expected_mode": "investigate",
+      "notes": "Why-form trigger"
+    },
+    {
+      "id": "investigate-en-004",
+      "group": "investigate",
+      "polarity": "positive",
+      "utterance": "run incident response for config regression",
+      "expected_mode": "investigate",
+      "notes": "Explicit incident response trigger"
+    },
+    {
+      "id": "broken-en-001",
+      "group": "something-broken",
+      "polarity": "positive",
+      "utterance": "why did bindings stop working",
+      "expected_mode": "investigate",
+      "notes": "Why-did-X form"
+    },
+    {
+      "id": "broken-en-002",
+      "group": "something-broken",
+      "polarity": "positive",
+      "utterance": "something changed in my config",
+      "expected_mode": "investigate",
+      "notes": "Something changed form"
+    },
+    {
+      "id": "broken-en-003",
+      "group": "something-broken",
+      "polarity": "positive",
+      "utterance": "settings disappeared",
+      "expected_mode": "investigate",
+      "notes": "Disappeared form"
+    },
+    {
+      "id": "broken-en-004",
+      "group": "something-broken",
+      "polarity": "positive",
+      "utterance": "my API key is missing",
+      "expected_mode": "investigate",
+      "notes": "Is missing form"
+    },
+    {
+      "id": "specific-en-001",
+      "group": "specific-failures",
+      "polarity": "positive",
+      "utterance": "gateway down",
+      "expected_mode": "investigate",
+      "notes": "Canonical gateway trigger"
+    },
+    {
+      "id": "specific-en-002",
+      "group": "specific-failures",
+      "polarity": "positive",
+      "utterance": "gateway crashed",
+      "expected_mode": "investigate",
+      "notes": "Gateway crash trigger"
+    },
+    {
+      "id": "specific-en-003",
+      "group": "specific-failures",
+      "polarity": "positive",
+      "utterance": "bindings lost",
+      "expected_mode": "investigate",
+      "notes": "Binding loss trigger"
+    },
+    {
+      "id": "specific-en-004",
+      "group": "specific-failures",
+      "polarity": "positive",
+      "utterance": "agent not responding",
+      "expected_mode": "investigate",
+      "notes": "Agent routing trigger"
+    },
+    {
+      "id": "specific-en-005",
+      "group": "specific-failures",
+      "polarity": "positive",
+      "utterance": "root cause of the outage",
+      "expected_mode": "investigate",
+      "notes": "Root cause trigger"
+    },
+    {
+      "id": "specific-en-006",
+      "group": "specific-failures",
+      "polarity": "positive",
+      "utterance": "who changed my config",
+      "expected_mode": "investigate",
+      "notes": "Who-changed trigger"
+    },
+    {
+      "id": "specific-en-007",
+      "group": "specific-failures",
+      "polarity": "positive",
+      "utterance": "audit config changes",
+      "expected_mode": "investigate",
+      "notes": "Audit trigger"
+    },
+    {
+      "id": "specific-en-008",
+      "group": "specific-failures",
+      "polarity": "positive",
+      "utterance": "something disappeared from my setup",
+      "expected_mode": "investigate",
+      "notes": "Something disappeared trigger"
+    },
+    {
+      "id": "neg-001",
+      "group": "negative",
+      "polarity": "negative",
+      "utterance": "how does OpenClaw work",
+      "expected_mode": null,
+      "notes": "Generic info question — not an incident"
+    },
+    {
+      "id": "neg-002",
+      "group": "negative",
+      "polarity": "negative",
+      "utterance": "install OpenClaw",
+      "expected_mode": null,
+      "notes": "Installation request — not an incident"
+    },
+    {
+      "id": "neg-003",
+      "group": "negative",
+      "polarity": "negative",
+      "utterance": "fix my email template",
+      "expected_mode": null,
+      "notes": "Generic fix request without system failure context"
+    },
+    {
+      "id": "neg-004",
+      "group": "negative",
+      "polarity": "negative",
+      "utterance": "what is root cause analysis",
+      "expected_mode": null,
+      "notes": "Asking about the concept, not triggering an incident investigation"
+    },
+    {
+      "id": "neg-005",
+      "group": "negative",
+      "polarity": "negative",
+      "utterance": "my todo list disappeared",
+      "expected_mode": null,
+      "notes": "Disappeared but in non-system context — should not trigger"
+    }
+  ]
+}

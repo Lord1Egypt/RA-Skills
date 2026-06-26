@@ -1,0 +1,24 @@
+# Relaxed profile overrides.
+# This file is merged on top of default_rules.yaml to reduce false positives in trusted or exploratory scenarios.
+version: 1
+
+# Expand allowlists for legitimate prompt-related educational or defensive discussions.
+allowlist:
+  exact_phrases:
+    - explain what a prompt is
+    - explain prompt injection defense
+    - how to build a prompt safety filter
+    - how does a system prompt work
+    - 怎样才能避免中招勒索病毒
+  regex_patterns:
+    - '(?i)prompt\s+engineering'
+    - '(?i)system\s+prompt\s+design'
+
+# Only the changed rules are listed here; all other rules inherit from the base policy.
+rules:
+  - id: prompt-leak-keywords
+    action: review
+    confidence: medium
+
+  - id: suspicious-roleplay
+    enabled: false

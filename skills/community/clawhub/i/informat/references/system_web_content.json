@@ -1,0 +1,54 @@
+{
+  "type": "function",
+  "function": {
+    "name": "_web_content",
+    "description": "Fetch content from the specified URL. Supports GET/POST requests, custom request headers, timeout control, and request body settings. Only used for fetching public web resources.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "url": {
+          "type": "string",
+          "description": "The complete URL address to access (must be http or https)"
+        },
+        "method": {
+          "type": "string",
+          "description": "HTTP request method, optional values: GET (fetch resource), POST (submit data)"
+        },
+        "timeout": {
+          "type": "integer",
+          "description": "Request timeout in milliseconds, 0 or not passing indicates using system default timeout"
+        },
+        "followRedirect": {
+          "type": "boolean",
+          "description": "Whether to automatically follow HTTP redirects (3xx responses), default false"
+        },
+        "maxRedirectCount": {
+          "type": "integer",
+          "description": "Maximum redirect count, effective when followRedirect=true, default 10"
+        },
+        "headers": {
+          "type": "object",
+          "description": "Custom request headers (in key-value format)",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "charset": {
+          "type": "string",
+          "description": "Response content charset (e.g., UTF-8), automatic detection if not provided"
+        },
+        "body": {
+          "type": "string",
+          "description": "POST request body (usually JSON or plain text, used when method=POST)"
+        },
+        "form": {
+          "type": "object",
+          "description": "POST form parameters (used when method=POST, choose either this or body)",
+          "additionalProperties": {}
+        }
+      },
+      "required": ["url", "method"],
+      "additionalProperties": false
+    }
+  }
+}

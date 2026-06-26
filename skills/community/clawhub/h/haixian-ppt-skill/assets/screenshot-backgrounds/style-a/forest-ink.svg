@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900">
+  <rect width="1600" height="900" fill="#edf0e6"/>
+  <g fill="#27483a" opacity=".12">
+    <ellipse cx="230" cy="230" rx="190" ry="54" transform="rotate(-28 230 230)"/>
+    <ellipse cx="1280" cy="650" rx="260" ry="70" transform="rotate(19 1280 650)"/>
+    <ellipse cx="940" cy="150" rx="170" ry="44" transform="rotate(42 940 150)"/>
+  </g>
+  <filter id="n"><feTurbulence baseFrequency=".7" numOctaves="2"/><feComponentTransfer><feFuncA type="table" tableValues="0 .08"/></feComponentTransfer></filter>
+  <rect width="1600" height="900" filter="url(#n)"/>
+</svg>

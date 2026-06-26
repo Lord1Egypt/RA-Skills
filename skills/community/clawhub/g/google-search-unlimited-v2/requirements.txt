@@ -1,0 +1,8 @@
+# Minimal dependencies for optimized search
+requests>=2.28.0
+beautifulsoup4>=4.11.0
+lxml>=4.9.0  # Faster HTML parsing
+
+# Optional: For advanced features
+# python-dotenv>=1.0.0  # For .env file support
+# aiohttp>=3.8.0  # For async requests (optional)

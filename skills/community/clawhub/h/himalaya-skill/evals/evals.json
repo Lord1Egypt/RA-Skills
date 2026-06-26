@@ -1,0 +1,45 @@
+{
+  "skill_name": "himalaya",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "I need to find all unread emails from my boss (boss@example.com) in Himalaya, sorted with the newest first. Give me the exact command to run.",
+      "expected_output": "The assistant returns the correct himalaya CLI command using 'not flag seen', 'from boss@example.com', and 'order by date desc'.",
+      "files": [],
+      "expectations": [
+        "The output contains the command 'himalaya envelope list'",
+        "The output includes 'not flag seen' or equivalent unread filter",
+        "The output includes 'from boss@example.com'",
+        "The output includes 'order by date desc'",
+        "The command is syntactically valid for the Himalaya query DSL"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Show me how to compose and send an email to the team@example.com with the subject 'Weekly Sync' using himalaya. Include any relevant flags or options I should know about.",
+      "expected_output": "The assistant explains how to use 'himalaya message write' with --to and --subject flags, and describes the $EDITOR workflow.",
+      "files": [],
+      "expectations": [
+        "The output mentions 'himalaya message write'",
+        "The output includes '--to team@example.com' or equivalent",
+        "The output includes '--subject \"Weekly Sync\"' or equivalent",
+        "The output mentions $EDITOR or interactive composition",
+        "The output describes the template header format (From, To, Subject, blank line, body)"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Using himalaya, how do I search for emails with the subject ' invoices ' (with a space) sent after 2025-03-01, and also show them in the Archive folder instead of INBOX? I want 15 per page and page 2.",
+      "expected_output": "The assistant constructs a single himalaya envelope list command with proper quoting for the spaced subject, the after date filter, folder flag, pagination flags, and page size.",
+      "files": [],
+      "expectations": [
+        "The output contains 'himalaya envelope list'",
+        "The output includes a folder flag like '-f Archive' or '--folder Archive'",
+        "The output includes '--page 2'",
+        "The output includes '--page-size 15' or '-s 15'",
+        "The output includes 'after 2025-03-01'",
+        "The subject query correctly quotes or escapes the space in 'invoices'"
+      ]
+    }
+  ]
+}

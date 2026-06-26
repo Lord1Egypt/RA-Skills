@@ -1,0 +1,21 @@
+{
+  "name": "html-markdown-converter-skill",
+  "version": "1.1.1",
+  "private": false,
+  "type": "module",
+  "description": "Convert HTML to Markdown and Markdown to HTML with batch modes, readability cleanup, metadata frontmatter, and themed output.",
+  "scripts": {
+    "html2md:help": "node scripts/html_to_markdown.mjs --help",
+    "md2html:help": "node scripts/markdown_to_html.mjs --help"
+  },
+  "dependencies": {
+    "@mozilla/readability": "^0.5.0",
+    "gray-matter": "^4.0.3",
+    "jsdom": "^26.0.0",
+    "markdown-it": "^14.1.0",
+    "markdown-it-footnote": "^4.0.0",
+    "markdown-it-task-lists": "^2.1.1",
+    "turndown": "^7.2.0",
+    "turndown-plugin-gfm": "^1.0.2"
+  }
+}

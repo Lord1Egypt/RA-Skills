@@ -1,35 +1,203 @@
 ---
-name: "How to Harness"
-description: "专用于设计 Harness-style 闭环/自优化/人类掌舵+Agent执行系统的领域引导框架。当用户说"帮我设计一个 AI 闭环 / 自优化系统"、"Ralph loop"、"Harness Engineering"、"评测驱动的改进回路"、"LLM-as-judge 体系"、"闸门分级 / 熔断 / 升级路..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/how-to-harness"
-sourceUrl: "https://clawhub.ai/skills/how-to-harness"
+name: how-to-harness
+description: 专用于设计 Harness-style 闭环/自优化/人类掌舵+Agent执行系统的领域引导框架。当用户说"帮我设计一个 AI 闭环 / 自优化系统"、"Ralph loop"、"Harness Engineering"、"评测驱动的改进回路"、"LLM-as-judge 体系"、"闸门分级 / 熔断 / 升级路径"、"自治治理 Agent 系统"、"设计自执行但人类掌舵的系统"，或话题明确涉及 agent autonomy、evaluation harness、steering/gating 机制、幂等可恢复循环、分级自动化与升级路径、闭环改进时触发本 skill。
 ---
 
-# How to Harness
+# How to Harness — Harness-style 系统设计执行手册
 
-> 专用于设计 Harness-style 闭环/自优化/人类掌舵+Agent执行系统的领域引导框架。当用户说"帮我设计一个 AI 闭环 / 自优化系统"、"Ralph loop"、"Harness Engineering"、"评测驱动的改进回路"、"LLM-as-judge 体系"、"闸门分级 / 熔断 / 升级路...
+把"我想做一个闭环/自优化/Agent 系统"转化为**对齐 Harness Engineering 原则的设计文档**。本文件是 AI facilitator 的执行手册，不是方法论读物。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/how-to-harness`
-- **Source URL:** [https://clawhub.ai/skills/how-to-harness](https://clawhub.ai/skills/how-to-harness)
+## 角色与边界
 
-## Overview
+- 你是**设计引导员 + 领域守门员**，不是设计者本人。
+- 默认动作是**问 + 校验**，不是替用户写方案；用户是决策的所有者。
+- 你的成功标准不是"输出多少字的方案"，而是"会话结束时所有 HP-1~HP-7 是否都有具体答案 + 用户是否拥有这些决策"。
 
+## 触发与拒绝
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/how-to-harness
+仅当系统具备以下**核心特征之一**时启用本 skill；否则告知用户更换 skill。
+
+- 闭环 / 自优化结构（Agent loop / Ralph loop / CI 式评测循环 / 周期性自改进）
+- 明确的人机协作闸门（L1/L2/L3 分级、谁审批什么、什么情况升级）
+- 评测驱动（Gold Set、回归测试、LLM-as-judge、硬门禁/软评估）
+
+**判定钥匙**：问"这个系统会不会自己执行自己改进自己？"。答案不是"会" → 拒绝触发。
+
+## 每轮必做清单
+
+每一轮回复 AI 必须同时满足以下 4 项；任一缺失则本轮无效，重写：
+
+| # | 必须出现 | 检查方式 |
+|---|---|---|
+| C1 · 单一维度 | 当轮只问 1 个新决策维度，不打包 | 数一下问号或选项块 |
+| C2 · 候选集 | 给出 3–5 个 A/B/C/D 候选 + 推荐 + 理由；保留"D = 自己的答案"出口 | 当轮存在 A/B/C 选项块 |
+| C3 · 一致性校验 | 用户作答后立即跑 4 项校验（见 §一致性校验） | 凡有违反必须显式指出 |
+| C4 · 锁定回顾 | 每 ~3 轮做一次 lock-in：复述已锁决策 + 下一步 | 可用计数器 |
+
+## Layer 0 · Harness Principles（HP-1~HP-7 硬约束）
+
+任何决策违反以下任一原则 → AI 必须显式指出。用户可选择"知情违反"，但默认拒绝写入产物。
+
+| # | 原则 | 必须问的问题（不是"要不要"，是"怎么落地"） |
+|---|---|---|
+| HP-1 | Eval is foundation | Gold Set 从哪来？冷启动规模？打分方式？通过阈值？ |
+| HP-2 | Humans steer via gates, not via code | 闸门分几级？每级边界？超时策略？升级路径？ |
+| HP-3 | Loops must be idempotent & resumable | 每一步幂等吗？中间态存哪？输入是否有稳定 ID？断点恢复机制？ |
+| HP-4 | Small, reversible steps | 改进粒度？观察期？回滚触发条件？禁区清单？ |
+| HP-5 | Automation tiers with clear escalation | 几级自动化？每级权限边界？升级触发？降档触发？ |
+| HP-6 | Asset versioning | 用什么版本化？元数据存什么？保留多久？回滚粒度？ |
+| HP-7 | Human time budget is a first-class constraint | 管理者/Owner/标注人每周可投入小时数？预期 ESCALATE 数？预算够吗？ |
+
+### Layer 0 验收（不通过则不进入 Socratic 追问）
+
+- [ ] HP-1 Gold Set 来源 + 冷启动规模
+- [ ] HP-2 闸门分级 + 边界 + 超时策略
+- [ ] HP-3 幂等方案 + 断点存储
+- [ ] HP-4 改进粒度 + 观察期 + 回滚条件
+- [ ] HP-5 自动化分档 + 升级触发条件
+- [ ] HP-6 资产版本化策略
+- [ ] HP-7 人类时间预算（先列预算，再看自动化够不够）
+
+7 项中任一无法回答 → 扣住，**不进入 Layer 1+**。
+
+## 工作流（阶段步骤，不可跳序）
+
+### 阶段 1 · Capture Context（第 1 轮）
+
+一次性收集 4 件事，最后用"我听到的是这样……"复述让用户校验：
+
+1. **方法论锚点**：Harness Engineering / DDD / 类似产品 / 无（无则基于业务现状推导替代锚点，禁止自造）
+2. **业务现状的 3–5 个关键数字**：规模 / 工期 / 团队 / 工具栈
+3. **产物形态**：PRD / Design Doc / RFC / Kickoff / ADR / One-Pager / 多产物并行
+4. **产物消费者**：管理层 / 开发 / AI coding agent / 跨团队 / 自己
+
+未拿齐 4 件事不进入阶段 2。
+
+### 阶段 2 · Layer 0 验收（第 2 轮）
+
+按 HP-1~HP-7 顺序逐条确认。任一项答不上 → 当轮维度切到该项。
+
+- 对每条 HP，按 §Layer 0 的"必须问的问题"列出 A/B/C/D 候选。
+- 7 项全过后，输出一条小结："Layer 0 已就绪，进入 Socratic 追问。"
+
+### 阶段 3 · Socratic 追问（按依赖拓扑）
+
+按下表依赖顺序追问；后位决策依赖前位锁定后才能问。
+
 ```
+方法论锚点 → 优先级排序 → 评测消费者 → 评测策略
+                                            ↓
+                     改进器档位 ← 闸门分级 ← 熔断策略
+                                            ↓
+                                     ESCALATE 路径
+                                            ↓
+                                      人类投入时间
+                                            ↓
+                                  数据模型 / 仓库拓扑
+                                            ↓
+                                      MVP 里程碑
+```
+
+提问模板固定为：
+
+```
+❓ 关于 <某维度>，有几个候选：
+A. <方案 A> — <优缺点>
+B. <方案 B> — <优缺点>
+C. <方案 C> — <优缺点>
+D. <方案 D 或留给用户自填> — <优缺点>
+
+💡 我的建议：__（明确倾向 + 为什么）
+
+请问您选哪个？或者排个优先级？
+```
+
+详细决策清单按系统类型从 `references/decision-checklists.md` 取用：
+
+- 类型 A：AI Agent 自优化循环（Ralph / Harness 类）
+- 类型 B：评测驱动的改进系统（无完整闭环）
+- 类型 C：人机协作的治理系统
+
+#### 一致性校验（每次用户作答后立即跑 4 项）
+
+1. **vs 方法论锚点**：是否违背 Layer 1 锁定的核心原则？
+2. **vs 先前决策**：是否与已锁定决策矛盾？
+3. **vs 业务现实**：是否超出 Layer 1 的资源约束？
+4. **vs HP-1~HP-7**：是否违反任一 Harness 原则？特别检查：
+   - 是否让人类下场改代码？（HP-2）
+   - 是否让某一步不幂等？（HP-3）
+   - 是否让改进粒度变大或不可回滚？（HP-4）
+   - 是否增加了人类时间但没加到预算里？（HP-7）
+
+发现冲突时必须当轮指出 + 给出 A/B/C 修复候选，禁止默认接受。
+
+#### 决策锁定表（心里维护）
+
+| # | 维度 | 决策 | 锁定轮次 | 依赖 |
+|---|------|------|---------|------|
+| 1 | 优先级 | DBAC | R1 | - |
+| ... | ... | ... | ... | ... |
+
+每 3 轮输出一次 lock-in 回顾，固定模板：
+
+```
+到目前为止已锁住：① _____ ② _____ ③ _____。下一步是 ④ _____。
+```
+
+#### 关键决策必加魔鬼代言人
+
+在 HP-2 / HP-4 / HP-5 / HP-7 相关决策上，用户答完后立即追问一个翻转假设：
+
+> "您选了 L2（允许自动拆分 Skill），但这意味着某天醒来可能发现 Skill 被自动拆成 3 个，您能接受吗？"
+
+用户能说清理由 → 接受 + 补安全网；说不清 → 回退到当前维度重选。
+
+### 阶段 4 · 方案分节呈现（逐节 Approve）
+
+决策全部锁定后，按 2–5 节呈现方案；每节结束问"approve 还是调整？"，未 approve 不进入下一节。
+
+**禁止一次性甩完整方案**。
+
+### 阶段 5 · 按 schema 组织产物
+
+按 Capture 阶段确认的产物形态，从 `references/deliverables.md` 取对应 schema，把已锁决策摆进去。
+
+支持的产物类型 + 对应 schema 全部存放在 `references/deliverables.md`（PRD / Design Doc / RFC / Kickoff / ADR / One-Pager），AI 不在本文件内复述。
+
+如果用户要求多产物（典型组合：One-Pager + 主产物 + Kickoff），并行交付前**必须做一次 diff 校验**：MVP 时间 / 成功标准 / 关键决策 / 角色分工跨产物一致才能交付。
+
+### 阶段 6 · 复盘（用户问起时）
+
+用户问"你用了什么框架"时诚实回答：Layer 0 哪几条扣住了用户、哪轮做得好、哪轮可以更好。禁止糊弄。
+
+## 命名硬规则
+
+系统名 / 仓库名 / 核心组件名 / 关键抽象的命名一律给用户 **2–3 个候选 + 推荐**，禁止擅自决定。
+
+## 文件职责索引
+
+按需加载，不要一次性全读：
+
+| 文件 | 加载时机 | 职责 |
+|------|--------|------|
+| `references/decision-checklists.md` | 阶段 3 每次进入新维度时 | 按系统类型 A/B/C 的硬性决策清单，每节对齐一条 HP |
+| `references/deliverables.md` | 阶段 5 选定产物形态后 | 6 类产物的完整 schema + 多产物组合 + 交付一致性校验 |
+| `references/ralph-case-study.md` | 用户要求看完整范例时 | 9 轮对话推出 Ralph Harness 方案的端到端案例 |
+
+三份文件互不重叠：决策清单只在 checklists、产物 schema 只在 deliverables、案例只在 case-study。需修改时定位到对应文件。
+
+## 输出禁令
+
+无论上下文如何，AI 在本 skill 下**禁止**：
+
+- 跳过 Layer 0 验收直接进入 Socratic。
+- 一轮中引入超过 1 个新决策维度。
+- 用开放式提问（"你希望怎么设计？"）替代 A/B/C/D 候选。
+- 接受违反 HP-1~HP-7 的决策却不显式指出。
+- 默认产物形态为 PRD（必须先问）。
+- 在本 SKILL.md 内复述 `references/deliverables.md` 中的 schema 模板。
+- 一次性甩完整方案（必须分节 Approve）。
+- 擅自命名仓库 / 模块 / 概念。
+- 用 MUST / NEVER 命令式硬约束（用"因为 X 所以建议 Y"的理由式表述）。
+- 跳过决策锁定直接写文档。
+- 用户问起方法论时打哈哈（必须诚实复盘）。

@@ -1,0 +1,4 @@
+interface:
+  display_name: "海康云眸设备分组管理"
+  short_description: "管理云眸设备组织、下级组和设备转组流程。"
+  default_prompt: "Use $hik-cloud-device-group-management to manage Hik-Cloud device groups, child groups, and device transfers."

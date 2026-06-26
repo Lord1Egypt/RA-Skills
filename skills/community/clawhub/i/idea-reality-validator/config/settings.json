@@ -1,0 +1,16 @@
+{
+  "mcp": {
+    "server": "idea-reality",
+    "command": "uvx",
+    "args": ["idea-reality-mcp"]
+  },
+  "rules": {
+    "stopThreshold": 70,
+    "pivotThreshold": 30,
+    "showTopCompetitors": 3
+  },
+  "chinaMarket": {
+    "enabled": true,
+    "sources": ["baidu-index", "wechat-index", "v2ex", "sspai", "36kr"]
+  }
+}

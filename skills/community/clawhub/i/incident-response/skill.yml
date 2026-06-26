@@ -1,0 +1,73 @@
+name: incident-response
+display_name: "Incident Response"
+version: 1.0.0
+description: >
+  Structured 7-phase incident response for OpenClaw system failures.
+  Guides you from Triage through Evidence collection, 5 Whys root cause
+  analysis, Restore, Prevention, Monitoring, and Documentation.
+  Built from real production investigations.
+category: operations
+
+triggers:
+  - id: investigate
+    patterns:
+      - "investigate {issue}"
+      - "investigate why {issue}"
+      - "run incident response for {issue}"
+      - "incident response: {issue}"
+    examples:
+      - "investigate binding loss"
+      - "investigate gateway crash"
+      - "investigate why agent stopped responding"
+
+  - id: something-broken
+    patterns:
+      - "why did {thing} stop working"
+      - "something changed in {thing}"
+      - "{thing} disappeared"
+      - "{thing} is missing"
+      - "fix {thing}"
+      - "debug {thing}"
+    examples:
+      - "why did bindings stop working"
+      - "something changed in my config"
+      - "settings disappeared"
+
+  - id: specific-failures
+    patterns:
+      - "gateway down"
+      - "gateway crashed"
+      - "gateway not starting"
+      - "bindings lost"
+      - "agent not responding"
+      - "root cause"
+      - "who changed {thing}"
+      - "what changed {thing}"
+      - "audit {thing}"
+      - "misconfigured {thing}"
+      - "config regression"
+      - "something disappeared"
+
+requires:
+  tools:
+    - exec
+    - web_search
+    - cron
+
+owner_agent: any agent with exec access to the affected system
+
+runtime: linux
+data_dir: ~/.openclaw/learnings
+
+permissions:
+  - exec: ssh, launchctl, openclaw CLI (investigation and restore)
+  - exec: git (audit trail, config backups)
+  - exec: python3 (config diff and restore scripts)
+  - filesystem: read config-backups/ and session JSONL logs (read-only investigation)
+  - filesystem: write ~/.openclaw/learnings/rules.md (prevention rules)
+  - cron: schedule monitoring jobs post-incident
+
+skill_metadata:
+  invoke_as: skill
+  background_eligible: false
+  timeout_minutes: 60

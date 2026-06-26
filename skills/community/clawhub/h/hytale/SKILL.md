@@ -1,35 +1,37 @@
----
-name: "Hytale Server"
-description: "Manage and control a local Hytale dedicated server with commands to start, stop, update, and check the server status using the official downloader."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/hytale"
-sourceUrl: "https://clawhub.ai/skills/hytale"
----
+# Hytale Server Skill
 
-# Hytale Server
+Manage a local Hytale dedicated server using the official downloader and screen.
 
-> Manage and control a local Hytale dedicated server with commands to start, stop, update, and check the server status using the official downloader.
+## Requirements
+- Java 21+ (Installed)
+- Screen (Installed)
+- Hytale Downloader (User must provide)
+- Credentials (User must provide `hytale-downloader-credentials.json` in `~/hytale_server`)
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/hytale`
-- **Source URL:** [https://clawhub.ai/skills/hytale](https://clawhub.ai/skills/hytale)
+## Setup
 
-## Overview
+1. **Download the Hytale Downloader:**
+   - Get the zip from: `https://downloader.hytale.com/hytale-downloader.zip`
+   - Unzip it and place `hytale-downloader-linux-amd64` in `~/hytale_server/`.
+   - Make it executable: `chmod +x ~/hytale_server/hytale-downloader-linux-amd64`
 
+2. **Add Credentials:**
+   - Place your `hytale-downloader-credentials.json` in `~/hytale_server/`.
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/hytale
-```
+## Commands
+
+### `hytale start`
+Starts the server in a detached screen session.
+- **Run:** `/home/clawd/.npm-global/lib/node_modules/clawdbot/skills/hytale/hytale.sh start`
+
+### `hytale stop`
+Gracefully stops the server.
+- **Run:** `/home/clawd/.npm-global/lib/node_modules/clawdbot/skills/hytale/hytale.sh stop`
+
+### `hytale update`
+Downloads or updates the server files using the Hytale Downloader.
+- **Run:** `/home/clawd/.npm-global/lib/node_modules/clawdbot/skills/hytale/hytale.sh update`
+
+### `hytale status`
+Checks if the server process is running.
+- **Run:** `/home/clawd/.npm-global/lib/node_modules/clawdbot/skills/hytale/hytale.sh status`

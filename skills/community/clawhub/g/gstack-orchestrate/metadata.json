@@ -1,0 +1,24 @@
+{
+  "version": "1.6.0",
+  "organization": "kaicianflone",
+  "date": "May 2026",
+  "abstract": "Master orchestration skill that takes a gstack implementation plan and ships it via parallel Claude Code subagents in isolated git worktrees. Sits between /autoplan (or /plan-eng-review) and /review + /ship. Shreds plans into parallelizable subtasks, dispatches them wave-by-wave with worktree isolation, verifies each wave, hands off to /review and /ship. v1.6 adds telemetry hooks (skill-level + per-wave timeline events) so performance can be tracked alongside sibling gstack skills.",
+  "license": {
+    "skill": "MIT"
+  },
+  "instructionScope": "The SKILL.md instructs the orchestrator (Claude) to read a plan file, shred it into wave-grouped tasks, dispatch each task as an isolated-worktree Agent subagent, cherry-pick successful commits onto the working branch, and hand off to /review + /ship. The orchestrator never writes feature code itself. State persists in ~/.gstack/projects/<slug>/orchestrate/<branch>/. Telemetry writes to ~/.gstack/analytics/skill-usage.jsonl and ~/.gstack/projects/<slug>/timeline.jsonl.",
+  "requiredEnvVars": [],
+  "optionalEnvVars": [],
+  "requires": {
+    "tools": ["jq", "git"],
+    "siblingSkills": ["gstack/review", "gstack/ship"],
+    "subSkills": ["superpowers:using-git-worktrees", "superpowers:dispatching-parallel-agents"]
+  },
+  "networkSideEffects": {
+    "default": "disabled",
+    "note": "Local-first. Telemetry writes to local JSONL files. Optional remote telemetry only fires when gstack-config telemetry tier is community or anonymous, via the existing gstack-telemetry-log binary (opt-in)."
+  },
+  "trustedExternalSources": [
+    "https://github.com/kaicianflone/gstack-orchestrate"
+  ]
+}

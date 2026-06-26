@@ -1,0 +1,10 @@
+# 和风天气查询技能配置文件
+# 
+# 使用方法：复制此文件为 config.txt，填入你的 API Key
+#
+# API Key 获取地址：https://id.qweather.com/
+#
+# 优先级：环境变量 HEFENG_WEATHER_API_KEY > 本配置文件
+
+# 在下方填入你的和风天气 API Key（删除 # 注释）
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx

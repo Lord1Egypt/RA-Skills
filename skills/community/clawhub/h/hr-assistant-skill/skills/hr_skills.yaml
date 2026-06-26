@@ -1,0 +1,116 @@
+---
+skills:
+- id: HR01_position_profile
+  name: 岗位画像生成
+  purpose: 生成岗位职责、胜任力模型、任职要求、筛选标准和面试关注点。
+  inputs:
+  - department_need
+  - org_context
+  - existing_jd
+  outputs:
+  - position_profile
+  - competency_model
+  - screening_criteria
+  human_review: true
+  audit_log: true
+- id: HR02_jd_generate
+  name: JD 生成
+  purpose: 生成招聘 JD、岗位卖点、渠道发布文案和候选人沟通话术。
+  inputs:
+  - position_profile
+  - brand_tone
+  - channel
+  outputs:
+  - jd_draft
+  - channel_copy
+  - candidate_pitch
+  human_review: true
+  audit_log: true
+- id: HR03_resume_parse
+  name: 简历解析
+  purpose: 抽取候选人教育、经历、技能、项目、稳定性和风险信息。
+  inputs:
+  - resume_files
+  outputs:
+  - resume_fields
+  - career_timeline
+  - risk_flags
+  human_review: true
+  audit_log: true
+- id: HR04_resume_match_score
+  name: 简历匹配评分
+  purpose: 按岗位要求对简历进行匹配评分并给出推荐理由。
+  inputs:
+  - resume_fields
+  - position_profile
+  - screening_criteria
+  outputs:
+  - match_score
+  - strengths
+  - gaps
+  - interview_suggestion
+  human_review: true
+  audit_log: true
+- id: HR05_interview_question_generate
+  name: 面试题生成
+  purpose: 生成结构化面试题、追问和评分维度。
+  inputs:
+  - position_profile
+  - resume_fields
+  - interview_round
+  outputs:
+  - question_set
+  - probing_questions
+  - scorecard
+  human_review: true
+  audit_log: true
+- id: HR06_interview_evaluation
+  name: 面试记录评估
+  purpose: 根据面试记录生成能力评估、风险提示和下一步建议。
+  inputs:
+  - interview_notes
+  - scorecard
+  outputs:
+  - evaluation_summary
+  - risk_items
+  - next_recommendation
+  human_review: true
+  audit_log: true
+- id: HR07_labor_contract_check
+  name: 劳动合同初审
+  purpose: 检查合同期限、试用期、薪酬、岗位、保密、竞业和解除条款。
+  inputs:
+  - contract_text
+  - employee_info
+  - template_rules
+  outputs:
+  - contract_risk_list
+  - revision_suggestions
+  - need_legal_review
+  human_review: true
+  audit_log: true
+- id: HR08_onboarding_checklist
+  name: 入职材料清单
+  purpose: 生成 offer 要点、入职材料、设备账号、培训和提醒清单。
+  inputs:
+  - candidate_info
+  - position_info
+  - start_date
+  outputs:
+  - onboarding_checklist
+  - reminder_tasks
+  human_review: true
+  audit_log: true
+- id: HR09_training_plan_generate
+  name: 培训计划生成
+  purpose: 根据岗位和能力缺口生成培训计划、学习材料和考试题。
+  inputs:
+  - position_profile
+  - competency_gaps
+  - training_materials
+  outputs:
+  - training_plan
+  - quiz_items
+  - tracking_table
+  human_review: true
+  audit_log: true

@@ -1,35 +1,29 @@
----
-name: "gpu-cluster-monitor"
-description: "Monitors GPU cluster health and usage, providing real-time status, performance metrics, and alerts for efficient resource management."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/gpu-cluster-monitor"
-sourceUrl: "https://clawhub.ai/skills/gpu-cluster-monitor"
----
-
-# gpu-cluster-monitor
-
-> Monitors GPU cluster health and usage, providing real-time status, performance metrics, and alerts for efficient resource management.
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/gpu-cluster-monitor`
-- **Source URL:** [https://clawhub.ai/skills/gpu-cluster-monitor](https://clawhub.ai/skills/gpu-cluster-monitor)
+# Skill: deep-scraper
 
 ## Overview
+A high-performance engineering tool for deep web scraping. It uses a containerized Docker + Crawlee (Playwright) environment to penetrate protections on complex websites like YouTube and X/Twitter, providing "interception-level" raw data.
 
+## Requirements
+1.  **Docker**: Must be installed and running on the host machine.
+2.  **Image**: Build the environment with the tag `clawd-crawlee`.
+    *   Build command: `docker build -t clawd-crawlee skills/deep-scraper/`
 
-## Installation
-To install this skill, run the following command in your terminal:
+## Integration Guide
+Simply copy the `skills/deep-scraper` directory into your `skills/` folder. Ensure the Dockerfile remains within the skill directory for self-contained deployment.
+
+## Standard Interface (CLI)
 ```bash
-hermes skills install clawhub/gpu-cluster-monitor
+docker run -t --rm -v $(pwd)/skills/deep-scraper/assets:/usr/src/app/assets clawd-crawlee node assets/main_handler.js [TARGET_URL]
 ```
+
+## Output Specification (JSON)
+The scraping results are printed to stdout as a JSON string:
+- `status`: SUCCESS | PARTIAL | ERROR
+- `type`: TRANSCRIPT | DESCRIPTION | GENERIC
+- `videoId`: (For YouTube) The validated Video ID.
+- `data`: The core text content or transcript.
+
+## Core Rules
+1.  **ID Validation**: All YouTube tasks MUST verify the Video ID to prevent cache contamination.
+2.  **Privacy**: Strictly forbidden from scraping password-protected or non-public personal information.
+3.  **Alpha-Focused**: Automatically strips ads and noise, delivering pure data optimized for LLM processing.

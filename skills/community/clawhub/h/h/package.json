@@ -1,0 +1,9 @@
+{
+  "name": "h",
+  "version": "1.0.0",
+  "description": "H = Hub - Skill 发现中心，快速搜索、发现和管理 ClawHub 上的优质技能包，让你比 find-skill 更高效地找到喜欢的技能",
+  "main": "index.js",
+  "keywords": ["hub", "skill", "search", "discover", "find", "recommend", "productivity", "discovery"],
+  "author": "",
+  "license": "MIT"
+}

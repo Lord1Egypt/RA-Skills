@@ -1,0 +1,14 @@
+{
+  "app_name": "灵感妙计",
+  "table_name": "Ideas",
+  "fields": {
+    "content": {"name": "内容", "type": 1, "primary": true},
+    "ai_summary": {"name": "AI归纳", "type": 1},
+    "category": {"name": "类别", "type": 3, "options": ["产品","技术","商业","管理","内容","生活","其他"]},
+    "tags": {"name": "标签", "type": 4, "options": ["AI","增长","飞书自动化","爬虫","管理","招聘","内容创作","电商","数据","工程效率"]},
+    "status": {"name": "状态", "type": 3, "options": ["待处理","已处理","无法处理"]},
+    "source": {"name": "来源", "type": 3, "options": ["飞书私聊","群聊","链接","截图","其他"]},
+    "created_time": {"name": "创建时间", "type": 1001},
+    "note": {"name": "备注", "type": 1}
+  }
+}

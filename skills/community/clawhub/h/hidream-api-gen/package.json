@@ -1,0 +1,14 @@
+{
+  "name": "hidream-aigc-skills",
+  "version": "1.0.0",
+  "description": "OpenClaw AIGC models (video + image) client.",
+  "env": {
+    "HIDREAM_AUTHORIZATION": {
+      "description": "API Bearer Token for HiDream/OpenClaw (vivago.ai). Required.",
+      "required": true
+    }
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}

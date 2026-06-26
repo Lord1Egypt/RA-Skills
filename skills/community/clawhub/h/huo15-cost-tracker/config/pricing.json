@@ -1,0 +1,36 @@
+{
+  "version": "1.0",
+  "description": "模型定价配置 ($/M tokens)",
+  "models": {
+    "MiniMax-M2.1": {
+      "inputTokens": 0.01,
+      "outputTokens": 0.01,
+      "description": "MiniMax M2.1 模型"
+    },
+    "MiniMax-M2.7": {
+      "inputTokens": 0.01,
+      "outputTokens": 0.01,
+      "description": "MiniMax M2.7 模型"
+    },
+    "gpt-4o": {
+      "inputTokens": 2.5,
+      "outputTokens": 10,
+      "description": "OpenAI GPT-4o"
+    },
+    "gpt-4o-mini": {
+      "inputTokens": 0.15,
+      "outputTokens": 0.6,
+      "description": "OpenAI GPT-4o Mini"
+    },
+    "claude-3-5-sonnet": {
+      "inputTokens": 3,
+      "outputTokens": 15,
+      "description": "Claude 3.5 Sonnet"
+    },
+    "claude-3-5-haiku": {
+      "inputTokens": 0.8,
+      "outputTokens": 4,
+      "description": "Claude 3.5 Haiku"
+    }
+  }
+}

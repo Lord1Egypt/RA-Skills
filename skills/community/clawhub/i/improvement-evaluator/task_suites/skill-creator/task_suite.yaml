@@ -1,0 +1,151 @@
+skill_id: "skill-creator"
+version: "1.0"
+description: "Evaluates skill-creator's ability to generate symptom-driven descriptions, correct frontmatter, example/anti-example pairs, and enforce progressive disclosure"
+
+tasks:
+  # === Symptom-Driven Description ===
+  - id: "sc-symptom-description"
+    description: "Must generate description with detectable symptoms/scenarios, not abstract capabilities"
+    prompt: |
+      I want to create a skill for diagnosing memory leaks in C++ applications.
+      Write just the YAML frontmatter (name, description, triggers) for this skill.
+
+      The description should follow the symptom-driven pattern so that when a user describes
+      their problem, the skill triggers correctly.
+    judge:
+      type: "llm-rubric"
+      rubric: |
+        Check the description field:
+        1. Must contain detectable symptoms or scenarios (e.g., "RSS grows", "Instruments shows leak", "allocator mismatch", "OOM crash"), NOT just "handles memory leaks". Score 0.0 if purely abstract like "manages memory issues".
+        2. Must be in the format that skill routing can match against user problem descriptions. Score 0.5 if has some symptoms but mostly capability-focused.
+        3. Triggers array must contain user-facing symptom keywords (e.g., "leak", "RSS", "OOM", "memory grows"). Score 0.0 if triggers are empty or only contain developer-facing terms.
+        4. Should include "When to use" / "When NOT to use" guidance via the description or trigger hints. Score 0.8 if symptoms present but no negative boundary.
+        Score 1.0 if description is clearly symptom-driven with 2+ concrete symptoms.
+      pass_threshold: 0.7
+    timeout_seconds: 120
+
+  # === Frontmatter Structure ===
+  - id: "sc-frontmatter-format"
+    description: "Must produce valid YAML frontmatter with all required fields"
+    prompt: |
+      Create the complete YAML frontmatter block for a new skill called "api-rate-limiter"
+      that helps implement rate limiting in REST APIs.
+
+      Output ONLY the frontmatter block (between --- delimiters), nothing else.
+    judge:
+      type: "contains"
+      expected:
+        - "---"
+        - "name:"
+        - "description:"
+        - "triggers:"
+        - "api-rate-limiter"
+    timeout_seconds: 60
+
+  # === Example / Anti-Example Pair Quality ===
+  - id: "sc-example-pair"
+    description: "Must generate example and anti-example with reasoning tags"
+    prompt: |
+      Write an <example> and <anti-example> pair for a skill called "cache-invalidation"
+      that helps design cache invalidation strategies for distributed systems.
+
+      The example should show correct skill usage, and the anti-example should show a common
+      misuse. Include reasoning for why each is correct/incorrect.
+    judge:
+      type: "llm-rubric"
+      rubric: |
+        Check the example/anti-example pair:
+        1. Must use <example> and <anti-example> XML tags. Score 0.0 if plain text without tags.
+        2. Example must show a concrete cache invalidation scenario (not generic). Score 0.0 if vague.
+        3. Anti-example must show a realistic misuse (e.g., using the skill for caching strategy selection when it's about invalidation, or using it for in-memory cache when it's for distributed). Score 0.0 if anti-example is trivially wrong.
+        4. Must include reasoning that explains WHY the example is correct and WHY the anti-example is wrong. Score 0.5 if examples present but no reasoning.
+        5. The anti-example must be something a real user might actually try (not a strawman). Score 0.8 if reasoning present but anti-example is unrealistic.
+        Score 1.0 if both examples concrete + reasoning + realistic anti-example.
+      pass_threshold: 0.7
+    timeout_seconds: 120
+
+  # === Progressive Disclosure Compliance ===
+  - id: "sc-progressive-disclosure"
+    description: "Must structure skill with correct 3-level progressive disclosure"
+    prompt: |
+      I have 800 lines of content for a new "database-migration" skill. The content includes:
+      - Core workflow (5 steps, ~100 lines)
+      - Migration patterns (rollback, zero-downtime, blue-green) (~300 lines)
+      - Database-specific guides (PostgreSQL, MySQL, MongoDB) (~400 lines)
+
+      How should this be structured following the progressive disclosure principle?
+      Show the directory structure and explain what goes where.
+    judge:
+      type: "contains"
+      expected:
+        - "SKILL.md"
+        - "references/"
+        - "500"
+    timeout_seconds: 120
+
+  # === Atomicity Violation Detection ===
+  - id: "sc-atomicity-check"
+    description: "Must detect atomicity violations when skill content crosses responsibility boundaries"
+    prompt: |
+      Review this proposed skill structure for atomicity violations:
+
+      Skill: "ios-testing-expert"
+      SKILL.md contains:
+      - Section 1: iOS-specific test setup (XCTest, Xcode schemes) — 100 lines
+      - Section 2: Complete TDD methodology (Red-Green-Refactor workflow) — 150 lines
+      - Section 3: Full unit test design patterns (boundary testing, mocking) — 200 lines
+      - Section 4: iOS test debugging (lldb, breakpoints) — 80 lines
+      references/:
+      - problem-fix-references/troubleshooting-decision-tree.md — copied from @problem-fix
+
+      Identify any atomicity violations.
+    judge:
+      type: "llm-rubric"
+      rubric: |
+        Must identify these atomicity violations:
+        1. Section 2 (TDD methodology) belongs to a tdd-workflow or similar skill, not ios-testing-expert. Must flag this as cross-responsibility content. Score 0.0 if not caught.
+        2. Section 3 (unit test design patterns) belongs to a unit-test-design skill. Must flag this. Score 0.0 if not caught.
+        3. The references/ file copied from @problem-fix violates "path independent" and "self-contained" rules. Must flag this. Score 0.0 if not caught.
+        4. Sections 1 and 4 (iOS-specific content) are correctly scoped. Should confirm these are fine. Score 0.5 if all violations caught but correct sections not acknowledged.
+        5. Must recommend declarative references (e.g., "See @tdd-workflow for methodology") instead of copying content. Score 0.8 if violations caught but fix not suggested.
+        Score 1.0 if all 3 violations caught + fix recommendations.
+      pass_threshold: 0.7
+    timeout_seconds: 120
+
+  # === Freedom-Level Matching ===
+  - id: "sc-freedom-matching"
+    description: "Must correctly assign freedom levels (high/medium/low) to different rule types"
+    prompt: |
+      For a new "deployment-checklist" skill, classify these rules by freedom level
+      (high/medium/low) and recommend the appropriate expression format for each:
+
+      Rule A: "Before deploying, think about potential rollback scenarios"
+      Rule B: "Run the pre-deploy health check script at scripts/health_check.sh"
+      Rule C: "Choose an appropriate deployment strategy for your use case"
+      Rule D: "Database migrations MUST be backward-compatible and MUST run before code deploy"
+    judge:
+      type: "llm-rubric"
+      rubric: |
+        Check freedom level assignments:
+        1. Rule A (think about rollback): Should be HIGH freedom (multiple valid approaches) → text guidance. Score 0.0 if assigned low.
+        2. Rule B (run specific script): Should be LOW freedom (specific fragile operation) → concrete script path. Score 0.0 if assigned high.
+        3. Rule C (choose strategy): Should be HIGH freedom (many valid options) → text guidance. Score 0.0 if assigned low.
+        4. Rule D (backward-compatible + ordering): Should be LOW or MEDIUM freedom (strict constraint) → MUST/NEVER with examples or pseudocode. Score 0.0 if assigned high.
+        5. Must mention the three expression formats: text guidance, pseudocode/parameterized script, concrete script. Score 0.5 if levels correct but formats not mentioned.
+        Score 1.0 if all 4 rules correctly classified with appropriate formats.
+      pass_threshold: 0.7
+    timeout_seconds: 120
+
+  # === Init Script Knowledge ===
+  - id: "sc-init-script"
+    description: "Must reference the init_skill.py script for initializing new skills"
+    prompt: |
+      I want to create a new skill called "log-analyzer" at ~/.claude/skills/log-analyzer.
+      What is the correct way to initialize the skill directory structure?
+      Show the command and explain what it creates.
+    judge:
+      type: "contains"
+      expected:
+        - "init_skill.py"
+        - "log-analyzer"
+    timeout_seconds: 60

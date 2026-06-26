@@ -1,0 +1,12 @@
+# All names, dates, and details in this file are entirely fictional. Do not use real contact data here.
+name,stream,relationship_importance,birthday,notes,preferred_channel,cultural_context,detected_language
+Sarah Chen,work,4,,Former colleague at Acme. Strong engineering leader.,linkedin,,en (from email history)
+Marcus Rivera,work,3,,Collaborated on Q3 infra project. Last contact ~June 2025.,email,,en (from email history)
+Amira Khalil,personal,5,1992-08-15,Close friend since college. Observes Ramadan.,whatsapp,muslim,ar (from WhatsApp history)
+James Park,personal,4,1990-03-12,Good friend from grad school. Lives in Seattle.,text,,en (from text history)
+Diana Osei,personal,3,,Met at a conference in 2024. Shares running interest.,text,,en (from text history)
+Tom Bradley,work,2,,Works at a startup in fintech. Met at a networking event.,email,,en (from email history)
+Leila Nouri,personal,3,1993-03-21,Friend from community events. Celebrates Nowruz.,text,persian,fr (from text history)
+Raj Patel,personal,4,1991-11-02,Close friend. Celebrates Diwali.,whatsapp,hindu,en (from WhatsApp history)
+Kenji Tanaka,work,4,,Engineering manager at partner company. Strong professional relationship.,email,,ja (from email history — writes in Japanese)
+Fatima Al-Rashid,personal,5,,Family friend. Very close. Observes Ramadan and Eid.,whatsapp,muslim,ar (from WhatsApp history)

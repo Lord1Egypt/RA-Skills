@@ -1,0 +1,1370 @@
+{
+  "type": "function",
+  "function": {
+    "name": "_save_dashboard_prochart_card",
+    "description": "Create or edit dashboard cards in the dashboard. Only cards of type ProChart can be created or modified. Important notes: 1. Data source rules: When type=\"table\", the field id in dimensionList must be the actual column name from the SQL query result. Do not fabricate or use non-existent field names. 1.1 When aggregation query is not enabled, the field source is the original fields returned from directly querying the data table. Naming rule: id must exactly match the column name in the database table. 1.2 When aggregation query is enabled, the aggregation column format is fieldName_functionName, and aggregation is prohibited for id and seq fields. That means fieldId in aggregationQueryList cannot be id or seq, other fields must be used. 2. Stacked chart rules: When implementing stacking effects, a separate data source and corresponding chart instance must be created for each stacked series. In the series array, datasetIndex corresponds to the data source index, and each chart's datasetIndex value should correspond one-to-one with the data source index. Example: To display \"quantity of each punch type for each employee\" using a bar chart, separate data sources and charts need to be created for \"Punch Type A\", \"Punch Type B\", etc. If Punch Type A data source has index 0 in dataset, and Punch Type B has index 1, then datasetIndex in the chart needs to be set to 0 and 1 respectively. Before creating or modifying cards, you need to plan which data sources and charts are needed in advance to set the correct datasetIndex. 3. Style rules: The chart title position must be set to ensure it does not overlap with the legend area. 4. The final generated content needs to be JSON parsed, so it must conform to JSON specification. Functions are not allowed. 5. [Color rules - strictly follow] All color fields must use standard 6-digit HEX format strings, such as '#67e0e3', '#5B8FF9'; rgba(...), rgb(...), hsl(...) formats are strictly prohibited; functions, arrow functions, or any dynamic expressions for setting colors are strictly prohibited (color field can only be a string constant, not a function); black (#000000) and gray colors are not allowed.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Card ID. Not required when creating, required when editing"
+        },
+        "name": {
+          "type": "string",
+          "description": "Card name"
+        },
+        "type": {
+          "type": "string",
+          "description": "Card type. Currently only ProChart can be used."
+        },
+        "scope": {
+          "type": "string",
+          "description": "Dashboard ID that the card belongs to."
+        },
+        "width": {
+          "type": "number",
+          "description": "Card width, maximum is 24 (representing 24 grid units), cannot be less than 12.",
+          "default": 12
+        },
+        "height": {
+          "type": "number",
+          "description": "Card height, also represented by occupied grid units, no maximum limit of 24. Minimum is 12",
+          "default": 12
+        },
+        "remark": {
+          "type": "string",
+          "description": "Card remark."
+        },
+        "isInTab": {
+          "type": "boolean",
+          "description": "Whether to display within a Tab."
+        },
+        "cardStyle": {
+          "type": "object",
+          "description": "Card style, controls background, padding, border, title position, etc.",
+          "properties": {
+            "bgType": {
+              "type": "string",
+              "description": "Background type, e.g. 'image', 'color', or 'transparent'. Default is image."
+            },
+            "bgColor": {
+              "type": "string",
+              "description": "Background color, only effective when bgType is appropriate. [Color rules - strictly follow]: ① Only use standard 6-digit HEX format, e.g. '#67e0e3', '#5B8FF9'; ② rgba(...), rgb(...), hsl(...) formats are strictly prohibited; ③ Functions, arrow functions, or any dynamic expressions for setting colors are strictly prohibited, color field can only be a string constant; ④ Black (#000000) and gray colors are not allowed."
+            },
+            "bgImageId": {
+              "type": "string",
+              "description": "Background image ID (if using image)."
+            },
+            "padding": {
+              "type": "number",
+              "description": "Padding on all sides (pixels)."
+            },
+            "paddingTop": {
+              "type": "number",
+              "description": "Top padding"
+            },
+            "paddingRight": {
+              "type": "number",
+              "description": "Right padding"
+            },
+            "paddingBottom": {
+              "type": "number",
+              "description": "Bottom padding"
+            },
+            "paddingLeft": {
+              "type": "number",
+              "description": "Left padding"
+            },
+            "overflow": {
+              "type": "string",
+              "description": "Overflow strategy, e.g. 'auto', 'hidden', 'visible'."
+            },
+            "borderWidth": {
+              "type": "number",
+              "description": "Border width"
+            },
+            "borderRadius": {
+              "type": "number",
+              "description": "Border radius"
+            },
+            "titleFontSize": {
+              "type": "string",
+              "description": "Title font size (CSS string, e.g. '13px')."
+            },
+            "titlePosition": {
+              "type": "string",
+              "description": "Title position, e.g. 'left', 'center', 'right'."
+            },
+            "subTitleFontSize": {
+              "type": "string",
+              "description": "Subtitle font size (e.g. '12px')."
+            },
+            "subTitlePosition": {
+              "type": "string",
+              "description": "Subtitle position, e.g. 'titleBottom'."
+            },
+            "enableBorderImage": {
+              "type": "boolean",
+              "description": "Whether to enable border image. Only use borderImage* fields when true."
+            },
+            "borderImageId": {
+              "type": "string",
+              "description": "Border image ID (optional)."
+            },
+            "borderImageIsFill": {
+              "type": "boolean",
+              "description": "Whether border image fills the content area."
+            },
+            "borderImageSlice": {
+              "type": "array",
+              "items": {
+                "type": "number"
+              },
+              "description": "Border image slice settings (per CSS border-image-slice)."
+            },
+            "borderImageRepeatX": {
+              "type": "string",
+              "description": "Border image horizontal repeat strategy, such as 'round', 'repeat', 'stretch'."
+            },
+            "borderImageRepeatY": {
+              "type": "string",
+              "description": "Border image vertical repeat strategy."
+            }
+          }
+        },
+        "buttonList": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          },
+          "description": "Button configuration array for card top or toolbar. Button object structure should include id, label, action, etc."
+        },
+        "buttonStyle": {
+          "type": "object",
+          "description": "Top button style and layout configuration.",
+          "properties": {
+            "size": {
+              "type": "string",
+              "description": "Button size, e.g. 'small', 'medium', 'large'."
+            },
+            "orient": {
+              "type": "string",
+              "description": "Arrangement direction, e.g. 'horizontal' or 'vertical'."
+            },
+            "vertical": {
+              "type": "string",
+              "description": "Vertical alignment, such as 'top', 'middle', 'bottom'."
+            },
+            "horizontal": {
+              "type": "string",
+              "description": "Horizontal alignment, such as 'left', 'center', 'right'."
+            }
+          }
+        },
+        "refreshTime": {
+          "type": "integer",
+          "description": "Auto refresh interval (seconds). 0 or not set means no auto refresh."
+        },
+        "enableButton": {
+          "type": "boolean",
+          "description": "Whether to enable buttons"
+        },
+        "enableRefresh": {
+          "type": "boolean",
+          "description": "Whether to enable auto refresh"
+        },
+        "disableToolbar": {
+          "type": "boolean",
+          "description": "Whether to disable the card toolbar"
+        },
+        "enableCardStyle": {
+          "type": "boolean",
+          "description": "Whether to apply styles from cardStyle"
+        },
+        "proChartSetting": {
+          "type": "object",
+          "description": "Chart rendering configuration. Structure compatible with ECharts option",
+          "properties": {
+            "grid": {
+              "type": "array",
+              "items": {
+                "type": "object"
+              },
+              "description": "Grid configuration array (refer to ECharts grid)."
+            },
+            "polar": {
+              "type": "array",
+              "items": {
+                "type": "object"
+              },
+              "description": "Polar coordinate system configuration array (refer to ECharts polar)."
+            },
+            "radar": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "description": "Radar configuration unique id (optional)."
+                  },
+                  "name": {
+                    "type": "string",
+                    "description": "Radar name (for display, optional)."
+                  },
+                  "shape": {
+                    "type": "string",
+                    "description": "Radar shape. Only one of the following values can be used: polygon, circle."
+                  },
+                  "radius": {
+                    "type": "string",
+                    "description": "Radar radius (e.g. '75%' or '200')."
+                  },
+                  "indicator": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "name": {
+                          "type": "string",
+                          "description": "Indicator name."
+                        },
+                        "max": {
+                          "type": "number",
+                          "description": "Maximum value allowed for this indicator (number)."
+                        },
+                        "min": {
+                          "type": "number",
+                          "description": "Minimum value allowed for this indicator (number)."
+                        },
+                        "color": {
+                          "type": "string",
+                          "description": "Color value. [Color rules - strictly follow]: ① Only use standard 6-digit HEX format, e.g. '#67e0e3', '#5B8FF9'; ② rgba(...), rgb(...), hsl(...) formats are strictly prohibited; ③ Functions, arrow functions, or any dynamic expressions for setting colors are strictly prohibited, color field can only be a string constant; ④ Black (#000000) and gray colors are not allowed."
+                        }
+                      },
+                      "required": [
+                        "name"
+                      ]
+                    },
+                    "description": "Radar dimension indicator array (at least include name, max is recommended)."
+                  },
+                  "axisLine": {
+                    "type": "object",
+                    "description": "Axis line style configuration (refer to ECharts axisLine)."
+                  },
+                  "axisLabel": {
+                    "type": "object",
+                    "description": "Axis label style configuration."
+                  },
+                  "splitLine": {
+                    "type": "object",
+                    "description": "Split line style configuration."
+                  },
+                  "axisName": {
+                    "type": "object",
+                    "description": "Axis name style configuration (text style, etc.)."
+                  }
+                },
+                "required": [
+                  "indicator"
+                ]
+              },
+              "description": "Radar configuration list."
+            },
+            "xAxis": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "description": "xAxis id (optional)."
+                  },
+                  "name": {
+                    "type": "string",
+                    "description": "Axis name (displayed)."
+                  },
+                  "show": {
+                    "type": "boolean",
+                    "description": "Whether to show this axis."
+                  },
+                  "type": {
+                    "type": "string",
+                    "description": "Axis type, e.g. 'category', 'value', 'time', or 'log'."
+                  },
+                  "position": {
+                    "type": "string",
+                    "description": "Axis position, such as 'bottom', 'top'."
+                  },
+                  "axisLine": {
+                    "type": "object",
+                    "description": "Axis line style configuration."
+                  },
+                  "axisTick": {
+                    "type": "object",
+                    "description": "Tick mark configuration."
+                  },
+                  "axisLabel": {
+                    "type": "object",
+                    "description": "Tick label configuration, including rotate, formatter, etc."
+                  },
+                  "splitLine": {
+                    "type": "object",
+                    "description": "Split line configuration."
+                  },
+                  "boundaryGap": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "boundaryGap configuration, category type usually ['0','0'] or true/false."
+                  }
+                },
+                "required": [
+                  "type"
+                ]
+              },
+              "description": "X-axis configuration array (supports multiple x-axes)."
+            },
+            "yAxis": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "description": "yAxis id (optional)."
+                  },
+                  "name": {
+                    "type": "string",
+                    "description": "Axis name (displayed)."
+                  },
+                  "show": {
+                    "type": "boolean",
+                    "description": "Whether to show this axis."
+                  },
+                  "type": {
+                    "type": "string",
+                    "description": "Axis type, e.g. 'value', 'category', 'time', etc."
+                  },
+                  "position": {
+                    "type": "string",
+                    "description": "Axis position, such as 'left', 'right'."
+                  },
+                  "axisLine": {
+                    "type": "object",
+                    "description": "Axis line style configuration."
+                  },
+                  "axisTick": {
+                    "type": "object",
+                    "description": "Tick mark configuration."
+                  },
+                  "axisLabel": {
+                    "type": "object",
+                    "description": "Tick label configuration."
+                  },
+                  "splitLine": {
+                    "type": "object",
+                    "description": "Split line configuration."
+                  },
+                  "boundaryGap": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "boundaryGap configuration."
+                  }
+                }
+              },
+              "description": "Y-axis configuration array (supports multiple y-axes)."
+            },
+            "legend": {
+              "type": "object",
+              "description": "Legend configuration, refer to ECharts legend (show, orient, data, etc.)."
+            },
+            "title": {
+              "type": "object",
+              "description": "Title configuration (text, subtext, left, top, textStyle, etc.)."
+            },
+            "dataset": {
+              "type": "array",
+              "description": "Chart data source configuration array. When type='table', dynamic filtering and aggregation queries are supported. Returned fields are defined by dimensionList. Chart encode must reference field IDs declared here. Since chart configuration can only configure specific values (you cannot use aggregation to group when querying, as the grouped fields do not return specific values. For example, grouping by status field will have multiple status values, which does not meet requirements), when chart stacking occurs, create as many data sources and charts as needed for stacking, then correspond one-to-one. The corresponding chart uses the corresponding data source. For example, to display the quantity of each punch type for each employee using a bar chart, a data source needs to be created for each punch type.",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "description": "Data source identifier"
+                  },
+                  "name": {
+                    "type": "string",
+                    "description": "Data source name"
+                  },
+                  "type": {
+                    "type": "string",
+                    "description": "Data source type. Only the following value can be used: table (dynamic table query, tableId must be provided)."
+                  },
+                  "tableId": {
+                    "type": "string",
+                    "description": "Required when type='table', must be a real table ID existing in the system"
+                  },
+                  "expression": {
+                    "type": "string",
+                    "description": "Expression, not required"
+                  },
+                  "filter": {
+                    "type": "object",
+                    "description": "Dynamic filter condition configuration (only effective when type='table'). When field type is Checkbox, value is true/false",
+                    "properties": {
+                      "opt": {
+                        "type": "string",
+                        "description": "Root condition combination logic. Only one of the following values can be used: and, or."
+                      },
+                      "children": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "description": "Nested condition group, leave empty when not needed",
+                          "properties": {
+                            "opt": {
+                              "type": "string",
+                              "description": "Nested condition combination logic. Only one of the following values can be used: and, or."
+                            },
+                            "conditionList": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "fieldId": {
+                                    "type": "string"
+                                  },
+                                  "opt": {
+                                    "type": "string"
+                                  },
+                                  "value": {
+                                    "type": "string"
+                                  },
+                                  "var": {
+                                    "type": "boolean"
+                                  }
+                                },
+                                "required": [
+                                  "fieldId",
+                                  "opt",
+                                  "value",
+                                  "var"
+                                ]
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "conditionList": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "description": "Filter conditions, leave empty when not needed",
+                          "properties": {
+                            "fieldId": {
+                              "type": "string",
+                              "description": "Filter field ID, special value '$expression' indicates using a function"
+                            },
+                            "opt": {
+                              "type": "string",
+                              "description": "Comparison operator. Only one of the following values can be used: eq, ne, gt, ge, lt, le, contains, notcontains, startswith, endswith, isnull, isnotnull, in, notin, between, notbetween."
+                            },
+                            "value": {
+                              "type": "string",
+                              "description": "Comparison value or expression (e.g. '1=${filterRecord.name == null ? 1 : 0}'); when the value is boolean or numeric, wrap with ${}, e.g. ${true} or ${100}"
+                            },
+                            "var": {
+                              "type": "boolean",
+                              "description": "Flag indicating whether value is an expression"
+                            }
+                          },
+                          "required": [
+                            "fieldId",
+                            "opt",
+                            "value",
+                            "var"
+                          ]
+                        }
+                      }
+                    },
+                    "required": [
+                      "opt",
+                      "children",
+                      "conditionList"
+                    ]
+                  },
+                  "aggregation": {
+                    "type": "boolean",
+                    "description": "Whether to enable aggregation calculation",
+                    "default": false
+                  },
+                  "aggregationQueryList": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "fieldId": {
+                          "type": "string",
+                          "description": "Field ID to be aggregated. id and seq fields must not be used for aggregation"
+                        },
+                        "func": {
+                          "type": "string",
+                          "description": "Aggregation function. Only one of the following values can be used: count, avg (average), sum, max (maximum), min (minimum). Note: avg, sum, max, min require the field to be numeric type (Integer or Double)."
+                        },
+                        "distinct": {
+                          "type": "boolean",
+                          "description": "Whether to deduplicate",
+                          "default": false
+                        }
+                      },
+                      "required": [
+                        "fieldId",
+                        "func"
+                      ]
+                    },
+                    "description": "Aggregation calculation configuration (required when aggregation=true)"
+                  },
+                  "groupByFieldList": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "Group by field ID list (e.g. ['name']), grouping requires enabling aggregation-aggregation=true"
+                  },
+                  "dimensionList": {
+                    "type": "array",
+                    "description": "Final output data field list, must include fields referenced in chart encode. encode can only use fields listed here, do not fabricate non-existent data fields. If using aggregation fields, field ID format is: 'fieldID_functionName' e.g.: name_count",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string",
+                          "description": "Field ID"
+                        },
+                        "name": {
+                          "type": "string",
+                          "description": "Field name"
+                        }
+                      },
+                      "required": [
+                        "id",
+                        "name"
+                      ]
+                    }
+                  },
+                  "orderByList": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "field": {
+                          "type": "string",
+                          "description": "Sort field ID"
+                        },
+                        "type": {
+                          "type": "string",
+                          "description": "Sort direction. Only one of the following values can be used: asc (ascending), desc (descending)."
+                        }
+                      },
+                      "required": [
+                        "field",
+                        "type"
+                      ]
+                    },
+                    "description": "Sorting"
+                  }
+                },
+                "required": [
+                  "id",
+                  "name",
+                  "type"
+                ],
+                "description": "Single data source configuration. [type rules] When type=table, tableId must be provided. [aggregation rules] When aggregation=true, aggregationQueryList and groupByFieldList must be provided; aggregated field dimensionList[].id format is: fieldID_functionName (e.g. name_count), non-aggregated field id must not contain function suffix (_count/_avg/_sum/_max/_min)."
+              }
+            },
+            "series": {
+              "type": "array",
+              "description": "Chart array, must be provided (at least one). Each object in the array must include id, name, type, and the corresponding type's setting configuration (e.g. barSetting, etc.).",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "description": "Chart unique id"
+                  },
+                  "name": {
+                    "type": "string",
+                    "description": "Chart name"
+                  },
+                  "type": {
+                    "type": "string",
+                    "description": "Chart type (must match the corresponding setting). Only one of the following values can be used: bar (bar chart→barSetting), line (line chart→lineSetting), pie (pie chart→pieSetting), scatter (scatter chart→scatterSetting), radar (radar chart→radarSetting), gauge (gauge chart→gaugeSetting), boxplot (boxplot chart→boxplotSetting), candlestick (candlestick chart→candlestickSetting), heatmap (heatmap→heatmapSetting), funnel (funnel chart→funnelSetting)."
+                  },
+                  "xAxisIndex": {
+                    "type": "integer",
+                    "description": "Reference xAxis index (if multiple x-axes exist)"
+                  },
+                  "yAxisIndex": {
+                    "type": "integer",
+                    "description": "Reference yAxis index (if multiple y-axes exist)"
+                  },
+                  "barSetting": {
+                    "type": "object",
+                    "description": "Bar chart configuration, required when type==='bar'",
+                    "properties": {
+                      "datasetIndex": {
+                        "type": "integer",
+                        "description": "Data source index, referencing the index in the data source array (0, 1, 2...). When there is only one data source, default is 0; when there are multiple data sources, fill in the corresponding data source array index according to functionality."
+                      },
+                      "encode": {
+                        "type": "object",
+                        "description": "Chart data configuration, values are taken from field IDs in dimensionList of the corresponding dataset or field IDs in the build expression, do not fabricate",
+                        "properties": {
+                          "x": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            },
+                            "description": "X-axis field"
+                          },
+                          "y": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            },
+                            "description": "Y-axis field"
+                          },
+                          "seriesName": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            },
+                            "description": "Chart name field"
+                          }
+                        },
+                        "required": [
+                          "x",
+                          "y"
+                        ]
+                      },
+                      "barGap": {
+                        "type": "string",
+                        "description": "Gap between bars (e.g. '20%' or pixel value)",
+                        "default": "30%"
+                      },
+                      "barCategoryGap": {
+                        "type": "string",
+                        "description": "Gap between category bars (e.g. '20%')",
+                        "default": "20%"
+                      },
+                      "barWidth": {
+                        "type": "string",
+                        "description": "Bar width (e.g. '40%' or pixel value)"
+                      },
+                      "showBackground": {
+                        "type": "boolean",
+                        "description": "Whether to show bar background",
+                        "default": false
+                      },
+                      "backgroundStyle": {
+                        "type": "object",
+                        "properties": {
+                          "color": {
+                            "type": "string",
+                            "description": "Color value. [Color rules - strictly follow]: ① Only use standard 6-digit HEX format, e.g. '#67e0e3', '#5B8FF9'; ② rgba(...), rgb(...), hsl(...) formats are strictly prohibited; ③ Functions, arrow functions, or any dynamic expressions for setting colors are strictly prohibited, color field can only be a string constant; ④ Black (#000000) and gray colors are not allowed."
+                          },
+                          "borderColor": {
+                            "type": "string",
+                            "description": "Color value. [Color rules - strictly follow]: ① Only use standard 6-digit HEX format, e.g. '#67e0e3', '#5B8FF9'; ② rgba(...), rgb(...), hsl(...) formats are strictly prohibited; ③ Functions, arrow functions, or any dynamic expressions for setting colors are strictly prohibited, color field can only be a string constant; ④ Black (#000000) and gray colors are not allowed."
+                          },
+                          "borderWidth": {
+                            "type": "number",
+                            "description": "Border width"
+                          }
+                        }
+                      },
+                      "itemStyle": {
+                        "type": "object",
+                        "properties": {
+                          "color": {
+                            "type": "string",
+                            "description": "Color value. [Color rules - strictly follow]: ① Only use standard 6-digit HEX format, e.g. '#67e0e3', '#5B8FF9'; ② rgba(...), rgb(...), hsl(...) formats are strictly prohibited; ③ Functions, arrow functions, or any dynamic expressions for setting colors are strictly prohibited, color field can only be a string constant; ④ Black (#000000) and gray colors are not allowed.",
+                            "pattern": "^#[0-9a-fA-F]{6}$"
+                          },
+                          "borderColor": {
+                            "type": "string",
+                            "description": "Color value. [Color rules - strictly follow]: ① Only use standard 6-digit HEX format, e.g. '#67e0e3', '#5B8FF9'; ② rgba(...), rgb(...), hsl(...) formats are strictly prohibited; ③ Functions, arrow functions, or any dynamic expressions for setting colors are strictly prohibited, color field can only be a string constant; ④ Black (#000000) and gray colors are not allowed."
+                          },
+                          "borderWidth": {
+                            "type": "number",
+                            "default": 0
+                          },
+                          "borderType": {
+                            "type": "string",
+                            "default": "solid",
+                            "description": "Border line type. Only one of the following values can be used: solid, dashed, dotted. Default is solid."
+                          },
+                          "opacity": {
+                            "type": "number",
+                            "minimum": 0,
+                            "maximum": 1,
+                            "default": 1
+                          }
+                        }
+                      },
+                      "label": {
+                        "type": "object",
+                        "properties": {
+                          "show": {
+                            "type": "boolean",
+                            "default": true
+                          },
+                          "position": {
+                            "type": "string",
+                            "default": "top",
+                            "description": "Label position. Only one of the following values can be used: top, right, bottom, left, inside, insideLeft, insideRight. Default is top."
+                          },
+                          "formatter": {
+                            "type": "string",
+                            "description": "Label content formatter (e.g. '{c}')"
+                          }
+                        }
+                      },
+                      "stack": {
+                        "type": "string",
+                        "description": "Stack identifier (charts with the same stack value will be stacked)"
+                      }
+                    },
+                    "required": [
+                      "encode",
+                      "datasetIndex"
+                    ]
+                  },
+                  "lineSetting": {
+                    "type": "object",
+                    "description": "Line chart specific configuration, required when type==='line'",
+                    "properties": {
+                      "datasetIndex": {
+                        "type": "integer",
+                        "description": "Data source index, referencing the index in the data source array (0, 1, 2...). When there is only one data source, default is 0; when there are multiple data sources, fill in the corresponding data source array index according to functionality."
+                      },
+                      "encode": {
+                        "type": "object",
+                        "description": "Chart data configuration, values are taken from field IDs in dimensionList of the corresponding dataset or field IDs in the build expression, do not fabricate",
+                        "properties": {
+                          "x": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            },
+                            "description": "X-axis field"
+                          },
+                          "y": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            },
+                            "description": "Y-axis field"
+                          },
+                          "seriesName": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            },
+                            "description": "Chart name field"
+                          }
+                        },
+                        "required": [
+                          "x",
+                          "y"
+                        ]
+                      },
+                      "smooth": {
+                        "type": "boolean",
+                        "description": "Whether to display smoothly",
+                        "default": false
+                      },
+                      "symbol": {
+                        "type": "string",
+                        "description": "Marker shape. Only one of the following values can be used: circle, rect, roundRect, triangle, diamond, pin, arrow, none. Default is emptyCircle.",
+                        "default": "emptyCircle"
+                      },
+                      "symbolSize": {
+                        "type": "number",
+                        "description": "Marker size",
+                        "default": 4
+                      },
+                      "showSymbol": {
+                        "type": "boolean",
+                        "description": "Whether to show marker",
+                        "default": true
+                      },
+                      "areaStyle": {
+                        "type": "object",
+                        "description": "Area fill style",
+                        "properties": {
+                          "color": {
+                            "type": "string",
+                            "description": "Color value. [Color rules - strictly follow]: ① Only use standard 6-digit HEX format, e.g. '#67e0e3', '#5B8FF9'; ② rgba(...), rgb(...), hsl(...) formats are strictly prohibited; ③ Functions, arrow functions, or any dynamic expressions for setting colors are strictly prohibited, color field can only be a string constant; ④ Black (#000000) and gray colors are not allowed."
+                          },
+                          "opacity": {
+                            "type": "number",
+                            "minimum": 0,
+                            "maximum": 1,
+                            "default": 0.6
+                          }
+                        }
+                      },
+                      "lineStyle": {
+                        "type": "object",
+                        "description": "Line style",
+                        "properties": {
+                          "width": {
+                            "type": "number",
+                            "default": 1
+                          },
+                          "type": {
+                            "type": "string",
+                            "default": "solid",
+                            "description": "Line type. Only one of the following values can be used: solid, dashed, dotted. Default is solid."
+                          }
+                        }
+                      }
+                    },
+                    "required": [
+                      "encode",
+                      "datasetIndex"
+                    ]
+                  },
+                  "pieSetting": {
+                    "type": "object",
+                    "description": "Pie chart specific configuration, required when type==='pie'",
+                    "properties": {
+                      "datasetIndex": {
+                        "type": "integer",
+                        "description": "Data source index, referencing the index in the data source array (0, 1, 2...). When there is only one data source, default is 0; when there are multiple data sources, fill in the corresponding data source array index according to functionality."
+                      },
+                      "encode": {
+                        "type": "object",
+                        "description": "Chart data configuration, values are taken from field IDs in dimensionList of the corresponding dataset or field IDs in the build expression, do not fabricate",
+                        "properties": {
+                          "value": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            },
+                            "description": "Value field"
+                          },
+                          "itemName": {
+                            "type": "string",
+                            "description": "Item name field"
+                          }
+                        },
+                        "required": [
+                          "value",
+                          "itemName"
+                        ]
+                      },
+                      "radius": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        },
+                        "description": "Radius configuration (e.g. ['0%','70%'])",
+                        "default": [
+                          "0%",
+                          "75%"
+                        ]
+                      },
+                      "center": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        },
+                        "description": "Center position (e.g. ['50%','50%'])",
+                        "default": [
+                          "50%",
+                          "50%"
+                        ]
+                      },
+                      "label": {
+                        "type": "object",
+                        "properties": {
+                          "show": {
+                            "type": "boolean",
+                            "default": true
+                          },
+                          "position": {
+                            "type": "string",
+                            "default": "outside",
+                            "description": "Label position. Only one of the following values can be used: inside, outside, center. Default is outside."
+                          }
+                        }
+                      },
+                      "labelLine": {
+                        "type": "object",
+                        "description": "Label guide line configuration"
+                      }
+                    },
+                    "required": [
+                      "encode",
+                      "datasetIndex"
+                    ]
+                  },
+                  "scatterSetting": {
+                    "type": "object",
+                    "description": "Scatter chart specific configuration, required when type==='scatter'",
+                    "properties": {
+                      "datasetIndex": {
+                        "type": "integer",
+                        "description": "Data source index, referencing the index in the data source array (0, 1, 2...). When there is only one data source, default is 0; when there are multiple data sources, fill in the corresponding data source array index according to functionality."
+                      },
+                      "encode": {
+                        "type": "object",
+                        "description": "Chart data configuration, values are taken from field IDs in dimensionList of the corresponding dataset or field IDs in the build expression, do not fabricate",
+                        "properties": {
+                          "x": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            },
+                            "description": "X-axis field"
+                          },
+                          "y": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            },
+                            "description": "Y-axis field"
+                          },
+                          "value": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            },
+                            "description": "Value field"
+                          }
+                        },
+                        "required": [
+                          "x",
+                          "y"
+                        ]
+                      },
+                      "symbolSize": {
+                        "type": "number",
+                        "default": 4
+                      },
+                      "symbol": {
+                        "type": "string",
+                        "default": "circle",
+                        "description": "Marker shape. Only one of the following values can be used: circle, rect, triangle, diamond, pin. Default is circle."
+                      }
+                    },
+                    "required": [
+                      "encode",
+                      "datasetIndex"
+                    ]
+                  },
+                  "radarSetting": {
+                    "type": "object",
+                    "description": "Radar chart specific configuration, required when type==='radar'",
+                    "properties": {
+                      "datasetIndex": {
+                        "type": "integer",
+                        "description": "Data source index, referencing the index in the data source array (0, 1, 2...). When there is only one data source, default is 0; when there are multiple data sources, fill in the corresponding data source array index according to functionality."
+                      },
+                      "encode": {
+                        "type": "object",
+                        "description": "Chart data configuration, values are taken from field IDs in dimensionList of the corresponding dataset or field IDs in the build expression, do not fabricate",
+                        "properties": {
+                          "value": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            },
+                            "description": "Value field"
+                          }
+                        },
+                        "required": [
+                          "value"
+                        ]
+                      },
+                      "areaStyle": {
+                        "type": "object",
+                        "description": "Area fill style"
+                      },
+                      "lineStyle": {
+                        "type": "object",
+                        "description": "Line style"
+                      }
+                    },
+                    "required": [
+                      "encode",
+                      "datasetIndex"
+                    ]
+                  },
+                  "gaugeSetting": {
+                    "type": "object",
+                    "description": "Gauge chart specific configuration, required when type==='gauge'",
+                    "properties": {
+                      "datasetIndex": {
+                        "type": "integer",
+                        "description": "Data source index, referencing the index in the data source array (0, 1, 2...). When there is only one data source, default is 0; when there are multiple data sources, fill in the corresponding data source array index according to functionality."
+                      },
+                      "encode": {
+                        "type": "object",
+                        "description": "Chart data configuration, values are taken from field IDs in dimensionList of the corresponding dataset or field IDs in the build expression, do not fabricate",
+                        "properties": {
+                          "value": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            },
+                            "description": "Value field"
+                          }
+                        },
+                        "required": [
+                          "value"
+                        ]
+                      },
+                      "min": {
+                        "type": "number",
+                        "default": 0
+                      },
+                      "max": {
+                        "type": "number",
+                        "default": 100
+                      },
+                      "axisLine": {
+                        "type": "object",
+                        "properties": {
+                          "lineStyle": {
+                            "type": "object",
+                            "properties": {
+                              "color": {
+                                "type": "array",
+                                "items": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "string"
+                                  },
+                                  "minItems": 2,
+                                  "maxItems": 2
+                                },
+                                "description": "Color segments (e.g. [[0.3,'#67e0e3'],[0.7,'#37a2da'],[1,'#fd666d']])"
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "detail": {
+                        "type": "object",
+                        "properties": {
+                          "formatter": {
+                            "type": "string",
+                            "description": "Format string (e.g. '{value}%')"
+                          }
+                        }
+                      }
+                    },
+                    "required": [
+                      "encode",
+                      "datasetIndex"
+                    ]
+                  },
+                  "boxplotSetting": {
+                    "type": "object",
+                    "description": "Boxplot chart specific configuration, required when type==='boxplot'",
+                    "properties": {
+                      "datasetIndex": {
+                        "type": "integer",
+                        "description": "Data source index, referencing the index in the data source array (0, 1, 2...). When there is only one data source, default is 0; when there are multiple data sources, fill in the corresponding data source array index according to functionality."
+                      },
+                      "encode": {
+                        "type": "object",
+                        "description": "Chart data configuration, values are taken from field IDs in dimensionList of the corresponding dataset or field IDs in the build expression, do not fabricate",
+                        "properties": {
+                          "x": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            },
+                            "description": "Category field"
+                          },
+                          "y": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            },
+                            "minItems": 5,
+                            "maxItems": 5,
+                            "description": "Value field array (must be in order [min, q1, median, q3, max])"
+                          }
+                        },
+                        "required": [
+                          "x",
+                          "y"
+                        ]
+                      },
+                      "boxWidth": {
+                        "type": "array",
+                        "items": {
+                          "type": "number"
+                        },
+                        "description": "Box width range (e.g. [10,30])"
+                      }
+                    },
+                    "required": [
+                      "encode",
+                      "datasetIndex"
+                    ]
+                  },
+                  "candlestickSetting": {
+                    "type": "object",
+                    "description": "Candlestick chart specific configuration, required when type==='candlestick'",
+                    "properties": {
+                      "datasetIndex": {
+                        "type": "integer",
+                        "description": "Data source index, referencing the index in the data source array (0, 1, 2...). When there is only one data source, default is 0; when there are multiple data sources, fill in the corresponding data source array index according to functionality."
+                      },
+                      "encode": {
+                        "type": "object",
+                        "description": "Chart data configuration, values are taken from field IDs in dimensionList of the corresponding dataset or field IDs in the build expression, do not fabricate",
+                        "properties": {
+                          "x": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            },
+                            "description": "X-axis field"
+                          },
+                          "y": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            },
+                            "minItems": 4,
+                            "maxItems": 4,
+                            "description": "Price fields (in order [open, close, high, low])"
+                          }
+                        },
+                        "required": [
+                          "x",
+                          "y"
+                        ]
+                      },
+                      "barWidth": {
+                        "type": "number",
+                        "description": "K-line bar width",
+                        "default": 10
+                      }
+                    },
+                    "required": [
+                      "encode",
+                      "datasetIndex"
+                    ]
+                  },
+                  "heatmapSetting": {
+                    "type": "object",
+                    "description": "Heatmap specific configuration, required when type==='heatmap'",
+                    "properties": {
+                      "datasetIndex": {
+                        "type": "integer",
+                        "description": "Data source index, referencing the index in the data source array (0, 1, 2...). When there is only one data source, default is 0; when there are multiple data sources, fill in the corresponding data source array index according to functionality."
+                      },
+                      "encode": {
+                        "type": "object",
+                        "description": "Chart data configuration",
+                        "properties": {
+                          "x": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            },
+                            "description": "X-axis category field"
+                          },
+                          "y": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            },
+                            "description": "Y-axis category field"
+                          },
+                          "value": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            },
+                            "description": "Value field"
+                          }
+                        },
+                        "required": [
+                          "x",
+                          "y",
+                          "value"
+                        ]
+                      },
+                      "label": {
+                        "type": "object",
+                        "properties": {
+                          "show": {
+                            "type": "boolean",
+                            "default": true
+                          },
+                          "formatter": {
+                            "type": "string",
+                            "description": "Display format (e.g. '{@[1]}')"
+                          }
+                        }
+                      }
+                    },
+                    "required": [
+                      "encode",
+                      "datasetIndex"
+                    ]
+                  },
+                  "funnelSetting": {
+                    "type": "object",
+                    "description": "Funnel chart specific configuration, required when type==='funnel'",
+                    "properties": {
+                      "datasetIndex": {
+                        "type": "integer",
+                        "description": "Data source index, referencing the index in the data source array (0, 1, 2...). When there is only one data source, default is 0; when there are multiple data sources, fill in the corresponding data source array index according to functionality."
+                      },
+                      "encode": {
+                        "type": "object",
+                        "description": "Chart data configuration, values are taken from field IDs in dimensionList of the corresponding dataset or field IDs in the build expression",
+                        "properties": {
+                          "value": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            },
+                            "description": "Value field"
+                          },
+                          "itemName": {
+                            "type": "string",
+                            "description": "Item name field"
+                          }
+                        },
+                        "required": [
+                          "value",
+                          "itemName"
+                        ]
+                      },
+                      "sort": {
+                        "type": "string",
+                        "default": "descending",
+                        "description": "Sort direction. Only one of the following values can be used: ascending, descending (default), none."
+                      },
+                      "gap": {
+                        "type": "number",
+                        "description": "Gap between data items",
+                        "default": 0
+                      }
+                    },
+                    "required": [
+                      "encode",
+                      "datasetIndex"
+                    ]
+                  },
+                  "labelLayout": {
+                    "type": "object",
+                    "description": "Label layout conflict handling strategy"
+                  },
+                  "silent": {
+                    "type": "boolean",
+                    "description": "Whether to be silent"
+                  },
+                  "colorBy": {
+                    "type": "string",
+                    "description": "Color usage strategy, e.g. 'data' or 'series', etc."
+                  },
+                  "emphasis": {
+                    "type": "object",
+                    "description": "Highlight/focus configuration (refer to ECharts emphasis)."
+                  },
+                  "itemStyle": {
+                    "type": "object",
+                    "description": "Graphic style (borderWidth, borderColor, opacity, etc.)."
+                  },
+                  "showSymbol": {
+                    "type": "boolean",
+                    "description": "Whether to show symbol for line/scatter charts (boolean)."
+                  }
+                },
+                "required": [
+                  "name",
+                  "type"
+                ]
+              }
+            },
+            "tooltip": {
+              "type": "object",
+              "description": "General tooltip configuration"
+            },
+            "dataZoom": {
+              "type": "array",
+              "items": {
+                "type": "object"
+              },
+              "description": "dataZoom configuration array"
+            },
+            "visualMap": {
+              "type": "array",
+              "items": {
+                "type": "object"
+              },
+              "description": "visualMap configuration array (for heatmap/color mapping)"
+            },
+            "angleAxis": {
+              "type": "array",
+              "items": {
+                "type": "object"
+              },
+              "description": "Polar coordinate angle axis configuration"
+            },
+            "radiusAxis": {
+              "type": "array",
+              "items": {
+                "type": "object"
+              },
+              "description": "Polar coordinate radius axis configuration"
+            },
+            "style": {
+              "type": "object",
+              "description": "Custom style fragment"
+            }
+          },
+          "required": [
+            "series",
+            "dataset",
+            "tooltip"
+          ]
+        },
+        "disableFilterCache": {
+          "type": "boolean",
+          "description": "Whether to disable filter cache"
+        },
+        "filterLabelPosition": {
+          "type": "string",
+          "description": "Filter label position, e.g. 'top', 'left', 'right', etc."
+        }
+      },
+      "required": [
+        "name",
+        "type",
+        "scope",
+        "width",
+        "height",
+        "cardStyle",
+        "proChartSetting"
+      ]
+    }
+  }
+}

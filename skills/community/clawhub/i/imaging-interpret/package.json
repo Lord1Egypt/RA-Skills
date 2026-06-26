@@ -1,0 +1,12 @@
+{
+  "name": "imaging-interpret",
+  "version": "0.1.0",
+  "description": "Interpret common diagnostic imaging reports (X-ray, CT, MRI, ultrasound, ECG, echocardiography)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": ["openclaw", "skill", "medical", "imaging", "radiology"],
+  "author": "Anightmare2",
+  "license": "MIT"
+}

@@ -1,0 +1,112 @@
+{
+  "meta": {
+    "description": "Platform-specific content templates for the indie app marketing pipeline. The weekly planner rotates through patterns per platform. Variables: {hook}, {insight}, {cta}, {appName}, {appHandle}, {hashtags}, {topic}.",
+    "version": "1.0.0"
+  },
+  "x": {
+    "patterns": [
+      {
+        "id": "hot-take",
+        "template": "{hook}.\n\n{insight}\n\n{cta}\n\n{hashtags} {appHandle}"
+      },
+      {
+        "id": "question-hook",
+        "template": "honest question: {questionForm}\n\n{insight}\n\n{hashtags} {appHandle}"
+      },
+      {
+        "id": "relatable-meme",
+        "template": "me: {relatable}\n\nalso me: {punchline}\n\nevery. single. time.\n\n{hashtags} {appHandle}"
+      },
+      {
+        "id": "dev-perspective",
+        "template": "something I keep hearing from people: {hookLower}\n\n{insight}\n\n{hashtags} {appHandle}"
+      },
+      {
+        "id": "quick-thought",
+        "template": "{hook}. that's it. that's the tweet.\n\n{hashtags} {appHandle}"
+      },
+      {
+        "id": "tip-thread",
+        "template": "{tipIntro}\n\n{tipBody}\n\n{cta}\n\n{hashtags} {appHandle}"
+      },
+      {
+        "id": "story-snippet",
+        "template": "{storyLine1} {storyLine2}"
+      }
+    ]
+  },
+  "facebook": {
+    "patterns": [
+      {
+        "id": "story-engagement",
+        "template": "{storyOpener}\n\n{storyBody}\n\n{engagementQuestion}\n\n{hashtags}"
+      },
+      {
+        "id": "challenge-post",
+        "template": "{challengeIntro}\n\n{challengeSteps}\n\n{challengeOutcome}\n\n{engagementQuestion}\n\n{hashtags}"
+      },
+      {
+        "id": "myth-buster",
+        "template": "Here's what nobody tells you about {topic}:\n\n{mythBust}\n\n{reframe}\n\n{hashtags}"
+      },
+      {
+        "id": "behind-the-scenes",
+        "template": "{btsOpener}\n\n{btsBody}\n\n{engagementQuestion}"
+      },
+      {
+        "id": "tip-of-week",
+        "template": "Quick tip for {topic}:\n\n{tipBody}\n\nHave you tried this? What's your approach?\n\n{hashtags}"
+      }
+    ]
+  },
+  "youtube": {
+    "patterns": [
+      {
+        "id": "simple-question",
+        "template": "{shortQuestion}\n\nBe honest."
+      },
+      {
+        "id": "poll-prompt",
+        "template": "{pollQuestion}"
+      },
+      {
+        "id": "challenge-prompt",
+        "template": "{challengeDescription}\n\nTry it and tell me how it went."
+      },
+      {
+        "id": "hook-reveal",
+        "template": "{hook}\n\n(watch to find out why)"
+      }
+    ]
+  },
+  "tiktokStory": {
+    "patterns": [
+      {
+        "id": "3-frame-reveal",
+        "frames": [
+          "Frame 1:\n{setupLine}",
+          "Frame 2:\n{twistLine}",
+          "Frame 3:\n{ctaLine}"
+        ]
+      },
+      {
+        "id": "problem-solution",
+        "frames": [
+          "The problem:\n{hook}",
+          "What I tried:\n{texts[1]}",
+          "What actually worked:\n{texts[2]}"
+        ]
+      }
+    ]
+  },
+  "appDefaults": {
+    "_note": "These are starter defaults. Override via config.json (config.app.*) — the scripts use config.json values, not this section.",
+    "exampleApp": {
+      "appName": "YourApp",
+      "appHandle": "@yourhandle",
+      "defaultHashtags": "#YourApp #IndieApp #AppStore #MobileApp",
+      "defaultCta": "YourApp — available on the App Store",
+      "topicCategory": "productivity"
+    }
+  }
+}

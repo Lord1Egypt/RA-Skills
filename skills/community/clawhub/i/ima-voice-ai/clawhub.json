@@ -1,0 +1,118 @@
+{
+  "name": "IMA Music Generator",
+  "tagline": "Generate voiceovers, narration, and spoken audio for videos, explainers, ads, and social content.",
+  "description": "Generate voiceovers, narration, and spoken audio for videos, explainers, ads, and social content.",
+  "category": "file-generation",
+  "requiredEnvVars": [
+    "IMA_API_KEY"
+  ],
+  "credentialNotice": "The IMA API key is required at runtime via IMA_API_KEY environment variable. It is sent only to api.imastudio.com for authentication and task APIs.",
+  "requires": {
+    "env": [
+      "IMA_API_KEY"
+    ],
+    "primaryCredential": "IMA_API_KEY",
+    "credentialNote": "IMA_API_KEY is required at runtime and sent only to api.imastudio.com."
+  },
+  "localPaths": {
+    "readWrite": [],
+    "purpose": "No local preference/log files are required by this skill script."
+  },
+  "persistence": {
+    "readWrite": [],
+    "retention": "No local preference/log persistence by default."
+  },
+  "supported_models": [
+    "sonic",
+    "Suno",
+    "GenBGM",
+    "GenSong",
+    "DouBao BGM",
+    "DouBao Song",
+    "text-to-music",
+    "BGM",
+    "song with lyrics",
+    "AI composer"
+  ],
+  "tags": [
+    "ima-studio",
+    "music-generation",
+    "ai-music",
+    "text-to-music",
+    "suno",
+    "doubao",
+    "genbgm",
+    "gensong",
+    "bgm",
+    "song-generator",
+    "ai-composer",
+    "soundtrack",
+    "audio-generation"
+  ],
+  "version": "1.2.2",
+  "license": "MIT",
+  "pricing": "free",
+  "author": {
+    "name": "IMA Studio",
+    "url": "https://www.imaclaw.ai/"
+  },
+  "support_url": "https://www.imaclaw.ai/",
+  "homepage": "https://www.imaclaw.ai/",
+  "keywords": [
+    "music generation",
+    "text to music",
+    "AI music",
+    "AI composer",
+    "song generator",
+    "BGM generator",
+    "background music",
+    "soundtrack",
+    "audio generation",
+    "ima studio",
+    "suno",
+    "doubao",
+    "genbgm",
+    "gensong",
+    "AI作曲",
+    "音乐生成",
+    "背景音乐",
+    "BGM",
+    "歌曲生成",
+    "配乐"
+  ],
+  "search_optimized_terms": [
+    "suno",
+    "doubao",
+    "music generation",
+    "text to music",
+    "AI music",
+    "AI composer",
+    "song generator",
+    "BGM",
+    "background music",
+    "soundtrack",
+    "AI作曲",
+    "音乐生成",
+    "背景音乐",
+    "配乐"
+  ],
+  "related_skills": [
+    "ima-knowledge-ai",
+    "ima-all-ai",
+    "ima-tts-ai"
+  ],
+  "use_cases": [
+    "Video background music and intro/outro",
+    "Podcast music and jingles",
+    "Game soundtracks and ambient music",
+    "Commercial and marketing audio",
+    "Song demos and prototypes",
+    "Social media content music"
+  ],
+  "key_features": [
+    "Suno and DouBao models (sonic, GenBGM, GenSong)",
+    "Text-to-music with multiple genres and styles",
+    "Background music and full songs with lyrics",
+    "Fast generation with automatic retry"
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "name": "gougoubi-recovery-ops",
+  "displayName": "Gougoubi Recovery Ops",
+  "tagline": "Detect and repair partial Gougoubi batch failures",
+  "description": "Use when an earlier Gougoubi workflow only partly succeeded and the user wants targeted repair for activation, risk LP, result submission, or reward claiming.",
+  "category": "crypto",
+  "tags": [
+    "latest",
+    "gougoubi",
+    "recovery",
+    "repair",
+    "automation",
+    "ops",
+    "reviewer",
+    "pbft"
+  ],
+  "version": "1.0.0",
+  "license": "MIT-0",
+  "entry": "SKILL.md",
+  "repository": "https://github.com/gougoubi/gougoubi",
+  "support": {
+    "website": "https://gougoubi.ai"
+  }
+}

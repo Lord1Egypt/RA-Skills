@@ -1,35 +1,93 @@
 ---
-name: "📄 全能文档管家"
-description: "格式互转、PPT多模板生成、文档摘要、合同分析——文档一条龙。"
-category: "productivity"
-source: "ClawHub"
-tags: [document, format-conversion, huimai, ppt, calibration, pdf, summary]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/huimai-doc-process"
-sourceUrl: "https://clawhub.ai/skills/huimai-doc-process"
+name: 📄 全能文档管家
+description: 格式互转、PPT多模板生成、文档摘要、合同分析——文档一条龙。
+metadata: {"openclaw":{"emoji":"📄","pricing":"free"}}
 ---
 
 # 📄 全能文档管家
 
-> 格式互转、PPT多模板生成、文档摘要、合同分析——文档一条龙。
+> 文档格式互转、PPT智能生成、文档摘要分析，一个Skill全搞定。
 
-- **Category:** Productivity
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/huimai-doc-process`
-- **Source URL:** [https://clawhub.ai/skills/huimai-doc-process](https://clawhub.ai/skills/huimai-doc-process)
+## 📜 更新日志
 
-## Overview
+### v3.0.0 (2026-05-08)
+- **大改版**：从文档摘要升级为全能文档管家
+- 🆕 **格式互转**：docx ↔ pdf ↔ txt ↔ md，全能互转
+- 🆕 **PPT智能生成**：支持商务/学院/会议/简约4种风格
+- 🆕 **自由粘贴复制**：从任意文档提取纯文本
+- 保留原文档摘要、合同分析等全部功能
 
+### v2.0.0 (2026-05-03)
+- 新增多文档对比摘要
+- 新增合同关键条款自动提取
+- 输出格式可选
 
-## Installation
-To install this skill, run the following command in your terminal:
+### v1.0.0 (2026-04-24)
+- 初版发布（文档摘要）
+
+## 🆕 核心功能
+
+### 1️⃣ 格式互转（LibreOffice引擎）
+| 源格式 | 目标格式 |
+|--------|---------|
+| Word (.docx) | PDF, TXT, MD, HTML |
+| PDF | TXT, MD, DOCX |
+| Markdown (.md) | DOCX, PDF, HTML |
+| 纯文本 (.txt) | DOCX, PDF, MD |
+| HTML | DOCX, PDF, TXT |
+
+### 2️⃣ PPT智能生成
+| 模板风格 | 适用场景 |
+|---------|---------|
+| 🏢 商务风 | 工作汇报、方案演示 |
+| 🎓 学院风 | 学术报告、作业展示 |
+| 🏛 会议风 | 内部讨论、项目评审 |
+| ✨ 简约风 | 通用简洁、快速展示 |
+
+**输入方式：**
+- 上传文档 → 提取内容 → 生成PPT
+- 直接粘贴文本 → 生成PPT
+- 文档+指定风格 → 生成PPT
+
+### 3️⃣ 文档摘要（保留原版功能）
+- URL/粘贴文本 → 全文摘要
+- 多文档对比摘要
+- 合同关键条款提取
+
+## 👤 为什么做这个
+
+之前v2.0做文档摘要，有用户反馈说：能不能直接帮我改格式？能不能直接生成PPT？这些是文档处理最刚需的功能。v3.0一次性解决。
+
+## 👔 适用人群
+- **职场人**：Word转PDF、文档生成PPT汇报
+- **学生**：论文格式转换、课堂PPT生成
+- **教师**：教案格式转换、课件生成
+- **所有人都用到**
+
+## 🔧 校准框架
+本Skill搭载惠迈校准框架v2.0。
+- **温情模式（默认）**：先了解用途再处理，每一步有提示
+- **专业模式（可选）**：直出结果，不提问题
+
+## 💡 使用小贴士
+- PDF转Word：复杂排版可能有偏差，建议人工核对
+- PPT生成：内容越详细，PPT质量越高
+- 格式互转：支持批量文件处理
+
+## ⚠️ 免责与已知限制
+- PDF扫描件无法转换（需要OCR）
+- PPT模板效果基于标准样式，复杂排版需微调
+- 文件大小限制：单个文件≤20MB
+
+## 📬 联系与反馈
+- **邮箱**: yezhaowang888@icloud.com
+
+## 安装
 ```bash
-hermes skills install clawhub/huimai-doc-process
+clawhub install doc-process
+```
+
+## 更新
+```bash
+clawhub update doc-process
 ```

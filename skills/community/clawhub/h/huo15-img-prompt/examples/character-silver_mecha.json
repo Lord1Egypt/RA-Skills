@@ -1,0 +1,17 @@
+{
+  "name": "silver_mecha",
+  "version": "3.1.0",
+  "description": "示例角色卡：银发机甲少女 — 用于演示 --char 跨调用一致性",
+  "use_count": 0,
+  "subject_description": "银发双马尾机甲少女，发光面甲，藏青色机甲战衣，轮廓发光线条",
+  "preset": "动漫",
+  "mix_secondary": "",
+  "mix_ratio": null,
+  "aspect": "16:9",
+  "seed": 1154904041,
+  "camera": "low angle hero shot, 50mm portrait lens, shallow depth of field",
+  "lighting": "anime-style soft light, rim light on hair, glowing visor accent",
+  "palette": "vibrant saturated anime palette, silver and deep navy, neon cyan accents",
+  "is_character_sheet": true,
+  "positive_anchor": "silver-haired twin-tails mecha girl, glowing visor, navy mecha armor"
+}

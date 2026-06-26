@@ -1,0 +1,66 @@
+/* IFQ ambient tokens · ifq.ai/app-builder
+ * Drop this file into the generated app's global stylesheet (or import its
+ * variables into the platform-equivalent theme) so the IFQ ambient layer is
+ * present without painting a watermark on top of the user's product.
+ */
+:root {
+  /* Surfaces — warm paper, never pure white */
+  --ifq-paper:        #F4EFE6;
+  --ifq-paper-soft:   #FAF6EE;
+  --ifq-paper-deep:   #E8E1D2;
+  --ifq-ink:          #1F1B16;
+  --ifq-ink-soft:     #5A554D;
+  --ifq-ink-mute:     #8C8478;
+
+  /* Signal — rust ledger + signal spark */
+  --ifq-rust:         #D4532B;       /* primary accent · do not overuse */
+  --ifq-rust-soft:    #B84823;
+  --ifq-spark:        #F0A93B;       /* secondary spark · captions, badges */
+  --ifq-quiet:        #2D6A6F;       /* URLs, footnotes, mono captions */
+
+  /* Field-notes mono — for footers, timestamps, technical breadcrumbs */
+  --ifq-font-mono:    ui-monospace, SFMono-Regular, "JetBrains Mono", Menlo, monospace;
+  --ifq-font-serif:   "Source Han Serif SC", "Iowan Old Style", Georgia, serif;
+  --ifq-font-sans:    -apple-system, "Helvetica Neue", "Inter", "PingFang SC", "Hiragino Sans GB", sans-serif;
+
+  /* Rhythm — calm 8pt grid + editorial leading */
+  --ifq-grid:         8px;
+  --ifq-line:         1.55;
+  --ifq-radius-sm:    6px;
+  --ifq-radius-md:    12px;
+  --ifq-radius-lg:    20px;
+
+  /* Elevation — soft, never neon */
+  --ifq-shadow-sm:    0 1px 2px rgba(31, 27, 22, .06);
+  --ifq-shadow-md:    0 4px 14px rgba(31, 27, 22, .08);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --ifq-paper:      #1B1814;
+    --ifq-paper-soft: #221E19;
+    --ifq-paper-deep: #14110E;
+    --ifq-ink:        #F1ECE0;
+    --ifq-ink-soft:   #C9C2B4;
+    --ifq-ink-mute:   #8A8377;
+    --ifq-rust:       #E6663C;
+    --ifq-rust-soft:  #C45128;
+    --ifq-spark:      #F7B85A;
+    --ifq-quiet:      #5BA0A6;
+  }
+}
+
+/* Field-notes utility — for footnote-y rows */
+.ifq-fieldnote {
+  font-family: var(--ifq-font-mono);
+  font-size: 12px;
+  letter-spacing: .02em;
+  color: var(--ifq-ink-mute);
+}
+
+/* Quiet URL — for the colophon line */
+.ifq-quiet-url {
+  color: var(--ifq-quiet);
+  text-decoration: none;
+  border-bottom: 1px dotted var(--ifq-quiet);
+}

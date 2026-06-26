@@ -1,0 +1,107 @@
+{
+  "name": "indextts-voice",
+  "version": "1.3.0",
+  "description": "IndexTTS 语音克隆和合成技能 - 创建声音模型、文本转语音、参考音频管理（需要企业会员）",
+  "author": "OpenClaw Community",
+  "license": "MIT",
+  "keywords": [
+    "tts",
+    "voice",
+    "speech",
+    "indextts",
+    "语音合成",
+    "声音克隆"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/openclaw",
+    "directory": "skills/indextts-voice"
+  },
+  "main": "scripts/indextts_api.py",
+  "engines": {
+    "python": ">=3.6"
+  },
+  "dependencies": [
+    "requests"
+  ],
+  "environmentVariables": {
+    "INDEX_API_SIGN": {
+      "required": true,
+      "description": "IndexTTS API 签名（需要企业会员）",
+      "warning": "⚠️ 此 API 签名需要购买 IndexTTS 企业会员才能获取。请访问 https://indextts.cn 了解更多信息。"
+    },
+    "INDEX_BASE_URL": {
+      "required": false,
+      "default": "https://openapi.lipvoice.cn",
+      "description": "IndexTTS API 基础 URL"
+    }
+  },
+  "features": [
+    "声音模型创建与管理",
+    "文本转语音（TTS）",
+    "语调参考音频管理（24 小时有效）",
+    "情感合成支持（开心/愤怒/悲伤等 8 种情感）",
+    "一键下载合成音频",
+    "配额查询"
+  ],
+  "commands": {
+    "create-model": "创建声音克隆模型",
+    "list-models": "查看声音模型列表",
+    "get-model": "查看模型详情",
+    "delete-model": "删除声音模型",
+    "upload-tts-reference": "上传语调参考音频（24 小时有效）",
+    "list-tts-references": "查看参考音频列表",
+    "delete-tts-reference": "删除参考音频",
+    "tts-create": "提交语音合成任务",
+    "tts-list": "查看合成任务列表",
+    "tts-result": "查询合成任务结果",
+    "tts-download": "下载合成音频",
+    "quota": "查询用户配额"
+  },
+  "notices": {
+    "preInstall": [
+      "⚠️ 本技能需要 IndexTTS 企业会员才能使用",
+      "📌 API 签名仅对企业会员开放，请访问 https://lipvoice.cn 购买",
+      "🆓 如不需要 API 调用，可直接使用 IndexTTS 网页版"
+    ],
+    "postInstall": [
+      "✅ 安装完成！请配置环境变量 INDEX_API_SIGN",
+      "📖 查看使用文档：python scripts/indextts_api.py --help",
+      "💡 提示：参考音频有效期为 24 小时，过期自动清理"
+    ]
+  },
+  "screenshots": [],
+  "changelog": {
+    "1.3.0": [
+      "🔧 修复元数据不一致问题：明确标注 INDEX_API_SIGN 为必需环境变量",
+      "🗑️ 移除飞书集成相关内容（FEISHU-INTEGRATION.md 已删除）",
+      "📝 简化文档，专注于核心 IndexTTS API 功能"
+    ],
+    "1.2.3": [
+      "修复 API 服务器地址：openapi.indextts.cn → openapi.lipvoice.cn",
+      "更新所有文档和配置中的 API 基础 URL"
+    ],
+    "1.2.2": [
+      "修复错误消息中引用错误的变量名（LIPVOICE_* → INDEX_*）",
+      "修复 ArgumentParser 描述文本"
+    ],
+    "1.2.1": [
+      "品牌调整为 IndexTTS（indextts.cn）",
+      "更新所有文档和配置"
+    ],
+    "1.2.0": [
+      "新增参考音频管理功能（上传/列表/删除）",
+      "支持情感合成（genre=1 语气参考 / genre=2 参考音频）",
+      "修复 API 端点路径",
+      "优化 Windows 控制台兼容性"
+    ],
+    "1.1.0": [
+      "新增模型详情查询",
+      "新增一键下载合成音频",
+      "新增配额查询"
+    ],
+    "1.0.0": [
+      "初始版本，支持基础模型管理和 TTS"
+    ]
+  }
+}

@@ -1,0 +1,120 @@
+{
+  "name": "@cloudtrip/industrial-silicon-army",
+  "version": "1.3.7",
+  "displayName": "产业互联网硅基军团",
+  "displayNameEn": "Industrial Silicon Army",
+  "description": "面向制造业的Multi-Agent AI运营系统，1个幕僚长+20个专业Agent，覆盖采购/生产/研发/销售/财务/合规全链路，支持方案生成与规划建议",
+  "descriptionEn": "Multi-Agent AI Operations Platform for Manufacturing — 1 ChiefOfStaff + 20 specialized agents for procurement/production/sales/finance decision support. Covers quotation proposals, inventory planning, and supplier recommendations.",
+  "emoji": "🏭",
+  "category": "industrial-ai",
+  "tags": [
+    "industrial",
+    "manufacturing",
+    "multi-agent",
+    "erp",
+    "scm",
+    "supply-chain",
+    "plastics",
+    "china",
+    "made-in-china",
+    "报价方案",
+    "库存规划"
+  ],
+  "author": {
+    "name": "LookingPlas × 云旅智能体超市",
+    "email": "support@cloudtrip.ai",
+    "website": "https://cloudtrip.ai",
+    "github": "https://github.com/cloudtrip-ai"
+  },
+  "license": "MIT-0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cloudtrip-ai/industrial-silicon-army"
+  },
+  "keywords": [
+    "manufacturing",
+    "industrial-ai",
+    "multi-agent",
+    "erp",
+    "supply-chain",
+    "procurement",
+    "production",
+    "china-manufacturing",
+    "报价方案",
+    "库存规划"
+  ],
+  "pricing": {
+    "basic": {
+      "price": 299,
+      "currency": "CNY",
+      "period": "month",
+      "features": [
+        "10个核心专业Agent",
+        "采购/生产/销售链路",
+        "基础数据看板",
+        "3个并发用户"
+      ]
+    },
+    "professional": {
+      "price": 999,
+      "currency": "CNY",
+      "period": "month",
+      "features": [
+        "全部20个Agent",
+        "全链路覆盖",
+        "API集成",
+        "15个并发用户",
+        "SLA 99.5%"
+      ]
+    },
+    "enterprise": {
+      "price": 9999,
+      "currency": "CNY",
+      "period": "month",
+      "features": [
+        "私有部署",
+        "行业定制Agent",
+        "源码交付",
+        "无限制并发",
+        "SLA 99.9%",
+        "专属行业顾问"
+      ]
+    }
+  },
+  "agents": {
+    "total": 21,
+    "chiefOfStaff": 1,
+    "executors": 20
+  },
+  "requirements": {
+    "python": ">=3.10",
+    "pip": [
+      "httpx>=0.25.0",
+      "fastapi>=0.104.0",
+      "uvicorn>=0.24.0",
+      "langgraph>=0.0.20",
+      "pydantic>=2.0.0"
+    ]
+  },
+  "languages": ["zh-CN", "en-US"],
+  "publishConfig": {
+    "registry": "https://clawhub.ai",
+    "access": "public"
+  },
+  "performance": {
+    "benchmarks": [
+      { "metric": "报价响应时间", "target": "<60s", "actual": "28s" },
+      { "metric": "方案准确率", "target": "≥95%", "actual": "96.5%" },
+      { "metric": "多Agent协同成功率", "target": "≥90%", "actual": "94.2%" },
+      { "metric": "路由准确率", "target": "≥92%", "actual": "96.1%" },
+      { "metric": "报价采纳率", "target": "≥70%", "actual": "73.4%" }
+    ]
+  },
+  "clawhub": {
+    "agentCount": 21,
+    "version": "1.3.7",
+    "firstPublished": "2026-04-23",
+    "lastUpdated": "2026-05-01",
+    "marketplaces": ["clawhub", "xiaping", "openclaw-registry"]
+  }
+}

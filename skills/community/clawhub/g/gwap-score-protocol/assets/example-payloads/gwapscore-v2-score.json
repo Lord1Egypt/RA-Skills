@@ -1,0 +1,82 @@
+{
+  "wallet": "GwapExampleWallet111111111111111111111111111111",
+  "protocolScore": 742,
+  "tier": "trusted",
+  "confidence": "moderate",
+  "scoreVersion": "gwapscore-v2",
+  "categories": [
+    {
+      "name": "wallet_maturity",
+      "weight": 0.12,
+      "rawScore": 81,
+      "weightedImpact": 9.72,
+      "summary": "Wallet has long-term activity and stable funding history."
+    },
+    {
+      "name": "transaction_consistency",
+      "weight": 0.13,
+      "rawScore": 78,
+      "weightedImpact": 10.14,
+      "summary": "Transaction cadence is consistent with a low failed transaction ratio."
+    },
+    {
+      "name": "counterparty_quality",
+      "weight": 0.2,
+      "rawScore": 76,
+      "weightedImpact": 15.2,
+      "summary": "Mostly clean counterparties with minor low-risk exposure."
+    },
+    {
+      "name": "protocol_diversity",
+      "weight": 0.1,
+      "rawScore": 70,
+      "weightedImpact": 7.0,
+      "summary": "Uses multiple reputable protocol categories."
+    },
+    {
+      "name": "security_hygiene",
+      "weight": 0.1,
+      "rawScore": 82,
+      "weightedImpact": 8.2,
+      "summary": "No malicious program exposure detected and risky approvals are limited."
+    },
+    {
+      "name": "lending_credit_behavior",
+      "weight": 0.15,
+      "rawScore": 68,
+      "weightedImpact": 10.2,
+      "summary": "Limited but positive repayment evidence."
+    },
+    {
+      "name": "commerce_reliability",
+      "weight": 0.08,
+      "rawScore": 73,
+      "weightedImpact": 5.84,
+      "summary": "Receives recurring payments with no unresolved disputes."
+    },
+    {
+      "name": "sybil_resistance",
+      "weight": 0.07,
+      "rawScore": 79,
+      "weightedImpact": 5.53,
+      "summary": "No strong Sybil pattern detected."
+    },
+    {
+      "name": "recovery_behavior",
+      "weight": 0.05,
+      "rawScore": 65,
+      "weightedImpact": 3.25,
+      "summary": "Clean recent behavior supports recovery confidence."
+    }
+  ],
+  "riskFlags": [
+    {
+      "type": "thin_lending_history",
+      "severity": "warning",
+      "summary": "Limited borrowing and repayment evidence."
+    }
+  ],
+  "capsApplied": [],
+  "explanation": "This wallet shows consistent activity, reputable counterparty interactions, and no severe unresolved risk events.",
+  "lastUpdated": "2026-05-10T00:00:00Z"
+}

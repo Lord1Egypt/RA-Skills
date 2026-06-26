@@ -1,0 +1,15 @@
+{
+  "id": "gpa-genomic-phenotype",
+  "name": "GPA",
+  "version": "0.8.0",
+  "description": "GPA (Genomic Phenotype Association) with dynamic tissue-context analysis, API-first with offline archive, and CLI wrapper for OpenClaw agent integration",
+  "author": "",
+  "license": "MIT-0",
+  "requires": {
+    "python": ">=3.10",
+    "packages": ["aiohttp"]
+  },
+  "entry": "scripts/dgra_cli_wrapper.py",
+  "profiles": ["general", "hematopoietic", "cardiovascular", "hepatic", "renal", "neurological"],
+  "offline_archive": "references/offline_data"
+}

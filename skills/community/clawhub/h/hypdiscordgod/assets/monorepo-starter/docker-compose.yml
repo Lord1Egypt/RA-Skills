@@ -1,0 +1,21 @@
+services:
+  api:
+    build: ./apps/api
+    env_file: [.env]
+  bot:
+    build: ./apps/bot
+    env_file: [.env]
+  dashboard:
+    build: ./apps/dashboard
+    env_file: [.env]
+  worker:
+    build: ./apps/worker
+    env_file: [.env]
+  postgres:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_USER: starter
+      POSTGRES_PASSWORD: starter
+      POSTGRES_DB: discord_system
+    ports:
+      - "5432:5432"

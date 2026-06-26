@@ -1,35 +1,110 @@
 ---
-name: "Topic Selection Expert"
-description: "选题专家：全网热点监控 → 筛选打分 → 初步三要素 → 写入飞书选题库 → 推送Telegram。Use when user asks to 启动选题专家 / 获取选题推荐 / 查看热点 / 帮我选题。"
-category: "creative"
-source: "ClawHub"
-tags: [content-creation, feishu, telegram, topic-selection, trending]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/inkroam-topic-expert"
-sourceUrl: "https://clawhub.ai/skills/inkroam-topic-expert"
+name: inkroam-topic-expert
+version: 1.1.0
+description: 选题专家：全网热点监控 → 筛选打分 → 初步三要素 → 写入飞书选题库 → 推送Telegram。Use when user asks to 启动选题专家 / 获取选题推荐 / 查看热点 / 帮我选题。
 ---
 
-# Topic Selection Expert
+# 选题专家 Skill
 
-> 选题专家：全网热点监控 → 筛选打分 → 初步三要素 → 写入飞书选题库 → 推送Telegram。Use when user asks to 启动选题专家 / 获取选题推荐 / 查看热点 / 帮我选题。
+内容生产流水线的**上游**，负责"找什么值得写"。
 
-- **Category:** Creative
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/inkroam-topic-expert`
-- **Source URL:** [https://clawhub.ai/skills/inkroam-topic-expert](https://clawhub.ai/skills/inkroam-topic-expert)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/inkroam-topic-expert
 ```
+【选题专家】→ 飞书选题库 → 审批 → 笔尖专家 → 发布专家
+```
+
+## 配置
+
+### 环境变量
+
+在工作区创建 `.env` 或在 `config.json` 中配置：
+
+```bash
+export FEISHU_APP_ID='你的飞书应用ID'
+export FEISHU_APP_SECRET='你的飞书应用Secret'
+export FEISHU_APP_TOKEN='飞书多维表格AppToken'
+export FEISHU_TABLE_ID='飞书多维表格TableID'
+```
+
+⚠️ 不要硬编码凭证。`run_pipeline.py` 从环境变量读取。
+
+### config.json
+
+定义账号类型、数据源、打分权重、推送时间。首次使用修改 `config.json` 中的 `_env_required` 对应值。
+
+## 工作流
+
+### Step 1：抓取热点
+
+使用浏览器访问 `https://tophub.today/`，抓取跨平台聚合热点。
+
+重点关注：知乎热榜、微博热搜、36氪/虎嗅/少数派（科技/AI）、微信热文。
+
+或一键运行：
+```bash
+# 设置环境变量后
+python3 run_pipeline.py
+```
+
+### Step 2：筛选与打分
+
+5 维度打分（总分100）：
+
+- **热度（30分）**：跨平台聚合值
+- **相关度（25分）**：匹配账号定位（AI/效率/自媒体/副业）
+- **时效性（20分）**：事件新鲜度
+- **可写性（15分）**：素材丰富度、切入角度
+- **差异化（10分）**：竞品覆盖度、独特视角
+
+筛选规则：≥70分推送 | 60-69分待评估 | <60分不推送
+
+### Step 3：生成初步三要素
+
+对每个高分选题生成粗粒度（~60%）三要素：
+- **目标人群**：谁会关注
+- **痛点**：戳中了什么
+- **解决方案**：从什么角度写
+
+### Step 4：写入飞书选题库
+
+通过飞书 API 批量写入多维表格（`run_pipeline.py` 内置此逻辑）。
+
+字段：选题标题、平台来源、热度值、采集时间、状态（待处理）、目标人群、痛点、解决方案、标签、优先级、备注。
+
+### Step 5：推送 Telegram
+
+使用 `message` 工具推送选题卡片：
+
+```
+📊 选题推荐 | 2026-03-09
+
+🔥 S级（强烈推荐）
+1. [标题] — 热度XXX万 | 来源：知乎+微博
+
+✅ A级（推荐）
+2. [标题] — 热度XXX万
+
+回复「采纳1 3 5」→ 笔尖专家开写
+```
+
+## 状态管理
+
+- 创建记录 → "待处理"
+- 用户采纳 → "已采纳"
+- 用户放弃 → "已放弃"
+
+## 触发方式
+
+- **定时**：每日 8:00 / 12:00 / 18:00
+- **手动**："帮我选题" / "获取热点" / "启动选题专家"
+
+## 注意事项
+
+1. 素材必须严谨，不编造
+2. 每次最多推送 8 个选题
+3. 优先推荐与账号定位强相关的话题
+4. 记录用户的采纳/放弃偏好，持续优化推荐
+
+## 变更日志
+
+- **v1.1.0** (2026-03-10)：凭证从硬编码改为环境变量；删除多余文档文件；config.json 脱敏。
+- **v1.0.0** (2026-03-10)：首次发布。tophub.today 热榜抓取、5维度打分、飞书选题库写入、Telegram 推送。

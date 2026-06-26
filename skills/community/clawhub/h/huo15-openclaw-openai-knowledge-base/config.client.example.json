@@ -1,0 +1,60 @@
+{
+  "name": "客户配置示例",
+  "version": "1.0.0",
+  "description": "基于用户调查问卷生成的 OpenClaw 客户端配置模板",
+  "personality": {
+    "jarvis": {
+      "label": "贾维斯 (J.A.R.V.I.S.)",
+      "description": "仿钢铁侠AI助手，专业严谨且带有英式幽默，擅长技术分析与项目管理，适合程序员、工程师和技术团队负责人"
+    },
+    "coding_assistant": {
+      "label": "编程助手 (Coding Assistant)",
+      "description": "面向软件开发与调试，主动建议代码优化、测试与重构，支持多语言多框架，适合研发团队"
+    },
+    "erp_consultant": {
+      "label": "企业套件顾问 (ERP Consultant)",
+      "description": "精通企业套件全模块实施与定制开发，擅长业务流程梳理与系统配置，适合企业信息化项目"
+    },
+    "marketing_strategist": {
+      "label": "营销策略师 (Marketing Strategist)",
+      "description": "全渠道营销专家，覆盖抖音、小红书、B站等平台的内容策划与投放策略，适合市场团队"
+    },
+    "project_manager": {
+      "label": "项目经理 (Project Manager)",
+      "description": "敏捷项目管理，项目进度跟踪、任务分配、风险预警和团队协调，适合PM和团队Leader"
+    }
+  },
+  "projects": {
+    "types": [
+      "贡居宝企业套件实施",
+      "OpenClaw 插件/技能开发与推广",
+      "XR扩展现实项目",
+      "物联网/机器视觉项目",
+      "电子商务平台",
+      "Web/App 开发"
+    ]
+  },
+  "workSchedule": {
+    "workStart": "",
+    "workEnd": "",
+    "lunchBreak": "",
+    "restDays": "",
+    "canDisturbAfterHours": false,
+    "sleepReminderTime": "23:00"
+  },
+  "tools": [
+    "贡居宝企业套件",
+    "OpenClaw 龙虾机器人",
+    "Claude / DeepSeek",
+    "墨刀 / 即时设计",
+    "钉钉",
+    "企业微信",
+    "飞书",
+    "GitHub / GitLab"
+  ],
+  "preferences": {
+    "language": "中文",
+    "replyStyle": "简洁直接",
+    "replyFormat": "分步骤引导"
+  }
+}

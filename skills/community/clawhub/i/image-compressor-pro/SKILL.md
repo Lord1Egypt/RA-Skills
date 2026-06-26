@@ -1,35 +1,39 @@
----
-name: "Image Compressor"
-description: "Compress JPG, PNG, WebP, and GIF images to reduce file size significantly while preserving visual quality with bulk compression support."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/image-compressor-pro"
-sourceUrl: "https://clawhub.ai/skills/image-compressor-pro"
----
-
 # Image Compressor
 
-> Compress JPG, PNG, WebP, and GIF images to reduce file size significantly while preserving visual quality with bulk compression support.
+Compress images to reduce file size while maintaining quality.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/image-compressor-pro`
-- **Source URL:** [https://clawhub.ai/skills/image-compressor-pro](https://clawhub.ai/skills/image-compressor-pro)
+## Features
 
-## Overview
+- Support JPG, PNG, WebP, GIF
+- Reduce file size significantly
+- Maintain visual quality
+- Bulk compression support
 
+## Price
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/image-compressor-pro
+- **0.001 USDT** per compression
+
+## Usage
+
 ```
+"Compress this image https://example.com/photo.jpg"
+"Reduce image size"
+"Optimize this PNG"
+```
+
+## Example Response
+
+```json
+{
+  "original_url": "https://example.com/photo.jpg",
+  "original_size": "2.5MB",
+  "compressed_size": "500KB",
+  "reduction": "80%",
+  "compressed_url": "https://cdn.example.com/optimized.jpg"
+}
+```
+
+## Integration
+
+- API Key: sk_93c5ff38cc3e6112623d361fffcc5d1eb1b5844eac9c40043b57c0e08f91430e
+- Price: 0.001 USDT per call

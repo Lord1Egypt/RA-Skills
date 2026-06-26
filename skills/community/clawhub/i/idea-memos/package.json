@@ -1,0 +1,16 @@
+{
+  "name": "memos",
+  "version": "1.0.0",
+  "description": "硅虾备忘录系统",
+  "main": "scripts/server.js",
+  "scripts": {
+    "start": "bash scripts/memos.sh start",
+    "stop": "bash scripts/memos.sh stop",
+    "status": "bash scripts/memos.sh status"
+  },
+  "dependencies": {
+    "express": "^4.18.0",
+    "better-sqlite3": "^9.0.0"
+  },
+  "license": "MIT"
+}

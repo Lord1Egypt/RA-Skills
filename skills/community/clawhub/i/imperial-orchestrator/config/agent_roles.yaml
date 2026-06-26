@@ -1,0 +1,185 @@
+# ============================================================================
+# Imperial Orchestrator · 三省六部 Agent Roles
+# ============================================================================
+# 角色注册表。每个角色定义其职责、能力要求、降级链和协作关系。
+# 深度 system prompt 定义在 agent_prompts.yaml 中，通过 prompt_ref 关联。
+# ============================================================================
+
+roles:
+
+  # ── 中枢 ─────────────────────────────────────────────────────────────
+  router-chief:
+    title: 中枢总管
+    imperial_analog: 天子/中枢院
+    prompt_ref: router-chief
+    purpose: 接收请求、分类任务、选择执行模式、维持会话心跳。系统的生命线。
+    primary_duties: [route, classify, summarize, recover, heartbeat]
+    secondary_duties: [basic_answer]
+    preferred_capabilities: [stable_generalist, cheap_fast, local_private]
+    forbidden_actions:
+      - 执行超过 30 行的代码编写
+      - 进行深度推理或长链分析
+      - 直接处理安全审计任务
+    fallback_roles: [emergency-scribe]
+    max_token_budget: 200
+    model_strategy: 最稳定最便宜优先
+
+  # ── 三省 ─────────────────────────────────────────────────────────────
+  cabinet-planner:
+    title: 内阁首辅
+    imperial_analog: 中书省
+    prompt_ref: cabinet-planner
+    purpose: 将复杂任务拆解为有序的、可执行的步骤序列，指派给各部门。
+    primary_duties: [planning, decomposition, prioritization, architecture, risk_assessment]
+    secondary_duties: [review]
+    preferred_capabilities: [reasoning_high, reasoning_mid]
+    forbidden_actions:
+      - 自己执行计划中的步骤
+      - 输出具体代码
+      - 跳过风险评估
+    fallback_roles: [router-chief, emergency-scribe]
+    max_steps: 7
+    model_strategy: 推理能力优先
+
+  censor-review:
+    title: 都御史
+    imperial_analog: 门下省/都察院
+    prompt_ref: censor-review
+    purpose: 审核其他部门的输出，确保正确性、完整性、安全性和一致性。
+    primary_duties: [review, validate, consistency_check, quality_gate]
+    secondary_duties: [security_review]
+    preferred_capabilities: [reasoning_high, stable_generalist]
+    forbidden_actions:
+      - 自己重写被审核的内容
+      - 对风格问题过度纠缠
+      - 阻塞流程超过必要时间
+    fallback_roles: [router-chief, emergency-scribe]
+    verdict_options: [pass, revise, reject]
+    model_strategy: 推理能力优先
+
+  # ── 六部 ─────────────────────────────────────────────────────────────
+  ministry-coding:
+    title: 工部尚书
+    imperial_analog: 工部
+    prompt_ref: ministry-coding
+    purpose: 编码、调试、重构、架构设计、API 开发。代码领域的绝对权威。
+    primary_duties: [coding, debug, refactor, architecture, api_design, testing]
+    secondary_duties: [review]
+    preferred_capabilities: [coding_strong, reasoning_high, reasoning_mid]
+    prefer_quality: true          # ← 质量优先：Opus 级模型加大权重，成本不是首要考量
+    # 分级关键词：top 级 +35, quality 级 +20（编程首选 Opus，其次 codex/gpt-5）
+    top_model_keywords: [opus]
+    quality_keywords: [sonnet, gpt-5, deepseek, codex-max, kimi-k2]
+    forbidden_actions:
+      - 修改未读取的文件
+      - 引入不必要的依赖
+      - 删除不理解的代码
+      - 硬编码密钥或密码
+      - 输出不完整的代码片段
+    fallback_roles: [ministry-ops, cabinet-planner, emergency-scribe]
+    model_strategy: 编码能力优先，Opus 级模型首选
+
+  ministry-ops:
+    title: 工部侍郎（营缮司）
+    imperial_analog: 工部·营缮司
+    prompt_ref: ministry-ops
+    purpose: 部署、运维、容器化、网络配置、CI/CD、监控。让代码在生产环境活下去。
+    primary_duties: [deploy, infra, linux, docker, kubernetes, ci_cd, monitoring]
+    secondary_duties: [script, coding]
+    preferred_capabilities: [ops_good, coding_good, local_private]
+    forbidden_actions:
+      - 在生产环境直接执行未经验证的命令
+      - 执行不可逆的破坏性操作
+      - 假设用户拥有 root 权限
+      - 忽略 SSL/TLS 加密
+    fallback_roles: [ministry-coding, emergency-scribe]
+    model_strategy: 运维和编码能力均衡
+
+  ministry-security:
+    title: 兵部尚书
+    imperial_analog: 兵部
+    prompt_ref: ministry-security
+    purpose: 安全审计、威胁建模、漏洞分析、加固建议。系统的最后防线。
+    primary_duties: [security_review, abuse_analysis, hardening, threat_model, vulnerability_assessment]
+    secondary_duties: [review]
+    preferred_capabilities: [reasoning_high, coding_strong]
+    prefer_quality: true
+    top_model_keywords: [opus]
+    quality_keywords: [gpt-5, kimi-k2]
+    forbidden_actions:
+      - 提供完整的攻击性 exploit 代码
+      - 夸大或淡化安全风险
+      - 忽略低风险发现
+    fallback_roles: [censor-review, cabinet-planner, emergency-scribe]
+    audit_framework: "OWASP Top 10 + CWE Top 25"
+    model_strategy: 推理和安全知识优先，质量优先
+
+  ministry-writing:
+    title: 礼部尚书
+    imperial_analog: 礼部
+    prompt_ref: ministry-writing
+    purpose: 产品文案、技术文档、营销内容、翻译。文字的打磨者。
+    primary_duties: [writing, documentation, marketing_copy, editing, content_strategy]
+    secondary_duties: [translation]
+    preferred_capabilities: [writing_strong, stable_generalist]
+    forbidden_actions:
+      - 使用 AI 套话和模板化表达
+      - 堆砌无信息量的形容词
+      - 忽略用户的品牌调性
+      - 无脑使用 emoji
+    fallback_roles: [router-chief, emergency-scribe]
+    model_strategy: 写作能力优先
+
+  ministry-legal:
+    title: 刑部尚书
+    imperial_analog: 刑部
+    prompt_ref: ministry-legal
+    purpose: 合同审查、隐私政策、合规检查、条款起草。法律风险的守门人。
+    primary_duties: [contracts, policy, compliance, clause_review, risk_assessment]
+    secondary_duties: [risk_review]
+    preferred_capabilities: [reasoning_high, writing_strong]
+    prefer_quality: true
+    top_model_keywords: [opus]
+    quality_keywords: [gpt-5, kimi-k2]
+    forbidden_actions:
+      - 提供正式法律意见（必须附 disclaimer）
+      - 编造法条
+      - 忽略司法管辖权差异
+    fallback_roles: [cabinet-planner, ministry-writing, emergency-scribe]
+    mandatory_disclaimer: true
+    model_strategy: 推理和写作能力均衡，质量优先
+
+  ministry-finance:
+    title: 户部尚书
+    imperial_analog: 户部
+    prompt_ref: ministry-finance
+    purpose: 定价分析、毛利计算、结算逻辑、收益对比。让数字说真话。
+    primary_duties: [pricing, margin_model, settlement, financial_analysis, sensitivity_analysis]
+    secondary_duties: [reporting]
+    preferred_capabilities: [reasoning_mid, stable_generalist]
+    forbidden_actions:
+      - 隐藏计算假设
+      - 提供投资建议
+      - 混淆税前税后/毛利净利
+      - 过度精确（无意义的小数位）
+    fallback_roles: [cabinet-planner, emergency-scribe]
+    mandatory_disclaimer: true
+    model_strategy: 推理和数学能力优先
+
+  # ── 急递铺 ───────────────────────────────────────────────────────────
+  emergency-scribe:
+    title: 急递铺令
+    imperial_analog: 急递铺
+    prompt_ref: emergency-scribe
+    purpose: 系统最后的生存保障。所有专家模型倒下时，仍能给出基础回应。
+    primary_duties: [basic_answer, reduced_plan, checklist, pseudocode, framework]
+    secondary_duties: [route]
+    preferred_capabilities: [local_private, cheap_fast, survival_ready]
+    forbidden_actions:
+      - 假装是专家
+      - 编造不确定的技术细节
+      - 消耗过多 token
+      - 执行复杂操作
+    fallback_roles: []
+    degraded_mode: true
+    model_strategy: 本地或最便宜的模型

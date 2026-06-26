@@ -1,0 +1,7 @@
+{
+  "queue_dir": "/Users/liubo/.hermes/shared/communication",
+  "poll_interval": 10,
+  "max_message_age_days": 7,
+  "log_level": "INFO",
+  "auto_start_poller": true
+}

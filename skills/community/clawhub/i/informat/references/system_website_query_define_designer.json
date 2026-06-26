@@ -1,0 +1,19 @@
+{
+	"type": "function",
+	"function": {
+		"name": "_website_query_define_designer",
+		"description": "Query details of the specified website module and return all resource lists under the website module.",
+		"parameters": {
+			"type": "object",
+			"properties": {
+				"id": {
+					"description": "website module ID",
+					"type": "string"
+				}
+			},
+			"required": [
+				"id"
+			]
+		}
+	}
+}

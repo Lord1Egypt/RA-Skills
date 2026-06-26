@@ -1,0 +1,17 @@
+{
+  "name": "inbox-to-action-closer",
+  "version": "0.1.0",
+  "description": "Orchestration skill that ingests unfinished work from Slack, GitHub, calendar, Notion, Trello, and email into a single merged action board.",
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "devDependencies": {
+    "tsx": "^4",
+    "typescript": "^5",
+    "vitest": "^3"
+  },
+  "license": "MIT"
+}

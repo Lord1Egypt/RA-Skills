@@ -1,0 +1,48 @@
+{
+  "name": "广东省病案统计管理系统SQL查询大师",
+  "version": "1.0.0",
+  "description": "基于《广东省医疗机构病案统计管理系统(2012版)》数据库表结构的SQL查询技能，精通标准编码、门诊日志、住院病案、ICD编码、报表统计等全模块的SQL查询。",
+  "keywords": [
+    "病案",
+    "HIS",
+    "SQL",
+    "医院",
+    "ICD编码",
+    "门诊统计",
+    "住院统计",
+    "广东省",
+    "病案首页",
+    "DRG",
+    "医院报表"
+  ],
+  "readme": "SKILL.md",
+  "author": "LHMXstock",
+  "homepage": "",
+  "repository": "",
+  "tags": [
+    "医疗",
+    "病案",
+    "SQL",
+    "医院信息系统",
+    "ICD编码"
+  ],
+  "topics": [
+    "医疗信息化",
+    "病案首页",
+    "ICD编码",
+    "医院统计报表",
+    "SQL查询"
+  ],
+  "language": "zh-CN",
+  "minOpenClawVersion": "1.0.0",
+  "skill_dependencies": [],
+  "recommended_channels": [
+    "feishu",
+    "direct"
+  ],
+  "capabilities": {
+    "sql_generation": true,
+    "table_reference": true
+  },
+  "schema_version": "1.0"
+}

@@ -1,0 +1,16 @@
+{
+  "slug": "graymatter",
+  "name": "GrayMatter",
+  "version": "0.2.0",
+  "tags": [
+    "memory",
+    "durable-memory",
+    "multi-agent",
+    "graph",
+    "openclaw-skill",
+    "schema-awareness",
+    "valkyr",
+    "latest"
+  ],
+  "changelog": "GrayMatter-first OpenClaw launch: primary-memory bootstrap, live OpenAPI schema loading, generic entity access helpers, stronger installability guidance, plus signup and credits-link onboarding notes"
+}

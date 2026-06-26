@@ -1,0 +1,222 @@
+{
+  "rss_items": 30,
+  "pages_fetched": 30,
+  "fetch_failures": [],
+  "record_count": 4200,
+  "expected_records_per_page": 140,
+  "schema_or_completeness_issue_count": 0,
+  "targeted_mismatch_count": 0,
+  "page_reports": [
+    {
+      "period": "2023-09",
+      "source_url": "https://www.stats.gov.cn/sj/zxfb/202310/t20231019_1943721.html",
+      "record_count": 140,
+      "issues": [],
+      "targeted_mismatches": []
+    },
+    {
+      "period": "2023-10",
+      "source_url": "https://www.stats.gov.cn/sj/zxfb/202311/t20231115_1944597.html",
+      "record_count": 140,
+      "issues": [],
+      "targeted_mismatches": []
+    },
+    {
+      "period": "2023-11",
+      "source_url": "https://www.stats.gov.cn/sj/zxfb/202312/t20231215_1945561.html",
+      "record_count": 140,
+      "issues": [],
+      "targeted_mismatches": []
+    },
+    {
+      "period": "2023-12",
+      "source_url": "https://www.stats.gov.cn/sj/zxfb/202401/t20240117_1946600.html",
+      "record_count": 140,
+      "issues": [],
+      "targeted_mismatches": []
+    },
+    {
+      "period": "2024-01",
+      "source_url": "https://www.stats.gov.cn/sj/zxfb/202402/t20240223_1947806.html",
+      "record_count": 140,
+      "issues": [],
+      "targeted_mismatches": []
+    },
+    {
+      "period": "2024-02",
+      "source_url": "https://www.stats.gov.cn/sj/zxfb/202403/t20240322_1948125.html",
+      "record_count": 140,
+      "issues": [],
+      "targeted_mismatches": []
+    },
+    {
+      "period": "2024-03",
+      "source_url": "https://www.stats.gov.cn/sj/zxfb/202404/t20240416_1948557.html",
+      "record_count": 140,
+      "issues": [],
+      "targeted_mismatches": []
+    },
+    {
+      "period": "2024-04",
+      "source_url": "https://www.stats.gov.cn/sj/zxfb/202405/t20240517_1950386.html",
+      "record_count": 140,
+      "issues": [],
+      "targeted_mismatches": []
+    },
+    {
+      "period": "2024-05",
+      "source_url": "https://www.stats.gov.cn/sj/zxfb/202406/t20240617_1954705.html",
+      "record_count": 140,
+      "issues": [],
+      "targeted_mismatches": []
+    },
+    {
+      "period": "2024-06",
+      "source_url": "https://www.stats.gov.cn/sj/zxfb/202407/t20240715_1955602.html",
+      "record_count": 140,
+      "issues": [],
+      "targeted_mismatches": []
+    },
+    {
+      "period": "2024-07",
+      "source_url": "https://www.stats.gov.cn/sj/zxfb/202408/t20240815_1955978.html",
+      "record_count": 140,
+      "issues": [],
+      "targeted_mismatches": []
+    },
+    {
+      "period": "2024-08",
+      "source_url": "https://www.stats.gov.cn/sj/zxfb/202409/t20240914_1956479.html",
+      "record_count": 140,
+      "issues": [],
+      "targeted_mismatches": []
+    },
+    {
+      "period": "2024-09",
+      "source_url": "https://www.stats.gov.cn/sj/zxfb/202410/t20241018_1957035.html",
+      "record_count": 140,
+      "issues": [],
+      "targeted_mismatches": []
+    },
+    {
+      "period": "2024-10",
+      "source_url": "https://www.stats.gov.cn/sj/zxfb/202411/t20241115_1957419.html",
+      "record_count": 140,
+      "issues": [],
+      "targeted_mismatches": []
+    },
+    {
+      "period": "2024-11",
+      "source_url": "https://www.stats.gov.cn/sj/zxfb/202412/t20241216_1957755.html",
+      "record_count": 140,
+      "issues": [],
+      "targeted_mismatches": []
+    },
+    {
+      "period": "2024-12",
+      "source_url": "https://www.stats.gov.cn/sj/zxfb/202501/t20250117_1958323.html",
+      "record_count": 140,
+      "issues": [],
+      "targeted_mismatches": []
+    },
+    {
+      "period": "2025-01",
+      "source_url": "https://www.stats.gov.cn/sj/zxfb/202502/t20250219_1958761.html",
+      "record_count": 140,
+      "issues": [],
+      "targeted_mismatches": []
+    },
+    {
+      "period": "2025-02",
+      "source_url": "https://www.stats.gov.cn/sj/zxfb/202503/t20250317_1959009.html",
+      "record_count": 140,
+      "issues": [],
+      "targeted_mismatches": []
+    },
+    {
+      "period": "2025-03",
+      "source_url": "https://www.stats.gov.cn/sj/zxfb/202504/t20250416_1959311.html",
+      "record_count": 140,
+      "issues": [],
+      "targeted_mismatches": []
+    },
+    {
+      "period": "2025-04",
+      "source_url": "https://www.stats.gov.cn/sj/zxfb/202505/t20250519_1959852.html",
+      "record_count": 140,
+      "issues": [],
+      "targeted_mismatches": []
+    },
+    {
+      "period": "2025-05",
+      "source_url": "https://www.stats.gov.cn/sj/zxfb/202506/t20250616_1960163.html",
+      "record_count": 140,
+      "issues": [],
+      "targeted_mismatches": []
+    },
+    {
+      "period": "2025-06",
+      "source_url": "https://www.stats.gov.cn/sj/zxfb/202507/t20250715_1960403.html",
+      "record_count": 140,
+      "issues": [],
+      "targeted_mismatches": []
+    },
+    {
+      "period": "2025-07",
+      "source_url": "https://www.stats.gov.cn/sj/zxfb/202508/t20250815_1960781.html",
+      "record_count": 140,
+      "issues": [],
+      "targeted_mismatches": []
+    },
+    {
+      "period": "2025-08",
+      "source_url": "https://www.stats.gov.cn/sj/zxfb/202509/t20250915_1961175.html",
+      "record_count": 140,
+      "issues": [],
+      "targeted_mismatches": []
+    },
+    {
+      "period": "2025-09",
+      "source_url": "https://www.stats.gov.cn/sj/zxfb/202510/t20251020_1961597.html",
+      "record_count": 140,
+      "issues": [],
+      "targeted_mismatches": []
+    },
+    {
+      "period": "2025-10",
+      "source_url": "https://www.stats.gov.cn/sj/zxfb/202511/t20251114_1961850.html",
+      "record_count": 140,
+      "issues": [],
+      "targeted_mismatches": []
+    },
+    {
+      "period": "2025-11",
+      "source_url": "https://www.stats.gov.cn/sj/zxfb/202512/t20251215_1962069.html",
+      "record_count": 140,
+      "issues": [],
+      "targeted_mismatches": []
+    },
+    {
+      "period": "2025-12",
+      "source_url": "https://www.stats.gov.cn/sj/zxfb/202601/t20260119_1962319.html",
+      "record_count": 140,
+      "issues": [],
+      "targeted_mismatches": []
+    },
+    {
+      "period": "2026-01",
+      "source_url": "https://www.stats.gov.cn/sj/zxfb/202602/t20260213_1962617.html",
+      "record_count": 140,
+      "issues": [],
+      "targeted_mismatches": []
+    },
+    {
+      "period": "2026-02",
+      "source_url": "https://www.stats.gov.cn/sj/zxfb/202603/t20260316_1962774.html",
+      "record_count": 140,
+      "issues": [],
+      "targeted_mismatches": []
+    }
+  ],
+  "dataset_output": "artifacts/full-dataset.json"
+}

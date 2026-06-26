@@ -1,0 +1,9 @@
+{
+  "version": "1.0.0",
+  "totalSessions": 0,
+  "totalMemoriesEncoded": 0,
+  "totalMemoriesReviewed": 0,
+  "totalMemoriesForgotten": 0,
+  "contextCompactions": 0,
+  "lastActivity": null
+}

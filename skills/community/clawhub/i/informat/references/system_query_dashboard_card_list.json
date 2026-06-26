@@ -1,0 +1,19 @@
+{
+  "type": "function",
+  "function": {
+    "name": "_query_dashboard_card_list",
+    "description": "Query the list of cards under the specified dashboard in the application. The return result includes card ID, name, and other basic information of the card.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "dashboardId": {
+          "description": "Dashboard ID",
+          "type": "string"
+        }
+      },
+      "required": [
+        "dashboardId"
+      ]
+    }
+  }
+}

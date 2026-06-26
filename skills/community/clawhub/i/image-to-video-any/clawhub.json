@@ -1,0 +1,12 @@
+{
+  "name": "Image to Video by VideoAny",
+  "tagline": "Turn any image into motion with an uncensored AI video generator and broad model support.",
+  "description": "Generate image-to-video results via VideoAny at https://videoany.io/image-to-video. This experience highlights uncensored AI video generator capabilities and supports VideoAny, Grok Imagine, Wan 2.5, LTX, Seedance 1.5, Seedance 2.0, Kling3, Vidu Q3, Veo3, Veo3.1, and Sora2.",
+  "category": "utility",
+  "tags": ["image-to-video", "video-generator", "ai-video", "uncensored", "videoany", "grok-imagine", "wan-2.5", "seedance", "kling3", "vidu", "veo3", "sora2"],
+  "version": "1.0.0",
+  "license": "MIT",
+  "pricing": "free",
+  "support_url": "https://videoany.io/image-to-video",
+  "homepage": "https://videoany.io/image-to-video"
+}

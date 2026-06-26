@@ -1,0 +1,37 @@
+{
+  "name": "hot-content-writer",
+  "version": "1.2.0",
+  "description": "✍️ 热点文案一键生成！输入热点话题，AI自动生成小红书/抖音/公众号/微博多平台文案",
+  "author": "小天🦞",
+  "license": "MIT",
+  "keywords": [
+    "content",
+    "writer",
+    "copywriting",
+    "xiaohongshu",
+    "douyin",
+    "自媒体",
+    "文案",
+    "AI写作"
+  ],
+  "main": "generate.py",
+  "scripts": {
+    "start": "python3 generate.py",
+    "demo": "python3 generate.py --topic \"AI工具推荐\" --platform xiaohongshu"
+  },
+  "dependencies": {
+    "python": ">=3.7"
+  },
+  "pricing": {
+    "free": {
+      "description": "免费版 - 基础功能",
+      "features": ["单平台生成", "每天3次", "基础标题", "2种风格"]
+    },
+    "pro": {
+      "price": 69,
+      "currency": "CNY",
+      "description": "Pro版 - 全部功能",
+      "features": ["无限次生成", "全平台批量", "热榜联动", "10个标题备选", "全部风格", "字数控制", "目标人群定制"]
+    }
+  }
+}

@@ -1,0 +1,113 @@
+# .graphifyignore — copy this to your project root and rename to .graphifyignore
+# Uses .gitignore syntax. Paths are relative to the project root.
+# Graphify will skip any file or directory matched below.
+
+# ── Package managers / dependency trees ──────────────────────────────────────
+node_modules/
+vendor/
+.venv/
+venv/
+env/
+.env/
+__pycache__/
+*.pyc
+*.pyo
+.tox/
+.nox/
+bower_components/
+jspm_packages/
+.yarn/
+.pnp.*
+
+# ── Build and distribution outputs ───────────────────────────────────────────
+dist/
+build/
+out/
+.next/
+.nuxt/
+.output/
+.svelte-kit/
+target/
+bin/
+obj/
+*.egg-info/
+*.dist-info/
+site/
+
+# ── Generated / compiled files ────────────────────────────────────────────────
+*.min.js
+*.min.css
+*.bundle.js
+*.chunk.js
+*.generated.*
+*.pb.go
+*_pb2.py
+*_pb2_grpc.py
+*.g.dart
+
+# ── Lock files (high noise, low signal) ──────────────────────────────────────
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+poetry.lock
+Cargo.lock
+Gemfile.lock
+composer.lock
+go.sum
+
+# ── Test fixtures, snapshots, and large datasets ─────────────────────────────
+__snapshots__/
+testdata/
+fixtures/
+*.snap
+*.golden
+
+# ── IDE and editor artifacts ──────────────────────────────────────────────────
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# ── Version control internals ─────────────────────────────────────────────────
+.git/
+.svn/
+.hg/
+
+# ── CI and infrastructure ─────────────────────────────────────────────────────
+.github/
+.circleci/
+.gitlab/
+.terraform/
+*.tfstate
+*.tfstate.backup
+
+# ── Logs, coverage, and profiling ─────────────────────────────────────────────
+*.log
+logs/
+coverage/
+.nyc_output/
+htmlcov/
+*.prof
+*.trace
+
+# ── Secrets and credentials (never index) ─────────────────────────────────────
+.env
+.env.*
+*.pem
+*.key
+*.p12
+*.pfx
+secrets/
+credentials/
+
+# ── Graphify cache (never commit) ─────────────────────────────────────────────
+graphify-out/cache/
+
+# ── Large binary assets (index if you want vision analysis; exclude otherwise) ─
+# *.png
+# *.jpg
+# *.gif
+# *.mp4
+# *.mov

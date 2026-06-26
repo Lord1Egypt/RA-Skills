@@ -1,0 +1,34 @@
+{
+  "id": "hnbc",
+  "providers": [
+    "hnbc"
+  ],
+  "providerAuthEnvVars": {
+    "hnbc": [
+      "HNBC_API_KEY"
+    ]
+  },
+  "providerAuthChoices": [
+    {
+      "provider": "hnbc",
+      "method": "api-key",
+      "choiceId": "hnbc-api-key",
+      "choiceLabel": "HNBC API key",
+      "groupId": "hnbc",
+      "groupLabel": "HNBC",
+      "groupHint": "Image generation",
+      "onboardingScopes": [
+        "image-generation"
+      ],
+      "optionKey": "hnbcApiKey",
+      "cliFlag": "--hnbc-api-key",
+      "cliOption": "--hnbc-api-key <key>",
+      "cliDescription": "HNBC API key"
+    }
+  ],
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {}
+  }
+}

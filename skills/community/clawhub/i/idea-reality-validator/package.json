@@ -1,0 +1,16 @@
+{
+  "name": "idea-reality-validator",
+  "version": "1.0.0",
+  "description": "Pre-build idea validator that checks competition across GitHub, Hacker News, npm, PyPI, and Product Hunt",
+  "main": "scripts/validator.cjs",
+  "scripts": {
+    "validate": "node scripts/validator.cjs"
+  },
+  "keywords": [
+    "idea-validation",
+    "competition-analysis",
+    "market-research"
+  ],
+  "author": "sunnyhot",
+  "license": "MIT"
+}

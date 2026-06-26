@@ -1,0 +1,552 @@
+[
+  {
+    "operationName": "BulkGetVendorProfiles",
+    "kind": "query",
+    "files": [
+      "tenant-reply_hemlane.com.har"
+    ],
+    "count": 4,
+    "sampleVariables": {
+      "userIds": [
+        "b0d233d3-d71e-4d8b-967d-2c17781340ae",
+        "3cb297be-8425-42fe-afbf-80b1eb6fc324",
+        "b0d233d3-d71e-4d8b-967d-2c17781340ae",
+        "689e8aa9-0640-461c-bdb4-1cc6d1d86986",
+        "b0d233d3-d71e-4d8b-967d-2c17781340ae",
+        "689e8aa9-0640-461c-bdb4-1cc6d1d86986",
+        "321ad27c-2d09-49cf-a27b-6fd124a23241",
+        "b0d233d3-d71e-4d8b-967d-2c17781340ae",
+        "3cb297be-8425-42fe-afbf-80b1eb6fc324",
+        "3cb297be-8425-42fe-afbf-80b1eb6fc324"
+      ]
+    },
+    "queryExcerpt": "query BulkGetVendorProfiles($userIds: [ID!]!) {\n  bulkGetVendorProfiles(userIds: $userIds) {\n    id\n    profileImageUrl\n    userId\n    __typename\n  }\n}\n"
+  },
+  {
+    "operationName": "FinancialsScheduledActionPanelStats",
+    "kind": "query",
+    "files": [
+      "transactions_hemlane.com.har",
+      "requests_hemlane.com.har"
+    ],
+    "count": 2,
+    "sampleVariables": {
+      "paymentCategoryId": null,
+      "paymentSubcategoryId": null,
+      "propertyId": null,
+      "propertyUnitId": null,
+      "portfolioId": null,
+      "ownerUserId": null,
+      "sourceTenantGroupId": null,
+      "sourceUserId": null,
+      "destinationUserId": null,
+      "dueDateBegin": null,
+      "dueDateEnd": null,
+      "status": "all-active"
+    },
+    "queryExcerpt": "query FinancialsScheduledActionPanelStats($propertyId: ID, $propertyUnitId: ID, $portfolioId: ID, $ownerUserId: ID, $sourceUserId: ID, $sourceTenantGroupId: ID, $paymentCategoryId: ID, $paymentSubcategoryId: ID, $sourceType: TransactionSourceType, $destinationUserId: ID, $dueDateBegin: ISO8601DateTime, $dueDateEnd: ISO8601DateTime, $status: String) {\n  ownerTransactionSummary(propertyId: $propertyId, propertyUnitId: $propertyUnitId, portfolioId: $portfolioId, ownerUserId: $ownerUserId, sourceUserId: $sourceUserId, sourceTenantGroupId: $sourceTenantGroupId, paymentCategoryId: $paymentCategoryId, paymentSubcategoryId: $paymentSubcategoryId, sourceType: $sourceType, destinationUserId: $destinationUserId, dueDateBegin: $dueDateBegin, dueDateEnd: $dueDateEnd, status: $status) {\n    balanceDue\n    __typename\n  }\n}\n"
+  },
+  {
+    "operationName": "GetPlaidSyncItems",
+    "kind": "query",
+    "files": [
+      "transactions_hemlane.com.har"
+    ],
+    "count": 1,
+    "sampleVariables": {},
+    "queryExcerpt": "query GetPlaidSyncItems {\n  plaidItems {\n    id\n    externalItemId\n    institutionName\n    transactionSyncEnabled\n    authRequired\n    expiresAt\n    user {\n      id\n      email\n      __typename\n    }\n    plaidAccounts {\n      id\n      externalAccountId\n      niceName\n      name\n      mask\n      accountType\n      subtype\n      transactionSyncEnabled\n      historicalSyncStartAt\n      properties {\n        id\n        nickname\n        __typename\n      }\n      propertyUnits {\n        id\n        nicknameWithUnit\n        __typename\n      }\n      __typename\n    }\n    __typename\n  }\n}\n"
+  },
+  {
+    "operationName": "HubspotFormSubmit",
+    "kind": "mutation",
+    "files": [
+      "refer_hemlane.com.har"
+    ],
+    "count": 1,
+    "sampleVariables": {
+      "input": {
+        "fields": [
+          {
+            "name": "firstname",
+            "value": "Mike"
+          },
+          {
+            "name": "lastname",
+            "value": "Hugs"
+          },
+          {
+            "name": "phone",
+            "value": "8018824174"
+          },
+          {
+            "name": "email",
+            "value": "michael@michaelahuggins.com"
+          },
+          {
+            "name": "referrername",
+            "value": "Earl Co (ECO Systems)"
+          },
+          {
+            "name": "referreremail",
+            "value": "ecosystemspm@gmail.com"
+          }
+        ],
+        "formId": "5e905969-3188-4c3a-ba74-519d43a39761",
+        "context": {
+          "pageUri": "https://www.hemlane.com/dashboards/owner/"
+        }
+      }
+    },
+    "queryExcerpt": "mutation HubspotFormSubmit($input: HubspotFormSubmitInput!) {\n  hubspotFormSubmit(input: $input) {\n    hubspotFormSubmission {\n      id\n      __typename\n    }\n    errors {\n      base\n      __typename\n    }\n    __typename\n  }\n}\n"
+  },
+  {
+    "operationName": "LogView",
+    "kind": "mutation",
+    "files": [
+      "tenant-reply_hemlane.com.har"
+    ],
+    "count": 2,
+    "sampleVariables": {
+      "viewloggableId": "1b45d37c-144a-4106-b16e-5f0cec4f57cd",
+      "viewloggableType": "TenantGroup"
+    },
+    "queryExcerpt": "mutation LogView($viewloggableType: String!, $viewloggableId: ID!) {\n  logView(input: {viewloggableType: $viewloggableType, viewloggableId: $viewloggableId}) {\n    success\n    __typename\n  }\n}\n"
+  },
+  {
+    "operationName": "LogViewOnMount",
+    "kind": "mutation",
+    "files": [
+      "work-order_hemlane.com.har"
+    ],
+    "count": 1,
+    "sampleVariables": {
+      "input": {
+        "viewloggableId": "d05b854e-eee7-46e1-9e48-e280f16477ed",
+        "viewloggableType": "MaintenanceWorkOrder"
+      }
+    },
+    "queryExcerpt": "mutation LogViewOnMount($input: LogViewCreateInput!) {\n  logView(input: $input) {\n    clientMutationId\n    success\n    __typename\n  }\n}\n"
+  },
+  {
+    "operationName": "MCDashboardMaintenanceWorkOrderSchedulingContacts",
+    "kind": "query",
+    "files": [
+      "work-order_hemlane.com.har"
+    ],
+    "count": 2,
+    "sampleVariables": {
+      "id": "d05b854e-eee7-46e1-9e48-e280f16477ed"
+    },
+    "queryExcerpt": "query MCDashboardMaintenanceWorkOrderSchedulingContacts($id: ID!) {\n  maintenanceWorkOrder(id: $id) {\n    id\n    maintenanceRequest {\n      id\n      maintenanceRequestDefaultSchedulingContacts {\n        edges {\n          node {\n            id\n            fullName\n            formattedPhoneNumber\n            user {\n              id\n              fullName\n              formattedPhoneNumber\n              __typename\n            }\n            tenant {\n              id\n              invitationName\n              formattedPhoneNumber\n              user {\n                id\n                fullName\n                formattedPhoneNumber\n                __typename\n              }\n              __typename\n            }\n            __typename\n          }\n          __typename\n        }\n        __typename\n      }\n      property {\n        id\n        acceptedPropertyMembers {\n          edges {\n            node {\n              id\n              user {\n                id\n                fullName\n                formattedPhoneNumber\n                __typename\n              }\n              __typename\n            }\n            __typename\n          }\n          __typename\n        }\n        __typename\n      }\n      activeTenants {\n        edges {\n          node {\n            id\n            user {\n              id\n              fullName\n              formattedPhoneNumber\n              __typename\n            }\n            __typename\n          }\n          __typename\n        }\n        __typename\n      }\n      __typename\n    }\n    __typename\n  }\n}\n"
+  },
+  {
+    "operationName": "MaintenanceGetCurrentUser",
+    "kind": "query",
+    "files": [
+      "work-order_hemlane.com.har"
+    ],
+    "count": 2,
+    "sampleVariables": {},
+    "queryExcerpt": "query MaintenanceGetCurrentUser {\n  currentUser {\n    id\n    userType\n    paymentCredential {\n      id\n      paymentAccountsV2 {\n        id\n        accountName\n        accountLast4\n        depositEnabled\n        __typename\n      }\n      __typename\n    }\n    hasAdminRole(roles: [[\"maintenance\"]])\n    __typename\n  }\n  serviceRequestCategories(nonDeprecated: true) {\n    value\n    label\n    __typename\n  }\n  maintenanceServiceRequestCategories(nonDeprecated: true) {\n    value\n    label\n    __typename\n  }\n  imgixDomain\n}\n"
+  },
+  {
+    "operationName": "MyAppNotificationStats",
+    "kind": "query",
+    "files": [
+      "maintenance_update_hemlane.com.har",
+      "refer_hemlane.com.har",
+      "tenant-reply_hemlane.com.har",
+      "work-order_hemlane.com.har",
+      "requests_hemlane.com.har"
+    ],
+    "count": 6,
+    "sampleVariables": {},
+    "queryExcerpt": "query MyAppNotificationStats($propertyId: ID) {\n  myAppNotificationStats(propertyId: $propertyId) {\n    unreadCount\n    totalCount\n    __typename\n  }\n  currentUser {\n    id\n    __typename\n  }\n}\n"
+  },
+  {
+    "operationName": "ODDashboardConsolidatedQuery",
+    "kind": "query",
+    "files": [
+      "refer_hemlane.com.har"
+    ],
+    "count": 1,
+    "sampleVariables": {},
+    "queryExcerpt": "query ODDashboardConsolidatedQuery($status: TaskStatus, $isActive: Boolean, $first: Int) {\n  tenantsDashboardStats {\n    expiringIn30\n    expiringIn60\n    expiringIn90\n    occupiedUnitCount\n    totalUnitCount\n    __typename\n  }\n  prospectiveTenantInfo {\n    id\n    inquiryLeadsCount\n    qualificationTenantGroupsCount\n    moveInTenantGroupsCount\n    __typename\n  }\n  adminUser {\n    id\n    __typename\n  }\n  currentUser {\n    id\n    trialEndDate\n    isStripeSubscriptionStatusDelinquent\n    isOnStarterPlan\n    freePlanModalAcknowledged\n    metaActiveBillToUnitCount\n    metaAgentBillToUnitCount\n    stripeSubscriptionInvoiceStatusStr\n    stripeSubscriptionStatus\n    shouldTakeCareOfSubscriptionPayments\n    myProperties(isDeleted: false, isBillTo: true) {\n      data {\n        id\n        addressLat\n        addressLng\n        packageType\n        billToUser {\n          id\n          isOnStarterPlan\n          __typename\n        }\n        __typename\n      }\n      __typename\n    }\n    currentUserInfo {\n      id\n      viewAsUsers {\n        id\n        fullName\n        email\n        __typename\n      }\n      __typename\n    }\n    __typename\n  }\n  maintenanceServiceRequestCategories(nonDeprecated: true) {\n    value\n    label\n    __typename\n  }\n  paginatedMaintenanceRequests(isOpen: true, pagination: {page: 1, limit: 2}, updatedAtOrder: Descending) {\n    data {\n      id\n      property {\n        id\n        nickname\n        __typename\n      }\n      category\n      title\n      createdAt\n      updatedAt\n      coordinatedBy {\n        firstName\n        __typename\n      }\n      maintenanceRequestComments {\n        totalCount\n        __typename\n      }\n      __typename\n    }\n    pageInfo {\n      totalCount\n      __typename\n    }\n    __typename\n  }\n  ...NewDashboardOnboardingVerifyIdentityTasks\n  ...NewDashboardOnboardingVerifyCredentialsTasks\n  ...NewDashboardPropertySetupAcceptPropertyMemberInviteTasks\n  ...NewDashboardOnboardingStartSubscriptionTasks\n  ...NewDashboardOnboardingUnpaidSubscription"
+  },
+  {
+    "operationName": "ODFinancialsSummaryOwnerFinancialsSummary",
+    "kind": "query",
+    "files": [
+      "refer_hemlane.com.har"
+    ],
+    "count": 2,
+    "sampleVariables": {
+      "viewAsUserId": "3cb297be-8425-42fe-afbf-80b1eb6fc324",
+      "type": "MoneyIn"
+    },
+    "queryExcerpt": "query ODFinancialsSummaryOwnerFinancialsSummary($type: OwnerFinancialsSummaryType!, $viewAsUserId: ID!) {\n  currentUser {\n    id\n    currentUserInfo {\n      id\n      ownerFinancialsSummary(type: $type, viewAsUserId: $viewAsUserId) {\n        id\n        dueDateYearMonth\n        successAmount\n        pendingAmount\n        pastDueAmount\n        futureDueAmount\n        uncollectedAmount\n        __typename\n      }\n      __typename\n    }\n    __typename\n  }\n}\n"
+  },
+  {
+    "operationName": "ODGetContextValues",
+    "kind": "query",
+    "files": [
+      "maintenance_update_hemlane.com.har",
+      "refer_hemlane.com.har",
+      "tenant-reply_hemlane.com.har",
+      "work-order_hemlane.com.har",
+      "requests_hemlane.com.har"
+    ],
+    "count": 7,
+    "sampleVariables": {},
+    "queryExcerpt": "query ODGetContextValues {\n  paymentCategories {\n    id\n    label\n    purpose\n    isRent\n    sortIndex\n    paymentSubcategories {\n      id\n      label\n      shortLabel\n      purpose\n      isGlobal\n      sortIndex\n      __typename\n    }\n    __typename\n  }\n  currentUser {\n    id\n    evictionGuardEnabled\n    metaAssociatedUnitCount\n    metaBasicAllBillToUnitCount\n    metaEssentialAllBillToUnitCount\n    metaCompleteAllBillToUnitCount\n    email\n    firstName\n    lastName\n    fullName\n    vendorProfile {\n      id\n      profileImageUrl\n      __typename\n    }\n    isStripeSubscriptionStatusDelinquent\n    stripeSubscriptionStatus\n    stripeSubscriptionId\n    activeBillToUnitCount: metaActiveBillToUnitCount\n    isOnStarterPlan\n    agentBillToUnitCount: metaAgentBillToUnitCount\n    metaAssociatedUnitCount\n    metaAssociatedAgentUnitCount\n    metaBasicAllBillToUnitCount\n    metaCompleteAllBillToUnitCount\n    metaEssentialAllBillToUnitCount\n    evictionGuardEnabled\n    ownerAccountType\n    extraFeatures\n    authyVerified\n    trialEndDate\n    trialStartDate\n    createdAt\n    rbpOwnerEnrolled\n    onboardingConfig {\n      unitSelectionComplete\n      __typename\n    }\n    onboardingSteps {\n      financials\n      marketing\n      prospectiveTenants\n      tenantsAndLeases\n      __typename\n    }\n    manageablePropertiesCache {\n      id\n      hasCanManageProperty\n      hasCanManageTenancy\n      hasCanManageServiceProviders\n      hasCanManageRequests\n      hasCanManageFinancials\n      hasCanManageServiceRequests\n      hasCanManageProspectiveTenancy\n      hasCanManageMarketing\n      hasCanViewPaymentTransactions\n      hasCanRoutePaymentFromTenants\n      hasCanRoutePaymentFromMembers\n      hasCanReceivePaymentFromTenants\n      hasCanReceivePaymentFromMembers\n      hasCanManageFinancialTransactions\n      __typename\n    }\n    myProperties(pagination: {page: 1, limit: 500}, notInPortfolio: true, isDeleted: false, status: Accepted) {\n      data {\n        id\n        nickname\n        isSingleFamily"
+  },
+  {
+    "operationName": "ODMaintenanceRequests",
+    "kind": "query",
+    "files": [
+      "tenant-reply_hemlane.com.har"
+    ],
+    "count": 1,
+    "sampleVariables": {
+      "isOpen": false,
+      "status": "Open",
+      "propertyId": null,
+      "propertyUnitId": null,
+      "portfolioId": null,
+      "ownerUserId": null,
+      "page": 1
+    },
+    "queryExcerpt": "query ODMaintenanceRequests($status: MaintenanceRequestStatus, $isOpen: Boolean!, $propertyId: ID, $propertyUnitId: ID, $portfolioId: ID, $ownerUserId: ID, $page: Int) {\n  maintenanceServiceRequestCategories(nonDeprecated: true) {\n    value\n    label\n    __typename\n  }\n  paginatedMaintenanceRequests(status: $status, isOpen: $isOpen, propertyId: $propertyId, propertyUnitId: $propertyUnitId, portfolioId: $portfolioId, ownerUserId: $ownerUserId, pagination: {page: $page, limit: 12}) {\n    data {\n      workOrders {\n        edges {\n          node {\n            assigneeUser {\n              fullName\n              id\n              __typename\n            }\n            assigneeServiceProvider {\n              fullName\n              id\n              __typename\n            }\n            __typename\n          }\n          __typename\n        }\n        __typename\n      }\n      lastOwnerVisibleComment {\n        body\n        createdBy {\n          id\n          userType\n          fullName\n          isAdmin\n          vendorProfile {\n            profileImageUrl\n            __typename\n          }\n          __typename\n        }\n        createdAt\n        __typename\n      }\n      coordinatedBy {\n        id\n        __typename\n      }\n      id\n      title\n      description\n      category\n      status\n      token\n      referenceNumber\n      isHemlaneCoordinated\n      maintenanceRequestComments(first: 1) {\n        edges {\n          node {\n            body\n            createdAt\n            createdBy {\n              vendorProfile {\n                profileImageUrl\n                __typename\n              }\n              __typename\n            }\n            __typename\n          }\n          __typename\n        }\n        __typename\n      }\n      propertyUnit {\n        id\n        addressStreetWithUnitNumber\n        __typename\n      }\n      property {\n        id\n        addressStreet\n        nickname\n        __typename\n      }\n      createdBy {\n        id\n        fullName\n        __typename\n      }\n      m"
+  },
+  {
+    "operationName": "ODProspectiveTenantGroupMessageCreate",
+    "kind": "mutation",
+    "files": [
+      "tenant-reply_hemlane.com.har"
+    ],
+    "count": 1,
+    "sampleVariables": {
+      "input": {
+        "tenantGroupId": "53cf1ff2-56d7-41e5-a0bd-9d3cc2a99aab",
+        "body": "Good morning Tiffany, as discussed, it seems your $890 December payment bounced and was reversed by Hemlane. You may see a new request for it to be reprocessed in your Financials tab. Thanks!",
+        "notifyImmediately": true,
+        "isOwnerPrivate": false,
+        "attachmentUrl": null
+      }
+    },
+    "queryExcerpt": "mutation ODProspectiveTenantGroupMessageCreate($input: TenantGroupMessageAdd2Input!) {\n  tenantGroupMessageAdd: tenantGroupMessageAdd2(input: $input) {\n    tenantGroupMessage {\n      id\n      body\n      createdAt\n      createdByInfo {\n        id\n        name\n        email\n        type\n        __typename\n      }\n      __typename\n    }\n    errors {\n      base\n      body\n      createdByInfo\n      tenantGroup\n      __typename\n    }\n    __typename\n  }\n}\n"
+  },
+  {
+    "operationName": "ODTenantsAndLeasesBucketCounts",
+    "kind": "query",
+    "files": [
+      "tenant-reply_hemlane.com.har"
+    ],
+    "count": 2,
+    "sampleVariables": {
+      "propertyId": null,
+      "propertyUnitId": null,
+      "portfolioId": null,
+      "ownerUserId": null,
+      "tenantGroupStatus": [
+        "Active"
+      ]
+    },
+    "queryExcerpt": "query ODTenantsAndLeasesBucketCounts($propertyId: ID, $propertyUnitId: ID, $portfolioId: ID, $ownerUserId: ID, $tenantGroupStatus: [TenantGroupStatus!], $tenantSearch: String, $hasUnreadMessages: Boolean, $hasOutstandingBalance: Boolean, $hasRegisteredTenant: Boolean, $hasRecurringRent: Boolean, $hasBankAccount: Boolean, $missingLeaseDocuments: Boolean) {\n  tenantsAndLeasesBucketCounts(propertyId: $propertyId, propertyUnitId: $propertyUnitId, portfolioId: $portfolioId, ownerUserId: $ownerUserId, tenantGroupStatus: $tenantGroupStatus, tenantSearch: $tenantSearch, hasUnreadMessages: $hasUnreadMessages, hasOutstandingBalance: $hasOutstandingBalance, hasRegisteredTenant: $hasRegisteredTenant, hasRecurringRent: $hasRecurringRent, hasBankAccount: $hasBankAccount, missingLeaseDocuments: $missingLeaseDocuments) {\n    allLeases\n    newMoveIns\n    endingSoon\n    moveOuts\n    __typename\n  }\n}\n"
+  },
+  {
+    "operationName": "ODTenantsAndLeasesGetTenantMessagesStatsLog",
+    "kind": "query",
+    "files": [
+      "tenant-reply_hemlane.com.har"
+    ],
+    "count": 2,
+    "sampleVariables": {},
+    "queryExcerpt": "query ODTenantsAndLeasesGetTenantMessagesStatsLog($statsLogId: ID) {\n  tenantMessagesStatsLog(statsLogId: $statsLogId) {\n    id\n    tag\n    logStr\n    __typename\n  }\n}\n"
+  },
+  {
+    "operationName": "ODTenantsAndLeasesTenantGroups",
+    "kind": "query",
+    "files": [
+      "tenant-reply_hemlane.com.har"
+    ],
+    "count": 2,
+    "sampleVariables": {
+      "propertyId": null,
+      "propertyUnitId": null,
+      "portfolioId": null,
+      "ownerUserId": null,
+      "tenantGroupStatus": [
+        "Active"
+      ],
+      "pagination": {
+        "page": 1,
+        "limit": 25
+      },
+      "leaseFilter": "all",
+      "sortBy": "endDate"
+    },
+    "queryExcerpt": "query ODTenantsAndLeasesTenantGroups($propertyId: ID, $propertyUnitId: ID, $portfolioId: ID, $ownerUserId: ID, $tenantGroupStatus: [TenantGroupStatus!], $pagination: PagedPaginationInput, $leaseFilter: String, $sortBy: String, $tenantSearch: String, $hasUnreadMessages: Boolean, $hasOutstandingBalance: Boolean, $hasRegisteredTenant: Boolean, $hasRecurringRent: Boolean, $hasBankAccount: Boolean, $missingLeaseDocuments: Boolean) {\n  tenantsAndLeasesTenantGroups(propertyId: $propertyId, propertyUnitId: $propertyUnitId, portfolioId: $portfolioId, ownerUserId: $ownerUserId, tenantGroupStatus: $tenantGroupStatus, pagination: $pagination, leaseFilter: $leaseFilter, sortBy: $sortBy, tenantSearch: $tenantSearch, hasUnreadMessages: $hasUnreadMessages, hasOutstandingBalance: $hasOutstandingBalance, hasRegisteredTenant: $hasRegisteredTenant, hasRecurringRent: $hasRecurringRent, hasBankAccount: $hasBankAccount, missingLeaseDocuments: $missingLeaseDocuments) {\n    pageInfo {\n      page\n      totalCount\n      totalPages\n      __typename\n    }\n    data {\n      id\n      status\n      evictionStatus\n      terminationDate\n      lastMessageCreated\n      unreadMessagesCount\n      tenantLedgerBalanceInCents\n      hasRegisteredTenant\n      hasRecurringRent\n      hasBankAccount\n      propertyDocuments {\n        id\n        docType\n        __typename\n      }\n      lease {\n        id\n        status\n        monthlyRentInCents\n        endDate\n        endDateAction\n        leaseRenewal {\n          id\n          status\n          startDate\n          createdAt\n          __typename\n        }\n        __typename\n      }\n      leaseAgreements {\n        id\n        status\n        createdAt\n        survey\n        __typename\n      }\n      esignDocuments {\n        id\n        status\n        createdAt\n        sourceSignable {\n          __typename\n          ... on LeaseRenewal {\n            id\n            __typename\n          }\n          ... on LeaseAgreement {\n            id\n            __typename\n          }\n  "
+  },
+  {
+    "operationName": "ODTenantsIndexNewPermissions",
+    "kind": "query",
+    "files": [
+      "tenant-reply_hemlane.com.har"
+    ],
+    "count": 2,
+    "sampleVariables": {
+      "propertyId": null,
+      "portfolioId": null
+    },
+    "queryExcerpt": "query ODTenantsIndexNewPermissions($propertyId: ID, $portfolioId: ID) {\n  currentUser {\n    id\n    canManageTenancyPropertiesCount(propertyId: $propertyId, portfolioId: $portfolioId, includeArchived: false)\n    canManageProspectiveTenancyPropertiesCount(propertyId: $propertyId, portfolioId: $portfolioId, includeArchived: false)\n    __typename\n  }\n}\n"
+  },
+  {
+    "operationName": "OwnerDashboardMaintenanceMaintenanceRequest",
+    "kind": "query",
+    "files": [
+      "maintenance_update_hemlane.com.har",
+      "work-order_hemlane.com.har"
+    ],
+    "count": 4,
+    "sampleVariables": {
+      "id": "8609a66f-8403-483c-aaef-fecfa199c9bd"
+    },
+    "queryExcerpt": "query OwnerDashboardMaintenanceMaintenanceRequest($id: ID!) {\n  currentUser {\n    id\n    userType\n    email\n    fullName\n    formattedPhoneNumber\n    __typename\n  }\n  maintenanceCoordinator {\n    id\n    vendorProfile {\n      id\n      profileImageUrl\n      __typename\n    }\n    __typename\n  }\n  serviceRequestCategories(nonDeprecated: true) {\n    value\n    label\n    __typename\n  }\n  maintenanceServiceRequestCategories(nonDeprecated: true) {\n    value\n    label\n    __typename\n  }\n  maintenanceRequest(id: $id) {\n    id\n    troubleshooting\n    title\n    description\n    status\n    category\n    referenceNumber\n    token\n    packageType\n    isHemlaneCoordinated\n    photos {\n      totalCount\n      __typename\n    }\n    openWorkOrders {\n      edges {\n        node {\n          id\n          photos {\n            totalCount\n            __typename\n          }\n          __typename\n        }\n        __typename\n      }\n      __typename\n    }\n    managedBy {\n      id\n      fullName\n      formattedPhoneNumber\n      userType\n      __typename\n    }\n    coordinatedBy {\n      id\n      fullName\n      formattedPhoneNumber\n      __typename\n    }\n    turnoverManagedBy {\n      id\n      fullName\n      formattedPhoneNumber\n      __typename\n    }\n    property {\n      id\n      addressStreet\n      addressCity\n      addressState\n      addressZip\n      maintenanceThreshold\n      emergencyMaintenanceThreshold\n      description\n      timeZone\n      maintenanceBillingStatus\n      billToUser {\n        id\n        fullName\n        isOnStarterPlan\n        __typename\n      }\n      maintenanceTurnoverCoordinationContact {\n        id\n        fullName\n        formattedPhoneNumber\n        __typename\n      }\n      isMaintenanceComplete\n      incompleteReasons {\n        maintenanceThresholdWarning\n        emergencyMaintenanceThresholdWarning\n        maintenanceBillingStatusWarning\n        __typename\n      }\n      incompleteServiceProfessionalCategories\n      acceptedPropertyMembers {\n        edges {\n          node {\n "
+  },
+  {
+    "operationName": "OwnerDashboardMaintenanceMaintenanceRequestCommentCreate",
+    "kind": "mutation",
+    "files": [
+      "maintenance_update_hemlane.com.har",
+      "work-order_hemlane.com.har"
+    ],
+    "count": 2,
+    "sampleVariables": {
+      "input": {
+        "maintenanceRequestId": "8609a66f-8403-483c-aaef-fecfa199c9bd",
+        "body": "This task can be closed. Everything is fixed.",
+        "isHiddenFromTenants": true,
+        "isHiddenFromOwners": false
+      }
+    },
+    "queryExcerpt": "mutation OwnerDashboardMaintenanceMaintenanceRequestCommentCreate($input: MaintenanceRequestCommentCreateInput!) {\n  maintenanceRequestCommentCreate(input: $input) {\n    maintenanceRequestComment {\n      id\n      body\n      isHiddenFromTenants\n      createdAt\n      createdBy {\n        id\n        fullName\n        isAdmin\n        vendorProfile {\n          id\n          profileImageUrl\n          __typename\n        }\n        __typename\n      }\n      __typename\n    }\n    errors {\n      base\n      body\n      maintenanceRequestId\n      isHiddenFromTenants\n      __typename\n    }\n    __typename\n  }\n}\n"
+  },
+  {
+    "operationName": "OwnerDashboardMaintenanceMaintenanceRequestComments",
+    "kind": "query",
+    "files": [
+      "maintenance_update_hemlane.com.har",
+      "work-order_hemlane.com.har"
+    ],
+    "count": 4,
+    "sampleVariables": {
+      "maintenanceRequestId": "8609a66f-8403-483c-aaef-fecfa199c9bd"
+    },
+    "queryExcerpt": "query OwnerDashboardMaintenanceMaintenanceRequestComments($maintenanceRequestId: ID!) {\n  maintenanceRequestComments(maintenanceRequestId: $maintenanceRequestId) {\n    edges {\n      cursor\n      node {\n        id\n        body\n        isHiddenFromTenants\n        createdAt\n        createdBy {\n          id\n          fullName\n          isAdmin\n          vendorProfile {\n            id\n            profileImageUrl\n            __typename\n          }\n          __typename\n        }\n        __typename\n      }\n      __typename\n    }\n    pageInfo {\n      startCursor\n      endCursor\n      hasPreviousPage\n      hasNextPage\n      __typename\n    }\n    __typename\n  }\n}\n"
+  },
+  {
+    "operationName": "OwnerDashboardMaintenanceMaintenanceRequestPhotos",
+    "kind": "query",
+    "files": [
+      "work-order_hemlane.com.har"
+    ],
+    "count": 1,
+    "sampleVariables": {
+      "id": "8609a66f-8403-483c-aaef-fecfa199c9bd"
+    },
+    "queryExcerpt": "query OwnerDashboardMaintenanceMaintenanceRequestPhotos($id: ID!) {\n  maintenanceRequest(id: $id) {\n    id\n    openWorkOrders {\n      edges {\n        node {\n          id\n          assigneeUser {\n            id\n            fullName\n            __typename\n          }\n          assigneeServiceProvider {\n            id\n            contactName\n            companyName\n            __typename\n          }\n          photos {\n            totalCount\n            edges {\n              node {\n                id\n                url\n                downloadUrl\n                previewUrl\n                hasPreview\n                isSupportedImage\n                caption\n                createdByName\n                createdAt\n                fileName\n                canDelete\n                __typename\n              }\n              __typename\n            }\n            __typename\n          }\n          __typename\n        }\n        __typename\n      }\n      __typename\n    }\n    photos {\n      totalCount\n      edges {\n        node {\n          id\n          url\n          downloadUrl\n          previewUrl\n          hasPreview\n          isSupportedImage\n          caption\n          createdByName\n          createdAt\n          fileName\n          canDelete\n          __typename\n        }\n        __typename\n      }\n      __typename\n    }\n    __typename\n  }\n}\n"
+  },
+  {
+    "operationName": "OwnerDashboardMaintenanceMaintenanceRequestUsers",
+    "kind": "query",
+    "files": [
+      "maintenance_update_hemlane.com.har",
+      "work-order_hemlane.com.har"
+    ],
+    "count": 4,
+    "sampleVariables": {
+      "id": "8609a66f-8403-483c-aaef-fecfa199c9bd"
+    },
+    "queryExcerpt": "query OwnerDashboardMaintenanceMaintenanceRequestUsers($id: ID!) {\n  maintenanceRequest(id: $id) {\n    id\n    maintenanceRequestUsers {\n      edges {\n        node {\n          id\n          role\n          user {\n            id\n            userType\n            fullName\n            email\n            formattedPhoneNumber\n            __typename\n          }\n          __typename\n        }\n        __typename\n      }\n      __typename\n    }\n    __typename\n  }\n}\n"
+  },
+  {
+    "operationName": "OwnerDashboardMaintenanceMaintenanceRequestWorkOrders",
+    "kind": "query",
+    "files": [
+      "maintenance_update_hemlane.com.har",
+      "work-order_hemlane.com.har"
+    ],
+    "count": 4,
+    "sampleVariables": {
+      "id": "8609a66f-8403-483c-aaef-fecfa199c9bd"
+    },
+    "queryExcerpt": "query OwnerDashboardMaintenanceMaintenanceRequestWorkOrders($id: ID!) {\n  maintenanceRequest(id: $id) {\n    id\n    status\n    property {\n      id\n      timeZone\n      __typename\n    }\n    workOrders {\n      edges {\n        node {\n          id\n          assigneeUser {\n            id\n            fullName\n            companyName\n            email\n            formattedPhoneNumber\n            __typename\n          }\n          assigneeServiceProvider {\n            id\n            contactName\n            companyName\n            email\n            phoneNumber\n            formattedPhoneNumber\n            email2\n            phoneNumber2\n            formattedPhoneNumber2\n            __typename\n          }\n          title\n          referenceNumber\n          status\n          scheduledDate\n          localScheduledDateStart\n          localScheduledDateEnd\n          createdAt\n          __typename\n        }\n        __typename\n      }\n      __typename\n    }\n    __typename\n  }\n}\n"
+  },
+  {
+    "operationName": "OwnerMaintenanceWorkOrder",
+    "kind": "query",
+    "files": [
+      "work-order_hemlane.com.har"
+    ],
+    "count": 2,
+    "sampleVariables": {
+      "id": "d05b854e-eee7-46e1-9e48-e280f16477ed"
+    },
+    "queryExcerpt": "query OwnerMaintenanceWorkOrder($id: ID!) {\n  currentUser {\n    id\n    email\n    userType\n    currentUserServiceProvider {\n      id\n      __typename\n    }\n    __typename\n  }\n  maintenanceCoordinator {\n    id\n    formattedPhoneNumber\n    __typename\n  }\n  maintenanceWorkOrder(id: $id) {\n    title\n    referenceNumber\n    billToPaymentAccount\n    version\n    assigneeUser {\n      id\n      fullName\n      formattedPhoneNumber\n      email\n      __typename\n    }\n    assigneeServiceProvider {\n      id\n      contactName\n      formattedPhoneNumber\n      email\n      formattedPhoneNumber2\n      email2\n      companyName\n      status\n      usePremiumBilling\n      isHemlaneServiceProvider\n      token\n      serviceProviderUser {\n        id\n        __typename\n      }\n      __typename\n    }\n    id\n    instructions\n    invoiceUploads {\n      id\n      paymentRequest {\n        id\n        privacyTransaction {\n          id\n          __typename\n        }\n        __typename\n      }\n      __typename\n    }\n    billToUser {\n      id\n      email\n      fullName\n      formattedPhoneNumber\n      mailingAddress\n      creditCardStored\n      __typename\n    }\n    maintenanceRequest {\n      title\n      description\n      id\n      isHemlaneCoordinated\n      managedBy {\n        id\n        fullName\n        formattedPhoneNumber\n        __typename\n      }\n      coordinatedBy {\n        id\n        fullName\n        formattedPhoneNumber\n        __typename\n      }\n      turnoverManagedBy {\n        id\n        fullName\n        formattedPhoneNumber\n        __typename\n      }\n      property {\n        id\n        packageType\n        pricingVersion\n        address\n        addressStreet\n        addressCity\n        addressState\n        addressZip\n        acceptedPropertyMembers {\n          edges {\n            node {\n              id\n              user {\n                id\n                fullName\n                formattedPhoneNumber\n                __typename\n              }\n              __typename\n            }\n          "
+  },
+  {
+    "operationName": "OwnerMaintenanceWorkOrderCommentCreate",
+    "kind": "mutation",
+    "files": [
+      "work-order_hemlane.com.har"
+    ],
+    "count": 1,
+    "sampleVariables": {
+      "input": {
+        "maintenanceWorkOrderId": "d05b854e-eee7-46e1-9e48-e280f16477ed",
+        "body": "I do see the $140 pulled out of this property's account without bouncing or any issues, so it looks like we're good here and this work order can be closed."
+      }
+    },
+    "queryExcerpt": "mutation OwnerMaintenanceWorkOrderCommentCreate($input: MaintenanceWorkOrderCommentCreateInput!) {\n  maintenanceWorkOrderCommentCreate(input: $input) {\n    maintenanceWorkOrderComment {\n      id\n      body\n      __typename\n    }\n    errors {\n      base\n      body\n      __typename\n    }\n    __typename\n  }\n}\n"
+  },
+  {
+    "operationName": "OwnerMaintenanceWorkOrderComments",
+    "kind": "query",
+    "files": [
+      "work-order_hemlane.com.har"
+    ],
+    "count": 3,
+    "sampleVariables": {
+      "maintenanceWorkOrderId": "d05b854e-eee7-46e1-9e48-e280f16477ed"
+    },
+    "queryExcerpt": "query OwnerMaintenanceWorkOrderComments($maintenanceWorkOrderId: ID!, $after: String) {\n  maintenanceWorkOrderComments(maintenanceWorkOrderId: $maintenanceWorkOrderId, after: $after, first: 30) {\n    edges {\n      node {\n        body\n        isPinnedToTop\n        isAdminOnly\n        createdAt\n        createdByInfo {\n          name\n          __typename\n        }\n        createdByServiceProvider {\n          id\n          contactName\n          __typename\n        }\n        createdByUser {\n          id\n          fullName\n          isAdmin\n          vendorProfile {\n            id\n            profileImageUrl\n            __typename\n          }\n          __typename\n        }\n        createdDuringWorkOrderStatus\n        id\n        updatedAt\n        __typename\n      }\n      __typename\n    }\n    pageInfo {\n      startCursor\n      endCursor\n      hasNextPage\n      hasPreviousPage\n      __typename\n    }\n    __typename\n  }\n}\n"
+  },
+  {
+    "operationName": "OwnerMaintenanceWorkOrderPhotos",
+    "kind": "query",
+    "files": [
+      "work-order_hemlane.com.har"
+    ],
+    "count": 1,
+    "sampleVariables": {
+      "id": "d05b854e-eee7-46e1-9e48-e280f16477ed"
+    },
+    "queryExcerpt": "query OwnerMaintenanceWorkOrderPhotos($id: ID!) {\n  maintenanceWorkOrder(id: $id) {\n    id\n    status\n    assigneeUser {\n      id\n      fullName\n      formattedPhoneNumber\n      email\n      __typename\n    }\n    assigneeServiceProvider {\n      id\n      contactName\n      formattedPhoneNumber\n      email\n      companyName\n      __typename\n    }\n    maintenanceRequest {\n      id\n      isHemlaneCoordinated\n      managedBy {\n        id\n        fullName\n        formattedPhoneNumber\n        __typename\n      }\n      __typename\n    }\n    photos {\n      edges {\n        node {\n          id\n          url\n          downloadUrl\n          previewUrl\n          hasPreview\n          isSupportedImage\n          caption\n          createdByName\n          createdAt\n          fileName\n          canDelete\n          __typename\n        }\n        __typename\n      }\n      __typename\n    }\n    __typename\n  }\n}\n"
+  },
+  {
+    "operationName": "OwnerMaintenanceWorkOrderRequestPhotos",
+    "kind": "query",
+    "files": [
+      "work-order_hemlane.com.har"
+    ],
+    "count": 1,
+    "sampleVariables": {
+      "id": "d05b854e-eee7-46e1-9e48-e280f16477ed"
+    },
+    "queryExcerpt": "query OwnerMaintenanceWorkOrderRequestPhotos($id: ID!) {\n  maintenanceWorkOrder(id: $id) {\n    id\n    assigneeUser {\n      id\n      fullName\n      formattedPhoneNumber\n      email\n      __typename\n    }\n    assigneeServiceProvider {\n      id\n      contactName\n      formattedPhoneNumber\n      email\n      companyName\n      __typename\n    }\n    maintenanceRequest {\n      id\n      isHemlaneCoordinated\n      managedBy {\n        id\n        fullName\n        formattedPhoneNumber\n        __typename\n      }\n      photos {\n        edges {\n          node {\n            id\n            url\n            downloadUrl\n            previewUrl\n            hasPreview\n            isSupportedImage\n            caption\n            createdByName\n            createdAt\n            fileName\n            canDelete\n            __typename\n          }\n          __typename\n        }\n        __typename\n      }\n      __typename\n    }\n    __typename\n  }\n}\n"
+  },
+  {
+    "operationName": "OwnerTenancyMessages",
+    "kind": "query",
+    "files": [
+      "tenant-reply_hemlane.com.har"
+    ],
+    "count": 3,
+    "sampleVariables": {
+      "tenantGroupId": "1b45d37c-144a-4106-b16e-5f0cec4f57cd",
+      "first": 20
+    },
+    "queryExcerpt": "query OwnerTenancyMessages($tenantGroupId: ID!, $first: Int, $after: String) {\n  tenantGroup(tenantGroupId: $tenantGroupId) {\n    property {\n      id\n      packageType\n      isCompleteV2\n      activeUnitCount\n      billToUser {\n        id\n        fullName\n        isOnStarterPlan\n        __typename\n      }\n      __typename\n    }\n    __typename\n  }\n  tenancyMessages(tenantGroupId: $tenantGroupId, first: $first, after: $after) {\n    edges {\n      cursor\n      node {\n        id\n        body\n        createdAt\n        createdByInfo {\n          id\n          email\n          name\n          type\n          __typename\n        }\n        isSystem\n        isOwnerPrivate\n        isAdminOnly\n        isPinned\n        sourceable {\n          ... on TenantGroupMessage {\n            serviceType\n            messageAttachments(first: 10) {\n              edges {\n                node {\n                  id\n                  url\n                  viewUrl\n                  __typename\n                }\n                __typename\n              }\n              __typename\n            }\n            __typename\n          }\n          __typename\n        }\n        __typename\n      }\n      __typename\n    }\n    pageInfo {\n      hasNextPage\n      hasPreviousPage\n      startCursor\n      endCursor\n      __typename\n    }\n    __typename\n  }\n}\n"
+  },
+  {
+    "operationName": "OwnerVendorMaintenanceWorkOrderInvoices",
+    "kind": "query",
+    "files": [
+      "work-order_hemlane.com.har"
+    ],
+    "count": 2,
+    "sampleVariables": {
+      "invoicable": {
+        "id": "d05b854e-eee7-46e1-9e48-e280f16477ed",
+        "type": "MaintenanceWorkOrder"
+      }
+    },
+    "queryExcerpt": "query OwnerVendorMaintenanceWorkOrderInvoices($id: ID, $invoicable: InvoicableInput) {\n  initialMaintenanceTransactionFeeBasisPoint\n  invoiceUploads(id: $id, invoicable: $invoicable) {\n    id\n    invoicable {\n      ... on MaintenanceWorkOrder {\n        __typename\n        id\n        title\n      }\n      __typename\n    }\n    amount\n    paymentRequest {\n      id\n      paymentStatus\n      amount\n      amountConfirmed\n      isOverride\n      status\n      canCancel\n      privacyTransaction {\n        id\n        amount\n        __typename\n      }\n      __typename\n    }\n    description\n    dueDate\n    createdAt\n    updatedAt\n    invoiceUploadDocuments {\n      id\n      invoiceUploadId\n      document\n      rank\n      createdAt\n      updatedAt\n      __typename\n    }\n    __typename\n  }\n}\n"
+  },
+  {
+    "operationName": "PagedFinancialTransactions",
+    "kind": "query",
+    "files": [
+      "transactions_hemlane.com.har"
+    ],
+    "count": 1,
+    "sampleVariables": {
+      "page": 1,
+      "plaidAccountId": null,
+      "minAbsAmountInCents": null,
+      "maxAbsAmountInCents": null,
+      "paymentSubcategoryId": null,
+      "paymentCategoryId": null,
+      "keyword": null,
+      "portfolioId": null,
+      "ownerUserId": null,
+      "propertyId": null,
+      "propertyUnitId": null,
+      "view": "all"
+    },
+    "queryExcerpt": "query PagedFinancialTransactions($page: Int!, $plaidAccountId: ID, $propertyId: ID, $propertyUnitId: ID, $paymentCategoryId: ID, $paymentSubcategoryId: ID, $minAbsAmountInCents: Int, $maxAbsAmountInCents: Int, $minTransactedAt: ISO8601DateTime, $maxTransactedAt: ISO8601DateTime, $keyword: String, $portfolioId: ID, $ownerUserId: ID, $view: FinancialTransactionsView!) {\n  financialTransactions(pagination: {page: $page}, plaidAccountId: $plaidAccountId, propertyId: $propertyId, propertyUnitId: $propertyUnitId, paymentCategoryId: $paymentCategoryId, paymentSubcategoryId: $paymentSubcategoryId, minAbsAmountInCents: $minAbsAmountInCents, maxAbsAmountInCents: $maxAbsAmountInCents, minTransactedAt: $minTransactedAt, maxTransactedAt: $maxTransactedAt, textSearch: $keyword, portfolioId: $portfolioId, ownerUserId: $ownerUserId, view: $view) {\n    pageInfo {\n      page\n      totalPages\n      totalCount\n      __typename\n    }\n    data {\n      id\n      amountInCents\n      transactedAt\n      description\n      status\n      isHidden\n      memo\n      documents {\n        id\n        downloadUrl\n        filename\n        __typename\n      }\n      party {\n        __typename\n        ... on User {\n          id\n          fullName\n          __typename\n        }\n      }\n      counterparty {\n        __typename\n        ... on TenantGroup {\n          id\n          tenants {\n            id\n            user {\n              id\n              fullName\n              __typename\n            }\n            __typename\n          }\n          __typename\n        }\n        ... on Tenant {\n          id\n          user {\n            id\n            fullName\n            __typename\n          }\n          __typename\n        }\n        ... on User {\n          id\n          fullName\n          __typename\n        }\n      }\n      counterpartyName\n      property {\n        id\n        nickname\n        __typename\n      }\n      propertyUnit {\n        id\n        unitNumber\n        nicknameWithUnit\n        __typename\n      }\n      paym"
+  },
+  {
+    "operationName": "TGTenantGroup",
+    "kind": "query",
+    "files": [
+      "tenant-reply_hemlane.com.har"
+    ],
+    "count": 3,
+    "sampleVariables": {
+      "tenantGroupId": "1b45d37c-144a-4106-b16e-5f0cec4f57cd"
+    },
+    "queryExcerpt": "query TGTenantGroup($tenantGroupId: ID!) {\n  tenantGroup(tenantGroupId: $tenantGroupId) {\n    id\n    terminationDate\n    memberNotes\n    isProcessingSetMoveOut\n    hasPets\n    tenantScreeningRequired\n    maxExpectedMoveInDate\n    terminationDate\n    status\n    jurisdiction\n    evictionStatus\n    onlinePaymentsDisabled\n    tenantLedgerBalanceInCents\n    overdueRentBalanceInCents: tenantLedgerBalanceInCents(paymentSubcategoryPurpose: \"rent\", excludeLastDate: true)\n    tenantLedgerUncollectibleInCents\n    tenantGroupStat {\n      checklistCreditSummary {\n        averageScore\n        processCompleteCount\n        requestedCount\n        __typename\n      }\n      screeningRecommendation {\n        status\n        actual {\n          averageCreditScore\n          grossIncomePerMonth\n          otherIncomePerMonth\n          hasEvictions\n          __typename\n        }\n        __typename\n      }\n      checklistLeaseAgreementSummary {\n        docsComplete\n        __typename\n      }\n      __typename\n    }\n    recurringPaymentRequests {\n      id\n      amount\n      amountInCents\n      interval\n      monthlyAnchor\n      weeklyAnchor\n      startDate\n      endDate\n      confirmedAmount\n      status\n      allowCreditCard\n      singlePaymentRequired\n      isSourcePayingProcessingFee\n      memo\n      lastRequestDueDate\n      nextProjectedDueDate\n      destinationUser {\n        id\n        fullName\n        __typename\n      }\n      destinationPaymentAccount {\n        id\n        accountLast4\n        accountName\n        accountType\n        nickName\n        depositEnabled\n        __typename\n      }\n      paymentSubcategory {\n        id\n        label\n        __typename\n      }\n      paymentCategory {\n        isRent\n        __typename\n      }\n      createdBy {\n        id\n        fullName\n        __typename\n      }\n      sourceUser {\n        id\n        __typename\n      }\n      sourceTenant {\n        id\n        __typename\n      }\n      sourceTenantGroup {\n        id\n        __typename\n      }\n      recu"
+  },
+  {
+    "operationName": "TasksCount",
+    "kind": "query",
+    "files": [
+      "requests_hemlane.com.har"
+    ],
+    "count": 3,
+    "sampleVariables": {},
+    "queryExcerpt": "\n      query TasksCount {\n        onboardingBankSyncConnectTasks: tasksByType(\n          taskType: OnboardingBankSyncConnect          \n        ) {\n          taskType\n          displayRank\n          canDefer\n          canBulkDefer\n          totalCount          \n        }\n        onboardingConfirmOwnerAddressTasks: tasksByType(\n          taskType: OnboardingConfirmOwnerAddress, \n        ) {\n          taskType\n          displayRank\n          canDefer\n          canBulkDefer\n          totalCount\n        }\n        onboardingReactivateSubscriptionTasks: tasksByType(\n          taskType: OnboardingReactivateSubscription\n        ) {\n          taskType\n          displayRank\n          canDefer\n          canBulkDefer\n          totalCount\n        }\n        onboardingSetupBankAccountTasks: tasksByType(\n          taskType: OnboardingSetupBankAccount\n        ) {\n          taskType\n          displayRank\n          canDefer\n          canBulkDefer\n          totalCount\n        }\n        onboardingSetupLeasingAgentProfileTasks: tasksByType(\n          taskType: OnboardingSetupLeasingAgentProfile\n        ) {\n          taskType\n          displayRank\n          canDefer\n          canBulkDefer\n          totalCount\n        }\n        onboardingSetupOwnerTypesTasks: tasksByType(\n          taskType: OnboardingSetupOwnerTypes\n        ) {\n          taskType\n          displayRank\n          canDefer\n          canBulkDefer\n          totalCount\n        }\n        onboardingStartSubscriptionTasks: tasksByType(\n          taskType: OnboardingStartSubscription\n        ) {\n          taskType\n          displayRank\n          canDefer\n          canBulkDefer\n          totalCount\n        }\n        onboardingUnpaidSubscriptionTasks: tasksByType(\n          taskType: OnboardingUnpaidSubscription\n        ) {\n          taskType\n          displayRank\n          canDefer\n          canBulkDefer\n          totalCount\n        }\n        onboardingVerifyBankAccountTasks: tasksByType(\n          taskType: OnboardingVerifyBankAccou"
+  },
+  {
+    "operationName": "TransactionsNextCursorQuery",
+    "kind": "query",
+    "files": [
+      "transactions_hemlane.com.har",
+      "requests_hemlane.com.har"
+    ],
+    "count": 2,
+    "sampleVariables": {
+      "paymentReferenceNumber": null,
+      "dueDateBegin": null,
+      "dueDateEnd": null,
+      "propertyId": null,
+      "propertyUnitId": null,
+      "portfolioId": null,
+      "ownerUserId": null,
+      "pagination": {
+        "page": 1,
+        "limit": 20
+      },
+      "status": "all-active",
+      "paymentCategoryId": null,
+      "paymentSubcategoryId": null,
+      "destinationUserId": null,
+      "sourceUserId": null,
+      "sourceTenantGroupId": null,
+      "sortOrder": "desc"
+    },
+    "queryExcerpt": "query TransactionsNextCursorQuery($pagination: PagedPaginationInput!, $status: String!, $propertyId: ID, $propertyUnitId: ID, $portfolioId: ID, $ownerUserId: ID, $dueDateBegin: DateTime2, $dueDateEnd: DateTime2, $paymentReferenceNumber: String, $recurringPaymentRequestId: ID, $paymentCategoryId: ID, $paymentSubcategoryId: ID, $destinationUserId: ID, $sourceUserId: ID, $sourceTenantGroupId: ID, $sortOrder: String) {\n  transactionsNextCursor(pagination: $pagination, status: $status, propertyId: $propertyId, propertyUnitId: $propertyUnitId, portfolioId: $portfolioId, ownerUserId: $ownerUserId, dueDateBegin: $dueDateBegin, dueDateEnd: $dueDateEnd, paymentReferenceNumber: $paymentReferenceNumber, recurringPaymentRequestId: $recurringPaymentRequestId, paymentCategoryId: $paymentCategoryId, paymentSubcategoryId: $paymentSubcategoryId, destinationUserId: $destinationUserId, sourceUserId: $sourceUserId, sourceTenantGroupId: $sourceTenantGroupId, sortOrder: $sortOrder) {\n    pageInfo {\n      page\n      hasNextPage\n      hasPreviousPage\n      __typename\n    }\n    data {\n      maintenanceWorkOrder {\n        id\n        assigneeUser {\n          id\n          fullName\n          __typename\n        }\n        assigneeServiceProvider {\n          id\n          fullName\n          companyName\n          __typename\n        }\n        __typename\n      }\n      id\n      singlePaymentRequired\n      allowCreditCard\n      amount\n      status\n      successAmount\n      pendingAmount\n      initializedAmount\n      uncollectedAmount\n      paymentCategory {\n        id\n        label\n        __typename\n      }\n      paymentSubcategory {\n        id\n        label\n        shortLabel\n        __typename\n      }\n      dueDate\n      lateFeeForId\n      refundStatus\n      isOverride\n      sourceDescription\n      destinationDescription\n      splitParentRequestId\n      isSourcePayingProcessingFee\n      isChargingApplicationFee\n      willGenerateMaintenanceUpchargeSplits\n      totalMaintenanceUpchargeAmount\n      tota"
+  }
+]

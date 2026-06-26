@@ -1,0 +1,5 @@
+{
+  "type": "todo",
+  "text": "Add GrayMatter smoke-test verification to the deployment checklist for new OpenClaw installs.",
+  "sourceChannel": "operations"
+}

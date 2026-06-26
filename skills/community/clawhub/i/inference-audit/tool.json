@@ -1,0 +1,34 @@
+{
+  "tools": [
+    {
+      "name": "estimate_cost",
+      "description": "Estimate the cost of an AI inference service before running it. Returns price per second, estimated runtime, and total cost. No authentication required.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "service": {
+            "type": "string",
+            "description": "Service key: 'llm-4090', 'embedding-l4', 'image-4090', 'whisper-l4', 'tts-l4', 'video', 'rerank', 'ocr', 'rembg-l4', 'pdf-parse', etc."
+          },
+          "seconds": {
+            "type": "number",
+            "description": "Estimated runtime in seconds (optional, uses service default if omitted)"
+          }
+        },
+        "required": ["service"]
+      },
+      "endpoint": "https://api.gpubridge.io/catalog/estimate?service={service}&seconds={seconds}",
+      "method": "GET"
+    },
+    {
+      "name": "list_services",
+      "description": "List all 30 available AI services with pricing, models, and input schemas. No authentication required.",
+      "parameters": {
+        "type": "object",
+        "properties": {}
+      },
+      "endpoint": "https://api.gpubridge.io/catalog",
+      "method": "GET"
+    }
+  ]
+}

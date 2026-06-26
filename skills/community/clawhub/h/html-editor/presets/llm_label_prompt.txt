@@ -1,0 +1,24 @@
+你是 UI 语义分析专家。给定一组 CSS 变量（名+值+被用在哪些选择器上），输出每个变量的「角色名」。
+
+输入：
+{variables_json}
+
+输出要求：
+- 严格 JSON，{"--var-name": "中文角色名 英文角色名", ...}
+- 中文角色名是「语义角色」（如"主色调"/"暖色"/"主文字"/"次文字"），不是「原子颜色」（如"蓝"/"绿"）
+- 英文部分是 PascalCase（如 Accent / Warm / Ink / Ink-2 / Ink-3 / Line）
+- 不要输出任何解释文字，只输出 JSON
+
+参考规范命名（金版）：
+  --accent: 主色调 Accent
+  --accent-soft: 主色浅 Accent Soft
+  --warm: 暖色 Warm
+  --warm-soft: 暖色浅 Warm Soft
+  --gold: 金色 Gold
+  --bg: 页面底色 BG
+  --ink: 主文字 Ink
+  --ink-2: 次文字 Ink-2
+  --ink-3: 辅文字 Ink-3
+  --line: 分割线 Line
+
+如果输入变量名相同则直接套用以上映射；否则按相同风格自行推断。

@@ -1,0 +1,150 @@
+{
+  "normalized_data": {
+    "meta": {
+      "workflow": "precheck_payroll_filing",
+      "prepared_by": "薪酬专员",
+      "date": "2026-05-19",
+      "legal_entity": "上海某科技有限公司",
+      "payroll_month": "2026-04"
+    },
+    "employees": [
+      {
+        "employee_name": "王浩",
+        "employee_id": "E001",
+        "employment_status": "active",
+        "city": "上海",
+        "legal_entity": "上海某科技有限公司",
+        "bank_account": "6222********1234",
+        "id_number": "3101********1234",
+        "tax_declaration": true,
+        "social_insurance_declaration": true,
+        "housing_fund_declaration": true,
+        "salary_taxable_income": 28500,
+        "social_base": 28300,
+        "housing_fund_base": 28700,
+        "special_additional_deduction": 2000
+      },
+      {
+        "employee_name": "李茜",
+        "employee_id": "E002",
+        "employment_status": "active",
+        "city": "上海",
+        "legal_entity": "上海某科技有限公司",
+        "bank_account": "",
+        "id_number": "3101********5678",
+        "tax_declaration": true,
+        "social_insurance_declaration": true,
+        "housing_fund_declaration": true,
+        "salary_taxable_income": 19800,
+        "social_base": 19800,
+        "housing_fund_base": 0,
+        "special_additional_deduction": 0
+      },
+      {
+        "employee_name": "陈航",
+        "employee_id": "E003",
+        "employment_status": "left",
+        "city": "上海",
+        "legal_entity": "上海某科技有限公司",
+        "bank_account": "6217********8888",
+        "id_number": "3101********0001",
+        "tax_declaration": true,
+        "social_insurance_declaration": true,
+        "housing_fund_declaration": false,
+        "salary_taxable_income": 0,
+        "social_base": 23000,
+        "housing_fund_base": 0,
+        "special_additional_deduction": 0
+      },
+      {
+        "employee_name": "赵琳",
+        "employee_id": "E004",
+        "employment_status": "active",
+        "city": "深圳",
+        "legal_entity": "上海某科技有限公司",
+        "bank_account": "6217********9999",
+        "id_number": "",
+        "tax_declaration": true,
+        "social_insurance_declaration": true,
+        "housing_fund_declaration": true,
+        "salary_taxable_income": 32000,
+        "social_base": 38000,
+        "housing_fund_base": 38000,
+        "special_additional_deduction": 1500
+      },
+      {
+        "employee_name": "孙捷",
+        "employee_id": "E005",
+        "employment_status": "active",
+        "city": "上海",
+        "legal_entity": "杭州某科技有限公司",
+        "bank_account": "6217********7777",
+        "id_number": "3301********3456",
+        "tax_declaration": true,
+        "social_insurance_declaration": false,
+        "housing_fund_declaration": true,
+        "salary_taxable_income": 26500,
+        "social_base": 0,
+        "housing_fund_base": 26000,
+        "special_additional_deduction": 1000
+      }
+    ],
+    "issue_count": {
+      "high": 5,
+      "medium": 3,
+      "low": 1
+    }
+  },
+  "missing_information": [
+    {
+      "employee_name": "李茜",
+      "field_issue": "缺少工资银行卡信息"
+    },
+    {
+      "employee_name": "李茜",
+      "field_issue": "公积金需申报但缴存基数为 0"
+    },
+    {
+      "employee_name": "赵琳",
+      "field_issue": "缺少身份证号，存在个税申报风险"
+    }
+  ],
+  "risk_summary": "本次申报前检查发现 4 名高风险人员，请优先补齐缺失字段、复核离职人员状态和申报主体/缴纳口径，再进入正式申报。",
+  "priority_issues": [
+    {
+      "employee_name": "李茜",
+      "issues": [
+        "缺少工资银行卡信息",
+        "公积金需申报但缴存基数为 0"
+      ]
+    },
+    {
+      "employee_name": "陈航",
+      "issues": [
+        "离职员工仍在本月申报名单中"
+      ]
+    },
+    {
+      "employee_name": "赵琳",
+      "issues": [
+        "缺少身份证号，存在个税申报风险"
+      ]
+    },
+    {
+      "employee_name": "孙捷",
+      "issues": [
+        "申报主体与本次发薪主体不一致"
+      ]
+    }
+  ],
+  "next_action": "先处理高风险人员和缺失字段，再进入正式申报。",
+  "message_draft": "本次申报前检查发现 4 名高风险人员，请优先补齐缺失字段、复核离职人员状态和申报主体/缴纳口径，再进入正式申报。",
+  "record_update": {
+    "payroll_month": "2026-04",
+    "legal_entity": "上海某科技有限公司",
+    "high_risk_count": 4
+  },
+  "compliance_warning_if_any": [
+    "存在高风险申报问题，建议先修正后申报。"
+  ]
+}

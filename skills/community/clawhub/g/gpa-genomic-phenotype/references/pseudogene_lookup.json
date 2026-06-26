@@ -1,0 +1,365 @@
+{
+  "version": "0.6.0",
+  "last_updated": "2026-05-22",
+  "source": "manual_curation_ensembl_gencode",
+  "notes": "Top 50 clinically relevant pseudogene pairs. Processed pseudogenes with high sequence homology are the primary source of NGS false positives.",
+  "pairs": {
+    "VWF": {
+      "pseudogenes": ["VWFP1"],
+      "chromosome": "chr12",
+      "detection_strategy": "vaf_mismatch",
+      "confidence": "high",
+      "notes": "Processed pseudogene on chr1. High sequence homology with exons 23-34. Common VAF artifact (observed ~13-30% instead of 50%)."
+    },
+    "GUSB": {
+      "pseudogenes": ["GUSBP1", "GUSBP2", "GUSBP3", "GUSBP4", "GUSBP5"],
+      "chromosome": "chr7",
+      "detection_strategy": "sequence_homology",
+      "confidence": "high",
+      "notes": "Multiple processed pseudogenes. GUSBP1 on chr5 is the most clinically relevant."
+    },
+    "PMS2": {
+      "pseudogenes": ["PMS2CL"],
+      "chromosome": "chr7",
+      "detection_strategy": "vaf_mismatch",
+      "confidence": "high",
+      "notes": "PMS2CL on chr7 is a cross-chromosomal processed pseudogene. Major clinical pitfall in Lynch syndrome testing."
+    },
+    "CFC1": {
+      "pseudogenes": ["CFC1B"],
+      "chromosome": "chr2",
+      "detection_strategy": "vaf_mismatch",
+      "confidence": "high",
+      "notes": "Processed pseudogene. Congenital heart disease gene. CFC1B can cause false heterozygous calls."
+    },
+    "SMN1": {
+      "pseudogenes": ["SMN2"],
+      "chromosome": "chr5",
+      "detection_strategy": "sequence_homology",
+      "confidence": "high",
+      "notes": "SMN2 is a functional backup copy with >99.9% homology. Not a pseudogene but causes frequent misalignment. Special handling required."
+    },
+    "CYP2D6": {
+      "pseudogenes": ["CYP2D7"],
+      "chromosome": "chr22",
+      "detection_strategy": "sequence_homology",
+      "confidence": "high",
+      "notes": "CYP2D7 is a non-functional pseudogene with high homology. Major source of pharmacogenomic false calls."
+    },
+    "HBA1": {
+      "pseudogenes": ["HBA2"],
+      "chromosome": "chr16",
+      "detection_strategy": "sequence_homology",
+      "confidence": "high",
+      "notes": "HBA1 and HBA2 are both functional but share >95% homology. Variants are often misassigned between the two copies."
+    },
+    "HBA2": {
+      "pseudogenes": ["HBA1"],
+      "chromosome": "chr16",
+      "detection_strategy": "sequence_homology",
+      "confidence": "high",
+      "notes": "Bidirectional misassignment with HBA1 due to high homology."
+    },
+    "HBB": {
+      "pseudogenes": ["HBD"],
+      "chromosome": "chr11",
+      "detection_strategy": "sequence_homology",
+      "confidence": "medium",
+      "notes": "HBD (delta-hemoglobin) is functional but shares significant homology with HBB. Can cause variant misassignment."
+    },
+    "AR": {
+      "pseudogenes": [],
+      "chromosome": "chrX",
+      "detection_strategy": "sequence_homology",
+      "confidence": "medium",
+      "notes": "AR-V7 is a splice variant not a pseudogene. No processed pseudogene known, but homologous regions exist."
+    },
+    "DMD": {
+      "pseudogenes": ["DMDP1"],
+      "chromosome": "chrX",
+      "detection_strategy": "sequence_homology",
+      "confidence": "medium",
+      "notes": "DMD has multiple pseudogene-like regions due to its large size. Caution advised for exonic variants."
+    },
+    "BRCA1": {
+      "pseudogenes": [],
+      "chromosome": "chr17",
+      "detection_strategy": "vaf_mismatch",
+      "confidence": "medium",
+      "notes": "No major processed pseudogene, but pseudogene-like regions on chr17 can cause artifacts. VAF checking recommended."
+    },
+    "BRCA2": {
+      "pseudogenes": [],
+      "chromosome": "chr13",
+      "detection_strategy": "vaf_mismatch",
+      "confidence": "medium",
+      "notes": "No major processed pseudogene. Rare alignment artifacts from homologous regions."
+    },
+    "CFTR": {
+      "pseudogenes": [],
+      "chromosome": "chr7",
+      "detection_strategy": "vaf_mismatch",
+      "confidence": "medium",
+      "notes": "No major processed pseudogene. Standard VAF checks apply."
+    },
+    "COL3A1": {
+      "pseudogenes": [],
+      "chromosome": "chr2",
+      "detection_strategy": "vaf_mismatch",
+      "confidence": "medium",
+      "notes": "No confirmed processed pseudogene. VAF-based screening."
+    },
+    "F8": {
+      "pseudogenes": ["F8A1"],
+      "chromosome": "chrX",
+      "detection_strategy": "sequence_homology",
+      "confidence": "high",
+      "notes": "F8A1 is a processed pseudogene. Known source of false positives in hemophilia A testing."
+    },
+    "F9": {
+      "pseudogenes": [],
+      "chromosome": "chrX",
+      "detection_strategy": "vaf_mismatch",
+      "confidence": "medium",
+      "notes": "No major processed pseudogene. Standard VAF checks."
+    },
+    "LDLR": {
+      "pseudogenes": [],
+      "chromosome": "chr19",
+      "detection_strategy": "vaf_mismatch",
+      "confidence": "medium",
+      "notes": "No confirmed processed pseudogene. VAF-based screening."
+    },
+    "PAH": {
+      "pseudogenes": [],
+      "chromosome": "chr12",
+      "detection_strategy": "vaf_mismatch",
+      "confidence": "medium",
+      "notes": "No confirmed processed pseudogene. VAF-based screening."
+    },
+    "PTEN": {
+      "pseudogenes": ["PTENP1"],
+      "chromosome": "chr10",
+      "detection_strategy": "vaf_mismatch",
+      "confidence": "high",
+      "notes": "PTENP1 is a well-characterized processed pseudogene. Can cause false positive LOF calls."
+    },
+    "RB1": {
+      "pseudogenes": [],
+      "chromosome": "chr13",
+      "detection_strategy": "vaf_mismatch",
+      "confidence": "medium",
+      "notes": "No confirmed processed pseudogene. VAF-based screening."
+    },
+    "TSC1": {
+      "pseudogenes": [],
+      "chromosome": "chr9",
+      "detection_strategy": "vaf_mismatch",
+      "confidence": "medium",
+      "notes": "No confirmed processed pseudogene. VAF-based screening."
+    },
+    "TSC2": {
+      "pseudogenes": [],
+      "chromosome": "chr16",
+      "detection_strategy": "vaf_mismatch",
+      "confidence": "medium",
+      "notes": "No confirmed processed pseudogene. VAF-based screening."
+    },
+    "VHL": {
+      "pseudogenes": [],
+      "chromosome": "chr3",
+      "detection_strategy": "vaf_mismatch",
+      "confidence": "medium",
+      "notes": "No confirmed processed pseudogene. VAF-based screening."
+    },
+    "WT1": {
+      "pseudogenes": [],
+      "chromosome": "chr11",
+      "detection_strategy": "vaf_mismatch",
+      "confidence": "medium",
+      "notes": "No confirmed processed pseudogene. VAF-based screening."
+    },
+    "ATM": {
+      "pseudogenes": [],
+      "chromosome": "chr11",
+      "detection_strategy": "vaf_mismatch",
+      "confidence": "medium",
+      "notes": "No confirmed processed pseudogene. Large gene, alignment artifacts possible."
+    },
+    "MSH2": {
+      "pseudogenes": ["MSH2P1"],
+      "chromosome": "chr2",
+      "detection_strategy": "sequence_homology",
+      "confidence": "high",
+      "notes": "MSH2 has pseudogene-related artifacts. Careful validation needed for Lynch syndrome testing."
+    },
+    "MLH1": {
+      "pseudogenes": ["MLH1P1"],
+      "chromosome": "chr3",
+      "detection_strategy": "sequence_homology",
+      "confidence": "high",
+      "notes": "MLH1 pseudogene on chr3. Known source of false positives in Lynch testing."
+    },
+    "MSH6": {
+      "pseudogenes": [],
+      "chromosome": "chr2",
+      "detection_strategy": "vaf_mismatch",
+      "confidence": "medium",
+      "notes": "No confirmed processed pseudogene. VAF-based screening."
+    },
+    "PMS1": {
+      "pseudogenes": [],
+      "chromosome": "chr2",
+      "detection_strategy": "vaf_mismatch",
+      "confidence": "medium",
+      "notes": "No confirmed processed pseudogene. VAF-based screening."
+    },
+    "STK11": {
+      "pseudogenes": [],
+      "chromosome": "chr19",
+      "detection_strategy": "vaf_mismatch",
+      "confidence": "medium",
+      "notes": "No confirmed processed pseudogene. VAF-based screening."
+    },
+    "CDH1": {
+      "pseudogenes": [],
+      "chromosome": "chr16",
+      "detection_strategy": "vaf_mismatch",
+      "confidence": "medium",
+      "notes": "No confirmed processed pseudogene. VAF-based screening."
+    },
+    "CDK4": {
+      "pseudogenes": [],
+      "chromosome": "chr12",
+      "detection_strategy": "vaf_mismatch",
+      "confidence": "medium",
+      "notes": "No confirmed processed pseudogene. VAF-based screening."
+    },
+    "TP53": {
+      "pseudogenes": [],
+      "chromosome": "chr17",
+      "detection_strategy": "vaf_mismatch",
+      "confidence": "medium",
+      "notes": "No processed pseudogene. Very rare alignment artifacts from homologous regions."
+    },
+    "APC": {
+      "pseudogenes": [],
+      "chromosome": "chr5",
+      "detection_strategy": "vaf_mismatch",
+      "confidence": "medium",
+      "notes": "No confirmed processed pseudogene. VAF-based screening."
+    },
+    "MEN1": {
+      "pseudogenes": [],
+      "chromosome": "chr11",
+      "detection_strategy": "vaf_mismatch",
+      "confidence": "medium",
+      "notes": "No confirmed processed pseudogene. VAF-based screening."
+    },
+    "NF1": {
+      "pseudogenes": [],
+      "chromosome": "chr17",
+      "detection_strategy": "vaf_mismatch",
+      "confidence": "medium",
+      "notes": "No confirmed processed pseudogene. Large gene, alignment artifacts possible."
+    },
+    "NF2": {
+      "pseudogenes": [],
+      "chromosome": "chr22",
+      "detection_strategy": "vaf_mismatch",
+      "confidence": "medium",
+      "notes": "No confirmed processed pseudogene. VAF-based screening."
+    },
+    "SDHA": {
+      "pseudogenes": ["SDHAP1", "SDHAP2"],
+      "chromosome": "chr5",
+      "detection_strategy": "sequence_homology",
+      "confidence": "high",
+      "notes": "SDHAP1 and SDHAP2 are processed pseudogenes of SDHA (not SDHB/C/D). Major pitfall in paraganglioma testing."
+    },
+    "POLG": {
+      "pseudogenes": [],
+      "chromosome": "chr15",
+      "detection_strategy": "vaf_mismatch",
+      "confidence": "medium",
+      "notes": "No confirmed processed pseudogene. VAF-based screening."
+    },
+    "ACADM": {
+      "pseudogenes": [],
+      "chromosome": "chr1",
+      "detection_strategy": "vaf_mismatch",
+      "confidence": "medium",
+      "notes": "No confirmed processed pseudogene. VAF-based screening."
+    },
+    "ACADVL": {
+      "pseudogenes": [],
+      "chromosome": "chr17",
+      "detection_strategy": "vaf_mismatch",
+      "confidence": "medium",
+      "notes": "No confirmed processed pseudogene. VAF-based screening."
+    },
+    "CPT1A": {
+      "pseudogenes": [],
+      "chromosome": "chr11",
+      "detection_strategy": "vaf_mismatch",
+      "confidence": "medium",
+      "notes": "No confirmed processed pseudogene. VAF-based screening."
+    },
+    "SLC25A13": {
+      "pseudogenes": [],
+      "chromosome": "chr7",
+      "detection_strategy": "vaf_mismatch",
+      "confidence": "medium",
+      "notes": "No confirmed processed pseudogene. VAF-based screening."
+    },
+    "SLC22A5": {
+      "pseudogenes": ["SLC22A5P1"],
+      "chromosome": "chr5",
+      "detection_strategy": "sequence_homology",
+      "confidence": "high",
+      "notes": "SLC22A5 has known pseudogene-related artifacts in carnitine deficiency testing."
+    },
+    "FKRP": {
+      "pseudogenes": [],
+      "chromosome": "chr19",
+      "detection_strategy": "vaf_mismatch",
+      "confidence": "medium",
+      "notes": "No confirmed processed pseudogene. VAF-based screening."
+    },
+    "FKTN": {
+      "pseudogenes": [],
+      "chromosome": "chr9",
+      "detection_strategy": "vaf_mismatch",
+      "confidence": "medium",
+      "notes": "No confirmed processed pseudogene. VAF-based screening."
+    },
+    "POMGNT1": {
+      "pseudogenes": [],
+      "chromosome": "chr1",
+      "detection_strategy": "vaf_mismatch",
+      "confidence": "medium",
+      "notes": "No confirmed processed pseudogene. VAF-based screening."
+    },
+    "POMT1": {
+      "pseudogenes": [],
+      "chromosome": "chr9",
+      "detection_strategy": "vaf_mismatch",
+      "confidence": "medium",
+      "notes": "No confirmed processed pseudogene. VAF-based screening."
+    },
+    "GBA": {
+      "pseudogenes": ["GBAP1"],
+      "chromosome": "chr1",
+      "detection_strategy": "vaf_mismatch",
+      "confidence": "high",
+      "notes": "GBAP1 on chr1 is a processed pseudogene with high homology. Major source of false positives in Gaucher disease testing."
+    },
+    "SETBP1": {
+      "pseudogenes": [],
+      "chromosome": "chr18",
+      "detection_strategy": "vaf_mismatch",
+      "confidence": "medium",
+      "notes": "No confirmed processed pseudogene. VAF-based screening. SETBP1 mutations are in DGRA Tier 1 as homozygous LOF."
+    }
+  }
+}

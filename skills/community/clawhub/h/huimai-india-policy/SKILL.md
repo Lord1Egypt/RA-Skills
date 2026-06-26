@@ -1,35 +1,62 @@
 ---
-name: "Policy India"
-description: "印度BIS认证、DGFT进出口政策、GST税率一站式查询。印度市场法规变化快，这个Skill帮你追。"
-category: "other"
-source: "ClawHub"
-tags: [china, huimai, india, policy]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/huimai-india-policy"
-sourceUrl: "https://clawhub.ai/skills/huimai-india-policy"
+name: 🇮🇳 印度市场政策查询Skill
+description: 印度BIS认证、DGFT进出口政策、GST税率一站式查询。印度市场法规变化快，这个Skill帮你追。
+metadata: {"openclaw":{"emoji":"🇮🇳"}}
 ---
 
-# Policy India
+# 🇮🇳 印度市场政策查询Skill
 
-> 印度BIS认证、DGFT进出口政策、GST税率一站式查询。印度市场法规变化快，这个Skill帮你追。
+> 印度市场都知道——政策变得比天气还快。今天BIS新标准，明天DGFT改规定。这套Skill就是把波动剧烈的新兴市场政策串起来，让你随时能查。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/huimai-india-policy`
-- **Source URL:** [https://clawhub.ai/skills/huimai-india-policy](https://clawhub.ai/skills/huimai-india-policy)
+## 📜 更新日志
 
-## Overview
+### v2.0.0 (2026-05-03)
+- **大改版**：新增印度BIS强制认证目录实时查询
+- 新增：GST税率分类及HSN编码自动匹配
+- 新增：PLI生产挂钩激励计划适用产品查询
+- 优化：支持印地语关键词辅助识别（部分）
 
+### v1.0.0 (2026-04-24)
+- 初版发布
 
-## Installation
-To install this skill, run the following command in your terminal:
+## 👤 为什么做这个
+
+印度市场的特点是——机会大，变数也大。BIS认证目录下午发的通知，上午可能还是另一个版本。之前有同行做电子元器件出口，没赶上一个BIS标准更新，整柜货在孟买港扣着重新认证，亏了不少。这个Skill的初衷就是让自己少踩这种坑。
+
+## 典型用法
+
+```
+你: "电子产品出口印度要BIS认证吗"
+我: 产品归类 → 是否在强制目录 → 认证流程(ISI/CRS) → 境外工厂审核要求
+
+你: "印度GST税率查询 HS 8471"
+我: HSN分类 → GST税率(5%/12%/18%/28%) → ITC抵扣情况 → 反向征收GST判断
+```
+
+## 👔 适用人群
+- **对印出口企业**：清关资料预审
+- **制造企业**：PLI补贴政策分析
+- **市场研究员**：跟踪监管政策变化
+
+## 🔧 校准框架
+本Skill搭载惠迈校准框架v1.0。首次加载自动执行快速校准。
+- **温情模式（默认）**：先给结论再附数据，风险提示+应对策略
+- **专业模式（可选）**：直出数据，适合熟手
+
+## 💡 使用小贴士
+- BIS强制目录变更时有更新，月底查一次最新版最稳
+- 印度GST反向征收情况复杂，查完税率建议再确认"是否反向征收"
+- PLI计划有申请窗口期，记得查截止时间
+
+## ⚠️ 免责与已知限制
+- 印度各邦税率和执行标准存在差异
+- BIS认证周期6-8个月，参考值而非承诺
+- PLI政策细节以DPITT官方通知为准
+
+## 📬 联系与反馈
+- **邮箱**: yezhaowang888@icloud.com
+
+## 安装
 ```bash
-hermes skills install clawhub/huimai-india-policy
+clawhub install policy-india
 ```

@@ -1,0 +1,76 @@
+# hearth — example device configuration
+#
+# Copy this file to ~/.hearth/devices.yaml and customise for your homelab.
+# NEVER commit your real devices.yaml to a public repository — it contains
+# real IPs, hostnames, and references to your auth setup.
+#
+# Documentation block IPs (192.0.2.0/24) used throughout — replace with your own.
+#
+# This example shows the SCHEMA — the basic shape of every device entry.
+# It deliberately omits app-probe (apps:) examples because those are best
+# explained in context, with full output expectations, in the per-archetype
+# guides under examples/archetypes/:
+#
+#   - examples/archetypes/linux-systemd.md       — the default for most servers
+#   - examples/archetypes/linux-nosystemd-chroot.md — Kali NetHunter, Termux
+#   - examples/archetypes/raspberry-pi.md        — Pi Zero / Pi 4 / Pi 5
+#   - examples/archetypes/windows-http-only.md   — Windows hosts, no SSH
+#   - examples/archetypes/slurm-cluster.md       — head + compute nodes
+#   - examples/archetypes/magento-server.md      — Apache + MariaDB + OpenSearch
+#
+# Open the matching archetype, copy its YAML block into your devices.yaml,
+# and replace the placeholder address / user / env-var-name with your real ones.
+
+# ──────────────────────────────────────────────────────────────────────────
+# DEFAULTS — applied to every device unless overridden
+# ──────────────────────────────────────────────────────────────────────────
+defaults:
+  ssh_connect_timeout: 4    # seconds — bump to 8+ for mobile/Wi-Fi devices
+  device_timeout: 18        # hard upper bound per device
+  ping_count: 1
+  ping_timeout: 2
+
+# ──────────────────────────────────────────────────────────────────────────
+# DEVICES — minimal schema examples (one per auth type)
+# ──────────────────────────────────────────────────────────────────────────
+# Each entry below shows the minimum required fields for one auth mode.
+# Add `services:` and `apps:` per the archetype guides.
+
+devices:
+
+  # ─── auth: local ────────── runs on the bridgehead itself, no SSH
+  - name: main-server
+    address: 192.0.2.10
+    auth: local
+    services: [ssh, nginx, cron]
+
+  # ─── auth: ssh-pass ─────── password-based SSH
+  # Set with: export HEARTH_PASS_FILESERVER='your-password'
+  - name: fileserver
+    address: 192.0.2.20
+    auth: ssh-pass
+    user: admin
+    password_env: HEARTH_PASS_FILESERVER
+    services: [ssh, nginx, smbd, nmbd, nfs-mountd]
+
+  # ─── auth: ssh-key ──────── key-based SSH
+  - name: homeassistant
+    address: 192.0.2.30
+    auth: ssh-key
+    user: admin
+    key_path: ~/.ssh/id_ed25519_homeassistant
+    services: [ssh, docker, hassio-supervisor, nginx, tailscaled]
+
+  # ─── auth: http-only ────── Windows host, no SSH access
+  # See examples/archetypes/windows-http-only.md for app probe examples.
+  - name: workstation
+    address: 192.0.2.80
+    auth: http-only
+
+# ──────────────────────────────────────────────────────────────────────────
+# OPTIONAL: groups for partial sweeps
+# ──────────────────────────────────────────────────────────────────────────
+# Run `./scripts/sweep.sh --group web` to check just the named devices.
+groups:
+  web: [main-server, fileserver]
+  smart-home: [homeassistant, workstation]

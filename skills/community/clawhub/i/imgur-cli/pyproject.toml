@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "imgur-cli"
+version = "0.1.0"
+description = "Imgur API CLI — anonymous or OAuth uploads, image/album management, JSON output"
+readme = "README.md"
+authors = [{ name = "Chloe Park" }]
+license = { text = "MIT" }
+requires-python = ">=3.8"
+dependencies = ["requests>=2.28.0"]
+
+[project.scripts]
+imgur-cli = "imgur_cli.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]

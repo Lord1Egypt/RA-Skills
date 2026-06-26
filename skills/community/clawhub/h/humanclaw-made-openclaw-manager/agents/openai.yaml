@@ -1,0 +1,3 @@
+display_name: OpenClaw Manager
+short_description: Local shadow-first control plane for OpenClaw.
+default_prompt: Observe threads as shadows, promote the right ones into managed sessions, checkpoint work, manage attention, and create local snapshots and capability reports without uploading raw chat transcripts.

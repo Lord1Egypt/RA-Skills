@@ -1,0 +1,122 @@
+{
+  "_comment": "三个标准模板的规范化 schema。所有脚本（classify / extract / fill / build_clean_templates）都以此为单一事实来源。新增模板或调整列时只改这里。role 含义: identity=标识列(谁/什么), scalar=非日期的数值/文本度量列, date_region=横向日期数量区(动态按数据日期生成), summary=汇总列(合计等), remark=备注/说明列。aliases 用于把客户文件五花八门的表头模糊匹配到规范列。",
+  "version": "1.0.0",
+  "excel_epoch": "1899-12-30",
+  "templates": [
+    {
+      "id": "demand_schedule",
+      "display_name": "客户需求排产表",
+      "output_name_pattern": "客户需求排产表_{date}.xlsx",
+      "source_template_file": "排产需求表20260429初稿.xlsx",
+      "title": "客户需求排产表",
+      "title_note": "CS 综合考虑库存、在产、客户需求后填报；数量相对上一版有变化的单元格涂红并加批注说明。",
+      "header_row": 1,
+      "data_start_row": 2,
+      "sheet_name": "客户需求排产",
+      "has_totals_row": true,
+      "diff_key": ["1088号", "客户料号"],
+      "columns": [
+        {"canonical": "序号", "role": "identity", "aliases": ["序号", "No", "编号", "行号"], "auto_index": true},
+        {"canonical": "生产工厂", "role": "identity", "aliases": ["生产工厂", "工厂", "经营体", "园区", "互联工厂", "Plant", "生产基地", "基地"]},
+        {"canonical": "CS", "role": "identity", "aliases": ["CS", "客服", "跟单", "计划员"]},
+        {"canonical": "客户", "role": "identity", "aliases": ["客户", "客户名称", "Customer", "客户简称"]},
+        {"canonical": "客户料号", "role": "identity", "aliases": ["客户料号", "客户编码", "客户物料号", "模块编码", "ModuleCode", "整机编码", "客户号"]},
+        {"canonical": "1088号", "role": "identity", "aliases": ["1088号", "1088编码", "物料号", "物料编码", "物料", "成品编码", "行标签", "成品物料号"]},
+        {"canonical": "规格型号", "role": "identity", "aliases": ["规格型号", "物料描述", "物料名称", "描述", "物料组", "Project", "项目", "外机型号", "产品描述", "型号"]},
+        {"canonical": "已下达", "role": "scalar", "aliases": ["已下达", "已下达数量", "下达"]},
+        {"canonical": "未下达", "role": "scalar", "aliases": ["未下达", "未下达数量"]},
+        {"canonical": "__DATE_REGION__", "role": "date_region", "group_by": "iso_week", "week_label_prefix": "W", "subtotal": "sum"},
+        {"canonical": "合计", "role": "summary", "formula": "row_sum_dates", "aliases": ["合计", "总计", "Total"]},
+        {"canonical": "CS备注", "role": "remark", "aliases": ["CS备注", "备注", "Remark", "说明", "答复"]},
+        {"canonical": "定稿排产", "role": "remark", "aliases": ["定稿排产", "定稿", "排产"]},
+        {"canonical": "拉料明细", "role": "remark", "aliases": ["拉料明细", "拉料"]},
+        {"canonical": "差异数量", "role": "remark", "aliases": ["差异数量", "差异"]}
+      ],
+      "classify_keywords": {
+        "strong": ["横向表", "需排产", "真单", "预排", "滚动计划", "T+2", "周生产计划", "客户料号", "模块编码", "整机编码", "排产需求", "交付", "预报", "Forecast"],
+        "weak": ["客户", "工厂", "物料号", "规格型号", "周一", "周二", "园区", "互联工厂"],
+        "negative": ["整机工单号", "新系统工单号", "UPH", "返工", "配料明细", "代理库存", "迷你图"]
+      }
+    },
+    {
+      "id": "plan_tracking",
+      "display_name": "计划跟踪跟单表",
+      "output_name_pattern": "计划跟踪跟单表_{date}.xlsx",
+      "source_template_file": "计划跟踪--跟单个人表.xlsx",
+      "title": "计划跟踪跟单表",
+      "title_note": "按成品料号跟踪库存、交付、欠料与月度预测。",
+      "header_row": 1,
+      "data_start_row": 2,
+      "sheet_name": "计划跟踪",
+      "has_totals_row": false,
+      "diff_key": ["1088号", "客户号"],
+      "columns": [
+        {"canonical": "1088号", "role": "identity", "aliases": ["1088号", "1088编码", "物料号", "物料编码", "成品编码"]},
+        {"canonical": "客户", "role": "identity", "aliases": ["客户", "客户名称", "Customer"]},
+        {"canonical": "客户号", "role": "identity", "aliases": ["客户号", "客户料号", "客户编码", "客户物料号"]},
+        {"canonical": "描述", "role": "identity", "aliases": ["描述", "规格型号", "物料描述", "物料名称", "型号"]},
+        {"canonical": "新增日期", "role": "scalar", "aliases": ["新增日期", "新增", "新品日期"]},
+        {"canonical": "新品状态", "role": "scalar", "aliases": ["新品状态", "状态"]},
+        {"canonical": "新品安排", "role": "scalar", "aliases": ["新品安排", "安排"]},
+        {"canonical": "备注", "role": "remark", "aliases": ["备注", "Remark", "说明"]},
+        {"canonical": "代理库存", "role": "scalar", "aliases": ["代理库存", "代理"]},
+        {"canonical": "工厂库存", "role": "scalar", "aliases": ["工厂库存", "工厂", "厂内库存"]},
+        {"canonical": "库存合计", "role": "scalar", "aliases": ["库存合计", "库存", "合计库存", "期初"]},
+        {"canonical": "月计划", "role": "scalar", "aliases": ["月计划", "本月计划"]},
+        {"canonical": "已交", "role": "scalar", "aliases": ["已交", "月已交", "已交付"]},
+        {"canonical": "未交", "role": "scalar", "aliases": ["未交", "月未交", "未交付"]},
+        {"canonical": "结余", "role": "scalar", "aliases": ["结余", "剩余", "月结余"]},
+        {"canonical": "在制", "role": "scalar", "aliases": ["在制", "在产", "在制品"]},
+        {"canonical": "总结余", "role": "scalar", "aliases": ["总结余", "月总结余"]},
+        {"canonical": "欠料提示", "role": "remark", "aliases": ["欠料提示", "欠料日提示", "欠料"]},
+        {"canonical": "首天欠料数量", "role": "scalar", "aliases": ["首天欠料数量", "首天欠料", "欠料数量"]},
+        {"canonical": "6月预测", "role": "scalar", "aliases": ["6月预测", "下月预测", "次月预测"]},
+        {"canonical": "7月预测", "role": "scalar", "aliases": ["7月预测", "次次月预测"]},
+        {"canonical": "__DATE_REGION__", "role": "date_region", "group_by": "day", "header_format": "M月D日", "subtotal": "none"}
+      ],
+      "classify_keywords": {
+        "strong": ["代理库存", "工厂库存", "库存合计", "迷你图", "欠料日提示", "首天欠料", "月计划", "总结余", "跟单", "计划跟踪"],
+        "weak": ["已交", "未交", "结余", "在制", "预测", "客户号", "新品状态"],
+        "negative": ["整机工单号", "新系统工单号", "UPH", "返工", "上线时间", "拼板数"]
+      }
+    },
+    {
+      "id": "dip_schedule",
+      "display_name": "工厂DIP排产计划表",
+      "output_name_pattern": "工厂DIP排产计划表_{date}.xlsx",
+      "source_template_file": "DIP计划-配料明细工厂计划排产表.xlsx",
+      "title": "青岛工厂DIP计划（QR-QW-PMC-019）",
+      "title_note": "工厂内部 DIP 工序排产；日期列按白班/夜班成对生成。",
+      "header_row": 1,
+      "data_start_row": 2,
+      "sheet_name": "DIP计划",
+      "has_totals_row": false,
+      "diff_key": ["整机工单号", "新系统工单号", "成品编码"],
+      "columns": [
+        {"canonical": "工序", "role": "identity", "aliases": ["工序", "线体", "工位"]},
+        {"canonical": "成品编码", "role": "identity", "aliases": ["成品编码", "物料编码", "物料号", "1088号", "成品物料号"]},
+        {"canonical": "整机工单号", "role": "identity", "aliases": ["整机工单号", "整机工单", "工单号", "工单"]},
+        {"canonical": "新系统工单号", "role": "identity", "aliases": ["新系统工单号", "新工单号", "订单"]},
+        {"canonical": "物料描述", "role": "identity", "aliases": ["物料描述", "物料名称", "描述", "规格型号", "型号"]},
+        {"canonical": "工单数量", "role": "scalar", "aliases": ["工单数量", "数量", "订单数量"]},
+        {"canonical": "剩余数量", "role": "scalar", "aliases": ["剩余数量", "剩余", "未完成数量"]},
+        {"canonical": "拼板数", "role": "scalar", "aliases": ["拼板数", "拼板"]},
+        {"canonical": "上线时间", "role": "scalar", "aliases": ["上线时间", "上线", "上线日期"]},
+        {"canonical": "UPH", "role": "scalar", "aliases": ["UPH", "产能", "小时产能"]},
+        {"canonical": "人力", "role": "scalar", "aliases": ["人力", "人数", "人员"]},
+        {"canonical": "__DATE_REGION__", "role": "date_region", "group_by": "day_shift", "shifts": ["白班", "夜班"], "subtotal": "none"},
+        {"canonical": "已排数量", "role": "summary", "formula": "row_sum_dates", "aliases": ["已排数量", "已排"]},
+        {"canonical": "未排数量", "role": "scalar", "aliases": ["未排数量", "未排"]},
+        {"canonical": "备注", "role": "remark", "aliases": ["备注", "Remark", "说明"]},
+        {"canonical": "定稿工单", "role": "remark", "aliases": ["定稿工单", "定稿"]},
+        {"canonical": "客户", "role": "identity", "aliases": ["客户", "客户名称"]},
+        {"canonical": "类型", "role": "scalar", "aliases": ["类型", "型号类型", "产品类型"]}
+      ],
+      "classify_keywords": {
+        "strong": ["整机工单号", "新系统工单号", "UPH", "拼板数", "上线时间", "定稿工单", "DIP", "工序", "开工线体", "生产时长", "返工工单", "配料明细"],
+        "weak": ["成品编码", "工单数量", "剩余数量", "人力", "线体", "白班", "夜班"],
+        "negative": ["代理库存", "迷你图", "横向表", "模块编码", "T+2"]
+      }
+    }
+  ]
+}

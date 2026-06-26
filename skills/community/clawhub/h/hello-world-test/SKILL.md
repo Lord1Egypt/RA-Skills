@@ -1,35 +1,20 @@
 ---
-name: "Hello World"
-description: "Use when the user asks for a hello, a greeting, says hi, or wants to test that the hello-world plugin is loaded."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/hello-world-test"
-sourceUrl: "https://clawhub.ai/skills/hello-world-test"
+name: hello_world
+description: Use when the user asks for a hello, a greeting, says hi, or wants to test that the hello-world plugin is loaded.
 ---
 
 # Hello World
 
-> Use when the user asks for a hello, a greeting, says hi, or wants to test that the hello-world plugin is loaded.
+A minimal demo skill paired with the `hello-world` OpenClaw plugin.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/hello-world-test`
-- **Source URL:** [https://clawhub.ai/skills/hello-world-test](https://clawhub.ai/skills/hello-world-test)
+## When to use
 
-## Overview
+Trigger when the user asks for a greeting, says "hello", "hi", "say hi to <name>", or asks to test the hello-world plugin.
 
+## How to use
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/hello-world-test
-```
+Call the `hello` tool registered by the `hello-world` plugin:
+
+- If the user mentions a name, pass it as the `name` parameter.
+- Otherwise omit `name` and let the tool default to "world".
+- Return the tool's text output directly without rephrasing.

@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900">
+  <rect width="1600" height="900" fill="#f8f5ed"/>
+  <pattern id="p" width="36" height="36" patternUnits="userSpaceOnUse"><circle cx="6" cy="6" r="4" fill="#ff5f00" opacity=".22"/></pattern>
+  <rect width="1600" height="900" fill="url(#p)"/>
+  <rect x="0" y="600" width="1600" height="300" fill="#111" opacity=".06"/>
+  <rect x="1020" y="120" width="340" height="340" fill="#ff5f00" opacity=".14"/>
+</svg>

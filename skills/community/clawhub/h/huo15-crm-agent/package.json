@@ -1,0 +1,58 @@
+{
+  "name": "@huo15/crm-agent",
+  "version": "0.2.1",
+  "description": "绿火 — 拓客 / 获客 / CRM 销售员智能体。行业领域包可插拔，v0.1 内置 finance_tax 财税领域包（代账 / 审计 / 税务筹划 / IPO 辅导）；本身不直连 Odoo，所有 CRM 写入动作由 @huo15/huo15-huihuoyun-odoo 执行（odoo_crm_create / odoo_crm_update / odoo_create_activity / odoo_message_post 等），二者解耦协同，与辉火云 Odoo19 企业版 CRM 一起工作。",
+  "type": "module",
+  "main": "index.ts",
+  "openclaw": {
+    "extensions": ["./index.ts"],
+    "build": {
+      "openclawVersion": "2026.4.10"
+    },
+    "compat": {
+      "pluginApi": ">=2026.2.24"
+    }
+  },
+  "keywords": [
+    "openclaw",
+    "plugin",
+    "huo15",
+    "lvhuo",
+    "绿火",
+    "crm",
+    "sales",
+    "lead-generation",
+    "sales-enablement",
+    "acquisition",
+    "finance",
+    "tax"
+  ],
+  "author": "jobzhao15",
+  "license": "MIT",
+  "peerDependencies": {
+    "openclaw": ">=2026.2.24"
+  },
+  "peerDependenciesMeta": {
+    "@huo15/huo15-huihuoyun-odoo": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "typescript": "^5.5.0"
+  },
+  "files": [
+    "index.ts",
+    "openclaw.plugin.json",
+    "src/**/*",
+    "SKILL.md",
+    "README.md",
+    "CHANGELOG.md"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://cnb.cool/huo15/marketing_department/huo15-crm-agent"
+  }
+}

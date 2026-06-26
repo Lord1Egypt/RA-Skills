@@ -1,0 +1,5 @@
+name: hilight-video-generate
+description: >-
+  电商视频生成技能（MCP 版）。通过 mcporter 连接远程 MCP server，
+  自动生成营销短视频。clawhub install 时自动注册 MCP 服务并提示
+  输入 API Key，后续使用无需重复配置。

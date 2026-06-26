@@ -1,0 +1,62 @@
+{
+  "id": "odoo",
+  "name": "火一五·辉火云企业套件插件",
+  "description": "自然语言操作辉火云企业套件，企业级全场景 ERP + 系统管理 + Studio 元编程 + 工具分级助手，204 个工具（含 odoo_help）覆盖销售/采购/库存/生产/会计/HR/项目/CRM/客服/知识/通知/智能/报表 13 业务域 + 系统级 + Studio 元编程；v1.23 默认权限反转（odoo_connect 默认按 sender_id 隔离 + 新 shared 参数 + 附件硬规则）；v1.22 sale/purchase 加 name+record_id+include_lines；v1.10 共享凭据；v1.11–v1.13 HR 三步走；v1.14 Analytics & Orchestration；v1.15 个人视图+CRM 智能+跨域桥+库存深化+多公司；v1.16 业务深化；v1.17 自动化与治理；v1.18 Studio 元编程；v1.19 工具分级 tier；v1.20 审批工作流+克隆+CSV+Mail+资源+报表订阅",
+  "version": "1.23.0",
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "odoo": {
+        "type": "object",
+        "description": "辉火云企业套件 连接配置",
+        "additionalProperties": false,
+        "properties": {
+          "url": {
+            "type": "string",
+            "description": "辉火云企业套件 系统地址，如 https://www.huo15.com"
+          },
+          "db": {
+            "type": "string",
+            "description": "数据库名称，如 huo15"
+          },
+          "username": {
+            "type": "string",
+            "description": "用户名（邮箱或登录名）"
+          },
+          "password": {
+            "type": "string",
+            "description": "密码"
+          }
+        },
+        "required": ["url", "db", "username", "password"]
+      },
+      "sync": {
+        "type": "object",
+        "description": "通知同步配置",
+        "additionalProperties": false,
+        "properties": {
+          "enabled": {
+            "type": "boolean",
+            "description": "是否启用后台通知同步",
+            "default": true
+          },
+          "intervalSeconds": {
+            "type": "number",
+            "description": "轮询间隔（秒），默认 30",
+            "default": 30
+          },
+          "channels": {
+            "type": "array",
+            "description": "需要同步的通知类型",
+            "items": {
+              "type": "string",
+              "enum": ["todo", "activity", "message", "email", "calendar"]
+            },
+            "default": ["todo", "activity", "message"]
+          }
+        }
+      }
+    }
+  }
+}

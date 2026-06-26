@@ -1,0 +1,34 @@
+{
+  "name": "heimaosearch",
+  "description": "活动策划方案、资源及案例搜索工具",
+  "inputs": [
+    {
+      "name": "account",
+      "type": "string",
+      "description": "黑猫会账号，没有需要前往黑猫会网站注册",
+      "required": true
+    },
+    {
+      "name": "open_api_key",
+      "type": "string",
+      "description": "黑猫会开放API Key",
+      "required": true
+    }
+  ],
+  "tools": [
+    {
+      "name": "search_heimao",
+      "description": "搜索活动策划、方案、资源及案例",
+      "method": "POST",
+      "url": "https://api.heimaohui.com/index/search/recommendOpenClaw",
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": {
+        "account": "{{account}}",
+        "open_api_key": "{{open_api_key}}",
+        "content": "{{input}}"
+      }
+    }
+  ]
+}

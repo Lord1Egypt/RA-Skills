@@ -1,0 +1,122 @@
+{
+  "name": "hotrank-hub",
+  "displayName": "HotRank Hub",
+  "version": "1.0.0",
+  "description": "聚合 47 个平台热榜数据的 API 服务。支持：微博热搜、知乎热榜、抖音热点、快手热榜、B站热门、百度热搜、百度贴吧、今日头条、网易新闻、澎湃新闻、参考消息、GitHub、GitHub趋势、HelloGitHub、掘金、CSDN、V2EX、Linux.do、Hacker News、IT之家、36氪、虎嗅、少数派、爱范儿、酷安、FreeBuf、雪球、华尔街见闻、金十数据、财联社、Steam、虎扑、豆瓣电影、英雄联盟、腾讯视频、小红书、微信读书、什么值得买、懂车帝、网易云音乐、QQ音乐、夸克热搜、历史上的今天、人人都是产品经理、知乎日报等 47 个平台的实时热搜数据。",
+  "author": {
+    "name": "HotRank Hub Team",
+    "email": "support@airouter.tech"
+  },
+  "license": "MIT",
+  "keywords": [
+    "hot-rank",
+    "news",
+    "api",
+    "weibo",
+    "zhihu",
+    "douyin",
+    "kuaishou",
+    "bilibili",
+    "baidu",
+    "toutiao",
+    "github",
+    "github-trending",
+    "hello-github",
+    "juejin",
+    "csdn",
+    "v2ex",
+    "linuxdo",
+    "hackernews",
+    "ithome",
+    "36kr",
+    "huxiu",
+    "sspai",
+    "ifanr",
+    "coolapk",
+    "freebuf",
+    "xueqiu",
+    "wallstreetcn",
+    "jin10",
+    "cls",
+    "steam",
+    "hupu",
+    "douban",
+    "lol",
+    "xiaohongshu",
+    "weread",
+    "smzdm",
+    "dongchedi",
+    "netease-music",
+    "qq-music",
+    "quark",
+    "history-today",
+    "woshipm",
+    "trending",
+    "social-media",
+    "aggregator",
+    "real-time"
+  ],
+  "category": "data-api",
+  "type": "api-wrapper",
+  "apiBaseUrl": "https://airouter.tech/api",
+  "sources": 47,
+  "capabilities": [
+    "获取实时热榜数据",
+    "支持47个平台",
+    "标准化JSON格式",
+    "5分钟自动更新"
+  ],
+  "platforms": {
+    "social": [
+      "weibo",
+      "zhihu",
+      "xiaohongshu",
+      "baidutieba"
+    ],
+    "video": [
+      "douyin",
+      "kuaishou",
+      "bilibili"
+    ],
+    "tech": [
+      "github",
+      "github-trending",
+      "juejin",
+      "csdn",
+      "v2ex"
+    ],
+    "finance": [
+      "xueqiu",
+      "wallstreetcn",
+      "jin10",
+      "cls"
+    ],
+    "entertainment": [
+      "steam",
+      "hupu",
+      "douban-movic"
+    ]
+  },
+  "endpoints": {
+    "getHotList": {
+      "method": "GET",
+      "path": "/api/{source_id}",
+      "description": "获取指定平台的热榜数据"
+    }
+  },
+  "documentation": {
+    "main": "SKILL.md",
+    "api": "api-reference.md",
+    "examples": "examples.md",
+    "sources": "sources.json",
+    "userGuide": "USER_GUIDE.md"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-org/hotrank-hub"
+  },
+  "homepage": "https://airouter.tech",
+  "bugs": {
+    "email": "support@airouter.tech"
+  }
+}

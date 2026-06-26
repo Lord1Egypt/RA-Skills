@@ -1,0 +1,48 @@
+{
+  "comfyui_url": "http://localhost:8188",
+  "poll_interval_seconds": 3,
+  "output_dir": "media/comfyui",
+  "image": {
+    "t2i": {
+      "z-image": {
+        "workflow_path": "workflows/z-image_t2i_api.json",
+        "timeout_seconds": 100,
+        "default_width": 1280,
+        "default_height": 720,
+        "default_steps": 9,
+        "output_subdir": "images"
+      },
+      "sd35": {
+        "workflow_path": "workflows/sd3.5-med_t2i_api.json",
+        "timeout_seconds": 100,
+        "default_width": 1024,
+        "default_height": 1024,
+        "default_steps": 20,
+        "default_cfg": 4.01,
+        "output_subdir": "images"
+      }
+    },
+    "i2i": {
+      "qwen_imageedit": {
+        "workflow_path": "workflows/qwen_image-edit_api.json",
+        "timeout_seconds": 600,
+        "default_steps": 4,
+        "output_subdir": "images"
+      }
+    }
+  },
+  "video": {
+    "wan2.2_i2v": {
+      "workflow_path": "workflows/wan2.2_i2v_api.json",
+      "timeout_seconds": 1000,
+      "default_width": 528,
+      "default_height": 768,
+      "default_length": 81,
+      "default_steps": 4,
+      "default_cfg": 4.5,
+      "frame_rate": 16,
+      "output_subdir": "video",
+      "keep_interpolated_only": true
+    }
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "name": "@humanlikememory/human-like-mem",
+  "version": "1.0.1",
+  "description": "Long-term memory plugin for OpenClaw with automatic recall, storage, and agent-accessible memory tools.",
+  "main": "index.js",
+  "type": "module",
+  "files": [
+    "index.js",
+    "plugin.js",
+    "openclaw.plugin.json",
+    "README.md",
+    "README_ZH.md",
+    "SECURITY.md",
+    "PRIVACY.md",
+    "LICENSE"
+  ],
+  "openclaw": {
+    "extensions": [
+      "./index.js"
+    ]
+  },
+  "scripts": {
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
+    "lint": "eslint .",
+    "format": "prettier --write ."
+  },
+  "keywords": [
+    "openclaw",
+    "openclaw-plugin",
+    "plugin",
+    "memory",
+    "ai",
+    "long-term-memory",
+    "ai-social",
+    "agentic-memory"
+  ],
+  "author": "hanlaomo",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://gitlab.ttyuyin.com/personalization_group/human-like-mem-openclaw-plugin.git"
+  },
+  "bugs": {
+    "url": "https://gitlab.ttyuyin.com/personalization_group/human-like-mem-openclaw-plugin/-/issues"
+  },
+  "homepage": "https://gitlab.ttyuyin.com/personalization_group/human-like-mem-openclaw-plugin#readme",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.57.0",
+    "jest": "^29.7.0",
+    "prettier": "^3.2.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {}
+}

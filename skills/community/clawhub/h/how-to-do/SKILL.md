@@ -1,35 +1,514 @@
 ---
-name: "How To Do"
-description: "Practical guide to using OpenClaw effectively. Teaches step-by-step workflows, recommends skills based on your needs, solves common problems, and grows with..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/how-to-do"
-sourceUrl: "https://clawhub.ai/skills/how-to-do"
+name: how-to-do
+description: "Practical guide to using OpenClaw effectively. Teaches step-by-step workflows, recommends skills based on your needs, solves common problems, and grows with you. Use when you don't know where to start with OpenClaw, need help with a specific task, or want to optimize your usage patterns."
 ---
 
-# How To Do
+# How-To-Do: OpenClaw实用指南
 
-> Practical guide to using OpenClaw effectively. Teaches step-by-step workflows, recommends skills based on your needs, solves common problems, and grows with...
+你的OpenClaw使用教练 - 从零开始到高效精通。提供具体步骤、实用技巧、个性化推荐，解决"安装了但不会用"的普遍问题。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/how-to-do`
-- **Source URL:** [https://clawhub.ai/skills/how-to-do](https://clawhub.ai/skills/how-to-do)
+## 快速参考
 
-## Overview
+| 情景 | 操作 |
+|------|------|
+| 刚安装OpenClaw | 运行初始化向导，学习基本命令 |
+| 不知道装什么skill | 完成需求评估，获取个性化推荐 |
+| 想做具体任务 | 获取该任务的逐步指导 |
+| 遇到问题卡住 | 诊断问题，提供针对性解决方案 |
+| 想提升使用水平 | 获取进阶工作流建议 |
+| 定期检查进展 | 回顾进步，调整方向，设定新目标 |
 
+## 核心理念
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/how-to-do
+### 为什么需要这个skill
+大多数用户安装OpenClaw后：
+- 不知道从哪里开始
+- 安装了错误的或太多的skill
+- 只用了基础功能
+- 遇到问题就放弃
+- 错过了能帮助他们的高级功能
+
+这个指南通过提供：
+1. **具体步骤**：明确的、可操作的操作指南
+2. **个性化推荐**：根据你的实际需求推荐skill
+3. **问题解决**：遇到困难时的具体解决方案
+4. **渐进式学习**：从基础到进阶的成长路径
+5. **中文友好**：针对中文用户的使用习惯和场景
+
+## 用户成长路径
+
+### 阶段1：起步上手（第1-3天）
+**目标**：从安装到完成第一个实际任务
+
+#### 第1天：初始评估和基本设置
+```markdown
+## [评估-001] 初始需求评估
+
+**评估时间**：[日期]
+**OpenClaw经验**：0（第一次用）| 1（尝试过）| 2（会用基础）| 3（熟练使用）
+**主要使用场景**：[工作自动化 | 个人效率 | 开发 | 学习AI | 其他]
+**技术舒适度**：1-10分（1=新手，10=专家）
+**可用时间**：每周可用于学习/使用的小时数
+
+### 当前痛点
+1. [你希望OpenClaw解决什么问题？]
+2. [现在用的工具/流程有什么不爽的？]
+3. [开始使用最大的障碍是什么？]
+
+### 成功愿景
+"如果OpenClaw能完美为我工作，我将能..."
+1. 
+2. 
+3. 
 ```
+
+#### 第2天：核心skill安装和配置
+根据评估结果推荐：
+- **必备skill**：self-improving-agent, find-skills, summarize（始终推荐）
+- **场景skill**：根据主要使用场景推荐
+- **第一周计划**：每天15-30分钟的学习计划
+
+#### 第3天：完成第一个实际任务
+指导完成一个有意义的任务：
+- **示例**：总结一篇文章、创建会议记录、查看天气
+- **成功标准**："我真的用OpenClaw解决了实际问题"
+
+### 阶段2：技能构建（第1-4周）
+**目标**：建立个性化skill组合，学习核心工作流
+
+#### 每周skill引入计划
+- **第1周**：核心效率skill（基于评估）
+- **第2周**：高级自动化skill
+- **第3周**：专业领域skill
+- **第4周**：探索性skill
+
+#### 使用模式培养
+教授常见的OpenClaw使用模式：
+- **任务委托**：什么时候用哪个agent/功能
+- **skill组合**：多个skill如何协同工作
+- **效率模式**：节省时间的workflow
+- **故障排除**：出问题时怎么办
+
+### 阶段3：精通优化（第2-3个月）
+**目标**：达到专家级水平，定制个性化工作流
+
+#### 高级工作流设计
+- **多agent协作**：复杂任务的分解执行
+- **自定义skill开发**：什么时候以及如何创建自己的skill
+- **集成模式**：将OpenClaw与其他工具连接
+- **性能优化**：让workflow更快更好
+
+### 阶段4：指导贡献（第4个月+）
+**目标**：回馈社区，指导他人
+
+#### 社区参与
+- **skill推荐**：基于你的经验推荐
+- **模式分享**：记录成功的工作流
+- **问题帮助**：帮助其他用户解决问题
+- **开发反馈**：帮助改进OpenClaw
+
+## 实用任务指南
+
+### 常见任务的具体步骤
+
+#### 任务：总结一篇文章
+```
+步骤1：获取内容
+  - URL：使用web_fetch或browser工具
+  - 文件：使用read工具读取
+  - 文本：直接输入
+
+步骤2：选择总结方式
+  - 快速总结：使用summarize skill（自动）
+  - 详细总结：手动指定要点
+  - 结构化总结：使用模板（要点、引用、行动项）
+
+步骤3：执行和优化
+  - 运行总结
+  - 检查质量
+  - 根据需要调整参数
+  - 保存到合适位置
+
+步骤4：后续处理
+  - 添加到笔记/知识库
+  - 如果需要，分享给团队
+  - 安排后续跟进
+```
+
+#### 任务：自动化每日天气查看
+```
+步骤1：设置
+  - 安装weather skill
+  - 配置地点
+  - 设置喜欢的输出格式
+
+步骤2：自动化
+  - 创建定时检查（cron/提醒）
+  - 设计输出格式（简洁/详细）
+  - 选择发送方式（消息/通知/文件）
+
+步骤3：集成
+  - 连接到日历安排
+  - 如果需要，连接服装建议
+  - 如果有旅行，添加相关影响
+
+步骤4：优化
+  - 根据使用模式调整时间
+  - 添加严重天气提醒（暴雨、极端温度）
+  - 如需，扩展到多个地点
+```
+
+#### 任务：管理GitHub issues
+```
+步骤1：设置
+  - 安装github skill
+  - 配置认证
+  - 设置默认仓库
+
+步骤2：设计workflow
+  - 每日issue查看流程
+  - 分类和标签系统
+  - 分配和跟踪
+  - 进度监控
+
+步骤3：自动化
+  - 自动标签规则
+  - 模板回复
+  - 状态更新提醒
+  - PR链接自动化
+
+步骤4：报告
+  - 每周issue总结
+  - 团队表现指标
+  - 瓶颈识别
+  - 改进建议
+```
+
+### Skill组合模式
+
+#### 模式：研究 → 总结 → 分享
+```
+Skills: web_fetch + summarize + gog/slack
+用途：快速研究分发
+步骤：
+1. web_fetch收集信息
+2. summarize提取要点
+3. gog/slack分享给团队
+4. self-improving-agent记录成功模式
+```
+
+#### 模式：会议 → 笔记 → 任务
+```
+Skills: (audio_transcript) + summarize + todo/trello
+用途：会议生产力
+步骤：
+1. 录音/转录会议
+2. summarize提取决策/行动项
+3. todo/trello创建并分配任务
+4. Calendar安排跟进
+```
+
+#### 模式：代码 → 测试 → 部署 → 监控
+```
+Skills: github + testing + deployment + monitoring
+用途：开发workflow
+步骤：
+1. github代码管理
+2. testing质量保证
+3. deployment发布
+4. monitoring性能跟踪
+```
+
+## 个性化skill推荐
+
+### 根据使用场景推荐
+
+#### 工作自动化用户
+**优先级1（必备）**：
+- github - 代码/issue管理
+- gog - Google Workspace集成
+- slack/discord - 团队沟通
+- summarize - 会议/内容消化
+
+**优先级2（进阶）**：
+- trello/jira - 项目管理
+- calendar - 日程自动化
+- email - 邮箱管理
+- document-generation - 报告生成
+
+**优先级3（专业）**：
+- data-analysis - 数据工作
+- presentation - 幻灯片制作
+- research - 信息搜集
+- translation - 多语言支持
+
+#### 个人效率用户
+**优先级1（必备）**：
+- weather - 每日计划
+- reminders/todo - 任务管理
+- notes - 信息记录
+- summarize - 阅读优化
+
+**优先级2（进阶）**：
+- health/fitness - 健康追踪
+- finance - 财务管理
+- learning - 技能学习
+- entertainment - 娱乐推荐
+
+**优先级3（专业）**：
+- travel - 旅行规划
+- shopping - 购物研究
+- home-automation - 智能设备控制
+- creativity - 写作/创作协助
+
+#### 开发者用户
+**优先级1（必备）**：
+- github - 代码管理
+- terminal - 终端自动化
+- docker - 容器管理
+- testing - 代码测试
+
+**优先级2（进阶）**：
+- code-review - 代码审查
+- deployment - 部署自动化
+- monitoring - 系统监控
+- documentation - 文档生成
+
+**优先级3（专业）**：
+- security - 安全扫描
+- performance - 性能优化
+- architecture - 系统设计
+- mentorship - 代码教学
+
+#### AI/学习爱好者
+**优先级1（必备）**：
+- self-improving-agent - 学习优化
+- summarize - 内容消化
+- research - 信息搜集
+- teaching - 知识分享
+
+**优先级2（进阶）**：
+- model-comparison - AI工具比较
+- prompt-engineering - 提示词优化
+- data-analysis - 实验跟踪
+- visualization - 结果可视化
+
+**优先级3（专业）**：
+- experiment-tracker - 实验记录
+- paper-summarizer - 论文总结
+- tutorial-creator - 教程制作
+- community-engagement - 社区参与
+
+### 安装策略
+```
+第1周：3-5个核心skill（必备类）
+第2周：增加2-3个进阶skill
+第3周：增加1-2个专业skill
+第4周：回顾，移除不用的，优化组合
+每月：重新评估，根据使用情况更新
+```
+
+### Skill效果跟踪
+对每个安装的skill，跟踪：
+- **使用频率**：每周使用次数
+- **价值评分**：1-10分，有多大帮助
+- **学习曲线**：需要多久掌握
+- **集成度**：与其他skill的配合程度
+- **建议**：保留、替换还是移除
+
+## 问题诊断与解决
+
+### 常见问题及解决方案
+
+#### "OpenClaw启动不了"
+```
+1. 检查gateway状态：openclaw gateway status
+2. 验证安装：openclaw --version
+3. 查看日志：~/.openclaw/logs/
+4. 常见问题：
+   - 端口冲突：更改默认端口
+   - 权限问题：检查文件权限
+   - 依赖缺失：重新安装依赖
+5. 寻求帮助：Discord社区、GitHub issues
+```
+
+#### "Skill不工作"
+```
+1. 验证安装：clawhub list
+2. 查看文档：阅读SKILL.md
+3. 测试基础功能：简单命令测试
+4. 检查依赖：可能需要外部工具
+5. 更新skill：clawhub update [skill名称]
+6. 搜索已知问题：GitHub、社区论坛
+```
+
+#### "不知道用哪个skill"
+```
+1. 描述任务：你想做什么？
+2. 搜索skill：clawhub search [关键词]
+3. 查看推荐：基于你的评估结果
+4. 尝试替代：相似的skill可能更好用
+5. 从简单开始：先用基础skill，再加复杂度
+```
+
+#### "Skill太多，感觉混乱"
+```
+1. Skill审计：列出所有已安装，评分有用性
+2. 优先级排序：保留最常用的5-7个
+3. 卸载移除：删除不用或低价值的
+4. 专注掌握：先精通核心skill，再添加新的
+5. 计划添加：逐步添加新skill（每周1-2个）
+```
+
+### 自我诊断问卷
+```
+1. 你想做什么？（具体任务）
+2. 你已经尝试了什么？
+3. 实际发生 vs. 你期望发生？
+4. 你在用什么skill/工具？
+5. 有任何错误信息或异常行为吗？
+6. 什么时候开始工作/不工作的？
+```
+
+## 进展跟踪系统
+
+### 学习里程碑
+
+#### 初学者里程碑（0-30天）
+- [ ] 完成初始评估
+- [ ] 安装5+个必备skill
+- [ ] 执行第一个成功任务
+- [ ] 学习10+个基本命令
+- [ ] 设置workspace组织
+- [ ] 创建第一个自动化
+- [ ] 加入OpenClaw社区
+- [ ] 帮助一个其他用户
+
+#### 中级里程碑（30-90天）
+- [ ] 掌握15+个skill
+- [ ] 开发3+个自定义workflow
+- [ ] 自动化重复任务，每周节省1+小时
+- [ ] 贡献skill开发/反馈
+- [ ] 指导1+个新用户
+- [ ] 创建自定义skill或修改
+- [ ] 与2+个外部系统集成
+- [ ] 向他人展示OpenClaw用例
+
+#### 高级里程碑（90+天）
+- [ ] 教授OpenClaw工作坊/课程
+- [ ] 在ClawHub发布skill
+- [ ] 开发复杂多agent工作流
+- [ ] 贡献代码到OpenClaw生态
+- [ ] 撰写OpenClaw模式/经验
+- [ ] 使用OpenClaw构建业务/服务
+- [ ] 指导5+个用户达到中级水平
+- [ ] 在OpenClaw/社区活动演讲
+
+### 进展评估日志
+添加到`.learnings/openclaw-progress/进展评估.md`：
+
+```markdown
+## [进展-YYYYMMDD-001] 月度进展评估
+
+**日期**：2026-03-31
+**使用OpenClaw天数**：45
+**当前阶段**：技能构建（第3周）
+**总体进展**：6.5/10
+
+### Skill掌握程度（共安装15个）
+- **专家级**（8+/10）：github, summarize, weather（3个）
+- **熟练级**（6-7/10）：gog, todo, notes（3个）
+- **学习中**（4-5/10）：slack, calendar, research（3个）
+- **基础级**（1-3/10）：docker, testing, deployment, monitoring, analysis（6个）
+
+### 使用模式
+- **每日**：天气查看、笔记记录、快速总结
+- **每周**：GitHub审查、团队更新、学习session
+- **每月**：Skill评估、workflow优化
+
+### 节省时间成果
+- **估计**：每周通过自动化节省5小时
+- **最大收获**：会议笔记自动化（每周90分钟）
+- **下一个机会**：代码审查自动化（潜在每周2小时）
+
+### 挑战与解决方案
+1. **挑战**：Skill太多，有些没用
+   **解决方案**：月度skill审计，移除低价值skill
+2. **挑战**：复杂workflow令人畏惧
+   **解决方案**：分解为小步骤，记录成功模式
+3. **挑战**：记不住可用功能
+   **解决方案**：每周skill回顾，创建速查表
+
+### 下月目标
+1. 再掌握3个skill
+2. 自动化一个额外重复任务
+3. 贡献一个反馈/文档
+4. 帮助一个新用户开始
+
+### 本指南有效性评分
+- **指导质量**：8/10（有帮助，可以更主动）
+- **推荐准确性**：7/10（大部分skill有用，有些不准）
+- **学习支持**：9/10（好教程，清晰解释）
+- **总体价值**：8/10（显著加速学习）
+
+---
+```
+
+## 中文用户特别支持
+
+### 中文场景优化
+- **中文内容处理**：针对中文文章总结、翻译的特殊配置
+- **国内工具集成**：飞书、钉钉、微信等国内常用工具
+- **中文社区资源**：中文教程、社区、问题解答
+- **文化习惯考虑**：中国用户的工作和沟通习惯
+
+### 本地化skill推荐
+- **飞书/钉钉集成**：国内团队协作必备
+- **微信相关skill**：公众号管理、内容处理
+- **国内云服务**：阿里云、腾讯云集成
+- **中文学习资源**：中文课程、文档推荐
+
+## 开始使用
+
+### 新OpenClaw用户
+1. 安装本skill：`clawhub install how-to-do`
+2. 运行初始评估：按照第一次对话的提示
+3. 完成设置清单：逐步指导
+4. 开始第一周学习计划：每天15-30分钟session
+5. 安排每周检查：第一个月每7天一次
+
+### 现有OpenClaw用户
+1. 安装本skill：`clawhub install how-to-do`
+2. 完成当前状态评估：你现在在哪里？
+3. 识别差距：你缺少什么或遇到什么困难？
+4. 优化计划：改进当前使用模式
+5. 进阶路径：下一级OpenClaw精通
+
+### 作为指导者/帮助者
+1. 用这个结构来帮助其他人入门
+2. 参考常见模式和解决方案
+3. 如果帮助多人，跟踪多个用户进展
+4. 基于经验贡献改进
+5. 帮助为不同类型用户完善推荐
+
+## 持续改进
+
+### 学习循环
+```
+用户互动 → 模式识别 → 推荐优化 → 更好指导
+```
+
+### 社区反馈集成
+- **成功故事**：真实用户什么方法有效
+- **痛点**：用户最常在哪里卡住
+- **技能缺口**：缺少什么能力
+- **改进想法**：如何让指南更好
+
+### 版本更新
+- **每月**：小更新、bug修复、小改进
+- **每季度**：大更新、新功能、评估修订
+- **每半年**：全面审查、阶段/课程更新
+
+---
+
+**核心理念**：最强大的工具如果人们不知道如何使用也是无用的。通过提供结构化指导、个性化推荐和持续支持，我们将OpenClaw从"又一个AI工具"转变为真正的生产力倍增器和学习伙伴，与你一同成长。

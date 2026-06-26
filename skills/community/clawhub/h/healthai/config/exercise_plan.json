@@ -1,0 +1,56 @@
+{
+  "user_id": "ou_b11dbf19eb4f87414e38f4033c5a769d",
+  "health_issues": [
+    {"issue": "ALT偏高", "risk": "脂肪肝倾向"},
+    {"issue": "肩颈腰", "status": "不太好"}
+  ],
+  "constraints": [
+    "不能长时间剧烈运动",
+    "腰和肩颈不太好"
+  ],
+  "weekly_plan": {
+    "周一": {
+      "早上": {"运动": "八段锦", "时长": "30分钟", "目的": "养肝调理", "video": "https://www.bilibili.com/video/BV1gT4y1m7ec/"},
+      "下午": {"运动": "散步", "时长": "30分钟", "目的": "温和有氧"}
+    },
+    "周二": {
+      "早上": {"运动": "肩颈拉伸 + 太极", "时长": "30分钟", "目的": "肩颈舒缓", "video": "https://www.bilibili.com/video/BV1vu411e7fC/"},
+      "下午": {"运动": "慢走", "时长": "30分钟", "目的": "活血放松"}
+    },
+    "周三": {
+      "早上": {"运动": "八段锦", "时长": "30分钟", "目的": "养肝调理", "video": "https://www.bilibili.com/video/BV1gT4y1m7ec/"},
+      "下午": {"运动": "休息", "时长": "0分钟", "目的": "身体恢复"}
+    },
+    "周四": {
+      "早上": {"运动": "腰椎养护操", "时长": "30分钟", "目的": "腰椎保养", "video": "https://www.bilibili.com/video/BV1pV4y1C7eu/"},
+      "下午": {"运动": "散步", "时长": "30分钟", "目的": "温和有氧"}
+    },
+    "周五": {
+      "早上": {"运动": "太极 + 拉伸", "时长": "30分钟", "目的": "舒筋活络", "video": "https://www.bilibili.com/video/BV1iE411c7Ni/"},
+      "下午": {"运动": "骑行", "时长": "30分钟", "目的": "有氧锻炼"}
+    },
+    "周六": {
+      "早上": {"运动": "八段锦", "时长": "30分钟", "目的": "养肝调理", "video": "https://www.bilibili.com/video/BV1gT4y1m7ec/"},
+      "下午": {"运动": "徒步/爬山", "时长": "60分钟", "目的": "综合锻炼"}
+    },
+    "周日": {
+      "早上": {"运动": "全身拉伸", "时长": "30分钟", "目的": "放松恢复", "video": "https://www.bilibili.com/video/BV1n3411x7LG/"},
+      "下午": {"运动": "休息/散步", "时长": "30分钟", "目的": "轻松活动"}
+    }
+  },
+  "video_library": {
+    "八段锦": "https://www.bilibili.com/video/BV1gT4y1m7ec/",
+    "太极": "https://www.bilibili.com/video/BV1iE411c7Ni/",
+    "肩颈拉伸": "https://www.bilibili.com/video/BV1vu411e7fC/",
+    "腰椎养护": "https://www.bilibili.com/video/BV1pV4y1C7eu/",
+    "全身拉伸": "https://www.bilibili.com/video/BV1n3411x7LG/"
+  },
+  "schedule": {
+    "09:00": "当天运动计划 + 视频链接（早上推送）",
+    "18:00": "打卡提醒（晚间督促）",
+    "22:00": "睡觉提醒"
+  },
+  "record_doc": "飞书文档链接（待配置）",
+  "created_at": "2026-04-04",
+  "updated_at": "2026-04-04"
+}

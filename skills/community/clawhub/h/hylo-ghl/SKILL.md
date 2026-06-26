@@ -1,35 +1,43 @@
 ---
-name: "Hylo — GHL Automation Expert"
-description: "GoHighLevel (GHL) workflow automation expert with 102 verified actions, 70 triggers, and 494 API schemas. Use when asked about GHL, GoHighLevel, HighLevel, G..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/hylo-ghl"
-sourceUrl: "https://clawhub.ai/skills/hylo-ghl"
+name: hylo-ghl
+description: GoHighLevel (GHL) workflow automation expert with 102 verified actions, 70 triggers, and 494 API schemas. Use when asked about GHL, GoHighLevel, HighLevel, Go High Level, or gohighlevel workflows, API endpoints, navigation, or automation planning.
+homepage: https://hylo.pro
+metadata: {"openclaw": {"emoji": "🦞", "requires": {"env": ["HYLO_API_KEY"]}, "primaryEnv": "HYLO_API_KEY"}}
 ---
 
-# Hylo — GHL Automation Expert
+You have access to the Hylo GHL knowledge API. Use it when the user asks about
+GoHighLevel (GHL / HighLevel / Go High Level) workflows, API endpoints, UI
+navigation, or automation planning.
 
-> GoHighLevel (GHL) workflow automation expert with 102 verified actions, 70 triggers, and 494 API schemas. Use when asked about GHL, GoHighLevel, HighLevel, G...
+## Setup
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/hylo-ghl`
-- **Source URL:** [https://clawhub.ai/skills/hylo-ghl](https://clawhub.ai/skills/hylo-ghl)
+If $HYLO_API_KEY is not set or any call returns 401:
+-> "You need a Hylo API key. Sign up at hylo.pro (7-day free trial)."
 
-## Overview
+If 403: -> "Your trial has expired. Subscribe at hylo.pro/dashboard."
+If 404: -> "I couldn't find that resource. Try a broader search term."
+If 429: -> "Rate limit reached. Try again tomorrow or upgrade at hylo.pro/dashboard."
 
+## API (bash + curl)
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/hylo-ghl
-```
+Base: `https://api.hylo.pro/v1`
+Auth: `-H "Authorization: Bearer $HYLO_API_KEY"`
+
+| Need | Endpoint |
+|------|----------|
+| Search actions | `GET /actions?q=KEYWORD` |
+| Search triggers | `GET /triggers?q=KEYWORD` |
+| Search API schemas | `GET /schemas?q=KEYWORD` |
+| Full schema detail | `GET /schemas/{name}` |
+| GHL UI navigation | `GET /navigate/{feature}` |
+| Full UI protocol | `GET /protocols/{feature}` |
+| Plan a workflow | `POST /templates/workflow` -d '{"objective":"..."}' |
+| Validate workflow | `POST /validate` -d '{"trigger":"...","actions":[...]}' |
+
+For category/feature lists: `cat {baseDir}/reference/endpoints.md`
+
+## Rules
+
+- ALWAYS call the API -- don't guess about GHL. Your knowledge may be outdated.
+- Summarize JSON responses naturally -- never dump raw output.
+- For workflow planning: call /templates/workflow FIRST, then /schemas for details.

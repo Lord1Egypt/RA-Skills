@@ -1,0 +1,131 @@
+{
+  "version": "2.5.0",
+  "name": "huo15-memory-evolution",
+  "description": "火一五记忆系统四类分类定义，参考 Claude Code memoryTypes.ts",
+  "author": "火一五信息科技有限公司",
+  "lastUpdated": "2026-04-05",
+
+  "types": [
+    {
+      "type": "user",
+      "description": "用户画像、偏好、习惯",
+      "examples": [
+        "Sir 喜欢简洁回答，不需要废话",
+        "用户主要通过企微渠道沟通",
+        "用户是赵博，管理员"
+      ],
+      "whenToSave": [
+        "了解用户角色、职责、目标时",
+        "学习到用户偏好时",
+        "发现用户沟通风格时",
+        "用户的知识背景与当前任务相关时"
+      ],
+      "howToUse": "当工作需要基于用户画像调整时使用。例如：回答需要根据用户的具体背景量身定制",
+      "frontmatterRequired": ["name", "type", "description", "created", "updated"],
+      "frontmatterOptional": ["tags"],
+      "scope": "PERSONAL"
+    },
+    {
+      "type": "feedback",
+      "description": "纠正和确认偏好",
+      "examples": [
+        "不要用 touser 发图片，必须用 chatid",
+        "用户确认某个非显而易见的方法有效时",
+        "纠正常常容易注意到；确认更安静 — 注意观察它们"
+      ],
+      "whenToSave": [
+        "用户纠正你的方法时（no not that, don't, stop doing X）",
+        "用户确认某个非显而易见的方法有效时（yes exactly, perfect, keep doing that）",
+        "用户接受了不寻常的选择而没有 pushback 时",
+        "从失败和成功中记录"
+      ],
+      "howToUse": "让这些记忆指导你的行为，让用户不需要重复提供相同的指导",
+      "frontmatterRequired": ["name", "type", "description", "created", "updated"],
+      "frontmatterOptional": ["tags"],
+      "structure": {
+        "required": ["## 规则/事实", "## 为什么值得记忆", "## 如何应用"],
+        "optional": ["## Context"]
+      },
+      "scope": "PERSONAL 或 TEAM（当指导明显是项目级约定时）"
+    },
+    {
+      "type": "project",
+      "description": "项目上下文、决策、进展",
+      "examples": [
+        "软著申请计划已开始",
+        "产品迁移已完成 72 个",
+        "会议决策：使用某种技术方案"
+      ],
+      "whenToSave": [
+        "了解谁在做什么、为什么、截止时间时",
+        "做出重要决策时",
+        "项目状态变化时",
+        "用户提到 relative 日期时，必须转换为绝对日期"
+      ],
+      "howToUse": "用这些记忆更全面地理解用户请求背后的细节和动机",
+      "frontmatterRequired": ["name", "type", "description", "created", "updated"],
+      "frontmatterOptional": ["tags", "status", "owner", "deadline"],
+      "decayNote": "项目记忆衰减快，Why 帮助 future-you 判断记忆是否仍然关键",
+      "scope": "PERSONAL 或 TEAM（强烈倾向 TEAM）"
+    },
+    {
+      "type": "reference",
+      "description": "外部系统指针",
+      "examples": [
+        "Odoo 系统地址: www.huo15.com",
+        "凭证在 ~/.zshrc 环境变量",
+        "产品文档在知识库 XXX"
+      ],
+      "whenToSave": [
+        "了解外部系统位置时",
+        "发现有用资源时",
+        "获取凭证位置时",
+        "用户提到某个外部系统时"
+      ],
+      "howToUse": "当用户引用外部系统或可能在外部系统中的信息时使用",
+      "securityNote": "绝不要记录实际凭证值，只记录位置（名称/URL）",
+      "frontmatterRequired": ["name", "type", "description", "created", "updated"],
+      "frontmatterOptional": ["tags", "url"],
+      "scope": "通常 TEAM"
+    }
+  ],
+
+  "whatNotToSave": [
+    "代码模式、约定、架构 — 可从当前代码推导",
+    "Git 历史、最近变更 — git log 权威",
+    "调试方案或修复方法 — 修复在代码中，commit message 有上下文",
+    "已记录在 AGENTS.md / SOUL.md 中的内容",
+    "临时任务详情：进行中的工作、临时状态、当前对话上下文",
+    "实际凭证值（密码、token、密钥等）— 只记录位置"
+  ],
+
+  "accessRules": {
+    "when": [
+      "当记忆似乎相关时，或用户提到之前对话的工作时",
+      "当用户明确要求检查、回忆或记住某事时",
+      "当用户要求忽略记忆时 — 按 MEMORY.md 空白处理，不要引用、比较或提及记忆内容"
+    ],
+    "driftCheck": "记忆可能过时。在根据记忆回答前，验证记忆是否仍然正确。冲突时信任当前观察到的状态。",
+    "beforeRecommend": [
+      "如果记忆命名了文件路径 — 检查文件是否存在",
+      "如果记忆命名了函数或标志 — grep 搜索它",
+      "如果用户要基于推荐行动 — 先验证"
+    ]
+  },
+
+  "writingRules": {
+    "twoStepProcess": true,
+    "step1": "将记忆内容写入 memory/{type}/<name>.md",
+    "step2": "在 MEMORY.md 索引中添加一行指针",
+    "indexFormat": "- [Title](memory/{type}/filename.md) — description 用于判断相关性",
+    "maxIndexLineLength": 150,
+    "maxMemoryMdLines": 200,
+    "maxMemoryMdBytes": 25600
+  },
+
+  "memoryVsPlanVsTask": {
+    "memory": "跨会话持久化，对未来会话有价值",
+    "plan": "当前会话内的实现计划 — 用于开始非平凡实现任务前对齐方法",
+    "task": "当前会话内的任务跟踪 — 用于分解工作或跟踪进度"
+  }
+}

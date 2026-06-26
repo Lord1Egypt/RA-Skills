@@ -1,35 +1,65 @@
 ---
-name: "hike-route-planner"
-description: "Plan complete hiking itineraries and leader-ready route briefs for day hikes, mountain walks, coastal treks, and beginner group outings. Use when a user asks..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/hike-route-planner"
-sourceUrl: "https://clawhub.ai/skills/hike-route-planner"
+name: hike-route-planner
+description: Plan complete hiking itineraries and leader-ready route briefs for day hikes, mountain walks, coastal treks, and beginner group outings. Use when a user asks to design a 徒步/登山/远足活动, compare candidate trails, turn constraints into a timed route plan, or generate route overview, segment timings, transport, bailout options, risk notes, gear lists, per-person cost estimates, and leader organization advice.
 ---
 
-# hike-route-planner
+# Hike Route Planner
 
-> Plan complete hiking itineraries and leader-ready route briefs for day hikes, mountain walks, coastal treks, and beginner group outings. Use when a user asks...
+为一次徒步活动生成可执行的完整方案。优先保证安全、可落地和时间可控；对未验证信息明确标注为“估算”或“假设”。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/hike-route-planner`
-- **Source URL:** [https://clawhub.ai/skills/hike-route-planner](https://clawhub.ai/skills/hike-route-planner)
+## Template Policy
 
-## Overview
+1. 使用本地固化模板文件 `references/plan-template.md` 作为唯一输出模板来源。
+2. 不在每次任务中实时访问飞书文档。
+3. 飞书链接 `https://oxktmen1w6t.feishu.cn/wiki/LC1Aw7kCUitLQckoTYxcTkJGn6f` 仅作为模板维护来源，不作为运行时依赖。
+4. 仅当用户明确提出“更新模板”时，才对 `references/plan-template.md` 做同步更新。
+5. 若用户未提出更新模板，不要因为在线文档变化而自动改变输出结构。
 
+## Workflow
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/hike-route-planner
-```
+1. 先读取本地固化模板 `references/plan-template.md`，确定输出章节、字段顺序和术语。
+2. 再提取约束信息：地点或具体路线、日期、集合地点、集合时间、出发时间、人数、目标距离、难度要求、是否第一次走、景点偏好、是否允许爬升、是否允许技术路段、最晚结束时间、是否允许夜行、出发地、是否优先公共交通、是否允许打车、是否需要撤退点、是否需要应急方案。
+3. 判断是否缺少关键输入。
+   - 若具体路线、出发时间或人数缺失，先用一个简短问题一起补齐；不要直接用默认路线、默认 08:00 或默认 4 人这类假设替代。
+   - 若地点、日期或难度上限缺失，且会直接影响线路可行性，也放进同一轮补问里。
+   - 其余信息可用保守假设补齐，但必须在输出中单列“假设前提”。
+4. 把需求转成筛选条件。
+   - 用目标距离约束总里程。
+   - 用难度、爬升容忍度和技术路段容忍度约束海拔上升和地形类型。
+   - 用最晚结束时间、夜行限制和返程交通约束在途时间窗口。
+5. 若只给出城市或区域，未给出具体路线，先确认是否需要我给 2 到 3 条候选路线；若需要，再给出候选并请用户选定一条，再继续出完整方案。
+6. 需要依赖实时信息时，先核实时效性事实。
+   - 优先核实天气、日出日落、步道封闭、山火或滑坡警示、涉水风险、预约或门票要求、公交地铁首末班、打车可达性。
+   - 优先使用官方或一手来源；把“已核实信息”和“未核实但合理估算的信息”分开写。
+7. 按领队视角设计主路线：起点 -> 关键节点 -> 休息点 -> 折返点或撤退点 -> 终点。
+8. 把路线拆成分段，给出每段距离、预计用时、路况特征和休息安排。
+9. 按本地固化模板结构输出完整方案，覆盖用户要求的 1 到 9 项内容。
+10. 结尾补充领队执行建议：节奏控制、前中后队分工、集合点口令、应急触发条件、取消或降级条件。
+
+## Decision Rules
+
+- 对新手团、轻松线或首次走的队伍，避免连续陡升、暴露感强的山脊、碎石坡、手脚并用、铁链绳索和无桥涉水。
+- 若“不允许爬升”，优先选择海岸步道、绿道、郊野环线、湿地步道或缓坡林道，并把累计爬升压到最低。
+- 若“不允许技术路段”，明确排除攀爬、松动落石、湿滑裸岩、断崖边缘、深溪过河和需要保护装备的路段。
+- 若“不允许夜行”，把出山或回到公共交通点的时间控制在日落前 60 到 90 分钟。
+- 若人数超过 12 人，增加更密的收队点和更保守的节奏；默认每 45 到 60 分钟安排一次 regroup。
+- 若要求撤退点，至少设计一个中段撤退点；地形允许时再补一个后段撤退点，并说明撤退后的交通可达性。
+- 若优先公共交通，优先选择起终点都靠近站点、返程班次稳定的路线；不要只为了景观牺牲返程确定性。
+- 若精确里程、爬升或耗时无法核实，使用范围值，并写明估算依据，不要伪装成精确数据。
+
+## Output Rules
+
+- 默认用中文输出。
+- 优先复用本地固化模板的章节名和字段名；仅在缺少徒步安全字段时补充必要栏目。
+- 严格保留模板中的 7 个主标题和 emoji（`🥾`、`👀`、`📅`、`📍`、`⏰`、`🎒`、`🌤`）。
+- 明确区分“已核实”“估算”“假设”三类信息。
+- 时间轴同时给出集合、出发、主要节点、午休、折返或撤退判断点、下撤、返程。
+- 交通方案至少给出去程、返程和失败兜底三层方案；若用户允许打车，补充打车兜底。
+- 风险提示不要只写通用安全口号，要结合地形、天气、队伍经验和返程窗口。
+- 费用估算至少拆成交通、门票或预约、补给、应急打车分摊四类。
+- 领队建议要能直接执行，包含签到、分组、口令、补水提醒和掉队处理。
+
+## Reference Map
+
+- `references/plan-template.md`: 本地固化模板。所有正式输出都基于此文件。
+- `https://oxktmen1w6t.feishu.cn/wiki/LC1Aw7kCUitLQckoTYxcTkJGn6f`: 模板维护来源，仅在用户明确要求更新模板时参考。

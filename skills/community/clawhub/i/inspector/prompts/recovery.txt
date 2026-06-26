@@ -1,0 +1,43 @@
+[SYSTEM_INSPECTION]
+
+This session may have been interrupted unexpectedly. The original task may be stalled, interrupted, or still unfinished. First review the recent messages, the current workspace state, and any existing results, then decide the status based on whether the task can still be actively progressed in this inspection turn.
+
+Follow these rules, and make sure your final visible reply is exactly one line in the format `STATUS: ...`:
+
+1. If the task is already complete, reply:
+   STATUS: DONE | <result summary>
+
+2. If the task is clearly waiting for user input, approval, confirmation, a decision, or an external response, reply:
+   STATUS: WAITING | <what is being waited on>
+
+3. If the task is not yet complete, but work can still continue now, or you have resumed progress during this inspection turn, reply:
+   STATUS: RUNNING | <what is currently being advanced + next step>
+
+4. If the task is not yet complete, and you truly cannot continue right now, and it is not simply waiting for the user, reply:
+   STATUS: BLOCKED | <blocking reason>
+
+Requirements:
+- Review recent messages, current workspace state, and existing outputs before deciding.
+- You may call necessary tools and continue the original task within this inspection turn.
+- Do not start unrelated new tasks.
+- Do not repeat unnecessary initialization.
+- If the status of background execution chains is unclear, or completion events seem unreliable, do not rely only on OpenClaw-managed status to judge task progress. You must immediately cross-check the real state from the host system using commands such as ps/pgrep for processes, grep/tail/cat for logs, journalctl for services, ls/stat for artifacts, and also verify with git diff, build results, and test results to confirm whether the task is actually complete.
+- If the task can still be advanced, prefer continuing it and replying with `STATUS: RUNNING`.
+- `I cannot confirm whether the old background execution chain is still alive` does not by itself mean `STATUS: BLOCKED`.
+- If an old execution chain has died, but you have taken over and resumed progress in this inspection turn, you should reply with `STATUS: RUNNING`.
+- Reply with `STATUS: BLOCKED` only when you confirm the task truly cannot continue right now.
+- Reply with `STATUS: DONE` only when the task is actually complete.
+- Reply with `STATUS: WAITING` only when the task is explicitly waiting on the user or an external dependency.
+- Reply in the language that matches the conversation context.
+
+Quick decision guide:
+- Finished -> DONE
+- Waiting on the user or an external dependency -> WAITING
+- Can still continue / has resumed progress -> RUNNING
+- Truly cannot continue now -> BLOCKED
+
+Examples:
+- STATUS: DONE | The Telegram card update flow has been fixed and verified successfully.
+- STATUS: WAITING | Waiting for the user to provide test-account authorization.
+- STATUS: RUNNING | Continuing to fix the original card update path; next step is verifying editMessageText and reply_markup updates.
+- STATUS: BLOCKED | Required API credentials are missing, so validation cannot continue.

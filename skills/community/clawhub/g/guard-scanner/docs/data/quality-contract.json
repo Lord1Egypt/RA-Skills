@@ -1,0 +1,46 @@
+{
+  "contract_version": "2026-03-15.quality-v17",
+  "benchmark_version": "2026-03-15.quality-v17",
+  "quality_targets": {
+    "precision_min": 0.9,
+    "recall_min": 0.9,
+    "false_positive_rate_max": 0.1,
+    "false_negative_rate_max": 0.1,
+    "explainability_completeness_rate_min": 1,
+    "runtime_check_latency_budget_ms": 5,
+    "false_positive_budget_by_category": {
+      "prompt-injection": 0.05,
+      "runtime-policy": 0.02,
+      "secret-detection": 0.08,
+      "supply-chain": 0.05,
+      "memory-poisoning": 0.03
+    }
+  },
+  "layers": [
+    {
+      "id": "layer_a",
+      "corpus": "tests/fixtures/corpus/security-corpus.json",
+      "scanner_options": {}
+    },
+    {
+      "id": "layer_b",
+      "corpus": "tests/fixtures/corpus/adversarial-corpus.json",
+      "scanner_options": {}
+    },
+    {
+      "id": "layer_c",
+      "corpus": "tests/fixtures/corpus/ecosystem-corpus.json",
+      "scanner_options": {}
+    },
+    {
+      "id": "layer_protocol",
+      "corpus": "tests/fixtures/corpus/protocol-abuse-corpus.json",
+      "scanner_options": {}
+    },
+    {
+      "id": "layer_capability",
+      "corpus": "tests/fixtures/corpus/capability-compounding-corpus.json",
+      "scanner_options": {}
+    }
+  ]
+}

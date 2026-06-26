@@ -1,35 +1,47 @@
----
-name: "europe-anz市场政策查询Skill"
-description: "基于惠迈智能体架构，智能查询并分析北欧及澳新加地区市场政策、法规与投资环境，支持多语言与多数据源配置。"
-category: "other"
-source: "ClawHub"
-tags: [europe-anz, huimai, policy]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/huimai-europe-anz-policy"
-sourceUrl: "https://clawhub.ai/skills/huimai-europe-anz-policy"
----
+# 北欧澳新加市场政策查询Skill
 
-# europe-anz市场政策查询Skill
+## 🚀 概述
+**基于惠迈智能体三层架构的政策查询框架**，提供北欧澳新加市场政策、法规、投资环境的智能查询和分析。
 
-> 基于惠迈智能体架构，智能查询并分析北欧及澳新加地区市场政策、法规与投资环境，支持多语言与多数据源配置。
+## 🌟 核心亮点
+- **惠迈智能体协作**：基于惠迈三层智能体架构，支持多源数据整合
+- **惠迈智能体协作**：基于惠迈三层智能体架构，确保数据准确性和实时性
+- **多语言支持**：支持中文、英文等多种语言
+- **数据源可配置**：灵活配置不同数据源，适应各种业务需求
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/huimai-europe-anz-policy`
-- **Source URL:** [https://clawhub.ai/skills/huimai-europe-anz-policy](https://clawhub.ai/skills/huimai-europe-anz-policy)
+## 🔧 技术特性
+### 多语言支持
+- 中文（简体）
+- 英文（美国）
+- 自动语言检测和切换
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/huimai-europe-anz-policy
+### 数据源配置
+```javascript
+{
+  dataSources: {
+    investment: '[请替换为您的北欧澳新加投资政策数据源]',
+    trade: '[请替换为您的北欧澳新加贸易法规数据源]',
+    // ... 其他数据源
+  }
+}
 ```
+
+## 📦 安装
+```bash
+# 通过ClawHub安装
+clawhub install europe-anz-policy-query
+
+# 或手动安装
+npm install europe-anz-policy-query
+```
+
+## 🔒 安全使用指南
+1. **数据源配置**：使用环境变量管理敏感数据源信息
+2. **API密钥**：不要将真实API密钥写入代码
+3. **权限控制**：为数据源配置最小必要权限
+
+## 支持
+如有问题，请提交Issue或联系维护团队。
+
+---
+**惠迈智能体：让全球业务变得简单**

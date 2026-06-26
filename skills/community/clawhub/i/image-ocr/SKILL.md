@@ -1,35 +1,42 @@
 ---
-name: "Image Ocr"
+name: image-ocr
 description: "Extract text from images using Tesseract OCR"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/image-ocr"
-sourceUrl: "https://clawhub.ai/skills/image-ocr"
+metadata:
+  {
+    "openclaw":
+      {
+        "emoji": "👁️",
+        "requires": { "bins": ["tesseract"] },
+        "install":
+          [
+            {
+              "id": "dnf",
+              "kind": "dnf",
+              "package": "tesseract",
+              "bins": ["tesseract"],
+              "label": "Install via dnf",
+            },
+          ],
+      },
+  }
 ---
 
-# Image Ocr
+# Image OCR
 
-> Extract text from images using Tesseract OCR
+Extract text from images using Tesseract OCR. Supports multiple languages and image formats including PNG, JPEG, TIFF, and BMP.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/image-ocr`
-- **Source URL:** [https://clawhub.ai/skills/image-ocr](https://clawhub.ai/skills/image-ocr)
+## Commands
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/image-ocr
+# Extract text from an image (default: English)
+image-ocr "screenshot.png"
+
+# Extract text with a specific language
+image-ocr "document.jpg" --lang eng
+```
+
+## Install
+
+```bash
+sudo dnf install tesseract
 ```

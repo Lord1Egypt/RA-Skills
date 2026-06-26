@@ -1,35 +1,62 @@
 ---
-name: "Hourly Knowledge"
-description: "每小时自动为用户推送一条有趣、有用的小知识。当每小时定时任务触发时使用，负责搜索并生成知识内容。包含去重机制，避免短期内推送相同主题。支持多用户，开箱即用。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/hourly-knowledge"
-sourceUrl: "https://clawhub.ai/skills/hourly-knowledge"
+name: hourly-knowledge
+description: 每小时自动为用户推送一条有趣、有用的小知识。当每小时定时任务触发时使用，负责搜索并生成知识内容。包含去重机制，避免短期内推送相同主题。支持多用户，开箱即用。
 ---
 
 # Hourly Knowledge
 
-> 每小时自动为用户推送一条有趣、有用的小知识。当每小时定时任务触发时使用，负责搜索并生成知识内容。包含去重机制，避免短期内推送相同主题。支持多用户，开箱即用。
+## 概述
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/hourly-knowledge`
-- **Source URL:** [https://clawhub.ai/skills/hourly-knowledge](https://clawhub.ai/skills/hourly-knowledge)
+每小时整点触发时，为用户推送一条有趣的小知识。支持主题去重，确保短期内容不重复。
 
-## Overview
+## 核心设计
 
+- **用户上下文**：通过 inbound meta 自动获取当前用户的 chat_id 和 channel
+- **配置分离**：敏感信息（accountId）放在 config.json，不在代码中硬编码
+- **多用户友好**：不同用户使用同一份 skill 代码，互不影响
+- **推送机制**：通过 cron announce 机制自动推送，subagent 只返回纯文本
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/hourly-knowledge
+## 工作流程
+
+1. 从 `config.json` 读取 accountId
+2. 从会话上下文获取当前用户的 chat_id 和 channel
+3. 读取 `memory/hourly-knowledge-history.json` 获取最近推送的主题列表
+4. 用 web_search 搜索一个不在最近列表中的新主题
+5. 生成知识内容（150字以内，配 emoji）
+6. 将新主题写入历史记录
+7. **直接返回纯知识文本**，由 cron announce 机制自动推送到用户
+
+## 搜索策略
+
+- 主题范围：人文、历史、科技、自然、生活、地理、艺术等
+- 避开最近 10 条已推送过的主题
+- 选择大多数人不知道但有趣、有用的知识点
+
+## 输出格式
+
+直接返回纯文本，例如：
+```
+📚 小知识：
+
+🧠 为什么手指泡水后会变皱？
+
+人的手指在水中泡久了会起皱，这是因为皮肤最外层的角质层吸水膨胀，而真皮层没有变化，于是表皮就产生了褶皱。这是神经系统在告诉你：物体湿滑，需要更好的抓握能力去抓东西！
+```
+
+## 注意事项
+
+- 每次必须从历史记录中排除最近 10 条主题
+- 不要解释"我是谁"或"这是什么任务"
+- **不要调用 message 工具**，只返回纯文本
+- 直接返回内容，不回复 HEARTBEAT_OK
+- 返回的文本就是用户收到的推送内容
+
+## 配置文件
+
+`config.json` 必须与 SKILL.md 同目录，内容示例：
+
+```json
+{
+  "accountId": "487efdd501be-im-bot"
+}
 ```

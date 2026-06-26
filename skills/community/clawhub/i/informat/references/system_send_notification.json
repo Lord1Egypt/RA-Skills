@@ -1,0 +1,108 @@
+{
+  "type": "function",
+  "function": {
+    "name": "_send_notification",
+    "description": "Send notification message.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string",
+          "description": "Notification title"
+        },
+        "content": {
+          "type": "string",
+          "description": "Notification content"
+        },
+        "accountId": {
+          "type": "string",
+          "description": "Account ID receiving the notification"
+        },
+        "type": {
+          "type": "string",
+          "description": "Notification action type. Can only be filled with one of the following values:\nopenurl (open link, must provide urlSetting at the same time),\nopenrecord (open data table record, must provide recordSetting at the same time),\nopenbpmntask (open workflow task, must provide bpmnTaskSetting at the same time),\ninvokeautomatic (call automation, must provide automaticSetting at the same time)"
+        },
+        "name": {
+          "type": "string",
+          "description": "Notification name"
+        },
+        "urlSetting": {
+          "type": "object",
+          "description": "Link configuration information (required when type=openurl)",
+          "properties": {
+            "url": {
+              "type": "string",
+              "description": "Link address"
+            },
+            "isAppURL": {
+              "type": "boolean",
+              "description": "Whether it is an in-app link"
+            }
+          },
+          "additionalProperties": false
+        },
+        "recordSetting": {
+          "type": "object",
+          "description": "Data table record configuration information (required when type=openrecord)",
+          "properties": {
+            "recordId": {
+              "type": "string",
+              "description": "Record ID"
+            },
+            "moduleId": {
+              "type": "string",
+              "description": "Module ID"
+            }
+          },
+          "additionalProperties": false
+        },
+        "bpmnTaskSetting": {
+          "type": "object",
+          "description": "Workflow task configuration information (required when type=openbpmntask)",
+          "properties": {
+            "taskId": {
+              "type": "string",
+              "description": "Task ID"
+            },
+            "moduleId": {
+              "type": "string",
+              "description": "Module ID"
+            }
+          },
+          "additionalProperties": false
+        },
+        "automaticSetting": {
+          "type": "object",
+          "description": "Call automation configuration (required when type=invokeautomatic)",
+          "properties": {
+            "automaticId": {
+              "type": "string",
+              "description": "Automation ID"
+            },
+            "args": {
+              "type": "array",
+              "description": "Automation parameter list",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "valueVar": {
+                    "type": "string",
+                    "description": "Parameter variable value"
+                  }
+                },
+                "additionalProperties": false
+              }
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "title",
+        "content",
+        "type"
+      ],
+      "additionalProperties": false
+    }
+  }
+}

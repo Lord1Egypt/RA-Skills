@@ -1,0 +1,25 @@
+{
+  "name": "@launchthatbot/import",
+  "version": "1.2.4",
+  "private": false,
+  "type": "module",
+  "license": "MIT",
+  "description": "OpenClaw skill package for secure LaunchThatBot agent import and migration.",
+  "homepage": "https://launchthatbot.com",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/launchthatbot/import.git"
+  },
+  "files": [
+    "SKILL.md",
+    "README.md"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "echo \"No build step required for skill package.\"",
+    "lint": "echo \"No lint step required for skill package.\"",
+    "typecheck": "echo \"No TypeScript source files to typecheck for skill package.\""
+  }
+}

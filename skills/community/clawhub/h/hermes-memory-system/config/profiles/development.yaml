@@ -1,0 +1,89 @@
+# 开发环境配置
+# 覆盖主配置中的设置
+
+system:
+  environment: "development"
+  debug: true
+  log_level: "DEBUG"
+  
+  # 开发环境使用测试数据目录
+  data_dir: "/tmp/hermes_dev/data"
+  logs_dir: "/tmp/hermes_dev/logs"
+  cache_dir: "/tmp/hermes_dev/cache"
+  
+memory:
+  # 开发环境禁用嵌入模型（除非有测试API）
+  use_embedding: false
+  embedding_provider: "word_overlap"
+  
+  # 开发环境使用较小的缓存
+  cache_size: 100
+  embedding_cache_size: 100
+  
+  # 更频繁的同步（便于调试）
+  sync_interval_seconds: 10
+  
+skill_generation:
+  # 开发环境自动批准，便于测试
+  require_approval: false
+  auto_install: true
+  
+  # 开发环境记录更多调试信息
+  record_tool_calls: true
+  record_file_operations: true
+  record_decisions: true
+  
+  # 较低的置信度阈值（便于测试）
+  debrief_min_confidence: 0.1
+  
+data_export:
+  # 开发环境启用数据导出（测试用）
+  enabled: true
+  
+  # 导出到临时目录
+  export_dir: "/tmp/hermes_dev/exports"
+  
+performance:
+  # 开发环境降低监控频率
+  health_check_interval_seconds: 60
+  performance_check_interval_seconds: 120
+  
+  # 开发环境使用更宽松的阈值
+  memory_warning_mb: 200
+  memory_critical_mb: 500
+  response_time_warning_ms: 1000
+  response_time_critical_ms: 2000
+  
+integration:
+  # 开发环境禁用外部集成
+  webhooks:
+    enabled: false
+  api:
+    enabled: false
+    
+security:
+  # 开发环境降低安全限制
+  api_key_required: false
+  rate_limit_requests_per_minute: 1000
+  
+logging:
+  # 开发环境详细日志
+  level: "DEBUG"
+  console_enabled: true
+  console_format: "colored"
+  
+  # 开发环境较小的日志文件
+  max_size_mb: 10
+  backup_count: 3
+  
+advanced:
+  # 开发环境启用实验功能
+  experimental_features: true
+  
+  # 开发环境启用热重载
+  hot_reload: true
+  reload_watch_dirs: ["src", "config"]
+  
+  # 开发环境启用测试模式
+  test_mode: true
+  mock_apis: true

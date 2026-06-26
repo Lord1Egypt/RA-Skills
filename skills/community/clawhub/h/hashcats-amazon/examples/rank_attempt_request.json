@@ -1,0 +1,133 @@
+{
+  "products": [
+    {
+      "source": "Amazon",
+      "title": "Upgraded Pro‑level Hybrid Active Noise Cancelling Headphones, HD Sound & Big Bass, 2X Softer Comfort, Long ANC Playtime, Wireless Over-Ear Bluetooth Headphones Perfect for Home Office|Travel|Pair",
+      "description": "Upgraded Pro‑level Hybrid Active Noise Cancelling Headphones, HD Sound & Big Bass, 2X Softer Comfort, Long ANC Playtime, Wireless Over-Ear Bluetooth Headphones Perfect for Home Office|Travel|Pair",
+      "product_url": "https://www.amazon.com/dp/B0FWJY183S",
+      "is_sponsored": false,
+      "reviews": {
+        "rating_text": "4.6 out of 5 stars",
+        "rating_value": 4.6,
+        "review_count": 164
+      },
+      "price": {
+        "current_price_text": "$25.98",
+        "current_price_value": 25.98,
+        "list_price_text": "$29.99",
+        "list_price_value": 29.99
+      },
+      "delivery": {
+        "raw": "FREE delivery Thu, Apr 23 on $35 of items shipped by Amazon Or fastest delivery Tomorrow, Apr 19",
+        "free": {
+          "text": "Thu, Apr 23",
+          "date": "2026-04-23",
+          "min_order_for_free_shipping": 35.0
+        },
+        "fastest": {
+          "text": "Tomorrow, Apr 19",
+          "date": "2026-04-19"
+        },
+        "other": []
+      },
+      "image_url": "https://m.media-amazon.com/images/I/71ZAuqZTFTL._AC_UY218_.jpg"
+    },
+    {
+      "source": "Amazon",
+      "title": "RUNOLIM Hybrid Active Noise Cancelling Headphones, Wireless Over Ear Bluetooth Headphones with Microphone, 70H Playtime, Foldable Headphone with HiFi Audio, Deep Bass for Home Travel Office",
+      "description": "RUNOLIM Hybrid Active Noise Cancelling Headphones, Wireless Over Ear Bluetooth Headphones with Microphone, 70H Playtime, Foldable Headphone with HiFi Audio, Deep Bass for Home Travel Office",
+      "product_url": "https://www.amazon.com/dp/B0BKPRTRXK",
+      "is_sponsored": false,
+      "reviews": {
+        "rating_text": "4.4 out of 5 stars",
+        "rating_value": 4.4,
+        "review_count": 7200
+      },
+      "price": {
+        "current_price_text": "$21.58",
+        "current_price_value": 21.58,
+        "list_price_text": "$29.99",
+        "list_price_value": 29.99
+      },
+      "delivery": {
+        "raw": "FREE delivery Thu, Apr 23 on $35 of items shipped by Amazon Or fastest delivery Tomorrow, Apr 19",
+        "free": {
+          "text": "Thu, Apr 23",
+          "date": "2026-04-23",
+          "min_order_for_free_shipping": 35.0
+        },
+        "fastest": {
+          "text": "Tomorrow, Apr 19",
+          "date": "2026-04-19"
+        },
+        "other": []
+      },
+      "image_url": "https://m.media-amazon.com/images/I/6162JJuKpbL._AC_UY218_.jpg"
+    },
+    {
+      "source": "Amazon",
+      "title": "Soundcore by Anker Q20i Hybrid Active Noise Cancelling Headphones, Wireless Over-Ear Bluetooth, 40H Long ANC Playtime, Hi-Res Audio, Big Bass, Customize via an App, Transparency Mode (Black)",
+      "description": "Soundcore by Anker Q20i Hybrid Active Noise Cancelling Headphones, Wireless Over-Ear Bluetooth, 40H Long ANC Playtime, Hi-Res Audio, Big Bass, Customize via an App, Transparency Mode (Black)",
+      "product_url": "https://www.amazon.com/dp/B0C3HCD34R",
+      "is_sponsored": false,
+      "reviews": {
+        "rating_text": "4.6 out of 5 stars",
+        "rating_value": 4.6,
+        "review_count": 45100
+      },
+      "price": {
+        "current_price_text": "$39.99",
+        "current_price_value": 39.99,
+        "list_price_text": "$69.99",
+        "list_price_value": 69.99
+      },
+      "delivery": {
+        "raw": "FREE delivery Thu, Apr 23 Or fastest delivery Mon, Apr 20",
+        "free": {
+          "text": "Thu, Apr 23",
+          "date": "2026-04-23",
+          "min_order_for_free_shipping": null
+        },
+        "fastest": {
+          "text": "Mon, Apr 20",
+          "date": "2026-04-20"
+        },
+        "other": []
+      },
+      "image_url": "https://m.media-amazon.com/images/I/51CnDMbXZzL._AC_UY218_.jpg"
+    },
+    {
+      "source": "Amazon",
+      "title": "Eduiosma Active Noise Cancelling Headphones, Wireless Over Ear Bluetooth Headphones with Microphone, Transparency Mode, 70H Playtime, Hi-Res Audio, Deep Bass, Bluetooth 5.3, Lightweight Design,Black",
+      "description": "Eduiosma Active Noise Cancelling Headphones, Wireless Over Ear Bluetooth Headphones with Microphone, Transparency Mode, 70H Playtime, Hi-Res Audio, Deep Bass, Bluetooth 5.3, Lightweight Design,Black",
+      "product_url": "https://www.amazon.com/dp/B0CS2MFXRS",
+      "is_sponsored": false,
+      "reviews": {
+        "rating_text": "4.5 out of 5 stars",
+        "rating_value": 4.5,
+        "review_count": 1300
+      },
+      "price": {
+        "current_price_text": "$17.98",
+        "current_price_value": 17.98,
+        "list_price_text": "$23.99",
+        "list_price_value": 23.99
+      },
+      "delivery": {
+        "raw": "FREE delivery Thu, Apr 23 on $35 of items shipped by Amazon Or fastest delivery Tue, Apr 21",
+        "free": {
+          "text": "Thu, Apr 23",
+          "date": "2026-04-23",
+          "min_order_for_free_shipping": 35.0
+        },
+        "fastest": {
+          "text": "Tue, Apr 21",
+          "date": "2026-04-21"
+        },
+        "other": []
+      },
+      "image_url": "https://m.media-amazon.com/images/I/713SMXPRweL._AC_UY218_.jpg"
+    }
+  ],
+  "rank_by": "lowest_price"
+}

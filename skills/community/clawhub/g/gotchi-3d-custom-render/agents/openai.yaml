@@ -1,0 +1,4 @@
+interface:
+  display_name: "Gotchi 3D Custom Render"
+  short_description: "Render custom or hypothetical Aavegotchi looks from plain-language outfit descriptions."
+  default_prompt: "Use gotchi-3d-custom-render whenever the user describes a custom Aavegotchi look, outfit, trait mix, wearable combination, preview, or headshot in plain language, even if they do not mention the skill name. Example requests include 'render an ETH gotchi with common eyes, aagent hat, shades, shirt, headset, and pistol' or 'show me a portrait gotchi with wizard hat and cream background'. Prefer the hosted renderer path for official-style output. Use aavegotchi-3d-renderer instead when the user provides an existing tokenId or inventory URL."

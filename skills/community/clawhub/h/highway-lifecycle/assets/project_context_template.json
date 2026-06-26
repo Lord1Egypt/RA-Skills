@@ -1,0 +1,38 @@
+{
+  "project_context": {
+    "project_name": "",
+    "project_type": "高速公路/一级公路/二级公路",
+    "location": {
+      "province": "",
+      "city": "",
+      "area_type": "城市/乡村/工业区"
+    },
+    "design_life_years": 100,
+    "environment_classification": {
+      "corrosion": "JC1/JC2/JC3/JC4",
+      "freeze_thaw": "I/II/III/IV",
+      "groundwater": "干燥/潮湿/有侵蚀性"
+    },
+    "applicable_norms": [
+      "公路规范",
+      "国标"
+    ],
+    "inapplicable_norms": [
+      "铁路规范",
+      "市政规范"
+    ]
+  },
+  "document_info": {
+    "document_type": "施工图设计/初步设计/施工方案",
+    "bridge_name": "",
+    "bridge_type": "梁桥/拱桥/斜拉桥/悬索桥",
+    "main_span_m": 0,
+    "total_length_m": 0
+  },
+  "review_scope": {
+    "norm_compliance": true,
+    "context_consistency": true,
+    "calculation_check": false,
+    "safety_check": true
+  }
+}

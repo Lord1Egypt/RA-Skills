@@ -1,0 +1,26 @@
+{
+  "type": "function",
+  "function": {
+    "name": "_i18n_save_locale_designer",
+    "description": "Save the list of languages supported by the application. Used for internationalization translation and interface language switching configuration",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "localeList": {
+          "type": "array",
+          "description": "List of language codes supported by the application",
+          "items": {
+            "type": "string",
+            "description": "Language code. Only one of the following values can be filled: zh_CN (Simplified Chinese), zh_TW (Traditional Chinese), en_US (English), ja (Japanese)."
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "localeList"
+      ],
+      "additionalProperties": false
+    }
+  }
+}

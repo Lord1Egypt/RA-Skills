@@ -1,0 +1,99 @@
+{
+  "basic_info": {
+    "name_zh": "黃曉琳",
+    "name_en": "Emily Wong",
+    "gender": "女",
+    "birthday": "2012年8月15日",
+    "id_type": "香港永久性居民身份證",
+    "id_number": "",
+    "phone": "",
+    "email": "",
+    "address": "",
+    "guardian": "黃太太",
+    "guardian_relation": "母女",
+    "guardian_phone": ""
+  },
+  "education": {
+    "school_zh": "聖保羅男女中學附屬小學",
+    "school_en": "St. Paul's Co-educational College Primary School",
+    "address": "香港銅鑼灣麥當勞道33號",
+    "enrollment": "2026年9月",
+    "grade": "小六 (Primary 6)",
+    "class": "6B",
+    "overall_grade": "A+"
+  },
+  "academic": {
+    "rank": "年級前5%",
+    "trend": "成績優異且穩定，多元智能全面發展",
+    "subjects": [
+      {"name": "中文", "y7": "A", "y8": "A+", "y9": "A+", "note": "優異"},
+      {"name": "English", "y7": "A+", "y8": "A+", "y9": "A+", "note": "優異"},
+      {"name": "數學", "y7": "A", "y8": "A", "y9": "A+", "note": "進步"},
+      {"name": "科學", "y7": "A", "y8": "A", "y9": "A", "note": "穩定"},
+      {"name": "人文", "y7": "A-", "y8": "A", "y9": "A", "note": "進步"},
+      {"name": "視覺藝術", "y7": "A", "y8": "A+", "y9": "A+", "note": "特長"},
+      {"name": "音樂", "y7": "A", "y8": "A", "y9": "A", "note": ""},
+      {"name": "體育", "y7": "A-", "y8": "A", "y9": "A", "note": ""}
+    ]
+  },
+  "awards": [
+    {
+      "name": "全港青少年藝術大賽\n繪畫組",
+      "organizer": "香港藝術發展局",
+      "date": "2025年7月",
+      "level": "全港",
+      "award": "冠軍"
+    },
+    {
+      "name": "香港校際英語演講比賽",
+      "organizer": "香港英語教學協會",
+      "date": "2025年3月",
+      "level": "全港",
+      "award": "一等獎"
+    },
+    {
+      "name": "青年科學家計劃",
+      "organizer": "香港科學館",
+      "date": "2024年12月",
+      "level": "全港",
+      "award": "傑出學員"
+    }
+  ],
+  "ecActivities": [
+    {
+      "name": "學生會",
+      "en_name": "Student Union",
+      "position": "秘書",
+      "en_position": "Secretary",
+      "period": "2025年9月 - 至今",
+      "description": "負責學生活動統籌，協助學校大型活動組織",
+      "en_description": "Responsible for student event coordination and assisting in major school activities"
+    },
+    {
+      "name": "藝術學會",
+      "en_name": "Art Club",
+      "position": "會長",
+      "en_position": "President",
+      "period": "2025年1月 - 至今",
+      "description": "帶領會員進行藝術創作，策劃校內藝術展覽",
+      "en_description": "Led members in artistic creation and organized school art exhibitions"
+    }
+  ],
+  "hobbies": [
+    {"name": "繪畫", "level": "專業訓練", "achievement": "全港藝術大賽冠軍"},
+    {"name": "小提琴", "level": "七級", "achievement": "校際音樂節獲獎"},
+    {"name": "游泳", "level": "興趣愛好", "achievement": "校隊成員"},
+    {"name": "義工服務", "level": "社會服務", "achievement": "累計100小時"}
+  ],
+  "self_intro_zh": "我是黃曉琳，一個充滿創意和熱情的女孩。我熱愛藝術，擅長繪畫和小提琴，曾多次在校際比賽中獲獎。我積極參與學校活動，擔任學生會秘書和藝術學會會長，培養了良好的領導和組織能力。\n\n貴校作為頂尖直資學校，擁有卓越的學術水平和多元發展空間，正是我夢寐以求的學習環境。我相信在貴校的栽培下，我能在學業和藝術領域取得更大成就。\n\n學習目標：在嚴謹的學術環境中保持優異成績，同時發展藝術特長。\n\n規劃：短期融入高中課程；中期爭取國際考試佳績；長期赴海外頂尖藝術學院深造。",
+  "self_intro_en": "I am Emily Wong, a creative and passionate girl. I love art, excel in painting and violin, and have won multiple awards in inter-school competitions. I actively participate in school activities, serving as Student Union Secretary and Art Club President, developing strong leadership and organizational skills.\n\nAs a top DSS school with excellent academic standards and diverse development opportunities, your school is exactly the learning environment I dream of. I believe that under your school's guidance, I can achieve greater success both academically and artistically.\n\nMy Goals: Maintain excellent grades in a rigorous academic environment while developing my artistic talents.\n\nMy Plans: Short-term: integrate into high school curriculum. Medium-term: achieve outstanding results in international exams. Long-term: pursue further studies at top overseas art institutions.",
+  "teacher_comment": {
+    "teacher": "Sarah Thompson",
+    "position": "English Teacher",
+    "school": "St. Paul's Co-educational College Primary School",
+    "email": "",
+    "date": "",
+    "comment_zh": "Emily是一位全面的學生，學業優異，藝術天賦突出，領導能力強。她在課堂上積極參與，對學習充滿熱忱。強烈推薦她加入貴校。",
+    "comment_en": "Emily is a well-rounded student who excels academically, demonstrates outstanding artistic talent, and possesses strong leadership skills. She is an active participant in class with genuine enthusiasm for learning. I strongly recommend her admission."
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "name": "image-to-pdf",
+  "version": "1.0.0",
+  "description": "Merge multiple images into a single PDF document",
+  "skills": ["image-to-pdf"],
+  "keywords": ["pdf", "merge", "image", "converter"],
+  "homepage": "https://github.com/example/image-to-pdf"
+}

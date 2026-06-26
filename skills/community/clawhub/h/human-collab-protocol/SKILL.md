@@ -1,35 +1,151 @@
 ---
-name: "Human-Agent Collaboration Protocol"
-description: "人机协作协议执行器。以用户为主体，主动发起与一人或多人的沟通时触发。 触发词示例：我要组织个会、我约了XXX、我要和XXX沟通、我要去见XXX、我明天要见XXX。 会后触发：刚开完XXX的会、发来妙记链接。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/human-collab-protocol"
-sourceUrl: "https://clawhub.ai/skills/human-collab-protocol"
+name: human-collab-protocol
+description: |
+  人机协作协议执行器。以用户为主体，主动发起与一人或多人的沟通时触发。
+  触发词示例：我要组织个会、我约了XXX、我要和XXX沟通、我要去见XXX、我明天要见XXX。
+  会后触发：刚开完XXX的会、发来妙记链接。
 ---
 
-# Human-Agent Collaboration Protocol
+# 人机协作协议 Skill v1.3
 
-> 人机协作协议执行器。以用户为主体，主动发起与一人或多人的沟通时触发。 触发词示例：我要组织个会、我约了XXX、我要和XXX沟通、我要去见XXX、我明天要见XXX。 会后触发：刚开完XXX的会、发来妙记链接。
+**核心理念**：Context Over Control
+**核心原则：先追问，再生成。Context Card是让所有参与者信息对称的共享文档，必须发给参会者。**
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/human-collab-protocol`
-- **Source URL:** [https://clawhub.ai/skills/human-collab-protocol](https://clawhub.ai/skills/human-collab-protocol)
+---
 
-## Overview
+## 触发条件
 
+以用户为主体，主动发起与一人或多人的沟通，包括：
+- 正式会议
+- 一对一沟通
+- 见客户/合作方/同事
+- 任何"我要和XXX谈XXX"的场景
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/human-collab-protocol
-```
+---
+
+## 执行流程
+
+### 场景A：会前
+
+#### 第一步：追问四个问题（必做，不可跳过）
+
+用自然对话方式问：
+
+1. 这次沟通结束后，你希望对方做什么具体的事？或者拍什么板？
+2. 当前最大的风险或卡点是什么？
+3. 对方对这件事了解多少？需要补充哪些背景？
+4. 有哪些话题这次先不展开？
+
+等用户回答后，才进入第二步。
+
+---
+
+#### 第二步：生成 Context Card
+
+**Context Card是发给所有参与者的共享文档**，目的是让每个人带着相同的背景进会议室。
+
+生成后发给用户确认，确认后：
+1. 调用 feishu_create_doc 写入飞书，返回链接
+2. 提示用户将链接转发给参会者
+
+格式（纯文本）：
+
+【事项名】Context Card
+更新时间：YYYY-MM-DD
+
+为什么要做这件事（价值和意义）：
+一句话现状：
+当前核心进展：
+当前卡点：
+已确认的：
+还不确定的：
+这次沟通要解决的问题：
+相关文档：（如有）
+
+---
+
+#### 第三步：生成 协作Prompt（用户自用）
+
+Context Card确认后，单独生成协作Prompt供用户参考，明确分工和目标。
+
+格式（纯文本）：
+
+协作Prompt（用户自用，不需要发给对方）
+
+议题：
+参与者及职责：
+- 用户：
+- XXX：
+
+这次要回答的问题：（一个具体可决策的问题）
+当前风险/卡点：
+这次不讨论：
+
+⚠️ 开会请开启录音豆，会后把妙记链接发给我，我生成Output和任务。
+
+---
+
+### 场景B：会后
+
+用户发来妙记链接或说"刚开完XXX的会"时触发。
+
+#### 第一步：读取妙记内容
+
+调用 feishu_fetch_doc 获取妙记文档内容。
+
+#### 第二步：生成 Output 草稿
+
+纯文本输出：
+
+协作Output
+日期：YYYY-MM-DD  主题：XXX
+
+✅ 决定了：
+- [内容] → 负责人：XXX，截止：XX月XX日
+
+❓ 还没决定：
+- [问题] → 谁去找答案：XXX，截止：XX月XX日
+
+📋 需要更新的 Context Card：
+- [字段] → [新内容]
+
+🔔 下次协作触发条件：
+- [什么情况下需要再协作]
+
+如妙记内容不清晰，主动追问关键决定的负责人和截止时间。
+
+#### 第三步：确认后自动执行
+
+收到用户确认后：
+1. 调用 feishu_task_task 创建飞书任务，指派负责人，设置截止日期
+2. 调用 feishu_update_doc 更新对应 Context Card
+3. 将 Output 记录到当日 memory/YYYY-MM-DD.md
+
+---
+
+## 输出规范
+
+- 所有输出一律纯文本，不用代码块（```）包裹
+- **两部分明确分开**：
+  - 第一部分：Context Card（发给所有参与者）
+  - 第二部分：协作Prompt（用户自用）
+- 中间用分隔线隔开，并标注哪部分发给对方、哪部分自用
+- Context Card简洁清晰，对方能在2分钟内读完
+
+---
+
+## 人机边界
+
+| 决策类型 | 谁来做 |
+|---------|--------|
+| 追问、提取、摘要、任务创建 | Agent自动执行 |
+| Context Card内容确认 | 用户确认后才写入飞书并转发 |
+| Output内容确认 | 用户确认后才创建任务 |
+| 最终拍板（资源/人事） | 用户独占 |
+
+---
+
+## 关联文档
+
+- 人机协作协议 v1.0：https://www.feishu.cn/docx/JSFIdBEVeoo6mYxdlCNcmnxHnxb
+- 落地操作手册 v1.0：https://www.feishu.cn/docx/VG9qdaLwroC2kMx027Sc6X12nrb

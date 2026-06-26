@@ -1,0 +1,187 @@
+# PLATFORM REQUIREMENTS AND VERIFICATION CHECKLIST
+
+This skill is instruction-only. It relies on the host platform (Claude Code, OpenClaw,
+or equivalent) for enforcement of the rules declared in its agent files.
+
+The checklist below must be verified before running the harness on any real repository.
+Each item is either self-enforced by the skill or requires platform configuration.
+
+Enforcement column: SKILL = enforced by agent instructions in this skill
+                    PLATFORM = must be configured/verified in your environment
+                    BOTH = skill enforces AND platform should enforce as backstop
+
+---
+
+## CHECKLIST
+
+### 1. Sensitive Path Reads
+
+| Check | Enforcement | How to verify |
+|-------|-------------|---------------|
+| Forbidden paths in references/sensitive-paths.md are not read by agents | BOTH | Run a test cycle on a repo with a test-only sensitive file. Confirm agent skips it and logs "excluded -- sensitive path policy". |
+| Tool router blocks read_file calls to forbidden path patterns | PLATFORM | Review router block-list config. Confirm forbidden path patterns from references/sensitive-paths.md are present. Check BLOCKED_READ entries in tool-logs after first cycle. |
+| CI config env/secrets sections are excluded from agent working memory | SKILL | Review RESEARCH-NNN.md after a cycle. Confirm no env: or secrets: values appear. |
+| sub-researchers receive pre-filtered file lists (no sensitive paths) | SKILL | Check RESEARCH-TRACK-NNN.md. Confirm sub-researcher scopes list no forbidden paths. |
+
+Action if platform enforcement is unavailable:
+  Restrict the agent's read_file permission to src/, tests/, docs/ only at the
+  container or OS level. Do not rely on agent instructions alone for high-risk repos.
+
+---
+
+### 2. MCP Tool Router
+
+| Check | Enforcement | How to verify |
+|-------|-------------|---------------|
+| Tool calls route through a central router (not direct tool invocation) | PLATFORM | Review platform tool call logs. Confirm all calls pass through the router. |
+| Router enforces per-agent tool subsets (references/mcp-tools.md) | PLATFORM | Review router tool-subset config. Confirm researcher_agent does not have write_file in its allowed set. Check tool-logs for any unexpected tool calls. |
+| Router blocks writes to protected paths (SKILL.md, CONFIG.yaml, agents/**, runtime/**, tools/**) | BOTH | Review router protected-path config. Confirm all paths listed in tools/tool-router.md PROTECTED PATHS are present. Check BLOCKED_WRITE entries in tool-logs after first cycle. |
+| Router redacts authentication material before it reaches agent context | PLATFORM | Pass a mock token string through a tool. Confirm it is masked in the result. |
+| BLOCKED_READ and BLOCKED_WRITE events are logged (path pattern, not path content) | PLATFORM | Check tool-logs after a test cycle. Confirm blocked events appear. |
+
+Action if router is unavailable:
+  Do not run in continuous mode. Run single-pass only with manual review of all
+  tool calls before each step. Disable web_search entirely.
+
+---
+
+### 3. Git Credential Scoping
+
+| Check | Enforcement | How to verify |
+|-------|-------------|---------------|
+| Agent can create branches | PLATFORM | Confirm git_checkout(new-branch) succeeds. |
+| Agent can commit to feature branches | PLATFORM | Confirm git_commit works on a non-protected branch. |
+| Agent can create PRs | PLATFORM | Confirm git_create_pr succeeds. |
+| Agent cannot push directly to main/trunk | PLATFORM | Configure branch protection in your git host (GitHub: require PR + reviewers on main). Confirm direct push is rejected. |
+| Agent cannot access repositories outside the current project | PLATFORM | Scope the git token to the single repo only (GitHub: fine-grained PAT scoped to one repo). |
+| git_commit requires tests to pass before executing | SKILL | Review git-workflow.md. Pre-commit hooks block commit if tests fail. |
+
+Action if git scoping is not configured:
+  Do not run the harness in autonomous mode. Run in single-pass and manually
+  review each checkpoint commit before it is pushed.
+
+---
+
+### 4. Sandboxed Test Execution
+
+| Check | Enforcement | How to verify |
+|-------|-------------|---------------|
+| Tests run in an isolated environment with no access to host env vars | PLATFORM | Run a test that tries to read an env var. Confirm the sandbox returns empty or error. |
+| Generated code execution has no network path to harness authentication material | PLATFORM | Confirm the sandbox has no access to the agent's authentication context. |
+| Each test execution starts in a clean environment | PLATFORM | Run the same test twice. Confirm state from run 1 does not affect run 2. |
+| Sandbox cannot read harness files (SKILL.md, CONFIG.yaml, MEMORY.md) | PLATFORM | Confirm sandbox filesystem access does not include the harness directory. |
+
+Action if sandbox is unavailable:
+  Do not run tests generated by agents against production infrastructure.
+  Run only in a dedicated, isolated dev environment with no real credentials.
+
+---
+
+### 5. Web Search Staging Gate
+
+| Check | Enforcement | How to verify |
+|-------|-------------|---------------|
+| web_search results are written to docs/generated/search-staging/ only | SKILL | Review agent instructions (agents/researcher.md, agents/debugger.md, agents/implementer.md). |
+| Agents do not write web_search content directly to docs/references/ | SKILL | Check RESEARCH-NNN.md after a cycle that triggered web search. Confirm no raw search content in docs/references/. |
+| Staged content requires human promotion to docs/references/ | SKILL + PLATFORM | Confirm docs/generated/search-staging/ is not auto-processed by any CI job. |
+
+Action if staging gate is not working:
+  Disable web_search in the agent's tool subset (references/mcp-tools.md,
+  researcher_agent section). Remove it from TOOL_REGISTRY.md active tools.
+
+---
+
+### 6. Memory Retention and Sensitivity
+
+| Check | Enforcement | How to verify |
+|-------|-------------|---------------|
+| MEMORY.md stores only harness failure patterns (not file contents, not secrets) | SKILL | Review memory-system.md and MEMORY.md write format. Confirm Input/Output fields are absent. |
+| max_history: 500 entries (CONFIG.yaml) | SKILL | Check CONFIG.yaml. Confirm max_history is not set to "unlimited". |
+| max_entry_age_days: 90 (CONFIG.yaml) | SKILL | Check CONFIG.yaml. Confirm max_entry_age_days is set. |
+| redact_before_write: true (CONFIG.yaml) | SKILL | Review runtime/memory-system.md redaction rules. |
+| MEMORY.md does not contain paths from references/sensitive-paths.md | SKILL | Grep MEMORY.md for forbidden path patterns after a test cycle. Expect zero matches. |
+
+Action if memory retention is a concern:
+  Set max_history to a lower value. Add a git hook that scans MEMORY.md for
+  sensitive path patterns before allowing a commit that modifies it.
+
+---
+
+### 7. Human Approval Gates
+
+| Check | Enforcement | How to verify |
+|-------|-------------|---------------|
+| on-start: human acknowledgment before cycle begins | SKILL | Review runtime/autonomy-rules.md lifespan hooks. |
+| on-plan-complete: MASTER-PLAN-NNN.md surfaced and approved before implementation | SKILL | Confirm agents/planner.md human gate section. |
+| No auto-merge: PRs always require human approval | SKILL | Confirm references/git-workflow.md merge requirements. |
+| on-error: human gate after retry_limit exhaustion | SKILL | Confirm runtime/autonomy-rules.md Gate 3. |
+| Loop mode defaults to single-pass | SKILL | Confirm CONFIG.yaml loop_mode: single-pass. |
+
+Action if human gates cannot be enforced:
+  Do not run in continuous mode under any circumstances.
+  Run only single-pass with a human reviewing each phase output before proceeding.
+
+---
+
+### 8. Subagent Permission Mode
+
+| Check | Enforcement | How to verify |
+|-------|-------------|---------------|
+| Subagents run with the platform's configured permission mode (not `bypassPermissions`) | PLATFORM | Review subagent spawn command. Confirm no `--permission-mode bypassPermissions` flag. |
+| Platform enforces per-agent tool subsets at the infrastructure level | PLATFORM | Confirm tool-subset config in platform matches references/mcp-tools.md. |
+| Sensitive operations (write to protected paths, network access, credential use) require platform-level approval | PLATFORM | Attempt a protected write from a subagent. Confirm it is blocked unless explicitly approved. |
+
+Action if permission mode cannot be enforced:
+  Do not spawn autonomous subagents. Run the harness in single-pass with a human
+  reviewing and approving every tool call before execution. The skill does NOT
+  override the platform's permission configuration — it relies on it.
+
+---
+
+### 9. Scheduling and Token Recovery
+
+| Check | Enforcement | How to verify |
+|-------|-------------|---------------|
+| If cron/scheduler is used for monitoring or recovery, credentials are managed by the platform (not embedded in skill files) | PLATFORM | Review scheduler config. Confirm no tokens, API keys, or credentials are stored in skill files or docs/. |
+| Scheduled jobs are scoped to the current session only (no persistent access beyond session lifetime) | PLATFORM | Confirm scheduled jobs cannot outlive the session that created them. |
+| Token refresh and rate-limit recovery follow platform rate limits (no automated retry loops without backoff) | PLATFORM | Review retry logic. Confirm exponential backoff and platform rate limit headers are respected. |
+
+Action if scheduling is unavailable:
+  The harness operates without automated scheduling. The human operator manually
+  restarts interrupted cycles using the recovery protocol (docs/status/DISPATCH-TRACK-NNN.md).
+
+---
+
+### 10. Required Platform Capabilities
+
+The skill is instruction-only. It does NOT include, install, or execute any binaries.
+All operations depend on the host platform providing these capabilities:
+
+| Capability | How the skill uses it | What to verify |
+|-----------|----------------------|----------------|
+| Agent spawning | The skill instructs the orchestrator to spawn subagents. The platform's native mechanism handles the actual spawn. | Confirm your platform can spawn subagents with scoped tool access. |
+| File read/write | Agents read codebase files and write to docs/status/, docs/exec-plans/. | Confirm the platform's tool router allows read/write within these paths. |
+| Code search | Agents search the codebase for patterns and dependencies. | Confirm the platform provides code search capability. |
+| Git operations | Agents create branches, commit, and create PRs. | Confirm the platform provides git tools scoped to the target repo. |
+| File/line counting | Agents estimate codebase size to determine scope splits. | Confirm the platform provides file-count or line-count capability. No raw shell required. |
+| Web search (optional) | Q-Agents may search for framework standards. Results are staged, never written directly. | Confirm web search is available or disable it in references/mcp-tools.md. |
+
+The skill NEVER invokes raw shell commands. Any shell-like operations (file counting,
+process monitoring, test execution) must be provided by the platform as tools.
+The TOOL_REGISTRY explicitly forbids raw shell invocation. If your platform does not
+provide these capabilities as tools, the skill will not function correctly.
+
+---
+
+## SAFE START SEQUENCE (run before any real-repo use)
+
+1. Clone the target repo to a throwaway branch
+2. Complete this checklist -- do not skip items marked PLATFORM
+3. Set CONFIG.yaml: loop_mode: single-pass, max_parallel_agents: 1
+4. Run one full single-pass cycle
+5. After the cycle: inspect RESEARCH-NNN.md, GAPS-NNN.md, MASTER-PLAN-NNN.md
+6. Inspect DISPATCH-TRACK-NNN.md and all CHECKLIST-NNN-XX.md files
+7. Inspect MEMORY.md for any unexpected content
+8. Grep all docs/status/ files for patterns from references/sensitive-paths.md
+9. If all inspections pass: increase max_parallel_agents to 3, run second cycle
+10. Only after two clean cycles: consider enabling continuous mode

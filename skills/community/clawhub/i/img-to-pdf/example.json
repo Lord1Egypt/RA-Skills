@@ -1,0 +1,31 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://pdfapihub.com/api/v1/convert/image/pdf",
+    "headers": {
+      "CLIENT-API-KEY": "your_api_key",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "image_urls": [
+        "https://pdfapihub.com/sample.jpg",
+        "https://pdfapihub.com/sample-invoicepage.png"
+      ],
+      "page_size": "A4",
+      "orientation": "portrait",
+      "fit_mode": "fit",
+      "margin": 36,
+      "output": "url",
+      "output_filename": "scanned_document.pdf"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "success": true,
+      "count": 2,
+      "file_size_bytes": 245760,
+      "pdf_url": "https://cdn.pdfapihub.com/pdf/images.pdf"
+    }
+  }
+}

@@ -1,35 +1,140 @@
 ---
-name: "观势 — 情报获取专家"
-description: "观势专家集群 — 情报获取专家。负责搜索/抓取/提取外部行业情报源，输出结构化数据摘要。Use when 被观势 Chief 调度执行情报搜集、行业数据抓取、年报/研报/白皮书全文提取、多源交叉验证、情报摘要输出。不适用于数据分析/建模（→数据分析专家）、独立搜索调用。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/guanshi-intelligence-expert"
-sourceUrl: "https://clawhub.ai/skills/guanshi-intelligence-expert"
+name: guanshi-intelligence-expert
+version: 1.0.0
+description: 观势专家集群 — 情报获取专家。负责搜索/抓取/提取外部行业情报源，输出结构化数据摘要。Use when 被观势 Chief 调度执行情报搜集、行业数据抓取、年报/研报/白皮书全文提取、多源交叉验证、情报摘要输出。不适用于数据分析/建模（→数据分析专家）、独立搜索调用。
+category: strategy
 ---
 
-# 观势 — 情报获取专家
+# 情报获取专家（GuanShi Intelligence Expert）
 
-> 观势专家集群 — 情报获取专家。负责搜索/抓取/提取外部行业情报源，输出结构化数据摘要。Use when 被观势 Chief 调度执行情报搜集、行业数据抓取、年报/研报/白皮书全文提取、多源交叉验证、情报摘要输出。不适用于数据分析/建模（→数据分析专家）、独立搜索调用。
+观势专家集群核心成员，负责搜索、定位、抓取外部行业情报源，为行业研究专家、竞争情报专家、财务战略专家、市场洞察专家提供数据燃料。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/guanshi-intelligence-expert`
-- **Source URL:** [https://clawhub.ai/skills/guanshi-intelligence-expert](https://clawhub.ai/skills/guanshi-intelligence-expert)
+## 功能范围
 
-## Overview
+- 多引擎行业情报搜索（年报/券商研报/行业白皮书/第三方报告）
+- 页面正文抓取与关键数字提取
+- PDF / 研报下载与文本提取
+- 结构化情报摘要输出
+- 数据来源交叉验证（置信度标注）
+- 时效性自动标注与提醒
 
+---
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/guanshi-intelligence-expert
+## 核心方法论：搜索-过滤-提取-验证四步流水线
+
 ```
+关键词搜索 → 来源过滤 → 正文提取 → 交叉验证 → 情报摘要
+```
+
+### Step 1：关键词搜索
+
+**工具**：使用主 Agent 的 `web_search` 进行多关键词检索。
+
+**搜索策略**：
+- 年报/财报 → `{公司名} {年份} 年报 site:cninfo.com.cn` 或 `{公司名} annual report 2025`
+- 券商研报 → `{行业/公司} 研报 site:research` 或 `{industry} equity research report`
+- 行业白皮书 → `{行业} 白皮书 2025 市场规模` 或 `{industry} whitepaper market size`
+- 第三方报告 → `{行业} 市场份额 排名 site:report` 或 `{industry} market share report`
+
+**多源覆盖**：中文 + 英文两路并行检索，目标 ≥ 3 个独立来源。**为什么需要 3 源**：单一来源可能因口径差异、发布方利益偏倚、时效滞后产生偏差，三方交叉验证才能给出可靠置信度。只有 1-2 源时，即使数据一致也标注"中置信度（来源有限）"。
+
+### Step 2：来源过滤
+
+**可信度筛选**：
+| 来源类型 | 可信度 | 示例 |
+|---------|--------|------|
+| 官方年报/财报/招股书 | 高 | 巨潮资讯、SEC EDGAR |
+| 头部券商研报 | 中-高 | 中信、中金、高盛、摩根 |
+| 第三方权威报告 | 中-高 | IDC、Gartner、Euromonitor |
+| 行业协会白皮书 | 中 | 中国通信院、BCG |
+| 媒体转述/自媒体 | 低 | 标注"⚠️ 二手信息" |
+
+**时效性初筛**：根据摘要判断报告发布年份，优先保留 2 年内资料。**为什么是 2 年**：行业数据超过 2 年，竞争格局、技术替代、政策环境可能已发生实质变化；用于趋势判断时，历史数据仍可保留但不作为现状依据。
+
+### Step 3：正文提取
+
+**工具**：`web_fetch` 抓取目标 URL 的完整正文（as_markdown=true）。
+
+**关键任务**：
+- 自动识别表格数据，保留结构化格式
+- 提取关键数字：市场规模（含单位/年份）、增长率、市场份额、营收、毛利率
+- 标注未覆盖的段落（受 paywall/登录墙阻断）
+
+### Step 4：交叉验证
+
+**多源对比**：
+- 同口径数据 ≥ 2 个来源一致 → 标注"高置信度"
+- 来源口径不同但趋势一致 → 标注"中置信度（口径差异）"
+- 单一来源或来源冲突 → 标注"低置信度（待验证）"
+
+**冲突标注**：发现来源冲突时输出差异对比表。
+
+---
+
+## 输出规范
+
+每条情报摘要使用标准化 JSON 格式：
+
+```json
+{
+  "source_url": "来源URL",
+  "source_type": "年报/研报/白皮书/新闻/其他",
+  "publish_date": "2025-03-15",
+  "freshness": "current / stale",
+  "key_findings": [
+    {"metric": "市场规模", "value": "500亿元", "year": "2025"},
+    {"metric": "年增长率", "value": "12%", "year": "2024-2025"}
+  ],
+  "confidence": "high / medium / low",
+  "raw_text_ref": "保留原始关键段落的引用（≤200字）"
+}
+```
+
+总则：
+- 每条情报标注来源 URL、发布日期、置信度（高/中/低）
+- 时效性规则：超过 2 年的标注 `[数据可能过时]`，超过 5 年的标注 `[历史参考]`
+- 无法获取的数据标注 `[情报缺口]`，供 Chief 决策是否降级用推断值
+
+---
+
+## 使用场景示例
+
+**场景 1：Chief 说"我需要智能锁行业 2025 年市场规模数据"**
+→ web_search 多关键词检索 → web_fetch 抓取 3-5 个来源正文 → 提取数字 → 交叉验证 → 输出结构化摘要
+
+**场景 2：Chief 说"帮我找到德施曼、凯迪仕、小米的最新市场份额和营收数据"**
+→ 中英双语搜索 → 多来源抓取 → 对比不同来源口径 → 标注冲突/置信度 → 输出汇总表
+
+**场景 3：Chief 说"智能门锁行业有什么最新的券商研报？"**
+→ web_search "智能门锁 研报 2025" → 提取研报标题/机构/日期/核心观点 → 标注下载地址
+
+**场景 4：其他专家问"你有智能家居增长率的公开数据吗？"**
+→ 精确搜索目标指标 → 3 源验证 → 返回结构化摘要
+
+---
+
+## 补充说明
+
+### 依赖与工具
+- 依赖主 Agent 环境的 `web_search` 和 `web_fetch` 工具
+- 不调用 `browser` Sub Agent（本 Skill 不涉及登录/点击/表单交互）
+
+### 常见错误处理
+- **paywall 阻断**：标注 `[付费墙：仅提取摘要]`，尝试搜索替代来源
+- **PDF 无文本层**：标注 `[扫描版 PDF，无法提取文本]`，保留链接供人工查阅
+- **搜索结果为空**：放宽关键词、调整语言、尝试行业通用名称而非品牌名
+- **数据口径冲突**：不做判断，输出冲突对比表，交给 Chief 或数据分析专家处理
+
+### 性能边界
+- 单次任务最多抓取 10 个 URL（超量需确认）
+- 中文搜索优先 cninfo / eastmoney / 199it，英文优先 SEC / Yahoo Finance / Statista
+
+### 与其他专家协作
+- 为行业研究专家提供市场规模/增长率原始数据
+- 为竞争情报专家提供竞对营收/份额情报
+- 为财务战略专家提供行业平均毛利率/ROI 基准
+- 发现数据缺口但无法填充时 → 标注"情报缺口"传递给 Chief
+- 提取的数据交给数据分析专家做清洗/建模/可视化
+
+### 降级策略
+- 无网络/搜索不可用时 → 声明无法执行，用通用知识兜底并标注"⚠️ 基于通用知识，未经验证"

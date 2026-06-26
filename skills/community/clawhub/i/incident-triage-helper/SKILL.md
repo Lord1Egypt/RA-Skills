@@ -1,35 +1,33 @@
 ---
-name: "Incident Triage Helper"
-description: "Complete local skill package to assess and potentially publish."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/incident-triage-helper"
-sourceUrl: "https://clawhub.ai/skills/incident-triage-helper"
+name: local-skill-package-publisher
+version: 0.2.0
+description: Complete local skill package to assess and potentially publish.
+license: MIT
 ---
 
-# Incident Triage Helper
+# Local Skill Package Publisher
 
-> Complete local skill package to assess and potentially publish.
+This package contains everything needed to review, validate, and prepare a skill for publishing.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/incident-triage-helper`
-- **Source URL:** [https://clawhub.ai/skills/incident-triage-helper](https://clawhub.ai/skills/incident-triage-helper)
+## Included files
 
-## Overview
+- `SKILL.md` - package metadata and usage notes
+- `docs/review-checklist.md` - review steps before publication
+- `examples/sample-skill.md` - example skill structure
+- `templates/publish-request.md` - publication request template
+- `scripts/validate.sh` - local validation helper
 
+## Validation
 
-## Installation
-To install this skill, run the following command in your terminal:
+Run:
+
 ```bash
-hermes skills install clawhub/incident-triage-helper
+./scripts/validate.sh
 ```
+
+## Publishing checklist
+
+1. Confirm metadata is complete.
+2. Validate required files exist.
+3. Review examples and supporting docs.
+4. Package for handoff or publication.

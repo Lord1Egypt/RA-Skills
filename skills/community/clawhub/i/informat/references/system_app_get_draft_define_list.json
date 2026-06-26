@@ -1,0 +1,13 @@
+{
+  "type": "function",
+  "function": {
+    "name": "_app_get_draft_define_list",
+    "description": "Get the object structure metadata (Draft Define Objects) of the current application's [draft version].\n\n【Purpose】\n- AI reads draft structure before generating modification plan\n- Structure verification before publishing\n- Draft and published version difference analysis\n- Structure reading in automatic repair process\n\n",
+    "parameters": {
+      "type": "object",
+      "properties": {
+      },
+      "additionalProperties": false
+    }
+  }
+}

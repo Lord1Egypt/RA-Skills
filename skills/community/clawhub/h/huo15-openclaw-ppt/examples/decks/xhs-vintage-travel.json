@@ -1,0 +1,52 @@
+{
+  "year": "2026",
+  "slides": [
+    {
+      "type": "hero_cover",
+      "eyebrow": "旅行手记",
+      "title": "青岛，老城记忆。",
+      "subtitle": "一次关于时间的漫游",
+      "footnote": "拍于 2026 年春"
+    },
+    {
+      "type": "section_divider",
+      "number": "壹",
+      "title": "八大关 · 红瓦绿树"
+    },
+    {
+      "type": "quote_card",
+      "quote": "有些城市是用来打卡的，有些城市，只是慢慢走。",
+      "author": "老青岛",
+      "role": "本地讲述人"
+    },
+    {
+      "type": "timeline",
+      "title": "一日慢游",
+      "en_sub": "One Slow Day",
+      "events": [
+        {"time": "7:30", "label": "大学路", "desc": "买杯手冲，慢慢走"},
+        {"time": "11:00", "label": "八大关", "desc": "红瓦绿树碧海"},
+        {"time": "15:00", "label": "栈桥", "desc": "喂海鸥，吹海风"},
+        {"time": "19:30", "label": "啤酒街", "desc": "一扎原浆配蛤蜊"}
+      ]
+    },
+    {
+      "type": "content_list",
+      "title": "带什么",
+      "en_sub": "Packing List",
+      "numbered": false,
+      "items": [
+        {"label": "一台胶片相机", "desc": "复古滤镜不如真胶片"},
+        {"label": "一本诗集", "desc": "等餐时读两页"},
+        {"label": "一件薄外套", "desc": "海边黄昏降温"}
+      ]
+    },
+    {
+      "type": "call_to_action",
+      "title": "愿你也慢下来。",
+      "subtitle": "下次来青岛，留出一整天给自己。",
+      "cta": "小红书 @青岛小剧",
+      "footnote": "—— 春日慢游手记"
+    }
+  ]
+}

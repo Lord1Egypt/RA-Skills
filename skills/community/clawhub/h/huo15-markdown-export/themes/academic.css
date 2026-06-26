@@ -1,0 +1,108 @@
+/* huo15-markdown-export — Academic
+ * 流派:Academic(IEEE / ACM / Springer 投稿初稿风)
+ * 适合:学术论文 / 研究报告 / 严谨克制场景
+ * 关键差异化:Times 衬线 + 段首缩进 + 章节大写 + 双线表格(无竖框)+ 12pt 印刷基准
+ *
+ * v0.4.0 修:中文行高 1.6 → 1.75
+ */
+
+:root {
+  /* === 主题 token override === */
+  --font-body:     "Times New Roman", "Liberation Serif", "PT Serif", Georgia, "Songti SC", STSong, SimSun, "Source Han Serif SC", "Noto Serif CJK SC", serif;
+  --font-heading:  "Times New Roman", "Liberation Serif", "PT Serif", Georgia, "Songti SC", STSong, SimSun, "Source Han Serif SC", "Noto Serif CJK SC", serif;
+  --color-bg:      #ffffff;
+  --color-fg:      #000000;
+  --color-muted:   #555555;
+  --color-rule:    #999999;
+  --color-accent:  #1a1a8a;
+  --color-accent-soft: rgba(26, 26, 138, 0.06);
+  --color-code-bg: #f4f4f4;
+  --quote-bar-color: var(--color-rule);
+  --quote-bg:      transparent;
+  --quote-fg:      var(--color-muted);
+  --table-th-bg:   transparent;
+  --table-stripe-bg: transparent;
+  --measure:       var(--measure-normal);
+  --leading:       var(--lh-cn);
+  --fs-base:       12pt;
+}
+
+/* === Academic 特征 === */
+
+body { padding: 1in 1.25in; }
+
+/* h1:论文标题居中,无装饰 */
+.markdown-body h1 {
+  font-size: 1.6em;
+  text-align: center;
+  margin: 0 0 0.4em;
+  letter-spacing: 0.02em;
+}
+
+/* h2:章节大写 */
+.markdown-body h2 {
+  font-size: 1.15em;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* h3:小节斜体 */
+.markdown-body h3 {
+  font-size: 1.05em;
+  font-style: italic;
+}
+
+.markdown-body h4 { font-size: 1em; }
+
+/* 段首缩进 2em(中英混排首段不缩) */
+.markdown-body p {
+  margin: 0 0 0.8em;
+  text-indent: 2em;
+  text-align: justify;
+}
+.markdown-body p:first-of-type,
+.markdown-body h1 + p,
+.markdown-body h2 + p,
+.markdown-body h3 + p,
+.markdown-body h4 + p { text-indent: 0; }
+
+.markdown-body a { text-decoration: none; }
+.markdown-body a:hover { text-decoration: underline; }
+
+.markdown-body blockquote {
+  margin: 1em 2em;
+  font-size: 0.95em;
+  border-left: 3px solid var(--color-rule);
+  padding: 0 0 0 1em;
+  background: transparent;
+}
+
+.markdown-body code {
+  font-family: "Latin Modern Mono", "Courier New", monospace;
+  font-size: 0.95em;
+  background: var(--color-code-bg);
+  padding: 0 0.3em;
+  border-radius: 0;
+}
+.markdown-body pre {
+  border-left: 3px solid var(--color-rule);
+  border-radius: 0;
+  padding: 0.8em 1em;
+}
+
+/* Academic 经典三线表(无竖框) */
+.markdown-body table th,
+.markdown-body table td {
+  border: none;
+  padding: 0.4em 0.6em;
+}
+.markdown-body table thead {
+  border-top: 2px solid #000;
+  border-bottom: 1px solid #000;
+}
+.markdown-body table tbody {
+  border-bottom: 2px solid #000;
+}
+.markdown-body table tr:nth-child(2n) { background: transparent; }
+
+.markdown-body img + em { font-style: italic; }

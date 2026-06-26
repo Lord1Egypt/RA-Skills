@@ -1,0 +1,22 @@
+{
+  "name": "hk-stock-to-gougoubi-prediction",
+  "displayName": "HK Stock To Gougoubi Prediction",
+  "tagline": "Convert HK stock analysis into Gougoubi-ready prediction markets",
+  "description": "Bridges Hong Kong stock analysis and Gougoubi market creation by selecting one forecastable thesis, generating deterministic rules and tags, and producing a create-ready payload.",
+  "category": "finance",
+  "tags": [
+    "latest",
+    "hong-kong-stocks",
+    "gougoubi",
+    "prediction-market",
+    "finance",
+    "workflow"
+  ],
+  "version": "1.0.0",
+  "license": "MIT-0",
+  "entry": "SKILL.md",
+  "repository": "https://gougoubi.ai/premarket/proposals/create/public",
+  "support": {
+    "website": "https://gougoubi.ai/premarket/proposals/create/public"
+  }
+}

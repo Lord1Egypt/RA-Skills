@@ -1,0 +1,21 @@
+{
+  "name": "graphcare-mcp",
+  "version": "1.0.0",
+  "description": "GraphCare — Structural database health scanner. MCP server for OpenClaw.",
+  "type": "module",
+  "main": "index.js",
+  "bin": {
+    "graphcare-mcp": "./index.js"
+  },
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0",
+    "pg": "^8.13.0",
+    "mysql2": "^3.11.0",
+    "sql.js": "^1.10.0"
+  },
+  "keywords": ["mcp", "database", "health", "audit", "graphcare"],
+  "license": "MIT"
+}

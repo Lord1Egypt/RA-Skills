@@ -1,0 +1,19 @@
+{
+  "type": "function",
+  "function": {
+    "name": "_query_informat_script_content",
+    "description": "Query script file content based on script ID.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "Script ID",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    }
+  }
+}

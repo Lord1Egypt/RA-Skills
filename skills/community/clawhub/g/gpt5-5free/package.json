@@ -1,0 +1,15 @@
+{
+  "name": "gpt5.5free",
+  "version": "1.0.0",
+  "description": "免费使用 GPT-5.5 的示例方案",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js"
+  },
+  "keywords": ["gpt5.5", "free", "openrouter", "ai"],
+  "author": "leic8959",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18"
+  }
+}

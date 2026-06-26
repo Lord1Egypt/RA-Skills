@@ -1,0 +1,62 @@
+#!/usr/bin/env python3
+"""
+查询逐小时天气预报(24/72/168小时)
+"""
+
+import argparse
+import json
+import sys
+
+from qweather_api import api
+
+
+def main():
+    parser = argparse.ArgumentParser(description="查询逐小时天气预报(24/72/168小时)")
+    parser.add_argument("--city", help="城市名称")
+    parser.add_argument("--location", help="经纬度坐标")
+    parser.add_argument("--hours", default="24h", choices=["24h", "72h", "168h"], help="预报小时数(默认24h)")
+    parser.add_argument("--lang", default="zh", help="语言(默认zh)")
+    parser.add_argument("--unit", default="m", choices=["m", "i"], help="单位(默认m公制)")
+    parser.add_argument("--raw", action="store_true", help="输出原始JSON")
+
+    args = parser.parse_args()
+
+    # 验证参数
+    if not args.location and not args.city:
+        print("错误: 必须提供 --city 或 --location 其中之一", file=sys.stderr)
+        sys.exit(1)
+
+    # 获取位置
+    location = args.location
+    if not location:
+        location = api.get_city_location(args.city)
+        if not location:
+            print(f"错误: 未找到城市 '{args.city}' 的位置信息", file=sys.stderr)
+            sys.exit(1)
+
+    # 调用 API
+    endpoint = f"v7/weather/{args.hours}"
+    params = {"location": location, "lang": args.lang, "unit": args.unit}
+    result = api.request(endpoint, params)
+
+    if not result:
+        print("错误: 获取天气数据失败", file=sys.stderr)
+        sys.exit(1)
+
+    # 输出结果
+    if args.raw:
+        print(json.dumps(result, ensure_ascii=False, indent=2))
+    else:
+        basic = result.get("basic", {})
+        hourly = result.get("hourly", [])
+
+        print(f"\n📍 {basic.get('location', '')} - {args.hours.upper()} 逐小时预报")
+        print("=" * 60)
+
+        for hour in hourly[:24]:  # 默认只显示前24小时
+            print(f"🕐 {hour.get('fxTime', '')} | {hour.get('text', '--')} | {hour.get('temp', '--')}°C | "
+                  f"{hour.get('windDir', '--')} {hour.get('windScale', '--')}级")
+
+
+if __name__ == "__main__":
+    main()

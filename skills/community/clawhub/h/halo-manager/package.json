@@ -1,0 +1,23 @@
+{
+  "name": "halo-manager",
+  "version": "1.0.0",
+  "description": "Halo博客管理技能",
+  "main": "halo.js",
+  "bin": {
+    "halo": "./halo.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "halo",
+    "blog",
+    "cms"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@halo-dev/api-client": "^2.22.0",
+    "axios": "^1.13.6"
+  }
+}

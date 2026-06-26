@@ -1,35 +1,195 @@
----
-name: "群消息超时监控"
-description: "自动监控飞书多维表格中当日未回复且未撤回的群聊话题，超时超过30分钟则推送提醒。"
-category: "other"
-source: "ClawHub"
-tags: [internal, risk-control]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/group-message-timeout-monitor"
-sourceUrl: "https://clawhub.ai/skills/group-message-timeout-monitor"
+# 群消息超时监控 Skill
+
+> 自动监控飞书多维表格中今日未回复的群聊话题，标记已撤回的，推送超时未回的。
+>
+> 版本：v1.0
+> 更新：2026-05-19
+
 ---
 
-# 群消息超时监控
+## 触发条件
 
-> 自动监控飞书多维表格中当日未回复且未撤回的群聊话题，超时超过30分钟则推送提醒。
+- **定时触发**：cron 每 5 分钟执行一次（cron 任务后续单独配置）
+- **手动触发**：用户说「检查群消息」「群消息超时监控」
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/group-message-timeout-monitor`
-- **Source URL:** [https://clawhub.ai/skills/group-message-timeout-monitor](https://clawhub.ai/skills/group-message-timeout-monitor)
+---
 
-## Overview
+## 前置条件（每次运行第一步）
 
+### 1. OAuth 授权检查
 
-## Installation
-To install this skill, run the following command in your terminal:
+尝试以用户身份调用任意 API（如 `feishu_get_user`），验证授权有效性：
+- **有效** → 继续
+- **失效/过期** → 提示用户重新授权，**终止本次运行**
+
+### 2. 确认当前日期
+
+计算今天的「发送日期」格式：
 ```bash
-hermes skills install clawhub/group-message-timeout-monitor
+TZ=Asia/Shanghai date '+%m月%d日'
+# 例如：05月19日
 ```
+
+---
+
+## 数据源
+
+| 项目 | 值 |
+|------|-----|
+| 多维表格 | 会话内的消息统计 |
+| 数据表 | 群聊记录同步 |
+| `app_token` | `J8Rnb51vsaRqCmsb0R6cdZLonKd` |
+| `table_id` | `tblolq9Wm75jcPLt` |
+
+### 涉及字段
+
+| 字段名 | 类型 | 用途 |
+|--------|------|------|
+| 发送日期 | Formula(Text) | 过滤当天记录，格式 `mm月dd日` |
+| 根消息ID | Text | 空=原始话题（非回复） |
+| 话题回复内容 | Formula(Text) | 空=无人回复过 |
+| 发送人 | User | 排除风控值班自己发的消息 |
+| 是否撤回 | Checkbox | 已勾选=已确认撤回，永久跳过 |
+| 发送时间 | DateTime(ms) | 毫秒时间戳，用于计算超时 |
+| 消息ID | Text | 格式 `om_x100b...`，用于查撤回 |
+| 所在群 | GroupChat | 群ID+群名 |
+| 消息链接 | Url | applink，推送用 |
+| 聊天记录 | Text | 消息内容，推送时展示 |
+
+---
+
+## 执行流程
+
+### 阶段一：API 五层筛（一次调用）
+
+用 `feishu_bitable_app_table_record` 的 list 方法，一次性传入 5 个 filter 条件。
+
+> 条件顺序按筛除效率排列：**越筛人的放越前面**，减少后续匹配计算量。
+
+```json
+{
+  "field_names": ["消息ID", "发送时间", "所在群", "消息链接", "聊天记录"],
+  "filter": {
+    "conjunction": "and",
+    "conditions": [
+      {"field_name": "发送日期", "operator": "is", "value": ["05月19日"]},
+      {"field_name": "根消息ID", "operator": "isEmpty"},
+      {"field_name": "话题回复内容", "operator": "isEmpty"},
+      {"field_name": "发送人", "operator": "isNot", "value": ["ou_bedf1873f673089685e5d71192b19a22"]},
+      {"field_name": "是否撤回", "operator": "is", "value": ["false"]}
+    ]
+  }
+}
+```
+
+**预期结果**：26000+ 条 → 约个位数候选记录。
+
+---
+
+### 阶段二：本地算超时（>30分钟）
+
+对阶段一返回的每条记录，用 `check.sh` 脚本计算并分组：
+
+```bash
+bash /workspace/群消息超时监控/scripts/check.sh < input.json > output.json
+```
+
+脚本会：
+1. 逐条算 `(当前时间 - 发送时间) / 60 > 30`
+2. 按「所在群ID」分组
+3. 输出分组后的 JSON
+
+---
+
+### 阶段三：按群查撤回（查群数=N次API，而非记录数）
+
+对阶段二输出的每个分组，用用户身份工具 `feishu_im_user_get_messages` 查一次消息列表：
+
+```
+chat_id = 组的 chat_id（如 oc_xxx）
+relative_time = "last_1_days"
+page_size = 50
+```
+
+**返回值处理**（逐条匹配组内记录的消息ID）：
+
+| 情况 | 结论 | 操作 |
+|------|------|------|
+| 报错 `Bot/User can NOT be out of the chat` | 用户不在该群 | **跳过该群所有记录**，不做处理 |
+| 消息列表中找到该消息ID | **未撤回** | 记入推送列表 |
+| 消息列表中找不到该消息ID | **已撤回** | 用 `feishu_bitable_app_table_record` update，勾选「是否撤回」= `true` |
+
+---
+
+### 阶段四：推送未撤回的超时话题
+
+对确认「未撤回」的记录，**每条单独推送**一张消息卡片到 **风控bi报表或超时提醒推送群**（`oc_5ab81cdc5c51744bcfa2e821c71f895b`）。
+
+**卡片模板**：
+
+```
+┌─────────────────────────────────────┐
+│ 🟡 群消息未回复                      │
+│                                     │
+│ {消息链接}                           │
+│                                     │
+│ 📍 {所在群名称}                      │
+└─────────────────────────────────────┘
+```
+
+---
+
+## 完整流程图
+
+```
+开始
+ │
+ ├─ OAuth 有效？─── 否 ──→ 提示重新授权，终止
+ │
+ ├─ 阶段一：API 筛
+ │   发送日期=今天 → 根消息ID=空 → 话题回复内容=空
+ │   → 发送人≠风控值班 → 是否撤回=未勾选
+ │   │
+ │   └─ 结果：0 条 ──→ 无超时话题，结束
+ │
+ ├─ 阶段二：本地算超时
+ │   每条算 >30分钟，按群分组
+ │   │
+ │   └─ 结果：0 条 ──→ 无不超时，结束
+ │
+ ├─ 阶段三：按群查撤回
+ │   每组查一次消息列表
+ │   │
+ │   ├─ 不在群 → 跳过该组
+ │   ├─ 找到消息ID → 未撤回
+ │   └─ 找不到 → 勾选是否撤回
+ │
+ └─ 阶段四：推送卡片到目标群
+```
+
+---
+
+## 工具使用规则（禁止事项）
+
+### 身份约束
+- ❌ **禁止**使用机器人身份工具查询消息（如 `feishu_im_bot_image`、`message`）
+- ❌ **禁止**不使用工具自行编造查询结果
+- ❌ **禁止**用关键词搜索（`feishu_im_user_search_messages`）代替按消息ID查话题
+- ✅ **必须**使用用户身份工具 `feishu_im_user_get_messages` 查群消息
+- ✅ **必须**使用用户身份工具 `feishu_bitable_app_table_record` 读写多维表格
+
+### 操作约束
+- ❌ **禁止**修改已勾选「是否撤回」的记录
+- ❌ **禁止**单条记录重复推送（每次 cron 运行只推一次）
+- ✅ **必须**在推送成功后确认消息已发出
+
+---
+
+## 错误处理
+
+| 异常 | 处理方式 |
+|------|---------|
+| 授权失效 | 提示重新授权，终止运行 |
+| 用户不在群中 | 跳过该群所有记录，继续处理其他群 |
+| API 限流/超时 | 等待后重试（最多 3 次） |
+| 筛出 0 条记录 | 正常结束，无推送 |

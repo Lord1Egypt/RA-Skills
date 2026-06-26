@@ -1,0 +1,40 @@
+# Skill Package Metadata
+name: home-design
+version: 2.0.1
+description: 房屋装修设计技能，根据户型图生成装修设计方案、效果图和施工图纸（含水电路走线图）
+author: OpenClaw Community
+license: MIT
+
+# 触发关键词
+triggers:
+  - 装修设计
+  - 户型设计
+  - 空间规划
+  - 生成效果图
+  - 施工图纸
+  - 水电图纸
+  - 室内设计
+  - layout design
+  - home renovation
+  - interior design
+
+# 依赖项
+dependencies:
+  - python3
+  - pip
+
+# 安装后脚本
+post_install: |
+  echo "✅ home-design 技能安装完成！"
+  echo "📚 查看使用说明：cat README.md"
+  echo "🎨 生成效果图提示词：python scripts/generate_room_prompts.py --help"
+
+# 文件清单
+files:
+  - SKILL.md
+  - README.md
+  - EFFECTS_GUIDE.md
+  - INSTALL_SD.md
+  - scripts/
+  - references/
+  - assets/

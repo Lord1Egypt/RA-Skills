@@ -1,35 +1,47 @@
 ---
-name: "Gws Workflow Weekly Digest"
+name: gws-workflow-weekly-digest
 description: "Google Workflow: Weekly summary: this week's meetings + unread email count."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/gws-workflow-weekly-digest"
-sourceUrl: "https://clawhub.ai/skills/gws-workflow-weekly-digest"
+metadata:
+  version: 0.22.5
+  openclaw:
+    category: "productivity"
+    requires:
+      bins:
+        - gws
+    cliHelp: "gws workflow +weekly-digest --help"
 ---
 
-# Gws Workflow Weekly Digest
+# workflow +weekly-digest
 
-> Google Workflow: Weekly summary: this week's meetings + unread email count.
+> **PREREQUISITE:** Read `../gws-shared/SKILL.md` for auth, global flags, and security rules. If missing, run `gws generate-skills` to create it.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/gws-workflow-weekly-digest`
-- **Source URL:** [https://clawhub.ai/skills/gws-workflow-weekly-digest](https://clawhub.ai/skills/gws-workflow-weekly-digest)
+Weekly summary: this week's meetings + unread email count
 
-## Overview
+## Usage
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/gws-workflow-weekly-digest
+gws workflow +weekly-digest
 ```
+
+## Flags
+
+| Flag | Required | Default | Description |
+|------|----------|---------|-------------|
+| `--format` | — | — | Output format: json (default), table, yaml, csv |
+
+## Examples
+
+```bash
+gws workflow +weekly-digest
+gws workflow +weekly-digest --format table
+```
+
+## Tips
+
+- Read-only — never modifies data.
+- Combines calendar agenda (week) with gmail triage summary.
+
+## See Also
+
+- [gws-shared](../gws-shared/SKILL.md) — Global flags and auth
+- [gws-workflow](../gws-workflow/SKILL.md) — All cross-service productivity workflows commands

@@ -1,0 +1,28 @@
+{
+  "id": "grok-swarm",
+  "name": "Grok Multi-Agent Swarm",
+  "description": "Bridge to xAI Grok 4.20 Multi-Agent Beta (4-agent swarm) for codebase analysis, refactoring, reasoning, and code generation.",
+  "version": "1.0.0",
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "defaultTimeout": {
+        "type": "number",
+        "description": "Default timeout in seconds (default: 120)"
+      },
+      "pythonPath": {
+        "type": "string",
+        "description": "Path to Python 3 binary"
+      },
+      "bridgeScript": {
+        "type": "string",
+        "description": "Path to grok_bridge.py script"
+      },
+      "defaultOutputDir": {
+        "type": "string",
+        "description": "Default output directory for file writes (default: ./grok-output/)"
+      }
+    }
+  }
+}

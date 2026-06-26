@@ -1,0 +1,106 @@
+{
+	"type": "function",
+	"function": {
+		"name": "_api_update_define",
+		"description": "Update the definition configuration of an existing API. Must explicitly declare the fields to be modified in this operation through updateFieldList, and each field listed in updateFieldList must provide the corresponding new value in the parameters; script-related fields (scriptId / scriptFunc, before*, after*, error*) must appear in pairs, and it is forbidden to update only one of them.",
+		"parameters": {
+			"type": "object",
+			"properties": {
+				"updateFieldList": {
+					"type": "array",
+					"description": "List of properties explicitly to be modified in this edit operation. Fields declared in updateFieldList must provide corresponding new values in this parameter, otherwise it is considered an illegal update.",
+					"items": {
+						"type": "string",
+						"pattern": "^[a-zA-Z][a-zA-Z0-9]*(\\.[a-zA-Z][a-zA-Z0-9]*)*$"
+					},
+					"examples": [
+						[
+							"path",
+							"method"
+						],
+						[
+							"view",
+							"invokeType"
+						],
+						[
+							"beforeScriptId",
+							"beforeScriptFunc"
+						],
+						[
+							"scriptId",
+							"scriptFunc"
+						]
+					]
+				},
+				"id": {
+					"type": "string",
+					"description": "API's unique ID"
+				},
+				"name": {
+					"type": "string",
+					"description": "API's name"
+				},
+				"path": {
+					"type": "string",
+					"description": "API access path"
+				},
+				"method": {
+					"type": "string",
+					"description": "HTTP method, such as GET, POST, empty value means no restriction."
+				},
+				"view": {
+					"type": "string",
+					"description": "Return value type"
+				},
+				"invokeType": {
+					"type": "string",
+					"description": "Call type. Currently can only be filled: script"
+				},
+				"apiDesc": {
+					"type": "string",
+					"description": "API description"
+				},
+				"beforeScriptId": {
+					"type": "string",
+					"description": "Pre-processing script ID"
+				},
+				"beforeScriptFunc": {
+					"type": "string",
+					"description": "Pre-processing script function name"
+				},
+				"scriptId": {
+					"type": "string",
+					"description": "Script ID (when invokeType=script)"
+				},
+				"scriptFunc": {
+					"type": "string",
+					"description": "Script function name"
+				},
+				"afterScriptId": {
+					"type": "string",
+					"description": "Post-processing script ID"
+				},
+				"afterScriptFunc": {
+					"type": "string",
+					"description": "Post-processing script function name"
+				},
+				"errorScriptId": {
+					"type": "string",
+					"description": "Exception handling script ID"
+				},
+				"errorScriptFunc": {
+					"type": "string",
+					"description": "Exception handling script function name"
+				},
+				"enableRateLimiter": {
+					"type": "boolean",
+					"description": "Whether to enable rate limiting"
+				}
+			},
+			"required": [
+				"id","updateFieldList"
+			],
+			"additionalProperties": false
+		}
+	}
+}

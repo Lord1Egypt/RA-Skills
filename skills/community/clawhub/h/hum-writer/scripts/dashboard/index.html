@@ -1,0 +1,1197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hum Dashboard</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #f7f7f8;
+    --surface: #ffffff;
+    --surface2: #f3f4f6;
+    --border: #e5e7eb;
+    --border2: #d1d5db;
+    --text: #111827;
+    --muted: #9ca3af;
+    --muted2: #6b7280;
+    --accent: #6366f1;
+    --accent2: #8b5cf6;
+    --danger: #ef4444;
+    --success: #10b981;
+    --warning: #f59e0b;
+    --tag-bg: #ede9fe;
+    --tag-text: #5b21b6;
+    --badge-x: #1d9bf0;
+    --badge-li: #0a66c2;
+    --badge-hn: #ff6600;
+    --badge-yt: #cc0000;
+    --badge-web: #6b7280;
+    --badge-rss: #f97316;
+    --badge-sitemap: #3b82f6;
+    --badge-podcast: #8b5cf6;
+    --badge-youtube: #cc0000;
+    font-size: 14px;
+  }
+
+  body { background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; height: 100vh; display: flex; flex-direction: column; overflow: hidden; }
+
+  /* ── Top bar ── */
+  #topbar { display: flex; align-items: center; gap: 10px; padding: 9px 16px; border-bottom: 1px solid var(--border); background: var(--surface); flex-shrink: 0; box-shadow: 0 1px 3px rgba(0,0,0,.06); }
+  #topbar h1 { font-size: 15px; font-weight: 700; color: var(--accent); letter-spacing: -0.01em; }
+  #topbar .divider { width: 1px; height: 18px; background: var(--border); }
+  #status-label { font-size: 12px; color: var(--muted2); }
+  .spacer { flex: 1; }
+  #reload-btn { background: var(--surface2); border: 1px solid var(--border); color: var(--muted2); border-radius: 6px; padding: 5px 10px; font-size: 12px; cursor: pointer; }
+  #reload-btn:hover { border-color: var(--border2); color: var(--text); }
+
+  /* ── Tab bar ── */
+  #tab-bar { display: flex; gap: 0; border-bottom: 1px solid var(--border); background: var(--surface); flex-shrink: 0; padding: 0 16px; }
+  .tab-btn { background: none; border: none; border-bottom: 2px solid transparent; color: var(--muted2); font-size: 13px; font-weight: 500; padding: 9px 14px; cursor: pointer; transition: all .15s; }
+  .tab-btn:hover { color: var(--text); background: var(--surface2); }
+  .tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); }
+  .tab-count { font-size: 11px; color: var(--muted); margin-left: 4px; }
+
+  /* ── Main layout ── */
+  #main { flex: 1; overflow: hidden; display: flex; flex-direction: column; }
+  .tab-panel { display: none; flex: 1; overflow: hidden; }
+  .tab-panel.active { display: flex; flex-direction: column; }
+
+  /* ── Shared components ── */
+  .panel-toolbar { display: flex; align-items: center; gap: 8px; padding: 8px 14px; border-bottom: 1px solid var(--border); background: var(--surface); flex-shrink: 0; }
+  .panel-toolbar label { font-size: 12px; color: var(--muted2); }
+  .panel-toolbar select, .panel-toolbar input[type=text] { background: var(--surface2); border: 1px solid var(--border); color: var(--text); border-radius: 5px; padding: 4px 8px; font-size: 12px; outline: none; }
+  .panel-toolbar select:focus, .panel-toolbar input:focus { border-color: var(--accent); }
+  .panel-count { font-size: 12px; color: var(--muted); margin-left: auto; }
+
+  .scroll-area { flex: 1; overflow-y: auto; padding: 12px; }
+  .scroll-area::-webkit-scrollbar { width: 6px; }
+  .scroll-area::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 3px; }
+
+  .empty-state { display: flex; flex-direction: column; align-items: center; justify-content: center; flex: 1; gap: 10px; color: var(--muted2); text-align: center; padding: 32px; }
+  .empty-state p { font-size: 13px; line-height: 1.5; }
+
+  .badge { font-size: 10px; font-weight: 700; border-radius: 4px; padding: 2px 6px; text-transform: uppercase; letter-spacing: 0.05em; flex-shrink: 0; color: #fff; display: inline-block; background: var(--badge-web); }
+  .badge-x, .badge-x_feed, .badge-x_profile { background: var(--badge-x); }
+  .badge-hn { background: var(--badge-hn); }
+  .badge-knowledge { background: var(--badge-rss); }
+  .badge-youtube { background: var(--badge-yt); }
+  .badge-web, .badge-website { background: var(--badge-web); }
+  .badge-linkedin { background: var(--badge-li); }
+  .item-link { color: var(--muted); font-size: 12px; text-decoration: none; flex-shrink: 0; margin-left: 4px; }
+  .item-link:hover { color: var(--accent); }
+  .read-knowledge-btn { background: none; border: 1px solid var(--border); color: var(--muted2); border-radius: 4px; padding: 1px 7px; font-size: 11px; cursor: pointer; flex-shrink: 0; margin-left: 4px; }
+  .read-knowledge-btn:hover { border-color: var(--accent); color: var(--accent); }
+  .badge-sm { font-size: 10px; font-weight: 600; border-radius: 4px; padding: 2px 6px; background: var(--tag-bg); color: var(--tag-text); display: inline-block; }
+
+  .paginator { display: flex; align-items: center; justify-content: center; gap: 10px; padding: 10px; font-size: 12px; color: var(--muted2); flex-shrink: 0; border-top: 1px solid var(--border); background: var(--surface); }
+  .paginator button { background: var(--surface2); border: 1px solid var(--border); color: var(--muted2); border-radius: 5px; padding: 4px 10px; font-size: 12px; cursor: pointer; }
+  .paginator button:hover:not(:disabled) { border-color: var(--border2); color: var(--text); }
+  .paginator button:disabled { opacity: 0.4; cursor: not-allowed; }
+
+  /* ── Feed tab ── */
+  .two-col { display: flex; flex: 1; overflow: hidden; }
+  .two-col > .main-col { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
+  .two-col > .side-col { width: 260px; border-left: 1px solid var(--border); background: var(--surface); display: flex; flex-direction: column; overflow: hidden; flex-shrink: 0; }
+  .side-col-header { padding: 9px 14px; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 6px; }
+  .side-col-header h2 { font-size: 13px; font-weight: 600; }
+  .side-col-list { flex: 1; overflow-y: auto; padding: 4px 0; }
+  .side-col-list::-webkit-scrollbar { width: 4px; }
+  .side-col-list::-webkit-scrollbar-thumb { background: var(--border2); }
+
+  .feed-item { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 13px 15px; display: flex; flex-direction: column; gap: 7px; transition: box-shadow .15s; margin-bottom: 8px; }
+  .feed-item:hover { box-shadow: 0 2px 8px rgba(0,0,0,.08); border-color: var(--border2); }
+  .item-header { display: flex; align-items: center; gap: 8px; min-width: 0; }
+  .item-author { font-size: 13px; font-weight: 600; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; text-decoration: none; }
+  a.item-author:hover { color: var(--accent); text-decoration: underline; }
+  .item-handle { font-weight: 400; color: var(--muted2); }
+  .item-time { font-size: 11px; color: var(--muted); margin-left: auto; flex-shrink: 0; }
+  .item-text { font-size: 13px; line-height: 1.6; color: #374151; white-space: pre-wrap; word-break: break-word; }
+  .item-text.collapsed { display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden; }
+  .expand-btn { background: none; border: none; color: var(--accent); font-size: 12px; cursor: pointer; align-self: flex-start; padding: 0; }
+  .expand-btn:hover { text-decoration: underline; }
+  .item-tags { display: flex; flex-wrap: wrap; gap: 4px; }
+  .tag { background: var(--tag-bg); color: var(--tag-text); font-size: 11px; border-radius: 4px; padding: 2px 7px; font-weight: 500; }
+  .item-stats { display: flex; gap: 12px; font-size: 11px; color: var(--muted); }
+
+  .source-group-label { font-size: 10px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; padding: 8px 14px 3px; }
+  .source-row { display: flex; align-items: center; gap: 7px; padding: 5px 14px; cursor: pointer; }
+  .source-row:hover { background: var(--surface2); }
+  .source-row.active { background: #ede9fe; }
+  .source-name { font-size: 12px; flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--text); }
+  .source-row.active .source-name { color: var(--accent); font-weight: 500; }
+  .source-crawled { font-size: 10px; color: var(--muted); flex-shrink: 0; }
+
+  /* ── Knowledge tab ── */
+  .knowledge-layout { display: flex; flex: 1; overflow: hidden; }
+  .knowledge-sidebar { width: 240px; border-right: 1px solid var(--border); background: var(--surface); display: flex; flex-direction: column; overflow: hidden; flex-shrink: 0; }
+  .knowledge-main { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
+  .knowledge-table { width: 100%; border-collapse: collapse; }
+  .knowledge-table th { text-align: left; font-size: 11px; font-weight: 600; color: var(--muted2); text-transform: uppercase; letter-spacing: 0.04em; padding: 8px 12px; border-bottom: 1px solid var(--border); position: sticky; top: 0; background: var(--surface); z-index: 1; }
+  #knowledge-articles { padding: 0; }
+  .knowledge-table tr.k-active td { background: #ede9fe; }
+  .knowledge-table td { padding: 8px 12px; border-bottom: 1px solid var(--border); font-size: 13px; cursor: pointer; }
+  .knowledge-table tr:hover td { background: var(--surface2); }
+  .knowledge-table .td-title { max-width: 400px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--accent); font-weight: 500; }
+  .knowledge-table .td-source { font-size: 12px; color: var(--muted2); }
+  .knowledge-table .td-date { font-size: 12px; color: var(--muted); white-space: nowrap; }
+  .knowledge-table .td-author { font-size: 12px; color: var(--muted2); max-width: 150px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+  .ksource-row { display: flex; align-items: center; gap: 7px; padding: 6px 14px; cursor: pointer; font-size: 12px; }
+  .ksource-row:hover { background: var(--surface2); }
+  .ksource-row.active { background: #ede9fe; }
+  .ksource-row .ksource-name { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .ksource-row.active .ksource-name { color: var(--accent); font-weight: 500; }
+  .ksource-row .ksource-count { font-size: 10px; color: var(--muted); flex-shrink: 0; }
+
+  /* ── Article reader ── */
+  #article-overlay { display: none; position: fixed; top: 0; right: 0; bottom: 0; width: 55%; min-width: 480px; max-width: 800px; background: var(--surface); box-shadow: -4px 0 24px rgba(0,0,0,.12); z-index: 100; flex-direction: column; overflow: hidden; }
+  #article-overlay.open { display: flex; }
+  #article-overlay-backdrop { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,.15); z-index: 99; }
+  #article-overlay-backdrop.open { display: block; }
+  .article-header { display: flex; align-items: center; gap: 8px; padding: 12px 16px; border-bottom: 1px solid var(--border); flex-shrink: 0; }
+  .article-header h2 { font-size: 15px; font-weight: 600; flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .article-close { background: none; border: 1px solid var(--border); color: var(--muted2); border-radius: 5px; padding: 4px 10px; font-size: 12px; cursor: pointer; }
+  .article-close:hover { color: var(--text); border-color: var(--border2); }
+  .article-meta { font-size: 12px; color: var(--muted2); padding: 10px 24px 0; display: flex; gap: 16px; flex-shrink: 0; }
+  .article-body { flex: 1; overflow-y: auto; padding: 16px 24px 32px; }
+
+  /* ── Markdown rendered content ── */
+  .md-content { font-size: 14px; line-height: 1.75; color: #374151; }
+  .md-content h1 { font-size: 22px; font-weight: 700; margin: 24px 0 12px; color: var(--text); }
+  .md-content h2 { font-size: 18px; font-weight: 600; margin: 20px 0 10px; color: var(--text); }
+  .md-content h3 { font-size: 15px; font-weight: 600; margin: 16px 0 8px; color: var(--text); }
+  .md-content h4, .md-content h5, .md-content h6 { font-size: 14px; font-weight: 600; margin: 12px 0 6px; color: var(--text); }
+  .md-content p { margin: 0 0 12px; }
+  .md-content ul, .md-content ol { margin: 0 0 12px; padding-left: 24px; }
+  .md-content li { margin: 4px 0; }
+  .md-content blockquote { border-left: 3px solid var(--accent); padding: 8px 16px; margin: 12px 0; background: var(--surface2); border-radius: 0 6px 6px 0; color: var(--muted2); }
+  .md-content code { background: var(--surface2); border: 1px solid var(--border); border-radius: 3px; padding: 1px 5px; font-size: 12px; }
+  .md-content pre { background: #1e1e2e; color: #cdd6f4; border-radius: 8px; padding: 14px 16px; overflow-x: auto; margin: 12px 0; font-size: 12px; line-height: 1.5; }
+  .md-content pre code { background: none; border: none; padding: 0; color: inherit; font-size: inherit; }
+  .md-content a { color: var(--accent); text-decoration: none; }
+  .md-content a:hover { text-decoration: underline; }
+  .md-content hr { border: none; border-top: 1px solid var(--border); margin: 20px 0; }
+  .md-content table { border-collapse: collapse; margin: 12px 0; width: 100%; }
+  .md-content th, .md-content td { border: 1px solid var(--border); padding: 6px 10px; font-size: 13px; text-align: left; }
+  .md-content th { background: var(--surface2); font-weight: 600; }
+  .md-content img { max-width: 100%; border-radius: 6px; margin: 8px 0; }
+
+  /* ── Ideas tab ── */
+  .ideas-columns { display: flex; flex: 1; gap: 12px; padding: 12px; overflow-x: auto; align-items: flex-start; }
+  .ideas-column { flex: 1; min-width: 240px; max-width: 380px; background: var(--surface2); border-radius: 10px; display: flex; flex-direction: column; max-height: 100%; }
+  .ideas-col-header { padding: 10px 14px; font-size: 13px; font-weight: 600; display: flex; align-items: center; gap: 6px; flex-shrink: 0; }
+  .ideas-col-header .col-count { font-size: 11px; color: var(--muted); font-weight: 400; }
+  .ideas-col-body { flex: 1; overflow-y: auto; padding: 0 8px 8px; display: flex; flex-direction: column; gap: 6px; }
+  .idea-card { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 10px 12px; cursor: pointer; transition: box-shadow .15s; }
+  .idea-card:hover { box-shadow: 0 2px 8px rgba(0,0,0,.08); border-color: var(--border2); }
+  .idea-card-title { font-size: 13px; font-weight: 600; margin-bottom: 6px; line-height: 1.4; }
+  .idea-card-meta { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
+  .idea-card-hook { font-size: 12px; color: var(--muted2); margin-top: 6px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; line-height: 1.4; }
+  .idea-card-date { font-size: 11px; color: var(--muted); margin-top: 4px; }
+
+  /* ── Idea detail ── */
+  .idea-detail { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 20px; margin: 12px; max-width: 700px; }
+  .idea-detail h2 { font-size: 18px; margin-bottom: 12px; }
+  .idea-detail .field { margin-bottom: 12px; }
+  .idea-detail .field-label { font-size: 11px; font-weight: 600; color: var(--muted2); text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 4px; }
+  .idea-detail .field-value { font-size: 13px; line-height: 1.6; }
+  .idea-back { background: none; border: 1px solid var(--border); color: var(--muted2); border-radius: 5px; padding: 4px 12px; font-size: 12px; cursor: pointer; margin-bottom: 12px; }
+  .idea-back:hover { color: var(--text); border-color: var(--border2); }
+
+  /* ── Content / Loop / Learn tabs ── */
+  .file-list { display: flex; flex-direction: column; gap: 4px; }
+  .file-row { display: flex; align-items: center; gap: 10px; padding: 8px 14px; cursor: pointer; border-radius: 6px; font-size: 13px; }
+  .file-row:hover { background: var(--surface2); }
+  .file-row.active { background: #ede9fe; color: var(--accent); font-weight: 500; }
+  .file-name { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .file-meta { font-size: 11px; color: var(--muted); flex-shrink: 0; }
+
+  .content-reader { flex: 1; overflow-y: auto; padding: 20px 24px 32px; }
+
+  /* ── Loop tab ── */
+  .loop-layout { display: flex; flex: 1; overflow: hidden; }
+  .loop-sidebar { width: 200px; border-right: 1px solid var(--border); background: var(--surface); display: flex; flex-direction: column; overflow: hidden; flex-shrink: 0; }
+  .loop-dates { flex: 1; overflow-y: auto; }
+  .loop-files-section { border-top: 1px solid var(--border); overflow-y: auto; }
+  .loop-main { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
+
+  /* Status colors for ideas */
+  .status-pending { border-left: 3px solid var(--warning); }
+  .status-drafted { border-left: 3px solid var(--accent); }
+  .status-published { border-left: 3px solid var(--success); }
+  .status-backlog { border-left: 3px solid var(--muted); }
+</style>
+</head>
+<body>
+
+<div id="topbar">
+  <h1>hum</h1>
+  <span class="divider"></span>
+  <span id="status-label">Loading...</span>
+  <div class="spacer"></div>
+  <button id="reload-btn">Reload</button>
+</div>
+
+<div id="tab-bar">
+  <button class="tab-btn active" data-tab="feed">Feed</button>
+  <button class="tab-btn" data-tab="knowledge">Knowledge</button>
+  <button class="tab-btn" data-tab="ideas">Ideas</button>
+  <button class="tab-btn" data-tab="content">Content</button>
+  <button class="tab-btn" data-tab="loop">Loop</button>
+  <button class="tab-btn" data-tab="learn">Learn</button>
+</div>
+
+<div id="main">
+
+  <!-- ═══════════════ FEED TAB ═══════════════ -->
+  <div id="tab-feed" class="tab-panel active">
+    <div class="panel-toolbar">
+      <label>Source</label>
+      <select id="feed-filter-source"><option value="">All</option></select>
+      <label>Search</label>
+      <input type="text" id="feed-filter-text" placeholder="Filter by text or author..." style="width:200px">
+      <span class="panel-count" id="feed-count"></span>
+    </div>
+    <div class="two-col">
+      <div class="main-col">
+        <div class="scroll-area" id="feed-list"></div>
+      </div>
+      <div class="side-col">
+        <div class="side-col-header">
+          <h2>Sources</h2>
+          <span id="sources-count" class="panel-count"></span>
+        </div>
+        <div class="side-col-list" id="sources-list"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════ KNOWLEDGE TAB ═══════════════ -->
+  <div id="tab-knowledge" class="tab-panel">
+    <div class="panel-toolbar">
+      <label>Search</label>
+      <input type="text" id="knowledge-search" placeholder="Search articles by title, author..." style="width:260px">
+      <label>Period</label>
+      <select id="knowledge-period">
+        <option value="">All time</option>
+        <option value="7">Last 7 days</option>
+        <option value="30" selected>Last 30 days</option>
+        <option value="90">Last 90 days</option>
+      </select>
+      <span class="panel-count" id="knowledge-count"></span>
+    </div>
+    <div class="knowledge-layout">
+      <div class="knowledge-sidebar">
+        <div class="side-col-header"><h2>Sources</h2></div>
+        <div class="side-col-list" id="knowledge-sources-list"></div>
+      </div>
+      <div class="knowledge-main">
+        <div class="scroll-area" id="knowledge-articles">
+          <table class="knowledge-table">
+            <thead><tr><th>Title</th><th>Source</th><th>Author</th><th>Date</th></tr></thead>
+            <tbody id="knowledge-tbody"></tbody>
+          </table>
+        </div>
+        <div class="paginator" id="knowledge-paginator"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════ IDEAS TAB ═══════════════ -->
+  <div id="tab-ideas" class="tab-panel">
+    <div class="panel-toolbar">
+      <label>Pillar</label>
+      <select id="ideas-filter-pillar"><option value="">All</option></select>
+      <label>Platform</label>
+      <select id="ideas-filter-platform"><option value="">All</option></select>
+      <label>Search</label>
+      <input type="text" id="ideas-filter-text" placeholder="Search ideas..." style="width:180px">
+      <span class="panel-count" id="ideas-count"></span>
+    </div>
+    <div class="scroll-area" id="ideas-area" style="padding:0">
+      <div class="ideas-columns" id="ideas-columns"></div>
+    </div>
+  </div>
+
+  <!-- ═══════════════ CONTENT TAB ═══════════════ -->
+  <div id="tab-content" class="tab-panel">
+    <div class="two-col">
+      <div class="side-col" style="border-left:none; border-right:1px solid var(--border); width:280px;">
+        <div class="side-col-header"><h2>Drafts</h2><span id="content-count" class="panel-count"></span></div>
+        <div class="side-col-list" id="content-file-list"></div>
+      </div>
+      <div class="main-col">
+        <div class="content-reader md-content" id="content-reader">
+          <div class="empty-state"><p>Select a file to read</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════ LOOP TAB ═══════════════ -->
+  <div id="tab-loop" class="tab-panel">
+    <div class="loop-layout">
+      <div class="loop-sidebar">
+        <div class="side-col-header"><h2>Runs</h2></div>
+        <div class="loop-dates" id="loop-date-list"></div>
+        <div class="loop-files-section" id="loop-files"></div>
+      </div>
+      <div class="loop-main">
+        <div class="content-reader md-content scroll-area" id="loop-reader">
+          <div class="empty-state"><p>Select a date and file</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════ LEARN TAB ═══════════════ -->
+  <div id="tab-learn" class="tab-panel">
+    <div class="two-col">
+      <div class="side-col" style="border-left:none; border-right:1px solid var(--border); width:280px;">
+        <div class="side-col-header"><h2>Reports</h2><span id="learn-count" class="panel-count"></span></div>
+        <div class="side-col-list" id="learn-file-list"></div>
+      </div>
+      <div class="main-col">
+        <div class="content-reader md-content" id="learn-content">
+          <div class="empty-state"><p>Select a report to read</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Article reader overlay -->
+<div id="article-overlay-backdrop"></div>
+<div id="article-overlay">
+  <div class="article-header">
+    <h2 id="article-title">—</h2>
+    <a id="article-link" href="#" target="_blank" rel="noopener" style="font-size:12px; color:var(--accent); text-decoration:none;">Open</a>
+    <button class="article-close" id="article-close">Close</button>
+  </div>
+  <div class="article-meta" id="article-meta"></div>
+  <div class="article-body md-content" id="article-body"></div>
+</div>
+
+<script>
+'use strict';
+
+// ── Helpers ─────────────────────────────────────────────────────────────────
+
+function esc(s) {
+  if (s == null) return '';
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+function fmtNum(n) {
+  if (n >= 1e6) return (n/1e6).toFixed(1)+'M';
+  if (n >= 1e3) return (n/1e3).toFixed(1)+'K';
+  return String(n);
+}
+
+function formatTime(ts) {
+  if (!ts) return '';
+  if (typeof ts === 'string' && !/^\d{4}/.test(ts)) return ts;
+  try {
+    const diff = Date.now() - new Date(ts).getTime();
+    if (diff < 60000) return 'just now';
+    if (diff < 3600000) return Math.floor(diff/60000)+'m ago';
+    if (diff < 86400000) return Math.floor(diff/3600000)+'h ago';
+    if (diff < 604800000) return Math.floor(diff/86400000)+'d ago';
+    return new Date(ts).toLocaleDateString();
+  } catch { return String(ts); }
+}
+
+async function api(path) {
+  const r = await fetch('/api/' + path);
+  if (!r.ok) throw new Error(`API ${r.status}`);
+  const ct = r.headers.get('content-type') || '';
+  return ct.includes('json') ? r.json() : r.text();
+}
+
+// ── Simple markdown renderer ────────────────────────────────────────────────
+
+function renderMarkdown(md) {
+  if (!md) return '';
+  let html = esc(md);
+
+  // Code blocks (``` ... ```)
+  html = html.replace(/```(\w*)\n([\s\S]*?)```/g, (_, lang, code) =>
+    `<pre><code class="lang-${lang}">${code}</code></pre>`);
+
+  // Inline code
+  html = html.replace(/`([^`\n]+)`/g, '<code>$1</code>');
+
+  // Headers
+  html = html.replace(/^######\s+(.+)$/gm, '<h6>$1</h6>');
+  html = html.replace(/^#####\s+(.+)$/gm, '<h5>$1</h5>');
+  html = html.replace(/^####\s+(.+)$/gm, '<h4>$1</h4>');
+  html = html.replace(/^###\s+(.+)$/gm, '<h3>$1</h3>');
+  html = html.replace(/^##\s+(.+)$/gm, '<h2>$1</h2>');
+  html = html.replace(/^#\s+(.+)$/gm, '<h1>$1</h1>');
+
+  // HR
+  html = html.replace(/^---+$/gm, '<hr>');
+
+  // Blockquote
+  html = html.replace(/^&gt;\s?(.*)$/gm, '<blockquote>$1</blockquote>');
+  html = html.replace(/<\/blockquote>\n<blockquote>/g, '\n');
+
+  // Bold / italic
+  html = html.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+  html = html.replace(/\*(.+?)\*/g, '<em>$1</em>');
+
+  // Links (already escaped, so &amp; and &quot;)
+  html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>');
+
+  // Images
+  html = html.replace(/!\[([^\]]*)\]\(([^)]+)\)/g, '<img alt="$1" src="$2">');
+
+  // Unordered list items
+  html = html.replace(/^[\s]*[-*]\s+(.+)$/gm, '<li>$1</li>');
+  html = html.replace(/((?:<li>.*<\/li>\n?)+)/g, '<ul>$1</ul>');
+
+  // Ordered list items
+  html = html.replace(/^\d+\.\s+(.+)$/gm, '<li>$1</li>');
+
+  // Tables
+  html = html.replace(/^(\|.+\|)\n(\|[\s\-:|]+\|)\n((?:\|.+\|\n?)+)/gm, (_, headerRow, sepRow, bodyRows) => {
+    const heads = headerRow.split('|').filter(c => c.trim()).map(c => `<th>${c.trim()}</th>`).join('');
+    const rows = bodyRows.trim().split('\n').map(row => {
+      const cells = row.split('|').filter(c => c.trim()).map(c => `<td>${c.trim()}</td>`).join('');
+      return `<tr>${cells}</tr>`;
+    }).join('');
+    return `<table><thead><tr>${heads}</tr></thead><tbody>${rows}</tbody></table>`;
+  });
+
+  // Paragraphs: wrap remaining standalone lines
+  html = html.replace(/^(?!<[a-z])((?!<\/)[^\n]+)$/gm, '<p>$1</p>');
+
+  // Clean up empty paragraphs
+  html = html.replace(/<p>\s*<\/p>/g, '');
+
+  return html;
+}
+
+// ── Tab routing ─────────────────────────────────────────────────────────────
+
+const TAB_NAMES = ['feed', 'knowledge', 'ideas', 'content', 'loop', 'learn'];
+const tabBtns = document.querySelectorAll('.tab-btn');
+const tabPanels = TAB_NAMES.map(t => document.getElementById('tab-' + t));
+let loadedTabs = new Set();
+
+function switchTab(name) {
+  tabBtns.forEach(b => b.classList.toggle('active', b.dataset.tab === name));
+  tabPanels.forEach(p => p.classList.toggle('active', p.id === 'tab-' + name));
+  if (!loadedTabs.has(name)) {
+    loadedTabs.add(name);
+    const loader = tabLoaders[name];
+    if (loader) loader();
+  }
+}
+
+tabBtns.forEach(b => b.addEventListener('click', () => {
+  location.hash = b.dataset.tab;
+}));
+
+window.addEventListener('hashchange', () => {
+  const h = location.hash.slice(1);
+  if (TAB_NAMES.includes(h)) switchTab(h);
+});
+
+// ── Feed tab ────────────────────────────────────────────────────────────────
+
+let feedItems = [];
+let feedSources = { feed_sources: [] };
+
+async function loadFeed() {
+  try {
+    const [feedData, srcData] = await Promise.all([api('feed'), api('sources')]);
+    feedItems = feedData.items || feedData;
+    feedSources = srcData;
+    if (!feedSources.feed_sources) feedSources.feed_sources = [];
+    updateStatus();
+    buildFeedFilterDropdown();
+    renderFeedSources();
+    renderFeed();
+  } catch (e) {
+    document.getElementById('feed-list').innerHTML =
+      `<div class="empty-state"><p>Could not load feed: ${esc(e.message)}</p></div>`;
+  }
+}
+
+function updateStatus() {
+  document.getElementById('status-label').textContent =
+    `${feedItems.length} feed items · ${knowledgeArticleTotal} articles · ${allIdeas.length} ideas`;
+}
+
+function buildFeedFilterDropdown() {
+  const sel = document.getElementById('feed-filter-source');
+  const sources = new Set(feedItems.map(i => i.source).filter(Boolean));
+  sel.innerHTML = '<option value="">All</option>';
+  [...sources].sort().forEach(s => {
+    const o = document.createElement('option');
+    o.value = s; o.textContent = s.replace(/_/g, ' ');
+    sel.appendChild(o);
+  });
+}
+
+document.getElementById('feed-filter-source').addEventListener('change', renderFeed);
+document.getElementById('feed-filter-text').addEventListener('input', renderFeed);
+
+function renderFeed() {
+  const src = document.getElementById('feed-filter-source').value;
+  const q = document.getElementById('feed-filter-text').value.toLowerCase();
+  let items = feedItems;
+  if (src) items = items.filter(i => i.source === src);
+  if (q) items = items.filter(i =>
+    (i.text||i.content||'').toLowerCase().includes(q) ||
+    (i.author||'').toLowerCase().includes(q) ||
+    (i.display_name||'').toLowerCase().includes(q) ||
+    (i.title||'').toLowerCase().includes(q)
+  );
+  // Sort by most recent
+  items.sort((a,b) => {
+    const ta = a.timestamp || a.published_at || a.date || '';
+    const tb = b.timestamp || b.published_at || b.date || '';
+    return tb.localeCompare(ta);
+  });
+
+  document.getElementById('feed-count').textContent = `${items.length} items`;
+  const list = document.getElementById('feed-list');
+  if (!items.length) {
+    list.innerHTML = `<div class="empty-state"><p>${feedItems.length ? 'No items match filter.' : 'No feed items yet.'}</p></div>`;
+    return;
+  }
+  list.innerHTML = '';
+
+  const SOURCE_LABELS = {x:'X', x_feed:'X Feed', hn:'HN', knowledge:'Knowledge', youtube:'YouTube', website:'Web'};
+
+  items.forEach(item => {
+    const el = document.createElement('div');
+    el.className = 'feed-item';
+    const src = item.source || 'other';
+    const badgeLabel = SOURCE_LABELS[src] || src.replace(/_/g,' ');
+    const author = item.display_name || item.author || item.title || '—';
+    const handle = (item.author && item.author !== author) ? ' ' + item.author : '';
+    const ts = formatTime(item.timestamp || item.published_at || item.date);
+    const url = item.url || item.link || null;
+    const text = item.content || item.text || item.summary || '';
+    const postType = item.post_type || null;
+    const topics = Array.isArray(item.topics) ? item.topics : [];
+    const long = text.length > 240;
+    const stats = [
+      item.likes != null && `<span>&#9829; ${fmtNum(item.likes)}</span>`,
+      item.retweets != null && `<span>&#8634; ${fmtNum(item.retweets)}</span>`,
+      item.replies != null && `<span>&#128172; ${fmtNum(item.replies)}</span>`,
+      item.views != null && `<span>&#128065; ${fmtNum(item.views)}</span>`,
+    ].filter(Boolean).join('');
+
+    el.innerHTML = `
+      <div class="item-header">
+        <span class="badge badge-${src}">${esc(badgeLabel)}</span>
+        ${postType ? `<span class="badge-sm">${esc(postType)}</span>` : ''}
+        <span class="item-author">${esc(author)}${handle ? `<span class="item-handle"> ${esc(handle)}</span>` : ''}</span>
+        <span class="item-time">${esc(ts)}</span>
+        ${url ? `<a class="item-link" href="${esc(url)}" target="_blank" rel="noopener" title="Open original">&#8599;</a>` : ''}
+        ${src === 'knowledge' && item.knowledge_source && item.knowledge_file ? `<button class="read-knowledge-btn" title="Read in Knowledge">Read</button>` : ''}
+      </div>
+      ${text ? `<div class="item-text${long?' collapsed':''}">${esc(text)}</div>` : ''}
+      ${long ? `<button class="expand-btn">Show more</button>` : ''}
+      ${topics.length ? `<div class="item-tags">${topics.map(t=>`<span class="tag">${esc(t)}</span>`).join('')}</div>` : ''}
+      ${stats ? `<div class="item-stats">${stats}</div>` : ''}
+    `;
+    const btn = el.querySelector('.expand-btn');
+    const textEl = el.querySelector('.item-text');
+    if (btn && textEl) btn.addEventListener('click', () => {
+      const c = textEl.classList.toggle('collapsed');
+      btn.textContent = c ? 'Show more' : 'Show less';
+    });
+    const readBtn = el.querySelector('.read-knowledge-btn');
+    if (readBtn) readBtn.addEventListener('click', () => {
+      openArticle(item.knowledge_source, item.knowledge_file, {
+        title: item.title,
+        url: item.url,
+        source_name: item.knowledge_source,
+        author: item.author,
+        date: item.timestamp,
+      });
+    });
+    list.appendChild(el);
+  });
+}
+
+const TYPE_LABELS = { x_feed:'X Feed', x_profile:'X Profiles', youtube:'YouTube', website:'Websites' };
+const TYPE_ORDER = ['x_feed','x_profile','youtube','website'];
+
+function renderFeedSources() {
+  const grouped = {};
+  TYPE_ORDER.forEach(t => grouped[t] = []);
+  feedSources.feed_sources.forEach(s => {
+    if (!grouped[s.type]) grouped[s.type] = [];
+    grouped[s.type].push(s);
+  });
+  document.getElementById('sources-count').textContent = `(${feedSources.feed_sources.length})`;
+  const list = document.getElementById('sources-list');
+  list.innerHTML = '';
+  TYPE_ORDER.forEach(type => {
+    const items = grouped[type] || [];
+    if (!items.length) return;
+    const group = document.createElement('div');
+    group.innerHTML = `<div class="source-group-label">${TYPE_LABELS[type]||type}</div>`;
+    items.forEach(s => {
+      const row = document.createElement('div');
+      row.className = 'source-row';
+      const name = s.handle ? '@'+s.handle : (s.name || s.url || s.type);
+      const crawled = s.last_crawled ? formatTime(s.last_crawled) : 'never';
+      row.innerHTML = `<span class="source-name">${esc(name)}</span><span class="source-crawled">${esc(crawled)}</span>`;
+      row.addEventListener('click', () => {
+        const sel = document.getElementById('feed-filter-source');
+        const val = s.source || s.type;
+        sel.value = sel.value === val ? '' : val;
+        renderFeed();
+      });
+      group.appendChild(row);
+    });
+    list.appendChild(group);
+  });
+}
+
+// ── Knowledge tab ───────────────────────────────────────────────────────────
+
+let knowledgeSources = [];
+let knowledgeArticleTotal = 0;
+let kCurrentSource = '';
+let kCurrentSearch = '';
+let kCurrentPeriod = '30';
+let kOffset = 0;
+const K_LIMIT = 50;
+let kCurrentArticles = []; // track current page articles for arrow nav
+let kSelectedIndex = -1;
+
+async function loadKnowledge() {
+  try {
+    const [srcData, artData] = await Promise.all([
+      api('knowledge/sources'),
+      api('knowledge/articles?limit=' + K_LIMIT),
+    ]);
+    knowledgeSources = srcData;
+    knowledgeArticleTotal = artData.total || 0;
+    renderKnowledgeSources();
+    renderKnowledgeArticles(artData);
+    updateStatus();
+  } catch (e) {
+    document.getElementById('knowledge-tbody').innerHTML =
+      `<tr><td colspan="4" style="text-align:center;color:var(--muted2)">Could not load: ${esc(e.message)}</td></tr>`;
+  }
+}
+
+function renderKnowledgeSources() {
+  const list = document.getElementById('knowledge-sources-list');
+  list.innerHTML = '';
+
+  // All sources row
+  const allRow = document.createElement('div');
+  allRow.className = 'ksource-row' + (!kCurrentSource ? ' active' : '');
+  const totalArticles = knowledgeSources.reduce((s, k) => s + (k.article_count || 0), 0);
+  allRow.innerHTML = `<span class="ksource-name">All sources</span><span class="ksource-count">${totalArticles}</span>`;
+  allRow.addEventListener('click', () => { kCurrentSource = ''; kOffset = 0; fetchKnowledgeArticles(); renderKnowledgeSources(); });
+  list.appendChild(allRow);
+
+  knowledgeSources.sort((a,b) => (b.article_count||0) - (a.article_count||0)).forEach(src => {
+    const row = document.createElement('div');
+    row.className = 'ksource-row' + (kCurrentSource === src.key ? ' active' : '');
+    const handlerColor = {rss:'var(--badge-rss)',sitemap:'var(--badge-sitemap)',youtube:'var(--badge-youtube)',podcast:'var(--badge-podcast)'}[src.handler] || 'var(--badge-web)';
+    row.innerHTML = `
+      <span class="badge" style="background:${handlerColor};font-size:9px;padding:1px 4px">${esc(src.handler)}</span>
+      <span class="ksource-name">${esc(src.name)}</span>
+      <span class="ksource-count">${src.article_count||0}</span>
+    `;
+    row.addEventListener('click', () => {
+      kCurrentSource = kCurrentSource === src.key ? '' : src.key;
+      kOffset = 0;
+      fetchKnowledgeArticles();
+      renderKnowledgeSources();
+    });
+    list.appendChild(row);
+  });
+}
+
+async function fetchKnowledgeArticles() {
+  let url = `knowledge/articles?limit=${K_LIMIT}&offset=${kOffset}`;
+  if (kCurrentSource) url += '&source=' + encodeURIComponent(kCurrentSource);
+  if (kCurrentSearch) url += '&q=' + encodeURIComponent(kCurrentSearch);
+  if (kCurrentPeriod) {
+    const since = new Date(Date.now() - parseInt(kCurrentPeriod) * 86400000).toISOString().slice(0,10);
+    url += '&since=' + since;
+  }
+  try {
+    const data = await api(url);
+    renderKnowledgeArticles(data);
+  } catch (e) {
+    console.error(e);
+  }
+}
+
+document.getElementById('knowledge-period').addEventListener('change', e => {
+  kCurrentPeriod = e.target.value;
+  kOffset = 0;
+  fetchKnowledgeArticles();
+});
+
+function renderKnowledgeArticles(data) {
+  const articles = data.articles || [];
+  kCurrentArticles = articles;
+  kSelectedIndex = -1;
+  const total = data.total || 0;
+  document.getElementById('knowledge-count').textContent = `${total} articles`;
+  const tbody = document.getElementById('knowledge-tbody');
+  tbody.innerHTML = '';
+  if (!articles.length) {
+    tbody.innerHTML = `<tr><td colspan="4" style="text-align:center;color:var(--muted2);padding:32px">No articles found</td></tr>`;
+  } else {
+    articles.forEach((a, idx) => {
+      const tr = document.createElement('tr');
+      tr.dataset.idx = idx;
+      tr.innerHTML = `
+        <td class="td-title">${esc(a.title || a._file)}</td>
+        <td class="td-source">${esc(a.source_name || a._source_key)}</td>
+        <td class="td-author">${esc(a.author || '')}</td>
+        <td class="td-date">${esc(a.date || '')}</td>
+      `;
+      tr.addEventListener('click', () => { kSelectedIndex = idx; highlightKRow(); openArticle(a._source_key, a._file, a); });
+      tbody.appendChild(tr);
+    });
+  }
+
+  // Paginator
+  const pag = document.getElementById('knowledge-paginator');
+  const page = Math.floor(kOffset / K_LIMIT) + 1;
+  const pages = Math.ceil(total / K_LIMIT);
+  pag.innerHTML = `
+    <button ${kOffset <= 0 ? 'disabled' : ''} id="k-prev">Prev</button>
+    <span>Page ${page} of ${pages || 1}</span>
+    <button ${kOffset + K_LIMIT >= total ? 'disabled' : ''} id="k-next">Next</button>
+  `;
+  document.getElementById('k-prev')?.addEventListener('click', () => { kOffset = Math.max(0, kOffset - K_LIMIT); fetchKnowledgeArticles(); });
+  document.getElementById('k-next')?.addEventListener('click', () => { kOffset += K_LIMIT; fetchKnowledgeArticles(); });
+}
+
+let kSearchTimer = null;
+document.getElementById('knowledge-search').addEventListener('input', e => {
+  clearTimeout(kSearchTimer);
+  kSearchTimer = setTimeout(() => {
+    kCurrentSearch = e.target.value;
+    kOffset = 0;
+    fetchKnowledgeArticles();
+  }, 300);
+});
+
+// ── Article overlay ─────────────────────────────────────────────────────────
+
+const overlay = document.getElementById('article-overlay');
+const backdrop = document.getElementById('article-overlay-backdrop');
+
+async function openArticle(sourceKey, filename, meta) {
+  document.getElementById('article-title').textContent = meta?.title || filename;
+  document.getElementById('article-meta').innerHTML = `
+    <span>Source: ${esc(meta?.source_name || sourceKey)}</span>
+    <span>Author: ${esc(meta?.author || '—')}</span>
+    <span>Date: ${esc(meta?.date || '—')}</span>
+  `;
+  document.getElementById('article-body').innerHTML = '<p style="color:var(--muted2)">Loading...</p>';
+  const link = document.getElementById('article-link');
+  if (meta?.url) { link.href = meta.url; link.style.display = ''; }
+  else { link.style.display = 'none'; }
+
+  overlay.classList.add('open');
+  backdrop.classList.add('open');
+
+  try {
+    const data = await api(`knowledge/article/${encodeURIComponent(sourceKey)}/${encodeURIComponent(filename)}`);
+    document.getElementById('article-body').innerHTML = renderMarkdown(data.content);
+  } catch (e) {
+    document.getElementById('article-body').innerHTML = `<p style="color:var(--danger)">Error loading article: ${esc(e.message)}</p>`;
+  }
+}
+
+function closeArticle() {
+  overlay.classList.remove('open');
+  backdrop.classList.remove('open');
+}
+
+document.getElementById('article-close').addEventListener('click', closeArticle);
+backdrop.addEventListener('click', closeArticle);
+
+function highlightKRow() {
+  const tbody = document.getElementById('knowledge-tbody');
+  tbody.querySelectorAll('tr').forEach(tr => tr.classList.remove('k-active'));
+  if (kSelectedIndex >= 0) {
+    const row = tbody.querySelector(`tr[data-idx="${kSelectedIndex}"]`);
+    if (row) { row.classList.add('k-active'); row.scrollIntoView({block:'nearest'}); }
+  }
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') { closeArticle(); return; }
+  // Arrow key navigation in knowledge tab when overlay is open
+  if (!overlay.classList.contains('open') || !kCurrentArticles.length) return;
+  if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+    e.preventDefault();
+    const next = e.key === 'ArrowDown'
+      ? Math.min(kSelectedIndex + 1, kCurrentArticles.length - 1)
+      : Math.max(kSelectedIndex - 1, 0);
+    if (next !== kSelectedIndex) {
+      kSelectedIndex = next;
+      highlightKRow();
+      const a = kCurrentArticles[kSelectedIndex];
+      openArticle(a._source_key, a._file, a);
+    }
+  }
+});
+
+// ── Ideas tab ───────────────────────────────────────────────────────────────
+
+let allIdeas = [];
+const STATUS_ORDER = ['pending', 'backlog', 'drafted', 'published'];
+const STATUS_LABELS = { pending: 'Pending', backlog: 'Backlog', drafted: 'Drafted', published: 'Published' };
+
+async function loadIdeas() {
+  try {
+    allIdeas = await api('ideas');
+    if (!Array.isArray(allIdeas)) allIdeas = allIdeas.ideas || [];
+    buildIdeaFilters();
+    renderIdeas();
+    updateStatus();
+  } catch (e) {
+    document.getElementById('ideas-columns').innerHTML =
+      `<div class="empty-state"><p>Could not load ideas: ${esc(e.message)}</p></div>`;
+  }
+}
+
+function buildIdeaFilters() {
+  const pillars = new Set(allIdeas.map(i => i.pillar).filter(Boolean));
+  const platforms = new Set(allIdeas.map(i => i.platform).filter(Boolean));
+  const pSel = document.getElementById('ideas-filter-pillar');
+  const plSel = document.getElementById('ideas-filter-platform');
+  pSel.innerHTML = '<option value="">All</option>';
+  plSel.innerHTML = '<option value="">All</option>';
+  [...pillars].sort().forEach(p => { const o = document.createElement('option'); o.value = p; o.textContent = p; pSel.appendChild(o); });
+  [...platforms].sort().forEach(p => { const o = document.createElement('option'); o.value = p; o.textContent = p; plSel.appendChild(o); });
+}
+
+document.getElementById('ideas-filter-pillar').addEventListener('change', renderIdeas);
+document.getElementById('ideas-filter-platform').addEventListener('change', renderIdeas);
+document.getElementById('ideas-filter-text').addEventListener('input', renderIdeas);
+
+let ideaDetailView = null;
+
+function renderIdeas() {
+  if (ideaDetailView) { renderIdeaDetail(ideaDetailView); return; }
+
+  const pillar = document.getElementById('ideas-filter-pillar').value.toLowerCase();
+  const platform = document.getElementById('ideas-filter-platform').value.toLowerCase();
+  const q = document.getElementById('ideas-filter-text').value.toLowerCase();
+
+  let items = allIdeas;
+  if (pillar) items = items.filter(i => (i.pillar||'').toLowerCase().includes(pillar));
+  if (platform) items = items.filter(i => (i.platform||'').toLowerCase().includes(platform));
+  if (q) items = items.filter(i =>
+    (i.title||'').toLowerCase().includes(q) ||
+    (i.description||'').toLowerCase().includes(q) ||
+    (i.hook||'').toLowerCase().includes(q)
+  );
+
+  document.getElementById('ideas-count').textContent = `${items.length} ideas`;
+  const container = document.getElementById('ideas-columns');
+  container.innerHTML = '';
+
+  const grouped = {};
+  STATUS_ORDER.forEach(s => grouped[s] = []);
+  items.forEach(idea => {
+    const st = idea.status || 'pending';
+    if (!grouped[st]) grouped[st] = [];
+    grouped[st].push(idea);
+  });
+
+  STATUS_ORDER.forEach(status => {
+    const col = document.createElement('div');
+    col.className = 'ideas-column';
+    const items = grouped[status] || [];
+    col.innerHTML = `<div class="ideas-col-header">${STATUS_LABELS[status]||status} <span class="col-count">${items.length}</span></div>`;
+    const body = document.createElement('div');
+    body.className = 'ideas-col-body';
+    items.forEach(idea => {
+      const card = document.createElement('div');
+      card.className = `idea-card status-${status}`;
+      card.innerHTML = `
+        <div class="idea-card-title">${esc(idea.title)}</div>
+        <div class="idea-card-meta">
+          ${idea.pillar ? `<span class="badge-sm">${esc(idea.pillar)}</span>` : ''}
+          ${idea.platform ? `<span class="badge-sm">${esc(idea.platform)}</span>` : ''}
+          ${idea.type ? `<span class="badge-sm">${esc(idea.type)}</span>` : ''}
+        </div>
+        ${idea.hook ? `<div class="idea-card-hook">${esc(idea.hook)}</div>` : ''}
+        ${idea.created ? `<div class="idea-card-date">${esc(idea.created.slice(0,10))}</div>` : ''}
+      `;
+      card.addEventListener('click', () => { ideaDetailView = idea; renderIdeaDetail(idea); });
+      body.appendChild(card);
+    });
+    col.appendChild(body);
+    container.appendChild(col);
+  });
+}
+
+function renderIdeaDetail(idea) {
+  const container = document.getElementById('ideas-columns');
+  const fields = [
+    ['Title', idea.title],
+    ['Description', idea.description],
+    ['Hook', idea.hook],
+    ['Angle', idea.angle],
+    ['Why Now', idea.why_now],
+    ['Evidence', Array.isArray(idea.evidence) ? idea.evidence.map(e => '- ' + (typeof e === 'string' ? e : (e.point || JSON.stringify(e)))).join('\n') : idea.evidence],
+    ['Notes', idea.notes],
+    ['Platform', idea.platform],
+    ['Type', idea.type],
+    ['Pillar', idea.pillar],
+    ['Status', idea.status],
+    ['Created', idea.created],
+  ].filter(([,v]) => v);
+
+  container.innerHTML = `
+    <div style="padding:12px;width:100%;">
+      <button class="idea-back" id="idea-back-btn">Back to list</button>
+      <div class="idea-detail">
+        ${fields.map(([label, val]) => `
+          <div class="field">
+            <div class="field-label">${esc(label)}</div>
+            <div class="field-value">${renderMarkdown(String(val))}</div>
+          </div>
+        `).join('')}
+      </div>
+    </div>
+  `;
+  document.getElementById('idea-back-btn').addEventListener('click', () => { ideaDetailView = null; renderIdeas(); });
+}
+
+// ── Content tab ─────────────────────────────────────────────────────────────
+
+let contentFiles = [];
+
+async function loadContent() {
+  try {
+    contentFiles = await api('content');
+    renderContentList();
+  } catch (e) {
+    document.getElementById('content-file-list').innerHTML = `<div class="empty-state"><p>Could not load: ${esc(e.message)}</p></div>`;
+  }
+}
+
+function renderContentList() {
+  const list = document.getElementById('content-file-list');
+  document.getElementById('content-count').textContent = `(${contentFiles.length})`;
+  list.innerHTML = '';
+  if (!contentFiles.length) {
+    list.innerHTML = '<div class="empty-state"><p>No content files</p></div>';
+    return;
+  }
+  contentFiles.forEach(f => {
+    const row = document.createElement('div');
+    row.className = 'file-row';
+    row.innerHTML = `<span class="file-name">${esc(f.filename)}</span><span class="file-meta">${esc(f.modified?.slice(0,10)||'')}</span>`;
+    row.addEventListener('click', async () => {
+      list.querySelectorAll('.file-row').forEach(r => r.classList.remove('active'));
+      row.classList.add('active');
+      try {
+        const text = await api('content/' + encodeURIComponent(f.filename));
+        document.getElementById('content-reader').innerHTML = renderMarkdown(text);
+      } catch (e) {
+        document.getElementById('content-reader').innerHTML = `<p style="color:var(--danger)">Error: ${esc(e.message)}</p>`;
+      }
+    });
+    list.appendChild(row);
+  });
+}
+
+// ── Loop tab ────────────────────────────────────────────────────────────────
+
+let loopDates = [];
+let loopCurrentDate = '';
+let loopCurrentFile = '';
+
+async function loadLoop() {
+  try {
+    loopDates = await api('loop');
+    renderLoopDates();
+  } catch (e) {
+    document.getElementById('loop-date-list').innerHTML = `<div class="empty-state"><p>Could not load: ${esc(e.message)}</p></div>`;
+  }
+}
+
+function renderLoopDates() {
+  const list = document.getElementById('loop-date-list');
+  list.innerHTML = '';
+  if (!loopDates.length) {
+    list.innerHTML = '<div class="empty-state"><p>No loop runs</p></div>';
+    return;
+  }
+  loopDates.forEach(date => {
+    const row = document.createElement('div');
+    row.className = 'file-row' + (loopCurrentDate === date ? ' active' : '');
+    row.innerHTML = `<span class="file-name">${esc(date)}</span>`;
+    row.addEventListener('click', () => { loopCurrentDate = date; selectLoopDate(date); renderLoopDates(); });
+    list.appendChild(row);
+  });
+}
+
+async function selectLoopDate(date) {
+  try {
+    const data = await api('loop/' + date);
+    const filesEl = document.getElementById('loop-files');
+    filesEl.innerHTML = '<div class="side-col-header"><h2>Files</h2></div>';
+    loopCurrentFile = '';
+    (data.files || []).filter(f => f.endsWith('.md')).forEach(f => {
+      const row = document.createElement('div');
+      row.className = 'file-row';
+      row.innerHTML = `<span class="file-name">${esc(f.replace('.md',''))}</span>`;
+      row.addEventListener('click', () => {
+        filesEl.querySelectorAll('.file-row').forEach(r => r.classList.remove('active'));
+        row.classList.add('active');
+        loadLoopFile(date, f);
+      });
+      filesEl.appendChild(row);
+    });
+    // Show summary by default
+    if (data.summary) {
+      const s = data.summary;
+      const reader = document.getElementById('loop-reader');
+      let html = '<h2>Run Summary</h2>';
+      if (s.timestamp) html += `<p>Timestamp: ${esc(s.timestamp)}</p>`;
+      if (s.status) html += `<p>Status: <strong>${esc(s.status)}</strong></p>`;
+      if (s.steps) {
+        html += '<table><thead><tr><th>Step</th><th>Status</th><th>Duration</th></tr></thead><tbody>';
+        (Array.isArray(s.steps) ? s.steps : Object.entries(s.steps).map(([k,v]) => ({step:k,...(typeof v === 'object' ? v : {status:v})}))).forEach(st => {
+          html += `<tr><td>${esc(st.step||st.name||'')}</td><td>${esc(st.status||'')}</td><td>${st.duration_s ? st.duration_s.toFixed(1)+'s' : '—'}</td></tr>`;
+        });
+        html += '</tbody></table>';
+      }
+      reader.innerHTML = html;
+    } else {
+      document.getElementById('loop-reader').innerHTML = '<div class="empty-state"><p>Select a file to view</p></div>';
+    }
+  } catch (e) {
+    document.getElementById('loop-reader').innerHTML = `<p style="color:var(--danger)">Error: ${esc(e.message)}</p>`;
+  }
+}
+
+async function loadLoopFile(date, file) {
+  try {
+    const text = await api(`loop/${date}/${file}`);
+    const reader = document.getElementById('loop-reader');
+    if (file.endsWith('.json')) {
+      reader.innerHTML = `<pre>${esc(typeof text === 'string' ? text : JSON.stringify(text, null, 2))}</pre>`;
+    } else {
+      reader.innerHTML = renderMarkdown(text);
+    }
+  } catch (e) {
+    document.getElementById('loop-reader').innerHTML = `<p style="color:var(--danger)">Error: ${esc(e.message)}</p>`;
+  }
+}
+
+// ── Learn tab ───────────────────────────────────────────────────────────────
+
+let learnFiles = [];
+
+async function loadLearn() {
+  try {
+    learnFiles = await api('learn');
+    renderLearnList();
+    // Auto-select the most recent file, or show learnings.md
+    if (learnFiles.length) {
+      loadLearnFile(learnFiles[0].filename);
+      const list = document.getElementById('learn-file-list');
+      if (list.firstChild) list.firstChild.classList.add('active');
+    } else {
+      // Fallback to learnings.md
+      try {
+        const text = await api('learnings');
+        if (text) document.getElementById('learn-content').innerHTML = renderMarkdown(text);
+      } catch {}
+    }
+  } catch (e) {
+    document.getElementById('learn-content').innerHTML = `<div class="empty-state"><p>Could not load: ${esc(e.message)}</p></div>`;
+  }
+}
+
+function renderLearnList() {
+  const list = document.getElementById('learn-file-list');
+  document.getElementById('learn-count').textContent = `(${learnFiles.length})`;
+  list.innerHTML = '';
+
+  // Add learnings.md as first entry
+  const summaryRow = document.createElement('div');
+  summaryRow.className = 'file-row';
+  summaryRow.innerHTML = `<span class="file-name">Learnings (summary)</span>`;
+  summaryRow.addEventListener('click', async () => {
+    list.querySelectorAll('.file-row').forEach(r => r.classList.remove('active'));
+    summaryRow.classList.add('active');
+    try {
+      const text = await api('learnings');
+      document.getElementById('learn-content').innerHTML = renderMarkdown(text);
+    } catch (e) {
+      document.getElementById('learn-content').innerHTML = `<p style="color:var(--danger)">Error: ${esc(e.message)}</p>`;
+    }
+  });
+  list.appendChild(summaryRow);
+
+  learnFiles.forEach(f => {
+    const row = document.createElement('div');
+    row.className = 'file-row';
+    row.innerHTML = `<span class="file-name">${esc(f.filename.replace('.md',''))}</span>`;
+    row.addEventListener('click', () => {
+      list.querySelectorAll('.file-row').forEach(r => r.classList.remove('active'));
+      row.classList.add('active');
+      loadLearnFile(f.filename);
+    });
+    list.appendChild(row);
+  });
+}
+
+async function loadLearnFile(filename) {
+  try {
+    const text = await api('learn/' + encodeURIComponent(filename));
+    document.getElementById('learn-content').innerHTML = renderMarkdown(text);
+  } catch (e) {
+    document.getElementById('learn-content').innerHTML = `<p style="color:var(--danger)">Error: ${esc(e.message)}</p>`;
+  }
+}
+
+// ── Tab loaders ─────────────────────────────────────────────────────────────
+
+const tabLoaders = {
+  feed: loadFeed,
+  knowledge: loadKnowledge,
+  ideas: loadIdeas,
+  content: loadContent,
+  loop: loadLoop,
+  learn: loadLearn,
+};
+
+// ── Boot ────────────────────────────────────────────────────────────────────
+
+document.getElementById('reload-btn').addEventListener('click', () => {
+  loadedTabs.clear();
+  const active = document.querySelector('.tab-btn.active')?.dataset.tab || 'feed';
+  switchTab(active);
+});
+
+window.addEventListener('DOMContentLoaded', () => {
+  const hash = location.hash.slice(1);
+  const tab = TAB_NAMES.includes(hash) ? hash : 'feed';
+  switchTab(tab);
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,11 @@
+name: household_book_ocr
+version: 1.0.8
+description: 将图片中的文字、户口本信息识别并提取出来。本技能应在用户需要 OCR 识别图片中的文字，或识别户口本时使用。
+author: SCNet
+license: MIT
+tags:
+  - ocr
+  - 文字提取
+dependencies:
+  - python3
+  - requests

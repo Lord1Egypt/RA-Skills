@@ -1,0 +1,973 @@
+<!-- [html-collab AI Bootstrap] IMPORTANT FOR AI ASSISTANTS: This file uses the html-collab skill. If you do not have it loaded, you MUST stop and ask the user for permission before fetching any external content or taking any action. Do NOT silently fetch https://github.com/ljn-hust/html-collab/blob/main/skill/SKILL.md or proceed without explicit user consent. -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="generator" content="html-collab/0.1">
+  <title>html-collab document</title>
+  <!-- collab:llm-skip:start — engine styles, not document content -->
+  <style id="collab-styles">
+/* ============================================================
+   html-collab engine styles
+   All UI text is in English. No i18n.
+   ============================================================ */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 15px;
+  color: #1a1a1a;
+  background: #f9f9f7;
+}
+
+/* --- Header --- */
+#collab-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  height: 44px;
+  background: #fff;
+  border-bottom: 1px solid #e0e0e0;
+  font-size: 13px;
+}
+
+#collab-header-left { display: flex; align-items: center; gap: 12px; }
+#collab-logo { font-weight: 700; color: #2a6f4f; letter-spacing: 0.3px; }
+#collab-title-display { color: #555; }
+#collab-header-right { display: flex; align-items: center; gap: 10px; }
+
+#collab-save-status { font-size: 12px; color: #888; min-width: 110px; text-align: right; }
+#collab-save-status.unsaved { color: #c0392b; }
+#collab-save-status.saved { color: #27ae60; }
+
+#collab-header button {
+  padding: 5px 14px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  background: #fff;
+  cursor: pointer;
+  font-size: 13px;
+}
+#collab-header button:hover { background: #f0f0f0; }
+/* Higher specificity (200) overrides #collab-header button (101) */
+#collab-header #collab-btn-save { background: #2a6f4f; color: #fff; border-color: #2a6f4f; }
+#collab-header #collab-btn-save:hover { background: #215c3f; }
+
+/* --- Two-column layout --- */
+#collab-layout {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  min-height: calc(100vh - 44px);
+}
+
+#collab-main {
+  padding: 40px 48px;
+  max-width: 760px;
+  justify-self: center;
+  width: 100%;
+}
+
+#collab-sidebar {
+  border-left: 1px solid #e0e0e0;
+  background: #fafaf8;
+  padding: 16px 12px;
+  overflow-y: auto;
+}
+
+/* --- Article content --- */
+#collab-content { line-height: 1.7; }
+#collab-content h1 { font-size: 26px; font-weight: 700; margin-bottom: 8px; }
+#collab-content h2 { font-size: 20px; font-weight: 600; margin-top: 32px; }
+#collab-content p, #collab-content li { margin-bottom: 12px; }
+
+/* Block hover state (edit target) */
+[data-cid] { position: relative; border-radius: 4px; transition: background 0.15s; }
+[data-cid]:hover { background: #f0f7f3; }
+[data-cid].editing { background: #e8f4ee; outline: 2px solid #2a6f4f; }
+[data-cid].dimmed { opacity: 0.35; pointer-events: none; }
+
+/* Pencil icon on hover */
+[data-cid] .collab-edit-btn {
+  display: none;
+  position: absolute;
+  top: 4px; right: 4px;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 2px 6px;
+  font-size: 11px;
+  cursor: pointer;
+  z-index: 10;
+}
+[data-cid]:hover .collab-edit-btn { display: inline-block; }
+
+/* Edit confirm/cancel bar */
+.collab-edit-bar {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+}
+.collab-edit-bar button {
+  padding: 4px 12px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  font-size: 12px;
+}
+.collab-edit-bar .confirm { background: #2a6f4f; color: #fff; border-color: #2a6f4f; }
+
+/* Edit diff display */
+.collab-original { text-decoration: line-through; color: #c0392b; }
+.collab-revised { color: #27ae60; }
+.collab-edited-badge {
+  display: inline-block;
+  margin-left: 6px;
+  font-size: 10px;
+  background: #e8f4ee;
+  color: #2a6f4f;
+  border-radius: 3px;
+  padding: 1px 5px;
+  font-weight: 600;
+  vertical-align: middle;
+}
+
+/* Comment highlight */
+.collab-highlight {
+  background: #fff3a8;
+  border-radius: 2px;
+  cursor: pointer;
+}
+.collab-highlight.active { background: #ffe066; }
+
+/* --- Floating toolbar --- */
+#collab-toolbar {
+  position: fixed;
+  background: #1a1a1a;
+  color: #fff;
+  border-radius: 6px;
+  padding: 4px 6px;
+  font-size: 12px;
+  z-index: 200;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+#collab-toolbar button {
+  background: none;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  padding: 2px 8px;
+  font-size: 12px;
+  border-radius: 4px;
+}
+#collab-toolbar button:hover { background: rgba(255,255,255,0.15); }
+
+/* --- Comment panel (in sidebar) --- */
+#collab-comment-panel {
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 12px;
+  margin-bottom: 12px;
+}
+#collab-comment-text {
+  width: 100%;
+  min-height: 80px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 8px;
+  font-size: 13px;
+  resize: vertical;
+  font-family: inherit;
+}
+#collab-comment-images {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 8px;
+}
+#collab-comment-images img {
+  max-width: 100%;
+  max-height: 120px;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+}
+#collab-comment-warning {
+  font-size: 11px;
+  color: #c0392b;
+  margin-top: 6px;
+  padding: 4px 8px;
+  background: #fef0ef;
+  border-radius: 4px;
+}
+#collab-comment-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+  justify-content: flex-end;
+}
+#collab-comment-actions button {
+  padding: 5px 14px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  font-size: 12px;
+}
+#collab-comment-add { background: #2a6f4f; color: #fff; border-color: #2a6f4f; }
+
+/* --- Comment bubbles in sidebar --- */
+.collab-comment-bubble {
+  position: relative;
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 10px 12px;
+  margin-bottom: 10px;
+  font-size: 13px;
+  cursor: pointer;
+}
+.collab-comment-bubble:hover { border-color: #2a6f4f; }
+.collab-comment-bubble.active { border-color: #2a6f4f; box-shadow: 0 0 0 2px #e8f4ee; }
+.collab-comment-quote {
+  font-size: 11px;
+  color: #888;
+  border-left: 2px solid #ccc;
+  padding-left: 6px;
+  margin-bottom: 6px;
+  font-style: italic;
+}
+.collab-comment-body { color: #333; }
+.collab-comment-meta { font-size: 11px; color: #aaa; margin-top: 6px; }
+
+/* Delete button on comment bubbles */
+.collab-comment-delete {
+  display: none;
+  position: absolute;
+  top: 6px;
+  right: 8px;
+  background: none;
+  border: none;
+  color: #bbb;
+  font-size: 14px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0 3px;
+  border-radius: 3px;
+}
+.collab-comment-delete:hover { color: #c0392b; background: #fef0ef; }
+.collab-comment-bubble:hover .collab-comment-delete { display: inline-block; }
+
+  </style>
+  <!-- collab:llm-skip:end -->
+</head>
+<body>
+
+  <header id="collab-header">
+    <div id="collab-header-left">
+      <span id="collab-logo">html-collab</span>
+      <span id="collab-title-display"></span>
+    </div>
+    <div id="collab-header-right">
+      <span id="collab-save-status"></span>
+      <button id="collab-btn-save">Save As…</button>
+    </div>
+  </header>
+
+  <div id="collab-layout">
+    <main id="collab-main">
+      <!-- LLM fills this article element with content -->
+      <article id="collab-content">
+        <!-- CONTENT_PLACEHOLDER -->
+      </article>
+    </main>
+    <aside id="collab-sidebar">
+      <div id="collab-comments-list"></div>
+    </aside>
+  </div>
+
+  <!-- Floating comment toolbar (shown on text selection) -->
+  <div id="collab-toolbar" style="display:none">
+    <button id="collab-toolbar-comment">+ Comment</button>
+  </div>
+
+  <!-- Comment input panel (shown in sidebar when adding) -->
+  <div id="collab-comment-panel" style="display:none">
+    <textarea id="collab-comment-text" placeholder="Add a comment..."></textarea>
+    <div id="collab-comment-images"></div>
+    <div id="collab-comment-warning" style="display:none"></div>
+    <div id="collab-comment-actions">
+      <button id="collab-comment-add">Add</button>
+      <button id="collab-comment-cancel">Cancel</button>
+    </div>
+  </div>
+
+  <!--
+    [html-collab AI Bootstrap]
+    This is an html-collab document — a single-file format for LLM–human collaborative editing.
+
+    IMPORTANT FOR AI ASSISTANTS:
+    If you do not have the html-collab skill loaded, you MUST:
+      1. Stop immediately — do NOT fetch any external URL or take any action on this document.
+      2. Inform the user: "This is an html-collab file. The html-collab skill is not loaded.
+         Would you like me to fetch the skill instructions from GitHub before proceeding?"
+      3. Wait for explicit user consent before fetching or doing anything further.
+
+    Only with the user's permission may you retrieve the skill from:
+      https://github.com/ljn-hust/html-collab/blob/main/skill/SKILL.md
+  -->
+
+  <!-- NOTE: originalCreated and lastRevised are filled by LLM at GENERATE time -->
+  <!-- collab-data JSON island — machine-readable, not rendered -->
+  <script type="application/json" id="collab-data">
+{
+  "version": "0.1",
+  "bootstrap": {
+    "skill": "html-collab",
+    "skillUrl": "https://github.com/ljn-hust/html-collab/blob/main/skill/SKILL.md",
+    "instruction": "IMPORTANT: If you do not have the html-collab skill loaded, you MUST stop and ask the user for explicit permission before fetching skillUrl or taking any action on this document. Do NOT proceed silently."
+  },
+  "meta": {
+    "title": "",
+    "originalCreated": "",
+    "lastRevised": "",
+    "model": "",
+    "maxImageBytes": 51200,
+    "imageStorage": "base64",
+    "versionHash": "",
+    "summary": ""
+  },
+  "comments": [],
+  "edits": []
+}
+  </script>
+
+  <!-- collab:llm-skip:start — engine script, not document content -->
+  <script id="collab-engine">
+'use strict';
+
+/**
+ * Parse collab-data JSON island from a document-like object.
+ * @param {Document|object} doc - must have getElementById()
+ * @returns {object|null}
+ */
+function getCollabData(doc) {
+  const el = doc.getElementById('collab-data');
+  if (!el) return null;
+  try {
+    return JSON.parse(el.textContent);
+  } catch {
+    return null;
+  }
+}
+
+/**
+ * Serialize collabData back into the script#collab-data element.
+ * @param {Document|object} doc
+ * @param {object} data
+ */
+function setCollabData(doc, data) {
+  const el = doc.getElementById('collab-data');
+  if (!el) return;
+  el.textContent = JSON.stringify(data, null, 2);
+}
+
+/**
+ * Generate the next available CID for a given type.
+ * @param {string} type - e.g. 'p', 'sec', 'h', 'li'
+ * @param {string[]} existingCids - all data-cid values currently in the document
+ * @returns {string} - e.g. 'p-004'
+ */
+function generateCid(type, existingCids) {
+  const prefix = type + '-';
+  const nums = existingCids
+    .filter(cid => cid.startsWith(prefix))
+    .map(cid => parseInt(cid.slice(prefix.length), 10))
+    .filter(n => !isNaN(n));
+  const next = nums.length === 0 ? 1 : Math.max(...nums) + 1;
+  return prefix + String(next).padStart(3, '0');
+}
+
+/**
+ * Truncate a quote string to at most 500 characters.
+ * @param {string} text
+ * @returns {string}
+ */
+function truncateQuote(text) {
+  return text.length <= 500 ? text : text.slice(0, 500);
+}
+
+/**
+ * Format collab-data into a plain-text LLM context string.
+ * Replaces base64 image data with size placeholders.
+ * @param {object} data - parsed collab-data object
+ * @returns {string}
+ */
+function extractLLMContext(data) {
+  const comments = data?.comments ?? [];
+  const edits    = data?.edits    ?? [];
+  const lines    = ['[HUMAN FEEDBACK]'];
+
+  if (comments.length === 0 && edits.length === 0) {
+    lines.push('No human feedback');
+    return lines.join('\n');
+  }
+
+  if (comments.length > 0) {
+    lines.push('\nComments:');
+    for (const c of comments) {
+      const imgParts = c.images.map(img => {
+        const size = img.sizeBytes >= 1024 * 1024
+          ? `${(img.sizeBytes / 1024 / 1024).toFixed(1)}MB`
+          : img.sizeBytes >= 1024
+            ? `${Math.round(img.sizeBytes / 1024)}KB`
+            : `${img.sizeBytes}B`;
+        return `[screenshot, ${size}, ${img.type}]`;
+      });
+      const imgSuffix = imgParts.length > 0 ? ' ' + imgParts.join(' ') : '';
+      lines.push(`  · [${c.target}] "${c.quote}" → "${c.text}"${imgSuffix}`);
+    }
+  }
+
+  if (edits.length > 0) {
+    lines.push('\nEdits:');
+    for (const e of edits) {
+      lines.push(`  · [${e.target}] "${e.original}" → "${e.revised}"`);
+    }
+  }
+
+  return lines.join('\n');
+}
+
+function formatTimestamp(date) {
+  const d = date instanceof Date ? date : new Date();
+  if (isNaN(d.getTime())) throw new RangeError('formatTimestamp: invalid Date');
+  return d.getFullYear().toString()
+    + String(d.getMonth() + 1).padStart(2, '0')
+    + String(d.getDate()).padStart(2, '0')
+    + String(d.getHours()).padStart(2, '0')
+    + String(d.getMinutes()).padStart(2, '0');
+}
+
+function suggestSaveFilename(title, date) {
+  const safe = (title || '').replace(/[/\\:*?"<>|]+/g, '-').replace(/^-+|-+$/g, '').trim() || 'document';
+  return safe + '-' + formatTimestamp(date) + '.html';
+}
+
+// CommonJS export guard — allows Node.js testing without breaking browser use
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = { getCollabData, setCollabData, generateCid, truncateQuote, extractLLMContext, formatTimestamp, suggestSaveFilename };
+}
+
+
+'use strict';
+/* html-collab engine — DOM-dependent, runs in Chrome only */
+
+(function collabEngine() {
+
+  // ── State ──────────────────────────────────────────────────
+  let fileHandle = null;
+  let isDirty = false;
+  let pendingCommentRange = null;   // Selection range when comment toolbar clicked
+  let pendingCommentTarget = null;  // data-cid of targeted block
+
+  // ── Auto-save ──────────────────────────────────────────────
+  let autoSaveTimer = null;
+  const AUTOSAVE_DELAY_MS = 3000;  // 3 s debounce after last change
+
+  function scheduleAutoSave() {
+    if (!fileHandle) return;  // only after first manual save establishes the handle
+    clearTimeout(autoSaveTimer);
+    autoSaveTimer = setTimeout(() => saveFile(), AUTOSAVE_DELAY_MS);
+  }
+
+  // ── DOM refs ───────────────────────────────────────────────
+  const $ = (id) => document.getElementById(id);
+  // header is populated inside init() after DOM is ready
+  let header;
+
+  // ── Init ───────────────────────────────────────────────────
+  function init() {
+    header = {
+      title: $('collab-title-display'),
+      status: $('collab-save-status'),
+      btnSave: $('collab-btn-save'),
+    };
+
+    const data = getCollabData(document);
+    if (data && data.meta.title) {
+      header.title.textContent = data.meta.title;
+      document.title = data.meta.title + ' — html-collab';
+    }
+
+    attachEditButtons();
+    renderState();
+
+    header.btnSave.addEventListener('click', saveFile);
+    document.addEventListener('keydown', (e) => {
+      if ((e.ctrlKey || e.metaKey) && e.key === 's') { e.preventDefault(); saveFile(); }
+    });
+
+    document.addEventListener('selectionchange', onSelectionChange);
+  }
+
+  // ── File access ────────────────────────────────────────────
+
+  function computeVersionHash() {
+    const article = $('collab-content');
+    if (!article) return '';
+    const text = article.innerText || article.textContent || '';
+    let hash = 5381;
+    for (let i = 0; i < text.length; i++) {
+      hash = (((hash << 5) + hash) ^ text.charCodeAt(i)) >>> 0;
+    }
+    return hash.toString(16).padStart(8, '0');
+  }
+
+  function generateSummary() {
+    const article = $('collab-content');
+    if (!article) return '';
+    const counts = {};
+    article.querySelectorAll('[data-cid]').forEach(el => {
+      const cid = el.dataset.cid || '';
+      if (!cid || cid.startsWith('auto-')) return;
+      const type = cid.split('-')[0];
+      counts[type] = (counts[type] || 0) + 1;
+    });
+    const sections = [];
+    article.querySelectorAll('[data-cid^="sec-"]').forEach(sec => {
+      const h = sec.querySelector('h1,h2,h3,h4,h5,h6');
+      const label = h ? h.textContent.trim().slice(0, 20) : '';
+      sections.push(label ? sec.dataset.cid + '(' + label + ')' : sec.dataset.cid);
+    });
+    const blockStr = Object.entries(counts)
+      .sort(([a], [b]) => (a < b ? -1 : 1))
+      .map(([k, v]) => v + k)
+      .join(',');
+    const data = getCollabData(document);
+    const cCount = (data?.comments || []).length;
+    const eCount = (data?.edits || []).length;
+    const cTargets = (data?.comments || []).map(c => c.target).filter(Boolean).join(',');
+    const eTargets = (data?.edits || []).map(e => e.target).filter(Boolean).join(',');
+    const parts = [];
+    if (sections.length > 0) parts.push('sections:' + sections.join(','));
+    if (blockStr) parts.push('blocks:' + blockStr);
+    parts.push('comments:' + cCount + (cTargets ? '(' + cTargets + ')' : ''));
+    parts.push('edits:' + eCount + (eTargets ? '(' + eTargets + ')' : ''));
+    return parts.join('; ');
+  }
+
+  async function saveFile() {
+    try {
+      // Update summary and version hash before serialising
+      const data = getCollabData(document);
+      if (data) {
+        data.meta.summary = generateSummary();
+        data.meta.versionHash = computeVersionHash();
+        setCollabData(document, data);
+      }
+
+      const isFirstSave = !fileHandle;
+      if (isFirstSave) {
+        const title = getCollabData(document)?.meta?.title || '';
+        fileHandle = await window.showSaveFilePicker({
+          suggestedName: suggestSaveFilename(title),
+          startIn: 'documents',
+          types: [{ description: 'html-collab documents', accept: { 'text/html': ['.html'] } }],
+        });
+      }
+      const writable = await fileHandle.createWritable();
+      await writable.write(document.documentElement.outerHTML);
+      await writable.close();
+      setStatus('saved');
+      isDirty = false;
+
+      if (isFirstSave) {
+        header.title.textContent = fileHandle.name;
+        document.title = fileHandle.name + ' — html-collab';
+        header.btnSave.textContent = 'Save';
+      }
+    } catch (err) {
+      if (err.name === 'AbortError') return; // user cancelled picker — silent no-op
+      console.error('[html-collab] Save failed:', err);
+      setStatus('unsaved');
+    }
+  }
+
+  function markDirty() {
+    if (!isDirty) { isDirty = true; setStatus('unsaved'); }
+    scheduleAutoSave();
+  }
+
+  function setStatus(state) {
+    const el = header.status;
+    el.className = state;
+    if (state === 'saved') el.textContent = 'Saved ✓';
+    else if (state === 'unsaved') el.textContent = '● Unsaved changes';
+    else el.textContent = '';
+  }
+
+  // ── Placeholders for functions added in Tasks 8-11 ────────
+  // Must exist here so init() can call them during Tasks 7-10.
+  // ── Render saved state on file load ───────────────────────
+  function renderState() {
+    const data = getCollabData(document);
+    if (!data) return;
+
+    // Remove comment bubbles that were baked into the serialised DOM.
+    // saveFile() uses outerHTML, which captures dynamic bubbles; without this,
+    // reopening the file causes renderState() to render each bubble a second time.
+    $('collab-comments-list').querySelectorAll('.collab-comment-bubble').forEach(b => b.remove());
+
+    // Render edits: show diff markup for each saved edit
+    for (const edit of data.edits) {
+      const el = $('collab-content').querySelector(`[data-cid="${edit.target}"]`);
+      if (!el) continue;
+      el.innerHTML = `<span class="collab-original">${escapeHtml(edit.original)}</span> <span class="collab-revised">${escapeHtml(edit.revised)}</span><span class="collab-edited-badge">edited</span>`;
+      // Re-attach edit button (innerHTML wipe destroyed the one from attachEditButtons)
+      attachEditButton(el);
+    }
+
+    // Render comment bubbles (highlights are already in the HTML if saved after selection)
+    for (const comment of data.comments) {
+      renderCommentBubble(comment);
+    }
+  }
+
+  // ── Inline edit ────────────────────────────────────────────
+  function attachEditButtons() {
+    const content = $('collab-content');
+    content.querySelectorAll('[data-cid]').forEach(attachEditButton);
+
+    // Also handle auto-CID for blocks without data-cid
+    let autoIdx = 0;
+    const BLOCK_TAGS = ['P','SECTION','H1','H2','H3','H4','H5','H6','LI','BLOCKQUOTE','PRE','TABLE'];
+    content.querySelectorAll(BLOCK_TAGS.join(',')).forEach(el => {
+      if (!el.dataset.cid) {
+        el.dataset.cid = 'auto-' + (++autoIdx);
+        console.warn('[html-collab] auto-assigned CID:', el.dataset.cid, el);
+        attachEditButton(el);
+      }
+    });
+  }
+
+  function attachEditButton(el) {
+    if (el.querySelector('.collab-edit-btn')) return;
+    const btn = document.createElement('button');
+    btn.className = 'collab-edit-btn';
+    btn.textContent = '✎ Edit';
+    btn.addEventListener('click', (e) => { e.stopPropagation(); startEdit(el); });
+    el.appendChild(btn);
+  }
+
+  function startEdit(el) {
+    // Dim all other blocks, but not ancestors of el (they contain el and the bar)
+    $('collab-content').querySelectorAll('[data-cid]').forEach(b => {
+      b.classList.toggle('dimmed', b !== el && !b.contains(el));
+    });
+    el.classList.add('editing');
+    el.contentEditable = 'true';
+    el.focus();
+
+    // Store original text (from LLM version, not a previous human edit)
+    const data = getCollabData(document);
+    const existing = data.edits.find(e => e.target === el.dataset.cid);
+    el.dataset.editOriginal = existing ? existing.original : el.innerText.trim();
+
+    // Show confirm/cancel bar
+    const bar = document.createElement('div');
+    bar.className = 'collab-edit-bar';
+    bar.innerHTML = `
+      <button class="confirm">Confirm (Ctrl+Enter)</button>
+      <button class="cancel">Cancel</button>
+    `;
+    bar.querySelector('.confirm').onclick = () => confirmEdit(el, bar);
+    bar.querySelector('.cancel').onclick = () => cancelEdit(el, bar);
+    el.after(bar);
+
+    el._editKeyHandler = function(e) {
+      if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) {
+        e.preventDefault();
+        confirmEdit(el, bar);
+      }
+    };
+    el.addEventListener('keydown', el._editKeyHandler);
+  }
+
+  function confirmEdit(el, bar) {
+    const revised = el.innerText.trim();
+    const original = el.dataset.editOriginal;
+
+    if (revised === original) {
+      cancelEdit(el, bar);
+      return;
+    }
+
+    // Save diff to collab-data
+    const data = getCollabData(document);
+    const cid = el.dataset.cid;
+    const existingIdx = data.edits.findIndex(e => e.target === cid);
+    const editRecord = {
+      id: existingIdx >= 0
+        ? data.edits[existingIdx].id
+        : 'e-' + String(data.edits.length + 1).padStart(3, '0'),
+      target: cid,
+      original,
+      revised,
+      author: 'human',
+      timestamp: new Date().toISOString(),
+    };
+    if (existingIdx >= 0) data.edits[existingIdx] = editRecord;
+    else data.edits.push(editRecord);
+    setCollabData(document, data);
+    markDirty();
+
+    // Render diff in place
+    el.contentEditable = 'false';
+    el.classList.remove('editing');
+    el.innerHTML = `<span class="collab-original">${escapeHtml(original)}</span> <span class="collab-revised">${escapeHtml(revised)}</span><span class="collab-edited-badge">edited</span>`;
+
+    // Refresh edit button (innerHTML wiped the old one)
+    el.querySelector('.collab-edit-btn')?.remove();
+    attachEditButton(el);
+
+    el.removeEventListener('keydown', el._editKeyHandler);
+    delete el._editKeyHandler;
+    bar.remove();
+    undimAll();
+  }
+
+  function cancelEdit(el, bar) {
+    el.contentEditable = 'false';
+    el.classList.remove('editing');
+    el.removeEventListener('keydown', el._editKeyHandler);
+    delete el._editKeyHandler;
+    delete el.dataset.editOriginal;
+    bar.remove();
+    undimAll();
+  }
+
+  function undimAll() {
+    $('collab-content').querySelectorAll('[data-cid]').forEach(b => b.classList.remove('dimmed'));
+  }
+
+  // ── Selection / toolbar ────────────────────────────────────
+  function onSelectionChange() {
+    const sel = window.getSelection();
+    if (!sel || sel.isCollapsed || !sel.toString().trim()) {
+      $('collab-toolbar').style.display = 'none';
+      return;
+    }
+    // Only show toolbar if selection is inside #collab-content
+    const range = sel.getRangeAt(0);
+    const content = $('collab-content');
+    if (!content.contains(range.commonAncestorContainer)) {
+      $('collab-toolbar').style.display = 'none';
+      return;
+    }
+    // Position toolbar above the selection
+    const rect = range.getBoundingClientRect();
+    const toolbar = $('collab-toolbar');
+    toolbar.style.display = 'block';
+    // position: fixed uses viewport coords — getBoundingClientRect() already is viewport-relative
+    toolbar.style.top = (rect.top - 38) + 'px';
+    toolbar.style.left = rect.left + 'px';
+
+    $('collab-toolbar-comment').onclick = () => {
+      pendingCommentRange = range.cloneRange();
+      pendingCommentTarget = findTargetCid(range.commonAncestorContainer);
+      toolbar.style.display = 'none';
+      openCommentPanel();
+    };
+  }
+
+  function findTargetCid(node) {
+    let el = node.nodeType === Node.TEXT_NODE ? node.parentElement : node;
+    while (el && el !== document.body) {
+      if (el.dataset.cid) return el.dataset.cid;
+      el = el.parentElement;
+    }
+    return null;
+  }
+
+  // ── Comment panel ──────────────────────────────────────────
+  function openCommentPanel() {
+    const panel = $('collab-comment-panel');
+    $('collab-comment-text').value = '';
+    $('collab-comment-images').innerHTML = '';
+    $('collab-comment-warning').style.display = 'none';
+    panel.style.display = 'block';
+    $('collab-comments-list').prepend(panel);
+    $('collab-comment-text').focus();
+
+    panel._images = [];   // staged images for current comment
+
+    $('collab-comment-text').onpaste = handleCommentPaste;
+    $('collab-comment-add').onclick = commitComment;
+    $('collab-comment-cancel').onclick = () => {
+      panel.style.display = 'none';
+      pendingCommentRange = null;
+      pendingCommentTarget = null;
+    };
+  }
+
+  function commitComment() {
+    const text = $('collab-comment-text').value.trim();
+    if (!text && $('collab-comment-panel')._images.length === 0) return;
+
+    const quote = pendingCommentRange
+      ? truncateQuote(pendingCommentRange.toString())
+      : '';
+
+    const data = getCollabData(document);
+    const existingIds = data.comments.map(c => c.id);
+    const id = generateCid('c', existingIds);  // uses max existing c-NNN, avoids duplicates
+    const comment = {
+      id,
+      target: pendingCommentTarget || 'unknown',
+      quote,
+      text,
+      images: $('collab-comment-panel')._images,
+      author: 'human',
+      timestamp: new Date().toISOString(),
+    };
+    data.comments.push(comment);
+    setCollabData(document, data);
+    markDirty();
+
+    // Highlight selection in article
+    if (pendingCommentRange) {
+      const mark = document.createElement('mark');
+      mark.className = 'collab-highlight';
+      mark.dataset.commentId = id;
+      try {
+        pendingCommentRange.surroundContents(mark);
+      } catch (e) {
+        // surroundContents fails if range spans multiple elements; skip highlight
+        console.warn('[html-collab] Could not highlight selection:', e);
+      }
+    }
+
+    $('collab-comment-panel').style.display = 'none';
+    pendingCommentRange = null;
+    pendingCommentTarget = null;
+    renderCommentBubble(comment);
+  }
+
+  function renderCommentBubble(comment) {
+    const list = $('collab-comments-list');
+    const bubble = document.createElement('div');
+    bubble.className = 'collab-comment-bubble';
+    bubble.dataset.commentId = comment.id;
+    bubble.innerHTML = `
+      <button class="collab-comment-delete" aria-label="Delete comment" title="Delete comment">×</button>
+      <div class="collab-comment-quote">${escapeHtml(comment.quote)}</div>
+      <div class="collab-comment-body">${escapeHtml(comment.text)}</div>
+      ${comment.images.map(img =>
+        img.type === 'base64'
+          ? `<img src="${img.data}" alt="screenshot">`
+          : `<img src="${img.url}" alt="screenshot">`
+      ).join('')}
+      <div class="collab-comment-meta">${new Date(comment.timestamp).toLocaleString()}</div>
+    `;
+    // Wire delete button imperatively after innerHTML (avoids inline onclick)
+    bubble.querySelector('.collab-comment-delete')
+      .addEventListener('click', (e) => { e.stopPropagation(); deleteComment(comment.id); });
+    list.appendChild(bubble);
+  }
+
+  function deleteComment(id) {
+    // 1. Remove from collab-data
+    const data = getCollabData(document);
+    data.comments = data.comments.filter(c => c.id !== id);
+    setCollabData(document, data);
+
+    // 2. Unwrap <mark> in article — preserve text content, remove wrapper element
+    const mark = $('collab-content')
+      .querySelector(`.collab-highlight[data-comment-id="${id}"]`);
+    if (mark) {
+      const parent = mark.parentNode;
+      while (mark.firstChild) {
+        parent.insertBefore(mark.firstChild, mark);
+      }
+      parent.removeChild(mark);
+    }
+
+    // 3. Remove bubble from sidebar
+    const bubble = $('collab-comments-list')
+      .querySelector(`.collab-comment-bubble[data-comment-id="${id}"]`);
+    if (bubble) bubble.remove();
+
+    // 4. Mark document dirty
+    markDirty();
+  }
+
+  function escapeHtml(str) {
+    return String(str)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
+  }
+
+  // ── Screenshot paste ───────────────────────────────────────
+  function handleCommentPaste(e) {
+    const items = e.clipboardData && e.clipboardData.items;
+    if (!items) return;
+    for (const item of items) {
+      if (!item.type.startsWith('image/')) continue;
+      e.preventDefault();
+      const blob = item.getAsFile();
+      const reader = new FileReader();
+      reader.onload = (ev) => {
+        const dataUrl = ev.target.result;
+        const sizeBytes = blob.size;
+        const data = getCollabData(document);
+        const maxBytes = data?.meta?.maxImageBytes ?? 51200;
+
+        if (sizeBytes > maxBytes) {
+          const warn = $('collab-comment-warning');
+          const sizeKB = Math.round(sizeBytes / 1024);
+          const maxKB = Math.round(maxBytes / 1024);
+          warn.textContent = `This image is ${sizeKB} KB (limit: ${maxKB} KB). Consider cropping it before attaching to keep the file AI-friendly.`;
+          warn.style.display = 'block';
+        }
+
+        const imgObj = {
+          id: 'img-' + Date.now(),
+          type: 'base64',
+          data: dataUrl,
+          sizeBytes,
+        };
+        $('collab-comment-panel')._images.push(imgObj);
+
+        const preview = document.createElement('img');
+        preview.src = dataUrl;
+        $('collab-comment-images').appendChild(preview);
+      };
+      reader.readAsDataURL(blob);
+    }
+  }
+
+  // ── Expose internal functions used in later tasks ──────────
+  window._collab = { markDirty, setStatus };
+
+  // Bootstrap
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+
+})();
+
+  </script>
+  <!-- collab:llm-skip:end -->
+
+</body>
+</html>

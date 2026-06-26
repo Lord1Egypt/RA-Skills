@@ -1,0 +1,11 @@
+# Install with: pip install -r requirements.txt
+
+# PDF rendering
+reportlab>=4.0.0
+pillow>=10.0.0
+
+# Data visualization
+matplotlib>=3.0.0
+
+# Optional networking helper
+# requests>=2.31.0

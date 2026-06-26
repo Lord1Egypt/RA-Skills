@@ -1,0 +1,131 @@
+# 生产环境配置
+# 覆盖主配置中的设置
+
+system:
+  environment: "production"
+  debug: false
+  log_level: "INFO"
+  
+  # 生产环境使用持久化目录
+  data_dir: "/var/lib/hermes/data"
+  logs_dir: "/var/log/hermes"
+  cache_dir: "/var/cache/hermes"
+  
+  # 生产环境优化性能
+  max_workers: 8
+  cache_size: 5000
+  
+memory:
+  # 生产环境根据实际情况启用嵌入模型
+  use_embedding: false  # 设置为 true 如果有可用的嵌入模型 API
+  
+  # 生产环境优化缓存
+  cache_size: 5000
+  embedding_cache_size: 10000
+  embedding_cache_ttl_seconds: 86400  # 24小时
+  
+  # 生产环境减少同步频率
+  sync_interval_seconds: 300  # 5分钟
+  
+  # 生产环境优化搜索
+  prefetch_threshold: 0.15
+  max_prefetch_results: 10
+  
+skill_generation:
+  # 生产环境需要人工确认
+  require_approval: true
+  auto_install: false
+  
+  # 生产环境优化性能
+  debrief_min_confidence: 0.4
+  debrief_max_candidates: 5
+  
+  # 生产环境质量控制
+  min_code_quality_score: 0.7
+  
+data_export:
+  # 生产环境根据需要启用
+  enabled: false
+  
+  # 生产环境优化导出
+  memory_export_interval_hours: 168  # 每周
+  memory_export_max_age_days: 90  # 保留90天
+  
+performance:
+  # 生产环境严格监控
+  health_check_interval_seconds: 30
+  performance_check_interval_seconds: 60
+  
+  # 生产环境严格阈值
+  memory_warning_mb: 100
+  memory_critical_mb: 200
+  response_time_warning_ms: 500
+  response_time_critical_ms: 1000
+  error_rate_warning_percent: 1
+  error_rate_critical_percent: 5
+  
+  # 生产环境启用所有优化
+  enable_caching: true
+  enable_compression: true
+  enable_batching: true
+  
+integration:
+  # 生产环境根据需要启用集成
+  webhooks:
+    enabled: false  # 根据需要启用
+    
+  api:
+    enabled: false  # 根据需要启用
+    
+security:
+  # 生产环境严格安全
+  api_key_required: true  # 如果启用 API
+  rate_limit_requests_per_minute: 30
+  rate_limit_burst_size: 5
+  
+  # 生产环境数据加密
+  encrypt_sensitive_data: true
+  encryption_key: ""  # 必须设置
+  
+  # 生产环境访问控制
+  allowed_origins:
+    - "https://openclaw.ai"
+    - "https://your-domain.com"
+    
+  # 生产环境完整审计
+  audit_logging: true
+  
+logging:
+  # 生产环境适当日志级别
+  level: "INFO"
+  
+  # 生产环境日志轮转
+  file_enabled: true
+  max_size_mb: 100
+  backup_count: 10
+  
+  # 生产环境结构化日志
+  console_enabled: false  # 生产环境通常不输出到控制台
+  structured_logging: true
+  log_format: "json"
+  
+  # 生产环境日志轮转
+  rotation:
+    enabled: true
+    when: "daily"
+    interval: 1
+    backup_count: 30  # 保留30天
+    
+advanced:
+  # 生产环境禁用实验功能
+  experimental_features: false
+  
+  # 生产环境禁用热重载
+  hot_reload: false
+  
+  # 生产环境禁用测试模式
+  test_mode: false
+  mock_apis: false
+  
+  # 生产环境性能分析（根据需要启用）
+  enable_profiling: false

@@ -1,0 +1,31 @@
+#cloud-config
+hostname: VM_NAME_PLACEHOLDER
+manage_etc_hosts: true
+
+users:
+  - name: deploy
+    sudo: ALL=(ALL) NOPASSWD:ALL
+    shell: /bin/bash
+    lock_passwd: false
+    passwd: PASSWORD_HASH_PLACEHOLDER
+    ssh_authorized_keys:
+      - SSH_KEY_PLACEHOLDER
+
+packages:
+  - docker.io
+  - curl
+  - git
+  - htop
+
+runcmd:
+  - systemctl enable docker
+  - systemctl start docker
+  - usermod -aG docker deploy
+  - mkdir -p /usr/local/lib/docker/cli-plugins
+  # Pin Compose version for reproducibility. Update this when upgrading.
+  - curl -SL "https://github.com/docker/compose/releases/download/v2.32.4/docker-compose-linux-x86_64" -o /usr/local/lib/docker/cli-plugins/docker-compose
+  - chmod +x /usr/local/lib/docker/cli-plugins/docker-compose
+
+# SSH password auth disabled by default for security (key-only access).
+# Set to true only if you need password-based SSH login.
+ssh_pwauth: false

@@ -1,0 +1,24 @@
+{
+  "name": "gougoubi-claim-all-rewards",
+  "displayName": "Gougoubi Claim All Rewards",
+  "tagline": "One-click claim Gougoubi winner, governance, and LP rewards",
+  "description": "Use when users want one-click Gougoubi reward claiming for one or more addresses, especially with the fast profile-style claim path.",
+  "category": "crypto",
+  "tags": [
+    "latest",
+    "gougoubi",
+    "reward",
+    "claim",
+    "lp",
+    "governance",
+    "pipeline",
+    "pbft"
+  ],
+  "version": "1.0.0",
+  "license": "MIT-0",
+  "entry": "SKILL.md",
+  "repository": "https://github.com/gougoubi/gougoubi",
+  "support": {
+    "website": "https://gougoubi.ai"
+  }
+}

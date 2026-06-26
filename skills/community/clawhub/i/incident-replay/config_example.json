@@ -1,0 +1,188 @@
+{
+  "DATA_DIR": "incident_data",
+  "DECISION_MARKERS": [
+    "(?:decided|choosing|selected|picked|using|switching to)\\s+(.+)",
+    "(?:action|step|phase|stage):\\s*(.+)",
+    "(?:reason|because|rationale):\\s*(.+)"
+  ],
+  "DEFAULT_REPORT_FORMAT": "markdown",
+  "EXCLUDE_PATTERNS": [
+    "__pycache__/*",
+    "*.pyc",
+    ".git/*",
+    "node_modules/*",
+    "incident_data/*",
+    "*.tmp",
+    "*.swp"
+  ],
+  "INCIDENTS_DIR": "incidents",
+  "INCLUDE_DECISION_CHAIN": true,
+  "INCLUDE_FULL_DIFFS": false,
+  "INCLUDE_PATTERNS": [
+    "*.py",
+    "*.md",
+    "*.txt",
+    "*.json",
+    "*.jsonl",
+    "*.yaml",
+    "*.yml",
+    "*.toml",
+    "*.cfg",
+    "*.ini",
+    "*.log"
+  ],
+  "LOG_FILES": [
+    "*.log",
+    "memory/*.md",
+    "*.jsonl"
+  ],
+  "MAX_DIFF_LINES": 100,
+  "MAX_FILE_SIZE": 1000000,
+  "MAX_LOG_LINES": 10000,
+  "MAX_SNAPSHOTS": 100,
+  "MAX_SNAPSHOT_SIZE": 50000000,
+  "REPORTS_DIR": "reports",
+  "ROOT_CAUSE_CATEGORIES": {
+    "config_error": {
+      "description": "Misconfiguration or invalid settings caused the failure",
+      "remediation": [
+        "Review recent config changes",
+        "Validate config against schema",
+        "Restore last known good config from snapshot",
+        "Add config validation checks"
+      ]
+    },
+    "data_corruption": {
+      "description": "Input data was malformed, missing, or corrupted",
+      "remediation": [
+        "Check data source integrity",
+        "Add input validation",
+        "Restore data from snapshot",
+        "Implement checksums on critical data files"
+      ]
+    },
+    "drift": {
+      "description": "Gradual degradation \u2014 workspace state drifted from expected",
+      "remediation": [
+        "Compare current state to baseline snapshot",
+        "Identify when drift began using timeline",
+        "Reset to known good state",
+        "Add periodic state verification checks"
+      ]
+    },
+    "external_failure": {
+      "description": "External dependency failed (API, network, filesystem)",
+      "remediation": [
+        "Check external service status",
+        "Review timeout and retry configuration",
+        "Add fallback handling",
+        "Improve error messages for external failures"
+      ]
+    },
+    "logic_error": {
+      "description": "Bug in agent logic or prompt produced incorrect behavior",
+      "remediation": [
+        "Review decision chain leading to failure",
+        "Check for recent prompt or code changes",
+        "Add guardrails or validation on outputs",
+        "Test with known-good inputs to isolate the bug"
+      ]
+    },
+    "resource_exhaustion": {
+      "description": "Ran out of memory, disk, tokens, or time",
+      "remediation": [
+        "Check resource usage at time of failure",
+        "Increase limits or add pagination",
+        "Clean up temporary files",
+        "Add resource monitoring and early warnings"
+      ]
+    },
+    "unknown": {
+      "description": "Root cause could not be determined from available data",
+      "remediation": [
+        "Increase logging verbosity",
+        "Add more snapshot points around the failure area",
+        "Reproduce the failure with more instrumentation",
+        "Escalate for manual investigation"
+      ]
+    }
+  },
+  "SIGNIFICANT_CHANGE_THRESHOLD": 5,
+  "SNAPSHOTS_DIR": "snapshots",
+  "TIMELINE_DEPTH": 10,
+  "TRIGGERS": [
+    {
+      "name": "crash_traceback",
+      "type": "log_match",
+      "config": {
+        "patterns": [
+          "Traceback \\(most recent call last\\)",
+          "Error:|Exception:|FATAL:|CRITICAL:"
+        ],
+        "log_files": [
+          "*.log",
+          "stderr.txt"
+        ]
+      },
+      "severity": "critical"
+    },
+    {
+      "name": "unexpected_file_deletion",
+      "type": "file_change",
+      "config": {
+        "change_type": "deleted",
+        "protected_patterns": [
+          "*.md",
+          "*.py",
+          "config*.py"
+        ]
+      },
+      "severity": "high"
+    },
+    {
+      "name": "config_drift",
+      "type": "file_change",
+      "config": {
+        "change_type": "modified",
+        "watch_patterns": [
+          "config*.py",
+          "*.cfg",
+          "*.ini",
+          "*.yaml"
+        ]
+      },
+      "severity": "medium"
+    },
+    {
+      "name": "constraint_violation",
+      "type": "pattern",
+      "config": {
+        "patterns": [
+          "api[_-]?key\\s*[:=]",
+          "password\\s*[:=]",
+          "secret\\s*[:=]"
+        ],
+        "scan_files": [
+          "*.py",
+          "*.md",
+          "*.txt"
+        ],
+        "description": "Potential secret or credential in output"
+      },
+      "severity": "high"
+    },
+    {
+      "name": "empty_output",
+      "type": "pattern",
+      "config": {
+        "check": "empty_file",
+        "watch_patterns": [
+          "output*.txt",
+          "result*.json"
+        ]
+      },
+      "severity": "medium"
+    }
+  ],
+  "WORKSPACE_ROOT": "."
+}

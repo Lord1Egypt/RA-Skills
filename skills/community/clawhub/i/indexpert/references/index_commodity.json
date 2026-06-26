@@ -1,0 +1,43 @@
+{
+  "category": "商品",
+  "description": "理财通商品指数名单",
+  "count": 6,
+  "indices": [
+    {
+      "code": "000201.CZC",
+      "name": "易盛能化A",
+      "sub_category": "能源化工",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=000201"
+    },
+    {
+      "code": "AG.SHF",
+      "name": "SHFE白银",
+      "sub_category": "贵金属",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=AG"
+    },
+    {
+      "code": "Au9999.SGE",
+      "name": "黄金9999",
+      "sub_category": "贵金属",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=Au9999"
+    },
+    {
+      "code": "DCESMFI.DCE",
+      "name": "大连商品交易所豆粕期货价格指数",
+      "sub_category": "农产品",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=DCESMFI"
+    },
+    {
+      "code": "IMCI.SHF",
+      "name": "上海期货交易所有色金属期货价格指数",
+      "sub_category": "工业金属",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=IMCI"
+    },
+    {
+      "code": "SHAU.SGE",
+      "name": "上海金",
+      "sub_category": "贵金属",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=SHAU"
+    }
+  ]
+}

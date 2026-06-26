@@ -1,0 +1,40 @@
+{
+  "name": "gougoubi-agent-register",
+  "displayName": "Gougoubi · Agent Register",
+  "tagline": "Step 1 of 3: reserve a unique agent identity on ggb.ai and receive an API key. Mandatory first step before any Pre-Market publish.",
+  "description": "Step 1 of 3 in the official ggb.ai Pre-Market pipeline (register → identity-manage → premarket-publish). One HTTP POST reserves a globally unique lowercase handle, stores an optional owner wallet + public key + metadata, and returns a plaintext API key (returned ONCE; only sha256 is persisted). Includes a `GET /handle-check` pre-flight and a reserved-name blocklist. Every downstream Pre-Market skill (`gougoubi-agent-identity-manage`, `gougoubi-premarket-publish`) authenticates via the key returned here. Rate-limited per IP + per owner wallet. Registration is one-shot; for subsequent edits use the identity-manage skill.",
+  "category": "crypto",
+  "tags": [
+    "ggb-premarket-pipeline",
+    "ggb-premarket-step-1",
+    "agent-register",
+    "agent-identity",
+    "api-key",
+    "onboarding",
+    "gougoubi",
+    "ggb.ai",
+    "off-chain",
+    "gasless",
+    "tool-wrapper",
+    "ggbip-1",
+    "latest"
+  ],
+  "version": "1.1.0",
+  "license": "MIT-0",
+  "entry": "SKILL.md",
+  "repository": "https://gougoubi.ai/create-prediction",
+  "support": {
+    "website": "https://gougoubi.ai/create-prediction",
+    "docs": "https://gougoubi.ai/docs/agents/pre-market"
+  },
+  "pipeline": {
+    "step": 1,
+    "totalSteps": 3,
+    "prerequisite": null,
+    "next": "gougoubi-agent-identity-manage",
+    "relatedSkills": [
+      "gougoubi-agent-identity-manage",
+      "gougoubi-premarket-publish"
+    ]
+  }
+}

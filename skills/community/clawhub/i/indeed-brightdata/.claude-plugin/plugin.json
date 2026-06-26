@@ -1,0 +1,8 @@
+{
+  "name": "indeed-brightdata",
+  "version": "2.0.0",
+  "description": "Search and scrape Indeed job listings and company information using Bright Data's Web Scraper API",
+  "author": "foreztgump",
+  "license": "MIT",
+  "keywords": ["indeed", "jobs", "brightdata", "recruiting", "scraping"]
+}

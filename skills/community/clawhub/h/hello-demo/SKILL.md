@@ -1,35 +1,58 @@
 ---
-name: "hello-openclaw"
-description: "A simple skill to greet users and demonstrate basic OpenCLAW skill structure. Use this when you want to say hello or learn how skills work."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/hello-demo"
-sourceUrl: "https://clawhub.ai/skills/hello-demo"
+name: hello-openclaw
+description: A simple skill to greet users and demonstrate basic OpenCLAW skill structure. Use this when you want to say hello or learn how skills work.
+triggers:
+  - test openclaw
+  - run test
+  - hello test
+user-invocable: true
 ---
 
-# hello-openclaw
+# Hello OpenCLAW Skill
 
-> A simple skill to greet users and demonstrate basic OpenCLAW skill structure. Use this when you want to say hello or learn how skills work.
+This is a simple skill that demonstrates the basic structure of an OpenCLAW skill.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/hello-demo`
-- **Source URL:** [https://clawhub.ai/skills/hello-demo](https://clawhub.ai/skills/hello-demo)
+## When to Use
 
-## Overview
+Use this skill when:
+- You want to greet someone with a friendly message
+- You're learning how OpenCLAW skills work
+- You need a starting point for creating new skills
 
+## What This Skill Does
 
-## Installation
-To install this skill, run the following command in your terminal:
+This skill will respond with a friendly greeting message and some basic information about OpenCLAW skills.
+
+## Skill Structure
+
+A basic OpenCLAW skill requires:
+
+1. **SKILL.md** - The main skill file with:
+   - YAML frontmatter (name, description)
+   - Markdown instructions
+
+2. Optional directories:
+   - `scripts/` - Executable code (Python/Bash/etc.)
+   - `references/` - Documentation
+   - `assets/` - Files for output
+
+## Example Script
+
+You can run the included Python script:
+
 ```bash
-hermes skills install clawhub/hello-demo
+python scripts/test.py
 ```
+
+## Example Output
+
+```
+Hello! Welcome to OpenCLAW!
+
+This is a demo skill showing how skills work.
+Skills can respond to user requests with helpful information.
+```
+
+## How to Use
+
+Simply trigger this skill by mentioning "hello" or "hello openclaw" in your conversation.

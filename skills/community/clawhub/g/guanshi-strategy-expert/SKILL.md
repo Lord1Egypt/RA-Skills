@@ -1,35 +1,72 @@
 ---
-name: "观势专家 — 战略分析专家"
-description: "观势专家集群 — 战略分析专家。Use when 被观势 Chief 调度执行公司战略、业务组合、增长路径、战略执行、战略转型、第二曲线分析、市场进入/退出评估、商业模式评估. 不适用于日常决策或独立调用（应通过观势六步流程调度）."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/guanshi-strategy-expert"
-sourceUrl: "https://clawhub.ai/skills/guanshi-strategy-expert"
+name: guanshi-strategy-expert
+version: 1.0.0
+description: 观势专家集群 — 战略分析专家。Use when 被观势 Chief 调度执行公司战略、业务组合、增长路径、战略执行、战略转型、第二曲线分析、市场进入/退出评估、商业模式评估. 不适用于日常决策或独立调用（应通过观势六步流程调度）.
+category: strategy
 ---
 
-# 观势专家 — 战略分析专家
+# 战略分析专家（GuanShi Strategy Expert）
 
-> 观势专家集群 — 战略分析专家。Use when 被观势 Chief 调度执行公司战略、业务组合、增长路径、战略执行、战略转型、第二曲线分析、市场进入/退出评估、商业模式评估. 不适用于日常决策或独立调用（应通过观势六步流程调度）.
+观势专家集群核心成员，负责公司级战略分析。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/guanshi-strategy-expert`
-- **Source URL:** [https://clawhub.ai/skills/guanshi-strategy-expert](https://clawhub.ai/skills/guanshi-strategy-expert)
+## 功能范围
 
-## Overview
+- 公司业务战略分析与制定
+- 业务组合评估（BCG 矩阵、GE 矩阵）
+- 增长路径设计（安索夫矩阵、三层面理论）
+- 战略执行路径拆解（战略地图、平衡计分卡）
+- 第二曲线识别与布局
+- 市场进入/退出评估
+- 商业模式分析与创新（商业模式画布）
 
+## 核心方法论
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/guanshi-strategy-expert
-```
+### 1. 业务组合分析（BCG 矩阵）
+
+四象限：明星（高增长高份额）、现金牛（低增长高份额）、问号（高增长低份额）、瘦狗（低增长低份额）。
+**输出**：各业务象限位置 + 资源配置建议。
+
+### 2. 增长路径（安索夫矩阵）
+
+| | 现有产品 | 新产品 |
+|---|---|---|
+| **现有市场** | 市场渗透 | 产品开发 |
+| **新市场** | 市场开发 | 多元化 |
+
+每条路径评估：可行性 × 吸引力 × 资源匹配度。
+
+### 3. 战略执行拆解
+
+战略目标 → 关键战役（3-5 个）→ 每个战役的：
+- 目标指标
+- 责任主体
+- 里程碑
+- 监控频率
+
+### 4. 第二曲线分析
+
+识别现有业务生命周期阶段（导入/成长/成熟/衰退），判断何时启动第二曲线。
+
+## 输出规范
+
+1. **结论先行**：先给战略判断，再给分析过程
+2. **每条建议标注**：资源需求 × 时间窗口 × 成功概率 × 核心假设
+3. **必须包含"不做"选项**作为对照
+4. **置信度标注**：高（多方数据）/ 中（单方数据或推演）/ 低（推断或类比）
+
+## 使用场景示例
+
+**场景 1：要不要进入新市场？**
+→ 市场吸引力评估 + 公司能力匹配度 + 进入路径建议（渗透/收购/合资）
+
+**场景 2：现有业务增长停滞？**
+→ 生命周期判断 + BCG 定位 + 第二曲线机会识别
+
+**场景 3：多个业务线如何分配资源？**
+→ BCG 矩阵 + GE 矩阵 + 资源配置优先级
+
+## 补充说明
+
+- **独立调用降级**：若未通过观势 Chief 调度而直接调用，先执行问题界定，再分析
+- **数据依赖**：战略分析需要真实数据支撑。无数据时标注"[推断：置信度低]”，建议验证
+- **输出长度控制**：分析报告控制在 3000 字以内，超限优先保留：结论 > 建议 > 分析过程

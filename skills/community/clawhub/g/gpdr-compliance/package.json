@@ -1,0 +1,67 @@
+{
+  "name": "gdpr-compliance",
+  "version": "1.0.3",
+  "description": "欧盟通用数据保护条例（GDPR）合规检查、风险评估和文档生成工具。为欧盟市场提供全面的GDPR合规解决方案。",
+  "author": "OpenClaw Community",
+  "license": "MIT",
+  "keywords": [
+    "GDPR",
+    "欧盟合规",
+    "数据保护",
+    "privacy",
+    "合规检查",
+    "DPIA",
+    "data-protection",
+    "eu-compliance"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://clawhub.ai/wwumit/gdpr-compliance"
+  },
+  "homepage": "https://clawhub.ai/wwumit/gdpr-compliance",
+  "skills": {
+    "gdpr-compliance": {
+      "version": "1.0.3",
+      "description": "欧盟GDPR合规专用技能",
+      "main": "SKILL.md"
+    }
+  },
+  "dependencies": {
+    "python": ">=3.8"
+  },
+  "features": [
+    "GDPR合规检查",
+    "数据保护影响评估(DPIA)",
+    "数据主体权利检查",
+    "跨境数据传输合规",
+    "合规文档生成",
+    "安全验证和审计"
+  ],
+  "regions": [
+    "EU/EEA",
+    "UK"
+  ],
+  "security": {
+    "network_access": "local_only",
+    "data_collection": "none",
+    "external_dependencies": "minimal"
+  },
+  "documentation": {
+    "main": "SKILL.md",
+    "security_guide": "SECURITY_CHECK_GUIDE.md",
+    "changelog": "CHANGELOG.md",
+    "readme": "README.md"
+  },
+  "legal": {
+    "disclaimer": "此技能提供GDPR合规指导，不构成法律意见。重要合规决策必须咨询专业律师或数据保护官(DPO)。",
+    "jurisdiction": "EU/EEA/UK",
+    "applicable_law": "GDPR (Regulation (EU) 2016/679)"
+  },
+  "scripts": {
+    "check": "python scripts/gdpr-check.py",
+    "data_rights": "python scripts/data-subject-rights.py",
+    "dpia": "python scripts/dpia-generator.py",
+    "cross_border": "python scripts/cross-border-transfer.py",
+    "security_check": "python scripts/security_check_gdpr.py"
+  }
+}

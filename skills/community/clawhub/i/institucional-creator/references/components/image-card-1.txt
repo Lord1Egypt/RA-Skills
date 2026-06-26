@@ -1,0 +1,277 @@
+You are given a task to integrate an existing React component in the codebase
+
+The codebase should support:
+- shadcn project structure  
+- Tailwind CSS
+- Typescript
+
+If it doesn't, provide instructions on how to setup project via shadcn CLI, install Tailwind or Typescript.
+
+Determine the default path for components and styles. 
+If default path for components is not /components/ui, provide instructions on why it's important to create this folder
+Copy-paste this component to /components/ui folder:
+```tsx
+image-card-1.tsx
+import { useState } from "react";
+import { cn } from "@/lib/utils";
+
+export const Component = () => {
+  const [count, setCount] = useState(0);
+
+  return (
+    <div className={cn("flex flex-col items-center gap-4 p-4 rounded-lg")}>
+      <h1 className="text-2xl font-bold mb-2">Component Example</h1>
+      <h2 className="text-xl font-semibold">{count}</h2>
+      <div className="flex gap-2">
+        <button onClick={() => setCount((prev) => prev - 1)}>-</button>
+        <button onClick={() => setCount((prev) => prev + 1)}>+</button>
+      </div>
+    </div>
+  );
+};
+
+
+demo.tsx
+'use client'
+import { useState, useEffect, useRef } from "react";
+
+// Define the type for card data
+interface CardData {
+  imgUrl: string;
+  content: string;
+}
+
+interface CardProps {
+  data?: CardData[];
+  showCarousel?: boolean;
+  cardsPerView?: number;
+}
+
+import Img1 from '/img1.jpeg';
+import Img2 from '/img2.jpeg';
+import Img3 from '/img3.jpeg';
+
+const CARD_DATA = [
+  {
+    id: 1,
+    imgUrl: 'https://images.pexels.com/photos/36762/scarlet-honeyeater-bird-red-feathers.jpg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+    content:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce ultrices dolor ac massa maximus, blandit ullamcorper eros accumsan. Sed facilisis lacinia venenatis. Donec bibendum, eros ut porttitor consectetur, enim sapien vehicula mi, et consequat lacus turpis vel dolor. Vestibulum sagittis facilisis ipsum vitae suscipit. Proin in nisl sollicitudin, interdum erat eu, consequat odio. Sed auctor felis ac lorem molestie, a cursus elit malesuada. Etiam et varius erat. Aliquam pharetra convallis aliquet. Vestibulum eros ipsum, sodales ac imperdiet id, pellentesque sed tortor.',
+  },
+  {
+    id: 2,
+    imgUrl: 'https://images.pexels.com/photos/33045/lion-wild-africa-african.jpg?auto=compress&cs=tinysrgb&w=800',
+    content:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce ultrices dolor ac massa maximus, blandit ullamcorper eros accumsan. Sed facilisis lacinia venenatis. Donec bibendum, eros ut porttitor consectetur, enim sapien vehicula mi, et consequat lacus turpis vel dolor. Vestibulum sagittis facilisis ipsum vitae suscipit. Proin in nisl sollicitudin, interdum erat eu, consequat odio. Sed auctor felis ac lorem molestie, a cursus elit malesuada. Etiam et varius erat. Aliquam pharetra convallis aliquet. Vestibulum eros ipsum, sodales ac imperdiet id, pellentesque sed tortor.',
+  },
+  {
+    id: 3,
+    imgUrl: 'https://images.pexels.com/photos/1108099/pexels-photo-1108099.jpeg?auto=compress&cs=tinysrgb&w=800',
+    content:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce ultrices dolor ac massa maximus, blandit ullamcorper eros accumsan. Sed facilisis lacinia venenatis. Donec bibendum, eros ut porttitor consectetur, enim sapien vehicula mi, et consequat lacus turpis vel dolor. Vestibulum sagittis facilisis ipsum vitae suscipit. Proin in nisl sollicitudin, interdum erat eu, consequat odio. Sed auctor felis ac lorem molestie, a cursus elit malesuada. Etiam et varius erat. Aliquam pharetra convallis aliquet. Vestibulum eros ipsum, sodales ac imperdiet id, pellentesque sed tortor.',
+  },
+  {
+    id: 4,
+    imgUrl: 'https://images.pexels.com/photos/349758/hummingbird-bird-birds-349758.jpeg?auto=compress&cs=tinysrgb&w=800',
+    content:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce ultrices dolor ac massa maximus, blandit ullamcorper eros accumsan. Sed facilisis lacinia venenatis. Donec bibendum, eros ut porttitor consectetur, enim sapien vehicula mi, et consequat lacus turpis vel dolor. Vestibulum sagittis facilisis ipsum vitae suscipit. Proin in nisl sollicitudin, interdum erat eu, consequat odio. Sed auctor felis ac lorem molestie, a cursus elit malesuada. Etiam et varius erat. Aliquam pharetra convallis aliquet. Vestibulum eros ipsum, sodales ac imperdiet id, pellentesque sed tortor.',
+  },
+  {
+    id: 5,
+    imgUrl: 'https://images.pexels.com/photos/52500/horse-herd-fog-nature-52500.jpeg?auto=compress&cs=tinysrgb&w=800',
+    content:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce ultrices dolor ac massa maximus, blandit ullamcorper eros accumsan. Sed facilisis lacinia venenatis. Donec bibendum, eros ut porttitor consectetur, enim sapien vehicula mi, et consequat lacus turpis vel dolor. Vestibulum sagittis facilisis ipsum vitae suscipit. Proin in nisl sollicitudin, interdum erat eu, consequat odio. Sed auctor felis ac lorem molestie, a cursus elit malesuada. Etiam et varius erat. Aliquam pharetra convallis aliquet. Vestibulum eros ipsum, sodales ac imperdiet id, pellentesque sed tortor.',
+  },
+  {
+    id: 6,
+    imgUrl: 'https://images.pexels.com/photos/45170/kittens-cat-cat-puppy-rush-45170.jpeg?auto=compress&cs=tinysrgb&w=800',
+    content:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce ultrices dolor ac massa maximus, blandit ullamcorper eros accumsan. Sed facilisis lacinia venenatis. Donec bibendum, eros ut porttitor consectetur, enim sapien vehicula mi, et consequat lacus turpis vel dolor. Vestibulum sagittis facilisis ipsum vitae suscipit. Proin in nisl sollicitudin, interdum erat eu, consequat odio. Sed auctor felis ac lorem molestie, a cursus elit malesuada. Etiam et varius erat. Aliquam pharetra convallis aliquet. Vestibulum eros ipsum, sodales ac imperdiet id, pellentesque sed tortor.',
+  },
+];
+
+const Card = ({ data = CARD_DATA, showCarousel = true, cardsPerView = 3 }: CardProps) => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isSingleCard, setIsSingleCard] = useState(false);
+  const [isAnimating, setIsAnimating] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    setIsSingleCard(data.length === 1);
+  }, [data]);
+
+  // Calculate width percentage for each card based on cardsPerView
+  const cardWidth = 75 / cardsPerView;
+
+  const nextSlide = () => {
+    if (isAnimating || !showCarousel) return;
+
+    // Don't allow navigation if there aren't enough cards
+    if (data.length <= cardsPerView) return;
+
+    setIsAnimating(true);
+    const nextIndex = (currentIndex + 1) % data.length;
+
+    if (containerRef.current) {
+      // Apply slide out animation
+      containerRef.current.style.transition = "transform 500ms ease";
+      containerRef.current.style.transform = `translateX(-${cardWidth}%)`;
+
+      // After animation completes, reset position and update index
+      setTimeout(() => {
+        setCurrentIndex(nextIndex);
+        if (containerRef.current) {
+          containerRef.current.style.transition = "none";
+          containerRef.current.style.transform = "translateX(0)";
+
+          // Force reflow
+          void containerRef.current.offsetWidth;
+
+          setIsAnimating(false);
+        }
+      }, 500);
+    }
+  };
+
+  const prevSlide = () => {
+    if (isAnimating || !showCarousel) return;
+
+    // Don't allow navigation if there aren't enough cards
+    if (data.length <= cardsPerView) return;
+
+    setIsAnimating(true);
+    const prevIndex = (currentIndex - 1 + data.length) % data.length;
+
+    if (containerRef.current) {
+      // First set up the previous slide without animation
+      containerRef.current.style.transition = "none";
+      containerRef.current.style.transform = `translateX(-${cardWidth}%)`;
+
+      // Force reflow
+      void containerRef.current.offsetWidth;
+
+      // Update the index
+      setCurrentIndex(prevIndex);
+
+      // Reset the container position without animation
+      containerRef.current.style.transform = `translateX(0)`;
+
+      // Wait a brief moment
+      setTimeout(() => {
+        // Then animate the slide effect
+if (containerRef.current) containerRef.current.style.transition = "transform 500ms ease";
+if (containerRef.current) containerRef.current.style.transform = `translateX(${cardWidth}%)`;
+
+        // After animation completes, reset to normal position
+        setTimeout(() => {
+          if (containerRef.current) {
+            containerRef.current.style.transition = "none";
+            containerRef.current.style.transform = "translateX(0)";
+            setIsAnimating(false);
+          }
+        }, 500);
+      }, 50);
+    }
+  };
+
+  // Calculate which cards to show
+  const getVisibleCards = () => {
+    if (!showCarousel) return data;
+
+    const visibleCards = [];
+    const totalCards = data.length;
+
+    // For next slide animation, we need current cards + 1 extra
+    for (let i = 0; i < cardsPerView + 1; i++) {
+      const index = (currentIndex + i) % totalCards;
+      visibleCards.push(data[index]);
+    }
+
+    return visibleCards;
+  };
+
+  return (
+    <div className="w-full px-4">
+      <div className={`relative ${isSingleCard ? 'max-w-sm mx-auto' : 'w-full'}`}>
+        {/* Carousel Controls */}
+        {showCarousel && data.length > cardsPerView && (
+          <>
+            <button
+              onClick={prevSlide}
+              className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-black/50 text-white p-2 rounded-full hover:bg-black/70 transition-all duration-300"
+              disabled={isAnimating}
+              aria-label="Previous slide"
+            >
+              ←
+            </button>
+            <button
+              onClick={nextSlide}
+              className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-black/50 text-white p-2 rounded-full hover:bg-black/70 transition-all duration-300"
+              disabled={isAnimating}
+              aria-label="Next slide"
+            >
+              →
+            </button>
+          </>
+        )}
+
+        {/* Cards Container Wrapper - limits visible area */}
+        <div className="overflow-hidden">
+          {/* Sliding Cards Container */}
+          <div
+            ref={containerRef}
+            className="flex"
+            style={{
+              transform: "translateX(0)",
+              width: showCarousel ? `${(cardsPerView + 1) * 100 / cardsPerView}%` : '100%'
+            }}
+          >
+            {getVisibleCards().map((card, idx) => (
+              <div
+                key={`card-${currentIndex}-${idx}`}
+                style={{
+                  width: showCarousel ? `${100 / (cardsPerView + 1)}%` : `${100 / Math.min(cardsPerView, data.length)}%`
+                }}
+                className="px-2"
+              >
+                <div className="relative overflow-hidden rounded-lg shadow-md group h-full">
+                  <div className="w-full h-64">
+                    <img
+                      src={card.imgUrl}
+                      alt=""
+                      className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                    />
+                  </div>
+                  <div className="absolute inset-0 bg-black/80 text-white p-4 transition-transform duration-300 transform translate-y-full group-hover:translate-y-0 overflow-y-auto">
+                    <p className="text-sm">{card.content}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Card;
+
+```
+
+Implementation Guidelines
+ 1. Analyze the component structure and identify all required dependencies
+ 2. Review the component's argumens and state
+ 3. Identify any required context providers or hooks and install them
+ 4. Questions to Ask
+ - What data/props will be passed to this component?
+ - Are there any specific state management requirements?
+ - Are there any required assets (images, icons, etc.)?
+ - What is the expected responsive behavior?
+ - What is the best place to use this component in the app?
+
+Steps to integrate
+ 0. Copy paste all the code above in the correct directories
+ 1. Install external dependencies
+ 2. Fill image assets with Unsplash stock images you know exist
+ 3. Use lucide-react icons for svgs or logos if component requires them

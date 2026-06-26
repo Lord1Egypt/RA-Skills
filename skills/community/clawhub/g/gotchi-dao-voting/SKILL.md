@@ -1,35 +1,45 @@
 ---
-name: "Gotchi DAO Voting"
-description: "Check active Aavegotchi DAO proposals and vote on Snapshot via Bankr EIP-712 signatures."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/gotchi-dao-voting"
-sourceUrl: "https://clawhub.ai/skills/gotchi-dao-voting"
+name: gotchi-dao-voting
+description: Check active Aavegotchi DAO proposals and vote on Snapshot via Bankr EIP-712 signatures.
+homepage: https://github.com/aaigotchi/gotchi-dao-voting
+metadata:
+  openclaw:
+    requires:
+      bins:
+        - curl
+        - jq
+      env:
+        - BANKR_API_KEY
 ---
 
-# Gotchi DAO Voting
+# gotchi-dao-voting
 
-> Check active Aavegotchi DAO proposals and vote on Snapshot via Bankr EIP-712 signatures.
+Vote on Snapshot proposals for `aavegotchi.eth`.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/gotchi-dao-voting`
-- **Source URL:** [https://clawhub.ai/skills/gotchi-dao-voting](https://clawhub.ai/skills/gotchi-dao-voting)
+## Scripts
 
-## Overview
+- `./scripts/list-proposals.sh`
+  - Lists active proposals and your VP per proposal.
+- `./scripts/vote.sh [--dry-run] <proposal-id> <choice>`
+  - Submits signed vote through Snapshot sequencer.
+  - `--dry-run` prints typed data and exits without signing/submitting.
 
+## Choice Formats
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/gotchi-dao-voting
-```
+- Single-choice proposal: numeric option, e.g. `2`
+- Weighted proposal: JSON object string, e.g. `'{"2":2238}'`
+  - If you pass just `2` for a weighted vote, script auto-converts to `{"2":<floor(vp)>}`.
+
+## Config
+
+`config.json` keys:
+- `wallet`
+- `space`
+- `snapshotApiUrl`
+- `snapshotSequencer`
+
+## Security
+
+- Uses Bankr signing API (no local private key usage).
+- Off-chain Snapshot voting (no gas transaction).
+- Input validation for proposal ID, wallet, choice format, and choice range.

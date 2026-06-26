@@ -1,0 +1,48 @@
+{
+  "name": "grinders-farm",
+  "version": "0.3.3",
+  "description": "A pixel-art farm simulation game — plant, water, harvest, and sell crops",
+  "type": "module",
+  "main": "dist/src/index.js",
+  "types": "dist/src/index.d.ts",
+  "files": [
+    "dist/",
+    "assets/tiles/",
+    "docs/images/",
+    "src/notify/notify.json.example",
+    "README.md",
+    "SKILL.md",
+    "LICENSE"
+  ],
+  "bin": {
+    "grinders-farm": "dist/src/adapters/terminal.js",
+    "grinders-farm-oneshot": "dist/src/adapters/oneshot.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsx src/adapters/terminal.ts",
+    "daemon": "tsx src/adapters/daemon.ts",
+    "auto-worker": "tsx src/adapters/auto-worker.ts",
+    "generate-tiles": "tsx scripts/generate-tiles.ts",
+    "generate-demo-farm": "tsx scripts/generate-demo-farm-image.ts",
+    "start": "node dist/src/adapters/terminal.js",
+    "sync-skill": "node scripts/sync-skill.mjs",
+    "prepack": "npm run build"
+  },
+  "keywords": [
+    "farm",
+    "simulation",
+    "game",
+    "pixel-art",
+    "cli"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "@napi-rs/canvas": "^0.1.97"
+  },
+  "devDependencies": {
+    "@types/node": "^25.5.0",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3"
+  }
+}

@@ -1,35 +1,91 @@
 ---
-name: "血友病小红书内容创作专家"
-description: "小红书内容创作专家。输入主题/文章/视频链接，自动生成小红书图文（3:4比例，1080×1440 / 1242×1660 px），包含封面图+内页图+统一文案。适用于自媒体创作者、知识博主、医疗健康领域内容输出。每次生成图片时同步交付文案，无需单独提供。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/hemophilia-xiaohongshu-creator"
-sourceUrl: "https://clawhub.ai/skills/hemophilia-xiaohongshu-creator"
+name: xiaohongshu-expert
+description: 小红书内容创作专家。输入主题/文章/视频链接，自动生成小红书图文（3:4比例，1080×1440 / 1242×1660 px），包含封面图+内页图+统一文案。适用于自媒体创作者、知识博主、医疗健康领域内容输出。每次生成图片时同步交付文案，无需单独提供。
+metadata:
+  author: hiletian
+  version: "1.0.0"
+  tags: ["xiaohongshu", "social-media", "content-creation", "images", "自媒体", "小红书"]
 ---
 
-# 血友病小红书内容创作专家
+# 小红书内容创作专家
 
-> 小红书内容创作专家。输入主题/文章/视频链接，自动生成小红书图文（3:4比例，1080×1440 / 1242×1660 px），包含封面图+内页图+统一文案。适用于自媒体创作者、知识博主、医疗健康领域内容输出。每次生成图片时同步交付文案，无需单独提供。
+## 功能概述
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/hemophilia-xiaohongshu-creator`
-- **Source URL:** [https://clawhub.ai/skills/hemophilia-xiaohongshu-creator](https://clawhub.ai/skills/hemophilia-xiaohongshu-creator)
+输入任意主题、文章链接或视频内容，自动生成完整的小红书图文系列，包括：
+- 封面图（3:4比例）
+- 内容内页图（4-9张，3:4比例）
+- 统一配文（所有图片共用一段文案）
 
-## Overview
+## 工作流程
 
+### Step 1: 内容理解
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/hemophilia-xiaohongshu-creator
+通过 `extract_content_from_websites` 提取文章/视频页面的关键信息：
+- 标题、主题、核心观点
+- 关键数据、专家观点、实用建议
+- 情感基调（温暖/专业/科普/励志）
+
+### Step 2: 结构规划
+
+根据内容设计8张图的框架：
+1. **封面图**：吸引眼球的主题句+专家信息
+2. **内容页（4-7张）**：核心知识点分篇呈现
+3. **结尾页**：引导关注/收藏/转发
+
+图卡数量建议：
+- 科普类：6-8张
+- 个人故事：4-6张
+- 干货教程：5-7张
+
+### Step 3: 生成图片
+
+使用 `image_synthesize` 批量生成，规格：
+- 比例：**3:4**
+- 分辨率：**2K（2048px）**
+- 输出路径：`/workspace/xhs_xxx_01.png` 等
+
+中文 prompt 模板：
 ```
+竖版信息卡片，3:4，风格描述（蓝绿渐变/白色背景等），
+顶部大标题，正文内容，底部标签，
+专业医学/科普风格，全中文
+```
+
+### Step 4: 交付文案
+
+图片生成同时交付统一文案，格式：
+```
+主题一句话描述
+核心要点（2-3条）
+引导语 + 3-5个话题标签
+```
+
+## 图卡内容规划参考
+
+| 内容类型 | 图卡数量 | 风格 |
+|---------|---------|------|
+| 医疗健康科普 | 7-9张 | 深蓝渐变背景，专业可信 |
+| 患者故事/经历 | 5-7张 | 温暖米白背景，个人叙事 |
+| 干货知识 | 6-8张 | 白色背景，清晰分点 |
+
+## 图片比例标准（已记录）
+
+- 竖版：3:4
+- 标准尺寸：1080 × 1440 px
+- 高清尺寸：1242 × 1660 px
+
+## 输出示例
+
+输入：血友病基因治疗主题文章链接
+
+输出：
+- 8张3:4比例图片（CDN链接）
+- 统一文案一段（约100字）
+- 每张图主题说明
+
+## 注意事项
+
+1. 图片和文案必须同步交付，不得拆分
+2. 医疗内容需加免责声明提示
+3. 保持"血友乐天派"账号风格：专业+温暖+真实
+4. 生成的图片永久保存路径：`/workspace/xhs_*/`

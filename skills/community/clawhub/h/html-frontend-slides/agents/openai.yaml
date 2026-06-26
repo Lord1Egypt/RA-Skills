@@ -1,0 +1,50 @@
+name: frontend-slides
+description: |
+  将您的想法转化为精美的前端演示页面。基于 HTML/CSS/JS，
+  支持 12 种预设风格、动画过渡、多格式导出（PDF/HTML/ZIP），
+  适合技术分享、培训课件、个人作品集等场景。
+triggers:
+  - 创建 PPT
+  - 做演示
+  - 生成幻灯片
+  - 制作演讲稿
+  - 制作 slide deck
+  - 帮我做个演示
+  - 做技术分享
+  - 制作培训课件
+keywords:
+  - slides
+  - slide
+  - presentation
+  - ppt
+  - deck
+  - slideshow
+  - 幻灯片
+  - 演示
+  - 演示文稿
+  - 演讲
+  - 课件
+  - 技术分享
+  - 培训
+  - 前端
+  - HTML
+  - reveal.js
+  - impress.js
+modes:
+  - create       # 从零创建
+  - convert      # PPT 转换
+  - enhance      # 现有增强
+default_mode: create
+capabilities:
+  - create-from-scratch
+  - convert-from-pptx
+  - enhance-existing
+  - multi-style-support
+  - pdf-export
+  - html-export
+  - zip-export
+  - dark-mode
+  - animations
+  - viewport-responsive
+avatar: 📊
+color: "#4F46E5"

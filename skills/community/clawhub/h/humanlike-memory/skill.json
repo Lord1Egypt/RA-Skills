@@ -1,0 +1,56 @@
+{
+  "name": "human-like-memory",
+  "displayName": "Human-Like Memory",
+  "description": "HumanLike Memory / Human-Like Memory is a persistent AI agent memory system for long-term memory search, recall, and save. It helps agents store facts, preferences, and decisions and keep context across sessions for conversation continuity.",
+  "version": "1.0.12",
+  "homepage": "https://plugin.human-like.me",
+  "author": {
+    "name": "hanlaomo",
+    "url": "https://plugin.human-like.me"
+  },
+  "license": "Apache-2.0",
+  "keywords": [
+    "humanlike-memory",
+    "human-like-memory",
+    "humanlike",
+    "human-like",
+    "memory",
+    "agent-memory",
+    "procedural-memory",
+    "long-term-memory",
+    "conversation",
+    "recall",
+    "memory-search",
+    "memory-save",
+    "continuity",
+    "ai-memory"
+  ],
+  "main": "./SKILL.md",
+  "scripts": {
+    "memory": "./scripts/memory.mjs"
+  },
+  "triggers": [
+    "humanlike memory",
+    "human-like memory",
+    "continue previous work",
+    "remember what we discussed",
+    "memory recall",
+    "memory search",
+    "memory save",
+    "save to memory",
+    "search long-term memory"
+  ],
+  "capabilities": [
+    "memory-recall",
+    "memory-save",
+    "memory-search"
+  ],
+  "requirements": {
+    "node": ">=18.0.0"
+  },
+  "notes": [
+    "This skill may be called by the agent in smart-trigger mode.",
+    "It is not intended for every-turn automatic recall or hook-level background saving.",
+    "Configuration is expected through OpenClaw config set commands or environment injection."
+  ]
+}

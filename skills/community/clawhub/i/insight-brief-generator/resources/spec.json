@@ -1,0 +1,37 @@
+{
+  "slug": "insight-brief-generator",
+  "title": "洞察简报生成器",
+  "category": "data",
+  "categoryLabel": "数据与研究",
+  "mode": "structured_brief",
+  "summary": "把报表和图表转成管理层可读的洞察摘要，区分发现、解释和建议动作。",
+  "inputHint": "图表结论、数据摘要、背景问题",
+  "sections": [
+    "核心发现",
+    "数据解释",
+    "可能原因",
+    "建议动作",
+    "需补数据",
+    "风险提醒"
+  ],
+  "useCases": [
+    "周会简报",
+    "经营分析",
+    "汇报摘要"
+  ],
+  "positiveExamples": [
+    "把这些图表写成管理层看得懂的摘要",
+    "区分发现和建议"
+  ],
+  "negativeExamples": [
+    "不要夸大结论",
+    "不要把相关性当因果"
+  ],
+  "risk": "会显式标注推断与事实的边界。",
+  "tags": [
+    "insights",
+    "analytics",
+    "briefing",
+    "management"
+  ]
+}

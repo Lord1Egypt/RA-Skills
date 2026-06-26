@@ -1,0 +1,7 @@
+interface:
+  display_name: "Harness Engineering"
+  short_description: "Incremental Harness Engineering workflow"
+  default_prompt: "Use $harness-engineering to evolve this existing repository toward Harness Engineering with repo-local docs, executable checks, and less hidden context."
+
+policy:
+  allow_implicit_invocation: true

@@ -1,0 +1,22 @@
+type: swimlane_mermaid
+title: 订单发货流程（Mermaid 泳道，不需要 Java）
+direction: LR
+
+nodes:
+  - { id: a1, label: 下单,       lane: 客户 }
+  - { id: a2, label: 付款,       lane: 客户 }
+  - { id: b1, label: 核对订单,    lane: 客服 }
+  - { id: b2, label: 分配仓库,    lane: 客服 }
+  - { id: c1, label: 拣货,       lane: 仓库 }
+  - { id: c2, label: 打包发货,    lane: 仓库 }
+  - { id: d1, label: 快递配送,    lane: 快递 }
+  - { id: d2, label: 妥投,       lane: 快递 }
+
+edges:
+  - [a1, a2]
+  - [a2, b1]
+  - [b1, b2]
+  - [b2, c1]
+  - [c1, c2]
+  - [c2, d1]
+  - [d1, d2]

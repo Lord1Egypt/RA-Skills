@@ -1,0 +1,202 @@
+/* huo15-markdown-export — Manuscript Book
+ * 流派:Manuscript(书稿 / 小说体)
+ * 适合:小说 / 长篇思考 / 连载随笔 / 哲思类长文 / 无干扰沉浸阅读
+ * 关键差异化:单一衬线字 + 1.95 行高(慢阅读)+ 章标居中 + 0 装饰 + 窄 measure
+ *
+ * 灵感:Penguin Modern Classics / Granta / The Paris Review 内文
+ * 设计哲学:把"页面"还给读者。删一切不必要的视觉打断,让眼睛只跟着文字走
+ *
+ * 与 anthropic-doc 区别:
+ *   - anthropic-doc 是文档(短段落 + 列表 + 代码块为主)
+ *   - manuscript-book 是长文(段落连绵 + 章标 + 极少其他元素)
+ */
+
+:root {
+  /* === 主题 token override === */
+  --font-body:     "PT Serif", "Merriweather", Georgia, "Times New Roman", "Songti SC", STSong, SimSun, "Source Han Serif SC", "Noto Serif CJK SC", serif;
+  --font-heading:  var(--font-body);     /* 同字体,只靠字号字重区分 */
+  --color-bg:      #fbf9f4;              /* 旧书纸感 */
+  --color-fg:      #2a2823;
+  --color-muted:   #6e6a5e;
+  --color-rule:    #c8c0b0;
+  --color-rule-soft: #e6dfd0;
+  --color-accent:  #2a2823;              /* 主色 = 正文色,极致克制 */
+  --color-accent-soft: rgba(0, 0, 0, 0.04);
+  --color-code-bg: #efece2;
+  --quote-bar-color: var(--color-rule);
+  --quote-bg:      transparent;
+  --quote-fg:      var(--color-muted);
+  --table-th-bg:   transparent;
+  --table-stripe-bg: transparent;
+  --measure:       var(--measure-narrow);
+  --leading:       1.95;
+  --fs-base:       18px;
+}
+
+/* === Manuscript 特征 === */
+
+body { padding: 96px 32px 80px; }
+
+/* 标题:同一字体,只靠字号 + 字重 */
+.markdown-body h1, .markdown-body h2, .markdown-body h3,
+.markdown-body h4, .markdown-body h5, .markdown-body h6 {
+  font-family: var(--font-body);
+  font-weight: 700;
+  text-align: center;
+  letter-spacing: 0.02em;
+  color: var(--color-fg);
+}
+
+/* h1:卷名(书的封面感)*/
+.markdown-body h1 {
+  font-size: 2.2rem;
+  margin: 0 0 0.3em;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: none;
+  line-height: 1.2;
+}
+
+/* h1 后跟一行 em 作副题(作者 / 副标题)*/
+.markdown-body h1 + p em:only-child {
+  display: block;
+  text-align: center;
+  font-size: 1em;
+  font-style: italic;
+  color: var(--color-muted);
+  margin: 0 0 4em;
+}
+
+/* h2:章节标题,大量上下留白 */
+.markdown-body h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 4em 0 2em;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* h3:小节,字号差不大,靠斜体 */
+.markdown-body h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  font-style: italic;
+  margin: 2em 0 0.6em;
+  text-align: left;
+}
+
+.markdown-body h4 {
+  font-size: 1rem;
+  font-style: italic;
+  font-weight: 400;
+  color: var(--color-muted);
+  text-align: left;
+  margin: 1.4em 0 0.4em;
+}
+
+/* 正文:首段不缩进,后续段首缩进(英美小说传统)*/
+.markdown-body p {
+  margin: 0;
+  text-align: justify;
+  hyphens: auto;
+  text-indent: 1.4em;
+}
+.markdown-body p:first-of-type,
+.markdown-body h1 + p,
+.markdown-body h2 + p,
+.markdown-body h3 + p,
+.markdown-body h4 + p,
+.markdown-body blockquote + p,
+.markdown-body hr + p { text-indent: 0; }
+
+/* 链接:不染色,只下划线(读小说不希望"被链接打断")*/
+.markdown-body a {
+  color: var(--color-fg);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+.markdown-body strong { font-weight: 700; }
+.markdown-body em { font-style: italic; }
+
+/* 引用:无边框,缩进+斜体(诗体 / 引文)*/
+.markdown-body blockquote {
+  margin: 1.6em 2em;
+  padding: 0;
+  border: none;
+  background: transparent;
+  font-style: italic;
+  color: var(--color-muted);
+}
+.markdown-body blockquote p { text-indent: 0; }
+
+/* 列表:不在小说里出现是常态,出现就紧凑 */
+.markdown-body ul, .markdown-body ol { margin: 1em 0; padding-left: 1.4em; }
+.markdown-body li { margin: 0.3em 0; text-indent: 0; }
+.markdown-body li > p { text-indent: 0; }
+
+/* 章节分隔:三星花饰居中(传统书籍标志)*/
+.markdown-body hr {
+  border: none;
+  text-align: center;
+  margin: 3em 0;
+  height: 1.4em;
+  position: relative;
+}
+.markdown-body hr::before {
+  content: "\2042";  /* asterism ⁂ */
+  font-size: 1.4em;
+  color: var(--color-muted);
+  letter-spacing: 0.6em;
+}
+
+.markdown-body code {
+  font-family: var(--font-mono);
+  font-size: 0.88em;
+  background: var(--color-code-bg);
+  padding: 0.05em 0.3em;
+  border-radius: 0;
+}
+.markdown-body pre {
+  background: var(--color-code-bg);
+  padding: 1em 1.4em;
+  border-radius: 0;
+  border-top: 1px solid var(--color-rule);
+  border-bottom: 1px solid var(--color-rule);
+  font-size: 0.86em;
+  line-height: 1.5;
+}
+.markdown-body pre code { background: transparent; }
+
+/* 表格:三线表 */
+.markdown-body table th, .markdown-body table td {
+  border: none;
+  padding: 0.4em 0.6em;
+}
+.markdown-body table thead {
+  border-top: 1.5px solid var(--color-fg);
+  border-bottom: 1px solid var(--color-fg);
+}
+.markdown-body table tbody { border-bottom: 1.5px solid var(--color-fg); }
+
+/* 图:无边框 + 极细灰底缝(版心感)*/
+.markdown-body img { border-radius: 0; }
+.markdown-body img + em {
+  font-style: italic;
+  font-size: 0.88em;
+  color: var(--color-muted);
+}
+
+/* 打印模式:页眉空白,页脚居中页码(书籍版式)*/
+@media print {
+  @page {
+    margin: 22mm 22mm 28mm;
+    @bottom-center {
+      content: counter(page);
+      font-family: var(--font-body);
+      font-size: 10pt;
+      color: #999;
+    }
+  }
+}

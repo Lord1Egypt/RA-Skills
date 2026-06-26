@@ -1,0 +1,4 @@
+# Capability Facts
+
+{{facts}}
+

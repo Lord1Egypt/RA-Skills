@@ -1,0 +1,40 @@
+name: income-tracker
+version: 1.0.0
+description: 收入追踪器 - 多平台收入记录、统计分析、趋势图表
+author: clawd
+homepage: https://clawhub.com/skills/income-tracker
+
+triggers:
+  - 收入追踪
+  - 收入统计
+  - 收益记录
+  - 收入分析
+  - income tracker
+  - 记录收入
+  - 收入报表
+  - 查看收入
+
+config:
+  DATA_PATH:
+    type: string
+    default: ~/clawd/data/income-tracker.json
+    description: 收入数据存储路径
+
+features:
+  - 多来源收入记录
+  - 多币种支持与汇率转换
+  - 日/周/月/年统计分析
+  - 收入趋势图表
+  - 来源占比分析
+  - 数据导出
+
+pricing:
+  basic: free
+  pro: $2.99/month
+  team: $9.99/month
+
+compatibility:
+  platforms:
+    - openclaw
+    - clawdbot
+  node: ">=18.0.0"

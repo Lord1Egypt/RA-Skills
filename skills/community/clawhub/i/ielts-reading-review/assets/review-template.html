@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>剑X-TestX-PassageX-主题复盘</title>
+<style>
+
+  /* ===== CSS Variables ===== */
+  :root {
+    --bg: #f0f2f5;
+    --card: #ffffff;
+    --text: #1d1d1f;
+    --text-secondary: #6b7280;
+    --accent: #4f46e5;
+    --accent-light: #eef2ff;
+    --success: #059669;
+    --success-light: #ecfdf5;
+    --danger: #dc2626;
+    --danger-light: #fef2f2;
+    --warning: #d97706;
+    --warning-light: #fffbeb;
+    --info: #2563eb;
+    --info-light: #eff6ff;
+    --border: #e5e7eb;
+    --radius: 16px;
+    --radius-sm: 10px;
+    --shadow: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+    --shadow-lg: 0 4px 14px rgba(0,0,0,0.08);
+    --font: -apple-system, "SF Pro Display", "PingFang SC", "Helvetica Neue", sans-serif;
+  }
+
+  /* ===== Reset & Base ===== */
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: var(--font);
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+  .container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 16px;
+  }
+
+  /* ===== Lucide Icon Sizing ===== */
+  .lucide { width: 16px; height: 16px; stroke-width: 2; }
+  .icon-box .lucide { width: 15px; height: 15px; }
+  .card-title .lucide { width: 16px; height: 16px; }
+  .takeaway .card-title .lucide { width: 16px; height: 16px; }
+
+  /* ===== Hero Nav Buttons ===== */
+  .hero-nav {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    gap: 8px;
+    z-index: 2;
+  }
+  .hero-nav a {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background: rgba(255,255,255,0.18);
+    backdrop-filter: blur(8px);
+    color: #fff;
+    text-decoration: none;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    transition: background 0.2s;
+    white-space: nowrap;
+  }
+  .hero-nav a:hover { background: rgba(255,255,255,0.32); }
+  .hero-nav .lucide { width: 14px; height: 14px; }
+
+  /* ===== Hero Header ===== */
+  .hero {
+    background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 50%, #a855f7 100%);
+    border-radius: var(--radius);
+    padding: 28px 24px;
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 16px;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -60%;
+    right: -20%;
+    width: 260px;
+    height: 260px;
+    background: radial-gradient(circle, rgba(255,255,255,0.12) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .hero .book-tag {
+    display: inline-block;
+    background: rgba(255,255,255,0.2);
+    backdrop-filter: blur(4px);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    margin-bottom: 12px;
+    position: relative;
+    z-index: 1;
+  }
+  .hero h1 {
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1.3;
+    margin-bottom: 4px;
+    position: relative;
+    z-index: 1;
+  }
+  .hero .subtitle {
+    font-size: 13px;
+    opacity: 0.8;
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+  .hero .subtitle .lucide { width: 13px; height: 13px; opacity: 0.8; }
+  .hero .time-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    background: rgba(255,255,255,0.18);
+    backdrop-filter: blur(4px);
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+  .hero .time-badge .lucide { width: 12px; height: 12px; opacity: 0.9; }
+  .stats-row {
+    display: flex;
+    gap: 0;
+    margin-top: 20px;
+    position: relative;
+    z-index: 1;
+  }
+  .stat-item {
+    flex: 1;
+    text-align: center;
+    padding: 12px 0;
+    border-radius: var(--radius-sm);
+    background: rgba(255,255,255,0.12);
+    backdrop-filter: blur(4px);
+  }
+  .stat-item + .stat-item { margin-left: 8px; }
+  .stat-value { font-size: 26px; font-weight: 800; line-height: 1; }
+  .stat-label { font-size: 11px; opacity: 0.7; margin-top: 4px; }
+
+  /* ===== Card ===== */
+  .card {
+    background: var(--card);
+    border-radius: var(--radius);
+    padding: 20px;
+    margin-bottom: 12px;
+    box-shadow: var(--shadow);
+  }
+  .card-title {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .card-title .icon-box {
+    width: 28px;
+    height: 28px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  /* ===== Progress & Alert Chips ===== */
+  .status-chips {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+  .status-chip {
+    background: var(--card);
+    border-radius: var(--radius);
+    padding: 16px 18px;
+    box-shadow: var(--shadow);
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+  .status-chip .chip-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .status-chip .chip-icon .lucide { width: 18px; height: 18px; }
+  .status-chip.good .chip-icon { background: var(--success-light); color: var(--success); }
+  .status-chip.warn .chip-icon { background: var(--warning-light); color: var(--warning); }
+  .chip-content { flex: 1; min-width: 0; }
+  .chip-content .chip-label { font-size: 13px; font-weight: 700; margin-bottom: 4px; }
+  .status-chip.good .chip-label { color: var(--success); }
+  .status-chip.warn .chip-label { color: var(--warning); }
+  .chip-content .chip-text { font-size: 13.5px; line-height: 1.7; color: var(--text); }
+
+  /* ===== Answer Overview Table ===== */
+  .overview-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    font-size: 13px;
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+  .overview-table th {
+    background: var(--accent);
+    color: #fff;
+    padding: 10px 12px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .overview-table td { padding: 10px 12px; border-bottom: 1px solid var(--border); }
+  .overview-table tr:last-child td { border-bottom: none; }
+  .overview-table tr:hover td { background: #f9fafb; }
+  .result-correct { color: var(--success); font-weight: 700; display: flex; align-items: center; gap: 4px; }
+  .result-correct .lucide { width: 14px; height: 14px; }
+  .result-wrong { color: var(--danger); font-weight: 700; display: flex; align-items: center; gap: 4px; }
+  .result-wrong .lucide { width: 14px; height: 14px; }
+
+  /* ===== Error Analysis Card ===== */
+  .error-item {
+    background: var(--card);
+    border-radius: var(--radius);
+    padding: 18px 20px;
+    margin-bottom: 12px;
+    box-shadow: var(--shadow);
+    border-left: 4px solid var(--danger);
+  }
+  .error-item .q-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+  }
+  .error-item .q-num { font-weight: 800; font-size: 15px; }
+  .badge { display: inline-block; padding: 2px 10px; border-radius: 20px; font-size: 11px; font-weight: 700; }
+  .badge-fill { background: var(--info-light); color: var(--info); }
+  .badge-type { background: #f3f4f6; color: #4b5563; }
+
+  .answer-compare { display: flex; gap: 12px; margin: 10px 0; flex-wrap: wrap; }
+  .answer-compare .ans-box { flex: 1; min-width: 120px; padding: 8px 12px; border-radius: 8px; font-size: 13px; }
+  .ans-box.mine { background: var(--danger-light); }
+  .ans-box.mine .ans-label { color: var(--danger); font-weight: 600; font-size: 11px; display: flex; align-items: center; gap: 4px; }
+  .ans-box.mine .ans-label .lucide { width: 11px; height: 11px; }
+  .ans-box.correct { background: var(--success-light); }
+  .ans-box.correct .ans-label { color: var(--success); font-weight: 600; font-size: 11px; display: flex; align-items: center; gap: 4px; }
+  .ans-box.correct .ans-label .lucide { width: 11px; height: 11px; }
+
+  .quote-block {
+    background: #f9fafb;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 12px 14px;
+    margin: 10px 0;
+    font-size: 13px;
+    color: #555;
+    line-height: 1.8;
+  }
+  .quote-label {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 6px;
+  }
+  .quote-label .lucide { width: 12px; height: 12px; }
+
+  .analysis-block { margin: 10px 0; font-size: 14px; }
+  .analysis-block .section-label {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--accent);
+    margin-bottom: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  .analysis-block .section-label .lucide { width: 13px; height: 13px; }
+  .analysis-block ul { padding-left: 18px; margin: 0; }
+  .analysis-block li { margin-bottom: 4px; line-height: 1.6; }
+
+  .lesson-box {
+    background: var(--accent-light);
+    border-radius: var(--radius-sm);
+    padding: 12px 14px;
+    margin-top: 10px;
+    font-size: 13px;
+    line-height: 1.7;
+  }
+  .lesson-label {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 4px;
+  }
+  .lesson-label .lucide { width: 12px; height: 12px; }
+
+  /* ===== Synonym & Vocab Tables ===== */
+  .data-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    font-size: 13px;
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+  .data-table th {
+    background: #1e1b4b;
+    color: #fff;
+    padding: 10px 12px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 12px;
+  }
+  .data-table td { padding: 10px 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  .data-table tr:last-child td { border-bottom: none; }
+  .data-table tr:hover td { background: #fafafa; }
+  .data-table code {
+    background: var(--accent-light);
+    color: var(--accent);
+    padding: 1px 6px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-family: var(--font);
+  }
+  .freq-stars { color: #f59e0b; letter-spacing: 1px; display: inline-flex; align-items: center; gap: 1px; }
+  .freq-stars .lucide { width: 13px; height: 13px; fill: #f59e0b; stroke: #f59e0b; }
+  .freq-stars .lucide.empty { fill: none; stroke: #d1d5db; }
+
+  /* ===== Summary / Takeaway Card ===== */
+  .takeaway {
+    background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+    border-radius: var(--radius);
+    padding: 22px 20px;
+    color: #fff;
+    margin-bottom: 12px;
+  }
+  .takeaway .card-title { color: #fff; margin-bottom: 10px; }
+  .takeaway .card-title .icon-box { background: rgba(255,255,255,0.2); }
+  .takeaway ol { padding-left: 18px; margin: 0; }
+  .takeaway li { margin-bottom: 8px; font-size: 14px; opacity: 0.95; }
+  .takeaway strong { color: #fde68a; }
+  .takeaway code {
+    background: rgba(255,255,255,0.15);
+    color: #fde68a;
+    padding: 1px 6px;
+    border-radius: 4px;
+    font-size: 13px;
+    font-family: var(--font);
+  }
+
+  /* ===== Problem Summary Table ===== */
+  .problem-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    font-size: 13px;
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+  .problem-table th {
+    background: var(--danger);
+    color: #fff;
+    padding: 10px 12px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 12px;
+  }
+  .problem-table td { padding: 10px 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  .problem-table tr:last-child td { border-bottom: none; }
+
+  /* ===== Responsive ===== */
+  @media screen and (max-width: 480px) {
+    .container { padding: 10px; }
+    .hero { padding: 20px 16px; }
+    .hero h1 { font-size: 18px; }
+    .stat-value { font-size: 22px; }
+    .stats-row { gap: 0; }
+    .stat-item + .stat-item { margin-left: 6px; }
+    .card { padding: 16px; }
+    .error-item { padding: 14px 16px; }
+    .answer-compare { flex-direction: column; gap: 6px; }
+    .status-chip { padding: 14px; gap: 10px; }
+    .status-chip .chip-icon { width: 32px; height: 32px; }
+    .overview-table, .data-table, .problem-table {
+      display: block;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+  }
+
+  /* ===== Print ===== */
+  @media print {
+    body { background: #fff; }
+    .container { max-width: 100%; padding: 0; }
+    .card, .error-item, .status-chip { box-shadow: none; border: 1px solid #eee; break-inside: avoid; }
+    .hero { break-inside: avoid; }
+  }
+
+  /* ===== Key text styles ===== */
+  strong { color: var(--danger); }
+  em { color: var(--text-secondary); }
+  code {
+    background: var(--accent-light);
+    color: var(--accent);
+    padding: 1px 6px;
+    border-radius: 4px;
+    font-size: 13px;
+    font-family: var(--font);
+  }
+
+</style>
+</head>
+<body>
+<div class="container">
+
+<!-- ====== Hero Header ====== -->
+<div class="hero">
+  <div class="hero-nav">
+    <a href="../index.html"><i data-lucide="home"></i> 首页</a>
+    <a href="../bilingual/剑X-TestX-PassageX-主题双语对照.html"><i data-lucide="book-open"></i> 双语</a>
+  </div>
+  <div class="book-tag">剑X · Test X · Passage X</div>
+  <h1>English Title</h1>
+  <div class="subtitle">
+    <span>中文标题</span>
+    <span class="time-badge"><i data-lucide="clock"></i> 用时 XX:XX</span>
+  </div>
+  <div class="stats-row">
+    <div class="stat-item">
+      <div class="stat-value">X/X</div>
+      <div class="stat-label">总分</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-value">X/X</div>
+      <div class="stat-label">填空</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-value">X/X</div>
+      <div class="stat-label">判断</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-value">X/X</div>
+      <div class="stat-label">匹配/多选</div>
+    </div>
+  </div>
+</div>
+
+<!-- ====== Progress & Alert Chips ====== -->
+<div class="status-chips">
+  <div class="status-chip good">
+    <div class="chip-icon"><i data-lucide="trending-up"></i></div>
+    <div class="chip-content">
+      <div class="chip-label">进步点</div>
+      <div class="chip-text">
+        ① 具体进步描述<br/>
+        ② 具体进步描述
+      </div>
+    </div>
+  </div>
+  <div class="status-chip warn">
+    <div class="chip-icon"><i data-lucide="alert-triangle"></i></div>
+    <div class="chip-content">
+      <div class="chip-label">本篇核心问题</div>
+      <div class="chip-text">一句话概括最大失分模式</div>
+    </div>
+  </div>
+</div>
+
+<!-- ====== Error Analysis Section ====== -->
+<div class="card">
+  <div class="card-title">
+    <div class="icon-box" style="background:var(--danger-light);color:var(--danger);"><i data-lucide="x-circle"></i></div>
+    错题逐题拆解
+  </div>
+
+  <!-- Sample error item -->
+  <div class="error-item">
+    <div class="q-header">
+      <span class="q-num">Q1</span>
+      <span class="badge badge-type">匹配</span>
+      <span class="badge badge-fill">段落匹配</span>
+    </div>
+    <div class="answer-compare">
+      <div class="ans-box mine">
+        <div class="ans-label"><i data-lucide="x"></i> 我的答案</div>
+        <div>错误答案</div>
+      </div>
+      <div class="ans-box correct">
+        <div class="ans-label"><i data-lucide="check"></i> 正确答案</div>
+        <div>正确答案</div>
+      </div>
+    </div>
+    <div class="quote-block">
+      <div class="quote-label"><i data-lucide="book-open"></i> 原文定位 · X段</div>
+      原文引用...
+    </div>
+    <div class="analysis-block">
+      <div class="section-label"><i data-lucide="brain"></i> 错因分析</div>
+      <ul>
+        <li>具体错因...</li>
+      </ul>
+    </div>
+    <div class="lesson-box">
+      <div class="lesson-label"><i data-lucide="lightbulb"></i> 教训</div>
+      一句话教训...
+    </div>
+  </div>
+</div>
+
+<!-- ====== Synonym Accumulation ====== -->
+<div class="card">
+  <div class="card-title">
+    <div class="icon-box" style="background:var(--info-light);color:var(--info);"><i data-lucide="repeat"></i></div>
+    同义替换积累
+  </div>
+  <table class="data-table">
+    <thead>
+      <tr><th>原文表达</th><th>题目表达</th><th>出处</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>原文词</td><td>替换词</td><td>QX · X段</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ====== Vocabulary ====== -->
+<div class="card">
+  <div class="card-title">
+    <div class="icon-box" style="background:var(--warning-light);color:var(--warning);"><i data-lucide="book-marked"></i></div>
+    关键词汇积累
+  </div>
+  <table class="data-table">
+    <thead>
+      <tr><th>词汇</th><th>释义</th><th>雅思高频</th><th>真题出现</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>word</strong> /音标/</td>
+        <td>n./v./adj. 释义</td>
+        <td><span class="freq-stars"><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star" class="empty"></i></span> 538 #XXX</td>
+        <td>剑XT?P?</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ====== Problem Summary ====== -->
+<div class="card">
+  <div class="card-title">
+    <div class="icon-box" style="background:var(--danger-light);color:var(--danger);"><i data-lucide="alert-circle"></i></div>
+    核心问题总结
+  </div>
+  <table class="problem-table">
+    <thead>
+      <tr><th>问题类型</th><th>具体表现</th><th>对应错题</th><th>改进方法</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>问题类型</td>
+        <td>表现</td>
+        <td>题号</td>
+        <td>改进方法</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ====== Takeaway / Action Items ====== -->
+<div class="takeaway">
+  <div class="card-title">
+    <div class="icon-box"><i data-lucide="zap"></i></div>
+    本篇行动清单
+  </div>
+  <ol>
+    <li><strong>行动项 1</strong>——具体描述...</li>
+    <li><strong>行动项 2</strong>——具体描述...</li>
+    <li>新增同义替换：<code>expression = expression</code></li>
+  </ol>
+</div>
+
+</div><!-- /.container -->
+
+<!-- Lucide Icons (CDN) -->
+<script src="https://unpkg.com/lucide@latest"></script>
+<script>lucide.createIcons();</script>
+</body>
+</html>

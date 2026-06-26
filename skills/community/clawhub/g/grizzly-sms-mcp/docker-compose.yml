@@ -1,0 +1,9 @@
+services:
+  grizzly-mcp:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      - GRIZZLY_SMS_API_KEY=${GRIZZLY_SMS_API_KEY}
+      - GRIZZLY_SMS_BASE_URL=${GRIZZLY_SMS_BASE_URL:-https://api.grizzlysms.com}
+    restart: unless-stopped

@@ -1,0 +1,13 @@
+{
+  "id": "hk-supermarket-shopping",
+  "name": "HK Supermarket Shopping",
+  "version": "1.2.3",
+  "description": "Real-time price lookup for Hong Kong supermarkets using the Consumer Council's daily pricewatch.",
+  "author": "Steven Ho",
+  "source": "https://github.com/StevenHo1394/openclaw/tree/main/skills/hk-supermarket-shopping",
+  "license": "MIT",
+  "skills": {
+    "enabled": true,
+    "tools": ["price_lookup"]
+  }
+}

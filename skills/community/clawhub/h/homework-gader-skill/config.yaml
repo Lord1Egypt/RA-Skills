@@ -1,0 +1,4 @@
+imap_server: imap.qq.com
+download_dir: data/downloads
+extract_dir: data/extracted
+result_dir: data/results

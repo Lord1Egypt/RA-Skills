@@ -1,0 +1,12 @@
+{
+  "version": "1.1.0",
+  "organization": "Community",
+  "date": "April 2026",
+  "abstract": "10 architecture design patterns for agent harness engineering. Covers handoff documents, compaction memory extraction, denial circuit breakers, memory consolidation, hook pair brackets, delegation modes (coordinator/fork/swarm), adaptive complexity, and hook runtime profiles. Distilled from Claude Code internals, OMC, and Anthropic/OpenAI harness engineering research.",
+  "references": [
+    "https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents",
+    "https://openai.com/index/harness-engineering/",
+    "https://github.com/Yeachan-Heo/oh-my-claudecode",
+    "https://github.com/keli-wen/agentic-harness-patterns-skill"
+  ]
+}

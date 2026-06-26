@@ -1,0 +1,12 @@
+{
+  "template": "fashion_host",
+  "image": "/path/to/cosmetic.jpg",
+  "lines": [
+    {"text": "宝贝们看这个！", "action": "活力举起产品"},
+    {"text": "上脸超服帖，颜值直接拉满", "action": "比心展示"},
+    {"text": "今天直播间还有买二送一", "action": "OK 手势"}
+  ],
+  "bgm": "energetic",
+  "subtitle": true,
+  "output": "/tmp/huo15/fashion.mp4"
+}

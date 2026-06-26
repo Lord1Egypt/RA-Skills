@@ -1,0 +1,45 @@
+{
+  "name": "hodlxxi-bitcoin-identity",
+  "version": "0.1.2",
+  "default_mode": "read_only",
+  "permissions": {
+    "network": {
+      "required": true,
+      "default_methods": ["GET"],
+      "allowed_hosts": ["hodlxxi.com"],
+      "write_methods_require_operator_approval": true
+    },
+    "shell": {
+      "required": false,
+      "allowed_commands": []
+    },
+    "filesystem": {
+      "required": false,
+      "write_access": false
+    },
+    "secrets": {
+      "required": false,
+      "policy": "Never request, print, store, or transmit secrets through the skill."
+    },
+    "payments": {
+      "required": false,
+      "policy": "Never create, check, or pay Lightning invoices without explicit operator approval."
+    },
+    "persistence": {
+      "required": false,
+      "heartbeat": "disabled_by_default"
+    }
+  },
+  "operator_approval_required_for": [
+    "oauth_client_registration",
+    "token_exchange",
+    "lnurl_auth_session_creation",
+    "agent_job_submission",
+    "lightning_invoice_creation",
+    "lightning_payment",
+    "recurring_polling_or_heartbeat",
+    "shell_execution",
+    "dependency_installation",
+    "filesystem_write"
+  ]
+}

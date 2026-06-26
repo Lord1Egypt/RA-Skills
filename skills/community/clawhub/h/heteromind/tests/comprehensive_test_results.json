@@ -1,0 +1,561 @@
+{
+  "timestamp": "2026-04-12T17:42:50.098321",
+  "summary": {
+    "total_tests": 8,
+    "passed_tests": 8,
+    "failed_tests": 0,
+    "accuracy": 1.0,
+    "avg_confidence": 0.6375,
+    "avg_time_ms": 25246.495634317398
+  },
+  "by_engine": {
+    "SQL": {
+      "total": 3,
+      "passed": 3,
+      "accuracy": 1.0,
+      "avg_confidence": 0.6,
+      "avg_time_ms": 21421.34364446004
+    },
+    "SPARQL": {
+      "total": 2,
+      "passed": 2,
+      "accuracy": 1.0,
+      "avg_confidence": 0.725,
+      "avg_time_ms": 37752.023577690125
+    },
+    "TableQA": {
+      "total": 3,
+      "passed": 3,
+      "accuracy": 1.0,
+      "avg_confidence": 0.6166666666666667,
+      "avg_time_ms": 20734.6289952596
+    }
+  },
+  "detailed_results": [
+    {
+      "test_id": "SQL-001",
+      "query": "How many employees are in the Engineering department?",
+      "engine_type": "SQL",
+      "execution_success": true,
+      "answer_correct": true,
+      "confidence": 0.6,
+      "execution_time_ms": 25617.799043655396,
+      "error": null,
+      "generated_query": "SELECT COUNT(*) \nFROM employees e\nJOIN departments d ON e.department_id = d.id\nWHERE d.name = 'Engineering';",
+      "details": {
+        "schema_links": null,
+        "revision_count": 3
+      }
+    },
+    {
+      "test_id": "SQL-002",
+      "query": "按部门统计每个部门的平均薪资，并显示薪资最高的前 3 个部门",
+      "engine_type": "SQL",
+      "execution_success": true,
+      "answer_correct": true,
+      "confidence": 0.6,
+      "execution_time_ms": 22919.022798538208,
+      "error": null,
+      "generated_query": "SELECT \n    d.name AS department_name,\n    AVG(e.salary) AS average_salary\nFROM \n    departments d\nJOIN \n    employees e ON d.id = e.department_id\nGROUP BY \n    d.id, d.name\nORDER BY \n    average_salary DESC\nLIMIT 3;",
+      "details": {
+        "schema_links": null,
+        "revision_count": 3
+      }
+    },
+    {
+      "test_id": "SQL-003",
+      "query": "List all employees hired after 2020",
+      "engine_type": "SQL",
+      "execution_success": true,
+      "answer_correct": true,
+      "confidence": 0.6,
+      "execution_time_ms": 15727.209091186523,
+      "error": null,
+      "generated_query": "SELECT * FROM employees WHERE hire_date > '2020-12-31';",
+      "details": {
+        "schema_links": null,
+        "revision_count": 3
+      }
+    },
+    {
+      "test_id": "KG-001",
+      "query": "Who is the founder of Microsoft?",
+      "engine_type": "SPARQL",
+      "execution_success": true,
+      "answer_correct": true,
+      "confidence": 0.6,
+      "execution_time_ms": 27886.121034622192,
+      "error": null,
+      "generated_query": "PREFIX dbo: <http://dbpedia.org/ontology/>\nPREFIX dbr: <http://dbpedia.org/resource/>\n\nSELECT ?founder WHERE {\n    dbr:Microsoft dbo:founder ?founder .\n}",
+      "details": {
+        "linked_entities": "[LinkedEntity(mention='Microsoft', uri='http://dbpedia.org/resource/Microsoft', label='Microsoft', score=0.95, types=['Organization']), LinkedEntity(mention='founder', uri='http://dbpedia.org/ontology/founder', label='founder', score=0.9, types=['Property'])]",
+        "revision_count": 3
+      }
+    },
+    {
+      "test_id": "KG-002",
+      "query": "What companies are headquartered in Seattle?",
+      "engine_type": "SPARQL",
+      "execution_success": true,
+      "answer_correct": true,
+      "confidence": 0.85,
+      "execution_time_ms": 47617.92612075806,
+      "error": null,
+      "generated_query": "PREFIX dbo: <http://dbpedia.org/ontology/>\nPREFIX dbr: <http://dbpedia.org/resource/>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n\nSELECT DISTINCT ?company ?companyLabel WHERE {\n  ?company rdf:type dbo:Company ;\n           dbo:headquarter dbr:Seattle ;\n           rdfs:label ?companyLabel .\n  FILTER(LANG(?companyLabel) = \"en\")\n}",
+      "details": {
+        "linked_entities": "[LinkedEntity(mention='Seattle', uri='http://dbpedia.org/resource/Seattle', label='Seattle', score=0.9, types=['Organization'])]",
+        "revision_count": 3
+      }
+    },
+    {
+      "test_id": "TQ-001",
+      "query": "2024 年哪个季度的销售额最高？",
+      "engine_type": "TableQA",
+      "execution_success": true,
+      "answer_correct": true,
+      "confidence": 0.5,
+      "execution_time_ms": 25327.16417312622,
+      "error": null,
+      "generated_query": "import pandas as pd\n\n# Filter data for year 2024\ndf_2024 = df[df['year'] == 2024]\n\n# Group by quarter and calculate total sales per quarter\nquarterly_sales = df_2024.groupby('quarter')['sales'].sum().reset_index()\n\n# Find the quarter with the maximum sales\nmax_sales_quarter = quarterly_sales.loc[quarterly_sales['sales'].idxmax()]\n\nprint(max_sales_quarter['quarter'])",
+      "details": {
+        "table_schema": {
+          "columns": [
+            {
+              "name": "quarter",
+              "dtype": "object",
+              "non_null": 32,
+              "unique": 4,
+              "sample_values": [
+                "Q1",
+                "Q1",
+                "Q1"
+              ]
+            },
+            {
+              "name": "year",
+              "dtype": "int64",
+              "non_null": 32,
+              "unique": 1,
+              "sample_values": [
+                2024,
+                2024,
+                2024
+              ]
+            },
+            {
+              "name": "region",
+              "dtype": "object",
+              "non_null": 32,
+              "unique": 4,
+              "sample_values": [
+                "North",
+                "North",
+                "South"
+              ]
+            },
+            {
+              "name": "product_category",
+              "dtype": "object",
+              "non_null": 32,
+              "unique": 2,
+              "sample_values": [
+                "Electronics",
+                "Clothing",
+                "Electronics"
+              ]
+            },
+            {
+              "name": "sales",
+              "dtype": "float64",
+              "non_null": 32,
+              "unique": 31,
+              "sample_values": [
+                1250.5,
+                890.3,
+                980.2
+              ]
+            },
+            {
+              "name": "orders",
+              "dtype": "int64",
+              "non_null": 32,
+              "unique": 23,
+              "sample_values": [
+                450,
+                520,
+                380
+              ]
+            },
+            {
+              "name": "customers",
+              "dtype": "int64",
+              "non_null": 32,
+              "unique": 20,
+              "sample_values": [
+                320,
+                410,
+                290
+              ]
+            },
+            {
+              "name": "returns",
+              "dtype": "int64",
+              "non_null": 32,
+              "unique": 22,
+              "sample_values": [
+                15,
+                28,
+                12
+              ]
+            }
+          ],
+          "row_count": 32,
+          "dtypes": {
+            "quarter": "object",
+            "year": "int64",
+            "region": "object",
+            "product_category": "object",
+            "sales": "float64",
+            "orders": "int64",
+            "customers": "int64",
+            "returns": "int64"
+          },
+          "statistics": {
+            "year": {
+              "mean": 2024.0,
+              "min": 2024.0,
+              "max": 2024.0,
+              "std": 0.0
+            },
+            "sales": {
+              "mean": 1199.1343749999999,
+              "min": 650.5,
+              "max": 2250.8,
+              "std": 404.6938011030187
+            },
+            "orders": {
+              "mean": 531.875,
+              "min": 380.0,
+              "max": 860.0,
+              "std": 127.29030827460966
+            },
+            "customers": {
+              "mean": 410.3125,
+              "min": 290.0,
+              "max": 680.0,
+              "std": 100.33763565598034
+            },
+            "returns": {
+              "mean": 24.8125,
+              "min": 12.0,
+              "max": 45.0,
+              "std": 7.570901425001964
+            }
+          }
+        },
+        "revision_count": 3,
+        "is_unknown_source": false
+      }
+    },
+    {
+      "test_id": "TQ-002",
+      "query": "What is the average sales per quarter?",
+      "engine_type": "TableQA",
+      "execution_success": true,
+      "answer_correct": true,
+      "confidence": 0.85,
+      "execution_time_ms": 23537.906885147095,
+      "error": null,
+      "generated_query": "import pandas as pd\n\n# Calculate average sales per quarter\nresult = df.groupby('quarter')['sales'].mean().reset_index()\nresult.columns = ['quarter', 'average_sales']\nprint(result)",
+      "details": {
+        "table_schema": {
+          "columns": [
+            {
+              "name": "quarter",
+              "dtype": "object",
+              "non_null": 32,
+              "unique": 4,
+              "sample_values": [
+                "Q1",
+                "Q1",
+                "Q1"
+              ]
+            },
+            {
+              "name": "year",
+              "dtype": "int64",
+              "non_null": 32,
+              "unique": 1,
+              "sample_values": [
+                2024,
+                2024,
+                2024
+              ]
+            },
+            {
+              "name": "region",
+              "dtype": "object",
+              "non_null": 32,
+              "unique": 4,
+              "sample_values": [
+                "North",
+                "North",
+                "South"
+              ]
+            },
+            {
+              "name": "product_category",
+              "dtype": "object",
+              "non_null": 32,
+              "unique": 2,
+              "sample_values": [
+                "Electronics",
+                "Clothing",
+                "Electronics"
+              ]
+            },
+            {
+              "name": "sales",
+              "dtype": "float64",
+              "non_null": 32,
+              "unique": 31,
+              "sample_values": [
+                1250.5,
+                890.3,
+                980.2
+              ]
+            },
+            {
+              "name": "orders",
+              "dtype": "int64",
+              "non_null": 32,
+              "unique": 23,
+              "sample_values": [
+                450,
+                520,
+                380
+              ]
+            },
+            {
+              "name": "customers",
+              "dtype": "int64",
+              "non_null": 32,
+              "unique": 20,
+              "sample_values": [
+                320,
+                410,
+                290
+              ]
+            },
+            {
+              "name": "returns",
+              "dtype": "int64",
+              "non_null": 32,
+              "unique": 22,
+              "sample_values": [
+                15,
+                28,
+                12
+              ]
+            }
+          ],
+          "row_count": 32,
+          "dtypes": {
+            "quarter": "object",
+            "year": "int64",
+            "region": "object",
+            "product_category": "object",
+            "sales": "float64",
+            "orders": "int64",
+            "customers": "int64",
+            "returns": "int64"
+          },
+          "statistics": {
+            "year": {
+              "mean": 2024.0,
+              "min": 2024.0,
+              "max": 2024.0,
+              "std": 0.0
+            },
+            "sales": {
+              "mean": 1199.1343749999999,
+              "min": 650.5,
+              "max": 2250.8,
+              "std": 404.6938011030187
+            },
+            "orders": {
+              "mean": 531.875,
+              "min": 380.0,
+              "max": 860.0,
+              "std": 127.29030827460966
+            },
+            "customers": {
+              "mean": 410.3125,
+              "min": 290.0,
+              "max": 680.0,
+              "std": 100.33763565598034
+            },
+            "returns": {
+              "mean": 24.8125,
+              "min": 12.0,
+              "max": 45.0,
+              "std": 7.570901425001964
+            }
+          }
+        },
+        "revision_count": 3,
+        "is_unknown_source": false
+      }
+    },
+    {
+      "test_id": "TQ-003-UNKNOWN",
+      "query": "根据提供的表格，计算总销售额",
+      "engine_type": "TableQA",
+      "execution_success": true,
+      "answer_correct": true,
+      "confidence": 0.5,
+      "execution_time_ms": 13338.815927505493,
+      "error": null,
+      "generated_query": "total_sales = df['sales'].sum()\nprint(total_sales)",
+      "details": {
+        "table_schema": {
+          "columns": [
+            {
+              "name": "quarter",
+              "dtype": "object",
+              "non_null": 32,
+              "unique": 4,
+              "sample_values": [
+                "Q1",
+                "Q1",
+                "Q1"
+              ]
+            },
+            {
+              "name": "year",
+              "dtype": "int64",
+              "non_null": 32,
+              "unique": 1,
+              "sample_values": [
+                2024,
+                2024,
+                2024
+              ]
+            },
+            {
+              "name": "region",
+              "dtype": "object",
+              "non_null": 32,
+              "unique": 4,
+              "sample_values": [
+                "North",
+                "North",
+                "South"
+              ]
+            },
+            {
+              "name": "product_category",
+              "dtype": "object",
+              "non_null": 32,
+              "unique": 2,
+              "sample_values": [
+                "Electronics",
+                "Clothing",
+                "Electronics"
+              ]
+            },
+            {
+              "name": "sales",
+              "dtype": "float64",
+              "non_null": 32,
+              "unique": 31,
+              "sample_values": [
+                1250.5,
+                890.3,
+                980.2
+              ]
+            },
+            {
+              "name": "orders",
+              "dtype": "int64",
+              "non_null": 32,
+              "unique": 23,
+              "sample_values": [
+                450,
+                520,
+                380
+              ]
+            },
+            {
+              "name": "customers",
+              "dtype": "int64",
+              "non_null": 32,
+              "unique": 20,
+              "sample_values": [
+                320,
+                410,
+                290
+              ]
+            },
+            {
+              "name": "returns",
+              "dtype": "int64",
+              "non_null": 32,
+              "unique": 22,
+              "sample_values": [
+                15,
+                28,
+                12
+              ]
+            }
+          ],
+          "row_count": 32,
+          "dtypes": {
+            "quarter": "object",
+            "year": "int64",
+            "region": "object",
+            "product_category": "object",
+            "sales": "float64",
+            "orders": "int64",
+            "customers": "int64",
+            "returns": "int64"
+          },
+          "statistics": {
+            "year": {
+              "mean": 2024.0,
+              "min": 2024.0,
+              "max": 2024.0,
+              "std": 0.0
+            },
+            "sales": {
+              "mean": 1199.1343749999999,
+              "min": 650.5,
+              "max": 2250.8,
+              "std": 404.6938011030187
+            },
+            "orders": {
+              "mean": 531.875,
+              "min": 380.0,
+              "max": 860.0,
+              "std": 127.29030827460966
+            },
+            "customers": {
+              "mean": 410.3125,
+              "min": 290.0,
+              "max": 680.0,
+              "std": 100.33763565598034
+            },
+            "returns": {
+              "mean": 24.8125,
+              "min": 12.0,
+              "max": 45.0,
+              "std": 7.570901425001964
+            }
+          }
+        },
+        "revision_count": 3,
+        "is_unknown_source": true
+      }
+    }
+  ]
+}

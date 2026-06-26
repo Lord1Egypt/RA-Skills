@@ -1,0 +1,4 @@
+interface:
+  display_name: "Idea to Seedance Video"
+  short_description: "Turn ideas into scripts and Seedance prompts"
+  default_prompt: "Use $idea-to-seedance-video to turn my creative idea into a polished script and Seedance 2.0 video prompts."

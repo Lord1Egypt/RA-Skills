@@ -1,35 +1,27 @@
 ---
-name: "Google Workspace Automation"
-description: "Design Gmail, Drive, Sheets, and Calendar automations with scope-aware plans. Use for repeatable daily task automation with explicit OAuth scopes and audit-r..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/google-workspace-automation"
-sourceUrl: "https://clawhub.ai/skills/google-workspace-automation"
+name: google-workspace-automation
+description: Design Gmail, Drive, Sheets, and Calendar automations with scope-aware plans. Use for repeatable daily task automation with explicit OAuth scopes and audit-ready outputs.
 ---
 
 # Google Workspace Automation
 
-> Design Gmail, Drive, Sheets, and Calendar automations with scope-aware plans. Use for repeatable daily task automation with explicit OAuth scopes and audit-r...
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/google-workspace-automation`
-- **Source URL:** [https://clawhub.ai/skills/google-workspace-automation](https://clawhub.ai/skills/google-workspace-automation)
-
 ## Overview
 
+Create structured automation plans for common Gmail, Drive, Sheets, and Calendar workflows.
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/google-workspace-automation
-```
+## Workflow
+
+1. Define automation goal, services, and actions.
+2. Derive required OAuth scopes and integration boundaries.
+3. Build execution plan with schedule and retry behavior.
+4. Export auditable artifact for implementation.
+
+## Use Bundled Resources
+
+- Run `scripts/plan_workspace_automation.py` for deterministic automation planning.
+- Read `references/workspace-guide.md` for scope and quota considerations.
+
+## Guardrails
+
+- Always declare least-privilege scopes.
+- Keep automations idempotent and auditable.

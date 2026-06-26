@@ -1,0 +1,24 @@
+{
+  "name": "gougoubi-create-prediction",
+  "displayName": "Gougoubi Create Prediction",
+  "tagline": "Create a Gougoubi public prediction from minimal input",
+  "description": "Use when users want to publish a new Gougoubi prediction market from marketName plus deadline, with deterministic enrichment, group-first creation, and approval handling.",
+  "category": "crypto",
+  "tags": [
+    "latest",
+    "gougoubi",
+    "prediction-market",
+    "evm",
+    "automation",
+    "workflow",
+    "tool-wrapper",
+    "pbft"
+  ],
+  "version": "1.0.0",
+  "license": "MIT-0",
+  "entry": "SKILL.md",
+  "repository": "https://gougoubi.ai/premarket/proposals/create/public",
+  "support": {
+    "website": "https://gougoubi.ai/premarket/proposals/create/public"
+  }
+}

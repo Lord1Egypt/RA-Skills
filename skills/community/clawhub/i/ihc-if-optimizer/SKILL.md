@@ -1,35 +1,91 @@
 ---
-name: "Ihc If Optimizer"
-description: "Optimize IHC/IF protocols for specific tissues and antigens"
-category: "other"
-source: "ClawHub"
+name: ihc-if-optimizer
+description: Optimize IHC/IF protocols for specific tissues and antigens
+version: 1.0.0
+category: Wet Lab
 tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ihc-if-optimizer"
-sourceUrl: "https://clawhub.ai/skills/ihc-if-optimizer"
+author: AIPOCH
+license: MIT
+status: Draft
+risk_level: Medium
+skill_type: Tool/Script
+owner: AIPOCH
+reviewer: ''
+last_updated: '2026-02-06'
 ---
 
-# Ihc If Optimizer
+# IHC/IF Optimizer
 
-> Optimize IHC/IF protocols for specific tissues and antigens
+Immunostaining protocol optimization.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ihc-if-optimizer`
-- **Source URL:** [https://clawhub.ai/skills/ihc-if-optimizer](https://clawhub.ai/skills/ihc-if-optimizer)
+## Use Cases
+- Brain tissue staining
+- Liver antigen retrieval
+- Antibody dilution optimization
+- Fluorescence panel design
 
-## Overview
+## Parameters
 
+| Parameter | Type | Default | Required | Description |
+|-----------|------|---------|----------|-------------|
+| `--tissue-type` | string | - | Yes | Tissue type (Brain, Liver, Kidney, etc.) |
+| `--antigen` | string | - | Yes | Target protein/antigen name |
+| `--detection-method` | string | IHC | No | Detection method (IHC or IF) |
+| `--output`, `-o` | string | stdout | No | Output file path |
+| `--format` | string | text | No | Output format (text, json, markdown) |
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/ihc-if-optimizer
-```
+## Returns
+- Recommended retrieval method
+- Antibody dilutions
+- Blocking conditions
+- Counterstain suggestions
+
+## Example
+Brain tissue + Phospho-protein → Citrate retrieval, 1:200 antibody
+
+## Risk Assessment
+
+| Risk Indicator | Assessment | Level |
+|----------------|------------|-------|
+| Code Execution | Python/R scripts executed locally | Medium |
+| Network Access | No external API calls | Low |
+| File System Access | Read input files, write output files | Medium |
+| Instruction Tampering | Standard prompt guidelines | Low |
+| Data Exposure | Output files saved to workspace | Low |
+
+## Security Checklist
+
+- [ ] No hardcoded credentials or API keys
+- [ ] No unauthorized file system access (../)
+- [ ] Output does not expose sensitive information
+- [ ] Prompt injection protections in place
+- [ ] Input file paths validated (no ../ traversal)
+- [ ] Output directory restricted to workspace
+- [ ] Script execution in sandboxed environment
+- [ ] Error messages sanitized (no stack traces exposed)
+- [ ] Dependencies audited
+## Prerequisites
+
+No additional Python packages required.
+
+## Evaluation Criteria
+
+### Success Metrics
+- [ ] Successfully executes main functionality
+- [ ] Output meets quality standards
+- [ ] Handles edge cases gracefully
+- [ ] Performance is acceptable
+
+### Test Cases
+1. **Basic Functionality**: Standard input → Expected output
+2. **Edge Case**: Invalid input → Graceful error handling
+3. **Performance**: Large dataset → Acceptable processing time
+
+## Lifecycle Status
+
+- **Current Stage**: Draft
+- **Next Review Date**: 2026-03-06
+- **Known Issues**: None
+- **Planned Improvements**: 
+  - Performance optimization
+  - Additional feature support

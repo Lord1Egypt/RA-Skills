@@ -1,35 +1,52 @@
 ---
-name: "Transcribe audio via Groq API (~10x cheaper than OpenAI API)"
-description: "Transcribe audio via Groq Automatic Speech Recognition (ASR) Models (Whisper)."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/groq-whisper-api"
-sourceUrl: "https://clawhub.ai/skills/groq-whisper-api"
+name: groq-whisper-api
+description: Transcribe audio via Groq Automatic Speech Recognition (ASR) Models (Whisper).
+homepage: https://console.groq.com/docs/speech-to-text
+metadata:
+  {
+    "openclaw":
+      {
+        "emoji": "☁️",
+        "requires": { "bins": ["curl"], "env": ["GROQ_API_KEY"] },
+        "primaryEnv": "GROQ_API_KEY",
+      },
+  }
 ---
 
-# Transcribe audio via Groq API (~10x cheaper than OpenAI API)
+# Groq Whisper API (curl)
 
-> Transcribe audio via Groq Automatic Speech Recognition (ASR) Models (Whisper).
+Transcribe an audio file via Groq’s OpenAI-compatible `/openai/v1/audio/transcriptions` endpoint.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/groq-whisper-api`
-- **Source URL:** [https://clawhub.ai/skills/groq-whisper-api](https://clawhub.ai/skills/groq-whisper-api)
+## Quick start
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/groq-whisper-api
+{baseDir}/scripts/transcribe.sh /path/to/audio.m4a
+```
+
+Defaults:
+
+- Model: `whisper-large-v3-turbo`
+- Output: `<input>.txt`
+
+## Useful flags
+
+```bash
+{baseDir}/scripts/transcribe.sh /path/to/audio.ogg --model whisper-large-v3 --out /tmp/transcript.txt
+{baseDir}/scripts/transcribe.sh /path/to/audio.m4a --language en
+{baseDir}/scripts/transcribe.sh /path/to/audio.m4a --prompt "Speaker names: Peter, Daniel"
+{baseDir}/scripts/transcribe.sh /path/to/audio.m4a --json --out /tmp/transcript.json
+```
+
+## API key
+
+Set `GROQ_API_KEY`, or configure it in `~/.openclaw/openclaw.json`:
+
+```json5
+{
+  skills: {
+    "groq-whisper-api": {
+      apiKey: "GROQ_KEY_HERE",
+    },
+  },
+}
 ```

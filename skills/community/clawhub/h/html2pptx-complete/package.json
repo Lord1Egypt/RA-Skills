@@ -1,0 +1,26 @@
+{
+  "name": "html2pptx-complete",
+  "version": "1.0.0",
+  "description": "Complete HTML to PPTX workflow - embed CSS + parse with pptxgenjs + generate editable PPTX",
+  "main": "scripts/convert.js",
+  "scripts": {
+    "convert": "node scripts/convert.js",
+    "embed-css": "python3 scripts/embed-css.py",
+    "generate": "node scripts/generate-pptx.js",
+    "test": "node scripts/test.js"
+  },
+  "dependencies": {
+    "pptxgenjs": "^3.12.0",
+    "cheerio": "^1.0.0-rc.12"
+  },
+  "keywords": [
+    "pptx",
+    "html",
+    "conversion",
+    "css-embed",
+    "pptxgenjs",
+    "presentation"
+  ],
+  "author": "老 6",
+  "license": "MIT"
+}

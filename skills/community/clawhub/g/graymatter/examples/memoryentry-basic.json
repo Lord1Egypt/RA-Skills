@@ -1,0 +1,5 @@
+{
+  "type": "decision",
+  "text": "Use GrayMatter as the durable memory layer for agentic workflows.",
+  "sourceChannel": "openclaw"
+}

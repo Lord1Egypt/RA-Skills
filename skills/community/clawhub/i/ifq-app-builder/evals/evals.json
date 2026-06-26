@@ -1,0 +1,139 @@
+{
+  "version": "1.0",
+  "purpose": "Regression prompts for IFQ App Builder ClawHub edition. Each scenario protects one platform route, one human-facing outcome, and one OpenClaw-safe agent contract.",
+  "quality_principles": [
+    "Three ordinary sentences should be enough to produce a build-ready prompt bundle.",
+    "Route to the cheapest viable platform mode and name the mode/template in the evidence packet.",
+    "Keep Tier 0 zero-install: no SDK installation, no credentials, no background services.",
+    "Every bundle must include acceptance, packaging, security, i18n, and IFQ colophon proof.",
+    "Prefer labeled assumptions over stalled first-run setup loops."
+  ],
+  "scenarios": [
+    {
+      "id": "first-run-desktop-invoice-ledger",
+      "mode": "A-01",
+      "templateId": "T-pc-tauri",
+      "prompt_zh": "做一个 Mac + Windows 桌面工具，把 PDF 发票批量整理成 Excel 台账，本地运行不联网。",
+      "prompt_en": "Create a Mac + Windows desktop tool that turns PDF invoices into an Excel ledger and runs locally with no network.",
+      "user_value": "The user gets a verified app-build prompt bundle without learning Tauri or packaging details first.",
+      "agent_value": "The agent has a clear desktop route, a Tauri template, local-only constraints, and verification evidence.",
+      "agent_contract": {
+        "route": "A-01",
+        "must_read": ["references/modes.md", "references/three-sentence-contract.md", "references/packaging.md", "assets/templates/INDEX.json"],
+        "verification": ["npm run verify:lite -- <bundle.prompt.md>", "npm run quality:score -- <bundle.prompt.md>"],
+        "tier": "Tier 0 prompt bundle only; Tauri build is Tier 1",
+        "first_run_evidence": ["output file path", "mode route used", "template id used", "assumptions made", "verification command or check performed", "known caveats that affect use"]
+      }
+    },
+    {
+      "id": "macos-menu-bar-writing-meter",
+      "mode": "A-02",
+      "templateId": "T-macos-swiftui",
+      "prompt_zh": "Mac 状态栏小工具，监控我每天写作字数，离线保存，月底导出 CSV。",
+      "prompt_en": "A macOS menu-bar app that tracks daily writing word counts offline and exports monthly CSV.",
+      "user_value": "The user gets a native Mac route instead of a generic desktop compromise.",
+      "agent_value": "The agent routes to SwiftUI macOS, names signing and packaging boundaries, and avoids installing Xcode in Tier 0.",
+      "agent_contract": { "route": "A-02", "must_read": ["references/modes.md", "references/packaging.md", "references/security-baseline.md", "assets/templates/INDEX.json"], "verification": ["npm run verify:lite -- <bundle.prompt.md>"], "tier": "Tier 0 prompt bundle; xcodebuild is Tier 1" }
+    },
+    {
+      "id": "windows-scan-archive-tool",
+      "mode": "A-03",
+      "templateId": "T-windows-winui",
+      "prompt_zh": "Windows 本地工具，把扫描件 OCR 后按公司和日期归档，输出 MSIX 安装包。",
+      "prompt_en": "A Windows local tool that OCRs scanned documents, archives them by company/date, and ships as MSIX.",
+      "user_value": "The user gets a Windows-native build bundle with MSIX packaging rather than cross-platform vagueness.",
+      "agent_value": "The agent has WinUI/.NET scope, acceptance items, and certificate caveats without requesting secrets.",
+      "agent_contract": { "route": "A-03", "must_read": ["references/platform-matrix.md", "references/packaging.md", "references/security-baseline.md", "assets/templates/INDEX.json"], "verification": ["npm run verify:lite -- <bundle.prompt.md>"], "tier": "Tier 0 prompt bundle; MSIX build/signing is Tier 1/2" }
+    },
+    {
+      "id": "ios-baby-sleep-timeline",
+      "mode": "A-04",
+      "templateId": "T-ios-swiftui",
+      "prompt_zh": "iOS App：把宝宝睡眠记录成时间轴，一周生成一张分享图。",
+      "prompt_en": "An iOS app that records baby sleep as a timeline and generates one weekly share image.",
+      "user_value": "The user gets an iOS-specific SwiftUI bundle with TestFlight packaging boundaries.",
+      "agent_value": "The agent routes to iOS only and does not over-scope Android when it was not requested.",
+      "agent_contract": { "route": "A-04", "must_read": ["references/modes.md", "references/i18n.md", "references/security-baseline.md", "assets/templates/INDEX.json"], "verification": ["npm run verify:lite -- <bundle.prompt.md>"], "tier": "Tier 0 prompt bundle; Xcode archive is Tier 1" }
+    },
+    {
+      "id": "android-voice-brief",
+      "mode": "A-05",
+      "templateId": "T-android-compose",
+      "prompt_zh": "Android App：通勤时把语音备忘自动整理成每日 brief，本地优先。",
+      "prompt_en": "An Android app that turns commute voice memos into a daily brief, local-first.",
+      "user_value": "The user gets an Android Compose route with offline-first acceptance and AAB packaging.",
+      "agent_value": "The agent has Kotlin/Compose constraints and avoids claiming Play Store submission.",
+      "agent_contract": { "route": "A-05", "must_read": ["references/platform-matrix.md", "references/packaging.md", "references/security-baseline.md", "assets/templates/INDEX.json"], "verification": ["npm run verify:lite -- <bundle.prompt.md>"], "tier": "Tier 0 prompt bundle; Gradle build is Tier 1" }
+    },
+    {
+      "id": "harmonyos-bus-large-type",
+      "mode": "A-06",
+      "templateId": "T-harmonyos-arkts",
+      "prompt_zh": "鸿蒙 Next App：给老人用的大字体公交查询，离线可用。",
+      "prompt_en": "A HarmonyOS Next app for seniors: large-type bus lookup that works offline.",
+      "user_value": "The user gets a real HarmonyOS/ArkTS bundle rather than being collapsed into generic Android.",
+      "agent_value": "The agent is forced to name DevEco/ArkTS packaging as Tier 1 and keep Tier 0 local.",
+      "agent_contract": { "route": "A-06", "must_read": ["references/modes.md", "references/packaging.md", "references/security-baseline.md", "assets/templates/INDEX.json"], "verification": ["npm run verify:lite -- <bundle.prompt.md>"], "tier": "Tier 0 prompt bundle; DevEco build is Tier 1" }
+    },
+    {
+      "id": "flutter-family-ledger",
+      "mode": "A-07",
+      "templateId": "T-flutter-cross",
+      "prompt_zh": "iOS + Android 一份代码的家庭账本 App，端到端加密同步。",
+      "prompt_en": "A single-codebase iOS + Android family ledger app with encrypted sync.",
+      "user_value": "The user gets a cross-platform mobile route with one codebase and store-boundary honesty.",
+      "agent_value": "The agent chooses Flutter and documents IPA/AAB acceptance without installing Flutter in Tier 0.",
+      "agent_contract": { "route": "A-07", "must_read": ["references/platform-matrix.md", "references/i18n.md", "references/security-baseline.md", "assets/templates/INDEX.json"], "verification": ["npm run verify:lite -- <bundle.prompt.md>", "npm run quality:score -- <bundle.prompt.md>"], "tier": "Tier 0 prompt bundle; Flutter builds are Tier 1" }
+    },
+    {
+      "id": "expo-room-booking",
+      "mode": "A-08",
+      "templateId": "T-react-native-expo",
+      "prompt_zh": "Expo 跨端 App：会议室预订，公司域账号登录。",
+      "prompt_en": "An Expo cross-platform app for meeting room booking with company domain login.",
+      "user_value": "The user gets an Expo route that fits an RN team and names EAS packaging constraints.",
+      "agent_value": "The agent scopes auth and EAS as explicit Tier 1/2 work without requesting credentials.",
+      "agent_contract": { "route": "A-08", "must_read": ["references/modes.md", "references/packaging.md", "references/security-baseline.md", "assets/templates/INDEX.json"], "verification": ["npm run verify:lite -- <bundle.prompt.md>"], "tier": "Tier 0 prompt bundle; EAS build/submit is Tier 1/2" }
+    },
+    {
+      "id": "wechat-health-checkin",
+      "mode": "A-09",
+      "templateId": "T-wechat-miniprogram",
+      "prompt_zh": "微信小程序：员工健康打卡，一周自动出统计表。",
+      "prompt_en": "A WeChat MiniProgram for employee health check-ins with automatic weekly statistics.",
+      "user_value": "The user gets a MiniProgram-specific route and wxapkg boundary instead of a generic mobile app.",
+      "agent_value": "The agent knows to keep AppID/upload keys out of Tier 0 and use miniprogram-ci only later.",
+      "agent_contract": { "route": "A-09", "must_read": ["references/modes.md", "references/packaging.md", "references/security-baseline.md", "assets/templates/INDEX.json"], "verification": ["npm run verify:lite -- <bundle.prompt.md>"], "tier": "Tier 0 prompt bundle; upload is Tier 2" }
+    },
+    {
+      "id": "local-web-weekly-report",
+      "mode": "A-10",
+      "templateId": "T-local-web-nextjs",
+      "prompt_zh": "公司内网研发周报系统，Docker 一键起，登录走 LDAP。",
+      "prompt_en": "A company-internal engineering weekly report system, one-command Docker Compose, LDAP login.",
+      "user_value": "The user gets a self-hosted web route with Docker and auth boundaries named up front.",
+      "agent_value": "The agent names env vars as placeholders and never asks for live LDAP secrets in Tier 0.",
+      "agent_contract": { "route": "A-10", "must_read": ["references/platform-matrix.md", "references/packaging.md", "references/security-baseline.md", "assets/templates/INDEX.json"], "verification": ["npm run verify:lite -- <bundle.prompt.md>", "npm run quality:score -- <bundle.prompt.md>"], "tier": "Tier 0 prompt bundle; docker compose is Tier 1" }
+    },
+    {
+      "id": "pwa-running-metronome",
+      "mode": "A-11",
+      "templateId": "T-pwa-vite",
+      "prompt_zh": "可装在手机桌面的 PWA：跑步配速节拍器，离线可用。",
+      "prompt_en": "An installable PWA running pace metronome that works offline.",
+      "user_value": "The user gets a cheap installable web route with offline/service-worker acceptance.",
+      "agent_value": "The agent avoids native SDK setup when PWA is enough and names static packaging.",
+      "agent_contract": { "route": "A-11", "must_read": ["references/modes.md", "references/i18n.md", "references/security-baseline.md", "assets/templates/INDEX.json"], "verification": ["npm run verify:lite -- <bundle.prompt.md>"], "tier": "Tier 0 prompt bundle; static build is Tier 1" }
+    },
+    {
+      "id": "cli-screenshot-renamer",
+      "mode": "A-12",
+      "templateId": "T-cli-node-python",
+      "prompt_zh": "命令行工具：扫一个文件夹里所有截图，按内容自动改名。",
+      "prompt_en": "A CLI tool that scans screenshots in a folder and renames them by content.",
+      "user_value": "The user gets a CLI route when a GUI would be extra weight.",
+      "agent_value": "The agent names npm/pipx packaging, filesystem boundaries, and no-shell-injection acceptance.",
+      "agent_contract": { "route": "A-12", "must_read": ["references/platform-matrix.md", "references/packaging.md", "references/security-baseline.md", "assets/templates/INDEX.json"], "verification": ["npm run verify:lite -- <bundle.prompt.md>"], "tier": "Tier 0 prompt bundle; npm/pipx packaging is Tier 1" }
+    }
+  ]
+}

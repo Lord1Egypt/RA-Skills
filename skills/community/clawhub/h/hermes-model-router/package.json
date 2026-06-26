@@ -1,0 +1,38 @@
+{
+  "name": "openclaw-model-router",
+  "version": "1.0.1",
+  "description": "本地优先的智能模型选择器 — 简单任务路由到本地模型，复杂任务路由到服务商模型",
+  "main": "scripts/classify_task.py",
+  "scripts": {
+    "classify": "python3 scripts/classify_task.py",
+    "setup": "python3 scripts/setup_wizard.py",
+    "install": "bash install.sh"
+  },
+  "keywords": [
+    "model",
+    "router",
+    "ai",
+    "local",
+    "ollama",
+    "openrouter",
+    "minimax",
+    "cost-optimization",
+    "routing",
+    "model-selector"
+  ],
+  "author": "freepengyang",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/freepengyang/openclaw-model-router/issues"
+  },
+  "homepage": "https://github.com/freepengyang/openclaw-model-router",
+  "clawdbot": {
+    "category": "ai",
+    "skills": {
+      "model-router": {
+        "name": "Model Router",
+        "description": "智能路由任务到本地或服务商模型 — 简单任务用本地模型省成本，复杂任务用服务商模型保质量"
+      }
+    }
+  }
+}

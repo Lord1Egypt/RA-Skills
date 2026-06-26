@@ -1,0 +1,9 @@
+{
+  "name": "hadith-verifier",
+  "version": "1.0.0",
+  "description": "Verify hadith authenticity against major collections (Bukhari, Muslim, Tirmidhi, Abu Dawud, Nasai, Ibn Majah, Malik). Open-source hadith API search with Arabic/English text, grading, and cross-reference.",
+  "author": "Abdullah Haqq",
+  "license": "MIT",
+  "skills": ["hadith-verifier/SKILL.md"],
+  "keywords": ["hadith", "verification", "islamic", "sunnah", "bukhari", "muslim", "authentic", "sahih", "check", "verify", "تتٔكيد", "حديث"]
+}

@@ -1,0 +1,50 @@
+{
+  "dashboard": "growth-metrics",
+  "period": "30d",
+  "generated": "2026-03-13T02:38:26Z",
+  "summary": {
+    "total_users": ,
+    "active_users": ,
+    "new_users": ,
+    "growth_rate": 0.,
+    "retention": 0.
+  },
+  "loops": [
+    {
+      "name": "viral",
+      "k_factor": 0.,
+      "cycle_time_hours": ,
+      "conversion_rate": 0.,
+      "status": "active"
+    },
+    {
+      "name": "content",
+      "organic_traffic": ,
+      "conversion_rate": 0.0,
+      "content_velocity": ,
+      "status": "active"
+    },
+    {
+      "name": "network",
+      "invites_per_user": ,
+      "acceptance_rate": 0.,
+      "team_retention": 0.,
+      "status": "active"
+    },
+    {
+      "name": "engagement",
+      "dau_mau_ratio": 0.,
+      "avg_sessions_per_week": ,
+      "streak_retention": 0.,
+      "status": "active"
+    }
+  ],
+  "funnel": {
+    "awareness": ,
+    "interest": ,
+    "consideration": ,
+    "activation": ,
+    "retention": ,
+    "referral": 
+  }
+}

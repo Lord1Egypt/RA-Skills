@@ -1,0 +1,52 @@
+version: '3.8'
+
+services:
+  traefik:
+    image: traefik:v3.0
+    container_name: traefik
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - ./traefik-dynamic.yml:/etc/traefik/dynamic.yml:ro
+      - traefik-data:/traefik
+    command:
+      # API & Dashboard
+      - --api=true
+      - --api.dashboard=true
+      - --api.insecure=true
+      
+      # Docker provider
+      - --providers.docker=true
+      - --providers.docker.exposedbydefault=false
+      - --providers.docker.network=compose_default
+      
+      # File provider
+      - --providers.file.directory=/etc/traefik
+      - --providers.file.watch=true
+      
+      # EntryPoints
+      - --entrypoints.web.address=:80
+      - --entrypoints.websecure.address=:443
+      
+      # Access Log
+      - --accesslog=true
+      - --accesslog.format=json
+      - --accesslog.filters.statuscodes=200-299,400-499
+      
+      # Traefik Log
+      - --log.level=INFO
+      - --log.format=json
+      
+      # Metrics (Prometheus)
+      - --metrics.prometheus=true
+      - --metrics.prometheus.buckets=0.1,0.3,1.2,5.0
+      
+      # Global
+      - --global.checknewversion=false
+      - --global.sendanonymoususage=false
+
+volumes:
+  traefik-data:

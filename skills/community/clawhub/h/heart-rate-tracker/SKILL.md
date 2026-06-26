@@ -1,35 +1,40 @@
 ---
-name: "Heart Rate Tracker"
-description: "心率追踪 - 心率记录、运动心率、健康分析"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/heart-rate-tracker"
-sourceUrl: "https://clawhub.ai/skills/heart-rate-tracker"
+name: heart-rate-tracker
+description: 心率追踪 - 心率记录、运动心率、健康分析
 ---
 
 # Heart Rate Tracker
 
-> 心率追踪 - 心率记录、运动心率、健康分析
+心率追踪工具，监测你的心脏健康。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/heart-rate-tracker`
-- **Source URL:** [https://clawhub.ai/skills/heart-rate-tracker](https://clawhub.ai/skills/heart-rate-tracker)
+## 功能
 
-## Overview
+- ✅ 心率记录
+- ✅ 运动心率
+- ✅ 健康分析
+- ✅ 异常提醒
+- ✅ 统计报告
 
+## 使用
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/heart-rate-tracker
+# 记录心率
+clawhub hr log --bpm 75
+
+# 运动心率
+clawhub hr exercise --type "running" --bpm 150
+
+# 健康分析
+clawhub hr analyze
+
+# 异常提醒
+clawhub hr alert --high 100 --low 60
 ```
+
+## 定价
+
+| 版本 | 价格 | 功能 |
+|------|------|------|
+| 免费版 | ¥0 | 基础记录 |
+| Pro 版 | ¥39 | 全部功能 |
+| 订阅版 | ¥9/月 | Pro+ AI 分析 |

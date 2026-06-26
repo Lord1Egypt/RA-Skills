@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html><head><meta charset="UTF-8">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+html { background:{{HTML_BG}}; }
+body { width:100vw; height:100vh; display:flex; align-items:center; justify-content:center; background:linear-gradient(145deg,{{BG1}} 0%,{{BG2}} 50%,{{BG3}} 100%); font-family:'Segoe UI',system-ui,sans-serif; overflow:hidden; }
+.card { text-align:center; padding:50px 40px; }
+.badge { display:inline-block; background:linear-gradient(90deg,{{BADGE_BG1}},{{BADGE_BG2}}); color:{{BADGE_TEXT}}; font-size:14px; font-weight:700; padding:6px 18px; border-radius:20px; letter-spacing:1px; margin-bottom:24px; }
+.icon { font-size:64px; margin-bottom:16px; }
+h1 { color:#fff; font-size:36px; font-weight:800; line-height:1.2; margin-bottom:16px; }
+h1 span { background:linear-gradient(90deg,{{ACCENT}},{{ACCENT2}}); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+.sub { color:#94a3b8; font-size:18px; line-height:1.5; margin-bottom:30px; }
+.tags { display:flex; gap:10px; justify-content:center; flex-wrap:wrap; }
+.tag { background:rgba(255,255,255,0.06); color:#cbd5e1; font-size:13px; padding:6px 14px; border-radius:6px; border:1px solid rgba(255,255,255,0.08); }
+</style></head><body>
+<div class="card">
+  <div class="badge">{{BADGE_TEXT_CONTENT}}</div>
+  <div class="icon">{{ICON}}</div>
+  <h1>{{TITLE}}</h1>
+  <p class="sub">{{SUBTITLE}}</p>
+  <div class="tags">{{TAGS}}</div>
+</div>
+</body></html>

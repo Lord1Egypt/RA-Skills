@@ -1,0 +1,21 @@
+@host = https://api.example.test
+@token = <set via AUTH_TOKEN>
+@taskId = <set via TASK_ID>
+
+### Poll terminal state: task should eventually succeed
+# auth = bearer
+# expect.status = 200
+# expect.json_path = data.state
+# expect.equals = succeeded
+# output.fields = code,message,data.taskId,data.state,data.progress
+GET {{host}}/v1/tasks/{{taskId}}
+Authorization: Bearer {{token}}
+
+### Fetch result: download URL should be present
+# auth = bearer
+# expect.status = 200
+# expect.exists = data.downloadUrl
+# expect.not_contains = stacktrace
+# output.fields = code,message,data.taskId,data.downloadUrl
+GET {{host}}/v1/tasks/{{taskId}}/result
+Authorization: Bearer {{token}}

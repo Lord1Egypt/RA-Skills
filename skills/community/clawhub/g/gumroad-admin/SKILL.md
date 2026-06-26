@@ -1,35 +1,38 @@
 ---
-name: "Gumroad Admin"
-description: "Gumroad Admin CLI. Check sales, products, and manage discounts."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/gumroad-admin"
-sourceUrl: "https://clawhub.ai/skills/gumroad-admin"
+name: gumroad-admin
+version: 1.0.0
+description: Gumroad Admin CLI. Check sales, products, and manage discounts.
+author: abakermi
+metadata:
+  openclaw:
+    emoji: "💸"
+    requires:
+      env: ["GUMROAD_ACCESS_TOKEN"]
 ---
 
 # Gumroad Admin
 
-> Gumroad Admin CLI. Check sales, products, and manage discounts.
+Manage your Gumroad store from OpenClaw.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/gumroad-admin`
-- **Source URL:** [https://clawhub.ai/skills/gumroad-admin](https://clawhub.ai/skills/gumroad-admin)
+## Setup
 
-## Overview
+1. Get your Access Token from Gumroad (Settings > Advanced > Applications).
+2. Set it: `export GUMROAD_ACCESS_TOKEN="your_token"`
 
+## Commands
 
-## Installation
-To install this skill, run the following command in your terminal:
+### Sales
 ```bash
-hermes skills install clawhub/gumroad-admin
+gumroad-admin sales --day today
+gumroad-admin sales --last 30
+```
+
+### Products
+```bash
+gumroad-admin products
+```
+
+### Discounts
+```bash
+gumroad-admin discounts create --product <id> --code "TWITTER20" --amount 20 --type percent
 ```

@@ -1,0 +1,12 @@
+{
+  "name": "memos",
+  "version": "1.0.0",
+  "description": "硅虾备忘录系统 — 轻量笔记服务",
+  "author": "硅虾",
+  "license": "MIT",
+  "type": "skill",
+  "tags": ["备忘录", "笔记", "web", "工具"],
+  "requirements": ["nodejs"],
+  "entry": "scripts/memos.sh",
+  "port": 8080
+}

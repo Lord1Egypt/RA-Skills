@@ -1,0 +1,62 @@
+{
+  "name": "mobile-native-md3",
+  "displayName": "MOBILE-NATIVE · Material Design 3",
+  "version": "1.0.0",
+  "seed": "oklch(0.55 0.13 175)",
+  "color": {
+    "primary": "oklch(0.55 0.13 175)",
+    "onPrimary": "oklch(0.99 0.01 175)",
+    "primaryContainer": "oklch(0.88 0.06 175)",
+    "onPrimaryContainer": "oklch(0.20 0.05 175)",
+    "secondaryContainer": "oklch(0.92 0.04 60)",
+    "onSecondaryContainer": "oklch(0.25 0.05 60)",
+    "tertiaryContainer": "oklch(0.90 0.05 320)",
+    "onTertiaryContainer": "oklch(0.25 0.06 320)",
+    "surface": "oklch(0.985 0.003 175)",
+    "surfaceVariant": "oklch(0.93 0.01 175)",
+    "onSurface": "oklch(0.18 0.01 175)",
+    "onSurfaceVariant": "oklch(0.45 0.01 175)",
+    "outline": "oklch(0.72 0.01 175)"
+  },
+  "colorHex": {
+    "primary": "#3a8884",
+    "onPrimary": "#fafefd",
+    "primaryContainer": "#bee0dc",
+    "onPrimaryContainer": "#193533",
+    "secondaryContainer": "#eddfcb",
+    "onSecondaryContainer": "#3e3322",
+    "tertiaryContainer": "#e3d6e1",
+    "onTertiaryContainer": "#3e2538",
+    "surface": "#fafdfc",
+    "surfaceVariant": "#e2eceb",
+    "onSurface": "#1c2625",
+    "onSurfaceVariant": "#646e6d",
+    "outline": "#a5b3b1"
+  },
+  "typography": {
+    "display": "DM Sans 700",
+    "body": "IBM Plex Sans 400/500"
+  },
+  "spacing": { "xs": 4, "sm": 8, "md": 16, "lg": 24, "xl": 32, "2xl": 56 },
+  "radius": { "chip": 8, "card": 16, "fab": 18, "navPill": 16, "topBar": 24 },
+  "shadow": {
+    "fab": "0 6px 20px oklch(0 0 0 / .18), 0 1px 3px oklch(0 0 0 / .12)"
+  },
+  "redLineWaiver": ["seed 自选 oklch(0.55 0.13 175) 青绿，避开 Material 默认紫；多档 radius (8/16/18/24) 满足红线 #9"],
+  "examplePath": "../examples/mobile-native/md3/index.html",
+  "motion": {
+    "duration": {
+      "short1": 50, "short2": 100, "short3": 150, "short4": 200,
+      "medium1": 250, "medium2": 300, "medium3": 350, "medium4": 400,
+      "long1": 450, "long2": 500, "long3": 550, "long4": 600
+    },
+    "easing": {
+      "emphasized": "cubic-bezier(0.2, 0, 0, 1)",
+      "emphasizedDecelerate": "cubic-bezier(0.05, 0.7, 0.1, 1)",
+      "emphasizedAccelerate": "cubic-bezier(0.3, 0, 0.8, 0.15)",
+      "standard": "cubic-bezier(0.2, 0, 0, 1)"
+    },
+    "stagger": { "normal": 75 },
+    "philosophy": "Material Design 3 完整 motion token — 12 档 duration + 4 档 emphasized easing 是 MD3 spec 一比一复刻；用 emphasized 给主动作（FAB / 抽屉），standard 给次要"
+  }
+}

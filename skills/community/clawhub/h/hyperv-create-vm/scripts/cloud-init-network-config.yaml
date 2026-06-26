@@ -1,0 +1,7 @@
+version: 2
+ethernets:
+  id0:
+    match:
+      driver: hv_netvsc
+    dhcp4: true
+    dhcp6: false

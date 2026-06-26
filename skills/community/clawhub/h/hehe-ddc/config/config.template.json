@@ -1,0 +1,62 @@
+{
+  "_comment": "=== 视频自动化配置文件 ===",
+  
+  "images": [
+    "图片路径 1",
+    "图片路径 2"
+  ],
+  
+  "video": {
+    "_comment": "视频规格配置",
+    "width": 1080,
+    "height": 1920,
+    "fps": 30,
+    "crf": 20
+  },
+  
+  "subtitle": {
+    "_comment": "字幕配置",
+    "enabled": true,
+    "fontSize": 24,
+    "fontFamily": "Microsoft YaHei",
+    "marginV": 50,
+    "maxLines": 1
+  },
+  
+  "audio": {
+    "_comment": "音频配置",
+    "tts": {
+      "_comment": "配音配置",
+      "voice": "male",
+      "speed": 5
+    },
+    "bgm": {
+      "_comment": "背景音乐配置",
+      "enabled": true,
+      "volume": 0.2,
+      "random": true,
+      "from_internet": true,
+      "match_duration": true
+    }
+  },
+  
+  "script": {
+    "_comment": "文案配置",
+    "autoGenerate": false,
+    "industry": "电动车",
+    "content": "你的文案内容"
+  },
+  
+  "output": {
+    "_comment": "输出配置",
+    "copyToWindows": true,
+    "windowsPath": "/mnt/f/Desktop/aima/新建文件夹"
+  },
+  
+  "duration": {
+    "_comment": "时长配置",
+    "mode": "auto",
+    "minSeconds": 15,
+    "maxSeconds": 60
+  }
+}

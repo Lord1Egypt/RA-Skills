@@ -1,35 +1,28 @@
 ---
-name: "Google Search Nino"
-description: "Search the web using Google Custom Search Engine (PSE). Use this when you need live information, documentation, or to research topics and the built-in web_se..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/google-search-nino"
-sourceUrl: "https://clawhub.ai/skills/google-search-nino"
+name: google-search
+description: Search the web using Google Custom Search Engine (PSE). Use this when you need live information, documentation, or to research topics and the built-in web_search is unavailable.
 ---
 
-# Google Search Nino
+# Google Search Skill
 
-> Search the web using Google Custom Search Engine (PSE). Use this when you need live information, documentation, or to research topics and the built-in web_se...
+This skill allows OpenClaw agents to perform web searches via Google's Custom Search API (PSE).
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/google-search-nino`
-- **Source URL:** [https://clawhub.ai/skills/google-search-nino](https://clawhub.ai/skills/google-search-nino)
+## Setup
 
-## Overview
+1.  **Google Cloud Console:** Create a project and enable the "Custom Search API".
+2.  **API Key:** Generate an API Key.
+3.  **Search Engine ID (CX):** Create a Programmable Search Engine at [cse.google.com](https://cse.google.com/cse/all), and get your CX ID.
+4.  **Environment:** Store your credentials in a `.env` file in your workspace:
+    ```
+    GOOGLE_API_KEY=your_key_here
+    GOOGLE_CSE_ID=your_cx_id_here
+    ```
 
+## Workflow
+... (rest of file)
 
-## Installation
-To install this skill, run the following command in your terminal:
+## Example Usage
+
 ```bash
-hermes skills install clawhub/google-search-nino
+GOOGLE_API_KEY=xxx GOOGLE_CSE_ID=yyy python3 skills/google-search/scripts/search.py "OpenClaw documentation"
 ```

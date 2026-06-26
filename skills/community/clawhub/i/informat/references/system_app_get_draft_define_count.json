@@ -1,0 +1,13 @@
+{
+  "type": "function",
+  "function": {
+    "name": "_app_get_draft_define_count",
+    "description": "Get the quantity statistics of Define objects in the [Draft Version] of the current application.\n\n[Purpose]\n- Determine if there are unpublished modifications\n- Quickly check the scale of changes before publishing\n- Display draft modification quantity prompt\n\n[Description]\n- Only read draft version\n- Do not read published version\n- Do not modify any data\n- Return statistics of the number of objects of each type and the total number\n\n[Important Semantics]\n- If there is no difference between the current draft and the published version, the quantity should be returned as 0\n- This interface is only used for statistics and does not return specific structure content",
+    "parameters": {
+      "type": "object",
+      "properties": {
+      },
+      "additionalProperties": false
+    }
+  }
+}

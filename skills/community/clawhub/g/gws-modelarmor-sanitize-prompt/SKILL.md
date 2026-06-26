@@ -1,35 +1,49 @@
 ---
-name: "Gws Modelarmor Sanitize Prompt"
+name: gws-modelarmor-sanitize-prompt
 description: "Google Model Armor: Sanitize a user prompt through a Model Armor template."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/gws-modelarmor-sanitize-prompt"
-sourceUrl: "https://clawhub.ai/skills/gws-modelarmor-sanitize-prompt"
+metadata:
+  version: 0.22.5
+  openclaw:
+    category: "security"
+    requires:
+      bins:
+        - gws
+    cliHelp: "gws modelarmor +sanitize-prompt --help"
 ---
 
-# Gws Modelarmor Sanitize Prompt
+# modelarmor +sanitize-prompt
 
-> Google Model Armor: Sanitize a user prompt through a Model Armor template.
+> **PREREQUISITE:** Read `../gws-shared/SKILL.md` for auth, global flags, and security rules. If missing, run `gws generate-skills` to create it.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/gws-modelarmor-sanitize-prompt`
-- **Source URL:** [https://clawhub.ai/skills/gws-modelarmor-sanitize-prompt](https://clawhub.ai/skills/gws-modelarmor-sanitize-prompt)
+Sanitize a user prompt through a Model Armor template
 
-## Overview
+## Usage
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/gws-modelarmor-sanitize-prompt
+gws modelarmor +sanitize-prompt --template <NAME>
 ```
+
+## Flags
+
+| Flag | Required | Default | Description |
+|------|----------|---------|-------------|
+| `--template` | ✓ | — | Full template resource name (projects/PROJECT/locations/LOCATION/templates/TEMPLATE) |
+| `--text` | — | — | Text content to sanitize |
+| `--json` | — | — | Full JSON request body (overrides --text) |
+
+## Examples
+
+```bash
+gws modelarmor +sanitize-prompt --template projects/P/locations/L/templates/T --text 'user input'
+echo 'prompt' | gws modelarmor +sanitize-prompt --template ...
+```
+
+## Tips
+
+- If neither --text nor --json is given, reads from stdin.
+- For outbound safety, use +sanitize-response instead.
+
+## See Also
+
+- [gws-shared](../gws-shared/SKILL.md) — Global flags and auth
+- [gws-modelarmor](../gws-modelarmor/SKILL.md) — All filter user-generated content for safety commands

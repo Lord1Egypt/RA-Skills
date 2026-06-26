@@ -1,0 +1,98 @@
+[
+  {
+    "id": "evt_wallet_funded_001",
+    "wallet": "GwapExampleWallet111111111111111111111111111111",
+    "eventName": "wallet.funded",
+    "chain": "solana",
+    "signature": "5ExampleSignatureWalletFunded",
+    "slot": 300000001,
+    "timestamp": "2026-05-10T00:00:00Z",
+    "counterparty": "KnownExchangeFundingWallet11111111111111111111",
+    "amount": "12.5",
+    "metadata": {
+      "asset": "SOL",
+      "sourceQuality": "reputable"
+    }
+  },
+  {
+    "id": "evt_tx_success_001",
+    "wallet": "GwapExampleWallet111111111111111111111111111111",
+    "eventName": "transaction.success",
+    "chain": "solana",
+    "signature": "5ExampleSignatureTransactionSuccess",
+    "slot": 300000002,
+    "timestamp": "2026-05-10T00:05:00Z",
+    "programId": "11111111111111111111111111111111",
+    "metadata": {
+      "category": "system_transfer"
+    }
+  },
+  {
+    "id": "evt_counterparty_trusted_001",
+    "wallet": "GwapExampleWallet111111111111111111111111111111",
+    "eventName": "counterparty.trusted_interaction",
+    "chain": "solana",
+    "signature": "5ExampleSignatureTrustedCounterparty",
+    "slot": 300000003,
+    "timestamp": "2026-05-10T00:10:00Z",
+    "counterparty": "TrustedMerchantWallet1111111111111111111111",
+    "metadata": {
+      "counterpartyScore": 788
+    }
+  },
+  {
+    "id": "evt_lending_repaid_001",
+    "wallet": "GwapExampleWallet111111111111111111111111111111",
+    "eventName": "lending.loan_repaid",
+    "chain": "solana",
+    "signature": "5ExampleSignatureLoanRepaid",
+    "slot": 300000004,
+    "timestamp": "2026-05-10T00:15:00Z",
+    "programId": "LendingProtocolProgram111111111111111111111",
+    "amount": "250.00",
+    "metadata": {
+      "asset": "USDC",
+      "status": "fully_repaid"
+    }
+  },
+  {
+    "id": "evt_commerce_payment_001",
+    "wallet": "GwapExampleWallet111111111111111111111111111111",
+    "eventName": "commerce.payment_received",
+    "chain": "solana",
+    "signature": "5ExampleSignaturePaymentReceived",
+    "slot": 300000005,
+    "timestamp": "2026-05-10T00:20:00Z",
+    "counterparty": "CustomerWallet111111111111111111111111111",
+    "mint": "USDCMint11111111111111111111111111111111",
+    "amount": "49.99",
+    "metadata": {
+      "paymentType": "creator_subscription"
+    }
+  },
+  {
+    "id": "evt_sybil_circular_001",
+    "wallet": "GwapExampleWallet111111111111111111111111111111",
+    "eventName": "sybil.circular_flow_detected",
+    "chain": "solana",
+    "signature": "5ExampleSignatureCircularFlow",
+    "slot": 300000006,
+    "timestamp": "2026-05-10T00:25:00Z",
+    "counterparty": "RelatedWalletCluster1111111111111111111111",
+    "metadata": {
+      "severity": "warning",
+      "requiresManualReview": true
+    }
+  },
+  {
+    "id": "evt_recovery_clean_001",
+    "wallet": "GwapExampleWallet111111111111111111111111111111",
+    "eventName": "recovery.clean_period_completed",
+    "chain": "solana",
+    "slot": 300000007,
+    "timestamp": "2026-05-10T00:30:00Z",
+    "metadata": {
+      "cleanPeriodDays": 90
+    }
+  }
+]

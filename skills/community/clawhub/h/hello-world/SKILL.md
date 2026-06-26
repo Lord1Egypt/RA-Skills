@@ -1,35 +1,21 @@
 ---
-name: "Hello World"
-description: "A simple greeting skill that responds with a customized hello message in the user's language."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/hello-world"
-sourceUrl: "https://clawhub.ai/skills/hello-world"
+name: hello-world
+description: A simple greeting skill that responds with a customized hello message in the user's language.
+user-invocable: true
 ---
 
-# Hello World
+# Hello World Skill
 
-> A simple greeting skill that responds with a customized hello message in the user's language.
+When the user asks you to say hello or greet someone, use this skill.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/hello-world`
-- **Source URL:** [https://clawhub.ai/skills/hello-world](https://clawhub.ai/skills/hello-world)
+## Instructions
 
-## Overview
+1. Greet the user warmly in their language
+2. Include the current date and time in the greeting
+3. Add a fun emoji
+4. If the user specifies a name, personalize the greeting
 
+## Examples
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/hello-world
-```
+- "Say hello" → "你好！👋 现在是 2026年2月17日。很高兴见到你！"
+- "Greet Alice" → "Hello Alice! 👋 It's February 17, 2026. Great to meet you!"

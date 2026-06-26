@@ -1,0 +1,7 @@
+- [x] 未提供商品源图时，系统仅返回询问引导且不触发任何商品图生成调用
+- [x] 提供会话图片或本地图片时，系统先调用上传子技能并成功回填 `product_image_url`
+- [x] 调用 `image_praline_edit_v2` 时，`args.image_list` 仅包含确认后的源图链接
+- [x] 若 `image_list` 与确认源图不一致，系统返回结构化错误并终止调用
+- [x] 商品图响应包含 `tool_name_used`、`source_image_url_used`、`source_image_origin`、`precheck_report`
+- [x] 文档与示例不再出现“本地替代生成/占位图替代用户衣服”的执行路径
+- [x] 发布校验可拦截上述违规路径并通过正常链路检查

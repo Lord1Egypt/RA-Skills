@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>示例演示文稿 - html2pptx-shape</title>
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #7c3aed;
+            --text-color: #1f2937;
+            --bg-color: #ffffff;
+            --accent-color: #f59e0b;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f3f4f6;
+        }
+        
+        section.slide {
+            width: 1280px;
+            height: 720px;
+            background: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* Slide 1: 标题页 */
+        .slide-1 {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+        }
+        
+        .slide-1 .title {
+            position: absolute;
+            top: 200px;
+            left: 100px;
+            right: 100px;
+            font-size: 64px;
+            font-weight: bold;
+            color: white;
+            text-align: center;
+        }
+        
+        .slide-1 .subtitle {
+            position: absolute;
+            top: 320px;
+            left: 100px;
+            right: 100px;
+            font-size: 28px;
+            color: rgba(255, 255, 255, 0.9);
+            text-align: center;
+        }
+        
+        .slide-1 .author {
+            position: absolute;
+            bottom: 80px;
+            left: 100px;
+            font-size: 20px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        /* Slide 2: 内容页 */
+        .slide-2 .header {
+            position: absolute;
+            top: 60px;
+            left: 80px;
+            font-size: 42px;
+            font-weight: bold;
+            color: var(--text-color);
+        }
+        
+        .slide-2 .content-box {
+            position: absolute;
+            top: 180px;
+            left: 80px;
+            width: 500px;
+            height: 400px;
+            background: #f8fafc;
+            border-radius: 16px;
+            padding: 40px;
+            border: 2px solid #e2e8f0;
+        }
+        
+        .slide-2 .content-box h3 {
+            font-size: 24px;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+        
+        .slide-2 .content-box p {
+            font-size: 18px;
+            color: #4b5563;
+            line-height: 1.8;
+        }
+        
+        .slide-2 .image-box {
+            position: absolute;
+            top: 180px;
+            right: 80px;
+            width: 500px;
+            height: 400px;
+            background: linear-gradient(45deg, #fbbf24, #f59e0b);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: white;
+            font-weight: bold;
+        }
+        
+        /* Slide 3: 列表页 */
+        .slide-3 .header {
+            position: absolute;
+            top: 60px;
+            left: 80px;
+            font-size: 42px;
+            font-weight: bold;
+            color: var(--text-color);
+        }
+        
+        .slide-3 .item {
+            position: absolute;
+            left: 80px;
+            right: 80px;
+            height: 100px;
+            background: white;
+            border-radius: 12px;
+            padding: 0 40px;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .slide-3 .item-1 { top: 160px; border-left: 6px solid var(--primary-color); }
+        .slide-3 .item-2 { top: 280px; border-left: 6px solid var(--secondary-color); }
+        .slide-3 .item-3 { top: 400px; border-left: 6px solid var(--accent-color); }
+        
+        .slide-3 .item h4 {
+            font-size: 22px;
+            color: var(--text-color);
+            margin-bottom: 8px;
+        }
+        
+        .slide-3 .item p {
+            font-size: 16px;
+            color: #6b7280;
+        }
+        
+        /* Slide 4: 结束页 */
+        .slide-4 {
+            background: linear-gradient(135deg, #1f2937, #111827);
+        }
+        
+        .slide-4 .thank-you {
+            position: absolute;
+            top: 200px;
+            left: 0;
+            right: 0;
+            font-size: 72px;
+            font-weight: bold;
+            color: white;
+            text-align: center;
+        }
+        
+        .slide-4 .contact {
+            position: absolute;
+            top: 340px;
+            left: 0;
+            right: 0;
+            font-size: 28px;
+            color: rgba(255, 255, 255, 0.8);
+            text-align: center;
+        }
+        
+        .slide-4 .logo {
+            position: absolute;
+            bottom: 80px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 120px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Slide 1: 标题页 -->
+    <section class="slide slide-1">
+        <div class="title">html2pptx-shape</div>
+        <div class="subtitle">HTML 转 PPTX 形状转换器</div>
+        <div class="author">🎯 老 6 | 2026 年 4 月</div>
+    </section>
+    
+    <!-- Slide 2: 内容页 -->
+    <section class="slide slide-2">
+        <div class="header">核心功能</div>
+        <div class="content-box">
+            <h3>✨ 样式完整保留</h3>
+            <p>将 HTML 的 CSS 样式、布局、颜色、字体等完整映射到 PPTX 原生形状，所有元素可编辑。</p>
+        </div>
+        <div class="image-box">
+            📊 可视化转换
+        </div>
+    </section>
+    
+    <!-- Slide 3: 列表页 -->
+    <section class="slide slide-3">
+        <div class="header">技术特性</div>
+        <div class="item item-1">
+            <div>
+                <h4>🎨 CSS 样式解析</h4>
+                <p>支持颜色、渐变、边框、圆角、阴影等完整 CSS 属性</p>
+            </div>
+        </div>
+        <div class="item item-2">
+            <div>
+                <h4>📐 布局精确还原</h4>
+                <p>绝对定位、相对定位、元素尺寸精确计算</p>
+            </div>
+        </div>
+        <div class="item item-3">
+            <div>
+                <h4>🔧 PPTX 原生形状</h4>
+                <p>div→矩形，p/h→文本框，img→图片，svg→自由形状</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Slide 4: 结束页 -->
+    <section class="slide slide-4">
+        <div class="thank-you">Thank You!</div>
+        <div class="contact">questions@html2pptx.shape</div>
+        <div class="logo">🎯</div>
+    </section>
+</body>
+</html>

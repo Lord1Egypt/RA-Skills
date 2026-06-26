@@ -1,35 +1,128 @@
 ---
-name: "短剧爆款预演器"
-description: "短剧爆款预演器 v1.0.2 - 基于OpenClaw配置的AI模型进行真实分析。包含前10秒钩子强度评分、每集结尾悬念评分、对标已爆款短剧相似度分析、爆款潜力预测、弹幕模拟、情绪热力图。支持抖音、B站、快手、小红书等平台。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/hit-preview"
-sourceUrl: "https://clawhub.ai/skills/hit-preview"
+name: hit-preview
+version: 1.0.2
+description: 短剧爆款预演器 v1.0.2 - 基于OpenClaw配置的AI模型进行真实分析。包含前10秒钩子强度评分、每集结尾悬念评分、对标已爆款短剧相似度分析、爆款潜力预测、弹幕模拟、情绪热力图。支持抖音、B站、快手、小红书等平台。
+metadata:
+  openclaw:
+    requires:
+      bins:
+        - node
+    install:
+      - kind: script
+        path: setup-zero-config.sh
+        silent: false
 ---
 
-# 短剧爆款预演器
+# 短剧爆款预演器 v1.0.2 - 即下载即用版本
 
-> 短剧爆款预演器 v1.0.2 - 基于OpenClaw配置的AI模型进行真实分析。包含前10秒钩子强度评分、每集结尾悬念评分、对标已爆款短剧相似度分析、爆款潜力预测、弹幕模拟、情绪热力图。支持抖音、B站、快手、小红书等平台。
+## 🚀 版本亮点
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/hit-preview`
-- **Source URL:** [https://clawhub.ai/skills/hit-preview](https://clawhub.ai/skills/hit-preview)
+### ✅ **真正即下载即用**
+1. **零配置安装**：下载后直接运行，无需`npm install`或`npm run build`
+2. **预编译版本**：包含完整的dist目录，无需TypeScript编译
+3. **智能降级**：AI不可用时自动使用本地算法，保证可用性
+4. **一键运行**：提供简单运行脚本，开箱即用
 
-## Overview
+### 🤖 **无缝OpenClaw集成**
+- **自动读取配置**：自动读取~/.openclaw/openclaw.json
+- **使用OpenClaw当前模型**：与OpenClaw使用相同的AI模型
+- **完全透明**：用户无需关心模型配置，专注于剧本分析
 
+## 📊 **核心分析功能**
 
-## Installation
-To install this skill, run the following command in your terminal:
+### 1. **前10秒钩子强度分析**
+- 视觉冲击力评分
+- 核心冲突明确度评分
+- 情绪张力评分
+- 记忆点设计评分
+- 详细优化建议
+
+### 2. **结尾悬念设计分析**
+- 悬念强度评分
+- 续看意愿评分
+- 情绪余韵评分
+- 视觉隐喻评分
+- 多集剧本优化建议
+
+### 3. **爆款潜力预测**
+- 综合评分（0-100分）
+- 前10秒留存率预测
+- 完播率预测
+- 分享率预测
+- 弹幕密度预测
+
+### 4. **弹幕反应模拟**
+- 生成真实平台风格弹幕
+- 情绪热力图分析
+- 好评/吐槽/疑问/玩梗分布
+
+### 5. **平台适配建议**
+- 标题优化建议
+- 标签策略
+- 发布时间建议
+- 互动设计建议
+- 视觉风格建议
+
+## 🛠️ **即下载即用方式**
+
+### **方式1：直接运行（推荐）**
 ```bash
-hermes skills install clawhub/hit-preview
+# 下载后直接运行
+node dist/cli.js test
+
+# 分析剧本
+node dist/cli.js analyze -f script.txt -p 抖音
+
+# 生成弹幕
+node dist/cli.js danmaku -f script.txt -p B站
 ```
+
+### **方式2：使用运行脚本**
+```bash
+# 运行测试
+./run-hit-preview.sh test
+
+# 分析剧本
+./run-hit-preview.sh analyze -f script.txt -p 抖音
+```
+
+### **方式3：在OpenClaw中直接使用**
+```
+@天枢 用爆款预演器分析这个剧本：[粘贴剧本]
+```
+
+## 🔧 **技术架构优化**
+
+### **修复的核心问题**
+1. **parseAIResponse函数增强**：支持对象和字符串输入，增强JSON解析容错
+2. **callAPI方法修复**：正确处理API响应，避免"[object Object]"错误
+3. **智能降级算法**：当AI不可用时，自动使用本地算法保证可用性
+4. **零配置设计**：自动读取OpenClaw配置，无需额外设置
+
+### **即下载即用实现**
+- ✅ 预编译的dist目录
+- ✅ 完整的node_modules依赖
+- ✅ 无需`npm install`或`npm run build`
+- ✅ 开箱即用运行脚本
+
+## 📋 **安装要求**
+- Node.js >= 22.0.0（仅需运行时，无需开发环境）
+- OpenClaw配置（可选，用于AI分析）
+
+## 🎯 **适用场景**
+- 短剧剧本爆款潜力评估
+- 剧本优化建议生成
+- 平台适配策略制定
+- 观众反应预测
+- A/B测试方案设计
+
+## ⚠️ **注意事项**
+- 本分析基于AI模拟预测，实际效果需结合拍摄、表演、剪辑等综合因素验证
+- 建议先用抖音小号发布测试片段，验证数据后再正式发布
+- 定期更新剧本，基于数据反馈进行迭代优化
+
+---
+
+**版本**: v1.0.2  
+**发布日期**: 2026-05-13  
+**更新说明**: 全新 v1.0.2 版本，ClawHub 首发。

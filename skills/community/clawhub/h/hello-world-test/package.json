@@ -1,0 +1,40 @@
+{
+  "name": "openclaw-hello-world",
+  "version": "0.1.0",
+  "description": "A minimal hello-world plugin for OpenClaw.",
+  "type": "module",
+  "license": "MIT",
+  "keywords": ["openclaw", "openclaw-plugin", "clawhub", "hello-world"],
+  "main": "./dist/index.js",
+  "files": [
+    "dist",
+    "src",
+    "skills",
+    "openclaw.plugin.json",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsc"
+  },
+  "openclaw": {
+    "extensions": ["./src/index.ts"],
+    "runtimeExtensions": ["./dist/index.js"],
+    "compat": {
+      "pluginApi": ">=2026.3.24-beta.2",
+      "minGatewayVersion": "2026.3.24-beta.2"
+    },
+    "build": {
+      "openclawVersion": "2026.3.24-beta.2",
+      "pluginSdkVersion": "2026.3.24-beta.2"
+    }
+  },
+  "peerDependencies": {
+    "openclaw": ">=2026.3.24-beta.2"
+  },
+  "dependencies": {
+    "@sinclair/typebox": "^0.32.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.4.0"
+  }
+}

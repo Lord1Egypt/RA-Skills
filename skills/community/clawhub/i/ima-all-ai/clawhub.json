@@ -1,0 +1,161 @@
+{
+  "name": "IMA Studio — All-in-One AI Creation",
+  "tagline": "Image, video, music, TTS in one — SeeDream, Midjourney, Nano Banana, Veo, Sora, Kling, Wan, Pixverse, Suno, DouBao, seed-tts. All-in-one AI creation.",
+  "description": "All-in-One AI creation via IMA Open API: image, video, music, and TTS generation with runtime model discovery. Supports text_to_image, image_to_image, text_to_video, image_to_video, first_last_frame_to_video, reference_image_to_video, text_to_music, and text_to_speech. Requires IMA_API_KEY. Works standalone; when ima-knowledge-ai is installed, optional reference reads may be used for workflow and consistency guidance.",
+  "category": "file-generation",
+  "requiredEnvVars": ["IMA_API_KEY"],
+  "credentialNotice": "The IMA API key is required at runtime (--api-key or IMA_API_KEY). It is always sent to api.imastudio.com for product/task APIs. It is sent to imapi.liveme.com only for local image uploads in image/video tasks. Obtain keys at https://imastudio.com. Use a scoped or test key if concerned about credential exposure.",
+  "optionalDependencyNote": "When ima-knowledge-ai is installed, this skill may optionally read ~/.openclaw/skills/ima-knowledge-ai/references/* for workflow decomposition, visual-consistency, and mode-selection guidance. The skill works standalone without those reads.",
+  "requires": {
+    "env": ["IMA_API_KEY"],
+    "primaryCredential": "IMA_API_KEY",
+    "credentialNote": "IMA_API_KEY is required at runtime. It is sent to api.imastudio.com and, for local image uploads, to imapi.liveme.com."
+  },
+  "localPaths": {
+    "readWrite": [
+      "~/.openclaw/memory/ima_prefs.json",
+      "~/.openclaw/logs/ima_skills/"
+    ],
+    "purpose": "Preferences (model defaults) and generation logs; logs auto-deleted after 7 days. User can delete anytime."
+  },
+  "persistence": {
+    "readWrite": [
+      "~/.openclaw/memory/ima_prefs.json",
+      "~/.openclaw/logs/ima_skills/"
+    ],
+    "retention": "Logs are auto-cleaned after 7 days; preferences remain until user deletes them."
+  },
+  "instructionScope": {
+    "crossSkillReadOptional": [
+      "~/.openclaw/skills/ima-knowledge-ai/references/*"
+    ]
+  },
+  "supported_models": [
+    "SeeDream",
+    "SeeDream 4.5",
+    "Midjourney",
+    "MJ",
+    "Nano Banana",
+    "Nano Banana 2",
+    "Nano Banana Pro",
+    "Veo",
+    "Google Veo",
+    "Veo 3.1",
+    "Sora",
+    "Sora 2 Pro",
+    "Kling",
+    "Kling O1",
+    "Kling 2.6",
+    "Wan",
+    "Wan 2.6",
+    "Pixverse",
+    "Hailuo",
+    "Hailuo 2.0",
+    "Hailuo 2.3",
+    "SeeDance",
+    "Vidu",
+    "Suno",
+    "Suno sonic",
+    "DouBao",
+    "DouBao BGM",
+    "DouBao Song",
+    "GenBGM",
+    "GenSong",
+    "seed-tts",
+    "seed-tts-2.0",
+    "text-to-image",
+    "image-to-image",
+    "text-to-video",
+    "image-to-video",
+    "text-to-music",
+    "text-to-speech"
+  ],
+  "tags": [
+    "ima-studio",
+    "multimodal",
+    "all-in-one",
+    "image-generation",
+    "video-generation",
+    "music-generation",
+    "tts",
+    "seedream",
+    "midjourney",
+    "nano-banana",
+    "veo",
+    "google-veo",
+    "sora",
+    "kling",
+    "wan",
+    "pixverse",
+    "hailuo",
+    "suno",
+    "doubao",
+    "seed-tts"
+  ],
+  "version": "1.3.0",
+  "license": "MIT",
+  "pricing": "free",
+  "author": {
+    "name": "IMA Studio",
+    "url": "https://imastudio.com/"
+  },
+  "keywords": [
+    "multimodal",
+    "all in one",
+    "ima studio",
+    "veo",
+    "google veo",
+    "sora",
+    "kling",
+    "wan",
+    "pixverse",
+    "hailuo",
+    "seedream",
+    "midjourney",
+    "nano banana",
+    "suno",
+    "doubao",
+    "seed-tts",
+    "text to image",
+    "text to video",
+    "image to video",
+    "text to music",
+    "text to speech",
+    "TTS"
+  ],
+  "search_optimized_terms": [
+    "veo",
+    "google veo",
+    "sora",
+    "kling",
+    "wan",
+    "pixverse",
+    "midjourney",
+    "seedream",
+    "nano banana",
+    "suno",
+    "doubao",
+    "seed tts",
+    "ima all in one",
+    "multimodal AI creation"
+  ],
+  "related_skills": [
+    "ima-knowledge-ai",
+    "ima-image-ai",
+    "ima-video-ai",
+    "ima-voice-ai",
+    "ima-tts-ai"
+  ],
+  "use_cases": [
+    "Image, video, music, TTS in one entry",
+    "Multimodal content creation and workflow orchestration",
+    "Character consistency across image and video",
+    "Full creative pipeline"
+  ],
+  "key_features": [
+    "Image, video, music, TTS one-stop",
+    "SeeDream, Midjourney, Nano Banana, Wan, Kling, Veo, Sora, Suno, DouBao",
+    "Runtime model discovery and smart defaults",
+    "Alternative to multiple skills (ai-image + ai-video + suno + tts)"
+  ]
+}

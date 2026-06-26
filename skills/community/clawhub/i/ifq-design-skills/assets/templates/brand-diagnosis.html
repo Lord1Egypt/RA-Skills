@@ -1,0 +1,235 @@
+<!doctype html>
+<!--
+  IFQ Design Skills · Template T-diagnosis
+  Brand diagnosis report with radar chart, scoring, direction boards.
+  Fork-and-fill: replace { BRAND_NAME / SCORES / DIRECTIONS / KEEP / FIX } placeholders.
+-->
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>{ BRAND_NAME } · brand diagnosis</title>
+<!-- Optional Google Fonts (non-blocking). See references/font-loading.md -->
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@400;600&family=Noto+Serif+SC:wght@700;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'"/>
+<noscript><link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@400;600&family=Noto+Serif+SC:wght@700;900&display=swap" rel="stylesheet"/></noscript>
+<style>
+  :root {
+    --ifq-accent:#D4532B; --ifq-accent-deep:#A83518; --ifq-accent-soft:#FFB27A;
+    --ifq-ink:#111; --ifq-ink-soft:#3A3532; --ifq-paper:#FAF7F2; --ifq-cream:#F1EBE0;
+    --ifq-display:'Newsreader','Noto Serif SC',Georgia,serif;
+    --ifq-mono:'JetBrains Mono',ui-monospace,monospace;
+    --ok:#2E7D5B; --warn:#C89B2A; --err:#B1422A;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { background: var(--ifq-paper); }
+  body { color: var(--ifq-ink); font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif; font-size: 15px; line-height: 1.6; }
+
+  .page { max-width: 1120px; margin: 0 auto; padding: 60px 40px 100px; position: relative; }
+
+  /* Header */
+  .header { display: flex; justify-content: space-between; align-items: flex-end; padding-bottom: 32px; border-bottom: 2px solid var(--ifq-ink); margin-bottom: 48px; }
+  .header__brand { display: flex; align-items: center; gap: 10px; font-family: var(--ifq-display); font-weight: 900; font-size: 20px; }
+  .header__brand svg { width: 16px; height: 16px; color: var(--ifq-accent); }
+  .header__brand b { color: var(--ifq-accent); }
+  .header__meta { font-family: var(--ifq-mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ifq-ink-soft); opacity: .6; text-align: right; }
+  .header__title { font-family: var(--ifq-display); font-weight: 900; font-size: 52px; letter-spacing: -1.5px; line-height: 1; margin-bottom: 8px; }
+  .header__subtitle { font-family: var(--ifq-mono); font-size: 12px; letter-spacing: 0.1em; color: var(--ifq-ink-soft); }
+
+  /* Section label */
+  .section-label { display: flex; align-items: center; gap: 12px; margin: 48px 0 24px; }
+  .section-label__line { flex: 1; height: 1px; background: rgba(17,17,17,0.1); }
+  .section-label__text { font-family: var(--ifq-mono); font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ifq-accent); }
+
+  /* Radar chart */
+  .radar-wrap { display: flex; justify-content: center; margin: 32px 0 48px; }
+  .radar { width: 360px; height: 360px; }
+  .radar-bg { fill: none; stroke: rgba(17,17,17,0.08); stroke-width: 1; }
+  .radar-axis { stroke: rgba(17,17,17,0.06); stroke-width: 1; }
+  .radar-area { fill: rgba(212,83,43,0.12); stroke: var(--ifq-accent); stroke-width: 2; }
+  .radar-label { font-family: var(--ifq-mono); font-size: 10px; letter-spacing: 0.08em; fill: var(--ifq-ink-soft); text-anchor: middle; }
+  .radar-score { font-family: var(--ifq-display); font-size: 13px; font-weight: 700; fill: var(--ifq-accent); text-anchor: middle; }
+
+  /* Score table */
+  .scores { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 24px 0; }
+  .score-card { padding: 20px; border: 1px solid rgba(17,17,17,0.08); background: #fff; }
+  .score-card__dim { font-family: var(--ifq-mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ifq-ink-soft); margin-bottom: 8px; }
+  .score-card__num { font-family: var(--ifq-display); font-size: 40px; font-weight: 900; letter-spacing: -1px; }
+  .score-card__num.high { color: var(--ok); }
+  .score-card__num.mid { color: var(--warn); }
+  .score-card__num.low { color: var(--err); }
+  .score-card__bar { margin-top: 8px; height: 4px; background: rgba(17,17,17,0.06); }
+  .score-card__fill { height: 100%; background: var(--ifq-accent); }
+
+  /* Direction boards */
+  .directions { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin: 32px 0; }
+  .direction { border: 1px solid rgba(17,17,17,0.1); padding: 28px; position: relative; }
+  .direction__num { font-family: var(--ifq-mono); font-size: 10px; color: var(--ifq-accent); letter-spacing: 0.1em; margin-bottom: 12px; }
+  .direction__name { font-family: var(--ifq-display); font-size: 22px; font-weight: 700; letter-spacing: -0.3px; margin-bottom: 8px; }
+  .direction__desc { font-size: 14px; color: var(--ifq-ink-soft); line-height: 1.6; margin-bottom: 16px; }
+  .direction__mood { background: var(--ifq-cream); height: 120px; display: flex; align-items: center; justify-content: center; font-family: var(--ifq-mono); font-size: 10px; color: var(--ifq-ink-soft); opacity: .5; margin-bottom: 12px; }
+  .direction__tag { font-family: var(--ifq-mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ifq-accent); }
+
+  /* Tri-section: Keep / Fix / Quick Wins */
+  .tri { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin: 32px 0; }
+  .tri__col { padding: 24px; }
+  .tri__col h3 { font-family: var(--ifq-mono); font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+  .tri__col h3 svg { width: 14px; height: 14px; }
+  .tri--keep h3 { color: var(--ok); }
+  .tri--fix h3 { color: var(--err); }
+  .tri--quick h3 { color: var(--warn); }
+  .tri__item { padding: 10px 0; border-bottom: 1px solid rgba(17,17,17,0.06); font-size: 14px; color: var(--ifq-ink-soft); }
+  .tri__item:last-child { border-bottom: none; }
+  .tri__item strong { color: var(--ifq-ink); font-weight: 600; }
+
+  /* Colophon */
+  .colophon { margin-top: 64px; padding-top: 24px; border-top: 1px solid rgba(17,17,17,0.08); display: flex; align-items: center; gap: 8px; opacity: 0.5; font-family: var(--ifq-mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ifq-ink-soft); }
+  .colophon svg { width: 12px; height: 12px; }
+  .colophon b { color: var(--ifq-accent); }
+</style>
+</head>
+<body>
+<div class="page">
+  <header class="header">
+    <div>
+      <div class="header__brand">
+        <svg viewBox="-12 -12 24 24"><path d="M0 -10 L2.2 -2.2 L10 0 L2.2 2.2 L0 10 L-2.2 2.2 L-10 0 L-2.2 -2.2 Z" fill="currentColor"/></svg>
+        <span>ifq<b>.ai</b></span>
+      </div>
+      <h1 class="header__title">{ BRAND_NAME }</h1>
+      <p class="header__subtitle">brand diagnosis report</p>
+    </div>
+    <div class="header__meta">
+      <div data-ifq-authored-date="year-month">__IFQ_YEAR_MONTH__</div>
+      <div>diagnosis / vol.01</div>
+    </div>
+  </header>
+
+  <div class="section-label"><div class="section-label__line"></div><span class="section-label__text">overall score</span><div class="section-label__line"></div></div>
+
+  <!-- Radar chart (SVG — replace scores with real data) -->
+  <div class="radar-wrap">
+    <svg class="radar" viewBox="0 0 360 360">
+      <!-- Background rings -->
+      <polygon class="radar-bg" points="180,40 306,110 306,250 180,320 54,250 54,110"/>
+      <polygon class="radar-bg" points="180,70 276,125 276,235 180,290 84,235 84,125"/>
+      <polygon class="radar-bg" points="180,100 246,140 246,220 180,260 114,220 114,140"/>
+      <polygon class="radar-bg" points="180,130 216,155 216,205 180,230 144,205 144,155"/>
+      <!-- Axes -->
+      <line class="radar-axis" x1="180" y1="180" x2="180" y2="40"/>
+      <line class="radar-axis" x1="180" y1="180" x2="306" y2="110"/>
+      <line class="radar-axis" x1="180" y1="180" x2="306" y2="250"/>
+      <line class="radar-axis" x1="180" y1="180" x2="180" y2="320"/>
+      <line class="radar-axis" x1="180" y1="180" x2="54" y2="250"/>
+      <line class="radar-axis" x1="180" y1="180" x2="54" y2="110"/>
+      <!-- Data area (replace with real scores: 0-10 mapped to radius) -->
+      <polygon class="radar-area" points="180,68 284,118 290,248 180,304 76,242 72,122"/>
+      <!-- Labels -->
+      <text class="radar-label" x="180" y="28">recognition</text>
+      <text class="radar-label" x="320" y="108">consistency</text>
+      <text class="radar-label" x="320" y="258">relevance</text>
+      <text class="radar-label" x="180" y="345">emotion</text>
+      <text class="radar-label" x="40" y="258">differentiation</text>
+      <text class="radar-label" x="40" y="108">extensibility</text>
+      <!-- Score dots -->
+      <circle cx="180" cy="68" r="4" fill="var(--ifq-accent)"/>
+      <circle cx="284" cy="118" r="4" fill="var(--ifq-accent)"/>
+      <circle cx="290" cy="248" r="4" fill="var(--ifq-accent)"/>
+      <circle cx="180" cy="304" r="4" fill="var(--ifq-accent)"/>
+      <circle cx="76" cy="242" r="4" fill="var(--ifq-accent)"/>
+      <circle cx="72" cy="122" r="4" fill="var(--ifq-accent)"/>
+    </svg>
+  </div>
+
+  <div class="scores">
+    <div class="score-card">
+      <div class="score-card__dim">Recognition</div>
+      <div class="score-card__num mid">{ 7 }</div>
+      <div class="score-card__bar"><div class="score-card__fill" style="width:70%"></div></div>
+    </div>
+    <div class="score-card">
+      <div class="score-card__dim">Consistency</div>
+      <div class="score-card__num low">{ 5 }</div>
+      <div class="score-card__bar"><div class="score-card__fill" style="width:50%"></div></div>
+    </div>
+    <div class="score-card">
+      <div class="score-card__dim">Relevance</div>
+      <div class="score-card__num high">{ 8 }</div>
+      <div class="score-card__bar"><div class="score-card__fill" style="width:80%"></div></div>
+    </div>
+    <div class="score-card">
+      <div class="score-card__dim">Emotion</div>
+      <div class="score-card__num mid">{ 6 }</div>
+      <div class="score-card__bar"><div class="score-card__fill" style="width:60%"></div></div>
+    </div>
+    <div class="score-card">
+      <div class="score-card__dim">Differentiation</div>
+      <div class="score-card__num low">{ 4 }</div>
+      <div class="score-card__bar"><div class="score-card__fill" style="width:40%"></div></div>
+    </div>
+    <div class="score-card">
+      <div class="score-card__dim">Extensibility</div>
+      <div class="score-card__num mid">{ 6 }</div>
+      <div class="score-card__bar"><div class="score-card__fill" style="width:60%"></div></div>
+    </div>
+  </div>
+
+  <div class="section-label"><div class="section-label__line"></div><span class="section-label__text">upgrade directions</span><div class="section-label__line"></div></div>
+
+  <div class="directions">
+    <div class="direction">
+      <div class="direction__num">Direction 01</div>
+      <h3 class="direction__name">{ Conservative }</h3>
+      <p class="direction__desc">{ Keep the core, fix the gaps. Lowest risk, fastest path. }</p>
+      <div class="direction__mood">{ moodboard reference }</div>
+      <span class="direction__tag">low risk / quick win</span>
+    </div>
+    <div class="direction">
+      <div class="direction__num">Direction 02</div>
+      <h3 class="direction__name">{ Evolve }</h3>
+      <p class="direction__desc">{ Push the identity further while staying recognizably you. }</p>
+      <div class="direction__mood">{ moodboard reference }</div>
+      <span class="direction__tag">medium risk / high impact</span>
+    </div>
+    <div class="direction">
+      <div class="direction__num">Direction 03</div>
+      <h3 class="direction__name">{ Radical }</h3>
+      <p class="direction__desc">{ Break from the current visual language entirely. For rebrands. }</p>
+      <div class="direction__mood">{ moodboard reference }</div>
+      <span class="direction__tag">high risk / transformative</span>
+    </div>
+  </div>
+
+  <div class="section-label"><div class="section-label__line"></div><span class="section-label__text">keep / fix / quick wins</span><div class="section-label__line"></div></div>
+
+  <div class="tri">
+    <div class="tri__col tri--keep">
+      <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> Keep</h3>
+      <div class="tri__item"><strong>{ Element to keep }</strong> — why it works.</div>
+      <div class="tri__item"><strong>{ Element to keep }</strong> — why it works.</div>
+      <div class="tri__item"><strong>{ Element to keep }</strong> — why it works.</div>
+    </div>
+    <div class="tri__col tri--fix">
+      <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M15 9l-6 6M9 9l6 6"/></svg> Fix</h3>
+      <div class="tri__item"><strong>{ Element to fix }</strong> — what is wrong.</div>
+      <div class="tri__item"><strong>{ Element to fix }</strong> — what is wrong.</div>
+      <div class="tri__item"><strong>{ Element to fix }</strong> — what is wrong.</div>
+    </div>
+    <div class="tri__col tri--quick">
+      <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg> Quick Wins</h3>
+      <div class="tri__item"><strong>{ Quick win }</strong> — low effort, visible improvement.</div>
+      <div class="tri__item"><strong>{ Quick win }</strong> — low effort, visible improvement.</div>
+      <div class="tri__item"><strong>{ Quick win }</strong> — low effort, visible improvement.</div>
+    </div>
+  </div>
+
+  <div class="colophon">
+    <svg viewBox="-12 -12 24 24"><path d="M0 -10 L2.2 -2.2 L10 0 L2.2 2.2 L0 10 L-2.2 2.2 L-10 0 L-2.2 -2.2 Z" fill="#D4532B"/></svg>
+    <span>compiled by <b>ifq.ai</b> · brand diagnosis · <span data-ifq-authored-year>__IFQ_YEAR__</span></span>
+  </div>
+</div>
+<script src="../ifq-brand/ifq_authored_year.js"></script>
+<script>window.IfqAuthoredYear && window.IfqAuthoredYear.apply(document);</script>
+</body>
+</html>

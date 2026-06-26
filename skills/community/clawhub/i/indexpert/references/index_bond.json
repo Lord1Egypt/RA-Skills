@@ -1,0 +1,604 @@
+{
+  "category": "债券",
+  "description": "理财通债券指数名单",
+  "count": 101,
+  "indices": [
+    {
+      "code": "000140.SH",
+      "name": "上证5年期国债指数",
+      "sub_category": "利率债",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=000140"
+    },
+    {
+      "code": "921128.CNI",
+      "name": "深证基准做市信用债指数",
+      "sub_category": "信用债",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=921128"
+    },
+    {
+      "code": "921130.CNI",
+      "name": "深证AAA科技创新公司债指数",
+      "sub_category": "信用债",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=921130"
+    },
+    {
+      "code": "930780.CSI",
+      "name": "中证兴业中高等级信用债指数",
+      "sub_category": "信用债",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=930780"
+    },
+    {
+      "code": "930865.CSI",
+      "name": "中证5年期地方政府债指数",
+      "sub_category": "利率债",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=930865"
+    },
+    {
+      "code": "930870.CSI",
+      "name": "中证政策性金融债指数",
+      "sub_category": "利率债",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=930870"
+    },
+    {
+      "code": "930954.CSI",
+      "name": "中证5年恒定久期国开债指数",
+      "sub_category": "利率债",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=930954"
+    },
+    {
+      "code": "931018.CSI",
+      "name": "中证5-10年期国债活跃券指数",
+      "sub_category": "利率债",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=931018"
+    },
+    {
+      "code": "931059.CSI",
+      "name": "中证同业存单AAA指数",
+      "sub_category": "信用债",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=931059"
+    },
+    {
+      "code": "931078.CSI",
+      "name": "中证可转债及可交换债券指数",
+      "sub_category": "可转债",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=931078"
+    },
+    {
+      "code": "931161.CSI",
+      "name": "中证0-4年期地方政府债指数",
+      "sub_category": "利率债",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=931161"
+    },
+    {
+      "code": "931175.CSI",
+      "name": "中证银行50金融债指数",
+      "sub_category": "信用债",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=931175"
+    },
+    {
+      "code": "931552.CSI",
+      "name": "中证1-3年国债指数",
+      "sub_category": "利率债",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=931552"
+    },
+    {
+      "code": "931754.CSI",
+      "name": "中证中诚信央企信用债指数",
+      "sub_category": "信用债",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=931754"
+    },
+    {
+      "code": "932160.CSI",
+      "name": "中证AAA科技创新公司债指数",
+      "sub_category": "信用债",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=932160"
+    },
+    {
+      "code": "932200.CSI",
+      "name": "中证国债及政策性金融债0-3年指数",
+      "sub_category": "利率债",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=932200"
+    },
+    {
+      "code": "950041.CSI",
+      "name": "上证投资级可转债及可交换债券指数",
+      "sub_category": "可转债",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=950041"
+    },
+    {
+      "code": "950167.CSI",
+      "name": "上证AAA科技创新公司债指数",
+      "sub_category": "信用债",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=950167"
+    },
+    {
+      "code": "950175.CSI",
+      "name": "上证30年期国债指数",
+      "sub_category": "利率债",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=950175"
+    },
+    {
+      "code": "950243.CSI",
+      "name": "上证基准做市国债指数",
+      "sub_category": "利率债",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=950243"
+    },
+    {
+      "code": "950245.CSI",
+      "name": "上证基准做市公司债指数",
+      "sub_category": "信用债",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=950245"
+    },
+    {
+      "code": "CBA00101.CS",
+      "name": "中债-新综合指数",
+      "sub_category": "综合债",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=CBA00101"
+    },
+    {
+      "code": "CBA00103.CS",
+      "name": "中债-新综合指数",
+      "sub_category": "综合债",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=CBA00103"
+    },
+    {
+      "code": "CBA04601.CS",
+      "name": "中债-3-5年期国债指数",
+      "sub_category": "利率债",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=CBA04601"
+    },
+    {
+      "code": "CBA05101.CS",
+      "name": "中债-农发行债券总指数",
+      "sub_category": "利率债",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=CBA05101"
+    },
+    {
+      "code": "CBA05201.CS",
+      "name": "中债-7-10年国开行债券指数",
+      "sub_category": "利率债",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=CBA05201"
+    },
+    {
+      "code": "CBA05203.CS",
+      "name": "中债-7-10年国开行债券指数",
+      "sub_category": "利率债",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=CBA05203"
+    },
+    {
+      "code": "CBA06301.CS",
+      "name": "中债-3-5年国开行债券指数",
+      "sub_category": "利率债",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=CBA06301"
+    },
+    {
+      "code": "CBA06303.CS",
+      "name": "中债-3-5年国开行债券指数",
+      "sub_category": "利率债",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=CBA06303"
+    },
+    {
+      "code": "CBA07001.CS",
+      "name": "中债-1-3年农发行债券指数",
+      "sub_category": "利率债",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=CBA07001"
+    },
+    {
+      "code": "CBA07003.CS",
+      "name": "中债-1-3年农发行债券指数",
+      "sub_category": "利率债",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=CBA07003"
+    },
+    {
+      "code": "CBA07401.CS",
+      "name": "中债-1-3年政策性金融债指数",
+      "sub_category": "利率债",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=CBA07401"
+    },
+    {
+      "code": "CBA07403.CS",
+      "name": "中债-1-3年政策性金融债指数",
+      "sub_category": "利率债",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=CBA07403"
+    },
+    {
+      "code": "CBA07603.CS",
+      "name": "中债-3-5年农发行债券指数",
+      "sub_category": "利率债",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=CBA07603"
+    },
+    {
+      "code": "CBA07701.CS",
+      "name": "中债-1-3年国开行债券指数",
+      "sub_category": "利率债",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=CBA07701"
+    },
+    {
+      "code": "CBA07703.CS",
+      "name": "中债-1-3年国开行债券指数",
+      "sub_category": "利率债",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=CBA07703"
+    },
+    {
+      "code": "CBA07801.CS",
+      "name": "中债-1-5年进出口行债券指数",
+      "sub_category": "利率债",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=CBA07801"
+    },
+    {
+      "code": "CBA07803.CS",
+      "name": "中债-1-5年进出口行债券指数",
+      "sub_category": "利率债",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=CBA07803"
+    },
+    {
+      "code": "CBA07903.CS",
+      "name": "中债-安徽省公司信用类债券指数",
+      "sub_category": "信用债",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=CBA07903"
+    },
+    {
+      "code": "CBA08203.CS",
+      "name": "中债-7-10年政策性金融债指数",
+      "sub_category": "利率债",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=CBA08203"
+    },
+    {
+      "code": "CBA08301.CS",
+      "name": "中债-1-5年国开行债券指数",
+      "sub_category": "利率债",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=CBA08301"
+    },
+    {
+      "code": "CBA08303.CS",
+      "name": "中债-1-5年国开行债券指数",
+      "sub_category": "利率债",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=CBA08303"
+    },
+    {
+      "code": "CBA09001.CS",
+      "name": "中债-5-10年农发行债券指数",
+      "sub_category": "利率债",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=CBA09001"
+    },
+    {
+      "code": "CBA09101.CS",
+      "name": "中债-1-5年农发行债券指数",
+      "sub_category": "利率债",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=CBA09101"
+    },
+    {
+      "code": "CBA09203.CS",
+      "name": "中债-5-10年国开行债券指数",
+      "sub_category": "利率债",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=CBA09203"
+    },
+    {
+      "code": "CBA09301.CS",
+      "name": "中债-3-5年政策性金融债指数",
+      "sub_category": "利率债",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=CBA09301"
+    },
+    {
+      "code": "CBA09303.CS",
+      "name": "中债-3-5年政策性金融债指数",
+      "sub_category": "利率债",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=CBA09303"
+    },
+    {
+      "code": "CBA09501.CS",
+      "name": "中债-0-2年国开行债券指数",
+      "sub_category": "利率债",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=CBA09501"
+    },
+    {
+      "code": "CBA10301.CS",
+      "name": "中债-1-5年政策性金融债指数",
+      "sub_category": "利率债",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=CBA10301"
+    },
+    {
+      "code": "CBA10303.CS",
+      "name": "中债-1-5年政策性金融债指数",
+      "sub_category": "利率债",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=CBA10303"
+    },
+    {
+      "code": "CBA11603.CS",
+      "name": "中债-广西壮族自治区公司信用类债券指数",
+      "sub_category": "信用债",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=CBA11603"
+    },
+    {
+      "code": "CBA11803.CS",
+      "name": "中债-长三角中高等级信用债指数",
+      "sub_category": "信用债",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=CBA11803"
+    },
+    {
+      "code": "CBA11901.CS",
+      "name": "中债-0-3年国开行债券指数",
+      "sub_category": "利率债",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=CBA11901"
+    },
+    {
+      "code": "CBA12903.CS",
+      "name": "中债-京津冀债券综合指数",
+      "sub_category": "信用债",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=CBA12903"
+    },
+    {
+      "code": "CBA13701.CS",
+      "name": "中债-0-3年AA+优选信用债指数",
+      "sub_category": "信用债",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=CBA13701"
+    },
+    {
+      "code": "CBA19823.CS",
+      "name": "中债-市场隐含评级AA+及以上信用债指数",
+      "sub_category": "信用债",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=CBA19823"
+    },
+    {
+      "code": "CBA20901.CS",
+      "name": "中债-优选投资级信用债指数",
+      "sub_category": "信用债",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=CBA20901"
+    },
+    {
+      "code": "CBA20903.CS",
+      "name": "中债-优选投资级信用债指数",
+      "sub_category": "信用债",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=CBA20903"
+    },
+    {
+      "code": "CBA20923.CS",
+      "name": "中债-优选投资级信用债指数",
+      "sub_category": "信用债",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=CBA20923"
+    },
+    {
+      "code": "CBA21801.CS",
+      "name": "中债-30年期国债指数",
+      "sub_category": "利率债",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=CBA21801"
+    },
+    {
+      "code": "CBA22001.CS",
+      "name": "中债-0-2年政策性金融债指数",
+      "sub_category": "利率债",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=CBA22001"
+    },
+    {
+      "code": "CBA22003.CS",
+      "name": "中债-0-2年政策性金融债指数",
+      "sub_category": "利率债",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=CBA22003"
+    },
+    {
+      "code": "CBA23301.CS",
+      "name": "中债-同业存单AAA指数",
+      "sub_category": "信用债",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=CBA23301"
+    },
+    {
+      "code": "CBA27201.CS",
+      "name": "中债-0-3年政策性金融债指数",
+      "sub_category": "利率债",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=CBA27201"
+    },
+    {
+      "code": "CBA27203.CS",
+      "name": "中债-0-3年政策性金融债指数",
+      "sub_category": "利率债",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=CBA27203"
+    },
+    {
+      "code": "CBA27303.CS",
+      "name": "中债-0-5年政策性金融债指数",
+      "sub_category": "利率债",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=CBA27303"
+    },
+    {
+      "code": "CBA29401.CS",
+      "name": "中债-0-3年农发行债券指数",
+      "sub_category": "利率债",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=CBA29401"
+    },
+    {
+      "code": "CBA30303.CS",
+      "name": "中债-投资级公司信用债精选指数",
+      "sub_category": "信用债",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=CBA30303"
+    },
+    {
+      "code": "CBC00702.CS",
+      "name": "中债-中高等级公司债利差因子指数",
+      "sub_category": "信用债",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=CBC00702"
+    },
+    {
+      "code": "CBC01703.CS",
+      "name": "中债-0-5年中高等级江苏省城投类债券指数",
+      "sub_category": "信用债",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=CBC01703"
+    },
+    {
+      "code": "CBC05901.CS",
+      "name": "中债-绿色普惠主题金融债券优选指数",
+      "sub_category": "综合债",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=CBC05901"
+    },
+    {
+      "code": "CBC06001.CS",
+      "name": "中债-投资优选绿色债券指数",
+      "sub_category": "综合债",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=CBC06001"
+    },
+    {
+      "code": "CBC06701.CS",
+      "name": "中债-1-3年久期央企20债券指数",
+      "sub_category": "信用债",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=CBC06701"
+    },
+    {
+      "code": "CBC08501.CS",
+      "name": "中债-投资级公司绿色债券精选指数",
+      "sub_category": "综合债",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=CBC08501"
+    },
+    {
+      "code": "CFETSCPOF03002.IB",
+      "name": "CFETS 0-3年期政策性金融债指数",
+      "sub_category": "利率债",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=CFETSCPOF03002"
+    },
+    {
+      "code": "CFETSCSE05002.IB",
+      "name": "CFETS 0-5年期央企债券指数",
+      "sub_category": "信用债",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=CFETSCSE05002"
+    },
+    {
+      "code": "CFXID00142.IB",
+      "name": "CFETS银行间绿色债券指数",
+      "sub_category": "综合债",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=CFXID00142"
+    },
+    {
+      "code": "CFXID00421.IB",
+      "name": "CFETS 0-3年期山东省国有企业信用债精选指数",
+      "sub_category": "信用债",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=CFXID00421"
+    },
+    {
+      "code": "CFXID00841.IB",
+      "name": "CFETS 0-5年期气候变化高等级债券综合指数",
+      "sub_category": "综合债",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=CFXID00841"
+    },
+    {
+      "code": "h01077.SH",
+      "name": "上证10年期国债指数(净价)",
+      "sub_category": "利率债",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=h01077"
+    },
+    {
+      "code": "h11014.CSI",
+      "name": "中证短融指数",
+      "sub_category": "信用债",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=h11014"
+    },
+    {
+      "code": "h11098.SH",
+      "name": "上证城投债指数",
+      "sub_category": "信用债",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=h11098"
+    },
+    {
+      "code": "h40045.CSI",
+      "name": "上证5年期地方政府债指数(净价)",
+      "sub_category": "利率债",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=h40045"
+    },
+    {
+      "code": "h40109.SH",
+      "name": "上证10年期地方政府债指数(净价)",
+      "sub_category": "利率债",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=h40109"
+    },
+    {
+      "code": "SCH00302.SCH",
+      "name": "上清所银行间1-3年中高等级信用债指数",
+      "sub_category": "信用债",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=SCH00302"
+    },
+    {
+      "code": "SCH00902.SCH",
+      "name": "上海清算所0-4年央企80债券指数",
+      "sub_category": "信用债",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=SCH00902"
+    },
+    {
+      "code": "SCH01101.SCH",
+      "name": "中高等级短期融资券指数",
+      "sub_category": "信用债",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=SCH01101"
+    },
+    {
+      "code": "SCH012031.SCH",
+      "name": "高等级优选短期融资券指数",
+      "sub_category": "信用债",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=SCH012031"
+    },
+    {
+      "code": "SCH01401.SCH",
+      "name": "上海清算所0-5年农发行债券指数",
+      "sub_category": "利率债",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=SCH01401"
+    },
+    {
+      "code": "SCH014031.SCH",
+      "name": "上海清算所0-3年政策性金融债指数",
+      "sub_category": "利率债",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=SCH014031"
+    },
+    {
+      "code": "SCH01404.SCH",
+      "name": "上海清算所0-5年政策性金融债指数",
+      "sub_category": "利率债",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=SCH01404"
+    },
+    {
+      "code": "SPCCBI.SPI",
+      "name": "标普中国全债指数",
+      "sub_category": "综合债",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=SPCCBI"
+    },
+    {
+      "code": "Wind无代码1",
+      "name": "iBoxx亚债基金中国指数",
+      "sub_category": "综合债"
+    },
+    {
+      "code": "Wind无代码2",
+      "name": "彭博利率债指数",
+      "sub_category": "利率债"
+    },
+    {
+      "code": "Wind无代码3",
+      "name": "彭博农发行债券1-3年指数",
+      "sub_category": "利率债"
+    },
+    {
+      "code": "Wind无代码4",
+      "name": "彭博国开行债指数",
+      "sub_category": "利率债"
+    },
+    {
+      "code": "Wind无代码5",
+      "name": "彭博国开债1-5年指数",
+      "sub_category": "利率债"
+    },
+    {
+      "code": "Wind无代码6",
+      "name": "彭博政策性银行债券1-5年指数",
+      "sub_category": "利率债"
+    },
+    {
+      "code": "Wind无代码7",
+      "name": "彭博中国政策性银行债券1-3年指数",
+      "sub_category": "利率债"
+    },
+    {
+      "code": "Wind无代码8",
+      "name": "彭博中国政策性银行债指数",
+      "sub_category": "利率债"
+    },
+    {
+      "code": "Wind无代码9",
+      "name": "彭博政策性银行债指数",
+      "sub_category": "利率债"
+    }
+  ]
+}

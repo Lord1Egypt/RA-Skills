@@ -1,0 +1,42 @@
+{
+  "name": "human-type-cli",
+  "version": "2.0.1",
+  "description": "Type text into a browser like a real human — adjacent-key typos, deferred corrections, French accent omissions, variable speed. OpenClaw skill.",
+  "main": "./engine.js",
+  "bin": {
+    "human-type": "./human-type.js"
+  },
+  "scripts": {
+    "test": "node ./engine.test.js"
+  },
+  "keywords": [
+    "openclaw",
+    "skill",
+    "browser",
+    "automation",
+    "human-typing",
+    "stealth",
+    "playwright",
+    "french",
+    "deferred"
+  ],
+  "license": "MIT-0",
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "playwright-core": "^1.40.0"
+  },
+  "files": [
+    "engine.js",
+    "engine.test.js",
+    "human-type.js",
+    "player.js",
+    "SKILL.md",
+    "README.md"
+  ],
+  "openclaw": {
+    "skill": "human-type",
+    "emoji": "⌨️"
+  }
+}

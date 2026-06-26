@@ -1,0 +1,25 @@
+{
+	"type": "function",
+	"function": {
+		"name": "_website_create_module",
+		"description": "Create website resource and component designer module. Used to host website resources and page structure. AI should query existing website modules before creating a module to avoid duplication or naming conflicts.",
+		"parameters": {
+			"type": "object",
+			"properties": {
+				"id": {
+					"type": "string",
+					"description": "Website resource and component designer module ID (use camelCase naming, unique within the system, must not duplicate existing modules)."
+				},
+				"name": {
+					"type": "string",
+					"description": "Name of the website resource and component designer module."
+				},
+				"parentId": {
+					"type": "string",
+					"description": "Module group ID, the tool _query_app_define_designer can get the module group definition list"
+				}
+			},
+			"required": ["id", "name"]
+		}
+	}
+}

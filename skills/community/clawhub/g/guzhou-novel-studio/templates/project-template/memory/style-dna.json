@@ -1,0 +1,33 @@
+{
+  "style_id": "",
+  "style_name": "",
+  "created_at": "",
+  "source_texts": [],
+  
+  "linguistic_features": {
+    "sentence_length": "mixed",
+    "paragraph_length": "mixed",
+    "vocabulary_level": "moderate",
+    "formality_level": "neutral"
+  },
+  
+  "narrative_voice": {
+    "perspective": "third",
+    "tone": "serious",
+    "distance": "neutral"
+  },
+  
+  "dialogue_style": {
+    "quotation_marks": "「」",
+    "dialogue_tags": "moderate",
+    "speech_patterns": []
+  },
+  
+  "pacing_features": {
+    "rhythm": "varied",
+    "scene_transitions": "gradual"
+  },
+  
+  "genre_markers": [],
+  "memorable_phrases": []
+}

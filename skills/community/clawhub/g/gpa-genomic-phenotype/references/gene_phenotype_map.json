@@ -1,0 +1,588 @@
+{
+  "CAPN3": {
+    "phenotypes": [
+      {"source": "OMIM", "name": "Muscular dystrophy, limb-girdle, type 2A", "mim": "253600"},
+      {"source": "OMIM", "name": "Calpainopathy", "mim": "253600"},
+      {"source": "ClinVar", "name": "Limb-girdle muscular dystrophy", "trait_id": "C1835760"}
+    ]
+  },
+  "DYSF": {
+    "phenotypes": [
+      {"source": "OMIM", "name": "Miyoshi muscular dystrophy 1", "mim": "254130"},
+      {"source": "OMIM", "name": "Muscular dystrophy, limb-girdle, type 2B", "mim": "253601"},
+      {"source": "ClinVar", "name": "Distal myopathy", "trait_id": "C1857866"}
+    ]
+  },
+  "SGCA": {
+    "phenotypes": [
+      {"source": "OMIM", "name": "Muscular dystrophy, limb-girdle, type 2D", "mim": "608811"}
+    ]
+  },
+  "SGCB": {
+    "phenotypes": [
+      {"source": "OMIM", "name": "Muscular dystrophy, limb-girdle, type 2E", "mim": "604286"}
+    ]
+  },
+  "SGCG": {
+    "phenotypes": [
+      {"source": "OMIM", "name": "Muscular dystrophy, limb-girdle, type 2C", "mim": "253700"}
+    ]
+  },
+  "SGCD": {
+    "phenotypes": [
+      {"source": "OMIM", "name": "Muscular dystrophy, limb-girdle, type 2F", "mim": "601411"},
+      {"source": "OMIM", "name": "Dilated cardiomyopathy 1L", "mim": "606685"}
+    ]
+  },
+  "FKRP": {
+    "phenotypes": [
+      {"source": "OMIM", "name": "Muscular dystrophy-dystroglycanopathy type B5", "mim": "607155"},
+      {"source": "OMIM", "name": "Walker-Warburg syndrome", "mim": "236670"}
+    ]
+  },
+  "FKTN": {
+    "phenotypes": [
+      {"source": "OMIM", "name": "Muscular dystrophy-dystroglycanopathy type B4", "mim": "253800"},
+      {"source": "OMIM", "name": "Fukuyama congenital muscular dystrophy", "mim": "253800"}
+    ]
+  },
+  "POMGNT1": {
+    "phenotypes": [
+      {"source": "OMIM", "name": "Muscular dystrophy-dystroglycanopathy type B3", "mim": "613151"}
+    ]
+  },
+  "POMT1": {
+    "phenotypes": [
+      {"source": "OMIM", "name": "Muscular dystrophy-dystroglycanopathy type B1", "mim": "613155"}
+    ]
+  },
+  "POMT2": {
+    "phenotypes": [
+      {"source": "OMIM", "name": "Muscular dystrophy-dystroglycanopathy type B2", "mim": "613156"}
+    ]
+  },
+  "COL6A1": {
+    "phenotypes": [
+      {"source": "OMIM", "name": "Bethlem myopathy 1", "mim": "158810"},
+      {"source": "OMIM", "name": "Ullrich congenital muscular dystrophy 1", "mim": "254090"}
+    ]
+  },
+  "COL6A2": {
+    "phenotypes": [
+      {"source": "OMIM", "name": "Bethlem myopathy 1", "mim": "158810"}
+    ]
+  },
+  "COL6A3": {
+    "phenotypes": [
+      {"source": "OMIM", "name": "Ullrich congenital muscular dystrophy 1", "mim": "254090"}
+    ]
+  },
+  "LMNA": {
+    "phenotypes": [
+      {"source": "OMIM", "name": "Emery-Dreifuss muscular dystrophy 2", "mim": "181350"},
+      {"source": "OMIM", "name": "Dilated cardiomyopathy 1A", "mim": "115200"},
+      {"source": "OMIM", "name": "Hutchinson-Gilford progeria syndrome", "mim": "176670"},
+      {"source": "OMIM", "name": "Lipodystrophy, familial partial, type 2", "mim": "151660"}
+    ]
+  },
+  "EMD": {
+    "phenotypes": [
+      {"source": "OMIM", "name": "Emery-Dreifuss muscular dystrophy 1", "mim": "310300"}
+    ]
+  },
+  "TOR1A": {
+    "phenotypes": [
+      {"source": "OMIM", "name": "Dystonia 1, torsion", "mim": "128100"}
+    ]
+  },
+  "THAP1": {
+    "phenotypes": [
+      {"source": "OMIM", "name": "Dystonia 6, torsion", "mim": "602629"}
+    ]
+  },
+  "GCH1": {
+    "phenotypes": [
+      {"source": "OMIM", "name": "Dystonia 5, dopa-responsive", "mim": "128230"}
+    ]
+  },
+  "SLC6A3": {
+    "phenotypes": [
+      {"source": "OMIM", "name": "Dystonia, dopa-responsive, with dwarfism", "mim": "612716"}
+    ]
+  },
+  "KMT2B": {
+    "phenotypes": [
+      {"source": "OMIM", "name": "Dystonia 28, childhood-onset", "mim": "617284"}
+    ]
+  },
+  "ANO3": {
+    "phenotypes": [
+      {"source": "OMIM", "name": "Dystonia 24", "mim": "615034"}
+    ]
+  },
+  "ATM": {
+    "phenotypes": [
+      {"source": "OMIM", "name": "Ataxia-telangiectasia", "mim": "208900"}
+    ]
+  },
+  "FXN": {
+    "phenotypes": [
+      {"source": "OMIM", "name": "Friedreich ataxia", "mim": "229300"}
+    ]
+  },
+  "SETX": {
+    "phenotypes": [
+      {"source": "OMIM", "name": "Ataxia, juvenile", "mim": "208920"},
+      {"source": "OMIM", "name": "Amyotrophic lateral sclerosis 4", "mim": "602433"}
+    ]
+  },
+  "CACNA1A": {
+    "phenotypes": [
+      {"source": "OMIM", "name": "Episodic ataxia 2", "mim": "108500"},
+      {"source": "OMIM", "name": "Spinocerebellar ataxia 6", "mim": "183086"},
+      {"source": "OMIM", "name": "Familial hemiplegic migraine 1", "mim": "141500"}
+    ]
+  },
+  "KCNC3": {
+    "phenotypes": [
+      {"source": "OMIM", "name": "Spinocerebellar ataxia 13", "mim": "605259"}
+    ]
+  },
+  "TTBK2": {
+    "phenotypes": [
+      {"source": "OMIM", "name": "Spinocerebellar ataxia 11", "mim": "604432"}
+    ]
+  },
+  "SCN1A": {
+    "phenotypes": [
+      {"source": "OMIM", "name": "Epileptic encephalopathy, early infantile, 6", "mim": "607208"},
+      {"source": "OMIM", "name": "Generalized epilepsy with febrile seizures plus 2", "mim": "604403"}
+    ]
+  },
+  "KCNQ2": {
+    "phenotypes": [
+      {"source": "OMIM", "name": "Epileptic encephalopathy, early infantile, 7", "mim": "613720"},
+      {"source": "OMIM", "name": "Benign familial neonatal seizures 1", "mim": "121200"}
+    ]
+  },
+  "KCNQ3": {
+    "phenotypes": [
+      {"source": "OMIM", "name": "Benign familial neonatal seizures 2", "mim": "121201"}
+    ]
+  },
+  "STXBP1": {
+    "phenotypes": [
+      {"source": "OMIM", "name": "Epileptic encephalopathy, early infantile, 4", "mim": "612164"}
+    ]
+  },
+  "SCN2A": {
+    "phenotypes": [
+      {"source": "OMIM", "name": "Epileptic encephalopathy, early infantile, 11", "mim": "613721"},
+      {"source": "OMIM", "name": "Seizures, benign familial infantile, 3", "mim": "607745"}
+    ]
+  },
+  "CDKL5": {
+    "phenotypes": [
+      {"source": "OMIM", "name": "Early infantile epileptic encephalopathy 2", "mim": "300672"}
+    ]
+  },
+  "ARX": {
+    "phenotypes": [
+      {"source": "OMIM", "name": "Epileptic encephalopathy, early infantile, 1", "mim": "308350"},
+      {"source": "OMIM", "name": "Lissencephaly, X-linked", "mim": "300067"}
+    ]
+  },
+  "MECP2": {
+    "phenotypes": [
+      {"source": "OMIM", "name": "Rett syndrome", "mim": "312750"},
+      {"source": "OMIM", "name": "Mental retardation, X-linked, syndromic 13", "mim": "300055"}
+    ]
+  },
+  "SHANK3": {
+    "phenotypes": [
+      {"source": "OMIM", "name": "Phelan-McDermid syndrome", "mim": "606232"},
+      {"source": "OMIM", "name": "Autism, susceptibility to", "mim": "209850"}
+    ]
+  },
+  "SCN8A": {
+    "phenotypes": [
+      {"source": "OMIM", "name": "Epileptic encephalopathy, early infantile, 13", "mim": "614558"}
+    ]
+  },
+  "PRRT2": {
+    "phenotypes": [
+      {"source": "OMIM", "name": "Episodic kinesigenic dyskinesia 1", "mim": "128200"},
+      {"source": "OMIM", "name": "Seizures, benign familial infantile, 2", "mim": "605751"}
+    ]
+  },
+  "PARK7": {
+    "phenotypes": [
+      {"source": "OMIM", "name": "Parkinson disease 7, autosomal recessive early-onset", "mim": "606324"}
+    ]
+  },
+  "PINK1": {
+    "phenotypes": [
+      {"source": "OMIM", "name": "Parkinson disease 6, autosomal recessive early-onset", "mim": "605909"}
+    ]
+  },
+  "SNCA": {
+    "phenotypes": [
+      {"source": "OMIM", "name": "Parkinson disease 1, autosomal dominant", "mim": "168601"},
+      {"source": "OMIM", "name": "Parkinson disease 4, autosomal dominant Lewy body", "mim": "605543"}
+    ]
+  },
+  "LRRK2": {
+    "phenotypes": [
+      {"source": "OMIM", "name": "Parkinson disease 8, autosomal dominant", "mim": "607060"}
+    ]
+  },
+  "GBA1": {
+    "phenotypes": [
+      {"source": "OMIM", "name": "Gaucher disease type 1", "mim": "230800"},
+      {"source": "OMIM", "name": "Gaucher disease type 2", "mim": "230900"},
+      {"source": "OMIM", "name": "Gaucher disease type 3", "mim": "231000"},
+      {"source": "ClinVar", "name": "Parkinson disease", "trait_id": "C0030567"}
+    ]
+  },
+  "HEXA": {
+    "phenotypes": [
+      {"source": "OMIM", "name": "Tay-Sachs disease", "mim": "272800"}
+    ]
+  },
+  "HEXB": {
+    "phenotypes": [
+      {"source": "OMIM", "name": "Sandhoff disease", "mim": "268800"}
+    ]
+  },
+  "SMPD1": {
+    "phenotypes": [
+      {"source": "OMIM", "name": "Niemann-Pick disease type A", "mim": "257200"},
+      {"source": "OMIM", "name": "Niemann-Pick disease type B", "mim": "607616"}
+    ]
+  },
+  "NPC1": {
+    "phenotypes": [
+      {"source": "OMIM", "name": "Niemann-Pick disease type C1", "mim": "257220"}
+    ]
+  },
+  "ASAH1": {
+    "phenotypes": [
+      {"source": "OMIM", "name": "Farber lipogranulomatosis", "mim": "228800"}
+    ]
+  },
+  "GALNS": {
+    "phenotypes": [
+      {"source": "OMIM", "name": "Mucopolysaccharidosis type IVA", "mim": "253000"}
+    ]
+  },
+  "GLB1": {
+    "phenotypes": [
+      {"source": "OMIM", "name": "Mucopolysaccharidosis type IVB", "mim": "253010"},
+      {"source": "OMIM", "name": "GM1-gangliosidosis", "mim": "230500"}
+    ]
+  },
+  "IDS": {
+    "phenotypes": [
+      {"source": "OMIM", "name": "Mucopolysaccharidosis type II", "mim": "309900"}
+    ]
+  },
+  "IDUA": {
+    "phenotypes": [
+      {"source": "OMIM", "name": "Mucopolysaccharidosis type I", "mim": "607014"}
+    ]
+  },
+  "ARSA": {
+    "phenotypes": [
+      {"source": "OMIM", "name": "Metachromatic leukodystrophy", "mim": "250100"}
+    ]
+  },
+  "GALC": {
+    "phenotypes": [
+      {"source": "OMIM", "name": "Krabbe disease", "mim": "245200"}
+    ]
+  },
+  "PLP1": {
+    "phenotypes": [
+      {"source": "OMIM", "name": "Pelizaeus-Merzbacher disease", "mim": "312080"}
+    ]
+  },
+  "ABCD1": {
+    "phenotypes": [
+      {"source": "OMIM", "name": "Adrenoleukodystrophy", "mim": "300100"}
+    ]
+  },
+  "CFTR": {
+    "phenotypes": [
+      {"source": "OMIM", "name": "Cystic fibrosis", "mim": "219700"},
+      {"source": "OMIM", "name": "Congenital bilateral absence of vas deferens", "mim": "277180"}
+    ]
+  },
+  "DMD": {
+    "phenotypes": [
+      {"source": "OMIM", "name": "Duchenne muscular dystrophy", "mim": "310200"},
+      {"source": "OMIM", "name": "Becker muscular dystrophy", "mim": "300376"}
+    ]
+  },
+  "SMN1": {
+    "phenotypes": [
+      {"source": "OMIM", "name": "Spinal muscular atrophy 1", "mim": "253300"},
+      {"source": "OMIM", "name": "Spinal muscular atrophy 2", "mim": "253550"},
+      {"source": "OMIM", "name": "Spinal muscular atrophy 3", "mim": "253400"}
+    ]
+  },
+  "VWF": {
+    "phenotypes": [
+      {"source": "OMIM", "name": "Von Willebrand disease type 1", "mim": "193400"},
+      {"source": "OMIM", "name": "Von Willebrand disease type 2", "mim": "613554"},
+      {"source": "OMIM", "name": "Von Willebrand disease type 3", "mim": "277480"}
+    ]
+  },
+  "F8": {
+    "phenotypes": [
+      {"source": "OMIM", "name": "Hemophilia A", "mim": "306700"}
+    ]
+  },
+  "F9": {
+    "phenotypes": [
+      {"source": "OMIM", "name": "Hemophilia B", "mim": "306900"}
+    ]
+  },
+  "PROC": {
+    "phenotypes": [
+      {"source": "OMIM", "name": "Thrombophilia due to protein C deficiency", "mim": "176860"}
+    ]
+  },
+  "PROS1": {
+    "phenotypes": [
+      {"source": "OMIM", "name": "Thrombophilia due to protein S deficiency", "mim": "612336"}
+    ]
+  },
+  "SERPINC1": {
+    "phenotypes": [
+      {"source": "OMIM", "name": "Thrombophilia due to antithrombin deficiency", "mim": "613118"}
+    ]
+  },
+  "HBB": {
+    "phenotypes": [
+      {"source": "OMIM", "name": "Sickle cell anemia", "mim": "603903"},
+      {"source": "OMIM", "name": "Beta-thalassemia", "mim": "613985"}
+    ]
+  },
+  "HBA1": {
+    "phenotypes": [
+      {"source": "OMIM", "name": "Alpha-thalassemia", "mim": "604131"}
+    ]
+  },
+  "HBA2": {
+    "phenotypes": [
+      {"source": "OMIM", "name": "Alpha-thalassemia", "mim": "604131"}
+    ]
+  },
+  "G6PD": {
+    "phenotypes": [
+      {"source": "OMIM", "name": "Glucose-6-phosphate dehydrogenase deficiency", "mim": "305900"}
+    ]
+  },
+  "PKLR": {
+    "phenotypes": [
+      {"source": "OMIM", "name": "Pyruvate kinase deficiency of erythrocytes", "mim": "266200"}
+    ]
+  },
+  "PKD1": {
+    "phenotypes": [
+      {"source": "OMIM", "name": "Polycystic kidney disease 1", "mim": "173900"}
+    ]
+  },
+  "PKD2": {
+    "phenotypes": [
+      {"source": "OMIM", "name": "Polycystic kidney disease 2", "mim": "613095"}
+    ]
+  },
+  "COL4A5": {
+    "phenotypes": [
+      {"source": "OMIM", "name": "Alport syndrome, X-linked", "mim": "301050"}
+    ]
+  },
+  "NPHS1": {
+    "phenotypes": [
+      {"source": "OMIM", "name": "Nephrotic syndrome, congenital Finnish type", "mim": "256300"}
+    ]
+  },
+  "NPHS2": {
+    "phenotypes": [
+      {"source": "OMIM", "name": "Nephrotic syndrome, steroid-resistant 2", "mim": "600995"}
+    ]
+  },
+  "WT1": {
+    "phenotypes": [
+      {"source": "OMIM", "name": "Denys-Drash syndrome", "mim": "194080"},
+      {"source": "OMIM", "name": "Frasier syndrome", "mim": "136680"}
+    ]
+  },
+  "TSC1": {
+    "phenotypes": [
+      {"source": "OMIM", "name": "Tuberous sclerosis 1", "mim": "191100"}
+    ]
+  },
+  "TSC2": {
+    "phenotypes": [
+      {"source": "OMIM", "name": "Tuberous sclerosis 2", "mim": "613254"}
+    ]
+  },
+  "NF1": {
+    "phenotypes": [
+      {"source": "OMIM", "name": "Neurofibromatosis type 1", "mim": "162200"}
+    ]
+  },
+  "NF2": {
+    "phenotypes": [
+      {"source": "OMIM", "name": "Neurofibromatosis type 2", "mim": "101000"}
+    ]
+  },
+  "RB1": {
+    "phenotypes": [
+      {"source": "OMIM", "name": "Retinoblastoma", "mim": "180200"}
+    ]
+  },
+  "TP53": {
+    "phenotypes": [
+      {"source": "OMIM", "name": "Li-Fraumeni syndrome", "mim": "151623"}
+    ]
+  },
+  "BRCA1": {
+    "phenotypes": [
+      {"source": "OMIM", "name": "Breast-ovarian cancer, familial, susceptibility to, 1", "mim": "604370"}
+    ]
+  },
+  "BRCA2": {
+    "phenotypes": [
+      {"source": "OMIM", "name": "Breast-ovarian cancer, familial, susceptibility to, 2", "mim": "612555"}
+    ]
+  },
+  "MLH1": {
+    "phenotypes": [
+      {"source": "OMIM", "name": "Lynch syndrome 1", "mim": "120435"}
+    ]
+  },
+  "MSH2": {
+    "phenotypes": [
+      {"source": "OMIM", "name": "Lynch syndrome 2", "mim": "609309"}
+    ]
+  },
+  "MSH6": {
+    "phenotypes": [
+      {"source": "OMIM", "name": "Lynch syndrome 5", "mim": "614350"}
+    ]
+  },
+  "PMS2": {
+    "phenotypes": [
+      {"source": "OMIM", "name": "Lynch syndrome 4", "mim": "614337"}
+    ]
+  },
+  "APC": {
+    "phenotypes": [
+      {"source": "OMIM", "name": "Familial adenomatous polyposis 1", "mim": "175100"},
+      {"source": "OMIM", "name": "Gardner syndrome", "mim": "175100"}
+    ]
+  },
+  "MEN1": {
+    "phenotypes": [
+      {"source": "OMIM", "name": "Multiple endocrine neoplasia type 1", "mim": "131100"}
+    ]
+  },
+  "RET": {
+    "phenotypes": [
+      {"source": "OMIM", "name": "Multiple endocrine neoplasia type 2A", "mim": "171400"},
+      {"source": "OMIM", "name": "Multiple endocrine neoplasia type 2B", "mim": "162300"},
+      {"source": "OMIM", "name": "Hirschsprung disease 1", "mim": "142623"}
+    ]
+  },
+  "VHL": {
+    "phenotypes": [
+      {"source": "OMIM", "name": "Von Hippel-Lindau syndrome", "mim": "193300"}
+    ]
+  },
+  "SDHB": {
+    "phenotypes": [
+      {"source": "OMIM", "name": "Paraganglioma syndrome 4", "mim": "115310"},
+      {"source": "OMIM", "name": "Gastrointestinal stromal tumor", "mim": "606864"}
+    ]
+  },
+  "SDHD": {
+    "phenotypes": [
+      {"source": "OMIM", "name": "Paraganglioma syndrome 1", "mim": "168000"}
+    ]
+  },
+  "SDHC": {
+    "phenotypes": [
+      {"source": "OMIM", "name": "Paraganglioma syndrome 3", "mim": "605373"}
+    ]
+  },
+  "PTEN": {
+    "phenotypes": [
+      {"source": "OMIM", "name": "Cowden syndrome", "mim": "158350"},
+      {"source": "OMIM", "name": "Bannayan-Riley-Ruvalcaba syndrome", "mim": "153480"}
+    ]
+  },
+  "CDH1": {
+    "phenotypes": [
+      {"source": "OMIM", "name": "Gastric cancer, hereditary diffuse", "mim": "137215"}
+    ]
+  },
+  "STK11": {
+    "phenotypes": [
+      {"source": "OMIM", "name": "Peutz-Jeghers syndrome", "mim": "175200"}
+    ]
+  },
+  "FH": {
+    "phenotypes": [
+      {"source": "OMIM", "name": "Hereditary leiomyomatosis and renal cell cancer", "mim": "605839"}
+    ]
+  },
+  "FLCN": {
+    "phenotypes": [
+      {"source": "OMIM", "name": "Birt-Hogg-Dube syndrome", "mim": "135150"}
+    ]
+  },
+  "PALB2": {
+    "phenotypes": [
+      {"source": "OMIM", "name": "Breast cancer, susceptibility to, PALB2-related", "mim": "114480"}
+    ]
+  },
+  "ATM": {
+    "phenotypes": [
+      {"source": "OMIM", "name": "Ataxia-telangiectasia", "mim": "208900"},
+      {"source": "OMIM", "name": "Breast cancer, susceptibility to", "mim": "114480"}
+    ]
+  },
+  "CHEK2": {
+    "phenotypes": [
+      {"source": "OMIM", "name": "Breast cancer, susceptibility to, CHEK2-related", "mim": "114480"}
+    ]
+  },
+  "NBN": {
+    "phenotypes": [
+      {"source": "OMIM", "name": "Nijmegen breakage syndrome", "mim": "251260"}
+    ]
+  },
+  "BLM": {
+    "phenotypes": [
+      {"source": "OMIM", "name": "Bloom syndrome", "mim": "210900"}
+    ]
+  },
+  "WRN": {
+    "phenotypes": [
+      {"source": "OMIM", "name": "Werner syndrome", "mim": "277700"}
+    ]
+  },
+  "FANCA": {
+    "phenotypes": [
+      {"source": "OMIM", "name": "Fanconi anemia, complementation group A", "mim": "227650"}
+    ]
+  },
+  "FANCC": {
+    "phenotypes": [
+      {"source": "OMIM", "name": "Fanconi anemia, complementation group C", "mim": "227645"}
+    ]
+  }
+}

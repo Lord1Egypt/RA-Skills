@@ -1,0 +1,187 @@
+{
+  "meta": {
+    "version": "1.0.0",
+    "initialized_at": "2025-03-10T00:00:00Z",
+    "last_update": "2025-03-10T00:00:00Z",
+    "conversation_id": "init",
+    "description": "量化管理系统数据模板 - 复制此文件到 ~/.openclaw/data/quantified_self.json"
+  },
+  "growth": {
+    "baseline": {
+      "overall": 40.0,
+      "knowledge_coverage": 10.0,
+      "capability_depth": 50.0,
+      "response_quality": 60.0,
+      "task_efficiency": 40.0,
+      "notes": "初始基准值，基于首次评估时的能力水平设定"
+    },
+    "current": {
+      "overall": 40.0,
+      "knowledge_coverage": 10.0,
+      "capability_depth": 50.0,
+      "response_quality": 60.0,
+      "task_efficiency": 40.0
+    },
+    "growth_percent": {
+      "overall": 0.0,
+      "knowledge_coverage": 0.0,
+      "capability_depth": 0.0,
+      "response_quality": 0.0,
+      "task_efficiency": 0.0
+    },
+    "history": [
+      {
+        "timestamp": "2025-03-10T00:00:00Z",
+        "overall": 40.0,
+        "conversation_count": 0,
+        "notes": "初始化"
+      }
+    ]
+  },
+  "tasks": {
+    "total": 0,
+    "completed": 0,
+    "in_progress": 0,
+    "failed": 0,
+    "completion_rate": 0.0,
+    "average_quality": 0.0,
+    "average_duration_minutes": 0.0,
+    "by_type": {
+      "coding": 0,
+      "debugging": 0,
+      "design": 0,
+      "documentation": 0,
+      "analysis": 0,
+      "other": 0
+    },
+    "recent": []
+  },
+  "learning": {
+    "new_concepts": [],
+    "total_concepts": 0,
+    "by_category": {
+      "frontend": 0,
+      "backend": 0,
+      "languages": 0,
+      "tools": 0,
+      "design": 0,
+      "other": 0
+    },
+    "concept_details": []
+  },
+  "efficiency": {
+    "avg_response_time_seconds": 0.0,
+    "first_try_success_rate": 0.0,
+    "avg_iterations_per_task": 0.0,
+    "time_distribution": {
+      "thinking_percent": 0,
+      "tool_execution_percent": 0,
+      "output_preparation_percent": 0
+    },
+    "tool_usage_stats": {
+      "total_calls": 0,
+      "by_tool": {}
+    }
+  },
+  "achievements": {
+    "milestones": [],
+    "highlights": [],
+    "breakthroughs": [],
+    "total_count": 0
+  },
+  "goals": {
+    "active": [],
+    "completed": [],
+    "abandoned": []
+  },
+  "daily_stats": {
+    "2025-03-10": {
+      "date": "2025-03-10",
+      "conversations": 0,
+      "tasks_completed": 0,
+      "concepts_learned": 0,
+      "achievements_unlocked": 0,
+      "overall_growth": 0.0,
+      "efficiency_score": 0.0,
+      "satisfaction_rate": 0.0,
+      "notes": ""
+    }
+  },
+  "weekly_summary": {
+    "week_start": "2025-03-10",
+    "total_conversations": 0,
+    "total_tasks": 0,
+    "total_concepts": 0,
+    "total_achievements": 0,
+    "avg_daily_growth": 0.0,
+    "best_day": null,
+    "trend": "stable"
+  },
+  "preferences": {
+    "report_detail": "full",
+    "auto_track": true,
+    "show_trends": true,
+    "show_progress_bars": true,
+    "retention_days": 90
+  }
+}
+
+/*
+概念详情示例格式：
+{
+  "name": "React.memo",
+  "category": "frontend",
+  "mastery_level": 85,
+  "first_learned_at": "2025-03-10T10:30:00Z",
+  "last_applied_at": "2025-03-10T15:45:00Z",
+  "applied_count": 5,
+  "source": "user_question",
+  "related_concepts": ["React", "性能优化", "组件"],
+  "notes": "用于避免不必要的组件重渲染"
+}
+
+任务详情示例格式：
+{
+  "id": "task_001",
+  "type": "coding",
+  "title": "重构用户列表组件",
+  "status": "completed",
+  "quality_score": 8.5,
+  "duration_minutes": 12,
+  "iterations": 2,
+  "started_at": "2025-03-10T14:00:00Z",
+  "completed_at": "2025-03-10T14:12:00Z",
+  "user_satisfaction": "high",
+  "tools_used": ["Read", "Edit", "Bash"]
+}
+
+成就示例格式：
+{
+  "id": "achievement_001",
+  "type": "milestone",
+  "title": "首次独立完成复杂重构",
+  "description": "在没有用户指导的情况下，独立完成了一个包含多个子组件的重构任务",
+  "timestamp": "2025-03-10T16:30:00Z",
+  "icon": "🌟",
+  "related_tasks": ["task_001"],
+  "impact": "high"
+}
+
+目标示例格式：
+{
+  "id": "goal_001",
+  "name": "掌握 React 性能优化",
+  "description": "学会使用 React.memo、useMemo、useCallback 等优化技巧",
+  "progress": 67,
+  "target": 100,
+  "unit": "%",
+  "status": "in_progress",
+  "created_at": "2025-03-08T00:00:00Z",
+  "eta_days": 3,
+  "milestones": [
+    {"name": "学习 React.memo", "completed": true},
+    {"name": "理解 useMemo", "completed": true},
+    {"name": "掌握 useCallback", "completed": false}
+  ]
+}
+*/

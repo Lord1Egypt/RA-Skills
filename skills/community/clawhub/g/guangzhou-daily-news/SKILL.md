@@ -1,35 +1,139 @@
 ---
-name: "Guangzhou Daily News"
-description: "获取广州日报新花城网站发布的最新新闻（20-30条），包含标题、摘要、原文链接、编辑、记者等详细信息，生成美观 Markdown 格式并支持微信推送。使用场景：(1) 用户说"获取广州日报新闻"、"看看新花城有什么新闻"；(2) 每天早上9点、晚上6点自动获取并推送；(3) 需要广州本地新闻资讯时。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/guangzhou-daily-news"
-sourceUrl: "https://clawhub.ai/skills/guangzhou-daily-news"
+name: guangzhou-daily-news
+version: 1.0.0
+description: 获取广州日报新花城网站发布的最新新闻（20-30条），包含标题、摘要、原文链接、编辑、记者等详细信息，生成美观 Markdown 格式并支持微信推送。使用场景：(1) 用户说"获取广州日报新闻"、"看看新花城有什么新闻"；(2) 每天早上9点、晚上6点自动获取并推送；(3) 需要广州本地新闻资讯时。
 ---
 
-# Guangzhou Daily News
+# 广州日报新闻获取
 
-> 获取广州日报新花城网站发布的最新新闻（20-30条），包含标题、摘要、原文链接、编辑、记者等详细信息，生成美观 Markdown 格式并支持微信推送。使用场景：(1) 用户说"获取广州日报新闻"、"看看新花城有什么新闻"；(2) 每天早上9点、晚上6点自动获取并推送；(3) 需要广州本地新闻资讯时。
+## 功能概述
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/guangzhou-daily-news`
-- **Source URL:** [https://clawhub.ai/skills/guangzhou-daily-news](https://clawhub.ai/skills/guangzhou-daily-news)
+获取广州日报新花城（gz-cmc.com）发布的最新新闻，支持：
+- 🔄 自动获取 20-30 条最新新闻
+- 📝 提取：标题、摘要、原文链接、编辑、记者
+- 📄 保存为美观 Markdown 文件
+- 💬 支持微信推送
+- ⏰ 支持定时自动获取（每天9点、18点）
 
-## Overview
+## 使用方式
 
+### 手动获取新闻
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/guangzhou-daily-news
+直接告诉 AI：
+- "获取广州日报新闻"
+- "看看新花城有什么新闻"
+- "获取广州最新新闻"
+
+### 定时自动获取
+
+已配置每天两个时间段自动获取并推送：
+- **早间** ⏰ 09:00 - 获取最新新闻
+- **晚间** ⏰ 18:00 - 获取全天新闻
+
+## 输出格式
+
+### Markdown 保存
+
+新闻保存到 `~/News/广州日报_YYYY-MM-DD.md`
+
+**示例格式：**
+
+```markdown
+# 📰 广州日报新闻简报
+
+📅 2026-03-23 · 来源：新花城 · 共 20 条
+
+---
+
+> ## 1. 国家对成品油价采取临时调控措施
+> 
+> 🔴 要闻 · ⏰ 2026-03-23 15:03
+> 
+> 3月9日以来受美以伊冲突加剧影响，国际油价大幅上涨。为减缓冲击，对国内成品油价采取临时调控措施...
+> 
+> ✍️ 记者：**张三** · 📝 编辑：**李四** · 🔗 [阅读原文](https://...)
 ```
+
+### 微信推送
+
+简洁卡片式消息，包含：
+- 📰 新闻标题（前10条）
+- 📌 分类标签
+- 🔗 原文链接
+
+**示例：**
+```
+📰 广州日报 03月23日 (20条)
+
+1. 国家对成品油价采取临时调控措施
+2. 全球第六！独角兽扎堆！广州这份科创成绩单太燃了
+3. 念念不忘，92岁的他在街头卖书二十多年
+...
+```
+
+## 技术细节
+
+### 新闻来源
+
+- **主站**：https://gz-cmc.com
+- **移动端**：https://huacheng.gz-cmc.com
+
+### 数据提取
+
+- **标题**：从新闻列表页提取
+- **摘要**：从文章详情页自动截取前200字
+- **分类**：自动识别（要闻、科技、文化、国际等）
+- **编辑/记者**：从文章末尾提取，支持多种格式识别
+- **发布时间**：从文章页面提取
+
+### 依赖
+
+- Python 3.8+
+- requests
+- BeautifulSoup4
+
+**安装：**
+```bash
+pip3 install requests beautifulsoup4
+```
+
+## 脚本使用
+
+```bash
+python3 ~/.qclaw/skills/guangzhou-daily-news/scripts/fetch_news.py
+```
+
+## 定时任务
+
+已自动配置两个 cron 任务：
+
+| 任务 | 时间 | 频率 |
+|------|------|------|
+| 早间新闻 | 09:00 | 每天 |
+| 晚间新闻 | 18:00 | 每天 |
+
+## 常见问题
+
+**Q: 为什么有些新闻没有记者信息？**
+A: 部分新闻（如转载、通讯稿）可能没有记者署名，此时显示"—"。
+
+**Q: 如何修改推送时间？**
+A: 可通过 OpenClaw cron 管理界面修改定时任务的时间表达式。
+
+**Q: 新闻保存在哪里？**
+A: 默认保存到 `~/News/广州日报_YYYY-MM-DD.md`，可自定义。
+
+## 更新日志
+
+- **v2.1** (2026-03-23)
+  - ✅ 优化记者/编辑提取算法，支持多种格式
+  - ✅ 改进 Markdown 排版，添加 emoji 分类标签
+  - ✅ 配置每天9点、18点自动推送
+  - ✅ 移除阅读量/点赞/评论数据
+
+- **v2.0** (2026-03-23)
+  - ✅ 完整重写，支持详情页提取
+  - ✅ 美观卡片式输出格式
+
+- **v1.0** (2026-03-23)
+  - ✅ 初始版本

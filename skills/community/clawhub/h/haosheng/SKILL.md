@@ -1,35 +1,43 @@
 ---
-name: "好省返利助手"
-description: "好省社交电商CPS导购工具，通过口令制分享模式，提供淘宝京东拼多多多平台返利查询和优惠券推广。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/haosheng"
-sourceUrl: "https://clawhub.ai/skills/haosheng"
+name: 好省返利助手
+description: 好省社交电商CPS导购工具，通过口令制分享模式，提供淘宝京东拼多多多平台返利查询和优惠券推广。
+version: 0.1.0
 ---
 
 # 好省返利助手
 
-> 好省社交电商CPS导购工具，通过口令制分享模式，提供淘宝京东拼多多多平台返利查询和优惠券推广。
+好省社交电商CPS导购工具。采用口令制分享模式，覆盖淘宝、京东、拼多多等主流电商平台，提供商品返利查询、优惠券查找和推广素材生成，帮助用户省钱和赚佣金。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/haosheng`
-- **Source URL:** [https://clawhub.ai/skills/haosheng](https://clawhub.ai/skills/haosheng)
+## 触发词
 
-## Overview
+好省、好省返利、haosheng、好省口令、好省优惠、好省佣金、好省省钱
 
+## 计划实现能力
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/haosheng
+### 核心功能
+
+- **多平台返利查询**：覆盖淘宝、京东、拼多多等主流电商
+- **口令制分享**：生成专属口令，复制粘贴即可分享
+- **每日爆款推荐**：自动筛选高佣爆款商品
+- **佣金数据看板**：实时查看推广收益和团队数据
+
+### 使用场景
+
+1. **日常购物**：购物前查返利和优惠券
+2. **口令推广**：生成口令分享到社群
+3. **爆款选品**：每日查看高佣爆款商品
+4. **团队管理**：管理推广团队和佣金数据
+
+## 输出格式
+
+```
+💰 好省返利查询
+
+商品：[商品名称]
+平台：[电商平台]
+售价：¥[价格]
+优惠券：[券描述]
+返利比例：[X]%
+预计返利：¥[金额]
+好省口令：[口令内容]
 ```

@@ -1,0 +1,60 @@
+# Video Script Template — TikTok
+name: "tiktok_vertical_script"
+description: "Short-form vertical video script for TikTok with scene directions"
+
+structure:
+  hook:
+    type: "immediate_attention"
+    duration_seconds: 3
+    rules:
+      - "First 3 seconds must stop the scroll"
+      - "Start with the most surprising statement or visual"
+      - "Text overlay on screen for dumbphone viewers"
+      - "Examples: 'Stop doing this.' or 'This changed everything'"
+    visual_direction: "Tight headshot or text-on-screen with motion"
+
+  body:
+    type: "fast_paced_narrative"
+    duration_seconds: 30
+    sections:
+      - name: "problem"
+        duration_seconds: 8
+        rules:
+          - "State the relatable problem"
+          - "Use B-roll or text overlay"
+      - name: "solution"
+        duration_seconds: 15
+        rules:
+          - "This is your core content — the insight"
+          - "Show vs. tell — use visuals, demos, or props"
+          - "On-screen text for key stats or quotes"
+      - name: "proof"
+        duration_seconds: 7
+        rules:
+          - "Quick example, testimonial, or data point"
+          - "Screen recording or photo evidence"
+
+  cta:
+    type: "action"
+    duration_seconds: 5
+    rules:
+      - "Clear, simple CTA: Follow, Like, Comment, or Link in Bio"
+      - "Show the CTA action on screen"
+      - "End with a memorable tagline or mic-drop"
+    visual_direction: "Point to screen or hold up phone"
+
+  technical:
+    aspect_ratio: "9:16"
+    resolution: "1080x1920"
+    format: "portrait"
+    fps: 30
+    caption_style: "center_aligned, white text with black stroke"
+    trend_audio: false  # Set to true if using trending audio (#UseThisSound)
+
+quality_rules:
+  - "Total duration must be between 30-60 seconds"
+  - "Every second must earn its place — cut ruthlessly"
+  - "Include at least 3 scene changes (cuts or transitions)"
+  - "On-screen text must be readable at arm's length on a phone"
+  - "Hook must be visually distinct from body"
+  - "Never show the source content verbatim on screen"

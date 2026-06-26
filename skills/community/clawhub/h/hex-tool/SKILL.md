@@ -1,35 +1,32 @@
 ---
-name: "Hex Tool"
-description: "Convert data between hexadecimal and other formats. Use for debugging binary data, examining file headers, and working with hex dumps."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/hex-tool"
-sourceUrl: "https://clawhub.ai/skills/hex-tool"
+name: hex-tool
+description: Convert data between hexadecimal and other formats. Use for debugging binary data, examining file headers, and working with hex dumps.
 ---
+# Hex - Hexadecimal Conversion Tool
 
-# Hex Tool
+Convert between hexadecimal, decimal, binary, and ASCII representations. Essential for low-level debugging, binary protocol analysis, and byte-level data inspection.
 
-> Convert data between hexadecimal and other formats. Use for debugging binary data, examining file headers, and working with hex dumps.
+## Usage
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/hex-tool`
-- **Source URL:** [https://clawhub.ai/skills/hex-tool](https://clawhub.ai/skills/hex-tool)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/hex-tool
+hex-tool [options] <value>
+```
+
+## Operations
+
+- Encode text or numbers to hexadecimal
+- Decode hexadecimal back to readable text
+- Convert between hex, decimal, and binary bases
+
+## Examples
+
+```bash
+# Encode text to hex
+hex-tool --encode "Hello World"
+
+# Decode hex to text
+hex-tool --decode "48656c6c6f"
+
+# Convert decimal to hex
+hex-tool --from dec --to hex 255
 ```

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Markdown 预览 — Grinder's Farm</title>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <style>
+    :root {
+      --bg: #0d1117;
+      --panel: #161b22;
+      --text: #e6edf3;
+      --muted: #8b949e;
+      --accent: #58a6ff;
+      --border: #30363d;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      padding: 12px 20px;
+      background: var(--panel);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--muted);
+    }
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    nav button {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 8px 14px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 13px;
+    }
+    nav button:hover { border-color: var(--accent); color: var(--accent); }
+    nav button.active { border-color: var(--accent); background: #1f2937; color: var(--accent); }
+    main {
+      max-width: 920px;
+      margin: 0 auto;
+      padding: 24px 20px 80px;
+    }
+    .markdown-body img { max-width: 100%; height: auto; border-radius: 8px; border: 1px solid var(--border); }
+    .markdown-body table { border-collapse: collapse; width: 100%; margin: 1em 0; font-size: 14px; }
+    .markdown-body th, .markdown-body td { border: 1px solid var(--border); padding: 8px 12px; }
+    .markdown-body th { background: var(--panel); }
+    .markdown-body pre { background: var(--panel); padding: 14px; border-radius: 8px; overflow-x: auto; border: 1px solid var(--border); }
+    .markdown-body code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0.9em; }
+    .markdown-body p > code, .markdown-body li > code { background: var(--panel); padding: 2px 6px; border-radius: 4px; }
+    .err { color: #f85149; padding: 20px; }
+    .hint { color: var(--muted); font-size: 13px; margin-top: 8px; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>按顺序查看（与本次改动相关）</h1>
+    <nav id="nav"></nav>
+  </header>
+  <main id="out" class="markdown-body"></main>
+
+  <script>
+    const FILES = [
+      { path: "/README.md", label: "1. README.md" },
+      { path: "/SKILL.md", label: "2. SKILL.md" },
+      { path: "/openclaw-plugin/README.md", label: "3. openclaw-plugin/README.md" },
+      { path: "/RELEASE_CHECKLIST.md", label: "4. RELEASE_CHECKLIST.md" },
+    ];
+
+    const nav = document.getElementById("nav");
+    const out = document.getElementById("out");
+
+    FILES.forEach((f, i) => {
+      const b = document.createElement("button");
+      b.textContent = f.label;
+      b.type = "button";
+      b.addEventListener("click", () => load(i));
+      nav.appendChild(b);
+    });
+
+    async function load(index) {
+      const f = FILES[index];
+      document.querySelectorAll("nav button").forEach((btn, i) => {
+        btn.classList.toggle("active", i === index);
+      });
+      out.innerHTML = "<p>加载中…</p>";
+      try {
+        const res = await fetch(f.path);
+        if (!res.ok) throw new Error(res.status + " " + res.statusText);
+        const md = await res.text();
+        out.innerHTML = marked.parse(md);
+      } catch (e) {
+        out.innerHTML =
+          '<p class="err">无法加载：' +
+          String(e.message) +
+          '</p><p class="hint">请在仓库根目录执行：<code>python3 -m http.server 8765</code>，然后打开 <code>http://127.0.0.1:8765/docs/md-review.html</code></p>';
+      }
+    }
+
+    load(0);
+  </script>
+</body>
+</html>

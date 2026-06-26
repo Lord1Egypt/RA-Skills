@@ -1,0 +1,22 @@
+## 示例剧本：一只猫的雨夜散步
+
+一只灰色的小猫从晴朗的午后城市出发，慢慢走过繁忙的街道。
+天色渐渐变暗，乌云聚集，开始下雨。
+小猫躲进路边的小巷，雨水打湿了它的毛。
+霓虹灯亮起，猫在湿漉漉的路面上倒映出彩色的光。
+最后，它推开一扇半掩的门，走进温暖的小餐馆。
+
+---
+
+## 用法
+
+```bash
+storyboard.py < examples/storyboard-cat_rainy_night.txt \
+    -p 电影感 --scenes 6 \
+    -m Midjourney --video-model Sora \
+    --output ./renders/cat_rainy_night
+```
+
+输出 6 个关键帧 + 5 个转场到 ./renders/cat_rainy_night/。
+
+每个 scene 用 Midjourney 出图，每个 transition 用 Sora 出短视频，剪辑串联即得 ~30 秒短片。

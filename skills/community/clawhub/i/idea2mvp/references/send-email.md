@@ -1,0 +1,77 @@
+# 邮件通知 — 使用指南
+
+## 概述
+
+通过 `scripts/send_email.py` 将任意文本内容（搜索报告、验证结论、MVP 进度等）发送到用户邮箱。仅使用 Python 标准库（smtplib），无额外依赖。
+
+## 前置条件
+
+脚本运行时会自动检查 `.skills-data/idea2mvp/.env` 中的邮件配置项（`EMAIL_SMTP_HOST`、`EMAIL_SENDER`、`EMAIL_PASSWORD`、`EMAIL_RECEIVER`）。如果缺失或未配置，脚本会报错退出并提示缺少哪些参数。此时应引导用户在 `.skills-data/idea2mvp/.env` 中补充配置，可参考下方「常用邮箱 SMTP 配置」表格。
+
+## 使用方式
+
+### 发送文本内容
+
+```bash
+PROJECT_ROOT=<项目根目录> python3 scripts/send_email.py --subject "工具探索报告" --body "报告正文..."
+```
+
+### 从文件读取内容发送（支持多个文件合并为一封邮件）
+
+```bash
+PROJECT_ROOT=<项目根目录> python3 scripts/send_email.py --subject "工具探索报告" --file .skills-data/idea2mvp/data/search-results/ph_results.txt
+PROJECT_ROOT=<项目根目录> python3 scripts/send_email.py --subject "全平台报告" --file .skills-data/idea2mvp/data/search-results/ph_results.txt .skills-data/idea2mvp/data/search-results/github_results.txt .skills-data/idea2mvp/data/search-results/v2ex_results.txt
+```
+
+> **Markdown 自动渲染**：当 `--file` 中包含 `.md` 文件时，脚本会自动将内容转换为 HTML 格式发送，邮件中会以渲染后的富文本形式展示（标题、列表、表格、代码块等）。非 `.md` 文件仍以纯文本发送。
+
+### 从 stdin 读取内容
+
+```bash
+cat .skills-data/idea2mvp/data/search-results/ph_results.txt | PROJECT_ROOT=<项目根目录> python3 scripts/send_email.py --subject "Product Hunt 报告"
+```
+
+### 指定收件人（覆盖 `.env` 中的默认收件人）
+
+```bash
+PROJECT_ROOT=<项目根目录> python3 scripts/send_email.py --subject "报告" --body "内容" --to someone@example.com
+```
+
+### 添加附件（支持多个附件）
+
+```bash
+# 正文 + 单个附件
+PROJECT_ROOT=<项目根目录> python3 scripts/send_email.py --subject "可行性报告" --body "请查看附件中的完整报告" --attachment .skills-data/idea2mvp/cache/report.pdf
+
+# 正文 + 多个附件
+PROJECT_ROOT=<项目根目录> python3 scripts/send_email.py --subject "产品调研资料" --body "附件包含报告和数据" --attachment .skills-data/idea2mvp/cache/report.pdf .skills-data/idea2mvp/cache/data.csv
+
+# Markdown 正文 + 附件（正文渲染为 HTML，附件作为文件附带）
+PROJECT_ROOT=<项目根目录> python3 scripts/send_email.py --subject "工具探索报告" --file .skills-data/idea2mvp/cache/email_report.md --attachment .skills-data/idea2mvp/cache/detailed_data.xlsx
+```
+
+> 附件支持任意文件类型（PDF、图片、Excel、CSV、压缩包等），脚本会自动识别 MIME 类型。不存在的附件文件会被跳过并输出警告。
+
+## 邮件内容缓存
+
+发送前，先将生成的 Markdown 内容保存到 `.skills-data/idea2mvp/cache/` 目录（如 `email_report.md`），再通过 `--file` 参数传入发送。这样做的好处：
+- 发送失败时可重试，无需重新生成内容
+- 保留已发送内容的本地副本，方便回溯
+
+```bash
+# 示例：先保存到 cache，再发送
+PROJECT_ROOT=<项目根目录> python3 scripts/send_email.py --subject "工具探索报告" --file .skills-data/idea2mvp/cache/email_report.md
+```
+
+## 触发时机
+
+邮件发送仅在**用户主动要求**时执行。当用户要求将某些信息（报告、搜索结果、文档等）发送到邮箱时，直接运行脚本即可。如果脚本报错提示缺少配置，引导用户补充 `.skills-data/idea2mvp/.env` 中的邮件参数。
+
+## 常用邮箱 SMTP 配置
+
+| 邮箱 | SMTP 地址 | 端口 | 授权码获取 |
+|------|----------|------|-----------|
+| QQ 邮箱 | smtp.qq.com | 465 | 设置 → 账户 → POP3/SMTP → 生成授权码 |
+| Gmail | smtp.gmail.com | 465 | Google 账户 → 安全 → 应用专用密码 |
+| 163 邮箱 | smtp.163.com | 465 | 设置 → POP3/SMTP → 开启并获取授权码 |
+| Outlook | smtp.office365.com | 587 | 直接使用登录密码 |

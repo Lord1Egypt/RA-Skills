@@ -1,0 +1,37 @@
+{
+  "slug": "handover-memory-pack",
+  "title": "交接记忆包封装器",
+  "category": "success",
+  "categoryLabel": "客户成功与协作",
+  "mode": "structured_brief",
+  "summary": "为人员离岗或项目交接整理显性与隐性知识，减少信息流失。",
+  "inputHint": "职责范围、关键联系人、未决事项",
+  "sections": [
+    "职责概览",
+    "关键联系人",
+    "隐性知识",
+    "未决事项",
+    "风险提醒",
+    "接手建议"
+  ],
+  "useCases": [
+    "离职交接",
+    "项目换手",
+    "团队稳定"
+  ],
+  "positiveExamples": [
+    "帮我整理一份交接记忆包",
+    "把隐性知识显式化"
+  ],
+  "negativeExamples": [
+    "不要泄露不该交接的密钥",
+    "不要省略高风险事项"
+  ],
+  "risk": "建议把敏感信息改为引用位置而不是明文。",
+  "tags": [
+    "handover",
+    "knowledge-transfer",
+    "memory",
+    "operations"
+  ]
+}

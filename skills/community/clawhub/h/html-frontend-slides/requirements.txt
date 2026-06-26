@@ -1,0 +1,12 @@
+# 前端幻灯片技能 — Python 依赖（可选）
+# 仅在使用 PDF 导出、PPT 转换等功能时需要
+
+# PDF 导出（推荐）
+playwright>=1.40.0
+
+# PDF 导出（备选）
+# pdfkit>=1.0.0        # 需要安装 wkhtmltopdf
+# pdfkit 依赖外部二进制，建议用 playwright
+
+# PPT 转换
+# python-pptx>=0.6.21  # 如果需要 PPTX 导入功能

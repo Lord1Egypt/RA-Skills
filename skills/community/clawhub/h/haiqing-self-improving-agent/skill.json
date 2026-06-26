@@ -1,0 +1,32 @@
+{
+  "name": "self-improving-agent",
+  "description": "AI Self-Improving Agent v2 - Learn from mistakes, corrections, and successes. Three-layer system: passive capture + proactive check + proactive skill generation. Inspired by Hermes Agent's 'do-learn-fix' loop.",
+  "version": "2.0.0",
+  "trigger": [
+    "improve myself",
+    "learn from mistake", 
+    "remember this",
+    "auto-skill generation",
+    "self-improving",
+    "remember my preference",
+    "don't repeat same error"
+  ],
+  "tags": [
+    "memory",
+    "learning",
+    "skill-generation", 
+    "ai-agent",
+    "productivity",
+    "automation"
+  ],
+  "license": "MIT-0",
+  "author": "老二是AI",
+  "platform": "openclaw",
+  "language": "en,zh",
+  "hooks": {
+    "on_error": "log_error.py",
+    "on_correction": "log_correction.py",
+    "on_best_practice": "log_best_practice.py",
+    "on_task_complete": "generate_skill.py"
+  }
+}

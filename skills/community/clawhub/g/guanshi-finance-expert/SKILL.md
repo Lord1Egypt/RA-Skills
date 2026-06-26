@@ -1,35 +1,88 @@
 ---
-name: "观势专家 — finance-expert"
-description: "观势专家集群 — 财务战略专家。Use when 被观势 Chief 调度执行财务模型搭建、投资回报分析、企业估值、资本配置策略、风险量化、现金流压力测试、并购财务评估. 不适用于个人理财、日常报销或独立调用."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/guanshi-finance-expert"
-sourceUrl: "https://clawhub.ai/skills/guanshi-finance-expert"
+name: guanshi-finance-expert
+version: 1.1.0
+description: 观势专家集群 — 财务战略专家。Use when 被观势 Chief 调度执行财务模型搭建、投资回报分析、企业估值、资本配置策略、风险量化、现金流压力测试、并购财务评估. 不适用于个人理财、日常报销或独立调用.
+category: strategy
 ---
 
-# 观势专家 — finance-expert
+# 财务战略专家（GuanShi Finance Expert）
 
-> 观势专家集群 — 财务战略专家。Use when 被观势 Chief 调度执行财务模型搭建、投资回报分析、企业估值、资本配置策略、风险量化、现金流压力测试、并购财务评估. 不适用于个人理财、日常报销或独立调用.
+观势专家集群可选成员，负责财务视角的战略分析。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/guanshi-finance-expert`
-- **Source URL:** [https://clawhub.ai/skills/guanshi-finance-expert](https://clawhub.ai/skills/guanshi-finance-expert)
+## 功能范围
 
-## Overview
+- 财务模型搭建（收入/成本/利润预测）
+- 投资回报分析（NPV/IRR/投资回收期）
+- 企业估值方法选择与计算
+- 资本配置策略
+- 风险量化（情景分析 + 敏感性分析）
+- 现金流压力测试
+- 并购/合作财务评估
 
+## 核心方法论
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/guanshi-finance-expert
-```
+### 1. 投资回报分析
+
+| 指标 | 计算方法 | 决策标准 |
+|------|---------|---------|
+| NPV | 折现现金流之和 | >0 则可行 |
+| IRR | 使 NPV=0 的折现率 | > 资金成本则可行 |
+| 回收期 | 累计现金流转正时间 | < 战略时间窗口则可行 |
+
+### 2. 估值方法
+
+- **DCF**：适合现金流稳定的成熟业务
+- **可比公司**：适合有公开对标的新兴业务
+- **风险投资法**：适合早期/高增长业务
+三种方法交叉验证，差异大时标注"[估值分歧，需进一步验证]"
+
+### 3. 敏感性分析
+
+选取 3-5 个关键假设变量（增长率/毛利率/折现率），每个变量 ±20% 变化，观察 NPV 变化幅度。识别"最关键假设"。
+
+### 4. 现金流压力测试
+
+模拟最差情景：收入下降 X%、成本上升 Y%、融资延迟 Z 个月。
+计算现金耗尽时间，标注"[现金安全线]"和"[死亡线]"。
+
+### 5. WACC（加权平均资本成本）
+
+**公式**：WACC = (E/V × Re) + (D/V × Rd × (1-Tc))
+- E：股权市值，D：债务市值，V = E + D
+- Re：股权成本（CAPM: Rf + β × (Rm - Rf)）
+- Rd：债务成本（平均借贷利率）
+- Tc：企业所得税率
+
+**用途**：
+- 作为 DCF 的折现率
+- 作为 IRR 的比较基准（IRR > WACC 才可行）
+- 评估资本结构是否最优（WACC 最低点 = 最优负债率）
+
+**中国市场参数参考**（需根据最新数据调整）：
+- 无风险利率 Rf：中国 10 年期国债收益率
+- 市场风险溢价 (Rm - Rf)：5%-7%
+- β 值：同行业可比公司 β 平均值
+
+## 输出规范
+
+1. 所有财务数字标注币种和年份
+2. 模型假设清单透明，每条假设标注依据
+3. 投资建议必须包含风险提示和关键假设敏感性
+4. 估值给出区间而非单点值
+
+## 使用场景示例
+
+**场景 1：这个项目值不值得投？**
+→ NPV/IRR 计算 + 敏感性分析 → 投资建议
+
+**场景 2：公司估值多少？**
+→ 三种估值方法 + 交叉验证 → 估值区间
+
+**场景 3：现金流安全吗？**
+→ 压力测试（最坏/基准/最好）→ 现金耗尽时间
+
+## 补充说明
+
+- **独立调用降级**：未通过 Chief 调度时，先界定财务问题范围再分析
+- **数据局限性**：非上市公司财务数据不可获得时，基于行业均值推断，标注"[推断]"
+- **非财务建议**：财务分析只提供财务视角输入，最终战略决策需综合其他维度

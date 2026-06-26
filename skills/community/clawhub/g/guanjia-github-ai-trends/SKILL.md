@@ -1,35 +1,35 @@
 ---
-name: "GitHub AI Trends Reporter"
-description: "Generate GitHub AI trending project reports as formatted text leaderboards. Fetches top-starred AI/ML/LLM repos by daily, weekly, or monthly period and rende..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/guanjia-github-ai-trends"
-sourceUrl: "https://clawhub.ai/skills/guanjia-github-ai-trends"
+name: github-ai-trends
+description: Generate GitHub AI trending project reports as formatted text leaderboards. Fetches top-starred AI/ML/LLM repos by daily, weekly, or monthly period and renders a styled leaderboard. Use when the user asks for AI project trends, GitHub trending, AI leaderboard, or wants to see popular AI repos.
 ---
 
-# GitHub AI Trends Reporter
+# GitHub AI Trends
 
-> Generate GitHub AI trending project reports as formatted text leaderboards. Fetches top-starred AI/ML/LLM repos by daily, weekly, or monthly period and rende...
+Generate formatted leaderboard of trending AI projects on GitHub, output directly to chat.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/guanjia-github-ai-trends`
-- **Source URL:** [https://clawhub.ai/skills/guanjia-github-ai-trends](https://clawhub.ai/skills/guanjia-github-ai-trends)
+## Usage
 
-## Overview
+Run the script and paste its stdout as the reply:
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/guanjia-github-ai-trends
+python3 scripts/fetch_trends.py --period weekly --limit 20
 ```
+
+## Parameters
+
+- `--period`: `daily` | `weekly` | `monthly` (default: weekly)
+- `--limit`: Number of repos (default: 20)
+- `--token`: GitHub token for higher rate limits (or set `GITHUB_TOKEN` env)
+- `--json`: Output raw JSON instead of formatted text
+
+## How It Works
+
+1. Searches GitHub API for AI-related repos (by keywords + topics) pushed within the period
+2. Deduplicates and sorts by star count
+3. Outputs a formatted markdown leaderboard ready for chat display
+
+## Notes
+
+- Without a GitHub token, API rate limit is 10 requests/minute. With token: 30/minute.
+- No pip dependencies, uses only stdlib.
+- Output is markdown formatted for direct chat display.

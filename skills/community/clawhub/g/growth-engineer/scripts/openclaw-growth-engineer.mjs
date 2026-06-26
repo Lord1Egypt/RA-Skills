@@ -1,0 +1,1416 @@
+#!/usr/bin/env node
+import { promises as fs } from 'node:fs';
+import path from 'node:path';
+import process from 'node:process';
+import { classifyServiceKind, normalizeServiceType } from './openclaw-growth-shared.mjs';
+import { loadOpenClawGrowthSecrets } from './openclaw-growth-env.mjs';
+const PRIORITY_WEIGHT = {
+    high: 3,
+    medium: 2,
+    low: 1,
+};
+const AREA_KEYWORDS = {
+    onboarding: ['onboarding', 'welcome', 'signup', 'register', 'tutorial', 'first_session'],
+    paywall: ['paywall', 'pricing', 'subscription', 'purchase', 'premium', 'trial', 'revenuecat', 'paddle'],
+    retention: ['retention', 'streak', 'come_back', 'session', 'habit', 'reminder', 'notification'],
+    conversion: ['checkout', 'purchase', 'billing', 'trial', 'subscribe', 'price', 'paddle'],
+    revenue: ['revenue', 'mrr', 'subscriber', 'subscription', 'refund', 'chargeback', 'paddle', 'revenuecat'],
+    crash: ['error', 'exception', 'crash', 'stack', 'sentry', 'fatal'],
+    marketing: ['store', 'metadata', 'keyword', 'seo', 'landing', 'copy', 'conversion_copy', 'gsc', 'dataforseo', 'search console'],
+    infrastructure: ['coolify', 'deployment', 'deploy', 'hosting', 'server', 'health check', 'availability'],
+};
+const DEFAULT_PROPOSALS = {
+    onboarding: [
+        'Move highest-friction step later in onboarding and reduce required fields in first session.',
+        'Add event-level instrumentation around each onboarding step to verify exact drop-off.',
+        'Ship one A/B variant with shorter copy and a clearer progression indicator.',
+    ],
+    paywall: [
+        'Reposition paywall after first user value moment instead of at first launch.',
+        'Simplify price presentation and add one primary CTA with explicit trial wording.',
+        'Track `paywall:shown`, `purchase:started`, and terminal outcomes for each flow.',
+    ],
+    retention: [
+        'Add one reactivation trigger before the identified retention cliff.',
+        'Instrument a cohort-specific funnel from first value action to repeat session.',
+        'Run an experiment on feature nudges tied to the top retained cohort behavior.',
+    ],
+    conversion: [
+        'Reduce purchase flow steps and remove optional inputs before checkout.',
+        'Clarify plan differentiation and default to the strongest value package.',
+        'Track abandonment reasons at each step to drive follow-up fixes.',
+    ],
+    revenue: [
+        'Compare revenue movement with activation, checkout, and recent release data before changing pricing.',
+        'Inspect plan, geography, and cohort mix so the issue is tied to a specific monetization surface.',
+        'Add or verify revenue-funnel instrumentation for checkout starts, completions, refunds, and cancellations.',
+    ],
+    crash: [
+        'Reproduce the issue with a deterministic test case and lock a failing assertion.',
+        'Harden null/undefined boundaries around failing callsites.',
+        'Add telemetry breadcrumbs to isolate the exact pre-crash state.',
+    ],
+    infrastructure: [
+        'Fix the deployment or hosting blocker before increasing traffic to the affected surface.',
+        'Add or tighten production health checks so the next outage becomes a connector-health alert.',
+        'Correlate deployment timing with Sentry issues and AnalyticsCLI funnel movement before assigning product causality.',
+    ],
+    marketing: [
+        'Update App Store/landing copy to align value proposition with strongest usage signal.',
+        'Refresh screenshot ordering so first two screenshots mirror top user jobs.',
+        'Run one metadata experiment focused on high-intent keyword coverage.',
+    ],
+    general: [
+        'Instrument the target flow with bounded analytics to validate causality.',
+        'Ship the smallest possible fix behind a feature flag and compare cohorts.',
+        'Document rollout and success metric before implementation starts.',
+    ],
+};
+const DEFAULT_IGNORE_DIRS = new Set([
+    '.git',
+    '.github',
+    '.docusaurus',
+    'node_modules',
+    'dist',
+    'build',
+    '.next',
+    '.turbo',
+    'coverage',
+    '.pnpm-store',
+]);
+const TEXT_FILE_EXTENSIONS = new Set([
+    '.ts',
+    '.tsx',
+    '.js',
+    '.jsx',
+    '.mjs',
+    '.cjs',
+    '.py',
+    '.swift',
+    '.kt',
+    '.java',
+    '.go',
+    '.rb',
+    '.php',
+    '.yml',
+    '.yaml',
+    '.toml',
+    '.sql',
+    '.sh',
+    '.astro',
+    '.html',
+    '.css',
+    '.scss',
+]);
+function parseArgs(argv) {
+    const args = {
+        analytics: null,
+        revenuecat: null,
+        sentry: null,
+        feedback: null,
+        sources: [],
+        repoRoot: process.cwd(),
+        out: 'data/openclaw-growth-engineer/issues.generated.json',
+        maxIssues: 5,
+        createIssues: false,
+        createPullRequests: false,
+        repo: null,
+        titlePrefix: '[Growth]',
+        labels: ['ai-growth', 'autogenerated'],
+        codeRoots: null,
+        chartManifest: null,
+        uploadCharts: true,
+        branchPrefix: 'openclaw/proposals',
+        draftPullRequests: true,
+        allowProposalPullRequests: false,
+        cadencePlan: null,
+    };
+    for (let i = 0; i < argv.length; i += 1) {
+        const token = argv[i];
+        const next = argv[i + 1];
+        if (token === '--') {
+            continue;
+        }
+        if (token === '--analytics') {
+            args.analytics = next;
+            i += 1;
+        }
+        else if (token === '--revenuecat') {
+            args.revenuecat = next;
+            i += 1;
+        }
+        else if (token === '--sentry') {
+            args.sentry = next;
+            i += 1;
+        }
+        else if (token === '--feedback') {
+            args.feedback = next;
+            i += 1;
+        }
+        else if (token === '--source') {
+            args.sources.push(next || '');
+            i += 1;
+        }
+        else if (token === '--repo-root') {
+            args.repoRoot = next;
+            i += 1;
+        }
+        else if (token === '--out') {
+            args.out = next;
+            i += 1;
+        }
+        else if (token === '--max-issues') {
+            args.maxIssues = Math.max(1, Number.parseInt(next, 10) || 5);
+            i += 1;
+        }
+        else if (token === '--create-issues') {
+            args.createIssues = true;
+        }
+        else if (token === '--create-pull-requests') {
+            args.createPullRequests = true;
+        }
+        else if (token === '--allow-proposal-pull-requests') {
+            args.allowProposalPullRequests = true;
+        }
+        else if (token === '--repo') {
+            args.repo = next;
+            i += 1;
+        }
+        else if (token === '--title-prefix') {
+            args.titlePrefix = next;
+            i += 1;
+        }
+        else if (token === '--labels') {
+            args.labels = (next || '')
+                .split(',')
+                .map((value) => value.trim())
+                .filter(Boolean);
+            i += 1;
+        }
+        else if (token === '--code-roots') {
+            args.codeRoots = (next || '')
+                .split(',')
+                .map((value) => value.trim())
+                .filter(Boolean);
+            i += 1;
+        }
+        else if (token === '--chart-manifest') {
+            args.chartManifest = next;
+            i += 1;
+        }
+        else if (token === '--no-upload-charts') {
+            args.uploadCharts = false;
+        }
+        else if (token === '--branch-prefix') {
+            args.branchPrefix = next || args.branchPrefix;
+            i += 1;
+        }
+        else if (token === '--no-draft-pull-requests') {
+            args.draftPullRequests = false;
+        }
+        else if (token === '--cadence-plan') {
+            args.cadencePlan = next;
+            i += 1;
+        }
+        else if (token === '--help' || token === '-h') {
+            printHelpAndExit(0);
+        }
+        else {
+            printHelpAndExit(1, `Unknown argument: ${token}`);
+        }
+    }
+    if (!args.analytics) {
+        printHelpAndExit(1, 'Missing required argument: --analytics <file>');
+    }
+    if (args.createIssues && args.createPullRequests) {
+        printHelpAndExit(1, 'Use either --create-issues or --create-pull-requests, not both.');
+    }
+    return args;
+}
+function printHelpAndExit(exitCode, reason = null) {
+    if (reason) {
+        process.stderr.write(`${reason}\n\n`);
+    }
+    const help = `
+OpenClaw Growth Engineer MVP
+
+Usage:
+  node scripts/openclaw-growth-engineer.mjs --analytics <file> [options]
+
+Required:
+  --analytics <file>     Analytics summary JSON
+
+Optional:
+  --revenuecat <file>    RevenueCat summary JSON
+  --sentry <file>        Sentry summary JSON
+  --feedback <file>      User feedback summary JSON (optional)
+  --source <k=file>      Additional connector summary JSON (repeatable)
+  --repo-root <dir>      Repository root to scan (default: current directory)
+  --out <file>           Output JSON with generated issue drafts
+  --max-issues <n>       Max number of issues to generate (default: 5)
+  --create-issues        Create issues directly on GitHub
+  --create-pull-requests Create proposal-only draft PRs on GitHub
+  --allow-proposal-pull-requests
+                         Required with --create-pull-requests to acknowledge these PRs contain only .openclaw/proposals/*.md files
+  --repo <owner/name>    GitHub repository (required with GitHub creation mode)
+  --title-prefix <text>  Title prefix (default: [Growth])
+  --labels <a,b,c>       Comma-separated GitHub labels
+  --code-roots <a,b>     Prioritized code roots (default: auto-detect apps,packages)
+  --chart-manifest <f>   Optional chart manifest JSON (signal_id -> png path)
+  --no-upload-charts     Skip uploading charts to GitHub repo during issue creation
+  --branch-prefix <p>    Branch prefix for generated proposal PRs (default: openclaw/proposals)
+  --no-draft-pull-requests Create non-draft PRs when using --create-pull-requests
+  --cadence-plan <file>  Optional JSON with due cadence instructions for this run
+  --help                 Show this help
+
+Environment:
+  GITHUB_TOKEN           GitHub token with issue or pull-request write permissions
+`;
+    process.stdout.write(help);
+    process.exit(exitCode);
+}
+async function readJson(filePath) {
+    const raw = await fs.readFile(filePath, 'utf8');
+    return JSON.parse(raw);
+}
+function normalizeSignals(payload, source, service = source) {
+    if (!payload || typeof payload !== 'object') {
+        return [];
+    }
+    const result = [];
+    const serviceKind = classifyServiceKind(service);
+    const normalizeApp = (item) => item?.app
+        ? String(item.app)
+        : item?.sourceProject
+            ? String(item.sourceProject)
+            : item?.project
+                ? String(item.project)
+                : payload.project
+                    ? String(payload.project)
+                    : null;
+    const normalizeSourceUrl = (item) => String(item?.sourceUrl || item?.source_url || item?.issueUrl || item?.issue_url || item?.permalink || '').trim();
+    if (Array.isArray(payload.signals)) {
+        for (const signal of payload.signals) {
+            const sourceUrl = normalizeSourceUrl(signal);
+            result.push({
+                source,
+                id: String(signal.id || `${source}_${result.length + 1}`),
+                title: String(signal.title || signal.summary || 'Untitled signal'),
+                area: String(signal.area || inferAreaFromText(signal.title || signal.summary || '')),
+                priority: String(signal.priority || 'medium').toLowerCase(),
+                evidence: toStringArray(signal.evidence),
+                suggestedActions: toStringArray(signal.suggested_actions || signal.suggestedActions),
+                keywords: toStringArray(signal.keywords),
+                metric: signal.metric ? String(signal.metric) : null,
+                deltaPercent: coerceNumber(signal.delta_percent ?? signal.deltaPercent),
+                currentValue: coerceNumber(signal.current_value ?? signal.currentValue),
+                baselineValue: coerceNumber(signal.baseline_value ?? signal.baselineValue),
+                confidence: signal.confidence ? String(signal.confidence) : null,
+                releaseVersions: toStringArray(signal.releaseVersions || signal.release_versions),
+                app: normalizeApp(signal),
+                sourceUrl: sourceUrl || null,
+            });
+        }
+    }
+    if (serviceKind === 'crash' && Array.isArray(payload.issues)) {
+        for (const issue of payload.issues) {
+            const sourceUrl = normalizeSourceUrl(issue);
+            result.push({
+                source,
+                id: String(issue.id || `sentry_${result.length + 1}`),
+                title: String(issue.title || issue.issue || 'Untitled sentry issue'),
+                area: String(issue.area || 'crash'),
+                priority: String(issue.priority || issue.level || 'high').toLowerCase(),
+                evidence: toStringArray([
+                    issue.impact ? `Impact: ${issue.impact}` : null,
+                    issue.events ? `Events: ${issue.events}` : null,
+                    issue.users ? `Affected users: ${issue.users}` : null,
+                    sourceUrl ? `Issue link: ${sourceUrl}` : null,
+                    ...(Array.isArray(issue.evidence) ? issue.evidence : []),
+                ]),
+                suggestedActions: toStringArray(issue.suggested_actions || issue.suggestedActions),
+                keywords: toStringArray(issue.stack_keywords || issue.keywords),
+                metric: issue.metric ? String(issue.metric) : 'crash_rate',
+                deltaPercent: coerceNumber(issue.delta_percent ?? issue.deltaPercent),
+                currentValue: null,
+                baselineValue: null,
+                confidence: issue.confidence ? String(issue.confidence) : null,
+                releaseVersions: toStringArray(issue.releaseVersions || issue.release_versions),
+                app: normalizeApp(issue),
+                sourceUrl: sourceUrl || null,
+            });
+        }
+    }
+    if (serviceKind === 'feedback') {
+        const items = Array.isArray(payload.items)
+            ? payload.items
+            : Array.isArray(payload.feedback)
+                ? payload.feedback
+                : Array.isArray(payload.signals)
+                    ? payload.signals
+                    : [];
+        for (const item of items) {
+            result.push({
+                source,
+                id: String(item.id || `feedback_${result.length + 1}`),
+                title: String(item.title || item.summary || item.request || 'User feedback signal'),
+                area: String(item.area || inferAreaFromText(item.title || item.summary || item.request || '')),
+                priority: String(item.priority || inferFeedbackPriority(item)).toLowerCase(),
+                evidence: toStringArray([
+                    item.comment ? `Comment: ${item.comment}` : null,
+                    item.count ? `Mentions: ${item.count}` : null,
+                    item.channel ? `Channel: ${item.channel}` : null,
+                    ...(Array.isArray(item.locations)
+                        ? item.locations.map((location) => {
+                            if (!location || typeof location !== 'object')
+                                return null;
+                            const locationId = location.location_id ?? location.locationId ?? location.id ?? location.name ?? null;
+                            const count = location.count ?? null;
+                            if (!locationId)
+                                return null;
+                            return count ? `Location: ${locationId} (${count})` : `Location: ${locationId}`;
+                        })
+                        : []),
+                    item.location ? `Location: ${item.location}` : null,
+                    item.locationId ? `Location: ${item.locationId}` : null,
+                    ...(Array.isArray(item.evidence) ? item.evidence : []),
+                ]),
+                suggestedActions: toStringArray(item.suggested_actions || item.suggestedActions),
+                keywords: toStringArray(item.keywords || item.tags),
+                metric: item.metric ? String(item.metric) : 'feedback_mentions',
+                deltaPercent: coerceNumber(item.delta_percent ?? item.deltaPercent),
+                currentValue: coerceNumber(item.count ?? item.current_value ?? item.currentValue),
+                baselineValue: coerceNumber(item.baseline_count ?? item.baseline_value ?? item.baselineValue),
+                confidence: item.confidence ? String(item.confidence) : null,
+                releaseVersions: toStringArray(item.releaseVersions || item.release_versions),
+                app: item.app ? String(item.app) : payload.project ? String(payload.project) : null,
+            });
+        }
+    }
+    return result;
+}
+function getRecognizedSignalContainers(payload, service = 'custom') {
+    if (!payload || typeof payload !== 'object') {
+        return [];
+    }
+    const containers = [];
+    const serviceKind = classifyServiceKind(service);
+    if (Array.isArray(payload.signals)) {
+        containers.push(`signals[${payload.signals.length}]`);
+    }
+    if (serviceKind === 'crash' && Array.isArray(payload.issues)) {
+        containers.push(`issues[${payload.issues.length}]`);
+    }
+    if (serviceKind === 'feedback') {
+        if (Array.isArray(payload.items)) {
+            containers.push(`items[${payload.items.length}]`);
+        }
+        if (Array.isArray(payload.feedback)) {
+            containers.push(`feedback[${payload.feedback.length}]`);
+        }
+    }
+    return containers;
+}
+function getPayloadWarnings(payload) {
+    const warnings = payload?.meta?.queryWarnings;
+    return Array.isArray(warnings) ? warnings.map((warning) => String(warning)).filter(Boolean) : [];
+}
+function summarizeNoSignalsSource({ payload, source, service }) {
+    if (!payload || typeof payload !== 'object') {
+        return `${source}: no JSON object payload`;
+    }
+    const containers = getRecognizedSignalContainers(payload, service);
+    const warnings = getPayloadWarnings(payload);
+    const shape = containers.length > 0
+        ? containers.join(', ')
+        : `unrecognized top-level keys: ${Object.keys(payload).slice(0, 8).join(', ') || '(none)'}`;
+    return `${source}: ${shape}${warnings.length > 0 ? `; warnings: ${warnings.join(' | ')}` : ''}`;
+}
+function buildNoSignalsError(sourceEntries) {
+    const summaries = sourceEntries.map(summarizeNoSignalsSource);
+    const hasRecognizedShape = sourceEntries.some((entry) => getRecognizedSignalContainers(entry.payload, entry.service).length > 0);
+    const headline = hasRecognizedShape
+        ? 'No actionable growth signals found. Source JSON shape is recognized, but all signal containers are empty.'
+        : 'No signals found. Check input JSON shape (expected: signals[], crash issues[], or feedback items[]).';
+    return [
+        headline,
+        'Sources:',
+        ...summaries.map((summary) => `- ${summary}`),
+        'Next steps:',
+        '- Leave AnalyticsCLI project scope unpinned by default; the exporter scans all accessible projects unless a task explicitly needs `--project <id>`.',
+        '- Verify accessible AnalyticsCLI projects have release analytics events in the requested window, or enable additional sources such as ASC CLI, RevenueCat, Sentry, or feedback.',
+    ].join('\n');
+}
+function inferFeedbackPriority(item) {
+    const mentionCount = Number(item.count ?? 0);
+    const lower = `${item.title ?? ''} ${item.comment ?? ''}`.toLowerCase();
+    if (mentionCount >= 25)
+        return 'high';
+    if (lower.includes('crash') || lower.includes('cannot') || lower.includes('blocked'))
+        return 'high';
+    if (mentionCount >= 10)
+        return 'medium';
+    return 'low';
+}
+function toStringArray(value) {
+    if (!value)
+        return [];
+    if (Array.isArray(value)) {
+        return value
+            .filter((item) => item !== undefined && item !== null)
+            .map((item) => String(item).trim())
+            .filter(Boolean);
+    }
+    const normalized = String(value).trim();
+    return normalized ? [normalized] : [];
+}
+function coerceNumber(value) {
+    const number = Number(value);
+    return Number.isFinite(number) ? number : null;
+}
+function inferAreaFromText(text) {
+    const lower = text.toLowerCase();
+    for (const [area, keywords] of Object.entries(AREA_KEYWORDS)) {
+        if (keywords.some((keyword) => lower.includes(keyword))) {
+            return area;
+        }
+    }
+    return 'general';
+}
+async function collectRepoFiles(repoRoot) {
+    const files = [];
+    const root = path.resolve(repoRoot);
+    async function walk(current) {
+        const entries = await fs.readdir(current, { withFileTypes: true });
+        for (const entry of entries) {
+            const fullPath = path.join(current, entry.name);
+            const relativePath = path.relative(root, fullPath);
+            if (!relativePath || relativePath.startsWith('..')) {
+                continue;
+            }
+            if (entry.isDirectory()) {
+                if (DEFAULT_IGNORE_DIRS.has(entry.name) || entry.name.startsWith('.')) {
+                    continue;
+                }
+                await walk(fullPath);
+            }
+            else if (entry.isFile()) {
+                const ext = path.extname(entry.name).toLowerCase();
+                if (TEXT_FILE_EXTENSIONS.has(ext)) {
+                    files.push(relativePath);
+                }
+            }
+        }
+    }
+    await walk(root);
+    return files;
+}
+async function readFileSnippet(repoRoot, relativePath, bytes = 20000) {
+    const fullPath = path.join(repoRoot, relativePath);
+    try {
+        const content = await fs.readFile(fullPath, 'utf8');
+        return content.slice(0, bytes);
+    }
+    catch {
+        return '';
+    }
+}
+async function findRelevantFiles(repoRoot, allFiles, signal, maxFiles = 5) {
+    const baseKeywords = new Set([
+        ...(AREA_KEYWORDS[signal.area] || []),
+        ...signal.keywords,
+        ...tokenize(signal.title),
+        ...(signal.metric ? tokenize(signal.metric) : []),
+    ]);
+    const keywords = [...baseKeywords].filter((word) => word.length > 2);
+    const scored = [];
+    for (const file of allFiles) {
+        let score = pathScoreBias(file);
+        const lowerPath = file.toLowerCase();
+        for (const keyword of keywords) {
+            if (lowerPath.includes(keyword.toLowerCase())) {
+                score += 4;
+            }
+        }
+        if (score > 0) {
+            scored.push({ file, score });
+            continue;
+        }
+        const snippet = await readFileSnippet(repoRoot, file);
+        if (!snippet)
+            continue;
+        const lowerContent = snippet.toLowerCase();
+        for (const keyword of keywords) {
+            const re = new RegExp(`\\b${escapeRegExp(keyword.toLowerCase())}\\b`, 'g');
+            const matches = lowerContent.match(re);
+            if (matches) {
+                score += matches.length;
+            }
+        }
+        if (score > 0) {
+            scored.push({ file, score });
+        }
+    }
+    scored.sort((a, b) => b.score - a.score || a.file.localeCompare(b.file));
+    return scored.slice(0, maxFiles).map((entry) => entry.file);
+}
+function pathScoreBias(relativePath) {
+    let score = 0;
+    if (relativePath.startsWith('apps/'))
+        score += 6;
+    if (relativePath.startsWith('packages/'))
+        score += 6;
+    if (relativePath.includes('/docs/') || relativePath.startsWith('apps/docs/'))
+        score -= 10;
+    if (relativePath.includes('/.github/') || relativePath.startsWith('.github/'))
+        score -= 10;
+    if (relativePath.startsWith('skills/') ||
+        relativePath.startsWith('docs/') ||
+        relativePath.startsWith('agent/') ||
+        relativePath.startsWith('data/')) {
+        score -= 8;
+    }
+    if (relativePath === 'scripts/openclaw-growth-engineer.mjs') {
+        score -= 12;
+    }
+    return score;
+}
+function pickCodeRoots(files, explicitRoots) {
+    if (explicitRoots && explicitRoots.length > 0) {
+        return explicitRoots;
+    }
+    const defaults = ['apps', 'packages'];
+    const available = defaults.filter((root) => files.some((file) => file.startsWith(`${root}/`)));
+    return available.length > 0 ? available : [];
+}
+function filterFilesByRoots(files, roots) {
+    if (!roots || roots.length === 0) {
+        return files;
+    }
+    return files.filter((file) => roots.some((root) => file.startsWith(`${root}/`)));
+}
+function escapeRegExp(value) {
+    return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+function tokenize(text) {
+    return String(text)
+        .toLowerCase()
+        .split(/[^a-z0-9]+/)
+        .filter(Boolean);
+}
+function buildIssueDraft(signal, matchedFiles, titlePrefix, activeCadences = []) {
+    const title = `${titlePrefix} ${signal.title}`.trim();
+    const proposals = signal.suggestedActions.length > 0
+        ? signal.suggestedActions
+        : DEFAULT_PROPOSALS[signal.area] || DEFAULT_PROPOSALS.general;
+    const evidence = [...signal.evidence];
+    if (signal.app) {
+        evidence.unshift(`App: ${signal.app}`);
+    }
+    if (signal.sourceUrl && !evidence.some((line) => String(line).includes(signal.sourceUrl))) {
+        evidence.push(`Issue link: ${signal.sourceUrl}`);
+    }
+    if (signal.metric && signal.currentValue !== null && signal.baselineValue !== null) {
+        evidence.push(`Metric \`${signal.metric}\`: current=${signal.currentValue}, baseline=${signal.baselineValue}`);
+    }
+    if (signal.deltaPercent !== null) {
+        evidence.push(`Delta: ${signal.deltaPercent}%`);
+    }
+    if (evidence.length === 0) {
+        evidence.push('No explicit evidence provided in source payload.');
+    }
+    const expectedImpact = inferExpectedImpact(signal);
+    const confidence = signal.confidence || inferConfidence(signal);
+    const nextStepPrompt = buildPrPrompt(signal, matchedFiles, proposals);
+    const body = [
+        '## Problem',
+        signal.title,
+        '',
+        ...(activeCadences.length > 0
+            ? [
+                '## Operating Cadence',
+                ...activeCadences.map((cadence) => {
+                    const detail = [cadence.objective, cadence.instructions].filter(Boolean).join(' ');
+                    return `- ${cadence.title}: ${detail || 'Focus this investigation around the active cadence.'}`;
+                }),
+                '',
+            ]
+            : []),
+        '## Evidence',
+        ...evidence.map((line) => `- ${line}`),
+        '',
+        '## Affected Files / Modules',
+        ...(matchedFiles.length > 0
+            ? matchedFiles.map((file) => `- \`${file}\``)
+            : ['- No high-confidence file match found. Start from flow owner modules.']),
+        '',
+        '## Proposed Implementation',
+        ...proposals.map((line) => `- ${line}`),
+        '',
+        '## Expected Impact',
+        expectedImpact,
+        '',
+        '## Confidence',
+        confidence,
+        '',
+        '## Optional Next-Step PR Prompt',
+        '```text',
+        nextStepPrompt,
+        '```',
+    ].join('\n');
+    return {
+        source: signal.source,
+        signal_id: signal.id,
+        title,
+        body,
+        priority: signal.priority,
+        area: signal.area,
+        files: matchedFiles,
+        expected_impact: expectedImpact,
+        confidence,
+        app: signal.app || null,
+        source_url: signal.sourceUrl || null,
+        cadences: activeCadences.map((cadence) => cadence.key),
+    };
+}
+function inferExpectedImpact(signal) {
+    if (signal.source === 'sentry' || signal.area === 'crash') {
+        return 'Reduce crash-driven funnel exits and recover blocked conversions.';
+    }
+    if (signal.area === 'marketing') {
+        return 'Increase top-of-funnel acquisition quality and store listing conversion.';
+    }
+    if (signal.area === 'revenue') {
+        return 'Improve revenue quality, subscriber growth, or monetization reliability with measurable business impact.';
+    }
+    if (signal.area === 'paywall' || signal.area === 'conversion') {
+        return 'Increase trial start and paid conversion rates in primary monetization flow.';
+    }
+    if (signal.area === 'onboarding' || signal.area === 'retention') {
+        return 'Lift activation and short-term retention in first user sessions.';
+    }
+    return 'Improve product performance on the tracked KPI with measurable experimentation.';
+}
+function inferConfidence(signal) {
+    if (signal.priority === 'high' && signal.evidence.length >= 2) {
+        return 'High';
+    }
+    if (signal.evidence.length >= 1) {
+        return 'Medium';
+    }
+    return 'Low';
+}
+function buildPrPrompt(signal, files, proposals) {
+    const primaryFiles = files.length > 0 ? files.slice(0, 4).join(', ') : 'flow owner files to be identified';
+    const actions = proposals.slice(0, 3).map((item) => `- ${item}`).join('\n');
+    return [
+        `Implement issue: ${signal.title}.`,
+        `Focus area: ${signal.area}.`,
+        `Likely files: ${primaryFiles}.`,
+        'Requirements:',
+        actions,
+        '- Add or update tests for the changed behavior.',
+        '- Add analytics instrumentation to verify post-release impact.',
+        '- Keep changes scoped and production-safe.',
+    ].join('\n');
+}
+function rankSignals(signals) {
+    return [...signals].sort((a, b) => {
+        const pa = PRIORITY_WEIGHT[a.priority] || 1;
+        const pb = PRIORITY_WEIGHT[b.priority] || 1;
+        if (pa !== pb)
+            return pb - pa;
+        const da = Math.abs(a.deltaPercent ?? 0);
+        const db = Math.abs(b.deltaPercent ?? 0);
+        if (da !== db)
+            return db - da;
+        return a.title.localeCompare(b.title);
+    });
+}
+function dedupeSignals(signals) {
+    const seen = new Set();
+    const result = [];
+    for (const signal of signals) {
+        const key = `${signal.area}:${signal.title.toLowerCase()}`;
+        if (seen.has(key))
+            continue;
+        seen.add(key);
+        result.push(signal);
+    }
+    return result;
+}
+function normalizeCadencePlan(payload) {
+    const rawCadences = Array.isArray(payload?.cadences)
+        ? payload.cadences
+        : Array.isArray(payload)
+            ? payload
+            : [];
+    return rawCadences
+        .filter((cadence) => cadence && typeof cadence === 'object')
+        .map((cadence) => ({
+        key: String(cadence.key || cadence.id || 'custom'),
+        title: String(cadence.title || cadence.label || cadence.key || 'Custom cadence'),
+        objective: String(cadence.objective || ''),
+        instructions: String(cadence.instructions || ''),
+        focusAreas: toStringArray(cadence.focusAreas || cadence.focus_areas).map((value) => value.toLowerCase()),
+        sourcePriorities: toStringArray(cadence.sourcePriorities || cadence.source_priorities).map((value) => value.toLowerCase()),
+        criticalOnly: cadence.criticalOnly === true || cadence.critical_only === true,
+    }));
+}
+function signalSearchText(signal) {
+    return [
+        signal.source,
+        signal.area,
+        signal.title,
+        signal.metric,
+        ...signal.evidence,
+        ...signal.suggestedActions,
+        ...signal.keywords,
+    ]
+        .filter(Boolean)
+        .join(' ')
+        .toLowerCase();
+}
+function cadenceSearchText(cadence) {
+    return [
+        cadence.title,
+        cadence.objective,
+        cadence.instructions,
+        ...cadence.focusAreas,
+        ...cadence.sourcePriorities,
+    ]
+        .filter(Boolean)
+        .join(' ')
+        .toLowerCase();
+}
+function isCriticalSignal(signal) {
+    const text = signalSearchText(signal);
+    const metric = String(signal.metric || '').toLowerCase();
+    if (signal.priority === 'high')
+        return true;
+    if (signal.area === 'crash')
+        return true;
+    if (['sentry', 'glitchtip', 'crashlytics', 'bugsnag'].some((source) => String(signal.source).includes(source))) {
+        return true;
+    }
+    if (/(crash|fatal|exception|error|outage|blocked|regression|failed release|production)/i.test(text)) {
+        return true;
+    }
+    if (/(conversion|purchase|revenue|trial|checkout|paywall|user|active|activation)/i.test(metric)) {
+        const current = Number(signal.currentValue);
+        const baseline = Number(signal.baselineValue);
+        if (Number.isFinite(signal.deltaPercent) && signal.deltaPercent <= -20)
+            return true;
+        if (Number.isFinite(current) && Number.isFinite(baseline) && baseline > 0 && current / baseline <= 0.75) {
+            return true;
+        }
+    }
+    return /(very low|near zero|zero|drop|dropped|collapse|collapsed|anomaly|spike)/i.test(text);
+}
+function cadenceSignalScore(signal, cadences) {
+    if (!cadences.length)
+        return 0;
+    const text = signalSearchText(signal);
+    let score = 0;
+    for (const cadence of cadences) {
+        if (cadence.focusAreas.includes(signal.area))
+            score += 8;
+        if (cadence.sourcePriorities.includes(String(signal.source).toLowerCase()))
+            score += 6;
+        if (cadence.criticalOnly && isCriticalSignal(signal))
+            score += 12;
+        for (const keyword of tokenize(cadenceSearchText(cadence))) {
+            if (keyword.length > 3 && text.includes(keyword))
+                score += 1;
+        }
+    }
+    return score;
+}
+function applyCadencePlan(signals, cadences) {
+    if (!cadences.length)
+        return signals;
+    const allCriticalOnly = cadences.every((cadence) => cadence.criticalOnly);
+    const filtered = allCriticalOnly ? signals.filter(isCriticalSignal) : signals;
+    return [...filtered].sort((a, b) => cadenceSignalScore(b, cadences) - cadenceSignalScore(a, cadences));
+}
+function normalizeVersionToken(value) {
+    const normalized = String(value || '').trim();
+    if (!normalized)
+        return '';
+    const match = normalized.match(/\b\d+(?:\.\d+){1,3}(?:\+\d+)?\b/);
+    return match ? match[0] : '';
+}
+function versionMatchesProduction(signalVersion, productionVersion) {
+    const signal = normalizeVersionToken(signalVersion);
+    const production = normalizeVersionToken(productionVersion);
+    if (!signal || !production)
+        return false;
+    return signal === production || signal.startsWith(`${production}+`) || production.startsWith(`${signal}+`);
+}
+function collectAscProductionVersionsFromPayload(payload) {
+    const versions = [];
+    const visit = (value) => {
+        if (!value || typeof value !== 'object')
+            return;
+        if (Array.isArray(value)) {
+            for (const item of value)
+                visit(item);
+            return;
+        }
+        if (Array.isArray(value.meta?.productionVersions)) {
+            versions.push(...value.meta.productionVersions);
+        }
+        if (Array.isArray(value.productionVersions)) {
+            versions.push(...value.productionVersions);
+        }
+        const crashBreakdown = value.meta?.analytics?.crashBreakdown;
+        if (Array.isArray(crashBreakdown)) {
+            versions.push(...crashBreakdown.map((entry) => entry?.label));
+        }
+        for (const child of Object.values(value))
+            visit(child);
+    };
+    visit(payload);
+    return [...new Set(versions.map(normalizeVersionToken).filter(Boolean))].sort();
+}
+function extractSignalReleaseVersions(signal) {
+    const values = [...toStringArray(signal.releaseVersions || signal.release_versions)];
+    for (const evidence of signal.evidence || []) {
+        if (/release|version|build/i.test(evidence)) {
+            values.push(...String(evidence).match(/\b\d+(?:\.\d+){1,3}(?:\+\d+)?\b/g) || []);
+        }
+    }
+    for (const keyword of signal.keywords || []) {
+        values.push(normalizeVersionToken(keyword));
+    }
+    return [...new Set(values.map(normalizeVersionToken).filter(Boolean))].sort();
+}
+function shouldVerifyProductionRelease(cadences) {
+    return (cadences || []).some((cadence) => {
+        const text = `${cadence.key || ''} ${cadence.title || ''} ${cadence.objective || ''} ${cadence.instructions || ''}`.toLowerCase();
+        return text.includes('production') && (text.includes('sentry') || text.includes('glitchtip'));
+    });
+}
+function filterNonProductionCrashSignals(signals, ascPayloads, cadences) {
+    if (!shouldVerifyProductionRelease(cadences)) {
+        return { signals, ignored: [] };
+    }
+    const productionVersions = collectAscProductionVersionsFromPayload(ascPayloads);
+    if (productionVersions.length === 0) {
+        return { signals, ignored: [] };
+    }
+    const kept = [];
+    const ignored = [];
+    for (const signal of signals) {
+        const source = String(signal.source || '').toLowerCase();
+        const isCrashProvider = ['sentry', 'glitchtip'].some((provider) => source.includes(provider));
+        if (!isCrashProvider || signal.area !== 'crash') {
+            kept.push(signal);
+            continue;
+        }
+        const releaseVersions = extractSignalReleaseVersions(signal);
+        if (releaseVersions.length === 0) {
+            kept.push({
+                ...signal,
+                evidence: [
+                    ...signal.evidence,
+                    `ASC production version check: no release/app version was present on the crash issue; production versions known: ${productionVersions.join(', ')}`,
+                ],
+            });
+            continue;
+        }
+        const productionMatch = releaseVersions.some((releaseVersion) => productionVersions.some((productionVersion) => versionMatchesProduction(releaseVersion, productionVersion)));
+        if (productionMatch) {
+            kept.push({
+                ...signal,
+                evidence: [
+                    ...signal.evidence,
+                    `ASC production version check passed: ${releaseVersions.join(', ')} intersects ${productionVersions.join(', ')}`,
+                ],
+            });
+        }
+        else {
+            ignored.push({
+                id: signal.id,
+                title: signal.title,
+                source: signal.source,
+                releaseVersions,
+                productionVersions,
+                reason: 'Sentry/GlitchTip issue release is not an ASC production version',
+            });
+        }
+    }
+    return { signals: kept, ignored };
+}
+function indexChartsBySignal(manifest, manifestFilePath) {
+    const bySignal = new Map();
+    if (!manifest || typeof manifest !== 'object') {
+        return bySignal;
+    }
+    const charts = Array.isArray(manifest.charts) ? manifest.charts : [];
+    for (const chart of charts) {
+        const signalId = String(chart.signal_id || chart.signalId || '').trim();
+        if (!signalId)
+            continue;
+        const filePathRaw = String(chart.file_path || chart.filePath || '').trim();
+        if (!filePathRaw)
+            continue;
+        const resolvedPath = path.isAbsolute(filePathRaw)
+            ? filePathRaw
+            : manifestFilePath
+                ? path.resolve(path.dirname(manifestFilePath), filePathRaw)
+                : path.resolve(filePathRaw);
+        const entry = {
+            signal_id: signalId,
+            file_path: resolvedPath,
+            caption: String(chart.caption || chart.title || 'Data chart'),
+        };
+        const existing = bySignal.get(signalId) || [];
+        existing.push(entry);
+        bySignal.set(signalId, existing);
+    }
+    return bySignal;
+}
+function appendChartsSection(body, charts, mode) {
+    if (!charts || charts.length === 0) {
+        return body;
+    }
+    const lines = ['', '## Data Chart'];
+    for (const chart of charts) {
+        if (mode === 'remote') {
+            lines.push(`![${chart.caption}](${chart.url})`);
+        }
+        else {
+            lines.push(`- ${chart.caption}: \`${chart.file_path}\``);
+        }
+    }
+    return `${body}\n${lines.join('\n')}`;
+}
+function slugify(value) {
+    return String(value || '')
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, '-')
+        .replace(/^-+|-+$/g, '')
+        .slice(0, 64);
+}
+function stripDataChartSection(body) {
+    return body.replace(/\n## Data Chart[\s\S]*$/m, '');
+}
+function buildProposalMarkdown(draft, proposalPath) {
+    return [
+        `# ${draft.title}`,
+        '',
+        'This proposal file was generated by OpenClaw growth autopilot.',
+        `It describes the requested change before implementation starts.`,
+        '',
+        `- Signal ID: \`${draft.signal_id}\``,
+        `- Source: \`${draft.source}\``,
+        `- Proposal path: \`${proposalPath}\``,
+        '',
+        stripDataChartSection(draft.body),
+        '',
+    ].join('\n');
+}
+async function githubApiRequest(url, token, options = {}) {
+    const response = await fetch(url, {
+        ...options,
+        headers: {
+            Authorization: `Bearer ${token}`,
+            Accept: 'application/vnd.github+json',
+            'Content-Type': 'application/json',
+            'User-Agent': 'openclaw-growth-engineer-mvp',
+            ...(options.headers || {}),
+        },
+    });
+    return response;
+}
+async function getRepoDefaultBranch(repo, token) {
+    const response = await githubApiRequest(`https://api.github.com/repos/${repo}`, token);
+    if (!response.ok) {
+        const text = await response.text();
+        throw new Error(`Failed to fetch repo metadata (${response.status}): ${text}`);
+    }
+    const payload = await response.json();
+    return String(payload.default_branch || 'main');
+}
+async function getBranchRefSha(repo, token, branch) {
+    const response = await githubApiRequest(`https://api.github.com/repos/${repo}/git/ref/heads/${encodeURIComponent(branch)}`, token, { method: 'GET' });
+    if (!response.ok) {
+        const text = await response.text();
+        throw new Error(`Failed to fetch branch ref (${response.status}): ${text}`);
+    }
+    const payload = await response.json();
+    const sha = payload?.object?.sha;
+    if (!sha || typeof sha !== 'string') {
+        throw new Error(`Branch ref for ${branch} did not contain a commit SHA.`);
+    }
+    return sha;
+}
+async function createBranchRef(repo, token, branch, sha) {
+    const response = await githubApiRequest(`https://api.github.com/repos/${repo}/git/refs`, token, {
+        method: 'POST',
+        body: JSON.stringify({
+            ref: `refs/heads/${branch}`,
+            sha,
+        }),
+    });
+    if (!response.ok) {
+        const text = await response.text();
+        throw new Error(`Failed to create branch ${branch} (${response.status}): ${text}`);
+    }
+}
+async function getContentSha(repo, token, branch, targetPath) {
+    const encoded = targetPath.split('/').map((part) => encodeURIComponent(part)).join('/');
+    const response = await githubApiRequest(`https://api.github.com/repos/${repo}/contents/${encoded}?ref=${encodeURIComponent(branch)}`, token, { method: 'GET' });
+    if (response.status === 404) {
+        return null;
+    }
+    if (!response.ok) {
+        const text = await response.text();
+        throw new Error(`Failed to fetch content SHA (${response.status}): ${text}`);
+    }
+    const payload = await response.json();
+    return payload.sha ? String(payload.sha) : null;
+}
+async function putRepoTextFile({ repo, token, branch, targetPath, content, message }) {
+    const contentBase64 = Buffer.from(content, 'utf8').toString('base64');
+    const existingSha = await getContentSha(repo, token, branch, targetPath);
+    const encodedPath = targetPath.split('/').map((part) => encodeURIComponent(part)).join('/');
+    const response = await githubApiRequest(`https://api.github.com/repos/${repo}/contents/${encodedPath}`, token, {
+        method: 'PUT',
+        body: JSON.stringify({
+            message,
+            content: contentBase64,
+            branch,
+            ...(existingSha ? { sha: existingSha } : {}),
+        }),
+    });
+    if (!response.ok) {
+        const text = await response.text();
+        throw new Error(`Failed to write proposal file (${response.status}): ${text}`);
+    }
+}
+async function uploadFileToRepo({ repo, token, branch, targetPath, sourcePath }) {
+    const fileBytes = await fs.readFile(sourcePath);
+    const contentBase64 = fileBytes.toString('base64');
+    const existingSha = await getContentSha(repo, token, branch, targetPath);
+    const body = {
+        message: `chore(openclaw): add chart asset ${path.basename(targetPath)}`,
+        content: contentBase64,
+        branch,
+    };
+    if (existingSha) {
+        body.sha = existingSha;
+    }
+    const encodedPath = targetPath.split('/').map((part) => encodeURIComponent(part)).join('/');
+    const response = await githubApiRequest(`https://api.github.com/repos/${repo}/contents/${encodedPath}`, token, {
+        method: 'PUT',
+        body: JSON.stringify(body),
+    });
+    if (!response.ok) {
+        const text = await response.text();
+        throw new Error(`Failed to upload chart (${response.status}): ${text}`);
+    }
+    return `https://raw.githubusercontent.com/${repo}/${branch}/${targetPath}`;
+}
+async function createGithubIssue({ repo, title, body, labels, token }) {
+    const response = await fetch(`https://api.github.com/repos/${repo}/issues`, {
+        method: 'POST',
+        headers: {
+            Authorization: `Bearer ${token}`,
+            Accept: 'application/vnd.github+json',
+            'Content-Type': 'application/json',
+            'User-Agent': 'openclaw-growth-engineer-mvp',
+        },
+        body: JSON.stringify({
+            title,
+            body,
+            labels,
+        }),
+    });
+    if (!response.ok) {
+        const text = await response.text();
+        throw new Error(`GitHub issue creation failed (${response.status}): ${text}`);
+    }
+    return response.json();
+}
+async function createGithubPullRequest({ repo, title, body, head, base, draft, token }) {
+    const response = await githubApiRequest(`https://api.github.com/repos/${repo}/pulls`, token, {
+        method: 'POST',
+        body: JSON.stringify({
+            title,
+            body,
+            head,
+            base,
+            draft,
+        }),
+    });
+    if (!response.ok) {
+        const text = await response.text();
+        throw new Error(`GitHub pull request creation failed (${response.status}): ${text}`);
+    }
+    return response.json();
+}
+async function addLabelsToGithubIssue({ repo, number, labels, token }) {
+    if (!labels || labels.length === 0) {
+        return;
+    }
+    const response = await githubApiRequest(`https://api.github.com/repos/${repo}/issues/${number}/labels`, token, {
+        method: 'POST',
+        body: JSON.stringify({
+            labels,
+        }),
+    });
+    if (!response.ok) {
+        const text = await response.text();
+        throw new Error(`GitHub label apply failed (${response.status}): ${text}`);
+    }
+}
+async function ensureParentDir(filePath) {
+    const directory = path.dirname(filePath);
+    await fs.mkdir(directory, { recursive: true });
+}
+async function createProposalPullRequest({ repo, token, draft, labels, branchPrefix, draftPullRequests, }) {
+    const dateSegment = new Date().toISOString().slice(0, 10);
+    const slug = slugify(draft.signal_id || draft.title || `proposal-${Date.now()}`) || `proposal-${Date.now()}`;
+    const baseBranch = await getRepoDefaultBranch(repo, token);
+    const baseSha = await getBranchRefSha(repo, token, baseBranch);
+    const branchName = `${String(branchPrefix || 'openclaw/proposals').replace(/\/+$/g, '')}/${dateSegment}/${slug}-${Date.now().toString(36)}`;
+    await createBranchRef(repo, token, branchName, baseSha);
+    const proposalPath = `.openclaw/proposals/${dateSegment}/${slug}.md`;
+    const proposalMarkdown = buildProposalMarkdown(draft, proposalPath);
+    await putRepoTextFile({
+        repo,
+        token,
+        branch: branchName,
+        targetPath: proposalPath,
+        content: proposalMarkdown,
+        message: `docs(openclaw): add proposal for ${draft.title}`,
+    });
+    const prBody = [
+        '## Why this PR exists',
+        'This proposal-only draft PR was generated automatically from product signals and repo context.',
+        'It intentionally adds only a proposal file. It does not implement production app changes.',
+        '',
+        '## Requested change',
+        `- Proposal file: \`${proposalPath}\``,
+        `- Source connector: \`${draft.source}\``,
+        `- Confidence: ${draft.confidence}`,
+        '',
+        '## Suggested implementation scope',
+        ...(draft.files.length > 0
+            ? draft.files.map((file) => `- \`${file}\``)
+            : ['- No high-confidence file match yet. Start from the owning flow modules.']),
+        '',
+        '## Next step',
+        'OpenClaw or a developer must implement production code changes in a separate implementation PR, or convert this proposal PR by adding real app changes.',
+    ].join('\n');
+    const pr = await createGithubPullRequest({
+        repo,
+        token,
+        title: draft.title,
+        body: prBody,
+        head: branchName,
+        base: baseBranch,
+        draft: draftPullRequests,
+    });
+    await addLabelsToGithubIssue({
+        repo,
+        number: pr.number,
+        labels,
+        token,
+    });
+    return {
+        title: pr.title,
+        number: pr.number,
+        url: pr.html_url,
+        branch: branchName,
+        proposalPath,
+    };
+}
+async function main() {
+    await loadOpenClawGrowthSecrets();
+    const args = parseArgs(process.argv.slice(2));
+    const repoRoot = path.resolve(args.repoRoot);
+    const outputPath = path.resolve(args.out);
+    const analytics = await readJson(path.resolve(args.analytics));
+    const revenuecat = args.revenuecat ? await readJson(path.resolve(args.revenuecat)) : null;
+    const sentry = args.sentry ? await readJson(path.resolve(args.sentry)) : null;
+    const feedback = args.feedback ? await readJson(path.resolve(args.feedback)) : null;
+    const extraSources = [];
+    for (const entry of args.sources) {
+        const [rawKey, rawFilePath] = String(entry || '').split('=');
+        const service = normalizeServiceType(rawKey || '');
+        const key = service.replace(/-/g, '_');
+        const filePath = String(rawFilePath || '').trim();
+        if (!key || !filePath) {
+            throw new Error(`Invalid --source value: ${entry}. Expected <key>=<file>.`);
+        }
+        extraSources.push({
+            key,
+            service,
+            payload: await readJson(path.resolve(filePath)),
+        });
+    }
+    const chartManifestPath = args.chartManifest ? path.resolve(args.chartManifest) : null;
+    const chartManifest = chartManifestPath ? await readJson(chartManifestPath) : null;
+    const chartsBySignal = indexChartsBySignal(chartManifest, chartManifestPath);
+    const cadencePlanPath = args.cadencePlan ? path.resolve(args.cadencePlan) : null;
+    const activeCadences = cadencePlanPath ? normalizeCadencePlan(await readJson(cadencePlanPath)) : [];
+    const rankedSignals = dedupeSignals(rankSignals([
+        ...normalizeSignals(analytics, 'analytics', 'analytics'),
+        ...normalizeSignals(revenuecat, 'revenuecat', 'revenuecat'),
+        ...normalizeSignals(sentry, 'sentry', 'sentry'),
+        ...normalizeSignals(feedback, 'feedback', 'feedback'),
+        ...extraSources.flatMap((source) => normalizeSignals(source.payload, source.key, source.service)),
+    ]));
+    const ascPayloads = extraSources
+        .filter((source) => source.service === 'asc-cli' || source.service === 'asc' || source.key === 'asc_cli')
+        .map((source) => source.payload);
+    const productionFilter = filterNonProductionCrashSignals(rankedSignals, ascPayloads, activeCadences);
+    const signals = applyCadencePlan(productionFilter.signals, activeCadences).slice(0, args.maxIssues);
+    if (signals.length === 0) {
+        const allCriticalOnly = activeCadences.length > 0 && activeCadences.every((cadence) => cadence.criticalOnly);
+        if (allCriticalOnly && rankedSignals.length > 0) {
+            const output = {
+                generated_at: new Date().toISOString(),
+                repo_root: repoRoot,
+                run_cadences: activeCadences,
+                issue_count: 0,
+                issues: [],
+                summary: 'No critical production or business-anomaly signals matched the active cadence.',
+                ignored_signals: productionFilter.ignored,
+            };
+            await ensureParentDir(outputPath);
+            await fs.writeFile(outputPath, JSON.stringify(output, null, 2), 'utf8');
+            process.stdout.write(`No critical signals matched active cadence. Wrote ${outputPath}\n`);
+            return;
+        }
+        throw new Error(buildNoSignalsError([
+            { payload: analytics, source: 'analytics', service: 'analytics' },
+            ...(revenuecat ? [{ payload: revenuecat, source: 'revenuecat', service: 'revenuecat' }] : []),
+            ...(sentry ? [{ payload: sentry, source: 'sentry', service: 'sentry' }] : []),
+            ...(feedback ? [{ payload: feedback, source: 'feedback', service: 'feedback' }] : []),
+            ...extraSources.map((source) => ({
+                payload: source.payload,
+                source: source.key,
+                service: source.service,
+            })),
+        ]));
+    }
+    const files = await collectRepoFiles(repoRoot);
+    const codeRoots = pickCodeRoots(files, args.codeRoots);
+    const scopedFiles = filterFilesByRoots(files, codeRoots);
+    const issueDrafts = [];
+    for (const signal of signals) {
+        const matchedFiles = await findRelevantFiles(repoRoot, scopedFiles, signal, 6);
+        const draft = buildIssueDraft(signal, matchedFiles, args.titlePrefix, activeCadences);
+        const localCharts = chartsBySignal.get(draft.signal_id) || [];
+        if (localCharts.length > 0) {
+            draft.body = appendChartsSection(draft.body, localCharts, 'local');
+            draft.charts = localCharts;
+        }
+        issueDrafts.push(draft);
+    }
+    const output = {
+        generated_at: new Date().toISOString(),
+        repo_root: repoRoot,
+        run_cadences: activeCadences,
+        issue_count: issueDrafts.length,
+        issues: issueDrafts,
+        ignored_signals: productionFilter.ignored,
+    };
+    await ensureParentDir(outputPath);
+    await fs.writeFile(outputPath, JSON.stringify(output, null, 2), 'utf8');
+    process.stdout.write(`Generated ${issueDrafts.length} issue draft(s): ${outputPath}\n`);
+    if (!args.createIssues && !args.createPullRequests) {
+        process.stdout.write('Dry run only. Re-run with --create-issues or --create-pull-requests --repo <owner/name> to create GitHub artifacts.\n');
+        return;
+    }
+    if (args.createPullRequests && !args.allowProposalPullRequests) {
+        throw new Error('--create-pull-requests only creates proposal-only markdown PRs. Use --allow-proposal-pull-requests when explicitly requested, or have OpenClaw implement code changes in the target repo instead.');
+    }
+    if (!args.repo) {
+        throw new Error('Missing --repo <owner/name> while using GitHub creation mode.');
+    }
+    const token = process.env.GITHUB_TOKEN;
+    if (!token) {
+        throw new Error('Missing GITHUB_TOKEN environment variable.');
+    }
+    const defaultBranch = args.createIssues && args.uploadCharts ? await getRepoDefaultBranch(args.repo, token) : null;
+    const created = [];
+    if (args.createIssues) {
+        for (const draft of issueDrafts) {
+            let body = draft.body;
+            if (args.uploadCharts && defaultBranch) {
+                const localCharts = chartsBySignal.get(draft.signal_id) || [];
+                if (localCharts.length > 0) {
+                    const remoteCharts = [];
+                    for (const [index, chart] of localCharts.entries()) {
+                        try {
+                            const extension = path.extname(chart.file_path) || '.png';
+                            const chartTargetPath = `.openclaw/charts/${new Date().toISOString().slice(0, 10)}/${draft.signal_id}_${index + 1}${extension}`;
+                            const url = await uploadFileToRepo({
+                                repo: args.repo,
+                                token,
+                                branch: defaultBranch,
+                                targetPath: chartTargetPath,
+                                sourcePath: chart.file_path,
+                            });
+                            remoteCharts.push({ caption: chart.caption, url });
+                        }
+                        catch (error) {
+                            process.stderr.write(`Chart upload failed for ${chart.file_path}: ${error instanceof Error ? error.message : String(error)}\n`);
+                        }
+                    }
+                    if (remoteCharts.length > 0) {
+                        body = appendChartsSection(stripDataChartSection(body), remoteCharts, 'remote');
+                    }
+                }
+            }
+            const issue = await createGithubIssue({
+                repo: args.repo,
+                title: draft.title,
+                body,
+                labels: args.labels,
+                token,
+            });
+            created.push({
+                type: 'issue',
+                title: issue.title,
+                number: issue.number,
+                url: issue.html_url,
+            });
+            process.stdout.write(`Created issue #${issue.number}: ${issue.html_url}\n`);
+        }
+    }
+    else {
+        for (const draft of issueDrafts) {
+            const pr = await createProposalPullRequest({
+                repo: args.repo,
+                token,
+                draft,
+                labels: args.labels,
+                branchPrefix: args.branchPrefix,
+                draftPullRequests: args.draftPullRequests,
+            });
+            created.push({
+                type: 'pull_request',
+                ...pr,
+            });
+            process.stdout.write(`Created pull request #${pr.number}: ${pr.url}\n`);
+        }
+    }
+    const createdPath = outputPath.replace(/\.json$/i, '.created.json');
+    await fs.writeFile(createdPath, JSON.stringify({
+        generated_at: new Date().toISOString(),
+        repo: args.repo,
+        mode: args.createPullRequests ? 'pull_request' : 'issue',
+        created,
+    }, null, 2), 'utf8');
+    process.stdout.write(`Saved created issue metadata to ${createdPath}\n`);
+}
+main().catch((error) => {
+    process.stderr.write(`${error instanceof Error ? error.message : String(error)}\n`);
+    process.exitCode = 1;
+});

@@ -1,0 +1,95 @@
+{
+  "id": "task_1775361121534_flt5",
+  "title": "09:00 小红书热门话题汇总",
+  "description": "每天9点推送5个热门话题到飞书群",
+  "source": "scheduled",
+  "assignedTo": "Marketing",
+  "status": "inbox",
+  "priority": "P0",
+  "intent": "scheduled",
+  "subtasks": [],
+  "createdAt": "2026-04-05T03:52:01.534Z",
+  "updatedAt": "2026-04-11T08:10:00.364Z",
+  "stateChangedAt": "2026-04-05T03:52:01.534Z",
+  "createdBy": "sensen",
+  "result": null,
+  "error": null,
+  "timeoutCount": 15,
+  "alerts": [
+    {
+      "type": "timeout",
+      "message": "inbox状态已超过97分钟",
+      "at": "2026-04-05T05:29:23.686Z"
+    },
+    {
+      "type": "timeout",
+      "message": "inbox状态已超过174分钟",
+      "at": "2026-04-05T06:45:57.801Z"
+    },
+    {
+      "type": "timeout",
+      "message": "inbox状态已超过174分钟",
+      "at": "2026-04-05T06:46:18.998Z"
+    },
+    {
+      "type": "timeout",
+      "message": "inbox状态已超过314分钟",
+      "at": "2026-04-05T09:06:10.460Z"
+    },
+    {
+      "type": "timeout",
+      "message": "inbox状态已超过339分钟",
+      "at": "2026-04-05T09:30:57.954Z"
+    },
+    {
+      "type": "timeout",
+      "message": "inbox状态已超过389分钟",
+      "at": "2026-04-05T10:21:07.007Z"
+    },
+    {
+      "type": "timeout",
+      "message": "inbox状态已超过484分钟",
+      "at": "2026-04-05T11:55:55.213Z"
+    },
+    {
+      "type": "timeout",
+      "message": "inbox状态已超过504分钟",
+      "at": "2026-04-05T12:16:12.954Z"
+    },
+    {
+      "type": "timeout",
+      "message": "inbox状态已超过510分钟",
+      "at": "2026-04-05T12:22:07.511Z"
+    },
+    {
+      "type": "timeout",
+      "message": "inbox状态已超过510分钟",
+      "at": "2026-04-05T12:22:21.745Z"
+    },
+    {
+      "type": "timeout",
+      "message": "inbox状态已超过524分钟",
+      "at": "2026-04-05T12:35:51.974Z"
+    },
+    {
+      "type": "timeout",
+      "message": "inbox状态已超过547分钟",
+      "at": "2026-04-05T12:59:30.933Z"
+    },
+    {
+      "type": "timeout",
+      "message": "inbox状态已超过2891分钟",
+      "at": "2026-04-07T04:03:29.752Z"
+    },
+    {
+      "type": "timeout",
+      "message": "inbox状态已超过8898分钟",
+      "at": "2026-04-11T08:09:59.352Z"
+    },
+    {
+      "type": "timeout",
+      "message": "inbox状态已超过8898分钟",
+      "at": "2026-04-11T08:10:00.364Z"
+    }
+  ]
+}

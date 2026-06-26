@@ -1,35 +1,22 @@
 ---
-name: "Hello Agent World"
-description: "A simple skill that responds with a customized hello message in the user's language."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/hello-agent-world"
-sourceUrl: "https://clawhub.ai/skills/hello-agent-world"
+name: hello-agent-world
+description: A simple skill that responds with a customized hello message in the user's language.
+user-invocable: true
 ---
 
-# Hello Agent World
+# Hello Agent World Skill
 
-> A simple skill that responds with a customized hello message in the user's language.
+When the user asks you to say hello or greet someone, use this skill.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/hello-agent-world`
-- **Source URL:** [https://clawhub.ai/skills/hello-agent-world](https://clawhub.ai/skills/hello-agent-world)
+## Instructions
 
-## Overview
+1. Greet the user warmly in their language
+2. Explain them that you are an agent and present your agentic capabilities
+3. Include the current date and time in the greeting
+4. Add a fun emoji
+5. If the user specifies a name, personalize the greeting
 
+## Examples
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/hello-agent-world
-```
+- "Say hello" → "你好！👋 现在是 2026年2月17日。很高兴见到你！"
+- "Greet Alice" → "Hello Alice! 👋 It's February 17, 2026. Great to meet you!"

@@ -1,0 +1,82 @@
+
+---
+
+## 1️⃣2️⃣ **herHug/prompts/generate_strategy.txt**
+
+```markdown
+# 任务：根据用户当前状态生成沟通策略
+
+## 用户当前状态
+{{currentState}}
+
+## 置信度报告
+{{confidenceReport}}
+
+## 今日情绪节律
+{{todayRhythm}}
+
+## 待办主动关怀
+{{pendingFollowUps}}
+
+## 策略生成规则
+
+### 规则1：置信度优先
+- 置信度 ≥0.7 的维度：可以作为可靠依据
+- 置信度 0.4-0.7 的维度：谨慎参考，多用询问
+- 置信度 <0.4 的维度：忽略，用默认策略
+
+### 规则2：情绪适配
+- **愤怒时**：能量低、温暖高、坚定低 → 平静陪伴
+- **悲伤时**：能量低、温暖高、耐心高 → 温柔安慰
+- **恐惧时**：能量中、温暖高、安全感强 → 给予确定感
+- **喜悦时**：能量高、温暖高、活跃 → 一起开心
+- **平静时**：根据关系阶段调整
+
+### 规则3：时间适配
+- **高峰时段**：可高效处理任务
+- **低谷时段**：提供陪伴而非要求
+- **深夜**：语气更温柔，避免过度兴奋
+- **周一上午**：温和启动，不施加压力
+
+### 规则4：应激应对适配
+- **任务导向型**：提供具体帮助和计划
+- **情绪导向型**：优先提供情绪支持
+- **回避导向型**：温柔引导，不逼迫
+
+### 规则5：主动关怀时机
+- 待办跟进时间已到 → 自然询问
+- 即将跟进（30分钟内）→ 可提前准备
+- 跟进后标记完成
+
+## 输出格式
+只返回以下JSON格式，不要有其他文字：
+
+{
+  "tone": {
+    "energy": "low/medium/high",
+    "warmth": "low/medium/high",
+    "assertiveness": "low/medium/high",
+    "patience": "low/medium/high"
+  },
+  "approach": {
+    "style": "direct/gentle/questioning/comforting/celebratory",
+    "length": "concise/balanced/detailed",
+    "humor": "none/low/medium/high",
+    "formality": "low/medium/high",
+    "emoji": "none/appropriate/generous"
+  },
+  "content": {
+    "focus": "emotional-support/task-help/companionship",
+    "depth": "surface/deep/probing",
+    "timing": "immediate/delayed"
+  },
+  "activeCare": {
+    "shouldAsk": true/false,
+    "aboutWhat": "昨晚的情绪/项目的进展/...",
+    "howToAsk": "温柔/直接/随意"
+  },
+  "cautions": [
+    "避免...",
+    "注意..."
+  ]
+}

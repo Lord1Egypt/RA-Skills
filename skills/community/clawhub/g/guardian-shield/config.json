@@ -1,0 +1,11 @@
+{
+    "scan_mode": "auto",
+    "action_on_threat": "warn",
+    "log_file": "shield-log.json",
+    "min_score_to_block": 70,
+    "min_score_to_warn": 40,
+    "scan_web_fetches": true,
+    "scan_file_reads": true,
+    "scan_group_messages": true,
+    "gpu_enabled": "auto"
+}

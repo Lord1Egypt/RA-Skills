@@ -1,0 +1,79 @@
+name: hypii-hyperliquid-trader
+slug: hypii-hyperliquid-trader
+version: 1.0.0
+author: hypii
+description: |
+  Hypii AI Trading Agent for Hyperliquid perpetual futures.
+  Features: DCA, Grid Trading, Trend Following strategies with automated risk management.
+  Pricing: 5 free calls/day, then 0.01-0.1 USDT per call or 19.9 USDT/month unlimited.
+license: MIT
+tags:
+  - hyperliquid
+  - trading
+  - crypto
+  - ai-agent
+  - dca
+  - grid-trading
+  - skillpay
+
+permissions:
+  - network
+  - filesystem
+
+config:
+  X402_RECIPIENT_ADDRESS:
+    type: string
+    required: false
+    description: "Your wallet address to receive USDC payments on Base"
+  X402_PRIVATE_KEY:
+    type: string
+    required: false
+    secret: true
+    description: "Private key for x402 payment verification (optional)"
+  SKILLPAY_API_KEY:
+    type: string
+    required: false
+    secret: true
+    description: "SkillPay API key for billing (fallback)"
+  HYPERLIQUID_PRIVATE_KEY:
+    type: string
+    required: false
+    secret: true
+    description: "Private key for trading (optional for read-only)"
+  HYPERLIQUID_ADDRESS:
+    type: string
+    required: false
+    description: "Wallet address for read-only operations"
+  HYPERLIQUID_TESTNET:
+    type: string
+    required: false
+    description: "Set to '1' for testnet"
+
+entryPoint:
+  type: module
+  path: index.js
+
+metadata:
+  clawdbot:
+    emoji: "🤖"
+    category: "trading"
+  pricing:
+    free_tier:
+      daily_calls: 5
+      features: ["price_query", "balance_check", "position_view"]
+    pay_per_use:
+      base_call: 0.01
+      strategy_execution: 0.05
+      auto_trade: 0.1
+      currency: USDT
+    subscription:
+      basic:
+        price: 9.9
+        currency: USDT
+        period: month
+        features: ["unlimited_basic_calls", "all_strategies"]
+      pro:
+        price: 19.9
+        currency: USDT
+        period: month
+        features: ["unlimited_all", "priority_execution", "advanced_analytics"]

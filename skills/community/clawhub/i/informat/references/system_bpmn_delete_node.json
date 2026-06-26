@@ -1,0 +1,17 @@
+{
+  "type": "function",
+  "function": {
+    "name": "_bpmn_delete_node",
+    "description": "Delete a node in the BPMN process.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "moduleId": { "type": "string" },
+        "processDefineId": { "type": "string" },
+        "nodeId": { "type": "string" }
+      },
+      "required": ["moduleId", "processDefineId", "nodeId"],
+      "additionalProperties": false
+    }
+  }
+}

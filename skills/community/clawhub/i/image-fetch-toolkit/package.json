@@ -1,0 +1,6 @@
+{
+  "name": "image-fetch-toolkit",
+  "version": "1.0.0",
+  "description": "Search and fetch images from the internet - stock photos, academic figures, news images, product photos, and more",
+  "keywords": ["image", "search", "fetch", "photos", "stock", "academic", "news", "api"]
+}

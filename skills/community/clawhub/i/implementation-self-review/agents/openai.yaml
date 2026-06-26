@@ -1,0 +1,4 @@
+interface:
+  display_name: "Implementation Self Review"
+  short_description: "Review implementation complexity and boundaries"
+  default_prompt: "Use $implementation-self-review to review the current implementation for boundary clarity, necessity, and overengineering."

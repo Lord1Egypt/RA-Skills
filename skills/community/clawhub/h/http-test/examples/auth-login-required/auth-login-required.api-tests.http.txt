@@ -1,0 +1,21 @@
+### Auth login required API tests
+#
+# Focus:
+# - unauthenticated access
+# - invalid bearer token behavior
+# - login or forbidden markers
+
+@host = https://api.example.test
+@token = <set via AUTH_TOKEN>
+
+### Login required: unauthenticated request should be rejected
+# expect.status = 401
+# expect.contains = login_required
+GET {{host}}/v1/profile
+
+### Login required: invalid bearer token should be rejected
+# auth = bearer
+# expect.status = 403
+# expect.contains = invalid_token
+GET {{host}}/v1/profile
+Authorization: Bearer {{token}}

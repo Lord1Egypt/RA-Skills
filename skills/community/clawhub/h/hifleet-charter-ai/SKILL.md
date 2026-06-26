@@ -1,35 +1,46 @@
----
-name: "HiFleet租船AI"
-description: "HiFleet 本地 OpenClaw Skill：路由A=本人邮箱船货盘（memory/SQLite）；路由B=ttseapi 班轮船期（须 hifleet_api_key）。勿伪造数据。执行前须 read_file 分册（见 SKILL 内「必读分册」）。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/hifleet-charter-ai"
-sourceUrl: "https://clawhub.ai/skills/hifleet-charter-ai"
----
+# hifleet-charter-ai 技能详细介绍
 
-# HiFleet租船AI
+## 🚢 技能概述
 
-> HiFleet 本地 OpenClaw Skill：路由A=本人邮箱船货盘（memory/SQLite）；路由B=ttseapi 班轮船期（须 hifleet_api_key）。勿伪造数据。执行前须 read_file 分册（见 SKILL 内「必读分册」）。
+这是一个由 HiFleet（航运公司）开发的 OpenClaw 技能，专门用于航运领域的船货盘信息管理和班轮船期查询。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/hifleet-charter-ai`
-- **Source URL:** [https://clawhub.ai/skills/hifleet-charter-ai](https://clawhub.ai/skills/hifleet-charter-ai)
+## 🎯 两大核心功能
 
-## Overview
+### 1. 路由 A：船货盘邮件管理（本地）
 
+- **数据源**：处理你个人邮箱中的船盘、货盘等航运相关邮件
+- **核心能力**：
+  - 自动同步邮箱中的航运邮件
+  - 智能解析邮件内容（船名、航线、货物、价格等）
+  - 建立本地向量记忆库，实现语义搜索
+  - 结构化存储到 SQLite 数据库
+- **适用场景**：
+  - "看看最近有什么船盘"
+  - "查查去中国的货"
+  - "帮我找找邮件里的散货船信息"
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/hifleet-charter-ai
-```
+### 2. 路由 B：HiFleet 班轮船期查询（云端）
+
+- **数据源**：HiFleet 官方的 ttseapi 服务端数据
+- **核心能力**：
+  - 查询全球班轮船期信息
+  - 港口智能联想匹配
+  - 时间范围过滤
+  - 联系人信息脱敏（可解锁）
+- **适用场景**：
+  - "查一下上海到鹿特丹的船期"
+  - "什么时候有班轮去美国"
+  - "schedule查询"
+
+## 🔧 技术架构
+
+- 邮件处理：通过配置邮箱（IMAP）自动同步
+- 记忆系统：使用 memory-lancedb-pro 进行向量搜索
+- 结构化存储：SQLite 嵌入式数据库
+- 云端API：HTTPS 调用 HiFleet 官方接口
+
+## ⚙️ 配置要求
+
+1. **邮箱配置**：用于路由 A（首次使用时配置）
+2. **API密钥**：用于路由 B（首次使用时配置）
+3. **记忆插件**：memory-lancedb-pro（推荐安装增强搜索能力）

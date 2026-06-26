@@ -1,0 +1,13 @@
+{
+  "miniprogramRoot": "./",
+  "compileType": "miniprogram",
+  "appid": "ks-test-appid",
+  "projectname": "huo15-frontend-design-kuaishou-starter",
+  "description": "火一五前端设计技能 v4.3 快手小程序 starter",
+  "setting": {
+    "es6": true,
+    "minified": false,
+    "newFeature": true
+  },
+  "libVersion": "latest"
+}

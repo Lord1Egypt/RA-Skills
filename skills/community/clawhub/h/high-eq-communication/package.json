@@ -1,0 +1,10 @@
+{
+  "name": "high-eq-communication",
+  "version": "2.1.0",
+  "description": "High-EQ Communication Learning Toolkit — NVC, Guiguzi, Sun Tzu, Cialdini, Cognitive Biases. Ethical framework for personal growth.",
+  "main": "scripts/cli.js",
+  "scripts": { "start": "node scripts/cli.js" },
+  "keywords": ["NVC", "nonviolent communication", "Guiguzi", "Sun Tzu", "Cialdini", "cognitive bias", "high-eq", "communication learning"],
+  "license": "MIT",
+  "engines": { "node": ">=14" }
+}

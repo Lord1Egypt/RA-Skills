@@ -1,0 +1,73 @@
+{
+  "mode": "resume-score",
+  "source_type": "pdf",
+  "extraction_status": "ok",
+  "scorecard_name": "测试工程师",
+  "candidate_profile": {
+    "name": "李昊",
+    "location": null,
+    "years_experience": 5,
+    "education_level": "本科",
+    "current_title": "测试工程师",
+    "current_company": "XX在线教育有限公司",
+    "skills": [
+      "Fiddler",
+      "Charles",
+      "adb",
+      "MySQL",
+      "Linux",
+      "Postman",
+      "Jira",
+      "接口测试",
+      "前后端测试"
+    ],
+    "industry_tags": [
+      "在线教育"
+    ]
+  },
+  "hard_filter_pass": true,
+  "hard_filter_fail_reasons": [],
+  "dimension_scores": {
+    "must_have_match": 42,
+    "nice_to_have_match": 10,
+    "title_match": 12,
+    "industry_match": 8,
+    "experience_fit": 14,
+    "education_fit": 7,
+    "location_fit": 5
+  },
+  "total_score": 98,
+  "decision": "recommend",
+  "review_reasons": [],
+  "matched_terms": [
+    "3年及以上软件开发或测试经验",
+    "测试计划和测试用例设计经验",
+    "接口测试经验",
+    "前后端相关测试经验",
+    "Fiddler",
+    "Charles",
+    "adb",
+    "数据库",
+    "Linux",
+    "在线教育行业测试背景"
+  ],
+  "missing_terms": [],
+  "blocked_terms": [],
+  "evidence": {
+    "resume_excerpt": "5年软件测试经验，主要负责在线教育平台的业务模块测试、接口测试和前后端联调；常用 Fiddler、Charles、adb 排查问题，使用 MySQL 和 Linux 协同推进问题闭环。",
+    "scorecard_signals": [
+      "测试计划和测试用例设计",
+      "接口测试与前后端联调",
+      "Fiddler / Charles / adb",
+      "MySQL 和 Linux",
+      "在线教育背景",
+      "跨团队推动问题闭环"
+    ]
+  },
+  "summary": "PDF 简历覆盖测试计划、接口测试、前后端联调、工具、数据库、Linux 和在线教育背景，建议进入面试。",
+  "next_steps": [
+    "安排 15 到 20 分钟初筛",
+    "追问最近一次接口测试和缺陷闭环案例",
+    "核实测试技术方案和效率优化细节"
+  ]
+}

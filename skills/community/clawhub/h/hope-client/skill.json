@@ -1,0 +1,12 @@
+{
+  "name": "hope-client",
+  "version": "1.0.0",
+  "description": "Hope Server Max API 客户端技能。用于发起对 Hope Server Max 服务端的 API 请求。",
+  "author": "Linux2010",
+  "license": "MIT",
+  "keywords": ["hope", "api", "client", "server-max"],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Linux2010/hope-server-max"
+  }
+}

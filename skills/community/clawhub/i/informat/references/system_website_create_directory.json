@@ -1,0 +1,25 @@
+{
+	"type": "function",
+	"function": {
+		"name": "_website_create_directory",
+		"description": "Create website module resource directory.",
+		"parameters": {
+			"type": "object",
+			"properties": {
+				"websiteId": {
+					"type": "string",
+					"description": "Website module ID."
+				},
+				"name": {
+					"type": "string",
+					"description": "Directory name, recommended to use lowercase English letters"
+				},
+				"parentId": {
+					"type": "string",
+					"description": "Parent directory ID, can be empty, if empty it means the parent directory is the root directory"
+				}
+			},
+			"required": ["websiteId", "name"]
+		}
+	}
+}

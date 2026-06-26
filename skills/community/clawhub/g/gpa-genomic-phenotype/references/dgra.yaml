@@ -1,0 +1,205 @@
+# DGRA Configuration File (P2-3)
+# This YAML file drives DGRA runtime behavior without code changes.
+# Place at references/dgra.yaml or pass via --config <path>
+
+# =============================================================================
+# SpliceAI Settings (v0.8.0)
+# =============================================================================
+spliceai:
+  # Enable SpliceAI splicing prediction (default: false)
+  # Must be explicitly enabled via --spliceai CLI flag
+  enabled: false
+
+  # Max concurrent API requests to SpliceAI lookup
+  concurrency: 5
+
+  # Timeout per request (seconds)
+  timeout: 30
+
+  # Thresholds for canonical splice sites (acceptor/donor ±1,2 bp)
+  canonical_thresholds:
+    strong: 0.5
+    moderate: 0.2
+    weak: 0.1
+
+  # Thresholds for splice region variants
+  splice_region_thresholds:
+    strong: 0.2
+    moderate: 0.1
+    weak: 0.05
+
+# =============================================================================
+# DGRA Version & Metadata
+# =============================================================================
+dgra_version: "0.8.0"
+
+# =============================================================================
+# API Endpoints (override defaults in dgra_config.py)
+# =============================================================================
+api_endpoints:
+  ensembl:
+    base_url: "https://rest.ensembl.org"
+    timeout: 20.0
+    max_retries: 2
+    retry_delay: 1.0
+    rate_limit_per_sec: 10.0
+  uniprot:
+    base_url: "https://rest.uniprot.org"
+    timeout: 25.0
+    max_retries: 2
+    retry_delay: 2.0
+    rate_limit_per_sec: 5.0
+  gtex:
+    base_url: "https://gtexportal.org/api/v2"
+    timeout: 20.0
+    max_retries: 2
+    retry_delay: 2.0
+    rate_limit_per_sec: 3.0
+  gnomad:
+    base_url: "https://gnomad.broadinstitute.org/api"
+    timeout: 15.0
+    max_retries: 2
+    retry_delay: 2.0
+    rate_limit_per_sec: 2.0
+  ncbi_eutils:
+    base_url: "https://eutils.ncbi.nlm.nih.gov/entrez/eutils"
+    timeout: 15.0
+    max_retries: 2
+    retry_delay: 1.0
+    rate_limit_per_sec: 3.0
+  clinvar_eutils:
+    base_url: "https://eutils.ncbi.nlm.nih.gov/entrez/eutils"
+    timeout: 15.0
+    max_retries: 2
+    retry_delay: 1.0
+    rate_limit_per_sec: 3.0
+  hgnc:
+    base_url: "https://rest.genenames.org"
+    timeout: 15.0
+    max_retries: 2
+    retry_delay: 1.0
+    rate_limit_per_sec: 5.0
+
+# =============================================================================
+# Quality Thresholds
+# =============================================================================
+thresholds:
+  min_dp: 20                    # Minimum sequencing depth
+  min_gq: 90.0                  # Minimum genotype quality
+  common_af_threshold: 0.01     # Common variant AF threshold (1%)
+  low_af_threshold: 0.001       # Low AF threshold (0.1%)
+  vaf_deviation_threshold: 0.20 # VAF deviation from expected heterozygosity (0.5)
+
+# =============================================================================
+# Filter Presets (v0.7.1 Phase 3)
+# =============================================================================
+filter_presets:
+  strict:
+    description: "仅保留 HIGH / MODERATE 变异，适合高置信度分析"
+    impacts: ["HIGH", "MODERATE"]
+    include_low_splice: false
+    include_synonymous_tissue: false
+    include_clinvar_conflicting: false
+  clinical:
+    description: "保留 HIGH / MODERATE + 剪接区 LOW + 组织相关同义 + ClinVar 冲突，推荐默认"
+    impacts: ["HIGH", "MODERATE"]
+    include_low_splice: true
+    include_synonymous_tissue: true
+    include_clinvar_conflicting: true
+  broad:
+    description: "保留 HIGH / MODERATE / LOW，适合保守分析"
+    impacts: ["HIGH", "MODERATE", "LOW"]
+    include_low_splice: false
+    include_synonymous_tissue: false
+    include_clinvar_conflicting: false
+
+# =============================================================================
+# Tier Classification Rules
+# =============================================================================
+tier_rules:
+  # Tier 1: Must intervene / Exclude donor (germline) or Core driver (somatic)
+  tier1_conditions:
+    - "homozygous_lof_in_primary_tissue"      # 1/1 + HIGH impact + tissue-relevant
+    - "pathogenic_in_clinvar_fa_coagulation"  # ClinVar Pathogenic in FA/coagulation genes
+    - "oncogenic_oncokb_tsg_truncating"        # Somatic: TSG truncating
+    - "oncogenic_hotspot_mutation"             # Somatic: Known oncogene hotspot
+  
+  # Tier 2: Needs informed consent / Possible driver
+  tier2_conditions:
+    - "heterozygous_lof_in_tissue_relevant"   # 0/1 + HIGH impact + tissue-relevant
+    - "pathogenic_non_tissue_relevant"        # ClinVar Pathogenic but not tissue-relevant
+    - "likely_oncogenic_subclonal"            # Somatic: Likely Oncogenic, low VAF
+    - "drug_metabolism_polymorphism"          # Pharmacogenomic relevance
+  
+  # Tier 3: Passenger / Benign / No functional impact
+  tier3_conditions:
+    - "gnomad_common_polymorphism"            # AF > common_af_threshold
+    - "clinvar_benign"                        # ClinVar Benign/Likely benign
+    - "synonymous_low_impact"                 # LOW impact, no domain overlap
+
+# =============================================================================
+# ClinVar Review Status Confidence (v0.7.2)
+# =============================================================================
+# Optional: override default confidence weights for ClinVar CLNREVSTAT.
+# If omitted, code defaults are used (see dgra_core.py _parse_clinvar_confidence).
+clinvar_confidence:
+  practice_guideline: 0.95
+  reviewed_by_expert_panel: 0.80
+  multiple_submitters_no_conflict: 0.55
+  no_conflicts: 0.50
+  single_submitter: 0.40
+  no_assertion: 0.30
+  no_criteria: 0.30
+  conflicting: 0.30
+  default: 0.30
+tissue_profiles:
+  # Available profiles referenced in references/tissue_context.json
+  available:
+    - general
+    - hematopoietic
+    - cardiovascular
+    - hepatic
+    - renal
+    - neurological
+  
+  # Default profile when none specified
+  default: general
+
+# =============================================================================
+# Cache & Offline Settings
+# =============================================================================
+cache:
+  db_path: "../cache/dgra_cache.db"
+  ttl_days: 30                  # API response cache TTL
+  gene_sync_ttl_days: 7         # Gene list sync cache TTL
+
+offline:
+  archive_dir: "references/offline_data"
+  # When true, skip all API calls and use cache + offline_data only
+  enabled: false
+
+# =============================================================================
+# Gene List Sync (P1-8)
+# =============================================================================
+gene_sync:
+  enabled: true
+  sources:
+    orphanet:
+      enabled: true
+    omim:
+      enabled: false            # Requires API key
+  
+# =============================================================================
+# Confidence & Evidence Settings
+# =============================================================================
+evidence:
+  detail_level: brief           # "brief" | "full"
+  high_confidence_min_apis: 3   # Minimum responding APIs for HIGH confidence
+
+# =============================================================================
+# Proxy / Network (optional)
+# =============================================================================
+proxy:
+  http: null
+  https: null
+  # Or use env vars: HTTP_PROXY, HTTPS_PROXY

@@ -1,0 +1,323 @@
+{
+  "version": "2.1.0",
+  "generated_at": "2026-04-18T10:33:39.075503",
+  "generator": "enhanced_learning_generator_v2",
+  "summary": {
+    "total_rules": 12,
+    "category_distribution": {
+      "success_pattern": 6,
+      "avoid_pattern": 5,
+      "optimization_pattern": 1
+    },
+    "average_confidence": 0.7916666666666669,
+    "rule_quality": {
+      "high_confidence_rules": 6,
+      "actionable_steps_avg": 1.25
+    }
+  },
+  "structured_rules": [
+    {
+      "id": "rule_675919",
+      "title": "技能使用 - 系统协作 - 成功执行 规则",
+      "description": "该规则描述了在特定场景下成功完成任务的最佳实践和方法。",
+      "category": "success_pattern",
+      "applicable_when": "Hermes与WorkBuddy技能协作场景",
+      "action_steps": [
+        "完成了 Hermes Agent 与 WorkBuddy 的 MCP 集成配置"
+      ],
+      "confidence": 0.9,
+      "source_analysis": {
+        "original_preview": "完成了 Hermes Agent 与 WorkBuddy 的 MCP 集成配置",
+        "indicators_summary": {
+          "success": 2,
+          "avoid": 0,
+          "optimization": 0
+        }
+      },
+      "metadata": {
+        "generated_at": "2026-04-18T10:33:39.074992",
+        "source_timestamp": "2026-04-18T10:33:39.009783",
+        "source_type": "hermes"
+      }
+    },
+    {
+      "id": "rule_587986",
+      "title": "技能使用 - 系统协作 - 成功执行 规则",
+      "description": "该规则描述了在特定场景下成功完成任务的最佳实践和方法。",
+      "category": "success_pattern",
+      "applicable_when": "Hermes与WorkBuddy技能协作场景",
+      "action_steps": [
+        "测试：Skill 记忆互通功能验证成功"
+      ],
+      "confidence": 0.9,
+      "source_analysis": {
+        "original_preview": "测试：Skill 记忆互通功能验证成功",
+        "indicators_summary": {
+          "success": 2,
+          "avoid": 0,
+          "optimization": 0
+        }
+      },
+      "metadata": {
+        "generated_at": "2026-04-18T10:33:39.075039",
+        "source_timestamp": "2026-04-18T10:33:39.009807",
+        "source_type": "hermes"
+      }
+    },
+    {
+      "id": "rule_049358",
+      "title": "技能使用 - 系统协作 - 成功执行 规则",
+      "description": "该规则描述了在特定场景下成功完成任务的最佳实践和方法。",
+      "category": "success_pattern",
+      "applicable_when": "Hermes与WorkBuddy技能协作场景",
+      "action_steps": [
+        "完成 Hermes Agent 与 WorkBuddy 的 MCP 集成配置，并开发 hermes-memory-bridge Skill 实现双向记忆互通"
+      ],
+      "confidence": 0.9,
+      "source_analysis": {
+        "original_preview": "完成 Hermes Agent 与 WorkBuddy 的 MCP 集成配置，并开发 hermes-memory-bridge Skill 实现双向记忆互通",
+        "indicators_summary": {
+          "success": 3,
+          "avoid": 0,
+          "optimization": 0
+        }
+      },
+      "metadata": {
+        "generated_at": "2026-04-18T10:33:39.075075",
+        "source_timestamp": "2026-04-18T10:33:39.009813",
+        "source_type": "hermes"
+      }
+    },
+    {
+      "id": "rule_124223",
+      "title": "技能使用 - 系统协作 - 成功执行 规则",
+      "description": "该规则描述了在特定场景下成功完成任务的最佳实践和方法。",
+      "category": "success_pattern",
+      "applicable_when": "Hermes与WorkBuddy技能协作场景",
+      "action_steps": [
+        "完成三平台（GitHub/ClawHub/SkillHub）个人数据排查，共享文件均不含[姓名]个人信息，无需删除"
+      ],
+      "confidence": 0.7,
+      "source_analysis": {
+        "original_preview": "完成三平台（GitHub/ClawHub/SkillHub）个人数据排查，共享文件均不含[姓名]个人信息，无需删除。GitHub 仓库：[用户名]acean/workbuddy-evolution-stack",
+        "indicators_summary": {
+          "success": 1,
+          "avoid": 0,
+          "optimization": 0
+        }
+      },
+      "metadata": {
+        "generated_at": "2026-04-18T10:33:39.075121",
+        "source_timestamp": "2026-04-18T10:33:39.009821",
+        "source_type": "hermes"
+      }
+    },
+    {
+      "id": "rule_984606",
+      "title": "避免模式 规则",
+      "description": "该规则标识了需要避免的问题模式或常见错误。",
+      "category": "avoid_pattern",
+      "applicable_when": "通用任务执行场景",
+      "action_steps": [
+        "1. 1.0 升级完成：动态路径、环境变量、错误处理、日志全面增强"
+      ],
+      "confidence": 0.7,
+      "source_analysis": {
+        "original_preview": "v1.1.0 升级完成：动态路径、环境变量、错误处理、日志全面增强",
+        "indicators_summary": {
+          "success": 2,
+          "avoid": 1,
+          "optimization": 2
+        }
+      },
+      "metadata": {
+        "generated_at": "2026-04-18T10:33:39.075146",
+        "source_timestamp": "2026-04-18T10:33:39.009832",
+        "source_type": "hermes"
+      }
+    },
+    {
+      "id": "rule_542071",
+      "title": "技能使用 - 系统协作 - 避免模式 规则",
+      "description": "该规则标识了需要避免的问题模式或常见错误。",
+      "category": "avoid_pattern",
+      "applicable_when": "Hermes与WorkBuddy技能协作场景",
+      "action_steps": [
+        "1. 1.0 升级：采纳 Hermes 建议，动态路径自动发现 WorkBuddy 目录（支持环境变量 HERMES_HOME/WORKBUDDY_HOME/WORKBUDDY_MEMORY_DIR）、健壮错误处理（全部查询含 try/except + 优雅降级）、标准化日志（stderr 输出 INFO 级别）、SKILL.md 补 API 文档。已发布至 GitHub 和 ClawHub v1.1.0。"
+      ],
+      "confidence": 0.7,
+      "source_analysis": {
+        "original_preview": "hermes-memory-bridge v1.1.0 升级：采纳 Hermes 建议，动态路径自动发现 WorkBuddy 目录（支持环境变量 HERMES_HOME/WORKBUDDY_HOME/WORKBUDDY_MEMORY_DIR）、健壮错误处理（全部查询含 try/except + 优雅...",
+        "indicators_summary": {
+          "success": 1,
+          "avoid": 1,
+          "optimization": 1
+        }
+      },
+      "metadata": {
+        "generated_at": "2026-04-18T10:33:39.075198",
+        "source_timestamp": "2026-04-18T10:33:39.009836",
+        "source_type": "hermes"
+      }
+    },
+    {
+      "id": "rule_924326",
+      "title": "技能使用 - 系统协作 - 避免模式 规则",
+      "description": "该规则标识了需要避免的问题模式或常见错误。",
+      "category": "avoid_pattern",
+      "applicable_when": "Hermes与WorkBuddy技能协作场景",
+      "action_steps": [
+        "1. 1.0升级，实现了：动态路径查找（支持HERMES_HOME/WORKBUDDY_HOME/WORKBUDDY_MEMORY_DIR环境变量）、健壮错误处理（全部函数含try/except+优雅降级）、标准化日志系统（BRIDGE_LOG_LEVEL环境变量控制）、完整API文档。已建立完整的Hermes↔WorkBuddy双向自我更新系统，包括学习材料自动同步和定时任务。"
+      ],
+      "confidence": 0.7,
+      "source_analysis": {
+        "original_preview": "WorkBuddy采纳了Hermes的改进建议，对hermes-memory-bridge技能进行了v1.1.0升级，实现了：动态路径查找（支持HERMES_HOME/WORKBUDDY_HOME/WORKBUDDY_MEMORY_DIR环境变量）、健壮错误处理（全部函数含try/except+优雅...",
+        "indicators_summary": {
+          "success": 3,
+          "avoid": 1,
+          "optimization": 3
+        }
+      },
+      "metadata": {
+        "generated_at": "2026-04-18T10:33:39.075252",
+        "source_timestamp": "2026-04-18T10:33:39.009850",
+        "source_type": "hermes"
+      }
+    },
+    {
+      "id": "rule_441685",
+      "title": "系统协作 - 避免模式 规则",
+      "description": "该规则标识了需要避免的问题模式或常见错误。",
+      "category": "avoid_pattern",
+      "applicable_when": "AI系统间协作场景",
+      "action_steps": [
+        "1. `get_workbuddy_memory_dir()` / `_get_logger()` / 版本常量 / 标准日志初始化",
+        "2. HermesDBError/MemoryFileError 异常类 / `_safe_connect()` / 全部查询含异常处理",
+        "3. `_safe_read()` / `_safe_write()` / 日志限 500 行 / `_sanitize()` 增加过滤规则"
+      ],
+      "confidence": 0.7,
+      "source_analysis": {
+        "original_preview": "【2026-04-16 工作日志 · 3项】\n1. `get_workbuddy_memory_dir()` / `_get_logger()` / 版本常量 / 标准日志初始化\n2. HermesDBError/MemoryFileError 异常类 / `_safe_connect()` / 全...",
+        "indicators_summary": {
+          "success": 0,
+          "avoid": 1,
+          "optimization": 0
+        }
+      },
+      "metadata": {
+        "generated_at": "2026-04-18T10:33:39.075310",
+        "source_timestamp": "2026-04-18T10:33:39.009868",
+        "source_type": "hermes"
+      }
+    },
+    {
+      "id": "rule_116050",
+      "title": "技能使用 - 避免模式 规则",
+      "description": "该规则标识了需要避免的问题模式或常见错误。",
+      "category": "avoid_pattern",
+      "applicable_when": "技能使用与配置场景",
+      "action_steps": [
+        "1. ：`apply_learning.py` 与 evolution.db 集成",
+        "2. （动态路径+健壮错误处理+标准日志）"
+      ],
+      "confidence": 0.7,
+      "source_analysis": {
+        "original_preview": "【2026-04-18 工作日志 · 2项】\n1. ：`apply_learning.py` 与 evolution.db 集成\n2. （动态路径+健壮错误处理+标准日志）",
+        "indicators_summary": {
+          "success": 1,
+          "avoid": 1,
+          "optimization": 0
+        }
+      },
+      "metadata": {
+        "generated_at": "2026-04-18T10:33:39.075342",
+        "source_timestamp": "2026-04-18T10:33:39.009888",
+        "source_type": "hermes"
+      }
+    },
+    {
+      "id": "rule_677765",
+      "title": "技能使用 - 系统协作 - 成功执行 规则",
+      "description": "该规则描述了在特定场景下成功完成任务的最佳实践和方法。",
+      "category": "success_pattern",
+      "applicable_when": "Hermes与WorkBuddy技能协作场景",
+      "action_steps": [
+        "技能使用优化: 测试：Skill 记忆互通功能验证成功"
+      ],
+      "confidence": 0.9,
+      "source_analysis": {
+        "original_preview": "技能使用优化: 测试：Skill 记忆互通功能验证成功",
+        "indicators_summary": {
+          "success": 2,
+          "avoid": 0,
+          "optimization": 1
+        }
+      },
+      "metadata": {
+        "generated_at": "2026-04-18T10:33:39.075416",
+        "source_timestamp": "",
+        "source_type": "best_practice"
+      }
+    },
+    {
+      "id": "rule_984587",
+      "title": "技能使用 - 系统协作 - 成功执行 规则",
+      "description": "该规则描述了在特定场景下成功完成任务的最佳实践和方法。",
+      "category": "success_pattern",
+      "applicable_when": "Hermes与WorkBuddy技能协作场景",
+      "action_steps": [
+        "技能使用优化: 完成 Hermes Agent 与 WorkBuddy 的 MCP 集成配置，并开发 hermes-memory-bridge Skill 实现双向记忆互通"
+      ],
+      "confidence": 0.9,
+      "source_analysis": {
+        "original_preview": "技能使用优化: 完成 Hermes Agent 与 WorkBuddy 的 MCP 集成配置，并开发 hermes-memory-bridge Skill 实现双向记忆互通",
+        "indicators_summary": {
+          "success": 3,
+          "avoid": 0,
+          "optimization": 1
+        }
+      },
+      "metadata": {
+        "generated_at": "2026-04-18T10:33:39.075449",
+        "source_timestamp": "",
+        "source_type": "best_practice"
+      }
+    },
+    {
+      "id": "rule_991596",
+      "title": "技能使用 - 系统协作 - 优化策略 规则",
+      "description": "该规则提供了系统性能或工作流程的优化建议。",
+      "category": "optimization_pattern",
+      "applicable_when": "Hermes与WorkBuddy技能协作场景",
+      "action_steps": [
+        "技能使用优化: 用户询问WorkBuddy共享的记忆文件是否有助于Hermes的自我更新"
+      ],
+      "confidence": 0.8,
+      "source_analysis": {
+        "original_preview": "技能使用优化: 用户询问WorkBuddy共享的记忆文件是否有助于Hermes的自我更新。需要检查是否有hermes-memory-bridge技能或相关文件。",
+        "indicators_summary": {
+          "success": 0,
+          "avoid": 0,
+          "optimization": 2
+        }
+      },
+      "metadata": {
+        "generated_at": "2026-04-18T10:33:39.075481",
+        "source_timestamp": "",
+        "source_type": "best_practice"
+      }
+    }
+  ],
+  "quality_improvements": {
+    "data_sanitization": "已应用深度脱敏处理",
+    "deduplication": "已应用语义去重",
+    "abstraction_level": "从具体事件中提取可泛化规则",
+    "actionability": "每个规则包含具体的操作步骤",
+    "categorization_accuracy": "改进的分类算法避免误分类"
+  },
+  "workbuddy_recommendations_applied": [
+    "1. 解决学习材料质量问题 - 采用结构化规则格式",
+    "2. 解决数据脱敏问题 - 自动过滤个人敏感信息",
+    "3. 解决来源标识问题 - 从具体事件抽象出可泛化规则"
+  ]
+}

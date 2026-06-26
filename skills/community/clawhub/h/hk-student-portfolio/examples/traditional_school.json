@@ -1,0 +1,98 @@
+{
+  "basic_info": {
+    "name_zh": "陳思遠",
+    "name_en": "Ryan Chan",
+    "gender": "男",
+    "birthday": "2012年5月20日",
+    "id_type": "香港永久性居民身份證",
+    "id_number": "",
+    "phone": "",
+    "email": "",
+    "address": "",
+    "guardian": "陳先生",
+    "guardian_relation": "父子",
+    "guardian_phone": ""
+  },
+  "education": {
+    "school_zh": "培正中學（小學部）",
+    "school_en": "Pui Ching Middle School (Primary Section)",
+    "address": "香港九龍窩打老道80號",
+    "enrollment": "2026年9月",
+    "grade": "小六 (Primary 6)",
+    "class": "6A",
+    "overall_grade": "A"
+  },
+  "academic": {
+    "rank": "年級前10%",
+    "trend": "成績穩步上升，中英數三科均表現優異",
+    "subjects": [
+      {"name": "中文", "y7": "A", "y8": "A", "y9": "A+", "note": "穩定優秀"},
+      {"name": "English", "y7": "A", "y8": "A", "y9": "A", "note": "穩定"},
+      {"name": "數學", "y7": "A", "y8": "A+", "y9": "A+", "note": "持續進步"},
+      {"name": "常識", "y7": "A-", "y8": "A", "y9": "A", "note": "進步"},
+      {"name": "普通話", "y7": "A", "y8": "A", "y9": "A", "note": "穩定"},
+      {"name": "音樂", "y7": "A", "y8": "A", "y9": "A", "note": ""},
+      {"name": "體育", "y7": "B+", "y8": "A-", "y9": "A", "note": "進步"},
+      {"name": "視藝", "y7": "A-", "y8": "A", "y9": "A", "note": ""}
+    ]
+  },
+  "awards": [
+    {
+      "name": "全港中小學校際辯論比賽",
+      "organizer": "香港辯論協會",
+      "date": "2025年11月",
+      "level": "全港",
+      "award": "最佳辯論員"
+    },
+    {
+      "name": "華夏盃數學奧林匹克",
+      "organizer": "香港數學奧林匹克協會",
+      "date": "2025年3月",
+      "level": "全港",
+      "award": "一等獎"
+    },
+    {
+      "name": "校際音樂節鋼琴獨奏",
+      "organizer": "香港學校音樂及朗誦協會",
+      "date": "2024年12月",
+      "level": "全港",
+      "award": "亞軍"
+    }
+  ],
+  "ecActivities": [
+    {
+      "name": "辯論學會",
+      "en_name": "Debate Club",
+      "position": "副會長",
+      "en_position": "Vice President",
+      "period": "2025年9月 - 至今",
+      "description": "帶領低年級辯論培訓，策劃校內辯論賽",
+      "en_description": "Led junior debate training and organized school debate competitions"
+    },
+    {
+      "name": "數學精英班",
+      "en_name": "Math Elite Class",
+      "position": "成員",
+      "en_position": "Member",
+      "period": "2024年9月 - 至今",
+      "description": "代表學校參加校外數學競賽",
+      "en_description": "Represented school in external math competitions"
+    }
+  ],
+  "hobbies": [
+    {"name": "鋼琴", "level": "八級", "achievement": "校際音樂節亞軍"},
+    {"name": "圍棋", "level": "業餘段位", "achievement": "校內冠軍"},
+    {"name": "閱讀", "level": "興趣愛好", "achievement": "廣泛閱讀中外文學"}
+  ],
+  "self_intro_zh": "我叫陳思遠，是一個熱愛學習、勇於挑戰的男孩。我在學業上追求卓越，尤其在數學和語文方面有濃厚興趣。課餘時間，我喜歡彈鋼琴、下圍棋和閱讀，這些愛好培養了我的專注力和邏輯思維能力。\n\n我希望升讀貴校，是因為貴校深厚的文化底蘊和嚴謹的學術氛圍，能讓我在優良的環境中繼續成長。我期待在更廣闊的平台上展現自己，為學校社區貢獻力量。\n\n學習目標：快速適應中學課程節奏，保持學業優異，積極參與課外活動。\n\n規劃：短期適應中學生活；中期爭取優異DSE成績；長期升讀頂尖大學，成為具備中文素養和國際視野的人才。",
+  "self_intro_en": "My name is Ryan Chan, a boy who loves learning and embraces challenges. I pursue academic excellence, with a strong interest in mathematics and languages. In my spare time, I enjoy playing piano, Go, and reading, which have cultivated my focus and logical thinking.\n\nI aspire to join your school because of its rich cultural heritage and rigorous academic atmosphere, which will allow me to grow in an excellent environment. I look forward to contributing to the school community on a broader platform.\n\nMy Goals: Adapt quickly to secondary school curriculum, maintain academic excellence, and actively participate in extracurricular activities.\n\nMy Plans: Short-term: adapt to secondary school life. Medium-term: achieve outstanding DSE results. Long-term: enter a top university and become a talent with Chinese literacy and international vision.",
+  "teacher_comment": {
+    "teacher": "李美珊",
+    "position": "班主任 Class Teacher",
+    "school": "培正中學（小學部）",
+    "email": "",
+    "date": "",
+    "comment_zh": "陳思遠同學品學兼優，數學能力突出，辯論表現出色。他待人有禮、樂於助人，在同學中有良好口碑。強烈推薦錄取。",
+    "comment_en": "Ryan is an outstanding student with excellent academic performance, particularly in mathematics and debate. He is polite, helpful, and well-respected by his peers. I strongly recommend his admission."
+  }
+}

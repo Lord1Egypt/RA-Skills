@@ -1,0 +1,29 @@
+{
+  "objective": "secure alignment on pilot scope and decision timeline",
+  "top_points": [
+    "Northstar announced a procurement consolidation initiative in Q4.",
+    "Acme's current deployment can support phased rollout with low integration risk.",
+    "Executive sponsor appears focused on measurable 90-day outcomes."
+  ],
+  "risks": [
+    "Security review lead time may delay contracting.",
+    "Scope creep risk if success criteria are not narrowly defined."
+  ],
+  "questions": [
+    "Which metrics define pilot success in the first 90 days?",
+    "Who is final approver for procurement and legal?",
+    "What timeline constraints are fixed versus negotiable?"
+  ],
+  "sources": [
+    {
+      "name": "Northstar Investor Update",
+      "date": "2025-11-05",
+      "url": "https://example.com/northstar-investor-update"
+    },
+    {
+      "name": "Acme Product Security Whitepaper",
+      "date": "2026-01-10",
+      "url": "https://example.com/acme-security"
+    }
+  ]
+}

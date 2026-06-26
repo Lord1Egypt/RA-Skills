@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Session",
+  "type": "object",
+  "required": ["session_id", "title", "objective", "current_state", "active_run_id", "created_at", "updated_at"],
+  "properties": {
+    "session_id": { "type": "string" },
+    "title": { "type": "string" },
+    "objective": { "type": "string" },
+    "owner": { "type": ["string", "null"] },
+    "source_channels": { "type": "array", "items": { "type": "string" } },
+    "current_state": { "type": "string" },
+    "active_run_id": { "type": ["string", "null"] },
+    "priority": { "type": "string" },
+    "blockers": { "type": "array", "items": { "type": "string" } },
+    "pending_human_decisions": { "type": "array", "items": { "type": "string" } },
+    "derived_summary": { "type": "string" },
+    "tags": { "type": "array", "items": { "type": "string" } },
+    "created_at": { "type": "string" },
+    "updated_at": { "type": "string" },
+    "archived_at": { "type": ["string", "null"] }
+  }
+}
+

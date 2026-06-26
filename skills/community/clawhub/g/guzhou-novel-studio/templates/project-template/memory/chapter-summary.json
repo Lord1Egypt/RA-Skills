@@ -1,0 +1,27 @@
+{
+  "chapter_id": 1,
+  "title": "第一章 标题",
+  "summary": "本章摘要（100-200字）",
+  "key_events": [
+    {
+      "event": "事件描述",
+      "significance": "重要性",
+      "characters_involved": []
+    }
+  ],
+  "character_states": [
+    {
+      "name": "角色名",
+      "state_before": "章前状态",
+      "state_after": "章后状态",
+      "change_description": "变化说明"
+    }
+  ],
+  "foreshadowing": {
+    "planted": [],
+    "resolved": []
+  },
+  "word_count": 0,
+  "created_at": "",
+  "qa_status": "pending|passed|failed"
+}

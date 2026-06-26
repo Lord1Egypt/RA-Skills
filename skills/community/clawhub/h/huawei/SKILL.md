@@ -1,35 +1,49 @@
 ---
-name: "Huawei"
-description: "提供华为应用市场公开页面、上架规则、分发能力及帮助信息的整理与信息提取服务。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/huawei"
-sourceUrl: "https://clawhub.ai/skills/huawei"
+name: huawei-appgallery
+description: 注册“华为应用市场”技能；用于应用商店公开页面、上架规则、分发说明与帮助信息整理。
+homepage: `https://appgallery.huawei.com/`
+metadata: {"clawdbot":{"emoji":"📦"}}
 ---
 
-# Huawei
+# 华为应用市场
 
-> 提供华为应用市场公开页面、上架规则、分发能力及帮助信息的整理与信息提取服务。
+用途与边界
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/huawei`
-- **Source URL:** [https://clawhub.ai/skills/huawei](https://clawhub.ai/skills/huawei)
+- 面向公开官网、开发者页、上架规则、审核规范与帮助中心的信息整理
+- 不提供账号代提审、审核规避、签名破解、包体绕过或后台权限操作
+- 仅处理公开可见的上架规则、分发能力、推荐资源与帮助信息
 
-## Overview
+关键入口
 
+- 主页：https://appgallery.huawei.com/
+- 开发者与上架：开发者平台、上架指南、审核规则入口
+- 分发与帮助：商店介绍、推荐机制、帮助中心、公告页入口
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/huawei
-```
+常见任务
+
+- 上架流程、资质要求、审核规范与时间说明整理
+- 分发入口、推荐资源、商店能力与开放服务提取
+- 帮助中心、公告页、版本更新与常见问题汇总
+
+数据字段
+
+- 开发者入口、上架条件、审核规则、链接
+- 分发能力、推荐资源、帮助页、公告页链接
+- 支持地区、包体限制、版本规则、FAQ
+
+自动化要点
+
+- 上架规则变化较快，输出时要保留原始页面与日期
+- 不得输出规避审核、规避签名、规避政策的建议
+- 不处理开发者后台、证书、密钥、包体签名或私有审核结果
+
+示例流程
+
+- 上架整理：访问 Huawei AppGallery 开发者页 → 提取流程与资质 → 输出清单
+- 规则汇总：进入审核规范 → 提取重点限制与材料 → 输出摘要
+- 帮助目录：访问帮助中心与公告页 → 输出关键入口
+
+合规提示
+
+- 遵守平台规则、版权要求与账号安全要求
+- 只整理公开信息，不输出敏感数据或非公开内容

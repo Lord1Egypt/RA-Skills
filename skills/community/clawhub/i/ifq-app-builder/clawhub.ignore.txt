@@ -1,0 +1,67 @@
+# ClawHub bundle ignore manifest — keep the published skill free of VCS metadata,
+# local state, binary artifacts, editor scratch, and generated bundles.
+
+# VCS metadata
+.git/
+.gitignore
+.gitattributes
+.github/
+.svn/
+.hg/
+
+# Node / build artifacts
+node_modules/
+package-lock.json
+npm-debug.log
+yarn-error.log
+yarn.lock
+pnpm-lock.yaml
+dist/
+build/
+out/
+.cache/
+
+# Python / tool caches
+__pycache__/
+*.pyc
+.venv/
+venv/
+.python-version
+requirements.txt
+
+# OS / editor junk
+.DS_Store
+Thumbs.db
+Desktop.ini
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
+.zed/
+.cursor/
+*.code-workspace
+
+# Agent-local state and private setup files
+.openclaw/
+.openclaw*/
+.claude/
+.agents/
+.learnings/
+.well-known/
+.env
+.env.*
+
+# Local working files and generated bundles
+_archive/
+_temp/
+*.schema.json
+*.tar.gz
+*.tgz
+*.zip
+*.log
+
+# Personal indexes and screenshots
+**/personal-asset-index.json
+test-results/
+playwright-report/

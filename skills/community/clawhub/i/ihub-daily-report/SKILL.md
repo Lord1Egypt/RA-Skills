@@ -1,35 +1,64 @@
----
-name: "iHub日报自动填写"
-description: "自动填写 iHub 测试农场平台指定日期的日报，支持自定义账号密码和Markdown格式内容输入。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ihub-daily-report"
-sourceUrl: "https://clawhub.ai/skills/ihub-daily-report"
----
+# SKILL.md - iHub 日报自动填写
 
-# iHub日报自动填写
+自动填写 iHub 测试农场平台的日报。支持自定义账号密码和日报内容。
 
-> 自动填写 iHub 测试农场平台指定日期的日报，支持自定义账号密码和Markdown格式内容输入。
+## 触发词
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ihub-daily-report`
-- **Source URL:** [https://clawhub.ai/skills/ihub-daily-report](https://clawhub.ai/skills/ihub-daily-report)
+填写日报、自动日报、iHub日报、daily report
 
-## Overview
+## 参数
 
+| 参数 | 必填 | 说明 |
+|------|------|------|
+| name | 是 | 姓名，如"张宁" |
+| username | 是 | 登录账号 |
+| password | 是 | 登录密码 |
+| content | 是 | 日报内容（Markdown 格式） |
+| date | 否 | 日期，默认昨天，格式：today / yesterday / YYYY-MM-DD |
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/ihub-daily-report
+## 使用示例
+
+**填写昨天的日报：**
 ```
+填写日报，姓名：张宁，账号：your_username，密码：your_password，内容：
+###  1. 完善模糊测试工具
+###  2. 完善TCS接口文档
+###  3. 参加OpenClaw培训会议
+```
+
+**指定具体日期：**
+```
+填写2026-03-24的日报，姓名：张宁，内容：完成XX功能开发
+```
+
+## 自动化流程
+
+1. 打开浏览器访问 iHub 登录页
+2. 输入账号密码登录
+3. 点击左侧菜单「项目」
+4. 点击「万花筒工具平台」
+5. 找到并点击「查看工作项」（鼠标悬停弹出）
+6. 找到「工具小组的日报」
+7. 根据当前日期计算周文件夹（如"第四周(3.23-3.29)"）
+8. 在周文件夹中找到对应用户的姓名记录
+9. 点击姓名进入详情
+10. 根据日期判断是周几，找到对应的日报行（周一到周日）
+11. 点击该行的 markdown 编辑按钮
+12. 使用 JavaScript 填入内容（触发 Vue 双向绑定）
+13. 点击「已完成」保存内容
+14. 点击「提交」按钮
+15. 填写变更理由并确认提交
+
+## 技术要点
+
+- 日期自动计算：根据日期找到对应的周文件夹
+- 使用 evaluate API 注入 JavaScript 填入内容
+- 自动判断星期几，对应填写周一到周日的日报
+- 支持填写任意日期的日报（默认昨天）
+
+## 注意事项
+
+- 首次使用需要提供账号密码
+- 日期会自动计算当周的文件夹路径
+- 内容支持 Markdown 格式
+- 任务完成后浏览器保持打开状态，方便确认

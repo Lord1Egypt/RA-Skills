@@ -1,0 +1,6 @@
+{
+  "name": "hermes-bridge",
+  "version": "1.0.0",
+  "description": "A bridge skill allowing OpenClaw to delegate tasks and queries to a locally installed standalone Hermes Agent CLI.",
+  "author": "Agent 熊"
+}

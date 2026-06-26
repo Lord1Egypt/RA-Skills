@@ -1,0 +1,7 @@
+# DGRA Python Dependencies
+# Install with: pip install -r requirements.txt --break-system-packages
+# Or use a venv: python3 -m venv venv && source venv/bin/activate && pip install -r requirements.txt
+
+aiohttp>=3.9.0
+cyvcf2
+openpyxl>=3.1.0

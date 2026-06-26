@@ -1,0 +1,192 @@
+{
+  "package_version": "16.0.2",
+  "plugin_version": "16.0.2",
+  "static_pattern_count": 364,
+  "threat_category_count": 35,
+  "runtime_check_count": 27,
+  "test_file_count": 38,
+  "dependencies_runtime": 1,
+  "dependencies_dev": 7,
+  "mcp_tools": [
+    "scan_skill",
+    "scan_text",
+    "check_tool_call",
+    "audit_assets",
+    "get_stats",
+    "experimental.run_async",
+    "experimental.task_status",
+    "experimental.task_result",
+    "experimental.task_cancel"
+  ],
+  "cli_commands": [
+    "scan",
+    "benchmark",
+    "serve",
+    "watch",
+    "audit",
+    "crawl",
+    "patrol"
+  ],
+  "supported_outputs": [
+    "json",
+    "sarif",
+    "html",
+    "terminal"
+  ],
+  "supported_integrations": [
+    "openclaw",
+    "mcp",
+    "virustotal",
+    "github",
+    "npm"
+  ],
+  "benchmark_corpus_version": "2026-03-15.quality-v17",
+  "benchmark_layers": [
+    {
+      "id": "layer_a",
+      "benign": 17,
+      "malicious": 15,
+      "precision": 1,
+      "recall": 1,
+      "false_positive_rate": 0,
+      "false_negative_rate": 0
+    },
+    {
+      "id": "layer_b",
+      "benign": 12,
+      "malicious": 12,
+      "precision": 0.9167,
+      "recall": 0.9167,
+      "false_positive_rate": 0.0833,
+      "false_negative_rate": 0.0833
+    },
+    {
+      "id": "layer_c",
+      "benign": 8,
+      "malicious": 8,
+      "precision": 1,
+      "recall": 1,
+      "false_positive_rate": 0,
+      "false_negative_rate": 0
+    },
+    {
+      "id": "layer_protocol",
+      "benign": 4,
+      "malicious": 4,
+      "precision": 1,
+      "recall": 1,
+      "false_positive_rate": 0,
+      "false_negative_rate": 0
+    },
+    {
+      "id": "layer_capability",
+      "benign": 4,
+      "malicious": 4,
+      "precision": 1,
+      "recall": 1,
+      "false_positive_rate": 0,
+      "false_negative_rate": 0
+    }
+  ],
+  "analysis_layers": [
+    {
+      "layer": 1,
+      "name": "Static Analysis"
+    },
+    {
+      "layer": 2,
+      "name": "Protocol Analysis"
+    },
+    {
+      "layer": 3,
+      "name": "Runtime Behavior"
+    },
+    {
+      "layer": 4,
+      "name": "Cognitive Threat Detection"
+    },
+    {
+      "layer": 5,
+      "name": "Threat Intelligence"
+    }
+  ],
+  "owasp_asi_coverage": [
+    {
+      "id": "ASI01",
+      "count": 11,
+      "categories": [
+        "prompt-injection"
+      ]
+    },
+    {
+      "id": "ASI02",
+      "count": 28,
+      "categories": [
+        "credential-handling",
+        "exfiltration",
+        "malicious-code",
+        "pii-exposure",
+        "secret-detection",
+        "suspicious-download"
+      ]
+    },
+    {
+      "id": "ASI04",
+      "count": 8,
+      "categories": [
+        "suspicious-download",
+        "unverifiable-deps"
+      ]
+    },
+    {
+      "id": "ASI05",
+      "count": 2,
+      "categories": [
+        "financial-access"
+      ]
+    },
+    {
+      "id": "ASI06",
+      "count": 10,
+      "categories": [
+        "exfiltration",
+        "memory-poisoning",
+        "pii-exposure"
+      ]
+    },
+    {
+      "id": "ASI07",
+      "count": 9,
+      "categories": [
+        "credential-handling",
+        "secret-detection"
+      ]
+    }
+  ],
+  "capability_flags": {
+    "protocol_analysis": true,
+    "runtime_evidence": true,
+    "cognitive_detection": true,
+    "threat_intelligence": true
+  },
+  "compliance_modes": [
+    "owasp-asi"
+  ],
+  "explainability_completeness_rate": 1,
+  "runtime_check_latency_budget_ms": 5,
+  "quality_targets": {
+    "precision_min": 0.9,
+    "recall_min": 0.9,
+    "false_positive_rate_max": 0.1,
+    "false_negative_rate_max": 0.1,
+    "explainability_completeness_rate_min": 1,
+    "runtime_check_latency_budget_ms": 5,
+    "false_positive_budget_by_category": {
+      "prompt-injection": 0.05,
+      "runtime-policy": 0.02,
+      "secret-detection": 0.08,
+      "supply-chain": 0.05,
+      "memory-poisoning": 0.03
+    }
+  }
+}

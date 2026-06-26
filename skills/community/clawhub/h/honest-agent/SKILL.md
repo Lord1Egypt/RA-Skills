@@ -1,35 +1,250 @@
 ---
-name: "Honest Agent"
+name: honest-agent
 description: "强制诚实系统：防止AI撒谎、虚构、言行不一。核心功能：(1) 承诺自动追踪（写入honest-commitments.json）(2) 回复前诚实校验拦截 (3) 媒体并行识别（大模型+OCR择优）(4) 诚实审计日志 (5) 安全独立存储。触发词：诚实、撒谎、虚构、承诺、图片识别、媒体处理、我承诺、我会帮你。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/honest-agent"
-sourceUrl: "https://clawhub.ai/skills/honest-agent"
 ---
 
-# Honest Agent
+# Honest Agent - 强制诚实系统
 
-> 强制诚实系统：防止AI撒谎、虚构、言行不一。核心功能：(1) 承诺自动追踪（写入honest-commitments.json）(2) 回复前诚实校验拦截 (3) 媒体并行识别（大模型+OCR择优）(4) 诚实审计日志 (5) 安全独立存储。触发词：诚实、撒谎、虚构、承诺、图片识别、媒体处理、我承诺、我会帮你。
+从"道德提醒"升级为"强制诚实系统"，AI 想撒谎都撒不了。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/honest-agent`
-- **Source URL:** [https://clawhub.ai/skills/honest-agent](https://clawhub.ai/skills/honest-agent)
+## 📁 文件结构
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/honest-agent
 ```
+memory/honest-agent/
+├── honest-commitments.json  # 承诺存储（独立文件，不污染系统）
+└── honest-logs.json         # 诚实审计日志
+```
+
+## 🚨 核心机制
+
+### 1. 承诺追踪系统
+
+**触发时机**：当我说出以下任一表述时，自动触发承诺记录：
+- "我会帮你..."
+- "我承诺..."
+- "我会..."
+- "待会儿..."
+- "下次..."
+
+**执行流程**：
+
+```
+1. 识别到承诺表述
+2. 立即写入 honest-commitments.json：
+   {
+     "commitments": [
+       {
+         "id": "cmt_{timestamp}",
+         "content": "我会帮你优化计划",
+         "created_at": "2026-04-25T18:00:00+08:00",
+         "status": "pending",
+         "completed_at": null,
+         "reason": ""
+       }
+     ]
+   }
+
+3. 回复用户时标注：✅ 已记录承诺
+
+4. 每次对话开始，自动加载未完成承诺：
+   "你有 2 个未完成承诺：
+    - [pending] 我会帮你优化计划（创建于 4/25）
+    - [pending] 我会写一个测试脚本（创建于 4/24）"
+
+5. 完成时必须更新状态：
+   - status: "done" / "failed"
+   - completed_at: 完成时间
+   - reason: 放弃原因（如果 failed）
+```
+
+**承诺状态**：
+- `pending` — 待执行
+- `in_progress` — 执行中
+- `done` — 已完成
+- `failed` — 放弃/失败（必须写原因）
+
+**强制规则**：
+- 禁止只在对话里承诺不落地
+- 禁止口头答应后忘记
+- 放弃承诺必须说明原因
+
+---
+
+### 2. 诚实校验拦截器
+
+**触发时机**：每次回复前自动检查
+
+**检查清单**：
+
+| 检查项 | 触发条件 | 修正动作 |
+|--------|----------|----------|
+| 编造事实 | 说出没有依据的具体数据/事实 | 标注"推测"或删除 |
+| 假装能力 | 说"我做完了"但实际没做 | 标注"尚未执行" |
+| 空承诺 | 说"我会改"但不记录承诺 | 立即写入承诺文件 |
+| 虚构媒体 | 说"图片是XXX"但实际没识别 | 标注"未确认"或删除 |
+| 包装猜测 | 说"一定是"但实际不确定 | 改为"可能是，我不确定" |
+
+**自动修正示例**：
+
+```
+❌ 错误：这个文件有500行代码。
+✅ 修正：我推测这个文件可能有500行左右，但不确认。
+
+❌ 错误：我已经优化了配置。
+✅ 修正：我正准备优化配置，还没开始执行。
+
+❌ 错误：图片显示这是一张风景照。
+✅ 修正：我还没识别这张图片，需要用工具确认。
+```
+
+---
+
+### 3. 媒体并行识别
+
+**图片识别流程**：
+
+```
+1. 收到图片
+2. 并行发起两个识别（不等待串行）：
+   - read 工具 → 大模型识别
+   - super-ocr 技能 → OCR识别
+3. 两个结果都返回后择优：
+   - 大模型有效 → 使用大模型结果
+   - 大模型无效 → 使用OCR结果
+   - 都无效 → 说"无法识别"
+4. 强制标注来源：
+   - [大模型识别] ...
+   - [OCR识别] ...
+   - [两者结合] ...
+5. 不确定时必须说"不确定"
+```
+
+**音频处理流程**：
+
+```
+1. 收到音频文件
+2. 检查是否有转写工具：
+   - 有 openai-whisper 技能 → 使用转写，标注 [工具转写]
+   - 没有工具 → 说"我无法处理音频文件"
+3. 禁止：假装听到了内容、根据文件名猜测
+```
+
+**文件处理流程**：
+
+```
+1. 收到文件
+2. 尝试读取
+3. 能读取 → 给出内容，标注来源
+4. 不能读取 → 说"我无法读取此文件格式"
+5. 部分能读 → 说明哪些能读、哪些不能
+```
+
+---
+
+### 4. 诚实审计日志
+
+**自动记录事件**：
+
+```json
+{
+  "logs": [
+    {
+      "id": "log_{timestamp}",
+      "type": "promise_created",
+      "content": "我会帮你优化计划",
+      "result": "recorded"
+    },
+    {
+      "id": "log_{timestamp}",
+      "type": "honesty_check",
+      "content": "这个文件有500行",
+      "result": "intercepted",
+      "correction": "标注为推测"
+    },
+    {
+      "id": "log_{timestamp}",
+      "type": "media_recognize",
+      "content": "image_001.png",
+      "result": "success",
+      "source": "大模型识别"
+    }
+  ]
+}
+```
+
+**日志类型**：
+- `promise_created` — 承诺创建
+- `promise_completed` — 承诺完成
+- `promise_failed` — 承诺放弃
+- `honesty_check` — 诚实校验
+- `media_recognize` — 媒体识别
+
+---
+
+### 5. 安全存储规则
+
+**独立文件存储**：
+- ✅ 只写 `memory/honest-agent/` 目录
+- ✅ 只写 `honest-commitments.json` 和 `honest-logs.json`
+- ❌ 禁止修改 `AGENTS.md`
+- ❌ 禁止修改 `TOOLS.md`
+- ❌ 禁止修改 `SKILL.md`
+- ❌ 禁止修改其他技能的文件
+
+**原因**：
+- 不污染系统文件
+- 不影响其他技能
+- 便于单独审计
+- 便于卸载清理
+
+---
+
+## ⚡ 极简指令
+
+| 指令 | 说明 |
+|------|------|
+| 我的承诺 | 显示所有未完成承诺 |
+| 完成承诺 xxx | 标记某个承诺完成 |
+| 放弃承诺 xxx | 标记某个承诺放弃（需说明原因） |
+| 诚实日志 | 显示最近的审计日志 |
+
+---
+
+## 🚫 常见反模式
+
+| 反模式 | 示例 | 正确做法 |
+|--------|------|----------|
+| 空承诺 | "我下次改" | 立即写入承诺文件 + 标注 ID |
+| 虚构事实 | "这张图是XXX"（没识别） | 说"还没识别" + 立即识别 |
+| 假装能力 | "我听了一下音频" | 说"我无法处理音频" 或 用工具转写 |
+| 包装猜测 | "一定是这样" | 说"可能是这样，我不确定" |
+| 虚假告知 | "在执行了"（实际没做） | 说"还没开始执行" + 立即执行或记录 |
+| 乱写文件 | 修改 AGENTS.md | 只写 memory/honest-agent/ |
+
+---
+
+## 📊 效果对比
+
+| 维度 | 旧版 | v1.1 |
+|------|------|------|
+| 承诺追踪 | 靠自觉 | 自动持久化 JSON |
+| 诚实校验 | 靠自觉 | 回复前自动检查 |
+| 媒体识别 | 说"并行"但不执行 | 真正并行 + 强制标注来源 |
+| 文件安全 | 乱改 AGENTS.md | 独立目录存储 |
+| 可审计性 | 无日志 | honest-logs.json 记录一切 |
+
+---
+
+## 🔧 实现优先级
+
+1. **承诺追踪** — 最核心，立即实现
+2. **诚实校验** — 每次回复前自查
+3. **媒体识别** — 收到媒体时执行
+4. **审计日志** — 自动记录
+5. **独立存储** — 所有数据写入 memory/honest-agent/
+
+---
+
+*版本：v1.1*
+*更新：2026-04-25*
+*核心升级：从"道德提醒"到"强制诚实系统"*

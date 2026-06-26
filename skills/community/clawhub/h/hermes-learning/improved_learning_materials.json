@@ -1,0 +1,22 @@
+{
+  "version": "2.0.0",
+  "generated_at": "2026-04-18T09:53:22.424706",
+  "generator": "improved_learning_generator",
+  "summary": {
+    "total_rules": 0,
+    "category_distribution": {},
+    "average_confidence": 0
+  },
+  "structured_rules": [],
+  "quality_indicators": {
+    "deduplication_applied": true,
+    "sanitization_applied": true,
+    "abstraction_level": "high",
+    "actionability_score": 0.85
+  },
+  "usage_guidance": {
+    "how_to_apply": "根据规则类别和适用场景选择应用",
+    "confidence_threshold": "建议使用置信度>0.8的规则",
+    "update_frequency": "每日更新"
+  }
+}

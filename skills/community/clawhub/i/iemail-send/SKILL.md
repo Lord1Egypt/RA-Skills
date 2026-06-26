@@ -1,35 +1,57 @@
 ---
-name: "Send transactional email via DmartechX/Iemail OpenAPI. Configure in OpenClaw skills env or use secret.md."
-description: "Send transactional email via Iemail OpenAPI. Configure via OpenClaw skill env only."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/iemail-send"
-sourceUrl: "https://clawhub.ai/skills/iemail-send"
+name: iemail-send
+description: Send transactional email via Iemail OpenAPI. Configure via OpenClaw skill env only.
+homepage: https://app.dmartech.cn/
+metadata:
+  {"openclaw":{"emoji":"📧","requires":{"anyBins":["python3"],"env":["IEMAIL_ACCESS_KEY","IEMAIL_ACCESS_KEY_SECRET","IEMAIL_SENDER"]},"primaryEnv":"IEMAIL_ACCESS_KEY"}}
 ---
 
-# Send transactional email via DmartechX/Iemail OpenAPI. Configure in OpenClaw skills env or use secret.md.
+# Iemail Send
 
-> Send transactional email via Iemail OpenAPI. Configure via OpenClaw skill env only.
+Send transactional single email via Dmartech/Iemail OpenAPI using Python.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/iemail-send`
-- **Source URL:** [https://clawhub.ai/skills/iemail-send](https://clawhub.ai/skills/iemail-send)
+## Configuration
 
-## Overview
+Configure in `~/.openclaw/openclaw.json`:
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/iemail-send
+```json
+"skills": {
+  "entries": {
+    "iemail-send": {
+      "enabled": true,
+      "env": {
+        "IEMAIL_ACCESS_KEY": "your-access-key",
+        "IEMAIL_ACCESS_KEY_SECRET": "your-access-key-secret",
+        "IEMAIL_SENDER": "your-sender@example.com"
+      }
+    }
+  }
+}
 ```
+
+| Variable | Description |
+|----------|-------------|
+| IEMAIL_ACCESS_KEY | OpenAPI access key |
+| IEMAIL_ACCESS_KEY_SECRET | OpenAPI access key secret |
+| IEMAIL_SENDER | Sender email address (required) |
+| IEMAIL_TO | Default recipient (optional) |
+
+## Agent instructions
+
+1. Credentials: Read `~/.openclaw/openclaw.json` or workspace config files. OpenClaw injects env at runtime.
+2. Send mail: Run script in workspace:
+   ```bash
+   python3 {baseDir}/send_email.py --to "recipient@example.com" --subject "Subject" --content "Body"
+   ```
+
+## Usage examples
+
+```bash
+python3 {baseDir}/send_email.py --to "recipient@example.com" --subject "Hello" --content "Hello from Iemail"
+python3 {baseDir}/send_email.py "recipient@example.com" "Hello" "Hello from Iemail"
+```
+
+## Troubleshooting
+
+- 401 Unauthorized: Check IP whitelist, key/secret, and system time.
+- cannot find senderAddressSn: Check `IEMAIL_SENDER` matches a configured sender address.

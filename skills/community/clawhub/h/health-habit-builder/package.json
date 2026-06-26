@@ -1,0 +1,12 @@
+{
+  "name": "health-habit-builder",
+  "version": "0.1.0",
+  "description": "Health Habit Builder - 健康习惯养成师",
+  "main": "handler.py",
+  "scripts": {
+    "test": "python3 handler.py"
+  },
+  "keywords": ["health", "habit", "wellness", "productivity", "mindfulness"],
+  "author": "harrylabsj",
+  "license": "MIT"
+}

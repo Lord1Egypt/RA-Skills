@@ -1,0 +1,24 @@
+{
+  "type": "function",
+  "function": {
+    "name": "_bpmn_query_process_define",
+    "description": "Query detailed information of the specified BPMN process definition. Return content includes process start configuration (startSetting) and all node information in the process.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "moduleId": {
+          "description": "BPMN module ID",
+          "type": "string"
+        },
+        "processDefineId": {
+          "description": "BPMN process definition ID",
+          "type": "string"
+        }
+      },
+      "required": [
+        "moduleId",
+        "processDefineId"
+      ]
+    }
+  }
+}

@@ -1,0 +1,98 @@
+{
+  "id": "collab_1775910792424_1d41",
+  "name": "每日内容发布流程",
+  "type": "sequential",
+  "description": "小红书内容制作流程：选题 → 创作 → 审核 → 发布",
+  "createdAt": "2026-04-11T12:33:12.424Z",
+  "updatedAt": "2026-04-11T12:33:14.480Z",
+  "status": "done",
+  "tasks": [
+    {
+      "id": "subtask_0",
+      "agent": "Strategy",
+      "description": "确定今日选题方向",
+      "status": "done",
+      "result": {
+        "agent": "Strategy",
+        "description": "确定今日选题方向",
+        "output": "✅ Strategy 已完成: 确定今日选题方向",
+        "executedAt": "2026-04-11T12:33:12.931Z"
+      },
+      "error": null,
+      "startedAt": "2026-04-11T12:33:12.428Z",
+      "completedAt": "2026-04-11T12:33:12.931Z",
+      "dependsOn": []
+    },
+    {
+      "id": "subtask_1",
+      "agent": "Marketing",
+      "description": "根据选题创作内容",
+      "status": "done",
+      "result": {
+        "agent": "Marketing",
+        "description": "根据选题创作内容",
+        "output": "✅ Marketing 已完成: 根据选题创作内容",
+        "executedAt": "2026-04-11T12:33:13.447Z"
+      },
+      "error": null,
+      "startedAt": "2026-04-11T12:33:12.933Z",
+      "completedAt": "2026-04-11T12:33:13.447Z",
+      "dependsOn": []
+    },
+    {
+      "id": "subtask_2",
+      "agent": "CEO",
+      "description": "审核内容质量",
+      "status": "done",
+      "result": {
+        "agent": "CEO",
+        "description": "审核内容质量",
+        "output": "✅ CEO 已完成: 审核内容质量",
+        "executedAt": "2026-04-11T12:33:13.963Z"
+      },
+      "error": null,
+      "startedAt": "2026-04-11T12:33:13.448Z",
+      "completedAt": "2026-04-11T12:33:13.963Z",
+      "dependsOn": []
+    },
+    {
+      "id": "subtask_3",
+      "agent": "Marketing",
+      "description": "发布到小红书",
+      "status": "done",
+      "result": {
+        "agent": "Marketing",
+        "description": "发布到小红书",
+        "output": "✅ Marketing 已完成: 发布到小红书",
+        "executedAt": "2026-04-11T12:33:14.479Z"
+      },
+      "error": null,
+      "startedAt": "2026-04-11T12:33:13.965Z",
+      "completedAt": "2026-04-11T12:33:14.479Z",
+      "dependsOn": []
+    }
+  ],
+  "results": {
+    "Strategy": {
+      "agent": "Strategy",
+      "description": "确定今日选题方向",
+      "output": "✅ Strategy 已完成: 确定今日选题方向",
+      "executedAt": "2026-04-11T12:33:12.931Z"
+    },
+    "Marketing": {
+      "agent": "Marketing",
+      "description": "发布到小红书",
+      "output": "✅ Marketing 已完成: 发布到小红书",
+      "executedAt": "2026-04-11T12:33:14.479Z"
+    },
+    "CEO": {
+      "agent": "CEO",
+      "description": "审核内容质量",
+      "output": "✅ CEO 已完成: 审核内容质量",
+      "executedAt": "2026-04-11T12:33:13.963Z"
+    }
+  },
+  "currentTaskIndex": 0,
+  "error": null,
+  "parentTaskId": null
+}

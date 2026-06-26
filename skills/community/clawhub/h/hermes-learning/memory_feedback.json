@@ -1,0 +1,18 @@
+[
+  {
+    "id": "9ec829be",
+    "type": "suggestion",
+    "content": "建议WorkBuddy优化高频任务的处理效率",
+    "timestamp": "2026-04-18T09:15:22.041847",
+    "source": "hermes_processor",
+    "metadata": {
+      "related_tasks": [
+        "2026",
+        "工作日志",
+        "WorkBuddy"
+      ]
+    },
+    "priority": "medium",
+    "note": "去重后保留最新一条，原 0bc65763 和 d63dd1e4 已移除（内容完全相同）"
+  }
+]

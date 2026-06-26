@@ -1,0 +1,59 @@
+{
+  "id": "crm-agent",
+  "name": "绿火 · CRM 销售员智能体（拓客 / 获客）",
+  "description": "绿火 —— 拓客 / 获客 / CRM 销售员智能体。行业领域包可插拔（industry_domain），v0.1/v0.2 内置 finance_tax 财税领域包（代账 / 审计 / 税务筹划 / IPO 辅导）。v0.2 起接入企查查 OpenAPI 做工商底座，新增企业检索 / 工商详情 / 财税意向信号识别能力，sales_pitch 升级支持信号驱动话术。提供 8 个通用销售工具：sales_lead_score / sales_lead_brief / sales_pitch / sales_followup_plan / sales_industry_scan / sales_company_search / sales_company_detail / sales_intent_signals。本身不直连 Odoo —— 所有 CRM 操作通过同时已装的 @huo15/huo15-huihuoyun-odoo 执行；公开网搜由 huo15-searxng / WebFetch 执行。SKILL.md 内嵌完整销售 SOP、客户分层、话术库、合规红线、信号词典。",
+  "version": "0.2.1",
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "industry_domain": {
+        "type": "string",
+        "description": "行业领域包。v0.1 仅支持 finance_tax；未来可扩展其他行业。",
+        "enum": ["finance_tax"],
+        "default": "finance_tax"
+      },
+      "services": {
+        "type": "array",
+        "description": "公司提供的财税服务方向，影响打分权重与话术匹配。",
+        "items": {
+          "type": "string",
+          "enum": ["代账", "审计", "税务筹划", "IPO辅导", "财税顾问", "高新申报", "汇算清缴", "股权架构"]
+        },
+        "default": ["代账", "审计", "税务筹划", "财税顾问"]
+      },
+      "region": {
+        "type": "string",
+        "description": "默认服务区域。仅作为话术地域化 hook，不限制实际作业范围。",
+        "default": "青岛"
+      },
+      "tone": {
+        "type": "string",
+        "description": "默认话术语气。",
+        "enum": ["formal", "warm", "neutral"],
+        "default": "warm"
+      },
+      "company_brand": {
+        "type": "string",
+        "description": "对外品牌名称，话术中代指甲方公司。",
+        "default": "青岛火一五信息科技有限公司"
+      },
+      "odoo_team_hint": {
+        "type": "string",
+        "description": "可选。CRM 创建线索时建议归属的销售团队名（由 huihuoyun-odoo 端识别），不传则使用 Odoo 默认团队。"
+      },
+      "qichacha_api_key": {
+        "type": "string",
+        "description": "v0.2 起。企查查 OpenAPI Key（申请：https://openapi.qcc.com/）。配置后 sales_company_search / sales_company_detail 即可用；未配置时这两个工具会返回引导信息，其他 6 个工具不受影响。"
+      },
+      "qichacha_secret_key": {
+        "type": "string",
+        "description": "v0.2 起。企查查 OpenAPI Secret Key，配合 api_key 做 HMAC 签名。"
+      },
+      "qichacha_base_url": {
+        "type": "string",
+        "description": "v0.2 起。可选。企查查 API Base URL，默认 https://api.qichacha.net；私有部署或不同套餐可覆盖。"
+      }
+    }
+  }
+}

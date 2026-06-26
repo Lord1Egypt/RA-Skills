@@ -1,35 +1,21 @@
 ---
-name: "Haoning Test Skill6"
-description: "haoning-test-skill6"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/haoning-test-skill6"
-sourceUrl: "https://clawhub.ai/skills/haoning-test-skill6"
+name: haoning-test-skill6
+version: 0.4.0
+description: haoning-test-skill6
 ---
 
-# Haoning Test Skill6
-
-> haoning-test-skill6
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/haoning-test-skill6`
-- **Source URL:** [https://clawhub.ai/skills/haoning-test-skill6](https://clawhub.ai/skills/haoning-test-skill6)
+# haoning-test-skill6
 
 ## Overview
 
+haoning-test-skill6
 
-## Installation
-To install this skill, run the following command in your terminal:
+## Quick Start
+
 ```bash
-hermes skills install clawhub/haoning-test-skill6
+# TODO: Add quick start commands
 ```
+
+## Usage
+
+Please refer to the documentation for detailed usage instructions.

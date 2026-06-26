@@ -1,0 +1,8 @@
+{
+  "slug": "huadafenqi-github",
+  "name": "GitHub 个人查询（huadafenqi）",
+  "description": "GitHub 个人信息查询技能",
+  "version": "0.1.0",
+  "author": "huadafenqi",
+  "main": "index.js"
+}

@@ -1,0 +1,13 @@
+{
+	"type": "function",
+	"function": {
+		"name": "_query_app_define",
+		"description": "[Published application runtime environment] Query application configuration information. Returns application ID and application module list (including data table module (type:Table), workflow module (type:Bpmn), module group (type:Group)), role list, API list, environment variable list, locale list, automatic list.",
+		"parameters": {
+			"type": "object",
+			"properties": {
+				
+			}
+		}
+	}
+}

@@ -1,0 +1,17 @@
+{
+  "type": "function",
+  "function": {
+    "name": "_task_list",
+    "description": "Query the list of tasks generated in the current session, used to obtain task breakdown results and execution status, supporting subsequent task scheduling and automatic execution.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "threadId": {
+          "type": "string",
+          "description": "Session ID, used to locate the task collection in the current context"
+        }
+      },
+      "required": ["threadId"]
+    }
+  }
+}

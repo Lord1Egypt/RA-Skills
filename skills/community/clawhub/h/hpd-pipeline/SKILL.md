@@ -1,35 +1,42 @@
 ---
-name: "HPD Pipeline"
-description: "Use when the HPD lab needs a repeatable Planner -> Designer -> conditional Developer -> Tester flow for an approved idea, with Lobster-first and sequential f..."
-category: "other"
-source: "ClawHub"
-tags: [factory, hpd]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/hpd-pipeline"
-sourceUrl: "https://clawhub.ai/skills/hpd-pipeline"
+name: hpd-pipeline
+description: Use when the HPD lab needs a repeatable Planner -> Designer -> conditional Developer -> Tester flow for an approved idea, with Lobster-first and sequential fallback behavior.
+metadata: { "openclaw": { "emoji": "🧪" } }
 ---
 
-# HPD Pipeline
+# hpd-pipeline
 
-> Use when the HPD lab needs a repeatable Planner -> Designer -> conditional Developer -> Tester flow for an approved idea, with Lobster-first and sequential f...
+Follow the stage contract in `{baseDir}/references/project-pipeline.md`.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/hpd-pipeline`
-- **Source URL:** [https://clawhub.ai/skills/hpd-pipeline](https://clawhub.ai/skills/hpd-pipeline)
+## Preferred mode
 
-## Overview
+- If the `lobster` CLI is available on `PATH`, prefer a Lobster workflow.
+- If `lobster` is unavailable, run the same stages sequentially in one turn and mark `lobster_ready: false`.
 
+## Required output sections
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/hpd-pipeline
-```
+- `brief`
+- `cost_estimate`
+- `bom`
+- `assembly_plan`
+- `render_prompt`
+- `software_spec` when needed
+- `tester_report`
+- `artifact_manifest`
+- `completion_summary`
+
+## Optional artifact fields
+
+Use these when real outputs exist. If they do not exist, say so explicitly instead of implying they were produced.
+
+- `render_image`
+- `cad_step_path`
+- `cad_stl_paths`
+- `assembly_doc_path`
+- `source_code_path`
+- `firmware_build_path`
+
+## Rules
+
+- Keep outputs Notion-first.
+- Do not claim STEP/STL or validated firmware unless it was actually produced.

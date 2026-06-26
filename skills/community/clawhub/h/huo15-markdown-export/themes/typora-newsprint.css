@@ -1,0 +1,65 @@
+/* huo15-markdown-export — Typora Newsprint
+ * 流派:Newsprint(报纸)
+ * 适合:技术随笔 / 长文复盘 / 个人博客
+ * 关键差异化:衬线字 + 米色纸底 + 双线 h1 + 报纸引号 + 砖红 accent
+ *
+ * 基础样式由 _tokens.css 提供(render.js 自动 prepend)
+ * 本文件只 override 差异化 token + 写本主题独有的特征
+ */
+
+:root {
+  /* === 主题 token override === */
+  --font-body:     var(--font-serif);
+  --font-heading:  var(--font-display);
+  --color-bg:      #f3eee5;
+  --color-fg:      #1a1a1a;
+  --color-muted:   #6b6b6b;
+  --color-rule:    #cbc4b3;
+  --color-accent:  #8b2a2a;
+  --color-accent-soft: rgba(139, 42, 42, 0.08);
+  --color-code-bg: #ece6d8;
+  --quote-bar-color: #b8a988;
+  --quote-bg:      rgba(184, 169, 136, 0.12);
+  --quote-fg:      #4a4438;
+  --table-th-bg:   rgba(184, 169, 136, 0.20);
+  --table-stripe-bg: rgba(184, 169, 136, 0.06);
+  --measure:       var(--measure-normal);
+  --leading:       var(--lh-relax);
+  --fs-base:       17px;
+  --fs-h1:         2.2rem;
+  --fs-h2:         1.6rem;
+  --fs-h3:         1.3rem;
+  --fs-h4:         1.1rem;
+}
+
+/* === Newsprint 特征 === */
+
+.markdown-body {
+  hyphens: auto;
+}
+
+.markdown-body p { text-align: justify; }
+
+/* h1:报纸头版双线 */
+.markdown-body h1 {
+  text-align: center;
+  padding-bottom: 0.4em;
+  border-bottom: 3px double var(--color-rule);
+  letter-spacing: -0.01em;
+}
+
+/* h2:单线分章 */
+.markdown-body h2 {
+  padding-bottom: 0.2em;
+  border-bottom: 1px solid var(--color-rule);
+}
+
+.markdown-body h4 { color: var(--color-muted); }
+
+.markdown-body blockquote { font-style: italic; }
+
+/* 代码块更厚一点的边 */
+.markdown-body pre {
+  padding: 1em 1.2em;
+  border: 1px solid var(--color-rule);
+}

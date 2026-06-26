@@ -1,0 +1,12 @@
+{
+  "name": "Hive Home",
+  "tagline": "Control UK Hive thermostats, hot water and lights via the unofficial API.",
+  "description": "Control and query Hive Home (UK) smart heating, hot water, lights and other devices from your agent. Uses the community Pyhiveapi library against Hive’s unofficial backend—no official API exists. Supports first-time login with SMS 2FA and device login for subsequent runs.\n\nWho it’s for: anyone with a Hive (British Gas) account who wants to script thermostats, heating modes, boost, hot water and lights. Requirements: Python 3, pip install pyhiveapi, and Hive account credentials (env vars).",
+  "category": "utility",
+  "tags": ["hive", "smart-home", "heating", "thermostat", "uk", "british-gas", "pyhiveapi", "automation"],
+  "version": "1.0.0",
+  "license": "MIT",
+  "pricing": "free",
+  "support_url": "https://github.com/m0nkmaster/agent-skills",
+  "homepage": "https://github.com/m0nkmaster/agent-skills"
+}

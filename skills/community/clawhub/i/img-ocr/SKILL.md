@@ -1,35 +1,32 @@
 ---
-name: "Img Ocr"
-description: "图片文字识别工具，基于Tesseract OCR。当用户提到：图片识别、OCR、文字提取、图片转文字、识别图片里的文字时使用。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/img-ocr"
-sourceUrl: "https://clawhub.ai/skills/img-ocr"
+name: img-ocr
+description: Image text recognition tool based on Tesseract OCR. Activate when user mentions: image recognition, OCR, text extraction, image to text, recognize text in images.
 ---
 
-# Img Ocr
+# img-ocr
 
-> 图片文字识别工具，基于Tesseract OCR。当用户提到：图片识别、OCR、文字提取、图片转文字、识别图片里的文字时使用。
+Image text recognition tool based on Tesseract OCR.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/img-ocr`
-- **Source URL:** [https://clawhub.ai/skills/img-ocr](https://clawhub.ai/skills/img-ocr)
+## Dependencies
 
-## Overview
+- Python3
+- pytesseract: `pip3 install pytesseract`
+- Pillow: `pip3 install Pillow`
+- Tesseract OCR: `sudo apt install tesseract-ocr`
+- Chinese lang pack: `sudo apt install tesseract-ocr-chi-sim`
 
+## Quick Usage
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/img-ocr
+python3 skills/img-ocr/scripts/ocr.py /path/to/image.jpg
+```
+
+## Typical Scenarios
+
+```bash
+# Recognize Chinese + English
+python3 skills/img-ocr/scripts/ocr.py screenshot.png
+
+# Extract text from screenshot
+python3 skills/img-ocr/scripts/ocr.py /path/to/screenshot.jpg
 ```

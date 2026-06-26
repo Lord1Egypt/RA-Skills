@@ -1,0 +1,28 @@
+{
+  "name": "greeting-skill",
+  "version": "1.0.0",
+  "description": "A friendly greeting skill for Clawd bot",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "typecheck": "tsc --noEmit",
+    "test": "openclaw skill test"
+  },
+  "keywords": [
+    "openclaw",
+    "clawd",
+    "skill",
+    "greeting"
+  ],
+  "author": "orlyjamie",
+  "license": "MIT",
+  "dependencies": {
+    "@openclaw/core": "^1.2.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.4.0",
+    "@types/node": "^20.0.0"
+  }
+}

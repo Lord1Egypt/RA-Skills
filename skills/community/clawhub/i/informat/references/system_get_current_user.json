@@ -1,0 +1,11 @@
+{
+	"type": "function",
+	"function": {
+		"name": "_get_current_user",
+		"description": "Get the current user, return the user performing this operation. For example, if the prompt includes `my`, this method needs to be called",
+		"parameters": {
+			"type": "object",   
+			"properties": {}  
+		}
+	}
+}

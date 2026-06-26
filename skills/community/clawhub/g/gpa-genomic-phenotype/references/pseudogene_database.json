@@ -1,0 +1,48 @@
+{
+  "version": "0.5.3",
+  "description": "Known gene-pseudogene pairs for DGRA artifact detection. Detection strategies: vaf_mismatch (VAF deviation from expected heterozygous 0.5), sequence_homology (sequence-level paralogy without VAF-specific thresholds).",
+  "genes": {
+    "VWF": {
+      "pseudogenes": ["VWFP1"],
+      "detection_strategy": "vaf_mismatch",
+      "vaf_expected_heterozygous": 0.5,
+      "vaf_min_suspected": 0.25,
+      "vaf_min_interference": 0.20,
+      "chromosome": "12",
+      "notes": "VWFP1 on chr1 shares homology with VWF exons 23-34. Low VAF suggests reads mapping to pseudogene."
+    },
+    "SETBP1": {
+      "pseudogenes": ["VWFP1"],
+      "detection_strategy": "vaf_mismatch",
+      "vaf_expected_heterozygous": 0.5,
+      "vaf_min_suspected": 0.30,
+      "vaf_min_interference": 0.20,
+      "chromosome": "18",
+      "notes": "SETBP1 adjacent to VWFP1 homology region on chr18."
+    },
+    "GUSB": {
+      "pseudogenes": ["GUSBP1", "GUSBP2"],
+      "detection_strategy": "sequence_homology",
+      "chromosome": "7",
+      "notes": "GUSBP1/GUSBP2 are processed pseudogenes with high sequence homology to GUSB. Detection via read mapping patterns, not VAF thresholds."
+    },
+    "GBA": {
+      "pseudogenes": ["GBAP1"],
+      "detection_strategy": "vaf_mismatch",
+      "vaf_expected_heterozygous": 0.5,
+      "vaf_min_suspected": 0.20,
+      "vaf_min_interference": 0.15,
+      "chromosome": "1",
+      "notes": "GBAP1 on chr1 is a highly homologous pseudogene. GBAP1 recombination causes Gaucher disease misdiagnosis."
+    },
+    "PMS2": {
+      "pseudogenes": ["PMS2CL"],
+      "detection_strategy": "vaf_mismatch",
+      "vaf_expected_heterozygous": 0.5,
+      "vaf_min_suspected": 0.25,
+      "vaf_min_interference": 0.20,
+      "chromosome": "7",
+      "notes": "PMS2CL on chr7 shares homology with PMS2. Low VAF suggests reads mapping to pseudogene."
+    }
+  }
+}

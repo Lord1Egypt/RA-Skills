@@ -1,0 +1,49 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.backends.legacy:build"
+
+[project]
+name = "hedgehog-memory"
+version = "0.1.0"
+description = "Radial memory architecture for AI agents — infinite memory with hierarchical compression"
+readme = "README.md"
+license = { file = "LICENSE" }
+requires-python = ">=3.11"
+keywords = ["ai", "agent", "memory", "context-window", "llm", "rag"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+
+# No mandatory dependencies — stdlib only for default (KeywordSummarizer) mode
+dependencies = []
+
+[project.optional-dependencies]
+openai = ["openai>=1.0"]
+litellm = ["litellm>=1.0"]
+all = ["openai>=1.0", "litellm>=1.0"]
+dev = ["pytest>=7.0", "pytest-cov", "black", "ruff"]
+
+[project.urls]
+Homepage = "https://github.com/vvxer/HedgehogMemory"
+Repository = "https://github.com/vvxer/HedgehogMemory"
+"Bug Tracker" = "https://github.com/vvxer/HedgehogMemory/issues"
+
+[tool.setuptools.packages.find]
+include = ["radial_memory*"]
+
+[tool.setuptools.package-data]
+radial_memory = ["py.typed"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

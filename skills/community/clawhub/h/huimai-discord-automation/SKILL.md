@@ -1,35 +1,75 @@
 ---
-name: "Huimai Discord Automation"
-description: "自动回复、权限管理、频道清理、日志记录——Discord服务器日常运维交给它。省一个社区管理的坑位。"
-category: "productivity"
-source: "ClawHub"
-tags: [automation, calibration, community, discord, huimai]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/huimai-discord-automation"
-sourceUrl: "https://clawhub.ai/skills/huimai-discord-automation"
+name: 🎮 Discord自动化管理Skill
+description: 自动回复、权限管理、频道清理、日志记录——Discord服务器日常运维交给它。省一个社区管理的坑位。
+metadata: {"openclaw":{"emoji":"🎮"}}
 ---
 
-# Huimai Discord Automation
+# 🎮 Discord自动化管理Skill
 
-> 自动回复、权限管理、频道清理、日志记录——Discord服务器日常运维交给它。省一个社区管理的坑位。
+> Discord社群管起来琐事一堆——新人欢迎、违规踢人、频道清理、日志归档。这个Skill就是这些"必须做但没人想做的事"的兜底。
 
-- **Category:** Productivity
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/huimai-discord-automation`
-- **Source URL:** [https://clawhub.ai/skills/huimai-discord-automation](https://clawhub.ai/skills/huimai-discord-automation)
+## 📜 更新日志
 
-## Overview
+### v2.0.0 (2026-05-03)
+- **大改版**：新增自动禁言/解禁逻辑
+- 新增：关键词违规自动检测（自定义词库）
+- 新增：频道活跃度周报
+- 新增：欢迎消息支持多语言模板
 
+### v1.3.0 (2026-05-01)
+- 修复角色同步异常
+- 增加日志导出格式
 
-## Installation
-To install this skill, run the following command in your terminal:
+### v1.2.1 (2026-04-30)
+- 修复权限检查越界
+- 优化消息回复延迟
+
+### v1.1.0 (2026-04-20)
+- 增加欢迎消息自定义
+- 自动角色分配
+
+### v1.0.0 (2026-04-24)
+- 初版发布
+
+## 👤 为什么做这个
+
+自己运营了几个Discord社群后最深的感觉是——日常管理占用时间远超预期。新人要欢迎、广告要清、频道要整理。这些事说大不大，但每天加起来能占一两个小时。干脆写了个机器人把琐碎的事接了。
+
+## 典型用法
+
+```
+你: "设置自动欢迎消息"
+我: 频道选择 → 消息模板配置 → 欢迎角色分配 → 生效
+
+你: "清理30天无消息的频道"
+我: 扫描 → 列出闲置频道 → 确认 → 归档/删除
+```
+
+## 👔 适用人群
+- **Discord社区管理员**：减少重复性管理
+- **项目社群运营**：自动化新人引导
+- **游戏公会管理**：频道的日常维护
+
+## 🔧 校准框架
+本Skill搭载惠迈校准框架v1.0。首次加载自动执行快速校准。
+- **温情模式（默认）**：操作前确认，重要操作备份
+- **专业模式（可选）**：批量操作，跳过确认
+
+## 💡 使用小贴士
+- 首次配置建议先开"仅日志"模式跑两天，确认规则不会误判
+- 违规关键词从松到紧慢慢调，宁可漏报别误报
+- 周报推送建议设成每星期一早上
+
+## ⚠️ 免责与已知限制
+- 需要Bot Token和对应权限
+- 批量删除消息受Discord API速率限制
+- 关键词过滤不涉及语音频道
+- 不存储用户隐私数据
+
+## 📬 联系与反馈
+- **邮箱**: yezhaowang888@icloud.com
+
+## 安装
 ```bash
-hermes skills install clawhub/huimai-discord-automation
+clawhub install huimai-discord-automation
 ```

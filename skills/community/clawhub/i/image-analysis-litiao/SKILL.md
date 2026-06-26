@@ -1,35 +1,52 @@
 ---
-name: "Image Analysis Litiao"
-description: "Analyze images using browser and vision capabilities."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/image-analysis-litiao"
-sourceUrl: "https://clawhub.ai/skills/image-analysis-litiao"
+name: image-analysis-litiao
+description: Analyze images using browser and vision capabilities.
+homepage: https://github.com/openclaw/openclaw
+metadata: {"clawdbot":{"emoji":"🖼️","requires":{"browser":true}}}
 ---
 
-# Image Analysis Litiao
+# 图片分析技能
 
-> Analyze images using browser and vision capabilities.
+使用浏览器和视觉能力来分析图片。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/image-analysis-litiao`
-- **Source URL:** [https://clawhub.ai/skills/image-analysis-litiao](https://clawhub.ai/skills/image-analysis-litiao)
+## 功能
 
-## Overview
+- 打开图片链接
+- 截取网页快照
+- 分析图片内容
 
+## 使用方法
 
-## Installation
-To install this skill, run the following command in your terminal:
+### 打开图片链接
+
 ```bash
-hermes skills install clawhub/image-analysis-litiao
+# 使用 browser 工具打开图片
+browser action=open url="图片链接"
 ```
+
+### 截取网页快照
+
+```bash
+# 使用 browser snapshot 截取页面
+browser action=snapshot targetId="页面ID"
+```
+
+### 分析图片
+
+对于 QQ 发来的图片，可以：
+1. 提取图片链接
+2. 使用 browser 打开
+3. 描述图片内容
+
+## 支持的图片格式
+
+- PNG
+- JPG/JPEG
+- GIF
+- WebP
+
+## 注意事项
+
+- 需要 browser 工具支持
+- Playwright 需要完整安装（不是 playwright-core）
+- 图片链接需要可访问

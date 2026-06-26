@@ -1,0 +1,64 @@
+{
+  "name": "@huo15/huo15-openclaw-enhance",
+  "version": "6.7.21",
+  "publishConfig": {
+    "access": "public"
+  },
+  "description": "火一五·克劳德·龙虾增强插件 v6.7.16 — bot-upload-link error path 漏判 hotfix：v6.7.15 本地实测三轮（直连/远程全链路/中途中断），前两轮完美，但第三轮发现 req.on('error') / ws.on('error') 触发后 Promise done，外面 `if (aborted)` 不拦截 error case 继续走 renameSync(partial, file) → ENOENT 误报 stderr（partial 已被 rmSync 删）。功能上没破坏数据（rename 失败 → 旧完整文件依然完好），但日志混乱。修法：加 `failed = true` flag，error handler 里 set，Promise 后 `if (aborted || failed) return` 提前出栈，不走 rename 路径。继承 v6.7.15 .partial 临时文件 + 4 档完整日志 + v6.7.14 config-doctor tools.profile 检测。",
+  "type": "module",
+  "main": "./dist/index.js",
+  "openclaw": {
+    "extensions": [
+      "./index.ts"
+    ],
+    "build": {
+      "openclawVersion": "2026.6.10"
+    },
+    "compat": {
+      "pluginApi": ">=2026.4.24"
+    }
+  },
+  "bin": {
+    "openclaw-enhance-setup": "./scripts/setup.sh"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "release": "bash scripts/release.sh",
+    "prepublishOnly": "npm run typecheck && npm run build",
+    "postinstall": "node scripts/postinstall.cjs && npm rebuild better-sqlite3 || true",
+    "build": "tsc && cp package.json dist/ && cp openclaw.plugin.json dist/ 2>/dev/null || true"
+  },
+  "keywords": [
+    "openclaw",
+    "plugin",
+    "enhance",
+    "memory",
+    "safety",
+    "agent"
+  ],
+  "author": "jobzhao15",
+  "license": "MIT",
+  "peerDependencies": {
+    "openclaw": "^2026.4.24"
+  },
+  "dependencies": {
+    "@sinclair/typebox": "^0.34.49",
+    "better-sqlite3": "^11.0.0"
+  },
+  "devDependencies": {
+    "@types/better-sqlite3": "^7.6.0",
+    "typescript": "^5.5.0"
+  },
+  "files": [
+    "index.ts",
+    "openclaw.plugin.json",
+    "src/**/*",
+    "templates/**/*",
+    "scripts/**/*",
+    "dist/**/*"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://cnb.cool/huo15/ai/huo15-openclaw-enhance"
+  }
+}

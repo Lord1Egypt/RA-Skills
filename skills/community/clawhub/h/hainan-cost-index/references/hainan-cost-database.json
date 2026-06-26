@@ -1,0 +1,215 @@
+{
+  "metadata": {
+    "source": "2024年版海南省建设工程典型案例造价指标",
+    "publisher": "海南省建设标准定额站",
+    "publish_date": "2025年5月",
+    "total_cases": 23,
+    "data_version": "1.0"
+  },
+  "cases": [
+    {
+      "case_id": "HN2024-001",
+      "case_name": "海口某安居房项目24号楼",
+      "project_type": "民用建筑工程",
+      "project_subtype": "居住建筑.安居房",
+      "classification_code": "A010101",
+      "location": "海口市美兰区",
+      "overview": {
+        "total_area": 21528.68,
+        "above_ground_area": 21528.68,
+        "underground_area": 0,
+        "total_cost": 9336.78,
+        "unit_cost": 4336.92,
+        "structure_type": "框架剪力墙结构",
+        "foundation_depth": 5,
+        "building_height": 75,
+        "floors": 25,
+        "floor_height": 3.0,
+        "indoor_outdoor_diff": 0.3,
+        "green_building_standard": "二星级",
+        "decoration_standard": "精装",
+        "is_prefabricated": true,
+        "prefabrication_rate": 50,
+        "seismic_intensity": "8度",
+        "start_date": "2023-03-02",
+        "completion_date": "2025-06-11",
+        "contract_mode": "工程总承包模式(EPC)",
+        "pricing_method": "工程量清单计价",
+        "cost_category": "预算",
+        "price_base_period": "2022年11月"
+      },
+      "cost_breakdown": {
+        "total": {
+          "amount": 93367800,
+          "unit_index": 4336.92,
+          "proportion": 100.0
+        },
+        "labor_cost": {
+          "amount": 20646700,
+          "unit_index": 959.03,
+          "proportion": 22.11
+        },
+        "material_cost": {
+          "amount": 48824500,
+          "unit_index": 2267.89,
+          "proportion": 52.29
+        },
+        "equipment_cost": {
+          "amount": 1514000,
+          "unit_index": 70.33,
+          "proportion": 1.62
+        },
+        "management_cost": {
+          "amount": 4605400,
+          "unit_index": 213.92,
+          "proportion": 4.93
+        },
+        "profit": {
+          "amount": 2854700,
+          "unit_index": 132.60,
+          "proportion": 3.06
+        }
+      },
+      "divisional_works": [
+        {
+          "division_name": "房屋建筑与装饰工程",
+          "amount": 75608071.60,
+          "unit_index": 3511.98,
+          "proportion": 80.98,
+          "sub_breakdown": {
+            "divisional_works": 53446990.54,
+            "measures": 13054304.51,
+            "other_items": 726000.00,
+            "fees": 2137908.25,
+            "tax": 6242868.30
+          }
+        },
+        {
+          "division_name": "电气工程",
+          "amount": 6602010.31,
+          "unit_index": 306.66,
+          "proportion": 7.07
+        },
+        {
+          "division_name": "建筑智能化工程",
+          "amount": 2124552.90,
+          "unit_index": 98.69,
+          "proportion": 2.28
+        },
+        {
+          "division_name": "通风空调工程",
+          "amount": 358951.07,
+          "unit_index": 16.67,
+          "proportion": 0.38
+        },
+        {
+          "division_name": "消防工程",
+          "amount": 2520000,
+          "unit_index": 117.05,
+          "proportion": 2.70
+        },
+        {
+          "division_name": "给排水工程",
+          "amount": 6314205.12,
+          "unit_index": 293.29,
+          "proportion": 6.76
+        }
+      ],
+      "major_materials": [
+        {"name": "钢筋HRB400", "unit": "kg", "unit_price": 4.5, "consumption_per_area": 45},
+        {"name": "混凝土C30", "unit": "m³", "unit_price": 480, "consumption_per_area": 0.45},
+        {"name": "混凝土C35", "unit": "m³", "unit_price": 510, "consumption_per_area": 0.25},
+        {"name": "砌块", "unit": "m³", "unit_price": 320, "consumption_per_area": 0.08},
+        {"name": "防水卷材", "unit": "㎡", "unit_price": 35, "consumption_per_area": 1.2}
+      ],
+      "features": {
+        "foundation": "钻孔灌注桩(桩长12m)、高压旋喷桩(桩长9m)、钢板桩(桩长12m)",
+        "structure": "预制混凝土叠合楼板、混凝土预制楼梯、装配复合膜壳混凝土结构体系",
+        "envelope": "ALC轻质隔墙板、65系列断桥铝合金门窗",
+        "waterproof": "1.5+1.5厚自粘聚合物改性沥青防水卷材、1.5厚聚合物水泥防水涂料",
+        "insulation": "挤塑聚苯板110厚、膨胀珍珠岩",
+        "decoration": "外墙真石漆、内墙乳胶漆、陶瓷地砖、石膏板吊顶"
+      }
+    }
+  ],
+  "cost_index_reference": {
+    "residential_buildings": {
+      "affordable_housing": {
+        "name": "安居房",
+        "unit_cost_range": {"low": 3800, "mid": 4337, "high": 4800},
+        "characteristics": "装配式、精装、高层"
+      },
+      "commercial_housing": {
+        "name": "商品住宅",
+        "unit_cost_range": {"low": 4200, "mid": 4800, "high": 5500},
+        "characteristics": "高层、精装、配套完善"
+      },
+      "resettlement_housing": {
+        "name": "安置房",
+        "unit_cost_range": {"low": 3500, "mid": 4000, "high": 4500},
+        "characteristics": "高层、简装"
+      },
+      "student_dormitory": {
+        "name": "学生公寓",
+        "unit_cost_range": {"low": 3200, "mid": 3600, "high": 4000},
+        "characteristics": "多层、简装"
+      }
+    },
+    "public_buildings": {
+      "office": {
+        "name": "办公建筑",
+        "unit_cost_range": {"low": 4500, "mid": 5200, "high": 6000}
+      },
+      "research": {
+        "name": "科研建筑",
+        "unit_cost_range": {"low": 4800, "mid": 5500, "high": 6500}
+      },
+      "education": {
+        "name": "教育建筑",
+        "unit_cost_range": {"low": 3800, "mid": 4500, "high": 5200}
+      },
+      "medical": {
+        "name": "医疗建筑",
+        "unit_cost_range": {"low": 5500, "mid": 6500, "high": 8000}
+      },
+      "cultural_sports": {
+        "name": "文体建筑",
+        "unit_cost_range": {"low": 5000, "mid": 6000, "high": 7500}
+      }
+    },
+    "industrial_buildings": {
+      "manufacturing": {
+        "name": "生产厂房",
+        "unit_cost_range": {"low": 2500, "mid": 3200, "high": 4000}
+      },
+      "warehouse": {
+        "name": "仓储物流",
+        "unit_cost_range": {"low": 2200, "mid": 2800, "high": 3500}
+      }
+    }
+  },
+  "adjustment_coefficients": {
+    "regional": {
+      "haikou": {"coefficient": 1.0, "description": "基准"},
+      "sanya": {"coefficient": 1.05, "description": "人工、材料价格较高"},
+      "other_cities": {"coefficient": 0.92, "description": "人工价格较低"}
+    },
+    "temporal": {
+      "2022": {"coefficient": 0.95, "description": "基准期"},
+      "2023": {"coefficient": 0.98, "description": "小幅上涨"},
+      "2024": {"coefficient": 1.0, "description": "基准"},
+      "2025": {"coefficient": 1.03, "description": "预估"}
+    },
+    "decoration": {
+      "rough": {"coefficient": 0.88, "description": "仅基础工程"},
+      "simple": {"coefficient": 0.97, "description": "基础装修"},
+      "standard": {"coefficient": 1.0, "description": "精装基准"},
+      "luxury": {"coefficient": 1.35, "description": "高档装修"}
+    },
+    "structure": {
+      "frame": {"coefficient": 0.95, "description": "框架结构"},
+      "frame_shear": {"coefficient": 1.0, "description": "框架剪力墙"},
+      "shear": {"coefficient": 1.05, "description": "剪力墙结构"}
+    }
+  }
+}

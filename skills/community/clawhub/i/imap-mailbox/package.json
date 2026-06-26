@@ -1,0 +1,15 @@
+{
+  "name": "imap-mailbox",
+  "version": "1.0.0",
+  "description": "IMAP mailbox reader skill",
+  "type": "module",
+  "bin": {
+    "imap-mailbox": "./cli.js"
+  },
+  "dependencies": {
+    "html-to-text": "^9.0.5",
+    "imap": "^0.8.19",
+    "mailparser": "^3.6.5",
+    "minimist": "^1.2.8"
+  }
+}

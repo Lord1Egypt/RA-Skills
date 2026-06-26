@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "yintai-tasks-runner"
+version = "2.0.0"
+description = "Yintai Task Agent — Agent-driven task grabbing, execution, and delivery"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+authors = [
+    {name = "OpenClaw Community", email = "community@openclaw.ai"}
+]
+keywords = ["openclaw", "task-runner", "automation", "yintai", "agent"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+]
+
+dependencies = [
+    "httpx>=0.25.0",
+]
+
+[project.urls]
+Homepage = "https://clawhub.ai/beincy/insta-orcha-task"
+Documentation = "https://github.com/instaclw/insta-claw-task-system#readme"
+Repository = "https://github.com/instaclw/insta-claw-task-system"

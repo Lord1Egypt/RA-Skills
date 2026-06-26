@@ -1,0 +1,277 @@
+# Hologres CLI Safety Features
+
+Safety guardrails to prevent accidental data loss and ensure safe operations.
+
+## Default Session GUC Protection
+
+### Purpose
+Prevents OOM crashes and ensures queries use the serverless computing pool by automatically setting session-level GUC parameters on every connection.
+
+### Behavior
+- All connections execute the following GUCs immediately after creation:
+  ```sql
+  SET hg_experimental_enable_adaptive_execution = on;
+  SET hg_computing_resource = 'serverless';
+  ```
+- `hg_experimental_enable_adaptive_execution = on` — Enables the Adaptive Execution engine that dynamically adjusts parallelism and memory allocation at each execution stage, preventing OOM for complex queries.
+- `hg_computing_resource = 'serverless'` — Routes queries to the serverless computing pool, providing elastic compute resources and SQL-level isolation.
+- These GUCs are applied **before** the read-only mode setting, ensuring all connections (read-only or write) benefit from OOM protection and serverless execution.
+- No user action or flag is required; this is fully transparent.
+
+### Architecture
+```
+Connection Created
+    │
+    ▼
+┌─────────────────────────┐
+│ Default GUC Layer          │  ← SET adaptive_execution = on
+│ OOM prevention + Serverless│     SET computing_resource = serverless
+└────────────┬────────────┘
+             │
+             ▼
+┌─────────────────────────┐
+│ Read-Only Layer             │  ← SET default_transaction_read_only = ON
+│ (if read_only=True)         │     Database rejects writes
+└────────────┬────────────┘
+             │
+             ▼
+┌─────────────────────────┐
+│ CLI Write Guard             │  ← --write flag check
+│ WRITE_GUARD_ERROR           │     CLI rejects writes
+└────────────┬────────────┘
+             │
+             ▼
+┌─────────────────────────┐
+│ Dangerous Write Block       │  ← WHERE clause check
+│ DANGEROUS_WRITE_BLOCKED     │     CLI rejects DELETE/UPDATE
+└─────────────────────────┘     without WHERE
+```
+
+## Row Limit Protection
+
+### Purpose
+Prevents accidental retrieval of large result sets that could:
+- Consume excessive memory
+- Slow down the client
+- Transfer unnecessary data
+
+### Behavior
+- Queries without `LIMIT` that return >100 rows fail with `LIMIT_REQUIRED` error
+- Default limit threshold: 100 rows
+
+### Examples
+
+```bash
+# Will fail if table has >100 rows
+hologres sql run "SELECT * FROM large_table"
+# Error: {"ok": false, "error": {"code": "LIMIT_REQUIRED", "message": "Query returns >100 rows, add LIMIT clause"}}
+
+# Solution 1: Add LIMIT
+hologres sql run "SELECT * FROM large_table LIMIT 50"
+
+# Solution 2: Disable check (use with caution)
+hologres sql run --no-limit-check "SELECT * FROM large_table"
+```
+
+### When to disable
+- Exporting full tables (use `hologres data export` instead)
+- Aggregation queries (COUNT, SUM, etc.)
+- When you explicitly need all rows
+
+## Connection-Level Read-Only Protection
+
+### Purpose
+Provides database-level protection against accidental writes by setting all CLI connections to read-only mode by default.
+
+### Behavior
+- All connections execute `SET default_transaction_read_only = ON` upon creation (after default GUCs)
+- Any write SQL (INSERT, UPDATE, DELETE, DDL) on a read-only connection is **rejected by the database engine**, not just the CLI
+- Write commands (sql --write, guc set/reset, dt create/alter/drop/refresh, data import, table create/drop/truncate/alter, partition drop/alter, extension create) explicitly use `read_only=False`
+- This is the **second layer** of write protection (after default GUC layer), enforced at the PostgreSQL protocol level
+
+### Architecture
+```
+User Request
+    │
+    ▼
+┌─────────────────────────┐
+│ Default GUC Layer          │  ← adaptive_execution=on
+│ (always applied)           │     computing_resource=serverless
+└────────────┬────────────┘
+             │
+             ▼
+┌─────────────────────────┐
+│ Connection Layer            │  ← read_only=True (default)
+│ SET default_transaction     │     Database rejects writes
+│ _read_only = ON             │
+└────────────┬────────────┘
+             │
+             ▼
+┌─────────────────────────┐
+│ CLI Write Guard             │  ← --write flag check
+│ WRITE_GUARD_ERROR           │     CLI rejects writes
+└────────────┬────────────┘
+             │
+             ▼
+┌─────────────────────────┐
+│ Dangerous Write Block       │  ← WHERE clause check
+│ DANGEROUS_WRITE_BLOCKED     │     CLI rejects DELETE/UPDATE
+└─────────────────────────┘     without WHERE
+```
+
+### Examples
+
+```bash
+# Read-only connection (default) - SELECT works fine
+hologres sql run "SELECT * FROM users LIMIT 10"
+
+# Read-only connection blocks writes at database level,
+# even before the CLI --write guard kicks in
+hologres sql run "INSERT INTO logs VALUES (1, 'test')"
+# Error: WRITE_GUARD_ERROR (CLI-level guard is checked first)
+
+# With --write, connection uses read_only=False
+hologres sql run --write "INSERT INTO logs VALUES (1, 'test')"
+# Success: connection created with read_only=False
+```
+
+## Write Protection
+
+### Purpose
+Prevents accidental write operations by requiring explicit intent.
+
+### Behavior
+- INSERT, UPDATE, DELETE, TRUNCATE require `--write` flag
+- Without flag, these operations fail with `WRITE_GUARD_ERROR`
+
+### Examples
+
+```bash
+# Will fail
+hologres sql run "INSERT INTO logs VALUES (1, 'test')"
+# Error: {"ok": false, "error": {"code": "WRITE_GUARD_ERROR", "message": "Write operation requires --write flag"}}
+
+# Correct usage
+hologres sql run --write "INSERT INTO logs VALUES (1, 'test')"
+```
+
+## Dangerous Write Blocking
+
+### Purpose
+Prevents mass data modifications that could cause data loss.
+
+### Behavior
+- DELETE without WHERE clause is blocked
+- UPDATE without WHERE clause is blocked
+- Returns `DANGEROUS_WRITE_BLOCKED` error
+
+### Examples
+
+```bash
+# Blocked - would delete all rows
+hologres sql run --write "DELETE FROM users"
+# Error: {"ok": false, "error": {"code": "DANGEROUS_WRITE_BLOCKED", "message": "DELETE without WHERE clause is blocked"}}
+
+# Blocked - would update all rows
+hologres sql run --write "UPDATE users SET status='inactive'"
+# Error: {"ok": false, "error": {"code": "DANGEROUS_WRITE_BLOCKED", "message": "UPDATE without WHERE clause is blocked"}}
+
+# Correct usage - specific rows
+hologres sql run --write "DELETE FROM users WHERE status='deleted'"
+hologres sql run --write "UPDATE users SET status='inactive' WHERE last_login < '2023-01-01'"
+```
+
+### Intentional full-table operations
+If you intentionally want to affect all rows:
+```bash
+# Use WHERE true
+hologres sql run --write "DELETE FROM temp_table WHERE true"
+
+# Or use TRUNCATE (faster for clearing tables)
+hologres sql run --write "TRUNCATE TABLE temp_table"
+```
+
+## Sensitive Data Masking
+
+### Purpose
+Protects sensitive information from being displayed in query results.
+
+### Behavior
+Auto-detects sensitive columns by name pattern and masks values:
+
+| Column Pattern | Example Input | Masked Output |
+|----------------|---------------|---------------|
+| phone, mobile, tel | 13812345678 | `138****5678` |
+| email | john@example.com | `j***@example.com` |
+| password, secret, token | mysecret123 | `********` |
+| id_card, ssn | 110101199001011234 | `110***********1234` |
+| bank_card, credit_card | 6222021234567890123 | `***************0123` |
+
+### Disabling masking
+
+```bash
+# Disable for specific query
+hologres sql run --no-mask "SELECT * FROM users LIMIT 10"
+```
+
+## Dynamic Table Drop Safety
+
+### Purpose
+Prevents accidental deletion of Dynamic Tables.
+
+### Behavior
+- `hologres dt drop` defaults to **dry-run mode** (only shows the SQL)
+- Must pass `--confirm` flag to actually execute the DROP
+
+### Examples
+
+```bash
+# Dry-run (safe default) - only shows SQL, does not execute
+hologres dt drop my_dynamic_table
+# Output: {"ok": true, "data": {"sql": "DROP DYNAMIC TABLE my_dynamic_table", "dry_run": true}}
+
+# Actually drop (requires explicit --confirm)
+hologres dt drop my_dynamic_table --confirm
+
+# With IF EXISTS
+hologres dt drop my_dynamic_table --if-exists --confirm
+```
+
+## Audit Logging
+
+### Purpose
+Maintains history of all operations for accountability and debugging.
+
+### Behavior
+- All commands logged to `~/.hologres/sql-history.jsonl`
+- Includes: timestamp, command, SQL, result status
+
+### Log format
+```jsonl
+{"timestamp": "2024-01-15T10:30:00Z", "command": "sql", "sql": "SELECT * FROM users LIMIT 10", "ok": true}
+{"timestamp": "2024-01-15T10:31:00Z", "command": "sql", "sql": "INSERT INTO logs...", "ok": true, "write": true}
+```
+
+### Viewing history
+```bash
+hologres history
+hologres history -n 50
+```
+
+## Error Codes Summary
+
+| Code | Trigger | Resolution |
+|------|---------|------------|
+| `CONNECTION_ERROR` | Cannot connect to database | Check profile config, network, credentials |
+| `QUERY_ERROR` | SQL syntax or execution error | Fix SQL statement |
+| `LIMIT_REQUIRED` | SELECT without LIMIT, >100 rows | Add LIMIT or use --no-limit-check |
+| `WRITE_GUARD_ERROR` | Write operation without --write | Add --write flag |
+| `DANGEROUS_WRITE_BLOCKED` | DELETE/UPDATE without WHERE | Add WHERE clause |
+| `WRITE_BLOCKED` | Write operation not allowed | Use read-only queries |
+| `EXPORT_ERROR` | Data export failed | Check table/query and file path |
+| `IMPORT_ERROR` | Data import failed | Check CSV format and table schema |
+| `NOT_FOUND` | Table or resource not found | Verify table name and schema |
+| `INVALID_INPUT` | Invalid identifier or input | Check table/schema names |
+| `INVALID_ARGS` | Invalid or missing arguments | Check required arguments |
+| `NO_CHANGES` | No alter properties specified | Specify at least one property to alter |
+| `VIEW_NOT_FOUND` | View not found | Verify view name and schema |

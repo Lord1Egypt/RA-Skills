@@ -1,0 +1,16 @@
+{
+  "name": "hot-topics-daily",
+  "version": "2.0.0",
+  "description": "每日热搜速览推送 - 自动抓取微博、知乎、百度、B站等平台热搜并发送到 Discord",
+  "author": "sunnyhot",
+  "license": "MIT",
+  "keywords": [
+    "hot-topics",
+    "trending",
+    "weibo",
+    "zhihu",
+    "baidu",
+    "bilibili",
+    "discord"
+  ]
+}

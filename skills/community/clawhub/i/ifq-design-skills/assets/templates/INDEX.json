@@ -1,0 +1,199 @@
+{
+  "$schema": "./templates.schema.json",
+  "version": "2.0",
+  "author": "ifq-design-skills",
+  "description": "IFQ Design Skills · built-in HTML templates with ambient IFQ cues already woven into layout rhythm, metadata, and colophon logic. Agents should Read the template before generating, then fork-and-fill with subject matter instead of blank-starting.",
+  "qualityContract": {
+    "thesis": "Make AI higher leverage by turning loose visual requests into routed, template-first, verified HTML artifacts.",
+    "defaultLoop": ["classify-mode", "load-route", "fork-template", "fill-context", "anti-slop-check", "browser-verify", "report-caveats"],
+    "minimumEvidence": ["output-file", "route-used", "template-used", "verification-performed", "known-caveats"],
+    "firstRunLoop": ["accept-natural-language-goal", "select-one-mode", "fork-one-template", "write-one-artifact", "return-evidence-packet"],
+    "evidencePacket": ["file path", "mode id", "template id", "assumptions", "verification command or browser check", "caveats that affect use"],
+    "agentFailurePolicy": "If a required fact, asset, permission, or export dependency is missing, continue with labeled assumptions only when reversible; otherwise stop at the smallest useful HTML source and report the blocker.",
+    "clawhubScope": "ClawHub bundle outputs local HTML/SVG/static source and export plans; MP4/GIF/PDF/PPTX automation lives in the full GitHub repo."
+  },
+  "modeRoutes": {
+    "M-01": {
+      "label": "Launch Film",
+      "primaryTemplate": "T-hero-landing",
+      "fallbackTemplates": ["T-social-x", "T-infographic-vertical"],
+      "requiredReferences": ["references/asset-protocol.md", "references/animations.md", "references/animation-best-practices.md", "references/video-export.md"],
+      "outputBoundary": "HTML motion source and posters in ClawHub; MP4/GIF only in full repo."
+    },
+    "M-02": {
+      "label": "Portfolio",
+      "primaryTemplate": "T-portfolio",
+      "fallbackTemplates": ["T-hero-landing", "T-social-x"],
+      "requiredReferences": ["references/design-context.md", "references/design-styles.md", "references/ifq-native-recipes.md"],
+      "outputBoundary": "Single-page HTML and optional OG/static companion."
+    },
+    "M-03": {
+      "label": "Whitepaper",
+      "primaryTemplate": "T-infographic-vertical",
+      "fallbackTemplates": ["T-hero-landing", "T-slide-title"],
+      "requiredReferences": ["references/content-guidelines.md", "references/scene-templates.md", "references/verification.md"],
+      "outputBoundary": "A4/long-form HTML in ClawHub; PDF only in full repo."
+    },
+    "M-04": {
+      "label": "Dashboard",
+      "primaryTemplate": "T-dashboard",
+      "fallbackTemplates": ["T-compare-vs"],
+      "requiredReferences": ["references/content-guidelines.md", "references/anti-ai-slop.md", "references/verification.md"],
+      "outputBoundary": "Dense dashboard HTML with real or labeled placeholder data."
+    },
+    "M-05": {
+      "label": "Compare",
+      "primaryTemplate": "T-compare-vs",
+      "fallbackTemplates": ["T-infographic-vertical", "T-social-x"],
+      "requiredReferences": ["references/asset-protocol.md", "references/critique-guide.md", "references/content-guidelines.md"],
+      "outputBoundary": "Cited comparison HTML/social source; no hidden AI scoring."
+    },
+    "M-06": {
+      "label": "Onboarding",
+      "primaryTemplate": "T-onboarding",
+      "fallbackTemplates": ["T-hero-landing", "T-dashboard"],
+      "requiredReferences": ["references/ios-prototype.md", "references/tweaks-system.md", "references/verification.md"],
+      "outputBoundary": "Clickable HTML prototype with primary path checked."
+    },
+    "M-07": {
+      "label": "Changelog",
+      "primaryTemplate": "T-changelog",
+      "fallbackTemplates": ["T-infographic-vertical", "T-social-x"],
+      "requiredReferences": ["references/content-guidelines.md", "references/ifq-native-recipes.md", "references/verification.md"],
+      "outputBoundary": "Timeline HTML and optional social static source."
+    },
+    "M-08": {
+      "label": "Keynote",
+      "primaryTemplate": "T-slide-title",
+      "fallbackTemplates": ["T-hero-landing", "T-infographic-vertical"],
+      "requiredReferences": ["references/slide-decks.md", "references/editable-pptx.md", "references/verification.md"],
+      "outputBoundary": "HTML deck in ClawHub; PDF/PPTX only in full repo."
+    },
+    "M-09": {
+      "label": "Social Kit",
+      "primaryTemplate": "T-social-multi",
+      "fallbackTemplates": ["T-social-x", "T-infographic-vertical", "T-hero-landing"],
+      "requiredReferences": ["references/design-styles.md", "references/font-loading.md", "references/anti-ai-slop.md"],
+      "outputBoundary": "Multi-size HTML/static source with platform dimensions."
+    },
+    "M-10": {
+      "label": "Card / Invite",
+      "primaryTemplate": "T-business-card",
+      "fallbackTemplates": ["T-hero-landing"],
+      "requiredReferences": ["references/content-guidelines.md", "references/verification.md"],
+      "outputBoundary": "Print-sized SVG/HTML source; PDF only in full repo."
+    },
+    "M-11": {
+      "label": "Brand Diagnosis",
+      "primaryTemplate": "T-diagnosis",
+      "fallbackTemplates": ["T-compare-vs", "T-infographic-vertical", "T-slide-title"],
+      "requiredReferences": ["references/critique-guide.md", "references/design-context.md", "references/design-styles.md"],
+      "outputBoundary": "Diagnosis report and direction boards; do not invent missing brand evidence."
+    },
+    "M-12": {
+      "label": "Full Brand System",
+      "primaryTemplate": "T-hero-landing",
+      "fallbackTemplates": ["T-business-card", "T-social-x", "T-slide-title"],
+      "requiredReferences": ["references/ifq-brand-spec.md", "references/design-styles.md", "references/ifq-native-recipes.md", "references/asset-protocol.md"],
+      "outputBoundary": "ClawHub source assets and application examples; archive creation only when the runtime supports it."
+    }
+  },
+  "templates": [
+    {
+      "id": "T-hero-landing",
+      "mode": ["M-01", "M-02", "M-06", "M-12"],
+      "name": "Editorial Hero Landing",
+      "file": "assets/templates/hero-landing.html",
+      "viewport": "1440×900",
+      "notes": "IFQ-native hero scaffold with rust ledger, sparkle cue, quiet colophon, and editorial header rhythm."
+    },
+    {
+      "id": "T-slide-title",
+      "mode": ["M-08"],
+      "name": "Keynote Title Slide",
+      "file": "assets/templates/slide-title.html",
+      "viewport": "1920×1080",
+      "notes": "IFQ keynote title slide with field-note stamp area, spark cluster, and rust divider."
+    },
+    {
+      "id": "T-dashboard",
+      "mode": ["M-04"],
+      "name": "Command Center Dashboard",
+      "file": "assets/templates/dashboard-command-center.html",
+      "viewport": "1440×900",
+      "notes": "Left nav + KPI strip + 3×3 metric grid + quiet IFQ live-system footer. Uses hand-drawn radar/arrow icons."
+    },
+    {
+      "id": "T-infographic-vertical",
+      "mode": ["M-03", "M-07"],
+      "name": "Vertical Infographic (小红书长图)",
+      "file": "assets/templates/infographic-vertical.html",
+      "viewport": "1242×3200",
+      "notes": "Multi-section scroll with timeline, pull-quotes, and IFQ field-note footer treatment."
+    },
+    {
+      "id": "T-social-x",
+      "mode": ["M-09"],
+      "name": "X/Twitter Share Card",
+      "file": "assets/templates/social-x-card.html",
+      "viewport": "1200×675",
+      "notes": "IFQ social card with rust ledger, spark cue, and authored bottom line."
+    },
+    {
+      "id": "T-compare-vs",
+      "mode": ["M-05", "M-11"],
+      "name": "A vs B Comparison Matrix",
+      "file": "assets/templates/compare-vs.html",
+      "viewport": "1440×900",
+      "notes": "IFQ comparison sheet with radar footer and field-research metadata."
+    },
+    {
+      "id": "T-changelog",
+      "mode": ["M-07"],
+      "name": "Changelog Timeline",
+      "file": "assets/templates/changelog-timeline.html",
+      "viewport": "1200×variable",
+      "notes": "Release ledger with mono dates, rust timeline spine, and IFQ-authored footer."
+    },
+    {
+      "id": "T-business-card",
+      "mode": ["M-10"],
+      "name": "Business Card (90×54mm + 3mm bleed)",
+      "file": "assets/templates/business-card.html",
+      "viewport": "96×60mm",
+      "notes": "IFQ business card scaffold with spark cue, quiet URL, and authored back colophon."
+    },
+    {
+      "id": "T-portfolio",
+      "mode": ["M-02"],
+      "name": "Essay-Style Portfolio",
+      "file": "assets/templates/portfolio-essay.html",
+      "viewport": "680×variable",
+      "notes": "Narrow-column essay layout with 5 switchable variants (Editorial Serif, Terminal Hacker, Magazine Grid, Paper Journal, Minimalist Card). Currently/Writing/Building structure, content-first."
+    },
+    {
+      "id": "T-onboarding",
+      "mode": ["M-06"],
+      "name": "Onboarding Flow Prototype",
+      "file": "assets/templates/onboarding-flow.html",
+      "viewport": "375×812 per screen",
+      "notes": "5-screen horizontal flow with CSS scroll-snap, iPhone device frames, progress indicator, user mindset annotations, and data-track attributes for analytics."
+    },
+    {
+      "id": "T-diagnosis",
+      "mode": ["M-11"],
+      "name": "Brand Diagnosis Report",
+      "file": "assets/templates/brand-diagnosis.html",
+      "viewport": "1120×variable",
+      "notes": "6-dimension SVG radar chart, score cards, three direction moodboard cards, and Keep/Fix/Quick Wins tri-section. Pure CSS/SVG, no library."
+    },
+    {
+      "id": "T-social-multi",
+      "mode": ["M-09"],
+      "name": "Multi-Platform Social Kit",
+      "file": "assets/templates/social-multi.html",
+      "viewport": "1400×variable",
+      "notes": "Gallery showing X (1200×675), RedNote (1242×1656), IG Square (1080×1080), and WeChat (900×383) formats side-by-side with shared brand tokens."
+    }
+  ]
+}

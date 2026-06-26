@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python3 -m py_compile scripts/transcribe.py)",
+      "Read(//Users/yanhuijiang/Desktop/skill打包/**)",
+      "Bash(zip -r \"/Users/yanhuijiang/Desktop/改进之后的skill打包/xfei-speed-transcription.zip\" xfei-speed-transcription/)"
+    ]
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "name": "hallucination-check",
+  "version": "1.0.0",
+  "description": "LLM hallucination detector with dual strategy",
+  "license": "MIT-0"
+}

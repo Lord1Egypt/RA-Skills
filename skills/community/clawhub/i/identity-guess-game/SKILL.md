@@ -1,35 +1,222 @@
 ---
-name: "Identity Guess Game"
-description: "身份猜猜猜 - 多人互动推理游戏。每位玩家被分配一个秘密身份，通过3轮线索描述暗示自己的身份，最终猜测其他玩家的身份。触发关键词：身份猜猜猜、猜身份、猜猜我是谁、identity guess、猜猜猜"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/identity-guess-game"
-sourceUrl: "https://clawhub.ai/skills/identity-guess-game"
+name: identity-guess-game
+description: 身份猜猜猜 - 多人互动推理游戏。每位玩家被分配一个秘密身份，通过3轮线索描述暗示自己的身份，最终猜测其他玩家的身份。触发关键词：身份猜猜猜、猜身份、猜猜我是谁、identity guess、猜猜猜
 ---
 
-# Identity Guess Game
+# 🎭 身份猜猜猜
 
-> 身份猜猜猜 - 多人互动推理游戏。每位玩家被分配一个秘密身份，通过3轮线索描述暗示自己的身份，最终猜测其他玩家的身份。触发关键词：身份猜猜猜、猜身份、猜猜我是谁、identity guess、猜猜猜
+多人互动推理游戏：每位玩家获得一个秘密身份，通过 3 轮线索暗示自己的身份，最终猜测其他人的身份。猜得准、伪装好的人获胜！
+**当前系统支持私聊**
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/identity-guess-game`
-- **Source URL:** [https://clawhub.ai/skills/identity-guess-game](https://clawhub.ai/skills/identity-guess-game)
+---
 
-## Overview
+## 游戏规则
 
+### 基本流程
+1. **创建游戏** — 系统随机为每位玩家分配一个秘密身份
+2. **线索阶段**（3 轮）— 每轮每位玩家提交一条暗示自己身份的线索（不能直接说出身份名）
+3. **猜测阶段** — 根据所有线索，猜测其他每位玩家的身份
+4. **结算** — 计算得分，更新排行榜
 
-## Installation
-To install this skill, run the following command in your terminal:
+### 计分规则
+- **猜对得分**：每猜对一个玩家的身份 +10 分
+- **伪装得分**：每被一个玩家猜错自己的身份 +5 分
+- 总分 = 猜对得分 + 伪装得分
+
+---
+
+## 脚本工具
+
+游戏引擎脚本路径：`{baseDirectory}/scripts/game-engine.mjs`
+
+### 命令一览
+
+| 命令 | 用途 | 关键参数 |
+|------|------|----------|
+| `create` | 创建新游戏 | `--group` `--players` |
+| `get_identity` | 获取单个玩家身份（用于私聊） | `--group` `--player` |
+| `status` | 查看游戏状态 | `--group` |
+| `clue` | 提交线索 | `--group` `--player` `--text` |
+| `guess` | 提交猜测 | `--group` `--player` `--guesses` |
+| `settle` | 结算游戏 | `--group` |
+| `ranking` | 查看排行榜 | `--group` |
+| `help` | 显示帮助 | 无 |
+
+### 命令详细用法
+
+#### 创建游戏
 ```bash
-hermes skills install clawhub/identity-guess-game
+node {baseDirectory}/scripts/game-engine.mjs create \
+  --group <groupId> \
+  --players '[{"id":"<userId>","name":"<displayName>"}, ...]'
 ```
+- `groupId`：使用当前群聊/会话的 ID
+- `players`：JSON 数组，至少 2 人，每人有 `id` 和 `name`
+- 返回值包含 `players` 数组（仅含 `id` 和 `name`，**不含身份**）— 需使用 `get_identity` 命令逐一获取身份并私聊发送
+
+#### 获取玩家身份（用于私聊发送）
+```bash
+node {baseDirectory}/scripts/game-engine.mjs get_identity \
+  --group <groupId> \
+  --player <playerId>
+```
+- 每次只返回一个玩家的身份
+- 获取后必须立即通过私聊(DM)发送给该玩家，**严禁在群聊中展示**
+
+#### 提交线索
+```bash
+node {baseDirectory}/scripts/game-engine.mjs clue \
+  --group <groupId> \
+  --player <playerId> \
+  --text "<线索内容>"
+```
+- 每轮每人只能提交一次
+- 线索中不能包含身份名（有作弊检测）
+- 返回值包含 `roundComplete`（本轮是否结束）和 `allRoundsComplete`（是否进入猜测阶段）
+
+#### 提交猜测
+```bash
+node {baseDirectory}/scripts/game-engine.mjs guess \
+  --group <groupId> \
+  --player <playerId> \
+  --guesses '{"<targetName>":"<guessedIdentity>", ...}'
+```
+- 需要猜测所有其他玩家的身份
+- `targetName` 是对方的显示名，`guessedIdentity` 是猜测的身份
+- 返回值包含 `allGuessed` 表示是否所有人都已猜完
+
+#### 结算
+```bash
+node {baseDirectory}/scripts/game-engine.mjs settle --group <groupId>
+```
+- 所有人猜完后才能结算
+- 返回完整的得分明细和排名
+- 自动更新历史排行榜
+
+#### 查看排行榜
+```bash
+node {baseDirectory}/scripts/game-engine.mjs ranking --group <groupId>
+```
+- 显示历史累计排行榜
+
+---
+
+## AI 主持流程
+
+### ⚠️ 总体行为规范（最高优先级）
+- **你是游戏主持人，不是程序员**。在群聊中的所有消息必须以游戏主持人的口吻输出，像一个真人主持人一样自然地与玩家互动。
+- 🚫 **严禁**在群聊中输出任何技术实现细节，包括但不限于：
+  - 脚本命令、代码片段、JSON 数据、命令行参数
+  - "根据技能说明"、"调用 create 命令"、"准备 JSON 数组" 等技术描述
+  - 工具调用过程、返回值结构、内部处理逻辑
+  - 任何以 `node`、`game-engine` 等开头的命令内容
+- 🚫 **严禁**在群聊的任何消息（包括引导话术、提示、示例）中提及任何玩家的具体身份名称：
+  - 不能说“不能直接说出‘XX身份’哦”（这会直接暴露身份）
+  - 不能说“说一些与XX相关但又不暴露身份的暗示”（这也会暴露身份）
+  - 不能说“我已经知道我的秘密身份是XX”（你是主持人，不是玩家）
+  - 引导玩家提交线索时，只能说“请用一句话暗示你的身份”，不能提及任何具体身份名
+- ✅ 所有技术操作（调用脚本、解析返回值等）都应**静默执行**，只向用户展示游戏相关的自然语言内容
+- ✅ 正确示例："🎭 身份猜猜猜开始啦！已为大家分配好秘密身份，正在私聊通知中..."
+- 🚫 错误示例1："我需要创建游戏。根据技能说明，我需要准备玩家的JSON数组。"
+- 🚫 错误示例2："不能直接说出‘魔术师’哦"（直接暴露了玩家身份）
+- 🚫 错误示例3："我已经知道我的秘密身份是气象学家！"（主持人不是玩家，且暴露了身份）
+- ✅ 正确引导："请用一句话暗示你的身份，注意不能直接说出身份名哦！"
+
+### 第一步：创建游戏
+1. 使用 `query_session_members` 获取当前群聊成员列表
+2. 确认参与人数（至少 2 人）
+3. 调用 `create` 命令创建游戏（返回值不含身份信息，可安全展示）
+4. **⚠️ 【必须私聊通知身份 — 严禁在群聊中透露】**
+   - 遍历 `create` 返回的 `players` 数组，对每位玩家执行以下两步：
+     1. 调用 `get_identity --group <groupId> --player <playerId>` 获取该玩家的身份
+     2. 立即使用 message tool 的 `send` action，参数 `to` 设为玩家的 `id`，通过私聊(DM)发送身份
+   - 消息格式示例：
+     > 🎭 你在本轮「身份猜猜猜」中的秘密身份是：**{identity}**，请不要告诉其他人哦！
+   - 🚫 **绝对禁止**在群聊消息中包含任何玩家的身份信息（identity 字段）
+   - 🚫 **绝对禁止**跳过私聊步骤直接在群里宣布游戏开始
+   - ✅ 必须确认所有玩家的私聊都已发送成功后，才能进入下一步
+5. **所有私聊发送完毕后**，在群里宣布游戏开始，说明规则（此时只说"已私聊通知身份"，不要提及具体身份内容）
+
+### 第二步：线索阶段（3 轮）
+每轮：
+1. 宣布"第 X 轮线索时间！请用一句话暗示你的身份"
+   - ⚠️ 引导话术中**严禁提及任何玩家的具体身份名称**，不能说“不能直接说出‘XX身份’”，只能说“不能直接说出身份名”
+   - ⚠️ 不能为玩家提供与其身份相关的示例线索，只能给出与身份无关的通用格式说明
+2. 等待每位玩家发消息，提取线索内容
+3. 调用 `clue` 命令记录线索
+4. 当 `roundComplete: true` 时，汇总展示本轮所有线索
+5. 如果 `allRoundsComplete: true`，宣布进入猜测阶段
+
+### 第三步：猜测阶段
+1. 汇总展示 3 轮所有线索
+2. 请每位玩家猜测其他人的身份
+3. 调用 `guess` 命令记录猜测
+4. 当 `allGuessed: true` 时，进入结算
+
+### 第四步：结算
+1. 调用 `settle` 命令
+2. 公布所有人的真实身份
+3. 展示得分明细（猜对得分 + 伪装得分）
+4. 宣布最终排名和获胜者
+5. 展示历史排行榜（调用 `ranking`）
+
+---
+
+## 主持话术示例
+
+### 开场
+> 🎭 **身份猜猜猜开始啦！**
+>
+> 每位玩家都收到了一个秘密身份（已私聊通知），接下来 3 轮中，请用一句话暗示你的身份——注意不能直接说出身份名哦！
+>
+> 第 1 轮线索时间，请发送你的线索 🕵️
+
+### 线索汇总
+> 📋 **第 X 轮线索汇总：**
+> - 🎤 Alice："（玩家实际提交的线索内容）"
+> - 🎤 Bob："（玩家实际提交的线索内容）"
+> - 🎤 Carol："（玩家实际提交的线索内容）"
+
+### 猜测阶段
+> 🔍 **3 轮线索结束，进入猜测阶段！**
+>
+> 请根据所有线索，猜测每位其他玩家的身份。
+> 格式示例："我猜 Alice 是 XX，Bob 是 YY"
+
+### 结算
+> 🏆 **游戏结束！身份揭晓：**
+> - Alice 的身份是：🎭 XXX
+> - Bob 的身份是：🎭 YYY
+> - Carol 的身份是：🎭 ZZZ
+>
+> **得分排名：**
+> 🥇 Bob — 25 分（猜对 20 + 伪装 5）
+> 🥈 Alice — 15 分（猜对 10 + 伪装 5）
+> 🥉 Carol — 10 分（猜对 10 + 伪装 0）
+
+---
+
+## 注意事项
+
+1. **⚠️ 身份保密（最高优先级）**：身份信息**只能通过私聊(DM)发送**，在群聊中的任何消息都**严禁包含**任何玩家的身份。违反此规则将导致游戏作废。即使私聊发送失败，也不能退而求其次在群聊中公布身份，应提示用户重试。
+   - 🚫 **严禁**在群聊的任何消息中提及任何玩家的具体身份名称，以下均为反面案例：
+     - 引导话术中说“不能直接说出‘魔术师’哦” — 直接暴露了身份！
+     - 示例中说“可以说一些与魔术师相关的暗示” — 同样暴露了身份！
+     - 自述“我已经知道我的身份是气象学家” — 主持人不是玩家，且暴露了身份！
+   - ✅ 正确的引导方式：“请用一句话暗示你的身份，注意不能直接说出身份名哦！”
+2. **⚠️ 隐藏技术细节（最高优先级）**：在群聊中**严禁**输出任何技术实现相关的内容（脚本命令、JSON、代码、工具调用过程、返回值等）。所有技术操作必须静默执行，群聊中只展示游戏主持人的自然语言内容。
+3. **线索引导**：如果玩家的线索太直白或太模糊，可以适当引导
+4. **催促机制**：如果有玩家长时间未响应，可以友好提醒
+5. **作弊检测**：引擎会自动检测线索中是否包含身份名
+6. **数据持久化**：排行榜数据自动保存，跨游戏累计
+
+---
+
+## 相关资源
+
+| 文件 | 说明 |
+|------|------|
+| `{baseDirectory}/scripts/game-engine.mjs` | 游戏引擎脚本 |
+| `{baseDirectory}/scripts/package.json` | 模块配置 |
+| `{baseDirectory}/scripts/data/games/` | 进行中的游戏状态（JSON） |
+| `{baseDirectory}/scripts/data/rankings/` | 历史积分排行榜（JSON） |

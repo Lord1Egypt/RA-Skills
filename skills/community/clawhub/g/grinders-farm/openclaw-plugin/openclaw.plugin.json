@@ -1,0 +1,23 @@
+{
+  "id": "grinders-farm",
+  "name": "Grinder's Farm",
+  "description": "Local grinders-farm plugin: /farm command and grinders_farm tool with local game state and push.",
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "gameRoot": {
+        "type": "string",
+        "description": "Path to grinders-farm repo root (contains src/adapters/oneshot.ts). Optional when `grinders-farm` CLI is already in PATH or `GRINDERS_FARM_ROOT` is set."
+      },
+      "autoStartWorkerOnGatewayBoot": {
+        "type": "boolean",
+        "description": "If true (default), auto-start background day-advance worker on Gateway boot. Set false to start manually."
+      },
+      "imageServerPort": {
+        "type": "number",
+        "description": "Local HTTP image server port for farm.png links (default 18931, listens on 127.0.0.1 only)."
+      }
+    }
+  }
+}

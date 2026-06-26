@@ -1,0 +1,11 @@
+{
+  "type": "function",
+  "function": {
+    "name": "_query_informat_script_list",
+    "description": "Query script list in the application. Return results include script ID, script name, whether it is a folder, sub-scripts and other information.",
+    "parameters": {
+      "type": "object",
+      "properties": {}
+    }
+  }
+}

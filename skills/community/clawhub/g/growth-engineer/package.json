@@ -1,0 +1,16 @@
+{
+  "name": "openclaw-growth-engineer-skill",
+  "version": "1.0.207",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "node --test tests/*.test.mjs",
+    "quality": "npm run typecheck && npm run build && npm test"
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.10",
+    "typescript": "^5.8.2"
+  }
+}

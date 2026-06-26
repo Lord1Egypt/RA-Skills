@@ -1,35 +1,33 @@
 ---
-name: "Indexnow Pro"
-description: "Instant search engine notification via IndexNow protocol. Ping Bing, Yandex, and IndexNow API to index new or updated pages within minutes instead of days. S..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/indexnow-pro"
-sourceUrl: "https://clawhub.ai/skills/indexnow-pro"
+name: "indexnow-pro"
+version: "1.0.0"
+description: "Instant search engine notification via IndexNow protocol. Ping Bing, Yandex, and IndexNow API to index new or updated pages within minutes instead of days. Supports single URL, batch URLs, sitemap submission, and key management."
+author: "BytesAgain"
+homepage: "https://bytesagain.com"
+source: "https://github.com/bytesagain/ai-skills"
+tags: [indexnow, seo, search-engine, bing, yandex, indexing, sitemap]
+category: "marketing"
 ---
 
-# Indexnow Pro
+# IndexNow Pro
 
-> Instant search engine notification via IndexNow protocol. Ping Bing, Yandex, and IndexNow API to index new or updated pages within minutes instead of days. S...
+Notify search engines about new or updated pages instantly using the IndexNow protocol. Instead of waiting days for crawlers to discover changes, tell Bing, Yandex, and other engines directly.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/indexnow-pro`
-- **Source URL:** [https://clawhub.ai/skills/indexnow-pro](https://clawhub.ai/skills/indexnow-pro)
+## Commands
 
-## Overview
+| Command | Description |
+|---------|-------------|
+| `ping-url` | Notify search engines about a single URL |
+| `ping-batch` | Submit multiple URLs at once (up to 10,000) |
+| `ping-sitemap` | Extract URLs from sitemap.xml and submit all |
+| `key-setup` | Generate and host your IndexNow API key |
+| `verify` | Check if your key is properly hosted |
+| `engines` | List all supported search engines |
+| `protocol` | IndexNow protocol specification reference |
+| `best-practices` | When and how to use IndexNow effectively |
 
+## Requirements
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/indexnow-pro
-```
+- A website you own
+- An IndexNow key file hosted at your domain root
+- curl or Node.js for API calls

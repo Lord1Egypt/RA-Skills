@@ -1,35 +1,34 @@
 ---
-name: "Impossible Scene Generator"
-description: "Generate photorealistic impossible scenes and anti-physics landscapes powered by AI — crystal mountains with auroras, floating islands, organic-growing build..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/impossible-scene-generator"
-sourceUrl: "https://clawhub.ai/skills/impossible-scene-generator"
+name: impossible-scene-generator
+description: Generate photorealistic impossible scenes and anti-physics landscapes powered by AI — crystal mountains with auroras, floating islands, organic-growing buildings, surreal cinematic environments, and dreamlike sci-fi vistas. Perfect for desktop wallpapers, concept art, book covers, album art, sci-fi posters, fantasy worldbuilding, and print-on-demand artwork via the Neta AI image generation API (free trial at neta.art/open).
+tools: Bash
 ---
 
 # Impossible Scene Generator
 
-> Generate photorealistic impossible scenes and anti-physics landscapes powered by AI — crystal mountains with auroras, floating islands, organic-growing build...
+Generate photorealistic impossible scenes and anti-physics landscapes powered by AI — crystal mountains with auroras, floating islands, organic-growing buildings, surreal cinematic environments, and dreamlike sci-fi vistas. Perfect for desktop wallpapers, concept art, book covers, album art, sci-fi posters, fantasy worldbuilding, and print-on-demand artwork.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/impossible-scene-generator`
-- **Source URL:** [https://clawhub.ai/skills/impossible-scene-generator](https://clawhub.ai/skills/impossible-scene-generator)
+## Token
 
-## Overview
+Requires a Neta API token (free trial at <https://www.neta.art/open/>). Pass it via the `--token` flag.
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/impossible-scene-generator
+node <script> "your prompt" --token YOUR_TOKEN
+```
+
+## When to use
+Use when someone asks to generate or create impossible scene generator images.
+
+## Quick start
+```bash
+node impossiblescenegenerator.js "your description here" --token YOUR_TOKEN
+```
+
+## Options
+- `--size` — `portrait`, `landscape`, `square`, `tall` (default: `landscape`)
+- `--ref` — reference image UUID for style inheritance
+
+## Install
+```bash
+npx skills add blammectrappora/impossible-scene-generator
 ```

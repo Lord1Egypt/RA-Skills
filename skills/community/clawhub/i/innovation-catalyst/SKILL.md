@@ -1,35 +1,29 @@
----
-name: "Innovation Catalyst"
-description: "Analyzes system state to identify skill gaps, detect stalled tasks, and generate strategic innovation proposals, delivering reports via Feishu integration."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/innovation-catalyst"
-sourceUrl: "https://clawhub.ai/skills/innovation-catalyst"
----
-
 # Innovation Catalyst
 
-> Analyzes system state to identify skill gaps, detect stalled tasks, and generate strategic innovation proposals, delivering reports via Feishu integration.
+Analyzes system state (memory, tools, events) and generates strategic innovation proposals to break evolution stagnation plateaus.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/innovation-catalyst`
-- **Source URL:** [https://clawhub.ai/skills/innovation-catalyst](https://clawhub.ai/skills/innovation-catalyst)
+## Features
 
-## Overview
+- **Gap Analysis:** Identifies under-represented skill categories.
+- **Stall Detection:** Finds blocked tasks or recurring failures.
+- **Strategic Proposals:** Generates actionable suggestions (new skills, optimizations, structural changes).
+- **Feishu Integration:** Sends a rich Feishu card report.
 
+## Usage
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/innovation-catalyst
+# Run manually
+node skills/innovation-catalyst/index.js
+
+# Target a specific user/group
+node skills/innovation-catalyst/index.js --target "ou_xxx"
 ```
+
+## Protocol Integration
+
+This skill is designed to be triggered by the `gene_gep_innovate_from_opportunity` gene when `stable_success_plateau` is detected. It provides the "seed" for subsequent evolution cycles.
+
+## Dependencies
+
+- `skills/feishu-evolver-wrapper/feishu-helper.js` (for card sending)
+- System memory files (`MEMORY.md`, `TOOLS.md`, `RECENT_EVENTS.md`)

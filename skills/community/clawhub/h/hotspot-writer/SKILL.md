@@ -1,35 +1,131 @@
 ---
-name: "hotspot-writer"
-description: "全网热点自动抓取+文案生成。抓取微博/知乎/抖音热搜，生成适配多平台的小红书/抖音/公众号文案，自动存档沉淀。用于用户说蹭热点、写热点、追热点、写文案。"
-category: "creative"
-source: "ClawHub"
-tags: [content, hotspot, openclaw]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/hotspot-writer"
-sourceUrl: "https://clawhub.ai/skills/hotspot-writer"
+name: hotspot-writer
+description: 全网热点自动抓取+文案生成。抓取微博/知乎/抖音热搜，生成适配多平台的小红书/抖音/公众号文案，自动存档沉淀。用于用户说蹭热点、写热点、追热点、写文案。
 ---
 
-# hotspot-writer
+# 全网热点抓取与文案生成系统
 
-> 全网热点自动抓取+文案生成。抓取微博/知乎/抖音热搜，生成适配多平台的小红书/抖音/公众号文案，自动存档沉淀。用于用户说蹭热点、写热点、追热点、写文案。
+抓热点 + 写文案 + 自动存档，一条龙。
 
-- **Category:** Creative
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/hotspot-writer`
-- **Source URL:** [https://clawhub.ai/skills/hotspot-writer](https://clawhub.ai/skills/hotspot-writer)
+## 核心功能
 
-## Overview
+### 1. 热点抓取
 
+支持平台：
+- 微博热搜
+- 知乎热榜
+- 抖音热榜
+- 即刻热榜
+- 百度热搜
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/hotspot-writer
+# 查看今日热点
+查看今天微博热搜前10
+
+# 按类别筛选
+最近有哪些科技热点？
+今天有哪些娱乐热点？
+
+# 持续监控
+监控 xx 话题 2 小时，有新动态就告诉我
 ```
+
+### 2. 文案生成
+
+生成的文案适配：
+- 小红书：图文风格，种草笔记
+- 抖音：短视频口播脚本，15-60秒
+- 公众号：深度文章结构
+- 微博：短动态，带话题
+
+```bash
+# 基于热点生成文案
+针对"xx热点"写一条小红书文案
+把这个热点写成抖音口播脚本
+```
+
+### 3. 自动存档
+
+```bash
+# 存档结构
+hotspot-archive/
+├── 2026-05-03/
+│   ├── weibo-trending.md
+│   ├── zhihu-trending.md
+│   └── articles/
+│       ├── 小红书_xx热点.md
+│       ├── 抖音_xx热点.md
+│       └── 公众号_xx热点.md
+```
+
+## 工作流
+
+```
+1. 抓取热点
+   └── 定时任务 / 手动触发
+
+2. 筛选适合的热点
+   └── 根据你的定位筛选
+
+3. 生成多平台文案
+   └── 小红书 + 抖音 + 公众号
+
+4. 存档沉淀
+   └── 原始热点 + 生成文案归档
+
+5. 用户审批发布
+   └── 你审核后发布
+```
+
+## 热点监控配置
+
+```yaml
+# 可配置监控间隔
+monitor_interval: 2h  # 每2小时检查一次
+
+# 可配置关键词白名单
+keywords:
+  include: ["AI", "科技", "数码"]
+  exclude: ["娱乐八卦"]
+
+# 可配置输出平台
+platforms: ["xhs", "douyin", "weibo"]
+```
+
+## 文案输出示例
+
+**小红书文案：**
+```
+🔥 AI 重磅更新！这次真的变天了
+
+刚刷到 Anthropic 发布新模型，
+看完只想说：之前用的都是什么？
+
+3 个核心升级点：
+1. 速度提升 2 倍
+2. 理解力更接近人类
+3. 成本直接砍半
+
+已经开始用了，真的香。
+
+#AI #新科技 #效率工具 #种草
+```
+
+**抖音口播脚本：**
+```
+【开头3秒】
+AI 又发布重磅更新，这次真的不一样。
+
+【核心内容】
+这次升级了 3 个地方：
+第一，速度快了一倍
+第二，理解能力更接近人了
+第三，成本直接降了一半
+
+【结尾】
+我已经用上了，链接评论区。
+```
+
+## 安装
+
+本技能需要网络访问，无额外依赖。

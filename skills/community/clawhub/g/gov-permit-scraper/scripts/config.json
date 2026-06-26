@@ -1,0 +1,8 @@
+{
+  "fromEmail": "hello@yourdomain.com",
+  "fromName": "Your Name",
+  "emailTemplate": {
+    "subject": "Congrats on your new license, {business_name}!",
+    "body": "Hi,\n\nI noticed {business_name} in {city} recently received a new permit — congratulations!\n\nI work with newly licensed businesses to help them get set up with the right coverage and services from day one.\n\nWould you have 5 minutes for a quick call this week?\n\nBest,\n{sender_name}"
+  }
+}

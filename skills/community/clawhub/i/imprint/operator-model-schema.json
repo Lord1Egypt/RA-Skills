@@ -1,0 +1,120 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Imprint Operator Model",
+  "description": "Adaptive operator model built through observation. Updated by the agent, readable/editable by the operator.",
+  "type": "object",
+  "required": ["version", "updated", "observations", "traits", "predictions"],
+  "properties": {
+    "version": {
+      "type": "integer",
+      "description": "Schema version",
+      "default": 1
+    },
+    "updated": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Last model update timestamp"
+    },
+    "observations": {
+      "type": "integer",
+      "description": "Total observation count across all traits",
+      "minimum": 0
+    },
+    "traits": {
+      "type": "object",
+      "description": "Observed operator traits with confidence scores",
+      "additionalProperties": {
+        "type": "object",
+        "required": ["value", "confidence", "observations", "last_updated"],
+        "properties": {
+          "value": {
+            "type": "string",
+            "description": "Current trait value (free-form, agent-determined)"
+          },
+          "confidence": {
+            "type": "number",
+            "minimum": 0.0,
+            "maximum": 1.0,
+            "description": "Confidence in this trait. <0.3 = don't act. 0.3-0.6 = soft. 0.6-0.8 = default. >0.8 = strong."
+          },
+          "observations": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "Number of observations supporting this trait"
+          },
+          "last_updated": {
+            "type": "string",
+            "format": "date-time",
+            "description": "When this trait was last updated"
+          },
+          "history": {
+            "type": "array",
+            "description": "Optional: previous values for drift detection",
+            "items": {
+              "type": "object",
+              "properties": {
+                "value": { "type": "string" },
+                "date": { "type": "string", "format": "date-time" },
+                "confidence": { "type": "number" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "predictions": {
+      "type": "object",
+      "required": ["total", "correct", "accuracy"],
+      "properties": {
+        "total": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Total predictions made"
+        },
+        "correct": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Predictions the operator confirmed or didn't correct"
+        },
+        "accuracy": {
+          "type": "number",
+          "minimum": 0.0,
+          "maximum": 1.0,
+          "description": "correct / total"
+        }
+      }
+    },
+    "corrections_log": {
+      "type": "array",
+      "description": "Recent operator corrections (high-signal learning events)",
+      "items": {
+        "type": "object",
+        "required": ["date", "what", "signal"],
+        "properties": {
+          "date": {
+            "type": "string",
+            "format": "date"
+          },
+          "what": {
+            "type": "string",
+            "description": "What was corrected"
+          },
+          "signal": {
+            "type": "string",
+            "description": "What this correction teaches about the operator"
+          },
+          "weight": {
+            "type": "number",
+            "default": 5,
+            "description": "Signal weight (explicit corrections default 5x)"
+          }
+        }
+      }
+    },
+    "decay_rate": {
+      "type": "number",
+      "default": 0.05,
+      "description": "Observation decay rate per day (lambda in exponential decay)"
+    }
+  }
+}

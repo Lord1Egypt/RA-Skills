@@ -1,35 +1,265 @@
 ---
-name: "IceCube Digital Human"
+name: icecube-digital-human
 description: "🧊 IceCube 数字人整合 — 声音克隆 + 形象克隆 = 完整数字人。结合 ElevenLabs/Fish Audio + HeyGen/D-ID，创建你的 AI 数字分身。当用户提到'数字人'、'digital human'、'AI 分身'、'虚拟主播'时使用。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/icecube-digital-human"
-sourceUrl: "https://clawhub.ai/skills/icecube-digital-human"
+metadata:
+  openclaw:
+    requires: {}
 ---
 
-# IceCube Digital Human
+# 🧊 IceCube 数字人整合
 
-> 🧊 IceCube 数字人整合 — 声音克隆 + 形象克隆 = 完整数字人。结合 ElevenLabs/Fish Audio + HeyGen/D-ID，创建你的 AI 数字分身。当用户提到'数字人'、'digital human'、'AI 分身'、'虚拟主播'时使用。
+**声音 + 形象 = 完整数字分身**
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/icecube-digital-human`
-- **Source URL:** [https://clawhub.ai/skills/icecube-digital-human](https://clawhub.ai/skills/icecube-digital-human)
+---
 
-## Overview
+## 一、概念
 
+**数字人 = 克隆声音 + 克隆形象 + AI 内容生成**
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/icecube-digital-human
+完整流程：
 ```
+你的声音样本 → 声音克隆 → Voice ID
+你的照片/视频 → 形象克隆 → Avatar ID
+文字内容 → AI 生成 → 数字人视频
+```
+
+---
+
+## 二、技术栈选择
+
+### 最佳组合（海外）
+
+| 声音工具 | 形象工具 | 价格 | 效果 |
+|----------|----------|------|------|
+| **ElevenLabs + HeyGen** | $24-99/月 | ⭐⭐⭐⭐⭐ | 最佳 |
+| ElevenLabs + D-ID | $5.99-99/月 | ⭐⭐⭐⭐ | 便宜 |
+| Fish Audio + HeyGen | $24-25/月 | ⭐⭐⭐⭐ | 中文优 |
+
+### 国内友好组合
+
+| 声音工具 | 形象工具 | 价格 | 支付 |
+|----------|----------|------|------|
+| **Fish Audio + 腾讯智影** | ¥免费-付费 | ⭐⭐⭐ | 支付宝 |
+| Fish Audio + 百度数字人 | 企业定价 | ⭐⭐⭐ | 企业 |
+| GPT-SoVITS + SadTalker | 免费 | ⭐⭐⭐ | 本地 |
+
+---
+
+## 三、完整流程
+
+### 方案 A：ElevenLabs + HeyGen（最佳质量）
+
+**步骤 1：声音克隆**
+```
+ElevenLabs → Voice Cloning → 上传 1-5 分钟音频 → 获取 Voice ID
+```
+
+**步骤 2：形象克隆**
+```
+HeyGen → Create Avatar → 上传 2 分钟视频 → 获取 Avatar ID
+```
+
+**步骤 3：生成视频**
+```
+HeyGen API → Voice ID + Avatar ID + 文字 → 数字人视频
+```
+
+**总成本：**
+- ElevenLabs Creator: $22/月
+- HeyGen Creator: $24/月
+- 合计: $46/月 ≈ ¥330/月
+
+### 方案 B：Fish Audio + HeyGen（中文最佳）
+
+**步骤 1：声音克隆**
+```
+Fish Audio → 克隆 → 上传 1-5 分钟中文音频 → 获取模型
+```
+
+**步骤 2：形象克隆**
+```
+HeyGen → Create Avatar → 上传视频 → 获取 Avatar ID
+```
+
+**步骤 3：生成视频**
+```
+Fish Audio API → 生成语音 → HeyGen → 用音频生成视频
+```
+
+**总成本：**
+- Fish Audio: $0.6/千字符 ≈ ¥20-50/月
+- HeyGen Creator: $24/月
+- 合计: ¥180-200/月
+
+### 方案 C：免费开源（技术用户）
+
+**步骤 1：声音克隆**
+```
+GPT-SoVITS → 本地部署 → 克隆声音
+```
+
+**步骤 2：形象克隆**
+```
+SadTalker → 本地部署 → 照片说话
+```
+
+**总成本：免费（需 GPU + 技术能力）**
+
+---
+
+## 四、使用场景
+
+### 场景 1：内容创作（视频博主）
+
+**流程：**
+1. 克隆自己声音 + 形象
+2. AI 生成内容脚本
+3. 数字人自动生成视频
+4. 发布到抖音/B站/YouTube
+
+**收益：**
+- 不用真人拍摄
+- 规模化生产（每天多视频）
+- 多语言版本
+
+### 场景 2：知识付费（课程讲师）
+
+**流程：**
+1. 克隆讲师声音 + 形象
+2. 课程内容脚本
+3. 数字人录制课程
+4. 发布到平台
+
+**收益：**
+- 不用真人录制
+- 课程规模化
+- 多语言版本（全球市场）
+
+### 场景 3：客服（企业服务）
+
+**流程：**
+1. 克隆客服声音 + 形象
+2. FAQ 内容库
+3. 数字人客服回复
+4. 集成到网站/APP
+
+**收益：**
+- 24/7 服务
+- 降低客服成本
+- 多语言客服
+
+---
+
+## 五、变现路径
+
+### 数字人服务
+
+| 服务 | 价格 | 交付周期 |
+|------|------|----------|
+| 数字人创建（基础） | ¥800-1500 | 1-2 天 |
+| 数字人创建（完整） | ¥2000-3000 | 3-5 天 |
+| 数字人视频生成 | ¥100-300/分钟 | 1 天 |
+| 数字人客服系统 | ¥5000-15000 | 1-2 周 |
+
+### 内容变现
+
+| 类型 | 收入模式 |
+|------|----------|
+| 视频博主 | 品牌合作 + 广告 |
+| 课程讲师 | 课程销售 ¥99-499/套 |
+| 客服系统 | 企业订阅 ¥2000-5000/月 |
+
+---
+
+## 六、Boss 专属方案
+
+**约束：只有国内银行卡**
+
+**推荐方案：**
+1. **声音克隆：** Fish Audio（支付宝可用）
+2. **形象克隆：** 腾讯智影（免费/付费）
+3. **内容生成：** IceCube Content Factory
+
+**成本：**
+- Fish Audio: ¥20-50/月
+- 腾讯智影: ¥免费-付费
+- 合计: ¥20-50/月起步
+
+---
+
+## 七、技术实现
+
+### OpenClaw 整合
+
+**技能链：**
+```
+icecube-voice-clone → 克隆声音
+icecube-avatar-clone → 克隆形象
+icecube-content-factory → 生成内容
+icecube-digital-human → 整合输出
+```
+
+**workflow：**
+1. Boss 上传声音样本 + 照片
+2. IceCube 调用声音克隆 API
+3. IceCube 调用形象克隆 API
+4. IceCube 生成内容脚本
+5. IceCube 生成数字人视频
+6. 输出到指定平台
+
+---
+
+## 八、法律与伦理
+
+⚠️ **重要规则：**
+
+1. **只克隆自己**（或获得授权）
+2. **明确标注"AI 数字人"**
+3. **不冒充他人**
+4. **不用于欺诈**
+
+---
+
+## 九、行动清单
+
+### Phase 1：测试
+
+- [ ] 注册 Fish Audio（支付宝）
+- [ ] 测试声音克隆
+- [ ] 测试腾讯智影
+- [ ] 生成第一个数字人视频
+
+### Phase 2：生产
+
+- [ ] 创建专属声音
+- [ ] 创建专属形象
+- [ ] 整合到 IceCube workflow
+- [ ] 自动化生产
+
+### Phase 3：变现
+
+- [ ] 发布内容到小红书/抖音
+- [ ] 接数字人服务订单
+- [ ] 创建数字人课程
+
+---
+
+## 十、预期收益
+
+| 时间 | 服务收入 | 内容收入 | 合计 |
+|------|----------|----------|------|
+| 第 1 月 | ¥800 | ¥500 | ¥1300 |
+| 第 3 月 | ¥3000 | ¥2000 | ¥5000 |
+| 第 6 月 | ¥8000 | ¥5000 | ¥13000 |
+| 第 12 月 | ¥15000 | ¥10000 | ¥25000 |
+
+---
+
+## License
+
+MIT — Use freely.
+
+---
+
+*数字人整合指南 v1.0*
+*IceCube 🧊 — 声音 + 形象 = 完整数字分身*

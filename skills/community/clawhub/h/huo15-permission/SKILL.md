@@ -1,35 +1,93 @@
 ---
-name: "火一五权限"
-description: "【版权：青岛火一五信息科技有限公司 账号：huo15】火一五权限控制技能。根据用户ID判断权限等级，实现细粒度的操作权限管理。管理员(ZhaoBo)拥有最高权限，其他用户受限（仅能新增/修改/删除自己新增的内容）。"
-category: "other"
-source: "ClawHub"
-tags: [access, huo15, permission]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/huo15-permission"
-sourceUrl: "https://clawhub.ai/skills/huo15-permission"
+name: huo15-permission / 火一五权限
+description: 【版权：青岛火一五信息科技有限公司 账号：huo15】火一五权限控制技能。根据用户ID判断权限等级，实现细粒度的操作权限管理。管理员(ZhaoBo)拥有最高权限，其他用户受限（仅能新增/修改/删除自己新增的内容）。
 ---
 
-# 火一五权限
+# huo15-permission
 
-> 【版权：青岛火一五信息科技有限公司 账号：huo15】火一五权限控制技能。根据用户ID判断权限等级，实现细粒度的操作权限管理。管理员(ZhaoBo)拥有最高权限，其他用户受限（仅能新增/修改/删除自己新增的内容）。
+火一五权限控制技能，用于管理不同用户的操作权限。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/huo15-permission`
-- **Source URL:** [https://clawhub.ai/skills/huo15-permission](https://clawhub.ai/skills/huo15-permission)
+## 权限级别
 
-## Overview
+| 级别 | 用户ID | 权限 |
+|------|--------|------|
+| 3 | ZhaoBo | 最高权限：全部操作（新增/修改/删除任何内容，可安装/卸载技能） |
+| 2 | 其他用户 | 受限权限：仅能在已有技能内新增/修改/删除自己新增的内容，禁止安装/卸载技能 |
 
+## 使用场景
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/huo15-permission
+当用户发送消息时，自动进行权限检查：
+
+1. **读取配置**：从 `config.json` 读取用户权限配置
+2. **获取用户ID**：从消息元数据中获取发送者 userid
+3. **权限判断**：根据用户ID匹配权限级别
+4. **操作拦截**：对非法操作进行拦截并提示
+
+## 权限判断逻辑
+
 ```
+用户发送消息
+    │
+    ├─► 获取 userid（从消息元数据）
+    │
+    ├─► 查找权限级别
+    │    ├─► ZhaoBo → 级别3（最高权限）
+    │    └─► 其他用户 → 级别2（受限权限）
+    │
+    └─► 根据权限级别决定是否执行操作
+```
+
+## 操作类型判断
+
+| 操作 | 关键词 |
+|------|--------|
+| 新增 | 新增、创建、添加、新建 |
+| 修改 | 修改、编辑、更新、变更 |
+| 删除 | 删除、移除、清除 |
+| 安装技能 | 安装技能、安装 |
+| 卸载技能 | 卸载技能、删除技能、remove skill |
+
+## 受限权限说明
+
+**其他用户**（级别2）：
+- ✅ 可以在已有技能内新增内容（如在技能里添加新规则）
+- ✅ 可以修改自己在已有技能里新增的内容
+- ✅ 可以删除自己在已有技能里新增的内容
+- ❌ 禁止安装新技能
+- ❌ 禁止卸载技能（包括自己发布的技能）
+
+## 响应消息
+
+当用户权限不足时，返回提示：
+```
+抱歉，您的权限不足。您只能在已有技能内操作，无法[卸载技能/安装新技能]。
+如需更高权限，请联系管理员 ZhaoBo。
+```
+
+## 配置文件格式
+
+config.json:
+```json
+{
+  "permissions": {
+    "ZhaoBo": 3,
+    "Xun": 2,
+    "HuangShuo": 2
+  },
+  "operation_keywords": {
+    "create": ["新增", "创建", "添加", "新建"],
+    "update": ["修改", "编辑", "更新", "变更"],
+    "delete": ["删除", "移除", "清除"]
+  }
+}
+```
+
+## 触发方式
+
+此技能为**全局拦截技能**，在消息处理流程中自动触发，无需用户明确指定。
+
+## 注意事项
+
+- 权限判断基于消息元数据中的 userid
+- 配置文件路径：`~/.openclaw/workspace/skills/huo15-permission/config.json`
+- 修改配置后自动生效

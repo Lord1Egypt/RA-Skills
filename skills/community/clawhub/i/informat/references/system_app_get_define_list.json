@@ -1,0 +1,22 @@
+{
+  "type": "function",
+  "function": {
+    "name": "_app_get_define_list",
+    "description": "Get object structure metadata (Define Objects) in the current application definition.\n\n【Call Prerequisites】\n- Must first call _app_get_define_type to get a valid type\n- Must not construct type values out of thin air\n\n【Usage Scenarios】\n- AI analysis of application structure\n- Building dependency graphs\n- Reading structure before automatically generating modification plans\n- Structure comparison before publishing\n- Draft and published version difference analysis\n\n【Important Notes】\n- Defaults to reading draft version\n- Does not modify any data\n- Return results are only used for structural analysis and decision-making\n\n【Hierarchy Rules (Must be followed)】\n\n1. App-level objects (scope fixed as `App`)\n- ApiDefine\n- ApplicationDefine\n- ApplicationOptionDefine\n- ModuleDefine\n\n2. Module-level objects (scope must be the id of the corresponding ModuleDefine)\n- BpmnProcessDefine\n- DashboardCardDefine\n- DashboardFilterDefine\n- DataSourceDefine\n- FormDesignerDefine\n- PageDesignerDefine\n- SurveyItemDefine\n- TableFieldDefine\n- TableFieldGroupDefine\n- TableIndexDefine\n- TextindexTableDefine\n- WebsiteResourceDefine\n\n【Mandatory Rules】\n- If type belongs to App-level objects and scope ≠ `App`, execution is not allowed\n- If type belongs to Module-level objects and no valid ModuleDefine id is provided, an error must be reported\n- AI must not assume Module id on its own\n",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "Object type. Must come from the id field of the _app_get_define_type return value"
+        },
+        "scope": {
+          "type": "string",
+          "description": "Parent Scope Identifier.\n\n- App-level objects: Must fill in \"App\"\n- Module-level objects: Must fill in the id of the corresponding ModuleDefine"
+        }
+      },
+      "required": ["type", "scope"],
+      "additionalProperties": false
+    }
+  }
+}

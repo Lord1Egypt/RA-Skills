@@ -1,0 +1,82 @@
+{
+  "name": "@huo15/wechat-service",
+  "version": "2.3.5",
+  "description": "OpenClaw 微信服务号（公众号）插件 v2.3.5 hotfix —— **修 errcode 45002 content size out of limit**：truncateForWechatText 从『字符截断』改成『UTF-8 字节截断』（微信限制是 2048 字节不是 2048 字符），默认 1900 字节留余量；中文 / emoji / 中英混合都正确截；保护 <a href> 标签不被截在标签内部（避免 XML 错乱）。**症状**：v2.3.0~v2.3.4 用户报粉丝只收 placeholder「正在为你处理...」收不到 LLM 真回复——根因 LLM 输出 > 600 中文字会超 2048 字节，被微信拒绝下发。承袭 v2.3.x 全部能力。287 vitest 用例全过。",
+  "license": "ISC",
+  "author": "jobzhao (zhaobod1@163.com)",
+  "repository": {
+    "type": "git",
+    "url": "git+https://cnb.cool/huo15/ai/huo15-openclaw-wechat-service.git"
+  },
+  "type": "module",
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "tsc && cp package.json dist/ && cp openclaw.plugin.json dist/ 2>/dev/null || true",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "vitest run",
+    "prepublishOnly": "npm run typecheck && npm run build",
+    "release": "bash scripts/release.sh"
+  },
+  "dependencies": {
+    "fast-xml-parser": "5.3.4",
+    "undici": "^7.20.0"
+  },
+  "devDependencies": {
+    "@types/node": "^25.2.0",
+    "typescript": "^5.9.3",
+    "vitest": "^2.1.8"
+  },
+  "peerDependencies": {
+    "openclaw": "^2026.3.23-2"
+  },
+  "openclaw": {
+    "extensions": [
+      "./index.ts"
+    ],
+    "compat": {
+      "pluginApi": ">=2026.3.23"
+    },
+    "channel": {
+      "id": "wechat-service",
+      "label": "微信服务号（公众号）",
+      "selectionLabel": "微信服务号（公众号）",
+      "detailLabel": "微信服务号（公众号）",
+      "docsPath": "/channels/wechat-service",
+      "docsLabel": "微信服务号",
+      "blurb": "接入微信服务号，支持菜单、客服/模板/订阅消息、图文发布、标签群发、JS-SDK 与多 Agent 隔离。",
+      "aliases": [
+        "wechat",
+        "mp",
+        "offiaccount",
+        "服务号",
+        "公众号",
+        "微信服务号",
+        "微信公众号"
+      ],
+      "order": 86
+    },
+    "install": {
+      "npmSpec": "@huo15/wechat-service",
+      "localPath": "extensions/wechat-service",
+      "defaultChoice": "npm"
+    },
+    "runtimeExtensions": [
+      "./dist/index.js"
+    ]
+  },
+  "files": [
+    "index.ts",
+    "src/**/*.ts",
+    "!src/**/*.test.ts",
+    "tsconfig.json",
+    "openclaw.plugin.json",
+    "README.md",
+    "CHANGELOG.md",
+    "LICENSE",
+    "dist/**/*",
+    "templates/**/*"
+  ],
+  "main": "./dist/index.js"
+}

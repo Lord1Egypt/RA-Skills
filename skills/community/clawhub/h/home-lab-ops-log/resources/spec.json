@@ -1,0 +1,37 @@
+{
+  "slug": "home-lab-ops-log",
+  "title": "家庭实验室运维日志官",
+  "category": "productivity",
+  "categoryLabel": "本地效率",
+  "mode": "structured_brief",
+  "summary": "为个人服务器或家庭实验室记录变更前后、目的、回滚和观察结果。",
+  "inputHint": "变更内容、机器、结果、风险",
+  "sections": [
+    "变更摘要",
+    "变更前状态",
+    "执行动作",
+    "观察结果",
+    "回滚方案",
+    "后续待办"
+  ],
+  "useCases": [
+    "自托管运维",
+    "个人服务器记录",
+    "变更复盘"
+  ],
+  "positiveExamples": [
+    "帮我把这次 homelab 变更记成运维日志",
+    "补齐回滚方案"
+  ],
+  "negativeExamples": [
+    "不要执行真实运维命令",
+    "不要公开敏感主机信息"
+  ],
+  "risk": "用于日志整理，不直接运维主机。",
+  "tags": [
+    "homelab",
+    "ops-log",
+    "changes",
+    "self-hosting"
+  ]
+}

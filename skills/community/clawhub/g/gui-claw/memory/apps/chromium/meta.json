@@ -1,0 +1,14 @@
+{
+  "app": "chromium",
+  "domain": "",
+  "detect_count": 0,
+  "last_updated": "2026-03-30 03:50:02",
+  "img_size": [
+    1920,
+    1080
+  ],
+  "forget_threshold": 15,
+  "tips": [
+    "Cookie/privacy dialogs: dismiss before interacting with page content"
+  ]
+}

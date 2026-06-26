@@ -1,35 +1,183 @@
 ---
-name: "HUDC Bidding Information Capture"
-description: "Intelligently analyzes SGCC bidding documents in Word/PDF/Excel formats, extracting 23 key fields with automated qualification backfilling and deadline highl..."
-category: "other"
-source: "ClawHub"
-tags: [Bidding and tendering, data analysis, efficiency, information retrieval, tools]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/hudc-bidding-information-capture"
-sourceUrl: "https://clawhub.ai/skills/hudc-bidding-information-capture"
+name: hbdc
+version: "6.0"
+description: |
+  国网招标文件智能分析工具 (hbdc · v6)。
+  当用户提到「分析招标文件」「筛选招标」「招标文件分析」「分析sgcc」
+  「帮我看看哪些可以投标」「分析桌面的招标文件」时触发。
+  Word/PDF 优先 + Excel 补盲 + 智能资质回填 + 截止时间染色, 23 列输出。
+  支持 .docx 与 .pdf 两种格式, PDF 失败自动重试。
+tags: [招投标, 信息抓取, 数据分析, 工具, 效率]
+author: hbdc
+license: MIT
 ---
 
-# HUDC Bidding Information Capture
+# hbdc · 国网招标文件分析 Skill (v6)
 
-> Intelligently analyzes SGCC bidding documents in Word/PDF/Excel formats, extracting 23 key fields with automated qualification backfilling and deadline highl...
+## 目录约定
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/hudc-bidding-information-capture`
-- **Source URL:** [https://clawhub.ai/skills/hudc-bidding-information-capture](https://clawhub.ai/skills/hudc-bidding-information-capture)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/hudc-bidding-information-capture
 ```
+~/Desktop/sgcc_files/
+├── 项目A/
+│   ├── xxx-招标公告.docx          ← 主公告 (docx 或 pdf, 自动识别)
+│   ├── 公告附件_资质要求.xlsx      ← 可选, 资质占位符回填用
+│   └── 重要提醒.docx               ← 自动忽略
+├── 项目B/
+│   └── xxx-采购公告.pdf
+├── 散文件_招标公告.docx            ← 根目录散放, 当成单独项目
+└── ...
+```
+
+输出报告: `~/Desktop/sgcc_result.xlsx`
+
+---
+
+## 执行方式
+
+直接运行固定脚本, **禁止自己写代码替代**:
+
+```bash
+python3 ~/.openclaw/workspace/skills/hbdc/scripts/analyze.py
+```
+
+---
+
+## v6 核心策略
+
+### 1. Word/PDF 主抽 → Excel 补盲 → 段落回退
+
+| 优先级 | 来源 | 说明 |
+|--------|------|------|
+| 1 | Word/PDF 表格 | 主公告里的包级明细表 |
+| 2 | xlsx 附件 | 需求表/资质附件补充 |
+| 3 | Word/PDF 正文 | 无表格时段落扫描 (标记需手动补盲) |
+
+### 2. PDF 专属标题提取
+
+用 `pdfplumber` 字符级字号定位封面最大字号文字作为项目名称, 
+比正则扫描段落更准确。PDF 读取失败后自动切换参数重试一次, 
+若仍失败则在终端明确提示。
+
+### 3. "详见附件X" 占位符识别与回填
+
+资质列若为 `详见附件1` / `详见附件二` 等纯占位符:
+1. 自动扫描同目录下 xlsx 中的资质表
+2. 按 `(分标编号, 包号)` 主键回填
+3. 找不到时降级为项目级通用资质 (前缀 `【通用】`)
+
+### 4. 关键词去冗余
+
+长词命中后自动丢弃其子串短词:
+- `咨询服务` 命中 → 丢弃 `咨询`
+- `储能系统` 命中 → 丢弃 `储能`
+- `宣传服务` 命中 → 丢弃 `宣传`
+
+### 5. 资质列合并策略
+
+```
+包级 资质条件 + 业绩要求 + 主要人员
+  ↓ (为空或占位符)
+xlsx 附件资质表回填
+  ↓ (仍为空)
+项目级资格要求章节 (过滤套话后, 前缀 【通用】)
+```
+
+过滤的模板套话: 依法注册、失信被执行人、信用中国、联合体、破产、黑名单等。
+
+保留的实质条款: 甲/乙/丙级、建造师、ISO、安全生产许可证、总承包、业绩 等。
+
+---
+
+## 输出 23 列
+
+| # | 列名 | 来源 |
+|---|------|------|
+| 1 | 序号 | 自动 |
+| 2 | 项目名称 | PDF字号法 → 段落正则 |
+| 3 | 招标编号 | 正则 |
+| 4 | 分标编号 | Word表格 → xlsx |
+| 5 | 分标名称 | Word表格 → xlsx |
+| 6 | 包号 | Word表格 → xlsx |
+| 7 | 需求部门/签订单位 | Word表格 → xlsx |
+| 8 | 子项目名称 | Word表格 → xlsx |
+| 9 | 项目概况与招标范围 | Word表格 → xlsx |
+| 10 | **资质/资格要求** | 包级聚合 → 附件回填 → 项目级兜底 |
+| 11 | 合同文本编号 | Word表格 → xlsx |
+| 12 | 实施地点 | Word表格 → xlsx |
+| 13 | 工期/服务期 | Word表格 → xlsx |
+| 14 | 报价方式 | Word表格 → xlsx |
+| 15 | 预算金额(万元) | Word表格 → xlsx (元自动换万元) |
+| 16 | 最高限价 | Word表格 → xlsx |
+| 17 | 招标起止时间 | 正则 (截止时间染色) |
+| 18 | **开标时间地点** ✨ | 正则 |
+| 19 | **投标保证金** ✨ | 正则 (含"不收取"判断) |
+| 20 | **评标办法** ✨ | 正则 (综合评估/合理低价/综合评分等) |
+| 21 | **联系人及电话** ✨ | 正则 + xlsx 联系人字段 |
+| 22 | 匹配关键词 | 关键词引擎 (去冗余) |
+| 23 | 匹配来源 | Word表格 / PDF表格 / Excel附件 / 正文 |
+
+### 截止时间染色规则
+
+| 颜色 | 条件 |
+|------|------|
+| 🔴 红色 | 距截止 ≤ 3 天 |
+| 🟡 黄色 | 距截止 ≤ 7 天 |
+| ⬜ 灰色 | 已过截止时间 |
+| 无色 | 7 天以上, 正常 |
+
+---
+
+## 执行流程
+
+### 步骤一: 运行脚本
+
+```bash
+python3 ~/.openclaw/workspace/skills/hbdc/scripts/analyze.py
+```
+
+### 步骤二: 汇报结果
+
+向用户汇报:
+1. 扫描了多少个项目 + 每个项目识别的元数据 (名称/编号/时间/开标/保证金/评标办法)
+2. 每个项目「抽出多少包级记录 → 关键词命中多少条」
+3. 命中记录的来源标签
+4. 报告路径: `~/Desktop/sgcc_result.xlsx`
+5. **特别提醒**「来源是 Word/PDF正文」的项目 — 需手动补盲
+
+### 步骤三: AI 辅助补盲
+
+对以下情况主动接管:
+- PDF 表格抽取失败 → 直接打开 PDF 阅读页面内容手动填写
+- 来源标签为「Word/PDF正文」→ 手动定位关键章节填补字段
+- 项目名称识别错误 → 从原文找正确标题
+- `资质/资格要求` 仍含 "详见附件" → 读取对应附件补全
+
+### 步骤四: 回答追问
+
+用户问某项目细节时, 直接读取对应文件夹下的 word/pdf/xlsx 展示。
+
+---
+
+## 自定义关键词
+
+编辑 `config/keywords.json` 文件, 修改后无需改动脚本:
+
+```json
+{
+  "keywords": {
+    "我的自定义类": ["关键词A", "关键词B"]
+  },
+  "short_keywords": {
+    "我的自定义类": ["短词"]
+  }
+}
+```
+
+---
+
+## 禁止行为
+
+1. **禁止自己编写分析脚本**, 必须运行 `analyze.py`
+2. **禁止用文件名匹配关键词**, 必须读文件内部内容
+3. **禁止打开浏览器**, 本技能只操作本地文件
+4. **禁止直接在 SKILL.md 里修改关键词**, 使用 `config/keywords.json`

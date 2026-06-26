@@ -1,0 +1,36 @@
+{
+  "date": "2022-10-30",
+  "user_id": "default",
+  "user_name": "繁哥",
+  "source": "体检报告",
+  "indicators": {
+    "cardiovascular": {
+      "total_cholesterol": {"value": 4.95, "unit": "mmol/L", "ref": "3.1-5.2", "status": "normal"},
+      "ldl": {"value": 2.41, "unit": "mmol/L", "ref": "<3.1", "status": "normal"},
+      "hdl": {"value": 1.54, "unit": "mmol/L", "ref": "≥0.9", "status": "normal"},
+      "triglycerides": {"value": 1.08, "unit": "mmol/L", "ref": "0.40-1.82", "status": "normal"},
+      "blood_pressure": {"value": "106/70", "unit": "mmHg", "ref": "90-139/60-89", "status": "normal"}
+    },
+    "liver": {
+      "alt": {"value": 11.00, "unit": "U/L", "ref": "0-37", "status": "normal"},
+      "ast": {"value": 17.00, "unit": "U/L", "ref": "0-37", "status": "normal"},
+      "total_bilirubin": {"value": 16.80, "unit": "μmol/L", "ref": "0-25", "status": "normal"},
+      "direct_bilirubin": {"value": 3.60, "unit": "μmol/L", "ref": "0-6.84", "status": "normal"},
+      "indirect_bilirubin": {"value": 13.20, "unit": "μmol/L", "ref": "0-15", "status": "normal"}
+    },
+    "metabolic": {
+      "fasting_glucose": {"value": 5.04, "unit": "mmol/L", "ref": "3.9-6.1", "status": "normal"},
+      "hba1c": {"value": 4.69, "unit": "%", "ref": "3.8-6.0", "status": "normal"}
+    },
+    "other": {
+      "bmi": {"value": 22.8, "unit": "kg/m²", "ref": "18.5-23.9", "status": "normal"},
+      "weight": {"value": 66.0, "unit": "kg", "ref": "-", "status": "normal"},
+      "height": {"value": 170.0, "unit": "cm", "ref": "-", "status": "normal"},
+      "pulse": {"value": 58, "unit": "bpm", "ref": "60-100", "status": "low"}
+    }
+  },
+  "abnormalities": [
+    {"indicator": "pulse", "value": 58, "severity": "normal", "note": "窦性心动过缓"},
+    {"indicator": "hematocrit", "value": 0.54, "severity": "mild", "note": "红细胞压积偏高"}
+  ]
+}

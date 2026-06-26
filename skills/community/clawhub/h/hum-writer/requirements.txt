@@ -1,0 +1,10 @@
+# Feed crawling
+feedparser>=6.0
+trafilatura>=1.6
+lxml_html_clean>=0.1
+requests>=2.31
+python-slugify>=8.0
+youtube-transcript-api>=0.6
+
+# Media download (pin to installed version: yt-dlp --version)
+yt-dlp>=2024.1.0

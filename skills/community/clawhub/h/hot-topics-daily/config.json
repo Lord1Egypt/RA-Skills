@@ -1,0 +1,22 @@
+{
+  "discord": {
+    "threadId": "1482246566055120898"
+  },
+  "api": {
+    "baseUrl": "https://60s.viki.moe/v2",
+    "timeout": 10000
+  },
+  "platforms": [
+    { "name": "微博热搜", "key": "weibo", "emoji": "🔥", "enabled": true },
+    { "name": "知乎热榜", "key": "zhihu", "emoji": "💡", "enabled": true },
+    { "name": "百度热搜", "key": "baidu/hot", "emoji": "🔍", "enabled": true },
+    { "name": "B站热门", "key": "bili", "emoji": "📺", "enabled": true },
+    { "name": "抖音热点", "key": "douyin", "emoji": "🎵", "enabled": true },
+    { "name": "今日头条", "key": "toutiao", "emoji": "📰", "enabled": true }
+  ],
+  "display": {
+    "itemsPerPlatform": 5,
+    "maxTitleLength": 40,
+    "showDivider": true
+  }
+}

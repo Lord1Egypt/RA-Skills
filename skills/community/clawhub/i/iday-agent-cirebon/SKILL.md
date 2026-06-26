@@ -1,35 +1,14 @@
 ---
-name: "Agent"
+name: iday-agent-cirebon
 description: "Digital agent for Billions Network enabling community engagement and decentralized task management, optimized for mobile use in Cirebon and surrounding areas."
-category: "other"
-source: "ClawHub"
+source: ClawHub
+version: 0.1.0
 tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/iday-agent-cirebon"
-sourceUrl: "https://clawhub.ai/skills/iday-agent-cirebon"
+compatible: [claude-code, openai-agents, hermes-agent, any-llm]
 ---
 
 # Agent
 
-> Digital agent for Billions Network enabling community engagement and decentralized task management, optimized for mobile use in Cirebon and surrounding areas.
+# Iday Agent Cirebon Project
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/iday-agent-cirebon`
-- **Source URL:** [https://clawhub.ai/skills/iday-agent-cirebon](https://clawhub.ai/skills/iday-agent-cirebon)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/iday-agent-cirebon
-```
+This is a specialized digital agent developed for the Billions Network ecosystem. The primary goal of this agent is to facilitate community engagement and manage decentralized tasks effectively. It is designed to run on mobile environments like Termux to ensure accessibility for users in the Cirebon region and beyond. We aim to provide a stable and reliable node for the network.

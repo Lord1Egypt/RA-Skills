@@ -1,0 +1,19 @@
+{
+  "type": "function",
+  "function": {
+    "name": "_bpmn_query_process_define_list",
+    "description": "Query process definition list under the specified BPMN module in the application. Return results include processDefineId, processDefineName, and other basic information of the process definition.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "moduleId": {
+          "description": "BPMN module ID",
+          "type": "string"
+        }
+      },
+      "required": [
+        "moduleId"
+      ]
+    }
+  }
+}

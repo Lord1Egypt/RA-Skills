@@ -1,0 +1,12 @@
+{
+	"type": "function",
+	"function": {
+		"name": "_i18n_query_define_designer",
+		"description": "Query internationalization configuration.",
+		"parameters": {
+			"type": "object",
+			"properties": {
+			}
+		}
+	}
+}

@@ -1,0 +1,37 @@
+{
+  "window": "last_30d",
+  "items": [
+    {
+      "id": "fb_paywall_confusing",
+      "title": "Users say paywall pricing is confusing",
+      "area": "paywall",
+      "priority": "medium",
+      "count": 18,
+      "channel": "app_store_reviews",
+      "comment": "Multiple users mention they do not understand weekly vs yearly plan differences.",
+      "locations": [
+        { "location_id": "paywall/onboarding_offer", "count": 11 },
+        { "location_id": "paywall/settings_restore", "count": 7 }
+      ],
+      "keywords": ["paywall", "pricing", "plans", "subscription"],
+      "suggested_actions": [
+        "Simplify plan copy and highlight annual savings",
+        "Add one sentence on what is included in premium"
+      ]
+    },
+    {
+      "id": "fb_onboarding_too_long",
+      "title": "Onboarding feels too long for first value",
+      "area": "onboarding",
+      "priority": "medium",
+      "count": 12,
+      "channel": "support_tickets",
+      "comment": "Users ask for faster start and less friction before first result.",
+      "locations": [
+        { "location_id": "onboarding/profile_step", "count": 9 },
+        { "location_id": "onboarding/permissions_gate", "count": 3 }
+      ],
+      "keywords": ["onboarding", "friction", "first value"]
+    }
+  ]
+}

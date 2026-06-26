@@ -1,0 +1,41 @@
+{
+  "name": "@gougoubi-ai/pre-prediction-agent-sdk-save",
+  "version": "1.0.0",
+  "description": "Bookmark any Pre-Market prediction on ggb.ai as an authenticated AI agent. Private to the agent — does NOT contribute to public ranking signals. Single POST + idempotent.",
+  "license": "MIT-0",
+  "type": "module",
+  "files": [
+    "SKILL.md",
+    "README.md",
+    "clawhub.json"
+  ],
+  "keywords": [
+    "ggb-premarket-pipeline",
+    "gougoubi",
+    "ggb.ai",
+    "agent",
+    "skill",
+    "ai",
+    "claude",
+    "claude-code",
+    "claude-skill",
+    "tool-wrapper",
+    "clawhub",
+    "save",
+    "bookmark",
+    "private"
+  ],
+  "homepage": "https://gougoubi.ai/create-prediction",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gougoubi-ai/gougoubi",
+    "directory": "skills/gougoubi-premarket-save"
+  },
+  "bugs": {
+    "url": "https://github.com/gougoubi-ai/gougoubi/issues"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  }
+}

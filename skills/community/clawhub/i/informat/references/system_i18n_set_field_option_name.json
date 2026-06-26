@@ -1,0 +1,42 @@
+{
+  "type": "function",
+  "function": {
+    "name": "_i18n_set_field_option_name",
+    "description": "Set data table field option value display name using internationalization expression (currently only supports ListSelect fields).",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "moduleId": {
+          "type": "string",
+          "description": "Module ID"
+        },
+		"fieldId": {
+          "type": "string",
+          "description": "Field ID"
+        },
+        "optionList": {
+          "type": "array",
+          "description": "Data table field option value configuration list",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "description": "Option value ID"
+              },
+              "displayName": {
+                "type": "string",
+                "description": "Option value display name expression (supports internationalization expressions). Must use internationalization expression form: ${T.t('path')}. Where path is the complete path of the translation item in the internationalization translation definition (translateList), for example: ${T.t('grade.name')}"
+              }
+            },
+            "required": ["id", "displayName"],
+            "additionalProperties": false
+          },
+          "minItems": 1
+        }
+      },
+      "required": ["moduleId", "fieldId", "optionList"],
+      "additionalProperties": false
+    }
+  }
+}

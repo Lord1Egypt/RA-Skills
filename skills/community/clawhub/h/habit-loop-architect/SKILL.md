@@ -1,35 +1,60 @@
----
-name: "Habit Loop Architect"
-description: "基于习惯回路理论设计简单可执行的习惯方案，帮助建立、改变和恢复习惯，无需依赖意志力。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/habit-loop-architect"
-sourceUrl: "https://clawhub.ai/skills/habit-loop-architect"
----
-
 # Habit Loop Architect
 
-> 基于习惯回路理论设计简单可执行的习惯方案，帮助建立、改变和恢复习惯，无需依赖意志力。
+> 习惯回路建筑师 — 基于 Charles Duhigg 的习惯回路理论和 BJ Fogg 的行为模型，设计和拆解习惯。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/habit-loop-architect`
-- **Source URL:** [https://clawhub.ai/skills/habit-loop-architect](https://clawhub.ai/skills/habit-loop-architect)
+## Description
 
-## Overview
+将习惯科学的核心研究转化为可执行的习惯设计框架。不靠意志力，靠系统设计。每个习惯 = 触发 → 行为 → 奖励，修改任一环节即可改变习惯。
 
+## Usage
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/habit-loop-architect
+当用户需要：
+- 建立新习惯
+- 戒除坏习惯
+- 设计习惯叠加链
+- 克服习惯中断后的恢复
+- 理解为什么习惯总是失败
+
+## Key Concepts
+
+### 1. Fogg行为模型：B=MAP
+- **B**ehavior = **M**otivation × **A**bility × **P**rompt
+- 习惯失败 = 三者之一不足
+- 解决方案不是"更有意志力"，而是"降低难度"或"加强提示"
+
+### 2. 习惯叠加公式
 ```
+在 [已有习惯] 之后，我将 [新习惯]
+```
+- 利用已有神经通路作为触发器
+- 例：在"泡咖啡"之后 → "写3件感恩的事"
+
+### 3. 两分钟法则
+- 新习惯必须能在2分钟内完成
+- "每天读30页" → "每天翻开书"（先建立身份认同）
+- 习惯固化后再逐步扩展
+
+### 4. 习惯中断恢复协议
+- 中断 ≠ 失败，中断后24h内恢复 = 成功
+- "永不连续错过两次"原则
+- 中断原因分析 > 自责
+
+## Instructions
+
+1. 识别目标习惯或要戒除的习惯
+2. 分析当前的习惯回路（触发→行为→奖励）
+3. 设计新回路（保持触发和奖励，替换行为）
+4. 降低执行门槛到2分钟版本
+5. 建立追踪机制（无需复杂，日历打勾即可）
+6. 规划中断恢复方案
+
+## Examples
+
+**输入**: "想养成每天运动的习惯但总坚持不了"
+**输出**: 2分钟版本(穿上运动鞋) + 叠加到晨间刷牙后 + 完成打勾→多巴胺奖励 + 中断恢复：任何运动算数
+
+## Boundaries
+
+- 不处理成瘾级别问题（需专业帮助）
+- 尊重用户节奏，不催促
+- 习惯改变是月级别的过程

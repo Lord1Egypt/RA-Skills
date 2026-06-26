@@ -1,0 +1,27 @@
+{
+  "user_id": "test_user",
+  "indicators": {
+    "身高": 172.0,
+    "体重": 68.0,
+    "ALT": 58.0,
+    "GGT": 65.0,
+    "总胆固醇": 6.5
+  },
+  "abnormal": [
+    {
+      "indicator": "ALT",
+      "value": 58.0,
+      "status": "偏高"
+    },
+    {
+      "indicator": "GGT",
+      "value": 65.0,
+      "status": "偏高"
+    },
+    {
+      "indicator": "总胆固醇",
+      "value": 6.5,
+      "status": "偏高"
+    }
+  ]
+}

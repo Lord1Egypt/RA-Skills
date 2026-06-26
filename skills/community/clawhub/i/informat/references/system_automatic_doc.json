@@ -1,0 +1,12 @@
+{
+  "type": "function",
+  "function": {
+    "name": "_automatic_doc",
+    "description": "Read Informat automation documentation.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+      }
+    }
+  }
+}

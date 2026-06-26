@@ -1,0 +1,17 @@
+{
+  "type": "function",
+  "function": {
+    "name": "_app_publish",
+    "description": "Publish all configurations in the current application in [Draft Status] to [Production Environment] at once. [Official Application Release] ⚠️ This operation cannot be undone, and it will take effect immediately for real users after publication.\n\nBefore execution, you must confirm with the user and clearly inform them of the publication impact.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "confirm": {
+          "type": "boolean",
+          "description": "Whether to confirm the official release. Only when the user clearly expresses affirmative intentions such as \"confirm release / continue release / confirm execution\", can true be passed."
+        }
+      },
+      "required": ["confirm"]
+    }
+  }
+}

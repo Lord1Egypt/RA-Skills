@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>BOLD-MINIMAL · 火一五前端设计技能 v2.0 示例</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600&family=Playfair+Display:ital,wght@0,900;1,900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink: oklch(0.18 0 0);
+    --paper: oklch(0.99 0.005 95);
+    --accent: oklch(0.66 0.20 28);
+    --mute: oklch(0.45 0 0);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:var(--paper);color:var(--ink);font-family:"IBM Plex Sans",sans-serif;-webkit-font-smoothing:antialiased}
+  main{max-width:1200px;margin:0 auto;padding:80px 32px 160px}
+  header{display:flex;justify-content:space-between;align-items:center;font-size:13px;letter-spacing:.08em;text-transform:uppercase}
+  .mark{font-family:"Playfair Display",serif;font-weight:900;font-size:18px;letter-spacing:-.01em;text-transform:none}
+  nav a{margin-left:32px;color:var(--ink);text-decoration:none;border-bottom:1px solid transparent;transition:.2s ease}
+  nav a:hover{border-color:var(--ink)}
+  h1{font-family:"Playfair Display",serif;font-weight:900;font-size:clamp(56px,11vw,180px);line-height:.92;letter-spacing:-.04em;margin:120px 0 40px;max-width:18ch}
+  h1 em{font-style:italic;color:var(--accent)}
+  .lede{font-size:21px;line-height:1.55;max-width:48ch;color:var(--mute)}
+  .cta{display:inline-block;margin-top:56px;padding:20px 40px;background:var(--ink);color:var(--paper);text-decoration:none;font-weight:600;letter-spacing:.04em;font-size:14px;transition:background .2s}
+  .cta:hover{background:var(--accent)}
+  .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:96px 64px;margin-top:200px;border-top:1px solid var(--ink);padding-top:96px}
+  .grid h3{font-family:"Playfair Display",serif;font-weight:900;font-size:44px;line-height:1.05;letter-spacing:-.02em}
+  .grid p{margin-top:24px;font-size:17px;line-height:1.65;color:var(--mute)}
+  footer{margin-top:200px;padding-top:28px;border-top:1px solid var(--ink);display:flex;justify-content:space-between;font-size:12px;letter-spacing:.08em;text-transform:uppercase}
+  .reveal{opacity:0;transform:translateY(20px);animation:r .85s forwards cubic-bezier(.2,.8,.2,1)}
+  .reveal:nth-of-type(1){animation-delay:.04s}
+  .reveal:nth-of-type(2){animation-delay:.18s}
+  .reveal:nth-of-type(3){animation-delay:.32s}
+  .reveal:nth-of-type(4){animation-delay:.46s}
+  @keyframes r{to{opacity:1;transform:none}}
+  @media (max-width:720px){.grid{grid-template-columns:1fr;gap:64px;margin-top:120px}main{padding:48px 24px 96px}}
+</style>
+</head>
+<body>
+<main>
+  <header class="reveal">
+    <span class="mark">HUO15</span>
+    <nav><a href="#">作品</a><a href="#">理念</a><a href="#">联系</a></nav>
+  </header>
+  <h1 class="reveal">少即是<em>极致</em>。<br>承诺一个方向。</h1>
+  <p class="lede reveal">BOLD-MINIMAL 流派示例 — 2 色系、大留白、大字号、零装饰。差异点：标题 Playfair italic black 与 IBM Plex Sans 形成强反差，强调色仅在 hover 出现。</p>
+  <a class="cta reveal" href="#">查看作品集 →</a>
+  <section class="grid">
+    <article><h3>排版即结构</h3><p>不靠装饰元素分隔信息，靠字号、字重、留白本身承担层级。设计的节制源自对内容的尊重。</p></article>
+    <article><h3>颜色靠节制</h3><p>主色 70% 留白、20% 墨黑、10% 强调色。强调色一旦出现，必须够锐利，否则就别用。</p></article>
+  </section>
+  <footer><span>© 2026 HUO15</span><span>BOLD-MINIMAL · v2.0</span></footer>
+</main>
+</body>
+</html>

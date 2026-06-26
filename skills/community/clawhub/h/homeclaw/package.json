@@ -1,0 +1,27 @@
+{
+  "name": "homeclaw",
+  "version": "1.0.0",
+  "description": "龙虾管家 - 一只龙虾管理一家人的家庭 AI 系统",
+  "keywords": [
+    "family",
+    "smart-home",
+    "health",
+    "education",
+    "eldercare",
+    "childcare",
+    "家庭",
+    "智能家居",
+    "健康管理",
+    "教育",
+    "养老",
+    "育儿"
+  ],
+  "author": "LeoCryptoFlow",
+  "license": "MIT",
+  "openclaw": {
+    "skill": true,
+    "category": "lifestyle",
+    "languages": ["zh", "en"],
+    "acceptLicenseTerms": true
+  }
+}

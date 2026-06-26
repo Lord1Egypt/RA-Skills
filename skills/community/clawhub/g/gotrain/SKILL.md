@@ -1,35 +1,54 @@
 ---
-name: "gotrain"
-description: "MTA system train departures (NYC Subway, LIRR, Metro-North). Use when the user wants train times, schedules, or service alerts for MTA transit. Covers MTA Su..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/gotrain"
-sourceUrl: "https://clawhub.ai/skills/gotrain"
+name: gotrain
+description: MTA system train departures (NYC Subway, LIRR, Metro-North). Use when the user wants train times, schedules, or service alerts for MTA transit. Covers MTA Subway, LIRR, and Metro-North across the greater New York area.
+metadata: {"clawdbot":{"requires":{"bins":["gotrain"]},"install":[{"id":"node","kind":"node","package":"gotrain","bins":["gotrain"],"label":"Install gotrain (npm)"}]}}
 ---
 
 # gotrain
 
-> MTA system train departures (NYC Subway, LIRR, Metro-North). Use when the user wants train times, schedules, or service alerts for MTA transit. Covers MTA Su...
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/gotrain`
-- **Source URL:** [https://clawhub.ai/skills/gotrain](https://clawhub.ai/skills/gotrain)
-
-## Overview
-
+Atomic CLI for NYC transit departures (MTA Subway, LIRR, Metro-North).
 
 ## Installation
-To install this skill, run the following command in your terminal:
+
 ```bash
-hermes skills install clawhub/gotrain
+npm install -g gotrain
 ```
+
+## Commands
+
+| Command | Description |
+|---------|-------------|
+| `gotrain stations [query]` | List/search stations |
+| `gotrain departures <station-id>` | Show departures for a station |
+| `gotrain alerts` | Active service alerts |
+| `gotrain fav <id>` | Toggle favorite station |
+| `gotrain favs` | List favorite stations |
+
+## Common Station IDs
+
+- `MNR-149` - New Haven
+- `MNR-151` - New Haven-State St
+- `MNR-1` - Grand Central
+- `MNR-203` - Penn Station (MNR)
+- `LIRR-349` - Grand Central
+- `SUBWAY-631` - Grand Central-42 St
+
+## Examples
+
+```bash
+# Search for Penn Station
+gotrain stations penn
+
+# New Haven to Grand Central departures
+gotrain departures MNR-149
+
+# Check service alerts
+gotrain alerts
+
+# Add favorite station
+gotrain fav MNR-149
+```
+
+## Source
+
+https://github.com/gumadeiras/gotrain-cli

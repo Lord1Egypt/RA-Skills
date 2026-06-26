@@ -1,0 +1,29 @@
+{
+  "name": "openclaw-skill-imutils",
+  "version": "1.0.0",
+  "description": "OpenClaw Skill for batch image processing using PyImageSearch/imutils",
+  "main": "scripts/rotate.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "openclaw",
+    "skill",
+    "image-processing",
+    "imutils",
+    "batch-processing",
+    "opencv"
+  ],
+  "author": "Boss",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/YOUR_GITHUB_USERNAME/openclaw-skill-imutils"
+  },
+  "bin": {
+    "imutils-rotate": "./scripts/rotate.js",
+    "imutils-resize": "./scripts/resize.js",
+    "imutils-translate": "./scripts/translate.js",
+    "imutils-skeleton": "./scripts/skeleton.js"
+  }
+}

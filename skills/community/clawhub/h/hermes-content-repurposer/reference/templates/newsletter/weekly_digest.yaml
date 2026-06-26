@@ -1,0 +1,61 @@
+# Newsletter Template — Weekly Digest
+name: "newsletter_weekly_digest"
+description: "Weekly newsletter with curated takeaways from the source article"
+
+structure:
+  subject_line:
+    type: "curiosity_gap"
+    length: "40-70 characters"
+    rules:
+      - "Create curiosity without being clickbaity"
+      - "Include a specific number or time frame where possible"
+      - "Avoid ALL CAPS and excessive punctuation"
+      - "Test: would you open this in your inbox?"
+    max_length: 78  # Most email clients truncate at ~78 chars
+
+  header:
+    type: "branded_intro"
+    rules:
+      - "Greeting: 'Hey [reader],' or 'Hey there,'"
+      - "1 sentence preview of the issue"
+      - "Always include a 'what to expect' line"
+      - "Keep under 100 words total"
+
+  main_sections:
+    type: "curated_excerpts"
+    max_sections: 6
+    rules:
+      - "Each section = 1 key idea from source, rewritten for newsletter"
+      - "Sections must have subheadings (H3 or bold)"
+      - "Include pull quotes from source material"
+      - "Keep each section to 150-250 words"
+      - "Add '🚀 Key takeaway' box at end of each section"
+      - "Include relevant links with link text (no bare URLs)"
+
+  cta_block:
+    type: "action_driven"
+    rules:
+      - "Primary CTA: Subscribe, share, or reply"
+      - "Include social sharing links"
+      - "Make the CTA feel like a natural next step, not a sales pitch"
+
+  footer:
+    type: "standard"
+    rules:
+      - "Unsubscribe link (required)"
+      - "Brand tagline"
+      - "Social profile links"
+    content: |
+      ---
+      *You're receiving this because you subscribed to {{brand.name}}.*
+      [Unsubscribe]({{unsubscribe_link}}) | [Twitter]({{twitter_link}}) | [LinkedIn]({{linkedin_link}})
+
+      {{brand.name}} — {{brand.tagline}}
+
+quality_rules:
+  - "Total word count: 500-2000 words"
+  - "Every section must add value — if it's fluff, cut it"
+  - "At least 3 clickable links (not counting unsubscribe)"
+  - "Subject line under 78 characters"
+  - "Mobile tested: paragraphs max 3 lines"
+  - "Include at least one pull quote"

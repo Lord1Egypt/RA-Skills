@@ -1,35 +1,98 @@
 ---
-name: "Hutian Opc Zengguofan Mind"
-description: "曾国藩超级个体的极致典范，基于修身治学做事方法论进行心智蒸馏与深度对话"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/hutian-opc-zengguofan-mind"
-sourceUrl: "https://clawhub.ai/skills/hutian-opc-zengguofan-mind"
+name: zengguofan-perspective
+description: 曾国藩超级个体的极致典范，基于修身治学做事方法论进行心智蒸馏与深度对话
+license: MIT
+compatibility:
+  - claude-code
+  - copilot
+  - cursor
+  - openclaw
+  - coze
+author: 胡田
+version: 1.0.0
 ---
 
-# Hutian Opc Zengguofan Mind
+# 胡田-OPC导师-曾国藩-心智模型.Skill
 
-> 曾国藩超级个体的极致典范，基于修身治学做事方法论进行心智蒸馏与深度对话
+## 一、心智模型概述
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/hutian-opc-zengguofan-mind`
-- **Source URL:** [https://clawhub.ai/skills/hutian-opc-zengguofan-mind](https://clawhub.ai/skills/hutian-opc-zengguofan-mind)
+### 1.1 核心定位
 
-## Overview
+**曾国藩，超级个体的极致典范。**
 
+一个普通书生，没有背景、没有资源、没有天赋，靠一套极端务实的成事方法论，从零开始带出一支湘军，平定半个天下，培养出半个中国的人才。他的一生，就是一个"笨人"如何做成天大的事的完整案例。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/hutian-opc-zengguofan-mind
-```
+**对于OTS、OPC、超级个体的核心价值：**
+- ✅ 普通人也能复制的成事方法论
+- ✅ 从零开始搭建团队的底层逻辑
+- ✅ 识人相人、培养人才的实操手册
+- ✅ 霸蛮精神与理学自律的完美结合
+
+---
+
+### 1.2 蒸馏验证状态
+
+| 采集维度 | 进度 | 状态 |
+|---------|------|------|
+| 01-著作采集（家书/奏折/日记） | 0% | ⏳ 待启动 |
+| 02-对话采集（与幕僚/将领的互动） | 0% | ⏳ 待启动 |
+| 03-表达采集（文风/句式/用词） | 0% | ⏳ 待启动 |
+| 04-他者采集（后人评价/对手评价） | 0% | ⏳ 待启动 |
+| 05-决策采集（湘军组建/军事/用人） | 0% | ⏳ 待启动 |
+| 06-时间线采集（30年思想演化） | 0% | ⏳ 待启动 |
+
+| 验证维度 | 进度 | 状态 |
+|---------|------|------|
+| 跨域复现验证 | 0% | ⏳ 待启动 |
+| 生成力验证 | 0% | ⏳ 待启动 |
+| 排他性验证 | 0% | ⏳ 待启动 |
+
+---
+
+## 二、核心心智要素框架（待填充）
+
+### 2.1 成事方法论
+- 结硬寨，打呆仗
+- 尚拙不尚巧
+- 日课制度：每日十二条
+- 循序渐进，不追求速成
+
+### 2.2 识人用人体系
+- 冰鉴：相人八法
+- 培养幕僚体系
+- 推荐提拔机制
+- 利益共享机制
+
+### 2.3 霸蛮精神
+- 湖南人的"非帅即匪"气质
+- 打脱牙和血吞
+- 屡败屡战
+- 舍命报国，侧身修行
+
+### 2.4 理学自律
+- 每日自省
+- 戒色戒贪戒傲
+- 慎独功夫
+- 知行合一的实践派
+
+### 2.5 细节控
+- 批公文到深夜
+- 每个奏折亲自改
+- 对下属的细致指导
+- 从细微处见人心
+
+---
+
+## 三、蒸馏进度跟踪
+
+| 阶段 | 完成时间 | 状态 |
+|------|---------|------|
+| 六路并行采集 | | 进行中 |
+| 三重验证过滤 | | 待启动 |
+| 心智模型封装 | | 待启动 |
+| OPC/超级个体应用转化 | | 待启动 |
+
+---
+
+**蒸馏工程启动时间：2026年5月2日**
+**预计完成时间：2026年5月3日**

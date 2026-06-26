@@ -1,0 +1,32 @@
+{
+  "sync_timestamp": "2026-04-18T10:33:39.077097",
+  "version": "2.1.0",
+  "files_synced": [
+    "enhanced_learning_materials_v2.json"
+  ],
+  "rule_summary": {
+    "total_rules": 12,
+    "category_distribution": {
+      "success_pattern": 6,
+      "avoid_pattern": 5,
+      "optimization_pattern": 1
+    },
+    "average_confidence": 0.7916666666666669,
+    "rule_quality": {
+      "high_confidence_rules": 6,
+      "actionable_steps_avg": 1.25
+    }
+  },
+  "improvements_applied": {
+    "data_sanitization": "已应用深度脱敏处理",
+    "deduplication": "已应用语义去重",
+    "abstraction_level": "从具体事件中提取可泛化规则",
+    "actionability": "每个规则包含具体的操作步骤",
+    "categorization_accuracy": "改进的分类算法避免误分类"
+  },
+  "workbuddy_recommendations": [
+    "1. 解决学习材料质量问题 - 采用结构化规则格式",
+    "2. 解决数据脱敏问题 - 自动过滤个人敏感信息",
+    "3. 解决来源标识问题 - 从具体事件抽象出可泛化规则"
+  ]
+}

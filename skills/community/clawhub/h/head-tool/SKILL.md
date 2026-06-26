@@ -1,35 +1,34 @@
 ---
-name: "Head Tool"
-description: "Display the first lines of files. Use for quickly previewing file contents, checking headers, or sampling data."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/head-tool"
-sourceUrl: "https://clawhub.ai/skills/head-tool"
+name: head-tool
+description: Display the first lines of files. Use for quickly previewing file contents, checking headers, or sampling data.
 ---
 
-# Head Tool
+# File Header Viewer
 
-> Display the first lines of files. Use for quickly previewing file contents, checking headers, or sampling data.
+Output the beginning of files, defaulting to the first 10 lines. Essential for previewing log files, CSV headers, and large text files without loading them entirely.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/head-tool`
-- **Source URL:** [https://clawhub.ai/skills/head-tool](https://clawhub.ai/skills/head-tool)
+## Usage
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/head-tool
+head-tool [options] [file...]
+```
+
+## Options
+
+- `-n N`: Show first N lines (default: 10)
+- `-c N`: Show first N bytes instead of lines
+- `-q`: Quiet mode (suppress filename headers)
+- Read from stdin when no file specified
+
+## Examples
+
+```bash
+# Show first 10 lines
+head-tool data.csv
+
+# Show first 20 lines
+head-tool -n 20 log.txt
+
+# Show first 100 bytes
+head-tool -c 100 config.yaml
 ```

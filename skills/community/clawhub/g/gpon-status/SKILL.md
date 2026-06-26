@@ -1,35 +1,73 @@
 ---
-name: "猫棒状态"
+name: gpon-status
 description: "访问猫棒后台（SmartAX MA5671A / OpenWrt SFP）抓取 GPON 状态和设备信息，以加图标的文本表格输出。"
-category: "other"
-source: "ClawHub"
-tags: [gpon, huawei, monitor, ont]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/gpon-status"
-sourceUrl: "https://clawhub.ai/skills/gpon-status"
 ---
 
 # 猫棒状态
 
-> 访问猫棒后台（SmartAX MA5671A / OpenWrt SFP）抓取 GPON 状态和设备信息，以加图标的文本表格输出。
+访问猫棒后台获取 GPON 状态和设备信息，用加图标的文本格式输出。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/gpon-status`
-- **Source URL:** [https://clawhub.ai/skills/gpon-status](https://clawhub.ai/skills/gpon-status)
+## 触发词
 
-## Overview
+"猫棒状态"
 
+## 步骤
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/gpon-status
+1. **POST 登录**：向 `http://192.168.11.6/cgi-bin/luci` 发送 `username=root&password=` 获取 session cookie。
+2. **获取数据**：用 cookie 访问 `/cgi-bin/luci` 首页，解析 HTML 中的 GPON 状态和设备信息。
+3. **格式化输出**：按以下格式输出。
+
+## 输出格式
+
+```markdown
+## ⚡ GPON 状态监控
+
+### 🖥️ 设备信息
+
+| 图标 | 项目 | 值 |
+|------|------|------|
+| 📡 | 主机型号 | SmartAX MA5671A |
+| 📦 | 固件版本 | V2.2.0P1T10000 |
+| 🐧 | 内核版本 | 3.10.49 |
+| 🔄 | 互操作版本 | Final_v2021_12_28_c2 / 2022.05.24 |
+
+### 🔌 GPON 状态
+
+| 图标 | 项目 | 值 |
+|------|------|------|
+| 🟢 | 注册状态 | 5 |
+| 📶 | 信号状态 | 正常 |
+| 📉 | 接收光功率 | -22.47 dBm |
+| 📤 | 发射光功率 | 2.59 dBm |
+| 🌡️ | CPU 温度 | 73 °C |
+| 🔆 | 激光器温度 | 62 °C |
+| 🔗 | 连接速率 | 2500M 全双工 |
+| 🔁 | 重启次数 | 0 |
+| 💾 | 启动分区 | image1 |
 ```
+
+## 光功率判断
+
+- 接收光功率：-8 ~ -27 dBm 为可用范围，< -25 dBm 标 ⚠️
+- 发射光功率：0.5 ~ 4 dBm 为正常范围
+- CPU 温度：85 °C 以下正常
+
+## 关键参数提取
+
+从首页 HTML 中 `GPON状态` fieldset 的 table 提取：
+- 注册状态（5 = 已注册）
+- 信号状态（true/false）
+- 接收光功率（含 μW 和 dBm 两个值）
+- 发射光功率（含 mW 和 dBm 两个值）
+- CPU 温度
+- 激光器温度
+- 连接速率
+- 当前尝试重启次数
+- 当前启动分区
+- 互操作版本
+
+从 `状态` fieldset 提取设备信息：
+- 主机名
+- 主机型号
+- 固件版本
+- 内核版本

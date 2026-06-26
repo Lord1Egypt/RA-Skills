@@ -1,0 +1,10 @@
+{
+  "enableAppxNg": true,
+  "format": "ascii",
+  "node_modules_es6_whitelist": [],
+  "compileOptions": {
+    "minify": false,
+    "minifyJS": false,
+    "minifyCSS": false
+  }
+}

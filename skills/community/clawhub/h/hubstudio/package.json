@@ -1,0 +1,16 @@
+{
+  "name": "hubstudio-skill",
+  "version": "1.0.0",
+  "description": "",
+  "main": "hubstudio.js",
+  "scripts": {
+    "test": ""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "playwright": "^1.58.2"
+  }
+}

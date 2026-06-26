@@ -1,35 +1,25 @@
 ---
-name: "Governance.Wrapper"
-description: "Mandatory strict-mode execution wrapper for autonomous operations with evidence logging and policy enforcement"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/governance-wrapper"
-sourceUrl: "https://clawhub.ai/skills/governance-wrapper"
+name: governance.wrapper
+description: Mandatory strict-mode execution wrapper for autonomous operations with evidence logging and policy enforcement
 ---
 
-# Governance.Wrapper
+All autonomous operations in strict mode must execute through this wrapper:
 
-> Mandatory strict-mode execution wrapper for autonomous operations with evidence logging and policy enforcement
+`python3 /home/openclaw/.openclaw/workspace/governance/governance_wrapper.py`
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/governance-wrapper`
-- **Source URL:** [https://clawhub.ai/skills/governance-wrapper](https://clawhub.ai/skills/governance-wrapper)
+Required parameters:
 
-## Overview
+- `--requested-skill`
+- `--system-prompt`
+- `--input-context`
 
+Strict-mode controls enforced by the wrapper:
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/governance-wrapper
-```
+- Model lock (`opencode/big-pickle`, no fallback, temperature 0.0)
+- Skill allowlist enforcement from tool surface manifest
+- Network allowlist enforcement for outbound HTTP
+- Subagent semaphore (`maxConcurrentSubagents`)
+- Mandatory `execution-evidence.v1` emission
+- Hash-chained append-only evidence logging
+
+Any policy violation results in a blocked execution with recorded evidence.

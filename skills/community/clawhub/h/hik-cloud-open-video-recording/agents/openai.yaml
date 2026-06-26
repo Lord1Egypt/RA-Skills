@@ -1,0 +1,4 @@
+interface:
+  display_name: "海康云眸视频云录制"
+  short_description: "管理云录制项目、录制任务、文件、流量、上传和剪辑。"
+  default_prompt: "Use $hik-cloud-video-recording to create projects, start or query recording tasks, manage files, adjust flow limits, upload assets, or clip recorded video on Hik-Cloud."

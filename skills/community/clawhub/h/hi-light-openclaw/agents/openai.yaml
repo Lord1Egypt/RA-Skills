@@ -1,0 +1,4 @@
+interface:
+  display_name: "HiLight for OpenClaw"
+  short_description: "中文在前：安装并配置 HiLight OpenClaw 渠道 / Install and configure HiLight"
+  default_prompt: "用 $hi-light-openclaw 帮我安装或配置 HiLight OpenClaw 插件，并填写我的 API Key。 Use $hi-light-openclaw to install or configure the HiLight OpenClaw plugin with my API key."

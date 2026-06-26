@@ -1,0 +1,107 @@
+# ============================================================
+# IBKR Autonomous Trader — Configuration
+# ============================================================
+
+# ----- CONNECTION -----
+ibkr:
+  host: "127.0.0.1"
+  port: 7497          # 7497 = paper trading, 7496 = live
+  client_id: 1
+  timeout: 20
+
+# ----- SAFETY -----
+safety:
+  enable_live_trading: false   # MUST be explicitly set to true for live trading
+  paper_trading_port: 7497
+  live_trading_port: 7496
+  require_confirmation: true   # If true, agent prompts before any live order
+
+# ----- RISK -----
+risk:
+  max_risk_per_trade_pct: 1.0     # % of account value risked per trade
+  max_daily_loss_pct: 3.0         # Kill switch threshold
+  max_positions: 5                # Max concurrent open positions
+  min_risk_reward_ratio: 1.5      # Minimum R:R to take a trade
+  atr_stop_multiplier: 2.0        # Stop = entry ± (ATR * multiplier)
+
+# ----- WATCHLIST -----
+watchlist:
+  - AAPL
+  - MSFT
+  - NVDA
+  - TSLA
+  - SPY
+  - QQQ
+
+# ----- STRATEGIES -----
+strategies:
+  enabled:
+    - rsi_mean_reversion
+    - macd_momentum
+  params:
+    rsi_mean_reversion:
+      rsi_period: 14
+      oversold: 30
+      overbought: 70
+      ema_trend_period: 50
+    macd_momentum:
+      fast: 12
+      slow: 26
+      signal: 9
+      min_histogram: 0.05
+
+# ----- EXECUTION -----
+execution:
+  order_type: "LMT"             # LMT or MKT
+  limit_offset_pct: 0.05        # Limit price offset from mid
+  use_bracket_orders: true
+  retry_attempts: 3
+  retry_delay_sec: 2
+
+# ----- DATA -----
+data:
+  bar_size: "5 mins"
+  duration: "2 D"
+  what_to_show: "MIDPOINT"
+  use_rth: true                 # Regular trading hours only
+
+# ----- LOOP -----
+loop:
+  interval_sec: 300             # How often to run the main loop (5 min)
+  eval_every_n_loops: 12        # Run performance evaluation every N loops (1 hr)
+  market_open: "09:30"
+  market_close: "16:00"
+  timezone: "America/New_York"
+
+# ----- LOGGING -----
+logging:
+  level: "INFO"
+  log_file: "logs/trader.log"
+  rotation: "1 day"
+  retention: "30 days"
+
+# ----- NEWS ENGINE -----
+news:
+  enabled: true
+  max_items_per_topic: 5
+  fetch_timeout_sec: 10
+  cache_ttl_sec: 300
+  min_combined_confidence: 0.45
+  topics:
+    - global_markets
+    - economy
+    - federal_reserve
+    - inflation
+    - geopolitics
+    - energy
+    - technology
+    - earnings
+
+# ----- DECISION ENGINE -----
+decision:
+  weights:
+    technical: 0.50
+    news: 0.25
+    risk: 0.15
+    volatility: 0.10
+  min_trades_for_weight_update: 30

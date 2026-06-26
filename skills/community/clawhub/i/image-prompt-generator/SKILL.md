@@ -1,35 +1,193 @@
 ---
-name: "图片提示词生成"
-description: "基于五层拆解法的AI图片提示词生成器。将模糊的创意想法转化为结构严谨、可执行的图像生成规格书，支持多种风格预设和目标工具适配。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/image-prompt-generator"
-sourceUrl: "https://clawhub.ai/skills/image-prompt-generator"
+name: image-prompt-generator
+description: 基于五层拆解法的AI图片提示词生成器。将模糊的创意想法转化为结构严谨、可执行的图像生成规格书，支持多种风格预设和目标工具适配。
+version: 2.0.0
+license: MIT
+acceptLicenseTerms: true
+metadata:
+  clawdbot:
+    emoji: "✏️"
+    files: ["app/*"]
 ---
 
-# 图片提示词生成
+# Image Prompt Generator - 图片提示词生成器
 
-> 基于五层拆解法的AI图片提示词生成器。将模糊的创意想法转化为结构严谨、可执行的图像生成规格书，支持多种风格预设和目标工具适配。
+基于"五层拆解法"，将创意想法转化为专业的 AI 图像生成规格书，并输出可直接使用的多工具提示词。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/image-prompt-generator`
-- **Source URL:** [https://clawhub.ai/skills/image-prompt-generator](https://clawhub.ai/skills/image-prompt-generator)
+## 核心功能
 
-## Overview
+### 五层拆解法（画面先行）
+0. **画面介绍** → 用自然语言概括画面主题、场景、主体
+1. **整体基调** → 风格、氛围
+2. **质感材质** → 介质感、工艺、肌理
+3. **笔触细节** → 线条、色彩分布逻辑
+4. **构图规则** → 版式、布局、视觉动线
+5. **文字系统**（按需） → 仅在画面含文字时输出
 
+### 目标工具适配
+- **Midjourney** — 结构化关键词 + 参数（--ar, --s, --v 等）
+- **DALL-E** — 纯自然语言描述
+- **Stable Diffusion** — 正向/反向提示词分离
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/image-prompt-generator
+### 风格预设
+- 🖍️ 童趣涂鸦 - 儿童手绘涂鸦风格，彩色铅笔质感
+- 📐 极简现代 - 极简主义，现代设计感，大量留白
+- 🎞️ 复古胶片 - 复古胶片风格，1970s色调，颗粒感
+- 🌸 日系插画 - 日系小清新插画，柔和色彩，扁平风
+- ⚙️ 赛博朋克 - 赛博朋克风格，霓虹色彩，科技感
+- 📚 学术信息图 - 专业信息图，学术风格，数据可视化
+
+## 使用方法
+
+### 方式1：快速生成
 ```
+用户: 生成图片提示词：一张介绍深度学习的信息图，面向初学者
+系统: 基于五层拆解法生成完整的提示词规格书
+```
+
+### 方式2：选择风格预设
+```
+用户: 用童趣涂鸦风格生成：一只可爱的小猫在看书
+系统: 生成带有彩色铅笔质感的儿童风格提示词
+```
+
+### 方式3：自定义详细描述
+```
+用户: 生成提示词：[详细描述需求]
+系统: 根据描述智能分析并生成五层规格书
+```
+
+## 输出格式
+
+生成的提示词包含以下模块：
+
+```markdown
+# 🎨 图片提示词
+
+## 画面介绍
+[2-3句自然语言描述画面整体]
+
+## 整体基调
+- 风格：[具体风格]
+- 氛围：[情绪词]
+
+## 质感材质
+- 介质感：[描述]
+
+## 笔触细节
+- 线条：[特征]
+- 色彩：[主色调、辅助色、点缀色]
+
+## 构图规则
+- 版式：[比例]
+- 布局：[分布逻辑、视觉动线]
+
+## 文字系统（仅在画面含文字时输出）
+- 字体感：[风格]
+- 层级：[视觉差异]
+
+## 参照物
+- 风格参照：[具体参照 + 参照理由]
+- 反向排除：[不想要的风格]
+
+---
+
+## 💡 可执行提示词
+
+**通用中文提示词：**
+[完整中文描述，适用于国产AI绘图工具]
+
+**Midjourney：**
+[结构化英文关键词 + 参数]
+
+**DALL-E：**
+[纯自然语言英文描述]
+
+**Stable Diffusion：**
+prompt: [正向提示词]
+negative prompt: [反向提示词]
+```
+
+## 技术实现
+
+### 前端界面
+- React 单页应用
+- 支持风格预设快速选择
+- 目标生成工具选择（Midjourney / DALL-E / SD / 全部）
+- 实时字数统计
+- Markdown 渲染结果
+- 一键复制功能
+
+### AI 模型
+- 通过 OpenClaw Gateway 本地端点调用（`/v1/chat/completions`）
+- 使用 OpenClaw 配置的默认模型，无需额外配置 API 密钥
+- SYSTEM_PROMPT 包含完整的五层拆解法方法论
+- 自动将模糊需求转化为具体视觉规格
+
+## 触发指令
+
+| 指令 | 说明 |
+|------|------|
+| `生成图片提示词` | 基础触发指令 |
+| `图片提示词` | 简写形式 |
+| `生成提示词` | 通用形式 |
+| `用[风格]风格生成` | 带风格预设 |
+
+## 文件位置
+
+- **技能目录**: `skills/image-prompt-generator/`
+- **前端代码**: `skills/image-prompt-generator/app/`
+- **入口文件**: `skills/image-prompt-generator/app/App.jsx`
+
+## 使用示例
+
+**示例 1：信息图**
+```
+输入：一张介绍「光合作用原理」的信息图，面向中学生，风格清新易懂
+输出：五层拆解法生成的完整提示词，包含日系插画风格、柔和色彩、扁平化设计等
+```
+
+**示例 2：插画**
+```
+输入：用赛博朋克风格生成：未来城市的夜景
+输出：霓虹色彩、科技感、暗黑背景的详细规格书
+```
+
+**示例 3：儿童内容**
+```
+输入：用童趣涂鸦风格生成：小动物们在森林里开派对
+输出：彩色铅笔质感、活泼热闹、手绘风格的提示词
+```
+
+## 注意事项
+
+1. **描述越详细，生成越精准** - 提供目标受众、使用场景、情绪基调等信息
+2. **善用风格预设** - 快速锁定整体方向，再微调细节
+3. **选择目标工具** - 不同工具的提示词语法差异很大，选对工具获得最佳结果
+4. **参照物很重要** - 可以提供喜欢的风格参考或不想要的风格排除
+
+## 可执行提示词使用
+
+生成结果中的"可执行提示词"根据目标工具输出对应格式：
+- **Midjourney** — 直接复制到 /imagine 命令
+- **DALL-E** — 直接粘贴到 ChatGPT 或 DALL-E API
+- **Stable Diffusion** — 分别复制 prompt 和 negative prompt
+
+## External Endpoints
+
+| 端点 | 说明 | 发送的数据 |
+|------|------|-----------|
+| `http://127.0.0.1:18789/v1/chat/completions` | OpenClaw Gateway 本地端点 | 用户输入的图片描述需求 + 系统提示词 |
+
+所有请求仅发往本地 OpenClaw Gateway，不直接连接任何外部 API。实际的模型调用由 Gateway 根据你的 `openclaw.json` 配置路由。
+
+## Security & Privacy
+
+- 所有 AI 模型调用通过本地 OpenClaw Gateway 中转，不直接暴露 API 密钥
+- 用户输入的图片描述会作为 prompt 发送给 Gateway 配置的模型
+- 不存储任何用户数据，所有处理在本地完成
+- 无持久化操作，无文件写入，无后台进程
+
+## Trust Statement
+
+本技能通过 OpenClaw Gateway 调用 AI 模型生成图片提示词。你的输入内容会发送到 Gateway 配置的模型提供商（取决于你的 `openclaw.json` 配置）。请确保你信任所配置的模型提供商后再使用。

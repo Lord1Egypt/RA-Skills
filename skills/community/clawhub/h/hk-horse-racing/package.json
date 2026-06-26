@@ -1,0 +1,15 @@
+{
+  "name": "hk-horse-racing",
+  "version": "1.2.2",
+  "description": "Fetches HKJC race cards with current odds and horse data; recommends top horses; advanced scoring (trainer/jockey bonuses, barrier effectiveness, weight penalty, light weight bonus); rate limiting and caching; exclude by horse/barrier; single-race fetch.",
+  "main": "skill.js",
+  "scripts": {
+    "test": "node test.js"
+  },
+  "keywords": ["openclaw", "hkjc", "racing"],
+  "author": "Steven Ho",
+  "license": "MIT",
+  "dependencies": {
+    "hkjc-api": "^1.0.0"
+  }
+}

@@ -1,35 +1,28 @@
----
-name: "Hellofresh"
-description: "Manage your HelloFresh subscription, find and convert recipes to audio, track shipments, and receive delivery notifications via Telegram."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/hellofresh"
-sourceUrl: "https://clawhub.ai/skills/hellofresh"
----
+# HelloFresh Assistant
 
-# Hellofresh
+**Description:** Interact with your HelloFresh account — discover recipes, manage selections, convert instructions to audio, and get shipment alerts.
 
-> Manage your HelloFresh subscription, find and convert recipes to audio, track shipments, and receive delivery notifications via Telegram.
+**Commands:**
+- `/hello-fresh setup` — First-time setup (collects subscription info)
+- `/hello-fresh status` — Show subscription status
+- `/hello-fresh discover [week]` — Find recipes (this/next/last/2026-W11)
+- `/hello-fresh history` — Past deliveries
+- `/hello-fresh recommend` — AI recommendations
+- `/hello-fresh convert <recipe>` — Text-to-speech cooking instructions
+- `/hello-fresh track` — Delivery tracking
+- `/hello-fresh notify` — Notification settings & check shipment
+- `/hello-fresh notify check` — Manually check current shipment status
+- `/hello-fresh notify enable` — Enable shipment alerts
+- `/hello-fresh notify disable` — Disable shipment alerts
+- `/hello-fresh reset` — Clear session
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/hellofresh`
-- **Source URL:** [https://clawhub.ai/skills/hellofresh](https://clawhub.ai/skills/hellofresh)
+**Requires:** browser, tts
 
-## Overview
+**Storage:** `~/.openclaw/hellofresh/session.json`
 
+**Browser:** Uses profile="chrome" (Chrome Extension Relay) or Kernel.sh cloud
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/hellofresh
-```
+**Shipment Alerts:**
+- Automatically detects when your box status changes (e.g., "Shipping soon" → "Out for delivery")
+- Sends notifications via Telegram when enabled
+- Tracks status history for change detection

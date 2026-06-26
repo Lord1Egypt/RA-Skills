@@ -1,35 +1,59 @@
 ---
-name: "Halo Cli"
-description: "Use when the task is to operate Halo CLI in general, or may involve login, profiles, posts, single pages, search, plugins, themes, attachments, backups, mome..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/halo-cli"
-sourceUrl: "https://clawhub.ai/skills/halo-cli"
+name: halo-cli
+version: 1.0.0
+description: Use when the task is to operate Halo CLI in general, or may involve login, profiles, posts, single pages, search, plugins, themes, attachments, backups, moments, comments, or notifications.
+references:
+  - ../halo-cli-shared
+  - ../halo-cli-auth
+  - ../halo-cli-content
+  - ../halo-cli-search
+  - ../halo-cli-operations
+  - ../halo-cli-moderation-notifications
+metadata:
+  openclaw:
+    category: developer-tools
+    requires:
+      bins: ["halo"]
+    cliHelp: "halo --help"
 ---
 
-# Halo Cli
+# Halo CLI
 
-> Use when the task is to operate Halo CLI in general, or may involve login, profiles, posts, single pages, search, plugins, themes, attachments, backups, mome...
+This is the routing skill for the Halo CLI skill set.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/halo-cli`
-- **Source URL:** [https://clawhub.ai/skills/halo-cli](https://clawhub.ai/skills/halo-cli)
+If the request only says "use Halo CLI" or mixes multiple areas, start here, then jump to the domain skill that matches the task.
 
-## Overview
+## Skill Map
 
+- `halo-cli-shared`: shared rules, top-level command map, profiles, JSON output, destructive-action conventions
+- `halo-cli-auth`: login, profile setup, profile switching, keyring and credential repair
+- `halo-cli-content`: posts and single pages
+- `halo-cli-search`: public site search
+- `halo-cli-operations`: themes, plugins, attachments, backups, moments
+- `halo-cli-moderation-notifications`: comments, replies, notifications
 
-## Installation
-To install this skill, run the following command in your terminal:
+## Fast Routing
+
+Use these commands to identify the right area:
+
 ```bash
-hermes skills install clawhub/halo-cli
+halo --help
+halo auth --help
+halo post --help
+halo single-page --help
+halo search --help
+halo plugin --help
+halo theme --help
+halo attachment --help
+halo backup --help
+halo moment --help
+halo comment --help
+halo notification --help
 ```
+
+## Shared Defaults
+
+- Prefer an authenticated profile unless the task is public `halo search --url`.
+- Use `--profile <name>` when the environment matters.
+- Use `--json` for automation.
+- Use `--force` carefully for destructive non-interactive operations.

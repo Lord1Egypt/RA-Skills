@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "schema_version": "recruiting-tables/v0.1",
+  "notes": [
+    "This file is the source of truth for Tencent Docs SmartSheet table models used by hr-recruiting-tracker.",
+    "Keep enum-like fields as text by default because tencent-docs 1.0.33 may reject new singleSelect/select fields with code 22020."
+  ],
+  "tables": {
+    "candidates": {
+      "fixed_sheet_title": "HR候选人库",
+      "description": "候选人核心信息表，用于简历入库、筛选、搜索和招聘阶段跟踪。",
+      "primary_key": "record_id",
+      "fields": [
+        {"key": "name", "field_title": "姓名", "field_type": "text", "description": "候选人姓名", "property_text": {}},
+        {"key": "phone", "field_title": "电话", "field_type": "phoneNumber", "description": "联系电话", "property_phone_number": {}},
+        {"key": "email", "field_title": "邮箱", "field_type": "email", "description": "电子邮箱", "property_email": {}},
+        {"key": "current_company", "field_title": "当前公司", "field_type": "text", "description": "当前或最近任职公司", "property_text": {}},
+        {"key": "years_of_experience", "field_title": "工作年限", "field_type": "number", "description": "工作年限", "property_number": {"decimal_places": 1, "use_separate": false}},
+        {"key": "highest_degree", "field_title": "最高学历", "field_type": "text", "description": "博士/硕士/本科/大专/高中及以下", "property_text": {}},
+        {"key": "school", "field_title": "毕业院校", "field_type": "text", "description": "毕业学校", "property_text": {}},
+        {"key": "major", "field_title": "专业", "field_type": "text", "description": "专业名称", "property_text": {}},
+        {"key": "graduation_year", "field_title": "毕业年份", "field_type": "number", "description": "毕业年份", "property_number": {"decimal_places": 0, "use_separate": false}},
+        {"key": "skills", "field_title": "技能标签", "field_type": "text", "description": "技能关键词，使用顿号分隔", "property_text": {}},
+        {"key": "job_intent", "field_title": "求职意向", "field_type": "text", "description": "目标岗位或方向", "property_text": {}},
+        {"key": "recruiting_stage", "field_title": "招聘阶段", "field_type": "text", "description": "简历筛选/HR初筛/技术一面/技术二面/HR面/Offer/入职/不合适", "property_text": {}},
+        {"key": "resume_source", "field_title": "简历来源", "field_type": "text", "description": "简历文件名或来源渠道", "property_text": {}},
+        {"key": "parse_quality", "field_title": "解析质量", "field_type": "text", "description": "高保真/回退解析/纯文本", "property_text": {}},
+        {"key": "review_required", "field_title": "需HR审核", "field_type": "checkbox", "description": "回退解析或信息不确定时勾选", "property_checkbox": {"checked": false}},
+        {"key": "bundle_path", "field_title": "简历包路径", "field_type": "text", "description": "本地简历包目录路径", "property_text": {}},
+        {"key": "created_at", "field_title": "录入时间", "field_type": "dateTime", "description": "记录创建时间", "property_date_time": {"format": "yyyy-mm-dd hh:mm", "auto_fill": true}},
+        {"key": "record_id", "field_title": "记录ID", "field_type": "text", "description": "唯一标识，当前为姓名+简历 sha256 前缀", "property_text": {}}
+      ]
+    },
+    "jobs": {
+      "fixed_sheet_title": "HR岗位信息库",
+      "description": "岗位信息表，用于岗位管理、候选人岗位匹配和面试流程判断。",
+      "primary_key": "job_id",
+      "fields": [
+        {"key": "job_id", "field_title": "job_id", "field_type": "text", "description": "岗位唯一标识", "property_text": {}},
+        {"key": "job_title", "field_title": "job_title", "field_type": "text", "description": "岗位名称", "property_text": {}},
+        {"key": "department", "field_title": "department", "field_type": "text", "description": "部门", "property_text": {}},
+        {"key": "hiring_manager", "field_title": "hiring_manager", "field_type": "text", "description": "用人经理", "property_text": {}},
+        {"key": "must_have", "field_title": "must_have", "field_type": "text", "description": "必须条件", "property_text": {}},
+        {"key": "nice_to_have", "field_title": "nice_to_have", "field_type": "text", "description": "加分条件", "property_text": {}},
+        {"key": "responsibilities", "field_title": "responsibilities", "field_type": "text", "description": "工作职责", "property_text": {}},
+        {"key": "level", "field_title": "level", "field_type": "text", "description": "职级", "property_text": {}},
+        {"key": "location", "field_title": "location", "field_type": "text", "description": "地点", "property_text": {}},
+        {"key": "salary_range", "field_title": "salary_range", "field_type": "text", "description": "薪资范围", "property_text": {}},
+        {"key": "interview_process", "field_title": "interview_process", "field_type": "text", "description": "面试流程", "property_text": {}},
+        {"key": "status", "field_title": "status", "field_type": "text", "description": "开放/暂停/关闭", "property_text": {}},
+        {"key": "updated_at", "field_title": "updated_at", "field_type": "dateTime", "description": "岗位记录更新时间", "property_date_time": {"format": "yyyy-mm-dd hh:mm", "auto_fill": true}}
+      ]
+    }
+  }
+}

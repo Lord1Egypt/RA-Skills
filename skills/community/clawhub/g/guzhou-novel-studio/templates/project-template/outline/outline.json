@@ -1,0 +1,30 @@
+{
+  "project_name": "",
+  "created_at": "",
+  "outline_version": "1.0",
+  "acts": [
+    {
+      "act": 1,
+      "name": "第一幕",
+      "chapters": "1-10",
+      "theme": "",
+      "core_events": []
+    },
+    {
+      "act": 2,
+      "name": "第二幕",
+      "chapters": "11-30",
+      "theme": "",
+      "core_events": []
+    },
+    {
+      "act": 3,
+      "name": "第三幕",
+      "chapters": "31-50",
+      "theme": "",
+      "core_events": []
+    }
+  ],
+  "main_conflict": "",
+  "world_rules": []
+}

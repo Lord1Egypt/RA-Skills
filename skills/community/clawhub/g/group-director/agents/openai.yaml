@@ -1,0 +1,3 @@
+interface:
+  display_name: "Group Director"
+  short_description: "Claw handles context; this skill creates and polls SenseAudio video tasks and returns a plain URL"

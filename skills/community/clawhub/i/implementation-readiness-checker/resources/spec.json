@@ -1,0 +1,37 @@
+{
+  "slug": "implementation-readiness-checker",
+  "title": "实施就绪检查器",
+  "category": "success",
+  "categoryLabel": "客户成功与协作",
+  "mode": "structured_brief",
+  "summary": "检查项目是否具备实施条件，明确缺什么就不该开工。",
+  "inputHint": "项目范围、资源、环境、依赖",
+  "sections": [
+    "已具备条件",
+    "缺失条件",
+    "高风险阻塞",
+    "建议动作",
+    "开工门槛",
+    "责任清单"
+  ],
+  "useCases": [
+    "实施前检查",
+    "项目启动门控",
+    "客户对齐"
+  ],
+  "positiveExamples": [
+    "检查这个项目能不能开工",
+    "列出缺什么就别开工"
+  ],
+  "negativeExamples": [
+    "不要为了开工而忽略前提条件",
+    "不要替代正式项目审批"
+  ],
+  "risk": "强调开工门槛和透明风险。",
+  "tags": [
+    "implementation",
+    "readiness",
+    "delivery",
+    "checklist"
+  ]
+}

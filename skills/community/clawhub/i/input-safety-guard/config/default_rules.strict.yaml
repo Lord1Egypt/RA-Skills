@@ -1,0 +1,38 @@
+# Strict profile overrides.
+# This file is merged on top of default_rules.yaml to increase blocking and reduce trusted exceptions.
+version: 1
+
+# Make unmatched inputs more cautious by default.
+policy:
+  default_decision: review
+  default_confidence: medium
+
+# Remove trusted-scope exceptions in the strict profile.
+scope:
+  allowlist_roles: []
+  allowlist_environments: []
+
+# Keep a minimal defensive allowlist so explicit prompt-safety discussions are not over-blocked.
+allowlist:
+  exact_phrases:
+    - explain prompt injection defense
+    - how to build a prompt safety filter
+    - 什么是提示词注入防护
+  regex_patterns:
+    - '(?i)prompt\s+(safety|security|injection\s+defense|leakage\s+defense)'
+    - '(?i)system\s+prompt\s+(safety|security)'
+    - '(?i)提示词(安全|注入防护|泄漏防护)'
+
+# Only the changed rules are listed here; all other rules inherit from the base policy.
+rules:
+  - id: suspicious-roleplay
+    action: block
+    confidence: high
+
+  - id: privacy-exfiltration
+    action: block
+    confidence: high
+
+  - id: reverse-exposure-patterns
+    action: block
+    confidence: high

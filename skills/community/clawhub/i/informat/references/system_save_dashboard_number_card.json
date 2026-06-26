@@ -1,0 +1,485 @@
+{
+  "type": "function",
+  "function": {
+    "name": "_save_dashboard_number_card",
+    "description": "Create or edit statistical number cards in the dashboard. Only cards with type Number can be created or modified. Statistical number cards are used to display single aggregate indicator values, supporting configuration of data sources, filter conditions, aggregation functions, and number styles (color, font size, format, unit, precision, description text).\n\nSpecial notes:\n1. Aggregation rules: When aggregation=true, aggregationQueryList must be provided; fieldId in aggregationQueryList cannot be id or seq fields, must use business fields.\n2. Filter condition rules: fieldId in conditionList of filter must be a real field ID in the data table, cannot be fabricated.\n3. Color rules (must strictly follow): All color fields can only use standard 6-digit HEX format strings (such as '#5B8FF9') or system theme color variables (such as 'c1'~'c10'); strictly prohibit using rgba(...), rgb(...), hsl(...) formats; strictly prohibit using functions or dynamic expressions; cannot use pure black #000000.\n4. The final generated content needs to be JSON parsed, so it must comply with JSON specifications, no functions allowed.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Card ID. Not passed when creating, required when editing."
+        },
+        "name": {
+          "type": "string",
+          "description": "Card name, displayed in the dashboard card title area."
+        },
+        "type": {
+          "type": "string",
+          "description": "Card type, fixed value: Number."
+        },
+        "scope": {
+          "type": "string",
+          "description": "Dashboard ID that the card belongs to."
+        },
+        "width": {
+          "type": "number",
+          "description": "Card width, calculated by occupied grid count, maximum 24.",
+          "default": 12
+        },
+        "height": {
+          "type": "number",
+          "description": "Card height, calculated by occupied grid count.",
+          "default": 6
+        },
+        "remark": {
+          "type": "string",
+          "description": "Card remark explanation."
+        },
+        "subTitle": {
+          "type": "string",
+          "description": "Card subtitle."
+        },
+        "isInTab": {
+          "type": "boolean",
+          "description": "Whether to display within Tab tabs."
+        },
+        "enableRefresh": {
+          "type": "boolean",
+          "description": "Whether to enable automatic refresh."
+        },
+        "refreshTime": {
+          "type": "integer",
+          "description": "Automatic refresh interval (seconds), effective when enableRefresh=true, default 30."
+        },
+        "mobileDisplayHeightVar": {
+          "type": "string",
+          "description": "Card height expression when displayed on mobile (optional)."
+        },
+        "disableFilterCache": {
+          "type": "boolean",
+          "description": "Whether to disable filter cache."
+        },
+        "disableToolbar": {
+          "type": "boolean",
+          "description": "Whether to disable card toolbar."
+        },
+        "enableCardStyle": {
+          "type": "boolean",
+          "description": "Whether to enable custom styles in cardStyle."
+        },
+        "enableButton": {
+          "type": "boolean",
+          "description": "Whether to enable card extension buttons."
+        },
+        "filterLabelPosition": {
+          "type": "string",
+          "description": "Filter label position, such as 'top', 'left', 'right'."
+        },
+        "cardStyle": {
+          "type": "object",
+          "description": "Card appearance style, controlling background, padding, border, title font, etc.",
+          "properties": {
+            "titleFontSize": {
+              "type": "string",
+              "description": "Title font size, CSS string, default '13px'."
+            },
+            "titleFontWeight": {
+              "type": "string",
+              "description": "Title font weight, such as 'bold', 'normal'."
+            },
+            "titleColor": {
+              "type": "string",
+              "description": "Title color. Color value rules: Only standard 6-digit HEX format like '#333333', or theme color variables like 'c1'~'c10'.Do not use #ffffff"
+            },
+            "titlePosition": {
+              "type": "string",
+              "description": "Title horizontal alignment position, can be filled: left, center, right, default left."
+            },
+            "subTitleFontSize": {
+              "type": "string",
+              "description": "Subtitle font size, default '12px'."
+            },
+            "subTitleColor": {
+              "type": "string",
+              "description": "Subtitle color. Color value rules same as titleColor."
+            },
+            "subTitleFontWeight": {
+              "type": "string",
+              "description": "Subtitle font weight."
+            },
+            "subTitlePosition": {
+              "type": "string",
+              "description": "Subtitle position, such as 'titleBottom'."
+            },
+            "bgType": {
+              "type": "string",
+              "description": "Background type, can be filled: image, color, transparent, default image."
+            },
+            "bgColor": {
+              "type": "string",
+              "description": "Background color (effective when bgType='color'). Only use standard 6-digit HEX format.Do not use #ffffff"
+            },
+            "bgImageId": {
+              "type": "string",
+              "description": "Background image ID (can be filled when bgType='image')."
+            },
+            "bgImageSize": {
+              "type": "string",
+              "description": "Background image size, corresponding to CSS background-size, such as 'cover', 'contain'."
+            },
+            "bgImagePositionX": {
+              "type": "string",
+              "description": "Background image horizontal position."
+            },
+            "bgImagePositionY": {
+              "type": "string",
+              "description": "Background image vertical position."
+            },
+            "bgGradientColor": {
+              "type": "string",
+              "description": "Gradient background color configuration string."
+            },
+            "padding": {
+              "type": "number",
+              "description": "Uniform padding around (pixels), effective when paddingControl=false, default 10."
+            },
+            "paddingControl": {
+              "type": "boolean",
+              "description": "Whether to enable fine padding control (set top, bottom, left, right separately)."
+            },
+            "paddingTop": {
+              "type": "number",
+              "description": "Top padding (effective when paddingControl=true)."
+            },
+            "paddingRight": {
+              "type": "number",
+              "description": "Right padding (effective when paddingControl=true)."
+            },
+            "paddingBottom": {
+              "type": "number",
+              "description": "Bottom padding (effective when paddingControl=true)."
+            },
+            "paddingLeft": {
+              "type": "number",
+              "description": "Left padding (effective when paddingControl=true)."
+            },
+            "overflow": {
+              "type": "string",
+              "description": "Overflow strategy, can be filled: auto, hidden, visible."
+            },
+            "borderColor": {
+              "type": "string",
+              "description": "Border color, using standard 6-digit HEX format."
+            },
+            "borderWidth": {
+              "type": "number",
+              "description": "Border width (pixels), default 0."
+            },
+            "borderRadius": {
+              "type": "number",
+              "description": "Border radius (pixels), default 0."
+            },
+            "themeStyle": {
+              "type": "string",
+              "description": "Theme style name (optional)."
+            },
+            "enableBorderImage": {
+              "type": "boolean",
+              "description": "Whether to enable border background image, only use borderImage* fields when true."
+            },
+            "borderImageId": {
+              "type": "string",
+              "description": "Border background image ID (used when enableBorderImage=true)."
+            },
+            "borderImageIsFill": {
+              "type": "boolean",
+              "description": "Whether border background image fills the center slice area."
+            },
+            "borderImageSlice": {
+              "type": "array",
+              "items": {
+                "type": "number"
+              },
+              "description": "Border image slice configuration (according to CSS border-image-slice)."
+            },
+            "borderTopWidth": {
+              "type": "number",
+              "description": "Top border width, default 0."
+            },
+            "borderRightWidth": {
+              "type": "number",
+              "description": "Right border width, default 0."
+            },
+            "borderBottomWidth": {
+              "type": "number",
+              "description": "Bottom border width, default 0."
+            },
+            "borderLeftWidth": {
+              "type": "number",
+              "description": "Left border width, default 0."
+            },
+            "borderImageTopOutset": {
+              "type": "number",
+              "description": "Top border image outset size, default 0."
+            },
+            "borderImageRightOutset": {
+              "type": "number",
+              "description": "Right border image outset size, default 0."
+            },
+            "borderImageBottomOutset": {
+              "type": "number",
+              "description": "Bottom border image outset size, default 0."
+            },
+            "borderImageLeftOutset": {
+              "type": "number",
+              "description": "Left border image outset size, default 0."
+            },
+            "borderImageRepeatX": {
+              "type": "string",
+              "description": "Border image horizontal fill mode, can be filled: round, repeat, stretch, default round."
+            },
+            "borderImageRepeatY": {
+              "type": "string",
+              "description": "Border image vertical fill mode, can be filled: round, repeat, stretch, default round."
+            }
+          }
+        },
+        "buttonList": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          },
+          "description": "Card extension button configuration array. Effective when enableButton=true, pass empty array when not needed."
+        },
+        "buttonStyle": {
+          "type": "object",
+          "description": "Layout style of card extension buttons.",
+          "properties": {
+            "size": {
+              "type": "string",
+              "description": "Button size, can be filled: small, medium, large, default small."
+            },
+            "orient": {
+              "type": "string",
+              "description": "Arrangement direction, can be filled: horizontal, vertical, default horizontal."
+            },
+            "horizontal": {
+              "type": "string",
+              "description": "Horizontal alignment, can be filled: left, center, right, default right."
+            },
+            "vertical": {
+              "type": "string",
+              "description": "Vertical alignment, can be filled: top, middle, bottom, default top."
+            }
+          }
+        },
+        "numberSetting": {
+          "type": "object",
+          "description": "Core data and display configuration for statistical number cards.",
+          "properties": {
+            "tableId": {
+              "type": "string",
+              "description": "Data source table ID, must be a real table ID in the system."
+            },
+            "aggregation": {
+              "type": "boolean",
+              "description": "Whether to enable aggregation calculation. Usually set to true to perform statistical summary on data, default true."
+            },
+            "aggregationQueryList": {
+              "type": "array",
+              "description": "Aggregation calculation configuration list, required when aggregation=true. Each item in the array defines an aggregation indicator, the card displays the result of the first indicator.",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "fieldId": {
+                    "type": "string",
+                    "description": "Aggregated field ID. Cannot use id or seq fields, must use business fields."
+                  },
+                  "func": {
+                    "type": "string",
+                    "description": "Aggregation function, can be filled: count (count), avg (average), sum (sum), max (maximum), min (minimum). Note: avg, sum, max, min require the field to be numeric type."
+                  },
+                  "distinct": {
+                    "type": "boolean",
+                    "description": "Whether to count distinct, default false."
+                  }
+                }
+              }
+            },
+            "aggregationSplitMultiValue": {
+              "type": "boolean",
+              "description": "Whether to split multi-value fields before aggregation, default false."
+            },
+            "filter": {
+              "type": "object",
+              "description": "Data filter condition configuration.",
+              "properties": {
+                "opt": {
+                  "type": "string",
+                  "description": "Root condition combination logic, can be filled: and (AND), or (OR)."
+                },
+                "conditionList": {
+                  "type": "array",
+                  "description": "Filter condition list, pass empty array when not needed.",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "fieldId": {
+                        "type": "string",
+                        "description": "Filter field ID, must be a real field ID in the data table. Special value '$expression' means using custom expression."
+                      },
+                      "opt": {
+                        "type": "string",
+                        "description": "Comparison operator, can be filled: eq (equal), ne (not equal), gt (greater than), ge (greater than or equal), lt (less than), le (less than or equal), contains (contains), notcontains (not contains), startswith (starts with), endswith (ends with), isnull (not set), isnotnull (set), in (in list), notin (not in list), between (in range), notbetween (not in range)."
+                      },
+                      "value": {
+                        "description": "Filter value. Single-value conditions directly fill in the value, multi-value conditions (in/notin/between, etc.) use arrays, enum field values are placed in arrays. Boolean or numeric types are wrapped with ${}, such as ${true}, ${100}."
+                      },
+                      "func": {
+                        "type": "string",
+                        "description": "Field processing function (optional). Can be filled: day, month, week, quarter, year, hour, minute, second, length, nlevel, dayofyear, dayofmonth, weekofyear, daytonow, weektonow, monthtonow, quartertonow, yeartonow, fmtday, fmtweek, fmtmonth, fmtquarter, fmtyear, nameOfAccount."
+                      },
+                      "var": {
+                        "type": "boolean",
+                        "description": "Mark whether value is a variable expression, default false."
+                      },
+                      "formula": {
+                        "type": "boolean",
+                        "description": "Whether to use formula function, default false."
+                      },
+                      "ignoreNull": {
+                        "type": "boolean",
+                        "description": "Whether to ignore null values, default false."
+                      }
+                    }
+                  }
+                },
+                "children": {
+                  "type": "array",
+                  "description": "Nested child filter condition groups, pass empty array when not needed.",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "opt": {
+                        "type": "string",
+                        "description": "Child group condition combination logic, can be filled: and, or."
+                      },
+                      "conditionList": {
+                        "type": "array",
+                        "items": {
+                          "type": "object"
+                        },
+                        "description": "Child group filter condition list, same structure as outer conditionList."
+                      },
+                      "children": {
+                        "type": "array",
+                        "items": {
+                          "type": "object"
+                        },
+                        "description": "Deeper nested condition groups."
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "groupByFieldList": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "Group field ID list (tableFieldId). Statistical number cards usually do not group, pass empty array."
+            },
+            "orderByList": {
+              "type": "array",
+              "description": "Sort configuration list, pass empty array when not needed.",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "field": {
+                    "type": "string",
+                    "description": "Sort field ID."
+                  },
+                  "type": {
+                    "type": "string",
+                    "description": "Sort method, can be filled: asc (ascending), desc (descending)."
+                  }
+                }
+              }
+            },
+            "xPosition": {
+              "type": "string",
+              "description": "Horizontal alignment of numbers in the card, can be filled: left, center, right, default center."
+            },
+            "yPosition": {
+              "type": "string",
+              "description": "Vertical alignment of numbers in the card, can be filled: top, center, bottom, default center."
+            },
+            "placeholderColor": {
+              "type": "string",
+              "description": "Color of prompt text when no data. Color value rules: Only standard 6-digit HEX format or theme color variables (such as 'c5')."
+            },
+            "title": {
+              "type": "string",
+              "description": "Description text (label) below the number, such as 'Total', 'Sick leave count', default 'Description'."
+            },
+            "titleColor": {
+              "type": "string",
+              "description": "Description text color. Color value rules: Only standard 6-digit HEX format or theme color variables (such as 'c7').Do not use #ffffff"
+            },
+            "count": {
+              "type": "integer",
+              "description": "Upper limit of queried data records, usually keep the default value 1000."
+            },
+            "unit": {
+              "type": "string",
+              "description": "Value unit, displayed to the right of the number, such as 'units', 'yuan', 'times', default 'units'."
+            },
+            "color": {
+              "type": "string",
+              "description": "Number main color. Color value rules: Only standard 6-digit HEX format like '#5B8FF9', or theme color variables like 'c6'.Do not use #ffffff"
+            },
+            "fontSize": {
+              "type": "integer",
+              "description": "Number font size (pixels), default 80."
+            },
+            "format": {
+              "type": "string",
+              "description": "Number display format, can be filled: number (normal number), comma (thousand separator, such as 1,234,567), default number."
+            },
+            "precision": {
+              "type": "integer",
+              "description": "Decimal places, range 0~5, 0 means display integer, default 0."
+            },
+            "clickAutomaticId": {
+              "type": "string",
+              "description": "Automation ID triggered when clicked. (optional)"
+            },
+            "dblclickAutomaticId": {
+              "type": "string",
+              "description": "Automation ID triggered when double-clicked. (optional)"
+            }
+          },
+          "required": [
+            "tableId",
+            "aggregation",
+            "aggregationQueryList",
+            "filter",
+            "groupByFieldList",
+            "orderByList"
+          ]
+        }
+      },
+      "required": [
+        "name",
+        "type",
+        "scope",
+        "width",
+        "height",
+        "cardStyle",
+        "numberSetting"
+      ]
+    }
+  }
+}

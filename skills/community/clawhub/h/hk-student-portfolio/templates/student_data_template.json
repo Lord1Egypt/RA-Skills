@@ -1,0 +1,66 @@
+{
+  "basic_info": {
+    "name_zh": "中文姓名",
+    "name_en": "English Name",
+    "gender": "性别",
+    "birthday": "出生日期",
+    "id_type": "证件类型",
+    "id_number": "证件号码",
+    "phone": "联系电话",
+    "email": "电子邮箱",
+    "address": "现居住地址",
+    "guardian": "紧急联系人",
+    "guardian_relation": "关系",
+    "guardian_phone": "紧急联系电话"
+  },
+  "education": {
+    "school_zh": "学校中文名",
+    "school_en": "School English Name",
+    "address": "学校地址",
+    "enrollment": "入学时间",
+    "grade": "目前年级",
+    "class": "班级",
+    "overall_grade": "整体成绩"
+  },
+  "academic": {
+    "rank": "年级排名（如：年级前15%）",
+    "trend": "成绩趋势描述",
+    "subjects": [
+      {"name": "科目名", "y7": "初一成绩", "y8": "初二成绩", "y9": "初三成绩", "note": "备注"}
+    ]
+  },
+  "awards": [
+    {
+      "name": "奖项名称",
+      "organizer": "颁发机构",
+      "date": "获奖时间",
+      "level": "级别（全国/省级/市级/区级/校级）",
+      "award": "获奖成绩"
+    }
+  ],
+  "ecActivities": [
+    {
+      "name": "活动名称",
+      "en_name": "Activity English Name",
+      "position": "担任职务",
+      "en_position": "Position",
+      "period": "参与时间",
+      "description": "主要成就/贡献",
+      "en_description": "Description"
+    }
+  ],
+  "hobbies": [
+    {"name": "爱好名称", "level": "类别", "achievement": "备注"}
+  ],
+  "self_intro_zh": "中文自我介绍（约300字，含个人介绍+求学动机+学习目标+规划）",
+  "self_intro_en": "English self-introduction (about 200 words)",
+  "teacher_comment": {
+    "teacher": "推荐人姓名",
+    "position": "职务",
+    "school": "学校",
+    "email": "电子邮箱",
+    "date": "推荐信日期",
+    "comment_zh": "中文推荐评语",
+    "comment_en": "English recommendation comment"
+  }
+}

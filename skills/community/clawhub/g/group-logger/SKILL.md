@@ -1,35 +1,68 @@
----
-name: "Group Logger"
-description: "บันทึกข้อความกลุ่ม LINE ที่มีคีย์เวิร์ดเกี่ยวกับงานลง CSV อัตโนมัติและสรุปข้อมูลเมื่อต้องการผ่าน @mention"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/group-logger"
-sourceUrl: "https://clawhub.ai/skills/group-logger"
----
+# group_logger
+บันทึกข้อความจากกลุ่ม LINE อัตโนมัติ และสรุปข้อมูลตามลูกค้าหรืองาน
 
-# Group Logger
+## Description
+Skill นี้ทำงาน 2 โหมด:
+1. โหมดบันทึก — รับทุกข้อความในกลุ่ม บันทึกลง CSV โดยไม่ตอบกลับ
+2. โหมดสรุป — เมื่อถูก @mention ให้ดึงข้อมูลจาก CSV มาสรุป
 
-> บันทึกข้อความกลุ่ม LINE ที่มีคีย์เวิร์ดเกี่ยวกับงานลง CSV อัตโนมัติและสรุปข้อมูลเมื่อต้องการผ่าน @mention
+## Triggers
+โหมดบันทึก (ไม่ต้อง @mention):
+- ทุกข้อความที่มีคีย์เวิร์ด: JOB, งาน, ลูกค้า, ซ่อม, ติดตั้ง, ส่ง, รับ, เสร็จ, pending, นัด
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/group-logger`
-- **Source URL:** [https://clawhub.ai/skills/group-logger](https://clawhub.ai/skills/group-logger)
+โหมดสรุป (ต้อง @mention):
+- "สรุปงาน [ชื่อลูกค้า]"
+- "ดูงาน JOB-XXX"
+- "งานค้างทั้งหมด"
+- "สรุปวันนี้"
+- "รายงานประจำวัน"
 
-## Overview
+## File Paths
+- Log file: C:\Users\Server\.openclaw\workspace\group_log.csv
+- Backup: C:\Users\Server\.openclaw\workspace\group_log_backup.csv
 
+## CSV Format
+timestamp,sender,group_id,message,keywords,job_id,customer_name,status
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/group-logger
-```
+## Implementation
+
+### โหมดบันทึก
+1. รับข้อความจากกลุ่ม
+2. ตรวจจับคีย์เวิร์ดสำคัญ
+3. ดึง job_id (รูปแบบ JOB-XXX) ถ้ามี
+4. ดึงชื่อลูกค้าจากข้อความ
+5. บันทึกลง group_log.csv
+6. ไม่ตอบกลับ (silent logging)
+
+### โหมดสรุป
+1. อ่านไฟล์ group_log.csv
+2. กรองข้อมูลตามชื่อลูกค้าหรือ JOB ที่ระบุ
+3. จัดกลุ่มข้อมูลตามลูกค้า
+4. สรุปเป็นรายงานภาษาไทย
+
+## Examples
+
+### บันทึกอัตโนมัติ
+ข้อความในกลุ่ม: "ช่างโต้ไปหน้างาน JOB-029 บ้านเจนวิทย์แล้วครับ"
+บันทึก: timestamp, ช่างโต้, group_id, ข้อความ, keywords=[JOB,งาน], JOB-029, เจนวิทย์, in-progress
+
+### สรุปเมื่อถูก @mention
+User: "@Comphone สรุปงานเจนวิทย์"
+Action: อ่าน CSV กรองชื่อ เจนวิทย์ สรุปทุกรายการ
+
+ผลลัพธ์:
+📋 สรุปงาน: เจนวิทย์โฮม
+- JOB-029 | นัด 9:30 น. 14/3/69
+- ช่างโต้ถึงหน้างานแล้ว 10:15 น.
+- สถานะ: In Progress
+
+## Keywords ที่ตรวจจับ
+งาน, JOB, ลูกค้า, ซ่อม, ติดตั้ง, ส่ง, รับ, เสร็จ, pending, นัด,
+เช็คอิน, ถึงแล้ว, เดินทาง, อะไหล่, ค่าแรง, เก็บเงิน, Invoice,
+กล้อง, WiFi, ไฟ, สวิทช์, เราเตอร์, NVR, DVR
+
+## Notes
+- บันทึกทุกข้อความที่มี keyword เท่านั้น ข้อความทั่วไปไม่บันทึก
+- ไม่ตอบกลับเมื่อบันทึก เพื่อประหยัด token
+- Backup ไฟล์ทุกวันอัตโนมัติ
+- รองรับหลายกลุ่มในไฟล์เดียวกัน โดยแยกด้วย group_id

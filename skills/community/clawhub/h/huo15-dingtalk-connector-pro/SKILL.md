@@ -1,35 +1,40 @@
 ---
-name: "Huo15 Dingtalk Connector Pro"
-description: "火一五定制版钉钉 OpenClaw 连接器 - 支持记忆系统集成、会话管理、AI Card 流式响应"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/huo15-dingtalk-connector-pro"
-sourceUrl: "https://clawhub.ai/skills/huo15-dingtalk-connector-pro"
+name: huo15-dingtalk-connector-pro
+description: 火一五定制版钉钉 OpenClaw 连接器 - 支持记忆系统集成、会话管理、AI Card 流式响应
+dependencies:
+  required: []
 ---
 
-# Huo15 Dingtalk Connector Pro
+# 🔔 huo15-dingtalk-connector-pro
 
-> 火一五定制版钉钉 OpenClaw 连接器 - 支持记忆系统集成、会话管理、AI Card 流式响应
+> **作者**: 火一五信息科技有限公司
+> **版本**: v1.0.0
+> **参考**: [dingtalk-openclaw-connector](https://github.com/DingTalk-Real-AI/dingtalk-openclaw-connector) v0.8.12
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/huo15-dingtalk-connector-pro`
-- **Source URL:** [https://clawhub.ai/skills/huo15-dingtalk-connector-pro](https://clawhub.ai/skills/huo15-dingtalk-connector-pro)
+## 简介
 
-## Overview
+火一五定制版钉钉 OpenClaw 连接器，基于官方 dingtalk-openclaw-connector v0.8.12 定制，支持 huo15-memory-evolution 记忆系统集成。
 
+## 特性
 
-## Installation
-To install this skill, run the following command in your terminal:
+- 🤖 记忆系统集成
+- 💬 AI Card 流式响应
+- 🔒 会话持久化
+- 🎯 会话隔离
+- ⏰ 超时自动新会话
+- 📁 富媒体接收
+- 🎵 音频消息
+- 📄 钉钉文档 API
+- 🔗 多 Agent 路由
+
+## 安装
+
 ```bash
-hermes skills install clawhub/huo15-dingtalk-connector-pro
+openclaw plugins install @huo15/dingtalk-connector-pro
 ```
+
+## 相关链接
+
+- **GitHub**: https://github.com/zhaobod1/huo15-dingtalk-openclaw-connector
+- **npm**: https://www.npmjs.com/package/@huo15/dingtalk-connector-pro
+- **官方版**: https://github.com/DingTalk-Real-AI/dingtalk-openclaw-connector

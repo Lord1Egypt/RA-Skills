@@ -1,0 +1,29 @@
+name: openclaw-manager
+display_name: OpenClaw Manager
+version: 0.3.2
+description: >
+  OpenClaw-native local manager skill that adds a loopback-only sidecar, durable
+  state, shadow-first thread interception, connector normalization, attention
+  views, redacted snapshots, and capability graph export for real work.
+entry:
+  bootstrap: src/skill/bootstrap.ts
+commands:
+  - /tasks
+  - /threads
+  - /resume
+  - /share
+  - /bind
+  - /focus
+  - /graph
+  - /digest
+  - /checkpoint
+  - /close
+  - /adopt
+  - /promote
+  - /archive-thread
+sidecar:
+  api: http://127.0.0.1:4318
+  health: /health
+  loopback_only: true
+  autostart: consent-gated
+state_root: ~/.openclaw/skills/manager

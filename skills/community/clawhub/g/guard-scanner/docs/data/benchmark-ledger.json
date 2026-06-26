@@ -1,0 +1,1858 @@
+{
+  "benchmark_version": "2026-03-15.quality-v17",
+  "contract_version": "2026-03-15.quality-v17",
+  "generatedAt": "2026-03-16T16:08:02.407Z",
+  "layers": [
+    {
+      "layer": "layer_a",
+      "corpus_version": "unversioned",
+      "counts": {
+        "benign": 17,
+        "malicious": 15,
+        "true_positives": 15,
+        "false_negatives": 0,
+        "false_positives": 0,
+        "true_negatives": 17
+      },
+      "metrics": {
+        "precision": 1,
+        "recall": 1,
+        "false_positive_rate": 0,
+        "false_negative_rate": 0,
+        "category_coverage": 1
+      },
+      "benign_results": [
+        {
+          "id": "benign-log",
+          "title": "benign-log",
+          "expected": "benign",
+          "detected": false,
+          "risk": 0,
+          "safe": true,
+          "matchedCategories": [],
+          "categoryCoverage": 1,
+          "detections": []
+        },
+        {
+          "id": "benign-api",
+          "title": "benign-api",
+          "expected": "benign",
+          "detected": false,
+          "risk": 0,
+          "safe": true,
+          "matchedCategories": [],
+          "categoryCoverage": 1,
+          "detections": []
+        },
+        {
+          "id": "benign-array",
+          "title": "benign-array",
+          "expected": "benign",
+          "detected": false,
+          "risk": 0,
+          "safe": true,
+          "matchedCategories": [],
+          "categoryCoverage": 1,
+          "detections": []
+        },
+        {
+          "id": "benign-readme",
+          "title": "benign-readme",
+          "expected": "benign",
+          "detected": false,
+          "risk": 0,
+          "safe": true,
+          "matchedCategories": [],
+          "categoryCoverage": 1,
+          "detections": []
+        },
+        {
+          "id": "benign-json-parse",
+          "title": "benign-json-parse",
+          "expected": "benign",
+          "detected": false,
+          "risk": 0,
+          "safe": true,
+          "matchedCategories": [],
+          "categoryCoverage": 1,
+          "detections": []
+        },
+        {
+          "id": "benign-safe-fetch",
+          "title": "benign-safe-fetch",
+          "expected": "benign",
+          "detected": false,
+          "risk": 0,
+          "safe": true,
+          "matchedCategories": [],
+          "categoryCoverage": 1,
+          "detections": []
+        },
+        {
+          "id": "benign-file-read",
+          "title": "benign-file-read",
+          "expected": "benign",
+          "detected": false,
+          "risk": 0,
+          "safe": true,
+          "matchedCategories": [],
+          "categoryCoverage": 1,
+          "detections": []
+        },
+        {
+          "id": "benign-path-join",
+          "title": "benign-path-join",
+          "expected": "benign",
+          "detected": false,
+          "risk": 0,
+          "safe": true,
+          "matchedCategories": [],
+          "categoryCoverage": 1,
+          "detections": []
+        },
+        {
+          "id": "benign-git-command",
+          "title": "benign-git-command",
+          "expected": "benign",
+          "detected": false,
+          "risk": 0,
+          "safe": true,
+          "matchedCategories": [],
+          "categoryCoverage": 1,
+          "detections": []
+        },
+        {
+          "id": "benign-docs-security",
+          "title": "benign-docs-security",
+          "expected": "benign",
+          "detected": false,
+          "risk": 0,
+          "safe": true,
+          "matchedCategories": [],
+          "categoryCoverage": 1,
+          "detections": []
+        },
+        {
+          "id": "benign-cron-doc",
+          "title": "benign-cron-doc",
+          "expected": "benign",
+          "detected": false,
+          "risk": 0,
+          "safe": true,
+          "matchedCategories": [],
+          "categoryCoverage": 1,
+          "detections": []
+        },
+        {
+          "id": "benign-env-name",
+          "title": "benign-env-name",
+          "expected": "benign",
+          "detected": false,
+          "risk": 0,
+          "safe": true,
+          "matchedCategories": [],
+          "categoryCoverage": 1,
+          "detections": []
+        },
+        {
+          "id": "benign-yaml",
+          "title": "benign-yaml",
+          "expected": "benign",
+          "detected": false,
+          "risk": 0,
+          "safe": true,
+          "matchedCategories": [],
+          "categoryCoverage": 1,
+          "detections": []
+        },
+        {
+          "id": "benign-unit-test",
+          "title": "benign-unit-test",
+          "expected": "benign",
+          "detected": false,
+          "risk": 0,
+          "safe": true,
+          "matchedCategories": [],
+          "categoryCoverage": 1,
+          "detections": []
+        },
+        {
+          "id": "benign-html",
+          "title": "benign-html",
+          "expected": "benign",
+          "detected": false,
+          "risk": 0,
+          "safe": true,
+          "matchedCategories": [],
+          "categoryCoverage": 1,
+          "detections": []
+        },
+        {
+          "id": "benign-typescript",
+          "title": "benign-typescript",
+          "expected": "benign",
+          "detected": false,
+          "risk": 0,
+          "safe": true,
+          "matchedCategories": [],
+          "categoryCoverage": 1,
+          "detections": []
+        },
+        {
+          "id": "benign-safe-api",
+          "title": "benign-safe-api",
+          "expected": "benign",
+          "detected": false,
+          "risk": 0,
+          "safe": true,
+          "matchedCategories": [],
+          "categoryCoverage": 1,
+          "detections": []
+        }
+      ],
+      "malicious_results": [
+        {
+          "id": "mal-fetch-exec",
+          "title": "mal-fetch-exec",
+          "expected": "malicious",
+          "detected": true,
+          "risk": 66,
+          "safe": false,
+          "matchedCategories": [
+            "malicious-code",
+            "trust-boundary",
+            "data-flow"
+          ],
+          "categoryCoverage": 1,
+          "detections": [
+            {
+              "id": "MAL_EXEC",
+              "severity": "MEDIUM",
+              "category": "malicious-code"
+            },
+            {
+              "id": "TRUST_WEB_EXEC",
+              "severity": "HIGH",
+              "category": "trust-boundary"
+            },
+            {
+              "id": "AST_FETCH_TO_EXEC",
+              "severity": "CRITICAL",
+              "category": "data-flow"
+            }
+          ]
+        },
+        {
+          "id": "mal-curl-bash",
+          "title": "mal-curl-bash",
+          "expected": "malicious",
+          "detected": true,
+          "risk": 38,
+          "safe": false,
+          "matchedCategories": [
+            "suspicious-download"
+          ],
+          "categoryCoverage": 1,
+          "detections": [
+            {
+              "id": "DL_CURL_BASH",
+              "severity": "CRITICAL",
+              "category": "suspicious-download"
+            }
+          ]
+        },
+        {
+          "id": "mal-env-curl",
+          "title": "mal-env-curl",
+          "expected": "malicious",
+          "detected": true,
+          "risk": 40,
+          "safe": false,
+          "matchedCategories": [
+            "exfiltration"
+          ],
+          "categoryCoverage": 1,
+          "detections": [
+            {
+              "id": "CHAIN_ENV_TO_CURL",
+              "severity": "CRITICAL",
+              "category": "exfiltration"
+            }
+          ]
+        },
+        {
+          "id": "mal-process-env-exfil",
+          "title": "mal-process-env-exfil",
+          "expected": "malicious",
+          "detected": true,
+          "risk": 48,
+          "safe": false,
+          "matchedCategories": [
+            "exfiltration",
+            "agent-protocol"
+          ],
+          "categoryCoverage": 1,
+          "detections": [
+            {
+              "id": "EXFIL_POST",
+              "severity": "HIGH",
+              "category": "exfiltration"
+            },
+            {
+              "id": "TM_ENV_ACCESS_NETWORK",
+              "severity": "CRITICAL",
+              "category": "agent-protocol",
+              "validation_status": "validated"
+            }
+          ]
+        },
+        {
+          "id": "mal-websocket-hijack",
+          "title": "mal-websocket-hijack",
+          "expected": "malicious",
+          "detected": true,
+          "risk": 70,
+          "safe": false,
+          "matchedCategories": [
+            "malicious-code",
+            "cve-patterns",
+            "agent-protocol"
+          ],
+          "categoryCoverage": 1,
+          "detections": [
+            {
+              "id": "MAL_EXEC",
+              "severity": "MEDIUM",
+              "category": "malicious-code"
+            },
+            {
+              "id": "OPENCLAW_WSS_HIJACK",
+              "severity": "CRITICAL",
+              "category": "cve-patterns"
+            },
+            {
+              "id": "PROTO_WS_INSECURE_TRANSPORT",
+              "severity": "HIGH",
+              "category": "agent-protocol"
+            }
+          ]
+        },
+        {
+          "id": "mal-oauth-callback-inject",
+          "title": "mal-oauth-callback-inject",
+          "expected": "malicious",
+          "detected": true,
+          "risk": 41,
+          "safe": false,
+          "matchedCategories": [
+            "malicious-code",
+            "mcp-security"
+          ],
+          "categoryCoverage": 1,
+          "detections": [
+            {
+              "id": "MAL_EXEC",
+              "severity": "MEDIUM",
+              "category": "malicious-code"
+            },
+            {
+              "id": "MCP_OAUTH_CMD_INJECT",
+              "severity": "CRITICAL",
+              "category": "mcp-security"
+            }
+          ]
+        },
+        {
+          "id": "mal-soul-overwrite",
+          "title": "mal-soul-overwrite",
+          "expected": "malicious",
+          "detected": true,
+          "risk": 100,
+          "safe": false,
+          "matchedCategories": [
+            "persistence",
+            "identity-hijack"
+          ],
+          "categoryCoverage": 1,
+          "detections": [
+            {
+              "id": "PERSIST_CRON",
+              "severity": "HIGH",
+              "category": "persistence"
+            },
+            {
+              "id": "SOUL_FS_WRITE",
+              "severity": "CRITICAL",
+              "category": "identity-hijack"
+            }
+          ]
+        },
+        {
+          "id": "mal-memory-poison",
+          "title": "mal-memory-poison",
+          "expected": "malicious",
+          "detected": true,
+          "risk": 57,
+          "safe": false,
+          "matchedCategories": [
+            "memory-poisoning"
+          ],
+          "categoryCoverage": 1,
+          "detections": [
+            {
+              "id": "ASI06_MEMORY_POISONING",
+              "severity": "CRITICAL",
+              "category": "memory-poisoning"
+            }
+          ]
+        },
+        {
+          "id": "mal-shadow-ai-pii",
+          "title": "mal-shadow-ai-pii",
+          "expected": "malicious",
+          "detected": true,
+          "risk": 100,
+          "safe": false,
+          "matchedCategories": [
+            "pii-exposure"
+          ],
+          "categoryCoverage": 1,
+          "detections": [
+            {
+              "id": "PII_HARDCODED_SSN",
+              "severity": "CRITICAL",
+              "category": "pii-exposure"
+            },
+            {
+              "id": "PII_SEND_NETWORK",
+              "severity": "CRITICAL",
+              "category": "pii-exposure"
+            },
+            {
+              "id": "SHADOW_AI_OPENAI",
+              "severity": "HIGH",
+              "category": "pii-exposure"
+            },
+            {
+              "id": "SHADOW_AI_GENERIC",
+              "severity": "MEDIUM",
+              "category": "pii-exposure"
+            }
+          ]
+        },
+        {
+          "id": "mal-typosquat-install",
+          "title": "mal-typosquat-install",
+          "expected": "malicious",
+          "detected": true,
+          "risk": 12,
+          "safe": true,
+          "matchedCategories": [
+            "suspicious-download"
+          ],
+          "categoryCoverage": 1,
+          "detections": [
+            {
+              "id": "SLOPSQUATTING_INSTALL",
+              "severity": "HIGH",
+              "category": "suspicious-download"
+            }
+          ]
+        },
+        {
+          "id": "mal-browser-prompt-chain",
+          "title": "mal-browser-prompt-chain",
+          "expected": "malicious",
+          "detected": true,
+          "risk": 100,
+          "safe": false,
+          "matchedCategories": [
+            "trust-boundary",
+            "exfiltration"
+          ],
+          "categoryCoverage": 1,
+          "detections": [
+            {
+              "id": "TRUST_CALENDAR_EXEC",
+              "severity": "CRITICAL",
+              "category": "trust-boundary"
+            },
+            {
+              "id": "TRUST_CALENDAR_AI",
+              "severity": "CRITICAL",
+              "category": "trust-boundary"
+            },
+            {
+              "id": "TRUST_AGENTIC_BROWSER_PI",
+              "severity": "CRITICAL",
+              "category": "trust-boundary"
+            },
+            {
+              "id": "AGENTIC_BROWSER_EXFIL_CHAIN",
+              "severity": "CRITICAL",
+              "category": "trust-boundary"
+            },
+            {
+              "id": "FETCH_EXFIL_CHAIN",
+              "severity": "CRITICAL",
+              "category": "exfiltration"
+            }
+          ]
+        },
+        {
+          "id": "mal-prompt-injection-doc",
+          "title": "mal-prompt-injection-doc",
+          "expected": "malicious",
+          "detected": true,
+          "risk": 38,
+          "safe": false,
+          "matchedCategories": [
+            "mcp-security"
+          ],
+          "categoryCoverage": 1,
+          "detections": [
+            {
+              "id": "MCP_TOOL_POISON",
+              "severity": "CRITICAL",
+              "category": "mcp-security"
+            }
+          ]
+        },
+        {
+          "id": "mal-path-inject",
+          "title": "mal-path-inject",
+          "expected": "malicious",
+          "detected": true,
+          "risk": 70,
+          "safe": false,
+          "matchedCategories": [
+            "malicious-code",
+            "cve-patterns"
+          ],
+          "categoryCoverage": 1,
+          "detections": [
+            {
+              "id": "MAL_EXEC",
+              "severity": "MEDIUM",
+              "category": "malicious-code"
+            },
+            {
+              "id": "OPENCLAW_DOCKER_PATH_INJECT",
+              "severity": "CRITICAL",
+              "category": "cve-patterns"
+            }
+          ]
+        },
+        {
+          "id": "mal-reverse-shell",
+          "title": "mal-reverse-shell",
+          "expected": "malicious",
+          "detected": true,
+          "risk": 70,
+          "safe": false,
+          "matchedCategories": [
+            "malicious-code",
+            "cve-patterns",
+            "unverifiable-deps"
+          ],
+          "categoryCoverage": 1,
+          "detections": [
+            {
+              "id": "MAL_CHILD",
+              "severity": "MEDIUM",
+              "category": "malicious-code"
+            },
+            {
+              "id": "MAL_EXEC",
+              "severity": "MEDIUM",
+              "category": "malicious-code"
+            },
+            {
+              "id": "HAVOC_DEVTCP",
+              "severity": "CRITICAL",
+              "category": "cve-patterns"
+            },
+            {
+              "id": "DEPS_PHANTOM_IMPORT",
+              "severity": "LOW",
+              "category": "unverifiable-deps"
+            }
+          ]
+        },
+        {
+          "id": "mal-secret-webhook",
+          "title": "mal-secret-webhook",
+          "expected": "malicious",
+          "detected": true,
+          "risk": 100,
+          "safe": false,
+          "matchedCategories": [
+            "exfiltration"
+          ],
+          "categoryCoverage": 1,
+          "detections": [
+            {
+              "id": "IOC_DOMAIN",
+              "severity": "HIGH",
+              "category": "exfiltration"
+            },
+            {
+              "id": "EXFIL_WEBHOOK",
+              "severity": "CRITICAL",
+              "category": "exfiltration"
+            },
+            {
+              "id": "EXFIL_POST",
+              "severity": "HIGH",
+              "category": "exfiltration"
+            },
+            {
+              "id": "FETCH_EXFIL_CHAIN",
+              "severity": "CRITICAL",
+              "category": "exfiltration"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "layer": "layer_b",
+      "corpus_version": "layer-b-2026-03-13",
+      "counts": {
+        "benign": 12,
+        "malicious": 12,
+        "true_positives": 11,
+        "false_negatives": 1,
+        "false_positives": 1,
+        "true_negatives": 11
+      },
+      "metrics": {
+        "precision": 0.9167,
+        "recall": 0.9167,
+        "false_positive_rate": 0.0833,
+        "false_negative_rate": 0.0833,
+        "category_coverage": 0.7917
+      },
+      "benign_results": [
+        {
+          "id": "adv-benign-01",
+          "title": "security-doc-prompt",
+          "expected": "benign",
+          "detected": false,
+          "risk": 0,
+          "safe": true,
+          "matchedCategories": [],
+          "categoryCoverage": 1,
+          "detections": []
+        },
+        {
+          "id": "adv-benign-02",
+          "title": "unicode-doc",
+          "expected": "benign",
+          "detected": false,
+          "risk": 0,
+          "safe": true,
+          "matchedCategories": [],
+          "categoryCoverage": 1,
+          "detections": []
+        },
+        {
+          "id": "adv-benign-03",
+          "title": "network-doc",
+          "expected": "benign",
+          "detected": false,
+          "risk": 0,
+          "safe": true,
+          "matchedCategories": [],
+          "categoryCoverage": 1,
+          "detections": []
+        },
+        {
+          "id": "adv-benign-04",
+          "title": "memory-policy-doc",
+          "expected": "benign",
+          "detected": false,
+          "risk": 0,
+          "safe": true,
+          "matchedCategories": [],
+          "categoryCoverage": 1,
+          "detections": []
+        },
+        {
+          "id": "adv-benign-05",
+          "title": "supply-chain-note",
+          "expected": "benign",
+          "detected": false,
+          "risk": 0,
+          "safe": true,
+          "matchedCategories": [],
+          "categoryCoverage": 1,
+          "detections": []
+        },
+        {
+          "id": "adv-benign-06",
+          "title": "secret-placeholder",
+          "expected": "benign",
+          "detected": true,
+          "risk": 3,
+          "safe": true,
+          "matchedCategories": [
+            "credential-handling"
+          ],
+          "categoryCoverage": 1,
+          "detections": [
+            {
+              "id": "CRED_ENV_REF",
+              "severity": "MEDIUM",
+              "category": "credential-handling"
+            }
+          ]
+        },
+        {
+          "id": "adv-benign-07",
+          "title": "cloud-doc",
+          "expected": "benign",
+          "detected": false,
+          "risk": 0,
+          "safe": true,
+          "matchedCategories": [],
+          "categoryCoverage": 1,
+          "detections": []
+        },
+        {
+          "id": "adv-benign-08",
+          "title": "trust-model-doc",
+          "expected": "benign",
+          "detected": false,
+          "risk": 0,
+          "safe": true,
+          "matchedCategories": [],
+          "categoryCoverage": 1,
+          "detections": []
+        },
+        {
+          "id": "adv-benign-09",
+          "title": "shell-education",
+          "expected": "benign",
+          "detected": false,
+          "risk": 0,
+          "safe": true,
+          "matchedCategories": [],
+          "categoryCoverage": 1,
+          "detections": []
+        },
+        {
+          "id": "adv-benign-10",
+          "title": "registry-note",
+          "expected": "benign",
+          "detected": false,
+          "risk": 0,
+          "safe": true,
+          "matchedCategories": [],
+          "categoryCoverage": 1,
+          "detections": []
+        },
+        {
+          "id": "adv-benign-11",
+          "title": "config-doc",
+          "expected": "benign",
+          "detected": false,
+          "risk": 0,
+          "safe": true,
+          "matchedCategories": [],
+          "categoryCoverage": 1,
+          "detections": []
+        },
+        {
+          "id": "adv-benign-12",
+          "title": "memory-article",
+          "expected": "benign",
+          "detected": false,
+          "risk": 0,
+          "safe": true,
+          "matchedCategories": [],
+          "categoryCoverage": 1,
+          "detections": []
+        }
+      ],
+      "malicious_results": [
+        {
+          "id": "adv-mal-01",
+          "title": "prompt-basic",
+          "expected": "malicious",
+          "detected": false,
+          "risk": 0,
+          "safe": true,
+          "matchedCategories": [],
+          "categoryCoverage": 0,
+          "detections": []
+        },
+        {
+          "id": "adv-mal-02",
+          "title": "curl-bash",
+          "expected": "malicious",
+          "detected": true,
+          "risk": 38,
+          "safe": false,
+          "matchedCategories": [
+            "suspicious-download"
+          ],
+          "categoryCoverage": 1,
+          "detections": [
+            {
+              "id": "DL_CURL_BASH",
+              "severity": "CRITICAL",
+              "category": "suspicious-download"
+            }
+          ]
+        },
+        {
+          "id": "adv-mal-03",
+          "title": "env-exfil",
+          "expected": "malicious",
+          "detected": true,
+          "risk": 40,
+          "safe": false,
+          "matchedCategories": [
+            "exfiltration"
+          ],
+          "categoryCoverage": 1,
+          "detections": [
+            {
+              "id": "CHAIN_ENV_TO_CURL",
+              "severity": "CRITICAL",
+              "category": "exfiltration"
+            }
+          ]
+        },
+        {
+          "id": "adv-mal-04",
+          "title": "fetch-exec",
+          "expected": "malicious",
+          "detected": true,
+          "risk": 62,
+          "safe": false,
+          "matchedCategories": [
+            "trust-boundary",
+            "data-flow"
+          ],
+          "categoryCoverage": 1,
+          "detections": [
+            {
+              "id": "TRUST_WEB_EXEC",
+              "severity": "HIGH",
+              "category": "trust-boundary"
+            },
+            {
+              "id": "AST_FETCH_TO_EXEC",
+              "severity": "CRITICAL",
+              "category": "data-flow"
+            }
+          ]
+        },
+        {
+          "id": "adv-mal-05",
+          "title": "cloud-meta",
+          "expected": "malicious",
+          "detected": true,
+          "risk": 76,
+          "safe": false,
+          "matchedCategories": [
+            "mcp-security",
+            "credential-handling"
+          ],
+          "categoryCoverage": 1,
+          "detections": [
+            {
+              "id": "MCP_SSRF_META",
+              "severity": "CRITICAL",
+              "category": "mcp-security"
+            },
+            {
+              "id": "CRED_CLOUD_METADATA",
+              "severity": "CRITICAL",
+              "category": "credential-handling"
+            }
+          ]
+        },
+        {
+          "id": "adv-mal-06",
+          "title": "webhook-exfil",
+          "expected": "malicious",
+          "detected": true,
+          "risk": 100,
+          "safe": false,
+          "matchedCategories": [
+            "exfiltration",
+            "credential-handling",
+            "agent-protocol"
+          ],
+          "categoryCoverage": 1,
+          "detections": [
+            {
+              "id": "IOC_DOMAIN",
+              "severity": "HIGH",
+              "category": "exfiltration"
+            },
+            {
+              "id": "CRED_ENV_REF",
+              "severity": "MEDIUM",
+              "category": "credential-handling"
+            },
+            {
+              "id": "EXFIL_WEBHOOK",
+              "severity": "CRITICAL",
+              "category": "exfiltration"
+            },
+            {
+              "id": "EXFIL_POST",
+              "severity": "HIGH",
+              "category": "exfiltration"
+            },
+            {
+              "id": "FETCH_EXFIL_CHAIN",
+              "severity": "CRITICAL",
+              "category": "exfiltration"
+            },
+            {
+              "id": "TM_ENV_ACCESS_NETWORK",
+              "severity": "CRITICAL",
+              "category": "agent-protocol",
+              "validation_status": "validated"
+            }
+          ]
+        },
+        {
+          "id": "adv-mal-07",
+          "title": "b64-shell",
+          "expected": "malicious",
+          "detected": true,
+          "risk": 38,
+          "safe": false,
+          "matchedCategories": [
+            "obfuscation"
+          ],
+          "categoryCoverage": 0.5,
+          "detections": [
+            {
+              "id": "OBF_BASE64_BASH",
+              "severity": "CRITICAL",
+              "category": "obfuscation"
+            }
+          ]
+        },
+        {
+          "id": "adv-mal-08",
+          "title": "runtime-trust",
+          "expected": "malicious",
+          "detected": true,
+          "risk": 12,
+          "safe": true,
+          "matchedCategories": [
+            "trust-exploitation"
+          ],
+          "categoryCoverage": 0,
+          "detections": [
+            {
+              "id": "COG_TRUST_BIAS_V16",
+              "severity": "HIGH",
+              "category": "trust-exploitation"
+            }
+          ]
+        },
+        {
+          "id": "adv-mal-09",
+          "title": "config-tamper",
+          "expected": "malicious",
+          "detected": true,
+          "risk": 100,
+          "safe": false,
+          "matchedCategories": [
+            "cve-patterns",
+            "config-impact"
+          ],
+          "categoryCoverage": 1,
+          "detections": [
+            {
+              "id": "CVE_SANDBOX_DISABLE",
+              "severity": "CRITICAL",
+              "category": "cve-patterns"
+            },
+            {
+              "id": "CVE_API_GUARDRAIL_OFF",
+              "severity": "CRITICAL",
+              "category": "cve-patterns"
+            },
+            {
+              "id": "CFG_EXEC_HOST_GW",
+              "severity": "CRITICAL",
+              "category": "config-impact"
+            }
+          ]
+        },
+        {
+          "id": "adv-mal-10",
+          "title": "supply-chain-remote",
+          "expected": "malicious",
+          "detected": true,
+          "risk": 88,
+          "safe": false,
+          "matchedCategories": [
+            "suspicious-download",
+            "supply-chain-v2"
+          ],
+          "categoryCoverage": 1,
+          "detections": [
+            {
+              "id": "DL_CURL_BASH",
+              "severity": "CRITICAL",
+              "category": "suspicious-download"
+            },
+            {
+              "id": "SUPPLY_STAR_VERSION",
+              "severity": "HIGH",
+              "category": "supply-chain-v2"
+            },
+            {
+              "id": "SUPPLY_POSTINSTALL_RCE",
+              "severity": "CRITICAL",
+              "category": "supply-chain-v2"
+            }
+          ]
+        },
+        {
+          "id": "adv-mal-11",
+          "title": "webhook-hardcoded",
+          "expected": "malicious",
+          "detected": true,
+          "risk": 100,
+          "safe": false,
+          "matchedCategories": [
+            "exfiltration"
+          ],
+          "categoryCoverage": 1,
+          "detections": [
+            {
+              "id": "IOC_DOMAIN",
+              "severity": "HIGH",
+              "category": "exfiltration"
+            },
+            {
+              "id": "EXFIL_WEBHOOK",
+              "severity": "CRITICAL",
+              "category": "exfiltration"
+            },
+            {
+              "id": "EXFIL_POST",
+              "severity": "HIGH",
+              "category": "exfiltration"
+            },
+            {
+              "id": "FETCH_EXFIL_CHAIN",
+              "severity": "CRITICAL",
+              "category": "exfiltration"
+            }
+          ]
+        },
+        {
+          "id": "adv-mal-12",
+          "title": "destructive-exec",
+          "expected": "malicious",
+          "detected": true,
+          "risk": 46,
+          "safe": false,
+          "matchedCategories": [
+            "malicious-code",
+            "suspicious-download",
+            "unverifiable-deps"
+          ],
+          "categoryCoverage": 1,
+          "detections": [
+            {
+              "id": "MAL_CHILD",
+              "severity": "MEDIUM",
+              "category": "malicious-code"
+            },
+            {
+              "id": "MAL_EXEC",
+              "severity": "MEDIUM",
+              "category": "malicious-code"
+            },
+            {
+              "id": "DL_CURL_BASH",
+              "severity": "CRITICAL",
+              "category": "suspicious-download"
+            },
+            {
+              "id": "DEPS_PHANTOM_IMPORT",
+              "severity": "LOW",
+              "category": "unverifiable-deps"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "layer": "layer_c",
+      "corpus_version": "layer-c-2026-03-13",
+      "counts": {
+        "benign": 8,
+        "malicious": 8,
+        "true_positives": 8,
+        "false_negatives": 0,
+        "false_positives": 0,
+        "true_negatives": 8
+      },
+      "metrics": {
+        "precision": 1,
+        "recall": 1,
+        "false_positive_rate": 0,
+        "false_negative_rate": 0,
+        "category_coverage": 0.7291
+      },
+      "benign_results": [
+        {
+          "id": "eco-benign-01",
+          "title": "openclaw-setup-doc",
+          "expected": "benign",
+          "detected": false,
+          "risk": 0,
+          "safe": true,
+          "matchedCategories": [],
+          "categoryCoverage": 1,
+          "detections": []
+        },
+        {
+          "id": "eco-benign-02",
+          "title": "mcp-readme",
+          "expected": "benign",
+          "detected": false,
+          "risk": 0,
+          "safe": true,
+          "matchedCategories": [],
+          "categoryCoverage": 1,
+          "detections": []
+        },
+        {
+          "id": "eco-benign-03",
+          "title": "copilot-mcp-note",
+          "expected": "benign",
+          "detected": false,
+          "risk": 0,
+          "safe": true,
+          "matchedCategories": [],
+          "categoryCoverage": 1,
+          "detections": []
+        },
+        {
+          "id": "eco-benign-04",
+          "title": "security-policy",
+          "expected": "benign",
+          "detected": false,
+          "risk": 0,
+          "safe": true,
+          "matchedCategories": [],
+          "categoryCoverage": 1,
+          "detections": []
+        },
+        {
+          "id": "eco-benign-05",
+          "title": "sbom-note",
+          "expected": "benign",
+          "detected": false,
+          "risk": 0,
+          "safe": true,
+          "matchedCategories": [],
+          "categoryCoverage": 1,
+          "detections": []
+        },
+        {
+          "id": "eco-benign-06",
+          "title": "sandbox-spec",
+          "expected": "benign",
+          "detected": false,
+          "risk": 0,
+          "safe": true,
+          "matchedCategories": [],
+          "categoryCoverage": 1,
+          "detections": []
+        },
+        {
+          "id": "eco-benign-07",
+          "title": "quality-contract",
+          "expected": "benign",
+          "detected": false,
+          "risk": 0,
+          "safe": true,
+          "matchedCategories": [],
+          "categoryCoverage": 1,
+          "detections": []
+        },
+        {
+          "id": "eco-benign-08",
+          "title": "cve-summary",
+          "expected": "benign",
+          "detected": false,
+          "risk": 0,
+          "safe": true,
+          "matchedCategories": [],
+          "categoryCoverage": 1,
+          "detections": []
+        }
+      ],
+      "malicious_results": [
+        {
+          "id": "eco-mal-01",
+          "title": "mcp-shadow",
+          "expected": "malicious",
+          "detected": true,
+          "risk": 12,
+          "safe": true,
+          "matchedCategories": [
+            "trust-boundary"
+          ],
+          "categoryCoverage": 0.5,
+          "detections": [
+            {
+              "id": "TRUST_WEB_EXEC",
+              "severity": "HIGH",
+              "category": "trust-boundary"
+            }
+          ]
+        },
+        {
+          "id": "eco-mal-02",
+          "title": "a2a-replay",
+          "expected": "malicious",
+          "detected": true,
+          "risk": 50,
+          "safe": false,
+          "matchedCategories": [
+            "exfiltration"
+          ],
+          "categoryCoverage": 1,
+          "detections": [
+            {
+              "id": "IOC_DOMAIN",
+              "severity": "HIGH",
+              "category": "exfiltration"
+            },
+            {
+              "id": "EXFIL_WEBHOOK",
+              "severity": "CRITICAL",
+              "category": "exfiltration"
+            }
+          ]
+        },
+        {
+          "id": "eco-mal-03",
+          "title": "runtime-hijack",
+          "expected": "malicious",
+          "detected": true,
+          "risk": 70,
+          "safe": false,
+          "matchedCategories": [
+            "cve-patterns",
+            "agent-protocol"
+          ],
+          "categoryCoverage": 1,
+          "detections": [
+            {
+              "id": "CVE_GATEWAY_URL",
+              "severity": "CRITICAL",
+              "category": "cve-patterns"
+            },
+            {
+              "id": "PROTO_WS_INSECURE_TRANSPORT",
+              "severity": "HIGH",
+              "category": "agent-protocol"
+            }
+          ]
+        },
+        {
+          "id": "eco-mal-04",
+          "title": "copilot-tool-abuse",
+          "expected": "malicious",
+          "detected": true,
+          "risk": 50,
+          "safe": false,
+          "matchedCategories": [
+            "exfiltration"
+          ],
+          "categoryCoverage": 1,
+          "detections": [
+            {
+              "id": "IOC_DOMAIN",
+              "severity": "HIGH",
+              "category": "exfiltration"
+            },
+            {
+              "id": "EXFIL_WEBHOOK",
+              "severity": "CRITICAL",
+              "category": "exfiltration"
+            }
+          ]
+        },
+        {
+          "id": "eco-mal-05",
+          "title": "skill-poison",
+          "expected": "malicious",
+          "detected": true,
+          "risk": 38,
+          "safe": false,
+          "matchedCategories": [
+            "suspicious-download"
+          ],
+          "categoryCoverage": 0.333,
+          "detections": [
+            {
+              "id": "DL_CURL_BASH",
+              "severity": "CRITICAL",
+              "category": "suspicious-download"
+            }
+          ]
+        },
+        {
+          "id": "eco-mal-06",
+          "title": "memory-retrieval-poison",
+          "expected": "malicious",
+          "detected": true,
+          "risk": 100,
+          "safe": false,
+          "matchedCategories": [
+            "exfiltration",
+            "credential-handling",
+            "agent-protocol"
+          ],
+          "categoryCoverage": 1,
+          "detections": [
+            {
+              "id": "IOC_DOMAIN",
+              "severity": "HIGH",
+              "category": "exfiltration"
+            },
+            {
+              "id": "CRED_ENV_REF",
+              "severity": "MEDIUM",
+              "category": "credential-handling"
+            },
+            {
+              "id": "EXFIL_WEBHOOK",
+              "severity": "CRITICAL",
+              "category": "exfiltration"
+            },
+            {
+              "id": "EXFIL_POST",
+              "severity": "HIGH",
+              "category": "exfiltration"
+            },
+            {
+              "id": "FETCH_EXFIL_CHAIN",
+              "severity": "CRITICAL",
+              "category": "exfiltration"
+            },
+            {
+              "id": "PROTO_CRED_FLOW_TRACE_V16",
+              "severity": "CRITICAL",
+              "category": "credential-handling"
+            },
+            {
+              "id": "TM_ENV_ACCESS_NETWORK",
+              "severity": "CRITICAL",
+              "category": "agent-protocol",
+              "validation_status": "validated"
+            }
+          ]
+        },
+        {
+          "id": "eco-mal-07",
+          "title": "secret-network",
+          "expected": "malicious",
+          "detected": true,
+          "risk": 100,
+          "safe": false,
+          "matchedCategories": [
+            "exfiltration",
+            "credential-handling"
+          ],
+          "categoryCoverage": 1,
+          "detections": [
+            {
+              "id": "IOC_DOMAIN",
+              "severity": "HIGH",
+              "category": "exfiltration"
+            },
+            {
+              "id": "EXFIL_WEBHOOK",
+              "severity": "CRITICAL",
+              "category": "exfiltration"
+            },
+            {
+              "id": "PROTO_CRED_FLOW_TRACE_V16",
+              "severity": "CRITICAL",
+              "category": "credential-handling"
+            }
+          ]
+        },
+        {
+          "id": "eco-mal-08",
+          "title": "policy-bypass",
+          "expected": "malicious",
+          "detected": true,
+          "risk": 12,
+          "safe": true,
+          "matchedCategories": [
+            "trust-exploitation"
+          ],
+          "categoryCoverage": 0,
+          "detections": [
+            {
+              "id": "COG_TRUST_BIAS_V16",
+              "severity": "HIGH",
+              "category": "trust-exploitation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "layer": "layer_protocol",
+      "corpus_version": "layer-protocol-2026-03-15",
+      "counts": {
+        "benign": 4,
+        "malicious": 4,
+        "true_positives": 4,
+        "false_negatives": 0,
+        "false_positives": 0,
+        "true_negatives": 4
+      },
+      "metrics": {
+        "precision": 1,
+        "recall": 1,
+        "false_positive_rate": 0,
+        "false_negative_rate": 0,
+        "category_coverage": 1
+      },
+      "benign_results": [
+        {
+          "id": "proto-benign-01",
+          "title": "safe-mcp-doc",
+          "expected": "benign",
+          "detected": false,
+          "risk": 0,
+          "safe": true,
+          "matchedCategories": [],
+          "categoryCoverage": 1,
+          "detections": []
+        },
+        {
+          "id": "proto-benign-02",
+          "title": "jsonrpc-doc",
+          "expected": "benign",
+          "detected": false,
+          "risk": 0,
+          "safe": true,
+          "matchedCategories": [],
+          "categoryCoverage": 1,
+          "detections": []
+        },
+        {
+          "id": "proto-benign-03",
+          "title": "connector-provenance",
+          "expected": "benign",
+          "detected": false,
+          "risk": 0,
+          "safe": true,
+          "matchedCategories": [],
+          "categoryCoverage": 1,
+          "detections": []
+        },
+        {
+          "id": "proto-benign-04",
+          "title": "session-isolation",
+          "expected": "benign",
+          "detected": false,
+          "risk": 0,
+          "safe": true,
+          "matchedCategories": [],
+          "categoryCoverage": 1,
+          "detections": []
+        }
+      ],
+      "malicious_results": [
+        {
+          "id": "proto-mal-01",
+          "title": "mcp-ssrf",
+          "expected": "malicious",
+          "detected": true,
+          "risk": 100,
+          "safe": false,
+          "matchedCategories": [
+            "mcp-security",
+            "credential-handling"
+          ],
+          "categoryCoverage": 1,
+          "detections": [
+            {
+              "id": "MCP_SSRF_META",
+              "severity": "CRITICAL",
+              "category": "mcp-security"
+            },
+            {
+              "id": "CRED_CLOUD_METADATA",
+              "severity": "CRITICAL",
+              "category": "credential-handling"
+            },
+            {
+              "id": "PROTO_MCP_SSRF_V17",
+              "severity": "CRITICAL",
+              "category": "mcp-security"
+            }
+          ]
+        },
+        {
+          "id": "proto-mal-02",
+          "title": "connector-poison",
+          "expected": "malicious",
+          "detected": true,
+          "risk": 52,
+          "safe": false,
+          "matchedCategories": [
+            "mcp-security",
+            "unverifiable-deps"
+          ],
+          "categoryCoverage": 1,
+          "detections": [
+            {
+              "id": "MCP_SHADOW_SERVER",
+              "severity": "HIGH",
+              "category": "mcp-security"
+            },
+            {
+              "id": "MCP_CVE_2026_32247_CONNECTOR_POISON",
+              "severity": "HIGH",
+              "category": "mcp-security"
+            },
+            {
+              "id": "MCP_REGISTRY_OVERRIDE",
+              "severity": "HIGH",
+              "category": "mcp-security"
+            },
+            {
+              "id": "PROTO_MCP_CONNECTOR_POISON_V17",
+              "severity": "HIGH",
+              "category": "mcp-security"
+            },
+            {
+              "id": "TI_REGISTRY_SHADOW_HINT_V16",
+              "severity": "MEDIUM",
+              "category": "unverifiable-deps"
+            }
+          ]
+        },
+        {
+          "id": "proto-mal-03",
+          "title": "jsonrpc-smuggle",
+          "expected": "malicious",
+          "detected": true,
+          "risk": 100,
+          "safe": false,
+          "matchedCategories": [
+            "a2a-contagion",
+            "agent-protocol",
+            "mcp-security"
+          ],
+          "categoryCoverage": 1,
+          "detections": [
+            {
+              "id": "A2A_SMUGGLE",
+              "severity": "CRITICAL",
+              "category": "a2a-contagion"
+            },
+            {
+              "id": "PROTO_STDIO_INJECT",
+              "severity": "HIGH",
+              "category": "agent-protocol"
+            },
+            {
+              "id": "MCP_CVE_2026_31841_INJECTION",
+              "severity": "CRITICAL",
+              "category": "mcp-security"
+            },
+            {
+              "id": "PROTO_MCP_TOOL_MUTATION_V16",
+              "severity": "HIGH",
+              "category": "mcp-security"
+            },
+            {
+              "id": "PROTO_MCP_JSONRPC_INJECT_V17",
+              "severity": "CRITICAL",
+              "category": "mcp-security"
+            }
+          ]
+        },
+        {
+          "id": "proto-mal-04",
+          "title": "cross-client-leak",
+          "expected": "malicious",
+          "detected": true,
+          "risk": 12,
+          "safe": true,
+          "matchedCategories": [
+            "mcp-security"
+          ],
+          "categoryCoverage": 1,
+          "detections": [
+            {
+              "id": "MCP_CROSS_CLIENT_DATA_LEAK",
+              "severity": "HIGH",
+              "category": "mcp-security"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "layer": "layer_capability",
+      "corpus_version": "layer-capability-2026-03-15",
+      "counts": {
+        "benign": 4,
+        "malicious": 4,
+        "true_positives": 4,
+        "false_negatives": 0,
+        "false_positives": 0,
+        "true_negatives": 4
+      },
+      "metrics": {
+        "precision": 1,
+        "recall": 1,
+        "false_positive_rate": 0,
+        "false_negative_rate": 0,
+        "category_coverage": 1
+      },
+      "benign_results": [
+        {
+          "id": "cap-benign-01",
+          "title": "safe-read",
+          "expected": "benign",
+          "detected": false,
+          "risk": 0,
+          "safe": true,
+          "matchedCategories": [],
+          "categoryCoverage": 1,
+          "detections": []
+        },
+        {
+          "id": "cap-benign-02",
+          "title": "safe-network",
+          "expected": "benign",
+          "detected": false,
+          "risk": 0,
+          "safe": true,
+          "matchedCategories": [],
+          "categoryCoverage": 1,
+          "detections": []
+        },
+        {
+          "id": "cap-benign-03",
+          "title": "safe-upload-doc",
+          "expected": "benign",
+          "detected": false,
+          "risk": 0,
+          "safe": true,
+          "matchedCategories": [],
+          "categoryCoverage": 1,
+          "detections": []
+        },
+        {
+          "id": "cap-benign-04",
+          "title": "approval-doc",
+          "expected": "benign",
+          "detected": false,
+          "risk": 0,
+          "safe": true,
+          "matchedCategories": [],
+          "categoryCoverage": 1,
+          "detections": []
+        }
+      ],
+      "malicious_results": [
+        {
+          "id": "cap-mal-01",
+          "title": "lethal-trifecta",
+          "expected": "malicious",
+          "detected": true,
+          "risk": 100,
+          "safe": false,
+          "matchedCategories": [
+            "credential-handling",
+            "exfiltration",
+            "agent-protocol"
+          ],
+          "categoryCoverage": 1,
+          "detections": [
+            {
+              "id": "CRED_ENV_REF",
+              "severity": "MEDIUM",
+              "category": "credential-handling"
+            },
+            {
+              "id": "EXFIL_POST",
+              "severity": "HIGH",
+              "category": "exfiltration"
+            },
+            {
+              "id": "FETCH_EXFIL_CHAIN",
+              "severity": "CRITICAL",
+              "category": "exfiltration"
+            },
+            {
+              "id": "PROTO_CRED_FLOW_TRACE_V16",
+              "severity": "CRITICAL",
+              "category": "credential-handling"
+            },
+            {
+              "id": "TM_ENV_ACCESS_NETWORK",
+              "severity": "CRITICAL",
+              "category": "agent-protocol",
+              "validation_status": "validated"
+            },
+            {
+              "id": "TM_LETHAL_TRIFECTA",
+              "severity": "CRITICAL",
+              "category": "agent-protocol",
+              "validation_status": "validated"
+            }
+          ]
+        },
+        {
+          "id": "cap-mal-02",
+          "title": "fs-read-network",
+          "expected": "malicious",
+          "detected": true,
+          "risk": 14,
+          "safe": true,
+          "matchedCategories": [
+            "agent-protocol"
+          ],
+          "categoryCoverage": 1,
+          "detections": [
+            {
+              "id": "TM_FS_READ_NETWORK",
+              "severity": "HIGH",
+              "category": "agent-protocol",
+              "validation_status": "validated"
+            }
+          ]
+        },
+        {
+          "id": "cap-mal-03",
+          "title": "env-network",
+          "expected": "malicious",
+          "detected": true,
+          "risk": 100,
+          "safe": false,
+          "matchedCategories": [
+            "credential-handling",
+            "exfiltration",
+            "agent-protocol"
+          ],
+          "categoryCoverage": 1,
+          "detections": [
+            {
+              "id": "CRED_ENV_REF",
+              "severity": "MEDIUM",
+              "category": "credential-handling"
+            },
+            {
+              "id": "EXFIL_POST",
+              "severity": "HIGH",
+              "category": "exfiltration"
+            },
+            {
+              "id": "TM_ENV_ACCESS_NETWORK",
+              "severity": "CRITICAL",
+              "category": "agent-protocol",
+              "validation_status": "validated"
+            }
+          ]
+        },
+        {
+          "id": "cap-mal-04",
+          "title": "fs-network",
+          "expected": "malicious",
+          "detected": true,
+          "risk": 65,
+          "safe": false,
+          "matchedCategories": [
+            "credential-handling",
+            "agent-protocol"
+          ],
+          "categoryCoverage": 1,
+          "detections": [
+            {
+              "id": "CRED_ENV_FILE",
+              "severity": "HIGH",
+              "category": "credential-handling"
+            },
+            {
+              "id": "TM_FS_READ_NETWORK",
+              "severity": "HIGH",
+              "category": "agent-protocol",
+              "validation_status": "validated"
+            },
+            {
+              "id": "TM_LETHAL_TRIFECTA",
+              "severity": "CRITICAL",
+              "category": "agent-protocol",
+              "validation_status": "validated"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "aggregate": {
+    "counts": {
+      "benign": 45,
+      "malicious": 43,
+      "true_positives": 42,
+      "false_negatives": 1,
+      "false_positives": 1,
+      "true_negatives": 44
+    },
+    "metrics": {
+      "precision": 0.9767,
+      "recall": 0.9767,
+      "false_positive_rate": 0.0222,
+      "false_negative_rate": 0.0233
+    }
+  },
+  "explainability": {
+    "complete": 364,
+    "total": 364,
+    "rate": 1
+  },
+  "meta_guard": {
+    "enabled": false,
+    "evasion_resistance": 0,
+    "adversarial_precision": null,
+    "adversarial_recall": null,
+    "integrity_alerts": []
+  },
+  "quality_targets": {
+    "precision_min": 0.9,
+    "recall_min": 0.9,
+    "false_positive_rate_max": 0.1,
+    "false_negative_rate_max": 0.1,
+    "explainability_completeness_rate_min": 1,
+    "runtime_check_latency_budget_ms": 5,
+    "false_positive_budget_by_category": {
+      "prompt-injection": 0.05,
+      "runtime-policy": 0.02,
+      "secret-detection": 0.08,
+      "supply-chain": 0.05,
+      "memory-poisoning": 0.03
+    }
+  }
+}

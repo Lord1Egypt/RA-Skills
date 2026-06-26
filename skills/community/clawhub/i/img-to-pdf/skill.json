@@ -1,0 +1,25 @@
+{
+  "name": "Image to PDF",
+  "description": "Combine one or more images into a single PDF document with page layout control (page size, orientation, fit mode, margin).",
+  "method": "POST",
+  "endpoint": "/v1/convert/image/pdf",
+  "base_url": "https://pdfapihub.com/api",
+  "auth": { "type": "apiKey", "header": "CLIENT-API-KEY", "required": true },
+  "parameters": {
+    "body": {
+      "content_type": "application/json",
+      "fields": [
+        { "name": "image_url", "type": "string", "required": false, "description": "Single image URL" },
+        { "name": "image_urls", "type": "array", "required": false, "description": "Array of image URLs (max 100)" },
+        { "name": "images_base64", "type": "array", "required": false, "description": "Array of base64-encoded images" },
+        { "name": "page_size", "type": "string", "required": false, "default": "original", "enum": ["A4", "Letter", "Legal", "A3", "A5", "original"], "description": "Page size" },
+        { "name": "orientation", "type": "string", "required": false, "default": "portrait", "enum": ["portrait", "landscape"], "description": "Page orientation" },
+        { "name": "fit_mode", "type": "string", "required": false, "default": "fit", "enum": ["fit", "fill", "stretch", "original"], "description": "How image fits the page" },
+        { "name": "margin", "type": "integer", "required": false, "default": 0, "description": "Padding in points (0-200)" },
+        { "name": "output", "type": "string", "required": false, "default": "url", "enum": ["url", "base64", "both", "file"], "description": "Output mode" },
+        { "name": "output_filename", "type": "string", "required": false, "description": "Custom output filename" }
+      ],
+      "also_accepts": "multipart/form-data with 'file' field(s)"
+    }
+  }
+}

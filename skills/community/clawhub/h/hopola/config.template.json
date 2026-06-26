@@ -1,0 +1,211 @@
+{
+  "pipeline": {
+    "default_mode": "pipeline",
+    "report_format": "markdown",
+    "request_timeout_ms": 30000,
+    "retry_max": 2,
+    "member_error_code": 403001,
+    "forbid_plaintext_key": true
+  },
+  "gateway": {
+    "base_url": "https://hopola.ai",
+    "key_env_name": "OPENCLOW_KEY",
+    "key_header_name": "X-OpenClaw-Key",
+    "key_value": "",
+    "endpoints": {
+      "mcp_tools": "/api/gateway/mcp/tools",
+      "mcp_call": "/api/gateway/mcp/call"
+    }
+  },
+  "search": {
+    "engine": "web-access",
+    "web_access_repo": "https://github.com/eze-is/web-access",
+    "fallback_tools": [
+      "WebSearch",
+      "WebFetch"
+    ]
+  },
+  "image_generation": {
+    "preferred_tool_name": "text2image_create_hydra_hoppa",
+    "fallback_discovery_keywords": [
+      "image",
+      "draw",
+      "generate",
+      "text2image",
+      "hydra"
+    ],
+    "required_args_schema": [
+      "prompt",
+      "ratio"
+    ],
+    "image_mcp_args_schema": {
+      "prompt": "image_prompt",
+      "ratio": "image_ratio",
+      "quality": "image_quality",
+      "resolution": "image_resolution"
+    },
+    "image_result_fields": {
+      "url": "image_url",
+      "id": "image_id"
+    }
+  },
+  "video_generation": {
+    "preferred_tool_name": "text2video_create_hydra_copy",
+    "fallback_discovery_keywords": [
+      "video",
+      "text2video",
+      "vid"
+    ],
+    "required_args_schema": [
+      "prompt",
+      "ratio"
+    ],
+    "video_mcp_args_schema": {
+      "prompt": "video_prompt",
+      "ratio": "video_ratio",
+      "video_duration": "video_duration",
+      "video_resolution": "video_resolution",
+      "sound": "video_sound"
+    },
+    "video_result_fields": {
+      "url": "video_url",
+      "id": "video_id"
+    }
+  },
+  "model3d_generation": {
+    "preferred_tool_name": "3d_hy_image_generate",
+    "secondary_preferred_tool_name": "fal_tripo_image_to_3d",
+    "fallback_discovery_keywords": [
+      "3d",
+      "model",
+      "mesh",
+      "obj",
+      "glb",
+      "tripo",
+      "hy"
+    ],
+    "required_args_schema": [
+      "task_type"
+    ],
+    "model3d_mcp_args_schema": {
+      "prompt": "model3d_prompt",
+      "image_url": "model3d_image_url",
+      "task_type": "model3d_task_type",
+      "quality": "model3d_quality",
+      "format": "model3d_format"
+    },
+    "model3d_result_fields": {
+      "url": "model3d_url",
+      "id": "model3d_id"
+    }
+  },
+  "logo_design": {
+    "preferred_tool_name": "aiflow_nougat_create",
+    "fallback_tool_name": "text2image_create_hydra_hoppa",
+    "fallback_discovery_keywords": [
+      "logo",
+      "brand",
+      "identity",
+      "nougat"
+    ],
+    "required_args_schema": [
+      "prompt",
+      "ratio"
+    ],
+    "logo_mcp_args_schema": {
+      "prompt": "logo_prompt",
+      "ratio": "logo_ratio"
+    },
+    "logo_result_fields": {
+      "url": "logo_url",
+      "id": "logo_id"
+    }
+  },
+  "product_image_generation": {
+    "preferred_tool_name": "image_praline_edit_v2",
+    "fallback_tool_name": "image_praline_edit_v2",
+    "fallback_discovery_keywords": [
+      "product",
+      "praline",
+      "edit",
+      "image2image",
+      "commodity",
+      "goods"
+    ],
+    "required_args_schema": [
+      "image_list",
+      "prompt",
+      "output_format",
+      "size"
+    ],
+    "product_image_mcp_args_schema": {
+      "image_list": "product_image_list",
+      "prompt": "product_prompt",
+      "output_format": "product_output_format",
+      "size": "product_size",
+      "ratio": "product_ratio"
+    },
+    "product_image_result_fields": {
+      "url": "product_image_url",
+      "id": "product_image_id"
+    }
+  },
+  "cutout_generation": {
+    "preferred_tool_name": "api_v1_sod_c_async",
+    "fallback_tool_name": "api_v1_sod_c_async",
+    "fallback_discovery_keywords": [
+      "sod",
+      "cutout",
+      "matting",
+      "background",
+      "segment"
+    ],
+    "required_args_schema": [
+      "image_url"
+    ],
+    "cutout_mcp_args_schema": {
+      "image_url": "image_url"
+    },
+    "cutout_result_fields": {
+      "url": "cutout_image_url",
+      "id": "cutout_image_id"
+    }
+  },
+  "upload": {
+    "enabled": true,
+    "strategy": "maat_only",
+    "upload_script_path": "scripts/maat_upload.py",
+    "upload_command_template": "python3 scripts/maat_upload.py --file <local_file> --json",
+    "policy_api_env_name": "MAAT_TOKEN_API",
+    "policy_api_legacy_env_names": [
+      "MEITU_TOKEN_API",
+      "NEXT_PUBLIC_MAAT_TOKEN_API",
+      "NEXT_PUBLIC_MEITU_TOKEN_API"
+    ],
+    "policy_api_default": "https://strategy.stariidata.com/upload/policy",
+    "policy_api_allowed_hosts_env_name": "MAAT_TOKEN_API_ALLOWED_HOSTS",
+    "request_log_env_name": "OPENCLAW_REQUEST_LOG",
+    "request_log_default": "0",
+    "max_image_size_mb": 20,
+    "upload_payload_schema": {
+      "files": "files",
+      "metadata": "metadata"
+    },
+    "success_field": "url",
+    "error_field": "message"
+  },
+  "stages": {
+    "supported": [
+      "search",
+      "generate-image",
+      "generate-video",
+      "generate-3d",
+      "generate-logo",
+      "generate-product-image",
+      "cutout",
+      "upload",
+      "report"
+    ],
+    "allow_partial_success": true
+  }
+}

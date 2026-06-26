@@ -1,35 +1,247 @@
 ---
-name: "Health Ecosystem"
+name: health-ecosystem
 description: "基于华为运动健康的智能健康闭环系统。整合华为穿戴设备数据采集、Obsidian 知识沉淀、定时任务自动化，形成完整的个人健康管理闭环。支持每日健康日志、周度报告、目标追踪。触发词：健康闭环、健康系统、每日健康日志、周度健康报告、健康目标追踪。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/health-ecosystem"
-sourceUrl: "https://clawhub.ai/skills/health-ecosystem"
+version: "1.0.0"
+author: "xiaoyi-claw"
+license: "MIT"
+repository: "https://github.com/xiaoyi-claw/health-ecosystem"
+keywords:
+  - health
+  - huawei
+  - huawei-health
+  - obsidian
+  - cron
+  - ecosystem
+  - personal-health
+  - wearable
+metadata:
+  {
+    "pha": {
+      "emoji": "🏥",
+      "category": "health",
+      "platform": "huawei-health",
+      "tags": ["health", "huawei", "obsidian", "cron", "ecosystem", "wearable"],
+      "requires": {
+        "skills": ["xiaoyi-health", "obsidian-git-vault"],
+        "tools": ["openclaw cron"]
+      },
+      "features": [
+        "每日健康日志自动生成",
+        "周度健康报告 AI 分析",
+        "健康目标追踪",
+        "Obsidian 知识沉淀",
+        "Git 自动同步"
+      ],
+      "dataSources": [
+        "华为运动健康 App",
+        "华为穿戴设备（手环/手表）"
+      ],
+      "supportedMetrics": [
+        "心率",
+        "睡眠",
+        "步数/活动量",
+        "压力",
+        "血氧",
+        "运动记录",
+        "体重/体脂",
+        "饮食记录"
+      ]
+    }
+  }
 ---
 
-# Health Ecosystem
+# 🏥 健康闭环系统
 
-> 基于华为运动健康的智能健康闭环系统。整合华为穿戴设备数据采集、Obsidian 知识沉淀、定时任务自动化，形成完整的个人健康管理闭环。支持每日健康日志、周度报告、目标追踪。触发词：健康闭环、健康系统、每日健康日志、周度健康报告、健康目标追踪。
+> **基于华为运动健康的智能个人健康管理方案**
+> 
+> 整合华为穿戴设备数据采集、Obsidian 知识沉淀、定时任务自动化，形成完整的健康数据闭环。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/health-ecosystem`
-- **Source URL:** [https://clawhub.ai/skills/health-ecosystem](https://clawhub.ai/skills/health-ecosystem)
+## ✨ 核心特性
 
-## Overview
+- 📊 **数据采集** — 从华为运动健康获取心率、睡眠、运动、压力等全方位健康数据
+- 📝 **知识沉淀** — 自动生成健康日志并存入 Obsidian，构建个人健康知识库
+- 🤖 **AI 分析** — 智能分析健康趋势，提供个性化洞察和建议
+- ⏰ **自动化** — 定时任务驱动，无需手动操作
+- 🔄 **闭环反馈** — 目标追踪 + 异常提醒，形成健康管理闭环
 
+## 🏗️ 系统架构
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/health-ecosystem
 ```
+┌─────────────────────────────────────────────────────────────────┐
+│                        数据采集层                                │
+│                                                                 │
+│  华为穿戴设备 → 华为运动健康 App → xiaoyi-health CLI            │
+│                                                                 │
+│  覆盖：心率、睡眠、运动、压力、血氧、体重、饮食、女性健康等       │
+└─────────────────────────────────────────────────────────────────┘
+                              ↓
+┌─────────────────────────────────────────────────────────────────┐
+│                      存储与知识层                                │
+│                                                                 │
+│  Obsidian Vault: health/                                       │
+│  ├── daily/        ← 每日健康日志                               │
+│  ├── weekly/       ← 周度报告                                   │
+│  ├── goals/        ← 健康目标追踪                               │
+│  └── insights/     ← AI 分析洞察                                │
+│                                                                 │
+│  Git 同步 → 私有仓库                                            │
+└─────────────────────────────────────────────────────────────────┘
+                              ↓
+┌─────────────────────────────────────────────────────────────────┐
+│                      自动化任务层                                │
+│                                                                 │
+│  • 每日 22:00 — AI 生成健康日志                                 │
+│  • 每周日 20:00 — AI 生成周度报告                               │
+│                                                                 │
+└─────────────────────────────────────────────────────────────────┘
+                              ↓
+┌─────────────────────────────────────────────────────────────────┐
+│                      交互与反馈层                                │
+│                                                                 │
+│  用户主动触发：                                                  │
+│  • 「我今天身体怎么样？」→ 查询 + 分析 + 建议                    │
+│  • 「刚吃了一碗牛肉面」→ 饮食记录                                │
+│  • 「这周健康情况怎么样？」→ 周度总结                            │
+│  • 「帮我设置每天走 8000 步的目标」→ 目标追踪                    │
+│                                                                 │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+## 📋 依赖要求
+
+### 必需技能
+- `xiaoyi-health` — 华为运动健康数据接口
+- `obsidian-git-vault` — Obsidian Git 同步
+
+### 必需工具
+- `openclaw cron` — 定时任务调度
+
+### 硬件要求
+- 华为穿戴设备（手环/手表）
+- 华为运动健康 App（已登录并同步数据）
+
+## 🚀 快速开始
+
+### 1. 安装依赖技能
+```bash
+npx clawhub install xiaoyi-health
+npx clawhub install obsidian-git-vault
+```
+
+### 2. 初始化系统
+对我说：「初始化健康闭环系统」
+
+系统会自动：
+- 创建 Obsidian `health/` 目录结构
+- 配置定时任务
+- 生成健康目标模板
+
+### 3. 开始使用
+
+**查看今日健康状态**
+```
+我今天身体状态怎么样？
+```
+
+**记录饮食**
+```
+刚吃了一碗牛肉面，帮我记一下
+```
+
+**查看周报**
+```
+这周健康情况怎么样？
+```
+
+**设置健康目标**
+```
+帮我设置每天走 8000 步的目标
+```
+
+## 📊 支持的健康指标
+
+| 类别 | 指标 |
+|------|------|
+| 💓 心血管 | 心率、静息心率、HRV、心律（房颤/早搏）、血压 |
+| 😴 睡眠 | 睡眠时长/阶段/质量、午睡 |
+| 🏃 活动 | 步数、活动量、锻炼时长、跑步/骑行/健身记录 |
+| 🧠 身心 | 压力、情绪、焦虑、倦怠 |
+| 🩸 生理指标 | 血氧(SpO2)、血糖、体温 |
+| ⚖️ 体重管理 | 体重、BMI、体脂率 |
+| 🥗 饮食 | 营养摄入、饮食热量 |
+| 🌸 女性健康 | 月经周期、经期、基础体温 |
+
+## ⏰ 定时任务
+
+| 任务 | 时间 | 模式 | 说明 |
+|------|------|------|------|
+| `health-daily-log` | 每天 22:00 | AI | 生成每日健康日志 |
+| `health-weekly-report` | 周日 20:00 | AI | 生成周度健康报告 |
+
+## 📁 文件结构
+
+```
+~/.openclaw/workspace/
+├── health-ecosystem-config.yaml    # 系统配置
+├── health-alerts.json              # 告警记录
+└── scripts/health-ecosystem/
+    ├── daily-health-log.sh         # 每日日志脚本
+    └── weekly-health-report.sh     # 周报脚本
+
+repo/obsidian-vault/health/
+├── README.md                       # 系统说明
+├── daily/YYYY-MM-DD.md             # 每日日志
+├── weekly/week-YYYY-WNN.md         # 周报
+├── goals/current-goals.md          # 目标追踪
+└── insights/                       # AI 洞察
+```
+
+## ⚙️ 配置说明
+
+### 健康目标默认值
+
+```yaml
+goals:
+  sleep:
+    target_hours: 7.5
+    target_bedtime: "23:00"
+  activity:
+    target_steps: 8000
+    target_active_minutes: 30
+  fitness:
+    target_workouts_per_week: 3
+```
+
+### 告警阈值（被动触发）
+
+| 指标 | 阈值 | 说明 |
+|------|------|------|
+| 静息心率 | > 100 或 < 50 bpm | 心血管异常 |
+| 血氧 | < 95% | 缺氧风险 |
+| 睡眠 | < 5 小时 | 严重睡眠不足 |
+| 压力 | > 80 | 高压力状态 |
+
+## 🔒 隐私说明
+
+- 所有健康数据存储在本地 Obsidian Vault
+- 通过 Git 同步到你的私有仓库
+- 数据不会上传到第三方服务
+- 华为账号信息仅在本地使用
+
+## 📝 注意事项
+
+1. **定时任务限制**：定时任务执行时无法调用手机端工具（备忘录、日程等），但 xiaoyi-health CLI 和 Obsidian 操作不受影响
+2. **数据同步**：确保华为运动健康 App 已开启数据同步
+3. **设备佩戴**：建议全天佩戴设备以获取完整数据
+
+## 🤝 贡献
+
+欢迎提交 Issue 和 Pull Request！
+
+## 📄 许可证
+
+MIT License
+
+---
+
+*健康闭环系统 — 让健康管理更智能*

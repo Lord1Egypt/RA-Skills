@@ -1,0 +1,37 @@
+{
+  "name": "openclaw-plugin-grinders-farm",
+  "version": "0.3.3",
+  "private": false,
+  "type": "module",
+  "description": "OpenClaw plugin for Grinder's Farm: deterministic /farm command and grinders_farm tool.",
+  "main": "dist/index.js",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "prepack": "npm run build"
+  },
+  "files": [
+    "dist/",
+    "openclaw.plugin.json",
+    "README.md",
+    "LICENSE"
+  ],
+  "devDependencies": {
+    "@types/node": "^24.3.0",
+    "typescript": "^5.9.2"
+  },
+  "peerDependencies": {
+    "openclaw": ">=2026.1.0"
+  },
+  "openclaw": {
+    "extensions": [
+      "./dist/index.js"
+    ],
+    "compat": {
+      "pluginApi": "2026.4"
+    },
+    "build": {
+      "openclawVersion": "2026.4.1"
+    }
+  }
+}

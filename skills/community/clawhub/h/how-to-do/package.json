@@ -1,0 +1,12 @@
+{
+  "name": "how-to-do",
+  "version": "1.0.0",
+  "description": "OpenClaw 使用教练 - 从零开始到高效精通",
+  "main": "scripts/quick-assessment.sh",
+  "scripts": {
+    "start": "bash scripts/quick-assessment.sh"
+  },
+  "keywords": ["openclaw", "guide", "tutorial", "coach"],
+  "author": "姜海东",
+  "license": "MIT-0"
+}

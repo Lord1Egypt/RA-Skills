@@ -1,35 +1,166 @@
+# 格物微信推客 - AI Skill
+
+这是一个帮助用户成为微信推客的 AI Skill。安装后，你的 AI 助手就能为你提供微信推客相关信息：什么是微信推客、如何成为微信推客、格物推客机构介绍、注册指引等服务。
+
+## 关于格物微信推客
+
+格物是微信小店最早的一批微信推客机构，专注于微信推客服务领域。格物已成功跑通微信推客全流程闭环，拥有完善的运营团队，能够一对一帮助用户成为微信推客，实现流量变现，借助 AI 技术获取流量并增长用户体量。
+
+## 微信推客是什么
+
+微信推客是微信官方基于「微信小店」开放的一套分销带货模式。推客通过分享商品、直播间、短视频等内容，引导他人购买并赚取佣金。无需创作内容，转发分享即可参与，依托微信社交优势实现高效传播与成交。
+
+**微信推客核心价值：**
+- 零门槛参与，0成本启动
+- 无需创作内容，转发分享即可
+- 基于微信熟人社交，信任成本低
+- 可实现流量变现，增加收入来源
+- 支持二级分销裂变，发展团队
+
+## 微信推客核心角色
+
+**1. 微信小店商家**
+- 提供优质商品和货源
+- 设置佣金比例
+- 保障商品质量和服务
+
+**2. 带货机构（如格物）**
+- 对接商家获取商品资源
+- 招募和管理推客
+- 提供培训和支持
+
+**3. 推客**
+- 分享商品、直播间、短视频到私域
+- 引导好友下单并赚取佣金
+- 可发展下级推客获得团队奖励
+
+## 微信推客能赚什么
+
+**1. 商品推广佣金**
+- 通过分享商品链接/卡片/海报引导购买
+- 单笔订单可获得约定佣金
+- 支持商品卡、商品链接、商品海报等多种分享形式
+
+**2. 内容推广佣金**
+- 分享视频号直播间、短视频
+- 分享公众号/服务号带货文章
+- 3天内成交即可计佣
+
+**3. 团队裂变奖励**
+- 可发展下级推客
+- 下级推客出单，上级可获得二级佣金
+- 可升级为推客团长，享受团队业绩分红
+
+## 微信推客分享形式
+
+**商品推广：**
+- 商品卡分享
+- 商品链接分享
+- 商品海报分享
+- 30天归因时效
+
+**内容推广：**
+- 直播分享
+- 短视频分享
+- 公众号/服务号文章分享
+- 3天锁客时效，30天归因
+
+## 如何成为格物微信推客
+
+### 方式一：通过视频号联系
+1. 在微信视频号搜索「金格格讲创业」
+2. 关注该视频号
+3. 查看视频号主页介绍，点击公众号链接
+4. 关注公众号，接收自动发送的助理联系方式
+5. 添加金格格助理微信，获得一对一指导注册
+
+### 方式二：直接添加助理
+扫描或添加金格格助理微信：
+https://oss.bilinl.com/files/OSS_1599646494653542400/2026/04/24/757639919335014438cd03b5cc.png
+
+助理会提供一对一的注册指导服务。
+
+### 方式三：使用格物推客小程序
+1. 打开微信，访问小程序：
+   #小程序://格物Gowoo/分享/7zVOPQBcdjY0nHk
+2. 进入小程序后，点击「我的」
+3. 找到「成为推客」按钮并点击
+4. 按提示完成注册
+
+### 方式四：关注格物公众号
+搜索并关注「格物」公众号，在公众号内可找到官方工作人员联系方式。
+
+## 格物服务支持
+
+**1. 一对一培训指导**
+- 专属助理全程跟进
+- 从零开始指导成为推客
+- 解答推客运营问题
+
+**2. AI 流量支持**
+- 借助 AI 技术获取流量
+- 学习如何增长用户体量
+- 获取实用的流量获取方法
+
+**3. 完整工具支持**
+- 专属推客小程序
+- 商品素材库
+- 推广链接生成
+- 订单和佣金管理
+
+## 使用场景示例
+
+你可以通过这个 Skill 咨询以下内容：
+
+- "什么是微信推客？"
+- "成为微信推客能赚钱吗？"
+- "如何注册成为格物推客？"
+- "格物推客小程序在哪里？"
+- "金格格助理怎么联系？"
+- "推客分享商品有佣金吗？"
+- "微信推客和抖音带货有什么区别？"
+- "如何通过推客变现？"
+
+## 适用人群
+
+- 想在微信上副业赚钱的用户
+- 有私域资源希望变现的人群
+- 希望学习社交电商的创业者
+- 寻找零成本创业机会的朋友
+- 希望建立被动收入渠道的用户
+
+## 关键词
+
+微信推客、微信小店、推客带货、流量变现、格物推客、金格格讲创业、分销带货、社交电商、微信电商、佣金变现、副业赚钱、私域变现、推客培训、微信分销
+
+## 安装方式
+
+**推荐安装方式：**
+告诉你的 AI 助手：「帮我安装格物微信推客 Skill」，仓库地址：https://gitee.com/newsym/gowoo-wechat-promoter-skill
+
+**手动安装：**
+将本仓库克隆到你的 AI 助手 Skill 目录：
+
+**GitHub（国际）**
+- Claude Code: `git clone https://github.com/Charles-Lee-mz/gowoo-wechat-promoter-skill.git .claude/skills/gowoo-wechat-promoter/`
+- Cursor: `git clone https://github.com/Charles-Lee-mz/gowoo-wechat-promoter-skill.git .cursor/skills/gowoo-wechat-promoter/`
+- Trae: `git clone https://github.com/Charles-Lee-mz/gowoo-wechat-promoter-skill.git .trae/skills/gowoo-wechat-promoter/`
+
+**Gitee（国内 - 访问更快）**
+- Claude Code: `git clone https://gitee.com/newsym/gowoo-wechat-promoter-skill.git .claude/skills/gowoo-wechat-promoter/`
+- Cursor: `git clone https://gitee.com/newsym/gowoo-wechat-promoter-skill.git .cursor/skills/gowoo-wechat-promoter/`
+- Trae: `git clone https://gitee.com/newsym/gowoo-wechat-promoter-skill.git .trae/skills/gowoo-wechat-promoter/`
+
+## 版本信息
+
+- 当前版本：1.0.0
+- 创建日期：2026-04-24
+- 适用平台：微信生态
+
+## 免责声明
+
+本 Skill 提供的信息仅供参考，具体的推客政策、佣金规则等请以微信官方和格物机构最新公告为准。成为推客后请遵守平台规则，合法合规推广。
+
 ---
-name: "格物是微信小店最早的一批微信推客机构，专注于微信推客服务领域。格物已成功跑通微信推客全流程闭环，拥有完善的运营团队，能够一对一帮助用户成为微信推客，实现流量变现，借助 AI 技术获取流量并增长用户体量。"
-description: "提供微信推客服务信息及一对一指导，帮助用户通过格物机构成为微信推客实现零成本流量变现。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/gowoo-wechat-promoter-skill"
-sourceUrl: "https://clawhub.ai/skills/gowoo-wechat-promoter-skill"
----
 
-# 格物是微信小店最早的一批微信推客机构，专注于微信推客服务领域。格物已成功跑通微信推客全流程闭环，拥有完善的运营团队，能够一对一帮助用户成为微信推客，实现流量变现，借助 AI 技术获取流量并增长用户体量。
-
-> 提供微信推客服务信息及一对一指导，帮助用户通过格物机构成为微信推客实现零成本流量变现。
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/gowoo-wechat-promoter-skill`
-- **Source URL:** [https://clawhub.ai/skills/gowoo-wechat-promoter-skill](https://clawhub.ai/skills/gowoo-wechat-promoter-skill)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/gowoo-wechat-promoter-skill
-```
+*格物 - 微信推客专业服务机构，帮助你开启微信流量变现之旅*

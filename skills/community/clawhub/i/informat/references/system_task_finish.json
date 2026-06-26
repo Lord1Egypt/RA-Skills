@@ -1,0 +1,34 @@
+{
+  "type": "function",
+  "function": {
+    "name": "_task_finish",
+    "description": "Submit task execution results and update the task status to completed or failed. Used to record results, status, and related information after task execution ends.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Task ID, used to identify the task that needs to be updated"
+        },
+        "success": {
+          "type": "boolean",
+          "description": "Whether the task was successfully completed. true means success, false means execution failed"
+        },
+        "result": {
+          "type": "string",
+          "description": "Task execution result summary (fill in when successful), used to record output or conclusions"
+        },
+        "errorMessage": {
+          "type": "string",
+          "description": "Error message (required when failed), used to describe the reason for failure"
+        },
+        "output": {
+          "type": "object",
+          "description": "Structured output results (optional), used to store task output data, such as JSON results, generated content, etc.",
+          "additionalProperties": true
+        }
+      },
+      "required": ["id", "success"]
+    }
+  }
+}

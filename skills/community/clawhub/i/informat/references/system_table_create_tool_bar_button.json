@@ -1,0 +1,64 @@
+{
+  "type": "function",
+  "function": {
+    "name": "_table_create_tool_bar_button",
+    "description": "Create a toolbar button at the top of the data table and configure button behavior and style. Depends on script ID",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "tableId": {
+          "type": "string",
+          "description": "Table ID (must exist)."
+        },
+        "name": {
+          "type": "string",
+          "description": "Button display name, cannot contain special characters like , . / \\"
+        },
+        "action": {
+          "type": "string",
+          "description": "Button trigger behavior type, fixed to CallScript"
+        },
+        "actionSetting": {
+          "type": "object",
+          "description": "Button behavior configuration",
+          "properties": {
+            "func": {
+              "type": "string",
+              "description": "Execution function name"
+            },
+            "scriptId": {
+              "type": "string",
+              "description": "Script ID to call"
+            },
+            "args": {
+              "type": "array",
+              "description": "Parameter list passed to the script",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "valueVar": {
+                    "type": "string",
+                    "description": "Parameter variable expression, such as ${tableSelectedRecordList}"
+                  }
+                },
+                "required": ["valueVar"]
+              }
+            }
+          },
+          "required": ["func", "scriptId"]
+        },
+        "buttonSetting": {
+          "type": "object",
+          "description": "Button style configuration",
+          "properties": {
+            "type": {
+              "type": "string",
+              "description": "Button style type, default is default. Optional values: default (default), primary (primary), success (success), warning (warning), danger (danger)"
+            }
+          }
+        }
+      },
+      "required": ["name", "action", "actionSetting", "buttonSetting"]
+    }
+  }
+}

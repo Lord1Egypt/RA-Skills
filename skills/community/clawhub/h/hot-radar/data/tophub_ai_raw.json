@@ -1,0 +1,513 @@
+{
+  "date": "2026-05-25",
+  "sources": [
+    "36krAI",
+    "量子位",
+    "AIbase",
+    "AI产品榜",
+    "PM-AI学习库"
+  ],
+  "total_items": 70,
+  "data": {
+    "36krAI": [
+      {
+        "rank": 1,
+        "title": "基于2025年发生的重大AI事件我们得出的十大戒律",
+        "link": "https://www.36kr.com/p/3823087635599751",
+        "hot": "",
+        "platform": "36krAI"
+      },
+      {
+        "rank": 2,
+        "title": "实测GPT For PPT：5分钟出稿质量堪忧，打工人最后一公里还得自己走",
+        "link": "https://www.36kr.com/p/3822723397771271",
+        "hot": "",
+        "platform": "36krAI"
+      },
+      {
+        "rank": 3,
+        "title": "AI Agent真的记得它看过什么吗？MemEye给多模态长期记忆做了一次视觉体检",
+        "link": "https://www.36kr.com/p/3822773869252744",
+        "hot": "",
+        "platform": "36krAI"
+      },
+      {
+        "rank": 4,
+        "title": "网飞密谋AI工作室，为什么从动画入手？",
+        "link": "https://www.36kr.com/p/3821830879547776",
+        "hot": "",
+        "platform": "36krAI"
+      },
+      {
+        "rank": 5,
+        "title": "大模型的尽头，怎么是费大厨辣椒炒肉？",
+        "link": "https://www.36kr.com/p/3824112946991241",
+        "hot": "",
+        "platform": "36krAI"
+      },
+      {
+        "rank": 6,
+        "title": "Codex 这波大更新后，Mac 的含金量再次提升",
+        "link": "https://www.36kr.com/p/3824088216752262",
+        "hot": "",
+        "platform": "36krAI"
+      },
+      {
+        "rank": 7,
+        "title": "AI云计算时代：腾讯搞钱、阿里撒币、百度登山",
+        "link": "https://www.36kr.com/p/3823029554209031",
+        "hot": "",
+        "platform": "36krAI"
+      },
+      {
+        "rank": 8,
+        "title": "梁文锋想送DeepSeek一个成人礼",
+        "link": "https://www.36kr.com/p/3824044015853575",
+        "hot": "",
+        "platform": "36krAI"
+      },
+      {
+        "rank": 9,
+        "title": "Claude 通过率不到4%，SaaS-Bench撕碎了Computer-Use的全自动办公幻想",
+        "link": "https://www.36kr.com/p/3824057526259840",
+        "hot": "",
+        "platform": "36krAI"
+      },
+      {
+        "rank": 10,
+        "title": "大厂AI内卷新姿势：Token变成新PPT",
+        "link": "https://www.36kr.com/p/3824055777071496",
+        "hot": "",
+        "platform": "36krAI"
+      },
+      {
+        "rank": 11,
+        "title": "对标杨立昆，华为具身大脑一号位又融资了",
+        "link": "https://www.36kr.com/p/3824043619012996",
+        "hot": "",
+        "platform": "36krAI"
+      },
+      {
+        "rank": 12,
+        "title": "Claude永久大脑，真的来了",
+        "link": "https://www.36kr.com/p/3824047027458182",
+        "hot": "",
+        "platform": "36krAI"
+      },
+      {
+        "rank": 13,
+        "title": "华人数学家封神，50年数论难题一朝破解",
+        "link": "https://www.36kr.com/p/3824047587807616",
+        "hot": "",
+        "platform": "36krAI"
+      },
+      {
+        "rank": 14,
+        "title": "机器人力传感器龙头再获数亿融资，上汽、中芯等抢先入局",
+        "link": "https://www.36kr.com/p/3824053061652616",
+        "hot": "",
+        "platform": "36krAI"
+      },
+      {
+        "rank": 15,
+        "title": "Token贩子的盛宴：从草根到名人，为什么大家都想做AI中转站？",
+        "link": "https://www.36kr.com/p/3822775952707719",
+        "hot": "",
+        "platform": "36krAI"
+      },
+      {
+        "rank": 16,
+        "title": "夹缝中的果链龙头：蓝思科技靠什么撑起AI平台梦？",
+        "link": "https://www.36kr.com/p/3823159179911426",
+        "hot": "",
+        "platform": "36krAI"
+      },
+      {
+        "rank": 17,
+        "title": "最赚钱的海力士，其实是存储周期里的输家",
+        "link": "https://www.36kr.com/p/3823952349040769",
+        "hot": "",
+        "platform": "36krAI"
+      },
+      {
+        "rank": 18,
+        "title": "华为具身大脑一号位做类脑智能世界模型，对标JEPA，获亿元级融资",
+        "link": "https://www.36kr.com/p/3819931562414467",
+        "hot": "",
+        "platform": "36krAI"
+      },
+      {
+        "rank": 19,
+        "title": "宁德，被主机厂逼着投DeepSeek",
+        "link": "https://www.36kr.com/p/3824015091736577",
+        "hot": "",
+        "platform": "36krAI"
+      },
+      {
+        "rank": 20,
+        "title": "Curosr：请大家再爱我一次",
+        "link": "https://www.36kr.com/p/3824027398951299",
+        "hot": "",
+        "platform": "36krAI"
+      },
+      {
+        "rank": 21,
+        "title": "Mythos的面纱，成了Anthropic撬动万亿的杠杆",
+        "link": "https://www.36kr.com/p/3823114146816258",
+        "hot": "",
+        "platform": "36krAI"
+      },
+      {
+        "rank": 22,
+        "title": "AI小说大逃杀：百万在读被下架，一键生成时代结束",
+        "link": "https://www.36kr.com/p/3823332568666240",
+        "hot": "",
+        "platform": "36krAI"
+      },
+      {
+        "rank": 23,
+        "title": "不应忽视硅谷AI精英的双面游戏",
+        "link": "https://www.36kr.com/p/3823361304121480",
+        "hot": "",
+        "platform": "36krAI"
+      },
+      {
+        "rank": 24,
+        "title": "红果补贴退潮，火了半年的AI短剧风口停了？",
+        "link": "https://www.36kr.com/p/3823952672854144",
+        "hot": "",
+        "platform": "36krAI"
+      },
+      {
+        "rank": 25,
+        "title": "从服务沉默玩家到技术外溢至千行百业：游戏+AI的下一站是什么？",
+        "link": "https://www.36kr.com/p/3822747968196993",
+        "hot": "",
+        "platform": "36krAI"
+      },
+      {
+        "rank": 26,
+        "title": "追不上Codex的更新？学会这5个用法横着走",
+        "link": "https://www.36kr.com/p/3823950723223938",
+        "hot": "",
+        "platform": "36krAI"
+      },
+      {
+        "rank": 27,
+        "title": "一枚戒指估值700亿，要IPO了",
+        "link": "https://www.36kr.com/p/3823038218244225",
+        "hot": "",
+        "platform": "36krAI"
+      },
+      {
+        "rank": 28,
+        "title": "3个关键动作，把AI变成你的神队友",
+        "link": "https://www.36kr.com/p/3823953896444288",
+        "hot": "",
+        "platform": "36krAI"
+      },
+      {
+        "rank": 29,
+        "title": "微信读书Skills火了，学会这一招，让你的书不白读",
+        "link": "https://www.36kr.com/p/3823955653300360",
+        "hot": "",
+        "platform": "36krAI"
+      },
+      {
+        "rank": 30,
+        "title": "8小时狂揽15K美金，Claude Code屠榜黑客马拉松，开源神器爆15万星",
+        "link": "https://www.36kr.com/p/3823966768943239",
+        "hot": "",
+        "platform": "36krAI"
+      }
+    ],
+    "量子位": [
+      {
+        "rank": 1,
+        "title": "Claude通过率不到4%，SaaS-Bench撕碎了Computer-Use的全自动办公幻想",
+        "link": "https://www.qbitai.com/2026/05/424277.html",
+        "hot": "",
+        "platform": "量子位"
+      },
+      {
+        "rank": 2,
+        "title": "华为具身大脑一号位创业，用认知科学造世界模型，获亿元级融资",
+        "link": "https://www.qbitai.com/2026/05/423455.html",
+        "hot": "",
+        "platform": "量子位"
+      },
+      {
+        "rank": 3,
+        "title": "未来推理将吃掉70%算力，30%留给训练，硅谷投资人张璐@AIGC2026",
+        "link": "https://www.qbitai.com/2026/05/423441.html",
+        "hot": "",
+        "platform": "量子位"
+      },
+      {
+        "rank": 4,
+        "title": "卷到今天，Agent的含金量还在提升，AIGC2026圆桌论坛",
+        "link": "https://www.qbitai.com/2026/05/423421.html",
+        "hot": "",
+        "platform": "量子位"
+      },
+      {
+        "rank": 5,
+        "title": "谷歌CEO承认Coding落后了",
+        "link": "https://www.qbitai.com/2026/05/423390.html",
+        "hot": "",
+        "platform": "量子位"
+      },
+      {
+        "rank": 6,
+        "title": "什么！你说胡彦斌也在苦修Vibe Coding",
+        "link": "https://www.qbitai.com/2026/05/423213.html",
+        "hot": "",
+        "platform": "量子位"
+      },
+      {
+        "rank": 7,
+        "title": "五类人AI替代不了，企业做第二名最稳妥，昆仑万维方汉@AIGC2026",
+        "link": "https://www.qbitai.com/2026/05/423202.html",
+        "hot": "",
+        "platform": "量子位"
+      },
+      {
+        "rank": 8,
+        "title": "OpenAI大神教你如何榨干Codex",
+        "link": "https://www.qbitai.com/2026/05/423179.html",
+        "hot": "",
+        "platform": "量子位"
+      },
+      {
+        "rank": 9,
+        "title": "DeepSeek V4价格打骨折，宁王京东网易抢着入场，梁文锋目标是AGI",
+        "link": "https://www.qbitai.com/2026/05/423162.html",
+        "hot": "",
+        "platform": "量子位"
+      },
+      {
+        "rank": 10,
+        "title": "美团外卖前负责人入局餐饮具身模型，元节智能获千万级种子轮融资",
+        "link": "https://www.qbitai.com/2026/05/423159.html",
+        "hot": "",
+        "platform": "量子位"
+      }
+    ],
+    "AIbase": [
+      {
+        "rank": 1,
+        "title": "AI日报：字节开源统一多模态大模型Lance 3B;智谱发布GLM-5.1高速版;CapCut与Gemini合作推出深度集成",
+        "link": "https://www.aibase.com/zh/daily/28263",
+        "hot": "",
+        "platform": "AIbase"
+      },
+      {
+        "rank": 2,
+        "title": "AI日报：腾讯上线AI助手Marvis;智谱AI推AutoClaw移动端APP;Photoshop 27.7重磅更新",
+        "link": "https://www.aibase.com/zh/daily/28221",
+        "hot": "",
+        "platform": "AIbase"
+      },
+      {
+        "rank": 3,
+        "title": "AI日报：谷歌发布最强模型Gemini 3.5 Flash;阿里云千问云上线;苹果AI辅助功能升级",
+        "link": "https://www.aibase.com/zh/daily/28176",
+        "hot": "",
+        "platform": "AIbase"
+      },
+      {
+        "rank": 4,
+        "title": "AI日报：微信读书接入AI Skill;三大运营商上线Token套餐;Qwen3.7预览版全球首发亮相",
+        "link": "https://www.aibase.com/zh/daily/28131",
+        "hot": "",
+        "platform": "AIbase"
+      },
+      {
+        "rank": 5,
+        "title": "AI日报：腾讯发布设计智能体Ardot;千问5月20日将发布重大模型;OpenAI推出ChatGPT个人理财工具",
+        "link": "https://www.aibase.com/zh/daily/28085",
+        "hot": "",
+        "platform": "AIbase"
+      },
+      {
+        "rank": 6,
+        "title": "AI日报：微信小程序正式接入Hy3 preview;QQ浏览器上线高考AI Skill;月之暗面发布Kimi WebBridge",
+        "link": "https://www.aibase.com/zh/daily/28036",
+        "hot": "",
+        "platform": "AIbase"
+      },
+      {
+        "rank": 7,
+        "title": "AI日报：GPT5.6开始内测;阿里2026财年Q4财报AI收入激增;MiniMax Agent正式更名Mavis",
+        "link": "https://www.aibase.com/zh/daily/27995",
+        "hot": "",
+        "platform": "AIbase"
+      },
+      {
+        "rank": 8,
+        "title": "AI日报：支付宝AI收新增商家入驻Skill;腾讯元宝升级;百度发布秒哒App移动端",
+        "link": "https://www.aibase.com/zh/daily/27953",
+        "hot": "",
+        "platform": "AIbase"
+      },
+      {
+        "rank": 9,
+        "title": "AI日报：快手拟分拆可灵AI独立融资;360升级安全龙虾平台;网信办要求AI生成视频必须标注",
+        "link": "https://www.aibase.com/zh/daily/27910",
+        "hot": "",
+        "platform": "AIbase"
+      },
+      {
+        "rank": 10,
+        "title": "AI日报：腾讯云QClaw发布文件空间;阿里通义千问接入淘宝;微信推AI支付等功能",
+        "link": "https://www.aibase.com/zh/daily/27865",
+        "hot": "",
+        "platform": "AIbase"
+      }
+    ],
+    "AI产品榜": [
+      {
+        "rank": 1,
+        "title": "OpenAI首款AI硬件产品或为智能笔，富士康代工，功能待市场检验",
+        "link": "https://www.aicpb.com/news/iframe?world=OpenAI首款AI硬件产品或为智能笔，富士康代工，功能待市场检验",
+        "hot": "",
+        "platform": "AI产品榜"
+      },
+      {
+        "rank": 2,
+        "title": "马斯克xAI为Grok推图像编辑功能引争议，官方修复防护疏漏",
+        "link": "https://www.aicpb.com/news/iframe?world=马斯克xAI为Grok推图像编辑功能引争议，官方修复防护疏漏",
+        "hot": "",
+        "platform": "AI产品榜"
+      },
+      {
+        "rank": 3,
+        "title": "DeepSeek元旦发布mHC架构论文，解决大模型训练超连接稳定性问题",
+        "link": "https://www.aicpb.com/news/iframe?world=DeepSeek元旦发布mHC架构论文，解决大模型训练超连接稳定性问题",
+        "hot": "",
+        "platform": "AI产品榜"
+      },
+      {
+        "rank": 4,
+        "title": "智能眼镜被纳入2026国家补贴，预计2025中国市场销量将达137万副",
+        "link": "https://www.aicpb.com/news/iframe?world=智能眼镜被纳入2026国家补贴，预计2025中国市场销量将达137万副",
+        "hot": "",
+        "platform": "AI产品榜"
+      },
+      {
+        "rank": 5,
+        "title": "通义千问开源图像生成模型Qwen-Image-2512，满足专业设计多样化需求",
+        "link": "https://www.aicpb.com/news/iframe?world=通义千问开源图像生成模型Qwen-Image-2512，满足专业设计多样化需求",
+        "hot": "",
+        "platform": "AI产品榜"
+      },
+      {
+        "rank": 6,
+        "title": "OpenAI员工人均股票薪酬150万美元，创科技初创企业纪录",
+        "link": "https://www.aicpb.com/news/iframe?world=OpenAI员工人均股票薪酬150万美元，创科技初创企业纪录",
+        "hot": "",
+        "platform": "AI产品榜"
+      },
+      {
+        "rank": 7,
+        "title": "腾讯云携手多家金融机构，将AI大模型落地超百个金融业务场景",
+        "link": "https://www.aicpb.com/news/iframe?world=腾讯云携手多家金融机构，将AI大模型落地超百个金融业务场景",
+        "hot": "",
+        "platform": "AI产品榜"
+      },
+      {
+        "rank": 8,
+        "title": "夸克AI眼镜OTA升级，增强AI能力并新增录音纪要与图文备忘录等五项功能",
+        "link": "https://www.aicpb.com/news/iframe?world=夸克AI眼镜OTA升级，增强AI能力并新增录音纪要与图文备忘录等五项功能",
+        "hot": "",
+        "platform": "AI产品榜"
+      },
+      {
+        "rank": 9,
+        "title": "xAI计划扩建孟菲斯巨人数据中心，在南海文市建毗邻配套设施",
+        "link": "https://www.aicpb.com/news/iframe?world=xAI计划扩建孟菲斯巨人数据中心，在南海文市建毗邻配套设施",
+        "hot": "",
+        "platform": "AI产品榜"
+      },
+      {
+        "rank": 10,
+        "title": "AI初创公司Resemble AI发布开源语音模型Chatterbox Turbo，5秒可克隆人声",
+        "link": "https://www.aicpb.com/news/iframe?world=AI初创公司Resemble AI发布开源语音模型Chatterbox Turbo，5秒可克隆人声",
+        "hot": "",
+        "platform": "AI产品榜"
+      }
+    ],
+    "PM-AI学习库": [
+      {
+        "rank": 1,
+        "title": "感悟：不要教AI做事！",
+        "link": "https://easyai.tech/aiinsights/dont_teach_ai/",
+        "hot": "",
+        "platform": "PM-AI学习库"
+      },
+      {
+        "rank": 2,
+        "title": "AI时代赋予我们的4种武器：大模型，Claude skill，workflow，AI编程",
+        "link": "https://easyai.tech/aiinsights/4weapons/",
+        "hot": "",
+        "platform": "PM-AI学习库"
+      },
+      {
+        "rank": 3,
+        "title": "持续进化模型能否成为AI大模型的技术拐点？",
+        "link": "https://easyai.tech/aipaper/mindlab_3pages/",
+        "hot": "",
+        "platform": "PM-AI学习库"
+      },
+      {
+        "rank": 4,
+        "title": "AI前沿论文投资洞察周报（2025W49）三大顶会技术突破",
+        "link": "https://easyai.tech/aipaper/aipaper_2025_w49/",
+        "hot": "",
+        "platform": "PM-AI学习库"
+      },
+      {
+        "rank": 5,
+        "title": "一文讲清楚LLM：大型语言模型核心解析与应用前瞻",
+        "link": "https://easyai.tech/blog/llms/",
+        "hot": "",
+        "platform": "PM-AI学习库"
+      },
+      {
+        "rank": 6,
+        "title": "AI会永远改变内容营销吗？",
+        "link": "https://easyai.tech/blog/will-ai-change-content-marketing-forever/",
+        "hot": "",
+        "platform": "PM-AI学习库"
+      },
+      {
+        "rank": 7,
+        "title": "使用机器学习，你只需要3个工具",
+        "link": "https://easyai.tech/blog/the-only-3-ml-tools-you-need/",
+        "hot": "",
+        "platform": "PM-AI学习库"
+      },
+      {
+        "rank": 8,
+        "title": "终端设备上的AI，到目前为止我所知道的",
+        "link": "https://easyai.tech/blog/on-device-ai-what-i-know-so-far/",
+        "hot": "",
+        "platform": "PM-AI学习库"
+      },
+      {
+        "rank": 9,
+        "title": "数据科学生命周期的7个步骤，在业务中应用AI",
+        "link": "https://easyai.tech/blog/ai-executive-guides-data-science-lifecycle/",
+        "hot": "",
+        "platform": "PM-AI学习库"
+      },
+      {
+        "rank": 10,
+        "title": "AI Coding时代的产品经理生存指南",
+        "link": "https://easyai.tech/aiinsights/pm-ai-coding/",
+        "hot": "",
+        "platform": "PM-AI学习库"
+      }
+    ]
+  }
+}

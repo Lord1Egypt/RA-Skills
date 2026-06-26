@@ -1,0 +1,13 @@
+{
+  "type": "function",
+  "function": {
+    "name": "_company_role_list",
+    "description": "Get team role list.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        
+      }
+    }
+  }
+}

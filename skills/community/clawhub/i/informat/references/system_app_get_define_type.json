@@ -1,0 +1,13 @@
+{
+  "type": "function",
+  "function": {
+    "name": "_app_get_define_type",
+    "description": "Get the list of supported object types (Define Object Types) in the current application definition.\n\n[Purpose]\n- Must be executed before calling _app_get_define_list\n- Used to get valid type enumeration values\n- Prevent AI from using non-existent object types\n\n[Mandatory Rules]\n- Before calling this interface, _app_get_define_list cannot be directly called\n- type cannot be assumed out of thin air\n\n[Description]\n- Only reads draft state definitions\n- Does not modify any data",
+    "parameters": {
+      "type": "object",
+      "properties": {
+      },
+      "additionalProperties": false
+    }
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "name": "image-agent-plus",
+  "version": "2.0.5",
+  "description": "image2-first image generation skill for OpenClaw, Hermes, and Codex.",
+  "type": "module",
+  "author": "webkubor",
+  "license": "Apache-2.0",
+  "homepage": "https://github.com/webkubor/image-agent-plus"
+}

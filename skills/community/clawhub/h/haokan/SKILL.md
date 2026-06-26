@@ -1,35 +1,49 @@
 ---
-name: "Haokan"
-description: "Provides aggregated summaries and updates of public short videos, short dramas, and trending lists from Haokan video pages based on keywords or topics."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/haokan"
-sourceUrl: "https://clawhub.ai/skills/haokan"
+name: haokan-video-hot-trend
+description: 注册“好看视频”技能；用于公开短视频与短剧页信息整理。
+homepage: `https://haokan.baidu.com/`
+metadata: {"clawdbot":{"emoji":"🎬"}}
 ---
 
-# Haokan
+# 好看视频
 
-> Provides aggregated summaries and updates of public short videos, short dramas, and trending lists from Haokan video pages based on keywords or topics.
+用途与边界
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/haokan`
-- **Source URL:** [https://clawhub.ai/skills/haokan](https://clawhub.ai/skills/haokan)
+- 面向公开短视频/短剧页的检索与表现数据摘要
+- 不提供下载、接口逆向或突破风控能力
+- 仅用于公开页面的轻量分析与提醒
 
-## Overview
+关键入口
 
+- 主页：https://haokan.baidu.com/
+- 分区/热门/榜单：站点入口
+- 搜索入口：站内搜索
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/haokan
-```
+常见任务
+
+- 指定话题/关键词的短视频集合摘要（点赞/评论/收藏）
+- 剧集页面目录与更新状态、期次简介
+- 榜单条目分布与题材统计
+
+数据字段
+
+- 标题、作者、时长、发布时间、点赞/评论/收藏、链接
+- 短剧标题、更新状态、期次目录、简介、链接
+- 榜单名称、采集时间、来源链接
+
+自动化要点
+
+- 动态渲染与人机校验，建议人工打开后触发解析
+- 请求频率需控制，不进行批量抓取
+- 不进行下载或接口调用
+
+示例流程
+
+- 关键词摘要：输入关键词 → 搜索 → 抽取条目 → 输出表现摘要
+- 短剧目录：访问短剧页 → 抽取期次 → 输出更新状态与简介
+- 榜单统计：访问榜单 → 抽取条目 → 题材分布统计
+
+合规提示
+
+- 遵守平台规则，不进行下载、接口调用或批量采集
+- 结果仅用于内部分析与提醒

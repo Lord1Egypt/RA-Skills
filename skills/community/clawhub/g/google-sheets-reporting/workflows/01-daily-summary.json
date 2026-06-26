@@ -1,0 +1,128 @@
+{
+  "name": "Sheets Report — Daily Summary",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "hours",
+              "hoursInterval": 24
+            }
+          ]
+        }
+      },
+      "id": "n1",
+      "name": "Daily Schedule",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        220,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "read",
+        "documentId": {
+          "__rl": true,
+          "value": "YOUR_REPORT_SHEET_ID",
+          "mode": "list"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "Data",
+          "mode": "list"
+        },
+        "options": {}
+      },
+      "id": "n2",
+      "name": "Read Sheet Data",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        440,
+        300
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "YOUR_GOOGLE_SHEETS_CREDENTIAL_ID",
+          "name": "Google Sheets"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const rows = $input.all().map(i => i.json);\nconst now = new Date();\nconst today = now.toISOString().split('T')[0];\n\nif (rows.length === 0) {\n  return [{ json: { report_date: today, total_rows: 0, summary: 'No data found in sheet.' } }];\n}\n\n// Auto-detect numeric columns for aggregation\nconst columns = Object.keys(rows[0]);\nconst numericCols = [];\nconst textCols = [];\n\nfor (const col of columns) {\n  const sample = rows.slice(0, 10).map(r => r[col]).filter(v => v !== '' && v !== null && v !== undefined);\n  const isNumeric = sample.length > 0 && sample.every(v => !isNaN(parseFloat(v)));\n  if (isNumeric) {\n    numericCols.push(col);\n  } else {\n    textCols.push(col);\n  }\n}\n\n// Calculate stats for numeric columns\nconst stats = {};\nfor (const col of numericCols) {\n  const values = rows.map(r => parseFloat(r[col])).filter(v => !isNaN(v));\n  if (values.length === 0) continue;\n  stats[col] = {\n    count: values.length,\n    sum: Math.round(values.reduce((a, b) => a + b, 0) * 100) / 100,\n    avg: Math.round((values.reduce((a, b) => a + b, 0) / values.length) * 100) / 100,\n    min: Math.min(...values),\n    max: Math.max(...values)\n  };\n}\n\n// Build summary HTML table\nlet summaryHtml = '<table border=\"1\" cellpadding=\"8\" cellspacing=\"0\"><tr><th>Column</th><th>Count</th><th>Sum</th><th>Average</th><th>Min</th><th>Max</th></tr>';\nfor (const [col, s] of Object.entries(stats)) {\n  summaryHtml += `<tr><td><strong>${col}</strong></td><td>${s.count}</td><td>${s.sum}</td><td>${s.avg}</td><td>${s.min}</td><td>${s.max}</td></tr>`;\n}\nsummaryHtml += '</table>';\n\n// Count unique values for first text column\nlet categorySummary = '';\nif (textCols.length > 0) {\n  const firstTextCol = textCols[0];\n  const valueCounts = {};\n  for (const r of rows) {\n    const v = (r[firstTextCol] || 'empty').toString();\n    valueCounts[v] = (valueCounts[v] || 0) + 1;\n  }\n  categorySummary = Object.entries(valueCounts)\n    .sort((a, b) => b[1] - a[1])\n    .slice(0, 10)\n    .map(([v, c]) => `${v}: ${c}`)\n    .join(', ');\n}\n\nreturn [{\n  json: {\n    report_date: today,\n    total_rows: rows.length,\n    numeric_columns: numericCols.length,\n    summary_html: summaryHtml,\n    category_summary: categorySummary,\n    category_column: textCols[0] || 'N/A'\n  }\n}];"
+      },
+      "id": "n3",
+      "name": "Aggregate Data",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        660,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $env.REPORT_EMAIL || 'YOUR_NOTIFICATION_EMAIL' }}",
+        "subject": "=Daily Sheet Summary — {{ $json.report_date }}",
+        "message": "=<h2>Daily Data Summary</h2><p><strong>Date:</strong> {{ $json.report_date }}</p><p><strong>Total Rows:</strong> {{ $json.total_rows }}</p><p><strong>Numeric Columns:</strong> {{ $json.numeric_columns }}</p><h3>Column Statistics</h3>{{ $json.summary_html }}<h3>Top Categories ({{ $json.category_column }})</h3><p>{{ $json.category_summary }}</p>",
+        "options": {}
+      },
+      "id": "n4",
+      "name": "Send Report",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [
+        880,
+        300
+      ],
+      "credentials": {
+        "smtp": {
+          "id": "YOUR_SMTP_CREDENTIAL_ID",
+          "name": "SMTP"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Daily Schedule": {
+      "main": [
+        [
+          {
+            "node": "Read Sheet Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Read Sheet Data": {
+      "main": [
+        [
+          {
+            "node": "Aggregate Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate Data": {
+      "main": [
+        [
+          {
+            "node": "Send Report",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  }
+}

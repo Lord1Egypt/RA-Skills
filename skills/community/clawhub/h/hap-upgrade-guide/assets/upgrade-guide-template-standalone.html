@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{文档标题}</title>
+  <style>
+    /* ===== 全局样式 ===== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+      line-height: 1.7;
+      color: #1f2329;
+      background: #f7f8fa;
+    }
+
+    /* ===== 布局结构 ===== */
+    .container {
+      display: flex;
+      min-height: 100vh;
+    }
+
+    /* 侧边栏 */
+    .sidebar {
+      width: 260px;
+      flex-shrink: 0;
+      background: #fff;
+      border-right: 1px solid #e8eaed;
+      position: fixed;
+      left: 0;
+      top: 0;
+      height: 100vh;
+      overflow-y: auto;
+      padding: 24px 16px;
+    }
+
+    .sidebar h2 {
+      font-size: 14px;
+      font-weight: 600;
+      color: #1f2329;
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 2px solid #2468f2;
+    }
+
+    .toc {
+      list-style: none;
+    }
+
+    .toc li {
+      margin-bottom: 8px;
+    }
+
+    .toc a {
+      display: block;
+      color: #4e5969;
+      text-decoration: none;
+      font-size: 13px;
+      padding: 6px 10px;
+      border-radius: 4px;
+      transition: all 0.2s;
+    }
+
+    .toc a:hover {
+      background: #f2f3f5;
+      color: #2468f2;
+    }
+
+    .toc a.active {
+      background: #e8f3ff;
+      color: #2468f2;
+      font-weight: 500;
+    }
+
+    .toc .sub-section {
+      margin-left: 12px;
+    }
+
+    /* 主内容区 */
+    .main {
+      flex: 1;
+      margin-left: 260px;
+      background: #f7f8fa;
+      min-width: 0;
+    }
+
+    .content {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 32px 48px 48px;
+      background: #fff;
+      border-left: 1px solid #e8eaed;
+      border-right: 1px solid #e8eaed;
+    }
+
+    /* ===== 版本信息表格 ===== */
+    .meta-table {
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 10px 0;
+      background: #f9fafb;
+      border-radius: 8px;
+      border: 1px solid #e8eaed;
+      padding: 20px 24px;
+      margin-bottom: 32px;
+    }
+
+    .meta-label {
+      text-align: right;
+      color: #8f959e;
+      font-size: 12.5px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .meta-value {
+      color: #1f2329;
+      font-size: 13.5px;
+      font-weight: 500;
+    }
+
+    .version-path {
+      color: #2468f2;
+      font-weight: 600;
+    }
+
+    /* ===== 标题样式 ===== */
+    h1 {
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 16px;
+      color: #24292f;
+    }
+
+    h2 {
+      font-size: 22px;
+      font-weight: 600;
+      margin: 32px 0 16px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid #d0d7de;
+      color: #24292f;
+    }
+
+    h3 {
+      font-size: 18px;
+      font-weight: 600;
+      margin: 24px 0 12px;
+      color: #24292f;
+    }
+
+    h4 {
+      font-size: 16px;
+      font-weight: 600;
+      margin: 20px 0 10px;
+      color: #24292f;
+    }
+
+    /* ===== 段落和列表 ===== */
+    p {
+      margin-bottom: 16px;
+      color: #4e5969;
+    }
+
+    ul, ol {
+      margin-bottom: 16px;
+      padding-left: 24px;
+      color: #4e5969;
+    }
+
+    li {
+      margin-bottom: 8px;
+      line-height: 1.7;
+    }
+
+    /* ===== 引用块 ===== */
+    blockquote {
+      border-left: 4px solid #d0d7de;
+      padding: 0 1em;
+      margin: 16px 0;
+      color: #656d76;
+      font-size: 14px;
+      background: transparent;
+    }
+
+    /* ===== 代码块 ===== */
+    .code-block {
+      position: relative;
+      margin: 16px 0;
+      border-radius: 6px;
+      overflow: hidden;
+      border: 1px solid #d0d7de;
+    }
+
+    .code-block pre {
+      background: #f6f8fa;
+      color: #24292f;
+      margin: 0;
+      padding: 16px;
+      overflow-x: auto;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+      font-size: 14px;
+      line-height: 1.45;
+    }
+
+    .copy-btn {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      padding: 4px 10px;
+      background: rgba(175, 184, 193, 0.8);
+      color: #24292f;
+      border: 1px solid rgba(27, 31, 35, 0.15);
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: 500;
+      transition: all 0.2s;
+    }
+
+    .copy-btn:hover {
+      background: rgba(175, 184, 193, 0.9);
+    }
+
+    .copy-btn.copied {
+      background: #2ea44f;
+      color: #fff;
+      border-color: rgba(27, 31, 35, 0.15);
+    }
+
+    /* ===== 语法高亮(浅色主题) ===== */
+    .comment { color: #6a737d; }
+    .string { color: #032f62; }
+    .keyword { color: #d73a49; }
+    .function { color: #6f42c1; }
+    .number { color: #005cc5; }
+    .operator { color: #24292e; }
+
+    /* ===== 表格 ===== */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+      font-size: 14px;
+    }
+
+    th, td {
+      border: 1px solid #e8eaed;
+      padding: 12px;
+      text-align: left;
+    }
+
+    th {
+      background: #f7f8fa;
+      font-weight: 600;
+      color: #1f2329;
+    }
+
+    td {
+      color: #4e5969;
+    }
+
+    /* ===== 强调文本 ===== */
+    strong {
+      color: #1f2329;
+      font-weight: 600;
+    }
+
+    /* ===== 水平线 ===== */
+    hr {
+      border: none;
+      border-top: 2px solid #e8eaed;
+      margin: 40px 0;
+    }
+
+    /* ===== 警告和提示 ===== */
+    .warning {
+      background: #fff7e6;
+      border-left: 4px solid #ff9800;
+      padding: 12px 20px;
+      margin: 20px 0;
+      color: #4e5969;
+    }
+
+    .danger {
+      background: #ffebee;
+      border-left: 4px solid #f44336;
+      padding: 12px 20px;
+      margin: 20px 0;
+      color: #4e5969;
+    }
+
+    .info {
+      background: #e3f2fd;
+      border-left: 4px solid #2196f3;
+      padding: 12px 20px;
+      margin: 20px 0;
+      color: #4e5969;
+    }
+
+    /* ===== 响应式设计 ===== */
+    @media (max-width: 1024px) {
+      .sidebar {
+        width: 220px;
+      }
+      .main {
+        margin-left: 220px;
+      }
+      .content {
+        padding: 28px 32px 48px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+      }
+      .sidebar {
+        display: none;
+      }
+      .main {
+        margin-left: 0;
+      }
+      .content {
+        padding: 20px;
+      }
+    }
+
+    /* ===== 滚动条样式 ===== */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #f7f8fa;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #d0d7de;
+      border-radius: 4px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: #b0b7c1;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- 侧边栏目录 -->
+    <aside class="sidebar">
+      <h2>📖 目录</h2>
+      <ul class="toc" id="toc">
+        {目录内容}
+      </ul>
+    </aside>
+
+    <!-- 主内容区 -->
+    <main class="main">
+      <div class="content">
+        <h1>{文档标题}</h1>
+
+        <!-- 版本信息 -->
+        <div class="meta-table">
+          <div class="meta-label">升级路径</div>
+          <div class="meta-value version-path">{当前版本} → {目标版本}</div>
+
+          <div class="meta-label">部署模式</div>
+          <div class="meta-value">{部署模式}</div>
+
+          <div class="meta-label">服务器架构</div>
+          <div class="meta-value">{架构}</div>
+
+          <div class="meta-label">服务器网络</div>
+          <div class="meta-value">{网络}</div>
+
+          <div class="meta-label">文档生成日期</div>
+          <div class="meta-value">{生成日期}</div>
+        </div>
+
+        <!-- 文档正文 -->
+        {文档内容}
+
+        <!-- 声明 -->
+        <hr>
+        <blockquote>
+          💡 声明：内容由 AI 生成。尽管已努力确保信息的合理性，但 AI 模型仍可能产生不准确、过时或存在偏差的内容。请在执行关键操作前，务必对照<a href="https://docs-pd.mingdao.com">官方文档</a>进行核实校验。
+        </blockquote>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    // 代码块复制功能
+    document.addEventListener('DOMContentLoaded', function() {
+      // 为所有 <pre> 标签添加复制按钮
+      const pres = document.querySelectorAll('.content pre');
+      pres.forEach(pre => {
+        const codeBlock = pre.closest('.code-block');
+        if (!codeBlock) {
+          // 如果没有 .code-block 包装器，创建一个
+          const wrapper = document.createElement('div');
+          wrapper.className = 'code-block';
+          pre.parentNode.insertBefore(wrapper, pre);
+          wrapper.appendChild(pre);
+        }
+
+        const currentCodeBlock = pre.closest('.code-block');
+        const copyBtn = document.createElement('button');
+        copyBtn.className = 'copy-btn';
+        copyBtn.textContent = '复制';
+        copyBtn.addEventListener('click', function() {
+          const code = pre.textContent;
+          navigator.clipboard.writeText(code).then(() => {
+            copyBtn.textContent = '已复制';
+            copyBtn.classList.add('copied');
+            setTimeout(() => {
+              copyBtn.textContent = '复制';
+              copyBtn.classList.remove('copied');
+            }, 1500);
+          }).catch(err => {
+            console.error('复制失败:', err);
+            copyBtn.textContent = '复制失败';
+          });
+        });
+        currentCodeBlock.appendChild(copyBtn);
+      });
+
+      // 生成目录
+      const headings = document.querySelectorAll('.content h2, .content h3');
+      const toc = document.getElementById('toc');
+      let currentSection = null;
+
+      headings.forEach((heading, index) => {
+        const id = 'heading-' + index;
+        heading.id = id;
+
+        const li = document.createElement('li');
+        const a = document.createElement('a');
+        a.href = '#' + id;
+        a.textContent = heading.textContent;
+        a.addEventListener('click', function(e) {
+          e.preventDefault();
+          heading.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          // 更新激活状态
+          document.querySelectorAll('.toc a').forEach(link => link.classList.remove('active'));
+          a.classList.add('active');
+        });
+
+        if (heading.tagName === 'H2') {
+          currentSection = li;
+          currentSection.appendChild(a);
+          toc.appendChild(currentSection);
+        } else if (heading.tagName === 'H3' && currentSection) {
+          const subList = currentSection.querySelector('.sub-section');
+          if (!subList) {
+            const newSubList = document.createElement('ul');
+            newSubList.className = 'sub-section';
+            currentSection.appendChild(newSubList);
+          }
+          const subLi = document.createElement('li');
+          subLi.appendChild(a);
+          currentSection.querySelector('.sub-section').appendChild(subLi);
+        } else {
+          li.appendChild(a);
+          toc.appendChild(li);
+        }
+      });
+
+      // 滚动监听，自动高亮目录
+      window.addEventListener('scroll', function() {
+        const scrollPosition = window.scrollY + 100;
+        headings.forEach((heading, index) => {
+          const section = document.getElementById('heading-' + index);
+          if (section.offsetTop <= scrollPosition) {
+            document.querySelectorAll('.toc a').forEach(link => link.classList.remove('active'));
+            const activeLink = document.querySelector(`.toc a[href="#heading-${index}"]`);
+            if (activeLink) activeLink.classList.add('active');
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,260 @@
+[
+  {
+    "name": "深圳大学",
+    "sites": [
+      {"site_name": "研究生院", "url": "https://yz.szu.edu.cn/sszs/gg.htm"}
+    ]
+  },
+  {
+    "name": "武汉理工大学",
+    "sites": [
+      {"site_name": "研究生院", "url": "http://gd.whut.edu.cn/zs/tzgg/"}
+    ]
+  },
+  {
+    "name": "暨南大学",
+    "sites": [
+      {"site_name": "研究生院", "url": "https://yz.jnu.edu.cn/tzgg/main.htm"}
+    ]
+  },
+  {
+    "name": "中国地质大学（武汉）",
+    "sites": [
+      {"site_name": "研究生院", "url": "https://yz.cug.edu.cn/page/list/PVKZRL/697_10_1"}
+    ]
+  },
+  {
+    "name": "南昌大学",
+    "sites": [
+      {"site_name": "研究生院", "url": "https://yjsy.ncu.edu.cn/zsgz/sszs.htm"}
+    ]
+  },
+  {
+    "name": "湖南大学",
+    "sites": [
+      {"site_name": "研究生院硕士招生", "url": "https://gra.hnu.edu.cn/zsxx/sszs.htm"}
+    ]
+  },
+  {
+    "name": "北京大学",
+    "sites": [
+      {"site_name": "研究生招生网硕士招生", "url": "https://admission.pku.edu.cn/zsxx/sszs/index.htm"}
+    ]
+  },
+  {
+    "name": "清华大学",
+    "sites": [
+      {"site_name": "研究生招生网", "url": "https://yz.tsinghua.edu.cn/"}
+    ]
+  },
+  {
+    "name": "北京航空航天大学",
+    "sites": [
+      {"site_name": "研究生招生信息网", "url": "https://yzb.buaa.edu.cn/xlss.htm"}
+    ]
+  },
+  {
+    "name": "北京理工大学",
+    "sites": [
+      {"site_name": "研究生院", "url": "https://grd.bit.edu.cn/tzgg1/index.htm"}
+    ]
+  },
+  {
+    "name": "北京师范大学",
+    "sites": [
+      {"site_name": "研究生招生网", "url": "https://yz.bnu.edu.cn/list/master"}
+    ]
+  },
+  {
+    "name": "中国农业大学",
+    "sites": [
+      {"site_name": "研究生院", "url": "https://yz.cau.edu.cn/col/col41740/index.html"}
+    ]
+  },
+  {
+    "name": "中央民族大学",
+    "sites": [
+      {"site_name": "研究生招生网", "url": "https://grs.muc.edu.cn/yjsyzsw/sszs.htm"}
+    ]
+  },
+  {
+    "name": "复旦大学",
+    "sites": [
+      {"site_name": "研究生招生网", "url": "https://gsao.fudan.edu.cn/15014/list.htm"}
+    ]
+  },
+  {
+    "name": "上海交通大学",
+    "sites": [
+      {"site_name": "研究生招生网", "url": "https://yzb.sjtu.edu.cn/zkxx/sszs"}
+    ]
+  },
+  {
+    "name": "同济大学",
+    "sites": [
+      {"site_name": "研究生招生网", "url": "https://yz.tongji.edu.cn/zsxw/sszs.htm"}
+    ]
+  },
+  {
+    "name": "华东师范大学",
+    "sites": [
+      {"site_name": "研究生招生网", "url": "https://yjszs.ecnu.edu.cn/43264/list.htm"}
+    ]
+  },
+  {
+    "name": "西安交通大学",
+    "sites": [
+      {"site_name": "研究生招生信息网", "url": "https://yz.xjtu.edu.cn/index/tzgg.htm"}
+    ]
+  },
+  {
+    "name": "西北工业大学",
+    "sites": [
+      {"site_name": "研究生招生信息网", "url": "https://yzb.nwpu.edu.cn/new/sszs/zsgg.htm"}
+    ]
+  },
+  {
+    "name": "西北农林科技大学",
+    "sites": [
+      {"site_name": "研究生招生信息网", "url": "https://yz.nwsuaf.edu.cn/tzgg/index.htm"}
+    ]
+  },
+  {
+    "name": "中南大学",
+    "sites": [
+      {"site_name": "研究生招生信息网", "url": "https://yz.csu.edu.cn/zxgg.htm"}
+    ]
+  },
+  {
+    "name": "国防科技大学",
+    "sites": [
+      {"site_name": "研究生招生信息网", "url": "https://yjszs.nudt.edu.cn/pubweb/homePageList/generalCollectionPage.view?keyId=2"}
+    ]
+  },
+  {
+    "name": "南开大学",
+    "sites": [
+      {"site_name": "研究生招生网", "url": "https://yzb.nankai.edu.cn/5508/list.htm"}
+    ]
+  },
+  {
+    "name": "天津大学",
+    "sites": [
+      {"site_name": "研究生招生网", "url": "https://yzb.tju.edu.cn/xwzx/tkss_xw/"}
+    ]
+  },
+  {
+    "name": "南京大学",
+    "sites": [
+      {"site_name": "研究生招生网", "url": "https://yzb.nju.edu.cn/47863/list.htm"}
+    ]
+  },
+  {
+    "name": "东南大学",
+    "sites": [
+      {"site_name": "研究生招生网", "url": "https://yzb.seu.edu.cn/6676/list.htm"}
+    ]
+  },
+  {
+    "name": "武汉大学",
+    "sites": [
+      {"site_name": "研究生招生信息网", "url": "https://wdyz.whu.edu.cn/tzgg.htm"}
+    ]
+  },
+  {
+    "name": "华中科技大学",
+    "sites": [
+      {"site_name": "研究生招生信息网", "url": "https://gszs.hust.edu.cn/zsxx/ggtz.htm"}
+    ]
+  },
+  {
+    "name": "山东大学",
+    "sites": [
+      {"site_name": "研究生招生信息网", "url": "https://www.yz.sdu.edu.cn/index/tzgg.htm"}
+    ]
+  },
+  {
+    "name": "中国海洋大学",
+    "sites": [
+      {"site_name": "研究生招生信息网", "url": "https://yz.ouc.edu.cn/tzgg/list.htm"}
+    ]
+  },
+  {
+    "name": "大连理工大学",
+    "sites": [
+      {"site_name": "研究生院", "url": "https://gs.dlut.edu.cn/yjszs/zcwj1/ssyjs.htm"}
+    ]
+  },
+  {
+    "name": "东北大学",
+    "sites": [
+      {"site_name": "研究生招生信息网", "url": "https://yz.neu.edu.cn/5932/list.htm"}
+    ]
+  },
+  {
+    "name": "中山大学",
+    "sites": [
+      {"site_name": "研究生招生网", "url": "https://graduate.sysu.edu.cn/zsw/postgraduate"}
+    ]
+  },
+  {
+    "name": "华南理工大学",
+    "sites": [
+      {"site_name": "研究生招生网", "url": "https://yz.scut.edu.cn/sszs/list.htm"}
+    ]
+  },
+  {
+    "name": "四川大学",
+    "sites": [
+      {"site_name": "研究生招生信息网", "url": "https://yz.scu.edu.cn/zsxx/newslist/a/gg"}
+    ]
+  },
+  {
+    "name": "电子科技大学",
+    "sites": [
+      {"site_name": "研究生招生网", "url": "https://yz.uestc.edu.cn/sszs/tzgg.htm"}
+    ]
+  },
+  {
+    "name": "浙江大学",
+    "sites": [
+      {"site_name": "研究生招生网", "url": "http://www.grs.zju.edu.cn/yjszs/28498/list.htm"}
+    ]
+  },
+  {
+    "name": "中国科学技术大学",
+    "sites": [
+      {"site_name": "研究生在线", "url": "https://yz.ustc.edu.cn/column/182"}
+    ]
+  },
+  {
+    "name": "厦门大学",
+    "sites": [
+      {"site_name": "研究生招生网", "url": "https://zs.xmu.edu.cn/zxgg/yjs.htm"}
+    ]
+  },
+  {
+    "name": "哈尔滨工业大学",
+    "sites": [
+      {"site_name": "研究生招生网", "url": "https://yzb.hit.edu.cn/8822/list.htm"}
+    ]
+  },
+  {
+    "name": "吉林大学",
+    "sites": [
+      {"site_name": "研究生招生网", "url": "https://zsb.jlu.edu.cn/list/17.html"}
+    ]
+  },
+  {
+    "name": "重庆大学",
+    "sites": [
+      {"site_name": "研究生招生信息网", "url": "https://yz.cqu.edu.cn/"}
+    ]
+  },
+  {
+    "name": "兰州大学",
+    "sites": [
+      {"site_name": "研究生招生信息网", "url": "https://yz.lzu.edu.cn/tongzhigonggao/index.html"}
+    ]
+  }
+]

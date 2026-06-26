@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>作业分析报告</title>
+    <style>
+        body {
+            font-family: "Microsoft YaHei", "SimHei", sans-serif;
+            margin: 40px;
+            color: #2c3e50;
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #34495e;
+            border-left: 4px solid #3498db;
+            padding-left: 10px;
+            margin-top: 30px;
+        }
+        .summary {
+            background: #ecf0f1;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        .summary-item {
+            display: inline-block;
+            margin: 10px 20px;
+        }
+        .summary-label {
+            font-weight: bold;
+            color: #7f8c8d;
+        }
+        .summary-value {
+            font-size: 1.5em;
+            color: #2c3e50;
+            font-weight: bold;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            border: 1px solid #bdc3c7;
+            padding: 12px;
+            text-align: center;
+        }
+        th {
+            background: #3498db;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+        
+        .key-question {
+            background: #fff3cd;
+        }
+        .key-badge {
+            background: #dc3545;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 3px;
+            font-size: 0.8em;
+        }
+        
+        .suggestion {
+            background: #d4edda;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+        .suggestion-title {
+            font-weight: bold;
+            color: #155724;
+        }
+        
+        .footer {
+            text-align: center;
+            color: #95a5a6;
+            margin-top: 40px;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <h1>📊 作业分析报告</h1>
+    
+    <div class="summary">
+        <div class="summary-item">
+            <div class="summary-label">班级人数</div>
+            <div class="summary-value">{{total_students}}</div>
+        </div>
+        <div class="summary-item">
+            <div class="summary-label">题目总数</div>
+            <div class="summary-value">{{total_questions}}</div>
+        </div>
+        <div class="summary-item">
+            <div class="summary-label">平均正确率</div>
+            <div class="summary-value">{{avg_correct_rate}}%</div>
+        </div>
+        <div class="summary-item">
+            <div class="summary-label">重点错题</div>
+            <div class="summary-value">{{key_question_count}}</div>
+        </div>
+    </div>
+    
+    <h2>📈 错题统计</h2>
+    <table>
+        <tr>
+            <th>题号</th>
+            <th>错题人数</th>
+            <th>错误率</th>
+            <th>标记</th>
+        </tr>
+        {{question_rows}}
+    </table>
+    
+    {{key_questions_section}}
+    
+    <h2>👥 学生得分明细</h2>
+    <table>
+        <tr>
+            <th>学生</th>
+            <th>正确题数</th>
+            <th>错误题数</th>
+            <th>正确率</th>
+        </tr>
+        {{student_rows}}
+    </table>
+    
+    <div class="footer">
+        <p>生成时间: {{generate_time}}</p>
+        <p>作业批改助手 | Homework Grader</p>
+    </div>
+</body>
+</html>

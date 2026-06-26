@@ -1,0 +1,53 @@
+{
+  "name": "default",
+  "layers": {
+    "hot": {
+      "enabled": true,
+      "file": "SESSION-STATE.md",
+      "wal_protocol": true,
+      "auto_save": true
+    },
+    "warm": {
+      "enabled": true,
+      "db_path": "~/.ichiro-mind/neural.db",
+      "spreading_activation": true,
+      "max_depth": 3,
+      "synapse_types": [
+        "BEFORE", "AFTER", "CAUSED_BY", "LEADS_TO",
+        "IS_A", "HAS_PROPERTY", "PART_OF", "RELATED_TO",
+        "FELT", "EVOKES", "CONTRADICTS"
+      ]
+    },
+    "cold": {
+      "enabled": true,
+      "db_path": "~/.ichiro-mind/vectors.lance",
+      "provider": "openai",
+      "embedding_model": "text-embedding-3-small",
+      "auto_capture": false,
+      "min_importance": 0.7
+    },
+    "archive": {
+      "enabled": true,
+      "memory_file": "MEMORY.md",
+      "daily_dir": "memory/",
+      "git_notes": true,
+      "cloud_backup": false
+    }
+  },
+  "hygiene": {
+    "auto_cleanup": true,
+    "cleanup_interval_days": 30,
+    "deduplication": true,
+    "token_optimization": true
+  },
+  "learning": {
+    "track_decisions": true,
+    "track_errors": true,
+    "pattern_recognition": true,
+    "suggestion_enabled": true
+  },
+  "routing": {
+    "smart_routing": true,
+    "fallback_chain": ["hot", "warm", "cold", "archive"]
+  }
+}

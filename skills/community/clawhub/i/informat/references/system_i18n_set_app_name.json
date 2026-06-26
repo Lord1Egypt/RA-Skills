@@ -1,0 +1,18 @@
+{
+  "type": "function",
+  "function": {
+    "name": "_i18n_set_app_name",
+    "description": "Set application name using expression.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "displayName": {
+          "type": "string",
+          "description": "Expression application name. Must use internationalization expression format: ${T.t('path')}. Where path is the complete path of the translation item in the internationalization translation definition (translateList), for example: ${T.t('app.name')}"
+        }
+      },
+      "required": ["displayName"],
+      "additionalProperties": false
+    }
+  }
+}

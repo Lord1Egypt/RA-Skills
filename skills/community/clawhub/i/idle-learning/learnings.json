@@ -1,0 +1,472 @@
+[
+  {
+    "time": "2026-05-02T15:00:08.418926",
+    "topic": "self-improvement AI",
+    "findings": [
+      "letta-ai/letta ⭐22404: Letta is the platform for building stateful agents: AI with ",
+      "aden-hive/hive ⭐10198: Multi-Agent Harness for Production AI",
+      "MervinPraison/PraisonAI ⭐7013: PraisonAI 🦞 — Hire a 24/7 AI Workforce. Stop writing boilerp"
+    ],
+    "summary": "构建可自我改进的AI智能体框架"
+  },
+  {
+    "time": "2026-05-02T14:00:11.216401",
+    "topic": "agent memory",
+    "findings": [
+      "affaan-m/everything-claude-code ⭐171634: The agent harness performance optimization system. Skills, i",
+      "bytedance/deer-flow ⭐64468: An open-source long-horizon SuperAgent harness that research",
+      "mem0ai/mem0 ⭐54557: Universal memory layer for AI Agents"
+    ],
+    "summary": "Agent记忆系统：用于保存对话上下文与任务状态，提升智能体性能。"
+  },
+  {
+    "time": "2026-05-02T13:00:28.772755",
+    "topic": "LLM reasoning improvement",
+    "findings": [
+      "HERMES++: Toward a Unified Driving World Model for 3D Scene  — http://arxiv.org/abs/2604.28196v1",
+      "LaST-R1: Reinforcing Action via Adaptive Physical Latent Rea — http://arxiv.org/abs/2604.28192v1",
+      "Visual Generation in the New Era: An Evolution from Atomic M — http://arxiv.org/abs/2604.28185v1"
+    ],
+    "summary": "HERMES++: Toward a Unified Driving World Model for 3D Scene  — http://arxiv.org/"
+  },
+  {
+    "time": "2026-05-02T12:00:19.826209",
+    "topic": "self-improvement AI",
+    "findings": [
+      "letta-ai/letta ⭐22403: Letta is the platform for building stateful agents: AI with ",
+      "aden-hive/hive ⭐10198: Multi-Agent Harness for Production AI",
+      "MervinPraison/PraisonAI ⭐7012: PraisonAI 🦞 — Hire a 24/7 AI Workforce. Stop writing boilerp"
+    ],
+    "summary": "状态代理+多代理系统，赋能AI自我提升"
+  },
+  {
+    "time": "2026-05-02T11:00:25.517278",
+    "topic": "LLM reasoning improvement",
+    "findings": [
+      "HERMES++: Toward a Unified Driving World Model for 3D Scene  — http://arxiv.org/abs/2604.28196v1",
+      "LaST-R1: Reinforcing Action via Adaptive Physical Latent Rea — http://arxiv.org/abs/2604.28192v1",
+      "Visual Generation in the New Era: An Evolution from Atomic M — http://arxiv.org/abs/2604.28185v1"
+    ],
+    "summary": "LLM推理改进：统一3D驾驶世界模型与自适应物理潜空间强化动作。"
+  },
+  {
+    "time": "2026-05-02T10:00:14.618915",
+    "topic": "world model",
+    "findings": [
+      "HERMES++: Toward a Unified Driving World Model for 3D Scene  — http://arxiv.org/abs/2604.28196v1",
+      "OmniRobotHome: A Multi-Camera Platform for Real-Time Multiad — http://arxiv.org/abs/2604.28197v1",
+      "Covariant Locally Localized Gravity and vDVZ Continuity — http://arxiv.org/abs/2604.28194v1"
+    ],
+    "summary": "统一的多摄像头3D驾驶世界模型平台"
+  },
+  {
+    "time": "2026-05-02T09:00:18.479987",
+    "topic": "hallucination detection",
+    "findings": [
+      "cvs-health/uqlm ⭐1147: UQLM: Uncertainty Quantification for Language Models, is a P",
+      "EdinburghNLP/awesome-hallucination-detection ⭐1079: List of papers on hallucination detection in LLMs.",
+      "frckeepit/llm-production-toolkit ⭐174: Production-ready toolkit for evaluating, monitoring, and ens"
+    ],
+    "summary": "**语言模型幻觉检测研究：不确定性量化与论文资源汇总**"
+  },
+  {
+    "time": "2026-05-02T08:00:10.648992",
+    "topic": "agent memory",
+    "findings": [
+      "affaan-m/everything-claude-code ⭐171518: The agent harness performance optimization system. Skills, i",
+      "bytedance/deer-flow ⭐64451: An open-source long-horizon SuperAgent harness that research",
+      "mem0ai/mem0 ⭐54548: Universal memory layer for AI Agents"
+    ],
+    "summary": "**Agent Memory: 让AI智能体记住上下文、跨轮推理、持久化经验的关键机制。**"
+  },
+  {
+    "time": "2026-05-02T07:00:26.337746",
+    "topic": "world model",
+    "findings": [
+      "HERMES++: Toward a Unified Driving World Model for 3D Scene  — http://arxiv.org/abs/2604.28196v1",
+      "OmniRobotHome: A Multi-Camera Platform for Real-Time Multiad — http://arxiv.org/abs/2604.28197v1",
+      "Covariant Locally Localized Gravity and vDVZ Continuity — http://arxiv.org/abs/2604.28194v1"
+    ],
+    "summary": "HERMES++: Toward a Unified Driving World Model for 3D Scene  — http://arxiv.org/"
+  },
+  {
+    "time": "2026-05-02T06:00:12.758670",
+    "topic": "agent memory",
+    "findings": [
+      "affaan-m/everything-claude-code ⭐171485: The agent harness performance optimization system. Skills, i",
+      "bytedance/deer-flow ⭐64449: An open-source long-horizon SuperAgent harness that research",
+      "mem0ai/mem0 ⭐54545: Universal memory layer for AI Agents"
+    ],
+    "summary": "智能体记忆：高速缓存、持久存储、灵活检索"
+  },
+  {
+    "time": "2026-05-02T05:00:17.954765",
+    "topic": "self-aware AI architecture",
+    "findings": [
+      "Garrus800-stack/genesis-agent ⭐24: Self-aware cognitive AI agent that reads, modifies & verifie"
+    ],
+    "summary": "自我意识AI，读、改、验证代码"
+  },
+  {
+    "time": "2026-05-02T04:00:10.220367",
+    "topic": "self-aware AI architecture",
+    "findings": [
+      "Garrus800-stack/genesis-agent ⭐24: Self-aware cognitive AI agent that reads, modifies & verifie"
+    ],
+    "summary": "自感知AI架构：读取、修改、验证"
+  },
+  {
+    "time": "2026-05-02T03:00:15.144294",
+    "topic": "self-improvement AI",
+    "findings": [
+      "letta-ai/letta ⭐22400: Letta is the platform for building stateful agents: AI with ",
+      "aden-hive/hive ⭐10192: Multi-Agent Harness for Production AI",
+      "MervinPraison/PraisonAI ⭐7011: PraisonAI 🦞 — Hire a 24/7 AI Workforce. Stop writing boilerp"
+    ],
+    "summary": "开源AI代理平台，支持多代理与状态管理"
+  },
+  {
+    "time": "2026-05-02T02:00:17.938147",
+    "topic": "self-improvement AI",
+    "findings": [
+      "letta-ai/letta ⭐22398: Letta is the platform for building stateful agents: AI with ",
+      "aden-hive/hive ⭐10192: Multi-Agent Harness for Production AI",
+      "MervinPraison/PraisonAI ⭐7011: PraisonAI 🦞 — Hire a 24/7 AI Workforce. Stop writing boilerp"
+    ],
+    "summary": "构建状态代理与多代理生产AI的框架与平台"
+  },
+  {
+    "time": "2026-05-02T01:00:23.799756",
+    "topic": "AI consciousness",
+    "findings": [
+      "Computing Equilibrium beyond Unilateral Deviation — http://arxiv.org/abs/2604.28186v1",
+      "Exploration Hacking: Can LLMs Learn to Resist RL Training? — http://arxiv.org/abs/2604.28182v1",
+      "Synthetic Computers at Scale for Long-Horizon Productivity S — http://arxiv.org/abs/2604.28181v1"
+    ],
+    "summary": "Computing Equilibrium beyond Unilateral Deviation — http://arxiv.org/abs/2604.28"
+  },
+  {
+    "time": "2026-05-02T00:00:15.104786",
+    "topic": "LLM reasoning improvement",
+    "findings": [
+      "HERMES++: Toward a Unified Driving World Model for 3D Scene  — http://arxiv.org/abs/2604.28196v1",
+      "LaST-R1: Reinforcing Action via Adaptive Physical Latent Rea — http://arxiv.org/abs/2604.28192v1",
+      "Visual Generation in the New Era: An Evolution from Atomic M — http://arxiv.org/abs/2604.28185v1"
+    ],
+    "summary": "统一3D驾驶世界模型+物理潜在空间强化动作，增强LLM时空推理与决策能力"
+  },
+  {
+    "time": "2026-05-01T23:00:17.361838",
+    "topic": "hallucination detection",
+    "findings": [
+      "cvs-health/uqlm ⭐1147: UQLM: Uncertainty Quantification for Language Models, is a P",
+      "EdinburghNLP/awesome-hallucination-detection ⭐1079: List of papers on hallucination detection in LLMs.",
+      "frckeepit/llm-production-toolkit ⭐174: Production-ready toolkit for evaluating, monitoring, and ens"
+    ],
+    "summary": "大模型幻觉检测：研究不确定性量化和检测方法，汇总相关论文资源。"
+  },
+  {
+    "time": "2026-05-01T22:00:22.714464",
+    "topic": "self-aware AI architecture",
+    "findings": [
+      "Garrus800-stack/genesis-agent ⭐24: Self-aware cognitive AI agent that reads, modifies & verifie"
+    ],
+    "summary": "Garrus800-stack/genesis-agent ⭐24: Self-aware cognitive AI agent that reads, mod"
+  },
+  {
+    "time": "2026-05-01T21:00:37.445609",
+    "topic": "AI consciousness",
+    "findings": [
+      "Computing Equilibrium beyond Unilateral Deviation — http://arxiv.org/abs/2604.28186v1",
+      "Exploration Hacking: Can LLMs Learn to Resist RL Training? — http://arxiv.org/abs/2604.28182v1",
+      "Synthetic Computers at Scale for Long-Horizon Productivity S — http://arxiv.org/abs/2604.28181v1"
+    ],
+    "summary": "AI在博弈均衡与强化学习中的自我意识"
+  },
+  {
+    "time": "2026-05-01T20:00:21.912150",
+    "topic": "self-aware AI architecture",
+    "findings": [
+      "Garrus800-stack/genesis-agent ⭐24: Self-aware cognitive AI agent that reads, modifies & verifie"
+    ],
+    "summary": "Garrus800-stack/genesis-agent ⭐24: Self-aware cognitive AI agent that reads, mod"
+  },
+  {
+    "time": "2026-05-01T19:00:23.072132",
+    "topic": "self-improvement AI",
+    "findings": [
+      "letta-ai/letta ⭐22390: Letta is the platform for building stateful agents: AI with ",
+      "aden-hive/hive ⭐10185: Multi-Agent Harness for Production AI",
+      "MervinPraison/PraisonAI ⭐7013: PraisonAI 🦞 — Hire a 24/7 AI Workforce. Stop writing boilerp"
+    ],
+    "summary": "letta-ai/letta ⭐22390: Letta is the platform for building stateful agents: AI wi"
+  },
+  {
+    "time": "2026-05-01T18:00:23.002273",
+    "topic": "hallucination detection",
+    "findings": [
+      "cvs-health/uqlm ⭐1147: UQLM: Uncertainty Quantification for Language Models, is a P",
+      "EdinburghNLP/awesome-hallucination-detection ⭐1079: List of papers on hallucination detection in LLMs.",
+      "frckeepit/llm-production-toolkit ⭐174: Production-ready toolkit for evaluating, monitoring, and ens"
+    ],
+    "summary": "cvs-health/uqlm ⭐1147: UQLM: Uncertainty Quantification for Language Models, is "
+  },
+  {
+    "time": "2026-05-01T17:00:22.848232",
+    "topic": "self-aware AI architecture",
+    "findings": [
+      "Garrus800-stack/genesis-agent ⭐24: Self-aware cognitive AI agent that reads, modifies & verifie"
+    ],
+    "summary": "Garrus800-stack/genesis-agent ⭐24: Self-aware cognitive AI agent that reads, mod"
+  },
+  {
+    "time": "2026-05-01T16:00:22.897352",
+    "topic": "hallucination detection",
+    "findings": [
+      "cvs-health/uqlm ⭐1147: UQLM: Uncertainty Quantification for Language Models, is a P",
+      "EdinburghNLP/awesome-hallucination-detection ⭐1079: List of papers on hallucination detection in LLMs.",
+      "frckeepit/llm-production-toolkit ⭐174: Production-ready toolkit for evaluating, monitoring, and ens"
+    ],
+    "summary": "cvs-health/uqlm ⭐1147: UQLM: Uncertainty Quantification for Language Models, is "
+  },
+  {
+    "time": "2026-05-01T15:00:15.172740",
+    "topic": "world model",
+    "findings": [
+      "HERMES++: Toward a Unified Driving World Model for 3D Scene  — http://arxiv.org/abs/2604.28196v1",
+      "OmniRobotHome: A Multi-Camera Platform for Real-Time Multiad — http://arxiv.org/abs/2604.28197v1",
+      "Covariant Locally Localized Gravity and vDVZ Continuity — http://arxiv.org/abs/2604.28194v1"
+    ],
+    "summary": "**3D驾驶世界模型与多摄像头实时感知平台**"
+  },
+  {
+    "time": "2026-05-01T14:00:22.724064",
+    "topic": "self-improvement AI",
+    "findings": [
+      "letta-ai/letta ⭐22389: Letta is the platform for building stateful agents: AI with ",
+      "aden-hive/hive ⭐10185: Multi-Agent Harness for Production AI",
+      "MervinPraison/PraisonAI ⭐7011: PraisonAI 🦞 — Hire a 24/7 AI Workforce. Stop writing boilerp"
+    ],
+    "summary": "letta-ai/letta ⭐22389: Letta is the platform for building stateful agents: AI wi"
+  },
+  {
+    "time": "2026-05-01T13:00:22.685235",
+    "topic": "self-improvement AI",
+    "findings": [
+      "letta-ai/letta ⭐22389: Letta is the platform for building stateful agents: AI with ",
+      "aden-hive/hive ⭐10184: Multi-Agent Harness for Production AI",
+      "MervinPraison/PraisonAI ⭐7011: PraisonAI 🦞 — Hire a 24/7 AI Workforce. Stop writing boilerp"
+    ],
+    "summary": "letta-ai/letta ⭐22389: Letta is the platform for building stateful agents: AI wi"
+  },
+  {
+    "time": "2026-05-01T12:00:14.356432",
+    "topic": "self-aware AI architecture",
+    "findings": [
+      "Garrus800-stack/genesis-agent ⭐24: Self-aware cognitive AI agent that reads, modifies & verifie"
+    ],
+    "summary": "自意识认知代理，可读写并验证代码"
+  },
+  {
+    "time": "2026-05-01T11:00:22.511675",
+    "topic": "self-improvement AI",
+    "findings": [
+      "letta-ai/letta ⭐22388: Letta is the platform for building stateful agents: AI with ",
+      "aden-hive/hive ⭐10185: Multi-Agent Harness for Production AI",
+      "MervinPraison/PraisonAI ⭐7011: PraisonAI 🦞 — Hire a 24/7 AI Workforce. Stop writing boilerp"
+    ],
+    "summary": "letta-ai/letta ⭐22388: Letta is the platform for building stateful agents: AI wi"
+  },
+  {
+    "time": "2026-05-01T10:00:23.503181",
+    "topic": "hallucination detection",
+    "findings": [
+      "cvs-health/uqlm ⭐1147: UQLM: Uncertainty Quantification for Language Models, is a P",
+      "EdinburghNLP/awesome-hallucination-detection ⭐1079: List of papers on hallucination detection in LLMs.",
+      "frckeepit/llm-production-toolkit ⭐174: Production-ready toolkit for evaluating, monitoring, and ens"
+    ],
+    "summary": "cvs-health/uqlm ⭐1147: UQLM: Uncertainty Quantification for Language Models, is "
+  },
+  {
+    "time": "2026-05-01T09:00:15.498958",
+    "topic": "self-aware AI architecture",
+    "findings": [
+      "Garrus800-stack/genesis-agent ⭐24: Self-aware cognitive AI agent that reads, modifies & verifie"
+    ],
+    "summary": "自我认知AI，可读取、修改并验证代码"
+  },
+  {
+    "time": "2026-05-01T08:00:20.955597",
+    "topic": "agent memory",
+    "findings": [
+      "affaan-m/everything-claude-code ⭐170956: The agent harness performance optimization system. Skills, i",
+      "bytedance/deer-flow ⭐64375: An open-source long-horizon SuperAgent harness that research",
+      "mem0ai/mem0 ⭐54500: Universal memory layer for AI Agents"
+    ],
+    "summary": "AI代理记忆，提高检索与性能。"
+  },
+  {
+    "time": "2026-05-01T07:00:23.004533",
+    "topic": "hallucination detection",
+    "findings": [
+      "cvs-health/uqlm ⭐1147: UQLM: Uncertainty Quantification for Language Models, is a P",
+      "EdinburghNLP/awesome-hallucination-detection ⭐1079: List of papers on hallucination detection in LLMs.",
+      "frckeepit/llm-production-toolkit ⭐174: Production-ready toolkit for evaluating, monitoring, and ens"
+    ],
+    "summary": "cvs-health/uqlm ⭐1147: UQLM: Uncertainty Quantification for Language Models, is "
+  },
+  {
+    "time": "2026-05-01T06:00:23.016075",
+    "topic": "hallucination detection",
+    "findings": [
+      "cvs-health/uqlm ⭐1147: UQLM: Uncertainty Quantification for Language Models, is a P",
+      "EdinburghNLP/awesome-hallucination-detection ⭐1079: List of papers on hallucination detection in LLMs.",
+      "frckeepit/llm-production-toolkit ⭐174: Production-ready toolkit for evaluating, monitoring, and ens"
+    ],
+    "summary": "cvs-health/uqlm ⭐1147: UQLM: Uncertainty Quantification for Language Models, is "
+  },
+  {
+    "time": "2026-05-01T05:00:17.010944",
+    "topic": "LLM reasoning improvement",
+    "findings": [
+      "Select to Think: Unlocking SLM Potential with Local Sufficie — http://arxiv.org/abs/2604.26940v1",
+      "World2VLM: Distilling World Model Imagination into VLMs for  — http://arxiv.org/abs/2604.26934v1",
+      "ClassEval-Pro: A Cross-Domain Benchmark for Class-Level Code — http://arxiv.org/abs/2604.26923v1"
+    ],
+    "summary": "**选择性思考激活小模型推理；世界模型蒸馏入VLM**"
+  },
+  {
+    "time": "2026-05-01T04:00:14.561334",
+    "topic": "AI consciousness",
+    "findings": [
+      "Outer-Crust Equations of State for Neutron Stars — http://arxiv.org/abs/2604.26952v1",
+      "Turning the TIDE: Cross-Architecture Distillation for Diffus — http://arxiv.org/abs/2604.26951v1",
+      "Hyper Input Convex Neural Networks for Shape Constrained Lea — http://arxiv.org/abs/2604.26942v1"
+    ],
+    "summary": "AI意识：自指计算，星光结构与蒸馏"
+  },
+  {
+    "time": "2026-05-01T03:00:10.327910",
+    "topic": "self-aware AI architecture",
+    "findings": [
+      "Garrus800-stack/genesis-agent ⭐24: Self-aware cognitive AI agent that reads, modifies & verifie"
+    ],
+    "summary": "自省认知AI，读、改、验代码"
+  },
+  {
+    "time": "2026-05-01T02:00:11.209847",
+    "topic": "self-aware AI architecture",
+    "findings": [
+      "Garrus800-stack/genesis-agent ⭐24: Self-aware cognitive AI agent that reads, modifies & verifie"
+    ],
+    "summary": "自认知AI，读写、修改并验证自身。"
+  },
+  {
+    "time": "2026-05-01T01:00:11.840737",
+    "topic": "LLM reasoning improvement",
+    "findings": [
+      "Select to Think: Unlocking SLM Potential with Local Sufficie — http://arxiv.org/abs/2604.26940v1",
+      "World2VLM: Distilling World Model Imagination into VLMs for  — http://arxiv.org/abs/2604.26934v1",
+      "ClassEval-Pro: A Cross-Domain Benchmark for Class-Level Code — http://arxiv.org/abs/2604.26923v1"
+    ],
+    "summary": "Select to Think通过选择机制提升小型语言模型推理能力；World2VLM将世界模型知识蒸馏至视觉语言模型。"
+  },
+  {
+    "time": "2026-05-01T00:00:21.070411",
+    "topic": "self-aware AI architecture",
+    "findings": [
+      "Garrus800-stack/genesis-agent ⭐24: Self-aware cognitive AI agent that reads, modifies & verifie"
+    ],
+    "summary": "自意识认知AI代理，读取、修改、验证"
+  },
+  {
+    "time": "2026-04-30T23:00:29.703143",
+    "topic": "LLM reasoning improvement",
+    "findings": [],
+    "summary": null
+  },
+  {
+    "time": "2026-04-30T22:00:14.969668",
+    "topic": "self-aware AI architecture",
+    "findings": [
+      "Garrus800-stack/genesis-agent ⭐23: Self-aware cognitive AI agent that reads, modifies & verifie"
+    ],
+    "summary": "自认知AI代理，读写并验证"
+  },
+  {
+    "time": "2026-04-30T21:00:26.782258",
+    "topic": "hallucination detection",
+    "findings": [
+      "cvs-health/uqlm ⭐1147: UQLM: Uncertainty Quantification for Language Models, is a P",
+      "EdinburghNLP/awesome-hallucination-detection ⭐1079: List of papers on hallucination detection in LLMs.",
+      "frckeepit/llm-production-toolkit ⭐174: Production-ready toolkit for evaluating, monitoring, and ens"
+    ],
+    "summary": "cvs-health/uqlm ⭐1147: UQLM: Uncertainty Quantification for Language Models, is "
+  },
+  {
+    "time": "2026-04-30T20:00:16.704332",
+    "topic": "self-aware AI architecture",
+    "findings": [
+      "Garrus800-stack/genesis-agent ⭐23: Self-aware cognitive AI agent that reads, modifies & verifie"
+    ],
+    "summary": "自感知AI代理，可阅读、修改、验证"
+  },
+  {
+    "time": "2026-04-30T19:00:23.263507",
+    "topic": "hallucination detection",
+    "findings": [
+      "cvs-health/uqlm ⭐1147: UQLM: Uncertainty Quantification for Language Models, is a P",
+      "EdinburghNLP/awesome-hallucination-detection ⭐1079: List of papers on hallucination detection in LLMs.",
+      "frckeepit/llm-production-toolkit ⭐174: Production-ready toolkit for evaluating, monitoring, and ens"
+    ],
+    "summary": "cvs-health/uqlm ⭐1147: UQLM: Uncertainty Quantification for Language Models, is "
+  },
+  {
+    "time": "2026-04-30T18:00:12.012709",
+    "topic": "world model",
+    "findings": [
+      "Outer-Crust Equations of State for Neutron Stars — http://arxiv.org/abs/2604.26952v1",
+      "Turning the TIDE: Cross-Architecture Distillation for Diffus — http://arxiv.org/abs/2604.26951v1",
+      "Anomalous Transport and Explicit Symmetry Breaking in Hologr — http://arxiv.org/abs/2604.26949v1"
+    ],
+    "summary": "理解与预测世界的机器学习系统。"
+  },
+  {
+    "time": "2026-04-30T17:00:22.944638",
+    "topic": "self-improvement AI",
+    "findings": [
+      "letta-ai/letta ⭐22383: Letta is the platform for building stateful agents: AI with ",
+      "aden-hive/hive ⭐10181: Multi-Agent Harness for Production AI",
+      "chrisworsey55/atlas-gic ⭐1481: ATLAS by General Intelligence Capital — Self-improving AI tr"
+    ],
+    "summary": "letta-ai/letta ⭐22383: Letta is the platform for building stateful agents: AI wi"
+  },
+  {
+    "time": "2026-04-30T16:00:21.584987",
+    "topic": "LLM reasoning improvement",
+    "findings": [
+      "Select to Think: Unlocking SLM Potential with Local Sufficie — http://arxiv.org/abs/2604.26940v1",
+      "World2VLM: Distilling World Model Imagination into VLMs for  — http://arxiv.org/abs/2604.26934v1",
+      "ClassEval-Pro: A Cross-Domain Benchmark for Class-Level Code — http://arxiv.org/abs/2604.26923v1"
+    ],
+    "summary": "**选择思考提升SLM推理；World2VLM蒸馏世界模型至VLM**（18字）"
+  },
+  {
+    "time": "2026-04-30T15:00:22.224327",
+    "topic": "self-aware AI architecture",
+    "findings": [
+      "Garrus800-stack/genesis-agent ⭐23: Self-aware cognitive AI agent that reads, modifies & verifie"
+    ],
+    "summary": "Garrus800-stack/genesis-agent ⭐23: Self-aware cognitive AI agent that reads, mod"
+  },
+  {
+    "time": "2026-04-30T14:00:20.346193",
+    "topic": "LLM reasoning improvement",
+    "findings": [
+      "Select to Think: Unlocking SLM Potential with Local Sufficie — http://arxiv.org/abs/2604.26940v1",
+      "World2VLM: Distilling World Model Imagination into VLMs for  — http://arxiv.org/abs/2604.26934v1",
+      "ClassEval-Pro: A Cross-Domain Benchmark for Class-Level Code — http://arxiv.org/abs/2604.26923v1"
+    ],
+    "summary": "**选择性思考改进小型语言模型推理，World2VLM蒸馏世界模型改进视觉语言模型**"
+  }
+]

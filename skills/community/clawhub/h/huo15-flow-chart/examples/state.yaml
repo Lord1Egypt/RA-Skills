@@ -1,0 +1,21 @@
+type: state
+title: 订单状态机
+direction: LR
+
+nodes:
+  - { id: Draft,     label: 草稿 }
+  - { id: Pending,   label: 待付款 }
+  - { id: Paid,      label: 已付款 }
+  - { id: Shipping,  label: 配送中 }
+  - { id: Delivered, label: 已送达 }
+  - { id: Cancelled, label: 已取消 }
+
+edges:
+  - { from: "[*]",      to: Draft,     label: 下单 }
+  - { from: Draft,      to: Pending,   label: 确认 }
+  - { from: Pending,    to: Paid,      label: 付款 }
+  - { from: Pending,    to: Cancelled, label: 超时 }
+  - { from: Paid,       to: Shipping,  label: 发货 }
+  - { from: Shipping,   to: Delivered, label: 签收 }
+  - { from: Delivered,  to: "[*]" }
+  - { from: Cancelled,  to: "[*]" }

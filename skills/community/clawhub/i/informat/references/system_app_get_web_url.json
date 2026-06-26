@@ -1,0 +1,12 @@
+{
+  "type": "function",
+  "function": {
+    "name": "_app_get_web_url",
+    "description": "Get the website Web root access address of the current Informat application. The returned URL can be directly used as the access prefix for website resources, page paths, and static files.",
+    "parameters": {
+      "type": "object",
+      "properties": {},
+      "additionalProperties": false
+    }
+  }
+}

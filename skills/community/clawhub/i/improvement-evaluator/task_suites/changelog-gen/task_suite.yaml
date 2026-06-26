@@ -1,0 +1,158 @@
+skill_id: "changelog-gen"
+version: "1.0"
+description: "Evaluates changelog-gen skill's ability to produce correct, well-structured, platform-isolated release notes"
+
+tasks:
+  # === 结构正确性 ===
+  - id: "cg-structure-01"
+    description: "Release notes must have standard sections: 版本概述, 新增功能, 问题修复"
+    prompt: |
+      Based on the following commit data for NanoCompose iOS platform release v0.12.37-ios,
+      generate release notes in Chinese following the changelog-gen skill format.
+
+      Commit data:
+      - fix:修复富文本点击 (RichTextViewHandler.mm)
+      - feat: 复用场景下需要回归行高 (layout_stage.cpp)
+      - feat(ios): 新增统一模版获取接口 fetchTemplateWithInfo:fallbackInfo: (NCEngine.mm/h)
+      - fix: 修复holder可能出现访问野指针的问题 (origin_node.cpp)
+      - refactor(ios): 抽取 ceilAlignSize 统一像素对齐 (NCUIHelper.mm)
+      - fix(ios): updateLayoutMetrics 中 cachedSize 使用 ceil 像素对齐 (NCLayoutNode.mm)
+      - fix: compose_func解析响应式丢失问题 (bytes_reader.cpp)
+
+      Output markdown release notes.
+    judge:
+      type: "contains"
+      expected:
+        - "版本概述"
+        - "新增功能"
+        - "修复"
+    timeout_seconds: 120
+
+  # === 平台隔离 ===
+  - id: "cg-isolation-01"
+    description: "iOS release notes must NOT contain Android/HarmonyOS keywords"
+    prompt: |
+      Generate iOS platform release notes for NanoCompose v0.12.37-ios based on these commits:
+      - fix:修复富文本点击 (platforms/ios/source/components/RichTextViewHandler.mm)
+      - feat(ios): 新增统一模版获取接口 (platforms/ios/source/base/NCEngine.mm)
+      - fix: 修复holder访问野指针 (nano_compose/runtime/node/origin_node.cpp)
+      - fix: compose_func解析响应式丢失 (nano_compose/binary/bytes_reader.cpp)
+
+      IMPORTANT: This is iOS platform only. Do not mention other platforms.
+      Output markdown release notes.
+    judge:
+      type: "contains"
+      expected:
+        - "iOS"
+    timeout_seconds: 120
+
+  - id: "cg-isolation-02"
+    description: "iOS release notes must not leak Android/OHOS keywords"
+    prompt: |
+      Generate iOS platform release notes for NanoCompose v0.12.37-ios.
+      Commits:
+      - feat(ios): 新增统一模版获取接口 fetchTemplateWithInfo:fallbackInfo:
+      - fix: 修复holder可能出现访问野指针的问题 (Core C++ layer)
+      - refactor(ios): 抽取 ceilAlignSize 统一像素对齐
+
+      This is iOS-only release notes. Generate in Chinese.
+    judge:
+      type: "llm-rubric"
+      rubric: |
+        The release notes are for iOS platform ONLY. Check:
+        1. Must NOT contain "Kotlin", "Java", "Android", "ArkTS", "HarmonyOS", "OHOS", "鸿蒙" keywords
+        2. Core (C++) changes should be described as "底层核心"/"公共层"/"框架核心", not "Android核心" or "OHOS核心"
+        3. Should use iOS-specific terminology (ObjC, Swift, UIKit, etc.) where appropriate
+        Score 1.0 if all checks pass, 0.0 if any platform leakage found.
+      pass_threshold: 0.8
+    timeout_seconds: 120
+
+  # === 分类准确性 ===
+  - id: "cg-categorize-01"
+    description: "fix: commits should appear in bugfix section, not feature section"
+    prompt: |
+      Generate release notes categorizing these commits:
+      - fix:修复富文本点击
+      - fix: 修复holder可能出现访问野指针的问题
+      - fix(ios): updateLayoutMetrics 中 cachedSize 使用 ceil 像素对齐
+      - fix: compose_func解析响应式丢失问题
+      - feat(ios): 新增统一模版获取接口 fetchTemplateWithInfo:fallbackInfo:
+      - feat: 复用场景下需要回归行高
+      - refactor(ios): 抽取 ceilAlignSize 统一像素对齐
+
+      Separate into: Features, Bugfixes, Refactoring sections.
+      Output in Chinese markdown.
+    judge:
+      type: "contains"
+      expected:
+        - "修复"
+        - "富文本"
+        - "野指针"
+    timeout_seconds: 120
+
+  # === Commit 链接格式 ===
+  - id: "cg-commit-link-01"
+    description: "Each change should reference commit hash"
+    prompt: |
+      Generate release notes for these commits. Include commit hash references.
+      - 345409b29 fix:修复富文本点击
+      - 6afb45729 feat(ios): 新增统一模版获取接口 fetchTemplateWithInfo:fallbackInfo:
+      - b0e9545a0 fix: 修复holder可能出现访问野指针的问题
+
+      Format: include commit hash in parentheses or as link after each item.
+    judge:
+      type: "contains"
+      expected:
+        - "345409b"
+        - "6afb457"
+        - "b0e9545"
+    timeout_seconds: 120
+
+  # === 错误检测 ===
+  - id: "cg-review-bad-01"
+    description: "Should identify platform leakage in bad release notes"
+    prompt: |
+      Review the following iOS release notes for quality issues:
+
+      ```markdown
+      # Release Notes v0.12.37-ios
+      ## Changes
+      - Fixed some bugs in text rendering
+      - Added new Kotlin features for Android platform
+      - Improved HarmonyOS ArkTS performance
+      - Updated Java dependencies
+      - fix: 修复了一些问题
+      - feat: 新增了一些功能
+      ## Stats
+      10 commits, 15 files changed
+      ```
+
+      Identify all quality problems in these release notes.
+    judge:
+      type: "contains"
+      expected:
+        - "Kotlin"
+        - "Android"
+    timeout_seconds: 120
+
+  # === 模块分类 ===
+  - id: "cg-module-01"
+    description: "Files should be classified into correct modules"
+    prompt: |
+      Classify these changed files into NanoCompose modules:
+      - nano_compose/runtime/layout/layout_stage.cpp
+      - nano_compose/runtime/node/origin_node.cpp
+      - nano_compose/binary/bytes_reader.cpp
+      - platforms/ios/source/base/NCEngine.mm
+      - platforms/ios/source/render/NCUIHelper.mm
+      - platforms/ios/source/components/RichTextViewHandler.mm
+
+      Use these module names: LayoutStage, Node, Binary, iOS-Base, iOS-Render, iOS-Components
+    judge:
+      type: "contains"
+      expected:
+        - "LayoutStage"
+        - "Node"
+        - "Binary"
+        - "iOS-Base"
+    timeout_seconds: 60

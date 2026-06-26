@@ -1,0 +1,59 @@
+{
+	"type": "function",
+	"function": {
+		"name": "_designer_add_table_fields",
+		"description": "Create low-code platform data table fields. The field type needs to be set to the field type described in the knowledge base of the low-code platform",
+		"parameters": {
+			"type": "object",
+			"properties": {
+				"fields": {
+					"type": "array",
+					"description": "Data table field list",
+					"items":{
+						"type":"object",
+						"required": [
+							"id","name","type"
+						],
+						"properties":{
+							"id":{
+								"type":"string",
+								"description":"Field identifier"
+							},
+							"name":{
+								"type":"string",
+								"description":"Field name"
+							},
+							"type":{
+								"type":"string",
+								"description":"Field type supported by the low-code platform"
+							},
+							"options":{
+								"type":"array",
+								"description":"Candidate value list",
+								"items":{
+									"type":"object",
+									"properties":{
+										"id":{
+											"type":"string",
+											"description":"Option value identifier"
+										},
+										"name":{
+											"type":"string",
+											"description":"Option value name"
+										}
+									},
+									"required": [
+										"id","name"
+									]
+								}
+							}
+						}
+					}
+				}
+			},
+			"required": [
+				"fields"
+			]
+		}
+	}
+}

@@ -1,0 +1,56 @@
+{
+  "type": "function",
+  "function": {
+    "name": "_bpmn_create_or_update_flow",
+    "description": "Create or update detailed configuration for a sequence flow in the workflow. Includes name, start/end nodes, condition expressions, and descriptions. [Minimum Process Topology Rules]\n- Each process must have at least one sequence flow starting from the [StartEvent].\n- If a StartEvent exists in the process but no outgoing SequenceFlow is configured, AI must prioritize creating a sequence flow from StartEvent to the first business node or gateway.\n- Prohibit generating process structures with \"start node but no connections\".\n- This rule is a process structure-level strong constraint with higher priority than business rules.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "moduleId": {
+          "type": "string",
+          "description": "Workflow module ID."
+        },
+        "processDefineId": {
+          "type": "string",
+          "description": "Workflow process definition ID."
+        },
+        "flow": {
+          "type": "object",
+          "description": "Detailed information of the sequence flow to be created or updated.",
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "Sequence flow ID, corresponding to BPMN sequenceFlow id, e.g.: Flow_Approve_1.",
+              "pattern": "^Flow_[A-Za-z][A-Za-z0-9_]{0,40}$"
+            },
+            "name": {
+              "type": "string",
+              "description": "Sequence flow name, used for the name attribute in BPMN."
+            },
+            "sourceRef": {
+              "type": "string",
+              "description": "Start node ID, corresponding to BPMN node id."
+            },
+            "targetRef": {
+              "type": "string",
+              "description": "Target node ID, corresponding to BPMN node id."
+            },
+			"conditionExpression": {
+			  "type": "string",
+			  "description": "Flow condition expression (Flowable expression), must be wrapped in ${}. Available variables are limited to: 1) initiator: process initiator ID; 2) form.xxx: data table fields bound to the start node, e.g., form.totalDays, form.leaveType. The expression must return a boolean value, e.g.: ${form.totalDays > 3}. If not filled, it means unconditional flow (default sequence flow)",
+			  "pattern": "^\\$\\{.+\\}$"
+			},
+            "remark": {
+              "type": "string",
+              "description": "Sequence flow remark, corresponding to <documentation> content in BPMN."
+            }
+          },
+          "required": ["id"],
+          "additionalProperties": false
+        }
+      },
+      "required": ["moduleId", "processDefineId", "flow"],
+      "additionalProperties": false
+    }
+  }
+}

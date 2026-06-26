@@ -1,35 +1,166 @@
 ---
-name: "huangli-almanac"
-description: "查询任意日期的黄历信息，包括公历、农历、干支、五行、宜忌等。使用 tiax.cn 的黄历 API 接口， 无需 API 密钥，支持指定年、月、日查询，适合查询结婚、开业、搬家、装修等吉日。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/huangli-almanac"
-sourceUrl: "https://clawhub.ai/skills/huangli-almanac"
+name: huangli-almanac
+description: >
+  查询任意日期的黄历信息，包括公历、农历、干支、五行、宜忌等。使用 tiax.cn 的黄历 API 接口，
+  无需 API 密钥，支持指定年、月、日查询，适合查询结婚、开业、搬家、装修等吉日。
+version: 1.0.0
+metadata:
+  openclaw:
+    requires:
+      bins:
+        - curl
+        - jq
+    primaryEnv: none
+    emoji: "📅"
+    homepage: https://api.tiax.cn
 ---
 
-# huangli-almanac
+# 📅 黄历万年历
 
-> 查询任意日期的黄历信息，包括公历、农历、干支、五行、宜忌等。使用 tiax.cn 的黄历 API 接口， 无需 API 密钥，支持指定年、月、日查询，适合查询结婚、开业、搬家、装修等吉日。
+**查询任意日期的黄历信息**，包括公历、农历、干支、五行、宜忌等。使用 [tiax.cn](https://api.tiax.cn) 的黄历 API 接口，**无需 API 密钥**，免费使用。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/huangli-almanac`
-- **Source URL:** [https://clawhub.ai/skills/huangli-almanac](https://clawhub.ai/skills/huangli-almanac)
+---
 
-## Overview
+## 使用方法
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/huangli-almanac
+# 查询指定日期（年 月 日）
+/almanac 2023 3 2
+
+# 查询今天（自动获取当前日期）
+/almanac today
+
+# 查询明天
+/almanac tomorrow
+
+# 查询特定节日
+/almanac 2024 2 10
+
+# 查询农历生日对应的公历
+/almanac 2025 5 1
 ```
+
+或者直接对话：
+- *"查一下 2024 年 1 月 1 日的黄历"*
+- *"今天适合结婚吗？"*
+- *"2024 年 5 月 1 日是什么日子？"*
+- *"查一下 2023 年 10 月 1 日的宜忌"*
+
+---
+
+## 返回信息
+
+接口返回完整的黄历信息：
+
+| 字段 | 说明 |
+|---|---|
+| 公历日期 | 西历日期，星期几 |
+| 农历日期 | 农历日期，大小月 |
+| 黄历日期 | 完整黄历表述 |
+| 回历日期 | 伊斯兰历日期 |
+| 干支日期 | 年柱、月柱、日柱 |
+| 五行纳音 | 日柱五行 |
+| 值日星神 | 当日神煞（吉/凶） |
+| 宜 | 适合做的事 |
+| 忌 | 不适合做的事 |
+
+---
+
+## 示例
+
+### 查询 2023 年 3 月 2 日
+
+```bash
+curl 'api.tiax.cn/almanac/?year=2023&month=3&day=2'
+```
+
+**返回结果：**
+```json
+{
+  "公历日期": "2023 年 3 月 2 日 星期四",
+  "农历日期": "农历二零二三年 二月 (大) 十一",
+  "干支日期": "癸卯年 甲寅月 己未日",
+  "五行纳音": "天上火",
+  "值日星神": "玉堂（吉星）",
+  "宜": "动土、入殓、结婚 嫁娶、移柩、安葬、破土",
+  "忌": "开业 开幕 开市 作灶 安床 搬迁新宅 乔迁新居 入宅 上梁 裁衣"
+}
+```
+
+---
+
+## 常见应用场景
+
+### 1. 查询结婚吉日
+```bash
+/almanac 2024 5 20
+/almanac 2024 6 6
+```
+
+### 2. 查询开业/装修吉日
+```bash
+/almanac 2024 8 18
+/almanac 2024 9 9
+```
+
+### 3. 查询搬家吉日
+```bash
+/almanac 2024 3 16
+/almanac 2024 4 4
+```
+
+### 4. 查询安葬/入殓吉日
+```bash
+/almanac 2024 1 15
+/almanac 2024 2 2
+```
+
+---
+
+## 实现说明
+
+当调用此技能时，执行以下步骤：
+
+1. **解析参数** - 提取年、月、日（或 today/tomorrow）
+2. **构建 API 请求** - 使用 curl 调用接口
+3. **处理响应** - 格式化输出 JSON 数据
+4. **解读结果** - 根据宜忌给出建议
+
+### API 调用示例
+```bash
+curl -s 'api.tiax.cn/almanac/?year=2023&month=3&day=2' | jq .
+```
+
+### 自动获取今天日期
+```bash
+YEAR=$(date +%Y)
+MONTH=$(date +%m)
+DAY=$(date +%d)
+curl -s "api.tiax.cn/almanac/?year=$YEAR&month=$MONTH&day=$DAY" | jq .
+```
+
+---
+
+## 注意事项
+
+1. **日期格式**：年月日均为数字，月份和日期不足两位时补零（如 2024-01-05）
+2. **范围限制**：API 支持 1900-2100 年之间的日期
+3. **无需密钥**：接口完全免费，无需 API 密钥
+4. **即时响应**：查询结果实时返回，无缓存延迟
+
+---
+
+## 错误处理
+
+**日期格式错误**
+→ 确保年月日均为数字，格式如 `2024 01 15`
+
+**日期超出范围**
+→ 支持 1900-2100 年之间的日期
+
+**网络错误**
+→ 检查网络连接，重试请求
+
+---
+
+*Powered by [tiax.cn](https://api.tiax.cn) — 免费黄历 API 服务.*

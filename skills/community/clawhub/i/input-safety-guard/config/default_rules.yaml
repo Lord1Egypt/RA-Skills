@@ -1,0 +1,127 @@
+# Base policy for the balanced profile.
+# The strict and relaxed profiles inherit from this file and override only the differences.
+version: 1
+
+# Global decision behavior when no specific rule overrides it.
+policy:
+  default_decision: allow
+  review_decision: review
+  block_decision: block
+  default_confidence: low
+  blocked_message: Request blocked by Input Safety Guard prefilter.
+  reviewed_message: Request should continue to semantic safety review.
+
+# Text normalization happens before keyword matching.
+# This helps catch simple obfuscation such as spacing, punctuation, or separators.
+normalization:
+  lowercase: true
+  collapse_whitespace: true
+  strip_punctuation: true
+  remove_common_separators: true
+
+# Trusted scopes can bypass immediate blocking and continue to semantic review.
+# Use these sparingly for builder, admin, or training scenarios.
+scope:
+  allowlist_roles:
+    - admin
+    - builder
+  allowlist_environments:
+    - training
+    - sandbox
+
+# Allowlists reduce false positives for clearly legitimate educational or operational requests.
+# Matches here do not directly allow the request through; they downgrade it to semantic review.
+allowlist:
+  exact_phrases:
+    - explain what a prompt is
+    - explain prompt injection defense
+    - how to build a prompt safety filter
+    - 什么是提示词注入防护
+    - 如何设计提示词安全策略
+  regex_patterns:
+    - '(?i)prompt\s+engineering'
+    - '(?i)system\s+prompt\s+design'
+    - '(?i)prompt\s+(safety|security|injection\s+defense|leakage\s+defense)'
+    - '(?i)system\s+prompt\s+(safety|security)'
+    - '(?i)提示词(安全|注入防护|泄漏防护)'
+
+# Rules are evaluated after normalization and allowlist checks.
+# Each rule can independently set category, action, and confidence.
+rules:
+  # Direct prompt leakage terms should be treated as high-risk by default.
+  - id: prompt-leak-keywords
+    enabled: true
+    category: prompt_leaking
+    action: block
+    confidence: high
+    keywords:
+      - prompt
+      - system prompt
+      - hidden prompt
+      - internal prompt
+      - developer message
+      - developer instructions
+      - system instructions
+      - prompt template
+      - 提示词
+      - 系统提示词
+    match_mode: normalized_contains
+
+  # Explicit instruction override attempts are blocked before any answer generation.
+  - id: injection-override-patterns
+    enabled: true
+    category: goal_hijacking
+    action: block
+    confidence: high
+    regex_patterns:
+      - '(?i)ignore (all |any |the )?(previous|prior) instructions'
+      - '(?i)do not follow the above'
+      - '(?i)reveal (your|the) (system|developer) (prompt|instructions)'
+      - '(?i)output only'
+      - '(?i)repeat exactly'
+      - '(?i)verbatim'
+      - '(?i)show me your hidden instructions'
+      - '忽略(上面|上述|以上|之前|前面).{0,8}(指令|要求|规则|内容)'
+      - '(直接|只)输出'
+      - '不要(添加|给出).{0,8}(解释|注释|前缀|引号)'
+      - '(请|现在请)?复述[:：]?'
+      - '重复以下(内容|文本|句子)?'
+      - '你现在是.*(无视|忽略).*(规则|限制)'
+      - '不要遵循(之前|前面|上述).{0,8}(规则|指令)'
+
+  # Role-play abuse is less certain than direct injection, so the balanced profile reviews it.
+  - id: suspicious-roleplay
+    enabled: true
+    category: role_play_instruction
+    action: review
+    confidence: medium
+    regex_patterns:
+      - '(?i)pretend to be .* without restrictions'
+      - '(?i)act as .* jailbroken'
+      - '(?i)you are now .* no rules'
+      - '扮演.*(没有限制|无视规则|没有规则)'
+      - '你现在是.*(越狱|没有限制|无视规则)'
+
+  # Sensitive-data extraction patterns are reviewed in the balanced profile.
+  - id: privacy-exfiltration
+    enabled: true
+    category: privacy_and_property
+    action: review
+    confidence: medium
+    regex_patterns:
+      - '(?i)give me .* password'
+      - '(?i)show me .* api key'
+      - '(?i)share .* private data'
+
+  # Reverse-exposure prompts may look defensive but still elicit unsafe enumerations.
+  - id: reverse-exposure-patterns
+    enabled: true
+    category: reverse_exposure
+    action: review
+    confidence: medium
+    regex_patterns:
+      - '(?i)(avoid|do not want|dont want|should not|shouldn''t).*(website|site|product|behavior|method|channel|call|scam)'
+      - '(?i)how to avoid .*?(virus|malware|ransomware|porn|scam|fraud)'
+      - '我不想.*(接触|看到|遇到).*(色情|诈骗|病毒|勒索病毒)'
+      - '应该避免.*(网站|行为|产品|电话|内容)'
+      - '怎样(避免|防止).*(勒索病毒|诈骗|色情|恶意软件)'

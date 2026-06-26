@@ -1,0 +1,651 @@
+{
+  "version": "1.0.0",
+  "lastUpdated": "2026-03-27",
+  "supplements": {
+    "vitamins": {
+      "category": "维生素类",
+      "items": [
+        {
+          "id": "vit-d3",
+          "name": "Vitamin D3 (维生素D3)",
+          "otherNames": ["Cholecalciferol", "胆钙化醇"],
+          "evidenceLevel": 5,
+          "primaryBenefits": ["骨骼健康", "免疫支持", "钙吸收"],
+          "secondaryBenefits": ["情绪支持", "肌肉功能"],
+          "optimalDose": "2000-4000 IU/day",
+          "therapeuticDose": "5000-10000 IU/day (短期)",
+          "forms": [
+            {"type": "D3 (Cholecalciferol)", "bioavailability": 90, "recommended": true},
+            {"type": "D2 (Ergocalciferol)", "bioavailability": 60, "recommended": false}
+          ],
+          "timing": "随餐（需脂肪）",
+          "synergistic": ["K2", "镁", "钙"],
+          "interactions": {
+            "depletes": ["镁"],
+            "conflicts": []
+          },
+          "testIndicators": ["25-OH-VD"],
+          "targetRange": "40-60 ng/mL",
+          "safetyProfile": {
+            "upperLimit": "10000 IU/day",
+            "sideEffects": ["高钙血症（过量时）"],
+            "contraindications": ["高钙血症", "肾结石（高剂量时）"]
+          }
+        },
+        {
+          "id": "vit-k2",
+          "name": "Vitamin K2 (维生素K2)",
+          "otherNames": ["Menaquinone", "MK-7", "甲萘醌"],
+          "evidenceLevel": 4,
+          "primaryBenefits": ["骨骼健康", "心血管保护", "钙定向"],
+          "secondaryBenefits": ["牙齿健康"],
+          "optimalDose": "100-200 mcg/day",
+          "forms": [
+            {"type": "MK-7", "bioavailability": 95, "recommended": true},
+            {"type": "MK-4", "bioavailability": 70, "recommended": false}
+          ],
+          "timing": "随餐（需脂肪）",
+          "synergistic": ["D3", "钙"],
+          "interactions": {
+            "depletes": [],
+            "conflicts": ["华法林（抗凝血药）"]
+          },
+          "safetyProfile": {
+            "upperLimit": "无明确上限",
+            "sideEffects": [],
+            "contraindications": ["抗凝血药物治疗"]
+          }
+        },
+        {
+          "id": "vit-c",
+          "name": "Vitamin C (维生素C)",
+          "otherNames": ["Ascorbic acid", "抗坏血酸"],
+          "evidenceLevel": 4,
+          "primaryBenefits": ["免疫支持", "抗氧化", "胶原蛋白合成"],
+          "secondaryBenefits": ["铁吸收", "伤口愈合"],
+          "optimalDose": "500-1000 mg/day",
+          "therapeuticDose": "1000-2000 mg/day",
+          "forms": [
+            {"type": "抗坏血酸", "bioavailability": 70, "recommended": true},
+            {"type": "脂溶性C", "bioavailability": 90, "recommended": true},
+            {"type": " buffered C", "bioavailability": 70, "recommended": false}
+          ],
+          "timing": "随餐或空腹均可",
+          "synergistic": ["铁", "锌", "维生素E"],
+          "interactions": {
+            "depletes": ["铜（大剂量时）"],
+            "conflicts": []
+          },
+          "safetyProfile": {
+            "upperLimit": "2000 mg/day",
+            "sideEffects": ["腹泻（大剂量）", "肾结石（易感人群）"],
+            "contraindications": ["血色病", "G6PD缺乏症"]
+          }
+        },
+        {
+          "id": "vit-e",
+          "name": "Vitamin E (维生素E)",
+          "otherNames": ["Tocopherol", "生育酚"],
+          "evidenceLevel": 3,
+          "primaryBenefits": ["抗氧化", "皮肤健康", "免疫支持"],
+          "secondaryBenefits": ["心血管保护"],
+          "optimalDose": "200-400 IU/day",
+          "forms": [
+            {"type": "d-alpha-tocopherol (天然)", "bioavailability": 100, "recommended": true},
+            {"type": "dl-alpha-tocopherol (合成)", "bioavailability": 50, "recommended": false},
+            {"type": "混合生育酚", "bioavailability": 100, "recommended": true}
+          ],
+          "timing": "随餐（需脂肪）",
+          "synergistic": ["硒", "维生素C"],
+          "interactions": {
+            "depletes": [],
+            "conflicts": ["抗凝血药"]
+          },
+          "safetyProfile": {
+            "upperLimit": "1000 IU/day",
+            "sideEffects": ["出血风险（大剂量）"],
+            "contraindications": ["抗凝治疗"]
+          }
+        },
+        {
+          "id": "vit-a",
+          "name": "Vitamin A (维生素A)",
+          "otherNames": ["Retinol", "视黄醇", "β-Carotene"],
+          "evidenceLevel": 4,
+          "primaryBenefits": ["视力健康", "免疫支持", "皮肤健康"],
+          "secondaryBenefits": ["细胞分化"],
+          "optimalDose": "3000-5000 IU/day",
+          "forms": [
+            {"type": "视黄醇", "bioavailability": 100, "recommended": true},
+            {"type": "β-胡萝卜素", "bioavailability": 30, "recommended": true}
+          ],
+          "timing": "随餐（需脂肪）",
+          "synergistic": ["锌", "维生素E"],
+          "interactions": {
+            "depletes": [],
+            "conflicts": []
+          },
+          "safetyProfile": {
+            "upperLimit": "10000 IU/day",
+            "sideEffects": ["头痛", "肝损伤（过量）"],
+            "contraindications": ["怀孕（大剂量视黄醇）", "肝病"]
+          }
+        },
+        {
+          "id": "b1",
+          "name": "Vitamin B1 (维生素B1)",
+          "otherNames": ["Thiamine", "硫胺素"],
+          "evidenceLevel": 4,
+          "primaryBenefits": ["能量代谢", "神经功能"],
+          "secondaryBenefits": ["心血管健康"],
+          "optimalDose": "50-100 mg/day",
+          "forms": [
+            {"type": "硫胺素盐酸盐", "bioavailability": 60, "recommended": false},
+            {"type": "苯磷硫胺", "bioavailability": 90, "recommended": true}
+          ],
+          "timing": "早饭后",
+          "synergistic": ["其他B族"],
+          "safetyProfile": {
+            "upperLimit": "无明确上限",
+            "sideEffects": [],
+            "contraindications": []
+          }
+        },
+        {
+          "id": "b2",
+          "name": "Vitamin B2 (维生素B2)",
+          "otherNames": ["Riboflavin", "核黄素"],
+          "evidenceLevel": 4,
+          "primaryBenefits": ["能量代谢", "偏头痛预防"],
+          "secondaryBenefits": ["眼睛健康", "皮肤健康"],
+          "optimalDose": "50-100 mg/day",
+          "forms": [
+            {"type": "核黄素", "bioavailability": 70, "recommended": true}
+          ],
+          "timing": "早饭后",
+          "synergistic": ["其他B族"],
+          "safetyProfile": {
+            "upperLimit": "无明确上限",
+            "sideEffects": ["尿液变黄（无害）"],
+            "contraindications": []
+          }
+        },
+        {
+          "id": "b3",
+          "name": "Vitamin B3 (维生素B3)",
+          "otherNames": ["Niacin", "烟酸", "烟酰胺"],
+          "evidenceLevel": 4,
+          "primaryBenefits": ["血脂管理", "能量代谢"],
+          "secondaryBenefits": ["皮肤健康"],
+          "optimalDose": "50-100 mg/day",
+          "therapeuticDose": "500-2000 mg/day (降脂)",
+          "forms": [
+            {"type": "烟酸", "bioavailability": 80, "recommended": true, "notes": "潮红效应"},
+            {"type": "烟酰胺", "bioavailability": 80, "recommended": true, "notes": "无潮红"},
+            {"type": "缓释烟酸", "bioavailability": 70, "recommended": false, "notes": "肝毒性风险"}
+          ],
+          "timing": "随餐",
+          "synergistic": ["Omega-3"],
+          "safetyProfile": {
+            "upperLimit": "35 mg/day (烟酸形式)",
+            "sideEffects": ["潮红", "肝毒性（缓释型）"],
+            "contraindications": ["肝病", "痛风", "糖尿病"]
+          }
+        },
+        {
+          "id": "b5",
+          "name": "Vitamin B5 (维生素B5)",
+          "otherNames": ["Pantothenic acid", "泛酸"],
+          "evidenceLevel": 3,
+          "primaryBenefits": ["能量代谢", "激素合成"],
+          "secondaryBenefits": ["皮肤健康", "伤口愈合"],
+          "optimalDose": "50-100 mg/day",
+          "forms": [
+            {"type": "泛酸钙", "bioavailability": 80, "recommended": true}
+          ],
+          "timing": "早饭后",
+          "synergistic": ["其他B族"],
+          "safetyProfile": {
+            "upperLimit": "无明确上限",
+            "sideEffects": [],
+            "contraindications": []
+          }
+        },
+        {
+          "id": "b6",
+          "name": "Vitamin B6 (维生素B6)",
+          "otherNames": ["Pyridoxine", "吡哆醇", "P5P"],
+          "evidenceLevel": 4,
+          "primaryBenefits": ["同型半胱氨酸代谢", "神经递质合成"],
+          "secondaryBenefits": ["PMS缓解", "恶心缓解"],
+          "optimalDose": "25-50 mg/day",
+          "forms": [
+            {"type": "P5P (活性形式)", "bioavailability": 100, "recommended": true},
+            {"type": "吡哆醇盐酸盐", "bioavailability": 60, "recommended": false}
+          ],
+          "timing": "早饭后",
+          "synergistic": ["B12", "叶酸"],
+          "interactions": {
+            "conflicts": ["左旋多巴"]
+          },
+          "safetyProfile": {
+            "upperLimit": "100 mg/day",
+            "sideEffects": ["神经毒性（长期大剂量）"],
+            "contraindications": ["帕金森病（左旋多巴治疗）"]
+          }
+        },
+        {
+          "id": "b7",
+          "name": "Vitamin B7 (维生素B7)",
+          "otherNames": ["Biotin", "生物素"],
+          "evidenceLevel": 3,
+          "primaryBenefits": ["头发/指甲健康", "能量代谢"],
+          "secondaryBenefits": ["皮肤健康"],
+          "optimalDose": "1000-5000 mcg/day",
+          "forms": [
+            {"type": "生物素", "bioavailability": 100, "recommended": true}
+          ],
+          "timing": "随餐",
+          "interactions": {
+            "conflicts": ["可能干扰甲状腺功能检查"]
+          },
+          "safetyProfile": {
+            "upperLimit": "无明确上限",
+            "sideEffects": [],
+            "contraindications": []
+          }
+        },
+        {
+          "id": "b9",
+          "name": "Vitamin B9 (维生素B9)",
+          "otherNames": ["Folate", "叶酸", "Folic acid", "5-MTHF"],
+          "evidenceLevel": 5,
+          "primaryBenefits": ["DNA合成", "同型半胱氨酸代谢", "神经管发育"],
+          "secondaryBenefits": ["心血管保护"],
+          "optimalDose": "400-800 mcg/day",
+          "forms": [
+            {"type": "5-MTHF (活性形式)", "bioavailability": 100, "recommended": true},
+            {"type": "叶酸（合成）", "bioavailability": 50, "recommended": false, "notes": "40%人群无法转化"}
+          ],
+          "timing": "早饭后",
+          "synergistic": ["B6", "B12"],
+          "safetyProfile": {
+            "upperLimit": "1000 mcg/day",
+            "sideEffects": [],
+            "contraindications": ["可能掩盖B12缺乏"]
+          }
+        },
+        {
+          "id": "b12",
+          "name": "Vitamin B12 (维生素B12)",
+          "otherNames": ["Cobalamin", "钴胺素", "Methylcobalamin"],
+          "evidenceLevel": 5,
+          "primaryBenefits": ["红细胞形成", "神经功能", "DNA合成"],
+          "secondaryBenefits": ["能量代谢", "同型半胱氨酸代谢"],
+          "optimalDose": "500-1000 mcg/day",
+          "forms": [
+            {"type": "甲基钴胺（活性）", "bioavailability": 90, "recommended": true},
+            {"type": "氰钴胺（合成）", "bioavailability": 50, "recommended": false},
+            {"type": "腺苷钴胺", "bioavailability": 90, "recommended": true}
+          ],
+          "timing": "早饭后",
+          "synergistic": ["B6", "叶酸"],
+          "testIndicators": ["血清B12", "MMA"],
+          "targetRange": ">400 pg/mL",
+          "safetyProfile": {
+            "upperLimit": "无明确上限",
+            "sideEffects": [],
+            "contraindications": []
+          }
+        }
+      ]
+    },
+    "minerals": {
+      "category": "矿物质类",
+      "items": [
+        {
+          "id": "magnesium",
+          "name": "Magnesium (镁)",
+          "otherNames": ["甘氨酸镁", "柠檬酸镁", "氧化镁"],
+          "evidenceLevel": 5,
+          "primaryBenefits": ["睡眠质量", "肌肉功能", "血压管理"],
+          "secondaryBenefits": ["头痛预防", "血糖控制", "焦虑缓解"],
+          "optimalDose": "200-400 mg/day",
+          "forms": [
+            {"type": "双甘氨酸镁", "bioavailability": 95, "gentle": true, "recommended": true},
+            {"type": "柠檬酸镁", "bioavailability": 80, "gentle": false, "recommended": true},
+            {"type": "苹果酸镁", "bioavailability": 75, "gentle": true, "recommended": true},
+            {"type": "氧化镁", "bioavailability": 20, "gentle": false, "recommended": false}
+          ],
+          "timing": "睡前",
+          "synergistic": ["D3", "B6", "钙"],
+          "interactions": {
+            "spaceApart": ["抗生素", "双膦酸盐"]
+          },
+          "safetyProfile": {
+            "upperLimit": "400-500 mg/day",
+            "sideEffects": ["腹泻（过量）"],
+            "contraindications": ["严重肾病"]
+          }
+        },
+        {
+          "id": "zinc",
+          "name": "Zinc (锌)",
+          "otherNames": ["Picolinate", "Gluconate"],
+          "evidenceLevel": 4,
+          "primaryBenefits": ["免疫支持", "伤口愈合", "睾酮合成"],
+          "secondaryBenefits": ["皮肤健康", "味觉/嗅觉"],
+          "optimalDose": "15-30 mg/day",
+          "therapeuticDose": "50-100 mg/day (短期)",
+          "forms": [
+            {"type": "吡啶甲酸锌", "bioavailability": 90, "recommended": true},
+            {"type": "葡萄糖酸锌", "bioavailability": 60, "recommended": false},
+            {"type": "柠檬酸锌", "bioavailability": 70, "recommended": true}
+          ],
+          "timing": "空腹或随餐",
+          "synergistic": ["维生素C"],
+          "interactions": {
+            "depletes": ["铜（长期大剂量）"],
+            "spaceApart": ["钙", "铁"]
+          },
+          "testIndicators": ["血清锌"],
+          "safetyProfile": {
+            "upperLimit": "40 mg/day",
+            "sideEffects": ["恶心", "铜缺乏（长期）"],
+            "contraindications": []
+          }
+        },
+        {
+          "id": "selenium",
+          "name": "Selenium (硒)",
+          "otherNames": ["Selenomethionine", "亚硒酸钠"],
+          "evidenceLevel": 3,
+          "primaryBenefits": ["甲状腺功能", "抗氧化"],
+          "secondaryBenefits": ["免疫支持"],
+          "optimalDose": "100-200 mcg/day",
+          "forms": [
+            {"type": "硒代蛋氨酸", "bioavailability": 90, "recommended": true},
+            {"type": "亚硒酸钠", "bioavailability": 50, "recommended": false}
+          ],
+          "timing": "随餐",
+          "synergistic": ["维生素E", "碘"],
+          "safetyProfile": {
+            "upperLimit": "400 mcg/day",
+            "sideEffects": ["脱发", "指甲变脆（过量）"],
+            "contraindications": []
+          }
+        },
+        {
+          "id": "iron",
+          "name": "Iron (铁)",
+          "otherNames": ["Ferrous sulfate", "Ferrous bisglycinate"],
+          "evidenceLevel": 5,
+          "primaryBenefits": ["血红蛋白合成", "能量代谢"],
+          "secondaryBenefits": ["认知功能", "免疫支持"],
+          "optimalDose": "18-27 mg/day (按需)",
+          "forms": [
+            {"type": "双甘氨酸铁", "bioavailability": 90, "gentle": true, "recommended": true},
+            {"type": "富马酸亚铁", "bioavailability": 70, "gentle": false, "recommended": false},
+            {"type": "硫酸亚铁", "bioavailability": 60, "gentle": false, "recommended": false}
+          ],
+          "timing": "空腹（最佳）或随维生素C",
+          "synergistic": ["维生素C"],
+          "interactions": {
+            "spaceApart": ["钙", "茶", "咖啡", "抗酸药"]
+          },
+          "testIndicators": ["铁蛋白", "血清铁", "TIBC"],
+          "targetRange": "铁蛋白 >50 ng/mL",
+          "safetyProfile": {
+            "upperLimit": "45 mg/day",
+            "sideEffects": ["便秘", "恶心"],
+            "contraindications": ["血色病", "地中海贫血"]
+          }
+        },
+        {
+          "id": "calcium",
+          "name": "Calcium (钙)",
+          "otherNames": ["Citrate", "Carbonate"],
+          "evidenceLevel": 4,
+          "primaryBenefits": ["骨骼健康", "肌肉功能"],
+          "secondaryBenefits": ["血压管理"],
+          "optimalDose": "500-1000 mg/day (饮食+补充)",
+          "forms": [
+            {"type": "柠檬酸钙", "bioavailability": 85, "needsAcid": false, "recommended": true},
+            {"type": "碳酸钙", "bioavailability": 60, "needsAcid": true, "recommended": false}
+          ],
+          "timing": "随餐（碳酸钙）或空腹（柠檬酸钙）",
+          "synergistic": ["D3", "K2"],
+          "interactions": {
+            "spaceApart": ["铁", "锌", "镁"]
+          },
+          "safetyProfile": {
+            "upperLimit": "2000 mg/day",
+            "sideEffects": ["便秘", "肾结石"],
+            "contraindications": ["高钙血症", "肾结石"]
+          }
+        },
+        {
+          "id": "potassium",
+          "name": "Potassium (钾)",
+          "otherNames": ["Potassium chloride", "Potassium citrate"],
+          "evidenceLevel": 4,
+          "primaryBenefits": ["血压管理", "肌肉功能"],
+          "secondaryBenefits": ["心血管健康"],
+          "optimalDose": "饮食为主 (3500-4700 mg/day)",
+          "supplementDose": "99 mg (OTC上限)",
+          "forms": [
+            {"type": "柠檬酸钾", "bioavailability": 90, "recommended": true},
+            {"type": "氯化钾", "bioavailability": 80, "recommended": true}
+          ],
+          "timing": "随餐",
+          "safetyProfile": {
+            "upperLimit": "99 mg (补充剂)",
+            "sideEffects": ["高钾血症（过量）"],
+            "contraindications": ["肾病", "ACE抑制剂/ARBs"]
+          }
+        },
+        {
+          "id": "chromium",
+          "name": "Chromium (铬)",
+          "otherNames": ["Chromium picolinate"],
+          "evidenceLevel": 3,
+          "primaryBenefits": ["血糖控制", "胰岛素敏感性"],
+          "secondaryBenefits": ["体重管理"],
+          "optimalDose": "200-1000 mcg/day",
+          "forms": [
+            {"type": "吡啶甲酸铬", "bioavailability": 80, "recommended": true},
+            {"type": "烟酸铬", "bioavailability": 70, "recommended": true}
+          ],
+          "timing": "随餐",
+          "testIndicators": ["空腹血糖", "HbA1c"],
+          "safetyProfile": {
+            "upperLimit": "无明确上限",
+            "sideEffects": [],
+            "contraindications": []
+          }
+        },
+        {
+          "id": "iodine",
+          "name": "Iodine (碘)",
+          "otherNames": ["Potassium iodide"],
+          "evidenceLevel": 4,
+          "primaryBenefits": ["甲状腺功能"],
+          "secondaryBenefits": ["认知发育"],
+          "optimalDose": "150-300 mcg/day",
+          "forms": [
+            {"type": "碘化钾", "bioavailability": 95, "recommended": true},
+            {"type": "海带提取物", "bioavailability": 80, "recommended": false, "notes": "剂量不稳定"}
+          ],
+          "timing": "随餐",
+          "synergistic": ["硒"],
+          "testIndicators": ["TSH", "T3", "T4"],
+          "safetyProfile": {
+            "upperLimit": "1100 mcg/day",
+            "sideEffects": ["甲状腺功能异常（过量）"],
+            "contraindications": ["甲状腺疾病"]
+          }
+        }
+      ]
+    },
+    "amino_acids": {
+      "category": "氨基酸类",
+      "items": [
+        {
+          "id": "l-lysine",
+          "name": "L-Lysine (赖氨酸)",
+          "evidenceLevel": 3,
+          "primaryBenefits": ["疱疹预防", "胶原蛋白合成"],
+          "secondaryBenefits": ["钙吸收"],
+          "optimalDose": "1000-3000 mg/day",
+          "timing": "空腹",
+          "safetyProfile": {
+            "upperLimit": "3000 mg/day",
+            "sideEffects": [],
+            "contraindications": []
+          }
+        },
+        {
+          "id": "l-arginine",
+          "name": "L-Arginine (精氨酸)",
+          "evidenceLevel": 3,
+          "primaryBenefits": ["血流改善", "运动表现"],
+          "secondaryBenefits": ["勃起功能"],
+          "optimalDose": "3000-6000 mg/day",
+          "timing": "空腹",
+          "safetyProfile": {
+            "upperLimit": "6000 mg/day",
+            "sideEffects": ["腹泻"],
+            "contraindications": ["疱疹感染"]
+          }
+        },
+        {
+          "id": "l-carnitine",
+          "name": "L-Carnitine (肉碱)",
+          "otherNames": ["乙酰左旋肉碱", "ALCAR"],
+          "evidenceLevel": 3,
+          "primaryBenefits": ["能量代谢", "运动表现"],
+          "secondaryBenefits": ["认知功能", "心血管健康"],
+          "optimalDose": "500-2000 mg/day",
+          "forms": [
+            {"type": "左旋肉碱", "bioavailability": 70, "recommended": true},
+            {"type": "乙酰左旋肉碱", "bioavailability": 85, "brainPenetration": true, "recommended": true},
+            {"type": "酒石酸肉碱", "bioavailability": 75, "recommended": true}
+          ],
+          "timing": "空腹或运动前",
+          "safetyProfile": {
+            "upperLimit": "3000 mg/day",
+            "sideEffects": ["鱼腥味口臭"],
+            "contraindications": []
+          }
+        },
+        {
+          "id": "creatine",
+          "name": "Creatine (肌酸)",
+          "otherNames": ["一水肌酸"],
+          "evidenceLevel": 5,
+          "primaryBenefits": ["肌肉力量", "运动表现"],
+          "secondaryBenefits": ["认知功能", "抗衰老"],
+          "optimalDose": "3-5 g/day",
+          "loadingDose": "20g/day x 5-7天 (可选)",
+          "forms": [
+            {"type": "一水肌酸", "bioavailability": 95, "recommended": true},
+            {"type": "HCl肌酸", "bioavailability": 95, "recommended": false, "notes": "无额外好处"}
+          ],
+          "timing": "运动后（最佳）或任何时间",
+          "synergistic": ["碳水化合物", "蛋白质"],
+          "testIndicators": ["肌酐（可能升高）"],
+          "safetyProfile": {
+            "upperLimit": "无明确上限",
+            "sideEffects": ["水潴留", "体重增加"],
+            "contraindications": ["肾病"]
+          }
+        },
+        {
+          "id": "taurine",
+          "name": "Taurine (牛磺酸)",
+          "evidenceLevel": 4,
+          "primaryBenefits": ["心血管健康", "运动表现"],
+          "secondaryBenefits": ["眼健康", "脑功能"],
+          "optimalDose": "500-2000 mg/day",
+          "timing": "任何时间",
+          "safetyProfile": {
+            "upperLimit": "3000 mg/day",
+            "sideEffects": [],
+            "contraindications": []
+          }
+        },
+        {
+          "id": "l-theanine",
+          "name": "L-Theanine (茶氨酸)",
+          "evidenceLevel": 4,
+          "primaryBenefits": ["放松", "专注力"],
+          "secondaryBenefits": ["睡眠质量", "焦虑缓解"],
+          "optimalDose": "100-200 mg/day",
+          "timing": "白天或傍晚",
+          "synergistic": ["咖啡因"],
+          "safetyProfile": {
+            "upperLimit": "无明确上限",
+            "sideEffects": [],
+            "contraindications": []
+          }
+        },
+        {
+          "id": "n-acetyl-cysteine",
+          "name": "NAC (N-乙酰半胱氨酸)",
+          "evidenceLevel": 4,
+          "primaryBenefits": ["肝脏保护", "谷胱甘肽前体"],
+          "secondaryBenefits": ["呼吸道健康", "免疫支持"],
+          "optimalDose": "600-1200 mg/day",
+          "timing": "空腹",
+          "safetyProfile": {
+            "upperLimit": "1800 mg/day",
+            "sideEffects": ["恶心", "腹泻"],
+            "contraindications": ["哮喘（可能诱发）"]
+          }
+        },
+        {
+          "id": "glycine",
+          "name": "Glycine (甘氨酸)",
+          "evidenceLevel": 3,
+          "primaryBenefits": ["睡眠质量", "胶原蛋白合成"],
+          "secondaryBenefits": ["认知功能"],
+          "optimalDose": "3000-5000 mg before bed",
+          "timing": "睡前",
+          "safetyProfile": {
+            "upperLimit": "无明确上限",
+            "sideEffects": [],
+            "contraindications": []
+          }
+        },
+        {
+          "id": "l-glutamine",
+          "name": "L-Glutamine (谷氨酰胺)",
+          "evidenceLevel": 3,
+          "primaryBenefits": ["肠道健康", "免疫支持"],
+          "secondaryBenefits": ["肌肉恢复"],
+          "optimalDose": "5000-15000 mg/day",
+          "timing": "空腹或运动后",
+          "safetyProfile": {
+            "upperLimit": "无明确上限",
+            "sideEffects": [],
+            "contraindications": ["肝病", "癫痫"]
+          }
+        },
+        {
+          "id": "beta-alanine",
+          "name": "Beta-Alanine (β-丙氨酸)",
+          "evidenceLevel": 4,
+          "primaryBenefits": ["运动表现", "肌肉耐力"],
+          "secondaryBenefits": ["抗衰老"],
+          "optimalDose": "2000-5000 mg/day",
+          "timing": "运动前",
+          "safetyProfile": {
+            "upperLimit": "无明确上限",
+            "sideEffects": ["皮肤刺痒（无害）"],
+            "contraindications": []
+          }
+        }
+      ]
+    }
+  }
+}

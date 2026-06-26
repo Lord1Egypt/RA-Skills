@@ -1,0 +1,99 @@
+{
+  "basic_info": {
+    "name_zh": "林浩然",
+    "name_en": "Ethan Lam",
+    "gender": "男",
+    "birthday": "2013年1月8日",
+    "id_type": "香港居民身份證",
+    "id_number": "",
+    "phone": "",
+    "email": "",
+    "address": "",
+    "guardian": "林先生",
+    "guardian_relation": "父子",
+    "guardian_phone": ""
+  },
+  "education": {
+    "school_zh": "英基沙田小學",
+    "school_en": "ESF Sha Tin Junior School",
+    "address": "香港新界沙田",
+    "enrollment": "2026年9月",
+    "grade": "Year 6",
+    "class": "6L",
+    "overall_grade": "Level 5+"
+  },
+  "academic": {
+    "rank": "Top 10%",
+    "trend": "Consistent high performer across all subject areas",
+    "subjects": [
+      {"name": "English", "y7": "5", "y8": "5+", "y9": "6", "note": "Excellent"},
+      {"name": "Mathematics", "y7": "5", "y8": "5", "y9": "5+", "note": "Strong"},
+      {"name": "Science", "y7": "5", "y8": "5+", "y9": "5+", "note": "Improving"},
+      {"name": "Humanities", "y7": "4+", "y8": "5", "y9": "5", "note": "Improving"},
+      {"name": "Chinese", "y7": "5", "y8": "5", "y9": "5", "note": "Stable"},
+      {"name": "ICT", "y7": "5+", "y8": "5+", "y9": "6", "note": "Outstanding"},
+      {"name": "PE", "y7": "5", "y8": "5", "y9": "5", "note": ""},
+      {"name": "Performing Arts", "y7": "5", "y8": "5+", "y9": "5+", "note": "Strong"}
+    ]
+  },
+  "awards": [
+    {
+      "name": "FIRST LEGO League\nRobotics Competition",
+      "organizer": "FIRST Hong Kong",
+      "date": "Nov 2025",
+      "level": "International",
+      "award": "Champion's Award"
+    },
+    {
+      "name": "Hong Kong Coding Championship",
+      "organizer": "HK Computer Society",
+      "date": "May 2025",
+      "level": "Territory-wide",
+      "award": "Gold Medal"
+    },
+    {
+      "name": "ESF Music Festival\nDigital Composition",
+      "organizer": "English Schools Foundation",
+      "date": "Mar 2025",
+      "level": "Regional",
+      "award": "1st Place"
+    }
+  ],
+  "ecActivities": [
+    {
+      "name": "Robotics Club",
+      "en_name": "Robotics Club",
+      "position": "Team Captain",
+      "en_position": "Team Captain",
+      "period": "Sep 2025 - Present",
+      "description": "Led team to win FIRST LEGO League Championship",
+      "en_description": "Led team to win FIRST LEGO League Championship"
+    },
+    {
+      "name": "Digital Music Ensemble",
+      "en_name": "Digital Music Ensemble",
+      "position": "Member",
+      "en_position": "Member",
+      "period": "Sep 2024 - Present",
+      "description": "Created original digital compositions for school performances",
+      "en_description": "Created original digital compositions for school performances"
+    }
+  ],
+  "hobbies": [
+    {"name": "Programming", "level": "Advanced", "achievement": "Coding Championship Gold"},
+    {"name": "Robotics", "level": "Competition", "achievement": "FLL Champion"},
+    {"name": "Digital Music", "level": "Creative", "achievement": "ESF 1st Place"},
+    {"name": "Swimming", "level": "Hobby", "achievement": "School team member"}
+  ],
+  "self_intro_zh": "我叫林浩然，對科技和創意充滿熱情。我擅長編程和機器人設計，曾帶領團隊獲得FIRST LEGO League冠軍。我也熱愛數碼音樂創作，喜歡用科技表達創意。\n\n貴校的國際課程和創新教學理念深深吸引我。我相信在這樣多元開放的環境中，我能進一步發揮科技和藝術的潛力。\n\n學習目標：在IB課程框架下深入探索科技與藝術的交集。\n\n規劃：短期適應IB學習模式；中期修讀Higher Level電腦和數學；長期進入頂尖科技大學，成為創新型科技人才。",
+  "self_intro_en": "I am Ethan Lam, passionate about technology and creativity. I excel in programming and robotics design, having led my team to win the FIRST LEGO League Championship. I also love digital music composition, expressing my creativity through technology.\n\nYour school's international curriculum and innovative teaching philosophy deeply attract me. I believe that in such a diverse and open environment, I can further unleash my potential at the intersection of technology and art.\n\nMy Goals: Explore the intersection of technology and arts within the IB curriculum framework.\n\nMy Plans: Short-term: adapt to IB learning mode. Medium-term: take Higher Level Computer Science and Mathematics. Long-term: enter a top technology university and become an innovative tech talent.",
+  "teacher_comment": {
+    "teacher": "James Mitchell",
+    "position": "ICT Teacher & Robotics Coach",
+    "school": "ESF Sha Tin Junior School",
+    "email": "",
+    "date": "",
+    "comment_zh": "Ethan是一位極具天賦的學生，在科技和創意領域表現卓越。他的團隊合作精神和解決問題能力令人印象深刻。強烈推薦。",
+    "comment_en": "Ethan is an exceptionally talented student who excels in technology and creative fields. His teamwork spirit and problem-solving abilities are truly impressive. I give him my highest recommendation."
+  }
+}

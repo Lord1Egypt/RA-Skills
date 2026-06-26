@@ -1,0 +1,29 @@
+type: c4_context
+title: 火一五 SaaS 上下文图（C4 L1）
+
+nodes:
+  - id: customer
+    label: 企业客户\n采购/使用 SaaS 的企业
+    shape: person
+  - id: admin
+    label: 火一五运维\n内部团队
+    shape: person
+  - id: huo15
+    label: 火一五 SaaS\n企业数字化平台
+    shape: system
+  - id: wecom
+    label: 企业微信\nIM / 通讯录
+    shape: system_ext
+  - id: odoo
+    label: Odoo ERP\nCRM / 财务
+    shape: system_ext
+  - id: openai
+    label: OpenAI / 百炼\n大模型 API
+    shape: system_ext
+
+edges:
+  - { from: customer, to: huo15,  label: 使用 }
+  - { from: admin,    to: huo15,  label: 运维 }
+  - { from: huo15,    to: wecom,  label: OAuth / 消息推送 }
+  - { from: huo15,    to: odoo,   label: XML-RPC }
+  - { from: huo15,    to: openai, label: HTTPS }

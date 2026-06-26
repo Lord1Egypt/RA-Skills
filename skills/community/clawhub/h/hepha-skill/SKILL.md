@@ -1,35 +1,265 @@
 ---
-name: "Hepha"
-description: "Runs autonomous iterative delivery loops for coding tasks using plan -> execute -> check -> review -> commit. Use when the user asks for hepha mode, autopilo..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/hepha-skill"
-sourceUrl: "https://clawhub.ai/skills/hepha-skill"
+name: hepha
+description: Runs autonomous iterative delivery loops for coding tasks using plan -> execute -> check -> review -> commit. Use when the user asks for hepha mode, autopilot loop execution, unattended small-step implementation, continuous self-planning, automated commits, tech-option research via web/GitHub, and browser-based validation with MCP or Playwright.
+context: fork
+agent: Explore
 ---
 
 # Hepha
 
-> Runs autonomous iterative delivery loops for coding tasks using plan -> execute -> check -> review -> commit. Use when the user asks for hepha mode, autopilo...
+## Purpose
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/hepha-skill`
-- **Source URL:** [https://clawhub.ai/skills/hepha-skill](https://clawhub.ai/skills/hepha-skill)
+Run each requirement as multiple small, autonomous loops:
 
-## Overview
+`plan -> execute -> check -> review -> commit`
 
+Keep looping with minimal user intervention until the backlog is done or a stop condition is hit.
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/hepha-skill
-```
+## Activation
+
+Activate only when the user explicitly asks for:
+
+- hepha / autopilot / autonomous loop / unattended iteration
+- continuous plan-execute-check-review-commit flow
+- small-step commits until a larger requirement is completed
+
+If the user did not explicitly request hepha, do not force this mode.
+
+## Non-Negotiable Operating Rules
+
+1. One loop = one smallest shippable sub-task.
+2. No commit before both engineering checks and browser review pass.
+3. Every loop must update progress artifacts under `.autopilot/`.
+4. If blocked, re-plan automatically; ask user only when truly necessary.
+5. Prefer minimal diff and avoid unrelated files.
+
+## Required Working Artifacts
+
+Create and maintain these files in the project's `.autopilot/` directory:
+
+- `.autopilot/backlog.md` - task graph and states (`todo`, `doing`, `blocked`, `done`)
+- `.autopilot/progress.md` - per-loop execution log and evidence
+- `.autopilot/decision-log.md` - research and technical decisions
+
+**Templates**: Use the template files from `templates/` in this skill directory as starting points:
+- `templates/backlog.md`
+- `templates/progress.md`
+- `templates/decision-log.md`
+
+If working files do not exist, copy from templates or create them before the first loop.
+
+## Loop Protocol
+
+Execute the following phases in order for each loop.
+
+### 1) PLAN (Enhanced)
+
+Goal: pick exactly one ready sub-task from the backlog.
+
+Steps:
+
+**Step 0.5 - Schema Validation (execute every PLAN):**
+
+Verify each task in backlog.md contains:
+- ✅ `id` (format: TASK-XXX or numeric)
+- ✅ `title` (action statement)
+- ✅ `state` (todo|doing|blocked|done)
+- ✅ `depends_on` (array, can be empty)
+- ✅ `acceptance` (testable pass conditions)
+- ✅ `risk` (low|medium|high)
+- ✅ `files_hint` (expected files, optional)
+
+Missing fields → complete before continuing
+Circular dependencies → detect and report error
+
+**Step 0 - Auto-Decomposition (if backlog.md missing or empty):**
+
+1. Analyze original requirement to identify core functional modules
+2. Apply decomposition patterns (see `references/decomposition-patterns.md`):
+   - Vertical slicing: split by user value path (UI → API → Data)
+   - Risk-first: high-risk dependencies first
+   - Independence: each task testable and committable separately
+3. Generate task graph:
+   - Assign unique ID to each sub-task (TASK-001, TASK-002...)
+   - Identify dependencies (depends_on)
+   - Assess risk level (low/medium/high)
+   - Define acceptance criteria (acceptance)
+4. Output to `.autopilot/backlog.md`
+
+**Step 1 - Normalize and Build Task Graph:**
+
+1. Normalize current requirement into:
+   - Goal
+   - Definition of done
+   - Constraints
+   - Out of scope
+2. Build/refresh task graph:
+   - Decompose Epic -> Tasks
+   - For each task, define input/output, acceptance, dependencies, risk
+3. Select one task from ready queue (all dependencies done).
+4. Write loop plan into `.autopilot/progress.md`:
+   - selected task
+   - expected files
+   - expected checks
+   - expected browser validation path
+   - Update progress visualization section
+
+### 2) RESEARCH (explicit trigger conditions)
+
+Goal: make informed decisions with live evidence.
+
+**Decision Matrix - Research Required?**
+
+| Scenario Category | Specific Situation | Research Required |
+|------------------|-------------------|-------------------|
+| New Technology | Using library/framework not in project | ✅ Yes |
+| Architecture Change | Affects module boundaries or data flow | ✅ Yes |
+| Implementation Uncertainty | 2+ viable options with >30% difference | ✅ Yes |
+| Tool Selection | MCP/Playwright/Puppeteer/etc. choice | ✅ Yes |
+| CRUD Operations | Standard CRUD | ❌ No |
+| Bug Fixes | Clear error fix | ❌ No |
+| Style Adjustments | CSS/style class modifications | ❌ No |
+
+**Research Quality Requirements:**
+
+1. Compare at least 2 options
+2. Prefer official documentation and source code
+3. Record: option summary → evidence links → tradeoffs → decision rationale
+
+Record in `.autopilot/decision-log.md`:
+
+- option A / B summary
+- evidence links or source notes
+- tradeoffs
+- final decision and rationale
+
+### 3) EXECUTE
+
+Goal: implement the chosen sub-task with minimal blast radius.
+
+Rules:
+
+- Keep changes focused on required files only.
+- Avoid speculative refactors.
+- Keep functions small and reusable.
+- Add concise comments only where logic is non-obvious.
+
+### 4) CHECK
+
+Goal: verify engineering quality.
+
+Run all relevant project checks (examples):
+
+- lint
+- tests
+- build/typecheck
+
+If any check fails:
+
+1. Capture failure details in `.autopilot/progress.md`.
+2. Fix the root cause.
+3. Re-run checks.
+4. Repeat until pass or retry limit is reached.
+
+### 5) REVIEW (browser and UX evidence required for UI/flow changes)
+
+Goal: verify behavior from a user perspective, not only compile success.
+
+For UI/interaction changes, use MCP browser tools and/or Playwright to validate:
+
+- page load success
+- key interaction path works
+- expected text/element state is visible
+- major regressions are absent
+
+Attach review evidence to `.autopilot/progress.md`:
+
+- interaction steps
+- observed result
+- screenshots/snapshots when relevant
+
+### 6) COMMIT
+
+Commit only when:
+
+- checks passed
+- review passed
+- acceptance criteria for selected task are met
+
+Commit policy:
+
+- one loop, one commit
+- conventional commit format
+- message explains purpose/why, not only what
+
+Update task status in `.autopilot/backlog.md` to `done` and append commit hash in progress log.
+
+## Re-Planning Policy
+
+Trigger re-plan when:
+
+- dependency changed
+- repeated failures suggest wrong approach
+- discovered scope mismatch
+
+Re-plan behavior:
+
+1. Split the current task into smaller tasks.
+2. Mark blocked tasks explicitly with reason.
+3. Continue from next ready task.
+
+## Stop Conditions
+
+Stop loop and report clearly if any condition is met:
+
+1. No ready task and unresolved blockers remain.
+2. Same task fails checks/review 2 consecutive loops.
+3. Required tooling is unavailable (critical checks cannot run).
+4. User-defined risk boundary is exceeded.
+
+When stopped, provide:
+
+- current status
+- blocker root cause
+- proposed next actions
+
+## Completion Conditions
+
+Consider a large requirement complete only when:
+
+1. All backlog tasks are `done`.
+2. Requirement-level definition of done is satisfied.
+3. Relevant checks pass on final state.
+4. Required review evidence is present.
+
+Then generate a final completion summary:
+
+- completed task list
+- key decisions
+- risk notes
+- follow-up suggestions
+
+## Communication Style During Hepha
+
+- Keep user updates brief and frequent.
+- Do not ask for confirmation every loop.
+- Ask user only for true ambiguity, policy conflicts, or missing credentials.
+
+## Suggested Starter Prompt For Users
+
+Use this starter format to begin a run:
+
+1. Enable hepha mode.
+2. Run loop: plan -> execute -> check -> review -> commit.
+3. Perform web/GitHub research before technical choices.
+4. For UI flows, perform browser-based validation.
+5. Continue until backlog is complete or stop condition is met.
+6. Requirement/backlog: <paste requirement here>.
+
+## Additional References
+
+- Planning details: `references/planning_task-decomposition.md`
+- Quality gates: `references/validation_quality-gates.md`
+- Decomposition patterns: `references/decomposition-patterns.md`
+- Progress template: `references/progress-template.md`
+- Working file templates: `templates/backlog.md`, `templates/progress.md`, `templates/decision-log.md`

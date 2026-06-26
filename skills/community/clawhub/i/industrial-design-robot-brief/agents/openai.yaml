@@ -1,0 +1,7 @@
+interface:
+  display_name: "Robot Paper Brief"
+  short_description: "Translate robot papers into design briefs"
+  default_prompt: "Use $industrial-design-robot-brief to turn yesterday's humanoid-robot papers into a Chinese brief for industrial designers."
+
+policy:
+  allow_implicit_invocation: true

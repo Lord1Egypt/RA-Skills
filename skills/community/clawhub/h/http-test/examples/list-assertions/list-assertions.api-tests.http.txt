@@ -1,0 +1,24 @@
+### List assertion API tests
+#
+# Focus:
+# - list membership
+# - list absence
+# - lightweight page-level validation
+
+@host = https://api.example.test
+@token = <set via AUTH_TOKEN>
+
+### List positive: target code should be present
+# auth = bearer
+# expect.status = 200
+# expect.list_contains = data.items[].code:TARGET_CODE
+# output.fields = code,message,data.pageInfo.total
+GET {{host}}/v1/resources?page=1&pageSize=20
+Authorization: Bearer {{token}}
+
+### List negative: removed code should not be present
+# auth = bearer
+# expect.status = 200
+# expect.list_not_contains = data.items[].code:REMOVED_CODE
+GET {{host}}/v1/resources?page=1&pageSize=20
+Authorization: Bearer {{token}}

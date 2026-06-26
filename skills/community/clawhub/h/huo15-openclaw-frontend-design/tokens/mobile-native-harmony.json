@@ -1,0 +1,47 @@
+{
+  "name": "mobile-native-harmony",
+  "displayName": "MOBILE-NATIVE · HarmonyOS 鸿蒙",
+  "version": "1.0.0",
+  "color": {
+    "paper": "oklch(0.97 0.005 240)",
+    "paper2": "oklch(0.94 0.008 240)",
+    "ink": "oklch(0.18 0.01 260)",
+    "mute": "oklch(0.50 0.01 260)",
+    "cyan": "oklch(0.78 0.12 220)",
+    "orange": "oklch(0.78 0.13 55)",
+    "green": "oklch(0.78 0.14 145)",
+    "pink": "oklch(0.82 0.10 5)"
+  },
+  "colorHex": {
+    "paper": "#f4f5f7",
+    "paper2": "#eaedf2",
+    "ink": "#23262e",
+    "mute": "#76798a",
+    "cyan": "#7ac8d4",
+    "orange": "#e0a877",
+    "green": "#9bc88a",
+    "pink": "#e7b6b6"
+  },
+  "typography": {
+    "display": "Noto Sans SC 700/900",
+    "body": "Noto Sans SC 400/500",
+    "numeric": "DM Sans 500/700"
+  },
+  "spacing": { "xs": 4, "sm": 8, "md": 16, "lg": 24, "xl": 32, "2xl": 56 },
+  "radius": { "control": 14, "tile": 24, "card": 28, "hero": 32, "pill": 999 },
+  "shadow": {
+    "tile": "0 6px 18px oklch(0.78 0.12 220 / .15)"
+  },
+  "redLineWaiver": ["灵动色块多色：4 色同明度 L≈0.78 + 同低饱和 C≈0.10–0.14 + 不同色相，避免某色一统天下"],
+  "examplePath": "../examples/mobile-native/harmony/index.html",
+  "motion": {
+    "duration": { "fast": 200, "normal": 300, "slow": 450 },
+    "easing": {
+      "harmonySpring": "cubic-bezier(0.2, 0, 0, 1)",
+      "fluid": "cubic-bezier(0.36, 0, 0.66, 1)",
+      "emphasized": "cubic-bezier(0.05, 0.7, 0.1, 1)"
+    },
+    "stagger": { "normal": 80 },
+    "philosophy": "鸿蒙流畅感 — fluid easing 模仿 ArkUI 的灵动效果；4 灵动色块切换 normal 300ms（比 iOS 偏快），保持响应敏捷"
+  }
+}

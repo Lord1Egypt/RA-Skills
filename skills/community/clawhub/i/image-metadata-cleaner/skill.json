@@ -1,0 +1,21 @@
+{
+  "name": "image-metadata-cleaner",
+  "version": "1.0.0",
+  "description": "Clean privacy-sensitive metadata (C2PA, EXIF, XMP, IPTC, GPS) from user-owned images by writing sanitized copies.",
+  "author": "aiwork4me",
+  "license": "MIT-0",
+  "homepage": "https://github.com/AIwork4me/image-metadata-cleaner",
+  "repository": "https://github.com/AIwork4me/image-metadata-cleaner",
+  "os": ["windows", "macos", "linux"],
+  "tags": ["image", "metadata", "privacy", "exif", "c2pa", "cleanup", "publishing"],
+  "triggers": [
+    "clean metadata",
+    "remove EXIF",
+    "strip metadata",
+    "image privacy",
+    "metadata cleanup",
+    "clean image",
+    "remove C2PA",
+    "privacy metadata"
+  ]
+}

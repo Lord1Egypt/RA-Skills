@@ -1,35 +1,253 @@
 ---
-name: "Institutional Tracker Ai"
-description: "AI链条机构建仓探测算法。基于Tushare结构化数据，通过5维信号评分体系（资金流+量价+筹码+北向+事件） 识别A股AI链条（算力/芯片/大模型/应用）机构建仓行为，生成买入信号（10日持有期、-15%止损）。 含市场环境判断（11指标）、外部情绪聚合（5源）、日内分钟线分析、大规模回测框架。 回测结果：54..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/institutional-tracker-ai"
-sourceUrl: "https://clawhub.ai/skills/institutional-tracker-ai"
+name: institutional-tracker-ai
+version: 1.0.0
+description: |
+  AI链条机构建仓探测算法。基于Tushare结构化数据，通过5维信号评分体系（资金流+量价+筹码+北向+事件）
+  识别A股AI链条（算力/芯片/大模型/应用）机构建仓行为，生成买入信号（10日持有期、-15%止损）。
+  含市场环境判断（11指标）、外部情绪聚合（5源）、日内分钟线分析、大规模回测框架。
+  回测结果：544次买入信号，10日胜率55.3%，P=0.007（统计显著），样本外59.0%（P=0.006）。
+
+  当用户提到以下意图时触发此 skill：
+  "机构建仓检测"、"AI链条选股"、"资金流分析"、"量价信号"、"建仓探测"、
+  "机构行为识别"、"吸筹信号"、"A股机构跟踪"、"AI赛道筛选"、"智能选股"、
+  "帮我跑一遍建仓探测"、"今天有哪些AI股票在吸筹"、"跑回测"、"评估算法可信度"。
+type: workflow
+author: caspar
+best_for:
+  - AI链条（算力/芯片/大模型/应用）机构建仓行为识别
+  - A股个股多维信号评分与状态判定
+  - 市场环境（牛市/熊市/震荡）自动判断
+  - 多窗口收益回测与统计检验
+  - 每日自动化扫描与微信推送
+scenarios:
+  - 每日盘后扫描25+只AI链条龙头标的，生成HTML报告
+  - 大规模回测验证算法有效性（2022-2026全周期 + 样本外）
+  - 市场环境动态调整买入门槛（BEAR禁入、BULL降门槛）
+  - 接入Tushare分钟线Level-2数据做日内模式识别
+estimated_time: 5-15 minutes per scan
+allowed-tools:
+  - Bash
+  - Read
+  - Write
+  - Edit
+references:
+  - references/algorithm_methodology.md
+  - references/backtest_framework.md
+  - references/paper_citations.md
+  - references/install_guide.md
+metadata:
+  openclaw:
+    requires:
+      bins:
+        - python3
+    emoji: "🦉"
+    homepage: https://github.com/casparzhong-cloud/institutional-tracker-ai
+    os:
+      - macos
+      - linux
+  security:
+    credentials_usage: |
+      需要用户自备 Tushare 代理 Token（闲鱼可买38元/月，支持分钟线）。
+      Token 保存在本地 config.py 中，不上传任何外部服务。
+  agent_created: true
 ---
 
-# Institutional Tracker Ai
+# institutional-tracker-ai — AI链条机构建仓探测算法
 
-> AI链条机构建仓探测算法。基于Tushare结构化数据，通过5维信号评分体系（资金流+量价+筹码+北向+事件） 识别A股AI链条（算力/芯片/大模型/应用）机构建仓行为，生成买入信号（10日持有期、-15%止损）。 含市场环境判断（11指标）、外部情绪聚合（5源）、日内分钟线分析、大规模回测框架。 回测结果：54...
+> **一句话定位**：每天盘后自动扫描A股AI链条龙头，通过5维信号评分识别机构建仓行为，生成带统计检验的买入建议。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/institutional-tracker-ai`
-- **Source URL:** [https://clawhub.ai/skills/institutional-tracker-ai](https://clawhub.ai/skills/institutional-tracker-ai)
+## 核心价值
 
-## Overview
+- **统计显著的买入信号**：544次买入，10日胜率55.3%（P=0.007），样本外59.0%（P=0.006）
+- **只做买入，不做卖出**：卖出信号41.9%正确率已砍掉，改为机械止损-15%
+- **BEAR市禁入**：熊市环境下自动屏蔽所有买入信号，避免逆势操作
+- **论文支撑**：资金流市值归一化（Kang 2025）、量价反转逻辑、散户反向过滤
 
+## 算法架构
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/institutional-tracker-ai
 ```
+输入层                    评分层                      输出层
+┌─────────────┐    ┌──────────────────┐    ┌─────────────┐
+│ Tushare API │    │ A.资金结构 (30%) │    │ ACCUMULATION│ ← 买入
+│ ├ daily     │───▶│ B.量价形态 (24%) │───▶│ MARKUP      │ ← 持有
+│ ├ moneyflow │    │ C.筹码位置 (18%) │    │ WASHOUT     │ ← 加仓
+│ ├ margin    │    │ D.北向两融 (16%) │    │ NEUTRAL     │ ← 观望
+│ ├ mins(5m)  │    │ E.事件异动 (12%) │    │ CAUTION     │ ← 警示
+│ └ index     │    │ + 分钟线加成 15% │    └─────────────┘
+└─────────────┘    │ + 市场环境调整   │
+                   └──────────────────┘
+```
+
+## 快速开始
+
+### 前置要求
+
+| 必须 | 说明 |
+|------|------|
+| Python 3.10+ | 标准库即可，无需额外安装包 |
+| Tushare 代理 Token | 闲鱼购买（约38元/月），支持分钟线 |
+
+### 安装
+
+```bash
+# 1. 复制脚本到工作目录
+cp -r ~/.workbuddy/skills/institutional-tracker-ai/scripts/ ./institutional_tracker/
+
+# 2. 编辑配置文件，填入你的 Tushare Token
+vi ./institutional_tracker/config.py
+# 修改 TUSHARE_TOKEN = "你的token"
+# 修改 TUSHARE_API_URL = "你的代理地址"
+
+# 3. 创建必要目录
+mkdir -p ./institutional_tracker/data/daily_scores
+mkdir -p ./institutional_tracker/reports
+```
+
+### 运行
+
+```bash
+# 每日扫描（盘后运行）
+cd ./institutional_tracker && python3 main.py
+
+# 大规模回测
+cd ./institutional_tracker && python3 backtest_v2.py
+```
+
+## 5维信号评分体系
+
+### A. 资金结构分析（权重30%）— `score_fund_flow()`
+
+**核心逻辑**：
+1. **市值归一化**（Kang 2025）：净流入占市值百分比，而非绝对金额，避免大盘股天然优势
+2. **超大单占比加成**：超大单(>100万)占比>20%时加分
+3. **连续性确认**：连续3-5天主力净流入累加奖励
+4. **散户反向过滤**（上交大2019, Ravina 2023）：
+   - 散户跟风买入 → 降权15分（FOMO末端信号）
+   - 主力买+散户卖 → 加权10分（经典吸筹模式）
+
+### B. 量价形态识别（权重24%）— `score_volume_price()`
+
+**核心改进**（v8 量价反转逻辑）：
+- 放量温和上涨 → **降权**至+30（A股放量上涨预测反转，量价趋势2023）
+- 缩量横盘 → **加权**至+55（安静吸筹，国金2022）
+- 缩量小跌 → **加权**至+45（洗盘吸筹）
+- 放量大涨后缩量 → +50（主力控盘不出货）
+
+**辅助指标**：OBV背离检测、CMF蔡金资金流、多日形态（连阳/连阴）
+
+### C. 筹码/位置分析（权重18%）— `score_position()`
+
+- 简化版筹码分布（参考 ChipDistribution 开源）
+- 获利盘比例 + 筹码集中度 + 平均成本偏离
+- BOS/CHoCH 结构破裂检测（参考 smart-money-concepts 开源）
+- MA20偏离 + PE估值
+
+### D. 北向+两融（权重16%）— `score_north_margin()`
+
+- 北向十大成交个股级别信号
+- 北向全局7日趋势
+- 融资余额变动 + 融券余额激增检测
+
+### E. 事件异动（权重12%）— `score_limit_event()`
+
+- 涨跌停封板/开板
+- 连阳/连阴模式
+- 换手率暴增 + 成交额暴增
+- 底部/顶部反转模式
+
+### 日内分钟线加成（权重15%）— `analyze_intraday_pattern()`
+
+利用 Tushare 5分钟K线数据：
+1. **尾盘放量**（>35%=+20分）：机构尾盘集中建仓
+2. **开盘抢筹/出货**：开盘30分钟放量+全天方向判断
+3. **成交均匀度**（CV<0.4=+10）：VWAP算法交易特征
+4. **VWAP偏离**：收盘价vs日内VWAP判断买卖方主导
+
+## 市场环境判断 — `judge_market_regime()`
+
+11个指标综合判断BULL/NEUTRAL/BEAR：
+
+| 指标 | 权重 | 说明 |
+|------|------|------|
+| 均线多空排列 | 20% | MA5/20/60/120排列 |
+| MACD趋势 | 16% | 双线+柱状态 |
+| 指数位置 | 11% | 距120日高低点 |
+| 北向20日趋势 | 12% | 累计流入/流出 |
+| 成交额趋势 | 8% | 5日vs20日均额 |
+| 涨跌停比 | 8% | 赚钱效应 |
+| 动量 | 6% | 20日涨跌幅 |
+| 隔夜美股 | 5% | 标普500联动 |
+| 恒生联动 | 5% | 港A联动r=0.69 |
+| 外部情绪 | 8% | 5源聚合 |
+
+**关键规则**：
+- **BEAR → 买入门槛=999**：熊市完全禁止发出买入信号
+- **BULL → 门槛降低**：牛市放宽买入条件
+- **NEUTRAL→BULL转折** → 额外降低吸筹门槛
+
+## 标的池
+
+默认监控25+只AI链条核心标的（可在 `main.py` 中修改）：
+
+| 赛道 | 代表标的 |
+|------|---------|
+| AI算力/光互联 | 中际旭创、新易盛、天孚通信 |
+| AI服务器 | 工业富联、立讯精密、沪电股份 |
+| AI芯片 | 寒武纪、海光信息、中芯国际、北方华创 |
+| AI大模型 | 科大讯飞、金山办公 |
+| AI应用 | 中科创达、虹软科技 |
+| AI+存储 | 源杰科技、江波龙 |
+
+## 回测框架
+
+详细方法论见 `references/backtest_framework.md`，核心特点：
+
+1. **多时期覆盖**：2022熊市→2023震荡→2024结构牛→2025科技牛→2026YTD
+2. **样本外验证**：训练集(2022-2024) vs 测试集(2025-2026)
+3. **多窗口收益**：3/5/10/20日前瞻收益
+4. **追踪止损模拟**：15%回撤止损
+5. **统计检验**：二项分布P值 + Wilson置信区间
+6. **过拟合检测**：训练vs测试胜率衰减
+
+### 最终回测结果（v11）
+
+| 指标 | 全周期 | 样本外(2025-26) |
+|------|--------|----------------|
+| 买入次数 | 544 | ~200 |
+| 10日胜率 | 55.3% | 59.0% |
+| P值 | 0.007 | 0.006 |
+| 20日胜率 | — | 60.0%(P=0.003) |
+
+## 自动化配置
+
+### 每日盘后扫描
+
+建议在 WorkBuddy 中创建自动化任务：
+
+```
+时间: 每个交易日 16:35
+任务: cd ~/institutional_tracker && python3 main.py
+推送: 通过微信推送报告摘要+HTML附件
+```
+
+### 每周效果评估
+
+```
+时间: 每周五 17:30
+任务: 评估本周信号实际收益 vs 基准(55.3%)
+规则: 连续2周<45%标记算法失效，需重新校准
+```
+
+## 故障排查
+
+| 问题 | 解决方案 |
+|------|---------|
+| Tushare返回空数据 | 检查Token是否过期，代理地址是否正确 |
+| 分钟线接口报错 | 确认Token权限>=15000积分，freq用`5min`不是`5` |
+| 北向数据缺失 | 当天非交易日，会自动fallback到最近交易日 |
+| 信号全是NEUTRAL | 可能处于BEAR市场环境，算法自动屏蔽买入信号 |
+| 回测耗时过长 | Tushare限速0.6s/次，10只股票约需30分钟 |
+
+## 免责声明
+
+本算法基于 Tushare 结构化交易数据自动生成信号。"机构行为"基于超大单(>100万)/大单(20-100万)分类的**统计推断**，不代表真实资金身份。所有结论**仅供参考**，不构成任何投资建议。投资有风险，决策需谨慎。

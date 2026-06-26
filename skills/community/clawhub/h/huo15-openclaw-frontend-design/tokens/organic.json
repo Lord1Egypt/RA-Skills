@@ -1,0 +1,45 @@
+{
+  "name": "organic",
+  "displayName": "ORGANIC · 有机自然",
+  "version": "1.0.0",
+  "color": {
+    "paper": "oklch(0.96 0.025 85)",
+    "ink": "oklch(0.28 0.04 50)",
+    "clay": "oklch(0.62 0.13 45)",
+    "moss": "oklch(0.45 0.10 145)",
+    "sky": "oklch(0.78 0.07 220)"
+  },
+  "colorHex": {
+    "paper": "#f7eedb",
+    "ink": "#574230",
+    "clay": "#c97f3a",
+    "moss": "#5b8a3b",
+    "sky": "#9bbed4"
+  },
+  "typography": {
+    "display": "Caveat 600",
+    "body": "Source Serif 4 400"
+  },
+  "spacing": { "xs": 4, "sm": 8, "md": 16, "lg": 32, "xl": 48, "2xl": 80 },
+  "radius": {
+    "irregular": "48% 52% 55% 45% / 50% 50% 50% 50%",
+    "soft": 24,
+    "pill": 999
+  },
+  "shadow": {
+    "subtle": "0 2px 8px oklch(0.62 0.13 45 / .12)",
+    "card": "0 8px 32px oklch(0.62 0.13 45 / .15)"
+  },
+  "redLineWaiver": ["irregular radius 是 hallmark：每个圆角不一样（4 段不同百分比），避免统一 16px 工业感（红线 #9 合规）"],
+  "examplePath": "../examples/organic/index.html",
+  "motion": {
+    "duration": { "fast": 300, "normal": 500, "slow": 800 },
+    "easing": {
+      "spring": "cubic-bezier(0.34, 1.56, 0.64, 1)",
+      "decelerate": "cubic-bezier(0, 0, 0.2, 1)",
+      "wave": "cubic-bezier(0.42, 0, 0.58, 1)"
+    },
+    "stagger": { "loose": 140 },
+    "philosophy": "弹性 + 摇曳 — spring easing 让卡片落下时有一次轻微回弹（1.56 超调）、stagger 140ms 像水面波纹扩散；duration 偏长配合手作慢节奏"
+  }
+}

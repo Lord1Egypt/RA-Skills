@@ -1,0 +1,122 @@
+[
+  {
+    "title": "THE VOID — 绝对虚空",
+    "source": "logo-generator/references/background_styles.md",
+    "concept": "Absolute minimalism and mystery. Infinite void, distant starlight at universe edge.",
+    "prompt": "{logo_description} logo centered on pure black (#000000) background, extremely fine silver-white high-contrast micro noise texture, cold sharp electronic film grain, minimal icy blue glow at extreme corner, generous negative space around logo, white or silver logo color, professional brand identity presentation",
+    "backend": "nano-banana-2",
+    "aspect_ratio": "1:1",
+    "suitable_for": ["hardcore tech", "data security", "infrastructure", "Web3"],
+    "tags": ["dark", "minimal", "tech", "mystery"]
+  },
+  {
+    "title": "FROSTED HORIZON — 磨砂穹顶",
+    "source": "logo-generator/references/background_styles.md",
+    "concept": "Modern breathing space with physical thickness. Sophisticated, breathable, Apple-like presentation.",
+    "prompt": "{logo_description} logo on deep titanium gray background, organic film-like dust texture, unpolished rough metal surface quality, large area low-saturation cold gray-blue light halo at edges dissolved like mist, premium breathing space, white logo color, Apple-quality presentation aesthetics",
+    "backend": "nano-banana-2",
+    "aspect_ratio": "1:1",
+    "suitable_for": ["premium products", "design brands", "consumer tech"],
+    "tags": ["dark", "premium", "metal", "breathable"]
+  },
+  {
+    "title": "FLUID ABYSS — 流体深渊",
+    "source": "logo-generator/references/background_styles.md",
+    "concept": "AI-native with data fluidity. Mysterious, dynamic, computational.",
+    "prompt": "{logo_description} logo on deep midnight purple background, slight color-tinted noise, fluid fusion of dark orange from right edge and dark blue from left slowly interweaving, deep-sea nebula quality texture, mysterious computational atmosphere, white logo centered with generous space",
+    "backend": "nano-banana-2",
+    "aspect_ratio": "1:1",
+    "suitable_for": ["AI products", "data visualization", "dynamic systems"],
+    "tags": ["dark", "ai", "fluid", "dynamic"]
+  },
+  {
+    "title": "STUDIO SPOTLIGHT — 物理影棚",
+    "source": "logo-generator/references/background_styles.md",
+    "concept": "Physical studio lighting simulation. Editorial magazine quality.",
+    "prompt": "{logo_description} logo on extremely dark warm carbon gray background, slightly larger grain simulating low-light camera photography, paper print grain in weak light, single-side softbox creating natural vignette, editorial magazine quality, white logo centered",
+    "backend": "nano-banana-2",
+    "aspect_ratio": "1:1",
+    "suitable_for": ["editorial design", "magazine brands", "professional services"],
+    "tags": ["dark", "editorial", "studio", "magazine"]
+  },
+  {
+    "title": "ANALOG LIQUID — 物理流体",
+    "source": "logo-generator/references/background_styles.md",
+    "concept": "Physical fluid textures on solid color. Extreme contrast between chaotic texture and clean logo.",
+    "prompt": "{logo_description} logo centered on vibrant Klein blue (#002FA7) solid color base, microscopic cellular patterns and thermal imaging roughness overlay, metallic gold dust flow and iridescent pigment shimmer texture, chaotic organic metallic texture contrasting with sharp clean vector logo, white logo color, artistic brand identity",
+    "backend": "nano-banana-2",
+    "aspect_ratio": "1:1",
+    "suitable_for": ["creative tools", "artistic brands", "experimental products"],
+    "tags": ["dark", "creative", "metallic", "contrast"]
+  },
+  {
+    "title": "LED MATRIX — 数字硬件",
+    "source": "logo-generator/references/background_styles.md",
+    "concept": "Digital retro and pixel matrix. Hardcore geek, cyberpunk, retro-futurism.",
+    "prompt": "{logo_description} logo on pure black background, glowing dot matrix patterns creating depth, CRT display artifacts and halftone printing dots, retro LED billboard aesthetic, waves of glowing green-amber points receding into background, logo as solid entity in front, cyberpunk retro-futurism atmosphere",
+    "backend": "nano-banana-2",
+    "aspect_ratio": "1:1",
+    "suitable_for": ["AI computing", "Web3", "electronic hardware", "data services"],
+    "tags": ["dark", "cyberpunk", "retro", "digital"]
+  },
+  {
+    "title": "EDITORIAL PAPER — 纸本编辑",
+    "source": "logo-generator/references/background_styles.md",
+    "concept": "High-end specialty paper with extreme whitespace. Humanistic, independent magazine aesthetic.",
+    "prompt": "{logo_description} logo on off-white alabaster paper background, high-grade watercolor rough art paper texture, natural diffused light reflection, subtle warm gray vignette at corners, generous breathing negative space, humanistic independent magazine quality, dark logo color",
+    "backend": "nano-banana-2",
+    "aspect_ratio": "1:1",
+    "suitable_for": ["serious brands", "human-centered products", "fashion", "professional services"],
+    "tags": ["light", "paper", "editorial", "humanistic"]
+  },
+  {
+    "title": "IRIDESCENT FROST — 幻彩透砂",
+    "source": "logo-generator/references/background_styles.md",
+    "concept": "Minimal tech with optical material beauty. Apple hardware render quality.",
+    "prompt": "{logo_description} logo on extremely light silver-gray cold white background, ultra-fine micro noise texture, frosted glass or sandblasted aluminum surface quality, soft holographic iridescent colors — light purple, light blue, soft pink — seen through thick frosted glass, Apple-quality optical material aesthetic, dark logo color",
+    "backend": "nano-banana-2",
+    "aspect_ratio": "1:1",
+    "suitable_for": ["tech products", "hardware", "scientific applications"],
+    "tags": ["light", "iridescent", "optical", "premium"]
+  },
+  {
+    "title": "MORNING AURA — 晨雾光域",
+    "source": "logo-generator/references/background_styles.md",
+    "concept": "AI softness with approachability. Warm, intelligent, pressure-free.",
+    "prompt": "{logo_description} logo on warm ivory cream background, soft noise blending like morning mist, large blurred low-saturation pastel colors — mint green, baby blue, dawn orange — dissolving into warm white background, atmospheric morning haze quality, approachable intelligent mood, dark logo color",
+    "backend": "nano-banana-2",
+    "aspect_ratio": "1:1",
+    "suitable_for": ["user-friendly AI", "accessible products", "health tech"],
+    "tags": ["light", "soft", "warm", "approachable"]
+  },
+  {
+    "title": "CLINICAL STUDIO — 无菌影棚",
+    "source": "logo-generator/references/background_styles.md",
+    "concept": "Spatial order with high contrast. Sterile space, geometric order, 3D depth in 2D.",
+    "prompt": "{logo_description} logo on pure white or extremely light cold gray background, high-frequency sharp cold-toned digital micro noise, large softbox from above creating smooth gray-white gradient shadow, pure light-shadow structure, sterile spatial order, algorithm-driven confidence, dark logo color",
+    "backend": "nano-banana-2",
+    "aspect_ratio": "1:1",
+    "suitable_for": ["algorithm-driven brands", "data-centric products", "SaaS"],
+    "tags": ["light", "clinical", "minimal", "confident"]
+  },
+  {
+    "title": "UI CONTAINER — 容器化界面",
+    "source": "logo-generator/references/background_styles.md",
+    "concept": "Digital product native feel. Interactive, product-ready, digital asset quality.",
+    "prompt": "{logo_description} logo displayed inside a frosted glass container — rounded corners, subtle transparency, micro drop-shadow — on clean gradient background, UI-native presentation quality, suggesting interactivity and digital context, SaaS platform aesthetic, both light and dark variants available",
+    "backend": "nano-banana-2",
+    "aspect_ratio": "1:1",
+    "suitable_for": ["digital products", "apps", "SaaS platforms", "UI/UX brands"],
+    "tags": ["light", "digital", "ui", "interactive"]
+  },
+  {
+    "title": "SWISS FLAT — 瑞士扁平",
+    "source": "logo-generator/references/background_styles.md",
+    "concept": "Absolute flatness and timeless authority. Zero gradients, zero effects.",
+    "prompt": "{logo_description} logo on 100% pure solid deep vintage green background, absolutely flat — zero gradients, zero noise, zero texture, zero effects — pure graphic design with only color and form, extreme confidence, Helvetica-era Swiss design authority, white logo color, maximum negative space",
+    "backend": "nano-banana-2",
+    "aspect_ratio": "1:1",
+    "suitable_for": ["established brands", "environmental products", "classic institutions"],
+    "tags": ["solid", "swiss", "flat", "authority"]
+  }
+]

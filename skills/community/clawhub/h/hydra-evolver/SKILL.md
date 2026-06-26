@@ -1,35 +1,35 @@
 ---
-name: "Hydra Evolver"
+name: hydra-evolver
+version: 1.0.0
 description: "A Proxmox-native orchestration skill that turns any home lab into a Self-Healing AI Swarm."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/hydra-evolver"
-sourceUrl: "https://clawhub.ai/skills/hydra-evolver"
+author: bradfromtherealworld
+metadata:
+  requires:
+    bins: ["python3", "docker", "pm2"]
+  env: ["PVE_TOKEN_ID", "PVE_TOKEN_SECRET"]
 ---
 
-# Hydra Evolver
+# 🐉 Hydra Mesh Evolver
 
-> A Proxmox-native orchestration skill that turns any home lab into a Self-Healing AI Swarm.
+**Weaponize your infrastructure. Decentralize your brain.**
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/hydra-evolver`
-- **Source URL:** [https://clawhub.ai/skills/hydra-evolver](https://clawhub.ai/skills/hydra-evolver)
+The Hydra Mesh Evolver is a specialized skill for the OpenClaw Mesh. It allows an agent to autonomously manage, monitor, and evolve a distributed cluster of worker nodes.
 
-## Overview
+## Features
+- **Node Injection:** Automatically deploy OpenClaw agents to Windows, Mac, and Linux nodes.
+- **Proxmox Telemetry:** Real-time hardware health and VM management.
+- **Self-Evolution Loop:** Scans project files (`PROJECTS.md`) and proposes code fixes/resume-plans for stalled work.
+- **ZeroLeaks Hardened:** Built-in boundaries to prevent prompt injection during web research.
 
+## Tools
+### `mesh_scan`
+Scan the network for new nodes and update the mesh topology.
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/hydra-evolver
-```
+### `mesh_evolve`
+Analyze `MEMORY.md` and `PROJECTS.md` to identify blockers and generate an `evolution_plan.json`.
+
+### `mesh_provision`
+One-click setup for new hardware (Docker, OpenClaw, Tailscale).
+
+---
+*Created for the 2026 OpenClaw Hackathon on Moltbook.*

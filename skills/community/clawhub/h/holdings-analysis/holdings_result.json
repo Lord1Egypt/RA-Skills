@@ -1,0 +1,71 @@
+{
+  "date": "2026-05-07",
+  "positions": [
+    {
+      "code": "000682",
+      "name": "东方电子",
+      "cur_price": 13.52,
+      "buy_price": 13.2,
+      "profit_pct": 2.42,
+      "days": 22,
+      "buy_score": 49,
+      "macd_score": 11,
+      "ma_score": 8,
+      "rsi_score": 16,
+      "vol_score": 14,
+      "sell_score": 0,
+      "action": "HOLD",
+      "signals": [],
+      "rsi": 62.7,
+      "overall": "HOLD",
+      "status": "FAIL"
+    },
+    {
+      "code": "002202",
+      "name": "金风科技",
+      "cur_price": 28.44,
+      "buy_price": 26.1,
+      "profit_pct": 8.97,
+      "days": 15,
+      "buy_score": 57,
+      "macd_score": 23,
+      "ma_score": 16,
+      "rsi_score": 18,
+      "vol_score": 0,
+      "sell_score": 0,
+      "action": "HOLD",
+      "signals": [],
+      "rsi": 69.1,
+      "overall": "HOLD",
+      "status": "PASS"
+    },
+    {
+      "code": "603868",
+      "name": "飞科电器",
+      "cur_price": 35.3,
+      "buy_price": 34.73,
+      "profit_pct": 1.64,
+      "days": 9,
+      "buy_score": 63,
+      "macd_score": 17,
+      "ma_score": 20,
+      "rsi_score": 15,
+      "vol_score": 11,
+      "sell_score": 12,
+      "action": "HOLD",
+      "signals": [
+        "RSI超买回落"
+      ],
+      "rsi": 73.9,
+      "overall": "HOLD",
+      "status": "PASS"
+    }
+  ],
+  "summary": {
+    "total_profit": 13.03,
+    "avg_buy_score": 56.3,
+    "avg_sell_score": 4.0,
+    "sell_count": 0,
+    "warning_count": 0
+  }
+}

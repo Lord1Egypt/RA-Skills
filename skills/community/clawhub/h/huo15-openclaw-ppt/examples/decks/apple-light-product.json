@@ -1,0 +1,57 @@
+{
+  "year": "2026",
+  "slides": [
+    {
+      "type": "hero_cover",
+      "eyebrow": "OpenClaw Enhance v2026.4",
+      "title": "给龙虾装上翅膀。",
+      "subtitle": "让 Claude 更懂你的代码库。",
+      "footnote": "huo15.com"
+    },
+    {
+      "type": "content_list",
+      "title": "四大增强",
+      "en_sub": "Four enhancements",
+      "numbered": true,
+      "items": [
+        {"label": "结构化 Memory", "desc": "分层、可查询、不污染 context"},
+        {"label": "Project Profiles", "desc": "per-repo 规则与提示词"},
+        {"label": "Skill Ecosystem", "desc": "接入 @huo15/wecom 等插件"},
+        {"label": "Design Packs", "desc": "4 种审美开箱即用"}
+      ]
+    },
+    {
+      "type": "kpi_triple",
+      "title": "真实收益",
+      "en_sub": "Real Impact",
+      "items": [
+        {"value": "60%", "label": "上下文节约", "caption": "memory 分层带来的节省"},
+        {"value": "3x", "label": "开发效率", "caption": "规则复用减少重复沟通"},
+        {"value": "0", "label": "学习曲线", "caption": "约定大于配置"}
+      ]
+    },
+    {
+      "type": "compare_columns",
+      "title": "对比原版",
+      "en_sub": "Before vs After",
+      "emphasize": "right",
+      "left": {
+        "label": "VANILLA",
+        "title": "原版 Claude Code",
+        "items": ["CLAUDE.md 一锅粥", "规则要反复重复", "没有插件生态"]
+      },
+      "right": {
+        "label": "ENHANCED",
+        "title": "OpenClaw Enhance",
+        "items": ["结构化 memory 分层", "profile 一次写多次用", "插件 + skill + 规则三位一体"]
+      }
+    },
+    {
+      "type": "call_to_action",
+      "title": "试用一下。",
+      "subtitle": "5 分钟，把你的 Claude Code 升级。",
+      "cta": "huo15.com/openclaw-enhance",
+      "footnote": "火一五 · 2026"
+    }
+  ]
+}

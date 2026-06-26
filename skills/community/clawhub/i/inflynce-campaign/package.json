@@ -1,0 +1,14 @@
+{
+  "name": "inflynce-create-campaign",
+  "version": "1.0.0",
+  "description": "OpenClaw skill to create Inflynce Boost campaigns for any URL",
+  "type": "module",
+  "scripts": {
+    "test": "node --test test/",
+    "prepare:publish": "rm -rf .clawhub-publish clawhub-publish && rsync -av --exclude=node_modules --exclude=.git --exclude=.env --exclude='*.map' --exclude=LICENSE --exclude=.clawhub-publish --exclude=clawhub-publish ./ .clawhub-publish/"
+  },
+  "dependencies": {
+    "ethereum-cryptography": "^2.0.0",
+    "viem": "^2.0.0"
+  }
+}

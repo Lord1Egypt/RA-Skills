@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$comment": "huo15-knowledge-base 配置",
+  "llm": {
+    "model": "minimax/MiniMax-M2.7",
+    "provider": "openclaw",
+    "temperature": 0.7
+  },
+  "paths": {
+    "raw": "raw",
+    "wiki": "wiki",
+    "cache": "cache"
+  },
+  "compile": {
+    "auto_trigger": false,
+    "batch_size": 10,
+    "incremental": true
+  },
+  "obsidian": {
+    "enabled": false,
+    "vault_path": null,
+    "note": "设置 enabled=true 并指定 vault_path 以启用 Obsidian 同步。编译后的 wiki/ 会自动同步到 vault/知识库/ 目录。"
+  },
+  "search": {
+    "default_format": "markdown",
+    "max_results": 20
+  }
+}

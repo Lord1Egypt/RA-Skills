@@ -1,0 +1,48 @@
+{
+  "name": "openclaw-manager",
+  "version": "0.3.2",
+  "private": false,
+  "description": "OpenClaw-native control plane and durable state sidecar.",
+  "license": "MIT",
+  "type": "commonjs",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ZephyrChen0754/openclaw-manager.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ZephyrChen0754/openclaw-manager/issues"
+  },
+  "homepage": "https://github.com/ZephyrChen0754/openclaw-manager#readme",
+  "engines": {
+    "node": ">=20"
+  },
+  "keywords": [
+    "openclaw",
+    "agent",
+    "control-plane",
+    "skill",
+    "sidecar",
+    "thread-shadow"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "dev": "tsx src/api/server.ts",
+    "start": "node dist/api/server.js",
+    "bootstrap": "tsx src/skill/bootstrap.ts",
+    "consent:autostart": "tsx src/skill/autostart-consent.ts --allow",
+    "consent:autostart:off": "tsx src/skill/autostart-consent.ts --deny",
+    "check": "tsc -p tsconfig.json --noEmit",
+    "security:check": "node scripts/security-smoke.cjs",
+    "install:windows": "powershell -ExecutionPolicy Bypass -File scripts/install.ps1",
+    "install:unix": "bash scripts/install.sh"
+  },
+  "dependencies": {
+    "express": "^5.1.0"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.3",
+    "@types/node": "^24.5.2",
+    "tsx": "^4.20.5",
+    "typescript": "^5.9.2"
+  }
+}

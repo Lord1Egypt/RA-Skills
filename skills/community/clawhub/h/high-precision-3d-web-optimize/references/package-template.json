@@ -1,0 +1,15 @@
+{
+  "type": "module",
+  "scripts": {
+    "optimize": "node references/optimize-glb.mjs"
+  },
+  "dependencies": {
+    "@gltf-transform/core": "latest",
+    "@gltf-transform/extensions": "latest",
+    "@gltf-transform/functions": "latest",
+    "draco3dgltf": "latest",
+    "meshoptimizer": "latest",
+    "sharp": "latest"
+  },
+  "devDependencies": {}
+}

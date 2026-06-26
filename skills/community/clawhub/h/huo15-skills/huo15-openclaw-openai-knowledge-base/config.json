@@ -1,0 +1,17 @@
+{
+  "version": "0.1.0",
+  "agent_context": "/Users/jobzhao/.openclaw/agents/main/agent",
+  "paths": {
+    "raw": "/Users/jobzhao/.openclaw/agents/main/agent/kb/raw",
+    "wiki": "/Users/jobzhao/.openclaw/agents/main/agent/kb/wiki",
+    "cache": "/Users/jobzhao/.openclaw/agents/main/agent/kb/cache"
+  },
+  "llm": {
+    "model": "minimax/MiniMax-M2.7",
+    "provider": "openclaw"
+  },
+  "obsidian": {
+    "enabled": true,
+    "vault_path": "/Users/jobzhao/Documents/Obsidian Vault"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "name": "iHRFlow HR Assistant",
+  "tagline": "AI-powered recruitment: search talent, manage positions, schedule interviews, drive hiring pipelines",
+  "description": "iHRFlow HR assistant for recruiting. Use when searching candidates, managing positions, scheduling interviews, advancing pipeline, or viewing recruitment stats. Pure Skill — no plugins required.",
+  "category": "productivity",
+  "tags": ["hr", "recruitment", "hiring", "talent", "interview", "mcp"],
+  "version": "1.0.0",
+  "license": "MIT",
+  "author": "iHRFlow",
+  "repository": "https://github.com/ihrflow/ihrflow-skill",
+  "requires": {
+    "openclaw": ">=0.1.0"
+  }
+}

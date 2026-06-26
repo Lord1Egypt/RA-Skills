@@ -1,0 +1,255 @@
+{
+	"type": "function",
+	"function": {
+		"name": "_bpmn_create_or_update_node",
+		"description": "Create or update detailed configuration of a workflow node in the workflow. Including name, description, approver, multi-instance, and AI task settings.\n\n【Expression Unified Usage Rules】\nFor parameters that belong to 【expression fields】 in this tool (including: assignee, multiInstanceLoopCharacteristics.collection, multiInstanceLoopCharacteristics.completionCondition, taskSetting.completeSetVarList[].expression, taskSetting.autoCompleteExpression, and all fields named with *Expression / *Var), AI must first call the system tool `_read_informat_expression_doc` to read the Informat expression specification before filling.\n\nIf this tool is not called, no expression content can be generated, and it must be called first.\n\nAll expressions must comply with the Informat expression DSL specification, and JavaScript / SQL / Java / pseudo-code styles are prohibited.\n\n【Global Consistency Strong Constraints (Must Follow)】\n- The taskSetting.formSetting.tableId in all UserTask nodes must be completely consistent with the startup form tableId configured in the process startup configuration tool `_bpmn_update_start_setting`.\n- The startup form defines the main business data table of the process instance, and all approval nodes can only operate on this form data.\n- It is not allowed to switch or use other data tables as formSetting.tableId in any UserTask.\n- If this rule is violated, the form context (form) will be invalid, the process definition will be considered illegal, and it should be directly blocked during the design phase.\n- No need to create a start node, the system has a built-in start node.",
+		"parameters": {
+			"type": "object",
+			"properties": {
+				"moduleId": {
+					"type": "string",
+					"description": "Workflow module ID."
+				},
+				"processDefineId": {
+					"type": "string",
+					"description": "Workflow process definition ID."
+				},
+				"node": {
+					"type": "object",
+					"description": "Detailed information of the node to be created or updated.",
+					"properties": {
+						"id": {
+							"type": "string",
+							"description": "Node ID, must comply with the specification, such as UserTask_Approve_1.",
+							"pattern": "^(EndEvent|UserTask|ServiceTask|Task)_[A-Za-z][A-Za-z0-9_]{0,39}$"
+						},
+						"type": {
+							"type": "string",
+							"description": "BPMN node type (required when creating a new node, can be omitted when updating a node; cannot be modified once created).\nCan only be filled with one of the following values:\nendEvent (end node), userTask (user task node, must provide taskSetting and formSetting at the same time), task (ordinary task node)\n\n【type → Required configuration rules】\n  userTask → Must provide taskSetting at the same time, and taskSetting must contain formSetting\n  endEvent → No additional configuration required\n  task     → No additional configuration required"
+						},
+						"name": {
+							"type": "string",
+							"description": "Node name, corresponding to BPMN's name attribute."
+						},
+						"documentation": {
+							"type": "string",
+							"description": "Node description text, corresponding to BPMN's <documentation> content."
+						},
+						"assignee": {
+							"type": "string",
+							"description": "Approver expression (only effective for UserTask nodes; gateway / event nodes do not support), corresponding to flowable:assignee attribute, such as: ${initiator}. The assignee field is only used for 【single approver】 scenarios, and its expression must satisfy: 1. Expression execution result type: String (single user ID) 2. Strictly prohibited to return: Array / List / multiple user IDs. You can use ${Array.first(User.superiorUsers(initiator))} like this. 3. If you need to use arrays, you cannot use array literals, but must use Array.of to construct arrays.\n\n❌ Error example (will definitely report an error):\n${Array.first(User.usersWithRole(['researcher']))}\n\n✅ Correct example:\n${Array.first(User.usersWithRole(Array.of('researcher')))}\n4.【User field reference rules】\n- If using user fields in the form:\n  - Single-select user field: ${form.projectManager.id}\n  - Multi-select user field: Must use Array.first(...) to get one user\n\n"
+						},
+						"multiInstanceLoopCharacteristics": {
+							"type": "object",
+							"description": "Multi-instance (countersign/or sign) configuration.",
+							"properties": {
+								"collection": {
+									"type": "string",
+									"description": "Collection expression, corresponding to flowable:collection, such as: ${User.superiorUsers(initiator)}."
+								},
+								"elementVariable": {
+									"type": "string",
+									"description": "Collection element variable name, corresponding to flowable:elementVariable, such as: superiorUsers."
+								},
+								"completionCondition": {
+									"type": "string",
+									"description": "Multi-instance completion condition expression (Flowable tFormalExpression). Used to control when countersign / or sign ends. Variables such as nrOfInstances, nrOfCompletedInstances, nrOfActiveInstances, initiator, form can be directly used in the expression. Or sign: When any instance is completed, it can end, recommended expression: ${nrOfCompletedInstances > 0}; Countersign: It can only end after all instances are completed, recommended expression: ${nrOfCompletedInstances == nrOfInstances}",
+									"examples": [
+										"${nrOfCompletedInstances > 0}",
+										"${nrOfCompletedInstances == nrOfInstances}",
+										"${nrOfCompletedInstances / nrOfInstances >= 0.5}"
+									]
+								}
+							},
+							"additionalProperties": false
+						},
+						"taskSetting": {
+							"type": "object",
+							"description": "AI task setting (BpmnTaskSettingAi).",
+							"properties": {
+								"userAction": {
+									"type": "string",
+									"description": "User operation type, such as: approve, reject, confirm, etc."
+								},
+								"completeAutomaticId": {
+									"type": "string",
+									"description": "Automatic completion configuration ID, used to associate AutomaticSetting."
+								},
+								"automaticSetting": {
+									"type": "object",
+									"description": "Automatic execution configuration (AutomaticSetting).",
+									"properties": {
+										"type": {
+											"type": "string",
+											"description": "Automatic execution type."
+										},
+										"config": {
+											"type": "object",
+											"description": "Specific configuration parameters for automatic execution.",
+											"additionalProperties": false
+										}
+									},
+									"additionalProperties": false
+								},
+								"formSetting": {
+									"type": "object",
+									"description": "Form-related configuration (BpmnFormSettingAi).",
+									"properties": {
+										"tableId": {
+											"type": "string",
+											"description": "Bound data table ID (must be exactly the same as the process startup form tableId)"
+										},
+										"tableFieldSettingList": {
+											"type": "array",
+											"description": "In the current 【user task node (UserTask)】, the configuration list of data table fields that the approver can view and edit, used to define the operation form of the approval node.",
+											"items": {
+												"type": "object",
+												"properties": {
+													"id": {
+														"type": "string",
+														"description": "Data table field ID, representing the field displayed to the approver in the current approval node. For associated table or sub-table fields, the form `main field ID-sub field ID` can be used, such as approvalRecord-name."
+													},
+													"editable": {
+														"type": "boolean",
+														"description": "Whether the approver can edit this field in the 【current node】. true means editable; false means read-only (only for viewing or confirming information)."
+													},
+													"visible": {
+														"type": "boolean",
+														"description": "Whether this field is visible to the approver in the form of the 【current approval node】. false means the field is completely hidden in this node."
+													}
+												},
+												"required": [
+													"id",
+													"editable",
+													"visible"
+												]
+											}
+										},
+										"toolBarButtonList": {
+											"type": "array",
+											"description": "In the current 【user task node (UserTask)】, the list of operation buttons that the approver can see and execute, such as `Agree`, `Reject`, `Return for modification`, etc.",
+											"items": {
+												"type": "object",
+												"properties": {
+													"id": {
+														"type": "string",
+														"description": "Button ID, only lowercase English letters allowed, fixed 10 digits, randomly generated, must be unique within the current node",
+														"pattern": "^[a-z]{10}$"
+													},
+													"name": {
+														"type": "string",
+														"description": "Button name"
+													},
+													"action": {
+														"type": "string",
+														"description": "Process operation type triggered by the button, defining the workflow engine-level behavior executed on the current task after clicking the button.\nCan only be filled with one of the following values:\nTaskComplete (complete the current task and continue flowing according to the process definition, used for positive operations such as 【Agree/Pass/Confirm】),\nTaskMoveToActivity (force the process to jump to the specified target node, used for negative operations such as 【Reject/Return for modification/Send back】, need to fill in activityId in actionSetting)"
+													},
+													"actionSetting": {
+														"type": "object",
+														"description": "Process operation type triggered by the button, used to define the workflow engine-level behavior executed on the current task after clicking the button. TaskComplete means complete the current task and continue flowing according to the process definition; TaskMoveToActivity means force the process instance to jump from the current task to the specified target node, commonly used in rejection or return scenarios.",
+														"properties": {
+															"enableComment": {
+																"type": "boolean",
+																"description": "Whether to enable approval comment input.\n\n【Usage suggestions】\n- In general, only set enableComment to true in negative operation buttons such as 【Reject / Return for modification / Send back】.\n- For positive flow operations such as 【Agree / Pass / Confirm】, approval comments are usually not needed, so it is recommended to set to false.\n\n【Typical examples】\n- Agree / Pass: enableComment = false\n- Reject / Return for modification: enableComment = true"
+															},
+															"bpmnModuleId": {
+																"type": "string",
+																"description": "Belonging BPMN module ID, used to locate the process context when executing button actions."
+															},
+															"taskIdExpression": {
+																"type": "string",
+																"description": "Task ID expression, used to dynamically locate the current Flowable task, such as: ${task.id}."
+															},
+															"tableId": {
+																"type": "string",
+																"description": "Associated form data table ID, used to read and write business data in button actions."
+															},
+															"activityId": {
+																"type": "string",
+																"description": "Node ID to jump to. Required when action='TaskMoveToActivity'. Node ID format such as: UserTask_HrApprove, EndEvent_Complete, etc."
+															}
+														},
+														"required": [
+															"enableComment",
+															"bpmnModuleId",
+															"taskIdExpression",
+															"tableId"
+														],
+														"additionalProperties": false
+													}
+												},
+												"required": [
+													"id",
+													"name",
+													"action",
+													"actionSetting"
+												]
+											}
+										},
+										"completeSetVarList": {
+											"type": "array",
+											"description": "After completing the task in the current 【user task node (UserTask)】, the list of form field assignment rules that need to be automatically written or updated. Used to uniformly update business data status based on approval results or process context when the task is completed.",
+											"items": {
+												"type": "object",
+												"properties": {
+													"fieldId": {
+														"type": "string",
+														"description": "Data table field ID that needs to be set with a new value."
+													},
+													"expression": {
+														"type": "string",
+														"description": "Calculation expression for the new field value. Process and form context variables such as processId, instanceId, initiator, form can be directly used in the expression, where form represents the form data corresponding to the current task node."
+													}
+												},
+												"required": [
+													"fieldId",
+													"expression"
+												]
+											}
+										}
+									},
+									"required": [
+										"tableId",
+										"tableFieldSettingList",
+										"toolBarButtonList"
+									],
+									"additionalProperties": false
+								},
+								"enableAutocomplete": {
+									"type": "boolean",
+									"description": "Whether to enable task automatic completion."
+								},
+								"autocompleteNodeIds": {
+									"type": "array",
+									"description": "When the approvers of these nodes are the same as the current node, automatically complete the current task.",
+									"items": {
+										"type": "string"
+									}
+								},
+								"noAssigneeHandleType": {
+									"type": "string",
+									"description": "Processing method when there is no approver, such as: autoComplete, skip, error."
+								},
+								"autoCompleteExpression": {
+									"type": "string",
+									"description": "Automatically complete the task when this expression is satisfied, such as: ${amount < 1000}."
+								}
+							},
+							"additionalProperties": false
+						}
+					},
+					"required": [
+						"id"
+					],
+					"additionalProperties": false
+				}
+			},
+			"required": [
+				"moduleId",
+				"processDefineId",
+				"node"
+			],
+			"additionalProperties": false
+		}
+	}
+}

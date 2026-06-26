@@ -1,0 +1,26 @@
+{
+  "type": "function",
+  "function": {
+    "name": "_app_get_define_object",
+    "description": "Accurately get a single object structure metadata (Define Object) in the application definition based on the object id.\n\n【Purpose】\n- AI accurately reads a certain object structure\n- Structure confirmation before modification\n- Difference analysis\n- Dependency impact analysis\n\n【Important Notes】\n- Only used for reading structure\n- Does not modify any data\n- Must clearly specify scope and version\n\n【Hierarchy Rules (Must Follow)】\n\n1️⃣ App-level objects:\n- scope must be filled with \"App\"\n\n2️⃣ Module-level objects:\n- scope must be filled with the id of the corresponding ModuleDefine\n- Cannot be empty\n\n【Version Rules】\n- isDraft = true  → Read draft version\n- isDraft = false → Read published version\n\n【Mandatory Rules】\n- id, scope, isDraft are all required\n- Cannot assume scope out of thin air\n- If scope and object hierarchy do not match, must report error\n",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Object's unique identifier id (must exist)"
+        },
+        "scope": {
+          "type": "string",
+          "description": "Parent scope identifier (Parent Scope Identifier).\n\n- App-level objects: fill in \"App\"\n- Module-level objects: fill in the id of the corresponding ModuleDefine"
+        },
+        "isDraft": {
+          "type": "boolean",
+          "description": "Whether to read the draft version. true=draft version, false=published version. Can be used to compare differences between draft and published versions.\n\n⚠️ Note: This interface only reads the specified version and will not automatically compare the two versions. If comparison is needed, it must be called twice separately."
+        }
+      },
+      "required": ["id", "scope", "isDraft"],
+      "additionalProperties": false
+    }
+  }
+}

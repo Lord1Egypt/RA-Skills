@@ -1,0 +1,16 @@
+{
+  "enabled": false,
+  "schedule": {
+    "morning": "09:00",
+    "evening": "21:00"
+  },
+  "feishu": {
+    "webhook": "",
+    "enabled": false
+  },
+  "email": {
+    "enabled": false,
+    "smtp": "",
+    "to": []
+  }
+}

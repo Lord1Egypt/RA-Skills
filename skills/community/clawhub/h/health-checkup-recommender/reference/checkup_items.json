@@ -1,0 +1,513 @@
+{
+  "items": {
+    "HaoLa76": {
+      "name": "癌胚抗原（CEA）定量",
+      "price": 31.225
+    },
+    "HaoLa13": {
+      "name": "便常规",
+      "price": 10.245
+    },
+    "HaoLa14": {
+      "name": "便隐血定性",
+      "price": 10.245
+    },
+    "HaoLa19": {
+      "name": "丙氨酸氨基转氨酶（ALT）",
+      "price": 7.475
+    },
+    "HaoLa36": {
+      "name": "丙肝病毒抗体（HCV-Ab）",
+      "price": 49.62
+    },
+    "HaoLa37": {
+      "name": "丙肝HCV RNA定量检测",
+      "price": 113.24
+    },
+    "HaoLa117": {
+      "name": "补体两项测定（C3、C4）",
+      "price": 55.7
+    },
+    "HaoLa126": {
+      "name": "彩超（膀胱、输尿管）",
+      "price": 69.36
+    },
+    "HaoLa104": {
+      "name": "彩超（腹部）",
+      "price": 81.43
+    },
+    "HaoLa105": {
+      "name": "彩超（甲状腺）",
+      "price": 67.77
+    },
+    "HaoLa106": {
+      "name": "彩超（颈动脉）",
+      "price": 136.6
+    },
+    "HaoLa107": {
+      "name": "彩超（前列腺）",
+      "price": 68.83
+    },
+    "HaoLa108": {
+      "name": "彩超（乳腺）",
+      "price": 82.49
+    },
+    "HaoLa109": {
+      "name": "彩超（心脏）",
+      "price": 216.44
+    },
+    "HaoLa110": {
+      "name": "彩超（阴道）",
+      "price": 68.83
+    },
+    "HaoLa111": {
+      "name": "彩超（子宫、附件）",
+      "price": 68.83
+    },
+    "HaoLa59": {
+      "name": "超敏C反应蛋白（Hs-CRP）",
+      "price": 47.5
+    },
+    "HaoLa25": {
+      "name": "胆红素：胆红素3项",
+      "price": 20.49
+    },
+    "HaoLa24": {
+      "name": "胆红素：直接胆红素",
+      "price": 7.475
+    },
+    "HaoLa23": {
+      "name": "胆红素：总胆红素（TBil）",
+      "price": 7.475
+    },
+    "HaoLa28": {
+      "name": "胆碱酯酶测定（ChE）",
+      "price": 11.45
+    },
+    "HaoLa26": {
+      "name": "蛋白4项",
+      "price": 26.79
+    },
+    "HaoLa55": {
+      "name": "低密度脂蛋白（LDL）",
+      "price": 14.95
+    },
+    "HaoLa39": {
+      "name": "丁肝抗体",
+      "price": 95.56
+    },
+    "HaoLa69": {
+      "name": "动脉硬化检测VBP-9",
+      "price": 95
+    },
+    "HaoLa04": {
+      "name": "耳鼻喉检查",
+      "price": 10.245
+    },
+    "HaoLa44": {
+      "name": "肺功能",
+      "price": 67.24
+    },
+    "HaoLa121": {
+      "name": "妇科检查+白带常规",
+      "price": 20.808
+    },
+    "HaoLa54": {
+      "name": "高密度脂蛋白（HDL）",
+      "price": 14.95
+    },
+    "HaoLa16": {
+      "name": "宫颈刮片",
+      "price": 25.075
+    },
+    "HaoLa22": {
+      "name": "谷氨酰转肽酶（GGT）",
+      "price": 7.475
+    },
+    "HaoLa20": {
+      "name": "谷草转氨酶（AST）",
+      "price": 7.475
+    },
+    "HaoLa115": {
+      "name": "骨密度",
+      "price": 55.45
+    },
+    "HaoLa125": {
+      "name": "踝关节正侧位片",
+      "price": 82.49
+    },
+    "HaoLa64": {
+      "name": "甲功3项",
+      "price": 102.45
+    },
+    "HaoLa65": {
+      "name": "甲功3项B",
+      "price": 102.98
+    },
+    "HaoLa66": {
+      "name": "甲功5项",
+      "price": 170.75
+    },
+    "HaoLa67": {
+      "name": "甲功7项",
+      "price": 239.05
+    },
+    "HaoLa75": {
+      "name": "甲胎蛋白（AFP）定量",
+      "price": 31.225
+    },
+    "HaoLa38": {
+      "name": "甲型肝炎抗体IgM",
+      "price": 24.375
+    },
+    "HaoLa21": {
+      "name": "碱性磷酸酶（ALP）",
+      "price": 7.475
+    },
+    "HaoLa68": {
+      "name": "经颅多谱勒(TCD)",
+      "price": 84.4
+    },
+    "HaoLa11": {
+      "name": "静态心电图（ECG）",
+      "price": 17.34
+    },
+    "HaoLa60": {
+      "name": "抗链球菌溶血素O",
+      "price": 31.225
+    },
+    "HaoLa50": {
+      "name": "空腹血糖（GLU）",
+      "price": 7.74
+    },
+    "HaoLa05": {
+      "name": "口腔检查",
+      "price": 13.2
+    },
+    "HaoLa61": {
+      "name": "类风湿因子（RF）",
+      "price": 23.75
+    },
+    "HaoLa85": {
+      "name": "鳞状上皮细胞癌抗原SCC",
+      "price": 62.45
+    },
+    "HaoLa73": {
+      "name": "梅毒（TRUST）",
+      "price": 33.09
+    },
+    "HaoLa63": {
+      "name": "免疫球蛋白3项",
+      "price": 68.83
+    },
+    "HaoLa99": {
+      "name": "钼靶（乳腺）",
+      "price": 144.2
+    },
+    "HaoLa02": {
+      "name": "内科",
+      "price": 8.8
+    },
+    "HaoLa15": {
+      "name": "尿常规",
+      "price": 12.506
+    },
+    "HaoLa77": {
+      "name": "前列腺特异性抗原（TPSA）",
+      "price": 55.45
+    },
+    "HaoLa78": {
+      "name": "前列腺游离特异性抗原（F-PSA）",
+      "price": 55.45
+    },
+    "HaoLa74": {
+      "name": "人免疫缺陷病毒抗体HIV",
+      "price": 79.31
+    },
+    "HaoLa118": {
+      "name": "人体成分分析",
+      "price": 41.51
+    },
+    "HaoLa27": {
+      "name": "乳酸脱氢酶测定（LDH）",
+      "price": 7.475
+    },
+    "HaoLa86": {
+      "name": "神经元特异性烯醇化酶（NSE）",
+      "price": 62.45
+    },
+    "HaoLa40": {
+      "name": "肾功2项",
+      "price": 15.745
+    },
+    "HaoLa51": {
+      "name": "糖化血红蛋白(HbA1c）",
+      "price": 53.12
+    },
+    "HaoLa10": {
+      "name": "听力",
+      "price": 16.75
+    },
+    "HaoLa70": {
+      "name": "同型半胱氨酸（HCY）",
+      "price": 95.95
+    },
+    "HaoLa03": {
+      "name": "外科检查A",
+      "price": 10.55
+    },
+    "HaoLa119": {
+      "name": "微量元素5项",
+      "price": 102.45
+    },
+    "HaoLa120": {
+      "name": "微量元素6项",
+      "price": 123.205
+    },
+    "HaoLa47": {
+      "name": "胃蛋白酶原测定",
+      "price": 82.7
+    },
+    "HaoLa49": {
+      "name": "胃泌素释放肽前体",
+      "price": 51.475
+    },
+    "HaoLa48": {
+      "name": "胃泌素G-17",
+      "price": 82.7
+    },
+    "HaoLa124": {
+      "name": "膝关节正侧位片",
+      "price": 82.49
+    },
+    "HaoLa87": {
+      "name": "细胞角蛋白19片段测定(Cyfra21-1）",
+      "price": 62.45
+    },
+    "HaoLa58": {
+      "name": "小而密低密度脂蛋白胆固醇",
+      "price": 40.45
+    },
+    "HaoLa123": {
+      "name": "心肌酶2项",
+      "price": 53.315
+    },
+    "HaoLa116": {
+      "name": "性激素测定六项女",
+      "price": 279.7
+    },
+    "HaoLa12": {
+      "name": "血常规5分类",
+      "price": 30.629
+    },
+    "HaoLa62": {
+      "name": "血沉",
+      "price": 12.775
+    },
+    "HaoLa41": {
+      "name": "血尿酸UA",
+      "price": 8.8
+    },
+    "HaoLa42": {
+      "name": "血清胱抑素测定",
+      "price": 41.51
+    },
+    "HaoLa72": {
+      "name": "血清肌钙蛋白测定",
+      "price": 196.314
+    },
+    "HaoLa71": {
+      "name": "血清α-HBDH",
+      "price": 10.125
+    },
+    "HaoLa122": {
+      "name": "血脂2项",
+      "price": 15.745
+    },
+    "HaoLa57": {
+      "name": "血脂4项",
+      "price": 30.055
+    },
+    "HaoLa07": {
+      "name": "眼：色觉",
+      "price": 3.415
+    },
+    "HaoLa06": {
+      "name": "眼：视力+外眼",
+      "price": 13.66
+    },
+    "HaoLa08": {
+      "name": "眼：眼底照相",
+      "price": 54.64
+    },
+    "HaoLa09": {
+      "name": "眼：眼压",
+      "price": 10.125
+    },
+    "HaoLa17": {
+      "name": "液基细胞学检查（TCT）",
+      "price": 123.735
+    },
+    "HaoLa53": {
+      "name": "胰岛素检测（INS）",
+      "price": 53.05
+    },
+    "HaoLa33": {
+      "name": "乙肝表面抗体定量",
+      "price": 38.595
+    },
+    "HaoLa34": {
+      "name": "乙肝表面抗体定性",
+      "price": 12.14
+    },
+    "HaoLa32": {
+      "name": "乙肝表面抗原定量",
+      "price": 39.178
+    },
+    "HaoLa31": {
+      "name": "乙肝表面抗原定性",
+      "price": 10.245
+    },
+    "HaoLa30": {
+      "name": "乙肝两对半定量",
+      "price": 206.172
+    },
+    "HaoLa29": {
+      "name": "乙肝两对半定性",
+      "price": 41.828
+    },
+    "HaoLa35": {
+      "name": "乙肝HBV DNA",
+      "price": 86.675
+    },
+    "HaoLa56": {
+      "name": "脂蛋白a",
+      "price": 36.05
+    },
+    "HaoLa88": {
+      "name": "肿瘤特异性生长因子（TSGF）",
+      "price": 51.475
+    },
+    "HaoLa52": {
+      "name": "C肽",
+      "price": 68.194
+    },
+    "HaoLa79": {
+      "name": "CA125（女）",
+      "price": 55.45
+    },
+    "HaoLa80": {
+      "name": "CA153",
+      "price": 55.45
+    },
+    "HaoLa81": {
+      "name": "CA199",
+      "price": 55.45
+    },
+    "HaoLa82": {
+      "name": "CA242",
+      "price": 69.89
+    },
+    "HaoLa83": {
+      "name": "CA50",
+      "price": 62.45
+    },
+    "HaoLa84": {
+      "name": "CA724",
+      "price": 69.89
+    },
+    "HaoLa102": {
+      "name": "CT检查（颈椎）",
+      "price": 262.95
+    },
+    "HaoLa101": {
+      "name": "CT检查（上腹部）",
+      "price": 262.95
+    },
+    "HaoLa100": {
+      "name": "CT检查（胸部）",
+      "price": 262.95
+    },
+    "HaoLa103": {
+      "name": "CT检查（腰椎）",
+      "price": 262.95
+    },
+    "HaoLa89": {
+      "name": "EB病毒血清VCA/IgA检测",
+      "price": 81.375
+    },
+    "HaoLa90": {
+      "name": "EB病毒早期抗原IgA抗体",
+      "price": 67.77
+    },
+    "HaoLa45": {
+      "name": "HP呼气试验C13",
+      "price": 158.68
+    },
+    "HaoLa46": {
+      "name": "HP血液抗体",
+      "price": 55.7
+    },
+    "HaoLa18": {
+      "name": "HPV基因分型（16/18分型）",
+      "price": 135.54
+    },
+    "HaoLa112": {
+      "name": "MRI（颈椎）",
+      "price": 409.7
+    },
+    "HaoLa113": {
+      "name": "MRI（头颅）",
+      "price": 409.7
+    },
+    "HaoLa114": {
+      "name": "MRI（腰椎）",
+      "price": 409.7
+    },
+    "HaoLa94": {
+      "name": "X光（颈椎侧位）",
+      "price": 42.2
+    },
+    "HaoLa95": {
+      "name": "X光（颈椎正侧位）",
+      "price": 79.84
+    },
+    "HaoLa93": {
+      "name": "X光（颈椎正位）",
+      "price": 55.45
+    },
+    "HaoLa92": {
+      "name": "X光（胸部右侧位）",
+      "price": 42.2
+    },
+    "HaoLa91": {
+      "name": "X光（胸部正位）",
+      "price": 42.2
+    },
+    "HaoLa97": {
+      "name": "X光（腰椎侧位）",
+      "price": 42.2
+    },
+    "HaoLa96": {
+      "name": "X光（腰椎正侧位）",
+      "price": 82.49
+    },
+    "HaoLa98": {
+      "name": "X光（腰椎正位）",
+      "price": 42.2
+    },
+    "HaoLa43": {
+      "name": "β2微球蛋白",
+      "price": 67.664
+    },
+    "HaoLa01": {
+      "name": "一般检查",
+      "price": 11.415,
+      "mandatory": true
+    }
+  },
+  "mandatory": [
+    "HaoLa01"
+  ],
+  "note": "HaoLa01（一般检查）为必选项，每个套餐都必须包含"
+}

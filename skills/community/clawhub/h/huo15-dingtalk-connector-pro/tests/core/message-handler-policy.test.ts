@@ -1,0 +1,156 @@
+import { beforeEach, describe, expect, it, vi } from "vitest";
+
+const mockSendProactive = vi.hoisted(() => vi.fn());
+
+vi.mock("../../src/utils/utils-legacy.ts", () => ({
+  isMessageProcessed: vi.fn(() => false),
+  markMessageProcessed: vi.fn(),
+  buildSessionContext: vi.fn(() => ({ sessionId: "s1" })),
+  getAccessToken: vi.fn(async () => "tk"),
+  getOapiAccessToken: vi.fn(async () => null),
+  DINGTALK_API: "https://api.dingtalk.com",
+  DINGTALK_OAPI: "https://oapi.dingtalk.com",
+  addEmotionReply: vi.fn(async () => undefined),
+  recallEmotionReply: vi.fn(async () => undefined),
+}));
+
+vi.mock("../../src/services/media/index.ts", () => ({
+  processLocalImages: vi.fn(async (s: string) => s),
+  processVideoMarkers: vi.fn(async (s: string) => s),
+  processAudioMarkers: vi.fn(async (s: string) => s),
+  processFileMarkers: vi.fn(async (s: string) => s),
+  uploadMediaToDingTalk: vi.fn(async () => null),
+  toLocalPath: vi.fn((s: string) => s),
+  FILE_MARKER_PATTERN: /\[DINGTALK_FILE\](.*?)\[\/DINGTALK_FILE\]/gs,
+  VIDEO_MARKER_PATTERN: /\[DINGTALK_VIDEO\](.*?)\[\/DINGTALK_VIDEO\]/gs,
+  AUDIO_MARKER_PATTERN: /\[DINGTALK_AUDIO\](.*?)\[\/DINGTALK_AUDIO\]/gs,
+}));
+
+vi.mock("../../src/services/messaging/index.ts", () => ({
+  sendProactive: mockSendProactive,
+}));
+
+vi.mock("../../src/reply-dispatcher.ts", () => ({
+  createDingtalkReplyDispatcher: vi.fn(() => ({
+    dispatcher: {},
+    replyOptions: {},
+    markDispatchIdle: vi.fn(),
+    getAsyncModeResponse: vi.fn(() => ""),
+  })),
+  normalizeSlashCommand: vi.fn((s: string) => s),
+}));
+
+vi.mock("../../src/runtime.ts", () => ({
+  getDingtalkRuntime: vi.fn(() => ({
+    channel: {
+      reply: {
+        resolveEnvelopeFormatOptions: vi.fn(() => ({})),
+        formatAgentEnvelope: vi.fn(() => "body"),
+        finalizeInboundContext: vi.fn(() => ({})),
+        withReplyDispatcher: vi.fn(async () => ({ queuedFinal: false, counts: { final: 0 } })),
+        dispatchReplyFromConfig: vi.fn(async () => ({ queuedFinal: false, counts: { final: 0 } })),
+      },
+      routing: {
+        buildAgentSessionKey: vi.fn(() => "session"),
+      },
+    },
+  })),
+}));
+
+describe("handleDingTalkMessage policy guards", () => {
+  beforeEach(() => {
+    vi.clearAllMocks();
+  });
+
+  async function callHandle(params: {
+    config: any;
+    data: any;
+  }) {
+    const { handleDingTalkMessage } = await import("../../src/core/message-handler");
+    await handleDingTalkMessage({
+      accountId: "acc-1",
+      config: params.config,
+      data: params.data,
+      sessionWebhook: "http://webhook",
+      runtime: { log: vi.fn() } as any,
+      log: { info: vi.fn(), warn: vi.fn(), error: vi.fn() },
+      cfg: {} as any,
+    });
+  }
+
+  it("returns early when message content is empty", async () => {
+    await callHandle({
+      config: {},
+      data: { msgtype: "text", text: { content: "" }, conversationType: "1" },
+    });
+    expect(mockSendProactive).not.toHaveBeenCalled();
+  });
+
+  it("blocks DM when allowlist empty", async () => {
+    await callHandle({
+      config: { dmPolicy: "allowlist", allowFrom: [] },
+      data: {
+        msgtype: "text",
+        text: { content: "hi" },
+        conversationType: "1",
+        senderStaffId: "u1",
+      },
+    });
+    expect(mockSendProactive).toHaveBeenCalledTimes(1);
+  });
+
+  it("blocks DM when sender not in allowlist", async () => {
+    await callHandle({
+      config: { dmPolicy: "allowlist", allowFrom: ["u2"] },
+      data: {
+        msgtype: "text",
+        text: { content: "hi" },
+        conversationType: "1",
+        senderStaffId: "u1",
+      },
+    });
+    expect(mockSendProactive).toHaveBeenCalledTimes(1);
+  });
+
+  it("blocks group when policy disabled", async () => {
+    await callHandle({
+      config: { groupPolicy: "disabled" },
+      data: {
+        msgtype: "text",
+        text: { content: "hi" },
+        conversationType: "2",
+        conversationId: "cid1",
+        senderStaffId: "u1",
+      },
+    });
+    expect(mockSendProactive).toHaveBeenCalledTimes(1);
+  });
+
+  it("blocks group allowlist when list empty", async () => {
+    await callHandle({
+      config: { groupPolicy: "allowlist", groupAllowFrom: [] },
+      data: {
+        msgtype: "text",
+        text: { content: "hi" },
+        conversationType: "2",
+        conversationId: "cid1",
+        senderStaffId: "u1",
+      },
+    });
+    expect(mockSendProactive).toHaveBeenCalledTimes(1);
+  });
+
+  it("blocks group allowlist when conversation not in list", async () => {
+    await callHandle({
+      config: { groupPolicy: "allowlist", groupAllowFrom: ["cid2"] },
+      data: {
+        msgtype: "text",
+        text: { content: "hi" },
+        conversationType: "2",
+        conversationId: "cid1",
+        senderStaffId: "u1",
+      },
+    });
+    expect(mockSendProactive).toHaveBeenCalledTimes(1);
+  });
+});

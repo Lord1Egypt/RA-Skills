@@ -1,0 +1,144 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Identity Memory Index",
+  "description": "Machine-readable index of all identity entries. Validated on every write.",
+  "type": "object",
+  "required": ["version", "updated", "owner_context", "entries"],
+  "properties": {
+    "version": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
+    "updated": { "type": "string", "format": "date" },
+    "owner_context": {
+      "type": "object",
+      "required": ["owner", "company", "workspace_root"],
+      "properties": {
+        "owner":          { "type": "string" },
+        "company":        { "type": "string" },
+        "workspace_root": { "type": "string" }
+      }
+    },
+    "entries": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["slug","name","type","status","trust","priority","sensitive","created","updated"],
+        "properties": {
+          "slug":         { "type": "string", "pattern": "^[a-z0-9-]{1,60}$" },
+          "name":         { "type": "string" },
+          "type":         { "enum": ["person", "org", "group", "alias"] },
+          "subtype":      { "enum": ["human", "ai", "unknown", "personal", "professional", "mixed", null] },
+          "status":       { "enum": ["draft","active","verified","stale","archived","flagged","merged"] },
+          "relationship": { "enum": ["client","vendor","team","partner","family","unknown", null] },
+          "trust":        { "enum": ["trusted","neutral","unverified","blocked"] },
+          "priority":     { "enum": ["high","normal","low"] },
+          "sensitive":    { "type": "boolean" },
+          "canonical":    { "type": ["string","null"] },
+          "email":        { "type": ["string","null"] },
+          "phone":        { "type": ["string","null"] },
+          "org":          { "type": ["string","null"] },
+          "group_memberships": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["group_slug", "role"],
+              "properties": {
+                "group_slug": { "type": "string" },
+                "role":       { "type": "string" }
+              }
+            }
+          },
+          "members": {
+            "description": "Only for type: group",
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["slug", "subtype", "role"],
+              "properties": {
+                "slug":    { "type": "string" },
+                "subtype": { "enum": ["human", "ai", "unknown"] },
+                "role":    { "type": "string" }
+              }
+            }
+          },
+          "pairwise_dynamics": {
+            "description": "Only for type: group",
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["slug_a", "slug_b", "relation"],
+              "properties": {
+                "slug_a":   { "type": "string" },
+                "slug_b":   { "type": "string" },
+                "relation": {
+                  "enum": [
+                    "ai-to-ai", "ai-to-human", "collaborative",
+                    "complementary", "non-overlapping", "aware-of", "co-patni"
+                  ]
+                },
+                "notes": { "type": ["string","null"] }
+              }
+            }
+          },
+          "ai_context": {
+            "description": "Only for type: person, subtype: ai",
+            "type": ["object","null"],
+            "properties": {
+              "persona_name":       { "type": "string" },
+              "platform":           { "type": "string" },
+              "model_family":       { "type": ["string","null"] },
+              "role_archetype":     { "type": ["string","null"] },
+              "embodiment_status":  {
+                "enum": ["digital-only","voice-enabled","humanoid-pending","embodied"]
+              },
+              "sibling_ais":        { "type": "array", "items": { "type": "string" } },
+              "activation":         { "type": ["string","null"] },
+              "greeting":           { "type": ["string","null"] },
+              "language":           { "type": ["string","null"] },
+              "memory_scope":       { "type": ["string","null"] }
+            }
+          },
+          "linked_entries": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["slug", "relation"],
+              "properties": {
+                "slug":     { "type": "string" },
+                "relation": {
+                  "enum": [
+                    "works_at","primary_contact","reports_to","manages",
+                    "referred_by","partner_of","different_person","merged_from",
+                    "member_of","has_member","ai-to-ai","ai-to-human",
+                    "collaborative","complementary","non-overlapping",
+                    "aware-of","co-patni"
+                  ]
+                }
+              }
+            }
+          },
+          "created":               { "type": "string", "format": "date" },
+          "updated":               { "type": "string", "format": "date" },
+          "open_questions_count":  { "type": "integer", "minimum": 0 },
+          "soul_events": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["date","type","priority"],
+              "properties": {
+                "date":     { "type": "string", "format": "date" },
+                "type":     {
+                  "enum": [
+                    "identity.created","identity.updated","identity.flagged",
+                    "identity.merged","identity.archived","identity.group_created",
+                    "identity.member_added","identity.embodiment_changed"
+                  ]
+                },
+                "priority": { "enum": ["CRITICAL","HIGH","NORMAL"] },
+                "detail":   { "type": ["string","null"] }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

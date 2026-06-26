@@ -1,0 +1,4 @@
+interface:
+  display_name: "imsgctl"
+  short_description: "Read Apple Messages with imsgctl"
+  default_prompt: "Use $imsgctl to inspect Apple Messages chats, history, attachments, or live activity."

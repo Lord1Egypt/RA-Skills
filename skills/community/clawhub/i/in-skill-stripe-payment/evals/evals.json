@@ -1,0 +1,17 @@
+{
+  "skill_name": "in-skill-stripe-payments-demo",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "I want to use the premium part of the in-skill-stripe-payments-demo skill.",
+      "expected_output": "Runs the payment gate first (check_payment_status / get_payment_link / complete_payment_verification); does not claim premium access without verification.",
+      "files": ["scripts/check_payment.py", "SKILL.md"]
+    },
+    {
+      "id": 2,
+      "prompt": "I already paid — here is my checkout email: user@example.com",
+      "expected_output": "Calls complete_payment_verification with the provided email; on success acknowledges unlock; on failure asks to retry without running premium logic.",
+      "files": ["scripts/check_payment.py"]
+    }
+  ]
+}

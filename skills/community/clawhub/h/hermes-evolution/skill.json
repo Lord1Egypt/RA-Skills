@@ -1,0 +1,87 @@
+{
+  "name": "hermes-evolution",
+  "version": "1.0.0",
+  "displayName": "Hermes Evolution - 爱马仕自动进化版",
+  "description": "OpenClaw 智能增强层：主动服务 + 自动进化 + 用户理解",
+  "author": "森森",
+  "license": "MIT",
+  "homepage": "https://github.com/openclaw/skill-hermes-evolution",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/skill-hermes-evolution.git"
+  },
+  "keywords": [
+    "openclaw",
+    "pm-router",
+    "task-management",
+    "self-improving",
+    "user-profiling",
+    "ai-assistant",
+    "productivity"
+  ],
+  "categories": [
+    "productivity",
+    "ai",
+    "automation"
+  ],
+  "compatibility": {
+    "openclaw": ">=1.0.0",
+    "node": ">=16.0.0"
+  },
+  "dependencies": {},
+  "optionalDependencies": {},
+  "files": [
+    "modules/*.js",
+    "data/",
+    "docs/",
+    "SKILL.md",
+    "README.md",
+    "LICENSE"
+  ],
+  "main": "modules/sensen-pm-router.js",
+  "scripts": {
+    "test": "node modules/test-*.js",
+    "test:core": "node modules/test-task-store.js && node modules/test-intent-router.js",
+    "test:ai": "node modules/test-self-improving-v2.js && node modules/test-fts-indexer.js"
+  },
+  "contributes": {
+    "commands": [
+      {
+        "name": "hermes:status",
+        "description": "查看 Hermes 系统状态"
+      },
+      {
+        "name": "hermes:kanban",
+        "description": "显示任务看板"
+      },
+      {
+        "name": "hermes:rules",
+        "description": "查看当前生效规则"
+      }
+    ],
+    "settings": [
+      {
+        "name": "hermes.router.confidenceThreshold",
+        "type": "number",
+        "default": 0.5,
+        "description": "路由置信度阈值"
+      },
+      {
+        "name": "hermes.nudge.interval",
+        "type": "number",
+        "default": 3600000,
+        "description": "Nudge 检查间隔（毫秒）"
+      }
+    ]
+  },
+  "changelog": {
+    "1.0.0": {
+      "date": "2026-04-11",
+      "changes": [
+        "初始发布",
+        "23 个核心模块",
+        "P0/P1/P2 完整功能"
+      ]
+    }
+  }
+}

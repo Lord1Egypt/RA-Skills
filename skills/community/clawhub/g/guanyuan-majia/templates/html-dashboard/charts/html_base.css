@@ -1,0 +1,144 @@
+/* GDHTML 共享样式 — 所有 HTML 应用看板模块共用 */
+/* token 约束见 references/part-c-design-baseline.md §5：
+   圆角 ≤8px(pill 例外) · 无重阴影 · 间距刻度 8/12/16/20/24/32 · KPI 主值 28-32px
+   数字一律 tabular-nums · 表格行高 36-44px · 状态色/数据色/强调色三层分离 */
+
+.gd-card {
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
+  color: #111827;
+  background: #ffffff;
+  padding: 16px 20px;
+  box-sizing: border-box;
+}
+
+.gd-card h2 {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0 0 12px;
+  color: #111827;
+}
+
+.gd-card h3 {
+  font-size: 13px;
+  font-weight: 500;
+  margin: 8px 0 6px;
+  color: #6b7280;
+}
+
+/* 指标块 */
+.gd-kpi-row {
+  display: flex;
+  gap: 24px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.gd-kpi {
+  flex: 1 1 120px;
+  padding: 10px 12px;
+  border-left: 3px solid #3b82f6;
+  background: #f9fafb;
+}
+
+.gd-kpi-label {
+  font-size: 12px;
+  color: #6b7280;
+  margin-bottom: 4px;
+}
+
+.gd-kpi-value {
+  font-size: 28px;
+  font-weight: 600;
+  color: #111827;
+  line-height: 1.2;
+  font-variant-numeric: tabular-nums;
+}
+
+.gd-kpi-delta {
+  font-size: 12px;
+  margin-top: 2px;
+}
+
+.gd-kpi-delta.up   { color: #16a34a; }
+.gd-kpi-delta.down { color: #dc2626; }
+
+/* 列表 */
+.gd-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.gd-list li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 0;
+  border-bottom: 1px solid #f3f4f6;
+  font-size: 13px;
+}
+
+.gd-list li:last-child { border-bottom: none; }
+
+.gd-list-label { color: #374151; }
+.gd-list-value { color: #111827; font-weight: 500; font-variant-numeric: tabular-nums; }
+.gd-list-bar   { margin-left: 12px; }
+
+/* 表格 */
+.gd-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.gd-table th, .gd-table td {
+  padding: 9px 10px; /* 行高 ~38px，底线 36-44px */
+  text-align: left;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.gd-table th {
+  color: #6b7280;
+  font-weight: 500;
+  background: #f9fafb;
+}
+
+.gd-table td.num { text-align: right; font-variant-numeric: tabular-nums; }
+
+/* 标签 */
+.gd-tag {
+  display: inline-block;
+  padding: 1px 8px;
+  border-radius: 10px;
+  font-size: 11px;
+  background: #e5e7eb;
+  color: #374151;
+}
+
+.gd-tag.warn { background: #fef3c7; color: #92400e; }
+.gd-tag.good { background: #dcfce7; color: #166534; }
+.gd-tag.bad  { background: #fee2e2; color: #991b1b; }
+
+/* 状态族 — 文案必须带业务上下文（design-baseline §6），不只写"暂无数据" */
+.gd-empty {
+  padding: 24px;
+  text-align: center;
+  color: #9ca3af;
+  font-size: 13px;
+  background: #f9fafb;
+  border-radius: 4px;
+}
+
+.gd-empty.gd-error {
+  color: #991b1b;
+  background: #fef2f2;
+}
+
+/* 网格布局 */
+.gd-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.gd-grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+.gd-grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+
+@media (max-width: 768px) {
+  .gd-grid-2, .gd-grid-3, .gd-grid-4 { grid-template-columns: 1fr; }
+}

@@ -1,35 +1,67 @@
+```markdown
 ---
-name: "guess-number"
-description: "Play a four-digit number guessing game where each guess receives feedback on how many digits are correct in both value and position."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/guess-number"
-sourceUrl: "https://clawhub.ai/skills/guess-number"
+name: guess-number
+description: 猜四位数数字推理游戏。当用户提到玩猜数字游戏、猜四位数、数字推理游戏时使用本技能。系统生成一个各位不重复的四位数，用户通过多次猜测推理出正确数字，每次猜测后反馈位置正确的数字个数。
 ---
 
-# guess-number
+# 猜四位数游戏技能
 
-> Play a four-digit number guessing game where each guess receives feedback on how many digits are correct in both value and position.
+## 技能概述
+本技能实现经典的四位数数字推理游戏，用户需要通过有限次数的猜测，推理出系统随机生成的四位数（各位数字互不重复）。每次猜测后系统仅反馈位置和数字均正确的位数，帮助用户逐步缩小范围，最终猜中答案。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/guess-number`
-- **Source URL:** [https://clawhub.ai/skills/guess-number](https://clawhub.ai/skills/guess-number)
+## 触发场景
+当用户输入以下内容时触发本技能：
+- "玩猜数字游戏"
+- "猜四位数"
+- "数字推理游戏"
+- "来玩个猜数字游戏"
+- 其他类似表达想要玩猜数字游戏的请求
 
-## Overview
+## 使用方法
+游戏拆分为两个独立阶段：
 
-
-## Installation
-To install this skill, run the following command in your terminal:
+### 阶段1：开始新游戏
+当用户说「开始游戏」「新局」「玩猜数字游戏」时，运行生成命令创建新局：
 ```bash
-hermes skills install clawhub/guess-number
+python scripts/guess_number.py --generate
+```
+该命令会随机生成4位不重复的秘密数字，写入到脚本目录下的`secret.txt`文件中，并初始化步数计数器。
+
+### 阶段2：验证用户猜测
+当用户输入4位数字进行猜测时，运行验证命令返回结果：
+```bash
+python scripts/guess_number.py --verify <用户输入的4位数字>
+```
+该命令会从`secret.txt`读取秘密数字，与用户猜测的数字对比，返回位置正确的数字个数。
+- 若用户猜对，自动删除`secret.txt`和步数文件，游戏结束
+- 若游戏未开始（`secret.txt`不存在），提示用户先开始游戏
+- 非法输入给出对应错误提示，不消耗步数
+
+## 游戏规则
+1. 系统随机生成一个4位数字，各位数字互不重复（允许0开头，例如0123是合法数字）
+2. 用户每次输入一个4位数字，需满足各位不重复、仅包含数字0-9
+3. 系统比较用户猜测与秘密数字，返回位置和数字均正确的个数k（0 ≤ k ≤ 4）
+4. 当k=4时，用户猜中，游戏结束，显示总猜测次数
+5. 输入校验规则：
+   - 非4位数字：提示"请输入4位数字，请重新输入"
+   - 包含非数字字符：提示"只能输入数字，请重新输入"
+   - 数字有重复：提示"数字不能重复，请重新输入"
+
+## 交互示例
+```
+系统：我已想好一个四位数（各位数字互不相同），请开始猜测！
+用户：1234
+系统：反馈：2 个数字位置正确
+用户：5678
+系统：反馈：0 个数字位置正确
+用户：2568
+系统：反馈：4 个数字位置正确！恭喜你猜对了！总共用了 9 步。
+```
+
+## 注意事项
+- 生成的秘密数字必须保证完全随机且各位无重复，保存到`secret.txt`中，仅在游戏结束后自动删除
+- 反馈结果必须准确，不得泄露任何额外信息（例如不得告知哪些数字正确，不得告知数字存在但位置错误的情况）
+- 严格校验用户输入，避免非法输入导致游戏崩溃，非法输入不消耗猜测步数
+- 若用户主动中断游戏，需自动清理`secret.txt`和步数文件，避免影响下一局游戏
+- 游戏结束后主动询问用户是否需要再来一局
 ```

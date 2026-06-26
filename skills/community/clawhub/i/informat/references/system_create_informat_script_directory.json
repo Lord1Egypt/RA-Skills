@@ -1,0 +1,23 @@
+{
+	"type": "function",
+	"function": {
+		"name": "_create_informat_script_directory",
+		"description": "Create Informat script directory. This method is always called before _save_informat_script. If a parent directory exists, pass parentId, otherwise do not pass. return: Returns the created folder id. When creating script files later, if the file belongs to this directory, carry this id as parentId. After calling this method, you need to call _query_informat_script_list again",
+		"parameters": {
+			"type": "object",
+			"properties": {
+				"name": {
+					"description": "Folder name, such as tools, folder names cannot be duplicated",
+					"type": "string"
+				},
+				"parentId": {
+					"description": "Parent directory id, can be omitted if none",
+					"type": "string"
+				}
+			},
+			"required": [
+					"name"
+				]
+			}
+		}
+	}

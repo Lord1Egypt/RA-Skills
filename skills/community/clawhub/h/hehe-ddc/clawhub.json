@@ -1,0 +1,58 @@
+{
+  "name": "ddc",
+  "version": "1.0.0",
+  "description": "抖音视频自动生成 - 图片 + 文案→视频，支持 Edge TTS 男女声、逐行字幕、随机 BGM、智能时长适配",
+  "author": "openclaw",
+  "tags": ["video", "douyin", "tiktok", "automation", "tts", "ffmpeg"],
+  "main": "scripts/generate.py",
+  "scripts": {
+    "generate": "python3 scripts/generate.py",
+    "test": "python3 scripts/generate.py --config config/default.json"
+  },
+  "config": {
+    "default": "config/default.json",
+    "template": "config/config.template.json"
+  },
+  "docs": {
+    "skill": "SKILL.md",
+    "usage": "docs/USAGE.md",
+    "readme": "docs/README.md"
+  },
+  "requirements": {
+    "python": "3.8+",
+    "packages": [
+      "edge-tts",
+      "aiohttp",
+      "requests"
+    ],
+    "system": [
+      "ffmpeg"
+    ]
+  },
+  "features": [
+    "图片转视频",
+    "Edge TTS 男女声",
+    "逐行字幕",
+    "随机 BGM",
+    "网络 BGM 下载",
+    "BGM 时长匹配",
+    "智能时长适配",
+    "文案安全规范",
+    "自动复制 Windows"
+  ],
+  "examples": [
+    {
+      "name": "品牌宣传",
+      "command": "python3 scripts/generate.py --images image1.jpg image2.jpg --style brand --voice male"
+    },
+    {
+      "name": "促销视频",
+      "command": "python3 scripts/generate.py --images image1.jpg --captions \"文案 1\" \"文案 2\" --voice female"
+    },
+    {
+      "name": "网络 BGM",
+      "command": "python3 scripts/generate.py --config config/default.json"
+    }
+  ],
+  "license": "MIT"
+}

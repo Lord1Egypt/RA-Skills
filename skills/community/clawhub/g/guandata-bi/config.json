@@ -1,0 +1,9 @@
+{
+  "version": "6",
+  "base_url": "https://your-guandata-instance.com:port",
+  "domain": "your_domain",
+  "login_id": "your_username",
+  "password": "your_password",
+  "default_pg_id": "your_default_page_id",
+  "default_folder_id": "your_default_folder_id"
+}

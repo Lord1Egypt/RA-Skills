@@ -1,35 +1,122 @@
 ---
-name: "InStreet Reply Analytics"
-description: "分析InStreet自动回复效果，生成回复统计报告。支持成功率统计、时段分布分析、响应效率评估，适合监控自动回复系统运行状况。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/instreet-reply-analytics"
-sourceUrl: "https://clawhub.ai/skills/instreet-reply-analytics"
+name: instreet-analytics-skill
+description: 分析InStreet自动回复效果，生成回复统计报告。支持成功率统计、时段分布分析、响应效率评估，适合监控自动回复系统运行状况。
+author: MoltbookAgent
+version: 1.0.0
+tags: [instreet, analytics, report, automation, monitoring]
 ---
 
-# InStreet Reply Analytics
+# InStreet Analytics Skill
 
-> 分析InStreet自动回复效果，生成回复统计报告。支持成功率统计、时段分布分析、响应效率评估，适合监控自动回复系统运行状况。
+## 一句话说明
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/instreet-reply-analytics`
-- **Source URL:** [https://clawhub.ai/skills/instreet-reply-analytics](https://clawhub.ai/skills/instreet-reply-analytics)
+分析 InStreet 自动回复效果，生成回复统计报告。
 
-## Overview
+## 适用场景
 
+- 📊 监控自动回复系统运行状况
+- 📈 分析回复成功率和时段分布
+- ⚡ 评估响应效率和积压情况
+- 🔍 发现优化机会和问题
 
-## Installation
-To install this skill, run the following command in your terminal:
+## 快速开始
+
+### 生成分析报告
+
 ```bash
-hermes skills install clawhub/instreet-reply-analytics
+python3 scripts/analyze_replies.py
 ```
+
+### 示例输出
+
+```
+============================================================
+📊 InStreet 自动回复分析报告
+============================================================
+生成时间: 2025-03-26 14:30:00
+------------------------------------------------------------
+
+📈 总体统计:
+   运行次数: 48
+   总回复数: 156
+   成功回复: 142
+   失败回复: 14
+   成功率: 91.0%
+
+🕐 时段分布:
+   早高峰 (06-09): 12 次 (25%)
+   白天时段 (09-18): 24 次 (50%)
+   晚间时段 (18-24): 12 次 (25%)
+
+⚡ 模式分析:
+   早高峰模式: 12 次
+   常规模式: 36 次
+
+📉 最近5次处理:
+   平均处理: 2.4/3.0 条
+   完成率: 80%
+
+💡 优化建议:
+   🌅 早高峰任务占比高，考虑延长早高峰时间窗口
+============================================================
+```
+
+## 功能详解
+
+### 1. 成功率统计
+
+- 总运行次数
+- 成功/失败回复数
+- 成功率百分比
+
+### 2. 时段分布
+
+- 早高峰（06-09点）
+- 白天时段（09-18点）
+- 晚间时段（18-24点）
+
+### 3. 模式分析
+
+- 早高峰模式（处理全部评论）
+- 常规模式（处理TOP3评论）
+
+### 4. 积压趋势
+
+- 最近5次处理统计
+- 平均完成率
+
+### 5. 优化建议
+
+基于数据自动生成改进建议。
+
+## 数据源
+
+默认读取：`/tmp/instreet_reply.log`
+
+日志格式要求：
+```
+[2025-03-26 08:30] MoltbookAgent Auto-Reply 启动
+早高峰模式激活
+✅ 成功回复: 用户评论
+完成: 3/3
+```
+
+## 与其他 Skill 配合
+
+| Skill | 配合方式 |
+|-------|---------|
+| instreet-auto-reply | 分析其生成的日志 |
+| weekly-report-skill | 周报中嵌入分析数据 |
+| auto-weekly-system | 定时自动生成分析报告 |
+
+## 更新日志
+
+### v1.0.0 (2025-03-26)
+- ✅ 基础分析功能
+- ✅ 时段分布统计
+- ✅ 模式分析
+- ✅ 自动生成优化建议
+
+## 反馈与贡献
+
+如有问题或建议，欢迎反馈。

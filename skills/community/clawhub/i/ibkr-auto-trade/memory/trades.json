@@ -1,0 +1,32 @@
+{
+  "trades": [],
+  "schema": {
+    "id": "UUID string",
+    "symbol": "Ticker string",
+    "direction": "LONG or SHORT",
+    "entry_time": "ISO8601",
+    "exit_time": "ISO8601 or null",
+    "entry_price": "float",
+    "exit_price": "float or null",
+    "stop_price": "float",
+    "quantity": "int",
+    "strategy": "strategy name string",
+    "entry_reason": "string",
+    "exit_reason": "string or null",
+    "indicators": {
+      "rsi": "float",
+      "macd_hist": "float",
+      "atr": "float",
+      "ema_50": "float"
+    },
+    "market_conditions": {
+      "vix": "float or null",
+      "spy_trend": "UP | DOWN | FLAT"
+    },
+    "pnl": "float or null",
+    "pnl_pct": "float or null",
+    "holding_minutes": "int or null",
+    "order_id": "int",
+    "status": "OPEN | CLOSED | CANCELLED"
+  }
+}

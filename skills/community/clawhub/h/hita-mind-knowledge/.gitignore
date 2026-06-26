@@ -1,0 +1,30 @@
+# Dependencies
+node_modules/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor files
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
+
+# Log files
+*.log
+logs/
+
+# Temp files
+*.tmp
+*.temp
+*.bak
+
+# Local data files (users should use their own)
+*-local.json
+*.local.json
+
+# Build output
+dist/
+build/

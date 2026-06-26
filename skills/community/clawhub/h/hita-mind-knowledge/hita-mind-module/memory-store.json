@@ -1,0 +1,77 @@
+{
+  "version": 1,
+  "lastModified": "2026-04-03T03:24:00.000Z",
+  "data": {
+    "decisions": [
+      {
+        "id": "dec_template_001",
+        "title": "【示例】技术选型",
+        "content": "根据实际需求选择技术栈，先查记忆看有没有类似经验。"
+      },
+      {
+        "id": "dec_template_002",
+        "title": "【示例】工作目录",
+        "content": "工作文件统一存放在 workspace/ 目录下，按项目分类管理。"
+      }
+    ],
+    "preferences": [
+      {
+        "id": "pref_template_001",
+        "title": "【示例】沟通风格",
+        "content": "简洁、直接、不啰嗦。直接给结论，不复述原文。"
+      },
+      {
+        "id": "pref_template_002",
+        "title": "【示例】工作习惯",
+        "content": "做事前先查记忆文件；重要内容立即写入；不确定就询问用户。"
+      }
+    ],
+    "patterns": [
+      {
+        "id": "pat_template_001",
+        "title": "【示例】开会技巧",
+        "content": "会前列提纲，会中记结论+行动+负责人+截止时间，会后5分钟发纪要。"
+      },
+      {
+        "id": "pat_template_002",
+        "title": "【示例】写周报",
+        "content": "用数据说话（完成了XX任务），分清主次重点说，列问题带解决方案。"
+      }
+    ],
+    "causality": [
+      {
+        "id": "cau_template_001",
+        "title": "【示例】最重要教训",
+        "content": "做任何任务前必须先查记忆文件！不要直接开始做，先看有没有模板或经验。"
+      }
+    ],
+    "contacts": [
+      {
+        "id": "con_template_001",
+        "title": "【示例】联系人",
+        "content": "示例：同事小王负责前端，有问题可以找他咨询。"
+      }
+    ],
+    "feedback": [
+      {
+        "id": "fb_template_001",
+        "title": "【示例】用户反馈",
+        "content": "示例：日期以数据文件中的列为准，不要凭记忆直接说。"
+      }
+    ],
+    "projects": [
+      {
+        "id": "pro_template_001",
+        "title": "【示例】项目信息",
+        "content": "示例：项目A — 需求文档在 docs/ 目录，负责人是XXX，当前进度50%。"
+      }
+    ],
+    "daily": [
+      {
+        "id": "daily_template_001",
+        "title": "【示例】工作日志",
+        "content": "示例：2026-04-03 完成XXX功能开发，遇到YYY问题已解决，明天继续ZZZ。"
+      }
+    ]
+  }
+}

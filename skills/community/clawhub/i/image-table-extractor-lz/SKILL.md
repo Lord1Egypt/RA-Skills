@@ -1,35 +1,68 @@
 ---
-name: "试验图片数据提取"
-description: "从图片中提取表格数据并输出为表格和CSV格式；当用户需要从图片提取表格数据、识别表格内容或导出CSV时使用；触发条件：试验图片表格提取，图片表格提取，试验图片数据提取，提取图片数据，提取试验数据"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/image-table-extractor-lz"
-sourceUrl: "https://clawhub.ai/skills/image-table-extractor-lz"
+name: image-table-extractor-lz
+description: 从图片中提取表格数据并输出为表格和CSV格式；当用户需要从图片提取表格数据、识别表格内容或导出CSV时使用；触发条件：试验图片表格提取，图片表格提取，试验图片数据提取，提取图片数据，提取试验数据
 ---
 
-# 试验图片数据提取
+# 图片表格数据提取
 
-> 从图片中提取表格数据并输出为表格和CSV格式；当用户需要从图片提取表格数据、识别表格内容或导出CSV时使用；触发条件：试验图片表格提取，图片表格提取，试验图片数据提取，提取图片数据，提取试验数据
+## 任务目标
+- 本 Skill 用于：从用户上传的图片中提取表格数据
+- 能力包含：图片识别、表格数据提取、数据过滤、格式转换
+- 触发条件：用户需要从图片中提取表格、识别表格内容或导出数据
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/image-table-extractor-lz`
-- **Source URL:** [https://clawhub.ai/skills/image-table-extractor-lz](https://clawhub.ai/skills/image-table-extractor-lz)
+## 操作步骤
 
-## Overview
+### 1. 检查图片上传
+- 检查用户消息中是否包含图片
+- 如果没有图片，提示用户："请上传包含表格的图片"
+- 如果有图片，继续下一步
 
+### 2. 识别图片内容
+- 识别图片内容，提取、过滤数据
+- 首先使用多模态大模型识别图片中的文字、表格内容，判断是否满足图片提取内容的要求，如果满足，直接执行过滤数据和后续操作
+- 如果大模型不能识别图片，自动切换多模态识图大模型，不要使用ocr识别（无法识别表格格式）
+- 最后无法识别图片内容时，详见references/img-table.md说明，执行图片识别
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/image-table-extractor-lz
+### 3. 输出表格格式
+将提取的数据以 Markdown 表格格式输出：
+```markdown
+| 列名1 | 列名2 | 列名3 |
+|-------|-------|-------|
+| 数据1 | 数据2 | 数据3 |
+| 数据4 | 数据5 | 数据6 |
 ```
+
+### 4. 输出CSV格式
+将提取的数据以 CSV 格式输出：
+```csv
+列名1,列名2,列名3
+数据1,数据2,数据3
+数据4,数据5,数据6
+```
+
+CSV格式规范：
+- 使用逗号分隔字段
+- 如果字段包含逗号、引号或换行符，用双引号包裹
+- 双引号字段内的双引号需转义为两个双引号
+- 详见references/csv-format.md
+
+## 注意事项
+
+### 输出方式
+- 应该同时输出表格形式直接展示和CVS格式数据给用户
+
+### 数据完整性
+- **不修改数据**：保持所有数据的原始格式和内容
+- **保留表头**：如果图片中有表头，必须在输出中保留
+- **完整提取**：提取所有可见的表格数据，不遗漏任何单元格，也不要添加任何数据
+
+### 过滤规则
+- 仅移除明确为"pass"（不区分大小写）、“通过”的单元格
+- 不移除空单元格（除非原表格中没有）
+- 不移除其他数据
+
+### 格式要求
+- 表格格式：使用标准 Markdown 表格语法
+- CSV格式：遵循标准CSV规范，确保可被电子表格软件正确解析
+- 两种格式的数据内容应完全一致
+

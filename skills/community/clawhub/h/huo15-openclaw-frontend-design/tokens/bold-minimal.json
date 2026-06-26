@@ -1,0 +1,38 @@
+{
+  "name": "bold-minimal",
+  "displayName": "BOLD-MINIMAL · 勇敢极简",
+  "version": "1.0.0",
+  "color": {
+    "ink": "oklch(0.18 0 0)",
+    "paper": "oklch(0.99 0.005 95)",
+    "accent": "oklch(0.66 0.20 28)",
+    "mute": "oklch(0.45 0 0)"
+  },
+  "colorHex": {
+    "ink": "#1a1a1a",
+    "paper": "#fbfbf6",
+    "accent": "#d6604c",
+    "mute": "#666666"
+  },
+  "typography": {
+    "display": "Playfair Display 900 italic",
+    "body": "IBM Plex Sans 400/600"
+  },
+  "spacing": { "xs": 4, "sm": 8, "md": 16, "lg": 32, "xl": 64, "2xl": 128 },
+  "radius": { "none": 0, "sm": 2, "md": 8, "lg": 14, "pill": 999 },
+  "shadow": {
+    "subtle": "0 1px 2px oklch(0 0 0 / .05)",
+    "card": "0 4px 16px oklch(0 0 0 / .08)",
+    "modal": "0 16px 48px oklch(0 0 0 / .15)"
+  },
+  "examplePath": "../examples/bold-minimal/index.html",
+  "motion": {
+    "duration": { "instant": 100, "fast": 200, "normal": 300, "slow": 500 },
+    "easing": {
+      "standard": "cubic-bezier(0.2, 0, 0, 1)",
+      "decelerate": "cubic-bezier(0, 0, 0.2, 1)"
+    },
+    "stagger": { "normal": 80 },
+    "philosophy": "克制 — 短 duration、单一 easing、绝不弹跳；hover/focus 200ms，页面进入 300ms"
+  }
+}

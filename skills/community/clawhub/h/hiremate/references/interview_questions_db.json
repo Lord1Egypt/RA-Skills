@@ -1,0 +1,274 @@
+{
+  "categories": {
+    "software_engineering": {
+      "technical": [
+        {
+          "question": "Explain the difference between synchronous and asynchronous programming. When would you use each?",
+          "level": "mid",
+          "tags": ["concepts", "programming-fundamentals"]
+        },
+        {
+          "question": "How would you design a URL shortener service like bit.ly? Walk through your design decisions.",
+          "level": "senior",
+          "tags": ["system-design", "architecture"]
+        },
+        {
+          "question": "What is your approach to debugging a production issue that you cannot reproduce locally?",
+          "level": "mid",
+          "tags": ["debugging", "production"]
+        },
+        {
+          "question": "Describe a time when you had to optimize a slow-performing piece of code. What was your process?",
+          "level": "mid",
+          "tags": ["performance", "problem-solving"]
+        },
+        {
+          "question": "How do you ensure code quality in a team environment? What practices do you advocate?",
+          "level": "senior",
+          "tags": ["code-quality", "teamwork"]
+        },
+        {
+          "question": "What data structure would you use for implementing an LRU cache? Explain your choice.",
+          "level": "mid",
+          "tags": ["data-structures", "algorithms"]
+        },
+        {
+          "question": "Walk me through how you would build a RESTful API from scratch. What considerations do you make?",
+          "level": "mid",
+          "tags": ["api-design", "backend"]
+        },
+        {
+          "question": "How do you approach database schema design for a new feature? What principles guide you?",
+          "level": "senior",
+          "tags": ["database", "design"]
+        }
+      ],
+      "behavioral": [
+        {
+          "question": "Tell me about a time you disagreed with a technical decision. How did you handle it?",
+          "level": "all",
+          "tags": ["conflict-resolution", "communication"]
+        },
+        {
+          "question": "Describe a project where you had to learn a new technology quickly. How did you approach it?",
+          "level": "all",
+          "tags": ["learning", "adaptability"]
+        },
+        {
+          "question": "Tell me about a time you made a mistake in production. What happened and what did you learn?",
+          "level": "all",
+          "tags": ["accountability", "learning"]
+        },
+        {
+          "question": "How do you prioritize your work when you have multiple deadlines?",
+          "level": "all",
+          "tags": ["time-management", "prioritization"]
+        }
+      ]
+    },
+    "product_management": {
+      "technical": [
+        {
+          "question": "How would you prioritize features when everything seems important?",
+          "level": "mid",
+          "tags": ["prioritization", "decision-making"]
+        },
+        {
+          "question": "Walk me through how you would define success metrics for a new product launch.",
+          "level": "mid",
+          "tags": ["metrics", "product-launch"]
+        },
+        {
+          "question": "How do you balance user needs, business goals, and technical constraints?",
+          "level": "senior",
+          "tags": ["strategy", "trade-offs"]
+        },
+        {
+          "question": "Describe your process for conducting user research and translating findings into product decisions.",
+          "level": "mid",
+          "tags": ["user-research", "process"]
+        }
+      ],
+      "behavioral": [
+        {
+          "question": "Tell me about a time you had to convince stakeholders to change direction. How did you approach it?",
+          "level": "all",
+          "tags": ["stakeholder-management", "influence"]
+        },
+        {
+          "question": "Describe a product you launched that didn't meet expectations. What did you learn?",
+          "level": "all",
+          "tags": ["accountability", "learning"]
+        }
+      ]
+    },
+    "data_science": {
+      "technical": [
+        {
+          "question": "Explain the bias-variance tradeoff and how it affects model selection.",
+          "level": "mid",
+          "tags": ["ml-theory", "modeling"]
+        },
+        {
+          "question": "How would you handle a dataset with significant missing values? Walk through your approach.",
+          "level": "mid",
+          "tags": ["data-cleaning", "preprocessing"]
+        },
+        {
+          "question": "Design an A/B test for a new feature. How do you determine sample size and significance?",
+          "level": "senior",
+          "tags": ["experimentation", "statistics"]
+        },
+        {
+          "question": "How do you decide between using a simple model vs. a complex one in production?",
+          "level": "senior",
+          "tags": ["model-selection", "production"]
+        }
+      ],
+      "behavioral": [
+        {
+          "question": "Tell me about a time your model performed well offline but poorly in production. What happened?",
+          "level": "all",
+          "tags": ["production", "problem-solving"]
+        },
+        {
+          "question": "How do you communicate complex statistical findings to non-technical stakeholders?",
+          "level": "all",
+          "tags": ["communication", "stakeholder-management"]
+        }
+      ]
+    },
+    "ux_design": {
+      "technical": [
+        {
+          "question": "Walk me through your design process from brief to final deliverable.",
+          "level": "mid",
+          "tags": ["process", "design-thinking"]
+        },
+        {
+          "question": "How do you decide when to follow design conventions vs. when to innovate?",
+          "level": "senior",
+          "tags": ["design-principles", "decision-making"]
+        },
+        {
+          "question": "How do you measure the success of a design? What metrics do you track?",
+          "level": "mid",
+          "tags": ["metrics", "evaluation"]
+        }
+      ],
+      "behavioral": [
+        {
+          "question": "Tell me about a time your design was challenged. How did you respond?",
+          "level": "all",
+          "tags": ["feedback", "communication"]
+        },
+        {
+          "question": "Describe a time you had to design under tight constraints. How did you approach it?",
+          "level": "all",
+          "tags": ["constraints", "creativity"]
+        }
+      ]
+    },
+    "marketing": {
+      "technical": [
+        {
+          "question": "How would you develop a go-to-market strategy for a new product?",
+          "level": "senior",
+          "tags": ["strategy", "gtm"]
+        },
+        {
+          "question": "How do you measure ROI across different marketing channels?",
+          "level": "mid",
+          "tags": ["analytics", "roi"]
+        },
+        {
+          "question": "Walk me through how you would plan and execute a product launch campaign.",
+          "level": "mid",
+          "tags": ["campaign", "planning"]
+        }
+      ],
+      "behavioral": [
+        {
+          "question": "Tell me about a campaign that underperformed. What did you learn and how did you adjust?",
+          "level": "all",
+          "tags": ["learning", "adaptation"]
+        }
+      ]
+    },
+    "sales": {
+      "technical": [
+        {
+          "question": "Walk me through your sales process from prospecting to close.",
+          "level": "mid",
+          "tags": ["process", "sales-cycle"]
+        },
+        {
+          "question": "How do you handle objections related to pricing?",
+          "level": "mid",
+          "tags": ["objection-handling", "negotiation"]
+        },
+        {
+          "question": "How do you build and manage a pipeline of prospects?",
+          "level": "mid",
+          "tags": ["pipeline", "organization"]
+        }
+      ],
+      "behavioral": [
+        {
+          "question": "Tell me about your biggest deal. What made it successful?",
+          "level": "all",
+          "tags": ["achievement", "storytelling"]
+        },
+        {
+          "question": "Describe a time you lost a deal you expected to win. What happened?",
+          "level": "all",
+          "tags": ["accountability", "learning"]
+        }
+      ]
+    },
+    "general": {
+      "behavioral": [
+        {
+          "question": "Why are you interested in this role and our company?",
+          "level": "all",
+          "tags": ["motivation", "fit"]
+        },
+        {
+          "question": "Where do you see yourself in 3-5 years?",
+          "level": "all",
+          "tags": ["career-goals", "ambition"]
+        },
+        {
+          "question": "What is your greatest professional strength? Give a specific example.",
+          "level": "all",
+          "tags": ["self-awareness", "strengths"]
+        },
+        {
+          "question": "What is an area you are actively working to improve?",
+          "level": "all",
+          "tags": ["self-awareness", "growth"]
+        },
+        {
+          "question": "Describe your ideal work environment and management style.",
+          "level": "all",
+          "tags": ["culture-fit", "preferences"]
+        },
+        {
+          "question": "Tell me about a time you went above and beyond for a project.",
+          "level": "all",
+          "tags": ["initiative", "achievement"]
+        },
+        {
+          "question": "How do you handle working with difficult colleagues or clients?",
+          "level": "all",
+          "tags": ["interpersonal", "conflict-resolution"]
+        },
+        {
+          "question": "What questions do you have for us?",
+          "level": "all",
+          "tags": ["engagement", "curiosity"]
+        }
+      ]
+    }
+  }
+}

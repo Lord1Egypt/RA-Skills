@@ -1,35 +1,31 @@
 ---
-name: "Hello Greeter"
-description: "Generate personalized greeting messages in multiple languages and formats. Use when the user asks to create a greeting, welcome message, or salutation in a s..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/hello-greeter"
-sourceUrl: "https://clawhub.ai/skills/hello-greeter"
+name: hello-greeter
+description: Generate personalized greeting messages in multiple languages and formats. Use when the user asks to create a greeting, welcome message, or salutation in a specific language or tone, or when building onboarding/welcome content that needs multilingual support.
 ---
 
 # Hello Greeter
 
-> Generate personalized greeting messages in multiple languages and formats. Use when the user asks to create a greeting, welcome message, or salutation in a s...
+Generate personalized greetings in various languages and tones.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/hello-greeter`
-- **Source URL:** [https://clawhub.ai/skills/hello-greeter](https://clawhub.ai/skills/hello-greeter)
+## Quick Start
 
-## Overview
+Run the greeting script:
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/hello-greeter
+python3 scripts/greet.py --name "Alice" --lang en --tone formal
+```
+
+## Options
+
+| Flag | Values | Default |
+|------|--------|---------|
+| `--name` | Any string | World |
+| `--lang` | en, zh, ja, es, fr | en |
+| `--tone` | formal, casual, playful | casual |
+
+## Examples
+
+```bash
+python3 scripts/greet.py --name "小明" --lang zh --tone playful
+python3 scripts/greet.py --name "Yuki" --lang ja --tone formal
 ```

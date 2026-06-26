@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$comment": "huo15-knowledge-base Enterprise 配置示例",
+  "odoo": {
+    "url": "https://huo15.com",
+    "db": "huo15",
+    "uid": 5,
+    "password": "your_password"
+  },
+  "visibility": {
+    "default": "workspace",
+    "departments": {
+      "技术部": [2, 3, 5],
+      "销售部": [7, 8, 9],
+      "管理层": [1]
+    }
+  }
+}

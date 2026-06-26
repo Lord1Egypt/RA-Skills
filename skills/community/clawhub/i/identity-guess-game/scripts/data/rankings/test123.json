@@ -1,0 +1,27 @@
+{
+  "groupId": "test123",
+  "players": {
+    "u1": {
+      "id": "u1",
+      "name": "Alice",
+      "totalScore": 25,
+      "gamesPlayed": 1,
+      "wins": 1
+    },
+    "u2": {
+      "id": "u2",
+      "name": "Bob",
+      "totalScore": 25,
+      "gamesPlayed": 1,
+      "wins": 0
+    },
+    "u3": {
+      "id": "u3",
+      "name": "Carol",
+      "totalScore": 0,
+      "gamesPlayed": 1,
+      "wins": 0
+    }
+  },
+  "gamesPlayed": 1
+}

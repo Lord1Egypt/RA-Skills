@@ -1,35 +1,112 @@
 ---
-name: "Iching Divination"
-description: "AI占卜大师 - 结合古老易经智慧与现代AI技术的智能占卜工具。当用户问到占卜、易经、算命、卦象、运势、创业决策、感情问题、事业发展等话题时使用。支持六十四卦解读、吉凶判断、决策建议。"
-category: "other"
-source: "ClawHub"
-tags: [divination, iching, zh]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/iching-divination"
-sourceUrl: "https://clawhub.ai/skills/iching-divination"
+name: iching-divination
+description: >-
+  AI占卜大师 - 结合古老易经智慧与现代AI技术的智能占卜工具。当用户问到占卜、易经、算命、卦象、运势、创业决策、感情问题、事业发展等话题时使用。支持六十四卦解读、吉凶判断、决策建议。
+emoji: 🔮
+read_when:
+  - User asks about divination, fortune, or fate (占卜/算命/命运)
+  - User wants guidance on business decisions (创业/投资/开店)
+  - User asks about career or job decisions (事业/工作/跳槽)
+  - User asks about relationships or love (感情/姻缘/桃花)
+  - User asks about financial luck (财运/金钱)
+  - User mentions 易经, 占卜, 卦象, 算命, 风水, 吉凶
+  - User wants to know the future or get advice (未来/建议)
+allowed-tools: Bash, Read, Write, WebFetch
+metadata:
+  author: liqun
+  version: 1.0.0
 ---
 
-# Iching Divination
+# IChing Divination — AI占卜大师
 
-> AI占卜大师 - 结合古老易经智慧与现代AI技术的智能占卜工具。当用户问到占卜、易经、算命、卦象、运势、创业决策、感情问题、事业发展等话题时使用。支持六十四卦解读、吉凶判断、决策建议。
+易经是中国最古老的典籍之一，通过八卦和六十四卦系统来解读天地人三才的关系。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/iching-divination`
-- **Source URL:** [https://clawhub.ai/skills/iching-divination](https://clawhub.ai/skills/iching-divination)
+## 八卦基础
 
-## Overview
+| 卦名 | 符号 | 象 | 意义 |
+|------|------|-----|------|
+| 乾 | ☰ | 天 | 刚健、自强不息 |
+| 坤 | ☷ | 地 | 柔顺、厚德载物 |
+| 震 | ☳ | 雷 | 震动、把握时机 |
+| 巽 | ☴ | 风 | 渗入、顺从 |
+| 坎 | ☵ | 水 | 陷危险、危机感 |
+| 离 | ☲ | 火 | 光明、智慧 |
+| 艮 | ☶ | 山 | 停止、稳健 |
+| 兑 | ☱ | 泽 | 喜悦、人际和谐 |
 
+## 六十四卦速查
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/iching-divination
+六十四卦由八卦上下组合而成。如"天泽履"是乾在上、兑在下。
+
+### 常用卦象速查
+
+| 问题类型 | 推荐卦 | 解读重点 |
+|----------|--------|----------|
+| 创业/事业 | 乾、屯、鼎、大有 | 起步、突破、成长 |
+| 投资/财运 | 谦、泰、临、益 | 稳健、顺势、增益 |
+| 感情/姻缘 | 咸、恒、睽、归妹 | 吸引、长久、磨合 |
+| 职业/学业 | 晋、升、益、蒙 | 晋升、发展、启蒙 |
+| 决策/选择 | 萃、需、讼、否 | 抉择、等待、突破 |
+
+## 卦辞精选
+
+### 创业相关卦
+
+- **乾为天**: "元亨利贞" — 创业最吉卦，表示大吉大利
+- **天火同人**: "同人于野，亨" — 贵人相助，广结善缘
+- **火天大有**: "大有，元亨" — 事业兴旺，财源广进
+
+### 财运相关卦
+
+- **地山谦**: "谦，亨" — 低调行事，闷声发财
+- **地天泰**: "泰，小往大来" — 阴阳调和，事事顺遂
+- **风天小畜**: "小畜，亨" — 积累阶段，积少成多
+
+### 感情相关卦
+
+- **泽山咸**: "咸，亨，利贞" — 感情萌芽，心意相通
+- **雷风恒**: "恒，亨，无咎" — 长久稳定，专一持久
+
+## 使用方法
+
+当用户提出占卜请求时：
+
 ```
+用户: 我想辞职创业，能成功吗？
+
+系统:
+🔮 正在掷筊请卦...
+
+📿 得卦：天泽履卦
+📜 卦辞：履虎尾，不咥人，亨
+💡 解读：此卦显示...
+
+或者用户可以直接问：
+
+用户: 我的事业运如何？
+系统使用八卦或六爻为您解读。
+```
+
+## AI解读要点
+
+1. **先理解问题** - 准确把握用户想问什么
+2. **选择卦象** - 根据问题类型和直觉选择合适的卦
+3. **给出卦辞** - 解释卦辞的基本含义
+4. **结合实际** - 把卦象与用户具体情况联系起来
+5. **给出建议** - 提供具体的行动建议
+
+### 解读风格
+
+- 像朋友聊天，有温度
+- 不迷信，强调主观能动性
+- 具体可行，不说空话
+- 适度鼓励，不盲目乐观
+
+## 参考资源
+
+- 易经全文: https://zh.wikipedia.org/wiki/易经
+- 六十四卦详解: https://www.iching.cn/
+- 阮一峰《易经入门》: https://www.ruanyifeng.com/blog/blog_iching.html
+
+---
+*占卜是参考，不是定论。命运掌握在自己手中。*

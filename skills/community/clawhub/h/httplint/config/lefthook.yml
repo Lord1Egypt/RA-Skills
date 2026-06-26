@@ -1,0 +1,41 @@
+# HTTPLint -- lefthook configuration
+# Installed by: httplint hooks install
+# Documentation: https://httplint.pages.dev/docs/hooks
+#
+# This configuration integrates HTTPLint with git hooks via lefthook.
+# Pre-commit: scans staged files for HTTP configuration issues (blocks on critical/high)
+# Pre-push: runs full scan of the working tree before push
+
+pre-commit:
+  parallel: true
+  commands:
+    httplint-check:
+      run: |
+        HTTPLINT_SKILL_DIR="${HTTPLINT_SKILL_DIR:-$HOME/.openclaw/skills/httplint}"
+        if [[ -f "$HTTPLINT_SKILL_DIR/scripts/analyzer.sh" ]]; then
+          source "$HTTPLINT_SKILL_DIR/scripts/patterns.sh"
+          source "$HTTPLINT_SKILL_DIR/scripts/analyzer.sh"
+          hook_httplint_check
+        else
+          echo "[HTTPLint] Skill not found at $HTTPLINT_SKILL_DIR -- skipping scan"
+        fi
+      fail_text: |
+        HTTP configuration issues detected in staged files!
+        Run 'httplint scan' to see details.
+        Or 'git commit --no-verify' to skip (NOT recommended).
+
+pre-push:
+  parallel: true
+  commands:
+    httplint-full-scan:
+      run: |
+        HTTPLINT_SKILL_DIR="${HTTPLINT_SKILL_DIR:-$HOME/.openclaw/skills/httplint}"
+        if [[ -f "$HTTPLINT_SKILL_DIR/scripts/dispatcher.sh" ]]; then
+          bash "$HTTPLINT_SKILL_DIR/scripts/dispatcher.sh" --path . --format text
+        else
+          echo "[HTTPLint] Skill not found at $HTTPLINT_SKILL_DIR -- skipping scan"
+        fi
+      fail_text: |
+        HTTPLint detected HTTP configuration issues in your codebase.
+        Run 'httplint scan --verbose' for detailed findings.
+        Fix critical/high issues before pushing.

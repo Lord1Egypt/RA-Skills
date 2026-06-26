@@ -1,0 +1,66 @@
+[
+  {
+    "title": "Convenience Store Neon Portrait",
+    "source": "EvoLinkAI/awesome-gpt-image-2-prompts @BubbleBrain",
+    "prompt": "A portrait of {subject} standing inside a convenience store at night, shot through the glass window, neon signs and fluorescent light reflections creating layered glows, candid documentary feel, Fujifilm color simulation, sharp focus on face, shallow depth of field",
+    "backend": "gpt-image-2",
+    "size": "1024x1536",
+    "tags": ["portrait", "neon", "nighttime", "documentary"]
+  },
+  {
+    "title": "Cinematic Minimal Portrait",
+    "source": "EvoLinkAI/awesome-gpt-image-2-prompts @iam_miharbi",
+    "prompt": "Ultra-clean cinematic portrait of {subject}, minimal composition, single directional key light from left, deep shadow on right side, neutral gray background, shot on 85mm lens, subtle film grain, muted color grade, editorial magazine quality",
+    "backend": "gpt-image-2",
+    "size": "1024x1536",
+    "tags": ["portrait", "cinematic", "minimal", "editorial"]
+  },
+  {
+    "title": "35mm Flash Editorial Portrait",
+    "source": "EvoLinkAI/awesome-gpt-image-2-prompts @BubbleBrain",
+    "prompt": "35mm film flash photography portrait of {subject}, direct on-camera flash, harsh shadows behind subject, high contrast, slight lens distortion, authentic snapshot aesthetic, Kodak Portra 400 film simulation, grainy texture",
+    "backend": "gpt-image-2",
+    "size": "1024x1536",
+    "tags": ["portrait", "35mm", "flash", "film"]
+  },
+  {
+    "title": "Soft Airy 35mm Portrait",
+    "source": "EvoLinkAI/awesome-gpt-image-2-prompts @BubbleBrain",
+    "prompt": "Soft natural light portrait of {subject}, airy and bright atmosphere, window backlight creating rim glow, diffused fill, skin tones warm and glowing, shallow depth of field with bokeh, Fujifilm Pro 400H simulation, dreamy and light",
+    "backend": "gpt-image-2",
+    "size": "1024x1536",
+    "tags": ["portrait", "soft", "airy", "natural light"]
+  },
+  {
+    "title": "Luxury Glam Beauty Portrait",
+    "source": "EvoLinkAI/awesome-gpt-image-2-prompts @patrickassale",
+    "prompt": "High-end beauty fashion portrait of {subject}, dramatic studio lighting with multiple softboxes, flawless skin retouching quality, bold makeup, hair perfectly styled, rich jewel-tone background, Vogue editorial aesthetic, ultra-sharp detail",
+    "backend": "gpt-image-2",
+    "size": "1024x1536",
+    "tags": ["beauty", "fashion", "editorial", "luxury"]
+  },
+  {
+    "title": "Japanese Onsen Ryokan Portrait",
+    "source": "EvoLinkAI/awesome-gpt-image-2-prompts @BubbleBrain",
+    "prompt": "Serene portrait of {subject} in a traditional Japanese ryokan, natural wood interior, indirect warm light from shoji screens, soft steam atmosphere from nearby onsen, calm and contemplative mood, Fujifilm simulation, warm tones with subtle green accent",
+    "backend": "gpt-image-2",
+    "size": "1024x1536",
+    "tags": ["portrait", "japanese", "ryokan", "atmospheric"]
+  },
+  {
+    "title": "Ultra-Realistic Product Photography",
+    "source": "EvoLinkAI/awesome-gpt-image-2-prompts @ZaraIrahh",
+    "prompt": "Ultra-realistic product photography of {subject}, displayed frontally on a soft sage-green surface, natural diffused window light from upper left, subtle shadows and reflections, clean white background, commercial photography quality, no post-processing artifacts",
+    "backend": "gpt-image-2",
+    "size": "1024x1024",
+    "tags": ["product", "photography", "commercial", "realistic"]
+  },
+  {
+    "title": "Urban Street Snapshot Portrait",
+    "source": "EvoLinkAI/awesome-gpt-image-2-prompts @Tz_2022",
+    "prompt": "Candid urban portrait of {subject} on a busy street, turned back slightly looking over shoulder, motion blur in background from passing traffic, golden hour warm light, documentary photography style, imperfect authentic composition",
+    "backend": "gpt-image-2",
+    "size": "1024x1536",
+    "tags": ["portrait", "street", "candid", "urban"]
+  }
+]

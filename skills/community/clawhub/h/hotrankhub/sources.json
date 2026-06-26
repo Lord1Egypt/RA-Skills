@@ -1,0 +1,332 @@
+{
+  "version": "1.0.0",
+  "lastUpdated": "2026-03-19",
+  "totalCount": 47,
+  "categories": {
+    "social": "社交媒体",
+    "video": "短视频/视频",
+    "tech": "科技资讯",
+    "finance": "财经新闻",
+    "entertainment": "游戏娱乐",
+    "news": "新闻资讯",
+    "lifestyle": "生活方式",
+    "community": "社区论坛"
+  },
+  "sources": [
+    {
+      "id": "weibo",
+      "name": "微博热搜",
+      "category": "social",
+      "apiPath": "/api/weibo",
+      "description": "微博实时热搜榜"
+    },
+    {
+      "id": "zhihu",
+      "name": "知乎热榜",
+      "category": "social",
+      "apiPath": "/api/zhihu",
+      "description": "知乎热门话题"
+    },
+    {
+      "id": "zhihu-daily",
+      "name": "知乎日报",
+      "category": "social",
+      "apiPath": "/api/zhihu-daily",
+      "description": "知乎每日精选"
+    },
+    {
+      "id": "douyin",
+      "name": "抖音热点",
+      "category": "video",
+      "apiPath": "/api/douyin",
+      "description": "抖音热门内容"
+    },
+    {
+      "id": "kuaishou",
+      "name": "快手热榜",
+      "category": "video",
+      "apiPath": "/api/kuaishou",
+      "description": "快手热门内容"
+    },
+    {
+      "id": "bilibili",
+      "name": "B站热门",
+      "category": "video",
+      "apiPath": "/api/bilibili",
+      "description": "哔哩哔哩热门视频"
+    },
+    {
+      "id": "baidu",
+      "name": "百度热搜",
+      "category": "social",
+      "apiPath": "/api/baidu",
+      "description": "百度搜索热点"
+    },
+    {
+      "id": "baidutieba",
+      "name": "百度贴吧",
+      "category": "social",
+      "apiPath": "/api/baidutieba",
+      "description": "贴吧热议话题"
+    },
+    {
+      "id": "toutiao",
+      "name": "今日头条",
+      "category": "news",
+      "apiPath": "/api/toutiao",
+      "description": "今日头条热榜"
+    },
+    {
+      "id": "netease",
+      "name": "网易新闻",
+      "category": "news",
+      "apiPath": "/api/netease",
+      "description": "网易热点新闻"
+    },
+    {
+      "id": "thepaper",
+      "name": "澎湃新闻",
+      "category": "news",
+      "apiPath": "/api/thepaper",
+      "description": "时事热点新闻"
+    },
+    {
+      "id": "cankaoxiaoxi",
+      "name": "参考消息",
+      "category": "news",
+      "apiPath": "/api/cankaoxiaoxi",
+      "description": "国际新闻"
+    },
+    {
+      "id": "github",
+      "name": "GitHub",
+      "category": "tech",
+      "apiPath": "/api/github",
+      "description": "GitHub今日热榜"
+    },
+    {
+      "id": "github-trending",
+      "name": "GitHub趋势",
+      "category": "tech",
+      "apiPath": "/api/github-trending",
+      "description": "GitHub热门项目"
+    },
+    {
+      "id": "hello-github",
+      "name": "HelloGitHub",
+      "category": "tech",
+      "apiPath": "/api/hello-github",
+      "description": "GitHub有趣项目"
+    },
+    {
+      "id": "juejin",
+      "name": "掘金",
+      "category": "tech",
+      "apiPath": "/api/juejin",
+      "description": "开发者技术社区"
+    },
+    {
+      "id": "csdn",
+      "name": "CSDN",
+      "category": "tech",
+      "apiPath": "/api/csdn",
+      "description": "开发者技术博客"
+    },
+    {
+      "id": "v2ex",
+      "name": "V2EX",
+      "category": "community",
+      "apiPath": "/api/v2ex",
+      "description": "创意工作者社区"
+    },
+    {
+      "id": "linuxdo",
+      "name": "Linux.do",
+      "category": "community",
+      "apiPath": "/api/linuxdo",
+      "description": "Linux技术社区"
+    },
+    {
+      "id": "hackernews",
+      "name": "Hacker News",
+      "category": "tech",
+      "apiPath": "/api/hackernews",
+      "description": "黑客新闻资讯"
+    },
+    {
+      "id": "ithome",
+      "name": "IT之家",
+      "category": "tech",
+      "apiPath": "/api/ithome",
+      "description": "科技新闻资讯"
+    },
+    {
+      "id": "36kr",
+      "name": "36氪",
+      "category": "tech",
+      "apiPath": "/api/36kr",
+      "description": "科技财经资讯"
+    },
+    {
+      "id": "huxiu",
+      "name": "虎嗅",
+      "category": "tech",
+      "apiPath": "/api/huxiu",
+      "description": "商业科技资讯"
+    },
+    {
+      "id": "sspai",
+      "name": "少数派",
+      "category": "tech",
+      "apiPath": "/api/sspai",
+      "description": "高质量应用推荐"
+    },
+    {
+      "id": "ifanr",
+      "name": "爱范儿",
+      "category": "tech",
+      "apiPath": "/api/ifanr",
+      "description": "科技生活方式"
+    },
+    {
+      "id": "coolapk",
+      "name": "酷安",
+      "category": "tech",
+      "apiPath": "/api/coolapk",
+      "description": "数码科技社区"
+    },
+    {
+      "id": "freebuf",
+      "name": "FreeBuf",
+      "category": "tech",
+      "apiPath": "/api/freebuf",
+      "description": "网络安全"
+    },
+    {
+      "id": "xueqiu",
+      "name": "雪球",
+      "category": "finance",
+      "apiPath": "/api/xueqiu",
+      "description": "投资理财社区"
+    },
+    {
+      "id": "wallstreetcn",
+      "name": "华尔街见闻",
+      "category": "finance",
+      "apiPath": "/api/wallstreetcn",
+      "description": "财经资讯"
+    },
+    {
+      "id": "jin10",
+      "name": "金十数据",
+      "category": "finance",
+      "apiPath": "/api/jin10",
+      "description": "财经快讯"
+    },
+    {
+      "id": "cls",
+      "name": "财联社",
+      "category": "finance",
+      "apiPath": "/api/cls",
+      "description": "财经电报"
+    },
+    {
+      "id": "steam",
+      "name": "Steam",
+      "category": "entertainment",
+      "apiPath": "/api/steam",
+      "description": "Steam游戏热销"
+    },
+    {
+      "id": "hupu",
+      "name": "虎扑",
+      "category": "entertainment",
+      "apiPath": "/api/hupu",
+      "description": "体育竞技社区"
+    },
+    {
+      "id": "douban-movic",
+      "name": "豆瓣电影",
+      "category": "entertainment",
+      "apiPath": "/api/douban-movic",
+      "description": "豆瓣热门电影"
+    },
+    {
+      "id": "lol",
+      "name": "英雄联盟",
+      "category": "entertainment",
+      "apiPath": "/api/lol",
+      "description": "LOL相关资讯"
+    },
+    {
+      "id": "qqvideo",
+      "name": "腾讯视频",
+      "category": "video",
+      "apiPath": "/api/qqvideo",
+      "description": "热门视频"
+    },
+    {
+      "id": "xiaohongshu",
+      "name": "小红书",
+      "category": "lifestyle",
+      "apiPath": "/api/xiaohongshu",
+      "description": "小红书热门笔记"
+    },
+    {
+      "id": "weread",
+      "name": "微信读书",
+      "category": "lifestyle",
+      "apiPath": "/api/weread",
+      "description": "微信读书热榜"
+    },
+    {
+      "id": "smzdm",
+      "name": "什么值得买",
+      "category": "lifestyle",
+      "apiPath": "/api/smzdm",
+      "description": "购物推荐社区"
+    },
+    {
+      "id": "dongchedi",
+      "name": "懂车帝",
+      "category": "lifestyle",
+      "apiPath": "/api/dongchedi",
+      "description": "汽车资讯"
+    },
+    {
+      "id": "netease-music",
+      "name": "网易云音乐",
+      "category": "entertainment",
+      "apiPath": "/api/netease-music",
+      "description": "音乐热歌榜"
+    },
+    {
+      "id": "qq",
+      "name": "QQ音乐",
+      "category": "entertainment",
+      "apiPath": "/api/qq",
+      "description": "QQ音乐热歌榜"
+    },
+    {
+      "id": "quark",
+      "name": "夸克热搜",
+      "category": "social",
+      "apiPath": "/api/quark",
+      "description": "夸克搜索热点"
+    },
+    {
+      "id": "history-today",
+      "name": "历史上的今天",
+      "category": "lifestyle",
+      "apiPath": "/api/history-today",
+      "description": "历史事件回顾"
+    },
+    {
+      "id": "woshipm",
+      "name": "人人都是产品经理",
+      "category": "community",
+      "apiPath": "/api/woshipm",
+      "description": "产品经理社区"
+    }
+  ]
+}

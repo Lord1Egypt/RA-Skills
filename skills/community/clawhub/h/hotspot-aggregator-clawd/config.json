@@ -1,0 +1,14 @@
+{
+  "platforms": [
+    "weibo",
+    "baidu",
+    "zhihu",
+    "douyin"
+  ],
+  "reportTime": "08:00",
+  "keywords": [
+    "AI"
+  ],
+  "notifyChannel": "",
+  "description": "热点聚合监控配置文件 - keywords数组添加订阅关键词"
+}

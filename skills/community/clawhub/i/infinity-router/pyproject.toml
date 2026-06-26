@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools>=61", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "infinity-router"
+version = "2.1.0"
+description = "Unlimited free AI routing via OpenRouter"
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.10"
+dependencies = [
+    "requests>=2.31.0",
+]
+
+[project.urls]
+Repository = "https://github.com/genoshide/infinity-router"
+
+[project.scripts]
+infinity-router        = "infinity_router.cli:main"
+infinity-router-daemon = "infinity_router.daemon:main"
+infinity-router-watch  = "infinity_router.watcher:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]

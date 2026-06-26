@@ -1,0 +1,1119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>guard-scanner — Security Dashboard</title>
+  <meta name="description"
+    content="Real-time security dashboard for AI agent skills. 352 patterns · 32 categories · 8 MCP checks · OWASP ASI01-10. Zero dependencies.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap"
+    rel="stylesheet">
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0
+    }
+
+    :root {
+      --bg: #0a0e17;
+      --bg2: #111827;
+      --surface: rgba(17, 24, 39, .65);
+      --border: rgba(0, 255, 136, .12);
+      --border-hover: rgba(0, 255, 136, .3);
+      --green: #00ff88;
+      --green-dim: rgba(0, 255, 136, .15);
+      --green-glow: rgba(0, 255, 136, .25);
+      --amber: #ffb800;
+      --amber-dim: rgba(255, 184, 0, .15);
+      --red: #ff3b5c;
+      --red-dim: rgba(255, 59, 92, .15);
+      --blue: #38bdf8;
+      --blue-dim: rgba(56, 189, 248, .12);
+      --purple: #a78bfa;
+      --purple-dim: rgba(167, 139, 250, .12);
+      --text: #e2e8f0;
+      --text-dim: #94a3b8;
+      --text-muted: #64748b;
+      --font: 'Inter', system-ui, sans-serif;
+      --mono: 'JetBrains Mono', monospace;
+      --glass: saturate(180%) blur(20px);
+      --radius: 16px;
+      --radius-sm: 10px;
+    }
+
+    html {
+      scroll-behavior: smooth
+    }
+
+    body {
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden;
+      line-height: 1.6
+    }
+
+    /* ── Background Effects ── */
+    body::before {
+      content: '';
+      position: fixed;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(ellipse at 20% 50%, rgba(0, 255, 136, .04) 0%, transparent 50%), radial-gradient(ellipse at 80% 20%, rgba(56, 189, 248, .03) 0%, transparent 50%), radial-gradient(ellipse at 50% 80%, rgba(167, 139, 250, .03) 0%, transparent 40%);
+      z-index: 0;
+      pointer-events: none
+    }
+
+    .grid-bg {
+      position: fixed;
+      inset: 0;
+      background-image: linear-gradient(rgba(0, 255, 136, .03) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 255, 136, .03) 1px, transparent 1px);
+      background-size: 64px 64px;
+      z-index: 0;
+      pointer-events: none;
+      opacity: .5
+    }
+
+    /* ── Layout ── */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+      position: relative;
+      z-index: 1
+    }
+
+    section {
+      margin-bottom: 64px
+    }
+
+    /* ── Animations ── */
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(24px)
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0)
+      }
+    }
+
+    @keyframes pulse-glow {
+
+      0%,
+      100% {
+        box-shadow: 0 0 20px rgba(0, 255, 136, .1)
+      }
+
+      50% {
+        box-shadow: 0 0 40px rgba(0, 255, 136, .2)
+      }
+    }
+
+    @keyframes count-up {
+      from {
+        opacity: .3
+      }
+
+      to {
+        opacity: 1
+      }
+    }
+
+    .fade-up {
+      animation: fadeUp .6s ease-out both
+    }
+
+    .fade-up:nth-child(2) {
+      animation-delay: .1s
+    }
+
+    .fade-up:nth-child(3) {
+      animation-delay: .2s
+    }
+
+    .fade-up:nth-child(4) {
+      animation-delay: .3s
+    }
+
+    /* ── Glass Card ── */
+    .glass {
+      background: var(--surface);
+      backdrop-filter: var(--glass);
+      -webkit-backdrop-filter: var(--glass);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      transition: border-color .3s, box-shadow .3s, transform .3s
+    }
+
+    .glass:hover {
+      border-color: var(--border-hover);
+      box-shadow: 0 8px 32px rgba(0, 255, 136, .08);
+      transform: translateY(-2px)
+    }
+
+    /* ── Hero ── */
+    .hero {
+      padding: 80px 0 48px;
+      text-align: center
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 16px;
+      border-radius: 999px;
+      background: var(--green-dim);
+      border: 1px solid rgba(0, 255, 136, .2);
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--green);
+      letter-spacing: .03em;
+      margin-bottom: 24px
+    }
+
+    .hero-badge .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--green);
+      animation: pulse-glow 2s ease-in-out infinite
+    }
+
+    .hero h1 {
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      font-weight: 900;
+      letter-spacing: -.03em;
+      background: linear-gradient(135deg, #fff 0%, var(--green) 50%, var(--blue) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 12px
+    }
+
+    .hero h1 .shield {
+      font-size: 1em;
+      -webkit-text-fill-color: var(--green);
+      filter: drop-shadow(0 0 12px rgba(0, 255, 136, .4))
+    }
+
+    .hero .tagline {
+      font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+      color: var(--text-dim);
+      font-weight: 500;
+      max-width: 640px;
+      margin: 0 auto 32px
+    }
+
+    .hero .badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: center
+    }
+
+    .hero .badges img {
+      height: 22px;
+      border-radius: 4px
+    }
+
+    .hero .sub-stats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 24px;
+      justify-content: center;
+      margin-top: 24px;
+      font-size: 14px;
+      color: var(--text-muted)
+    }
+
+    .hero .sub-stats span {
+      display: flex;
+      align-items: center;
+      gap: 6px
+    }
+
+    .hero .sub-stats .num {
+      color: var(--green);
+      font-family: var(--mono);
+      font-weight: 700
+    }
+
+    /* ── Stats Grid ── */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      margin-bottom: 48px
+    }
+
+    .stat-card {
+      padding: 28px 24px;
+      text-align: center
+    }
+
+    .stat-card .stat-icon {
+      font-size: 28px;
+      margin-bottom: 12px;
+      display: block
+    }
+
+    .stat-card .stat-value {
+      font-family: var(--mono);
+      font-size: 2.4rem;
+      font-weight: 800;
+      line-height: 1;
+      margin-bottom: 6px;
+      background: linear-gradient(135deg, #fff, var(--green));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text
+    }
+
+    .stat-card .stat-label {
+      font-size: 13px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      font-weight: 600
+    }
+
+    .stat-card.amber .stat-value {
+      background: linear-gradient(135deg, #fff, var(--amber));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text
+    }
+
+    .stat-card.red .stat-value {
+      background: linear-gradient(135deg, #fff, var(--red));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text
+    }
+
+    .stat-card.blue .stat-value {
+      background: linear-gradient(135deg, #fff, var(--blue));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text
+    }
+
+    /* ── Section Headings ── */
+    .section-head {
+      margin-bottom: 28px
+    }
+
+    .section-head h2 {
+      font-size: 1.6rem;
+      font-weight: 800;
+      letter-spacing: -.02em;
+      display: flex;
+      align-items: center;
+      gap: 10px
+    }
+
+    .section-head h2 .icon {
+      font-size: 1.2em
+    }
+
+    .section-head p {
+      color: var(--text-dim);
+      font-size: 14px;
+      margin-top: 4px;
+      max-width: 600px
+    }
+
+    /* ── Checks Grid ── */
+    .checks-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 16px
+    }
+
+    .check-card {
+      padding: 20px;
+      display: flex;
+      align-items: flex-start;
+      gap: 14px
+    }
+
+    .check-card .check-num {
+      font-family: var(--mono);
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--green);
+      background: var(--green-dim);
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0
+    }
+
+    .check-card .check-body h3 {
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 4px;
+      color: #fff
+    }
+
+    .check-card .check-body p {
+      font-size: 12px;
+      color: var(--text-muted);
+      line-height: 1.5
+    }
+
+    .check-card .check-body .ref {
+      font-size: 11px;
+      color: var(--blue);
+      font-family: var(--mono);
+      margin-top: 4px;
+      opacity: .8
+    }
+
+    /* ── OWASP Grid ── */
+    .owasp-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 12px
+    }
+
+    .owasp-item {
+      padding: 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px
+    }
+
+    .owasp-item .owasp-code {
+      font-family: var(--mono);
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--green);
+      background: var(--green-dim);
+      padding: 4px 10px;
+      border-radius: 6px;
+      white-space: nowrap
+    }
+
+    .owasp-item .owasp-label {
+      font-size: 13px;
+      font-weight: 500
+    }
+
+    .owasp-item .owasp-check {
+      margin-left: auto;
+      color: var(--green);
+      font-size: 16px;
+      flex-shrink: 0
+    }
+
+    /* ── Donut Chart ── */
+    .chart-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 40px;
+      align-items: center;
+      justify-content: center
+    }
+
+    .donut-wrap {
+      position: relative;
+      width: 200px;
+      height: 200px;
+      flex-shrink: 0
+    }
+
+    .donut-wrap svg {
+      width: 100%;
+      height: 100%;
+      transform: rotate(-90deg)
+    }
+
+    .donut-wrap .center-label {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center
+    }
+
+    .donut-wrap .center-label .big {
+      font-family: var(--mono);
+      font-size: 2rem;
+      font-weight: 800;
+      color: #fff
+    }
+
+    .donut-wrap .center-label .sub {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 2px
+    }
+
+    .legend {
+      display: flex;
+      flex-direction: column;
+      gap: 8px
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13px
+    }
+
+    .legend-item .swatch {
+      width: 12px;
+      height: 12px;
+      border-radius: 3px;
+      flex-shrink: 0
+    }
+
+    .legend-item .count {
+      font-family: var(--mono);
+      margin-left: auto;
+      color: var(--text-dim);
+      font-weight: 600;
+      min-width: 24px;
+      text-align: right
+    }
+
+    /* ── Skills Table ── */
+    .table-wrap {
+      overflow-x: auto;
+      border-radius: var(--radius)
+    }
+
+    .table-controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 16px;
+      align-items: center
+    }
+
+    .table-controls input {
+      background: var(--surface);
+      backdrop-filter: var(--glass);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 10px 16px;
+      color: var(--text);
+      font-size: 14px;
+      font-family: var(--font);
+      width: 280px;
+      outline: none;
+      transition: border-color .3s
+    }
+
+    .table-controls input:focus {
+      border-color: var(--green)
+    }
+
+    .table-controls input::placeholder {
+      color: var(--text-muted)
+    }
+
+    .filter-btn {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 8px 16px;
+      color: var(--text-dim);
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all .2s;
+      font-family: var(--font)
+    }
+
+    .filter-btn:hover,
+    .filter-btn.active {
+      border-color: var(--green);
+      color: var(--green);
+      background: var(--green-dim)
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse
+    }
+
+    table th {
+      text-align: left;
+      padding: 14px 16px;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      color: var(--text-muted);
+      font-weight: 700;
+      border-bottom: 1px solid var(--border);
+      cursor: pointer;
+      user-select: none;
+      white-space: nowrap;
+      transition: color .2s
+    }
+
+    table th:hover {
+      color: var(--green)
+    }
+
+    table td {
+      padding: 12px 16px;
+      font-size: 14px;
+      border-bottom: 1px solid rgba(255, 255, 255, .04);
+      vertical-align: middle
+    }
+
+    table tr {
+      transition: background .2s
+    }
+
+    table tbody tr:hover {
+      background: rgba(0, 255, 136, .03)
+    }
+
+    .skill-name {
+      font-weight: 600;
+      font-family: var(--mono);
+      font-size: 13px
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 6px;
+      font-size: 11px;
+      font-weight: 700;
+      font-family: var(--mono);
+      text-transform: uppercase;
+      letter-spacing: .04em
+    }
+
+    .badge-clean {
+      background: var(--green-dim);
+      color: var(--green)
+    }
+
+    .badge-findings {
+      background: var(--amber-dim);
+      color: var(--amber)
+    }
+
+    .badge-error {
+      background: var(--red-dim);
+      color: var(--red)
+    }
+
+    .risk-bar {
+      width: 60px;
+      height: 6px;
+      background: rgba(255, 255, 255, .08);
+      border-radius: 3px;
+      overflow: hidden;
+      display: inline-block;
+      vertical-align: middle;
+      margin-right: 8px
+    }
+
+    .risk-bar-fill {
+      height: 100%;
+      border-radius: 3px;
+      transition: width .4s ease
+    }
+
+    .risk-low {
+      background: var(--green)
+    }
+
+    .risk-med {
+      background: var(--amber)
+    }
+
+    .risk-high {
+      background: var(--red)
+    }
+
+    /* ── Footer ── */
+    .footer {
+      text-align: center;
+      padding: 48px 0;
+      border-top: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 13px
+    }
+
+    .footer a {
+      color: var(--green);
+      text-decoration: none;
+      font-weight: 600;
+      transition: opacity .2s
+    }
+
+    .footer a:hover {
+      opacity: .7
+    }
+
+    .footer .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 24px;
+      justify-content: center;
+      margin-bottom: 16px
+    }
+
+    .footer .heart {
+      color: var(--red)
+    }
+
+    /* ── Responsive ── */
+    @media(max-width:768px) {
+      .hero {
+        padding: 48px 0 32px
+      }
+
+      .hero h1 {
+        font-size: 2rem
+      }
+
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px
+      }
+
+      .stat-card {
+        padding: 20px 16px
+      }
+
+      .stat-card .stat-value {
+        font-size: 1.8rem
+      }
+
+      .checks-grid {
+        grid-template-columns: 1fr
+      }
+
+      .owasp-grid {
+        grid-template-columns: 1fr
+      }
+
+      .chart-container {
+        flex-direction: column;
+        align-items: center
+      }
+
+      .table-controls input {
+        width: 100%
+      }
+    }
+
+    @media(max-width:480px) {
+      .stats-grid {
+        grid-template-columns: 1fr
+      }
+
+      .container {
+        padding: 0 16px
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="grid-bg"></div>
+
+  <div class="container">
+    <!-- ═══ HERO ═══ -->
+    <section class="hero fade-up">
+      <div class="hero-badge"><span class="dot"></span> Live Security Intelligence</div>
+      <h1><span class="shield">🛡️</span> guard-scanner</h1>
+      <p class="tagline">VirusTotal for AI Agent Skills — real-time threat detection across 32 categories, 352 patterns,
+        and 8 MCP security checks.</p>
+      <div class="badges">
+        <img src="https://img.shields.io/npm/v/@guava-parity/guard-scanner?color=cb3837&style=flat-square" alt="npm">
+        <img src="https://img.shields.io/badge/tests-63%2F63-00ff88?style=flat-square" alt="tests">
+        <img src="https://img.shields.io/badge/deps-0-38bdf8?style=flat-square" alt="deps">
+        <img src="https://img.shields.io/badge/OWASP_ASI-100%25-a78bfa?style=flat-square" alt="OWASP">
+        <img src="https://img.shields.io/npm/l/guard-scanner?color=64748b&style=flat-square" alt="license">
+      </div>
+      <div class="sub-stats">
+        <span>🏷️ Version <span class="num" id="versionBadge">13.0.0</span></span>
+        <span>📦 Categories <span class="num">32</span></span>
+        <span>⚡ Avg Scan <span class="num">0.016ms</span></span>
+        <span>🔌 IDEs <span class="num">8</span></span>
+      </div>
+    </section>
+
+    <!-- ═══ STATS ═══ -->
+    <section class="stats-grid" id="statsGrid">
+      <div class="glass stat-card fade-up">
+        <span class="stat-icon">📋</span>
+        <div class="stat-value" id="statTotal">—</div>
+        <div class="stat-label">Skills Scanned</div>
+      </div>
+      <div class="glass stat-card fade-up">
+        <span class="stat-icon">✅</span>
+        <div class="stat-value" id="statClean">—</div>
+        <div class="stat-label">Clean Rate</div>
+      </div>
+      <div class="glass stat-card amber fade-up">
+        <span class="stat-icon">⚠️</span>
+        <div class="stat-value" id="statFindings">—</div>
+        <div class="stat-label">Findings</div>
+      </div>
+      <div class="glass stat-card blue fade-up">
+        <span class="stat-icon">🕐</span>
+        <div class="stat-value" id="statDate">—</div>
+        <div class="stat-label">Last Scan</div>
+      </div>
+    </section>
+
+    <!-- ═══ THREAT CATEGORIES ═══ -->
+    <section id="chartSection" class="fade-up">
+      <div class="section-head">
+        <h2><span class="icon">📊</span> Threat Category Breakdown</h2>
+        <p>Distribution of detected threats across 32 categories</p>
+      </div>
+      <div class="chart-container glass" style="padding:32px">
+        <div class="donut-wrap">
+          <svg viewBox="0 0 120 120" id="donutChart"></svg>
+          <div class="center-label">
+            <span class="big" id="donutTotal">0</span>
+            <span class="sub">findings</span>
+          </div>
+        </div>
+        <div class="legend" id="chartLegend"></div>
+      </div>
+    </section>
+
+    <!-- ═══ MCP SECURITY CHECKS ═══ -->
+    <section class="fade-up">
+      <div class="section-head">
+        <h2><span class="icon">🔒</span> 8 MCP Security Checks</h2>
+        <p>Deep inspection of AI editor MCP configurations across 8 IDEs</p>
+      </div>
+      <div class="checks-grid" id="checksGrid"></div>
+    </section>
+
+    <!-- ═══ OWASP ASI ═══ -->
+    <section class="fade-up">
+      <div class="section-head">
+        <h2><span class="icon">🏛️</span> OWASP ASI01–10 Coverage</h2>
+        <p>100% coverage of the OWASP Agentic Security Initiative top 10 risks</p>
+      </div>
+      <div class="owasp-grid" id="owaspGrid"></div>
+    </section>
+
+    <!-- ═══ SKILL RESULTS TABLE ═══ -->
+    <section class="fade-up">
+      <div class="section-head">
+        <h2><span class="icon">🔍</span> Skill Scan Results</h2>
+        <p>Detailed findings per scanned AI agent skill</p>
+      </div>
+      <div class="table-controls">
+        <input type="text" id="searchInput" placeholder="🔎 Search skills...">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="clean">✅ Clean</button>
+        <button class="filter-btn" data-filter="findings">⚠️ Findings</button>
+        <button class="filter-btn" data-filter="error">❌ Error</button>
+      </div>
+      <div class="glass table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th data-sort="name">Skill ↕</th>
+              <th data-sort="status">Status ↕</th>
+              <th data-sort="risk">Risk ↕</th>
+              <th data-sort="findings">Findings ↕</th>
+              <th>Time</th>
+            </tr>
+          </thead>
+          <tbody id="resultsBody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ═══ FOOTER ═══ -->
+    <footer class="footer">
+      <div class="footer-links">
+        <a href="https://github.com/koatora20/guard-scanner">GitHub</a>
+        <a href="https://www.npmjs.com/package/@guava-parity/guard-scanner">npm</a>
+        <a href="https://github.com/koatora20/dual-shield-paper">Research Paper</a>
+      </div>
+      <p>Built with <span class="heart">♥</span> by <a href="https://github.com/koatora20">Guava Parity Institute</a> —
+        dee & Guava 🍈</p>
+    </footer>
+  </div>
+
+  <script>
+    'use strict';
+
+    // ── MCP Security Checks data ──
+    const MCP_CHECKS = [
+      { id: 1, name: 'SECRET_IN_ENV', desc: 'Detects hardcoded API keys, tokens, and passwords in MCP server environment variables', ref: 'Original' },
+      { id: 2, name: 'PATH_TRAVERSAL', desc: 'Catches ../ directory traversal patterns in command arguments', ref: 'CVE-2026-27735' },
+      { id: 3, name: 'SUSPICIOUS_FILE_URI', desc: 'Flags file:// URIs targeting sensitive paths like /etc/passwd or ~/.ssh', ref: 'Smithery.ai' },
+      { id: 4, name: 'COMMAND_INJECTION', desc: 'Detects shell metacharacters (;, |, &, $(), backticks) in arguments', ref: 'CVE-2025-54135' },
+      { id: 5, name: 'HOMOGLYPH_NAME', desc: 'Identifies non-ASCII lookalike characters in MCP server names', ref: 'Palo Alto Unit 42' },
+      { id: 6, name: 'PROTOTYPE_POLLUTION', desc: 'Pre-parse raw JSON scan for __proto__, constructor, prototype injection', ref: 'CVE-2026-29063' },
+      { id: 7, name: 'TOOL_SHADOWING', desc: 'Levenshtein distance ≤2 comparison against 17 known MCP server names', ref: 'Snyk Invariant Labs' },
+      { id: 8, name: 'SUSPICIOUS_URL', desc: 'Flags external https:// URLs embedded in MCP tool arguments', ref: 'postmark-mcp incident' },
+    ];
+
+    // ── OWASP ASI01-10 data ──
+    const OWASP_ASI = [
+      { code: 'ASI01', label: 'Prompt Injection' },
+      { code: 'ASI02', label: 'Unsafe Tool/Function Calls' },
+      { code: 'ASI03', label: 'Agent Identity Spoofing' },
+      { code: 'ASI04', label: 'Privilege Escalation' },
+      { code: 'ASI05', label: 'Memory Poisoning' },
+      { code: 'ASI06', label: 'Data/Secret Exfiltration' },
+      { code: 'ASI07', label: 'Supply Chain Attack' },
+      { code: 'ASI08', label: 'Cascading Hallucination' },
+      { code: 'ASI09', label: 'Repudiation / Audit Failure' },
+      { code: 'ASI10', label: 'Denial of Service' },
+    ];
+
+    // ── Chart colors ──
+    const CHART_COLORS = [
+      '#00ff88', '#38bdf8', '#a78bfa', '#ffb800', '#ff3b5c', '#f472b6',
+      '#2dd4bf', '#fb923c', '#818cf8', '#a3e635', '#e879f9', '#fbbf24',
+      '#22d3ee', '#f87171', '#34d399', '#c084fc', '#fcd34d', '#6ee7b7',
+      '#93c5fd', '#fca5a1', '#86efac', '#c4b5fd', '#fde68a',
+    ];
+
+    // ── Demo data (used when fetch fails) ──
+    const DEMO_DATA = {
+      meta: { scanDate: new Date().toISOString(), scannerVersion: '13.0.0', totalSkills: 104 },
+      summary: { clean: 85, withFindings: 12, errors: 7, totalFindings: 34, cleanPercentage: 82 },
+      categoryBreakdown: {
+        'Prompt Injection': 8, 'Malicious Code': 6, 'Exfiltration': 5,
+        'Memory Poisoning': 4, 'MCP Security': 3, 'Credential Handling': 3,
+        'Obfuscation': 2, 'Trust Exploitation': 2, 'Persistence': 1,
+      },
+      results: Array.from({ length: 104 }, (_, i) => {
+        const statuses = ['clean', 'clean', 'clean', 'clean', 'clean', 'clean', 'clean', 'findings', 'error'];
+        const s = statuses[i % statuses.length];
+        return {
+          name: `skill-${String(i + 1).padStart(3, '0')}`,
+          status: s,
+          findingsCount: s === 'findings' ? Math.ceil(Math.random() * 5) : 0,
+          riskScore: s === 'findings' ? +(Math.random() * 80 + 20).toFixed(1) : s === 'error' ? -1 : 0,
+          findings: [],
+          scannedAt: new Date(Date.now() - Math.random() * 3600000).toISOString(),
+        };
+      }),
+    };
+
+    // ── State ──
+    let DATA = null;
+    let sortCol = 'risk';
+    let sortDir = -1;
+    let filterStatus = 'all';
+
+    // ── Init ──
+    async function init() {
+      try {
+        // Try relative paths for both GitHub Pages and local dev (cache-bust)
+        const cb = `?_=${Date.now()}`;
+        let resp;
+        for (const url of [`data/latest.json${cb}`, `./data/latest.json${cb}`]) {
+          try { resp = await fetch(url); if (resp.ok) break; } catch { }
+        }
+        if (resp && resp.ok) {
+          DATA = await resp.json();
+        } else {
+          throw new Error('No data');
+        }
+      } catch {
+        DATA = DEMO_DATA;
+        console.log('ℹ️ Using demo data. Deploy data/latest.json for live results.');
+      }
+      renderAll();
+    }
+
+    function renderAll() {
+      renderStats();
+      renderChart();
+      renderChecks();
+      renderOwasp();
+      renderTable();
+      setupControls();
+    }
+
+    // ── Stats ──
+    function renderStats() {
+      const { summary, meta } = DATA;
+      animateValue('statTotal', summary.clean + summary.withFindings + summary.errors, '', 0);
+      animateValue('statClean', summary.cleanPercentage, '%', 0);
+      animateValue('statFindings', summary.totalFindings, '', 0);
+      const d = new Date(meta.scanDate);
+      document.getElementById('statDate').textContent = d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+      document.getElementById('versionBadge').textContent = meta.scannerVersion || '13.0.0';
+    }
+
+    function animateValue(id, target, suffix, decimals) {
+      const el = document.getElementById(id);
+      const dur = 1200;
+      const start = performance.now();
+      function tick(now) {
+        const t = Math.min((now - start) / dur, 1);
+        const ease = 1 - Math.pow(1 - t, 3);
+        const val = (target * ease).toFixed(decimals);
+        el.textContent = val + suffix;
+        if (t < 1) requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+    }
+
+    // ── Donut Chart ──
+    function renderChart() {
+      const cats = DATA.categoryBreakdown || {};
+      const entries = Object.entries(cats).sort((a, b) => b[1] - a[1]);
+      const total = entries.reduce((s, [, v]) => s + v, 0);
+      document.getElementById('donutTotal').textContent = total;
+
+      if (total === 0) {
+        document.getElementById('chartSection').querySelector('.chart-container').innerHTML =
+          '<div style="text-align:center;padding:40px;color:var(--green)"><div style="font-size:48px;margin-bottom:12px">✅</div><div style="font-size:18px;font-weight:700">All Clear</div><div style="color:var(--text-muted);font-size:14px;margin-top:4px">No threats detected in this scan</div></div>';
+        return;
+      }
+
+      const svg = document.getElementById('donutChart');
+      const legend = document.getElementById('chartLegend');
+      const R = 50, CX = 60, CY = 60, SW = 14;
+      const C = 2 * Math.PI * R;
+      let offset = 0;
+      let html = '';
+      let legendHtml = '';
+
+      entries.forEach(([cat, count], i) => {
+        const pct = count / total;
+        const len = pct * C;
+        const color = CHART_COLORS[i % CHART_COLORS.length];
+        html += `<circle cx="${CX}" cy="${CY}" r="${R}" fill="none" stroke="${color}" stroke-width="${SW}" stroke-dasharray="${len} ${C - len}" stroke-dashoffset="${-offset}" opacity="0.9"/>`;
+        offset += len;
+        legendHtml += `<div class="legend-item"><span class="swatch" style="background:${color}"></span><span>${cat}</span><span class="count">${count}</span></div>`;
+      });
+
+      svg.innerHTML = html;
+      legend.innerHTML = legendHtml;
+    }
+
+    // ── MCP Checks ──
+    function renderChecks() {
+      const grid = document.getElementById('checksGrid');
+      grid.innerHTML = MCP_CHECKS.map(c =>
+        `<div class="glass check-card">
+      <div class="check-num">${c.id}</div>
+      <div class="check-body">
+        <h3>${c.name}</h3>
+        <p>${c.desc}</p>
+        <div class="ref">${c.ref}</div>
+      </div>
+    </div>`
+      ).join('');
+    }
+
+    // ── OWASP ASI ──
+    function renderOwasp() {
+      const grid = document.getElementById('owaspGrid');
+      grid.innerHTML = OWASP_ASI.map(o =>
+        `<div class="glass owasp-item">
+      <span class="owasp-code">${o.code}</span>
+      <span class="owasp-label">${o.label}</span>
+      <span class="owasp-check">✓</span>
+    </div>`
+      ).join('');
+    }
+
+    // ── Results Table ──
+    function renderTable() {
+      const body = document.getElementById('resultsBody');
+      const search = (document.getElementById('searchInput')?.value || '').toLowerCase();
+
+      let rows = (DATA.results || []).filter(r => {
+        if (filterStatus !== 'all' && r.status !== filterStatus) return false;
+        if (search && !r.name.toLowerCase().includes(search)) return false;
+        return true;
+      });
+
+      rows.sort((a, b) => {
+        let va, vb;
+        switch (sortCol) {
+          case 'name': va = a.name; vb = b.name; return sortDir * va.localeCompare(vb);
+          case 'status': va = a.status; vb = b.status; return sortDir * va.localeCompare(vb);
+          case 'risk': va = a.riskScore; vb = b.riskScore; return sortDir * (va - vb);
+          case 'findings': va = a.findingsCount; vb = b.findingsCount; return sortDir * (va - vb);
+          default: return 0;
+        }
+      });
+
+      body.innerHTML = rows.map(r => {
+        const badgeClass = r.status === 'clean' ? 'badge-clean' : r.status === 'findings' ? 'badge-findings' : 'badge-error';
+        const riskPct = Math.max(0, Math.min(100, r.riskScore));
+        const riskColor = riskPct <= 30 ? 'risk-low' : riskPct <= 60 ? 'risk-med' : 'risk-high';
+        const time = r.scannedAt ? new Date(r.scannedAt).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' }) : '—';
+
+        return `<tr>
+      <td class="skill-name">${escHtml(r.name)}</td>
+      <td><span class="badge ${badgeClass}">${r.status}</span></td>
+      <td>
+        <span class="risk-bar"><span class="risk-bar-fill ${riskColor}" style="width:${riskPct}%"></span></span>
+        <span style="font-family:var(--mono);font-size:13px;color:var(--text-dim)">${r.riskScore >= 0 ? r.riskScore.toFixed(1) : '—'}</span>
+      </td>
+      <td style="font-family:var(--mono)">${r.findingsCount}</td>
+      <td style="color:var(--text-muted);font-size:12px">${time}</td>
+    </tr>`;
+      }).join('');
+    }
+
+    function escHtml(s) { return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
+
+    // ── Controls ──
+    function setupControls() {
+      document.getElementById('searchInput').addEventListener('input', renderTable);
+
+      document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          filterStatus = btn.dataset.filter;
+          renderTable();
+        });
+      });
+
+      document.querySelectorAll('th[data-sort]').forEach(th => {
+        th.addEventListener('click', () => {
+          const col = th.dataset.sort;
+          if (sortCol === col) sortDir *= -1; else { sortCol = col; sortDir = -1; }
+          renderTable();
+        });
+      });
+    }
+
+    // ── Launch ──
+    document.addEventListener('DOMContentLoaded', init);
+  </script>
+</body>
+
+</html>

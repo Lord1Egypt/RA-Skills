@@ -1,0 +1,19 @@
+{
+	"type": "function",
+	"function": {
+		"name": "_designer_get_module_info",
+		"description": "Query configuration information of low-code platform module.",
+		"parameters": {
+			"type": "object",
+			"properties": {
+				"id": {
+					"type": "string",
+					"description": "Module identifier"
+				}
+			},
+			"required": [
+				"id"
+			]
+		}
+	}
+}

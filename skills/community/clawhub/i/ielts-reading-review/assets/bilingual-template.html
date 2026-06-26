@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta name="theme-color" content="#0c0c14">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="manifest" href="../manifest.json">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>双语对照 · English Title</title>
+<style>
+  :root { --bg: #0c0c14; --card-bg: #161622; --card-border: #1e1e30; --text-primary: #e8e8f0; --text-secondary: #9a9ab0; --text-muted: #5a5a70; --accent-gold: #d4a843; --accent-blue: #5b8dd9; --border: #1e1e30; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, "SF Pro Text", "PingFang SC", sans-serif; font-size: 15px; line-height: 1.85; color: var(--text-primary); max-width: 720px; margin: 0 auto; padding: 24px 20px; background: var(--bg); -webkit-font-smoothing: antialiased; min-height: 100vh; }
+  .nav-bar { display: flex; gap: 8px; padding: 10px 0; margin-bottom: 12px; }
+  .nav-btn { display: inline-flex; align-items: center; gap: 6px; padding: 8px 16px; background: var(--card-bg); color: var(--text-secondary); text-decoration: none; border-radius: 8px; font-size: 14px; font-weight: 500; border: 1px solid var(--card-border); transition: all 0.15s; }
+  .nav-btn:hover { background: #1a1a2e; color: var(--text-primary); }
+  h1 { font-size: 20px; font-weight: 700; margin-bottom: 4px; line-height: 1.4; color: #fff; }
+  .subtitle { font-size: 14px; color: var(--accent-gold); margin-bottom: 24px; }
+  .source-info { font-size: 13px; color: var(--text-muted); margin-bottom: 20px; padding: 10px 14px; background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 8px; }
+  .para-block { margin-bottom: 28px; padding-bottom: 24px; border-bottom: 1px solid var(--border); }
+  .para-block:last-of-type { border-bottom: none; }
+  .para-label { font-size: 12px; font-weight: 600; color: var(--accent-gold); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+  .en-text { color: var(--text-primary); font-size: 15px; line-height: 1.85; margin-bottom: 12px; }
+  .cn-text { color: var(--text-secondary); font-size: 14px; line-height: 1.8; padding-left: 14px; border-left: 2px solid var(--border); }
+  .vocab-highlight { background: rgba(212,168,67,0.2); padding: 1px 4px; border-radius: 3px; cursor: help; color: var(--accent-gold); }
+  .vocab-highlight::after {
+    content: "(" attr(title) ")";
+    font-size: 11px;
+    color: rgba(212,168,67,0.7);
+    font-weight: 400;
+    margin-left: 1px;
+    letter-spacing: 0;
+  }
+  @media screen and (max-width: 768px) { body { padding: 14px; max-width: 100%; } h1 { font-size: 18px; } .nav-bar { position: sticky; top: 0; z-index: 100; background: rgba(12,12,20,0.95); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); margin: -14px -14px 10px; padding: 8px 14px 10px; border-bottom: 1px solid rgba(255,255,255,0.06); } }
+</style>
+</head>
+<body>
+
+<div class="nav-bar">
+  <a href="../reviews/剑X-TestX-PassageX-主题复盘.html" class="nav-btn">← 返回复盘</a>
+  <a href="../index.html" class="nav-btn"><i data-lucide="list" style="width:14px;height:14px;vertical-align:-2px;margin-right:4px;"></i>目录</a>
+</div>
+
+<h1>English Title</h1>
+<div class="subtitle">剑X · Test X · Passage X · 双语逐段对照</div>
+<div class="source-info">来源：Cambridge IELTS X, Academic Reading Test X, Passage X</div>
+
+<div class="para-block">
+<div class="para-label">Paragraph A</div>
+<div class="en-text">English text with <span class="vocab-highlight" title="中文释义">key vocabulary</span> highlighted...</div>
+<div class="cn-text">中文翻译...</div>
+</div>
+
+<!-- Repeat .para-block for each paragraph -->
+
+
+<script src="../vocab-card-v2.js"></script>
+</body>
+</html>

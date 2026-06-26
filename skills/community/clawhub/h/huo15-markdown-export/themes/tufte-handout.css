@@ -1,0 +1,228 @@
+/* huo15-markdown-export — Tufte Handout
+ * 流派:Tufte(Edward Tufte 边注体)
+ * 适合:数据分析 / 研究报告 / 教学讲义 / 论证型长文
+ * 关键差异化:窄主文 + 右挂边注栏 + 三线表 + 极少修饰 + ET Book 衬线感
+ *
+ * 灵感:Edward Tufte《The Visual Display of Quantitative Information》
+ * 设计哲学:数据为本,装饰为零。每一处视觉元素都要"为信息服务"
+ *
+ * 用法:
+ * - 边注:用脚注语法 `正文[^1]` + `[^1]: 边注内容` — 自动渲染到右边距挂边
+ * - 数据图:用 markdown 表格,自动三线表
+ * - 重要词:strong / em 用最小化对比(粗 + 斜)
+ *
+ * 注意:右挂边注需要 800px+ 宽屏才能显示,窄屏自动 fallback 到底部脚注
+ */
+
+:root {
+  /* === 主题 token override === */
+  --font-body:     "PT Serif", "Merriweather", Georgia, "Times New Roman", "Songti SC", STSong, SimSun, "Source Han Serif SC", "Noto Serif CJK SC", serif;
+  --font-heading:  var(--font-body);
+  --color-bg:      #fffff8;          /* Tufte 经典米白 */
+  --color-fg:      #111111;
+  --color-muted:   #5a5a5a;
+  --color-rule:    #cccccc;
+  --color-rule-soft: #e6e6e6;
+  --color-accent:  #a00000;          /* Tufte 强调红(罕用)*/
+  --color-accent-soft: rgba(160, 0, 0, 0.06);
+  --color-code-bg: #f5f5ee;
+  --quote-bar-color: var(--color-rule);
+  --quote-bg:      transparent;
+  --quote-fg:      var(--color-muted);
+  --table-th-bg:   transparent;
+  --table-stripe-bg: transparent;
+  /* 容器自定义:主文窄 + 右边距挂注 */
+  --measure:       55%;
+  --leading:       1.7;
+  --fs-base:       17px;
+}
+
+/* === Tufte 特征 === */
+
+body {
+  padding: 64px 5%;
+  /* 关键:正文不居中,而是靠左,右边留出边注空间 */
+}
+
+.markdown-body {
+  max-width: var(--measure);
+  margin: 0 0 0 12%;
+}
+
+/* 标题:朴素衬线,只靠字号字重 */
+.markdown-body h1, .markdown-body h2, .markdown-body h3,
+.markdown-body h4, .markdown-body h5, .markdown-body h6 {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-style: italic;     /* Tufte 标志:标题倾斜罗马体 */
+  color: var(--color-fg);
+  line-height: 1.2;
+}
+
+.markdown-body h1 {
+  font-size: 2.4rem;
+  font-style: normal;     /* h1 不斜 */
+  font-weight: 400;       /* Tufte 大字细笔画 */
+  margin: 0 0 0.3em;
+  letter-spacing: -0.01em;
+}
+
+.markdown-body h2 {
+  font-size: 1.6rem;
+  margin: 2.2em 0 0.5em;
+  font-weight: 400;
+}
+
+.markdown-body h3 {
+  font-size: 1.2rem;
+  margin: 1.6em 0 0.4em;
+  font-weight: 600;
+}
+
+.markdown-body h4 {
+  font-size: 1rem;
+  font-weight: 600;
+  font-style: normal;
+  margin: 1em 0 0.4em;
+}
+
+/* 正文:衬线,适度行高,非 justify(Tufte 反对两端齐)*/
+.markdown-body p {
+  margin: 0 0 1em;
+  text-align: left;
+  hyphens: auto;
+}
+
+.markdown-body a {
+  color: var(--color-fg);
+  text-decoration: none;
+  border-bottom: 1px solid var(--color-rule);
+}
+.markdown-body a:hover {
+  border-bottom-color: var(--color-accent);
+  background: var(--color-accent-soft);
+}
+
+.markdown-body strong { font-weight: 600; }
+.markdown-body em { font-style: italic; }
+
+/* === 右挂边注:核心特征 === */
+/* 实现:把 markdown footnote ref 改成右浮 sidenote
+ * footnote 渲染产物:正文 sup.footnote-ref 链接 + 末尾 .footnotes ol
+ * 我们把末尾 footnotes 隐藏,在 sup 旁边 inline 显示注文(用 + 兄弟)
+ * 注意:这套技巧依赖 markdown-it-footnote 的 DOM 结构,如果脚注开关变了要回看
+ */
+
+@media (min-width: 1100px) {
+  .markdown-body sup.footnote-ref {
+    color: var(--color-accent);
+    font-weight: 600;
+  }
+  /* 用 CSS counter 把脚注做成边注挂在右侧 */
+  .markdown-body { counter-reset: sidenote; }
+  .markdown-body sup.footnote-ref a { text-decoration: none; }
+
+  /* footnotes 区域整体改造:不再聚集在底部,而是浮到主文右侧 */
+  .markdown-body .footnotes {
+    border: none;
+    margin: 0;
+    padding: 0;
+  }
+  .markdown-body .footnotes ol {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .markdown-body .footnotes li {
+    position: absolute;
+    right: 5%;
+    width: 25%;
+    font-size: 0.8em;
+    line-height: 1.5;
+    color: var(--color-muted);
+    margin-top: -1em;
+  }
+  /* 这套方案有局限:CSS 无法把 li 自动对齐到对应 sup 位置 — 用户要在 markdown
+   * 中手工保持脚注顺序与正文出现顺序一致。生产上更稳的方案是后处理 HTML,
+   * 这里给一个"窄屏脚注 / 宽屏堆右"的最小可用版 */
+}
+
+/* 引用:左竖条窄 + 斜体 */
+.markdown-body blockquote {
+  margin: 1.4em 0;
+  padding: 0 0 0 1em;
+  border-left: 1px solid var(--color-rule);
+  background: transparent;
+  font-style: italic;
+  color: var(--color-muted);
+}
+.markdown-body blockquote p { margin: 0.4em 0; }
+
+/* 列表:紧凑 */
+.markdown-body ul, .markdown-body ol { padding-left: 1.4em; margin: 0.8em 0; }
+.markdown-body li { margin: 0.3em 0; }
+
+/* 分隔:细线居中 */
+.markdown-body hr {
+  border: none;
+  border-top: 1px solid var(--color-rule);
+  width: 30%;
+  margin: 3em auto;
+}
+
+.markdown-body code {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  background: var(--color-code-bg);
+  padding: 0.1em 0.4em;
+  border-radius: 0;
+}
+.markdown-body pre {
+  background: var(--color-code-bg);
+  padding: 1em 1.2em;
+  border-radius: 0;
+  border-left: 2px solid var(--color-rule);
+  font-size: 0.86em;
+  line-height: 1.5;
+}
+.markdown-body pre code { background: transparent; }
+
+/* 三线表(Tufte 数据表标准)*/
+.markdown-body table {
+  font-size: 0.92em;
+  margin: 1.6em 0;
+  width: 100%;
+}
+.markdown-body table th, .markdown-body table td {
+  border: none;
+  padding: 0.5em 0.8em;
+  text-align: left;
+}
+.markdown-body table thead {
+  border-top: 1.5px solid var(--color-fg);
+  border-bottom: 1px solid var(--color-fg);
+}
+.markdown-body table th { font-weight: 600; }
+.markdown-body table tbody { border-bottom: 1.5px solid var(--color-fg); }
+
+/* 图:满主文宽 + 极细灰底缝 + 图说斜体居中 */
+.markdown-body img {
+  border-radius: 0;
+  border: none;
+  margin: 1.6em auto;
+}
+.markdown-body img + em {
+  display: block;
+  text-align: left;
+  font-style: italic;
+  font-size: 0.86em;
+  color: var(--color-muted);
+  margin: -0.6em 0 1.6em;
+  max-width: 80%;
+}
+
+/* mermaid 图同样靠左,小一点 */
+.mermaid {
+  text-align: left;
+  margin: 1.4em 0;
+}

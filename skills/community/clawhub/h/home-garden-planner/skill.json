@@ -1,0 +1,9 @@
+{
+  "name": "home-garden-planner",
+  "slug": "home-garden-planner",
+  "version": "0.1.0",
+  "description": "auto-generated skeleton",
+  "author": "Harry",
+  "tags": ["lifestyle"],
+  "handler": "handler.py"
+}

@@ -1,0 +1,10 @@
+{
+  "name": "gotchi-3d-custom-render-skill",
+  "version": "1.1.1",
+  "private": true,
+  "description": "Custom Aavegotchi 3D renderer with hosted official-style output and Unity fallback.",
+  "type": "module",
+  "dependencies": {
+    "pngjs": "^7.0.0"
+  }
+}

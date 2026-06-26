@@ -1,0 +1,16 @@
+{
+  "miniprogramRoot": "./",
+  "compileType": "miniprogram",
+  "appid": "touristappid",
+  "projectname": "huo15-frontend-design-wechat-starter",
+  "description": "火一五前端设计技能 v2.2 微信小程序 starter",
+  "setting": {
+    "es6": true,
+    "enhance": true,
+    "postcss": true,
+    "minified": false,
+    "newFeature": true,
+    "useCompilerPlugins": false
+  },
+  "libVersion": "3.5.0"
+}

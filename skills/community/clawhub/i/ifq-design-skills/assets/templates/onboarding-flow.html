@@ -1,0 +1,283 @@
+<!doctype html>
+<!--
+  IFQ Design Skills · Template T-onboarding
+  5-screen horizontal flow prototype with device frame, progress, and CTA.
+  Fork-and-fill: replace { APP_NAME / SCREEN_TITLE / SCREEN_BODY / CTA } placeholders.
+  Each screen includes a "user mindset" annotation for product thinking.
+-->
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>{ APP_NAME } · onboarding</title>
+<!-- Optional Google Fonts (non-blocking). See references/font-loading.md -->
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@400;600&family=Noto+Serif+SC:wght@700;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'"/>
+<noscript><link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@400;600&family=Noto+Serif+SC:wght@700;900&display=swap" rel="stylesheet"/></noscript>
+<style>
+  :root {
+    --ifq-accent:#D4532B; --ifq-accent-deep:#A83518; --ifq-accent-soft:#FFB27A;
+    --ifq-ink:#111; --ifq-ink-soft:#3A3532; --ifq-paper:#FAF7F2; --ifq-cream:#F1EBE0;
+    --ifq-display:'Newsreader','Noto Serif SC',Georgia,serif;
+    --ifq-mono:'JetBrains Mono',ui-monospace,monospace;
+    --phone-w:375px; --phone-h:812px; --phone-radius:44px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { background: var(--ifq-paper); }
+  body { color: var(--ifq-ink); font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif; }
+
+  /* Page shell */
+  .shell { min-height: 100vh; display: flex; flex-direction: column; }
+
+  /* Top bar */
+  .topbar { display: flex; justify-content: space-between; align-items: center; padding: 20px 40px; border-bottom: 1px solid rgba(17,17,17,0.08); }
+  .topbar__brand { display: flex; align-items: center; gap: 8px; font-family: var(--ifq-display); font-weight: 900; font-size: 18px; letter-spacing: -0.3px; }
+  .topbar__brand svg { width: 14px; height: 14px; color: var(--ifq-accent); }
+  .topbar__brand b { color: var(--ifq-accent); }
+  .topbar__meta { font-family: var(--ifq-mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ifq-ink-soft); opacity: .6; }
+
+  /* Progress bar */
+  .progress { display: flex; align-items: center; gap: 0; padding: 24px 40px 0; }
+  .progress__step { flex: 1; display: flex; align-items: center; gap: 0; }
+  .progress__dot { width: 28px; height: 28px; border-radius: 50%; border: 2px solid rgba(17,17,17,0.15); display: flex; align-items: center; justify-content: center; font-family: var(--ifq-mono); font-size: 11px; color: var(--ifq-ink-soft); flex-shrink: 0; transition: all .3s; }
+  .progress__dot.active { border-color: var(--ifq-accent); color: var(--ifq-accent); background: rgba(212,83,43,0.06); }
+  .progress__dot.done { border-color: var(--ifq-accent); background: var(--ifq-accent); color: #fff; }
+  .progress__dot svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 2.5; }
+  .progress__line { flex: 1; height: 2px; background: rgba(17,17,17,0.08); margin: 0 4px; }
+  .progress__line.done { background: var(--ifq-accent); }
+  .progress__label { font-family: var(--ifq-mono); font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ifq-ink-soft); text-align: center; margin-top: 8px; }
+
+  /* Flow container */
+  .flow { flex: 1; display: flex; overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+  .flow::-webkit-scrollbar { display: none; }
+
+  /* Screen */
+  .screen { min-width: 100vw; scroll-snap-align: start; display: flex; align-items: center; justify-content: center; padding: 40px; gap: 64px; }
+
+  /* Device frame */
+  .device { width: var(--phone-w); height: var(--phone-h); border-radius: var(--phone-radius); border: 8px solid #1A1A1A; background: #fff; position: relative; overflow: hidden; box-shadow: 0 24px 80px rgba(0,0,0,0.12), 0 4px 20px rgba(0,0,0,0.06); flex-shrink: 0; }
+  .device__notch { position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 150px; height: 30px; background: #1A1A1A; border-radius: 0 0 20px 20px; z-index: 10; }
+  .device__screen { width: 100%; height: 100%; padding: 48px 24px 32px; display: flex; flex-direction: column; }
+
+  /* Screen content */
+  .screen__kicker { font-family: var(--ifq-mono); font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ifq-accent); margin-bottom: 16px; }
+  .screen__title { font-family: var(--ifq-display); font-size: 28px; font-weight: 700; letter-spacing: -0.5px; line-height: 1.15; margin-bottom: 12px; }
+  .screen__body { font-size: 14px; color: var(--ifq-ink-soft); line-height: 1.6; margin-bottom: 24px; }
+  .screen__visual { flex: 1; background: var(--ifq-cream); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-family: var(--ifq-mono); font-size: 11px; color: var(--ifq-ink-soft); opacity: .5; margin-bottom: 20px; }
+  .screen__cta { display: block; width: 100%; padding: 14px; background: var(--ifq-ink); color: var(--ifq-paper); font-family: var(--ifq-mono); font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; text-align: center; border: none; cursor: pointer; transition: background .2s; }
+  .screen__cta:hover { background: var(--ifq-accent-deep); }
+  .screen__skip { text-align: center; margin-top: 12px; font-family: var(--ifq-mono); font-size: 11px; color: var(--ifq-ink-soft); opacity: .6; cursor: pointer; }
+
+  /* Annotation panel */
+  .annotation { max-width: 320px; }
+  .annotation__label { font-family: var(--ifq-mono); font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ifq-accent); margin-bottom: 12px; display: flex; align-items: center; gap: 6px; }
+  .annotation__label svg { width: 12px; height: 12px; }
+  .annotation__think { font-size: 15px; color: var(--ifq-ink-soft); line-height: 1.6; margin-bottom: 16px; padding-left: 16px; border-left: 2px solid var(--ifq-accent); }
+  .annotation__action { font-family: var(--ifq-mono); font-size: 11px; color: var(--ifq-ink-soft); opacity: .7; }
+  .annotation__track { font-family: var(--ifq-mono); font-size: 10px; color: var(--ifq-accent-soft); margin-top: 12px; opacity: .7; }
+
+  /* Completion screen */
+  .screen--done .device__screen { background: var(--ifq-ink); color: var(--ifq-paper); align-items: center; justify-content: center; text-align: center; }
+  .screen--done .screen__title { color: var(--ifq-paper); font-size: 36px; }
+  .screen--done .screen__body { color: rgba(250,247,242,0.7); }
+  .done-spark { width: 80px; height: 80px; margin-bottom: 24px; color: var(--ifq-accent-soft); }
+  @keyframes ifqCelebrate { 0%,100% { transform: scale(1) rotate(0deg); opacity: 1; } 50% { transform: scale(1.2) rotate(15deg); opacity: .8; } }
+  .done-spark { animation: ifqCelebrate 2s ease-in-out infinite; }
+
+  /* Colophon */
+  .colophon { padding: 16px 40px; display: flex; align-items: center; gap: 8px; opacity: 0.45; font-family: var(--ifq-mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ifq-ink-soft); }
+  .colophon svg { width: 12px; height: 12px; }
+  .colophon b { color: var(--ifq-accent); }
+
+  /* Navigation arrows */
+  .nav-arrow { position: absolute; top: 50%; transform: translateY(-50%); width: 48px; height: 48px; border: 1px solid rgba(17,17,17,0.12); background: var(--ifq-paper); display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 20; transition: all .2s; }
+  .nav-arrow:hover { border-color: var(--ifq-accent); }
+  .nav-arrow svg { width: 18px; height: 18px; stroke: var(--ifq-ink); fill: none; stroke-width: 1.8; }
+  .nav-arrow--prev { left: 16px; }
+  .nav-arrow--next { right: 16px; }
+</style>
+</head>
+<body>
+<div class="shell">
+  <div class="topbar">
+    <div class="topbar__brand">
+      <svg viewBox="-12 -12 24 24"><path d="M0 -10 L2.2 -2.2 L10 0 L2.2 2.2 L0 10 L-2.2 2.2 L-10 0 L-2.2 -2.2 Z" fill="currentColor"/></svg>
+      <span>{ APP_NAME } · <b>onboarding</b></span>
+    </div>
+    <span class="topbar__meta" data-ifq-authored-year>__IFQ_YEAR__</span>
+  </div>
+
+  <div class="progress">
+    <div class="progress__step"><div class="progress__dot active">1</div></div>
+    <div class="progress__line"></div>
+    <div class="progress__step"><div class="progress__dot">2</div></div>
+    <div class="progress__line"></div>
+    <div class="progress__step"><div class="progress__dot">3</div></div>
+    <div class="progress__line"></div>
+    <div class="progress__step"><div class="progress__dot">4</div></div>
+    <div class="progress__line"></div>
+    <div class="progress__step"><div class="progress__dot">5</div></div>
+  </div>
+
+  <div class="flow" id="flow">
+    <!-- Screen 1: Welcome -->
+    <div class="screen" data-screen="1">
+      <div class="device">
+        <div class="device__notch"></div>
+        <div class="device__screen">
+          <div class="screen__kicker">step 01 / welcome</div>
+          <h2 class="screen__title">{ Welcome to<br/><em>your app</em> }</h2>
+          <p class="screen__body">{ One sentence that explains the core value. }</p>
+          <div class="screen__visual">{ App hero illustration or screenshot }</div>
+          <button class="screen__cta" data-track="onboarding_step_1_get_started">{ Get Started }</button>
+          <div class="screen__skip">skip for now</div>
+        </div>
+      </div>
+      <div class="annotation">
+        <div class="annotation__label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg> user mindset</div>
+        <p class="annotation__think">"What is this? Does it solve my problem? Should I keep going?"</p>
+        <p class="annotation__action">Goal: communicate core value in <5 seconds. One CTA, no distractions.</p>
+        <p class="annotation__track">data-track="onboarding_step_1_get_started"</p>
+      </div>
+    </div>
+
+    <!-- Screen 2: Core action -->
+    <div class="screen" data-screen="2">
+      <div class="device">
+        <div class="device__notch"></div>
+        <div class="device__screen">
+          <div class="screen__kicker">step 02 / core action</div>
+          <h2 class="screen__title">{ Do the<br/><em>one thing</em> }</h2>
+          <p class="screen__body">{ Guide the user to perform the core action once. }</p>
+          <div class="screen__visual">{ Interactive demo area }</div>
+          <button class="screen__cta" data-track="onboarding_step_2_try_it">{ Try It Now }</button>
+        </div>
+      </div>
+      <div class="annotation">
+        <div class="annotation__label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg> user mindset</div>
+        <p class="annotation__think">"Can I do the main thing? Is it easy? Does it work?"</p>
+        <p class="annotation__action">Goal: let them succeed once with minimal friction. Show, don't tell.</p>
+        <p class="annotation__track">data-track="onboarding_step_2_try_it"</p>
+      </div>
+    </div>
+
+    <!-- Screen 3: Personalize -->
+    <div class="screen" data-screen="3">
+      <div class="device">
+        <div class="device__notch"></div>
+        <div class="device__screen">
+          <div class="screen__kicker">step 03 / personalize</div>
+          <h2 class="screen__title">{ Make it<br/><em>yours</em> }</h2>
+          <p class="screen__body">{ Let users customize one meaningful preference. }</p>
+          <div class="screen__visual">{ Preference toggles or theme picker }</div>
+          <button class="screen__cta" data-track="onboarding_step_3_continue">{ Continue }</button>
+        </div>
+      </div>
+      <div class="annotation">
+        <div class="annotation__label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg> user mindset</div>
+        <p class="annotation__think">"Is this for me? Can I shape it to my needs?"</p>
+        <p class="annotation__action">Goal: create ownership. One choice is enough — don't overwhelm.</p>
+        <p class="annotation__track">data-track="onboarding_step_3_continue"</p>
+      </div>
+    </div>
+
+    <!-- Screen 4: Connect -->
+    <div class="screen" data-screen="4">
+      <div class="device">
+        <div class="device__notch"></div>
+        <div class="device__screen">
+          <div class="screen__kicker">step 04 / connect</div>
+          <h2 class="screen__title">{ Bring in<br/><em>your world</em> }</h2>
+          <p class="screen__body">{ Optional: connect data, invite team, or import. }</p>
+          <div class="screen__visual">{ Integration cards or import flow }</div>
+          <button class="screen__cta" data-track="onboarding_step_4_connect">{ Connect }</button>
+          <div class="screen__skip">do this later</div>
+        </div>
+      </div>
+      <div class="annotation">
+        <div class="annotation__label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg> user mindset</div>
+        <p class="annotation__think">"Should I invest more time? What do I gain?"</p>
+        <p class="annotation__action">Goal: deepen commitment without blocking. Always offer "do this later".</p>
+        <p class="annotation__track">data-track="onboarding_step_4_connect"</p>
+      </div>
+    </div>
+
+    <!-- Screen 5: Done -->
+    <div class="screen screen--done" data-screen="5">
+      <div class="device">
+        <div class="device__notch"></div>
+        <div class="device__screen">
+          <svg class="done-spark" viewBox="-12 -12 24 24"><path d="M0 -10 L2.2 -2.2 L10 0 L2.2 2.2 L0 10 L-2.2 2.2 L-10 0 L-2.2 -2.2 Z" fill="currentColor"/></svg>
+          <h2 class="screen__title">You are<br/>all set.</h2>
+          <p class="screen__body">{ Congratulate and point to the first real action. }</p>
+          <button class="screen__cta" data-track="onboarding_step_5_go" style="background:var(--ifq-accent-soft);color:var(--ifq-ink);">{ Go to Dashboard }</button>
+        </div>
+      </div>
+      <div class="annotation">
+        <div class="annotation__label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg> user mindset</div>
+        <p class="annotation__think">"I did it. What's next? Where's the value?"</p>
+        <p class="annotation__action">Goal: transition to real usage. Celebrate briefly, then point forward.</p>
+        <p class="annotation__track">data-track="onboarding_step_5_go"</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="colophon">
+    <svg viewBox="-12 -12 24 24"><path d="M0 -10 L2.2 -2.2 L10 0 L2.2 2.2 L0 10 L-2.2 2.2 L-10 0 L-2.2 -2.2 Z" fill="#D4532B"/></svg>
+    <span>compiled by <b>ifq.ai</b></span>
+  </div>
+</div>
+
+<script src="../ifq-brand/ifq_authored_year.js"></script>
+<script>
+  window.IfqAuthoredYear && window.IfqAuthoredYear.apply(document);
+  // Flow navigation
+  var flow = document.getElementById('flow');
+  var dots = document.querySelectorAll('.progress__dot');
+  var lines = document.querySelectorAll('.progress__line');
+  var currentScreen = 0;
+  var totalScreens = 5;
+
+  function updateProgress(idx) {
+    dots.forEach(function(dot, i) {
+      dot.classList.remove('active', 'done');
+      if (i < idx) dot.classList.add('done');
+      else if (i === idx) dot.classList.add('active');
+    });
+    lines.forEach(function(line, i) {
+      line.classList.toggle('done', i < idx);
+    });
+  }
+
+  function scrollToScreen(idx) {
+    var screens = flow.querySelectorAll('.screen');
+    if (screens[idx]) {
+      screens[idx].scrollIntoView({ behavior: 'smooth', inline: 'start' });
+      currentScreen = idx;
+      updateProgress(idx);
+    }
+  }
+
+  // CTA buttons advance the flow
+  document.querySelectorAll('.screen__cta').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      if (currentScreen < totalScreens - 1) {
+        scrollToScreen(currentScreen + 1);
+      }
+    });
+  });
+
+  // Scroll snap detection
+  var scrollTimer;
+  flow.addEventListener('scroll', function() {
+    clearTimeout(scrollTimer);
+    scrollTimer = setTimeout(function() {
+      var screenW = flow.clientWidth;
+      var idx = Math.round(flow.scrollLeft / screenW);
+      if (idx !== currentScreen) { currentScreen = idx; updateProgress(idx); }
+    }, 100);
+  });
+</script>
+</body>
+</html>

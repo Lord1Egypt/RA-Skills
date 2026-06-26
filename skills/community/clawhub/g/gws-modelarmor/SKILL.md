@@ -1,35 +1,43 @@
 ---
-name: "Gws Modelarmor"
+name: gws-modelarmor
 description: "Google Model Armor: Filter user-generated content for safety."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/gws-modelarmor"
-sourceUrl: "https://clawhub.ai/skills/gws-modelarmor"
+metadata:
+  version: 0.22.5
+  openclaw:
+    category: "productivity"
+    requires:
+      bins:
+        - gws
+    cliHelp: "gws modelarmor --help"
 ---
 
-# Gws Modelarmor
+# modelarmor (v1)
 
-> Google Model Armor: Filter user-generated content for safety.
+> **PREREQUISITE:** Read `../gws-shared/SKILL.md` for auth, global flags, and security rules. If missing, run `gws generate-skills` to create it.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/gws-modelarmor`
-- **Source URL:** [https://clawhub.ai/skills/gws-modelarmor](https://clawhub.ai/skills/gws-modelarmor)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/gws-modelarmor
+gws modelarmor <resource> <method> [flags]
 ```
+
+## Helper Commands
+
+| Command | Description |
+|---------|-------------|
+| [`+sanitize-prompt`](../gws-modelarmor-sanitize-prompt/SKILL.md) | Sanitize a user prompt through a Model Armor template |
+| [`+sanitize-response`](../gws-modelarmor-sanitize-response/SKILL.md) | Sanitize a model response through a Model Armor template |
+| [`+create-template`](../gws-modelarmor-create-template/SKILL.md) | Create a new Model Armor template |
+
+## Discovering Commands
+
+Before calling any API method, inspect it:
+
+```bash
+# Browse resources and methods
+gws modelarmor --help
+
+# Inspect a method's required params, types, and defaults
+gws schema modelarmor.<resource>.<method>
+```
+
+Use `gws schema` output to build your `--params` and `--json` flags.
+

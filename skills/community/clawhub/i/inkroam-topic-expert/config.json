@@ -1,0 +1,48 @@
+{
+  "account_type": "AI资讯",
+  "account_style": "专业实操",
+  "target_platform": "公众号",
+  "min_score": 70,
+  "max_daily_push": 5,
+  "push_immediately_score": 80,
+  "bijian_space_id": null,
+  
+  "data_sources": {
+    "weibo": { "enabled": true, "interval_minutes": 15 },
+    "zhihu": { "enabled": true, "interval_minutes": 30 },
+    "xiaohongshu": { "enabled": false, "interval_minutes": 60 },
+    "36kr": { "enabled": true, "interval_minutes": 60 },
+    "huxiu": { "enabled": true, "interval_minutes": 60 },
+    "github": { "enabled": true, "interval_minutes": 360 }
+  },
+  
+  "keywords": {
+    "core": ["AI", "人工智能", "ChatGPT", "GPT", "Claude", "OpenAI", "大模型", "LLM", "DeepSeek"],
+    "broad": ["效率", "自媒体", "副业", "写作", "变现", "工具", "编程", "运营"]
+  },
+
+  "scoring_weights": {
+    "hot": 0.30,
+    "relevance": 0.25,
+    "timeliness": 0.20,
+    "writability": 0.15,
+    "differentiation": 0.10
+  },
+  
+  "push_schedule": {
+    "daily_report_time": "08:00",
+    "weekly_report_day": "Monday",
+    "weekly_report_time": "10:00"
+  },
+
+  "_env_required": {
+    "FEISHU_APP_ID": "飞书应用 App ID",
+    "FEISHU_APP_SECRET": "飞书应用 App Secret",
+    "FEISHU_APP_TOKEN": "飞书多维表格 App Token",
+    "FEISHU_TABLE_ID": "飞书多维表格 Table ID"
+  },
+
+  "_env_optional": {
+    "TELEGRAM_CHAT_ID": "Telegram 推送目标 Chat ID"
+  }
+}

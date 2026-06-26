@@ -1,0 +1,159 @@
+{
+  "name": "高中英语读后续写",
+  "version": "1.0.0",
+  "updated_at": "2026-04-21",
+  "subject": "english_continuation_senior",
+  "grade": "高中",
+  "full_score": 25,
+  "exam_type": "读后续写",
+  "description": "按五个档次评分，重点考察情节质量、语言表达和篇章结构。词数不足120字酌情扣分；只写一段不超过10分。",
+
+  "level_description": [
+    {
+      "level": 5,
+      "range": [21, 25],
+      "label": "第五档（优秀）",
+      "description": "情节新颖合理，语言流畅多样，衔接自然，结构清晰。",
+      "characteristics": [
+        "续写情节与原文融合自然，有创新",
+        "语言流畅，词汇丰富，句式多变",
+        "有效使用衔接手段，语篇连贯",
+        "时态、语态、拼写准确",
+        "续写两个段落长度适中"
+      ],
+      "keywords": ["创新", "流畅", "多样", "连贯"]
+    },
+    {
+      "level": 4,
+      "range": [16, 20],
+      "label": "第四档（良好）",
+      "description": "情节较丰富合理，语言较流畅，衔接较有效。",
+      "characteristics": [
+        "续写情节与原文较融合",
+        "语言较流畅，有一定词汇多样性",
+        "衔接较有效",
+        "偶有语法错误但不影响理解"
+      ],
+      "keywords": ["较流畅", "较合理", "较有效"]
+    },
+    {
+      "level": 3,
+      "range": [11, 15],
+      "label": "第三档（及格）",
+      "description": "情节基本完整，语言简单，衔接基本有效。",
+      "characteristics": [
+        "续写情节基本完整",
+        "语言较简单，句式单一",
+        "衔接基本有效",
+        "有较多语法错误"
+      ],
+      "keywords": ["基本完整", "简单", "基本有效"]
+    },
+    {
+      "level": 2,
+      "range": [6, 10],
+      "label": "第二档（较差）",
+      "description": "情节逻辑问题多，语言单调错误多，衔接差。",
+      "characteristics": [
+        "情节逻辑有明显问题",
+        "语言单调，词汇量不足",
+        "语法错误多",
+        "衔接手段使用混乱或缺失"
+      ],
+      "keywords": ["逻辑问题", "单调", "错误多", "衔接差"]
+    },
+    {
+      "level": 1,
+      "range": [1, 5],
+      "label": "第一档（差）",
+      "description": "情节严重脱节，语言错误多，无衔接。或只写一段。",
+      "characteristics": [
+        "情节严重偏离原文",
+        "语言错误极多，几乎无法理解",
+        "无任何衔接",
+        "字数严重不足"
+      ],
+      "keywords": ["严重脱节", "错误多", "无衔接"]
+    },
+    {
+      "level": 0,
+      "range": [0, 0],
+      "label": "零分",
+      "description": "未作答或完全抄袭原文。",
+      "characteristics": ["空白卷", "全文抄袭原文", "完全跑题"]
+    }
+  ],
+
+  "deduction_rules": [
+    {
+      "type": "word_count",
+      "label": "词数不足",
+      "threshold": 120,
+      "deduction": "每少10词扣0.5分，不重复计数"
+    },
+    {
+      "type": "single_paragraph",
+      "label": "只写一段",
+      "deduction": "只写一段者不超过10分"
+    },
+    {
+      "type": "spelling_punctuation",
+      "label": "小错（拼写、标点）",
+      "deduction": "酌情扣分，每两处扣0.5分"
+    },
+    {
+      "type": "grammar_major",
+      "label": "大错（时态、句式）",
+      "deduction": "影响档次评分，严重时态错误可降档"
+    },
+    {
+      "type": "plot_coherence",
+      "label": "情节不合逻辑",
+      "deduction": "酌情降档处理"
+    }
+  ],
+
+  "continuation_writing_tips": {
+    "plot_design": "续写情节应合理承接原文，以原文线索为依据，避免突兀的转折",
+    "character_consistency": "人物性格、行为应与原文保持一致",
+    "emotional_tone": "情感基调应与原文协调（如原文温馨则续写也应温馨）",
+    "ending": "结尾应有意义升华或情感共鸣，避免虎头蛇尾",
+    "paragraph_structure": "通常续写两段，第一段承接上文，第二段达到高潮并结尾"
+  },
+
+  "good_expressions": [
+    "Without hesitation, she/he...",
+    "A smile spread across his/her face...",
+    "Tears welled up in her/his eyes...",
+    "The room fell into a heavy silence...",
+    "To her/his surprise / disappointment / joy...",
+    "An idea suddenly struck her/him...",
+    "With a heavy heart, she/he...",
+    "All of a sudden, ..." 
+  ],
+
+  "common_errors": [
+    {
+      "error": "情节与原文脱节，强行续写",
+      "reason": "未充分理解原文线索和人物性格"
+    },
+    {
+      "error": "时态混乱（过去时/现在时混用）",
+      "reason": "读后续写整体应用过去时态，偶有过去进行时/过去完成时"
+    },
+    {
+      "error": "句式过于简单，全文短句",
+      "reason": "缺乏复合句和并列句的使用，句式单一"
+    },
+    {
+      "error": "衔接词使用不当",
+      "reason": "常见：however/therefore/besides等衔接词位置或语义错误"
+    },
+    {
+      "error": "结尾仓促或无意义",
+      "reason": "结尾未能回应开头或升华主题"
+    }
+  ],
+
+  "contrast_notes": "【重要】读后续写与一般写作的核心区别：\n1. 读后续写必须以原文线索为依据，不能凭空创作\n2. 情节的合理性和创新性并重\n3. 语言质量（流畅性、多样性）是高分的决定性因素\n4. 字数要求严格：一般要求120词以上\n5. 两段式结构是标准格式，只写一段不超过10分"
+}

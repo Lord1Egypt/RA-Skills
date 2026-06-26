@@ -1,0 +1,8 @@
+{
+  "name": "image-to-3d-pipeline",
+  "version": "1.0.0",
+  "description": "一键将商品图片转换为高质量3D模型的自动化流水线（Tripo3D）",
+  "author": "WangSonger",
+  "license": "MIT",
+  "homepage": "https://github.com/m15010495895-sudo/image-to-3d-pipeline"
+}

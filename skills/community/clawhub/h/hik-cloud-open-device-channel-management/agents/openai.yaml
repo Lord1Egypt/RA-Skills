@@ -1,0 +1,4 @@
+interface:
+  display_name: "海康云眸设备通道管理"
+  short_description: "查询、同步和修改海康云眸设备通道。"
+  default_prompt: "Use $hik-cloud-device-channel-management to list channels, sync channels, rename channels, or sync channel names on Hik-Cloud devices."

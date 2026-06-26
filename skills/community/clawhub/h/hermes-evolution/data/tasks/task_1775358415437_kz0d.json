@@ -1,0 +1,100 @@
+{
+  "id": "task_1775358415437_kz0d",
+  "title": "日报任务2",
+  "description": "",
+  "source": "boss_dm",
+  "assignedTo": "RD",
+  "status": "inbox",
+  "priority": "P1",
+  "intent": "unknown",
+  "subtasks": [],
+  "createdAt": "2026-04-05T03:06:55.437Z",
+  "updatedAt": "2026-04-11T08:10:00.363Z",
+  "stateChangedAt": "2026-04-05T03:06:55.437Z",
+  "createdBy": "sensen",
+  "result": null,
+  "error": null,
+  "timeoutCount": 16,
+  "alerts": [
+    {
+      "type": "timeout",
+      "message": "inbox状态已超过45分钟",
+      "at": "2026-04-05T03:52:01.539Z"
+    },
+    {
+      "type": "timeout",
+      "message": "inbox状态已超过142分钟",
+      "at": "2026-04-05T05:29:23.686Z"
+    },
+    {
+      "type": "timeout",
+      "message": "inbox状态已超过219分钟",
+      "at": "2026-04-05T06:45:57.801Z"
+    },
+    {
+      "type": "timeout",
+      "message": "inbox状态已超过219分钟",
+      "at": "2026-04-05T06:46:18.998Z"
+    },
+    {
+      "type": "timeout",
+      "message": "inbox状态已超过359分钟",
+      "at": "2026-04-05T09:06:10.460Z"
+    },
+    {
+      "type": "timeout",
+      "message": "inbox状态已超过384分钟",
+      "at": "2026-04-05T09:30:57.954Z"
+    },
+    {
+      "type": "timeout",
+      "message": "inbox状态已超过434分钟",
+      "at": "2026-04-05T10:21:07.007Z"
+    },
+    {
+      "type": "timeout",
+      "message": "inbox状态已超过529分钟",
+      "at": "2026-04-05T11:55:55.213Z"
+    },
+    {
+      "type": "timeout",
+      "message": "inbox状态已超过549分钟",
+      "at": "2026-04-05T12:16:12.954Z"
+    },
+    {
+      "type": "timeout",
+      "message": "inbox状态已超过555分钟",
+      "at": "2026-04-05T12:22:07.511Z"
+    },
+    {
+      "type": "timeout",
+      "message": "inbox状态已超过555分钟",
+      "at": "2026-04-05T12:22:21.745Z"
+    },
+    {
+      "type": "timeout",
+      "message": "inbox状态已超过569分钟",
+      "at": "2026-04-05T12:35:51.974Z"
+    },
+    {
+      "type": "timeout",
+      "message": "inbox状态已超过593分钟",
+      "at": "2026-04-05T12:59:30.933Z"
+    },
+    {
+      "type": "timeout",
+      "message": "inbox状态已超过2937分钟",
+      "at": "2026-04-07T04:03:29.752Z"
+    },
+    {
+      "type": "timeout",
+      "message": "inbox状态已超过8943分钟",
+      "at": "2026-04-11T08:09:59.351Z"
+    },
+    {
+      "type": "timeout",
+      "message": "inbox状态已超过8943分钟",
+      "at": "2026-04-11T08:10:00.363Z"
+    }
+  ]
+}

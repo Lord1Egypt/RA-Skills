@@ -1,0 +1,5 @@
+57e100fa Round 3: unify browser capability and compliance layer
+655d14f0 Fix semantic declaration model fallback
+0b3bb93d Implement authorization state transitions for round 2
+f4eb876b Strengthen brand workflow orchestrator and smoke test
+b0a6483c Add smoke test and workflow notes for brand skill

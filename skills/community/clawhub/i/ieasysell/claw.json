@@ -1,0 +1,45 @@
+{
+  "name": "ieasysell-smart-foreign-trade",  // 🔴 关键修改：名称改为纯英文/数字（无空格/中文），作为技能唯一标识
+  "displayName": "Ieasysell 智能外贸业务员",  // ✅ 新增：显示名称（给用户看的中文名称）
+  "version": "1.5.0",
+  "author": "Ieasysell",
+  "description": "OpenClaw × Ieasysell 打造永不离职的全球AI外贸业务员，24小时多语种接待，客户数据永不流失",
+  "main": "scripts/skill.ts",  // ✅ 正确：Node.js 入口文件（TS）
+  "triggers": [
+    "生成智能接待链接",
+    "ieasysell外贸接待",
+    "防止业务员带走客户",
+    "实时通知老板",
+    "越用越聪明的AI业务员"
+  ],
+  "configSchema": {
+    "ieasysellApiKey": {
+      "type": "string",
+      "label": "Ieasysell API Key",
+      "required": true,
+      "description": "从Ieasysell后台生成的API密钥，用于鉴权"
+    },
+    "company": {
+      "type": "string",
+      "label": "公司名称",
+      "required": true,
+      "description": "你的外贸公司全称"
+    },
+    "product": {
+      "type": "string",
+      "label": "主营产品",
+      "required": true,
+      "description": "公司核心产品/品类"
+    },
+    "market": {
+      "type": "string",
+      "label": "目标市场/语种",
+      "default": "全球",
+      "description": "如：英语、西班牙语、东南亚"
+    }
+  },
+  "dependencies": {},  // ✅ 如需依赖npm包，可在此填写（如：{"axios": "^1.6.0"}）
+  "runtime": "nodejs",  // ✅ 正确：指定Node.js运行时
+  "platform": ["windows", "macos", "linux"],
+  "entry": "handler"  // ✅ 新增：指定skill.ts中的入口函数名（默认handler）
+}

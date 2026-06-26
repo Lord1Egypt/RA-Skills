@@ -1,0 +1,433 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1860 450" width="1860" height="450">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0a0a1a"/>
+      <stop offset="100%" stop-color="#1a1a2e"/>
+    </linearGradient>
+    <filter id="glow"><feGaussianBlur stdDeviation="2" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  </defs>
+  
+  <rect width="100%" height="100%" fill="url(#bg)"/>
+  <text x="930.0" y="30" text-anchor="middle" font-size="18" font-weight="bold" fill="#00d4ff">半导体产业图谱</text>
+  <text x="930.0" y="48" text-anchor="middle" font-size="11" fill="#888888">共202个节点 · 8个一级分类</text>
+<path d="M 930.0 85 L 175.0 130" stroke="#6c5ce7" stroke-width="1.5" fill="none" opacity="0.5"/>
+<path d="M 175.0 165 L 125.0 210" stroke="#6c5ce7" stroke-width="1.5" fill="none" opacity="0.5"/>
+<path d="M 125.0 245 L 125.0 290" stroke="#6c5ce7" stroke-width="1.5" fill="none" opacity="0.5"/>
+<path d="M 125.0 245 L 225.0 290" stroke="#6c5ce7" stroke-width="1.5" fill="none" opacity="0.5"/>
+<path d="M 125.0 245 L 125.0 290" stroke="#6c5ce7" stroke-width="1.5" fill="none" opacity="0.5"/>
+<path d="M 175.0 165 L 225.0 210" stroke="#6c5ce7" stroke-width="1.5" fill="none" opacity="0.5"/>
+<path d="M 225.0 245 L 125.0 290" stroke="#6c5ce7" stroke-width="1.5" fill="none" opacity="0.5"/>
+<path d="M 225.0 245 L 225.0 290" stroke="#6c5ce7" stroke-width="1.5" fill="none" opacity="0.5"/>
+<path d="M 225.0 245 L 125.0 290" stroke="#6c5ce7" stroke-width="1.5" fill="none" opacity="0.5"/>
+<path d="M 225.0 245 L 225.0 290" stroke="#6c5ce7" stroke-width="1.5" fill="none" opacity="0.5"/>
+<path d="M 175.0 165 L 125.0 210" stroke="#6c5ce7" stroke-width="1.5" fill="none" opacity="0.5"/>
+<path d="M 125.0 245 L 125.0 290" stroke="#6c5ce7" stroke-width="1.5" fill="none" opacity="0.5"/>
+<path d="M 125.0 245 L 225.0 290" stroke="#6c5ce7" stroke-width="1.5" fill="none" opacity="0.5"/>
+<path d="M 125.0 245 L 125.0 290" stroke="#6c5ce7" stroke-width="1.5" fill="none" opacity="0.5"/>
+<path d="M 125.0 245 L 225.0 290" stroke="#6c5ce7" stroke-width="1.5" fill="none" opacity="0.5"/>
+<path d="M 175.0 165 L 225.0 210" stroke="#6c5ce7" stroke-width="1.5" fill="none" opacity="0.5"/>
+<path d="M 225.0 245 L 125.0 290" stroke="#6c5ce7" stroke-width="1.5" fill="none" opacity="0.5"/>
+<path d="M 225.0 245 L 225.0 290" stroke="#6c5ce7" stroke-width="1.5" fill="none" opacity="0.5"/>
+<path d="M 225.0 245 L 125.0 290" stroke="#6c5ce7" stroke-width="1.5" fill="none" opacity="0.5"/>
+<path d="M 225.0 245 L 225.0 290" stroke="#6c5ce7" stroke-width="1.5" fill="none" opacity="0.5"/>
+<path d="M 930.0 85 L 395.0 130" stroke="#6c5ce7" stroke-width="1.5" fill="none" opacity="0.5"/>
+<path d="M 395.0 165 L 345.0 210" stroke="#6c5ce7" stroke-width="1.5" fill="none" opacity="0.5"/>
+<path d="M 345.0 245 L 345.0 290" stroke="#6c5ce7" stroke-width="1.5" fill="none" opacity="0.5"/>
+<path d="M 345.0 245 L 445.0 290" stroke="#6c5ce7" stroke-width="1.5" fill="none" opacity="0.5"/>
+<path d="M 395.0 165 L 445.0 210" stroke="#6c5ce7" stroke-width="1.5" fill="none" opacity="0.5"/>
+<path d="M 445.0 245 L 345.0 290" stroke="#6c5ce7" stroke-width="1.5" fill="none" opacity="0.5"/>
+<path d="M 445.0 245 L 445.0 290" stroke="#6c5ce7" stroke-width="1.5" fill="none" opacity="0.5"/>
+<path d="M 395.0 165 L 345.0 210" stroke="#6c5ce7" stroke-width="1.5" fill="none" opacity="0.5"/>
+<path d="M 345.0 245 L 345.0 290" stroke="#6c5ce7" stroke-width="1.5" fill="none" opacity="0.5"/>
+<path d="M 345.0 245 L 445.0 290" stroke="#6c5ce7" stroke-width="1.5" fill="none" opacity="0.5"/>
+<path d="M 345.0 245 L 345.0 290" stroke="#6c5ce7" stroke-width="1.5" fill="none" opacity="0.5"/>
+<path d="M 395.0 165 L 445.0 210" stroke="#6c5ce7" stroke-width="1.5" fill="none" opacity="0.5"/>
+<path d="M 395.0 165 L 345.0 210" stroke="#6c5ce7" stroke-width="1.5" fill="none" opacity="0.5"/>
+<path d="M 395.0 165 L 445.0 210" stroke="#6c5ce7" stroke-width="1.5" fill="none" opacity="0.5"/>
+<path d="M 930.0 85 L 615.0 130" stroke="#6c5ce7" stroke-width="1.5" fill="none" opacity="0.5"/>
+<path d="M 615.0 165 L 565.0 210" stroke="#6c5ce7" stroke-width="1.5" fill="none" opacity="0.5"/>
+<path d="M 565.0 245 L 565.0 290" stroke="#6c5ce7" stroke-width="1.5" fill="none" opacity="0.5"/>
+<path d="M 565.0 245 L 665.0 290" stroke="#6c5ce7" stroke-width="1.5" fill="none" opacity="0.5"/>
+<path d="M 565.0 245 L 565.0 290" stroke="#6c5ce7" stroke-width="1.5" fill="none" opacity="0.5"/>
+<path d="M 565.0 245 L 665.0 290" stroke="#6c5ce7" stroke-width="1.5" fill="none" opacity="0.5"/>
+<path d="M 615.0 165 L 665.0 210" stroke="#6c5ce7" stroke-width="1.5" fill="none" opacity="0.5"/>
+<path d="M 665.0 245 L 565.0 290" stroke="#6c5ce7" stroke-width="1.5" fill="none" opacity="0.5"/>
+<path d="M 665.0 245 L 665.0 290" stroke="#6c5ce7" stroke-width="1.5" fill="none" opacity="0.5"/>
+<path d="M 665.0 245 L 565.0 290" stroke="#6c5ce7" stroke-width="1.5" fill="none" opacity="0.5"/>
+<path d="M 615.0 165 L 565.0 210" stroke="#6c5ce7" stroke-width="1.5" fill="none" opacity="0.5"/>
+<path d="M 565.0 245 L 565.0 290" stroke="#6c5ce7" stroke-width="1.5" fill="none" opacity="0.5"/>
+<path d="M 565.0 245 L 665.0 290" stroke="#6c5ce7" stroke-width="1.5" fill="none" opacity="0.5"/>
+<path d="M 565.0 245 L 565.0 290" stroke="#6c5ce7" stroke-width="1.5" fill="none" opacity="0.5"/>
+<path d="M 565.0 245 L 665.0 290" stroke="#6c5ce7" stroke-width="1.5" fill="none" opacity="0.5"/>
+<path d="M 615.0 165 L 665.0 210" stroke="#6c5ce7" stroke-width="1.5" fill="none" opacity="0.5"/>
+<path d="M 665.0 245 L 565.0 290" stroke="#6c5ce7" stroke-width="1.5" fill="none" opacity="0.5"/>
+<path d="M 665.0 245 L 665.0 290" stroke="#6c5ce7" stroke-width="1.5" fill="none" opacity="0.5"/>
+<path d="M 665.0 245 L 565.0 290" stroke="#6c5ce7" stroke-width="1.5" fill="none" opacity="0.5"/>
+<path d="M 615.0 165 L 565.0 210" stroke="#6c5ce7" stroke-width="1.5" fill="none" opacity="0.5"/>
+<path d="M 565.0 245 L 565.0 290" stroke="#6c5ce7" stroke-width="1.5" fill="none" opacity="0.5"/>
+<path d="M 565.0 245 L 665.0 290" stroke="#6c5ce7" stroke-width="1.5" fill="none" opacity="0.5"/>
+<path d="M 615.0 165 L 665.0 210" stroke="#6c5ce7" stroke-width="1.5" fill="none" opacity="0.5"/>
+<path d="M 665.0 245 L 565.0 290" stroke="#6c5ce7" stroke-width="1.5" fill="none" opacity="0.5"/>
+<path d="M 665.0 245 L 665.0 290" stroke="#6c5ce7" stroke-width="1.5" fill="none" opacity="0.5"/>
+<path d="M 930.0 85 L 835.0 130" stroke="#6c5ce7" stroke-width="1.5" fill="none" opacity="0.5"/>
+<path d="M 835.0 165 L 785.0 210" stroke="#6c5ce7" stroke-width="1.5" fill="none" opacity="0.5"/>
+<path d="M 785.0 245 L 785.0 290" stroke="#6c5ce7" stroke-width="1.5" fill="none" opacity="0.5"/>
+<path d="M 785.0 245 L 885.0 290" stroke="#6c5ce7" stroke-width="1.5" fill="none" opacity="0.5"/>
+<path d="M 835.0 165 L 885.0 210" stroke="#6c5ce7" stroke-width="1.5" fill="none" opacity="0.5"/>
+<path d="M 885.0 245 L 785.0 290" stroke="#6c5ce7" stroke-width="1.5" fill="none" opacity="0.5"/>
+<path d="M 885.0 245 L 885.0 290" stroke="#6c5ce7" stroke-width="1.5" fill="none" opacity="0.5"/>
+<path d="M 885.0 245 L 785.0 290" stroke="#6c5ce7" stroke-width="1.5" fill="none" opacity="0.5"/>
+<path d="M 930.0 85 L 1055.0 130" stroke="#6c5ce7" stroke-width="1.5" fill="none" opacity="0.5"/>
+<path d="M 1055.0 165 L 1005.0 210" stroke="#6c5ce7" stroke-width="1.5" fill="none" opacity="0.5"/>
+<path d="M 1005.0 245 L 1005.0 290" stroke="#6c5ce7" stroke-width="1.5" fill="none" opacity="0.5"/>
+<path d="M 1005.0 245 L 1105.0 290" stroke="#6c5ce7" stroke-width="1.5" fill="none" opacity="0.5"/>
+<path d="M 1055.0 165 L 1105.0 210" stroke="#6c5ce7" stroke-width="1.5" fill="none" opacity="0.5"/>
+<path d="M 1105.0 245 L 1005.0 290" stroke="#6c5ce7" stroke-width="1.5" fill="none" opacity="0.5"/>
+<path d="M 1105.0 245 L 1105.0 290" stroke="#6c5ce7" stroke-width="1.5" fill="none" opacity="0.5"/>
+<path d="M 1105.0 245 L 1005.0 290" stroke="#6c5ce7" stroke-width="1.5" fill="none" opacity="0.5"/>
+<path d="M 1105.0 245 L 1105.0 290" stroke="#6c5ce7" stroke-width="1.5" fill="none" opacity="0.5"/>
+<path d="M 1055.0 165 L 1005.0 210" stroke="#6c5ce7" stroke-width="1.5" fill="none" opacity="0.5"/>
+<path d="M 1005.0 245 L 1005.0 290" stroke="#6c5ce7" stroke-width="1.5" fill="none" opacity="0.5"/>
+<path d="M 1005.0 245 L 1105.0 290" stroke="#6c5ce7" stroke-width="1.5" fill="none" opacity="0.5"/>
+<path d="M 1005.0 245 L 1005.0 290" stroke="#6c5ce7" stroke-width="1.5" fill="none" opacity="0.5"/>
+<path d="M 930.0 85 L 1275.0 130" stroke="#6c5ce7" stroke-width="1.5" fill="none" opacity="0.5"/>
+<path d="M 1275.0 165 L 1225.0 210" stroke="#6c5ce7" stroke-width="1.5" fill="none" opacity="0.5"/>
+<path d="M 1225.0 245 L 1225.0 290" stroke="#6c5ce7" stroke-width="1.5" fill="none" opacity="0.5"/>
+<path d="M 1225.0 245 L 1325.0 290" stroke="#6c5ce7" stroke-width="1.5" fill="none" opacity="0.5"/>
+<path d="M 1225.0 245 L 1225.0 290" stroke="#6c5ce7" stroke-width="1.5" fill="none" opacity="0.5"/>
+<path d="M 1225.0 245 L 1325.0 290" stroke="#6c5ce7" stroke-width="1.5" fill="none" opacity="0.5"/>
+<path d="M 1275.0 165 L 1325.0 210" stroke="#6c5ce7" stroke-width="1.5" fill="none" opacity="0.5"/>
+<path d="M 1325.0 245 L 1225.0 290" stroke="#6c5ce7" stroke-width="1.5" fill="none" opacity="0.5"/>
+<path d="M 1325.0 245 L 1325.0 290" stroke="#6c5ce7" stroke-width="1.5" fill="none" opacity="0.5"/>
+<path d="M 1325.0 245 L 1225.0 290" stroke="#6c5ce7" stroke-width="1.5" fill="none" opacity="0.5"/>
+<path d="M 1275.0 165 L 1225.0 210" stroke="#6c5ce7" stroke-width="1.5" fill="none" opacity="0.5"/>
+<path d="M 1225.0 245 L 1225.0 290" stroke="#6c5ce7" stroke-width="1.5" fill="none" opacity="0.5"/>
+<path d="M 1225.0 245 L 1325.0 290" stroke="#6c5ce7" stroke-width="1.5" fill="none" opacity="0.5"/>
+<path d="M 1275.0 165 L 1325.0 210" stroke="#6c5ce7" stroke-width="1.5" fill="none" opacity="0.5"/>
+<path d="M 1325.0 245 L 1225.0 290" stroke="#6c5ce7" stroke-width="1.5" fill="none" opacity="0.5"/>
+<path d="M 1325.0 245 L 1325.0 290" stroke="#6c5ce7" stroke-width="1.5" fill="none" opacity="0.5"/>
+<path d="M 1325.0 245 L 1225.0 290" stroke="#6c5ce7" stroke-width="1.5" fill="none" opacity="0.5"/>
+<path d="M 930.0 85 L 1495.0 130" stroke="#6c5ce7" stroke-width="1.5" fill="none" opacity="0.5"/>
+<path d="M 1495.0 165 L 1445.0 210" stroke="#6c5ce7" stroke-width="1.5" fill="none" opacity="0.5"/>
+<path d="M 1445.0 245 L 1445.0 290" stroke="#6c5ce7" stroke-width="1.5" fill="none" opacity="0.5"/>
+<path d="M 1445.0 245 L 1545.0 290" stroke="#6c5ce7" stroke-width="1.5" fill="none" opacity="0.5"/>
+<path d="M 1495.0 165 L 1545.0 210" stroke="#6c5ce7" stroke-width="1.5" fill="none" opacity="0.5"/>
+<path d="M 1545.0 245 L 1445.0 290" stroke="#6c5ce7" stroke-width="1.5" fill="none" opacity="0.5"/>
+<path d="M 1545.0 245 L 1545.0 290" stroke="#6c5ce7" stroke-width="1.5" fill="none" opacity="0.5"/>
+<path d="M 1545.0 245 L 1445.0 290" stroke="#6c5ce7" stroke-width="1.5" fill="none" opacity="0.5"/>
+<path d="M 1495.0 165 L 1445.0 210" stroke="#6c5ce7" stroke-width="1.5" fill="none" opacity="0.5"/>
+<path d="M 1445.0 245 L 1445.0 290" stroke="#6c5ce7" stroke-width="1.5" fill="none" opacity="0.5"/>
+<path d="M 1445.0 245 L 1545.0 290" stroke="#6c5ce7" stroke-width="1.5" fill="none" opacity="0.5"/>
+<path d="M 1495.0 165 L 1545.0 210" stroke="#6c5ce7" stroke-width="1.5" fill="none" opacity="0.5"/>
+<path d="M 1545.0 245 L 1445.0 290" stroke="#6c5ce7" stroke-width="1.5" fill="none" opacity="0.5"/>
+<path d="M 1545.0 245 L 1545.0 290" stroke="#6c5ce7" stroke-width="1.5" fill="none" opacity="0.5"/>
+<path d="M 1545.0 245 L 1445.0 290" stroke="#6c5ce7" stroke-width="1.5" fill="none" opacity="0.5"/>
+<path d="M 930.0 85 L 1715.0 130" stroke="#6c5ce7" stroke-width="1.5" fill="none" opacity="0.5"/>
+<path d="M 1715.0 165 L 1665.0 210" stroke="#6c5ce7" stroke-width="1.5" fill="none" opacity="0.5"/>
+<path d="M 1665.0 245 L 1665.0 290" stroke="#6c5ce7" stroke-width="1.5" fill="none" opacity="0.5"/>
+<path d="M 1665.0 245 L 1765.0 290" stroke="#6c5ce7" stroke-width="1.5" fill="none" opacity="0.5"/>
+<path d="M 1665.0 245 L 1665.0 290" stroke="#6c5ce7" stroke-width="1.5" fill="none" opacity="0.5"/>
+<path d="M 1665.0 245 L 1765.0 290" stroke="#6c5ce7" stroke-width="1.5" fill="none" opacity="0.5"/>
+<path d="M 1715.0 165 L 1765.0 210" stroke="#6c5ce7" stroke-width="1.5" fill="none" opacity="0.5"/>
+<path d="M 1765.0 245 L 1665.0 290" stroke="#6c5ce7" stroke-width="1.5" fill="none" opacity="0.5"/>
+<path d="M 1765.0 245 L 1765.0 290" stroke="#6c5ce7" stroke-width="1.5" fill="none" opacity="0.5"/>
+<path d="M 1765.0 245 L 1665.0 290" stroke="#6c5ce7" stroke-width="1.5" fill="none" opacity="0.5"/>
+<path d="M 1715.0 165 L 1665.0 210" stroke="#6c5ce7" stroke-width="1.5" fill="none" opacity="0.5"/>
+<path d="M 1665.0 245 L 1665.0 290" stroke="#6c5ce7" stroke-width="1.5" fill="none" opacity="0.5"/>
+<path d="M 1665.0 245 L 1765.0 290" stroke="#6c5ce7" stroke-width="1.5" fill="none" opacity="0.5"/>
+<path d="M 1665.0 245 L 1665.0 290" stroke="#6c5ce7" stroke-width="1.5" fill="none" opacity="0.5"/>
+<path d="M 1715.0 165 L 1765.0 210" stroke="#6c5ce7" stroke-width="1.5" fill="none" opacity="0.5"/>
+<path d="M 1765.0 245 L 1665.0 290" stroke="#6c5ce7" stroke-width="1.5" fill="none" opacity="0.5"/>
+<path d="M 1765.0 245 L 1765.0 290" stroke="#6c5ce7" stroke-width="1.5" fill="none" opacity="0.5"/>
+<path d="M 1765.0 245 L 1665.0 290" stroke="#6c5ce7" stroke-width="1.5" fill="none" opacity="0.5"/>
+<path d="M 1765.0 245 L 1765.0 290" stroke="#6c5ce7" stroke-width="1.5" fill="none" opacity="0.5"/>
+<path d="M 1715.0 165 L 1665.0 210" stroke="#6c5ce7" stroke-width="1.5" fill="none" opacity="0.5"/>
+<path d="M 1665.0 245 L 1665.0 290" stroke="#6c5ce7" stroke-width="1.5" fill="none" opacity="0.5"/>
+<path d="M 1665.0 245 L 1765.0 290" stroke="#6c5ce7" stroke-width="1.5" fill="none" opacity="0.5"/>
+<path d="M 1665.0 245 L 1665.0 290" stroke="#6c5ce7" stroke-width="1.5" fill="none" opacity="0.5"/>
+<path d="M 1715.0 165 L 1765.0 210" stroke="#6c5ce7" stroke-width="1.5" fill="none" opacity="0.5"/>
+<path d="M 1765.0 245 L 1665.0 290" stroke="#6c5ce7" stroke-width="1.5" fill="none" opacity="0.5"/>
+<path d="M 1765.0 245 L 1765.0 290" stroke="#6c5ce7" stroke-width="1.5" fill="none" opacity="0.5"/>
+<path d="M 1765.0 245 L 1665.0 290" stroke="#6c5ce7" stroke-width="1.5" fill="none" opacity="0.5"/>
+<rect x="855.0" y="50" width="150" height="35" rx="6" fill="#1a1a3e" stroke="#00d4ff" stroke-width="2" filter="url(#glow)"/>
+<text x="930.0" y="71.5" text-anchor="middle" font-size="10" fill="#fff">半导体产业</text>
+<rect x="100" y="130" width="150" height="35" rx="6" fill="#1a1a3e" stroke="#7b2cbf" stroke-width="2" filter="url(#glow)"/>
+<text x="175.0" y="151.5" text-anchor="middle" font-size="10" fill="#fff">半导体材料</text>
+<rect x="50" y="210" width="150" height="35" rx="6" fill="#1a1a3e" stroke="#ff006e" stroke-width="2" filter="url(#glow)"/>
+<text x="125.0" y="231.5" text-anchor="middle" font-size="10" fill="#fff">硅材料</text>
+<rect x="50" y="290" width="150" height="35" rx="6" fill="#1a1a3e" stroke="#00ff88" stroke-width="2" filter="url(#glow)"/>
+<text x="125.0" y="311.5" text-anchor="middle" font-size="10" fill="#fff">多晶硅</text>
+<rect x="150" y="290" width="150" height="35" rx="6" fill="#1a1a3e" stroke="#00ff88" stroke-width="2" filter="url(#glow)"/>
+<text x="225.0" y="311.5" text-anchor="middle" font-size="10" fill="#fff">单晶硅棒</text>
+<rect x="50" y="290" width="150" height="35" rx="6" fill="#1a1a3e" stroke="#00ff88" stroke-width="2" filter="url(#glow)"/>
+<text x="125.0" y="311.5" text-anchor="middle" font-size="10" fill="#fff">硅片</text>
+<rect x="150" y="210" width="150" height="35" rx="6" fill="#1a1a3e" stroke="#ff006e" stroke-width="2" filter="url(#glow)"/>
+<text x="225.0" y="231.5" text-anchor="middle" font-size="10" fill="#fff">化合物半导体材料</text>
+<rect x="50" y="290" width="150" height="35" rx="6" fill="#1a1a3e" stroke="#00ff88" stroke-width="2" filter="url(#glow)"/>
+<text x="125.0" y="311.5" text-anchor="middle" font-size="10" fill="#fff">砷化镓</text>
+<rect x="150" y="290" width="150" height="35" rx="6" fill="#1a1a3e" stroke="#00ff88" stroke-width="2" filter="url(#glow)"/>
+<text x="225.0" y="311.5" text-anchor="middle" font-size="10" fill="#fff">氮化镓</text>
+<rect x="50" y="290" width="150" height="35" rx="6" fill="#1a1a3e" stroke="#00ff88" stroke-width="2" filter="url(#glow)"/>
+<text x="125.0" y="311.5" text-anchor="middle" font-size="10" fill="#fff">碳化硅</text>
+<rect x="150" y="290" width="150" height="35" rx="6" fill="#1a1a3e" stroke="#00ff88" stroke-width="2" filter="url(#glow)"/>
+<text x="225.0" y="311.5" text-anchor="middle" font-size="10" fill="#fff">磷化铟</text>
+<rect x="50" y="210" width="150" height="35" rx="6" fill="#1a1a3e" stroke="#ff006e" stroke-width="2" filter="url(#glow)"/>
+<text x="125.0" y="231.5" text-anchor="middle" font-size="10" fill="#fff">光刻胶</text>
+<rect x="50" y="290" width="150" height="35" rx="6" fill="#1a1a3e" stroke="#00ff88" stroke-width="2" filter="url(#glow)"/>
+<text x="125.0" y="311.5" text-anchor="middle" font-size="10" fill="#fff">g 线光刻胶</text>
+<rect x="150" y="290" width="150" height="35" rx="6" fill="#1a1a3e" stroke="#00ff88" stroke-width="2" filter="url(#glow)"/>
+<text x="225.0" y="311.5" text-anchor="middle" font-size="10" fill="#fff">i 线光刻胶</text>
+<rect x="50" y="290" width="150" height="35" rx="6" fill="#1a1a3e" stroke="#00ff88" stroke-width="2" filter="url(#glow)"/>
+<text x="125.0" y="311.5" text-anchor="middle" font-size="10" fill="#fff">KrF 光刻胶</text>
+<rect x="150" y="290" width="150" height="35" rx="6" fill="#1a1a3e" stroke="#00ff88" stroke-width="2" filter="url(#glow)"/>
+<text x="225.0" y="311.5" text-anchor="middle" font-size="10" fill="#fff">ArF 光刻胶</text>
+<rect x="150" y="210" width="150" height="35" rx="6" fill="#1a1a3e" stroke="#ff006e" stroke-width="2" filter="url(#glow)"/>
+<text x="225.0" y="231.5" text-anchor="middle" font-size="10" fill="#fff">电子特气</text>
+<rect x="50" y="290" width="150" height="35" rx="6" fill="#1a1a3e" stroke="#00ff88" stroke-width="2" filter="url(#glow)"/>
+<text x="125.0" y="311.5" text-anchor="middle" font-size="10" fill="#fff">掺杂气体</text>
+<rect x="150" y="290" width="150" height="35" rx="6" fill="#1a1a3e" stroke="#00ff88" stroke-width="2" filter="url(#glow)"/>
+<text x="225.0" y="311.5" text-anchor="middle" font-size="10" fill="#fff">刻蚀气体</text>
+<rect x="50" y="290" width="150" height="35" rx="6" fill="#1a1a3e" stroke="#00ff88" stroke-width="2" filter="url(#glow)"/>
+<text x="125.0" y="311.5" text-anchor="middle" font-size="10" fill="#fff">沉积气体</text>
+<rect x="150" y="290" width="150" height="35" rx="6" fill="#1a1a3e" stroke="#00ff88" stroke-width="2" filter="url(#glow)"/>
+<text x="225.0" y="311.5" text-anchor="middle" font-size="10" fill="#fff">清洗气体</text>
+<rect x="320" y="130" width="150" height="35" rx="6" fill="#1a1a3e" stroke="#7b2cbf" stroke-width="2" filter="url(#glow)"/>
+<text x="395.0" y="151.5" text-anchor="middle" font-size="10" fill="#fff">半导体设备</text>
+<rect x="270" y="210" width="150" height="35" rx="6" fill="#1a1a3e" stroke="#ff006e" stroke-width="2" filter="url(#glow)"/>
+<text x="345.0" y="231.5" text-anchor="middle" font-size="10" fill="#fff">光刻设备</text>
+<rect x="270" y="290" width="150" height="35" rx="6" fill="#1a1a3e" stroke="#00ff88" stroke-width="2" filter="url(#glow)"/>
+<text x="345.0" y="311.5" text-anchor="middle" font-size="10" fill="#fff">DUV 光刻机</text>
+<rect x="370" y="290" width="150" height="35" rx="6" fill="#1a1a3e" stroke="#00ff88" stroke-width="2" filter="url(#glow)"/>
+<text x="445.0" y="311.5" text-anchor="middle" font-size="10" fill="#fff">EUV 光刻机</text>
+<rect x="370" y="210" width="150" height="35" rx="6" fill="#1a1a3e" stroke="#ff006e" stroke-width="2" filter="url(#glow)"/>
+<text x="445.0" y="231.5" text-anchor="middle" font-size="10" fill="#fff">刻蚀设备</text>
+<rect x="270" y="290" width="150" height="35" rx="6" fill="#1a1a3e" stroke="#00ff88" stroke-width="2" filter="url(#glow)"/>
+<text x="345.0" y="311.5" text-anchor="middle" font-size="10" fill="#fff">干法刻蚀机</text>
+<rect x="370" y="290" width="150" height="35" rx="6" fill="#1a1a3e" stroke="#00ff88" stroke-width="2" filter="url(#glow)"/>
+<text x="445.0" y="311.5" text-anchor="middle" font-size="10" fill="#fff">湿法刻蚀机</text>
+<rect x="270" y="210" width="150" height="35" rx="6" fill="#1a1a3e" stroke="#ff006e" stroke-width="2" filter="url(#glow)"/>
+<text x="345.0" y="231.5" text-anchor="middle" font-size="10" fill="#fff">薄膜沉积设备</text>
+<rect x="270" y="290" width="150" height="35" rx="6" fill="#1a1a3e" stroke="#00ff88" stroke-width="2" filter="url(#glow)"/>
+<text x="345.0" y="311.5" text-anchor="middle" font-size="10" fill="#fff">PVD 设备</text>
+<rect x="370" y="290" width="150" height="35" rx="6" fill="#1a1a3e" stroke="#00ff88" stroke-width="2" filter="url(#glow)"/>
+<text x="445.0" y="311.5" text-anchor="middle" font-size="10" fill="#fff">CVD 设备</text>
+<rect x="270" y="290" width="150" height="35" rx="6" fill="#1a1a3e" stroke="#00ff88" stroke-width="2" filter="url(#glow)"/>
+<text x="345.0" y="311.5" text-anchor="middle" font-size="10" fill="#fff">ALD 设备</text>
+<rect x="370" y="210" width="150" height="35" rx="6" fill="#1a1a3e" stroke="#ff006e" stroke-width="2" filter="url(#glow)"/>
+<text x="445.0" y="231.5" text-anchor="middle" font-size="10" fill="#fff">离子注入设备</text>
+<rect x="270" y="210" width="150" height="35" rx="6" fill="#1a1a3e" stroke="#ff006e" stroke-width="2" filter="url(#glow)"/>
+<text x="345.0" y="231.5" text-anchor="middle" font-size="10" fill="#fff">化学机械抛光设备</text>
+<rect x="370" y="210" width="150" height="35" rx="6" fill="#1a1a3e" stroke="#ff006e" stroke-width="2" filter="url(#glow)"/>
+<text x="445.0" y="231.5" text-anchor="middle" font-size="10" fill="#fff">清洗设备</text>
+<rect x="540" y="130" width="150" height="35" rx="6" fill="#1a1a3e" stroke="#7b2cbf" stroke-width="2" filter="url(#glow)"/>
+<text x="615.0" y="151.5" text-anchor="middle" font-size="10" fill="#fff">集成电路设计</text>
+<rect x="490" y="210" width="150" height="35" rx="6" fill="#1a1a3e" stroke="#ff006e" stroke-width="2" filter="url(#glow)"/>
+<text x="565.0" y="231.5" text-anchor="middle" font-size="10" fill="#fff">逻辑芯片设计</text>
+<rect x="490" y="290" width="150" height="35" rx="6" fill="#1a1a3e" stroke="#00ff88" stroke-width="2" filter="url(#glow)"/>
+<text x="565.0" y="311.5" text-anchor="middle" font-size="10" fill="#fff">CPU 设计</text>
+<rect x="590" y="290" width="150" height="35" rx="6" fill="#1a1a3e" stroke="#00ff88" stroke-width="2" filter="url(#glow)"/>
+<text x="665.0" y="311.5" text-anchor="middle" font-size="10" fill="#fff">GPU 设计</text>
+<rect x="490" y="290" width="150" height="35" rx="6" fill="#1a1a3e" stroke="#00ff88" stroke-width="2" filter="url(#glow)"/>
+<text x="565.0" y="311.5" text-anchor="middle" font-size="10" fill="#fff">FPGA 设计</text>
+<rect x="590" y="290" width="150" height="35" rx="6" fill="#1a1a3e" stroke="#00ff88" stroke-width="2" filter="url(#glow)"/>
+<text x="665.0" y="311.5" text-anchor="middle" font-size="10" fill="#fff">ASIC 设计</text>
+<rect x="590" y="210" width="150" height="35" rx="6" fill="#1a1a3e" stroke="#ff006e" stroke-width="2" filter="url(#glow)"/>
+<text x="665.0" y="231.5" text-anchor="middle" font-size="10" fill="#fff">存储芯片设计</text>
+<rect x="490" y="290" width="150" height="35" rx="6" fill="#1a1a3e" stroke="#00ff88" stroke-width="2" filter="url(#glow)"/>
+<text x="565.0" y="311.5" text-anchor="middle" font-size="10" fill="#fff">DRAM 设计</text>
+<rect x="590" y="290" width="150" height="35" rx="6" fill="#1a1a3e" stroke="#00ff88" stroke-width="2" filter="url(#glow)"/>
+<text x="665.0" y="311.5" text-anchor="middle" font-size="10" fill="#fff">SRAM 设计</text>
+<rect x="490" y="290" width="150" height="35" rx="6" fill="#1a1a3e" stroke="#00ff88" stroke-width="2" filter="url(#glow)"/>
+<text x="565.0" y="311.5" text-anchor="middle" font-size="10" fill="#fff">Flash 设计</text>
+<rect x="490" y="210" width="150" height="35" rx="6" fill="#1a1a3e" stroke="#ff006e" stroke-width="2" filter="url(#glow)"/>
+<text x="565.0" y="231.5" text-anchor="middle" font-size="10" fill="#fff">模拟芯片设计</text>
+<rect x="490" y="290" width="150" height="35" rx="6" fill="#1a1a3e" stroke="#00ff88" stroke-width="2" filter="url(#glow)"/>
+<text x="565.0" y="311.5" text-anchor="middle" font-size="10" fill="#fff">电源管理芯片设计</text>
+<rect x="590" y="290" width="150" height="35" rx="6" fill="#1a1a3e" stroke="#00ff88" stroke-width="2" filter="url(#glow)"/>
+<text x="665.0" y="311.5" text-anchor="middle" font-size="10" fill="#fff">信号链芯片设计</text>
+<rect x="490" y="290" width="150" height="35" rx="6" fill="#1a1a3e" stroke="#00ff88" stroke-width="2" filter="url(#glow)"/>
+<text x="565.0" y="311.5" text-anchor="middle" font-size="10" fill="#fff">射频芯片设计</text>
+<rect x="590" y="290" width="150" height="35" rx="6" fill="#1a1a3e" stroke="#00ff88" stroke-width="2" filter="url(#glow)"/>
+<text x="665.0" y="311.5" text-anchor="middle" font-size="10" fill="#fff">数据转换器设计</text>
+<rect x="590" y="210" width="150" height="35" rx="6" fill="#1a1a3e" stroke="#ff006e" stroke-width="2" filter="url(#glow)"/>
+<text x="665.0" y="231.5" text-anchor="middle" font-size="10" fill="#fff">微处理器设计</text>
+<rect x="490" y="290" width="150" height="35" rx="6" fill="#1a1a3e" stroke="#00ff88" stroke-width="2" filter="url(#glow)"/>
+<text x="565.0" y="311.5" text-anchor="middle" font-size="10" fill="#fff">通用微处理器设计</text>
+<rect x="590" y="290" width="150" height="35" rx="6" fill="#1a1a3e" stroke="#00ff88" stroke-width="2" filter="url(#glow)"/>
+<text x="665.0" y="311.5" text-anchor="middle" font-size="10" fill="#fff">嵌入式微处理器设计</text>
+<rect x="490" y="290" width="150" height="35" rx="6" fill="#1a1a3e" stroke="#00ff88" stroke-width="2" filter="url(#glow)"/>
+<text x="565.0" y="311.5" text-anchor="middle" font-size="10" fill="#fff">微控制器设计</text>
+<rect x="490" y="210" width="150" height="35" rx="6" fill="#1a1a3e" stroke="#ff006e" stroke-width="2" filter="url(#glow)"/>
+<text x="565.0" y="231.5" text-anchor="middle" font-size="10" fill="#fff">通信芯片设计</text>
+<rect x="490" y="290" width="150" height="35" rx="6" fill="#1a1a3e" stroke="#00ff88" stroke-width="2" filter="url(#glow)"/>
+<text x="565.0" y="311.5" text-anchor="middle" font-size="10" fill="#fff">基带芯片设计</text>
+<rect x="590" y="290" width="150" height="35" rx="6" fill="#1a1a3e" stroke="#00ff88" stroke-width="2" filter="url(#glow)"/>
+<text x="665.0" y="311.5" text-anchor="middle" font-size="10" fill="#fff">射频前端芯片设计</text>
+<rect x="590" y="210" width="150" height="35" rx="6" fill="#1a1a3e" stroke="#ff006e" stroke-width="2" filter="url(#glow)"/>
+<text x="665.0" y="231.5" text-anchor="middle" font-size="10" fill="#fff">传感器芯片设计</text>
+<rect x="490" y="290" width="150" height="35" rx="6" fill="#1a1a3e" stroke="#00ff88" stroke-width="2" filter="url(#glow)"/>
+<text x="565.0" y="311.5" text-anchor="middle" font-size="10" fill="#fff">图像传感器设计</text>
+<rect x="590" y="290" width="150" height="35" rx="6" fill="#1a1a3e" stroke="#00ff88" stroke-width="2" filter="url(#glow)"/>
+<text x="665.0" y="311.5" text-anchor="middle" font-size="10" fill="#fff">MEMS 传感器设计</text>
+<rect x="760" y="130" width="150" height="35" rx="6" fill="#1a1a3e" stroke="#7b2cbf" stroke-width="2" filter="url(#glow)"/>
+<text x="835.0" y="151.5" text-anchor="middle" font-size="10" fill="#fff">集成电路制造</text>
+<rect x="710" y="210" width="150" height="35" rx="6" fill="#1a1a3e" stroke="#ff006e" stroke-width="2" filter="url(#glow)"/>
+<text x="785.0" y="231.5" text-anchor="middle" font-size="10" fill="#fff">晶圆制造</text>
+<rect x="710" y="290" width="150" height="35" rx="6" fill="#1a1a3e" stroke="#00ff88" stroke-width="2" filter="url(#glow)"/>
+<text x="785.0" y="311.5" text-anchor="middle" font-size="10" fill="#fff">前道工艺</text>
+<rect x="810" y="290" width="150" height="35" rx="6" fill="#1a1a3e" stroke="#00ff88" stroke-width="2" filter="url(#glow)"/>
+<text x="885.0" y="311.5" text-anchor="middle" font-size="10" fill="#fff">后道工艺</text>
+<rect x="810" y="210" width="150" height="35" rx="6" fill="#1a1a3e" stroke="#ff006e" stroke-width="2" filter="url(#glow)"/>
+<text x="885.0" y="231.5" text-anchor="middle" font-size="10" fill="#fff">制程技术</text>
+<rect x="710" y="290" width="150" height="35" rx="6" fill="#1a1a3e" stroke="#00ff88" stroke-width="2" filter="url(#glow)"/>
+<text x="785.0" y="311.5" text-anchor="middle" font-size="10" fill="#fff">先进制程</text>
+<rect x="810" y="290" width="150" height="35" rx="6" fill="#1a1a3e" stroke="#00ff88" stroke-width="2" filter="url(#glow)"/>
+<text x="885.0" y="311.5" text-anchor="middle" font-size="10" fill="#fff">成熟制程</text>
+<rect x="710" y="290" width="150" height="35" rx="6" fill="#1a1a3e" stroke="#00ff88" stroke-width="2" filter="url(#glow)"/>
+<text x="785.0" y="311.5" text-anchor="middle" font-size="10" fill="#fff">特色工艺</text>
+<rect x="980" y="130" width="150" height="35" rx="6" fill="#1a1a3e" stroke="#7b2cbf" stroke-width="2" filter="url(#glow)"/>
+<text x="1055.0" y="151.5" text-anchor="middle" font-size="10" fill="#fff">集成电路封装测试</text>
+<rect x="930" y="210" width="150" height="35" rx="6" fill="#1a1a3e" stroke="#ff006e" stroke-width="2" filter="url(#glow)"/>
+<text x="1005.0" y="231.5" text-anchor="middle" font-size="10" fill="#fff">封装技术</text>
+<rect x="930" y="290" width="150" height="35" rx="6" fill="#1a1a3e" stroke="#00ff88" stroke-width="2" filter="url(#glow)"/>
+<text x="1005.0" y="311.5" text-anchor="middle" font-size="10" fill="#fff">传统封装</text>
+<rect x="1030" y="290" width="150" height="35" rx="6" fill="#1a1a3e" stroke="#00ff88" stroke-width="2" filter="url(#glow)"/>
+<text x="1105.0" y="311.5" text-anchor="middle" font-size="10" fill="#fff">先进封装</text>
+<rect x="1030" y="210" width="150" height="35" rx="6" fill="#1a1a3e" stroke="#ff006e" stroke-width="2" filter="url(#glow)"/>
+<text x="1105.0" y="231.5" text-anchor="middle" font-size="10" fill="#fff">封装材料</text>
+<rect x="930" y="290" width="150" height="35" rx="6" fill="#1a1a3e" stroke="#00ff88" stroke-width="2" filter="url(#glow)"/>
+<text x="1005.0" y="311.5" text-anchor="middle" font-size="10" fill="#fff">引线框架</text>
+<rect x="1030" y="290" width="150" height="35" rx="6" fill="#1a1a3e" stroke="#00ff88" stroke-width="2" filter="url(#glow)"/>
+<text x="1105.0" y="311.5" text-anchor="middle" font-size="10" fill="#fff">键合丝</text>
+<rect x="930" y="290" width="150" height="35" rx="6" fill="#1a1a3e" stroke="#00ff88" stroke-width="2" filter="url(#glow)"/>
+<text x="1005.0" y="311.5" text-anchor="middle" font-size="10" fill="#fff">封装基板</text>
+<rect x="1030" y="290" width="150" height="35" rx="6" fill="#1a1a3e" stroke="#00ff88" stroke-width="2" filter="url(#glow)"/>
+<text x="1105.0" y="311.5" text-anchor="middle" font-size="10" fill="#fff">塑封料</text>
+<rect x="930" y="210" width="150" height="35" rx="6" fill="#1a1a3e" stroke="#ff006e" stroke-width="2" filter="url(#glow)"/>
+<text x="1005.0" y="231.5" text-anchor="middle" font-size="10" fill="#fff">测试服务</text>
+<rect x="930" y="290" width="150" height="35" rx="6" fill="#1a1a3e" stroke="#00ff88" stroke-width="2" filter="url(#glow)"/>
+<text x="1005.0" y="311.5" text-anchor="middle" font-size="10" fill="#fff">晶圆测试</text>
+<rect x="1030" y="290" width="150" height="35" rx="6" fill="#1a1a3e" stroke="#00ff88" stroke-width="2" filter="url(#glow)"/>
+<text x="1105.0" y="311.5" text-anchor="middle" font-size="10" fill="#fff">成品测试</text>
+<rect x="930" y="290" width="150" height="35" rx="6" fill="#1a1a3e" stroke="#00ff88" stroke-width="2" filter="url(#glow)"/>
+<text x="1005.0" y="311.5" text-anchor="middle" font-size="10" fill="#fff">可靠性测试</text>
+<rect x="1200" y="130" width="150" height="35" rx="6" fill="#1a1a3e" stroke="#7b2cbf" stroke-width="2" filter="url(#glow)"/>
+<text x="1275.0" y="151.5" text-anchor="middle" font-size="10" fill="#fff">分立器件</text>
+<rect x="1150" y="210" width="150" height="35" rx="6" fill="#1a1a3e" stroke="#ff006e" stroke-width="2" filter="url(#glow)"/>
+<text x="1225.0" y="231.5" text-anchor="middle" font-size="10" fill="#fff">二极管</text>
+<rect x="1150" y="290" width="150" height="35" rx="6" fill="#1a1a3e" stroke="#00ff88" stroke-width="2" filter="url(#glow)"/>
+<text x="1225.0" y="311.5" text-anchor="middle" font-size="10" fill="#fff">整流二极管</text>
+<rect x="1250" y="290" width="150" height="35" rx="6" fill="#1a1a3e" stroke="#00ff88" stroke-width="2" filter="url(#glow)"/>
+<text x="1325.0" y="311.5" text-anchor="middle" font-size="10" fill="#fff">开关二极管</text>
+<rect x="1150" y="290" width="150" height="35" rx="6" fill="#1a1a3e" stroke="#00ff88" stroke-width="2" filter="url(#glow)"/>
+<text x="1225.0" y="311.5" text-anchor="middle" font-size="10" fill="#fff">稳压二极管</text>
+<rect x="1250" y="290" width="150" height="35" rx="6" fill="#1a1a3e" stroke="#00ff88" stroke-width="2" filter="url(#glow)"/>
+<text x="1325.0" y="311.5" text-anchor="middle" font-size="10" fill="#fff">肖特基二极管</text>
+<rect x="1250" y="210" width="150" height="35" rx="6" fill="#1a1a3e" stroke="#ff006e" stroke-width="2" filter="url(#glow)"/>
+<text x="1325.0" y="231.5" text-anchor="middle" font-size="10" fill="#fff">晶体管</text>
+<rect x="1150" y="290" width="150" height="35" rx="6" fill="#1a1a3e" stroke="#00ff88" stroke-width="2" filter="url(#glow)"/>
+<text x="1225.0" y="311.5" text-anchor="middle" font-size="10" fill="#fff">双极型晶体管</text>
+<rect x="1250" y="290" width="150" height="35" rx="6" fill="#1a1a3e" stroke="#00ff88" stroke-width="2" filter="url(#glow)"/>
+<text x="1325.0" y="311.5" text-anchor="middle" font-size="10" fill="#fff">场效应晶体管</text>
+<rect x="1150" y="290" width="150" height="35" rx="6" fill="#1a1a3e" stroke="#00ff88" stroke-width="2" filter="url(#glow)"/>
+<text x="1225.0" y="311.5" text-anchor="middle" font-size="10" fill="#fff">绝缘栅双极晶体管</text>
+<rect x="1150" y="210" width="150" height="35" rx="6" fill="#1a1a3e" stroke="#ff006e" stroke-width="2" filter="url(#glow)"/>
+<text x="1225.0" y="231.5" text-anchor="middle" font-size="10" fill="#fff">晶闸管</text>
+<rect x="1150" y="290" width="150" height="35" rx="6" fill="#1a1a3e" stroke="#00ff88" stroke-width="2" filter="url(#glow)"/>
+<text x="1225.0" y="311.5" text-anchor="middle" font-size="10" fill="#fff">单向晶闸管</text>
+<rect x="1250" y="290" width="150" height="35" rx="6" fill="#1a1a3e" stroke="#00ff88" stroke-width="2" filter="url(#glow)"/>
+<text x="1325.0" y="311.5" text-anchor="middle" font-size="10" fill="#fff">双向晶闸管</text>
+<rect x="1250" y="210" width="150" height="35" rx="6" fill="#1a1a3e" stroke="#ff006e" stroke-width="2" filter="url(#glow)"/>
+<text x="1325.0" y="231.5" text-anchor="middle" font-size="10" fill="#fff">功率器件</text>
+<rect x="1150" y="290" width="150" height="35" rx="6" fill="#1a1a3e" stroke="#00ff88" stroke-width="2" filter="url(#glow)"/>
+<text x="1225.0" y="311.5" text-anchor="middle" font-size="10" fill="#fff">功率二极管</text>
+<rect x="1250" y="290" width="150" height="35" rx="6" fill="#1a1a3e" stroke="#00ff88" stroke-width="2" filter="url(#glow)"/>
+<text x="1325.0" y="311.5" text-anchor="middle" font-size="10" fill="#fff">功率晶体管</text>
+<rect x="1150" y="290" width="150" height="35" rx="6" fill="#1a1a3e" stroke="#00ff88" stroke-width="2" filter="url(#glow)"/>
+<text x="1225.0" y="311.5" text-anchor="middle" font-size="10" fill="#fff">功率模块</text>
+<rect x="1420" y="130" width="150" height="35" rx="6" fill="#1a1a3e" stroke="#7b2cbf" stroke-width="2" filter="url(#glow)"/>
+<text x="1495.0" y="151.5" text-anchor="middle" font-size="10" fill="#fff">光电子器件</text>
+<rect x="1370" y="210" width="150" height="35" rx="6" fill="#1a1a3e" stroke="#ff006e" stroke-width="2" filter="url(#glow)"/>
+<text x="1445.0" y="231.5" text-anchor="middle" font-size="10" fill="#fff">发光器件</text>
+<rect x="1370" y="290" width="150" height="35" rx="6" fill="#1a1a3e" stroke="#00ff88" stroke-width="2" filter="url(#glow)"/>
+<text x="1445.0" y="311.5" text-anchor="middle" font-size="10" fill="#fff">LED 芯片</text>
+<rect x="1470" y="290" width="150" height="35" rx="6" fill="#1a1a3e" stroke="#00ff88" stroke-width="2" filter="url(#glow)"/>
+<text x="1545.0" y="311.5" text-anchor="middle" font-size="10" fill="#fff">激光二极管</text>
+<rect x="1470" y="210" width="150" height="35" rx="6" fill="#1a1a3e" stroke="#ff006e" stroke-width="2" filter="url(#glow)"/>
+<text x="1545.0" y="231.5" text-anchor="middle" font-size="10" fill="#fff">光探测器件</text>
+<rect x="1370" y="290" width="150" height="35" rx="6" fill="#1a1a3e" stroke="#00ff88" stroke-width="2" filter="url(#glow)"/>
+<text x="1445.0" y="311.5" text-anchor="middle" font-size="10" fill="#fff">光电二极管</text>
+<rect x="1470" y="290" width="150" height="35" rx="6" fill="#1a1a3e" stroke="#00ff88" stroke-width="2" filter="url(#glow)"/>
+<text x="1545.0" y="311.5" text-anchor="middle" font-size="10" fill="#fff">光电晶体管</text>
+<rect x="1370" y="290" width="150" height="35" rx="6" fill="#1a1a3e" stroke="#00ff88" stroke-width="2" filter="url(#glow)"/>
+<text x="1445.0" y="311.5" text-anchor="middle" font-size="10" fill="#fff">雪崩光电二极管</text>
+<rect x="1370" y="210" width="150" height="35" rx="6" fill="#1a1a3e" stroke="#ff006e" stroke-width="2" filter="url(#glow)"/>
+<text x="1445.0" y="231.5" text-anchor="middle" font-size="10" fill="#fff">图像传感器</text>
+<rect x="1370" y="290" width="150" height="35" rx="6" fill="#1a1a3e" stroke="#00ff88" stroke-width="2" filter="url(#glow)"/>
+<text x="1445.0" y="311.5" text-anchor="middle" font-size="10" fill="#fff">CCD 图像传感器</text>
+<rect x="1470" y="290" width="150" height="35" rx="6" fill="#1a1a3e" stroke="#00ff88" stroke-width="2" filter="url(#glow)"/>
+<text x="1545.0" y="311.5" text-anchor="middle" font-size="10" fill="#fff">CMOS 图像传感器</text>
+<rect x="1470" y="210" width="150" height="35" rx="6" fill="#1a1a3e" stroke="#ff006e" stroke-width="2" filter="url(#glow)"/>
+<text x="1545.0" y="231.5" text-anchor="middle" font-size="10" fill="#fff">光通信器件</text>
+<rect x="1370" y="290" width="150" height="35" rx="6" fill="#1a1a3e" stroke="#00ff88" stroke-width="2" filter="url(#glow)"/>
+<text x="1445.0" y="311.5" text-anchor="middle" font-size="10" fill="#fff">光发射组件</text>
+<rect x="1470" y="290" width="150" height="35" rx="6" fill="#1a1a3e" stroke="#00ff88" stroke-width="2" filter="url(#glow)"/>
+<text x="1545.0" y="311.5" text-anchor="middle" font-size="10" fill="#fff">光接收组件</text>
+<rect x="1370" y="290" width="150" height="35" rx="6" fill="#1a1a3e" stroke="#00ff88" stroke-width="2" filter="url(#glow)"/>
+<text x="1445.0" y="311.5" text-anchor="middle" font-size="10" fill="#fff">光收发组件</text>
+<rect x="1640" y="130" width="150" height="35" rx="6" fill="#1a1a3e" stroke="#7b2cbf" stroke-width="2" filter="url(#glow)"/>
+<text x="1715.0" y="151.5" text-anchor="middle" font-size="10" fill="#fff">半导体应用</text>
+<rect x="1590" y="210" width="150" height="35" rx="6" fill="#1a1a3e" stroke="#ff006e" stroke-width="2" filter="url(#glow)"/>
+<text x="1665.0" y="231.5" text-anchor="middle" font-size="10" fill="#fff">消费电子</text>
+<rect x="1590" y="290" width="150" height="35" rx="6" fill="#1a1a3e" stroke="#00ff88" stroke-width="2" filter="url(#glow)"/>
+<text x="1665.0" y="311.5" text-anchor="middle" font-size="10" fill="#fff">智能手机</text>
+<rect x="1690" y="290" width="150" height="35" rx="6" fill="#1a1a3e" stroke="#00ff88" stroke-width="2" filter="url(#glow)"/>
+<text x="1765.0" y="311.5" text-anchor="middle" font-size="10" fill="#fff">平板电脑</text>
+<rect x="1590" y="290" width="150" height="35" rx="6" fill="#1a1a3e" stroke="#00ff88" stroke-width="2" filter="url(#glow)"/>
+<text x="1665.0" y="311.5" text-anchor="middle" font-size="10" fill="#fff">可穿戴设备</text>
+<rect x="1690" y="290" width="150" height="35" rx="6" fill="#1a1a3e" stroke="#00ff88" stroke-width="2" filter="url(#glow)"/>
+<text x="1765.0" y="311.5" text-anchor="middle" font-size="10" fill="#fff">智能家居</text>
+<rect x="1690" y="210" width="150" height="35" rx="6" fill="#1a1a3e" stroke="#ff006e" stroke-width="2" filter="url(#glow)"/>
+<text x="1765.0" y="231.5" text-anchor="middle" font-size="10" fill="#fff">计算机</text>
+<rect x="1590" y="290" width="150" height="35" rx="6" fill="#1a1a3e" stroke="#00ff88" stroke-width="2" filter="url(#glow)"/>
+<text x="1665.0" y="311.5" text-anchor="middle" font-size="10" fill="#fff">个人电脑</text>
+<rect x="1690" y="290" width="150" height="35" rx="6" fill="#1a1a3e" stroke="#00ff88" stroke-width="2" filter="url(#glow)"/>
+<text x="1765.0" y="311.5" text-anchor="middle" font-size="10" fill="#fff">服务器</text>
+<rect x="1590" y="290" width="150" height="35" rx="6" fill="#1a1a3e" stroke="#00ff88" stroke-width="2" filter="url(#glow)"/>
+<text x="1665.0" y="311.5" text-anchor="middle" font-size="10" fill="#fff">工作站</text>
+<rect x="1590" y="210" width="150" height="35" rx="6" fill="#1a1a3e" stroke="#ff006e" stroke-width="2" filter="url(#glow)"/>
+<text x="1665.0" y="231.5" text-anchor="middle" font-size="10" fill="#fff">通信设备</text>
+<rect x="1590" y="290" width="150" height="35" rx="6" fill="#1a1a3e" stroke="#00ff88" stroke-width="2" filter="url(#glow)"/>
+<text x="1665.0" y="311.5" text-anchor="middle" font-size="10" fill="#fff">基站设备</text>
+<rect x="1690" y="290" width="150" height="35" rx="6" fill="#1a1a3e" stroke="#00ff88" stroke-width="2" filter="url(#glow)"/>
+<text x="1765.0" y="311.5" text-anchor="middle" font-size="10" fill="#fff">光传输设备</text>
+<rect x="1590" y="290" width="150" height="35" rx="6" fill="#1a1a3e" stroke="#00ff88" stroke-width="2" filter="url(#glow)"/>
+<text x="1665.0" y="311.5" text-anchor="middle" font-size="10" fill="#fff">网络路由器</text>
+<rect x="1690" y="210" width="150" height="35" rx="6" fill="#1a1a3e" stroke="#ff006e" stroke-width="2" filter="url(#glow)"/>
+<text x="1765.0" y="231.5" text-anchor="middle" font-size="10" fill="#fff">汽车电子</text>
+<rect x="1590" y="290" width="150" height="35" rx="6" fill="#1a1a3e" stroke="#00ff88" stroke-width="2" filter="url(#glow)"/>
+<text x="1665.0" y="311.5" text-anchor="middle" font-size="10" fill="#fff">动力控制系统</text>
+<rect x="1690" y="290" width="150" height="35" rx="6" fill="#1a1a3e" stroke="#00ff88" stroke-width="2" filter="url(#glow)"/>
+<text x="1765.0" y="311.5" text-anchor="middle" font-size="10" fill="#fff">车身电子系统</text>
+<rect x="1590" y="290" width="150" height="35" rx="6" fill="#1a1a3e" stroke="#00ff88" stroke-width="2" filter="url(#glow)"/>
+<text x="1665.0" y="311.5" text-anchor="middle" font-size="10" fill="#fff">智能驾驶系统</text>
+<rect x="1690" y="290" width="150" height="35" rx="6" fill="#1a1a3e" stroke="#00ff88" stroke-width="2" filter="url(#glow)"/>
+<text x="1765.0" y="311.5" text-anchor="middle" font-size="10" fill="#fff">车载信息娱乐系统</text>
+<rect x="1590" y="210" width="150" height="35" rx="6" fill="#1a1a3e" stroke="#ff006e" stroke-width="2" filter="url(#glow)"/>
+<text x="1665.0" y="231.5" text-anchor="middle" font-size="10" fill="#fff">工业电子</text>
+<rect x="1590" y="290" width="150" height="35" rx="6" fill="#1a1a3e" stroke="#00ff88" stroke-width="2" filter="url(#glow)"/>
+<text x="1665.0" y="311.5" text-anchor="middle" font-size="10" fill="#fff">工业自动化</text>
+<rect x="1690" y="290" width="150" height="35" rx="6" fill="#1a1a3e" stroke="#00ff88" stroke-width="2" filter="url(#glow)"/>
+<text x="1765.0" y="311.5" text-anchor="middle" font-size="10" fill="#fff">电力电子</text>
+<rect x="1590" y="290" width="150" height="35" rx="6" fill="#1a1a3e" stroke="#00ff88" stroke-width="2" filter="url(#glow)"/>
+<text x="1665.0" y="311.5" text-anchor="middle" font-size="10" fill="#fff">仪器仪表</text>
+<rect x="1690" y="210" width="150" height="35" rx="6" fill="#1a1a3e" stroke="#ff006e" stroke-width="2" filter="url(#glow)"/>
+<text x="1765.0" y="231.5" text-anchor="middle" font-size="10" fill="#fff">医疗电子</text>
+<rect x="1590" y="290" width="150" height="35" rx="6" fill="#1a1a3e" stroke="#00ff88" stroke-width="2" filter="url(#glow)"/>
+<text x="1665.0" y="311.5" text-anchor="middle" font-size="10" fill="#fff">医疗影像设备</text>
+<rect x="1690" y="290" width="150" height="35" rx="6" fill="#1a1a3e" stroke="#00ff88" stroke-width="2" filter="url(#glow)"/>
+<text x="1765.0" y="311.5" text-anchor="middle" font-size="10" fill="#fff">可穿戴医疗设备</text>
+<rect x="1590" y="290" width="150" height="35" rx="6" fill="#1a1a3e" stroke="#00ff88" stroke-width="2" filter="url(#glow)"/>
+<text x="1665.0" y="311.5" text-anchor="middle" font-size="10" fill="#fff">植入式医疗设备</text>
+</svg>

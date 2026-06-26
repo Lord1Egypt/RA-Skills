@@ -1,0 +1,16 @@
+{
+  "odoo": {
+    "url": "https://huo15.com",
+    "db": "huo15",
+    "uid": 5,
+    "password": "huo15.com"
+  },
+  "visibility": {
+    "default": "department:技术部",
+    "departments": {
+      "技术部": [2, 3, 5],
+      "销售部": [7, 8, 9],
+      "管理层": [1]
+    }
+  }
+}

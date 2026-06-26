@@ -1,0 +1,23 @@
+{
+	"type": "function",
+	"function": {
+		"name": "_knowledgebase_search",
+		"description": "Search knowledge base module by keywords",
+		"parameters": {
+			"type": "object",
+			"properties": {
+				"moduleId": {
+					"type": "string",
+					"description": "Knowledge base module ID, need to call tool `_query_app_define` first to get knowledge base module ID"
+				},
+				"keyword": {
+					"type": "string",
+					"description": "Search keyword"
+				}
+			},
+			"required": [
+				"moduleId", "keyword"
+			]
+		}
+	}
+}

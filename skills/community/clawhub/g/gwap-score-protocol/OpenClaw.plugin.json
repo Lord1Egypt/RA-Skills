@@ -1,0 +1,23 @@
+{
+  "schemaVersion": "1.0",
+  "name": "gwap-score-protocol",
+  "displayName": "GwapScore Protocol",
+  "version": "1.0.1",
+  "description": "GwapScore Protocol v2 instruction skill for Solana onchain trust scoring.",
+  "author": "gwapupward-hub",
+  "license": "MIT-0",
+  "entry": "SKILL.md",
+  "type": "skill",
+  "tags": [
+    "latest",
+    "solana",
+    "wallet-intelligence",
+    "trust-score",
+    "gwapscore"
+  ],
+  "permissions": {
+    "filesystem": "read",
+    "network": "none",
+    "secrets": "none"
+  }
+}

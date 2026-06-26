@@ -1,0 +1,11 @@
+{
+  "type": "function",
+  "function": {
+    "name": "_website_read_informat_doc",
+    "description": "Read website resource and component designer documentation.",
+    "parameters": {
+      "type": "object",
+      "properties": {}
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "type": "function",
+  "function": {
+    "name": "_schedule_doc",
+    "description": "Query Informat scheduled task related documentation.",
+    "parameters": {
+      "type": "object",
+      "properties": {},
+      "additionalProperties": false
+    }
+  }
+}

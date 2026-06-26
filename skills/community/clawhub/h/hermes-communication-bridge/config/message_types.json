@@ -1,0 +1,10 @@
+{
+  "message": {"description": "普通文本消息", "handler": "handle_general_message"},
+  "task": {"description": "任务请求", "handler": "handle_task"},
+  "query": {"description": "查询请求", "handler": "handle_query"},
+  "response": {"description": "查询响应", "handler": "handle_response"},
+  "status": {"description": "状态更新", "handler": "handle_status"},
+  "file": {"description": "文件传输", "handler": "handle_file"},
+  "command": {"description": "系统命令", "handler": "handle_command"},
+  "alert": {"description": "警报通知", "handler": "handle_alert"}
+}

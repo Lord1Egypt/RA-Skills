@@ -1,0 +1,28 @@
+{
+  "type": "function",
+  "function": {
+    "name": "_thread_create",
+    "description": "Create a session. Returns session ID after calling.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Session name, should clearly express the purpose of the session",
+          "minLength": 4,
+          "maxLength": 500
+        },
+		"moduleId": {
+          "type": "string",
+          "description": "Can only fill in designer-ai-agent-app-setup",
+		  "default":"designer-ai-agent-app-setup"
+        },
+		"aiModuleId": {
+          "type": "string",
+          "description": "Informat AI agent ID"
+        }
+      },
+      "required": ["name"]
+    }
+  }
+}

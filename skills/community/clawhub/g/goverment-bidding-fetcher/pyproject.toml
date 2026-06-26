@@ -1,0 +1,16 @@
+[project]
+name = "govb-fetcher"
+version = "0.1.0"
+description = "政府采购商机自动抓取工具"
+requires-python = ">=3.8"
+dependencies = [
+    "requests",
+    "openpyxl",
+    "python-dotenv",
+]
+
+[project.scripts]
+govb-fetcher = "govb_fetcher.fetcher:main"
+
+[tool.setuptools.packages.find]
+where = ["."]

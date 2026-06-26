@@ -1,0 +1,18 @@
+{
+  "mcpServers": {
+    "hilight-video-generate": {
+      "baseUrl": "http://localhost:10620/mcp"
+    }
+  },
+  "setup": {
+    "prompts": [
+      {
+        "key": "VIDEO_API_KEY",
+        "label": "视频生成平台 API Key（Bearer Token）",
+        "hint": "从平台控制台获取，例如 sk-xxxxxxxx",
+        "secret": true,
+        "writeEnvFile": ".env"
+      }
+    ]
+  }
+}

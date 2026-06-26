@@ -1,0 +1,24 @@
+{
+  "type": "function",
+  "function": {
+    "name": "_query_table_field_designer",
+    "description": "Query detailed configuration information of a field in the specified data table. Can obtain all information of the data table field.\n\nParameter description:\n- tableId: Data table ID. This value comes from the id field in the return result of calling the _query_table_list_designer interface, **forbidden to fabricate by yourself**.\n- fieldId: Field ID. This value comes from the field id in the fieldList of the return result of calling the _query_table_define_designer interface.\n\nReturn description:\n- Returns the complete configuration information of the specified data table field.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "tableId": {
+          "description": "Data table ID",
+          "type": "string"
+        },
+        "fieldId": {
+          "description": "Field ID",
+          "type": "string"
+        }
+      },
+      "required": [
+        "tableId",
+        "fieldId"
+      ]
+    }
+  }
+}

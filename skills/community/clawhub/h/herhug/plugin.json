@@ -1,0 +1,94 @@
+{
+  "name": "herhug-sk",
+  "version": "2.0.0",
+  "description": "心理学评分引擎 - 让AI从专业角度理解用户，越用越懂你",
+  "author": "your-github-username",
+  "license": "MIT",
+  "keywords": [
+    "psychology", "emotion", "adaptive", "personality",
+    "ocean", "hexaco", "emotional-rhythm", "stress-coping",
+    "openclaw", "ai-empathy", "herHug", "relationship", "response-style"
+  ],
+  "skills": [
+    {
+      "action": "get-scoring-standards",
+      "description": "获取所有心理学评分标准",
+      "parameters": []
+    },
+    {
+      "action": "save-score",
+      "description": "保存大模型分析后的用户评分（自动评估信息量、更新关系、生成风格建议）",
+      "parameters": [
+        {
+          "name": "scoreData",
+          "type": "object",
+          "required": true,
+          "description": "符合评分标准的完整评分数据，包含 ocean、emotion、flexibility、coping 等维度"
+        }
+      ]
+    },
+    {
+      "action": "get-current-state",
+      "description": "获取用户当前心理状态（含关系维度、情绪复杂度、回复风格建议、待办关怀）",
+      "parameters": []
+    },
+    {
+      "action": "get-daily-rhythm-data",
+      "description": "获取今日原始数据供大模型分析情绪节律",
+      "parameters": []
+    },
+    {
+      "action": "save-daily-rhythm",
+      "description": "保存大模型分析后的每日情绪节律",
+      "parameters": [
+        {
+          "name": "rhythmAnalysis",
+          "type": "object",
+          "required": true
+        }
+      ]
+    },
+    {
+      "action": "mark-followup-done",
+      "description": "标记主动关怀任务已完成",
+      "parameters": [
+        {
+          "name": "memoryId",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "resolution",
+          "type": "string",
+          "required": false
+        }
+      ]
+    },
+    {
+      "action": "get-confidence-report",
+      "description": "获取各维度置信度报告",
+      "parameters": []
+    },
+    {
+      "action": "get-response-style",
+      "description": "获取当前回复风格建议（基于人格、情绪、关系状态）",
+      "parameters": []
+    },
+    {
+      "action": "evaluate-input",
+      "description": "评估输入信息量（判断是否足够进行人格/情绪分析）",
+      "parameters": [
+        {
+          "name": "content",
+          "type": "string",
+          "required": true,
+          "description": "用户输入内容"
+        }
+      ]
+    }
+  ],
+  "permissions": [
+    "file.read",
+    "file.write"
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "type": "function",
+  "function": {
+    "name": "_read_informat_dashboard_document",
+    "description": "Query Informat dashboard chart documentation. It provides all Informat platform dashboard chart documentation, return value is String",
+    "parameters": {
+      "type": "object",
+      "properties": {}
+    }
+  }
+}

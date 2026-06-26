@@ -1,0 +1,45 @@
+{
+  "date": "2024-04-28",
+  "user_id": "default",
+  "user_name": "繁哥",
+  "source": "体检报告",
+  "indicators": {
+    "cardiovascular": {
+      "total_cholesterol": {"value": 4.72, "unit": "mmol/L", "ref": "2.85-5.70", "status": "normal"},
+      "ldl": {"value": 2.94, "unit": "mmol/L", "ref": "1.90-4.10", "status": "normal"},
+      "hdl": {"value": 1.28, "unit": "mmol/L", "ref": "1.03-1.55", "status": "normal"},
+      "triglycerides": {"value": 1.54, "unit": "mmol/L", "ref": "0.45-1.70", "status": "normal"},
+      "lipoprotein_a": {"value": 628.0, "unit": "mg/L", "ref": "0-300", "status": "high"},
+      "blood_pressure": {"value": "99/64", "unit": "mmHg", "ref": "<120/80", "status": "normal"}
+    },
+    "liver": {
+      "alt": {"value": 12.0, "unit": "U/L", "ref": "9-50", "status": "normal"},
+      "ast": {"value": 18.6, "unit": "U/L", "ref": "11-40", "status": "normal"},
+      "total_bilirubin": {"value": 8.6, "unit": "μmol/L", "ref": "≤23", "status": "normal"},
+      "direct_bilirubin": {"value": 1.6, "unit": "μmol/L", "ref": "≤4", "status": "normal"},
+      "indirect_bilirubin": {"value": 7.00, "unit": "μmol/L", "ref": "≤19", "status": "normal"}
+    },
+    "metabolic": {
+      "uric_acid": {"value": 434, "unit": "μmol/L", "ref": "208-428", "status": "high"}
+    },
+    "other": {
+      "bmi": {"value": 24.3, "unit": "kg/m²", "ref": "18.5-24.0", "status": "high"},
+      "weight": {"value": 69.0, "unit": "kg", "ref": "-", "status": "normal"},
+      "height": {"value": 168.3, "unit": "cm", "ref": "-", "status": "normal"},
+      "pulse": {"value": 55, "unit": "bpm", "ref": "60-100", "status": "low"}
+    }
+  },
+  "imaging": {
+    "heart": {
+      "finding": "肺动脉瓣轻度返流 + 三尖瓣轻度返流",
+      "severity": "mild"
+    }
+  },
+  "abnormalities": [
+    {"indicator": "lipoprotein_a", "value": 628.0, "severity": "mild", "note": "脂蛋白升高"},
+    {"indicator": "uric_acid", "value": 434, "severity": "mild", "note": "高尿酸血症"},
+    {"indicator": "bmi", "value": 24.3, "severity": "mild", "note": "超重"},
+    {"indicator": "pulse", "value": 55, "severity": "normal", "note": "窦性心动过缓伴不齐"},
+    {"indicator": "thyroid_hormone", "value": 167.14, "severity": "mild", "note": "甲状腺素偏高"}
+  ]
+}

@@ -1,0 +1,290 @@
+{
+  "category": "行业主题",
+  "sub_category": "医药医疗",
+  "description": "理财通行业主题-医药医疗指数名单",
+  "count": 47,
+  "indices": [
+    {
+      "code": "000037.SH",
+      "name": "上证医药卫生行业指数",
+      "sub_category": "医药医疗",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=000037"
+    },
+    {
+      "code": "000683.SH",
+      "name": "上证科创板生物医药指数",
+      "sub_category": "医药医疗",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=000683"
+    },
+    {
+      "code": "000808.CSI",
+      "name": "中证申万医药生物指数",
+      "sub_category": "医药医疗",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=000808"
+    },
+    {
+      "code": "000814.SH",
+      "name": "中证细分医药产业主题指数",
+      "sub_category": "医药医疗",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=000814"
+    },
+    {
+      "code": "000841.CSI",
+      "name": "中证800制药与生物科技指数",
+      "sub_category": "医药医疗",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=000841"
+    },
+    {
+      "code": "000913.SH",
+      "name": "沪深300医药卫生指数",
+      "sub_category": "医药医疗",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=000913"
+    },
+    {
+      "code": "000933.SH",
+      "name": "中证医药卫生指数",
+      "sub_category": "医药医疗",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=000933"
+    },
+    {
+      "code": "000978.CSI",
+      "name": "中证医药100指数",
+      "sub_category": "医药医疗",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=000978"
+    },
+    {
+      "code": "000991.SH",
+      "name": "中证全指医药卫生指数",
+      "sub_category": "医药医疗",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=000991"
+    },
+    {
+      "code": "399275.SZ",
+      "name": "创业板医药卫生指数",
+      "sub_category": "医药医疗",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=399275"
+    },
+    {
+      "code": "399394.SZ",
+      "name": "国证医药指数",
+      "sub_category": "医药医疗",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=399394"
+    },
+    {
+      "code": "399441.SZ",
+      "name": "国证生物医药",
+      "sub_category": "医药医疗",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=399441"
+    },
+    {
+      "code": "399812.SZ",
+      "name": "中证养老产业指数",
+      "sub_category": "医药医疗",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=399812"
+    },
+    {
+      "code": "399989.SZ",
+      "name": "中证医疗指数",
+      "sub_category": "医药医疗",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=399989"
+    },
+    {
+      "code": "399993.SZ",
+      "name": "中证万得生物科技指数",
+      "sub_category": "医药医疗",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=399993"
+    },
+    {
+      "code": "930641.CSI",
+      "name": "中证中药指数",
+      "sub_category": "医药医疗",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=930641"
+    },
+    {
+      "code": "930719.CSI",
+      "name": "中证精准医疗主题指数",
+      "sub_category": "医药医疗",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=930719"
+    },
+    {
+      "code": "930720.CSI",
+      "name": "中证互联网医疗主题指数",
+      "sub_category": "医药医疗",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=930720"
+    },
+    {
+      "code": "930726.CSI",
+      "name": "中证生物医药指数",
+      "sub_category": "医药医疗",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=930726"
+    },
+    {
+      "code": "930743.CSI",
+      "name": "中证生物科技主题指数",
+      "sub_category": "医药医疗",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=930743"
+    },
+    {
+      "code": "930791.CSI",
+      "name": "中证医药主题指数",
+      "sub_category": "医药医疗",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=930791"
+    },
+    {
+      "code": "930965.CSI",
+      "name": "中证港股通医药卫生综合指数(HKD)",
+      "sub_category": "医药医疗",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=930965"
+    },
+    {
+      "code": "931140.CSI",
+      "name": "中证医药50指数",
+      "sub_category": "医药医疗",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=931140"
+    },
+    {
+      "code": "931152.CSI",
+      "name": "中证创新药产业指数",
+      "sub_category": "医药医疗",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=931152"
+    },
+    {
+      "code": "931166.CSI",
+      "name": "中证医药健康100策略指数",
+      "sub_category": "医药医疗",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=931166"
+    },
+    {
+      "code": "931250.CSI",
+      "name": "中证港股通创新药指数",
+      "sub_category": "医药医疗",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=931250"
+    },
+    {
+      "code": "931409.CSI",
+      "name": "中证沪港深创新药产业指数",
+      "sub_category": "医药医疗",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=931409"
+    },
+    {
+      "code": "931484.CSI",
+      "name": "中证医药及医疗器械创新指数",
+      "sub_category": "医药医疗",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=931484"
+    },
+    {
+      "code": "931787CNY00.CSI",
+      "name": "中证香港创新药指数(CNY)",
+      "sub_category": "医药医疗",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=931787CNY00"
+    },
+    {
+      "code": "931992.CSI",
+      "name": "中证疫苗与生物技术指数",
+      "sub_category": "医药医疗",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=931992"
+    },
+    {
+      "code": "932069.CSI",
+      "name": "中证港股通医疗主题指数",
+      "sub_category": "医药医疗",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=932069"
+    },
+    {
+      "code": "932217.CSI",
+      "name": "中证制药指数",
+      "sub_category": "医药医疗",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=932217"
+    },
+    {
+      "code": "950161.CSI",
+      "name": "上证科创板创新药指数",
+      "sub_category": "医药医疗",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=950161"
+    },
+    {
+      "code": "980015.CNI",
+      "name": "国证疫苗与生物科技指数",
+      "sub_category": "医药医疗",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=980015"
+    },
+    {
+      "code": "980016.CNI",
+      "name": "国证公共卫生与医疗健康指数",
+      "sub_category": "医药医疗",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=980016"
+    },
+    {
+      "code": "987018.CNI",
+      "name": "国证港股通创新药指数",
+      "sub_category": "医药医疗",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=987018"
+    },
+    {
+      "code": "h30178.CSI",
+      "name": "中证全指医疗保健设备与服务指数",
+      "sub_category": "医药医疗",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=h30178"
+    },
+    {
+      "code": "h30217.CSI",
+      "name": "中证全指医疗器械指数",
+      "sub_category": "医药医疗",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=h30217"
+    },
+    {
+      "code": "h30344.CSI",
+      "name": "中证健康产业指数",
+      "sub_category": "医药医疗",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=h30344"
+    },
+    {
+      "code": "h30463.CSI",
+      "name": "中证沪港深500医药卫生指数",
+      "sub_category": "医药医疗",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=h30463"
+    },
+    {
+      "code": "HSBIO.HI",
+      "name": "恒生生物科技指数",
+      "sub_category": "医药医疗",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=HSBIO"
+    },
+    {
+      "code": "HSHCI.HI",
+      "name": "恒生医疗保健指数",
+      "sub_category": "医药医疗",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=HSHCI"
+    },
+    {
+      "code": "HSIDI.HI",
+      "name": "恒生创新药指数",
+      "sub_category": "医药医疗",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=HSIDI"
+    },
+    {
+      "code": "HSSCHI.HI",
+      "name": "恒生港股通创新药及医疗保健指数",
+      "sub_category": "医药医疗",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=HSSCHI"
+    },
+    {
+      "code": "HSSCID.HI",
+      "name": "恒生港股通创新药指数",
+      "sub_category": "医药医疗",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=HSSCID"
+    },
+    {
+      "code": "HSSCPB.HI",
+      "name": "恒生港股通创新药精选指数",
+      "sub_category": "医药医疗",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=HSSCPB"
+    },
+    {
+      "code": "HSSSHID.HI",
+      "name": "恒生沪深港创新药精选50指数",
+      "sub_category": "医药医疗",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=HSSSHID"
+    }
+  ]
+}

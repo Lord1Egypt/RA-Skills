@@ -1,0 +1,26 @@
+# GraphRAG Builder — Python dependencies
+# Install with: pip install -r requirements.txt --break-system-packages
+
+# --- M1: Crawler ---
+requests>=2.31.0
+beautifulsoup4>=4.12.0
+lxml>=4.9.0
+playwright>=1.40.0          # Playwright install chromium also required (run once)
+
+# --- M2: Content Extraction ---
+html2text>=2020.1.16
+youtube-transcript-api>=0.6.2
+pdfminer.six>=20221105
+
+# --- M3: Graph ---
+networkx>=3.2.0
+
+# --- M4: Embeddings ---
+# Note: chromadb is NOT used — pure numpy index, no database dependency.
+# numpy is already a transitive dep of sentence-transformers.
+numpy>=1.24.0
+sentence-transformers>=2.3.0
+
+# --- M5: MCP Server ---
+mcp>=1.0.0
+anthropic>=0.40.0           # For concept extraction (M2 Phase 3)

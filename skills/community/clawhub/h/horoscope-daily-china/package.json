@@ -1,0 +1,35 @@
+{
+  "name": "daily-horoscope",
+  "version": "1.2.1",
+  "description": "Daily constellation fortune image generator with TianAPI - Create 12 zodiac fortune images for social media publishing",
+  "main": "scripts/generate_horoscope_tianapi.py",
+  "keywords": [
+    "horoscope",
+    "constellation",
+    "zodiac",
+    "fortune",
+    "tianapi",
+    "image-generator",
+    "social-media",
+    "china",
+    "xiaohongshu",
+    "douyin"
+  ],
+  "author": "Digital Transformation Team",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-org/daily-horoscope"
+  },
+  "engines": {
+    "python": ">=3.8"
+  },
+  "dependencies": {
+    "pillow": ">=9.0.0",
+    "requests": ">=2.25.0"
+  },
+  "scripts": {
+    "generate": "python scripts/generate_horoscope_tianapi.py",
+    "test": "python -m pytest tests/"
+  }
+}

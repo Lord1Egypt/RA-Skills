@@ -1,0 +1,4 @@
+interface:
+  display_name: "Index Optimization"
+  short_description: "Support full/single-query mode with index confirmation workflow"
+  default_prompt: "If query is not specified, run full mode to gather all query usages; if a specific query is provided, run single-query mode with existing-index check only. In both modes, justify create/drop index changes, get user confirmation, and validate with iterative explain."

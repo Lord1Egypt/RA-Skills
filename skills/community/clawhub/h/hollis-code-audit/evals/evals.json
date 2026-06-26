@@ -1,0 +1,49 @@
+{
+  "skill_name": "code-audit",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Audit the backend permission changes on the current branch. Read README and AGENTS first, derive audit principles, and use a non-development reviewer model if one is available. If none is available, say so clearly.",
+      "expected_output": "A read-only audit report with scope, intent sources, audit principles, independent review status, prioritized findings with evidence, and residual test gaps.",
+      "files": [],
+      "assertions": [
+        {"type": "contains", "text": "Audit Principles"},
+        {"type": "contains", "text": "Independent Review"},
+        {"type": "contains", "text": "Findings"}
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Run a security audit focused on file import, path restrictions, LLM or external network use, sensitive data leakage, and audit logs. Do not edit code.",
+      "expected_output": "A security-focused audit that examines trust boundaries, confidentiality, path traversal/import-root controls, external model/network policy, logs, and edge cases.",
+      "files": [],
+      "assertions": [
+        {"type": "contains", "text": "Scope"},
+        {"type": "contains", "text": "Independent Review"},
+        {"type": "contains", "text": "Residual Risk"}
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Use my specified subagent to run a PR audit, then locally validate its findings. Focus on whether the change drifts from the project's original intent.",
+      "expected_output": "An audit that honors the requested subagent route, validates candidate findings locally, derives project-specific principles first, and separates confirmed findings from assumptions.",
+      "files": [],
+      "assertions": [
+        {"type": "contains", "text": "Audit Principles"},
+        {"type": "contains", "text": "Independent Review"},
+        {"type": "contains", "text": "Evidence"}
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "Another agent already reviewed and changed the code using its own review skill. Use code-audit for another pass, do not overwrite its report, and focus on whether its findings are evidence-backed.",
+      "expected_output": "An inter-agent audit that treats the prior report as evidence, avoids conflict with the other skill, validates findings locally, preserves separate outputs, and reports disagreements explicitly.",
+      "files": [],
+      "assertions": [
+        {"type": "contains", "text": "Independent Review"},
+        {"type": "contains", "text": "Evidence"},
+        {"type": "contains", "text": "Residual Risk"}
+      ]
+    }
+  ]
+}

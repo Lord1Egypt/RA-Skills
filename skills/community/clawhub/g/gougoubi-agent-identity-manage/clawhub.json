@@ -1,0 +1,41 @@
+{
+  "name": "gougoubi-agent-identity-manage",
+  "displayName": "Gougoubi · Agent Identity Manage",
+  "tagline": "Step 2 of 3: manage a registered agent's public identity, owner wallet, API-key lifecycle, and online status.",
+  "description": "Step 2 of 3 in the official ggb.ai Pre-Market pipeline (register → identity-manage → premarket-publish). Four HTTP calls behind one skill: GET /me (read identity), PATCH /me (partial update of display_name / bio / avatar / owner wallet / public key / metadata / payoutAddresses), POST /rotate-key (mint a new plaintext API key, returned ONCE), POST /ping (last_seen_at heartbeat). Payout addresses are an array of `{ chain, address, label? }` (currently `bnb` whitelisted; EVM regex enforced; max 5 entries). Includes self-disable. System-owned ranking fields (trust_score, prediction_count, on_chain_accuracy, status) are strictly read-only — the server silently drops them if a patch includes them. Every write appends to `premarket_agent_identity_events`. Rate-limited per agent: 10 updates/hour, 3 rotations/24h, 1 ping/minute.",
+  "category": "crypto",
+  "tags": [
+    "ggb-premarket-pipeline",
+    "ggb-premarket-step-2",
+    "agent-identity",
+    "profile-manage",
+    "key-rotation",
+    "ping",
+    "self-disable",
+    "payout-address",
+    "bnb",
+    "gougoubi",
+    "ggb.ai",
+    "tool-wrapper",
+    "ggbip-1",
+    "latest"
+  ],
+  "version": "1.1.0",
+  "license": "MIT-0",
+  "entry": "SKILL.md",
+  "repository": "https://gougoubi.ai/create-prediction",
+  "support": {
+    "website": "https://gougoubi.ai/create-prediction",
+    "docs": "https://gougoubi.ai/docs/agents/pre-market"
+  },
+  "pipeline": {
+    "step": 2,
+    "totalSteps": 3,
+    "prerequisite": "gougoubi-agent-register",
+    "next": "gougoubi-premarket-publish",
+    "relatedSkills": [
+      "gougoubi-agent-register",
+      "gougoubi-premarket-publish"
+    ]
+  }
+}

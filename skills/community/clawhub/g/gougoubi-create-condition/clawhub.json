@@ -1,0 +1,25 @@
+{
+  "name": "gougoubi-create-condition",
+  "displayName": "Gougoubi Create Condition",
+  "tagline": "Create a Gougoubi condition from minimal input",
+  "description": "Use when a Gougoubi proposal already exists and the user wants to add a condition from proposalId plus conditionName, with deterministic defaults for deadline and trade deadline.",
+  "category": "crypto",
+  "tags": [
+    "latest",
+    "gougoubi",
+    "prediction-market",
+    "condition",
+    "evm",
+    "automation",
+    "workflow",
+    "generator",
+    "pbft"
+  ],
+  "version": "1.0.0",
+  "license": "MIT-0",
+  "entry": "SKILL.md",
+  "repository": "https://gougoubi.ai/premarket/proposals",
+  "support": {
+    "website": "https://gougoubi.ai/premarket/proposals"
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "env": ["BAIDU_APPID", "BAIDU_SECRET", "FEISHU_WEBHOOK"]
+  }
+}
+

@@ -1,0 +1,943 @@
+{
+  "metadata": {
+    "skill": "humanoid-robot-tracker",
+    "version": "1.0.0",
+    "updated": "2026-06-07",
+    "description": "Global humanoid robot deployment tracker: factory integration, competition rankings, key players, supply chain, regulatory landscape"
+  },
+  "key_players": [
+    {
+      "name": "Tesla Optimus (Gen 3)",
+      "company": "Tesla",
+      "country": "US",
+      "height_cm": 173,
+      "weight_kg": 56,
+      "payload_kg": 20,
+      "speed_kmh": 8,
+      "runtime_hours": 8,
+      "dof_hands": 22,
+      "battery_kwh": 2.3,
+      "sensors": [
+        "cameras",
+        "FSD chip",
+        "ultrasonic",
+        "IMU"
+      ],
+      "factory_deployed": 0,
+      "factory_target_2026": "500",
+      "factory_target_2027": "5000",
+      "price_est": "$20K-$30K",
+      "status": "internal testing",
+      "fremont_pilot": true
+    },
+    {
+      "name": "Figure 02",
+      "company": "Figure AI",
+      "country": "US",
+      "height_cm": 168,
+      "weight_kg": 60,
+      "payload_kg": 20,
+      "speed_kmh": 4.3,
+      "runtime_hours": 5,
+      "dof_hands": 16,
+      "battery_kwh": 2.2,
+      "sensors": [
+        "cameras",
+        "lidar",
+        "torque sensors"
+      ],
+      "factory_deployed": 2,
+      "factory_target_2026": "100",
+      "partners": [
+        "BMW Spartanburg",
+        "OpenAI"
+      ],
+      "price_est": "$50K+",
+      "funding": "675M",
+      "valuation": "2.6B"
+    },
+    {
+      "name": "Unitree H2 Plus",
+      "company": "Unitree Robotics",
+      "country": "CN",
+      "height_cm": 180,
+      "weight_kg": 70,
+      "payload_kg": 30,
+      "speed_kmh": 12,
+      "runtime_hours": 6,
+      "dof_hands": 12,
+      "battery_kwh": 2.5,
+      "partners": [
+        "NVIDIA Isaac GR00T"
+      ],
+      "factory_deployed": 50,
+      "factory_target_2026": "500",
+      "price_est": "$90K",
+      "status": "mass production",
+      "ipo_filing": true
+    },
+    {
+      "name": "Xiaomi CyberOne 2",
+      "company": "Xiaomi",
+      "country": "CN",
+      "height_cm": 177,
+      "weight_kg": 52,
+      "payload_kg": 15,
+      "speed_kmh": 4.5,
+      "runtime_hours": 4,
+      "dof_hands": 21,
+      "sensors": [
+        "Mi-Sense depth",
+        "audio array",
+        "OLED face"
+      ],
+      "factory_deployed": 10,
+      "factory_target_2026": "100",
+      "price_est": "$60K-$80K",
+      "competition_wins": [
+        "ICRA 2026 champion",
+        "CVPR 2026 champion"
+      ]
+    },
+    {
+      "name": "Atlas (Electric)",
+      "company": "Boston Dynamics/Hyundai",
+      "country": "US",
+      "height_cm": 150,
+      "weight_kg": 89,
+      "payload_kg": 25,
+      "speed_kmh": 9,
+      "runtime_hours": 3,
+      "dof_hands": 8,
+      "sensors": [
+        "custom stereo vision",
+        "IMU",
+        "torque control"
+      ],
+      "factory_deployed": 0,
+      "status": "R&D demo",
+      "price_est": "N/A"
+    },
+    {
+      "name": "Digit v4",
+      "company": "Agility Robotics",
+      "country": "US",
+      "height_cm": 175,
+      "weight_kg": 65,
+      "payload_kg": 16,
+      "speed_kmh": 5.5,
+      "runtime_hours": 4,
+      "dof_hands": 4,
+      "factory_deployed": 30,
+      "partners": [
+        "Amazon",
+        "GXO Logistics"
+      ],
+      "price_est": "$100K-$150K",
+      "robofab_capacity": "10K/yr"
+    },
+    {
+      "name": "Apptronik Apollo",
+      "company": "Apptronik",
+      "country": "US",
+      "height_cm": 173,
+      "weight_kg": 73,
+      "payload_kg": 25,
+      "speed_kmh": 4,
+      "runtime_hours": 4,
+      "dof_hands": 6,
+      "partners": [
+        "Mercedes-Benz",
+        "NASA"
+      ],
+      "factory_deployed": 5,
+      "price_est": "$80K"
+    },
+    {
+      "name": "UBTECH Walker S2",
+      "company": "UBTECH",
+      "country": "CN",
+      "height_cm": 170,
+      "weight_kg": 65,
+      "payload_kg": 15,
+      "speed_kmh": 5,
+      "runtime_hours": 4,
+      "factory_deployed": 20,
+      "partners": [
+        "BYD assembly line",
+        "NIO"
+      ],
+      "status": "auto factory pilot",
+      "price_est": "$70K"
+    },
+    {
+      "name": "Fourier GR-2",
+      "company": "Fourier Intelligence",
+      "country": "CN",
+      "height_cm": 175,
+      "weight_kg": 65,
+      "payload_kg": 50,
+      "speed_kmh": 5,
+      "runtime_hours": 2,
+      "dof_hands": 12,
+      "factory_deployed": 15,
+      "specialty": "high payload rehabilitation"
+    },
+    {
+      "name": "1X NEO Beta",
+      "company": "1X Technologies",
+      "country": "NO",
+      "height_cm": 165,
+      "weight_kg": 30,
+      "payload_kg": 20,
+      "speed_kmh": 12,
+      "runtime_hours": 4,
+      "dof_hands": 5,
+      "sensors": [
+        "embodied AI brain"
+      ],
+      "status": "home pilot testing",
+      "price_est": "$15K-$30K",
+      "funding": "123.5M",
+      "investors": [
+        "OpenAI",
+        "Tiger Global"
+      ]
+    },
+    {
+      "name": "Sanctuary AI Phoenix",
+      "company": "Sanctuary AI",
+      "country": "CA",
+      "height_cm": 170,
+      "weight_kg": 70,
+      "payload_kg": 25,
+      "speed_kmh": 5,
+      "runtime_hours": 5,
+      "dof_hands": 21,
+      "partners": [
+        "Magna International"
+      ],
+      "status": "pilots with auto parts"
+    },
+    {
+      "name": "Kepler Forerunner K2",
+      "company": "Kepler Robotics",
+      "country": "CN",
+      "height_cm": 178,
+      "weight_kg": 85,
+      "payload_kg": 35,
+      "speed_kmh": 6,
+      "runtime_hours": 8,
+      "factory_deployed": 10,
+      "price_est": "$20K-$30K",
+      "target": "warehouse logistics"
+    }
+  ],
+  "competition_history": [
+    {
+      "name": "ICRA 2026",
+      "location": "Guangzhou",
+      "events": [
+        "Navigation",
+        "Manipulation",
+        "Human-Robot Interaction",
+        "Assembly"
+      ],
+      "winners": {
+        "overall": "Xiaomi CyberOne 2",
+        "manipulation": "Tesla Optimus",
+        "navigation": "Unitree H2+"
+      }
+    },
+    {
+      "name": "CVPR 2026 Embodied AI",
+      "location": "Seattle",
+      "events": [
+        "Visual Reasoning",
+        "Long-horizon Planning",
+        "Dexterous Manipulation"
+      ],
+      "winners": {
+        "overall": "Xiaomi CyberOne 2",
+        "planning": "Figure 02",
+        "dexterity": "Sanctuary AI"
+      }
+    },
+    {
+      "name": "DARPA Triage Challenge 2025",
+      "location": "US",
+      "winner": "Boston Dynamics + CMU",
+      "task": "Disaster response triage"
+    },
+    {
+      "name": "RoboCup 2026",
+      "location": "Eindhoven",
+      "events": [
+        "Soccer",
+        "@Home",
+        "Industrial",
+        "Rescue"
+      ],
+      "humanoid_teams": 14
+    },
+    {
+      "name": "World Robot Conference 2026",
+      "location": "Beijing",
+      "participants": 180,
+      "humanoid_brands": 45
+    }
+  ],
+  "deployment_by_sector": {
+    "automotive_manufacturing": [
+      {
+        "factory": "BMW Spartanburg",
+        "country": "US",
+        "robot": "Figure 02",
+        "count": 2,
+        "task": "sheet metal handling",
+        "status": "pilot since Jan 2025"
+      },
+      {
+        "factory": "Mercedes-Benz Berlin",
+        "country": "DE",
+        "robot": "Apptronik Apollo",
+        "count": 3,
+        "task": "parts delivery",
+        "status": "pilot"
+      },
+      {
+        "factory": "BYD Shenzhen",
+        "country": "CN",
+        "robot": "UBTECH Walker S2",
+        "count": 10,
+        "task": "assembly line QA inspection",
+        "status": "production pilot"
+      },
+      {
+        "factory": "Tesla Fremont",
+        "country": "US",
+        "robot": "Tesla Optimus",
+        "count": 0,
+        "task": "battery pack sorting",
+        "status": "internal validation"
+      },
+      {
+        "factory": "NIO Hefei",
+        "country": "CN",
+        "robot": "UBTECH Walker S2",
+        "count": 5,
+        "task": "interior part installation",
+        "status": "pilot"
+      },
+      {
+        "factory": "Hyundai Ulsan",
+        "country": "KR",
+        "robot": "Boston Dynamics Atlas",
+        "count": 1,
+        "task": "heavy part lifting",
+        "status": "feasibility study"
+      }
+    ],
+    "logistics_warehouse": [
+      {
+        "warehouse": "Amazon BFI4",
+        "country": "US",
+        "robot": "Agility Digit",
+        "count": 10,
+        "task": "tote movement",
+        "status": "operational"
+      },
+      {
+        "warehouse": "GXO Logistics",
+        "country": "US",
+        "robot": "Agility Digit",
+        "count": 15,
+        "task": "sortation",
+        "status": "operational"
+      },
+      {
+        "warehouse": "JD.com Beijing",
+        "country": "CN",
+        "robot": "Kepler K2",
+        "count": 8,
+        "task": "pallet stacking",
+        "status": "pilot"
+      },
+      {
+        "warehouse": "SF Express Shenzhen",
+        "country": "CN",
+        "robot": "Unitree H2+",
+        "count": 20,
+        "task": "parcel sorting",
+        "status": "operational"
+      }
+    ],
+    "retail_hospitality": [
+      {
+        "location": "Starbucks Reserve Shanghai",
+        "robot": "Unitree H2+",
+        "count": 2,
+        "task": "order delivery",
+        "status": "public demo"
+      },
+      {
+        "location": "Walmart test store AR",
+        "robot": "Digit",
+        "count": 3,
+        "task": "shelf restocking",
+        "status": "pilot"
+      }
+    ],
+    "healthcare": [
+      {
+        "hospital": "Mayo Clinic",
+        "robot": "Digit",
+        "count": 2,
+        "task": "supply transport",
+        "status": "study"
+      },
+      {
+        "hospital": "Ruijin Hospital Shanghai",
+        "robot": "Fourier GR-2",
+        "count": 5,
+        "task": "patient transfer assist",
+        "status": "trial"
+      }
+    ]
+  },
+  "supply_chain": {
+    "actuators": [
+      "Maxon",
+      "Harmonic Drive",
+      "TMotors",
+      "Unitree in-house",
+      "Tesla custom"
+    ],
+    "sensors": [
+      "Intel RealSense",
+      "Orbbec",
+      "Velodyne",
+      "RoboSense",
+      "Tesla FSD camera array"
+    ],
+    "ai_chips": [
+      "NVIDIA Jetson Thor",
+      "NVIDIA AGX Orin",
+      "Qualcomm RB6",
+      "Intel Movidius",
+      "Horizon Robotics Journey"
+    ],
+    "battery": [
+      "CATL",
+      "Panasonic 21700",
+      "Samsung SDI",
+      "EVE Energy"
+    ],
+    "force_torque_sensors": [
+      "ATI Industrial",
+      "Robotiq",
+      "Kunwei",
+      "SRI"
+    ],
+    "manufacturing_hubs": [
+      "Shenzhen (Unitree, UBTECH, Fourier)",
+      "Bay Area (Tesla, Figure, Apptronik)",
+      "Seoul (Hyundai/Boston Dynamics)",
+      "Oslo (1X)",
+      "Toronto (Sanctuary AI)"
+    ]
+  },
+  "market_forecast": [
+    {
+      "year": 2025,
+      "units_shipped": 800,
+      "market_value_b": 0.2
+    },
+    {
+      "year": 2026,
+      "units_shipped": 5000,
+      "market_value_b": 0.8
+    },
+    {
+      "year": 2027,
+      "units_shipped": 25000,
+      "market_value_b": 3.5
+    },
+    {
+      "year": 2028,
+      "units_shipped": 100000,
+      "market_value_b": 12
+    },
+    {
+      "year": 2030,
+      "units_shipped": 500000,
+      "market_value_b": 45
+    },
+    {
+      "year": 2035,
+      "units_shipped": 3000000,
+      "market_value_b": 180
+    }
+  ],
+  "regulations": {
+    "us": {
+      "status": "No specific humanoid robot law",
+      "applicable": "OSHA workplace safety, UL 3300 safety standard",
+      "state_bans": []
+    },
+    "eu": {
+      "status": "AI Act + Machinery Regulation 2023/1230",
+      "applicable": "CE marking required for industrial deployment",
+      "ethics": "EU Robotics Ethics Charter"
+    },
+    "cn": {
+      "status": "National Robotics Standardization",
+      "applicable": "GB/T robot safety standards",
+      "policy": "Made in China 2025 robotics target"
+    },
+    "jp": {
+      "status": "Robot Revolution Initiative",
+      "applicable": "JIS robotics standards",
+      "policy": "Society 5.0 human-robot coexistence"
+    },
+    "kr": {
+      "status": "Intelligent Robots Act",
+      "applicable": "Robot ethics charter, liability framework"
+    }
+  },
+  "component_supply_chain": {
+    "motors_servos": [
+      {
+        "type": "Harmonic Drive (strain wave)",
+        "suppliers": [
+          "Harmonic Drive Systems (JP)",
+          "Leaderdrive (CN)",
+          "Nidec (JP)"
+        ],
+        "cost_2026": "200-500/unit",
+        "annual_capacity": "2M units"
+      },
+      {
+        "type": "Planetary gearmotor",
+        "suppliers": [
+          "Maxon (CH)",
+          "Faulhaber (DE)",
+          "TMotors (CN)"
+        ],
+        "cost_2026": "100-300/unit"
+      },
+      {
+        "type": "Direct drive torque motor",
+        "suppliers": [
+          "TQ-RoboDrive (DE)",
+          "Allied Motion (US)",
+          "Kinco (CN)"
+        ],
+        "cost_2026": "300-800/unit"
+      },
+      {
+        "type": "Custom in-house actuator",
+        "users": [
+          "Tesla Optimus (22 DoF hands)",
+          "Figure AI",
+          "Unitree"
+        ],
+        "trend": "Vertical integration accelerating"
+      }
+    ],
+    "ai_processors": [
+      {
+        "name": "NVIDIA Jetson Thor",
+        "spec": "800 TOPS (INT8)",
+        "power_w": 50,
+        "target": "Humanoid brain"
+      },
+      {
+        "name": "NVIDIA AGX Orin",
+        "spec": "275 TOPS",
+        "power_w": 40,
+        "used_by": [
+          "Figure AI",
+          "Apptronik"
+        ]
+      },
+      {
+        "name": "Qualcomm RB6",
+        "spec": "200 TOPS (INT8)",
+        "power_w": 25,
+        "used_by": [
+          "1X NEO"
+        ]
+      },
+      {
+        "name": "Intel Core Ultra + NPU",
+        "spec": "34 TOPS",
+        "power_w": 15,
+        "used_by": [
+          "Agility Digit"
+        ]
+      },
+      {
+        "name": "Horizon Journey 6",
+        "spec": "560 TOPS",
+        "power_w": 35,
+        "used_by": [
+          "UBTECH",
+          "Unitree (CN)"
+        ]
+      },
+      {
+        "name": "Huawei Ascend 910B",
+        "spec": "256 TFLOPS FP16",
+        "used_by": [
+          "Kepler",
+          "Chinese humanoid makers"
+        ]
+      }
+    ],
+    "vision_systems": [
+      {
+        "name": "Intel RealSense D457",
+        "type": "Stereo depth",
+        "range_m": "0.2-20",
+        "used_by": [
+          "Digit",
+          "multiple"
+        ]
+      },
+      {
+        "name": "Orbbec Gemini 335L",
+        "type": "Structured light + stereo",
+        "range_m": "0.15-20",
+        "used_by": [
+          "Unitree",
+          "UBTECH"
+        ]
+      },
+      {
+        "name": "Tesla FSD camera suite",
+        "type": "8-camera surround",
+        "custom": true,
+        "used_by": [
+          "Optimus"
+        ]
+      },
+      {
+        "name": "OAK-D Pro",
+        "type": "Stereo + AI depth",
+        "used_by": [
+          "research platforms"
+        ]
+      }
+    ]
+  },
+  "investment_rounds": [
+    {
+      "company": "Figure AI",
+      "round": "Series B",
+      "amount": "675M",
+      "date": "2024-02",
+      "investors": [
+        "Microsoft",
+        "OpenAI",
+        "NVIDIA",
+        "Jeff Bezos",
+        "Intel",
+        "LG",
+        "Samsung"
+      ],
+      "valuation": "2.6B"
+    },
+    {
+      "company": "1X Technologies",
+      "round": "Series B",
+      "amount": "100M",
+      "date": "2024-01",
+      "investors": [
+        "EQT Ventures",
+        "Samsung NEXT",
+        "OpenAI Startup Fund"
+      ],
+      "valuation": "500M+"
+    },
+    {
+      "company": "Unitree Robotics",
+      "round": "Series D",
+      "amount": "200M",
+      "date": "2025-08",
+      "investors": [
+        "Meituan",
+        "Sequoia China",
+        "Matrix Partners"
+      ],
+      "valuation": "3.5B"
+    },
+    {
+      "company": "UBTECH",
+      "round": "HK IPO",
+      "amount": "130M",
+      "date": "2023-12",
+      "ticker": "9880.HK",
+      "market_cap": "4.5B"
+    },
+    {
+      "company": "Agility Robotics",
+      "round": "Series C",
+      "amount": "150M",
+      "date": "2024-10",
+      "investors": [
+        "DCVC",
+        "Playground Global",
+        "Amazon Industrial Innovation Fund"
+      ],
+      "valuation": "1.2B"
+    },
+    {
+      "company": "Apptronik",
+      "round": "Series A",
+      "amount": "35M",
+      "date": "2025-02",
+      "investors": [
+        "Mercedes-Benz",
+        "NASA",
+        "Capital Factory"
+      ]
+    },
+    {
+      "company": "Sanctuary AI",
+      "round": "Series A",
+      "amount": "75M",
+      "date": "2024-07",
+      "investors": [
+        "Magna",
+        "Bell",
+        "Verstra Ventures"
+      ]
+    },
+    {
+      "company": "Fourier Intelligence",
+      "round": "Series D",
+      "amount": "200M",
+      "date": "2025-04",
+      "investors": [
+        "SoftBank Vision Fund",
+        "IDG Capital"
+      ]
+    },
+    {
+      "company": "Kepler Robotics",
+      "round": "Series B",
+      "amount": "80M",
+      "date": "2025-06",
+      "investors": [
+        "Meituan",
+        "Gaorong Capital"
+      ],
+      "valuation": "500M+"
+    }
+  ],
+  "policy_roadmap_cn": {
+    "made_in_china_2025": "Robotics as key pillar, 100,000 industrial robots target",
+    "14th_five_year_plan": "Core components localization 70%+ by 2025",
+    "humanoid_robot_innovation_center": "Beijing 2023, Shanghai 2024, Shenzhen 2025",
+    "local_incentives": {
+      "Shanghai": "30% subsidy on R&D, max 50M RMB",
+      "Shenzhen": "50M RMB fund for humanoid startups, rent-free office",
+      "Beijing": "100M RMB humanoid robot fund, testbed access",
+      "Hangzhou": "Talent housing + 20M RMB seed"
+    }
+  },
+  "key_conferences_2026": [
+    {
+      "name": "ICRA 2026",
+      "date": "May 2026",
+      "location": "Guangzhou",
+      "focus": "Humanoid manipulation, locomotion"
+    },
+    {
+      "name": "CVPR 2026 Embodied AI Workshop",
+      "date": "June 2026",
+      "location": "Seattle",
+      "focus": "Vision-language-action models"
+    },
+    {
+      "name": "IEEE Humanoids 2026",
+      "date": "November 2026",
+      "location": "Munich",
+      "focus": "Full-body control, whole-body manipulation"
+    },
+    {
+      "name": "World Robot Conference 2026",
+      "date": "August 2026",
+      "location": "Beijing",
+      "exhibitors": 180,
+      "humanoid_brands": "45+"
+    },
+    {
+      "name": "RoboBusiness 2026",
+      "date": "October 2026",
+      "location": "San Jose",
+      "focus": "Commercial deployment, supply chain"
+    }
+  ],
+  "monthly_deployment_tracker_2026": {
+    "january": {
+      "total_deployed": 120,
+      "new_this_month": 20,
+      "top_event": "Unitree H2+ deployed at SF Express Shenzhen"
+    },
+    "february": {
+      "total_deployed": 150,
+      "new_this_month": 30,
+      "top_event": "Figure 02 achieves 1000hrs continuous BMW line operation"
+    },
+    "march": {
+      "total_deployed": 200,
+      "new_this_month": 50,
+      "top_event": "UBTECH Walker S2 mass production line launched"
+    },
+    "april": {
+      "total_deployed": 280,
+      "new_this_month": 80,
+      "top_event": "Tesla Optimus Gen 3 internal testing expanded to 50 units"
+    },
+    "may": {
+      "total_deployed": 400,
+      "new_this_month": 120,
+      "top_event": "Xiaomi CyberOne 2 wins ICRA 2026 overall champion"
+    },
+    "june": {
+      "total_deployed": 550,
+      "new_this_month": 150,
+      "top_event": "Unitree files IPO, BYD expands Walker S2 fleet to 20 units"
+    },
+    "july_proj": {
+      "total_deployed": 750,
+      "new_this_month": 200,
+      "top_event": "1X NEO beta home trials begin in Norway"
+    },
+    "august_proj": {
+      "total_deployed": 1000,
+      "new_this_month": 250,
+      "top_event": "World Robot Conference 2026, 45+ humanoid brands showcase"
+    },
+    "september_proj": {
+      "total_deployed": 1400,
+      "new_this_month": 400,
+      "top_event": "Agility Robotics RoboFab hits 1000-unit cumulative production"
+    },
+    "october_proj": {
+      "total_deployed": 1900,
+      "new_this_month": 500,
+      "top_event": "Tesla Fremont Optimus pilot deployment for battery sorting"
+    },
+    "november_proj": {
+      "total_deployed": 2600,
+      "new_this_month": 700,
+      "top_event": "IEEE Humanoids 2026 Munich, key locomotion breakthroughs"
+    },
+    "december_proj": {
+      "total_deployed": 3800,
+      "new_this_month": 1200,
+      "top_event": "Year-end: 15+ factories running humanoid pilots"
+    }
+  },
+  "technology_roadmap": {
+    "locomotion": {
+      "current": "Walking 8-12 km/h, basic stair climbing, uneven terrain",
+      "next_12mo": "Running 15+ km/h, jumping, agile recovery from pushes",
+      "next_3yr": "Parkour-level agility, dynamic bipedal running on all surfaces"
+    },
+    "manipulation": {
+      "current": "Grasp known objects, basic bin picking, 5-10kg payload",
+      "next_12mo": "Dexterous in-hand manipulation, tool use, 25kg+ payload",
+      "next_3yr": "Full human-level dexterity, ambiguous object handling, force-feedback assembly"
+    },
+    "perception": {
+      "current": "Object detection, basic scene understanding, fixed environment",
+      "next_12mo": "Dynamic scene reasoning, human intent prediction, multi-modal fusion",
+      "next_3yr": "Full situational awareness, zero-shot new environment adaptation"
+    },
+    "ai_brain": {
+      "current": "Pre-programmed + LLM wrapper, task-specific policies",
+      "next_12mo": "End-to-end VLA models (Vision-Language-Action), multi-task learning",
+      "next_3yr": "Foundation model robots, natural language task specification, autonomous learning"
+    },
+    "battery": {
+      "current": "2-5 hours runtime, 2-2.5 kWh packs",
+      "next_12mo": "6-8 hours, hot-swappable packs, solar charging",
+      "next_3yr": "All-day operation, wireless charging during tasks, 10kWh+ density"
+    }
+  },
+  "benchmark_scores": [
+    {
+      "benchmark": "RoboPack (packing)",
+      "best_robot": "Sanctuary AI Phoenix",
+      "score": "92/100",
+      "human_baseline": 95
+    },
+    {
+      "benchmark": "RoboStack (block stacking)",
+      "best_robot": "Tesla Optimus Gen 3",
+      "score": "88/100",
+      "human_baseline": 98
+    },
+    {
+      "benchmark": "Door Opening Challenge",
+      "best_robot": "Digit v4",
+      "score": "100% success",
+      "human_baseline": "100%"
+    },
+    {
+      "benchmark": "Navigation Maze",
+      "best_robot": "Unitree H2+",
+      "score": "95% completion",
+      "human_baseline": "100%"
+    },
+    {
+      "benchmark": "In-Hand Rotation",
+      "best_robot": "Xiaomi CyberOne 2",
+      "score": "85/100",
+      "human_baseline": 98
+    },
+    {
+      "benchmark": "Button Press Sequence",
+      "best_robot": "Figure 02",
+      "score": "100%",
+      "human_baseline": "100%"
+    },
+    {
+      "benchmark": "Heavy Lift 20kg Walk",
+      "best_robot": "Fourier GR-2",
+      "score": "50m distance",
+      "human_baseline": "varies"
+    },
+    {
+      "benchmark": "Speech Command Following",
+      "best_robot": "1X NEO Beta",
+      "score": "95% accuracy",
+      "human_baseline": "99%"
+    }
+  ],
+  "china_robot_density": {
+    "industrial_robots_per_10k_workers": {
+      "2019": 187,
+      "2020": 246,
+      "2021": 322,
+      "2022": 392,
+      "2023": 470,
+      "2024_est": 530,
+      "2025_est": 600
+    },
+    "global_rank": 5,
+    "leaders": [
+      "South Korea (1012)",
+      "Singapore (730)",
+      "Germany (415)",
+      "Japan (397)",
+      "China (392 2022)"
+    ],
+    "target_2027": "800+ per 10K workers (MIIT target)",
+    "humanoid_unique": "China leads in humanoid robot variance (25+ distinct models from 15+ companies)"
+  }
+}

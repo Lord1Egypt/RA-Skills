@@ -1,0 +1,97 @@
+openapi: 3.0.3
+info:
+  title: GrayMatter Light
+  version: 0.1.0
+  description: Tiny ThorAPI-shaped local durable memory surface for GrayMatter Light.
+paths:
+  /MemoryEntry:
+    post:
+      summary: Create a MemoryEntry
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MemoryEntry'
+      responses:
+        '200':
+          description: Created MemoryEntry
+  /MemoryEntry/{id}:
+    get:
+      summary: Get a MemoryEntry by id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: MemoryEntry record
+    patch:
+      summary: Update a MemoryEntry by id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Updated MemoryEntry
+  /MemoryEntry/query:
+    post:
+      summary: Query MemoryEntry records
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MemoryEntryQuery'
+      responses:
+        '200':
+          description: Query results
+components:
+  schemas:
+    MemoryEntry:
+      type: object
+      required:
+        - type
+        - text
+      properties:
+        id:
+          type: string
+          format: uuid
+        type:
+          type: string
+          enum: [decision, todo, context, artifact, preference]
+        text:
+          type: string
+        sourceChannel:
+          type: string
+        createdDate:
+          type: string
+          format: date-time
+        modifiedDate:
+          type: string
+          format: date-time
+    MemoryEntryQuery:
+      type: object
+      required:
+        - q
+      properties:
+        q:
+          type: string
+        max_results:
+          type: integer
+          default: 10
+        type:
+          type: string
+        source:
+          type: string

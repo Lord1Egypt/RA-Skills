@@ -1,0 +1,44 @@
+{
+  "评测任务": {
+    "task_name": "",
+    "task_type": "highway_event/tunnel_feature/road_damage",
+    "eval_date": "",
+    "evaluator": ""
+  },
+  "模型配置": {
+    "model_name": "",
+    "model_version": "",
+    "parameters_B": 0,
+    "use_think": false,
+    "deployment": {
+      "framework": "vLLM",
+      "gpu_count": 0,
+      "gpu_type": "A800"
+    }
+  },
+  "数据集": {
+    "dataset_name": "",
+    "source": "公开/私有",
+    "total_samples": 0,
+    "train_samples": 0,
+    "val_samples": 0,
+    "test_samples": 0,
+    "resolution": {
+      "original": "",
+      "resized": ""
+    }
+  },
+  "评测指标": {
+    "metrics": ["Macro F1", "Precision", "Recall"],
+    "eval_method": "自动化标签评分/LLM-as-judge"
+  },
+  "结果": {
+    "overall": {
+      "macro_f1": 0,
+      "macro_precision": 0,
+      "macro_recall": 0,
+      "accuracy": 0
+    },
+    "per_class": {}
+  }
+}

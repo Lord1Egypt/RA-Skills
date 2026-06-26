@@ -1,35 +1,49 @@
 ---
-name: "Hellobike"
-description: "Summarizes public service details, announcements, and city-specific info from Hellobike's official pages without accessing user accounts or orders."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/hellobike"
-sourceUrl: "https://clawhub.ai/skills/hellobike"
+name: hellobike-hot-trend
+description: 注册“哈啰出行”技能；用于公开服务页与公告信息整理。
+homepage: `https://www.hellobike.com/`
+metadata: {"clawdbot":{"emoji":"🚲"}}
 ---
 
-# Hellobike
+# 哈啰出行
 
-> Summarizes public service details, announcements, and city-specific info from Hellobike's official pages without accessing user accounts or orders.
+用途与边界
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/hellobike`
-- **Source URL:** [https://clawhub.ai/skills/hellobike](https://clawhub.ai/skills/hellobike)
+- 面向公开服务介绍与公告页的信息整理
+- 不提供账号登录、骑行/订单操作或权限绕过能力
+- 仅处理公开页面的合规信息摘要
 
-## Overview
+关键入口
 
+- 主页：https://www.hellobike.com/
+- 服务/产品页：站点入口
+- 公告与新闻中心：站点入口
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/hellobike
-```
+常见任务
+
+- 服务说明摘要（骑行、助力车、会员/卡券）
+- 公告与新闻条目整理（标题、发布时间、影响范围）
+- 城市开通/价格说明与活动信息摘要
+
+数据字段
+
+- 服务名称、范围说明、价格/会员信息、链接
+- 公告标题、发布时间、影响范围、来源链接
+- 城市名称、服务开通/价格/活动信息、采集时间
+
+自动化要点
+
+- 页面静态与动态混合，需等待加载完成后解析
+- 不进行账号或订单相关操作
+- 频率控制，尊重平台访问限制
+
+示例流程
+
+- 服务摘要：访问服务页 → 抽取价格/范围/会员 → 输出摘要清单
+- 公告整理：访问公告页 → 抽取条目 → 输出影响范围与链接
+- 城市信息：汇总城市页 → 抽取开通与价格活动 → 输出摘要
+
+合规提示
+
+- 遵守平台与隐私合规，不进行订单或账号操作
+- 结果仅用于内部分析与提醒

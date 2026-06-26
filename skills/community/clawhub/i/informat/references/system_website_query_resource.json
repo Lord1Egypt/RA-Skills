@@ -1,0 +1,21 @@
+{
+	"type": "function",
+	"function": {
+		"name": "_website_query_resource",
+		"description": "Query details of the specified resource in the website module. Including resource file content",
+		"parameters": {
+			"type": "object",
+			"properties": {
+				"websiteId": {
+					"description": "website module ID",
+					"type": "string"
+				},
+				"id": {
+					"description": "resource ID",
+					"type": "string"
+				}
+			},
+			"required": ["websiteId", "id"]
+		}
+	}
+}

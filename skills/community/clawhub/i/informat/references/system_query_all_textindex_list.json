@@ -1,0 +1,12 @@
+{
+	"type": "function",
+	"function": {
+		"name": "_query_all_textindex_list",
+		"description": "Query all search engine modules in the application.  Returns: JSON string containing module ID, module name, and introduction",
+		"parameters": {  
+		     "type": "object",   
+		     "properties": {}  
+		}
+			
+	}
+}

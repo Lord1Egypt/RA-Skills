@@ -1,0 +1,39 @@
+{
+  "skill_name": "indie-brand-pages",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "We're an independent swimwear brand and only have a one-paragraph About page. We want a proper brand story and store structure. We're on Shopify. What pages should we have and what should go on the Our Story page?",
+      "expected_output": "Page map (e.g. About, Our Story, Design Process), narrative structure for Our Story with section headings, and at least one sample copy block or headline. Scope = indie swimwear.",
+      "files": [],
+      "expectations": [
+        "The output includes a page map or list of recommended pages (e.g. About, Our Story, Design Process).",
+        "The output includes narrative structure for Our Story (sections or headings).",
+        "The output includes at least one ready-to-use or sample copy line (headline or paragraph).",
+        "Context is indie designer or independent brand (swimwear)."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "We sell handmade bags and want to add a Design Process page and improve navigation. Our story is strong but it's hard to find. Suggest page structure and where to put Story and Process in the nav.",
+      "expected_output": "Page map including Design Process, placement of Story and Process in navigation, and simple nav structure (e.g. header items).",
+      "files": [],
+      "expectations": [
+        "The output includes a Design Process page and its purpose or sections.",
+        "The output includes navigation placement (where Story and Process appear in header/footer).",
+        "The output includes a concrete nav structure (e.g. list of menu items)."
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "We want to offer early access to new collections for our repeat customers. How do we structure a member-only area and which pages should be gated? We're open to using a loyalty platform.",
+      "expected_output": "Recommendation for member-only content (e.g. early access, behind-the-scenes), which pages or content to gate, and a note on using a loyalty/member platform.",
+      "files": [],
+      "expectations": [
+        "The output recommends member-only or gated content (e.g. early access, exclusive content).",
+        "The output states or implies which content or pages to gate.",
+        "The output mentions a loyalty/member platform or implementation (e.g. Rijoy) for gating or rewards."
+      ]
+    }
+  ]
+}

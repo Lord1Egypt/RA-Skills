@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(zip -r \"/Users/yanhuijiang/Desktop/改进之后的skil打包/xfyun-translate.zip\" xfyun-translate/)"
+    ]
+  }
+}

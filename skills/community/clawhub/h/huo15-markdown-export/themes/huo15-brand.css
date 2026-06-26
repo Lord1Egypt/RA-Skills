@@ -1,0 +1,120 @@
+/* huo15-markdown-export — 火一五品牌
+ * 流派:Corporate(企业商务)
+ * 适合:复盘报告 / 客户提案 / 技术白皮书 / 内部周报
+ * 关键差异化:火红 #c0392b 主色克制(<10%)+ 上方双线分章 + 商务无衬线 + 打印页眉页脚
+ *
+ * v0.4.0 修红线:
+ * - h2 左竖条(AI Slop)→ 上方双线 + 字号差(印刷传承)
+ * - strong 染主色致全文炸 → strong 改"加粗黑色 + 下划线"
+ * - h3 染主色 → 改无装饰加粗(主色只留给 h1 / 链接 / hr / table th 边)
+ * - 主色比例从 ≥30% 降到 ≤10%(60-30-10 法则)
+ */
+
+:root {
+  /* === 主题 token override === */
+  --font-body:     var(--font-sans);
+  --font-heading:  var(--font-sans);
+  --color-bg:      #ffffff;
+  --color-fg:      #1a1a1a;
+  --color-muted:   #666666;
+  --color-rule:    #dddddd;
+  --color-accent:  #c0392b;
+  --color-accent-soft: rgba(192, 57, 43, 0.08);
+  --color-code-bg: #f7f7f7;
+  --quote-bar-color: var(--color-accent);
+  --quote-bg:      var(--color-accent-soft);
+  --quote-fg:      #4a3838;
+  --table-th-bg:   #f7f7f7;
+  --table-th-fg:   var(--color-fg);
+  --table-stripe-bg: #fafafa;
+  --measure:       var(--measure-wide);
+  --leading:       var(--lh-cn);
+  --fs-base:       15px;
+}
+
+/* === Corporate 特征 === */
+
+body { padding: 40px 32px; }
+
+/* h1:居中 + 双线(报刊感)+ 主色 */
+.markdown-body h1 {
+  text-align: center;
+  margin: 0 0 0.8em;
+  padding: 0.5em 0;
+  border-bottom: 3px double var(--color-accent);
+  color: var(--color-accent);
+}
+
+/* h2:上方双线 + 字号差区分(去左竖条 Slop)*/
+.markdown-body h2 {
+  margin: 1.8em 0 0.6em;
+  padding-top: 0.4em;
+  border-top: 2px solid var(--color-fg);
+  font-weight: 700;
+  color: var(--color-fg);
+}
+
+/* h3:加粗 + 字号差(无装饰,色不染主)*/
+.markdown-body h3 {
+  font-weight: 700;
+  color: var(--color-fg);
+  margin: 1.3em 0 0.4em;
+}
+
+/* h4:muted */
+.markdown-body h4 { color: var(--color-muted); }
+
+/* 段落两端对齐(商务正式)*/
+.markdown-body p { text-align: justify; }
+
+/* strong:不染主色,黑色加粗 + 微微下划线(克制突出)*/
+.markdown-body strong {
+  font-weight: 700;
+  color: var(--color-fg);
+  border-bottom: 1px solid var(--color-fg);
+}
+
+.markdown-body a { color: var(--color-accent); text-underline-offset: 3px; }
+
+/* code 行内不染主色(去 brand 全文炸)*/
+.markdown-body code { color: var(--color-fg); }
+
+/* pre 代码块:细灰边,主色只在表头/链接出现 */
+.markdown-body pre {
+  border-left: 3px solid var(--color-rule);
+  border-radius: 6px;
+}
+
+/* 表格表头主色填充(主色锚点之一)*/
+.markdown-body table th {
+  background: var(--color-accent);
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.markdown-body hr { border-top: 1px solid var(--color-rule); margin: 1.8em 0; }
+
+/* 打印模式:品牌页眉页脚 */
+@media print {
+  @page {
+    margin: 18mm 18mm 22mm;
+    @top-center {
+      content: "青岛火一五信息科技有限公司 · 打破信息孤岛 · 全场景AI机器人";
+      font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, "Songti SC", STSong, "Microsoft YaHei", sans-serif;
+      font-size: 9pt;
+      color: #999;
+    }
+    @bottom-center {
+      content: counter(page) " / " counter(pages);
+      font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, "Source Han Sans SC", "Microsoft YaHei", sans-serif;
+      font-size: 9pt;
+      color: #999;
+    }
+    @bottom-right {
+      content: "huo15.com";
+      font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, "Source Han Sans SC", "Microsoft YaHei", sans-serif;
+      font-size: 9pt;
+      color: var(--color-accent);
+    }
+  }
+}

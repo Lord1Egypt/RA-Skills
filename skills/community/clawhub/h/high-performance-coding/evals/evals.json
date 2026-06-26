@@ -1,0 +1,47 @@
+{
+  "skill_name": "high-performance-coding",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "我写了一个数据处理管道：从 PostgreSQL 读数据，用 ChromaDB 生成 embedding，写入 Redis。现在是串行的，很慢。帮我改成并发的。机器是 8 核 16GB。",
+      "expected_output": "应该分析约束类型（IO-bound），建议：(1) async/await 而非多进程 (2) ChromaDB 同步 SDK 用 asyncio.to_thread 卸载避免阻塞事件循环 (3) Semaphore 限制并发数，基于 DB 连接池大小设定 (4) 单 SQLAlchemy AsyncSession 不能跨协程并发 (5) 建议先小批量验证",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "Rust 项目，读多写少（99% 读），现在用 RwLock 但 profiling 显示读端锁竞争严重。怎么优化？",
+      "expected_output": "应该建议 RCU 模式——读者无锁访问，写者付出复制成本。并提到：(1) 快速路径模式：检查是否有工作要做再决定是否拿锁 (2) 单引用优化：引用计数=1时直接用非原子访问 (3) 用 benchmark 验证改进效果 (4) 警告无锁代码更难写对",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "我要在 16 核 32GB 的机器上跑 500 个计算任务，每个任务 spawn 一个 Docker 容器。之前 5 个跑通了。怎么设置并发度？要注意什么？",
+      "expected_output": "应该分析约束（内存+bound：每个 Docker 容器占内存），建议：(1) 渐进式扩展 5→50→500 (2) 计算 per-task 内存后决定 max_workers (3) 超时和重试机制防止单个任务卡住 (4) 快速测试保证每次改动后核心路径正常",
+      "files": []
+    },
+    {
+      "id": 4,
+      "prompt": "A100 上训练 GNN，500 万节点，2000 万条边。full-batch OOM。需要改成 mini-batch 并精确测量 GPU 内存和时间。还要可复现。",
+      "expected_output": "应该建议：(1) 邻居采样替代全图加载 (2) 梯度累积模拟大 batch (3) reset_peak → synchronize → max_memory 精确测量 (4) warmup 后再计时 (5) deterministic + seed 保证可复现 (6) 结构化日志",
+      "files": []
+    },
+    {
+      "id": 5,
+      "prompt": "比较稀疏和稠密 GCN 在不同规模和稀疏度下的性能。节点 1 万到 5 万，稀疏度 0.001 到 0.9。设计系统 benchmark 方案。",
+      "expected_output": "应该建议：(1) 网格搜索 sizes×densities (2) warmup → empty_cache → reset_peak → 运行 → sync → 计时+测内存 (3) OOM 用 try/except 处理不中断实验 (4) 结构化保存结果 (5) 交叉点依赖硬件，目标机器上实测",
+      "files": []
+    },
+    {
+      "id": 6,
+      "prompt": "我有个批量处理脚本，处理 10 万条数据，每处理一条要调一个不稳定的外部 API（偶尔超时或返回 429）。现在一有异常整个脚本就挂了，要从头跑。怎么改让它更鲁棒？",
+      "expected_output": "应该建议：(1) 外部调用加 timeout (2) 瞬时失败（超时、429）重试 2-3 次带指数退避 (3) 跟踪已处理的 ID 写到文件，重跑时跳过——这样挂了也能断点续传 (4) 区分瞬时错误和逻辑错误（逻辑错误不重试）(5) 单个 item 失败不中断整个 batch，记录错误继续",
+      "files": []
+    },
+    {
+      "id": 7,
+      "prompt": "我要跑一个多阶段实验 pipeline：数据预处理 → 模型训练（GPU 3 小时）→ 评估 → 生成报告。之前跑到训练阶段机器 OOM 重启了，所有进度丢失。怎么设计才能中断后恢复？",
+      "expected_output": "应该建议：(1) 每个阶段完成后保存 checkpoint (2) checkpoint 记录当前阶段、已产出文件、pending 任务 (3) 每个阶段开始时检查已有输出，存在就跳过 (4) 训练阶段内部也定期保存 state_dict (5) 从 checkpoint 恢复时知道从哪个阶段重跑 (6) 恢复粒度 ≤ 重算成本",
+      "files": []
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "name": "huo15-mit-48h-learning-method",
+  "version": "2.0.0",
+  "description": "火一五 MIT 48 小时学习法 - 基于 NotebookLM 的三问框架",
+  "nlm_path": "~/.venv/notebooklm/bin/nlm",
+  "auth_required": true,
+  "auth_note": "首次使用需运行：nlm login（浏览器交互式登录）",
+  "profiles": {
+    "list": "nlm login profile list",
+    "add": "nlm login",
+    "default": "default"
+  },
+  "three_questions": {
+    "mental_models": {
+      "count": 5,
+      "description": "领域内专家共享的 5 个基本思维框架"
+    },
+    "disagreements": {
+      "count": 3,
+      "description": "该领域专家根本不同意的 3 个核心问题"
+    },
+    "probing_questions": {
+      "count": 10,
+      "description": "能区分真懂和假背的 10 个暴露性问题"
+    }
+  },
+  "supported_source_types": [
+    "url",
+    "file",
+    "youtube",
+    "google_drive"
+  ],
+  "audio_formats": [
+    "deep_dive",
+    "brief",
+    "critique",
+    "debate"
+  ],
+  "video_styles": [
+    "auto_select",
+    "classic",
+    "whiteboard",
+    "kawaii",
+    "anime",
+    "watercolor",
+    "retro_print",
+    "heritage",
+    "paper_craft"
+  ],
+  "author": "青岛火一五信息科技有限公司",
+  "tags": ["learning", "mit", "notebooklm", "knowledge-management", "ai"]
+}

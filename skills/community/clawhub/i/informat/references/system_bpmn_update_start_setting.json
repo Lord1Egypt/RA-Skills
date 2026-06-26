@@ -1,0 +1,84 @@
+{
+  "type": "function",
+  "function": {
+    "name": "_bpmn_update_start_setting",
+    "description": "Update workflow start configuration.\n\n[Unified Rules for Expression Use]\nFor all fields related to `expressions` in this tool (including but not limited to: instanceNameVar, draftNameVar, startVarList[].valueVar, and future added *Expression / *Var fields), the AI must first call the system tool `_read_informat_expression_doc` to read the Informat expression specification before filling them.\n\nIf this tool is not called, no expression content can be generated, and the call must be supplemented first.\n\n- Forbidden to use + for string concatenation\n- + is only used for numerical operations\n- All string concatenation must use String.concat(...). [Important Constraints]: 1. When enableStartForm=true, the formSetting field must be filled.\n2. If the applicant field is not configured in the start form, form.applicant is prohibited. If you need to get the name of the process initiator, you should use: User.user(initiator).name.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "moduleId": {
+          "type": "string",
+          "description": "Workflow module ID."
+        },
+        "processDefineId": {
+          "type": "string",
+          "description": "Workflow process definition ID."
+        },
+        "instanceNameVar": {
+          "type": "string",
+          "description": "Process instance name expression. Process variables (such as initiator), system functions, and start form variable form can be used in the expression, but only for fields configured in the start form. Forbidden to reference non-existent form fields."
+        },
+        "draftNameVar": {
+          "type": "string",
+          "description": "Process draft name expression. Process variables (such as initiator), system functions, and start form variable form can be used in the expression, but only for fields configured in the start form. Forbidden to reference non-existent form fields."
+        },
+        "enableStartForm": {
+          "type": "boolean",
+          "description": "Whether to require users to fill in the start form when [initiating the process]. After enabling, when users click `Initiate Process`, they need to fill in the specified fields first."
+        },
+        "formSetting": {
+          "type": "object",
+          "description": "Process [Start Form] settings, used to define which business field values need to be displayed to users and collected when initiating the process.",
+          "properties": {
+            "tableId": {
+              "type": "string",
+              "description": "Data table ID bound to the start form. When initiating the process, the data filled by the user will be written into this data table as the initial business data of the process."
+            },
+            "tableFieldSettingList": {
+              "type": "array",
+              "description": "Start form field configuration list, used to define the fields that users need to fill in or view when [initiating the process].",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "description": "Data table field ID, used to specify the field to be displayed in the start form. For related table or sub-table fields, the form `main field ID-sub field ID` can be used, such as approvalRecord-name."
+                  },
+                  "editable": {
+                    "type": "boolean",
+                    "description": "Whether the field allows user input or modification when [initiating the process]. false means read-only display, used to confirm information, no need for user to fill in."
+                  },
+                  "visible": {
+                    "type": "boolean",
+                    "description": "Whether to display the field to users in the start form when [initiating the process]. false means the field will not appear on the start page."
+                  }
+                },
+                "required": ["id", "editable", "visible"]
+              }
+            }
+          },
+          "required": ["tableId","tableFieldSettingList"]
+        },
+        "startVarList": {
+          "type": "array",
+          "description": "Process start variable list.",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "Variable name."
+              },
+              "valueVar": {
+                "type": "string",
+                "description": "Variable value expression."
+              }
+            },
+            "required": ["name", "valueVar"]
+          }
+        }
+      },
+      "required": ["enableStartForm"]
+    }
+  }
+}

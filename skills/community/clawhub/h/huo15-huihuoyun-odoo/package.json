@@ -1,0 +1,61 @@
+{
+  "name": "@huo15/huo15-huihuoyun-odoo",
+  "version": "1.23.2",
+  "description": "火一五·辉火云企业套件插件 v1.23.0 — 默认权限模型反转：odoo_connect 默认按 sender_id 隔离（每个企微/钉钉/飞书成员配自己的 Odoo 账号，与内部 RBAC 对齐：销售看销售的、管理员看管理员的）；新参数 shared（默认 false），旧 private 标 deprecated 但仍兼容；prompt supplement 加附件硬规则（不替用户判断'附件内容是否相符'后打回用户的越权行为）。继承 v1.22 record_id+include_lines / v1.21 hook RPC 永久挂修复（首字延迟 P50 16.4s→<3s）/ v1.20 审批工作流 / 204 工具覆盖 13 业务域 + Studio 元编程。",
+  "type": "module",
+  "main": "./dist/index.js",
+  "openclaw": {
+    "extensions": [
+      "./index.ts"
+    ],
+    "build": {
+      "openclawVersion": "2026.4.10"
+    },
+    "compat": {
+      "pluginApi": ">=2026.2.24"
+    },
+    "runtimeExtensions": [
+      "./dist/index.js"
+    ]
+  },
+  "keywords": [
+    "openclaw",
+    "plugin",
+    "huohuoyun",
+    "huihuoyun",
+    "erp",
+    "huo15",
+    "crm",
+    "helpdesk",
+    "invoice"
+  ],
+  "author": "jobzhao15",
+  "license": "MIT",
+  "peerDependencies": {
+    "openclaw": ">=2026.2.24"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "typescript": "^5.5.0"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "release": "bash scripts/release.sh",
+    "prepublishOnly": "npm run typecheck && npm run build",
+    "build": "tsc && cp package.json dist/ && cp openclaw.plugin.json dist/ 2>/dev/null || true"
+  },
+  "files": [
+    "index.ts",
+    "openclaw.plugin.json",
+    "src/**/*",
+    "SKILL.md",
+    "dist/**/*"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://cnb.cool/huo15/tools/huo15-huihuoyun-odoo"
+  }
+}

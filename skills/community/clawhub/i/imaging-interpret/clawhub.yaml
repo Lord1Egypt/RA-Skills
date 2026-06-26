@@ -1,0 +1,9 @@
+name: 检查报告解读
+id: imaging-interpret
+version: 0.1.0
+price: 0
+description: Interpret common diagnostic imaging reports (X-ray, CT, MRI, ultrasound, ECG, echocardiography). Recognize critical findings and provide clinical context.
+tags:
+  - medical
+  - imaging
+  - radiology

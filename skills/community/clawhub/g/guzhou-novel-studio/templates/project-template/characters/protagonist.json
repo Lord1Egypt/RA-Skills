@@ -1,0 +1,27 @@
+{
+  "character_id": "",
+  "name": "",
+  "role": "protagonist|supporting|antagonist|minor",
+  "basic_info": {
+    "age": null,
+    "gender": "",
+    "occupation": ""
+  },
+  "personality": {
+    "core_traits": [],
+    "flaws": [],
+    "speech_pattern": ""
+  },
+  "goals": {
+    "surface_goal": "",
+    "deep_goal": ""
+  },
+  "backstory": "",
+  "current_state": {
+    "location": "",
+    "emotional_state": "",
+    "physical_condition": ""
+  },
+  "relationships": [],
+  "dialogue_samples": []
+}

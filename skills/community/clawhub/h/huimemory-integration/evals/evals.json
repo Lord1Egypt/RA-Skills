@@ -1,0 +1,23 @@
+{
+  "skill_name": "huimemory-integration",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "我想在我的 AI 应用中集成 HuiMemory，实现对话记忆功能。请给我一个完整的集成指南，包括安装、配置和基本用法。",
+      "expected_output": "提供完整的集成指南，包括：1. 安装依赖（requirements.txt + requirements-embedding.txt）2. 下载模型（bge-small-zh-v1.5）3. 配置文件示例（config.yaml）4. 基本用法代码示例（初始化、索引、检索）",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "我需要将 HuiMemory 集成到我的 LLM 应用中，让 LLM 能够主动检索历史对话。请给我 System Prompt 模板和 Tool Schema 定义。",
+      "expected_output": "提供：1. System Prompt 模板（包含记忆检索规则、工具调用示例）2. Tool Schema 定义（recall_memory 和 recall_by_id）3. 工具实现示例代码",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "用户说'上周我们讨论了什么项目？'，我应该如何处理这个时间模糊的查询？请解释时间解析和分段扫描的工作原理。",
+      "expected_output": "解释：1. TimeResolver 如何解析自然语言时间 2. 分段扫描（ProgressiveScanner）的工作原理 3. 周步长扫描策略 4. 如何在 LLM 中使用这些功能",
+      "files": []
+    }
+  ]
+}

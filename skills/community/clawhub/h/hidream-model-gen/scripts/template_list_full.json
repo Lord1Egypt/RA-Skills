@@ -1,0 +1,1110 @@
+[
+    {
+        "master_template": {
+            "uuid": "056c8f3b-3b9f-4b7c-bc1b-c790b1512dc8.mp4",
+            "name": "Static Shot"
+        },
+        "gen_params": {
+            "algo_type": "video_diffusion_img2vid",
+            "generate_path": "/api/gw/v3/video/video_diffusion_img2vid/async",
+            "result_path": "/api/gw/v3/video/video_diffusion_img2vid/async/results",
+            "component_type": "video",
+            "inputs": [
+                {
+                    "key": "wh_ratio",
+                    "type": "params",
+                    "params_key": "params.wh_ratio",
+                    "value_list": [
+                        "16:9",
+                        "1:1",
+                        "9:16",
+                        "3:4",
+                        "4:3"
+                    ],
+                    "value": null,
+                    "value_type": "string",
+                    "input_type": null,
+                    "default": "1:1"
+                },
+                {
+                    "key": "check",
+                    "type": "control",
+                    "params_key": null,
+                    "value_list": null,
+                    "value": false,
+                    "value_type": "bool",
+                    "input_type": null,
+                    "default": null
+                },
+                {
+                    "key": "crop",
+                    "type": "control",
+                    "params_key": null,
+                    "value_list": null,
+                    "value": true,
+                    "value_type": "bool",
+                    "input_type": null,
+                    "default": null
+                },
+                {
+                    "key": "free_ratio",
+                    "type": "control",
+                    "params_key": null,
+                    "value_list": null,
+                    "value": false,
+                    "value_type": "bool",
+                    "input_type": null,
+                    "default": null
+                },
+                {
+                    "key": "images",
+                    "type": "params",
+                    "params_key": "images",
+                    "value_list": null,
+                    "value": null,
+                    "value_type": "array",
+                    "input_type": null,
+                    "default": null
+                }
+            ],
+            "params": {
+                "module": "video_diffusion_img2vid",
+                "version": "v3L",
+                "prompt": "Use a static camera angle with no movement. Keep the uploaded image still and cinematic, enhancing lighting or atmosphere subtly without motion.",
+                "images": [
+                    "j_f47fce3b-7d53-4d23-bbd3-162b6a0ea1b7"
+                ],
+                "masks": [],
+                "videos": [],
+                "audios": [],
+                "params": {
+                    "mode": "Slow",
+                    "style": "default",
+                    "height": -1,
+                    "width": -1,
+                    "seed": -1,
+                    "duration": 5,
+                    "motion": 0,
+                    "x": 0,
+                    "y": 0,
+                    "z": 0,
+                    "reserved_str": "",
+                    "batch_size": 1,
+                    "wh_ratio": "1:1",
+                    "custom_params": {
+                        "prompts": [
+                            "Use a static camera angle with no movement. Keep the uploaded image still and cinematic, enhancing lighting or atmosphere subtly without motion."
+                        ],
+                        "master_template_id": "056c8f3b-3b9f-4b7c-bc1b-c790b1512dc8.mp4"
+                    }
+                },
+                "en_prompt": "",
+                "negative_prompt": "",
+                "en_negative_prompt": "",
+                "magic_prompt": "",
+                "template_id": "056c8f3b-3b9f-4b7c-bc1b-c790b1512dc8.mp4",
+                "upstream_id": "",
+                "pipeline_id": ""
+            },
+            "params_version": "v3"
+        },
+    },
+    {
+        "master_template": {
+            "uuid": "0c5806e2-9324-4652-8a2e-59276de345a1.mp4",
+            "name": "Ash out"
+        },
+        "gen_params": {
+            "algo_type": "video_diffusion_img2vid",
+            "generate_path": "/api/gw/v3/video/video_diffusion_img2vid/async",
+            "result_path": "/api/gw/v3/video/video_diffusion_img2vid/async/results",
+            "component_type": "video",
+            "inputs": [
+                {
+                    "key": "wh_ratio",
+                    "type": "params",
+                    "params_key": "params.wh_ratio",
+                    "value_list": [
+                        "16:9",
+                        "1:1",
+                        "9:16",
+                        "3:4",
+                        "4:3"
+                    ],
+                    "value": null,
+                    "value_type": "string",
+                    "input_type": null,
+                    "default": "1:1"
+                },
+                {
+                    "key": "check",
+                    "type": "control",
+                    "params_key": null,
+                    "value_list": null,
+                    "value": false,
+                    "value_type": "bool",
+                    "input_type": null,
+                    "default": null
+                },
+                {
+                    "key": "crop",
+                    "type": "control",
+                    "params_key": null,
+                    "value_list": null,
+                    "value": true,
+                    "value_type": "bool",
+                    "input_type": null,
+                    "default": null
+                },
+                {
+                    "key": "free_ratio",
+                    "type": "control",
+                    "params_key": null,
+                    "value_list": null,
+                    "value": false,
+                    "value_type": "bool",
+                    "input_type": null,
+                    "default": null
+                },
+                {
+                    "key": "images",
+                    "type": "params",
+                    "params_key": "images",
+                    "value_list": null,
+                    "value": null,
+                    "value_type": "array",
+                    "input_type": null,
+                    "default": null
+                }
+            ],
+            "params": {
+                "module": "video_diffusion_img2vid",
+                "version": "v3L",
+                "prompt": "The entire character and nearby objects begin to crumble into fine, gray ash from the bottom up. Their form disintegrates completely—face, body, clothes—breaking into soft dust that lifts gently into the air. Within seconds, nothing remains but drifting particles, blown away by a silent wind. The background stays eerily still, with a faint haze where the figure once stood. The moment is haunting, final, and visually striking.",
+                "images": [
+                    "j_0daa03f6-ce17-40b9-ad3b-a89714b7c8c7"
+                ],
+                "masks": [],
+                "videos": [],
+                "audios": [],
+                "params": {
+                    "mode": "Slow",
+                    "style": "default",
+                    "height": -1,
+                    "width": -1,
+                    "seed": -1,
+                    "duration": 5,
+                    "motion": 0,
+                    "x": 0,
+                    "y": 0,
+                    "z": 0,
+                    "reserved_str": "",
+                    "batch_size": 1,
+                    "wh_ratio": "1:1",
+                    "custom_params": {
+                        "prompts": [
+                            "The entire character and nearby objects begin to crumble into fine, gray ash from the bottom up. Their form disintegrates completely—face, body, clothes—breaking into soft dust that lifts gently into the air. Within seconds, nothing remains but drifting particles, blown away by a silent wind. The background stays eerily still, with a faint haze where the figure once stood. The moment is haunting, final, and visually striking."
+                        ],
+                        "master_template_id": "0c5806e2-9324-4652-8a2e-59276de345a1.mp4"
+                    }
+                },
+                "en_prompt": "",
+                "negative_prompt": "",
+                "en_negative_prompt": "",
+                "magic_prompt": "",
+                "template_id": "0c5806e2-9324-4652-8a2e-59276de345a1.mp4",
+                "upstream_id": "",
+                "pipeline_id": ""
+            },
+            "params_version": "v3"
+        },
+    },
+    {
+        "master_template": {
+            "uuid": "104e7ce0-6996-4802-9d60-ea2c20dc518d.mp4",
+            "name": "Mystic Traveler"
+        },
+        "gen_params": {
+            "algo_type": "proto_transformer",
+            "generate_path": "/api/gw/v3/pipeline/proto_transformer/async",
+            "result_path": "/api/gw/v3/pipeline/proto_transformer/async/results",
+            "component_type": "video",
+            "inputs": [
+                {
+                    "key": "wh_ratio",
+                    "type": "params",
+                    "params_key": "params.wh_ratio",
+                    "value_list": [
+                        "16:9",
+                        "1:1",
+                        "9:16",
+                        "3:4",
+                        "4:3"
+                    ],
+                    "value": null,
+                    "value_type": "string",
+                    "input_type": null,
+                    "default": "1:1"
+                },
+                {
+                    "key": "check",
+                    "type": "control",
+                    "params_key": null,
+                    "value_list": null,
+                    "value": false,
+                    "value_type": "bool",
+                    "input_type": null,
+                    "default": null
+                },
+                {
+                    "key": "crop",
+                    "type": "control",
+                    "params_key": null,
+                    "value_list": null,
+                    "value": true,
+                    "value_type": "bool",
+                    "input_type": null,
+                    "default": null
+                },
+                {
+                    "key": "free_ratio",
+                    "type": "control",
+                    "params_key": null,
+                    "value_list": null,
+                    "value": false,
+                    "value_type": "bool",
+                    "input_type": null,
+                    "default": null
+                },
+                {
+                    "key": "images",
+                    "type": "params",
+                    "params_key": "images",
+                    "value_list": null,
+                    "value": null,
+                    "value_type": "array",
+                    "input_type": null,
+                    "default": null
+                }
+            ],
+            "params": {
+                "module": "proto_transformer",
+                "version": "v1",
+                "prompt": "",
+                "images": [
+                    "j_073f49a4-3a3b-41b9-8fd1-f38fa0290f31"
+                ],
+                "masks": [],
+                "videos": [],
+                "audios": [],
+                "params": {
+                    "mode": "Fast",
+                    "style": "default",
+                    "height": -1,
+                    "width": -1,
+                    "seed": -1,
+                    "duration": 5,
+                    "motion": 0,
+                    "x": 0,
+                    "y": 0,
+                    "z": 0,
+                    "reserved_str": "",
+                    "batch_size": 1,
+                    "wh_ratio": "1:1",
+                    "custom_params": {
+                        "prompts": [
+                            "Transform the person from the reference photo into a cinematic character within the world of The Lord of the Rings.   The character retains their facial features and hairstyle, but now wears a simple cloak fastened with a brooch, carrying a leather satchel and a wooden walking staff.   The background shows the green rolling hills of the Shire with a stone bridge and a round hobbit door in the distance.   Style: cinematic, richly detailed, inspired by Peter Jackson’s Lord of the Rings films, warm and nostalgic.",
+                            "Golden light spirals upward from the ground, carrying a storm of autumn leaves that swirl faster and faster around the figure. The person lifts their arm slightly against the wind, their posture shifting from casual to purposeful. Ordinary clothes unravel into glowing threads, weaving into a weathered cloak traced with faint runes, the fabric fluttering with the motion of the leaves. As the figure straightens, a wooden staff grows from twisting roots at their side, and a satchel takes form against the hip. The last leaves scatter into the air, fading into light, as the transformed traveler stands ready in the style of Middle-earth."
+                        ],
+                        "master_template_id": "104e7ce0-6996-4802-9d60-ea2c20dc518d.mp4"
+                    }
+                },
+                "en_prompt": "",
+                "negative_prompt": "",
+                "en_negative_prompt": "",
+                "magic_prompt": "",
+                "template_id": "104e7ce0-6996-4802-9d60-ea2c20dc518d.mp4",
+                "upstream_id": "",
+                "pipeline_id": ""
+            },
+            "params_version": "v3"
+        },
+    },
+    {
+        "master_template": {
+            "uuid": "10d8747c-0afd-4af1-88fa-cc4e464b5383.mp4",
+            "name": "Shake It Down"
+        },
+        "gen_params": {
+            "algo_type": "video_diffusion_template",
+            "generate_path": "/api/gw/v3/video/video_diffusion_template/async",
+            "result_path": "/api/gw/v3/video/video_diffusion_template/async/results",
+            "component_type": "video",
+            "inputs": [
+                {
+                    "key": "wh_ratio",
+                    "type": "params",
+                    "params_key": "params.wh_ratio",
+                    "value_list": [
+                        "16:9",
+                        "1:1",
+                        "9:16",
+                        "3:4",
+                        "4:3"
+                    ],
+                    "value": null,
+                    "value_type": "string",
+                    "input_type": null,
+                    "default": "1:1"
+                },
+                {
+                    "key": "check",
+                    "type": "control",
+                    "params_key": null,
+                    "value_list": null,
+                    "value": false,
+                    "value_type": "bool",
+                    "input_type": null,
+                    "default": null
+                },
+                {
+                    "key": "crop",
+                    "type": "control",
+                    "params_key": null,
+                    "value_list": null,
+                    "value": true,
+                    "value_type": "bool",
+                    "input_type": null,
+                    "default": null
+                },
+                {
+                    "key": "free_ratio",
+                    "type": "control",
+                    "params_key": null,
+                    "value_list": null,
+                    "value": false,
+                    "value_type": "bool",
+                    "input_type": null,
+                    "default": null
+                },
+                {
+                    "key": "images",
+                    "type": "params",
+                    "params_key": "images",
+                    "value_list": null,
+                    "value": null,
+                    "value_type": "array",
+                    "input_type": null,
+                    "default": null
+                }
+            ],
+            "params": {
+                "module": "video_diffusion_template",
+                "version": "v3Pro",
+                "prompt": "Shake It Down",
+                "images": [
+                    "j_d67d8c62-008c-4771-8ba5-90b8d48f9bdb"
+                ],
+                "masks": [],
+                "videos": [],
+                "audios": [],
+                "params": {
+                    "mode": "Fast",
+                    "style": "default",
+                    "height": -1,
+                    "width": -1,
+                    "seed": -1,
+                    "duration": 5,
+                    "motion": 0,
+                    "x": 0,
+                    "y": 0,
+                    "z": 0,
+                    "reserved_str": "",
+                    "batch_size": 1,
+                    "wh_ratio": "1:1",
+                    "custom_params": {
+                        "effect_name": "Shake_it_Down",
+                        "prompts": [
+                            "Shake It Down"
+                        ],
+                        "master_template_id": "10d8747c-0afd-4af1-88fa-cc4e464b5383.mp4"
+                    }
+                },
+                "en_prompt": "",
+                "negative_prompt": "",
+                "en_negative_prompt": "",
+                "magic_prompt": "",
+                "template_id": "10d8747c-0afd-4af1-88fa-cc4e464b5383.mp4",
+                "upstream_id": "",
+                "pipeline_id": ""
+            },
+            "params_version": "v3"
+        },
+    },
+    {
+        "master_template": {
+            "uuid": "113f556f-1c3b-4493-a169-fdc6d265ff55.mp4",
+            "name": "1930s vintage style"
+        },
+        "gen_params": {
+            "algo_type": "proto_transformer",
+            "generate_path": "/api/gw/v3/pipeline/proto_transformer/async",
+            "result_path": "/api/gw/v3/pipeline/proto_transformer/async/results",
+            "component_type": "video",
+            "inputs": [
+                {
+                    "key": "wh_ratio",
+                    "type": "params",
+                    "params_key": "params.wh_ratio",
+                    "value_list": [
+                        "16:9",
+                        "1:1",
+                        "9:16",
+                        "3:4",
+                        "4:3"
+                    ],
+                    "value": null,
+                    "value_type": "string",
+                    "input_type": null,
+                    "default": "1:1"
+                },
+                {
+                    "key": "check",
+                    "type": "control",
+                    "params_key": null,
+                    "value_list": null,
+                    "value": false,
+                    "value_type": "bool",
+                    "input_type": null,
+                    "default": null
+                },
+                {
+                    "key": "crop",
+                    "type": "control",
+                    "params_key": null,
+                    "value_list": null,
+                    "value": true,
+                    "value_type": "bool",
+                    "input_type": null,
+                    "default": null
+                },
+                {
+                    "key": "free_ratio",
+                    "type": "control",
+                    "params_key": null,
+                    "value_list": null,
+                    "value": false,
+                    "value_type": "bool",
+                    "input_type": null,
+                    "default": null
+                },
+                {
+                    "key": "images",
+                    "type": "params",
+                    "params_key": "images",
+                    "value_list": null,
+                    "value": null,
+                    "value_type": "array",
+                    "input_type": null,
+                    "default": null
+                }
+            ],
+            "params": {
+                "module": "proto_transformer",
+                "version": "v1",
+                "prompt": "",
+                "images": [
+                    "j_7085bfd3-a83d-493f-9c9a-11249d55e2f1"
+                ],
+                "masks": [],
+                "videos": [],
+                "audios": [],
+                "params": {
+                    "mode": "Fast",
+                    "style": "default",
+                    "height": -1,
+                    "width": -1,
+                    "seed": -1,
+                    "duration": 5,
+                    "motion": 0,
+                    "x": 0,
+                    "y": 0,
+                    "z": 0,
+                    "reserved_str": "",
+                    "batch_size": 1,
+                    "wh_ratio": "1:1",
+                    "custom_params": {
+                        "prompts": [
+                            "The subject has classic 1930s style appearance, with vintage makeup or grooming that reflects the era: [thin arched eyebrows, dark lipstick, subtle eyeliner, porcelain skin] for women, or [slicked-back or side-parted hair, clean shave or thin mustache] for men. Hairstyle matches the 1930s aesthetic, such as [short wavy finger waves] or [slick, neatly combed styles]. The outfit is authentic to the period, for example [satin evening gown with pearl necklace and vintage jewelry] or [tailored suit with bow tie or suspenders]. Lighting is dramatic studio style with soft shadows, enhancing the nostalgic atmosphere. The final image should resemble an authentic 1930s portrait photograph, with subtle film grain and a timeless, elegant mood. ",
+                            " A smooth transformation video of a person. In the first frame, the person appears in their current modern look. Gradually, they transform into a 1930s style appearance by the final frame. The transition should be seamless: clothing changes into vintage 1930s fashion, hairstyle shifts to the elegant styles of the era, and overall atmosphere reflects the retro look. Lighting and colors adjust to match the 1930s aesthetic, giving the impression of stepping back in time. "
+                        ],
+                        "master_template_id": "113f556f-1c3b-4493-a169-fdc6d265ff55.mp4"
+                    }
+                },
+                "en_prompt": "",
+                "negative_prompt": "",
+                "en_negative_prompt": "",
+                "magic_prompt": "",
+                "template_id": "113f556f-1c3b-4493-a169-fdc6d265ff55.mp4",
+                "upstream_id": "",
+                "pipeline_id": ""
+            },
+            "params_version": "v3"
+        },
+    },
+    {
+        "master_template": {
+            "uuid": "120e0a05-d4d5-4b04-9afd-62b2a6bd6f94.mp4",
+            "name": "Barbie"
+        },
+        "gen_params": {
+            "algo_type": "avatar_transformer",
+            "generate_path": "/api/gw/v3/pipeline/avatar_transformer/async",
+            "result_path": "/api/gw/v3/pipeline/avatar_transformer/async/results",
+            "component_type": "video",
+            "inputs": [
+                {
+                    "key": "wh_ratio",
+                    "type": "params",
+                    "params_key": "params.wh_ratio",
+                    "value_list": [
+                        "3:4",
+                        "9:16"
+                    ],
+                    "value": null,
+                    "value_type": "string",
+                    "input_type": null,
+                    "default": "1:1"
+                },
+                {
+                    "key": "check",
+                    "type": "control",
+                    "params_key": null,
+                    "value_list": null,
+                    "value": false,
+                    "value_type": "bool",
+                    "input_type": null,
+                    "default": null
+                },
+                {
+                    "key": "crop",
+                    "type": "control",
+                    "params_key": null,
+                    "value_list": null,
+                    "value": true,
+                    "value_type": "bool",
+                    "input_type": null,
+                    "default": null
+                },
+                {
+                    "key": "free_ratio",
+                    "type": "control",
+                    "params_key": null,
+                    "value_list": null,
+                    "value": false,
+                    "value_type": "bool",
+                    "input_type": null,
+                    "default": null
+                },
+                {
+                    "key": "images",
+                    "type": "params",
+                    "params_key": "images",
+                    "value_list": null,
+                    "value": null,
+                    "value_type": "array",
+                    "input_type": null,
+                    "default": null
+                }
+            ],
+            "params": {
+                "module": "avatar_transformer",
+                "version": "v1",
+                "prompt": "",
+                "images": [
+                    "p_937581ae-2bb8-11f0-9f9a-00163e62d579",
+                    "p_ef81d0b6-3f5e-4edc-8ed8-5a987e403c0e"
+                ],
+                "masks": [],
+                "videos": [],
+                "audios": [],
+                "params": {
+                    "mode": "Fast",
+                    "style": "default",
+                    "height": -1,
+                    "width": -1,
+                    "seed": -1,
+                    "duration": 5,
+                    "motion": 0,
+                    "x": 0,
+                    "y": 0,
+                    "z": 0,
+                    "reserved_str": "",
+                    "batch_size": 1,
+                    "wh_ratio": "1:1",
+                    "custom_params": {
+                        "vip": true,
+                        "prompts": [
+                            "Front-facing portrait of a beautiful young woman with straight, long blonde hair, vivid blue eyes, wearing an ornate sparkling princess tiara adorned with pink and white gemstones, and matching gemstone earrings. She wears a glittery pink gown, clearly displaying luxurious jewelry. Vibrant pink backdrop, fashion-magazine lighting, youthful, glamorous, and princess-themed style. Dominant colors: pink, blonde, jewel tones.",
+                            "As she turns gracefully to the side, a burst of pink glitter explodes outward. Pink smoke swirls from beneath her feet while golden sparkles spiral upward, enveloping her figure mid-turn. Her casual clothes dissolve into radiant light, and by the time she completes her turn, she’s transformed—now wearing a voluminous pink Barbie-style gown with shimmering layers and glowing accents. Her hair flows in soft waves, and she flashes a confident, dazzling smile. The camera pulls back to reveal her fully transformed, bathed in floating sparkles and soft magical light."
+                        ],
+                        "master_template_id": "120e0a05-d4d5-4b04-9afd-62b2a6bd6f94.mp4"
+                    }
+                },
+                "en_prompt": "",
+                "negative_prompt": "",
+                "en_negative_prompt": "",
+                "magic_prompt": "",
+                "template_id": "120e0a05-d4d5-4b04-9afd-62b2a6bd6f94.mp4",
+                "upstream_id": "",
+                "pipeline_id": ""
+            },
+            "params_version": "v3"
+        },
+    },
+    {
+        "master_template": {
+            "uuid": "1340d4d6-1a9d-44b5-ba5f-25a451f435d5.mp4",
+            "name": "Autumn Feast"
+        },
+        "gen_params": {
+            "algo_type": "proto_transformer",
+            "generate_path": "/api/gw/v3/pipeline/proto_transformer/async",
+            "result_path": "/api/gw/v3/pipeline/proto_transformer/async/results",
+            "component_type": "video",
+            "inputs": [
+                {
+                    "key": "wh_ratio",
+                    "type": "params",
+                    "params_key": "params.wh_ratio",
+                    "value_list": [
+                        "16:9",
+                        "1:1",
+                        "3:4",
+                        "4:3",
+                        "9:16"
+                    ],
+                    "value": null,
+                    "value_type": "string",
+                    "input_type": null,
+                    "default": "1:1"
+                },
+                {
+                    "key": "check",
+                    "type": "control",
+                    "params_key": null,
+                    "value_list": null,
+                    "value": false,
+                    "value_type": "bool",
+                    "input_type": null,
+                    "default": null
+                },
+                {
+                    "key": "crop",
+                    "type": "control",
+                    "params_key": null,
+                    "value_list": null,
+                    "value": true,
+                    "value_type": "bool",
+                    "input_type": null,
+                    "default": null
+                },
+                {
+                    "key": "free_ratio",
+                    "type": "control",
+                    "params_key": null,
+                    "value_list": null,
+                    "value": false,
+                    "value_type": "bool",
+                    "input_type": null,
+                    "default": null
+                },
+                {
+                    "key": "images",
+                    "type": "params",
+                    "params_key": "images",
+                    "value_list": null,
+                    "value": null,
+                    "value_type": "array",
+                    "input_type": null,
+                    "default": null
+                }
+            ],
+            "params": {
+                "module": "proto_transformer",
+                "version": "v1",
+                "prompt": "",
+                "images": [
+                    "j_d3d6e0eb-31d5-491f-ae28-9c5076d8d2d4"
+                ],
+                "masks": [],
+                "videos": [],
+                "audios": [
+                    "277ef87d-f57c-4928-a179-084fc40b2fe8.mp3"
+                ],
+                "params": {
+                    "mode": "Fast",
+                    "style": "default",
+                    "height": -1,
+                    "width": -1,
+                    "seed": -1,
+                    "duration": 5,
+                    "motion": 0,
+                    "x": 0,
+                    "y": 0,
+                    "z": 0,
+                    "reserved_str": "",
+                    "batch_size": 1,
+                    "wh_ratio": "1:1",
+                    "custom_params": {
+                        "prompts": [
+                            "Start with a portrait of a person, capturing their original features clearly as the first frame. Gradually, transform the image into a cozy, warm autumn scene. In the second frame, seamlessly blend the background into a charming, European-style town with tree-lined streets, golden autumn leaves, and a Thanksgiving feast on a table, complete with a roasted turkey, candles, and pumpkins. Style the person in a soft, casual sweater and a flowy skirt, giving off a relaxed, seasonal vibe. Ensure the transition is smooth, making the first and second frames flow effortlessly, creating a seamless, immersive Thanksgiving ambiance.",
+                            "Upload a portrait of a person while maintaining their original features. Transform the style and background to a cozy, warm autumn atmosphere with a Thanksgiving theme. The person should be styled in a soft, casual sweater with a flowy skirt, embodying a relaxed, seasonal vibe. The background should feature a charming, quaint European-style town with tree-lined streets, complete with golden autumn leaves. Include a traditional Thanksgiving feast on the table, featuring a roasted turkey, candles, and pumpkins, creating an inviting, family-oriented setting that radiates warmth and holiday spirit."
+                        ],
+                        "master_template_id": "1340d4d6-1a9d-44b5-ba5f-25a451f435d5.mp4"
+                    }
+                },
+                "en_prompt": "",
+                "negative_prompt": "",
+                "en_negative_prompt": "",
+                "magic_prompt": "",
+                "template_id": "1340d4d6-1a9d-44b5-ba5f-25a451f435d5.mp4",
+                "upstream_id": "",
+                "pipeline_id": ""
+            },
+            "params_version": "v3"
+        },
+    },
+    {
+        "master_template": {
+            "uuid": "14041335-fcde-4013-8e47-f9c047da700d.mp4",
+            "name": "Paparazzi Rush"
+        },
+        "gen_params": {
+            "algo_type": "video_diffusion_img2vid",
+            "generate_path": "/api/gw/v3/video/video_diffusion_img2vid/async",
+            "result_path": "/api/gw/v3/video/video_diffusion_img2vid/async/results",
+            "component_type": "video",
+            "inputs": [
+                {
+                    "key": "wh_ratio",
+                    "type": "params",
+                    "params_key": "params.wh_ratio",
+                    "value_list": [
+                        "16:9",
+                        "1:1",
+                        "9:16",
+                        "3:4",
+                        "4:3"
+                    ],
+                    "value": null,
+                    "value_type": "string",
+                    "input_type": null,
+                    "default": "1:1"
+                },
+                {
+                    "key": "check",
+                    "type": "control",
+                    "params_key": null,
+                    "value_list": null,
+                    "value": false,
+                    "value_type": "bool",
+                    "input_type": null,
+                    "default": null
+                },
+                {
+                    "key": "crop",
+                    "type": "control",
+                    "params_key": null,
+                    "value_list": null,
+                    "value": true,
+                    "value_type": "bool",
+                    "input_type": null,
+                    "default": null
+                },
+                {
+                    "key": "free_ratio",
+                    "type": "control",
+                    "params_key": null,
+                    "value_list": null,
+                    "value": false,
+                    "value_type": "bool",
+                    "input_type": null,
+                    "default": null
+                },
+                {
+                    "key": "images",
+                    "type": "params",
+                    "params_key": "images",
+                    "value_list": null,
+                    "value": null,
+                    "value_type": "array",
+                    "input_type": null,
+                    "default": null
+                }
+            ],
+            "params": {
+                "module": "video_diffusion_img2vid",
+                "version": "v3L",
+                "prompt": "Suddenly, five reporters rush into the scene, each holding cameras and microphones. The character looks overwhelmed, caught mid-blink or shielding their face in confusion. The scene is chaotic,  shouting questions, and frantic motion",
+                "images": [
+                    "j_b8a8d489-4839-4791-878a-8f055f2eb784"
+                ],
+                "masks": [],
+                "videos": [],
+                "audios": [],
+                "params": {
+                    "mode": "Slow",
+                    "style": "default",
+                    "height": -1,
+                    "width": -1,
+                    "seed": -1,
+                    "duration": 5,
+                    "motion": 0,
+                    "x": 0,
+                    "y": 0,
+                    "z": 0,
+                    "reserved_str": "",
+                    "batch_size": 1,
+                    "wh_ratio": "1:1",
+                    "custom_params": {
+                        "prompts": [
+                            "Suddenly, five reporters rush into the scene, each holding cameras and microphones. The character looks overwhelmed, caught mid-blink or shielding their face in confusion. The scene is chaotic,  shouting questions, and frantic motion"
+                        ],
+                        "master_template_id": "14041335-fcde-4013-8e47-f9c047da700d.mp4"
+                    }
+                },
+                "en_prompt": "",
+                "negative_prompt": "",
+                "en_negative_prompt": "",
+                "magic_prompt": "",
+                "template_id": "14041335-fcde-4013-8e47-f9c047da700d.mp4",
+                "upstream_id": "",
+                "pipeline_id": ""
+            },
+            "params_version": "v3"
+        },
+    },
+    {
+        "master_template": {
+            "uuid": "165f52b8-3e14-4e3e-a39d-9491f2ce24ed.mp4",
+            "name": "Kiss Kiss"
+        },
+        "gen_params": {
+            "algo_type": "video_diffusion_template",
+            "generate_path": "/api/gw/v3/video/video_diffusion_template/async",
+            "result_path": "/api/gw/v3/video/video_diffusion_template/async/results",
+            "component_type": "video",
+            "inputs": [
+                {
+                    "key": "wh_ratio",
+                    "type": "params",
+                    "params_key": "params.wh_ratio",
+                    "value_list": [
+                        "16:9",
+                        "1:1",
+                        "9:16",
+                        "3:4",
+                        "4:3"
+                    ],
+                    "value": null,
+                    "value_type": "string",
+                    "input_type": null,
+                    "default": "1:1"
+                },
+                {
+                    "key": "check",
+                    "type": "control",
+                    "params_key": null,
+                    "value_list": null,
+                    "value": false,
+                    "value_type": "bool",
+                    "input_type": null,
+                    "default": null
+                },
+                {
+                    "key": "crop",
+                    "type": "control",
+                    "params_key": null,
+                    "value_list": null,
+                    "value": true,
+                    "value_type": "bool",
+                    "input_type": null,
+                    "default": null
+                },
+                {
+                    "key": "free_ratio",
+                    "type": "control",
+                    "params_key": null,
+                    "value_list": null,
+                    "value": false,
+                    "value_type": "bool",
+                    "input_type": null,
+                    "default": null
+                },
+                {
+                    "key": "images",
+                    "type": "params",
+                    "params_key": "images",
+                    "value_list": null,
+                    "value": null,
+                    "value_type": "array",
+                    "input_type": null,
+                    "default": null
+                }
+            ],
+            "params": {
+                "module": "video_diffusion_template",
+                "version": "v3Pro",
+                "prompt": "Kiss Kiss",
+                "images": [
+                    "j_802504bd-e674-49cc-8d99-b5fc8a19ce59"
+                ],
+                "masks": [],
+                "videos": [],
+                "audios": [],
+                "params": {
+                    "mode": "Fast",
+                    "style": "default",
+                    "height": -1,
+                    "width": -1,
+                    "seed": -1,
+                    "duration": 5,
+                    "motion": 0,
+                    "x": 0,
+                    "y": 0,
+                    "z": 0,
+                    "reserved_str": "",
+                    "batch_size": 1,
+                    "wh_ratio": "1:1",
+                    "custom_params": {
+                        "effect_name": "Kiss_Kiss",
+                        "prompts": [
+                            "Kiss Kiss"
+                        ],
+                        "master_template_id": "165f52b8-3e14-4e3e-a39d-9491f2ce24ed.mp4"
+                    }
+                },
+                "en_prompt": "",
+                "negative_prompt": "",
+                "en_negative_prompt": "",
+                "magic_prompt": "",
+                "template_id": "165f52b8-3e14-4e3e-a39d-9491f2ce24ed.mp4",
+                "upstream_id": "",
+                "pipeline_id": ""
+            },
+            "params_version": "v3"
+        },
+    },
+    {
+        "master_template": {
+            "uuid": "18d7276f-b4d3-4078-a7bc-f196575ab258.mp4",
+            "name": "Hip Twist"
+        },
+        "gen_params": {
+            "algo_type": "video_diffusion_template",
+            "generate_path": "/api/gw/v3/video/video_diffusion_template/async",
+            "result_path": "/api/gw/v3/video/video_diffusion_template/async/results",
+            "component_type": "video",
+            "inputs": [
+                {
+                    "key": "wh_ratio",
+                    "type": "params",
+                    "params_key": "params.wh_ratio",
+                    "value_list": [
+                        "16:9",
+                        "1:1",
+                        "9:16",
+                        "3:4",
+                        "4:3"
+                    ],
+                    "value": null,
+                    "value_type": "string",
+                    "input_type": null,
+                    "default": "1:1"
+                },
+                {
+                    "key": "check",
+                    "type": "control",
+                    "params_key": null,
+                    "value_list": null,
+                    "value": false,
+                    "value_type": "bool",
+                    "input_type": null,
+                    "default": null
+                },
+                {
+                    "key": "crop",
+                    "type": "control",
+                    "params_key": null,
+                    "value_list": null,
+                    "value": true,
+                    "value_type": "bool",
+                    "input_type": null,
+                    "default": null
+                },
+                {
+                    "key": "free_ratio",
+                    "type": "control",
+                    "params_key": null,
+                    "value_list": null,
+                    "value": false,
+                    "value_type": "bool",
+                    "input_type": null,
+                    "default": null
+                },
+                {
+                    "key": "images",
+                    "type": "params",
+                    "params_key": "images",
+                    "value_list": null,
+                    "value": null,
+                    "value_type": "array",
+                    "input_type": null,
+                    "default": null
+                }
+            ],
+            "params": {
+                "module": "video_diffusion_template",
+                "version": "v3Pro",
+                "prompt": "The subject places both hands on their waist and performs rhythmic movements, especially focusing on hip twisting.\\nRequirements:\\n1. If there are multiple subjects in the image, all of them must perform the hip-twisting motion described above.\\n2. If the subject is a pet, it should be anthropomorphized to perform the hip-twisting motion.",
+                "images": [
+                    "j_68dcfa50-4476-404e-b1fc-f367ca28f6c6"
+                ],
+                "masks": [],
+                "videos": [],
+                "audios": [],
+                "params": {
+                    "mode": "Fast",
+                    "style": "default",
+                    "height": -1,
+                    "width": -1,
+                    "seed": -1,
+                    "duration": 5,
+                    "motion": 0,
+                    "x": 0,
+                    "y": 0,
+                    "z": 0,
+                    "reserved_str": "",
+                    "batch_size": 1,
+                    "wh_ratio": "1:1",
+                    "custom_params": {
+                        "template": "hip_twist",
+                        "prompts": [
+                            "The subject places both hands on their waist and performs rhythmic movements, especially focusing on hip twisting.\\nRequirements:\\n1. If there are multiple subjects in the image, all of them must perform the hip-twisting motion described above.\\n2. If the subject is a pet, it should be anthropomorphized to perform the hip-twisting motion."
+                        ],
+                        "master_template_id": "18d7276f-b4d3-4078-a7bc-f196575ab258.mp4"
+                    }
+                },
+                "en_prompt": "",
+                "negative_prompt": "",
+                "en_negative_prompt": "",
+                "magic_prompt": "",
+                "template_id": "18d7276f-b4d3-4078-a7bc-f196575ab258.mp4",
+                "upstream_id": "",
+                "pipeline_id": ""
+            },
+            "params_version": "v3"
+    }
+  }
+]

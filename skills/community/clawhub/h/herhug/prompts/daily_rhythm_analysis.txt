@@ -1,0 +1,61 @@
+
+---
+
+## 1️⃣3️⃣ **herHug/prompts/daily_rhythm_analysis.txt**
+
+```markdown
+# 任务：分析用户今日情绪节律
+
+## 今日原始数据
+{{hourlyData}}
+
+## 完整评分数据
+{{allScores}}
+
+## 情绪节律标准
+{{emotional_rhythm_standard}}
+
+## 分析要求
+根据情绪节律标准，分析以下维度：
+
+### 1. 日模式
+- 识别高峰时段（情绪最积极）
+- 识别低谷时段（情绪最消极）
+- 判断模式类型（晨型/夜型/平稳/双峰/波动）
+
+### 2. 周模式
+- 计算周末效应（如有周数据）
+- 分析周一现象（如今天是周一）
+- 识别周期性
+
+### 3. 恢复力
+- 计算从负面情绪恢复的速度
+- 评估恢复质量（完全/部分/累积）
+- 识别需要关注的持续情绪
+
+### 4. 置信度评估
+- 基于数据充分性给出置信度
+- 数据不足时明确说明
+
+## 输出格式
+只返回以下JSON格式，不要有其他文字：
+
+{
+  "date": "{{date}}",
+  "patternType": "morning/night/stable/bimodal/volatile",
+  "peakHours": [9, 10],
+  "lowHours": [3, 4],
+  "volatility": 0-1,
+  "weekendEffect": 0-1,
+  "mondayPhenomenon": 0-1,
+  "recovery": {
+    "speed": 0-1,
+    "quality": "full/partial/cumulative",
+    "averageHours": 0-24
+  },
+  "confidence": 0-1,
+  "insights": [
+    "洞察1",
+    "洞察2"
+  ]
+}

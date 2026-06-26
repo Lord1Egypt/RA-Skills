@@ -1,0 +1,37 @@
+{
+  "slug": "inbox-action-board",
+  "title": "收件箱行动看板",
+  "category": "productivity",
+  "categoryLabel": "本地效率",
+  "mode": "structured_brief",
+  "summary": "把邮件或消息整理成回复、等待、跟进、归档四类行动视图。",
+  "inputHint": "邮件摘要、聊天片段、待回复项",
+  "sections": [
+    "需要回复",
+    "等待他人",
+    "需要跟进",
+    "可归档",
+    "高风险遗漏",
+    "今天要做什么"
+  ],
+  "useCases": [
+    "邮件整理",
+    "消息归类",
+    "待办梳理"
+  ],
+  "positiveExamples": [
+    "帮我把收件箱整理成行动看板",
+    "区分回复和等待"
+  ],
+  "negativeExamples": [
+    "不要直接发送邮件",
+    "不要删除原消息"
+  ],
+  "risk": "只生成看板和建议。",
+  "tags": [
+    "inbox",
+    "triage",
+    "productivity",
+    "tasks"
+  ]
+}

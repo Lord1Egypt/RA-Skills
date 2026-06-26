@@ -1,0 +1,80 @@
+{
+  "name": "innotech-polymarket-api",
+  "version": "2.0.0",
+  "description": "Polymarket API and data access guide. Connect to Polymarket APIs, find markets, get real-time data via WebSocket, place orders via CLOB SDK, access order books, and understand 5-min market mechanics. Includes decimal precision rules, event reliability matrix, and known pitfalls from real bot development.",
+  "main": "SKILL.md",
+  "author": "Calvin Lam",
+  "license": "MIT",
+  "keywords": [
+    "polymarket",
+    "api",
+    "prediction-markets",
+    "websocket",
+    "data-access",
+    "market-data",
+    "real-time",
+    "orderbook",
+    "python"
+  ],
+  "engines": {
+    "python": ">=3.8"
+  },
+  "dependencies": {
+    "websockets": ">=10.0",
+    "websocket-client": ">=1.0.0",
+    "python-socketio": ">=5.0.0",
+    "aiohttp": ">=3.8.0",
+    "requests": ">=2.28.0",
+    "python-dotenv": ">=0.20.0"
+  },
+  "environment": {
+    "POLYMARKET_API_KEY": "optional - for authenticated endpoints",
+    "POLYMARKET_API_SECRET": "optional - for authenticated endpoints"
+  },
+  "scripts": {
+    "example:connect": "python examples/connect.py",
+    "example:markets": "python examples/find_markets.py",
+    "example:realtime": "python examples/realtime_data.py",
+    "example:polling": "python examples/polling.py",
+    "example:orderbook": "python examples/orderbook.py"
+  },
+  "openclaw": {
+    "emoji": "📊",
+    "userInvocable": true,
+    "disableModelInvocation": false,
+    "requires": {
+      "bins": ["python3"],
+      "env": []
+    },
+    "categories": ["api", "data", "finance", "education"],
+    "features": {
+      "api": {
+        "description": "Access Polymarket REST APIs",
+        "endpoints": ["Gamma API", "Data API"],
+        "auth": "Mostly public, no auth required"
+      },
+      "realtime": {
+        "description": "Real-time data via WebSocket",
+        "protocols": ["WebSocket", "Socket.IO"],
+        "fallback": "Polling"
+      },
+      "marketData": {
+        "description": "Market information and prices",
+        "data": ["prices", "volumes", "orderbooks", "trades"]
+      },
+      "examples": {
+        "description": "Educational code examples",
+        "files": 5,
+        "topics": ["connection", "search", "realtime", "polling", "orderbook"]
+      }
+    },
+    "useCases": [
+      "Learn how to connect to Polymarket APIs",
+      "Find and filter prediction markets",
+      "Get real-time market data via WebSocket",
+      "Access order book and liquidity data",
+      "Build prediction market applications",
+      "Analyze market trends and data"
+    ]
+  }
+}

@@ -1,35 +1,49 @@
----
-name: "Hotel Pricer"
-description: "Search hotels by city, dates, and guests using Amadeus API, returning availability and pricing in JSON format via a Go CLI tool."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/hotel-pricer"
-sourceUrl: "https://clawhub.ai/skills/hotel-pricer"
----
+# hotel-pricer Skill
 
-# Hotel Pricer
+A Go-based CLI for searching hotel availability and pricing using the Amadeus API.
 
-> Search hotels by city, dates, and guests using Amadeus API, returning availability and pricing in JSON format via a Go CLI tool.
+## Description
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/hotel-pricer`
-- **Source URL:** [https://clawhub.ai/skills/hotel-pricer](https://clawhub.ai/skills/hotel-pricer)
+This skill allows the agent to find hotel deals by city, check-in/out dates, and number of guests. It securely manages Amadeus API credentials and provides formatted JSON output.
 
-## Overview
+## Prerequisites
 
+- `go` (for installation)
+- An Amadeus for Developers account with API Key and Secret.
 
 ## Installation
-To install this skill, run the following command in your terminal:
+
+The `hotel-pricer` binary must be compiled and placed in the system's PATH.
+
 ```bash
-hermes skills install clawhub/hotel-pricer
+# From the hotel-pricer source directory
+go build
+sudo mv hotel-pricer /usr/local/bin/
 ```
+
+## Configuration
+
+Credentials must be set before use.
+
+```bash
+hotel-pricer config set --api-key YOUR_API_KEY --api-secret YOUR_API_SECRET
+```
+
+## Usage
+
+### Search for Hotels
+
+```bash
+hotel-pricer search --city <IATA_CODE> --check-in <YYYY-MM-DD> --check-out <YYYY-MM-DD> [flags]
+```
+
+**Example:**
+`hotel-pricer search --city NYC --check-in 2024-12-24 --check-out 2024-12-28 --guests 2`
+
+### Flags
+
+- `--city, -c`: City code (IATA) (required)
+- `--check-in, -i`: Check-in date (YYYY-MM-DD) (required)
+- `--check-out, -o`: Check-out date (YYYY-MM-DD) (required)
+- `--guests, -g`: Number of guests (default: 1)
+- `--radius, -r`: Search radius in kilometers (default: 20)

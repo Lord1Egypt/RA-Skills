@@ -1,0 +1,4 @@
+interface:
+  display_name: "Install Global Skill From ClawHub"
+  short_description: "Install or upgrade a ClawHub skill and promote it into the global skills directory"
+  default_prompt: "Use $install-global-skill-from-clawhub to install or upgrade a skill from ClawHub and make the machine's global OpenClaw skills directory the final source of truth."

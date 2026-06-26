@@ -1,0 +1,31 @@
+http:
+  routers:
+    # Traefik Dashboard
+    traefik:
+      rule: "Host(`traefik.192.168.9.192.nip.io`)"
+      service: api@internal
+      entryPoints:
+        - web
+
+  # Add your services below
+  # Example:
+  # myservice:
+  #   rule: "PathPrefix(`/myservice`)"
+  #   service: myservice
+  #   entryPoints:
+  #     - web
+  #   middlewares:
+  #     - myservice-stripprefix
+  
+  # middlewares:
+  #   myservice-stripprefix:
+  #     stripPrefix:
+  #       prefixes:
+  #         - /myservice
+  
+  # services:
+  #   myservice:
+  #     loadBalancer:
+  #       servers:
+  #         - url: "http://<container-name>:<port>"
+  #       passHostHeader: true

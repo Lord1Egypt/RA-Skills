@@ -1,0 +1,10 @@
+{
+  "chains": {
+    "test_chain": {
+      "chain_id": "test_chain",
+      "created_at": "2026-04-07T20:28:52.000Z",
+      "sequence": 2,
+      "tasks": []
+    }
+  }
+}

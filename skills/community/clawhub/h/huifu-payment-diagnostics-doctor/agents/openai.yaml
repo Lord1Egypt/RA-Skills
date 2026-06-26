@@ -1,0 +1,8 @@
+interface:
+  display_name: "汇付联调历史最强 Doctor"
+  short_description: "防止 AI 乱猜的汇付支付联调诊断"
+  brand_color: "#2563EB"
+  default_prompt: "使用 $huifu-payment-diagnostics-doctor 基于日志、请求响应和回调证据诊断这次汇付支付联调失败，不要凭感觉猜原因。"
+
+policy:
+  allow_implicit_invocation: true

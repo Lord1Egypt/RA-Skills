@@ -1,35 +1,50 @@
 ---
-name: "Hk Cn Content Matrix"
-description: "香港/中文内容运营指南 - 小红书、抖音、微信公众号内容创作模板和策略。香港本地化，生活/理财/旅行/美妆赛道。"
-category: "creative"
-source: "ClawHub"
-tags: [chinese, content, hongkong, marketing, social-media, automation, douyin, hk, wechat, xiaohongshu]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/hk-cn-content-matrix"
-sourceUrl: "https://clawhub.ai/skills/hk-cn-content-matrix"
+name: hk-cn-content-matrix
+description: 香港/中文内容运营指南 - 小红书、抖音、微信公众号内容创作模板和策略。香港本地化，生活/理财/旅行/美妆赛道。
+version: 1.0.2
+author: 9527Craft
+price: 49
+category: social-media
+tags: [chinese, content, social-media, hongkong, xiaohongshu, douyin, wechat, marketing]
+license: MIT
 ---
 
-# Hk Cn Content Matrix
+# 香港/中文内容运营指南 Pack
 
-> 香港/中文内容运营指南 - 小红书、抖音、微信公众号内容创作模板和策略。香港本地化，生活/理财/旅行/美妆赛道。
+## 一句话描述
+小红书 + 抖音 + 微信公众号内容运营指南：选题策略 → 内容模板 → 发布技巧 → 数据分析。香港本地化，生活/理财/旅行/美妆赛道。
 
-- **Category:** Creative
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/hk-cn-content-matrix`
-- **Source URL:** [https://clawhub.ai/skills/hk-cn-content-matrix](https://clawhub.ai/skills/hk-cn-content-matrix)
+## 为什么买这个 Skill？
 
-## Overview
+- **香港用户专属**：本地热点选题（维港打卡、股市、粤语梗）
+- **内容模板库**：小红书笔记、X推文、回复话术
+- **零基础友好**：直接复制使用
+- **持续更新**：每月新增模板
 
+## 包含内容
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/hk-cn-content-matrix
-```
+### 📝 内容模板
+- 小红书爆款文案模板
+- X (Twitter) 中文推文模板
+- 自动回复话术模板
+- 内容日历模板
+
+### 📚 运营指南
+- 香港本地热点选题
+- 发布时间策略
+- 标签使用技巧
+- 数据分析方法
+
+### 🎯 适用赛道
+- 生活方式
+- 理财投资
+- 旅行打卡
+- 美妆护肤
+
+## 定价
+
+$49 一次性购买
+
+---
+
+**提升你的中文内容运营能力！** 🚀

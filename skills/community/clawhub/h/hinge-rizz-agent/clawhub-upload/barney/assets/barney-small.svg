@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128" role="img" aria-label="Barney icon">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f8f1ec"/>
+      <stop offset="100%" stop-color="#f0e3d8"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#241f1d"/>
+      <stop offset="100%" stop-color="#4a3f39"/>
+    </linearGradient>
+  </defs>
+  <rect x="6" y="6" width="116" height="116" rx="28" fill="url(#bg)"/>
+  <rect x="28" y="24" width="72" height="80" rx="14" fill="#ffffff" opacity="0.8"/>
+  <rect x="38" y="38" width="52" height="10" rx="5" fill="url(#accent)"/>
+  <rect x="38" y="58" width="34" height="8" rx="4" fill="#6f6158" opacity="0.9"/>
+  <rect x="38" y="72" width="42" height="8" rx="4" fill="#6f6158" opacity="0.75"/>
+  <circle cx="86" cy="82" r="14" fill="#0f0f10"/>
+  <path d="M82 82h8M86 78v8" stroke="#f8f1ec" stroke-width="2.5" stroke-linecap="round"/>
+</svg>

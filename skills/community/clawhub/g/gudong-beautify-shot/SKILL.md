@@ -1,35 +1,61 @@
 ---
-name: "screenshot-beautifier 截图美化工具"
-description: "给截图添加渐变背景和圆角，让分享更美观。当用户发送图片并说"美化"、"美化一下"、"加个背景"时触发。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/gudong-beautify-shot"
-sourceUrl: "https://clawhub.ai/skills/gudong-beautify-shot"
+name: gudong-beautify-shot
+description: 给截图添加渐变背景和圆角，让分享更美观。当用户发送图片并说"美化"、"美化一下"、"加个背景"时触发。
 ---
 
-# screenshot-beautifier 截图美化工具
+# Screenshot Beautifier
 
-> 给截图添加渐变背景和圆角，让分享更美观。当用户发送图片并说"美化"、"美化一下"、"加个背景"时触发。
+给截图添加好看的背景和圆角，让分享更美观。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/gudong-beautify-shot`
-- **Source URL:** [https://clawhub.ai/skills/gudong-beautify-shot](https://clawhub.ai/skills/gudong-beautify-shot)
+## 触发条件
 
-## Overview
+用户发送图片后，说以下任意关键词：
+- "美化" / "美化一下"
+- "帮我美化"
+- "加个背景"
 
+## 使用方式
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/gudong-beautify-shot
+# 基本美化
+python3 beautify.py input.png
+
+# 带底部文字
+python3 beautify.py input.png -t "这是我的截图"
 ```
+
+Claude 交互示例：
+```
+用户：[发送图片] 美化一下
+AI：[返回美化后的图片]
+
+用户：[发送图片] 美化，加描述：今天的学习笔记
+AI：[返回带文字描述的美化图片]
+```
+
+## 处理流程
+
+1. 接收用户发送的图片路径
+2. 解析文字描述（如果有）
+3. 调用 `beautify.py` 处理图片
+4. 返回美化后的图片路径
+
+## 效果
+
+- 渐变背景（蜜桃橙粉配色）
+- 圆角裁切
+- 可选底部文字描述（居中、带阴影）
+- 自适应图片尺寸
+- 输出 PNG（透明边缘，无白边）
+
+## 依赖
+
+```
+pip install Pillow
+```
+
+## 不做什么
+
+- 不编辑图片内容（裁剪、滤镜等）
+- 不支持自定义配色
+- 不支持批量处理

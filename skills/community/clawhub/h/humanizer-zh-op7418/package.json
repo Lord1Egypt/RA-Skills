@@ -1,0 +1,12 @@
+{
+  "name": "humanizer-zh-op7418",
+  "version": "1.0.0",
+  "description": "去除文本中的 AI 生成痕迹，使其更自然、更像人类书写",
+  "main": "SKILL.md",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": ["ai", "humanize", "writing", "editing"],
+  "author": "op7418",
+  "license": "MIT"
+}

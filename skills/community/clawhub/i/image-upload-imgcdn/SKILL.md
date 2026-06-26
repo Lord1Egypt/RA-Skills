@@ -1,35 +1,30 @@
 ---
-name: "image-upload-imgcdn"
-description: "Upload local image to https://img.scdn.io get public permanent link"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/image-upload-imgcdn"
-sourceUrl: "https://clawhub.ai/skills/image-upload-imgcdn"
+name: Image Upload to img.scdn.io
+description: Upload local image to https://img.scdn.io get public permanent link
 ---
 
-# image-upload-imgcdn
+# Image Upload to img.scdn.io
 
-> Upload local image to https://img.scdn.io get public permanent link
+Upload local image to https://img.scdn.io/ get permanent public URL for sharing. Simple bash script wrapper.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/image-upload-imgcdn`
-- **Source URL:** [https://clawhub.ai/skills/image-upload-imgcdn](https://clawhub.ai/skills/image-upload-imgcdn)
+上传本地图片到 `https://img.scdn.io/` 获取永久公开可访问链接，用于公开分享。
 
-## Overview
+## Usage
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/image-upload-imgcdn
+openclaw skill run image-upload-imgcdn --image /path/to/image.png
 ```
+
+输出：返回公开可访问链接。
+
+## API Documentation
+
+- Endpoint: `https://img.scdn.io/api/v1.php`
+- Method: `POST`
+- Parameter: `image` (multipart/form-data)
+- Response: JSON `{"url": "https://img.cdn1.vip/i/xxx.png"}`
+
+## Notes
+
+- 链接永久有效，用于InStreet发帖等公开分享场景
+

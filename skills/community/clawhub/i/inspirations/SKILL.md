@@ -1,35 +1,122 @@
 ---
-name: "Inspirations"
-description: "灵感捕捉与记录工具。当用户输入灵感、想法、创意、待验证创意时自动触发，记录为结构化 Markdown 文件保存到 workspace/inspirations/ 目录。支持类型识别（灵感/想法/待验证创意）、自动打标签、整理摘要。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/inspirations"
-sourceUrl: "https://clawhub.ai/skills/inspirations"
+name: inspirations
+description: 灵感捕捉与记录工具。当用户输入灵感、想法、创意、待验证创意时自动触发，记录为结构化 Markdown 文件保存到 workspace/inspirations/ 目录。支持类型识别（灵感/想法/待验证创意）、自动打标签、整理摘要。
 ---
 
-# Inspirations
+# Inspirations — 灵感捕捉与记录
 
-> 灵感捕捉与记录工具。当用户输入灵感、想法、创意、待验证创意时自动触发，记录为结构化 Markdown 文件保存到 workspace/inspirations/ 目录。支持类型识别（灵感/想法/待验证创意）、自动打标签、整理摘要。
+## 核心工作流
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/inspirations`
-- **Source URL:** [https://clawhub.ai/skills/inspirations](https://clawhub.ai/skills/inspirations)
+当用户描述一个灵感/想法/创意时，执行以下步骤：
 
-## Overview
+### 1. 内容类型识别
 
+根据内容自动判断类型：
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/inspirations
+| 关键词/特征 | 类型 | Tag |
+|------------|------|-----|
+| 突然闪现、直觉、"冒出来"的念头 | `inspiration` | 💡 灵感 |
+| 有目标、有步骤、可执行的方案 | `idea` | 🎯 想法 |
+| 有根据但需要验证/实验的假设 | `todo` | 🔬 待验证 |
+| 读书/文章/对话后的思考和延伸 | `reflection` | 💭 反思 |
+
+> 类型判断优先级：todo > idea > reflection > inspiration。用户输入中最明确的特征为准。
+
+### 2. 生成文件名
+
+格式：`YYYY-MM-DD--HHMM--{type}--{slug}.md`
+
+- `type`：识别出的类型标签（小写，如 inspiration）
+- `slug`：从内容中提取 2-4 个核心关键词，用短横线连接
+- 中文标题直接音译或取拼音首字母
+
+**示例：**
+- 内容："忽然想到可以做个 AI 日程助手的浏览器插件"
+- 文件名：`2026-05-09--0118--inspiration--ai-ri-cheng-zhu-shou.md`
+
+### 3. 写入 Markdown 文件
+
+文件路径：`workspace/inspirations/{filename}`
+
+文件内容模板：
+
+```markdown
+---
+title: {一句话标题}
+type: {类型}
+tags: [{tag1}, {tag2}, ...]
+created_at: {YYYY-MM-DD HH:mm}
+source: {来源，DM/群聊/文档等}
+---
+
+## 原始记录
+
+{用户的原始输入，逐字保留}
+
+## 摘要
+
+{用一段简洁的话总结这条灵感的核心价值，30字以内}
+
+## 延伸思考
+
+{根据内容自动补充 1-3 条延伸问题或关联想法}
+
+## 状态
+
+- [ ] 未处理
+- [ ] 有价值，待跟进
+- [ ] 已归档
 ```
+
+### 4. 存储目录
+
+统一存放在 `workspace/inspirations/` 下，按年月组织子目录：
+
+```
+workspace/inspirations/
+├── 2026-05.md          ← 月度汇总索引
+└── 2026-05/
+    ├── 2026-05-09--0118--inspiration--ai-ri-cheng-zhu-shou.md
+    └── ...
+```
+
+每月末在 `YYYY-MM.md` 文件中追加一条索引记录。
+
+## 月度索引文件格式
+
+路径：`workspace/inspirations/{YYYY-MM}.md`
+
+```markdown
+# 灵感索引 — {YYYY年MM月}
+
+## 本月记录
+
+| 日期 | 标题 | 类型 | 状态 |
+|------|------|------|------|
+| 05-09 | AI 日程助手浏览器插件 | 💡 灵感 | ⏳ 未处理 |
+
+## 本月统计
+
+- 灵感：{N} 条
+- 想法：{N} 条
+- 待验证：{N} 条
+```
+
+## 交互原则
+
+- **不打断用户**：识别到灵感后静默完成记录，不强制要求补充信息
+- **主动补充**：自动生成摘要和延伸思考，减少用户操作负担
+- **简洁确认**：记录完成后给一条简短确认（"已记录：[标题]"），不冗长
+- **可纠正**：用户可以随时说"修改/补充/删除刚才的灵感"，立即响应
+
+## 触发信号
+
+以下情况**必须**记录：
+- 用户明确说"忽然想到……"、"冒出一个念头……"、"我有灵感了……"
+- 用户描述了一个未经验证的创意或方案
+- 用户提到"也许可以……"、"我在想能不能……"
+
+以下情况**不记录**：
+- 用户只是在聊天、问候、提问
+- 明确是在讨论现有任务或执行指令
+- 闲聊内容

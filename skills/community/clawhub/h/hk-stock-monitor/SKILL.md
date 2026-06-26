@@ -1,35 +1,101 @@
 ---
-name: "港股+A股盯盘系统"
-description: "港股+A股实时盯盘系统，支持技术分析、涨跌幅告警、飞书推送。使用场景：(1) 查询港股/A股实时行情，(2) 监控股票涨跌幅告警，(3) 生成技术分析报告，(4) 定时推送盯盘报告。触发关键词：盯盘、股票监控、港股行情、A股行情、涨跌告警、技术分析。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/hk-stock-monitor"
-sourceUrl: "https://clawhub.ai/skills/hk-stock-monitor"
+name: hk-stock-monitor
+description: 港股+A股实时盯盘系统，支持技术分析、涨跌幅告警、飞书推送。使用场景：(1) 查询港股/A股实时行情，(2) 监控股票涨跌幅告警，(3) 生成技术分析报告，(4) 定时推送盯盘报告。触发关键词：盯盘、股票监控、港股行情、A股行情、涨跌告警、技术分析。
 ---
 
 # 港股+A股盯盘系统
 
-> 港股+A股实时盯盘系统，支持技术分析、涨跌幅告警、飞书推送。使用场景：(1) 查询港股/A股实时行情，(2) 监控股票涨跌幅告警，(3) 生成技术分析报告，(4) 定时推送盯盘报告。触发关键词：盯盘、股票监控、港股行情、A股行情、涨跌告警、技术分析。
+实时盯盘 + 技术分析 + 告警推送，专为港股/A股投资者设计。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/hk-stock-monitor`
-- **Source URL:** [https://clawhub.ai/skills/hk-stock-monitor](https://clawhub.ai/skills/hk-stock-monitor)
+## 快速使用
 
-## Overview
+### 获取实时行情
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/hk-stock-monitor
+cd scripts && node monitor.js
+```
+
+输出：16只股票实时行情 + 技术分析 + 操作建议
+
+### 检查涨跌幅告警
+
+```bash
+cd scripts && node alert-check.js
+```
+
+- 涨跌幅超过 4.9% 时推送飞书告警
+- 每只股票每天最多告警1次
+
+### 定时监控 (cron)
+
+```bash
+# 每30分钟运行一次
+*/30 9-16 * * 1-5 cd /path/to/scripts && node monitor.js >> /var/log/monitor.log 2>&1
+
+# 每3分钟检查告警
+*/3 9-16 * * 1-5 cd /path/to/scripts && node alert-check.js >> /var/log/alert.log 2>&1
+```
+
+## 监控股票列表
+
+**A股 (8只)**：美的集团、中控技术、工商银行、中国中车、长安汽车、爱尔眼科、宋城演艺、青岛啤酒
+
+**港股 (8只)**：美团-W、阿里巴巴-SW、腾讯控股、吉利汽车、山高控股、华润燃气、顺丰控股、海尔智家
+
+## 技术分析维度
+
+| 维度 | 说明 |
+|------|------|
+| 量价关系 | 放量上涨/缩量上涨/放量下跌/缩量下跌 |
+| 涨跌位置 | 强势上涨/稳健上涨/小幅下跌/大幅下跌 |
+| 委比分析 | 买盘强劲/卖压较重 |
+| 振幅分析 | 剧烈波动/正常波动/交投清淡 |
+
+## 操作建议逻辑
+
+根据综合评分生成：
+- **持有/逢低加仓**：趋势向好，量价配合
+- **观望**：方向不明，等待信号
+- **减仓/止损**：下跌趋势明显
+
+## 数据源
+
+- **主数据源**：新浪财经（免费，无需 API key）
+- **备用数据源**：QVeris（付费，需 API key）
+
+故障时自动切换，连续失败3次发送告警。
+
+## 飞书推送配置
+
+编辑 `scripts/data-sources.js`：
+
+```javascript
+const CONFIG = {
+  chatId: 'oc_xxx', // 飞书群聊 ID
+  ...
+};
+```
+
+## Pro 版功能 (订阅 $20/月)
+
+| 功能 | 基础版 | Pro 版 |
+|------|--------|--------|
+| 股票数量 | 8只 | 16只 + 自定义 |
+| 告警推送 | ❌ | ✅ 飞书/Telegram |
+| AI投研 | ❌ | ✅ hk-ai-stock-expert |
+| 历史数据 | 7天 | 6个月 |
+
+Pro 版订阅联系作者获取。
+
+## 文件结构
+
+```
+hk-stock-monitor/
+├── SKILL.md
+├── scripts/
+│   ├── monitor.js      # 主监控脚本
+│   ├── alert-check.js  # 告警检查脚本
+│   └── data-sources.js # 数据获取模块
+└── references/
+    └ stocks.md         # 股票配置参考
 ```

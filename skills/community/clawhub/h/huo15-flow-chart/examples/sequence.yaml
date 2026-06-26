@@ -1,0 +1,25 @@
+type: sequence
+title: 用户登录时序图
+auto_number: true
+
+nodes:
+  - { id: U,   label: 用户,        shape: actor }
+  - { id: FE,  label: 前端 Web }
+  - { id: BE,  label: 后端 API }
+  - { id: DB,  label: 数据库 }
+  - { id: WX,  label: 企业微信 }
+
+edges:
+  - { from: U,  to: FE, label: "点击登录" }
+  - { from: FE, to: WX, label: "OAuth 跳转" }
+  - { from: WX, to: FE, label: "回调 code", kind: dashed }
+  - { from: FE, to: BE, label: "POST /login {code}" }
+  - { from: BE, to: WX, label: "exchange code for user_id" }
+  - { from: WX, to: BE, label: "user_id", kind: dashed }
+  - { from: BE, to: DB, label: "SELECT / INSERT user" }
+  - { from: DB, to: BE, label: "user row", kind: dashed }
+  - { from: BE, to: FE, label: "JWT token", kind: dashed }
+  - { from: FE, to: U,  label: "登录完成", kind: dashed }
+
+notes:
+  - { position: over, over: "BE", text: "首次登录自动建账" }

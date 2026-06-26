@@ -1,0 +1,71 @@
+{
+  "skill_name": "hardcover-bookshelf",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "what's on my reading list?",
+      "expected_output": "A numbered list of books from the Want to Read shelf",
+      "files": [],
+      "expectations": [
+        "Claude invokes `npx tsx src/cli.ts list` (or equivalent npm script)",
+        "The response includes a numbered or bulleted list of book titles",
+        "The response mentions how many books are shown"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "i just started reading project hail mary by andy weir",
+      "expected_output": "Confirms the book is marked as Currently Reading",
+      "files": [],
+      "expectations": [
+        "Claude invokes `npx tsx src/cli.ts start --title` with a title matching 'Project Hail Mary'",
+        "The response confirms the book was marked as Currently Reading",
+        "Claude echoes back the resolved title after the mutation succeeds"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "i finished dune last night",
+      "expected_output": "Confirms the book is marked as Read with a date",
+      "files": [],
+      "expectations": [
+        "Claude invokes `npx tsx src/cli.ts finish --title` with a title matching 'Dune'",
+        "The response confirms the book was marked as Read",
+        "If the title resolves ambiguously (multiple editions), Claude asks the user to choose before mutating"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "how many books did i read last year?",
+      "expected_output": "Reports a count of books read in the previous calendar year",
+      "files": [],
+      "expectations": [
+        "Claude invokes `npx tsx src/cli.ts count-last-year`",
+        "The response includes a numeric count of books",
+        "The response mentions which year the count is for"
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "add the three body problem to my to read shelf",
+      "expected_output": "Claude recognizes this as a Want to Read intent and explains current limitations or attempts to handle it",
+      "files": [],
+      "expectations": [
+        "Claude recognizes the user wants to add a book to their Want to Read shelf",
+        "Claude either attempts to fulfill the request or clearly explains that the current skill only supports list/start/finish/count operations",
+        "Claude does not silently ignore the request"
+      ]
+    },
+    {
+      "id": 6,
+      "prompt": "show me the last 5 books i've been reading",
+      "expected_output": "Lists books from the Currently Reading shelf",
+      "files": [],
+      "expectations": [
+        "Claude invokes a list or shelf command to fetch currently-reading books",
+        "The response shows book titles the user is currently reading",
+        "Claude limits results appropriately based on the user's request"
+      ]
+    }
+  ]
+}

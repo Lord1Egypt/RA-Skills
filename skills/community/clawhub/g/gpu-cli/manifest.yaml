@@ -1,0 +1,58 @@
+name: GPU CLI
+slug: angusbezzina/gpu-cli
+version: 1.2.0
+channel: stable
+description: "Safely run local 'gpu' commands from your OpenClaw agent with dry-run, caps, and clear remediation."
+homepage: https://gpu-cli.sh
+repository: https://github.com/gpu-cli/gpu
+docs: https://gpu-cli.sh/docs/ai-agent-skill
+maintainers:
+  - name: GPU CLI Team
+    url: https://clawhub.ai/angusbezzina
+category: ML/Compute
+tags: [gpu, training, inference, comfyui, vllm, remote]
+
+permissions:
+  tools:
+    Bash: true
+    Read: true
+  network: false
+  filesystem:
+    scope: workspace
+
+triggers:
+  slash: "/gpu"
+  phrases:
+    - "Use GPU CLI to"
+    - "Run on a GPU"
+    - "gpu run"
+
+settings:
+  dry_run:
+    type: boolean
+    default: true
+    description: "Preview the command and checks without executing."
+  require_confirm:
+    type: boolean
+    default: true
+    description: "Require explicit confirmation before starting paid resources."
+  max_price_per_hour:
+    type: number
+    default: 0.50
+    description: "USD/hr cap for selected GPU (0 disables price gating)."
+  max_runtime_minutes:
+    type: integer
+    default: 30
+    description: "Hard cap on job runtime in minutes (0 disables timeout)."
+  default_gpu_type:
+    type: string
+    default: "RTX 4090"
+    description: "Default GPU when not specified in the command."
+  provider:
+    type: string
+    default: "runpod"
+    description: "Default provider context (must be configured in GPU CLI)."
+
+execute:
+  entry: ./runner.sh
+  pass_args: true

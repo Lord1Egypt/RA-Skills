@@ -1,0 +1,28 @@
+# Release Checklist
+
+- [x] `SKILL.md` exists with name, description, MIT-0 license, version, and OpenClaw key in metadata.
+- [x] `VERSION.txt` exists and is `3.0.0`.
+- [x] `metadata.json` exists and is valid JSON.
+- [x] `agents/openai.yaml` exists and matches current behavior.
+- [x] First-trigger startup-plan-only rule included.
+- [x] First-trigger test where user asks to generate images still returns startup text only.
+- [x] Text generation and image generation are never combined in one reply.
+- [x] Workflow lists S0 and P1-P9 with response modes.
+- [x] P3 text candidates default to 6 within a 4-6 range.
+- [x] P4 TEXT_ONLY candidate-board setup included.
+- [x] P5 IMAGE_ONLY candidate-board generation included.
+- [x] P6 TEXT_ONLY candidate review/selection included.
+- [x] Release tests fail if text candidates move directly to final prompt/final image/caption without candidate board unless the user explicitly skips image candidates.
+- [x] Every text reply state/output footer rule included.
+- [x] Every text reply lists all workflow steps and current position.
+- [x] Next-question prompt prefix and fallback prompt included exactly.
+- [x] ChatGPT web Create image / ChatGPT Images 2.0 rendering route included.
+- [x] Codex `$imagegen` first rendering route included, with ChatGPT Images 2.0 API or approved API fallback.
+- [x] SVG/Mermaid/TikZ/Graphviz/HTML-CSS/canvas/matplotlib/code-rendered outputs forbidden as image outputs or fallbacks.
+- [x] Sample/reference image multi-image attribute protocol included.
+- [x] Full local corpus manifest and evidence map references included.
+- [x] Builder-time acquisition report included.
+- [x] Representative rendered pages are labeled as audit aids only.
+- [x] Multi-label inspiration/case routing included; one PDF or diagram may support multiple labels.
+- [x] Inspiration/case evidence subset counts included.
+- [x] MIT-0 license included in `LICENSE.md`.

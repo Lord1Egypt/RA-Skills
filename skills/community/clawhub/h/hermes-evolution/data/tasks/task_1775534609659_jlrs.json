@@ -1,0 +1,30 @@
+{
+  "id": "task_1775534609659_jlrs",
+  "title": "测试任务",
+  "description": "这是一个测试用的定时任务",
+  "source": "scheduled",
+  "assignedTo": "CEO",
+  "status": "inbox",
+  "priority": "P2",
+  "intent": "scheduled",
+  "subtasks": [],
+  "createdAt": "2026-04-07T04:03:29.659Z",
+  "updatedAt": "2026-04-11T08:10:00.370Z",
+  "stateChangedAt": "2026-04-07T04:03:29.659Z",
+  "createdBy": "sensen",
+  "result": null,
+  "error": null,
+  "timeoutCount": 2,
+  "alerts": [
+    {
+      "type": "timeout",
+      "message": "inbox状态已超过6006分钟",
+      "at": "2026-04-11T08:09:59.359Z"
+    },
+    {
+      "type": "timeout",
+      "message": "inbox状态已超过6007分钟",
+      "at": "2026-04-11T08:10:00.370Z"
+    }
+  ]
+}

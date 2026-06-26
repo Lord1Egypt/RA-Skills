@@ -1,0 +1,8 @@
+{
+  "assetType": "skill",
+  "name": "flower-study-starter",
+  "displayName": "新手学养花",
+  "semver": "1.1.0",
+  "category": "lifestyle",
+  "tags": ["flowers", "beginner", "home-gardening", "learning", "starter"]
+}

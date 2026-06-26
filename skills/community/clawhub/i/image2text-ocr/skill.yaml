@@ -1,0 +1,23 @@
+name: image2text_ocr
+version: 1.0.4
+description: 将图片中的文字信息识别并提取出来。本技能应在用户需要 OCR 识别图片中的文字时使用。
+author: SCNet
+license: MIT
+tags:
+  - ocr
+  - 文字提取
+
+required_env_vars:
+  - SCNET_API_KEY
+
+optional_env_vars:
+  - SCNET_API_BASE
+
+primary_credential: SCNET_API_KEY
+
+# 增加项目主页，解决 missing homepage 警告
+homepage: https://github.com/SCNet-sugon/image2text_ocr.git  # 请替换为实际仓库地址
+
+dependencies:
+  - python3
+  - requests

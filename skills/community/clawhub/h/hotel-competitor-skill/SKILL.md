@@ -1,35 +1,26 @@
 ---
-name: "酒店竞对调研openclaw助手"
-description: "酒店竞争分析 SKILL - 自动搜索周边酒店，生成竞争分析报告"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/hotel-competitor-skill"
-sourceUrl: "https://clawhub.ai/skills/hotel-competitor-skill"
+name: hotel-competitor
+description: 酒店竞争分析 SKILL - 自动搜索周边酒店，生成竞争分析报告
+version: 1.0.0
+author: OpenClaw Team
+license: MIT
 ---
 
-# 酒店竞对调研openclaw助手
+# 酒店竞争分析 SKILL
 
-> 酒店竞争分析 SKILL - 自动搜索周边酒店，生成竞争分析报告
+## 使用方法
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/hotel-competitor-skill`
-- **Source URL:** [https://clawhub.ai/skills/hotel-competitor-skill](https://clawhub.ai/skills/hotel-competitor-skill)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/hotel-competitor-skill
+# 运行分析
+python3 scripts/hotel_analysis.py --hotel "酒店名称"
 ```
+
+## 功能
+
+- 自动搜索周边酒店
+- 生成竞争分析报告
+- 三阶能力体系
+
+## 配置
+
+需要高德 API Key：https://lbs.amap.com/

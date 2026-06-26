@@ -1,35 +1,194 @@
 ---
-name: "Haike Work Reporter"
-description: "协助团队成员（小伙伴们）整理每日工作内容并生成日报、周报、月报，同时在第二天提醒未完成的任务。适用场景：用户说"帮我整理今天的工作"、"出本周周报"、"生成本月月报"、"有什么待完成的事项"等。This skill should be used when the user wants to summarize d..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/haike-work-reporter"
-sourceUrl: "https://clawhub.ai/skills/haike-work-reporter"
+name: bear-gzhaike-work-reporter
+description: 协助团队成员（小伙伴们）整理每日工作内容并生成日报、周报、月报，同时在第二天提醒未完成的任务。适用场景：用户说"帮我整理今天的工作"、"出本周周报"、"生成本月月报"、"有什么待完成的事项"等。This skill should be used when the user wants to summarize daily work, generate weekly or monthly reports, or be reminded of pending tasks.
+agent_created: true
 ---
 
-# Haike Work Reporter
+# Work Reporter — 工作汇报助手
 
-> 协助团队成员（小伙伴们）整理每日工作内容并生成日报、周报、月报，同时在第二天提醒未完成的任务。适用场景：用户说"帮我整理今天的工作"、"出本周周报"、"生成本月月报"、"有什么待完成的事项"等。This skill should be used when the user wants to summarize d...
+## 核心功能
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/haike-work-reporter`
-- **Source URL:** [https://clawhub.ai/skills/haike-work-reporter](https://clawhub.ai/skills/haike-work-reporter)
+1. **自动截屏追踪**：每15分钟截图 → AI 分析 → 写入日志 → 删图，全程静默
+2. **18:00 自动日报**：每天下班主动推送当日工作日报，无需用户操作
+3. **手工日报生成**：随时说「帮我整理今天」，基于截屏日志即时生成
+4. **周报生成**：汇总一周工作，高亮重点成果与本周亮点
+5. **月报生成**：按项目/方向分类汇总月度工作，呈现趋势与进展
+6. **待办提醒**：将未完成任务写入第二天提醒
 
-## Overview
+---
 
+## 数据来源
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/haike-work-reporter
+工作内容可从以下渠道获取，优先级从上到下：
+
+### 渠道一：自动截屏分析日志（优先读取）
+
+bear 配置了每15分钟的自动化截屏系统（工作日 9:00-18:00），日志存储在：
 ```
+.workbuddy/screenshots/YYYY-MM-DD.md
+```
+
+日志格式为表格，每行一条记录：
+```markdown
+# 工作日志 2026-05-29 周五
+| 时间 | 正在做什么 | 应用 | 状态 |
+|------|-----------|------|------|
+| 09:00 | 查看邮件 | Mail | 专注 |
+| 09:15 | 编写落地方案 | VS Code | 专注 |
+```
+
+生成日报时，优先读取此文件作为核心数据源。
+
+### 渠道二：手动描述
+
+用户当前消息中直接描述的工作内容。
+
+### 渠道三：本地记忆文件
+
+项目 `.workbuddy/memory/YYYY-MM-DD.md` 或 `~/.workbuddy/memory/`。
+
+### 渠道四：主动询问
+
+若以上均无数据，询问用户：「今天做了什么？」（简短一句话即可）。一般情况下渠道一已足够，不要无谓打扰用户。
+
+---
+
+## 自动化日报流程（18:00 自动触发）
+
+bear 创建了独立的「每日自动日报」automation，工作日每天 18:00 自动执行：
+
+1. 读取当日截屏日志 `.workbuddy/screenshots/YYYY-MM-DD.md`
+2. 统计各状态时长（专注/沟通/离开）
+3. 按时段归纳主要工作事项
+4. 生成结构化日报，带概览 + 时间线 + 提示
+5. 主动推送给 bear，无需用户操作
+
+日报格式（自动化推送版）：
+```markdown
+# 🌙 工作日报 · M月D日（周X）
+
+## 📊 今日概览
+- 专注时长：约 X 小时
+- 沟通协作：约 X 小时
+- 离开/休息：约 X 小时
+
+## 🔥 主要工作
+（归纳2-5个主要事项）
+
+## ⏱ 时间线
+| 时段 | 活动 |
+|------|------|
+| 09:00-10:00 | xxx |
+
+## ⚠️ 中断/切换
+（如有频繁切换，指出）
+```
+
+---
+
+## 报告模板
+
+### 日报格式
+
+```markdown
+# 工作日报 · YYYY年MM月DD日（周X）
+
+## ✅ 今日完成
+- [事项1] — 简短说明
+- [事项2] — 简短说明
+
+## 🔄 进行中 / 未完成
+- [事项] — 当前进度 / 阻塞原因
+
+## 📌 明日计划
+- [计划事项1]
+- [计划事项2]
+
+## 💬 备注
+（可选，特殊情况说明）
+```
+
+### 周报格式
+
+```markdown
+# 工作周报 · YYYY年第WW周（MM月DD日 - MM月DD日）
+
+## 🏆 本周亮点
+- [最重要的1-3个成果]
+
+## 📋 工作详情
+
+### [项目/方向A]
+- 完成：xxx
+- 推进：xxx
+
+### [项目/方向B]
+- 完成：xxx
+
+## ⏳ 遗留事项
+- [未完成项] — 预计下周跟进
+
+## 🎯 下周计划
+- [计划1]
+- [计划2]
+```
+
+### 月报格式
+
+```markdown
+# 工作月报 · YYYY年MM月
+
+## 📊 月度概览
+- 完成事项总数：N 项
+- 核心项目进展：xxx
+
+## 🗂 分项目/方向详情
+
+### [项目A]
+- 关键成果：xxx
+- 累计进度：xx%
+
+### [项目B]
+- 关键成果：xxx
+
+## 🚩 本月挑战与应对
+- [挑战] → [如何解决]
+
+## 🎯 下月重点
+- [目标1]
+- [目标2]
+```
+
+---
+
+## 未完成任务提醒流程
+
+当用户有未完成任务时：
+
+1. 列出所有未完成任务（来源：日报的「进行中/未完成」栏）
+2. 询问用户是否需要设置第二天提醒
+3. 若需要，创建一次性 automation：
+   - `scheduleType: once`
+   - `scheduledAt`: 第二天早上 09:00
+   - prompt 内容：列出待办任务，提示用户今日需跟进
+
+**示例 automation prompt：**
+```
+提醒 bear：昨天有以下任务未完成，今日请优先跟进：
+1. [任务A]
+2. [任务B]
+请问这些任务今天的安排是什么？
+```
+
+---
+
+## 使用注意事项
+
+- 报告风格：简洁务实，避免废话，重点突出
+- 语言：默认中文
+- 日报触发词：「日报」「今天做了什么」「帮我总结今天」「帮我看看今天」「今天干了啥」
+- 周报触发词：「周报」「本周总结」「这周做了什么」
+- 月报触发词：「月报」「本月总结」「月度汇总」
+- 提醒触发词：「提醒我」「明天记得」「待完成」「未完成」
+- 多人场景：如果用户提到「小伙伴」或团队成员，询问各自负责的方向后分别整理，再汇总
+- 自动化日报已由独立 automation 处理，skill 被调用时优先读截屏日志而非询问用户

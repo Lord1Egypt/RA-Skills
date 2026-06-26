@@ -1,0 +1,17 @@
+{
+  "type": "function",
+  "function": {
+    "name": "_bpmn_delete_flow",
+    "description": "Delete a flow line in the BPMN process.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "moduleId": { "type": "string" },
+        "processDefineId": { "type": "string" },
+        "flowId": { "type": "string" }
+      },
+      "required": ["moduleId", "processDefineId", "flowId"],
+      "additionalProperties": false
+    }
+  }
+}

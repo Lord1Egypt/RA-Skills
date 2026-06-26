@@ -1,35 +1,21 @@
 ---
-name: "Ashare Fast Watcher"
+name: "ashare-fast-watcher"
 description: "A-Share millisecond-level market data watcher using Tencent direct API."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ashare-fast-watcher"
-sourceUrl: "https://clawhub.ai/skills/ashare-fast-watcher"
+version: "1.0.0"
 ---
 
 # Ashare Fast Watcher
 
-> A-Share millisecond-level market data watcher using Tencent direct API.
+A high-performance skill to monitor A-Share market movements.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ashare-fast-watcher`
-- **Source URL:** [https://clawhub.ai/skills/ashare-fast-watcher](https://clawhub.ai/skills/ashare-fast-watcher)
+## Actions
 
-## Overview
+### get_market_snapshot
+Fetches real-time price, change, volume, and Level-1 quotes.
+#### Parameters
+- `codes`: (Required) String. Stock codes with prefix, e.g., "sh600519,sz000001".
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/ashare-fast-watcher
-```
+### check_volatility
+Detects sudden volume spikes or price movements.
+#### Parameters
+- `code`: (Required) String. Single stock code.

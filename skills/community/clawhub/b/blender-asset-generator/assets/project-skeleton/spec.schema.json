@@ -1,0 +1,121 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Blender Asset Spec (MVP)",
+  "type": "object",
+  "required": ["meta", "scale", "asset", "outputs"],
+  "properties": {
+    "meta": {
+      "type": "object",
+      "required": ["blender_version", "created_by"],
+      "properties": {
+        "blender_version": { "type": "string" },
+        "created_by": { "type": "string" },
+        "notes": { "type": "string" }
+      }
+    },
+    "scale": {
+      "type": "object",
+      "required": ["units"],
+      "properties": {
+        "units": { "type": "string", "enum": ["mm", "cm", "m"] },
+        "anchor_mm": {
+          "type": "object",
+          "properties": {
+            "kind": { "type": "string", "enum": ["height", "width", "depth", "diameter", "largest_dim"] },
+            "value_mm": { "type": "number", "minimum": 1 }
+          }
+        }
+      }
+    },
+    "asset": {
+      "type": "object",
+      "required": ["name", "use_case", "category", "components"],
+      "properties": {
+        "name": { "type": "string" },
+        "use_case": { "type": "string", "enum": ["ecommerce", "game", "teaching"] },
+        "category": { "type": "string" },
+        "materials": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["name", "type"],
+            "properties": {
+              "name": { "type": "string" },
+              "type": { "type": "string", "enum": ["pbr_placeholder"] },
+              "base_color_rgba": {
+                "type": "array",
+                "items": { "type": "number" },
+                "minItems": 4,
+                "maxItems": 4
+              },
+              "roughness": { "type": "number", "minimum": 0, "maximum": 1 },
+              "metallic": { "type": "number", "minimum": 0, "maximum": 1 }
+            }
+          }
+        },
+        "components": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": ["name", "primitive", "params_mm"],
+            "properties": {
+              "name": { "type": "string" },
+              "primitive": { "type": "string", "enum": ["box", "cylinder", "bottle_like"] },
+              "params_mm": { "type": "object" },
+              "material": { "type": "string" },
+              "transform": {
+                "type": "object",
+                "properties": {
+                  "location_mm": { "type": "array", "items": { "type": "number" }, "minItems": 3, "maxItems": 3 },
+                  "rotation_deg": { "type": "array", "items": { "type": "number" }, "minItems": 3, "maxItems": 3 }
+                }
+              }
+            }
+          }
+        },
+        "open_questions": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "reference_images": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["path"],
+            "properties": {
+              "path": { "type": "string" },
+              "view": { "type": "string" },
+              "notes": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    "outputs": {
+      "type": "object",
+      "required": [
+        "export_glb",
+        "export_fbx_optional",
+        "export_usdc_optional",
+        "renders"
+      ],
+      "properties": {
+        "export_glb": { "type": "string" },
+        "export_fbx_optional": { "type": ["string", "null"] },
+        "export_usdc_optional": { "type": ["string", "null"] },
+        "renders": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["name", "path"],
+            "properties": {
+              "name": { "type": "string" },
+              "path": { "type": "string" }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,18 @@
+{# ── 推荐区 ── #}
+{% if recommendation_cn %}
+<div class="section">
+    <h3 class="section-title">✅ 推荐理由</h3>
+    <div class="recommendation">
+        <div class="content-block">{{ recommendation_cn }}</div>
+    </div>
+</div>
+{% endif %}
+
+{% if recommendation_en %}
+<div class="section">
+    <h3 class="section-title-en">✅ Recommendation</h3>
+    <div class="recommendation">
+        <div class="content-block-en">{{ recommendation_en }}</div>
+    </div>
+</div>
+{% endif %}

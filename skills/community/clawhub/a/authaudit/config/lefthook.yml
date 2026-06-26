@@ -1,0 +1,66 @@
+# AuthAudit -- Git Hook Configuration
+# Managed by lefthook (https://github.com/evilmartians/lefthook)
+#
+# This file is copied to the project root when running:
+#   authaudit hooks install
+#
+# Hooks:
+#   pre-commit  -- Scans staged source files for auth/authz vulnerabilities
+#   pre-push    -- Runs full auth audit before push (if enabled)
+
+pre-commit:
+  parallel: true
+  commands:
+    authaudit-scan:
+      glob: "*.{js,ts,jsx,tsx,py,rb,go,java,php,cs,rs,kt,scala,vue,svelte}"
+      run: |
+        AUTHAUDIT_SKILL_DIR="${AUTHAUDIT_SKILL_DIR:-$HOME/.openclaw/skills/authaudit}"
+        if [[ -f "$AUTHAUDIT_SKILL_DIR/scripts/analyzer.sh" ]]; then
+          source "$AUTHAUDIT_SKILL_DIR/scripts/patterns.sh"
+          source "$AUTHAUDIT_SKILL_DIR/scripts/license.sh"
+          source "$AUTHAUDIT_SKILL_DIR/scripts/analyzer.sh"
+          hook_scan
+        else
+          echo "[AuthAudit] Skill not found at $AUTHAUDIT_SKILL_DIR -- skipping scan"
+          echo "[AuthAudit] Install: clawhub install authaudit"
+        fi
+      fail_text: |
+        ==========================================================
+        AuthAudit: Authentication/authorization issues detected!
+
+        Critical auth vulnerabilities were found in your staged files.
+        These issues must be resolved before committing.
+
+        To see details:
+          authaudit scan
+
+        To skip this check (NOT recommended):
+          git commit --no-verify
+        ==========================================================
+      stage_fixed: true
+
+pre-push:
+  parallel: true
+  commands:
+    authaudit-full-scan:
+      glob: "*.{js,ts,jsx,tsx,py,rb,go,java,php,cs,rs,kt,scala,vue,svelte}"
+      run: |
+        AUTHAUDIT_SKILL_DIR="${AUTHAUDIT_SKILL_DIR:-$HOME/.openclaw/skills/authaudit}"
+        if [[ -f "$AUTHAUDIT_SKILL_DIR/scripts/dispatcher.sh" ]]; then
+          bash "$AUTHAUDIT_SKILL_DIR/scripts/dispatcher.sh" scan --format text
+        else
+          echo "[AuthAudit] Skill not found -- skipping pre-push scan"
+        fi
+      fail_text: |
+        ==========================================================
+        AuthAudit: Auth audit failed before push!
+
+        Your codebase has auth/authz issues that need attention.
+        Score is below the passing threshold (70).
+
+        To see details:
+          authaudit scan --verbose
+
+        To skip this check (NOT recommended):
+          git push --no-verify
+        ==========================================================

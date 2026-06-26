@@ -1,0 +1,145 @@
+# AWP Agent Configuration -- Full-Featured
+# Replace all "{{PLACEHOLDER}}" values.
+# Remove or comment out sections not needed.
+
+awp_agent: "1.0.0"
+
+identity:
+  id: "{{AGENT_ID}}"                               # snake_case, must match directory (R2)
+  role: "{{AGENT_ROLE}}"
+  description: "{{AGENT_DESCRIPTION}}"
+  version: "1.0.0"
+  tags: []
+
+runtime:
+  class_name: Agent
+  strategy_folder: workflow
+
+model:
+  name: ""                                         # Set at runtime via LLM_MODEL env var or run wizard
+  fallback: ""                                     # Set at runtime via LLM_MODEL env var or run wizard
+  parameters:
+    temperature: 0.2
+    max_tokens: 4096
+    top_p: 1.0
+  reasoning:
+    enabled: true
+    effort: high                                    # low | medium | high
+    force: true
+
+prompt:
+  system: "instructions/SYSTEM_PROMPT.md"
+  user_template: "prompt/00_INTRO.md"
+  additional: []
+  variables: {}
+  injection_order:
+    - system_prompt
+    - skills
+    - memory
+    - previous_agents
+    - user_prompt
+    - context
+
+output:
+  format: json                                      # json | text | markdown
+  contract:
+    result:
+      type: string
+      description: "Primary output of this agent"
+      shareable: true
+      sensitive: false
+      required: true
+    confidence:
+      type: number
+      minimum: 0.0
+      maximum: 1.0
+      description: "Confidence score (0.0-1.0)"
+      shareable: true
+      required: true
+  validation:
+    mode: strict                                    # strict | lenient | none
+    on_invalid: retry                               # retry | skip | abort | use_partial
+    max_retries: 2
+
+capabilities:
+  tools:
+    enabled: true
+    max_calls: 15
+    max_parallel: 4
+    timeout_per_call: 30
+    # tool_choice: auto                                 # auto | none | required | {tool_name}
+    # parallel_calls: true                              # true = model may issue multiple tool calls per response
+    allowed:
+      - web.search
+      - http.request
+      - file.read
+      - file.write
+      - file.list
+      - shell.execute
+      - agent.send_message
+      - agent.list_messages
+      - memory.write
+      - memory.read
+      - memory.search
+      - memory.curate
+    denied: []
+  skills:
+    agent_skills: []
+    project_skills: true
+  data_sources: []
+  # --- Sandbox (Code execution environment) ---
+  # sandbox:
+  #   type: subprocess                      # subprocess | docker | wasm | isolate | none
+  #   constraints:
+  #     max_memory_mb: 256
+  #     max_cpu_seconds: 30
+  #     max_output_bytes: 1048576
+  #   network:                              # Network isolation (required for type: isolate)
+  #     enabled: false                      # Default: no network access
+  #     allowed_hosts: []                   # Whitelist when enabled: true
+  #   filesystem:
+  #     read: ["data/"]
+  #     write: ["data/output/"]
+  #     deny: [".env", "**/*.key"]
+
+  # --- Code Mode (alternative tool execution strategy) ---
+  # Instead of calling tools one-by-one, the agent writes code against a
+  # typed SDK. Reduces token usage and LLM roundtrips for large tool surfaces.
+  # codemode:
+  #   enabled: false
+  #   language: typescript                  # typescript | python | javascript
+  #   sdk_surface:
+  #     mode: auto                          # auto | explicit
+  #     # auto: all allowed tools become SDK methods
+  #     # explicit: only listed tools
+  #     include: []                         # only with mode: explicit
+  #     exclude: []                         # tools to exclude from SDK
+  #   execution:
+  #     sandbox_ref: capabilities.sandbox   # uses sandbox config above
+  #     timeout: 30
+  #     max_retries: 1
+  #     capture_console: true
+  #   state:
+  #     enabled: false
+  #     backend: memory                     # memory | filesystem | workspace
+
+vision:
+  enabled: false
+  # model: "provider/vision-model"
+  # supported_formats: [png, jpg, webp, pdf]
+  # max_images: 10
+
+preprocessor:
+  enabled: false
+  pipeline: default
+
+memory:
+  enabled: true
+  long_term:
+    enabled: true
+    inject: true
+    max_tokens: 2000
+  daily_log:
+    enabled: true
+    auto_write: true
+  search_enabled: true

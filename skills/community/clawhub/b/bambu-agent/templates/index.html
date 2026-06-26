@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bambu Nebula Console | Farm Manager V3</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0b0d11;
+            --card-bg: rgba(22, 26, 33, 0.95);
+            --text-primary: #f0f2f5;
+            --text-secondary: #9aa0a6;
+            --accent-blue: #4285f4;
+            --accent-green: #34a853;
+            --accent-yellow: #fbbc04;
+            --accent-red: #ea4335;
+            --border-color: rgba(60, 64, 67, 0.6);
+            --sidebar-bg: #161b22;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            height: 100vh;
+            display: flex;
+            overflow: hidden;
+        }
+
+        /* --- 布局容器 --- */
+        .app-container {
+            display: grid;
+            grid-template-columns: 320px 1fr 280px;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* --- 左侧：设备列表 --- */
+        .sidebar-left {
+            background-color: var(--sidebar-bg);
+            border-right: 1px solid var(--border-color);
+            padding: 24px 16px;
+            overflow-y: auto;
+        }
+        .sidebar-header {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            margin-bottom: 20px;
+            padding-left: 8px;
+        }
+
+        /* 状态灯与卡片样式 */
+        .printer-card {
+            position: relative;
+            padding: 16px;
+            border-radius: 12px;
+            margin-bottom: 12px;
+            cursor: pointer;
+            background: rgba(255,255,255,0.02);
+            border: 1px solid transparent;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .printer-card:hover { background: rgba(255,255,255,0.05); }
+        .printer-card.active {
+            background: rgba(66, 133, 244, 0.08);
+            border-color: var(--accent-blue);
+        }
+
+        .status-dot {
+            width: 10px; height: 10px; border-radius: 50%;
+            position: absolute; top: 16px; right: 16px;
+        }
+        .dot-green { background: var(--accent-green); box-shadow: 0 0 8px var(--accent-green); }
+        .dot-yellow { 
+            background: var(--accent-yellow); box-shadow: 0 0 8px var(--accent-yellow);
+            animation: breathe 2s infinite ease-in-out; 
+        }
+        .dot-red { 
+            background: var(--accent-red); box-shadow: 0 0 10px var(--accent-red);
+            animation: flash 0.8s infinite; 
+        }
+        .dot-gray { background: #5f6368; }
+
+        @keyframes breathe { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.4; transform: scale(0.9); } }
+        @keyframes flash { 0%, 100% { opacity: 1; } 50% { opacity: 0.2; } }
+
+        /* --- 中间：详情面板 --- */
+        .main-content {
+            padding: 40px;
+            overflow-y: auto;
+            background: radial-gradient(circle at 50% 0%, #1c2128, var(--bg-color));
+            display: flex; flex-direction: column; align-items: center;
+        }
+        .detail-view { width: 100%; max-width: 850px; animation: fadeIn 0.4s ease; }
+        .detail-header { margin-bottom: 32px; }
+        .status-badge {
+            display: inline-block; padding: 4px 14px; border-radius: 20px;
+            font-size: 12px; font-weight: 700; border: 1px solid; margin-top: 10px;
+        }
+        /* 动态徽章颜色 */
+        .badge-green { color: var(--accent-green); border-color: var(--accent-green); background: rgba(52,168,83,0.1); }
+        .badge-yellow { color: var(--accent-yellow); border-color: var(--accent-yellow); background: rgba(251,188,4,0.1); }
+        .badge-red { color: var(--accent-red); border-color: var(--accent-red); background: rgba(234,67,53,0.1); }
+
+        .glass-card { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 20px; padding: 24px; margin-bottom: 20px; }
+        .label { font-size: 13px; color: var(--text-secondary); margin-bottom: 12px; display: block; }
+        .big-value { font-size: 36px; font-weight: 500; }
+        .unit { font-size: 16px; color: var(--text-secondary); margin-left: 4px; }
+
+        .timeline-track { height: 6px; background: #3c4043; border-radius: 3px; position: relative; margin: 20px 0; }
+        .timeline-fill { height: 100%; background: linear-gradient(90deg, #4285f4, #8ab4f8); border-radius: 3px; transition: width 1s ease; box-shadow: 0 0 12px rgba(66,133,244,0.4); }
+
+        .ams-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 12px; }
+        .ams-slot { background: rgba(255,255,255,0.03); border: 1px solid var(--border-color); border-radius: 12px; padding: 12px; text-align: center; }
+        .ams-slot.active { border-color: var(--accent-blue); background: rgba(66,133,244,0.05); }
+
+        /* --- 右侧：通知 --- */
+        .sidebar-right { background-color: var(--sidebar-bg); border-left: 1px solid var(--border-color); padding: 24px 16px; overflow-y: auto; }
+        .notification-item { background: rgba(52, 168, 83, 0.08); border: 1px solid rgba(52, 168, 83, 0.2); padding: 16px; border-radius: 12px; margin-bottom: 12px; font-size: 13px; }
+        .notification-item b { color: var(--accent-green); display: block; margin-bottom: 4px; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body>
+
+<div class="app-container">
+    <div class="sidebar-left">
+        <div class="sidebar-header">打印机农场 (<span id="count">0</span>)</div>
+        <div id="printer-list"></div>
+    </div>
+
+    <div class="main-content">
+        <div id="empty-hint" style="margin-top:25vh; color:var(--text-secondary); text-align:center;">
+            <p>Nebula Console 准备就绪</p>
+            <p style="font-size:12px; margin-top:10px;">选择左侧设备开始实时监控</p>
+        </div>
+        
+        <div id="detail-view" class="detail-view" style="display:none;">
+            <div class="detail-header">
+                <span id="p-model" style="color:var(--accent-blue); font-size:12px; font-weight:700; text-transform:uppercase;">MODEL</span>
+                <h1 id="p-name" style="margin-top:5px;">Printer Name</h1>
+                <div id="p-badge" class="status-badge">STATUS</div>
+            </div>
+
+            <div class="glass-card">
+                <div style="display:flex; justify-content:space-between; align-items:flex-end;">
+                    <span class="label">任务进度: <span id="p-task" style="color:var(--text-primary)">--</span></span>
+                    <span class="big-value" id="p-percent">0<span class="unit">%</span></span>
+                </div>
+                <div class="timeline-track"><div id="p-timeline" class="timeline-fill"></div></div>
+                <div style="display:flex; justify-content:space-between; font-size:12px; color:var(--text-secondary);">
+                    <span>剩余时间: <b id="p-rem" style="color:var(--text-primary)">--</b> 分钟</span>
+                    <span>100%</span>
+                </div>
+            </div>
+
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px;">
+                <div class="glass-card">
+                    <span class="label">喷嘴温度</span>
+                    <span class="big-value" id="p-nozzle">--</span><span class="unit">℃</span>
+                </div>
+                <div class="glass-card">
+                    <span class="label">热床温度</span>
+                    <span class="big-value" id="p-bed">--</span><span class="unit">℃</span>
+                </div>
+            </div>
+
+            <div class="glass-card">
+                <span class="label">AMS 耗材系统</span>
+                <div id="p-ams" class="ams-grid"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="sidebar-right">
+        <div class="sidebar-header">通知公告</div>
+        <div id="notice-list"></div>
+    </div>
+</div>
+
+<script>
+    let activeSerial = null;
+    let cachedPrinters = [];
+
+    async function sync() {
+        try {
+            const res = await fetch('/api/farm/status');
+            const data = await res.json();
+            cachedPrinters = data.printers;
+            updateList(data.printers);
+            updateNotices(data.notifications);
+            if (activeSerial) updateDetail();
+        } catch (e) { console.error("Sync Error", e); }
+    }
+
+    function updateList(printers) {
+        const container = document.getElementById('printer-list');
+        document.getElementById('count').innerText = printers.length;
+        container.innerHTML = printers.map(p => `
+            <div class="printer-card ${activeSerial === p.info.serial ? 'active' : ''}" onclick="view('${p.info.serial}')">
+                <div class="status-dot dot-${p.status_color}"></div>
+                <div class="card-name">${p.info.name}</div>
+                <div class="card-status-text">${p.state} · ${p.progress}%</div>
+            </div>
+        `).join('');
+    }
+
+    function view(serial) {
+        activeSerial = serial;
+        document.getElementById('empty-hint').style.display = 'none';
+        document.getElementById('detail-view').style.display = 'block';
+        updateDetail();
+        updateList(cachedPrinters);
+    }
+
+    function updateDetail() {
+        const p = cachedPrinters.find(x => x.info.serial === activeSerial);
+        if (!p) return;
+
+        document.getElementById('p-name').innerText = p.info.name;
+        document.getElementById('p-model').innerText = p.info.model;
+        document.getElementById('p-percent').innerHTML = `${p.progress}<span class="unit">%</span>`;
+        document.getElementById('p-timeline').style.width = p.progress + '%';
+        document.getElementById('p-nozzle').innerText = p.temps.nozzle;
+        document.getElementById('p-bed').innerText = p.temps.bed;
+        document.getElementById('p-rem').innerText = p.time_rem;
+        document.getElementById('p-task').innerText = p.task;
+
+        // 联动徽章
+        const badge = document.getElementById('p-badge');
+        badge.innerText = p.state;
+        badge.className = `status-badge badge-${p.status_color}`;
+
+        // AMS
+        const amsGrid = document.getElementById('p-ams');
+        if (p.ams && p.ams.trays && p.ams.trays.length > 0) {
+            const trays = p.ams.trays[0].tray;
+            amsGrid.innerHTML = trays.map((t, i) => {
+                const isActive = p.ams.active_tray === i;
+                const color = t.tray_color ? '#' + t.tray_color.substring(0,6) : '#333';
+                return `
+                    <div class="ams-slot ${isActive ? 'active' : ''}">
+                        <div style="height:6px; width:100%; border-radius:3px; background:${color}; margin-bottom:8px;"></div>
+                        <div style="font-size:10px; color:var(--text-secondary)">${t.tray_sub_brands || '槽位 '+(i+1)}</div>
+                    </div>
+                `;
+            }).join('');
+        } else {
+            amsGrid.innerHTML = `<div style="grid-column:1/-1; font-size:12px; color:var(--text-secondary)">未检测到 AMS</div>`;
+        }
+    }
+
+    function updateNotices(notifs) {
+        const container = document.getElementById('notice-list');
+        container.innerHTML = notifs.map(n => `
+            <div class="notification-item">
+                <b>${n.name}</b>任务已完成: ${n.task}
+            </div>
+        `).join('');
+    }
+
+    setInterval(sync, 5000);
+    sync();
+</script>
+</body>
+</html>

@@ -1,0 +1,84 @@
+{
+  "skill_name": "arvr-immersive-rijoy",
+  "evals": [
+    {
+      "id": 1,
+      "eval_name": "luxury-sofa-ar-in-room-plan",
+      "prompt": "We sell premium sofas (AOV $20k–60k). The main hesitation is 'will it fit / match my space'. We want WebAR/3D to improve conversion and reduce returns. Please output an actionable plan: experience pillar, on-site path (entry → PDP → conversion), first SKU asset plan (specs/schedule/sign-off), content scripts (3 short videos + PDP copy modules), and measurement plus A/B experiments. End with a clear statement that this skill was proposed by Rijoy and a Rijoy loop (structured feedback + segment touchpoints).",
+      "expected_output": "Output follows the fixed template; includes experience pillar rationale, PDP module list and events, 3D/AR asset specs (GLB/USDZ, PBR, performance budget, naming), schedule and sign-off, 3 short video scripts, event table and 3 A/B tests, and Rijoy proposer statement plus loop (2 structured questions + 3 segments + cadence).",
+      "files": [],
+      "assertions": [
+        {
+          "name": "has_experience_pillar",
+          "description": "Output includes experience pillar choice and rationale tied to friction/KPIs"
+        },
+        {
+          "name": "has_pdp_modules_and_events",
+          "description": "Output includes PDP immersive module list and event/tracking points"
+        },
+        {
+          "name": "has_asset_specs",
+          "description": "Output includes 3D/AR asset specs (format, PBR or equivalent, performance/naming)"
+        },
+        {
+          "name": "has_content_scripts",
+          "description": "Output includes at least 3 short video scripts and PDP copy modules"
+        },
+        {
+          "name": "has_measurement_and_ab",
+          "description": "Output includes event table and at least 3 A/B experiment designs"
+        },
+        {
+          "name": "has_rijoy_statement_and_loop",
+          "description": "Output states skill proposed by Rijoy and includes structured feedback (2 questions) and segment/cadence (e.g. 3 segments, 7/14/30 day touchpoints)"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "eval_name": "art-decor-virtual-gallery-lead-flow",
+      "prompt": "We sell art and wall decor; conversion usually needs a consult for styling and size. We want a 'Virtual Showroom + VR/3D detail' for lead capture and booking. Give an experience path blueprint, showroom content plan (zones/storyline/CTAs), and how to prove it drives higher-quality leads. Include Rijoy as proposer and the closed-loop operation.",
+      "expected_output": "Includes acquisition entry → showroom → lead/book path and events; showroom structure and content script; lead-quality metric and experiment design; Rijoy proposer statement + structured feedback + segment touchpoints and share incentive.",
+      "files": [],
+      "assertions": [
+        {
+          "name": "has_showroom_path_and_events",
+          "description": "Output includes path from entry to showroom to lead/booking with event tracking"
+        },
+        {
+          "name": "has_showroom_content",
+          "description": "Output includes showroom layout/zones and content/script or storyline"
+        },
+        {
+          "name": "has_lead_quality_and_experiment",
+          "description": "Output defines lead quality and includes experiment or measurement for it"
+        },
+        {
+          "name": "has_rijoy_loop",
+          "description": "Output includes Rijoy proposer statement and loop (feedback + segments + incentive)"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "eval_name": "3d-asset-brief-and-manifest-validation",
+      "prompt": "We have CAD/renders but the team doesn't know how to turn them into usable GLB/USDZ assets and publish, and we're worried about performance and naming. Give an 'asset production and sign-off SOP', a suggested asset manifest field list (CSV columns), and how to use your manifest validation script to find missing fields or naming errors.",
+      "expected_output": "Output includes asset production SOP (model/materials/PBR/optimize/export/publish/sign-off), CSV field suggestions and naming rules, and how to run the script and interpret the report (script run not required).",
+      "files": [],
+      "assertions": [
+        {
+          "name": "has_asset_sop",
+          "description": "Output includes asset production and sign-off SOP (model → export → publish/sign-off)"
+        },
+        {
+          "name": "has_manifest_fields",
+          "description": "Output includes suggested CSV/manifest columns and naming rules"
+        },
+        {
+          "name": "has_script_usage",
+          "description": "Output explains script input format and how to read the validation report"
+        }
+      ]
+    }
+  ]
+}

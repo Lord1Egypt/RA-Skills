@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Agent认知：OS与Application</title>
+<style>
+  /* ========== RESET & BASE ========== */
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    padding: 40px 20px;
+    font-family: -apple-system, 'PingFang SC', 'Noto Sans SC', 'Helvetica Neue', sans-serif;
+  }
+
+  /* ========== CONTAINER: 3:4 PORTRAIT ========== */
+  .container {
+    width: 1080px;
+    min-height: 1440px;
+    background-color: #F2F2F2;
+    /* 蓝图网格 */
+    background-image:
+      repeating-linear-gradient(0deg, transparent, transparent 19px, #E8E8E8 19px, #E8E8E8 20px),
+      repeating-linear-gradient(90deg, transparent, transparent 19px, #E8E8E8 19px, #E8E8E8 20px),
+      repeating-linear-gradient(0deg, transparent, transparent 99px, #DBDBDB 99px, #DBDBDB 100px),
+      repeating-linear-gradient(90deg, transparent, transparent 99px, #DBDBDB 99px, #DBDBDB 100px);
+    position: relative;
+    
+    padding: 48px 48px 36px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  /* ========== COORD LABEL (hidden) ========== */
+  .coord { display: none; }
+
+  /* ========== HEADER ========== */
+  .header {
+    text-align: center;
+    padding: 16px 0 8px;
+    position: relative;
+  }
+  .header h1 {
+    font-size: 72px;
+    font-weight: 900;
+    color: #1a1a1a;
+    letter-spacing: 3px;
+    line-height: 1.25;
+  }
+  .header .subtitle {
+    font-size: 26px;
+    color: #666;
+    margin-top: 12px;
+    font-family: 'SF Mono', monospace;
+    letter-spacing: 3px;
+  }
+
+  /* ========== MODULE CARD ========== */
+  .module {
+    background: rgba(184, 216, 190, 0.25);
+    border: 1px solid #2D2926;
+    border-radius: 2px;
+    padding: 28px 32px 24px;
+    position: relative;
+  }
+  .module h2 {
+    font-size: 40px;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 20px;
+    padding-left: 0;
+  }
+
+  /* ========== GRID LAYOUTS ========== */
+  .grid-2col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+  .grid-3col {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+  }
+
+  /* ========== THREE-LAYER SPECTRUM (MOD-1) ========== */
+  .spectrum-card {
+    background: rgba(255,255,255,0.6);
+    border: 1px solid #ccc;
+    padding: 24px 20px;
+    text-align: center;
+    transition: all 0.2s;
+  }
+  .spectrum-card.best {
+    border: 3px solid #E91E63;
+    background: rgba(233, 30, 99, 0.08);
+  }
+  .spectrum-card .name {
+    font-weight: 800;
+    font-size: 36px;
+    margin-bottom: 8px;
+    color: #1a1a1a;
+  }
+  .spectrum-card .en {
+    font-size: 24px;
+    color: #999;
+    font-family: 'SF Mono', monospace;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+  }
+  .spectrum-card .desc {
+    font-size: 26px;
+    color: #555;
+    line-height: 1.5;
+  }
+  .spectrum-card .barrier {
+    margin-top: 12px;
+    font-size: 24px;
+    font-weight: 700;
+  }
+
+  /* ========== SCALE BAR (MOD-2) ========== */
+  .scale-bar {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    margin: 16px 0;
+  }
+  .scale-segment {
+    height: 52px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 26px;
+    font-weight: 700;
+    color: #fff;
+  }
+  .scale-label {
+    display: flex;
+    justify-content: space-between;
+    font-size: 22px;
+    color: #666;
+    font-family: monospace;
+    margin-top: 6px;
+  }
+
+  /* ========== WARNING (MOD-3) ========== */
+  .warning {
+    background: #1a1a1a;
+    color: #E91E63;
+    border-left: 6px solid #E91E63;
+    padding: 28px 32px;
+    font-weight: 700;
+    font-size: 30px;
+    border-radius: 2px;
+    position: relative;
+  }
+  .warning h2 {
+    color: #E91E63;
+    font-size: 40px;
+    margin-bottom: 16px;
+    padding-left: 0;
+  }
+  .warning ul {
+    list-style: none;
+    padding: 0;
+  }
+  .warning li {
+    padding: 8px 0;
+    padding-left: 40px;
+    position: relative;
+    line-height: 1.5;
+    font-size: 30px;
+  }
+  .warning li::before {
+    content: "⚠";
+    position: absolute;
+    left: 0;
+    font-size: 28px;
+  }
+
+  /* ========== DATA TABLE (MOD-4) ========== */
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 28px;
+  }
+  .data-table th {
+    background: #2D2926;
+    color: #fff;
+    padding: 16px 20px;
+    text-align: left;
+    font-weight: 700;
+    font-size: 26px;
+    letter-spacing: 2px;
+  }
+  .data-table td {
+    padding: 14px 20px;
+    border-bottom: 1px solid #ddd;
+    font-size: 28px;
+    line-height: 1.4;
+  }
+  .data-table tr:nth-child(even) td {
+    background: rgba(184, 216, 190, 0.15);
+  }
+
+  /* ========== STATUS BAR (MOD-5) ========== */
+  .status-bar {
+    display: flex;
+    gap: 0;
+  }
+  .status-item {
+    flex: 1;
+    padding: 20px 16px;
+    text-align: center;
+    border-right: 1px solid #ccc;
+    background: rgba(255,255,255,0.5);
+  }
+  .status-item:last-child { border-right: none; }
+  .status-item .value {
+    font-size: 64px;
+    font-weight: 800;
+    color: #3A7BD5;
+    font-family: 'SF Mono', monospace;
+  }
+  .status-item .label {
+    font-size: 24px;
+    color: #666;
+    margin-top: 6px;
+  }
+
+  /* ========== UTILITY ========== */
+  .highlight {
+    background: linear-gradient(transparent 60%, #FFF200 60%);
+    padding: 0 4px;
+  }
+  .pink { color: #E91E63; font-weight: 700; }
+  .blue { color: #3A7BD5; font-weight: 700; }
+  .tag {
+    display: inline-block;
+    background: #2D2926;
+    color: #fff;
+    font-size: 24px;
+    padding: 4px 14px;
+    border-radius: 2px;
+    letter-spacing: 2px;
+    font-family: monospace;
+  }
+
+  /* ========== FOOTER ========== */
+  .footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 22px;
+    color: #999;
+    font-family: monospace;
+    padding-top: 8px;
+    border-top: 1px solid #ccc;
+    margin-top: auto;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- HEADER -->
+  <div class="header">
+    <span class="coord">SEC-00</span>
+    <h1>Agent认知：OS与Application</h1>
+    <div class="subtitle">COGNITIVE MAP · AGENT ARCHITECTURE · 2026</div>
+  </div>
+
+  <!-- MOD-1: 三层光谱 -->
+  <div class="module">
+    <span class="coord">A-01</span>
+    <h2>三层光谱：从指令到服务</h2>
+    <div class="grid-3col">
+      <div class="spectrum-card">
+        <div class="name">指令</div>
+        <div class="en">PROMPT</div>
+        <div class="desc">给Agent点拨方向<br>活还是Agent干</div>
+        <div class="barrier" style="color:#999;">壁垒：<span class="pink">零</span></div>
+      </div>
+      <div class="spectrum-card">
+        <div class="name">工具</div>
+        <div class="en">SCRIPT</div>
+        <div class="desc">外部代劳返回结果<br>带宽降低</div>
+        <div class="barrier" style="color:#999;">壁垒：<span style="color:#E6A817;font-weight:700;">低</span></div>
+      </div>
+      <div class="spectrum-card best">
+        <div class="name">服务 ★</div>
+        <div class="en">APPLICATION</div>
+        <div class="desc">代劳+持久状态<br>+基础设施</div>
+        <div class="barrier" style="color:#999;">壁垒：<span class="blue">高</span></div>
+      </div>
+    </div>
+    <!-- 壁垒条 -->
+    <div class="scale-bar" style="margin-top:20px;">
+      <div class="scale-segment" style="flex:1; background:#B8D8BE; color:#1a1a1a;">可复制</div>
+      <div class="scale-segment" style="flex:1; background:#E6A817;">可复现</div>
+      <div class="scale-segment" style="flex:2; background:#E91E63;">不可复制</div>
+    </div>
+    <div class="scale-label">
+      <span>Prompt</span><span>Script</span><span style="text-align:right;">Application →</span>
+    </div>
+  </div>
+
+  <!-- MOD-2: 两个物理约束 + OS vs Application 双栏 -->
+  <div class="grid-2col">
+    <!-- 两个物理约束 -->
+    <div class="module">
+      <span class="coord">B-05</span>
+      <h2>两个物理约束</h2>
+      <div style="margin-bottom:20px;">
+        <div class="tag" style="margin-bottom:12px;">约束 ①</div>
+        <div style="font-size:32px; font-weight:800; color:#1a1a1a; margin:8px 0;">上下文容量</div>
+        <div style="font-size:28px; color:#555; line-height:1.5;">Context是有限容器<br>塞得越多<span class="highlight">性能越差</span></div>
+      </div>
+      <hr style="border:none;border-top:1px solid #ccc;margin:16px 0;">
+      <div>
+        <div class="tag" style="margin-bottom:12px;">约束 ②</div>
+        <div style="font-size:32px; font-weight:800; color:#1a1a1a; margin:8px 0;">注意力带宽</div>
+        <div style="font-size:28px; color:#555; line-height:1.5;">多任务互相干扰<br>注意力是<span class="pink">零和的</span></div>
+      </div>
+    </div>
+
+    <!-- OS vs Application -->
+    <div class="module">
+      <span class="coord">C-12</span>
+      <h2>OS vs Application</h2>
+      <div style="margin-bottom:16px; padding-bottom:16px; border-bottom:1px solid #ccc;">
+        <div class="tag" style="background:#3A7BD5; margin-bottom:10px;">AGENT OS</div>
+        <div style="font-size:34px; font-weight:800; color:#3A7BD5; margin:6px 0;">命题：WHAT</div>
+        <div style="font-size:28px; color:#555; line-height:1.5;">决定<span class="highlight">做什么</span><br>持有用户意图<br>持有跨域上下文</div>
+      </div>
+      <div>
+        <div class="tag" style="background:#E91E63; margin-bottom:10px;">APPLICATION</div>
+        <div style="font-size:34px; font-weight:800; color:#E91E63; margin:6px 0;">命题：HOW</div>
+        <div style="font-size:28px; color:#555; line-height:1.5;">决定<span class="highlight">怎么做</span><br>持有领域状态<br>持有业务历史</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MOD-3: 避坑警告 -->
+  <div class="warning">
+    <span class="coord">D-03</span>
+    <h2>⚠ 避坑警告</h2>
+    <ul>
+      <li>垂类做Agent OS是找死——你拿领域知识跟OpenAI比推理能力，是拿刀打坦克</li>
+      <li>Skill天花板是卖copy——prompt可复制，无状态script可复现，做得越好抄得越容易</li>
+      <li>OS层天然收敛——PC剩Win/Mac，移动剩iOS/Android，Agent OS不会有几十个赢家</li>
+    </ul>
+  </div>
+
+  <!-- MOD-4: 核心概念速查 -->
+  <div class="module">
+    <span class="coord">E-08</span>
+    <h2>核心概念速查</h2>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>概念</th>
+          <th>本质</th>
+          <th>价值</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="font-weight:700;">能力解锁</td>
+          <td>突破上下文容量</td>
+          <td class="blue">做不到 → 做到了</td>
+        </tr>
+        <tr>
+          <td style="font-weight:700;">认知卸载</td>
+          <td>释放注意力带宽</td>
+          <td class="blue">做得累 → 做得轻松</td>
+        </tr>
+        <tr>
+          <td style="font-weight:700;">认知共生</td>
+          <td>OS与App飞轮效应</td>
+          <td class="pink">1+1 &gt; 2</td>
+        </tr>
+        <tr>
+          <td style="font-weight:700;">领域状态</td>
+          <td>≠ Memory，是业务状态机</td>
+          <td class="blue">越用越厚，越难迁移</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- MOD-5: 状态栏 -->
+  <div class="module" style="padding:0;">
+    <span class="coord">F-15</span>
+    <div class="status-bar">
+      <div class="status-item">
+        <div class="value">3</div>
+        <div class="label">层光谱</div>
+      </div>
+      <div class="status-item">
+        <div class="value">2</div>
+        <div class="label">物理约束</div>
+      </div>
+      <div class="status-item">
+        <div class="value">3</div>
+        <div class="label">不可复制壁垒</div>
+      </div>
+      <div class="status-item">
+        <div class="value" style="font-size:40px; line-height:1.6;">∅</div>
+        <div class="label">最好的上下文</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <span>Agent Cognitive Map · OS vs Application</span>
+    <span>REV 1.0 · 2026</span>
+  </div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,24 @@
+{
+  "name": "awp-wallet",
+  "version": "0.15.0",
+  "type": "module",
+  "bin": {
+    "awp-wallet": "./scripts/wallet-cli.js"
+  },
+  "scripts": {
+    "test": "node --test tests/integration/*.test.js"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "files": [
+    "scripts/",
+    "assets/"
+  ],
+  "dependencies": {
+    "viem": "^2.46",
+    "permissionless": "^0.3",
+    "ethers": "^6.13",
+    "commander": "^12.0"
+  }
+}

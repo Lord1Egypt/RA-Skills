@@ -1,35 +1,30 @@
 ---
-name: "Beta Market Brief"
-description: "Generate a concise Chinese market brief for the trader agent using Tiger API first and Yahoo Finance as supplement. Use for hourly market snapshots, trader b..."
-category: "research"
-source: "ClawHub"
-tags: [market-analysis, research, spx, tiger-api, trading]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/beta-market-brief"
-sourceUrl: "https://clawhub.ai/skills/beta-market-brief"
+name: tiger-market-brief
+description: Generate a concise Chinese market brief for the trader agent using Tiger API first and Yahoo Finance as supplement. Use for hourly market snapshots, trader brief requests, or scheduled market updates. Always run the local script instead of freehand summarizing.
 ---
 
-# Beta Market Brief
+# Tiger Market Brief
 
-> Generate a concise Chinese market brief for the trader agent using Tiger API first and Yahoo Finance as supplement. Use for hourly market snapshots, trader b...
+Use this skill when the user asks for:
 
-- **Category:** Research
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/beta-market-brief`
-- **Source URL:** [https://clawhub.ai/skills/beta-market-brief](https://clawhub.ai/skills/beta-market-brief)
+- `market brief`
+- 每小时市场简报
+- trader 简报
+- 用 Tiger API 拉市场快照
 
-## Overview
+## Required Command
 
+Always run:
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/beta-market-brief
+/Users/zhouwen/.openclaw/workspace-papertrader/venv/bin/python \
+  /Users/zhouwen/.openclaw/workspace-papertrader/scripts/tiger_market_brief.py \
+  --mode hourly
 ```
+
+## Rules
+
+- Use Tiger API for market data first
+- If US real-time quote permission is unavailable, use Tiger delayed briefs and state that clearly
+- Use Yahoo Finance only for supplementary items such as VIX, US10Y, BTC, and headline links
+- Return the script output directly with minimal extra commentary

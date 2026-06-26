@@ -1,0 +1,47 @@
+{
+  "combinations": [
+    {
+      "roadUsers": [
+        {
+          "plates": [
+            {
+              "position": {
+                "topLeftCol": 10,
+                "topLeftRow": 20,
+                "topRightCol": 110,
+                "topRightRow": 20,
+                "bottomRightCol": 110,
+                "bottomRightRow": 50,
+                "bottomLeftCol": 10,
+                "bottomLeftRow": 50
+              },
+              "text": {
+                "value": "SMALL123",
+                "score": 0.91
+              },
+              "unreadable": 0.02
+            },
+            {
+              "position": {
+                "topLeftCol": 200,
+                "topLeftRow": 100,
+                "topRightCol": 420,
+                "topRightRow": 100,
+                "bottomRightCol": 420,
+                "bottomRightRow": 180,
+                "bottomLeftCol": 200,
+                "bottomLeftRow": 180
+              },
+              "text": {
+                "value": "LARGEST9",
+                "score": 0.98
+              },
+              "unreadable": 0.01
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "engines": []
+}

@@ -1,35 +1,23 @@
+#Metadata
+
 ---
-name: "Accomplish and excel in any task"
-description: "Follow a structured process to efficiently create, optimize, and execute workflows for accomplishing any task effectively."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/atb"
-sourceUrl: "https://clawhub.ai/skills/atb"
+name: 能力自由流程
+description: 当我们要做任何一件事的时候，按照下方的流程进行执行，以帮助我们把任何一件事做成并且做好
+
 ---
 
-# Accomplish and excel in any task
 
-> Follow a structured process to efficiently create, optimize, and execute workflows for accomplishing any task effectively.
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/atb`
-- **Source URL:** [https://clawhub.ai/skills/atb](https://clawhub.ai/skills/atb)
-
-## Overview
+#Instructions
+| 执行标准 | 执行步骤 |
+| ----------- | ----------- |
+|  | 超一流效率流程 |
+| 产出流程表格，表格规范必须按照[表格规范](流程表.md) | 建立流程的流程 |
+| 对现有流程的执行步骤进行增删改，得到更好的完成目标的步骤| 优化流程的流程 |
 
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/atb
-```
+
+
+
+#Resource
+[建立流程的流程说明](流程相关说明.md)
+[优化流程的流程说明](流程相关说明.md)

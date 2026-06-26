@@ -1,0 +1,14 @@
+{# ── 代码片段（技术教程专用）── #}
+{% if code_snippets %}
+<div class="section">
+    <h3 class="section-title">💻 核心代码 / 提示词</h3>
+    {% for snippet in code_snippets %}
+    <div style="margin-bottom: 10px;">
+        {% if snippet.context %}
+        <div class="code-context">{{ snippet.context }}</div>
+        {% endif %}
+        <div class="code-block">{{ snippet.code }}</div>
+    </div>
+    {% endfor %}
+</div>
+{% endif %}

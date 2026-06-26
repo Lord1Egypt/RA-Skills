@@ -1,35 +1,99 @@
 ---
-name: "万能祝福语生成器"
-description: "输入被祝福人信息（称呼/辈分/近况/节日/风格），AI 生成个性化祝福语。 覆盖全年所有节日（春节/妇女节/儿童节/光棍节/圣诞节等）和人生场合（生日/婚礼/升学等）。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/blessing-generator"
-sourceUrl: "https://clawhub.ai/skills/blessing-generator"
+name: blessing-generator
+displayName: 万能祝福语生成器
+version: 1.0.0
+description: >
+  输入被祝福人信息（称呼/辈分/近况/节日/风格），AI 生成个性化祝福语。
+  覆盖全年所有节日（春节/妇女节/儿童节/光棍节/圣诞节等）和人生场合（生日/婚礼/升学等）。
+author: antonia-sz
+tags: [blessing, festival, holiday, greeting, social, ai]
 ---
 
-# 万能祝福语生成器
+# 万能祝福语生成器 🎉
 
-> 输入被祝福人信息（称呼/辈分/近况/节日/风格），AI 生成个性化祝福语。 覆盖全年所有节日（春节/妇女节/儿童节/光棍节/圣诞节等）和人生场合（生日/婚礼/升学等）。
+## 你能做什么
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/blessing-generator`
-- **Source URL:** [https://clawhub.ai/skills/blessing-generator](https://clawhub.ai/skills/blessing-generator)
+帮你生成个性化、有温度的祝福语，覆盖全年所有节日和人生重要场合。
 
-## Overview
+---
 
+## 支持的节日和场合
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/blessing-generator
+### 🏮 中国传统节日
+春节、元宵节、清明节、端午节、七夕节、中秋节、重阳节、冬至、除夕
+
+### 🌍 现代 / 西式节日
+情人节、妇女节（3.8）、愚人节、劳动节、儿童节（6.1）、父亲节、母亲节、光棍节（11.11）、圣诞节、元旦
+
+### 🎂 人生重要时刻
+生日、婚礼/结婚纪念日、宝宝满月/百天、乔迁新居、开业大吉、升学/毕业、升职加薪、康复出院、退休
+
+### ✍️ 自定义场合
+任何你想庆祝的事！
+
+---
+
+## 使用方式
+
+### 快速生成
+
+```
+帮我生成一段妇女节祝福语，送给我妈妈，温情一点
+```
+
+```
+帮老板写一段春节祝福，正式有格调
+```
+
+### 详细定制
+
+```
+节日：光棍节
+对象：闺蜜，25岁，刚刚失恋
+风格：幽默治愈
+字数：100字左右
+```
+
+---
+
+## 可配置参数
+
+| 参数 | 选项 | 说明 |
+|------|------|------|
+| 对象/称呼 | 爸妈/老板/同学/甲方... | 自由填写 |
+| 辈分/关系 | 长辈/平辈/晚辈 | 影响语气敬称 |
+| 年龄段 | 小孩/青年/中年/老年 | 影响用词 |
+| 近况 | 升学/结婚/创业... | 可选，增加个性化 |
+| 节日/场合 | 见上方列表 | 必填 |
+| 风格 | 正式/温情/幽默/文艺/押韵 | 默认温情 |
+| 字数 | 50字内/50-150字/150字以上 | 默认中等 |
+
+---
+
+## 输出格式
+
+一次生成 3 条供选择，可要求「再来几条」或「这条更幽默一点」微调。
+
+```
+🎁 版本一（正式温情）
+[祝福语内容]
+
+🎊 版本二（轻松活泼）
+[祝福语内容]
+
+✨ 版本三（押韵文艺）
+[祝福语内容]
+```
+
+---
+
+## 工具调用
+
+```python
+exec: python3 SKILL_DIR/scripts/generate_blessing.py \
+  --festival "妇女节" \
+  --target "妈妈" \
+  --relation "长辈" \
+  --style "温情" \
+  --length "medium"
 ```

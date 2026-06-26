@@ -1,35 +1,102 @@
 ---
-name: "Article Analyzer"
-description: "爆款文章拆解分析工具。当用户发来公众号/网页链接并要求拆解、分析、学习、拆文时触发。支持结构分析、金句提取、选题逻辑、情绪曲线、复刻建议。关键词：拆解、分析、拆文、学习这篇文章、爆文分析。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/article-analyzer"
-sourceUrl: "https://clawhub.ai/skills/article-analyzer"
+name: article-analyzer
+description: 爆款文章拆解分析工具。当用户发来公众号/网页链接并要求拆解、分析、学习、拆文时触发。支持结构分析、金句提取、选题逻辑、情绪曲线、复刻建议。关键词：拆解、分析、拆文、学习这篇文章、爆文分析。
 ---
 
-# Article Analyzer
+优化日期: 2026-04-02
 
-> 爆款文章拆解分析工具。当用户发来公众号/网页链接并要求拆解、分析、学习、拆文时触发。支持结构分析、金句提取、选题逻辑、情绪曲线、复刻建议。关键词：拆解、分析、拆文、学习这篇文章、爆文分析。
+# 爆文拆解分析
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/article-analyzer`
-- **Source URL:** [https://clawhub.ai/skills/article-analyzer](https://clawhub.ai/skills/article-analyzer)
+## 触发条件
 
-## Overview
+- 用户发来公众号/网页链接 + "拆解""分析""拆文""学习这篇文章"等关键词
+- 用户说"分析这篇爆文""帮我拆解这篇文章结构"
 
+## 工作流
 
-## Installation
-To install this skill, run the following command in your terminal:
+### Step 1: 抓取全文
+
 ```bash
-hermes skills install clawhub/article-analyzer
+# 微信公众号文章：用 browser 工具（web_fetch 反爬）
+browser open url=<用户链接>
+browser snapshot format=ai maxChars=15000
 ```
+
+- 微信文章 **必须用 browser**，不用 web_fetch（反爬）
+- 其他网站可用 web_fetch 或 browser 均可
+- 目标：获取完整正文内容
+
+### Step 2: 拆解分析
+
+对抓取到的全文执行以下分析维度：
+
+#### 2.1 结构分析
+- 标题拆解（标题用了什么技巧？数字？疑问？反差？痛点？）
+- 开头手法（故事？数据？提问？场景？共鸣？）
+- 段落逻辑（总分总？递进？并列？对比？故事线？）
+- 结尾方式（金句收尾？行动号召？开放问题？反转？）
+
+#### 2.2 金句提取
+- 提取5-10条最有记忆点的句子
+- 标注金句类型：比喻/对比/数据/金句体/反常识
+
+#### 2.3 选题逻辑
+- 目标读者画像（是谁？痛点是什么？）
+- 情绪曲线（开头什么情绪→中间怎么推→结尾什么情绪）
+- 选题角度（是什么让它值得写？独家信息？新视角？争议点？实用价值？）
+
+#### 2.4 可复刻点
+- 这个标题模式我可以怎么用？
+- 开头手法可以套用在什么主题上？
+- 哪些金句可以改编？
+- 整体结构适合写什么类型的内容？
+
+### Step 3: 输出报告
+
+默认直接在聊天中输出。如用户要求写文档：
+
+```bash
+# 创建飞书文档
+feishu_doc create title=<标题> content=<Markdown格式的分析报告>
+```
+
+## 报告模板
+
+```markdown
+# 🔪 爆文拆解：{文章标题}
+
+## 📊 基本信息
+- 标题：{原标题}
+- 来源：{公众号名}
+- 字数：{估算}
+- 阅读量：{如果能获取}
+
+## 🏗️ 结构分析
+- 标题技巧：{分析}
+- 开头手法：{分析}
+- 段落逻辑：{分析}
+- 结尾方式：{分析}
+
+## ✍️ 金句TOP5
+1. "{金句}" — {类型标注}
+2. ...
+
+## 🎯 选题逻辑
+- 目标读者：{画像}
+- 情绪曲线：{描述}
+- 选题价值：{为什么这篇能火}
+
+## 💡 复刻建议
+- 标题复刻：{套用模板}
+- 开头复刻：{适用场景}
+- 结构复刻：{适合什么内容类型}
+- 金句改编：{改编示例}
+```
+
+## 快速模式
+
+如果用户只说"快速拆解"或"简单看看"，跳过详细分析，只输出：
+1. 标题技巧（一句话）
+2. 文章结构（一句话）
+3. 金句TOP3
+4. 能学什么（一句话）

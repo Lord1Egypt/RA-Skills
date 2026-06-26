@@ -1,0 +1,26 @@
+{
+  "roles": {
+    "reviewer": {
+      "primary": "default-model/gemini-pro",
+      "fallback": "advanced-model/gemini-pro",
+      "description": "优先使用 Google 官方 Gemini，认证失败则 fallback 到 Aiberm"
+    },
+    "executor": "advanced-model/gpt",
+    "auditor": {
+      "primary": "default-model/gemini-pro",
+      "fallback": "advanced-model/gemini-pro",
+      "description": "优先使用 Google 官方 Gemini，认证失败则 fallback 到 Aiberm"
+    },
+    "coordinator": "default-model/qwen-plus"
+  },
+  "timeouts": {
+    "reviewer": 300,
+    "executor": 300,
+    "auditor": 180,
+    "description": "超时时间（秒）：Reviewer/Auditor 5 分钟，Executor 5 分钟"
+  },
+  "enforceAudit": true,
+  "executorDefault": "advanced-model/gpt",
+  "description": "Executor 统一使用 GPT-5.4（代码能力强），除非用户特殊要求",
+  "lastUpdated": "2026-03-29T12:53:00+08:00"
+}

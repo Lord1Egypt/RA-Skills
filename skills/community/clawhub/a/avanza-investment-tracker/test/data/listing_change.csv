@@ -1,0 +1,6 @@
+Datum;Konto;Typ av transaktion;Värdepapper/beskrivning;Antal;Kurs;Belopp;Courtage;Valuta;ISIN;Resultat
+2018-08-08;1111111;Sälj;Invesco Cnttl Eur Sm Cp Eq A USD AD;-7,15;2327,131469;16638,99;0;SEK;LU1775961243;-
+2018-02-19;1111111;Övrigt;Invesco Cnttl Eur Sm Cp Eq A USD AD;7,15;2442,6318;-;0;-;LU1775961243;-
+2018-02-19;1111111;Övrigt;INVESCO CONTIN EURP SM CP EQ A USD AD;-7,15;2442,6318;-;0;-;IE0003708116;-
+2018-01-11;1111111;Köp;INVESCO CONTIN EURP SM CP EQ A USD AD;7,15;2442,632168;-17464,82;0;SEK;IE0003708116;-
+2017-08-15;1111111;Insättning;Direktinsättning från Danske Bank;-;-;20000;0;SEK;;-

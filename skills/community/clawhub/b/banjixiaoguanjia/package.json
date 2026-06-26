@@ -1,0 +1,25 @@
+{
+  "name": "banjixiaoguanjia-capture",
+  "version": "1.0.0",
+  "description": "班级小管家作业截图工具 - 自动化获取学生作业图片",
+  "main": "index.js",
+  "bin": {
+    "bjxgj-capture": "./capture.js"
+  },
+  "scripts": {
+    "capture": "node capture.js",
+    "test": "node test.js"
+  },
+  "keywords": [
+    "banjixiaoguanjia",
+    "homework",
+    "screenshot",
+    "playwright",
+    "education"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "playwright": "^1.40.0"
+  }
+}

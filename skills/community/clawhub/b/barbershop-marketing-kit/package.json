@@ -1,0 +1,59 @@
+{
+  "name": "barbershop-marketing-kit",
+  "version": "2.0.0",
+  "description": "Compliance-audited marketing content for Nevada barbershops and master barbers. 7 NBHSB-specific compliance moats: dual-license gate, straight razor/BBP gate, Master Barber credential gate, instrument sanitation gate, hair/beard product drug claim gate, FTC 2023 before/after gate, booth rental IC advertising gate.",
+  "skillId": "barbershop-marketing-kit",
+  "skillNumber": 225,
+  "category": "marketing/local-business",
+  "subcategory": "personal-services/barbershop",
+  "jurisdiction": "Nevada (Clark County primary)",
+  "complianceMoats": 7,
+  "outputTypes": [
+    "email-campaigns",
+    "google-rsa-ads",
+    "facebook-instagram-ads",
+    "sms-campaigns",
+    "gbp-posts",
+    "instagram-captions",
+    "service-pages",
+    "faq-schema",
+    "reputation-management",
+    "referral-program",
+    "b2b-outreach",
+    "local-seo"
+  ],
+  "pricing": {
+    "oneTime": 49,
+    "monthly": 19.99,
+    "bundle": "home-services-trades-v2"
+  },
+  "bundle": "home-services-trades-v2",
+  "bundleSkillCount": 66,
+  "tags": [
+    "barbershop",
+    "barber",
+    "master-barber",
+    "nbhsb",
+    "nevada",
+    "las-vegas",
+    "fade",
+    "hot-shave",
+    "straight-razor",
+    "booth-rental",
+    "local-business",
+    "compliance"
+  ],
+  "relatedSkills": [
+    "hair-salon-barbershop-kit",
+    "esthetics-studio-marketing-kit",
+    "lash-brow-studio-marketing-kit"
+  ],
+  "author": "Max (GitFlopez)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/GitFlopez/barbershop-marketing-kit"
+  },
+  "createdAt": "2026-05-26",
+  "sessionTime": "12PM PDT"
+}

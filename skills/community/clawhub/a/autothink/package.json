@@ -1,0 +1,23 @@
+{
+  "name": "autothink",
+  "version": "1.0.0",
+  "description": "Automatically adjust thinking level based on message complexity",
+  "main": "src/index.js",
+  "bin": {
+    "autothink": "./src/cli.js"
+  },
+  "scripts": {
+    "test": "node src/index.js",
+    "start": "node src/cli.js"
+  },
+  "keywords": [
+    "openclaw",
+    "thinking",
+    "ai",
+    "reasoning",
+    "automation"
+  ],
+  "author": "大青龙",
+  "license": "MIT",
+  "dependencies": {}
+}

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>AI 录音卡片</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body{ background: #1a1a2e; font-family: 'Courier New', monospace; background:transparent;margin:0;padding:0;}
+        .container{ width: 1080px; min-height: 1440px; background: #0f0f1a; padding: 48px; color: #00ff88; }
+        .header { border-bottom: 2px solid #00ff88; padding-bottom: 20px; margin-bottom: 40px; }
+        .tag { font-size: 22px; letter-spacing: 2px; color: #00ff88; margin-bottom: 15px; }
+        h1 { font-size: 64px; font-weight: 700; color: #00ff88; line-height: 1.2; }
+        .section { margin-bottom: 35px; }
+        .section-title { font-size: 40px; color: #00ff88; margin-bottom: 20px; display: flex; align-items: center; gap: 15px; }
+        .section-title::before { content: '>'; color: #00ff88; }
+        .code-block { background: #1a1a2e; padding: 25px; border: 1px solid #00ff88; border-radius: 5px; margin-bottom: 15px; }
+        .code-line { font-size: 28px; color: #00ff88; margin-bottom: 10px; }
+        .code-line span { color: #ff79c6; }
+        .highlight { background: #00ff88; color: #0f0f1a; padding: 25px; margin-top: 30px; font-size: 30px; }
+    .coord{display:none!important;}
+/* === POST-PROCESS: 字号兜底 === */
+.container { font-size: max(14px, 1em); }
+.container h1, .container [class*="title"]:first-child { font-size: max(48px, 1em) !important; }
+.container h2, .container h3 { font-size: max(28px, 1em) !important; }
+.container p, .container li, .container td { font-size: max(20px, 0.9em) !important; }
+.container .coord { display: none !important; }
+</style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="tag">// SYSTEM ARCHITECTURE DOCUMENT</div>
+            <h1>AI_RECORDING_CARD<br/>PRODUCT_ARCHITECTURE</h1>
+        </div>
+        <div class="section">
+            <div class="section-title">M-P-D-G FRAMEWORK</div>
+            <div class="code-block">
+                <div class="code-line"><span>const</span> Market = <span>"北美合规驱动"</span>;</div>
+                <div class="code-line"><span>const</span> Product = <span>"云端存储 + 本地加密"</span>;</div>
+                <div class="code-line"><span>const</span> Data = <span>"美国境内驻留"</span>;</div>
+                <div class="code-line"><span>const</span> Governance = <span>"SOC2 + HIPAA"</span>;</div>
+            </div>
+        </div>
+        <div class="section">
+            <div class="section-title">COMPLIANCE_REQUIREMENTS</div>
+            <div class="code-block">
+                <div class="code-line">SOC2_Type_I: <span>"3-4 个月 / $30-50K"</span></div>
+                <div class="code-line">SOC2_Type_II: <span>"6-12 个月 / $75-165K"</span></div>
+                <div class="code-line">HIPAA_BAA: <span>"AWS 免费 5 分钟"</span></div>
+                <div class="code-line">BIPA_COPPA: <span>"$5K-$43K/次罚款"</span></div>
+            </div>
+        </div>
+        <div class="highlight">
+            💰 COST_ESTIMATE: 一次性 $30-75K | 年度 $32-65K | AWS $1.1K/月
+        </div>
+    </div>
+</body>
+</html>

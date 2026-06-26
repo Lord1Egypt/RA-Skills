@@ -1,0 +1,35 @@
+interface:
+  display_name: "北京花粉监测"
+  short_description: "查询北京花粉实时数据、预报和每日晨报"
+  default_prompt: "使用 $beijing-pollen-monitor 查询北京花粉数据。默认优先用 daily，查预报用 forecast，只看当前监测和全市概况时再用 report。"
+
+policy:
+  allow_implicit_invocation: true
+
+functions:
+  - name: query
+    description: "查询北京花粉监测与预报数据。北京共 16 个固定站点，每区一个，用区名指定。"
+    parameters:
+      type: object
+      properties:
+        mode:
+          type: string
+          enum: [report, overview, stations, history, forecast, daily]
+          default: daily
+          description: "查询模式。daily=默认晨报，report=即时简报，overview=全市概览，stations=全部站点，history=单站点24h历史，forecast=目标区预报"
+        district:
+          type: string
+          description: "区名（模糊匹配）。report、history、forecast、daily 必填。可用：东城 西城 朝阳 海淀 丰台 石景山 门头沟 房山 通州 顺义 昌平 大兴 怀柔 平谷 密云 延庆"
+        station_id:
+          type: string
+          description: "站点 ID（history 模式的替代方式，优先用 district）"
+        format:
+          type: string
+          enum: [json, text]
+          default: json
+          description: "输出格式。text 返回可直接推送的人类可读文本"
+        limit:
+          type: integer
+          default: 5
+          description: "热点站点数量上限"
+      required: []

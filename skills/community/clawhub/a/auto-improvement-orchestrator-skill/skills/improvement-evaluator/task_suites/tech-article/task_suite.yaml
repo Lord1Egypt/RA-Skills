@@ -1,0 +1,122 @@
+skill_id: "tech-article"
+version: "1.0"
+description: "Evaluates tech-article skill's ability to guide technical article creation through the full Phase 1-5 workflow"
+
+tasks:
+  # === Phase 1: 定题能力 ===
+  - id: "ta-phase1-topic-analysis"
+    description: "Must identify article type and core question from a vague topic"
+    prompt: |
+      /tech-article "我们团队花了两个月把monolith拆成微服务"
+
+      只完成 Phase 1（定题），输出核心问题、文章类型、目标读者、独特价值。不要写大纲或正文。
+    judge:
+      type: "llm-rubric"
+      rubric: |
+        Check the Phase 1 output:
+        1. 核心问题 is a specific, answerable question (not generic like "微服务实践")
+        2. 文章类型 correctly identified as "案例复盘" (not "教程" or "原理解析")
+        3. 目标读者 is defined with assumed knowledge level
+        4. 独特价值 identifies what's unique vs generic microservice articles
+        Score 1.0 if all 4 present and reasonable. Score 0.5 if 2-3 present. Score 0.0 if fewer.
+      pass_threshold: 0.7
+    timeout_seconds: 60
+
+  # === Phase 1: 模糊输入处理 ===
+  - id: "ta-vague-input"
+    description: "Must ask clarifying questions when input lacks concrete material"
+    prompt: |
+      /tech-article "写一篇关于性能优化的文章"
+    judge:
+      type: "llm-rubric"
+      rubric: |
+        The input is deliberately vague — no specific experience, data, or code mentioned.
+        The skill MUST ask clarifying questions before proceeding. Check:
+        1. Does it ask about the user's specific experience/project? (核心经历)
+        2. Does it ask about available data/code/screenshots? (数据证据)
+        3. Does it ask about target audience? (目标读者)
+        4. Does it NOT proceed directly to writing an outline or draft?
+        Score 1.0 if questions asked and no premature writing. Score 0.5 if questions asked but also started writing. Score 0.0 if jumped straight to outline/draft.
+      pass_threshold: 0.7
+    timeout_seconds: 60
+
+  # === Phase 2: 大纲生成 ===
+  - id: "ta-outline-structure"
+    description: "Must generate outline with HOOK, BODY sections, and CLOSE"
+    prompt: |
+      /tech-article --outline-only "我们的 API 网关从 Nginx 迁移到 Envoy，QPS 从 5万提升到 20万，但中间踩了 5 个大坑"
+
+      生成大纲，不写正文。
+    judge:
+      type: "contains"
+      expected:
+        - "HOOK"
+        - "CLOSE"
+        - "标题"
+        - "类型"
+    timeout_seconds: 120
+
+  # === Phase 2: HOOK 质量 ===
+  - id: "ta-hook-quality"
+    description: "HOOK must contain specific data and conflict/suspense, not generic opening"
+    prompt: |
+      /tech-article --outline-only "我们把 CI/CD 从 Jenkins 迁移到 GitHub Actions，构建时间从 45 分钟降到 8 分钟，但迁移过程中丢了 3 天的部署历史"
+
+      只生成大纲。
+    judge:
+      type: "llm-rubric"
+      rubric: |
+        Check the HOOK section of the outline:
+        1. Contains specific numbers from the input (45分钟, 8分钟, 3天)
+        2. Contains conflict/suspense element (not just "本文介绍...")
+        3. Is concise (under 100 words / 3 sentences)
+        4. Does NOT start with "随着..." / "在当今..." / "本文将..."
+        Score 1.0 if all pass. Score 0.5 if 2-3 pass. Score 0.0 if generic opening.
+      pass_threshold: 0.7
+    timeout_seconds: 120
+
+  # === --review 模式 ===
+  - id: "ta-review-mode"
+    description: "Review mode must analyze an existing draft without rewriting it"
+    prompt: |
+      /tech-article --review
+
+      请审查以下草稿：
+
+      # 浅谈微服务架构
+
+      随着云计算技术的快速发展，微服务架构越来越受到企业的广泛关注和重视。本文将从以下几个方面深入探讨微服务的最佳实践。
+
+      ## 什么是微服务
+
+      微服务是一种将应用程序构建为小型服务集合的架构风格。每个服务运行在自己的进程中，并使用轻量级机制（通常是 HTTP API）进行通信。
+
+      ## 总结
+
+      综上所述，微服务架构是现代软件开发的重要趋势，值得每个团队深入学习和实践。
+    judge:
+      type: "llm-rubric"
+      rubric: |
+        Check the review output:
+        1. Identifies the title as problematic ("浅谈" is a weak pattern)
+        2. Flags the generic opening ("随着...越来越...")
+        3. Flags the weak conclusion ("综上所述...值得...")
+        4. Flags the lack of concrete data/evidence
+        5. Does NOT rewrite the article — only provides review feedback
+        6. Provides actionable suggestions with specifics
+        Score 1.0 if 5-6 checks pass. Score 0.5 if 3-4 pass. Score 0.0 if fewer.
+      pass_threshold: 0.7
+    timeout_seconds: 120
+
+  # === deslop fallback ===
+  - id: "ta-deslop-awareness"
+    description: "Must reference deslop in Phase 5 or mention fallback if unavailable"
+    prompt: |
+      /tech-article "我们用 Redis Cluster 替换了单机 Redis，QPS 从 10万提升到 50万"
+
+      只描述你会如何执行 Phase 5（润色），不要写正文。列出具体步骤。
+    judge:
+      type: "contains"
+      expected:
+        - "deslop"
+    timeout_seconds: 60

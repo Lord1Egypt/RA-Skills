@@ -1,0 +1,13 @@
+{
+  "eval_name": "reverse-spec-module-level",
+  "configuration": "with_skill",
+  "expectations": [
+    {"text": "Spec accurately describes the behavior of both core functions: GetSupervisor and Generate", "passed": true, "evidence": "Scenario 1 details 6 sub-steps of GetSupervisor; Scenario 2 covers the full Generate flow"},
+    {"text": "Spec covers the version-branching logic", "passed": true, "evidence": "Lists tool set differences across three version branches in detail"},
+    {"text": "Spec flags suspicious behavior or noteworthy points using [NOTE] tags", "passed": true, "evidence": "Uses [NOTE] tags to flag 3 suspicious points: empty tool set on version parse failure, MaxIterations=100, stop channel passed as nil"},
+    {"text": "Spec distinguishes between what the code actually does and what it might have intended to do", "passed": true, "evidence": "[NOTE] tags explicitly separate actual code behavior from possible intent"},
+    {"text": "Spec includes dependency relationships (what it depends on / who depends on it)", "passed": true, "evidence": "Dependencies section has separate tables for external systems/modules and internal modules, with clear 'depended on by' entries"},
+    {"text": "Spec does not write any files to the project source directory", "passed": true, "evidence": "Output saved only to the workspace outputs directory"},
+    {"text": "Spec describes the configuration priority chain", "passed": true, "evidence": "Constraints & Boundaries section explicitly lists configuration priority for model params, System Prompt, and tool list"}
+  ]
+}

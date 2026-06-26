@@ -1,0 +1,24 @@
+{
+  "name": "baoyu-post-to-x-enhanced",
+  "tagline": "One-click publish to X/Twitter via Chrome CDP with multi-strategy text insertion and auto image upload.",
+  "description": "Posts text, images, videos, and long-form articles to X via real Chrome browser. Features three-tier text insertion (CDP insertText → execCommand → osascript), Unicode hashtag truncation (≤3), Smart Reset editor cleanup, beforeunload dialog handling, and optimized CDP timeouts for reliable automated publishing.",
+  "category": "marketing",
+  "tags": [
+    "x",
+    "twitter",
+    "publishing",
+    "cdp",
+    "browser-automation",
+    "social-media"
+  ],
+  "version": "3.0.0",
+  "author": "clawstore-labs",
+  "license": "Commercial",
+  "pricing": {
+    "model": "included-with-persona",
+    "standalone_price": 0,
+    "currency": "USD"
+  },
+  "support_url": "https://github.com/clawstore-labs/skills/issues",
+  "published_at": "2026-04-14T00:00:00Z"
+}

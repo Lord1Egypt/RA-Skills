@@ -1,35 +1,32 @@
 ---
-name: "Ascii Tool"
-description: "Convert and inspect ASCII character codes and text encodings."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ascii-tool"
-sourceUrl: "https://clawhub.ai/skills/ascii-tool"
+name: ascii-tool
+description: Convert and inspect ASCII character codes and text encodings.
 ---
 
-# Ascii Tool
+# ASCII Tool - Character Codes
 
-> Convert and inspect ASCII character codes and text encodings.
+Work with ASCII character codes and convert between decimal/hex/binary.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ascii-tool`
-- **Source URL:** [https://clawhub.ai/skills/ascii-tool](https://clawhub.ai/skills/ascii-tool)
+## Quick Start
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/ascii-tool
+ascii-tool --code A
 ```
+
+## Features
+
+- Look up character codes
+- Convert decimal/hex/binary
+- Generate ASCII table
+
+## Examples
+
+```bash
+ascii-tool --code A
+ascii-tool --decode 41
+ascii-tool --table
+```
+
+## See Also
+
+- Related documentation: `man ascii` (if available)

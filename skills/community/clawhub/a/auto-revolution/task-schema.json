@@ -1,0 +1,120 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "evolution-task",
+  "title": "Evolution Task",
+  "description": "Agent 间自动进化任务文件格式",
+  "type": "object",
+  "required": ["task_id", "status", "goal", "created_at", "current_iteration", "max_iterations"],
+  "properties": {
+    "task_id": {
+      "type": "string",
+      "description": "任务唯一 ID",
+      "pattern": "^task-\\d{3,}$",
+      "examples": ["task-001"]
+    },
+    "status": {
+      "type": "string",
+      "enum": ["pending", "reviewing", "reviewed", "executing", "blocked", "completed"],
+      "description": "当前状态"
+    },
+    "goal": {
+      "type": "string",
+      "description": "进化目标（具体、可衡量）"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "创建时间 ISO 8601"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "最后更新时间"
+    },
+    "current_iteration": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "当前迭代轮次"
+    },
+    "max_iterations": {
+      "type": "integer",
+      "minimum": 1,
+      "default": 10,
+      "description": "最大迭代次数"
+    },
+    "assigned_to": {
+      "type": "string",
+      "enum": ["wilson", "iron", "shadow", "oracle", "warden", "phoenix"],
+      "description": "当前负责 Agent"
+    },
+    "review": {
+      "type": "object",
+      "description": "Sonnet 审阅内容",
+      "properties": {
+        "reviewer": {
+          "type": "string",
+          "description": "审阅模型"
+        },
+        "reviewed_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "verdict": {
+          "type": "string",
+          "enum": ["approve", "revise", "escalate", "complete"],
+          "description": "审阅结论"
+        },
+        "feedback": {
+          "type": "string",
+          "description": "审阅反馈"
+        },
+        "next_instructions": {
+          "type": "string",
+          "description": "下一步具体指示"
+        }
+      }
+    },
+    "result": {
+      "type": "object",
+      "description": "执行结果",
+      "properties": {
+        "executor": {
+          "type": "string",
+          "description": "执行 Agent"
+        },
+        "executed_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "output": {
+          "type": "string",
+          "description": "执行输出/产出"
+        },
+        "files_changed": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "变更的文件路径列表"
+        },
+        "error": {
+          "type": "string",
+          "description": "错误信息（如有）"
+        }
+      }
+    },
+    "history": {
+      "type": "array",
+      "description": "迭代历史记录（追加，不覆盖）",
+      "items": {
+        "type": "object",
+        "properties": {
+          "iteration": { "type": "integer" },
+          "timestamp": { "type": "string", "format": "date-time" },
+          "action": { "type": "string", "enum": ["review", "execute", "block", "complete"] },
+          "actor": { "type": "string" },
+          "model": { "type": "string" },
+          "summary": { "type": "string" }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "name": "baidu-yijian-vision",
+  "version": "0.9.42",
+  "description": "Baidu Yijian Vision Skill - Intent-driven visual analysis with automatic skill routing",
+  "type": "module",
+  "private": true,
+  "engines": {
+    "node": ">=16.0.0",
+    "npm": ">=8.0.0"
+  },
+  "scripts": {
+    "pack": "node scripts/pack.mjs",
+    "publish:clawhub": "node scripts/publish.mjs",
+    "publish:dry-run": "node scripts/publish.mjs --dry-run",
+    "test": "node --test 'tests/*.test.mjs'",
+    "test:integration": "node tests/run-integration.mjs --skip-e2e",
+    "test:integration:all": "node tests/run-integration.mjs",
+    "test:integration:e2e": "node tests/run-integration.mjs --e2e",
+    "test:integration:agent": "node tests/run-integration.mjs --agent",
+    "test:integration:docker": "node tests/run-docker.mjs",
+    "test:all": "npm test && npm run test:integration"
+  },
+  "devDependencies": {
+    "archiver": "^7.0.1",
+    "openclaw": "github:openclaw/openclaw#main"
+  },
+  "optionalDependencies": {
+    "sharp": "^0.33.0"
+  }
+}

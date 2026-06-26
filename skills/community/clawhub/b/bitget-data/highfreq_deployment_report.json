@@ -1,0 +1,40 @@
+{
+  "timestamp": "2026-03-17T14:38:21.936Z",
+  "totalPlaced": 10,
+  "totalErrors": 21,
+  "results": {
+    "sol": {
+      "success": true,
+      "placed": 9,
+      "errors": 11,
+      "buyLevels": 9,
+      "sellLevels": 11
+    },
+    "eth": {
+      "success": true,
+      "placed": 1,
+      "errors": 10,
+      "buyLevels": 6,
+      "sellLevels": 6
+    }
+  },
+  "config": {
+    "date": "2026-03-17-1958",
+    "goal": "大幅降低网格密度 - 解决频率超标问题 (9.5→4 笔/小时)",
+    "totalTargetTrades": 20,
+    "strategy": "低频稳健网格 - 扩大区间 + 减少密度",
+    "changes": [
+      "SOL: 60 格→35 格 (-42%)，区间 75-105→70-115 (+53%)，间距 0.50→1.29 (+158%)",
+      "ETH: 36 格→22 格 (-39%)，区间 2100-2500→2000-2700 (+43%)，间距 11→32 (+186%)",
+      "目标成交频率：3-5 笔/小时 (当前 9.5 笔/小时)",
+      "预期每日成交：50-80 笔 (原 228 笔)"
+    ],
+    "expectedDailyProfit": "0.8-1.5% (低频高收益)",
+    "riskControl": [
+      "严格 maxPosition 限制",
+      "每 30 分钟监控成交",
+      "目标频率 3-5 笔/小时",
+      "如仍超标继续降低密度"
+    ]
+  }
+}

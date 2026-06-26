@@ -1,0 +1,6 @@
+{
+  "default_voice": "zh-CN-Yunqi:DragonHDOmniLatestNeural",
+  "default_format": "mp3",
+  "default_output_dir": "download",
+  "default_timeout_seconds": 60
+}

@@ -1,0 +1,58 @@
+{
+  "id": "bitchat",
+  "name": "Bitchat Channel",
+  "version": "0.1.0",
+  "description": "Bitchat BLE mesh network channel plugin for OpenClaw",
+  "author": "Kyle Graves",
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "enabled": {
+        "type": "boolean",
+        "default": true,
+        "description": "Enable/disable the Bitchat channel"
+      },
+      "nickname": {
+        "type": "string",
+        "description": "Display name on the mesh network"
+      },
+      "bridgeUrl": {
+        "type": "string",
+        "default": "http://localhost:3939",
+        "description": "URL of the bitchat-node HTTP bridge"
+      },
+      "webhookPath": {
+        "type": "string",
+        "default": "/bitchat-webhook",
+        "description": "Webhook endpoint path for incoming messages"
+      },
+      "autoStart": {
+        "type": "boolean",
+        "default": false,
+        "description": "Auto-start bitchat-node daemon (if installed locally)"
+      },
+      "dmPolicy": {
+        "type": "string",
+        "enum": ["open", "allowlist", "disabled"],
+        "default": "open",
+        "description": "DM access policy"
+      },
+      "allowFrom": {
+        "type": "array",
+        "items": { "type": "string" },
+        "default": [],
+        "description": "Allowed peer IDs (when dmPolicy=allowlist)"
+      }
+    }
+  },
+  "uiHints": {
+    "enabled": { "label": "Enabled" },
+    "nickname": { "label": "Nickname", "placeholder": "my-agent" },
+    "bridgeUrl": { "label": "Bridge URL", "placeholder": "http://localhost:3939" },
+    "webhookPath": { "label": "Webhook Path", "placeholder": "/bitchat-webhook" },
+    "autoStart": { "label": "Auto-start daemon" },
+    "dmPolicy": { "label": "DM Policy" },
+    "allowFrom": { "label": "Allowed Peer IDs" }
+  }
+}

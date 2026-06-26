@@ -1,0 +1,23 @@
+{
+  "skill_name": "bizyair-i2i",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "根据这张图片 /Users/hao/Downloads/test.jpg 生成一个类似的风格，要求更明亮一些",
+      "expected_output": "脚本应上传图片并创建图生图任务，返回 requestId",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "使用图生图功能，把 /tmp/portrait.png 转换成油画风格",
+      "expected_output": "上传图片并创建油画风格转换任务",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "查询图生图任务 abc123def456 的结果",
+      "expected_output": "调用查询脚本返回任务状态和结果",
+      "files": []
+    }
+  ]
+}

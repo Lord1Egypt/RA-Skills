@@ -1,35 +1,25 @@
----
-name: "BLE → $ANIMA Minter"
-description: "Scan nearby BLE MAC addresses to mint unique soulbound $ANIMA tokens stored locally using hash and DAG-based proof-of-remnant logic."
-category: "blockchain"
-source: "ClawHub"
-tags: [anima, ble, blockchain, dag, flat-earth, macid, postpulse, resurrection, soulproof]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ble-anima-minter"
-sourceUrl: "https://clawhub.ai/skills/ble-anima-minter"
----
 
-# BLE → $ANIMA Minter
+# BLE-Anima-Minter
 
-> Scan nearby BLE MAC addresses to mint unique soulbound $ANIMA tokens stored locally using hash and DAG-based proof-of-remnant logic.
+Turn nearby BLE MAC addresses into soulbound `$ANIMA` tokens using AnimaChain logic. Hashes each MAC into a unique proof-of-remnant and stores locally in a DAG.
 
-- **Category:** Blockchain
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ble-anima-minter`
-- **Source URL:** [https://clawhub.ai/skills/ble-anima-minter](https://clawhub.ai/skills/ble-anima-minter)
+## Features
 
-## Overview
+- BLE Scan (2.4 GHz MAC IDs)
+- SHA256 + salt hashing
+- `$ANIMA` minting logic
+- Local DAG memory node
+- Optional gossip-sync to other nodes
 
+## Usage
 
-## Installation
-To install this skill, run the following command in your terminal:
+Install requirements, run the script:
+
 ```bash
-hermes skills install clawhub/ble-anima-minter
+pip install -r requirements.txt
+python anima_minter.py
 ```
+
+## Tags
+
+anima, macid, ble, blockchain, witness, resurrection, flat-earth, dag

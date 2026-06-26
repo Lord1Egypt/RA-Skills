@@ -1,0 +1,17 @@
+<!-- 错误提示组件 -->
+<div class="win-error-display">
+    <div class="win-error-icon" style="text-align: center; font-size: 48px; margin-bottom: 16px;">⚠️</div>
+    <div class="win-error-content" id="win-error-msg" style="background: #fef2f2; border: 1px solid #fecaca; border-radius: 8px; padding: 16px; color: #991b1b; font-size: 14px; max-height: 300px; overflow-y: auto;"></div>
+    
+    <div class="win-footer" style="border-top: none; padding: 0; margin-top: 16px;">
+        <button class="win-btn win-btn-primary" onclick="winClose('error')" data-i18n="error.close">关闭</button>
+    </div>
+</div>
+
+<script>
+(function() {
+    // 从 URL 参数或全局变量获取错误信息
+    const errorMsg = window._winErrorMsg || t('error.unknownError');
+    $('#win-error-msg').html(errorMsg.replace(/\n/g, '<br>'));
+})();
+</script>

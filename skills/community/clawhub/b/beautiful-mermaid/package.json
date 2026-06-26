@@ -1,0 +1,41 @@
+{
+  "name": "beautiful-mermaid-skill",
+  "version": "1.0.0",
+  "description": "CodeBuddy Skill for rendering beautiful Mermaid diagrams to SVG or ASCII art",
+  "type": "commonjs",
+  "scripts": {
+    "render": "node scripts/render.js",
+    "render:svg": "node scripts/render.js --format svg",
+    "render:ascii": "node scripts/render.js --format ascii",
+    "render:png": "node scripts/render.js --format png",
+    "rich-html": "node scripts/rich-html.js"
+  },
+  "dependencies": {
+    "beautiful-mermaid": "^1.1.3",
+    "sharp": "^0.34.5"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "esbuild": "^0.27.4"
+  },
+  "keywords": [
+    "mermaid",
+    "diagram",
+    "svg",
+    "ascii",
+    "flowchart",
+    "sequence-diagram",
+    "class-diagram",
+    "er-diagram",
+    "state-diagram",
+    "codebuddy-skill"
+  ],
+  "license": "MIT",
+  "author": {
+    "name": "chouray",
+    "url": "https://github.com/chouraycn"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}

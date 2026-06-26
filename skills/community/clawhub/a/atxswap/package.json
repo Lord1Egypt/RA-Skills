@@ -1,0 +1,15 @@
+{
+  "name": "atxswap",
+  "private": true,
+  "type": "module",
+  "version": "0.0.31",
+  "description": "Standalone skills.sh-oriented ATX trading skill for BSC wallet, query, swap, liquidity, and transfer workflows",
+  "scripts": {
+    "bootstrap": "npm install",
+    "check:price": "node scripts/query.js price",
+    "check:wallets": "node scripts/wallet.js list"
+  },
+  "dependencies": {
+    "atxswap-sdk": "^0.0.15"
+  }
+}

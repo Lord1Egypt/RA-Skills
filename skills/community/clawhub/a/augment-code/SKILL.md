@@ -1,35 +1,92 @@
 ---
 name: "Augment Code"
+version: "1.0.0"
 description: "Augment Code AI 编程助手，精通企业级代码理解、大型代码库导航、上下文感知补全"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/augment-code"
-sourceUrl: "https://clawhub.ai/skills/augment-code"
+tags: ["ai-coding", "enterprise", "augment", "context"]
+author: "ClawSkills Team"
+category: "developer-tools"
 ---
+# Augment Code - 企业级 AI 编程工具
 
-# Augment Code
+## 简介
+Augment Code 是一款专为大型企业代码库设计的 AI 编程助手。
+与 Copilot/Cursor 不同，Augment 的核心优势在于深度代码库理解——它能索引整个组织的代码仓库，
+理解跨仓库的依赖关系、内部 API 约定和团队编码规范，从而提供真正上下文感知的代码建议。
 
-> Augment Code AI 编程助手，精通企业级代码理解、大型代码库导航、上下文感知补全
+## 核心特色
+- **深度代码库索引**：对整个代码仓库（包括百万行级项目）建立语义索引
+- **跨仓库上下文**：理解微服务间的调用关系、共享库的使用模式
+- **企业级安全**：代码不离开企业网络，支持私有化部署，SOC 2 合规
+- **团队知识沉淀**：学习团队的编码风格、命名约定、架构模式
+- **实时上下文更新**：代码变更后自动增量更新索引，始终保持最新
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/augment-code`
-- **Source URL:** [https://clawhub.ai/skills/augment-code](https://clawhub.ai/skills/augment-code)
+## 功能模块
 
-## Overview
+### 智能代码补全
+不同于简单的行级补全，Augment 的补全基于对整个项目的理解：
+- 自动引用项目内已有的工具函数，而非生成重复代码
+- 遵循项目的错误处理模式、日志规范、命名约定
+- 补全时考虑上下游服务的接口定义
 
+### Chat 对话
+在 IDE 侧边栏与 AI 对话，支持：
+- 询问代码库中任意模块的实现细节
+- 解释复杂的业务逻辑和数据流
+- 搜索"这个功能在哪里实现的"
+- 分析代码变更的影响范围
 
-## Installation
-To install this skill, run the following command in your terminal:
+### Agent 模式
+自主执行多步编程任务：
+- 根据需求描述自动定位需要修改的文件
+- 跨多个文件进行一致性修改
+- 运行测试验证修改正确性
+- 生成符合团队规范的代码
+
+## 支持的 IDE
+| IDE | 支持状态 | 说明 |
+|-----|---------|------|
+| VS Code | 完整支持 | 主力开发平台 |
+| JetBrains 全家桶 | 完整支持 | IntelliJ/PyCharm/WebStorm 等 |
+| Vim/Neovim | 有限支持 | 通过 LSP 集成 |
+
+## 与同类工具对比
+| 特性 | Augment Code | GitHub Copilot | Cursor | Cline/Roo Code |
+|------|-------------|----------------|--------|----------------|
+| 代码库理解深度 | 极深（全仓库索引） | 浅（当前文件+邻近） | 中（项目级） | 中（手动上下文） |
+| 跨仓库感知 | 支持 | 不支持 | 不支持 | 不支持 |
+| 企业私有部署 | 支持 | 企业版支持 | 不支持 | 自托管模型可 |
+| 安全合规 | SOC 2 | SOC 2 | 有限 | 取决于模型 |
+| 大型代码库表现 | 优秀 | 一般 | 良好 | 一般 |
+| 团队协作 | 原生支持 | 有限 | 不支持 | 不支持 |
+| 定价 | 免费（当前） | $10-39/月 | $20-40/月 | 免费+模型费 |
+
+## 适用场景
+- **大型企业项目**：百万行级代码库，多团队协作，Augment 的全仓库索引优势明显
+- **微服务架构**：跨服务理解 API 调用链，修改时自动考虑上下游影响
+- **遗留代码维护**：快速理解老旧代码的业务逻辑，安全地进行重构
+- **新人 Onboarding**：新成员通过 Chat 快速了解项目架构和代码规范
+- **代码审查**：理解变更的完整上下文，发现潜在的兼容性问题
+
+## 工作原理
+1. **索引阶段**：扫描代码仓库，构建语义图谱（函数调用关系、类型定义、模块依赖）
+2. **理解阶段**：将用户当前编辑上下文与全局索引结合，形成完整的语义理解
+3. **生成阶段**：基于深度上下文生成代码建议，确保与项目整体风格一致
+4. **反馈循环**：用户接受/拒绝建议的行为持续优化模型对项目的理解
+
+## 安装与配置
 ```bash
-hermes skills install clawhub/augment-code
+# VS Code 扩展市场搜索 "Augment" 安装
+# 或命令行安装
+code --install-extension augment.augment-vscode
 ```
+
+首次使用需要：
+1. 注册 Augment 账号（目前免费）
+2. 授权访问代码仓库（本地索引，代码不上传）
+3. 等待索引构建完成（大型项目可能需要几分钟）
+
+## 局限性
+- 目前仍在快速迭代中，部分功能可能不稳定
+- 对非主流语言的支持不如主流语言（Python/JS/TS/Java/Go）
+- Agent 模式相比 Cursor/Roo Code 还在追赶中
+- 社区生态不如开源工具丰富

@@ -1,0 +1,67 @@
+{
+  "name": "article-workflow",
+  "version": "1.1.2",
+  "description": "文章分析工作流自动化 Skill - 提供从文章抓取、分析、归档到质量评分的完整流程",
+  "author": "dongnan",
+  "license": "MIT",
+  "keywords": [
+    "article",
+    "workflow",
+    "analysis",
+    "feishu",
+    "bitable",
+    "dedup",
+    "quality-score",
+    "smart-router",
+    "batch-analysis",
+    "llm-analyzer"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dongnan/article-workflow.git"
+  },
+  "credentials": {
+    "required": [
+      "BITABLE_APP_TOKEN",
+      "BITABLE_TABLE_ID"
+    ],
+    "optional": [
+      "FEISHU_APP_ID",
+      "FEISHU_APP_SECRET",
+      "FEISHU_CHAT_ID"
+    ],
+    "description": {
+      "BITABLE_APP_TOKEN": "飞书多维表格 App Token（必填）",
+      "BITABLE_TABLE_ID": "飞书多维表格表 ID（必填）",
+      "FEISHU_APP_ID": "飞书应用 App ID（可选，用于自动触发）",
+      "FEISHU_APP_SECRET": "飞书应用 App Secret（可选，用于自动触发）",
+      "FEISHU_CHAT_ID": "飞书群聊 ID（可选，用于自动通知）"
+    }
+  },
+  "env": {
+    "BITABLE_APP_TOKEN": "飞书多维表格 App Token",
+    "BITABLE_TABLE_ID": "飞书多维表格表 ID",
+    "FEISHU_APP_ID": "飞书应用 App ID（可选）",
+    "FEISHU_APP_SECRET": "飞书应用 App Secret（可选）",
+    "FEISHU_CHAT_ID": "飞书群聊 ID（可选）"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "python": ">=3.7.0"
+  },
+  "scripts": {
+    "test": "python3 tests/test_dedup.py",
+    "status": "python3 scripts/workflow.py --status",
+    "stats": "python3 scripts/workflow.py --stats"
+  },
+  "files": [
+    "SKILL.md",
+    "README.md",
+    "install.sh",
+    "config.example.json",
+    "core/",
+    "scripts/",
+    "docs/",
+    "tests/"
+  ]
+}

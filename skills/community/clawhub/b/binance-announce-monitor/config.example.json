@@ -1,0 +1,6 @@
+{
+  "_comment": "复制此文件为 config.json 并修改配置（可选）",
+  "checkIntervalSeconds": 30,
+  "targetUser": "ou_c1bac9d5fa30ac354a3705a9c87993dd",
+  "channel": "feishu"
+}

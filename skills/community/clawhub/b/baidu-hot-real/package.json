@@ -1,0 +1,16 @@
+{
+  "name": "baidu-hot-real",
+  "version": "1.3.0",
+  "description": "百度热搜榜实时抓取 - 直接从 top.baidu.com/board 获取真实热榜数据",
+  "main": "scripts/fetch.sh",
+  "scripts": {
+    "fetch": "bash scripts/fetch.sh",
+    "test": "python3 scripts/baidu_fetch.py 10"
+  },
+  "author": "小幸 (瑞幸咖啡总部)",
+  "license": "MIT",
+  "dependencies": {
+    "python3": ">=3.6"
+  },
+  "data_source": "https://top.baidu.com/board"
+}

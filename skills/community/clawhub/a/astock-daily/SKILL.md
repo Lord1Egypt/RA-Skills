@@ -1,35 +1,37 @@
----
-name: "Astock Daily"
-description: "Daily emails listing recent A-share IPOs and selected stocks priced under 20 yuan, including key trading details."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/astock-daily"
-sourceUrl: "https://clawhub.ai/skills/astock-daily"
----
+# A 股每日精选技能
 
-# Astock Daily
+## 描述
+每日获取 A 股新股发行信息和 20 元以下的精选股票，通过邮件发送给用户。
 
-> Daily emails listing recent A-share IPOs and selected stocks priced under 20 yuan, including key trading details.
+## 激活方式
+当用户提到 A 股、新股、股票筛选、低价股时激活此技能。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/astock-daily`
-- **Source URL:** [https://clawhub.ai/skills/astock-daily](https://clawhub.ai/skills/astock-daily)
+## 配置
+在 `TOOLS.md` 中添加以下配置：
 
-## Overview
+```markdown
+### A 股股票技能
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/astock-daily
+- 邮箱：8@batype.com
+- 价格上限：20 元
+- 发送时间：每天 09:00
 ```
+
+## 使用方法
+
+### 手动运行
+```bash
+node skills/astock-daily/index.js
+```
+
+### 定时运行
+通过 cron 或 OpenClaw 的 heartbeat 功能每天运行。
+
+## 数据源
+- 东方财富网 API（新股发行）
+- 新浪财经 API（股票行情）
+
+## 输出
+邮件包含：
+1. 近期新股发行列表（代码、名称、申购日期、发行价）
+2. 20 元以下精选股票（代码、名称、现价、涨跌幅、成交量）

@@ -1,0 +1,442 @@
+# config/design-mapping.yaml
+# Design MD 关键词映射配置
+# 用户可根据业务需求自由修改
+# 基于 Awesome Design MD 项目 (https://github.com/VoltAgent/awesome-design-md)
+
+version: "1.0.0"
+
+# 默认设计系统（当无匹配时使用）
+default: linear
+
+# 关键词映射规则
+# 格式：关键词 -> 设计系统名称
+# 支持中英文，支持正则表达式
+keywords:
+  # AI / 科技 (优先级 1 - 最高)
+  "人工智能|chatbot|对话|助手": claude
+  "大模型|llm|gpt|生成式": claude
+  "ai\b|AI\b": claude
+  "大模型": claude
+  "chatbot|聊天机器人": claude
+  "llm|LLM": claude
+  
+  # 开发者工具 (优先级 2)
+  "cursor|代码编辑器|IDE": cursor
+  "终端|terminal|命令行|cli": warp
+  "文档|docs|documentation": mintlify
+  "开发工具": cursor
+  
+  # 设计工具 (优先级 3)
+  "原型|figma": figma
+  "设计工具": figma
+  "创意|creative|艺术|art": clay
+  "设计\b": figma
+  
+  # 消费电子 (优先级 4)
+  "iOS|苹果|apple|手机端|移动端|iPhone": apple
+  "mac|ipad|watch|macbook": apple
+  "苹果风格": apple
+  
+  # 支付 / 金融 (优先级 5)
+  "支付|payment|checkout|下单|购物车|收银": stripe
+  "金融|finance|银行|banking|证券|保险": stripe
+  "表单|form|提交|submit|输入": stripe
+  "支付系统": stripe
+  
+  # 娱乐 / 社交 (优先级 6)
+  "音乐|music|播客|podcast|音频": spotify
+  "社交|social|社区|community|聊天": spotify
+  "播放器": spotify
+  
+  # 基础设施 (优先级 7)
+  "数据库|database|mongo|nosql": mongodb
+  "云服务|cloud|基础设施|infra": hashicorp
+  "监控|monitoring|错误|error": sentry
+  
+  # 营销 / 品牌 (优先级 8)
+  "营销|landing|落地页|品牌|brand|官网": vercel
+  "homepage|企业官网|展示页": vercel
+  
+  # SaaS / 生产力工具 (优先级 9)
+  "saas|SaaS|生产力|效率|modern|现代|项目管理": linear
+  "dashboard|仪表盘|数据看板|analytics": linear
+  "后台管理|admin|cms|管理后台": linear
+
+# 排除规则（优先级高于关键词）
+# 当某些关键词不应该触发映射时使用
+excludes:
+  - pattern: "不要.*linear|不用.*linear|别用.*linear"
+    design: linear
+  - pattern: "不要.*stripe|不用.*stripe|别用.*stripe"
+    design: stripe
+  - pattern: "不要.*vercel|不用.*vercel|别用.*vercel"
+    design: vercel
+  - pattern: "不要.*apple|不用.*apple|别用.*apple"
+    design: apple
+
+# 设计系统别名（用户可使用简称）
+aliases:
+  linear: ["linear", "lin", "线性"]
+  stripe: ["stripe", "str", "条纹"]
+  apple: ["apple", "苹果", "水果", "苹果风格", "apple风格"]
+  spotify: ["spotify", "spot", "音乐"]
+  vercel: ["vercel", "ver", "维尔"]
+  claude: ["claude", "cl", "克劳德"]
+  cursor: ["cursor", "cur", "光标"]
+  figma: ["figma", "fig", "菲格玛"]
+  mintlify: ["mintlify", "mint", "薄荷"]
+  warp: ["warp", "warp", "弯曲"]
+  mongodb: ["mongodb", "mongo", "芒果"]
+  hashicorp: ["hashicorp", "hashi", "哈希"]
+  sentry: ["sentry", "sen", "哨兵"]
+
+# 设计系统元数据 (58 个)
+designSystems:
+  linear:
+    name: "Linear"
+    description: "超极简，精准，紫色点缀，工程师最爱"
+    tags: ["saas", "productivity", "minimal"]
+    primaryColor: "#5E6AD2"
+    darkMode: true
+  stripe:
+    name: "Stripe"
+    description: "紫色渐变，优雅字重，支付行业标杆"
+    tags: ["payment", "finance", "elegant"]
+    primaryColor: "#635BFF"
+    darkMode: false
+  vercel:
+    name: "Vercel"
+    description: "黑白精准，Geist 字体，前端部署平台"
+    tags: ["marketing", "brand", "clean"]
+    primaryColor: "#000000"
+    darkMode: true
+  apple:
+    name: "Apple"
+    description: "高端精致，圆角，毛玻璃，iOS 风格"
+    tags: ["consumer", "mobile", "premium"]
+    primaryColor: "#007AFF"
+    darkMode: true
+  spotify:
+    name: "Spotify"
+    description: "暗色影院风，音频波形，绿色点缀"
+    tags: ["entertainment", "music", "dark"]
+    primaryColor: "#1DB954"
+    darkMode: true
+  claude:
+    name: "Claude"
+    description: "温暖陶土色，编辑排版风格，AI 助手"
+    tags: ["ai", "chatbot", "warm"]
+    primaryColor: "#D97757"
+    darkMode: false
+  cursor:
+    name: "Cursor"
+    description: "流畅渐变，AI 代码编辑器，开发者中心"
+    tags: ["dev-tools", "ai", "editor"]
+    primaryColor: "#FF6B6B"
+    darkMode: true
+  figma:
+    name: "Figma"
+    description: "多彩活泼，专业设计工具"
+    tags: ["design", "creative", "colorful"]
+    primaryColor: "#F24E1E"
+    darkMode: false
+  mintlify:
+    name: "Mintlify"
+    description: "清新绿色，文档优化，阅读友好"
+    tags: ["documentation", "clean", "green"]
+    primaryColor: "#10B981"
+    darkMode: true
+  warp:
+    name: "Warp"
+    description: "暗色 IDE 风，块状命令 UI，现代终端"
+    tags: ["terminal", "dev-tools", "dark"]
+    primaryColor: "#FF3366"
+    darkMode: true
+  mongodb:
+    name: "MongoDB"
+    description: "绿叶品牌，开发者文档焦点"
+    tags: ["database", "infrastructure", "green"]
+    primaryColor: "#47A248"
+    darkMode: true
+  hashicorp:
+    name: "HashiCorp"
+    description: "企业级简洁，黑白配色，基础设施"
+    tags: ["infrastructure", "enterprise", "clean"]
+    primaryColor: "#000000"
+    darkMode: false
+  sentry:
+    name: "Sentry"
+    description: "暗色仪表盘，数据密集，粉紫点缀"
+    tags: ["monitoring", "dashboard", "dark"]
+    primaryColor: "#362D59"
+    darkMode: true
+  airbnb:
+    name: "Airbnb"
+    description: "Airbnb design system"
+    tags: ["travel", "hospitality", "consumer"]
+    primaryColor: "#FF5A5F"
+    darkMode: false
+  airtable:
+    name: "Airtable"
+    description: "Airtable design system"
+    tags: ["productivity", "database", "saas"]
+    primaryColor: "#FCB400"
+    darkMode: false
+  bmw:
+    name: "BMW"
+    description: "BMW design system"
+    tags: ["automotive", "luxury", "consumer"]
+    primaryColor: "#0066B1"
+    darkMode: true
+  cal:
+    name: "Cal.com"
+    description: "Cal.com design system"
+    tags: ["productivity", "scheduling", "saas"]
+    primaryColor: "#111827"
+    darkMode: true
+  clay:
+    name: "Clay"
+    description: "Clay design system"
+    tags: ["design", "creative", "agency"]
+    primaryColor: "#FF6B6B"
+    darkMode: true
+  clickhouse:
+    name: "ClickHouse"
+    description: "ClickHouse design system"
+    tags: ["database", "analytics", "infrastructure"]
+    primaryColor: "#FFCC01"
+    darkMode: true
+  cohere:
+    name: "Cohere"
+    description: "Cohere design system"
+    tags: ["ai", "nlp", "enterprise"]
+    primaryColor: "#6366F1"
+    darkMode: true
+  coinbase:
+    name: "Coinbase"
+    description: "Coinbase design system"
+    tags: ["crypto", "finance", "fintech"]
+    primaryColor: "#0052FF"
+    darkMode: true
+  composio:
+    name: "Composio"
+    description: "Composio design system"
+    tags: ["ai", "automation", "developer"]
+    primaryColor: "#000000"
+    darkMode: true
+  elevenlabs:
+    name: "ElevenLabs"
+    description: "ElevenLabs design system"
+    tags: ["ai", "voice", "audio"]
+    primaryColor: "#000000"
+    darkMode: true
+  expo:
+    name: "Expo"
+    description: "Expo design system"
+    tags: ["mobile", "react-native", "developer"]
+    primaryColor: "#000020"
+    darkMode: true
+  ferrari:
+    name: "Ferrari"
+    description: "Ferrari design system"
+    tags: ["automotive", "luxury", "sports"]
+    primaryColor: "#FF2800"
+    darkMode: true
+  framer:
+    name: "Framer"
+    description: "Framer design system"
+    tags: ["design", "prototyping", "web"]
+    primaryColor: "#0099FF"
+    darkMode: true
+  ibm:
+    name: "IBM"
+    description: "IBM design system"
+    tags: ["enterprise", "technology", "consulting"]
+    primaryColor: "#0F62FE"
+    darkMode: false
+  intercom:
+    name: "Intercom"
+    description: "Intercom design system"
+    tags: ["saas", "customer-support", "messaging"]
+    primaryColor: "#0071CE"
+    darkMode: false
+  kraken:
+    name: "Kraken"
+    description: "Kraken design system"
+    tags: ["crypto", "exchange", "finance"]
+    primaryColor: "#5742D3"
+    darkMode: true
+  lamborghini:
+    name: "Lamborghini"
+    description: "Lamborghini design system"
+    tags: ["automotive", "luxury", "sports"]
+    primaryColor: "#B6A271"
+    darkMode: true
+  lovable:
+    name: "Lovable"
+    description: "Lovable design system"
+    tags: ["ai", "no-code", "builder"]
+    primaryColor: "#E11D48"
+    darkMode: true
+  minimax:
+    name: "Minimax"
+    description: "Minimax design system"
+    tags: ["ai", "llm", "china"]
+    primaryColor: "#000000"
+    darkMode: true
+  miro:
+    name: "Miro"
+    description: "Miro design system"
+    tags: ["collaboration", "whiteboard", "saas"]
+    primaryColor: "#050038"
+    darkMode: false
+  mistral.ai:
+    name: "Mistral AI"
+    description: "Mistral AI design system"
+    tags: ["ai", "llm", "france"]
+    primaryColor: "#FF5A00"
+    darkMode: true
+  notion:
+    name: "Notion"
+    description: "Notion design system"
+    tags: ["productivity", "notes", "collaboration"]
+    primaryColor: "#000000"
+    darkMode: false
+  nvidia:
+    name: "NVIDIA"
+    description: "NVIDIA design system"
+    tags: ["gpu", "ai", "hardware"]
+    primaryColor: "#76B900"
+    darkMode: true
+  ollama:
+    name: "Ollama"
+    description: "Ollama design system"
+    tags: ["ai", "llm", "local"]
+    primaryColor: "#000000"
+    darkMode: true
+  opencode.ai:
+    name: "OpenCode AI"
+    description: "OpenCode AI design system"
+    tags: ["ai", "coding", "open-source"]
+    primaryColor: "#000000"
+    darkMode: true
+  pinterest:
+    name: "Pinterest"
+    description: "Pinterest design system"
+    tags: ["social", "inspiration", "visual"]
+    primaryColor: "#BD081C"
+    darkMode: false
+  posthog:
+    name: "PostHog"
+    description: "PostHog design system"
+    tags: ["analytics", "product", "open-source"]
+    primaryColor: "#FF2E63"
+    darkMode: true
+  raycast:
+    name: "Raycast"
+    description: "Raycast design system"
+    tags: ["productivity", "launcher", "macos"]
+    primaryColor: "#FF6363"
+    darkMode: true
+  renault:
+    name: "Renault"
+    description: "Renault design system"
+    tags: ["automotive", "consumer", "france"]
+    primaryColor: "#FFCC33"
+    darkMode: false
+  replicate:
+    name: "Replicate"
+    description: "Replicate design system"
+    tags: ["ai", "ml", "api"]
+    primaryColor: "#000000"
+    darkMode: true
+  resend:
+    name: "Resend"
+    description: "Resend design system"
+    tags: ["email", "api", "developer"]
+    primaryColor: "#000000"
+    darkMode: true
+  revolut:
+    name: "Revolut"
+    description: "Revolut design system"
+    tags: ["fintech", "banking", "mobile"]
+    primaryColor: "#181A20"
+    darkMode: true
+  runwayml:
+    name: "RunwayML"
+    description: "RunwayML design system"
+    tags: ["ai", "video", "creative"]
+    primaryColor: "#000000"
+    darkMode: true
+  sanity:
+    name: "Sanity"
+    description: "Sanity design system"
+    tags: ["cms", "content", "developer"]
+    primaryColor: "#F03E2F"
+    darkMode: true
+  spacex:
+    name: "SpaceX"
+    description: "SpaceX design system"
+    tags: ["aerospace", "technology", "space"]
+    primaryColor: "#000000"
+    darkMode: true
+  supabase:
+    name: "Supabase"
+    description: "Supabase design system"
+    tags: ["database", "backend", "open-source"]
+    primaryColor: "#3ECF8E"
+    darkMode: true
+  superhuman:
+    name: "Superhuman"
+    description: "Superhuman design system"
+    tags: ["email", "productivity", "premium"]
+    primaryColor: "#D9534F"
+    darkMode: true
+  tesla:
+    name: "Tesla"
+    description: "Tesla design system"
+    tags: ["automotive", "ev", "technology"]
+    primaryColor: "#E31837"
+    darkMode: true
+  together.ai:
+    name: "Together AI"
+    description: "Together AI design system"
+    tags: ["ai", "llm", "cloud"]
+    primaryColor: "#E11D48"
+    darkMode: true
+  uber:
+    name: "Uber"
+    description: "Uber design system"
+    tags: ["transportation", "mobility", "consumer"]
+    primaryColor: "#000000"
+    darkMode: false
+  voltagent:
+    name: "VoltAgent"
+    description: "VoltAgent design system"
+    tags: ["ai", "agent", "framework"]
+    primaryColor: "#10B981"
+    darkMode: true
+  webflow:
+    name: "Webflow"
+    description: "Webflow design system"
+    tags: ["web-design", "no-code", "cms"]
+    primaryColor: "#146EF5"
+    darkMode: false
+  wise:
+    name: "Wise"
+    description: "Wise design system"
+    tags: ["fintech", "money-transfer", "banking"]
+    primaryColor: "#9FE870"
+    darkMode: false
+  x.ai:
+    name: "xAI"
+    description: "xAI design system"
+    tags: ["ai", "research", "spacex"]
+    primaryColor: "#000000"
+    darkMode: true
+  zapier:
+    name: "Zapier"
+    description: "Zapier design system"
+    tags: ["automation", "integration", "saas"]
+    primaryColor: "#FF4F00"
+    darkMode: false

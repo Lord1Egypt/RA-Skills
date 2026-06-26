@@ -1,35 +1,53 @@
 ---
-name: "BOM Compare Tool"
-description: "BOM物料清单对比工具 | 对比两个版本的BOM差异，自动识别新增、删除、变更的物料项"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/bom-compare-tool"
-sourceUrl: "https://clawhub.ai/skills/bom-compare-tool"
+name: bom-compare-tool
+description: BOM物料清单对比工具 | 对比两个版本的BOM差异，自动识别新增、删除、变更的物料项
 ---
 
-# BOM Compare Tool
+# BOM物料清单对比工具
 
-> BOM物料清单对比工具 | 对比两个版本的BOM差异，自动识别新增、删除、变更的物料项
+对比两个版本的物料清单（BOM），快速识别差异：新增项、删除项、规格变更项。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/bom-compare-tool`
-- **Source URL:** [https://clawhub.ai/skills/bom-compare-tool](https://clawhub.ai/skills/bom-compare-tool)
+## 适用场景
 
-## Overview
+- 设计变更BOM对比
+- 供应商BOM核对
+- 采购BOM与技术BOM一致性检查
+- 版本升级变更分析
 
+## 对比结果
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/bom-compare-tool
+| 差异类型 | 说明 |
+|----------|------|
+| 新增物料 | 新版有、旧版无 |
+| 删除物料 | 旧版有、新版无 |
+| 数量变更 | 同一物料数量变化 |
+| 规格变更 | 物料型号/规格变化 |
+| 单价变更 | 价格变动（需提供价格） |
+
+## 输出格式
+
+```
+BOM对比报告
+━━━━━━━━━━━━━━
+旧版：BOM-V1.0（2026-01-15）
+新版：BOM-V2.0（2026-03-10）
+━━━━━━━━━━━━━━
+
+新增物料（3项）：
+  ✅ 磁钢-N52H-20x10x3mm（新增）
+  ✅ 轴承-6205-2Z-C3（新增）
+
+删除物料（1项）：
+  ❌ 垫圈-M5-不锈钢（删除）
+
+数量变更（2项）：
+  📝 漆包线-0.5mm：旧50kg → 新55kg（+10%）
+  📝 轴承-6204：旧2个 → 新4个（+100%）
+
+规格变更（1项）：
+  ⚠️ 铝合金壳体：旧6061-T6 → 新6063-T5
+
+━━━━━━━━━━━━━━
+总物料项：旧45项 → 新47项（+2项）
+预估成本变动：+¥1,200（+3.2%）
 ```

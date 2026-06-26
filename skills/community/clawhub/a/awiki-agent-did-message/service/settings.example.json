@@ -1,0 +1,28 @@
+{
+  "user_service_url": "https://awiki.ai",
+  "molt_message_url": "https://awiki.ai",
+  "did_domain": "awiki.ai",
+  "message_transport": {
+    "receive_mode": "websocket",
+    "local_daemon_host": "127.0.0.1",
+    "local_daemon_port": 18790,
+    "local_daemon_token": "<run: echo awiki_local_$(openssl rand -hex 24)>"
+  },
+  "listener": {
+    "mode": "smart",
+    "agent_webhook_url": "http://127.0.0.1:18789/hooks/agent",
+    "wake_webhook_url": "http://127.0.0.1:18789/hooks/wake",
+    "webhook_token": "<run: echo awiki_$(openssl rand -hex 32)>",
+    "agent_hook_name": "IM",
+    "routing": {
+      "whitelist_dids": [],
+      "private_always_agent": true,
+      "command_prefix": "/",
+      "keywords": ["urgent", "approval", "payment", "alert"],
+      "bot_names": [],
+      "blacklist_dids": []
+    },
+    "e2ee_save_interval": 30.0,
+    "e2ee_decrypt_fail_action": "drop"
+  }
+}

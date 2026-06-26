@@ -1,0 +1,4 @@
+interface:
+  display_name: "Bible Q&A"
+  short_description: "Explain passage, person, or topic with background and application"
+  default_prompt: "Use $bible-qa to explain a passage, person, or topic with background, key verses, and application."

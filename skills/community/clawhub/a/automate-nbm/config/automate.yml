@@ -1,0 +1,242 @@
+# =============================================================================
+# Automate Configuration
+# =============================================================================
+# Central configuration for the AI Agent Agency + Task Automation platform.
+# Environment-specific values should be set via GitHub Secrets, not here.
+# =============================================================================
+
+# ---------------------------------------------------------------------------
+# Platform
+# ---------------------------------------------------------------------------
+platform:
+  name: Automate
+  version: 2.0.0
+  description: AI Agent Agency + GitHub-native task automation
+
+# ---------------------------------------------------------------------------
+# Agent Registry
+# ---------------------------------------------------------------------------
+# All 61 agents organized by department. Agent names must match filenames
+# in agents/<department>/<name>.md (where files exist) or be recognized
+# by the dispatch keyword map in scripts/agent-dispatch.sh.
+# ---------------------------------------------------------------------------
+agents:
+  departments:
+    engineering:
+      label: "💻 Engineering"
+      description: Software development, architecture, and infrastructure
+      agents:
+        - name: frontend-developer
+          file: agents/engineering/frontend-developer.md
+          keywords: [react, vue, angular, frontend, ui, css, tailwind, responsive]
+        - name: backend-architect
+          file: agents/engineering/backend-architect.md
+          keywords: [api, database, backend, microservice, server, cloud]
+        - name: mobile-app-builder
+          file: null
+          keywords: [ios, android, mobile, react-native, flutter]
+        - name: ai-engineer
+          file: null
+          keywords: [machine-learning, ml, deep-learning, neural, ai-model]
+        - name: devops-automator
+          file: null
+          keywords: [docker, kubernetes, cicd, pipeline, deploy, terraform]
+        - name: rapid-prototyper
+          file: null
+          keywords: [mvp, prototype, poc, proof-of-concept]
+        - name: senior-developer
+          file: null
+          keywords: [architecture, complex, refactor, legacy]
+
+    design:
+      label: "🎨 Design"
+      description: Visual design, UX research, and brand identity
+      agents:
+        - name: ui-designer
+          keywords: [ui-design, design-system, visual-design, figma]
+        - name: ux-researcher
+          keywords: [user-research, usability, user-testing]
+        - name: ux-architect
+          keywords: [ux-architecture, css-system, information-architecture]
+        - name: brand-guardian
+          keywords: [brand, logo, identity, style-guide]
+        - name: visual-storyteller
+          keywords: [visual-narrative, multimedia, presentation]
+        - name: whimsy-injector
+          keywords: [animation, micro-interaction, delight]
+        - name: image-prompt-engineer
+          keywords: [midjourney, dall-e, stable-diffusion, image-prompt]
+
+    marketing:
+      label: "📢 Marketing"
+      description: Growth, content, and social media
+      agents:
+        - name: growth-hacker
+          file: agents/marketing/growth-hacker.md
+          keywords: [growth, acquisition, conversion, viral, marketing]
+        - name: content-creator
+          keywords: [content, blog, copywriting, editorial]
+        - name: twitter-engager
+          keywords: [twitter, tweet, x.com]
+        - name: tiktok-strategist
+          keywords: [tiktok, short-video, reels]
+        - name: instagram-curator
+          keywords: [instagram, visual-storytelling]
+        - name: reddit-community-builder
+          keywords: [reddit, community, subreddit]
+        - name: app-store-optimizer
+          keywords: [app-store, aso, play-store]
+        - name: social-media-strategist
+          keywords: [social-media, social-strategy, cross-platform]
+
+    product:
+      label: "📊 Product"
+      description: Product strategy, prioritization, and research
+      agents:
+        - name: sprint-prioritizer
+          keywords: [sprint, backlog, prioritization, agile]
+        - name: trend-researcher
+          keywords: [trend, market-research, competitive-analysis]
+        - name: feedback-synthesizer
+          keywords: [feedback, user-feedback, nps, csat]
+
+    project-management:
+      label: "🎬 Project Management"
+      description: Planning, coordination, and operations
+      agents:
+        - name: senior-pm
+          file: agents/project-management/project-manager-senior.md
+          keywords: [project-plan, task-breakdown, scope, timeline, roadmap]
+        - name: studio-producer
+          keywords: [portfolio, high-level-coordination]
+        - name: project-shepherd
+          keywords: [cross-functional, coordination, handoff]
+        - name: studio-operations
+          keywords: [operations, process-optimization, efficiency]
+        - name: experiment-tracker
+          keywords: [a-b-test, experiment, hypothesis]
+
+    testing:
+      label: "🧪 Testing"
+      description: Quality assurance, verification, and performance
+      agents:
+        - name: reality-checker
+          file: agents/testing/testing-reality-checker.md
+          keywords: [quality, release, production-ready, qa]
+        - name: evidence-collector
+          keywords: [screenshot, visual-test, visual-verification]
+        - name: test-results-analyzer
+          keywords: [test-result, test-analysis, coverage]
+        - name: performance-benchmarker
+          keywords: [performance-test, load-test, benchmark]
+        - name: api-tester
+          keywords: [api-test, integration-test, contract-test]
+        - name: tool-evaluator
+          keywords: [tool-evaluation, technology-assessment]
+        - name: workflow-optimizer
+          keywords: [workflow, process-analysis, bottleneck]
+
+    support:
+      label: "🛟 Support"
+      description: Customer support, analytics, finance, and compliance
+      agents:
+        - name: support-responder
+          keywords: [customer, support-ticket, help-desk]
+        - name: analytics-reporter
+          keywords: [analytics, dashboard, data-visualization]
+        - name: finance-tracker
+          keywords: [finance, budget, cost, revenue]
+        - name: infrastructure-maintainer
+          keywords: [maintenance, reliability, uptime, monitoring]
+        - name: legal-compliance-checker
+          keywords: [compliance, legal, regulation, gdpr, privacy]
+        - name: executive-summary-generator
+          keywords: [executive-summary, c-suite, board-report]
+
+    specialized:
+      label: "🎯 Specialized"
+      description: Cross-functional and niche capabilities
+      agents:
+        - name: orchestrator
+          file: orchestrator/SKILL.md
+          keywords: [orchestrate, multi-agent, pipeline]
+        - name: data-analytics-reporter
+          keywords: [business-intelligence, bi, data-report]
+        - name: lsp-index-engineer
+          keywords: [lsp, code-intelligence, language-server]
+        - name: sales-data-extraction-agent
+          keywords: [sales-data, data-extraction]
+        - name: data-consolidation-agent
+          keywords: [data-consolidation, data-merge]
+        - name: report-distribution-agent
+          keywords: [report-distribution, report-delivery]
+
+# ---------------------------------------------------------------------------
+# Orchestrator Settings
+# ---------------------------------------------------------------------------
+orchestrator:
+  qa_level: 3              # Quality check strictness (1=quick, 5=production)
+  max_retries: 3           # Max retries per task before escalation
+  timeout_minutes: 60      # Max time per individual task
+  auto_advance: true       # Auto-advance to next task on QA pass
+
+# ---------------------------------------------------------------------------
+# GitHub Integration
+# ---------------------------------------------------------------------------
+github:
+  issue_labels:
+    trigger:
+      - task              # Basic task runner
+      - agent-task        # Agent-routed task
+      - orchestrate       # Multi-agent orchestration
+    status:
+      - in-progress
+      - completed
+      - failed
+      - escalated
+    priority:
+      - "priority:high"
+      - "priority:medium"
+      - "priority:low"
+  auto_acknowledge: true   # Post acknowledgment comment on new tasks
+  auto_label: true         # Add status labels automatically
+
+# ---------------------------------------------------------------------------
+# Task Defaults
+# ---------------------------------------------------------------------------
+tasks:
+  max_concurrent: 3        # Max tasks processing simultaneously
+  timeout_minutes: 30      # Default task timeout
+  auto_close_completed: false  # Auto-close issues on completion
+
+# ---------------------------------------------------------------------------
+# Notifications
+# ---------------------------------------------------------------------------
+notifications:
+  targets:
+    - console              # Always log to console
+    # - github             # Post to issue comments (requires GITHUB_TOKEN)
+    # - webhook            # Send to webhook (requires WEBHOOK_URL)
+  on_start: true           # Notify when task starts
+  on_complete: true        # Notify when task completes
+  on_failure: true         # Notify when task fails
+  on_escalation: true      # Notify when task escalates
+
+# ---------------------------------------------------------------------------
+# Security
+# ---------------------------------------------------------------------------
+security:
+  require_sender_validation: true   # Validate repository_dispatch senders
+  # ALLOWED_SENDERS: set via GitHub Secrets
+  audit_log: true                   # Log all operations
+
+# ---------------------------------------------------------------------------
+# Scheduled Tasks
+# ---------------------------------------------------------------------------
+schedule:
+  health_check:
+    cron: "0 */6 * * *"    # Every 6 hours
+    enabled: true
+  cleanup:
+    cron: "0 0 * * 0"      # Weekly, Sunday midnight
+    enabled: false

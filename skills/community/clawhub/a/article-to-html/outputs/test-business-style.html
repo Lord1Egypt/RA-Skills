@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI 录音卡片产品架构</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body{ 
+            margin:0; 
+            padding:0; 
+            font-family: "Georgia", "Times New Roman", "Noto Serif SC", serif;
+            background: #f5f5f0;
+        background:transparent;margin:0;padding:0;}
+
+        .container{
+            width: 1080px;
+            min-height: 1440px;
+            padding: 48px;
+            margin: 0;
+            background: #f5f5f0;
+            color: #1a1a1a;
+        }
+
+        .header {
+            border-bottom: 3px solid #1a1a1a;
+            padding-bottom: 32px;
+            margin-bottom: 48px;
+        }
+
+        .tag {
+            font-family: "Helvetica Neue", Arial, sans-serif;
+            font-size: 24px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: #666;
+            margin-bottom: 16px;
+        }
+
+        h1 {
+            font-size: 80px;
+            font-weight: 700;
+            line-height: 1.2;
+            color: #1a1a1a;
+        }
+
+        .subtitle {
+            font-size: 32px;
+            color: #666;
+            margin-top: 16px;
+            font-family: "Helvetica Neue", Arial, sans-serif;
+        }
+
+        .module {
+            margin-bottom: 40px;
+        }
+
+        .module-header {
+            display: flex;
+            align-items: baseline;
+            gap: 16px;
+            margin-bottom: 24px;
+            border-left: 6px solid #1a1a1a;
+            padding-left: 20px;
+        }
+
+        .module-number {
+            font-size: 24px;
+            font-weight: 700;
+            color: #999;
+            font-family: "Helvetica Neue", Arial, sans-serif;
+        }
+
+        .module-title {
+            font-size: 48px;
+            font-weight: 700;
+            color: #1a1a1a;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .content-item {
+            background: #ffffff;
+            padding: 28px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            border-top: 3px solid #1a1a1a;
+        }
+
+        .item-title {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: #1a1a1a;
+            font-family: "Helvetica Neue", Arial, sans-serif;
+        }
+
+        .item-desc {
+            font-size: 30px;
+            color: #555;
+            line-height: 1.7;
+        }
+
+        .item-desc strong {
+            color: #1a1a1a;
+            font-weight: 600;
+        }
+
+        .summary-box {
+            background: #1a1a1a;
+            color: #ffffff;
+            padding: 40px;
+            margin-top: 48px;
+        }
+
+        .summary-title {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 24px;
+            font-family: "Helvetica Neue", Arial, sans-serif;
+            letter-spacing: 1px;
+        }
+
+        .summary-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 32px;
+        }
+
+        .summary-item {
+            text-align: center;
+        }
+
+        .summary-number {
+            font-size: 64px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: #ffffff;
+        }
+
+        .summary-label {
+            font-size: 26px;
+            opacity: 0.8;
+            font-family: "Helvetica Neue", Arial, sans-serif;
+        }
+
+        .footer {
+            margin-top: 48px;
+            padding-top: 24px;
+            border-top: 1px solid #ddd;
+            font-size: 24px;
+            color: #999;
+            text-align: center;
+            font-family: "Helvetica Neue", Arial, sans-serif;
+        }
+    .coord{display:none!important;}
+/* === POST-PROCESS: 字号兜底 === */
+.container { font-size: max(14px, 1em); }
+.container h1, .container [class*="title"]:first-child { font-size: max(48px, 1em) !important; }
+.container h2, .container h3 { font-size: max(28px, 1em) !important; }
+.container p, .container li, .container td { font-size: max(20px, 0.9em) !important; }
+.container .coord { display: none !important; }
+</style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="tag">PRODUCT BRIEFING</div>
+            <h1>AI 录音卡片<br/>产品架构方案</h1>
+            <div class="subtitle">北美市场 · 合规优先 · AWS 云架构</div>
+        </div>
+
+        <!-- Module 1: 战略框架 -->
+        <div class="module">
+            <div class="module-header">
+                <span class="module-number">01</span>
+                <h2 class="module-title">战略框架 M-P-D-G</h2>
+            </div>
+            <div class="content-grid">
+                <div class="content-item">
+                    <div class="item-title">Market 市场定位</div>
+                    <div class="item-desc"><strong>北美合规驱动市场</strong><br/>政府/金融/医疗强监管行业</div>
+                </div>
+                <div class="content-item">
+                    <div class="item-title">Product 产品架构</div>
+                    <div class="item-desc"><strong>云端存储 + 本地加密</strong><br/>混合云架构支持私有部署</div>
+                </div>
+                <div class="content-item">
+                    <div class="item-title">Data 数据治理</div>
+                    <div class="item-desc"><strong>数据隔离 + 访问控制</strong><br/>美国境内数据驻留</div>
+                </div>
+                <div class="content-item">
+                    <div class="item-title">Governance 合规治理</div>
+                    <div class="item-desc"><strong>SOC 2 + HIPAA 认证</strong><br/>完整审计日志追踪</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Module 2: 合规认证 -->
+        <div class="module">
+            <div class="module-header">
+                <span class="module-number">02</span>
+                <h2 class="module-title">合规认证要求</h2>
+            </div>
+            <div class="content-grid">
+                <div class="content-item">
+                    <div class="item-title">SOC 2 Type I</div>
+                    <div class="item-desc"><strong>周期 3-4 个月</strong><br/>费用 $30-50K</div>
+                </div>
+                <div class="content-item">
+                    <div class="item-title">SOC 2 Type II</div>
+                    <div class="item-desc"><strong>周期 6-12 个月</strong><br/>费用 $75-165K</div>
+                </div>
+                <div class="content-item">
+                    <div class="item-title">HIPAA BAA</div>
+                    <div class="item-desc"><strong>AWS 免费签署</strong><br/>5 分钟完成</div>
+                </div>
+                <div class="content-item">
+                    <div class="item-title">BIPA / COPPA</div>
+                    <div class="item-desc"><strong>生物识别 + 儿童隐私</strong><br/>$5K-$43K/次罚款</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Module 3: 技术架构 -->
+        <div class="module">
+            <div class="module-header">
+                <span class="module-number">03</span>
+                <h2 class="module-title">技术实现要点</h2>
+            </div>
+            <div class="content-grid">
+                <div class="content-item">
+                    <div class="item-title">SSE-KMS 加密</div>
+                    <div class="item-desc">S3 静态数据加密<br/>AWS KMS 密钥管理</div>
+                </div>
+                <div class="content-item">
+                    <div class="item-title">TLS 1.2+ 传输</div>
+                    <div class="item-desc">传输中数据加密<br/>HTTPS 强制启用</div>
+                </div>
+                <div class="content-item">
+                    <div class="item-title">IAM + MFA</div>
+                    <div class="item-desc">访问控制 + 双因素认证<br/>最小权限原则</div>
+                </div>
+                <div class="content-item">
+                    <div class="item-title">CloudTrail 审计</div>
+                    <div class="item-desc">完整审计日志<br/>API 调用全记录</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Summary -->
+        <div class="summary-box">
+            <div class="summary-title">投资估算</div>
+            <div class="summary-grid">
+                <div class="summary-item">
+                    <div class="summary-number">$30-75K</div>
+                    <div class="summary-label">一次性合规成本</div>
+                </div>
+                <div class="summary-item">
+                    <div class="summary-number">$32-65K</div>
+                    <div class="summary-label">年度合规维护</div>
+                </div>
+                <div class="summary-item">
+                    <div class="summary-number">$1.1K</div>
+                    <div class="summary-label">AWS 月成本 (10K DAU)</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            AI RECORDING CARD · COMPLIANCE FIRST · CONFIDENTIAL
+        </div>
+    </div>
+</body>
+</html>

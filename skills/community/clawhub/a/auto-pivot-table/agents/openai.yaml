@@ -1,0 +1,4 @@
+interface:
+  display_name: "ORBCAFE Pivot + AINav"
+  short_description: "Implement pivot analytics and voice navigation"
+  default_prompt: "Use $orbcafe-pivot-ainav to implement this pivot table or voice navigation requirement with ORBCAFE UI."

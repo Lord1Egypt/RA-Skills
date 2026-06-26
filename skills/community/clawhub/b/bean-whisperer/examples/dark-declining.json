@@ -1,0 +1,108 @@
+{
+  "id": "f19029a6-6994-439a-91dc-379aec1b76e1",
+  "label": "Dark Italian Blend",
+  "type": "pro",
+  "description": "Dark roast, Blend, 18g\u219230.6g (1:1.7), declining profile",
+  "temperature": 86,
+  "phases": [
+    {
+      "name": "Fill",
+      "phase": "preinfusion",
+      "valve": 1,
+      "duration": 3,
+      "temperature": 0,
+      "pump": {
+        "target": "flow",
+        "pressure": 3,
+        "flow": 4
+      },
+      "transition": {
+        "type": "instant",
+        "duration": 0,
+        "adaptive": 1
+      }
+    },
+    {
+      "name": "Pre-infuse",
+      "phase": "preinfusion",
+      "valve": 1,
+      "duration": 4,
+      "temperature": 0,
+      "pump": {
+        "target": "pressure",
+        "pressure": 3,
+        "flow": 3
+      },
+      "transition": {
+        "type": "instant",
+        "duration": 0,
+        "adaptive": 1
+      }
+    },
+    {
+      "name": "Ramp",
+      "phase": "brew",
+      "valve": 1,
+      "duration": 3,
+      "temperature": 0,
+      "pump": {
+        "target": "pressure",
+        "pressure": 9,
+        "flow": 4
+      },
+      "transition": {
+        "type": "linear",
+        "duration": 2,
+        "adaptive": 1
+      },
+      "targets": [
+        {
+          "type": "pressure",
+          "operator": "gte",
+          "value": 9
+        }
+      ]
+    },
+    {
+      "name": "Hold 9 bar",
+      "phase": "brew",
+      "valve": 1,
+      "duration": 8,
+      "temperature": 0,
+      "pump": {
+        "target": "pressure",
+        "pressure": 9,
+        "flow": 4
+      },
+      "transition": {
+        "type": "instant",
+        "duration": 0,
+        "adaptive": 1
+      }
+    },
+    {
+      "name": "Decline",
+      "phase": "brew",
+      "valve": 1,
+      "duration": 25,
+      "temperature": 0,
+      "pump": {
+        "target": "pressure",
+        "pressure": 5.5,
+        "flow": 4
+      },
+      "transition": {
+        "type": "linear",
+        "duration": 10,
+        "adaptive": 1
+      },
+      "targets": [
+        {
+          "type": "volumetric",
+          "operator": "gte",
+          "value": 30.6
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,153 @@
+{
+  "project": {
+    "title": "AI Product Strategy 2026",
+    "subtitle": "Execution Priorities",
+    "language": "en",
+    "audience": "Product and executive stakeholders",
+    "objective": "Align teams on priorities, execution sequencing, and measurable outcomes"
+  },
+  "global_style_tokens": {
+    "aesthetic": "Apple-style minimal, calm, premium",
+    "palette": {
+      "background": "#F7F7F5",
+      "surface": "#FFFFFF",
+      "text_primary": "#111111",
+      "text_secondary": "#555555",
+      "accent": "#0A84FF"
+    },
+    "type_scale": {
+      "h1": "56/64 semibold",
+      "h2": "36/44 semibold",
+      "body": "24/34 regular",
+      "caption": "18/24 regular"
+    },
+    "spacing_scale": "8-16-24-40",
+    "layout_system": "12-column grid with wide outer margins",
+    "motion_rule": "still frame; transition-safe composition",
+    "icon_style": "simple line icons",
+    "image_style": "subtle abstract gradient background"
+  },
+  "slides": [
+    {
+      "slide_number": 1,
+      "slide_type": "cover",
+      "objective": "Introduce strategic focus for 2026",
+      "on_slide_text": {
+        "title": "AI Product Strategy 2026",
+        "subtitle": "Execution Priorities",
+        "footer": "Leadership Review"
+      },
+      "visual_blueprint": {
+        "composition": "Large title block on left, restrained abstract visual anchor on right",
+        "key_elements": [
+          "left-aligned title stack",
+          "single abstract shape",
+          "high whitespace"
+        ],
+        "imagery_hint": "soft neutral gradient",
+        "avoid": [
+          "neon glow",
+          "dense textures",
+          "multiple focal points"
+        ]
+      },
+      "consistency_checks": {
+        "must_keep": [
+          "same typography hierarchy",
+          "same accent role",
+          "same margin system"
+        ],
+        "must_avoid": [
+          "visual clutter",
+          "low-contrast text"
+        ]
+      }
+    },
+    {
+      "slide_number": 2,
+      "slide_type": "content",
+      "objective": "Present the top three strategic priorities",
+      "on_slide_text": {
+        "title": "Three Strategic Priorities",
+        "bullets": [
+          "Improve onboarding conversion",
+          "Shorten time-to-value",
+          "Expand enterprise readiness"
+        ],
+        "callout": "Focus on measurable outcomes"
+      },
+      "visual_blueprint": {
+        "composition": "Two-column layout: bullets on left, simple icon blocks on right",
+        "key_elements": [
+          "priority bullet stack",
+          "minimal icon cards",
+          "clean vertical rhythm"
+        ],
+        "imagery_hint": "flat low-contrast abstract forms",
+        "avoid": [
+          "heavy shadows",
+          "overlapping cards",
+          "multi-color gradients"
+        ]
+      },
+      "consistency_checks": {
+        "must_keep": [
+          "same grid system",
+          "same spacing rhythm",
+          "same color roles"
+        ],
+        "must_avoid": [
+          "new decorative motif",
+          "misaligned blocks"
+        ]
+      }
+    },
+    {
+      "slide_number": 3,
+      "slide_type": "content",
+      "objective": "Show phased execution timeline",
+      "on_slide_text": {
+        "title": "Execution Roadmap",
+        "bullets": [
+          "Q1: Baseline metrics and platform hardening",
+          "Q2: Feature velocity and AI workflow upgrades",
+          "Q3: Enterprise controls and reliability scaling",
+          "Q4: Global rollout and cost optimization"
+        ],
+        "footer": "Quarterly milestone checkpoints"
+      },
+      "visual_blueprint": {
+        "composition": "Horizontal quarterly roadmap bar with concise milestone labels",
+        "key_elements": [
+          "4-phase timeline",
+          "quarter markers",
+          "single accent highlight"
+        ],
+        "imagery_hint": "clean line-based roadmap graphics",
+        "chart_hint": "simple 4-step horizontal timeline",
+        "avoid": [
+          "gantt-level detail",
+          "too many arrows",
+          "small unreadable labels"
+        ]
+      },
+      "consistency_checks": {
+        "must_keep": [
+          "same typography and spacing",
+          "same card radius and stroke style",
+          "same accent usage constraints"
+        ],
+        "must_avoid": [
+          "style drift",
+          "text overcrowding"
+        ]
+      }
+    }
+  ],
+  "output": {
+    "aspect_ratio": "16:9",
+    "resolution": "2K",
+    "format": "webp",
+    "output_dir": "/tmp/open_apple_skill_test"
+  }
+}

@@ -1,0 +1,4 @@
+interface:
+  display_name: "生日提醒"
+  short_description: "支持农历阳历、提前多次提醒和本地定时任务的生日技能"
+  default_prompt: "维护生日配置并生成本地生日提醒，支持农历阳历和多次提前提醒"

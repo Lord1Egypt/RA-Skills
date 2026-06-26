@@ -1,0 +1,9 @@
+{
+  "name": "bollinger-bands-pro",
+  "version": "1.1.0",
+  "description": "Volatility analysis and mean reversion signals.",
+  "author": "ssidharHubble",
+  "license": "MIT",
+  "main": "index.js",
+  "type": "module"
+}

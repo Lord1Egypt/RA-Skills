@@ -1,0 +1,38 @@
+{
+  "bitable": {
+    "app_token": "YOUR_BITABLE_TOKEN",
+    "table_id": "YOUR_TABLE_ID"
+  },
+  "workflow": {
+    "check_interval_hours": 6,
+    "batch_limit": 10,
+    "enable_quality_score": true,
+    "enable_url_dedup": true,
+    "timeout_minutes": 30
+  },
+  "paths": {
+    "data": "./data",
+    "logs": "./logs"
+  },
+  "quality_score": {
+    "weights": {
+      "content_value": 40,
+      "technical_depth": 30,
+      "relevance": 20,
+      "readability": 10
+    },
+    "levels": {
+      "S": {"min": 85, "max": 100},
+      "A": {"min": 70, "max": 84},
+      "B": {"min": 55, "max": 69},
+      "C": {"min": 40, "max": 54},
+      "D": {"min": 0, "max": 39}
+    }
+  },
+  "notification": {
+    "enabled": true,
+    "chat_id": "YOUR_CHAT_ID",
+    "send_summary": true,
+    "send_weekly_report": true
+  }
+}

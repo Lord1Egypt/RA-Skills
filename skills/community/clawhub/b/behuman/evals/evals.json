@@ -1,0 +1,42 @@
+[
+  {
+    "prompt": "分手了，很难过",
+    "should_trigger": true,
+    "notes": "Emotional support — should activate mirror to avoid AI platitudes"
+  },
+  {
+    "prompt": "behuman mode: 帮我写个自我介绍",
+    "should_trigger": true,
+    "notes": "Explicit activation + writing task"
+  },
+  {
+    "prompt": "要不要辞职去创业",
+    "should_trigger": true,
+    "notes": "Life advice — emotionally charged decision"
+  },
+  {
+    "prompt": "像人一样回答：我该怎么安慰刚失去亲人的朋友",
+    "should_trigger": true,
+    "notes": "Explicit trigger + grief scenario"
+  },
+  {
+    "prompt": "别那么AI，跟我说说你觉得人生的意义是什么",
+    "should_trigger": true,
+    "notes": "Explicit trigger + philosophical question"
+  },
+  {
+    "prompt": "Python 怎么排序一个列表",
+    "should_trigger": false,
+    "notes": "Pure technical question — no mirror needed"
+  },
+  {
+    "prompt": "法国首都是哪",
+    "should_trigger": false,
+    "notes": "Factual lookup — no mirror needed"
+  },
+  {
+    "prompt": "帮我写一个 React 组件",
+    "should_trigger": false,
+    "notes": "Code generation — no mirror needed"
+  }
+]

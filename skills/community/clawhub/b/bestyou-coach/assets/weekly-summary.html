@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BestYou Weekly Summary</title>
+<link rel="stylesheet" href="shared.css">
+<style>
+  .overall-score {
+    text-align: center;
+    margin: 24px 0;
+  }
+  .overall-num {
+    font-size: 56px;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1;
+  }
+  .overall-label {
+    font-size: 14px;
+    color: #888;
+    margin-top: 4px;
+  }
+  .domain-section {
+    padding: 16px;
+    background: #141414;
+    border: 1px solid #1e1e1e;
+    border-radius: 12px;
+    margin-bottom: 10px;
+  }
+  .domain-header-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+  .domain-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: #fff;
+  }
+  .domain-score-big {
+    font-size: 24px;
+    font-weight: 700;
+  }
+  .domain-headline {
+    font-size: 12px;
+    color: #888;
+    margin-bottom: 12px;
+  }
+  .stat-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 6px 0;
+    border-bottom: 1px solid #1a1a1a;
+    font-size: 12px;
+  }
+  .stat-row:last-child { border-bottom: none; }
+  .stat-label { color: #888; }
+  .stat-value { color: #ddd; font-weight: 500; }
+  .stat-value.good { color: #4ade80; }
+  .stat-value.warning { color: #facc15; }
+  .stat-value.poor { color: #f87171; }
+  .stat-value.under { color: #fb923c; }
+  .domain-insight {
+    font-size: 12px;
+    color: #666;
+    margin-top: 10px;
+    padding-top: 8px;
+    border-top: 1px solid #1a1a1a;
+    line-height: 1.4;
+    font-style: italic;
+  }
+  .trend-badge {
+    font-size: 10px;
+    padding: 2px 8px;
+    border-radius: 10px;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+  .trend-improving { background: #1a3a2a; color: #4ade80; }
+  .trend-declining { background: #3a1a1a; color: #f87171; }
+  .trend-stable { background: #1a1a1a; color: #888; }
+  .achievement {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px;
+    background: #141414;
+    border: 1px solid #2a2a1a;
+    border-radius: 12px;
+    margin-bottom: 8px;
+  }
+  .achievement-icon { font-size: 24px; }
+  .achievement h4 { font-size: 13px; font-weight: 600; color: #facc15; }
+  .achievement p { font-size: 11px; color: #888; }
+  .next-week-goal {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 14px;
+    background: #141414;
+    border: 1px solid #1e1e1e;
+    border-radius: 10px;
+    margin-bottom: 8px;
+  }
+  .next-week-goal .goal-icon { font-size: 18px; }
+  .next-week-goal .goal-text { font-size: 13px; color: #ccc; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>📈 Weekly Summary</h1>
+  <div class="subtitle">Week 11 · Mar 8 - Mar 14, 2026</div>
+</div>
+
+<div class="overall-score">
+  <div class="gauge" style="margin: 0 auto;">
+    <svg width="120" height="120" viewBox="0 0 120 120">
+      <circle cx="60" cy="60" r="50" fill="none" stroke="#1a1a1a" stroke-width="8"/>
+      <circle cx="60" cy="60" r="50" fill="none" stroke="#facc15" stroke-width="8"
+        stroke-dasharray="314" stroke-dashoffset="119" stroke-linecap="round"/>
+    </svg>
+    <div class="gauge-label">
+      <div class="gauge-value">62</div>
+      <div class="gauge-sub">Overall</div>
+    </div>
+  </div>
+  <div class="overall-label">Good effort!</div>
+</div>
+
+<!-- Activity -->
+<div class="domain-section">
+  <div class="domain-header-row">
+    <div>
+      <span class="domain-title">🏃 Activity</span>
+      <span class="trend-badge trend-stable">Stable</span>
+    </div>
+    <span class="domain-score-big text-positive">100</span>
+  </div>
+  <div class="domain-headline">Crushing it!</div>
+  <div class="stat-row">
+    <span class="stat-label">Active days</span>
+    <span class="stat-value good">9/7</span>
+  </div>
+  <div class="stat-row">
+    <span class="stat-label">Avg steps</span>
+    <span class="stat-value good">10,068 <span class="text-muted">/ 8,000</span></span>
+  </div>
+  <div class="stat-row">
+    <span class="stat-label">Active minutes</span>
+    <span class="stat-value good">812 <span class="text-muted">/ 150</span></span>
+  </div>
+  <div class="domain-insight">Great activity frequency! Make sure to include rest days for recovery.</div>
+</div>
+
+<!-- Biometrics -->
+<div class="domain-section">
+  <div class="domain-header-row">
+    <div>
+      <span class="domain-title">❤️ Biometrics</span>
+      <span class="trend-badge trend-improving">Improving</span>
+    </div>
+    <span class="domain-score-big text-neutral">65</span>
+  </div>
+  <div class="domain-headline">Making progress</div>
+  <div class="stat-row">
+    <span class="stat-label">Avg sleep</span>
+    <span class="stat-value warning">6.2 hrs</span>
+  </div>
+</div>
+
+<!-- Nutrition -->
+<div class="domain-section">
+  <div class="domain-header-row">
+    <div>
+      <span class="domain-title">🥗 Nutrition</span>
+      <span class="trend-badge trend-declining">Declining</span>
+    </div>
+    <span class="domain-score-big text-negative">23</span>
+  </div>
+  <div class="domain-headline">Let's refocus</div>
+  <div class="stat-row">
+    <span class="stat-label">Avg calories</span>
+    <span class="stat-value under">1,038</span>
+  </div>
+  <div class="stat-row">
+    <span class="stat-label">Meals logged</span>
+    <span class="stat-value poor">13/28</span>
+  </div>
+  <div class="stat-row">
+    <span class="stat-label">Protein avg</span>
+    <span class="stat-value under">67g</span>
+  </div>
+  <div class="domain-insight">You're consistently under your calorie target. Consider whether a lower target might be more realistic.</div>
+</div>
+
+<!-- Strength -->
+<div class="domain-section">
+  <div class="domain-header-row">
+    <div>
+      <span class="domain-title">💪 Strength</span>
+      <span class="trend-badge trend-stable">Stable</span>
+    </div>
+    <span class="domain-score-big text-negative">0</span>
+  </div>
+  <div class="domain-headline">No strength data</div>
+</div>
+
+<div class="section">
+  <h2>🏆 Achievements</h2>
+  <div class="achievement">
+    <div class="achievement-icon">🍽️</div>
+    <div>
+      <h4>Meal Tracker</h4>
+      <p>Log 100 meals</p>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h2>🎯 Next Week Focus</h2>
+  <div class="next-week-goal">
+    <span class="goal-icon">🍽️</span>
+    <span class="goal-text">Log all meals every day</span>
+    <span style="flex:1"></span>
+    <span class="badge badge-red">High</span>
+  </div>
+</div>
+
+<div class="footer">BestYou × OpenClaw</div>
+</body>
+</html>

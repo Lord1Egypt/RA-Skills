@@ -1,0 +1,26 @@
+{
+  "ollama-local/deepseek-r1-1.5b": {
+    "enable": true,
+    "type": "local",
+    "name": "DeepSeek R1 1.5B (任务分拣)",
+    "model_priority": "normal",
+    "description": "本地小模型，适合简单任务分拣",
+    "cost_weight": 0.1
+  },
+  "ollama-local/deepseek-r1-7b": {
+    "enable": true,
+    "type": "local",
+    "name": "DeepSeek R1 7B (本地任务处理)",
+    "model_priority": "normal",
+    "description": "本地中等模型，适合大多数任务",
+    "cost_weight": 0.3
+  },
+  "deepseek/deepseek-chat": {
+    "enable": true,
+    "type": "cloud",
+    "name": "DeepSeek Chat (云端复杂任务)",
+    "model_priority": "max",
+    "description": "云端大模型，适合复杂任务",
+    "cost_weight": 1.0
+  }
+}

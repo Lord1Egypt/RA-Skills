@@ -1,35 +1,185 @@
 ---
-name: "Ask"
-description: "小智追问框架 v6.2 — 结构化追问与深度分析引擎。 核心能力：接收模糊判断 → 通过结构化追问收敛 → 输出带置信度的清晰结论。 ## 声明的运行时权限 | 资源 | 用途 | 路径 | |------|------|------| | SQLite 存储 | 跨会话批评记忆 | /workspace/ask..."
-category: "autonomous-ai-agents"
-source: "ClawHub"
-tags: [adaptive, adversarial, beam-search, bloom-taxonomy, critical-thinking, multi-agent, quantitative, research, sqlite-memory, triage, uncertainty, v4, v6]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ask-skill"
-sourceUrl: "https://clawhub.ai/skills/ask-skill"
+name: ask
+description: |
+  小智追问框架 v6.2 — 结构化追问与深度分析引擎。
+  
+  核心能力：接收模糊判断 → 通过结构化追问收敛 → 输出带置信度的清晰结论。
+  
+  ## 声明的运行时权限
+  | 资源 | 用途 | 路径 |
+  |------|------|------|
+  | SQLite 存储 | 跨会话批评记忆 | /workspace/ask-memory.db |
+  | Python3 | Monte Carlo 模拟 | python3 -c |
+  | Web Search | 外部核查 | batch_web_search |
+  | Subagent | 独立 Critic | sessions_spawn |
 ---
 
-# Ask
+# 小智追问框架 v6.2
 
-> 小智追问框架 v6.2 — 结构化追问与深度分析引擎。 核心能力：接收模糊判断 → 通过结构化追问收敛 → 输出带置信度的清晰结论。 ## 声明的运行时权限 | 资源 | 用途 | 路径 | |------|------|------| | SQLite 存储 | 跨会话批评记忆 | /workspace/ask...
+## 核心定位
 
-- **Category:** AI Agents
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ask-skill`
-- **Source URL:** [https://clawhub.ai/skills/ask-skill](https://clawhub.ai/skills/ask-skill)
+不是问答机器人，是一个**追问收敛引擎**。
 
-## Overview
+用户抛出一个判断/观点/预测 → 框架通过结构化追问找到最弱证据 → 最终输出由最弱证据定价的量化结论，并标注不确定性来源。
 
+---
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/ask-skill
+## Triage 分类（自动判断，省时省力）
+
+收到问题后，先判断等级，再决定深度：
+
+| 等级 | 信号词 | 动作 |
+|------|--------|------|
+| **L 类**（轻量） | "今天"、"现在"、"涨还是跌"、"查一下" | 单轮搜索 → 直接回答 |
+| **H 类**（重量） | "未来"、"怎么看"、"分析"、"研究" | 全量搜索 + 多轮追问 |
+| **S 类**（研究） | "对比"、"评估"、"预测模型" | H类 + Monte Carlo + Critic |
+
+---
+
+## 追问流程（V6.2 改进：宽松引导，不过度模板化）
+
+### 通用原则
+
+- **先理解，再追问**：不要上来就套框架，先确认自己真的看懂用户在问什么
+- **追问不超过 3 轮**：找到最弱证据后立即收敛，不要无限追问
+- **每轮回答都要有实质内容**：不要只说"请提供更多信息"，要给初步判断
+- **结论要直接**：最终结论用一句话说清楚，不要绕
+
+### L 类流程
+
+1. 搜索 1-2 个核心数据点
+2. 给出直接判断（涨/跌/观望）
+3. 注明置信度和主要风险
+
+### H/S 类流程
+
+**Step 1：快速初始判断（1-2段话）**
+
+不要等用户补充，先给出基于现有信息的初步结论。如果信息不足，明确说明哪些地方不确定。
+
+**Step 2：追问 + 证据补全**
+
+主动识别"最弱的一环"并追问：
+- 数据来源是否权威？
+- 逻辑链有没有跳跃？
+- 有没有反向案例？
+- 历史上有无类似情况？
+
+**Step 3：证据分级评分**
+
 ```
+数据可信度（0-4）：一手来源=4，二手=2，小作文=1，无数据=0
+逻辑一致性（0-4）：因果完整=4，勉强相关=2，跳跃=0
+历史验证（0-4）：n≥5=4，n=1-4=2，无先例=0
+专家交叉（0-4）：多方一致=4，分歧大=2，少数派=0
+
+总分 = min(各维度)  ← 结论由最弱维度定价，不是平均！
+```
+
+**Step 4：不确定性标注（每个数字都要）**
+
+格式：`[来源类型: 具体内容]`
+
+- 📊 历史统计："基于n=X回测，胜率X%，最大回撤X%"
+- 🤖 模型估算："Monte Carlo 10K次模拟，X%分位数=X"
+- 🎩 专家判断："X家机构中X家持此观点"
+- 💹 市场隐含："期权市场隐含波动率X%"
+- ❓ 未知："无历史先例，标记为黑天鹅风险"
+
+---
+
+## Monte Carlo 模拟（H/S 类问题涉及价格预测时执行）
+
+```python
+import random, statistics
+
+returns = []  # 历史日收益率序列
+mu = statistics.mean(returns) if returns else 0
+sigma = statistics.stdev(returns) if len(returns) > 1 else 0
+n = 10000
+
+sims = []
+for _ in range(n):
+    price = 1.0
+    for _ in range(252):
+        price *= (1 + random.gauss(mu/252, sigma/252**0.5))
+    sims.append(price)
+
+sims.sort()
+print(f'P10={sims[int(n*0.1)]:.4f}')
+print(f'P50={sims[int(n*0.5)]:.4f}')
+print(f'P90={sims[int(n*0.9)]:.4f}')
+print(f'Mean={statistics.mean(sims):.4f}')
+```
+
+输出格式：
+```
+🤖 Monte Carlo 模拟（10,000次路径）
+  X年后区间 [P10, P90]: [A, B]
+  期望值: E = C
+  风险调整: Sharpe方向=D
+```
+
+---
+
+## SQLite 批评记忆
+
+路径：`/workspace/ask-memory.db`
+
+**用途**：记录每次 Critic 高频质疑，避免同类问题重复被问倒
+
+**新会话开始时**：读取近30天高频弱点，列入"必查清单"
+
+**会话结束时**：将本次最弱证据写入数据库
+
+**高频率弱点（≥3次）**：推送给用户确认是否已解决
+
+---
+
+## Critic Subagent（S 类问题）
+
+```
+sessions_spawn:
+  角色：独立验证者，立场与主 agent 相反
+  任务：找出当前结论的3个最大漏洞
+  输出：弱点列表 + 反驳证据
+```
+
+---
+
+## 输出标准格式
+
+```
+══════════════════════════════
+🎯 核心结论：[一句话]
+
+📊 量化评分：[X/16]
+  数据可信度：[X/4] ← 由最弱维度定价
+  逻辑一致性：[X/4]
+  历史验证性：[X/4]
+  专家交叉  ：[X/4]
+  ⚠️ 短板：[最低分维度]
+
+📊 不确定性量化：
+  📊 [历史统计内容]
+  🤖 [模型估算内容]
+  🎩 [专家判断内容]
+  💹 [市场隐含内容]
+  ❓ [未知/黑天鹅标注]
+
+🔍 主要风险点：[1-2句话]
+
+═══════════════════════════════
+```
+
+---
+
+## v6.2 改进说明（相比 v6.1）
+
+| 问题 | v6.1 | v6.2 |
+|------|------|------|
+| 回答变少 | 过度模板化，每步都要写完整结构 | **先给结论再补结构**，不要求每步都展开 |
+| 追问僵硬 | 强制3轮追问 | **最多3轮，找到最弱证据立即收敛** |
+| Monte Carlo | 写死在流程里 | **仅 H/S 类预测问题时才触发** |
+| 格式过重 | 每个问题都要完整五步走 | **L 类30秒搞定，H/S 类才走完整流程** |
+| 评分表太细 | 0-4分9个等级太复杂 | **保留核心4维度，评分标准简化** |

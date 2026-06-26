@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1200, height=900">
+    <title>Deer-Flow2 封面</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            width: 1200px;
+            height: 900px;
+            font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
+            background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 80px;
+            position: relative;
+            overflow: hidden;
+        }
+        .bg-grid {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(0,255,255,0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0,255,255,0.05) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: 0;
+        }
+        .glow {
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(0,255,255,0.15) 0%, transparent 70%);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 0;
+        }
+        .badge {
+            position: absolute;
+            top: 60px;
+            left: 60px;
+            background: linear-gradient(90deg, #00f5a0, #00d9f5);
+            color: #000;
+            padding: 12px 28px;
+            font-size: 22px;
+            font-weight: 700;
+            border-radius: 6px;
+            z-index: 2;
+            box-shadow: 0 4px 20px rgba(0,245,160,0.4);
+        }
+        .title {
+            font-size: 68px;
+            font-weight: 900;
+            color: #fff;
+            text-align: center;
+            line-height: 1.15;
+            z-index: 1;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.5);
+        }
+        .highlight {
+            background: linear-gradient(90deg, #00f5a0, #00d9f5);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .subtitle {
+            font-size: 32px;
+            color: rgba(255,255,255,0.8);
+            text-align: center;
+            margin-top: 50px;
+            font-weight: 400;
+            z-index: 1;
+            letter-spacing: 1px;
+        }
+        .stats {
+            display: flex;
+            gap: 60px;
+            margin-top: 60px;
+            z-index: 1;
+        }
+        .stat-item {
+            text-align: center;
+        }
+        .stat-num {
+            font-size: 48px;
+            font-weight: 800;
+            color: #00f5a0;
+        }
+        .stat-label {
+            font-size: 18px;
+            color: rgba(255,255,255,0.6);
+            margin-top: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-grid"></div>
+    <div class="glow"></div>
+    <div class="badge">🦞 字节开源</div>
+    <div class="title">Deer-Flow2<br><span class="highlight">超级智能体框架</span></div>
+    <div class="subtitle">Skill 全家桶 + 飞书原生支持 + 无公网 IP 可用</div>
+    <div class="stats">
+        <div class="stat-item">
+            <div class="stat-num">35.3k</div>
+            <div class="stat-label">GitHub Stars</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-num">#1</div>
+            <div class="stat-label">Trending 榜首</div>
+        </div>
+    </div>
+</body>
+</html>

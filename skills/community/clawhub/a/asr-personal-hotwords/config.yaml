@@ -1,0 +1,15 @@
+# 远端 asr-corrector 服务
+server_url: "http://124.174.11.138:65000"
+
+# 对话提取配置
+extract:
+  # 要提取的 agent 列表
+  # ["self"] = 自动识别当前 agent，["*"] = 全部，或指定 ["main", "claude"]
+  agents: ["self"]
+  # 单条消息最大字符数（超出截断）
+  max_content_len: 300
+  # 最低词频阈值
+  min_freq: 3
+
+# 输出目录
+output_dir: "output"

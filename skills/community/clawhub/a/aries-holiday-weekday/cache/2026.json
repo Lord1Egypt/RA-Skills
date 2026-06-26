@@ -1,0 +1,241 @@
+{
+  "year": 2026,
+  "notice_title": "国务院办公厅关于2026年部分节假日安排的通知",
+  "notice_url": "https://www.gov.cn/gongbao/2025/issue_12406/202511/content_7048922.html",
+  "special_days": [
+    {
+      "date": "2026-01-01",
+      "workday": false,
+      "holiday": "元旦",
+      "kind": "holiday"
+    },
+    {
+      "date": "2026-01-02",
+      "workday": false,
+      "holiday": "元旦",
+      "kind": "holiday"
+    },
+    {
+      "date": "2026-01-03",
+      "workday": false,
+      "holiday": "元旦",
+      "kind": "holiday"
+    },
+    {
+      "date": "2026-01-04",
+      "workday": true,
+      "holiday": "元旦",
+      "kind": "makeup_workday"
+    },
+    {
+      "date": "2026-02-14",
+      "workday": true,
+      "holiday": "春节",
+      "kind": "makeup_workday"
+    },
+    {
+      "date": "2026-02-15",
+      "workday": false,
+      "holiday": "春节",
+      "kind": "holiday"
+    },
+    {
+      "date": "2026-02-16",
+      "workday": false,
+      "holiday": "春节",
+      "kind": "holiday"
+    },
+    {
+      "date": "2026-02-17",
+      "workday": false,
+      "holiday": "春节",
+      "kind": "holiday"
+    },
+    {
+      "date": "2026-02-18",
+      "workday": false,
+      "holiday": "春节",
+      "kind": "holiday"
+    },
+    {
+      "date": "2026-02-19",
+      "workday": false,
+      "holiday": "春节",
+      "kind": "holiday"
+    },
+    {
+      "date": "2026-02-20",
+      "workday": false,
+      "holiday": "春节",
+      "kind": "holiday"
+    },
+    {
+      "date": "2026-02-21",
+      "workday": false,
+      "holiday": "春节",
+      "kind": "holiday"
+    },
+    {
+      "date": "2026-02-22",
+      "workday": false,
+      "holiday": "春节",
+      "kind": "holiday"
+    },
+    {
+      "date": "2026-02-23",
+      "workday": false,
+      "holiday": "春节",
+      "kind": "holiday"
+    },
+    {
+      "date": "2026-02-28",
+      "workday": true,
+      "holiday": "春节",
+      "kind": "makeup_workday"
+    },
+    {
+      "date": "2026-04-04",
+      "workday": false,
+      "holiday": "清明节",
+      "kind": "holiday"
+    },
+    {
+      "date": "2026-04-05",
+      "workday": false,
+      "holiday": "清明节",
+      "kind": "holiday"
+    },
+    {
+      "date": "2026-04-06",
+      "workday": false,
+      "holiday": "清明节",
+      "kind": "holiday"
+    },
+    {
+      "date": "2026-05-01",
+      "workday": false,
+      "holiday": "劳动节",
+      "kind": "holiday"
+    },
+    {
+      "date": "2026-05-02",
+      "workday": false,
+      "holiday": "劳动节",
+      "kind": "holiday"
+    },
+    {
+      "date": "2026-05-03",
+      "workday": false,
+      "holiday": "劳动节",
+      "kind": "holiday"
+    },
+    {
+      "date": "2026-05-04",
+      "workday": false,
+      "holiday": "劳动节",
+      "kind": "holiday"
+    },
+    {
+      "date": "2026-05-05",
+      "workday": false,
+      "holiday": "劳动节",
+      "kind": "holiday"
+    },
+    {
+      "date": "2026-05-09",
+      "workday": true,
+      "holiday": "劳动节",
+      "kind": "makeup_workday"
+    },
+    {
+      "date": "2026-06-19",
+      "workday": false,
+      "holiday": "端午节",
+      "kind": "holiday"
+    },
+    {
+      "date": "2026-06-20",
+      "workday": false,
+      "holiday": "端午节",
+      "kind": "holiday"
+    },
+    {
+      "date": "2026-06-21",
+      "workday": false,
+      "holiday": "端午节",
+      "kind": "holiday"
+    },
+    {
+      "date": "2026-09-20",
+      "workday": true,
+      "holiday": "国庆节",
+      "kind": "makeup_workday"
+    },
+    {
+      "date": "2026-09-25",
+      "workday": false,
+      "holiday": "中秋节",
+      "kind": "holiday"
+    },
+    {
+      "date": "2026-09-26",
+      "workday": false,
+      "holiday": "中秋节",
+      "kind": "holiday"
+    },
+    {
+      "date": "2026-09-27",
+      "workday": false,
+      "holiday": "中秋节",
+      "kind": "holiday"
+    },
+    {
+      "date": "2026-10-01",
+      "workday": false,
+      "holiday": "国庆节",
+      "kind": "holiday"
+    },
+    {
+      "date": "2026-10-02",
+      "workday": false,
+      "holiday": "国庆节",
+      "kind": "holiday"
+    },
+    {
+      "date": "2026-10-03",
+      "workday": false,
+      "holiday": "国庆节",
+      "kind": "holiday"
+    },
+    {
+      "date": "2026-10-04",
+      "workday": false,
+      "holiday": "国庆节",
+      "kind": "holiday"
+    },
+    {
+      "date": "2026-10-05",
+      "workday": false,
+      "holiday": "国庆节",
+      "kind": "holiday"
+    },
+    {
+      "date": "2026-10-06",
+      "workday": false,
+      "holiday": "国庆节",
+      "kind": "holiday"
+    },
+    {
+      "date": "2026-10-07",
+      "workday": false,
+      "holiday": "国庆节",
+      "kind": "holiday"
+    },
+    {
+      "date": "2026-10-10",
+      "workday": true,
+      "holiday": "国庆节",
+      "kind": "makeup_workday"
+    }
+  ]
+}

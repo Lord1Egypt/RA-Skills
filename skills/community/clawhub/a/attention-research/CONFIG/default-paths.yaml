@@ -1,0 +1,21 @@
+# Delivery config read by the agent at digest-delivery time.
+# All other paths are resolved by the scripts directly; they are not
+# read from this file.
+
+delivery:
+  default_channel: "telegram"
+  telegram:
+    # Secrets live in CONFIG/.secrets.yaml (gitignored). Leave blank here.
+    bot_token: ""
+    chat_id: ""
+  whatsapp:
+    recipient: ""
+
+# Web search tool priority order for general agent operations.
+# First available tool in the list is used. Falls through to next on failure.
+# attention-research pipeline always uses Tavily regardless of this order.
+web_search_order:
+  - chrome-devtools   # Browser — primary for interactive browsing, snapshots, screenshots
+  - tavily            # Fallback — Tavily MCP for structured web search
+
+config_version: "1.0.0"

@@ -1,0 +1,23 @@
+{
+  "name": "audtools-shopify-collector",
+  "version": "1.0.0",
+  "description": "AudTools Shopify 批量采集器 - 读取 CSV 中的分类链接，批量提交到 audtools 采集商品，自动填充链接设置数量，间隔提交",
+  "main": "batch-collect.js",
+  "bin": {
+    "audtools-batch-collect": "./batch-collect.js"
+  },
+  "dependencies": {
+    "playwright": "^1.40.0",
+    "csv-parser": "^3.0.0"
+  },
+  "keywords": [
+    "audtools",
+    "shopify",
+    "batch",
+    "collector",
+    "csv",
+    "automation"
+  ],
+  "author": "OpenClaw",
+  "license": "MIT"
+}

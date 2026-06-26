@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auto Video Generator - Web UI</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎬</text></svg>">
+</head>
+<body>
+    <!-- 顶部导航栏 -->
+    <nav class="navbar">
+        <div class="navbar-brand">
+            <span class="logo-icon">🎬</span>
+            <span class="brand-text">Auto Video Generator</span>
+            <span class="version-badge">v1.0</span>
+        </div>
+        <div class="navbar-actions">
+            <button class="btn btn-outline" onclick="showTemplates()">
+                📦 Templates
+            </button>
+            <button class="btn btn-outline" onclick="showHistory()">
+                📋 History
+            </button>
+            <a href="/api/stats" target="_blank" class="btn btn-outline">
+                📊 Stats
+            </a>
+        </div>
+    </nav>
+
+    <div class="main-container">
+        <!-- 左侧：输入区域 -->
+        <div class="input-section">
+            <div class="card">
+                <h2 class="card-title">📥 Input Source</h2>
+                
+                <!-- 输入方式选择 -->
+                <div class="input-mode-selector">
+                    <button class="mode-btn active" data-mode="file" onclick="switchMode('file')">
+                        📄 Upload File
+                    </button>
+                    <button class="mode-btn" data-mode="url" onclick="switchMode('url')">
+                        🔗 Enter URL
+                    </button>
+                    <button class="mode-btn" data-mode="template" onclick="switchMode('template')">
+                        📦 Use Template
+                    </button>
+                </div>
+
+                <!-- 文件上传区域 -->
+                <div id="file-input-area" class="input-area active">
+                    <div class="upload-zone" id="drop-zone"
+                         ondrop="handleDrop(event)"
+                         ondragover="handleDragOver(event)"
+                         ondragleave="handleDragLeave(event)">
+                        <div class="upload-icon">📁</div>
+                        <p class="upload-text">Drag & drop your file here</p>
+                        <p class="upload-subtext">or click to browse</p>
+                        <input type="file" id="file-input" 
+                               accept=".html,.vue,.tsx,.jsx,.json,.yaml,.yml,.md"
+                               onchange="handleFileSelect(event)">
+                        <button class="btn btn-primary" onclick="document.getElementById('file-input').click()">
+                            Choose File
+                        </button>
+                    </div>
+                    <div id="file-info" class="file-info hidden">
+                        <div class="file-item">
+                            <span class="file-icon">📄</span>
+                            <span class="file-name" id="selected-filename"></span>
+                            <span class="file-size" id="selected-filesize"></span>
+                            <button class="btn-remove" onclick="clearFile()">✕</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- URL输入区域 -->
+                <div id="url-input-area" class="input-area">
+                    <div class="form-group">
+                        <label for="page-url">Page URL</label>
+                        <input type="url" id="page-url" 
+                               placeholder="https://example.com/demo.html"
+                               class="form-control">
+                    </div>
+                    <div class="url-hints">
+                        <p><strong>Supported URLs:</strong></p>
+                        <ul>
+                            <li>Local file: file:///path/to/page.html</li>
+                            <li>HTTP/HTTPS: https://example.com/demo</li>
+                            <li>Development server: http://localhost:3000</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 模板选择区域 -->
+                <div id="template-input-area" class="input-area">
+                    <div class="templates-grid" id="templates-grid">
+                        <!-- Templates will be loaded dynamically -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- 配置面板 -->
+            <div class="card config-card">
+                <h2 class="card-title">⚙️ Configuration</h2>
+                
+                <div class="config-sections">
+                    <div class="config-section">
+                        <h3 class="section-title" onclick="toggleSection('browser-config')">
+                            🌐 Browser Settings
+                            <span class="toggle-icon">▼</span>
+                        </h3>
+                        <div id="browser-config" class="config-content open">
+                            <div class="form-group checkbox-group">
+                                <label>
+                                    <input type="checkbox" id="cfg-headless" checked>
+                                    Headless Mode (no browser window)
+                                </label>
+                            </div>
+                            <div class="row-2">
+                                <div class="form-group">
+                                    <label for="cfg-width">Viewport Width</label>
+                                    <select id="cfg-width" class="form-control">
+                                        <option value="1280">1280px (HD)</option>
+                                        <option value="1440" selected>1440px (Full HD)</option>
+                                        <option value="1920">1920px (2K)</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="cfg-height">Viewport Height</label>
+                                    <select id="cfg-height" class="form-control">
+                                        <option value="720">720px (HD)</option>
+                                        <option value="900" selected>900px</option>
+                                        <option value="1080">1080px (Full HD)</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="config-section">
+                        <h3 class="section-title" onclick="toggleSection('video-config')">
+                            🎬 Video Settings
+                            <span class="toggle-icon">▼</span>
+                        </h3>
+                        <div id="video-config" class="config-content open">
+                            <div class="row-2">
+                                <div class="form-group">
+                                    <label for="cfg-fps">Frame Rate (FPS)</label>
+                                    <select id="cfg-fps" class="form-control">
+                                        <option value="1">1 FPS (Fastest)</option>
+                                        <option value="2">2 FPS</option>
+                                        <option value="4" selected>4 FPS (Recommended)</option>
+                                        <option value="10">10 FPS (Smooth)</option>
+                                        <option value="24">24 FPS (Cinema)</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="cfg-quality">Quality</label>
+                                    <select id="cfg-quality" class="form-control">
+                                        <option value="low">Low (Smaller file)</option>
+                                        <option value="medium">Medium</option>
+                                        <option value="high" selected>High (Best quality)</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="config-section">
+                        <h3 class="section-title" onclick="toggleSection('audio-config')">
+                            🔊 Audio & Voice
+                            <span class="toggle-icon">▼</span>
+                        </h3>
+                        <div id="audio-config" class="config-content">
+                            <div class="form-group">
+                                <label for="cfg-voice">Voice Selection</label>
+                                <select id="cfg-voice" class="form-control">
+                                    <option value="zh-CN-YunxiNeural">Yunxi (Male - Chinese)</option>
+                                    <option value="zh-CN-XiaoxiaoNeural">Xiaoxiao (Female - Chinese)</option>
+                                    <option value="en-US-GuyNeural">Guy (Male - English)</option>
+                                    <option value="en-US-JennyNeural">Jenny (Female - English)</option>
+                                </select>
+                            </div>
+                            <div class="row-2">
+                                <div class="form-group">
+                                    <label for="cfg-rate">Speech Rate</label>
+                                    <select id="cfg-rate" class="form-control">
+                                        <option value="-50%">Slower (-50%)</option>
+                                        <option value="-25%">Slow (-25%)</option>
+                                        <option value="-5%" selected>Normal (-5%)</option>
+                                        <option value="+0%">Default</option>
+                                        <option value="+25%">Fast (+25%)</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="cfg-volume">Volume</label>
+                                    <select id="cfg-volume" class="form-control">
+                                        <option value="-50%">Quiet (-50%)</option>
+                                        <option value="+0%" selected>Normal</option>
+                                        <option value="+50%">Loud (+50%)</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 生成按钮 -->
+            <button class="btn btn-generate btn-block" id="generate-btn" onclick="startGeneration()">
+                ▶️ Generate Video Now
+            </button>
+        </div>
+
+        <!-- 右侧：输出与状态 -->
+        <div class="output-section">
+            <!-- 进度显示 -->
+            <div class="card progress-card">
+                <h2 class="card-title">⏳ Generation Progress</h2>
+                
+                <div id="progress-container" class="progress-container">
+                    <div class="progress-header">
+                        <span class="task-id-label" id="task-id-display">No task running</span>
+                        <span class="status-badge status-pending" id="status-badge">Ready</span>
+                    </div>
+                    
+                    <div class="progress-bar-wrapper">
+                        <div class="progress-bar" id="progress-bar"></div>
+                        <span class="progress-percent" id="progress-percent">0%</span>
+                    </div>
+                    
+                    <p class="stage-text" id="stage-text">Waiting to start...</p>
+                    
+                    <div class="progress-details" id="progress-details">
+                        <div class="detail-item">
+                            <span class="detail-label">Started:</span>
+                            <span class="detail-value" id="started-time">--</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Elapsed:</span>
+                            <span class="detail-value" id="elapsed-time">--</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Est. Remaining:</span>
+                            <span class="detail-value" id="remaining-time">--</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 视频预览 -->
+            <div class="card preview-card">
+                <h2 class="card-title">🎥 Preview & Download</h2>
+                
+                <div id="preview-container" class="preview-container">
+                    <div class="empty-state" id="preview-empty">
+                        <div class="empty-icon">🎬</div>
+                        <p>No video generated yet</p>
+                        <p class="empty-hint">Generate a video to see preview here</p>
+                    </div>
+                    
+                    <video id="video-player" 
+                           controls 
+                           class="video-player hidden"
+                           poster="">
+                        Your browser does not support video playback.
+                    </video>
+                </div>
+                
+                <div id="output-info" class="output-info hidden">
+                    <div class="info-row">
+                        <span class="info-label">File Name:</span>
+                        <span class="info-value" id="output-filename"></span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Duration:</span>
+                        <span class="info-value" id="output-duration"></span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Size:</span>
+                        <span class="info-value" id="output-size"></span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Resolution:</span>
+                        <span class="info-value" id="output-resolution"></span>
+                    </div>
+                    
+                    <div class="action-buttons">
+                        <button class="btn btn-primary" id="download-btn" onclick="downloadVideo()">
+                            ⬇️ Download MP4
+                        </button>
+                        <button class="btn btn-outline" onclick="shareVideo()">
+                            🔗 Share Link
+                        </button>
+                        <button class="btn btn-outline" onclick="generateNew()">
+                            ➕ Generate New
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 最近任务 -->
+            <div class="card history-card">
+                <h2 class="card-title">📜 Recent Tasks</h2>
+                <div id="recent-tasks" class="tasks-list">
+                    <div class="empty-state small">
+                        <p>No recent tasks</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 模板弹窗 -->
+    <div id="templates-modal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>📦 Template Library</h2>
+                <button class="modal-close" onclick="closeModal('templates-modal')">✕</button>
+            </div>
+            <div class="modal-body" id="templates-modal-body">
+                <!-- Templates will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- 历史记录弹窗 -->
+    <div id="history-modal" class="modal hidden">
+        <div class="modal-content large">
+            <div class="modal-header">
+                <h2>📋 Generation History</h2>
+                <button class="modal-close" onclick="closeModal('history-modal')">✕</button>
+            </div>
+            <div class="modal-body" id="history-modal-body">
+                <table class="history-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Type</th>
+                            <th>Status</th>
+                            <th>Progress</th>
+                            <th>Created</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="history-table-body">
+                        <!-- History rows will be loaded here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast通知 -->
+    <div id="toast-container" class="toast-container"></div>
+
+    <!-- JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.6.0/socket.io.min.js"></script>
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>

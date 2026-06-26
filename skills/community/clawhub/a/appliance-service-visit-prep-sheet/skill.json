@@ -1,0 +1,35 @@
+{
+  "slug": "appliance-service-visit-prep-sheet",
+  "name": "appliance-service-visit-prep-sheet",
+  "displayName": "Appliance Service Visit Prep Sheet",
+  "version": "1.0.1",
+  "description": "Prepare a technician-ready appliance service visit sheet with model and serial details, symptom timeline, photo checklist, access notes, questions, and visit-day prep.",
+  "triggerKeywords": [
+    "appliance service visit",
+    "appliance repair appointment",
+    "technician handoff",
+    "repair visit prep",
+    "appliance technician coming",
+    "model serial checklist",
+    "washer repair visit",
+    "refrigerator repair visit"
+  ],
+  "tags": [
+    "home-admin",
+    "appliance-repair",
+    "service-visit",
+    "technician-handoff",
+    "repair-prep"
+  ],
+  "license": "MIT-0",
+  "language": "en",
+  "promptOnly": true,
+  "hasExecutableCode": false,
+  "requires_api": false,
+  "no_code_execution": true,
+  "execution": "noExec",
+  "no_network": true,
+  "no_credentials": true,
+  "contentType": "document-only",
+  "safety": "No internal repairs or unsafe troubleshooting; follow manufacturer, utility, landlord, or technician guidance."
+}

@@ -1,35 +1,47 @@
----
-name: "Baby Planner 备孕孕期全程助手"
-description: "Provides comprehensive support from preconception guidance, pregnancy management, birth preparation, baby naming, parenting knowledge, to pregnancy record ke..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/baby-planner"
-sourceUrl: "https://clawhub.ai/skills/baby-planner"
----
-
 # Baby Planner 备孕孕期全程助手
 
-> Provides comprehensive support from preconception guidance, pregnancy management, birth preparation, baby naming, parenting knowledge, to pregnancy record ke...
+全方位生娃助手，覆盖备孕指导、孕期管理、待产准备、宝宝起名、育儿知识库、孕期记录，以及公众号/朋友圈内容生成。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/baby-planner`
-- **Source URL:** [https://clawhub.ai/skills/baby-planner](https://clawhub.ai/skills/baby-planner)
+## 功能模块
 
-## Overview
+### 1. 备孕指导
+- 排卵期计算（末次月经→排卵日→最佳受孕窗口）
+- 备孕检查清单（女性/男性/双方）
+- 营养指南（叶酸/DHA/铁/饮食禁忌）
+- 公众号备孕文案结构（3套模板）
 
+### 2. 孕期全程指南
+- 孕早期（1-12周）：B超确认胎心、NT/早唐、孕吐缓解、营养禁忌
+- 孕中期（13-27周）：大排畸、糖耐、胎动观察、营养强化
+- 孕晚期（28-40周）：胎监、分娩信号识别、待产准备
+- 产检时间表：6周B超→12周NT→20-24周四维→24-28周糖耐→36周GBS筛查
+- 孕期不适缓解：孕吐/便秘/抽筋/水肿/失眠/妊娠纹
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/baby-planner
-```
+### 3. 待产清单
+- 妈妈物品：证件、衣物（开衫睡衣/一次性内裤）、护理（产褥垫/产妇卫生巾）、哺乳（吸奶器/储奶袋）
+- 宝宝物品：衣物、喂养（奶瓶/奶粉）、护理（NB纸尿裤/护臀膏）、出院（安全座椅）
+- 家中提前备好：婴儿床/消毒柜/温奶器/耳温枪/婴儿洗衣机
+- 公众号待产清单文案结构（2套模板）
+
+### 4. 宝宝起名
+- 起名流程：收集信息→八字分析→五行旺缺→喜用神判断→选字→候选名单
+- 五行喜用参考：木（森/桐/榆）、火（煜/炜/晟）、土（坤/培/均）、金（铭/钧/铎）、水（泽/润/涵）
+- 音调搭配原则：三声调姓氏配一/二/四声名
+- 公众号起名攻略文案（2套模板）
+
+### 5. 育儿知识库（衔接 parenting skill）
+- 各月龄发育里程碑：身高/体重/能力对照表
+- 分月龄辅食指南：吞咽期→蠕嚼期→细嚼期→咀嚼期
+- 睡眠管理：各月龄时长+哄睡方法+睡眠仪式
+- 健康护理：疫苗时间表+常见病家庭处理
+- 公众号育儿内容（6套模板）
+
+### 6. 孕期记录
+- 孕期日志模板：体重/产检/身体感受/心情/待办
+- 孕期照片规划建议
+
+## 参考文档
+- `references/pregnancy_timeline.md` — 详细孕期日历+食谱
+- `references/naming_guide.md` — 起名完整手册+案例
+- `references/hospital_checklist.md` — 待产包完整清单
+- `references/public_account_templates.md` — 公众号内容模板

@@ -1,0 +1,11 @@
+{
+  "platform": "支付宝",
+  "type": "payment",
+  "text": "支付宝\n收款\n+¥100.00\n付款方：张三\n转账说明：还款\n到账时间：2026-04-02 10:30\n交易状态：已到账",
+  "expected": {
+    "is_accounting": true,
+    "amount": 100.00,
+    "type": "收入",
+    "payment_method": "支付宝"
+  }
+}

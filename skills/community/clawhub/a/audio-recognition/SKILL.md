@@ -1,35 +1,69 @@
 ---
-name: "Audio Recognition"
-description: "音频语音识别服务(Speech-to-Text)。当用户上传音频文件，需要将语音内容转换为文字，或需要识别音频中的特定信息（如关键词、歌曲名）时触发。 适用于：(1) 会议录音转写 (2) 音频内容提取 (3) 语音指令识别 (4) 音视频字幕生成"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/audio-recognition"
-sourceUrl: "https://clawhub.ai/skills/audio-recognition"
+name: audio-recognition
+description: |
+  音频语音识别服务(Speech-to-Text)。当用户上传音频文件，需要将语音内容转换为文字，或需要识别音频中的特定信息（如关键词、歌曲名）时触发。
+  适用于：(1) 会议录音转写 (2) 音频内容提取 (3) 语音指令识别 (4) 音视频字幕生成
 ---
 
-# Audio Recognition
+# 音频语音识别 (Audio Recognition)
 
-> 音频语音识别服务(Speech-to-Text)。当用户上传音频文件，需要将语音内容转换为文字，或需要识别音频中的特定信息（如关键词、歌曲名）时触发。 适用于：(1) 会议录音转写 (2) 音频内容提取 (3) 语音指令识别 (4) 音视频字幕生成
+将音频中的语音准确转写为文字，并能区分不同说话人。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/audio-recognition`
-- **Source URL:** [https://clawhub.ai/skills/audio-recognition](https://clawhub.ai/skills/audio-recognition)
+## 核心能力
 
-## Overview
+- 语音转文字 (Speech-to-Text)
+- 说话人分离 (Diarization)
+- 标点与断句优化
+- 支持多语言识别
 
+## 工作流程
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/audio-recognition
-```
+### 1. 音频预处理
+- 降噪处理
+- 格式转换 (统一为16kHz/16bit PCM或MP3)
+- 音量标准化
+
+### 2. 声学特征提取
+- 提取MFCC、FBANK等声学特征
+- 用于后续ASR模型输入
+
+### 3. ASR语音识别
+- 使用ASR模型进行语音识别
+- 生成文字初稿
+- 支持模型：Whisper、WeNet、Paraformer等
+
+### 4. 后处理
+- 文字纠错
+- 断句与标点添加
+- 说话人分离标注
+
+### 5. 输出结果
+- 最终识别文本
+- 说话人标签（如需要）
+- 时间戳（如需要）
+
+## 质量目标
+
+- 准确率：95%以上（标准普通话录音）
+- 实时性：支持实时和离线两种模式
+
+## 限制说明
+
+1. **噪音限制**：背景噪音过大时识别效果下降
+2. **口音限制**：重度方言/口音可能影响准确率
+3. **隐私保护**：用户上传的音频仅用于本次识别，不得用于模型训练或其他用途
+4. **语义理解**：仅负责语音转文字，不理解文本语义内容
+
+## 参考服务
+
+- 讯飞听见
+- Google Speech-to-Text
+- 阿里云语音识别
+- 腾讯云语音识别
+
+## 适用场景
+
+- 会议纪要自动生成
+- 音频/视频字幕制作
+- 语音内容检索
+- 录音文件整理

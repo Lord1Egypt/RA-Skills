@@ -1,0 +1,178 @@
+version: "0.1"
+name: "auto-proteomics"
+purpose: "Route proteomics requests with a clear public-vs-non-shipped boundary and keep the shipped v0.x workflow easy to discover while retaining internal scaffold/prototype route context."
+
+layer_model:
+  l1: "SKILL.md public entry"
+  l2: "workflow index and routing rules"
+  l3: "runnable shell/python scripts"
+  l4: "references and stable guidance"
+
+public_promise:
+  version: "v0.x"
+  shipped_workflows:
+    - dda-lfq-processed
+  non_shipped_routes:
+    - dda-identification
+    - dia-quant
+    - phospho-differential
+    - protein-enrichment
+    - multiomics-plan
+  note:
+    - "Only shipped_workflows are part of the public execution promise."
+    - "Any route outside shipped_workflows is non-public in v0.x, including both scaffold and prototype branches."
+    - "Non-shipped routes may appear in repository structure, but they must not be returned as published recommendations in v0.x."
+    - "The DIA route is kept visible as an internal prototype so small models can classify DIA processed-table requests without mislabeling them as shipped."
+
+input_fields:
+  required:
+    - data_type
+    - target_output
+  optional:
+    - goal
+    - acquisition_mode
+    - input_stage
+    - organism
+    - sample_scale
+    - id_system
+    - stats_goal
+    - integration_scope
+
+routing_priority:
+  - data_type
+  - acquisition_mode
+  - input_stage
+  - target_output
+
+value_sets:
+  data_type: [proteomics, phosphoproteomics, interactomics, multi-omics, unknown]
+  acquisition_mode: [dda, dia, tmt, label-free, targeted, unknown]
+  input_stage: [raw-files, processed-table, differential-table, report-ready, unknown]
+  target_output: [identification, quantification, differential-analysis, enrichment, integration-plan, publication-report, unknown]
+  organism: [human, mouse, rat, bacteria, plant, mixed, unknown]
+  sample_scale: [small, medium, large, cohort, unknown]
+  id_system: [uniprot, gene-symbol, ensembl, mixed, unknown]
+  stats_goal: [qc, differential, pathway, network, unknown]
+  integration_scope: [proteomics-only, proteomics-rnaseq, proteomics-metabolomics, full-multiomics, unknown]
+
+routing_rules:
+  - id: dda-lfq-processed
+    status: shipped
+    when:
+      data_type: proteomics
+      acquisition_mode: dda
+      input_stage: processed-table
+      target_output: differential-analysis
+    recommend: [dda-lfq-processed]
+    avoid: [dia-quant, dda-identification]
+    why: "If the user already has processed DDA protein-level results, route directly into the shipped downstream workflow."
+    next:
+      primary: "scripts/workflows/dda_lfq_processed.sh"
+    confidence: high
+
+  - id: dda-identification
+    status: scaffold
+    when:
+      data_type: proteomics
+      acquisition_mode: dda
+      input_stage: raw-files
+      target_output: identification
+    recommend: []
+    scaffold_candidate: dda-identification
+    avoid: [dia-quant]
+    why: "Raw DDA identification belongs to a future route, not the current public execution promise."
+    next:
+      primary: "scripts/workflows/dda_identification.sh"
+    confidence: high
+
+  - id: dia-quant
+    status: prototype
+    visibility: internal
+    public_recommendation: false
+    route_mode: internal-prototype
+    when:
+      data_type: proteomics
+      acquisition_mode: dia
+      input_stage: processed-table
+      target_output: quantification
+    recommend: []
+    prototype_candidate: dia-quant
+    avoid: [dda-identification, dda-lfq-processed]
+    why: "DIA quantification has a prototype intake path in v0.x, but it is not part of the public shipped execution promise. Only consider it for processed DIA result tables that fit the checked-in contract, not raw DIA files, not processed DDA tables, and not generic downstream differential requests. Matching this rule means internal prototype triage only, not public workflow recommendation."
+    next:
+      primary: "scripts/workflows/dia_quant.sh"
+    confidence: high
+
+  - id: phospho-differential
+    status: scaffold
+    when:
+      data_type: phosphoproteomics
+      target_output: differential-analysis
+    recommend: []
+    scaffold_candidate: phospho-differential
+    avoid: [protein-only-enrichment]
+    why: "Phosphoproteomics needs site-level handling and is scaffold-only in v0.x."
+    next:
+      primary: "scripts/workflows/phospho_differential.sh"
+    confidence: high
+
+  - id: enrichment-route
+    status: scaffold
+    when:
+      target_output: enrichment
+    recommend: []
+    scaffold_candidate: protein-enrichment
+    avoid: [raw-identification]
+    why: "Enrichment is a future route and should not be presented as shipped execution support yet."
+    next:
+      primary: "scripts/workflows/protein_enrichment.sh"
+    confidence: medium
+
+  - id: multiomics-planning
+    status: scaffold
+    when:
+      data_type: multi-omics
+      target_output: integration-plan
+    recommend: []
+    scaffold_candidate: multiomics-plan
+    avoid: [dda-identification]
+    why: "Cross-omics planning exists as future scaffold, not as a shipped public workflow."
+    next:
+      primary: "scripts/workflows/multiomics_plan.sh"
+    confidence: high
+
+fallback:
+  missing_info_priority:
+    - data_type
+    - acquisition_mode
+    - input_stage
+    - target_output
+  behavior:
+    - "Ask the smallest missing question set."
+    - "Resolve route selection in this order: data_type -> acquisition_mode -> input_stage -> target_output."
+    - "Treat input_stage as the main separator between raw identification routes and processed quant or downstream routes."
+    - "Do not over-promise scaffold or prototype routes."
+    - "Recommend dda-lfq-processed only when the request truly fits the shipped processed-input boundary."
+    - "If a non-shipped rule matches, return the internal route metadata but keep public support false."
+    - "Prototype routes may be used only for internal framework development or explicit prototype work, not as shipped public recommendations."
+    - "Treat DIA processed-table quantification as the only current dia-quant trigger; raw DIA files or generic downstream differential requests must not select it."
+    - "Otherwise stay at planning/routing level and make the boundary explicit."
+
+script_map:
+  dda-lfq-processed: "scripts/workflows/dda_lfq_processed.sh"
+  dda-identification: "scripts/workflows/dda_identification.sh"
+  dia-quant: "scripts/workflows/dia_quant.sh"
+  phospho-differential: "scripts/workflows/phospho_differential.sh"
+  protein-enrichment: "scripts/workflows/protein_enrichment.sh"
+  multiomics-plan: "scripts/workflows/multiomics_plan.sh"
+  id-mapping: "scripts/utils/id_mapping.py"
+
+scenario_templates:
+  - "User has processed DDA LFQ proteinGroups results and wants a two-group downstream differential workflow"
+  - "User has raw DDA data and asks for identification; explain that this is future scaffold in public v0.x"
+  - "User asks for DIA quantification from a processed DIA result table; return dia-quant as an internal prototype route and do not present execution as shipped"
+  - "User says 'analyze my DIA data' but does not say whether the input is raw files or a processed table; ask for input_stage before selecting a route"
+  - "User has processed DIA data but wants differential downstream analysis rather than quantification intake; do not auto-select dia-quant because the current DIA prototype boundary is intake-plus-preview only"
+  - "User asks for phosphoproteomics differential analysis; note scaffold status explicitly"
+  - "User has differential protein table and wants enrichment; note scaffold status explicitly"
+  - "User wants proteomics plus transcriptomics integration strategy; keep this as future planning scaffold"

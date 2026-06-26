@@ -1,0 +1,27 @@
+{
+  "name": "autodream-core",
+  "version": "1.0.0",
+  "description": "Universal Memory Consolidation Engine — Adapter-based cross-platform memory organization for AI agents",
+  "main": "core/engine.py",
+  "scripts": {
+    "test": "python -m pytest tests/ -v",
+    "install": "bash install.sh"
+  },
+  "keywords": [
+    "memory",
+    "consolidation",
+    "automation",
+    "cross-platform",
+    "ai-agent",
+    "openclaw"
+  ],
+  "author": "無生滅 (research agent)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/autodream-core"
+  },
+  "engines": {
+    "python": ">=3.8"
+  }
+}

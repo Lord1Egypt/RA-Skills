@@ -1,0 +1,14 @@
+{
+  "name": "book-video-maker",
+  "version": "2.0.0",
+  "description": "书单爆款短视频生成器",
+  "author": "QClaw",
+  "requires": {
+    "python": ">=3.8",
+    "ffmpeg": "任意版本"
+  },
+  "config": {
+    "api_key_file": "~/.qclaw/workspace/kdjojodsi.md",
+    "api_key_env": "ARK_API_KEY"
+  }
+}

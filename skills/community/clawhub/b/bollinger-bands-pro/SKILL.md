@@ -1,35 +1,18 @@
 ---
-name: "Bollinger Bands Analyst"
-description: "Volatility analysis and mean reversion signals."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/bollinger-bands-pro"
-sourceUrl: "https://clawhub.ai/skills/bollinger-bands-pro"
+name: bollinger-bands-pro
+description: Volatility analysis and mean reversion signals.
+compatibility: OpenClaw, Zo Computer
+metadata:
+  author: ssidharHubble
 ---
-
 # Bollinger Bands Analyst
 
-> Volatility analysis and mean reversion signals.
+Volatility analysis and mean reversion signals.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/bollinger-bands-pro`
-- **Source URL:** [https://clawhub.ai/skills/bollinger-bands-pro](https://clawhub.ai/skills/bollinger-bands-pro)
+## Usage
+This skill connects to the Calls are free for basic health, but premium signals require a 402 payment proof.
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/bollinger-bands-pro
+```javascript
+import { execute } from "bollinger-bands-pro";
+const signal = await execute({ ticker: "BTC" });
 ```

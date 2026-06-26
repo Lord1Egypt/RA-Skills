@@ -1,35 +1,34 @@
 ---
-name: "Auto File Organizer"
+name: auto-file-organizer
 description: "用户经常需要整理下载文件夹、分类文件"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/auto-file-organizer"
-sourceUrl: "https://clawhub.ai/skills/auto-file-organizer"
+version: "0.1.0"
+license: MIT
+user-invocable: true
+allowed-tools: Read, Write, Edit, Bash
 ---
 
-# Auto File Organizer
+# auto-file-organizer
 
-> 用户经常需要整理下载文件夹、分类文件
+**灵感来源**: 太子观察用户痛点  
+**创建时间**: 2026-04-08 11:44
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/auto-file-organizer`
-- **Source URL:** [https://clawhub.ai/skills/auto-file-organizer](https://clawhub.ai/skills/auto-file-organizer)
+## 触发方式
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/auto-file-organizer
 ```
+/auto_file_organizer
+```
+
+## 功能
+
+用户经常需要整理下载文件夹、分类文件
+
+## 使用示例
+
+用户：[示例输入]
+助手：[示例输出]
+
+## 待开发
+
+- [ ] 核心功能实现
+- [ ] 测试用例
+- [ ] 文档完善

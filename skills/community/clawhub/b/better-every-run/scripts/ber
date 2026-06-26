@@ -1,0 +1,69 @@
+#!/usr/bin/env node
+
+const { spawnSync } = require("child_process");
+const path = require("path");
+
+const helper = path.join(__dirname, "ber.js");
+
+function run(args) {
+  const result = spawnSync(process.execPath, [helper, ...args], {
+    stdio: "inherit",
+  });
+  process.exit(result.status === null ? 1 : result.status);
+}
+
+function usage() {
+  console.log(`Better Every Run
+
+Human commands:
+  ber fix "<bad outcome> -> <desired outcome>"
+  ber remember "<lesson>"
+  ber report [--today|--week]
+
+Examples:
+  ber fix "agent gave vague status -> agent gives exact command output"
+  ber remember "Use the approved development host for code work"
+  ber report --today
+
+This records only explicit ber commands. fix/remember write to the local store only; durable changes require card + promote or eval-fixture.`);
+}
+
+const [command, ...rest] = process.argv.slice(2);
+
+if (!command || command === "help" || command === "--help" || command === "-h") {
+  usage();
+  process.exit(0);
+}
+
+if (command === "fix") {
+  run(["fix", ...rest]);
+}
+
+if (command === "remember") {
+  const hasNote = rest.includes("--note");
+  if (hasNote) run(["remember", ...rest]);
+
+  const noteParts = [];
+  const passthrough = [];
+  for (let i = 0; i < rest.length; i += 1) {
+    const arg = rest[i];
+    if (!arg.startsWith("--")) {
+      noteParts.push(arg);
+      continue;
+    }
+    passthrough.push(arg);
+    if (rest[i + 1] && !rest[i + 1].startsWith("--")) {
+      passthrough.push(rest[i + 1]);
+      i += 1;
+    }
+  }
+  run(["remember", "--note", noteParts.join(" "), ...passthrough]);
+}
+
+if (command === "report") {
+  run(["report", ...rest]);
+}
+
+console.error(`Unknown human command: ${command}`);
+usage();
+process.exit(1);

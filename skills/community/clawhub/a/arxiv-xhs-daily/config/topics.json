@@ -1,0 +1,44 @@
+{
+  "topics": {
+    "diffusion_llm": {
+      "display_name": "Diffusion LLM",
+      "keywords": [
+        "diffusion language model",
+        "diffusion language models",
+        "diffusion llm",
+        "diffusion llms",
+        "discrete diffusion",
+        "masked diffusion",
+        "parallel decoding",
+        "non-autoregressive language model",
+        "non-autoregressive language models"
+      ],
+      "negative_keywords": [
+        "image generation",
+        "text-to-image",
+        "vision-language",
+        "speech",
+        "coding agent",
+        "enterprise search",
+        "photocatalytic",
+        "chemical",
+        "materials discovery"
+      ],
+      "max_matches": 5,
+      "post_title_prefix": "arXiv日报",
+      "post_hashtags": [
+        "AI",
+        "arXiv",
+        "LLM",
+        "DiffusionLLM",
+        "科研"
+      ],
+      "default_cover_image": "https://picsum.photos/seed/arxiv-diffusion-llm/1200/900.jpg"
+    }
+  },
+  "sources": {
+    "categories": ["cs.AI", "cs.CL"],
+    "page_size": 200,
+    "max_scan_results_per_category": 800
+  }
+}

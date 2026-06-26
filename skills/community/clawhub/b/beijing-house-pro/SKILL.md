@@ -1,35 +1,59 @@
 ---
-name: "北京住宅全信息助手 (房价/学区/交通)"
-description: "查询北京住宅小区的基础信息（房价/区域/交通），并通过官方验证渠道核实学区划片信息。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/beijing-house-pro"
-sourceUrl: "https://clawhub.ai/skills/beijing-house-pro"
+name: beijing_house
+description: 查询北京住宅小区的基础信息（房价/区域/交通），并通过官方验证渠道核实学区划片信息。
 ---
 
 # 北京住宅全信息助手 (房价/学区/交通)
 
-> 查询北京住宅小区的基础信息（房价/区域/交通），并通过官方验证渠道核实学区划片信息。
+## 🛠 环境要求与安装
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/beijing-house-pro`
-- **Source URL:** [https://clawhub.ai/skills/beijing-house-pro](https://clawhub.ai/skills/beijing-house-pro)
+本技能涉及网页抓取与浏览器自动化。使用前请确保安装以下依赖：
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
+### 1. Python 依赖
 ```bash
-hermes skills install clawhub/beijing-house-pro
+pip install requests beautifulsoup4 selenium
 ```
+
+### 2. 系统环境 (关键)
+- **Chrome 浏览器**：需安装 Chrome 或 Chromium。
+- **ChromeDriver**：需下载与浏览器版本匹配的 ChromeDriver，并确保其在系统的 PATH 路径中。
+- **网络权限**：需能够访问 `bj.ke.com` (房价) 以及北京各区教委官网。
+
+---
+
+## 📖 核心指令与策略
+
+### 1. 基础信息查询 (价格、年份、交通)
+- **执行指令**：`python scripts/query_info.py --name "<小区名>"`。
+- **兜底策略**：若脚本因反爬限制失败，**允许**使用 `web_search` 搜索类似 `"北京 [小区名] 均价 建成年份"`。
+
+### 2. 官方学区划片 (严格多步策略)
+**严禁直接引用搜索引擎中的非官方学区汇总信息。必须通过以下闭环逻辑验证：**
+
+#### A. 海淀区 (17学区制)
+海淀区划片复杂，本技能采用“搜索定位 + 官方名录核实”的双保险模式：
+1. **第一步**：运行 `python scripts/query_school_browser.py --district "海淀" --name "<小区名>"`。
+2. **第二步**：由于不再硬编码小区对应关系，脚本会返回 17 个官方学区名单并提示 `info_required`。
+3. **第三步**：Agent 必须使用 `web_search` 搜索：`"海淀区 [小区名] 属于哪个学区"`（例如：上地学区、中关村学区）。
+4. **第四步**：确定学区名后，再次运行脚本，`--name` 参数传入确定的**学区名称**（如 `上地学区`），即可获得该学区官方管辖的全部公办中小学名单。
+
+#### B. 朝阳区
+- **执行指令**：`python scripts/query_school_browser.py --district "朝阳" --name "<小区名>"`。
+- **逻辑**：后端会自动运行无头浏览器访问朝阳教委官网实时抓取。
+
+#### C. 东城/西城/其他区
+- 脚本会返回官方查询入口 URL。Agent 需调用 `browser` 系统工具引导用户手动完成登录/扫码验证。
+
+---
+
+## ⚠️ 安全与数据时效性
+
+1. **拒绝猜测**：严禁在未得到官方系统或学区名录确认的情况下向用户回复学区信息。
+2. **人工介入**：对于需要个人登录的区域，Agent 必须提示用户手动操作，不得尝试自动化登录。
+3. **政策变动**：所有返回结果必须附带声明：“信息来源于 2025 年官方公开资料，具体划片以当年度教委发布的最新《招生简章》为准。”
+
+---
+
+## 注意事项
+- 仅支持北京地区。
+- 严禁删除 `haidian_districts.json` 文件。

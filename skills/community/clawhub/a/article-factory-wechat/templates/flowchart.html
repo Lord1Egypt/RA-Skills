@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>{{title}}</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      width: auto;
+      height: auto;
+      margin: 0;
+      overflow: hidden;
+      font-family: -apple-system, "PingFang SC", "Noto Sans SC", sans-serif;
+      background: white;
+    }
+    .flowchart {
+      max-width: 1080px;
+      padding: 30px;
+      background: #fafbfc;
+    }
+    .flow-title {
+      font-size: 32px;
+      font-weight: 600;
+      color: #2c3e50;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+    .flow-step {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+    .flow-number {
+      width: 50px;
+      height: 50px;
+      background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      font-weight: bold;
+      flex-shrink: 0;
+    }
+    .flow-arrow {
+      width: 40px;
+      height: 2px;
+      background: #3498db;
+      margin: 0 15px;
+      position: relative;
+    }
+    .flow-arrow::after {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: -4px;
+      width: 0;
+      height: 0;
+      border-left: 10px solid #3498db;
+      border-top: 5px solid transparent;
+      border-bottom: 5px solid transparent;
+    }
+    .flow-content {
+      flex: 1;
+      background: white;
+      padding: 20px 24px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+      border-left: 4px solid #3498db;
+    }
+    .flow-content h3 {
+      font-size: 24px;
+      color: #2c3e50;
+      margin-bottom: 8px;
+    }
+    .flow-content p {
+      font-size: 18px;
+      color: #666;
+      line-height: 1.6;
+    }
+    /* 最后一步去掉箭头 */
+    .flow-step:last-child .flow-arrow {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="flowchart">
+    <h1 class="flow-title">{{title}}</h1>
+
+{{#each steps}}
+    <div class="flow-step">
+      <div class="flow-number">{{@index+1}}</div>
+      <div class="flow-arrow"></div>
+      <div class="flow-content">
+        <h3>{{title}}</h3>
+        <p>{{description}}</p>
+      </div>
+    </div>
+{{/each}}
+
+  </div>
+</body>
+</html>

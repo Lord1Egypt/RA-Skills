@@ -1,0 +1,26 @@
+{
+  "name": "binance-announce-monitor",
+  "version": "1.1.0",
+  "description": "实时监控币安公告 + X 账号并发送飞书通知",
+  "main": "monitor.js",
+  "scripts": {
+    "start": "node monitor.js",
+    "start:x": "node x-monitor.js",
+    "start:all": "./start-all.sh",
+    "start:sender": "node sender.js"
+  },
+  "keywords": [
+    "binance",
+    "announce",
+    "twitter",
+    "x",
+    "monitor",
+    "feishu",
+    "notification"
+  ],
+  "author": "OpenClaw Community",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "name": "bank-credit-investigation",
+  "version": "1.0.0",
+  "description": "AI-powered bank credit due diligence assistant - analyze borrowers, financials, industry risk, and generate complete investigation reports through structured workflow",
+  "main": "SKILL.md",
+  "scripts": {
+    "test": "echo \"No tests configured\""
+  },
+  "keywords": [
+    "bank",
+    "credit",
+    "due diligence",
+    "lending",
+    "risk assessment",
+    "financial analysis",
+    "信贷尽调",
+    "银行信贷",
+    "信用分析",
+    "贷前调查"
+  ],
+  "author": "gechengling",
+  "license": "MIT",
+  "skill": {
+    "type": "conversation",
+    "triggers": [
+      "信贷尽调",
+      "贷前调查",
+      "企业尽调",
+      "信用分析",
+      "借款人分析",
+      "财务报表分析",
+      "行业风险",
+      "信贷审查报告",
+      "尽调报告",
+      "信用评估"
+    ]
+  }
+}

@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>复古未来主义 · Agent认知：OS与Application</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@400;500;700;900&family=Space+Mono:wght@400;700&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  .coord { display: none; }
+
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    padding: 40px 20px;
+    background: #1A0E00;
+    font-family: 'Noto Sans SC', sans-serif;
+  }
+
+  .container {
+    width: 1080px;
+    min-height: 1440px;
+    background: #2D1B00;
+    position: relative;
+    
+    padding: 40px 44px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  /* === CRT Scanline overlay === */
+  .container::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0,0,0,0.15) 2px,
+      rgba(0,0,0,0.15) 4px
+    );
+    pointer-events: none;
+    z-index: 10;
+  }
+
+  /* === CRT vignette === */
+  .container::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: radial-gradient(
+      ellipse at center,
+      transparent 60%,
+      rgba(0,0,0,0.35) 100%
+    );
+    pointer-events: none;
+    z-index: 11;
+  }
+
+  /* === Pixel grid texture === */
+  .crt-grid {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-image:
+      linear-gradient(rgba(255,191,0,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,191,0,0.03) 1px, transparent 1px);
+    background-size: 8px 8px;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  /* ===== HEADER ===== */
+  .header {
+    padding: 0 0 12px;
+    border-bottom: 2px solid #FFBF00;
+    position: relative;
+    z-index: 2;
+  }
+  .header .boot-line {
+    font-family: 'Space Mono', 'IBM Plex Mono', monospace;
+    font-size: 22px;
+    color: #33FF33;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+    text-shadow: 0 0 8px rgba(51,255,51,0.5);
+  }
+  .header .boot-line::before {
+    content: 'C:\\> ';
+    color: #33FF33;
+    opacity: 0.6;
+  }
+  .header h1 {
+    font-family: 'Noto Sans SC', sans-serif;
+    font-size: 72px;
+    font-weight: 900;
+    color: #F5E6C8;
+    line-height: 1.2;
+    letter-spacing: 2px;
+    text-shadow: 0 0 10px rgba(245,230,200,0.15);
+  }
+  .header h1 .amber {
+    color: #FFBF00;
+    text-shadow: 0 0 20px rgba(255,191,0,0.5), 0 0 40px rgba(255,191,0,0.2);
+  }
+  .header .terminal-meta {
+    display: flex;
+    gap: 24px;
+    margin-top: 8px;
+    font-family: 'Space Mono', monospace;
+    font-size: 20px;
+    color: #8B6914;
+    letter-spacing: 1px;
+  }
+  .header .terminal-meta span::before {
+    content: '[ ';
+    color: #5C4A1E;
+  }
+  .header .terminal-meta span::after {
+    content: ' ]';
+    color: #5C4A1E;
+  }
+
+  /* ===== PANEL ===== */
+  .panel {
+    background: rgba(45,27,0,0.85);
+    border: 2px solid rgba(255,191,0,0.3);
+    border-radius: 12px;
+    padding: 20px 24px;
+    position: relative;
+    z-index: 2;
+    box-shadow:
+      inset 0 1px 0 rgba(255,191,0,0.1),
+      inset 0 -1px 0 rgba(0,0,0,0.3),
+      0 4px 16px rgba(0,0,0,0.4);
+  }
+  .panel::before {
+    content: '';
+    position: absolute;
+    top: 10px; left: 10px;
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: #FFBF00;
+    box-shadow: 0 0 6px rgba(255,191,0,0.6);
+  }
+  .panel h2 {
+    font-family: 'Space Mono', monospace;
+    font-size: 24px;
+    font-weight: 700;
+    color: #FFBF00;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+    padding-left: 22px;
+    text-shadow: 0 0 10px rgba(255,191,0,0.3);
+  }
+
+  .panel.phosphor::before { background: #33FF33; box-shadow: 0 0 6px rgba(51,255,51,0.6); }
+  .panel.phosphor { border-color: rgba(51,255,51,0.3); }
+  .panel.phosphor h2 { color: #33FF33; text-shadow: 0 0 10px rgba(51,255,51,0.3); }
+
+  .panel.alert::before { background: #FF4444; box-shadow: 0 0 6px rgba(255,68,68,0.6); }
+  .panel.alert { border-color: rgba(255,68,68,0.3); }
+  .panel.alert h2 { color: #FF4444; text-shadow: 0 0 10px rgba(255,68,68,0.3); }
+
+  /* ===== GRID ===== */
+  .grid-2col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    z-index: 2;
+    position: relative;
+  }
+  .grid-3col {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 12px;
+  }
+
+  /* ===== MOD-1: THREE-LAYER SPECTRUM ===== */
+  .matrix-card {
+    background: rgba(255,191,0,0.04);
+    border: 1px solid rgba(255,191,0,0.15);
+    border-radius: 10px;
+    padding: 16px;
+    transition: all 0.3s;
+  }
+  .matrix-card .name {
+    font-family: 'Noto Sans SC', sans-serif;
+    font-weight: 700;
+    color: #F5E6C8;
+    font-size: 32px;
+    margin-bottom: 6px;
+  }
+  .matrix-card .desc {
+    font-family: 'Noto Sans SC', sans-serif;
+    font-size: 24px;
+    color: #8B6914;
+    line-height: 1.5;
+  }
+  .matrix-card.active {
+    border-color: #FFBF00;
+    background: rgba(255,191,0,0.1);
+    box-shadow: 0 0 20px rgba(255,191,0,0.15), inset 0 0 20px rgba(255,191,0,0.05);
+  }
+  .matrix-card.active .name {
+    color: #FFBF00;
+    text-shadow: 0 0 8px rgba(255,191,0,0.4);
+  }
+  .matrix-card .badge {
+    display: inline-block;
+    background: #FFBF00;
+    color: #2D1B00;
+    font-size: 18px;
+    font-weight: 700;
+    padding: 2px 12px;
+    border-radius: 4px;
+    margin-bottom: 6px;
+    font-family: 'Space Mono', monospace;
+    letter-spacing: 2px;
+  }
+  .matrix-card .barrier {
+    font-family: 'Space Mono', monospace;
+    font-size: 20px;
+    margin-top: 8px;
+    letter-spacing: 1px;
+  }
+  .barrier-zero { color: #FF4444; text-shadow: 0 0 6px rgba(255,68,68,0.3); }
+  .barrier-low { color: #FFBF00; text-shadow: 0 0 6px rgba(255,191,0,0.3); }
+  .barrier-high { color: #33FF33; text-shadow: 0 0 6px rgba(51,255,51,0.3); }
+
+  /* ===== MOD-2: GAUGE BARS ===== */
+  .gauge-group {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .gauge-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .gauge-label {
+    font-family: 'Noto Sans SC', sans-serif;
+    font-size: 28px;
+    color: #8B6914;
+    width: 210px;
+    text-align: right;
+    flex-shrink: 0;
+  }
+  .gauge-track {
+    flex: 1;
+    height: 18px;
+    background: rgba(255,191,0,0.08);
+    border-radius: 9px;
+    border: 1px solid rgba(255,191,0,0.15);
+    
+    position: relative;
+  }
+  .gauge-fill {
+    height: 100%;
+    border-radius: 8px;
+    background: linear-gradient(90deg, #FFBF00, #FFD54F);
+    box-shadow: 0 0 10px rgba(255,191,0,0.4);
+    position: relative;
+  }
+  .gauge-fill::after {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 4px; height: 100%;
+    background: #FFF;
+    border-radius: 2px;
+    opacity: 0.4;
+  }
+  .gauge-fill.phosphor {
+    background: linear-gradient(90deg, #33FF33, #66FF66);
+    box-shadow: 0 0 10px rgba(51,255,51,0.4);
+  }
+  .gauge-fill.danger {
+    background: linear-gradient(90deg, #FF4444, #FF6B6B);
+    box-shadow: 0 0 10px rgba(255,68,68,0.4);
+  }
+  .gauge-val {
+    font-family: 'Space Mono', monospace;
+    font-size: 26px;
+    color: #FFBF00;
+    width: 100px;
+    text-align: right;
+    text-shadow: 0 0 6px rgba(255,191,0,0.3);
+  }
+  .gauge-val.phosphor-text { color: #33FF33; text-shadow: 0 0 6px rgba(51,255,51,0.3); }
+  .gauge-val.danger-text { color: #FF4444; text-shadow: 0 0 6px rgba(255,68,68,0.3); }
+
+  /* ===== MOD-3: DEEP ANALYSIS ===== */
+  .analysis-text {
+    font-size: 30px;
+    color: #A68A4C;
+    line-height: 1.7;
+    font-weight: 400;
+  }
+  .analysis-text .hl {
+    color: #FFBF00;
+    font-weight: 700;
+    text-shadow: 0 0 6px rgba(255,191,0,0.3);
+  }
+  .analysis-text .green {
+    color: #33FF33;
+    font-weight: 500;
+    text-shadow: 0 0 6px rgba(51,255,51,0.3);
+  }
+  .analysis-text .num {
+    font-family: 'Space Mono', monospace;
+    font-size: 64px;
+    font-weight: 700;
+    color: #FFBF00;
+    text-shadow: 0 0 15px rgba(255,191,0,0.4);
+    display: inline;
+  }
+
+  /* ===== MOD-4: SCENE COMPARISON ===== */
+  .scene-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+  .scene-card {
+    background: rgba(255,191,0,0.03);
+    border: 1px solid rgba(255,191,0,0.12);
+    border-radius: 10px;
+    padding: 16px;
+  }
+  .scene-card .scene-title {
+    font-family: 'Space Mono', monospace;
+    font-size: 22px;
+    color: #5C4A1E;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    padding-bottom: 6px;
+    border-bottom: 1px dashed rgba(255,191,0,0.15);
+  }
+  .scene-card .scene-body {
+    font-size: 26px;
+    color: #8B6914;
+    line-height: 1.6;
+  }
+  .scene-card .scene-body strong {
+    color: #F5E6C8;
+    font-weight: 700;
+  }
+  .scene-card.before {
+    border-color: rgba(255,191,0,0.25);
+  }
+  .scene-card.before .scene-title { color: #FFBF00; }
+  .scene-card.after {
+    border-color: rgba(51,255,51,0.25);
+  }
+  .scene-card.after .scene-title { color: #33FF33; }
+
+  /* ===== MOD-5: WARNING ZONE ===== */
+  .warn-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .warn-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    font-size: 28px;
+    color: #A68A4C;
+    line-height: 1.55;
+    padding: 10px 14px;
+    background: rgba(255,68,68,0.04);
+    border-radius: 6px;
+    border-left: 4px solid rgba(255,68,68,0.4);
+  }
+  .warn-item .icon {
+    font-family: 'Space Mono', monospace;
+    color: #FF4444;
+    font-size: 24px;
+    flex-shrink: 0;
+    margin-top: 4px;
+    text-shadow: 0 0 6px rgba(255,68,68,0.4);
+  }
+  .warn-item strong {
+    color: #FF6B6B;
+    font-weight: 600;
+  }
+
+  /* ===== STATUS BAR ===== */
+  .status-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Space Mono', monospace;
+    font-size: 18px;
+    color: #5C4A1E;
+    letter-spacing: 2px;
+    padding: 10px 16px;
+    background: rgba(255,191,0,0.04);
+    border: 1px solid rgba(255,191,0,0.1);
+    border-radius: 8px;
+    position: relative;
+    z-index: 2;
+    margin-top: auto;
+  }
+  .status-bar .led {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #33FF33;
+    box-shadow: 0 0 6px rgba(51,255,51,0.6);
+    margin-right: 8px;
+    vertical-align: middle;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="crt-grid"></div>
+
+  <!-- HEADER -->
+  <div class="header">
+    <span class="coord">SEC-00</span>
+    <div class="boot-line">AGENT COGNITION LOADED — OS.KERNEL v1.0</div>
+    <h1>Agent认知：<span class="amber">OS与Application</span></h1>
+    <div class="terminal-meta">
+      <span>PARADIGM: AGENT-NATIVE</span>
+      <span>MODULES: 5</span>
+      <span>THESIS: SYMBIOSIS</span>
+    </div>
+  </div>
+
+  <!-- MOD-1: 三层光谱 — Prompt / Script / Application -->
+  <div class="panel">
+    <span class="coord">A-01</span>
+    <h2>THREE-LAYER SPECTRUM</h2>
+    <div class="grid-3col">
+      <div class="matrix-card">
+        <div class="name">Prompt 指令</div>
+        <div class="desc">给 Agent 点拨方向，活还是它自己干，带宽不减。文本可复制。</div>
+        <div class="barrier barrier-zero">BARRIER: ⬜ ZERO</div>
+      </div>
+      <div class="matrix-card">
+        <div class="name">Script 工具</div>
+        <div class="desc">外部代劳返回结果，带宽降低。但无状态，逻辑可复现。</div>
+        <div class="barrier barrier-low">BARRIER: ▣ LOW</div>
+      </div>
+      <div class="matrix-card active">
+        <div class="badge">OPTIMAL</div>
+        <div class="name">Application</div>
+        <div class="desc">外部代劳 + 持久状态 + 基础设施，不可复制。</div>
+        <div class="barrier barrier-high">BARRIER: ■ HIGH</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MOD-2: 壁垒仪表盘 -->
+  <div class="panel phosphor">
+    <span class="coord">B-05</span>
+    <h2>BARRIER GAUGES</h2>
+    <div class="gauge-group">
+      <div class="gauge-item">
+        <span class="gauge-label">Prompt</span>
+        <div class="gauge-track"><div class="gauge-fill danger" style="width:5%"></div></div>
+        <span class="gauge-val danger-text">≈ 0</span>
+      </div>
+      <div class="gauge-item">
+        <span class="gauge-label">Script</span>
+        <div class="gauge-track"><div class="gauge-fill" style="width:30%"></div></div>
+        <span class="gauge-val">LOW</span>
+      </div>
+      <div class="gauge-item">
+        <span class="gauge-label">Application</span>
+        <div class="gauge-track"><div class="gauge-fill phosphor" style="width:92%"></div></div>
+        <span class="gauge-val phosphor-text">HIGH</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid-2col">
+    <!-- MOD-3: 两个物理约束 -->
+    <div class="panel">
+      <span class="coord">C-12</span>
+      <h2>PHYSICAL LIMITS</h2>
+      <p class="analysis-text">
+        Agent 有 <span class="num">2</span> 个物理约束——不是 bug，像光速一样不能许愿消失。<br><br>
+        <span class="hl">上下文容量</span>：有限容器，塞得越多性能越差。<br>
+        <span class="hl">注意力带宽</span>：多任务争抢同一份注意力，<span class="green">零和博弈</span>，每件事质量都下降。
+      </p>
+    </div>
+
+    <!-- MOD-4: OS vs Application -->
+    <div class="panel phosphor">
+      <span class="coord">D-03</span>
+      <h2>OS vs APPLICATION</h2>
+      <div class="scene-grid">
+        <div class="scene-card before">
+          <div class="scene-title">OS — WHAT</div>
+          <div class="scene-body"><strong>做什么？</strong>在有限容量和带宽下，帮用户完成尽可能多的事。持有用户意图与跨域上下文。</div>
+        </div>
+        <div class="scene-card after">
+          <div class="scene-title">APP — HOW</div>
+          <div class="scene-body"><strong>怎么做？</strong>每次被调用时提供最大领域价值。持有领域状态与业务历史。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MOD-5: 警告区 -->
+  <div class="panel alert">
+    <span class="coord">E-08</span>
+    <h2>WARNING ZONE</h2>
+    <div class="warn-list">
+      <div class="warn-item">
+        <span class="icon">[!]</span>
+        <span><strong>垂类做OS = 拿刀打坦克。</strong>Agent 战场是推理与编排，领域知识在这里毫无用处。OS 天然收敛，不会有几十个赢家。</span>
+      </div>
+      <div class="warn-item">
+        <span class="icon">[!]</span>
+        <span><strong>Skill 天花板是卖 copy。</strong>做得越好抄得越容易，越成功越多人涌进来。接口背后什么都没有，就是在裸奔。</span>
+      </div>
+      <div class="warn-item">
+        <span class="icon">[!]</span>
+        <span><strong>领域状态 ≠ Memory。</strong>Memory 是 OS 层通用记忆。领域状态是垂类业务上下文——资产沉淀，越用越厚，越难迁移。</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- STATUS BAR -->
+  <div class="status-bar">
+    <span><span class="led"></span>THE BEST CONTEXT IS NO CONTEXT</span>
+    <span>AGENT.OS v1.0 · COGNITIVE SYMBIOSIS</span>
+  </div>
+
+</div>
+</body>
+</html>

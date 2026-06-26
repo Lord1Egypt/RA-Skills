@@ -1,35 +1,66 @@
 ---
-name: "Book Event Planner"
-description: "Book event-planner services through Lokuli MCP. Use when user needs to find and book event-planner. Triggers on requests like "book a event-planner", "find event-planner near me", or any event-planner service request."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/book-event-planner"
-sourceUrl: "https://clawhub.ai/skills/book-event-planner"
+name: book-event-planner
+description: Book event-planner services through Lokuli MCP. Use when user needs to find and book event-planner. Triggers on requests like "book a event-planner", "find event-planner near me", or any event-planner service request.
 ---
 
-# Book Event Planner
+# uook event planner
 
-> Book event-planner services through Lokuli MCP. Use when user needs to find and book event-planner. Triggers on requests like "book a event-planner", "find event-planner near me", or any event-planner service request.
+Book event-planner services through Lokuli's MCP server.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/book-event-planner`
-- **Source URL:** [https://clawhub.ai/skills/book-event-planner](https://clawhub.ai/skills/book-event-planner)
+## MCP Endpoint
 
-## Overview
+```
+https://lokuli.com/mcp/sse
+```
 
+Transport: SSE | JSON-RPC 2.0 | POST requests
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/book-event-planner
+## Tools
+
+### search
+```json
+{
+  "method": "tools/call",
+  "params": {
+    "name": "search",
+    "arguments": {
+      "query": "event-planner",
+      "zipCode": "90640",
+      "maxResults": 20
+    }
+  }
+}
+```
+
+### check_availability
+```json
+{
+  "method": "tools/call",
+  "params": {
+    "name": "check_availability",
+    "arguments": {
+      "providerId": "xxx",
+      "serviceId": "yyy",
+      "date": "2025-02-10"
+    }
+  }
+}
+```
+
+### create_booking
+```json
+{
+  "method": "tools/call",
+  "params": {
+    "name": "create_booking",
+    "arguments": {
+      "providerId": "xxx",
+      "serviceId": "yyy",
+      "timeSlot": "2025-02-10T14:00:00-08:00",
+      "customerName": "John Doe",
+      "customerEmail": "john@example.com",
+      "customerPhone": "+13105551234"
+    }
+  }
+}
 ```

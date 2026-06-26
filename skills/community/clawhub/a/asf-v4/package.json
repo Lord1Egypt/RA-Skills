@@ -1,0 +1,67 @@
+{
+  "name": "@anfsf-v1/openclaw-skill",
+  "version": "1.5.6",
+  "description": "AI Native Full-Stack Software Factory V1.5.6 - Enhanced Hybrid Adaptive Parser with 100% health status (187/187 tests)",
+  "main": "index.ts",
+  "types": "index.ts",
+  "scripts": {
+    "build": "tsc",
+    "test": "jest",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit"
+  },
+  "keywords": [
+    "openclaw",
+    "skill",
+    "asf-v4",
+    "governance",
+    "optimization",
+    "mempalace",
+    "memory-architecture",
+    "anfsf",
+    "memor Recall "
+  ],
+  "author": "ASF V4.0 Team",
+  "license": "MIT",
+  "peerDependencies": {
+    "openclaw": ">=2026.3.24"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.0.0",
+    "@types/js-yaml": "^4.0.9",
+    "@types/node": "^20.0.0",
+    "jest": "^29.0.0",
+    "ts-jest": "^29.0.0",
+    "typescript": "^5.0.0"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "openclaw": {
+    "skillName": "anfsf-v1",
+    "architectureName": "AI Native Full-Stack Software Factory V1.5.6 (Enhanced Hybrid Parser, Layer 8.5 Governance, MemPalace, 187/187 tests, 100% health)",
+    "architectureVersion": "1.5.0",
+    "minOpenClawVersion": "2026.3.24",
+    "tools": [
+      "veto-check",
+      "ownership-proof",
+      "economics-score",
+      "interface-budget",
+      "rework-risk",
+      "hot-contract",
+      "conflict-resolve",
+      "safe-optimize"
+    ],
+    "commands": [
+      "asf:status",
+      "asf:veto",
+      "asf:proof",
+      "asf:score",
+      "asf:risk",
+      "asf:hot-contracts"
+    ]
+  },
+  "dependencies": {
+    "js-yaml": "^4.1.1"
+  }
+}

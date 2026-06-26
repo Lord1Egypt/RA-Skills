@@ -1,0 +1,4 @@
+interface:
+  display_name: "AWL Academic Rewriter"
+  short_description: "Rewrite English with AWL/NAWL vocabulary"
+  default_prompt: "Use $awl-academic-rewriter to revise this English text into a more academic version and produce sentence-level changes plus a full revised document."

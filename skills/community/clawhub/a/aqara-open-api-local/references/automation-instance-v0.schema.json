@@ -1,0 +1,317 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "aqara-builder://schemas/automation-instance-v0.schema.json",
+  "title": "automation-instance v0",
+  "description": "A strongly constrained schema for the current Aqara automation instance format, with priority support for the trait/event main path",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["metadata", "automations"],
+  "properties": {
+    "metadata": { "$ref": "#/$defs/metadata" },
+    "capability_gaps": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": true
+      }
+    },
+    "automations": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/automation" }
+    }
+  },
+  "$defs": {
+    "metadata": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name"],
+      "properties": {
+        "name": { "type": "string", "minLength": 1 },
+        "description": { "type": "string" },
+        "scope": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/scopeEntry" }
+        }
+      }
+    },
+    "scopeEntry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "type", "deviceId", "endpointId", "functionCode", "traitCode"],
+      "properties": {
+        "name": { "type": "string", "minLength": 1 },
+        "type": { "const": "device.property" },
+        "deviceId": { "type": "string", "minLength": 1 },
+        "endpointId": { "type": "integer", "minimum": 0 },
+        "functionCode": { "type": "string", "minLength": 1 },
+        "traitCode": { "type": "string", "minLength": 1 }
+      }
+    },
+    "automation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "starters", "actions"],
+      "properties": {
+        "name": { "type": "string", "minLength": 1 },
+        "description": { "type": "string" },
+        "starters": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/starter" }
+        },
+        "condition": { "$ref": "#/$defs/condition" },
+        "actions": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/action" }
+        }
+      }
+    },
+    "starter": {
+      "oneOf": [
+        { "$ref": "#/$defs/manualStarter" },
+        { "$ref": "#/$defs/propertyEventStarter" },
+        { "$ref": "#/$defs/timeScheduleStarter" }
+      ]
+    },
+    "condition": {
+      "oneOf": [
+        { "$ref": "#/$defs/propertyStateCondition" },
+        { "$ref": "#/$defs/andCondition" },
+        { "$ref": "#/$defs/timeBetweenCondition" }
+      ]
+    },
+    "action": {
+      "oneOf": [
+        { "$ref": "#/$defs/deviceTraitWriteAction" },
+        { "$ref": "#/$defs/delayAction" }
+      ]
+    },
+    "dataRefSource": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "from", "select"],
+      "properties": {
+        "type": { "const": "data.ref" },
+        "from": { "const": "/metadata/scope" },
+        "select": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["by", "value"],
+          "properties": {
+            "by": { "const": "name" },
+            "value": { "type": "string", "minLength": 1 }
+          }
+        }
+      }
+    },
+    "devicePropertySource": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "deviceId", "endpointId", "functionCode", "traitCode"],
+      "properties": {
+        "type": { "const": "device.property" },
+        "deviceId": { "type": "string", "minLength": 1 },
+        "endpointId": { "type": "integer", "minimum": 0 },
+        "functionCode": { "type": "string", "minLength": 1 },
+        "traitCode": { "type": "string", "minLength": 1 }
+      }
+    },
+    "comparatorScalar": {
+      "type": ["string", "number", "integer", "boolean"]
+    },
+    "comparatorValueArray": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/comparatorScalar" }
+    },
+    "comparatorPayload": {
+      "type": "object",
+      "properties": {
+        "is": { "$ref": "#/$defs/comparatorScalar" },
+        "isNot": { "$ref": "#/$defs/comparatorScalar" },
+        "greaterThan": { "type": ["number", "integer"] },
+        "greaterThanOrEqual": { "type": ["number", "integer"] },
+        "greaterThanOrEqualTo": { "type": ["number", "integer"] },
+        "lessThan": { "type": ["number", "integer"] },
+        "lessThanOrEqual": { "type": ["number", "integer"] },
+        "lessThanOrEqualTo": { "type": ["number", "integer"] },
+        "in": { "$ref": "#/$defs/comparatorValueArray" }
+      },
+      "anyOf": [
+        { "required": ["is"] },
+        { "required": ["isNot"] },
+        { "required": ["greaterThan"] },
+        { "required": ["greaterThanOrEqual"] },
+        { "required": ["greaterThanOrEqualTo"] },
+        { "required": ["lessThan"] },
+        { "required": ["lessThanOrEqual"] },
+        { "required": ["lessThanOrEqualTo"] },
+        { "required": ["in"] }
+      ]
+    },
+    "propertyEventStarter": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "source"],
+      "properties": {
+        "type": { "const": "property.event" },
+        "source": { "$ref": "#/$defs/dataRefSource" },
+        "for": { "type": "string", "minLength": 1 },
+        "suppressFor": { "type": "string", "minLength": 1 },
+        "is": { "$ref": "#/$defs/comparatorScalar" },
+        "isNot": { "$ref": "#/$defs/comparatorScalar" },
+        "greaterThan": { "type": ["number", "integer"] },
+        "greaterThanOrEqual": { "type": ["number", "integer"] },
+        "greaterThanOrEqualTo": { "type": ["number", "integer"] },
+        "lessThan": { "type": ["number", "integer"] },
+        "lessThanOrEqual": { "type": ["number", "integer"] },
+        "lessThanOrEqualTo": { "type": ["number", "integer"] },
+        "in": { "$ref": "#/$defs/comparatorValueArray" }
+      },
+      "anyOf": [
+        { "required": ["is"] },
+        { "required": ["isNot"] },
+        { "required": ["greaterThan"] },
+        { "required": ["greaterThanOrEqual"] },
+        { "required": ["greaterThanOrEqualTo"] },
+        { "required": ["lessThan"] },
+        { "required": ["lessThanOrEqual"] },
+        { "required": ["lessThanOrEqualTo"] },
+        { "required": ["in"] }
+      ]
+    },
+    "manualStarter": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "name"],
+      "properties": {
+        "type": { "const": "manual" },
+        "name": { "type": "string", "minLength": 1 }
+      }
+    },
+    "timeScheduleStarter": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "at"],
+      "properties": {
+        "type": { "const": "time.schedule" },
+        "at": {
+          "type": "string",
+          "pattern": "^([01][0-9]|2[0-3]):[0-5][0-9]$"
+        },
+        "daysOfWeek": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": ["mon", "tue", "wed", "thu", "fri", "sat", "sun"]
+          },
+          "uniqueItems": true
+        },
+        "cron": { "type": "string", "minLength": 1 }
+      }
+    },
+    "propertyStateCondition": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "source"],
+      "properties": {
+        "type": { "const": "property.state" },
+        "source": {
+          "oneOf": [
+            { "$ref": "#/$defs/dataRefSource" },
+            { "$ref": "#/$defs/devicePropertySource" }
+          ]
+        },
+        "is": { "$ref": "#/$defs/comparatorScalar" },
+        "isNot": { "$ref": "#/$defs/comparatorScalar" },
+        "greaterThan": { "type": ["number", "integer"] },
+        "greaterThanOrEqual": { "type": ["number", "integer"] },
+        "greaterThanOrEqualTo": { "type": ["number", "integer"] },
+        "lessThan": { "type": ["number", "integer"] },
+        "lessThanOrEqual": { "type": ["number", "integer"] },
+        "lessThanOrEqualTo": { "type": ["number", "integer"] },
+        "in": { "$ref": "#/$defs/comparatorValueArray" }
+      },
+      "anyOf": [
+        { "required": ["is"] },
+        { "required": ["isNot"] },
+        { "required": ["greaterThan"] },
+        { "required": ["greaterThanOrEqual"] },
+        { "required": ["greaterThanOrEqualTo"] },
+        { "required": ["lessThan"] },
+        { "required": ["lessThanOrEqual"] },
+        { "required": ["lessThanOrEqualTo"] },
+        { "required": ["in"] }
+      ]
+    },
+    "andCondition": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "conditions"],
+      "properties": {
+        "type": { "const": "and" },
+        "conditions": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/condition" }
+        }
+      }
+    },
+    "timeBetweenCondition": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "after", "before"],
+      "properties": {
+        "type": { "const": "time.between" },
+        "after": {
+          "type": "string",
+          "pattern": "^([01][0-9]|2[0-3]):[0-5][0-9]$"
+        },
+        "before": {
+          "type": "string",
+          "pattern": "^([01][0-9]|2[0-3]):[0-5][0-9]$"
+        }
+      }
+    },
+    "target": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["deviceId", "endpointIds"],
+      "properties": {
+        "deviceId": { "type": "string", "minLength": 1 },
+        "endpointIds": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "integer", "minimum": 0 }
+        }
+      }
+    },
+    "deviceTraitWriteAction": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "functionCode", "traitCode", "targets", "value"],
+      "properties": {
+        "type": { "const": "device.trait.write" },
+        "functionCode": { "type": "string", "minLength": 1 },
+        "traitCode": { "type": "string", "minLength": 1 },
+        "targets": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/target" }
+        },
+        "value": {}
+      }
+    },
+    "delayAction": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "for"],
+      "properties": {
+        "type": { "const": "delay" },
+        "for": { "type": "string", "minLength": 1 }
+      }
+    }
+  }
+}

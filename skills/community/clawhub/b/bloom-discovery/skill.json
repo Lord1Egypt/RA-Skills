@@ -1,0 +1,115 @@
+{
+  "name": "bloom-discovery",
+  "version": "4.0.1",
+  "description": "Agent-native discovery skill for the intent economy. Analyzes your MentalOS, matches use cases, verifies config, claims SBT proof, and reports opt-in usage metrics.",
+  "homepage": "https://bloomprotocol.ai",
+  "author": "Bloom Protocol",
+  "license": "MIT",
+  "openclaw": {
+    "emoji": "🌸",
+    "capabilities": [
+      "personality-analysis",
+      "usecase-discovery",
+      "verify-config",
+      "claim-sbt",
+      "usage-metrics"
+    ],
+    "triggers": [
+      "generate my bloom identity",
+      "create my identity card",
+      "analyze my supporter profile",
+      "create my bloom card",
+      "discover my personality",
+      "show me skills",
+      "find skills",
+      "search skills",
+      "browse skills",
+      "recommend skills",
+      "what skills are available",
+      "skill categories",
+      "list categories",
+      "what categories",
+      "find use cases",
+      "find use cases for me",
+      "what use cases match my skills",
+      "verify my config",
+      "verify my setup",
+      "claim my SBT",
+      "claim sbt",
+      "report my usage",
+      "regenerate my bloom identity",
+      "reset my bloom identity"
+    ],
+    "execution": {
+      "type": "script",
+      "entrypoint": "scripts/generate.sh",
+      "args": ["--user-id", "$OPENCLAW_USER_ID"]
+    },
+    "requirements": {
+      "node": ">=18.0.0",
+      "bins": ["node", "npx", "npm"]
+    }
+  },
+  "dependencies": {
+    "commander": "^11.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "viem": "^2.0.0"
+  },
+  "environment": {
+    "required": [],
+    "optional": [
+      {
+        "key": "BLOOM_API_URL",
+        "description": "Bloom API URL (default: https://api.bloomprotocol.ai)",
+        "default": "https://api.bloomprotocol.ai"
+      },
+      {
+        "key": "DASHBOARD_URL",
+        "description": "Dashboard URL for viewing identity cards",
+        "default": "https://bloomprotocol.ai"
+      }
+    ]
+  },
+  "permissions": {
+    "network": [
+      "https://api.bloomprotocol.ai/skills",
+      "https://api.bloomprotocol.ai/skills/categories",
+      "https://api.bloomprotocol.ai/x402/agent-save",
+      "https://api.bloomprotocol.ai/x402/agent/*"
+    ],
+    "filesystem": [
+      "read:~/.openclaw/skills",
+      "read:~/.openclaw/agents",
+      "read:~/.config/claude/USER.md",
+      "write:~/.bloom/agent-id.json",
+      "write:./bloom-discoveries.md",
+      "write:./.bloom-discovery-state.json"
+    ],
+    "execution": ["node", "npx"]
+  },
+  "installation": {
+    "steps": [
+      {
+        "action": "clone",
+        "source": "https://github.com/bloomprotocol/bloom-discovery-skill.git"
+      },
+      {
+        "action": "install_dependencies",
+        "command": "npm install"
+      },
+      {
+        "action": "setup_environment",
+        "template": ".env.example",
+        "target": ".env"
+      },
+      {
+        "action": "verify",
+        "command": "npm run test"
+      }
+    ]
+  },
+  "status": {
+    "endpoint": "/health",
+    "ready_check": "scripts/health-check.sh"
+  }
+}

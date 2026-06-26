@@ -1,0 +1,4 @@
+interface:
+  display_name: "答案之书.skill"
+  short_description: "在电影、文学与音乐之间翻开一句带出处的回答，替提问者照亮当下的犹疑"
+  default_prompt: "Use $book-of-answers-skill to answer my question with a cited line drawn from the movie, literary, or music answer book, while keeping concise text output and per-user memory."

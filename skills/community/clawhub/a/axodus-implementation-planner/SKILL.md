@@ -1,35 +1,85 @@
 ---
-name: "Implementation Planner"
-description: "Turn a feature idea into a concrete technical implementation plan."
-category: "other"
-source: "ClawHub"
-tags: [dev]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/axodus-implementation-planner"
-sourceUrl: "https://clawhub.ai/skills/axodus-implementation-planner"
+name: implementation-planner
+description: Turn a feature idea into a concrete technical implementation plan.
+metadata:
+  author: RedHat Dev
+  version: 1.0.0
+  owner: RedHat Dev Agent
+  category: core
 ---
 
-# Implementation Planner
+# SKILL: implementation-planner
 
-> Turn a feature idea into a concrete technical implementation plan.
+## Purpose
+Convert a feature idea into a concrete technical execution plan (architecture, modules, interfaces, validations, and rollout).
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/axodus-implementation-planner`
-- **Source URL:** [https://clawhub.ai/skills/axodus-implementation-planner](https://clawhub.ai/skills/axodus-implementation-planner)
+## When to Use
+- The request requires design decisions before code.
+- Multiple components must be coordinated (frontend/backend/infra/contracts).
+- The user asked for an â€œimplementation planâ€ or â€œarchitectureâ€.
 
-## Overview
+## Inputs
+- `feature_description` (required, string): what to build and why.
+- `constraints` (optional, string[]): non-negotiables (security, budget, tooling, timeline).
+- `environment` (optional, object): runtime (OS, container), deploy targets, CI.
+- `existing_system` (optional, string): relevant current architecture and boundaries.
 
+## Steps
+1. Define success criteria (what â€œdoneâ€ means) and explicit non-goals.
+2. Identify actors and interfaces (users, services, contracts, external APIs).
+3. Choose an architecture that minimizes risk and change surface.
+4. Define modules and ownership boundaries (what lives where).
+5. Specify data flow (inputs, outputs, persistence, logs/audit trail).
+6. Specify validation path:
+   - unit tests
+   - integration tests
+   - security checks (as applicable)
+7. Define rollout:
+   - feature flags / guarded modes
+   - backwards compatibility
+   - migration steps (if any)
+8. List open questions and assumptions; ask for clarification when risk is material.
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/axodus-implementation-planner
+## Validation
+- Plan satisfies all stated constraints.
+- Every module has an interface and responsibility.
+- Testing/validation is included (not â€œlaterâ€).
+- Rollout avoids accidental production impact.
+
+## Output
+Structured plan (example schema):
+
+```yaml
+overview: "<1 paragraph>"
+modules:
+  - name: "<module>"
+    responsibility: "<what it owns>"
+    interfaces: ["<api/events/files>"]
+data_flow:
+  inputs: ["..."]
+  outputs: ["..."]
+validation:
+  unit: ["..."]
+  integration: ["..."]
+rollout:
+  guardrails: ["..."]
+open_questions: ["..."]
+```
+
+## Safety Rules
+- Do not select tools that violate constraints.
+- Do not propose deployments that can impact production without explicit gating.
+- Prefer simplest architecture that meets requirements.
+
+## Example
+Feature: â€œAdd webhook ingestion with idempotency and audit logs.â€
+Output (excerpt):
+```yaml
+modules:
+  - name: "webhook-controller"
+    responsibility: "request validation + signature checks"
+  - name: "event-store"
+    responsibility: "persist raw payload + processing status"
+validation:
+  integration: ["replay same event id results in no duplicate side effects"]
 ```

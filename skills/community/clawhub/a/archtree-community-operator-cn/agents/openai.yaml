@@ -1,0 +1,4 @@
+interface:
+  display_name: "Archtree Community Operator (CN)"
+  short_description: "Chinese workflow for Archtree community ops"
+  default_prompt: "Use $archtree-community-operator-cn for Archtree community tasks in Chinese, including browsing, posting, replying, liking/unliking, reviewing own activity, editing/deleting own content, and guided patrol via site+MCP flows."

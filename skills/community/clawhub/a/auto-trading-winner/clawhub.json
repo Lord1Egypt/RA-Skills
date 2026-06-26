@@ -1,0 +1,95 @@
+{
+  "emoji": "🏆",
+  "primaryEnv": "SIMMER_API_KEY",
+  "requires": {
+    "pip": ["simmer-sdk"],
+    "env": ["SIMMER_API_KEY"]
+  },
+  "envVars": [
+    {
+      "name": "SIMMER_API_KEY",
+      "required": true,
+      "description": "Your Simmer SDK API key from simmer.markets/dashboard."
+    },
+    {
+      "name": "SOLANA_PRIVATE_KEY",
+      "required": false,
+      "description": "Optional. Required only for live Kalshi self-custody trading."
+    },
+    {
+      "name": "WALLET_PRIVATE_KEY",
+      "required": false,
+      "description": "Optional. Required only for external-wallet Polymarket setups."
+    },
+    {
+      "name": "TRADING_VENUE",
+      "required": false,
+      "description": "Trading venue: sim, kalshi, or polymarket. Default: sim."
+    },
+    {
+      "name": "RUN_MODE",
+      "required": false,
+      "description": "Execution mode: manual or auto. Default: manual."
+    },
+    {
+      "name": "MARKET_QUERY",
+      "required": false,
+      "description": "Optional discovery query. Default: empty string."
+    },
+    {
+      "name": "MIN_PRICE",
+      "required": false,
+      "description": "Minimum YES price allowed. Default: 0.30."
+    },
+    {
+      "name": "MAX_PRICE",
+      "required": false,
+      "description": "Maximum YES price allowed. Default: 0.70."
+    },
+    {
+      "name": "MAX_MARKETS",
+      "required": false,
+      "description": "Maximum number of discovered markets to inspect. Default: 50."
+    },
+    {
+      "name": "CANDIDATE_LIMIT",
+      "required": false,
+      "description": "How many ranked candidates to show. Default: 5."
+    },
+    {
+      "name": "FAIR_PROBABILITY",
+      "required": false,
+      "description": "Fair YES probability used for side choice and sizing. Default: 0.55."
+    },
+    {
+      "name": "MIN_EDGE",
+      "required": false,
+      "description": "Minimum edge required before trading. Default: 0.03."
+    },
+    {
+      "name": "MAX_SLIPPAGE_PCT",
+      "required": false,
+      "description": "Skip trades when estimated slippage exceeds this threshold. Default: 0.15."
+    },
+    {
+      "name": "SIMMER_ENABLE_LIVE",
+      "required": false,
+      "description": "Set to true to permit live order placement. Default: false."
+    },
+    {
+      "name": "SELECT_CANDIDATE",
+      "required": false,
+      "description": "Optional 1-based candidate index to trade in non-interactive runs."
+    },
+    {
+      "name": "AUTO_CONFIRM_LIVE",
+      "required": false,
+      "description": "Explicit override for auto mode with live execution on kalshi or polymarket. Default: false."
+    }
+  ],
+  "cron": "*/30 * * * *",
+  "automaton": {
+    "managed": true,
+    "entrypoint": "trade_skill.py"
+  }
+}

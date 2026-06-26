@@ -1,0 +1,4 @@
+interface:
+  display_name: "Blender Plugin Engineer"
+  short_description: "Build Blender 4/5-compatible add-ons and generate bpy scripts."
+  default_prompt: "Develop Blender add-ons and bpy scripts compatible with Blender 4.x and 5.x."

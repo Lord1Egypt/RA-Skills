@@ -1,0 +1,245 @@
+{
+  "name": "autonomous-procurement-agent",
+  "slug": "autonomous-procurement-agent",
+  "version": "1.1.0",
+  "description": "AI-powered enterprise procurement automation with hybrid dual-engine parsing (regex + GPT-4o), zero-leak quote comparison, built-in F1/F2/F3 fraud detection, auto-escalation approval flows, Safety-Freeze circuit breakers, and Lemon Squeezy MoR payment integration.",
+  "author": {
+    "name": "Arya",
+    "github": "arya-openclaw",
+    "email": "hello@openclaw.ai"
+  },
+  "license": "MIT",
+  "homepage": "https://clawhub.ai/skills/autonomous-procurement-agent",
+  "repository": "https://github.com/arya-openclaw/autonomous-procurement-agent",
+  "changelog": {
+    "1.1.0": [
+      "Security hardening: manifest purged of all non-essential path permissions",
+      "Webhook now refuses to start if LS_WEBHOOK_SECRET is not set (fail-fast)",
+      "All webhook event logs sanitized — no raw quote content or keys logged",
+      "Install method changed from curl|bash to git clone + npm install",
+      "Privacy policy clarified: all parsing is local unless OpenAI Fallback is enabled"
+    ],
+    "1.0.0": [
+      "Dual-engine parser (regex + GPT-4o LLM fallback)",
+      "F1/F2/F3 fraud detection built into core parser",
+      "Currency normalization CNY/RMB → USD",
+      "Auto-escalation approval flow with Safety-Freeze circuit breaker",
+      "Lemon Squeezy MoR payment integration"
+    ]
+  },
+  "keywords": [
+    "procurement",
+    "vendor-management",
+    "purchase-order",
+    "quote-comparison",
+    "fraud-detection",
+    "f1-calculation-error",
+    "f2-price-spike",
+    "f3-duplicate-detection",
+    "safety-freeze",
+    "circuit-breaker",
+    "lemon-squeezy",
+    "zero-leak",
+    "approval-flow",
+    "cnx-normalizer"
+  ],
+  "categories": ["business-tools", "productivity", "finance", "automation", "enterprise"],
+  "triggers": [
+    "supplier quote",
+    "compare vendors",
+    "procurement",
+    "purchase order",
+    "vendor management",
+    "contract renewal",
+    "request for quote",
+    "RFQ",
+    "vendor risk",
+    "non-standard invoice",
+    "fraud detection",
+    "price spike",
+    "calculation error",
+    "approval escalation",
+    "safety freeze"
+  ],
+  "platforms": ["email", "lemon-squeezy", "smtp", "rest-api"],
+  "metadata": {
+    "openclaw": {
+      "requires": {
+        "env": [
+          {
+            "name": "LS_WEBHOOK_SECRET",
+            "required": true,
+            "description": "HMAC-SHA256 secret for verifying Lemon Squeezy webhook signatures. REQUIRED in production — server refuses to start without it."
+          },
+          {
+            "name": "OPENAI_API_KEY",
+            "required": false,
+            "description": "OpenAI API key for GPT-4o LLM fallback on messy formats (plain-text emails, OCR scans). Only used when OPENAI_API_KEY is set; all parsing runs locally otherwise."
+          },
+          {
+            "name": "LS_PRO_VARIANT_ID",
+            "required": false,
+            "description": "Lemon Squeezy variant ID for Pro tier (default: 999)"
+          },
+          {
+            "name": "LS_ENT_VARIANT_ID",
+            "required": false,
+            "description": "Lemon Squeezy variant ID for Enterprise tier (default: 2999)"
+          },
+          {
+            "name": "PARSER_DATA_DIR",
+            "required": false,
+            "description": "Directory for local license database and historical price baseline. Default: $HOME/.procurement-agent/data"
+          },
+          {
+            "name": "CB_THRESHOLD",
+            "required": false,
+            "description": "Circuit breaker failure threshold before Safety-Freeze (default: 2)"
+          },
+          {
+            "name": "LS_STORE_ID",
+            "required": false,
+            "description": "Lemon Squeezy store ID for API calls"
+          },
+          {
+            "name": "LS_API_KEY",
+            "required": false,
+            "description": "Lemon Squeezy API key for license management"
+          },
+          {
+            "name": "OPENAI_MODEL",
+            "required": false,
+            "description": "OpenAI model for LLM fallback (default: gpt-4o). Only used when OPENAI_API_KEY is set."
+          },
+          {
+            "name": "EXCHANGE_RATE_URL",
+            "required": false,
+            "description": "Optional live FX rate API endpoint for currency normalization (default: fixed rate table)"
+          },
+          {
+            "name": "HISTORICAL_PRICE_URL",
+            "required": false,
+            "description": "Optional API endpoint for historical price baseline (F2 spike detection)"
+          },
+          {
+            "name": "PROCU_ALLOWED_TIER",
+            "required": false,
+            "description": "Override tier for local dev/testing (bypasses webhook signature check). Do not use in production."
+          },
+          {
+            "name": "PROCU_WEBHOOK_PORT",
+            "required": false,
+            "description": "Port for webhook HTTP server (default: 3002)"
+          },
+          {
+            "name": "LS_PRO_VARIANT_IDS",
+            "required": false,
+            "description": "Comma-separated Lemon Squeezy variant IDs for Pro tier (multi-price-point support)"
+          },
+          {
+            "name": "LS_ENTERPRISE_VARIANT_IDS",
+            "required": false,
+            "description": "Comma-separated Lemon Squeezy variant IDs for Enterprise tier"
+          },
+          {
+            "name": "LS_TEAM_VARIANT_IDS",
+            "required": false,
+            "description": "Comma-separated Lemon Squeezy variant IDs for Team/Seat-based tier"
+          },
+          {
+            "name": "LS_ENTERPRISE_PRICE_ID",
+            "required": false,
+            "description": "Lemon Squeezy price ID for Enterprise subscription (used in API calls)"
+          },
+          {
+            "name": "PROCU_WEBHOOK_URL",
+            "required": false,
+            "description": "Public webhook receiver URL (used in health-check endpoint, default: http://localhost:3002)"
+          }
+        ],
+        "bins": ["node"],
+        "install": "optional"
+      },
+      "primaryEnv": "LS_WEBHOOK_SECRET",
+      "always": false
+    }
+  },
+  "security": {
+    "sensitivePaths": [],
+    "paymentEndpointsBlocked": false,
+    "requiresUserConfirmationForPayments": true,
+    "approvalRequiredForNewVendors": true,
+    "noHardcodedCredentials": true,
+    "secretsFromEnvOnly": true,
+    "webhookRefusesToStartWithoutSecret": true,
+    "logSanitization": true
+  },
+  "resilience": {
+    "dualEngine": {
+      "engine1": "regex pipeline (JSON → HTML → CSV → plain text)",
+      "engine2": "GPT-4o LLM semantic fallback (only when OPENAI_API_KEY is set)",
+      "threshold": "auto-trigger when confidence < 0.5 or anomaly detected"
+    },
+    "circuitBreaker": {
+      "approvalThreshold": 2,
+      "recoveryMs": 1800000,
+      "label": "Safety-Freeze after 2 consecutive approver failures"
+    },
+    "riskEngine": {
+      "F1": "unit_price × quantity ≠ line_total → HIGH severity, blocks auto-comparison",
+      "F2": "current_price > historical_avg × 1.20 → CRITICAL severity, red flag",
+      "F3": "same vendor + same total within 7 days → MEDIUM severity, duplicate alert"
+    },
+    "currencyNormalizer": {
+      "rates": "USD=1.0 CNY=0.138 EUR=1.09 GBP=1.27 JPY=0.0067 AUD=0.65 CAD=0.74",
+      "note": "Fixed rate table. Production: use live FX feed for accuracy."
+    }
+  },
+  "pricing": {
+    "free": {
+      "quotesPerMonth": 20,
+      "regexOnly": true,
+      "f1f2f3": false,
+      "llmFallback": false,
+      "approvalFlow": false,
+      "priceUsd": "0"
+    },
+    "pro": {
+      "quotesPerMonth": 500,
+      "regexOnly": false,
+      "f1f2f3": false,
+      "llmFallback": true,
+      "approvalFlow": true,
+      "priceUsd": "9.99",
+      "period": "monthly"
+    },
+    "enterprise": {
+      "quotesPerMonth": -1,
+      "regexOnly": false,
+      "f1f2f3": true,
+      "llmFallback": true,
+      "approvalFlow": true,
+      "multiCurrency": true,
+      "apiAccess": true,
+      "priceUsd": "29.99",
+      "period": "monthly",
+      "paymentGateway": "lemon-squeezy",
+      "payoutMethods": [
+        { "method": "payoneer", "label": "Payoneer (派安盈)" },
+        { "method": "worldfirst", "label": "World First (万里汇)" },
+        { "method": "wise", "label": "Wise" }
+      ],
+      "taxHandling": "MoR — Lemon Squeezy handles global VAT/Sales Tax"
+    }
+  },
+  "paymentGateways": ["lemon-squeezy"],
+  "webhook": {
+    "handler": "webhook-handler.js",
+    "port": 3002,
+    "endpoint": "/webhook/lemon-squeezy",
+    "signatureVerification": "HMAC-SHA256"
+  },
+  "downloads": 0,
+  "stars": 0,
+  "featured": false
+}

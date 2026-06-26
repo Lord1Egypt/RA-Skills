@@ -1,0 +1,8 @@
+---
+name: backend-architecture
+description: Design backend APIs, services, persistence, and observability with security.
+version: 1.0.0
+display_name: "Backend Architecture"
+triggers:
+System.Object[]
+---

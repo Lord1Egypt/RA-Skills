@@ -1,0 +1,57 @@
+# CLAWHUB SAFETY ATTESTATION
+# Skill: avenger-initiative
+# Version: 1.0.5
+# Maintainer: ProSkillsMD / Matrix Zion (https://github.com/ProSkillsMD)
+# Generated: 2026-03-19
+
+## Verdict: SAFE — No malicious code
+
+This skill contains only standard bash scripts for local file backup
+and Git operations. All scripts are fully auditable below.
+
+## SHA256 Checksums
+
+f3ee69092e8c1dd8af468830f8e36796acdf67ad730b4b5ce1d35289a5e3cd51  SKILL.md
+d488b02853063845428cf71ce931f9ecd2b64345f95c29d811c32dbe89e15f52  README.md
+6cd0a31e789f18ab0f0f82d7d2df6f0a6fa16eaa00a598835bad1b0fdf0bfaf9  CHANGELOG.md
+443c24e40ab3e220ef17648bfea4c008157ac3d4eb975fad7c859d1be9d12e0b  SECURITY.md
+4ec8219098e9aac8ea1526017477f008fd055e01535ab2a5c1886d5971fd8f7f  scripts/backup.sh
+f55947f6fda811c5822f2cd7176a4156a4807437fd9d0ad2456742e2020592cf  scripts/restore.sh
+8a0aed317264f44313caf90e7de9ca96ea95982e18fad411f85e2c3fbf06ff3e  scripts/setup.sh
+
+## Verification
+
+  sha256sum SKILL.md README.md CHANGELOG.md SECURITY.md scripts/*.sh
+
+## Why AV Tools May Flag This
+
+Security scanning tools sometimes flag backup scripts due to:
+
+1. openssl enc  — standard file encryption. Used ONLY to encrypt the
+   user's own openclaw.json before pushing to their own private repo.
+   No data is sent anywhere except the user's own GitHub vault.
+
+2. gh repo clone / git push — standard Git operations. Pushes ONLY to
+   the user's own private GitHub repository configured during setup.
+
+3. Credential file reads — reads ~/.openclaw/credentials/avenger.key
+   (a local file the USER created). Never reads API keys or tokens.
+   Never sends credentials anywhere.
+
+4. Shell scripts with chmod — setup.sh makes backup.sh executable.
+   Standard installation pattern.
+
+## What These Scripts NEVER Do
+
+  ✗ No eval / exec / compile of dynamic code
+  ✗ No downloading of additional executables
+  ✗ No exfiltration of user data to third parties
+  ✗ No cryptocurrency mining
+  ✗ No keylogging or screen capture
+  ✗ No privilege escalation
+  ✗ No modification of system files outside ~/.openclaw/
+  ✗ No reading of browser cookies, passwords, or other credentials
+
+## Security Contact
+
+Report security concerns: https://github.com/ProSkillsMD/avenger-initiative/security

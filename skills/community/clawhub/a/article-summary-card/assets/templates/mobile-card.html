@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{{TITLE}}</title>
+    <link rel="stylesheet" href="{{CSS_HREF}}" />
+  </head>
+  <body>
+    <main class="page">
+      <div class="page-decor decor-top"></div>
+      <div class="page-decor decor-bottom"></div>
+      <div class="page-decor decor-side"></div>
+
+      <section class="hero">
+        <div class="chip">文章总结</div>
+        <h1 class="title">{{TITLE}}</h1>
+        <p class="source">来源：{{SOURCE}}</p>
+      </section>
+
+      <section class="card section-card">
+        <h2 class="section-title">一句话总结</h2>
+        <p class="summary-text">{{ONE_SENTENCE}}</p>
+      </section>
+
+      {{SECTION_BLOCKS}}
+
+      <section class="card section-card card-soft">
+        <h2 class="section-title">最后记住什么</h2>
+        <ul class="why-list">
+          <li class="why-item">
+            <span class="list-bullet" aria-hidden="true"></span
+            ><span class="list-text">{{CLOSING_TAKEAWAY}}</span>
+          </li>
+        </ul>
+      </section>
+
+      {{TAGS_BLOCK}}
+
+      <footer class="footer">由 article-summary-card 生成</footer>
+    </main>
+    <script>
+      (async function () {
+        const setHeight = () => {
+          const page = document.querySelector(".page");
+          const footer = document.querySelector(".footer");
+          const tagsCard = document.querySelector(".tags-card");
+          const lastSection = page
+            ? page.querySelector(".section-card:last-of-type")
+            : null;
+          const footerRect = footer
+            ? footer.getBoundingClientRect()
+            : { bottom: 0 };
+          const tagsRect = tagsCard
+            ? tagsCard.getBoundingClientRect()
+            : { bottom: 0 };
+          const lastSectionRect = lastSection
+            ? lastSection.getBoundingClientRect()
+            : { bottom: 0 };
+          const bodyStyle = window.getComputedStyle(document.body);
+          const bodyMarginBottom = parseFloat(bodyStyle.marginBottom || "0");
+          const pageStyle = page ? window.getComputedStyle(page) : null;
+          const footerStyle = footer ? window.getComputedStyle(footer) : null;
+          const pagePaddingBottom = pageStyle
+            ? parseFloat(pageStyle.paddingBottom || "0")
+            : 0;
+          const contentBottom = Math.max(
+            footerRect.bottom,
+            tagsRect.bottom,
+            lastSectionRect.bottom,
+          );
+          const safetyBottom = Math.min(pagePaddingBottom, 12);
+          const measuredHeight = Math.ceil(
+            contentBottom + safetyBottom + bodyMarginBottom,
+          );
+          document.documentElement.setAttribute(
+            "data-render-height",
+            String(measuredHeight),
+          );
+        };
+
+        setHeight();
+
+        if (document.fonts && document.fonts.ready) {
+          try {
+            await document.fonts.ready;
+            setHeight();
+          } catch (error) {
+            // Ignore font readiness errors and still measure the layout.
+          }
+        }
+
+        setTimeout(setHeight, 0);
+        requestAnimationFrame(() => {
+          setHeight();
+          requestAnimationFrame(setHeight);
+        });
+      })();
+    </script>
+  </body>
+</html>

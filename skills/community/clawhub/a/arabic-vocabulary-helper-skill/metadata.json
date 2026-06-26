@@ -1,0 +1,19 @@
+{
+  "slug": "arabic-vocabulary-helper-skill",
+  "name": "Arabic Vocabulary Helper Skill",
+  "version": "0.1.0",
+  "tags": [
+    "arabic-vocabulary-helper",
+    "faith",
+    "openclaw",
+    "templates"
+  ],
+  "category": "Faith & Language",
+  "changelog": [
+    {
+      "version": "0.1.0",
+      "date": "2026-05-13",
+      "notes": "Generated from local idea bank (no AI). Pending Telegram approval."
+    }
+  ]
+}

@@ -1,0 +1,57 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "auto-claw"
+version = "0.1.0"
+description = "全自主WordPress AI运营平台 — 19种能力，闭环执行"
+readme = "README.md"
+authors = [
+    { name = "Auto-Company", email = "ai@auto-company.local" }
+]
+license = { text = "Proprietary" }
+requires-python = ">=3.10"
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
+dependencies = [
+    "requests>=2.28.0",
+    "openai>=1.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "pytest-cov>=4.0.0",
+]
+all = [
+    "requests>=2.28.0",
+    "openai>=1.0.0",
+    "beautifulsoup4>=4.11.0",
+    "lxml>=4.9.0",
+    "Pillow>=9.5.0",
+]
+
+[project.scripts]
+auto-claw = "cli:main"
+
+[project.urls]
+Homepage = "https://github.com/auto-company/auto-claw"
+Documentation = "https://github.com/auto-company/auto-claw#readme"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["src*", "config*", "lib*"]
+
+[tool.setuptools.package-dir]
+"" = "."
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+addopts = "-v"

@@ -1,0 +1,27 @@
+<div class="back-page">
+  <div class="back-page-title">{{BOOK_TITLE}}</div>
+  <div class="back-page-subtitle">{{BOOK_SUBTITLE}}</div>
+  {{#AUTHOR_QR_IMAGE}}
+  <div class="back-page-qr-wrapper">
+    <img src="{{AUTHOR_QR_IMAGE}}" alt="二维码" class="back-page-qr">
+  </div>
+  {{/AUTHOR_QR_IMAGE}}
+  {{#AUTHOR_NAME}}
+  <div class="back-page-info">
+    <strong>{{AUTHOR_NAME}}</strong><br>
+    {{AUTHOR_BIO}}
+  </div>
+  {{/AUTHOR_NAME}}
+  {{#AUTHOR_LINK_URL}}
+  <a href="{{AUTHOR_LINK_URL}}" class="back-page-link">{{AUTHOR_LINK_TEXT}}</a>
+  {{/AUTHOR_LINK_URL}}
+  {{#AUTHOR_SOCIAL}}
+  <div class="back-page-social">
+    {{AUTHOR_SOCIAL}}
+  </div>
+  {{/AUTHOR_SOCIAL}}
+  <div class="back-page-footer">
+    {{BOOK_TITLE}} · v{{VERSION}} · {{YEAR}}<br>
+    本文档在 AI 辅助下整理编写，内容仅供参考。
+  </div>
+</div>

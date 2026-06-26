@@ -1,0 +1,41 @@
+{
+  "name": "@openclaw/autonomous-procurement-agent",
+  "version": "1.1.0",
+  "description": "Enterprise procurement automation with dual-engine parsing (regex + GPT-4o), F1/F2/F3 fraud detection, auto-escalation approval flows, Safety-Freeze circuit breakers, and Lemon Squeezy MoR payment integration.",
+  "main": "self-healing-parser.js",
+  "bin": {
+    "procurement-agent": "./self-healing-parser.js"
+  },
+  "scripts": {
+    "parse": "node self-healing-parser.js parse",
+    "approve": "node self-healing-parser.js approve",
+    "compare": "node self-healing-parser.js compare",
+    "webhook": "node webhook-handler.js",
+    "test": "node ../workspace/procurement-stress-test.js"
+  },
+  "keywords": [
+    "procurement",
+    "enterprise",
+    "fraud-detection",
+    "dual-engine",
+    "llm-fallback",
+    "approval-flow",
+    "safety-freeze",
+    "lemon-squeezy",
+    "non-standard-format"
+  ],
+  "author": {
+    "name": "Arya",
+    "url": "https://openclaw.ai"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5"
+  },
+  "optionalDependencies": {
+    "openai": "^4.80.0"
+  }
+}

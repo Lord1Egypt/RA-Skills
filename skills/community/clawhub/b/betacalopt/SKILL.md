@@ -1,35 +1,44 @@
 ---
-name: "Beta Calendar Optimizer"
-description: "Analyzes and rewrites calendar events into clear, actionable tasks. Removes meeting fluff and converts vague descriptions into specific deliverables with dea..."
-category: "productivity"
-source: "ClawHub"
-tags: [productivity]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/betacalopt"
-sourceUrl: "https://clawhub.ai/skills/betacalopt"
+name: calendar-optimizer
+description: Analyzes and rewrites calendar events into clear, actionable tasks. Removes meeting fluff and converts vague descriptions into specific deliverables with deadlines.
+metadata:
+  openclaw:
+    emoji: "📅"
+    requires:
+      bins: [python3]
+    always: false
 ---
 
-# Beta Calendar Optimizer
+# Calendar Optimizer
 
-> Analyzes and rewrites calendar events into clear, actionable tasks. Removes meeting fluff and converts vague descriptions into specific deliverables with dea...
+Transforms messy calendar events into clear, actionable tasks.
 
-- **Category:** Productivity
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/betacalopt`
-- **Source URL:** [https://clawhub.ai/skills/betacalopt](https://clawhub.ai/skills/betacalopt)
+## Usage
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/betacalopt
+python3 optimize.py --input calendar.csv --output tasks.md
+```
+
+## Input Format
+
+```csv
+event,time,attendees
+"Synergy sync - let's circle back",Monday 2pm,5
+"Q4 Planning - moving forward paradigm shift",Tuesday 10am,8
+```
+
+## Output
+
+```markdown
+## Monday 2pm — Synergy Sync
+**Actual topic:** Website redesign review
+**Action:** Review mockups and give feedback
+**Prep:** Bring 3 specific comments
+**Attendees:** 5 (note: consider sending deputy)
+
+## Tuesday 10am — Q4 Planning
+**Actual topic:** Q4 OKR finalization
+**Action:** Approve final OKRs
+**Prep:** Review draft OKRs sent Friday
+**Attendees:** 8 (decision-maker: Sarah)
 ```

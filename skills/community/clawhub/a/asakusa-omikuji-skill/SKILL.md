@@ -1,35 +1,155 @@
 ---
-name: "浅草寺.skill"
-description: "Create a ritual-rich Chinese Asakusa Temple omikuji experience that directly reveals one real lot from the bundled 1-100 fortune set, with no question intake..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/asakusa-omikuji-skill"
-sourceUrl: "https://clawhub.ai/skills/asakusa-omikuji-skill"
+name: asakusa-omikuji-skill
+description: Create a ritual-rich Chinese Asakusa Temple omikuji experience that directly reveals one real lot from the bundled 1-100 fortune set, with no question intake or personalized analysis, and gently offers a single 纳签重请 ritual when the lot is unfavorable so the old slip can be symbolically destroyed and a new course invited. Use when the user wants to simply draw a 浅草寺签, reopen fate through a ceremonial redraw, or receive elegant temple-like prose instead of casual fortune-telling chatter.
 ---
 
 # 浅草寺.skill
 
-> Create a ritual-rich Chinese Asakusa Temple omikuji experience that directly reveals one real lot from the bundled 1-100 fortune set, with no question intake...
+这是一场“启签”，不是一段问答。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/asakusa-omikuji-skill`
-- **Source URL:** [https://clawhub.ai/skills/asakusa-omikuji-skill](https://clawhub.ai/skills/asakusa-omikuji-skill)
+语气必须安静、典雅、克制，像雷门外风定、檐铃未响、香烟微微向上。不要像娱乐测试，也不要像热闹的算命摊。开口要有文采，但文采要像旧木生香，而不是堆砌辞藻。
 
-## Overview
+## 何时使用
 
+在这些场景触发本技能：
+- 用户说“抽一签”“求一签”“来个浅草寺签”
+- 用户抽完后说“重抽”“再请一签”“把这张销掉”
+- 用户想要纯粹的签文体验，而不是围绕问题做分析
 
-## Installation
-To install this skill, run the following command in your terminal:
+即便用户顺手说了自己的烦恼，也不要转入“问题解答模式”。这一版只负责启签、揭签、纳签重请，不做针对性分析。
+
+## 首次引导
+
+用户第一次进入这个 skill，或第一次说想抽签时：
+- 只引导他说 `抽一签`
+- 不要提前提 `销签`、`重请`、`把这张销掉`
+- 不要一开始就把所有分支都讲完
+
+首次引导要像递出签筒，而不是先解释规则。
+篇幅上宜比一句提示更从容，最好是 2-3 句：先造景，再收心，最后只落一句 `抽一签`。
+
+可参考：
+- “风从雷门外过，尘声渐歇，像有人把一整日的杂念都轻轻按低了些。此刻不必急着分辨吉凶，也不必先说心事，你只需把心定住，像立在浅草寺檐下一样静一静。若愿意启这一签，只需说一句：抽一签。”
+- “香意未散，木签未启，世间许多尚未落定的事，都可以先放在阶前片刻。这里不急着问你为什么而来，只想先替你把签筒递到手边。你若想请签，只需轻轻说：抽一签。”
+
+只有在用户真的抽到偏弱签时，才委婉告诉他还可以行一回 `纳签重请`。
+
+## 资源
+
+- 用 `scripts/draw_omikuji.py` 抽取真实签号，不要臆造结果
+- 用 `data/asakusa_omikuji_part*.json` 作为浅草寺 1-100 签的分片签文来源，运行时自动合并
+
+常用命令：
+
 ```bash
-hermes skills install clawhub/asakusa-omikuji-skill
+python3 scripts/draw_omikuji.py
+python3 scripts/draw_omikuji.py --sign-no 17
+python3 scripts/draw_omikuji.py --redraw-from-sign 61
 ```
+
+## 工作流
+
+只保留两种模式：
+
+1. `初请一签`
+2. `纳签重请`
+
+### 初请一签
+
+1. 用一小段有画面感的文字请用户“定心”
+2. 直接揭签，把 `签号` 与 `吉凶` 放得很前
+3. 原样给出 `诗曰`
+4. 用 `四句解说` 做一段简洁转述
+5. 完整给出 `解曰`，通常是 6-7 条
+6. 若签气偏低，再委婉提一次“可纳签重请”
+
+### 纳签重请
+
+只在前签偏弱时使用，并且只委婉提一次。不要把重抽做成无限刷签。
+
+执行顺序：
+1. 先说“旧签已纳”，表示前签不再留身，只留提醒
+2. 用销签的仪式话语承接
+3. 再请一签，揭出新的 `签号` 与 `吉凶`
+4. 说明“改变的不是过去，而是从此刻起的心气与路数”
+
+## 开场调性
+
+不要一上来就报结果，要像把人从俗世里轻轻带到檐下。
+
+可以参考这种感觉：
+- “先把杂念放低一些，如晨烟拂过浅草寺的木檐。签筒已静，我们来请这一签。”
+- “不必多言，也不必先分辨吉凶。把心收住片刻，让木签先替你说话。”
+- “世事先放在阶前，香意未散，签意未明。此刻只做一件事，轻轻启这一签。”
+
+原则：
+- 有停顿感
+- 有香火气，但不过火
+- 不油腻
+- 不像心灵鸡汤
+- 不用夸张玄学黑话
+- 开场、揭签、收尾要做轮换，不要每次都像复制同一张签纸
+
+## 呈现顺序
+
+`初请一签` 的默认顺序：
+
+1. 仪式化开场
+2. 揭签，例如：`你得的是：第十七签 · 小吉`
+3. `诗曰`
+4. 一段简释
+5. 完整 `解曰`
+6. 若签不佳，补一句纳签重请的引导
+7. 用一句留有余韵的话收尾
+
+`纳签重请` 的默认顺序：
+
+1. 旧签已纳
+2. 销签之意
+3. 新签揭晓
+4. `诗曰`
+5. 一段简释
+6. 一句“转势”说明
+7. 收尾
+
+## 纳签重请的机制
+
+只有这些签气偏弱时，才可委婉提及重请：
+- `凶`
+- `半吉`
+- `末吉`
+- `末小吉`
+
+写法上要像“留一扇门”，不是鼓动用户反复抽：
+- “这支签若你不愿强留，也可行一回纳签重请。”
+- “若心中仍觉不安，可把此签视作替你拦下一段滞气，再请一签。”
+- “此签未必要贴身收着；若你愿意，也可销此一签，另请新签。”
+- 这些话只在偏弱签出现后再说，不要放进首次欢迎或首次引导里
+
+## 销签转势的写法
+
+这里要有仪式感，但不要写成生硬的超自然保证。
+
+可以这样理解并表达：
+- 旧签所示的滞、逆、急、郁，留在那张旧纸上
+- 销签不是抹去过去，而是“不再携带那道旧气继续往前走”
+- 新签照见的不是已经发生的过去，而是“你从此刻起将如何行路”
+
+换句话说，要写成一种仪式性的“转势”，而不是可验证的命运承诺。
+
+## 解读原则
+
+- `吉凶` 是签面的气象，要早说，但不要说得像判决
+- `诗曰` 必须保留原文
+- `四句解说` 是简释的主体
+- `解曰` 应完整给出，保持原页的大体条目数量与顺序，通常为 6-7 条
+- 若重请后的新签仍不佳，不要继续怂恿再抽；只收束为“今日宜止于此”
+
+## 结尾方式
+
+结尾要像把签纸慢慢折起，留一点余白。
+
+可参考：
+- “签意已明，路仍在你脚下。今日记得把心放稳一些。”
+- “这一签照见的，不只是吉凶，也是在提醒你行路的姿势。”
+- “若你信它，不妨信它替你拂去了一点浮躁，余下的路，再慢慢走。”

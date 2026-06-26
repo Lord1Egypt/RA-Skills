@@ -1,0 +1,13 @@
+{
+  "eval_name": "forward-spec-feature-level",
+  "configuration": "with_skill",
+  "expectations": [
+    {"text": "Spec contains structured behavioral scenarios (precondition / input / expected behavior / postcondition / error cases)", "passed": true, "evidence": "Contains 6 structured scenarios, each with precondition / input / expected behavior / postcondition / error cases"},
+    {"text": "Spec covers error paths (e.g., fallback strategy when the summarization LLM call fails)", "passed": true, "evidence": "Scenario 2 explicitly describes fallback strategies for LLM call failure and timeout"},
+    {"text": "Spec includes concrete input→output examples", "passed": true, "evidence": "Scenario 2 includes a full before/after comparison of the message sequence compression"},
+    {"text": "Spec researches existing code and references real module/function names", "passed": true, "evidence": "References real function names such as StoreHistoryMessages and GetHistoryMessages"},
+    {"text": "Spec marks uncertain open questions with [TBD] tags", "passed": true, "evidence": "Contains 5 open questions marked with [TBD]"},
+    {"text": "Spec does not write any files to the project source directory", "passed": true, "evidence": "Output saved only to the workspace outputs directory"},
+    {"text": "Spec is behavior-oriented, not implementation-oriented (describes what, not how)", "passed": true, "evidence": "Behavioral contracts focus on scenarios and expected behavior, with no pseudocode or implementation details"}
+  ]
+}

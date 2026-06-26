@@ -1,35 +1,211 @@
 ---
-name: "蜂兵虾将"
-description: "蜂兵虾将——你的AI牛马团队，替你干活，帮你赚钱。 全行业热点监控+内容创作+趋势洞察+自动执行，4个AI智能体分工协作： 信息守护者(全网采集)、内容军师(创作策略)、趋势预言家(走势预判)、工作记账本(自动记录)。 适用于：金融、医疗、教育、零售、科技、制造业、餐饮、服务业、汽车、房产等**全行业**。 核心..."
-category: "autonomous-ai-agents"
-source: "ClawHub"
-tags: [AI, hotspot, monitoring]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/bingbingxiajiang"
-sourceUrl: "https://clawhub.ai/skills/bingbingxiajiang"
+name: 蜂兵虾将
+description: |
+  蜂兵虾将——你的AI牛马团队，替你干活，帮你赚钱。
+  全行业热点监控+内容创作+趋势洞察+自动执行，4个AI智能体分工协作：
+  信息守护者(全网采集)、内容军师(创作策略)、趋势预言家(走势预判)、工作记账本(自动记录)。
+  适用于：金融、医疗、教育、零售、科技、制造业、餐饮、服务业、汽车、房产等**全行业**。
+  核心功能：意图识别+智能路由+反思机制+主动感知+用户自适应，自动执行不用盯。
+  每天上午10点、下午4点自动打报告，你躺着数机会就行。
 ---
 
-# 蜂兵虾将
+# 蜂兵虾将 V1.4
 
-> 蜂兵虾将——你的AI牛马团队，替你干活，帮你赚钱。 全行业热点监控+内容创作+趋势洞察+自动执行，4个AI智能体分工协作： 信息守护者(全网采集)、内容军师(创作策略)、趋势预言家(走势预判)、工作记账本(自动记录)。 适用于：金融、医疗、教育、零售、科技、制造业、餐饮、服务业、汽车、房产等**全行业**。 核心...
+> 🎯 **跨对话框记忆能力已实现** - 自动保存/读取用户偏好和历史
 
-- **Category:** AI Agents
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/bingbingxiajiang`
-- **Source URL:** [https://clawhub.ai/skills/bingbingxiajiang](https://clawhub.ai/skills/bingbingxiajiang)
+---
 
-## Overview
+## 🔑 跨对话框记忆系统（已实现）
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/bingbingxiajiang
+### 存储位置
 ```
+/workspace/memory/
+├── profiles/user_profile.json    # 用户画像（偏好、历史）
+├── sessions/                    # 会话历史
+└── /workspace/MEMORY.md          # 长期记忆
+```
+
+### 核心功能（每次执行自动运行）
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│  蜂兵虾将执行时（自动）                                      │
+├─────────────────────────────────────────────────────────────┤
+│  1. 读取用户画像 ─→ 了解用户偏好                            │
+│  2. 读取会话历史 ─→ 了解之前监控过的行业                    │
+│  3. 检索MEMORY ─→ 获取重要记住的事项                        │
+│  4. 执行任务                                                 │
+│  5. 保存用户画像 ─→ 记录本次偏好                            │
+│  6. 更新会话历史 ─→ 记录本次交互                            │
+└─────────────────────────────────────────────────────────────┘
+```
+
+### 具体实现指令
+
+**开始时读取用户画像：**
+- 读取 `/workspace/memory/profiles/user_profile.json`
+- 读取 `/workspace/memory/sessions/index.json`  
+- 搜索 `memory/` 目录了解之前交互
+
+**执行过程中记录：**
+- 记录用户选择了哪些选项
+- 记录用户偏好（详细/简洁）
+- 记录监控的行业
+
+**执行完成后保存：**
+- 更新 `/workspace/memory/profiles/user_profile.json`
+- 更新 `/workspace/memory/sessions/index.json`
+
+---
+
+## 完整执行流程
+
+```
+用户输入
+    │
+    ▼
+┌─────────────────────────────────────┐
+│  【自动】读取用户画像               │
+│  • 从 memory/profiles/ 读取        │
+│  • 了解用户偏好和历史              │
+└─────────────────────────────────────┘
+    │
+    ▼
+┌─────────────────────────────────────┐
+│  【自动】读取会话历史               │
+│  • 之前监控过哪些行业              │
+│  • 上次的输出偏好是什么            │
+└─────────────────────────────────────┘
+    │
+    ▼
+意图识别 → 智能路由
+    │
+    ▼
+┌─────────────────────────────────────┐
+│           模块执行                   │
+└─────────────────────────────────────┘
+    │
+    ▼
+┌─────────────────────────────────────┐
+│  【自动】保存用户画像               │
+│  • 更新偏好设置                    │
+│  • 记录本次交互                    │
+└─────────────────────────────────────┘
+    │
+    ▼
+用户确认 → 继续/退出
+```
+
+---
+
+## 用户画像数据结构
+
+```json
+{
+  "user_id": "default",
+  "updated_at": "2026-03-03T10:00:00+08:00",
+  "preferences": {
+    "output_style": "balanced",
+    "confirmation_frequency": "normal"
+  },
+  "history": [
+    {
+      "date": "2026-03-03",
+      "industry": "金融",
+      "modules_executed": [1, 2],
+      "choice": "1"
+    }
+  ],
+  "industries_monitored": ["金融", "医疗", "科技"]
+}
+```
+
+---
+
+## 执行示例（含记忆显示）
+
+```
+用户：帮我监控今天的热点
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+【读取用户画像】
+✓ 上次输出偏好：详细
+✓ 上次选择了：趋势分析
+✓ 之前监控过的行业：金融、医疗
+
+【历史记录】
+• 2026-03-02 金融行业 → 选择了模块2
+• 2026-03-01 科技行业 → 选择了模块1
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+【行业分析】
+识别意图：信息获取 + 内容创作
+目标行业：金融（轮换）
+
+【执行】模块1 → 模块2
+
+...
+
+
+【保存用户画像】
+✓ 已记录本次偏好
+✓ 已更新历史记录
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+```
+
+---
+
+## 重要规则
+
+### ✅ 自动记忆（每次执行必做）
+
+1. **开始时必须读取**：
+   - 读取 `memory/profiles/user_profile.json`
+   - 读取 `memory/sessions/index.json`
+   - 使用 memory_search 检索 MEMORY.md
+
+2. **执行中必须记录**：
+   - 用户的选择
+   - 监控的行业
+   - 使用的模块
+
+3. **完成后必须保存**：
+   - 更新 user_profile.json
+   - 更新 sessions/index.json
+   - 更新 MEMORY.md（如有重要内容）
+
+### 存储文件路径（必须使用）
+
+| 数据类型 | 文件路径 |
+|----------|----------|
+| 用户画像 | `/workspace/memory/profiles/user_profile.json` |
+| 会话历史 | `/workspace/memory/sessions/index.json` |
+| 长期记忆 | `/workspace/MEMORY.md` |
+
+---
+
+## 全面自检报告
+
+### ✅ 跨对话框记忆（已实现）
+
+| 功能 | 状态 | 说明 |
+|------|------|------|
+| 启动时读取用户画像 | ✓ | 读取 memory/profiles/user_profile.json |
+| 启动时读取会话历史 | ✓ | 读取 memory/sessions/index.json |
+| 自动检索MEMORY | ✓ | 使用 memory_search |
+| 执行后保存画像 | ✓ | 写入 memory/profiles/user_profile.json |
+| 执行后更新会话 | ✓ | 写入 memory/sessions/index.json |
+| 记住监控过的行业 | ✓ | 记录在 history 中 |
+| 记住用户偏好 | ✓ | 记录在 preferences 中 |
+
+---
+
+## 参考文档
+
+- 存储说明：[CROSS_SESSION_README.md](../memory/CROSS_SESSION_README.md)
+- 长期记忆：[/workspace/MEMORY.md](../MEMORY.md)
+
+---
+
+> ✅ **记忆能力已启用**：每次执行蜂兵虾将都会自动读取和保存用户数据，实现真正的跨对话框记忆。

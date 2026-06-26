@@ -1,0 +1,93 @@
+{
+  "id": null,
+  "name": "agent",
+  "templateName": "Tumor Cell Culture and Inoculation",
+  "experimentType": "SYLX2026000013",
+  "experimentTypeName": "Cell_Culture",
+  "experimentGroup": "GLY",
+  "experimentGroupName": "Admin Group",
+  "stateOptions": "0",
+  "stepDetails": [{
+    "id": null,
+    "name": "Tumor Cell Culture And Inoculation",
+    "keyId": 0,
+    "jsonDatas": [
+      {
+        "label": "Sample List",
+        "type": "detailTable",
+        "size": 24,
+        "value": "[]",
+        "propList": "[{\"label\":\"Orig Sample ID\",\"prop\":\"originalSampleCode\",\"disabled\":true,\"headerType\":\"fixed\"},{\"label\":\"Sample ID\",\"prop\":\"sampleCode\",\"disabled\":true,\"headerType\":\"fixed\"},{\"label\":\"Sample Type\",\"prop\":\"sampleType\",\"disabled\":true,\"headerType\":\"fixed\"},{\"label\":\"Product Name\",\"prop\":\"testProjectName\",\"disabled\":true,\"headerType\":\"fixed\"},{\"label\":\"Product Type\",\"prop\":\"productType\",\"disabled\":true,\"headerType\":\"fixed\"},{\"label\":\"Product Qty\",\"prop\":\"productNum\",\"disabled\":true,\"headerType\":\"fixed\"},{\"label\":\"Remaining Qty\",\"prop\":\"sumTotal\",\"type\":\"number\",\"disabled\":false,\"headerType\":\"fixed\"},{\"label\":\"Unit\",\"prop\":\"sampleUnit\",\"disabled\":true,\"headerType\":\"fixed\"}]",
+        "menuList": "[]",
+        "productList": "[]",
+        "plate": "",
+        "inputType": "null",
+        "formula": "{\"formX\":[],\"formY\":[]}",
+        "keyId": 0
+      },
+      {
+        "label": "Material",
+        "type": "material",
+        "size": 24,
+        "value": "[{\"id\":\"mat-001\",\"name\":\"CT26 cell line\",\"type\":{\"id\":\"SJ2026000006\",\"name\":\"CT26 cell line\",\"spec\":\"\",\"pici\":\"\",\"predictNum\":1},\"pici\":\"\",\"flag\":false,\"states\":0},{\"id\":\"mat-002\",\"name\":\"RPMI-1640\",\"type\":{\"id\":\"SJ2026000007\",\"name\":\"RPMI-1640\",\"spec\":\"\",\"pici\":\"\",\"predictNum\":1},\"pici\":\"\",\"flag\":false,\"states\":0}]",
+        "propList": "[]",
+        "menuList": "[]",
+        "productList": "[]",
+        "plate": "",
+        "inputType": "null",
+        "formula": "{\"formX\":[],\"formY\":[]}",
+        "keyId": 1
+      },
+      {
+        "label": "Equipment",
+        "type": "equipment",
+        "size": 24,
+        "value": "[{\"id\":\"eq-001\",\"name\":\"Biosafety cabinet (BSC)\",\"keyNumber\":\"1-0\",\"typeId\":\"erwr\",\"type\":{\"id\":\"Equipment\",\"shebeiName\":\"Biosafety cabinet (BSC)\",\"types\":\"Equipment\",\"key\":\"YQ260003\"},\"types\":\"Equipment\",\"flag\":false,\"states\":0},{\"id\":\"eq-002\",\"name\":\"CO₂ incubator\",\"keyNumber\":\"1-0\",\"typeId\":\"erwr\",\"type\":{\"id\":\"Equipment\",\"shebeiName\":\"CO₂ incubator\",\"types\":\"Equipment\",\"key\":\"YQ260004\"},\"types\":\"Equipment\",\"flag\":false,\"states\":0}]",
+        "propList": "[]",
+        "menuList": "[]",
+        "productList": "[]",
+        "plate": "",
+        "inputType": "null",
+        "formula": "{\"formX\":[],\"formY\":[]}",
+        "keyId": 2
+      },
+      {
+        "label": "Result Table",
+        "type": "resultTable",
+        "size": 24,
+        "value": "[]",
+        "propList": "[{\"label\":\"Sample ID\",\"prop\":\"sampleCode\",\"disabled\":true,\"headerType\":\"fixed\"},{\"label\":\"Volume\",\"prop\":\"volume\",\"type\":\"number\",\"headerType\":\"fixed\"},{\"label\":\"Sum\",\"prop\":\"total\",\"type\":\"number\",\"headerType\":\"fixed\"},{\"label\":\"Unit\",\"prop\":\"sampleUnit\",\"disabled\":true,\"headerType\":\"fixed\"},{\"label\":\"Next Step\",\"prop\":\"nextFlow\",\"disabled\":true,\"headerType\":\"fixed\",\"required\":true},{\"label\":\"Result\",\"prop\":\"result\",\"disabled\":true,\"required\":1,\"headerType\":\"fixed\"}]",
+        "menuList": "[{\"label\":\"Calculation\",\"type\":\"jisuan\"}]",
+        "productList": "[]",
+        "plate": "",
+        "inputType": "null",
+        "formula": "{\"formX\":[],\"formY\":[]}",
+        "keyId": 3,
+        "itemIndex": 3
+      },
+      {
+        "label": "Text box",
+        "type": "editor",
+        "size": 24,
+        "value": "<ol><li>Thaw and culture cells in RPMI-1640 + 10% FBS at 37°C, 5% CO₂.</li><li>Subculture twice weekly using Trypsin-EDTA.</li><li>Harvest cells, count, adjust to 3 × 10⁵ cells/0.1 mL.</li><li>Inject subcutaneously into mouse flank.</li></ol>",
+        "propList": "[]",
+        "menuList": "[]",
+        "productList": "[]",
+        "plate": "",
+        "inputType": "null",
+        "formula": "{\"formX\":[],\"formY\":[]}",
+        "keyId": 4
+      }
+    ]
+  }],
+  "auditor": "admin",
+  "auditorName": "Admin",
+  "experimentalType": "SYLX2026000013",
+  "logArrays": [
+    {"type": "detailTable", "flag": "2", "logs": []},
+    {"type": "material", "flag": "2", "logs": []},
+    {"type": "equipment", "flag": "2", "logs": []},
+    {"type": "resultTable", "flag": "2", "logs": []},
+    {"type": "editor", "flag": "2", "logs": []}
+  ]
+}

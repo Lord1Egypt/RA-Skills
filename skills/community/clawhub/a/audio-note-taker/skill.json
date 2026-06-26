@@ -1,0 +1,29 @@
+{
+  "name": "audio-note-taker",
+  "version": "1.0.0",
+  "description": "语音笔记助手：录音自动转文字并整理成结构化笔记，支持说话人识别，自动总结要点和行动项",
+  "author": "小叮当",
+  "license": "MIT",
+  "keywords": [
+    "audio",
+    "transcribe",
+    "whisper",
+    "openai",
+    "note",
+    "meeting",
+    "minutes",
+    "会议",
+    "笔记"
+  ],
+  "engines": {
+    "python": ">=3.7"
+  },
+  "dependencies": {
+    "openai": ">=1.0.0"
+  },
+  "main": "source/audio_note_taker.py",
+  "scripts": {
+    "install": "bash install.sh",
+    "test": "python source/audio_note_taker.py --help"
+  }
+}

@@ -1,0 +1,10 @@
+{# ── TLDR 区块 ── #}
+{% if tldr_cn %}
+<div class="tldr">
+    <span class="tldr-label">⚡ 一句话总结 / TL;DR</span>
+    <div class="tldr-cn">{{ tldr_cn }}</div>
+    {% if tldr_en %}
+    <div class="tldr-en">{{ tldr_en }}</div>
+    {% endif %}
+</div>
+{% endif %}

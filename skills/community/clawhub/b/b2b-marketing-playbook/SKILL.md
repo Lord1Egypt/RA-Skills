@@ -1,35 +1,52 @@
 ---
-name: "B2B Marketing Playbook — Enterprise GTM & ABM Framework"
-description: "Complete B2B marketing pipeline combining LinkedIn content, cold email sequences, and webinar funnels. Designed for SaaS founders doing $0–$1M ARR who need p..."
-category: "social-media"
-source: "ClawHub"
-tags: [abm, b2b-marketing, cold-email, demand-gen, enterprise, funnel, growth, inbound, lead-generation, linkedin, marketing, outbound, saas, sales-pipeline, webinar]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/b2b-marketing-playbook"
-sourceUrl: "https://clawhub.ai/skills/b2b-marketing-playbook"
+name: b2b-marketing-playbook
+description: |
+  Complete B2B marketing pipeline combining LinkedIn content, cold email sequences, and webinar funnels. Designed for SaaS founders doing $0–$1M ARR who need predictable lead generation. By @WeiYipei.
+source: https://github.com/Gingiris-1031/gingiris-skills/tree/main/skills/b2b-marketing-playbook
+tags:
+  - b2b-marketing
+  - lead-generation
+  - cold-email
+  - linkedin
+  - b2b-saas
+  - saas-marketing
+  - saas
+  - startup
+  - revenue-growth
+  - abm
+  - claude-code
+  - ai-agent-skill
+  - webinar-funnel
+  - pipeline
+  - latest
 ---
 
-# B2B Marketing Playbook — Enterprise GTM & ABM Framework
+## 📦 Install
 
-> Complete B2B marketing pipeline combining LinkedIn content, cold email sequences, and webinar funnels. Designed for SaaS founders doing $0–$1M ARR who need p...
-
-- **Category:** Social Media
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/b2b-marketing-playbook`
-- **Source URL:** [https://clawhub.ai/skills/b2b-marketing-playbook](https://clawhub.ai/skills/b2b-marketing-playbook)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/b2b-marketing-playbook
+clawhub install b2b-marketing-playbook
 ```
+
+**What you get after installing:**
+- LinkedIn content cadence + DM-to-demo conversion sequences
+- Cold email templates with personalization formulas and follow-up timing
+- ABM targeting framework with pipeline velocity and CAC benchmarks
+
+---
+
+# B2B Marketing Playbook — LinkedIn + Cold Email + Webinar Pipeline
+
+> 🌍 **Language / 语言**: [中文](#中文版) | [English](references/en/README.md) | [日本語](references/ja/README.md) | [한국어](references/ko/README.md)
+
+Three proven channels woven into one repeatable pipeline for B2B SaaS.
+
+- **LinkedIn engine**: Content cadence, engagement pods, and DM-to-demo flow
+- **Cold email sequences**: Subject lines, personalization, and follow-up timing
+- **Webinar funnel**: Topic selection, promotion, and post-webinar nurture
+- **ABM layer**: Account-based targeting for enterprise deals
+- **Metrics dashboard**: Pipeline velocity, SQL rate, and CAC benchmarks
+
+## Related Gingiris Skills
+- Full version: https://clawhub.ai/skill/gingiris-b2b-growth
+- All skills: https://clawhub.ai/user/gingiris
+- Follow: [@WeiYipei on X](https://x.com/WeiYipei)

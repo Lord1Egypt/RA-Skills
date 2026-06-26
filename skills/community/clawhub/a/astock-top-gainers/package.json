@@ -1,0 +1,8 @@
+{
+  "name": "astock-top-gainers",
+  "version": "1.1.0",
+  "description": "获取A股近N日涨幅排名前N只股票（排除ST股），数据来源同花顺问财",
+  "license": "MIT",
+  "keywords": ["a股", "股票", "涨幅", "排行榜", "st股过滤"],
+  "author": "shinelp100"
+}

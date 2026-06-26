@@ -1,0 +1,22 @@
+{
+  "channels": [
+    {
+      "type": "agent",
+      "enabled": true
+    },
+    {
+      "type": "email",
+      "enabled": false,
+      "host": "${BIRTHDAY_SMTP_HOST}",
+      "port": "${BIRTHDAY_SMTP_PORT}",
+      "username": "${BIRTHDAY_SMTP_USERNAME}",
+      "password": "${BIRTHDAY_SMTP_PASSWORD}",
+      "from": "${BIRTHDAY_EMAIL_FROM}",
+      "to": [
+        "${BIRTHDAY_EMAIL_TO}"
+      ],
+      "use_tls": true,
+      "subject": "生日提醒"
+    }
+  ]
+}

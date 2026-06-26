@@ -1,0 +1,18 @@
+{
+  "skill_name": "bazi-analysis",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "请按完整分析模式分析这个八字：乾造 丁丑 癸丑 丙寅 甲午。起运时间为 2005 乙酉年 12 月，第一步大运为壬子，当前大运为庚戌，当前流年为丙午。请重点说明原局结构、当前大运庚戌对命局的改变，以及当前流年丙午如何引动原局与大运。",
+      "expected_output": "输出应进入完整分析模式，围绕丙火日主、冬月湿寒环境、原局结构、当前大运庚戌和当前流年丙午展开系统分析，并将庚戌视为当前大运而不是误判为信息冲突。",
+      "files": [],
+      "expectations": [
+        "The response uses complete-analysis output rather than a short single-question answer.",
+        "The response identifies the chart as a Qian造 with 丙火 as the day master.",
+        "The response treats 庚戌 as the current DaYun and 丙午 as the current LiuNian.",
+        "The response does not incorrectly claim that the provided DaYun sequence conflicts with the chart direction rule.",
+        "The response explains how the winter湿寒 structure affects 丙火 and references the current 运年 interaction."
+      ]
+    }
+  ]
+}

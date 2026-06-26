@@ -1,35 +1,108 @@
----
-name: "Bi2 Report Generator"
-description: "根据PPTX截图提取经营数据，自动生成并保存BI2事业部多维度HTML格式经营分析报告，并发送至飞书用户。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/bi2-report-generator"
-sourceUrl: "https://clawhub.ai/skills/bi2-report-generator"
----
+# BI2 事业部经营分析报告生成器
 
-# Bi2 Report Generator
+## 用途
 
-> 根据PPTX截图提取经营数据，自动生成并保存BI2事业部多维度HTML格式经营分析报告，并发送至飞书用户。
+根据 PPTX 截图数据自动生成 BI2 事业部经营分析报告（HTML 格式）。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/bi2-report-generator`
-- **Source URL:** [https://clawhub.ai/skills/bi2-report-generator](https://clawhub.ai/skills/bi2-report-generator)
+## 触发指令
 
-## Overview
+- "生成 BI2 经营分析报告"
+- "BI2 报告"
+- "事业部经营分析"
+- "BI2 经营分析"
 
+## 输入
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/bi2-report-generator
-```
+- PPTX 截图（包含销售额、毛利额、毛利率、费用、客户、产品、库存、应收账款、未来预测等数据）
+- 用户标识（飞书用户，用于确定保存路径）
+
+## 输出
+
+- HTML 格式经营分析报告
+- 保存路径：`/Users/zhangzhaoliangdemacmini/Desktop/Openclaw_Pool/{USER}_Folder/BI2 事业部经营分析报告_{YYYYMMDD}.html`
+
+## 报告维度（10 个）
+
+1. **经营摘要**：核心经营亮点、KPI 卡片、2026 年累计数据
+2. **收入分析**：季度对比、月度销售额/毛利额/毛利率对比
+3. **盈利分析**：毛利额趋势、净利润/净利率趋势、毛利差异因素分析
+4. **费用分析**：季度费用对比、月度费用明细、费用洞察
+5. **客户分析**：2025 年客户排名、2026 年累计客户排名
+6. **产品分析**：HT 固态产品线、EVP 液态产品线、产品策略建议
+7. **库存分析**：库存 KPI 卡片、库存改善说明
+8. **应收账款**：应收账款概况、重要说明（逾期规则 + 呆滞库存）、客户欠款排序
+9. **未来预测**：4-6 月预测数据、预算差距警示、预测洞察
+10. **洞察建议**：核心经营建议、销售策略、产品路线图、费用管控
+
+## 处理流程
+
+1. **读取截图**：使用 image 工具读取所有截图，提取紫色底色实际数据
+2. **数据校验**：检查数据完整性（销售额、毛利额、毛利率、净利润等）
+3. **生成报告**：使用 HTML 模板填充数据
+4. **保存文件**：根据飞书用户确定保存路径
+5. **发送飞书**：上传 HTML 文件并发送消息
+6. **清理临时文件**：删除临时脚本
+
+## 数据规范
+
+### 金额单位
+- 统一使用 **万元**
+- 2025 年全年销售额：115,496 万元（11.55 亿元）
+
+### 数据格式
+- 销售额：整数（如 11,191）
+- 毛利额：整数（如 2,108）
+- 毛利率：百分比（如 18.84%）
+- 净利润：整数（如 873）
+- 净利率：百分比（如 7.80%）
+
+### 关键数据（基于截图紫色底色）
+| 月份 | 销售额 | 毛利额 | 毛利率 | 净利润 | 净利率 |
+|------|--------|--------|--------|--------|--------|
+| 2025-01 | 8,199 | 1,617 | 19.73% | 48 | 0.58% |
+| 2025-02 | 7,922 | 1,546 | 19.52% | 121 | 1.52% |
+| 2025-03 | 9,854 | 2,035 | 20.66% | 1,378 | 13.98% |
+| 2025-04 | 11,046 | 2,572 | 23.29% | 1,291 | 11.69% |
+| 2025-05 | 10,009 | 2,294 | 22.92% | 1,882 | 18.81% |
+| 2025-06 | 10,474 | 2,427 | 23.17% | 968 | 9.24% |
+| 2025-07 | 13,166 | 3,333 | 25.32% | 1,662 | 12.62% |
+| 2025-08 | 11,392 | 2,734 | 24.00% | 971 | 8.52% |
+| 2025-09 | 6,576 | 1,716 | 24.87% | 453 | 6.88% |
+| 2025-10 | 5,766 | 1,434 | 24.60% | 36 | 0.63% |
+| 2025-11 | 7,467 | 1,837 | 21.92% | -60 | -0.81% |
+| 2025-12 | 6,234 | 1,139 | 18.27% | 1,094 | 17.55% |
+| 2026-01 | 8,716 | 1,537 | 17.63% | 432 | 4.95% |
+| 2026-02 | 5,407 | 813 | 15.04% | -251 | -4.65% |
+| 2026-03 | 11,191 | 2,108 | 18.84% | 873 | 7.80% |
+
+## 飞书用户映射
+
+| 飞书用户 | 英文名 | 保存路径 |
+|---------|--------|---------|
+| Richard (张召良) | Richard | `/Users/zhangzhaoliangdemacmini/Desktop/Openclaw_Pool/Richard_Folder/` |
+| JING (李京) | JING | `/Users/zhangzhaoliangdemacmini/Desktop/Openclaw_Pool/JING_Folder/` |
+| Jeanie (王琴) | Jeanie | `/Users/zhangzhaoliangdemacmini/Desktop/Openclaw_Pool/Jeanie_Folder/` |
+| Mickey (熊伟) | Mickey | `/Users/zhangzhaoliangdemacmini/Desktop/Openclaw_Pool/Mickey_Folder/` |
+| City (袁思婷) | City | `/Users/zhangzhaoliangdemacmini/Desktop/Openclaw_Pool/City_Folder/` |
+
+## 文件名规范
+
+- 标准格式：`BI2 事业部经营分析报告_{YYYYMMDD}.html`
+- 多版本格式：`BI2 事业部经营分析报告_{YYYYMMDD}_v{版本号}.html`
+- 最终版本：`BI2 事业部经营分析报告_{YYYYMMDD}_完善版.html`
+
+## 注意事项
+
+1. **数据准确性**：必须基于截图紫色底色实际数据，不可编造
+2. **单位统一**：所有金额统一为万元
+3. **中文显示**：HTML 必须使用微软雅黑字体，避免乱码
+4. **交互友好**：使用导航标签切换章节，图表可视化
+5. **版本管理**：多轮修改时保留版本号，用户确认后清理中间版本
+
+## 技能位置
+
+`~/.openclaw/workspace/skills/bi2-report-generator/`
+
+## 版本历史
+
+- v1.0 (2026-04-13)：初始版本，支持 10 个维度报告生成

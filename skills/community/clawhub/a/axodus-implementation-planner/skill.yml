@@ -1,0 +1,8 @@
+---
+name: implementation-planner
+description: Turn a feature idea into a concrete technical implementation plan.
+version: 1.0.0
+display_name: "Implementation Planner"
+triggers:
+System.Object[]
+---

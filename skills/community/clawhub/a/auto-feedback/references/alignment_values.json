@@ -1,0 +1,15 @@
+{
+  "_comment": "Edit this file to define your organization's goals and values. The analyzer checks every observation against these thresholds to produce the alignment score.",
+  "principles": [
+    "reliability",
+    "performance",
+    "correctness",
+    "maintainability",
+    "security"
+  ],
+  "thresholds": {
+    "min_pass_rate": 0.90,
+    "max_duration_ms": 5000,
+    "max_failures": 5
+  }
+}

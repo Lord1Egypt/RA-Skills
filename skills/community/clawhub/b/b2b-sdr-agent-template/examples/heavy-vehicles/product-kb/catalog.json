@@ -1,0 +1,51 @@
+{
+  "version": "1.0",
+  "company": "HeavyTruck International",
+  "last_updated": "2026-01-01",
+  "categories": [
+    {
+      "id": "trucks",
+      "name": "Heavy-Duty Trucks",
+      "products": [
+        {
+          "id": "dump-6x4",
+          "name": "Dump Truck 6x4",
+          "model": "HT-D640",
+          "description": "Heavy-duty dump truck for mining and construction",
+          "specs": {"payload": "30 tons", "engine": "380HP Weichai", "drive": "6x4"},
+          "moq": 1,
+          "lead_time_days": 20,
+          "certifications": ["CCC", "GCC"],
+          "target_markets": ["Africa", "Middle East"]
+        },
+        {
+          "id": "tractor-6x4",
+          "name": "Tractor Head 6x4",
+          "model": "HT-T640",
+          "description": "Long-haul tractor head for logistics fleets",
+          "specs": {"engine": "420HP / 480HP", "drive": "6x4", "cabin": "High-roof sleeper"},
+          "moq": 1,
+          "lead_time_days": 25,
+          "certifications": ["CCC", "Euro III"],
+          "target_markets": ["Africa", "Southeast Asia", "Central Asia"]
+        }
+      ]
+    },
+    {
+      "id": "machinery",
+      "name": "Construction Machinery",
+      "products": [
+        {
+          "id": "mixer-12",
+          "name": "Concrete Mixer 12m³",
+          "model": "HT-M120",
+          "description": "Ready-mix concrete transport",
+          "specs": {"capacity": "12 m³", "chassis": "6x4"},
+          "moq": 1,
+          "lead_time_days": 30
+        }
+      ]
+    }
+  ],
+  "payment_terms": ["T/T 30% + 70%", "L/C at sight", "Usance L/C 90 days"]
+}

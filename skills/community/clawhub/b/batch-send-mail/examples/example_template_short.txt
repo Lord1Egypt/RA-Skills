@@ -1,0 +1,6 @@
+您好 {v1}：
+
+感谢您订阅{v2}。
+
+点击下面链接确认：
+https://example.com/confirm?user={v1}

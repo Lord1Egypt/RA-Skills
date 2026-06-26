@@ -1,35 +1,85 @@
 ---
-name: "Blackswan Monitor"
-description: "A股黑天鹅对冲策略监控日报。每天自动抓取市场数据，基于改进版塔勒布期权策略的建仓、退出及风控规则进行计算分析，生成监控日报并通过邮件和飞书发送。监控标的包括沪深300、上证50、中证500、创业板、科创50的期权隐含波动率，以及全市场融资余额变化。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/blackswan-monitor"
-sourceUrl: "https://clawhub.ai/skills/blackswan-monitor"
+name: blackswan-monitor
+description: A股黑天鹅对冲策略监控日报。每天自动抓取市场数据，基于改进版塔勒布期权策略的建仓、退出及风控规则进行计算分析，生成监控日报并通过邮件和飞书发送。监控标的包括沪深300、上证50、中证500、创业板、科创50的期权隐含波动率，以及全市场融资余额变化。
 ---
 
-# Blackswan Monitor
+# A股黑天鹅对冲策略监控日报
 
-> A股黑天鹅对冲策略监控日报。每天自动抓取市场数据，基于改进版塔勒布期权策略的建仓、退出及风控规则进行计算分析，生成监控日报并通过邮件和飞书发送。监控标的包括沪深300、上证50、中证500、创业板、科创50的期权隐含波动率，以及全市场融资余额变化。
+基于改进版塔勒布期权策略的建仓、退出及风控规则，每日自动生成监控报告。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/blackswan-monitor`
-- **Source URL:** [https://clawhub.ai/skills/blackswan-monitor](https://clawhub.ai/skills/blackswan-monitor)
+## 策略核心逻辑
 
-## Overview
+### 建仓条件（需同时满足）
+- 沪深300 IV < 15.5%
+- 上证50 IV < 16%
+- 中证500 IV < 23%
+- （可选）创业板/科创50 IV 处于自身25%历史分位以下
 
+### 退出信号
+**一级退出（平仓50%）：**
+- 任一指数IV单日涨幅 ≥ 55%
+- 或全市场融资余额单日降幅 > 5%
 
-## Installation
-To install this skill, run the following command in your terminal:
+**二级退出（清仓剩余50%）：**
+- 一级触发后3个交易日内，IV续涨 ≥ 30%
+- 或融资余额累计降幅 > 8%
+
+### 风格分裂预警
+- 沪深300 IV - 上证50 IV > 8个百分点时，提示市场风格分裂
+
+## 使用方法
+
+### 手动执行
 ```bash
-hermes skills install clawhub/blackswan-monitor
+python scripts/blackswan_monitor.py
 ```
+
+### 定时任务（OpenClaw cron）
+建议每天上午5:00执行：
+```json
+{
+  "schedule": "0 5 * * *",
+  "timezone": "Asia/Shanghai"
+}
+```
+
+## 数据输出
+
+报告包含以下内容：
+1. **市场数据概览** - 各指数收盘价、IV、IV单日涨幅、历史分位
+2. **建仓条件判断** - 各指数是否满足建仓条件及原因
+3. **退出信号监控** - 一级/二级退出信号状态
+4. **风格分裂预警** - 沪深300与上证50 IV差值分析
+5. **操作建议摘要** - 新开仓、现有持仓建议
+
+## 配置文件
+
+### 邮件配置（已内置）
+- SMTP服务器：smtp.qq.com
+- 发件人：57189896@qq.com
+
+### 飞书配置（需用户设置）
+设置环境变量：
+```bash
+export FEISHU_WEBHOOK="https://open.feishu.cn/open-apis/bot/v2/hook/xxxxx"
+```
+
+## 数据存储
+
+数据文件存储在 `blackswan_data/` 目录：
+- `iv_history.json` - IV历史数据（用于计算分位数和涨幅）
+- `margin_history.json` - 融资余额历史数据
+- `strategy_state.json` - 策略状态（一级/二级退出信号记录）
+
+## 依赖
+
+- akshare - 金融数据获取
+- pandas - 数据处理
+- numpy - 数值计算
+
+## 注意事项
+
+1. 数据源使用AKShare，需确保网络连接正常
+2. 创业板和科创50的数据可能受限，会使用固定阈值作为备选
+3. 历史分位数计算需要至少30天的历史数据
+4. 策略参数可在脚本中调整 `STRATEGY_PARAMS`

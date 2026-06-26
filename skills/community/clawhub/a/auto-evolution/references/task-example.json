@@ -1,0 +1,29 @@
+{
+  "task_id": "task-001",
+  "status": "pending",
+  "priority": "medium",
+  "goal": "Build a CLI tool that converts CSV files to JSON format",
+  "created_at": "2026-01-01T00:00:00Z",
+  "updated_at": "2026-01-01T00:00:00Z",
+  "current_iteration": 0,
+  "max_iterations": 10,
+  "assigned_to": "iron",
+  "context": {
+    "background": "We frequently need to convert CSV exports to JSON for API ingestion. Currently done manually.",
+    "constraints": [
+      "Node.js only, no external dependencies",
+      "Support stdin and file path input",
+      "Handle quoted fields and escaped commas"
+    ],
+    "reference_files": [],
+    "subtasks": [
+      "Create core CSV parser module with streaming support",
+      "Add CLI argument handling (--input, --output, --pretty)",
+      "Write unit tests with edge cases (empty fields, quoted commas, unicode)",
+      "Add error handling for malformed CSV with line-number reporting"
+    ]
+  },
+  "review": null,
+  "result": null,
+  "history": []
+}

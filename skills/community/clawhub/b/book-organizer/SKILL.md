@@ -1,35 +1,266 @@
 ---
-name: "Book Organizer"
-description: "书籍内容深度整理技能。当用户提到整理书籍内容、读书笔记、制作思维导图、提取金句、总结核心观点时触发。使用场景包括但不限于：(1) 输入书名进行深度整理，(2) 创建章节摘要和思维导图，(3) 提取概念和关键知识点，(4) 整理金句摘录，(5) 总结核心观点，(6) 撰写读后感/书评，(7) 生成知识整理笔记。输出..."
-category: "research"
-source: "ClawHub"
-tags: [book, knowledge, mindmap, notes, reading]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/book-organizer"
-sourceUrl: "https://clawhub.ai/skills/book-organizer"
+name: book-organizer
+description: 书籍内容深度整理技能。当用户提到整理书籍内容、读书笔记、制作思维导图、提取金句、总结核心观点时触发。使用场景包括但不限于：(1) 输入书名进行深度整理，(2) 创建章节摘要和思维导图，(3) 提取概念和关键知识点，(4) 整理金句摘录，(5) 总结核心观点，(6) 撰写读后感/书评，(7) 生成知识整理笔记。输出格式为 Markdown 文件，保存到本地工作空间。
 ---
 
-# Book Organizer
+# 书籍内容整理技能
 
-> 书籍内容深度整理技能。当用户提到整理书籍内容、读书笔记、制作思维导图、提取金句、总结核心观点时触发。使用场景包括但不限于：(1) 输入书名进行深度整理，(2) 创建章节摘要和思维导图，(3) 提取概念和关键知识点，(4) 整理金句摘录，(5) 总结核心观点，(6) 撰写读后感/书评，(7) 生成知识整理笔记。输出...
+## 概述
 
-- **Category:** Research
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/book-organizer`
-- **Source URL:** [https://clawhub.ai/skills/book-organizer](https://clawhub.ai/skills/book-organizer)
+本技能帮助用户对书籍进行深度内容整理，生成结构化的 Markdown 笔记。
 
-## Overview
+## 触发条件
 
+当用户说：
+- "整理书籍"、"整理一下这本书"
+- "帮我做个读书笔记"
+- "生成思维导图"、"章节摘要"
+- "提取金句"、"核心观点"
+- "写读后感"、"书评"
+- "知识整理"
+- 输入书名并要求整理
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/book-organizer
+## 工作流程
+
+### Step 1: 获取书籍信息
+
+1. **搜索书籍信息**：使用 web_search 或 web_fetch 获取书籍的：
+   - 书名、作者、出版社、出版年份
+   - ISBN、页数
+   - 书籍简介/内容简介
+   - 目录结构
+
+2. **获取书籍内容**（按优先级尝试）：
+
+#### 优先级 1：电子书库下载
+   - **z-library 系列**（优先尝试）：
+     - `https://zh.z-library.sk/`（中文界面）
+     - `https://z-lib.rs/`
+     - `https://book4you.org/`
+     - `https://1lib.education/`
+   - **安娜的档案**：`https://annas-archive.org/`（全球最大镜像库）
+   - **鸠摩搜索**：`https://www.jiumodiary.com/`（电子书搜索）
+   - **SoBooks**：`https://sobooks.net/`（免费电子书）
+   - **书格**：`https://www.shuge.org/`（古籍善本）
+   - **高校图书馆**：
+     - CALIS：`https://opac.calis.edu.cn/`
+     - 超星电子图书：`http://www.chaoxing.com/`
+     - 北大图书馆：`https://www.lib.pku.edu.cn/`
+     - 清华图书馆：`https://lib.tsinghua.edu.cn/`
+     - 上海图书馆：`https://www.library.sh.cn/`
+   - 操作：搜索书名 → 下载 EPUB/PDF → 读取内容
+
+#### 优先级 2：在线阅读平台
+   - 豆瓣读书：`https://book.douban.com/subject/`
+   - 微信读书：`https://weread.qq.com/`
+   - 京东读书：`https://e.dangdang.com/`
+   - 当当读书：`https://e.dangdang.com/`
+   - 掌阅：`https://www.ireader.com.cn/`
+   - 起点中文网：`https://www.qidian.com/`
+
+#### 优先级 3：百科与评论
+   - 百度百科：`https://baike.baidu.com/item/`
+   - 维基百科：`https://zh.wikipedia.org/wiki/`
+   - Goodreads（英文）：`https://www.goodreads.com/`
+
+#### 优先级 4：搜索引擎
+   - 使用 web_search 搜索书名+PDF/下载/在线阅读
+   - 搜索书评、章节介绍、读书笔记
+
+> **注意**：优先尝试电子书库下载完整书籍内容，如果下载失败或无法下载，再尝试其他在线源。如果所有源都失败，则基于已有知识进行整理，并明确告知用户限制。
+>
+> **电子书库使用建议**：
+> - 搜索时尝试书名、作者名、ISBN
+> - 优先下载 EPUB 格式（易于解析）
+> - 如遇限流或封禁，换其他源尝试
+> - 高校图书馆可能需要登录认证，无法访问时跳过
+
+### Step 2: 内容整理
+
+根据用户需求执行以下模块：
+
+#### 2.1 书籍基本信息卡片
+
+```markdown
+# 《书名》
+
+- **作者**：xxx
+- **出版社**：xxx
+- **出版年份**：xxx
+- **ISBN**：xxx
+- **页数**：xxx
+- **分类**：xxx
+
+## 简介
+（书籍简介内容）
 ```
+
+#### 2.2 章节摘要与思维导图
+
+为每个章节/部分生成：
+- 章节标题
+- 核心内容一句话概括
+- 关键知识点列表
+- 章节之间的逻辑关系
+
+**思维导图格式**（Markdown 兼容）：
+
+```markdown
+# 《书名》思维导图
+
+## 主题1
+### 分支1
+- 要点1
+- 要点2
+### 分支2
+- 要点3
+```
+
+#### 2.3 概念提取
+
+提取书中重要的：
+- 核心概念/术语
+- 理论模型
+- 方法论
+- 专业名词解释
+
+格式：
+
+```markdown
+## 核心概念
+
+| 概念 | 解释 | 出现在 |
+|------|------|--------|
+| xxx | xxx | 第x章 |
+```
+
+#### 2.4 金句摘录
+
+从书中提取有价值的引言：
+- 核心论点句
+- 富有哲理的句子
+- 精彩描述句
+
+格式：
+
+```markdown
+## 金句摘录
+
+> "原文引用"
+> —— 出处/页码
+
+> "原文引用"
+> —— 出处/页码
+```
+
+#### 2.5 核心观点总结
+
+总结作者的主要观点和论证：
+- 核心论点（3-5个）
+- 每个论点的支撑论据
+- 结论与启示
+
+#### 2.6 读后感/书评
+
+撰写个人阅读感受：
+- 阅读动机
+- 收获与启发
+- 评价与感悟
+- 适合谁读
+- 推荐理由
+
+#### 2.7 知识整理
+
+将书中知识结构化：
+- 知识体系框架
+- 关键知识点详解
+- 实践应用建议
+- 相关书籍推荐
+
+### Step 3: 生成输出
+
+1. **文件命名**：`书籍名称_整理.md`（处理特殊字符）
+2. **保存路径**：工作空间根目录或 `books/` 文件夹
+3. **Markdown 规范**：
+   - 使用标准 Markdown 语法
+   - 表格使用 Markdown 表格格式
+   - 思维导图使用层级标题或列表
+   - 金句使用引用块
+
+### Step 4: 展示与确认
+
+整理完成后：
+1. 展示文件内容摘要
+2. 询问用户是否需要修改或补充
+
+## 输出模板
+
+```markdown
+# 《书名》深度整理
+
+> 作者：xxx | 出版社：xxx | 出版年份：xxx
+
+---
+
+## 📚 书籍信息
+
+（基本信息卡片）
+
+---
+
+## 📖 内容简介
+
+---
+
+## 🗂️ 章节结构与摘要
+
+### 第x章 章节标题
+- 核心内容：
+- 关键知识点：
+
+---
+
+## 💡 核心概念
+
+| 概念 | 解释 | 章节 |
+|------|------|------|
+|     |      |      |
+
+---
+
+## ✨ 金句摘录
+
+> "..."
+> —— 出处
+
+---
+
+## 🎯 核心观点
+
+1. **观点一**：...
+2. **观点二**：...
+
+---
+
+## 💭 读后感
+
+---
+
+## 🧠 知识体系
+
+---
+
+*整理时间：xxxx-xx-xx*
+```
+
+## 注意事项
+
+1. **信息准确性**：书籍基本信息（作者、出版社等）需核实准确
+2. **内容版权**：仅整理和总结，不复制全书内容
+3. **结构清晰**：使用层级标题和列表保持结构清晰
+4. **用户定制**：根据用户具体需求调整整理深度和侧重点
+5. **图片处理**：如需思维导图图片，使用 Mermaid 或纯文本格式
+
+## 参考资源
+
+详细输出格式示例见 [references/templates.md](references/templates.md)

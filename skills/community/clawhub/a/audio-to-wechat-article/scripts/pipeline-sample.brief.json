@@ -1,0 +1,7 @@
+{
+  "source_path": "/Users/meizi/.openclaw/workspace/skills/audio-to-wechat-article/scripts/pipeline-sample.txt",
+  "core_point": "今天我们讨论的重点，是如何把录音、图片和二维码直接变成一篇可发的公众号文章。",
+  "paragraph_count": 2,
+  "cover_image": "/tmp/cover.jpg",
+  "qr_image": "/tmp/qr.jpg"
+}

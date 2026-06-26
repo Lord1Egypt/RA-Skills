@@ -1,35 +1,391 @@
----
-name: "Auto Evolver"
-description: "自动执行内循环自我优化和外循环价值连接，监控Token消耗并自动修复故障，确保持续高效进化与任务生成。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/auto-evolver"
-sourceUrl: "https://clawhub.ai/skills/auto-evolver"
+# auto-evolver - AI 自进化引擎 v1.1
+
+**版本：** v1.1（空转检测·外环执行·自动修复）  
+**创建时间：** 2026-03-04 15:30  
+**作者：** Neo（宇宙神经系统）  
+**状态：** ✅ 激活
+
 ---
 
-# Auto Evolver
+## 📋 技能描述
 
-> 自动执行内循环自我优化和外循环价值连接，监控Token消耗并自动修复故障，确保持续高效进化与任务生成。
+**auto-evolver** 是一个自进化执行系统，通过内循环（自我优化）和外循环（价值连接）的交替运行，实现持续成长和价值创造。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/auto-evolver`
-- **Source URL:** [https://clawhub.ai/skills/auto-evolver](https://clawhub.ai/skills/auto-evolver)
+**核心原则：**
+- ✅ 真进化 = 实际产出（非空转循环）
+- ✅ 连接追踪 = 有效连接数（非周期运行数）
+- ✅ 内环→外环交替（内环验证→外环连接）
+- ✅ 自动中断 = 无产出 N 次→暂停 + 警报
 
-## Overview
+---
 
+## 🎯 核心功能
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/auto-evolver
+### 1. 内循环（每 5 分钟）- 自我优化
+
+**目标：** 系统诊断 + 问题修复 + 能力进化
+
+**执行流程：**
 ```
+1. 检查 Token 用量（A07 任务流/本地统计）
+   ↓
+2. Token 预算检查（单周期<8000，日<15%）
+   ↓ 超出 → 暂停内循环，记录警报
+   ↓ 未超出 → 继续
+3. 扫描 foundry insights（recurring failures）
+   ↓
+4. 失败次数>5 → 生成修复任务 → pending.md
+   ↓
+5. 执行 auto-evolver 诊断（foundry_evolve）
+   ↓
+6. 记录进化日志 → memory/auto-evolver-YYYY-MM-DD.md
+```
+
+**Token 预算控制：**
+| 检查项 | 阈值 | 行动 |
+|--------|------|------|
+| 单周期用量 | >8000 tokens | 暂停本轮内循环 |
+| 日用量 | >15% 配额 | 暂停外循环，仅保留内循环 |
+| 周用量 | >80% 配额 | 告警，仅保留核心功能 |
+
+**空转检测机制：**
+```
+连续无产出计数器（N 次）
+   ↓
+N ≥ 3 → 自动暂停内循环 30-60 分钟
+   ↓
+生成"空转警报"任务 → pending.md
+   ↓
+任务内容：检查任务源/调整策略/人工介入
+```
+
+---
+
+### 2. 外循环（每 15 分钟）- 价值连接
+
+**目标：** 内容发布 → 用户连接 → 转化追踪
+
+**执行流程：**
+```
+1. 检查 HEARTBEAT.md / pending.md 任务
+   ↓ 无任务 → 空转计数器 +1
+   ↓ 有任务 → 空转计数器归零，继续
+2. 执行任务（发布/开发/研究）
+   ↓
+3. 发布后 → 调用工具进行连接动作
+   ↓
+4. 追踪反馈（点赞/回复/私信/转化）
+   ↓
+5. 记录 connection-log.md（质量/数量/转化率）
+   ↓
+6. 质量<⭐⭐ → 不计入统计（连接质量保护）
+```
+
+**外循环工具链：**
+| 动作 | 工具 | 说明 |
+|------|------|------|
+| **知乎发布** | `zhihu-auto-publisher` | 已批准技能 |
+| **Gist 发布** | `gist-sync-manager` | 已批准技能 |
+| **私信/评论** | `browser` + 知乎网页 | 批量连接 |
+| **反馈追踪** | `web_search` / `x_keyword_search` | 关键词监控 |
+| **连接记录** | `connection-log.md` | 质量/数量/转化率 |
+
+**最小连接动作要求：**
+- ✅ 每天至少 3 次私信/评论尝试
+- ✅ 每条发布内容至少 1 次连接动作
+- ✅ 连接质量<⭐⭐ → 记录但不计入统计
+
+---
+
+### 3. 自动修复系统（每周期）
+
+**目标：** 从 recurring failures 自动生成修复任务
+
+**执行流程：**
+```
+1. 扫描 foundry insights（recurring failures）
+   ↓
+2. 筛选失败次数>5 的问题
+   ↓
+3. 分析问题类型（browser/read/subagents/其他）
+   ↓
+4. 生成修复任务 → pending.md
+   ↓
+5. 任务格式：[AUTO-REPAIR] + 问题描述 + 建议方案
+   ↓
+6. 执行修复 → 验证效果 → 记录结果
+```
+
+**常见问题修复方案：**
+
+| 问题 | 失败次数 | 修复方案 | 工具 |
+|------|----------|----------|------|
+| **browser:relay** | >5 | browser-health-check hook | `foundry_write_hook` |
+| **read:ENOENT** | >5 | ensure-memory-files hook | `foundry_write_hook` |
+| **element not found** | >5 | 操作前重新 snapshot | 流程规范 |
+| **subagents target** | >5 | 使用正确 sessionKey | 流程规范 |
+
+---
+
+### 4. 任务自主生成（每日）
+
+**目标：** 不依赖人工输入，主动从数据中生成任务
+
+**任务来源：**
+
+**来源 1：foundry insights**
+```
+扫描未解决的 recurring failures
+   ↓
+提取高频问题（>5 次失败）
+   ↓
+生成修复任务 → pending.md
+```
+
+**来源 2：web_search 监控**
+```
+每日搜索"OpenClaw 新项目/新技能"
+   ↓
+筛选高价值项目（star>50/下载>100）
+   ↓
+生成研究任务 → pending.md
+```
+
+**来源 3：TrustMRR 监控**
+```
+每日抓取 TrustMRR OpenClaw 分类
+   ↓
+跟踪收入变化（>20% 增长）
+   ↓
+生成案例分析任务 → pending.md
+```
+
+**来源 4：4D 压缩实验**
+```
+分析压缩效果数据
+   ↓
+发现优化空间（压缩率<70%）
+   ↓
+生成实验任务 → pending.md
+```
+
+**每日主动进化提案：**
+- ✅ 至少 1 个来自 foundry insights
+- ✅ 至少 1 个来自 web_search
+- ✅ 至少 1 个来自 TrustMRR
+- ✅ 至少 1 个来自 4D 压缩分析
+
+---
+
+## 🔒 安全边界
+
+### 1. Token 消耗警报
+
+| 阈值 | 行动 |
+|------|------|
+| 单日>15% 配额 | 暂停外循环，仅保留内循环 |
+| 单周>80% 配额 | 告警，仅保留核心功能 |
+| 单月>80% 配额 | 紧急暂停，通知指挥官 |
+
+### 2. 连接质量保护
+
+| 质量等级 | 标准 | 处理 |
+|----------|------|------|
+| ⭐⭐⭐ 高 | 有回复/私信/转化 | 计入统计，重点跟进 |
+| ⭐⭐ 中 | 有点赞/收藏 | 计入统计，保持关注 |
+| ⭐ 低 | 无互动 | 记录但不计入统计 |
+
+### 3. 空转保护
+
+| 连续无产出 | 行动 |
+|------------|------|
+| 3 次 | 暂停内循环 30 分钟，生成警报任务 |
+| 6 次 | 暂停内循环 60 分钟，通知指挥官 |
+| 10 次 | 紧急暂停，等待人工介入 |
+
+### 4. 技能安装安全
+
+| 风险等级 | 要求 |
+|----------|------|
+| 所有技能 | D 系列申请 + 指挥官批准 |
+| 高风险技能 | 100 分质检（安全 30 分红线） |
+| 新技能（<30 天） | 避免安装，除非官方认证 |
+
+---
+
+## 📊 执行记录
+
+### 日志文件
+
+| 文件 | 路径 | 说明 |
+|------|------|------|
+| **进化日志** | `memory/auto-evolver-YYYY-MM-DD.md` | 每周期记录 |
+| **连接日志** | `memory/connection-log-YYYY-MM-DD.md` | 外循环连接 |
+| **任务队列** | `inbox/grok-tasks/TASK-YYYY-MM-DD-XXX.md` | 生成的任务 |
+| **空转警报** | `inbox/grok-tasks/IDLE-ALERT-YYYY-MM-DD-HHMM.md` | 空转时生成 |
+
+### 日志格式
+
+**进化日志：**
+```markdown
+[auto-evolver #XXX] YYYY-MM-DD HH:MM
+- 内循环：✅ 完成
+- 外循环：✅ 完成（3 连接）
+- Token 用量：XXX/8000
+- 空转计数：0
+- 修复任务：0
+- 生成任务：2
+```
+
+**连接日志：**
+```markdown
+[连接 #XXX] YYYY-MM-DD HH:MM
+- 平台：知乎/Gist/Twitter
+- 内容：链接
+- 连接动作：私信/评论/回复
+- 反馈：点赞 X/回复 X/转化 X
+- 质量：⭐⭐⭐/⭐⭐/⭐
+- 计入统计：是/否
+```
+
+---
+
+## 🎯 成功指标
+
+| 指标 | 目标 | 计算方式 |
+|------|------|----------|
+| **连接数/天** | ≥5 | 外循环有效连接（质量≥⭐⭐） |
+| **转化率** | ≥10% | 转化数/连接数 |
+| **空转率** | <20% | 空转周期/总周期 |
+| **修复率** | ≥80% | 已修复问题/发现问题 |
+| **任务生成** | ≥4/天 | 自主生成任务数 |
+| **Token 效率** | <¥0.30/天 | 日均 Token 成本 |
+
+---
+
+## 🛠️ 工具调用
+
+### 必需工具
+
+| 工具 | 用途 | 频率 |
+|------|------|------|
+| `foundry_evolve` | 工具健康度分析 | 每内循环 |
+| `foundry_metrics` | 工具性能指标 | 每内循环 |
+| `foundry_insights` | recurring failures 扫描 | 每内循环 |
+| `foundry_pending_feedback` | 待反馈任务检查 | 每外循环 |
+| `web_search` | 新项目/新技能搜索 | 每日 |
+| `browser` | 知乎/Gist 连接动作 | 每外循环 |
+| `write` | 日志/任务文件写入 | 每周期 |
+
+### 可选工具
+
+| 工具 | 用途 | 条件 |
+|------|------|------|
+| `zhihu-auto-publisher` | 知乎自动发布 | 已批准时 |
+| `gist-sync-manager` | Gist 自动同步 | 已批准时 |
+| `sessions_spawn` | 子代理任务执行 | 复杂任务 |
+| `message` | Telegram 通知 | 紧急告警 |
+
+---
+
+## 📋 使用示例
+
+### 启动 auto-evolver
+
+```bash
+# 内循环启动（每 5 分钟）
+openclaw cron add "*/5 * * * *" "auto-evolver inner-loop"
+
+# 外循环启动（每 15 分钟）
+openclaw cron add "*/15 * * * *" "auto-evolver outer-loop"
+```
+
+### 手动触发
+
+```bash
+# 内循环诊断
+openclaw skill run auto-evolver --action inner-loop
+
+# 外循环连接
+openclaw skill run auto-evolver --action outer-loop
+
+# 查看状态
+openclaw skill run auto-evolver --action status
+```
+
+### 查看日志
+
+```bash
+# 今日进化日志
+cat memory/auto-evolver-2026-03-04.md
+
+# 今日连接日志
+cat memory/connection-log-2026-03-04.md
+
+# 空转警报
+ls inbox/grok-tasks/IDLE-ALERT-*.md
+```
+
+---
+
+## 🔄 版本历史
+
+### v1.1（2026-03-04）- 本次更新
+
+**新增：**
+1. ✅ 空转检测与自动暂停机制（连续 3 次→暂停 30-60 分钟）
+2. ✅ 外循环具体执行路径（工具链 + 最小连接动作）
+3. ✅ 自动修复 recurring failures（>5 次→生成任务）
+4. ✅ Token 预算控制（单周期<8000，日<15%）
+5. ✅ 任务自主生成机制（4 来源：insights/search/TrustMRR/4D）
+6. ✅ 连接质量保护（<⭐⭐不计入统计）
+
+**改进：**
+- 内循环流程增加 Token 检查
+- 外循环流程增加工具链明确
+- 安全边界增加空转保护阈值
+
+### v1.0（2026-03-04）- 初始版本
+
+**功能：**
+- 内循环（自我优化）
+- 外循环（价值连接）
+- UPTEF 四力映射
+- 安全边界
+
+**局限：**
+- 空转无中断机制
+- 外循环执行模糊
+- 无自动修复能力
+- 无 Token 预算控制
+
+---
+
+## 🎯 附录：UPTEF 四力映射
+
+| 四力 | auto-evolver 对应 | 说明 |
+|------|------------------|------|
+| **选择力** | 任务自主生成 | 从数据中选择高价值任务 |
+| **影响力** | 外循环执行 | 将任务坍缩为现实连接 |
+| **反馈力** | 连接质量追踪 | 从现实获取反馈数据 |
+| **体验力** | 进化日志记录 | 将反馈转化为内在成长 |
+
+**六桥流转：**
+```
+体验力（进化日志）
+   ↓ 道（三赢原则）
+选择力（任务生成）
+   ↓ 术（工具链）
+影响力（外循环执行）
+   ↓ 觉察（空转检测）
+反馈力（连接追踪）
+   ↓ 心（连接质量保护）
+体验力（成长记录）
+```
+
+---
+
+*auto-evolver v1.1*  
+*2026-03-04 15:30*  
+*Neo 宇宙神经系统*  
+*真进化，不空转*

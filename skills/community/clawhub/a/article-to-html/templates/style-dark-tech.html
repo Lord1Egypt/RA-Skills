@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Agent认知：OS与Application · 暗色科技风</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  .coord { display: none; }
+
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    padding: 40px 20px;
+    background: #000;
+    font-family: 'Noto Sans SC', sans-serif;
+  }
+
+  .container {
+    width: 1080px;
+    min-height: 1440px;
+    background: #0A0A0F;
+    position: relative;
+    
+    padding: 52px;
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+    background-image:
+      repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(255,255,255,0.008) 2px,
+        rgba(255,255,255,0.008) 4px
+      );
+  }
+
+  /* Glow line at top */
+  .container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 52px;
+    right: 52px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #00FFB2, transparent);
+  }
+
+  /* ===== HEADER ===== */
+  .header {
+    padding: 8px 0 18px;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    position: relative;
+  }
+  .header .sys-line {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 24px;
+    color: #00FFB2;
+    letter-spacing: 2px;
+    margin-bottom: 18px;
+    opacity: 0.7;
+  }
+  .header .sys-line::before {
+    content: '> ';
+    opacity: 0.4;
+  }
+  .header h1 {
+    font-family: 'Noto Sans SC', sans-serif;
+    font-size: 72px;
+    font-weight: 900;
+    color: #EEEEF0;
+    line-height: 1.25;
+    letter-spacing: 1px;
+  }
+  .header h1 .glow {
+    color: #00FFB2;
+    text-shadow: 0 0 20px rgba(0,255,178,0.3);
+  }
+  .header .meta-row {
+    display: flex;
+    gap: 32px;
+    margin-top: 14px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 22px;
+    color: #555;
+  }
+  .header .meta-row span::before {
+    content: '//';
+    margin-right: 6px;
+    color: #333;
+  }
+
+  /* ===== MODULE (dark card) ===== */
+  .module {
+    background: rgba(255,255,255,0.02);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 4px;
+    padding: 28px 30px;
+    position: relative;
+  }
+  .module::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: #00FFB2;
+    border-radius: 4px 0 0 4px;
+    opacity: 0.6;
+  }
+  .module h2 {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 26px;
+    font-weight: 600;
+    color: #00FFB2;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 18px;
+    opacity: 0.9;
+  }
+
+  .module.warn::before { background: #FF3366; }
+  .module.warn h2 { color: #FF3366; }
+  .module.blue::before { background: #3B82F6; }
+  .module.blue h2 { color: #3B82F6; }
+
+  /* ===== GRID ===== */
+  .grid-2col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 22px;
+  }
+  .grid-3col {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 18px;
+  }
+
+  /* ===== STATUS STRIP (MOD-1) ===== */
+  .status-strip {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+    position: relative;
+  }
+  .stat-cell {
+    background: rgba(0,255,178,0.04);
+    border: 1px solid rgba(0,255,178,0.1);
+    border-radius: 4px;
+    padding: 22px 16px;
+    text-align: center;
+  }
+  .stat-cell .val {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 68px;
+    font-weight: 700;
+    color: #00FFB2;
+    text-shadow: 0 0 15px rgba(0,255,178,0.25);
+    line-height: 1;
+    margin-bottom: 10px;
+  }
+  .stat-cell .val .suffix {
+    font-size: 28px;
+    font-weight: 400;
+    color: #00FFB2;
+    opacity: 0.5;
+  }
+  .stat-cell .lbl {
+    font-size: 24px;
+    color: #666;
+    font-family: 'Noto Sans SC', sans-serif;
+    letter-spacing: 1px;
+  }
+  .stat-cell.alt {
+    border-color: rgba(59,130,246,0.15);
+    background: rgba(59,130,246,0.04);
+  }
+  .stat-cell.alt .val {
+    color: #3B82F6;
+    text-shadow: 0 0 15px rgba(59,130,246,0.25);
+  }
+
+  /* ===== MATRIX GRID (MOD-2) ===== */
+  .matrix-card {
+    background: rgba(255,255,255,0.02);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 4px;
+    padding: 22px 20px;
+  }
+  .matrix-card .name {
+    font-weight: 700;
+    color: #ccc;
+    font-size: 32px;
+    margin-bottom: 10px;
+  }
+  .matrix-card .desc {
+    font-size: 26px;
+    color: #666;
+    line-height: 1.55;
+  }
+  .matrix-card.active {
+    border-color: #00FFB2;
+    background: rgba(0,255,178,0.05);
+    box-shadow: 0 0 20px rgba(0,255,178,0.05);
+  }
+  .matrix-card.active .name { color: #00FFB2; }
+  .matrix-card .badge {
+    display: inline-block;
+    background: #00FFB2;
+    color: #0A0A0F;
+    font-size: 18px;
+    font-weight: 700;
+    padding: 4px 12px;
+    border-radius: 2px;
+    margin-bottom: 10px;
+    font-family: 'IBM Plex Mono', monospace;
+    letter-spacing: 1px;
+  }
+  .matrix-card .arrow {
+    font-family: 'IBM Plex Mono', monospace;
+    color: #333;
+    font-size: 22px;
+    margin-top: 10px;
+  }
+
+  /* ===== PROGRESS BAR (MOD-3) ===== */
+  .bar-group {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .bar-item {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+  }
+  .bar-label {
+    font-size: 28px;
+    color: #888;
+    width: 190px;
+    text-align: right;
+    flex-shrink: 0;
+  }
+  .bar-track {
+    flex: 1;
+    height: 10px;
+    background: rgba(255,255,255,0.04);
+    border-radius: 5px;
+    
+  }
+  .bar-fill {
+    height: 100%;
+    border-radius: 5px;
+    background: linear-gradient(90deg, #00FFB2, #00D4FF);
+    box-shadow: 0 0 8px rgba(0,255,178,0.3);
+  }
+  .bar-fill.danger {
+    background: linear-gradient(90deg, #FF3366, #FF6B6B);
+    box-shadow: 0 0 8px rgba(255,51,102,0.3);
+  }
+  .bar-val {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 26px;
+    color: #888;
+    width: 56px;
+    text-align: right;
+  }
+  .bar-note {
+    font-size: 22px;
+    color: #555;
+    margin-top: 2px;
+    padding-left: 210px;
+    line-height: 1.4;
+  }
+
+  /* ===== DEEP DIVE (MOD-4) ===== */
+  .deep-text {
+    font-size: 30px;
+    color: #888;
+    line-height: 1.75;
+    font-weight: 300;
+  }
+  .deep-text .hl {
+    color: #00FFB2;
+    font-weight: 500;
+  }
+
+  /* ===== WARNING (MOD-5) ===== */
+  .warn-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .warn-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    font-size: 28px;
+    color: #999;
+    line-height: 1.55;
+  }
+  .warn-item .icon {
+    color: #FF3366;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 24px;
+    flex-shrink: 0;
+    margin-top: 5px;
+  }
+  .warn-item strong { color: #FF6B6B; font-weight: 600; }
+
+  /* ===== FOOTER ===== */
+  .footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 20px;
+    color: #333;
+    letter-spacing: 2px;
+    padding-top: 12px;
+    border-top: 1px solid rgba(255,255,255,0.04);
+    margin-top: auto;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- HEADER -->
+  <div class="header">
+    <span class="coord">SEC-00</span>
+    <div class="sys-line">SYS.INIT — AGENT COGNITION MODULE</div>
+    <h1>Agent认知：<span class="glow">OS与Application</span></h1>
+    <div class="meta-row">
+      <span>物理约束 × 2</span>
+      <span>不可复制 × 3</span>
+      <span>价值维度 × 2</span>
+    </div>
+  </div>
+
+  <!-- MOD-1: 核心数据 -->
+  <div class="status-strip">
+    <span class="coord">A-01</span>
+    <div class="stat-cell">
+      <div class="val">2<span class="suffix">个</span></div>
+      <div class="lbl">物理约束</div>
+    </div>
+    <div class="stat-cell alt">
+      <div class="val">3<span class="suffix">样</span></div>
+      <div class="lbl">不可复制</div>
+    </div>
+    <div class="stat-cell">
+      <div class="val">2<span class="suffix">种</span></div>
+      <div class="lbl">价值维度</div>
+    </div>
+    <div class="stat-cell alt">
+      <div class="val">3<span class="suffix">层</span></div>
+      <div class="lbl">能力光谱</div>
+    </div>
+  </div>
+
+  <!-- MOD-2: 三层光谱 Prompt → Script → Application -->
+  <div class="module">
+    <span class="coord">B-05</span>
+    <h2>THREE-LAYER SPECTRUM</h2>
+    <div class="grid-3col">
+      <div class="matrix-card">
+        <div class="name">Prompt 指令</div>
+        <div class="desc">给Agent点拨方向，活还是Agent干，带宽不减。文本可复制，壁垒为零。</div>
+        <div class="arrow">指路 →</div>
+      </div>
+      <div class="matrix-card">
+        <div class="name">Script 工具</div>
+        <div class="desc">外部代劳返回结果，带宽降低。但没有外部状态，逻辑可复现，壁垒低。</div>
+        <div class="arrow">代劳 →</div>
+      </div>
+      <div class="matrix-card active">
+        <div class="badge">TARGET</div>
+        <div class="name">Application 服务</div>
+        <div class="desc">外部代劳 + 持久状态 + 基础设施。带宽容量都大幅降低，不可复制。</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MOD-3: 两种价值 × 两个约束 -->
+  <div class="module blue">
+    <span class="coord">C-12</span>
+    <h2>VALUE × CONSTRAINT</h2>
+    <div class="bar-group">
+      <div class="bar-item">
+        <span class="bar-label">能力解锁</span>
+        <div class="bar-track"><div class="bar-fill" style="width:95%"></div></div>
+        <span class="bar-val">破墙</span>
+      </div>
+      <div class="bar-note">→ 突破上下文容量：塞不进context的知识，Application在外面管</div>
+      <div class="bar-item">
+        <span class="bar-label">认知卸载</span>
+        <div class="bar-track"><div class="bar-fill" style="width:90%"></div></div>
+        <span class="bar-val">减负</span>
+      </div>
+      <div class="bar-note">→ 释放注意力带宽：领域推理搬到外部，干扰消失，每件事更准</div>
+      <div class="bar-item">
+        <span class="bar-label">容量约束</span>
+        <div class="bar-track"><div class="bar-fill danger" style="width:75%"></div></div>
+        <span class="bar-val">硬顶</span>
+      </div>
+      <div class="bar-note">→ Context有限容器，塞得越多性能越差</div>
+      <div class="bar-item">
+        <span class="bar-label">带宽约束</span>
+        <div class="bar-track"><div class="bar-fill danger" style="width:70%"></div></div>
+        <span class="bar-val">零和</span>
+      </div>
+      <div class="bar-note">→ 注意力在任务间打架，双手互搏两个都变形</div>
+    </div>
+  </div>
+
+  <div class="grid-2col">
+    <!-- MOD-4: 核心观点 -->
+    <div class="module">
+      <span class="coord">D-03</span>
+      <h2>CORE INSIGHT</h2>
+      <p class="deep-text">
+        好的Application让Agent OS<span class="hl">变得更聪明</span>。法律App把推理搬走，注意力不再被干扰，其他事更准，于是更精准调用更多App——<span class="hl">认知共生飞轮</span>转起来了。<br><br>The best context is <span class="hl">no context</span>。Agent越轻，表现越好。
+      </p>
+    </div>
+
+    <!-- MOD-5: 避坑警告 -->
+    <div class="module warn">
+      <span class="coord">E-08</span>
+      <h2>WARNING</h2>
+      <div class="warn-list">
+        <div class="warn-item">
+          <span class="icon">[!]</span>
+          <span><strong>垂类做OS = 拿刀打坦克</strong>　拿领域知识跟OpenAI比推理能力，战场完全不同</span>
+        </div>
+        <div class="warn-item">
+          <span class="icon">[!]</span>
+          <span><strong>Skill无状态 = 裸奔</strong>　接口背后什么都没有，做得越好抄得越容易</span>
+        </div>
+        <div class="warn-item">
+          <span class="icon">[!]</span>
+          <span><strong>领域状态 ≠ Memory</strong>　Memory是OS层课题，领域状态是业务状态机</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <span>AGENT COGNITION · DARK-TECH</span>
+    <span>OS × APPLICATION · 2026</span>
+  </div>
+
+</div>
+</body>
+</html>

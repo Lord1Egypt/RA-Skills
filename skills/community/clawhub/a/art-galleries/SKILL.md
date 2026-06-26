@@ -1,35 +1,27 @@
 ---
 name: "网红美术馆"
 description: "提供关于网红美术馆的推荐清单、打卡路线与指南。用户搜索网红美术馆或规划相关出行时调用。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/art-galleries"
-sourceUrl: "https://clawhub.ai/skills/art-galleries"
 ---
 
 # 网红美术馆
 
-> 提供关于网红美术馆的推荐清单、打卡路线与指南。用户搜索网红美术馆或规划相关出行时调用。
+## 筛选项
+- 日期/时段/票档/是否限量
+- 场地座位/遮挡/距离舞台/入场规则
+- 演出/展览阵容/风格/是否可拍摄
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/art-galleries`
-- **Source URL:** [https://clawhub.ai/skills/art-galleries](https://clawhub.ai/skills/art-galleries)
+## 返回字段
+- 时间表/地点/票价/购票渠道/退票说明
+- 入场流程/安检要求/随身物品限制
+- 交通与散场建议/周边餐饮与住宿
 
-## Overview
+## 示例请求
+- “北京 网红美术馆 本月清单（含交通与购票）”
+- “上海 网红美术馆 可拍摄展览TOP20（需预约）”
 
+## 更新频率
+- 每周迭代，结合新热度与口碑反馈
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/art-galleries
-```
+## 注意事项
+- 高峰期排队较久，建议提前预约或错峰
+- 部分项目有拍摄限制或最低消费，按现场规则执行

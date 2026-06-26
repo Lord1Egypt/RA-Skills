@@ -1,0 +1,38 @@
+{
+  "name": "bank-market-research",
+  "version": "1.0.0",
+  "description": "AI-powered market research and competitive intelligence assistant - analyze industries, competitors, market trends, and generate structured market intelligence reports",
+  "main": "SKILL.md",
+  "scripts": {
+    "test": "echo \"No tests configured\""
+  },
+  "keywords": [
+    "bank",
+    "market research",
+    "industry analysis",
+    "competitive intelligence",
+    "market sizing",
+    "市场研究",
+    "行业分析",
+    "竞争对手分析",
+    "市场调研",
+    "行业报告"
+  ],
+  "author": "gechengling",
+  "license": "MIT",
+  "skill": {
+    "type": "conversation",
+    "triggers": [
+      "市场研究",
+      "行业分析",
+      "竞争对手分析",
+      "市场调研",
+      "行业研究",
+      "市场情报",
+      "行业报告",
+      "竞品分析",
+      "市场进入分析",
+      "行业趋势"
+    ]
+  }
+}

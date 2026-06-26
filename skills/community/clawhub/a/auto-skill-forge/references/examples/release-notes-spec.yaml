@@ -1,0 +1,39 @@
+name: release-notes-generator
+purpose: Generate structured release notes from git commit history
+
+inputs:
+  - name: commits
+    type: git-log
+    description: "Git commit log between two tags"
+  - name: platform
+    type: enum
+    description: "Target platform (ios/android/harmony/all)"
+
+outputs:
+  - name: release-notes
+    format: markdown
+    description: "Structured release notes with sections for features, fixes, refactoring"
+
+quality_criteria:
+  - name: platform-isolation
+    description: "Notes only reference the target platform, no cross-platform leakage"
+    weight: 0.3
+  - name: categorization
+    description: "Commits correctly classified into feat/fix/refactor sections"
+    weight: 0.3
+  - name: completeness
+    description: "All commits accounted for in the notes"
+    weight: 0.2
+  - name: readability
+    description: "Human-readable descriptions, not just raw commit messages"
+    weight: 0.2
+
+domain_knowledge:
+  - "NanoCompose has 4 platforms: iOS, Android, HarmonyOS, Core C++"
+  - "Conventional commit prefixes: feat, fix, refactor, perf, test, docs, chore"
+  - "Core C++ changes affect all platforms and should be noted per-platform"
+  - "Platform-specific files live under platforms/{ios,android,harmony}/"
+
+reference_skills:
+  - changelog-gen
+  - code-review-enhanced

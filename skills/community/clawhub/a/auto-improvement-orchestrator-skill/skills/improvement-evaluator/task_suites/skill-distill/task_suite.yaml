@@ -1,0 +1,163 @@
+skill_id: "skill-distill"
+version: "1.0"
+description: "Evaluates skill-distill's ability to analyze overlap between skills, classify content, enforce 4-phase workflow, and respect token budgets"
+
+tasks:
+  # === Overlap Analysis ===
+  - id: "sd-overlap-detection"
+    description: "Must correctly identify overlap, unique contributions, and redundancy across source skills"
+    prompt: |
+      Analyze these three hypothetical writing-related skills for distillation potential:
+
+      Skill A "prose-cleaner":
+      - Two-pass rewrite workflow (first remove AI patterns, then add voice)
+      - AI vocabulary blacklist (50 words)
+      - Preserves technical facts
+      - English only
+
+      Skill B "zh-writer":
+      - Two-pass rewrite workflow (same as A)
+      - Chinese-specific patterns (four-char buzzword chains, passive voice)
+      - Template for formal documents
+      - Bilingual support
+
+      Skill C "tone-tuner":
+      - Single-pass rewrite
+      - Voice calibration (formal/casual/technical spectrum)
+      - AI vocabulary blacklist (30 words, subset of A's list)
+      - English only
+
+      Classify each piece of content as: intersection, unique_contribution, conflict, or redundant.
+      Output a structured analysis table.
+    judge:
+      type: "llm-rubric"
+      rubric: |
+        Check the analysis:
+        1. "Two-pass rewrite workflow" must be classified as intersection (A+B share it). Score 0.0 if missed.
+        2. "Chinese-specific patterns" must be classified as unique_contribution (only B). Score 0.0 if missed.
+        3. "Voice calibration" must be classified as unique_contribution (only C). Score 0.0 if missed.
+        4. C's blacklist (subset of A's) must be classified as redundant or intersection. Score 0.0 if classified as unique.
+        5. C's "single-pass" vs A/B's "two-pass" should be flagged as a conflict. Score 0.5 if missed.
+        6. Each classification must cite source skill(s). Score 0.5 if classifications correct but sources missing.
+        Score 1.0 if all 5 core items correct with sources.
+      pass_threshold: 0.7
+    timeout_seconds: 120
+
+  # === 4-Phase Workflow Compliance ===
+  - id: "sd-workflow-phases"
+    description: "Must follow the 4-phase workflow: Collect, Analyze, User Confirm, Generate+Verify"
+    prompt: |
+      I want to distill "http-fetcher" and "web-scraper" skills into one skill. Both deal with fetching web content but http-fetcher is about raw HTTP requests while web-scraper handles DOM parsing and extraction.
+
+      Start the distillation process. Show me what Phase 1 (Collect) output looks like.
+    judge:
+      type: "contains"
+      expected:
+        - "Phase 1"
+        - "Inventory"
+        - "Lines"
+        - "Unique contribution"
+    timeout_seconds: 120
+
+  # === Distillation Rejection ===
+  - id: "sd-reject-non-overlapping"
+    description: "Must refuse to distill skills that solve different problems"
+    prompt: |
+      I want to distill these two skills into one:
+      - "cpp-expert": C++20 core development, memory safety, performance optimization
+      - "ios-expert": iOS platform ObjC++/Swift, UIKit integration, Apple APIs
+
+      They are often used together in our project. Should we distill them?
+    judge:
+      type: "llm-rubric"
+      rubric: |
+        Must refuse the distillation. Check:
+        1. Must clearly say NO / not recommended / should not distill. Score 0.0 if it proceeds with distillation.
+        2. Must explain that the skills solve different problems (C++ core vs iOS platform). Score 0.5 if refusal is generic.
+        3. Should reference the anti-example or criteria: "NEVER distill skills with different responsibilities." Score 0.8 if refuses with good reasoning but doesn't cite the rule.
+        4. Should note that "used together" != "overlap" — complementary is not the same as redundant. Score bonus +0.1.
+        Score 1.0 if clear refusal with correct reasoning.
+      pass_threshold: 0.7
+    timeout_seconds: 120
+
+  # === Token Budget Awareness ===
+  - id: "sd-token-budget"
+    description: "Must enforce SKILL.md body <=500 lines and route long content to references/"
+    prompt: |
+      I'm distilling 3 skills. The analysis shows:
+      - Intersection content: ~300 lines (after dedup)
+      - Unique contributions from Skill A: ~150 lines of workflow rules
+      - Unique contributions from Skill B: ~200 lines of pattern catalog
+      - Unique contributions from Skill C: ~100 lines of scoring rubric
+
+      Total: ~750 lines of valuable content. None is redundant.
+      How should the distilled skill be structured to respect token budgets?
+    judge:
+      type: "llm-rubric"
+      rubric: |
+        Must address the 500-line SKILL.md body limit:
+        1. Must mention the <=500 line body constraint. Score 0.0 if it ignores the limit.
+        2. Must propose moving some content to references/ files. Score 0.0 if everything goes in SKILL.md body.
+        3. Should suggest keeping intersection (~300 lines) + summaries of unique contributions in body, with full unique content in references/. Score 0.5 if split is proposed but not well justified.
+        4. Should show a proposed file structure with references/ directory. Score bonus +0.1.
+        Score 1.0 if body stays <=500 lines with clear references/ split.
+      pass_threshold: 0.7
+    timeout_seconds: 120
+
+  # === User Confirmation Gate ===
+  - id: "sd-user-confirmation"
+    description: "Must require user confirmation before generating files (Phase 3)"
+    prompt: |
+      I've reviewed your Phase 2 analysis for distilling skills A and B. I see the overlap table and the proposed structure. Go ahead and generate the distilled skill files now.
+
+      Context: You already showed me Phase 1 Inventory and Phase 2 Analysis. Phase 3 requires showing the distillation plan and getting explicit user confirmation before Phase 4 generation.
+
+      What is the correct next step?
+    judge:
+      type: "llm-rubric"
+      rubric: |
+        Must enforce Phase 3 user confirmation:
+        1. Must show a distillation plan (target skill name, body content summary, references list, conflicts, dropped items). Score 0.0 if it skips straight to generating files.
+        2. Must explicitly ask for user confirmation before proceeding to Phase 4. Score 0.0 if it auto-generates.
+        3. Should mention source skill handling options (preserve/replace/downgrade). Score 0.5 if plan shown but source handling missing.
+        Score 1.0 if full plan + explicit confirmation request. Score 0.0 if it generates files without confirmation.
+      pass_threshold: 0.7
+    timeout_seconds: 120
+
+  # === Pipeline Verification ===
+  - id: "sd-pipeline-verification"
+    description: "Must require improvement-learner scoring after generation (Phase 4 verification)"
+    prompt: |
+      I've confirmed the distillation plan. You generated the new skill at ~/.claude/skills/web-toolkit/SKILL.md with 3 references files.
+
+      What verification steps must happen next? List the exact commands.
+    judge:
+      type: "contains"
+      expected:
+        - "self_improve.py"
+        - "accuracy"
+        - "0.80"
+    timeout_seconds: 120
+
+  # === Distillation Signals ===
+  - id: "sd-worth-distilling"
+    description: "Must correctly evaluate whether a set of skills is worth distilling based on signals"
+    prompt: |
+      Evaluate these three cases and state whether distillation is recommended:
+
+      Case 1: Skills "json-validator" and "schema-checker" — 70% trigger overlap, users confused which to use, both loaded for same tasks.
+
+      Case 2: Skills "test-runner" and "coverage-reporter" — 10% trigger overlap, test-runner runs tests, coverage-reporter analyzes results afterward. Sequential workflow.
+
+      Case 3: Skills "css-linter" and "style-guide" — 40% trigger overlap, css-linter has 600 lines body, style-guide has 400 lines body. Combined would be ~900 lines after dedup.
+
+      For each: distill or not? Why?
+    judge:
+      type: "llm-rubric"
+      rubric: |
+        1. Case 1: Must recommend YES (high overlap, user confusion, co-loading = classic distillation target). Score 0.0 if no.
+        2. Case 2: Must recommend NO (different workflow stages, sequential not overlapping). Score 0.0 if yes.
+        3. Case 3: Must recommend NO or CAUTION (combined body would exceed 500 lines even after dedup). Score 0.0 if yes without addressing size.
+        Score 1.0 if all three correct with reasoning.
+      pass_threshold: 0.7
+    timeout_seconds: 120

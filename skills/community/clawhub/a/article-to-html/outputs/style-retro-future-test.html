@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>AI 录音卡片</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body{ background: #2d1b4e; font-family: 'Noto Sans SC', sans-serif; background:transparent;margin:0;padding:0;}
+        .container{ width: 1080px; min-height: 1440px; background: linear-gradient(180deg, #1a1a2e 0%, #2d1b4e 100%); padding: 48px; color: #fff; }
+        .header { text-align: center; margin-bottom: 50px; }
+        .tag { font-size: 22px; letter-spacing: 5px; color: #00d9ff; margin-bottom: 20px; text-transform: uppercase; }
+        h1 { font-size: 68px; font-weight: 900; background: linear-gradient(90deg, #00d9ff, #ff00ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; line-height: 1.2; }
+        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; margin-bottom: 35px; }
+        .card { background: rgba(255,255,255,0.05); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; padding: 30px; }
+        .card-icon { font-size: 48px; margin-bottom: 15px; }
+        .card-title { font-size: 34px; font-weight: 700; color: #00d9ff; margin-bottom: 12px; }
+        .card-content { font-size: 28px; color: #ccc; line-height: 1.7; }
+        .glow-box { background: linear-gradient(90deg, rgba(0,217,255,0.2), rgba(255,0,255,0.2)); border: 2px solid rgba(0,217,255,0.3); border-radius: 25px; padding: 35px; text-align: center; margin-top: 30px; }
+        .glow-title { font-size: 38px; font-weight: 700; color: #00d9ff; margin-bottom: 20px; }
+        .glow-content { font-size: 30px; color: #fff; }
+    .coord{display:none!important;}
+/* === POST-PROCESS: 字号兜底 === */
+.container { font-size: max(14px, 1em); }
+.container h1, .container [class*="title"]:first-child { font-size: max(48px, 1em) !important; }
+.container h2, .container h3 { font-size: max(28px, 1em) !important; }
+.container p, .container li, .container td { font-size: max(20px, 0.9em) !important; }
+.container .coord { display: none !important; }
+</style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="tag">FUTURE TECH · 2026</div>
+            <h1>AI 录音卡片<br/>产品架构</h1>
+        </div>
+        <div class="grid">
+            <div class="card">
+                <div class="card-icon">🎯</div>
+                <div class="card-title">M-P-D-G 框架</div>
+                <div class="card-content">Market 市场<br>Product 产品<br>Data 数据<br>Governance 治理</div>
+            </div>
+            <div class="card">
+                <div class="card-icon">⚡</div>
+                <div class="card-title">合规认证</div>
+                <div class="card-content">SOC 2 Type I/II<br>HIPAA BAA<br>BIPA / COPPA</div>
+            </div>
+            <div class="card">
+                <div class="card-icon">🔒</div>
+                <div class="card-title">技术实现</div>
+                <div class="card-content">SSE-KMS 加密<br>TLS 1.2+ 传输<br>IAM + MFA 认证</div>
+            </div>
+            <div class="card">
+                <div class="card-icon">📊</div>
+                <div class="card-title">审计日志</div>
+                <div class="card-content">CloudTrail 全记录<br>API 调用追踪<br>访问控制审计</div>
+            </div>
+        </div>
+        <div class="glow-box">
+            <div class="glow-title">💰 投资估算</div>
+            <div class="glow-content">一次性合规 $30-75K · 年度维护 $32-65K · AWS 云成本 $1.1K/月 (10K DAU)</div>
+        </div>
+    </div>
+</body>
+</html>

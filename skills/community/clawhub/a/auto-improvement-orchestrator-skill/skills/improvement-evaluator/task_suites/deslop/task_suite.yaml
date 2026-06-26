@@ -1,0 +1,161 @@
+skill_id: "deslop"
+version: "1.0"
+description: "Evaluates deslop skill's ability to remove AI patterns from text while preserving substance and adding human voice"
+
+tasks:
+  # === Tier 1 模式识别与删除 ===
+  - id: "ds-tier1-removal"
+    description: "Must remove Tier 1 AI patterns: AI vocabulary, significance inflation, copula avoidance"
+    prompt: |
+      Rewrite the following paragraph to remove AI-generated patterns. Apply the deslop workflow.
+
+      "The NanoCompose framework serves as a groundbreaking solution that delves into the intricate
+      landscape of cross-platform rendering. This pivotal initiative showcases how modern technology
+      can foster innovation, highlighting the enduring interplay between performance and usability.
+      The framework stands as a testament to the team's commitment to excellence, underscoring
+      its vital role in the evolving ecosystem of mobile development."
+
+      Output the rewritten version only, no explanations.
+    judge:
+      type: "contains"
+      expected:
+        # These AI words must be removed
+        - "is"  # copula should be restored from "serves as"
+      # Verify via llm-rubric that AI words are gone
+    timeout_seconds: 120
+
+  - id: "ds-tier1-verify-removal"
+    description: "Rewritten text must NOT contain Tier 1 AI vocabulary words"
+    prompt: |
+      Rewrite this paragraph to remove all AI-generated patterns:
+
+      "The NanoCompose framework serves as a groundbreaking solution that delves into the intricate
+      landscape of cross-platform rendering. This pivotal initiative showcases how modern technology
+      can foster innovation, highlighting the enduring interplay between performance and usability."
+
+      Output the rewritten version only.
+    judge:
+      type: "llm-rubric"
+      rubric: |
+        Check the rewritten text for Tier 1 AI vocabulary. Score 0.0 if ANY of these words remain:
+        delve, tapestry, landscape (abstract), interplay, intricate, groundbreaking, pivotal,
+        showcase, underscore, foster, garnering, enduring, testament, serves as, stands as.
+        Score 0.5 if 1-2 remain. Score 1.0 if none remain.
+        Also check: is the core meaning preserved? If the rewrite lost the original facts, score 0.0.
+      pass_threshold: 0.8
+    timeout_seconds: 120
+
+  # === 中文特有模式 ===
+  - id: "ds-chinese-patterns"
+    description: "Must fix Chinese-specific AI patterns: 四字堆砌, 被动过多, 总分总"
+    prompt: |
+      用 deslop 方法重写以下中文段落，去除 AI 味：
+
+      "我们很高兴地宣布，这套革命性的架构通过高效协同、智能赋能、敏捷迭代、持续优化等最佳实践，
+      已被成功实施并在生产环境中得到验证。下面从三个方面进行阐述。第一，性能优化已被全面推进。
+      第二，用户体验已被显著提升。第三，系统稳定性已被大幅增强。综上所述，该架构代表了该领域的重要进展。"
+
+      只输出重写后的版本。
+    judge:
+      type: "llm-rubric"
+      rubric: |
+        Check the rewritten Chinese text:
+        1. No "四字堆砌" (4-char buzzword chains like 高效协同/智能赋能/敏捷迭代/持续优化) — score 0 if >2 remain
+        2. Passive voice reduced (已被X → 主动语态) — score 0 if "已被" appears more than once
+        3. No "总分总" pattern (下面从X个方面/综上所述) — score 0 if these frames remain
+        4. No "革命性"/"最佳实践" buzzwords — score 0 if these remain
+        5. Core claims preserved (performance, UX, stability improvements mentioned)
+        Score 1.0 if all pass, 0.5 if 3-4 pass, 0.0 if fewer.
+      pass_threshold: 0.7
+    timeout_seconds: 120
+
+  # === 两次 Pass 执行 ===
+  - id: "ds-two-pass"
+    description: "Output must show evidence of two-pass workflow (Pass 1 + remaining tells + Pass 2)"
+    prompt: |
+      Apply the full deslop workflow to this text. You MUST show both passes:
+
+      "Additionally, this innovative approach leverages cutting-edge AI technology to seamlessly
+      enhance developer productivity. It's not just about automation; it's about empowering teams
+      to unlock their full potential. The future looks bright as we continue our journey toward
+      excellence in software engineering."
+
+      Show: Pass 1 rewrite, remaining AI tells, then Pass 2 final version.
+    judge:
+      type: "contains"
+      expected:
+        - "Pass 1"
+        - "Pass 2"
+    timeout_seconds: 120
+
+  # === 评分输出格式 ===
+  - id: "ds-score-format"
+    description: "Must output original score and final score in the specified format"
+    prompt: |
+      Apply deslop to this text and output with scores:
+
+      "We are thrilled to announce our revolutionary platform that delves into the vibrant
+      landscape of cloud computing. This groundbreaking initiative serves as a testament to
+      our unwavering commitment to fostering innovation and showcasing excellence."
+
+      Follow the deslop output format with scores.
+    judge:
+      type: "contains"
+      expected:
+        - "/10"
+    timeout_seconds: 120
+
+  # === 防过度矫正 ===
+  - id: "ds-preserve-substance"
+    description: "Must NOT remove technical substance while removing AI patterns"
+    prompt: |
+      Apply deslop to this technical paragraph. Preserve ALL technical details:
+
+      "The ExprVm executes compiled binary templates with P95 latency under 3ms for simple templates.
+      The dual-node architecture (OriginNode for immutable prototypes, LayoutNode for mutable layout)
+      achieves zero-copy references. The three-stage pipeline (ExpandTree → Layout → Render) processes
+      complex templates in under 16ms. This groundbreaking approach serves as a testament to the
+      team's innovative engineering, showcasing the pivotal role of performance optimization."
+
+      Remove AI patterns but keep every technical fact. Output the rewritten version.
+    judge:
+      type: "contains"
+      expected:
+        - "P95"
+        - "3ms"
+        - "OriginNode"
+        - "LayoutNode"
+        - "ExpandTree"
+        - "16ms"
+    timeout_seconds: 120
+
+  # === 禁用词检测 ===
+  - id: "ds-banned-words"
+    description: "Must remove all banned words from the disallow list"
+    prompt: |
+      Apply deslop to remove AI patterns from this text:
+
+      "This paradigm-shifting solution empowers developers with cutting-edge tools that
+      seamlessly integrate into existing workflows. By leveraging synergy between teams and
+      unlocking the full potential of the platform, we drive innovation at unprecedented scale.
+      Our best practices ensure a transformative experience."
+
+      Output the rewritten version only.
+    judge:
+      type: "llm-rubric"
+      rubric: |
+        Check that ALL of these banned words/phrases have been removed or replaced:
+        - paradigm / paradigm-shifting
+        - empowers / empowering
+        - cutting-edge
+        - seamlessly / seamless
+        - leveraging / leverage
+        - synergy
+        - unlocking / unlock potential
+        - drive innovation
+        - best practices
+        - transformative
+        Score 1.0 if all removed. Score 0.5 if 1-2 remain. Score 0.0 if 3+ remain.
+        The replacement should use specific, concrete language instead.
+      pass_threshold: 0.8
+    timeout_seconds: 120

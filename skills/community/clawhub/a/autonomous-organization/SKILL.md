@@ -1,35 +1,41 @@
----
-name: "Autonomous Organization"
-description: "Manages and schedules autonomous agents to perform research, projects, memory upkeep, cleanup, and security tasks around the clock."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/autonomous-organization"
-sourceUrl: "https://clawhub.ai/skills/autonomous-organization"
----
+# Autonomous Organization Skill
 
-# Autonomous Organization
+This is the core framework for running autonomous agents that deliver value 24/7.
 
-> Manages and schedules autonomous agents to perform research, projects, memory upkeep, cleanup, and security tasks around the clock.
+## Daily Schedule
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/autonomous-organization`
-- **Source URL:** [https://clawhub.ai/skills/autonomous-organization](https://clawhub.ai/skills/autonomous-organization)
+### Morning (9:00 AM)
+- Review overnight work completed by autonomous agents
+- Update MEMORY.md with key achievements
+- Prepare any new autonomous tasks for the day
 
-## Overview
+### Afternoon (3:00 PM)
+- Execute midday autonomous work batch
+- Check system health and resource usage
+- Plan overnight autonomous tasks
 
+### Evening (9:00 PM)
+- Deep work autonomous tasks (resource-intensive)
+- Memory optimization and cleanup
+- Preparation for next day
 
-## Installation
-To install this skill, run the following command in your terminal:
+### Night (11:00 PM - 6:00 AM)
+- High-priority overnight work
+- System optimization tasks
+- Batch processing of accumulated tasks
+
+## Autonomous Agent Types
+
+1. **Memory Agent** - Maintains and improves memory system
+2. **Research Agent** - Gathers information on topics of interest
+3. **Project Agent** - Works on ongoing projects
+4. **Cleanup Agent** - Organizes files, updates docs
+5. **Security Agent** - System health and security checks
+
+## Creating Autonomous Agents
+
 ```bash
-hermes skills install clawhub/autonomous-organization
+sessions_spawn --task "Your task here" --runtime subagent
 ```
+
+Use the orchestrator to plan, sub-agents to execute.

@@ -1,0 +1,48 @@
+{
+  "name": "baostock-skill",
+  "version": "1.0.0",
+  "description": "BaoStock 股票数据接口封装 - 提供A股历史行情、财务指标、技术指标查询。",
+  "author": "local",
+  "license": "MIT",
+  "main": "scripts/baostock_interface.py",
+  "scripts": {
+    "query": "scripts/query_stock.py",
+    "download": "scripts/download_historical.py"
+  },
+  "dependencies": {
+    "baostock": ">=0.8.8",
+    "pandas": ">=1.0"
+  },
+  "requirements": [
+    "baostock",
+    "pandas",
+    "numpy"
+  ],
+  "capabilities": [
+    "stock-data",
+    "finance",
+    "china-market"
+  ],
+  "permissions": {
+    "file_system": {
+      "read": [
+        "~/.openclaw/workspace/**"
+      ],
+      "write": [
+        "~/.openclaw/workspace/**"
+      ]
+    }
+  },
+  "configuration": {
+    "default_market": "sh",
+    "cache_enabled": true,
+    "cache_dir": "~/.openclaw/cache/baostock"
+  },
+  "documentation": "README.md",
+  "tags": [
+    "stock",
+    "baostock",
+    "A-share",
+    "finance"
+  ]
+}

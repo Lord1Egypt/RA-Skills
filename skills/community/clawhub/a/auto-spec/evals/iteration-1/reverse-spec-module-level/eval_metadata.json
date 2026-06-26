@@ -1,0 +1,14 @@
+{
+  "eval_id": 2,
+  "eval_name": "reverse-spec-module-level",
+  "prompt": "Reverse-engineer a spec for internal/orchestrator/supervisor.go — I want to understand what this supervisor actually does.",
+  "assertions": [
+    {"text": "Spec accurately describes the behavior of both core functions: GetSupervisor and Generate", "type": "qualitative"},
+    {"text": "Spec covers the version-branching logic", "type": "qualitative"},
+    {"text": "Spec flags suspicious behavior or noteworthy points using [NOTE] tags", "type": "qualitative"},
+    {"text": "Spec distinguishes between what the code actually does and what it might have intended to do", "type": "qualitative"},
+    {"text": "Spec includes dependency relationships (what it depends on / who depends on it)", "type": "qualitative"},
+    {"text": "Spec does not write any files to the project source directory", "type": "qualitative"},
+    {"text": "Spec describes the configuration priority chain", "type": "qualitative"}
+  ]
+}

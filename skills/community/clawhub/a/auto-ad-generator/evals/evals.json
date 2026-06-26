@@ -1,0 +1,43 @@
+{
+  "skill_name": "auto-ad-generator",
+  "evals": [
+    {
+      "id": 1,
+      "name": "li-auto-style-suv",
+      "prompt": "用理想汽车的风格给这辆SUV生成一张商业广告图，品牌是理想i6，标题是'新形态纯电五座SUV'，口号是'理想，就是活成自己喜欢的样子'",
+      "expected_output": "1080x1920竖版海报，蓝紫渐变背景，白色大字标题，车身位于画面中下部",
+      "files": ["test_assets/suv_sample.jpg"],
+      "expectations": [
+        "输出图片尺寸为1080x1920或相似竖版比例",
+        "背景使用蓝紫色渐变",
+        "标题文字清晰可见",
+        "汽车主体突出且位置合理",
+        "整体风格类似理想汽车官方广告"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "sporty-sedan-ad",
+      "prompt": "生成一张运动型轿车的广告，品牌是P7，主打驾驶乐趣，风格要年轻动感",
+      "expected_output": "暖色调渐变，动态角度车身，运动感十足",
+      "files": [],
+      "expectations": [
+        "使用橙色或暖色调渐变",
+        "文案突出运动和速度感",
+        "整体风格年轻化"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "luxury-family-mpv",
+      "prompt": "给一辆家庭MPV设计广告，强调空间和舒适性，适合全家出行",
+      "expected_output": "温馨色调，大空间展示，家庭友好氛围",
+      "files": [],
+      "expectations": [
+        "使用温馨或清新的色调",
+        "文案突出家庭、空间、舒适",
+        "布局稳重不激进"
+      ]
+    }
+  ]
+}

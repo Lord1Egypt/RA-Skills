@@ -1,0 +1,32 @@
+{
+  "com3_port": {
+    "value": "COM3",
+    "updated": "2026-03-15T16:11:49.548944",
+    "confidence": 1.0
+  },
+  "baud_rate": {
+    "value": "115200",
+    "updated": "2026-03-15T16:11:49.555658",
+    "confidence": 1.0
+  },
+  "esp32_model": {
+    "value": "ESP32-S3",
+    "updated": "2026-03-15T16:11:49.559810",
+    "confidence": 1.0
+  },
+  "xiaozhi_protocol": {
+    "value": "JSON over serial",
+    "updated": "2026-03-15T16:11:49.562499",
+    "confidence": 1.0
+  },
+  "connection_status": {
+    "value": "Permission denied (port occupied)",
+    "updated": "2026-03-15T16:11:49.600847",
+    "confidence": 1.0
+  },
+  "heap_free": {
+    "value": "0 bytes (memory exhausted)",
+    "updated": "2026-03-15T16:11:49.603208",
+    "confidence": 1.0
+  }
+}

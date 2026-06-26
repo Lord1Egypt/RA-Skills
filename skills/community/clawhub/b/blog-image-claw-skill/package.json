@@ -1,0 +1,16 @@
+{
+  "name": "blog-image-claw-skill",
+  "version": "2.0.1",
+  "type": "module",
+  "description": "Blog Image Generator \u2014 AI-powered ai blog image generator",
+  "license": "MIT",
+  "clawhub": {
+    "env": [
+      {
+        "name": "NETA_TOKEN",
+        "description": "Neta AI API token. Get it at https://www.neta.art/open/",
+        "required": true
+      }
+    ]
+  }
+}

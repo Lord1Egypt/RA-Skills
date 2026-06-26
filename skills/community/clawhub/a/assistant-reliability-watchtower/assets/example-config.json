@@ -1,0 +1,19 @@
+{
+  "out_dir": "artifacts/arw",
+  "suite": "smoke",
+  "window_hours": 24,
+  "trend_window": 10,
+  "trend_flip_threshold": 2,
+  "freshness_max_age_seconds": 93600,
+  "probe_runtime_threshold_ms": 250,
+  "max_delivery_latency_seconds": 900,
+  "max_probe_evidence_age_seconds": 21600,
+  "max_alignment_gap_seconds": 900,
+  "alert_cooldown_seconds": 10800,
+  "expected_recipient": "dry-run:recipient",
+  "actual_recipient": "",
+  "send_ref": "",
+  "send_started_at": "",
+  "confirmation_ref": "",
+  "confirmation_at": ""
+}

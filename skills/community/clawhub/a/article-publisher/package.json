@@ -1,0 +1,21 @@
+{
+  "name": "article-publisher",
+  "version": "1.4.3",
+  "description": "自媒体文章多平台发布工具",
+  "license": "GPL-3.0",
+  "main": "src/index.ts",
+  "type": "module",
+  "scripts": {
+    "install:browser": "npx playwright install chromium",
+    "install:browser:cn": "cross-env PLAYWRIGHT_DOWNLOAD_HOST=https://npmmirror.com/mirrors/playwright npx playwright install chromium"
+  },
+  "dependencies": {
+    "playwright": "^1.40.0"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.3"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

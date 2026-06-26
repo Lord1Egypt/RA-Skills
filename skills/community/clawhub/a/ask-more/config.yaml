@@ -1,0 +1,15 @@
+# Ask-More Configuration
+
+models:
+  - anthropic/claude-sonnet-4
+  - google/gemini-2.5-pro
+  - openai-codex/gpt-5.4
+
+min_models: 2
+timeout_seconds: 30
+context_mode: summary
+full_mode_max_turns: 10
+show_cost_estimate: true
+require_confirmation: true
+privacy_acknowledged: true
+suggested_max_words: 800

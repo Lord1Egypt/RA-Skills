@@ -1,35 +1,22 @@
 ---
-name: "Bailian KnowledgeBase Retrieve"
-description: "Bailian KnowledgeBase(Provided by Alibaba ModelStdio) offers to retrieve any proprietary data that have been vectorized in the hosted knowledgebases. It retu..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/bailian-knowledge-retrieve"
-sourceUrl: "https://clawhub.ai/skills/bailian-knowledge-retrieve"
+name: bailian-knowledgebase-retrieve
+description: Bailian KnowledgeBase(Provided by Alibaba ModelStdio) offers to retrieve any proprietary data that have been vectorized in the hosted knowledgebases. It returns multidocs, concise KB retrieval results for LLMs.
+homepage: https://bailian.console.aliyun.com/cn-beijing?tab=app#/knowledge-base
+metadata: {"clawdbot":{"emoji":"🔍","requires":{"bins":["python3"],"env":["DASHSCOPE_API_KEY","KNOWLEDGEBASE_ID"]},"primaryEnv":"DASHSCOPE_API_KEY"}}
 ---
 
 # Bailian KnowledgeBase Retrieve
 
-> Bailian KnowledgeBase(Provided by Alibaba ModelStdio) offers to retrieve any proprietary data that have been vectorized in the hosted knowledgebases. It retu...
+Vector-based hosted KnowledgeBase with Bailian Embedding/Rerank API. Designed for AI agents and chatbots - returns clean, relevant content in your proprietary datahub.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/bailian-knowledge-retrieve`
-- **Source URL:** [https://clawhub.ai/skills/bailian-knowledge-retrieve](https://clawhub.ai/skills/bailian-knowledge-retrieve)
+## Retrieve(Search)
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/bailian-knowledge-retrieve
+python3 {baseDir}/scripts/retrieve.py "query"
+python3 {baseDir}/scripts/retrieve.py "query" 3
 ```
+
+## Options
+
+- `<count>`: Number of results (default: 5, max: 20)
+- `<query>`: User Query for KB Retrieval

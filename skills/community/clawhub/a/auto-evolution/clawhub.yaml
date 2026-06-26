@@ -1,0 +1,32 @@
+# Auto-Evolution (Hybrid Mode)
+
+**Version:** 2.0.0  
+**Category:** Agent Orchestration  
+**Author:** Wilson AI Team  
+**License:** MIT
+
+---
+
+## 简介
+
+全自动多 Agent 进化系统（混合模式），支持简单任务手动 Subtask 和复杂任务自动 Subtask 生成。通过 5 维度复杂度评分模型自动分类任务，Reviewer → Executor → Auditor 三步流程保证质量。
+
+## 安装
+
+```bash
+clawhub install auto-evolution
+```
+
+## 快速开始
+
+1. 配置 Wilson 和 Warden 心跳（见 README.md）
+2. 创建任务：`node scripts/create-task.js`
+3. 系统自动推进任务（简单任务直接执行，复杂任务先 Reviewer 分析）
+
+## 文档
+
+完整文档请查看 [README.md](README.md) 和 [SKILL.md](SKILL.md)
+
+## 版本
+
+2.0.0 (2026-03-29) - 混合模式实现

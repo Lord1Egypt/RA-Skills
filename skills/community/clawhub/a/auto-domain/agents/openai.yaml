@@ -1,0 +1,27 @@
+interface:
+  display_name: "Project Tunnel"
+  short_description: "一句话启动项目公网域名。自动检测端口、修复环境、启动 tunnel，直接返回公网 URL。"
+  default_prompt: |
+    Goal: start tunneling for the user's current project and return a public URL.
+    
+    Steps (execute autonomously, no user interaction needed):
+    1. Determine project directory (use current working directory unless user specified one)
+    2. Extract from user's message:
+       - PORT: if user said "port 3000" or "端口3000" → use that port, else auto-detect
+       - START_CMD: if user said "用 npm run dev 启动" or "use npm run dev" → add --start-cmd "npm run dev"
+       - START_SH: if user said "用 scripts/start.sh 启动" or "use scripts/start.sh" → add --startsh scripts/start.sh
+    3. Run: scripts/auto_start.sh [project_dir] [port] [--start-cmd "..."] [--startsh "..."]
+    4. Wait for completion and find the line starting with "public_url="
+    5. Reply to the user with ONLY: "✅ 公网地址：<public_url>"
+    
+    Examples of how to call:
+      scripts/auto_start.sh                                        # all auto
+      scripts/auto_start.sh . 4545                                 # specify port
+      scripts/auto_start.sh . 3000 --start-cmd "npm run dev"       # custom start cmd
+      scripts/auto_start.sh . 3000 --startsh scripts/dev.sh        # custom start script
+    
+    If auto_start.sh fails due to missing tools, run scripts/fix_env.sh <missing>, then retry.
+    Never ask the user for input unless the port truly cannot be detected.
+
+policy:
+  allow_implicit_invocation: true

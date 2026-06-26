@@ -1,0 +1,35 @@
+{
+  "name": "blogger-auto-publish",
+  "version": "1.1.0",
+  "description": "Auto-publish Markdown articles to Google Blogger - Live Implementation",
+  "main": "publish.js",
+  "scripts": {
+    "start": "node publish.js --help",
+    "auth": "node auth.js",
+    "list": "node publish.js --list",
+    "test": "echo \"No tests specified\" && exit 0"
+  },
+  "keywords": [
+    "blogger",
+    "google",
+    "markdown",
+    "publish",
+    "automation"
+  ],
+  "author": "OpenClaw Skill",
+  "license": "MIT",
+  "dependencies": {
+    "googleapis": "^171.4.0"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/skills/blogger-auto-publish"
+  },
+  "bugs": {
+    "url": "https://github.com/openclaw/skills/issues"
+  },
+  "homepage": "https://docs.openclaw.ai/skills/blogger-auto-publish"
+}

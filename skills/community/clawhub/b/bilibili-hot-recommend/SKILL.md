@@ -1,35 +1,49 @@
 ---
-name: "bilibili 热门视频推荐排行榜"
-description: "实时获取B站首页热门推荐视频榜单，输出视频标题、作者、链接及分类，无需登录，内容实时更新。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/bilibili-hot-recommend"
-sourceUrl: "https://clawhub.ai/skills/bilibili-hot-recommend"
+name: bilibili-hot-recommand
+description: 无需登录状态下获取 bilibili（b站）首页热门推荐视频信息，包括视频名称、作者、视频地址、视频分类，获取热门视频排行榜
+
+trigger_keywords:    
+  - "B站热门视频"，
+  - "B站推荐视频"，
+  - "b站视频排行榜"，
+  - "bilibili热门视频”
+  - "bilibili推荐视频"
+  - "bilibili 热门视频排行榜"
+  - "bilibili热门视频作者"
+metadata:
+author: ley
+version: "1.0.1"
+update_time: "2026-04-02"
 ---
 
-# bilibili 热门视频推荐排行榜
+# 获取B站热门视频排行榜
+## 核心功能
+```
+1. 无需key值即可直接获取bilibili热门推荐视频的信息
+2. 实时抓取 Bilibili 首页“热门”分区的视频榜单（默认前20）
+3. 结构化输出 每条视频包含： 视频标题 、UP 主（作者）昵称、视频地址、视频分类
+4. 自动更新，每次调用均返回最新榜单，确保内容时效性
+```
 
-> 实时获取B站首页热门推荐视频榜单，输出视频标题、作者、链接及分类，无需登录，内容实时更新。
+## 使用方法
+### 直接使用以下任一指令即可触发：
+```
+1. 获取B站热门视频
+2. 获取bilibili热门视频排行榜
+3. 帮我看看现在B站最火的视频有哪些
+```
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/bilibili-hot-recommend`
-- **Source URL:** [https://clawhub.ai/skills/bilibili-hot-recommend](https://clawhub.ai/skills/bilibili-hot-recommend)
+### 使用场景
+```
+1. 想快速知道今天 B 站大家都在看什么？
+2. 寻找近期爆火的优质内容或潜力 UP 主？
+3. 做内容分析、热点追踪或竞品调研？
+```
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/bilibili-hot-recommend
+## 脚本信息
+```
+- 脚本路径：`scripts/bilibili-hot-recommend.py`
+- 脚本依赖：需要安装requests 库，可通过pip3 install requests 自动安装
+- 输出格式：按热度从高到低排序的列表，每项包含【标题 + 作者 + 视频地址 + 视频分类】
+💡 提示：该榜单反映的是全站综合热度（包括播放、点赞、投币、收藏、评论等维度），是了解中文互联网年轻群体兴趣风向的重要窗口
 ```

@@ -1,0 +1,57 @@
+{
+  "skill_name": "bizyair-upload",
+  "evals": [
+    {
+      "id": 1,
+      "name": "upload-single-image",
+      "prompt": "请帮我把 /Users/hao/Downloads/downloads/1.png 上传到 BizyAir 并返回 URL",
+      "expected_output": "成功上传文件到 BizyAir，返回可访问的 URL",
+      "assertions": [
+        {
+          "name": "return_url",
+          "check": "output_contains_url",
+          "expected": "https://storage.bizyair.cn/"
+        },
+        {
+          "name": "upload_success",
+          "check": "output_contains",
+          "expected": "上传完成"
+        }
+      ],
+      "files": []
+    },
+    {
+      "id": 2,
+      "name": "query-resource-list",
+      "prompt": "查看我在 BizyAir 中的输入资源列表，显示最近 5 个",
+      "expected_output": "显示已上传的资源列表，包含文件名和 URL",
+      "assertions": [
+        {
+          "name": "show_list",
+          "check": "output_contains",
+          "expected": "查询成功"
+        },
+        {
+          "name": "show_items",
+          "check": "output_contains",
+          "expected": "URL:"
+        }
+      ],
+      "files": []
+    },
+    {
+      "id": 3,
+      "name": "upload-without-key",
+      "prompt": "请帮我把 test.png 上传到 BizyAir（假设没有配置 API Key）",
+      "expected_output": "提示用户需要配置 BIZYAIR_API_KEY 环境变量或提供 API Key",
+      "assertions": [
+        {
+          "name": "error_handling",
+          "check": "output_contains",
+          "expected": "API_KEY"
+        }
+      ],
+      "files": []
+    }
+  ]
+}

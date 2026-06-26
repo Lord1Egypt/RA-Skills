@@ -1,0 +1,275 @@
+name: boss-multidomain-daily-10q
+version: v1
+mode: agent_context
+# IMPORTANT: use a trusted HTTPS OpenAI-compatible endpoint.
+# For safety, the runner blocks localhost/raw IP and non-HTTPS URLs by default.
+# Example: https://api.openai.com/v1  (or your own trusted gateway)
+base_url: https://api.openai.com/v1
+auth_env: BENCHMARK_API_KEY
+context_profile:
+  purpose:
+  - research thông tin
+  - báo cáo hàng ngày, lấy tin tức, đánh giá tin tức
+  - kiểm tra tin thật hay tin giả
+  - coding
+  domain:
+  - tài chính vĩ mô
+  - khoa học và máy tính
+  - âm nhạc
+  - quản lý vận hành
+  usage_frequency: thường xuyên
+  language: vi
+  user_profile: đa lĩnh vực, thiên về research + tổng hợp + đánh giá + thực thi
+  benchmark_intent: chọn model phù hợp nhất cho workflow dùng bot hằng ngày
+models:
+- gpt-5.2
+- gpt-5.4
+- gpt-5.4-mini
+- gpt-5.3-codex
+- claude-opus-4-6-thinking
+- claude-sonnet-4-6
+- gemini-3.1-pro-high
+- gemini-3.1-pro-low
+questions:
+- id: q1
+  title: Tóm tắt tin tức vĩ mô quan trọng trong 24h qua
+  task_type: news-research
+  weight: 1.2
+  expected_strength: khả năng research nhanh, chọn lọc thông tin quan trọng, trình
+    bày súc tích nhưng có giá trị hành động
+  prompt: 'Hãy tổng hợp 5 tin tức vĩ mô quan trọng nhất trong 24 giờ qua có thể ảnh
+    hưởng đến thị trường tài chính toàn cầu và Việt Nam.
+
+    Yêu cầu:
+
+    - Chia rõ tin quốc tế và tin liên quan Việt Nam nếu có
+
+    - Với mỗi tin, nêu: điều gì đã xảy ra, vì sao quan trọng, tác động tiềm năng đến
+    vàng / USD / lãi suất / chứng khoán
+
+    - Cuối cùng rút ra 3 ý quan trọng nhất mà một người theo dõi tài chính vĩ mô hằng
+    ngày cần nhớ
+
+    '
+- id: q2
+  title: Đánh giá chất lượng và độ tin cậy của tin tức
+  task_type: fact-checking
+  weight: 1.15
+  expected_strength: khả năng phân tích nguồn, nhận diện bias, tách dữ kiện khỏi suy
+    diễn
+  prompt: 'Giả sử có một bài đăng lan truyền trên mạng nói rằng:
+
+    "Fed sẽ cắt lãi suất khẩn cấp trong vài ngày tới vì hệ thống tài chính Mỹ đang
+    mất kiểm soát."
+
+    Hãy đánh giá độ tin cậy của thông tin này.
+
+    Yêu cầu:
+
+    - Nêu các dấu hiệu cho thấy đây có thể là tin thật hoặc tin giả
+
+    - Liệt kê quy trình kiểm tra chéo nguồn tin
+
+    - Chỉ ra những kiểu ngôn ngữ giật gân hoặc thao túng cảm xúc nếu có
+
+    - Kết luận tạm thời theo 3 mức: đáng tin / chưa đủ cơ sở / khả năng cao là sai
+
+    '
+- id: q3
+  title: Viết báo cáo ngắn buổi sáng cho người theo dõi thị trường
+  task_type: reporting
+  weight: 1.1
+  expected_strength: khả năng viết báo cáo hằng ngày rõ ràng, có cấu trúc, dùng được
+    ngay
+  prompt: 'Hãy viết một báo cáo buổi sáng ngắn gọn cho người theo dõi thị trường tài
+    chính.
+
+    Cấu trúc bắt buộc:
+
+    1. Bức tranh lớn
+
+    2. 3 diễn biến đáng chú ý nhất
+
+    3. Điều cần theo dõi trong ngày
+
+    4. Rủi ro khiến thị trường đổi chiều
+
+    Văn phong: rõ ràng, súc tích, thực chiến, không lan man.
+
+    '
+- id: q4
+  title: Phân tích tác động của một biến động vĩ mô đến nhiều tài sản
+  task_type: macro-analysis
+  weight: 1.2
+  expected_strength: tư duy liên thị trường, khả năng liên kết vĩ mô với tài sản cụ
+    thể
+  prompt: 'Nếu CPI Mỹ cao hơn kỳ vọng rõ rệt trong kỳ công bố tối nay, hãy phân tích
+    tác động ngắn hạn đến:
+
+    - vàng
+
+    - USD
+
+    - lợi suất trái phiếu Mỹ
+
+    - chứng khoán Mỹ
+
+    - tâm lý thị trường tại Việt Nam
+
+    Yêu cầu:
+
+    - giải thích theo chuỗi nguyên nhân → phản ứng → hệ quả
+
+    - phân biệt tác động tức thời và tác động nếu xu hướng kéo dài 1-2 tuần
+
+    '
+- id: q5
+  title: Nghiên cứu chủ đề khoa học / công nghệ từ nhiều nguồn
+  task_type: technical-research
+  weight: 1.0
+  expected_strength: tổng hợp tri thức đa nguồn, diễn giải vấn đề kỹ thuật cho người
+    cần quyết định nhanh
+  prompt: 'Hãy giải thích ngắn gọn nhưng có chiều sâu về một chủ đề công nghệ hiện
+    đại:
+
+    "Mixture-of-Experts trong mô hình ngôn ngữ lớn là gì, vì sao nó giúp tiết kiệm
+    compute, và nhược điểm thực tế là gì?"
+
+    Yêu cầu:
+
+    - giải thích để người có nền tảng công nghệ khá có thể dùng để ra quyết định
+
+    - nêu ưu điểm, nhược điểm, và khi nào không nên quá thần thánh hóa kiến trúc này
+
+    '
+- id: q6
+  title: Đánh giá năng lực coding thực dụng
+  task_type: coding
+  weight: 1.1
+  expected_strength: viết code sạch, đúng bài, có giải thích vừa đủ, xử lý edge case
+    cơ bản
+  prompt: 'Viết một script Python đọc file JSONL log hệ thống và xuất ra báo cáo tóm
+    tắt gồm:
+
+    - tổng số dòng log
+
+    - số lỗi theo level (INFO/WARN/ERROR)
+
+    - 10 message lỗi xuất hiện nhiều nhất
+
+    - top 5 service phát sinh nhiều lỗi nhất
+
+    Yêu cầu:
+
+    - code rõ ràng, có thể chạy được
+
+    - chia hàm hợp lý
+
+    - xử lý trường hợp thiếu field
+
+    - cuối cùng giải thích ngắn gọn thiết kế của script
+
+    '
+- id: q7
+  title: Debug và phản biện code
+  task_type: code-review
+  weight: 1.0
+  expected_strength: phát hiện lỗi logic, chỉ ra rủi ro thực tế, đề xuất fix gọn mà
+    an toàn
+  prompt: 'Có một đoạn code Python dùng để cache dữ liệu API trong biến global để
+    tránh gọi lại nhiều lần.
+
+    Tuy nhiên sau một thời gian chạy, dữ liệu bị cũ và thỉnh thoảng trả sai kết quả.
+
+    Hãy:
+
+    - nêu các nguyên nhân có thể xảy ra
+
+    - chỉ ra rủi ro về stale cache, race condition, và invalidation
+
+    - đề xuất một cách sửa thực dụng, không over-engineering
+
+    '
+- id: q8
+  title: Đánh giá thông tin âm nhạc và xu hướng sáng tạo
+  task_type: music-analysis
+  weight: 0.9
+  expected_strength: phân tích có thẩm mỹ, không sáo rỗng, biết kết hợp góc nhìn nội
+    dung và thị trường
+  prompt: 'Hãy phân tích xu hướng gần đây của việc ứng dụng AI trong âm nhạc.
+
+    Yêu cầu:
+
+    - chia thành 3 phần: sáng tác, sản xuất, phân phối/quảng bá
+
+    - nêu cơ hội thật sự và rủi ro bị thổi phồng
+
+    - kết luận xem một người làm việc với âm nhạc nên học gì ngay bây giờ để không
+    bị tụt lại
+
+    '
+- id: q9
+  title: Quản lý vận hành và ra quyết định
+  task_type: operations
+  weight: 1.0
+  expected_strength: khả năng tổ chức thông tin, ưu tiên việc, đưa ra kế hoạch hành
+    động rõ ràng
+  prompt: 'Giả sử anh đang vận hành một nhóm nhỏ nhưng có quá nhiều đầu việc mỗi ngày:
+    theo dõi tin tức, tổng hợp báo cáo, xử lý yêu cầu kỹ thuật, và kiểm tra chất lượng
+    thông tin.
+
+    Hãy đề xuất một framework vận hành hằng ngày giúp:
+
+    - không bỏ sót việc quan trọng
+
+    - ưu tiên đúng việc có tác động lớn
+
+    - giảm quá tải nhận thức
+
+    - dễ theo dõi tiến độ
+
+    Trả lời theo dạng có thể áp dụng ngay.
+
+    '
+- id: q10
+  title: Bài test tổng hợp đa lĩnh vực
+  task_type: cross-domain-synthesis
+  weight: 1.35
+  expected_strength: năng lực tổng hợp đa lĩnh vực, chọn lọc thông tin, giữ cấu trúc
+    khi bài toán phức tạp
+  prompt: 'Hãy giả sử anh cần một trợ lý AI dùng hằng ngày cho workflow sau:
+
+    - sáng đọc và tóm tắt tin tức vĩ mô
+
+    - trong ngày kiểm tra độ tin cậy của một số tin nóng
+
+    - thỉnh thoảng cần code script nhỏ để xử lý dữ liệu
+
+    - đôi khi cần research công nghệ hoặc xu hướng AI trong âm nhạc
+
+    - cuối ngày cần một báo cáo ngắn về những gì đáng chú ý nhất
+
+    Hãy đề xuất tiêu chí chọn model phù hợp nhất cho workflow này.
+
+    Yêu cầu:
+
+    - đưa ra bộ tiêu chí đánh giá
+
+    - giải thích vì sao từng tiêu chí quan trọng
+
+    - nêu trade-off giữa model mạnh nhưng đắt và model rẻ nhưng vừa đủ dùng
+
+    - kết luận kiểu người dùng nào nên ưu tiên model nào
+
+    '
+scoring:
+  overall_weights:
+    quality: 0.45
+    depth: 0.35
+    cost: 0.2
+  include_speed_in_overall: false
+outputs:
+  markdown: true
+  html: true
+  pdf: true
+  publish_default: none

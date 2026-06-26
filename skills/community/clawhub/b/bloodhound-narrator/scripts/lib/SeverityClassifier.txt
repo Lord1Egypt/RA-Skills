@@ -1,0 +1,260 @@
+<#
+.SYNOPSIS
+    Classifies BloodHound attack paths by severity based on edge types,
+    target nodes, and path characteristics.
+#>
+
+# Edge types that indicate critical privilege escalation
+$Script:CriticalEdges = @(
+    'DCSync'
+    'GetChanges'
+    'GetChangesAll'
+    'WriteDacl'   # Critical when target is Tier 0
+    'GenericAll'  # Critical when target is Tier 0
+    'Owns'        # Critical when target is Tier 0
+)
+
+$Script:DangerousEdges = @(
+    'AdminTo'
+    'HasSession'
+    'ForceChangePassword'
+    'AddMember'
+    'GenericWrite'
+    'WriteOwner'
+    'AllExtendedRights'
+    'AddSelf'
+    'ReadLAPSPassword'
+    'ReadGMSAPassword'
+    'GpLink'
+    'Contains'
+)
+
+# Group names that represent Tier 0 / crown jewels
+$Script:Tier0Groups = @(
+    'DOMAIN ADMINS'
+    'ENTERPRISE ADMINS'
+    'ADMINISTRATORS'
+    'DOMAIN CONTROLLERS'
+    'SCHEMA ADMINS'
+    'ACCOUNT OPERATORS'
+    'BACKUP OPERATORS'
+    'SERVER OPERATORS'
+    'PRINT OPERATORS'
+)
+
+function Test-IsTier0Target {
+    <#
+    .SYNOPSIS
+        Determines if a node represents a Tier 0 asset.
+    #>
+    param(
+        [Parameter(Mandatory)]$Node
+    )
+
+    $name = ((Get-SafeProp $Node.props 'name') -split '@')[0].ToUpper()
+
+    # Check against known Tier 0 groups
+    if ($name -in $Script:Tier0Groups) { return $true }
+
+    # Domain Controllers
+    if ((Get-SafeProp $Node.props 'isDC') -eq $true) { return $true }
+
+    # Objects with admincount set
+    if ((Get-SafeProp $Node.props 'admincount') -eq $true -and $Node.label -eq 'Group') { return $true }
+
+    return $false
+}
+
+function Get-SafeProp {
+    <#
+    .SYNOPSIS
+        Safely access a property on a PSCustomObject, returning $null if absent.
+    #>
+    param($Obj, [string]$Name)
+    if ($null -ne $Obj -and $Obj.PSObject.Properties.Match($Name).Count -gt 0) {
+        return $Obj.$Name
+    }
+    return $null
+}
+
+function Test-HasUnconstrainedDelegation {
+    <#
+    .SYNOPSIS
+        Checks if any node in the path has unconstrained delegation enabled.
+    #>
+    param(
+        [Parameter(Mandatory)][array]$Nodes
+    )
+    foreach ($node in $Nodes) {
+        if ((Get-SafeProp $node.props 'unconstraineddelegation') -eq $true) { return $true }
+    }
+    return $false
+}
+
+function Test-HasKerberoastable {
+    <#
+    .SYNOPSIS
+        Checks if the path starts from a kerberoastable account.
+    #>
+    param(
+        [Parameter(Mandatory)][array]$Nodes
+    )
+    $source = $Nodes[0]
+    return ((Get-SafeProp $source.props 'hasspn') -eq $true -and $source.label -eq 'User')
+}
+
+function Get-PathSeverity {
+    <#
+    .SYNOPSIS
+        Classifies a single attack path and returns a severity object.
+    .OUTPUTS
+        PSCustomObject with Severity, Score, Reasons, and Factors.
+    #>
+    param(
+        [Parameter(Mandatory)][PSCustomObject]$Path
+    )
+
+    $reasons  = [System.Collections.Generic.List[string]]::new()
+    $factors  = [System.Collections.Generic.List[string]]::new()
+    $score    = 0
+
+    $nodes = $Path.nodes
+    $edges = $Path.edges
+
+    # Convert nodes to hashtable for lookup
+    $nodeMap = @{}
+    foreach ($n in $nodes) {
+        $nodeMap[$n.id] = $n
+    }
+
+    $terminalNode = $nodes[-1]
+    $edgeLabels   = $edges | ForEach-Object { $_.label }
+
+    # --- Factor: Target is Tier 0 ---
+    if (Test-IsTier0Target -Node $terminalNode) {
+        $score += 40
+        $reasons.Add("Path terminates at Tier 0 asset: $($terminalNode.props.name)")
+        $factors.Add('Tier0Target')
+    }
+
+    # --- Factor: Critical edge types present ---
+    foreach ($edge in $edges) {
+        if ($edge.label -in $Script:CriticalEdges) {
+            $srcName = $nodeMap[$edge.source].props.name
+            $tgtName = $nodeMap[$edge.target].props.name
+            $isTier0Edge = (Test-IsTier0Target -Node $nodeMap[$edge.target])
+
+            if ($edge.label -eq 'DCSync') {
+                $score += 30
+                $reasons.Add("DCSync capability: $srcName can replicate directory from $tgtName")
+                $factors.Add('DCSync')
+            }
+            elseif ($edge.label -in @('GenericAll','WriteDacl','Owns') -and $isTier0Edge) {
+                $score += 30
+                $reasons.Add("$($edge.label) on Tier 0 object: $srcName -> $tgtName")
+                $factors.Add("$($edge.label)OnTier0")
+            }
+            elseif ($edge.label -in @('GenericAll','WriteDacl','Owns')) {
+                $score += 15
+                $reasons.Add("$($edge.label) permission: $srcName -> $tgtName")
+                $factors.Add($edge.label)
+            }
+        }
+    }
+
+    # --- Factor: Unconstrained delegation in path ---
+    if (Test-HasUnconstrainedDelegation -Nodes $nodes) {
+        $score += 20
+        $delegHost = ($nodes | Where-Object { (Get-SafeProp $_.props 'unconstraineddelegation') -eq $true }).props.name
+        $reasons.Add("Unconstrained delegation host in path: $delegHost")
+        $factors.Add('UnconstrainedDelegation')
+    }
+
+    # --- Factor: Kerberoastable source account ---
+    if (Test-HasKerberoastable -Nodes $nodes) {
+        $score += 10
+        $reasons.Add("Source account is Kerberoastable: $($nodes[0].props.name)")
+        $factors.Add('Kerberoastable')
+    }
+
+    # --- Factor: Path length (shorter = more exploitable) ---
+    $hopCount = $edges.Count
+    if ($hopCount -le 2) {
+        $score += 10
+        $factors.Add('ShortPath')
+    }
+    elseif ($hopCount -le 3) {
+        $score += 5
+        $factors.Add('MediumPath')
+    }
+
+    # --- Factor: Lateral movement chain (AdminTo + HasSession combo) ---
+    $hasAdminTo   = 'AdminTo'   -in $edgeLabels
+    $hasSession   = 'HasSession' -in $edgeLabels
+    if ($hasAdminTo -and $hasSession) {
+        $score += 10
+        $reasons.Add("Lateral movement chain: local admin + session hijack enables credential theft")
+        $factors.Add('HasSession')
+        $factors.Add('AdminTo')
+    }
+
+    # --- Factor: Sensitive data exposure (description keywords) ---
+    foreach ($n in $nodes) {
+        $desc = "$(Get-SafeProp $n.props 'description')".ToLower()
+        if ($desc -match 'pii|financial|payment|credential|secret|sensitive') {
+            $score += 15
+            $reasons.Add("Sensitive asset in path: $($n.props.name) ($(Get-SafeProp $n.props 'description'))")
+            $factors.Add('SensitiveData')
+            break
+        }
+    }
+
+    # --- Factor: Stale password on source ---
+    $pwdlastset = Get-SafeProp $nodes[0].props 'pwdlastset'
+    if ($pwdlastset) {
+        $pwdAge = (Get-Date) - [datetime]$pwdlastset
+        if ($pwdAge.TotalDays -gt 365) {
+            $score += 5
+            $reasons.Add("Source account password is $([int]$pwdAge.TotalDays) days old")
+            $factors.Add('StalePassword')
+        }
+    }
+
+    # --- Classify ---
+    $severity = switch ($true) {
+        ($score -ge 50) { 'Critical'; break }
+        ($score -ge 30) { 'High';     break }
+        ($score -ge 15) { 'Medium';   break }
+        default         { 'Low' }
+    }
+
+    [PSCustomObject]@{
+        PathId      = $Path.id
+        Description = $Path.description
+        Severity    = $severity
+        Score       = $score
+        HopCount    = $hopCount
+        SourceNode  = $nodes[0].props.name
+        TargetNode  = $terminalNode.props.name
+        EdgeChain   = ($edgeLabels -join ' -> ')
+        Reasons     = $reasons.ToArray()
+        Factors     = $factors.ToArray()
+    }
+}
+
+function Invoke-SeverityClassification {
+    <#
+    .SYNOPSIS
+        Classifies all paths in a BloodHound export and returns sorted results.
+    #>
+    param(
+        [Parameter(Mandatory)][array]$Paths
+    )
+
+    $results = foreach ($path in $Paths) {
+        Get-PathSeverity -Path $path
+    }
+
+    # Sort by score descending
+    $results | Sort-Object -Property Score -Descending
+}

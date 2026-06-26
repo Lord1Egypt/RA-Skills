@@ -1,0 +1,8 @@
+---
+name: debugging
+description: Diagnose failures using reproduce → isolate → fix → verify workflow.
+version: 1.0.0
+display_name: "Debugging"
+triggers:
+System.Object[]
+---

@@ -1,0 +1,29 @@
+{
+  "classical_poetry": {
+    "detection_rules": {
+      "line_count": {"min": 2, "max": 12},
+      "char_per_line": {"min": 5, "max": 7},
+      "rhyme_required": true,
+      "imagery_density_threshold": 0.3
+    },
+    "threshold_boosts": {
+      "ttr_threshold": 0.2,
+      "perplexity_threshold": 0.3,
+      "sentence_variance_threshold": 0.5
+    },
+    "boost_factor": 1.3
+  },
+  "classic_literature": {
+    "detection_rules": {
+      "avg_sentence_length": {"min": 30},
+      "long_sentence_ratio": {"min": 0.4},
+      "compound_indicator_density": {"min": 5}
+    },
+    "threshold_boosts": {
+      "sentence_variance_threshold": 1.0,
+      "perplexity_threshold": 0.2,
+      "style_weight_reduction": 0.5
+    },
+    "boost_factor": 1.25
+  }
+}

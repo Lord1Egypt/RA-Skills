@@ -1,0 +1,42 @@
+{
+  "order": {
+    "name": "Test openclaw",
+    "gender": "1",
+    "age": 14,
+    "productId": "CP2603030001",
+    "productName": "NGS Testing"
+  },
+  "sampleOrderItem": [
+    {
+      "slideCode": "A03030001",
+      "sampleTypeId": "T241025001",
+      "sampleType": "Whole blood",
+      "productId": "CP2603030001",
+      "productName": "NGS Testing",
+      "customFieldValue": "[{\"Remark\":\"\"}]"
+    },
+    {
+      "slideCode": "A03030002",
+      "sampleTypeId": "T241025001",
+      "sampleType": "Whole blood",
+      "productId": "CP2603030001",
+      "productName": "NGS Testing",
+      "customFieldValue": "[{\"Remark\":\"\"}]"
+    },
+    {
+      "slideCode": "A03030003",
+      "sampleTypeId": "T250121001",
+      "sampleType": "Peripheral blood",
+      "productId": "CP2603030001",
+      "productName": "NGS Testing",
+      "customFieldValue": "[{\"Remark\":\"\"}]"
+    }
+  ],
+  "crmConsumeRmarkets": [
+    {
+      "fee": 3500.00,
+      "feeWay": "Bank Transfer",
+      "isFee": "1"
+    }
+  ]
+}

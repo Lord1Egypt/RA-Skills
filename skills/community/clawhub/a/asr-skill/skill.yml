@@ -1,0 +1,231 @@
+# OpenClaw Skill 配置文件
+# ClawdHub 发布配置
+
+skill_id: qwen-asr-skill
+name: Qwen 方言语音识别
+version: 1.0.0
+author: OpenClaw Team
+description: 基于Qwen3-ASR-0.6B的语音转文字Skill，支持22种中文方言和多语言识别，让你可以用方言和OpenClaw交流。
+license: Apache-2.0
+icon: 🎤
+category: audio
+tags:
+  - asr
+  - speech-recognition
+  - dialect
+  - qwen
+  - 语音识别
+  - 方言
+
+# 支持的平台
+platforms:
+  - openclaw
+  - clawd
+
+# 最低系统要求
+requirements:
+  cpu: 4 cores
+  memory: 8GB
+  disk: 10GB
+  python: ">=3.10"
+  nodejs: ">=16.0.0"
+
+# 依赖服务
+dependencies:
+  python:
+    - name: torch
+      version: ">=2.0.0"
+    - name: qwen-asr
+      version: ">=0.1.0"
+  nodejs:
+    - name: express
+      version: "^4.18.2"
+    - name: multer
+      version: "^1.4.5-lts.1"
+
+# 模型依赖
+models:
+  - name: Qwen/Qwen3-ASR-0.6B
+    source: huggingface
+    size: 6GB
+    optional: false
+    description: 主ASR模型，支持多语言和方言识别
+  - name: Qwen/Qwen3-ForcedAligner-0.6B
+    source: huggingface
+    size: 2GB
+    optional: true
+    description: 强制对齐模型，用于生成时间戳
+
+# 功能特性
+features:
+  - name: speech-to-text
+    description: 语音转文字
+    supported: true
+  - name: dialect-recognition
+    description: 22种中文方言识别
+    supported: true
+  - name: language-detection
+    description: 自动语言检测
+    supported: true
+  - name: cpu-inference
+    description: CPU端侧推理
+    supported: true
+  - name: batch-processing
+    description: 批量处理
+    supported: true
+
+# 支持的方言
+supported_dialects:
+  - 安徽话
+  - 东北话
+  - 福建话
+  - 甘肃话
+  - 贵州话
+  - 河北话
+  - 河南话
+  - 湖北话
+  - 湖南话
+  - 江西话
+  - 宁夏话
+  - 山东话
+  - 陕西话
+  - 山西话
+  - 四川话
+  - 天津话
+  - 云南话
+  - 浙江话
+  - 粤语（香港口音）
+  - 粤语（广东口音）
+  - 吴语
+  - 闽南语
+
+# 支持的语言
+supported_languages:
+  - Chinese
+  - English
+  - Cantonese
+  - Arabic
+  - German
+  - French
+  - Spanish
+  - Portuguese
+  - Indonesian
+  - Italian
+  - Korean
+  - Russian
+  - Thai
+  - Vietnamese
+  - Japanese
+  - Turkish
+  - Hindi
+  - Malay
+  - Dutch
+  - Swedish
+  - Danish
+  - Finnish
+  - Polish
+  - Czech
+  - Filipino
+  - Persian
+  - Greek
+  - Hungarian
+  - Macedonian
+  - Romanian
+
+# 接口定义
+endpoints:
+  transcribe:
+    path: /transcribe
+    method: POST
+    description: 音频转文字接口
+    parameters:
+      audio:
+        type: file/string
+        required: true
+        description: 音频文件或base64编码的音频数据
+      language:
+        type: string
+        required: false
+        description: 指定语言/方言（如：Chinese, Cantonese, 四川话等）
+      timestamps:
+        type: boolean
+        required: false
+        description: 是否返回时间戳
+    returns:
+      text:
+        type: string
+        description: 识别结果文本
+      language:
+        type: string
+        description: 检测到的语言/方言
+      confidence:
+        type: float
+        description: 识别置信度
+      duration:
+        type: float
+        description: 处理时长（秒）
+
+# 配置选项
+config:
+  port:
+    type: integer
+    default: 3000
+    description: 服务端口
+  host:
+    type: string
+    default: 0.0.0.0
+    description: 监听地址
+  device:
+    type: string
+    default: cpu
+    description: 运行设备（cpu/cuda）
+  dtype:
+    type: string
+    default: float32
+    description: 数据类型
+  batch_size:
+    type: integer
+    default: 4
+    description: 批量处理大小
+  max_new_tokens:
+    type: integer
+    default: 1024
+    description: 最大生成token数
+
+# 安装脚本
+install:
+  steps:
+    - name: 安装Node.js依赖
+      command: npm install --only=production
+    - name: 安装Python依赖
+      command: pip install -r requirements.txt
+
+# 启动命令
+start:
+  command: npm start
+  port: 3000
+  health_check: /health
+
+# 停止命令
+stop:
+  command: pkill -f "node index.js"
+
+# 测试命令
+test:
+  command: node test.js
+
+# 发布信息
+release_notes: |
+  ## 1.0.0 初始版本
+  - 支持30种语言和22种中文方言识别
+  - CPU端侧运行优化，无需GPU
+  - 自动语言检测
+  - 支持多种音频格式输入
+  - 完整的OpenClaw集成接口
+  - 方言别名自动映射
+
+# 文档链接
+docs:
+  README: README.md
+  INSTALL: INSTALL.md
+  API: README.md#api-接口

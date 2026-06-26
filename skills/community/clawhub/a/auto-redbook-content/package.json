@@ -1,0 +1,36 @@
+{
+  "name": "auto-redbook-content",
+  "version": "2.5.2",
+  "description": "小红书热点抓取与去AI味改写工具",
+  "main": "scripts/fetch.js",
+  "scripts": {
+    "test": "node scripts/fetch.js 3"
+  },
+  "keywords": [
+    "openclaw",
+    "skill",
+    "xiaohongshu"
+  ],
+  "author": "OpenClaw Community",
+  "license": "MIT",
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "openclaw": {
+    "type": "skill",
+    "triggers": [
+      "抓取小红书笔记",
+      "运行 auto-redbook-content"
+    ],
+    "permissions": [
+      "fs:write:output"
+    ],
+    "env": {
+      "XHS_MAX_RESULTS": {
+        "required": false,
+        "default": "3",
+        "description": "抓取数量（1-100）"
+      }
+    }
+  }
+}

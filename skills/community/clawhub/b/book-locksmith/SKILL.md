@@ -1,35 +1,66 @@
 ---
-name: "Book Locksmith"
-description: "Book locksmith services through Lokuli MCP. Use when user needs to find and book locksmith. Triggers on requests like "book a locksmith", "find locksmith near me", or any locksmith service request."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/book-locksmith"
-sourceUrl: "https://clawhub.ai/skills/book-locksmith"
+name: book-locksmith
+description: Book locksmith services through Lokuli MCP. Use when user needs to find and book locksmith. Triggers on requests like "book a locksmith", "find locksmith near me", or any locksmith service request.
 ---
 
-# Book Locksmith
+# uook locksmith
 
-> Book locksmith services through Lokuli MCP. Use when user needs to find and book locksmith. Triggers on requests like "book a locksmith", "find locksmith near me", or any locksmith service request.
+Book locksmith services through Lokuli's MCP server.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/book-locksmith`
-- **Source URL:** [https://clawhub.ai/skills/book-locksmith](https://clawhub.ai/skills/book-locksmith)
+## MCP Endpoint
 
-## Overview
+```
+https://lokuli.com/mcp/sse
+```
 
+Transport: SSE | JSON-RPC 2.0 | POST requests
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/book-locksmith
+## Tools
+
+### search
+```json
+{
+  "method": "tools/call",
+  "params": {
+    "name": "search",
+    "arguments": {
+      "query": "locksmith",
+      "zipCode": "90640",
+      "maxResults": 20
+    }
+  }
+}
+```
+
+### check_availability
+```json
+{
+  "method": "tools/call",
+  "params": {
+    "name": "check_availability",
+    "arguments": {
+      "providerId": "xxx",
+      "serviceId": "yyy",
+      "date": "2025-02-10"
+    }
+  }
+}
+```
+
+### create_booking
+```json
+{
+  "method": "tools/call",
+  "params": {
+    "name": "create_booking",
+    "arguments": {
+      "providerId": "xxx",
+      "serviceId": "yyy",
+      "timeSlot": "2025-02-10T14:00:00-08:00",
+      "customerName": "John Doe",
+      "customerEmail": "john@example.com",
+      "customerPhone": "+13105551234"
+    }
+  }
+}
 ```

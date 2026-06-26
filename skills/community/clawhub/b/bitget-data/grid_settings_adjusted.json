@@ -1,0 +1,58 @@
+{
+  "btc": {
+    "symbol": "BTCUSDT",
+    "gridNum": 48,
+    "priceMin": 65000,
+    "priceMax": 76000,
+    "amount": 20,
+    "maxPosition": 600,
+    "sellOrders": 24,
+    "buyOrders": 24,
+    "targetTradesPerDay": 15,
+    "notes": "BTC 中频 - 间距约 0.23%, 区间扩大 30%，网格数减少 40%"
+  },
+  "sol": {
+    "symbol": "SOLUSDT",
+    "gridNum": 60,
+    "priceMin": 78,
+    "priceMax": 96,
+    "amount": 8,
+    "maxPosition": 400,
+    "sellOrders": 30,
+    "buyOrders": 30,
+    "targetTradesPerDay": 20,
+    "notes": "SOL 中频 - 间距约 0.30%, 区间扩大 30%，网格数减少 40%"
+  },
+  "eth": {
+    "symbol": "ETHUSDT",
+    "gridNum": 36,
+    "priceMin": 1850,
+    "priceMax": 2280,
+    "amount": 3,
+    "maxPosition": 200,
+    "sellOrders": 18,
+    "buyOrders": 18,
+    "targetTradesPerDay": 12,
+    "notes": "ETH 中频 - 间距约 0.33%, 区间扩大 30%，网格数减少 40%"
+  },
+  "optimization": {
+    "date": "2026-03-16",
+    "goal": "降低网格密度 - 解决成交频率过高问题",
+    "totalTargetTrades": 47,
+    "strategy": "中频网格 - 平衡收益与交易频率",
+    "changes": [
+      "BTC: 80 格→48 格 (-40%)，区间 67000-74000→65000-76000 (+30%)",
+      "SOL: 100 格→60 格 (-40%)，区间 82-92→78-96 (+30%)",
+      "ETH: 60 格→36 格 (-40%)，区间 1950-2180→1850-2280 (+30%)",
+      "目标成交频率：3-5 笔/小时 (原 11 笔/小时)",
+      "预期每日成交：40-60 笔 (原 90 笔)"
+    ],
+    "expectedDailyProfit": "0.5-1.0% (中频稳健)",
+    "riskControl": [
+      "严格 maxPosition 限制",
+      "每 30 分钟监控成交",
+      "目标频率 3-5 笔/小时",
+      "如仍超标继续降低密度"
+    ]
+  }
+}

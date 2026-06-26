@@ -1,0 +1,4 @@
+interface:
+  display_name: "Bookmark Organize"
+  short_description: "Plan and execute Chrome bookmark cleanup through a local bridge"
+  default_prompt: "Use /skill bookmark-organize setup for first run. Use /skill bookmark-organize to preflight the local bridge, inspect live bookmark context, generate a conservative preview, and only execute after explicit confirmation."

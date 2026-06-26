@@ -1,0 +1,21 @@
+{
+  "platform": "ios",
+  "from_tag": "0.12.36-ios",
+  "to_tag": "0.12.37-ios",
+  "commits": [
+    {"hash": "345409b29", "message": "fix:修复富文本点击", "files": ["platforms/ios/source/components/RichTextViewHandler.mm"]},
+    {"hash": "55dbd8140", "message": "feat: podfile", "files": ["platforms/ios/NanoCompose.podspec"]},
+    {"hash": "3449e931b", "message": "fix: 种类错误", "files": ["nano_compose/foundation/components/text.cpp"]},
+    {"hash": "7b58ce1e7", "message": "feat: 复用场景下需要回归行高", "files": ["nano_compose/runtime/layout/layout_stage.cpp"]},
+    {"hash": "6afb45729", "message": "feat(ios): 新增统一模版获取接口 fetchTemplateWithInfo:fallbackInfo:", "files": ["platforms/ios/source/base/NCEngine.mm", "platforms/ios/source/base/NCEngine.h"]},
+    {"hash": "b0e9545a0", "message": "fix: 修复holder可能出现访问野指针的问题", "files": ["nano_compose/runtime/node/origin_node.cpp"]},
+    {"hash": "a9ccc62c2", "message": "refactor(ios): 抽取 ceilAlignSize 统一像素对齐 + Scene1 返回 cachedSize", "files": ["platforms/ios/source/render/NCUIHelper.mm"]},
+    {"hash": "9c4d18481", "message": "fix(ios): updateLayoutMetrics 中 cachedSize 使用 ceil 像素对齐", "files": ["platforms/ios/source/render/NCLayoutNode.mm"]},
+    {"hash": "72838f0b5", "message": "fix: compose_func解析响应式丢失问题", "files": ["nano_compose/binary/bytes_reader.cpp"]}
+  ],
+  "stats": {
+    "total_commits": 9,
+    "total_files": 11,
+    "categories": {"features": 3, "bugfixes": 5, "refactoring": 1}
+  }
+}

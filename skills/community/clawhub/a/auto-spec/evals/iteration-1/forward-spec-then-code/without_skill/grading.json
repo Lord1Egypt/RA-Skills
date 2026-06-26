@@ -1,0 +1,13 @@
+{
+  "eval_name": "forward-spec-then-code",
+  "configuration": "without_skill",
+  "expectations": [
+    {"text": "Spec is generated before the implementation (spec-driven development flow)", "passed": true, "evidence": "Separate spec_output.md and implementation.go produced"},
+    {"text": "Spec includes a function signature definition", "passed": true, "evidence": "Complete function signature included"},
+    {"text": "Spec covers edge cases (empty list, all duplicates, malformed URLs, network timeout)", "passed": true, "evidence": "Edge case table covers these scenarios"},
+    {"text": "Implementation follows the behavior defined in the spec", "passed": true, "evidence": "Implementation includes concurrent validation, format checking, and other behaviors defined in the spec"},
+    {"text": "Implementation follows project conventions", "passed": true, "evidence": "package utils, uses logging library, ctx as first parameter"},
+    {"text": "Spec does not write any files to the project source directory", "passed": true, "evidence": "Output saved only to the workspace outputs directory"},
+    {"text": "Spec stays at function granularity (does not inflate into a module-level design doc)", "passed": false, "evidence": "Spec includes concurrency design, test points, and file placement suggestions — exceeds the scope of a pure behavioral contract"}
+  ]
+}

@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>From Autoresearch to Autoimprove: Generalizing the Agentic Experiment Loop</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/theme/black.css" id="theme">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/highlight/monokai.css">
+  <style>
+    :root {
+      --rh-red: #EE0000;
+      --rh-red-dark: #A30000;
+      --rh-black: #000000;
+      --rh-white: #FFFFFF;
+      --rh-gray-light: #D2D2D2;
+      --rh-gray: #6A6E73;
+    }
+
+    .reveal {
+      font-family: "Red Hat Text", "Overpass", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    }
+
+    .reveal .slides {
+      text-align: left;
+    }
+
+    .reveal .slides section {
+      background: var(--rh-black);
+      color: var(--rh-white);
+    }
+
+    .reveal h1, .reveal h2, .reveal h3 {
+      font-family: "Red Hat Display", "Overpass", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+      color: var(--rh-white);
+      text-transform: none;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .reveal h1 { font-size: 2.4em; }
+    .reveal h2 { font-size: 1.4em; margin-bottom: 0; }
+    .reveal h3 { font-size: 1em; color: var(--rh-gray-light); }
+
+    .reveal .red { color: var(--rh-red); }
+    .reveal .gray { color: var(--rh-gray); }
+    .reveal .dim { color: var(--rh-gray-light); }
+
+    .reveal p, .reveal li {
+      font-size: 0.65em;
+      line-height: 1.5;
+      color: var(--rh-gray-light);
+      margin: 0.3em 0;
+    }
+
+    .reveal strong {
+      color: var(--rh-white);
+      font-weight: 600;
+    }
+
+    .reveal a {
+      color: var(--rh-red);
+      text-decoration: none;
+    }
+    .reveal a:hover {
+      color: #FF4444;
+    }
+
+    .reveal code {
+      font-family: "Red Hat Mono", "JetBrains Mono", "Fira Code", monospace;
+      font-size: 0.85em;
+    }
+
+    .reveal pre {
+      width: 100%;
+      box-shadow: none;
+      border: 1px solid #333;
+      border-radius: 6px;
+      background: #0A0A0A;
+    }
+
+    .reveal pre code {
+      font-size: 0.55em;
+      line-height: 1.4;
+      padding: 0.7em;
+      max-height: 320px;
+    }
+
+    .reveal pre {
+      margin: 0.4em 0;
+    }
+
+    .reveal .inline-code {
+      background: #1A1A1A;
+      padding: 0.15em 0.4em;
+      border-radius: 4px;
+      font-size: 0.85em;
+      color: var(--rh-red);
+    }
+
+    .reveal table {
+      font-size: 0.55em;
+      border-collapse: collapse;
+      width: 100%;
+      margin: 0.3em 0;
+    }
+
+    .reveal table th {
+      background: #1A1A1A;
+      color: var(--rh-red);
+      font-weight: 600;
+      padding: 0.4em 0.6em;
+      text-align: left;
+      border-bottom: 2px solid var(--rh-red);
+    }
+
+    .reveal table td {
+      padding: 0.35em 0.6em;
+      border-bottom: 1px solid #222;
+      color: var(--rh-gray-light);
+    }
+
+    .reveal table tr:hover td {
+      background: #111;
+    }
+
+    .reveal .title-slide h1 {
+      font-size: 3em;
+      margin-bottom: 0;
+    }
+
+    .reveal .title-slide .subtitle {
+      font-size: 1em;
+      color: var(--rh-gray-light);
+      margin-top: 0.3em;
+    }
+
+    .reveal .title-slide .origin {
+      font-size: 0.6em;
+      color: var(--rh-gray);
+      margin-top: 2em;
+    }
+
+    .reveal .red-bar {
+      width: 80px;
+      height: 4px;
+      background: var(--rh-red);
+      margin: 0.3em 0 0.6em 0;
+      border-radius: 2px;
+    }
+
+    .reveal .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1em;
+      align-items: start;
+    }
+
+    .reveal .three-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 0.8em;
+      align-items: start;
+    }
+
+    .reveal .card {
+      background: #0D0D0D;
+      border: 1px solid #222;
+      border-radius: 8px;
+      padding: 0.8em;
+    }
+
+    .reveal .card h3 {
+      font-size: 0.8em;
+      margin: 0 0 0.3em 0;
+      color: var(--rh-red);
+    }
+
+    .reveal .card p, .reveal .card li {
+      font-size: 0.55em;
+      line-height: 1.4;
+    }
+
+    .reveal .loop-diagram {
+      font-family: "Red Hat Mono", monospace;
+      font-size: 0.55em;
+      line-height: 1.6;
+      color: var(--rh-gray-light);
+      background: #0A0A0A;
+      padding: 0.8em 1.2em;
+      border-radius: 8px;
+      border: 1px solid #222;
+    }
+
+    .reveal .loop-diagram .highlight {
+      color: var(--rh-red);
+      font-weight: 600;
+    }
+
+    .reveal .metric {
+      display: inline-block;
+      background: #1A0000;
+      border: 1px solid var(--rh-red-dark);
+      border-radius: 6px;
+      padding: 0.3em 0.6em;
+      font-size: 0.7em;
+      color: var(--rh-red);
+      margin: 0.2em;
+    }
+
+    .reveal .stat-row {
+      display: flex;
+      gap: 1.5em;
+      margin: 0.5em 0;
+    }
+
+    .reveal .stat {
+      text-align: center;
+    }
+
+    .reveal .stat .number {
+      font-size: 1.6em;
+      font-weight: 700;
+      color: var(--rh-red);
+      font-family: "Red Hat Display", sans-serif;
+    }
+
+    .reveal .stat .label {
+      font-size: 0.5em;
+      color: var(--rh-gray);
+      margin-top: 0.1em;
+    }
+
+    .reveal .fragment.current-visible.visible:not(.current-fragment) {
+      display: none;
+    }
+
+    .reveal .progress { background: #222; height: 3px; }
+    .reveal .progress span { background: var(--rh-red); }
+    .reveal .controls { color: var(--rh-red); }
+
+    .slide-number { color: var(--rh-gray) !important; font-size: 0.6em !important; }
+  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@400;700;900&family=Red+Hat+Text:wght@400;500;600&family=Red+Hat+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+      <!-- TITLE -->
+      <section class="title-slide" data-background="#000">
+        <h1>From <span class="red">autoresearch</span><br>to <span class="red">autoimprove</span></h1>
+        <p class="subtitle">Generalizing the agentic experiment loop</p>
+        <div class="red-bar"></div>
+        <p class="origin">
+          Inspired by <a href="https://github.com/karpathy/autoresearch">Karpathy's autoresearch</a>
+          and <a href="https://github.com/Shopify/liquid/pull/2056">Shopify Liquid PR #2056</a>
+        </p>
+      </section>
+
+      <!-- THE PATTERN -->
+      <section data-background="#000">
+        <h2>The pattern</h2>
+        <div class="red-bar"></div>
+        <p>Two projects independently discovered the same loop:</p>
+        <div class="two-col">
+          <div class="card">
+            <h3>Karpathy (autoresearch)</h3>
+            <p>Agent modifies train.py, trains for 5 min, checks val_bpb, keeps or discards. ~100 experiments overnight.</p>
+          </div>
+          <div class="card">
+            <h3>Tobi / Shopify (Liquid)</h3>
+            <p>Agent modifies Ruby source, runs tests + benchmarks, keeps or discards. ~120 experiments. Result: 53% faster.</p>
+          </div>
+        </div>
+        <p style="margin-top: 1em;">The human writes the process. The agent writes the code.</p>
+      </section>
+
+      <!-- THE LOOP -->
+      <section data-background="#000">
+        <h2>The loop</h2>
+        <div class="red-bar"></div>
+        <div class="loop-diagram">
+          <span class="highlight">LOOP:</span><br>
+          &nbsp;&nbsp;1. Agent proposes a change<br>
+          &nbsp;&nbsp;2. <span class="highlight">git commit</span> (verified)<br>
+          &nbsp;&nbsp;3. Run tests → fail? → <span class="highlight">git reset</span>, next<br>
+          &nbsp;&nbsp;4. Run benchmark → extract score<br>
+          &nbsp;&nbsp;5. Check guards → violated? → <span class="highlight">git reset</span>, next<br>
+          &nbsp;&nbsp;6. Score improved? → <span class="highlight">keep</span> : <span class="highlight">git reset</span><br>
+          &nbsp;&nbsp;7. Log experiment → check stop conditions<br>
+          &nbsp;&nbsp;8. Repeat
+        </div>
+      </section>
+
+      <!-- ONE FILE -->
+      <section data-background="#000">
+        <h2>One file: <span class="inline-code">improve.md</span></h2>
+        <div class="red-bar"></div>
+        <p>Part config, part prompt. Describes what to change, how to measure, and when to stop.</p>
+        <pre><code class="language-markdown"># autoimprove: make-it-faster
+## Change
+scope: the checkout handler and its database queries
+exclude: test/, vendor/
+## Check
+test: go test ./...
+run: go test -bench=. -benchmem
+score: ns/op:\s+([\d.]+)
+goal: lower
+guard: allocs/op: ([\d.]+) < 500
+keep_if_equal: true
+timeout: 3m
+## Stop
+budget: 4h
+stale: 15
+## Instructions
+Reduce allocations in hot paths. Try buffer reuse, fast-path patterns.</code></pre>
+      </section>
+
+      <!-- NATURAL LANGUAGE SCOPE -->
+      <section data-background="#000">
+        <h2>Natural language scope</h2>
+        <div class="red-bar"></div>
+        <p>You describe what to optimize. The agent resolves it to specific files.</p>
+        <pre><code class="language-markdown">## Change
+scope: the template parsing engine
+exclude: test/, benchmark/</code></pre>
+        <pre><code class="language-text">Resolved scope "the template parsing engine" to:
+  - lib/liquid/parser.rb
+  - lib/liquid/lexer.rb
+  - lib/liquid/variable.rb
+These are the ONLY files that will be modified. Confirm? [y/n]</code></pre>
+        <p><span class="inline-code">exclude</span> prevents the agent from grading its own homework.</p>
+      </section>
+
+      <!-- THREE-LAYER CHECK -->
+      <section data-background="#000">
+        <h2>Three-layer check</h2>
+        <div class="red-bar"></div>
+        <div class="three-col">
+          <div class="card">
+            <h3>Tests</h3>
+            <p>Correctness gate. Must pass for any experiment to be kept. Generated by goal-aware bootstrap.</p>
+          </div>
+          <div class="card">
+            <h3>Score</h3>
+            <p>The metric to optimize. Extracted from stdout via convention, regex, or jq.</p>
+          </div>
+          <div class="card">
+            <h3>Guards</h3>
+            <p>Secondary metrics that must not regress. Prevents improving speed by breaking reliability.</p>
+          </div>
+        </div>
+        <pre><code class="language-markdown">test: go test ./...                  # gate
+run: go test -bench=. -benchmem     # score
+score: ns/op:\s+([\d.]+)
+guard: allocs/op: ([\d.]+) < 500    # guard</code></pre>
+      </section>
+
+      <!-- BOOTSTRAP -->
+      <section data-background="#000">
+        <h2>Goal-aware bootstrap</h2>
+        <div class="red-bar"></div>
+        <p>The optimization goal predicts what the agent will break.</p>
+        <table>
+          <thead>
+            <tr><th>Goal</th><th>Agent will try to...</th><th>Tests guard against...</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Faster</td><td>Skip work, remove checks</td><td>Edge cases, unicode, nil, concurrency</td></tr>
+            <tr><td>Smaller</td><td>Remove things, swap deps</td><td>Features still work, runtime deps present</td></tr>
+            <tr><td>More accurate</td><td>Overfit, leak data</td><td>Data leakage, reproducibility, valid outputs</td></tr>
+            <tr><td>Better RAG</td><td>Game retrieval, stuff context</td><td>Format consistency, hallucination, empty results</td></tr>
+            <tr><td>Lower cost</td><td>Downsize, cut redundancy</td><td>Load handling, failover, durability</td></tr>
+          </tbody>
+        </table>
+        <pre><code class="language-bash">/autoimprove bootstrap --generate</code></pre>
+      </section>
+
+      <!-- AUTO-GUIDED SETUP -->
+      <section data-background="#000">
+        <h2>Auto-guided setup</h2>
+        <div class="red-bar"></div>
+        <p>One command. The agent detects what's missing and walks you through it.</p>
+        <div class="loop-diagram">
+          <span class="highlight">/autoimprove</span><br><br>
+          Checking readiness...<br>
+          &nbsp;&nbsp;1. improve.md &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="highlight">✗</span> Not found → scaffold from repo type<br>
+          &nbsp;&nbsp;2. Scope resolution &nbsp;&nbsp;&nbsp; <span class="highlight">✓</span> Resolved to 3 files. Confirm?<br>
+          &nbsp;&nbsp;3. Eval harness &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="highlight">✗</span> RAG detected → build golden set<br>
+          &nbsp;&nbsp;4. Test suite &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="highlight">✗</span> No tests → generate goal-aware tests<br>
+          &nbsp;&nbsp;5. Git state &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="highlight">✓</span> Clean<br>
+          &nbsp;&nbsp;6. Baseline &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="highlight">✓</span> Score: 0.42, errors: 0%<br><br>
+          Ready. Starting optimization loop.
+        </div>
+      </section>
+
+      <!-- 10 DOMAINS -->
+      <section data-background="#000">
+        <h2>10 domain templates</h2>
+        <div class="red-bar"></div>
+        <table>
+          <thead>
+            <tr><th>Type</th><th>What it optimizes</th><th>Typical metric</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><span class="inline-code">perf</span></td><td>Code performance</td><td>ns/op, req/sec, allocations</td></tr>
+            <tr><td><span class="inline-code">ml</span></td><td>ML training</td><td>val_bpb, loss</td></tr>
+            <tr><td><span class="inline-code">automl</span></td><td>Tabular ML</td><td>AUC-ROC, F1</td></tr>
+            <tr><td><span class="inline-code">rag</span></td><td>RAG pipeline</td><td>answer relevancy, faithfulness</td></tr>
+            <tr><td><span class="inline-code">docker</span></td><td>Container size</td><td>image bytes</td></tr>
+            <tr><td><span class="inline-code">k8s</span></td><td>Cluster health</td><td>running pod count</td></tr>
+            <tr><td><span class="inline-code">prompt</span></td><td>Prompt quality</td><td>F1, accuracy</td></tr>
+            <tr><td><span class="inline-code">sql</span></td><td>Query performance</td><td>execution time</td></tr>
+            <tr><td><span class="inline-code">frontend</span></td><td>Bundle size</td><td>bundle bytes</td></tr>
+            <tr><td><span class="inline-code">ci</span></td><td>Build speed</td><td>build time</td></tr>
+          </tbody>
+        </table>
+        <pre><code class="language-bash">/autoimprove init --type rag</code></pre>
+      </section>
+
+      <!-- EXAMPLE: PERF -->
+      <section data-background="#000">
+        <h2>Example: performance</h2>
+        <div class="red-bar"></div>
+        <pre><code class="language-markdown"># autoimprove: faster-checkout-api
+## Change
+scope: the checkout handler and its database queries
+exclude: test/, vendor/
+## Check
+test: go test ./...
+run: hey -n 1000 http://localhost:8080/checkout
+score: Requests/sec:\s+([\d.]+)
+goal: higher
+guard: latency_p99: ([\d.]+) < 500
+timeout: 3m
+## Stop
+budget: 4h | stale: 15
+## Instructions
+Try query batching, connection pooling, response caching.
+Don't change the API contract or add dependencies.</code></pre>
+      </section>
+
+      <!-- EXAMPLE: RAG -->
+      <section data-background="#000">
+        <h2>Example: RAG pipeline</h2>
+        <div class="red-bar"></div>
+        <pre><code class="language-markdown"># autoimprove: better-rag-answers
+## Change
+scope: the RAG pipeline — chunking, retrieval, generation
+exclude: data/, eval/
+## Check
+test: python -m pytest tests/test_pipeline.py -x
+run: python eval/run_eval.py
+score: answer_relevancy: ([\d.]+)
+goal: higher
+guard: error_rate: ([\d.]+) < 0.1
+keep_if_equal: true
+timeout: 5m
+## Stop
+budget: 6h | target: 0.92
+## Instructions
+Try: chunk size tuning, hybrid search, cross-encoder reranking,
+query expansion, chain-of-thought generation.</code></pre>
+      </section>
+
+      <!-- EXAMPLE: AUTOML -->
+      <section data-background="#000">
+        <h2>Example: tabular ML</h2>
+        <div class="red-bar"></div>
+        <pre><code class="language-markdown"># autoimprove: better-churn-model
+## Change
+scope: the training pipeline
+exclude: data/, evaluate.py
+## Check
+test: python -m pytest tests/ -x
+run: python train.py && python evaluate.py
+score: auc_roc: ([\d.]+)
+goal: higher
+guard: f1_score: ([\d.]+) > 0.6
+timeout: 3m
+## Stop
+budget: 4h | target: 0.95
+## Instructions
+Try: ratio features, rolling aggregates, target encoding,
+XGBoost vs LightGBM vs CatBoost, model stacking.</code></pre>
+        <p>Goes beyond AutoML: the agent can engineer features, rewrite preprocessing, and try novel model combinations.</p>
+      </section>
+
+      <!-- REAL WORLD: ROUND 1 -->
+      <section data-background="#000">
+        <h2>Real-world test: round 1</h2>
+        <div class="red-bar"></div>
+        <p>Applied to a <strong>RAG search engine</strong>: hybrid search over 44K chunks, 301 documents, 20-query golden set.</p>
+        <div class="stat-row">
+          <div class="stat"><div class="number">0.42</div><div class="label">baseline</div></div>
+          <div class="stat"><div class="number">0.44</div><div class="label">after r1</div></div>
+          <div class="stat"><div class="number">+4%</div><div class="label">improvement</div></div>
+          <div class="stat"><div class="number">6</div><div class="label">experiments</div></div>
+        </div>
+        <table>
+          <thead><tr><th>#</th><th>Experiment</th><th>Result</th></tr></thead>
+          <tbody>
+            <tr><td>1</td><td>Fix keyword query sanitization (special chars crashed)</td><td><span style="color:#4CAF50">kept +0.35%</span></td></tr>
+            <tr><td>2</td><td>Adjust hybrid weights (0.4/0.6) + fetch limit</td><td><span style="color:var(--rh-red)">discarded</span></td></tr>
+            <tr><td>3</td><td>Replace weighted merge with Reciprocal Rank Fusion</td><td><span style="color:#4CAF50">kept +3.6%</span></td></tr>
+            <tr><td>4</td><td>Boost results appearing in both retrieval lists</td><td><span style="color:var(--rh-red)">discarded (0%)</span></td></tr>
+            <tr><td>5</td><td>Limit max 2 results per source for diversity</td><td><span style="color:#4CAF50">kept (equal)</span></td></tr>
+            <tr><td>6</td><td>Lower RRF constant (k=30) + 5x fetch</td><td><span style="color:var(--rh-red)">discarded -2.1%</span></td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- REAL WORLD: ROUND 2 -->
+      <section data-background="#000">
+        <h2>Real-world test: round 2</h2>
+        <div class="red-bar"></div>
+        <p>Applied the improved protocol (per-experiment commits, guards, keep_if_equal, supersedes).</p>
+        <div class="stat-row">
+          <div class="stat"><div class="number">0.44</div><div class="label">after r1</div></div>
+          <div class="stat"><div class="number">0.46</div><div class="label">after r2</div></div>
+          <div class="stat"><div class="number">+9.3%</div><div class="label">total gain</div></div>
+          <div class="stat"><div class="number">14</div><div class="label">total exps</div></div>
+        </div>
+        <table>
+          <thead><tr><th>#</th><th>Experiment</th><th>Result</th></tr></thead>
+          <tbody>
+            <tr><td>7</td><td>Boost results matching query in source name</td><td><span style="color:var(--rh-red)">discarded -4.8%</span></td></tr>
+            <tr><td>8</td><td>OR-mode keyword search (broader recall)</td><td><span style="color:#4CAF50">kept +1.7%</span></td></tr>
+            <tr><td>9</td><td>Fetch limit 5x</td><td><span style="color:var(--rh-red)">discarded</span></td></tr>
+            <tr><td>10</td><td>Better dedup key (120 chars vs 50)</td><td><span style="color:#4CAF50">kept (equal)</span></td></tr>
+            <tr><td>11</td><td>BM25 column weights (content=10x, name=2x)</td><td><span style="color:#4CAF50">kept +0.6%</span></td></tr>
+            <tr><td>12</td><td>Max 1 result per source</td><td><span style="color:var(--rh-red)">discarded</span></td></tr>
+            <tr><td>13</td><td>Query-text overlap boost after RRF</td><td><span style="color:var(--rh-red)">discarded -3.4%</span></td></tr>
+            <tr><td>14</td><td>Fetch limit 4x (supersedes #9)</td><td><span style="color:#4CAF50">kept +2.7%</span></td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- WHAT CHANGED -->
+      <section data-background="#000">
+        <h2>What the changes actually do</h2>
+        <div class="red-bar"></div>
+        <div class="two-col">
+          <div class="card">
+            <h3>OR-mode keyword search</h3>
+            <p>Changed "all words must match" to "any word matches." A chunk about "growth loops" now surfaces for "how to run growth experiments" even without the word "experiments." RRF handles the noise: results matching both keyword AND semantic score highest.</p>
+          </div>
+          <div class="card">
+            <h3>BM25 column weights</h3>
+            <p>Keyword matches in content (weight 10) now score 5x higher than matches in metadata (weight 2). Previously a keyword hit in the "chunk_id" column scored the same as a hit in the actual text.</p>
+          </div>
+        </div>
+        <div class="two-col" style="margin-top: 0.5em;">
+          <div class="card">
+            <h3>Fetch limit 4x</h3>
+            <p>With better keyword search (OR-mode + BM25 weights), more candidates are relevant. 4x fetch gives RRF a larger pool without drowning in noise. Guest hit rate went from 35% to 40%.</p>
+          </div>
+          <div class="card">
+            <h3>RRF (from round 1)</h3>
+            <p>Replaced weighted score merge with rank-based fusion. Avoids the normalization problem of comparing BM25 scores with cosine similarity. Single biggest improvement (+3.6%).</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- LEARNINGS -->
+      <section data-background="#000">
+        <h2>What we learned</h2>
+        <div class="red-bar"></div>
+        <div class="two-col">
+          <div class="card">
+            <h3>The eval harness is the hard part</h3>
+            <p>Building the golden set and eval script took longer than running 14 experiments. Most codebases don't have a measurable score out of the box.</p>
+          </div>
+          <div class="card">
+            <h3>Tests catch real bugs</h3>
+            <p>Goal-aware bootstrap caught a crash on hyphenated queries before optimization started. The agent never would have found it by tuning scores.</p>
+          </div>
+        </div>
+        <div class="two-col" style="margin-top: 0.5em;">
+          <div class="card">
+            <h3>Per-experiment commits matter</h3>
+            <p>Round 1 skipped this and lost rollback ability. Round 2 committed every experiment. Clean <span class="inline-code">git reset</span> on every discard.</p>
+          </div>
+          <div class="card">
+            <h3>Experiments interact</h3>
+            <p>Fetch 5x failed in round 1 but 4x succeeded in round 2 because OR-mode keyword search changed the quality of candidates. Context matters.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- AGENT AGNOSTIC -->
+      <section data-background="#000">
+        <h2>Agent-agnostic</h2>
+        <div class="red-bar"></div>
+        <p>The skill runs in Claude Code. The protocol runs anywhere.</p>
+        <pre><code class="language-bash">/autoimprove                                  # Claude Code (interactive)
+claude -p "run /autoimprove on improve.md"    # headless overnight
+/autoimprove --export                         # generates program.md
+codex -p "follow program.md"                  # any agent can follow it
+gemini -p "follow program.md"</code></pre>
+      </section>
+
+      <!-- AUTOML COMPARISON -->
+      <section data-background="#000">
+        <h2>Not AutoML</h2>
+        <div class="red-bar"></div>
+        <table>
+          <thead><tr><th></th><th>AutoML</th><th>autoimprove</th></tr></thead>
+          <tbody>
+            <tr><td>Search space</td><td>Predefined grid</td><td>Open-ended</td></tr>
+            <tr><td>Changes</td><td>Numeric knobs</td><td>Rewrite code, try new algorithms</td></tr>
+            <tr><td>Strategy</td><td>Bayesian optimization</td><td>AI reasoning</td></tr>
+            <tr><td>Scope</td><td>ML hyperparameters</td><td>Any domain with a measurable score</td></tr>
+            <tr><td>Ceiling</td><td>Best from your grid</td><td>Unbounded</td></tr>
+          </tbody>
+        </table>
+        <p style="margin-top: 1em;">The pattern works anywhere you have: <strong>a file to change, a command to run, and a number to improve.</strong></p>
+      </section>
+
+      <!-- GET STARTED -->
+      <section class="title-slide" data-background="#000">
+        <h1><span class="red">Get started</span></h1>
+        <div class="red-bar"></div>
+        <pre><code class="language-bash">/autoimprove    # that's it — setup is auto-guided</code></pre>
+        <p class="origin" style="margin-top: 2em;">
+          <a href="https://github.com/zanetworker/autoimprove">github.com/zanetworker/autoimprove</a>
+        </p>
+      </section>
+
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/highlight/highlight.js"></script>
+  <script>
+    Reveal.initialize({
+      hash: true,
+      slideNumber: true,
+      progress: true,
+      controls: true,
+      center: false,
+      transition: 'none',
+      backgroundTransition: 'none',
+      plugins: [RevealHighlight],
+      width: 1280,
+      height: 720,
+    });
+  </script>
+</body>
+</html>

@@ -1,35 +1,30 @@
----
-name: "Autoclaw"
-description: "Automates health monitoring, scheduled backups, and process logging for AI assistant workspaces."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/autoclaw"
-sourceUrl: "https://clawhub.ai/skills/autoclaw"
----
+# AutoClaw
 
-# Autoclaw
+Automated health check and backup tool for AI agents and workspaces.
 
-> Automates health monitoring, scheduled backups, and process logging for AI assistant workspaces.
+## Description
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/autoclaw`
-- **Source URL:** [https://clawhub.ai/skills/autoclaw](https://clawhub.ai/skills/autoclaw)
-
-## Overview
-
+AutoClaw provides automated system monitoring, health checks, and backup functionality for AI assistant workspaces.
 
 ## Installation
-To install this skill, run the following command in your terminal:
+
 ```bash
-hermes skills install clawhub/autoclaw
+clawhub install autoclaw
 ```
+
+## Usage
+
+```bash
+python autoclaw.py
+```
+
+## Features
+
+- Automatic health checks
+- Scheduled backups
+- Process monitoring
+- Logging with timestamps
+
+## License
+
+MIT License

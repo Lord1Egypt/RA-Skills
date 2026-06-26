@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>AI 录音卡片</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body{ background: #ff6b6b; font-family: 'Noto Sans SC', sans-serif; background:transparent;margin:0;padding:0;}
+        .container{ width: 1080px; min-height: 1440px; background: #fff; padding: 48px; }
+        .header { background: linear-gradient(135deg, #ff6b6b, #feca57); padding: 50px; margin: -48px -48px 40px; color: #fff; }
+        .tag { font-size: 24px; letter-spacing: 3px; margin-bottom: 15px; }
+        h1 { font-size: 64px; font-weight: 900; line-height: 1.2; }
+        .bubble { background: #f0f0f0; border-radius: 30px; padding: 30px; margin-bottom: 20px; position: relative; }
+        .bubble::before { content: ''; position: absolute; left: 20px; top: -10px; width: 20px; height: 20px; background: #f0f0f0; transform: rotate(45deg); }
+        .bubble-title { font-size: 36px; font-weight: 700; color: #ff6b6b; margin-bottom: 15px; }
+        .bubble-content { font-size: 28px; color: #333; line-height: 1.7; }
+        .sticker { display: inline-block; background: #54a0ff; color: #fff; padding: 10px 20px; border-radius: 20px; font-size: 24px; margin: 5px; }
+        .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 30px; }
+        .stat-card { background: linear-gradient(135deg, #5f27cd, #341f97); color: #fff; padding: 25px; border-radius: 20px; text-align: center; }
+        .stat-num { font-size: 48px; font-weight: 700; }
+        .stat-label { font-size: 24px; opacity: 0.9; margin-top: 8px; }
+    .coord{display:none!important;}
+/* === POST-PROCESS: 字号兜底 === */
+.container { font-size: max(14px, 1em); }
+.container h1, .container [class*="title"]:first-child { font-size: max(48px, 1em) !important; }
+.container h2, .container h3 { font-size: max(28px, 1em) !important; }
+.container p, .container li, .container td { font-size: max(20px, 0.9em) !important; }
+.container .coord { display: none !important; }
+</style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="tag">🎨 产品笔记</div>
+            <h1>AI 录音卡片<br/>产品架构</h1>
+        </div>
+        <div class="bubble">
+            <div class="bubble-title">🎯 M-P-D-G 框架</div>
+            <div class="bubble-content">
+                <span class="sticker">Market 市场</span>
+                <span class="sticker">Product 产品</span>
+                <span class="sticker">Data 数据</span>
+                <span class="sticker">Governance 治理</span>
+                <br><br>
+                北美合规驱动 · 云端存储加密 · 数据美国驻留 · SOC2+HIPAA 认证
+            </div>
+        </div>
+        <div class="bubble">
+            <div class="bubble-title">⚡ 合规认证</div>
+            <div class="bubble-content">
+                📋 SOC 2 Type I: 3-4 个月 / $30-50K<br>
+                📋 SOC 2 Type II: 6-12 个月 / $75-165K<br>
+                🏥 HIPAA BAA: AWS 免费 5 分钟<br>
+                ⚠️ BIPA/COPPA: $5K-$43K/次罚款
+            </div>
+        </div>
+        <div class="stats">
+            <div class="stat-card"><div class="stat-num">$30-75K</div><div class="stat-label">一次性合规</div></div>
+            <div class="stat-card"><div class="stat-num">$32-65K</div><div class="stat-label">年度维护</div></div>
+            <div class="stat-card"><div class="stat-num">$1.1K</div><div class="stat-label">AWS 月成本</div></div>
+        </div>
+    </div>
+</body>
+</html>

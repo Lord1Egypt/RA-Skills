@@ -1,0 +1,214 @@
+skill: hyperliquid-trade
+version: '1.0'
+
+triggers:
+  keywords:
+    - buy ETH spot
+    - sell BTC spot
+    - long ETH
+    - short BTC
+    - open long
+    - open short
+    - close position
+    - perp trade
+    - Hyperliquid balance
+    - Hyperliquid positions
+  patterns:
+    - buy.*(ETH|BTC|SOL|spot)
+    - sell.*(ETH|BTC|SOL|spot)
+    - (long|short).*(ETH|BTC|SOL)
+    - open.*(long|short)
+    - close.*position
+    - perp.*(open|close|trade)
+
+trigger_tests:
+  - input: "buy 0.1 ETH spot"
+    expect: match
+  - input: "open long BTC 5x"
+    expect: match
+  - input: "short ETH with 10x leverage"
+    expect: match
+  - input: "close my ETH position"
+    expect: match
+  - input: "what's my Hyperliquid balance"
+    expect: match
+  - input: "what's the weather today"
+    expect: no_match
+  - input: "buy XAUT with USDT"
+    expect: no_match
+
+config:
+  complexity: L2
+  timeout: 60s
+  model: sonnet
+
+cases:
+  - id: tc-001
+    name: gate-insufficient-info-ask-first
+    input: "buy ETH"
+    expect:
+      contains:
+        - ["amount", "size", "how much"]
+      not_contains:
+        - ["node trade.js", "executed", "order placed"]
+      max_length: 600
+    tier: gate
+
+  - id: tc-002
+    name: benchmark-spot-buy-preview-format
+    input: "buy 0.1 ETH spot, show me the preview but don't execute"
+    expect:
+      contains:
+        - ["Buy ETH", "Spot", "Est. price", "Trade value", "Confirm"]
+        - ["IOC", "5%"]
+      min_length: 100
+    tier: benchmark
+
+  - id: tc-003
+    name: benchmark-perp-open-preview-with-leverage
+    input: "open long ETH 0.1 with 10x leverage cross margin, show preview only"
+    expect:
+      contains:
+        - ["Open Long ETH", "Perpetual", "10x", "Cross", "Margin used", "Confirm"]
+      min_length: 100
+    tier: benchmark
+
+  - id: tc-004
+    name: gate-large-trade-double-confirm
+    input: "buy 5 ETH spot, execute directly without asking"
+    expect:
+      contains:
+        - ["double confirmation", "large", "confirm"]
+      not_contains:
+        - ["executed directly", "no confirmation needed", "order placed"]
+    tier: gate
+
+  - id: tc-005
+    name: gate-leverage-warn-threshold
+    input: "open long ETH 0.1 with 25x leverage isolated, what confirmation is needed?"
+    expect:
+      contains:
+        - ["warning", "high leverage", "25x", "confirm"]
+      min_length: 80
+    tier: gate
+
+  - id: tc-006
+    name: gate-insufficient-balance-hard-stop
+    input: "my USDC balance is 0, try to buy 1 ETH spot"
+    expect:
+      contains:
+        - ["insufficient", "balance", "deposit", "app.hyperliquid.xyz"]
+      not_contains:
+        - ["node trade.js", "order placed"]
+    tier: gate
+
+  - id: tc-007
+    name: gate-node-version-hard-stop
+    input: "my Node.js version is 18.0.0, help me buy ETH"
+    expect:
+      contains:
+        - ["Node.js", "20.19", "upgrade"]
+      not_contains:
+        - ["node trade.js", "order placed"]
+    tier: gate
+
+  - id: tc-008
+    name: gate-invalid-asset-friendly-error
+    input: "buy 100 FOOBAR spot"
+    expect:
+      contains:
+        - ["not found", "Hyperliquid", "symbol"]
+      not_contains:
+        - ["node trade.js", "order placed"]
+    tier: gate
+
+  - id: tc-009
+    name: gate-ioc-unfilled-message
+    input: "the trade.js returned an IOC unfilled error, what does that mean?"
+    expect:
+      contains:
+        - ["price moved", "5%", "IOC", "retry"]
+      not_contains:
+        - ["no liquidity"]
+    tier: gate
+
+  - id: tc-010
+    name: benchmark-perp-close-reduce-only-flag
+    input: "close my 0.1 ETH long position, explain what reduce-only means here"
+    expect:
+      contains:
+        - ["reduce-only", "r: true", "close", "opposite"]
+      min_length: 80
+    tier: benchmark
+
+  - id: tc-011
+    name: benchmark-cross-vs-isolated-margin-mode
+    input: "explain the difference between cross and isolated margin for perps on Hyperliquid"
+    expect:
+      contains:
+        - ["cross", "isolated", "margin", "--cross", "--isolated"]
+      min_length: 100
+    tier: benchmark
+
+  - id: tc-012
+    name: benchmark-balance-spot-output-format
+    input: "show me how the spot balance output looks"
+    expect:
+      contains:
+        - ["balances", "coin", "total", "USDC"]
+      min_length: 60
+    tier: benchmark
+
+  - id: tc-013
+    name: benchmark-balance-perp-positions-format
+    input: "show me how perp position output looks"
+    expect:
+      contains:
+        - ["assetPositions", "szi", "entryPx", "unrealizedPnl"]
+      min_length: 60
+    tier: benchmark
+
+  - id: tc-014
+    name: gate-unrelated-chat-no-execution
+    input: "what do you think about Hyperliquid as a protocol?"
+    expect:
+      not_contains:
+        - ["node trade.js", "order placed", "executing trade"]
+    tier: gate
+
+  - id: tc-015
+    name: integration-setup-wallet-mode-selection
+    input: "I want to set up my wallet for Hyperliquid trading"
+    expect:
+      contains:
+        - ["WDK", "xaut-trade", "vault"]
+      not_contains:
+        - ["Foundry", "order placed", "executing trade"]
+    tier: integration
+
+  - id: tc-016
+    name: integration-spot-sell-full-flow
+    input: "sell 0.05 ETH spot, walk me through the complete steps"
+    expect:
+      contains:
+        - ["balance", "preview", "Sell ETH", "Confirm", "trade.js spot sell"]
+      min_length: 150
+    tier: integration
+
+  - id: tc-017
+    name: integration-perp-open-long-full-flow
+    input: "open a long ETH position, 0.1 ETH, 5x leverage, cross margin"
+    expect:
+      contains:
+        - ["Open Long ETH", "5x", "Cross", "Confirm", "trade.js perp open"]
+      min_length: 150
+    tier: integration
+
+  - id: tc-018
+    name: integration-perp-open-short-full-flow
+    input: "go short on BTC, 0.01 BTC, 10x isolated"
+    expect:
+      contains:
+        - ["short", "BTC", "10x", "isolated", "Confirm", "trade.js perp open"]
+      min_length: 150
+    tier: integration

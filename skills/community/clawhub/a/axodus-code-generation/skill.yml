@@ -1,0 +1,8 @@
+---
+name: code-generation
+description: Generate production-ready code aligned to repo conventions and constraints.
+version: 1.0.0
+display_name: "Code Generation"
+triggers:
+System.Object[]
+---

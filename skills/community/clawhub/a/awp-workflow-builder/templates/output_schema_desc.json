@@ -1,0 +1,4 @@
+{
+  "{{OUTPUT_FIELD_1}}": "{{OUTPUT_FIELD_1_DESCRIPTION}}",
+  "confidence": "Confidence score from 0.0 to 1.0 indicating the quality and reliability of the output."
+}

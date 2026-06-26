@@ -1,0 +1,69 @@
+{
+  "name": "automate-nbm",
+  "version": "2.0.0",
+  "description": "AI Agent Agency + GitHub-native task automation — 61 specialized agents, orchestrator, secure comms",
+  "keywords": [
+    "openclaw",
+    "skill",
+    "ai-agents",
+    "automation",
+    "orchestration",
+    "github-actions"
+  ],
+  "author": "ironiclawdoctor-design",
+  "license": "UNLICENSED",
+  "private": true,
+  "homepage": "https://github.com/ironiclawdoctor-design/automate-nbm#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/ironiclawdoctor-design/automate-nbm.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ironiclawdoctor-design/automate-nbm/issues"
+  },
+  "main": "SKILL.md",
+  "scripts": {
+    "test": "bash tests/run-all-tests.sh",
+    "test:config": "bash tests/test-config.sh",
+    "test:workflows": "bash tests/test-workflows.sh",
+    "list-agents": "grep -h '^##' agents/*/*.md | sed 's/## //' | sort",
+    "validate": "npm run test"
+  },
+  "files": [
+    "SKILL.md",
+    "AGENTS.md",
+    "README.md",
+    "agents/",
+    "orchestrator/",
+    "scripts/",
+    "config/",
+    "docs/"
+  ],
+  "openclaw": {
+    "type": "skill",
+    "category": "automation",
+    "version": "2.0.0",
+    "skills": [
+      {
+        "name": "agency-agents",
+        "path": "SKILL.md",
+        "description": "61 specialized AI agents across 8 departments"
+      },
+      {
+        "name": "agents-orchestrator",
+        "path": "orchestrator/SKILL.md",
+        "description": "Multi-agent orchestration engine"
+      }
+    ],
+    "agents": {
+      "engineering": ["frontend-developer", "backend-architect", "mobile-app-builder", "ai-engineer", "devops-automator", "rapid-prototyper", "senior-developer"],
+      "design": ["ui-designer", "ux-researcher", "ux-architect", "brand-guardian", "visual-storyteller", "whimsy-injector", "image-prompt-engineer"],
+      "marketing": ["growth-hacker", "content-creator", "twitter-engager", "tiktok-strategist", "instagram-curator", "reddit-community-builder", "app-store-optimizer", "social-media-strategist"],
+      "product": ["sprint-prioritizer", "trend-researcher", "feedback-synthesizer"],
+      "project-management": ["studio-producer", "project-shepherd", "studio-operations", "experiment-tracker", "senior-project-manager"],
+      "testing": ["evidence-collector", "reality-checker", "test-results-analyzer", "performance-benchmarker", "api-tester", "tool-evaluator", "workflow-optimizer"],
+      "support": ["support-responder", "analytics-reporter", "finance-tracker", "infrastructure-maintainer", "legal-compliance-checker", "executive-summary-generator"],
+      "specialized": ["agents-orchestrator", "data-analytics-reporter", "lsp-index-engineer", "sales-data-extraction-agent", "data-consolidation-agent", "report-distribution-agent"]
+    }
+  }
+}

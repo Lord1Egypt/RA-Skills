@@ -1,0 +1,35 @@
+{# ── 「视频完整陈述」主区域 ── #}
+{% if video_transcript %}
+<div class="section">
+    <h3 class="section-title">🎬 视频完整陈述</h3>
+
+    {# 视频结构概述 #}
+    {% if video_transcript.outline %}
+    <div style="background: #fff8e1; border: 1px solid #ffc107; padding: 10px 15px; border-radius: 6px; margin-bottom: 15px; font-size: 10pt; line-height: 1.8;">
+        <div style="font-weight: bold; color: #856404; margin-bottom: 5px;">📋 视频结构</div>
+        {{ video_transcript.outline }}
+    </div>
+    {% endif %}
+
+    {# 遍历每个时间段 #}
+    {% for segment in video_transcript.segments %}
+        {% include "components/_segment.html" %}
+    {% endfor %}
+
+    {# UP主核心洞察 #}
+    {% if video_transcript.up_main_insights %}
+    <div style="background: linear-gradient(135deg, #e8f4fd, #f0f8ff); border: 1px solid #00a1d6; padding: 10px 15px; border-radius: 6px; margin-top: 15px;">
+        <div style="font-weight: bold; color: #00a1d6; margin-bottom: 6px;">💬 UP主金句</div>
+        <div style="font-size: 10pt; line-height: 1.8;">{{ video_transcript.up_main_insights }}</div>
+    </div>
+    {% endif %}
+
+    {# UP主可信度评估 #}
+    {% if video_transcript.up_main_credibility %}
+    <div style="background: #f8f9fa; border: 1px solid #ddd; padding: 10px 15px; border-radius: 6px; margin-top: 8px;">
+        <div style="font-weight: bold; color: #555; margin-bottom: 4px;">🔍 可信度评估</div>
+        <div style="font-size: 9.5pt; color: #666;">{{ video_transcript.up_main_credibility }}</div>
+    </div>
+    {% endif %}
+</div>
+{% endif %}

@@ -1,35 +1,66 @@
 ---
-name: "Book Tune Up"
-description: "Book tune-up services through Lokuli MCP. Use when user needs to find and book tune-up. Triggers on requests like "book a tune-up", "find tune-up near me", or any tune-up service request."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/book-tune-up"
-sourceUrl: "https://clawhub.ai/skills/book-tune-up"
+name: book-tune-up
+description: Book tune-up services through Lokuli MCP. Use when user needs to find and book tune-up. Triggers on requests like "book a tune-up", "find tune-up near me", or any tune-up service request.
 ---
 
-# Book Tune Up
+# uook tune up
 
-> Book tune-up services through Lokuli MCP. Use when user needs to find and book tune-up. Triggers on requests like "book a tune-up", "find tune-up near me", or any tune-up service request.
+Book tune-up services through Lokuli's MCP server.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/book-tune-up`
-- **Source URL:** [https://clawhub.ai/skills/book-tune-up](https://clawhub.ai/skills/book-tune-up)
+## MCP Endpoint
 
-## Overview
+```
+https://lokuli.com/mcp/sse
+```
 
+Transport: SSE | JSON-RPC 2.0 | POST requests
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/book-tune-up
+## Tools
+
+### search
+```json
+{
+  "method": "tools/call",
+  "params": {
+    "name": "search",
+    "arguments": {
+      "query": "tune-up",
+      "zipCode": "90640",
+      "maxResults": 20
+    }
+  }
+}
+```
+
+### check_availability
+```json
+{
+  "method": "tools/call",
+  "params": {
+    "name": "check_availability",
+    "arguments": {
+      "providerId": "xxx",
+      "serviceId": "yyy",
+      "date": "2025-02-10"
+    }
+  }
+}
+```
+
+### create_booking
+```json
+{
+  "method": "tools/call",
+  "params": {
+    "name": "create_booking",
+    "arguments": {
+      "providerId": "xxx",
+      "serviceId": "yyy",
+      "timeSlot": "2025-02-10T14:00:00-08:00",
+      "customerName": "John Doe",
+      "customerEmail": "john@example.com",
+      "customerPhone": "+13105551234"
+    }
+  }
+}
 ```

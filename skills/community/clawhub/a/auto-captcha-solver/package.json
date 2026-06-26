@@ -1,0 +1,25 @@
+{
+  "name": "auto-captcha-solver",
+  "version": "1.0.0",
+  "description": "Automatically detect and solve simple captchas during browser automation",
+  "main": "solve.js",
+  "type": "commonjs",
+  "scripts": {
+    "lint": "node -e \"console.log('No lint configured')\"",
+    "test": "node -e \"console.log('No tests configured')\""
+  },
+  "keywords": [
+    "captcha",
+    "ocr",
+    "automation",
+    "playwright",
+    "puppeteer",
+    "selenium",
+    "openclaw"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "sharp": "^0.34.1",
+    "tesseract.js": "^6.0.1"
+  }
+}

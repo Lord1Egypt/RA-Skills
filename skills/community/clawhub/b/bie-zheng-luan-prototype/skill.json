@@ -1,0 +1,198 @@
+{
+  "name": "bie-zheng-luan-prototype",
+  "displayName": "别整乱原型分析技能",
+  "version": "3.1.0",
+  "description": "将产品原型转换为详细技术规范的技能。深度解析HTML原型，提取完整的菜单结构、筛选条件、表格列、操作按钮等信息。支持URL原型、本地HTML文件、图片原型、XMind文件四种输入类型。完全通用化设计，不硬编码任何业务专有名词，可适配任何业务领域的原型系统。新增交互式业务分析功能，可从原型推断业务流程、状态流转，生成问题让用户确认。",
+  "author": "杰哥",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jermyn-zmj/bie-zheng-luan-prototype"
+  },
+  "homepage": "https://clawhub.ai/skills/bie-zheng-luan-prototype",
+  "keywords": [
+    "prototype",
+    "analysis",
+    "html",
+    "xmind",
+    "design",
+    "figma",
+    "technical-spec",
+    "frontend",
+    "backend",
+    "database"
+  ],
+  "categories": [
+    "development",
+    "design",
+    "productivity",
+    "automation"
+  ],
+  "requirements": {
+    "runtime": [
+      "python3",
+      "beautifulsoup4",
+      "pillow"
+    ],
+    "tools": [
+      "curl 或 wget（用于URL下载）"
+    ],
+    "optional": [
+      {
+        "name": "anthropic",
+        "description": "Claude Vision API客户端，用于图片原型的精确UI识别（增强分析模式）",
+        "useCase": "图片原型视觉增强分析",
+        "envRequired": "ANTHROPIC_API_KEY"
+      },
+      {
+        "name": "opencv-python",
+        "description": "图像处理库，用于高级图片分析",
+        "useCase": "高级图像处理"
+      }
+    ],
+    "installNote": "Shell脚本不会自动安装依赖。请在运行前手动安装: pip install beautifulsoup4 pillow lxml"
+  },
+  "compatibility": {
+    "openclaw": ">=1.0.0"
+  },
+  "envVars": {
+    "required": [],
+    "optional": [
+      {
+        "name": "ANTHROPIC_API_KEY",
+        "description": "Anthropic Claude API密钥，用于图片原型的视觉增强分析。设置此变量会启用外部API调用，将图片数据发送到Anthropic服务器。如果不设置，将使用本地基础图像分析（颜色提取、布局推断），不传输数据。",
+        "required": false,
+        "sensitive": true,
+        "dataTransmission": "启用此变量后，图片数据将通过base64编码发送到Anthropic Claude API（外部服务）"
+      }
+    ]
+  },
+  "permissions": {
+    "network": {
+      "required": true,
+      "description": "需要网络访问来下载公开URL的原型内容。",
+      "allowIntranet": false,
+      "intranetRequiresConfirmation": true,
+      "warning": "内网URL默认被阻止。如需分析内部原型，需使用 --allow-internal 参数确认SSRF风险。",
+      "internalUrlHandling": "检测内网/私有IP地址，默认拒绝访问，需用户通过命令行参数明确确认"
+    },
+    "filesystem": {
+      "required": true,
+      "description": "需要读取本地文件（HTML文件、图片文件、XMind文件）。",
+      "operations": ["read"],
+      "writeOperations": "仅写入用户指定的输出文件，不修改系统文件"
+    },
+    "externalServices": {
+      "required": false,
+      "optional": [
+        {
+          "name": "Anthropic Claude Vision API",
+          "description": "用于图片原型的精确UI元素识别（可选增强功能）。",
+          "dataTransmitted": "图片二进制数据（base64编码）",
+          "warning": "启用此功能会将本地设计图片发送到Anthropic服务器。请确保图片不包含敏感信息。",
+          "trigger": "用户设置ANTHROPIC_API_KEY环境变量后，通过代码调用启用",
+          "default": "默认禁用（未设置环境变量时不调用外部API）"
+        }
+      ]
+    }
+  },
+  "security": {
+    "warnings": [
+      "内网URL默认被阻止，需使用 --allow-internal 参数确认风险后才能访问",
+      "设置ANTHROPIC_API_KEY会启用外部API调用，图片数据将发送到Anthropic服务器",
+      "Shell脚本不会自动安装依赖，需手动pip install"
+    ],
+    "recommendations": [
+      "首次使用前在虚拟环境中安装依赖: pip install beautifulsoup4 pillow lxml",
+      "分析内网原型时，确认URL指向预期的内部资源",
+      "使用视觉API前确认图片不含敏感内容",
+      "建议在隔离环境中首次测试"
+    ],
+    "mitigations": {
+      "commandInjection": {
+        "implemented": true,
+        "description": "Shell脚本对URL和路径参数进行严格验证，阻止shell特殊字符"
+      },
+      "ssrf": {
+        "implemented": true,
+        "description": "检测私有网络地址，默认拒绝访问，需用户通过--allow-internal参数明确确认",
+        "userConfirmationRequired": true
+      },
+      "pathTraversal": {
+        "implemented": true,
+        "description": "文件路径验证，检测敏感路径关键词"
+      },
+      "inputValidation": {
+        "implemented": true,
+        "description": "Python脚本使用标准库处理输入，避免eval/exec"
+      },
+      "noAutoInstall": {
+        "implemented": true,
+        "description": "Shell脚本不自动执行pip install，仅检查依赖并提示用户手动安装"
+      },
+      "externalApiDefaultOff": {
+        "implemented": true,
+        "description": "外部API调用默认禁用，仅在用户设置ANTHROPIC_API_KEY后启用"
+      }
+    }
+  },
+  "tags": [
+    "原型分析",
+    "技术规范",
+    "产品设计",
+    "前端开发",
+    "后端开发",
+    "数据库设计"
+  ],
+  "features": [
+    "深度HTML解析：提取菜单结构（分组+菜单项+页面标识+图标描述）",
+    "深度HTML解析：提取侧边栏用户信息（头像+姓名+角色）",
+    "深度HTML解析：提取页面标签栏（已打开的页面标签）",
+    "深度HTML解析：提取消息通知卡片（标题+正文+时间+参与人数+评论数）",
+    "深度HTML解析：提取人员工作进度卡片（姓名+标签+统计数据）",
+    "深度HTML解析：提取筛选条件（字段名+类型+下拉选项+默认值）",
+    "深度HTML解析：提取表格列（列名+数据类型推断+主表/明细表区分）",
+    "深度HTML解析：提取操作按钮（按钮名+分类+样式+位置）",
+    "深度HTML解析：识别多页面视图，按页面独立输出",
+    "深度HTML解析：识别子标签切换（如工作台切换）",
+    "深度HTML解析：提取状态筛选Tab（状态名称+数量+颜色类型）",
+    "深度HTML解析：提取进度条组件（名称+详情+状态标签+日期）",
+    "深度HTML解析：提取弹窗/抽屉面板（标题+锚点导航+表单字段+统计信息）",
+    "深度HTML解析：提取弹窗内表单（字段名+类型+是否必填+下拉选项）",
+    "深度HTML解析：提取弹窗内统计信息（分项数量汇总）",
+    "深度HTML解析：提取弹窗内按钮（添加行+批量导入+关闭+保存+审核）",
+    "支持公开URL原型分析（Figma/墨刀/Axure等）",
+    "支持本地HTML文件解析",
+    "支持图片原型分析（PNG/JPG/WebP等）",
+    "支持XMind文件解析",
+    "自动识别输入类型",
+    "生成完整技术文档（含API/数据库设计建议）",
+    "内网URL需用户确认 (--allow-internal)",
+    "可选视觉增强分析（需ANTHROPIC_API_KEY，默认禁用）",
+    "不自动安装依赖，需手动pip install"
+  ],
+  "usage": {
+    "examples": [
+      "分析Figma原型：$0 https://www.figma.com/file/xxx",
+      "分析本地HTML：$0 /path/to/prototype.html",
+      "分析内网原型（需确认）：$0 --allow-internal http://internal.company.com/proto",
+      "分析设计图片：$0 /path/to/design.png"
+    ]
+  },
+  "output": {
+    "format": "markdown",
+    "sections": [
+      "系统概览",
+      "页面结构分析",
+      "前端实现方案",
+      "后端实现方案",
+      "数据库设计",
+      "开发注意事项"
+    ]
+  },
+  "created": "2026-04-22",
+  "updated": "2026-04-23",
+  "maintainers": [
+    "杰哥"
+  ]
+}

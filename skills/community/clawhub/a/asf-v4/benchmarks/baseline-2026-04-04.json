@@ -1,0 +1,73 @@
+{
+  "timestamp": "2026-04-04T00:18:00+08:00",
+  "version": "ANFSF V1.5.0",
+  "openclawVersion": "2026.4.2",
+  "benchmarks": {
+    "vetoEnforcement": {
+      "iterations": 1000,
+      "totalTimeMs": 2,
+      "avgTimeMs": 0.00,
+      "p95TimeMs": 0.00,
+      "p99TimeMs": 0.04,
+      "opsPerSecond": 500000,
+      "target": { "p95Ms": 10, "ops": 100 },
+      "status": "passed"
+    },
+    "ownershipProofGeneration": {
+      "iterations": 1000,
+      "totalTimeMs": 11,
+      "avgTimeMs": 0.01,
+      "p95TimeMs": 0.01,
+      "p99TimeMs": 0.04,
+      "opsPerSecond": 90909,
+      "target": { "p95Ms": 20, "ops": 50 },
+      "status": "passed"
+    },
+    "economicsScoreCalculation": {
+      "iterations": 1000,
+      "totalTimeMs": 6,
+      "avgTimeMs": 0.01,
+      "p95TimeMs": 0.01,
+      "p99TimeMs": 0.03,
+      "opsPerSecond": 166667,
+      "target": { "p95Ms": 30, "ops": 30 },
+      "status": "passed"
+    },
+    "memoryWrite": {
+      "iterations": 1000,
+      "totalTimeMs": 32,
+      "avgTimeMs": 0.03,
+      "p95TimeMs": 0.06,
+      "p99TimeMs": 0.09,
+      "opsPerSecond": 31250,
+      "target": { "p95Ms": 5, "ops": 200 },
+      "status": "passed"
+    },
+    "memoryRead": {
+      "iterations": 1000,
+      "totalTimeMs": 86,
+      "avgTimeMs": 0.09,
+      "p95TimeMs": 0.16,
+      "p99TimeMs": 0.21,
+      "opsPerSecond": 11628,
+      "target": { "p95Ms": 10, "ops": 100 },
+      "status": "passed"
+    },
+    "agentStatusExtension": {
+      "iterations": 1000,
+      "totalTimeMs": 29,
+      "avgTimeMs": 0.03,
+      "p95TimeMs": 0.05,
+      "p99TimeMs": 0.08,
+      "opsPerSecond": 34483,
+      "target": { "p95Ms": 5, "ops": 200 },
+      "status": "passed"
+    }
+  },
+  "summary": {
+    "totalOpsPerSecond": 834937,
+    "averageP95LatencyMs": 0.05,
+    "allPassed": true
+  },
+  "notes": "Baseline established for Layer 8.5 optimization comparison"
+}

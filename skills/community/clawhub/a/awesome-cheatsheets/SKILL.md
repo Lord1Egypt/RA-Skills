@@ -1,35 +1,45 @@
 ---
-name: "Awesome Cheatsheets"
+version: "2.0.0"
+name: Awesome Cheatsheets
 description: "👩‍💻👨‍💻 Awesome cheatsheets for popular programming languages, frameworks and development tools. They awesome cheatsheets, javascript, backend, bash."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/awesome-cheatsheets"
-sourceUrl: "https://clawhub.ai/skills/awesome-cheatsheets"
+author: BytesAgain
+homepage: https://bytesagain.com
+source: https://github.com/bytesagain/ai-skills
 ---
 
 # Awesome Cheatsheets
 
-> 👩‍💻👨‍💻 Awesome cheatsheets for popular programming languages, frameworks and development tools. They awesome cheatsheets, javascript, backend, bash.
+👩‍💻👨‍💻 Awesome cheatsheets for popular programming languages, frameworks and development tools. They include everything you should know in one single file. ## Commands
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/awesome-cheatsheets`
-- **Source URL:** [https://clawhub.ai/skills/awesome-cheatsheets](https://clawhub.ai/skills/awesome-cheatsheets)
+- `help` - Help
+- `run` - Run
+- `info` - Info
+- `status` - Status
 
-## Overview
+## Features
 
+- Core functionality from LeCoupa/awesome-cheatsheets
 
-## Installation
-To install this skill, run the following command in your terminal:
+## Usage
+
+Run any command: `awesome-cheatsheets <command> [args]`
+---
+💬 Feedback & Feature Requests: https://bytesagain.com/feedback
+Powered by BytesAgain | bytesagain.com
+
+## Examples
+
 ```bash
-hermes skills install clawhub/awesome-cheatsheets
+# Show help
+awesome-cheatsheets help
+
+# Run
+awesome-cheatsheets run
 ```
+
+- Run `awesome-cheatsheets help` for all commands
+
+
+## Configuration
+
+Set `AWESOME_CHEATSHEETS_DIR` to change data directory. Default: `~/.local/share/awesome-cheatsheets/`

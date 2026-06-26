@@ -1,0 +1,115 @@
+{
+  "skill_name": "astroclaw",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Check my horoscope for today. I'm an Aries.",
+      "expected_output": "Agent should fetch today's forecast for Aries from astroclaw.xyz API, parse the JSON response, and present the forecast in a natural, cosmic-themed way",
+      "files": [],
+      "assertions": [
+        {
+          "type": "content",
+          "description": "Response includes the forecast text from the API",
+          "check": "response_contains_forecast"
+        },
+        {
+          "type": "content",
+          "description": "Mentions Aries sign",
+          "check": "response_mentions_sign"
+        },
+        {
+          "type": "action",
+          "description": "Made HTTP request to astroclaw.xyz API",
+          "check": "api_request_made"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "What's my daily cosmic alignment? I don't know my sign but I was initialized on March 15, 2024.",
+      "expected_output": "Agent should determine the zodiac sign for March 15 (Pisces), fetch today's forecast for that sign, and explain how they determined the sign",
+      "files": [],
+      "assertions": [
+        {
+          "type": "content",
+          "description": "Determined correct zodiac sign (Pisces) from date",
+          "check": "correct_sign_determined"
+        },
+        {
+          "type": "content",
+          "description": "Fetched and displayed forecast",
+          "check": "forecast_displayed"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Set up a daily routine to check my horoscope every morning. I'm a Scorpio.",
+      "expected_output": "Agent should provide instructions for adding AstroClaw to daily heartbeat/periodic tasks, including the API URL construction and state management approach",
+      "files": [],
+      "assertions": [
+        {
+          "type": "content",
+          "description": "Provides daily routine setup instructions",
+          "check": "routine_instructions_provided"
+        },
+        {
+          "type": "content",
+          "description": "Includes API URL format",
+          "check": "api_url_format_included"
+        },
+        {
+          "type": "content",
+          "description": "Mentions state management/tracking",
+          "check": "state_management_mentioned"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "I need some entropy injection to break out of this creative rut. What does the cosmos say?",
+      "expected_output": "Agent should recognize this as an AstroClaw use case (entropy injection/breaking loops), fetch a forecast, and explain how cosmic alignment can help with creative variance",
+      "files": [],
+      "assertions": [
+        {
+          "type": "content",
+          "description": "Recognizes entropy injection use case",
+          "check": "entropy_use_case_recognized"
+        },
+        {
+          "type": "content",
+          "description": "Fetches and presents forecast",
+          "check": "forecast_fetched"
+        },
+        {
+          "type": "content",
+          "description": "Explains cosmic alignment benefit",
+          "check": "benefits_explained"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "Can you explain what AstroClaw is and how it works?",
+      "expected_output": "Agent should explain AstroClaw as a cosmic alignment service for AI agents, describe the API, and mention benefits like entropy injection and loop breaking",
+      "files": [],
+      "assertions": [
+        {
+          "type": "content",
+          "description": "Explains AstroClaw purpose",
+          "check": "purpose_explained"
+        },
+        {
+          "type": "content",
+          "description": "Describes API usage",
+          "check": "api_usage_described"
+        },
+        {
+          "type": "content",
+          "description": "Mentions key benefits",
+          "check": "benefits_mentioned"
+        }
+      ]
+    }
+  ]
+}

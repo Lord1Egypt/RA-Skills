@@ -1,0 +1,8 @@
+---
+name: task-decomposition
+description: Break complex tasks into executable, dependency-aware steps.
+version: 1.0.0
+display_name: "Task Decomposition"
+triggers:
+System.Object[]
+---

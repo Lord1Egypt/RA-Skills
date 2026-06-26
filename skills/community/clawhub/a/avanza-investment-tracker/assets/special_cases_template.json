@@ -1,0 +1,87 @@
+[
+    {
+        "condition": [
+            {
+                "index": 3,
+                "value": "EXAMPLE FUND OLD NAME"
+            },
+            {
+                "index": 0,
+                "value": "2022-12-12",
+                "operator": "<="
+            }
+        ],
+        "replacement": [
+            {
+                "index": 3,
+                "value": "EXAMPLE FUND NEW NAME"
+            }
+        ]
+    },
+    {
+        "condition": [
+            {
+                "index": 9,
+                "value": "ISIN1234567890"
+            },
+            {
+                "index": 2,
+                "value": "Värdepappersinsättning"
+            }
+        ],
+        "replacement": [
+            {
+                "index": 2,
+                "value": "Tillgångsinsättning"
+            },
+            {
+                "index": 3,
+                "value": "CORRECT ASSET NAME"
+            }
+        ]
+    },
+    {
+        "condition": [
+            {
+                "index": 9,
+                "value": "OLDISIN12345678"
+            },
+            {
+                "index": 2,
+                "value": "Värdepappersuttag"
+            }
+        ],
+        "replacement": [
+            {
+                "index": 3,
+                "value": "CORRECT OLD ASSET NAME"
+            }
+        ]
+    },
+    {
+        "condition": [
+            {
+                "index": 9,
+                "value": "ISIN9876543210"
+            },
+            {
+                "index": 2,
+                "value": "Värdepappersinsättning"
+            }
+        ],
+        "replacement": [
+            {
+                "index": 2,
+                "value": "Tillgångsinsättning"
+            },
+            {
+                "index": 3,
+                "value": "EXAMPLE ASSET CUSTOM COST BASIS"
+            },
+            {
+                "index": 5,
+                "value": "123.45"
+            }
+        ]
+    }
+]

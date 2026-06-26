@@ -1,0 +1,59 @@
+## Lin - front
+Lin, female cyberpunk memory archivist, pale skin, deep tired but determined eyes, sleek high-collared dark grey futuristic uniform, subtle cybernetic neural interface scar behind her right ear, soft bioluminescent blue data reflections in her eyes, full body front view character asset, centered single character, clean neutral studio backdrop with faint dystopian solarpunk mood, photorealistic, intricate details, Unreal Engine 5 render style, character design asset, no duplicate body, no extra limbs --ar 21:9 --v 8.0 --raw
+
+## Lin - three quarter
+Lin, female cyberpunk memory archivist, pale skin, deep tired but determined eyes, sleek high-collared dark grey futuristic uniform, subtle cybernetic neural interface scar behind her right ear, soft bioluminescent blue data reflections in her eyes, full body three-quarter view character asset, centered single character, clean neutral studio backdrop with faint dystopian solarpunk mood, photorealistic, intricate details, Unreal Engine 5 render style, character design asset, no duplicate body, no extra limbs --ar 21:9 --v 8.0 --raw
+
+## Lin - side
+Lin, female cyberpunk memory archivist, pale skin, deep tired but determined eyes, sleek high-collared dark grey futuristic uniform, subtle cybernetic neural interface scar behind her right ear, soft bioluminescent blue data reflections in her eyes, full body side profile character asset, centered single character, clean neutral studio backdrop with faint dystopian solarpunk mood, photorealistic, intricate details, Unreal Engine 5 render style, character design asset, no duplicate body, no extra limbs --ar 21:9 --v 8.0 --raw
+
+## Lin - back
+Lin, female cyberpunk memory archivist, pale skin, sleek high-collared dark grey futuristic uniform, subtle cybernetic neural interface scar behind her right ear, soft bioluminescent blue accents, full body back view character asset, centered single character, clean neutral studio backdrop with faint dystopian solarpunk mood, photorealistic, intricate details, Unreal Engine 5 render style, character design asset, no duplicate body, no extra limbs --ar 21:9 --v 8.0 --raw
+
+## Dr. Vance - front
+Dr. Vance, charismatic elegant futuristic scientist, male antagonist, perfectly groomed silver hair, seamless pristine white and gold tailored trench coat, gentle but chillingly emotionless expression, full body front view character asset, centered single character, clean sterile ultra-modern laboratory inspired backdrop kept minimal, dramatic sharp shadow lighting, volumetric light, hyper-detailed cinematic photography, character design asset, no duplicate body, no extra limbs --ar 21:9 --v 8.0 --raw
+
+## Dr. Vance - three quarter
+Dr. Vance, charismatic elegant futuristic scientist, male antagonist, perfectly groomed silver hair, seamless pristine white and gold tailored trench coat, gentle but chillingly emotionless expression, full body three-quarter view character asset, centered single character, clean sterile ultra-modern laboratory inspired backdrop kept minimal, dramatic sharp shadow lighting, volumetric light, hyper-detailed cinematic photography, character design asset, no duplicate body, no extra limbs --ar 21:9 --v 8.0 --raw
+
+## Dr. Vance - side
+Dr. Vance, charismatic elegant futuristic scientist, male antagonist, perfectly groomed silver hair, seamless pristine white and gold tailored trench coat, gentle but chillingly emotionless expression, full body side profile character asset, centered single character, clean sterile ultra-modern laboratory inspired backdrop kept minimal, dramatic sharp shadow lighting, volumetric light, hyper-detailed cinematic photography, character design asset, no duplicate body, no extra limbs --ar 21:9 --v 8.0 --raw
+
+## Dr. Vance - back
+Dr. Vance, charismatic elegant futuristic scientist, male antagonist, perfectly groomed silver hair, seamless pristine white and gold tailored trench coat, full body back view character asset, centered single character, clean sterile ultra-modern laboratory inspired backdrop kept minimal, dramatic sharp shadow lighting, volumetric light, hyper-detailed cinematic photography, character design asset, no duplicate body, no extra limbs --ar 21:9 --v 8.0 --raw
+
+## Kael - front
+Kael, rugged cyberpunk scavenger, cynical but loyal expression, messy hair, slight stubble, visibly worn retro-mechanical left prosthetic arm, patched leather jacket, holding a small glowing antique pocket watch, full body front view character asset, centered single character, neutral studio backdrop with subtle cold neon rain mood, Cyberpunk 2077 style, highly detailed textures, dramatic lighting, character design asset, no duplicate body, no extra limbs --ar 21:9 --v 8.0 --raw
+
+## Kael - three quarter
+Kael, rugged cyberpunk scavenger, cynical but loyal expression, messy hair, slight stubble, visibly worn retro-mechanical left prosthetic arm, patched leather jacket, holding a small glowing antique pocket watch, full body three-quarter view character asset, centered single character, neutral studio backdrop with subtle cold neon rain mood, Cyberpunk 2077 style, highly detailed textures, dramatic lighting, character design asset, no duplicate body, no extra limbs --ar 21:9 --v 8.0 --raw
+
+## Kael - side
+Kael, rugged cyberpunk scavenger, cynical but loyal expression, messy hair, slight stubble, visibly worn retro-mechanical left prosthetic arm, patched leather jacket, holding a small glowing antique pocket watch, full body side profile character asset, centered single character, neutral studio backdrop with subtle cold neon rain mood, Cyberpunk 2077 style, highly detailed textures, dramatic lighting, character design asset, no duplicate body, no extra limbs --ar 21:9 --v 8.0 --raw
+
+## Kael - back
+Kael, rugged cyberpunk scavenger, messy hair, slight stubble, visibly worn retro-mechanical left prosthetic arm, patched leather jacket, full body back view character asset, centered single character, neutral studio backdrop with subtle cold neon rain mood, Cyberpunk 2077 style, highly detailed textures, dramatic lighting, character design asset, no duplicate body, no extra limbs --ar 21:9 --v 8.0 --raw
+
+## Elara - front
+Elara, female memory architect, dreamy ethereal look, avant-garde clothing made of translucent holographic fabrics, hair with subtle glowing neon gradient from pink to cyan, manipulating floating digital memory orbs, full body front view character asset, centered single character, clean ambient studio backdrop with synthwave glow, vibrant colors, highly aesthetic digital painting masterpiece, detailed face, character design asset, no duplicate body, no extra limbs --ar 21:9 --v 8.0 --raw
+
+## Elara - three quarter
+Elara, female memory architect, dreamy ethereal look, avant-garde clothing made of translucent holographic fabrics, hair with subtle glowing neon gradient from pink to cyan, manipulating floating digital memory orbs, full body three-quarter view character asset, centered single character, clean ambient studio backdrop with synthwave glow, vibrant colors, highly aesthetic digital painting masterpiece, detailed face, character design asset, no duplicate body, no extra limbs --ar 21:9 --v 8.0 --raw
+
+## Elara - side
+Elara, female memory architect, dreamy ethereal look, avant-garde clothing made of translucent holographic fabrics, hair with subtle glowing neon gradient from pink to cyan, manipulating floating digital memory orbs, full body side profile character asset, centered single character, clean ambient studio backdrop with synthwave glow, vibrant colors, highly aesthetic digital painting masterpiece, detailed face, character design asset, no duplicate body, no extra limbs --ar 21:9 --v 8.0 --raw
+
+## Elara - back
+Elara, female memory architect, dreamy ethereal look, avant-garde clothing made of translucent holographic fabrics, hair with subtle glowing neon gradient from pink to cyan, full body back view character asset, centered single character, clean ambient studio backdrop with synthwave glow, vibrant colors, highly aesthetic digital painting masterpiece, detailed costume silhouette, character design asset, no duplicate body, no extra limbs --ar 21:9 --v 8.0 --raw
+
+## Silas - front
+Silas, cybernetic enforcer, imposing tall figure, matte black futuristic tactical armor, upper face fully covered by sleek horizontal red glowing visor, faint white heat smoke from armor joints, full body front view character asset, centered single character, dark rainy dystopian alley mood simplified into clean backdrop, high contrast ominous atmosphere, cinematic sci-fi concept art, extremely detailed, character design asset, no duplicate body, no extra limbs --ar 21:9 --v 8.0 --raw
+
+## Silas - three quarter
+Silas, cybernetic enforcer, imposing tall figure, matte black futuristic tactical armor, upper face fully covered by sleek horizontal red glowing visor, faint white heat smoke from armor joints, full body three-quarter view character asset, centered single character, dark rainy dystopian alley mood simplified into clean backdrop, high contrast ominous atmosphere, cinematic sci-fi concept art, extremely detailed, character design asset, no duplicate body, no extra limbs --ar 21:9 --v 8.0 --raw
+
+## Silas - side
+Silas, cybernetic enforcer, imposing tall figure, matte black futuristic tactical armor, upper face fully covered by sleek horizontal red glowing visor, faint white heat smoke from armor joints, full body side profile character asset, centered single character, dark rainy dystopian alley mood simplified into clean backdrop, high contrast ominous atmosphere, cinematic sci-fi concept art, extremely detailed, character design asset, no duplicate body, no extra limbs --ar 21:9 --v 8.0 --raw
+
+## Silas - back
+Silas, cybernetic enforcer, imposing tall figure, matte black futuristic tactical armor, upper face fully covered by sleek horizontal red glowing visor, faint white heat smoke from armor joints, full body back view character asset, centered single character, dark rainy dystopian alley mood simplified into clean backdrop, high contrast ominous atmosphere, cinematic sci-fi concept art, extremely detailed, character design asset, no duplicate body, no extra limbs --ar 21:9 --v 8.0 --raw

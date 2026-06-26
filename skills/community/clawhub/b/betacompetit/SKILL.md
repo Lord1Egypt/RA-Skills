@@ -1,35 +1,60 @@
 ---
-name: "Beta Competitor Analysis"
-description: "Comprehensive competitor analysis framework. Research competitors, compare products, identify gaps, and find positioning opportunities. Used by startups, inv..."
-category: "productivity"
-source: "ClawHub"
-tags: [business, research, strategy]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/betacompetit"
-sourceUrl: "https://clawhub.ai/skills/betacompetit"
+name: competitor-analysis
+description: Comprehensive competitor analysis framework. Research competitors, compare products, identify gaps, and find positioning opportunities. Used by startups, investors, and product teams.
+metadata:
+  openclaw:
+    emoji: "🔍"
+    requires:
+      bins: [python3]
+    always: false
 ---
 
-# Beta Competitor Analysis
+# Competitor Analysis Framework
 
-> Comprehensive competitor analysis framework. Research competitors, compare products, identify gaps, and find positioning opportunities. Used by startups, inv...
+Systematic competitor research and analysis tool.
 
-- **Category:** Productivity
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/betacompetit`
-- **Source URL:** [https://clawhub.ai/skills/betacompetit](https://clawhub.ai/skills/betacompetit)
+## What It Delivers
 
-## Overview
+### Competitor Profiles
+- Company overview and history
+- Product features matrix
+- Pricing strategy
+- Target customers
+- Go-to-market approach
+- Strengths and weaknesses
 
+### Positioning Map
+- 2D positioning visualization
+- Identify whitespace opportunities
+- differentiation strategies
 
-## Installation
-To install this skill, run the following command in your terminal:
+### Comparison Tables
+- Feature-by-feature comparison
+- Pricing comparison
+- Market segment overlap
+
+## Usage
+
 ```bash
-hermes skills install clawhub/betacompetit
+python3 analysis.py --competitors "Stripe,Square,PayPal" --category payments
+python3 analysis.py --report full --output markdown
 ```
+
+## Analysis Framework
+
+### Porter's Five Forces
+- Competitive rivalry
+- Threat of new entrants
+- Threat of substitutes
+- Buyer power
+- Supplier power
+
+### SWOT Analysis
+- Strengths
+- Weaknesses
+- Opportunities
+- Threats
+
+---
+
+*Built by Beta*

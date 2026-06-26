@@ -1,0 +1,6 @@
+{
+  "plan_name": "Default",
+  "description": "預設配置（繼承 Plan A）",
+  "plan": "A",
+  "version": "1.0"
+}

@@ -1,0 +1,8 @@
+interface:
+  display_name: "币安 AI 交易员驾照局"
+  short_description: "先考试、再实习、再拿证。判断 AI 交易员现在有没有资格上岗。"
+  brand_color: "#f1ab4c"
+  default_prompt: "请使用 $binance-agent-license-bureau 审理这个 AI 交易员，给我候选币白名单、影子交易考场成绩、人工状态闸门结果、运行时风控规章、当前执照等级、升级或降级原因，以及一版适合发到 Binance Square 的中文执照记录。"
+
+policy:
+  allow_implicit_invocation: true

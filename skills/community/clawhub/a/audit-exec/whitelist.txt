@@ -1,0 +1,40 @@
+# audit-exec 白名单配置
+# 格式: pattern -> 说明
+# 以 # 开头的是注释
+
+# ========== 安全脚本 ==========
+# 邮件检查脚本
+email-check.py -> 邮件检查定时任务，安全
+
+# PPT 相关脚本
+full_modify_ppt2.py -> PPT模板修改脚本，用户确认
+analyze_ppt*.py -> PPT分析脚本，安全
+compare_ppts.py -> PPT比较脚本，安全
+modify_ppt2_template.py -> PPT模板修改，安全
+
+# ========== 系统查询命令 ==========
+# Windows 目录查看
+Get-ChildItem -> 目录查看，安全
+Get-Content -> 读取文件内容，安全
+type -> 读取文件内容，安全
+cat -> 读取文件内容，安全
+dir -> Windows目录查看
+
+# Unix 目录查看
+ls -> 目录列表，安全
+
+# 文件查看
+type -> 查看文件内容，安全
+cat -> 查看文件内容，安全
+
+# ========== OpenClaw CLI ==========
+openclaw message send -> OpenClaw内部消息发送，安全
+openclaw status -> 查看状态，安全
+
+# ========== 其他安全命令 ==========
+# ClawHub 操作
+clawhub list -> 列出已安装技能，安全
+clawhub search -> 搜索技能（只读），安全
+
+# Python 执行
+python.*-check -> 各类检查脚本，安全

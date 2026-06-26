@@ -1,0 +1,15 @@
+{
+  "reference_datetime": "1983-02-05 00:00",
+  "timezone": "Asia/Shanghai",
+  "reference_pillars": {
+    "year": "癸亥",
+    "month": "甲寅",
+    "day": "甲子",
+    "hour": "甲子"
+  },
+  "verification_notes": [
+    "Cross-checked with lunar-python engine: 1983-02-05 00:00 (CST) => 癸亥年 甲寅月 甲子日 甲子时.",
+    "This timestamp is widely used as a stable calibration point because day pillar is 甲子日.",
+    "If you prefer strict school-specific rules for LiChun/solar-term boundaries, keep this as baseline and calibrate against your target 万年历 source."
+  ]
+}

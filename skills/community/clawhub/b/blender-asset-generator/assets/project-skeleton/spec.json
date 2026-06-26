@@ -1,0 +1,60 @@
+{
+  "meta": {
+    "blender_version": "4.2+",
+    "created_by": "blender-cloud-bpy-asset-generator",
+    "notes": "Edit this file or replace it with a generated spec."
+  },
+  "scale": {
+    "units": "mm",
+    "anchor_mm": {
+      "kind": "height",
+      "value_mm": 240
+    }
+  },
+  "asset": {
+    "name": "asset_mvp",
+    "use_case": "ecommerce",
+    "category": "bottle-ish",
+    "materials": [
+      {
+        "name": "MAT__main",
+        "type": "pbr_placeholder",
+        "base_color_rgba": [0.9, 0.9, 0.92, 1.0],
+        "roughness": 0.45,
+        "metallic": 0.0
+      }
+    ],
+    "components": [
+      {
+        "name": "MESH__body",
+        "primitive": "bottle_like",
+        "params_mm": {
+          "height": 240,
+          "diameter": 70,
+          "neck_height": 35,
+          "neck_diameter": 32,
+          "base_bevel_radius": 3,
+          "top_bevel_radius": 2
+        },
+        "material": "MAT__main",
+        "transform": {
+          "location_mm": [0, 0, 0],
+          "rotation_deg": [0, 0, 0]
+        }
+      }
+    ],
+    "open_questions": [
+      "Confirm one anchor dimension if you provided reference images without scale."
+    ],
+    "reference_images": []
+  },
+  "outputs": {
+    "export_glb": "exports/asset_mvp.glb",
+    "export_fbx_optional": null,
+    "export_usdc_optional": null,
+    "renders": [
+      { "name": "front", "path": "renders/front.png" },
+      { "name": "three_quarter", "path": "renders/three_quarter.png" }
+    ]
+  }
+}

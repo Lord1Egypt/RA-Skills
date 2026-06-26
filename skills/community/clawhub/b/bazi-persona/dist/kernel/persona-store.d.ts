@@ -1,0 +1,31 @@
+import type { PersonaConversationEntry, PersonaKnowledge, PersonaMemoryEntry, PersonaRecord, PersonaRef, PromptPack, SupportedLanguage } from "./types.js";
+export declare function resolvePersonaBaseDir(explicit?: string): string;
+export declare function getPersonaFilePaths(slug: string, baseDir?: string): {
+    dir: string;
+    persona_md: string;
+    bazi_data_json: string;
+    memory_json: string;
+    history_json: string;
+};
+export declare function listPersonas(baseDir?: string): PersonaRef[];
+export declare function searchPersonas(query: string, baseDir?: string): PersonaRef[];
+export declare function loadPersona(slug: string, baseDir?: string): PersonaRecord;
+export declare function savePersona(record: PersonaRecord, baseDir?: string): PersonaRecord;
+export declare function loadHistoryEntries(slug: string, baseDir?: string): PersonaConversationEntry[];
+export declare function appendHistoryEntry(slug: string, entry: PersonaConversationEntry, baseDir?: string): PersonaConversationEntry[];
+export declare function deletePersona(slug: string, baseDir?: string): boolean;
+export declare function createPersonaRecord(params: {
+    name: string;
+    gender: "男" | "女";
+    birth_date: string;
+    birth_time?: string;
+    birth_location?: string;
+    calendar_type: "solar" | "lunar";
+    relation?: string;
+    chart: PersonaRecord["chart"];
+    memory: PersonaMemoryEntry[];
+    promptPack: PromptPack;
+    knowledge: PersonaKnowledge;
+    slug?: string;
+    preferred_language?: "auto" | SupportedLanguage;
+}): PersonaRecord;

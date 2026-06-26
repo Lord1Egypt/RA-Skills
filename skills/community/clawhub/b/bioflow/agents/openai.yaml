@@ -1,0 +1,4 @@
+interface:
+  display_name: "BioFlow API Quickstart"
+  short_description: "Concise end-to-end API flow for BioFlow backend usage"
+  default_prompt: "Use this skill to explain and execute BioFlow API flow: signup/login, dataset upload/download, balance check, task submission, job polling, and result retrieval."

@@ -1,0 +1,10 @@
+{
+  "id": "playfilo",
+  "name": "Playfilo",
+  "description": "Shared-memory DAG integration with temporal tools (life, recall, trace, tobe).",
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {}
+  }
+}

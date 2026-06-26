@@ -1,0 +1,108 @@
+{
+  "name": "aubo-robot-skill",
+  "version": "1.0.0",
+  "description": "AUBO 遨博机器人控制技能包 - RTDE 协议实现",
+  "author": "RobotQu <jmo@robotqu.com>",
+  "license": "MIT",
+  "keywords": [
+    "aubo",
+    "robot",
+    "openclaw",
+    "skill",
+    "rtde",
+    "协作机器人",
+    "遨博"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/robotqu/openclaw-robot-skills.git",
+    "directory": "aubo-robot"
+  },
+  "main": "aubo_openclaw_driver.py",
+  "scripts": {
+    "test": "python test_motion_auto.py",
+    "test-rtde": "python test_rtde_official.py",
+    "test-connection": "python quick_test.py"
+  },
+  "skill": {
+    "id": "aubo-robot",
+    "name": "AUBO Robot",
+    "category": "robotics",
+    "version": "1.0.0",
+    "status": "ready",
+    "tested": true,
+    "capabilities": [
+      "RTDE 实时数据交换",
+      "关节空间运动 (movej)",
+      "笛卡尔空间运动 (movel)",
+      "圆弧运动 (movec)",
+      "关节速度控制 (speedj)",
+      "状态实时反馈",
+      "全局速度调节",
+      "停止控制",
+      "OpenClaw 统一接口"
+    ],
+    "requirements": {
+      "python": ">=3.8",
+      "vmware": "Workstation 16 Pro+ (仿真)",
+      "network": "桥接模式",
+      "robot_models": [
+        "AUBO iS3",
+        "AUBO iS5",
+        "AUBO iS7",
+        "AUBO iS10",
+        "AUBO iS12",
+        "AUBO iS16"
+      ]
+    },
+    "config": {
+      "host": "192.168.0.136",
+      "port": 30010,
+      "default_speed": 0.3,
+      "default_acceleration": 0.3
+    },
+    "files": {
+      "driver": "aubo_openclaw_driver.py",
+      "skill_doc": "SKILL.md",
+      "readme": "README.md",
+      "manifest": "manifest.json",
+      "tests": [
+        "test_rtde_official.py",
+        "test_motion_auto.py",
+        "test_connection.py",
+        "quick_test.py"
+      ],
+      "scripts": [
+        "scan_local.py",
+        "auto_scan.py"
+      ]
+    },
+    "integration": {
+      "openclaw": true,
+      "ros2": true,
+      "python_api": true
+    },
+    "test_results": {
+      "rtde_connection": "✅ passed",
+      "data_subscribe": "✅ passed",
+      "data_publish": "✅ passed",
+      "joint_motion": "✅ passed",
+      "linear_motion": "✅ passed",
+      "speed_control": "✅ passed",
+      "stop_control": "✅ passed"
+    },
+    "publish": {
+      "ready": true,
+      "clawhub": true,
+      "github": true,
+      "pypi": false
+    }
+  },
+  "dependencies": {
+    "python": []
+  },
+  "devDependencies": {},
+  "engines": {
+    "python": ">=3.8"
+  }
+}

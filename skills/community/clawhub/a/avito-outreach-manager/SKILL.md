@@ -1,35 +1,52 @@
 ---
-name: "Avito Message QA Reviewer"
-description: "Review Avito message drafts for clarity, consent, respectful tone, one clear next step, and safe checkout wording before a human decides what to send."
-category: "other"
-source: "ClawHub"
-tags: [avito, message-review, qa, safety, openclaw, outreach]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/avito-outreach-manager"
-sourceUrl: "https://clawhub.ai/skills/avito-outreach-manager"
+name: avito-outreach-manager
+description: Review Avito message drafts for clarity, consent, respectful tone, one clear next step, and safe checkout wording before a human decides what to send.
 ---
 
 # Avito Message QA Reviewer
 
-> Review Avito message drafts for clarity, consent, respectful tone, one clear next step, and safe checkout wording before a human decides what to send.
+Use this skill to review Avito message drafts before a human decides what to
+send. Keep the work to copy QA, safety wording, and a short human-send
+checklist.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/avito-outreach-manager`
-- **Source URL:** [https://clawhub.ai/skills/avito-outreach-manager](https://clawhub.ai/skills/avito-outreach-manager)
+## Inputs
 
-## Overview
+Collect:
 
+- item or service context,
+- seller-facing draft message,
+- intended package or offer,
+- allowed contact method,
+- checkout boundary.
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/avito-outreach-manager
-```
+Do not request phone numbers, bank card numbers, payment account details,
+session cookies, private chat exports, or personal identifiers that are not
+needed for message review.
+
+## Review Workflow
+
+1. Check the message for:
+   - respectful tone,
+   - specific context,
+   - one clear next step,
+   - no pressure tactics,
+   - no private payment details,
+   - no workflow notes or scoring language.
+2. Rewrite the message if needed.
+3. Add a short human-send checklist.
+
+## Output
+
+Return:
+
+- revised Avito message,
+- what changed,
+- human-send checklist,
+- payment-safety reminder.
+
+## Guardrails
+
+- Keep all Avito account activity outside this skill.
+- Keep checkout wording inside Avito-supported safe flows.
+- Keep outbound text limited to what the recipient should see.
+- Do not advise off-platform payments.

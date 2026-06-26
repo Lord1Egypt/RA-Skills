@@ -1,35 +1,66 @@
 ---
-name: "Book Car Wash"
-description: "Book car-wash services through Lokuli MCP. Use when user needs to find and book car-wash. Triggers on requests like "book a car-wash", "find car-wash near me", or any car-wash service request."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/book-car-wash"
-sourceUrl: "https://clawhub.ai/skills/book-car-wash"
+name: book-car-wash
+description: Book car-wash services through Lokuli MCP. Use when user needs to find and book car-wash. Triggers on requests like "book a car-wash", "find car-wash near me", or any car-wash service request.
 ---
 
-# Book Car Wash
+# uook car wash
 
-> Book car-wash services through Lokuli MCP. Use when user needs to find and book car-wash. Triggers on requests like "book a car-wash", "find car-wash near me", or any car-wash service request.
+Book car-wash services through Lokuli's MCP server.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/book-car-wash`
-- **Source URL:** [https://clawhub.ai/skills/book-car-wash](https://clawhub.ai/skills/book-car-wash)
+## MCP Endpoint
 
-## Overview
+```
+https://lokuli.com/mcp/sse
+```
 
+Transport: SSE | JSON-RPC 2.0 | POST requests
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/book-car-wash
+## Tools
+
+### search
+```json
+{
+  "method": "tools/call",
+  "params": {
+    "name": "search",
+    "arguments": {
+      "query": "car-wash",
+      "zipCode": "90640",
+      "maxResults": 20
+    }
+  }
+}
+```
+
+### check_availability
+```json
+{
+  "method": "tools/call",
+  "params": {
+    "name": "check_availability",
+    "arguments": {
+      "providerId": "xxx",
+      "serviceId": "yyy",
+      "date": "2025-02-10"
+    }
+  }
+}
+```
+
+### create_booking
+```json
+{
+  "method": "tools/call",
+  "params": {
+    "name": "create_booking",
+    "arguments": {
+      "providerId": "xxx",
+      "serviceId": "yyy",
+      "timeSlot": "2025-02-10T14:00:00-08:00",
+      "customerName": "John Doe",
+      "customerEmail": "john@example.com",
+      "customerPhone": "+13105551234"
+    }
+  }
+}
 ```

@@ -1,0 +1,116 @@
+{
+  "name": "Autonomous Procurement Agent",
+  "slug": "autonomous-procurement-agent",
+  "tagline": "Zero-leak quote parsing with dual-engine AI. F1/F2/F3 fraud detection built in.",
+  "shortDescription": "Enterprise procurement automation with hybrid dual-engine parsing (regex + GPT-4o), built-in F1/F2/F3 fraud detection, auto-escalation approval flows, Safety-Freeze circuit breakers, and Lemon Squeezy MoR payment.",
+  "description": "The procurement agent that actually understands messy supplier quotes. Engine 1 (regex pipeline, ms response) handles structured JSON, HTML tables, and CSV. Engine 2 (GPT-4o LLM fallback) handles plain-text emails, OCR scans, and qty\u00d7price-on-same-line ambiguity.\n\n**Every result carries risk metadata:**\n- F1: unit_price \u00d7 quantity \u2260 line_total \u2192 calculation error detected, auto-block\n- F2: current price > historical avg \u00d7 1.20 \u2192 price spike flagged\n- F3: same vendor, same total, within 7 days \u2192 duplicate warning\n\n**Approval flow with Safety-Freeze:**\n- Under $10,000 limit: auto-approved instantly\n- Over limit: emails primary approver \u2192 5s timeout \u2192 escalates to backup\n- Both unreachable: Safety-Freeze + emergency alert + order locked\n\n**Lemon Squeezy MoR:** Global VAT/Sales Tax handled by LS. Payout via Payoneer/Wise/WorldFirst \u2014 no Stripe, no PayPal disputes.\n\n**Handles formats others can't:**\n- Email body: \"Servo motor SME-200: 8 units \u00d7 $2,800 = $22,400\" (qty and price on same line)\n- SAP-exported HTML with merged cells\n- Chinese RMB quotes auto-converted to USD\n- Multi-currency: CNY, EUR, GBP, JPY, AUD, CAD \u2192 normalized USD",
+  "icon": "https://raw.githubusercontent.com/openclaw/clawhub/main/assets/procurement-icon.png",
+  "iconBackground": "#E17055",
+  "screenshots": [],
+  "version": "1.1.0",
+  "license": "MIT",
+  "homepage": "https://github.com/openclaw/skills/tree/main/autonomous-procurement-agent",
+  "repository": "https://github.com/openclaw/skills",
+  "issues": "https://github.com/openclaw/skills/issues",
+  "author": {
+    "name": "Arya",
+    "github": "arya-openclaw",
+    "email": "arya@openclaw.ai"
+  },
+  "pricing": {
+    "free": {
+      "description": "20 quotes/month, regex-only, no LLM fallback",
+      "limit": "20 quotes/month"
+    },
+    "pro": {
+      "description": "500 quotes/month, LLM fallback, all F1/F2/F3 checks",
+      "priceUsd": "9.99",
+      "period": "monthly"
+    },
+    "enterprise": {
+      "description": "Unlimited quotes, multi-currency, API access, priority support",
+      "priceUsd": "29.99",
+      "period": "monthly",
+      "paymentGateway": "lemon-squeezy",
+      "payoutMethods": [
+        "Payoneer",
+        "WorldFirst",
+        "Wise"
+      ]
+    }
+  },
+  "paymentGateways": [
+    "lemon-squeezy"
+  ],
+  "keywords": [
+    "procurement",
+    "enterprise",
+    "fraud-detection",
+    "f1-calculation-error",
+    "f2-price-spike",
+    "f3-duplicate",
+    "dual-engine",
+    "llm-fallback",
+    "approval-flow",
+    "safety-freeze",
+    "circuit-breaker",
+    "lemon-squeezy",
+    "non-standard-format",
+    "quote-parsing",
+    "cnx-normalizer",
+    "zero-leak",
+    "enterprise-procurement"
+  ],
+  "categories": [
+    "business-tools",
+    "finance",
+    "productivity",
+    "automation"
+  ],
+  "features": [
+    "Dual-engine parsing: regex (ms) + GPT-4o LLM fallback for messy formats",
+    "F1 calculation verification: unit_price \u00d7 quantity vs line_total",
+    "F2 historical price spike: current > avg \u00d7 1.20 triggers CRITICAL alert",
+    "F3 duplicate detection: same vendor + same total within 7 days",
+    "Every result: confidence_score, risk_score, anomaly_flags, risk_alerts",
+    "Currency normalizer: CNY/RMB/EUR/GBP/JPY/AUD/CAD \u2192 USD",
+    "Approval flow: auto-approve under limit \u2192 email primary \u2192 escalate backup \u2192 Safety-Freeze",
+    "Safety-Freeze: both approvers unreachable \u2192 emergency alert + order locked",
+    "Lemon Squeezy MoR: global VAT handled, payouts via Payoneer/Wise/WorldFirst",
+    "Zero hardcoded keys: all secrets from process.env"
+  ],
+  "useCases": [
+    "Manufacturing: Compare 5 supplier quotes in different formats (PDF/email/Excel)",
+    "IT procurement: Auto-detect $10 \u00d7 100 units = $50,000 calculation error",
+    "Medical supply: Flag 34% price spike on ball bearings vs 6-month history",
+    "Operations: Auto-escalate $50,000 purchase to CFO, Safety-Freeze if unreachable"
+  ],
+  "badges": [
+    "dual-engine",
+    "fraud-detection",
+    "safety-freeze",
+    "zero-leak",
+    "lemon-squeezy"
+  ],
+  "requirements": {
+    "env": [
+      "OPENAI_API_KEY"
+    ],
+    "bins": [
+      "node"
+    ],
+    "optional": [
+      "curl",
+      "jq"
+    ]
+  },
+  "tags": [
+    "procurement-automation",
+    "fraud-detection",
+    "approval-flow",
+    "enterprise",
+    "quote-comparison",
+    "non-standard-format",
+    "llm-powered"
+  ]
+}

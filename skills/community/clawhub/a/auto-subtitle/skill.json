@@ -1,0 +1,34 @@
+{
+  "name": "auto-subtitle",
+  "version": "1.0.0",
+  "description": "视频自动字幕生成器，批量为视频生成字幕文件（SRT/VTT），结合视频帧提取和语音转文字，预览模式和撤销功能！",
+  "author": "小叮当",
+  "license": "MIT",
+  "keywords": [
+    "video",
+    "subtitle",
+    "srt",
+    "vtt",
+    "whisper",
+    "openai",
+    "transcribe",
+    "video",
+    "字幕",
+    "语音转文字"
+  ],
+  "engines": {
+    "python": ">=3.7"
+  },
+  "dependencies": {
+    "openai": ">=1.0.0",
+    "pydub": ">=0.25.0"
+  },
+  "main": "source/auto_subtitle.py",
+  "bin": {
+    "auto-subtitle": "source/auto_subtitle.py"
+  },
+  "scripts": {
+    "install": "bash install.sh",
+    "test": "python source/auto_subtitle.py --help"
+  }
+}

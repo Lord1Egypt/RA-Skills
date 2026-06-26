@@ -1,0 +1,20 @@
+{
+  "slug": "arabic-ui-localization-reviewer-skill",
+  "name": "Arabic UI Localization Reviewer Skill",
+  "version": "0.1.0",
+  "tags": [
+    "arabic",
+    "localization",
+    "ui-review",
+    "openclaw",
+    "templates"
+  ],
+  "category": "Arabic & Localization",
+  "changelog": [
+    {
+      "version": "0.1.0",
+      "date": "2026-06-08",
+      "notes": "Generated from local idea bank (no AI). Pending Telegram approval."
+    }
+  ]
+}

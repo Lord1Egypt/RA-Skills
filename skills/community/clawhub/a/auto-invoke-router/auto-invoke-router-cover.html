@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    width: 1280px;
+    height: 720px;
+    background: #07090F;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', sans-serif;
+    overflow: hidden;
+    position: relative;
+  }
+
+  /* Dot grid — violet tint */
+  .bg-grid {
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle, rgba(139,92,246,0.11) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+
+  /* Violet glow top-left */
+  .glow-tl {
+    position: absolute;
+    top: -160px;
+    left: -100px;
+    width: 560px;
+    height: 560px;
+    background: radial-gradient(ellipse, rgba(139,92,246,0.15) 0%, transparent 65%);
+    pointer-events: none;
+  }
+
+  /* Faint glow bottom-right */
+  .glow-br {
+    position: absolute;
+    bottom: -200px;
+    right: 100px;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(ellipse, rgba(139,92,246,0.07) 0%, transparent 65%);
+    pointer-events: none;
+  }
+
+  /* Watermark — routing fork icon */
+  .watermark {
+    position: absolute;
+    right: -30px;
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 0.055;
+  }
+
+  /* Thin top border line */
+  .top-line {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #8B5CF6 0%, rgba(139,92,246,0.0) 60%);
+  }
+
+  /* Main layout */
+  .layout {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    padding: 52px 72px 52px 72px;
+  }
+
+  /* TOP ROW */
+  .top-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .clawhub-tag {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: #A78BFA;
+    border: 1px solid rgba(139,92,246,0.35);
+    padding: 5px 13px;
+    border-radius: 4px;
+    background: rgba(139,92,246,0.07);
+  }
+
+  .price-tag {
+    font-size: 22px;
+    font-weight: 700;
+    color: #EDE9FE;
+    background: rgba(139,92,246,0.12);
+    border: 1px solid rgba(139,92,246,0.4);
+    padding: 7px 22px;
+    border-radius: 8px;
+    letter-spacing: 0.01em;
+  }
+
+  /* CENTRE */
+  .centre {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-right: 380px;
+  }
+
+  .title {
+    font-size: 80px;
+    font-weight: 900;
+    line-height: 0.95;
+    letter-spacing: -3px;
+    color: #F9FAFB;
+    margin-bottom: 22px;
+  }
+
+  .title .accent {
+    color: #A78BFA;
+    display: block;
+  }
+
+  .tagline {
+    font-size: 19px;
+    line-height: 1.55;
+    color: #6B7280;
+    max-width: 520px;
+  }
+
+  /* BOTTOM ROW */
+  .bottom-row {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 16px;
+  }
+
+  .skills-group {
+    display: flex;
+    gap: 12px;
+  }
+
+  .skill-chip {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    background: rgba(17,24,39,0.7);
+    border: 1px solid rgba(55,65,81,0.55);
+    border-radius: 9px;
+    padding: 12px 18px;
+  }
+
+  .chip-icon {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+  }
+
+  .chip-name {
+    font-size: 12px;
+    font-weight: 600;
+    color: #D1D5DB;
+    font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+    letter-spacing: -0.02em;
+  }
+
+  .chip-label {
+    font-size: 10.5px;
+    color: #4B5563;
+    margin-top: 2px;
+  }
+
+  .publisher {
+    text-align: right;
+    flex-shrink: 0;
+  }
+
+  .publisher-by {
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #374151;
+    margin-bottom: 2px;
+  }
+
+  .publisher-name {
+    font-size: 15px;
+    font-weight: 600;
+    color: #4B5563;
+    letter-spacing: 0.02em;
+  }
+</style>
+</head>
+<body>
+
+  <div class="bg-grid"></div>
+  <div class="glow-tl"></div>
+  <div class="glow-br"></div>
+  <div class="top-line"></div>
+
+  <!-- Watermark: routing/fork icon -->
+  <svg class="watermark" width="460" height="460" viewBox="0 0 24 24" fill="none">
+    <circle cx="5" cy="12" r="2.5" fill="#8B5CF6"/>
+    <circle cx="19" cy="6" r="2.5" fill="#8B5CF6"/>
+    <circle cx="19" cy="12" r="2.5" fill="#8B5CF6"/>
+    <circle cx="19" cy="18" r="2.5" fill="#8B5CF6"/>
+    <line x1="7.5" y1="12" x2="16.5" y2="6" stroke="#8B5CF6" stroke-width="1.8"/>
+    <line x1="7.5" y1="12" x2="16.5" y2="12" stroke="#8B5CF6" stroke-width="1.8"/>
+    <line x1="7.5" y1="12" x2="16.5" y2="18" stroke="#8B5CF6" stroke-width="1.8"/>
+  </svg>
+
+  <div class="layout">
+
+    <!-- TOP -->
+    <div class="top-row">
+      <div class="clawhub-tag">ClawHub</div>
+      <div class="price-tag">Free</div>
+    </div>
+
+    <!-- CENTRE -->
+    <div class="centre">
+      <div class="title">
+        Auto-Invoke
+        <span class="accent">Router</span>
+      </div>
+      <div class="tagline">Map every installed skill to intent keywords.<br>The right skill fires — no slash command needed.</div>
+    </div>
+
+    <!-- BOTTOM -->
+    <div class="bottom-row">
+      <div class="skills-group">
+
+        <div class="skill-chip">
+          <svg class="chip-icon" viewBox="0 0 24 24" fill="none">
+            <circle cx="5" cy="12" r="2" fill="#A78BFA"/>
+            <circle cx="19" cy="7" r="2" fill="#A78BFA"/>
+            <circle cx="19" cy="12" r="2" fill="#A78BFA"/>
+            <circle cx="19" cy="17" r="2" fill="#A78BFA"/>
+            <line x1="7" y1="12" x2="17" y2="7" stroke="#6D28D9" stroke-width="1.5"/>
+            <line x1="7" y1="12" x2="17" y2="12" stroke="#6D28D9" stroke-width="1.5"/>
+            <line x1="7" y1="12" x2="17" y2="17" stroke="#6D28D9" stroke-width="1.5"/>
+          </svg>
+          <div>
+            <div class="chip-name">intent routing</div>
+            <div class="chip-label">3–8 keywords per skill, auto-derived</div>
+          </div>
+        </div>
+
+        <div class="skill-chip">
+          <svg class="chip-icon" viewBox="0 0 24 24" fill="none">
+            <path d="M9 12l2 2 4-4" stroke="#A78BFA" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="12" cy="12" r="9" stroke="#6D28D9" stroke-width="1.5"/>
+          </svg>
+          <div>
+            <div class="chip-name">conflict detection</div>
+            <div class="chip-label">Flags ambiguous triggers before writing</div>
+          </div>
+        </div>
+
+        <div class="skill-chip">
+          <svg class="chip-icon" viewBox="0 0 24 24" fill="none">
+            <rect x="3" y="3" width="18" height="18" rx="2" stroke="#6D28D9" stroke-width="1.5"/>
+            <path d="M7 8h10M7 12h6M7 16h8" stroke="#A78BFA" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+          <div>
+            <div class="chip-name">AGENTS.md output</div>
+            <div class="chip-label">Drop-in config, no manual wiring</div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="publisher">
+        <div class="publisher-by">by</div>
+        <div class="publisher-name">ordo-tech</div>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>

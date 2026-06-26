@@ -1,35 +1,77 @@
 ---
-name: "Auto Data Analyzer"
-description: "Automated data analysis tool - Input CSV/Excel data and automatically generate comprehensive analysis reports. Includes data cleaning, statistical descriptio..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/auto-data-analyzer-chen"
-sourceUrl: "https://clawhub.ai/skills/auto-data-analyzer-chen"
+name: auto-data-analyzer
+description: Automated data analysis tool - Input CSV/Excel data and automatically generate comprehensive analysis reports. Includes data cleaning, statistical description, visualization, correlation analysis, and regression analysis. Ideal for rapid data analysis needs.
+tags:
+  - data
+  - analysis
+  - report
+  - visualization
+  - automation
+version: 1.0.0
+author: chenq
 ---
 
-# Auto Data Analyzer
+# auto-data-analyzer
 
-> Automated data analysis tool - Input CSV/Excel data and automatically generate comprehensive analysis reports. Includes data cleaning, statistical descriptio...
+Automated data analysis tool that generates comprehensive reports from input data.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/auto-data-analyzer-chen`
-- **Source URL:** [https://clawhub.ai/skills/auto-data-analyzer-chen](https://clawhub.ai/skills/auto-data-analyzer-chen)
+## Features
 
-## Overview
+### 1. Data Cleaning
+- Missing value detection and handling
+- Outlier detection
+- Data type conversion
+- Duplicate value handling
 
+### 2. Statistical Description
+- Basic statistics (mean, median, standard deviation, etc.)
+- Quantile analysis
+- Distribution visualization
 
-## Installation
-To install this skill, run the following command in your terminal:
+### 3. Visualization
+- Histograms
+- Box plots
+- Scatter plots
+- Heatmaps
+
+### 4. Advanced Analysis
+- Correlation analysis
+- Regression analysis
+- Clustering analysis
+- Time series analysis
+
+## Usage
+
+### Installation
 ```bash
-hermes skills install clawhub/auto-data-analyzer-chen
+pip install pandas numpy matplotlib seaborn scikit-learn
 ```
+
+### Basic Usage
+```python
+from analyzer import DataAnalyzer
+
+analyzer = DataAnalyzer('data.csv')
+analyzer.clean()
+analyzer.describe()
+analyzer.visualize()
+analyzer.report()  # Generate HTML report
+```
+
+### Command Line
+```bash
+python main.py data.csv --output report.html
+```
+
+## Output
+
+- HTML analysis report
+- PNG charts
+- CSV statistical results
+
+## Use Cases
+
+- Business data analysis
+- Market research reports
+- User behavior analysis
+- Sales data analysis

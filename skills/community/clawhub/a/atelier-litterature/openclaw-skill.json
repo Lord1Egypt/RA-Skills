@@ -1,0 +1,21 @@
+{
+  "name": "atelier-litteraire",
+  "version": "1.0.6",
+  "title": "Atelier Litteraire - Ideation & redaction de romans courts",
+  "displayName": "Atelier Litteraire - Ideation & redaction de romans courts",
+  "description": "Two AI agents for literary fiction: Hermine ideates, Herbert writes. From a one-word pitch to a finished novella with jury scoring.",
+  "author": "rodinpython",
+  "license": "MIT",
+  "keywords": ["writing", "fiction", "literature", "ideation", "agents", "novella", "french", "jury"],
+  "agents": ["herbert", "hermine"],
+  "requires": {
+    "openclaw": ">=2026.3.0",
+    "models": ["anthropic/claude-sonnet-4-6", "anthropic/claude-opus-4-6"]
+  },
+  "files": [
+    "SKILL.md",
+    "openclaw-skill.json",
+    "agents/herbert/",
+    "agents/hermine/"
+  ]
+}

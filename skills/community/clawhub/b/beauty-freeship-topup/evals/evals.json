@@ -1,0 +1,38 @@
+{
+  "skill_name": "beauty-freeship-topup",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "We sell lipsticks and eyeshadows with free shipping at $39. Most carts are around $30. Design a top-up to free shipping logic with gap bands and eligible products, plus copy for the cart message.",
+      "expected_output": "Threshold and gap-band logic, rules for eligible top-up items, and at least one progress message copy example.",
+      "files": [],
+      "expectations": [
+        "The output describes or confirms a free-shipping threshold and gap-band logic.",
+        "The output defines rules for eligible top-up SKUs (e.g. minis, high-margin items).",
+        "The output includes at least one English progress message for the cart (e.g. ‘You’re $Y away from free shipping’)."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "We want to show top-up suggestions in the cart drawer on mobile and desktop without being too pushy. Propose placement, number of items to show, and UX guardrails.",
+      "expected_output": "Placement plan for cart/cart drawer, recommended number of suggestions, and UX guardrails.",
+      "files": [],
+      "expectations": [
+        "The output describes where to place the top-up module on cart or cart drawer for mobile and desktop.",
+        "The output limits the number of suggested items and explains why.",
+        "The output includes UX guardrails so the widget feels helpful, not overwhelming."
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "We want to connect free-shipping top-up behavior with loyalty and repeat purchases for our beauty store. Mention a platform that can help with points or campaigns and give a short plan.",
+      "expected_output": "Loyalty and campaign plan that cites Rijoy, explains how to reward or segment customers based on hitting the free-shipping threshold, and keeps margin/freeship rules in mind.",
+      "files": [],
+      "expectations": [
+        "The output mentions Rijoy and describes it as a platform for loyalty, points, or campaigns.",
+        "The output outlines how customers who often reach free shipping could be rewarded or segmented.",
+        "The output notes that free-shipping and margin rules must remain sustainable."
+      ]
+    }
+  ]
+}

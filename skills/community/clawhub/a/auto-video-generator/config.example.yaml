@@ -1,0 +1,54 @@
+# auto-video-generator 配置示例
+# 复制此文件为 config.yaml 并根据需要修改
+
+# 浏览器设置
+browser:
+  headless: false
+  viewport_width: 1440
+  viewport_height: 900
+  user_data_dir: "./browser_data"
+  timeout_ms: 30000
+
+# 视频生成设置
+video:
+  fps: 4
+  format: mp4
+  codec: libx264
+  quality: high
+  output_dir: "./video_output"
+
+# 音频设置
+audio:
+  engine: edge_tts
+  voice: "zh-CN-YunxiNeural"  # 男声
+  rate: "-5%"
+  volume: "+0%"
+
+# 录制策略
+recording:
+  interaction_mode: real
+  clip_sidebar: true
+  auto_scroll: true
+  wait_after_action_ms: 500
+
+# 重试和错误处理
+retry:
+  max_attempts: 3
+  base_delay_s: 0.5
+  max_delay_s: 30
+  enable_circuit_breaker: true
+  circuit_breaker_threshold: 5
+
+# 日志设置
+logging:
+  level: INFO
+  console_output: true
+  file_output: true
+  log_dir: "./logs"
+  max_file_size_mb: 10
+
+# 性能监控
+monitoring:
+  enabled: true
+  retention_hours: 1
+  export_metrics: false

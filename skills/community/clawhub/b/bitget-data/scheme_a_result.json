@@ -1,0 +1,22 @@
+{
+  "time": "2026-03-09T15:35:17.417Z",
+  "scheme": "A",
+  "deployments": {
+    "btc": {
+      "buy": 0,
+      "sell": 0,
+      "total": 0
+    },
+    "sol": {
+      "buy": 0,
+      "sell": 0,
+      "total": 0
+    },
+    "eth": {
+      "buy": 0,
+      "sell": 0,
+      "total": 0
+    }
+  },
+  "totalOrders": 0
+}

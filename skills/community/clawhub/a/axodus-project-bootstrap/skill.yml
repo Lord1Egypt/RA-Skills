@@ -1,0 +1,8 @@
+---
+name: project-bootstrap
+description: Bootstrap new projects with predictable structure and validation commands.
+version: 1.0.0
+display_name: "Project Bootstrap"
+triggers:
+System.Object[]
+---

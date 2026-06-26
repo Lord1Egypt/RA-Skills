@@ -1,0 +1,513 @@
+{
+  "styles": {
+    "linear.app": {
+      "name": "Linear",
+      "keywords": ["项目管理", "issue tracking", "开发者工具", "深色主题", "极简", "专业", "工程感", "紫色调", "dark mode"],
+      "description": "深色优先的极致精密工程感设计，紫色调强调，适合专业工具和开发者产品",
+      "mood": ["专业", "精密", "现代", "暗黑"],
+      "industry": ["SaaS", "开发工具", "项目管理"],
+      "colorTone": "深色紫调",
+      "typography": "Inter Variable 极简"
+    },
+    "apple": {
+      "name": "Apple",
+      "keywords": ["产品展示", "高端", "简洁", "优雅", "科技", "消费电子", "landing page", "minimal"],
+      "description": "极简优雅的产品展示风格，大量留白，适合消费电子和高端产品",
+      "mood": ["优雅", "高端", "简洁", "精致"],
+      "industry": ["消费电子", "科技产品", "品牌官网"],
+      "colorTone": "中性纯净",
+      "typography": "SF Pro 简洁"
+    },
+    "stripe": {
+      "name": "Stripe",
+      "keywords": ["支付", "金融科技", "API", "开发者", "企业级", "信任感", "渐变", "professional"],
+      "description": "专业可信的金融科技风格，渐变色彩，适合API产品和企业服务",
+      "mood": ["专业", "可信", "创新", "技术"],
+      "industry": ["金融科技", "API服务", "B2B"],
+      "colorTone": "紫蓝渐变",
+      "typography": "Inter 专业"
+    },
+    "vercel": {
+      "name": "Vercel",
+      "keywords": ["部署", "前端", "开发者", "暗黑", "极简", "技术感", "monochrome", "dark mode"],
+      "description": "极简暗黑的技术风格，黑白为主，适合开发者工具和技术品牌",
+      "mood": ["技术", "极简", "暗黑", "高端"],
+      "industry": ["开发工具", "云服务", "前端"],
+      "colorTone": "黑白单色",
+      "typography": "Inter Mono 技术"
+    },
+    "notion": {
+      "name": "Notion",
+      "keywords": ["笔记", "协作文档", "知识管理", "简洁", "友好", "生产力", "minimal", "workspace"],
+      "description": "友好简洁的生产力工具风格，适合协作和知识管理产品",
+      "mood": ["友好", "简洁", "高效", "温暖"],
+      "industry": ["生产力工具", "协作", "知识管理"],
+      "colorTone": "中性温暖",
+      "typography": "Inter 简洁"
+    },
+    "airbnb": {
+      "name": "Airbnb",
+      "keywords": ["旅行", "民宿", "预订", "图片展示", "温暖", "友好", "社区", "travel", "booking"],
+      "description": "温暖友好的旅行预订风格，图片优先，适合消费服务和社区平台",
+      "mood": ["温暖", "友好", "信任", "探索"],
+      "industry": ["旅行", "预订", "消费服务"],
+      "colorTone": "珊瑚红暖调",
+      "typography": "Airbnb Cereal 温暖"
+    },
+    "spotify": {
+      "name": "Spotify",
+      "keywords": ["音乐", "媒体播放", "深色", "沉浸", "娱乐", "播放器", "dark mode", "media"],
+      "description": "沉浸式深色媒体播放风格，绿调强调，适合媒体和娱乐产品",
+      "mood": ["沉浸", "活力", "年轻", "音乐"],
+      "industry": ["音乐", "媒体", "娱乐"],
+      "colorTone": "深色绿调",
+      "typography": "Circular 圆润"
+    },
+    "cursor": {
+      "name": "Cursor",
+      "keywords": ["AI编辑器", "开发者工具", "温暖", "米白色", "哥特字体", "代码", "AI", "editor"],
+      "description": "温暖极简的AI编辑器风格，米白背景，适合开发者工具和AI产品",
+      "mood": ["温暖", "精致", "工艺", "AI"],
+      "industry": ["开发工具", "AI产品", "编辑器"],
+      "colorTone": "温暖米白",
+      "typography": "CursorGothic 独特"
+    },
+    "framer": {
+      "name": "Framer",
+      "keywords": ["设计工具", "纯黑", "蓝色强调", "设计师", "创意", "动画", "design tool", "dark mode"],
+      "description": "纯黑背景的设计工具风格，蓝色强调，适合创意和设计类产品",
+      "mood": ["创意", "高级", "电影感", "设计"],
+      "industry": ["设计工具", "创意平台"],
+      "colorTone": "纯黑蓝调",
+      "typography": "GT Walsheim 动感"
+    },
+    "figma": {
+      "name": "Figma",
+      "keywords": ["设计", "协作", "UI设计", "设计师工具", "彩色", "团队", "creative", "design"],
+      "description": "多彩活力的设计协作风格，适合设计工具和创意团队产品",
+      "mood": ["活力", "创意", "协作", "多彩"],
+      "industry": ["设计工具", "协作平台"],
+      "colorTone": "多彩渐变",
+      "typography": "Inter 活力"
+    },
+    "uber": {
+      "name": "Uber",
+      "keywords": ["出行", "地图", "移动", "黑白", "简洁", "服务", "transportation", "service"],
+      "description": "简洁有力的出行服务风格，黑白为主，适合服务平台和移动应用",
+      "mood": ["简洁", "可靠", "现代", "服务"],
+      "industry": ["出行", "服务", "物流"],
+      "colorTone": "黑白现代",
+      "typography": "Uber Move 现代"
+    },
+    "coinbase": {
+      "name": "Coinbase",
+      "keywords": ["加密货币", "金融", "交易", "信任", "蓝色", "安全", "crypto", "finance"],
+      "description": "安全可信的金融交易平台风格，适合金融和加密货币产品",
+      "mood": ["信任", "安全", "专业", "金融"],
+      "industry": ["金融", "加密货币", "交易"],
+      "colorTone": "蓝色专业",
+      "typography": "Inter 金融"
+    },
+    "nvidia": {
+      "name": "NVIDIA",
+      "keywords": ["GPU", "AI硬件", "科技", "绿色", "游戏", "高性能", "hardware", "AI"],
+      "description": "科技感十足的硬件品牌风格，绿色强调，适合硬件和AI产品",
+      "mood": ["科技", "性能", "未来", "游戏"],
+      "industry": ["硬件", "AI", "游戏"],
+      "colorTone": "绿色科技",
+      "typography": "NVIDIA 科技"
+    },
+    "posthog": {
+      "name": "PostHog",
+      "keywords": ["数据分析", "开源", "开发者", "产品分析", "analytics", "open source"],
+      "description": "开源友好的数据分析风格，适合开发者工具和开源产品",
+      "mood": ["开放", "友好", "数据", "实用"],
+      "industry": ["数据分析", "开源工具"],
+      "colorTone": "黄紫对比",
+      "typography": "Inter 开源"
+    },
+    "supabase": {
+      "name": "Supabase",
+      "keywords": ["数据库", "后端", "开源", "Firebase替代", "开发者", "database", "backend"],
+      "description": "开源数据库服务风格，绿色调，适合后端服务和开发者工具",
+      "mood": ["开放", "现代", "开发者", "数据库"],
+      "industry": ["数据库", "后端服务", "开源"],
+      "colorTone": "绿色开放",
+      "typography": "Inter 现代"
+    },
+    "resend": {
+      "name": "Resend",
+      "keywords": ["邮件服务", "API", "开发者", "暗黑", "简洁", "email", "API service"],
+      "description": "简洁暗黑的邮件API服务风格，适合开发者服务和API产品",
+      "mood": ["简洁", "专业", "现代", "开发者"],
+      "industry": ["邮件服务", "API", "开发者工具"],
+      "colorTone": "暗黑简洁",
+      "typography": "Inter 简洁"
+    },
+    "raycast": {
+      "name": "Raycast",
+      "keywords": ["效率工具", "Mac", "快捷键", "开发者", "深色", "productivity", "launcher"],
+      "description": "深色高效的Mac效率工具风格，适合效率工具和开发者产品",
+      "mood": ["高效", "现代", "开发者", "Mac"],
+      "industry": ["效率工具", "Mac应用"],
+      "colorTone": "深色渐变",
+      "typography": "Inter 高效"
+    },
+    "warp": {
+      "name": "Warp",
+      "keywords": ["终端", "命令行", "开发者", "现代", "AI", "terminal", "CLI"],
+      "description": "现代AI终端风格，适合开发工具和命令行产品",
+      "mood": ["现代", "开发者", "AI", "终端"],
+      "industry": ["终端", "开发工具"],
+      "colorTone": "多彩现代",
+      "typography": "JetBrains Mono"
+    },
+    "intercom": {
+      "name": "Intercom",
+      "keywords": ["客服", "沟通", "聊天", "SaaS", "企业服务", "customer service", "chat"],
+      "description": "友好的客服沟通平台风格，适合SaaS和企业服务产品",
+      "mood": ["友好", "沟通", "服务", "温暖"],
+      "industry": ["客服", "沟通", "SaaS"],
+      "colorTone": "蓝色友好",
+      "typography": "Inter 友好"
+    },
+    "hashicorp": {
+      "name": "HashiCorp",
+      "keywords": ["基础设施", "云", "DevOps", "企业级", "开源", "infrastructure", "cloud"],
+      "description": "企业级基础设施风格，适合云服务和DevOps产品",
+      "mood": ["企业", "专业", "基础设施", "云"],
+      "industry": ["云服务", "基础设施", "DevOps"],
+      "colorTone": "深色专业",
+      "typography": "Inter 企业"
+    },
+    "miro": {
+      "name": "Miro",
+      "keywords": ["白板", "协作", "设计思维", "团队", "创意", "whiteboard", "collaboration"],
+      "description": "活泼的协作白板风格，适合协作和创意团队产品",
+      "mood": ["活泼", "协作", "创意", "团队"],
+      "industry": ["协作", "白板", "设计"],
+      "colorTone": "多彩活泼",
+      "typography": "Inter 活泼"
+    },
+    "mongodb": {
+      "name": "MongoDB",
+      "keywords": ["数据库", "NoSQL", "开发者", "绿色", "数据", "database", "NoSQL"],
+      "description": "绿色调数据库服务风格，适合数据产品和开发者工具",
+      "mood": ["数据", "开发者", "现代", "绿色"],
+      "industry": ["数据库", "开发者工具"],
+      "colorTone": "绿色数据",
+      "typography": "MongoDB 现代"
+    },
+    "pinterest": {
+      "name": "Pinterest",
+      "keywords": ["图片", "发现", "社交", "红色", "瀑布流", "images", "social"],
+      "description": "图片发现社交风格，瀑布流布局，适合图片和社交产品",
+      "mood": ["发现", "创意", "社交", "图片"],
+      "industry": ["社交", "图片", "发现"],
+      "colorTone": "红色活力",
+      "typography": "Inter 发现"
+    },
+    "ibm": {
+      "name": "IBM",
+      "keywords": ["企业级", "科技", "蓝色", "专业", "大型企业", "enterprise", "technology"],
+      "description": "蓝色科技企业风格，适合企业级和B2B产品",
+      "mood": ["企业", "专业", "科技", "信任"],
+      "industry": ["企业服务", "科技", "B2B"],
+      "colorTone": "蓝色企业",
+      "typography": "IBM Plex 专业"
+    },
+    "bmw": {
+      "name": "BMW",
+      "keywords": ["汽车", "高端", "品牌", "豪华", "德国", "automotive", "luxury"],
+      "description": "高端汽车品牌风格，适合高端产品和品牌官网",
+      "mood": ["高端", "豪华", "精致", "德国"],
+      "industry": ["汽车", "奢侈品", "品牌"],
+      "colorTone": "高端中性",
+      "typography": "BMW 现代"
+    },
+    "cal": {
+      "name": "Cal.com",
+      "keywords": ["日程", "预约", "开源", "简洁", "日历", "scheduling", "open source"],
+      "description": "开源日程预约风格，适合日历和预约类产品",
+      "mood": ["简洁", "开放", "高效", "日程"],
+      "industry": ["日程", "预约", "开源"],
+      "colorTone": "深色简洁",
+      "typography": "Inter 日程"
+    },
+    "zapier": {
+      "name": "Zapier",
+      "keywords": ["自动化", "集成", "工作流", "SaaS", "效率", "automation", "workflow"],
+      "description": "活泼的自动化工作流风格，适合自动化和效率工具",
+      "mood": ["活力", "效率", "自动化", "友好"],
+      "industry": ["自动化", "集成", "效率工具"],
+      "colorTone": "橙色活力",
+      "typography": "Inter 活力"
+    },
+    "webflow": {
+      "name": "Webflow",
+      "keywords": ["网站构建", "无代码", "设计", "CMS", "网站", "website builder", "no-code"],
+      "description": "设计师友好的网站构建风格，适合无代码和网站产品",
+      "mood": ["设计", "创意", "无代码", "友好"],
+      "industry": ["网站构建", "无代码", "CMS"],
+      "colorTone": "蓝绿设计",
+      "typography": "Inter 设计"
+    },
+    "sentry": {
+      "name": "Sentry",
+      "keywords": ["错误监控", "开发者", "调试", "APM", "监控", "monitoring", "debugging"],
+      "description": "开发者监控调试风格，适合监控和调试工具",
+      "mood": ["技术", "监控", "开发者", "可靠"],
+      "industry": ["监控", "调试", "开发者工具"],
+      "colorTone": "深紫监控",
+      "typography": "Inter 技术"
+    },
+    "elevenlabs": {
+      "name": "ElevenLabs",
+      "keywords": ["AI语音", "声音", "合成", "AI", "音频", "voice AI", "audio"],
+      "description": "AI语音合成风格，适合AI和音频产品",
+      "mood": ["AI", "声音", "创新", "科技"],
+      "industry": ["AI", "音频", "语音"],
+      "colorTone": "紫色科技",
+      "typography": "Inter AI"
+    },
+    "claude": {
+      "name": "Claude",
+      "keywords": ["AI助手", "对话", "AI", "友好", "安全", "AI assistant", "chatbot"],
+      "description": "友好安全的AI助手风格，适合AI和对话产品",
+      "mood": ["友好", "安全", "智能", "AI"],
+      "industry": ["AI", "助手", "对话"],
+      "colorTone": "橙棕温暖",
+      "typography": "Inter 友好"
+    },
+    "cohere": {
+      "name": "Cohere",
+      "keywords": ["AI", "NLP", "企业AI", "大模型", "开发者", "LLM", "enterprise AI"],
+      "description": "企业AI平台风格，适合企业AI和NLP产品",
+      "mood": ["企业", "AI", "专业", "开发者"],
+      "industry": ["AI", "NLP", "企业服务"],
+      "colorTone": "深蓝AI",
+      "typography": "Inter 企业AI"
+    },
+    "mistral.ai": {
+      "name": "Mistral AI",
+      "keywords": ["AI", "大模型", "开源", "欧洲", "LLM", "open source", "European"],
+      "description": "开源AI大模型风格，适合AI和开源产品",
+      "mood": ["开放", "AI", "欧洲", "创新"],
+      "industry": ["AI", "大模型", "开源"],
+      "colorTone": "橙红创新",
+      "typography": "Inter 开源AI"
+    },
+    "x.ai": {
+      "name": "xAI",
+      "keywords": ["AI", "马斯克", "Grok", "大模型", "科技", "LLM", "Elon Musk"],
+      "description": "前沿科技AI风格，适合前沿科技和AI产品",
+      "mood": ["前沿", "科技", "AI", "创新"],
+      "industry": ["AI", "科技", "大模型"],
+      "colorTone": "黑色科技",
+      "typography": "Inter 前沿"
+    },
+    "together.ai": {
+      "name": "Together AI",
+      "keywords": ["AI", "云端推理", "开源模型", "开发者", "cloud AI", "inference"],
+      "description": "云端AI推理风格，适合云AI和开发者服务",
+      "mood": ["云端", "AI", "开发者", "开放"],
+      "industry": ["云AI", "推理", "开发者服务"],
+      "colorTone": "蓝绿云端",
+      "typography": "Inter 云AI"
+    },
+    "minimax": {
+      "name": "MiniMax",
+      "keywords": ["AI", "中国AI", "大模型", "语音", "多模态", "Chinese AI", "multimodal"],
+      "description": "多模态AI大模型风格，适合AI和多模态产品",
+      "mood": ["AI", "多模态", "创新", "中国"],
+      "industry": ["AI", "大模型", "多模态"],
+      "colorTone": "蓝紫创新",
+      "typography": "Inter AI"
+    },
+    "opencode.ai": {
+      "name": "OpenCode",
+      "keywords": ["AI编程", "代码", "开源", "开发者", "coding AI", "developer"],
+      "description": "AI编程助手风格，适合AI编程和开发者工具",
+      "mood": ["编程", "AI", "开源", "开发者"],
+      "industry": ["AI编程", "开发者工具"],
+      "colorTone": "绿色编程",
+      "typography": "Inter 编程"
+    },
+    "ollama": {
+      "name": "Ollama",
+      "keywords": ["本地AI", "LLM", "开源", "命令行", "开发者", "local AI", "CLI"],
+      "description": "本地AI运行风格，适合本地AI和开发者工具",
+      "mood": ["本地", "AI", "开源", "命令行"],
+      "industry": ["本地AI", "LLM", "开发者工具"],
+      "colorTone": "白色简洁",
+      "typography": "Inter 本地"
+    },
+    "runwayml": {
+      "name": "Runway",
+      "keywords": ["AI视频", "创意", "生成式AI", "视频编辑", "generative AI", "video"],
+      "description": "创意AI视频风格，适合AI创意和视频产品",
+      "mood": ["创意", "AI", "视频", "艺术"],
+      "industry": ["AI视频", "创意", "生成式AI"],
+      "colorTone": "紫色创意",
+      "typography": "Inter 创意"
+    },
+    "replicate": {
+      "name": "Replicate",
+      "keywords": ["AI模型", "API", "开源模型", "云端推理", "developer", "model API"],
+      "description": "AI模型API服务风格，适合AI服务和开发者平台",
+      "mood": ["API", "AI", "开发者", "云端"],
+      "industry": ["AI API", "模型服务", "开发者平台"],
+      "colorTone": "黑色专业",
+      "typography": "Inter API"
+    },
+    "clickhouse": {
+      "name": "ClickHouse",
+      "keywords": ["数据库", "分析", "OLAP", "高性能", "大数据", "analytics", "big data"],
+      "description": "高性能分析数据库风格，适合数据库和大数据产品",
+      "mood": ["性能", "数据", "分析", "开源"],
+      "industry": ["数据库", "大数据", "分析"],
+      "colorTone": "黄色数据",
+      "typography": "Inter 数据"
+    },
+    "mintlify": {
+      "name": "Mintlify",
+      "keywords": ["文档", "开发者文档", "API文档", "开源", "documentation", "API docs"],
+      "description": "现代文档平台风格，适合文档和知识库产品",
+      "mood": ["文档", "现代", "开发者", "友好"],
+      "industry": ["文档", "知识库", "开发者平台"],
+      "colorTone": "绿色文档",
+      "typography": "Inter 文档"
+    },
+    "lovable": {
+      "name": "Lovable",
+      "keywords": ["AI编程", "无代码", "应用构建", "快速开发", "no-code", "app builder"],
+      "description": "AI应用构建风格，适合无代码和快速开发产品",
+      "mood": ["友好", "快速", "AI", "创造"],
+      "industry": ["无代码", "AI编程", "应用构建"],
+      "colorTone": "紫色友好",
+      "typography": "Inter 友好"
+    },
+    "composio": {
+      "name": "Composio",
+      "keywords": ["AI代理", "集成", "工具", "自动化", "AI agent", "integration"],
+      "description": "AI代理工具集成风格，适合AI代理和集成平台",
+      "mood": ["AI", "集成", "代理", "工具"],
+      "industry": ["AI代理", "集成平台", "自动化"],
+      "colorTone": "蓝色集成",
+      "typography": "Inter 集成"
+    },
+    "voltagent": {
+      "name": "VoltAgent",
+      "keywords": ["AI代理", "框架", "开发者", "TypeScript", "AI framework", "developer"],
+      "description": "AI代理框架风格，适合AI框架和开发者工具",
+      "mood": ["框架", "AI", "开发者", "TypeScript"],
+      "industry": ["AI框架", "开发者工具"],
+      "colorTone": "紫色框架",
+      "typography": "Inter 框架"
+    },
+    "wise": {
+      "name": "Wise",
+      "keywords": ["金融", "转账", "汇款", "国际支付", "绿色", "finance", "transfer"],
+      "description": "国际转账金融风格，适合金融和支付产品",
+      "mood": ["金融", "国际", "信任", "绿色"],
+      "industry": ["金融", "支付", "转账"],
+      "colorTone": "绿色金融",
+      "typography": "Inter 金融"
+    },
+    "revolut": {
+      "name": "Revolut",
+      "keywords": ["金融科技", "银行", "支付", "加密货币", "现代金融", "fintech", "banking"],
+      "description": "现代金融科技银行风格，适合金融科技和银行产品",
+      "mood": ["现代", "金融", "科技", "年轻"],
+      "industry": ["金融科技", "银行", "支付"],
+      "colorTone": "蓝色现代金融",
+      "typography": "Inter 现代"
+    },
+    "kraken": {
+      "name": "Kraken",
+      "keywords": ["加密货币", "交易所", "金融", "交易", "crypto", "exchange"],
+      "description": "加密货币交易所风格，适合加密货币和交易平台",
+      "mood": ["专业", "金融", "加密", "安全"],
+      "industry": ["加密货币", "交易所", "金融"],
+      "colorTone": "深色专业",
+      "typography": "Inter 专业"
+    },
+    "airtable": {
+      "name": "Airtable",
+      "keywords": ["数据库", "表格", "协作", "无代码", "生产力", "spreadsheet", "no-code"],
+      "description": "灵活表格数据库风格，适合数据库和协作工具",
+      "mood": ["灵活", "协作", "多彩", "生产力"],
+      "industry": ["数据库", "协作", "无代码"],
+      "colorTone": "多彩灵活",
+      "typography": "Inter 灵活"
+    },
+    "expo": {
+      "name": "Expo",
+      "keywords": ["React Native", "移动开发", "开发者", "框架", "mobile development", "framework"],
+      "description": "React Native移动开发风格，适合移动开发和框架产品",
+      "mood": ["开发者", "移动", "框架", "开源"],
+      "industry": ["移动开发", "框架", "开发者工具"],
+      "colorTone": "蓝色移动",
+      "typography": "Inter 开发"
+    },
+    "spacex": {
+      "name": "SpaceX",
+      "keywords": ["航天", "火箭", "太空", "科技", "探索", "aerospace", "space"],
+      "description": "航天探索科技风格，适合科技和探索类产品",
+      "mood": ["探索", "科技", "未来", "航天"],
+      "industry": ["航天", "科技", "探索"],
+      "colorTone": "深色科技",
+      "typography": "Inter 航天"
+    },
+    "sanity": {
+      "name": "Sanity",
+      "keywords": ["CMS", "内容管理", "无头CMS", "开发者", "content management", "headless"],
+      "description": "无头CMS内容管理风格，适合CMS和内容平台",
+      "mood": ["内容", "开发者", "灵活", "现代"],
+      "industry": ["CMS", "内容管理", "开发者平台"],
+      "colorTone": "橙红内容",
+      "typography": "Inter 内容"
+    },
+    "superhuman": {
+      "name": "Superhuman",
+      "keywords": ["邮件", "效率", "高端", "快速", "生产力", "email", "productivity"],
+      "description": "高端效率邮件风格，适合效率和高端工具产品",
+      "mood": ["高端", "效率", "快速", "专业"],
+      "industry": ["邮件", "效率工具", "高端"],
+      "colorTone": "深色高端",
+      "typography": "Inter 高端"
+    },
+    "clay": {
+      "name": "Clay",
+      "keywords": ["数据丰富", "销售", "B2B", "自动化", "CRM", "sales", "data enrichment"],
+      "description": "B2B数据丰富平台风格，适合销售和B2B产品",
+      "mood": ["专业", "数据", "销售", "B2B"],
+      "industry": ["销售", "B2B", "数据"],
+      "colorTone": "紫色专业",
+      "typography": "Inter 专业"
+    }
+  },
+  "matchingRules": {
+    "darkMode": ["linear.app", "vercel", "spotify", "framer", "cursor", "resend", "raycast", "sentry", "spacex", "kraken", "superhuman", "x.ai"],
+    "lightMode": ["apple", "notion", "airbnb", "webflow", "ollama"],
+    "developerTools": ["linear.app", "vercel", "cursor", "framer", "figma", "warp", "raycast", "sentry", "expo", "replicate", "ollama", "voltagent"],
+    "ai": ["cursor", "claude", "cohere", "mistral.ai", "x.ai", "together.ai", "minimax", "opencode.ai", "runwayml", "replicate", "lovable", "composio", "elevenlabs"],
+    "finance": ["stripe", "coinbase", "wise", "revolut", "kraken"],
+    "collaboration": ["notion", "figma", "miro", "airtable", "intercom"],
+    "minimal": ["apple", "vercel", "linear.app", "notion", "cal"],
+    "enterprise": ["stripe", "hashicorp", "ibm", "cohere", "clay"],
+    "creative": ["framer", "figma", "miro", "webflow", "runwayml"],
+    "openSource": ["supabase", "posthog", "cal", "ollama", "mistral.ai", "voltagent", "expo"]
+  },
+  "defaultRecommendations": {
+    "landing": "linear.app",
+    "dashboard": "linear.app",
+    "docs": "mintlify",
+    "blog": "apple",
+    "ecommerce": "airbnb",
+    "portfolio": "framer",
+    "saas": "linear.app",
+    "mobile": "apple",
+    "enterprise": "stripe"
+  }
+}

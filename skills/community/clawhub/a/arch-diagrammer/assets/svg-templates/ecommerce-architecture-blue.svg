@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 620">
+  <rect width="860" height="620" fill="#ffffff"/>
+  
+  <text x="430" y="32" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#1a1a2e">&#x7535;&#x5546;&#x7CFB;&#x7EDF;&#x5206;&#x5C42;&#x67B6;&#x6784;&#x56FE;</text>
+  
+  <rect x="30" y="50" width="800" height="70" rx="4" fill="#1a1a2e"/>
+  <text x="430" y="72" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="white">&#x63A5;&#x5165;&#x5C42;</text>
+  <g font-family="Arial, sans-serif" font-size="11" fill="white">
+    <rect x="40" y="82" width="125" height="28" rx="2" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="1"/>
+    <text x="102" y="100" text-anchor="middle">CDN</text>
+    <rect x="170" y="82" width="125" height="28" rx="2" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="1"/>
+    <text x="232" y="100" text-anchor="middle">&#x8D1F;&#x8F7D;&#x5747;&#x8861;</text>
+    <rect x="300" y="82" width="125" height="28" rx="2" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="1"/>
+    <text x="362" y="100" text-anchor="middle">API&#x7F51;&#x5173;</text>
+    <rect x="430" y="82" width="125" height="28" rx="2" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="1"/>
+    <text x="492" y="100" text-anchor="middle">WAF&#x9632;&#x706B;&#x5899;</text>
+    <rect x="560" y="82" width="125" height="28" rx="2" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="1"/>
+    <text x="622" y="100" text-anchor="middle">&#x9650;&#x6D41;&#x7194;&#x65AD;</text>
+    <rect x="690" y="82" width="130" height="28" rx="2" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="1"/>
+    <text x="755" y="100" text-anchor="middle">&#x7EDF;&#x4E00;&#x8BA4;&#x8BC1;</text>
+  </g>
+  
+  <rect x="30" y="130" width="800" height="80" rx="4" fill="#16213e"/>
+  <text x="430" y="152" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="white">&#x4E1A;&#x52A1;&#x5E94;&#x7528;&#x5C42;</text>
+  <g font-family="Arial, sans-serif" font-size="11" fill="white">
+    <rect x="40" y="162" width="125" height="38" rx="2" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="1"/>
+    <text x="102" y="178" text-anchor="middle">&#x7528;&#x6237;&#x4E2D;&#x5FC3;</text>
+    <text x="102" y="192" text-anchor="middle" font-size="9" fill="rgba(255,255,255,0.6)">&#x6CE8;&#x518C;/&#x767B;&#x5F55;/&#x4F1A;&#x5458;</text>
+    <rect x="170" y="162" width="125" height="38" rx="2" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="1"/>
+    <text x="232" y="178" text-anchor="middle">&#x5546;&#x54C1;&#x4E2D;&#x5FC3;</text>
+    <text x="232" y="192" text-anchor="middle" font-size="9" fill="rgba(255,255,255,0.6)">SPU/SKU/&#x5E93;&#x5B58;</text>
+    <rect x="300" y="162" width="125" height="38" rx="2" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="1"/>
+    <text x="362" y="178" text-anchor="middle">&#x8BA2;&#x5355;&#x4E2D;&#x5FC3;</text>
+    <text x="362" y="192" text-anchor="middle" font-size="9" fill="rgba(255,255,255,0.6)">&#x4E0B;&#x5355;/&#x5C65;&#x7EA6;/&#x552E;&#x540E;</text>
+    <rect x="430" y="162" width="125" height="38" rx="2" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="1"/>
+    <text x="492" y="178" text-anchor="middle">&#x4EA4;&#x6613;&#x4E2D;&#x5FC3;</text>
+    <text x="492" y="192" text-anchor="middle" font-size="9" fill="rgba(255,255,255,0.6)">&#x652F;&#x4ED8;/&#x7ED3;&#x7B97;/&#x5BF9;&#x8D26;</text>
+    <rect x="560" y="162" width="125" height="38" rx="2" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="1"/>
+    <text x="622" y="178" text-anchor="middle">&#x8425;&#x9500;&#x4E2D;&#x5FC3;</text>
+    <text x="622" y="192" text-anchor="middle" font-size="9" fill="rgba(255,255,255,0.6)">&#x4F18;&#x60E0;&#x5238;/&#x6D3B;&#x52A8;</text>
+    <rect x="690" y="162" width="130" height="38" rx="2" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="1"/>
+    <text x="755" y="178" text-anchor="middle">&#x7269;&#x6D41;&#x4E2D;&#x5FC3;</text>
+    <text x="755" y="192" text-anchor="middle" font-size="9" fill="rgba(255,255,255,0.6)">&#x53D1;&#x8D27;/&#x914D;&#x9001;/&#x8F68;&#x8FF9;</text>
+  </g>
+  
+  <rect x="30" y="220" width="800" height="80" rx="4" fill="#0f3460"/>
+  <text x="430" y="242" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="white">&#x901A;&#x7528;&#x80FD;&#x529B;&#x5C42;</text>
+  <g font-family="Arial, sans-serif" font-size="11" fill="white">
+    <rect x="40" y="252" width="125" height="38" rx="2" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="1"/>
+    <text x="102" y="268" text-anchor="middle">&#x641C;&#x7D22;&#x670D;&#x52A1;</text>
+    <text x="102" y="282" text-anchor="middle" font-size="9" fill="rgba(255,255,255,0.6)">ES/&#x5206;&#x8BCD;/&#x6392;&#x5E8F;</text>
+    <rect x="170" y="252" width="125" height="38" rx="2" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="1"/>
+    <text x="232" y="268" text-anchor="middle">&#x63A8;&#x8350;&#x670D;&#x52A1;</text>
+    <text x="232" y="282" text-anchor="middle" font-size="9" fill="rgba(255,255,255,0.6)">&#x7B97;&#x6CD5;/&#x5B9E;&#x65F6;/&#x79BB;&#x7EBF;</text>
+    <rect x="300" y="252" width="125" height="38" rx="2" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="1"/>
+    <text x="362" y="268" text-anchor="middle">&#x6D88;&#x606F;&#x670D;&#x52A1;</text>
+    <text x="362" y="282" text-anchor="middle" font-size="9" fill="rgba(255,255,255,0.6)">&#x901A;&#x77E5;/&#x77ED;&#x4FE1;/&#x63A8;&#x9001;</text>
+    <rect x="430" y="252" width="125" height="38" rx="2" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="1"/>
+    <text x="492" y="268" text-anchor="middle">&#x98CE;&#x63A7;&#x670D;&#x52A1;</text>
+    <text x="492" y="282" text-anchor="middle" font-size="9" fill="rgba(255,255,255,0.6)">&#x53CD;&#x6B3A;&#x8BC8;/&#x89C4;&#x5219;</text>
+    <rect x="560" y="252" width="125" height="38" rx="2" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="1"/>
+    <text x="622" y="268" text-anchor="middle">&#x5BA1;&#x8BA1;&#x670D;&#x52A1;</text>
+    <text x="622" y="282" text-anchor="middle" font-size="9" fill="rgba(255,255,255,0.6)">&#x65E5;&#x5FD7;/&#x8FFD;&#x6EAF;</text>
+    <rect x="690" y="252" width="130" height="38" rx="2" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="1"/>
+    <text x="755" y="268" text-anchor="middle">&#x5206;&#x5E03;&#x5F0F;&#x4E8B;&#x52A1;</text>
+    <text x="755" y="282" text-anchor="middle" font-size="9" fill="rgba(255,255,255,0.6)">TCC/Saga/Seata</text>
+  </g>
+  
+  <rect x="30" y="310" width="800" height="100" rx="4" fill="none" stroke="#e94560" stroke-width="1.5"/>
+  <text x="430" y="332" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#1a1a2e">&#x6570;&#x636E;&#x5B58;&#x50A8;&#x5C42;</text>
+  <g font-family="Arial, sans-serif" font-size="11" fill="#1a1a2e">
+    <rect x="40" y="342" width="190" height="58" rx="2" fill="#fef2f4" stroke="#e94560" stroke-width="1"/>
+    <text x="135" y="362" text-anchor="middle" font-weight="bold">&#x5173;&#x7CFB;&#x578B;&#x6570;&#x636E;&#x5E93;</text>
+    <text x="135" y="378" text-anchor="middle" font-size="10" fill="#666">MySQL(&#x4E3B;&#x4ECE;/&#x5206;&#x5E93;&#x5206;&#x8868;)</text>
+    <text x="135" y="392" text-anchor="middle" font-size="10" fill="#666">TiDB / OceanBase</text>
+    <rect x="235" y="342" width="190" height="58" rx="2" fill="#fef2f4" stroke="#e94560" stroke-width="1"/>
+    <text x="330" y="362" text-anchor="middle" font-weight="bold">&#x7F13;&#x5B58;&#x7CFB;&#x7EDF;</text>
+    <text x="330" y="378" text-anchor="middle" font-size="10" fill="#666">Redis Cluster</text>
+    <text x="330" y="392" text-anchor="middle" font-size="10" fill="#666">&#x672C;&#x5730;&#x7F13;&#x5B58;(Caffeine)</text>
+    <rect x="430" y="342" width="190" height="58" rx="2" fill="#fef2f4" stroke="#e94560" stroke-width="1"/>
+    <text x="525" y="362" text-anchor="middle" font-weight="bold">&#x6D88;&#x606F;&#x961F;&#x5217;</text>
+    <text x="525" y="378" text-anchor="middle" font-size="10" fill="#666">RocketMQ / Kafka</text>
+    <text x="525" y="392" text-anchor="middle" font-size="10" fill="#666">&#x5EF6;&#x8FDF;&#x961F;&#x5217;/&#x4E8B;&#x52A1;&#x6D88;&#x606F;</text>
+    <rect x="625" y="342" width="195" height="58" rx="2" fill="#fef2f4" stroke="#e94560" stroke-width="1"/>
+    <text x="722" y="362" text-anchor="middle" font-weight="bold">&#x5927;&#x6570;&#x636E;&#x5B58;&#x50A8;</text>
+    <text x="722" y="378" text-anchor="middle" font-size="10" fill="#666">ES / ClickHouse</text>
+    <text x="722" y="392" text-anchor="middle" font-size="10" fill="#666">HDFS / HBase / Hive</text>
+  </g>
+  
+  <rect x="30" y="420" width="800" height="70" rx="4" fill="#f5f5f5" stroke="#ccc" stroke-width="1"/>
+  <text x="430" y="442" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#1a1a2e">&#x57FA;&#x7840;&#x8BBE;&#x65BD;&#x5C42;</text>
+  <g font-family="Arial, sans-serif" font-size="11" fill="#1a1a2e">
+    <rect x="40" y="452" width="125" height="28" rx="2" fill="white" stroke="#aaa" stroke-width="1"/>
+    <text x="102" y="470" text-anchor="middle">K8s&#x5BB9;&#x5668;</text>
+    <rect x="170" y="452" width="125" height="28" rx="2" fill="white" stroke="#aaa" stroke-width="1"/>
+    <text x="232" y="470" text-anchor="middle">&#x670D;&#x52A1;&#x7F51;&#x683C;</text>
+    <rect x="300" y="452" width="125" height="28" rx="2" fill="white" stroke="#aaa" stroke-width="1"/>
+    <text x="362" y="470" text-anchor="middle">&#x6CE8;&#x518C;&#x4E2D;&#x5FC3;</text>
+    <rect x="430" y="452" width="125" height="28" rx="2" fill="white" stroke="#aaa" stroke-width="1"/>
+    <text x="492" y="470" text-anchor="middle">&#x914D;&#x7F6E;&#x4E2D;&#x5FC3;</text>
+    <rect x="560" y="452" width="125" height="28" rx="2" fill="white" stroke="#aaa" stroke-width="1"/>
+    <text x="622" y="470" text-anchor="middle">&#x94FE;&#x8DEF;&#x8FFD;&#x8E2A;</text>
+    <rect x="690" y="452" width="130" height="28" rx="2" fill="white" stroke="#aaa" stroke-width="1"/>
+    <text x="755" y="470" text-anchor="middle">&#x76D1;&#x63A7;&#x544A;&#x8B66;</text>
+  </g>
+  
+  <rect x="30" y="500" width="800" height="70" rx="4" fill="#1a1a2e"/>
+  <text x="430" y="522" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="white">DevOps &amp; &#x5B89;&#x5168;</text>
+  <g font-family="Arial, sans-serif" font-size="11" fill="white">
+    <rect x="40" y="532" width="125" height="28" rx="2" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="1"/>
+    <text x="102" y="550" text-anchor="middle">CI/CD&#x6D41;&#x6C34;&#x7EBF;</text>
+    <rect x="170" y="532" width="125" height="28" rx="2" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="1"/>
+    <text x="232" y="550" text-anchor="middle">&#x4EE3;&#x7801;&#x4ED3;&#x5E93;</text>
+    <rect x="300" y="532" width="125" height="28" rx="2" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="1"/>
+    <text x="362" y="550" text-anchor="middle">&#x5236;&#x54C1;&#x4ED3;&#x5E93;</text>
+    <rect x="430" y="532" width="125" height="28" rx="2" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="1"/>
+    <text x="492" y="550" text-anchor="middle">&#x81EA;&#x52A8;&#x5316;&#x6D4B;&#x8BD5;</text>
+    <rect x="560" y="532" width="125" height="28" rx="2" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="1"/>
+    <text x="622" y="550" text-anchor="middle">&#x5B89;&#x5168;&#x626B;&#x63CF;</text>
+    <rect x="690" y="532" width="130" height="28" rx="2" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="1"/>
+    <text x="755" y="550" text-anchor="middle">&#x7070;&#x5EA6;&#x53D1;&#x5E03;</text>
+  </g>
+</svg>

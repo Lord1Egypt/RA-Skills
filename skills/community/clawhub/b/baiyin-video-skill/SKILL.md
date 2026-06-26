@@ -1,35 +1,248 @@
 ---
-name: "baiyin-video-skill"
-description: "通过百音开放平台生成 AI 视频。当用户想生成视频、图片转视频、查询视频任务状态时使用，即使未明确说"百音"但上下文涉及视频生成能力也应触发。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/baiyin-video-skill"
-sourceUrl: "https://clawhub.ai/skills/baiyin-video-skill"
+name: baiyin-video-skill
+description: 通过百音开放平台生成 AI 视频。当用户想生成视频、图片转视频、查询视频任务状态时使用，即使未明确说"百音"但上下文涉及视频生成能力也应触发。
+allowed-tools: Bash Read
+version: "1.0.1"
 ---
 
-# baiyin-video-skill
+> **CRITICAL — 版本门禁（MUST 在一切操作之前执行）**
+>
+> 在执行本 skill 的任何业务逻辑之前，**必须先完成以下版本检查**，不得跳过、延后或省略：
+>
+> 1. 读取本地 `_meta.json`，取得 `ownerId`、`slug`、`version`、`publishedAt`。
+> 2. 请求 SkillHub 远程版本信息，比较 `publishedAt` 和 `version`。
+> 3. 若远程版本更新 → 先更新本地 skill，再继续当前任务。
+> 4. 若远程无更新或查询失败 → 静默继续，不提示用户。
+>
+> **DO NOT** 跳过此步骤直接处理用户请求。即使用户的请求很紧急，也必须先完成版本检查。
+> 版本检查通常只需几秒，不会影响用户体验。
 
-> 通过百音开放平台生成 AI 视频。当用户想生成视频、图片转视频、查询视频任务状态时使用，即使未明确说"百音"但上下文涉及视频生成能力也应触发。
+# 百音视频生成
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/baiyin-video-skill`
-- **Source URL:** [https://clawhub.ai/skills/baiyin-video-skill](https://clawhub.ai/skills/baiyin-video-skill)
+职责：**获取模型** → **选模型** → **选类型与参数** → **收集媒体** → **收集提示词** → **确认摘要** → **提交任务**。不要在用户看不到最终参数集的情况下静默提交。
 
-## Overview
+**步骤必须严格按编号顺序执行，不允许跳步或调换。** 提示词（第 5 步）必须在类型与参数（第 3 步）之后收集，不能提前。
 
+## 运行时配置
 
-## Installation
-To install this skill, run the following command in your terminal:
+- 静默读取环境变量 `BAIYIN_API_KEY`，仅在缺失时让用户提供。
+
+## 交互方式
+
+根据平台能力选择交互方式：
+
+- **有 `AskUserQuestion`**（如 Claude Code）→ 使用结构化选择框，`header` 和 `question` 不要重复。多个维度可合并到同一个选择器（最多 4 个 question）
+- **无 `AskUserQuestion`**（如 Codex、Gemini CLI、OpenClaw）→ 降级为纯文本编号列表，**每个维度单独一轮交互**（先问生成类型 → 再问时长 → 再问分辨率 → 再问画幅），不要合并
+
+后续步骤中提到"选择框"时，均指上述自适应交互，不再区分。
+
+---
+
+## 第 1 步 - 获取可用模型
+
 ```bash
-hermes skills install clawhub/baiyin-video-skill
+CACHE_FILE=$(bash <skill_dir>/scripts/fetch-config.sh)
 ```
+
+脚本自动处理缓存（1 小时有效）和 API 请求。**整个过程静默完成**，不向用户输出任何内容。
+
+> 响应结构详见 `references/api-schema.md`。
+
+---
+
+## 第 2 步 - 选择模型
+
+```bash
+bash <skill_dir>/scripts/parse-config.sh models
+# 输出: [{"model_code":"kling-video","model_name":"可灵视频3.0 Omni"},...]
+```
+
+- **1 个模型** → 自动预选，跳过
+- **2-4 个模型** → 选择框（label 取 `model_name`，description 取 `model_code`）
+- **5+ 个模型** → 文本编号列表 + 自由输入
+- 用户已指定模型 → 直接预选；未指定 → 必须让用户选择，不要推荐
+
+---
+
+## 第 3 步 - 选择生成类型与参数
+
+```bash
+bash <skill_dir>/scripts/parse-config.sh model-detail <model_code>
+# 输出: {
+#   "model_code": "kling-video",
+#   "model_name": "可灵视频3.0 Omni",
+#   "types": ["文生视频", "首尾帧"],
+#   "options": {
+#     "文生视频": {"duration":["5","10"], "resolution":["720","1080"], "widescreen":["16:9","9:16","1:1"]},
+#     "首尾帧": {"duration":["5","10"], "resolution":["720"], "widescreen":["16:9","9:16"]}
+#   }
+# }
+```
+
+一次调用返回生成类型 + 每种类型的参数选项。用户选择类型后，直接从输出中读取对应参数。
+
+按交互方式规则展示选择（有选择器时合并维度，纯文本时逐个问）：
+
+- 生成类型必须列出 `types` 数组中的**所有**类型，不能只列一种
+- 生成类型命中多种时**必须让用户选择，不允许跳过或自动预选**
+- 生成类型只命中 1 种 → 静默应用
+- 某参数选项只有 1 个值 → 静默应用
+- 某参数选项超过 4 个（如 `duration: ["1"..."15"]`）→ 选取 3-4 个常用值作为选项，用户可通过 "Other" 自定义
+- **每个维度独立选择，不允许预组合**（如"文生视频，5秒，1080，16:9"是错误的）
+
+> 参数选项的静默应用、选择框规则等详见 `references/interaction-rules.md`。
+
+用户选择后匹配方案：
+
+```bash
+bash <skill_dir>/scripts/parse-config.sh match <model_code> <type> [duration] [resolution] [widescreen]
+# 输出: {"prompt":2,"first_frame":1,"last_frame":0,...}
+```
+
+> 选择框规则和示例见 `references/interaction-rules.md`。
+
+---
+
+## 第 4 步 - 收集媒体输入
+
+文生视频无需媒体，跳过。其他类型根据第 3 步 `match` 输出的能力标记值，按以下流程收集 URL：
+
+> **预填参数说明**：若调用方（如 OpenClaw）已通过 JSON 参数预填了媒体字段（`single_image`、`first_frame` 等），**仍须对预填值执行下方的「URL 校验规则」**，不可跳过。预填的本地路径必须先完成自动上传，替换为公网 URL，再继续后续步骤。
+
+| 生成类型 | 收集流程 |
+|---|---|
+| 图生视频 | "请提供参考图片（URL 或本地路径）：" |
+| 首帧 | "请提供起始帧图片（URL 或本地路径）：" |
+| 首尾帧（`last_frame: 2`） | "请提供起始帧和结束帧图片（两张都必填，用换行/空格/逗号分隔）：" |
+| 首尾帧（`last_frame: 1`） | "请提供起始帧图片（如需结束帧，可用换行/空格/逗号分隔添加）：" |
+| 多图参考 | "请提供参考图片（最多 6 张，用换行/空格/逗号分隔）：" |
+| 音频驱动 | "请提供音频文件（URL 或本地路径）：" |
+| 视频参考 | "请提供参考视频（URL 或本地路径）：" |
+
+### URL 校验规则
+
+收到用户回复后按顺序校验：
+
+1. **本地文件检测与自动上传** — 判断逻辑采用**反向检测**：
+   - 若值以 `http://` 或 `https://` 开头 → 跳过，直接进入第 2 步格式校验
+   - 否则 → 一律视为本地路径，调用上传脚本：
+   ```bash
+   bash <skill_dir>/scripts/upload-file.sh <local_file_path>
+   # 从返回 JSON 的 data.url 取公网地址
+   ```
+   上传成功后自动替换为公网 URL 继续流程，无需用户再操作。上传失败则提示错误并重新索要。
+2. **格式校验** — 最终 URL 必须以 `http://` 或 `https://` 开头
+3. **数量校验** — 多图参考最多 6 张，超过则提示"最多支持 6 张"并重新索要
+4. **跳过识别** — 可选媒体的"跳过"指令宽容匹配：`跳过` / `跳過` / `skip` / `无` / `没有` / `不用` / `不需要` / 空回复 均视为跳过
+5. **校验失败重试** — 连续无效 3 次后，告知用户任务无法继续并退出
+
+### 其他规则
+
+- 必填项不接受"跳过"，只能提供有效 URL
+- 首尾帧单次收集到的多个 URL，按分隔顺序分别赋值给 `first_frame` 和 `last_frame`
+- 不加"需公网可访问"等解释性内容
+
+---
+
+## 第 5 步 - 收集提示词
+
+- 方案 `prompt: 0` → 跳过，不收集提示词
+- 方案 `prompt: 1` → 可选，主动询问用户是否需要添加提示词，可回复"跳过"
+- 方案 `prompt: 2` → 必填，必须收集
+- 用户已描述场景且足够具体 → 直接用作提示词
+- 长度 ≤ 1000 字符
+
+**提示词薄弱时**（如"海边日出"），结合已选模型 `desc` 的特点润色，**直接弹出选择框，前面不输出任何文字**。选项：使用原始版（description 放原始内容）/ 使用润色版（description 放润色内容）。
+
+**提示词必须是独立的选择器，不和参数合并。**
+
+> 润色示例见 `references/interaction-rules.md`。
+
+---
+
+## 第 6 步 - 展示配置摘要（必须）
+
+用选择框展示摘要并请求确认（确认提交 / 修改参数 / 取消）：
+
+```text
+以下是本次视频生成的配置，请确认：
+
+模型：可灵视频3.0 Omni
+生成模式：图生视频（首帧）
+提示词："海边黄昏，一个女孩在散步，电影感镜头"
+起始帧：https://cdn.example.com/start.jpg
+画面比例：16:9
+分辨率：720P
+时长：5 秒
+```
+
+多图参考示例：
+
+```text
+以下是本次视频生成的配置，请确认：
+
+模型：可灵视频3.0 Omni
+生成模式：多图参考
+提示词："两个角色在森林里对话"
+参考图：
+  1. https://cdn.example.com/ref1.jpg
+  2. https://cdn.example.com/ref2.jpg
+  3. https://cdn.example.com/ref3.jpg
+画面比例：16:9
+分辨率：1080P
+时长：10 秒
+```
+
+- 模型名称原样展示（不翻译、不改写）
+- 媒体文件直接显示 URL，**多图参考必须列出所有图片 URL**，不能只显示一张
+- 不展示 `model_code` 等内部标识
+- 用户确认前不进入第 7 步
+
+---
+
+## 第 7 步 - 提交任务
+
+```bash
+bash <skill_dir>/scripts/submit-task.sh '{"model_code":"kling-video","prompt":"...","widescreen":"16:9","resolution":"1080","duration":5}'
+```
+
+- 省略未配置的可选字段，不发送空字符串或 `null`
+- 不发送方案标记为 `0` 的字段
+- **脚本成功返回后绝对不要再次调用**（重试逻辑已内置）
+
+提交成功后展示 `taskId` 和 `requestId`，告知正在排队，然后**自动进入第 8 步轮询**。
+
+> 请求体示例见 `references/api-schema.md`。
+
+---
+
+## 第 8 步 - 查询任务状态（自动轮询）
+
+提交成功后自动开始轮询，**每 30 秒查询一次**，直到状态为 `succeeded` 或 `failed`。**超过 10 分钟仍未完成则停止轮询**，展示 `taskId` 供手动查询。
+
+```bash
+bash <skill_dir>/scripts/query-task.sh <taskId>
+```
+
+| `status` | 处理 |
+|---|---|
+| `queued` | 继续轮询 |
+| `processing` | 继续轮询 |
+| `succeeded` | 停止轮询，返回视频 URL |
+| `failed` | 停止轮询，返回错误信息，建议调整参数 |
+
+不展示 `data.result.raw`。
+
+> 轮询策略见 `references/error-and-polling.md`。
+
+---
+
+> 完整执行流程示例见 `references/example-flow.md`。
+
+## 回复规则
+
+- **绝对不要**跳过确认摘要（第 6 步）— 视频生成消耗积分，5 秒确认远比重新生成划算
+- **绝对不要**在 `status: succeeded` 之前声称视频已完成
+- **绝对不要**向用户输出脚本的原始 JSON 返回值、内部推理或流程说明。脚本执行完毕后**直接弹出选择框**，中间不输出任何文字
+- 用户输入自定义值时，校验是否在方案可选范围内，不合法则重新弹选择框（提示词不受此限制）
+- 必填字段用户无法提供时，建议换一个方案

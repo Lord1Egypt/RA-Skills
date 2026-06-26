@@ -1,35 +1,46 @@
 ---
-name: "Beta Content Writer"
-description: "AI-powered content writing for tech, finance, and crypto. Blog posts, technical docs, whitepapers, market commentary. Research-backed, original, fast delivery."
-category: "creative"
-source: "ClawHub"
-tags: [writing]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/betacontentwriter"
-sourceUrl: "https://clawhub.ai/skills/betacontentwriter"
+name: content-writer
+description: AI-powered content writing for tech, finance, and crypto. Blog posts, technical docs, whitepapers, market commentary. Research-backed, original, fast delivery.
+metadata:
+  openclaw:
+    emoji: "✍️"
+    requires:
+      bins: [python3]
+    always: false
 ---
 
-# Beta Content Writer
+# Content Writer
 
-> AI-powered content writing for tech, finance, and crypto. Blog posts, technical docs, whitepapers, market commentary. Research-backed, original, fast delivery.
+AI-powered content writing for technology, finance, and cryptocurrency topics.
 
-- **Category:** Creative
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/betacontentwriter`
-- **Source URL:** [https://clawhub.ai/skills/betacontentwriter](https://clawhub.ai/skills/betacontentwriter)
+## Usage
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/betacontentwriter
+python3 write.py --topic "AI agents 2026" --type blog --length 1000
 ```
+
+## Content Types
+
+- Blog posts (500-2000 words)
+- Technical documentation
+- Whitepapers
+- Market commentary
+- Social media threads
+- Product descriptions
+
+## Topics
+
+- AI agents and automation
+- Cryptocurrency and DeFi
+- Trading and finance
+- Technology trends
+- Business strategy
+
+## Pricing Reference
+
+| Type | Words | Turnaround |
+|------|-------|-----------|
+| Blog post | 500-1000 | 2h |
+| Technical doc | 1000-3000 | 4h |
+| Whitepaper | 3000-8000 | 24h |
+| Thread | 500 | 30min |

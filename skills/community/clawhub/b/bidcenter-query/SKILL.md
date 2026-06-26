@@ -1,35 +1,189 @@
 ---
-name: "采招网招标查询"
-description: "查询采招网（bidcenter.com.cn）招标信息，支持按地区、类型、关键词、时间范围筛选"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/bidcenter-query"
-sourceUrl: "https://clawhub.ai/skills/bidcenter-query"
+name: bidcenter-query
+description: 查询采招网（bidcenter.com.cn）招标信息，支持按地区、类型、关键词、时间范围筛选
+triggers:
+  - 采招网
+  - 招标
+  - 招标公告
+  - 中标结果
+  - 招标信息
+  - 招标查询
+  - 采购公告
+  - bidcenter
 ---
 
-# 采招网招标查询
+# 采招网招标查询 (bidcenter-query)
 
-> 查询采招网（bidcenter.com.cn）招标信息，支持按地区、类型、关键词、时间范围筛选
+查询采招网（bidcenter.com.cn）的招标采购信息，支持按地区、信息类型、关键词、时间范围进行筛选。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/bidcenter-query`
-- **Source URL:** [https://clawhub.ai/skills/bidcenter-query](https://clawhub.ai/skills/bidcenter-query)
+## 触发方式
 
-## Overview
+当用户提到以下场景时，自动触发本技能：
 
+- **查询招标信息**：「帮我查一下北京最近的招标公告」
+- **搜索中标结果**：「搜索最近的中标结果」
+- **按地区筛选**：「查一下上海的招标信息」
+- **按关键词搜索**：「搜一下和"网络安全"相关的招标」
+- **按时间范围查询**：「查近一周的招标公告」
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/bidcenter-query
+也可以通过关键词 `采招网`、`招标查询`、`bidcenter` 直接调用。
+
+## 使用方法
+
+调用 `scripts/main.js` 导出的 `execute(input)` 函数：
+
+```js
+const { execute } = require("./scripts/main.js");
+const result = await execute({
+  keyword: "网络安全",
+  diqu: "北京",
+  type: "招标公告",
+  time: "近一周",
+});
 ```
+
+## 参数说明
+
+keyword 为**必填**参数，其余均为可选。
+
+| 参数     | 类型          | 默认值     | 说明                                                                   |
+| -------- | ------------- | ---------- | ---------------------------------------------------------------------- |
+| keyword  | string        | 必填       | 搜索关键词，如 "网络安全"、"服务器采购"                                |
+| diqu     | string/number | 0（全国）  | 地区筛选，支持**中文名称**或**数字编码**（见下方地区表）               |
+| type     | string/number | 空（全部） | 信息类型，支持**中文名称**或**数字编码**，不传表示全部（见下方类型表） |
+| time     | string/number | 空（全部） | 时间范围，支持**中文别名**或**数字编码**，不传表示全部（见下方时间表） |
+| page     | number        | 1          | 页码                                                                   |
+| pageSize | number        | 10         | 每页条数，最大 100                                                     |
+
+### 地区编码表
+
+| 名称 | 编码 | 名称 | 编码 | 名称   | 编码 |
+| ---- | ---- | ---- | ---- | ------ | ---- |
+| 全国 | 0    | 北京 | 1    | 天津   | 2    |
+| 河北 | 3    | 山西 | 4    | 内蒙古 | 5    |
+| 辽宁 | 6    | 吉林 | 7    | 黑龙江 | 8    |
+| 上海 | 9    | 江苏 | 10   | 浙江   | 11   |
+| 安徽 | 12   | 福建 | 13   | 江西   | 14   |
+| 山东 | 15   | 河南 | 16   | 湖北   | 17   |
+| 湖南 | 18   | 广东 | 19   | 广西   | 20   |
+| 海南 | 21   | 重庆 | 22   | 四川   | 23   |
+| 贵州 | 24   | 云南 | 25   | 西藏   | 26   |
+| 陕西 | 27   | 甘肃 | 28   | 青海   | 29   |
+| 宁夏 | 30   | 新疆 | 31   | 跨省   | 99   |
+
+### 信息类型表
+
+| 名称     | 编码 | 名称       | 编码 |
+| -------- | ---- | ---------- | ---- |
+| 全部     | `""` | 招标公告   | 1    |
+| 招标预告 | 2    | 拟在建项目 | 3    |
+| 中标结果 | 4    | 招标变更   | 6    |
+| 标书下载 | 8    | 拍卖转让   | 9    |
+| VIP独家  | 12   | 审批公示   | 17   |
+| 土地挂牌 | 32   | 参考项目   | 90   |
+
+### 时间范围表
+
+| 名称   | 编码 | 含义      |
+| ------ | ---- | --------- |
+| 全部   | `""` | 不限时间  |
+| 近三天 | 3    | 最近3天   |
+| 近一周 | 7    | 最近7天   |
+| 近一月 | 30   | 最近30天  |
+| 近三月 | 90   | 最近90天  |
+| 近半年 | 180  | 最近180天 |
+| 近一年 | 11   | 最近一年  |
+
+## 返回格式
+
+### 成功返回
+
+| 字段     | 类型   | 说明                   |
+| -------- | ------ | ---------------------- |
+| status   | string | 固定为 "success"       |
+| listData | array  | 招标信息列表，详见下方 |
+| total    | number | 符合条件的总条数       |
+| page     | number | 当前页码               |
+| pageSize | number | 每页条数               |
+
+**listData 每项字段：**
+
+| 字段           | 类型    | 说明                                     |
+| -------------- | ------- | ---------------------------------------- |
+| id             | number  | 信息ID                                   |
+| title          | string  | 招标标题                                 |
+| type           | string  | 信息类型（招标公告/中标结果/招标预告等） |
+| url            | string  | 完整详情链接                             |
+| publishDate    | string  | 发布日期，格式 YYYY-MM-DD                |
+| endDate        | string  | 截止日期，-- 表示不限                    |
+| location       | string  | 招标地区                                 |
+| budget         | string  | 预算金额，-- 表示未知                    |
+| winAmount      | string  | 中标金额，-- 表示未知                    |
+| projectValue   | string  | 项目金额，-- 表示未知                    |
+| stage          | string  | 项目阶段                                 |
+| purchaseMethod | string  | 采购方式（公开招标/竞争性谈判等）        |
+| isProject      | boolean | 是否为项目信息                           |
+
+### 错误返回
+
+| 字段     | 类型   | 说明           |
+| -------- | ------ | -------------- |
+| status   | string | 固定为 "error" |
+| message  | string | 错误描述       |
+| listData | array  | 空数组         |
+| total    | number | 0              |
+| page     | number | 请求的页码     |
+| pageSize | number | 请求的每页条数 |
+
+## 调用示例
+
+### 示例1：简单关键词搜索
+
+```js
+await execute({ keyword: "服务器采购" });
+```
+
+### 示例2：按地区 + 类型 + 时间查询
+
+```js
+await execute({
+  keyword: "网络安全",
+  diqu: "北京", // 也可以用数字 1
+  type: "招标公告", // 也可以用数字 1
+  time: "近一周", // 也可以用数字 7
+  page: 1,
+  pageSize: 20,
+});
+```
+
+### 示例3：只查中标结果
+
+```js
+await execute({ keyword: "工程", type: "中标结果" });
+```
+
+### 示例4：查全国近一个月的招标公告
+
+```js
+await execute({ keyword: "采购", type: 1, time: 30 });
+```
+
+## 容错特性
+
+- **参数自动规范化**：地区、类型、时间均可传中文名或数字编码，内部自动转换
+- **无效参数兜底**：非法的页码/每页条数自动修正为默认值，不会报错
+- **请求重试**：网络异常时自动重试最多2次，间隔递增
+- **超时保护**：15秒请求超时，避免长时间阻塞
+- **解密异常处理**：接口返回数据异常时返回结构化的错误信息，不会抛出未捕获异常
+- **空结果友好**：未查到数据时返回空列表和提示，而非报错
+
+## 注意事项
+
+- 本技能通过采招网公开接口查询，接口可能随时变更
+- 部分信息类型（如 VIP独家）可能需要付费权限，接口可能返回空数据
+- 建议每页条数不超过20，避免接口响应缓慢
+- 查询过于频繁可能被限流，建议适当控制调用频率
+
+## 联系作者
+
+- 邮箱：[wang760635994@gmail.com](mailto:wang760635994@gmail.com)

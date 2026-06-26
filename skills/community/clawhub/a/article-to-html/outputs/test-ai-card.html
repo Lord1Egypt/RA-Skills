@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI 录音卡片产品架构</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body{ 
+            margin:0; 
+            padding:0; 
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        background:transparent;margin:0;padding:0;}
+
+        .container{
+            width: 1080px;
+            min-height: 1440px;
+            padding: 48px;
+            margin: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #ffffff;
+        }
+
+        .header {
+            margin-bottom: 48px;
+        }
+
+        .tag {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 12px 24px;
+            border-radius: 50px;
+            font-size: 26px;
+            margin-bottom: 24px;
+            backdrop-filter: blur(10px);
+        }
+
+        h1 {
+            font-size: 80px;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 24px;
+        }
+
+        .subtitle {
+            font-size: 34px;
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+
+        .module {
+            background: rgba(255,255,255,0.1);
+            border-radius: 24px;
+            padding: 40px;
+            margin-bottom: 32px;
+            backdrop-filter: blur(10px);
+        }
+
+        .module-title {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .module-icon {
+            width: 64px;
+            height: 64px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+
+        .content-item {
+            background: rgba(255,255,255,0.05);
+            padding: 24px;
+            border-radius: 16px;
+            border-left: 4px solid rgba(255,255,255,0.4);
+        }
+
+        .item-title {
+            font-size: 32px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: #ffffff;
+        }
+
+        .item-desc {
+            font-size: 30px;
+            opacity: 0.85;
+            line-height: 1.6;
+        }
+
+        .highlight {
+            background: rgba(255,255,255,0.15);
+            padding: 32px;
+            border-radius: 20px;
+            margin-top: 48px;
+            text-align: center;
+        }
+
+        .highlight-number {
+            font-size: 72px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .highlight-text {
+            font-size: 32px;
+            opacity: 0.9;
+        }
+
+        .footer {
+            margin-top: 48px;
+            padding-top: 32px;
+            border-top: 2px solid rgba(255,255,255,0.2);
+            font-size: 26px;
+            opacity: 0.7;
+            text-align: center;
+        }
+    .coord{display:none!important;}
+/* === POST-PROCESS: 字号兜底 === */
+.container { font-size: max(14px, 1em); }
+.container h1, .container [class*="title"]:first-child { font-size: max(48px, 1em) !important; }
+.container h2, .container h3 { font-size: max(28px, 1em) !important; }
+.container p, .container li, .container td { font-size: max(20px, 0.9em) !important; }
+.container .coord { display: none !important; }
+</style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="tag">PRODUCT ARCHITECTURE</div>
+            <h1>AI 录音卡片<br/>产品架构设计</h1>
+            <div class="subtitle">北美市场合规优先 · AWS 云架构 · SOC 2/HIPAA 认证</div>
+        </div>
+
+        <!-- Module 1: 核心框架 -->
+        <div class="module">
+            <div class="module-title">
+                <div class="module-icon">🎯</div>
+                核心框架 M-P-D-G
+            </div>
+            <div class="content-grid">
+                <div class="content-item">
+                    <div class="item-title">Market 市场</div>
+                    <div class="item-desc">北美市场合规驱动<br/>政府/金融/医疗强监管行业</div>
+                </div>
+                <div class="content-item">
+                    <div class="item-title">Product 产品</div>
+                    <div class="item-desc">云端存储 + 本地加密<br/>混合云架构支持</div>
+                </div>
+                <div class="content-item">
+                    <div class="item-title">Data 数据</div>
+                    <div class="item-desc">数据隔离 + 访问控制<br/>美国境内数据驻留</div>
+                </div>
+                <div class="content-item">
+                    <div class="item-title">Governance 治理</div>
+                    <div class="item-desc">SOC 2 + HIPAA 认证<br/>完整审计日志</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Module 2: 合规要求 -->
+        <div class="module">
+            <div class="module-title">
+                <div class="module-icon">⚡</div>
+                合规要求
+            </div>
+            <div class="content-grid">
+                <div class="content-item">
+                    <div class="item-title">SOC 2 Type I/II</div>
+                    <div class="item-desc">3-6 个月认证周期<br/>$30-50K Type I / $75-165K Type II</div>
+                </div>
+                <div class="content-item">
+                    <div class="item-title">HIPAA BAA</div>
+                    <div class="item-desc">AWS 签署商业伙伴协议<br/>5 分钟免费完成</div>
+                </div>
+                <div class="content-item">
+                    <div class="item-title">BIPA</div>
+                    <div class="item-desc">伊利诺伊州生物识别信息<br/>$5,000/次/人违规罚款</div>
+                </div>
+                <div class="content-item">
+                    <div class="item-title">COPPA</div>
+                    <div class="item-desc">13 岁以下儿童隐私保护<br/>$43,792/次违规罚款</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Module 3: 技术实现 -->
+        <div class="module">
+            <div class="module-title">
+                <div class="module-icon">🛠</div>
+                技术实现
+            </div>
+            <div class="content-grid">
+                <div class="content-item">
+                    <div class="item-title">SSE-KMS 加密</div>
+                    <div class="item-desc">S3 静态数据加密<br/>AWS KMS 密钥管理</div>
+                </div>
+                <div class="content-item">
+                    <div class="item-title">TLS 1.2+</div>
+                    <div class="item-desc">传输中数据加密<br/>HTTPS 强制启用</div>
+                </div>
+                <div class="content-item">
+                    <div class="item-title">IAM + MFA</div>
+                    <div class="item-desc">访问控制 + 双因素认证<br/>最小权限原则</div>
+                </div>
+                <div class="content-item">
+                    <div class="item-title">CloudTrail</div>
+                    <div class="item-desc">完整审计日志<br/>API 调用全记录</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Highlight -->
+        <div class="highlight">
+            <div class="highlight-number">合规成本</div>
+            <div class="highlight-text">一次性 $30-75K + 年度 $32-65K<br/>AWS 云架构 ~$1,114/月 (10K DAU)</div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            AI Recording Card · Compliance First · 2026
+        </div>
+    </div>
+</body>
+</html>

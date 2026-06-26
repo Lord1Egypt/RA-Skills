@@ -1,0 +1,35 @@
+{
+  "name": "openclaw-skill-atlassian-jira",
+  "version": "1.1.3",
+  "description": "OpenClaw skill for Atlassian Jira Cloud — CRUD issues, comments, attachments, workflow transitions, and JQL search via Jira REST API v3",
+  "type": "module",
+  "bin": {
+    "jira": "./scripts/jira.mjs"
+  },
+  "scripts": {
+    "start": "node scripts/jira.mjs",
+    "help": "node scripts/jira.mjs --help"
+  },
+  "keywords": [
+    "openclaw",
+    "jira",
+    "atlassian",
+    "jira-cloud",
+    "issue-tracker",
+    "ai-skill"
+  ],
+  "author": "Abdelkrim BOUJRAF <abdelkrim@alt-f1.be> (https://www.alt-f1.be)",
+  "license": "MIT",
+  "homepage": "https://www.alt-f1.be",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ALT-F1-OpenClaw/openclaw-skill-atlassian-jira.git"
+  },
+  "dependencies": {
+    "commander": "^12.0.0",
+    "dotenv": "^16.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

@@ -1,0 +1,7 @@
+interface:
+  display_name: "Bias Audit"
+  short_description: "Audit loaded framing before it hardens into a decision."
+  default_prompt: "Use $bias-audit to inspect the framing of this request, surface likely bias signals, and rewrite it into a neutral decision frame."
+
+policy:
+  allow_implicit_invocation: true

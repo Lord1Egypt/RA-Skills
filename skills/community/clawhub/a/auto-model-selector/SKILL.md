@@ -1,35 +1,59 @@
 ---
-name: "Auto Model Selector"
-description: "自动根据任务复杂度智能选择本地或云端AI模型，优化请求处理效率与效果。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/auto-model-selector"
-sourceUrl: "https://clawhub.ai/skills/auto-model-selector"
+name: auto-model-selector
+根据用户问题的复杂度自动选择合适的AI模型进行处理。使用本地模型处理简单任务，云端模型处理复杂任务。
+metadata: {"clawdbot":{"emoji":"🤖","os":["linux","darwin","win32"]}}
 ---
+# 智能路由技能
 
-# Auto Model Selector
+## 描述
+根据用户问题的复杂度自动选择合适的AI模型进行处理。使用本地模型处理简单任务，云端模型处理复杂任务。
 
-> 自动根据任务复杂度智能选择本地或云端AI模型，优化请求处理效率与效果。
+## 功能
+1. **智能路由**：分析用户请求的复杂度
+2. **模型选择**：自动根据请求的任务复杂度选择模型
+3. **自动切换**：在每次用户请求时自动设置合适的模型
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/auto-model-selector`
-- **Source URL:** [https://clawhub.ai/skills/auto-model-selector](https://clawhub.ai/skills/auto-model-selector)
+## 路由逻辑
 
-## Overview
+### 简单任务（使用本地模型）
+- 时间/日期查询
+- 简单文件操作
+- 状态检查
+- 基础命令执行
+- 简短回答
 
+### 复杂任务（使用云端模型）
+- 代码编写
+- 复杂分析
+- 创意写作
+- 深度解释
+- 多步骤任务
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/auto-model-selector
+## 配置要求
+- 需要可用的本地模型服务 (Ollama)
+- 需要可用的云端模型API
+- 需要OpenClaw支持模型切换
+
+## 使用方法
+1. 安装技能：`clawdhub install smart-router`
+2. 技能会自动分析每个用户请求
+3. 根据复杂度自动选择模型
+4. 处理完成后会报告使用的模型
+
+## 示例
 ```
+用户：现在几点了
+技能：检测为简单任务 → 使用本地模型 → 回答时间
+
+用户：帮我写一个Flutter登录页面
+技能：检测为复杂任务 → 使用云端模型 → 生成代码
+```
+
+## 技术实现
+- 使用关键词匹配进行快速判断
+- 支持中英文关键词
+- 可配置的路由规则
+- 详细的日志输出
+
+## 更新日志
+- 2026-03-05: 初始版本发布

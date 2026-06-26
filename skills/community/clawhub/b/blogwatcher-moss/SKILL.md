@@ -1,35 +1,46 @@
 ---
-name: "Blogwatcher Moss"
-description: "Monitor blogs and RSS/Atom feeds for updates using the blogwatcher CLI."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/blogwatcher-moss"
-sourceUrl: "https://clawhub.ai/skills/blogwatcher-moss"
+name: blogwatcher-moss
+description: Monitor blogs and RSS/Atom feeds for updates using the blogwatcher CLI.
+homepage: https://github.com/Hyaxia/blogwatcher
+metadata: {"clawdbot":{"emoji":"📰","requires":{"bins":["blogwatcher"]},"install":[{"id":"go","kind":"go","module":"github.com/Hyaxia/blogwatcher/cmd/blogwatcher@latest","bins":["blogwatcher"],"label":"Install blogwatcher (go)"}]}}
 ---
 
-# Blogwatcher Moss
+# blogwatcher
 
-> Monitor blogs and RSS/Atom feeds for updates using the blogwatcher CLI.
+Track blog and RSS/Atom feed updates with the `blogwatcher` CLI.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/blogwatcher-moss`
-- **Source URL:** [https://clawhub.ai/skills/blogwatcher-moss](https://clawhub.ai/skills/blogwatcher-moss)
+Install
+- Go: `go install github.com/Hyaxia/blogwatcher/cmd/blogwatcher@latest`
 
-## Overview
+Quick start
+- `blogwatcher --help`
 
+Common commands
+- Add a blog: `blogwatcher add "My Blog" https://example.com`
+- List blogs: `blogwatcher blogs`
+- Scan for updates: `blogwatcher scan`
+- List articles: `blogwatcher articles`
+- Mark an article read: `blogwatcher read 1`
+- Mark all articles read: `blogwatcher read-all`
+- Remove a blog: `blogwatcher remove "My Blog"`
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/blogwatcher-moss
+Example output
 ```
+$ blogwatcher blogs
+Tracked blogs (1):
+
+  xkcd
+    URL: https://xkcd.com
+```
+```
+$ blogwatcher scan
+Scanning 1 blog(s)...
+
+  xkcd
+    Source: RSS | Found: 4 | New: 4
+
+Found 4 new article(s) total!
+```
+
+Notes
+- Use `blogwatcher <command> --help` to discover flags and options.

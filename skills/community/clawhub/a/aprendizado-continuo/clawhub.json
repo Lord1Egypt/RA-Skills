@@ -1,0 +1,12 @@
+{
+  "name": "Aprendizado Contínuo",
+  "tagline": "Captura erros, correções e aprendizados automaticamente em português",
+  "description": "Sistema de auto-melhoria que registra erros, correções de usuário e aprendizados. Promove melhorias automaticamente para AGENTS.md, TOOLS.md e SKILL.md. Estrutura em arquivos markdown com priorização e status. Essencial para desenvolvedores brasileiros que querem agentes que aprendem com seus próprios erros.",
+  "category": "improvement",
+  "tags": ["aprendizado", "learning", "self-improvement", "portugues", "brasil", "erros", "correcoes"],
+  "version": "1.0.0",
+  "license": "MIT",
+  "pricing": "free",
+  "support_url": "https://github.com/eve-agent/aprendizado-continuo/issues",
+  "homepage": "https://github.com/eve-agent/aprendizado-continuo"
+}

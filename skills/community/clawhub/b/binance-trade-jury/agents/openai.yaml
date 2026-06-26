@@ -1,0 +1,8 @@
+interface:
+  display_name: "Binance Trade Jury"
+  short_description: "Put a Binance trade thesis on trial before it gets risk."
+  brand_color: "#e6ba65"
+  default_prompt: "Use $binance-trade-jury to review a Binance trade thesis, return an APPROVE / REVIEW / REJECT verdict, explain the three juror opinions, and provide a cleaner execution plan."
+
+policy:
+  allow_implicit_invocation: true

@@ -1,0 +1,20 @@
+# Auto Video Generator Web UI - Dependencies
+
+# Web Framework
+Flask==3.0.0
+Flask-CORS==4.0.0
+Flask-SocketIO==5.3.6
+python-socketio==5.10.0
+python-engineio==4.7.1
+Werkzeug==3.0.1
+
+# Async Support (for production)
+eventlet==0.33.3
+gevent==23.9.1
+
+# File Upload Handling
+python-magic-bin==0.4.14  # Windows support for file type detection
+
+# Development & Testing
+pytest==7.4.3
+pytest-flask==1.2.0

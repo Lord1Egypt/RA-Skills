@@ -1,0 +1,64 @@
+{
+  "name": "@openclaw/bitchat",
+  "version": "0.1.2",
+  "description": "OpenClaw channel plugin for Bitchat BLE mesh network",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "openclaw": {
+    "extensions": ["./dist/index.js"],
+    "channel": {
+      "id": "bitchat",
+      "label": "Bitchat",
+      "selectionLabel": "Bitchat (BLE Mesh)",
+      "docsPath": "/channels/bitchat",
+      "docsLabel": "bitchat",
+      "blurb": "Peer-to-peer BLE mesh network messaging.",
+      "order": 90,
+      "aliases": ["ble", "mesh"]
+    },
+    "install": {
+      "npmSpec": "@openclaw/bitchat",
+      "defaultChoice": "npm"
+    }
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "clean": "rm -rf dist",
+    "prepublishOnly": "npm run build"
+  },
+  "dependencies": {
+    "bitchat-node": "^0.1.0"
+  },
+  "peerDependencies": {
+    "openclaw": ">=2026.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "typescript": "^5.3.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wkyleg/openclaw-bitchat.git"
+  },
+  "keywords": [
+    "openclaw",
+    "openclaw-plugin",
+    "bitchat",
+    "bluetooth",
+    "ble",
+    "mesh",
+    "p2p"
+  ],
+  "license": "Unlicense",
+  "engines": {
+    "node": ">=18"
+  }
+}

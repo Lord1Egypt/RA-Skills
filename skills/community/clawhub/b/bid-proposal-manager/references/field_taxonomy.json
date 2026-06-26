@@ -1,0 +1,152 @@
+{
+  "_description": "입찰/공모 공고문에서 추출할 필드의 분류 체계. proposal_analyzer.py에서 패턴 매칭의 기준으로 사용.",
+  "_version": "1.0",
+
+  "project_types": {
+    "bid": {
+      "name_ko": "입찰",
+      "keywords": ["입찰", "조달", "나라장터", "g2b", "물품", "용역", "시설공사"],
+      "typical_issuers": ["조달청", "국방부", "지방자치단체"],
+      "typical_documents": ["입찰참가신청서", "청렴서약서", "사업자등록증", "인감증명서", "법인등기부등본"]
+    },
+    "research": {
+      "name_ko": "연구과제",
+      "keywords": ["연구", "R&D", "과제", "연구개발", "기술개발", "학술"],
+      "typical_issuers": ["과학기술정보통신부", "산업통상자원부", "한국연구재단", "정보통신기획평가원"],
+      "typical_documents": ["연구개발계획서", "사업비산정표", "연구원 이력서", "참여율 확인서", "기관 현황"]
+    },
+    "grant": {
+      "name_ko": "보조금/지원사업",
+      "keywords": ["지원", "보조금", "지원사업", "공모", "바우처", "육성"],
+      "typical_issuers": ["중소벤처기업부", "창업진흥원", "지역혁신센터"],
+      "typical_documents": ["사업계획서", "재무제표", "사업자등록증", "4대보험 가입증명"]
+    },
+    "contest": {
+      "name_ko": "공모전/경진대회",
+      "keywords": ["공모전", "경진대회", "아이디어", "해커톤", "챌린지"],
+      "typical_issuers": ["다양"],
+      "typical_documents": ["참가신청서", "제안서", "동의서"]
+    },
+    "procurement": {
+      "name_ko": "구매/조달",
+      "keywords": ["구매", "조달", "납품", "계약", "발주"],
+      "typical_issuers": ["조달청", "공공기관"],
+      "typical_documents": ["견적서", "납품실적증명서", "사업자등록증", "제조확인서"]
+    }
+  },
+
+  "extraction_fields": {
+    "project_name": {
+      "description": "사업명/과제명",
+      "patterns_ko": ["사업명", "과제명", "연구과제명", "건명", "과업명", "사업 명칭"],
+      "priority": "high"
+    },
+    "announcement_no": {
+      "description": "공고번호",
+      "patterns_ko": ["공고번호", "공고 제", "공고제", "입찰공고번호", "나라장터 번호"],
+      "priority": "high"
+    },
+    "issuing_org": {
+      "description": "발주기관/공고기관",
+      "patterns_ko": ["발주기관", "공고기관", "수요기관", "주관기관", "전문기관", "시행기관"],
+      "priority": "high"
+    },
+    "submission_deadline": {
+      "description": "제출마감일",
+      "patterns_ko": ["제출기한", "접수마감", "마감일", "제출마감", "접수기한", "신청기한", "신청마감", "공모기간"],
+      "priority": "critical"
+    },
+    "briefing_date": {
+      "description": "사업설명회 일시",
+      "patterns_ko": ["설명회", "사업설명회", "입찰설명회", "현장설명회", "오리엔테이션"],
+      "priority": "medium"
+    },
+    "qa_deadline": {
+      "description": "질의응답 마감",
+      "patterns_ko": ["질의", "질의응답", "Q&A", "질문접수", "문의기한"],
+      "priority": "medium"
+    },
+    "result_date": {
+      "description": "결과발표일",
+      "patterns_ko": ["선정결과", "결과발표", "선정발표", "평가결과", "당선자 발표"],
+      "priority": "medium"
+    },
+    "total_budget": {
+      "description": "총 사업비/예산",
+      "patterns_ko": ["총 사업비", "사업비", "예산", "총사업비", "연구비", "사업규모", "총 예산", "계약금액"],
+      "priority": "high"
+    },
+    "gov_funding": {
+      "description": "정부출연금",
+      "patterns_ko": ["정부출연금", "국비", "출연금", "정부지원금", "보조금"],
+      "priority": "medium"
+    },
+    "private_funding": {
+      "description": "민간부담금",
+      "patterns_ko": ["민간부담금", "자부담", "기업부담금", "대응자금", "매칭펀드"],
+      "priority": "medium"
+    },
+    "project_period": {
+      "description": "사업 기간",
+      "patterns_ko": ["사업기간", "연구기간", "수행기간", "계약기간", "용역기간"],
+      "priority": "medium"
+    },
+    "contact": {
+      "description": "담당자 연락처",
+      "patterns_ko": ["담당자", "문의처", "연락처", "문의", "담당부서"],
+      "priority": "low"
+    }
+  },
+
+  "section_markers": {
+    "qualifications": {
+      "description": "참가자격/자격요건 섹션",
+      "start_patterns": ["참가자격", "응모자격", "신청자격", "자격요건", "지원자격", "참여자격", "참가 자격"],
+      "subsection_patterns": {
+        "required": ["필수", "반드시", "갖추어야", "자격을 갖춘", "다음 각"],
+        "preferred": ["우대", "가점", "가산점", "추가점수"],
+        "restriction": ["제한", "참가 제한", "결격사유", "참여 제한", "배제"]
+      }
+    },
+    "documents": {
+      "description": "제출서류 섹션",
+      "start_patterns": ["제출서류", "구비서류", "첨부서류", "제출 서류", "신청서류", "접수서류"],
+      "type_indicators": {
+        "required": ["필수", "반드시", "(필)", "제출하여야"],
+        "optional": ["선택", "해당시", "해당 시", "(선)", "해당되는 경우"],
+        "form_provided": ["소정양식", "별첨양식", "지정양식", "서식", "첨부서식", "붙임"]
+      }
+    },
+    "evaluation": {
+      "description": "평가기준/배점 섹션",
+      "start_patterns": ["평가기준", "선정기준", "심사기준", "배점", "평가항목", "선정평가", "심사항목"],
+      "score_patterns": ["점", "배점", "만점", "가중치"]
+    },
+    "writing_guide": {
+      "description": "제안서 작성 요령 섹션",
+      "start_patterns": ["작성요령", "작성 요령", "작성지침", "작성 지침", "제안서 구성", "목차", "작성기준"],
+      "format_indicators": ["페이지", "분량", "글자크기", "폰트", "줄간격", "A4", "한글파일"]
+    }
+  },
+
+  "amount_units": {
+    "원": 1,
+    "천원": 1000,
+    "만원": 10000,
+    "십만원": 100000,
+    "백만원": 1000000,
+    "천만원": 10000000,
+    "억원": 100000000,
+    "조원": 1000000000000
+  },
+
+  "common_document_names": {
+    "_description": "자주 등장하는 제출서류 명칭과 카테고리",
+    "법인서류": ["사업자등록증", "법인등기부등본", "인감증명서", "법인인감증명서", "사용인감계"],
+    "재무서류": ["재무제표", "부가가치세 과세표준증명원", "납세증명서", "4대보험 완납증명서", "신용평가서"],
+    "기술서류": ["사업계획서", "제안서", "연구개발계획서", "기술설명서", "수행계획서"],
+    "실적서류": ["사업실적증명서", "계약이행실적", "유사용역 수행실적", "특허증", "인증서"],
+    "인력서류": ["참여인력 이력서", "기술인력 보유현황", "참여율 확인서", "재직증명서", "자격증 사본"],
+    "행정서류": ["청렴서약서", "입찰참가신청서", "개인정보 동의서", "보안서약서", "비밀유지서약서"]
+  }
+}

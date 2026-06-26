@@ -1,0 +1,8 @@
+---
+name: solidity-dev
+description: Implement secure Solidity smart contracts with tests and safety patterns.
+version: 1.0.0
+display_name: "Solidity Dev"
+triggers:
+System.Object[]
+---

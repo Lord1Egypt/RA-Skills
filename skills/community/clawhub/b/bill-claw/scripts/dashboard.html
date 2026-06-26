@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>BillClaw 账本看板</title>
+  <script src="/static/vendor/chart.umd.min.js"></script>
+  <script src="/static/vendor/hammer.min.js"></script>
+  <script src="/static/vendor/chartjs-plugin-zoom.min.js"></script>
+  <style>
+    :root {
+      --bg: #080a0e;
+      --bg2: #0e1219;
+      --card: #121822;
+      --card2: #1a2230;
+      --border: rgba(120, 140, 180, 0.12);
+      --text: #e8ecf4;
+      --muted: #8b95a8;
+      --accent: #5eead4;
+      --accent2: #a78bfa;
+      --income: #34d399;
+      --expense: #fb923c;
+      --shadow: 0 8px 32px rgba(0,0,0,.35);
+      --radius: 14px;
+      font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", ui-sans-serif, system-ui, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: var(--bg);
+      background-image:
+        radial-gradient(ellipse 120% 80% at 50% -30%, rgba(94, 234, 212, 0.08), transparent),
+        radial-gradient(ellipse 80% 50% at 100% 50%, rgba(167, 139, 250, 0.06), transparent);
+      color: var(--text);
+      font-size: 15px;
+      line-height: 1.5;
+    }
+    .wrap { max-width: 1280px; margin: 0 auto; padding: 1.5rem 1.25rem 3rem; }
+    header {
+      display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between;
+      gap: 1rem; margin-bottom: 1.5rem;
+    }
+    header h1 {
+      font-size: 1.65rem; font-weight: 700; letter-spacing: -0.02em; margin: 0 0 0.25rem;
+      background: linear-gradient(135deg, var(--text) 0%, var(--accent) 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    header p { margin: 0; color: var(--muted); font-size: 0.9rem; }
+    .toolbar {
+      display: flex; flex-wrap: wrap; align-items: center; gap: 0.6rem;
+      padding: 0.85rem 1rem;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+    .toolbar label { font-size: 0.8rem; color: var(--muted); margin-right: 0.25rem; }
+    .toolbar input[type="date"] {
+      background: var(--bg2); border: 1px solid var(--border); color: var(--text);
+      border-radius: 8px; padding: 0.45rem 0.6rem; font-family: inherit;
+    }
+    .btn {
+      border: none; cursor: pointer; font-family: inherit; font-weight: 600; font-size: 0.85rem;
+      border-radius: 8px; padding: 0.5rem 0.9rem; transition: transform .12s, filter .12s;
+    }
+    .btn:active { transform: scale(0.97); }
+    .btn-primary {
+      background: linear-gradient(135deg, #2dd4bf, #14b8a6); color: #042f2e;
+    }
+    .btn-ghost {
+      background: var(--bg2); color: var(--text); border: 1px solid var(--border);
+    }
+    .kpis {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem; margin: 1.25rem 0;
+    }
+    .kpi {
+      background: var(--card); border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 1.15rem 1.25rem; box-shadow: var(--shadow);
+    }
+    .kpi .lbl { font-size: 0.8rem; color: var(--muted); text-transform: uppercase; letter-spacing: .04em; }
+    .kpi .val {
+      font-family: ui-monospace, "SF Mono", "Cascadia Code", "Consolas", monospace;
+      font-size: 1.65rem; font-weight: 700;
+      font-variant-numeric: tabular-nums; margin-top: 0.35rem;
+    }
+    .kpi.income .val { color: var(--income); }
+    .kpi.expense .val { color: var(--expense); }
+    .kpi.balance .val { color: var(--accent2); }
+    .grid-charts {
+      display: grid; gap: 1rem;
+      grid-template-columns: 1fr;
+    }
+    @media (min-width: 960px) {
+      .grid-charts { grid-template-columns: 1fr 1fr; }
+      .grid-charts .wide { grid-column: 1 / -1; }
+    }
+    .card {
+      background: var(--card); border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 1.1rem 1.15rem; box-shadow: var(--shadow);
+    }
+    .card h2 {
+      font-size: 0.95rem; font-weight: 600; color: var(--muted); margin: 0 0 0.75rem;
+      display: flex; align-items: center; justify-content: space-between; gap: 0.5rem;
+    }
+    .card h2.h2-row { flex-wrap: wrap; }
+    .hint { font-size: 0.75rem; font-weight: 400; color: var(--muted); opacity: 0.9; }
+    canvas { max-height: 300px; }
+    .card.wide canvas { max-height: 320px; }
+    .table-wrap {
+      overflow: auto; max-height: min(520px, 55vh); border-radius: 10px;
+      border: 1px solid var(--border);
+    }
+    table { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
+    th, td { text-align: left; padding: 0.55rem 0.75rem; border-bottom: 1px solid var(--border); }
+    thead th {
+      position: sticky; top: 0; background: var(--card2); color: var(--muted);
+      font-weight: 600; z-index: 1; cursor: pointer; user-select: none;
+    }
+    thead th:hover { color: var(--accent); }
+    tbody tr:hover { background: rgba(94, 234, 212, 0.04); }
+    .num {
+      text-align: right;
+      font-family: ui-monospace, "SF Mono", "Cascadia Code", "Consolas", monospace;
+      font-variant-numeric: tabular-nums;
+    }
+    .tag { display: inline-block; padding: 0.15rem 0.45rem; border-radius: 6px; font-size: 0.75rem; font-weight: 600; }
+    .tag-in { background: rgba(52, 211, 153, 0.15); color: var(--income); }
+    .tag-out { background: rgba(251, 146, 60, 0.15); color: var(--expense); }
+    .pager {
+      display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+      gap: 0.75rem; margin-top: 0.85rem; color: var(--muted); font-size: 0.85rem;
+    }
+    .pager .btns { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+    select.filter-type {
+      background: var(--bg2); border: 1px solid var(--border); color: var(--text);
+      border-radius: 8px; padding: 0.4rem 0.6rem; font-family: inherit;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div>
+        <h1>BillClaw</h1>
+        <p>本地账本可视化 · 筛选时间范围后点击「应用」刷新图表与明细</p>
+      </div>
+    </header>
+
+    <div class="toolbar">
+      <span><label for="df">开始</label><input type="date" id="df"/></span>
+      <span><label for="dt">结束</label><input type="date" id="dt"/></span>
+      <button type="button" class="btn btn-primary" id="apply">应用筛选</button>
+      <button type="button" class="btn btn-ghost" data-preset="all">全部</button>
+      <button type="button" class="btn btn-ghost" data-preset="ytd">本年至今</button>
+      <button type="button" class="btn btn-ghost" data-preset="3m">近三月</button>
+      <button type="button" class="btn btn-ghost" data-preset="1m">近一月</button>
+    </div>
+
+    <div class="kpis">
+      <div class="kpi income"><div class="lbl">总收入</div><div class="val" id="kpi-in">—</div></div>
+      <div class="kpi expense"><div class="lbl">总支出</div><div class="val" id="kpi-ex">—</div></div>
+      <div class="kpi balance"><div class="lbl">净结余</div><div class="val" id="kpi-bal">—</div></div>
+    </div>
+
+    <div class="grid-charts">
+      <div class="card">
+        <h2>支出分类 <span class="hint">悬停扇区 · 点击图例隐藏/显示</span></h2>
+        <canvas id="chartPieExpense"></canvas>
+      </div>
+      <div class="card">
+        <h2>收入分类 <span class="hint">悬停扇区 · 点击图例隐藏/显示</span></h2>
+        <canvas id="chartPieIncome"></canvas>
+      </div>
+      <div class="card wide">
+        <h2 class="h2-row">
+          <span>每日收支 <span class="hint">滚轮缩放时间轴 · 拖拽平移</span></span>
+          <button type="button" class="btn btn-ghost" id="resetZoom" style="padding:0.35rem 0.65rem;font-size:0.8rem;">重置缩放</button>
+        </h2>
+        <canvas id="chartLine"></canvas>
+      </div>
+      <div class="card wide">
+        <h2>按月汇总 <span class="hint">对比每月收入与支出</span></h2>
+        <canvas id="chartMonth"></canvas>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:1rem;">
+      <h2>
+        交易明细
+        <span>
+          <select class="filter-type" id="typeFilter" title="类型筛选">
+            <option value="">全部类型</option>
+            <option value="收入">仅收入</option>
+            <option value="支出">仅支出</option>
+          </select>
+        </span>
+      </h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th data-sort="date">日期</th>
+              <th data-sort="type">类型</th>
+              <th data-sort="category">分类</th>
+              <th class="num" data-sort="amount">金额</th>
+              <th data-sort="note">备注</th>
+            </tr>
+          </thead>
+          <tbody id="tbody"></tbody>
+        </table>
+      </div>
+      <div class="pager">
+        <span id="pageInfo">—</span>
+        <div class="btns">
+          <button type="button" class="btn btn-ghost" id="prev">上一页</button>
+          <button type="button" class="btn btn-ghost" id="next">下一页</button>
+          <label style="margin-left:0.5rem;">每页</label>
+          <select class="filter-type" id="perPage" style="width:auto;">
+            <option value="50">50</option>
+            <option value="100" selected>100</option>
+            <option value="200">200</option>
+            <option value="500">500</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      const fmtMoney = (n) => '¥' + Number(n).toLocaleString('zh-CN', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+      const qs = (id) => document.getElementById(id);
+      const PALETTE_EXP = ['#5eead4','#a78bfa','#fb923c','#38bdf8','#f472b6','#facc15','#4ade80','#f87171','#818cf8','#94a3b8'];
+      const PALETTE_INC = ['#34d399','#6ee7b7','#2dd4bf','#5eead4','#a7f3d0','#86efac','#4ade80','#22c55e','#10b981','#059669'];
+
+      const state = {
+        dateMin: null, dateMax: null,
+        page: 1,
+        perPage: 100,
+        sortKey: 'date',
+        sortDir: 'desc',
+        tableRows: [],
+        lastTotal: 0,
+        lastPerPage: 100,
+      };
+
+      let chartPieExpense, chartPieIncome, chartLine, chartMonth;
+
+      function chartDefaults() {
+        Chart.defaults.color = '#8b95a8';
+        Chart.defaults.borderColor = 'rgba(120,140,180,0.15)';
+        /* chartjs-plugin-zoom UMD 加载时会自动 Chart.register */
+      }
+
+      function setDates(from, to) {
+        qs('df').value = from || '';
+        qs('dt').value = to || '';
+      }
+
+      function getRange() {
+        return {
+          date_from: qs('df').value || undefined,
+          date_to: qs('dt').value || undefined,
+        };
+      }
+
+      function rangeQuery() {
+        const r = getRange();
+        const p = new URLSearchParams();
+        if (r.date_from) p.set('date_from', r.date_from);
+        if (r.date_to) p.set('date_to', r.date_to);
+        return p.toString();
+      }
+
+      async function fetchMeta() {
+        const j = await fetch('/api/meta').then((r) => r.json());
+        state.dateMin = j.date_min;
+        state.dateMax = j.date_max;
+        if (!qs('df').value && state.dateMin) qs('df').value = state.dateMin;
+        if (!qs('dt').value && state.dateMax) qs('dt').value = state.dateMax;
+      }
+
+      function applyPreset(name) {
+        const max = state.dateMax ? new Date(state.dateMax + 'T12:00:00') : new Date();
+        let from = state.dateMin, to = state.dateMax;
+        if (name === 'all') {
+          from = state.dateMin; to = state.dateMax;
+        } else if (name === 'ytd') {
+          from = max.getFullYear() + '-01-01';
+          to = state.dateMax || max.toISOString().slice(0, 10);
+        } else if (name === '3m') {
+          const d = new Date(max);
+          d.setMonth(d.getMonth() - 3);
+          from = d.toISOString().slice(0, 10);
+          to = state.dateMax || max.toISOString().slice(0, 10);
+        } else if (name === '1m') {
+          const d = new Date(max);
+          d.setMonth(d.getMonth() - 1);
+          from = d.toISOString().slice(0, 10);
+          to = state.dateMax || max.toISOString().slice(0, 10);
+        }
+        setDates(from, to);
+        loadAll();
+      }
+
+      async function loadSummary() {
+        const q = rangeQuery();
+        const sum = await fetch('/api/summary?' + q).then((r) => r.json());
+        qs('kpi-in').textContent = fmtMoney(sum.totals.income);
+        qs('kpi-ex').textContent = fmtMoney(sum.totals.expense);
+        qs('kpi-bal').textContent = fmtMoney(sum.totals.balance);
+
+        const exp = sum.expense_by_category || [];
+        const pieExpense =
+          exp.length === 0
+            ? {
+                labels: ['暂无支出数据'],
+                datasets: [{ data: [1], backgroundColor: ['#334155'], borderWidth: 0 }],
+              }
+            : {
+                labels: exp.map((x) => x.category),
+                datasets: [{
+                  data: exp.map((x) => x.total),
+                  backgroundColor: PALETTE_EXP,
+                  borderWidth: 0,
+                  hoverOffset: 10,
+                }],
+              };
+        if (chartPieExpense) chartPieExpense.destroy();
+        chartPieExpense = new Chart(qs('chartPieExpense'), {
+          type: 'doughnut',
+          data: pieExpense,
+          options: {
+            responsive: true,
+            maintainAspectRatio: true,
+            cutout: '58%',
+            plugins: {
+              legend: { position: 'right', labels: { boxWidth: 12, padding: 10 } },
+              tooltip: {
+                callbacks: {
+                  label: (ctx) => {
+                    const v = ctx.raw || 0;
+                    const total = ctx.dataset.data.reduce((a, b) => a + b, 0);
+                    const pct = total ? ((v / total) * 100).toFixed(1) : 0;
+                    return ` ${ctx.label}: ${fmtMoney(v)} (${pct}%)`;
+                  },
+                },
+              },
+            },
+          },
+        });
+
+        const inc = sum.income_by_category || [];
+        const pieIncome =
+          inc.length === 0
+            ? {
+                labels: ['暂无收入数据'],
+                datasets: [{ data: [1], backgroundColor: ['#1e3a2f'], borderWidth: 0 }],
+              }
+            : {
+                labels: inc.map((x) => x.category),
+                datasets: [{
+                  data: inc.map((x) => x.total),
+                  backgroundColor: PALETTE_INC,
+                  borderWidth: 0,
+                  hoverOffset: 10,
+                }],
+              };
+        if (chartPieIncome) chartPieIncome.destroy();
+        chartPieIncome = new Chart(qs('chartPieIncome'), {
+          type: 'doughnut',
+          data: pieIncome,
+          options: {
+            responsive: true,
+            maintainAspectRatio: true,
+            cutout: '58%',
+            plugins: {
+              legend: { position: 'right', labels: { boxWidth: 12, padding: 10 } },
+              tooltip: {
+                callbacks: {
+                  label: (ctx) => {
+                    const v = ctx.raw || 0;
+                    const total = ctx.dataset.data.reduce((a, b) => a + b, 0);
+                    const pct = total ? ((v / total) * 100).toFixed(1) : 0;
+                    return ` ${ctx.label}: ${fmtMoney(v)} (${pct}%)`;
+                  },
+                },
+              },
+            },
+          },
+        });
+      }
+
+      async function loadTrend() {
+        const q = rangeQuery();
+        const j = await fetch('/api/trend?' + q).then((r) => r.json());
+        const t = j.daily || [];
+        if (chartLine) chartLine.destroy();
+        chartLine = new Chart(qs('chartLine'), {
+          type: 'line',
+          data: {
+            labels: t.map((x) => x.date),
+            datasets: [
+              {
+                label: '收入',
+                data: t.map((x) => x.income),
+                borderColor: '#34d399',
+                backgroundColor: 'rgba(52,211,153,0.12)',
+                fill: true,
+                tension: 0.35,
+                pointRadius: 3,
+                pointHoverRadius: 7,
+              },
+              {
+                label: '支出',
+                data: t.map((x) => x.expense),
+                borderColor: '#fb923c',
+                backgroundColor: 'rgba(251,146,60,0.1)',
+                fill: true,
+                tension: 0.35,
+                pointRadius: 3,
+                pointHoverRadius: 7,
+              },
+            ],
+          },
+          options: {
+            responsive: true,
+            interaction: { mode: 'index', intersect: false },
+            plugins: {
+              legend: { labels: { boxWidth: 12 } },
+              tooltip: {
+                callbacks: {
+                  label: (ctx) => ` ${ctx.dataset.label}: ${fmtMoney(ctx.raw)}`,
+                },
+              },
+              zoom: {
+                limits: { x: { minRange: 3 } },
+                pan: { enabled: true, mode: 'x' },
+                zoom: {
+                  wheel: { enabled: true },
+                  pinch: { enabled: true },
+                  mode: 'x',
+                },
+              },
+            },
+            scales: {
+              x: { ticks: { maxRotation: 45, minRotation: 0 } },
+              y: { beginAtZero: true, ticks: { callback: (v) => '¥' + v } },
+            },
+          },
+        });
+      }
+
+      async function loadMonthly() {
+        const q = rangeQuery();
+        const j = await fetch('/api/monthly?' + q).then((r) => r.json());
+        const m = j.monthly || [];
+        if (chartMonth) chartMonth.destroy();
+        chartMonth = new Chart(qs('chartMonth'), {
+          type: 'bar',
+          data: {
+            labels: m.map((x) => x.month),
+            datasets: [
+              {
+                label: '收入',
+                data: m.map((x) => x.income),
+                backgroundColor: 'rgba(52,211,153,0.75)',
+                borderRadius: 6,
+              },
+              {
+                label: '支出',
+                data: m.map((x) => x.expense),
+                backgroundColor: 'rgba(251,146,60,0.75)',
+                borderRadius: 6,
+              },
+            ],
+          },
+          options: {
+            responsive: true,
+            interaction: { mode: 'index', intersect: false },
+            plugins: {
+              legend: { labels: { boxWidth: 12 } },
+              tooltip: {
+                callbacks: {
+                  label: (ctx) => ` ${ctx.dataset.label}: ${fmtMoney(ctx.raw)}`,
+                },
+              },
+            },
+            scales: {
+              x: { stacked: false, grid: { display: false } },
+              y: { beginAtZero: true, ticks: { callback: (v) => '¥' + v } },
+            },
+          },
+        });
+      }
+
+      async function loadTable() {
+        const r = getRange();
+        const tp = qs('typeFilter').value;
+        const p = new URLSearchParams();
+        if (r.date_from) p.set('date_from', r.date_from);
+        if (r.date_to) p.set('date_to', r.date_to);
+        if (tp) p.set('type', tp);
+        p.set('page', String(state.page));
+        p.set('per_page', String(state.perPage));
+        const j = await fetch('/api/transactions?' + p.toString()).then((x) => x.json());
+        state.tableRows = j.rows || [];
+        state.lastTotal = j.total;
+        state.lastPerPage = j.per_page;
+        const maxP = Math.max(1, Math.ceil(j.total / j.per_page));
+        qs('pageInfo').textContent =
+          `第 ${j.page} / ${maxP} 页 · 共 ${j.total} 条（本页 ${state.tableRows.length} 条）`;
+        renderTable();
+      }
+
+      function renderTable() {
+        const tb = qs('tbody');
+        tb.innerHTML = '';
+        const rows = [...state.tableRows];
+        const mult = state.sortDir === 'asc' ? 1 : -1;
+        rows.sort((a, b) => {
+          const ka = state.sortKey;
+          let va = a[ka], vb = b[ka];
+          if (ka === 'amount') {
+            va = Number(va); vb = Number(vb);
+            return mult * (va - vb);
+          }
+          return mult * String(va || '').localeCompare(String(vb || ''), 'zh-CN');
+        });
+        rows.forEach((r) => {
+          const tr = document.createElement('tr');
+          const tag = r.type === '收入' ? 'tag-in' : 'tag-out';
+          tr.innerHTML =
+            `<td>${r.date}</td><td><span class="tag ${tag}">${r.type}</span></td><td>${r.category}</td>` +
+            `<td class="num">${fmtMoney(r.amount)}</td><td>${(r.note || '').replace(/</g, '&lt;')}</td>`;
+          tb.appendChild(tr);
+        });
+      }
+
+      async function loadAll() {
+        state.page = 1;
+        await Promise.all([loadSummary(), loadTrend(), loadMonthly(), loadTable()]);
+      }
+
+      chartDefaults();
+
+      document.querySelectorAll('[data-preset]').forEach((b) => {
+        b.addEventListener('click', () => applyPreset(b.getAttribute('data-preset')));
+      });
+      qs('apply').addEventListener('click', () => { state.page = 1; loadAll(); });
+      qs('prev').addEventListener('click', () => {
+        if (state.page > 1) { state.page--; loadTable(); }
+      });
+      qs('next').addEventListener('click', () => {
+        const maxP = Math.max(1, Math.ceil(state.lastTotal / state.lastPerPage));
+        if (state.page >= maxP) return;
+        state.page++;
+        loadTable();
+      });
+      qs('perPage').addEventListener('change', () => {
+        state.perPage = parseInt(qs('perPage').value, 10);
+        state.page = 1;
+        loadTable();
+      });
+      qs('typeFilter').addEventListener('change', () => {
+        state.page = 1;
+        loadTable();
+      });
+      qs('resetZoom').addEventListener('click', () => {
+        if (chartLine && typeof chartLine.resetZoom === 'function') chartLine.resetZoom();
+      });
+
+      document.querySelectorAll('thead th[data-sort]').forEach((th) => {
+        th.addEventListener('click', () => {
+          const k = th.getAttribute('data-sort');
+          if (state.sortKey === k) state.sortDir = state.sortDir === 'asc' ? 'desc' : 'asc';
+          else { state.sortKey = k; state.sortDir = k === 'amount' ? 'desc' : 'asc'; }
+          renderTable();
+        });
+      });
+
+      (async function init() {
+        await fetchMeta();
+        await loadAll();
+      })();
+    })();
+  </script>
+</body>
+</html>

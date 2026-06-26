@@ -1,35 +1,18 @@
 ---
-name: "Arxiv Gamedevbench Evaluating Agentic Capabili"
-description: "Learned from arXiv paper GameDevBench: Evaluating Agentic Capabilities Through Game Development. Use this skill to scaffold Node.js experiments based on the..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/arxiv-gamedevbench-evaluating-agentic-capabili"
-sourceUrl: "https://clawhub.ai/skills/arxiv-gamedevbench-evaluating-agentic-capabili"
+name: arxiv-gamedevbench-evaluating-agentic-capabili
+description: "Learned from arXiv paper GameDevBench: Evaluating Agentic Capabilities Through Game Development. Use this skill to scaffold Node.js experiments based on the paper method."
+metadata: '{"openclaw":{"requires":{"bins":["node"]}}}'
 ---
 
-# Arxiv Gamedevbench Evaluating Agentic Capabili
+# arxiv-gamedevbench-evaluating-agentic-capabili
 
-> Learned from arXiv paper GameDevBench: Evaluating Agentic Capabilities Through Game Development. Use this skill to scaffold Node.js experiments based on the...
+## Source
+- Paper key: 44f3ad505bee7a5c25a60d2a3686cb7e
+- Title: GameDevBench: Evaluating Agentic Capabilities Through Game Development
+- Categories: cs.AI,cs.CL,cs.SE
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/arxiv-gamedevbench-evaluating-agentic-capabili`
-- **Source URL:** [https://clawhub.ai/skills/arxiv-gamedevbench-evaluating-agentic-capabili](https://clawhub.ai/skills/arxiv-gamedevbench-evaluating-agentic-capabili)
+## Learned insight
+Despite rapid progress on coding agents, progress on their multimodal counterparts has lagged behind. A key challenge is the scarcity of evaluation testbeds that combine the complexity of software development with the need for deep multimodal understanding. Game development provides such a testbed as agents must navigate large, dense codebases while manipulating intrinsically multimodal assets such as shaders, sprites, and animations within a visual game scene. We present GameDevBench, the first
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/arxiv-gamedevbench-evaluating-agentic-capabili
-```
+## Node.js implementation entry
+`node {baseDir}/scripts/run.js`

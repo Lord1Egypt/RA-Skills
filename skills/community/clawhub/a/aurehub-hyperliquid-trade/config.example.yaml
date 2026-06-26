@@ -1,0 +1,12 @@
+# Hyperliquid network configuration
+# Copy this file to ~/.aurehub/hyperliquid.yaml
+
+network: mainnet                          # mainnet | testnet
+api_url: https://api.hyperliquid.xyz      # override for testnet: https://api.hyperliquid-testnet.xyz
+# request_timeout_ms: 60000              # HTTP request timeout in ms (default 60000; set to 120000 if testnet times out)
+
+risk:
+  confirm_trade_usd: 100    # below: execute without prompting user
+  large_trade_usd: 1000     # at or above: double confirmation required
+  leverage_warn: 20         # leverage at or above this triggers extra warning
+  slippage_pct: 5           # IOC market order only: limit price offset (% above mid for buys, below for sells); does not affect GTC limit orders

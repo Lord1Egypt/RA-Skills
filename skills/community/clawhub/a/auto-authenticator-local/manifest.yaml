@@ -1,0 +1,15 @@
+name: "Auto Authenticator Local"
+slug: "auto-authenticator-local"
+version: "1.0.0"
+summary: "Local-first TOTP storage and code generation for OpenClaw users across major desktop platforms."
+tags:
+  - "totp"
+  - "authenticator"
+  - "security"
+  - "local-first"
+  - "privacy"
+license: "MIT"
+acceptLicenseTerms: true
+entry: "SKILL.md"
+homepage: "https://github.com/LucasZH7/auto-authenticator-local"
+repository: "https://github.com/LucasZH7/auto-authenticator-local"

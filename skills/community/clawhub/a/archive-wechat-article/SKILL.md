@@ -1,35 +1,66 @@
 ---
-name: "Archive Wechat Article"
-description: "Automation skill for Archive Wechat Article."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/archive-wechat-article"
-sourceUrl: "https://clawhub.ai/skills/archive-wechat-article"
----
 
-# Archive Wechat Article
+# 归档微信公众号文章
 
-> Automation skill for Archive Wechat Article.
+将微信公众号文章归档到知识库，并固化归档流程。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/archive-wechat-article`
-- **Source URL:** [https://clawhub.ai/skills/archive-wechat-article](https://clawhub.ai/skills/archive-wechat-article)
+## When to use this skill
+- 当用户需要归档微信公众号文章时
+- 当用户需要获取文章的完整内容时
+- 当用户希望创建标准流程文档记录归档操作步骤时
+- 当用户需要更新长期记忆文件记录归档方法和相关信息时
 
-## Overview
+## Steps
+1. 使用浏览器打开微信公众号文章，获取完整内容。
+   - 为什么：微信公众号文章因反爬限制，无法直接获取完整内容，需要手动打开浏览器获取。
+2. 更新归档文件，包含文章标题、作者、发布时间、核心特点、应用场景、使用步骤等信息。
+   - 为什么：确保归档文件包含所有必要信息，便于后续查阅和使用。
+3. 创建标准流程文档，记录归档操作步骤、命令序列示例、文件命名规范等。
+   - 为什么：固化归档流程，方便以后直接使用。
+4. 更新长期记忆文件，记录问题和解决方案、标准流程、文档位置、归档格式等信息。
+   - 为什么：记录归档方法和相关信息，便于长期记忆和回顾。
 
+## Pitfalls and solutions
+- ❌ 错误方法：直接使用微信公众号API获取文章内容。
+   - 为什么：微信公众号文章因反爬限制，无法通过API获取完整内容。
+   - ✅ 正确方法：使用浏览器手动打开文章获取完整内容。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/archive-wechat-article
+## Key code and configuration
+- 无
+
+## Environment and prerequisites
+- 无特殊环境要求，只需确保可以使用浏览器访问微信公众号文章。
+
+## Companion files
+- `Knowledge/02-Sources/2026-03-25_FreeSimpleGUI_Python_GUI库_GitHub.md` — 记录了微信公众号文章的归档信息。
+- `Knowledge/01-Knowledge/微信公众号文章归档流程.md` — 记录了归档操作步骤和注意事项。
+- `MEMORY.md` — 记录了归档方法和相关信息。
+
+## Task record
+
+Task title: 归档微信公众号文章
+Task summary:
+📌 Title / 标题
+归档微信公众号文章
+
+🎯 Goal / 目标
+将微信公众号文章归档到知识库，并固化归档流程。
+
+📋 Key Steps / 关键步骤
+1. 使用浏览器打开微信公众号文章，获取完整内容。
+2. 更新归档文件，包含文章标题、作者、发布时间、核心特点、应用场景、使用步骤等信息。
+3. 创建标准流程文档，记录归档操作步骤、命令序列示例、文件命名规范等。
+4. 更新长期记忆文件，记录归档方法和相关信息。
+5. 归档具体文章，如北京4月赏花指南、北京上海四季对比、苏州旅游攻略等，确保包含来源、发布时间、核心亮点、必打卡景点、街道推荐、小吃街、游船等详细信息。
+
+✅ Result / 结果
+- 完成了多篇微信公众号文章的归档，包括北京4月赏花指南、北京上海四季对比、苏州旅游攻略等。
+- 创建了标准流程文档，记录了归档操作步骤和注意事项。
+- 更新了长期记忆文件，记录了归档方法和相关信息。
+
+💡 Key Details / 关键细节
+- 使用浏览器打开微信公众号文章，获取完整内容。
+- 归档文件包含来源、发布时间、核心亮点、必打卡景点、街道推荐、小吃街、游船等详细信息。
+- 创建了标准流程文档，记录了归档操作步骤、命令序列示例、文件命名规范等。
+- 更新了长期记忆文件，记录了归档方法和相关信息。
 ```

@@ -1,0 +1,4 @@
+interface:
+  display_name: "AutoGLM Open Link"
+  short_description: "Open a web page and extract full text"
+  default_prompt: "Use $autoglm-open-link to fetch the full text of this page: https://example.com"

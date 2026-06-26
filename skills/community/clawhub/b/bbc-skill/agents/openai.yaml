@@ -1,0 +1,52 @@
+interface:
+  display_name: "Bilibili Comment Collector"
+  short_description: "Fetch all comments (top-level + nested + pinned) of Bilibili videos for UP主 self-analysis; zero dependencies, agent-native JSON CLI"
+  brand_color: "#00A1D6"
+
+policy:
+  allow_implicit_invocation: true
+
+capabilities:
+  - Fetch all comments for a single Bilibili video by BV number or URL
+  - Batch-fetch comments for every video of a UP主 (sequential, one video at a time)
+  - Include top-level comments, nested replies (楼中楼), and pinned comments
+  - Emit structured JSONL for comments + summary.json with video metadata
+  - Agent-native: stable JSON envelope on stdout, NDJSON progress on stderr
+  - Distinct exit codes (0 OK / 2 auth / 3 validation / 4 network)
+  - Dry-run preview for every fetch command (no network calls)
+  - Resume-safe: re-runs skip already-fetched pages
+  - Incremental mode via --since for monitoring UP的 new comments
+  - Randomised 5-10s cooldown between videos in batch mode to avoid risk control
+  - Read-only: never posts, edits, or deletes anything
+
+prerequisites:
+  - Python 3.9+ (stdlib only — zero pip install)
+  - Bilibili cookie (SESSDATA, bili_jct) via browser export — recommend
+    "Get cookies.txt LOCALLY" Chrome/Edge extension
+  - Optional — openssl + security CLI (macOS) for automatic Chrome cookie decryption
+
+safety:
+  tier: open
+  destructive_commands: []
+  notes:
+    - All commands are read-only
+    - Cookie values are never written to stdout; only cookie names appear in cookie-check output
+    - No shell-out to user-supplied strings
+    - Output is confined to the --output directory chosen by the user
+
+commands:
+  - name: fetch
+    summary: Fetch all comments for one video (BV or URL).
+    tier: open
+  - name: fetch-user
+    summary: Sequentially fetch comments for every video of a UP主.
+    tier: open
+  - name: summarize
+    summary: Rebuild summary.json from an existing comments.jsonl directory.
+    tier: open
+  - name: cookie-check
+    summary: Validate cookie and print logged-in user info.
+    tier: open
+  - name: schema
+    summary: Return JSON schema for a command (agent-discovery).
+    tier: open

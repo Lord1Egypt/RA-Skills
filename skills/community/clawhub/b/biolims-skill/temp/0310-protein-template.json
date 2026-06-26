@@ -1,0 +1,152 @@
+{
+  "templateName": "0310 Protein Detection Template",
+  "experimentType": "SYLX2026000001",
+  "experimentTypeName": "Protein Detection",
+  "experimentGroup": "SYRRYZ",
+  "experimentGroupName": "All Personnel Group",
+  "auditor": "approver",
+  "auditorName": "Reviewer",
+  "stepDetails": [
+    {
+      "name": "Sample Preparation",
+      "keyId": 0,
+      "jsonDatas": [
+        {
+          "label": "Sample Code",
+          "type": "input",
+          "size": "12",
+          "inputType": "text",
+          "exclusiveShow": "0"
+        },
+        {
+          "label": "Protein Concentration (mg/mL)",
+          "type": "input",
+          "size": "12",
+          "inputType": "number",
+          "exclusiveShow": "0"
+        }
+      ]
+    },
+    {
+      "name": "Electrophoresis",
+      "keyId": 0,
+      "jsonDatas": [
+        {
+          "label": "Gel Concentration (%)",
+          "type": "input",
+          "size": "12",
+          "inputType": "number",
+          "exclusiveShow": "0"
+        },
+        {
+          "label": "Voltage (V)",
+          "type": "input",
+          "size": "12",
+          "inputType": "number",
+          "exclusiveShow": "0"
+        }
+      ]
+    },
+    {
+      "name": "Membrane Transfer",
+      "keyId": 0,
+      "jsonDatas": [
+        {
+          "label": "Membrane Type",
+          "type": "input",
+          "size": "12",
+          "inputType": "text",
+          "exclusiveShow": "0"
+        },
+        {
+          "label": "Current (mA)",
+          "type": "input",
+          "size": "12",
+          "inputType": "number",
+          "exclusiveShow": "0"
+        }
+      ]
+    },
+    {
+      "name": "Blocking",
+      "keyId": 0,
+      "jsonDatas": [
+        {
+          "label": "Blocking Solution",
+          "type": "input",
+          "size": "12",
+          "inputType": "text",
+          "exclusiveShow": "0"
+        },
+        {
+          "label": "Time (h)",
+          "type": "input",
+          "size": "12",
+          "inputType": "number",
+          "exclusiveShow": "0"
+        }
+      ]
+    },
+    {
+      "name": "Primary Antibody Incubation",
+      "keyId": 0,
+      "jsonDatas": [
+        {
+          "label": "Primary Antibody Name",
+          "type": "input",
+          "size": "12",
+          "inputType": "text",
+          "exclusiveShow": "0"
+        },
+        {
+          "label": "Dilution Ratio",
+          "type": "input",
+          "size": "12",
+          "inputType": "text",
+          "exclusiveShow": "0"
+        }
+      ]
+    },
+    {
+      "name": "Secondary Antibody Incubation",
+      "keyId": 0,
+      "jsonDatas": [
+        {
+          "label": "Secondary Antibody Name",
+          "type": "input",
+          "size": "12",
+          "inputType": "text",
+          "exclusiveShow": "0"
+        },
+        {
+          "label": "Dilution Ratio",
+          "type": "input",
+          "size": "12",
+          "inputType": "text",
+          "exclusiveShow": "0"
+        }
+      ]
+    },
+    {
+      "name": "Development Detection",
+      "keyId": 0,
+      "jsonDatas": [
+        {
+          "label": "Developer Solution",
+          "type": "input",
+          "size": "12",
+          "inputType": "text",
+          "exclusiveShow": "0"
+        },
+        {
+          "label": "Result",
+          "type": "select",
+          "size": "12",
+          "inputType": "text",
+          "exclusiveShow": "0",
+          "menuList": "[{\"label\":\"Positive\",\"value\":\"Positive\"},{\"label\":\"Negative\",\"value\":\"Negative\"},{\"label\":\"Weak Positive\",\"value\":\"Weak Positive\"}]"
+        }
+      ]
+    }
+  ]
+}

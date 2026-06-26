@@ -1,0 +1,65 @@
+{
+  "name": "autothink",
+  "description": "Automatically adjust thinking level based on message complexity. Intelligently switches between low/medium/high thinking modes.",
+  "version": "1.0.0",
+  "author": "大青龙",
+  "homepage": "https://github.com/openclaw/openclaw-autothink",
+  "triggers": [
+    "autothink",
+    "auto think",
+    "thinking mode"
+  ],
+  "capabilities": [
+    "message_preprocessor"
+  ],
+  "entry": {
+    "file": "src/index.js",
+    "function": "processMessage"
+  },
+  "dependencies": {
+    "node": ">=18.0.0"
+  },
+  "settings": {
+    "defaultThresholds": {
+      "shortLength": 50,
+      "mediumLength": 200,
+      "complexKeywords": [
+        "分析",
+        "设计",
+        "架构",
+        "复杂",
+        "详细",
+        "深入",
+        "解释",
+        "为什么",
+        "如何",
+        "比较",
+        "评估",
+        "推理",
+        "证明",
+        "算法",
+        "优化",
+        "重构"
+      ],
+      "techKeywords": [
+        "代码",
+        "程序",
+        "系统",
+        "数据库",
+        "API",
+        "前端",
+        "后端",
+        "部署",
+        "安全",
+        "性能",
+        "并发",
+        "分布式",
+        "微服务",
+        "容器",
+        "Kubernetes",
+        "Docker"
+      ]
+    },
+    "fallbackThinking": "low"
+  }
+}

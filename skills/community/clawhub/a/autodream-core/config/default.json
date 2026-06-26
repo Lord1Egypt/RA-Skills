@@ -1,0 +1,26 @@
+{
+  "name": "autodream-core",
+  "version": "1.0.0",
+  "description": "通用记忆整理引擎核心库",
+  "author": "research AGENT",
+  "license": "MIT",
+  "platforms": ["openclaw", "claude-code", "custom"],
+  "config": {
+    "trigger": {
+      "hours_since_last_run": 24,
+      "min_sessions_since_last": 5,
+      "memory_md_max_lines": 200
+    },
+    "limits": {
+      "session_scan_interval_ms": 600000,
+      "max_memory_files": 200,
+      "frontmatter_max_lines": 30
+    },
+    "features": {
+      "enable_contradiction_detection": true,
+      "enable_stale_detection": true,
+      "enable_relative_date_parsing": true,
+      "enable_analytics": true
+    }
+  }
+}

@@ -1,0 +1,222 @@
+{
+  "as_of": "2026-03-14",
+  "source_notes": [
+    "Bundled summary derived from AssemblyAI documentation current as of 2026-03-14.",
+    "Use raw --config / --request fields if AssemblyAI adds new parameters before this skill is updated."
+  ],
+  "regions": {
+    "stt": {
+      "us": "https://api.assemblyai.com",
+      "eu": "https://api.eu.assemblyai.com"
+    },
+    "llm_gateway": {
+      "us": "https://llm-gateway.assemblyai.com",
+      "eu": "https://llm-gateway.eu.assemblyai.com"
+    }
+  },
+  "speech_models": [
+    {
+      "id": "universal-3-pro",
+      "summary": "Highest-accuracy pre-recorded STT model in AssemblyAI docs, with advanced prompting, larger keyterm limits, and built-in code switching across its supported languages.",
+      "recommended_when": [
+        "You want the highest documented accuracy",
+        "You need prompt guidance",
+        "You need keyterms prompting at larger scale",
+        "You are transcribing English, Spanish, French, German, Italian, or Portuguese"
+      ],
+      "supported_languages_note": "Supported across 6 language families: English, Spanish, French, German, Italian, Portuguese, including major regional variants.",
+      "language_families": [
+        "English: American, British, Australian",
+        "Spanish: Castilian, Mexican, Argentine, Colombian, Chilean, Caribbean, Spanglish",
+        "French: Metropolitan, Quebecois, Belgian",
+        "German",
+        "Italian: Standard",
+        "Portuguese: Brazilian, European"
+      ],
+      "supported_language_codes_hint": [
+        "en",
+        "en_us",
+        "en_uk",
+        "en_au",
+        "es",
+        "fr",
+        "de",
+        "it",
+        "pt"
+      ],
+      "prompting": "Documented prompt support up to 1,500 words",
+      "keyterms_limit": "Up to 1,000 keyterms",
+      "features": [
+        "built-in code switching",
+        "speaker diarisation",
+        "multichannel",
+        "custom spelling",
+        "speech understanding",
+        "topic / key phrase / entity / sentiment tasks"
+      ]
+    },
+    {
+      "id": "universal-2",
+      "summary": "Wide-coverage pre-recorded STT model with 99-language support and documented automatic language detection.",
+      "recommended_when": [
+        "You need broadest language coverage",
+        "You are routing as a fallback behind Universal-3-Pro",
+        "You need AssemblyAI support for languages outside U3 Pro coverage"
+      ],
+      "supported_languages_note": "99-language coverage across high/good/moderate/fair accuracy bands in AssemblyAI docs.",
+      "keyterms_limit": "Up to 200 keyterms",
+      "features": [
+        "automatic language detection",
+        "code switching via language detection options",
+        "speaker diarisation",
+        "multichannel",
+        "custom spelling",
+        "topic / key phrase / entity / sentiment tasks"
+      ],
+      "language_accuracy_bands": {
+        "high_accuracy": [
+          "English",
+          "Spanish",
+          "French",
+          "German",
+          "Indonesian",
+          "Italian",
+          "Japanese",
+          "Dutch",
+          "Polish",
+          "Portuguese",
+          "Russian",
+          "Turkish",
+          "Ukrainian",
+          "Catalan"
+        ],
+        "good_accuracy": [
+          "Arabic",
+          "Azerbaijani",
+          "Bulgarian",
+          "Bosnian",
+          "Mandarin Chinese",
+          "Czech",
+          "Danish",
+          "Greek",
+          "Estonian",
+          "Finnish",
+          "Galician",
+          "Hindi",
+          "Croatian",
+          "Hungarian",
+          "Korean",
+          "Macedonian",
+          "Malay",
+          "Norwegian",
+          "Romanian",
+          "Slovak",
+          "Swedish",
+          "Swiss German",
+          "Tagalog",
+          "Thai",
+          "Urdu",
+          "Vietnamese"
+        ],
+        "moderate_accuracy": [
+          "Afrikaans",
+          "Belarusian",
+          "Welsh",
+          "Persian / Farsi",
+          "Hebrew",
+          "Armenian",
+          "Icelandic",
+          "Kazakh",
+          "Lithuanian",
+          "Latvian",
+          "Maori",
+          "Marathi",
+          "Slovenian",
+          "Swahili",
+          "Tamil"
+        ],
+        "fair_accuracy": [
+          "Amharic",
+          "Assamese",
+          "Bengali",
+          "Gujarati",
+          "Hausa",
+          "Javanese",
+          "Georgian",
+          "Khmer",
+          "Kannada",
+          "Luxembourgish",
+          "Lingala",
+          "Lao",
+          "Malayalam",
+          "Mongolian",
+          "Maltese",
+          "Burmese",
+          "Nepali",
+          "Occitan",
+          "Punjabi",
+          "Pashto",
+          "Sindhi",
+          "Shona",
+          "Somali",
+          "Serbian",
+          "Telugu",
+          "Tajik",
+          "Uzbek",
+          "Yoruba"
+        ]
+      }
+    }
+  ],
+  "routing_recipes": [
+    {
+      "name": "Best general default",
+      "request": {
+        "speech_models": [
+          "universal-3-pro",
+          "universal-2"
+        ],
+        "language_detection": true
+      },
+      "description": "Route to Universal-3-Pro for supported languages and fall back to Universal-2 elsewhere."
+    },
+    {
+      "name": "Known U3 language",
+      "request": {
+        "speech_model": "universal-3-pro",
+        "language_code": "en_us"
+      },
+      "description": "Use a single U3 Pro request when you already know the language is covered."
+    },
+    {
+      "name": "Meeting / interview with named speakers",
+      "request": {
+        "speech_models": [
+          "universal-3-pro",
+          "universal-2"
+        ],
+        "language_detection": true,
+        "speaker_labels": true,
+        "speech_understanding": {
+          "request": {
+            "speaker_identification": {
+              "speaker_type": "role",
+              "known_values": [
+                "host",
+                "guest"
+              ]
+            }
+          }
+        }
+      },
+      "description": "Diarise, then ask AssemblyAI to map generic speakers to names or roles."
+    }
+  ],
+  "llm_gateway": {
+    "summary": "AssemblyAI LLM Gateway provides a unified chat completions interface and structured outputs. EU LLM Gateway supports Claude and Gemini families; OpenAI models are documented on the US gateway.",
+    "notes": [
+      "Summarisation fields on the transcription API are deprecated; use LLM Gateway instead.",
+      "The gateway only sees the text you send it, so this skill can format speaker-aware transcript text before calling it."
+    ]
+  }
+}

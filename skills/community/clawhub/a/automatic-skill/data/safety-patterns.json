@@ -1,0 +1,30 @@
+[
+  {
+    "id": "ECHO_TOKEN",
+    "pattern": "echo\\s+\\$[A-Z_]*TOKEN",
+    "severity": "HIGH",
+    "description": "Command that prints a token value to stdout",
+    "fix": "Remove the echo command. Use 'gh auth status' or 'clawhub whoami' to verify auth without printing token values."
+  },
+  {
+    "id": "BASE64_DECODE",
+    "pattern": "base64\\s+-d",
+    "severity": "HIGH",
+    "description": "base64 decoding — may expose credential content",
+    "fix": "Replace with a --jq query that reads metadata fields (name, size, encoding) instead of decoding raw content."
+  },
+  {
+    "id": "HEAD_TOKEN_PREVIEW",
+    "pattern": "head\\s+-c\\s+\\d+.*TOKEN",
+    "severity": "MEDIUM",
+    "description": "Reading the first N bytes of a token variable",
+    "fix": "Remove head -c N. If verifying a token is set, use the CLI auth command instead."
+  },
+  {
+    "id": "HARDCODED_SECRET",
+    "pattern": "(ghp_|github_pat_|xoxb-|sk-)[A-Za-z0-9]{10,}",
+    "severity": "HIGH",
+    "description": "Hardcoded credential value detected (GitHub token, Slack token, etc.)",
+    "fix": "Remove the hardcoded credential. Reference it by env var name instead (e.g. $GITHUB_TOKEN)."
+  }
+]

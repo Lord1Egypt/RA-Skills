@@ -1,0 +1,97 @@
+{
+  "name": "bazhuayu-rpa-webhook",
+  "version": "2.0.6",
+  "description": "八爪鱼 RPA Webhook 调用工具 - 通过 Webhook 触发八爪鱼 RPA 任务运行，支持自定义参数传递",
+  "description_en": "Octoparse RPA Webhook Tool - Trigger RPA tasks via Webhook with custom parameters",
+  "main": "bazhuayu-webhook.py",
+  "scripts": {
+    "init": "python3 bazhuayu-webhook.py init",
+    "run": "python3 bazhuayu-webhook.py run",
+    "test": "python3 bazhuayu-webhook.py test",
+    "config": "python3 bazhuayu-webhook.py config",
+    "secure-check": "python3 bazhuayu-webhook.py secure-check",
+    "setup": "./setup-secure.sh",
+    "migrate": "./migrate-to-env.sh"
+  },
+  "keywords": [
+    "rpa",
+    "八爪鱼",
+    "octoparse",
+    "webhook",
+    "automation",
+    "自动化",
+    "数据采集"
+  ],
+  "author": "OpenClaw Community",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/blogwebsem/bazhuayu-rpa-webhook",
+    "directory": "."
+  },
+  "engines": {
+    "python": ">=3.6",
+    "node": ">=14"
+  },
+  "os": [
+    "linux",
+    "darwin",
+    "win32"
+  ],
+  "clawhub": {
+    "slug": "bazhuayu-webhook",
+    "category": "automation",
+    "tags": [
+      "rpa",
+      "webhook",
+      "octoparse",
+      "automation",
+      "security"
+    ],
+    "features": [
+      "Webhook 触发 RPA 任务",
+      "自定义参数传递",
+      "环境变量安全存储",
+      "自动签名计算",
+      "安全检查工具"
+    ],
+    "requirements": {
+      "python": true,
+      "env": [
+        "BAZHUAYU_WEBHOOK_URL (必需)",
+        "BAZHUAYU_WEBHOOK_KEY (必需)"
+      ]
+    },
+    "install_steps": [
+      {
+        "id": "copy-skill",
+        "kind": "copy",
+        "label": "复制 Skill 目录",
+        "description": "将 bazhuayu-webhook 目录复制到你的技能目录"
+      },
+      {
+        "id": "run-setup",
+        "kind": "exec",
+        "command": "./setup-secure.sh",
+        "label": "运行安全配置向导",
+        "description": "按提示输入 Webhook URL 和签名密钥"
+      }
+    ]
+  },
+  "files": [
+    "bazhuayu-webhook.py",
+    "bazhuayu-webhook",
+    "setup-secure.sh",
+    "migrate-to-env.sh",
+    "config.example.json",
+    ".gitignore",
+    "README.md",
+    "QUICKSTART.md",
+    "SECURITY.md",
+    "MANUAL.md",
+    "MANUAL_SETUP.md",
+    "WEBHOOK_SETUP.md",
+    "SKILL.md"
+  ],
+  "release_notes": "v2.0.6 Bug 修复 - 修复企业 ID 显示错误 (NameError: enterpriseId not defined)"
+}

@@ -1,0 +1,38 @@
+{
+  "name": "auto-heal",
+  "version": "1.0.0",
+  "description": "全天自动监控 OpenClaw 状态，检测到卡死自动修复 - 让你的 AI 助手 7x24 小时稳定运行",
+  "main": "index.js",
+  "scripts": {
+    "start": "node monitor.js",
+    "monitor": "node monitor.js",
+    "check": "node monitor.js --check-once",
+    "install": "node install.js",
+    "test": "node test.js"
+  },
+  "keywords": [
+    "openclaw",
+    "health",
+    "monitor",
+    "auto-heal",
+    "daemon",
+    "watchdog",
+    "stability",
+    "production"
+  ],
+  "author": "OpenClaw Community",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw-community/auto-heal"
+  },
+  "bugs": {
+    "url": "https://github.com/openclaw-community/auto-heal/issues"
+  },
+  "homepage": "https://github.com/openclaw-community/auto-heal#readme",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "categories": ["devops", "monitoring", "production"],
+  "pricing": "free"
+}

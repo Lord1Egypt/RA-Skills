@@ -1,35 +1,126 @@
 ---
-name: "Baby Words Tracker"
-description: "记录和追踪宝宝学说话过程的智能助手。当用户说"记宝宝说/说了"或"记录宝宝词汇"时自动触发。支持多种语言（普通话、粤语、英语等），自动分类统计单字词、双字词、三字词和句子，支持括号标注法（如"（手）机"表示宝宝只发了"机"字），自动同步到飞书云文档，并生成语言发展报告。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/baby-words-tracker"
-sourceUrl: "https://clawhub.ai/skills/baby-words-tracker"
+name: baby-words-tracker
+version: 1.0.0
+description: 记录和追踪宝宝学说话过程的智能助手。当用户说"记宝宝说/说了"或"记录宝宝词汇"时自动触发。支持多种语言（普通话、粤语、英语等），自动分类统计单字词、双字词、三字词和句子，支持括号标注法（如"（手）机"表示宝宝只发了"机"字），自动同步到飞书云文档，并生成语言发展报告。
 ---
 
-# Baby Words Tracker
+# 宝宝语言追踪器 (Baby Words Tracker)
 
-> 记录和追踪宝宝学说话过程的智能助手。当用户说"记宝宝说/说了"或"记录宝宝词汇"时自动触发。支持多种语言（普通话、粤语、英语等），自动分类统计单字词、双字词、三字词和句子，支持括号标注法（如"（手）机"表示宝宝只发了"机"字），自动同步到飞书云文档，并生成语言发展报告。
+一个帮助父母记录宝宝学说话过程的工具，自动分类统计，生成发展报告。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/baby-words-tracker`
-- **Source URL:** [https://clawhub.ai/skills/baby-words-tracker](https://clawhub.ai/skills/baby-words-tracker)
+## 核心功能
 
-## Overview
+1. **词汇记录**：接收宝宝新学的词汇
+2. **智能分类**：自动识别单字/双字/三字/句子
+3. **括号标注**：支持（补充）格式，如"（手）机"表示宝宝只发了"机"
+4. **多语言支持**：普通话、粤语、英语等
+5. **自动去重**：检测重复词汇，避免重复记录
+6. **飞书同步**：自动更新飞书云文档
+7. **统计报告**：实时显示词汇量和发展趋势
 
+## 数据结构
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/baby-words-tracker
+数据库文件：`memory/baby-words-database.json`
+
+```json
+{
+  "childName": "宝宝",
+  "birthDate": "2024-04-01",
+  "currentAge": "2岁",
+  "totalWords": 114,
+  "byLanguage": {
+    "普通话": {
+      "单字": { "count": 75, "words": [...] },
+      "双字": { "count": 31, "words": [...] },
+      "三字": { "count": 5, "words": [...] },
+      "句子": { "count": 0, "words": [] }
+    },
+    "广东话": {...},
+    "英语": {...}
+  },
+  "wordRegistry": {
+    "词汇": {
+      "firstRecorded": "2026-04-09",
+      "language": "普通话",
+      "category": "单字",
+      "totalMentions": 1
+    }
+  }
+}
+```
+
+## 记录格式
+
+### 触发方式
+- "记宝宝说了：词汇1、词汇2"
+- "记宝宝的话：词汇 语言"
+- "记宝宝说话：词汇"
+
+### 括号标注法
+当宝宝只说了一个词的一部分时：
+- "（手）机" → 统计为单字"机"，显示为"（手）机"
+- "（幼儿）园" → 统计为单字"园"，显示为"（幼儿）园"
+
+### 多语言标注
+- "伞 粤语" → 记录到广东话
+- "ball 英语" → 记录到英语
+- 默认：普通话
+
+## 工作流程
+
+当用户触发记录时：
+
+1. **解析输入**：提取词汇列表和语言
+2. **检查重复**：查询 wordRegistry 避免重复
+3. **分类统计**：
+   - 无括号且1字 → 单字
+   - 无括号且2字 → 双字
+   - 无括号且3字 → 三字
+   - 有括号 → 按括号外字数统计，保留完整形式
+4. **更新数据库**：写入 baby-words-database.json
+5. **同步飞书**：更新云文档
+6. **返回报告**：显示新增词汇和最新统计
+
+## 统计维度
+
+| 类别 | 说明 | 示例 |
+|------|------|------|
+| 单字词 | 一个字 | 妈、爸、吃 |
+| 双字词 | 两个字 | 妈妈、吃饭 |
+| 三字词 | 三个字 | 吃饭饭、一点点 |
+| 句子 | 四字及以上 | 我要吃饭 |
+
+## 飞书同步
+
+自动更新飞书文档，包含：
+- 总体统计表格
+- 各语言分类列表
+- 今日新增词汇
+- 发展趋势分析
+
+## 示例
+
+**输入**：
+> 记宝宝说了：（手）机、ball 英语、一点点
+
+**处理**：
+1. （手）机 → 单字"机"，新增
+2. ball → 英语单词，新增
+3. 一点点 → 三字词，新增
+
+**输出**：
+```
+搞定！✅
+
+本次新增
+- 单字：（手）机
+- 英语：ball
+- 三字：一点点
+
+📊 最新统计
+- 单字词：75个 | 双字词：31个 | 三字词：5个
+- 英语：7个
+- 总词汇量：114个
+
+飞书已同步 ✓
 ```

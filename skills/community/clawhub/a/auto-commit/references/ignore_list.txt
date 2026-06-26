@@ -1,0 +1,13 @@
+# Auto-Commit Ignore List
+
+# Add patterns of files or directories that should NOT be automatically committed.
+# These will be passed to `git reset` if they are accidentally staged.
+
+.env
+*.pem
+*.key
+node_modules/
+dist/
+build/
+.gemini/
+*.skill

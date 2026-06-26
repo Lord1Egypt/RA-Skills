@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Eval Set Review - blueprint</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600&family=Lora:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Lora', Georgia, serif; background: #faf9f5; padding: 2rem; color: #141413; }
+    h1 { font-family: 'Poppins', sans-serif; margin-bottom: 0.5rem; font-size: 1.5rem; }
+    .description { color: #b0aea5; margin-bottom: 1.5rem; font-style: italic; max-width: 900px; }
+    .controls { margin-bottom: 1rem; display: flex; gap: 0.5rem; }
+    .btn { font-family: 'Poppins', sans-serif; padding: 0.5rem 1rem; border: none; border-radius: 6px; cursor: pointer; font-size: 0.875rem; font-weight: 500; }
+    .btn-add { background: #6a9bcc; color: white; }
+    .btn-add:hover { background: #5889b8; }
+    .btn-export { background: #d97757; color: white; }
+    .btn-export:hover { background: #c4613f; }
+    table { width: 100%; max-width: 1100px; border-collapse: collapse; background: white; border-radius: 6px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
+    th { font-family: 'Poppins', sans-serif; background: #141413; color: #faf9f5; padding: 0.75rem 1rem; text-align: left; font-size: 0.875rem; }
+    td { padding: 0.75rem 1rem; border-bottom: 1px solid #e8e6dc; vertical-align: top; }
+    tr:nth-child(even) td { background: #faf9f5; }
+    tr:hover td { background: #f3f1ea; }
+    .section-header td { background: #e8e6dc; font-family: 'Poppins', sans-serif; font-weight: 500; font-size: 0.8rem; color: #141413; text-transform: uppercase; letter-spacing: 0.05em; }
+    .query-input { width: 100%; padding: 0.4rem; border: 1px solid #e8e6dc; border-radius: 4px; font-size: 0.875rem; font-family: 'Lora', Georgia, serif; resize: vertical; min-height: 60px; }
+    .query-input:focus { outline: none; border-color: #d97757; box-shadow: 0 0 0 2px rgba(217,119,87,0.15); }
+    .toggle { position: relative; display: inline-block; width: 44px; height: 24px; }
+    .toggle input { opacity: 0; width: 0; height: 0; }
+    .toggle .slider { position: absolute; inset: 0; background: #b0aea5; border-radius: 24px; cursor: pointer; transition: 0.2s; }
+    .toggle .slider::before { content: ""; position: absolute; width: 18px; height: 18px; left: 3px; bottom: 3px; background: white; border-radius: 50%; transition: 0.2s; }
+    .toggle input:checked + .slider { background: #d97757; }
+    .toggle input:checked + .slider::before { transform: translateX(20px); }
+    .btn-delete { background: #c44; color: white; padding: 0.3rem 0.6rem; border: none; border-radius: 4px; cursor: pointer; font-size: 0.75rem; font-family: 'Poppins', sans-serif; }
+    .btn-delete:hover { background: #a33; }
+    .summary { margin-top: 1rem; color: #b0aea5; font-size: 0.875rem; }
+  </style>
+</head>
+<body>
+  <h1>Eval Set Review: <span id="skill-name">blueprint</span></h1>
+  <p class="description">Current description: Requirements specification (Spec) and RFC refinement workflow. Trigger this skill when user needs to refine, complete, or create a requirements specification or technical design document.</p>
+
+  <div class="controls">
+    <button class="btn btn-add" onclick="addRow()">+ Add Query</button>
+    <button class="btn btn-export" onclick="exportEvalSet()">Export Eval Set</button>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th style="width:65%">Query</th>
+        <th style="width:18%">Should Trigger</th>
+        <th style="width:10%">Actions</th>
+      </tr>
+    </thead>
+    <tbody id="eval-body"></tbody>
+  </table>
+
+  <p class="summary" id="summary"></p>
+
+  <script>
+    const EVAL_DATA = [
+      {"query": "我想给 ai-agent 加一个 K8s preStop hook，保证 Pod 退出时数据一致性。如果失败就死循环阻塞。你帮我想想怎么实现，先别急着写代码。", "should_trigger": true},
+      {"query": "帮我画个蓝图，我们要做一个新的文件同步功能，需要支持增量同步和冲突检测。这个需求比较复杂，你先帮我理一下思路。", "should_trigger": true},
+      {"query": "我要写个技术方案，关于如何把现有的同步 API 改成异步的。涉及到好几个模块，你帮我分析一下影响范围和改动点。", "should_trigger": true},
+      {"query": "这个需求怎么做？用户希望能在离线状态下继续编辑，等网络恢复后自动同步。涉及到本地存储、冲突解决、状态管理，你帮我想想。", "should_trigger": true},
+      {"query": "帮我写个 RFC，我们要把 Session 的超时逻辑从固定时间改成基于活跃度的动态超时。这个改动会影响好几个服务，需要仔细设计。", "should_trigger": true},
+      {"query": "我有个模糊的想法：想让 Explorer 支持多仓库同时浏览。你能帮我梳理一下需求吗？我不太确定具体要做哪些事情。", "should_trigger": true},
+      {"query": "先做个设计再写代码。我们要加一个审计日志功能，记录用户的所有敏感操作。你帮我分析一下技术方案。", "should_trigger": true},
+      {"query": "需求分析一下：我们想把现有的 REST API 迁移到 gRPC，但要保持向后兼容。这个改动挺大的，你帮我想想怎么分阶段做。", "should_trigger": true},
+      {"query": "这个功能设计有点复杂，你帮我想清楚再做。我们要支持多租户隔离，包括数据隔离、配额管理、权限控制。", "should_trigger": true},
+      {"query": "帮我完善一下这个 Spec，我写了个草稿但感觉不够完整。主要是关于消息队列的重试机制和死信处理。", "should_trigger": true},
+      {"query": "帮我修一个 bug，用户反馈说文件上传有时候会卡住。我看了下日志，好像是超时设置的问题。", "should_trigger": false},
+      {"query": "这个函数怎么写？我需要一个工具函数来解析 JSON 配置文件，支持注释和环境变量替换。", "should_trigger": false},
+      {"query": "帮我 review 一下这段代码，我觉得性能可能有问题，你看看有没有优化空间。", "should_trigger": false},
+      {"query": "我要加一行日志，记录一下请求的耗时。就在 handleRequest 函数里加个 log.info 就行。", "should_trigger": false},
+      {"query": "帮我写个单元测试，测试 UserService 的 createUser 方法，覆盖正常和异常情况。", "should_trigger": false},
+      {"query": "这个接口返回的 JSON 格式不对，应该是 { data: [...] } 而不是 { items: [...] }。帮我改一下。", "should_trigger": false},
+      {"query": "帮我把这个 Python 脚本转成 Bash，功能一样就行，不需要太复杂。", "should_trigger": false},
+      {"query": "我要部署这个服务到 K8s，帮我写个 Deployment YAML 和 Service YAML。", "should_trigger": false},
+      {"query": "帮我查一下这个错误是什么意思：ConnectionResetError: [Errno 104] Connection reset by peer", "should_trigger": false},
+      {"query": "我想重构一下这个模块的代码结构，但功能不变。你觉得应该怎么拆分比较好？", "should_trigger": false}
+    ];
+
+    let evalItems = [...EVAL_DATA];
+
+    function render() {
+      const tbody = document.getElementById('eval-body');
+      tbody.innerHTML = '';
+
+      const sorted = evalItems
+        .map((item, origIdx) => ({ ...item, origIdx }))
+        .sort((a, b) => (b.should_trigger ? 1 : 0) - (a.should_trigger ? 1 : 0));
+
+      let lastGroup = null;
+      sorted.forEach(item => {
+        const group = item.should_trigger ? 'trigger' : 'no-trigger';
+        if (group !== lastGroup) {
+          const headerRow = document.createElement('tr');
+          headerRow.className = 'section-header';
+          headerRow.innerHTML = `<td colspan="3">${item.should_trigger ? 'Should Trigger' : 'Should NOT Trigger'}</td>`;
+          tbody.appendChild(headerRow);
+          lastGroup = group;
+        }
+
+        const idx = item.origIdx;
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td><textarea class="query-input" onchange="updateQuery(${idx}, this.value)">${escapeHtml(item.query)}</textarea></td>
+          <td>
+            <label class="toggle">
+              <input type="checkbox" ${item.should_trigger ? 'checked' : ''} onchange="updateTrigger(${idx}, this.checked)">
+              <span class="slider"></span>
+            </label>
+            <span style="margin-left:8px;font-size:0.8rem;color:#b0aea5">${item.should_trigger ? 'Yes' : 'No'}</span>
+          </td>
+          <td><button class="btn-delete" onclick="deleteRow(${idx})">Delete</button></td>
+        `;
+        tbody.appendChild(tr);
+      });
+      updateSummary();
+    }
+
+    function escapeHtml(text) {
+      const div = document.createElement('div');
+      div.textContent = text;
+      return div.innerHTML;
+    }
+
+    function updateQuery(idx, value) { evalItems[idx].query = value; updateSummary(); }
+    function updateTrigger(idx, value) { evalItems[idx].should_trigger = value; render(); }
+    function deleteRow(idx) { evalItems.splice(idx, 1); render(); }
+
+    function addRow() {
+      evalItems.push({ query: '', should_trigger: true });
+      render();
+      const inputs = document.querySelectorAll('.query-input');
+      inputs[inputs.length - 1].focus();
+    }
+
+    function updateSummary() {
+      const trigger = evalItems.filter(i => i.should_trigger).length;
+      const noTrigger = evalItems.filter(i => !i.should_trigger).length;
+      document.getElementById('summary').textContent =
+        `${evalItems.length} queries total: ${trigger} should trigger, ${noTrigger} should not trigger`;
+    }
+
+    function exportEvalSet() {
+      const valid = evalItems.filter(i => i.query.trim() !== '');
+      const data = valid.map(i => ({ query: i.query.trim(), should_trigger: i.should_trigger }));
+      const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'eval_set.json';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    }
+
+    render();
+  </script>
+</body>
+</html>

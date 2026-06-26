@@ -1,0 +1,20 @@
+{
+  "name": "bilibili-subtitle-analysis",
+  "version": "1.0.0",
+  "description": "B站字幕下载分析工具 - 基于 biliSub 项目",
+  "main": "index.js",
+  "scripts": {
+    "download": "node index.js download",
+    "analyze": "node index.js analyze",
+    "batch": "node index.js batch"
+  },
+  "keywords": [
+    "bilibili",
+    "subtitle",
+    "analysis",
+    "bilisub"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {}
+}

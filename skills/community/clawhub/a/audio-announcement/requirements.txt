@@ -1,0 +1,2 @@
+# Editable install
+-e .

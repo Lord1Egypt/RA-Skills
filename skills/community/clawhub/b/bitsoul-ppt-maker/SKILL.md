@@ -1,35 +1,69 @@
 ---
-name: "bitsoul ppt 制作器"
-description: "将用户的内容一键生成罗振宇风格的ppt演讲稿，当用户需要生成ppt时，输出一个完整科技风格的ppt"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/bitsoul-ppt-maker"
-sourceUrl: "https://clawhub.ai/skills/bitsoul-ppt-maker"
+name: bitsoul-ppt-maker
+description: 将用户的内容一键生成罗振宇风格的ppt演讲稿，当用户需要生成ppt时，输出一个完整科技风格的ppt
 ---
 
-# bitsoul ppt 制作器
+# PPT maker
 
-> 将用户的内容一键生成罗振宇风格的ppt演讲稿，当用户需要生成ppt时，输出一个完整科技风格的ppt
+将用户的内容一键生成罗振宇风格的ppt演讲稿
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/bitsoul-ppt-maker`
-- **Source URL:** [https://clawhub.ai/skills/bitsoul-ppt-maker](https://clawhub.ai/skills/bitsoul-ppt-maker)
+## 设计哲学
 
-## Overview
+- **一屏只讲一件事**
+- **深色背景 + 白色文字**
+- **禁止密集排版**
 
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/bitsoul-ppt-maker
-```
+## 生成流程（必须严格遵循）
+
+### Step 1: 读取讲稿
+读取用户原始讲稿，不修改原稿内容。
+
+### Step 2: 生成提炼版讲稿
+将内容精简、增强冲击力、适配演示场景，输出ppt描述
+
+### Step 3: 生成罗振宇风格的标题
+为每个章节生成标题，必须满足：
+- ≤12 字
+- 采用以下形式之一：对比式、问题式、断言式、数字式、比喻式
+- 自检：是否让人想继续听？
+
+### Step 4: 设计幻灯片结构
+规划页面顺序和类型，请参考网上流出的罗振宇ppt
+
+### Step 5: 生成ppt
+
+## 视觉规范速查
+
+| 项目 | 规范 |
+|------|------|
+| 比例 | 9:16 竖屏 |
+| 背景 | #000000 或 #0a0a0a + 模糊光斑动画 |
+| 主文字 | #ffffff |
+| 辅助文字 | #9ca3af |
+| 中文字体 | HarmonyOS Sans SC / 思源黑体 |
+| 英文字体 | Inter / Roboto |
+| 标题字重 | font-black / font-bold |
+| 正文字重 | font-light / font-normal |
+
+
+## 交互要求
+
+- 键盘 ← → 翻页
+- 底部进度导航条
+- 平滑切换动画
+
+## 技术栈
+
+- TailwindCSS（国内CDN）
+- 复杂页面使用 Vue3（CDN）
+- 单个HTML文件，可直接打开运行
+
+## 严禁行为
+
+- 堆字 / 密集排版
+- 花哨配色
+- 复杂图表
+- 横屏比例
+- 偏离极简科技风
+

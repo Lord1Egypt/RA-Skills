@@ -1,35 +1,57 @@
 ---
-name: "Benchmark Tool"
+name: "benchmark-tool"
+version: "3.0.0"
 description: "Benchmark CPU, memory, disk I/O, and network on your system. Use when measuring server performance."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/benchmark-tool"
-sourceUrl: "https://clawhub.ai/skills/benchmark-tool"
+author: "BytesAgain"
+homepage: "https://bytesagain.com"
 ---
 
-# Benchmark Tool
+# benchmark-tool
 
-> Benchmark CPU, memory, disk I/O, and network on your system. Use when measuring server performance.
+Benchmark CPU, memory, disk I/O, and network on your system. Use when measuring server performance.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/benchmark-tool`
-- **Source URL:** [https://clawhub.ai/skills/benchmark-tool](https://clawhub.ai/skills/benchmark-tool)
+## Commands
 
-## Overview
+### `cpu`
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/benchmark-tool
+scripts/script.sh cpu
 ```
+
+### `memory`
+
+```bash
+scripts/script.sh memory
+```
+
+### `disk`
+
+```bash
+scripts/script.sh disk <dir>
+```
+
+### `network`
+
+```bash
+scripts/script.sh network <host>
+```
+
+### `all`
+
+```bash
+scripts/script.sh all
+```
+
+### `compare`
+
+```bash
+scripts/script.sh compare <f1 f2>
+```
+
+## Data Storage
+
+Data stored in `~/.local/share/benchmark-tool/`.
+
+---
+
+*Powered by BytesAgain | bytesagain.com | hello@bytesagain.com*

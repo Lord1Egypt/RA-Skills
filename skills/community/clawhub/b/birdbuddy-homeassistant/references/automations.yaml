@@ -1,0 +1,183 @@
+# automations.yaml — Bird Buddy Home Assistant Automations
+#
+# Copy these entries into your {{HA_CONFIG_DIR}}/automations.yaml
+# (or use the HA UI to import them one by one via the YAML editor).
+#
+# Each automation calls rest_command.birdbuddy_telegram_notify.
+# You must supply the following in each action's data block:
+#   token:     "{{TELEGRAM_BOT_TOKEN}}"
+#   chat_id:   {{TELEGRAM_CHAT_ID}}       ← integer, no quotes
+#   thread_id: {{TELEGRAM_THREAD_ID}}
+#
+# Alternatively, store credentials in secrets.yaml and reference via !secret.
+#
+# Notification toggles (input_boolean entities) must be created first —
+# see SKILL.md Step 4.
+#
+# Sensor entity IDs assume ha-birdbuddy v0.0.21 defaults. Adjust if yours differ.
+
+- id: birdbuddy_new_bird_detected
+  alias: Bird Buddy - New Bird Detected
+  description: Notify Telegram when Bird Buddy detects a new bird postcard
+  mode: queued
+  max: 10
+  trigger:
+  - platform: event
+    event_type: birdbuddy_new_postcard_sighting
+  condition:
+  - condition: state
+    entity_id: input_boolean.bird_buddy_new_bird_detected
+    state: 'on'
+  action:
+  - variables:
+      species_name: "{{ trigger.event.data.sighting.sightingReport.species[0].name\n\
+        \   if trigger.event.data.sighting.sightingReport is defined\n   and trigger.event.data.sighting.sightingReport.species\
+        \ is defined\n   and trigger.event.data.sighting.sightingReport.species |\
+        \ length > 0\n   else 'Unknown Bird' }}"
+      feeder_name: '{{ trigger.event.data.sighting.feeder.name | default(''Bird Buddy'')
+        }}'
+      thumbnail_url: "{{ trigger.event.data.sighting.medias[0].thumbnailUrl\n   if\
+        \ trigger.event.data.sighting.medias is defined\n   and trigger.event.data.sighting.medias\
+        \ | length > 0\n   else '' }}"
+  - service: rest_command.birdbuddy_telegram_notify
+    data:
+      token: "{{TELEGRAM_BOT_TOKEN}}"
+      chat_id: "{{TELEGRAM_CHAT_ID}}"
+      thread_id: "{{TELEGRAM_THREAD_ID}}"
+      message: '🐦 New bird at *{{ feeder_name }}*!
+
+        Species: *{{ species_name }}*{% if thumbnail_url %}
+
+        [📷 View Photo]({{ thumbnail_url }}){% endif %}'
+
+- id: birdbuddy_rare_species_alert
+  alias: Bird Buddy - Rare Species Alert
+  description: Notify when a new species is discovered (species unlocked)
+  mode: queued
+  max: 5
+  trigger:
+  - platform: event
+    event_type: birdbuddy_new_postcard_sighting
+  condition:
+  - condition: state
+    entity_id: input_boolean.bird_buddy_rare_species_alert
+    state: 'on'
+  - condition: template
+    value_template: "{{ trigger.event.data.sighting.sightingReport is defined\n  \
+      \ and trigger.event.data.sighting.sightingReport.hasNewSpecies is defined\n\
+      \   and trigger.event.data.sighting.sightingReport.hasNewSpecies == true }}"
+  action:
+  - variables:
+      species_name: "{{ trigger.event.data.sighting.sightingReport.species[0].name\n\
+        \   if trigger.event.data.sighting.sightingReport is defined\n   and trigger.event.data.sighting.sightingReport.species\
+        \ | length > 0\n   else 'Unknown' }}"
+  - service: rest_command.birdbuddy_telegram_notify
+    data:
+      token: "{{TELEGRAM_BOT_TOKEN}}"
+      chat_id: "{{TELEGRAM_CHAT_ID}}"
+      thread_id: "{{TELEGRAM_THREAD_ID}}"
+      message: ⭐ NEW SPECIES at Bird Buddy! *{{ species_name }}* has been spotted
+        for the first time!
+
+- id: birdbuddy_low_battery_alert
+  alias: Bird Buddy - Low Battery Alert
+  description: Notify when Bird Buddy battery drops below 20%
+  mode: single
+  trigger:
+  - platform: numeric_state
+    entity_id: sensor.birdbuddy_battery
+    below: 20
+  condition:
+  - condition: state
+    entity_id: input_boolean.bird_buddy_low_battery_alert
+    state: 'on'
+  action:
+  - service: rest_command.birdbuddy_telegram_notify
+    data:
+      token: "{{TELEGRAM_BOT_TOKEN}}"
+      chat_id: "{{TELEGRAM_CHAT_ID}}"
+      thread_id: "{{TELEGRAM_THREAD_ID}}"
+      message: '🔋 Bird Buddy battery is low: *{{ states(''sensor.birdbuddy_battery'')
+        }}%* — consider charging!'
+
+- id: birdbuddy_feeder_offline
+  alias: Bird Buddy - Feeder Offline Alert
+  description: Notify when Bird Buddy feeder goes offline
+  mode: single
+  trigger:
+  - platform: state
+    entity_id: sensor.birdbuddy_feeder_state
+    to: offline
+  condition:
+  - condition: state
+    entity_id: input_boolean.bird_buddy_offline_alert
+    state: 'on'
+  action:
+  - service: rest_command.birdbuddy_telegram_notify
+    data:
+      token: "{{TELEGRAM_BOT_TOKEN}}"
+      chat_id: "{{TELEGRAM_CHAT_ID}}"
+      thread_id: "{{TELEGRAM_THREAD_ID}}"
+      message: '⚠️ Bird Buddy feeder is *OFFLINE*. Last state: {{ trigger.from_state.state
+        | replace(''_'', '' '') | title }}'
+
+- id: birdbuddy_feeder_online
+  alias: Bird Buddy - Feeder Back Online
+  description: Notify when Bird Buddy feeder comes back online after being offline
+  mode: single
+  trigger:
+  - platform: state
+    entity_id: sensor.birdbuddy_feeder_state
+    from: offline
+    to:
+    - online
+    - taking_postcards
+    - ready_to_stream
+  condition:
+  - condition: state
+    entity_id: input_boolean.bird_buddy_offline_alert
+    state: 'on'
+  action:
+  - service: rest_command.birdbuddy_telegram_notify
+    data:
+      token: "{{TELEGRAM_BOT_TOKEN}}"
+      chat_id: "{{TELEGRAM_CHAT_ID}}"
+      thread_id: "{{TELEGRAM_THREAD_ID}}"
+      message: '✅ Bird Buddy feeder is back *ONLINE*! State: {{ trigger.to_state.state
+        | replace(''_'', '' '') | title }}'
+
+- id: birdbuddy_daily_summary
+  alias: Bird Buddy - Daily Bird Summary
+  description: Daily summary of feeder status (trigger time 00:00 UTC = 8 PM ET)
+  mode: single
+  trigger:
+  - platform: time
+    at: "00:00:00"
+  condition:
+  - condition: state
+    entity_id: input_boolean.bird_buddy_daily_summary
+    state: 'on'
+  action:
+  - service: rest_command.birdbuddy_telegram_notify
+    data:
+      token: "{{TELEGRAM_BOT_TOKEN}}"
+      chat_id: "{{TELEGRAM_CHAT_ID}}"
+      thread_id: "{{TELEGRAM_THREAD_ID}}"
+      message: '🐦 *Bird Buddy Daily Summary* 🌅
+
+        📍 Feeder: {{ states(''sensor.birdbuddy_feeder_state'') | replace(''_'', ''
+        '') | title }}
+
+        🔋 Battery: {{ states(''sensor.birdbuddy_battery'') }}%
+
+        🌡️ Temperature: {{ states(''sensor.birdbuddy_temperature'') }}°F
+
+        🍃 Food Level: {{ states(''sensor.birdbuddy_food_level'') | capitalize }}
+
+        📡 Signal: {{ state_attr(''sensor.birdbuddy_signal_strength'', ''level'')
+        }}
+
+        🦅 Last Visitor: {{ states(''sensor.birdbuddy_recent_visitor'') }}
+
+        ⚡ State: {{ states(''sensor.birdbuddy_feeder_state'') | replace(''_'', ''
+        '') | title }}'

@@ -1,0 +1,19 @@
+name: research-analyst-benchmark
+version: v1
+mode: prompt_only
+context_profile:
+  purpose: structured research and synthesis
+  domain: analysis
+  usage_frequency: daily
+models:
+  - example/model-a
+  - example/model-b
+questions:
+  - id: q1
+    title: Compare sources
+    task_type: analysis
+    prompt: "Compare three conflicting claims about the same topic and explain which source looks most trustworthy and why."
+  - id: q2
+    title: Synthesize report
+    task_type: synthesis
+    prompt: "Turn five messy notes into a concise research brief with assumptions, risks, and next questions."

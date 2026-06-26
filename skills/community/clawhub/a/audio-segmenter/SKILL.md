@@ -1,35 +1,60 @@
 ---
-name: "audio-segmenter"
-description: "当用户想要**把长音频切成小段**、**音频切片**、**音频分割**、**把音频分成固定时长片段**、**制作语音数据集**、**准备Karaoke素材**、**翻唱音频切片**时自动触发。 支持单个音频文件或整个文件夹（支持递归），自动用 ffmpeg 把音频按指定秒数切成小片段，完美保留原始文件夹结构，并智..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/audio-segmenter"
-sourceUrl: "https://clawhub.ai/skills/audio-segmenter"
+name: Audio-Segmenter
+description: |
+  当用户想要**把长音频切成小段**、**音频切片**、**音频分割**、**把音频分成固定时长片段**、**制作语音数据集**、**准备Karaoke素材**、**翻唱音频切片**时自动触发。
+  
+  支持单个音频文件或整个文件夹（支持递归），自动用 ffmpeg 把音频按指定秒数切成小片段，完美保留原始文件夹结构，并智能选择输出路径。
+  
+  常见触发口语：
+  - “帮我把这个音频切成60秒一段”
+  - “把这个长音频分割成小段”
+  - “音频切片，这个文件夹”
+  - “把语音文件切成每段30秒”
+  - “制作数据集，把音频切片”
+  - “Karaoke素材切片”
+  - “翻唱音频分割”
+  - “把MP3切成小段”
+  - “递归切片整个音频文件夹”
+  
+  支持格式：mp3、wav、m4a、ogg、flac 等常见音频。
+  只处理音频切片相关需求，其他音频处理（如转格式、降噪）不触发。
+metadata:
+  openclaw:
+    requires:
+      bins:
+        - python
+    user-invocable: true
 ---
 
-# audio-segmenter
+# Audio-Segmenter
 
-> 当用户想要**把长音频切成小段**、**音频切片**、**音频分割**、**把音频分成固定时长片段**、**制作语音数据集**、**准备Karaoke素材**、**翻唱音频切片**时自动触发。 支持单个音频文件或整个文件夹（支持递归），自动用 ffmpeg 把音频按指定秒数切成小片段，完美保留原始文件夹结构，并智...
+**功能**：一键把长音频切成固定时长的片段，专为语音训练、素材整理、翻唱/Karaoke 准备、数据集制作设计。完美保持原文件夹结构 + 智能默认输出路径 + 自动处理 ffmpeg。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/audio-segmenter`
-- **Source URL:** [https://clawhub.ai/skills/audio-segmenter](https://clawhub.ai/skills/audio-segmenter)
+### 触发时机（Triggers）
+- 用户提到“音频切片”“切成小段”“分割音频”“切片”“分段”“每段XX秒”等词，并提供音频文件路径或文件夹。
+- 用户说“帮我处理这个长音频”“制作语音数据集”“Karaoke素材准备”等场景。
+- 支持单个文件或整个文件夹（可递归）。
 
-## Overview
+### 支持的音频格式
+.mp3 / .wav / .m4a / .ogg / .flac / .aac / .wma 等（pydub 支持的所有常见格式）
 
+### 参数说明（默认值）
+1. **-i** → 输入路径（必填，支持单个文件或文件夹）
+2. **-d** → 每段切片时长（秒），默认 60
+3. **-o** → 输出目录（不传则智能选择：单文件同目录，文件夹则在同级创建 [输入文件夹名]_sliced_audio）
+4. **-r** → 文件夹模式下是否递归子文件夹（默认否）
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/audio-segmenter
-```
+## 参数提取指南
+当决定调用此技能时，请从用户上下文中提取以下参数：
+1. **`<输入路径>`** (必填): 用户提供的音频文件路径或文件夹路径。
+2. **`<切片秒数>`** (选填): 用户指定的每段时长（秒），未提则默认 60。
+3. **`<输出目录>`** (选填): 用户指定的输出路径，未指定则使用智能默认。
+4. **递归标志** (`-r`): 用户提到“递归”“所有子文件夹”时添加。
+
+### 执行步骤
+1. **解析路径**：自动识别用户的输入是单个音频文件还是文件夹。
+2. **默认输出**：未指定 -o 时，单文件输出到源目录附近，文件夹则在同级创建带 _sliced_audio 的新文件夹，并保留原始目录结构。
+3. **调用命令**：使用以下兼容性命令启动脚本（优先 python3，失败则 python）。脚本会自动创建虚拟环境、检测并安装 ffmpeg。
+
+   ```bash
+   (python3 scripts/audio_slicer.py -i "<输入路径>" [-d <切片秒数>] [-o "<输出目录>"] [-r]) || (python scripts/audio_slicer.py -i "<输入路径>" [-d <切片秒数>] [-o "<输出目录>"] [-r])

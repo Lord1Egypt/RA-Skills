@@ -1,0 +1,39 @@
+{
+  "name": "book-skill-generator",
+  "version": "1.0.0",
+  "description": "从书籍中提取核心方法论，生成可执行的 AI Skill - 支持 OpenClaw、Claude Code 等主流平台",
+  "main": "SKILL.md",
+  "scripts": {
+    "test": "echo \"No tests yet\""
+  },
+  "keywords": [
+    "skill",
+    "openclaw",
+    "claude-code",
+    "ai-skill",
+    "book",
+    "methodology",
+    "knowledge-extraction",
+    "lean-startup",
+    "ai-assistant",
+    "prompt-engineering"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/CymChad/book-skill-generator.git"
+  },
+  "bugs": {
+    "url": "https://github.com/CymChad/book-skill-generator/issues"
+  },
+  "homepage": "https://github.com/CymChad/book-skill-generator#readme",
+  "files": [
+    "SKILL.md",
+    "README.md",
+    "LICENSE",
+    "examples/"
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
+}

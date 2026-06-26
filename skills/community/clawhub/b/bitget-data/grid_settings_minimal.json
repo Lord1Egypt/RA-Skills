@@ -1,0 +1,58 @@
+{
+  "btc": {
+    "symbol": "BTCUSDT",
+    "gridNum": 15,
+    "priceMin": 69500,
+    "priceMax": 71500,
+    "amount": 1,
+    "maxPosition": 15,
+    "sellOrders": 8,
+    "buyOrders": 7,
+    "targetTradesPerDay": 10,
+    "notes": "BTC 最小配置 - 每格 1 USDT (最小限制)"
+  },
+  "sol": {
+    "symbol": "SOLUSDT",
+    "gridNum": 10,
+    "priceMin": 85,
+    "priceMax": 88,
+    "amount": 1,
+    "maxPosition": 10,
+    "sellOrders": 5,
+    "buyOrders": 5,
+    "targetTradesPerDay": 8,
+    "notes": "SOL 最小配置 - 每格 1 USDT"
+  },
+  "eth": {
+    "symbol": "ETHUSDT",
+    "gridNum": 10,
+    "priceMin": 2040,
+    "priceMax": 2080,
+    "amount": 1,
+    "maxPosition": 10,
+    "sellOrders": 5,
+    "buyOrders": 5,
+    "targetTradesPerDay": 6,
+    "notes": "ETH 最小配置 - 每格 1 USDT"
+  },
+  "optimization": {
+    "date": "2026-03-12 19:32",
+    "goal": "最小配置 - 符合 Bitget 1 USDT 最小限制",
+    "totalTargetTrades": 24,
+    "strategy": "最小金额测试",
+    "changes": [
+      "所有币种：每格 1 USDT (Bitget 最小限制)",
+      "BTC: 15 格，区间 69.5k-71.5k",
+      "SOL: 10 格，区间 85-88",
+      "ETH: 10 格，区间 2040-2080",
+      "总资金需求：~18 USDT (买单部分)",
+      "预期成交：20-30 笔/天"
+    ],
+    "expectedDailyProfit": "0.3-0.8% (最小测试)",
+    "riskControl": [
+      "符合最小订单限制",
+      "总仓位不超过 20 USDT",
+      "盈利后增加金额"
+    ]
+  }
+}

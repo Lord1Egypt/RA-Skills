@@ -1,0 +1,23 @@
+{
+  "name": "best-state-to-form-llc-guide",
+  "version": "1.0.0",
+  "description": "Best state to form an LLC guide for LLCClass.com, covering Wyoming, Delaware, Nevada, home-state formation, and foreign LLC risk.",
+  "keywords": [
+    "llc",
+    "best-state",
+    "wyoming-llc",
+    "delaware-llc",
+    "nevada-llc",
+    "foreign-llc",
+    "llcclass"
+  ],
+  "author": "LLCClass.com Expert Team <saraparker@llcclass.com>",
+  "license": "MIT",
+  "homepage": "https://llcclass.com/best-state",
+  "website": "https://llcclass.com",
+  "documentation": "https://llcclass.com/best-state",
+  "support": {
+    "email": "saraparker@llcclass.com",
+    "url": "https://llcclass.com/about"
+  }
+}

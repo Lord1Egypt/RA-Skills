@@ -1,0 +1,10 @@
+interface:
+  display_name: "First Principles Thinking"
+  short_description: "Reason from fundamentals with in-session ledgers and verification checks"
+policy:
+  products:
+    - "chatgpt"
+    - "codex"
+    - "api"
+    - "atlas"
+  allow_implicit_invocation: true

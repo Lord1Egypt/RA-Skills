@@ -1,0 +1,6 @@
+{
+  "name": "autodream",
+  "version": "1.0.1",
+  "description": "AutoDream - Automatic memory consolidation for OpenClaw",
+  "main": "scripts/autodream_cycle.py"
+}

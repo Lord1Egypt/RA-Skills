@@ -1,0 +1,23 @@
+{
+  "skill_name": "business-opportunity-insight",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "看到一个GitHub项目叫cursorless-vscode，用语音编程，可以完全不用键盘写代码，star数已经破万了，帮我分析一下这个方向有没有创业机会",
+      "expected_output": "结构化的商业机会洞察报告，包含8个维度的分析",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "最近看到一个产品叫Notion AI，可以在Notion里直接用AI写内容、总结文档。我觉得国内的企业微信+飞书生态应该也能做类似的东西，帮我分析一下",
+      "expected_output": "结构化的商业机会洞察报告，分析国内企业协作市场的AI机会",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "https://www.producthunt.com/posts/ai-pdf 这个产品用AI帮用户读PDF，可以问答、总结、提取关键信息。我觉得这个方向太卷了，你怎么看？",
+      "expected_output": "结构化的商业机会洞察报告，分析红海市场的差异化机会",
+      "files": []
+    }
+  ]
+}

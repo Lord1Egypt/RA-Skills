@@ -1,0 +1,80 @@
+{
+  "plan_name": "Plan C - GLM 懶人模式",
+  "description": "純GLM模型套餐，一個GLM Coding Plan走天涯，根據工作範疇自動調用最啱嘅GLM模型",
+  "plan_type": "lazy_mode",
+  "concept": "懶人模式：一個GLM走天下，唔使煩惱用邊個模型",
+  "task_models": {
+    "high_logic": {
+      "primary": "zhipu/glm-5",
+      "fallback": "zhipu/glm-4.7",
+      "reason": "GLM-5 旗艦推理，202K上下文，Agent能力全球領先"
+    },
+    "code_generation": {
+      "primary": "zhipu/glm-5",
+      "fallback": "zhipu/glm-4.7",
+      "reason": "GLM-5 編程SOTA開源，逼近Claude Opus 4.5"
+    },
+    "creative_writing": {
+      "primary": "zhipu/glm-5",
+      "fallback": "zhipu/glm-4.7",
+      "reason": "GLM-5 創意寫作能力強，長上下文支持複雜故事"
+    },
+    "info_reading": {
+      "primary": "zhipu/glm-4-flash",
+      "fallback": "zhipu/glm-5",
+      "reason": "GLM-4-Flash 快速便宜，128K上下文足夠日常閱讀"
+    },
+    "simple_repeat": {
+      "primary": "zhipu/glm-4-flash",
+      "fallback": "zhipu/glm-5",
+      "reason": "GLM-4-Flash 超快推理，高並發保障"
+    },
+    "image_understanding": {
+      "primary": "zhipu/glm-4.6v",
+      "fallback": "zhipu/glm-4v-flash",
+      "reason": "GLM-4.6V 視覺旗艦，支持GUI智能體、長視頻分析"
+    },
+    "image_generation": {
+      "primary": "zhipu/cogview4",
+      "fallback": "zhipu/glm-image",
+      "reason": "CogView4 首個支持漢字生成，中英文雙語提示詞"
+    },
+    "video_audio": {
+      "primary": "zhipu/glm-4-voice",
+      "fallback": "zhipu/glm-4-vision",
+      "reason": "GLM-4-Voice 端到端語音，情感控制、粵語/方言支持"
+    }
+  },
+  "model_mapping": {
+    "text": {
+      "flagship": "glm-5",
+      "standard": "glm-4.7",
+      "fast": "glm-4-flash"
+    },
+    "vision": {
+      "flagship": "glm-4.6v",
+      "thinking": "glm-4.1v-thinking",
+      "fast": "glm-4v-flash"
+    },
+    "image": {
+      "flagship": "cogview4",
+      "commercial": "glm-image"
+    },
+    "audio": {
+      "voice": "glm-4-voice"
+    }
+  },
+  "auto_switch": {
+    "enabled": true,
+    "description": "根據工作複雜度自動選擇合適模型",
+    "rules": {
+      "quick_task": "glm-4-flash",
+      "standard_task": "glm-4.7",
+      "complex_task": "glm-5"
+    }
+  },
+  "fallback": {
+    "unknown_task": "glm-5",
+    "unknown_model": "glm-4-flash"
+  }
+}

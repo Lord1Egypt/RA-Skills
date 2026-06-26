@@ -1,0 +1,14 @@
+{
+  "id": "queue-wake",
+  "name": "Queue Wake",
+  "description": "HTTP endpoint for the async-queue daemon to wake specific agents at exact delivery time via requestHeartbeatNow",
+  "version": "1.0.0",
+  "openclaw": {
+    "extensions": ["index.ts"]
+  },
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {}
+  }
+}

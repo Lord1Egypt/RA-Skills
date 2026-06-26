@@ -1,0 +1,10 @@
+{
+  "id": "audio-play",
+  "name": "Audio Play",
+  "version": "1.0.0",
+  "description": "Play audio files using Windows media player. Non-blocking execution.",
+  "tools": [
+    "play_audio"
+  ],
+  "entry": "/mnt/h/AI/openclaw_workspace/video_translate/skills/audio_play.py"
+}

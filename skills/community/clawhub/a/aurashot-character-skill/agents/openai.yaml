@@ -1,0 +1,3 @@
+interface:
+  display_name: "AuraShot Character Skill"
+  short_description: "Character-consistent AI image generation — same person, any outfit, any scene, every time. Use when your agent needs identity-preserving face swap, outfit changes, scene swaps, cosplay, anime character art, or natural language image editing. Supports real-person and virtual characters."

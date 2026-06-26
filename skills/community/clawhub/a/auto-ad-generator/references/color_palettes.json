@@ -1,0 +1,84 @@
+{
+  "palettes": {
+    "li_auto_premium": {
+      "name": "Li Auto Premium",
+      "colors": ["#1a237e", "#3949ab", "#5e35b1", "#7c4dff"],
+      "gradient_type": "linear",
+      "angle": 135,
+      "mood": "Luxury, tech, trustworthy",
+      "usage": "Flagship models, main launches"
+    },
+    "li_auto_warm": {
+      "name": "Li Auto Warm",
+      "colors": ["#ff6b35", "#f7931e", "#ffab40", "#ffd180"],
+      "gradient_type": "linear",
+      "angle": 160,
+      "mood": "Energetic, youthful, aspirational",
+      "usage": "Lifestyle campaigns,年轻人的第一辆车"
+    },
+    "li_auto_cool": {
+      "name": "Li Auto Cool",
+      "colors": ["#00695c", "#00897b", "#26a69a", "#80cbc4"],
+      "gradient_type": "linear",
+      "angle": 180,
+      "mood": "Clean, modern, sustainable",
+      "usage": "EV technology, sustainability"
+    },
+    "li_auto_dark": {
+      "name": "Li Auto Dark",
+      "colors": ["#0d1b2a", "#1b263b", "#415a77", "#778da9"],
+      "gradient_type": "radial",
+      "center": [0.5, 0.3],
+      "mood": "Mysterious, premium, sophisticated",
+      "usage": "Luxury models, night scenes"
+    },
+    "sunset_gold": {
+      "name": "Sunset Gold",
+      "colors": ["#ff512f", "#f09819", "#ff6b6b", "#feca57"],
+      "gradient_type": "linear",
+      "angle": 45,
+      "mood": "Emotional, warm, achievement",
+      "usage": "Success stories, milestone campaigns"
+    },
+    "midnight_purple": {
+      "name": "Midnight Purple",
+      "colors": ["#2d1b4e", "#4a148c", "#7b1fa2", "#9c27b0"],
+      "gradient_type": "radial",
+      "center": [0.5, 0.2],
+      "mood": "Futuristic, innovative, exclusive",
+      "usage": "Concept cars, future tech"
+    },
+    "arctic_white": {
+      "name": "Arctic White",
+      "colors": ["#eceff1", "#cfd8dc", "#b0bec5", "#90a4ae"],
+      "gradient_type": "linear",
+      "angle": 180,
+      "mood": "Pure, clean, minimalist",
+      "usage": "White car showcases, winter campaigns"
+    },
+    "racing_red": {
+      "name": "Racing Red",
+      "colors": ["#b71c1c", "#d32f2f", "#f44336", "#ff8a80"],
+      "gradient_type": "linear",
+      "angle": 135,
+      "mood": "Sporty, passionate, speed",
+      "usage": "Performance models, racing editions"
+    }
+  },
+  "car_color_matching": {
+    "white": ["li_auto_premium", "li_auto_dark", "midnight_purple"],
+    "black": ["arctic_white", "sunset_gold", "racing_red"],
+    "silver": ["li_auto_premium", "li_auto_cool", "li_auto_dark"],
+    "blue": ["sunset_gold", "li_auto_warm", "arctic_white"],
+    "red": ["li_auto_dark", "midnight_purple", "arctic_white"],
+    "gray": ["sunset_gold", "li_auto_warm", "racing_red"]
+  },
+  "text_colors": {
+    "on_dark": "#ffffff",
+    "on_light": "#1a1a1a",
+    "on_warm": "#ffffff",
+    "on_cool": "#ffffff",
+    "accent_gold": "#ffd700",
+    "accent_silver": "#c0c0c0"
+  }
+}

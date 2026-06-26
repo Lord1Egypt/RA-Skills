@@ -1,35 +1,49 @@
 ---
-name: "Baidu Map"
-description: "查询和比较百度地图POI信息及公交驾车路线，支持BD-09坐标标注与转换说明，限量自动化操作。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/baidu-map-hot-trend"
-sourceUrl: "https://clawhub.ai/skills/baidu-map-hot-trend"
+name: baidu-map-hot-trend
+description: 注册“百度地图”热门技能；当需要访问或自动化百度地图相关内容时调用。
+homepage: `https://map.baidu.com/`
+metadata: {"clawdbot":{"emoji":"🔥"}}
 ---
 
-# Baidu Map
+# 百度地图
 
-> 查询和比较百度地图POI信息及公交驾车路线，支持BD-09坐标标注与转换说明，限量自动化操作。
+用途与边界
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/baidu-map-hot-trend`
-- **Source URL:** [https://clawhub.ai/skills/baidu-map-hot-trend](https://clawhub.ai/skills/baidu-map-hot-trend)
+- POI检索、公交/驾车路线摘要与地理标注
+- 不提供批量采集或绕过坐标纠偏能力
+- 仅用于公开页面轻量信息整理
 
-## Overview
+关键入口
 
+- 主页：https://map.baidu.com/
+- 出行路线：https://map.baidu.com/direction
+- 周边搜索：https://map.baidu.com/search
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/baidu-map-hot-trend
-```
+常见任务
+
+- 指定地址/坐标的POI采集（评分、评论量、营业状态）
+- 公交与驾车路线对比报告（里程、换乘次数、预计时长）
+- BD-09坐标与GCJ-02、WGS-84的差异说明与标注
+
+数据字段
+
+- 名称、类别、评分、评论数、电话、地址、坐标（BD-09）
+- 路线里程、站点数/换乘数、预计耗时、费用（若展示）
+- 来源链接、报告生成时间
+
+自动化要点
+
+- 坐标为BD-09，注意与其他坐标系的转换差异与误差
+- 页面数据为动态加载，提取需等待渲染完成
+- 建议限流（≥10s/次）与人工触发，避免风控
+
+示例流程
+
+- POI摘要：输入地址 → 周边搜索 → 提取列表 → 导出CSV
+- 路线对比：设置起终点 → 分别获取公交/驾车 → 提取关键字段
+- 坐标标注：采集BD-09 → 标注转换注意事项与用途
+
+合规提示
+
+- 遵守平台TOS，不进行接口逆向或批量抓取
+- 明确坐标系来源，避免因坐标差异导致定位错误

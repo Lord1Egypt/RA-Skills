@@ -1,35 +1,181 @@
 ---
-name: "Auto Invoke Router"
-description: "Scans installed skills and AGENTS.md to generate a routing config that maps conversation intents to skills. Use when you want to reduce manual skill invocati..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/auto-invoke-router"
-sourceUrl: "https://clawhub.ai/skills/auto-invoke-router"
+name: auto-invoke-router
+version: 1.0.0
+description: Scans installed skills and AGENTS.md to generate a routing config that maps conversation intents to skills. Use when you want to reduce manual skill invocation, improve intent matching across a large skill library, or when setting up OpenClaw for the first time with multiple skills installed.
+author: ordo-tech
+tags: [routing, skills, intent, automation, agents, config, discovery]
+metadata:
+  openclaw:
+    requires:
+      bins:
+        - find
+        - bash
+    emoji: "🔀"
+    homepage: https://clawhub.com/@ordo-tech/auto-invoke-router
 ---
 
-# Auto Invoke Router
+## What this skill does
 
-> Scans installed skills and AGENTS.md to generate a routing config that maps conversation intents to skills. Use when you want to reduce manual skill invocati...
+Reads every installed skill's `SKILL.md` frontmatter (the `description` field) and any local `AGENTS.md` to produce a `skill_routing` config block. This config maps intent keywords and phrases to skill names, giving OpenClaw a structured reference for selecting the right skill based on conversation context.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/auto-invoke-router`
-- **Source URL:** [https://clawhub.ai/skills/auto-invoke-router](https://clawhub.ai/skills/auto-invoke-router)
+The output is written into `AGENTS.md` as a `## Skill Routing` section, or saved as a standalone `router.yml`. Native auto-invoke behaviour depends on your OpenClaw version — check your release notes or docs to confirm whether `skill_routing` in `AGENTS.md` is read automatically. In all versions, the config serves as a clear, human-readable routing reference that can be wired up manually or extended with custom rules.
 
-## Overview
+## When to use it
 
+- More than ~5 skills are installed and manual invocation is getting unwieldy
+- Users are triggering the wrong skill or missing relevant ones
+- Setting up a new OpenClaw instance and want smart defaults from the start
+- After installing a batch of skills and wanting to refresh the routing map
+- Whenever the `available_skills` block in context feels cluttered or mismatched
 
-## Installation
-To install this skill, run the following command in your terminal:
+## Usage
+
+### Step 1 — Locate installed skills
+
+Derive the OpenClaw system skill directory from the binary location:
 ```bash
-hermes skills install clawhub/auto-invoke-router
+OPENCLAW_BIN=$(which openclaw 2>/dev/null || which claw 2>/dev/null)
+OPENCLAW_SYSTEM_SKILLS=$(dirname "$OPENCLAW_BIN")/../lib/node_modules/openclaw/skills
+find ~/.openclaw/skills "$OPENCLAW_SYSTEM_SKILLS" -name "SKILL.md" 2>/dev/null
 ```
+
+If `which openclaw` returns nothing, also try common install locations:
+```bash
+find ~/.openclaw/skills \
+  /opt/homebrew/lib/node_modules/openclaw/skills \
+  /usr/local/lib/node_modules/openclaw/skills \
+  -name "SKILL.md" 2>/dev/null
+```
+
+Collect the full list of `SKILL.md` paths. If `clawhub list` is available, also run:
+```bash
+clawhub list
+```
+to confirm installed skill names.
+
+### Step 2 — Extract descriptions
+
+For each `SKILL.md` found, read the YAML frontmatter block (lines between the opening and closing `---`). Extract:
+- `name` — the skill identifier
+- `description` — the full triggering description
+
+Do not read the body of each SKILL.md; frontmatter only.
+
+If a skill is missing a `name` or `description` field, skip it and note it in the final report as: `skill-x: skipped — missing description`. Do not fabricate a description.
+
+### Step 3 — Read AGENTS.md
+
+Read `AGENTS.md` in the current workspace. Look for it at `./AGENTS.md` relative to the workspace root, or at `~/.openclaw/workspace/AGENTS.md` if no workspace context is set. Identify any existing `## Skill Routing` section. If it exists, it will be fully replaced in Step 6.
+
+### Step 4 — Generate intent keywords
+
+For each skill, derive 3–8 intent keywords or short phrases from the description. Rules:
+- Use lowercase
+- Prefer noun phrases and verb phrases that a user would naturally say (e.g. "search for skill", "install skill", "weather forecast", "github PR", "security audit")
+- Omit generic words: "use", "when", "skill", "tool", "this"
+- Include negatives if the description calls them out explicitly (e.g. "NOT for historical data")
+
+After generating all triggers, check for conflicts: if the same keyword appears under two or more different skills, flag it in the report as ambiguous. Do not remove the keyword — leave it in both entries and let the user resolve it.
+
+### Step 5 — Produce the routing config
+
+Output a YAML block in this format:
+
+```yaml
+# auto-invoke-router — generated by auto-invoke-router skill
+# Regenerate by invoking: auto-invoke-router
+# WARNING: this section is fully regenerated on each run. Manual edits will be
+# overwritten. To preserve custom triggers, add them above this block in AGENTS.md
+# with a comment like: # custom-routing-preserve
+skill_routing:
+  version: "1.0"
+  rules:
+    - skill: clawhub
+      triggers:
+        - search clawhub
+        - install skill
+        - update skill
+        - publish skill
+        - clawhub list
+    - skill: weather
+      triggers:
+        - weather
+        - temperature
+        - forecast
+        - rain
+    - skill: gh-issues
+      triggers:
+        - github issue
+        - fix bug
+        - open PR
+        - pull request
+        - review comments
+    # ... one entry per installed skill
+  fallback: null  # set to any installed skill name to invoke when no rule matches,
+                  # or leave as null to take no default action
+```
+
+Use the actual installed skill names and generated triggers — the above is illustrative only.
+
+### Step 6 — Write output
+
+**Option A — Append to AGENTS.md (recommended):**
+
+Add a `## Skill Routing` section at the end of `AGENTS.md` containing the full `skill_routing:` YAML block inside a fenced code block. If a `## Skill Routing` section already exists, replace it in full — all triggers are regenerated from current descriptions. Any manual edits to the previous section will be lost; users should preserve custom triggers outside this block (see the warning comment in Step 5).
+
+**Option B — Standalone file:**
+
+Write the YAML block to `router.yml` in the workspace root. Inform the user to reference it in `AGENTS.md` if they want OpenClaw to pick it up automatically.
+
+### Step 7 — Report
+
+After writing, output a short summary:
+
+```
+Router updated — N skills mapped, M skipped
+Skills covered: skill-a, skill-b, skill-c, ...
+Skipped (no description): skill-x, skill-y
+Trigger conflicts (review manually): keyword-foo (skill-a, skill-b), keyword-bar (skill-c, skill-d)
+Output: AGENTS.md § Skill Routing (or router.yml)
+Note: verify your OpenClaw version supports native skill_routing before relying on auto-invoke.
+```
+
+## Examples
+
+### Example 1: Fresh install with 6 skills
+
+**Input:** 6 installed skills found via `find`. `AGENTS.md` has no routing section.
+
+**Output:** `## Skill Routing` appended to `AGENTS.md` with 6 rule entries, each containing 4–6 triggers derived from their descriptions. Summary reports "6 skills mapped, 0 skipped."
+
+### Example 2: Refresh after installing new skills
+
+**Input:** `AGENTS.md` already has a `## Skill Routing` section with 4 rules. 3 new skills were installed since last run.
+
+**Output:** Existing section replaced in full with 7 rules — all triggers regenerated from current descriptions. Summary reports "7 skills mapped." Any manual trigger edits in the previous section are not preserved; the report reminds the user to re-apply them if needed.
+
+### Example 3: No AGENTS.md found
+
+**Input:** Workspace has no `AGENTS.md`.
+
+**Output:** `router.yml` written to workspace root. User informed to create `AGENTS.md` and include the routing block, or to re-run once `AGENTS.md` is present.
+
+### Example 4: Skills with missing descriptions
+
+**Input:** 8 skills found; 2 have no `description` field in their frontmatter.
+
+**Output:** 6 rules generated for the skills with descriptions. Report lists the 2 skipped skills by name. User can add descriptions to those skills' `SKILL.md` files and re-run.
+
+## Requirements
+
+- At least one skill installed with a valid `description` field (output is empty otherwise — report this clearly)
+- Read access to `~/.openclaw/skills/` and OpenClaw's system skill directories
+- Write access to `AGENTS.md` or workspace root for `router.yml`
+- `bash` tool available for the `find` and `which` commands in Step 1
+
+No API keys or external accounts required. Runs entirely on local files.
+
+## Support
+
+Issues or questions: https://clawhub.com/@ordo-tech/auto-invoke-router
+Publisher: @ordo-tech on ClawHub

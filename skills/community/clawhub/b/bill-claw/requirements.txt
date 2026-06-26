@@ -1,0 +1,4 @@
+dateparser>=1.2.0
+pydantic>=2.0.0
+matplotlib>=3.8.0
+flask>=3.0.0

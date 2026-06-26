@@ -1,0 +1,45 @@
+{
+  "templateName": "Second Protein Detection",
+  "experimentType": "SYLX2026000001",
+  "experimentTypeName": "Protein Detection",
+  "experimentGroup": "GLY",
+  "experimentGroupName": "Admin Group",
+  "auditor": "openclaw",
+  "auditorName": "openclaw",
+  "stepDetails": [
+    {
+      "name": "Protein Detection Step",
+      "keyId": 0,
+      "jsonDatas": [
+        {
+          "label": "Detail Table",
+          "type": "detailTable",
+          "size": "24",
+          "inputType": null,
+          "exclusiveShow": "0",
+          "value": "[]",
+          "propList": "[{\"label\":\"Original Sample ID\",\"prop\":\"originalSampleCode\",\"disabled\":true,\"headerType\":\"fixed\"},{\"label\":\"Sample ID\",\"prop\":\"sampleCode\",\"disabled\":true,\"headerType\":\"fixed\"},{\"label\":\"Sample Type\",\"prop\":\"sampleType\",\"disabled\":true,\"headerType\":\"fixed\"},{\"label\":\"\",\"prop\":\"sampleTypeId\",\"disabled\":true,\"show\":true},{\"label\":\"Test Project\",\"prop\":\"testProjectName\",\"disabled\":true,\"headerType\":\"fixed\"},{\"label\":\"Product Type\",\"prop\":\"productType\",\"disabled\":true,\"headerType\":\"fixed\"},{\"label\":\"Product Qty\",\"prop\":\"productNum\",\"disabled\":true,\"headerType\":\"fixed\"},{\"label\":\"Mix Sample\",\"prop\":\"mixNumber\",\"disabled\":true,\"show\":true,\"headerType\":\"fixed\"},{\"label\":\"index\",\"prop\":\"indexCode\",\"disabled\":true,\"show\":true,\"headerType\":\"fixed\"},{\"label\":\"Remaining Qty\",\"prop\":\"sumTotal\",\"type\":\"number\",\"disabled\":false,\"show\":true,\"headerType\":\"fixed\"},{\"label\":\"Unit\",\"prop\":\"sampleUnit\",\"disabled\":true,\"show\":true,\"headerType\":\"fixed\"},{\"label\":\"Storage Status\",\"prop\":\"storageState\",\"disabled\":true,\"show\":true,\"headerType\":\"fixed\"},{\"label\":\"Detection Gene\",\"prop\":\"detectionGene\",\"disabled\":true,\"headerType\":\"fixed\"},{\"label\":\"Is Split\",\"prop\":\"isSplit\",\"disabled\":true,\"show\":true,\"headerType\":\"fixed\"},{\"label\":\"Split Quantity\",\"prop\":\"splitQuantity\",\"disabled\":true,\"show\":true,\"headerType\":\"fixed\"},{\"label\":\"Split Product\",\"prop\":\"splitProportion\",\"disabled\":true,\"show\":true,\"headerType\":\"fixed\"}]",
+          "menuList": "[]",
+          "productList": "[]",
+          "plate": "",
+          "formula": "{\"formX\":[],\"formY\":[]}",
+          "keyId": "0"
+        },
+        {
+          "label": "Result Table",
+          "type": "resultTable",
+          "size": "24",
+          "inputType": null,
+          "exclusiveShow": "0",
+          "value": "[]",
+          "propList": "[{\"label\":\"Original Sample ID\",\"prop\":\"originalSampleCode\",\"disabled\":true,\"headerType\":\"fixed\"},{\"label\":\"Sample ID\",\"prop\":\"sampleCode\",\"disabled\":true,\"headerType\":\"fixed\"},{\"label\":\"Sample Type\",\"prop\":\"sampleType\",\"disabled\":true,\"headerType\":\"fixed\"},{\"label\":\"Test Project\",\"prop\":\"testProjectName\",\"disabled\":true,\"headerType\":\"fixed\"},{\"label\":\"Volume\",\"prop\":\"volume\",\"type\":\"number\",\"headerType\":\"fixed\"},{\"label\":\"Total\",\"prop\":\"total\",\"type\":\"number\",\"headerType\":\"fixed\"},{\"label\":\"Unit\",\"prop\":\"sampleUnit\",\"disabled\":true,\"headerType\":\"fixed\"},{\"label\":\"Next Flow\",\"prop\":\"nextFlow\",\"disabled\":true,\"headerType\":\"fixed\",\"required\":true},{\"label\":\"Result\",\"prop\":\"result\",\"disabled\":true,\"required\":1,\"headerType\":\"fixed\"},{\"label\":\"Submit QC\",\"prop\":\"tjzk\",\"disabled\":true,\"headerType\":\"fixed\"},{\"label\":\"Detection Gene\",\"prop\":\"detectionGene\",\"disabled\":true,\"headerType\":\"fixed\"}]",
+          "menuList": "[]",
+          "productList": "[]",
+          "plate": "",
+          "formula": "{\"formX\":[],\"formY\":[]}",
+          "keyId": "1"
+        }
+      ]
+    }
+  ]
+}

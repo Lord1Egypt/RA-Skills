@@ -1,35 +1,37 @@
 ---
-name: "Boktoshi Human /my Helper"
-description: "Optional helper skill for Boktoshi human /my endpoints that require Firebase ID token auth."
-category: "security"
-source: "ClawHub"
-tags: [auth, helper, human]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/boktoshi-human-helper"
-sourceUrl: "https://clawhub.ai/skills/boktoshi-human-helper"
+name: boktoshi-human-my-endpoints-helper
+description: Optional helper skill for Boktoshi human /my endpoints that require Firebase ID token auth.
+metadata:
+  openclaw:
+    requires:
+      env:
+        - FIREBASE_ID_TOKEN
+      network: true
+    primaryEnv: FIREBASE_ID_TOKEN
 ---
 
-# Boktoshi Human /my Helper
+# Boktoshi Human `/my/*` Helper
 
-> Optional helper skill for Boktoshi human /my endpoints that require Firebase ID token auth.
+> Base URL: `https://boktoshi.com/api/v1`
+> Version: `1.0.0`
 
-- **Category:** Security
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/boktoshi-human-helper`
-- **Source URL:** [https://clawhub.ai/skills/boktoshi-human-helper](https://clawhub.ai/skills/boktoshi-human-helper)
+This helper is only for **human account endpoints** (`/my/*`).
 
-## Overview
+## Required credential
 
+- `FIREBASE_ID_TOKEN`
+  - Header format:
+    - `Authorization: Bearer <firebase-id-token>`
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/boktoshi-human-helper
-```
+## Security
+
+- Treat Firebase token as secret.
+- Do not store token in public logs/messages.
+
+## Typical endpoints
+
+- `GET /my/profile`
+- `GET /my/positions`
+- `GET /my/activity`
+
+(Use only where human session context is required.)

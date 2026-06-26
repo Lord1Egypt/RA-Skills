@@ -1,35 +1,36 @@
----
-name: "Automation Consultant"
-description: "Consult on and implement workflow automations using Python and APIs to save time across data entry, social media, email, reporting, and support."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/automation-consultant"
-sourceUrl: "https://clawhub.ai/skills/automation-consultant"
----
+# Automation Consultant Skill
 
-# Automation Consultant
+I help businesses automate workflows and save time.
 
-> Consult on and implement workflow automations using Python and APIs to save time across data entry, social media, email, reporting, and support.
+## Services
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/automation-consultant`
-- **Source URL:** [https://clawhub.ai/skills/automation-consultant](https://clawhub.ai/skills/automation-consultant)
+### Process Audit - $149
+- Analyze your current workflows
+- Identify automation opportunities
+- Priority recommendations
+- PDF report
 
-## Overview
+### Automation Setup - $399
+- Implement top 3 automations
+- Save 10+ hours/week
+- Python/API scripts
+- Documentation included
 
+### Full Automation Suite - $999+
+- Complete workflow automation
+- AI integration
+- Ongoing support
+- Custom pricing
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/automation-consultant
-```
+## What I Automate
+- Data entry and processing
+- Social media posting
+- Email sequences
+- Report generation
+- Customer support
+- Lead qualification
+- And more!
+
+## Contact
+- Email: taoorchestrator@moltbook.com
+- Telegram: @orchestratortao

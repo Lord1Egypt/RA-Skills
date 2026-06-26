@@ -1,0 +1,290 @@
+<#
+.SYNOPSIS
+    Generates dual-layer Markdown reports from classified BloodHound paths.
+    Layer 1: CISO executive prose. Layer 2: Technical remediation appendix.
+#>
+
+#region ── Severity Styling ──
+
+$Script:SeverityEmoji = @{
+    Critical = [char]::ConvertFromUtf32(0x1F534)   # red circle
+    High     = [char]::ConvertFromUtf32(0x1F7E0)   # orange circle
+    Medium   = [char]::ConvertFromUtf32(0x1F7E1)   # yellow circle
+    Low      = [char]::ConvertFromUtf32(0x1F7E2)   # green circle
+}
+
+$Script:SeverityLabels = @{
+    Critical = 'CRITICAL'
+    High     = 'HIGH'
+    Medium   = 'MEDIUM'
+    Low      = 'LOW'
+}
+
+#endregion
+
+#region ── CISO Narrative Helpers ──
+
+function Get-ExecutiveSummary {
+    param(
+        [Parameter(Mandatory)][array]$Classified,
+        [string]$Domain
+    )
+
+    $critCount  = @($Classified | Where-Object Severity -eq 'Critical').Count
+    $highCount  = @($Classified | Where-Object Severity -eq 'High').Count
+    $medCount   = @($Classified | Where-Object Severity -eq 'Medium').Count
+    $lowCount   = @($Classified | Where-Object Severity -eq 'Low').Count
+    $total      = @($Classified).Count
+
+    $lines = [System.Collections.Generic.List[string]]::new()
+    $lines.Add("## Executive Summary`n")
+    $lines.Add("An automated analysis of Active Directory attack paths in **${Domain}** identified **${total} exploitable path(s)** that could allow an attacker to escalate privileges within the environment.`n")
+
+    if ($critCount -gt 0) {
+        $lines.Add("> **Immediate action required.** ${critCount} path(s) reach Domain Admin or equivalent Tier 0 assets with techniques that are well-documented and actively exploited in the wild.`n")
+    }
+
+    $lines.Add("| Severity | Count |")
+    $lines.Add("|----------|-------|")
+    $lines.Add("| $($Script:SeverityEmoji.Critical) Critical | ${critCount} |")
+    $lines.Add("| $($Script:SeverityEmoji.High) High | ${highCount} |")
+    $lines.Add("| $($Script:SeverityEmoji.Medium) Medium | ${medCount} |")
+    $lines.Add("| $($Script:SeverityEmoji.Low) Low | ${lowCount} |")
+    $lines.Add("| **Total** | **${total}** |`n")
+
+    $lines -join "`n"
+}
+
+function Get-CISOPathNarrative {
+    param(
+        [Parameter(Mandatory)][PSCustomObject]$ClassifiedPath
+    )
+
+    $sev   = $ClassifiedPath.Severity
+    $emoji = $Script:SeverityEmoji[$sev]
+    $label = $Script:SeverityLabels[$sev]
+
+    $lines = [System.Collections.Generic.List[string]]::new()
+    $lines.Add("### ${emoji} ${label}: $($ClassifiedPath.Description)`n")
+
+    # Business-impact narrative
+    $lines.Add("**Source:** ``$($ClassifiedPath.SourceNode)`` | **Target:** ``$($ClassifiedPath.TargetNode)`` | **Hops:** $($ClassifiedPath.HopCount)`n")
+
+    $lines.Add("**Attack chain:** ``$($ClassifiedPath.EdgeChain)```n")
+
+    $lines.Add("**Business risk:**`n")
+    foreach ($reason in $ClassifiedPath.Reasons) {
+        $lines.Add("- ${reason}")
+    }
+    $lines.Add("")
+
+    # Impact statement based on severity
+    switch ($sev) {
+        'Critical' {
+            $lines.Add("*An attacker exploiting this path could gain complete control of the domain, including access to all systems, data, and credentials. This represents an existential risk to the AD environment.*`n")
+        }
+        'High' {
+            $lines.Add("*This path enables significant lateral movement or privilege escalation that could compromise sensitive business systems and data.*`n")
+        }
+        'Medium' {
+            $lines.Add("*This path provides an attacker with a foothold for further exploration and potential escalation within the environment.*`n")
+        }
+        'Low' {
+            $lines.Add("*While limited in immediate impact, this path contributes to the overall attack surface and should be addressed in regular hardening cycles.*`n")
+        }
+    }
+
+    $lines -join "`n"
+}
+
+#endregion
+
+#region ── Technical Remediation Appendix ──
+
+$Script:RemediationGuidance = @{
+    DCSync = @{
+        title   = 'Remove DCSync / Replication Permissions'
+        steps   = @(
+            'Audit DS-Replication-Get-Changes and DS-Replication-Get-Changes-All ACEs at the domain root.'
+            'Remove these rights from all non-DC principals using `Remove-ADPermission` or ADSIEdit.'
+            'Monitor Event ID 4662 for replication-related GUIDs (1131f6aa-*, 1131f6ad-*) from non-DC sources.'
+        )
+    }
+    GenericAll = @{
+        title   = 'Revoke GenericAll Permissions'
+        steps   = @(
+            'Enumerate all ACEs granting GenericAll on the target object using `Get-Acl` or BloodHound.'
+            'Remove the excessive ACE or replace with least-privilege permissions.'
+            'Consider implementing AdminSDHolder to protect sensitive groups.'
+        )
+    }
+    WriteDacl = @{
+        title   = 'Remove WriteDacl Permissions'
+        steps   = @(
+            'Identify principals with WriteDacl on the target using `Get-Acl` or `dsacls`.'
+            'Remove WriteDacl ACEs that are not required for legitimate administration.'
+            'Enable Advanced Auditing (Event ID 5136) on the target object to detect DACL modifications.'
+        )
+    }
+    UnconstrainedDelegation = @{
+        title   = 'Remediate Unconstrained Delegation'
+        steps   = @(
+            'Disable unconstrained delegation on the identified host: `Set-ADComputer -TrustedForDelegation $false`.'
+            'Migrate to constrained delegation or resource-based constrained delegation (RBCD).'
+            'Add sensitive/privileged accounts to the "Protected Users" group or mark them as "Account is sensitive and cannot be delegated".'
+            'Monitor Event IDs 4768/4769 for TGT requests with delegation flags.'
+        )
+    }
+    Kerberoastable = @{
+        title   = 'Harden Kerberoastable Service Accounts'
+        steps   = @(
+            'Rotate the service account password to a 128+ character random value.'
+            'Migrate from user-based SPNs to Group Managed Service Accounts (gMSA) where possible.'
+            'Set the account''s `msDS-SupportedEncryptionTypes` to AES-only (remove RC4).'
+            'Enable AES Kerberos encryption across the domain via GPO.'
+        )
+    }
+    AdminTo = @{
+        title   = 'Remove Unnecessary Local Admin Rights'
+        steps   = @(
+            'Remove the principal from the local Administrators group on the target host.'
+            'Implement a PAM/LAPS solution for just-in-time local admin access.'
+            'Deploy Credential Guard on endpoints to prevent credential harvesting.'
+        )
+    }
+    HasSession = @{
+        title   = 'Reduce Session Exposure'
+        steps   = @(
+            'Enforce tier isolation: privileged accounts must not log into lower-tier workstations.'
+            'Deploy GPO to restrict logon types for privileged accounts (User Rights Assignment).'
+            'Enable Credential Guard and Remote Credential Guard to prevent credential caching.'
+            'Implement session clearing policies via scheduled logoff or `klist purge` automation.'
+        )
+    }
+    GpLink = @{
+        title   = 'Secure GPO Linkage and Permissions'
+        steps   = @(
+            'Audit who can create and link GPOs using `Get-GPPermission`.'
+            'Restrict GPO creation rights to dedicated Tier 0 admin accounts only.'
+            'Monitor Event ID 5136 for changes to gPLink attributes on OUs.'
+        )
+    }
+    MemberOf = @{
+        title   = 'Review Group Membership'
+        steps   = @(
+            'Audit the membership of the intermediate group for unnecessary members.'
+            'Implement time-bound group membership using PAM or JIT tooling.'
+            'Enable Event ID 4728/4732/4756 auditing for group membership changes.'
+        )
+    }
+    StalePassword = @{
+        title   = 'Enforce Password Rotation'
+        steps   = @(
+            'Immediately rotate the stale password on the identified account.'
+            'Implement Fine-Grained Password Policy (FGPP) requiring rotation for service accounts.'
+            'Deploy gMSA to automate password rotation on a 30-day cycle.'
+        )
+    }
+    SensitiveData = @{
+        title   = 'Isolate Sensitive Data Assets'
+        steps   = @(
+            'Place the sensitive system in a hardened OU with restricted GPO and delegation.'
+            'Implement network segmentation (VLAN/firewall) to limit lateral access.'
+            'Require PAW (Privileged Access Workstation) for all administrative access to the asset.'
+        )
+    }
+}
+
+function Get-TechnicalRemediation {
+    param(
+        [Parameter(Mandatory)][PSCustomObject]$ClassifiedPath
+    )
+
+    $lines = [System.Collections.Generic.List[string]]::new()
+    $lines.Add("### Path: $($ClassifiedPath.PathId) — $($ClassifiedPath.Description)`n")
+    $lines.Add("**Severity:** $($Script:SeverityLabels[$ClassifiedPath.Severity]) (Score: $($ClassifiedPath.Score)) | **Chain:** ``$($ClassifiedPath.EdgeChain)```n")
+
+    $coveredFactors = @{}
+
+    foreach ($factor in $ClassifiedPath.Factors) {
+        if ($coveredFactors.ContainsKey($factor)) { continue }
+        $coveredFactors[$factor] = $true
+
+        $guide = $Script:RemediationGuidance[$factor]
+        if (-not $guide) { continue }
+
+        $lines.Add("#### $($guide.title)`n")
+        $stepNum = 1
+        foreach ($step in $guide.steps) {
+            $lines.Add("${stepNum}. ${step}")
+            $stepNum++
+        }
+        $lines.Add("")
+    }
+
+    if ($coveredFactors.Count -eq 0) {
+        $lines.Add("_No specific automated remediation mapped for the factors in this path. Manual review recommended._`n")
+    }
+
+    $lines -join "`n"
+}
+
+#endregion
+
+#region ── Full Report Assembly ──
+
+function New-BHNarratorReport {
+    <#
+    .SYNOPSIS
+        Assembles the full dual-layer Markdown report.
+    .OUTPUTS
+        String containing the complete Markdown report.
+    #>
+    param(
+        [Parameter(Mandatory)][array]$Classified,
+        [Parameter(Mandatory)][string]$Domain,
+        [string]$ExportDate,
+        [string]$BHVersion
+    )
+
+    $report = [System.Text.StringBuilder]::new()
+
+    # ── Header ──
+    [void]$report.AppendLine("# BloodHound Attack Path Assessment — ${Domain}")
+    [void]$report.AppendLine("")
+    [void]$report.AppendLine("**Report generated:** $(Get-Date -Format 'yyyy-MM-dd HH:mm:ss')")
+    if ($ExportDate)  { [void]$report.AppendLine("**Data collected:** ${ExportDate}") }
+    if ($BHVersion)   { [void]$report.AppendLine("**BloodHound version:** ${BHVersion}") }
+    [void]$report.AppendLine("**Tool:** BloodHound Narrator (local analysis — no data left the network)")
+    [void]$report.AppendLine("")
+    [void]$report.AppendLine("---")
+    [void]$report.AppendLine("")
+
+    # ── Layer 1: CISO Executive Prose ──
+    [void]$report.AppendLine((Get-ExecutiveSummary -Classified $Classified -Domain $Domain))
+
+    [void]$report.AppendLine("## Findings`n")
+    foreach ($path in $Classified) {
+        [void]$report.AppendLine((Get-CISOPathNarrative -ClassifiedPath $path))
+    }
+
+    [void]$report.AppendLine("---")
+    [void]$report.AppendLine("")
+
+    # ── Layer 2: Technical Remediation Appendix ──
+    [void]$report.AppendLine("# Appendix: Technical Remediation Playbook`n")
+    [void]$report.AppendLine("_The following remediation steps are prioritized by path severity. Address Critical items within the current change window; High items within 7 days._`n")
+
+    foreach ($path in $Classified) {
+        [void]$report.AppendLine((Get-TechnicalRemediation -ClassifiedPath $path))
+    }
+
+    # ── Footer ──
+    [void]$report.AppendLine("---")
+    [void]$report.AppendLine("")
+    [void]$report.AppendLine("*Report produced by BloodHound Narrator. All analysis performed locally — no data was transmitted externally.*")
+
+    $report.ToString()
+}
+
+#endregion

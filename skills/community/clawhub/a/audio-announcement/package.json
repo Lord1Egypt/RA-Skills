@@ -1,0 +1,83 @@
+{
+  "name": "audio-announcement",
+  "version": "2.0.8",
+  "description": "让 OpenClaw 开口说话，实时播报 AI 的一举一动。支持 9 种语言，完整支持 Windows 11。提供透明度、安全感和人性化体验。",
+  "author": "miaoweilin (wililam)",
+  "license": "MIT",
+  "homepage": "https://github.com/wililam/audio-announcement-skills",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wililam/audio-announcement-skills.git"
+  },
+  "dependencies": {
+    "python": ">=3.7",
+    "edge-tts": ">=6.1.3",
+    "pygame": "recommended (required for consistent cross-platform experience)",
+    "ffmpeg": "optional (fallback for Linux/macOS)"
+  },
+  "platforms": {
+    "windows": {
+      "status": "stable",
+      "script": "scripts/announce_pygame.py",
+      "altScripts": ["scripts/announce.bat", "scripts/announce.ps1"],
+      "dependencies": ["edge-tts", "pygame"],
+      "notes": "必须安装 pygame 以获得最佳体验"
+    },
+    "macos": {
+      "status": "stable",
+      "recommended": true,
+      "script": "scripts/announce.sh",
+      "dependencies": ["edge-tts", "pygame (recommended) or afplay/ffmpeg"],
+      "notes": "优先安装 pygame，否则依赖系统播放器"
+    },
+    "linux": {
+      "status": "stable",
+      "recommended": true,
+      "script": "scripts/announce.sh",
+      "dependencies": ["edge-tts", "pygame (recommended) or mpg123/ffmpeg"],
+      "notes": "优先安装 pygame，否则依赖系统播放器"
+    },
+    "android": {
+      "status": "experimental",
+      "script": "scripts/announce.sh",
+      "dependencies": ["termux", "edge-tts"]
+    }
+  },
+  "supportedLanguages": ["zh", "en", "ja", "ko", "es", "fr", "de"],
+  "entryPoints": {
+    "macos": "scripts/announce.sh",
+    "linux": "scripts/announce.sh",
+    "windows": "scripts/announce_pygame.py",
+    "unified": "scripts/announce.py"
+  },
+  "capabilities": [
+    "text-to-speech",
+    "real-time-announcement",
+    "queue-system",
+    "multi-language",
+    "cross-platform",
+    "windows-11-support",
+    "path-independent",
+    "anti-forgetting",
+    "configurable",
+    "async-playback",
+    "pypi-package",
+    "session-start-check",
+    "heartbeat-monitoring",
+    "local-playback",
+    "unified-script",
+    "volume-control"
+  ],
+  "tags": ["tts", "audio", "announcement", "transparency", "voice", "speech", "windows", "pygame", "anti-forgetting", "pypi", "session-hook", "local-playback"],
+  "minimumOpenClawVersion": "1.0.0",
+  "changelog": {
+    "2.0.8": "播报本地化 + 统一脚本 + 音量优化：仅本地播放、announce.py 统一入口、默认音量 10%、CLI 修复、文档全面升级",
+    "2.0.7": "高优先级优化：PyPI 打包支持、配置文件系统、异步默认化、CLI 工具、跨平台自动检测",
+    "2.0.6": "增强防遗忘机制：添加验证脚本、heartbeat 自动检查、集成检查清单、快速集成指南",
+    "2.0.5": "修复 PATH 依赖问题，使用 python -m edge_tts 模块调用，Windows 高可靠性",
+    "2.0.4": "强化播报规则，集成到核心配置，强制执行机制，内容规范",
+    "1.4.0": "Windows 11 完整支持，新增 announce_pygame.py，无需 WMP",
+    "1.3.1": "修复新会话语音、macOS 兼容性、跨平台哈希计算",
+    "1.2.0": "初始稳定版本"
+  }
+}

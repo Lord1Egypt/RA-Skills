@@ -1,0 +1,6 @@
+interface:
+  display_name: "Audio SRT Workflow"
+  short_description: "Generate or align SRT subtitles from audio inputs"
+  default_prompt: "Use $audio-srt-workflow to generate or align subtitles from my audio and produce a clean SRT with timing checks."
+policy:
+  allow_implicit_invocation: false

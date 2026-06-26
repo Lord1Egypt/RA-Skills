@@ -1,0 +1,145 @@
+{
+  "_description": "Notion 프로젝트 DB 및 하위 페이지 템플릿. notion_builder.py에서 참조.",
+  "_version": "1.0",
+
+  "database_schema": {
+    "title": [{"type": "text", "text": {"content": "입찰/공모 프로젝트"}}],
+    "properties": {
+      "사업명": {"title": {}},
+      "발주기관": {"rich_text": {}},
+      "마감일": {"date": {}},
+      "상태": {
+        "select": {
+          "options": [
+            {"name": "📋 진행중", "color": "blue"},
+            {"name": "✏️ 준비중", "color": "yellow"},
+            {"name": "📤 제출완료", "color": "green"},
+            {"name": "🎉 선정", "color": "purple"},
+            {"name": "❌ 탈락", "color": "red"},
+            {"name": "⛔ 취소", "color": "gray"},
+            {"name": "📦 보관", "color": "brown"}
+          ]
+        }
+      },
+      "사업유형": {
+        "select": {
+          "options": [
+            {"name": "입찰", "color": "blue"},
+            {"name": "연구과제", "color": "green"},
+            {"name": "지원사업", "color": "yellow"},
+            {"name": "공모전", "color": "purple"},
+            {"name": "조달", "color": "orange"},
+            {"name": "기타", "color": "gray"}
+          ]
+        }
+      },
+      "예산": {"number": {"format": "won"}},
+      "공고번호": {"rich_text": {}},
+      "자격충족": {"checkbox": {}},
+      "원본링크": {"url": {}}
+    }
+  },
+
+  "page_content_blocks": {
+    "_description": "하위 페이지에 생성할 콘텐츠 블록 순서와 구조",
+
+    "sections": [
+      {
+        "id": "basic_info",
+        "icon": "📋",
+        "heading": "기본 정보",
+        "block_type": "callout",
+        "fields": ["사업명", "공고번호", "발주기관", "사업유형", "사업기간", "원본링크"]
+      },
+      {
+        "id": "schedule",
+        "icon": "📅",
+        "heading": "주요 일정",
+        "block_type": "table",
+        "columns": ["일정", "날짜/시간", "비고"],
+        "rows_template": [
+          {"일정": "공고일", "field": "announcement_date"},
+          {"일정": "사업설명회", "field": "briefing_date"},
+          {"일정": "질의응답 마감", "field": "qa_deadline"},
+          {"일정": "제출 마감", "field": "submission_deadline"},
+          {"일정": "결과 발표", "field": "result_date"}
+        ]
+      },
+      {
+        "id": "documents_checklist",
+        "icon": "✅",
+        "heading": "제출서류 체크리스트",
+        "block_type": "to_do",
+        "source_field": "documents",
+        "format": "{doc_name} ({doc_type}) {format_req}"
+      },
+      {
+        "id": "qualifications",
+        "icon": "📝",
+        "heading": "자격요건",
+        "block_type": "bulleted_list",
+        "source_field": "qualifications",
+        "group_by": "qual_type",
+        "group_labels": {
+          "required": "🔴 필수 요건",
+          "preferred": "🟡 우대 조건",
+          "restriction": "⚫ 참가 제한"
+        }
+      },
+      {
+        "id": "budget",
+        "icon": "💰",
+        "heading": "예산/규모",
+        "block_type": "table",
+        "columns": ["항목", "금액", "비고"],
+        "rows_template": [
+          {"항목": "총 사업비", "field": "total_budget"},
+          {"항목": "정부출연금", "field": "gov_funding"},
+          {"항목": "민간부담금", "field": "private_funding"}
+        ]
+      },
+      {
+        "id": "writing_guide",
+        "icon": "📖",
+        "heading": "제안서 작성 요령",
+        "block_type": "hierarchical",
+        "source_field": "writing_guidelines",
+        "format": "{section_number}. {section_title}"
+      },
+      {
+        "id": "evaluation",
+        "icon": "🔍",
+        "heading": "평가기준",
+        "block_type": "table",
+        "columns": ["대분류", "세부항목", "배점", "가중치(%)"],
+        "source_field": "evaluation_criteria"
+      },
+      {
+        "id": "source_link",
+        "icon": "📎",
+        "heading": "원본 자료",
+        "block_type": "bookmark",
+        "source_field": "source_url"
+      }
+    ]
+  },
+
+  "status_mapping": {
+    "active": "📋 진행중",
+    "preparing": "✏️ 준비중",
+    "submitted": "📤 제출완료",
+    "won": "🎉 선정",
+    "lost": "❌ 탈락",
+    "cancelled": "⛔ 취소",
+    "archived": "📦 보관"
+  },
+
+  "type_mapping": {
+    "bid": "입찰",
+    "research": "연구과제",
+    "grant": "지원사업",
+    "contest": "공모전",
+    "procurement": "조달",
+    "other": "기타"
+  }
+}

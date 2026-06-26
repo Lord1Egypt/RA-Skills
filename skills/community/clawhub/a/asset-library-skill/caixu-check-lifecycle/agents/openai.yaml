@@ -1,0 +1,4 @@
+interface:
+  display_name: "Check Document Renewal Requirements"
+  short_description: "Phase skill to have an agent judge lifecycle, missing items, and readiness"
+  default_prompt: "Use $caixu-check-lifecycle after the current stage has been identified as lifecycle diagnosis, load assets and a rule profile, ask the agent for a complete CheckLifecycleData decision, validate it, write audit metadata, and persist only accepted runs."

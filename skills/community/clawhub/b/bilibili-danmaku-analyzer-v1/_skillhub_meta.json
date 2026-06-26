@@ -1,0 +1,7 @@
+{
+  "name": "bilibili-danmaku-sentiment-analysis",
+  "version": "1.0.0",
+  "description": "B站视频弹幕舆情与节奏分析",
+  "tags": ["bilibili", "danmaku", "sentiment", "analysis"],
+  "author": "WorkBuddy"
+}

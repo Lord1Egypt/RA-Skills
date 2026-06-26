@@ -1,0 +1,7 @@
+{
+  "skill_dir": "/home/admin/.openclaw/workspace/skills/auto_generated/auto_skill_20260404_063632",
+  "status": "ready",
+  "clawhub_url": "https://clawhub.com",
+  "publish_command": "clawhub publish /home/admin/.openclaw/workspace/skills/auto_generated/auto_skill_20260404_063632",
+  "timestamp": "2026-04-04 06:36:32"
+}

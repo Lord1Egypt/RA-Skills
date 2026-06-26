@@ -1,0 +1,111 @@
+metadata:
+  name: "SaaS Product Landing Page"
+  id: "landing-page-saas"
+  version: "1.0.0"
+  author: "AVG Team"
+  description: "Modern SaaS landing page with hero, features, pricing, testimonials, and CTA sections"
+  category: basic
+  tags:
+    - landing-page
+    - saas
+    - marketing
+    - modern
+    
+  preview:
+    screenshot: "screenshot.png"
+    duration_seconds: 25
+    complexity: medium
+    
+  frameworks: []
+  dependencies: []
+
+defaults:
+  browser:
+    viewport_width: 1440
+    viewport_height: 900
+    
+  video:
+    fps: 5
+    quality: medium
+    format: mp4
+    
+  audio:
+    voice: "en-US-JennyNeural"
+    rate: "+5%"
+    
+  recording:
+    interaction_mode: hybrid
+    clip_sidebar: false
+    auto_scroll: true
+    wait_after_action_ms: 600
+
+parameters:
+  - name: "primary_color"
+    type: "color"
+    default: "#6366f1"
+    label: "Primary Color"
+    description: "Main brand color used throughout the template"
+    
+  - name: "company_name"
+    type: "string"
+    default: "SaaSPro"
+    label: "Company Name"
+    description: "Display name in logo and branding"
+    
+  - name: "hero_title"
+    type: "string"
+    default: "Build Faster. Ship Happier."
+    label: "Hero Title"
+    description: "Main headline in hero section"
+    
+  - name: "hero_subtitle"
+    type: "text"
+    default: "The all-in-one platform that helps teams collaborate, automate workflows, and ship products 10x faster."
+    label: "Hero Subtitle"
+    description: "Supporting text under main headline"
+
+generation_hints:
+  focus_areas:
+    - selector: ".hero"
+      priority: high
+      dwell_time_ms: 4000
+      
+    - selector: ".features-grid"
+      priority: high
+      dwell_time_ms: 5000
+      
+    - selector: ".pricing-cards"
+      priority: high
+      dwell_time_ms: 4000
+      
+    - selector: ".testimonials-grid"
+      priority: medium
+      dwell_time_ms: 3000
+      
+    - selector: ".cta"
+      priority: high
+      dwell_time_ms: 3000
+
+  interactions:
+    # Scroll through sections
+    - action: "scroll_to"
+      target: ".features"
+      
+    # Hover over feature cards
+    - action: "hover"
+      target: ".feature-card:nth-child(1)"
+      
+    - action: "hover"
+      target: ".feature-card:nth-child(2)"
+      
+    # Click on pricing CTA
+    - action: "click"
+      target: ".pricing-card.featured .btn-primary"
+      
+    # Final CTA click
+    - action: "click"
+      target: ".cta .btn-white"
+
+  skip_selectors:
+    - ".footer"          # Skip footer in video
+    - ".trusted-by"      # Optional: skip logos section

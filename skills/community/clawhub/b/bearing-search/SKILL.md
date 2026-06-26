@@ -1,35 +1,101 @@
 ---
-name: "bearing search skill"
-description: "轴承型号和品牌搜索与解析工具。用于处理轴承相关的查询任务，包括： (1) 搜索特定轴承型号的信息（尺寸、规格、用途） (2) 搜索轴承品牌及其产品线 (3) 解析轴承型号编码规则（如 6204-2RS、NU208 等） (4) 轴承选型建议和应用场景匹配 当用户询问轴承型号、品牌、规格参数或选型问题时触发此 sk..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/bearing-search"
-sourceUrl: "https://clawhub.ai/skills/bearing-search"
+name: bearing-search
+description: |
+  轴承型号和品牌搜索与解析工具。用于处理轴承相关的查询任务，包括：
+  (1) 搜索特定轴承型号的信息（尺寸、规格、用途）
+  (2) 搜索轴承品牌及其产品线
+  (3) 解析轴承型号编码规则（如 6204-2RS、NU208 等）
+  (4) 轴承选型建议和应用场景匹配
+  当用户询问轴承型号、品牌、规格参数或选型问题时触发此 skill。
 ---
 
-# bearing search skill
+# 轴承搜索 Skill
 
-> 轴承型号和品牌搜索与解析工具。用于处理轴承相关的查询任务，包括： (1) 搜索特定轴承型号的信息（尺寸、规格、用途） (2) 搜索轴承品牌及其产品线 (3) 解析轴承型号编码规则（如 6204-2RS、NU208 等） (4) 轴承选型建议和应用场景匹配 当用户询问轴承型号、品牌、规格参数或选型问题时触发此 sk...
+## 功能概述
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/bearing-search`
-- **Source URL:** [https://clawhub.ai/skills/bearing-search](https://clawhub.ai/skills/bearing-search)
+本 skill 提供轴承型号和品牌的搜索、解析和选型支持。
 
-## Overview
+## 核心能力
 
+### 1. 轴承型号搜索
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/bearing-search
+根据型号查询轴承的详细规格：
+- 尺寸参数（内径、外径、宽度）
+- 轴承类型（深沟球、圆柱滚子、圆锥滚子等）
+- 密封形式（开式、ZZ、2RS 等）
+- 游隙等级、精度等级
+
+### 2. 轴承品牌搜索
+
+查询轴承制造商信息：
+- 品牌产品线
+- 主要应用领域
+- 技术特点
+
+### 3. 型号解析
+
+解析标准轴承型号的编码规则：
+- ISO 标准型号
+- 主要品牌型号对照（SKF、NSK、FAG、NTN 等）
+- 后缀代码含义
+
+### 4. 轴承选型
+
+根据应用场景推荐轴承：
+- 载荷类型（径向/轴向/复合）
+- 转速要求
+- 环境条件（温度、腐蚀、污染）
+- 安装空间限制
+
+## 数据结构
+
+轴承数据存储在以下位置：
+- `data/models/` - 轴承型号数据库
+- `data/brands/` - 品牌信息数据库
+
+详见 [references/data-structure.md](references/data-structure.md)
+
+## 型号编码规则
+
+详见 [references/model-codes.md](references/model-codes.md)
+- 基本型号结构
+- 前缀/后缀含义
+- 各品牌对照表
+
+## 品牌参考
+
+详见 [references/brands.md](references/brands.md)
+- 国际主流品牌（SKF、NSK、FAG、NTN、TIMKEN 等）
+- 国内品牌（洛轴、瓦轴、万向等）
+- 各品牌特色产品线
+
+## 使用示例
+
+### 搜索型号
+```
+用户: "6204-2RS 是什么轴承？"
+→ 解析为深沟球轴承，内径20mm，双面橡胶密封
+→ 返回尺寸、载荷、转速等参数
+```
+
+### 品牌查询
+```
+用户: "SKF 有哪些高速轴承系列？"
+→ 查询 SKF 产品线
+→ 返回高速应用推荐系列
+```
+
+### 型号对照
+```
+用户: "SKF 6204 对应 NSK 什么型号？"
+→ 型号对照表查询
+→ 返回 NSK 6204VV 或 6204DDU
+```
+
+### 选型建议
+```
+用户: "电机主轴用什么轴承好？"
+→ 分析应用场景（高速、径向载荷、低噪音）
+→ 推荐深沟球轴承或角接触球轴承
+→ 给出具体型号范围
 ```

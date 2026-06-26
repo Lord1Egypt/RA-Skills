@@ -1,0 +1,47 @@
+{
+  "name": "bilibili",
+  "version": "1.0.0",
+  "description": "Design videos for cultural resonance on Bilibili. Analyze danmu psychology, meme triggers, collective reaction points, and community-native emotional beats.",
+  "author": "qclawbot",
+  "license": "MIT-0",
+  "homepage": "https://clawhub.ai",
+  "keywords": [
+    "bilibili",
+    "danmu",
+    "弹幕",
+    "共鸣",
+    "meme trigger",
+    "视频脚本",
+    "b站",
+    "community resonance"
+  ],
+  "files": {
+    "skill.md": "skill.md"
+  },
+  "capabilities": {
+    "danmu_analysis": "Identify likely collective comment triggers and danmu moments",
+    "resonance_design": "Design emotional and meme-based reaction architecture for Bilibili videos",
+    "script_optimization": "Improve scripts for stronger crowd response and repeatable moments",
+    "community_alignment": "Evaluate whether a video feels Bilibili-native or cross-platform generic"
+  },
+  "triggers": [
+    "bilibili strategy",
+    "b站脚本",
+    "弹幕设计",
+    "共鸣点",
+    "梗点",
+    "槽点",
+    "名场面",
+    "b站内容优化"
+  ],
+  "audience": [
+    "Bilibili creators",
+    "ACG and gaming content creators",
+    "Youth-culture video operators",
+    "Scriptwriters optimizing for danmu participation"
+  ],
+  "openclaw": {
+    "primaryEnv": null,
+    "requires": {}
+  }
+}

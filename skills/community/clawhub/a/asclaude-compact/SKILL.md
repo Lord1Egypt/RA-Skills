@@ -1,35 +1,26 @@
+# asclaude-compact: 智能会话记忆管理器 🧠✨
+
+> **让 AI 像人类一样拥有“短期记忆”与“长期档案”，告别上下文幻觉。**
+
+## 🌟 核心亮点
+**asclaude-compact** 是一套专为 OpenClaw 打造的高级会话优化方案。它不仅仅是简单的“删除旧消息”，而是通过**分层压缩策略**，在保留核心逻辑的同时，将庞大的对话历史精简为维护成本极低的“精华摘要”。
+
+### 🚀 功能详解
+1.  **全量归档 (Full Archival):** 
+    *   自动将当前冗长的对话打包成 `.jsonl` 存档。
+    *   释放会话内存，让 AI 重新获得“轻装上阵”的响应速度。
+2.  **智能摘要 (Smart Summarization):**
+    *   生成高度结构化的 `session-memory.md`。
+    *   精准记录已完成的决策、待办事项（TODO）以及关键的项目上下文。
+3.  **微压缩 (Micro-Compact):**
+    *   针对超长工具输出（如大段代码块、日志）进行定向清理。
+    *   保留最近的 2 个关键步骤，删除冗余的执行细节。
+4.  **零 API 成本:**
+    *   纯本地运行，不消耗任何 Token 配额，响应速度快至毫秒级。
+
+## 🛠️ 使用指南
+- **触发全量压缩:** `python scripts/compact-trigger.py`
+- **执行快速清理:** `python scripts/micro-compact.py`
+
 ---
-name: "asclaude-compact"
-description: "Manage AI conversation memory with layered compression, archiving chats as JSONL, summarizing key info in markdown, and cleaning long outputs locally without..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/asclaude-compact"
-sourceUrl: "https://clawhub.ai/skills/asclaude-compact"
----
-
-# asclaude-compact
-
-> Manage AI conversation memory with layered compression, archiving chats as JSONL, summarizing key info in markdown, and cleaning long outputs locally without...
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/asclaude-compact`
-- **Source URL:** [https://clawhub.ai/skills/asclaude-compact](https://clawhub.ai/skills/asclaude-compact)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/asclaude-compact
-```
+*由 黑米 (HeiMi) 精心封装，为您打造永不遗忘且极度专注的私人 AI 助手。* 🌾

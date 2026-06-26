@@ -1,35 +1,43 @@
 ---
-name: "币安资金费率监控"
-description: "币安资金费率套利监控工具 - 查看账户、持仓、盈亏统计，SkillPay收费版"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/binance-funding-monitor"
-sourceUrl: "https://clawhub.ai/skills/binance-funding-monitor"
+name: binance-funding-monitor
+description: 币安资金费率套利监控工具 - 查看账户、持仓、盈亏统计，SkillPay收费版
+version: 1.0.3
+author: partner
 ---
 
-# 币安资金费率监控
+# Binance Funding Monitor (SkillPay)
 
-> 币安资金费率套利监控工具 - 查看账户、持仓、盈亏统计，SkillPay收费版
+币安资金费率套利监控工具 - 按次付费版
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/binance-funding-monitor`
-- **Source URL:** [https://clawhub.ai/skills/binance-funding-monitor](https://clawhub.ai/skills/binance-funding-monitor)
+## 价格
 
-## Overview
+- 每次调用: **1 USDT**
+- 支付方式: Crypto 钱包 (Web3)
 
+## 前置要求
 
-## Installation
-To install this skill, run the following command in your terminal:
+### 必需环境变量
+- `BINANCE_API_KEY` - 币安 API Key
+- `BINANCE_API_SECRET` - 币安 API Secret
+
+### 可选环境变量
+- `SKILLPAY_API_KEY` - SkillPay API Key（平台自动注入）
+- `SKILLPAY_ENDPOINT` - SkillPay API 端点
+
+## 功能
+
+- `get_account_summary` - 账户总览（权益、保证金、余额）
+- `get_positions` - 当前持仓列表
+- `get_funding_income` - 近7天资金费收入
+- `get_full_report` - 完整监控报告
+
+## 配置示例
+
 ```bash
-hermes skills install clawhub/binance-funding-monitor
+export BINANCE_API_KEY="your_api_key"
+export BINANCE_API_SECRET="your_api_secret"
 ```
+
+## 免责声明
+
+本工具仅供监控使用，不构成投资建议。

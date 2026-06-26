@@ -1,35 +1,38 @@
 ---
-name: "Beta TA Signal Engine"
-description: "Generate technical-analysis trade setups from OHLCV CSV using SMA/EMA/RSI/MACD/ATR with clear entry, stop, target, and position size."
-category: "blockchain"
-source: "ClawHub"
-tags: [atr, macd, rsi, signals, sma, technical-analysis, trading]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/beta-ta-signal-engine"
-sourceUrl: "https://clawhub.ai/skills/beta-ta-signal-engine"
+name: ta-signal-engine
+description: Generate technical-analysis trade setups from OHLCV CSV using SMA/EMA/RSI/MACD/ATR with clear entry, stop, target, and position size.
 ---
 
-# Beta TA Signal Engine
+# TA Signal Engine
 
-> Generate technical-analysis trade setups from OHLCV CSV using SMA/EMA/RSI/MACD/ATR with clear entry, stop, target, and position size.
+Use this skill when the user wants technical-analysis based entry/exit signals and risk-defined trade setup proposals.
 
-- **Category:** Blockchain
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/beta-ta-signal-engine`
-- **Source URL:** [https://clawhub.ai/skills/beta-ta-signal-engine](https://clawhub.ai/skills/beta-ta-signal-engine)
+## Inputs
 
-## Overview
+- OHLCV CSV with headers including: `date, open, high, low, close` (case-insensitive)
+- Strategy mode: `trend`, `mean-reversion`, or `breakout`
 
+## Run
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/beta-ta-signal-engine
+python3 scripts/ta_signal_engine.py \
+  --csv /abs/path/prices.csv \
+  --symbol BTCUSDT \
+  --strategy trend \
+  --account-size 100000 \
+  --risk-per-trade 0.01 \
+  --json
 ```
+
+## Workflow
+
+1. Run the script and inspect `signal` and `confidence`.
+2. If `signal=flat`, explain why (no edge from current indicators).
+3. If signal is active, use generated `entry/stop/target/size` as the candidate plan.
+4. Do not claim certainty; frame it as probabilistic setup.
+
+## Notes
+
+- This skill only produces analysis and paper-trade plans.
+- For historical evaluation, use `ta-backtest` skill.
+- For ledger/order lifecycle, use `ta-paper-executor` skill.

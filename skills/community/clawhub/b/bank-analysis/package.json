@@ -1,0 +1,23 @@
+{
+  "name": "bank-analysis",
+  "version": "2.0.0",
+  "description": "银行流水财务分析技能 - 升级版：支持GBK编码自动转换、完整财务汇报格式（包含风险预警和季度回顾）",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "iconv-lite": "^0.7.2",
+    "xlsx": "^0.18.5"
+  },
+  "keywords": [
+    "财务",
+    "分析",
+    "银行",
+    "流水",
+    "风险预警",
+    "季度回顾"
+  ],
+  "author": "duzhilei951",
+  "license": "MIT"
+}

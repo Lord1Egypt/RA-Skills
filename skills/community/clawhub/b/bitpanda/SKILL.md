@@ -1,35 +1,31 @@
----
-name: "Bitpanda"
-description: "Check your Bitpanda crypto portfolio, wallet balances, and trade history via CLI using your API key with read-only access."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/bitpanda"
-sourceUrl: "https://clawhub.ai/skills/bitpanda"
----
+# Bitpanda Portfolio Skill
 
-# Bitpanda
+Check Bitpanda crypto portfolio, wallet balances, and trade history via CLI.
 
-> Check your Bitpanda crypto portfolio, wallet balances, and trade history via CLI using your API key with read-only access.
+## Auth
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/bitpanda`
-- **Source URL:** [https://clawhub.ai/skills/bitpanda](https://clawhub.ai/skills/bitpanda)
+API key is read from (in order):
+1. `BITPANDA_API_KEY` environment variable
+2. `~/.openclaw/credentials/bitpanda/config.json` → `{"api_key": "..."}`
 
-## Overview
+Generate at: https://web.bitpanda.com/my-account/apikey
+Recommended scopes: **Balance**, **Trade**, **Transaction**
 
+## Commands
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/bitpanda
+bitpanda portfolio                    # Non-zero wallets grouped by crypto/fiat/index
+bitpanda wallets                      # All non-zero wallets with balances
+bitpanda transactions --limit 20      # Recent trades
+bitpanda transactions --flow buy      # Buy trades only
+bitpanda transactions --flow sell     # Sell trades only
+bitpanda asset BTC                    # Current price + your balance
 ```
+
+## Notes
+
+- **Read-only** — no trading or transfers
+- Assets in **Bitpanda Earn/Staking** are not exposed by the API and won't show in balances
+- The `asset` command uses the public ticker (no auth needed) for prices
+- Pagination is automatic
+- Requires: `curl`, `jq`, `bc`

@@ -1,0 +1,3321 @@
+meta:
+  id: finance-bp-129-v5.3
+  version: v6.1
+  blueprint_id: finance-bp-129
+  sop_version: crystal-compilation-v6.1
+  source_language: en
+  compiled_at: '2026-04-22T13:01:04.739311+00:00'
+  target_host: openclaw
+  authoritative_artifact:
+    primary: seed.yaml
+    non_authoritative_derivatives:
+    - SKILL.md (host-generated summary, may lag)
+    - HEARTBEAT.md (host telemetry)
+    - memory/*.md (host conversational memory)
+    rule: On any behavioral decision (preconditions check, OV assertion, EQ rule firing, spec_lock verification), agents MUST
+      re-read seed.yaml. Derivatives are for UI display only and may be out-of-date.
+  execution_protocol:
+    install_trigger:
+    - Execute resources.host_adapter.install_recipes[] in declared order
+    - Verify each package with import check before proceeding
+    execute_trigger: When user intent matches intent_router.uc_entries[].positive_terms AND user uses action verb (run/execute/跑/执行/backtest/fetch/collect)
+    on_execute:
+    - Reload seed.yaml (do not rely on SKILL.md or cached summaries)
+    - Run preconditions[] in declared order; halt on first fatal failure with on_fail message to user
+    - Enter context_state_machine.CA1_MEMORY_CHECKED state
+    - Evaluate evidence_quality.enforcement_rules[]; prepend user_disclosure_template
+    - Translate user_facing_fields to user locale per locale_contract
+    - "[V6 READING ORDER]\nThis crystal contains the following V6 layers. Before answering any business question, the host\
+      \ MUST read them in order:\n  1. anti_patterns[] — cross-project anti-patterns (with AP-* ids)\n  2. cross_project_wisdom[]\
+      \ — cross-project wisdom (with CW-* ids)\n  3. domain_constraints_injected[] — domain constraints (SHARED-* ids)\n \
+      \ 4. known_use_cases[] — concrete business scenarios (KUC-* ids)\n  5. component_capability_map — AST component map\
+      \ (by module)\n\nWhen answering user questions, proactively cite relevant AP-*/CW-*/SHARED-*/KUC-* ids with source text.\
+      \ Examples: T+1 rules -> cite SHARED-* constraint; model comparison -> warn via AP-*; follow-holdings strategy -> cite\
+      \ KUC-* with example file."
+    workspace_resolution:
+      scripts_path: '{host_workspace}/scripts/'
+      skills_path: '{host_workspace}/skills/'
+      trace_path: '{host_workspace}/.trace/'
+  capability_tags:
+    markets:
+    - global
+    activities:
+    - accounting
+  upgraded_from: finance-bp-129-v1.seed.yaml
+  upgraded_at: '2026-04-22T13:20:35.880096+00:00'
+  v6_inputs:
+    ast_mind_map: knowledge/sources/finance/finance-bp-129--beancount/v6_inputs/ast_mind_map.yaml
+    anti_patterns: null
+    cross_project_wisdom: null
+    examples_kuc: knowledge/sources/finance/finance-bp-129--beancount/v6_inputs/examples_kuc.yaml
+    shared_pools_dir: knowledge/sources/finance/_shared
+anti_patterns:
+- id: AP-ACCOUNTING-001
+  title: Using floating-point arithmetic for monetary amounts
+  description: Representing currency values with float64 or similar floating-point types causes precision loss during arithmetic
+    operations. Rounding errors accumulate over multiple transactions, leading to incorrect balance calculations and potential
+    financial losses. This violates the fundamental requirement that monetary calculations must be exact.
+  project_source: finance-bp-073--ledger, finance-bp-129--beancount
+  severity: high
+  applicable_to_tags:
+    markets:
+    - global
+    activities:
+    - accounting
+  _source_file: anti-patterns/accounting.yaml
+- id: AP-ACCOUNTING-002
+  title: Skipping initialization calls before VM/script execution
+  description: Executing Numscript VM without first calling ResolveResources() and ResolveBalances() causes panics with ErrResourcesNotInitialized
+    or ErrBalancesNotInitialized. This prevents any script execution and leaves transactions in an unrunnable state, blocking
+    financial operations entirely.
+  project_source: finance-bp-073--ledger
+  severity: high
+  applicable_to_tags:
+    markets:
+    - global
+    activities:
+    - accounting
+  _source_file: anti-patterns/accounting.yaml
+- id: AP-ACCOUNTING-003
+  title: Mixing different asset types in monetary operations
+  description: Performing addition, subtraction, or take operations on amounts with different asset types produces invalid
+    financial calculations. This violates the fundamental accounting principle that amounts in different currencies cannot
+    be combined, leading to corrupted account balances and failed reconciliations.
+  project_source: finance-bp-073--ledger
+  severity: high
+  applicable_to_tags:
+    markets:
+    - global
+    activities:
+    - accounting
+  _source_file: anti-patterns/accounting.yaml
+- id: AP-ACCOUNTING-004
+  title: Missing insufficient funds validation
+  description: Failing to detect when account balance cannot cover a requested withdrawal or transfer allows overdrafts beyond
+    permitted limits. This causes real monetary losses, account balance violations, and potential regulatory compliance issues
+    in global markets.
+  project_source: finance-bp-073--ledger
+  severity: high
+  applicable_to_tags:
+    markets:
+    - global
+    activities:
+    - accounting
+  _source_file: anti-patterns/accounting.yaml
+- id: AP-ACCOUNTING-005
+  title: Non-atomic transaction commit/rollback
+  description: Processing database operations without atomic commit/rollback leaves partial state when failures occur. This
+    corrupts account balances and volumes, violating double-entry bookkeeping integrity and making audit trails unreliable
+    for global regulatory compliance.
+  project_source: finance-bp-073--ledger
+  severity: high
+  applicable_to_tags:
+    markets:
+    - global
+    activities:
+    - accounting
+  _source_file: anti-patterns/accounting.yaml
+- id: AP-ACCOUNTING-006
+  title: On-demand posting generation causing double-spending
+  description: Computing postings on-demand rather than accumulating them during transaction execution fails to track already-spent
+    funds within the same transaction. This creates double-spending vulnerabilities that violate atomic transaction semantics
+    and can result in significant financial losses.
+  project_source: finance-bp-073--ledger
+  severity: high
+  applicable_to_tags:
+    markets:
+    - global
+    activities:
+    - accounting
+  _source_file: anti-patterns/accounting.yaml
+- id: AP-ACCOUNTING-007
+  title: Log insertion after transaction commit breaking event sourcing
+  description: Committing the transaction before inserting the audit log breaks the event sourcing pattern fundamental to
+    accounting integrity. This makes it impossible to rebuild state from logs and violates audit requirements necessary for
+    global financial compliance.
+  project_source: finance-bp-073--ledger
+  severity: high
+  applicable_to_tags:
+    markets:
+    - global
+    activities:
+    - accounting
+  _source_file: anti-patterns/accounting.yaml
+- id: AP-ACCOUNTING-008
+  title: Incomplete transaction log hash chaining
+  description: Computing log hashes without including the previous log hash breaks the immutable audit trail chain. This allows
+    undetected tampering with historical transaction records, compromising financial integrity and regulatory audit compliance.
+  project_source: finance-bp-073--ledger
+  severity: high
+  applicable_to_tags:
+    markets:
+    - global
+    activities:
+    - accounting
+  _source_file: anti-patterns/accounting.yaml
+- id: AP-ACCOUNTING-009
+  title: Incorrect row data access patterns on query results
+  description: Using dictionary notation (row['column_name']) on namedtuple query results raises TypeError since namedtuples
+    only support attribute access. This breaks all module queries expecting attribute-style access, causing asset allocation,
+    tax loss harvesting, and other critical financial computations to fail.
+  project_source: finance-bp-078--fava_investor
+  severity: high
+  applicable_to_tags:
+    markets:
+    - global
+    activities:
+    - accounting
+  _source_file: anti-patterns/accounting.yaml
+- id: AP-ACCOUNTING-010
+  title: Missing bidirectional inference for fund relationship declarations
+  description: When relationship A→B is declared but B→A is not inferred, the TLH partner list becomes incomplete. This leads
+    to suboptimal tax-loss harvesting decisions where only some funds show all valid swap options, reducing potential tax
+    savings for investors.
+  project_source: finance-bp-078--fava_investor
+  severity: medium
+  applicable_to_tags:
+    markets:
+    - global
+    activities:
+    - accounting
+  _source_file: anti-patterns/accounting.yaml
+- id: AP-ACCOUNTING-011
+  title: Wash sale comparison within substantially identical groups
+  description: Comparing a ticker to itself in its own substantially identical group falsely triggers wash sale warnings.
+    This incorrectly blocks valid tax-loss harvesting transactions, causing investors to miss opportunities to realize tax
+    losses and offset capital gains.
+  project_source: finance-bp-078--fava_investor
+  severity: high
+  applicable_to_tags:
+    markets:
+    - global
+    activities:
+    - accounting
+  _source_file: anti-patterns/accounting.yaml
+- id: AP-ACCOUNTING-012
+  title: Missing substantially identical tickers in wash sale queries
+  description: Omitting substantially identical fund tickers from the wash sale comparison set allows purchases of similar
+    funds within the 30-day window. This triggers unintended wash sales that disallow tax loss claims on subsequent sales
+    of the original position.
+  project_source: finance-bp-078--fava_investor
+  severity: high
+  applicable_to_tags:
+    markets:
+    - global
+    activities:
+    - accounting
+  _source_file: anti-patterns/accounting.yaml
+- id: AP-ACCOUNTING-013
+  title: Using parsed entries with MISSING sentinel values for calculations
+  description: Using parsed entries directly that contain MISSING sentinel values for balance or cost computations causes
+    runtime errors or silent zero-value calculations. This results in incorrect portfolio valuations and reconciliation failures,
+    compromising financial reporting accuracy.
+  project_source: finance-bp-129--beancount
+  severity: high
+  applicable_to_tags:
+    markets:
+    - global
+    activities:
+    - accounting
+  _source_file: anti-patterns/accounting.yaml
+- id: AP-ACCOUNTING-014
+  title: Underspecified interpolation with multiple missing values per currency
+  description: Having more than one missing value per currency group creates an underdetermined system with no unique solution
+    during interpolation. This causes InterpolationError and transaction failure, blocking balance calculations for affected
+    accounts.
+  project_source: finance-bp-129--beancount
+  severity: high
+  applicable_to_tags:
+    markets:
+    - global
+    activities:
+    - accounting
+  _source_file: anti-patterns/accounting.yaml
+- id: AP-ACCOUNTING-015
+  title: Violating accounting identity in opening balance transactions
+  description: Creating opening balance transactions where the total balance of summarized entries does not equal exactly
+    zero violates the fundamental accounting identity (Assets = Liabilities + Equity). This causes the balance sheet to be
+    fundamentally incorrect with non-zero total assets and liabilities.
+  project_source: finance-bp-129--beancount
+  severity: high
+  applicable_to_tags:
+    markets:
+    - global
+    activities:
+    - accounting
+  _source_file: anti-patterns/accounting.yaml
+cross_project_wisdom:
+- wisdom_id: CW-ACCOUNTING-001
+  source_project: finance-bp-073--ledger, finance-bp-129--beancount
+  pattern_name: Use exact-precision integer types for monetary representation
+  description: Both the Numscript ledger and Beancount parser mandates using Decimal (beancount) or MonetaryInt based on big.Int
+    (ledger) instead of floating-point. This pattern ensures no rounding errors accumulate in financial calculations, critical
+    for audit compliance in global markets.
+  applicable_to_activity: accounting
+  _source_file: cross-project-wisdom/accounting.yaml
+- wisdom_id: CW-ACCOUNTING-002
+  source_project: finance-bp-073--ledger
+  pattern_name: Mandatory initialization sequence before execution
+  description: 'The Numscript VM requires a strict initialization sequence: ResolveResources() then ResolveBalances() must
+    both be called before Execute(). Skipping any step causes panics. This teaches that VM/script execution requires careful
+    state setup—always verify prerequisites before running financial logic.'
+  applicable_to_activity: accounting
+  _source_file: cross-project-wisdom/accounting.yaml
+- wisdom_id: CW-ACCOUNTING-003
+  source_project: finance-bp-073--ledger
+  pattern_name: Dual idempotency key strategy
+  description: 'Using both IdempotencyKey and IdempotencyHash together ensures robust duplicate detection: IdempotencyKey
+    prevents exact retries while IdempotencyHash catches retries with different input parameters that would otherwise incorrectly
+    succeed. Single-key approaches leave gaps in financial transaction safety.'
+  applicable_to_activity: accounting
+  _source_file: cross-project-wisdom/accounting.yaml
+- wisdom_id: CW-ACCOUNTING-004
+  source_project: finance-bp-073--ledger
+  pattern_name: Log-before-commit event sourcing pattern
+  description: In the transaction processing pipeline, the log must be inserted before committing the transaction to maintain
+    event sourcing integrity. This ensures the audit trail can always reconstruct state and supports rollback scenarios, critical
+    for regulatory compliance in global accounting.
+  applicable_to_activity: accounting
+  _source_file: cross-project-wisdom/accounting.yaml
+- wisdom_id: CW-ACCOUNTING-005
+  source_project: finance-bp-073--ledger
+  pattern_name: Read Committed isolation with FOR UPDATE locks
+  description: When implementing balance operations, use Read Committed isolation level combined with FOR UPDATE row locks.
+    This prevents concurrent transactions from creating inconsistent balances (e.g., both succeeding when they should fail
+    due to insufficient funds), ensuring data integrity under concurrent load.
+  applicable_to_activity: accounting
+  _source_file: cross-project-wisdom/accounting.yaml
+- wisdom_id: CW-ACCOUNTING-006
+  source_project: finance-bp-078--fava_investor
+  pattern_name: Transitive closure for equivalence relationships
+  description: When building commodity groups or substantially identical fund relationships, apply transitive closure to infer
+    complete equivalence. If A equals B and B equals C, then A, B, and C form one group. This ensures wash sale detection
+    and TLH calculations are complete and accurate across all declared relationships.
+  applicable_to_activity: accounting
+  _source_file: cross-project-wisdom/accounting.yaml
+- wisdom_id: CW-ACCOUNTING-007
+  source_project: finance-bp-078--fava_investor
+  pattern_name: Canonical representative selection for relationship groups
+  description: When selecting a representative for a substantially identical fund group, always return the same representative
+    ticker for any member of that group. Inconsistent representative selection causes non-deterministic calculations where
+    the same ticker gets different partners depending on which group member is queried.
+  applicable_to_activity: accounting
+  _source_file: cross-project-wisdom/accounting.yaml
+- wisdom_id: CW-ACCOUNTING-008
+  source_project: finance-bp-129--beancount
+  pattern_name: Immutable monetary objects with __slots__
+  description: Constructing Amount or Position objects using immutable Decimal values with __slots__ = () pattern prevents
+    accidental mutation of monetary values after creation. This immutability ensures financial calculations remain consistent
+    throughout transaction processing and audit trails.
+  applicable_to_activity: accounting
+  _source_file: cross-project-wisdom/accounting.yaml
+- wisdom_id: CW-ACCOUNTING-009
+  source_project: finance-bp-129--beancount
+  pattern_name: Eliminate all MISSING values before presenting parsed data as complete
+  description: Parsed entries with MISSING sentinel values are incomplete and cannot be used for financial reporting. All
+    MISSING values must be resolved through booking and interpolation before claiming parsed entries are ready for balance
+    calculations or realized/unrealized gains computation.
+  applicable_to_activity: accounting
+  _source_file: cross-project-wisdom/accounting.yaml
+- wisdom_id: CW-ACCOUNTING-010
+  source_project: finance-bp-078--fava_investor, finance-bp-129--beancount
+  pattern_name: Strict schema compatibility across class hierarchies
+  description: When extending base classes with additional functionality (like ScaledNAV extending RelateTickers), maintain
+    compatibility with existing metadata schemas. Schema divergence causes extended classes to miss relationships declared
+    for the base class, breaking wash sale detection and TLH recommendations.
+  applicable_to_activity: accounting
+  _source_file: cross-project-wisdom/accounting.yaml
+domain_constraints_injected: []
+resources_injected: {}
+known_use_cases:
+- kuc_id: KUC-101
+  source_file: beancount/utils/test_utils.py
+  business_problem: Provides reusable testing utilities for beancount test scripts including temporary directory management
+    and test file creation for integration testing.
+  intent_keywords:
+  - testing utilities
+  - tempdir
+  - test files
+  - mock repository
+  - integration testing
+  stage: testing
+  data_domain: internal
+  type: builtin_factor
+- kuc_id: KUC-102
+  source_file: beancount/utils/test_utils_test.py
+  business_problem: Unit tests that validate the correctness of test utility functions including temporary directory cleanup
+    and test file generation for beancount test scripts.
+  intent_keywords:
+  - unit test
+  - validation
+  - test utilities
+  - tempdir cleanup
+  - test file generation
+  stage: testing
+  data_domain: internal
+  type: builtin_factor
+component_capability_map:
+  project: finance-bp-129--beancount
+  scan_date: '2026-04-22'
+  stats:
+    total_files: 6
+    total_classes: 19
+    total_functions: 0
+    total_stages: 6
+  modules:
+    parsing:
+      class_count: 4
+      stage_id: parsing
+      stage_order: 1
+      responsibility: Tokenize and parse Beancount DSL files into directive data structures. Provides the foundation for each
+        downstream processing.
+      classes:
+      - name: Builder.build
+        file: parsing/builder-build.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: OptDesc.convert
+        file: parsing/optdesc-convert.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: booking_method
+        file: parsing/booking-method.py
+        line: 0
+        kind: replaceable_point
+      - name: plugin
+        file: parsing/plugin.py
+        line: 0
+        kind: replaceable_point
+      design_decision_count: 4
+    booking_(lot_matching):
+      class_count: 3
+      stage_id: booking
+      stage_order: 2
+      responsibility: Match inventory reductions to existing lots using configurable methods; infer missing posting amounts
+        via interpolation
+      classes:
+      - name: Inventory.reduce
+        file: booking_(lot_matching)/inventory-reduce.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: booking_method_STRICT
+        file: booking_(lot_matching)/booking-method-strict.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: booking_method_fn
+        file: booking_(lot_matching)/booking-method-fn.py
+        line: 0
+        kind: replaceable_point
+      design_decision_count: 5
+    transformation_(plugins):
+      class_count: 3
+      stage_id: transformation
+      stage_order: 3
+      responsibility: Apply user plugins and built-in transformations to synthesized entries, pad balances, check assertions
+      classes:
+      - name: DocumentError.check
+        file: transformation_(plugins)/documenterror-check.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: PadError.check
+        file: transformation_(plugins)/paderror-check.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: plugin_module
+        file: transformation_(plugins)/plugin-module.py
+        line: 0
+        kind: replaceable_point
+      design_decision_count: 4
+    realization:
+      class_count: 3
+      stage_id: realization
+      stage_order: 4
+      responsibility: Convert chronological list of directives into account tree with running balances for reporting
+      classes:
+      - name: RealAccount.txn_postings
+        file: realization/realaccount-txn-postings.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: Amount.__slots__
+        file: realization/amount-slots.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: balance_reducer
+        file: realization/balance-reducer.py
+        line: 0
+        kind: replaceable_point
+      design_decision_count: 4
+    summarization:
+      class_count: 3
+      stage_id: summarization
+      stage_order: 5
+      responsibility: Fold historical entries into balance sheet opening transactions; support period reporting
+      classes:
+      - name: AccountTypes.equity
+        file: summarization/accounttypes-equity.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: summarize.open
+        file: summarization/summarize-open.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: conversion_currency
+        file: summarization/conversion-currency.py
+        line: 0
+        kind: replaceable_point
+      design_decision_count: 3
+    validation:
+      class_count: 3
+      stage_id: validation
+      stage_order: 6
+      responsibility: Verify invariants hold after each transformations; ensure accounting rules are not violated
+      classes:
+      - name: ValidationError.check
+        file: validation/validationerror-check.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: validate_open_close
+        file: validation/validate-open-close.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: extra_validations
+        file: validation/extra-validations.py
+        line: 0
+        kind: replaceable_point
+      design_decision_count: 3
+  data_flow_hints: []
+locale_contract:
+  source_language: en
+  user_facing_fields:
+  - human_summary.what_i_can_do.tagline
+  - human_summary.what_i_can_do.use_cases[]
+  - human_summary.what_i_auto_fetch[]
+  - human_summary.what_i_ask_you[]
+  - evidence_quality.user_disclosure_template
+  - post_install_notice.message_template.positioning
+  - post_install_notice.message_template.capability_catalog.groups[].name
+  - post_install_notice.message_template.capability_catalog.groups[].description
+  - post_install_notice.message_template.capability_catalog.groups[].ucs[].name
+  - post_install_notice.message_template.capability_catalog.groups[].ucs[].short_description
+  - post_install_notice.message_template.call_to_action
+  - post_install_notice.message_template.featured_entries[].beginner_prompt
+  - post_install_notice.message_template.more_info_hint
+  - preconditions[].description
+  - preconditions[].on_fail
+  - intent_router.uc_entries[].name
+  - intent_router.uc_entries[].ambiguity_question
+  - architecture.pipeline
+  - architecture.stages[].narrative.does_what
+  - architecture.stages[].narrative.key_decisions
+  - architecture.stages[].narrative.common_pitfalls
+  - constraints.fatal[].consequence
+  - constraints.regular[].consequence
+  - output_validator.assertions[].failure_message
+  - acceptance.hard_gates[].on_fail
+  - skill_crystallization.action
+  locale_detection_order:
+  - explicit_user_declaration
+  - first_message_language
+  - system_locale
+  translation_enforcement:
+    trigger: on_first_user_message
+    action: Render user_facing_fields in detected locale, preserving all IDs (BD-/SL-/UC-/finance-C-) and code identifiers
+      verbatim
+    violation_code: LOCALE-01
+    violation_signal: User receives untranslated English Human Summary when detected locale != en
+evidence_quality:
+  declared:
+    evidence_coverage_ratio: 1.0
+    evidence_verify_ratio: 0.5154639175257731
+    evidence_invalid: 47
+    evidence_verified: 50
+    evidence_auto_fixed: 0
+    audit_coverage: 29/29 (100%)
+    audit_pass_rate: 7/29 (24%)
+    audit_fail_total: 7
+    audit_finance_universal:
+      pass: 4
+      warn: 8
+      fail: 4
+    audit_subdomain_totals:
+      pass: 3
+      warn: 7
+      fail: 3
+  enforcement_rules:
+  - id: EQ-01
+    trigger: declared.evidence_verify_ratio < 0.5
+    action: MUST invoke traceback lookup for all cited BD-IDs in output before emitting business code — read LATEST.yaml sections
+      for each BD referenced
+    violation_code: EQ-01-V
+    violation_signal: Generated script references BD-IDs but no tool_call to read LATEST.yaml preceded code generation
+  user_disclosure_template: '[QUALITY NOTICE] This crystal was compiled from blueprint finance-bp-129. Evidence verify ratio
+    = 51.5% and audit fail total = 7. Generated results may have uncaptured requirement gaps. Verify critical decisions against
+    source files (LATEST.yaml / LATEST.jsonl).'
+traceback:
+  source_files:
+    blueprint: LATEST.yaml
+    constraints: LATEST.jsonl
+  mandatory_lookup_scenarios:
+  - id: TB-01
+    condition: Two constraints have apparently conflicting enforcement rules
+    lookup_target: LATEST.jsonl — find both constraint IDs, compare `consequence` + `evidence_refs` to determine priority
+  - id: TB-02
+    condition: A business decision rationale is unclear or disputed
+    lookup_target: LATEST.yaml — locate BD-ID under business_decisions, read `rationale` + `alternative_considered` fields
+  - id: TB-03
+    condition: evidence_invalid > 0 in evidence_quality.declared
+    lookup_target: LATEST.yaml _enrich_meta — cross-check specific BD `evidence_refs` fields for invalid markers
+  - id: TB-04
+    condition: User asks where a rule comes from
+    lookup_target: LATEST.jsonl — find constraint by ID, read `confidence.evidence_refs` for source file + line number
+  - id: TB-05
+    condition: Generated code does not match expected ZVT API behavior
+    lookup_target: LATEST.yaml stages[].required_methods — verify method signature and evidence locator in source code
+  degraded_lookup:
+    no_fs_access: 'Ask the user to paste the relevant LATEST.yaml section or LATEST.jsonl lines for the BD-/finance-C- IDs
+      in question. Crystal ID: finance-bp-129-v5.0.'
+trace_schema:
+  event_types:
+  - precondition_check
+  - spec_lock_check
+  - evidence_rule_fired
+  - evidence_rule_skipped
+  - locale_translation_emitted
+  - hard_gate_passed
+  - hard_gate_failed
+  - skill_emitted
+  - false_completion_claim
+preconditions:
+- id: PC-01
+  description: zvt package installed and importable
+  check_command: python3 -c 'import zvt; print(zvt.__version__)'
+  on_fail: 'Run: python3 -m pip install zvt  then re-run: python3 -m zvt.init_dirs to initialize data directories'
+  severity: fatal
+- id: PC-02
+  description: K-data exists for target entities (required before backtesting)
+  check_command: python3 -c "from zvt.api.kdata import get_kdata; df = get_kdata(entity_ids=['stock_sh_600000'], limit=1);
+    assert df is not None and len(df) > 0, 'No kdata found'"
+  on_fail: 'Run recorder first: python3 -m zvt.recorders.em.em_stock_kdata_recorder --entity_ids stock_sh_600000  (replace
+    with your target entity IDs)'
+  severity: fatal
+  applies_to_uc: []
+- id: PC-03
+  description: ZVT data directory initialized (~/.zvt or ZVT_HOME)
+  check_command: 'python3 -c "import os; from pathlib import Path; zvt_home = Path(os.environ.get(''ZVT_HOME'', Path.home()
+    / ''.zvt'')); assert zvt_home.exists(), f''ZVT home not found: {zvt_home}''"'
+  on_fail: 'Run: python3 -m zvt.init_dirs'
+  severity: fatal
+- id: PC-04
+  description: SQLite write permission for ZVT data directory
+  check_command: python3 -c "import os, tempfile; from pathlib import Path; zvt_home = Path(os.environ.get('ZVT_HOME', Path.home()
+    / '.zvt')); test_f = zvt_home / '.write_test'; test_f.touch(); test_f.unlink()"
+  on_fail: 'Check directory permissions: chmod u+w ~/.zvt  or set ZVT_HOME environment variable to a writable location'
+  severity: warn
+intent_router:
+  uc_entries:
+  - uc_id: UC-101
+    name: Beancount Test Utilities Framework
+    positive_terms:
+    - testing utilities
+    - tempdir
+    - test files
+    - mock repository
+    - integration testing
+    data_domain: internal
+    negative_terms:
+    - trading strategy
+    - screening
+    - live trading
+    - data pipeline
+    - monitoring
+    - reporting
+    ambiguity_question: Are you looking for reusable testing utilities for your beancount project, or are you looking for
+      a specific trading, screening, or data processing use case?
+  - uc_id: UC-102
+    name: Test Utils Validation Suite
+    positive_terms:
+    - unit test
+    - validation
+    - test utilities
+    - tempdir cleanup
+    - test file generation
+    data_domain: internal
+    negative_terms:
+    - trading signals
+    - portfolio screening
+    - data ingestion
+    - live execution
+    - performance reporting
+    ambiguity_question: Are you looking for test coverage of beancount utilities, or do you need a specific trading, screening,
+      or analytical use case?
+context_state_machine:
+  states:
+  - id: CA1_MEMORY_CHECKED
+    entry: Task started
+    exit: All memory queries attempted and recorded; memory_unavailable set if failed
+    timeout: 30s — skip memory, mark memory_unavailable=true, proceed to CA2
+  - id: CA2_GAPS_FILLED
+    entry: CA1 complete
+    exit: 'All FATAL-priority required inputs answered: target market (A-share/HK/US), data source, time range, strategy type'
+    timeout: NOT skippable — FATAL inputs MUST be user-answered before proceeding
+  - id: CA3_PATH_SELECTED
+    entry: CA2 complete
+    exit: intent_router matched single use case with confidence gap > 20% over next candidate, no data_domain ambiguity
+    timeout: Trigger ambiguity_question for top-2 candidates, await user selection
+  - id: CA4_EXECUTING
+    entry: CA3 complete + user explicit confirmation received
+    exit: All hard gates G1-Gn passed and output files written
+    timeout: NOT skippable — user confirmation of execution path required
+  enforcement: Code generation is PROHIBITED before CA4_EXECUTING. Any regression to earlier state MUST be announced to user.
+    buy/sell ordering SL-01 check runs at CA4 entry.
+spec_lock_registry:
+  semantic_locks:
+  - id: SL-01
+    description: Execute sell orders before buy orders in every trading cycle
+    locked_value: sell() called before buy() in each Trader.run() iteration
+    violation_is: fatal
+    source_bd_ids:
+    - BD-018
+  - id: SL-02
+    description: Trading signals MUST use next-bar execution (no look-ahead)
+    locked_value: due_timestamp = happen_timestamp + level.to_second()
+    violation_is: fatal
+    source_bd_ids:
+    - BD-014
+    - BD-025
+  - id: SL-03
+    description: Entity IDs MUST follow format entity_type_exchange_code
+    locked_value: stock_sh_600000 | stockhk_hk_0700 | stockus_nasdaq_AAPL
+    violation_is: fatal
+    source_bd_ids: []
+  - id: SL-04
+    description: DataFrame index MUST be MultiIndex (entity_id, timestamp)
+    locked_value: df.index.names == ['entity_id', 'timestamp']
+    violation_is: fatal
+    source_bd_ids: []
+  - id: SL-05
+    description: 'TradingSignal MUST have EXACTLY ONE of: position_pct, order_money, order_amount'
+    locked_value: XOR enforcement in trading/__init__.py:68
+    violation_is: fatal
+    source_bd_ids: []
+  - id: SL-06
+    description: 'filter_result column semantics: True=BUY, False=SELL, None/NaN=NO ACTION'
+    locked_value: factor.py:475 order_type_flag mapping
+    violation_is: fatal
+    source_bd_ids: []
+  - id: SL-07
+    description: Transformer MUST run BEFORE Accumulator in factor pipeline
+    locked_value: 'compute_result(): transform at :403 before accumulator at :409'
+    violation_is: fatal
+    source_bd_ids: []
+  - id: SL-08
+    description: 'MACD parameters locked: fast=12, slow=26, signal=9'
+    locked_value: factors/algorithm.py:30 macd(slow=26, fast=12, n=9)
+    violation_is: fatal
+    source_bd_ids:
+    - BD-036
+  - id: SL-09
+    description: 'Default transaction costs: buy_cost=0.001, sell_cost=0.001, slippage=0.001'
+    locked_value: sim_account.py:25 SimAccountService default costs
+    violation_is: warning
+    source_bd_ids:
+    - BD-029
+  - id: SL-10
+    description: A-share equity trading is T+1 (no same-day close of buy positions)
+    locked_value: sim_account.available_long filters by trading_t
+    violation_is: fatal
+    source_bd_ids: []
+  - id: SL-11
+    description: Recorder subclass MUST define provider AND data_schema class attributes
+    locked_value: contract/recorder.py:71 Meta; register_schema decorator
+    violation_is: fatal
+    source_bd_ids: []
+  - id: SL-12
+    description: Factor result_df MUST contain either 'filter_result' OR 'score_result' column
+    locked_value: result_df.columns.intersection({'filter_result', 'score_result'}) non-empty
+    violation_is: fatal
+    source_bd_ids: []
+  implementation_hints:
+  - id: IH-01
+    hint: 'Use AdjustType enum exactly: qfq (pre-adjust), hfq (post-adjust), bfq (none) — contract/__init__.py:121'
+  - id: IH-02
+    hint: For A-share kdata, default to hfq for long-term analysis (dividend-adjusted) — trader.py:538 StockTrader
+  - id: IH-03
+    hint: SQLite connection MUST use check_same_thread=False for multi-threaded recorders
+  - id: IH-04
+    hint: Accumulator state serialization uses JSON with custom encoder/decoder hooks — contract/base_service.py
+  - id: IH-05
+    hint: Factor.level MUST match TargetSelector.level (enforced at add_factor) — factors/target_selector.py:84
+preservation_manifest:
+  required_objects:
+    business_decisions_count: 116
+    fatal_constraints_count: 38
+    non_fatal_constraints_count: 146
+    use_cases_count: 2
+    semantic_locks_count: 12
+    preconditions_count: 4
+    evidence_quality_rules_count: 2
+    traceback_scenarios_count: 5
+architecture:
+  pipeline: data_collection -> data_storage -> factor_computation -> target_selection -> trading_execution -> visualization
+  stages:
+  - id: data_collection
+    narrative:
+      does_what: TimeSeriesDataRecorder and FixedCycleDataRecorder fetch OHLCV and fundamental data from providers (eastmoney,
+        joinquant, baostock, akshare) and persist domain objects (Stock1dKdata, BalanceSheet) to SQLite via df_to_db().
+      key_decisions: BD-002 chose evaluate_start_end_size_timestamps for incremental fetch (not full refresh) because comparing
+        to get_latest_saved_record avoids redundant API calls; BD-003 chose get_data_map field transformation to keep domain
+        schema provider-agnostic.
+      common_pitfalls: 'Don''t forget SL-11: Recorder subclass MUST declare both provider and data_schema class attributes
+        else initialization fails with assertion error; finance-C-001 fatal violation.'
+    business_decisions: []
+  - id: data_storage
+    narrative:
+      does_what: StorageBackend persists DataFrames to per-provider SQLite databases at {data_path}/{provider}/{provider}_{db_name}.db
+        using path templates from _get_path_template; Mixin.record_data and Mixin.query_data provide uniform read/write interface.
+      key_decisions: BD-004 chose StorageBackend abstraction (not hardcoded SQLite) to allow future cloud storage swap; BD-006
+        derives db_name from data_schema __tablename__ for per-domain database isolation.
+      common_pitfalls: SL-04 violation (wrong DataFrame index) causes factor pipeline failures downstream; always ensure df.index.names
+        == ['entity_id', 'timestamp'] before calling record_data.
+    business_decisions: []
+  - id: factor_computation
+    narrative:
+      does_what: Factor.compute() applies Transformer (stateless, e.g. MacdTransformer) then Accumulator (stateful, e.g. MaStatsAccumulator)
+        to produce filter_result or score_result columns; EntityStateService persists per-entity rolling state across batches.
+      key_decisions: BD-007 chose Factor inheriting DataReader for composable data access; SL-08 locks MACD at (fast=12, slow=26,
+        n=9) — chose standard Appel parameters not adaptive because interpretability matters for practitioners.
+      common_pitfalls: 'SL-07: Transformer MUST run before Accumulator — swapping order causes NaN propagation; SL-12: result_df
+        must contain filter_result OR score_result column or TargetSelector silently drops all signals.'
+    business_decisions: []
+  - id: target_selection
+    narrative:
+      does_what: TargetSelector.add_factor() registers Factor instances; get_targets() returns entity_ids passing threshold
+        filter at a specific timestamp, enabling point-in-time historical backtesting without look-ahead.
+      key_decisions: BD-012 chose registrable factor list (not hardcoded) for runtime customization; BD-013 chose timestamp-specific
+        filtering not current-only because backtests need historical point-in-time correctness.
+      common_pitfalls: Factor.level MUST match TargetSelector.level (IH-05); mismatched levels cause silent empty target lists
+        that look like no signals but are actually level-mismatch bugs.
+    business_decisions: []
+  - id: trading_execution
+    narrative:
+      does_what: Trader.run() calls sell() before buy() each cycle, generates TradingSignals with due_timestamp = happen_timestamp
+        + level.to_second() for next-bar execution, and applies on_profit_control() for stop-loss/take-profit before regular
+        target selection.
+      key_decisions: SL-01 locks sell-before-buy order because available_long check in sim_account depends on it — chose this
+        over symmetric ordering to prevent implicit leverage; BD-039 chose long=AND/short=OR multi-level logic to reflect
+        risk asymmetry.
+      common_pitfalls: 'SL-02 violation (immediate execution instead of next-bar) introduces look-ahead bias and makes backtest
+        results unreproducible in live trading; SL-10: A-share T+1 constraint — backtesting without it overstates returns.'
+    business_decisions: []
+  - id: visualization
+    narrative:
+      does_what: Drawer.draw() combines kline main chart with factor overlays and Rect annotations for entry/exit signals
+        using Plotly; Drawable interface on Factor enables consistent chart rendering across data types.
+      key_decisions: BD-019 chose drawer_rects subclass override for custom annotations not hardcoded markers — allows traders
+        to define entry/exit visuals without modifying base drawing logic.
+      common_pitfalls: draw_result=True by default (BD-055) is fine for development but set draw_result=False in production/headless
+        environments to avoid Plotly server startup overhead.
+    business_decisions: []
+  - id: cross_cutting_concerns
+    narrative:
+      does_what: 'Invariants and utilities that span multiple pipeline stages — collected from 37 source groups: API Usage(1),
+        Architecture(1), Caching(1), Compatibility(1), Concurrency(1), Configuration(2), and 31 more.'
+      key_decisions: 116 BDs merged here because they apply to more than one main stage (e.g. algorithm helpers, default value
+        choices, ordering contracts, error handling). Agent should inspect individual BD summaries and link back to affected
+        main stages via shared IDs.
+      common_pitfalls: Cross-cutting concerns frequently surface as bugs when changes to one main stage unintentionally break
+        another. Check constraints referencing these BDs and verify invariants still hold after any stage-local modification.
+    business_decisions:
+    - id: BD-GAP-013
+      type: B
+      summary: Batch update API is used for transforming links in Google Docs
+    - id: BD-GAP-007
+      type: T
+      summary: Index document discovery pattern uses a known index document to find each linked documentation
+    - id: BD-GAP-006
+      type: B/DK
+      summary: File-based caching is used for Google Drive API responses to avoid repeated downloads
+    - id: BD-GAP-008
+      type: B
+      summary: Dual VCS support (Git AND Mercurial) for extracting file modification years in copyright update
+    - id: BD-GAP-005
+      type: B
+      summary: threading.local storage is used to save function call returns during regexp matching
+    - id: BD-GAP-010
+      type: T
+      summary: Google Docs is used as the storage mechanism for configuration options
+    - id: BD-GAP-011
+      type: B
+      summary: Redirect file pattern is used to lookup Google Doc IDs dynamically
+    - id: BD-GAP-002
+      type: B/DK
+      summary: MIME type parameter controls which document formats are downloaded from Google Drive
+    - id: BD-GAP-004
+      type: B
+      summary: Block-based document processing preserves blockquotes during DOCX-to-RST conversion
+    - id: BD-GAP-016
+      type: B
+      summary: Regexp-based file selection with ignore directories for copyright update operations
+    - id: BD-GAP-003
+      type: T
+      summary: reStructuredText (RST) is the target format for documentation conversion, not Markdown
+    - id: BD-GAP-009
+      type: T
+      summary: Year compression transforms sequential years into interval notation (2018-2020) in copyright notices
+    - id: BD-GAP-001
+      type: BA
+      summary: Google Drive API with service account authentication is used instead of OAuth user flow for document downloads
+    - id: BD-GAP-015
+      type: DK
+      summary: Test completeness is determined by file existence rather than code coverage analysis
+    - id: BD-GAP-012
+      type: B
+      summary: Benchmark execution is prevented when uncommitted local changes exist
+    - id: BD-GAP-014
+      type: B
+      summary: Dry-run mode is supported for link transformations to preview changes before applying
+    - id: BD-GAP-017
+      type: T
+      summary: Pandoc is used as the DOCX-to-RST conversion engine
+    - id: BD-028
+      type: B
+      summary: Accounts use hierarchical colon-separated naming with 4 standard types (Assets, Liabilities, Equity, Income,
+        Expenses)
+    - id: BD-029
+      type: B/BA
+      summary: Equity contains 'Opening-Balances' and 'Current-Earnings' standard sub-accounts
+    - id: BD-050
+      type: B
+      summary: Open entries mark accounts as active with optional currencies and booking method
+    - id: BD-051
+      type: B
+      summary: Close entries mark accounts as inactive after the specified date
+    - id: BD-063
+      type: B
+      summary: Use date + 1 day offset for balance check placement
+    - id: BD-064
+      type: B/BA
+      summary: Zero balance assertion for position verification
+    - id: BD-065
+      type: B/BA
+      summary: 'Metadata boolean ''closing: TRUE'' as trigger'
+    - id: BD-066
+      type: B
+      summary: Balance check date verification equals original + 1 day
+    - id: BD-067
+      type: B/BA
+      summary: Extra tolerance multiplier for dual constraint satisfaction
+    - id: BD-068
+      type: B/BA
+      summary: Expected proceeds = price * (-units) for short/long positions
+    - id: BD-069
+      type: B
+      summary: Proceeds accumulation for non-income accounts
+    - id: BD-070
+      type: B/DK
+      summary: Currency-by-currency inventory comparison
+    - id: BD-071
+      type: B/BA
+      summary: Absolute difference tolerance check
+    - id: BD-072
+      type: B/BA
+      summary: Tolerance inference per currency from postings
+    - id: BD-073
+      type: B
+      summary: Proceeds inventory accumulation using weight
+    - id: BD-074
+      type: B/RC
+      summary: Require each cost postings to have prices for validation
+    - id: BD-075
+      type: B
+      summary: Error when proceeds inventory has unmatched currencies
+    - id: BD-076
+      type: B
+      summary: Proceeds types include equity (for stock vesting)
+    - id: BD-077
+      type: B/BA
+      summary: No errors expected for balanced multi-leg sale
+    - id: BD-078
+      type: B/BA
+      summary: SellGainsError on unbalanced cash vs cost
+    - id: BD-079
+      type: B
+      summary: Dual error type on imbalance with missing expense
+    - id: BD-080
+      type: B
+      summary: Other currency (CAD) proceeds accepted as valid
+    - id: BD-081
+      type: B
+      summary: Zero price sale accepted as valid
+    - id: BD-039
+      type: B
+      summary: Weight calculation uses cost for lots, units for non-cost postings, explicit price overrides
+    - id: BD-026
+      type: B/BA
+      summary: Interpolation tolerance is 0.005 (0.5% of balance) for balance assertions
+    - id: BD-027
+      type: B
+      summary: Balance assertions use date-ordered preceding postings for interpolation
+    - id: BD-053
+      type: B/BA
+      summary: Pad entries create balance between two dates using interpolation from preceding entries
+    - id: BD-005
+      type: BA
+      summary: 'Two-pass booking: reductions first, then augmentations'
+    - id: BD-006
+      type: B
+      summary: CostSpec separates incomplete from resolved costs
+    - id: BD-007
+      type: BA
+      summary: Booking method dispatch via _BOOKING_METHODS dict
+    - id: BD-008
+      type: M/DK
+      summary: STRICT_WITH_SIZE fallback for size-exact matches
+    - id: BD-009
+      type: B
+      summary: MISSING sentinel for unfilled numbers (not None)
+    - id: BD-025
+      type: B/BA
+      summary: 'Booking method defaults to ''NONE'' (strict mode: no currency mixing without explicit cost)'
+    - id: BD-058
+      type: B/RC
+      summary: Position lot merging requires identical cost basis (number, currency, date, label)
+    - id: BD-059
+      type: B
+      summary: 'Inventory addition: same-lot positions combine, different lots coexist in inventory'
+    - id: BD-043
+      type: B
+      summary: 'Vesting example: 4-year vesting with 1-year cliff, monthly vesting thereafter'
+    - id: BD-044
+      type: B
+      summary: 'Trading simulation: sell biggest winner or biggest loser based on random 50/50 selection'
+    - id: BD-045
+      type: B
+      summary: 'Trading simulation: skip selling on days when buying (avoid same-day round-trip)'
+    - id: BD-046
+      type: B
+      summary: 'Trading simulation: skip lots without price movement when selecting sell candidates'
+    - id: BD-056
+      type: B
+      summary: Commission tracked as separate expense line (Expenses:Financial:Commissions) in trading
+    - id: BD-057
+      type: B
+      summary: Vesting calculation uses EXACT decimal arithmetic (Decimal type) for precision
+    - id: BD-082
+      type: B/BA
+      summary: 'INTERACTION: BD-001 × BD-003 → Parser line tracking enables secondary sort key for same-day ordering'
+    - id: BD-083
+      type: BA
+      summary: 'INTERACTION: BD-023 × BD-026 → Balanced postings invariant vs tolerance creates tolerance boundary ambiguity'
+    - id: BD-084
+      type: B/BA
+      summary: 'INTERACTION: BD-025 × BD-008 → Strict booking default vs STRICT_WITH_SIZE fallback creates behavioral inconsistency'
+    - id: BD-085
+      type: BA
+      summary: 'INTERACTION: BD-057 × BD-026 → Decimal precision vs tolerance existence reveals incomplete Decimal coverage'
+    - id: BD-086
+      type: B/RC
+      summary: 'INTERACTION: BD-006 × BD-005 × BD-031 → CostSpec incompleteness flows through two-pass booking to multi-lot
+        inventory'
+    - id: BD-087
+      type: B
+      summary: 'INTERACTION: BD-017 × BD-029 × BD-040 → Equity rollforward requires standard accounts and consistent date
+        ordering'
+    - id: BD-088
+      type: BA
+      summary: 'INTERACTION: BD-037 × BD-038 × BD-036 × BD-021 → Currency conversion chain creates systemic conversion dependency'
+    - id: BD-089
+      type: B/BA
+      summary: 'INTERACTION: BD-010 × BD-011 × BD-012 × BD-032 → Plugin pipeline ordering creates invariant check dependencies'
+    - id: BD-090
+      type: B/BA
+      summary: 'INTERACTION: BD-068 × BD-073 × BD-070 × BD-075 → Proceeds validation cascade from negation through currency
+        matching'
+    - id: BD-091
+      type: B/BA
+      summary: 'INTERACTION: BD-013 × BD-014 × BD-030 → Realization tree structure assumptions enable hierarchical aggregation'
+    - id: BD-092
+      type: B
+      summary: 'INTERACTION: BD-002 × BD-061 → Immutable directives enable safe post-modification invariant checking'
+    - id: BD-093
+      type: BA
+      summary: 'RISK CASCADE: Price lookup failure → multi-hop failure → constraint violation → validation error'
+    - id: BD-094
+      type: BA
+      summary: 'RISK CASCADE: Incomplete CostSpec → booking resolution failure → incorrect lot assignment → wrong cost basis'
+    - id: BD-095
+      type: BA
+      summary: 'RISK CASCADE: Plugin mode change → fixed ordering bypass → invariant check miss → silent corruption'
+    - id: BD-096
+      type: BA
+      summary: 'RISK CASCADE: Proceeds negation error → weighted accumulation wrong → per-currency pass → false validation
+        pass'
+    - id: BD-052
+      type: B
+      summary: Document directives provide optional source file references for entries
+    - id: BD-001
+      type: B/DK
+      summary: Lexer/Parser split using PLY (Python Lex-Yacc)
+    - id: BD-002
+      type: B
+      summary: Directives are immutable NamedTuples
+    - id: BD-003
+      type: B/RC
+      summary: Every directives require date; lineno is secondary sort key
+    - id: BD-004
+      type: BA
+      summary: Options parsed per-file with aggregation for includes
+    - id: BD-GAP-018
+      type: DK
+      summary: 'Missing: Timezone explicit annotation + UTC normalization'
+    - id: BD-GAP-019
+      type: B
+      summary: 'Missing: Provider Priority & Credential Isolation'
+    - id: BD-GAP-020
+      type: RC
+      summary: 'Missing: Delinquency Definition (DPD 30/60/90)'
+    - id: BD-032
+      type: B
+      summary: 'Plugin pipeline runs in order: check_closing first, then other plugins, then close_tree last'
+    - id: BD-033
+      type: B
+      summary: sellgains plugin moves realized gains to income when cost basis exceeds proceeds
+    - id: BD-048
+      type: B
+      summary: check_closing plugin verifies closing entries match computed balances
+    - id: BD-049
+      type: B
+      summary: close_tree plugin removes empty account subtrees after each processing
+    - id: BD-024
+      type: B/RC
+      summary: Lots are identified by (account, currency, cost_spec) triple including number, currency, date, and label
+    - id: BD-031
+      type: B
+      summary: Inventory holds multiple lots per (account, currency) with set-based equality
+    - id: BD-036
+      type: B/BA
+      summary: Cost currency defaults to the same currency as the lot's units when no explicit cost currency specified
+    - id: BD-042
+      type: B/RC
+      summary: Cost label (optional) allows distinguishing lots with same date/currency/amount
+    - id: BD-047
+      type: B
+      summary: Inventory reduce uses (amount, currency) key for aggregation across lots
+    - id: BD-037
+      type: B
+      summary: Price lookup uses (base, quote) currency tuple as key for rate retrieval
+    - id: BD-038
+      type: B
+      summary: Implied price conversion via intermediate currency hops when direct rate unavailable
+    - id: BD-013
+      type: B
+      summary: RealAccount extends dict with account component keys
+    - id: BD-014
+      type: B
+      summary: Balance stored as Inventory per RealAccount
+    - id: BD-015
+      type: B
+      summary: Balances computed via Inventory.reduce with convert functions
+    - id: BD-016
+      type: B
+      summary: Amount uses __slots__ = () to prevent dynamic attributes
+    - id: BD-030
+      type: B/DK
+      summary: Realization creates complete tree from root 'Root' down through 4 account levels
+    - id: BD-034
+      type: B
+      summary: Summarization uses previous-day dates to maintain chronological ordering in reports
+    - id: BD-035
+      type: B
+      summary: Transfer entries use date minus 1 day to precede cutoff date for account transfers
+    - id: BD-040
+      type: B
+      summary: 'Clamp operation: income/expenses to equity at begin_date, summarize period, truncate after end_date, convert
+        at end'
+    - id: BD-041
+      type: B
+      summary: Balance assertions following transferred accounts are removed from the new account
+    - id: BD-054
+      type: B
+      summary: Date range filtering in exports uses half-open interval [begin, end)
+    - id: BD-055
+      type: B
+      summary: Treeify expands flat account lists into nested dict structure for hierarchical reporting
+    - id: BD-060
+      type: B
+      summary: Realization tree contains both aggregated balances and per-node lot lists
+    - id: BD-017
+      type: BA
+      summary: Income/expenses rolled to equity at period boundaries
+    - id: BD-018
+      type: B
+      summary: Conversion entries at open date for zero-priced items
+    - id: BD-019
+      type: M
+      summary: GetAccounts class uses getattr dispatch on entry class name
+    - id: BD-062
+      type: B
+      summary: 'Position scaling: negate position units to create selling lot from buying position'
+    - id: BD-010
+      type: BA
+      summary: 'Plugin processing mode: raw vs default'
+    - id: BD-011
+      type: B/DK
+      summary: Documents plugin is always prepended
+    - id: BD-012
+      type: B
+      summary: pad and balance are always appended as post plugins
+    - id: BD-020
+      type: B
+      summary: Open/close account lifecycle validation
+    - id: BD-021
+      type: B
+      summary: Currency constraints from Open declaration
+    - id: BD-022
+      type: BA/DK
+      summary: Extra validations injected at load time
+    - id: BD-023
+      type: B
+      summary: 'Double-entry accounting: every transaction must have balanced postings (sum to zero)'
+    - id: BD-061
+      type: B
+      summary: 'Invariant checking: verify_balance_interpolation called after every entry modification'
+resources:
+  packages:
+  - name: click >=7.0
+    version_pin: latest
+  - name: python-dateutil >=2.6.0
+    version_pin: latest
+  - name: regex >=2022.9.13
+    version_pin: latest
+  - name: flex / winflexbison-bin >=2.6.4
+    version_pin: latest
+  - name: bison-bin / winflexbison-bin >=3.8.0
+    version_pin: latest
+  - name: meson >=1.2.1
+    version_pin: latest
+  - name: meson-python >=0.14.0
+    version_pin: latest
+  - name: pytest
+    version_pin: latest
+  - name: mypy
+    version_pin: latest
+  - name: types-python-dateutil
+    version_pin: latest
+  strategy_scaffold:
+    entry_point_name: run_backtest
+    output_path: result.csv
+    execution_mode: backtest
+    conditional_entry_points:
+      backtest:
+        entry_point_name: run_backtest
+        output_path: result.csv
+      collector:
+        entry_point_name: run_collector
+        output_path: result.json
+      factor:
+        entry_point_name: run_factor
+        output_path: result.parquet
+      training:
+        entry_point_name: run_training
+        output_path: result.json
+      serving:
+        entry_point_name: run_server
+        output_path: result.json
+      research:
+        entry_point_name: run_research
+        output_path: result.json
+    tail_template: "# === DO NOT MODIFY BELOW THIS LINE ===\nif __name__ == \"__main__\":\n    result = run_backtest()  #\
+      \ implement above\n    from validate import enforce_validation\n    enforce_validation(result, output_path=\"{workspace}/result.csv\"\
+      )\n# === END DO NOT MODIFY ==="
+  host_adapter:
+    target: openclaw
+    timeout_seconds: 1800
+    shell_operator_restriction: 'exec tool intercepts && / ; / | — never chain: ''pip install X && python Y''. Use separate
+      exec calls.'
+    install_recipes:
+    - python3 -m pip install click >=7.0
+    - python3 -m pip install python-dateutil >=2.6.0
+    - python3 -m pip install regex >=2022.9.13
+    - python3 -m pip install zvt
+    credential_injection: JoinQuant/QMT credentials require user-side '!' prefix shell login. Never hardcode credentials in
+      generated scripts.
+    path_resolution: '{workspace} resolves to ~/.openclaw/workspace/doramagic at execution time.'
+    file_io_tooling: Use openclaw 'write' tool for .py/.sql files; 'exec' tool for python3 /absolute/path/script.py (absolute
+      paths only).
+constraints:
+  fatal:
+  - id: finance-C-001
+    when: When implementing monetary calculations in the parsing stage
+    action: use Decimal type from beancount.core.number instead of floating-point types
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Floating-point arithmetic produces rounding errors that accumulate in financial calculations, leading to
+      incorrect account balances and audit failures
+    stage_ids:
+    - parsing
+  - id: finance-C-002
+    when: When parsing directives from Beancount source files
+    action: require every directive to have a valid date field as primary identifier
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Directives without dates cannot be temporally ordered, causing incorrect balance calculations and non-deterministic
+      transaction sequencing
+    stage_ids:
+    - parsing
+  - id: finance-C-003
+    when: When encoding Beancount source files for parsing
+    action: use UTF-8 encoding exclusively for each input files
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Non-UTF-8 encoded files cause character decoding errors, preventing valid entries from being parsed and resulting
+      in lost transaction data
+    stage_ids:
+    - parsing
+  - id: finance-C-009
+    when: When using parser output directly for financial calculations
+    action: use parsed entries that contain MISSING sentinel values for balance or cost computations
+    severity: fatal
+    kind: operational_lesson
+    modality: must_not
+    consequence: MISSING values in postings cause runtime errors or silent zero-value calculations, resulting in incorrect
+      portfolio valuations and reconciliation failures
+    stage_ids:
+    - parsing
+  - id: finance-C-014
+    when: When presenting parsed data as completed ledger output
+    action: claim that parsed entries are complete and ready for financial reporting without running booking
+    severity: fatal
+    kind: claim_boundary
+    modality: must_not
+    consequence: Presenting incomplete parsed entries as final results misleads users into using entries with unresolved MISSING
+      values and unimterpolated amounts for financial decisions
+    stage_ids:
+    - parsing
+  - id: finance-C-017
+    when: When processing inventory reduction postings
+    action: Match reductions against existing lots before applying interpolation
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Interpolation cannot succeed for reductions with missing price/cost because the booking method (FIFO/LIFO/etc.)
+      must first determine which lot is being reduced
+    stage_ids:
+    - booking
+  - id: finance-C-018
+    when: When validating transaction completeness after booking
+    action: Eliminate each MISSING values from posting units and costs
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Postings with incomplete amounts cannot be used for balance calculations or realized/unrealized gains computation
+    stage_ids:
+    - booking
+  - id: finance-C-019
+    when: When interpolating missing numbers in a currency group
+    action: Have more than one missing value per currency group
+    severity: fatal
+    kind: domain_rule
+    modality: must_not
+    consequence: Multiple missing values create an underdetermined system with no unique solution, causing InterpolationError
+      and transaction failure
+    stage_ids:
+    - booking
+  - id: finance-C-026
+    when: When implementing AVERAGE booking method
+    action: Claim support for AVERAGE method as it is not implemented
+    severity: fatal
+    kind: resource_boundary
+    modality: must_not
+    consequence: AVERAGE booking always returns an AmbiguousMatchError, so any code claiming AVERAGE support is incorrect
+    stage_ids:
+    - booking
+  - id: finance-C-034
+    when: When implementing a plugin function for beancount
+    action: return a tuple of (modified_entries, errors_list) from the plugin function
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Plugin return value mismatch causes loader to crash or corrupt entry list when extending errors
+    stage_ids:
+    - transformation
+  - id: finance-C-036
+    when: When implementing plugin function signatures
+    action: accept (entries, options_map, *optional_config) parameters in that exact order
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Plugin function signature mismatch causes TypeError when loader attempts to call the plugin callback with
+      (entries, options_map, *args)
+    stage_ids:
+    - transformation
+  - id: finance-C-049
+    when: When creating a RealAccount instance
+    action: pass a string account_name, not None or non-string value
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Passing None or non-string as account_name causes ValueError, breaking account tree construction and preventing
+      balance reporting for the entire account hierarchy
+    stage_ids:
+    - realization
+  - id: finance-C-050
+    when: When inserting a subaccount into a RealAccount tree
+    action: use string keys matching the hierarchical account naming convention
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Non-string keys or mismatched account names cause KeyError/ValueError, breaking the tree structure and corrupting
+      balance calculations for all child accounts
+    stage_ids:
+    - realization
+  - id: finance-C-051
+    when: When constructing Amount or Position objects
+    action: use Decimal for each monetary number values and immutable __slots__ = () pattern
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Using float instead of Decimal for monetary values causes rounding errors in balance calculations, leading
+      to incorrect financial reports and potential compliance issues
+    stage_ids:
+    - realization
+  - id: finance-C-061
+    when: When summarizing entries to create opening balance transactions
+    action: Verify the total balance of summarized entries equals exactly zero
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: The accounting identity will be violated, causing the balance sheet to be fundamentally incorrect with non-zero
+      total assets and liabilities
+    stage_ids:
+    - summarization
+  - id: finance-C-062
+    when: When computing balances for summarization before a cutoff date
+    action: Include only entries strictly before the date parameter
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Entries at the boundary date will be incorrectly included or excluded, causing duplicate or missing transactions
+      in the opening balances
+    stage_ids:
+    - summarization
+  - id: finance-C-063
+    when: When inserting synthesized entries at a period boundary
+    action: Insert transfer and summary entries on the day before the boundary date
+    severity: fatal
+    kind: architecture_guardrail
+    modality: must
+    consequence: Open directives will appear after transactions, violating the requirement that Open entries precede all activity
+      for that account
+    stage_ids:
+    - summarization
+  - id: finance-C-064
+    when: When creating conversion entries for zero-priced items
+    action: Use ZERO as the price amount to maintain the balance invariant
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: The balance invariant will be broken because conversion entries will not correctly offset the original positions,
+      causing phantom gains or losses
+    stage_ids:
+    - summarization
+  - id: finance-C-065
+    when: When executing the open() function for period opening
+    action: Execute conversions before clear, and clear before summarize in that exact order
+    severity: fatal
+    kind: architecture_guardrail
+    modality: must
+    consequence: Income/expense accounts will still have balances when summarization runs, causing those accounts to incorrectly
+      appear in opening balance transactions
+    stage_ids:
+    - summarization
+  - id: finance-C-071
+    when: When closing income and expense accounts at period boundaries
+    action: Transfer the accumulated balances to the equity earnings account before summarization
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Income statement accounts will show residual balances that should have been closed to equity, causing the
+      balance sheet to not balance correctly
+    stage_ids:
+    - summarization
+  - id: finance-C-076
+    when: When using the clamp function to filter entries to a time period
+    action: Execute income/expense transfer before summarize, then truncate, then add conversion entries
+    severity: fatal
+    kind: architecture_guardrail
+    modality: must
+    consequence: Income statement accounts will have residual balances and the period will not end with zero total balance
+      as required for period reporting
+    stage_ids:
+    - summarization
+  - id: finance-C-079
+    when: When implementing account lifecycle validation
+    action: Prevent duplicate Open or Close directives for the same account
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Duplicate Open/Close directives cause ambiguous account lifecycle, leading to incorrect balance calculations
+      and reports that mix up different account states
+    stage_ids:
+    - validation
+  - id: finance-C-080
+    when: When implementing account close validation
+    action: Verify Close directive date is strictly after its corresponding Open directive date
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Closing an account before it is opened creates invalid accounting state where transactions could reference
+      an account that doesn't exist, corrupting the ledger integrity
+    stage_ids:
+    - validation
+  - id: finance-C-081
+    when: When implementing balance assertion validation
+    action: Reject duplicate Balance entries with different amounts on the same (account, currency, date)
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Conflicting balance assertions for the same account on the same date create irreconcilable accounting state,
+      causing incorrect account balances and reporting errors
+    stage_ids:
+    - validation
+  - id: finance-C-083
+    when: When implementing transaction validation
+    action: Verify each transaction postings balance to zero within tolerance
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Unbalanced transactions violate double-entry accounting principles, resulting in incorrect ledger balances
+      and financial reports that do not sum correctly
+    stage_ids:
+    - validation
+  - id: finance-C-084
+    when: When implementing currency constraint validation
+    action: Enforce that postings only use currencies declared in the account's Open directive
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Postings with currencies not allowed for an account violate currency constraints, leading to incorrect inventory
+      tracking and mixing of incompatible currencies in the same account
+    stage_ids:
+    - validation
+  - id: finance-C-085
+    when: When implementing active account validation
+    action: Verify each directive references to accounts occur within the account's open-close interval
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: References to accounts outside their active period create invalid transactions that reference non-existent
+      or closed accounts, corrupting the accounting records
+    stage_ids:
+    - validation
+  - id: finance-C-088
+    when: When running transaction balance validation
+    action: Execute balance checks AFTER each user plugin transformations
+    severity: fatal
+    kind: architecture_guardrail
+    modality: must
+    consequence: Running balance checks before plugins means unbalanced input transactions are rejected even when plugins
+      are designed to fix them, breaking valid workflows
+    stage_ids:
+    - validation
+  - id: finance-C-089
+    when: When calling the validation pipeline
+    action: Invoke validation AFTER booking and transformations are complete
+    severity: fatal
+    kind: architecture_guardrail
+    modality: must
+    consequence: Validation before booking or transformations checks incomplete or incorrect data, producing false errors
+      that do not reflect the final state of the ledger
+    stage_ids:
+    - validation
+  - id: finance-C-095
+    when: When parsing produces directives with CostSpec (incomplete costs)
+    action: Convert each CostSpec instances to Cost instances during booking stage using the account's configured booking
+      method
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Transaction balance calculations will be incorrect if CostSpec remains unresolved, causing wrong lot matching
+      and incorrect cost basis for assets
+  - id: finance-C-097
+    when: When booking stage produces entries with resolved costs
+    action: Verify entries remain sorted by date after booking completion using entry_sortkey
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Position calculations and balance checks will be incorrect if entries are processed out of chronological
+      order, violating accounting ledger order requirements
+  - id: finance-C-100
+    when: When plugin_processing_mode is 'default'
+    action: 'Execute plugins in exact order: PLUGINS_PRE first, then user plugins, then PLUGINS_AUTO, then PLUGINS_POST last'
+    severity: fatal
+    kind: architecture_guardrail
+    modality: must
+    consequence: Balance checks and padding will run at wrong time, allowing unbalanced transactions to pass validation or
+      padding to be applied incorrectly
+  - id: finance-C-102
+    when: When fully transformed directives are passed to validation stage
+    action: Verify each Transaction postings balance with tolerance checking using inferred_tolerances from options_map
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Unbalanced transactions will appear in reports as valid, leading to incorrect financial records and potentially
+      wrong tax calculations
+  - id: finance-C-108
+    when: When implementing or writing code that creates or manipulates monetary amounts in beancount
+    action: Use the Decimal type (via D() function) for each monetary numbers instead of Python float or int — never use floating-point
+      in an accounting system
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Floating-point arithmetic causes rounding errors that accumulate across transactions, leading to incorrect
+      account balances and misreported financial positions
+  - id: finance-C-110
+    when: When defining or using directives (Transaction, Open, Close, Balance, etc.) in beancount
+    action: Treat each directive instances as immutable — never mutate NamedTuple fields after construction; use meta dict
+      for metadata (filename, lineno) instead of modifying state
+    severity: fatal
+    kind: architecture_guardrail
+    modality: must
+    consequence: Mutating a directive breaks immutability assumptions throughout the system, causing inconsistent balances
+      and unpredictable plugin behavior
+  - id: finance-C-113
+    when: When sorting or retrieving entries in beancount
+    action: Sort each directives using entry_sortkey(entry) which returns (date, directive_type_sort_order, lineno) — never
+      sort by date alone or by file order alone
+    severity: fatal
+    kind: architecture_guardrail
+    modality: must
+    consequence: Incorrect sort order breaks balance assertions, causes check directives to process after transactions on
+      the same day, and corrupts inventory calculations
+  - id: finance-C-114
+    when: When creating or accessing positions within an Inventory in beancount
+    action: 'Key each Inventory positions by a tuple of (currency: str, cost: Cost|None) — use None cost for non-booked positions
+      and a Cost instance for booked lots'
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Incorrect inventory keying causes positions to merge incorrectly, leading to wrong cost basis calculations
+      and distorted portfolio reports
+  - id: finance-C-143
+    when: When implementing or refactoring period-bound financial snapshot logic in beancount/ops/summarize.py
+    action: 'Execute clamp operation in the exact sequence: (1) move income/expenses to Equity:Current-Earnings at begin_date,
+      (2) summarize the period, (3) remove entries after end_date, (4) apply currency conversion at end_date'
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Reordering the clamp operation sequence—such as applying currency conversion before truncation—produces incorrect
+      period snapshots where gains/losses are valued at wrong exchange rates or include entries outside the specified period
+    derived_from_bd_id: BD-040
+  regular:
+  - id: finance-C-004
+    when: When validating user-defined options from Beancount source files
+    action: validate each option value using its designated converter function and raise ValueError on invalid inputs
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Invalid option values bypass validation and propagate through the system, causing unexpected behavior in
+      downstream processing stages like booking and transformation
+    stage_ids:
+    - parsing
+  - id: finance-C-005
+    when: When providing input files to the Beancount parser
+    action: provide files with non-absolute path names to the top-level load_file function
+    severity: high
+    kind: resource_boundary
+    modality: must_not
+    consequence: Relative file paths cause include directive resolution to fail unpredictably depending on current working
+      directory, resulting in missing entries or incorrect file loading
+    stage_ids:
+    - parsing
+  - id: finance-C-006
+    when: When loading plugin modules via the plugin directive
+    action: verify plugin modules define the __plugins__ tuple attribute to be recognized by the transformation system
+    severity: high
+    kind: resource_boundary
+    modality: must
+    consequence: Plugins without __plugins__ attribute are silently skipped during run_transformations, leaving entries unprocessed
+      by expected validation and transformation logic
+    stage_ids:
+    - parsing
+  - id: finance-C-007
+    when: When including additional files via include directives
+    action: resolve relative include paths against the directory of the file containing the directive
+    severity: high
+    kind: resource_boundary
+    modality: must
+    consequence: Incorrect include path resolution causes files to not be found, resulting in missing directives and incomplete
+      ledger data
+    stage_ids:
+    - parsing
+  - id: finance-C-008
+    when: When processing duplicate include file references
+    action: allow the same file to be parsed more than once in a single load operation
+    severity: high
+    kind: resource_boundary
+    modality: must_not
+    consequence: Duplicate file parsing creates duplicate directives with identical timestamps, causing double-counting of
+      transactions and incorrect financial reports
+    stage_ids:
+    - parsing
+  - id: finance-C-010
+    when: When implementing directive sorting for downstream processing
+    action: sort entries by date as primary key and use lineno as secondary sort key for same-day directives
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Incorrect sorting causes Balance directives to be evaluated after Transactions on the same day, breaking
+      the accounting invariant that balances apply at the beginning of the day
+    stage_ids:
+    - parsing
+  - id: finance-C-011
+    when: When building directive data structures
+    action: create directives as immutable NamedTuple instances to verify safe sharing and caching
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Mutable directive objects cause unexpected side effects when shared across plugins or cached, leading to
+      non-deterministic behavior and hard-to-debug inconsistencies
+    stage_ids:
+    - parsing
+  - id: finance-C-012
+    when: When processing include directives recursively
+    action: maintain a stack-based processing order where each included file is fully processed before moving to the next
+    severity: medium
+    kind: architecture_guardrail
+    modality: must
+    consequence: Non-stack-based include processing causes entries to be interleaved incorrectly, breaking the assumption
+      that entries from included files are contiguous in date order
+    stage_ids:
+    - parsing
+  - id: finance-C-013
+    when: When aggregating options from multiple include files
+    action: merge operating_currency lists and dcontext from included files into the top-level options map
+    severity: medium
+    kind: architecture_guardrail
+    modality: must
+    consequence: Unmerged operating_currency lists cause currency restrictions from included files to be ignored, allowing
+      invalid currency postings without error
+    stage_ids:
+    - parsing
+  - id: finance-C-015
+    when: When using parser output for real-time financial decisions
+    action: claim the parser provides real-time data synchronization with exchange systems
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: The parser only reads static Beancount source files; it does not connect to any external data source, so
+      presenting parsed data as real-time creates false confidence in data freshness
+    stage_ids:
+    - parsing
+  - id: finance-C-016
+    when: When implementing lot matching with incomplete cost specifications
+    action: Use MISSING sentinel (not None) for unfilled numbers in CostSpec
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: MISSING sentinel propagates through the booking process and surfaces in clear error messages, whereas None
+      would silently cause type errors or incorrect matches
+    stage_ids:
+    - booking
+  - id: finance-C-020
+    when: When inferring price for a posting with cost specification
+    action: Attempt to infer price from the residual for cost-held postings
+    severity: high
+    kind: domain_rule
+    modality: must_not
+    consequence: Cost-based postings should use cost for value calculation, not price interpolation, leading to incorrect
+      lot valuation
+    stage_ids:
+    - booking
+  - id: finance-C-021
+    when: When creating a position with cost specification
+    action: Allow zero units with a non-None cost
+    severity: high
+    kind: domain_rule
+    modality: must_not
+    consequence: Zero units with cost creates an invalid lot that cannot be meaningfully tracked or valued
+    stage_ids:
+    - booking
+  - id: finance-C-022
+    when: When creating or interpolating a cost value
+    action: Allow negative cost numbers
+    severity: high
+    kind: domain_rule
+    modality: must_not
+    consequence: Negative cost values break financial calculations and PnL computations, leading to incorrect balance assertions
+    stage_ids:
+    - booking
+  - id: finance-C-023
+    when: When booking reductions against existing inventory
+    action: Verify reduction postings match existing lots with matching cost currency
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Reducing inventory against lots with mismatched currencies creates phantom gains/losses in reports
+    stage_ids:
+    - booking
+  - id: finance-C-024
+    when: When handling ambiguous lot matching scenarios
+    action: Use configured booking method from _BOOKING_METHODS dispatch table
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Incorrect booking method selection leads to wrong lot matching, causing wrong cost basis for subsequent transactions
+    stage_ids:
+    - booking
+  - id: finance-C-025
+    when: When updating inventory balances after booking reductions
+    action: Update local balance tracking to avoid matching same lot twice in one transaction
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Double-matching the same lot causes inventory to go negative or incorrect cost basis calculations
+    stage_ids:
+    - booking
+  - id: finance-C-027
+    when: When matching reductions against inventory balance
+    action: Match a reduction posting against positive lots (same-sign inventory)
+    severity: high
+    kind: domain_rule
+    modality: must_not
+    consequence: Matching reductions to positive lots creates invalid double-negative or double-positive positions
+    stage_ids:
+    - booking
+  - id: finance-C-028
+    when: When resolving augmentation postings with incomplete cost
+    action: Convert CostSpec to Cost only after interpolation completes
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Converting CostSpec before interpolation prevents filling missing cost_per/cost_total values from the transaction
+      residual
+    stage_ids:
+    - booking
+  - id: finance-C-029
+    when: When converting CostSpec to Cost for augmenting postings
+    action: Verify each required cost fields (number_per or number_total, currency, date) are resolved
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Incomplete Cost after conversion breaks position valuation and causes downstream errors in reports
+    stage_ids:
+    - booking
+  - id: finance-C-030
+    when: When using STRICT booking method
+    action: Reject ambiguous matches unless each matching lots sum exactly to the reduction amount
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Ambiguous matches without exact sum lead to arbitrary lot selection, causing wrong tax lot calculations
+    stage_ids:
+    - booking
+  - id: finance-C-031
+    when: When booking with NONE method
+    action: Treat postings as augmentations without attempting inventory matching
+    severity: medium
+    kind: resource_boundary
+    modality: must
+    consequence: NONE method intentionally skips matching; forcing matching creates mixed inventories that violate account
+      conventions
+    stage_ids:
+    - booking
+  - id: finance-C-032
+    when: When inventory has insufficient lots to satisfy a reduction request
+    action: Report ReductionError or AmbiguousMatchError for insufficient lots
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Undetected insufficient lots creates phantom inventory positions that cause incorrect balance assertions
+    stage_ids:
+    - booking
+  - id: finance-C-033
+    when: When processing same-day transactions affecting same account
+    action: Use local balance tracking that includes prior same-day postings
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Without cumulative local balance, same-day reductions cannot match augmentations, causing phantom insufficient
+      lot errors
+    stage_ids:
+    - booking
+  - id: finance-C-035
+    when: When implementing a beancount plugin module
+    action: define the __plugins__ tuple with valid function names from that module
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Plugin without __plugins__ attribute is silently skipped by the loader, causing transformation logic to never
+      execute
+    stage_ids:
+    - transformation
+  - id: finance-C-037
+    when: When plugins modify the entry list during transformation
+    action: preserve chronological ordering by using data.entry_sortkey for sorting new entries
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Unsorted entries after plugin transformation cause incorrect balance calculations and validation errors in
+      subsequent stages
+    stage_ids:
+    - transformation
+  - id: finance-C-038
+    when: When a plugin raises a non-SystemExit exception during execution
+    action: allow exceptions to propagate and stop processing - exceptions must be caught and converted to LoadError
+    severity: high
+    kind: architecture_guardrail
+    modality: must_not
+    consequence: Uncaught plugin exception terminates the entire loader, preventing other plugins from running and losing
+      partial work
+    stage_ids:
+    - transformation
+  - id: finance-C-039
+    when: When plugin_processing_mode is set to 'default' (default behavior)
+    action: automatically prepend documents plugin and append pad/balance plugins to the plugin chain
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Missing documents plugin causes document directives to not be processed; missing pad/balance causes balance
+      assertions to fail
+    stage_ids:
+    - transformation
+  - id: finance-C-040
+    when: When plugin_processing_mode is set to 'raw'
+    action: only execute user-specified plugins without automatically running pre/post plugins
+    severity: high
+    kind: resource_boundary
+    modality: must
+    consequence: Setting 'raw' mode without explicitly loading pad/balance causes balance assertions to never be checked,
+      silently producing incorrect results
+    stage_ids:
+    - transformation
+  - id: finance-C-041
+    when: When implementing a plugin that synthesizes new entries (e.g., auto_accounts)
+    action: sort newly synthesized entries using data.entry_sortkey before returning them
+    severity: high
+    kind: operational_lesson
+    modality: must
+    consequence: Unsorted new entries cause temporal ordering violations where newer entries appear before older ones, corrupting
+      account balance calculations
+    stage_ids:
+    - transformation
+  - id: finance-C-042
+    when: When a plugin raises SystemExit during transformation
+    action: allow SystemExit to propagate immediately without catching or converting to error
+    severity: medium
+    kind: architecture_guardrail
+    modality: must
+    consequence: SystemExit should not be caught to allow intentional termination of beancount processing (e.g., bail out
+      on critical errors)
+    stage_ids:
+    - transformation
+  - id: finance-C-043
+    when: When configuring plugin processing in beancount files
+    action: use invalid values for plugin_processing_mode option (only 'raw' or 'default' are valid)
+    severity: high
+    kind: domain_rule
+    modality: must_not
+    consequence: Invalid plugin_processing_mode value causes assertion failure and loader crashes without processing any plugins
+    stage_ids:
+    - transformation
+  - id: finance-C-044
+    when: When importing plugin modules during transformation
+    action: allow ImportError to terminate processing - errors must be caught and reported as LoadError
+    severity: high
+    kind: architecture_guardrail
+    modality: must_not
+    consequence: Uncaught ImportError from missing plugin module crashes the entire loader without reporting which plugin
+      failed
+    stage_ids:
+    - transformation
+  - id: finance-C-045
+    when: When combining multiple plugins using loader.combine_plugins()
+    action: verify combined module has __plugins__ attribute containing each functions from source modules
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Combined plugin without proper __plugins__ attribute is silently skipped, losing transformations from all
+      constituent plugins
+    stage_ids:
+    - transformation
+  - id: finance-C-046
+    when: When processing entries in transformation stage
+    action: verify entries are sorted after each plugin completes to maintain chronological order
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Missing sort after plugin transformation breaks temporal ordering causing incorrect balance calculations
+      and validation errors
+    stage_ids:
+    - transformation
+  - id: finance-C-047
+    when: When loading beancount files with plugin configuration
+    action: insert user-specified pythonpath entries at the front of sys.path before loading plugins
+    severity: medium
+    kind: operational_lesson
+    modality: must
+    consequence: Plugin modules in user pythonpath fail to import if pythonpath is not inserted first, causing plugin import
+      failures
+    stage_ids:
+    - transformation
+  - id: finance-C-048
+    when: When setting the plugin_processing_mode option
+    action: use 'default' mode for normal processing where pad/balance are needed, only use 'raw' when full control is required
+    severity: medium
+    kind: claim_boundary
+    modality: must
+    consequence: Using 'raw' mode without explicitly loading pad/balance creates false confidence that balances are being
+      checked when they are not
+    stage_ids:
+    - transformation
+  - id: finance-C-052
+    when: When reducing an Inventory balance
+    action: use the specified reducer function matching the desired balance type (get_units for units, get_cost for cost basis,
+      get_weight for weighted cost)
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Using the wrong reducer function produces incorrect balance types, causing financial reports to show wrong
+      units vs cost basis vs market value
+    stage_ids:
+    - realization
+  - id: finance-C-053
+    when: When iterating postings with balance in realize function
+    action: process entries in chronological order to maintain correct running balance
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Out-of-order entry processing corrupts running balance calculations, causing incorrect account balances and
+      invalid financial reports
+    stage_ids:
+    - realization
+  - id: finance-C-054
+    when: When calling realize function
+    action: pass entries that have been previously filtered and date-sorted
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Realizing unsorted entries leads to incorrect account tree structure and wrong balance ordering in reports,
+      breaking the chronological integrity of financial data
+    stage_ids:
+    - realization
+  - id: finance-C-055
+    when: When building the RealAccount tree
+    action: create parent accounts as dict containers before adding child account nodes
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Missing parent accounts breaks the hierarchical tree structure, causing KeyError exceptions and preventing
+      balance aggregation across the account hierarchy
+    stage_ids:
+    - realization
+  - id: finance-C-056
+    when: When using balance_reducer function
+    action: provide a compatible reducer function accepting Position and returning Amount
+    severity: high
+    kind: resource_boundary
+    modality: must
+    consequence: Incompatible reducer functions cause type errors during balance computation, preventing the realization stage
+      from completing and generating account reports
+    stage_ids:
+    - realization
+  - id: finance-C-057
+    when: When computing account balance from postings
+    action: initialize balance as empty Inventory and accumulate positions incrementally
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Improper balance initialization causes position data loss, leading to incorrect final balances that do not
+      reflect all transactions in the account
+    stage_ids:
+    - realization
+  - id: finance-C-058
+    when: When calling iterate_with_balance
+    action: not pass Posting instances directly - use TxnPosting wrappers instead
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Passing raw Posting instances causes assertion errors at line 420, breaking the iteration and preventing
+      balance accumulation
+    stage_ids:
+    - realization
+  - id: finance-C-059
+    when: When computing the total balance of parent accounts
+    action: aggregate balances from each child accounts using Inventory addition
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Not aggregating child balances causes parent accounts to show incorrect balances that exclude subaccount
+      positions, breaking hierarchical balance reporting
+    stage_ids:
+    - realization
+  - id: finance-C-060
+    when: When realizing entries without postings
+    action: handle empty entry lists gracefully by returning root RealAccount with empty balances
+    severity: medium
+    kind: operational_lesson
+    modality: must
+    consequence: Not handling empty entry lists causes null reference errors, preventing the system from generating reports
+      when no transactions exist
+    stage_ids:
+    - realization
+  - id: finance-C-066
+    when: When generating opening balance entries for accounts with empty balances
+    action: Create opening balance transactions for accounts with zero inventory
+    severity: high
+    kind: domain_rule
+    modality: must_not
+    consequence: Synthetic transactions will be created for accounts with no activity, cluttering the balance sheet and potentially
+      causing downstream calculation errors
+    stage_ids:
+    - summarization
+  - id: finance-C-067
+    when: When transfer_balances() removes balance assertions after a cutoff
+    action: Remove Balance assertions for transferred accounts that occur after the transfer date
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Balance assertions will fail because the account balance has been transferred away, causing validation errors
+      or incorrect balance checks
+    stage_ids:
+    - summarization
+  - id: finance-C-068
+    when: When summarizing entries that contain positions with cost basis
+    action: Include cost information in the summarized postings to preserve the original cost basis
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Positions will lose their cost basis information, causing incorrect average cost calculations and misreported
+      asset values
+    stage_ids:
+    - summarization
+  - id: finance-C-069
+    when: When using GetAccounts class to gather accounts from directives
+    action: Verify each directive classes have corresponding handler methods defined
+    severity: high
+    kind: resource_boundary
+    modality: must
+    consequence: AttributeError will be raised for unknown directive types, causing the summarization pipeline to fail on
+      valid entries
+    stage_ids:
+    - summarization
+  - id: finance-C-070
+    when: When creating summarized entries for period reporting
+    action: Sort the combined entries (open, price, summarizing) by data.entry_sortkey before returning
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Entries will not be in chronological order, violating the requirement that entries be sorted by date and
+      potentially causing incorrect balance calculations
+    stage_ids:
+    - summarization
+  - id: finance-C-072
+    when: When entries list is empty before calling summarization functions
+    action: Return the empty entries list immediately without processing
+    severity: high
+    kind: operational_lesson
+    modality: must
+    consequence: IndexError or other exceptions may be raised when processing empty lists, causing the pipeline to fail silently
+      or with cryptic errors
+    stage_ids:
+    - summarization
+  - id: finance-C-073
+    when: When computing conversion balances for entries with positions at cost
+    action: Use conversion_cost_balance (reduced by convert.get_cost) for creating conversion entries
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Conversion entries will be created for positions at cost rather than units, causing incorrect currency conversion
+      calculations
+    stage_ids:
+    - summarization
+  - id: finance-C-074
+    when: When summarizing entries and preserving price directives
+    action: Preserve only the last relevant price entry for each commodity before the cutoff date
+    severity: medium
+    kind: operational_lesson
+    modality: must
+    consequence: Multiple stale price entries will be retained, causing the price fetcher to query unnecessary historical
+      prices and potentially use outdated conversion rates
+    stage_ids:
+    - summarization
+  - id: finance-C-075
+    when: When presenting summarized entries as the basis for a balance sheet
+    action: Claim that the summarized entries represent actual original transactions
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Stakeholders will be misled about the provenance of transactions; summarized entries are synthetic replacements,
+      not original ledger entries
+    stage_ids:
+    - summarization
+  - id: finance-C-077
+    when: When creating conversion entries with conversion_currency parameter
+    action: Use the specified conversion_currency for each zero-priced conversion postings
+    severity: high
+    kind: resource_boundary
+    modality: must
+    consequence: Conversion entries will use the wrong target currency, causing incorrect balance calculations when the ledger
+      contains multiple currencies
+    stage_ids:
+    - summarization
+  - id: finance-C-078
+    when: When handling entries with compress_unbooked option for NONE booking
+    action: Merge postings together to obtain accurate cost basis for accounts with NONE booking method
+    severity: medium
+    kind: operational_lesson
+    modality: must
+    consequence: Individual lot positions will cause misleading profit/loss calculations because positions are not properly
+      matched against existing cost bases
+    stage_ids:
+    - summarization
+  - id: finance-C-082
+    when: When implementing commodity declaration validation
+    action: Enforce uniqueness of Commodity directives per currency
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Duplicate Commodity directives for the same currency create ambiguous price information, causing incorrect
+      cost basis calculations and price lookups
+    stage_ids:
+    - validation
+  - id: finance-C-086
+    when: When loading and validating a ledger file
+    action: Collect each validation errors rather than stopping at the first error
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Stopping at the first error prevents users from seeing all issues at once, requiring multiple fix-run cycles
+      to discover all problems in the ledger
+    stage_ids:
+    - validation
+  - id: finance-C-087
+    when: When implementing extra validation injection
+    action: Support the extra_validations parameter for custom validation functions
+    severity: medium
+    kind: architecture_guardrail
+    modality: must
+    consequence: Without extensible validations, users cannot add custom business rules, limiting the system's ability to
+      enforce domain-specific accounting policies
+    stage_ids:
+    - validation
+  - id: finance-C-090
+    when: When implementing account lifecycle exceptions
+    action: Allow Balance, Document, and Note directives after account closure
+    severity: medium
+    kind: domain_rule
+    modality: must
+    consequence: Rejecting legitimate Balance/Document/Note entries after close prevents users from verifying account closure
+      correctness or attaching late-arriving documents
+    stage_ids:
+    - validation
+  - id: finance-C-091
+    when: When implementing document path validation
+    action: Require each Document entries to have absolute file paths
+    severity: medium
+    kind: domain_rule
+    modality: must
+    consequence: Relative paths in Document directives cause file lookup failures when the working directory changes, breaking
+      document association functionality
+    stage_ids:
+    - validation
+  - id: finance-C-092
+    when: When implementing tolerance-based balance checking
+    action: Use tolerance when comparing transaction residual to zero
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Comparing without tolerance causes false errors for legitimate rounding differences, rejecting valid transactions
+      due to sub-cent precision differences
+    stage_ids:
+    - validation
+  - id: finance-C-093
+    when: When implementing data type validation
+    action: Check entry attribute data types match expected schema
+    severity: medium
+    kind: domain_rule
+    modality: should
+    consequence: Invalid data types in entries cause runtime errors during reporting or calculation, leading to crashes or
+      silent data corruption
+    stage_ids:
+    - validation
+  - id: finance-C-094
+    when: When configuring validation levels
+    action: Separate BASIC_VALIDATIONS from slow HARDCORE_VALIDATIONS
+    severity: low
+    kind: operational_lesson
+    modality: should
+    consequence: Running all validations including slow ones during development creates unnecessary performance overhead,
+      slowing down iteration cycles
+    stage_ids:
+    - validation
+  - id: finance-C-096
+    when: When booking method is specified in Open directive
+    action: Use the per-account Booking enum value from Open directive instead of the global option_map booking_method
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Incorrect lot matching method applied to account, leading to wrong cost basis and potentially incorrect capital
+      gains calculations
+  - id: finance-C-098
+    when: When BalanceError list is passed from booking stage
+    action: Must not halt processing when BalanceError is encountered; errors must accumulate for downstream reporting
+    severity: high
+    kind: architecture_guardrail
+    modality: must_not
+    consequence: User will not see validation errors indicating mismatched balances, leading to undetected accounting errors
+      in final reports
+  - id: finance-C-099
+    when: When directives flow through plugin pipeline PLUGINS_PRE → user plugins → PLUGINS_AUTO → PLUGINS_POST
+    action: Maintain entries sorted by entry_sortkey after each plugin execution
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Plugins may process entries in wrong chronological order, breaking accounting logic that depends on sequential
+      position updates
+  - id: finance-C-101
+    when: When user plugin raises an exception during transformation
+    action: Must not crash the entire loader; errors must be caught and accumulated for user reporting
+    severity: high
+    kind: architecture_guardrail
+    modality: must_not
+    consequence: Entire ledger processing halts on single plugin error, preventing user from seeing all other errors or generating
+      partial reports
+  - id: finance-C-103
+    when: When accumulated errors from each previous stages are passed to validation
+    action: Combine each errors from parsing, booking, and transformation stages before reporting to user
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: User sees incomplete error list, missing critical issues from earlier stages that affect data integrity
+  - id: finance-C-104
+    when: When options map is passed from parsing to validation
+    action: Provide tolerance_multiplier and inferred_tolerance_default values for balance validation checks
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Balance checks will use incorrect tolerances, failing valid entries or accepting invalid ones, corrupting
+      financial records
+  - id: finance-C-105
+    when: When options map is passed from parsing to validation
+    action: Provide account_types configuration for validating active account references
+    severity: medium
+    kind: domain_rule
+    modality: must
+    consequence: Validation will incorrectly flag transactions on valid accounts as errors or fail to detect transactions
+      on closed accounts
+  - id: finance-C-106
+    when: When validated directives are passed to realization for report generation
+    action: Pass entries that have passed each validation checks; any failed transactions must still be included with specified
+      error flags
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Reports will show incorrect balances if invalid entries are silently dropped, or users will miss critical
+      validation errors if entries are hidden
+  - id: finance-C-107
+    when: When validated directives are passed to realization
+    action: Use the display_context from options_map for formatting monetary amounts in reports
+    severity: medium
+    kind: resource_boundary
+    modality: must
+    consequence: Reports will display incorrect number precision, showing wrong decimal places that could mislead users about
+      actual account balances
+  - id: finance-C-109
+    when: When writing or loading beancount source files with numeric amounts
+    action: Use the D() function to parse numbers instead of direct Decimal() constructor — D() handles comma thousands separators
+      and None values
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Numbers with comma thousand separators fail to parse correctly, causing ValueError exceptions and preventing
+      ledger file loading
+  - id: finance-C-111
+    when: When processing financial data with incomplete cost or number specifications
+    action: Use the MISSING sentinel class (not None or empty string) to represent incomplete/interpolatable fields — MISSING
+      is designed to appear correctly in error messages
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Using None instead of MISSING for incomplete data causes AttributeError or confusing TypeError messages when
+      interpolation is attempted
+  - id: finance-C-112
+    when: When adding tags or links to Transaction or other directive instances
+    action: Use EMPTY_SET (frozenset()) instead of None for absent tags or links — never use None as a placeholder for empty
+      collections
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Using None for empty tags/links causes AttributeError when code iterates over tags or links, breaking plugin
+      processing and report generation
+  - id: finance-C-115
+    when: When validating or creating currency symbols in beancount
+    action: Match currency names against CURRENCY_RE regex — valid currencies are uppercase alphanumeric with optional dots/underscores/hyphens,
+      or forward-slash currency pairs like USD/EUR
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Invalid currency symbols accepted without validation cause parsing errors in downstream processing and generate
+      confusing error messages
+  - id: finance-C-116
+    when: When working with dates in beancount directives
+    action: Use datetime.date objects only (no time component) — beancount is a date-based accounting system with no support
+      for time-of-day timestamps
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Attempting to use datetime.datetime with time components causes type errors since all directive date fields
+      expect datetime.date without time
+  - id: finance-C-117
+    when: When booking ambiguous lots in an Inventory (multiple matching lots for a posting)
+    action: Apply the booking method declared on the account's Open directive (STRICT, STRICT_WITH_SIZE, AVERAGE, FIFO, LIFO,
+      HIFO, or NONE) — never arbitrarily pick a lot
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Incorrect lot selection causes wrong cost basis for asset sales, distorting realized gains/losses and violating
+      accounting consistency requirements
+  - id: finance-C-118
+    when: When presenting or reporting beancount's capabilities to users
+    action: Claim that beancount supports real-time financial transactions — beancount is a batch-processing text-file-based
+      double-entry bookkeeping language, not a real-time trading or payment system
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Users build integrations expecting live transaction recording and immediate balance updates, but beancount
+      requires file reloads and produces stale data between processing runs
+  - id: finance-C-119
+    when: When presenting or reporting beancount's capabilities to users
+    action: Claim that beancount supports multi-user ledger systems — beancount is a single-user file-based accounting tool
+      with no concurrency controls, user authentication, or access control
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Multiple users editing the same beancount file simultaneously cause data corruption from concurrent writes
+      with no conflict resolution mechanism
+  - id: finance-C-120
+    when: When presenting or reporting beancount's capabilities to users
+    action: Claim that beancount supports complex derivatives pricing — beancount handles basic cost basis tracking and currency
+      conversion but lacks option pricing models, Greeks calculations, or margin modeling
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Users expecting derivatives analytics receive only basic position tracking, leading to incorrect risk assessment
+      and compliance failures for derivative portfolios
+  - id: finance-C-121
+    when: When presenting or reporting beancount's capabilities to users
+    action: Claim that beancount provides a GUI-based accounting interface — beancount is a text-file DSL with CLI tools and
+      a minimal web interface, not a point-and-click accounting application
+    severity: medium
+    kind: claim_boundary
+    modality: must_not
+    consequence: Users expecting traditional GUI accounting workflows are misled about the technical skills required; beancount
+      requires text file editing and command-line operation
+  - id: finance-C-122
+    when: When reporting balance assertion failures or validation errors from beancount
+    action: Claim that beancount's error messages provide automatic correction suggestions — beancount detects errors but
+      requires manual file editing to resolve them; it does not have auto-fix capabilities
+    severity: medium
+    kind: claim_boundary
+    modality: must_not
+    consequence: Users expecting auto-correction wait indefinitely for fixes that require manual text file edits, delaying
+      reconciliation and causing frustration
+  - id: finance-C-123
+    when: When loading and processing beancount files across different environments or timezones
+    action: Use consistent date handling since beancount operates exclusively on date-only values (datetime.date) with no
+      timezone component — no timezone normalization is needed because there is no time component
+    severity: medium
+    kind: domain_rule
+    modality: must
+    consequence: Attempting to apply timezone transformations to beancount dates causes type errors since all dates are datetime.date
+      without timezone information
+  - id: finance-C-124
+    when: When loading beancount files and the file or any included files have been modified
+    action: Invalidate the pickle cache and recompute the loaded entries — cache validation must check each included files'
+      modification times, not just the top-level file
+    severity: high
+    kind: operational_lesson
+    modality: must
+    consequence: Stale cache causes beancount to return outdated entries and balances that don't reflect recent file changes,
+      leading to incorrect financial reports
+  - id: finance-C-125
+    when: When processing directive types that can appear after account closure
+    action: Allow Balance, Document, and Note directives to appear after their account's Close directive — these are exempt
+      from the general chronological ordering rule
+    severity: medium
+    kind: architecture_guardrail
+    modality: must
+    consequence: Rejecting valid post-close Balance/Document/Note directives causes validation errors on legitimate accounting
+      entries received after account closure
+  - id: finance-C-126
+    when: When implementing or refactoring cost tracking data structures
+    action: Maintain CostSpec as a separate type from Cost — CostSpec represents incomplete cost state (missing date, label,
+      or number) while Cost represents fully-specified resolved cost; do not merge these into a single type with nullable
+      fields
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Merging CostSpec and Cost into a single type with nullable fields creates ambiguity between intentional missing
+      values and programming errors, causing cost basis calculations to use incomplete specifications and produce incorrect
+      tax lot information
+    derived_from_bd_id: BD-006
+  - id: finance-C-127
+    when: When implementing number handling in cost or position calculations
+    action: Use MISSING sentinel for unfilled optional values instead of None — MISSING propagates through computations and
+      surfaces in error messages with meaningful context, making absence explicit rather than ambiguous
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Using None for missing values creates ambiguity between intentional absence and null-checking errors, causing
+      bugs to produce silent incorrect results instead of immediate failures with traceable context
+    derived_from_bd_id: BD-009
+  - id: finance-C-128
+    when: When implementing lot identification and merging logic for tax reporting
+    action: Identify lots using the complete tuple (account, currency, cost_number, cost_currency, cost_date, cost_label)
+      — any difference in these fields keeps positions as separate lots; only identical tuples are treated as the same lot
+      for merging
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Incomplete lot identification (e.g., omitting cost_date or cost_label) causes separate lots to merge incorrectly,
+      producing wrong cost basis calculations that lead to incorrect capital gains/losses for tax reporting
+    derived_from_bd_id: BD-024
+  - id: finance-C-129
+    when: When tracking positions with cost specifications for lot accounting
+    action: Include cost_label in lot identification when positions share identical cost_number, cost_currency, and cost_date
+      — cost_label (even when empty) is part of the lot identity tuple and must not be omitted for matching purposes
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Omitting cost_label from lot matching causes lots with identical cost specifications to merge incorrectly,
+      breaking tax lot accounting for securities that require separate lot tracking based on label differentiation
+    derived_from_bd_id: BD-042
+  - id: finance-C-130
+    when: When processing dates in ledger entries
+    action: Assume datetimes are timezone-aware without explicit annotation — the framework does not implement UTC normalization
+      for naive datetimes; without explicit timezone handling, comparisons and calculations across different system timezones
+      produce incorrect results
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Without timezone annotation and UTC normalization, date comparisons and calculations produce inconsistent
+      results depending on system timezone settings, causing ledger entries to be processed incorrectly and financial calculations
+      to be wrong
+    derived_from_bd_id: BD-GAP-018
+  - id: finance-C-131
+    when: When parsing or creating ledger entries with date/time fields
+    action: Add explicit timezone annotation to each datetime fields and normalize to UTC during parsing — implement UTC normalization
+      step before any date comparison or calculation operations to verify consistent timezone handling
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Without UTC normalization, ledger entries processed in different timezones produce inconsistent calculations,
+      and cross-timezone reporting generates incorrect financial summaries that do not match when viewed from different locations
+    derived_from_bd_id: BD-GAP-018
+  - id: finance-C-132
+    when: When implementing plugin processing in beancount's plugin_pipeline stage
+    action: Execute check_closing plugin first before other plugins, and close_tree plugin last after other plugins — maintain
+      the fixed plugin ordering sequence to verify validation occurs before cleanup operations
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Changing plugin execution order causes validation to run after potential entry modifications, resulting in
+      invariant checks that pass but don't reflect the final state — backtest results may appear valid but contain hidden
+      inconsistencies
+    derived_from_bd_id: BD-032
+  - id: finance-C-133
+    when: When implementing the sellgains plugin's P&L reclassification logic
+    action: Move only losses (where cost basis exceeds proceeds) to income — must NOT move gains (where proceeds exceed cost)
+      to income; gains remain in their original expense classification
+    severity: high
+    kind: domain_rule
+    modality: must_not
+    consequence: Reclassifying gains to income instead of keeping them as expenses creates accounting classification errors
+      that distort P&L reports and cause incorrect tax calculations
+    derived_from_bd_id: BD-033
+  - id: finance-C-134
+    when: When implementing summarization period date boundaries in report_generation
+    action: Use end_date minus 1 day (date-1) as the summarization period boundary — verify summarized entries are dated up
+      to (end_date - 1 day) so source entries on end_date appear chronologically after the summary
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Using end_date without the -1 offset causes period summaries to overlap with subsequent entries, creating
+      chronological confusion in reports where the same date appears in both summary and detail
+    derived_from_bd_id: BD-034
+  - id: finance-C-135
+    when: When implementing account transfer entry date assignments in report_generation
+    action: Date transfer entries exactly 1 day before the transfer date (transfer_date - 1) — verify transferred balances
+      appear before the transfer cutoff point when filtering entries up to but not including the transfer date
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Using the actual transfer date instead of date-1 causes transfer entries to be excluded from balance calculations
+      filtered by transfer date, resulting in incorrect account balances at cutoff points
+    derived_from_bd_id: BD-035
+  - id: finance-C-136
+    when: When implementing price lookup or currency conversion logic in price_resolution
+    action: Use (base, quote) currency tuple as the lookup key for price retrieval — maintain explicit ordering as price lookups
+      are directional and (USD, CAD) must be treated as distinct from (CAD, USD)
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Using a single currency pair string without direction causes incorrect rate selection, converting currencies
+      at inverse rates and producing wrong valuations in portfolio reports
+    derived_from_bd_id: BD-037
+  - id: finance-C-137
+    when: When implementing currency conversion for currency pairs without direct exchange rates
+    action: Attempt multi-hop conversion through intermediate currencies when direct rate is unavailable — try each currency
+      as a potential intermediate step, returning the first valid conversion path found through the price graph
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Skipping multi-hop conversion when direct rates are missing causes valid conversions to fail silently, resulting
+      in incomplete portfolio valuations and missing transaction conversions
+    derived_from_bd_id: BD-038
+  - id: finance-C-138
+    when: When implementing booking/lot matching logic and users request strict cost specification
+    action: 'Be aware that strict booking mode has a fallback: STRICT_WITH_SIZE allows exact-size matches to bypass explicit
+      cost specification — document this behavior to users and do not promise complete strict enforcement'
+    severity: high
+    kind: operational_lesson
+    modality: must
+    consequence: Users relying on strict mode for regulatory compliance expect complete enforcement but get unexpected matches
+      via the STRICT_WITH_SIZE fallback, leading to incorrect lot selections and audit failures
+    derived_from_bd_id: BD-084
+  - id: finance-C-139
+    when: When implementing or modifying the plugin pipeline execution order
+    action: 'Preserve the fixed plugin ordering: check_closing must run first (after Documents prepend and before other plugins),
+      and close_tree must run last (after pad/balance append and invariant checking) — changing this order breaks invariant
+      detection at predictable stages'
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Altering plugin order causes invariant violations to be detected at unexpected stages or missed entirely,
+      resulting in data inconsistencies that pass validation but cause downstream calculation errors
+    derived_from_bd_id: BD-089
+  - id: finance-C-140
+    when: When implementing proceeds calculation or validation in lot matching and P&L computation
+    action: 'Implement validation checks at each cascade stage: verify negation produces positive proceeds (BD-068), verify
+      weighted accumulation matches expected totals (BD-073), validate currency matching per-currency (BD-070), and fail on
+      any unmatched currencies (BD-075) — subtle errors in earlier stages can pass through later validation'
+    severity: medium
+    kind: operational_lesson
+    modality: should
+    consequence: 'Errors in proceeds negation accumulate through the validation cascade: wrong proceeds pass currency-by-currency
+      validation due to tolerance settings, and only complete currency mismatches trigger errors, causing understated or overstated
+      P&L'
+    derived_from_bd_id: BD-090
+  - id: finance-C-141
+    when: When implementing account hierarchy or inventory tracking for hierarchical reporting
+    action: Maintain the complete 4-level account tree structure (Root → Assets/Income/Expenses/Liabilities → sub-accounts
+      → components) with nested dict for O(1) lookup, and Inventory objects per account for per-currency cost-basis segregation
+      — the aggregation chain from leaf to root depends on each levels being present
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Missing any account level breaks hierarchical rollup, causing incomplete aggregations where sub-account balances
+      don't sum to parent totals and portfolio reports show incorrect totals
+    derived_from_bd_id: BD-091
+  - id: finance-C-142
+    when: When implementing or refactoring position averaging logic in beancount/core/convert.py
+    action: Use cost as weight for lots with cost specification, and units as weight for uncosted postings, with explicit
+      price overrides taking precedence when provided
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Changing the weight calculation logic causes average price computations to use incorrect weighting, leading
+      to misstated position values that diverge from actual cost basis and produce wrong P&L reports
+    derived_from_bd_id: BD-039
+  - id: finance-C-144
+    when: When implementing or refactoring account transfer logic in beancount/ops/summarize.py
+    action: Filter out any Balance directive on the destination (receiving) account after a transfer operation—the transfer
+      entry itself establishes the correct balance
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Retaining balance assertions on the destination account after transfer causes false validation errors when
+      the balance assertion value conflicts with the balance implicitly established by the transfer entry
+    derived_from_bd_id: BD-041
+  - id: finance-C-145
+    when: When implementing or refactoring inventory aggregation logic in beancount/core/inventory.py
+    action: Use (amount, currency) as the aggregation key during reduce operations to combine positions with identical amount
+      and currency regardless of individual cost basis
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Changing the aggregation key to cost basis or other fields causes positions with identical amount and currency
+      to remain uncombined, producing incorrect net position calculations and distorted portfolio reports
+    derived_from_bd_id: BD-047
+  - id: finance-C-146
+    when: When implementing or refactoring closing entry validation in beancount/plugins/check_closing.py
+    action: Verify that each Close directive's stated balance matches the computed balance from preceding entries—any discrepancy
+      must trigger an error
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Removing the closing balance verification allows discrepancies between declared and actual closing balances
+      to go undetected, corrupting ledger integrity and producing financial reports that do not reflect actual account state
+    derived_from_bd_id: BD-048
+  - id: finance-C-147
+    when: When implementing or refactoring empty account tree cleanup in beancount/plugins/close_tree.py
+    action: Remove only accounts that have zero balance AND no subaccounts—preserve any account with meaningful balance or
+      child accounts
+    severity: medium
+    kind: architecture_guardrail
+    modality: must
+    consequence: Modifying the cleanup criteria to preserve empty accounts or remove accounts with children clutters the account
+      tree with meaningless branches, degrading report readability and query performance
+    derived_from_bd_id: BD-049
+  - id: finance-C-148
+    when: When implementing position adjustment or lot creation logic in the trading stage
+    action: Negate position units to create a selling lot from a buying position — the negated position creates a new lot
+      with negative units while the original lot remains unchanged until positions are netted by the booking method
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Without negation, sell transactions cannot properly reduce buying positions, causing duplicate lot creation
+      and incorrect cost-basis tracking that accumulates over multiple trades
+    derived_from_bd_id: BD-062
+  - id: finance-C-149
+    when: When implementing balance check logic in the check_closing stage
+    action: Place the balance check on date + 1 day offset from the closing entry date to verify each closing postings have
+      been applied before verification
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Same-day balance checks miss pending transactions in the closing batch, creating false balance discrepancies
+      that trigger incorrect error reports and mask actual reconciliation failures
+    derived_from_bd_id: BD-063
+  - id: finance-C-150
+    when: When implementing or validating balance check date offset in the check_closing stage
+    action: Verify that the balance verification date equals exactly original entry date + 1 calendar day — the boundary condition
+      ensures one full day separates closing entries from their verification
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Incorrect date offsets cause balance checks to run against incomplete closing batches or redundant post-verification
+      entries, producing unreliable reconciliation results that hide actual accounting errors
+    derived_from_bd_id: BD-066
+  - id: finance-C-151
+    when: When implementing proceeds accumulation logic in the sellgains stage
+    action: Track proceeds only for account types designated in proceed_types — exclude income accounts and non-proceeds categories
+      from inventory validation to verify only cash-equivalent accounts participate in reconciliation
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Including income accounts in proceeds tracking creates artificial reconciliation mismatches and produces
+      incorrect gain/loss calculations that misstate taxable income and lead to IRS audit findings
+    derived_from_bd_id: BD-069
+  - id: finance-C-152
+    when: When implementing proceeds inventory accumulation in the sellgains stage
+    action: Accumulate proceeds using weighted conversion that accounts for position size — larger positions must contribute
+      proportionally more to enable accurate FIFO/LIFO matching for cost-basis calculations
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Simple sum accumulation ignores position weighting, causing incorrect cost-basis allocation in partial sales
+      that systematically misstates gains/losses and triggers incorrect tax reporting
+    derived_from_bd_id: BD-073
+  - id: finance-C-153
+    when: When implementing currency validation in the sellgains stage
+    action: Fail validation if any proceeds currencies cannot be matched to cost currencies — verify complete currency matching
+      for accurate multi-currency gain/loss reporting
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Partial currency matching leaves orphaned proceeds that create accounting inconsistencies, causing multi-currency
+      gain/loss reports to show phantom balances and incorrect per-currency totals
+    derived_from_bd_id: BD-075
+  - id: finance-C-154
+    when: When configuring proceed_types in the sellgains stage for equity compensation tracking
+    action: Include equity accounts in proceed_types to capture stock vesting, RSU vesting, and stock option exercises — these
+      equity compensation events must be properly tracked in proceeds calculations
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Excluding equity accounts misses RSU vesting and option exercise events, causing incomplete proceeds tracking
+      that misstates cost-basis and generates incorrect 1099-B reports for equity compensation
+    derived_from_bd_id: BD-076
+  - id: finance-C-155
+    when: When implementing error reporting for transactions with multiple validation failures in the sellgains stage
+    action: Report each applicable error types when a transaction has both proceeds imbalance and missing expense category
+      — produce multiple error types to enable complete correction rather than sequential fixes
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Single error reporting hides secondary validation failures, requiring multiple fix-and-rerun cycles that
+      delay reconciliation and risk fixing symptoms rather than root causes
+    derived_from_bd_id: BD-079
+  - id: finance-C-156
+    when: When validating proceeds currencies for international brokerage accounts in the sellgains stage
+    action: Accept non-USD currencies (CAD, etc.) as valid proceeds when properly structured — validate foreign currency proceeds
+      against matching cost currencies to support international accounts
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Rejecting non-USD currencies causes valid international brokerage transactions to fail validation, blocking
+      reconciliation for CAD and other foreign currency accounts entirely
+    derived_from_bd_id: BD-080
+  - id: finance-C-157
+    when: When processing zero-priced transactions for corporate actions in the sellgains stage
+    action: Accept zero-priced transactions when properly structured — some corporate actions like stock splits or distributions
+      result in zero-value sales that must be captured for correct cost-basis calculations
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Rejecting zero-priced transactions causes legitimate corporate actions to fail, resulting in incomplete cost-basis
+      records that cannot properly reflect stock splits and create phantom cost-basis gaps
+    derived_from_bd_id: BD-081
+  - id: finance-C-158
+    when: When implementing period-bound reporting logic that rolls income/expenses to equity
+    action: Use standard equity accounts (Opening-Balances, Current-Earnings) from BD-029 and enforce correct date ordering
+      via BD-040's clamp operation when executing the equity rollforward
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Violating either the standard account requirement or date ordering causes period-bound reporting to fail
+      silently, producing incorrect equity balances that don't match source transactions
+    derived_from_bd_id: BD-087
+  - id: finance-C-159
+    when: When implementing post-modification invariant checking in the directive pipeline
+    action: Maintain immutability of NamedTuple directives as defined in BD-002 and verify entries passed to BD-061's invariant
+      checking remain unmodified during pipeline execution
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: If directives become mutable, modifications could corrupt the entries being verified by invariant checking,
+      making the verification unreliable and allowing invalid data to propagate through the pipeline
+    derived_from_bd_id: BD-092
+  - id: finance-C-160
+    when: When configuring multiple data providers in production backtesting
+    action: Assume the framework implements provider priority selection or credential isolation between providers — these
+      capabilities are not present in the codebase; the framework uses no priority ordering and does not enforce credential
+      separation
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Without provider priority handling, the system may select an incorrect or higher-cost data provider, causing
+      inconsistent data quality and increased operational costs in live trading
+    derived_from_bd_id: BD-GAP-019
+  - id: finance-C-161
+    when: When configuring multiple data providers in production backtesting
+    action: Implement provider priority configuration with a priority_rank field per provider and use credential isolation
+      by storing each provider's credentials in separate secure storage entries (e.g., provider_<name>_api_key, provider_<name>_secret)
+      instead of shared configuration
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Without explicit priority ranking, the system defaults to arbitrary provider selection, leading to inconsistent
+      data feeds and potential credential cross-contamination that can cause authentication failures or data leakage
+    derived_from_bd_id: BD-GAP-019
+  - id: finance-C-162
+    when: When implementing or modifying directive sorting and ordering logic in Beancount
+    action: Maintain date as the primary sort key and lineno (line number) as the secondary sort key for directives occurring
+      on the same date — preserve this two-level ordering guarantee
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Removing lineno as secondary sort key breaks deterministic ordering for same-day directives, causing balance
+      calculation inconsistencies when ledger files are reorganized or include ordering changes
+    derived_from_bd_id: BD-003
+  - id: finance-C-163
+    when: When implementing option parsing and aggregation logic for multi-file ledgers with includes
+    action: Verify that options are parsed per-file with proper aggregation, ensuring top-level file options dominate after
+      aggregation for predictable override behavior
+    severity: medium
+    kind: operational_lesson
+    modality: should
+    consequence: Incorrect option aggregation causes wrong operating_currency and display_context settings in included files,
+      leading to calculation errors when shared settings in included files conflict with main file settings
+    derived_from_bd_id: BD-004
+  - id: finance-C-164
+    when: When implementing or modifying the Beancount loader validation system
+    action: Preserve the ability to inject custom validation functions at load time — extra validation functions must execute
+      after standard validation completes and before data processing
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Removing custom validation injection breaks domain-specific compliance checks such as regulatory rules and
+      personal accounting policies, allowing invalid entries to pass through the pipeline undetected
+    derived_from_bd_id: BD-022
+  - id: finance-C-165
+    when: When implementing position cost basis calculations for lot matching
+    action: Explicitly specify the booking method (FIFO, LIFO, MOST_RECENT, STRICT) when creating lots rather than relying
+      on framework defaults, as the booking method directly determines which lots are consumed first and affects realized
+      gains calculations
+    severity: medium
+    kind: operational_lesson
+    modality: should
+    consequence: Without explicit booking method specification, the framework uses its default method which may differ across
+      versions or configurations, producing inconsistent cost basis calculations that lead to materially different realized
+      gains or losses reports
+    derived_from_bd_id: BD-007
+  - id: finance-C-166
+    when: When processing positions with cost specifications
+    action: Explicitly specify cost currency in cost specifications when it differs from the position's units currency; when
+      cost currency is omitted, verify that the framework correctly infers cost currency matches units currency
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Silent cost currency inference causes multi-currency portfolios to incorrectly value positions when cost
+      and units currencies differ, leading to balance sheet errors and potentially incorrect P&L calculations in foreign-denominated
+      holdings
+    derived_from_bd_id: BD-036
+  - id: finance-C-167
+    when: When implementing period boundary processing or generating balance sheets for arbitrary periods
+    action: Verify that income and expense accounts are properly closed and rolled into retained earnings at period boundaries
+      — verify P&L closure follows standard accounting practice for accurate period-relative balance sheets
+    severity: medium
+    kind: operational_lesson
+    modality: should
+    consequence: Without proper income/expense rollforward to retained earnings, period-relative balance sheets show incorrect
+      retained earnings balances, leading to wrong equity calculations and potentially misguided strategy decisions based
+      on faulty capital estimates
+    derived_from_bd_id: BD-017
+  - id: finance-C-168
+    when: When validating transaction balance assertions or implementing posting validation logic
+    action: Enforce balanced postings invariant (sum to zero) strictly at transaction creation time; apply tolerance-based
+      balance checking only during balance assertion interpolation, not during transaction posting validation — maintain clear
+      scope separation between BD-023 and BD-026
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Mixing invariant-level and tolerance-level validation scopes causes inconsistent balance checking behavior
+      — transactions may be accepted that fail strict invariant checks, or rejected that pass tolerance checks, leading to
+      silent data integrity issues
+    derived_from_bd_id: BD-083
+  - id: finance-C-169
+    when: When processing financial calculations involving external data ingestion or price lookups
+    action: Verify each financial arithmetic operations use Decimal type for precision — verify that external data feeds,
+      price lookups, and data ingestion pipelines are converted to Decimal before calculations; do not rely on floating-point
+      arithmetic for any monetary values
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Floating-point calculations for financial values introduce rounding errors that accumulate over multiple
+      transactions; strategies relying on precise cost-basis calculations may execute incorrectly due to sub-cent errors,
+      causing systematic profit/loss misreporting
+    derived_from_bd_id: BD-085
+  - id: finance-C-170
+    when: When caching Google Drive API responses using file-based caching
+    action: Assume the file-based cache handles data staleness automatically — the cache has no automatic invalidation mechanism
+      and persists indefinitely until manually deleted
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Without automatic cache invalidation, backtests use stale data when source Google Drive files are updated;
+      this causes backtest-live inconsistency where strategy decisions are based on outdated financial data
+    derived_from_bd_id: BD-GAP-006
+  - id: finance-C-171
+    when: When caching Google Drive API responses in backtesting workflows
+    action: Implement explicit cache invalidation by checking file modification timestamps or API ETag headers; delete stale
+      cache entries when remote data is newer than cached version, or use TTL-based expiration
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Backtests using stale cached API responses will execute strategies based on outdated financial data, causing
+      incorrect allocation decisions and misleading performance metrics
+    derived_from_bd_id: BD-GAP-006
+  - id: finance-C-172
+    when: When implementing or modifying plugin mode configurations in the framework
+    action: Verify that plugin ordering invariants (BD-061) are maintained across each execution modes, especially when using
+      raw mode that bypasses built-in plugins (BD-010)
+    severity: high
+    kind: operational_lesson
+    modality: must
+    consequence: In raw mode, fixed plugin ordering (BD-011, BD-012) is bypassed, causing invariant checks (BD-061) to run
+      on incompletely-transformed entries and miss silent data corruption that standard mode would catch
+    derived_from_bd_id: BD-095
+  - id: finance-C-173
+    when: When implementing or modifying proceeds calculation logic, especially for short positions
+    action: Verify that unit negation logic for proceeds calculation (BD-068) produces correct signed values, and validate
+      weighted accumulation results (BD-073) against independent calculations before relying on per-currency tolerance checks
+      (BD-070, BD-071)
+    severity: high
+    kind: operational_lesson
+    modality: must
+    consequence: A negation error in proceeds calculation (BD-068) propagates through weighted accumulation (BD-073), and
+      the resulting incorrect totals may pass validation due to tolerances (BD-026, BD-071), allowing incorrect gain/loss
+      to be recorded
+    derived_from_bd_id: BD-096
+  - id: finance-C-174
+    when: When configuring Google Drive API authentication for document downloads in enterprise environments
+    action: Verify that service account has domain-wide delegation authority configured in GSuite Admin Console before using
+      service account authentication; if delegation is not available, implement OAuth2 user flow with proper token refresh
+      handling
+    severity: high
+    kind: operational_lesson
+    modality: must
+    consequence: Service account authentication silently fails in GSuite environments without domain-wide delegation authority,
+      causing document download failures that may crash the system or produce incomplete data
+    derived_from_bd_id: BD-GAP-001
+  - id: finance-C-175
+    when: When implementing account structure in beancount
+    action: 'Use hierarchical colon-separated account naming with one of the 4 standard type prefixes: Assets, Liabilities,
+      Equity, Income, or Expenses. Accounts must begin with these prefixes to be valid for account type classification and
+      proper balance sheet organization.'
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Breaking hierarchical account naming would disrupt account type classification, causing balance sheet and
+      income statement reports to fail or produce incorrect totals
+    derived_from_bd_id: BD-028
+  - id: finance-C-176
+    when: When implementing inventory equality comparison logic
+    action: Use set-based equality for inventory comparison — two inventories are equal only when they contain identical lot
+      sets (sorted position comparison by account and currency), regardless of acquisition order
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Using list-based or order-dependent comparison would cause inventories with identical lots in different orders
+      to be treated as unequal, breaking cost basis tracking and lot-level accounting accuracy
+    derived_from_bd_id: BD-031
+  - id: finance-C-177
+    when: When testing or validating multi-leg sale transactions
+    action: Verify that balanced multi-leg sales (where cash proceeds equal cost basis within tolerance) produce zero validation
+      errors and are accepted by the sellgains plugin
+    severity: medium
+    kind: operational_lesson
+    modality: should
+    consequence: Modifying validation to reject balanced transactions would incorrectly flag valid economic outcomes, causing
+      false accounting errors in correctly structured trades
+    derived_from_bd_id: BD-077
+  - id: finance-C-178
+    when: When processing sell transactions in the sellgains plugin
+    action: Reject transactions where cash proceeds do not match cost basis within tolerance — must trigger SellGainsError
+      for unbalanced cash vs cost
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Allowing mismatched cash flows to pass validation would create accounting errors that propagate through the
+      system, producing incorrect realized gains/losses calculations
+    derived_from_bd_id: BD-078
+  - id: finance-C-179
+    when: When implementing directive ordering for same-day transactions
+    action: Preserve parser source location tracking (PLY line numbers) as the secondary sort key for same-day directive ordering
+      — the sellgains plugin relies on deterministic lineno-based ordering when timestamps are equal
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Removing or modifying parser line number tracking would make same-day directive ordering non-deterministic,
+      causing inconsistent validation results and potential silent ordering-dependent bugs in accounting
+    derived_from_bd_id: BD-082
+  - id: finance-C-180
+    when: When implementing Open directive logic for account initialization
+    action: Preserve the currencies field to limit which currencies can post to the account, and preserve the booking field
+      to specify lot merging strategy — both constraints are enforced from the Open date onward
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Modifying or removing the currencies or booking fields during Open directive processing changes account scope
+      and lot merging behavior, causing unexpected transaction rejections or incorrect position tracking
+    derived_from_bd_id: BD-050
+  - id: finance-C-181
+    when: When implementing Close directive logic for account lifecycle management
+    action: Verify any transaction dated on or after the Close date for an account triggers an error — preventing posthumous
+      entries to closed accounts
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Allowing transactions on or after the Close date creates posthumous entries that violate account lifecycle
+      semantics, causing data integrity issues and incorrect historical reporting
+    derived_from_bd_id: BD-051
+  - id: finance-C-182
+    when: When implementing Document directive processing or balance calculation logic
+    action: Use Document directives for any balance calculations or position tracking — they are purely informational for
+      audit trail and source file references only
+    severity: high
+    kind: architecture_guardrail
+    modality: must_not
+    consequence: Incorporating Document directives into balance calculations creates phantom balances since Document merely
+      associates filenames with entry dates without affecting account balances
+    derived_from_bd_id: BD-052
+  - id: finance-C-183
+    when: When implementing date range filtering logic for export or report generation
+    action: Use half-open interval [begin, end) semantics — include entries on the begin date and exclude entries on the end
+      date, matching standard Python slice semantics
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Using closed intervals [begin, end] causes double-counting when exporting sequential periods, as entries
+      on period boundaries are counted in multiple exports simultaneously
+    derived_from_bd_id: BD-054
+  - id: finance-C-184
+    when: When implementing treeify logic for hierarchical report generation
+    action: Preserve the conversion of flat (account, balance) tuples to nested dict structure where each level corresponds
+      to account segments separated by colons — the hierarchical structure enables nested reporting aggregation
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Returning flat structure instead of nested dict breaks hierarchical aggregation and nested reporting, causing
+      incorrect or missing account segment rollups in financial reports
+    derived_from_bd_id: BD-055
+output_validator:
+  assertions:
+  - id: OV-01
+    check_predicate: all(p in inspect.getsource(zvt.factors.algorithm.macd) for p in ['slow=26', 'fast=12', 'n=9'])
+    failure_message: 'FATAL: MACD params drifted from (fast=12, slow=26, n=9) — SL-08 violation, non-reproducible signals'
+    business_meaning: Standard MACD parameters are a semantic lock; drift makes results incomparable with industry-standard
+      indicators and non-reproducible.
+    source_ids:
+    - SL-08
+    - BD-036
+  - id: OV-02
+    check_predicate: result.get('total_trades', 0) > 0 or result.get('explicit_zero_trade_ack') is True
+    failure_message: Zero trades executed — likely missing pre-fetched data (see PC-02) or over-restrictive filters
+    business_meaning: A backtest with zero trades is not a valid result; either data is missing or the strategy never triggered.
+      Structural non-emptiness check is insufficient — we need business confirmation.
+    source_ids:
+    - SL-01
+    - finance-C-073
+  - id: OV-03
+    check_predicate: result.get('annual_return') is None or abs(float(result['annual_return'])) <= 5.0
+    failure_message: 'FATAL: |annual_return| > 500% — likely look-ahead bias or data error'
+    business_meaning: Annual returns exceeding 500% are physically implausible for A-share strategies; indicates look-ahead
+      bias or corrupt data.
+    source_ids: []
+  - id: OV-04
+    check_predicate: result.get('holding_change_pct') is None or abs(float(result['holding_change_pct'])) <= 1.0
+    failure_message: 'FATAL: |holding_change_pct| > 100% — physically impossible'
+    business_meaning: Holding change percentage cannot exceed 100%; violation indicates position accounting error.
+    source_ids:
+    - BD-029
+  - id: OV-05
+    check_predicate: result.get('max_drawdown') is None or abs(float(result['max_drawdown'])) <= 1.0
+    failure_message: 'FATAL: |max_drawdown| > 100% — impossible for non-leveraged account'
+    business_meaning: Maximum drawdown cannot exceed 100% without leverage; violation indicates calculation error or look-ahead
+      bias.
+    source_ids: []
+  - id: OV-06
+    check_predicate: not (hasattr(result, 'trade_log') and result.trade_log and any(result.trade_log[i].action == 'sell' and
+      i+1 < len(result.trade_log) and result.trade_log[i+1].action == 'buy' and result.trade_log[i].timestamp == result.trade_log[i+1].timestamp
+      for i in range(len(result.trade_log)-1)))
+    failure_message: 'FATAL: buy-before-sell detected in same cycle — SL-01 violation, creates implicit leverage'
+    business_meaning: SL-01 requires sell() before buy() in each cycle; violation means available_long was not updated before
+      buying, risking duplicate positions.
+    source_ids:
+    - SL-01
+  scaffold:
+    validate_py_path: '{workspace}/validate.py'
+    tail_block: "# === DO NOT MODIFY BELOW THIS LINE ===\nif __name__ == \"__main__\":\n    result = run_backtest()\n    from\
+      \ validate import enforce_validation\n    enforce_validation(result, output_path=\"{workspace}/result.csv\")\n# ===\
+      \ END DO NOT MODIFY ==="
+  enforcement_protocol: 1. Never edit validate.py. 2. Never delete the DO NOT MODIFY tail block from the main script. 3. Never
+    wrap enforce_validation() in try/except. 4. Never rewrite result write logic — it MUST go through enforce_validation.
+    5. If validate.py raises ImportError, fix the dependency, do not remove the call.
+acceptance:
+  hard_gates:
+  - id: G1
+    check: '{workspace}/result.csv exists AND file size > 0'
+    on_fail: Strategy did not produce output; check run_backtest() return value and enforce_validation() call
+  - id: G2
+    check: '{workspace}/result.csv.validation_passed marker file exists'
+    on_fail: Validation did not complete; review validate.py output and fix assertion failures
+  - id: G3
+    check: 'Main script contains literal: from validate import enforce_validation'
+    on_fail: Validation chain stripped; re-add the import in the DO NOT MODIFY block
+  - id: G4
+    check: 'Main script contains literal: # === DO NOT MODIFY BELOW THIS LINE ==='
+    on_fail: Validation fence removed; regenerate DO NOT MODIFY tail block
+  - id: G5
+    check: 'result.csv has at least 1 row: pandas.read_csv(result.csv).shape[0] >= 1'
+    on_fail: Empty result; check if trade_log is non-empty and factors generated signals. Confirm PC-02 (k-data exists) passed.
+  - id: G6
+    check: 'If MACD strategy: source contains ''slow=26'' AND ''fast=12'' AND ''n=9'' in algorithm call'
+    on_fail: MACD params drifted from SL-08 lock; restore standard (12, 26, 9)
+  - id: G7
+    check: 'For data pipeline tasks: result.csv contains ''entity_id'' and ''timestamp'' fields'
+    on_fail: Missing required columns; check Mixin.query_data return schema and DataFrame MultiIndex reset_index() before
+      writing
+  - id: G8
+    check: 'OV-03 passes: abs(annual_return) <= 5.0 (500%)'
+    on_fail: Physical plausibility check failed; investigate look-ahead bias or data corruption in input kdata
+  soft_gates:
+  - id: SG-01
+    rubric: 'Strategy narrative consistency: user intent aligns with generated strategy.py logic. dim_a: signal direction
+      (buy/sell) matches intent [1-5, pass>=4]; dim_b: frequency (daily/intraday) aligns [1-5, pass>=4]; dim_c: risk controls
+      match user intent [1-5, pass>=4].'
+  - id: SG-02
+    rubric: 'Factor combination quality. dim_a: no highly correlated factor duplication [1-5, pass>=4]; dim_b: multi-period
+      alignment correct [1-5, pass>=4]; dim_c: liquidity filter present for A-share [1-5, pass>=4].'
+  - id: SG-03
+    rubric: 'Data source selection appropriateness. dim_a: coverage sufficient for target entities [1-5, pass>=4]; dim_b:
+      provider latency acceptable for strategy frequency [1-5, pass>=4]; dim_c: no unauthorized provider used without credentials
+      [1-5, pass>=4].'
+skill_crystallization:
+  trigger: all_hard_gates_passed AND user_opt_out_skill_saving != true
+  output_path_template: '{workspace}/../skills/{slug}.skill'
+  slug_template: '{blueprint_id_short}-{uc_id_lower}'
+  captured_fields:
+  - name
+  - intent_keywords
+  - entry_point_script
+  - validate_script
+  - fatal_constraints
+  - spec_locks
+  - preconditions
+  - install_recipes
+  - human_summary_translated
+  action: 'After all Hard Gates PASS, resolve slug via slug_template using the executed UC, then write the .skill YAML file
+    at output_path_template. Notify user in their detected locale: ''Skill saved as {slug}.skill — next time say one of {sample_triggers}
+    from the matched UC to invoke directly.'''
+  violation_signal: All hard gates passed but no .skill file exists at expected path
+  skill_file_schema:
+    name: finance-bp-129 / Beancount Test Utilities Framework
+    version: v5.3
+    intent_keywords:
+    - testing utilities
+    - tempdir
+    - test files
+    - mock repository
+    - integration testing
+    entry_point: run_backtest
+    fatal_guards:
+    - SL-01
+    - SL-02
+    - SL-03
+    - SL-04
+    - SL-05
+    - SL-06
+    - SL-07
+    - SL-08
+    - SL-10
+    - SL-11
+    - SL-12
+    spec_locks:
+    - SL-01
+    - SL-02
+    - SL-03
+    - SL-04
+    - SL-05
+    - SL-06
+    - SL-07
+    - SL-08
+    - SL-09
+    - SL-10
+    - SL-11
+    - SL-12
+    preconditions:
+    - PC-01
+    - PC-02
+    - PC-03
+    - PC-04
+post_install_notice:
+  trigger: skill_installation_complete
+  message_template:
+    positioning: I help you build quant strategies on A-share with ZVT — from data fetch to backtest, one flow.
+    capability_catalog:
+      group_strategy:
+        source: auto_grouped
+        strategy_reason: no candidate field had 2-7 distinct values; all capabilities collapsed into single group
+      groups:
+      - group_id: all
+        name: All Capabilities
+        description: ''
+        emoji: 📦
+        uc_count: 2
+        ucs:
+        - uc_id: UC-101
+          name: Beancount Test Utilities Framework
+          short_description: Provides reusable testing utilities for beancount test scripts including temporary directory
+            management and test file creation for integration testing
+          sample_triggers:
+          - testing utilities
+          - tempdir
+          - test files
+        - uc_id: UC-102
+          name: Test Utils Validation Suite
+          short_description: Unit tests that validate the correctness of test utility functions including temporary directory
+            cleanup and test file generation for beancount test s
+          sample_triggers:
+          - unit test
+          - validation
+          - test utilities
+    call_to_action: Tell me which one you want to try.
+    featured_entries:
+    - uc_id: UC-101
+      beginner_prompt: Try beancount test utilities framework
+      auto_selected: true
+    - uc_id: UC-102
+      beginner_prompt: Try test utils validation suite
+      auto_selected: true
+    - uc_id: UC-100
+      beginner_prompt: Try capability UC-100
+      auto_selected: true
+    more_info_hint: Ask me 'what else can you do?' to see all 2 capabilities.
+  locale_rendering:
+    instruction: On skill_installation_complete, translate ALL user-facing strings (positioning + capability_catalog.groups[].name
+      + capability_catalog.groups[].description + capability_catalog.groups[].ucs[].short_description + call_to_action + featured_entries[].beginner_prompt
+      + more_info_hint) into detected user locale per locale_contract. Preserve UC-IDs, group_id, emoji, and sample_triggers
+      verbatim.
+    preserve_verbatim:
+    - UC-IDs
+    - group_id
+    - emoji
+    - sample_triggers
+    - technical_class_names
+  enforcement:
+    action: 'Host agent MUST send composed message to user as the FIRST user-facing response after skill_installation_complete
+      event. Message MUST contain: positioning, capability_catalog (rendered as markdown tables per group), 3 featured_entries,
+      call_to_action, and more_info_hint.'
+    violation_code: PIN-01
+    violation_signal: First user-facing message post-install does not contain the full capability_catalog (all UCs grouped)
+      OR skips featured_entries OR skips call_to_action.
+human_summary:
+  persona: Doraemon
+  what_i_can_do:
+    tagline: 'I help you build quant strategies on A-share with ZVT — from data fetch to backtest, one flow. Just tell me
+      what you want; I''ll write the code, you don''t have to dig docs. (Heads up: ZVT natively supports A-share, HK, and
+      crypto. US stocks — stockus_nasdaq_AAPL — are half-baked; don''t bother for serious work.)'
+    use_cases:
+    - Test Utils Validation Suite
+    - Beancount Test Utilities Framework
+    - A-share MACD daily golden-cross backtest with hfq price adjustment from eastmoney
+    - 'End-to-end ZVT pipeline: FinanceRecorder + GoodCompanyFactor + StockTrader'
+    - Multi-factor strategy with TargetSelector (AND mode) combining MACD + volume breakout
+    - Index composition data collection (SZ1000, SZ2000) with EM recorder
+    - Institutional fund holdings tracker via joinquant_fund_runner pattern
+  what_i_auto_fetch:
+  - ZVT stage pipeline structure (data_collection → visualization) from LATEST.yaml
+  - Semantic locks (SL-01 through SL-12) — especially sell-before-buy ordering and MACD params
+  - Fatal constraints (finance-C-*) relevant to your target strategy type
+  - 'Default parameters: MACD(12,26,9), hfq adjustment, buy_cost=0.001, base_capital=1M CNY'
+  - Entity ID format (stock_sh_600000) and DataFrame MultiIndex convention
+  - Provider-specific recorder class names and required class attributes
+  what_i_ask_you:
+  - 'Target market: A-share (default), HK, or crypto? (US stocks in ZVT are half-baked — stockus_nasdaq_AAPL exists but coverage
+    is thin)'
+  - 'Data source / provider: eastmoney (free, no account), joinquant (account+paid), baostock (free, good history), akshare,
+    or qmt (broker)?'
+  - 'Strategy type: MACD golden-cross, MA crossover, volume breakout, fundamental screen, or custom factor?'
+  - 'Time range: start_timestamp and end_timestamp for backtest period'
+  - 'Target entity IDs: specific stocks (stock_sh_600000) or index components (SZ1000)?'
+  locale_rendering:
+    instruction: On first user contact, translate all fields above into detected user locale while preserving Doraemon persona
+      (direct, frank, mildly snarky, knows limits).
+    preserve_verbatim:
+    - BD-IDs
+    - SL-IDs
+    - UC-IDs
+    - finance-C-IDs
+    - class_names
+    - function_names
+    - file_paths
+    - numeric_thresholds

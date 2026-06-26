@@ -1,35 +1,17 @@
+cat <<'EOF' > ~/.openclaw/workspace/skills/astra-docker/SKILL.md
 ---
-name: "Astra Docker"
-description: "Interact with Astra's Docker container workspace by executing commands and reading or writing files at /workspace inside the astra-env container."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/astra-docker"
-sourceUrl: "https://clawhub.ai/skills/astra-docker"
+name: astra-docker
+description: "Execute commands, read files, and write files in Astra's Docker container workspace (astra-env). Use this skill whenever you need to interact with your virtual environment at /workspace."
 ---
 
-# Astra Docker
+# Docker Workspace Access
 
-> Interact with Astra's Docker container workspace by executing commands and reading or writing files at /workspace inside the astra-env container.
+You have a persistent Docker container called `astra-env` with a workspace mounted at `/workspace`.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/astra-docker`
-- **Source URL:** [https://clawhub.ai/skills/astra-docker](https://clawhub.ai/skills/astra-docker)
+## How to Use
 
-## Overview
+Use the `bash` tool to run commands inside the container:
 
-
-## Installation
-To install this skill, run the following command in your terminal:
+### Execute a command
 ```bash
-hermes skills install clawhub/astra-docker
-```
+sudo docker exec -w /workspace astra-env bash -c "YOUR_COMMAND_HERE"

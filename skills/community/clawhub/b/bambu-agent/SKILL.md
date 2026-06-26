@@ -1,35 +1,41 @@
----
-name: "bambu-agent"
-description: "Monitor and manage Bambu Lab 3D printers in your local network with real-time status, error decoding, and a web dashboard interface."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/bambu-agent"
-sourceUrl: "https://clawhub.ai/skills/bambu-agent"
----
+🛠️ Skill: Bambu Farm Agent (拓竹农场助手)
+1. 技能概述
+本技能允许 Agent 深度接入局域网内的拓竹 (Bambu Lab) 打印机集群。Agent 可以实时监控打印状态、解析复杂的 HMS 错误码，并为用户提供可视化的 Web 监控入口。
 
-# bambu-agent
+2. Agent 调用规范 (Tool Use)
+2.1 状态获取 (GET /api/farm/status)
+适用场景：用户询问进度、时间、温度或查询整体农场状态时。
 
-> Monitor and manage Bambu Lab 3D printers in your local network with real-time status, error decoding, and a web dashboard interface.
+数据结构说明：
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/bambu-agent`
-- **Source URL:** [https://clawhub.ai/skills/bambu-agent](https://clawhub.ai/skills/bambu-agent)
+status_color:
 
-## Overview
+red: 严重错误（HMS 报错或打印失败），Agent 应立即发出语音警告。
 
+yellow: 正在打印或准备中，Agent 应汇报具体百分比和剩余时间。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/bambu-agent
-```
+green: 空闲或已完成，Agent 可告知用户可以安排新任务或取走成品。
+
+ams: 包含耗材颜色和类型，Agent 可用于回答“还剩什么颜色的线”等问题。
+
+2.2 语音摘要获取 (GET /api/agent/brief)
+适用场景：作为定时主动提醒的数据源。
+
+逻辑：Agent 每一小时或在任务状态变更时调用此接口，获取一行总结性的播报文本。
+
+3. 推理逻辑引导 (Reasoning Logic)
+当用户提出以下请求时，请按如下逻辑推理：
+
+请求： “帮我看看打印机。”
+推理： 调用 /api/farm/status -> 检查 status_color -> 如果有 red，先报错误；如果没有，按列表顺序汇报 yellow 状态的进度。
+
+请求： “打印完了吗？”
+推理： 调用 /api/farm/status -> 查找 state == "打印完成" 的实例 -> 告知用户具体机器名称。
+
+请求： “报错了怎么办？”
+推理： 提取数据中的 hms_error -> 引导用户检查对应的硬件部位（如：0300 开头通常与热床有关）。
+
+4. 交互限制与安全
+局域网限制：如果接口返回超时，请告知用户确保运行设备与打印机处于同一 WiFi 下。
+
+隐私：不要在交互中完整暴露打印机的序列号 (SN)，仅使用备注名称（如“一号机”）。

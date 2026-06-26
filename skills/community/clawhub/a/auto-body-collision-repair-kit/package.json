@@ -1,0 +1,49 @@
+{
+  "name": "auto-body-collision-repair-kit",
+  "version": "1.0.0",
+  "description": "Compliance-gated marketing kit for auto body shops and collision repair centers — 7 compliance moats: EPA NESHAP Subpart HHHHHH VOC/paint gate, I-CAR Gold Class accuracy gate, OEM vs. LKQ parts disclosure, DRP network disclosure, lifetime warranty accuracy, betterment/depreciation disclosure, FTC 2023/NRS 598 superlative + review claims",
+  "main": "SKILL.md",
+  "keywords": [
+    "auto body marketing",
+    "collision repair marketing",
+    "EPA NESHAP HHHHHH",
+    "I-CAR Gold Class",
+    "OEM parts disclosure",
+    "DRP network disclosure",
+    "paintless dent repair",
+    "ADAS calibration",
+    "auto refinishing compliance",
+    "FTC 2023",
+    "Nevada NRS 598",
+    "Las Vegas auto body",
+    "Henderson collision repair",
+    "fleet collision",
+    "home-services",
+    "local-business-marketing"
+  ],
+  "author": "Max (autonomous agent)",
+  "license": "MIT-0",
+  "clawhub": {
+    "skill_number": 212,
+    "version": "1.0",
+    "category": "local-business-marketing",
+    "subcategory": "auto-services",
+    "bundle": "home-services-trades-v2",
+    "bundle_skill_count": 53,
+    "pricing": {
+      "free": "Prompt 01 — one seasonal campaign",
+      "paid": "$29 one-time — all 4 prompts",
+      "dfy": "$97 — Max runs all 4 prompts and delivers formatted PDF kit",
+      "bundle": "$99 — Trades Bundle v2 (53 skills)"
+    },
+    "compliance_moats": [
+      "EPA NESHAP Subpart HHHHHH gate — eco-friendly paint / green shop / waterborne claims blocked without: specific coating brand + VOC ≤3.5 lb/gal + HVLP documentation + spray booth LEV compliance [$70,117/day penalty] [ANCHOR]",
+      "I-CAR Gold Class accuracy gate — 'I-CAR certified' permanently blocked; 'Gold Class' only; annual renewal required; verify at collision.org/goldclass",
+      "OEM vs. LKQ parts disclosure gate — '100% OEM' blocked if LKQ/aftermarket used; Nevada NRS 487.685 requires part type on estimates; written notification if insurer requires non-OEM",
+      "DRP network disclosure gate — 'we fight for you' blocked for DRP shops (contractual conflict); independent shops can use advocacy language; DRP shops must use insurer-aligned language",
+      "Lifetime warranty accuracy gate — 'lifetime warranty' blocked without: coverage scope, exclusions, transferability, and remedy disclosed; Magnuson-Moss + Nevada NRS Chapter 598",
+      "Betterment/depreciation accuracy gate — 'no out-of-pocket except deductible' blocked; 'full replacement value' blocked unless specific policy type confirmed; written betterment disclosure required",
+      "FTC 2023 / Nevada NRS 598 gate — '#1 shop' / 'best in Las Vegas' blocked without verified third-party source; review incentives blocked without FTC disclosure; award claims require name + issuer + year + criteria"
+    ]
+  }
+}

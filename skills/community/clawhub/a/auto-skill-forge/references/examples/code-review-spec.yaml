@@ -1,0 +1,43 @@
+name: code-review-assistant
+purpose: Perform structured code review with categorized findings and severity levels
+
+inputs:
+  - name: diff
+    type: git-diff
+    description: "Git diff of changes to review"
+  - name: context
+    type: file-list
+    description: "Surrounding source files for context"
+
+outputs:
+  - name: review-report
+    format: markdown
+    description: "Structured review with findings, severity, and suggestions"
+  - name: summary
+    format: text
+    description: "One-paragraph review summary with approval/changes-requested verdict"
+
+quality_criteria:
+  - name: actionability
+    description: "Each finding has a specific, implementable suggestion"
+    weight: 0.3
+  - name: severity-accuracy
+    description: "Severity levels (critical/major/minor/nit) correctly assigned"
+    weight: 0.25
+  - name: coverage
+    description: "Review covers logic, style, security, and performance dimensions"
+    weight: 0.25
+  - name: false-positive-rate
+    description: "Minimal false positives (flagging correct code as wrong)"
+    weight: 0.2
+
+domain_knowledge:
+  - "Use RUVERI categories: Readability, Understandability, Verifiability, Extensibility, Robustness, Integrity"
+  - "Critical = crash/data loss/security; Major = incorrect behavior; Minor = style/convention; Nit = preference"
+  - "Always check for null/undefined handling in dynamic languages"
+  - "Memory management issues are critical in C/C++ code"
+
+reference_skills:
+  - code-review-enhanced
+  - static-analysis
+  - security-review

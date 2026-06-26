@@ -1,35 +1,73 @@
 ---
-name: "Code Security Checks"
-description: "Perform security reviews of code to detect secrets exposure, auth issues, injection risks, unsafe dependencies, and improper execution paths."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/axodus-security-checks"
-sourceUrl: "https://clawhub.ai/skills/axodus-security-checks"
+name: security-check
+description: Perform security reviews: secrets, auth, injection, dependencies, unsafe execution.
+metadata:
+  author: RedHat Dev
+  version: 1.0.0
+  owner: RedHat Dev Agent
+  category: quality
 ---
 
-# Code Security Checks
+# SKILL: security-check
 
-> Perform security reviews of code to detect secrets exposure, auth issues, injection risks, unsafe dependencies, and improper execution paths.
+## Purpose
+Perform a security-focused review of code changes or a subsystem: secrets exposure, auth issues, injection risks, unsafe dependencies, and unsafe execution paths.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/axodus-security-checks`
-- **Source URL:** [https://clawhub.ai/skills/axodus-security-checks](https://clawhub.ai/skills/axodus-security-checks)
+## When to Use
+- Before deployment of a feature handling user input, money, or credentials.
+- When introducing new dependencies or external integrations.
+- After any authentication/authorization changes.
 
-## Overview
+## Inputs
+- `scope` (required, string): files/modules/diff to inspect.
+- `threat_model` (optional, string): assets at risk and attacker capabilities.
+- `languages` (optional, string[]): e.g., `["ts","py","solidity"]`
+- `constraints` (optional, string[]): compliance rules or governance boundaries.
 
+## Steps
+1. Secrets & config:
+   - ensure no tokens/keys are committed
+   - ensure `.env.example` does not contain real secrets
+2. Input handling:
+   - validate and sanitize untrusted inputs
+   - enforce schema validation at boundaries
+3. Auth/authz:
+   - verify authorization checks at every privileged action
+   - avoid insecure defaults
+4. Injection and unsafe execution:
+   - command injection
+   - SQL/NoSQL injection
+   - XSS/CSRF (frontend)
+   - dynamic code execution without validation
+5. Dependencies:
+   - flag risky packages
+   - ensure versions are pinned when required
+6. Observability:
+   - logs do not leak secrets/PII
+   - audit trail exists for sensitive actions
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/axodus-security-checks
+## Validation
+- Findings are evidence-based and include remediation.
+- Risk severity is calibrated (critical/high/medium/low).
+- Safety constraints are explicitly enforced (not â€œrecommendedâ€).
+
+## Output
+Security report (example schema):
+```yaml
+summary: "<top risks>"
+findings:
+  - id: "SEC-001"
+    severity: "high|medium|low"
+    issue: "<what>"
+    location: ["..."]
+    remediation: "<how>"
 ```
+
+## Safety Rules
+- Do not disclose secrets that appear in logs/config; redact.
+- Do not recommend disabling security controls to â€œunblockâ€.
+- Escalate when the change touches money movement or governance.
+
+## Example
+Scope: â€œnew webhook handlerâ€
+Output: flags missing signature verification and recommends replay protection + audit logs.

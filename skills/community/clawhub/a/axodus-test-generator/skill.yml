@@ -1,0 +1,8 @@
+---
+name: test-generator
+description: Generate deterministic unit/integration tests for critical behaviors.
+version: 1.0.0
+display_name: "Test Generator"
+triggers:
+System.Object[]
+---

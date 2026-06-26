@@ -1,0 +1,36 @@
+{
+  "spreadsheetToken": "Y944sbj2khtLcNtb7jec7MIrnxd",
+  "sheetId": "eee767",
+  "sheetTitle": "Sheet1",
+  "roomCachePath": "/home/SENSETIME/zhangjiazhao/.openclaw/workspace/skills/beijing-signed-price-tracker/room-cache.json",
+  "appendedRows": [],
+  "appendedCount": 0,
+  "notification": {
+    "sent": true,
+    "messageCount": 1
+  },
+  "reports": [
+    {
+      "projectName": "梧桐星宸04地块",
+      "salePermitNumber": "",
+      "sourceCount": 2,
+      "buildingCount": 1,
+      "trackedSignedRooms": 9,
+      "previousSignedUnits": 9,
+      "currentSignedUnits": 9,
+      "previousSignedArea": 0,
+      "currentSignedArea": 894.51,
+      "previousAveragePrice": 45364.93,
+      "currentAveragePrice": 45364.93,
+      "deltaSignedUnits": 0,
+      "deltaSignedArea": 894.51,
+      "estimatedAveragePrice": 45364.93,
+      "newRoomsFound": 0,
+      "appendedRows": [],
+      "warnings": [
+        "该地块配置了 2 个项目详情链接，已合并统计。",
+        "已跳过链接 http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320794&projectID=24970403&systemID=3&srcId=1：未能从项目详情页解析“期房签约统计”"
+      ]
+    }
+  ]
+}

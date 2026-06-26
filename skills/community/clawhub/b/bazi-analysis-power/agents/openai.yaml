@@ -1,0 +1,7 @@
+interface:
+  display_name: "bazi-analysis"
+  short_description: "结构化八字分析与大运流年推演助手，严格遵循理法物理引擎，拒绝套话与幻觉。"
+  default_prompt: "Use $bazi-analysis to analyze a Bazi chart. You must follow the Output Routing Rules, assess stem/branch physical properties such as wet and dry earth, and explain DaYun and LiuNian impacts without fabricating terminology."
+
+policy:
+  allow_implicit_invocation: true

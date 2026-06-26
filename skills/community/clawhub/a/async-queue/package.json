@@ -1,0 +1,22 @@
+{
+  "name": "@clawhub/async-queue",
+  "version": "1.0.6",
+  "description": "Schedule delayed tasks between OpenClaw agents \u2014 set reminders, chain tasks, coordinate agents on a delay. File-backed, no infra needed.",
+  "main": "scripts/install.sh",
+  "keywords": [
+    "openclaw",
+    "queue",
+    "async",
+    "agents",
+    "delay",
+    "reminder"
+  ],
+  "author": "Kartik Arora",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18"
+  },
+  "openclaw": {
+    "minVersion": "2026.3.7"
+  }
+}

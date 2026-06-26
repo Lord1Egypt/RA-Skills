@@ -1,0 +1,47 @@
+{
+  "name": "nano-banana-v2",
+  "version": "1.1.0",
+  "description": "云羲AI绘图分影工具 - 一键AI图片生成、智能切割分影、多语言支持的Web应用",
+  "main": "server/index.js",
+  "scripts": {
+    "start": "node server/index.js",
+    "dev": "node server/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "ai",
+    "image-generation",
+    "image-split",
+    "nano-banana",
+    "ai-art",
+    "image-processing",
+    "multi-language",
+    "chinese",
+    "english",
+    "japanese",
+    "korean"
+  ],
+  "author": "小潴 (Xiao Zhu) <zhuxi0906@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/xiyunnet/banana2.git"
+  },
+  "homepage": "https://banana2.zjhn.com",
+  "bugs": {
+    "url": "https://github.com/xiyunnet/banana2/issues",
+    "email": "zhuxi0906@gmail.com"
+  },
+  "type": "commonjs",
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "dependencies": {
+    "axios": "^1.13.6",
+    "cors": "^2.8.6",
+    "express": "^5.2.1",
+    "form-data": "^4.0.0",
+    "sharp": "^0.34.5",
+    "sqlite3": "^6.0.1"
+  }
+}

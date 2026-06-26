@@ -1,35 +1,195 @@
 ---
-name: "Astock Top Gainers"
-description: "获取 A 股近 N 日涨幅排名前 N 只股票（排除 ST 股），输出格式化表格。当用户询问"近 N 日涨幅排行"、"A 股涨幅排名"、"涨幅最大的股票"、"哪些股票涨得最多"、"最近涨得好的股票"时使用此技能。数据来源为同花顺问财。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/astock-top-gainers"
-sourceUrl: "https://clawhub.ai/skills/astock-top-gainers"
+name: astock-top-gainers
+description: 获取 A 股近 N 日涨幅排名前 N 只股票（排除 ST 股），输出格式化表格。当用户询问"近 N 日涨幅排行"、"A 股涨幅排名"、"涨幅最大的股票"、"哪些股票涨得最多"、"最近涨得好的股票"时使用此技能。数据来源为同花顺问财。
 ---
 
-# Astock Top Gainers
+# A 股涨幅排行 Skill
 
-> 获取 A 股近 N 日涨幅排名前 N 只股票（排除 ST 股），输出格式化表格。当用户询问"近 N 日涨幅排行"、"A 股涨幅排名"、"涨幅最大的股票"、"哪些股票涨得最多"、"最近涨得好的股票"时使用此技能。数据来源为同花顺问财。
+## 功能
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/astock-top-gainers`
-- **Source URL:** [https://clawhub.ai/skills/astock-top-gainers](https://clawhub.ai/skills/astock-top-gainers)
+获取 A 股市场近 N 日涨幅排名前列的股票数据，**完全排除 ST 股票**，输出格式化表格。
 
-## Overview
+## 使用场景
 
+用户询问以下类型问题时触发：
+- "近 N 日涨幅排行"（N 可为 3、5、10、20、30 等）
+- "A 股涨幅排名"
+- "涨幅最大的股票"
+- "哪些股票涨得最多"
+- "最近涨得好的股票"
+- "近一周/一月涨幅排行"
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/astock-top-gainers
+## 工作流程
+
+### 步骤 1：解析用户需求
+
+从用户问题中提取参数：
+- **N（天数）**：默认 10 日，用户可指定
+- **数量**：默认展示前 20 只，用户可指定
+
+**重要：** 用户要求的数量是指**最终输出的非 ST 股票数量**，因此需要从页面获取更多数据（约 1.5-2 倍），以确保过滤 ST 后仍能满足用户要求的数量。
+
+### 步骤 2：访问数据源
+
+由于 SSRF 策略限制，需要使用以下方法访问同花顺问财：
+
+**方法一（推荐）：通过 JavaScript 导航**
+1. 使用 `browser` 工具的 `start` action 启动浏览器
+2. 使用 `tabs` action 获取空白标签页的 targetId
+3. 使用 `act` + `evaluate` 通过 JavaScript 导航：
+   ```javascript
+   window.location.href = 'https://www.iwencai.com/unifiedwap/result?w=近{N}日涨幅排名&querytype=stock';
+   ```
+4. 等待页面加载后使用 `snapshot` 获取数据
+
+**目标 URL 格式：**
 ```
+https://www.iwencai.com/unifiedwap/result?w=近{N}日涨幅排名&querytype=stock
+```
+
+例如：
+- 近 10 日涨幅：`https://www.iwencai.com/unifiedwap/result?w=近10日涨幅排名&querytype=stock`
+- 近 5 日涨幅：`https://www.iwencai.com/unifiedwap/result?w=近5日涨幅排名&querytype=stock`
+- 近 20 日涨幅：`https://www.iwencai.com/unifiedwap/result?w=近20日涨幅排名&querytype=stock`
+
+### 步骤 3：获取页面数据
+
+使用 `browser` 工具的 `snapshot` action 获取页面内容。
+
+**页面数据结构：**
+页面返回的表格包含以下列：
+- 排名（序号）
+- 股票代码
+- 股票名称
+- 现价（元）
+- 当日涨跌幅（%）
+- 区间涨跌幅排名（如 1/850）
+- 区间涨跌幅（%）
+
+### 步骤 4：解析并过滤数据（核心步骤）
+
+从页面快照中提取股票数据，**必须完全排除所有 ST 股票**：
+
+#### ST 股票识别规则（需完全过滤）
+
+股票名称包含以下任一关键词的，**必须排除**：
+
+| 关键词 | 说明 |
+|:---:|:---|
+| `ST` | 特别处理股票（如 ST京蓝） |
+| `*ST` | 退市风险警示股票（如 *ST景峰） |
+| `S*ST` | 未完成股改的退市风险警示股票 |
+| `SST` | 未完成股改的特别处理股票 |
+
+#### 过滤逻辑
+
+```
+1. 从页面获取前 N*2 条数据（确保足够数据用于过滤）
+2. 遍历每条数据，检查股票名称
+3. 如果名称包含 "ST" 或 "*ST"，跳过该条记录
+4. 保留非 ST 股票，直到达到用户要求的数量
+5. 输出时重新编号排名（1, 2, 3...）
+```
+
+#### 代码示例（逻辑参考）
+
+```python
+# 伪代码示例
+def filter_st_stocks(stocks, required_count):
+    result = []
+    for stock in stocks:
+        name = stock['name']
+        # 检查是否为 ST 股票
+        if 'ST' in name or '*ST' in name:
+            continue  # 跳过 ST 股票
+        result.append(stock)
+        if len(result) >= required_count:
+            break
+    return result
+```
+
+### 步骤 5：格式化输出
+
+按照标准格式输出结果，**输出数量 = 实际展示的非 ST 股票数量**。
+
+## 输出格式
+
+```markdown
+## 📈 A 股近 N 日涨幅排名（前 X 只，已排除 ST 股）
+
+**统计区间：YYYY.MM.DD - YYYY.MM.DD**
+
+| 排名 | 代码 | 名称 | 现价(元) | 当日涨跌(%) | 区间涨幅排名 | 区间涨幅(%) |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| 1 | 920028 | 新恒泰 | 22.70 | +141.49 | 1/1128 | +141.49 |
+| 2 | 000890 | 法尔胜 | 13.13 | -6.21 | 2/1128 | +139.60 |
+| ... | ... | ... | ... | ... | ... | ... |
+
+---
+
+**数据来源：** 同花顺问财 (iwencai.com)  
+**查询时间：** YYYY-MM-DD HH:MM GMT+8  
+**总选出：** XXX 只股票（近N日涨跌幅大于0）
+
+> ⚠️ **风险提示：** ST 股票已从排名中完全排除。部分股票当日涨幅异常，请谨慎关注。
+```
+
+## 示例对话
+
+**用户**: 近 20 日涨幅排行前 20
+
+**AI 执行步骤：**
+1. 解析参数：N=20，数量=20
+2. 启动浏览器：`browser action=start`
+3. 获取标签页：`browser action=tabs` → 获取 targetId
+4. JavaScript 导航：`browser action=act kind=evaluate fn="() => { window.location.href = 'https://www.iwencai.com/unifiedwap/result?w=近20日涨幅排名&querytype=stock'; }"`
+5. 获取快照：`browser action=snapshot`
+6. 解析数据：提取表格（获取约 40-50 条以备过滤）
+7. **过滤 ST 股票**：排除名称含 ST、*ST 的股票
+8. 重新编号排名，保留前 20 只非 ST 股票
+9. 输出格式化结果
+
+## 注意事项
+
+### 必须遵守
+
+1. **ST 股票完全排除**：这是必须步骤，ST 股票风险较高，**绝对不能**出现在最终结果中
+2. **输出数量准确**：如果用户要求前 20 只，输出必须正好是 20 只非 ST 股票
+3. **排名重新编号**：过滤 ST 后，排名需要重新从 1 开始编号
+4. **区间涨幅排名保留原值**：如 "1/1128" 保持不变，这是原始排名
+
+### 其他注意
+
+5. **SSRF 策略**：直接使用 `browser action=open/navigate` 会被 SSRF 策略阻止，必须使用 JavaScript evaluate 方式导航
+6. **页面加载**：确保页面完全加载后再获取 snapshot
+7. **数据时效**：数据为实时/准实时数据，取决于同花顺问财的更新频率
+8. **区间统计**：页面会显示具体统计区间（如 2026.02.13-2026.03.20），需要在输出中注明
+9. **异常涨幅**：当日涨幅异常的股票（如 +100% 以上）应在风险提示中提醒
+
+## 数据字段说明
+
+| 字段 | 说明 |
+|:---:|:---|
+| 排名 | 过滤 ST 后重新编号的排名 |
+| 代码 | 6 位股票代码（北交所为 6 位数字） |
+| 名称 | 股票简称（不含 ST 股票） |
+| 现价 | 当前股价（元） |
+| 当日涨跌 | 今日涨跌幅（%） |
+| 区间涨幅排名 | 原始排名（如 "1/1128"，不重新编号） |
+| 区间涨幅 | N 日累计涨跌幅（%） |
+
+## 错误处理
+
+如果遇到以下情况：
+- **浏览器启动失败**：提示用户检查浏览器是否可用
+- **页面加载超时**：重试或提示用户稍后再试
+- **数据解析失败**：检查页面结构是否变化，或使用 screenshot 辅助分析
+- **ST 股票过多导致数量不足**：说明情况，获取更多数据进行过滤
+
+## 更新日志
+
+### v1.2.0 (2026-03-21)
+- 明确 ST 股票完全排除规则
+- 输出数量以非 ST 股票为准
+- 过滤后排名重新编号
+- 增加获取更多数据以备过滤的说明

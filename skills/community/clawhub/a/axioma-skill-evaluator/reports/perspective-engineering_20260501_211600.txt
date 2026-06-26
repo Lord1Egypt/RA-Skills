@@ -1,0 +1,47 @@
+
+============================================================
+📊 SKILL EVALUATION REPORT — perspective-engineering
+============================================================
+Path: skills/perspective-engineering
+Score: 64/100 🟠 NEEDS_WORK
+------------------------------------------------------------
+STRUCTURE       14/20 [92m██████████████░░░░░░[0m 70%
+CLARITY         16/20 [92m████████████████░░░░[0m 80%
+COMPLETENESS    10/20 [93m██████████░░░░░░░░░░[0m 50%
+CONSISTENCY     12/20 [93m████████████░░░░░░░░[0m 60%
+FUNCTIONALITY   12/20 [93m████████████░░░░░░░░[0m 60%
+------------------------------------------------------------
+DETAILS:
+  STRUCTURE:
+    ✅ Header complet
+    ⚠️ Sections: 2/3
+    ✅ Formatting: 5/5
+    ⚠️ Meta: 1/5
+  CLARITY:
+    ✅ Description présente
+    ✅ Commandes/exemples: 21
+    ✅ Exemples présents
+    ❌ Contraintes non documentées
+  COMPLETENESS:
+    ❌ Outils non documentés
+    ❌ Prérequis non documentés
+    ✅ Erreurs documentées: 2
+    ⚠️ Cas limites partiels: 1
+  CONSISTENCY:
+    ✅ Cluster alignment: 5
+    ✅ Style: 4/5
+    ✅ Naming: 5/5
+    ⚠️ Integration partielle: 1
+  FUNCTIONALITY:
+    ❌ Commandes problèmes: 0/5
+    ✅ Résultats documentés
+------------------------------------------------------------
+RECOMMENDATIONS:
+  • [COMPLETENESS] Score bas (50%)
+  •   → ❌ Outils non documentés
+  •   → ❌ Prérequis non documentés
+  • [CONSISTENCY] Score bas (60%)
+  • [FUNCTIONALITY] Score bas (60%)
+  •   → ❌ Commandes problèmes: 0/5
+============================================================
+STATUS: ❌ NEEDS WORK (score < 50%)

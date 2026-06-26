@@ -1,0 +1,243 @@
+<#
+.SYNOPSIS
+    Pester tests for BloodHound Narrator.
+#>
+
+BeforeAll {
+    $scriptRoot = Join-Path $PSScriptRoot '..' 'scripts'
+    . ([ScriptBlock]::Create((Get-Content -Path (Join-Path $scriptRoot 'lib' 'SeverityClassifier.txt') -Raw)))
+    . ([ScriptBlock]::Create((Get-Content -Path (Join-Path $scriptRoot 'lib' 'NarrativeTemplates.txt') -Raw)))
+
+    $testJson   = Join-Path $PSScriptRoot 'synthetic-bloodhound.json'
+    $raw        = Get-Content -Path $testJson -Raw | ConvertFrom-Json
+    $script:Paths = $raw.paths
+}
+
+Describe 'SeverityClassifier' {
+
+    Describe 'Get-SafeProp' {
+        It 'Returns value when property exists' {
+            $obj = [PSCustomObject]@{ foo = 'bar' }
+            Get-SafeProp $obj 'foo' | Should -Be 'bar'
+        }
+        It 'Returns $null when property is missing' {
+            $obj = [PSCustomObject]@{ foo = 'bar' }
+            Get-SafeProp $obj 'missing' | Should -BeNullOrEmpty
+        }
+        It 'Returns $null for null object' {
+            Get-SafeProp $null 'anything' | Should -BeNullOrEmpty
+        }
+    }
+
+    Describe 'Test-IsTier0Target' {
+        It 'Identifies Domain Admins as Tier 0' {
+            $node = [PSCustomObject]@{
+                label = 'Group'
+                props = [PSCustomObject]@{
+                    name       = 'DOMAIN ADMINS@CORP.LOCAL'
+                    admincount = $true
+                }
+            }
+            Test-IsTier0Target -Node $node | Should -BeTrue
+        }
+        It 'Identifies Domain Controller as Tier 0' {
+            $node = [PSCustomObject]@{
+                label = 'Computer'
+                props = [PSCustomObject]@{
+                    name = 'DC01.CORP.LOCAL'
+                    isDC = $true
+                }
+            }
+            Test-IsTier0Target -Node $node | Should -BeTrue
+        }
+        It 'Does not flag regular user as Tier 0' {
+            $node = [PSCustomObject]@{
+                label = 'User'
+                props = [PSCustomObject]@{
+                    name       = 'JSMITH@CORP.LOCAL'
+                    admincount = $false
+                }
+            }
+            Test-IsTier0Target -Node $node | Should -BeFalse
+        }
+    }
+
+    Describe 'Invoke-SeverityClassification' {
+        BeforeAll {
+            $script:Classified = Invoke-SeverityClassification -Paths $script:Paths
+        }
+
+        It 'Returns one result per input path' {
+            $script:Classified.Count | Should -Be 5
+        }
+
+        It 'Results are sorted by score descending' {
+            for ($i = 1; $i -lt $script:Classified.Count; $i++) {
+                $script:Classified[$i].Score | Should -BeLessOrEqual $script:Classified[$i - 1].Score
+            }
+        }
+
+        It 'Classifies path-001 (Kerberoastable SVC + DCSync) as Critical' {
+            ($script:Classified | Where-Object PathId -eq 'path-001').Severity | Should -Be 'Critical'
+        }
+
+        It 'Classifies path-002 (GenericAll on DA) as Critical' {
+            ($script:Classified | Where-Object PathId -eq 'path-002').Severity | Should -Be 'Critical'
+        }
+
+        It 'Classifies path-003 (Unconstrained delegation + DCSync) as Critical' {
+            ($script:Classified | Where-Object PathId -eq 'path-003').Severity | Should -Be 'Critical'
+        }
+
+        It 'Classifies path-004 (WriteDacl + GPO + financial server) as High' {
+            ($script:Classified | Where-Object PathId -eq 'path-004').Severity | Should -Be 'High'
+        }
+
+        It 'Classifies path-005 (Session hijack + PII server) as High' {
+            ($script:Classified | Where-Object PathId -eq 'path-005').Severity | Should -Be 'High'
+        }
+
+        It 'Detects Kerberoastable factor on path-001' {
+            ($script:Classified | Where-Object PathId -eq 'path-001').Factors | Should -Contain 'Kerberoastable'
+        }
+
+        It 'Detects DCSync factor on path-001' {
+            ($script:Classified | Where-Object PathId -eq 'path-001').Factors | Should -Contain 'DCSync'
+        }
+
+        It 'Detects UnconstrainedDelegation factor on path-003' {
+            ($script:Classified | Where-Object PathId -eq 'path-003').Factors | Should -Contain 'UnconstrainedDelegation'
+        }
+
+        It 'Detects SensitiveData factor on path-005' {
+            ($script:Classified | Where-Object PathId -eq 'path-005').Factors | Should -Contain 'SensitiveData'
+        }
+
+        It 'Records correct edge chain for path-002' {
+            ($script:Classified | Where-Object PathId -eq 'path-002').EdgeChain | Should -Be 'MemberOf -> GenericAll'
+        }
+    }
+
+    Describe 'Get-PathSeverity edge cases' {
+        It 'Handles a path with no critical edges gracefully' {
+            $minimalPath = [PSCustomObject]@{
+                id          = 'path-edge-1'
+                description = 'Minimal path'
+                nodes       = @(
+                    [PSCustomObject]@{ id = 'a'; label = 'User';     props = [PSCustomObject]@{ name = 'U1@CORP.LOCAL' } },
+                    [PSCustomObject]@{ id = 'b'; label = 'Computer'; props = [PSCustomObject]@{ name = 'WKS01.CORP.LOCAL' } }
+                )
+                edges       = @(
+                    [PSCustomObject]@{ id = 'e1'; source = 'a'; target = 'b'; label = 'AdminTo' }
+                )
+            }
+            $result = Get-PathSeverity -Path $minimalPath
+            $result.Severity | Should -BeIn @('Low', 'Medium')
+            $result.HopCount | Should -Be 1
+        }
+    }
+}
+
+Describe 'NarrativeTemplates' {
+
+    BeforeAll {
+        $script:Classified = Invoke-SeverityClassification -Paths $script:Paths
+    }
+
+    Describe 'Get-ExecutiveSummary' {
+        BeforeAll {
+            $script:Summary = Get-ExecutiveSummary -Classified $script:Classified -Domain 'YOURBANK.LOCAL'
+        }
+
+        It 'Contains the domain name' {
+            $script:Summary | Should -Match 'YOURBANK\.LOCAL'
+        }
+
+        It 'Contains the executive summary heading' {
+            $script:Summary | Should -Match '## Executive Summary'
+        }
+
+        It 'Contains the severity table' {
+            $script:Summary | Should -Match 'Critical \| 3'
+        }
+
+        It 'Includes immediate-action callout for critical paths' {
+            $script:Summary | Should -Match 'Immediate action required'
+        }
+    }
+
+    Describe 'New-BHNarratorReport' {
+        BeforeAll {
+            $script:Report = New-BHNarratorReport `
+                -Classified $script:Classified `
+                -Domain     'YOURBANK.LOCAL' `
+                -ExportDate '2026-03-22T14:37:09Z' `
+                -BHVersion  '5.4.1'
+        }
+
+        It 'Contains the report header' {
+            $script:Report | Should -Match '# BloodHound Attack Path Assessment'
+        }
+
+        It 'Contains the appendix section' {
+            $script:Report | Should -Match '# Appendix: Technical Remediation Playbook'
+        }
+
+        It 'Contains remediation steps for DCSync' {
+            $script:Report | Should -Match 'Remove DCSync / Replication Permissions'
+        }
+
+        It 'Contains remediation steps for unconstrained delegation' {
+            $script:Report | Should -Match 'Remediate Unconstrained Delegation'
+        }
+
+        It 'Contains remediation steps for sensitive data' {
+            $script:Report | Should -Match 'Isolate Sensitive Data Assets'
+        }
+
+        It 'Contains the local-analysis footer' {
+            $script:Report | Should -Match 'All analysis performed locally'
+        }
+
+        It 'Includes BloodHound version in report' {
+            $script:Report | Should -Match '5\.4\.1'
+        }
+    }
+}
+
+Describe 'Invoke-BHNarrator (end-to-end)' {
+    BeforeAll {
+        $testJson    = Join-Path $PSScriptRoot 'synthetic-bloodhound.json'
+        $outFile     = Join-Path $TestDrive 'e2e-report.md'
+        $scriptsDir  = Join-Path $PSScriptRoot '..' 'scripts'
+        $shWrapper   = Join-Path $scriptsDir 'bh-narrator.sh'
+    }
+
+    It 'Generates a report file from synthetic data' {
+        & bash $shWrapper -InputFile $testJson -OutputFile $outFile
+        Test-Path $outFile | Should -BeTrue
+    }
+
+    It 'Returns expected classification via report content' {
+        $outPath = Join-Path $TestDrive 'e2e2.md'
+        & bash $shWrapper -InputFile $testJson -OutputFile $outPath
+        $content = Get-Content $outPath -Raw
+        # 3 Critical + 2 High = 5 findings
+        ($content | Select-String -Pattern 'CRITICAL|HIGH' -AllMatches).Matches.Count | Should -BeGreaterOrEqual 5
+    }
+
+    It 'Respects -MinSeverity filter' {
+        $outPath = Join-Path $TestDrive 'e2e3.md'
+        & bash $shWrapper -InputFile $testJson -OutputFile $outPath -MinSeverity Critical
+        $content = Get-Content $outPath -Raw
+        $content | Should -Match 'CRITICAL'
+        $content | Should -Not -Match '### .+ HIGH:'
+    }
+
+    It 'Report contains both CISO and appendix sections' {
+        & bash $shWrapper -InputFile $testJson -OutputFile $outFile
+        $content = Get-Content $outFile -Raw
+        $content | Should -Match '## Executive Summary'
+        $content | Should -Match '# Appendix: Technical Remediation Playbook'
+    }
+}

@@ -1,35 +1,32 @@
 ---
-name: "BenOS Memory Core"
-description: "Core runtime/volatile memory module for BenOS agent environment. Use to: store and retrieve active session state, open loops, decisions, and scratch notes at..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/benos-memory-core"
-sourceUrl: "https://clawhub.ai/skills/benos-memory-core"
+name: benos-memory-core
+description: |
+  Core runtime/volatile memory module for BenOS agent environment.
+  Use to: store and retrieve active session state, open loops, decisions, and scratch notes at runtime.
 ---
 
 # BenOS Memory Core
 
-> Core runtime/volatile memory module for BenOS agent environment. Use to: store and retrieve active session state, open loops, decisions, and scratch notes at...
+**Purpose:**
+- Interface for runtime/volatile memory for BenOS agents and submodules.
+- Store session info, open loops, decisions, and notes through index.js commands or direct file edits.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/benos-memory-core`
-- **Source URL:** [https://clawhub.ai/skills/benos-memory-core](https://clawhub.ai/skills/benos-memory-core)
+**State/storage location:**
+- Default: `~/.openclaw/workspace/benos/runtime/state.json`
+- Convention: Also supports related runtime and session files under `benos/runtime/`.
 
-## Overview
+**Usage:**
+- Use skill commands for agent-controlled read/write.
+- Edit files directly for manual repairs or migration as needed.
 
+**Schema v1:**
+- schemaVersion: number
+- lastHydratedAt: ISO8601 or null
+- lastSessionRef: string or null
+- activeInitiatives: array
+- openLoops: array
+- recentDecisions: array
+- notes: array
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/benos-memory-core
-```
+**Extension:**
+Add new fields via additional versioned schemas or skill upgrades as needed.

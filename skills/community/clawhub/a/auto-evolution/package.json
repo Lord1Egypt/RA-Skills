@@ -1,0 +1,21 @@
+{
+  "name": "revolution",
+  "version": "0.5.7",
+  "description": "全自动多 Agent 进化系统 - Sonnet 审阅，Qwen 执行，自动迭代完成复杂任务",
+  "author": "Wilson AI Team",
+  "license": "MIT",
+  "category": "agent-orchestration",
+  "tags": ["automation", "evolution", "multi-agent", "workflow"],
+  "scripts": {
+    "test": "echo \"No tests specified\""
+  },
+  "keywords": [
+    "auto-evolution",
+    "revolution",
+    "agent-orchestration",
+    "automation",
+    "workflow",
+    "sonnet",
+    "qwen"
+  ]
+}

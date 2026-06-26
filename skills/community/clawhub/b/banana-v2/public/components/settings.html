@@ -1,0 +1,76 @@
+<!-- 设置组件 -->
+<div class="win-settings">
+    <div class="win-info-box">
+        <h4 data-i18n="settings.configNote">配置说明</h4>
+        <ul>
+            <li data-i18n="settings.configNote1">APIKey和Platform Token均由 
+                <a href="https://share.acedata.cloud/r/1uN88BrUTQ" target="_blank" class="link">Ace Data</a> 平台提供。</li>
+            <li data-i18n="settings.configNote2">APIKey用于生成图片，Platform Token用于上传图片。</li>
+            <li data-i18n="settings.configNote3">所有密钥都保存在浏览器本地存储localStorage中。</li>
+        </ul>
+    </div>
+    
+    <div class="win-form-group">
+        <label data-i18n="settings.apiKey">API Key <span class="required" style="color: #dc2626;">*</span></label>
+        <input type="password" id="win-api-key" data-i18n-placeholder="settings.apiKeyPlaceholder" placeholder="请输入 API Key">
+        <a href="https://share.acedata.cloud/r/1uN88BrUTQ" target="_blank" class="link" style="font-size: 12px;" data-i18n="settings.getApiKey">获取 API Key →</a>
+    </div>
+    
+    <div class="win-form-group">
+        <label data-i18n="settings.platformToken">Platform Token <span style="color: #6b7280;" data-i18n="settings.platformTokenOptional">(可选)</span></label>
+        <input type="password" id="win-platform-token" data-i18n-placeholder="settings.platformTokenPlaceholder" placeholder="请输入 Platform Token">
+        <span class="hint" data-i18n="settings.platformTokenHint">仅用于图生图/图片编辑功能</span>
+    </div>
+    
+    <div class="win-form-group">
+        <label data-i18n="settings.modelApiKey">大模型 API Key</label>
+        <input type="password" id="win-model-api-key" data-i18n-placeholder="settings.modelApiKeyPlaceholder" placeholder="用于AI生成提示词">
+        <span class="hint"><span data-i18n="settings.modelApiKeyHint">用于AI生成提示词功能</span><a href="/set.html" target="_blank" class="link" style="padding-left: 10px;" data-i18n="settings.setModel">设置模型</a></span>
+    </div>
+    
+    <div class="win-form-group">
+        <label data-i18n="settings.savePath">图片保存本地路径</label>
+        <input type="text" id="win-save-path" data-i18n-placeholder="settings.savePathPlaceholder" placeholder="默认: 桌面/banana2">
+        <span class="hint" data-i18n="settings.savePathHint">图片将保存到此目录。留空则使用默认路径。</span>
+    </div>
+    
+    <div class="win-footer">
+        <button class="win-btn win-btn-secondary" onclick="winClose('settings')" data-i18n="settings.cancel">取消</button>
+        <button class="win-btn win-btn-primary" id="win-settings-save" data-i18n="settings.save">保存设置</button>
+    </div>
+</div>
+
+<script>
+(function() {
+    // 加载已保存的配置
+    const apiKey = localStorage.getItem('banana_api_key') || '';
+    const platformToken = localStorage.getItem('banana_platform_token') || '';
+    const modelApiKey = localStorage.getItem('banana_model_api_key') || '';
+    const savePath = localStorage.getItem('banana_save_path') || '';
+    
+    $('#win-api-key').val(apiKey);
+    $('#win-platform-token').val(platformToken);
+    $('#win-model-api-key').val(modelApiKey);
+    $('#win-save-path').val(savePath);
+    
+    // 保存配置
+    $('#win-settings-save').on('click', function() {
+        const apiKey = $('#win-api-key').val().trim();
+        const platformToken = $('#win-platform-token').val().trim();
+        const modelApiKey = $('#win-model-api-key').val().trim();
+        const savePath = $('#win-save-path').val().trim();
+        
+        // 只有非空值才保存，避免覆盖已有值
+        if (apiKey) localStorage.setItem('banana_api_key', apiKey);
+        if (platformToken) localStorage.setItem('banana_platform_token', platformToken);
+        if (modelApiKey) localStorage.setItem('banana_model_api_key', modelApiKey);
+        if (savePath) localStorage.setItem('banana_save_path', savePath);
+        
+        // 显示成功消息
+        if (typeof showToast === 'function') {
+            showToast('success', t('settings.saved'));
+        }
+        winClose('settings');
+    });
+})();
+</script>

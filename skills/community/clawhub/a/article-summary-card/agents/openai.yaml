@@ -1,0 +1,4 @@
+schema_version: 1
+display_name: Article Summary Card
+short_description: Extract an article, summarize it in-session with tags, then export Markdown, HTML, and PNG outputs.
+default_prompt: Extract this article, do a two-round in-session summary with tags, write the final JSON, then export Markdown, HTML, and PNG outputs.

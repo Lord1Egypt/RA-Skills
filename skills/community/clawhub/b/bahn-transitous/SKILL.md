@@ -1,35 +1,69 @@
 ---
-name: "Bahn CLI (Transitous)"
-description: "Search Deutsche Bahn train connections using the bahn-cli tool. Use when you need to find train connections between German stations, check departure times, o..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/bahn-transitous"
-sourceUrl: "https://clawhub.ai/skills/bahn-transitous"
+name: bahn
+description: Search Deutsche Bahn train connections using the bahn-cli tool. Use when you need to find train connections between German stations, check departure times, or help with travel planning. Works with station names like "Berlin Hbf", "München", "Hannover".
 ---
 
-# Bahn CLI (Transitous)
+# Deutsche Bahn CLI
 
-> Search Deutsche Bahn train connections using the bahn-cli tool. Use when you need to find train connections between German stations, check departure times, o...
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/bahn-transitous`
-- **Source URL:** [https://clawhub.ai/skills/bahn-transitous](https://clawhub.ai/skills/bahn-transitous)
-
-## Overview
-
+Search train connections using the `bahn-cli` tool.
 
 ## Installation
-To install this skill, run the following command in your terminal:
+
+The tool lives at `~/Code/bahn-cli/`. If not installed:
+
 ```bash
-hermes skills install clawhub/bahn-transitous
+mkdir -p ~/Code/bahn-cli && cd ~/Code/bahn-cli && npm init -y && npm install
 ```
+
+> **Backend:** Uses [Transitous](https://transitous.org/) (MOTIS 2 API) since June 2026.
+> DB HAFAS was permanently shut down in January 2025.
+
+## Usage
+
+Search train connections:
+
+```bash
+cd ~/Code/bahn-cli && node index.js search "<from>" "<to>" [options]
+```
+
+### Options
+
+- `--date YYYY-MM-DD` - Departure date (default: today)
+- `--time HH:MM` - Departure time (default: current time)
+- `--results <number>` - Number of results to show (default: 5)
+
+### Examples
+
+Search connections from Hannover to Bonn:
+```bash
+cd ~/Code/bahn-cli && node index.js search "Hannover Hbf" "Bonn Hbf" --results 3
+```
+
+Search with specific date and time:
+```bash
+cd ~/Code/bahn-cli && node index.js search "Berlin" "München" --date 2026-02-05 --time 14:30
+```
+
+## Station Names
+
+- Use common German station names
+- "Hbf" means Hauptbahnhof (main station)
+- Examples: "Berlin Hbf", "München Hbf", "Frankfurt(Main)Hbf", "Köln Hbf"
+- Station names are case-insensitive
+
+## Output
+
+The tool shows:
+- Departure and arrival times
+- Platform numbers
+- Duration
+- Number of changes
+- Intermediate stops for connections with changes
+- Train numbers (ICE, IC, RE, etc.)
+
+## Notes
+
+- The CLI uses the db-vendo-client library
+- Some station names in output may show "undefined" (cosmetic issue, doesn't affect functionality)
+- Direct connections are listed first
+- Times are in 24-hour format

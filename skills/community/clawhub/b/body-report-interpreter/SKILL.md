@@ -1,35 +1,64 @@
 ---
-name: "Body Report Interpreter"
-description: "解读体检报告（血常规、肝功能、血脂、肾功能、尿常规、肿瘤标志物等）。用户上传体检报告图片或PDF时触发。逐项解释指标含义、标注异常值、给出健康建议。适用场景：解读体检报告、解释化验单、健康指标异常分析、历年体检对比。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/body-report-interpreter"
-sourceUrl: "https://clawhub.ai/skills/body-report-interpreter"
+name: body-report-interpreter
+version: 1.0.0
+description: 解读体检报告（血常规、肝功能、血脂、肾功能、尿常规、肿瘤标志物等）。用户上传体检报告图片或PDF时触发。逐项解释指标含义、标注异常值、给出健康建议。适用场景：解读体检报告、解释化验单、健康指标异常分析、历年体检对比。
 ---
 
-# Body Report Interpreter
+# 体检报告解读
 
-> 解读体检报告（血常规、肝功能、血脂、肾功能、尿常规、肿瘤标志物等）。用户上传体检报告图片或PDF时触发。逐项解释指标含义、标注异常值、给出健康建议。适用场景：解读体检报告、解释化验单、健康指标异常分析、历年体检对比。
+## 核心流程
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/body-report-interpreter`
-- **Source URL:** [https://clawhub.ai/skills/body-report-interpreter](https://clawhub.ai/skills/body-report-interpreter)
+### 1. 获取报告内容
+- 用户上传图片/PDF → 使用 read 工具读取
+- 如用户粘贴文字 → 直接解析
+- 识别报告日期、医院、姓名等基本信息
 
-## Overview
+### 2. 逐项解读
+对每个指标执行：
+1. **指标名称** → 中文+英文缩写
+2. **检测值** → 用户的实际数值
+3. **参考范围** → 正常区间（见 references/ranges.md）
+4. **状态** → ⬆️偏高 / ✅正常 / ⬇️偏低
+5. **含义** → 一句话说明这个指标反映什么
 
+### 3. 异常指标重点分析
+对所有异常指标：
+- 可能原因（列出2-3个常见原因）
+- 是否需要就医（分等级：🔴 建议尽快 / 🟡 建议复查 / 🟢 注意观察）
+- 饮食/生活建议
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/body-report-interpreter
+### 4. 总结
+- 整体健康评估（一句话）
+- 需要关注的重点项
+- 建议复查项目和时间
+
+## 输出格式
+
 ```
+📋 体检报告解读
+
+📅 报告日期：YYYY-MM-DD
+🏥 医院：XXX
+
+━━━ 项目分类 ━━━
+
+| 指标 | 结果 | 参考范围 | 状态 |
+|------|------|----------|------|
+| XXX  | XXX  | XXX-XXX  | ✅/⬆️/⬇️ |
+
+⚠️ 异常指标详解
+
+1. 【指标名】 ⬆️
+   - 值：XXX（参考：XXX-XXX）
+   - 可能原因：...
+   - 建议：...
+
+💡 整体建议
+...
+```
+
+## 重要规则
+- **不做诊断**：只解读指标含义，不说"你得了XX病"
+- **建议就医**：明显异常时建议看医生，附带建议科室
+- **参考范围**：优先使用报告上自带的范围，其次用 references/ranges.md
+- **通俗易懂**：避免医学术语堆砌，用大白话解释

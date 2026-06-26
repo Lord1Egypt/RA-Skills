@@ -1,0 +1,30 @@
+{
+  "version": 1,
+  "entries": [
+    {
+      "id": "chat_base",
+      "file": "chat_base.md",
+      "stage": "chat"
+    },
+    {
+      "id": "cheat_mode",
+      "file": "cheat_mode.md",
+      "stage": "analysis"
+    },
+    {
+      "id": "memory_builder",
+      "file": "memory_builder.md",
+      "stage": "memory"
+    },
+    {
+      "id": "compat_guidance",
+      "file": "compat_guidance.md",
+      "stage": "compat"
+    },
+    {
+      "id": "create_persona",
+      "file": "create_persona.md",
+      "stage": "create"
+    }
+  ]
+}

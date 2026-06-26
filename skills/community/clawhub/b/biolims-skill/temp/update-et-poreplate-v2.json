@@ -1,0 +1,122 @@
+{
+  "id": "ET2026000007",
+  "templateName": "Second Protein Detection",
+  "experimentType": "SYLX2026000001",
+  "experimentTypeName": "Protein Detection",
+  "experimentGroup": "GLY",
+  "experimentGroupName": "Admin Group",
+  "auditor": "openclaw",
+  "auditorName": "openclaw",
+  "stateOptions": "0",
+  "stepDetails": [
+    {
+      "id": "088e1d6ed2f70866cb41e3029b4faa07",
+      "name": "Protein Detection Step",
+      "keyId": 0,
+      "jsonDatas": [
+        {
+          "id": "3e060f318fc375c0c1cf2e3637daa5e7",
+          "exclusiveShow": "0",
+          "label": "Detail Table",
+          "draggLabel": "Detail Table",
+          "type": "detailTable",
+          "size": "24",
+          "value": "[]",
+          "propList": "[{\"label\":\"Original Sample ID\",\"prop\":\"originalSampleCode\",\"disabled\":true,\"headerType\":\"fixed\"},{\"label\":\"Sample ID\",\"prop\":\"sampleCode\",\"disabled\":true,\"headerType\":\"fixed\"},{\"label\":\"Sample Type\",\"prop\":\"sampleType\",\"disabled\":true,\"headerType\":\"fixed\"},{\"label\":\"\",\"prop\":\"sampleTypeId\",\"disabled\":true,\"show\":true},{\"label\":\"Test Project\",\"prop\":\"testProjectName\",\"disabled\":true,\"headerType\":\"fixed\"},{\"label\":\"Product Type\",\"prop\":\"productType\",\"disabled\":true,\"headerType\":\"fixed\"},{\"label\":\"Product Qty\",\"prop\":\"productNum\",\"disabled\":true,\"headerType\":\"fixed\"},{\"label\":\"Mix Sample\",\"prop\":\"mixNumber\",\"disabled\":true,\"show\":true,\"headerType\":\"fixed\"},{\"label\":\"index\",\"prop\":\"indexCode\",\"disabled\":true,\"show\":true,\"headerType\":\"fixed\"},{\"label\":\"Remaining Qty\",\"prop\":\"sumTotal\",\"type\":\"number\",\"disabled\":false,\"show\":true,\"headerType\":\"fixed\"},{\"label\":\"Unit\",\"prop\":\"sampleUnit\",\"disabled\":true,\"show\":true,\"headerType\":\"fixed\"},{\"label\":\"Storage Status\",\"prop\":\"storageState\",\"disabled\":true,\"show\":true,\"headerType\":\"fixed\"},{\"label\":\"Detection Gene\",\"prop\":\"detectionGene\",\"disabled\":true,\"headerType\":\"fixed\"},{\"label\":\"Is Split\",\"prop\":\"isSplit\",\"disabled\":true,\"show\":true,\"headerType\":\"fixed\"},{\"label\":\"Split Quantity\",\"prop\":\"splitQuantity\",\"disabled\":true,\"show\":true,\"headerType\":\"fixed\"},{\"label\":\"Split Product\",\"prop\":\"splitProportion\",\"disabled\":true,\"show\":true,\"headerType\":\"fixed\"}]",
+          "menuList": "[]",
+          "productList": "[]",
+          "plate": "24",
+          "plateBind": "detailTable",
+          "inputType": null,
+          "formula": "{\"formX\":[],\"formY\":[]}",
+          "keyId": "0"
+        },
+        {
+          "id": "new_material_component_001",
+          "exclusiveShow": "0",
+          "label": "Material List",
+          "draggLabel": "Material List",
+          "type": "material",
+          "size": "24",
+          "value": "[]",
+          "propList": "[]",
+          "menuList": "[]",
+          "productList": "[]",
+          "plate": "",
+          "inputType": null,
+          "formula": "{\"formX\":[],\"formY\":[]}",
+          "keyId": "2"
+        },
+        {
+          "id": "new_equipment_component_001",
+          "exclusiveShow": "0",
+          "label": "Equipment List",
+          "draggLabel": "Equipment List",
+          "type": "equipment",
+          "size": "24",
+          "value": "[]",
+          "propList": "[]",
+          "menuList": "[]",
+          "productList": "[]",
+          "plate": "",
+          "inputType": null,
+          "formula": "{\"formX\":[],\"formY\":[]}",
+          "keyId": "3"
+        },
+        {
+          "id": "new_poreplate_component_001",
+          "exclusiveShow": "0",
+          "label": "Well Plate Info",
+          "draggLabel": "Well Plate Info",
+          "type": "porePlate",
+          "size": "24",
+          "value": "[]",
+          "propList": "[]",
+          "menuList": "[]",
+          "productList": "[]",
+          "plate": "24",
+          "plateBind": "detailTable",
+          "plateRows": "4",
+          "plateCols": "6",
+          "inputType": null,
+          "formula": "{\"formX\":[],\"formY\":[]}",
+          "keyId": "4"
+        },
+        {
+          "id": "b8697c835893616022e2cf5fff2069da",
+          "exclusiveShow": "0",
+          "label": "Result Table",
+          "draggLabel": "Result Table",
+          "type": "resultTable",
+          "size": "24",
+          "value": "[]",
+          "propList": "[{\"label\":\"Original Sample ID\",\"prop\":\"originalSampleCode\",\"disabled\":true,\"headerType\":\"fixed\"},{\"label\":\"Sample ID\",\"prop\":\"sampleCode\",\"disabled\":true,\"headerType\":\"fixed\"},{\"label\":\"Sample Type\",\"prop\":\"sampleType\",\"disabled\":true,\"headerType\":\"fixed\"},{\"label\":\"Test Project\",\"prop\":\"testProjectName\",\"disabled\":true,\"headerType\":\"fixed\"},{\"label\":\"Volume\",\"prop\":\"volume\",\"type\":\"number\",\"headerType\":\"fixed\"},{\"label\":\"Total\",\"prop\":\"total\",\"type\":\"number\",\"headerType\":\"fixed\"},{\"label\":\"Unit\",\"prop\":\"sampleUnit\",\"disabled\":true,\"headerType\":\"fixed\"},{\"label\":\"Next Flow\",\"prop\":\"nextFlow\",\"disabled\":true,\"headerType\":\"fixed\",\"required\":true},{\"label\":\"Result\",\"prop\":\"result\",\"disabled\":true,\"required\":1,\"headerType\":\"fixed\"},{\"label\":\"Submit QC\",\"prop\":\"tjzk\",\"disabled\":true,\"headerType\":\"fixed\"},{\"label\":\"Detection Gene\",\"prop\":\"detectionGene\",\"disabled\":true,\"headerType\":\"fixed\"}]",
+          "menuList": "[]",
+          "productList": "[]",
+          "plate": "",
+          "inputType": null,
+          "formula": "{\"formX\":[],\"formY\":[]}",
+          "keyId": "1"
+        }
+      ]
+    }
+  ],
+  "logArrays": [
+    {
+      "id": null,
+      "type": "main",
+      "flag": "",
+      "logs": "Detection Experiment Template：<br>'Template Name' :from' Second Protein Detection 'changed to' Second Protein Detection '"
+    },
+    {
+      "type": "step",
+      "flag": "1",
+      "logs": "1"
+    },
+    {
+      "type": "porePlate",
+      "flag": "1",
+      "logs": "Well Plate:<br>'Component Name' :from' Empty 'changed to' Well Plate Info '<br>'Well Plate Spec' :from' Empty 'changed to' 24 Well Plate (4×6) '<br>'Binding Position' :from' Empty 'changed to' Detail Table '"
+    }
+  ]
+}

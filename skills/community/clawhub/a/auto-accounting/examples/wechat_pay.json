@@ -1,0 +1,13 @@
+{
+  "platform": "微信支付",
+  "type": "payment",
+  "text": "微信支付\n付款金额\n¥28.50\n收款方\n星巴克\n付款时间\n2026-04-02 13:45\n支付方式\n零钱\n交易状态\n支付成功",
+  "expected": {
+    "is_accounting": true,
+    "amount": 28.50,
+    "type": "支出",
+    "category": "餐饮",
+    "merchant": "星巴克",
+    "payment_method": "微信支付"
+  }
+}

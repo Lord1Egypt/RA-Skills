@@ -1,0 +1,15 @@
+{
+  "name": "coaching-audio-analyzer",
+  "version": "1.0.0",
+  "description": "赛艇教练录音分析工具 - 语音转文字 + 说话人分离 + 智能总结",
+  "main": "analyze.js",
+  "type": "module",
+  "scripts": {
+    "analyze": "node analyze.js"
+  },
+  "dependencies": {
+    "assemblyai": "^4.8.0",
+    "dotenv": "^16.4.0",
+    "openai": "^4.70.0"
+  }
+}

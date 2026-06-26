@@ -1,0 +1,12 @@
+{
+  "platform": "京东",
+  "type": "shopping",
+  "text": "京东订单\n订单号：2026040212345678\n商品：华为FreeBuds Pro 3无线耳机\n店铺：华为官方旗舰店\n订单总额：¥299.00\n实付款：¥299.00\n下单时间：2026-04-02 14:00\n订单状态：已完成",
+  "expected": {
+    "is_accounting": true,
+    "amount": 299.00,
+    "type": "支出",
+    "category": "购物",
+    "merchant": "京东"
+  }
+}

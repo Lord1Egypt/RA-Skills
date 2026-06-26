@@ -1,35 +1,40 @@
 ---
-name: "Blood Pressure Tracker"
-description: "血压追踪 - 血压记录、趋势分析、健康建议"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/blood-pressure-tracker"
-sourceUrl: "https://clawhub.ai/skills/blood-pressure-tracker"
+name: blood-pressure-tracker
+description: 血压追踪 - 血压记录、趋势分析、健康建议
 ---
 
 # Blood Pressure Tracker
 
-> 血压追踪 - 血压记录、趋势分析、健康建议
+血压追踪工具，监测你的血压健康。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/blood-pressure-tracker`
-- **Source URL:** [https://clawhub.ai/skills/blood-pressure-tracker](https://clawhub.ai/skills/blood-pressure-tracker)
+## 功能
 
-## Overview
+- ✅ 血压记录
+- ✅ 趋势分析
+- ✅ 健康建议
+- ✅ 异常提醒
+- ✅ 统计报告
 
+## 使用
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/blood-pressure-tracker
+# 记录血压
+clawhub bp log --systolic 120 --diastolic 80
+
+# 查看趋势
+clawhub bp trend --days 30
+
+# 健康建议
+clawhub bp tips
+
+# 异常提醒
+clawhub bp alert --high 140 --low 90
 ```
+
+## 定价
+
+| 版本 | 价格 | 功能 |
+|------|------|------|
+| 免费版 | ¥0 | 基础记录 |
+| Pro 版 | ¥39 | 全部功能 |
+| 订阅版 | ¥9/月 | Pro+ AI 分析 |

@@ -1,0 +1,102 @@
+{
+  "goals": [
+    {
+      "id": "goal-8b82580018a7",
+      "statement": "Make profit on Kalshi prediction markets with consistent positive PnL",
+      "channel": "1465845043074961614",
+      "channel_name": "kalshi",
+      "status": "active",
+      "created_at": "2026-05-28T17:00:15.458571+00:00",
+      "last_check": "2026-05-28T17:20:27.603303+00:00",
+      "current_strategy": "Run the existing Kalshi pipeline. Monitor PnL daily via decision_quality_report.py and trades.db. If PnL trends negative over 10+ trades, tighten edge threshold, narrow categories, or reduce sizing. If positive, optimize for volume at the same edge. Adapt using the performance optimizer (auto_evolve.py). Report to #kalshi.",
+      "metrics": {},
+      "milestones": [],
+      "actions_taken": [],
+      "notes": "",
+      "session_state": {
+        "current_objective": "Check Kalshi pipeline health",
+        "last_decision": "Run daily report",
+        "next_move": "Review PnL trends"
+      },
+      "risk_rules": {
+        "max_position_size": 100,
+        "max_drawdown": 0.15,
+        "max_daily_trades": 10
+      },
+      "outcomes": [
+        {
+          "timestamp": "2026-05-28T17:20:27.603290+00:00",
+          "action": "Ran daily Kalshi pipeline",
+          "result": "success",
+          "lessons": "Pipeline is stable, added risk rules",
+          "plan_depth": null,
+          "plan_strategy": null
+        }
+      ],
+      "learnings": [
+        {
+          "lesson": "Kalshi pipeline is stable when run every 2h",
+          "created_at": "2026-05-28T17:20:27.678782+00:00",
+          "repetitions": 0,
+          "promoted_to_hot": false
+        }
+      ]
+    },
+    {
+      "id": "goal-352a6d9770a1",
+      "statement": "Make profit trading cryptocurrency with positive net PnL",
+      "channel": "1508552919006576732",
+      "channel_name": "crypto",
+      "status": "active",
+      "created_at": "2026-05-28T17:00:15.578347+00:00",
+      "last_check": "2026-05-28T17:08:09.381221+00:00",
+      "current_strategy": "Run crypto paper trading via crypto_auto.py (CoinGecko signals, paper ledger). Cycle every 4h: check exits, score new candidates, rebalance. Monitor PnL vs $10k baseline. When paper shows 5+ trades with >55% win rate, evaluate Coinbase API live execution. Known issues: CoinGecko 24h change values need format correction; scoring is conservative (RSI-based mean reversion).",
+      "metrics": {},
+      "milestones": [],
+      "actions_taken": [
+        {
+          "timestamp": "2026-05-28T17:08:09.381199+00:00",
+          "action": "Initialized crypto paper trading pipeline - first cycle run",
+          "result": "Created paper ledger at ~/clawd/crypto_ledger.json with $10k bankroll. Entered 6 positions (UNI, SUSHI, SOL, ETH, LINK, ADA) at 50% deployed. Reported to #crypto channel."
+        }
+      ],
+      "notes": "",
+      "strategy_updated_at": "2026-05-28T17:08:19.098092+00:00"
+    },
+    {
+      "id": "goal-cd049fe3a114",
+      "statement": "Make profit swing trading stocks with Alpaca (SPY, QQQ, AAPL, etc.)",
+      "channel": "1470926702455689307",
+      "channel_name": "trading",
+      "status": "active",
+      "created_at": "2026-05-28T17:00:15.674243+00:00",
+      "last_check": null,
+      "current_strategy": "Run the existing Alpaca swing bot. Monitor daily equity, PnL, and win rate via the daily review. If equity drops or win rate falls below 50%, trigger scoring weight adjustments via the self-improvement engine. Leverage the weekly optimization cycle. Use llm_macro_eval.py for macro-direction tuning. Report to #trading.",
+      "metrics": {},
+      "milestones": [],
+      "actions_taken": [],
+      "notes": ""
+    },
+    {
+      "id": "goal-67df398109d1",
+      "statement": "Test plan goal",
+      "channel": "test",
+      "channel_name": "",
+      "status": "abandoned",
+      "created_at": "2026-05-28T17:20:21.152772+00:00",
+      "last_check": null,
+      "current_strategy": "Building a test with sequential steps",
+      "plan_depth": "L3",
+      "plan_strategy": "sequential",
+      "session_state": {},
+      "risk_rules": {},
+      "metrics": {},
+      "milestones": [],
+      "actions_taken": [],
+      "outcomes": [],
+      "learnings": [],
+      "notes": "Test goal",
+      "closed_at": "2026-05-28T17:20:33.068213+00:00"
+    }
+  ]
+}

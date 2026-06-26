@@ -1,0 +1,185 @@
+{
+  "gnews_api_key": "",
+  "use_api": false,
+  "countries": {
+    "中国": {
+      "search_engine": "baidu",
+      "min_results": 6,
+      "max_age_days": 60,
+      "allowed_hosts": ["gov.cn", "nea.gov.cn", "ndrc.gov.cn", "mot.gov.cn", "mof.gov.cn"],
+      "country_terms": ["中国", "国内", "我国", "国务院", "国家", "省", "市", "深圳", "福建", "重庆", "山东"],
+      "google_news": {
+        "lang": "zh-CN",
+        "region": "CN"
+      },
+      "rss_feeds": [
+        {
+          "name": "国家能源局",
+          "url": "https://www.nea.gov.cn/131053424_157526451.xml"
+        },
+        {
+          "name": "国家发改委",
+          "url": "https://www.ndrc.gov.cn/xwdt/xwfb/?code=&state=123"
+        }
+      ],
+      "keywords": [
+        "site:gov.cn 电池 补贴 政策",
+        "site:gov.cn 储能 政策",
+        "site:gov.cn 动力电池 政策",
+        "site:gov.cn 新能源汽车 购置税",
+        "site:gov.cn 电池 安全 事故",
+        "site:gov.cn 储能 安全"
+      ]
+    },
+    "美国": {
+      "search_engine": "bing",
+      "min_results": 6,
+      "max_age_days": 60,
+      "allowed_hosts": ["energy.gov", "epa.gov", "ftc.gov", "whitehouse.gov", "commerce.gov"],
+      "country_terms": ["U.S.", "United States", "America", "DOE", "EPA", "federal", "IRA"],
+      "google_news": {
+        "lang": "en-US",
+        "region": "US"
+      },
+      "rss_feeds": [
+        {
+          "name": "DOE News",
+          "url": "https://www.energy.gov/rss.xml"
+        },
+        {
+          "name": "EPA News",
+          "url": "https://www.epa.gov/newsreleases/search/rss.xml"
+        }
+      ],
+      "keywords": [
+        "battery manufacturing policy",
+        "EV battery subsidy",
+        "energy storage policy",
+        "battery recall safety",
+        "IRA battery tax credit"
+      ]
+    },
+    "印度": {
+      "search_engine": "bing",
+      "min_results": 5,
+      "max_age_days": 60,
+      "allowed_hosts": ["gov.in", "mnre.gov.in", "pib.gov.in"],
+      "country_terms": ["India", "Indian", "New Delhi", "MNRE", "FAME", "PLI"],
+      "google_news": {
+        "lang": "en-IN",
+        "region": "IN"
+      },
+      "rss_feeds": [
+        {
+          "name": "MNRE",
+          "url": "https://mnre.gov.in/rss.xml"
+        }
+      ],
+      "keywords": [
+        "India battery policy",
+        "India EV battery subsidy",
+        "India battery manufacturing",
+        "FAME battery India",
+        "PLI battery India"
+      ]
+    },
+    "俄罗斯": {
+      "search_engine": "bing",
+      "min_results": 4,
+      "max_age_days": 60,
+      "allowed_hosts": ["government.ru", "minpromtorg.gov.ru", "tass.ru", "interfax.ru"],
+      "country_terms": ["Russia", "Russian", "Россия", "россий", "Москва"],
+      "google_news": {
+        "lang": "ru",
+        "region": "RU"
+      },
+      "rss_feeds": [],
+      "keywords": [
+        "Russia battery EV policy",
+        "Russian electric vehicle battery",
+        "аккумулятор политика Россия",
+        "накопитель энергии Россия"
+      ]
+    },
+    "韩国": {
+      "search_engine": "bing",
+      "min_results": 5,
+      "max_age_days": 60,
+      "allowed_hosts": ["go.kr", "motie.go.kr", "korea.kr", "yonhapnews.co.kr"],
+      "country_terms": ["Korea", "Korean", "South Korea", "한국", "서울", "MOTIE"],
+      "google_news": {
+        "lang": "ko",
+        "region": "KR"
+      },
+      "rss_feeds": [
+        {
+          "name": "MOTIE News",
+          "url": "https://english.motie.go.kr/en/pc/news/bbs/rss.do?bbs_cd_n=2"
+        }
+      ],
+      "keywords": [
+        "South Korea battery policy",
+        "Korea EV battery subsidy",
+        "한국 배터리 정책",
+        "Korea battery recall"
+      ]
+    }
+  },
+  "filters": {
+    "valid_keywords": [
+      "电池补贴", "储能补贴", "新能源汽车补贴", "锂电池政策", "动力电池政策", "电池回收政策",
+      "购置税减免", "扶持政策", "奖励政策", "激励政策", "电池政策", "减半征收", "免征购置税",
+      "电池安全事故", "电池着火", "电池起火", "电池自燃", "电池爆炸", "电池召回",
+      "battery subsidy", "battery tax credit", "battery grant", "energy storage policy", "EV battery policy",
+      "battery manufacturing policy", "battery plant investment", "PLI battery", "IRA battery", "FAME battery", "ALMM battery",
+      "DOE battery", "Department of Energy battery", "battery policy", "battery incentive",
+      "battery fire", "battery explosion", "battery recall", "battery safety", "battery incident",
+      "аккумулятор субсидия", "батарея политика", "пожар аккумулятора",
+      "배터리 보조금", "배터리 정책", "배터리 화재"
+    ],
+    "invalid_patterns": [
+      "Windows", "Win11", "win11", "教程", "how to", "how-to",
+      "battery guru", "accubattery", "设置", "攻略", "学习",
+      "语言", "韩语", "学韩语", "한국어",
+      "reddit", "question", "what is", "how does", "why is",
+      "assault", "howitzer", "RFA group", "military", "artillery",
+      "critical low", "low-battery error", "抖音", "剪映",
+      "Contact Us", "Support", "Microsoft", "Apple",
+      "laptop battery", "phone battery", "charging", "iPhone", "notebook",
+      "game", "gaming", "app", "software",
+      "歌词", "翻译", "歌词翻译", "中文翻译",
+      "百度知道", "知乎", "是什么意思", "什么区别",
+      "OpenPLi", "firmware", "skin", "tutorial",
+      "fame", "hall of fame", "zhihu", "quora", "stack overflow",
+      "war", "battle", "field artillery", "gun", "cannon", "forum"
+    ]
+  },
+  "sentiment": {
+    "good_keywords": [
+      "电池补贴", "扶持政策", "奖励政策", "激励政策", "利好政策", "产能增长", "扩产计划",
+      "投资建设", "新厂建设", "批准通过", "政策支持", "促进发展",
+      "battery subsidy", "battery grant", "battery incentive", "battery tax credit", "good battery news",
+      "battery expansion", "battery investment", "battery approval", "battery support", "battery growth"
+    ],
+    "bad_keywords": [
+      "电池着火", "电池起火", "电池自燃", "电池爆炸", "电池召回", "安全事故", "电池火灾",
+      "电池烧毁", "监管收紧", "立案调查", "行政处罚",
+      "battery fire", "battery explosion", "battery recall", "battery incident", "battery accident",
+      "battery ban", "battery restriction", "battery investigation", "battery penalty", "bad battery news"
+    ]
+  },
+  "news_types": {
+    "政策补贴": ["电池补贴", "扶持政策", "奖励政策", "激励政策", "电池政策", "税", "battery subsidy", "battery incentive", "battery tax", "battery grant"],
+    "重大事件": ["电池着火", "电池起火", "电池自燃", "电池爆炸", "电池召回", "安全事故", "电池火灾", "battery fire", "battery explosion", "battery recall", "battery incident"],
+    "法规": ["电池法规", "电池法案", "电池法律", "电池规定", "电池标准", "battery regulation", "battery law", "battery act", "battery standard"],
+    "行业动态": ["电池扩产", "电池投资", "电池建设", "电池产能", "电池需求", "battery expansion", "battery investment", "battery capacity", "battery demand"]
+  },
+  "retry": {
+    "max_attempts": 3,
+    "delay_seconds": 2
+  },
+  "output": {
+    "max_news_per_country": 12,
+    "max_news_total": 45
+  }
+}

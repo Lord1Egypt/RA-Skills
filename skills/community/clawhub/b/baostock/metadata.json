@@ -1,0 +1,32 @@
+{
+  "name": "baostock",
+  "version": "1.3.0",
+  "description": "BaoStock 免费A股数据平台 - 支持K线、财务数据、行业分类查询，无需注册即可使用。",
+  "author": "BossQuant",
+  "tags": [
+    "金融数据",
+    "A股",
+    "K线",
+    "财务数据",
+    "行业分类",
+    "BaoStock",
+    "免费数据"
+  ],
+  "repository": "",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "python": ">=3.8",
+    "packages": [
+      "baostock>=0.8.0",
+      "pandas>=1.5.0"
+    ]
+  },
+  "openclaw": {
+    "requires": {
+      "bins": [
+        "python3"
+      ],
+      "env": []
+    }
+  }
+}

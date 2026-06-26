@@ -1,35 +1,150 @@
 ---
-name: "auto-complex-task-planner"
-description: "自动复杂任务规划器。智能判断任务复杂度，自动创建子 agent 执行，支持优先级队列、任务模板、进度追踪、增强质量审核。 使用场景： - "帮我调研 XXX"（复杂调研任务） - "开发一个 XXX 功能"（开发任务） - "批量处理 XXX"（批量操作） - "生成 XXX 报告/文档"（文档生成） - "紧急..."
-category: "productivity"
-source: "ClawHub"
-tags: [automation, task-managemen]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/auto-complex-task-planner"
-sourceUrl: "https://clawhub.ai/skills/auto-complex-task-planner"
+name: auto-complex-task-planner
+chinese_name: 自动复杂任务规划技能
+description: |
+  自动复杂任务规划器。智能判断任务复杂度，自动创建子 agent 执行，支持优先级队列、任务模板、进度追踪、增强质量审核。
+  使用场景：
+  - "帮我调研 XXX"（复杂调研任务）
+  - "开发一个 XXX 功能"（开发任务）
+  - "批量处理 XXX"（批量操作）
+  - "生成 XXX 报告/文档"（文档生成）
+  - "紧急！XXX"（高优先级任务）
+  自动并行执行独立任务，效率提升 80%+。
+version: 2.0.0
+author: Johnny Liu
+created: 2026-03-08
+updated: 2026-03-09
 ---
 
-# auto-complex-task-planner
+# 自动复杂任务规划技能
 
-> 自动复杂任务规划器。智能判断任务复杂度，自动创建子 agent 执行，支持优先级队列、任务模板、进度追踪、增强质量审核。 使用场景： - "帮我调研 XXX"（复杂调研任务） - "开发一个 XXX 功能"（开发任务） - "批量处理 XXX"（批量操作） - "生成 XXX 报告/文档"（文档生成） - "紧急...
+**版本**: v2.0.0（已实现所有改进建议）  
+**作者**: Johnny Liu  
+**创建时间**: 2026-03-08
 
-- **Category:** Productivity
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/auto-complex-task-planner`
-- **Source URL:** [https://clawhub.ai/skills/auto-complex-task-planner](https://clawhub.ai/skills/auto-complex-task-planner)
+---
 
-## Overview
+## 🚀 核心功能
 
+### 1. 智能任务分析
+- ✅ 自动判断任务复杂度（长度、步骤、关键词）
+- ✅ 自动识别任务类型（调研/开发/文档/批量）
+- ✅ **新增** 自动检测优先级（高/普通/低）
+- ✅ 估算执行时间
 
-## Installation
-To install this skill, run the following command in your terminal:
+### 2. 并行子 agent 执行
+- ✅ 自动生成任务描述
+- ✅ **新增** 使用任务模板系统
+- ✅ 并行执行独立任务（效率提升 60-80%）
+- ✅ **新增** 支持优先级队列
+
+### 3. 增强质量审核
+- ✅ **新增** 交付物存在性检查
+- ✅ **新增** 内容质量评估
+- ✅ **新增** 幻觉检测
+- ✅ 多维度质量打分
+
+### 4. 任务生命周期管理
+- ✅ **新增** JSON 格式任务记录
+- ✅ **新增** 任务进度追踪
+- ✅ **新增** 每日统计报表
+- ✅ 自动清理已完成
+
+### 5. 任务模板系统
+- ✅ **新增** 调研任务模板
+- ✅ **新增** 开发任务模板
+- ✅ **新增** 文档生成模板
+- ✅ **新增** 批量处理模板
+
+---
+
+## 📋 快速开始
+
+### 安装
+
 ```bash
-hermes skills install clawhub/auto-complex-task-planner
+npx clawhub install auto-complex-task-planner
 ```
+
+### 使用示例
+
+```
+用户：紧急！帮我调研北京新发地农产品市场
+
+AI: 检测到高优先级调研任务，将优先执行...
+    ✓ 任务 ID: a1b2c3d4
+    ✓ 优先级：高
+    ✓ 创建 3 个子 agent（并行执行）
+    ✓ 预计完成时间：10-15 分钟
+```
+
+---
+
+## 🎯 任务分类
+
+### 自动使用子 agent
+
+| 类型 | 关键词 | 示例 |
+|------|--------|------|
+| **调研** | 调研、搜集、分析、研究 | "调研 XXX 市场" |
+| **开发** | 开发、编写、创建、实现 | "开发 XXX 功能" |
+| **批量** | 批量、全部、所有、删除 | "批量删除 XXX" |
+| **文档** | 报告、文档、方案、总结 | "生成 XXX 报告" |
+
+### 优先级识别
+
+| 优先级 | 关键词 | 处理 |
+|--------|--------|------|
+| **高** | 紧急、优先、马上 | 优先执行 |
+| **普通** | 无 | 正常执行 |
+| **低** | 有空、不急 | 空闲时执行 |
+
+---
+
+## 📊 效率提升
+
+| 方式 | 耗时 | 效率 |
+|------|------|------|
+| 主 session 串行 | 45-60 分钟 | 100% |
+| 本技能并行 | **10-15 分钟** | **提升 75-83%** |
+
+---
+
+## ⚙️ 配置
+
+```bash
+# 环境变量
+export SUBAGENT_TIMEOUT=600
+export MAX_RETRIES=3
+export QUALITY_THRESHOLD=0.7
+export MAX_CONCURRENT=5
+```
+
+---
+
+## 📁 文件说明
+
+- `SKILL.md` - 技能文档
+- `README.md` - 英文指南
+- `README_CN.md` - 中文指南
+- `scheduler.py` - 执行脚本
+- `package.json` - 配置
+
+---
+
+## 📜 版本历史
+
+### v2.0.0 (2026-03-09)
+- 新增优先级队列系统
+- 新增任务模板系统
+- 新增 JSON 任务记录
+- 新增进度追踪
+- 增强质量审核
+
+### v1.0.0 (2026-03-08)
+- 初始版本
+
+---
+
+**作者**: Johnny Liu  
+**许可**: MIT

@@ -1,0 +1,16 @@
+﻿name: bid-management
+version: 1.0.0
+description: 鎶曟爣鍏ㄦ祦绋嬬鐞?- 杈撳叆鎷涙爣鏂囦欢锛岃嚜鍔ㄨ緭鍑烘爣涔heckList+鎶曟爣鎬讳綋璁″垝+鎶曟爣鏂囦欢鐩綍缁撴瀯+鍗曚竴鏉ユ簮璇存槑
+author: Dick Dunkel
+homepage: https://clawhub.ai/skills/bid-management
+license: MIT-0
+tags:
+  - sales
+  - bid
+  - procurement
+  - single-source
+category: sales
+dependencies: []
+entry: SKILL.md
+files:
+  - SKILL.md

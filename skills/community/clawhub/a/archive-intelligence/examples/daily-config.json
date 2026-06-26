@@ -1,0 +1,16 @@
+{
+  "task_name": "档案日报",
+  "schedule": "0 9 * * *",
+  "sources": ["政策", "新闻", "技术"],
+  "keywords": [
+    "档案管理",
+    "档案数字化",
+    "电子档案",
+    "档案信息化",
+    "智慧档案馆"
+  ],
+  "output_format": "markdown",
+  "output_dir": "./reports/daily",
+  "max_results_per_source": 10,
+  "notification": true
+}

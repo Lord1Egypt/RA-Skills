@@ -1,0 +1,44 @@
+# AWP Agent Configuration -- Minimal
+# Replace all "{{PLACEHOLDER}}" values.
+
+awp_agent: "1.0.0"
+
+identity:
+  id: "{{AGENT_ID}}"                               # snake_case, must match directory name (R2)
+  role: "{{AGENT_ROLE}}"
+  description: "{{AGENT_DESCRIPTION}}"
+
+runtime:
+  class_name: Agent
+  strategy_folder: workflow
+
+model:
+  name: ""                                         # Set at runtime via LLM_MODEL env var or run wizard
+  parameters:
+    temperature: 0.2
+
+prompt:
+  system: "instructions/SYSTEM_PROMPT.md"
+  user_template: "prompt/00_INTRO.md"
+
+output:
+  format: json
+  contract:
+    result:
+      type: string
+      description: "Primary output"
+      shareable: true
+      required: true
+    confidence:
+      type: number
+      minimum: 0.0
+      maximum: 1.0
+      description: "Confidence score"
+      shareable: true
+      required: true
+
+vision:
+  enabled: false
+
+preprocessor:
+  enabled: false

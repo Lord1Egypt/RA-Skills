@@ -1,0 +1,123 @@
+# Brutalist Minimal — Template Manifest
+
+meta:
+  name: "Brutalist Minimal"
+  id: brutalist-minimal
+  version: "1.0"
+  tags: [brutalist, minimal, bold, black-and-white, raw, functional]
+  best_for:
+    - 文档站点
+    - 开发者博客
+    - 工具网站
+    - 个人作品集
+  not_for:
+    - 消费类电商
+    - 社交应用
+  flexibility:
+    colors: strict           # 黑白是核心
+    typography: strict       # 粗体大字是灵魂
+    spacing: moderate
+    motion: loose
+    layout: loose
+  icon_preferences:
+    primary_source: feather
+    fallback_sources: [lucide]
+    style: outline
+    stroke_width: 2
+    size: 20
+
+# ====== Design Tokens ======
+tokens:
+  colors:
+    primary:
+      base: "#000000"       # Pure black
+      light: "#333333"
+      dark: "#000000"
+    secondary:
+      base: "#FFFFFF"       # White
+      light: "#FFFFFF"
+      dark: "#F5F5F5"
+    accent:
+      base: "#FF3366"       # Single accent — use extremely sparingly
+      light: "#FF6B8A"
+      dark: "#CC0033"
+    background:
+      page: "#FFFFFF"
+      surface: "#FAFAFA"
+      elevated: "#FFFFFF"
+    text:
+      primary: "#000000"
+      secondary: "#333333"
+      muted: "#666666"
+    border:
+      default: "#000000"
+      focus: "#000000"
+    functional:
+      success: "#000000"
+      warning: "#000000"
+      error: "#FF0000"
+      info: "#000000"
+
+  typography:
+    heading_font: "'IBM Plex Mono', 'JetBrains Mono', 'Space Mono', monospace"
+    body_font: "'IBM Plex Mono', 'JetBrains Mono', 'Courier New', monospace"
+    mono_font: "'IBM Plex Mono', 'JetBrains Mono', monospace"
+    scale:
+      xs:   "0.75rem"       # 12px
+      sm:   "0.875rem"      # 14px
+      base: "1rem"          # 16px
+      lg:   "1.25rem"       # 20px
+      xl:   "1.5rem"        # 24px
+      2xl:  "2rem"          # 32px
+      3xl:  "3rem"          # 48px
+      4xl:  "4rem"          # 64px — very large, very bold
+    weight:
+      normal: 400
+      medium: 500
+      semibold: 600
+      bold: 700
+
+  spacing:
+    unit: 8                  # Larger base unit
+    scale: [0, 8, 16, 24, 32, 48, 64, 80, 96, 128]
+
+  border:
+    radius:
+      none:  "0"
+      sm:    "0"
+      md:    "0"
+      lg:    "0"
+      xl:    "0"
+      full:  "0"
+    width:
+      thin:  "2px"
+      normal: "3px"
+      thick:  "4px"
+
+  shadows:
+    none: "none"
+    sm:   "4px 4px 0px 0px #000000"
+    md:   "6px 6px 0px 0px #000000"
+    lg:   "8px 8px 0px 0px #000000"
+    xl:   "12px 12px 0px 0px #000000"
+
+  motion:
+    duration:
+      instant: "0ms"
+      fast:    "0ms"
+      normal:  "0ms"
+      slow:    "0ms"
+      gradual: "0ms"
+    easing:
+      default: "linear"
+      in:      "linear"
+      out:     "linear"
+      spring:  "linear"
+
+  decorations:
+    gradient_primary: "none"
+    gradient_subtle: "none"
+    pattern: none
+    raw_typography: true
+    visible_borders: true
+    use_underline: true       # Links use underline instead of color

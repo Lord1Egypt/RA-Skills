@@ -1,0 +1,15 @@
+{# ── 单时间段区块 ── #}
+{# segment: { time_range, title, content } #}
+<div class="segment-block">
+    <div class="segment-header">
+        <span>⏱ {{ segment.time_range }}</span>
+        {% if segment.title %}
+        <span style="margin-left: 12px;">{{ segment.title }}</span>
+        {% endif %}
+    </div>
+    {% if segment.content %}
+    <div class="segment-content">
+        {{ segment.content }}
+    </div>
+    {% endif %}
+</div>

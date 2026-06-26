@@ -1,0 +1,12 @@
+{
+  "name": "azure-devops-openclaw-skill",
+  "version": "1.0.0",
+  "description": "Azure DevOps skill for OpenClaw — calls ADO REST API via Node.js built-ins",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "check": "node -e \"const c = require('./scripts/client.js'); console.log('✅ client loaded, ORG:', c.ORG);\""
+  },
+  "license": "MIT"
+}

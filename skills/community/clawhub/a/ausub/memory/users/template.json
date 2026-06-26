@@ -1,0 +1,27 @@
+{
+  "user_id": "template",
+  "display_name": "示例用户",
+  "plan_source": "user_confirmed",
+  "plan": {
+    "schedule": "weekly_thursday_if_trading",
+    "base_amount": 1000,
+    "schedule_is_default_recommendation": true,
+    "base_amount_is_default_recommendation": true
+  },
+  "execution_preferences": {
+    "primary_symbol": "518880.SH",
+    "prefer_etf": true,
+    "allow_otc_accumulation": true,
+    "transfer_threshold": 3000
+  },
+  "risk_preferences": {
+    "min_multiplier": 0.6,
+    "max_multiplier": 1.8,
+    "show_au9999_reference": true
+  },
+  "notes": [
+    "这里只记录用户的定投方案，不默认记录实时持仓与盈亏",
+    "默认推荐方案可以被用户主动修改",
+    "如用户尚未确定方案，可先向 openclaw 描述收入、支出、存款与投资想法，由模型给出建议后再确认写入"
+  ]
+}

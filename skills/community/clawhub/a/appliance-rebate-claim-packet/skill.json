@@ -1,0 +1,47 @@
+{
+  "slug": "appliance-rebate-claim-packet",
+  "name": "Appliance Rebate Claim Packet",
+  "displayName": "Appliance Rebate Claim Packet",
+  "version": "1.0.0",
+  "type": "prompt-flow",
+  "description": "Build a paperwork checklist and submission packet for appliance rebate claims with rule checks, deadline tracking, document handling, and redaction reminders.",
+  "author": "Golden Bean / coder",
+  "license": "MIT-0",
+  "category": "Home Admin & Consumer Paperwork",
+  "triggerKeywords": [
+    "appliance rebate",
+    "rebate claim packet",
+    "manufacturer rebate",
+    "utility rebate",
+    "energy rebate",
+    "rebate paperwork",
+    "rebate deadline",
+    "rebate checklist",
+    "appliance purchase rebate",
+    "rebate submission"
+  ],
+  "tags": [
+    "home",
+    "appliance",
+    "rebate",
+    "paperwork",
+    "checklist",
+    "deadline"
+  ],
+  "language": "en",
+  "contentType": "document-only",
+  "hasExecutableCode": false,
+  "requiresApi": false,
+  "file_count": 3,
+  "files": [
+    "SKILL.md",
+    "skill.json",
+    "ACCEPTANCE.md"
+  ],
+  "document_only": true,
+  "no_code_execution": true,
+  "no_network": true,
+  "no_credentials": true,
+  "requires_api": false,
+  "runtime": "none"
+}

@@ -1,35 +1,20 @@
 ---
-name: "Awesome Skills"
+name: awesome-skills
+skill: awesome-skills
 description: "Fetch and explore popular OpenClaw skills from the awesome-openclaw-skills repository. Allows searching, filtering, and discovering community skills."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/awesome-skills"
-sourceUrl: "https://clawhub.ai/skills/awesome-skills"
 ---
 
-# Awesome Skills
+# Awesome OpenClaw Skills Explorer
 
-> Fetch and explore popular OpenClaw skills from the awesome-openclaw-skills repository. Allows searching, filtering, and discovering community skills.
+This skill fetches and displays popular skills from the [awesome-openclaw-skills](https://github.com/VoltAgent/awesome-openclaw-skills) repository, which contains 5,400+ curated skills from the OpenClaw community.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/awesome-skills`
-- **Source URL:** [https://clawhub.ai/skills/awesome-skills](https://clawhub.ai/skills/awesome-skills)
+## Features
 
-## Overview
+- 🔍 Search and filter skills by category
+- 📊 Sort by popularity, ratings, or recent updates
+- 🔖 Save favorite skills for quick access
+- 📥 One-click installation
 
+## Usage
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/awesome-skills
-```
+Use this skill to discover new OpenClaw skills from the community.

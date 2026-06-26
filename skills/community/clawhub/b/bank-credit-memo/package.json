@@ -1,0 +1,37 @@
+{
+  "name": "bank-credit-memo",
+  "version": "1.0.0",
+  "description": "AI-powered bank credit memo writer - generate structured credit analysis reports, credit ratings, and facility recommendations",
+  "main": "SKILL.md",
+  "scripts": {
+    "test": "echo \"No tests configured\""
+  },
+  "keywords": [
+    "bank",
+    "credit memo",
+    "credit analysis",
+    "credit rating",
+    "lending",
+    "facility",
+    "信用备忘录",
+    "授信报告",
+    "信用评级",
+    "贷款审批"
+  ],
+  "author": "gechengling",
+  "license": "MIT",
+  "skill": {
+    "type": "conversation",
+    "triggers": [
+      "信用备忘录",
+      "授信报告",
+      "信用分析报告",
+      "评级报告",
+      "授信建议",
+      "贷款审批报告",
+      "信用审查报告",
+      "额度审批",
+      "贷款评审报告"
+    ]
+  }
+}

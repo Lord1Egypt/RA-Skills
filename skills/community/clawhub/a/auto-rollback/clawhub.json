@@ -1,0 +1,46 @@
+{
+  "name": "auto-rollback",
+  "version": "1.2.0-alpha.2",
+  "description": "Safe config-change safety net for openclaw.json (backup + timed rollback + health-check auto-cancel)",
+  "author": "Bagel",
+  "license": "MIT",
+  "tags": ["safety", "rollback", "backup", "gateway", "config"],
+  "category": "System",
+  "homepage": "https://clawhub.ai/skills/auto-rollback",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/openclaw.git",
+    "directory": "workspace/skills/auto-rollback"
+  },
+  "main": "SKILL.md",
+  "bin": {
+    "auto-rollback": "./auto-rollback.sh"
+  },
+  "files": [
+    "SKILL.md",
+    "auto-rollback.sh",
+    "BOOT.md"
+  ],
+  "engines": {
+    "openclaw": ">=1.0.0"
+  },
+  "metadata": {
+    "openclaw": {
+      "emoji": "🛡️",
+      "os": ["darwin"],
+      "requires": {
+        "bins": ["bash", "launchctl", "jq", "curl"]
+      }
+    }
+  },
+  "keywords": [
+    "auto rollback",
+    "config backup",
+    "gateway protection",
+    "launchd",
+    "safety mechanism",
+    "openclaw.json",
+    "health check"
+  ],
+  "releaseNotes": "v1.2.0-alpha.2 - Add MIT license to SKILL.md frontmatter; v1.2.0-alpha.1 fixed rollback health checks and documented correct restart methods."
+}

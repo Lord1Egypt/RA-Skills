@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>AI 录音卡片</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body{ background: #E8E6E1; font-family: 'Outfit', 'Noto Sans SC', sans-serif; background:transparent;margin:0;padding:0;}
+        .container{ width: 1080px; min-height: 1440px; background: #FAFAF8; padding: 52px 72px; }
+        .header { margin-bottom: 50px; }
+        .tag { font-size: 24px; letter-spacing: 4px; text-transform: uppercase; color: #6B7F5E; margin-bottom: 20px; }
+        h1 { font-size: 68px; font-weight: 700; color: #2C2C2C; line-height: 1.15; margin-bottom: 20px; }
+        .lead { font-size: 28px; color: #888; font-weight: 300; }
+        .card { background: #F5F5F3; padding: 35px; margin-bottom: 25px; border-radius: 12px; border-left: 5px solid #6B7F5E; }
+        .card-title { font-size: 36px; font-weight: 600; color: #2C2C2C; margin-bottom: 15px; }
+        .card-content { font-size: 30px; color: #555; line-height: 1.7; }
+        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; margin-top: 35px; }
+        .stat-box { background: #6B7F5E; color: #fff; padding: 30px; border-radius: 12px; text-align: center; }
+        .stat-num { font-size: 56px; font-weight: 700; margin-bottom: 10px; }
+        .stat-label { font-size: 26px; opacity: 0.9; }
+    .coord{display:none!important;}
+/* === POST-PROCESS: 字号兜底 === */
+.container { font-size: max(14px, 1em); }
+.container h1, .container [class*="title"]:first-child { font-size: max(48px, 1em) !important; }
+.container h2, .container h3 { font-size: max(28px, 1em) !important; }
+.container p, .container li, .container td { font-size: max(20px, 0.9em) !important; }
+.container .coord { display: none !important; }
+</style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="tag">PRODUCT BRIEF</div>
+            <h1>AI 录音卡片<br/>产品架构方案</h1>
+            <div class="lead">北美市场 · 合规优先 · AWS 云架构</div>
+        </div>
+        <div class="card">
+            <div class="card-title">🎯 M-P-D-G 核心框架</div>
+            <div class="card-content">
+                <strong>Market</strong> 北美合规驱动市场<br>
+                <strong>Product</strong> 云端存储 + 本地加密<br>
+                <strong>Data</strong> 数据隔离 + 访问控制<br>
+                <strong>Governance</strong> SOC 2 + HIPAA 认证
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-title">⚡ 合规认证要求</div>
+            <div class="card-content">
+                <strong>SOC 2 Type I</strong> 3-4 个月 / $30-50K<br>
+                <strong>SOC 2 Type II</strong> 6-12 个月 / $75-165K<br>
+                <strong>HIPAA BAA</strong> AWS 免费 5 分钟<br>
+                <strong>BIPA/COPPA</strong> $5K-$43K/次罚款
+            </div>
+        </div>
+        <div class="grid">
+            <div class="stat-box"><div class="stat-num">$30-75K</div><div class="stat-label">一次性合规</div></div>
+            <div class="stat-box"><div class="stat-num">$32-65K</div><div class="stat-label">年度维护</div></div>
+        </div>
+    </div>
+</body>
+</html>

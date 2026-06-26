@@ -1,0 +1,10 @@
+{
+  "name": "baidu-cloud-bos",
+  "version": "1.1.2",
+  "description": "百度智能云对象存储(BOS)集成技能",
+  "author": "yangdong2398",
+  "license": "MIT-0",
+  "dependencies": {
+    "@baiducloud/sdk": "^1.0.7"
+  }
+}

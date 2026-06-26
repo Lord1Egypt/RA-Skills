@@ -1,0 +1,4 @@
+interface:
+  display_name: "Search Personal Asset Library"
+  short_description: "Phase skill to query a Caixu asset library with precise tag-plus-FTS retrieval and optional vector search"
+  default_prompt: "Use $caixu-query-assets after the current stage has been identified as asset query, normalize the user's request into canonical filters plus semantic query and agent tag filters, optionally reindex old libraries once, run precise tag-plus-FTS retrieval by default, and only call the optional vector retrieval function when the user explicitly asks for similar or related materials."

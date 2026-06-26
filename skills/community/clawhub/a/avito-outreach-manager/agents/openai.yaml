@@ -1,0 +1,4 @@
+interface:
+  display_name: "Avito Message QA Reviewer"
+  short_description: "Review Avito drafts before human send"
+  default_prompt: "Use $avito-outreach-manager to review an Avito message draft for respectful wording, one clear next step, and safe checkout language before a human sends it."

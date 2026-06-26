@@ -1,0 +1,412 @@
+{# ── 基础框架 CSS ── #}
+<style>
+    @page {
+        size: A4;
+        margin: 1.8cm 2cm;
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: "Noto Sans CJK SC", "WenQuanYi Zen Hei", "Microsoft YaHei", "PingFang SC", "Helvetica Neue", Arial, sans-serif;
+        font-size: 10.5pt;
+        line-height: 1.7;
+        color: #2c2c2c;
+    }
+
+    /* ── 通用区块 ── */
+    .section {
+        margin-bottom: 18px;
+    }
+
+    /* ── 头部 ── */
+    .header {
+        text-align: center;
+        border-bottom: 3px solid #00a1d6;
+        padding-bottom: 15px;
+        margin-bottom: 20px;
+    }
+
+    .header h1 {
+        font-size: 20pt;
+        color: #00a1d6;
+        margin-bottom: 5px;
+    }
+
+    .header .subtitle {
+        font-size: 13pt;
+        color: #555;
+        font-style: italic;
+    }
+
+    .meta {
+        display: flex;
+        justify-content: center;
+        gap: 25px;
+        margin: 10px 0;
+        font-size: 9.5pt;
+        color: #888;
+    }
+
+    .genre-badge {
+        display: inline-block;
+        background: linear-gradient(135deg, #00a1d6, #0087b5);
+        color: #fff;
+        padding: 3px 12px;
+        border-radius: 12px;
+        font-size: 9pt;
+        margin-top: 5px;
+    }
+
+    /* ── TLDR ── */
+    .tldr {
+        background: #fff3cd;
+        border-left: 4px solid #ffc107;
+        padding: 10px 15px;
+        margin-bottom: 20px;
+        border-radius: 0 6px 6px 0;
+    }
+
+    .tldr-label {
+        font-weight: bold;
+        color: #856404;
+        font-size: 10pt;
+    }
+
+    .tldr-cn {
+        font-size: 11pt;
+        color: #333;
+        margin-bottom: 5px;
+    }
+
+    .tldr-en {
+        font-size: 10pt;
+        color: #666;
+        font-style: italic;
+    }
+
+    .section-title {
+        font-size: 13pt;
+        color: #00a1d6;
+        border-left: 4px solid #00a1d6;
+        padding-left: 10px;
+        margin-bottom: 10px;
+    }
+
+    .section-title-en {
+        font-size: 11pt;
+        color: #6c757d;
+        border-left: 4px solid #6c757d;
+        padding-left: 10px;
+        margin-bottom: 10px;
+    }
+
+    .content-block {
+        background: #f8f9fa;
+        padding: 12px 15px;
+        border-radius: 6px;
+        margin-bottom: 8px;
+        font-size: 10pt;
+        line-height: 1.8;
+    }
+
+    .content-block-en {
+        background: #f0f4f8;
+        padding: 12px 15px;
+        border-radius: 6px;
+        margin-bottom: 8px;
+        font-size: 10pt;
+        line-height: 1.8;
+        color: #444;
+    }
+
+    /* ── 要点列表 ── */
+    .key-points {
+        list-style: none;
+        padding: 0;
+    }
+
+    .key-points li {
+        padding: 6px 0 6px 22px;
+        position: relative;
+        border-bottom: 1px dashed #e0e0e0;
+        font-size: 10pt;
+    }
+
+    .key-points li:last-child {
+        border-bottom: none;
+    }
+
+    .key-points li::before {
+        content: "▸";
+        color: #00a1d6;
+        font-weight: bold;
+        position: absolute;
+        left: 0;
+    }
+
+    .key-points-en li::before {
+        color: #6c757d;
+    }
+
+    /* ── 洞察区块 ── */
+    .insights {
+        background: linear-gradient(135deg, #e8f4fd, #f0f8ff);
+        border: 1px solid #b8daff;
+        padding: 12px 15px;
+        border-radius: 8px;
+        margin-bottom: 8px;
+    }
+
+    .insights-en {
+        background: linear-gradient(135deg, #f8f9fa, #f0f4f8);
+        border: 1px solid #d6d8db;
+        padding: 12px 15px;
+        border-radius: 8px;
+        margin-bottom: 8px;
+    }
+
+    /* ── 评论区 ── */
+    .comment-card {
+        background: #f8f9fa;
+        padding: 10px 12px;
+        border-radius: 6px;
+        margin-bottom: 6px;
+        border-left: 3px solid #fb7299;
+    }
+
+    .comment-user {
+        font-weight: bold;
+        color: #fb7299;
+        font-size: 9pt;
+    }
+
+    .comment-likes {
+        font-size: 8.5pt;
+        color: #aaa;
+        margin-left: 8px;
+    }
+
+    .comment-text {
+        margin-top: 3px;
+        font-size: 9.5pt;
+    }
+
+    /* ── 分隔线 ── */
+    .divider {
+        border: none;
+        border-top: 1px dashed #ddd;
+        margin: 12px 0;
+    }
+
+    /* ── 语言标签 ── */
+    .lang-tag {
+        display: inline-block;
+        font-size: 8pt;
+        padding: 1px 6px;
+        border-radius: 3px;
+        margin-bottom: 5px;
+        font-weight: bold;
+    }
+
+    .lang-tag-cn {
+        background: #dc3545;
+        color: #fff;
+    }
+
+    .lang-tag-en {
+        background: #6c757d;
+        color: #fff;
+    }
+
+    /* ── 通用推荐区块 ── */
+    .recommendation {
+        background: linear-gradient(135deg, #00a1d610, #fb729910);
+        border: 1px solid #00a1d630;
+        padding: 12px 15px;
+        border-radius: 8px;
+    }
+
+    /* ── 页脚 ── */
+    .footer {
+        margin-top: 25px;
+        padding-top: 10px;
+        border-top: 1px solid #e0e0e0;
+        text-align: center;
+        font-size: 8.5pt;
+        color: #aaa;
+    }
+
+    /* ── 进度条（学习路径） ── */
+    .progress-bar {
+        text-align: center;
+        margin-top: 15px;
+        padding: 8px;
+        background: #f0f8ff;
+        border-radius: 6px;
+        font-size: 9pt;
+        color: #555;
+    }
+
+    /* ── v2.0 样式 ── */
+    .concept-block {
+        margin-bottom: 20px;
+        border: 1px solid #e0e0e0;
+        border-radius: 8px;
+        overflow: hidden;
+    }
+
+    .concept-header {
+        padding: 8px 15px;
+        font-size: 11pt;
+        font-weight: bold;
+    }
+
+    .concept-definition {
+        padding: 10px 15px;
+        background: #fff;
+        border-bottom: 1px solid #eee;
+    }
+
+    .concept-principle {
+        padding: 12px 15px;
+        background: #f8f9fa;
+        border-bottom: 1px dashed #ddd;
+        line-height: 1.9;
+        font-size: 10pt;
+    }
+
+    .concept-analogy {
+        padding: 12px 15px;
+        background: #fff8e1;
+        border-bottom: 1px dashed #ddd;
+    }
+
+    .concept-insight {
+        padding: 12px 15px;
+        background: #e8f4fd;
+    }
+
+    .layer-tag {
+        font-size: 9pt;
+        font-weight: normal;
+        margin-left: 8px;
+        opacity: 0.85;
+    }
+
+    /* ── 视频陈述区块 ── */
+    .segment-block {
+        margin-bottom: 16px;
+        border: 1px solid #e8e8e8;
+        border-radius: 6px;
+        overflow: hidden;
+    }
+
+    .segment-header {
+        background: linear-gradient(135deg, #4a90e2, #357abd);
+        color: #fff;
+        padding: 6px 15px;
+        font-size: 10pt;
+        font-weight: bold;
+    }
+
+    .segment-content {
+        padding: 12px 15px;
+        background: #fff;
+        font-size: 10pt;
+        line-height: 1.8;
+    }
+
+    /* ── 测验区块 ── */
+    .quiz-block {
+        margin-bottom: 14px;
+        border: 1px solid #e0e0e0;
+        border-radius: 8px;
+        overflow: hidden;
+    }
+
+    .quiz-header {
+        background: linear-gradient(135deg, #28a745, #1e7e34);
+        color: #fff;
+        padding: 6px 15px;
+        font-size: 10pt;
+        font-weight: bold;
+    }
+
+    .quiz-question {
+        padding: 10px 15px;
+        background: #fff;
+        font-size: 10pt;
+        line-height: 1.7;
+    }
+
+    .quiz-options {
+        padding: 0 15px 10px;
+        background: #fff;
+        font-size: 10pt;
+    }
+
+    .quiz-options li {
+        padding: 3px 0;
+    }
+
+    .quiz-answer {
+        padding: 6px 15px;
+        background: #d4edda;
+        font-size: 9pt;
+        color: #155724;
+    }
+
+    /* ── 思考题区块 ── */
+    .thinking-block {
+        background: linear-gradient(135deg, #e8f4fd, #f0f8ff);
+        border: 1px solid #b8daff;
+        padding: 10px 15px;
+        border-radius: 6px;
+        margin-bottom: 8px;
+    }
+
+    .thinking-question {
+        font-weight: bold;
+        color: #004085;
+        font-size: 10pt;
+    }
+
+    .thinking-hint {
+        font-size: 9pt;
+        color: #666;
+        margin-top: 4px;
+    }
+
+    /* ── 工具清单卡片 ── */
+    .tool-card {
+        background: #f8f9fa;
+        padding: 10px 12px;
+        border-radius: 6px;
+        margin-bottom: 8px;
+        border-left: 3px solid #00a1d6;
+    }
+
+    /* ── 代码块 ── */
+    .code-block {
+        background: #1e1e1e;
+        color: #d4d4d4;
+        padding: 10px 12px;
+        border-radius: 6px;
+        font-family: 'Consolas', 'Courier New', monospace;
+        font-size: 9pt;
+        white-space: pre-wrap;
+        overflow-x: auto;
+        margin-bottom: 8px;
+    }
+
+    .code-context {
+        font-size: 9pt;
+        color: #888;
+        margin-bottom: 3px;
+    }
+</style>

@@ -1,0 +1,50 @@
+{
+  "name": "openclaw-backup-r2",
+  "version": "1.1.1",
+  "summary": "Complete, encrypted, off-site backup of your OpenClaw setup to Cloudflare R2 via restic. Never lose your agents and config again.",
+  "description": "Automated daily backup of your entire OpenClaw install (config, credentials, agents, workspace, cron) to Cloudflare R2 using restic. End-to-end encrypted client-side, deduplicated, off-site, with smart retention (7 daily + 4 weekly + 6 monthly) and a portable restore that works on any PC. Born from the pain of a doctor --fix wiping agents and config. Privacy note: this uploads your OpenClaw secrets (credentials/auth profiles) to your own third-party R2 bucket; encryption depends entirely on the strength and safekeeping of your restic password, and the real restore OVERWRITES the live .openclaw install (run test-restore first).",
+  "author": "servicosmkt",
+  "license": "MIT",
+  "keywords": [
+    "backup",
+    "restore",
+    "restic",
+    "cloudflare-r2",
+    "r2",
+    "s3",
+    "disaster-recovery",
+    "off-site-backup",
+    "encrypted-backup",
+    "config-backup",
+    "agents-backup",
+    "credentials",
+    "openclaw",
+    "automation",
+    "scheduled-backup",
+    "data-protection",
+    "snapshot",
+    "deduplication"
+  ],
+  "homepage": "https://github.com/servicosmkt/openclaw-backup-r2",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/servicosmkt/openclaw-backup-r2.git"
+  },
+  "triggers": [
+    "backup openclaw",
+    "back up my openclaw config",
+    "back up my openclaw agents",
+    "lost my openclaw agents",
+    "lost my openclaw config",
+    "openclaw config got wiped",
+    "openclaw doctor fix broke my setup",
+    "restore openclaw",
+    "restore my openclaw backup",
+    "set up openclaw backups",
+    "automatic openclaw backup",
+    "back up openclaw to r2",
+    "back up openclaw to cloudflare",
+    "migrate openclaw to new pc",
+    "protect my openclaw setup"
+  ]
+}

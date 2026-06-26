@@ -1,0 +1,206 @@
+{
+  "metadata": {
+    "name": "study-room-motion-light-ac-pack",
+    "description": "Study: turn on the light and start the AC in cooling mode at 26 C when someone arrives; after 5 minutes of no occupancy, turn off the light and AC.",
+    "scope": [
+      {
+        "name": "studyRoomMotion",
+        "type": "device.property",
+        "deviceId": "dev.study_room.motion",
+        "endpointId": 1,
+        "functionCode": "OccupancySensing",
+        "traitCode": "Occupancy"
+      }
+    ]
+  },
+  "automations": [
+    {
+      "name": "Study Occupied Lights On",
+      "starters": [
+        {
+          "type": "property.event",
+          "source": {
+            "type": "data.ref",
+            "from": "/metadata/scope",
+            "select": {
+              "by": "name",
+              "value": "studyRoomMotion"
+            }
+          },
+          "is": true,
+          "for": "5sec",
+          "suppressFor": "30sec"
+        }
+      ],
+      "condition": {
+        "type": "property.state",
+        "source": {
+          "type": "device.property",
+          "deviceId": "dev.study_room.light",
+          "endpointId": 1,
+          "functionCode": "Output",
+          "traitCode": "OnOff"
+        },
+        "is": false
+      },
+      "actions": [
+        {
+          "type": "device.trait.write",
+          "functionCode": "Output",
+          "traitCode": "OnOff",
+          "targets": [
+            {
+              "deviceId": "dev.study_room.light",
+              "endpointIds": [1]
+            }
+          ],
+          "value": true
+        }
+      ]
+    },
+    {
+      "name": "Study Occupied AC On At 26C Cooling",
+      "starters": [
+        {
+          "type": "property.event",
+          "source": {
+            "type": "data.ref",
+            "from": "/metadata/scope",
+            "select": {
+              "by": "name",
+              "value": "studyRoomMotion"
+            }
+          },
+          "is": true,
+          "for": "5sec",
+          "suppressFor": "30sec"
+        }
+      ],
+      "condition": {
+        "type": "property.state",
+        "source": {
+          "type": "device.property",
+          "deviceId": "dev.study_room.ac",
+          "endpointId": 1,
+          "functionCode": "Output",
+          "traitCode": "OnOff"
+        },
+        "is": false
+      },
+      "actions": [
+        {
+          "type": "device.trait.write",
+          "functionCode": "Output",
+          "traitCode": "OnOff",
+          "targets": [
+            {
+              "deviceId": "dev.study_room.ac",
+              "endpointIds": [1]
+            }
+          ],
+          "value": true
+        },
+        {
+          "type": "device.trait.write",
+          "functionCode": "HeaterCooler",
+          "traitCode": "CoolingTemperature",
+          "targets": [
+            {
+              "deviceId": "dev.study_room.ac",
+              "endpointIds": [1]
+            }
+          ],
+          "value": 26
+        }
+      ]
+    },
+    {
+      "name": "Study Vacant Lights Off",
+      "starters": [
+        {
+          "type": "property.event",
+          "source": {
+            "type": "data.ref",
+            "from": "/metadata/scope",
+            "select": {
+              "by": "name",
+              "value": "studyRoomMotion"
+            }
+          },
+          "is": false,
+          "for": "5min",
+          "suppressFor": "30sec"
+        }
+      ],
+      "condition": {
+        "type": "property.state",
+        "source": {
+          "type": "device.property",
+          "deviceId": "dev.study_room.light",
+          "endpointId": 1,
+          "functionCode": "Output",
+          "traitCode": "OnOff"
+        },
+        "is": true
+      },
+      "actions": [
+        {
+          "type": "device.trait.write",
+          "functionCode": "Output",
+          "traitCode": "OnOff",
+          "targets": [
+            {
+              "deviceId": "dev.study_room.light",
+              "endpointIds": [1]
+            }
+          ],
+          "value": false
+        }
+      ]
+    },
+    {
+      "name": "Study Vacant AC Off",
+      "starters": [
+        {
+          "type": "property.event",
+          "source": {
+            "type": "data.ref",
+            "from": "/metadata/scope",
+            "select": {
+              "by": "name",
+              "value": "studyRoomMotion"
+            }
+          },
+          "is": false,
+          "for": "5min",
+          "suppressFor": "30sec"
+        }
+      ],
+      "condition": {
+        "type": "property.state",
+        "source": {
+          "type": "device.property",
+          "deviceId": "dev.study_room.ac",
+          "endpointId": 1,
+          "functionCode": "Output",
+          "traitCode": "OnOff"
+        },
+        "is": true
+      },
+      "actions": [
+        {
+          "type": "device.trait.write",
+          "functionCode": "Output",
+          "traitCode": "OnOff",
+          "targets": [
+            {
+              "deviceId": "dev.study_room.ac",
+              "endpointIds": [1]
+            }
+          ],
+          "value": false
+        }
+      ]
+    }
+  ]
+}

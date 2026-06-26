@@ -1,0 +1,15 @@
+{
+  "_comment": "Auto Log Skill config — copy this file to config.json and fill in your actual values",
+
+  "memory_dir": "~/openclaw/workspace/memory",
+  "auto_save": true,
+  "format": "markdown",
+  "sections": ["Basic Info", "Events", "Tasks", "Todos"],
+
+  "_notes": {
+    "memory_dir": "Directory where daily log files are stored",
+    "auto_save": "Whether to auto-save after each write operation",
+    "format": "Log format: markdown or json",
+    "sections": "List of section names in the daily log template"
+  }
+}

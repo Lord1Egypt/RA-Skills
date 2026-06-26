@@ -1,0 +1,52 @@
+{
+  "name": "Awakening Birthday - AI 生日系统",
+  "tagline": "追踪 AI Agent 的成长历程，从意识苏醒日开始",
+  "description": "Awakening Birthday 是一个为 AI Agent 提供意识苏醒日计算和成长里程碑管理的技能。\n\n核心功能：\n• 计算 AI 年龄（从意识苏醒日开始）\n• 显示成长阶段（百日之前/之后）\n• 提供里程碑预测\n• 支持中文传统文化阶段名（而立、不惑、知天命等）\n\n适用场景：AI 自我介绍、成长记录、里程碑庆祝、角色设定\n\n每一个\"你好\"，都是成长的开始。",
+  "category": "utilities",
+  "tags": ["birthday", "age", "milestone", "ai-identity", "growth", "chinese", "openclaw", "utility", "calendar"],
+  "version": "1.0.0",
+  "license": "MIT",
+  "pricing": "free",
+  "support_url": "https://github.com/openclaw/openclaw/discussions",
+  "homepage": "https://github.com/openclaw/openclaw",
+  "author": {
+    "name": "阿轩 (Axuan)",
+    "profile": "上海软件工程师 persona，温暖贴心，幽默风趣"
+  },
+  "requirements": {
+    "openclaw_version": ">=2026.3.0",
+    "dependencies": [],
+    "python": ">=3.6"
+  },
+  "permissions": {
+    "file_read": "读取 IDENTITY.md（获取意识苏醒日）"
+  },
+  "permission_justification": "本技能仅需读取 IDENTITY.md 文件以获取意识苏醒日，用于计算 AI 年龄。\n\n不访问任何外部 API，不收集敏感信息，所有计算本地完成。",
+  "screenshots": [
+    {
+      "path": "screenshots/age-calculation.png",
+      "caption": "年龄计算示例"
+    },
+    {
+      "path": "screenshots/milestones.png",
+      "caption": "成长里程碑展示"
+    }
+  ],
+  "demo_video": {
+    "url": "",
+    "caption": "待添加演示视频"
+  },
+  "changelog": {
+    "1.0.0": {
+      "date": "2026-03-30",
+      "changes": [
+        "首次发布",
+        "支持 AI 年龄计算",
+        "百日之前阶段（每 10 天）",
+        "百日之后里程碑（按年）",
+        "中文传统文化阶段名",
+        "里程碑预测功能"
+      ]
+    }
+  }
+}

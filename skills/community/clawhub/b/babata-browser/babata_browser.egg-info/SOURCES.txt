@@ -1,0 +1,10 @@
+LICENSE
+pyproject.toml
+babata_browser.egg-info/PKG-INFO
+babata_browser.egg-info/SOURCES.txt
+babata_browser.egg-info/dependency_links.txt
+babata_browser.egg-info/entry_points.txt
+babata_browser.egg-info/requires.txt
+babata_browser.egg-info/top_level.txt
+scripts/__init__.py
+scripts/babata_browser.py

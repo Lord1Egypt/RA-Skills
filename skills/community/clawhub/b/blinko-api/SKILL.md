@@ -1,35 +1,79 @@
 ---
-name: "Blinko Api"
-description: "Manage Blinko notes and blinkos from the command line. Use when you need to list, create, update, delete, or promote blinkos."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/blinko-api"
-sourceUrl: "https://clawhub.ai/skills/blinko-api"
+name: blinko
+description: Manage Blinko notes and blinkos from the command line. Use when you need to list, create, update, delete, or promote blinkos.
+triggers:
+  - "save to blinko"
+  - "blinko markdown"
+  - "save blinko"
+  - "get blinko"
+  - "list blinkos"
+  - "create blinko"
+  - "update blinko"
+  - "delete blinko"
+user-invokable: true
+metadata:
+  clawdbot:
+    emoji: "📝"
 ---
 
-# Blinko Api
+# Blinko
 
-> Manage Blinko notes and blinkos from the command line. Use when you need to list, create, update, delete, or promote blinkos.
+Use the Blinko API from Python with host and token loaded from OS environment variables.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/blinko-api`
-- **Source URL:** [https://clawhub.ai/skills/blinko-api](https://clawhub.ai/skills/blinko-api)
+## Usage
 
-## Overview
+Set environment variables in your OS/session:
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/blinko-api
+BLINKO_HOST=http://127.0.0.1:1111/api
+BLINKO_TOKEN=your_token_here
 ```
+
+### List notes
+
+```bash
+python3 {baseDir}/scripts/blinko_client.py list-notes
+```
+
+### Get a note
+
+```bash
+python3 {baseDir}/scripts/blinko_client.py get-note NOTE_ID
+```
+
+### Upsert a note
+
+```bash
+python3 {baseDir}/scripts/blinko_client.py upsert-note --content "My note content"
+```
+
+### Delete a note
+
+```bash
+python3 {baseDir}/scripts/blinko_client.py delete-note NOTE_ID
+```
+
+### List blinkos
+
+```bash
+python3 {baseDir}/scripts/blinko_client.py list-blinkos
+```
+
+### Upsert a blinko
+
+```bash
+python3 {baseDir}/scripts/blinko_client.py upsert-blinko --content "Quick thought"
+```
+
+### Promote blinko to note
+
+```bash
+python3 {baseDir}/scripts/blinko_client.py promote-blinko BLINKO_ID
+```
+
+## Notes
+
+- Reads `BLINKO_HOST` and `BLINKO_TOKEN` from the OS environment.
+- If `BLINKO_HOST` is missing, defaults to `http://127.0.0.1:1111`.
+- Uses Blinko API note endpoints (`/v1/note/...`) for both notes and blinkos.
+- Prints API responses to stdout; errors go to stderr with non-zero exit.

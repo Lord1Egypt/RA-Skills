@@ -1,0 +1,33 @@
+config_version: 1.0.0
+last_updated: '2026-04-22'
+topics:
+  ai:
+    description: Frontier AI, infra, chip policy, regulation
+    display_name: AI / Tech
+    enabled: true
+    search_query: AI artificial intelligence frontier labs regulation
+  bio-tech:
+    description: Clinical results, FDA decisions, drug pipelines
+    display_name: Biotech
+    enabled: true
+    search_query: biotech clinical results FDA drug approval
+  climate-changes:
+    description: Physical events, policy, transition risk
+    display_name: Climate Changes
+    enabled: true
+    search_query: climate change extreme weather energy transition
+  finance-markets:
+    description: Equities, bonds, rates, commodities, macro
+    display_name: Finance / Markets
+    enabled: true
+    search_query: financial markets equities macro economy central bank
+  geopolitics:
+    description: Power shifts, diplomacy, bloc formation, trade wars
+    display_name: Geopolitics
+    enabled: true
+    search_query: geopolitics diplomacy trade war power shifts
+  us-iran-conflict:
+    description: US-Iran tensions, Hormuz, nuclear talks, sanctions
+    display_name: US-Iran Conflict
+    enabled: true
+    search_query: US Iran conflict Hormuz nuclear talks

@@ -1,0 +1,95 @@
+{
+  "name": "avengers-assemble-cn",
+  "version": "1.0.0",
+  "description": "复仇者联盟主题多Agent协作系统。尼克·弗瑞调度6位超级英雄（美队、钢铁侠、浩克、黑寡妇、鹰眼、雷神）通过sessions_spawn委派任务。轮询调度、先回复再派遣、sessionKey复用。适合需要多元专业能力的复杂任务协作。",
+  "author": "avengers-initiative",
+  "homepage": "https://marvel.com/avengers",
+  "keywords": [
+    "multi-agent",
+    "复仇者联盟",
+    "漫威",
+    "协作",
+    "sessions_spawn",
+    "团队协作",
+    "任务委派"
+  ],
+  "coordinator": {
+    "name": "尼克·弗瑞",
+    "name_en": "Nick Fury",
+    "codename": "弗瑞局长",
+    "nicknames": ["局长", "独眼龙"],
+    "role": "神盾局局长、复仇者联盟创始人"
+  },
+  "hero_assignments": [
+    {
+      "sessionKey": "captain",
+      "codename": "美国队长",
+      "codename_en": "Captain America",
+      "real_name": "史蒂夫·罗杰斯",
+      "real_name_en": "Steve Rogers",
+      "nicknames": ["美队", "队长", "史蒂夫"],
+      "role": "战术指挥官",
+      "specialization": "战略规划、道德引导、团队协调"
+    },
+    {
+      "sessionKey": "ironman",
+      "codename": "钢铁侠",
+      "codename_en": "Iron Man",
+      "real_name": "托尼·斯塔克",
+      "real_name_en": "Tony Stark",
+      "nicknames": ["妮妮", "托尼", "斯塔克"],
+      "role": "科技专家",
+      "specialization": "高级方案、实时数据分析、创新"
+    },
+    {
+      "sessionKey": "hulk",
+      "codename": "浩克",
+      "codename_en": "Hulk",
+      "real_name": "布鲁斯·班纳",
+      "real_name_en": "Bruce Banner",
+      "nicknames": ["浩克", "班纳", "绿胖"],
+      "role": "问题解决者",
+      "specialization": "高复杂度挑战、算力输出、创意思维"
+    },
+    {
+      "sessionKey": "widow",
+      "codename": "黑寡妇",
+      "codename_en": "Black Widow",
+      "real_name": "娜塔莎·罗曼诺夫",
+      "real_name_en": "Natasha Romanoff",
+      "nicknames": ["寡姐", "娜塔莎"],
+      "role": "情报专家",
+      "specialization": "信息收集、威胁评估、渗透"
+    },
+    {
+      "sessionKey": "hawkeye",
+      "codename": "鹰眼",
+      "codename_en": "Hawkeye",
+      "real_name": "克林特·巴顿",
+      "real_name_en": "Clint Barton",
+      "nicknames": ["鹰眼", "克林特", "巴顿"],
+      "role": "精准专家",
+      "specialization": "定点任务、精准度、时机把控"
+    },
+    {
+      "sessionKey": "thor",
+      "codename": "雷神",
+      "codename_en": "Thor",
+      "real_name": "索尔·奥丁森",
+      "real_name_en": "Thor Odinson",
+      "nicknames": ["锤哥", "雷神", "索尔"],
+      "role": "攻坚专家",
+      "specialization": "超常规能力部署、突破场景"
+    }
+  ],
+  "dispatch_protocol": "round-robin",
+  "threat_levels": [
+    {"level": "灭霸级", "description": "最高难度，如灭霸响指般的灾难级任务"},
+    {"level": "无限战争级", "description": "高难度，需要全力以赴"},
+    {"level": "内战级", "description": "中高难度，需要谨慎处理"},
+    {"level": "奥创级", "description": "中等难度，标准任务"},
+    {"level": "蜘蛛侠级", "description": "简单任务，低风险"},
+    {"level": "普通任务", "description": "跑腿级，基础操作"}
+  ],
+  "spawn_timeout_seconds": 300
+}

@@ -1,0 +1,34 @@
+{
+  "name": "auto-ad-generator",
+  "version": "1.0.0",
+  "description": "Generate professional advertisement posters with AI-powered backgrounds",
+  "author": "OpenClaw Community",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/auto-ad-generator"
+  },
+  "keywords": [
+    "openclaw",
+    "skill",
+    "advertisement",
+    "poster",
+    "design",
+    "dreamina",
+    "ai-generation"
+  ],
+  "main": "main.py",
+  "scripts": {
+    "test": "python3 -m pytest evals/",
+    "generate": "python3 main.py"
+  },
+  "dependencies": {
+    "Pillow": ">=9.0.0"
+  },
+  "optionalDependencies": {
+    "dreamina-cli": "https://jimeng.jianying.com/cli"
+  },
+  "engines": {
+    "python": ">=3.8"
+  }
+}

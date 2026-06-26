@@ -1,0 +1,23 @@
+{
+  "skill_name": "blueprint",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "帮我加一个 K8s preStop hook，要保证 Pod 退出时数据一致性。如果失败就阻塞退出。脚本可以调 ai-agent 的本地 API。",
+      "expected_output": "AI should engage in genuine dialogue: first ask about user's main concerns, then explore relevant code (hook mechanism, sentinel, etc.), find technical details, and discuss specifics like which API to call, what counts as success/failure. NOT just ask macro questions like 'what's your success criteria?'",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "我想给 Explorer 加一个新的文件操作接口，支持批量重命名。你帮我想想怎么实现。",
+      "expected_output": "AI should ask what the user cares about most, explore Explorer's existing file operation code, find technical details (existing API patterns, error handling, etc.), then discuss specifics. Should NOT immediately jump to 7-dimension analysis framework.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "我们的 Session 超时释放逻辑有 bug，有时候用户还在用就被释放了。帮我分析一下怎么修。",
+      "expected_output": "AI should ask about the specific symptoms (when does it happen? what's the current timeout logic?), explore the session management code, find the actual timeout implementation, and discuss specific scenarios that could cause premature release. Should NOT ask generic questions without code exploration.",
+      "files": []
+    }
+  ]
+}

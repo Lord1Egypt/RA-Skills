@@ -1,0 +1,5 @@
+#bambu_agent/
+#├── config.json         # [自动生成] 存储所有打印机的 IP、密钥、SN
+#├── main.py             # [核心] 包含向导逻辑、MQTT 集群管理、Web 服务
+#└── templates/
+#    └── index.html      # [前端] V3.0 界面

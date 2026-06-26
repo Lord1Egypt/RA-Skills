@@ -1,0 +1,10 @@
+{
+  "id": "banner-youtube-translate-workflow",
+  "name": "Banner Youtube Translate Workflow",
+  "version": "1.0.0",
+  "description": "Complete workflow: download YouTube audio, launch Doubao, play audio, capture translation. Activates when user needs full video translation.",
+  "tools": [
+    "youtube_translate"
+  ],
+  "entry": "/mnt/h/AI/openclaw_workspace/video_translate/skills/workflow.py"
+}

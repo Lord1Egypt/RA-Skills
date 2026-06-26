@@ -1,0 +1,8 @@
+---
+name: code-review
+description: Review code for correctness, security, performance, and maintainability.
+version: 1.0.0
+display_name: "Code Review"
+triggers:
+System.Object[]
+---

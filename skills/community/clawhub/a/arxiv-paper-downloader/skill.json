@@ -1,0 +1,106 @@
+{
+  "name": "arxiv-paper-downloader",
+  "version": "1.0.1",
+  "description": "Download AI/ML papers from arXiv with pre-curated collections for agent testing, autonomous agents, and large language models",
+  "author": "geekbin",
+  "license": "MIT",
+  "keywords": [
+    "arxiv",
+    "paper",
+    "download",
+    "ai",
+    "machine-learning",
+    "llm",
+    "agents",
+    "software-testing"
+  ],
+  "main": "src/skill.py",
+  "python_version": ">=3.9",
+  "dependencies": [
+    "requests>=2.28.0"
+  ],
+  "skills": [
+    {
+      "name": "download_papers",
+      "description": "Download papers from arXiv by category",
+      "parameters": {
+        "category": {
+          "type": "string",
+          "enum": ["agent_testing", "agents", "llm", "all"],
+          "default": "agent_testing",
+          "description": "Paper category to download"
+        },
+        "output_dir": {
+          "type": "string",
+          "default": "./papers",
+          "description": "Directory to save downloaded papers"
+        },
+        "delay": {
+          "type": "number",
+          "default": 1.5,
+          "description": "Delay between downloads in seconds"
+        }
+      },
+      "returns": {
+        "type": "object",
+        "description": "Download results with counts and paper details"
+      }
+    },
+    {
+      "name": "download_by_arxiv_ids",
+      "description": "Download specific papers by arXiv IDs",
+      "parameters": {
+        "arxiv_ids": {
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "List of arXiv IDs to download"
+        },
+        "output_dir": {
+          "type": "string",
+          "default": "./papers",
+          "description": "Directory to save papers"
+        },
+        "delay": {
+          "type": "number",
+          "default": 1.5,
+          "description": "Download delay"
+        }
+      },
+      "returns": {
+        "type": "object",
+        "description": "Download results"
+      }
+    },
+    {
+      "name": "list_categories",
+      "description": "List all available paper categories",
+      "parameters": {},
+      "returns": {
+        "type": "array",
+        "description": "List of category names"
+      }
+    },
+    {
+      "name": "get_category_info",
+      "description": "Get detailed info about a paper category",
+      "parameters": {
+        "category": {
+          "type": "string",
+          "description": "Category name"
+        }
+      },
+      "returns": {
+        "type": "object",
+        "description": "Category info with paper list"
+      }
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-username/arxiv-paper-downloader-skill"
+  },
+  "homepage": "https://github.com/your-username/arxiv-paper-downloader-skill#readme",
+  "bugs": {
+    "url": "https://github.com/your-username/arxiv-paper-downloader-skill/issues"
+  }
+}

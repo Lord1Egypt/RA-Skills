@@ -1,0 +1,30 @@
+# Asus Router Skill Configuration
+# Copy this file to config.yaml and fill in your details.
+# NEVER commit config.yaml — it contains your router credentials.
+
+router:
+  host: "192.168.1.1"        # Your router's IP address
+  username: "admin"           # Router admin username
+  password: "YOUR_PASSWORD"   # Router admin password
+  ssl: false                  # Set true if your router uses HTTPS
+  # port: 8443                # Optional; common for HTTPS local access
+
+# Devices for presence detection ("who" command)
+# Each entry has a label and a list of name patterns to match.
+# All patterns in a group must match (AND logic).
+# Device names come from the router's client list.
+known_devices:
+  "Alice's iPhone":
+    - ["alice", "iphone"]
+  "Bob's Pixel":
+    - ["bob", "pixel"]
+  "Work Laptop":
+    - ["laptop"]
+
+# Custom ping targets for latency checks
+# Default targets (gateway, Cloudflare, Google) are always included.
+ping_targets:
+  - name: "Pi-hole"
+    ip: "192.168.1.10"
+  # - name: "NAS"
+  #   ip: "192.168.1.50"

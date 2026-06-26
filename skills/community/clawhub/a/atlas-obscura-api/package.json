@@ -1,0 +1,9 @@
+{
+  "name": "atlas-obscura-api-skill",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "dependencies": {
+    "atlas-obscura-api": "^2.1.1"
+  }
+}

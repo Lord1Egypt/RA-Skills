@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>AI 录音卡片</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body{ background: #f9f6f0; font-family: 'Playfair Display', 'Noto Serif SC', serif; background:transparent;margin:0;padding:0;}
+        .container{ width: 1080px; min-height: 1440px; background: #faf8f5; padding:48px 72px; }
+        .header { padding-bottom: 30px; border-bottom: 1px solid #1a1a1a; margin-bottom: 45px; position: relative; }
+        .tag { position: absolute; top: 0; left: 72px; font-size: 18px; letter-spacing: 6px; color: #999; text-transform: uppercase; }
+        .issue { position: absolute; top: 0; right: 72px; font-size: 18px; letter-spacing: 4px; color: #999; }
+        h1 { font-size: 64px; font-weight: 900; color: #1a1a1a; line-height: 1.2; margin-bottom: 20px; }
+        .lead { font-size: 26px; color: #666; font-weight: 300; line-height: 1.7; }
+        .feature { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-bottom: 35px; }
+        .feature-item { padding: 30px; background: #fff; box-shadow: 0 4px 20px rgba(0,0,0,0.06); }
+        .feature-num { font-size: 48px; font-weight: 700; color: #c9a55c; margin-bottom: 12px; }
+        .feature-title { font-size: 32px; font-weight: 700; color: #1a1a1a; margin-bottom: 12px; }
+        .feature-desc { font-size: 28px; color: #555; line-height: 1.6; }
+        .quote { background: #1a1a1a; color: #fff; padding: 40px; margin-top: 30px; font-style: italic; }
+        .quote p { font-size: 32px; line-height: 1.6; }
+    .coord{display:none!important;}
+/* === POST-PROCESS: 字号兜底 === */
+.container { font-size: max(14px, 1em); }
+.container h1, .container [class*="title"]:first-child { font-size: max(48px, 1em) !important; }
+.container h2, .container h3 { font-size: max(28px, 1em) !important; }
+.container p, .container li, .container td { font-size: max(20px, 0.9em) !important; }
+.container .coord { display: none !important; }
+</style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="tag">INSIGHT</div>
+            <div class="issue">VOL.001</div>
+            <h1>AI 录音卡片<br/>产品架构解析</h1>
+            <div class="lead">深入解读北美市场合规策略与 AWS 云架构设计</div>
+        </div>
+        <div class="feature">
+            <div class="feature-item">
+                <div class="feature-num">01</div>
+                <div class="feature-title">M-P-D-G 框架</div>
+                <div class="feature-desc">市场·产品·数据·治理<br/>四位一体架构设计</div>
+            </div>
+            <div class="feature-item">
+                <div class="feature-num">02</div>
+                <div class="feature-title">合规认证</div>
+                <div class="feature-desc">SOC 2 + HIPAA 双重认证<br/>BIPA/COPPA风险规避</div>
+            </div>
+            <div class="feature-item">
+                <div class="feature-num">03</div>
+                <div class="feature-title">技术实现</div>
+                <div class="feature-desc">SSE-KMS 加密<br/>TLS 1.2+ 传输保护</div>
+            </div>
+            <div class="feature-item">
+                <div class="feature-num">04</div>
+                <div class="feature-title">成本估算</div>
+                <div class="feature-desc">一次性$30-75K<br/>年度$32-65K 维护</div>
+            </div>
+        </div>
+        <div class="quote">
+            <p>合规不是成本，是北美市场的入场券。AWS 云架构 + SOC 2/HIPAA 认证，让产品从第一天就站在起跑线上。</p>
+        </div>
+    </div>
+</body>
+</html>

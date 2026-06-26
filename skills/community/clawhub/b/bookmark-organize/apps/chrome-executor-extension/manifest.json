@@ -1,0 +1,22 @@
+{
+  "manifest_version": 3,
+  "name": "Bookmark Organize Executor",
+  "version": "0.1.1",
+  "description": "Local Chrome bookmark executor for the OpenClaw bookmark organize skill.",
+  "permissions": [
+    "bookmarks",
+    "storage",
+    "alarms"
+  ],
+  "host_permissions": [
+    "http://127.0.0.1/*",
+    "http://localhost/*"
+  ],
+  "action": {
+    "default_title": "Bookmark Organize Executor"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "options_page": "options.html"
+}

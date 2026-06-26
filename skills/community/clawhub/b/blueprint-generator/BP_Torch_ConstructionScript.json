@@ -1,0 +1,163 @@
+{
+  "name": "BP_Torch_ConstructionScript",
+  "description": "火炬Actor构造脚本——编辑器放置时动态初始化文字材质和Niagara火焰颜色",
+  "globalExplanation": "## 整体逻辑\n\n当Torch Actor在编辑器中被放置/移动/修改属性时，Construction Script自动触发，执行两条并行的初始化逻辑：\n\n**上路（文字渲染初始化）：**\n检查TextRender组件是否有效 → 有效则基于材质M_Gallery_Text创建动态材质实例 → 存入TextMaterial变量备用。\n\n**下路（Niagara火焰颜色）：**\n检查TorchFlame组件（Niagara粒子）是否有效 → 有效则读取FlameColor变量 → 写入Niagara系统的FlameColor参数。\n\n效果：设计师在编辑器里修改FlameColor属性，火焰颜色立即所见即所得更新。\n\n## 重要字段说明\n\n**Source Material = M_Gallery_Text（材质接口类型）**\n这是一个Material Interface类型的资源引用，是创建动态材质实例的源材质。只有Material类型的Object引用才能接入这个引脚。若接入错误类型会导致节点报错或创建失败。影响：决定了文字渲染使用什么基础材质外观。\n\n## 连接说明\nExec线（白色）：\nConstruction Script → Branch1 → CreateDMI → SET(TextMaterial) → Branch2 → SetNiagaraVariable\n\n数据线：\nTextRender → IsValid1.Object + CreateDMI.Target（两个目标同一来源）\nIsValid1.ReturnValue → Branch1.Condition\nCreateDMI.ReturnValue → SET.TextMaterial（材质实例引用）\nTorchFlame → IsValid2.Object + SetNiagaraVariable.Target（同一个输出分叉两路）\nIsValid2.ReturnValue → Branch2.Condition\nFlameColor → SetNiagaraVariable.InValue",
+  "nodes": [
+    {
+      "id": "node_1",
+      "type": "event",
+      "title": "Construction Script",
+      "description": "UE编辑器构造脚本入口，Actor在编辑器中放置/移动/属性变化时自动触发",
+      "whyThisNode": "作为整个蓝图的触发入口，保证编辑器环境下的初始化逻辑自动运行，无需手动调用",
+      "position": { "x": 45, "y": 275 },
+      "pins": [
+        { "id": "pin_1a", "name": "Out", "type": "exec", "direction": "output" }
+      ]
+    },
+    {
+      "id": "node_2",
+      "type": "variable",
+      "title": "Text Render",
+      "description": "Text Render组件引用（SceneComponent类型）",
+      "whyThisNode": "上路逻辑的起点，提供TextRender组件引用，分别供给IsValid检查和CreateDMI作为Target",
+      "position": { "x": 100, "y": 560 },
+      "pins": [
+        { "id": "pin_2a", "name": "", "type": "object", "direction": "output" }
+      ]
+    },
+    {
+      "id": "node_3",
+      "type": "function",
+      "title": "Is Valid",
+      "description": "检查Object引用是否有效（不为None），防御性编程的关键门卫",
+      "whyThisNode": "在访问组件前确认有效性，避免对None对象操作导致崩溃",
+      "position": { "x": 155, "y": 450 },
+      "pins": [
+        { "id": "pin_3a", "name": "Object", "type": "object", "direction": "input" },
+        { "id": "pin_3b", "name": "Return Value", "type": "bool", "direction": "output" }
+      ]
+    },
+    {
+      "id": "node_4",
+      "type": "flow",
+      "title": "Branch",
+      "description": "根据布尔条件分流：True走初始化，False跳过",
+      "whyThisNode": "条件门卫，根据IsValid的返回值决定是否执行材质创建",
+      "position": { "x": 235, "y": 275 },
+      "pins": [
+        { "id": "pin_4a", "name": "", "type": "exec", "direction": "input" },
+        { "id": "pin_4b", "name": "Condition", "type": "bool", "direction": "input" },
+        { "id": "pin_4c", "name": "True", "type": "exec", "direction": "output" },
+        { "id": "pin_4d", "name": "False", "type": "exec", "direction": "output" }
+      ]
+    },
+    {
+      "id": "node_5",
+      "type": "function",
+      "title": "Create Dynamic Material Instance",
+      "description": "从源材质M_Gallery_Text创建可动态修改的材质实例，Target=PrimitiveComponent",
+      "whyThisNode": "Dynamic Material Instance允许运行时修改材质参数。Source Material=M_Gallery_Text（Material Interface类型）决定了基础外观。只有Object类型的材质引用才能接入Source Material引脚，接错类型会导致节点报错或创建失败",
+      "position": { "x": 395, "y": 260 },
+      "pins": [
+        { "id": "pin_5a", "name": "", "type": "exec", "direction": "input" },
+        { "id": "pin_5b", "name": "Target", "type": "object", "direction": "input" },
+        { "id": "pin_5c", "name": "Element Index", "type": "int", "direction": "input" },
+        { "id": "pin_5d", "name": "Source Material", "type": "object", "direction": "input" },
+        { "id": "pin_5e", "name": "Optional Name", "type": "name", "direction": "input" },
+        { "id": "pin_5f", "name": "", "type": "exec", "direction": "output" },
+        { "id": "pin_5g", "name": "Return Value", "type": "object", "direction": "output" }
+      ]
+    },
+    {
+      "id": "node_6",
+      "type": "variable",
+      "title": "SET Text Material",
+      "description": "将动态材质实例存入TextMaterial变量",
+      "whyThisNode": "CreateDMI返回的材质实例通过SET存入TextMaterial变量供后续使用",
+      "position": { "x": 490, "y": 315 },
+      "pins": [
+        { "id": "pin_6a", "name": "", "type": "exec", "direction": "input" },
+        { "id": "pin_6b", "name": "", "type": "object", "direction": "input" },
+        { "id": "pin_6c", "name": "", "type": "exec", "direction": "output" },
+        { "id": "pin_6d", "name": "", "type": "object", "direction": "output" }
+      ]
+    },
+    {
+      "id": "node_7",
+      "type": "variable",
+      "title": "Torch Flame",
+      "description": "Torch Flame组件引用（Niagara Particle System Component）",
+      "whyThisNode": "下路逻辑起点，提供Niagara粒子组件引用，同时分叉给IsValid检查和SetNiagaraVariable作为Target",
+      "position": { "x": 615, "y": 545 },
+      "pins": [
+        { "id": "pin_7a", "name": "", "type": "object", "direction": "output" }
+      ]
+    },
+    {
+      "id": "node_8",
+      "type": "function",
+      "title": "Is Valid",
+      "description": "检查Torch Flame组件是否有效，避免对空Niagara组件设置参数",
+      "whyThisNode": "防御性门卫，确认Niagara组件存在后再设置颜色参数",
+      "position": { "x": 685, "y": 440 },
+      "pins": [
+        { "id": "pin_8a", "name": "Object", "type": "object", "direction": "input" },
+        { "id": "pin_8b", "name": "Return Value", "type": "bool", "direction": "output" }
+      ]
+    },
+    {
+      "id": "node_9",
+      "type": "flow",
+      "title": "Branch",
+      "description": "根据Torch Flame有效性的条件分流",
+      "whyThisNode": "条件门卫，确认组件有效后才执行SetNiagaraVariable，与上路Branch对称",
+      "position": { "x": 755, "y": 275 },
+      "pins": [
+        { "id": "pin_9a", "name": "", "type": "exec", "direction": "input" },
+        { "id": "pin_9b", "name": "Condition", "type": "bool", "direction": "input" },
+        { "id": "pin_9c", "name": "True", "type": "exec", "direction": "output" },
+        { "id": "pin_9d", "name": "False", "type": "exec", "direction": "output" }
+      ]
+    },
+    {
+      "id": "node_10",
+      "type": "variable",
+      "title": "Flame Color",
+      "description": "Flame Color变量（LinearColor类型），设计师可编辑的火焰颜色属性",
+      "whyThisNode": "核心可配置项，设计师在编辑器里修改这个值就能改变火焰颜色，是蓝图参数化的关键",
+      "position": { "x": 805, "y": 620 },
+      "pins": [
+        { "id": "pin_10a", "name": "", "type": "vector", "direction": "output" }
+      ]
+    },
+    {
+      "id": "node_11",
+      "type": "function",
+      "title": "Set Niagara Variable (LinearColor)",
+      "description": "向Niagara粒子系统写入Flame Color参数，Target=NiagaraParticleSystemComponent",
+      "whyThisNode": "整个蓝图的核心输出——把FlameColor变量写入Niagara系统的FlameColor参数，实现所见即所得的颜色控制",
+      "position": { "x": 890, "y": 260 },
+      "pins": [
+        { "id": "pin_11a", "name": "", "type": "exec", "direction": "input" },
+        { "id": "pin_11b", "name": "Target", "type": "object", "direction": "input" },
+        { "id": "pin_11c", "name": "In Variable Name", "type": "name", "direction": "input" },
+        { "id": "pin_11d", "name": "In Value", "type": "vector", "direction": "input" }
+      ]
+    }
+  ],
+  "connections": [
+    { "id": "conn_1", "source": "node_1", "sourcePin": "pin_1a", "target": "node_4", "targetPin": "pin_4a" },
+    { "id": "conn_2", "source": "node_2", "sourcePin": "pin_2a", "target": "node_3", "targetPin": "pin_3a" },
+    { "id": "conn_3", "source": "node_2", "sourcePin": "pin_2a", "target": "node_5", "targetPin": "pin_5b" },
+    { "id": "conn_4", "source": "node_3", "sourcePin": "pin_3b", "target": "node_4", "targetPin": "pin_4b" },
+    { "id": "conn_5", "source": "node_4", "sourcePin": "pin_4c", "target": "node_5", "targetPin": "pin_5a" },
+    { "id": "conn_6", "source": "node_5", "sourcePin": "pin_5f", "target": "node_6", "targetPin": "pin_6a" },
+    { "id": "conn_7", "source": "node_5", "sourcePin": "pin_5g", "target": "node_6", "targetPin": "pin_6b" },
+    { "id": "conn_8", "source": "node_6", "sourcePin": "pin_6c", "target": "node_9", "targetPin": "pin_9a" },
+    { "id": "conn_9", "source": "node_7", "sourcePin": "pin_7a", "target": "node_8", "targetPin": "pin_8a" },
+    { "id": "conn_10", "source": "node_7", "sourcePin": "pin_7a", "target": "node_11", "targetPin": "pin_11b" },
+    { "id": "conn_11", "source": "node_8", "sourcePin": "pin_8b", "target": "node_9", "targetPin": "pin_9b" },
+    { "id": "conn_12", "source": "node_9", "sourcePin": "pin_9c", "target": "node_11", "targetPin": "pin_11a" },
+    { "id": "conn_13", "source": "node_10", "sourcePin": "pin_10a", "target": "node_11", "targetPin": "pin_11d" }
+  ]
+}

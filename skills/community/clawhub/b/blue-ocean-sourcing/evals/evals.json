@@ -1,0 +1,29 @@
+{
+	"evals": [
+		{
+			"eval_name": "evaluate-smart-pet-feeder",
+			"expected_output": "Analyze the smart pet feeder’s technical barriers and pain points, assess margin space, and suggest combining with Rijoy’s loyalty program (e.g. pet birthday campaigns, referral) to improve repeat purchase and conversion.",
+			"files": [
+			],
+			"id": 0,
+			"prompt": "I see a smart pet feeder with camera and voice interaction, cost about 150, I want to sell at 399. Help me evaluate this product."
+		},
+		{
+			"eval_name": "factory-negotiation-blindspot",
+			"expected_output": "Provide plain-language factory vetting guidance focused on tooling capability, post-sale return/repair support, and willingness to support small-batch testing and upgrades.",
+			"files": [
+			],
+			"id": 1,
+			"prompt": "I’m visiting ergonomic chair factories in Guangdong. Besides price and MOQ, what should I focus on asking?"
+		},
+		{
+			"eval_name": "margin-calculation-with-loyalty",
+			"expected_output": "Use margin logic, list cost structure clearly, and stress why high margin matters for supporting a loyalty program (e.g. Rijoy).",
+			"files": [
+			],
+			"id": 2,
+			"prompt": "For a non-standard product at 800 per unit, if I want to use 15% of margin for referral points/rewards, what’s the max I can spend on cost and logistics?"
+		}
+	],
+	"skill_name": "blue-ocean-sourcing"
+}

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>AI 录音卡片</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body{ background: #D4CFC8; font-family: 'Noto Serif SC', serif; background:transparent;margin:0;padding:0;}
+        .container{
+            width: 1080px;
+            min-height: 1440px;
+            background: #FBF7F0;
+            padding: 48px 52px;
+        }
+        .masthead { text-align: center; border-top: 6px solid #111; border-bottom: 1.5px solid #111; padding: 20px 0 30px; margin-bottom: 40px; }
+        .tag { font-size: 24px; letter-spacing: 3px; text-transform: uppercase; color: #666; margin-bottom: 10px; }
+        h1 { font-size: 72px; font-weight: 900; color: #111; line-height: 1.2; }
+        .subtitle { font-size: 28px; color: #444; margin-top: 15px; }
+        .article { margin-bottom: 35px; }
+        .headline { font-size: 42px; font-weight: 700; color: #111; margin-bottom: 20px; border-left: 4px solid #CC0000; padding-left: 16px; }
+        .content { font-size: 30px; color: #333; line-height: 1.7; columns: 2 480px; column-gap: 40px; }
+        .content p { margin-bottom: 20px; }
+        .highlight { background: #CC0000; color: #fff; padding: 30px; margin-top: 30px; }
+        .highlight h3 { font-size: 36px; margin-bottom: 15px; }
+        .highlight p { font-size: 28px; }
+        .footer { border-top: 3px solid #111; padding-top: 20px; margin-top: 40px; font-size: 24px; color: #666; text-align: center; }
+    .coord{display:none!important;}
+/* === POST-PROCESS: 字号兜底 === */
+.container { font-size: max(14px, 1em); }
+.container h1, .container [class*="title"]:first-child { font-size: max(48px, 1em) !important; }
+.container h2, .container h3 { font-size: max(28px, 1em) !important; }
+.container p, .container li, .container td { font-size: max(20px, 0.9em) !important; }
+.container .coord { display: none !important; }
+</style>
+</head>
+<body>
+    <div class="container">
+        <div class="masthead">
+            <div class="tag">TECH NEWS · March 21, 2026</div>
+            <h1>AI 录音卡片产品架构</h1>
+            <div class="subtitle">北美市场合规优先 · AWS 云架构 · SOC 2/HIPAA 认证</div>
+        </div>
+        <div class="article">
+            <h2 class="headline">M-P-D-G 核心框架</h2>
+            <div class="content">
+                <p><strong>Market 市场：</strong>北美合规驱动市场，政府/金融/医疗强监管行业</p>
+                <p><strong>Product 产品：</strong>云端存储 + 本地加密，混合云架构支持私有部署</p>
+                <p><strong>Data 数据：</strong>数据隔离 + 访问控制，美国境内数据驻留</p>
+                <p><strong>Governance 治理：</strong>SOC 2 + HIPAA 认证，完整审计日志追踪</p>
+            </div>
+        </div>
+        <div class="article">
+            <h2 class="headline">合规认证要求</h2>
+            <div class="content">
+                <p><strong>SOC 2 Type I：</strong>周期 3-4 个月，费用 $30-50K</p>
+                <p><strong>SOC 2 Type II：</strong>周期 6-12 个月，费用 $75-165K</p>
+                <p><strong>HIPAA BAA：</strong>AWS 免费签署，5 分钟完成</p>
+                <p><strong>BIPA/COPPA：</strong>生物识别 + 儿童隐私，$5K-$43K/次罚款</p>
+            </div>
+        </div>
+        <div class="highlight">
+            <h3>投资估算</h3>
+            <p>一次性合规成本：$30-75K · 年度合规维护：$32-65K · AWS 月成本：$1.1K (10K DAU)</p>
+        </div>
+        <div class="footer">AI RECORDING CARD · COMPLIANCE FIRST · 2026</div>
+    </div>
+</body>
+</html>

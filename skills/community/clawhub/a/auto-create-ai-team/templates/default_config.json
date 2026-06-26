@@ -1,0 +1,11 @@
+{
+  "default_team_mode": "single",
+  "auto_detect_project_type": true,
+  "create_progress_file": true,
+  "team_templates": {
+    "generic": {
+      "internal_team": ["AI Assistant", "Data Processor", "Content Generator", "Quality Checker"],
+      "internet_team": ["Product Manager", "Marketing Specialist", "Social Media Operator", "Data Analyst"]
+    }
+  }
+}

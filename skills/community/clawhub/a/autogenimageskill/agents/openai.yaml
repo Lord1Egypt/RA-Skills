@@ -1,0 +1,7 @@
+interface:
+  display_name: "autoGenImageSkill"
+  short_description: "用官方密钥、自定义代理或预留额度生成 GPT Image 图片。"
+  default_prompt: "Use $autoGenImageSkill to generate an image from a prompt through an official API key, a custom Responses-compatible proxy, or reserved purchased capacity."
+
+policy:
+  allow_implicit_invocation: true

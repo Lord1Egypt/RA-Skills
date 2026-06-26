@@ -1,0 +1,19 @@
+name: general-knowledge-worker-zh
+version: v1
+mode: prompt_only
+context_profile:
+  purpose: research, summarization, and planning
+  domain: knowledge work
+  usage_frequency: daily
+models:
+  - example/model-a
+  - example/model-b
+questions:
+  - id: q1
+    title: 每日简报
+    task_type: summary
+    prompt: "请总结今天我所在行业最重要的三条动态，并说明它们为何重要。"
+  - id: q2
+    title: 决策备忘录
+    task_type: analysis
+    prompt: "请为一个预算有限的小团队撰写一份简短的决策备忘录，对比两种可选策略。"

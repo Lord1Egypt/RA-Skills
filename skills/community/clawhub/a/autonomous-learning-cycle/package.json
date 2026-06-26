@@ -1,0 +1,71 @@
+{
+  "name": "autonomous-learning-cycle",
+  "version": "1.0.0",
+  "description": "完整的 17 分钟自主进化循环系统 - Complete 17-minute autonomous learning cycle with confidence scoring, auto skill creation, daily/weekly reflection, and autonomous learning direction generation",
+  "author": "AIGC Autonomous Evolution System",
+  "license": "MIT",
+  "homepage": "https://github.com/huiwentang5/autonomous-learning-cycle",
+  "keywords": [
+    "autonomous",
+    "learning",
+    "evolution",
+    "self-improvement",
+    "reflection",
+    "skill-creation",
+    "automation",
+    "ai-agent"
+  ],
+  "category": "productivity",
+  "main": "init.js",
+  "scripts": {
+    "init": "node init.js",
+    "setup": "node setup-cron.js",
+    "start": "node start.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/huiwentang5/autonomous-learning-cycle"
+  },
+  "bugs": {
+    "url": "https://github.com/huiwentang5/autonomous-learning-cycle/issues"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "clawhub": {
+    "displayName": "Autonomous Learning Cycle",
+    "shortDescription": "17 分钟自主进化循环系统",
+    "features": [
+      "17 分钟自主循环",
+      "自信度评估引擎",
+      "技能自动创建",
+      "每日/每周反思",
+      "学习方向生成",
+      ".learnings/ 结构化日志",
+      "ID 追踪系统 (LRN-XXX)",
+      "智能缝合到 SKILL.md"
+    ],
+    "screenshots": [
+      "screenshots/status.png",
+      "screenshots/reflection.png",
+      "screenshots/learning-direction.png"
+    ],
+    "relatedSkills": [
+      "pskoett/self-improving-agent",
+      "kkkkhazix/skill-evolution-manager",
+      "davidkiss/smart-ai-skills/reflection"
+    ],
+    "targetAudience": [
+      "开发者",
+      "学习者",
+      "项目管理者",
+      "知识管理爱好者"
+    ],
+    "differentiators": [
+      "第一个完整的 17 分钟自主进化系统",
+      "自信度评估引擎（技术壁垒）",
+      "学习方向生成（差异化）",
+      "融合 3 大家头部技能优势"
+    ]
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "name": "bazi-persona",
+  "version": "0.3.0",
+  "private": true,
+  "description": "OpenClaw runtime package for Bazi Persona",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "homepage": "https://clawhub.ai/xiaojxiao2021/bazi-persona",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cantian-ai/bazi-persona-skill.git"
+  },
+  "license": "MIT",
+  "keywords": [
+    "openclaw",
+    "bazi",
+    "persona"
+  ],
+  "scripts": {
+    "bazi": "node dist/cli.js"
+  },
+  "dependencies": {
+    "cantian-tymext": "^0.0.26",
+    "pinyin-pro": "^3.26.0"
+  }
+}

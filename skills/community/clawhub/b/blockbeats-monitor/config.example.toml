@@ -1,0 +1,15 @@
+# 本文件是 BlockBeats 舆情监控的示例配置；复制为 config.toml 后填写真实密钥。
+
+[blockbeats]
+api_key = "填写你的 BlockBeats Pro API Key"
+lang = "cn"
+
+[telegram]
+bot_token = "填写你的 Telegram Bot Token"
+chat_id = "填写你的 Telegram 群、频道或用户 ID"
+
+[storage]
+db_path = "data/blockbeats_monitor.sqlite"
+
+[report]
+timezone = "Asia/Shanghai"

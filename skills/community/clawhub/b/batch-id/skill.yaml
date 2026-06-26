@@ -1,0 +1,22 @@
+name: "batch-id-ocr-to-txt"
+id: "batch-id-ocr-to-txt"
+version: "1.0.2"
+description: "提取最多50张身份证信息并自动生成 .txt 文本文件发送给用户。"
+author: "YourName"
+entry: "main.handler"
+
+config:
+  - name: "tencent-secret-id"
+    label: "腾讯云 SecretId"
+    type: "password"
+    required: true
+  - name: "tencent-secret-key"
+    label: "腾讯云 SecretKey"
+    type: "password"
+    required: true
+
+params:
+  - name: "urls"
+    label: "图片URL列表"
+    type: "array"
+    required: true

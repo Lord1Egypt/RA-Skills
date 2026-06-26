@@ -1,0 +1,50 @@
+{
+  "portrait": {
+    "suffix": "--ar 3:4 --s 150 --raw --v 8",
+    "notes": "Editorial and character portraits. Keeps quality at the model default."
+  },
+  "landscape": {
+    "suffix": "--ar 16:9 --s 100 --raw --v 8",
+    "notes": "Wide scenes, environment concepts, travel-style images. Keeps quality at the model default."
+  },
+  "product": {
+    "suffix": "--ar 1:1 --s 50 --raw --v 8",
+    "notes": "Cleaner product and packshot style outputs. Keeps quality at the model default."
+  },
+  "portrait_clean": {
+    "suffix": "--ar 4:5 --s 75 --raw --v 8",
+    "notes": "Literal portrait preset with less stylization for controllable faces and wardrobe."
+  },
+  "portrait_editorial": {
+    "suffix": "--ar 4:5 --s 200 --raw --v 8",
+    "notes": "More fashion/editorial energy while staying in RAW mode."
+  },
+  "product_clean_square": {
+    "suffix": "--ar 1:1 --s 50 --raw --v 8 --no text, watermark, logo clutter",
+    "notes": "E-commerce friendly square framing with negative terms for common clutter."
+  },
+  "product_editorial": {
+    "suffix": "--ar 4:5 --s 125 --raw --v 8",
+    "notes": "More premium ad-like product look for packaging, cosmetics, and hero shots."
+  },
+  "environment_wide": {
+    "suffix": "--ar 16:9 --s 100 --raw --v 8",
+    "notes": "General environment and cinematic scene preset."
+  },
+  "social_vertical": {
+    "suffix": "--ar 9:16 --s 100 --raw --v 8",
+    "notes": "Vertical mobile-first framing for reels, shorts, and storyboards."
+  },
+  "character_sheet_wide": {
+    "suffix": "--ar 21:9 --s 75 --raw --v 8 --no duplicate body, extra limbs, extra characters, busy background",
+    "notes": "Wide character asset sheet preset for split-view layouts, turnarounds, and design-sheet style outputs."
+  },
+  "concept_variety": {
+    "suffix": "--ar 16:9 --s 100 --c 20 --raw --v 8",
+    "notes": "Adds moderate variety across the 4-image set when exploring directions."
+  },
+  "pattern_tile": {
+    "suffix": "--ar 1:1 --tile --s 100 --raw --v 8",
+    "notes": "Seamless repeat-style pattern exploration."
+  }
+}

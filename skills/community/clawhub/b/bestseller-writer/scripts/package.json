@@ -1,0 +1,15 @@
+{
+  "name": "bestseller-writer-scripts",
+  "version": "1.0.0",
+  "description": "Autonomous book generator scripts",
+  "main": "generate.js",
+  "scripts": {
+    "generate": "node generate.js"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.39.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

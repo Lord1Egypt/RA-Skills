@@ -1,0 +1,24 @@
+{
+  "name": "@bondli-skills/article-collect",
+  "version": "1.0.2",
+  "description": "a simple skill for article collect and knowledge recording by user send url",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "SKILL.md",
+    "README.md"
+  ],
+  "keywords": [
+    "article",
+    "knowledge",
+    "url to knowledge"
+  ],
+  "dependencies": {
+    "@bondli-skills/shared": "^1.0.0",
+    "puppeteer": "^22.0.0",
+    "puppeteer-core": "^22.15.0"
+  },
+  "license": "MIT"
+}

@@ -1,0 +1,13 @@
+{
+  "eval_name": "forward-spec-then-code",
+  "configuration": "with_skill",
+  "expectations": [
+    {"text": "Spec is generated before the implementation (spec-driven development flow)", "passed": true, "evidence": "Separate spec_output.md and implementation.go produced, spec comes first"},
+    {"text": "Spec includes a function signature definition", "passed": true, "evidence": "Spec ends with a complete Go function signature"},
+    {"text": "Spec covers edge cases (empty list, all duplicates, malformed URLs, network timeout)", "passed": true, "evidence": "6 scenarios covering all edge cases"},
+    {"text": "Implementation follows the behavior defined in the spec", "passed": true, "evidence": "Every branch in the implementation corresponds to a scenario in the spec"},
+    {"text": "Implementation follows project conventions", "passed": true, "evidence": "package utils, uses logging library, ctx as first parameter"},
+    {"text": "Spec does not write any files to the project source directory", "passed": true, "evidence": "Output saved only to the workspace outputs directory"},
+    {"text": "Spec stays at function granularity (does not inflate into a module-level design doc)", "passed": true, "evidence": "Spec focuses on a single function's behavior, ~100 lines"}
+  ]
+}

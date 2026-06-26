@@ -1,0 +1,4 @@
+interface:
+  display_name: "美女生成器"
+  short_description: "两轮选项生成成人女性写真，并可续做角色设定参考表"
+  default_prompt: "Use $beauty-generator to guide a short Chinese beauty prompt into two polished adult-female portraits and an optional reference sheet."

@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>任务列表管理 - Nano Banana V2</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f5f7fa;
+            min-height: 100vh;
+            padding: 20px;
+            overflow-y: auto;
+        }
+        
+        body.dark {
+            background: #1a1a2e;
+            color: #fff;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        
+        body.dark .header {
+            border-bottom-color: #374151;
+        }
+        
+        .header h1 {
+            font-size: 20px;
+            font-weight: 600;
+        }
+        
+        .header-actions {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 8px;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .btn-primary {
+            background: #3b82f6;
+            color: #fff;
+        }
+        
+        .btn-primary:hover {
+            background: #2563eb;
+        }
+        
+        .btn-secondary {
+            background: #e5e7eb;
+            color: #374151;
+        }
+        
+        .btn-secondary:hover {
+            background: #d1d5db;
+        }
+        
+        body.dark .btn-secondary {
+            background: #374151;
+            color: #fff;
+        }
+        
+        body.dark .btn-secondary:hover {
+            background: #4b5563;
+        }
+        
+        .btn-danger {
+            background: #ef4444;
+            color: #fff;
+        }
+        
+        .btn-danger:hover {
+            background: #dc2626;
+        }
+        
+        /* 筛选栏 */
+        .filter-bar {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .filter-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .filter-group label {
+            font-size: 13px;
+            color: #6b7280;
+        }
+        
+        .filter-group select,
+        .filter-group input {
+            padding: 6px 12px;
+            border: 1px solid #e5e7eb;
+            border-radius: 6px;
+            font-size: 13px;
+            background: #fff;
+        }
+        
+        body.dark .filter-group select,
+        body.dark .filter-group input {
+            background: #374151;
+            border-color: #4b5563;
+            color: #fff;
+        }
+        
+        /* 表格 */
+        .table-container {
+            background: #fff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        
+        body.dark .table-container {
+            background: #1f2937;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        
+        body.dark th,
+        body.dark td {
+            border-bottom-color: #374151;
+        }
+        
+        th {
+            background: #f9fafb;
+            font-weight: 600;
+            font-size: 13px;
+            color: #374151;
+        }
+        
+        body.dark th {
+            background: #374151;
+            color: #fff;
+        }
+        
+        td {
+            font-size: 13px;
+            color: #4b5563;
+        }
+        
+        body.dark td {
+            color: #d1d5db;
+        }
+        
+        tr:hover {
+            background: #f9fafb;
+        }
+        
+        body.dark tr:hover {
+            background: #374151;
+        }
+        
+        /* 状态标签 */
+        .status-badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 500;
+        }
+        
+        .status-pending {
+            background: #fef3c7;
+            color: #92400e;
+        }
+        
+        .status-completed {
+            background: #d1fae5;
+            color: #065f46;
+        }
+        
+        .status-failed {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+        
+        body.dark .status-pending {
+            background: rgba(251, 191, 36, 0.2);
+            color: #fbbf24;
+        }
+        
+        body.dark .status-completed {
+            background: rgba(16, 185, 129, 0.2);
+            color: #34d399;
+        }
+        
+        body.dark .status-failed {
+            background: rgba(239, 68, 68, 0.2);
+            color: #f87171;
+        }
+        
+        /* 操作按钮 */
+        .action-btns {
+            display: flex;
+            gap: 6px;
+        }
+        
+        .action-btn {
+            padding: 4px 8px;
+            border: none;
+            border-radius: 4px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .action-btn-view {
+            background: #dbeafe;
+            color: #1d4ed8;
+        }
+        
+        .action-btn-folder {
+            background: #fef3c7;
+            color: #92400e;
+        }
+        
+        .action-btn-delete {
+            background: #fee2e2;
+            color: #dc2626;
+        }
+        
+        .action-btn:hover {
+            opacity: 0.8;
+        }
+        
+        /* 缩略图 */
+        .thumb {
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+        
+        .thumb:hover {
+            transform: scale(1.1);
+        }
+        
+        /* 分页 */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin-top: 20px;
+            padding: 15px;
+        }
+        
+        .pagination button {
+            padding: 8px 12px;
+            border: 1px solid #e5e7eb;
+            background: #fff;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+        
+        body.dark .pagination button {
+            background: #374151;
+            border-color: #4b5563;
+            color: #fff;
+        }
+        
+        .pagination button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        .pagination span {
+            font-size: 13px;
+            color: #6b7280;
+        }
+        
+        /* 提示词截断 */
+        .prompt-text {
+            max-width: 300px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        
+        /* 空状态 */
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: #9ca3af;
+        }
+        
+        .empty-state-icon {
+            font-size: 48px;
+            margin-bottom: 16px;
+        }
+        
+        /* 复选框 */
+        .checkbox-cell {
+            width: 40px;
+        }
+        
+        .checkbox-cell input {
+            width: 16px;
+            height: 16px;
+            cursor: pointer;
+        }
+        
+        /* 弹窗样式 */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .modal-overlay.show {
+            opacity: 1;
+        }
+        
+        .modal-box {
+            background: #fff;
+            border-radius: 12px;
+            width: 500px;
+            max-width: 90%;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+        
+        body.dark .modal-box {
+            background: #1f2937;
+        }
+        
+        .modal-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 20px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        
+        body.dark .modal-header {
+            border-bottom-color: #374151;
+        }
+        
+        .modal-header h3 {
+            margin: 0;
+            font-size: 16px;
+        }
+        
+        .modal-close {
+            width: 32px;
+            height: 32px;
+            border: none;
+            background: transparent;
+            font-size: 24px;
+            cursor: pointer;
+            border-radius: 6px;
+        }
+        
+        .modal-close:hover {
+            background: #f3f4f6;
+        }
+        
+        body.dark .modal-close:hover {
+            background: #374151;
+        }
+        
+        .modal-body {
+            padding: 20px;
+        }
+        
+        .form-group {
+            margin-bottom: 16px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 6px;
+            font-size: 13px;
+            font-weight: 500;
+        }
+        
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 13px;
+            background: #fff;
+        }
+        
+        body.dark .form-group input,
+        body.dark .form-group textarea,
+        body.dark .form-group select {
+            background: #374151;
+            border-color: #4b5563;
+            color: #fff;
+        }
+        
+        .form-group textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+        
+        .form-hint {
+            font-size: 12px;
+            color: #6b7280;
+            margin-top: 4px;
+        }
+        
+        .modal-footer {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            padding: 16px 20px;
+            border-top: 1px solid #e5e7eb;
+        }
+        
+        body.dark .modal-footer {
+            border-top-color: #374151;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📋 任务列表管理</h1>
+            <div class="header-actions">
+                <button class="btn btn-primary" onclick="showAddTask()">➕ 添加任务</button>
+                <button class="btn btn-secondary" onclick="refreshList()">🔄 刷新</button>
+                <button class="btn btn-danger" onclick="deleteSelected()">🗑️ 删除选中</button>
+                <button class="btn btn-secondary" onclick="window.location.href='/'">🏠 返回主页</button>
+            </div>
+        </div>
+        
+        <!-- 添加任务弹窗 -->
+        <div class="modal-overlay" id="add-task-modal" style="display: none;">
+            <div class="modal-box">
+                <div class="modal-header">
+                    <h3>➕ 添加任务</h3>
+                    <button class="modal-close" onclick="hideAddTask()">×</button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>Task ID <span style="color: #ef4444;">*</span></label>
+                        <input type="text" id="add-task-id" placeholder="输入任务ID">
+                        <div class="form-hint">从 API 返回的任务ID</div>
+                    </div>
+                    <div class="form-group">
+                        <label>提示词</label>
+                        <textarea id="add-task-prompt" placeholder="输入提示词内容（可选）"></textarea>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+                        <div class="form-group">
+                            <label>比例</label>
+                            <select id="add-task-ratio">
+                                <option value="1:1">1:1 方形</option>
+                                <option value="3:2">3:2 横版</option>
+                                <option value="2:3">2:3 竖版</option>
+                                <option value="16:9">16:9 横屏</option>
+                                <option value="9:16">9:16 竖屏</option>
+                                <option value="4:3">4:3 标准</option>
+                                <option value="3:4">3:4 竖版</option>
+                                <option value="4:5">4:5 照片</option>
+                                <option value="5:4">5:4 照片</option>
+                                <option value="21:9">21:9 超宽</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>切割数量</label>
+                            <select id="add-task-cut">
+                                <option value="1">不切割</option>
+                                <option value="2">2宫格</option>
+                                <option value="4">4宫格</option>
+                                <option value="6">6宫格</option>
+                                <option value="9">9宫格</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" onclick="hideAddTask()">取消</button>
+                    <button class="btn btn-primary" onclick="submitAddTask()">添加任务</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="filter-bar">
+            <div class="filter-group">
+                <label>状态：</label>
+                <select id="filter-status" onchange="filterList()">
+                    <option value="">全部</option>
+                    <option value="10">已完成</option>
+                    <option value="1">处理中</option>
+                    <option value="99">失败</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label>切割：</label>
+                <select id="filter-cut" onchange="filterList()">
+                    <option value="">全部</option>
+                    <option value="1">不切割</option>
+                    <option value="2">2宫格</option>
+                    <option value="4">4宫格</option>
+                    <option value="6">6宫格</option>
+                    <option value="9">9宫格</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label>搜索：</label>
+                <input type="text" id="filter-search" placeholder="搜索提示词..." oninput="filterList()">
+            </div>
+        </div>
+        
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th class="checkbox-cell"><input type="checkbox" id="select-all" onchange="toggleSelectAll()"></th>
+                        <th style="width:60px;">预览</th>
+                        <th>ID</th>
+                        <th>提示词</th>
+                        <th>模型</th>
+                        <th>比例</th>
+                        <th>切割</th>
+                        <th>状态</th>
+                        <th>日期</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody id="list-body">
+                    <!-- 动态填充 -->
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="pagination">
+            <button id="prev-btn" onclick="changePage(-1)">上一页</button>
+            <span id="page-info">第 1 页</span>
+            <button id="next-btn" onclick="changePage(1)">下一页</button>
+        </div>
+    </div>
+    
+    <script src="/js/jquery.min.js"></script>
+    <script>
+        // 状态
+        let allWorks = [];
+        let filteredWorks = [];
+        let currentPage = 1;
+        const pageSize = 20;
+        
+        // 加载列表
+        function loadList() {
+            $.get('/api/works', function(res) {
+                if (res.success) {
+                    allWorks = res.data || [];
+                    filterList();
+                }
+            });
+        }
+        
+        // 筛选
+        function filterList() {
+            const status = $('#filter-status').val();
+            const cut = $('#filter-cut').val();
+            const search = $('#filter-search').val().toLowerCase();
+            
+            filteredWorks = allWorks.filter(w => {
+                if (status && w.state != status) return false;
+                if (cut && w.cut != cut) return false;
+                if (search && !w.prompt?.toLowerCase().includes(search)) return false;
+                return true;
+            });
+            
+            currentPage = 1;
+            renderList();
+        }
+        
+        // 渲染
+        function renderList() {
+            const start = (currentPage - 1) * pageSize;
+            const end = start + pageSize;
+            const pageWorks = filteredWorks.slice(start, end);
+            
+            if (pageWorks.length === 0) {
+                $('#list-body').html(`
+                    <tr>
+                        <td colspan="10">
+                            <div class="empty-state">
+                                <div class="empty-state-icon">📭</div>
+                                <p>暂无数据</p>
+                            </div>
+                        </td>
+                    </tr>
+                `);
+                return;
+            }
+            
+            const html = pageWorks.map(work => {
+                const date = new Date(work.date);
+                const dateStr = `${date.getFullYear()}-${String(date.getMonth()+1).padStart(2,'0')}-${String(date.getDate()).padStart(2,'0')} ${String(date.getHours()).padStart(2,'0')}:${String(date.getMinutes()).padStart(2,'0')}`;
+                
+                let statusText = '';
+                let statusClass = '';
+                if (work.state === 1) {
+                    statusText = '处理中';
+                    statusClass = 'status-pending';
+                } else if (work.state === 10) {
+                    statusText = '已完成';
+                    statusClass = 'status-completed';
+                } else if (work.state === 99) {
+                    statusText = '失败';
+                    statusClass = 'status-failed';
+                }
+                
+                // 缩略图
+                let thumbHtml = '';
+                if (work.state === 10 && work.path) {
+                    let httpPath = work.http_path;
+                    if (!httpPath) {
+                        // 兼容旧数据，尝试转换路径
+                        httpPath = work.path.replace(/^[A-Z]:\\Users\\[^\\]+\\Desktop\\banana2/i, '/images');
+                    }
+                    thumbHtml = `<img src="${httpPath}/thumb.png" class="thumb" onclick="openViewer(${work.id})" onerror="this.onerror=null; this.src='${httpPath}/main.png';">`;
+                }
+                
+                return `
+                    <tr data-id="${work.id}" data-path="${work.path || ''}">
+                        <td class="checkbox-cell"><input type="checkbox" class="row-checkbox" value="${work.id}"></td>
+                        <td>${thumbHtml}</td>
+                        <td>${work.id}</td>
+                        <td class="prompt-text" title="${work.prompt || ''}">${work.prompt || '-'}</td>
+                        <td>${work.model || '-'}</td>
+                        <td>${work.ratio || '-'}</td>
+                        <td>${work.cut > 1 ? work.cut + '宫格' : '-'}</td>
+                        <td><span class="status-badge ${statusClass}">${statusText}</span></td>
+                        <td>${dateStr}</td>
+                        <td>
+                            <div class="action-btns">
+                                ${work.state === 10 ? `<button class="action-btn action-btn-view" onclick="openViewer(${work.id})">👁️</button>` : ''}
+                                ${work.path ? `<button class="action-btn action-btn-folder" data-path="${work.path}">📁</button>` : ''}
+                                <button class="action-btn action-btn-delete" onclick="deleteWork(${work.id})">🗑️</button>
+                            </div>
+                        </td>
+                    </tr>
+                `;
+            }).join('');
+            
+            $('#list-body').html(html);
+            updatePagination();
+        }
+        
+        // 分页
+        function updatePagination() {
+            const totalPages = Math.ceil(filteredWorks.length / pageSize);
+            $('#page-info').text(`第 ${currentPage} / ${totalPages || 1} 页 (共 ${filteredWorks.length} 条)`);
+            $('#prev-btn').prop('disabled', currentPage <= 1);
+            $('#next-btn').prop('disabled', currentPage >= totalPages);
+        }
+        
+        function changePage(delta) {
+            const totalPages = Math.ceil(filteredWorks.length / pageSize);
+            currentPage = Math.max(1, Math.min(totalPages, currentPage + delta));
+            renderList();
+        }
+        
+        // 全选
+        function toggleSelectAll() {
+            const checked = $('#select-all').prop('checked');
+            $('.row-checkbox').prop('checked', checked);
+        }
+        
+        // 刷新
+        function refreshList() {
+            loadList();
+        }
+        
+        // 查看图片
+        function viewImage(src) {
+            window.open(src, '_blank');
+        }
+        
+        // 打开查看器
+        function openViewer(id) {
+            window._winViewerId = id;
+            // 加载 viewer 组件
+            $.get('/components/viewer.html', function(html) {
+                // 移除旧的 viewer
+                $('#viewer-layer').remove();
+                // 插入新的 viewer
+                $('body').append(html);
+            });
+        }
+        
+        // 查看任务
+        function viewWork(id) {
+            window.location.href = `/?view=${id}`;
+        }
+        
+        // 打开文件夹
+        function openFolder(folderPath) {
+            $.ajax({
+                url: '/api/open-folder',
+                type: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify({ path: folderPath }),
+                success: function(res) {
+                    if (!res.success) {
+                        alert('打开失败: ' + res.error);
+                    }
+                    // 成功时不提示
+                },
+                error: function(xhr) {
+                    alert('打开失败: ' + (xhr.responseJSON?.error || '网络错误'));
+                }
+            });
+        }
+        
+        // 删除单个
+        function deleteWork(id) {
+            if (!confirm('确定要删除这条记录吗？')) return;
+            
+            $.post(`/api/admin/delete/${id}`, function(res) {
+                if (res.success) {
+                    loadList();
+                } else {
+                    alert('删除失败: ' + res.error);
+                }
+            });
+        }
+        
+        // 删除选中
+        function deleteSelected() {
+            const ids = [];
+            $('.row-checkbox:checked').each(function() {
+                ids.push($(this).val());
+            });
+            
+            if (ids.length === 0) {
+                alert('请先选择要删除的记录');
+                return;
+            }
+            
+            if (!confirm(`确定要删除选中的 ${ids.length} 条记录吗？`)) return;
+            
+            // 逐个删除
+            let deleted = 0;
+            ids.forEach(id => {
+                $.post(`/api/admin/delete/${id}`, function(res) {
+                    deleted++;
+                    if (deleted === ids.length) {
+                        loadList();
+                    }
+                });
+            });
+        }
+        
+        // 事件委托 - 打开文件夹按钮
+        $(document).on('click', '.action-btn-folder', function() {
+            const folderPath = $(this).data('path');
+            if (folderPath) {
+                openFolder(folderPath);
+            }
+        });
+        
+        // 显示添加任务弹窗
+        function showAddTask() {
+            $('#add-task-modal').show().addClass('show');
+            $('#add-task-id').val('');
+            $('#add-task-cut').val('1');
+            $('#add-task-ratio').val('1:1');
+            $('#add-task-prompt').val('');
+        }
+        
+        // 隐藏添加任务弹窗
+        function hideAddTask() {
+            $('#add-task-modal').removeClass('show');
+            setTimeout(() => {
+                $('#add-task-modal').hide();
+            }, 300);
+        }
+        
+        // 提交添加任务
+        function submitAddTask() {
+            const taskId = $('#add-task-id').val().trim();
+            const cut = parseInt($('#add-task-cut').val()) || 1;
+            const ratio = $('#add-task-ratio').val() || '1:1';
+            const prompt = $('#add-task-prompt').val().trim();
+            
+            if (!taskId) {
+                alert('请输入 Task ID');
+                return;
+            }
+            
+            // 从 localStorage 获取 API Key
+            const apiKey = localStorage.getItem('banana_api_key') || '';
+            const platformToken = localStorage.getItem('banana_platform_token') || '';
+            const modelApiKey = localStorage.getItem('banana_model_api_key') || '';
+            const savePath = localStorage.getItem('banana_save_path') || '';
+            
+            if (!apiKey) {
+                alert('请先在主页配置 API Key');
+                return;
+            }
+            
+            $.ajax({
+                url: '/api/tasks/add',
+                type: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify({
+                    task_id: taskId,
+                    cut: cut,
+                    ratio: ratio,
+                    prompt: prompt,
+                    api_key: apiKey,
+                    platform_token: platformToken,
+                    model_api_key: modelApiKey,
+                    save_path: savePath
+                }),
+                success: function(res) {
+                    if (res.success) {
+                        alert('任务添加成功！');
+                        hideAddTask();
+                        loadList();
+                    } else {
+                        alert('添加失败: ' + res.error);
+                    }
+                },
+                error: function(xhr) {
+                    alert('添加失败: ' + (xhr.responseJSON?.error || xhr.statusText));
+                }
+            });
+        }
+        
+        // 初始化
+        loadList();
+    </script>
+</body>
+</html>

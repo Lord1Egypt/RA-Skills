@@ -1,0 +1,186 @@
+{
+  "name": "ASIN视频生成-预览版",
+  "nodes": [
+    {
+      "parameters": {},
+      "name": "触发器",
+      "type": "n8n-nodes-base.manualTrigger",
+      "position": [250, 300]
+    },
+    {
+      "parameters": {
+        "operation": "read",
+        "documentId": "={{ $env.GOOGLE_SHEETS_ID }}",
+        "sheetName": "ASIN列表",
+        "range": "A:F"
+      },
+      "name": "读取Google Sheets",
+      "type": "n8n-nodes-base.googleSheets",
+      "position": [450, 300],
+      "credentials": {
+        "googleSheetsOAuth2Api": "googleSheetsOAuth2"
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "cond-1",
+              "leftValue": "={{ $json['视频链接'] }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        }
+      },
+      "name": "筛选未生成视频",
+      "type": "n8n-nodes-base.if",
+      "position": [650, 300]
+    },
+    {
+      "parameters": {
+        "url": "https://api.apify.com/v2/acts/epctex~amazon-product-scraper/run-sync-get-dataset-items",
+        "method": "POST",
+        "body": {
+          "asin": "={{ $json['ASIN'] }}",
+          "country": "US"
+        },
+        "options": {}
+      },
+      "name": "Apify抓取产品",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [850, 200],
+      "credentials": {
+        "httpHeaderAuth": "apifyApiKey"
+      }
+    },
+    {
+      "parameters": {
+        "operation": "upload",
+        "requestOptions": {
+          "url": "https://api.topview.ai/v1/m2v/image/upload",
+          "headers": {
+            "Authorization": "Bearer {{ $credentials.topviewApiKey }}"
+          }
+        }
+      },
+      "name": "上传图片到Topview",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [1050, 200]
+    },
+    {
+      "parameters": {
+        "url": "https://api.topview.ai/v1/m2v/task",
+        "method": "POST",
+        "body": {
+          "script_id": "marketing_template_01",
+          "images": ["={{ $json.image_url }}"],
+          "texts": ["={{ $json.title }}"],
+          "product_info": "={{ $json.description }}"
+        },
+        "options": {
+          "headers": {
+            "Authorization": "Bearer {{ $credentials.topviewApiKey }}"
+          }
+        }
+      },
+      "name": "提交视频任务",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [1250, 200]
+    },
+    {
+      "parameters": {
+        "amount": 5,
+        "unit": "minutes"
+      },
+      "name": "等待5分钟",
+      "type": "n8n-nodes-base.wait",
+      "position": [1450, 200]
+    },
+    {
+      "parameters": {
+        "url": "https://api.topview.ai/v1/m2v/task/{{ $json.task_id }}",
+        "options": {
+          "headers": {
+            "Authorization": "Bearer {{ $credentials.topviewApiKey }}"
+          }
+        }
+      },
+      "name": "查询任务状态",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [1650, 200]
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": "={{ $env.GOOGLE_SHEETS_ID }}",
+        "sheetName": "ASIN列表",
+        "range": "A:F",
+        "dataMode": "autoMapInputData",
+        "options": {}
+      },
+      "name": "回填视频链接",
+      "type": "n8n-nodes-base.googleSheets",
+      "position": [1850, 200],
+      "credentials": {
+        "googleSheetsOAuth2Api": "googleSheetsOAuth2"
+      }
+    }
+  ],
+  "connections": {
+    "触发器": {
+      "main": [
+        [{"node": "读取Google Sheets", "type": "main", "index": 0}]
+      ]
+    },
+    "读取Google Sheets": {
+      "main": [
+        [{"node": "筛选未生成视频", "type": "main", "index": 0}]
+      ]
+    },
+    "筛选未生成视频": {
+      "main": [
+        [{"node": "Apify抓取产品", "type": "main", "index": 0}],
+        []
+      ]
+    },
+    "Apify抓取产品": {
+      "main": [
+        [{"node": "上传图片到Topview", "type": "main", "index": 0}]
+      ]
+    },
+    "上传图片到Topview": {
+      "main": [
+        [{"node": "提交视频任务", "type": "main", "index": 0}]
+      ]
+    },
+    "提交视频任务": {
+      "main": [
+        [{"node": "等待5分钟", "type": "main", "index": 0}]
+      ]
+    },
+    "等待5分钟": {
+      "main": [
+        [{"node": "查询任务状态", "type": "main", "index": 0}]
+      ]
+    },
+    "查询任务状态": {
+      "main": [
+        [{"node": "回填视频链接", "type": "main", "index": 0}]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  }
+}

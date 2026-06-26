@@ -1,35 +1,31 @@
----
-name: "bilibili-search"
-description: "Real-time Bilibili video search that retrieves and extracts top trending video titles as structured JSON via a local API."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/bilibili-searchc"
-sourceUrl: "https://clawhub.ai/skills/bilibili-searchc"
----
+# Bilibili 热门视频实时搜索与分析技能 (Bilibili Search Skill)
 
-# bilibili-search
+## 🌟 技能简介 (Introduction)
+这是一个专为 AI 代理 (Agent) 打造的 Bilibili (B站) 数据获取与分析插件。
+大模型通常受限于训练数据的知识截止日期，无法获取当天的互联网热点。本技能通过调用本地部署的 Python 自动化接口 (基于 Playwright 和 FastAPI)，让大模型能够实时检索 B 站的最新视频和全站热门内容，从而填补 AI 在时效性上的短板。
 
-> Real-time Bilibili video search that retrieves and extracts top trending video titles as structured JSON via a local API.
+## 🎯 核心功能 (Key Features)
+* **实时检索**：根据大模型传入的关键词（如“具身智能”、“人形机器人”），实时去 B 站进行搜索。
+* **精准去重与提取**：跳过广告和无关信息，精准提取搜索结果中排名前列的视频标题。
+* **JSON 结构化输出**：将爬取到的非结构化网页数据转化为标准 JSON 格式，方便大模型进行二次语义分析和内容提炼。
+* **静默运行**：底层采用 Headless 无头浏览器模式，完全在后台执行，不会干扰用户的桌面操作。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/bilibili-searchc`
-- **Source URL:** [https://clawhub.ai/skills/bilibili-searchc](https://clawhub.ai/skills/bilibili-searchc)
+## 💡 典型使用场景与提示词 (Use Cases & Example Prompts)
+当您在聊天框中与 AI 代理沟通时，可以使用以下提示词直接触发本技能：
 
-## Overview
+1. **行业热点追踪**：
+   > "请帮我调用 Bilibili 搜索技能，查一下今天关于‘具身智能’最新的 5 个爆款视频，并总结一下大家都在关注什么技术点？"
+2. **特定 UP 主动态**：
+   > "用 B站搜索查一下‘波士顿动力’最近发布的视频标题。"
+3. **竞品分析**：
+   > "搜索一下‘宇树科技’，看看他们最新的机器狗测试视频有哪些？"
 
+## 🛠️ 环境依赖与运行说明 (Prerequisites)
+**注意**：本技能非纯云端应用，它依赖于您本地电脑或服务器上运行的专属 API 服务。
+在使用本技能前，请确保：
+1. 本地的 FastAPI 服务 (`skill_api.py`) 已经成功启动。
+2. 终端显示 `Uvicorn running on http://127.0.0.1:8000`。
+3. 本地环境已正确安装 `playwright` 并下载了对应的 Chromium 浏览器内核。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/bilibili-searchc
-```
+## 📝 更新日志 (Changelog)
+* **v1.0.0**: 初始版本发布，支持基础关键词搜索与标题提取。

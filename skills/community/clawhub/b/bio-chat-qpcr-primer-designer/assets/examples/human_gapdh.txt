@@ -1,0 +1,64 @@
+Fetching sequence for NM_001256799...
+Fetching exon annotation for NM_001256799...
+Found 7 exon junctions.
+Searching for highly specific primer/probe sets...
+Found 5 valid assay designs. Showing top 3:
+[
+  {
+    "Amplicon_Size": 171,
+    "gDNA_Safe": "Yes",
+    "F_Primer": {
+      "seq": "GGAAATGAATGGGCAGCCG",
+      "tm": 60.0,
+      "len": 19
+    },
+    "R_Primer": {
+      "seq": "CCAATACGACCAAATCAGAGAA",
+      "tm": 62.0,
+      "len": 22
+    },
+    "Probe": {
+      "seq": "CCCTGCGCTCCTGCCTCG",
+      "tm": 64.0,
+      "len": 18
+    }
+  },
+  {
+    "Amplicon_Size": 170,
+    "gDNA_Safe": "Yes",
+    "F_Primer": {
+      "seq": "GAAATGAATGGGCAGCCGT",
+      "tm": 58.0,
+      "len": 19
+    },
+    "R_Primer": {
+      "seq": "CCAATACGACCAAATCAGAGA",
+      "tm": 60.0,
+      "len": 21
+    },
+    "Probe": {
+      "seq": "ACCCTGCGCTCCTGCCTC",
+      "tm": 62.0,
+      "len": 18
+    }
+  },
+  {
+    "Amplicon_Size": 170,
+    "gDNA_Safe": "Yes",
+    "F_Primer": {
+      "seq": "GAAATGAATGGGCAGCCGT",
+      "tm": 58.0,
+      "len": 19
+    },
+    "R_Primer": {
+      "seq": "CCAATACGACCAAATCAGAGAA",
+      "tm": 62.0,
+      "len": 22
+    },
+    "Probe": {
+      "seq": "ACCCTGCGCTCCTGCCTC",
+      "tm": 62.0,
+      "len": 18
+    }
+  }
+]

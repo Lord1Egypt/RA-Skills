@@ -1,0 +1,34 @@
+{
+  "name": "auto-skill-loader",
+  "version": "2.0.1",
+  "description": "自动检测任务类型，动态加载对应 Skill。支持 Skill 分级保护（core/protected/dynamic），即插即用零配置。",
+  "main": "auto-skill-loader.js",
+  "keywords": [
+    "openclaw",
+    "skill",
+    "auto-load",
+    "dynamic",
+    "agent",
+    "routing"
+  ],
+  "author": "E姐",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/auto-skill-loader"
+  },
+  "engines": {
+    "openclaw": ">=2026.3.0"
+  },
+  "files": [
+    "SKILL.md",
+    "auto-skill-loader.js",
+    "yaml-lite.js",
+    "auto-skill-loader.config.yaml",
+    "scripts/"
+  ],
+  "clawhub": {
+    "entry": "SKILL.md",
+    "installPath": "~/.agents/skills/auto-skill-loader"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "slug": "arabic-english-explainer-skill",
+  "name": "Arabic English Explainer Skill",
+  "version": "0.1.0",
+  "tags": [
+    "arabic-english-explainer",
+    "language",
+    "openclaw",
+    "templates"
+  ],
+  "category": "Language Learning",
+  "changelog": [
+    {
+      "version": "0.1.0",
+      "date": "2026-06-07",
+      "notes": "Generated from local idea bank (no AI). Pending Telegram approval."
+    }
+  ]
+}

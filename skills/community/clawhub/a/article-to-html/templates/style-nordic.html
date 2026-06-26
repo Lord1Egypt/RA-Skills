@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Agent认知：OS与Application</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  .coord { display: none; }
+
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    padding: 40px 20px;
+    background: #E8E6E1;
+    font-family: 'Inter', sans-serif;
+    color: #2C2C2C;
+  }
+
+  .container {
+    width: 1080px;
+    min-height: 1440px;
+    background: #FAFAF8;
+    position: relative;
+    
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* ===== HEADER (MOD-1) ===== */
+  .header {
+    padding: 52px 72px 40px;
+    position: relative;
+  }
+  .header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 28px;
+  }
+  .header-tag {
+    font-family: 'Outfit', sans-serif;
+    font-size: 24px;
+    font-weight: 500;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: #6B7F5E;
+  }
+  .header-date {
+    font-family: 'Inter', sans-serif;
+    font-size: 24px;
+    font-weight: 400;
+    color: #AAAAAA;
+    letter-spacing: 2px;
+  }
+  .header h1 {
+    font-family: 'Outfit', sans-serif;
+    font-size: 74px;
+    font-weight: 700;
+    color: #2C2C2C;
+    line-height: 1.12;
+    margin-bottom: 18px;
+    letter-spacing: -0.5px;
+  }
+  .header .lead {
+    font-size: 30px;
+    font-weight: 300;
+    color: #888;
+    line-height: 1.65;
+    max-width: 880px;
+  }
+  .header-line {
+    position: absolute;
+    bottom: 0;
+    left: 72px;
+    right: 72px;
+    height: 1px;
+    background: #E0DDD8;
+  }
+
+  /* ===== OPTION GRID (MOD-2) ===== */
+  .option-grid {
+    padding: 32px 72px 28px;
+    position: relative;
+  }
+  .section-label {
+    font-family: 'Outfit', sans-serif;
+    font-size: 20px;
+    font-weight: 500;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: #B0A898;
+    margin-bottom: 16px;
+  }
+  .grid-wrap {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+  .grid-card {
+    background: #F4F2EE;
+    border-radius: 12px;
+    padding: 26px 22px;
+    position: relative;
+  }
+  .grid-card.featured {
+    background: #6B7F5E;
+    color: #FAFAF8;
+  }
+  .grid-card-num {
+    font-family: 'Outfit', sans-serif;
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: 6px;
+    color: #2C2C2C;
+  }
+  .grid-card.featured .grid-card-num { color: #FAFAF8; }
+  .grid-card-title {
+    font-family: 'Outfit', sans-serif;
+    font-size: 32px;
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: #2C2C2C;
+  }
+  .grid-card.featured .grid-card-title { color: #FAFAF8; }
+  .grid-card-desc {
+    font-size: 24px;
+    font-weight: 300;
+    color: #888;
+    line-height: 1.45;
+  }
+  .grid-card.featured .grid-card-desc { color: rgba(250,250,248,0.7); }
+  .grid-divider {
+    margin: 0 72px;
+    height: 1px;
+    background: #E0DDD8;
+  }
+
+  /* ===== COMPARISON (MOD-3) ===== */
+  .comparison {
+    padding: 28px 72px 22px;
+    position: relative;
+  }
+  .compare-header {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr 1fr;
+    gap: 0;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #E0DDD8;
+    margin-bottom: 2px;
+  }
+  .compare-header span {
+    font-family: 'Outfit', sans-serif;
+    font-size: 22px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #B0A898;
+  }
+  .compare-header span:not(:first-child) { text-align: center; }
+  .compare-row {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr 1fr;
+    gap: 0;
+    padding: 11px 0;
+    border-bottom: 1px solid #F0EEEA;
+    align-items: center;
+  }
+  .compare-row:last-child { border-bottom: none; }
+  .compare-label {
+    font-size: 28px;
+    font-weight: 400;
+    color: #555;
+  }
+  .compare-val {
+    text-align: center;
+    font-family: 'Outfit', sans-serif;
+    font-size: 24px;
+    font-weight: 500;
+  }
+  .compare-pip {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-right: 5px;
+    vertical-align: middle;
+    position: relative;
+    top: -1px;
+  }
+  .pip-green { background: #6B7F5E; }
+  .pip-amber { background: #D4B896; }
+  .pip-red   { background: #C4654A; }
+
+  /* ===== MIDDLE AREA: DEEP ANALYSIS + SCENARIO ===== */
+  .mid-area {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    flex: 1;
+    position: relative;
+  }
+  .mid-divider-h {
+    position: absolute;
+    top: 0;
+    left: 72px;
+    right: 72px;
+    height: 1px;
+    background: #E0DDD8;
+  }
+  .mid-divider-v {
+    position: absolute;
+    top: 28px;
+    bottom: 28px;
+    left: 50%;
+    width: 1px;
+    background: #E0DDD8;
+  }
+
+  /* ===== DEEP ANALYSIS (MOD-4) ===== */
+  .deep-analysis {
+    padding: 28px 32px 28px 72px;
+  }
+  .deep-analysis h3 {
+    font-family: 'Outfit', sans-serif;
+    font-size: 40px;
+    font-weight: 600;
+    color: #2C2C2C;
+    margin-bottom: 12px;
+    line-height: 1.2;
+  }
+  .deep-analysis p {
+    font-size: 26px;
+    font-weight: 300;
+    color: #666;
+    line-height: 1.65;
+    margin-bottom: 12px;
+  }
+  .deep-analysis .em-mark {
+    background: linear-gradient(180deg, transparent 60%, rgba(212,184,150,0.35) 60%);
+    padding: 0 2px;
+  }
+  .deep-stat-row {
+    display: flex;
+    gap: 16px;
+    margin-top: 14px;
+  }
+  .deep-stat {
+    flex: 1;
+    padding: 14px;
+    background: #F4F2EE;
+    border-radius: 8px;
+  }
+  .deep-stat-num {
+    font-family: 'Outfit', sans-serif;
+    font-size: 44px;
+    font-weight: 700;
+    color: #C4654A;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .deep-stat-label {
+    font-size: 22px;
+    font-weight: 400;
+    color: #999;
+  }
+
+  /* ===== SCENARIO CARDS (MOD-5) ===== */
+  .scenarios {
+    padding: 28px 72px 28px 32px;
+  }
+  .scenario-card {
+    padding: 18px 20px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    position: relative;
+    border: 1px solid #ECEAE6;
+    background: #FAFAF8;
+  }
+  .scenario-card:last-child { margin-bottom: 0; }
+  .scenario-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    margin-bottom: 8px;
+  }
+  .scenario-icon.icon-a { background: rgba(107,127,94,0.12); }
+  .scenario-icon.icon-b { background: rgba(212,184,150,0.25); }
+  .scenario-icon.icon-c { background: rgba(196,101,74,0.12); }
+  .scenario-card h4 {
+    font-family: 'Outfit', sans-serif;
+    font-size: 30px;
+    font-weight: 600;
+    color: #2C2C2C;
+    margin-bottom: 4px;
+  }
+  .scenario-card p {
+    font-size: 24px;
+    font-weight: 300;
+    color: #888;
+    line-height: 1.5;
+  }
+  .scenario-tag {
+    display: inline-block;
+    font-size: 20px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    padding: 3px 12px;
+    border-radius: 20px;
+    margin-top: 6px;
+  }
+  .tag-green  { background: rgba(107,127,94,0.12); color: #6B7F5E; }
+  .tag-amber  { background: rgba(212,184,150,0.25); color: #A08A6F; }
+  .tag-red    { background: rgba(196,101,74,0.12); color: #C4654A; }
+
+  /* ===== WARNING (MOD-6) ===== */
+  .warning-strip {
+    margin: 0 72px;
+    background: #2C2C2C;
+    border-radius: 12px;
+    padding: 24px 28px;
+    display: flex;
+    gap: 24px;
+    align-items: flex-start;
+    position: relative;
+  }
+  .warning-badge {
+    flex-shrink: 0;
+    width: 52px;
+    height: 52px;
+    border-radius: 10px;
+    background: #C4654A;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Outfit', sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: #fff;
+  }
+  .warning-content { flex: 1; }
+  .warning-content h4 {
+    font-family: 'Outfit', sans-serif;
+    font-size: 30px;
+    font-weight: 600;
+    color: #FAFAF8;
+    margin-bottom: 10px;
+  }
+  .warning-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .warning-list li {
+    font-size: 24px;
+    font-weight: 300;
+    color: rgba(250,250,248,0.7);
+    line-height: 1.55;
+    padding-left: 22px;
+    position: relative;
+  }
+  .warning-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 12px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #C4654A;
+  }
+
+  /* ===== BOTTOM SUMMARY (MOD-7) ===== */
+  .summary {
+    padding: 20px 72px 32px;
+    position: relative;
+  }
+  .summary-line {
+    height: 1px;
+    background: #E0DDD8;
+    margin-bottom: 18px;
+  }
+  .summary-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-bottom: 18px;
+  }
+  .summary-item {
+    text-align: center;
+    padding: 18px 12px;
+    background: #F4F2EE;
+    border-radius: 10px;
+  }
+  .summary-item-num {
+    font-family: 'Outfit', sans-serif;
+    font-size: 64px;
+    font-weight: 700;
+    color: #2C2C2C;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .summary-item-num .unit {
+    font-size: 28px;
+    font-weight: 400;
+    color: #B0A898;
+    margin-left: 2px;
+  }
+  .summary-item:first-child .summary-item-num { color: #6B7F5E; }
+  .summary-item-label {
+    font-size: 22px;
+    font-weight: 400;
+    color: #999;
+    letter-spacing: 0.5px;
+  }
+
+  /* Footer */
+  .footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .footer-left,
+  .footer-right {
+    font-size: 20px;
+    font-weight: 400;
+    color: #C0BBB4;
+    letter-spacing: 2px;
+  }
+  .footer-center {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .footer-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: #D4B896;
+  }
+  .footer-line {
+    width: 32px;
+    height: 1px;
+    background: #D4B896;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- MOD-1: HEADER -->
+  <div class="header">
+    <span class="coord">SEC-00</span>
+    <div class="header-top">
+      <span class="header-tag">Insight</span>
+      <span class="header-date">2026 · 03</span>
+    </div>
+    <h1>Agent认知：OS与Application</h1>
+    <p class="lead">垂类不应该做Agent，应该做Agent上面的应用。从Prompt到Script到Application，是逐步把复杂度搬到Agent外部的过程。</p>
+    <div class="header-line"></div>
+  </div>
+
+  <!-- MOD-2: OPTION GRID — 三层光谱 -->
+  <div class="option-grid">
+    <span class="coord">A-01</span>
+    <div class="section-label">三层光谱</div>
+    <div class="grid-wrap">
+      <div class="grid-card">
+        <div class="grid-card-num">01</div>
+        <div class="grid-card-title">Prompt 指令</div>
+        <div class="grid-card-desc">给Agent点拨方向，但活还是Agent干，带宽不减。文本可复制，壁垒为零。</div>
+      </div>
+      <div class="grid-card">
+        <div class="grid-card-num">02</div>
+        <div class="grid-card-title">Script 工具</div>
+        <div class="grid-card-desc">外部代劳返回结果，带宽降低。但没有外部状态，逻辑可复现，壁垒低。</div>
+      </div>
+      <div class="grid-card featured">
+        <div class="grid-card-num">03</div>
+        <div class="grid-card-title">Application</div>
+        <div class="grid-card-desc">外部代劳＋持久状态＋基础设施，带宽和容量都大幅降低。不可复制。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid-divider"></div>
+
+  <!-- MOD-3: COMPARISON — 各层对比 -->
+  <div class="comparison">
+    <span class="coord">B-05</span>
+    <div class="section-label">Comparison</div>
+    <div class="compare-header">
+      <span>维度</span>
+      <span>Prompt</span>
+      <span>Script</span>
+      <span>Application</span>
+    </div>
+    <div class="compare-row">
+      <span class="compare-label">壁垒</span>
+      <span class="compare-val"><span class="compare-pip pip-red"></span>零</span>
+      <span class="compare-val"><span class="compare-pip pip-amber"></span>低</span>
+      <span class="compare-val"><span class="compare-pip pip-green"></span>高</span>
+    </div>
+    <div class="compare-row">
+      <span class="compare-label">带宽释放</span>
+      <span class="compare-val"><span class="compare-pip pip-red"></span>无</span>
+      <span class="compare-val"><span class="compare-pip pip-amber"></span>部分</span>
+      <span class="compare-val"><span class="compare-pip pip-green"></span>大幅</span>
+    </div>
+    <div class="compare-row">
+      <span class="compare-label">可复制性</span>
+      <span class="compare-val"><span class="compare-pip pip-red"></span>一键</span>
+      <span class="compare-val"><span class="compare-pip pip-amber"></span>可复现</span>
+      <span class="compare-val"><span class="compare-pip pip-green"></span>不可</span>
+    </div>
+    <div class="compare-row">
+      <span class="compare-label">价值天花板</span>
+      <span class="compare-val"><span class="compare-pip pip-red"></span>卖copy</span>
+      <span class="compare-val"><span class="compare-pip pip-amber"></span>卖copy</span>
+      <span class="compare-val"><span class="compare-pip pip-green"></span>卖服务</span>
+    </div>
+  </div>
+
+  <!-- MID AREA: MOD-4 + MOD-5 -->
+  <div class="mid-area">
+    <div class="mid-divider-h"></div>
+    <div class="mid-divider-v"></div>
+
+    <!-- MOD-4: DEEP ANALYSIS — 认知共生 -->
+    <div class="deep-analysis">
+      <span class="coord">C-12</span>
+      <div class="section-label">Analysis</div>
+      <h3>认知共生：Application让OS更聪明</h3>
+      <p>
+        好的Application把领域推理从Agent注意力里搬走，<span class="em-mark">干扰消失，其他任务更准</span>，于是更精准地调用更多Application，飞轮转起来。
+      </p>
+      <div class="deep-stat-row">
+        <div class="deep-stat">
+          <div class="deep-stat-num">2</div>
+          <div class="deep-stat-label">物理约束：容量 + 带宽</div>
+        </div>
+        <div class="deep-stat">
+          <div class="deep-stat-num">3</div>
+          <div class="deep-stat-label">不可复制：状态·设施·规模</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MOD-5: SCENARIO CARDS — 两种价值 -->
+    <div class="scenarios">
+      <span class="coord">D-03</span>
+      <div class="section-label">两种价值</div>
+      <div class="scenario-card">
+        <div class="scenario-icon icon-a">🔓</div>
+        <h4>能力解锁</h4>
+        <p>突破上下文容量——塞不进context的领域知识，Application在外面管着，调一下就能用</p>
+        <span class="scenario-tag tag-green">破容量瓶颈</span>
+      </div>
+      <div class="scenario-card">
+        <div class="scenario-icon icon-b">🧠</div>
+        <h4>认知卸载</h4>
+        <p>释放注意力带宽——领域推理搬到外部，不再跟其他任务打架，每件事都做得更准</p>
+        <span class="scenario-tag tag-amber">释放带宽</span>
+      </div>
+      <div class="scenario-card">
+        <div class="scenario-icon icon-c">♻️</div>
+        <h4>飞轮效应</h4>
+        <p>OS越轻表现越好，更精准调用Application，Application获得更多数据，搬走更多认知负荷</p>
+        <span class="scenario-tag tag-red">认知共生</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- MOD-6: WARNING — 垂类做OS的致命原因 -->
+  <div style="padding: 14px 0 0;">
+    <span class="coord">E-08</span>
+    <div class="warning-strip">
+      <div class="warning-badge">!</div>
+      <div class="warning-content">
+        <h4>垂类做OS的三个致命原因</h4>
+        <ul class="warning-list">
+          <li>战场错位——Agent战场是推理能力和编排效率，垂类的领域深度在OS战场上一点用都没有</li>
+          <li>市场收敛——OS层天然赢家通吃，PC两个、移动两个，Agent不会有几十个赢家</li>
+          <li>机会成本——花三年正面硬刚，本可以在自己领域建一座别人进不来的根据地</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- MOD-7: BOTTOM SUMMARY -->
+  <div class="summary">
+    <span class="coord">F-15</span>
+    <div class="summary-line"></div>
+    <div class="summary-grid">
+      <div class="summary-item">
+        <div class="summary-item-num" style="color: #6B7F5E;">OS</div>
+        <div class="summary-item-label">命题是 WHAT · 做什么</div>
+      </div>
+      <div class="summary-item">
+        <div class="summary-item-num">App</div>
+        <div class="summary-item-label">命题是 HOW · 怎么做</div>
+      </div>
+      <div class="summary-item">
+        <div class="summary-item-num" style="color: #C4654A; font-size: 38px; line-height: 1.65;">No ctx</div>
+        <div class="summary-item-label">最好的上下文是没有上下文</div>
+      </div>
+    </div>
+    <div class="footer">
+      <span class="footer-left">AGENT INSIGHT</span>
+      <div class="footer-center">
+        <div class="footer-line"></div>
+        <div class="footer-dot"></div>
+        <div class="footer-line"></div>
+      </div>
+      <span class="footer-right">NORDIC · 2026</span>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

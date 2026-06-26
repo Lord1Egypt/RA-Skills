@@ -1,35 +1,45 @@
 ---
-name: "Audio To Text Caption"
-description: "Turn creator audio into clean text captions for ecommerce content and reuse. Use when teams need fast transcript-to-caption workflows."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/audio-to-text-caption"
-sourceUrl: "https://clawhub.ai/skills/audio-to-text-caption"
+name: audio-to-text-caption
+description: Turn creator audio into clean text captions for ecommerce content and reuse. Use when teams need fast transcript-to-caption workflows.
 ---
 
-# Audio To Text Caption
+# Audio to Text Caption
 
-> Turn creator audio into clean text captions for ecommerce content and reuse. Use when teams need fast transcript-to-caption workflows.
+## Skill Card
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/audio-to-text-caption`
-- **Source URL:** [https://clawhub.ai/skills/audio-to-text-caption](https://clawhub.ai/skills/audio-to-text-caption)
+- **Category:** Image & Media Tools
+- **Core problem:** Teams lose time turning creator audio into usable captions and text drafts.
+- **Best for:** Short-video, live clip, and repurposing workflows.
+- **Expected input:** Audio source, language, output goal, style preference.
+- **Expected output:** Clean transcript + caption-ready text + review notes.
 
-## Overview
+## Workflow
 
+1. Transcribe source audio.
+2. Clean filler and formatting noise.
+3. Format text for caption or script reuse.
+4. Flag unclear segments for manual review.
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/audio-to-text-caption
-```
+## Output format
+
+1. Transcript summary
+2. Clean transcript
+3. Caption-ready version
+4. Manual review list
+
+## Quality and safety rules
+
+- Prioritize readability and reuse.
+- Do not invent unclear speech.
+- Adapt formatting to subtitle or script needs.
+
+## License
+
+Copyright (c) 2026 **Razestar**.
+
+This skill is provided under **CC BY-NC-SA 4.0** for non-commercial use.
+You may reuse and adapt it with attribution to Razestar, and share derivatives
+under the same license.
+
+Commercial use requires a separate paid commercial license from **Razestar**.
+No trademark rights are granted.

@@ -1,0 +1,8 @@
+---
+name: smart-contract-audit
+description: Audit Solidity contracts for common vulnerabilities and design risks.
+version: 1.0.0
+display_name: "Smart Contract Audit"
+triggers:
+System.Object[]
+---

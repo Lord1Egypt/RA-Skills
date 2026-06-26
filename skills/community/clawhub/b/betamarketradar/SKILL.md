@@ -1,35 +1,27 @@
 ---
-name: "Beta Market Radar"
-description: "Real-time market scanning and alert system. Monitors SPX, major indices, VIX, and key crypto prices. Generates alerts when significant levels are crossed."
-category: "blockchain"
-source: "ClawHub"
-tags: [market, trading]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/betamarketradar"
-sourceUrl: "https://clawhub.ai/skills/betamarketradar"
+name: market-radar
+description: Real-time market scanning and alert system. Monitors SPX, major indices, VIX, and key crypto prices. Generates alerts when significant levels are crossed.
+metadata:
+  openclaw:
+    emoji: "📡"
+    requires:
+      bins: [python3]
+    always: false
 ---
 
-# Beta Market Radar
+# Market Radar
 
-> Real-time market scanning and alert system. Monitors SPX, major indices, VIX, and key crypto prices. Generates alerts when significant levels are crossed.
+Real-time market scanning and alert system. Monitors key levels, detects breakouts, and generates structured alerts.
 
-- **Category:** Blockchain
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/betamarketradar`
-- **Source URL:** [https://clawhub.ai/skills/betamarketradar](https://clawhub.ai/skills/betamarketradar)
+## Usage
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/betamarketradar
+python3 radar.py --watch SPX,QQQ,VIX --threshold 1.5
 ```
+
+## Alerts Generated
+
+- Breakout alerts (price crosses key levels)
+- VIX spike alerts (>20 = elevated risk)
+- Unusual volume detection
+- Sector rotation signals

@@ -1,0 +1,237 @@
+{
+  "id": "ET2026000007",
+  "name": "openclaw",
+  "createTime": "2026-03-09 15:19:39",
+  "state": "3",
+  "templateName": "Second Protein Detection",
+  "experimentType": "SYLX2026000001",
+  "experimentGroup": "GLY",
+  "experimentGroupName": "Admin Group",
+  "stateOptions": "0",
+  "stepDetails": [
+    {
+      "id": "088e1d6ed2f70866cb41e3029b4faa07",
+      "name": "Protein Detection Step",
+      "keyId": 0,
+      "jsonDatas": [
+        {
+          "id": "3e060f318fc375c0c1cf2e3637daa5e7",
+          "exclusiveShow": 0,
+          "label": "Detail Table",
+          "type": "detailTable",
+          "size": 24,
+          "value": "[]",
+          "propList": "[{\"label\":\"Original Sample ID\",\"prop\":\"originalSampleCode\",\"disabled\":true,\"headerType\":\"fixed\"},{\"label\":\"Sample ID\",\"prop\":\"sampleCode\",\"disabled\":true,\"headerType\":\"fixed\"},{\"label\":\"Sample Type\",\"prop\":\"sampleType\",\"disabled\":true,\"headerType\":\"fixed\"},{\"label\":\"\",\"prop\":\"sampleTypeId\",\"disabled\":true,\"show\":true},{\"label\":\"Test Project\",\"prop\":\"testProjectName\",\"disabled\":true,\"headerType\":\"fixed\"},{\"label\":\"Product Type\",\"prop\":\"productType\",\"disabled\":true,\"headerType\":\"fixed\"},{\"label\":\"Product Qty\",\"prop\":\"productNum\",\"disabled\":true,\"headerType\":\"fixed\"},{\"label\":\"Mix Sample\",\"prop\":\"mixNumber\",\"disabled\":true,\"show\":true,\"headerType\":\"fixed\"},{\"label\":\"index\",\"prop\":\"indexCode\",\"disabled\":true,\"show\":true,\"headerType\":\"fixed\"},{\"label\":\"Remaining Qty\",\"prop\":\"sumTotal\",\"type\":\"number\",\"disabled\":false,\"show\":true,\"headerType\":\"fixed\"},{\"label\":\"Unit\",\"prop\":\"sampleUnit\",\"disabled\":true,\"show\":true,\"headerType\":\"fixed\"},{\"label\":\"Storage Status\",\"prop\":\"storageState\",\"disabled\":true,\"show\":true,\"headerType\":\"fixed\"},{\"label\":\"Detection Gene\",\"prop\":\"detectionGene\",\"disabled\":true,\"headerType\":\"fixed\"},{\"label\":\"Is Split\",\"prop\":\"isSplit\",\"disabled\":true,\"show\":true,\"headerType\":\"fixed\"},{\"label\":\"Split Quantity\",\"prop\":\"splitQuantity\",\"disabled\":true,\"show\":true,\"headerType\":\"fixed\"},{\"label\":\"Split Product\",\"prop\":\"splitProportion\",\"disabled\":true,\"show\":true,\"headerType\":\"fixed\"}]",
+          "menuList": "[]",
+          "productList": "[]",
+          "plate": "",
+          "inputType": "null",
+          "formula": "{\"formX\":[],\"formY\":[]}",
+          "keyId": 0
+        },
+        {
+          "exclusiveShow": 0,
+          "label": "Instructions",
+          "draggLabel": "Rich Text",
+          "type": "editor",
+          "size": "24",
+          "value": "[]",
+          "propList": "[]",
+          "menuList": "[]",
+          "productList": "[]",
+          "plate": "",
+          "formula": "{\"formX\":[],\"formY\":[]}",
+          "itemIndex": 1,
+          "keyId": 1
+        },
+        {
+          "id": "26b23958ebfd50e51b3b7080f92add06",
+          "exclusiveShow": 0,
+          "label": "Temperature",
+          "type": "input",
+          "size": "8",
+          "value": "null",
+          "inputType": "text",
+          "propList": "[]",
+          "menuList": "[]",
+          "productList": "[]",
+          "plate": "",
+          "formula": "{\"formX\":[],\"formY\":[]}",
+          "itemIndex": 2,
+          "keyId": 2
+        },
+        {
+          "id": "85ca2ef8a52ad1672f45939a9528df47",
+          "exclusiveShow": 0,
+          "label": "Humidity",
+          "type": "input",
+          "size": "8",
+          "value": "null",
+          "inputType": "text",
+          "propList": "[]",
+          "menuList": "[]",
+          "productList": "[]",
+          "plate": "",
+          "formula": "{\"formX\":[],\"formY\":[]}",
+          "itemIndex": 3,
+          "keyId": 3
+        },
+        {
+          "id": "acfe0d47e81e4667358396001b96a939",
+          "exclusiveShow": 0,
+          "label": "Reference List",
+          "type": "table",
+          "size": "24",
+          "value": "[]",
+          "propList": "[{\"label\":\"Reference Name\",\"prop\":\"referenceName\",\"disabled\":false,\"headerType\":\"fixed\"},{\"label\":\"Reference Version\",\"prop\":\"referenceVersion\",\"disabled\":false,\"headerType\":\"fixed\"},{\"label\":\"Reference Pages\",\"prop\":\"referencePages\",\"disabled\":false,\"headerType\":\"fixed\"},{\"label\":\"Reference Author\",\"prop\":\"referenceAuthor\",\"disabled\":false,\"headerType\":\"fixed\"}]",
+          "menuList": "[]",
+          "productList": "[]",
+          "plate": "",
+          "formula": "{\"formX\":[],\"formY\":[]}",
+          "itemIndex": 4,
+          "keyId": 4
+        },
+        {
+          "id": "f34b8582089c2eaceff30ff377e6a21e",
+          "exclusiveShow": 0,
+          "label": "Reference Document Upload",
+          "type": "attachment",
+          "size": "24",
+          "value": "[]",
+          "propList": "[]",
+          "menuList": "[]",
+          "productList": "[]",
+          "plate": "",
+          "formula": "{\"formX\":[],\"formY\":[]}",
+          "itemIndex": 5,
+          "keyId": 5
+        },
+        {
+          "id": "762c555efeba3271fe6e0c2b052a263a",
+          "exclusiveShow": 0,
+          "label": "Well Plate",
+          "type": "porePlate",
+          "size": 24,
+          "value": "{\"type\":{\"name\":\"Detail Table\",\"code\":\"0\"},\"msg\":{\"id\":\"8ae137b49febad36465a98fcfdcb3b23\",\"rowNum\":\"4\",\"colNum\":\"6\",\"name\":\"24 Well Plate\",\"location\":\"3\",\"locationName\":\"Level 4\",\"createDate\":\"2026-03-09 15:25:39\",\"createUser\":\"openclaw\",\"effect\":\"1\",\"effectName\":\"Yes\",\"effectUser\":\"openclaw\",\"effectDate\":\"2026-03-09 15:25:39\"}}",
+          "propList": "[]",
+          "menuList": "[]",
+          "productList": "[]",
+          "plate": "",
+          "inputType": "null",
+          "formula": "{\"formX\":[],\"formY\":[]}",
+          "keyId": 6
+        },
+        {
+          "id": "new_material_component_001",
+          "exclusiveShow": 0,
+          "label": "Material List",
+          "type": "material",
+          "size": 24,
+          "value": "[]",
+          "propList": "[]",
+          "menuList": "[]",
+          "productList": "[]",
+          "plate": "",
+          "inputType": "null",
+          "formula": "{\"formX\":[],\"formY\":[]}",
+          "keyId": 7
+        },
+        {
+          "id": "new_equipment_component_001",
+          "exclusiveShow": 0,
+          "label": "Equipment List",
+          "type": "equipment",
+          "size": 24,
+          "value": "[]",
+          "propList": "[]",
+          "menuList": "[]",
+          "productList": "[]",
+          "plate": "",
+          "inputType": "null",
+          "formula": "{\"formX\":[],\"formY\":[]}",
+          "keyId": 8
+        },
+        {
+          "id": "b8697c835893616022e2cf5fff2069da",
+          "exclusiveShow": 0,
+          "label": "Result Table",
+          "type": "resultTable",
+          "size": 24,
+          "value": "[]",
+          "propList": "[{\"label\":\"Original Sample ID\",\"prop\":\"originalSampleCode\",\"disabled\":true,\"headerType\":\"fixed\"},{\"label\":\"Sample ID\",\"prop\":\"sampleCode\",\"disabled\":true,\"headerType\":\"fixed\"},{\"label\":\"Sample Type\",\"prop\":\"sampleType\",\"disabled\":true,\"headerType\":\"fixed\"},{\"label\":\"Test Project\",\"prop\":\"testProjectName\",\"disabled\":true,\"headerType\":\"fixed\"},{\"label\":\"Volume\",\"prop\":\"volume\",\"type\":\"number\",\"headerType\":\"fixed\"},{\"label\":\"Total\",\"prop\":\"total\",\"type\":\"number\",\"headerType\":\"fixed\"},{\"label\":\"Unit\",\"prop\":\"sampleUnit\",\"disabled\":true,\"headerType\":\"fixed\"},{\"label\":\"Next Flow\",\"prop\":\"nextFlow\",\"disabled\":true,\"headerType\":\"fixed\",\"required\":true},{\"label\":\"Result\",\"prop\":\"result\",\"disabled\":true,\"required\":1,\"headerType\":\"fixed\"},{\"label\":\"Submit QC\",\"prop\":\"tjzk\",\"disabled\":true,\"headerType\":\"fixed\"},{\"label\":\"Detection Gene\",\"prop\":\"detectionGene\",\"disabled\":true,\"headerType\":\"fixed\"}]",
+          "menuList": "[]",
+          "productList": "[]",
+          "plate": "",
+          "inputType": "null",
+          "formula": "{\"formX\":[],\"formY\":[]}",
+          "keyId": 9
+        }
+      ]
+    }
+  ],
+  "auditor": "openclaw",
+  "auditorName": "openclaw",
+  "experimentalType": "SYLX2026000001",
+  "experimentTypeName": "Protein Detection",
+  "logArrays": [
+    {
+      "id": "3e060f318fc375c0c1cf2e3637daa5e7",
+      "type": "detailTable",
+      "flag": "2",
+      "logs": []
+    },
+    {
+      "type": "editor",
+      "flag": "1",
+      "logs": "Rich Text:<br>'Component Name' :from' Empty 'changed to' Instructions '"
+    },
+    {
+      "id": "26b23958ebfd50e51b3b7080f92add06",
+      "type": "input",
+      "flag": "2",
+      "logs": []
+    },
+    {
+      "id": "85ca2ef8a52ad1672f45939a9528df47",
+      "type": "input",
+      "flag": "2",
+      "logs": []
+    },
+    {
+      "id": "acfe0d47e81e4667358396001b96a939",
+      "type": "table",
+      "flag": "2",
+      "logs": []
+    },
+    {
+      "id": "f34b8582089c2eaceff30ff377e6a21e",
+      "type": "attachment",
+      "flag": "2",
+      "logs": []
+    },
+    {
+      "id": "762c555efeba3271fe6e0c2b052a263a",
+      "type": "porePlate",
+      "flag": "2",
+      "logs": []
+    },
+    {
+      "id": "new_material_component_001",
+      "type": "material",
+      "flag": "2",
+      "logs": []
+    },
+    {
+      "id": "new_equipment_component_001",
+      "type": "equipment",
+      "flag": "2",
+      "logs": []
+    },
+    {
+      "id": "b8697c835893616022e2cf5fff2069da",
+      "type": "resultTable",
+      "flag": "2",
+      "logs": []
+    }
+  ]
+}

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Import Personal Documents"
+  short_description: "Phase skill to import local material files into a Caixu library"
+  default_prompt: "Use $caixu-ingest-materials after the current stage has been identified as ingest, create or load a library, parse concrete local file paths through the OCR MCP, persist parsed_files, and stop cleanly on full failure."

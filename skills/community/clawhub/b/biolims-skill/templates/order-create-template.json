@@ -1,0 +1,44 @@
+{
+  "order": {
+    "name": "Patient Name",
+    "gender": "1",
+    "age": 14,
+    "birthDate": "2020-05-25",
+    "nation": "Han",
+    "nativePlace": "Beijing",
+    "bedNo": "Bed 039",
+    "phone": "00000000000",
+    "hospitalPatientid": "A003-5001",
+    "idCard": "000000000000000000",
+    "email": "test@example.com",
+    "zipCode": "000000",
+    "productId": "CP2603120001",
+    "productName": "CellCulture",
+    "diagnosis": "Tumor enlargement",
+    "note": "Remarks",
+    "family": "TEST_FAMILY",
+    "familyPhone": "00000000000",
+    "familySite": "TEST_ADDRESS",
+    "commissionerNickname": "Sales Representative",
+    "crmCustomerName": "Submitting Organization",
+    "provinceName": "Province",
+    "customFieldValue": "[{\"id\":\"\",\"columnName\":\"test1\",\"displayName\":\"Clinical Diagnosis\",\"value\":\"\"},{\"id\":\"\",\"columnName\":\"test2\",\"displayName\":\"Collection Time\",\"value\":\"\"},{\"id\":\"\",\"columnName\":\"test3\",\"displayName\":\"Testing Method\",\"value\":\"\"},{\"id\":\"\",\"columnName\":\"test4\",\"displayName\":\"Submission Time\",\"value\":\"\"},{\"id\":\"\",\"columnName\":\"test5\",\"displayName\":\"Barcode Number\",\"value\":\"\"},{\"id\":\"\",\"columnName\":\"test6\",\"displayName\":\"Submitting Organization\",\"value\":\"\"}]"
+  },
+  "logs": "",
+  "crmConsumeRmarkets": [],
+  "crmConsumeListlogs": [],
+  "sampleOrderItem": [
+    {
+      "id": "",
+      "changeEvent": 1,
+      "name": "Patient Name",
+      "gender": "1",
+      "status": "1",
+      "slideCode": "A0312001",
+      "sampleTypeId": "T250311001",
+      "sampleType": "Mouse",
+      "customFieldValue": "[]"
+    }
+  ],
+  "sampleOrderItemListlogs": []
+}

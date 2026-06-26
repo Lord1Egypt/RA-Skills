@@ -1,0 +1,82 @@
+[
+  {
+    "query": "我想给 ai-agent 加一个 K8s preStop hook，保证 Pod 退出时数据一致性。如果失败就死循环阻塞。你帮我想想怎么实现，先别急着写代码。",
+    "should_trigger": true
+  },
+  {
+    "query": "帮我画个蓝图，我们要做一个新的文件同步功能，需要支持增量同步和冲突检测。这个需求比较复杂，你先帮我理一下思路。",
+    "should_trigger": true
+  },
+  {
+    "query": "我要写个技术方案，关于如何把现有的同步 API 改成异步的。涉及到好几个模块，你帮我分析一下影响范围和改动点。",
+    "should_trigger": true
+  },
+  {
+    "query": "这个需求怎么做？用户希望能在离线状态下继续编辑，等网络恢复后自动同步。涉及到本地存储、冲突解决、状态管理，你帮我想想。",
+    "should_trigger": true
+  },
+  {
+    "query": "帮我写个 RFC，我们要把 Session 的超时逻辑从固定时间改成基于活跃度的动态超时。这个改动会影响好几个服务，需要仔细设计。",
+    "should_trigger": true
+  },
+  {
+    "query": "我有个模糊的想法：想让 Explorer 支持多仓库同时浏览。你能帮我梳理一下需求吗？我不太确定具体要做哪些事情。",
+    "should_trigger": true
+  },
+  {
+    "query": "先做个设计再写代码。我们要加一个审计日志功能，记录用户的所有敏感操作。你帮我分析一下技术方案。",
+    "should_trigger": true
+  },
+  {
+    "query": "需求分析一下：我们想把现有的 REST API 迁移到 gRPC，但要保持向后兼容。这个改动挺大的，你帮我想想怎么分阶段做。",
+    "should_trigger": true
+  },
+  {
+    "query": "这个功能设计有点复杂，你帮我想清楚再做。我们要支持多租户隔离，包括数据隔离、配额管理、权限控制。",
+    "should_trigger": true
+  },
+  {
+    "query": "帮我完善一下这个 Spec，我写了个草稿但感觉不够完整。主要是关于消息队列的重试机制和死信处理。",
+    "should_trigger": true
+  },
+  {
+    "query": "帮我修一个 bug，用户反馈说文件上传有时候会卡住。我看了下日志，好像是超时设置的问题。",
+    "should_trigger": false
+  },
+  {
+    "query": "这个函数怎么写？我需要一个工具函数来解析 JSON 配置文件，支持注释和环境变量替换。",
+    "should_trigger": false
+  },
+  {
+    "query": "帮我 review 一下这段代码，我觉得性能可能有问题，你看看有没有优化空间。",
+    "should_trigger": false
+  },
+  {
+    "query": "我要加一行日志，记录一下请求的耗时。就在 handleRequest 函数里加个 log.info 就行。",
+    "should_trigger": false
+  },
+  {
+    "query": "帮我写个单元测试，测试 UserService 的 createUser 方法，覆盖正常和异常情况。",
+    "should_trigger": false
+  },
+  {
+    "query": "这个接口返回的 JSON 格式不对，应该是 { data: [...] } 而不是 { items: [...] }。帮我改一下。",
+    "should_trigger": false
+  },
+  {
+    "query": "帮我把这个 Python 脚本转成 Bash，功能一样就行，不需要太复杂。",
+    "should_trigger": false
+  },
+  {
+    "query": "我要部署这个服务到 K8s，帮我写个 Deployment YAML 和 Service YAML。",
+    "should_trigger": false
+  },
+  {
+    "query": "帮我查一下这个错误是什么意思：ConnectionResetError: [Errno 104] Connection reset by peer",
+    "should_trigger": false
+  },
+  {
+    "query": "我想重构一下这个模块的代码结构，但功能不变。你觉得应该怎么拆分比较好？",
+    "should_trigger": false
+  }
+]

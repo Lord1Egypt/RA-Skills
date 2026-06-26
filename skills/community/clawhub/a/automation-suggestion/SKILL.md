@@ -1,35 +1,47 @@
 ---
-name: "Automation Suggestion"
-description: "Suggest automations only when they make sense, based on objective triggers."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/automation-suggestion"
-sourceUrl: "https://clawhub.ai/skills/automation-suggestion"
+name: automation-suggestion
+description: Suggest automations only when they make sense, based on objective triggers.
+metadata:
+  openclaw:
+    emoji: 🤖
+    skillKey: automation-suggestion
 ---
 
-# Automation Suggestion
+# Automation Suggestion Skill
 
-> Suggest automations only when they make sense, based on objective triggers.
+## Purpose
+Suggest automations only when they make sense, based on objective triggers. Avoid nagging; only propose when clear value exists.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/automation-suggestion`
-- **Source URL:** [https://clawhub.ai/skills/automation-suggestion](https://clawhub.ai/skills/automation-suggestion)
+## Triggers (any one qualifies)
+1. **Repetition**: Same task executed manually >= 2 times within 7 days
+2. **Time saving**: Estimated weekly manual effort >= 10 minutes
+3. **User frustration**: Detected via negative sentiment or explicit statement ("znowu to muszę robić", "to jest męczące")
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/automation-suggestion
+## Suggestion Format
+After a task completes (when trigger detected):
 ```
+[Automation idea]
+I noticed you've done X 3 times this week (~15 min total).
+Would you like me to automate it? I can set up a scheduled run or a quick command.
+Reply: "yes" to configure, "no" to dismiss.
+```
+
+## Rules
+- Never suggest before first manual completion
+- Max 1 suggestion per user per day
+- If user says "no", suppress similar suggestions for 30 days
+- Track suggestions and outcomes in memory for learning
+
+## Configuration (optional)
+- `minRepetitions`: 2
+- `minWeeklyMinutes`: 10
+- `cooldownDaysAfterNo`: 30
+
+## Integration
+- Hook: after task completion (via interaction-pipeline)
+- Reads task history from memory
+- Uses sentiment analysis on user messages (simple keyword-based)
+
+## Related Skills
+- `interaction-pipeline` (post-action hook)
+- `satisfaction-learning` (capture user response)

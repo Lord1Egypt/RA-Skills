@@ -1,35 +1,43 @@
 ---
-name: "文章风格分析"
-description: "文章风格深度分析与模仿指南生成。当用户提供一篇或多篇文章样本，要求分析写作风格、提取风格特征、生成模仿指南、或按某种风格创作新内容时使用。触发场景：(1) 分析某作者/某篇文章的写作风格；(2) 提取风格特征用于模仿；(3) 按指定风格写作；(4) 对比多篇文章找出稳定风格特征。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/article-style-analyzer"
-sourceUrl: "https://clawhub.ai/skills/article-style-analyzer"
+name: article-style-analyzer
+description: 文章风格深度分析与模仿指南生成。当用户提供一篇或多篇文章样本，要求分析写作风格、提取风格特征、生成模仿指南、或按某种风格创作新内容时使用。触发场景：(1) 分析某作者/某篇文章的写作风格；(2) 提取风格特征用于模仿；(3) 按指定风格写作；(4) 对比多篇文章找出稳定风格特征。
 ---
 
-# 文章风格分析
+# 文章风格分析与模仿
 
-> 文章风格深度分析与模仿指南生成。当用户提供一篇或多篇文章样本，要求分析写作风格、提取风格特征、生成模仿指南、或按某种风格创作新内容时使用。触发场景：(1) 分析某作者/某篇文章的写作风格；(2) 提取风格特征用于模仿；(3) 按指定风格写作；(4) 对比多篇文章找出稳定风格特征。
+## 工作流程
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/article-style-analyzer`
-- **Source URL:** [https://clawhub.ai/skills/article-style-analyzer](https://clawhub.ai/skills/article-style-analyzer)
+### 输入处理
 
-## Overview
+- **单篇**：直接分析，输出风格报告 + 模仿指南
+- **多篇（推荐 3-5 篇）**：先逐篇分析，再交叉对比，提取恒定特征，构建风格模型
+- **指定作者名**：基于已知风格知识分析，若知识不足，请求用户提供原文样本
 
+### 分析流程（多篇）
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/article-style-analyzer
-```
+1. 单篇分析 → 2. 交叉对比 → 3. 提取恒定特征 → 4. 识别适应性特征 → 5. 构建风格模型
+
+### 输出结构
+
+使用 `references/output-schema.md` 中的 JSON Schema 输出完整分析结果。
+
+- 单篇输入：输出简化版（省略"跨文本恒定特征"和"风格变化分析"两节）
+- 多篇输入：输出完整版
+
+### 模仿任务
+
+当用户在分析后要求按该风格写作时：
+1. 参照"综合模仿指南"中的"模仿步骤"逐步执行
+2. 先在内部完成思维模式和结构框架，再生成正文
+3. 写完后对照"模仿优先级"自查，校准后输出
+
+## 分析原则
+
+- **多篇交叉验证**：单篇出现的特征不算"恒定特征"，需至少两篇以上佐证
+- **共性与特性区分**：区分"恒定风格"与"主题适应性调整"
+- **宏微观结合**：思维模式 + 具体语言技巧同等重要
+- **避免误区**：参见输出 Schema 中的"常见模仿误区"，分析时主动规避
+
+## 详细分析维度
+
+见 `references/analysis-dimensions.md`

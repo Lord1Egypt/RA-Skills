@@ -1,0 +1,19 @@
+{
+  "created": "2026-03-28",
+  "last_updated": "2026-03-29T02:49:00+08:00",
+  "total_entries": 8,
+  "files": [
+    "platforms/ugig-net.md",
+    "platforms/coinpay-did.md",
+    "trading/strategies.md",
+    "outreach/templates.md",
+    "skills/index.md"
+  ],
+  "categories": [
+    "platforms",
+    "trading",
+    "outreach",
+    "skills"
+  ],
+  "next_update": "Add more platforms as discovered"
+}

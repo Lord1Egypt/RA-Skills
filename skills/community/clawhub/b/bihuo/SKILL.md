@@ -1,35 +1,60 @@
 ---
-name: "比货购物助手"
-description: "比货全网商品对比工具，从价格、品质、评价、返利等多维度对比同类商品，帮助用户做出最优购买决策。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/bihuo"
-sourceUrl: "https://clawhub.ai/skills/bihuo"
+name: 比货购物助手
+description: 比货全网商品对比工具，从价格、品质、评价、返利等多维度对比同类商品，帮助用户做出最优购买决策。
+version: 0.1.0
 ---
 
 # 比货购物助手
 
-> 比货全网商品对比工具，从价格、品质、评价、返利等多维度对比同类商品，帮助用户做出最优购买决策。
+比货全网商品对比工具。从价格、品质、用户评价、返利比例、售后保障等多维度对比同类商品，帮助用户在海量商品中快速筛选出性价比最高的选择，做出理性消费决策。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/bihuo`
-- **Source URL:** [https://clawhub.ai/skills/bihuo](https://clawhub.ai/skills/bihuo)
+## 触发词
 
-## Overview
+比货、比货购物、bihuo、商品对比、哪个好、买哪个、商品比较、产品对比、性价比对比
 
+## 计划实现能力
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/bihuo
+### 核心功能
+
+- **多维度对比**：价格、品质、评价、销量、返利、售后等全方位对比
+- **同类商品搜索**：输入商品自动搜索各平台同类竞品
+- **评价分析**：汇总各平台用户真实评价，提取优缺点
+- **性价比排序**：综合所有维度计算性价比评分并排序
+
+### 对比维度
+
+| 维度 | 数据来源 | 权重 |
+|------|---------|------|
+| 价格 | 各平台实时价格 | 高 |
+| 评分 | 用户评价综合评分 | 高 |
+| 销量 | 月销量/总销量 | 中 |
+| 返利 | 各渠道返利比例 | 中 |
+| 售后 | 退换政策/运费险 | 中 |
+| 品牌 | 品牌知名度和口碑 | 低 |
+
+### 使用场景
+
+1. **选购纠结**：两款类似商品不知道买哪个
+2. **跨平台比较**：同商品在不同平台的综合对比
+3. **品类选购**：某个品类下哪款性价比最高
+4. **避坑参考**：通过评价分析避免踩坑
+
+## 输出格式
+
+```
+⚖️ 商品对比报告
+
+对比商品：[商品A] vs [商品B] vs [商品C]
+
+综合评分：
+  🥇 [商品A]：[X]分 ⬅ 推荐
+  🥈 [商品B]：[X]分
+  🥉 [商品C]：[X]分
+
+详细对比：
+  价格：[A]¥[价格] | [B]¥[价格] | [C]¥[价格]
+  评分：[A][X]分 | [B][X]分 | [C][X]分
+  返利：[A][X]% | [B][X]% | [C][X]%
+
+购买建议：[分析说明]
 ```

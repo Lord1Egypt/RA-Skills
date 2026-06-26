@@ -1,35 +1,38 @@
 ---
-name: "Arrivelah"
-description: "One-word trigger for next bus arrival to your destination"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/arrivelah"
-sourceUrl: "https://clawhub.ai/skills/arrivelah"
+name: arrivelah
+description: One-word trigger for next bus arrival to your destination
+homepage: https://github.com/abhay/arrivelah
+metadata: {"clawdbot":{"emoji":"🚌","requires":{"bins":["curl","jq"]},"tags":["singapore","transport","bus"]}}
 ---
 
-# Arrivelah
+# ArriveLah - Singapore Bus Arrivals
 
-> One-word trigger for next bus arrival to your destination
+Get your next bus arrival with a single word.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/arrivelah`
-- **Source URL:** [https://clawhub.ai/skills/arrivelah](https://clawhub.ai/skills/arrivelah)
+## Usage
 
-## Overview
+```
+bus
+```
 
+Returns: Next bus to your saved destination with arrival time.
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/arrivelah
+## Configuration
+
+Edit `config.json` to set:
+- `defaultStop`: Your usual bus stop code (e.g., "10051")
+- `defaultService`: Your usual bus number (e.g., "120")
+- `destination`: Where you're usually going (for display)
+
+## API
+
+Uses the free Arrivelah2 API (https://arrivelah2.busrouter.sg/)
+No API key required.
+
+## Example Output
+
+```
+🚌 Bus 120 → Home
+⏰ Next: 2 min (Seats available)
+📍 From: Blk 149 Jalan Bukit Merah
 ```

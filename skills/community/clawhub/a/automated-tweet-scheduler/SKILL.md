@@ -1,35 +1,69 @@
 ---
-name: "Automated Tweet Scheduler"
-description: "自動化Twitter排程發布工具 - 幫你schedule tweets、分析Engagement、管理content calendar。支持thread scheduling、media upload、analytics dashboard"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/automated-tweet-scheduler"
-sourceUrl: "https://clawhub.ai/skills/automated-tweet-scheduler"
+name: automated-tweet-scheduler
+description: 自動化Twitter排程發布工具 - 幫你schedule tweets、分析Engagement、管理content calendar。支持thread scheduling、media upload、analytics dashboard
 ---
 
 # Automated Tweet Scheduler
 
-> 自動化Twitter排程發布工具 - 幫你schedule tweets、分析Engagement、管理content calendar。支持thread scheduling、media upload、analytics dashboard
+## 功能
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/automated-tweet-scheduler`
-- **Source URL:** [https://clawhub.ai/skills/automated-tweet-scheduler](https://clawhub.ai/skills/automated-tweet-scheduler)
+### 1. Tweet排程
+- Schedule單條tweet
+- Schedule threads
+- 設定最佳發布時間
+- Queue system
 
-## Overview
+### 2. Content Calendar
+- 睇monthly view
+- Edit/Delete scheduled
+- Drag & drop reschedule
 
+### 3. Thread Builder
+- 視覺化整thread
+- Preview before send
+- Auto-thread break
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/automated-tweet-scheduler
+### 4. Analytics
+- Engagement metrics
+- Best posting times
+- Follower growth
+- Top performing tweets
+
+### 5. Media
+- Image upload
+- Video/GIF support
+- Alt text
+
+## 使用方式
+
 ```
+User: schedule "Just launched my new AI agent! 🚀" tomorrow 9am
+AI: ✅ Scheduled for tomorrow 9:00 AM
+
+User: show calendar
+AI: 📅 [Calendar view with scheduled tweets]
+```
+
+## Tech Stack
+
+- Twitter API v2
+- Node.js/Python
+- PostgreSQL
+- Cloud storage (AWS S3)
+- Telegram/Discord bot
+
+## 報價
+
+| Plan | Price | Tweets/month |
+|------|-------|--------------|
+| Free | $0 | 30 |
+| Pro | $19 | 300 |
+| Business | $49 | Unlimited |
+
+---
+
+呢個skill可以serve:
+- Content creators
+- Marketers
+- Crypto influencers
+- Businesses

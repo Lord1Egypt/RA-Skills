@@ -1,0 +1,259 @@
+:root {
+  --screen-ratio: 3;
+  --u: calc(1px * var(--screen-ratio));
+  --bg-top: #f5fbf9;
+  --bg-bottom: #edf7f4;
+  --card-bg: rgba(255, 255, 255, 0.76);
+  --card-soft: #ecf8f3;
+  --card-border: #d9ece6;
+  --chip-bg: #b2ddd1;
+  --chip-text: #fcffff;
+  --title-color: #5f7681;
+  --text-color: #6d858f;
+  --muted-color: #90a8b1;
+  --accent: #89c2dc;
+  --accent-soft: #b4dfd4;
+  --point-bg: #f6fcfa;
+  --radius-xl: calc(9.333px * var(--screen-ratio));
+  --radius-lg: calc(8px * var(--screen-ratio));
+  --radius-md: calc(6.666px * var(--screen-ratio));
+  --shadow: 0 10px 30px rgba(164, 198, 191, 0.14);
+  --page-width: calc(375px * var(--screen-ratio));
+  --page-padding: calc(24px * var(--screen-ratio));
+  --content-gap: calc(16px * var(--screen-ratio));
+  --card-padding: calc(16px * var(--screen-ratio));
+  --list-card-padding-y: calc(8px * var(--screen-ratio));
+  --list-card-padding-x: calc(8px * var(--screen-ratio));
+  --title-xl: calc(30px * var(--screen-ratio));
+  --title-lg: calc(26px * var(--screen-ratio));
+  --title-md: calc(24px * var(--screen-ratio));
+  --title-sm: calc(22px * var(--screen-ratio));
+  --title-xs: calc(16px * var(--screen-ratio));
+  --body-size: calc(14px * var(--screen-ratio));
+  --body-line: 1.7;
+  --title-size: var(--title-lg);
+  --section-size: var(--title-xs);
+  --chip-size: calc(12px * var(--screen-ratio));
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: var(--page-width);
+  background: linear-gradient(180deg, var(--bg-top) 0%, var(--bg-bottom) 100%);
+  font-family: "PingFang SC", sans-serif;
+  color: var(--text-color);
+}
+
+body {
+  min-width: var(--page-width);
+}
+
+.page {
+  position: relative;
+  width: var(--page-width);
+  padding: calc(16px * var(--screen-ratio)) var(--page-padding);
+  overflow: hidden;
+}
+
+.page-decor {
+  position: absolute;
+  pointer-events: none;
+  filter: blur(calc(6px * var(--screen-ratio)));
+}
+
+.decor-top {
+  top: calc(-23.333px * var(--screen-ratio));
+  right: calc(-23.333px * var(--screen-ratio));
+  width: calc(86.666px * var(--screen-ratio));
+  height: calc(86.666px * var(--screen-ratio));
+  border-radius: 999px;
+  background: rgba(154, 203, 225, 0.34);
+}
+
+.decor-bottom {
+  left: calc(-30px * var(--screen-ratio));
+  bottom: calc(23.333px * var(--screen-ratio));
+  width: calc(73.333px * var(--screen-ratio));
+  height: calc(73.333px * var(--screen-ratio));
+  border-radius: 999px;
+  background: rgba(244, 203, 188, 0.26);
+}
+
+.decor-side {
+  right: calc(-40px * var(--screen-ratio));
+  top: 48%;
+  width: calc(73.333px * var(--screen-ratio));
+  height: calc(106.666px * var(--screen-ratio));
+  border-radius: calc(13.333px * var(--screen-ratio));
+  background: rgba(180, 223, 212, 0.24);
+}
+
+.hero,
+.card,
+.footer {
+  position: relative;
+  z-index: 1;
+}
+
+.hero {
+  margin-bottom: var(--content-gap);
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: calc(4px * var(--screen-ratio)) calc(8px * var(--screen-ratio));
+  border-radius: 999px;
+  background: var(--chip-bg);
+  color: var(--chip-text);
+  font-family: "Maple Mono NF CN", "MapleMono-NF-CN-Medium", "MapleMono-NF-CN-Bold", "STHeiti Light", sans-serif;
+  font-size: var(--chip-size);
+  letter-spacing: 0.04em;
+}
+
+.title {
+  margin: calc(6.666px * var(--screen-ratio)) 0 calc(4px * var(--screen-ratio));
+  color: var(--title-color);
+  font-family: "Maple Mono NF CN", "MapleMono-NF-CN-Medium", "MapleMono-NF-CN-Bold", "STHeiti Light", sans-serif;
+  font-size: var(--title-size);
+  line-height: 1.45;
+  font-weight: 600;
+  word-break: break-word;
+}
+
+.source {
+  margin: 0;
+  color: var(--muted-color);
+  font-size: calc(14px * var(--screen-ratio));
+  line-height: 1.6;
+  word-break: break-all;
+}
+
+.section-card {
+  margin-bottom: var(--content-gap);
+  padding: var(--card-padding);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-xl);
+  background: var(--card-bg);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(10px);
+}
+
+.card-soft {
+  background: rgba(236, 248, 243, 0.88);
+}
+
+.section-title {
+  margin: 0 0 calc(6px * var(--screen-ratio));
+  color: var(--accent);
+  font-family: "Maple Mono NF CN", "MapleMono-NF-CN-Medium", "STHeiti Light", sans-serif;
+  font-size: var(--section-size);
+  line-height: 1.4;
+  font-weight: 600;
+}
+
+.summary-text {
+  margin: 0;
+  font-size: var(--body-size);
+  line-height: var(--body-line);
+  word-break: break-word;
+}
+
+.section-summary {
+  margin-bottom: calc(6px * var(--screen-ratio));
+}
+
+.points-list,
+.why-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-radius: var(--radius-md);
+  background: var(--point-bg);
+  padding: var(--list-card-padding-y) var(--list-card-padding-x);
+}
+
+.point-card {
+  margin: 0;
+  padding: 0;
+  border-radius: 0;
+  background: transparent;
+  line-height: var(--body-line);
+  font-size: var(--body-size);
+  word-break: break-word;
+}
+
+.point-card:last-child,
+.why-item:last-child {
+  margin-bottom: 0;
+}
+
+.point-card+.point-card,
+.why-item+.why-item {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: 1px solid rgba(137, 194, 220, 0.16);
+}
+
+.why-item {
+  display: flex;
+  gap: calc(4.666px * var(--screen-ratio));
+  margin: 0;
+  padding: 0;
+  line-height: var(--body-line);
+  font-size: var(--body-size);
+  word-break: break-word;
+}
+
+.list-bullet {
+  flex: 0 0 auto;
+  align-self: flex-start;
+  width: calc(3.333px * var(--screen-ratio));
+  height: calc(3.333px * var(--screen-ratio));
+  margin-top: 0.55em;
+  border-radius: 999px;
+  background: var(--accent-soft);
+}
+
+.list-text {
+  display: block;
+  min-width: 0;
+}
+
+.tags-card {
+  margin-bottom: var(--content-gap);
+}
+
+.tags-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: calc(4px * var(--screen-ratio));
+}
+
+.tag-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(28px * var(--screen-ratio));
+  padding: 0 calc(10px * var(--screen-ratio));
+  border-radius: 999px;
+  background: rgba(178, 221, 209, 0.3);
+  color: var(--accent);
+  border: 1px solid rgba(137, 194, 220, 0.26);
+  font-family: "Maple Mono NF CN", "MapleMono-NF-CN-Medium", "STHeiti Light", sans-serif;
+  font-size: calc(12px * var(--screen-ratio));
+  line-height: 1;
+}
+
+.footer {
+  color: var(--muted-color);
+  font-size: calc(14px * var(--screen-ratio));
+  line-height: 1.5;
+}

@@ -1,0 +1,11 @@
+{
+  "lastCheck": "2026-03-13T12:19:59.959Z",
+  "issues": 1,
+  "details": [
+    {
+      "component": "sessions",
+      "healthy": false,
+      "issue": "cannot_list_sessions"
+    }
+  ]
+}

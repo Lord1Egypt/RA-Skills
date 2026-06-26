@@ -1,0 +1,173 @@
+{
+  "name": "ASIN视频导出-正式版",
+  "nodes": [
+    {
+      "parameters": {},
+      "name": "触发器",
+      "type": "n8n-nodes-base.manualTrigger",
+      "position": [250, 300]
+    },
+    {
+      "parameters": {
+        "operation": "read",
+        "documentId": "={{ $env.GOOGLE_SHEETS_ID }}",
+        "sheetName": "ASIN列表",
+        "range": "A:F"
+      },
+      "name": "读取Google Sheets",
+      "type": "n8n-nodes-base.googleSheets",
+      "position": [450, 300],
+      "credentials": {
+        "googleSheetsOAuth2Api": "googleSheetsOAuth2"
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "cond-1",
+              "leftValue": "={{ $json['审核状态'] }}",
+              "rightValue": "通过",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            },
+            {
+              "id": "cond-2",
+              "leftValue": "={{ $json['任务ID'] }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEquals"
+              }
+            }
+          ],
+          "combinator": "and"
+        }
+      },
+      "name": "筛选审核通过",
+      "type": "n8n-nodes-base.if",
+      "position": [650, 300]
+    },
+    {
+      "parameters": {
+        "url": "https://api.topview.ai/v1/m2v/task/{{ $json['任务ID'] }}",
+        "options": {
+          "headers": {
+            "Authorization": "Bearer {{ $credentials.topviewApiKey }}"
+          }
+        }
+      },
+      "name": "获取任务详情",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [850, 200]
+    },
+    {
+      "parameters": {
+        "url": "https://api.topview.ai/v1/m2v/task/export",
+        "method": "POST",
+        "body": {
+          "task_id": "={{ $json['任务ID'] }}",
+          "script_id": "={{ $json.script_id }}"
+        },
+        "options": {
+          "headers": {
+            "Authorization": "Bearer {{ $credentials.topviewApiKey }}"
+          }
+        }
+      },
+      "name": "调用导出接口",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [1050, 200]
+    },
+    {
+      "parameters": {
+        "amount": 3,
+        "unit": "minutes"
+      },
+      "name": "等待3分钟",
+      "type": "n8n-nodes-base.wait",
+      "position": [1250, 200]
+    },
+    {
+      "parameters": {
+        "url": "https://api.topview.ai/v1/m2v/task/export/{{ $json.export_id }}",
+        "options": {
+          "headers": {
+            "Authorization": "Bearer {{ $credentials.topviewApiKey }}"
+          }
+        }
+      },
+      "name": "查询导出结果",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [1450, 200]
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": "={{ $env.GOOGLE_SHEETS_ID }}",
+        "sheetName": "ASIN列表",
+        "range": "A:F",
+        "dataMode": "autoMapInputData",
+        "mapping": {
+          "视频链接": "={{ $json.video_url }}"
+        },
+        "options": {}
+      },
+      "name": "回填最终URL",
+      "type": "n8n-nodes-base.googleSheets",
+      "position": [1650, 200],
+      "credentials": {
+        "googleSheetsOAuth2Api": "googleSheetsOAuth2"
+      }
+    }
+  ],
+  "connections": {
+    "触发器": {
+      "main": [
+        [{"node": "读取Google Sheets", "type": "main", "index": 0}]
+      ]
+    },
+    "读取Google Sheets": {
+      "main": [
+        [{"node": "筛选审核通过", "type": "main", "index": 0}]
+      ]
+    },
+    "筛选审核通过": {
+      "main": [
+        [{"node": "获取任务详情", "type": "main", "index": 0}],
+        []
+      ]
+    },
+    "获取任务详情": {
+      "main": [
+        [{"node": "调用导出接口", "type": "main", "index": 0}]
+      ]
+    },
+    "调用导出接口": {
+      "main": [
+        [{"node": "等待3分钟", "type": "main", "index": 0}]
+      ]
+    },
+    "等待3分钟": {
+      "main": [
+        [{"node": "查询导出结果", "type": "main", "index": 0}]
+      ]
+    },
+    "查询导出结果": {
+      "main": [
+        [{"node": "回填最终URL", "type": "main", "index": 0}]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  }
+}

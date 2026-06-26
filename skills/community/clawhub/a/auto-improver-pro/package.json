@@ -1,0 +1,18 @@
+{
+  "name": "auto-improver-pro",
+  "version": "1.0.0",
+  "description": "Auto-improving AI skill that learns from every execution",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "jest",
+    "start": "node src/index.js"
+  },
+  "keywords": ["self-improvement", "learning", "automation", "feedback"],
+  "author": "pagoda111king",
+  "license": "MIT",
+  "clawhub": {
+    "slug": "auto-improver-pagoda",
+    "name": "Self-Improving Skill",
+    "tags": ["self-improvement", "learning", "automation", "feedback"]
+  }
+}

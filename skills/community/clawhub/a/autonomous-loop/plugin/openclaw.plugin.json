@@ -1,0 +1,44 @@
+{
+  "id": "autonomous-loop",
+  "name": "Autonomous Loop",
+  "version": "1.0.0",
+  "kind": "automation",
+  "description": "Automatically sends a follow-up message after each agent reply to keep the agent working autonomously.",
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "delayMs": {
+        "type": "number",
+        "default": 30000,
+        "description": "Milliseconds to wait before sending the next message after a reply."
+      },
+      "defaultMessage": {
+        "type": "string",
+        "description": "Fallback message sent when no per-agent message is configured."
+      },
+      "agents": {
+        "type": "object",
+        "description": "Per-agent messages. Key = agentId, value = message string.",
+        "additionalProperties": { "type": "string" }
+      }
+    }
+  },
+  "uiHints": {
+    "delayMs": {
+      "label": "Loop Delay (ms)",
+      "placeholder": "30000",
+      "help": "How long to wait after a reply before sending the next task message. Default: 30000 (30 seconds)."
+    },
+    "defaultMessage": {
+      "label": "Default Task Message",
+      "placeholder": "Read TASKS.md and PROGRESS.md...",
+      "help": "Message sent to any agent that doesn't have a custom message configured in the 'agents' map."
+    },
+    "agents": {
+      "label": "Per-Agent Messages",
+      "help": "Map of agentId → custom task message. Takes priority over the default message. Example: { \"david\": \"Read TASKS.md and pick the next task.\" }",
+      "advanced": true
+    }
+  }
+}

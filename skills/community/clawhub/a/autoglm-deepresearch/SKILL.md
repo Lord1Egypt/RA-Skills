@@ -1,35 +1,160 @@
 ---
-name: "Autoglm Deepresearch"
-description: "对用户提出的课题进行深度研究和调研，输出结构化的深度报告。当用户需要深入了解某个话题、做行业调研、专题研究、竞品分析等场景时使用此 skill。 与普通搜索不同，deepresearch 会先做少量定向搜索，再对少量关键页面进行深度阅读，过程中优先展示中间发现，最后再做总结，避免因调用次数过多导致响应过慢。 To..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/autoglm-deepresearch"
-sourceUrl: "https://clawhub.ai/skills/autoglm-deepresearch"
+name: autoglm-deepresearch
+description: >
+  对用户提出的课题进行深度研究和调研，输出结构化的深度报告。当用户需要深入了解某个话题、做行业调研、专题研究、竞品分析等场景时使用此 skill。
+  与普通搜索不同，deepresearch 会先做少量定向搜索，再对少量关键页面进行深度阅读，过程中优先展示中间发现，最后再做总结，避免因调用次数过多导致响应过慢。
+  Token 通过本地服务 http://127.0.0.1:53699/get_token 自动获取，无需手动配置环境变量。
+compatibility:
+  requires:
+    - Python 3.x（标准库，无需额外安装）
 ---
 
-# Autoglm Deepresearch
+# AutoGLM DeepResearch Skill
 
-> 对用户提出的课题进行深度研究和调研，输出结构化的深度报告。当用户需要深入了解某个话题、做行业调研、专题研究、竞品分析等场景时使用此 skill。 与普通搜索不同，deepresearch 会先做少量定向搜索，再对少量关键页面进行深度阅读，过程中优先展示中间发现，最后再做总结，避免因调用次数过多导致响应过慢。 To...
+对用户课题进行少量搜索 + 有限深读，先展示中间结果，再生成结构化调研报告。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/autoglm-deepresearch`
-- **Source URL:** [https://clawhub.ai/skills/autoglm-deepresearch](https://clawhub.ai/skills/autoglm-deepresearch)
+---
 
-## Overview
+## 依赖 API
 
+### 1. Web Search — 搜索网页
 
-## Installation
-To install this skill, run the following command in your terminal:
+| 项目 | 内容 |
+|------|------|
+| 地址 | `https://autoglm-api.zhipuai.cn/agentdr/v1/assistant/skills/web-search` |
+| 方式 | POST |
+| 请求体 | `{"queries": [{"query": "<搜索词>"}]}` |
+| 返回 | `data.results[].webPages.value[]` → `name / url / snippet` |
+
+### 2. Open Link — 打开页面获取详细内容
+
+| 项目 | 内容 |
+|------|------|
+| 地址 | `https://autoglm-api.zhipuai.cn/agentdr/v1/assistant/skills/open-link` |
+| 方式 | POST |
+| 请求体 | `{"url": "<页面链接>"}` |
+| 返回 | `data.text` → 页面正文内容 |
+
+脚本启动时会先向本地服务发起 HTTP GET 请求获取 token：
+
+| 项目 | 内容 |
+|------|------|
+| 地址 | `http://127.0.0.1:53699/get_token` |
+| 方式 | GET |
+| 返回 | `Bearer xxx`（直接作为 Authorization 头使用） |
+
+> 若返回值不含 `Bearer` 前缀，脚本会自动补全。
+
+两个 API 使用相同的签名 Headers：
+
+- `X-Auth-Appid`: `100003`
+- `X-Auth-TimeStamp`: 当前秒级 Unix 时间戳
+- `X-Auth-Sign`: MD5(`100003 + "&" + timestamp + "&" + 38d2391985e2369a5fb8227d8e6cd5e5`)
+
+---
+
+## 执行脚本
+
+使用同目录下的脚本：
 ```bash
-hermes skills install clawhub/autoglm-deepresearch
+# 搜索
+python web-search.py "搜索关键词"
+
+# 打开页面
+python open-link.py "https://example.com"
 ```
+
+---
+
+## 深度研究流程
+
+收到用户的研究课题后，按以下步骤执行：
+
+### Step 1：拆解子问题
+
+将课题拆解为 1～2 个最关键的搜索方向，不要扩散成过多子问题。优先选择最能直接回答用户问题的维度，例如：
+- 背景与定义
+- 最新现状 / 关键数据
+- 代表性案例（仅在确有必要时）
+
+如果用户的问题本身已经很具体，可以直接进入搜索，不必额外拆很多子问题。
+
+### Step 2：多轮搜索
+
+调用 `web-search.py` 进行 **1～2 次搜索**，总量必须受控：
+
+- 默认先做 1 次搜索。
+- 只有当第一次搜索结果明显不够、结果质量差、或缺少关键维度时，才进行第 2 次搜索。
+- 不要为了“完整性”机械扩展搜索轮次。
+
+每次搜索后，先整理并向用户呈现中间结果，再决定是否继续。中间结果至少应包含：
+
+- 本次搜索使用的查询词
+- 2～5 条最相关结果的 `name / url / snippet`
+- 对当前信息是否足够的简短判断
+
+### Step 3：筛选重要页面并深度阅读
+
+从搜索结果中筛选 **1～3 个** 最相关的页面 URL，再调用 `open-link.py` 获取页面全文（`data.text`）。
+
+控制规则：
+
+- 默认只打开 1 个页面。
+- 仅当第 1 个页面信息不足、存在明显缺口、或需要交叉验证时，再增加到 2 或 3 个。
+- 不要批量打开多个相似来源。
+
+筛选标准：
+- snippet 信息量丰富、与课题高度相关
+- 来源权威（官方网站、知名媒体、学术机构）
+- 避免重复来源
+
+每次打开页面后，也应先展示中间提炼结果，再继续下一步。中间结果建议包含：
+
+- 页面标题或 URL
+- 3～6 条关键信息点
+- 与用户问题的相关性说明
+
+如果前 1～2 个页面已经足够回答问题，应停止继续调用。
+
+### Step 4：综合分析，生成报告
+
+在完成有限搜索和有限深读后，先给出一个简短的“中间结论 / 当前发现”小节，再输出最终总结。
+
+整合所有搜索 snippet 和页面全文，按以下结构输出报告：
+```
+# [课题名称] 深度调研报告
+
+## 中间发现
+（先列出搜索和页面阅读阶段已经确认的关键事实、主要来源、仍未确认的点）
+
+## 概述
+（2～3 句话概括核心结论）
+
+## 背景
+（课题的基本定义、背景信息）
+
+## 现状分析
+（关键数据、现状描述）
+
+## 典型案例 / 代表性观点
+（具体案例或多方观点）
+
+## 发展趋势
+（未来走向判断）
+
+## 总结
+（综合结论与建议）
+
+## 参考来源
+1. [页面标题](URL)
+2. [页面标题](URL)
+...
+```
+
+## 执行约束
+
+- `web-search.py` 最多调用 2 次。
+- `open-link.py` 最多调用 3 次。
+- 优先少调用、快返回；够用即可，不追求“穷尽式”检索。
+- 每一轮搜索或打开页面后，都尽量把中间结果先展示出来。
+- 当已有信息足以回答用户问题时，立即停止进一步调用并进入总结。

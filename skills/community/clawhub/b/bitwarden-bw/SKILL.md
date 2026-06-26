@@ -1,35 +1,53 @@
 ---
-name: "Bitwarden Bw"
-description: "Access and manage Bitwarden passwords securely using the official bw CLI."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/bitwarden-bw"
-sourceUrl: "https://clawhub.ai/skills/bitwarden-bw"
+name: bitwarden-bw
+description: Access and manage Bitwarden passwords securely using the official bw CLI.
+metadata: {"clawdbot":{"emoji":"🔒","os":["linux","macos"],"requires":{"bins":["bw"]}}}
 ---
 
-# Bitwarden Bw
+# Bitwarden Skill
 
-> Access and manage Bitwarden passwords securely using the official bw CLI.
+Interact with Bitwarden vaults using the official `bw` CLI.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/bitwarden-bw`
-- **Source URL:** [https://clawhub.ai/skills/bitwarden-bw](https://clawhub.ai/skills/bitwarden-bw)
+## Prerequisites
 
-## Overview
+- `bw` CLI installed: `npm install -g @bitwarden/cli`
+- `BW_SESSION` env var set (saved in `~/.zshrc`)
 
+## Usage
 
-## Installation
-To install this skill, run the following command in your terminal:
+### Get a password
 ```bash
-hermes skills install clawhub/bitwarden-bw
+bw get password "site_name"
 ```
+
+### Get username
+```bash
+bw get username "site_name"
+```
+
+### Get full item (JSON)
+```bash
+bw get item "site_name" --pretty
+```
+
+### Search
+```bash
+bw list items --search "query" | python3 -c "import json,sys; [print(f'{i[\"name\"]} ({i.get(\"login\",{}).get(\"username\",\"\")})')for i in json.load(sys.stdin)]"
+```
+
+### Sync vault
+```bash
+bw sync
+```
+*Always sync before getting details to ensure accuracy.*
+
+### TOTP code
+```bash
+bw get totp "site_name"
+```
+
+## Notes
+
+- Session key is in `BW_SESSION` env var (persisted in ~/.zshrc)
+- If session expires, user must re-login interactively (`bw login` requires OTP)
+- `bw unlock` can refresh an expired session without full re-login

@@ -1,35 +1,87 @@
 ---
-name: "Beta Agent Memory"
-description: "Long-term memory systems for AI agents. Implements vector memory, entity tracking, conversation summarization, and persistent context across sessions."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/beta-agent-memory"
-sourceUrl: "https://clawhub.ai/skills/beta-agent-memory"
+name: beta-agent-memory
+description: Long-term memory systems for AI agents. Implements vector memory, entity tracking, conversation summarization, and persistent context across sessions.
+metadata:
+  openclaw:
+    emoji: "🧠"
+    requires:
+      bins: [python3]
+    always: false
 ---
 
-# Beta Agent Memory
+# Agent Memory System
 
-> Long-term memory systems for AI agents. Implements vector memory, entity tracking, conversation summarization, and persistent context across sessions.
+Give your AI agent persistent, long-term memory across conversations and sessions.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/beta-agent-memory`
-- **Source URL:** [https://clawhub.ai/skills/beta-agent-memory](https://clawhub.ai/skills/beta-agent-memory)
+## Memory Types Implemented
 
-## Overview
+### Episodic Memory
+Stores episodes/events from conversations:
+- Key facts extracted per conversation
+- Decisions made and context
+- User preferences and patterns
+- "Remembering" past interactions
 
+### Semantic Memory
+Structured knowledge storage:
+- Entity definitions and relationships
+- Facts about the world
+- Domain knowledge base
+- Learned procedures
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/beta-agent-memory
+### Procedural Memory
+Agent's own capabilities:
+- Known skills and tools
+- How to use different APIs
+- Response patterns that worked
+
+## Architecture
+
 ```
+User Input
+    ↓
+Short-term (current session context)
+    ↓
+Memory Retrieval → Top-k relevant memories (vector search)
+    ↓
+Context Injection → Combined prompt
+    ↓
+LLM Response
+    ↓
+Memory Storage → Extract new facts, update entities
+```
+
+## Features
+
+- **Vector-based storage** (ChromaDB or Pinecone)
+- **Entity extraction** (spaCy NER)
+- **Conversation summarization** (every N turns)
+- **Relevance scoring** for retrieval
+- **Forgetting/summarization** of old memories
+
+## Use Cases
+
+- Personal AI assistant that remembers you
+- Customer support agent with context
+- Research agent with persistent knowledge
+- Trading agent with market memory
+- Personal CRM (remembering people and their context)
+
+## Technical Stack
+
+- ChromaDB / Pinecone (vector store)
+- spaCy (entity extraction)
+- LangChain (memory abstractions)
+- PostgreSQL (structured memory)
+
+## Pricing
+
+| Type | Context Window | Price |
+|------|-----------------|-------|
+| Basic | 100K tokens | $100 |
+| Pro | 1M tokens | $300 |
+| Enterprise | Unlimited | $800 |
+
+---
+
+*Built by Beta*

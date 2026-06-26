@@ -1,0 +1,13 @@
+export declare function nowIso(): string;
+export declare function ensureDir(dirPath: string): void;
+export declare function readUtf8(filePath: string): string;
+export declare function readUtf8IfExists(filePath: string): string;
+export declare function writeUtf8(filePath: string, content: string): void;
+export declare function writeJson(filePath: string, payload: unknown): void;
+export declare function readJson<T>(filePath: string): T;
+export declare function fileExists(filePath: string): boolean;
+export declare function normalizeSlugToken(input: string): string;
+export declare function toSlug(input: string): string;
+export declare function parseCliArgs(argv: string[]): Record<string, string>;
+export declare function ensureRequired(args: Record<string, string>, keys: string[]): void;
+export declare function safeJsonParse<T>(raw: string, fallback: T): T;

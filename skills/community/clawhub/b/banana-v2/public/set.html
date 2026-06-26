@@ -1,0 +1,1636 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>系统设置 - Nano Banana V2</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f5f7fa;
+            min-height: 100vh;
+            padding: 20px;
+            overflow-y: auto;
+        }
+        
+        body.dark {
+            background: #1a1a2e;
+            color: #fff;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        
+        body.dark .header {
+            border-bottom-color: #374151;
+        }
+        
+        .header h1 {
+            font-size: 20px;
+            font-weight: 600;
+        }
+        
+        .btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 8px;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .btn-primary {
+            background: #3b82f6;
+            color: #fff;
+        }
+        
+        .btn-primary:hover {
+            background: #2563eb;
+        }
+        
+        .btn-secondary {
+            background: #e5e7eb;
+            color: #374151;
+        }
+        
+        .btn-secondary:hover {
+            background: #d1d5db;
+        }
+        
+        body.dark .btn-secondary {
+            background: #374151;
+            color: #fff;
+        }
+        
+        .btn-success {
+            background: #10b981;
+            color: #fff;
+        }
+        
+        .btn-success:hover {
+            background: #059669;
+        }
+        
+        /* 设置卡片 */
+        .settings-card {
+            background: #fff;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        
+        body.dark .settings-card {
+            background: #1f2937;
+        }
+        
+        .card-header {
+            padding: 16px 20px;
+            background: #f9fafb;
+            border-bottom: 1px solid #e5e7eb;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        body.dark .card-header {
+            background: #374151;
+            border-bottom-color: #4b5563;
+        }
+        
+        .card-header h2 {
+            font-size: 15px;
+            font-weight: 600;
+        }
+        
+        .card-body {
+            padding: 20px;
+        }
+        
+        /* 表单 */
+        .form-group {
+            margin-bottom: 16px;
+        }
+        
+        .form-group:last-child {
+            margin-bottom: 0;
+        }
+        
+        .form-group label {
+            display: block;
+            font-size: 13px;
+            font-weight: 500;
+            margin-bottom: 6px;
+            color: #374151;
+        }
+        
+        body.dark .form-group label {
+            color: #d1d5db;
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 13px;
+            background: #fff;
+            transition: all 0.2s;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+        
+        body.dark .form-group input,
+        body.dark .form-group select,
+        body.dark .form-group textarea {
+            background: #374151;
+            border-color: #4b5563;
+            color: #fff;
+        }
+        
+        .form-group textarea {
+            min-height: 100px;
+            resize: vertical;
+            font-family: 'Monaco', 'Menlo', monospace;
+        }
+        
+        .form-hint {
+            font-size: 12px;
+            color: #6b7280;
+            margin-top: 4px;
+        }
+        
+        /* JSON 编辑器 */
+        .json-editor {
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+            font-size: 12px;
+            line-height: 1.6;
+           height: 60vh;
+        }
+        
+        /* 模型列表 */
+        .model-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        
+        .model-item {
+            display: grid;
+            grid-template-columns: 40px 1fr 1fr auto;
+            gap: 12px;
+            align-items: center;
+            padding: 12px;
+            background: #f9fafb;
+            border-radius: 8px;
+        }
+        
+        body.dark .model-item {
+            background: #374151;
+        }
+        
+        .model-item input {
+            padding: 8px 10px;
+        }
+        
+        .model-logo {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            background: #fff;
+            border-radius: 8px;
+        }
+        
+        body.dark .model-logo {
+            background: #4b5563;
+        }
+        
+        /* 分辨率列表 */
+        .resolution-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 10px;
+        }
+        
+        .resolution-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 12px;
+            background: #f9fafb;
+            border-radius: 8px;
+        }
+        
+        body.dark .resolution-item {
+            background: #374151;
+        }
+        
+        .resolution-item input {
+            flex: 1;
+            padding: 6px 8px;
+            font-size: 12px;
+        }
+        
+        /* 语言列表 - 每3项一行 */
+        .language-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
+        
+        @media (max-width: 800px) {
+            .language-list {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 500px) {
+            .language-list {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .language-item {
+            display: grid;
+            grid-template-columns: 70px 1fr 50px;
+            gap: 8px;
+            align-items: center;
+            padding: 10px 12px;
+            background: #f9fafb;
+            border-radius: 8px;
+        }
+        
+        body.dark .language-item {
+            background: #374151;
+        }
+        
+        .language-item input {
+            padding: 6px 8px;
+            font-size: 12px;
+            border: 1px solid #e5e7eb;
+            border-radius: 6px;
+            background: #fff;
+        }
+        
+        body.dark .language-item input {
+            background: #4b5563;
+            border-color: #6b7280;
+            color: #fff;
+        }
+        
+        /* 模型列表 */
+        .model-list-container {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        
+        .model-card {
+            background: #f9fafb;
+            border-radius: 12px;
+            padding: 16px;
+            position: relative;
+        }
+        
+        body.dark .model-card {
+            background: #374151;
+        }
+        
+        .model-card-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+        
+        .model-card-logo {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            background: #fff;
+            border-radius: 10px;
+            border: 1px solid #e5e7eb;
+        }
+        
+        body.dark .model-card-logo {
+            background: #4b5563;
+            border-color: #6b7280;
+        }
+        
+        .model-card-title {
+            flex: 1;
+        }
+        
+        .model-card-title input {
+            font-size: 14px;
+            font-weight: 600;
+            border: none;
+            background: transparent;
+            padding: 4px 0;
+            width: 100%;
+        }
+        
+        .model-card-body {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+        
+        @media (max-width: 600px) {
+            .model-card-body {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .model-card-body .form-group {
+            margin-bottom: 0;
+        }
+        
+        .model-card-body label {
+            font-size: 12px;
+            color: #6b7280;
+        }
+        
+        .model-card-body input,
+        .model-card-body select {
+            padding: 8px 10px;
+            font-size: 13px;
+        }
+        
+        .model-card-body .full-width {
+            grid-column: 1 / -1;
+        }
+        
+        .model-card-remove {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            width: 28px;
+            height: 28px;
+            border: none;
+            background: #fee2e2;
+            color: #dc2626;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        
+        .model-card-remove:hover {
+            background: #fecaca;
+        }
+        
+        /* 提示词模板 */
+        .prompt-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            height: auto !important;
+            max-height: none !important;
+        }
+        
+        .prompt-card {
+            background: #f9fafb;
+            border-radius: 12px;
+           
+        }
+        
+        body.dark .prompt-card {
+            background: #374151;
+        }
+        
+        .prompt-card-header {
+            padding: 12px 16px;
+            background: #f3f4f6;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        
+        body.dark .prompt-card-header {
+            background: #4b5563;
+            border-bottom-color: #6b7280;
+        }
+        
+        .prompt-card-header input {
+            width: 100%;
+            padding: 8px 12px;
+            border: 1px solid #e5e7eb;
+            border-radius: 6px;
+            font-size: 13px;
+            background: #fff;
+        }
+        
+        body.dark .prompt-card-header input {
+            background: #374151;
+            border-color: #6b7280;
+            color: #fff;
+        }
+        
+        .prompt-card-body {
+            padding: 16px;
+        }
+        
+        .prompt-card-body textarea {
+            width: 100%;
+            min-height: 120px;
+            padding: 12px;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 13px;
+            font-family: 'Monaco', 'Menlo', monospace;
+            line-height: 1.6;
+            resize: vertical;
+            background: #fff;
+            box-sizing: border-box;
+        }
+        
+        body.dark .prompt-card-body textarea {
+            background: #1f2937;
+            border-color: #6b7280;
+            color: #fff;
+        }
+        
+        .prompt-card-footer {
+            display: flex;
+            justify-content: flex-end;
+            gap: 8px;
+            padding: 12px 16px;
+            border-top: 1px solid #e5e7eb;
+        }
+        
+        body.dark .prompt-card-footer {
+            border-top-color: #6b7280;
+        }
+        
+        .btn-danger {
+            background: #ef4444;
+            color: #fff;
+        }
+        
+        .btn-danger:hover {
+            background: #dc2626;
+        }
+        
+        /* API Key 区域 */
+        .api-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+        
+        @media (max-width: 600px) {
+            .api-section {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* 操作按钮组 */
+        .btn-group {
+            display: flex;
+            gap: 10px;
+        }
+        
+        /* 状态提示 */
+        .status-msg {
+            padding: 10px 16px;
+            border-radius: 8px;
+            margin-top: 16px;
+            font-size: 13px;
+        }
+        
+        .status-success {
+            background: #d1fae5;
+            color: #065f46;
+        }
+        
+        .status-error {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+        
+        body.dark .status-success {
+            background: rgba(16, 185, 129, 0.2);
+            color: #34d399;
+        }
+        
+        body.dark .status-error {
+            background: rgba(239, 68, 68, 0.2);
+            color: #f87171;
+        }
+        
+        /* Tab 切换 */
+        .tabs {
+            display: flex;
+            gap: 4px;
+            margin-bottom: 20px;
+            background: #fff;
+            padding: 4px;
+            border-radius: 10px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        
+        body.dark .tabs {
+            background: #1f2937;
+        }
+        
+        .tab-btn {
+            flex: 1;
+            padding: 10px 16px;
+            border: none;
+            background: transparent;
+            border-radius: 8px;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.2s;
+            color: #6b7280;
+        }
+        
+        .tab-btn:hover {
+            background: #f3f4f6;
+        }
+        
+        .tab-btn.active {
+            background: #3b82f6;
+            color: #fff;
+        }
+        
+        body.dark .tab-btn:hover {
+            background: #374151;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>⚙️ 系统设置</h1>
+            <div class="btn-group">
+                <button class="btn btn-secondary" onclick="window.location.href='/'">🏠 返回主页</button>
+            </div>
+        </div>
+        
+        <!-- Tab 切换 -->
+        <div class="tabs">
+            <button class="tab-btn active" onclick="switchTab('config')">📋 配置参数</button>
+            <button class="tab-btn" onclick="switchTab('json')">📄 JSON 编辑</button>
+            <button class="tab-btn" onclick="switchTab('api')">🔑 API 密钥</button>
+            <button class="tab-btn" onclick="switchTab('prompts')">📝 提示词模板</button>
+            
+        </div>
+        
+        <!-- 配置参数 Tab -->
+        <div id="tab-config" class="tab-content active">
+            <!-- 服务器配置 -->
+            <div class="settings-card">
+                <div class="card-header">
+                    <h2>🌐 服务器配置</h2>
+                </div>
+                <div class="card-body">
+                    <div class="form-group">
+                        <label>图片生成接口地址</label>
+                        <input type="text" id="config-server-url" placeholder="API 服务器地址">
+                       
+                    </div>
+                    <div class="form-group">
+                        <label>图片任务获取地址</label>
+                        <input type="text" id="config-server-task-url" placeholder="任务查询 API 地址">
+                    </div>
+                    <div class="form-group">
+                        <label>图片上传地址</label>
+                        <input type="text" id="config-server-upload-url" placeholder="图片上传地址">
+                    </div>
+                    <div class="form-group">
+                        <label>服务端口</label>
+                        <input type="number" id="config-server-port" placeholder="2688">
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 大模型配置 -->
+            <div class="settings-card">
+                <div class="card-header">
+                    <h2>🤖 大模型配置</h2>
+                </div>
+                <div class="card-body">
+                    <div class="form-group">
+                        <label>大模型API地址</label>
+                        <input type="text" id="config-llm-url" placeholder="大模型 API 地址">
+                    </div>
+                    <div class="form-group">
+                        <label>大模型名称</label>
+                        <input type="text" id="config-llm-name" placeholder="GPT-3.5 Turbo">
+                    </div>
+                    <div class="form-group">
+                        <label>模型调用接口名</label>
+                        <input type="text" id="config-llm-model" placeholder="gpt-3.5-turbo">
+                    </div>
+                   
+                </div>
+            </div>
+            
+            <!-- 模型配置 -->
+            <div class="settings-card">
+                <div class="card-header">
+                    <h2>🎨 生成模型配置</h2>
+                </div>
+                <div class="card-body">
+                    <div id="models-list" class="model-list-container">
+                        <!-- 动态填充 -->
+                    </div>
+                    <button class="btn btn-secondary" style="margin-top: 12px;" onclick="addModel()">➕ 添加模型</button>
+                </div>
+            </div>
+            
+            <!-- 轮询配置 -->
+            <div class="settings-card">
+                <div class="card-header">
+                    <h2>🔄 轮询配置</h2>
+                </div>
+                <div class="card-body">
+                    <div class="form-group">
+                        <label>轮询间隔 (毫秒)</label>
+                        <input type="number" id="config-polling-interval" placeholder="20000">
+                        <div class="form-hint">检查任务状态的间隔时间，建议 10000-60000</div>
+                    </div>
+                    <div class="form-group">
+                        <label>最大轮询次数</label>
+                        <input type="number" id="config-polling-max-times" placeholder="60">
+                        <div class="form-hint">超过此次数后停止轮询</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 切割配置 -->
+            <div class="settings-card">
+                <div class="card-header">
+                    <h2>✂️ 切割配置</h2>
+                </div>
+                <div class="card-body">
+                    <div class="form-group">
+                        <label>切割内缩像素</label>
+                        <input type="number" id="config-cut-padding" placeholder="3">
+                        <div class="form-hint">切割时向内缩进的像素值，避免黑边</div>
+                    </div>
+                    <div class="form-group">
+                        <label>默认切割模式</label>
+                        <select id="config-cut-mode">
+                            <option value="none">不切割</option>
+                            <option value="grid">网格切割</option>
+                            <option value="smart">智能切割</option>
+                        </select>
+                        <div class="form-hint">选择默认的切割方式</div>
+                    </div>
+                    <div class="form-group">
+                        <label>默认网格数</label>
+                        <input type="number" id="config-cut-grid" placeholder="9" min="2" max="16">
+                        <div class="form-hint">默认切割成几宫格（如 9 表示九宫格）</div>
+                    </div>
+                    <div class="form-group">
+                        <label>切割线宽度</label>
+                        <input type="number" id="config-cut-line-width" placeholder="0" min="0" max="10">
+                        <div class="form-hint">切割线宽度（0 表示不绘制切割线）</div>
+                    </div>
+                    <div class="form-group">
+                        <label>切割线颜色</label>
+                        <input type="text" id="config-cut-line-color" placeholder="#ffffff">
+                        <div class="form-hint">切割线颜色（十六进制，如 #ffffff）</div>
+                    </div>
+                    <div class="form-group">
+                        <label>输出格式</label>
+                        <select id="config-cut-format">
+                            <option value="png">PNG</option>
+                            <option value="jpg">JPG</option>
+                            <option value="webp">WebP</option>
+                        </select>
+                        <div class="form-hint">切割后图片的输出格式</div>
+                    </div>
+                    <div class="form-group">
+                        <label>输出质量</label>
+                        <input type="number" id="config-cut-quality" placeholder="90" min="1" max="100">
+                        <div class="form-hint">输出图片质量（1-100，仅对 JPG/WebP 有效）</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 默认保存路径 -->
+            <div class="settings-card">
+                <div class="card-header">
+                    <h2>📁 默认保存路径</h2>
+                </div>
+                <div class="card-body">
+                    <div class="form-group">
+                        <label>默认路径</label>
+                        <input type="text" id="config-default-save-path" placeholder="留空使用默认路径">
+                        <div class="form-hint">新任务的默认保存路径</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 语言配置 -->
+            <div class="settings-card">
+                <div class="card-header">
+                    <h2>🌍 语言配置</h2>
+                </div>
+                <div class="card-body">
+                    <div id="languages-list" class="language-list">
+                        <!-- 动态填充 -->
+                    </div>
+                    <button class="btn btn-secondary" style="margin-top: 12px;" onclick="addLanguage()">➕ 添加语言</button>
+                </div>
+            </div>
+            
+            <!-- 保存按钮 -->
+            <div style="text-align: center; margin-top: 20px;padding-bottom: 50px;">
+                <button class="btn btn-success" onclick="saveAllSettings()" style="padding: 12px 40px; font-size: 15px;">💾 保存全部配置</button>
+            </div>
+        </div>
+        
+        <!-- API 密钥 Tab -->
+        <div id="tab-api" class="tab-content">
+            <div class="settings-card">
+                <div class="card-header">
+                    <h2>🔑 API 密钥配置</h2>
+                </div>
+                <div class="card-body">
+                    <div class="api-section">
+                        <div class="form-group">
+                            <label>API Key <span style="color: #ef4444;">*</span></label>
+                            <input type="password" id="config-api-key" placeholder="用于图片生成">
+                            <div class="form-hint">从 <a href="https://share.acedata.cloud/r/1uN88BrUTQ" target="_blank">AceData</a> 获取</div>
+                        </div>
+                        <div class="form-group">
+                            <label>Platform Token</label>
+                            <input type="password" id="config-platform-token" placeholder="用于图片上传">
+                            <div class="form-hint">可选，用于图生图功能</div>
+                        </div>
+                    </div>
+                    <div class="api-section">
+                        <div class="form-group">
+                            <label>大模型 API Key</label>
+                            <input type="password" id="config-model-api-key" placeholder="用于 AI 生成提示词">
+                            <div class="form-hint">可选，用于 AI 提示词生成</div>
+                        </div>
+                        <div class="form-group">
+                            <label>图片保存路径</label>
+                            <input type="text" id="config-save-path" placeholder="默认: 桌面/banana2">
+                            <div class="form-hint">留空使用默认路径</div>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary" onclick="saveApiSettings()">💾 保存密钥设置</button>
+                    <div id="api-status" class="status-msg" style="display: none;"></div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 提示词模板 Tab -->
+        <div id="tab-prompts" class="tab-content">
+            <div class="settings-card">
+                <div class="card-header">
+                    <h2>📝 提示词模板文件</h2>
+                    <button class="btn btn-primary" onclick="createNewPrompt()">➕ 新建模板</button>
+                </div>
+                <div class="card-body">
+                    <div id="prompts-list" class="prompt-list">
+                        <!-- 动态填充 -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- JSON 编辑 Tab -->
+        <div id="tab-json" class="tab-content" style="padding-bottom: 30px;">
+            <div class="settings-card">
+                <div class="card-header">
+                    <h2>📄 JSON 配置编辑器</h2>
+                    <button class="btn btn-secondary" onclick="formatJson()">📋 格式化</button>
+                </div>
+                <div class="card-body">
+                    <div class="form-group">
+                        <label>set.json 内容</label>
+                        <textarea id="json-editor" class="json-editor" placeholder="JSON 配置内容..."></textarea>
+                    </div>
+                    <div class="btn-group">
+                        <button class="btn btn-secondary" onclick="loadJson()">🔄 重置</button>
+                        <button class="btn btn-success" onclick="saveJson()">💾 保存 JSON</button>
+                    </div>
+                    <div id="json-status" class="status-msg" style="display: none;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="/js/jquery.min.js"></script>
+    <script>
+        let originalConfig = null;
+        
+        // 切换 Tab
+        function switchTab(tabName) {
+            $('.tab-btn').removeClass('active');
+            $('.tab-content').removeClass('active');
+            $(`[onclick="switchTab('${tabName}')"]`).addClass('active');
+            $(`#tab-${tabName}`).addClass('active');
+        }
+        
+        // 加载配置
+        function loadConfig() {
+            $.get('/api/get_set', function(res) {
+                if (res.success) {
+                    originalConfig = res.data;
+                    populateForm(res.data);
+                    populateJsonEditor(res.data);
+                }
+            });
+            
+            // 加载 API 密钥
+            // 从 localStorage 加载 API 设置
+            $('#config-api-key').val(localStorage.getItem('banana_api_key') || '');
+            $('#config-platform-token').val(localStorage.getItem('banana_platform_token') || '');
+            $('#config-model-api-key').val(localStorage.getItem('banana_model_api_key') || '');
+            $('#config-save-path').val(localStorage.getItem('banana_save_path') || '');
+            
+            // 加载 LLM 配置
+            
+        
+        }
+        
+        // 填充表单
+        function populateForm(config) {
+            // 服务器配置
+            if (config.server) {
+                $('#config-server-url').val(config.server.url || '');
+                $('#config-server-task-url').val(config.server.task_url || '');
+                $('#config-server-upload-url').val(config.server.upload_url || '');
+                $('#config-server-port').val(config.server.port || 2688);
+            }
+            
+            if (config.llm) {
+                $('#config-llm-url').val(config.llm.url || '');
+                $('#config-llm-model').val(config.llm.model || '');
+            }
+            // 轮询配置
+            if (config.polling) {
+                $('#config-polling-interval').val(config.polling.interval || 20000);
+                $('#config-polling-max-times').val(config.polling.max_times || 60);
+            }
+            
+            // 切割配置 - 完整填充所有字段
+            if (config.cut) {
+                $('#config-cut-padding').val(config.cut.padding !== undefined ? config.cut.padding : 3);
+                $('#config-cut-mode').val(config.cut.mode || 'none');
+                $('#config-cut-grid').val(config.cut.grid || 9);
+                $('#config-cut-line-width').val(config.cut.line_width !== undefined ? config.cut.line_width : 0);
+                $('#config-cut-line-color').val(config.cut.line_color || '#ffffff');
+                $('#config-cut-format').val(config.cut.format || 'png');
+                $('#config-cut-quality').val(config.cut.quality !== undefined ? config.cut.quality : 90);
+            }
+            
+            // LLM 配置
+            if (config.llm) {
+                $('#config-llm-url').val(config.llm.url || '');
+                $('#config-llm-model').val(config.llm.model || '');
+                $('#config-llm-name').val(config.llm.name || '');
+            }
+            
+            // 模型配置
+            if (config.models && config.models.length > 0) {
+                const html = config.models.map((m, i) => `
+                    <div class="model-card" data-model-index="${i}">
+                        <button class="model-card-remove" onclick="removeModel(${i})">✕</button>
+                        <div class="model-card-header">
+                            <div class="model-card-logo">
+                                <input type="text" value="${m.logo || '🍌'}" data-field="m-logo" data-index="${i}" style="width:30px;text-align:center;border:none;background:transparent;font-size:20px;">
+                            </div>
+                            <div class="model-card-title">
+                                <input type="text" value="${m.name}" data-field="m-name" data-index="${i}" placeholder="模型名称">
+                            </div>
+                        </div>
+                        <div class="model-card-body">
+                            <div class="form-group">
+                                <label>模型 ID</label>
+                                <input type="text" value="${m.model}" data-field="m-model" data-index="${i}" placeholder="nano-banana-pro">
+                            </div>
+                            <div class="form-group">
+                                <label>显示名称</label>
+                                <input type="text" value="${m.displayName || m.name}" data-field="m-displayname" data-index="${i}" placeholder="显示名称">
+                            </div>
+                            <div class="form-group">
+                                <label>描述</label>
+                                <input type="text" value="${m.description || ''}" data-field="m-desc" data-index="${i}" placeholder="模型描述">
+                            </div>
+                            <div class="form-group">
+                                <label>支持比例</label>
+                                <input type="text" value="${(m.size || []).join(', ')}" data-field="m-size" data-index="${i}" placeholder="1:1, 16:9, 9:16">
+                            </div>
+                            <div class="form-group">
+                                <label>支持质量</label>
+                                <input type="text" value="${(m.quality || []).join(', ')}" data-field="m-quality" data-index="${i}" placeholder="1K, 2K, 4K">
+                            </div>
+                            <div class="form-group">
+                                <label>支持切割数</label>
+                                <input type="text" value="${(m.cut || [1, 2, 4, 6, 9]).join(', ')}" data-field="m-cut" data-index="${i}" placeholder="1, 2, 4, 6, 9">
+                                <div class="form-hint">支持的切割宫格数，如 1, 2, 4, 6, 9</div>
+                            </div>
+                            <div class="form-group">
+                                <label>size 参数名</label>
+                                <input type="text" value="${m.request?.size || 'aspect_ratio'}" data-field="m-request-size" data-index="${i}" placeholder="aspect_ratio">
+                            </div>
+                            <div class="form-group">
+                                <label>quality 参数名</label>
+                                <input type="text" value="${m.request?.quality || 'resolution'}" data-field="m-request-quality" data-index="${i}" placeholder="resolution">
+                            </div>
+                            <div class="form-group">
+                                <label>最大生成数量</label>
+                                <input type="number" value="${m.max || 1}" data-field="m-max" data-index="${i}" placeholder="1" min="1" max="10">
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+                $('#models-list').html(html);
+            }
+            
+            // 语言
+            if (config.languages) {
+                const html = config.languages.map((l, i) => `
+                    <div class="language-item">
+                        <input type="text" value="${l.code}" data-field="lang-code" data-index="${i}" placeholder="代码">
+                        <input type="text" value="${l.name}" data-field="lang-name" data-index="${i}" placeholder="名称">
+                        <input type="text" value="${l.short}" data-field="lang-short" data-index="${i}" placeholder="简称">
+                    </div>
+                `).join('');
+                $('#languages-list').html(html);
+            }
+            
+            // 默认保存路径
+            $('#config-default-save-path').val(config.default_save_path || '');
+        }
+        
+        // 填充 JSON 编辑器
+        function populateJsonEditor(config) {
+            $('#json-editor').val(JSON.stringify(config, null, 2));
+        }
+        
+        // 添加模型
+        function addModel() {
+            const index = $('#models-list .model-card').length;
+            const html = `
+                <div class="model-card" data-model-index="${index}">
+                    <button class="model-card-remove" onclick="removeModel(${index})">✕</button>
+                    <div class="model-card-header">
+                        <div class="model-card-logo">
+                            <input type="text" value="🍌" data-field="m-logo" data-index="${index}" style="width:30px;text-align:center;border:none;background:transparent;font-size:20px;">
+                        </div>
+                        <div class="model-card-title">
+                            <input type="text" data-field="m-name" data-index="${index}" placeholder="模型名称">
+                        </div>
+                    </div>
+                    <div class="model-card-body">
+                        <div class="form-group">
+                            <label>模型 ID</label>
+                            <input type="text" data-field="m-model" data-index="${index}" placeholder="nano-banana-pro">
+                        </div>
+                        <div class="form-group">
+                            <label>显示名称</label>
+                            <input type="text" data-field="m-displayname" data-index="${index}" placeholder="显示名称">
+                        </div>
+                        <div class="form-group">
+                            <label>描述</label>
+                            <input type="text" data-field="m-desc" data-index="${index}" placeholder="模型描述">
+                        </div>
+                        <div class="form-group">
+                            <label>支持比例</label>
+                            <input type="text" data-field="m-size" data-index="${index}" placeholder="1:1, 16:9, 9:16">
+                        </div>
+                        <div class="form-group">
+                            <label>支持质量</label>
+                            <input type="text" data-field="m-quality" data-index="${index}" placeholder="1K, 2K, 4K">
+                        </div>
+                        <div class="form-group">
+                            <label>支持切割数</label>
+                            <input type="text" value="1, 2, 4, 6, 9" data-field="m-cut" data-index="${index}" placeholder="1, 2, 4, 6, 9">
+                            <div class="form-hint">支持的切割宫格数，如 1, 2, 4, 6, 9</div>
+                        </div>
+                        <div class="form-group">
+                            <label>size 参数名</label>
+                            <input type="text" value="aspect_ratio" data-field="m-request-size" data-index="${index}" placeholder="aspect_ratio">
+                        </div>
+                        <div class="form-group">
+                            <label>quality 参数名</label>
+                            <input type="text" value="resolution" data-field="m-request-quality" data-index="${index}" placeholder="resolution">
+                        </div>
+                        <div class="form-group">
+                            <label>最大生成数量</label>
+                            <input type="number" value="1" data-field="m-max" data-index="${index}" placeholder="1" min="1" max="10">
+                        </div>
+                    </div>
+                </div>
+            `;
+            $('#models-list').append(html);
+        }
+        
+        // 删除模型
+        function removeModel(index) {
+            $(`[data-model-index="${index}"]`).remove();
+        }
+        
+        // 添加语言
+        function addLanguage() {
+            const html = `
+                <div class="language-item">
+                    <input type="text" data-field="lang-code" placeholder="代码">
+                    <input type="text" data-field="lang-name" placeholder="名称">
+                    <input type="text" data-field="lang-short" placeholder="简称">
+                </div>
+            `;
+            $('#languages-list').append(html);
+        }
+        
+        // 收集表单数据 - 深度合并，保留不在表单中的字段
+        function collectFormData() {
+            // 深拷贝原始配置，保留所有不在表单中显示的字段
+            const config = deepClone(originalConfig || {});
+            
+            // 服务器配置 - 只更新表单中有的字段
+            config.server = config.server || {};
+            config.server.url = $('#config-server-url').val();
+            config.server.task_url = $('#config-server-task-url').val();
+            config.server.upload_url = $('#config-server-upload-url').val();
+            config.server.port = parseInt($('#config-server-port').val()) || 2688;
+            
+            // LLM 配置
+            config.llm = config.llm || {};
+            config.llm.url = $('#config-llm-url').val();
+            config.llm.model = $('#config-llm-model').val();
+            config.llm.name = $('#config-llm-name').val();
+            
+            // 模型配置
+            config.models = [];
+            $('#models-list .model-card').each(function() {
+                const $card = $(this);
+                const model = {
+                    name: $card.find('[data-field="m-name"]').val(),
+                    displayName: $card.find('[data-field="m-displayname"]').val(),
+                    model: $card.find('[data-field="m-model"]').val(),
+                    logo: $card.find('[data-field="m-logo"]').val() || '🍌',
+                    description: $card.find('[data-field="m-desc"]').val(),
+                    size: ($card.find('[data-field="m-size"]').val() || '').split(',').map(s => s.trim()).filter(s => s),
+                    quality: ($card.find('[data-field="m-quality"]').val() || '').split(',').map(s => s.trim()).filter(s => s),
+                    cut: ($card.find('[data-field="m-cut"]').val() || '1, 2, 4, 6, 9').split(',').map(s => parseInt(s.trim())).filter(s => s && !isNaN(s)),
+                    max: parseInt($card.find('[data-field="m-max"]').val()) || 1,
+                    request: {
+                        size: $card.find('[data-field="m-request-size"]').val() || 'aspect_ratio',
+                        quality: $card.find('[data-field="m-request-quality"]').val() || 'resolution'
+                    }
+                };
+                if (model.name && model.model) {
+                    config.models.push(model);
+                }
+            });
+            
+            // 轮询配置
+            config.polling = config.polling || {};
+            config.polling.interval = parseInt($('#config-polling-interval').val()) || 20000;
+            config.polling.max_times = parseInt($('#config-polling-max-times').val()) || 60;
+            
+            // 切割配置 - 完整收集所有字段，同时保留可能存在的其他字段
+            config.cut = config.cut || {};
+            config.cut.padding = parseInt($('#config-cut-padding').val()) || 3;
+            config.cut.mode = $('#config-cut-mode').val() || 'none';
+            config.cut.grid = parseInt($('#config-cut-grid').val()) || 9;
+            config.cut.line_width = parseInt($('#config-cut-line-width').val()) || 0;
+            config.cut.line_color = $('#config-cut-line-color').val() || '#ffffff';
+            config.cut.format = $('#config-cut-format').val() || 'png';
+            config.cut.quality = parseInt($('#config-cut-quality').val()) || 90;
+            // 注意：config.cut 中其他未在表单中的字段会保留（因为使用了深拷贝）
+            
+            // 默认保存路径
+            config.default_save_path = $('#config-default-save-path').val() || '';
+            
+            // 语言
+            config.languages = [];
+            $('#languages-list .language-item').each(function() {
+                const code = $(this).find('[data-field="lang-code"]').val();
+                const name = $(this).find('[data-field="lang-name"]').val();
+                const short = $(this).find('[data-field="lang-short"]').val();
+                if (code && name) {
+                    config.languages.push({ code, name, short: short || name.substring(0, 2) });
+                }
+            });
+            
+            return config;
+        }
+        
+        // 深拷贝函数 - 确保完全复制对象，避免引用问题
+        function deepClone(obj) {
+            if (obj === null || typeof obj !== 'object') {
+                return obj;
+            }
+            if (Array.isArray(obj)) {
+                return obj.map(item => deepClone(item));
+            }
+            const cloned = {};
+            for (const key in obj) {
+                if (obj.hasOwnProperty(key)) {
+                    cloned[key] = deepClone(obj[key]);
+                }
+            }
+            return cloned;
+        }
+        
+        // 保存全部设置
+        function saveAllSettings() {
+            const config = collectFormData();
+            
+            // 验证配置
+            const errors = validateConfig(config);
+            if (errors.length > 0) {
+                showValidationErrors(errors);
+                return;
+            }
+            
+            // 保存到 JSON 文件
+            $.ajax({
+                url: '/api/config/save-json',
+                type: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify(config),
+                success: function(res) {
+                    if (res.success) {
+                        alert('配置保存成功！');
+                        originalConfig = config;
+                        populateJsonEditor(config);
+                    } else {
+                        alert('保存失败: ' + res.error);
+                    }
+                },
+                error: function(xhr) {
+                    alert('保存失败: ' + (xhr.responseJSON?.error || xhr.statusText));
+                }
+            });
+        }
+        
+        // 保存 API 密钥设置
+        function saveApiSettings() {
+            const apiKey = $('#config-api-key').val();
+            const platformToken = $('#config-platform-token').val();
+            const modelApiKey = $('#config-model-api-key').val();
+            const savePath = $('#config-save-path').val();
+            
+            // 只有非空值才保存，避免覆盖已有值
+            if (apiKey) localStorage.setItem('banana_api_key', apiKey);
+            if (platformToken) localStorage.setItem('banana_platform_token', platformToken);
+            if (modelApiKey) localStorage.setItem('banana_model_api_key', modelApiKey);
+            if (savePath) localStorage.setItem('banana_save_path', savePath);
+            
+            const $status = $('#api-status');
+            $status.removeClass('status-error').addClass('status-success').text('✓ API 密钥设置已保存').show();
+            setTimeout(() => $status.fadeOut(), 3000);
+        }
+        
+        // 保存 LLM 配置
+        function saveLlmSettings() {
+            const llmUrl = $('#config-llm-url').val().trim();
+            const llmModel = $('#config-llm-model').val().trim();
+            
+            if (!llmUrl || !llmModel) {
+                $('#llm-status').removeClass('status-success').addClass('status-error').text('✗ 请填写完整的 LLM 配置').show();
+                setTimeout(() => $('#llm-status').fadeOut(), 3000);
+                return;
+            }
+            
+            // 保存到 set.json
+            const config = JSON.parse(JSON.stringify(window.currentConfig || {}));
+            config.llm = {
+                url: llmUrl,
+                model: llmModel
+            };
+            
+            $.ajax({
+                url: '/api/config/json',
+                type: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify(config),
+                success: function(res) {
+                    if (res.success) {
+                        window.currentConfig = config;
+                        $('#llm-status').removeClass('status-error').addClass('status-success').text('✓ LLM 配置已保存').show();
+                    } else {
+                        $('#llm-status').removeClass('status-success').addClass('status-error').text('✗ 保存失败: ' + res.error).show();
+                    }
+                    setTimeout(() => $('#llm-status').fadeOut(), 3000);
+                },
+                error: function() {
+                    $('#llm-status').removeClass('status-success').addClass('status-error').text('✗ 保存失败').show();
+                    setTimeout(() => $('#llm-status').fadeOut(), 3000);
+                }
+            });
+        }
+        
+        // 格式化 JSON
+        function formatJson() {
+            try {
+                const json = JSON.parse($('#json-editor').val());
+                $('#json-editor').val(JSON.stringify(json, null, 2));
+            } catch (e) {
+                alert('JSON 格式错误: ' + e.message);
+            }
+        }
+        
+        // 重置 JSON
+        function loadJson() {
+            if (originalConfig) {
+                populateJsonEditor(originalConfig);
+            }
+        }
+        
+        // 验证 JSON 配置的完整性和合法性
+        function validateConfig(config) {
+            const errors = [];
+            
+            // 必须有 server 配置
+            if (!config.server || typeof config.server !== 'object') {
+                errors.push('缺少 server 配置对象');
+            } else {
+                if (!config.server.url || typeof config.server.url !== 'string') {
+                    errors.push('server.url 必须是非空字符串');
+                }
+                if (!config.server.task_url || typeof config.server.task_url !== 'string') {
+                    errors.push('server.task_url 必须是非空字符串');
+                }
+                if (typeof config.server.port !== 'number' || config.server.port < 1 || config.server.port > 65535) {
+                    errors.push('server.port 必须是 1-65535 之间的数字');
+                }
+            }
+            
+            // 必须有 models 配置
+            if (!Array.isArray(config.models) || config.models.length === 0) {
+                errors.push('models 必须是非空数组');
+            } else {
+                config.models.forEach((m, i) => {
+                    if (!m.name || typeof m.name !== 'string') {
+                        errors.push(`models[${i}].name 必须是非空字符串`);
+                    }
+                    if (!m.model || typeof m.model !== 'string') {
+                        errors.push(`models[${i}].model 必须是非空字符串`);
+                    }
+                    if (!Array.isArray(m.size) || m.size.length === 0) {
+                        errors.push(`models[${i}].size 必须是非空数组`);
+                    }
+                    if (!Array.isArray(m.quality) || m.quality.length === 0) {
+                        errors.push(`models[${i}].quality 必须是非空数组`);
+                    }
+                    if (typeof m.max !== 'number' || m.max < 1) {
+                        errors.push(`models[${i}].max 必须是大于 0 的数字`);
+                    }
+                });
+            }
+            
+            // 必须有 llm 配置
+            if (!config.llm || typeof config.llm !== 'object') {
+                errors.push('缺少 llm 配置对象');
+            } else {
+                if (!config.llm.url || typeof config.llm.url !== 'string') {
+                    errors.push('llm.url 必须是非空字符串');
+                }
+                if (!config.llm.model || typeof config.llm.model !== 'string') {
+                    errors.push('llm.model 必须是非空字符串');
+                }
+            }
+            
+            // 必须有 languages 配置
+            if (!Array.isArray(config.languages) || config.languages.length === 0) {
+                errors.push('languages 必须是非空数组');
+            } else {
+                config.languages.forEach((l, i) => {
+                    if (!l.code || typeof l.code !== 'string') {
+                        errors.push(`languages[${i}].code 必须是非空字符串`);
+                    }
+                    if (!l.name || typeof l.name !== 'string') {
+                        errors.push(`languages[${i}].name 必须是非空字符串`);
+                    }
+                });
+            }
+            
+            // 必须有 polling 配置
+            if (!config.polling || typeof config.polling !== 'object') {
+                errors.push('缺少 polling 配置对象');
+            } else {
+                if (typeof config.polling.interval !== 'number' || config.polling.interval < 1000) {
+                    errors.push('polling.interval 必须是大于 1000 的数字（毫秒）');
+                }
+                if (typeof config.polling.max_times !== 'number' || config.polling.max_times < 1) {
+                    errors.push('polling.max_times 必须是大于 0 的数字');
+                }
+            }
+            
+            // 必须有 cut 配置
+            if (!config.cut || typeof config.cut !== 'object') {
+                errors.push('缺少 cut 配置对象');
+            } else {
+                if (typeof config.cut.padding !== 'number' || config.cut.padding < 0) {
+                    errors.push('cut.padding 必须是大于等于 0 的数字');
+                }
+                // cut.mode 验证
+                if (config.cut.mode && !['none', 'grid', 'smart'].includes(config.cut.mode)) {
+                    errors.push('cut.mode 必须是 none, grid 或 smart');
+                }
+                // cut.grid 验证
+                if (config.cut.grid !== undefined && (typeof config.cut.grid !== 'number' || config.cut.grid < 2 || config.cut.grid > 16)) {
+                    errors.push('cut.grid 必须是 2-16 之间的数字');
+                }
+                // cut.line_width 验证
+                if (config.cut.line_width !== undefined && (typeof config.cut.line_width !== 'number' || config.cut.line_width < 0)) {
+                    errors.push('cut.line_width 必须是大于等于 0 的数字');
+                }
+                // cut.quality 验证
+                if (config.cut.quality !== undefined && (typeof config.cut.quality !== 'number' || config.cut.quality < 1 || config.cut.quality > 100)) {
+                    errors.push('cut.quality 必须是 1-100 之间的数字');
+                }
+            }
+            
+            // resolutions 和 qualities 是可选的，如果存在则验证格式
+            if (config.resolutions !== undefined) {
+                if (!Array.isArray(config.resolutions)) {
+                    errors.push('resolutions 必须是数组');
+                } else {
+                    config.resolutions.forEach((r, i) => {
+                        if (!r.name || typeof r.name !== 'string') {
+                            errors.push(`resolutions[${i}].name 必须是非空字符串`);
+                        }
+                        if (!r.ratio || typeof r.ratio !== 'string') {
+                            errors.push(`resolutions[${i}].ratio 必须是非空字符串`);
+                        }
+                    });
+                }
+            }
+            
+            if (config.qualities !== undefined) {
+                if (!Array.isArray(config.qualities)) {
+                    errors.push('qualities 必须是数组');
+                } else {
+                    config.qualities.forEach((q, i) => {
+                        if (!q.name || typeof q.name !== 'string') {
+                            errors.push(`qualities[${i}].name 必须是非空字符串`);
+                        }
+                        if (!q.size || typeof q.size !== 'string') {
+                            errors.push(`qualities[${i}].size 必须是非空字符串`);
+                        }
+                    });
+                }
+            }
+            
+            return errors;
+        }
+        
+        // 显示错误弹窗
+        function showValidationErrors(errors) {
+            const errorHtml = errors.map(e => `<li>${e}</li>`).join('');
+            const html = `
+                <div style="position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.5);z-index:9999;display:flex;align-items:center;justify-content:center;">
+                    <div style="background:#fff;border-radius:12px;padding:24px;max-width:500px;max-height:80vh;overflow-y:auto;box-shadow:0 4px 20px rgba(0,0,0,0.3);">
+                        <h3 style="color:#dc2626;margin:0 0 16px 0;font-size:18px;">❌ JSON 配置验证失败</h3>
+                        <ul style="margin:0;padding-left:20px;color:#374151;font-size:14px;line-height:1.8;">${errorHtml}</ul>
+                        <button onclick="this.parentElement.parentElement.remove()" style="margin-top:20px;padding:10px 24px;background:#3b82f6;color:#fff;border:none;border-radius:8px;cursor:pointer;font-size:14px;">关闭</button>
+                    </div>
+                </div>
+            `;
+            $('body').append(html);
+        }
+        
+        // 保存 JSON
+        function saveJson() {
+            const $status = $('#json-status');
+            
+            // 1. 先验证 JSON 语法
+            let config;
+            try {
+                config = JSON.parse($('#json-editor').val());
+            } catch (e) {
+                showValidationErrors(['JSON 语法错误: ' + e.message]);
+                return;
+            }
+            
+            // 2. 验证配置结构和必填字段
+            const errors = validateConfig(config);
+            if (errors.length > 0) {
+                showValidationErrors(errors);
+                return;
+            }
+            
+            // 3. 验证通过，保存配置
+            $.ajax({
+                url: '/api/config/save-json',
+                type: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify(config),
+                success: function(res) {
+                    if (res.success) {
+                        $status.removeClass('status-error').addClass('status-success').text('✓ JSON 配置已保存').show();
+                        originalConfig = config;
+                        populateForm(config);
+                    } else {
+                        $status.removeClass('status-success').addClass('status-error').text('✗ 保存失败: ' + res.error).show();
+                    }
+                    setTimeout(() => $status.fadeOut(), 3000);
+                },
+                error: function(xhr) {
+                    $status.removeClass('status-success').addClass('status-error').text('✗ 保存失败: ' + (xhr.responseJSON?.error || xhr.statusText)).show();
+                }
+            });
+        }
+        
+        // 初始化
+        loadConfig();
+        loadPrompts();
+        
+        // 监听表单变更，同步到 JSON 编辑器
+        $(document).on('input change', '#tab-config input, #tab-config select, #tab-config textarea', function() {
+            syncFormToJsonEditor();
+        });
+        
+        // 同步表单数据到 JSON 编辑器
+        function syncFormToJsonEditor() {
+            const config = collectFormData();
+            $('#json-editor').val(JSON.stringify(config, null, 2));
+        }
+        
+        // 监听 JSON 编辑器变更，同步到表单（防抖）
+        let jsonEditorTimer = null;
+        $('#json-editor').on('input', function() {
+            clearTimeout(jsonEditorTimer);
+            jsonEditorTimer = setTimeout(function() {
+                try {
+                    const config = JSON.parse($('#json-editor').val());
+                    populateForm(config);
+                } catch (e) {
+                    // JSON 格式错误，不同步
+                }
+            }, 500);
+        });
+        
+        // 加载提示词模板
+        function loadPrompts() {
+            $.get('/api/prompts/list', function(res) {
+                if (res.success && res.files) {
+                    renderPrompts(res.files);
+                }
+            });
+        }
+        
+        // 渲染提示词列表
+        function renderPrompts(files) {
+            if (files.length === 0) {
+                $('#prompts-list').html('<p style="text-align:center;color:#9ca3af;padding:40px;">暂无模板文件</p>');
+                return;
+            }
+            
+            const html = files.map(file => `
+                <div class="prompt-card" data-file="${file.name}">
+                    <div class="prompt-card-header">
+                        <input type="text" value="${file.name}" class="prompt-filename" data-original="${file.name}">
+                    </div>
+                    <div class="prompt-card-body">
+                        <textarea class="prompt-content" data-file="${file.name}">加载中...</textarea>
+                    </div>
+                    <div class="prompt-card-footer">
+                        <button class="btn btn-primary" onclick="savePrompt('${file.name}')">💾 保存</button>
+                        <button class="btn btn-danger" onclick="deletePrompt('${file.name}')">🗑️ 删除</button>
+                    </div>
+                </div>
+            `).join('');
+            
+            $('#prompts-list').html(html);
+            
+            // 加载每个文件的内容
+            files.forEach(file => {
+                $.get(`/api/prompts/get?file=${encodeURIComponent(file.name)}`, function(res) {
+                    if (res.success) {
+                        $(`.prompt-content[data-file="${file.name}"]`).val(res.content);
+                    }
+                });
+            });
+        }
+        
+        // 创建新模板
+        function createNewPrompt() {
+            const name = prompt('请输入模板文件名（如：cut_5.prompt）：');
+            if (!name) return;
+            
+            // 检查文件名格式
+            if (!name.endsWith('.prompt')) {
+                alert('文件名必须以 .prompt 结尾');
+                return;
+            }
+            
+            // 添加新卡片
+            const html = `
+                <div class="prompt-card" data-file="${name}">
+                    <div class="prompt-card-header">
+                        <input type="text" value="${name}" class="prompt-filename" data-original="${name}">
+                    </div>
+                    <div class="prompt-card-body">
+                        <textarea class="prompt-content" data-file="${name}" placeholder="输入提示词模板内容..."></textarea>
+                    </div>
+                    <div class="prompt-card-footer">
+                        <button class="btn btn-primary" onclick="savePrompt('${name}')">💾 保存</button>
+                        <button class="btn btn-danger" onclick="deletePrompt('${name}')">🗑️ 删除</button>
+                    </div>
+                </div>
+            `;
+            $('#prompts-list').prepend(html);
+        }
+        
+        // 保存提示词
+        function savePrompt(filename) {
+            const $card = $(`.prompt-card[data-file="${filename}"]`);
+            const newName = $card.find('.prompt-filename').val();
+            const content = $card.find('.prompt-content').val();
+            
+            $.ajax({
+                url: '/api/prompts/save',
+                type: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify({
+                    oldName: filename,
+                    newName: newName,
+                    content: content
+                }),
+                success: function(res) {
+                    if (res.success) {
+                        alert('保存成功');
+                        // 更新 data-file 属性
+                        $card.attr('data-file', newName);
+                        $card.find('.prompt-content').attr('data-file', newName);
+                        $card.find('.prompt-filename').attr('data-original', newName);
+                        // 更新按钮的 onclick
+                        $card.find('.prompt-card-footer .btn-primary').attr('onclick', `savePrompt('${newName}')`);
+                    } else {
+                        alert('保存失败: ' + res.error);
+                    }
+                },
+                error: function(xhr) {
+                    alert('保存失败: ' + (xhr.responseJSON?.error || xhr.statusText));
+                }
+            });
+        }
+        
+        // 删除提示词
+        function deletePrompt(filename) {
+            if (!confirm(`确定要删除 ${filename} 吗？`)) return;
+            
+            $.ajax({
+                url: '/api/prompts/delete',
+                type: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify({ filename: filename }),
+                success: function(res) {
+                    if (res.success) {
+                        $(`.prompt-card[data-file="${filename}"]`).remove();
+                    } else {
+                        alert('删除失败: ' + res.error);
+                    }
+                },
+                error: function(xhr) {
+                    alert('删除失败: ' + (xhr.responseJSON?.error || xhr.statusText));
+                }
+            });
+        }
+    </script>
+</body>
+</html>

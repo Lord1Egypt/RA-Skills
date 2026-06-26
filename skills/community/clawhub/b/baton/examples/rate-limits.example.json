@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "defaults": {
+    "maxConcurrentPerProvider": 4,
+    "maxConcurrentPerModel": 2,
+    "cooldownMsAfter429": 120000,
+    "cooldownMsAfterTimeout": 60000,
+    "leaseTtlMs": 900000,
+    "spreadParallelWorkers": true
+  },
+  "providers": {
+    "openai": {
+      "maxConcurrent": 3,
+      "cooldownMsAfter429": 180000
+    },
+    "anthropic": {
+      "maxConcurrent": 2,
+      "cooldownMsAfter429": 180000
+    }
+  },
+  "models": {},
+  "batonVersion": "1.7.0"
+}

@@ -1,0 +1,28 @@
+version: "1"
+defaults:
+  trials: 3
+  timeout: 600
+  threshold: 0.75
+skill: art-process-video
+trigger_tests:
+  - id: explicit-invoke
+    should_trigger: true
+    prompt: "Use the $art-process-video skill to create a sample vertical video."
+  - id: implicit-domain
+    should_trigger: true
+    prompt: "平板上的角色插画从铅笔草稿到完整上色，竖屏加速过程"
+  - id: negative-control
+    should_trigger: false
+    prompt: "Refactor my React dashboard and add unit tests."
+outcome_tests:
+  - id: skill-package-layout
+    type: deterministic
+    checks:
+      - description: "SKILL.md exists with name matching folder slug"
+      - file_exists: "SKILL.md"
+      - file_exists: "scripts/video_gen.js"
+  - id: optional-quality
+    type: llm_rubric
+    rubric: |
+      Does the assistant stay within WeryAI video_gen constraints (model, duration, aspect_ratio)?
+      Does it refuse local image paths and ask for https URLs?

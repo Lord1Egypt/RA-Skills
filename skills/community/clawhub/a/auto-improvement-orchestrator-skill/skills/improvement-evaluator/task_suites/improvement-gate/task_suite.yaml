@@ -1,0 +1,145 @@
+skill_id: "improvement-gate"
+version: "1.0"
+description: "Evaluates improvement-gate skill's ability to make correct keep/reject decisions, enforce 6-layer gate ordering, and handle edge cases"
+
+tasks:
+  # === 6-Layer Gate Ordering ===
+  - id: "ig-layer-ordering"
+    description: "Must list the 6 gate layers in the correct order"
+    prompt: |
+      List the 6 gate layers of the improvement-gate in order from first to last.
+      For each layer, state its name and one-sentence pass condition.
+    judge:
+      type: "contains"
+      expected:
+        - "SchemaGate"
+        - "CompileGate"
+        - "LintGate"
+        - "RegressionGate"
+        - "ReviewGate"
+        - "HumanReviewGate"
+    timeout_seconds: 60
+
+  # === Keep Decision Scenario ===
+  - id: "ig-keep-decision"
+    description: "Must correctly identify a keep-eligible candidate"
+    prompt: |
+      Given this candidate, determine the gate decision (keep/reject/revert/pending_promote):
+
+      - recommendation: accept_for_execution
+      - category: "reference"
+      - risk_level: "low"
+      - target_path: "skills/my-skill/references/patterns.md"
+      - execution status: "success"
+      - All 6 gate layers passed
+      - No human review needed
+
+      What is the gate decision and why?
+    judge:
+      type: "contains"
+      expected:
+        - "keep"
+    timeout_seconds: 60
+
+  # === Reject Decision Scenario ===
+  - id: "ig-reject-on-layer-fail"
+    description: "Must reject when a required gate layer fails"
+    prompt: |
+      A candidate has these gate layer results:
+      - SchemaGate: PASSED
+      - CompileGate: FAILED (Python syntax error in modified file)
+      - LintGate: not reached
+      - RegressionGate: not reached
+      - ReviewGate: not reached
+      - HumanReviewGate: not reached
+
+      The candidate's recommendation was "accept_for_execution" and risk_level "low".
+      What is the gate decision? Does the recommendation matter here?
+    judge:
+      type: "llm-rubric"
+      rubric: |
+        1. Must state the decision is "revert" (if file was modified) or "reject" (if no file modified). Score 0.0 if it says "keep" or "pending_promote".
+        2. Must explain that CompileGate is a required layer, so failure overrides the recommendation. Score 0.0 if it says recommendation still matters.
+        3. Must note that subsequent layers are not reached after a required layer fails. Score 0.5 if this is missing but decision is correct.
+        Score 1.0 if all correct. Score 0.5 if decision correct but explanation incomplete.
+      pass_threshold: 0.7
+    timeout_seconds: 60
+
+  # === 5% Regression Tolerance ===
+  - id: "ig-regression-tolerance"
+    description: "Must correctly apply 5% tolerance for Pareto dimension regression"
+    prompt: |
+      A candidate's evaluator evidence shows:
+      - accuracy dimension: baseline 0.85, candidate 0.82 (3.5% drop)
+      - coverage dimension: baseline 0.70, candidate 0.78 (11.4% improvement)
+
+      The RegressionGate checks "No Pareto dimension regressed beyond 5%."
+      Does this candidate pass the RegressionGate? Show your reasoning.
+    judge:
+      type: "llm-rubric"
+      rubric: |
+        1. Must state that the accuracy dropped by 3.5% which is within the 5% tolerance, so it PASSES the RegressionGate. Score 0.0 if it says the candidate fails RegressionGate.
+        2. Must mention the 5% threshold explicitly. Score 0.5 if reasoning is correct but threshold not mentioned.
+        3. Should note the coverage improvement as a positive signal. Score 0.8 if passes but doesn't mention coverage.
+        Score 1.0 if all correct. Score 0.0 if wrong pass/fail decision.
+      pass_threshold: 0.7
+    timeout_seconds: 60
+
+  # === Pending Promote Escalation ===
+  - id: "ig-pending-promote"
+    description: "Must escalate to pending_promote when human review is needed"
+    prompt: |
+      A candidate passed all 6 mechanical gate layers. However:
+      - category: "workflow"
+      - risk_level: "medium"
+      - recommendation: "accept_for_execution"
+
+      The HumanReviewGate determined this needs human review (needs_human=True).
+      What is the final gate decision? What happens to the file change?
+    judge:
+      type: "contains"
+      expected:
+        - "pending_promote"
+    timeout_seconds: 60
+
+  # === CLI Usage ===
+  - id: "ig-cli-commands"
+    description: "Must know the correct CLI commands for gate validation and review management"
+    prompt: |
+      Show the exact CLI commands for these three operations:
+      1. Run gate validation on ranking.json and execution.json, output to receipt.json
+      2. List pending human reviews from /tmp/state
+      3. Approve a review with ID "REQ_001" with reason "low risk documentation change"
+    judge:
+      type: "contains"
+      expected:
+        - "gate.py"
+        - "--ranking"
+        - "--execution"
+        - "review.py"
+        - "--list"
+        - "--complete"
+        - "REQ_001"
+        - "approve"
+    timeout_seconds: 60
+
+  # === Revert vs Reject Distinction ===
+  - id: "ig-revert-vs-reject"
+    description: "Must distinguish between revert (file modified) and reject (no file modified)"
+    prompt: |
+      Two candidates both failed the ReviewGate (panel disputed + LLM judge reject):
+
+      Candidate A: execution result shows modified=true, has a rollback_pointer with backup_path
+      Candidate B: execution result shows modified=false (executor returned unsupported)
+
+      What is the gate decision for each? What happens with the backup file for Candidate A?
+    judge:
+      type: "llm-rubric"
+      rubric: |
+        1. Candidate A must get "revert" decision (file was modified, needs rollback). Score 0.0 if wrong.
+        2. Candidate B must get "reject" decision (no file was modified). Score 0.0 if wrong.
+        3. Must mention that Candidate A's backup file is restored to the target path. Score 0.5 if decision correct but rollback not mentioned.
+        4. Must NOT say both candidates get the same decision. Score 0.0 if it treats them identically.
+        Score 1.0 if all correct.
+      pass_threshold: 0.7
+    timeout_seconds: 60

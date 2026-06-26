@@ -1,0 +1,7 @@
+requests==2.33.0
+beautifulsoup4==4.14.3
+oss2==2.19.1
+notion-client==3.0.0
+python-dotenv==1.2.2
+lxml==6.0.2
+urllib3==2.0.7

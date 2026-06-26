@@ -1,0 +1,14 @@
+{
+  "version": 3,
+  "executionMode": "standard",
+  "delegationPolicy": "always_spawn",
+  "plannerRequired": true,
+  "plannerRole": "planner_orchestrator",
+  "agentId": "main",
+  "maxParallelChildren": 4,
+  "requireValidatorForDangerousActions": true,
+  "preferCrossProviderValidation": true,
+  "modelAllowlistPath": ".openclaw/baton/model-allowlist.json",
+  "rateLimitsPath": ".openclaw/baton/rate-limits.json",
+  "batonVersion": "1.7.0"
+}

@@ -1,0 +1,378 @@
+{
+  "aspects": {
+    "conjunction": {
+      "angle": 0,
+      "orb": 8,
+      "nature": "fusion",
+      "general": "Energies merge and amplify each other"
+    },
+    "sextile": {
+      "angle": 60,
+      "orb": 4,
+      "nature": "opportunity",
+      "general": "Easy flow, opportunities naturally arise"
+    },
+    "square": {
+      "angle": 90,
+      "orb": 6,
+      "nature": "growth",
+      "general": "Dynamic tension creates momentum for growth"
+    },
+    "trine": {
+      "angle": 120,
+      "orb": 6,
+      "nature": "harmony",
+      "general": "Natural flow, talents shine, ease and grace"
+    },
+    "opposition": {
+      "angle": 180,
+      "orb": 6,
+      "nature": "balance",
+      "general": "Two sides of a coin, integration opportunity"
+    }
+  },
+  
+  "transits": {
+    "sun": {
+      "relationships": {
+        "conjunction": "Your authentic self shines in connections. Be genuine.",
+        "sextile": "Natural charm and warmth draw others closer.",
+        "square": "Identity and relationship needs find integration.",
+        "trine": "Harmonious self-expression strengthens bonds.",
+        "opposition": "Balance self and other with grace."
+      },
+      "work": {
+        "conjunction": "Your purpose and work align powerfully.",
+        "sextile": "Leadership opportunities flow naturally.",
+        "square": "Building identity through productive challenge.",
+        "trine": "Work feels aligned with your true self.",
+        "opposition": "Integrate personal and professional brilliantly."
+      },
+      "growth": {
+        "conjunction": "Deep dive into self-discovery and purpose.",
+        "sextile": "Learning opportunities illuminate your path.",
+        "square": "Growth through honest self-examination.",
+        "trine": "Wisdom flows through authentic expression.",
+        "opposition": "Expand by embracing multiple perspectives."
+      },
+      "luck": {
+        "conjunction": "Magnetize abundance through authentic presence.",
+        "sextile": "Opportunities recognize your genuine value.",
+        "square": "Fortune builds through persistent self-belief.",
+        "trine": "Luck flows when you're truly yourself.",
+        "opposition": "Balance giving and receiving gracefully."
+      },
+      "advice": {
+        "conjunction": "Be boldly authentic.",
+        "sextile": "Say yes to visibility.",
+        "square": "Honor both your needs and commitments.",
+        "trine": "Shine your light freely.",
+        "opposition": "Find your center between extremes."
+      }
+    },
+    
+    "moon": {
+      "relationships": {
+        "conjunction": "Deep emotional intimacy and nurturing connection.",
+        "sextile": "Feelings flow easily, emotional understanding deepens.",
+        "square": "Emotional honesty strengthens relationship foundation.",
+        "trine": "Natural empathy and comfort in togetherness.",
+        "opposition": "Balance emotion and logic in partnerships."
+      },
+      "work": {
+        "conjunction": "Work from the heart, trust your instincts.",
+        "sextile": "Intuition guides productive choices.",
+        "square": "Emotional intelligence builds professional strength.",
+        "trine": "Feel at home in your work environment.",
+        "opposition": "Balance work demands with self-care."
+      },
+      "growth": {
+        "conjunction": "Deep emotional healing and inner knowing.",
+        "sextile": "Intuitive insights guide your path.",
+        "square": "Growth through emotional authenticity.",
+        "trine": "Inner peace supports outer expansion.",
+        "opposition": "Integrate emotion and reason beautifully."
+      },
+      "luck": {
+        "conjunction": "Opportunities through emotional openness.",
+        "sextile": "Good fortune follows heartfelt action.",
+        "square": "Abundance grows from emotional courage.",
+        "trine": "Luck flows through nurturing and care.",
+        "opposition": "Balance receiving support with self-reliance."
+      },
+      "advice": {
+        "conjunction": "Trust your gut feelings completely.",
+        "sextile": "Follow emotional comfort toward opportunity.",
+        "square": "Express feelings honestly and kindly.",
+        "trine": "Rest and receive with open heart.",
+        "opposition": "Honor both feelings and responsibilities."
+      }
+    },
+    
+    "venus": {
+      "relationships": {
+        "conjunction": "Love energy intensifies, magnetism heightened.",
+        "sextile": "Romance and connection flow effortlessly.",
+        "square": "Love grows through honest relationship work.",
+        "trine": "Harmony, beauty, and affection flourish.",
+        "opposition": "Balance independence with intimacy gracefully."
+      },
+      "work": {
+        "conjunction": "Creativity and collaboration shine at work.",
+        "sextile": "Harmonious professional relationships develop.",
+        "square": "Creative tension fuels artistic breakthroughs.",
+        "trine": "Work feels beautiful and rewarding.",
+        "opposition": "Balance aesthetics with practicality."
+      },
+      "growth": {
+        "conjunction": "Discover what you truly value and love.",
+        "sextile": "Learning through beauty and pleasure.",
+        "square": "Growth in self-worth and deservingness.",
+        "trine": "Expand through art, love, and joy.",
+        "opposition": "Integrate values with spiritual truth."
+      },
+      "luck": {
+        "conjunction": "Attract abundance through love and beauty.",
+        "sextile": "Opportunities come through social connections.",
+        "square": "Fortune through clarifying values.",
+        "trine": "Effortless manifestation of desires.",
+        "opposition": "Balance material and spiritual abundance."
+      },
+      "advice": {
+        "conjunction": "Express love freely and creatively.",
+        "sextile": "Say yes to beauty and pleasure.",
+        "square": "Invest in what you truly value.",
+        "trine": "Receive love and beauty gratefully.",
+        "opposition": "Honor both connection and freedom."
+      }
+    },
+    
+    "mars": {
+      "relationships": {
+        "conjunction": "Passionate energy ignites, assert desires.",
+        "sextile": "Healthy initiative strengthens bonds.",
+        "square": "Channel passion constructively in relationships.",
+        "trine": "Action and desire align harmoniously.",
+        "opposition": "Balance assertion with receptivity."
+      },
+      "work": {
+        "conjunction": "Dynamic action and leadership emerge.",
+        "sextile": "Productive energy flows naturally.",
+        "square": "Build strength through persistent effort.",
+        "trine": "Work with focused energy and courage.",
+        "opposition": "Balance action with strategic rest."
+      },
+      "growth": {
+        "conjunction": "Courage to pursue new paths awakens.",
+        "sextile": "Energy supports learning and exploration.",
+        "square": "Grow through conquering fears.",
+        "trine": "Confident expansion of capabilities.",
+        "opposition": "Integrate action with contemplation."
+      },
+      "luck": {
+        "conjunction": "Fortune favors the bold - take initiative.",
+        "sextile": "Opportunities through confident action.",
+        "square": "Persistence creates its own luck.",
+        "trine": "Success through decisive action.",
+        "opposition": "Balance giving effort with allowing flow."
+      },
+      "advice": {
+        "conjunction": "Act decisively on your desires.",
+        "sextile": "Take small courageous steps.",
+        "square": "Channel energy into focused work.",
+        "trine": "Move forward with confidence.",
+        "opposition": "Assert needs while respecting others."
+      }
+    },
+    
+    "jupiter": {
+      "relationships": {
+        "conjunction": "Generous love, abundance in connection.",
+        "sextile": "Optimism and growth in partnerships.",
+        "square": "Expand understanding through honest dialogue.",
+        "trine": "Joy, humor, and expansion together.",
+        "opposition": "Balance togetherness with personal freedom."
+      },
+      "work": {
+        "conjunction": "Career expansion, new opportunities arise.",
+        "sextile": "Growth through education and mentorship.",
+        "square": "Ambitious goals stretch your capacity.",
+        "trine": "Success flows with generous spirit.",
+        "opposition": "Balance ambition with present gratitude."
+      },
+      "growth": {
+        "conjunction": "Major expansion of consciousness and vision.",
+        "sextile": "Learning opportunities everywhere.",
+        "square": "Growth through philosophical exploration.",
+        "trine": "Wisdom flows, understanding deepens.",
+        "opposition": "Integrate belief with direct experience."
+      },
+      "luck": {
+        "conjunction": "Powerful manifestation period - dream big!",
+        "sextile": "Opportunities through optimistic action.",
+        "square": "Abundance through stretching comfort zones.",
+        "trine": "Luck flows abundantly and easily.",
+        "opposition": "Balance optimism with groundedness."
+      },
+      "advice": {
+        "conjunction": "Think bigger, expect miracles.",
+        "sextile": "Say yes to expansion opportunities.",
+        "square": "Invest in long-term growth.",
+        "trine": "Share your abundance generously.",
+        "opposition": "Expand while staying centered."
+      }
+    },
+    
+    "saturn": {
+      "relationships": {
+        "conjunction": "Deepen commitment, build lasting foundation.",
+        "sextile": "Mature, responsible connection grows.",
+        "square": "Strengthen bonds through honest structure.",
+        "trine": "Stable, enduring love and respect.",
+        "opposition": "Balance freedom with commitment wisely."
+      },
+      "work": {
+        "conjunction": "Master your craft, build authority.",
+        "sextile": "Disciplined effort yields results.",
+        "square": "Build career foundation through persistence.",
+        "trine": "Professional mastery and recognition.",
+        "opposition": "Balance work with rest and play."
+      },
+      "growth": {
+        "conjunction": "Deep maturity and wisdom emerge.",
+        "sextile": "Learn through patient practice.",
+        "square": "Grow through facing limitations.",
+        "trine": "Wisdom earned through experience.",
+        "opposition": "Integrate structure with spontaneity."
+      },
+      "luck": {
+        "conjunction": "Fortune through disciplined effort.",
+        "sextile": "Opportunities reward responsibility.",
+        "square": "Success builds brick by brick.",
+        "trine": "Lasting abundance through wise choices.",
+        "opposition": "Balance effort with trust in timing."
+      },
+      "advice": {
+        "conjunction": "Commit fully, build for the long term.",
+        "sextile": "Do the work with steady dedication.",
+        "square": "Stay patient, the foundation is forming.",
+        "trine": "Honor your achievements and wisdom.",
+        "opposition": "Set boundaries while staying flexible."
+      }
+    },
+    
+    "uranus": {
+      "relationships": {
+        "conjunction": "Liberation and authenticity in love.",
+        "sextile": "Exciting, electric new connections.",
+        "square": "Freedom and intimacy find balance.",
+        "trine": "Unique, innovative partnership energy.",
+        "opposition": "Honor both autonomy and togetherness."
+      },
+      "work": {
+        "conjunction": "Revolutionary career breakthroughs.",
+        "sextile": "Innovation and progress at work.",
+        "square": "Creative disruption leads to growth.",
+        "trine": "Genius flows, brilliant ideas emerge.",
+        "opposition": "Balance innovation with stability."
+      },
+      "growth": {
+        "conjunction": "Awakening to new possibilities.",
+        "sextile": "Breakthrough insights and aha moments.",
+        "square": "Liberation through releasing old patterns.",
+        "trine": "Expanding into authentic self-expression.",
+        "opposition": "Integrate change with continuity."
+      },
+      "luck": {
+        "conjunction": "Unexpected blessings, serendipity.",
+        "sextile": "Opportunities through unique approach.",
+        "square": "Fortune through daring to be different.",
+        "trine": "Luck follows authentic innovation.",
+        "opposition": "Balance experimentation with grounding."
+      },
+      "advice": {
+        "conjunction": "Embrace the unexpected with excitement.",
+        "sextile": "Try something completely new.",
+        "square": "Break free from limiting patterns.",
+        "trine": "Express your uniqueness boldly.",
+        "opposition": "Honor both change and stability."
+      }
+    },
+    
+    "neptune": {
+      "relationships": {
+        "conjunction": "Spiritual, transcendent connection.",
+        "sextile": "Intuitive understanding deepens.",
+        "square": "Clarify dreams while staying grounded.",
+        "trine": "Divine love, compassion flows.",
+        "opposition": "Balance idealism with reality."
+      },
+      "work": {
+        "conjunction": "Bring spirituality and creativity to work.",
+        "sextile": "Imagination enhances professional life.",
+        "square": "Manifest dreams through practical action.",
+        "trine": "Inspired work, creative flow.",
+        "opposition": "Balance vision with execution."
+      },
+      "growth": {
+        "conjunction": "Deep spiritual awakening and surrender.",
+        "sextile": "Intuition guides evolutionary path.",
+        "square": "Grow through discernment and boundaries.",
+        "trine": "Transcendent wisdom and compassion.",
+        "opposition": "Integrate mystical with mundane."
+      },
+      "luck": {
+        "conjunction": "Miracles and synchronicity abound.",
+        "sextile": "Fortune through creative imagination.",
+        "square": "Abundance through inspired vision.",
+        "trine": "Grace flows through trust and surrender.",
+        "opposition": "Balance faith with practical action."
+      },
+      "advice": {
+        "conjunction": "Trust the magic, follow intuition.",
+        "sextile": "Tune into subtle guidance.",
+        "square": "Ground your dreams in reality.",
+        "trine": "Surrender to divine flow.",
+        "opposition": "Hold vision while taking steps."
+      }
+    },
+    
+    "pluto": {
+      "relationships": {
+        "conjunction": "Profound transformation through intimacy.",
+        "sextile": "Deepen connection through vulnerability.",
+        "square": "Powerful healing in relationships.",
+        "trine": "Soul-level bonding and trust.",
+        "opposition": "Balance power with surrender."
+      },
+      "work": {
+        "conjunction": "Career transformation and empowerment.",
+        "sextile": "Strategic power and influence grow.",
+        "square": "Rebuild career on authentic foundation.",
+        "trine": "Mastery and deep impact.",
+        "opposition": "Balance control with collaboration."
+      },
+      "growth": {
+        "conjunction": "Death and rebirth of consciousness.",
+        "sextile": "Empower yourself through shadow work.",
+        "square": "Transform through facing truth.",
+        "trine": "Deep healing and regeneration.",
+        "opposition": "Integrate light and shadow."
+      },
+      "luck": {
+        "conjunction": "Fortune through radical authenticity.",
+        "sextile": "Opportunities in transformation.",
+        "square": "Abundance emerges from release.",
+        "trine": "Powerful manifestation through depth.",
+        "opposition": "Balance control with trust."
+      },
+      "advice": {
+        "conjunction": "Embrace total transformation.",
+        "sextile": "Go deeper, trust the process.",
+        "square": "Release what no longer serves.",
+        "trine": "Step into your power fully.",
+        "opposition": "Surrender control, find true strength."
+      }
+    }
+  }
+}

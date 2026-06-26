@@ -1,35 +1,190 @@
 ---
-name: "artifact-organizer"
-description: "按任务阶段而不是按文件类型整理混合产物。当编码、写作、脚本处理、研究、自动化或多步骤任务产生多个文件，且文件开始散落、临时产物与最终产物混在一起、目录结构不清晰，或用户提出“整理目录”“整理工作区”“归类”“归档”“收整产物”“文件有点乱”“帮我理一理结构”时，使用此技能。既支持任务开始前先规划 staged 目..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/artifact-organizer"
-sourceUrl: "https://clawhub.ai/skills/artifact-organizer"
+name: artifact-organizer
+description: 按任务阶段而不是按文件类型整理混合产物。当编码、写作、脚本处理、研究、自动化或多步骤任务产生多个文件，且文件开始散落、临时产物与最终产物混在一起、目录结构不清晰，或用户提出“整理目录”“整理工作区”“归类”“归档”“收整产物”“文件有点乱”“帮我理一理结构”时，使用此技能。既支持任务开始前先规划 staged 目录结构，也支持对已经变乱的任务目录做清理和重组；遇到密码、token、API key、服务器凭据等精确敏感信息时，优先归入现有 secrets/ 体系。
 ---
 
-# artifact-organizer
+# Artifact Organizer
 
-> 按任务阶段而不是按文件类型整理混合产物。当编码、写作、脚本处理、研究、自动化或多步骤任务产生多个文件，且文件开始散落、临时产物与最终产物混在一起、目录结构不清晰，或用户提出“整理目录”“整理工作区”“归类”“归档”“收整产物”“文件有点乱”“帮我理一理结构”时，使用此技能。既支持任务开始前先规划 staged 目...
+这个技能用于把任务产物整理得更清楚、更容易继续做、更方便后续维护。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/artifact-organizer`
-- **Source URL:** [https://clawhub.ai/skills/artifact-organizer](https://clawhub.ai/skills/artifact-organizer)
+默认原则是：**按任务阶段优先，按文件类型次之**。
 
-## Overview
+也就是说，通常应该：
+- 先识别这个任务真实经历了哪些阶段
+- 围绕这些阶段创建或调整目录
+- 允许同一阶段下同时存在多种类型的文件
+- 不要一上来就把所有东西粗暴塞进全局 `scripts/`、`docs/`、`data/` 目录，除非那样对当前任务明显更好
 
+## 什么时候使用这个技能
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/artifact-organizer
+以下两类情况都适合触发：
+
+### 1）任务开始前先规划结构
+适用于：
+- 用户刚开始一个新任务
+- 这个任务大概率会生成多个文件
+- 任务包含多个步骤、阶段或交接点
+- 希望在开始产出前先把目录结构搭清楚
+
+### 2）任务进行中或结束后做整理
+适用于：
+- 文件已经开始散落
+- 临时文件和最终结果混在一起
+- 脚本、静态数据、说明、截图、日志、输出物难以追踪
+- 用户提出“整理一下”“收整一下”“归类一下”“把目录理清楚”
+- 任务后续还要继续维护、复用或交接
+
+## 核心规则
+
+### 1. 按任务阶段组织，而不是只按扩展名分类
+优先考虑类似这样的结构：
+
+```text
+<task-root>/
+├── 01_input-prep/
+├── 02_processing/
+├── 03_verification/
+└── 04_delivery/
 ```
+
+然后再在某个阶段下按需要细分：
+
+```text
+02_processing/
+├── scripts/
+├── data/
+├── notes/
+└── outputs/
+```
+
+不要强迫所有任务套用同一个固定模板。阶段名应该跟着真实 workflow 走。
+
+### 2. 同一阶段下允许多种产物并存
+一个阶段下可能同时有：
+- scripts
+- static data
+- notes
+- screenshots
+- logs
+- generated outputs
+- configs
+
+这很正常。只要它们属于同一个步骤，就应该允许放在一起，而不是为了“整齐”强行拆散。
+
+### 3. 精确敏感信息优先归入现有 `secrets/`
+如果发现以下内容：
+- 密码
+- API key
+- token
+- 服务器登录凭据
+- 账号密钥
+- 其他需要精确保存的敏感值
+
+处理原则：
+- 不要把这类精确敏感值长期混放在普通任务目录里
+- 需要长期精确保存时，优先归入现有 workspace 根目录下的 `secrets/` 体系
+- 本地 `secrets/` 视为精确敏感值的事实来源
+- 任务目录里如有需要，只保留非敏感引用说明
+
+例如：
+- `secrets/server-credentials.md`
+- `secrets/ccnu-account.md`
+
+如果直接移动会影响现有代码运行、脚本加载或任务连续性，则优先保证功能不坏，并明确说明取舍。
+
+### 4. 只做有意义的整理，避免为整齐而整齐
+不要为了好看而大搬家。
+
+只有在以下方面明显变好时，才值得移动、重命名或重组：
+- 清晰度
+- 可维护性
+- 可追踪性
+- 交付质量
+- 后续继续做的便利性
+
+避免无意义折腾。
+
+### 5. 保留任务连续性
+整理已有任务时：
+- 先识别任务根目录
+- 再根据真实文件和用户目标反推 workflow stages
+- 移动方式要让后续还能看懂任务是怎么演变的
+- 不要把最终交付物埋到很深的处理中间目录里
+- 保证重要输出容易找到
+
+## 推荐工作流
+
+### 模式 A：开始前先规划结构
+1. 理解任务目标。
+2. 推断可能经历的阶段。
+3. 建立一个紧凑、够用的阶段式结构。
+4. 后续新产物尽量直接落到对应阶段。
+
+### 模式 B：对已有混乱目录做整理
+1. 先检查当前已有文件。
+2. 按 workflow 角色分组，而不是只看扩展名。
+3. 定义能反映真实过程的阶段目录。
+4. 只移动或重命名那些确实能提升清晰度的内容。
+5. 明确指出哪些敏感信息应该归入 `secrets/`。
+6. 最后向用户总结整理后的结构。
+
+## 阶段设计启发
+
+常见阶段名包括：
+- input-prep
+- collection
+- extraction
+- processing
+- transformation
+- verification
+- delivery
+- reporting
+- handoff
+
+但不要机械套用，要根据任务实际情况调整。
+
+好的阶段名示例：
+- `01_source-collection`
+- `02_cleaning-and-normalization`
+- `03_generation`
+- `04_review-and-delivery`
+
+不好的示例：
+- `step1`
+- `misc`
+- `temp2`
+
+## 整理时要优先优化什么
+
+优先优化：
+- 以后继续接手这个任务时能快速进入状态
+- 用户一眼能看懂这个任务都经历了什么
+- 重要输出容易定位
+- 精确敏感信息该进 `secrets/` 时能正确归位
+- 整体结构不要让人意外
+
+## 输出方式要求
+
+实际整理或提出整理方案时，尽量做到：
+- 给出最终目录树
+- 简短解释阶段划分逻辑
+- 标出哪些敏感文件已经或建议归到 `secrets/`
+- 说明哪些内容你刻意没有动，以及为什么没动
+
+## 反模式
+
+避免：
+- 把所有内容都丢进一个全局 `scripts/` 目录
+- 只按文件扩展名分类，而忽视 workflow
+- 把 secrets 放进普通任务目录
+- 小任务硬建很深的层级
+- 没有明确收益却大量重命名文件
+
+## 目标结果
+
+如果正确使用这个技能，最终应该达到：
+- 任务根目录更清楚
+- 结构以阶段为主轴
+- 输出物更容易找到
+- 临时产物与最终产物混放更少
+- 敏感信息按现有 `secrets/` 约定处理

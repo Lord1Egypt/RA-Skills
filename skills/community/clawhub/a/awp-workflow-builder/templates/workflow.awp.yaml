@@ -1,0 +1,113 @@
+# AWP Workflow Manifest Template
+# Compliance Level: L0+ (add sections for higher levels)
+#
+# Replace all "{{PLACEHOLDER}}" values with your workflow-specific configuration.
+
+awp: "1.0.0"
+
+workflow:
+  name: "{{WORKFLOW_NAME}}"                         # kebab-case, MUST match directory name (R1)
+  version: "1.0.0"
+  description: "{{WORKFLOW_DESCRIPTION}}"
+
+# --- Orchestration (DAG) ---
+orchestration:
+  engine: dag
+  graph:
+    - id: "{{AGENT_ID}}"                           # snake_case required (R2)
+      agent: "{{AGENT_ID}}"
+      enabled: true
+      depends_on: []
+      share_input: {}
+      description: "{{AGENT_DESCRIPTION}}"
+
+    # Add more agents:
+    # - id: second_agent
+    #   agent: second_agent
+    #   depends_on:
+    #     - agent: "{{AGENT_ID}}"
+    #       condition: success
+    #   share_input:
+    #     "{{AGENT_ID}}": ["{{OUTPUT_FIELD}}"]
+    #   description: "..."
+
+  execution:
+    mode: sequential                                # sequential | parallel | conditional
+    timeout:
+      per_agent: 120
+      total: 300
+    error_handling:
+      default: continue                             # continue | stop | retry
+
+# --- State ---
+state:
+  persistence:
+    enabled: true
+    path: data/state
+    format: json
+  sharing:
+    strategy: full                                  # full | selective | isolated
+  required_fields: []
+  auto_inject: {}
+
+# --- Environment & Secrets (L0+) ---
+# Declare required environment variables. Variables with sensitive: true
+# are loaded from secrets.yaml > .env > os.environ and never logged.
+# env:
+#   required:
+#     - name: SEARCH_API_KEY
+#       description: "API key for premium web search"
+#       sensitive: true
+#     - name: AUTH_TOKEN
+#       description: "Bearer token for external API"
+#       sensitive: true
+#   defaults:
+#     SEARCH_PROVIDER: "duckduckgo"
+
+# --- Memory (L3+) ---
+# Uncomment for L3 Memorable compliance.
+# memory:
+#   enabled: true
+#   workspace_dir: workspace
+#   long_term:
+#     enabled: true
+#     inject: true
+#     max_tokens: 2000
+#   daily_log:
+#     enabled: true
+#     auto_write: true
+
+# --- Communication (L2+) ---
+# Uncomment for L2 Communicative compliance.
+# communication:
+#   bus:
+#     type: internal
+#     persistence: run
+#     delivery: at_least_once
+#   channels:
+#     - name: default
+#       type: direct
+
+# --- Observability (L4+) ---
+# Uncomment for L4 Observable compliance.
+# observability:
+#   tracing:
+#     enabled: true
+#     exporter: internal
+#   metrics:
+#     enabled: true
+#     collector: internal
+#   audit:
+#     enabled: true
+#     hash_chain: true
+
+# --- Security (L5) ---
+# Uncomment for L5 Enterprise compliance.
+# security:
+#   circuit_breaker:
+#     enabled: true
+#     failure_threshold: 5
+#     reset_timeout: 60
+#   rate_limit:
+#     enabled: true
+#     max_calls_per_minute: 60

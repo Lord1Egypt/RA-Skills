@@ -1,35 +1,36 @@
 ---
-name: "Artifact Signing"
-description: "A skill to sign artifacts using a digital certificate and private key."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/artifact-signing"
-sourceUrl: "https://clawhub.ai/skills/artifact-signing"
+name: artifact-signing
+description: A skill to sign artifacts using a digital certificate and private key.
 ---
 
-# Artifact Signing
+# Artifact Signing Skill
 
-> A skill to sign artifacts using a digital certificate and private key.
+This skill allows an AI agent to sign files, binaries, or any artifact using a PEM-encoded private key. It generates a detached signature file.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/artifact-signing`
-- **Source URL:** [https://clawhub.ai/skills/artifact-signing](https://clawhub.ai/skills/artifact-signing)
+## Dependencies
 
-## Overview
+- Python 3.x
+- `cryptography` library (`pip install cryptography`)
 
+## Tools
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/artifact-signing
+### `sign_artifact`
+
+Signs a given artifact with a private key.
+
+**Arguments:**
+
+- `artifact_path`: (Required) Absolute path to the file to be signed.
+- `key_path`: (Required) Absolute path to the PEM-encoded private key.
+- `output_path`: (Optional) Absolute path where the signature should be saved. Defaults to `<artifact_path>.sig`.
+
+**Example Usage:**
+
+```powershell
+python c:\Docs\skills\artifact-signing\scripts\sign_artifact.py "C:\path\to\artifact.zip" "C:\path\to\private_key.pem"
 ```
+
+## Security Considerations
+
+- **Private Key Protection**: Never share your private key. Ensure the key file has restricted permissions.
+- **Verification**: Always verify the signature using the corresponding public key before trusting an artifact.

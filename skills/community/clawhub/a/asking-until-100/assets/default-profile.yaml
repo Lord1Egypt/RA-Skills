@@ -1,0 +1,79 @@
+version: 1
+model_assumptions:
+  family: gpt-5.4
+  reasoning_effort: xhigh
+behavior:
+  target_readiness: 100
+  default_rigor: medium
+  max_initial_questions: 4
+  max_follow_up_questions: 2
+  report_basis: repo_plus_prompt
+  repo_scan_max_depth: 2
+  include_answer_options: true
+  thought_provoking_ratio: 0.25
+  report_for_high_rigor_coding: true
+task_overrides:
+  coding:
+    rigor: high
+    report_trigger: true
+    required_dimensions:
+      - goal
+      - repo_state
+      - architecture
+      - product_behavior
+      - environment
+      - interfaces
+      - constraints
+      - success_criteria
+  build:
+    rigor: high
+    report_trigger: true
+    required_dimensions:
+      - goal
+      - repo_state
+      - runtime
+      - package_manager
+      - deploy_target
+      - ci_provider
+      - constraints
+      - rollback
+      - logs
+      - success_criteria
+  architecture:
+    rigor: high
+    report_trigger: false
+    required_dimensions:
+      - goal
+      - boundaries
+      - dependencies
+      - data_flow
+      - tradeoffs
+      - constraints
+      - success_criteria
+  debugging:
+    rigor: high
+    report_trigger: false
+    required_dimensions:
+      - goal
+      - repo_state
+      - environment
+      - runtime
+      - evidence
+      - constraints
+      - success_criteria
+  discovery:
+    rigor: medium
+    report_trigger: false
+    required_dimensions:
+      - goal
+      - repo_state
+      - product_behavior
+      - constraints
+      - success_criteria
+  general:
+    rigor: medium
+    report_trigger: false
+    required_dimensions:
+      - goal
+      - constraints
+      - success_criteria

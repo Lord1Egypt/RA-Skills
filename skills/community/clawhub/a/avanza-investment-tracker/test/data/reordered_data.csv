@@ -1,0 +1,9 @@
+Datum;Konto;Typ av transaktion;Värdepapper/beskrivning;Antal;Kurs;Belopp;Courtage;Valuta;ISIN;Resultat
+2017-11-02;1111111;Köp;AstraZeneca;2;471,9;-946;2;SEK;GB0009895292;-
+2017-11-02;1111111;Insättning;Direktinsättning från Danske Bank;-;-;15000;0;SEK;;-
+2017-11-02;1111111;Köp;Snap A;10;13,17;-1131;65;SEK;US83304A1060;-
+2017-10-15;1111111;Köp;COMPUTER INNOVATION;500;0,394;-266;69;SEK;SE0006424867;-
+2017-10-15;1111111;Sälj;COMPUTER INN;-500;0,5;181;69;SEK;SE0006424867;-
+2017-09-17;1111111;Köp;Africa Oil Corp.;25;12,02;-370;69;SEK;CA00829Q1019;-
+2017-09-15;1111111;Köp;Clas Ohlson B;3;159,5;-548;69;SEK;SE0000584948;-
+2017-08-15;1111111;Insättning;Direktinsättning från Danske Bank;-;-;1900;0;SEK;;-

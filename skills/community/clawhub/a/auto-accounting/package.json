@@ -1,0 +1,53 @@
+{
+  "name": "auto-accounting",
+  "version": "1.0.5",
+  "description": "自动识别图片中的记账信息，并在一日记账APP中自动记录。支持微信、支付宝、京东、淘宝、美团等主流平台。",
+  "author": "摇摇",
+  "main": "scripts/accounting_parser.py",
+  "keywords": [
+    "accounting",
+    "image",
+    "ocr",
+    "automation",
+    "finance",
+    "记账",
+    "自动记账"
+  ],
+  "dependencies": {
+    "xiaoyi-image-understanding": ">=1.0.0",
+    "xiaoyi-gui-agent": ">=1.0.0",
+    "requests": "^2.31.0"
+  },
+  "devDependencies": {},
+  "python": ">=3.7",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/taobaoaz/auto-accounting.git"
+  },
+  "bugs": {
+    "url": "https://github.com/taobaoaz/auto-accounting/issues"
+  },
+  "homepage": "https://github.com/taobaoaz/auto-accounting#readme",
+  "license": "MIT-0",
+  "os": ["android"],
+  "requirements": {
+    "runtime": "小艺 Claw",
+    "runtime_required": true,
+    "app": "一日记账 APP",
+    "app_required": true
+  },
+  "restrictions": {
+    "modifiable": false,
+    "runtime": "小艺 Claw",
+    "runtime_required": true,
+    "app": "一日记账 APP",
+    "app_required": true
+  },
+  "engines": {
+    "openclaw": ">=1.0.0"
+  },
+  "scripts": {
+    "test": "python tests/test_accounting.py",
+    "lint": "python -m py_compile scripts/*.py"
+  }
+}

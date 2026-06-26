@@ -1,0 +1,8 @@
+---
+name: web3-integration
+description: Integrate apps with blockchain providers, wallets, and contract calls safely.
+version: 1.0.0
+display_name: "Web3 Integration"
+triggers:
+System.Object[]
+---

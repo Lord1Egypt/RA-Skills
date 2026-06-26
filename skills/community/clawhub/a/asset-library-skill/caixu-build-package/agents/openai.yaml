@@ -1,0 +1,4 @@
+interface:
+  display_name: "Build Application Document Package"
+  short_description: "Phase skill to build ledgers and a truthful submission bundle from validated lifecycle data"
+  default_prompt: "Use $caixu-build-package after the current stage has been identified as package generation, load the latest validated lifecycle run, let the agent choose assets, run docgen deterministically, and persist a package plan without changing readiness."

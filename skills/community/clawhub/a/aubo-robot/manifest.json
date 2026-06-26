@@ -1,0 +1,76 @@
+{
+  "name": "aubo-robot",
+  "version": "1.0.0",
+  "description": "AUBO 遨博机器人控制技能 - ARCS 仿真 + Python SDK",
+  "author": "小橙 (Little Orange) 🍊",
+  "created": "2026-04-02",
+  "updated": "2026-04-02",
+  "tags": ["robot", "aubo", "遨博", "arm", "python", "arcs", "vmware"],
+  "category": "robotics",
+  "difficulty": "intermediate",
+  "testing_status": {
+    "arcs_simulation": "preparing",
+    "real_robot": false,
+    "warning": "技能包已创建，ARCS 仿真环境配置中，尚未完成测试"
+  },
+  "requirements": {
+    "docker": false,
+    "vmware": true,
+    "python": "3.8+",
+    "external_apis": false,
+    "hardware": "AUBO 机器人或 ARCS 仿真虚拟机"
+  },
+  "dependencies": {
+    "python_packages": ["aubo-sdk"],
+    "vmware": "Workstation 16 Pro+",
+    "arcs_vm": "aubo_sim_0.1.ovf",
+    "network": "桥接模式"
+  },
+  "features": [
+    "关节空间运动 (move_joint)",
+    "笛卡尔空间直线运动 (move_line)",
+    "圆弧运动 (move_circle)",
+    "状态实时反馈 (get_joints, get_pose)",
+    "IO 控制 (set_digital_out, get_digital_in)",
+    "力控反馈 (部分型号)"
+  ],
+  "files": {
+    "skill_doc": "SKILL.md",
+    "quick_start": "README.md",
+    "python_lib": "aubo_robot.py",
+    "test_scripts": [
+      "test_aubo_sim.py",
+      "test_aubo_real.py"
+    ],
+    "examples": [
+      "examples/basic_move.py",
+      "examples/io_control.py"
+    ]
+  },
+  "simulation": {
+    "type": "VMware 虚拟机",
+    "software": "ARCS (Aubo Robot Control System)",
+    "location": "D:\\aubo_sim\\",
+    "default_password": "q",
+    "network_mode": "桥接模式"
+  },
+  "commands": {
+    "start_vm": "启动 VMware → aubo_sim 虚拟机",
+    "test_connection": "python aubo_robot.py"
+  },
+  "related_skills": [
+    "ur-robot",
+    "jaka-robot",
+    "tm-robot",
+    "dobot-robot"
+  ],
+  "resources": {
+    "aubo_official": "https://www.aubo-robotics.cn/",
+    "developer_portal": "https://developer.aubo-robotics.cn/",
+    "sdk_docs": "https://docs.aubo-robotics.cn/",
+    "download": "https://download.aubo-robotics.cn/"
+  },
+  "status": "development",
+  "tested": false,
+  "note": "技能包框架已创建，等待 ARCS 仿真虚拟机配置完成后进行测试"
+}

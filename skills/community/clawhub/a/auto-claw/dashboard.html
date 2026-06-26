@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Auto-Claw Dashboard</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, system-ui, sans-serif; background: #0f172a; color: #e2e8f0; min-height: 100vh; padding: 40px; }
+.container { max-width: 1200px; margin: 0 auto; }
+h1 { font-size: 32px; margin-bottom: 8px; color: #f8fafc; }
+.subtitle { color: #64748b; margin-bottom: 40px; }
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+.card { background: #1e293b; border-radius: 16px; padding: 24px; border: 1px solid #334155; }
+.card h2 { font-size: 14px; color: #94a3b8; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 16px; }
+.score { font-size: 64px; font-weight: 700; margin-bottom: 8px; }
+.score.good { color: #22c55e; }
+.score.warn { color: #f59e0b; }
+.score.bad { color: #ef4444; }
+.label { color: #64748b; font-size: 14px; }
+.metric { display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid #334155; }
+.metric:last-child { border-bottom: none; }
+.metric-name { color: #94a3b8; }
+.metric-value { font-weight: 600; }
+.metric-value.good { color: #22c55e; }
+.metric-value.bad { color: #ef4444; }
+.cmd { background: #0f172a; border-radius: 8px; padding: 16px; font-family: monospace; font-size: 13px; color: #22c55e; overflow-x: auto; }
+.cmd code { color: #64748b; }
+.footer { margin-top: 40px; text-align: center; color: #64748b; font-size: 13px; }
+a { color: #22c55e; text-decoration: none; }
+a:hover { text-decoration: underline; }
+</style>
+</head>
+<body>
+<div class="container">
+<h1>🦶 Auto-Claw Dashboard</h1>
+<p class="subtitle">WordPress AI Operations Platform — Real-time Status</p>
+
+<div class="grid">
+<div class="card">
+<h2>SEO Health</h2>
+<div class="score warn">44<span style="font-size:24px">/100</span></div>
+<p class="label">需要优化 — 缺少meta描述和OG标签</p>
+<div style="margin-top: 20px;">
+<div class="metric"><span class="metric-name">页面扫描</span><span class="metric-value">8</span></div>
+<div class="metric"><span class="metric-name">问题总数</span><span class="metric-value bad">40</span></div>
+<div class="metric"><span class="metric-name">Meta描述缺失</span><span class="metric-value bad">8/8</span></div>
+<div class="metric"><span class="metric-name">OG标签缺失</span><span class="metric-value bad">8/8</span></div>
+</div>
+</div>
+
+<div class="card">
+<h2>Performance</h2>
+<div class="score bad">40<span style="font-size:24px">/100</span></div>
+<p class="label">需要优化 — TTFB过高，无页面缓存</p>
+<div style="margin-top: 20px;">
+<div class="metric"><span class="metric-name">严重页面</span><span class="metric-value bad">3</span></div>
+<div class="metric"><span class="metric-name">页面缓存</span><span class="metric-value bad">未启用</span></div>
+<div class="metric"><span class="metric-name">对象缓存</span><span class="metric-value bad">未启用</span></div>
+<div class="metric"><span class="metric-name">Opcode缓存</span><span class="metric-value good">已启用</span></div>
+</div>
+</div>
+
+<div class="card">
+<h2>WordPress Site</h2>
+<div style="margin-top: 10px;">
+<div class="metric"><span class="metric-name">URL</span><span class="metric-value"><a href="http://linghangyuan1234.dpdns.org">linghangyuan1234</a></span></div>
+<div class="metric"><span class="metric-name">版本</span><span class="metric-value good">6.9.4</span></div>
+<div class="metric"><span class="metric-name">文章</span><span class="metric-value">4 篇</span></div>
+<div class="metric"><span class="metric-name">插件</span><span class="metric-value">0 (需安装Yoast)</span></div>
+<div class="metric"><span class="metric-name">主题</span><span class="metric-value">twentytwentyfive v1.4</span></div>
+</div>
+</div>
+
+<div class="card">
+<h2>Capabilities</h2>
+<div style="margin-top: 10px;">
+<div class="metric"><span class="metric-name">已实现</span><span class="metric-value good">19/19</span></div>
+<div class="metric"><span class="metric-name">CLI命令</span><span class="metric-value">18</span></div>
+<div class="metric"><span class="metric-name">代码总量</span><span class="metric-value">~5600行</span></div>
+<div class="metric"><span class="metric-name">自动化</span><span class="metric-value">每日Cron ✅</span></div>
+</div>
+</div>
+</div>
+
+<div class="card" style="margin-top: 20px;">
+<h2>Quick Commands</h2>
+<div class="cmd">
+# Full site audit<br>
+<code>$</code> python3 cli.py full-audit<br><br>
+# SEO scan<br>
+<code>$</code> python3 cli.py seo --url http://linghangyuan1234.dpdns.org<br><br>
+# Performance diagnostic<br>
+<code>$</code> python3 cli.py performance --url http://linghangyuan1234.dpdns.org<br><br>
+# All 19 capabilities demo<br>
+<code>$</code> python3 demo_complete.py
+</div>
+</div>
+
+<div class="card" style="margin-top: 20px;">
+<h2>Next Steps (Requires Approval)</h2>
+<div style="margin-top: 10px;">
+<div class="metric"><span class="metric-name">🔒 Install Yoast SEO</span><span class="metric-value">SEO 44→70+</span></div>
+<div class="metric"><span class="metric-name">🔒 Install WP Super Cache</span><span class="metric-value">Perf 40→70+</span></div>
+<div class="metric"><span class="metric-name">🔒 Install Redis</span><span class="metric-value">+200% concurrent</span></div>
+<div class="metric"><span class="metric-name">⏳ ClawhHub Publish</span><span class="metric-value">Needs token</span></div>
+</div>
+</div>
+
+<div class="footer">
+<p>Auto-Claw — AI-Driven WordPress Operations | Last updated: 2026-03-24 09:05 UTC</p>
+<p>Reply <code>approve</code> to execute pending optimizations</p>
+</div>
+</div>
+</body>
+</html>

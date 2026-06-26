@@ -1,0 +1,7 @@
+{
+  "name": "blind-date-assistant",
+  "version": "1.1.0",
+  "description": "Blind date preparation assistant. Input meeting context, profile notes, chat excerpts, or follow-up goal; output respectful conversation topics, safety boundaries, logistics checklist, and optional message drafts. No manipulation, stalking, private-data inference, or guaranteed outcomes.",
+  "author": "harrylabsj",
+  "license": "MIT-0"
+}

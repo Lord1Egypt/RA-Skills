@@ -1,35 +1,53 @@
 ---
-name: "Autonomous Research"
-description: "自动化23阶段科研流程，实现从研究想法到完整论文的生成，支持文献检索、实验设计和结果分析。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/autonomous-research-jirboy"
-sourceUrl: "https://clawhub.ai/skills/autonomous-research-jirboy"
+name: autonomous-research
+description: [已整合] 自主科研流水线已整合到 research 统一入口技能
+argument-hint: "[研究想法/主题]"
 ---
 
-# Autonomous Research
+# ⚠️ 已整合 - 请使用 research 统一入口
 
-> 自动化23阶段科研流程，实现从研究想法到完整论文的生成，支持文献检索、实验设计和结果分析。
+> **本技能保留用于向后兼容，功能已整合到 `research` 统一入口技能**
+>
+> **推荐使用：** `research autonomous [研究想法]` 或直接使用本技能（自动转发）
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/autonomous-research-jirboy`
-- **Source URL:** [https://clawhub.ai/skills/autonomous-research-jirboy](https://clawhub.ai/skills/autonomous-research-jirboy)
+---
 
-## Overview
+# Autonomous Research（兼容层）
 
+自主科研流水线 - 将完整的 23 阶段科研自动化流水线整合，实现从研究想法到完整论文的自动生成。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/autonomous-research-jirboy
+## 迁移指南
+
+**新用法：**
 ```
+research autonomous 基于 PINN 的振动台控制
+research autonomous 强化学习在 RTHS 中的应用
+```
+
+**旧用法（仍然可用）：**
+```
+autonomous 基于 PINN 的振动台控制
+```
+
+## 核心能力
+
+### 23 阶段科研流水线
+
+| Phase | 阶段 | 说明 | 网关 |
+|-------|------|------|------|
+| A | 研究范围 | 主题初始化 + 问题拆解 | - |
+| B | 文献发现 | 搜索 + 收集 + 筛选 + 提取 | ✅ |
+| C | 知识综合 | 聚类分析 + 假设生成 | - |
+| D | 实验设计 | 方案 + 代码 + 资源 | ✅ |
+| E | 实验执行 | 运行 + 迭代 | - |
+| F | 分析决策 | 结果分析 + 研究决策 | - |
+| G | 论文写作 | 大纲 + 初稿 + 评审 + 修改 | - |
+| H | 最终化 | 质量检查 + 归档 + 导出 + 引用验证 | ✅ |
+
+### 文献检索集成
+- **OpenAlex** - 10K/天
+- **Semantic Scholar** - 1K/5 分钟
+- **arXiv** - 无限制
+
+## 输出
+完整学术论文（LaTeX + Markdown + 实验代码 + 图表 + 引用）

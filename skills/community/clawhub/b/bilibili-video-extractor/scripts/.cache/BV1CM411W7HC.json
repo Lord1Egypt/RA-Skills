@@ -1,0 +1,106 @@
+{
+  "video_id": "BV1CM411W7HC",
+  "url": "https://www.bilibili.com/video/BV1CM411W7HC/",
+  "mode": "full",
+  "timestamp": "2026-04-14T14:09:24.786641",
+  "info": {
+    "bvid": "BV1CM411W7HC",
+    "aid": 526084919,
+    "title": "记住这5条，黄金首饰最全挑选攻略！省钱还能保值~",
+    "desc": "",
+    "owner": {
+      "name": "小聪明张建国",
+      "mid": 1581616848,
+      "face": "https://i0.hdslb.com/bfs/face/cc8dd7fb27186e799469b7bdd82e6581c8a0f082.jpg"
+    },
+    "stat": {
+      "aid": 526084919,
+      "view": 1752638,
+      "danmaku": 6,
+      "reply": 31,
+      "favorite": 108472,
+      "coin": 3267,
+      "share": 533,
+      "now_rank": 0,
+      "his_rank": 0,
+      "like": 16035,
+      "dislike": 0,
+      "evaluation": "",
+      "vt": 0
+    },
+    "duration": 74,
+    "pubdate": 1678960800,
+    "pubdate_str": "2023-03-16 18:00",
+    "pages": [
+      {
+        "cid": 1055155443,
+        "page": 1,
+        "from": "vupload",
+        "part": "记住这5条，黄金首饰最全挑选攻略！省钱还能保值~",
+        "duration": 74,
+        "vid": "",
+        "weblink": "",
+        "dimension": {
+          "width": 1920,
+          "height": 1080,
+          "rotate": 0
+        },
+        "first_frame": "http://i0.hdslb.com/bfs/storyff/n230316qn1lymged1opxho25m07qi5vs_firsti.jpg",
+        "ctime": 1678933890
+      }
+    ],
+    "tname": "",
+    "tags": []
+  },
+  "danmaku": [
+    {
+      "time": 0.94,
+      "text": "省流：直接买金条",
+      "type": 1,
+      "color": "25",
+      "timestamp": 1678987492,
+      "page": "记住这5条，黄金首饰最全挑选攻略！省钱还能保值~"
+    },
+    {
+      "time": 1.965,
+      "text": "现在还有人去线下买吗那么贵，我都在水贝淘上买的，种类还多",
+      "type": 1,
+      "color": "25",
+      "timestamp": 1744700366,
+      "page": "记住这5条，黄金首饰最全挑选攻略！省钱还能保值~"
+    },
+    {
+      "time": 9.841,
+      "text": "还有人在线下买吗，我都在水贝淘买的种类多还有证书",
+      "type": 1,
+      "color": "25",
+      "timestamp": 1744700400,
+      "page": "记住这5条，黄金首饰最全挑选攻略！省钱还能保值~"
+    },
+    {
+      "time": 49.854,
+      "text": "刚和我妈从菜百里出来……",
+      "type": 1,
+      "color": "25",
+      "timestamp": 1679076596,
+      "page": "记住这5条，黄金首饰最全挑选攻略！省钱还能保值~"
+    },
+    {
+      "time": 61.212,
+      "text": "一体成型，实心",
+      "type": 1,
+      "color": "25",
+      "timestamp": 1695065657,
+      "page": "记住这5条，黄金首饰最全挑选攻略！省钱还能保值~"
+    },
+    {
+      "time": 62.679,
+      "text": "听你的，以后就买金砖",
+      "type": 1,
+      "color": "25",
+      "timestamp": 1679241901,
+      "page": "记住这5条，黄金首饰最全挑选攻略！省钱还能保值~"
+    }
+  ],
+  "comments": []
+}

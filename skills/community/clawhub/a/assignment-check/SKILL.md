@@ -1,35 +1,14 @@
 ---
-name: "Assignment Check"
-description: "Check use's assignment folder and extracts and read uses assignment question files and tell user the deadline and how long approximately to finish them."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/assignment-check"
-sourceUrl: "https://clawhub.ai/skills/assignment-check"
+name: assignment-check
+description: Check use's assignment folder and extracts and read uses assignment question files and tell user the deadline and how long approximately to finish them.
 ---
 
-# Assignment Check
+# Assignment Folder:
 
-> Check use's assignment folder and extracts and read uses assignment question files and tell user the deadline and how long approximately to finish them.
+/Users/billyshi/Desktop/Waterloo
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/assignment-check`
-- **Source URL:** [https://clawhub.ai/skills/assignment-check](https://clawhub.ai/skills/assignment-check)
+All my courses's resources are under this folder, and look for folders inside this directory with course code names like (Course code + Numbers) e.g. CS 123
 
-## Overview
+# What to do:
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/assignment-check
-```
+Go into those course folders and look for assignments instruction files, they are in pdf so look for PDF files ONLY. And read the content of those files and report the deadline and how long approximately to finish them. And suggests a date to start work on them.

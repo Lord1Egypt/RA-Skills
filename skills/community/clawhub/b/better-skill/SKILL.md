@@ -1,35 +1,24 @@
 ---
-name: "Better Skill"
-description: "A better test skill with more content"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/better-skill"
-sourceUrl: "https://clawhub.ai/skills/better-skill"
+name: better-test
+version: 0.0.1
+description: A better test skill with more content
 ---
+# Better Test Skill
 
-# Better Skill
+This is a better test skill with more content to avoid the "too thin" error.
 
-> A better test skill with more content
+## Features
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/better-skill`
-- **Source URL:** [https://clawhub.ai/skills/better-skill](https://clawhub.ai/skills/better-skill)
+- Feature 1: Does something useful
+- Feature 2: Does something else useful
 
-## Overview
+## Usage
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/better-skill
+# Example usage
+echo "This skill works!"
 ```
+
+## Documentation
+
+This skill provides useful functionality for testing purposes.

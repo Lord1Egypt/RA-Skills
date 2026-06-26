@@ -1,0 +1,2 @@
+railgun-bili-tools>=1.2.0
+openai-whisper>=20231117

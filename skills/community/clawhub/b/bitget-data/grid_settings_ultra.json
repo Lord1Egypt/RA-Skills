@@ -1,0 +1,58 @@
+{
+  "btc": {
+    "symbol": "BTCUSDT",
+    "gridNum": 120,
+    "priceMin": 68000,
+    "priceMax": 73000,
+    "amount": 20,
+    "maxPosition": 600,
+    "sellOrders": 60,
+    "buyOrders": 60,
+    "targetTradesPerDay": 40,
+    "notes": "BTC 超高密度 - 间距约 0.07%, 区间±3.5%"
+  },
+  "sol": {
+    "symbol": "SOLUSDT",
+    "gridNum": 120,
+    "priceMin": 83,
+    "priceMax": 91,
+    "amount": 8,
+    "maxPosition": 400,
+    "sellOrders": 60,
+    "buyOrders": 60,
+    "targetTradesPerDay": 45,
+    "notes": "SOL 超高密度 - 间距约 0.08%, 区间±4.5%"
+  },
+  "eth": {
+    "symbol": "ETHUSDT",
+    "gridNum": 100,
+    "priceMin": 1980,
+    "priceMax": 2150,
+    "amount": 3,
+    "maxPosition": 250,
+    "sellOrders": 50,
+    "buyOrders": 50,
+    "targetTradesPerDay": 35,
+    "notes": "ETH 超高密度 - 间距约 0.16%, 区间±4%"
+  },
+  "optimization": {
+    "date": "2026-03-12 19:06",
+    "goal": "超高密度网格 - 每天 100-150 笔",
+    "totalTargetTrades": 120,
+    "strategy": "超密集网格 + 小区间 + 完整部署",
+    "changes": [
+      "BTC: 80 格→120 格，间距 0.12%→0.07%",
+      "SOL: 100 格→120 格，间距 0.11%→0.08%",
+      "ETH: 60 格→100 格，间距 0.19%→0.16%",
+      "所有币种区间缩小到±3.5-4.5%，资金更集中",
+      "AVAX: 已取消"
+    ],
+    "expectedDailyProfit": "1.0-2.0% (高频薄利)",
+    "riskControl": [
+      "严格 maxPosition 限制",
+      "每 30 分钟监控成交",
+      "自动调整网格密度",
+      "异常波动时暂停"
+    ]
+  }
+}

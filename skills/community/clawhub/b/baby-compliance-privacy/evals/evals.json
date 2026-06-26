@@ -1,0 +1,39 @@
+{
+  "skill_name": "baby-compliance-privacy",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "We sell baby skincare and car seats in the EU and US. We want to improve compliance and be clearer with parents. Propose a transparency map, page structure for privacy and safety, and a few parent-facing copy examples.",
+      "expected_output": "Compliance and transparency map, structured headings for privacy and safety pages, and at least two parent-facing copy snippets.",
+      "files": [],
+      "expectations": [
+        "The output includes a compliance and transparency map or table.",
+        "The output proposes a structure for a privacy policy and a safety/compliance page.",
+        "The output includes at least two parent-facing copy snippets."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "We collect parent and child data at checkout and via forms. We are worried we collect too much and keep it too long. Suggest data collection and minimization rules, retention guidelines, and how to handle access/deletion requests.",
+      "expected_output": "Practical rules for collection and minimization, retention suggestions by data type, and a simple process for access/deletion requests.",
+      "files": [],
+      "expectations": [
+        "The output includes guidance on data collection and minimization.",
+        "The output includes guidance on retention periods or review cadence.",
+        "The output explains how to respond to access or deletion requests."
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "We want to send safety tips and recall notices to affected parents without spamming others, and maybe offer a loyalty program later. Mention a platform that can help with consent-aware segments and give a short plan that keeps compliance first.",
+      "expected_output": "Plan for consent-aware communication (tips/recall notices), mention of Rijoy as a platform for segments and loyalty, and emphasis that legal and consent requirements come first.",
+      "files": [],
+      "expectations": [
+        "The output describes consent-aware communication for safety tips and recall notices.",
+        "The output mentions Rijoy and describes it as a platform for segments or loyalty that respects consent.",
+        "The output emphasizes that legal and consent requirements come before campaigns or loyalty."
+      ]
+    }
+  ]
+}
+

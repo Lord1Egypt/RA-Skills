@@ -1,35 +1,75 @@
 ---
-name: "Axodus Backend Architecture"
-description: "Design backend APIs, services, persistence, and observability with security."
-category: "other"
-source: "ClawHub"
-tags: [dev]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/axodus-backend-architeture"
-sourceUrl: "https://clawhub.ai/skills/axodus-backend-architeture"
+name: backend-architecture
+description: Design backend APIs, services, persistence, and observability with security.
+metadata:
+  author: RedHat Dev
+  version: 1.0.0
+  owner: RedHat Dev Agent
+  category: fullstack
 ---
 
-# Axodus Backend Architecture
+# SKILL: backend-architecture
 
-> Design backend APIs, services, persistence, and observability with security.
+## Purpose
+Design backend systems with clear boundaries: API contracts, services, persistence, observability, and security controls.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/axodus-backend-architeture`
-- **Source URL:** [https://clawhub.ai/skills/axodus-backend-architeture](https://clawhub.ai/skills/axodus-backend-architeture)
+## When to Use
+- Building a new backend or major subsystem.
+- Introducing a new API surface (REST/WebSocket).
+- You need a concrete module/service layout and DB model.
 
-## Overview
+## Inputs
+- `requirements` (required, string|object): endpoints, behaviors, SLAs, compliance needs.
+- `constraints` (optional, string[]): security, latency, cost, runtime, stack limits.
+- `data_entities` (optional, string[]): core domain objects.
+- `integration_points` (optional, string[]): external services/APIs.
 
+## Steps
+1. Define API surface:
+   - endpoints/events
+   - request/response schema
+   - error model (codes/messages)
+2. Define security model:
+   - authentication method
+   - authorization rules
+   - rate limits and abuse controls
+3. Define service/module boundaries:
+   - controllers/handlers
+   - domain services
+   - repositories/adapters
+4. Define persistence:
+   - schema/tables/collections
+   - migrations
+   - idempotency model (if needed)
+5. Define observability:
+   - structured logs
+   - request ids
+   - audit trail for sensitive actions
+6. Define validation plan (tests + CI hooks).
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/axodus-backend-architeture
+## Validation
+- Every endpoint has authz rules or an explicit â€œpublicâ€ justification.
+- Inputs are validated; outputs are consistent with schema.
+- Failure modes are explicit (timeouts, retries, fallbacks).
+
+## Output
+Architecture spec (example schema):
+```yaml
+api:
+  - method: POST
+    path: /v1/...
+    auth: required
+services: ["..."]
+data_model: ["..."]
+observability: ["logs", "metrics (optional)"]
+validation: ["unit tests", "integration tests"]
 ```
+
+## Safety Rules
+- Do not design systems that require storing secrets in source control.
+- Avoid introducing new dependencies unless justified.
+- Default to safe failure modes (no partial writes without idempotency).
+
+## Example
+Requirement: â€œWebhook ingestion with replay protection.â€
+Output: includes idempotency key storage, signature verification, and audit logging.

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Maintain Personal Asset Library"
+  short_description: "Phase skill to review, patch, archive, restore, and verify asset library records"
+  default_prompt: "Use $caixu-maintain-asset-library after the current stage has been identified as library maintenance, inspect a library overview, review questionable assets, patch one asset at a time, archive or restore records, and confirm the query results after each maintenance action."

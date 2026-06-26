@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 620">
+  <defs>
+    <filter id="ink" x="-10%" y="-10%" width="120%" height="120%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.03" numOctaves="3" result="noise"/>
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="1.5" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+    <filter id="pen-stroke" x="-5%" y="-5%" width="110%" height="110%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.08" numOctaves="4" result="noise"/>
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="0.8" xChannelSelector="R" yChannelSelector="G"/>
+      <feGaussianBlur stdDeviation="0.2"/>
+    </filter>
+    <style>
+      .handwrite { font-family: 'Wawati SC', 'Wawati TC', '娃娃体-简', 'Ma Shan Zheng', cursive; }
+      .handwrite-title { font-family: 'Wawati SC', 'Wawati TC', '娃娃体-简', 'Ma Shan Zheng', cursive; }
+      .pen-line { stroke-linecap: round; stroke-linejoin: round; }
+    </style>
+  </defs>
+  
+  <rect width="860" height="620" fill="#fdfbf7"/>
+  
+  <g filter="url(#ink)">
+    <text x="430" y="38" text-anchor="middle" class="handwrite-title" font-size="28" fill="#1a1a1a">&#x7535;&#x5546;&#x7CFB;&#x7EDF;&#x5206;&#x5C42;&#x67B6;&#x6784;&#x56FE;</text>
+  </g>
+  
+  <g filter="url(#pen-stroke)">
+    <path d="M40 54 C43 52 815 53 818 54 C822 56 823 58 822 116 C820 119 818 120 45 119 C41 118 39 116 40 54" fill="none" stroke="#2d2d2d" stroke-width="1.8" class="pen-line"/>
+  </g>
+  <rect x="41" y="55" width="778" height="63" fill="#fff8f0" opacity="0.7"/>
+  <text x="430" y="78" text-anchor="middle" class="handwrite" font-size="16" fill="#3d3d3d" transform="rotate(-0.3 430 78)">&#x63A5;&#x5165;&#x5C42;</text>
+  <g class="handwrite" font-size="12" fill="#4a4a4a" filter="url(#pen-stroke)">
+    <path d="M50 86 C52 84 165 85 167 86 C169 88 169 106 167 108 C165 110 52 109 50 108 C48 106 48 88 50 86" fill="none" stroke="#5a5a5a" stroke-width="1.2" class="pen-line"/>
+    <text x="108" y="101" text-anchor="middle" transform="rotate(0.5 108 101)">CDN</text>
+    <path d="M177 85 C179 83 290 84 292 85 C294 87 294 107 292 109 C290 111 179 110 177 109 C175 107 175 87 177 85" fill="none" stroke="#5a5a5a" stroke-width="1.2" class="pen-line"/>
+    <text x="234" y="101" text-anchor="middle" transform="rotate(-0.4 234 101)">&#x8D1F;&#x8F7D;&#x5747;&#x8861;</text>
+    <path d="M302 86 C304 84 413 85 415 86 C417 88 417 106 415 108 C413 110 304 109 302 108 C300 106 300 88 302 86" fill="none" stroke="#5a5a5a" stroke-width="1.2" class="pen-line"/>
+    <text x="358" y="101" text-anchor="middle" transform="rotate(0.3 358 101)">API&#x7F51;&#x5173;</text>
+    <path d="M425 85 C427 83 536 84 538 85 C540 87 540 107 538 109 C536 111 427 110 425 109 C423 107 423 87 425 85" fill="none" stroke="#5a5a5a" stroke-width="1.2" class="pen-line"/>
+    <text x="481" y="101" text-anchor="middle" transform="rotate(-0.5 481 101)">WAF&#x9632;&#x706B;&#x5899;</text>
+    <path d="M548 86 C550 84 659 85 661 86 C663 88 663 106 661 108 C659 110 550 109 548 108 C546 106 546 88 548 86" fill="none" stroke="#5a5a5a" stroke-width="1.2" class="pen-line"/>
+    <text x="604" y="101" text-anchor="middle" transform="rotate(0.4 604 101)">&#x9650;&#x6D41;&#x7194;&#x65AD;</text>
+    <path d="M671 85 C673 83 805 84 807 85 C809 87 809 107 807 109 C805 111 673 110 671 109 C669 107 669 87 671 85" fill="none" stroke="#5a5a5a" stroke-width="1.2" class="pen-line"/>
+    <text x="739" y="101" text-anchor="middle" transform="rotate(-0.3 739 101)">&#x7EDF;&#x4E00;&#x8BA4;&#x8BC1;</text>
+  </g>
+  
+  <g filter="url(#pen-stroke)">
+    <path d="M40 134 C43 132 815 133 818 134 C822 136 823 138 822 206 C820 209 818 210 45 209 C41 208 39 206 40 134" fill="none" stroke="#2d2d2d" stroke-width="1.8" class="pen-line"/>
+  </g>
+  <rect x="41" y="135" width="778" height="73" fill="#f5fff5" opacity="0.7"/>
+  <text x="430" y="158" text-anchor="middle" class="handwrite" font-size="16" fill="#2d5a2d" transform="rotate(0.2 430 158)">&#x4E1A;&#x52A1;&#x5E94;&#x7528;&#x5C42;</text>
+  <g class="handwrite" font-size="12" fill="#3d6b3d" filter="url(#pen-stroke)">
+    <path d="M50 166 C52 164 165 165 167 166 C169 168 169 196 167 198 C165 200 52 199 50 198 C48 196 48 168 50 166" fill="none" stroke="#4a7a4a" stroke-width="1.2" class="pen-line"/>
+    <text x="108" y="180" text-anchor="middle" transform="rotate(-0.4 108 180)">&#x7528;&#x6237;&#x4E2D;&#x5FC3;</text>
+    <text x="108" y="194" text-anchor="middle" font-size="10" fill="#6a9a6a" transform="rotate(0.3 108 194)">&#x6CE8;&#x518C;/&#x767B;&#x5F55;</text>
+    <path d="M177 165 C179 163 290 164 292 165 C294 167 294 197 292 199 C290 201 179 200 177 199 C175 197 175 167 177 165" fill="none" stroke="#4a7a4a" stroke-width="1.2" class="pen-line"/>
+    <text x="234" y="180" text-anchor="middle" transform="rotate(0.5 234 180)">&#x5546;&#x54C1;&#x4E2D;&#x5FC3;</text>
+    <text x="234" y="194" text-anchor="middle" font-size="10" fill="#6a9a6a" transform="rotate(-0.2 234 194)">SPU/SKU</text>
+    <path d="M302 166 C304 164 413 165 415 166 C417 168 417 196 415 198 C413 200 304 199 302 198 C300 196 300 168 302 166" fill="none" stroke="#4a7a4a" stroke-width="1.2" class="pen-line"/>
+    <text x="358" y="180" text-anchor="middle" transform="rotate(-0.3 358 180)">&#x8BA2;&#x5355;&#x4E2D;&#x5FC3;</text>
+    <text x="358" y="194" text-anchor="middle" font-size="10" fill="#6a9a6a" transform="rotate(0.4 358 194)">&#x4E0B;&#x5355;/&#x552E;&#x540E;</text>
+    <path d="M425 165 C427 163 536 164 538 165 C540 167 540 197 538 199 C536 201 427 200 425 199 C423 197 423 167 425 165" fill="none" stroke="#4a7a4a" stroke-width="1.2" class="pen-line"/>
+    <text x="481" y="180" text-anchor="middle" transform="rotate(0.3 481 180)">&#x4EA4;&#x6613;&#x4E2D;&#x5FC3;</text>
+    <text x="481" y="194" text-anchor="middle" font-size="10" fill="#6a9a6a" transform="rotate(-0.5 481 194)">&#x652F;&#x4ED8;/&#x7ED3;&#x7B97;</text>
+    <path d="M548 166 C550 164 659 165 661 166 C663 168 663 196 661 198 C659 200 550 199 548 198 C546 196 546 168 548 166" fill="none" stroke="#4a7a4a" stroke-width="1.2" class="pen-line"/>
+    <text x="604" y="180" text-anchor="middle" transform="rotate(-0.2 604 180)">&#x8425;&#x9500;&#x4E2D;&#x5FC3;</text>
+    <text x="604" y="194" text-anchor="middle" font-size="10" fill="#6a9a6a" transform="rotate(0.4 604 194)">&#x4F18;&#x60E0;&#x5238;</text>
+    <path d="M671 165 C673 163 805 164 807 165 C809 167 809 197 807 199 C805 201 673 200 671 199 C669 197 669 167 671 165" fill="none" stroke="#4a7a4a" stroke-width="1.2" class="pen-line"/>
+    <text x="739" y="180" text-anchor="middle" transform="rotate(0.4 739 180)">&#x7269;&#x6D41;&#x4E2D;&#x5FC3;</text>
+    <text x="739" y="194" text-anchor="middle" font-size="10" fill="#6a9a6a" transform="rotate(-0.3 739 194)">&#x914D;&#x9001;/&#x8F68;&#x8FF9;</text>
+  </g>
+  
+  <g filter="url(#pen-stroke)">
+    <path d="M40 224 C43 222 815 223 818 224 C822 226 823 228 822 296 C820 299 818 300 45 299 C41 298 39 296 40 224" fill="none" stroke="#2d2d2d" stroke-width="1.8" class="pen-line"/>
+  </g>
+  <rect x="41" y="225" width="778" height="73" fill="#f8f5ff" opacity="0.7"/>
+  <text x="430" y="248" text-anchor="middle" class="handwrite" font-size="16" fill="#4a3d6a" transform="rotate(-0.3 430 248)">&#x901A;&#x7528;&#x80FD;&#x529B;&#x5C42;</text>
+  <g class="handwrite" font-size="12" fill="#5a4d7a" filter="url(#pen-stroke)">
+    <path d="M50 256 C52 254 165 255 167 256 C169 258 169 286 167 288 C165 290 52 289 50 288 C48 286 48 258 50 256" fill="none" stroke="#6a5d8a" stroke-width="1.2" class="pen-line"/>
+    <text x="108" y="270" text-anchor="middle" transform="rotate(0.4 108 270)">&#x641C;&#x7D22;&#x670D;&#x52A1;</text>
+    <text x="108" y="284" text-anchor="middle" font-size="10" fill="#8a7daa" transform="rotate(-0.3 108 284)">ES/&#x5206;&#x8BCD;</text>
+    <path d="M177 255 C179 253 290 254 292 255 C294 257 294 287 292 289 C290 291 179 290 177 289 C175 287 175 257 177 255" fill="none" stroke="#6a5d8a" stroke-width="1.2" class="pen-line"/>
+    <text x="234" y="270" text-anchor="middle" transform="rotate(-0.5 234 270)">&#x63A8;&#x8350;&#x670D;&#x52A1;</text>
+    <text x="234" y="284" text-anchor="middle" font-size="10" fill="#8a7daa" transform="rotate(0.3 234 284)">&#x7B97;&#x6CD5;</text>
+    <path d="M302 256 C304 254 413 255 415 256 C417 258 417 286 415 288 C413 290 304 289 302 288 C300 286 300 258 302 256" fill="none" stroke="#6a5d8a" stroke-width="1.2" class="pen-line"/>
+    <text x="358" y="270" text-anchor="middle" transform="rotate(0.2 358 270)">&#x6D88;&#x606F;&#x670D;&#x52A1;</text>
+    <text x="358" y="284" text-anchor="middle" font-size="10" fill="#8a7daa" transform="rotate(-0.4 358 284)">&#x77ED;&#x4FE1;/&#x63A8;&#x9001;</text>
+    <path d="M425 255 C427 253 536 254 538 255 C540 257 540 287 538 289 C536 291 427 290 425 289 C423 287 423 257 425 255" fill="none" stroke="#6a5d8a" stroke-width="1.2" class="pen-line"/>
+    <text x="481" y="270" text-anchor="middle" transform="rotate(-0.3 481 270)">&#x98CE;&#x63A7;&#x670D;&#x52A1;</text>
+    <text x="481" y="284" text-anchor="middle" font-size="10" fill="#8a7daa" transform="rotate(0.5 481 284)">&#x53CD;&#x6B3A;&#x8BC8;</text>
+    <path d="M548 256 C550 254 659 255 661 256 C663 258 663 286 661 288 C659 290 550 289 548 288 C546 286 546 258 548 256" fill="none" stroke="#6a5d8a" stroke-width="1.2" class="pen-line"/>
+    <text x="604" y="270" text-anchor="middle" transform="rotate(0.4 604 270)">&#x5BA1;&#x8BA1;&#x670D;&#x52A1;</text>
+    <text x="604" y="284" text-anchor="middle" font-size="10" fill="#8a7daa" transform="rotate(-0.2 604 284)">&#x65E5;&#x5FD7;</text>
+    <path d="M671 255 C673 253 805 254 807 255 C809 257 809 287 807 289 C805 291 673 290 671 289 C669 287 669 257 671 255" fill="none" stroke="#6a5d8a" stroke-width="1.2" class="pen-line"/>
+    <text x="739" y="270" text-anchor="middle" transform="rotate(-0.4 739 270)">&#x5206;&#x5E03;&#x5F0F;&#x4E8B;&#x52A1;</text>
+    <text x="739" y="284" text-anchor="middle" font-size="10" fill="#8a7daa" transform="rotate(0.3 739 284)">TCC/Saga</text>
+  </g>
+  
+  <g filter="url(#pen-stroke)">
+    <path d="M40 314 C43 312 815 313 818 314 C822 316 823 318 822 406 C820 409 818 410 45 409 C41 408 39 406 40 314" fill="none" stroke="#2d2d2d" stroke-width="1.8" class="pen-line"/>
+  </g>
+  <rect x="41" y="315" width="778" height="93" fill="#fff5f8" opacity="0.7"/>
+  <text x="430" y="338" text-anchor="middle" class="handwrite" font-size="16" fill="#8a3d5a" transform="rotate(0.2 430 338)">&#x6570;&#x636E;&#x5B58;&#x50A8;&#x5C42;</text>
+  <g class="handwrite" font-size="12" fill="#7a4d6a" filter="url(#pen-stroke)">
+    <path d="M50 348 C52 346 230 347 232 348 C234 350 234 396 232 398 C230 400 52 399 50 398 C48 396 48 350 50 348" fill="none" stroke="#9a5d7a" stroke-width="1.2" class="pen-line"/>
+    <text x="141" y="366" text-anchor="middle" font-size="13" transform="rotate(-0.3 141 366)">&#x5173;&#x7CFB;&#x578B;&#x6570;&#x636E;&#x5E93;</text>
+    <text x="141" y="382" text-anchor="middle" font-size="11" fill="#aa7d9a" transform="rotate(0.2 141 382)">MySQL/TiDB</text>
+    <text x="141" y="396" text-anchor="middle" font-size="11" fill="#aa7d9a" transform="rotate(-0.2 141 396)">&#x5206;&#x5E93;&#x5206;&#x8868;</text>
+    <path d="M242 347 C244 345 420 346 422 347 C424 349 424 397 422 399 C420 401 244 400 242 399 C240 397 240 349 242 347" fill="none" stroke="#9a5d7a" stroke-width="1.2" class="pen-line"/>
+    <text x="332" y="366" text-anchor="middle" font-size="13" transform="rotate(0.4 332 366)">&#x7F13;&#x5B58;&#x7CFB;&#x7EDF;</text>
+    <text x="332" y="382" text-anchor="middle" font-size="11" fill="#aa7d9a" transform="rotate(-0.3 332 382)">Redis Cluster</text>
+    <text x="332" y="396" text-anchor="middle" font-size="11" fill="#aa7d9a" transform="rotate(0.3 332 396)">&#x672C;&#x5730;&#x7F13;&#x5B58;</text>
+    <path d="M432 348 C434 346 610 347 612 348 C614 350 614 396 612 398 C610 400 434 399 432 398 C430 396 430 350 432 348" fill="none" stroke="#9a5d7a" stroke-width="1.2" class="pen-line"/>
+    <text x="522" y="366" text-anchor="middle" font-size="13" transform="rotate(-0.2 522 366)">&#x6D88;&#x606F;&#x961F;&#x5217;</text>
+    <text x="522" y="382" text-anchor="middle" font-size="11" fill="#aa7d9a" transform="rotate(0.4 522 382)">RocketMQ/Kafka</text>
+    <text x="522" y="396" text-anchor="middle" font-size="11" fill="#aa7d9a" transform="rotate(-0.3 522 396)">&#x4E8B;&#x52A1;&#x6D88;&#x606F;</text>
+    <path d="M622 347 C624 345 805 346 807 347 C809 349 809 397 807 399 C805 401 624 400 622 399 C620 397 620 349 622 347" fill="none" stroke="#9a5d7a" stroke-width="1.2" class="pen-line"/>
+    <text x="714" y="366" text-anchor="middle" font-size="13" transform="rotate(0.3 714 366)">&#x5927;&#x6570;&#x636E;&#x5B58;&#x50A8;</text>
+    <text x="714" y="382" text-anchor="middle" font-size="11" fill="#aa7d9a" transform="rotate(-0.2 714 382)">ES/ClickHouse</text>
+    <text x="714" y="396" text-anchor="middle" font-size="11" fill="#aa7d9a" transform="rotate(0.2 714 396)">HDFS/Hive</text>
+  </g>
+  
+  <g filter="url(#pen-stroke)">
+    <path d="M40 424 C43 422 815 423 818 424 C822 426 823 428 822 486 C820 489 818 490 45 489 C41 488 39 486 40 424" fill="none" stroke="#2d2d2d" stroke-width="1.8" class="pen-line"/>
+  </g>
+  <rect x="41" y="425" width="778" height="63" fill="#fdfdf5" opacity="0.7"/>
+  <text x="430" y="448" text-anchor="middle" class="handwrite" font-size="16" fill="#5a5a3d" transform="rotate(-0.2 430 448)">&#x57FA;&#x7840;&#x8BBE;&#x65BD;&#x5C42;</text>
+  <g class="handwrite" font-size="12" fill="#6a6a4d" filter="url(#pen-stroke)">
+    <path d="M50 456 C52 454 165 455 167 456 C169 458 169 478 167 480 C165 482 52 481 50 480 C48 478 48 458 50 456" fill="none" stroke="#7a7a5d" stroke-width="1.2" class="pen-line"/>
+    <text x="108" y="472" text-anchor="middle" transform="rotate(0.3 108 472)">K8s&#x5BB9;&#x5668;</text>
+    <path d="M177 455 C179 453 290 454 292 455 C294 457 294 479 292 481 C290 483 179 482 177 481 C175 479 175 457 177 455" fill="none" stroke="#7a7a5d" stroke-width="1.2" class="pen-line"/>
+    <text x="234" y="472" text-anchor="middle" transform="rotate(-0.2 234 472)">&#x670D;&#x52A1;&#x7F51;&#x683C;</text>
+    <path d="M302 456 C304 454 413 455 415 456 C417 458 417 478 415 480 C413 482 304 481 302 480 C300 478 300 458 302 456" fill="none" stroke="#7a7a5d" stroke-width="1.2" class="pen-line"/>
+    <text x="358" y="472" text-anchor="middle" transform="rotate(0.5 358 472)">&#x6CE8;&#x518C;&#x4E2D;&#x5FC3;</text>
+    <path d="M425 455 C427 453 536 454 538 455 C540 457 540 479 538 481 C536 483 427 482 425 481 C423 479 423 457 425 455" fill="none" stroke="#7a7a5d" stroke-width="1.2" class="pen-line"/>
+    <text x="481" y="472" text-anchor="middle" transform="rotate(-0.4 481 472)">&#x914D;&#x7F6E;&#x4E2D;&#x5FC3;</text>
+    <path d="M548 456 C550 454 659 455 661 456 C663 458 663 478 661 480 C659 482 550 481 548 480 C546 478 546 458 548 456" fill="none" stroke="#7a7a5d" stroke-width="1.2" class="pen-line"/>
+    <text x="604" y="472" text-anchor="middle" transform="rotate(0.2 604 472)">&#x94FE;&#x8DEF;&#x8FFD;&#x8E2A;</text>
+    <path d="M671 455 C673 453 805 454 807 455 C809 457 809 479 807 481 C805 483 673 482 671 481 C669 479 669 457 671 455" fill="none" stroke="#7a7a5d" stroke-width="1.2" class="pen-line"/>
+    <text x="739" y="472" text-anchor="middle" transform="rotate(-0.5 739 472)">&#x76D1;&#x63A7;&#x544A;&#x8B66;</text>
+  </g>
+  
+  <g filter="url(#pen-stroke)">
+    <path d="M40 504 C43 502 815 503 818 504 C822 506 823 508 822 566 C820 569 818 570 45 569 C41 568 39 566 40 504" fill="none" stroke="#2d2d2d" stroke-width="1.8" class="pen-line"/>
+  </g>
+  <rect x="41" y="505" width="778" height="63" fill="#f5fafa" opacity="0.7"/>
+  <text x="430" y="528" text-anchor="middle" class="handwrite" font-size="16" fill="#3d5a5a" transform="rotate(0.3 430 528)">DevOps &amp; &#x5B89;&#x5168;</text>
+  <g class="handwrite" font-size="12" fill="#4d6a6a" filter="url(#pen-stroke)">
+    <path d="M50 536 C52 534 165 535 167 536 C169 538 169 558 167 560 C165 562 52 561 50 560 C48 558 48 538 50 536" fill="none" stroke="#5d7a7a" stroke-width="1.2" class="pen-line"/>
+    <text x="108" y="552" text-anchor="middle" transform="rotate(-0.3 108 552)">CI/CD</text>
+    <path d="M177 535 C179 533 290 534 292 535 C294 537 294 559 292 561 C290 563 179 562 177 561 C175 559 175 537 177 535" fill="none" stroke="#5d7a7a" stroke-width="1.2" class="pen-line"/>
+    <text x="234" y="552" text-anchor="middle" transform="rotate(0.5 234 552)">&#x4EE3;&#x7801;&#x4ED3;&#x5E93;</text>
+    <path d="M302 536 C304 534 413 535 415 536 C417 538 417 558 415 560 C413 562 304 561 302 560 C300 558 300 538 302 536" fill="none" stroke="#5d7a7a" stroke-width="1.2" class="pen-line"/>
+    <text x="358" y="552" text-anchor="middle" transform="rotate(-0.2 358 552)">&#x5236;&#x54C1;&#x4ED3;&#x5E93;</text>
+    <path d="M425 535 C427 533 536 534 538 535 C540 537 540 559 538 561 C536 563 427 562 425 561 C423 559 423 537 425 535" fill="none" stroke="#5d7a7a" stroke-width="1.2" class="pen-line"/>
+    <text x="481" y="552" text-anchor="middle" transform="rotate(0.4 481 552)">&#x81EA;&#x52A8;&#x5316;&#x6D4B;&#x8BD5;</text>
+    <path d="M548 536 C550 534 659 535 661 536 C663 538 663 558 661 560 C659 562 550 561 548 560 C546 558 546 538 548 536" fill="none" stroke="#5d7a7a" stroke-width="1.2" class="pen-line"/>
+    <text x="604" y="552" text-anchor="middle" transform="rotate(-0.4 604 552)">&#x5B89;&#x5168;&#x626B;&#x63CF;</text>
+    <path d="M671 535 C673 533 805 534 807 535 C809 537 809 559 807 561 C805 563 673 562 671 561 C669 559 669 537 671 535" fill="none" stroke="#5d7a7a" stroke-width="1.2" class="pen-line"/>
+    <text x="739" y="552" text-anchor="middle" transform="rotate(0.3 739 552)">&#x7070;&#x5EA6;&#x53D1;&#x5E03;</text>
+  </g>
+</svg>

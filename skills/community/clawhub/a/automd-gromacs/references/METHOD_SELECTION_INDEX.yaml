@@ -1,0 +1,272 @@
+version: "0.1"
+name: "method-selector"
+purpose: "Route advanced MD problems to the right AutoMD-GROMACS method/skill with minimal token cost."
+
+input_fields:
+  required:
+    - goal
+    - system_type
+    - target_observable
+  optional:
+    - budget_level
+    - timescale_gap
+    - expertise_level
+    - cv_known
+    - reaction_coordinate_known
+    - software_constraints
+    - priority
+
+value_sets:
+  system_type: [protein, protein-ligand, membrane, nucleic-acid, material, coarse-grained, mixed, unknown]
+  target_observable: [pmf, binding-free-energy, transition-path, structure-ensemble, field-response, transport-property, reaction-profile, unknown]
+  budget_level: [low, medium, high, unknown]
+  timescale_gap: [small, moderate, severe, unknown]
+  expertise_level: [novice, intermediate, expert]
+  cv_known: ["yes", partial, "no", unknown]
+  reaction_coordinate_known: ["yes", partial, "no", unknown]
+  priority: [speed, robustness, interpretability, publication, unknown]
+
+routing_rules:
+  - id: pmf-known-rc
+    when:
+      target_observable: pmf
+      reaction_coordinate_known: ["yes", partial]
+    recommend: [umbrella, steered-md]
+    avoid: [replica-exchange, accelerated-md]
+    why: "Known RC -> umbrella best for quantitative PMF; SMD can prep path/windows."
+    next:
+      primary: "scripts/advanced/umbrella.sh"
+      prep: "scripts/advanced/steered-md.sh"
+    confidence: high
+
+  - id: binding-free-energy-docked-start
+    when:
+      system_type: protein-ligand
+      target_observable: binding-free-energy
+    recommend: [freeenergy, umbrella, steered-md]
+    avoid: [replica-exchange]
+    why: "Binding FE needs quantitative route; choose alchemical or PMF family, not generic sampling."
+    next:
+      primary: "scripts/advanced/freeenergy.sh"
+      alternative: "scripts/advanced/umbrella.sh"
+      prep: "scripts/advanced/steered-md.sh"
+    confidence: medium
+
+  - id: broad-exploration-no-cv
+    when:
+      target_observable: structure-ensemble
+      cv_known: ["no", unknown]
+      timescale_gap: [moderate, severe]
+    recommend: [replica-exchange, accelerated-md, enhanced-sampling]
+    avoid: [metadynamics]
+    why: "No reliable CV -> prefer broad exploration methods over CV-driven bias."
+    next:
+      primary: "scripts/advanced/replica-exchange.sh"
+      alternatives:
+        - "scripts/advanced/accelerated-md.sh"
+        - "scripts/advanced/enhanced-sampling.sh"
+    confidence: high
+
+  - id: cv-defined-fes
+    when:
+      cv_known: ["yes", partial]
+      target_observable: [structure-ensemble, transition-path]
+    recommend: [metadynamics, enhanced-sampling]
+    avoid: [replica-exchange]
+    why: "Credible CV available -> bias-based FES exploration is efficient."
+    next:
+      primary: "scripts/advanced/metadynamics.sh"
+      alternative: "scripts/advanced/enhanced-sampling.sh"
+      post: "scripts/analysis/free-energy-analysis.sh"
+    confidence: medium
+
+  - id: membrane-domain
+    when:
+      system_type: membrane
+    recommend: [membrane, membrane-analysis]
+    avoid: [coarse-grained]
+    why: "Membrane systems need domain-specific setup/analysis first."
+    next:
+      primary: "scripts/advanced/membrane.sh"
+      post: "scripts/analysis/membrane-analysis.sh"
+    confidence: high
+
+  - id: field-response
+    when:
+      target_observable: field-response
+    recommend: [electric-field]
+    avoid: [replica-exchange, metadynamics]
+    why: "Field perturbation is a direct domain workflow, not a generic sampling problem."
+    next:
+      primary: "scripts/advanced/electric-field.sh"
+    confidence: high
+
+  - id: reaction-profile
+    when:
+      target_observable: reaction-profile
+    recommend: [qmmm]
+    avoid: [metadynamics, accelerated-md]
+    why: "Electronic rearrangement / chemistry -> QM/MM first, classical MD alone is insufficient."
+    next:
+      primary: "scripts/advanced/qmmm.sh"
+    confidence: high
+
+  - id: large-system-speed
+    when:
+      system_type: coarse-grained
+    recommend: [coarse-grained]
+    avoid: [qmmm]
+    why: "Large-scale / long-timescale target -> CG route is more practical."
+    next:
+      primary: "scripts/advanced/coarse-grained.sh"
+    confidence: high
+
+  - id: analysis-first
+    when:
+      goal: analysis-first
+    recommend: [trajectory-analysis, advanced-analysis, property-analysis]
+    avoid: [replica-exchange, qmmm]
+    why: "Question is interpretive first; do post-analysis before launching new simulation."
+    next:
+      primary: "scripts/analysis/trajectory-analysis.sh"
+      alternatives:
+        - "scripts/analysis/advanced-analysis.sh"
+        - "scripts/analysis/property-analysis.sh"
+    confidence: medium
+
+fallback:
+  missing_info_priority:
+    - goal
+    - target_observable
+    - cv_known_or_reaction_coordinate_known
+    - budget_level
+  behavior:
+    - "If info incomplete, return top 2 candidate routes only."
+    - "Ask minimum missing questions, not full interview."
+    - "Never output a method without next action."
+
+output_contract:
+  compact:
+    - "Recommended: <method>"
+    - "Why: <short reason>"
+    - "Avoid: <bad fits>"
+    - "Next: <skill/script>"
+  guided:
+    - "Goal fit"
+    - "Why this route"
+    - "Avoid / caveats"
+    - "Prerequisites"
+    - "Next action"
+
+confidence_labels:
+  high: "Strong method-goal match; prerequisites clear."
+  medium: "Likely fit; depends on CV/resources/system details."
+  low: "Insufficient info or high mismatch risk."
+
+layer_model:
+  decision:
+    role: "Choose the right method/workflow before execution."
+    canonical_entrypoints:
+      - "method-selector"
+  execution:
+    role: "Run simulation/setup/sampling workflows after routing."
+    families:
+      - "core-workflow"
+      - "enhanced-sampling"
+      - "special-systems"
+  validation:
+    role: "Check results, interpret outputs, and judge quality after execution."
+    families:
+      - "trajectory-analysis"
+      - "advanced-analysis"
+      - "binding-analysis"
+      - "property-analysis"
+      - "membrane-analysis"
+      - "free-energy-analysis"
+      - "scattering-analysis"
+      - "publication-viz"
+
+canonical_targets:
+  execution-core:
+    workflow: "scripts/advanced/workflow.sh"
+    production: "scripts/basic/production.sh"
+    preprocess: "scripts/basic/preprocess.sh"
+    utils-tools: "scripts/basic/utils.sh"
+  execution-sampling:
+    replica-exchange: "scripts/advanced/replica-exchange.sh"
+    metadynamics: "scripts/advanced/metadynamics.sh"
+    steered-md: "scripts/advanced/steered-md.sh"
+    accelerated-md: "scripts/advanced/accelerated-md.sh"
+    enhanced-sampling: "scripts/advanced/enhanced-sampling.sh"
+    umbrella: "scripts/advanced/umbrella.sh"
+    freeenergy: "scripts/advanced/freeenergy.sh"
+  execution-special:
+    membrane: "scripts/advanced/membrane.sh"
+    electric-field: "scripts/advanced/electric-field.sh"
+    coarse-grained: "scripts/advanced/coarse-grained.sh"
+    non-equilibrium: "scripts/advanced/non-equilibrium.sh"
+    qmmm: "scripts/advanced/qmmm.sh"
+    protein-setup: "scripts/advanced/protein.sh"
+  validation-analysis:
+    trajectory-analysis: "scripts/analysis/trajectory-analysis.sh"
+    advanced-analysis: "scripts/analysis/advanced-analysis.sh"
+    binding-analysis: "scripts/analysis/binding-analysis.sh"
+    property-analysis: "scripts/analysis/property-analysis.sh"
+    membrane-analysis: "scripts/analysis/membrane-analysis.sh"
+    free-energy-analysis: "scripts/analysis/free-energy-analysis.sh"
+    protein-analysis: "scripts/advanced/protein.sh"
+    protein-special-analysis: "scripts/analysis/protein-special-analysis.sh"
+    scattering-analysis: "scripts/analysis/scattering-analysis.sh"
+    publication-viz: "scripts/visualization/publication-viz.sh"
+
+naming_rules:
+  canonical_style: "Use lower-case kebab-case target ids in decision outputs and routing rules."
+  prefer:
+    - "Use execution vs validation as the first split, not advanced vs analysis."
+    - "Use method names for execution targets (replica-exchange, metadynamics, umbrella)."
+    - "Use task names for validation targets (trajectory-analysis, binding-analysis, publication-viz)."
+    - "Treat freeenergy as execution and free-energy-analysis as validation; never mix them."
+    - "Treat protein-setup as execution helper and protein-analysis / protein-special-analysis as validation outputs."
+  avoid:
+    - "Do not route with file-path-only labels."
+    - "Do not use mixed snake_case / kebab-case / prose names for the same target."
+    - "Do not use advanced as a semantic layer label in user-facing routing; it is only a storage folder."
+
+script_map:
+  workflow: "scripts/advanced/workflow.sh"
+  production: "scripts/basic/production.sh"
+  preprocess: "scripts/basic/preprocess.sh"
+  utils-tools: "scripts/basic/utils.sh"
+  replica-exchange: "scripts/advanced/replica-exchange.sh"
+  metadynamics: "scripts/advanced/metadynamics.sh"
+  steered-md: "scripts/advanced/steered-md.sh"
+  accelerated-md: "scripts/advanced/accelerated-md.sh"
+  enhanced-sampling: "scripts/advanced/enhanced-sampling.sh"
+  freeenergy: "scripts/advanced/freeenergy.sh"
+  umbrella: "scripts/advanced/umbrella.sh"
+  membrane: "scripts/advanced/membrane.sh"
+  electric-field: "scripts/advanced/electric-field.sh"
+  coarse-grained: "scripts/advanced/coarse-grained.sh"
+  qmmm: "scripts/advanced/qmmm.sh"
+  non-equilibrium: "scripts/advanced/non-equilibrium.sh"
+  protein-setup: "scripts/advanced/protein.sh"
+  trajectory-analysis: "scripts/analysis/trajectory-analysis.sh"
+  advanced-analysis: "scripts/analysis/advanced-analysis.sh"
+  binding-analysis: "scripts/analysis/binding-analysis.sh"
+  property-analysis: "scripts/analysis/property-analysis.sh"
+  membrane-analysis: "scripts/analysis/membrane-analysis.sh"
+  free-energy-analysis: "scripts/analysis/free-energy-analysis.sh"
+  protein-analysis: "scripts/advanced/protein.sh"
+  protein-special-analysis: "scripts/analysis/protein-special-analysis.sh"
+  scattering-analysis: "scripts/analysis/scattering-analysis.sh"
+  publication-viz: "scripts/visualization/publication-viz.sh"
+
+scenario_templates:
+  - "Ligand PMF with known reaction coordinate"
+  - "Unknown conformational transition in protein"
+  - "Broad ensemble exploration without clear CV"
+  - "Membrane protein under field perturbation"
+  - "Reactive active site requiring QM/MM"
+  - "User asks for binding FE with only docked structure"
+  - "User asks for better sampling but cannot define CVs"
+  - "User wants publication-grade result with limited compute"

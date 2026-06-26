@@ -1,0 +1,4 @@
+interface:
+  display_name: "Better Memory V2"
+  short_description: "Smart install for native L1/L2/L3 memory fusion."
+  default_prompt: "Use $better-memory to smart-install native memory fusion, then run daily, weekly, and monthly memory maintenance."

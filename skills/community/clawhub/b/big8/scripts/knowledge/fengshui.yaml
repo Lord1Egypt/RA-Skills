@@ -1,0 +1,81 @@
+# 🪷 风水知识库
+
+# === 八宅方位 ===
+eight_mansions:
+  东四宅: [震宅(东), 巽宅(东南), 离宅(南), 坎宅(北)]
+  西四宅: [乾宅(西北), 坤宅(西南), 艮宅(东北), 兑宅(西)]
+
+# === 吉凶位 ===
+positions:
+  吉位:
+    - position: 生气
+      meaning: 旺财运、事业
+    - position: 天医
+      meaning: 旺健康、贵人
+    - position: 延年
+      meaning: 旺婚姻、人缘
+    - position: 伏位
+      meaning: 稳定、平安
+  凶位:
+    - position: 绝命
+      meaning: 破财、健康差
+    - position: 五鬼
+      meaning: 是非、意外
+    - position: 祸害
+      meaning: 口舌、纠纷
+    - position: 六煞
+      meaning: 烂桃花、失眠
+
+# === 常见形煞 ===
+sha:
+  - name: 路冲
+    description: 大门/窗户正对直路或走廊
+    solution: 设玄关、屏风、植物遮挡
+  - name: 穿堂煞
+    description: 大门正对后门/窗户，气流直穿
+    solution: 设屏风、柜子遮挡
+  - name: 横梁压顶
+    description: 座位/床上有横梁
+    solution: 吊顶包梁或移位
+  - name: 尖角煞
+    description: 墙角/柱子尖角直冲
+    solution: 放植物或圆角家具化解
+  - name: 门对门
+    description: 房门正对房门或卫生间门
+    solution: 挂门帘、常关门
+  - name: 厕所居中
+    description: 卫生间在房屋中央
+    solution: 保持干燥通风，放木炭
+  - name: 镜子对床
+    description: 镜子正对床
+    solution: 移走或用布遮盖
+  - name: 水火相冲
+    description: 灶台对水槽/冰箱
+    solution: 中间隔操作台
+
+# === 颜色五行 ===
+five_elements:
+  wood: [绿色, 青色, 棕色]
+  fire: [红色, 紫色, 橙色]
+  earth: [黄色, 米色, 咖啡色]
+  metal: [白色, 金色, 银色]
+  water: [黑色, 蓝色, 灰色]
+
+# === 植物宜忌 ===
+plants:
+  宜:
+    - name: 发财树
+      benefit: 旺财运
+    - name: 富贵竹
+      benefit: 化煞、旺学业
+    - name: 龟背竹
+      benefit: 招财
+    - name: 金钱树
+      benefit: 旺财
+    - name: 兰花
+      benefit: 旺人缘
+  忌:
+    - name: 仙人掌
+      reason: 尖刺带煞
+    - name: 枯木假花
+      reason: 衰败之气

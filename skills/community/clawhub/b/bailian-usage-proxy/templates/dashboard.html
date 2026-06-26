@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+
+{% block title %}仪表盘 - 阿里百炼用量统计代理{% endblock %}
+
+{% block content %}
+<div class="stats-grid">
+    <div class="stat-card">
+        <div class="number">{{ total_users }}</div>
+        <div class="label">总用户数</div>
+    </div>
+    <div class="stat-card">
+        <div class="number">{{ active_users }}</div>
+        <div class="label">今日活跃用户</div>
+    </div>
+    <div class="stat-card">
+        <div class="number">{{ "{:,}".format(total_usage) }}</div>
+        <div class="label">今日Token消耗</div>
+    </div>
+    <div class="stat-card">
+        <div class="number">{{ today }}</div>
+        <div class="label">当前日期</div>
+    </div>
+</div>
+
+<div class="card">
+    <h2>📈 最近7天用量趋势</h2>
+    <canvas id="trendChart" class="chart-container"></canvas>
+</div>
+
+<div class="card">
+    <h2>⚡ 快速操作</h2>
+    <p style="margin-bottom: 15px;">常用管理功能：</p>
+    <a href="/users" class="btn">查看用户列表</a>
+    <a href="/usage" class="btn btn-secondary" style="margin-left: 10px;">查看用量报表</a>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+const ctx = document.getElementById('trendChart').getContext('2d');
+new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: {{ dates | tojson }},
+        datasets: [{
+            label: 'Token消耗',
+            data: {{ usages | tojson }},
+            borderColor: '#667eea',
+            backgroundColor: 'rgba(102, 126, 234, 0.1)',
+            tension: 0.4,
+            fill: true
+        }]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+            legend: { display: false }
+        },
+        scales: {
+            y: {
+                beginAtZero: true,
+                ticks: {
+                    callback: function(value) {
+                        return value.toLocaleString();
+                    }
+                }
+            }
+        }
+    }
+});
+</script>
+{% endblock %}

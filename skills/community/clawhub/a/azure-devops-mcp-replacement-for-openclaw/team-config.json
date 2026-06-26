@@ -1,0 +1,25 @@
+{
+  "_comment": "Edit this file to define yourself and your team members. Email must match exactly what appears in Azure DevOps (check a work item's 'Assigned To' field). capacityPerDay is work hours available per day in the sprint.",
+  "me": {
+    "name": "Your Name",
+    "email": "you@company.com",
+    "capacityPerDay": 6
+  },
+  "team": [
+    {
+      "name": "Alice Smith",
+      "email": "alice@company.com",
+      "capacityPerDay": 6
+    },
+    {
+      "name": "Bob Johnson",
+      "email": "bob@company.com",
+      "capacityPerDay": 6
+    },
+    {
+      "name": "Carol White",
+      "email": "carol@company.com",
+      "capacityPerDay": 4
+    }
+  ]
+}

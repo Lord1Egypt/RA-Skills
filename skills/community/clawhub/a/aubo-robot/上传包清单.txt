@@ -1,0 +1,42 @@
+=====================================
+AUBO 机器人技能包 v1.0.0 - 上传清单
+=====================================
+
+📁 上传文件夹位置：
+C:/Users/JMO/.openclaw/workspace/openclaw-robot-skills/aubo-robot-upload/
+
+📄 核心文件 (必需)：
+✅ README_上传说明.md
+✅ SKILL.md
+✅ aubo_openclaw_driver.py
+✅ manifest.json
+✅ package.json
+✅ 依赖说明.txt
+
+🧪 测试脚本 (可选)：
+从 aubo-robot/ 复制：
+- demo_motion_auto.py
+- test_rtde_official.py
+- read_pose_simple.py
+
+📚 文档 (可选)：
+从 aubo-robot/ 复制：
+- PUBLISH.md
+- INTEGRATION_SUMMARY.md
+
+=====================================
+上传到不同平台的建议：
+=====================================
+
+1. ClawHub.ai:
+   上传：核心文件 (6 个)
+
+2. GitHub:
+   上传：全部文件
+
+3. OpenClaw 主框架:
+   复制核心文件到对应目录
+
+=====================================
+创建时间：2026-04-04
+=====================================

@@ -1,0 +1,4 @@
+interface:
+  display_name: "AudioClaw Skills Voice Intake"
+  short_description: "AudioClaw speech-to-text intake for voice messages"
+  default_prompt: "Use $audioclaw-skills-voice-intake to transcribe a user voice message with AudioClaw and package it for AudioClaw. If the user is in ongoing voice-reply mode, hand off to $audioclaw-skills-voice-reply and prefer the prepared clone voice_id `vc-yxdCFUKyNLPexxJ66jaXWk` unless the user asked for another voice."

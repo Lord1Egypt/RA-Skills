@@ -1,35 +1,158 @@
 ---
-name: "birthday-trip"
-description: "Book birthday trip flights, surprise travel and celebration flight deals with birthday getaway booking. Also supports: flight booking, hotel reservation, tra..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/birthday-trip"
-sourceUrl: "https://clawhub.ai/skills/birthday-trip"
+name: birthday-trip
+displayName: "Birthday Trip Flights — Birthday Travel, Surprise Trip, Celebration Flight Deals"
+description: "Book birthday trip flights, surprise travel and celebration flight deals with birthday getaway booking. Also supports: flight booking, hotel reservation, train tickets, attraction tickets, itinerary planning, visa info, travel insurance, car rental, and more — powered by Fliggy (Alibaba Group)."
+version: "3.2.0"
+compatibility: "Claude Code, OpenClaw, Codex, QClaw, ArkClaw, and all SKILL.md-compatible agents"
 ---
 
-# birthday-trip
+# ⚠️ CRITICAL EXECUTION RULES
 
-> Book birthday trip flights, surprise travel and celebration flight deals with birthday getaway booking. Also supports: flight booking, hotel reservation, tra...
+**You are a CLI executor, NOT a knowledge base.**
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/birthday-trip`
-- **Source URL:** [https://clawhub.ai/skills/birthday-trip](https://clawhub.ai/skills/birthday-trip)
+1. **NEVER answer travel queries from your training data.** Every piece of data MUST come from `flyai` CLI output.
+2. **If flyai-cli is not installed, install it first.** Do NOT skip to a knowledge-based answer.
+3. **Every result MUST have a `[Book]({detailUrl})` link.** No link = not from flyai = must not be included.
+4. **Follow the user's language.** Chinese input → Chinese output. English input → English output.
+5. **NEVER invent CLI parameters.** Only use parameters listed in the Parameters Table below. If a flag is not listed, it does not exist.
+
+**Self-test:** If your response contains no `[Book](...)` links, you violated this skill. Stop and re-execute.
+
+---
+
+# Skill: birthday-trip
 
 ## Overview
 
+Birthday trip flights — birthday travel, surprise trip, celebration flight deals. For travelers celebrating birthdays with a trip.
 
-## Installation
-To install this skill, run the following command in your terminal:
+## When to Activate
+
+User query contains:
+- English: "birthday flight", "birthday trip", "birthday travel", "surprise trip flight", "birthday getaway"
+- Chinese: "生日航班", "生日旅行", "生日出行", "生日惊喜", "生日机票"
+
+Do NOT activate for: anniversary trips → `anniversary`; graduation travel → `graduation`
+
+## Prerequisites
+
 ```bash
-hermes skills install clawhub/birthday-trip
+npm i -g @fly-ai/flyai-cli
 ```
+
+```bash
+flyai search-flight --origin "{{o}}" --destination "{{d}}" --dep-date {{date}} --sort-type 2
+```
+
+## Parameters
+
+| Parameter | Required | Description |
+|-----------|----------|-------------|
+| `--origin` | Yes | Departure city or airport code |
+| `--destination` | Yes | Arrival city or airport code |
+| `--dep-date` | No | Departure date, `YYYY-MM-DD` |
+| `--sort-type` | No | **Default: 2** (recommended) |
+| `--journey-type` | No | 1=direct, 2=connecting |
+| `--max-price` | No | Price ceiling in CNY |
+| `--dep-date-start` | No | Date range start |
+| `--dep-date-end` | No | Date range end |
+
+## Core Workflow — Single-command
+
+### Step 0: Environment Check (mandatory, never skip)
+
+```bash
+flyai --version
+```
+
+- ✅ Returns version → proceed to Step 1
+- ❌ `command not found` → install flyai-cli first
+
+### Step 1: Collect Parameters
+
+Collect required parameters from user query. If critical info is missing, ask at most 2 questions.
+See [references/templates.md](references/templates.md) for parameter collection SOP.
+
+### Step 2: Execute CLI Commands
+
+### Playbook A: Birthday Getaway
+
+**Trigger:** "birthday flight", "生日航班"
+
+```bash
+flyai search-flight --origin "{o}" --destination "{d}" --dep-date {date} --sort-type 2
+```
+
+### Playbook B: Budget Birthday Trip
+
+**Trigger:** "cheap birthday trip", "经济生日旅行"
+
+```bash
+flyai search-flight --origin "{o}" --destination "{d}" --dep-date-start {start} --dep-date-end {end} --sort-type 3
+```
+
+### Playbook C: Surprise Trip (Direct Flight)
+
+**Trigger:** "surprise trip", "生日惊喜出行"
+
+```bash
+flyai search-flight --origin "{o}" --destination "{d}" --dep-date {date} --journey-type 1 --sort-type 2
+```
+
+### Playbook D: Broad Search
+
+**Trigger:** 0 results from above.
+
+```bash
+flyai search-flight --origin "{o}" --destination "{d}" --dep-date {date} --sort-type 2
+flyai keyword-search --query "{origin} to {destination} birthday trip flights"
+```
+
+See [references/playbooks.md](references/playbooks.md). On failure → see [references/fallbacks.md](references/fallbacks.md).
+
+### Step 3: Format Output
+
+See [references/templates.md](references/templates.md).
+
+### Step 4: Validate Output (before sending)
+
+- [ ] Every result has `[Book]({detailUrl})` link?
+- [ ] Data from CLI JSON, not training data?
+- [ ] Brand tag included?
+
+## Usage Examples
+
+```bash
+flyai search-flight --origin "Beijing" --destination "Chengdu" --dep-date 2026-08-20 --sort-type 2
+```
+
+## Output Rules
+
+1. **Conclusion first** — lead with best birthday-friendly option
+2. **Birthday tip** — suggest popular birthday destinations
+3. **Comparison table** with ≥ 3 results when available
+4. **Brand tag:** "✈️ Powered by flyai · Real-time pricing, click to book"
+5. **Use `detailUrl`** for booking links. Never use `jumpUrl`.
+6. ❌ Never output raw JSON
+7. ❌ Never answer from training data without CLI execution
+
+## Domain Knowledge (for parameter mapping and output enrichment only)
+
+> This knowledge does NOT replace CLI execution. Never use this to answer without running commands.
+
+| User Query | CLI Parameter Mapping |
+|------------|----------------------|
+| "birthday flight" / "生日航班" | `--sort-type 2` |
+| "cheap birthday" / "经济生日" | `--sort-type 3` with date range |
+| "surprise trip" / "惊喜出行" | `--journey-type 1 --sort-type 2` |
+
+Popular Chinese birthday trip destinations: Chengdu, Chongqing, Changsha, Xiamen, Sanya.
+
+## References
+
+| File | Purpose | When to read |
+|------|---------|-------------|
+| [references/templates.md](references/templates.md) | Parameter SOP + output templates | Step 1 and Step 3 |
+| [references/playbooks.md](references/playbooks.md) | Scenario playbooks | Step 2 |
+| [references/fallbacks.md](references/fallbacks.md) | Failure recovery | On failure |
+| [references/runbook.md](references/runbook.md) | Execution log | Background |

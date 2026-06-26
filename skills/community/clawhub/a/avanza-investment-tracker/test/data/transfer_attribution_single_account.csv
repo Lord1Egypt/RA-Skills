@@ -1,0 +1,6 @@
+Datum;Konto;Typ av transaktion;Värdepapper/beskrivning;Antal;Kurs;Belopp;Courtage;Valuta;ISIN;Resultat
+2020-01-01;1111;Insättning;Deposit;-;-;100;0;SEK;;-
+2020-01-01;1111;Insättning;Deposit;-;-;10;0;SEK;;-
+2020-01-01;1111;Köp;Asset A;10;10;-100;0;SEK;TESTA;-
+2021-01-01;1111;Sälj;Asset A;-10;20;200;0;SEK;TESTA;-
+2021-01-01;1111;Uttag;;-;-;-210;0;SEK;;-

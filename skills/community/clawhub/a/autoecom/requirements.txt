@@ -1,0 +1,6 @@
+google-genai==1.75.0
+requests==2.33.1
+beautifulsoup4==4.14.3
+lxml==6.1.0
+python-dotenv==1.2.2
+Pillow==12.2.0

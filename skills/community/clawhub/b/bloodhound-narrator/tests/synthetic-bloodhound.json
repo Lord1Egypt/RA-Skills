@@ -1,0 +1,360 @@
+{
+  "meta": {
+    "query": "MATCH p=shortestPath((n)-[*1..]->(m)) WHERE m.name ENDS WITH 'ADMINS@YOURBANK.LOCAL' OR m.objectid ENDS WITH '-516' RETURN p",
+    "exportDate": "2026-03-22T14:37:09Z",
+    "bloodhoundVersion": "5.4.1",
+    "domain": "YOURBANK.LOCAL"
+  },
+  "paths": [
+    {
+      "id": "path-001",
+      "description": "Kerberoastable SVC account to Domain Admins via DCSync",
+      "nodes": [
+        {
+          "id": "n-1001",
+          "label": "User",
+          "props": {
+            "name": "SVC-SQLREPORT@YOURBANK.LOCAL",
+            "displayname": "SQL Reporting Service",
+            "enabled": true,
+            "hasspn": true,
+            "serviceprincipalnames": ["MSSQLSvc/SQLRPT01.YOURBANK.LOCAL:1433"],
+            "pwdlastset": "2024-06-11T08:22:00Z",
+            "description": "Service account for SSRS reporting",
+            "admincount": false,
+            "owned": false
+          }
+        },
+        {
+          "id": "n-1002",
+          "label": "Group",
+          "props": {
+            "name": "DB-SERVER-ADMINS@YOURBANK.LOCAL",
+            "description": "Database server administrators",
+            "admincount": false
+          }
+        },
+        {
+          "id": "n-1003",
+          "label": "Computer",
+          "props": {
+            "name": "DC01.YOURBANK.LOCAL",
+            "operatingsystem": "Windows Server 2022 Datacenter",
+            "enabled": true,
+            "unconstraineddelegation": false,
+            "isDC": true
+          }
+        },
+        {
+          "id": "n-1004",
+          "label": "Group",
+          "props": {
+            "name": "DOMAIN ADMINS@YOURBANK.LOCAL",
+            "objectid": "S-1-5-21-3842939050-3880317879-2865463114-512",
+            "admincount": true,
+            "description": "Designated administrators of the domain"
+          }
+        }
+      ],
+      "edges": [
+        {
+          "id": "e-2001",
+          "source": "n-1001",
+          "target": "n-1002",
+          "label": "MemberOf"
+        },
+        {
+          "id": "e-2002",
+          "source": "n-1002",
+          "target": "n-1003",
+          "label": "AdminTo"
+        },
+        {
+          "id": "e-2003",
+          "source": "n-1003",
+          "target": "n-1004",
+          "label": "DCSync"
+        }
+      ]
+    },
+    {
+      "id": "path-002",
+      "description": "Help desk operator to Domain Admins via GenericAll",
+      "nodes": [
+        {
+          "id": "n-2001",
+          "label": "User",
+          "props": {
+            "name": "MJOHNSON@YOURBANK.LOCAL",
+            "displayname": "Marcus Johnson",
+            "enabled": true,
+            "hasspn": false,
+            "pwdlastset": "2026-01-15T10:05:00Z",
+            "title": "IT Help Desk Analyst",
+            "admincount": false,
+            "owned": false
+          }
+        },
+        {
+          "id": "n-2002",
+          "label": "Group",
+          "props": {
+            "name": "HELPDESK-T2@YOURBANK.LOCAL",
+            "description": "Tier 2 help desk operators"
+          }
+        },
+        {
+          "id": "n-2003",
+          "label": "Group",
+          "props": {
+            "name": "DOMAIN ADMINS@YOURBANK.LOCAL",
+            "objectid": "S-1-5-21-3842939050-3880317879-2865463114-512",
+            "admincount": true
+          }
+        }
+      ],
+      "edges": [
+        {
+          "id": "e-3001",
+          "source": "n-2001",
+          "target": "n-2002",
+          "label": "MemberOf"
+        },
+        {
+          "id": "e-3002",
+          "source": "n-2002",
+          "target": "n-2003",
+          "label": "GenericAll"
+        }
+      ]
+    },
+    {
+      "id": "path-003",
+      "description": "Unconstrained delegation host to Domain Controller compromise",
+      "nodes": [
+        {
+          "id": "n-3001",
+          "label": "User",
+          "props": {
+            "name": "LGARCIA@YOURBANK.LOCAL",
+            "displayname": "Laura Garcia",
+            "enabled": true,
+            "hasspn": false,
+            "pwdlastset": "2025-11-20T16:45:00Z",
+            "title": "Application Developer",
+            "admincount": false,
+            "owned": false
+          }
+        },
+        {
+          "id": "n-3002",
+          "label": "Computer",
+          "props": {
+            "name": "DEVJUMP01.YOURBANK.LOCAL",
+            "operatingsystem": "Windows Server 2019 Standard",
+            "enabled": true,
+            "unconstraineddelegation": true,
+            "isDC": false,
+            "description": "Developer jump server"
+          }
+        },
+        {
+          "id": "n-3003",
+          "label": "Computer",
+          "props": {
+            "name": "DC02.YOURBANK.LOCAL",
+            "operatingsystem": "Windows Server 2022 Datacenter",
+            "enabled": true,
+            "unconstraineddelegation": false,
+            "isDC": true
+          }
+        },
+        {
+          "id": "n-3004",
+          "label": "Group",
+          "props": {
+            "name": "DOMAIN ADMINS@YOURBANK.LOCAL",
+            "objectid": "S-1-5-21-3842939050-3880317879-2865463114-512",
+            "admincount": true
+          }
+        }
+      ],
+      "edges": [
+        {
+          "id": "e-4001",
+          "source": "n-3001",
+          "target": "n-3002",
+          "label": "AdminTo"
+        },
+        {
+          "id": "e-4002",
+          "source": "n-3002",
+          "target": "n-3003",
+          "label": "HasSession",
+          "props": {
+            "note": "DC02$ machine account TGT cached via unconstrained delegation"
+          }
+        },
+        {
+          "id": "e-4003",
+          "source": "n-3003",
+          "target": "n-3004",
+          "label": "DCSync"
+        }
+      ]
+    },
+    {
+      "id": "path-004",
+      "description": "WriteDacl on OU enables GPO abuse to compromise financial servers",
+      "nodes": [
+        {
+          "id": "n-4001",
+          "label": "User",
+          "props": {
+            "name": "RCHEN@YOURBANK.LOCAL",
+            "displayname": "Robert Chen",
+            "enabled": true,
+            "hasspn": false,
+            "pwdlastset": "2025-09-03T12:10:00Z",
+            "title": "Systems Engineer",
+            "admincount": false,
+            "owned": false
+          }
+        },
+        {
+          "id": "n-4002",
+          "label": "Group",
+          "props": {
+            "name": "SYSENG-TEAM@YOURBANK.LOCAL",
+            "description": "Systems engineering team"
+          }
+        },
+        {
+          "id": "n-4003",
+          "label": "OU",
+          "props": {
+            "name": "OU=FINANCE-SERVERS,OU=SERVERS,DC=YOURBANK,DC=LOCAL",
+            "description": "Finance department server OU"
+          }
+        },
+        {
+          "id": "n-4004",
+          "label": "GPO",
+          "props": {
+            "name": "FINANCE-SERVER-BASELINE@YOURBANK.LOCAL",
+            "gpcpath": "\\\\YOURBANK.LOCAL\\SysVol\\YOURBANK.LOCAL\\Policies\\{6AC1786C-016F-11D2-945F-00C04FB984F9}"
+          }
+        },
+        {
+          "id": "n-4005",
+          "label": "Computer",
+          "props": {
+            "name": "FINSQL01.YOURBANK.LOCAL",
+            "operatingsystem": "Windows Server 2022 Standard",
+            "enabled": true,
+            "description": "Primary financial database server"
+          }
+        }
+      ],
+      "edges": [
+        {
+          "id": "e-5001",
+          "source": "n-4001",
+          "target": "n-4002",
+          "label": "MemberOf"
+        },
+        {
+          "id": "e-5002",
+          "source": "n-4002",
+          "target": "n-4003",
+          "label": "WriteDacl"
+        },
+        {
+          "id": "e-5003",
+          "source": "n-4003",
+          "target": "n-4004",
+          "label": "Contains"
+        },
+        {
+          "id": "e-5004",
+          "source": "n-4004",
+          "target": "n-4005",
+          "label": "GpLink"
+        }
+      ]
+    },
+    {
+      "id": "path-005",
+      "description": "Session hijack via local admin to reach sensitive HR application server",
+      "nodes": [
+        {
+          "id": "n-5001",
+          "label": "User",
+          "props": {
+            "name": "TPATEL@YOURBANK.LOCAL",
+            "displayname": "Tanya Patel",
+            "enabled": true,
+            "hasspn": false,
+            "pwdlastset": "2026-02-28T09:30:00Z",
+            "title": "Desktop Support Technician",
+            "admincount": false,
+            "owned": false
+          }
+        },
+        {
+          "id": "n-5002",
+          "label": "Computer",
+          "props": {
+            "name": "WKS-FIN042.YOURBANK.LOCAL",
+            "operatingsystem": "Windows 11 Enterprise",
+            "enabled": true,
+            "description": "Finance analyst workstation"
+          }
+        },
+        {
+          "id": "n-5003",
+          "label": "User",
+          "props": {
+            "name": "SVC-HRAPP@YOURBANK.LOCAL",
+            "displayname": "HR Application Service",
+            "enabled": true,
+            "hasspn": true,
+            "serviceprincipalnames": ["HTTP/HRPORTAL.YOURBANK.LOCAL"],
+            "admincount": false,
+            "description": "Service account for HR portal"
+          }
+        },
+        {
+          "id": "n-5004",
+          "label": "Computer",
+          "props": {
+            "name": "HRAPP01.YOURBANK.LOCAL",
+            "operatingsystem": "Windows Server 2022 Standard",
+            "enabled": true,
+            "description": "HR application server - contains PII"
+          }
+        }
+      ],
+      "edges": [
+        {
+          "id": "e-6001",
+          "source": "n-5001",
+          "target": "n-5002",
+          "label": "AdminTo"
+        },
+        {
+          "id": "e-6002",
+          "source": "n-5002",
+          "target": "n-5003",
+          "label": "HasSession"
+        },
+        {
+          "id": "e-6003",
+          "source": "n-5003",
+          "target": "n-5004",
+          "label": "AdminTo"
+        }
+      ]
+    }
+  ]
+}

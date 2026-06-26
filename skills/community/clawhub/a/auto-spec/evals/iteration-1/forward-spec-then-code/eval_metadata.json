@@ -1,0 +1,14 @@
+{
+  "eval_id": 3,
+  "eval_name": "forward-spec-then-code",
+  "prompt": "I need a utility function that deduplicates a list of user-uploaded image URLs and validates their accessibility. Invalid URLs should be filtered out and logged. Write the spec first, then implement it.",
+  "assertions": [
+    {"text": "Spec is generated before the implementation (spec-driven development flow)", "type": "qualitative"},
+    {"text": "Spec includes a function signature definition", "type": "qualitative"},
+    {"text": "Spec covers edge cases (empty list, all duplicates, malformed URLs, network timeout)", "type": "qualitative"},
+    {"text": "Implementation follows the behavior defined in the spec", "type": "qualitative"},
+    {"text": "Implementation follows project conventions", "type": "qualitative"},
+    {"text": "Spec does not write any files to the project source directory", "type": "qualitative"},
+    {"text": "Spec stays at function granularity (does not inflate into a module-level design doc)", "type": "qualitative"}
+  ]
+}

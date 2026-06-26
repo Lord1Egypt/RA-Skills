@@ -1,0 +1,9 @@
+Datum;Konto;Typ av transaktion;Värdepapper/beskrivning;Antal;Kurs;Belopp;Courtage;Valuta;ISIN;Resultat
+2020-01-01;1111;Insättning;Deposit;-;-;100;0;SEK;;-
+2020-01-02;2222;Köp;Asset A;10;10;-100;0;SEK;TESTA;-
+2020-01-02;2222;Intern överföring;Överföring från Avanzakonto 1111;-;-;100;0;SEK;;-
+2020-01-02;1111;Intern överföring;Överföring till Avanzakonto 2222;-;-;-100;0;SEK;;-
+2020-01-03;1111;Uttag;;-;-;-150;0;SEK;;-
+2020-01-03;2222;Intern överföring;Överföring till Avanzakonto 1111;-;-;-175;0;SEK;;-
+2020-01-03;1111;Intern överföring;Överföring från Avanzakonto 2222;-;-;175;0;SEK;;-
+2020-01-03;2222;Sälj;Asset A;-10;20;200;0;SEK;TESTA;-

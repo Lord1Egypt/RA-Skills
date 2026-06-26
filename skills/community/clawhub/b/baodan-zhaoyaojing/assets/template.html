@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🛡️ 保单照妖镜 - 保单权益保障PK擂台</title>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;background:#f0f2f5;color:#1a1a2e;min-height:100vh}
+.header{background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);color:#fff;padding:28px 0 20px;text-align:center;box-shadow:0 4px 20px rgba(102,126,234,.3)}
+.header h1{font-size:24px;font-weight:700;letter-spacing:1px}
+.header .subtitle{font-size:13px;opacity:.85;margin-top:4px}
+.header .tagline{font-size:11px;opacity:.65;margin-top:6px}
+.policy-summary{display:grid;grid-template-columns:1fr 1fr;gap:16px;max-width:960px;margin:20px auto 0;padding:0 20px}
+.policy-card{background:#fff;border-radius:14px;padding:20px;box-shadow:0 2px 12px rgba(0,0,0,.06);border-top:4px solid;position:relative}
+.policy-card.a{border-top-color:#4facfe}.policy-card.b{border-top-color:#f093fb}
+.policy-card .badge{display:inline-block;padding:3px 10px;border-radius:20px;font-size:12px;font-weight:600;color:#fff;margin-bottom:8px}
+.policy-card.a .badge{background:#4facfe}.policy-card.b .badge{background:#f093fb}
+.policy-card .name{font-size:18px;font-weight:700;margin-bottom:4px}
+.policy-card .insurer{font-size:13px;color:#888;margin-bottom:10px}
+.policy-card .premium{font-size:24px;font-weight:800}
+.policy-card .premium span{font-size:13px;font-weight:400;color:#888}
+.policy-card .overall-score{position:absolute;top:20px;right:20px;width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:800;color:#fff}
+.policy-card.a .overall-score{background:linear-gradient(135deg,#4facfe,#00f2fe)}
+.policy-card.b .overall-score{background:linear-gradient(135deg,#f093fb,#f5576c)}
+.tab-container{display:flex;justify-content:center;gap:0;margin:20px auto 0;background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,.08);width:400px}
+.tab-btn{flex:1;padding:14px 20px;border:none;background:#fff;font-size:15px;font-weight:600;cursor:pointer;transition:all .3s;color:#666}
+.tab-btn.active{background:linear-gradient(135deg,#667eea,#764ba2);color:#fff}
+.tab-btn:hover:not(.active){background:#f5f5ff}
+.view{display:none;max-width:960px;margin:20px auto 0;padding:0 20px}.view.active{display:block}
+#radarChart{width:100%;height:500px;background:#fff;border-radius:14px;box-shadow:0 2px 12px rgba(0,0,0,.06)}
+.report-container{display:flex;flex-direction:column;gap:14px}
+.dim-card{background:#fff;border-radius:14px;padding:22px 24px;box-shadow:0 2px 12px rgba(0,0,0,.06);transition:transform .2s}
+.dim-card:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,.1)}
+.dim-header{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.dim-icon{font-size:22px}
+.dim-question{font-size:16px;font-weight:700;color:#1a1a2e}
+.dim-pro-name{font-size:12px;color:#aaa;margin-left:auto}
+.bar-group{display:flex;flex-direction:column;gap:10px}
+.bar-row{display:grid;grid-template-columns:40px 1fr 50px;align-items:center;gap:12px}
+.bar-label{font-size:13px;font-weight:700}
+.bar-label.a{color:#4facfe}.bar-label.b{color:#f093fb}
+.bar-track{height:22px;background:#f0f0f5;border-radius:11px;overflow:hidden;position:relative}
+.bar-fill{height:100%;border-radius:11px;transition:width 1s ease;display:flex;align-items:center;padding-left:10px;font-size:11px;font-weight:600;color:#fff;min-width:30px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bar-fill.a{background:linear-gradient(90deg,#4facfe,#00f2fe)}
+.bar-fill.b{background:linear-gradient(90deg,#f093fb,#f5576c)}
+.bar-score{font-size:14px;font-weight:700;text-align:right}
+.bar-score.a{color:#4facfe}.bar-score.b{color:#f093fb}
+.dim-verdict{margin-top:12px;padding:10px 14px;background:#f8f9ff;border-radius:8px;font-size:13px;color:#444;line-height:1.6;border-left:3px solid #667eea}
+.reputation-card{background:#fff;border-radius:14px;padding:22px 24px;box-shadow:0 2px 12px rgba(0,0,0,.06);border-left:4px solid #667eea}
+.reputation-card h4{font-size:15px;font-weight:700;margin-bottom:12px;color:#667eea}
+.reputation-item{display:flex;align-items:flex-start;gap:8px;margin-bottom:8px;font-size:13px;color:#444;line-height:1.5}
+.reputation-item .icon{flex-shrink:0}
+.reputation-source{font-size:11px;color:#aaa;margin-top:8px;padding-top:8px;border-top:1px solid #f0f0f0}
+.no-data-warning{background:#fff3cd;border:1px solid #ffc107;border-radius:8px;padding:12px 16px;font-size:13px;color:#856404;margin-top:10px}
+.pitfalls{background:#fff8f0;border:1px solid #ffe0b2;border-radius:14px;padding:22px 24px;margin-top:8px}
+.pitfalls h3{font-size:16px;color:#e65100;margin-bottom:12px;display:flex;align-items:center;gap:6px}
+.pitfall-item{display:flex;align-items:flex-start;gap:8px;margin-bottom:8px;font-size:13.5px;color:#5d4037;line-height:1.5}
+.pitfall-item .icon{flex-shrink:0}
+.recommendation{background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;border-radius:14px;padding:24px;margin-top:8px}
+.recommendation h3{font-size:16px;margin-bottom:12px;display:flex;align-items:center;gap:6px}
+.rec-item{display:flex;align-items:flex-start;gap:8px;margin-bottom:8px;font-size:14px;line-height:1.6;opacity:.95}
+.rec-item .icon{flex-shrink:0;font-size:16px}
+.disclaimer{text-align:center;padding:16px;font-size:11px;color:#aaa;margin-top:16px;max-width:960px;margin-left:auto;margin-right:auto;padding-left:20px;padding-right:20px}
+.version{text-align:center;font-size:10px;color:#ccc;margin-top:4px}
+@media(max-width:640px){.policy-summary{grid-template-columns:1fr}.tab-container{width:90%}.dim-card{padding:16px}}
+</style>
+</head>
+<body>
+<div class="header">
+  <h1>🛡️ 保单照妖镜</h1>
+  <div class="subtitle">保单权益保障PK擂台</div>
+  <div class="tagline">上传两张保单，七维度科学对比，一眼看清差异</div>
+</div>
+
+<div class="policy-summary">
+  <div class="policy-card a">
+    <div class="badge">保单 A</div>
+    <div class="name">{{POLICY_A_NAME}}</div>
+    <div class="insurer">{{POLICY_A_INSURER}}</div>
+    <div class="premium">¥{{POLICY_A_PREMIUM}} <span>/年</span></div>
+    <div class="overall-score">{{POLICY_A_SCORE}}</div>
+  </div>
+  <div class="policy-card b">
+    <div class="badge">保单 B</div>
+    <div class="name">{{POLICY_B_NAME}}</div>
+    <div class="insurer">{{POLICY_B_INSURER}}</div>
+    <div class="premium">¥{{POLICY_B_PREMIUM}} <span>/年</span></div>
+    <div class="overall-score">{{POLICY_B_SCORE}}</div>
+  </div>
+</div>
+
+<div style="max-width:960px;margin:0 auto;padding:0 20px">
+  <div class="tab-container">
+    <button class="tab-btn active" onclick="switchTab('pro')">📊 专业对比</button>
+    <button class="tab-btn" onclick="switchTab('report')">🩺 体检报告</button>
+  </div>
+</div>
+
+<div id="proView" class="view active">
+  <div id="radarChart"></div>
+</div>
+
+<div id="reportView" class="view">
+  <div class="report-container">
+    {{DIMENSIONS_HTML}}
+    {{CLAIM_REPUTATION_HTML}}
+    {{PITFALLS_HTML}}
+    {{RECOMMENDATIONS_HTML}}
+  </div>
+</div>
+
+<div class="disclaimer">
+  ⚠️ 本对比结果仅供参考，不构成投保建议。具体保障内容以保险合同为准。理赔口碑数据来自公开搜索，可能存在样本偏差。
+</div>
+<div class="version">保单照妖镜 V1.0.0 | WuWenBin-BeiJing-ST</div>
+
+<script>
+function switchTab(tab){
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
+  if(tab==='pro'){document.querySelectorAll('.tab-btn')[0].classList.add('active');document.getElementById('proView').classList.add('active');radarChart.resize()}
+  else{document.querySelectorAll('.tab-btn')[1].classList.add('active');document.getElementById('reportView').classList.add('active')}
+}
+var radarChart=echarts.init(document.getElementById('radarChart'));
+var option={
+  title:{text:'七维度专业对比',subtext:'数值越高越优（满分100）',left:'center',top:16,textStyle:{fontSize:18,fontWeight:700,color:'#1a1a2e'},subtextStyle:{fontSize:12,color:'#999'}},
+  legend:{data:['保单A · {{POLICY_A_NAME}}','保单B · {{POLICY_B_NAME}}'],bottom:16,textStyle:{fontSize:13},itemWidth:20,itemHeight:12},
+  radar:{center:['50%','52%'],radius:'62%',indicator:[{name:'保障范围',max:100},{name:'保额/赔付',max:100},{name:'免赔/等待',max:100},{name:'除外责任',max:100},{name:'性价比',max:100},{name:'理赔条件',max:100},{name:'理赔口碑',max:100}],axisName:{color:'#555',fontSize:12,fontWeight:600},splitArea:{areaStyle:{color:['#f8f9ff','#f0f2f8','#e8eaf5','#e0e3f0','#d8dbe8']}},axisLine:{lineStyle:{color:'#ddd'}},splitLine:{lineStyle:{color:'#e8e8f0'}}},
+  series:[{type:'radar',data:[
+    {value:{{RADAR_A_VALUES}},name:'保单A · {{POLICY_A_NAME}}',symbol:'circle',symbolSize:7,lineStyle:{width:2.5,color:'#4facfe'},itemStyle:{color:'#4facfe'},areaStyle:{color:{type:'linear',x:0,y:0,x2:0,y2:1,colorStops:[{offset:0,color:'rgba(79,172,254,0.35)'},{offset:1,color:'rgba(79,172,254,0.05)'}]}}},
+    {value:{{RADAR_B_VALUES}},name:'保单B · {{POLICY_B_NAME}}',symbol:'circle',symbolSize:7,lineStyle:{width:2.5,color:'#f093fb'},itemStyle:{color:'#f093fb'},areaStyle:{color:{type:'linear',x:0,y:0,x2:0,y2:1,colorStops:[{offset:0,color:'rgba(240,147,251,0.35)'},{offset:1,color:'rgba(240,147,251,0.05)'}]}}}
+  ]}]
+};
+radarChart.setOption(option);
+window.addEventListener('resize',function(){radarChart.resize()});
+</script>
+</body>
+</html>

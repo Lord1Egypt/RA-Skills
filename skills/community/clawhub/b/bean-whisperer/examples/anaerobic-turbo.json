@@ -1,0 +1,50 @@
+{
+  "id": "2e86d39c-9171-4668-808c-7e7b6b9795c0",
+  "label": "Anaerobic Natural",
+  "type": "pro",
+  "description": "Medium-Light roast, Colombia, anaerobic, 20g\u219240.0g (1:2.0), turbo profile",
+  "temperature": 88,
+  "phases": [
+    {
+      "name": "Fill",
+      "phase": "preinfusion",
+      "valve": 1,
+      "duration": 3,
+      "temperature": 0,
+      "pump": {
+        "target": "flow",
+        "pressure": 3,
+        "flow": 4.0
+      },
+      "transition": {
+        "type": "instant",
+        "duration": 0,
+        "adaptive": 1
+      }
+    },
+    {
+      "name": "Turbo Brew",
+      "phase": "brew",
+      "valve": 1,
+      "duration": 25,
+      "temperature": 0,
+      "pump": {
+        "target": "flow",
+        "pressure": 6,
+        "flow": 4.0
+      },
+      "transition": {
+        "type": "instant",
+        "duration": 0,
+        "adaptive": 1
+      },
+      "targets": [
+        {
+          "type": "volumetric",
+          "operator": "gte",
+          "value": 40.0
+        }
+      ]
+    }
+  ]
+}

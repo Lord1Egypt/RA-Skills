@@ -1,35 +1,15 @@
----
-name: "Awesome Claude Skills"
-description: "Collection of reusable Claude skill templates for design, marketing, development, and automation to quickly start new roles or missions with best-practice st..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/awesome-claude-skills"
-sourceUrl: "https://clawhub.ai/skills/awesome-claude-skills"
----
+# awesome-claude-skills
 
-# Awesome Claude Skills
+## Purpose
+A large collection of reusable Claude skill templates (design, marketing, dev, automation). We treat it as a library we can import patterns from.
 
-> Collection of reusable Claude skill templates for design, marketing, development, and automation to quickly start new roles or missions with best-practice st...
+## Installed source
+- Repo: https://github.com/ComposioHQ/awesome-claude-skills
+- Local clone: `workspace/skills_external/ComposioHQ_awesome-claude-skills` @ `2790447`
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/awesome-claude-skills`
-- **Source URL:** [https://clawhub.ai/skills/awesome-claude-skills](https://clawhub.ai/skills/awesome-claude-skills)
+## Use when
+- You need a quick starting point for a new role/mission (brand guidelines, ads extractor, changelog generator, etc.)
+- You want best-practice structure for a skill folder
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/awesome-claude-skills
-```
+## Notes
+We do not automatically execute external scripts inside this repo. We only copy/translate patterns into our workspace skills.

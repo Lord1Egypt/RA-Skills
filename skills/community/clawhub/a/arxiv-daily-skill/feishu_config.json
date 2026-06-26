@@ -1,0 +1,10 @@
+{
+  "webhook_url": "https://open.feishu.cn/open-apis/bot/v2/hook/YOUR_WEBHOOK_HERE",
+  "description": "飞书机器人 Webhook URL - 请替换为你的实际地址",
+  "setup_guide": [
+    "1. 在飞书群聊中添加自定义机器人",
+    "2. 复制 Webhook 地址",
+    "3. 替换上面的 YOUR_WEBHOOK_HERE",
+    "4. 保存文件"
+  ]
+}

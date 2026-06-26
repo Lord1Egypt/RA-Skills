@@ -1,0 +1,17 @@
+{
+  "name": "birthday",
+  "version": "1.0.1",
+  "private": true,
+  "description": "中文农历/公历生日提醒脚本，支持身份证生日提取与独立提醒天数。",
+  "bin": {
+    "lunar-birthday-reminder": "./scripts/birthday_manager.js"
+  },
+  "scripts": {
+    "help": "node ./scripts/birthday_manager.js --help",
+    "list": "node ./scripts/birthday_manager.js list",
+    "check": "node ./scripts/birthday_manager.js check"
+  },
+  "engines": {
+    "node": ">=16"
+  }
+}

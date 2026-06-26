@@ -1,0 +1,8 @@
+Datum;Konto;Typ av transaktion;Värdepapper/beskrivning;Antal;Kurs;Belopp;Courtage;Valuta;ISIN;Resultat
+2020-01-01;1111;Insättning;Deposit;-;-;1000;0;SEK;;-
+2020-01-02;1111;Autogiroinsättning;Autogiro insättning;-;-;500;0;SEK;;-
+2020-01-03;1111;Köp;Test Asset A;10;100;-1000;0;SEK;TESTA;-
+2020-01-04;1111;Uttag av riskkostnad;Risk premium fee;-;-;-15;0;SEK;;-
+2020-01-05;1111;Avkastningsskatt;Yield tax;-;-;-25;0;SEK;;-
+2020-01-06;1111;Intern överföring;Insättning från Avanzakonto 9999;-;-;200;0;SEK;;-
+2020-01-07;1111;Köp;Test Asset B;2;100;-200;0;SEK;TESTB;-

@@ -1,0 +1,11 @@
+{
+  "name": "bizyair-banana2",
+  "version": "1.0.0",
+  "description": "BizyAir Banana 2 图像生成技能",
+  "main": "scripts/main.ts",
+  "type": "module",
+  "scripts": {
+    "start": "bun scripts/main.ts"
+  },
+  "dependencies": {}
+}

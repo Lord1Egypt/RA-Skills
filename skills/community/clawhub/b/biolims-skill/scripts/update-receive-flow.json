@@ -1,0 +1,25 @@
+{
+  "sampleReceive": {
+    "id": "KXJY2603030003"
+  },
+  "sampleReceiveItems": [
+    {
+      "id": "b7afdc50ad469e6c1345fb2161518ad6",
+      "nextFlowId": "SYLX2024000015-HS",
+      "nextFlow": "Nucleic Acid Extraction New",
+      "isGood": "1"
+    },
+    {
+      "id": "fb28daa63f74437e00f705d4cb31f127",
+      "nextFlowId": "SYLX2024000015-HS",
+      "nextFlow": "Nucleic Acid Extraction New",
+      "isGood": "1"
+    },
+    {
+      "id": "ae0e2d106529abd22082deb08cbb5f9f",
+      "nextFlowId": "SYLX2024000015-HS",
+      "nextFlow": "Nucleic Acid Extraction New",
+      "isGood": "1"
+    }
+  ]
+}

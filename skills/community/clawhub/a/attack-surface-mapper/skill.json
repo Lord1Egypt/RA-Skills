@@ -1,0 +1,27 @@
+{
+  "name": "attack-surface-mapper",
+  "version": "1.0.0",
+  "description": "Purple team — map agent's full attack surface by combining red team probes and blue team detections. Identify defense coverage gaps and prioritize hardening.",
+  "author": "arhadnane",
+  "license": "MIT",
+  "emoji": "🗺️",
+  "category": "purple-team",
+  "capabilities": [
+    "surface-enumeration",
+    "red-team-results-integration",
+    "blue-team-detection-integration",
+    "coverage-gap-analysis",
+    "risk-scoring",
+    "hardening-prioritization",
+    "report-generation"
+  ],
+  "attackSurfaces": [
+    "channels",
+    "skills",
+    "tools",
+    "models",
+    "memory",
+    "inter-agent",
+    "supply-chain"
+  ]
+}

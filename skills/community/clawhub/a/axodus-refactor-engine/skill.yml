@@ -1,0 +1,8 @@
+---
+name: refactor-engine
+description: Refactor code safely without changing behavior.
+version: 1.0.0
+display_name: "Refactor Engine"
+triggers:
+System.Object[]
+---

@@ -1,0 +1,27 @@
+{
+  "user_id": "demo_user",
+  "display_name": "黄金定投示例",
+  "plan_source": "model_suggested_then_confirmed",
+  "plan": {
+    "schedule": "weekly_thursday_if_trading",
+    "base_amount": 1000,
+    "schedule_is_default_recommendation": true,
+    "base_amount_is_default_recommendation": true
+  },
+  "execution_preferences": {
+    "primary_symbol": "518880.SH",
+    "prefer_etf": true,
+    "allow_otc_accumulation": true,
+    "transfer_threshold": 3000
+  },
+  "risk_preferences": {
+    "min_multiplier": 0.6,
+    "max_multiplier": 1.8,
+    "show_au9999_reference": true
+  },
+  "notes": [
+    "当前方案采用默认推荐的每周四定投节奏",
+    "如用户后续调整为其他频率或基础金额，可直接更新 plan 字段",
+    "如有场外基金，可先积累后再转入场内 ETF"
+  ]
+}

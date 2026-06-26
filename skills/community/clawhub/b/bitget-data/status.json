@@ -1,0 +1,20 @@
+{
+  "timestamp": "2026-03-08T16:35:21+08:00",
+  "strategies": {
+    "btc": {
+      "symbol": "BTCUSDT",
+      "status": "error",
+      "error": "read ECONNRESET - 网络连接失败"
+    },
+    "sol": {
+      "symbol": "SOLUSDT",
+      "status": "error",
+      "error": "read ECONNRESET - 网络连接失败"
+    }
+  },
+  "lastCheck": "2026-03-08T16:35:21+08:00",
+  "consecutiveFailures": 4,
+  "firstFailure": "2026-03-08T16:20:33+08:00",
+  "alertSent": true,
+  "alertTime": "2026-03-08T16:30:41+08:00"
+}

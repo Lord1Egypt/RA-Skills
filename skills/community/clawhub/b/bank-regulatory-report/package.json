@@ -1,0 +1,39 @@
+{
+  "name": "bank-regulatory-reporting",
+  "version": "1.0.1",
+  "description": "AI-powered banking regulatory reporting assistant - generate CBIRC/NRA/SAFE reports, statistical submissions, and compliance documentation",
+  "main": "SKILL.md",
+  "scripts": {
+    "test": "echo \"No tests configured\""
+  },
+  "keywords": [
+    "bank",
+    "regulatory reporting",
+    "CBIRC",
+    "1104",
+    "NRTA",
+    "AML",
+    "compliance",
+    "监管报告",
+    "监管报送",
+    "1104报送",
+    "反洗钱报告"
+  ],
+  "author": "gechengling",
+  "license": "MIT",
+  "skill": {
+    "type": "conversation",
+    "triggers": [
+      "监管报告",
+      "监管报送",
+      "NRTA报告",
+      "1104报送",
+      "统计报告",
+      "合规报告",
+      "监管统计",
+      "数据报送",
+      "监管合规报告",
+      "银保监报告"
+    ]
+  }
+}

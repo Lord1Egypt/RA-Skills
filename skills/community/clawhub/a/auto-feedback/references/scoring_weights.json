@@ -1,0 +1,7 @@
+{
+  "_comment": "Edit this file to change how the performance score is calculated. Weights should sum to 1.0. Only metrics present in the observation are used — missing metrics are excluded and weights are renormalized.",
+  "pass_rate": 0.50,
+  "duration_ms": 0.20,
+  "failure_count": 0.20,
+  "coverage": 0.10
+}

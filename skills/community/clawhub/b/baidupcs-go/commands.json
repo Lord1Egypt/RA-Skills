@@ -1,0 +1,77 @@
+{
+  "name": "baidupcs-go",
+  "version": "1.0.0",
+  "description": "百度网盘命令行客户端工具",
+  "commands": [
+    {
+      "name": "baidupcs_login",
+      "description": "登录百度账号",
+      "usage": "baidupcs_login [--bduss=<BDUSS>] [--stoken=<STOKEN>] [--cookies=<Cookies>]"
+    },
+    {
+      "name": "baidupcs_logout",
+      "description": "退出当前百度账号",
+      "usage": "baidupcs_logout"
+    },
+    {
+      "name": "baidupcs_quota",
+      "description": "获取网盘配额信息",
+      "usage": "baidupcs_quota"
+    },
+    {
+      "name": "baidupcs_ls",
+      "description": "列出目录内容",
+      "usage": "baidupcs_ls [路径] [--asc|--desc] [--time|--name|--size]"
+    },
+    {
+      "name": "baidupcs_download",
+      "description": "下载文件/目录",
+      "usage": "baidupcs_download <路径1> [路径2] ... [--ow] [--saveto=<目录>] [-p=<线程数>]"
+    },
+    {
+      "name": "baidupcs_upload",
+      "description": "上传文件/目录",
+      "usage": "baidupcs_upload <本地路径1> [本地路径2] ... <目标目录> [--norapid] [--policy=skip|overwrite|rsync]"
+    },
+    {
+      "name": "baidupcs_transfer",
+      "description": "转存分享链接",
+      "usage": "baidupcs_transfer <分享链接> [提取码]"
+    },
+    {
+      "name": "baidupcs_mkdir",
+      "description": "创建目录",
+      "usage": "baidupcs_mkdir <目录名>"
+    },
+    {
+      "name": "baidupcs_rm",
+      "description": "删除文件/目录",
+      "usage": "baidupcs_rm <路径1> [路径2] ..."
+    },
+    {
+      "name": "baidupcs_mv",
+      "description": "移动/重命名文件/目录",
+      "usage": "baidupcs_mv <源路径> <目标路径>"
+    },
+    {
+      "name": "baidupcs_share_set",
+      "description": "创建分享",
+      "usage": "baidupcs_share_set <路径1> [路径2] ..."
+    },
+    {
+      "name": "baidupcs_share_list",
+      "description": "列出已分享",
+      "usage": "baidupcs_share_list"
+    },
+    {
+      "name": "baidupcs_share_cancel",
+      "description": "取消分享",
+      "usage": "baidupcs_share_cancel <shareid1> [shareid2] ..."
+    },
+    {
+      "name": "baidupcs_config",
+      "description": "查看/修改配置",
+      "usage": "baidupcs_config [set] [--key=value] ..."
+    }
+  ]
+}

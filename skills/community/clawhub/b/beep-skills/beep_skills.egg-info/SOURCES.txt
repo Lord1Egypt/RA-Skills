@@ -1,0 +1,10 @@
+pyproject.toml
+audio_announcement/__init__.py
+audio_announcement/announce_helper.py
+audio_announcement/cli.py
+audio_announcement/scripts/announce_pygame.py
+beep_skills.egg-info/PKG-INFO
+beep_skills.egg-info/SOURCES.txt
+beep_skills.egg-info/dependency_links.txt
+beep_skills.egg-info/requires.txt
+beep_skills.egg-info/top_level.txt

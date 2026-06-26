@@ -1,0 +1,4 @@
+interface:
+  display_name: "Audible Deal Scout"
+  short_description: "Check an Audible daily promotion against Goodreads score, shelves, notes, and delivery rules"
+  default_prompt: "Use $audible-goodreads-deal-scout to set up or evaluate an Audible daily promotion, then finalize and optionally deliver the result."

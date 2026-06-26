@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BestYou Account Status</title>
+<link rel="stylesheet" href="shared.css">
+<style>
+  .status-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin: 20px 0;
+  }
+  .status-item {
+    background: #1a1a1a;
+    border-radius: 10px;
+    padding: 16px;
+    text-align: center;
+  }
+  .status-item .label { font-size: 11px; color: #666; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; }
+  .status-item .value { font-size: 16px; font-weight: 600; color: #fff; }
+  .scope-list { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 16px; }
+  .scope-tag {
+    padding: 6px 12px;
+    background: #1a2a3a;
+    border: 1px solid #2a3a4a;
+    border-radius: 8px;
+    font-size: 12px;
+    color: #60a5fa;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .connected-indicator {
+    width: 10px; height: 10px;
+    background: #4ade80;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 6px;
+    box-shadow: 0 0 8px #4ade8066;
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>🔗 Account Status</h1>
+  <div class="subtitle"><span class="connected-indicator"></span>Connected via OpenClaw</div>
+</div>
+
+<div class="status-grid">
+  <div class="status-item">
+    <div class="label">Link Status</div>
+    <div class="value text-positive">Linked</div>
+  </div>
+  <div class="status-item">
+    <div class="label">Subscription</div>
+    <div class="value text-positive">Active</div>
+  </div>
+  <div class="status-item">
+    <div class="label">Channel</div>
+    <div class="value">OpenClaw</div>
+  </div>
+  <div class="status-item">
+    <div class="label">Access</div>
+    <div class="value text-positive">Granted</div>
+  </div>
+</div>
+
+<div class="section" style="text-align: center;">
+  <h2>Granted Scopes</h2>
+  <div class="scope-list">
+    <span class="scope-tag">read:brief</span>
+    <span class="scope-tag">read:action_plan</span>
+    <span class="scope-tag">write:workout</span>
+    <span class="scope-tag">write:nutrition</span>
+  </div>
+</div>
+
+<div class="footer">BestYou × OpenClaw</div>
+</body>
+</html>

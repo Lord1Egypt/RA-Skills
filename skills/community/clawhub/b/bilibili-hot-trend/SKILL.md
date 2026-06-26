@@ -1,35 +1,49 @@
 ---
-name: "Bilibili"
-description: "提供哔哩哔哩公开视频和专栏数据摘要，支持关键词搜索、UP主表现对比和排行榜统计，符合平台规定。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/bilibili-hot-trend"
-sourceUrl: "https://clawhub.ai/skills/bilibili-hot-trend"
+name: bilibili-hot-trend
+description: 注册“哔哩哔哩”热门技能；当需要访问或自动化B站相关内容时调用。
+homepage: `https://www.bilibili.com/`
+metadata: {"clawdbot":{"emoji":"🔥"}}
 ---
 
-# Bilibili
+# 哔哩哔哩
 
-> 提供哔哩哔哩公开视频和专栏数据摘要，支持关键词搜索、UP主表现对比和排行榜统计，符合平台规定。
+用途与边界
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/bilibili-hot-trend`
-- **Source URL:** [https://clawhub.ai/skills/bilibili-hot-trend](https://clawhub.ai/skills/bilibili-hot-trend)
+- 面向视频/专栏/直播公开页面的检索与表现数据摘要
+- 不提供下载、接口逆向或突破风控的能力
+- 仅用于公开数据的轻量整理与提醒
 
-## Overview
+关键入口
 
+- 主页：https://www.bilibili.com/
+- 排行榜：https://www.bilibili.com/v/popular/rank
+- 搜索入口：https://search.bilibili.com/
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/bilibili-hot-trend
-```
+常见任务
+
+- 指定分区/关键词的视频表现摘要（播放/点赞/收藏/弹幕）
+- 作者UP主的作品时序表现对比（近7/30天）
+- 排行榜分布统计（分区、题材、时长）
+
+数据字段
+
+- 视频AV/BV号、标题、分区、UP主昵称与主页链接
+- 播放/弹幕/点赞/收藏/投币/分享数、发布时间、视频链接
+- 封面URL、时长、标签
+
+自动化要点
+
+- 动态渲染与人机验证，建议人工打开后再触发数据提取
+- 请求频率需控制，避免触发风控；不进行批量抓取
+- 登录态仅用于个人页信息整理，不进行任何自动交互
+
+示例流程
+
+- 关键词分析：输入关键词 → 搜索 → 分页解析 → 输出表现摘要
+- UP主对比：访问主页 → 抽取最近N个视频 → 统计交互指标
+- 排行榜扫描：访问排行页 → 抽取条目 → 分区/题材统计
+
+合规提示
+
+- 遵守平台规则，不进行下载、接口调用或批量采集
+- 结果仅用于内部分析与提醒

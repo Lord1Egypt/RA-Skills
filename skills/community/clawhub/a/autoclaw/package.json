@@ -1,0 +1,9 @@
+{
+  "name": "autoclaw",
+  "version": "1.0.0",
+  "description": "Automated health check and backup tool",
+  "author": "user435414",
+  "license": "MIT",
+  "main": "autoclaw.py",
+  "keywords": ["automation", "health-check", "backup", "openclaw"]
+}

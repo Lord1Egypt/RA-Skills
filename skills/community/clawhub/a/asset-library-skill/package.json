@@ -1,0 +1,26 @@
+{
+  "name": "caixu-dev-workspace",
+  "private": true,
+  "packageManager": "pnpm@10.22.0",
+  "scripts": {
+    "autoclaw:doctor": "node scripts/autoclaw-doctor.mjs",
+    "autoclaw:setup": "node scripts/autoclaw-setup.mjs",
+    "benchmark:query-real": "node scripts/query-benchmark.mjs",
+    "build": "pnpm -r --if-present build",
+    "install:bootstrap": "node scripts/install-caixu.mjs",
+    "smoke:agent": "node scripts/agent-driven-smoke.mjs",
+    "smoke:maintain-library": "pnpm build && node scripts/maintain-library-smoke.mjs",
+    "smoke:live-build-asset": "node scripts/live-build-asset-smoke.mjs",
+    "typecheck": "pnpm -r --if-present typecheck",
+    "test": "pnpm build && pnpm -r --if-present test"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": ["better-sqlite3", "esbuild"]
+  },
+  "devDependencies": {
+    "@types/archiver": "^6.0.3",
+    "@types/node": "^24.7.2",
+    "typescript": "^6.0.2",
+    "vitest": "^4.1.2"
+  }
+}

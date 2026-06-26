@@ -1,0 +1,48 @@
+{
+  "last_verified": "2026-04-05",
+  "sources": [
+    {
+      "label": "Ark create video task API sample",
+      "url": "https://www.volcengine.com/docs/82379/1520757"
+    },
+    {
+      "label": "LAS Seedance video generation supported model list",
+      "url": "https://www.volcengine.com/docs/6492/2165104"
+    }
+  ],
+  "models": [
+    {
+      "key": "seedance-1-0-pro",
+      "name": "Seedance 1.0 Pro",
+      "id": "doubao-seedance-1-0-pro-250528",
+      "positioning": "Default production model for this skill package.",
+      "capabilities": [
+        "text-to-video",
+        "image-to-video"
+      ],
+      "best_for": [
+        "default workflow",
+        "stable pro baseline",
+        "general generation"
+      ],
+      "source": "https://www.volcengine.com/docs/6492/2165104"
+    },
+    {
+      "key": "seedance-2-0",
+      "name": "Seedance 2.0",
+      "id": "doubao-seedance-2-0-260128",
+      "positioning": "Higher-tier Seedance 2.0 option available in the Ark video generation API example.",
+      "capabilities": [
+        "text-to-video",
+        "image-to-video",
+        "general-purpose video generation"
+      ],
+      "best_for": [
+        "newer Seedance 2.0 workflow",
+        "higher-end generation",
+        "complex motion"
+      ],
+      "source": "https://www.volcengine.com/docs/82379/1520757"
+    }
+  ]
+}

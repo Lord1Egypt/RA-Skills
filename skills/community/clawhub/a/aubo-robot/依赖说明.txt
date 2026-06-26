@@ -1,0 +1,25 @@
+AUBO 机器人技能包 - 依赖说明
+================================
+
+必需环境：
+- Python 3.8+
+- OpenClaw 框架
+- 网络连接 (TCP/IP)
+
+可选依赖：
+- VMware Workstation 16+ (仿真)
+- AUBO ARCS 虚拟机
+
+安装步骤：
+1. 确保 OpenClaw 框架已安装
+2. 将 aubo_openclaw_driver.py 放到 robots/ 目录
+3. 将 SKILL.md 放到 skills/ 目录
+4. 更新配置文件
+
+测试：
+python demo_motion_auto.py
+
+注意：
+- 需要 AUBO 虚拟机或真机
+- 默认 IP: 192.168.0.136
+- 默认端口：30010 (RTDE)

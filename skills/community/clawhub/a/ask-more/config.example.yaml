@@ -1,0 +1,64 @@
+# Ask-More Configuration
+# Copy this file to config.yaml and fill in your model pool.
+
+# ─── Model Pool (required) ───
+# Add models configured in your gateway. You need at least 2.
+# Tip: pick models from different providers for maximum diversity.
+models:
+  # - anthropic/claude-sonnet-4
+  # - openai/gpt-4o
+  # - google/gemini-2.5-pro
+  # - deepseek/deepseek-chat
+  # - dashscope/qwen-plus
+
+# ─── Presets (optional) ───
+# Named model groups. Use with: /ask --preset <name> [question]
+# Each preset must have at least 2 models.
+# presets:
+#   fast:
+#     - google/gemini-2.5-flash
+#     - deepseek/deepseek-chat
+#   balanced:
+#     - anthropic/claude-sonnet-4
+#     - openai/gpt-4o
+#     - google/gemini-2.5-pro
+#   deep:
+#     - anthropic/claude-opus-4
+#     - openai/gpt-4o
+#     - google/gemini-2.5-pro
+#     - deepseek/deepseek-reasoner
+
+# ─── Synthesis ───
+# Separate model for the diff merge step (optional).
+# Reduces bias from the primary model acting as both framer and judge.
+# IMPORTANT: Do NOT use a model that is also in the models pool.
+# synthesis_model: anthropic/claude-sonnet-4
+
+# ─── Behavior ───
+min_models: 2
+timeout_seconds: 30
+
+# Context mode: "summary" or "full"
+# summary: primary model distills 500-1000 word background (default)
+# full: includes last N turns of raw conversation verbatim
+context_mode: summary
+
+# Max conversation turns to include in "full" mode
+full_mode_max_turns: 10
+
+# Show estimated cost before sending
+show_cost_estimate: true
+
+# Require user confirmation before consulting
+require_confirmation: true
+
+# Privacy notice acknowledged (auto-set to true after first use)
+privacy_acknowledged: false
+
+# Suggested max words per model response (soft constraint via prompt)
+suggested_max_words: 800
+
+# ─── Logging ───
+# Enable run logging for observability (model latency, success/fail, etc.)
+# Logs to: skills/ask-more/logs/runs.jsonl
+enable_logging: true

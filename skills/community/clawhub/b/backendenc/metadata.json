@@ -1,0 +1,18 @@
+{
+  "name": "backendenc",
+  "description": "Backend Agent Data Encryption Toolkit implementing MK->KEK->DEK hierarchy.",
+  "version": "2.2.0",
+  "author": "AnyDef Security Team",
+  "environment": "node",
+  "requiredCredentials": [],
+  "capabilities": [
+    "encryption",
+    "key-management",
+    "backend-security",
+    "selective-encryption"
+  ],
+  "permissions": [
+    "node:crypto",
+    "node:fs"
+  ]
+}

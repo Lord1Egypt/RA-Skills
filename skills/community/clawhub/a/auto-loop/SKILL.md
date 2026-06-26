@@ -1,35 +1,48 @@
----
-name: "Auto Loop"
-description: "提供定时触发、任务调度、状态追踪及失败自动恢复的自动化任务调度功能。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/auto-loop"
-sourceUrl: "https://clawhub.ai/skills/auto-loop"
----
+# Auto Loop Skill
 
-# Auto Loop
+## 技能描述
 
-> 提供定时触发、任务调度、状态追踪及失败自动恢复的自动化任务调度功能。
+提供自动化任务调度功能，支持定时触发、任务调度、状态追踪和自动恢复。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/auto-loop`
-- **Source URL:** [https://clawhub.ai/skills/auto-loop](https://clawhub.ai/skills/auto-loop)
+## 触发条件
 
-## Overview
+当用户需要：
+- 定时执行任务
+- 周期性运行脚本
+- 自动化例行工作
+- 监控和恢复失败任务
 
+## 使用方式
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/auto-loop
 ```
+每小时执行：[任务]
+每天 [时间] 运行：[任务]
+定时执行这个：[任务]
+```
+
+## 核心功能
+
+1. **定时触发**: Cron 表达式或固定间隔
+2. **任务调度**: 优先级队列和并发控制
+3. **状态追踪**: 执行历史和统计
+4. **自动恢复**: 失败重试和恢复
+
+## 配置选项
+
+```yaml
+retries:
+  max: 3
+  delay: 5000
+  
+scheduler:
+  maxConcurrent: 5
+  persistInterval: 60000
+```
+
+## 依赖
+
+- Node.js 内置模块
+
+## 版本历史
+
+- v1.0.0: 初始版本

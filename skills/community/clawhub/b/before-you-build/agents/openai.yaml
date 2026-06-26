@@ -1,0 +1,4 @@
+interface:
+  display_name: "before you build"
+  short_description: "Review product risk before building"
+  default_prompt: "Use $before-you-build to review this product or feature idea before I build it."

@@ -1,0 +1,36 @@
+{
+  "agents": [
+    {
+      "index": 1,
+      "role": "creative",
+      "persona_file": "personas/creative-thinker.md"
+    },
+    {
+      "index": 2,
+      "role": "senior",
+      "persona_file": "personas/senior-professor.md"
+    },
+    {
+      "index": 3,
+      "role": "junior",
+      "persona_file": "personas/young-faculty.md"
+    },
+    {
+      "index": 4,
+      "role": "liaison",
+      "persona_file": "personas/industry-leader.md"
+    }
+  ],
+  "configurations": {
+    "full": {
+      "description": "All four agents — creative thinker, senior professor, young faculty, industry liaison.",
+      "participants": [1, 2, 3, 4],
+      "synthesiser": 4
+    },
+    "1on1": {
+      "description": "Head-to-head between young faculty and senior professor. Fast, focused debate.",
+      "participants": [2, 3],
+      "synthesiser": 2
+    }
+  }
+}

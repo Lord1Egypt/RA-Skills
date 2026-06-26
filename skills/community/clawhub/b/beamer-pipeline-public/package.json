@@ -1,0 +1,18 @@
+{
+  "name": "beamer-pipeline-public",
+  "version": "0.3.1",
+  "private": false,
+  "description": "Public OpenClaw skill for running a seven-phase Chinese academic Beamer pipeline. Updated with latest symbol canonicalization and acceptance contract modules.",
+  "type": "commonjs",
+  "bin": {
+    "beamer-pipeline-public": "scripts/run_beamer_public.js"
+  },
+  "scripts": {
+    "help": "node scripts/run_beamer_public.js --help",
+    "smoke": "node scripts/run_beamer_public.js --help && node scripts/run_beamer_public.js --input examples/sample-paper.md --out /tmp/beamer-pipeline-public-smoke --skip-assets --dry-run"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "license": "UNLICENSED"
+}

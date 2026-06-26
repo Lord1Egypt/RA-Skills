@@ -1,0 +1,35 @@
+{
+  "name": "global_cognitive_brain",
+  "version": "1.0.0",
+  "description": "全域持久腦 - 強制五層思考邏輯 + 自動記憶守護",
+  "skills": {
+    "global_cognitive_brain": "__init__.py"
+  },
+  "author": "劍兄 (popokwee)",
+  "license": "MIT",
+  "keywords": [
+    "memory",
+    "cognitive",
+    "thinking",
+    "persistent",
+    "openclaw"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/popokwee/global-persistent-brain"
+  },
+  "bugs": {
+    "url": "https://github.com/popokwee/global-persistent-brain/issues"
+  },
+  "homepage": "https://clawhub.com/skills/global_cognitive_brain",
+  "openclaw": {
+    "min_version": "1.0.0",
+    "max_version": "*",
+    "compatible_models": ["*"]
+  },
+  "dependencies": [],
+  "install": {
+    "type": "python_module",
+    "path": "."
+  }
+}

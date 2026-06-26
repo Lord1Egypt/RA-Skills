@@ -1,0 +1,31 @@
+{
+  "dc2c416cd421ddd3f195154d15af7959": {
+    "keyword": "software development",
+    "region": null,
+    "timestamp": "2026-03-09T21:44:46.408547",
+    "count": 3,
+    "results": [
+      {
+        "name": "What is software development?",
+        "domain": "ibm.com",
+        "url": "https://www.ibm.com/think/topics/software-development",
+        "description": "Software development refers to a set of computer science activities dedicated to the process of creating, designing, deploying and supporting software.",
+        "source": "duckduckgo"
+      },
+      {
+        "name": "Software Development",
+        "domain": "geeksforgeeks.org",
+        "url": "https://www.geeksforgeeks.org/software-engineering/software-development/",
+        "description": "Software development is defined as the process of designing, creating, testing, and maintaining computer programs and applications. This software development roadmap is best suited for students as well as software development enthusiasts. It covers all the terminologies and details that will guide a software development enthusiast, starting with an introduction to software development, the ...",
+        "source": "duckduckgo"
+      },
+      {
+        "name": "What Does a Software Developer Do? (And How to Become One)",
+        "domain": "coursera.org",
+        "url": "https://www.coursera.org/articles/software-developer",
+        "description": "Learn about software development careers and how to start yours with expert tips, recommendations, online courses, and more.",
+        "source": "duckduckgo"
+      }
+    ]
+  }
+}

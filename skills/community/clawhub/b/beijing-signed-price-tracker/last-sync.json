@@ -1,0 +1,74 @@
+{
+  "spreadsheetToken": "Y944sbj2khtLcNtb7jec7MIrnxd",
+  "sheetId": "eee767",
+  "sheetTitle": "Sheet1",
+  "roomCachePath": "/home/SENSETIME/zhangjiazhao/.openclaw/workspace/skills/beijing-signed-price-tracker/room-cache.json",
+  "appendedRows": [],
+  "appendedCount": 0,
+  "notification": {
+    "sent": true,
+    "messageCount": 1
+  },
+  "reports": [
+    {
+      "projectName": "清樾府04地块",
+      "salePermitNumber": "京房售证字(2025)143号",
+      "sourceCount": 1,
+      "buildingCount": 16,
+      "trackedSignedRooms": 9,
+      "previousSignedUnits": 9,
+      "currentSignedUnits": 9,
+      "previousSignedArea": 0,
+      "currentSignedArea": 791.79,
+      "previousAveragePrice": 38282.62,
+      "currentAveragePrice": 38282.62,
+      "deltaSignedUnits": 0,
+      "deltaSignedArea": 791.79,
+      "estimatedAveragePrice": 38282.62,
+      "newRoomsFound": 0,
+      "appendedRows": [],
+      "warnings": []
+    },
+    {
+      "projectName": "清樾府13地块",
+      "salePermitNumber": "京房售证字(2024)63号",
+      "sourceCount": 1,
+      "buildingCount": 18,
+      "trackedSignedRooms": 244,
+      "previousSignedUnits": 244,
+      "currentSignedUnits": 244,
+      "previousSignedArea": 0,
+      "currentSignedArea": 23053.76,
+      "previousAveragePrice": 43019.17,
+      "currentAveragePrice": 43019.17,
+      "deltaSignedUnits": 0,
+      "deltaSignedArea": 23053.76,
+      "estimatedAveragePrice": 43019.17,
+      "newRoomsFound": 0,
+      "appendedRows": [],
+      "warnings": []
+    },
+    {
+      "projectName": "梧桐星宸04地块",
+      "salePermitNumber": "",
+      "sourceCount": 2,
+      "buildingCount": 1,
+      "trackedSignedRooms": 9,
+      "previousSignedUnits": 9,
+      "currentSignedUnits": 9,
+      "previousSignedArea": 0,
+      "currentSignedArea": 894.51,
+      "previousAveragePrice": 45364.93,
+      "currentAveragePrice": 45364.93,
+      "deltaSignedUnits": 0,
+      "deltaSignedArea": 894.51,
+      "estimatedAveragePrice": 45364.93,
+      "newRoomsFound": 0,
+      "appendedRows": [],
+      "warnings": [
+        "该地块配置了 2 个项目详情链接，已合并统计。",
+        "已跳过链接 http://bjjs.zjw.beijing.gov.cn/eportal/ui?pageId=320794&projectID=24970403&systemID=3&srcId=1：未能从项目详情页解析“期房签约统计”"
+      ]
+    }
+  ]
+}

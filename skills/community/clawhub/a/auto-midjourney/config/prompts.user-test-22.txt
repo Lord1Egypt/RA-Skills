@@ -1,0 +1,23 @@
+# 22 realistic prompts for end-to-end batch testing
+editorial portrait of a young woman in soft morning window light, natural skin texture, quiet luxury styling --ar 4:5
+confident male founder portrait in a minimalist concrete office, clean fashion editorial look --ar 4:5
+asian female barista smiling in a sunlit cafe, documentary photography feel --ar 4:5
+skincare serum bottle on wet black stone, luxury beauty campaign lighting --ar 1:1
+silver perfume bottle on reflective black glass, premium product photography, crisp edges --ar 1:1
+matte ceramic coffee cup on warm oak table, nordic lifestyle commercial photo --ar 4:5
+modern living room with curved sofa, travertine table, soft afternoon sunlight, interior magazine style --ar 16:9
+boutique hotel bedroom with linen sheets, walnut wood, warm ambient lighting, calm travel editorial --ar 16:9
+rainy tokyo alley at night with neon reflections, cinematic street photography --ar 16:9
+sunrise over terraced rice fields in yunnan, misty atmosphere, travel photography --ar 16:9
+close-up bowl of tonkotsu ramen with steam, rich food photography, dark restaurant background --ar 4:5
+artisan strawberry shortcake on a clean dessert plate, bright bakery commercial style --ar 4:5
+athletic running shoes on a floating pedestal, dynamic sports brand advertising image --ar 1:1
+minimal tech desk setup with silver laptop, mechanical keyboard, soft side light, creator workspace --ar 16:9
+streetwear fashion campaign, young woman leaning against a red vending machine in seoul, bold colors --ar 4:5
+gentle anime girl with long dark hair and green eyes, clean line art, soft daylight, tasteful character illustration --ar 3:4
+two best friends walking by the seaside at golden hour, candid lifestyle photography --ar 16:9
+cozy bookstore corner with stacked books, green reading lamp, rainy day atmosphere --ar 16:9
+futuristic electric car in a white studio, premium automotive advertising render --ar 16:9
+small jewelry brand hero image, gold ring with diamond on soft beige paper backdrop --ar 1:1
+healthy salad bowl with salmon, avocado and citrus, clean overhead food photography --ar 4:5
+cinematic fox astronaut standing on a moon base, detailed suit reflections, dramatic sci-fi scene --ar 16:9

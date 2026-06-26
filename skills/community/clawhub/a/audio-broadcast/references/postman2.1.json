@@ -1,0 +1,5183 @@
+{
+	"info": {
+		"name": "小播鼠二次开发接口",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"variable": [],
+	"auth": {
+		"type": "noauth",
+		"apikey": [
+			{
+				"key": "value",
+				"value": "",
+				"type": "string"
+			},
+			{
+				"key": "key",
+				"value": "",
+				"type": "string"
+			}
+		],
+		"bearer": [
+			{
+				"key": "token",
+				"value": "",
+				"type": "string"
+			}
+		],
+		"basic": [
+			{
+				"key": "username",
+				"value": "",
+				"type": "string"
+			},
+			{
+				"key": "password",
+				"value": "",
+				"type": "string"
+			}
+		]
+	},
+	"env": [],
+	"item": [
+		{
+			"name": "网页实时喊话-pro",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"item": []
+		},
+		{
+			"name": "任务系统-pro",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"item": [
+				{
+					"name": "禁用任务",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"url": {
+							"raw": "/user/disabletask",
+							"host": [
+								"user"
+							],
+							"query": [],
+							"variable": [],
+							"path": [
+								"disabletask"
+							]
+						},
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "id",
+									"value": "6",
+									"type": "text"
+								},
+								{
+									"key": "token",
+									"value": "YOUR_TOKEN_HERE",
+									"type": "text"
+								},
+								{
+									"key": "taskid",
+									"value": "3",
+									"type": "text"
+								},
+								{
+									"key": "",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"auth": {
+							"type": "noauth",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "",
+									"type": "string"
+								}
+							],
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							],
+							"basic": [
+								{
+									"key": "username",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"description": ""
+					}
+				},
+				{
+					"name": "启动任务",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"url": {
+							"raw": "/user/starttask",
+							"host": [
+								"user"
+							],
+							"query": [],
+							"variable": [],
+							"path": [
+								"starttask"
+							]
+						},
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "id",
+									"value": "6",
+									"type": "text"
+								},
+								{
+									"key": "token",
+									"value": "YOUR_TOKEN_HERE",
+									"type": "text"
+								},
+								{
+									"key": "taskid",
+									"value": "3",
+									"type": "text"
+								},
+								{
+									"key": "",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"auth": {
+							"type": "noauth",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "",
+									"type": "string"
+								}
+							],
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							],
+							"basic": [
+								{
+									"key": "username",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"description": ""
+					}
+				},
+				{
+					"name": "编辑任务设备信息",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"url": {
+							"raw": "/user/editsns_task",
+							"host": [
+								"user"
+							],
+							"query": [],
+							"variable": [],
+							"path": [
+								"editsns_task"
+							]
+						},
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "id",
+									"value": "6",
+									"type": "text"
+								},
+								{
+									"key": "token",
+									"value": "YOUR_TOKEN_HERE",
+									"type": "text"
+								},
+								{
+									"key": "taskid",
+									"value": "3",
+									"type": "text"
+								},
+								{
+									"key": "snids",
+									"value": "10|11",
+									"type": "text"
+								}
+							]
+						},
+						"auth": {
+							"type": "noauth",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "",
+									"type": "string"
+								}
+							],
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							],
+							"basic": [
+								{
+									"key": "username",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"description": ""
+					}
+				},
+				{
+					"name": "任务列表",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"url": {
+							"raw": "/user/list_task",
+							"host": [
+								"user"
+							],
+							"query": [],
+							"variable": [],
+							"path": [
+								"list_task"
+							]
+						},
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "id",
+									"value": "6",
+									"type": "text"
+								},
+								{
+									"key": "token",
+									"value": "YOUR_TOKEN_HERE",
+									"type": "text"
+								}
+							]
+						},
+						"auth": {
+							"type": "noauth",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "",
+									"type": "string"
+								}
+							],
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							],
+							"basic": [
+								{
+									"key": "username",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"description": ""
+					}
+				},
+				{
+					"name": "编辑任务基本信息",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"url": {
+							"raw": "/user/edit_task",
+							"host": [
+								"user"
+							],
+							"query": [],
+							"variable": [],
+							"path": [
+								"edit_task"
+							]
+						},
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "id",
+									"value": "6",
+									"type": "text"
+								},
+								{
+									"key": "token",
+									"value": "YOUR_TOKEN_HERE",
+									"type": "text"
+								},
+								{
+									"key": "taskid",
+									"value": "3",
+									"type": "text"
+								},
+								{
+									"key": "start_time",
+									"value": "11:30:20",
+									"type": "text"
+								},
+								{
+									"key": "task_name",
+									"value": "taskname",
+									"type": "text"
+								},
+								{
+									"key": "len",
+									"value": "3000",
+									"type": "text"
+								},
+								{
+									"key": "week",
+									"value": "1111111",
+									"type": "text"
+								},
+								{
+									"key": "kind",
+									"value": "3",
+									"type": "text"
+								},
+								{
+									"key": "startdate",
+									"value": "0",
+									"type": "text"
+								},
+								{
+									"key": "enddate",
+									"value": "0",
+									"type": "text"
+								},
+								{
+									"key": "jiange",
+									"value": "11",
+									"type": "text"
+								},
+								{
+									"key": "",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"auth": {
+							"type": "noauth",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "",
+									"type": "string"
+								}
+							],
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							],
+							"basic": [
+								{
+									"key": "username",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"description": ""
+					}
+				},
+				{
+					"name": "添加任务",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"url": {
+							"raw": "/user/add_task",
+							"host": [
+								"user"
+							],
+							"query": [],
+							"variable": [],
+							"path": [
+								"add_task"
+							]
+						},
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "id",
+									"value": "6",
+									"type": "text"
+								},
+								{
+									"key": "token",
+									"value": "YOUR_TOKEN_HERE",
+									"type": "text"
+								},
+								{
+									"key": "snids",
+									"value": "10|11|12",
+									"type": "text"
+								},
+								{
+									"key": "fileids",
+									"value": "19|28|29",
+									"type": "text"
+								},
+								{
+									"key": "start_time",
+									"value": "22:40:00",
+									"type": "text"
+								},
+								{
+									"key": "startdate",
+									"value": "2022-12-04",
+									"type": "text"
+								},
+								{
+									"key": "enddate",
+									"value": "2022-12-05",
+									"type": "text"
+								},
+								{
+									"key": "len",
+									"value": "1800",
+									"type": "text"
+								},
+								{
+									"key": "jiange",
+									"value": "10",
+									"type": "text"
+								},
+								{
+									"key": "kind",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "weeks",
+									"value": "1111111",
+									"type": "text"
+								},
+								{
+									"key": "taskname",
+									"value": "names",
+									"type": "text"
+								}
+							]
+						},
+						"auth": {
+							"type": "noauth",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "",
+									"type": "string"
+								}
+							],
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							],
+							"basic": [
+								{
+									"key": "username",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"description": ""
+					}
+				},
+				{
+					"name": "删除任务",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"url": {
+							"raw": "/user/del_task",
+							"host": [
+								"user"
+							],
+							"query": [],
+							"variable": [],
+							"path": [
+								"del_task"
+							]
+						},
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "id",
+									"value": "6",
+									"type": "text"
+								},
+								{
+									"key": "token",
+									"value": "YOUR_TOKEN_HERE",
+									"type": "text"
+								},
+								{
+									"key": "taskid",
+									"value": "15",
+									"type": "text"
+								},
+								{
+									"key": "",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"auth": {
+							"type": "noauth",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "",
+									"type": "string"
+								}
+							],
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							],
+							"basic": [
+								{
+									"key": "username",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"description": ""
+					}
+				},
+				{
+					"name": "停止任务",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"url": {
+							"raw": "/user/stoptask",
+							"host": [
+								"user"
+							],
+							"query": [],
+							"variable": [],
+							"path": [
+								"stoptask"
+							]
+						},
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "id",
+									"value": "6",
+									"type": "text"
+								},
+								{
+									"key": "token",
+									"value": "YOUR_TOKEN_HERE",
+									"type": "text"
+								},
+								{
+									"key": "taskid",
+									"value": "3",
+									"type": "text"
+								},
+								{
+									"key": "",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"auth": {
+							"type": "noauth",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "",
+									"type": "string"
+								}
+							],
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							],
+							"basic": [
+								{
+									"key": "username",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"description": ""
+					}
+				},
+				{
+					"name": "启用任务",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"url": {
+							"raw": "/user/enabletask",
+							"host": [
+								"user"
+							],
+							"query": [],
+							"variable": [],
+							"path": [
+								"enabletask"
+							]
+						},
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "id",
+									"value": "6",
+									"type": "text"
+								},
+								{
+									"key": "token",
+									"value": "YOUR_TOKEN_HERE",
+									"type": "text"
+								},
+								{
+									"key": "taskid",
+									"value": "3",
+									"type": "text"
+								},
+								{
+									"key": "",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"auth": {
+							"type": "noauth",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "",
+									"type": "string"
+								}
+							],
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							],
+							"basic": [
+								{
+									"key": "username",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"description": ""
+					}
+				},
+				{
+					"name": "编辑任务文件信息",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"url": {
+							"raw": "/user/editfiles_task",
+							"host": [
+								"user"
+							],
+							"query": [],
+							"variable": [],
+							"path": [
+								"editfiles_task"
+							]
+						},
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "id",
+									"value": "6",
+									"type": "text"
+								},
+								{
+									"key": "token",
+									"value": "YOUR_TOKEN_HERE",
+									"type": "text"
+								},
+								{
+									"key": "taskid",
+									"value": "3",
+									"type": "text"
+								},
+								{
+									"key": "fileids",
+									"value": "34|35",
+									"type": "text"
+								},
+								{
+									"key": "",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"auth": {
+							"type": "noauth",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "",
+									"type": "string"
+								}
+							],
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							],
+							"basic": [
+								{
+									"key": "username",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"description": ""
+					}
+				},
+				{
+					"name": "获取任务信息",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"url": {
+							"raw": "/user/getone_task",
+							"host": [
+								"user"
+							],
+							"query": [],
+							"variable": [],
+							"path": [
+								"getone_task"
+							]
+						},
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "id",
+									"value": "6",
+									"type": "text"
+								},
+								{
+									"key": "token",
+									"value": "YOUR_TOKEN_HERE",
+									"type": "text"
+								},
+								{
+									"key": "taskid",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"auth": {
+							"type": "noauth",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "",
+									"type": "string"
+								}
+							],
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							],
+							"basic": [
+								{
+									"key": "username",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"description": ""
+					}
+				}
+			]
+		},
+		{
+			"name": "设备操作-lite",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"item": [
+				{
+					"name": "用户设备删除",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"url": {
+							"raw": "/user/deldevs",
+							"host": [
+								"user"
+							],
+							"query": [],
+							"variable": [],
+							"path": [
+								"deldevs"
+							]
+						},
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "id",
+									"value": "6",
+									"type": "text"
+								},
+								{
+									"key": "token",
+									"value": "YOUR_TOKEN_HERE",
+									"type": "text"
+								},
+								{
+									"key": "snid",
+									"value": "13",
+									"type": "text"
+								},
+								{
+									"key": "",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"auth": {
+							"type": "noauth",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "",
+									"type": "string"
+								}
+							],
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							],
+							"basic": [
+								{
+									"key": "username",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"description": ""
+					}
+				},
+				{
+					"name": "用户设备列表获取",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"url": {
+							"raw": "/user/listdev",
+							"host": [
+								"user"
+							],
+							"query": [],
+							"variable": [],
+							"path": [
+								"listdev"
+							]
+						},
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "id",
+									"value": "6",
+									"type": "text"
+								},
+								{
+									"key": "token",
+									"value": "YOUR_TOKEN_HERE",
+									"type": "text"
+								}
+							]
+						},
+						"auth": {
+							"type": "noauth",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "",
+									"type": "string"
+								}
+							],
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							],
+							"basic": [
+								{
+									"key": "username",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"description": ""
+					}
+				},
+				{
+					"name": "用户注册设备",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"url": {
+							"raw": "/user/deviceadd",
+							"host": [
+								"user"
+							],
+							"query": [],
+							"variable": [],
+							"path": [
+								"deviceadd"
+							]
+						},
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "id",
+									"value": "6",
+									"type": "text"
+								},
+								{
+									"key": "token",
+									"value": "YOUR_TOKEN_HERE",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "test012",
+									"type": "text"
+								},
+								{
+									"key": "sn",
+									"value": "ed024ae3ae6c6eceb2b94019b727be61|a64d4af228bfa0590de59b9fa2e48946",
+									"type": "text"
+								},
+								{
+									"key": "",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"auth": {
+							"type": "noauth",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "",
+									"type": "string"
+								}
+							],
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							],
+							"basic": [
+								{
+									"key": "username",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"description": ""
+					}
+				},
+				{
+					"name": "用户设备关闭提示音",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"url": {
+							"raw": "/user/sndebug",
+							"host": [
+								"user"
+							],
+							"query": [],
+							"variable": [],
+							"path": [
+								"sndebug"
+							]
+						},
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "id",
+									"value": "6",
+									"type": "text"
+								},
+								{
+									"key": "token",
+									"value": "YOUR_TOKEN_HERE",
+									"type": "text"
+								},
+								{
+									"key": "dsv",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "sn",
+									"value": "YOUR_DEVICE_SN",
+									"type": "text"
+								},
+								{
+									"key": "",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"auth": {
+							"type": "noauth",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "",
+									"type": "string"
+								}
+							],
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							],
+							"basic": [
+								{
+									"key": "username",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"description": ""
+					}
+				},
+				{
+					"name": "用户设备列表获取Olist",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"url": {
+							"raw": "/user/olist",
+							"host": [
+								"user"
+							],
+							"query": [],
+							"variable": [],
+							"path": [
+								"olist"
+							]
+						},
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "id",
+									"value": "6",
+									"type": "text"
+								},
+								{
+									"key": "token",
+									"value": "YOUR_TOKEN_HERE",
+									"type": "text"
+								},
+								{
+									"key": "",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"auth": {
+							"type": "noauth",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "",
+									"type": "string"
+								}
+							],
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							],
+							"basic": [
+								{
+									"key": "username",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"description": ""
+					}
+				}
+			]
+		},
+		{
+			"name": "文件播放相关-lite",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"item": [
+				{
+					"name": "停止播放",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"url": {
+							"raw": "/user/urlstop",
+							"host": [
+								"user"
+							],
+							"query": [],
+							"variable": [],
+							"path": [
+								"urlstop"
+							]
+						},
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "id",
+									"value": "6",
+									"type": "text"
+								},
+								{
+									"key": "token",
+									"value": "YOUR_TOKEN_HERE",
+									"type": "text"
+								},
+								{
+									"key": "snlist",
+									"value": "ed024ae3ae6c6eceb2b94019b727be61|82a04a4e8389b605fc35adf3b6852e4c|7b7c80574db5f6d7d3b7e8e534c76a3a|11111",
+									"type": "text"
+								},
+								{
+									"key": "",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"auth": {
+							"type": "noauth",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "",
+									"type": "string"
+								}
+							],
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							],
+							"basic": [
+								{
+									"key": "username",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"description": ""
+					}
+				},
+				{
+					"name": "播放文件归档",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"url": {
+							"raw": "/user/uploadfile",
+							"host": [
+								"user"
+							],
+							"query": [],
+							"variable": [],
+							"path": [
+								"uploadfile"
+							]
+						},
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "somethinglikethis",
+									"type": "text"
+								},
+								{
+									"key": "file",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "id",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "token",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"auth": {
+							"type": "noauth",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "",
+									"type": "string"
+								}
+							],
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							],
+							"basic": [
+								{
+									"key": "username",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"description": ""
+					}
+				},
+				{
+					"name": "删除文件",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"url": {
+							"raw": "/user/delfile",
+							"host": [
+								"user"
+							],
+							"query": [],
+							"variable": [],
+							"path": [
+								"delfile"
+							]
+						},
+						"header": [
+							{
+								"key": "id",
+								"value": "4",
+								"type": "text"
+							},
+							{
+								"key": "token",
+								"value": "YOUR_TOKEN_HERE",
+								"type": "text"
+							},
+							{
+								"key": "fileid",
+								"value": "6",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "id",
+									"value": "6",
+									"type": "text"
+								},
+								{
+									"key": "token",
+									"value": "YOUR_TOKEN_HERE",
+									"type": "text"
+								},
+								{
+									"key": "fileid",
+									"value": "27",
+									"type": "text"
+								},
+								{
+									"key": "",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"auth": {
+							"type": "noauth",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "",
+									"type": "string"
+								}
+							],
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							],
+							"basic": [
+								{
+									"key": "username",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"description": ""
+					}
+				},
+				{
+					"name": "调节音量",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"url": {
+							"raw": "/user/editvols",
+							"host": [
+								"user"
+							],
+							"query": [],
+							"variable": [],
+							"path": [
+								"editvols"
+							]
+						},
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "id",
+									"value": "6",
+									"type": "text"
+								},
+								{
+									"key": "token",
+									"value": "YOUR_TOKEN_HERE",
+									"type": "text"
+								},
+								{
+									"key": "vol",
+									"value": "63",
+									"type": "text"
+								},
+								{
+									"key": "snlist",
+									"value": "ed024ae3ae6c6eceb2b94019b727be61|82a04a4e8389b605fc35adf3b6852e4c|7b7c80574db5f6d7d3b7e8e534c76a3a",
+									"type": "text"
+								},
+								{
+									"key": "",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"auth": {
+							"type": "noauth",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "",
+									"type": "string"
+								}
+							],
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							],
+							"basic": [
+								{
+									"key": "username",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"description": ""
+					}
+				},
+				{
+					"name": "文件列表获取",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"url": {
+							"raw": "/user/listfile",
+							"host": [
+								"user"
+							],
+							"query": [],
+							"variable": [],
+							"path": [
+								"listfile"
+							]
+						},
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "id",
+									"value": "6",
+									"type": "text"
+								},
+								{
+									"key": "token",
+									"value": "YOUR_TOKEN_HERE",
+									"type": "text"
+								},
+								{
+									"key": "",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"auth": {
+							"type": "noauth",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "",
+									"type": "string"
+								}
+							],
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							],
+							"basic": [
+								{
+									"key": "username",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"description": ""
+					}
+				},
+				{
+					"name": "文件播放",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"url": {
+							"raw": "/user/urlplay",
+							"host": [
+								"user"
+							],
+							"query": [],
+							"variable": [],
+							"path": [
+								"urlplay"
+							]
+						},
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "id",
+									"value": "4",
+									"type": "text"
+								},
+								{
+									"key": "token",
+									"value": "YOUR_TOKEN_HERE",
+									"type": "text"
+								},
+								{
+									"key": "url",
+									"value": "http://xxxxxxx.mp3",
+									"type": "text"
+								},
+								{
+									"key": "snlist",
+									"value": "sn1|sn2|sn3",
+									"type": "text"
+								},
+								{
+									"key": "",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"auth": {
+							"type": "noauth",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "",
+									"type": "string"
+								}
+							],
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							],
+							"basic": [
+								{
+									"key": "username",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"description": ""
+					}
+				}
+			]
+		},
+		{
+			"name": "小程序喊话-pro",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"item": []
+		},
+		{
+			"name": "用户相关-lite",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"item": [
+				{
+					"name": "添加用户",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"url": {
+							"raw": "/user/adduser",
+							"host": [
+								"user"
+							],
+							"query": [],
+							"variable": [],
+							"path": [
+								"adduser"
+							]
+						},
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "sskey",
+						{
+							"key": "value",
+							"value": "YOUR_SSKEY",
+									"type": "text"
+								},
+								{
+									"key": "username",
+									"value": "YOUR_USERNAME",
+									"type": "text"
+								},
+								{
+									"key": "passwd",
+									"value": "YOUR_PASSWORD",
+									"type": "text"
+								},
+								{
+									"key": "preid",
+									"value": "0",
+									"type": "text"
+								},
+								{
+									"key": "",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"auth": {
+							"type": "noauth",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "",
+									"type": "string"
+								}
+							],
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							],
+							"basic": [
+								{
+									"key": "username",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"description": ""
+					}
+				},
+				{
+					"name": "重置用户token",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"url": {
+							"raw": "/user/gtoken",
+							"host": [
+								"user"
+							],
+							"query": [],
+							"variable": [],
+							"path": [
+								"gtoken"
+							]
+						},
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "text"
+								},
+								{
+									"key": "passwd",
+									"value": "YOUR_PASSWORD",
+									"type": "text"
+								},
+								{
+									"key": "",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"auth": {
+							"type": "noauth",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "",
+									"type": "string"
+								}
+							],
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							],
+							"basic": [
+								{
+									"key": "username",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"description": ""
+					}
+				},
+				{
+					"name": "获取用户token【不会改变token】",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"url": {
+							"raw": "/user/fnkukei/gtoken",
+							"host": [
+								"user"
+							],
+							"query": [],
+							"variable": [],
+							"path": [
+								"fnkukei",
+								"gtoken"
+							]
+						},
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "text"
+								},
+								{
+									"key": "passwd",
+									"value": "YOUR_PASSWORD",
+									"type": "text"
+								},
+								{
+									"key": "",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"auth": {
+							"type": "noauth",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "",
+									"type": "string"
+								}
+							],
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							],
+							"basic": [
+								{
+									"key": "username",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"description": ""
+					}
+				},
+				{
+					"name": "添加用户-sub",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"url": {
+							"raw": "/user/adduser",
+							"host": [
+								"user"
+							],
+							"query": [],
+							"variable": [],
+							"path": [
+								"adduser"
+							]
+						},
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "sskey",
+									"value": "12",
+									"type": "text"
+								},
+								{
+									"key": "username",
+									"value": "YOUR_USERNAME",
+									"type": "text"
+								},
+								{
+									"key": "passwd",
+									"value": "YOUR_PASSWORD",
+									"type": "text"
+								},
+								{
+									"key": "preid",
+									"value": "0",
+									"type": "text"
+								},
+								{
+									"key": "",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"auth": {
+							"type": "noauth",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "",
+									"type": "string"
+								}
+							],
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							],
+							"basic": [
+								{
+									"key": "username",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"description": ""
+					}
+				}
+			]
+		},
+		{
+			"name": "其它方案播放-pro",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"item": [
+				{
+					"name": "临时播放开始",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"url": {
+							"raw": "/user/tmpstartpl",
+							"host": [
+								"user"
+							],
+							"query": [],
+							"variable": [],
+							"path": [
+								"tmpstartpl"
+							]
+						},
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "id",
+									"value": "6",
+									"type": "text"
+								},
+								{
+									"key": "token",
+									"value": "YOUR_TOKEN_HERE",
+									"type": "text"
+								},
+								{
+									"key": "playmode",
+									"value": "3",
+									"type": "text"
+								},
+								{
+									"key": "len",
+									"value": "300",
+									"type": "text"
+								},
+								{
+									"key": "jiange",
+									"value": "2",
+									"type": "text"
+								},
+								{
+									"key": "snids",
+									"value": "10|11|12",
+									"type": "text"
+								},
+								{
+									"key": "fileids",
+									"value": "28|36",
+									"type": "text"
+								},
+								{
+									"key": "",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"auth": {
+							"type": "noauth",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "",
+									"type": "string"
+								}
+							],
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							],
+							"basic": [
+								{
+									"key": "username",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"description": ""
+					}
+				},
+				{
+					"name": "临时终止播放",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"url": {
+							"raw": "/user/tmpstoppl",
+							"host": [
+								"user"
+							],
+							"query": [],
+							"variable": [],
+							"path": [
+								"tmpstoppl"
+							]
+						},
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "id",
+									"value": "6",
+									"type": "text"
+								},
+								{
+									"key": "token",
+									"value": "YOUR_TOKEN_HERE",
+									"type": "text"
+								},
+								{
+									"key": "tpid",
+									"value": "3",
+									"type": "text"
+								}
+							]
+						},
+						"auth": {
+							"type": "noauth",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "",
+									"type": "string"
+								}
+							],
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							],
+							"basic": [
+								{
+									"key": "username",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"description": ""
+					}
+				},
+				{
+					"name": "临时播放信息",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"url": {
+							"raw": "/user/tmplistpl",
+							"host": [
+								"user"
+							],
+							"query": [],
+							"variable": [],
+							"path": [
+								"tmplistpl"
+							]
+						},
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "id",
+									"value": "6",
+									"type": "text"
+								},
+								{
+									"key": "token",
+									"value": "YOUR_TOKEN_HERE",
+									"type": "text"
+								},
+								{
+									"key": "",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"auth": {
+							"type": "noauth",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "",
+									"type": "string"
+								}
+							],
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							],
+							"basic": [
+								{
+									"key": "username",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"description": ""
+					}
+				}
+			]
+		},
+		{
+			"name": "多路报警器相关",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"item": [
+				{
+					"name": "测试接口2",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"url": {
+							"raw": "YOUR_HOST:PORT/user/olist",
+							"host": [
+								"221",
+								"226",
+								"132",
+								"202:12080"
+							],
+							"query": [],
+							"variable": [],
+							"path": [
+								"user",
+								"olist"
+							]
+						},
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"raw": "{}",
+							"formdata": []
+						},
+						"auth": {
+							"type": "noauth",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "",
+									"type": "string"
+								}
+							],
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							],
+							"basic": [
+								{
+									"key": "username",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"description": ""
+					}
+				},
+				{
+					"name": "设置消息上报的IP地址和端口号",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"url": {
+							"raw": "http://YOUR_HOST:PORT/user/setreportudpip",
+							"host": [
+								"http"
+							],
+							"query": [],
+							"variable": [],
+							"path": [
+								"YOUR_HOST:PORT",
+								"user",
+								"setreportudpip"
+							]
+						},
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"raw": "{}",
+							"formdata": [
+								{
+									"key": "id",
+									"value": "6",
+									"type": "text"
+								},
+								{
+									"key": "token",
+									"value": "YOUR_TOKEN_HERE",
+									"type": "text"
+								},
+								{
+									"key": "sn",
+									"value": "YOUR_DEVICE_SN",
+									"type": "text"
+								},
+								{
+									"key": "ip",
+									"value": "MTkzLjExMi40LjE4ODoxMzgwNQ==",
+									"type": "text"
+								}
+							]
+						},
+						"auth": {
+							"type": "noauth",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "",
+									"type": "string"
+								}
+							],
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							],
+							"basic": [
+								{
+									"key": "username",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"description": ""
+					}
+				},
+				{
+					"name": "预缓存wifi",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"url": {
+							"raw": "http://YOUR_HOST:PORT/user/precacheurlwifi",
+							"host": [
+								"http"
+							],
+							"query": [],
+							"variable": [],
+							"path": [
+								"YOUR_HOST:PORT",
+								"user",
+								"precacheurlwifi"
+							]
+						},
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"raw": "{}",
+							"formdata": [
+								{
+									"key": "id",
+									"value": "6",
+									"type": "text"
+								},
+								{
+									"key": "token",
+									"value": "YOUR_TOKEN_HERE",
+									"type": "text"
+								},
+								{
+									"key": "sn",
+									"value": "YOUR_DEVICE_SN",
+									"type": "text"
+								},
+								{
+									"key": "url",
+									"value": "aHR0cDovLzgyLjE1Ny4xODEuMTQ5OjEyMDgzL21wMy82LzYzNzMzMTMyLm1wM1Q=",
+									"type": "text"
+								}
+							]
+						},
+						"auth": {
+							"type": "noauth",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "",
+									"type": "string"
+								}
+							],
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							],
+							"basic": [
+								{
+									"key": "username",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"description": ""
+					}
+				},
+				{
+					"name": "创建通道报警",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"url": {
+							"raw": "http://YOUR_HOST:PORT/user/setwaringlinetaskid",
+							"host": [
+								"http"
+							],
+							"query": [],
+							"variable": [],
+							"path": [
+								"YOUR_HOST:PORT",
+								"user",
+								"setwaringlinetaskid"
+							]
+						},
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"raw": "{}",
+							"formdata": [
+								{
+									"key": "id",
+									"value": "6",
+									"type": "text"
+								},
+								{
+									"key": "token",
+									"value": "YOUR_TOKEN_HERE",
+									"type": "text"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "text"
+								},
+								{
+									"key": "passwd",
+									"value": "YOUR_PASSWORD",
+									"type": "text"
+								},
+								{
+									"key": "host",
+									"value": "YOUR_HOST:PORT",
+									"type": "text"
+								},
+								{
+									"key": "lineid",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "taskid",
+									"value": "5",
+									"type": "text"
+								},
+								{
+									"key": "sn",
+									"value": "YOUR_DEVICE_SN",
+									"type": "text"
+								},
+								{
+									"key": "",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"auth": {
+							"type": "noauth",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "",
+									"type": "string"
+								}
+							],
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							],
+							"basic": [
+								{
+									"key": "username",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"description": ""
+					}
+				},
+				{
+					"name": "wifi设置回调url",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"url": {
+							"raw": "http://YOUR_HOST:PORT/user/setwaringlinewifi",
+							"host": [
+								"http"
+							],
+							"query": [],
+							"variable": [],
+							"path": [
+								"YOUR_HOST:PORT",
+								"user",
+								"setwaringlinewifi"
+							]
+						},
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"raw": "{}",
+							"formdata": [
+								{
+									"key": "id",
+									"value": "6",
+									"type": "text"
+								},
+								{
+									"key": "token",
+									"value": "YOUR_TOKEN_HERE",
+									"type": "text"
+								},
+								{
+									"key": "url",
+									"value": "aHR0cDovLzgyLjE1Ny4xODEuMTQ5OjEyMDgwL3VzZXIvdGVzdGdldD94eD14eHh4JmFhPWFhYWE=",
+									"type": "text"
+								},
+								{
+									"key": "sn",
+									"value": "YOUR_DEVICE_SN",
+									"type": "text"
+								}
+							]
+						},
+						"auth": {
+							"type": "noauth",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "",
+									"type": "string"
+								}
+							],
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							],
+							"basic": [
+								{
+									"key": "username",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"description": ""
+					}
+				},
+				{
+					"name": "删除通道报警",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"url": {
+							"raw": "http://YOUR_HOST:PORT/user/rmwaringlinetaskid",
+							"host": [
+								"http"
+							],
+							"query": [],
+							"variable": [],
+							"path": [
+								"YOUR_HOST:PORT",
+								"user",
+								"rmwaringlinetaskid"
+							]
+						},
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"raw": "{}",
+							"formdata": [
+								{
+									"key": "id",
+									"value": "6",
+									"type": "text"
+								},
+								{
+									"key": "token",
+									"value": "YOUR_TOKEN_HERE",
+									"type": "text"
+								},
+								{
+									"key": "lineid",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "sn",
+									"value": "YOUR_DEVICE_SN",
+									"type": "text"
+								},
+								{
+									"key": "",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"auth": {
+							"type": "noauth",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "",
+									"type": "string"
+								}
+							],
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							],
+							"basic": [
+								{
+									"key": "username",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"description": ""
+					}
+				},
+				{
+					"name": "wifi删除回调url",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"url": {
+							"raw": "http://YOUR_HOST:PORT/user/rmwaringlinewifi",
+							"host": [
+								"http"
+							],
+							"query": [],
+							"variable": [],
+							"path": [
+								"YOUR_HOST:PORT",
+								"user",
+								"rmwaringlinewifi"
+							]
+						},
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"raw": "{}",
+							"formdata": [
+								{
+									"key": "id",
+									"value": "6",
+									"type": "text"
+								},
+								{
+									"key": "token",
+									"value": "YOUR_TOKEN_HERE",
+									"type": "text"
+								},
+								{
+									"key": "sn",
+									"value": "YOUR_DEVICE_SN",
+									"type": "text"
+								}
+							]
+						},
+						"auth": {
+							"type": "noauth",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "",
+									"type": "string"
+								}
+							],
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							],
+							"basic": [
+								{
+									"key": "username",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"description": ""
+					}
+				},
+				{
+					"name": "查询已经缓存的url",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"url": {
+							"raw": "http://YOUR_HOST:PORT/user/scancacheurlwifi",
+							"host": [
+								"http"
+							],
+							"query": [],
+							"variable": [],
+							"path": [
+								"YOUR_HOST:PORT",
+								"user",
+								"scancacheurlwifi"
+							]
+						},
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"raw": "{}",
+							"formdata": [
+								{
+									"key": "id",
+									"value": "6",
+									"type": "text"
+								},
+								{
+									"key": "token",
+									"value": "YOUR_TOKEN_HERE",
+									"type": "text"
+								},
+								{
+									"key": "sn",
+									"value": "YOUR_DEVICE_SN",
+									"type": "text"
+								}
+							]
+						},
+						"auth": {
+							"type": "noauth",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "",
+									"type": "string"
+								}
+							],
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							],
+							"basic": [
+								{
+									"key": "username",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"description": ""
+					}
+				},
+				{
+					"name": "测试接口1",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"url": {
+							"raw": "http://YOUR_HOST:PORT/user/olist",
+							"host": [
+								"http"
+							],
+							"query": [],
+							"variable": [],
+							"path": [
+								"YOUR_HOST:PORT",
+								"user",
+								"olist"
+							]
+						},
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"raw": "{}",
+							"formdata": []
+						},
+						"auth": {
+							"type": "noauth",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "",
+									"type": "string"
+								}
+							],
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							],
+							"basic": [
+								{
+									"key": "username",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"description": ""
+					}
+				}
+			]
+		},
+		{
+			"name": "文字转语音-lite",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"item": [
+				{
+					"name": "生成文字转语音文件播放",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"url": {
+							"raw": "/user/ttsplayfile",
+							"host": [
+								"user"
+							],
+							"query": [],
+							"variable": [],
+							"path": [
+								"ttsplayfile"
+							]
+						},
+						"header": [
+							{
+								"key": "Content-type",
+								"value": "charset=UTF-8",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "id",
+									"value": "6",
+									"type": "text"
+								},
+								{
+									"key": "token",
+									"value": "YOUR_TOKEN_HERE",
+									"type": "text"
+								},
+								{
+									"key": "speed",
+									"value": "50",
+									"type": "text"
+								},
+								{
+									"key": "vol",
+									"value": "100",
+									"type": "text"
+								},
+								{
+									"key": "shengyin",
+									"value": "xiaoyan",
+									"type": "text"
+								},
+								{
+									"key": "filename",
+									"value": "测试112222223322",
+									"type": "text"
+								},
+								{
+									"key": "text",
+									"value": "需要进行文字转语音的文本内容。文件名尽量保持文件名不一样；如果有同名资源文件将不会生效222222",
+									"type": "text"
+								},
+								{
+									"key": "snlist",
+									"value": "ed024ae3ae6c6eceb2b94019b727be61|82a04a4e8389b605fc35adf3b6852e4c|7b7c80574db5f6d7d3b7e8e534c76a3a|11111",
+									"type": "text"
+								}
+							]
+						},
+						"auth": {
+							"type": "noauth",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "",
+									"type": "string"
+								}
+							],
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							],
+							"basic": [
+								{
+									"key": "username",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"description": ""
+					}
+				},
+				{
+					"name": "生成文字转语音文件",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"url": {
+							"raw": "/user/savettsfile",
+							"host": [
+								"user"
+							],
+							"query": [],
+							"variable": [],
+							"path": [
+								"savettsfile"
+							]
+						},
+						"header": [
+							{
+								"key": "Content-type",
+								"value": "charset=UTF-8",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "id",
+									"value": "6",
+									"type": "text"
+								},
+								{
+									"key": "token",
+									"value": "YOUR_TOKEN_HERE",
+									"type": "text"
+								},
+								{
+									"key": "speed",
+									"value": "50",
+									"type": "text"
+								},
+								{
+									"key": "vol",
+									"value": "100",
+									"type": "text"
+								},
+								{
+									"key": "shengyin",
+									"value": "xiaoyan",
+									"type": "text"
+								},
+								{
+									"key": "filename",
+									"value": "测试112222223322",
+									"type": "text"
+								},
+								{
+									"key": "text",
+									"value": "需要进行文字转语音的文本内容。文件名尽量保持文件名不一样；如果有同名资源文件将不会生效222222",
+									"type": "text"
+								},
+								{
+									"key": "",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"auth": {
+							"type": "noauth",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "",
+									"type": "string"
+								}
+							],
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							],
+							"basic": [
+								{
+									"key": "username",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"description": ""
+					}
+				}
+			]
+		},
+		{
+			"name": "本机报警相关",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"item": [
+				{
+					"name": "单机报警注册",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"url": {
+							"raw": "{{url}}/user/wfilerg",
+							"host": [
+								"%7B%7Burl%7D%7D"
+							],
+							"query": [],
+							"variable": [],
+							"path": [
+								"user",
+								"wfilerg"
+							]
+						},
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "id",
+									"value": "6",
+									"type": "text"
+								},
+								{
+									"key": "token",
+									"value": "YOUR_TOKEN_HERE",
+									"type": "text"
+								},
+								{
+									"key": "url",
+									"value": "http://YOUR_HOST:PORT/12.mp3",
+									"type": "text"
+								},
+								{
+									"key": "filename",
+									"value": "歌曲提醒",
+									"type": "text"
+								},
+								{
+									"key": "sn",
+									"value": "YOUR_DEVICE_SN",
+									"type": "text"
+								},
+								{
+									"key": "dname",
+									"value": "串口监控单机报警",
+									"type": "text"
+								},
+								{
+									"key": "fb",
+									"value": "1",
+									"type": "text"
+								}
+							]
+						},
+						"auth": {
+							"type": "noauth",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "",
+									"type": "string"
+								}
+							],
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							],
+							"basic": [
+								{
+									"key": "username",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"description": ""
+					}
+				},
+				{
+					"name": "联动报警方案删除",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"url": {
+							"raw": "{{url}}/user/wplantrm",
+							"host": [
+								"%7B%7Burl%7D%7D"
+							],
+							"query": [],
+							"variable": [],
+							"path": [
+								"user",
+								"wplantrm"
+							]
+						},
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "id",
+									"value": "6",
+									"type": "text"
+								},
+								{
+									"key": "token",
+									"value": "YOUR_TOKEN_HERE",
+									"type": "text"
+								},
+								{
+									"key": "pltid",
+									"value": "4",
+									"type": "text"
+								}
+							]
+						},
+						"auth": {
+							"type": "noauth",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "",
+									"type": "string"
+								}
+							],
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							],
+							"basic": [
+								{
+									"key": "username",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"description": ""
+					}
+				},
+				{
+					"name": "强制解除报警注册信息",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"url": {
+							"raw": "{{url}}/user/wfileforceunrg",
+							"host": [
+								"%7B%7Burl%7D%7D"
+							],
+							"query": [],
+							"variable": [],
+							"path": [
+								"user",
+								"wfileforceunrg"
+							]
+						},
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "id",
+									"value": "6",
+									"type": "text"
+								},
+								{
+									"key": "token",
+									"value": "YOUR_TOKEN_HERE",
+									"type": "text"
+								},
+								{
+									"key": "fb",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "sn",
+									"value": "YOUR_DEVICE_SN",
+									"type": "text"
+								}
+							]
+						},
+						"auth": {
+							"type": "noauth",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "",
+									"type": "string"
+								}
+							],
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							],
+							"basic": [
+								{
+									"key": "username",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"description": ""
+					}
+				},
+				{
+					"name": "联动报警方案列表获取",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"url": {
+							"raw": "{{url}}/user/wplantlist",
+							"host": [
+								"%7B%7Burl%7D%7D"
+							],
+							"query": [],
+							"variable": [],
+							"path": [
+								"user",
+								"wplantlist"
+							]
+						},
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "id",
+									"value": "6",
+									"type": "text"
+								},
+								{
+									"key": "token",
+									"value": "YOUR_TOKEN_HERE",
+									"type": "text"
+								}
+							]
+						},
+						"auth": {
+							"type": "noauth",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "",
+									"type": "string"
+								}
+							],
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							],
+							"basic": [
+								{
+									"key": "username",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"description": ""
+					}
+				},
+				{
+					"name": "单机报警解除注册",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"url": {
+							"raw": "{{url}}/user/wfileunrg",
+							"host": [
+								"%7B%7Burl%7D%7D"
+							],
+							"query": [],
+							"variable": [],
+							"path": [
+								"user",
+								"wfileunrg"
+							]
+						},
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "id",
+									"value": "6",
+									"type": "text"
+								},
+								{
+									"key": "token",
+									"value": "YOUR_TOKEN_HERE",
+									"type": "text"
+								},
+								{
+									"key": "sn",
+									"value": "YOUR_DEVICE_SN",
+									"type": "text"
+								},
+								{
+									"key": "fb",
+									"value": "2",
+									"type": "text"
+								},
+								{
+									"key": "rgid",
+									"value": "1",
+									"type": "text"
+								}
+							]
+						},
+						"auth": {
+							"type": "noauth",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "",
+									"type": "string"
+								}
+							],
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							],
+							"basic": [
+								{
+									"key": "username",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"description": ""
+					}
+				},
+				{
+					"name": "报警注册结果列表",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"url": {
+							"raw": "{{url}}/user/wfilelistrg",
+							"host": [
+								"%7B%7Burl%7D%7D"
+							],
+							"query": [],
+							"variable": [],
+							"path": [
+								"user",
+								"wfilelistrg"
+							]
+						},
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "id",
+									"value": "6",
+									"type": "text"
+								},
+								{
+									"key": "token",
+									"value": "YOUR_TOKEN_HERE",
+									"type": "text"
+								}
+							]
+						},
+						"auth": {
+							"type": "noauth",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "",
+									"type": "string"
+								}
+							],
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							],
+							"basic": [
+								{
+									"key": "username",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"description": ""
+					}
+				},
+				{
+					"name": "联动报警方案注册",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"url": {
+							"raw": "{{url}}/user/wplantrg",
+							"host": [
+								"%7B%7Burl%7D%7D"
+							],
+							"query": [],
+							"variable": [],
+							"path": [
+								"user",
+								"wplantrg"
+							]
+						},
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "id",
+									"value": "6",
+									"type": "text"
+								},
+								{
+									"key": "token",
+									"value": "YOUR_TOKEN_HERE",
+									"type": "text"
+								},
+								{
+									"key": "pltid",
+									"value": "5",
+									"type": "text"
+								},
+								{
+									"key": "sn",
+									"value": "YOUR_DEVICE_SN",
+									"type": "text"
+								},
+								{
+									"key": "dname",
+									"value": "dname",
+									"type": "text"
+								},
+								{
+									"key": "fb",
+									"value": "1",
+									"type": "text"
+								}
+							]
+						},
+						"auth": {
+							"type": "noauth",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "",
+									"type": "string"
+								}
+							],
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							],
+							"basic": [
+								{
+									"key": "username",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"description": ""
+					}
+				},
+				{
+					"name": "联动报警方案添加",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"url": {
+							"raw": "{{url}}/user/wplantadd",
+							"host": [
+								"%7B%7Burl%7D%7D"
+							],
+							"query": [],
+							"variable": [],
+							"path": [
+								"user",
+								"wplantadd"
+							]
+						},
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "id",
+									"value": "6",
+									"type": "text"
+								},
+								{
+									"key": "token",
+									"value": "YOUR_TOKEN_HERE",
+									"type": "text"
+								},
+								{
+									"key": "url",
+									"value": "http://YOUR_HOST:PORT/mp3/6/e5a89ce89282e4ba9a2de5a4aae5a5bde590ace4ba86e5898de5a58fe68ea7e4b880e7a792e788b1e4b88ae5a5bde590ace5a5b3e5a3b0e58d95e69bb2e5beaae78eaf476f6f644973476f6f642e6d7033.mp3",
+									"type": "text"
+								},
+								{
+									"key": "plantname",
+									"value": "报警测试3",
+									"type": "text"
+								},
+								{
+									"key": "snlist",
+									"value": "39560783d24343d3ee53c77a3e6f92ea|a53906f3e9c8f3015e0c51c837376d8f",
+									"type": "text"
+								}
+							]
+						},
+						"auth": {
+							"type": "noauth",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "",
+									"type": "string"
+								}
+							],
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							],
+							"basic": [
+								{
+									"key": "username",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"description": ""
+					}
+				}
+			]
+		}
+	]
+}

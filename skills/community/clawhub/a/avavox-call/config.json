@@ -1,0 +1,11 @@
+{
+  "baseUrl": "https://dashboard.avavox.com",
+  "appKey": "sk-xxxxxxxxxxxxxxxx",
+  "defaults": {
+    "taskId": "",
+    "lineId": "",
+    "concurrency": 1,
+    "backgroundAudio": "",
+    "callTimeType": "immediate"
+  }
+}

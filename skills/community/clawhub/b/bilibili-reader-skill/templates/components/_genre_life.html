@@ -1,0 +1,16 @@
+{# ── 生活技能专用 ── #}
+{% if materials_list %}
+<div class="section">
+    <h3 class="section-title">🔧 材料清单</h3>
+    <div class="content-block">
+        {% for item in materials_list %}
+        <div style="margin-bottom: 6px;">
+            <strong>{{ item.item }}</strong>：{{ item.purpose }}
+            {% if item.cost_estimate %}
+            <span style="color: #888; font-size: 9pt;">（约{{ item.cost_estimate }}）</span>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endif %}

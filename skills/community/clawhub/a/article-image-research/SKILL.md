@@ -1,35 +1,195 @@
 ---
-name: "Article Image Research"
-description: "为公众号文章、微信推文、长文、报告或网页内容快速调研配图，生成可追溯的图片候选池，评估图片是否支撑具体段落、事实、解释、对比或现场，并记录来源、授权、归因、风险和推荐用法。适用于找正文配图、开头图、证据图、解释图、对比图、产品截图、事件现场图、公开资料图、开放授权图片、图库图片、封面候选和图片版权风险初筛。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/article-image-research"
-sourceUrl: "https://clawhub.ai/skills/article-image-research"
+name: article-image-research
+description: 为公众号文章、微信推文、长文、报告或网页内容快速调研配图，生成可追溯的图片候选池，评估图片是否支撑具体段落、事实、解释、对比或现场，并记录来源、授权、归因、风险和推荐用法。适用于找正文配图、开头图、证据图、解释图、对比图、产品截图、事件现场图、公开资料图、开放授权图片、图库图片、封面候选和图片版权风险初筛。
 ---
 
-# Article Image Research
+# 文章配图调研
 
-> 为公众号文章、微信推文、长文、报告或网页内容快速调研配图，生成可追溯的图片候选池，评估图片是否支撑具体段落、事实、解释、对比或现场，并记录来源、授权、归因、风险和推荐用法。适用于找正文配图、开头图、证据图、解释图、对比图、产品截图、事件现场图、公开资料图、开放授权图片、图库图片、封面候选和图片版权风险初筛。
+## 用途
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/article-image-research`
-- **Source URL:** [https://clawhub.ai/skills/article-image-research](https://clawhub.ai/skills/article-image-research)
+用这个技能为文章快速找到可用图片，并把图片变成可判断、可追溯、可交接的候选池。
 
-## Overview
+这个技能只负责图片调研、筛选、归因和风险初筛。
 
+- 需要写正文时，交给 `wechat-article-writer`。
+- 需要把已选图片排进微信 HTML 时，交给 `wechat-article-formatter`。
 
-## Installation
-To install this skill, run the following command in your terminal:
+## 执行清单
+
+开始配图调研后用这张清单跟踪进度：
+
+- [ ] 明确文章主题、目标读者、使用场景、是否正式发布、是否商业用途。
+- [ ] 拆出需要图片支撑的段落、判断、事实、解释、对比或现场。
+- [ ] 为每个图片需求生成中英文查询词和排除词。
+- [ ] 搜索前计划确认：在实际搜索、打开网页、调用浏览器或运行脚本前，先把调研计划发给用户并等待确认或调整。
+- [ ] 按来源优先级搜索图片，并记录候选池。
+- [ ] 对候选图片做主体、事实、段落价值、具体程度、来源质量和授权风险评分。
+- [ ] 输出推荐使用、备选、拒绝图片，并说明理由。
+- [ ] 为入选图片保留图注、来源、授权、归因和发布前风险提醒。
+
+## 核心原则
+
+- 图片必须服务文章内容。不能说明、证明、解释或呈现正文的图片，不进入正文。
+- 先找准确图片，再找好看图片。宁可少配图，也不要放入会误导读者的图片。
+- 优先真实来源、官方来源、原文图片、开放授权和可追溯页面。
+- 可以使用当前环境可用的任何合规发现能力，包括 LLM 内置搜索、网页搜索、图片搜索、浏览器、页面截图、视觉识别、站内搜索、本模块附带脚本和 AI 生图能力；不要把 provider 或脚本当成唯一入口。
+- AI 生图不是禁用项，但优先级低于搜索、官方来源、原文图片、开放授权图片和真实图库图片；只能用于概念化、氛围、抽象封面、示意图或无法合理获得真实图片的场景。
+- 全网图片搜索只用于发现线索，不能因为图片好看就直接使用。
+- 默认保留图片来源和归因。即使图库协议不强制归因，正式文章也应保留内部记录。
+- 图片主体、时间、版本、人物、产品、地点和上下文必须和正文一致。
+- 遇到版权、肖像权、商标、医疗、法律、金融、未成年人、灾难事故或具名争议场景，标记风险并谨慎使用。
+
+## 来源优先级
+
+按任务场景选择来源，不要每次都查完所有来源。
+
+1. 用户提供的图片、本地素材、品牌素材、原始资料附件。
+2. 文章引用网页或原文中的图表、截图、产品图、现场图、文档图。
+3. 官方网站、官方公告、新闻稿、产品文档、政府或机构页面。
+4. Wikimedia Commons、Openverse 等开放授权来源。
+5. Pexels、Unsplash 等图库，适合氛围图、场景图、抽象主题图。
+6. Brave、Google Images/SerpApi 等全网图片发现，适合找特定事件、产品界面、人物、地点或更多线索。
+7. AI 生成图片，适合概念化封面、抽象场景、非事实示意图；优先级低于搜索到的可核验图片。
+
+## 开放式工具规则
+
+- 如果当前 LLM 或运行环境已有图片搜索能力，优先用它快速发现候选，再回到来源页核验。
+- 如果能调用浏览器，打开候选图片的落地页，检查页面标题、图注、上下文、作者、授权、发布日期和图片是否实际加载。
+- 如果网页用懒加载、轮播、脚本或 CSS 背景图呈现图片，可用浏览器检查页面 DOM、截图或网络资源，但最终候选仍必须记录静态图片 URL 或可访问落地页。
+- 如果只能使用普通网页搜索，使用查询词策略和搜索操作符定位官方页、报告 PDF、图库页、Wikimedia 文件页或 Openverse 结果页。
+- 如果能进行视觉理解，用它辅助判断图片主体、图表内容、界面版本、是否含商标/人物/敏感元素，但不要用视觉猜测替代来源核验。
+- 如果能使用 AI 生图，只有在搜索结果不足、版权风险过高、或文章需要非事实类概念视觉时才考虑；生成图必须标记为 `ai_generated`，不能作为事实、新闻、人物、产品界面、现场或证据图片。
+- 如果工具能直接下载图片，只在授权和来源清楚后下载；候选阶段优先保存 URL 和元数据。
+- 不要绕过登录、付费墙、反爬限制或站点条款；不可访问的图片只作为线索，不作为推荐图。
+
+## 工作流程
+
+1. 建立图片需求表：
+   - `section`：文章小节或段落。
+   - `need_type`：opening | evidence | explanation | comparison | product | event | document | portrait | cover。
+   - `visual_brief`：需要读者看到什么。
+   - `must_match`：主体、时间、版本、地点、人物、数据或页面状态。
+   - `avoid`：不要出现的元素、误导方向或泛化素材。
+
+2. 生成查询词：
+   - 对中文主题生成中文查询和英文查询。
+   - 具名对象优先用官方英文名、产品名、机构名、人物名。
+   - 按图片类型追加 `chart`、`screenshot`、`diagram`、`interface`、`event`、`product`、`report`、`PDF` 等词。
+   - 对明显泛化结果追加排除词，如 `logo`、`advertisement`、`wallpaper`、`stock`、`AI generated`。
+   - 详见 `references/query-playbook.md`。
+
+3. 搜索前反馈计划并确认：
+   - 在实际搜索、打开网页、调用浏览器、运行脚本或访问图片 API 前，先向用户输出简短调研计划。
+   - 计划至少包含：图片需求、拟搜索来源、核心查询词、是否考虑 AI 生图、授权/风险策略、预计输出形态。
+   - 用户确认、补充或调整后再开始搜索。
+   - 如果用户已经明确要求“直接开始搜索”“不用确认”“按默认方案执行”，可以输出计划后继续，不必二次等待。
+
+4. 搜索并记录候选：
+   - 优先记录原始落地页，不只记录图片直链。
+   - 每张候选图至少记录标题、图片 URL、落地页、来源平台、作者、授权、图注或附近正文。
+   - 可用内置 web/image search、浏览器或脚本。使用脚本时可先运行：
+
 ```bash
-hermes skills install clawhub/article-image-research
+python3 skills/article-image-research/scripts/search_images.py --query "electric vehicle battery factory" --provider openverse --limit 8
 ```
+
+5. 评分和筛选：
+   - 用 `references/scoring-rubric.md` 的 12 分制评分。
+   - 低于 9 分一般不进入正文。
+   - 授权、事实或主体存在明显风险时，即使分数高也要拒绝。
+
+6. 输出候选池：
+   - 推荐图只给少量高质量候选。
+   - 拒绝的重要图片也要说明拒绝理由，避免后续误用。
+   - 正文入选图片建议使用 `figure`、`img`、`figcaption` 结构。
+
+## 搜索前计划模板
+
+实际搜索前使用这个模板，保持简短：
+
+```text
+我会先按这个计划找图：
+
+1. 图片需求：
+   - 小节/用途：需要什么类型的图片，必须匹配什么。
+2. 搜索来源：
+   - 优先来源：官方/原文/Wikimedia/Openverse/图库/全网搜索等。
+3. 查询词：
+   - 中文：
+   - English:
+   - 排除词：
+4. 筛选标准：
+   - 内容匹配、来源可靠、授权清楚、图注可解释。
+5. 交付：
+   - 输出 use/backup/reject 候选、来源、授权、归因、风险和推荐图注。
+6. AI 生图：
+   - 默认不优先使用；只有搜索不足或需要概念/示意视觉时作为备选，并标记为 AI 生成。
+
+请确认是否按这个方向搜索，或补充必须使用/避免的图片来源。
+```
+
+## 输出格式
+
+默认输出结构化候选池，必要时附简短说明：
+
+```json
+{
+  "image_needs": [
+    {
+      "section": "文章小节",
+      "need_type": "evidence",
+      "visual_brief": "读者需要看到什么",
+      "queries": ["中文查询", "English query"]
+    }
+  ],
+  "image_candidates": [
+    {
+      "section": "文章小节",
+      "decision": "use | backup | reject",
+      "provider": "openverse",
+      "image_url": "https://example.com/image.jpg",
+      "landing_url": "https://example.com/page",
+      "title": "图片标题",
+      "creator": "作者",
+      "license": "cc-by-4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "ai_generated": false,
+      "generation_prompt": null,
+      "attribution": "建议图注或署名",
+      "image_type": "chart | screenshot | product | event | document | infographic | photo",
+      "evidence_value": "这张图支撑正文中的哪一段或哪一个判断",
+      "risk_flags": ["版权待核验"],
+      "score": 10,
+      "reason": "推荐、备选或拒绝理由"
+    }
+  ],
+  "recommended_figures": [
+    {
+      "section": "文章小节",
+      "html": "<figure><img src=\"...\" alt=\"...\"><figcaption>图：... 来源：...</figcaption></figure>"
+    }
+  ],
+  "usage_notes": [
+    "正式使用前需要核验授权落地页是否仍可访问。"
+  ]
+}
+```
+
+## 常用参考
+
+按任务只读取需要的文件：
+
+- `references/provider-matrix.md`：不同图片来源的适用场景、优缺点和使用边界。
+- `references/license-policy.md`：授权、归因、版权、肖像权和商标风险规则。
+- `references/query-playbook.md`：查询词生成、改写和排除词策略。
+- `references/scoring-rubric.md`：图片候选评分和入选标准。
+- `references/tool-assisted-search.md`：使用 LLM 搜索、图片搜索、浏览器和视觉能力辅助找图的开放规则。
+
+## 常见误用
+
+- 不要把图库氛围图当成事实证据图。
+- 不要只保存图片直链而不保存落地页和来源。
+- 不要把 logo、头像、广告横幅、社交分享图当正文配图。
+- 不要使用无法核验主体、时间、版本或上下文的图片。
+- 不要默认下载或搬运全网图片；先确认授权和发布风险。
+- 不要让排版阶段新增装饰图；配图选择必须在调研或写作阶段完成。

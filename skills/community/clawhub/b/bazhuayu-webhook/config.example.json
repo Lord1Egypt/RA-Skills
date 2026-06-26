@@ -1,0 +1,24 @@
+{
+  "_comment": "八爪鱼 RPA Webhook 配置示例",
+  "_security_note": "敏感信息建议使用环境变量，不要将此文件提交到版本控制",
+  
+  "url": "",
+  "key": "",
+  "paramNames": ["keyword", "url"],
+  "defaultParams": {
+    "keyword": "默认关键词",
+    "url": "https://example.com"
+  },
+  
+  "_env_usage": {
+    "url": "设置 BAZHUAYU_WEBHOOK_URL 环境变量可覆盖此配置",
+    "key": "设置 BAZHUAYU_WEBHOOK_KEY 环境变量可覆盖此配置",
+    "params": "设置 BAZHUAYU_PARAM_* 环境变量可设置参数默认值"
+  },
+  
+  "_example_env": {
+    "BAZHUAYU_WEBHOOK_URL": "https://api-rpa.bazhuayu.com/api/v1/bots/webhooks/xxx/invoke",
+    "BAZHUAYU_WEBHOOK_KEY": "your-secret-key-here",
+    "BAZHUAYU_PARAM_KEYWORD": "默认关键词"
+  }
+}

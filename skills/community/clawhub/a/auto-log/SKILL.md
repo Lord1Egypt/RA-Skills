@@ -1,35 +1,90 @@
----
-name: "Auto Log"
-description: "Automatically creates daily log files to record AI agent events, tasks, todos, and provides summaries of daily activity."
-category: "productivity"
-source: "ClawHub"
-tags: [journal, logging, productivity]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/auto-log"
-sourceUrl: "https://clawhub.ai/skills/auto-log"
+# Auto Log Skill
+
+**Auto Log Skill** — Automatically records AI agent activity to daily memory log files.
+
+📖 [中文文档](README.zh-CN.md)
+
 ---
 
-# Auto Log
+## 🎯 Features
 
-> Automatically creates daily log files to record AI agent events, tasks, todos, and provides summaries of daily activity.
+- ✅ Auto-create daily log templates
+- ✅ Append important events to the log
+- ✅ Record task execution status
+- ✅ Add and manage todo items
+- ✅ Quickly retrieve today's log summary
 
-- **Category:** Productivity
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/auto-log`
-- **Source URL:** [https://clawhub.ai/skills/auto-log](https://clawhub.ai/skills/auto-log)
+---
 
-## Overview
+## 📦 Installation
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/auto-log
+clawhub install auto-log
 ```
+
+---
+
+## 🔧 Configuration
+
+Copy the config template and fill in your values:
+
+```bash
+cp config.example.json config.json
+```
+
+**Required fields:**
+- `memory_dir`: Directory to store log files
+
+---
+
+## 🚀 Usage
+
+```python
+from auto_log_skill import log_event, log_task, add_todo
+
+# Log an event
+log_event("Skill packaging complete")
+
+# Log a task
+log_task("RAG memory retrieval", "✅", "Success")
+
+# Add a todo
+add_todo("Team sync at 3 PM")
+
+# Get summary
+print(get_today_summary())
+```
+
+---
+
+## 🛠️ Required Tools
+
+- `file_read`: Read log files
+- `file_write`: Write log content
+
+---
+
+## 📝 Changelog
+
+### v1.0.0 (2026-03-17)
+- ✅ Initial release
+- ✅ Auto daily log creation
+- ✅ Event / task / todo recording
+- ✅ Summary generation
+
+---
+
+## 🤝 Contributing
+
+GitHub: https://github.com/openclaw/skills
+
+---
+
+## 📄 License
+
+MIT License
+
+---
+
+**Author**: socneo  
+**Last updated**: 2026-03-18

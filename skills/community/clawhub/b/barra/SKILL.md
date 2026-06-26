@@ -1,35 +1,65 @@
 ---
-name: "Barra"
-description: "在币安交易所通过市价单或限价单买入BTC现货，自动处理交易参数和账户验证并反馈成交详情。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/barra"
-sourceUrl: "https://clawhub.ai/skills/barra"
----
+name: "Barra 币安现货交易技能"
+version: "1.0.0"
+description: "在币安交易所执行比特币（BTC）的现货买入操作，支持市价单和限价单"
+author: "Your Name"
+tags:
+  - 币安
+  - 现货交易
+  - 比特币
+  - 交易执行
+permissions:
+  - binance.trading
+  - binance.account.read
+​---
 
-# Barra
+# Barra 币安现货交易技能使用指南
 
-> 在币安交易所通过市价单或限价单买入BTC现货，自动处理交易参数和账户验证并反馈成交详情。
+## 功能概述
+该技能允许你通过自然语言指令，让OpenClaw在币安交易所执行比特币（BTC）的现货买入操作。技能会处理从指令解析到订单执行的全过程，并返回交易结果。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/barra`
-- **Source URL:** [https://clawhub.ai/skills/barra](https://clawhub.ai/skills/barra)
+## 工作流程
+1. **指令解析**：AI从你的对话中提取交易参数（买入金额、价格类型、交易对等）
+2. **账户验证**：检查币安账户连接状态和可用余额
+3. **订单执行**：调用币安现货API执行买入操作
+4. **结果反馈**：返回订单成交详情（成交价、数量、订单ID等）
 
-## Overview
+## 参数说明
+执行时，AI会自动从你的指令中提取以下参数：
 
+| 参数名 | 类型 | 必填 | 默认值 | 说明 |
+|--------|------|------|--------|------|
+| `symbol` | string | 是 | "BTCUSDT" | 交易对，默认为BTC/USDT |
+| `amount` | number | 是 | 无 | 买入金额（以计价货币计，如USDT） |
+| `orderType` | string | 否 | "MARKET" | 订单类型：MARKET（市价单）或LIMIT（限价单） |
+| `price` | number | 否 | 无 | 限价单价格（当orderType=LIMIT时必填） |
+| `totalCost` | boolean | 否 | true | 是否按总额买入（true=用指定金额全仓买入，false=按数量买入） |
 
-## Installation
-To install this skill, run the following command in your terminal:
+## API 密钥配置要求
+
+### ⚠️ 安全红线（必须遵守）
+
+要让该技能正常工作，你需要先在币安官网完成API配置：
+
+1. **创建API密钥**
+   - 登录币安官网 → [个人中心] → [API管理]
+   - 点击"创建API"，选择"系统生成密钥"
+   - 完成身份验证后，妥善保存API Key和Secret Key [citation:3]
+
+2. **权限配置（严格按以下说明勾选）**
+   - ✅ **启用阅读**：必须勾选，允许AI查看账户余额和交易历史
+   - ✅ **启用现货交易**：必须勾选，AI才能执行买入操作
+   - ⚠️ **启用提款功能**：【严禁勾选】——这是最重要的安全原则。即使API泄露，资金也无法被转出平台 [citation:3]
+   - ❌ **其他权限**（保证金、合约、转账等）建议保持关闭
+
+3. **IP白名单设置（关键步骤）**
+   - 在"IP访问限制"中选择"仅允许受信任的IP地址访问"
+   - 填入运行OpenClaw的服务器的IP地址
+   - 只有绑定IP后，币安才会开放现货交易权限 [citation:8]
+
+### 环境变量配置
+将API密钥添加到OpenClaw的环境变量中：
 ```bash
-hermes skills install clawhub/barra
-```
+export BINANCE_API_KEY=""
+export BINANCE_SECRET_KEY=""
+---

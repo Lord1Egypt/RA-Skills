@@ -1,0 +1,14 @@
+{
+  "name": "archive-grouping-skill",
+  "version": "1.0.0",
+  "description": "档案整理归档组卷技能，辅助对办理完毕的文件材料进行分类、组卷和归档",
+  "author": "大地之熊",
+  "created_at": "2026-04-09",
+  "main_file": "SKILL.md",
+  "references": [
+    "references/高等学校档案实体分类法.md",
+    "references/山西大同大学档案管理制度汇编.md"
+  ],
+  "keywords": ["档案", "组卷", "归档", "分类", "高校档案"],
+  "category": "档案管理"
+}

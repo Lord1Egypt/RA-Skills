@@ -1,0 +1,19 @@
+{
+  "task_name": "档案周报",
+  "schedule": "0 9 * * 1",
+  "sources": ["政策", "新闻", "技术", "学术"],
+  "keywords": [
+    "档案管理",
+    "档案数字化",
+    "电子档案",
+    "档案信息化",
+    "智慧档案馆",
+    "档案安全",
+    "档案法",
+    "档案标准"
+  ],
+  "output_format": "markdown",
+  "output_dir": "./reports/weekly",
+  "max_results_per_source": 20,
+  "notification": true
+}

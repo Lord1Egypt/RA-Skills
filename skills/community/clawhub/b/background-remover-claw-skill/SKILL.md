@@ -1,35 +1,34 @@
 ---
-name: "Background Remover Claw Skill"
-description: "Generate ai background remover images with AI via the Neta AI image generation API (free trial at neta.art/open)."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/background-remover-claw-skill"
-sourceUrl: "https://clawhub.ai/skills/background-remover-claw-skill"
+name: background-remover-claw-skill
+description: Generate ai background remover images with AI via the Neta AI image generation API (free trial at neta.art/open).
+tools: Bash
 ---
 
-# Background Remover Claw Skill
+# Background Remover
 
-> Generate ai background remover images with AI via the Neta AI image generation API (free trial at neta.art/open).
+Generate stunning ai background remover images from a text description. Get back a direct image URL instantly.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/background-remover-claw-skill`
-- **Source URL:** [https://clawhub.ai/skills/background-remover-claw-skill](https://clawhub.ai/skills/background-remover-claw-skill)
+## Token
 
-## Overview
+Requires a Neta API token. Free trial available at <https://www.neta.art/open/>.
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/background-remover-claw-skill
+export NETA_TOKEN=your_token_here
+node <script> "your prompt" --token "$NETA_TOKEN"
+```
+
+## When to use
+Use when someone asks to generate or create ai background remover images.
+
+## Quick start
+```bash
+node backgroundremoverclaw.js "your description here" --token YOUR_TOKEN
+```
+
+## Options
+- `--size` — `portrait`, `landscape`, `square`, `tall` (default: `square`)
+
+## Install
+```bash
+npx skills add BarbaraLedbettergq/background-remover-claw-skill
 ```

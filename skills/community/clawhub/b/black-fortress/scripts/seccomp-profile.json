@@ -1,0 +1,16 @@
+{
+  "defaultAction": "SCMP_ACT_ALLOW",
+  "architectures": ["SCMP_ARCH_X86_64", "SCMP_ARCH_AARCH64"],
+  "syscalls": [
+    {
+      "names": [
+        "socket", "socketpair", "connect", "sendto", "recvfrom",
+        "sendmsg", "recvmsg", "bind", "listen", "accept", "accept4",
+        "getsockopt", "setsockopt", "getpeername", "getsockname",
+        "shutdown"
+      ],
+      "action": "SCMP_ACT_ERRNO",
+      "errnoRet": 1
+    }
+  ]
+}

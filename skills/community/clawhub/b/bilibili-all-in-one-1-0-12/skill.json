@@ -1,0 +1,364 @@
+{
+  "name": "bilibili-all-in-one",
+  "description": "A comprehensive Bilibili toolkit that integrates hot trending monitoring, video downloading, video watching/playback, subtitle downloading, and video publishing capabilities into a single skill.",
+"version": "1.0.12",
+  "author": "wscats",
+  "license": "MIT",
+  "homepage": "https://github.com/wscats/bilibili-all-in-one",
+  "repository": "https://github.com/wscats/bilibili-all-in-one",
+  "source": "https://github.com/wscats/bilibili-all-in-one",
+  "type": "code",
+  "runtime": "python>=3.8",
+  "entry_point": "main.py",
+  "required_env_vars": ["BILIBILI_SESSDATA", "BILIBILI_BILI_JCT"],
+  "optional_env_vars": ["BILIBILI_BUVID3"],
+  "install": {
+    "type": "pip",
+    "command": "pip install -r requirements.txt",
+    "packages": [
+      "httpx>=0.24.0",
+      "bilibili-api-python>=16.0.0",
+      "aiohttp>=3.8.0",
+      "beautifulsoup4>=4.12.0",
+      "lxml>=4.9.0",
+      "requests>=2.31.0"
+    ],
+    "source": "pypi"
+  },
+  "env_vars": [
+    {
+      "name": "BILIBILI_SESSDATA",
+      "type": "string",
+      "description": "Bilibili SESSDATA cookie for authenticated API access (publishing, high-quality downloads).",
+      "required": true,
+      "sensitive": true
+    },
+    {
+      "name": "BILIBILI_BILI_JCT",
+      "type": "string",
+      "description": "Bilibili bili_jct cookie (CSRF token) for all write operations (upload, edit, delete).",
+      "required": true,
+      "sensitive": true
+    },
+    {
+      "name": "BILIBILI_BUVID3",
+      "type": "string",
+      "description": "Bilibili buvid3 cookie for device identification in authenticated sessions.",
+      "required": false,
+      "sensitive": true
+    }
+  ],
+  "credentials": {
+    "primary_credential": "BILIBILI_SESSDATA",
+    "storage": "in-memory by default; disk persistence only via explicit auth.save_to_file() call with 0600 permissions",
+    "security_notes": [
+      "Credentials are NEVER persisted to disk unless the user explicitly calls save_to_file().",
+      "Prefer passing credentials via environment variables or in-memory parameters.",
+"All API requests go to official Bilibili endpoints and YouTube oEmbed API over HTTPS.",
+      "Use a test/throwaway Bilibili account for evaluation purposes."
+    ]
+  },
+  "network": {
+    "protocol": "HTTPS only",
+    "allowed_domains": [
+      "api.bilibili.com",
+      "member.bilibili.com",
+      "upos-sz-upcdnbda2.bilivideo.com",
+      "www.bilibili.com",
+      "www.youtube.com"
+    ],
+    "third_party_telemetry": false,
+    "analytics": false
+  },
+  "files": [
+    "main.py",
+    "requirements.txt",
+    "skill.json",
+    "skill.md",
+    "LICENSE",
+    "README.md",
+    "src/__init__.py",
+    "src/auth.py",
+    "src/utils.py",
+    "src/hot_monitor.py",
+    "src/downloader.py",
+    "src/player.py",
+    "src/subtitle.py",
+    "src/watcher.py",
+    "src/publisher.py",
+    "tests/__init__.py",
+    "tests/test_all_skill_examples.py"
+  ],
+  "skills": [
+    {
+      "name": "bilibili_hot_monitor",
+      "description": "Monitor Bilibili hot/trending videos and topics in real-time. Supports filtering by category, tracking rank changes, and sending notifications.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "action": {
+            "type": "string",
+            "enum": ["get_hot", "get_trending", "get_weekly", "get_rank"],
+            "description": "The action to perform: get_hot (hot videos), get_trending (trending topics), get_weekly (weekly must-watch), get_rank (category rankings)"
+          },
+          "category": {
+            "type": "string",
+            "description": "Category filter (e.g., 'all', 'anime', 'music', 'dance', 'game', 'tech', 'life', 'food', 'car', 'fashion', 'entertainment', 'movie', 'tv')",
+            "default": "all"
+          },
+          "limit": {
+            "type": "integer",
+            "description": "Maximum number of results to return",
+            "default": 20
+          }
+        },
+        "required": ["action"]
+      }
+    },
+    {
+      "name": "bilibili_downloader",
+      "description": "Download Bilibili videos with support for multiple quality options, batch downloading, and format selection.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "action": {
+            "type": "string",
+            "enum": ["download", "get_info", "get_formats", "batch_download"],
+            "description": "The action to perform: download (download a video), get_info (get video info), get_formats (list available formats), batch_download (download multiple videos)"
+          },
+          "url": {
+            "type": "string",
+            "description": "Bilibili video URL or BV number (e.g., 'https://www.bilibili.com/video/BV1xx411c7mD' or 'BV1xx411c7mD')"
+          },
+          "urls": {
+            "type": "array",
+            "items": { "type": "string" },
+            "description": "List of Bilibili video URLs for batch download"
+          },
+          "quality": {
+            "type": "string",
+            "enum": ["360p", "480p", "720p", "1080p", "1080p+", "4k"],
+            "description": "Video quality to download",
+            "default": "1080p"
+          },
+          "output_dir": {
+            "type": "string",
+            "description": "Output directory for downloaded files",
+            "default": "./downloads"
+          },
+          "format": {
+            "type": "string",
+            "enum": ["mp4", "flv", "mp3"],
+            "description": "Output format",
+            "default": "mp4"
+          }
+        },
+        "required": ["action"]
+      }
+    },
+    {
+      "name": "bilibili_watcher",
+      "description": "Watch and monitor Bilibili (and YouTube) videos. Track view counts, comments, likes, and other engagement metrics over time.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "action": {
+            "type": "string",
+            "enum": ["watch", "get_stats", "track", "compare"],
+            "description": "The action to perform: watch (get video details), get_stats (get engagement stats), track (track video metrics over time), compare (compare multiple videos)"
+          },
+          "url": {
+            "type": "string",
+            "description": "Video URL (supports Bilibili and YouTube)"
+          },
+          "urls": {
+            "type": "array",
+            "items": { "type": "string" },
+            "description": "List of video URLs for comparison"
+          },
+          "interval": {
+            "type": "integer",
+            "description": "Tracking interval in minutes (for track action)",
+            "default": 60
+          },
+          "duration": {
+            "type": "integer",
+            "description": "Tracking duration in hours (for track action)",
+            "default": 24
+          }
+        },
+        "required": ["action"]
+      }
+    },
+    {
+      "name": "bilibili_subtitle",
+      "description": "Download and process subtitles/CC from Bilibili videos. Supports multiple subtitle formats and languages.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "action": {
+            "type": "string",
+            "enum": ["download", "list", "convert", "merge"],
+            "description": "The action to perform: download (download subtitles), list (list available subtitles), convert (convert subtitle format), merge (merge multiple subtitle files)"
+          },
+          "url": {
+            "type": "string",
+            "description": "Bilibili video URL or BV number"
+          },
+          "language": {
+            "type": "string",
+            "description": "Subtitle language preference (e.g., 'zh-CN', 'en', 'ja')",
+            "default": "zh-CN"
+          },
+          "format": {
+            "type": "string",
+            "enum": ["srt", "ass", "vtt", "txt", "json"],
+            "description": "Output subtitle format",
+            "default": "srt"
+          },
+          "output_dir": {
+            "type": "string",
+            "description": "Output directory for subtitle files",
+            "default": "./subtitles"
+          }
+        },
+        "required": ["action"]
+      }
+    },
+    {
+      "name": "bilibili_player",
+      "description": "Play Bilibili videos with support for playback control, playlist management, and danmaku (bullet comments) display.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "action": {
+            "type": "string",
+            "enum": ["play", "get_playurl", "get_danmaku", "get_playlist"],
+            "description": "The action to perform: play (play a video), get_playurl (get direct play URL), get_danmaku (get danmaku/bullet comments), get_playlist (get playlist info)"
+          },
+          "url": {
+            "type": "string",
+            "description": "Bilibili video URL or BV number"
+          },
+          "quality": {
+            "type": "string",
+            "enum": ["360p", "480p", "720p", "1080p", "1080p+", "4k"],
+            "description": "Playback quality",
+            "default": "1080p"
+          },
+          "danmaku": {
+            "type": "boolean",
+            "description": "Whether to include danmaku (bullet comments)",
+            "default": true
+          },
+          "page": {
+            "type": "integer",
+            "description": "Page/episode number for multi-part videos",
+            "default": 1
+          }
+        },
+        "required": ["action"]
+      }
+    },
+    {
+      "name": "bilibili_publisher",
+      "description": "Publish videos to Bilibili. Supports uploading videos, setting metadata, scheduling publications, and managing drafts.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "action": {
+            "type": "string",
+            "enum": ["upload", "draft", "schedule", "edit", "delete"],
+            "description": "The action to perform: upload (upload and publish), draft (save as draft), schedule (schedule publication), edit (edit existing video), delete (delete a video)"
+          },
+          "file_path": {
+            "type": "string",
+            "description": "Path to the video file to upload"
+          },
+          "title": {
+            "type": "string",
+            "description": "Video title"
+          },
+          "description": {
+            "type": "string",
+            "description": "Video description"
+          },
+          "tags": {
+            "type": "array",
+            "items": { "type": "string" },
+            "description": "Video tags"
+          },
+          "category": {
+            "type": "string",
+            "description": "Video category (tid)"
+          },
+          "cover_path": {
+            "type": "string",
+            "description": "Path to cover image"
+          },
+          "schedule_time": {
+            "type": "string",
+            "description": "Scheduled publish time (ISO 8601 format, for schedule action)"
+          },
+          "bvid": {
+            "type": "string",
+            "description": "BV number of existing video (for edit/delete actions)"
+          },
+          "credential": {
+            "type": "object",
+            "description": "Bilibili login credential (sessdata, bili_jct, buvid3)"
+          }
+        },
+        "required": ["action"]
+      }
+    }
+  ],
+  "configuration": {
+    "bilibili_sessdata": {
+      "type": "string",
+      "description": "Bilibili SESSDATA cookie for authenticated operations",
+      "required": false,
+      "sensitive": true
+    },
+    "bilibili_bili_jct": {
+      "type": "string",
+      "description": "Bilibili bili_jct cookie for CSRF protection",
+      "required": false,
+      "sensitive": true
+    },
+    "bilibili_buvid3": {
+      "type": "string",
+      "description": "Bilibili buvid3 cookie for device identification",
+      "required": false,
+      "sensitive": true
+    },
+    "default_quality": {
+      "type": "string",
+      "description": "Default video quality",
+      "default": "1080p"
+    },
+    "default_output_dir": {
+      "type": "string",
+      "description": "Default output directory",
+      "default": "./output"
+    }
+  },
+  "permissions": {
+    "network": {
+      "description": "HTTP/HTTPS requests to Bilibili official APIs and YouTube oEmbed API",
+      "allowed_domains": [
+        "api.bilibili.com",
+        "member.bilibili.com",
+        "www.bilibili.com",
+        "upos-sz-upcdnbda2.bilivideo.com",
+        "www.youtube.com"
+      ]
+    },
+    "filesystem": {
+      "description": "Read/write access for downloading videos, subtitles, and uploading files",
+      "operations": ["read_local_files", "write_downloads", "write_subtitles"],
+      "note": "Credential files are NEVER auto-created. save_to_file() must be explicitly called by the user."
+    }
+  },
+  "always": false
+}

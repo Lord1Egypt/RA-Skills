@@ -1,0 +1,120 @@
+# Pixel Retro — Template Manifest
+
+meta:
+  name: "Pixel Retro"
+  id: pixel-retro
+  version: "1.0"
+  tags: [pixel, retro, game, nostalgic, bold, monospace, 8-bit]
+  best_for:
+    - 游戏和游戏化应用
+    - 创意工具
+    - 开发者工具（趣味向）
+    - 个人作品集
+  not_for:
+    - 企业 B2B 应用
+    - 金融产品
+    - 医疗健康
+  flexibility:
+    colors: moderate
+    typography: strict        # 像素字体是核心特征
+    spacing: moderate
+    motion: strict            # 阶梯动画是灵魂
+    layout: loose
+  icon_preferences:
+    primary_source: lucide
+    fallback_sources: [feather]
+    style: outline
+    stroke_width: 2.5
+    size: 20
+
+# ====== Design Tokens ======
+tokens:
+  colors:
+    primary:
+      base: "#FF6B35"
+      light: "#FF8C5A"
+      dark: "#CC5529"
+    secondary:
+      base: "#00B4D8"
+      light: "#48CAE4"
+      dark: "#0096B7"
+    background:
+      page: "#1A1A2E"
+      surface: "#16213E"
+      elevated: "#0F3460"
+    text:
+      primary: "#E8E8E8"
+      secondary: "#A0A0B0"
+      muted: "#6C6C7C"
+    border:
+      default: "#2A2A4A"
+      focus: "#FF6B35"
+    functional:
+      success: "#4ECB71"
+      warning: "#FFD166"
+      error: "#EF476F"
+      info: "#118AB2"
+
+  typography:
+    heading_font: "'Press Start 2P', 'VT323', monospace"
+    body_font: "'Fira Code', 'JetBrains Mono', 'IBM Plex Mono', monospace"
+    mono_font: "'Fira Code', 'JetBrains Mono', monospace"
+    scale:
+      xs:   "0.625rem"       # 10px
+      sm:   "0.75rem"        # 12px
+      base: "0.875rem"       # 14px
+      lg:   "1rem"           # 16px
+      xl:   "1.25rem"        # 20px
+      2xl:  "1.5rem"         # 24px
+      3xl:  "2rem"           # 32px
+      4xl:  "2.5rem"         # 40px
+    weight:
+      normal: 400
+      medium: 500
+      semibold: 600
+      bold: 700
+
+  spacing:
+    unit: 4
+    scale: [0, 4, 8, 12, 16, 24, 32, 48, 64]
+
+  border:
+    radius:
+      none:  "0"
+      sm:    "0"
+      md:    "0"
+      lg:    "0"
+      xl:    "0"
+      full:  "0"
+    width:
+      thin:  "2px"
+      normal: "3px"
+      thick:  "4px"
+
+  shadows:
+    none: "none"
+    sm:   "3px 3px 0px 0px rgba(0,0,0,0.5)"
+    md:   "5px 5px 0px 0px rgba(0,0,0,0.5)"
+    lg:   "8px 8px 0px 0px rgba(0,0,0,0.5)"
+    xl:   "12px 12px 0px 0px rgba(0,0,0,0.5)"
+
+  motion:
+    duration:
+      instant: "0ms"
+      fast:    "50ms"
+      normal:  "80ms"
+      slow:    "100ms"
+      gradual: "0ms"
+    easing:
+      default: "steps(4, end)"
+      in:      "steps(2, end)"
+      out:     "steps(2, end)"
+      spring:  "steps(4, end)"
+
+  decorations:
+    gradient_primary: "linear-gradient(180deg, #FF6B35 0%, #FF8C5A 100%)"
+    gradient_subtle: "none"
+    pattern: "dot-matrix"
+    scanlines: true
+    pixel_borders: true
+    crt_effect: true

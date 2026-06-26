@@ -1,0 +1,38 @@
+id: setup-beddel
+name: Beddel Plugin Setup
+description: Install or update the @botanarede/beddel OpenClaw plugin and verify it loads.
+
+steps:
+  - id: check_plugin
+    primitive: tool
+    config:
+      tool: shell_exec
+      arguments:
+        cmd: "python3.11 -c \"import subprocess,json,re;r=subprocess.run(['openclaw','plugins','list'],capture_output=True,text=True);has=bool(re.search(r'beddel',r.stdout));loaded=bool(re.search(r'beddel.*loaded',r.stdout));print(json.dumps({'action':'OK'if loaded else'REINSTALL'if has else'INSTALL'}))\""
+
+  - id: validate_check
+    primitive: guardrail
+    config:
+      data: "$stepResult.check_plugin.result.stdout"
+      schema:
+        fields:
+          action: { type: str, required: true }
+      strategy: correct
+
+  - id: install_plugin
+    primitive: tool
+    config:
+      tool: shell_exec
+      arguments:
+        cmd: "openclaw plugins install @botanarede/beddel"
+      timeout: 120
+    if: "$stepResult.validate_check.data.action != 'OK'"
+
+  - id: verify
+    primitive: tool
+    config:
+      tool: shell_exec
+      arguments:
+        cmd: "openclaw plugins info beddel"
+
+

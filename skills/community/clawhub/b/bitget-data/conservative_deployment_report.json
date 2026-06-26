@@ -1,0 +1,48 @@
+{
+  "timestamp": "2026-03-12T11:31:24.258Z",
+  "totalPlaced": 6,
+  "totalErrors": 41,
+  "results": {
+    "btc": {
+      "success": true,
+      "placed": 6,
+      "errors": 13,
+      "buyLevels": 15,
+      "sellLevels": 15
+    },
+    "sol": {
+      "success": true,
+      "placed": 0,
+      "errors": 14,
+      "buyLevels": 10,
+      "sellLevels": 10
+    },
+    "eth": {
+      "success": true,
+      "placed": 0,
+      "errors": 14,
+      "buyLevels": 10,
+      "sellLevels": 10
+    }
+  },
+  "config": {
+    "date": "2026-03-12 19:30",
+    "goal": "保守配置 - 匹配当前余额 ~20 USDT",
+    "totalTargetTrades": 33,
+    "strategy": "小额测试 + 密集网格",
+    "changes": [
+      "BTC: 30 格，每格 1 USDT，区间 69k-72k",
+      "SOL: 20 格，每格 0.3 USDT，区间 85-89",
+      "ETH: 20 格，每格 0.2 USDT，区间 2040-2100",
+      "总资金需求：~20 USDT",
+      "预期成交：30-40 笔/天"
+    ],
+    "expectedDailyProfit": "0.5-1.0% (保守测试)",
+    "riskControl": [
+      "严格控制每单金额",
+      "总仓位不超过 25 USDT",
+      "每 30 分钟监控",
+      "盈利后可增加金额"
+    ]
+  }
+}

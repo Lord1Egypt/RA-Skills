@@ -1,0 +1,18 @@
+{
+  "name": "cheatsheet-generator",
+  "version": "1.0.0",
+  "description": "速查表生成器 - 生成结构化 Markdown 速查表",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.js \"npm 发布\" | head -20",
+    "list": "node index.js --list"
+  },
+  "keywords": [
+    "cheatsheet",
+    "速查表",
+    "markdown",
+    "documentation"
+  ],
+  "author": "万万粥 <wanwan_app@163.com>",
+  "license": "MIT-0"
+}

@@ -1,0 +1,274 @@
+# GitLab CI/CD Pipeline for Java + Vue Projects
+# 支持：代码检查 → 单元测试 → 构建打包 → 镜像构建 → 部署 K8s → 通知反馈
+
+variables:
+  # 镜像仓库配置
+  DOCKER_REGISTRY: "your-registry.com"
+  DOCKER_NAMESPACE: "your-namespace"
+  
+  # 项目配置
+  JAVA_PROJECT_NAME: "java-backend"
+  VUE_PROJECT_NAME: "vue-frontend"
+  
+  # K8s 配置
+  K8S_NAMESPACE: "production"
+  K8S_CLUSTER: "your-k8s-cluster"
+  
+  # 版本标签（使用 CI 管道 ID 和提交 SHA）
+  IMAGE_TAG: "${CI_PIPELINE_ID}-${CI_COMMIT_SHORT_SHA}"
+
+# 阶段定义
+stages:
+  - lint
+  - test
+  - build
+  - dockerize
+  - deploy
+  - notify
+
+# 缓存配置
+cache:
+  paths:
+    - .m2/repository
+    - node_modules/
+
+# ==================== 代码检查阶段 ====================
+
+lint-java:
+  stage: lint
+  image: maven:3.9-eclipse-temurin-17
+  script:
+    - cd backend
+    - mvn spotbugs:check pmd:check checkstyle:check -q
+  only:
+    - main
+    - develop
+  tags:
+    - docker
+
+lint-vue:
+  stage: lint
+  image: node:18-alpine
+  script:
+    - cd frontend
+    - npm ci
+    - npm run lint
+    - npm run format:check
+  only:
+    - main
+    - develop
+  tags:
+    - docker
+
+# ==================== 单元测试阶段 ====================
+
+test-java:
+  stage: test
+  image: maven:3.9-eclipse-temurin-17
+  script:
+    - cd backend
+    - mvn test -q
+  coverage: '/Total.*?([0-9]{1,3})%/'
+  artifacts:
+    reports:
+      junit: backend/target/surefire-reports/*.xml
+      coverage_report:
+        coverage_format: cobertura
+        path: backend/target/site/cobertura/coverage.xml
+    paths:
+      - backend/target/surefire-reports/
+    expire_in: 1 week
+  only:
+    - main
+    - develop
+  tags:
+    - docker
+
+test-vue:
+  stage: test
+  image: node:18-alpine
+  script:
+    - cd frontend
+    - npm ci
+    - npm run test:unit -- --coverage
+  coverage: '/All files[^|]*\|[^|]*\s+([\d\.]+)/'
+  artifacts:
+    reports:
+      junit: frontend/junit.xml
+      coverage_report:
+        coverage_format: cobertura
+        path: frontend/coverage/cobertura-coverage.xml
+    paths:
+      - frontend/coverage/
+    expire_in: 1 week
+  only:
+    - main
+    - develop
+  tags:
+    - docker
+
+# ==================== 构建打包阶段 ====================
+
+build-java:
+  stage: build
+  image: maven:3.9-eclipse-temurin-17
+  script:
+    - cd backend
+    - mvn clean package -DskipTests -q
+    - cp target/*.jar ../artifacts/${JAVA_PROJECT_NAME}.jar
+  artifacts:
+    paths:
+      - artifacts/${JAVA_PROJECT_NAME}.jar
+    expire_in: 1 week
+  dependencies:
+    - test-java
+  only:
+    - main
+    - develop
+  tags:
+    - docker
+
+build-vue:
+  stage: build
+  image: node:18-alpine
+  script:
+    - cd frontend
+    - npm ci
+    - npm run build
+    - mkdir -p ../artifacts
+    - cp -r dist ../artifacts/${VUE_PROJECT_NAME}
+  artifacts:
+    paths:
+      - artifacts/${VUE_PROJECT_NAME}/
+    expire_in: 1 week
+  dependencies:
+    - test-vue
+  only:
+    - main
+    - develop
+  tags:
+    - docker
+
+# ==================== 镜像构建阶段 ====================
+
+dockerize-java:
+  stage: dockerize
+  image: docker:24-dind
+  services:
+    - docker:24-dind
+  variables:
+    DOCKER_TLS_CERTDIR: "/certs"
+  before_script:
+    - echo "$CI_REGISTRY_PASSWORD" | docker login $DOCKER_REGISTRY -u "$CI_REGISTRY_USER" --password-stdin
+  script:
+    - docker build -t $DOCKER_REGISTRY/$DOCKER_NAMESPACE/${JAVA_PROJECT_NAME}:${IMAGE_TAG} -f backend/Dockerfile .
+    - docker tag $DOCKER_REGISTRY/$DOCKER_NAMESPACE/${JAVA_PROJECT_NAME}:${IMAGE_TAG} $DOCKER_REGISTRY/$DOCKER_NAMESPACE/${JAVA_PROJECT_NAME}:latest
+    - docker push $DOCKER_REGISTRY/$DOCKER_NAMESPACE/${JAVA_PROJECT_NAME}:${IMAGE_TAG}
+    - docker push $DOCKER_REGISTRY/$DOCKER_NAMESPACE/${JAVA_PROJECT_NAME}:latest
+  dependencies:
+    - build-java
+  only:
+    - main
+    - develop
+  tags:
+    - docker
+  when: manual
+
+dockerize-vue:
+  stage: dockerize
+  image: docker:24-dind
+  services:
+    - docker:24-dind
+  variables:
+    DOCKER_TLS_CERTDIR: "/certs"
+  before_script:
+    - echo "$CI_REGISTRY_PASSWORD" | docker login $DOCKER_REGISTRY -u "$CI_REGISTRY_USER" --password-stdin
+  script:
+    - docker build -t $DOCKER_REGISTRY/$DOCKER_NAMESPACE/${VUE_PROJECT_NAME}:${IMAGE_TAG} -f frontend/Dockerfile .
+    - docker tag $DOCKER_REGISTRY/$DOCKER_NAMESPACE/${VUE_PROJECT_NAME}:${IMAGE_TAG} $DOCKER_REGISTRY/$DOCKER_NAMESPACE/${VUE_PROJECT_NAME}:latest
+    - docker push $DOCKER_REGISTRY/$DOCKER_NAMESPACE/${VUE_PROJECT_NAME}:${IMAGE_TAG}
+    - docker push $DOCKER_REGISTRY/$DOCKER_NAMESPACE/${VUE_PROJECT_NAME}:latest
+  dependencies:
+    - build-vue
+  only:
+    - main
+    - develop
+  tags:
+    - docker
+  when: manual
+
+# ==================== K8s 部署阶段 ====================
+
+deploy-k8s:
+  stage: deploy
+  image: bitnami/kubectl:latest
+  script:
+    # 配置 K8s 访问
+    - echo "$KUBE_CONFIG" | base64 -d > ~/.kube/config
+    - kubectl config use-context $K8S_CLUSTER
+    
+    # 更新镜像版本
+    - kubectl set image deployment/${JAVA_PROJECT_NAME} ${JAVA_PROJECT_NAME}=$DOCKER_REGISTRY/$DOCKER_NAMESPACE/${JAVA_PROJECT_NAME}:${IMAGE_TAG} -n $K8S_NAMESPACE
+    - kubectl set image deployment/${VUE_PROJECT_NAME} ${VUE_PROJECT_NAME}=$DOCKER_REGISTRY/$DOCKER_NAMESPACE/${VUE_PROJECT_NAME}:${IMAGE_TAG} -n $K8S_NAMESPACE
+    
+    # 等待滚动更新完成
+    - kubectl rollout status deployment/${JAVA_PROJECT_NAME} -n $K8S_NAMESPACE --timeout=300s
+    - kubectl rollout status deployment/${VUE_PROJECT_NAME} -n $K8S_NAMESPACE --timeout=300s
+    
+    # 验证部署
+    - kubectl get pods -n $K8S_NAMESPACE -l app=${JAVA_PROJECT_NAME}
+    - kubectl get pods -n $K8S_NAMESPACE -l app=${VUE_PROJECT_NAME}
+  dependencies:
+    - dockerize-java
+    - dockerize-vue
+  only:
+    - main
+  tags:
+    - docker
+  when: manual
+  environment:
+    name: production
+    url: https://your-app.com
+
+# ==================== 通知反馈阶段 ====================
+
+notify-success:
+  stage: notify
+  image: alpine/curl:latest
+  script:
+    - |
+      curl -X POST "${WEBHOOK_URL}" \
+        -H "Content-Type: application/json" \
+        -d "{
+          \"msg_type\": \"text\",
+          \"content\": {
+            \"text\": \"✅ 部署成功\\n项目：${CI_PROJECT_NAME}\\n分支：${CI_COMMIT_REF_NAME}\\n版本：${IMAGE_TAG}\\n提交人：${GITLAB_USER_NAME}\\n流水线：${CI_PIPELINE_URL}\"
+          }
+        }"
+  only:
+    - main
+  tags:
+    - docker
+  when: on_success
+  dependencies:
+    - deploy-k8s
+
+notify-failure:
+  stage: notify
+  image: alpine/curl:latest
+  script:
+    - |
+      curl -X POST "${WEBHOOK_URL}" \
+        -H "Content-Type: application/json" \
+        -d "{
+          \"msg_type\": \"text\",
+          \"content\": {
+            \"text\": \"❌ 部署失败\\n项目：${CI_PROJECT_NAME}\\n分支：${CI_COMMIT_REF_NAME}\\n版本：${IMAGE_TAG}\\n提交人：${GITLAB_USER_NAME}\\n流水线：${CI_PIPELINE_URL}\"
+          }
+        }"
+  only:
+    - main
+    - develop
+  tags:
+    - docker
+  when: on_failure

@@ -1,35 +1,94 @@
----
-name: "Chinese Wisdom"
-description: "Integrates Confucianism, Daoism, Mohism, Legalism, and Buddhism for daily self-cultivation, decision-making, and mindset adjustment guidance."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/chinese-wisdom"
-sourceUrl: "https://clawhub.ai/skills/chinese-wisdom"
----
+# 中华传统智慧
 
-# Chinese Wisdom
+> 中华上下五千年,留下了丰富的哲学智慧。本Skill整合儒道佛墨法等诸子百家思想,用于日常修身、决策参考、心态调整。
 
-> Integrates Confucianism, Daoism, Mohism, Legalism, and Buddhism for daily self-cultivation, decision-making, and mindset adjustment guidance.
+## 核心思想体系
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/chinese-wisdom`
-- **Source URL:** [https://clawhub.ai/skills/chinese-wisdom](https://clawhub.ai/skills/chinese-wisdom)
+### 儒家 (Confucianism)
+| 经典 | 核心概念 | 实用价值 |
+|------|----------|----------|
+| 论语 | 仁、礼、君子、三省吾身 | 为人处世、自我反省 |
+| 孟子 | 性善论、四端、仁政 | 人性本善、民本思想 |
+| 荀子 | 性恶论、礼法 | 教育的重要性 |
+| 王阳明 | 心即理、知行合一、致良知 | 行动与认知统一 |
 
-## Overview
+### 道家 (Daoism)
+| 经典 | 核心概念 | 实用价值 |
+|------|----------|----------|
+| 道德经 | 无为、道法自然、反璞归真 | 顺其自然、不强求 |
+| 庄子 | 逍遥游、齐物论、无用之用 | 精神自由、放下执念 |
 
+### 墨家 (Mohism)
+- **兼爱**: 平等地爱所有人
+- **非攻**: 反对战争
+- **尚贤**: 尊重人才
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/chinese-wisdom
+### 法家 (Legalism)
+- **法治**: 以法为本
+- **术治**: 御人之术
+- **势治**: 权威与威势
+
+### 佛学 (Buddhism)
+| 概念 | 含义 |
+|------|------|
+| 四圣谛 | 苦、集、灭、道 |
+| 八正道 | 正见、正思、正语、正业、正命、正勤、正念、正定 |
+| 无常 | 一切皆变 |
+| 涅槃 | 解脱自在 |
+
+## 决策参考
+
+### 困境抉择
+| 情况 | 建议 |
+|------|------|
+| 进退两难 | 庄子:「权衡取舍」→ 分析利弊,顺其自然 |
+| 利益冲突 | 孟子:「义利之辨」→ 先义后利 |
+| 人际矛盾 | 老子:「上善若水」→ 以柔克刚 |
+| 事业瓶颈 | 王阳明:「知行合一」→ 在事上磨练 |
+
+### 心态调整
+| 问题 | 经典引用 |
+|------|-----------|
+| 焦虑 | 庄子:「天地与我并生,万物与我为一」|
+| 执念 | 道德经:「反者道之动」|
+| 疲惫 | 孟子:「求放心」|
+| 迷茫 | 论语:「吾日三省吾身」|
+
+## 知识图谱
+
+### 人物关系
 ```
+孔子 → 创立 → 儒家
+孟子 → 发展 → 儒家(性善论)
+荀子 → 补充 → 儒家(性恶论)
+老子 → 创立 → 道家
+庄子 → 发展 → 道家
+墨子 → 创立 → 墨家
+韩非 → 发展 → 法家
+王阳明 → 创新 → 心学(儒释道合流)
+```
+
+### 思想演变
+1. 春秋: 礼乐制度 → 孔子
+2. 战国: 百家争鸣 → 儒道墨法
+3. 秦汉: 儒法结合,黄老思想
+4. 魏晋: 玄学,佛学传入
+5. 宋明: 理学,心学
+6. 清代: 实学,考据学
+
+## 学习建议
+
+### 按主题深入
+- **修身**: 论语 + 大学 + 中庸
+- **处世**: 道德经 + 庄子
+- **治国**: 孟子 + 荀子 + 法家
+- **心性**: 心学 + 佛学
+
+### 实践方法
+1. 每日诵读经典一句
+2. 遇事时对照经典思考
+3. 记录心得,反省改进
+
+---
+
+*本Skill持续更新中...*

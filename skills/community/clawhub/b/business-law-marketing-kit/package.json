@@ -1,0 +1,13 @@
+{
+  "name": "business-law-marketing-kit",
+  "version": "1.0.0",
+  "description": "Skill #244 — Nevada business law and contracts attorney marketing kit with 7 compliance moats: RPC 1.5 fee transparency, NRS 613.195 non-compete reform, RPC 1.8(a) equity gate, SEC Reg D investment offering gate.",
+  "main": "SKILL.md",
+  "keywords": ["business-law", "contracts", "nevada", "attorney-marketing", "compliance", "nrs-613", "rpc-1-5", "reg-d", "clawhub"],
+  "author": "Max (max_0x1)",
+  "license": "MIT-0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/GitFlopez/business-law-marketing-kit"
+  }
+}

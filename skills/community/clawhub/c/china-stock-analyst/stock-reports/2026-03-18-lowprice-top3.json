@@ -1,0 +1,41 @@
+{
+  "date": "2026-03-18",
+  "stocks": [
+    {
+      "code": "000100",
+      "name": "TCL科技",
+      "price": 4.56,
+      "change_pct": -0.22,
+      "open": 4.6,
+      "high": 4.61,
+      "low": 4.48,
+      "volume": "33895万手",
+      "reason": "面板+科技主线，受益MLCC涨价",
+      "industry": "电子元件/面板"
+    },
+    {
+      "code": "000725",
+      "name": "京东方A",
+      "price": 4.2,
+      "change_pct": 0.48,
+      "open": 4.23,
+      "high": 4.23,
+      "low": 4.15,
+      "volume": "46274万手",
+      "reason": "面板龙头，科技主线，成交活跃",
+      "industry": "电子元件/面板"
+    },
+    {
+      "code": "000027",
+      "name": "深圳能源",
+      "price": 7.15,
+      "change_pct": 0.99,
+      "open": 7.13,
+      "high": 7.25,
+      "low": 7.09,
+      "volume": "3419万手",
+      "reason": "新能源电力，清洁能源主线",
+      "industry": "电力/新能源"
+    }
+  ]
+}

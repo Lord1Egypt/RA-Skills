@@ -1,0 +1,20 @@
+name: business-agent-launchpad
+version: 0.1.0
+description: Business Agent Launchpad turns plain business scenarios into OpenClaw/Hermes agent routes, object memory, tool permissions, model tiers, and free/paid setup choices.
+author: Andy Ren
+homepage: https://clawhub.ai/skills/business-agent-launchpad
+license: MIT
+tags:
+  - agent
+  - onboarding
+  - openclaw
+  - hermes
+  - memory
+  - office
+  - business
+category: productivity
+dependencies: []
+entry: SKILL.md
+files:
+  - SKILL.md
+  - agents/**

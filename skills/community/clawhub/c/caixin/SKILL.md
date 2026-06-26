@@ -1,35 +1,48 @@
 ---
-name: "Caixin"
-description: "Retrieves and summarizes public news and trending topics from Caixin's open channels using keyword search, channel stats, and topic collections."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/caixin"
-sourceUrl: "https://clawhub.ai/skills/caixin"
+name: caixin-hot-trend
+description: 注册“财新”热门技能；当需要访问或自动化财新相关内容时调用。
+homepage: `https://www.caixin.com/`
+metadata: {"clawdbot":{"emoji":"🔥"}}
 ---
 
-# Caixin
+# 财新
 
-> Retrieves and summarizes public news and trending topics from Caixin's open channels using keyword search, channel stats, and topic collections.
+用途与边界
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/caixin`
-- **Source URL:** [https://clawhub.ai/skills/caixin](https://clawhub.ai/skills/caixin)
+- 面向公开新闻与专题页的检索与内容摘要
+- 不提供接口逆向或付费内容绕过能力
+- 仅用于公开页面的轻量分析与提醒
 
-## Overview
+关键入口
 
+- 主页：https://www.caixin.com/
+- 财经/时政/专题频道：频道入口
+- 搜索入口：站内搜索
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/caixin
-```
+常见任务
+
+- 指定关键词的新闻集合摘要（标题、来源、发布时间、标签）
+- 频道页的热点条目与题材分布统计
+- 专题页的文章目录与摘要集合
+
+数据字段
+
+- 标题、来源、作者（若标注）、发布时间、正文摘要、标签、链接
+- 频道名称、专题名称、采集时间、来源链接
+
+自动化要点
+
+- 部分内容可能付费或登录可见，仅处理公开内容
+- 动态渲染，需等待加载完成后解析
+- 频率控制，不进行批量抓取；结果标注采集时间
+
+示例流程
+
+- 关键词摘要：输入关键词 → 搜索 → 抽取条目 → 输出摘要清单
+- 频道统计：访问频道页 → 抽取热点 → 题材分布与来源统计
+- 专题汇总：访问专题页 → 抽取文章目录 → 输出摘要集合
+
+合规提示
+
+- 遵守平台规则，不进行接口调用或批量采集
+- 不绕过付费墙或登录限制

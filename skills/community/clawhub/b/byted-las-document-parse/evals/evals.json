@@ -1,0 +1,72 @@
+{
+  "skill_name": "byted-las-document-parse",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "帮我解析这个PDF文件：/tmp/test.pdf，提取其中的Markdown内容",
+      "expected_output": "成功解析PDF文件并返回结构化的Markdown内容",
+      "expected_exit_code": 0,
+      "expected_stdout_contains": [
+        "task_id"
+      ],
+      "files": [
+        "/tmp/test.pdf"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "这是一张长截图，帮我识别里面的文字内容：/tmp/long_screenshot.png",
+      "expected_output": "自动识别为长图，进行智能裁剪，转换为PDF后解析并返回文字内容",
+      "expected_exit_code": 0,
+      "expected_stdout_contains": [
+        "task_id",
+        "local_image"
+      ],
+      "files": [
+        "/tmp/long_screenshot.png"
+      ],
+      "expected_stderr_contains": [
+        "检测到长图",
+        "PDF 生成成功"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "帮我解析这个在线PDF：https://example.com/sample.pdf",
+      "expected_output": "直接通过URL解析PDF内容并返回Markdown格式",
+      "expected_exit_code": 0,
+      "files": []
+    },
+    {
+      "id": 4,
+      "prompt": "解析这个TOS上的PDF文件：tos://my-bucket/documents/report.pdf",
+      "expected_output": "直接通过TOS路径解析PDF内容",
+      "expected_exit_code": 0,
+      "files": []
+    },
+    {
+      "id": 5,
+      "prompt": "使用 detail 模式精细解析 /tmp/complex_table.pdf 中的表格",
+      "expected_output": "以 detail 模式提交任务，parse_mode 为 detail",
+      "expected_exit_code": 0,
+      "expected_cmd_contains": [
+        "--parse-mode",
+        "detail"
+      ],
+      "files": [
+        "/tmp/complex_table.pdf"
+      ]
+    },
+    {
+      "id": 6,
+      "prompt": "查询解析任务 task_abc123 的状态，只要 Markdown 内容",
+      "expected_output": "使用 --markdown-only 标志查询并仅输出 Markdown",
+      "expected_cmd_contains": [
+        "poll",
+        "task_abc123",
+        "--markdown-only"
+      ],
+      "files": []
+    }
+  ]
+}

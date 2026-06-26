@@ -1,0 +1,53 @@
+{
+  "name": "citywalk-map",
+  "version": "3.1.0",
+  "description": "Zero-cost walking route maps with OSM+OSRM routing, 高德 tile fallback for China, pure Python renderer",
+  "description_en": "Zero-cost walking route maps with real OSM tiles + OSRM routing, one-command setup, custom colors, full-width layout, detailed walk stats",
+  "keywords": [
+    "citywalk",
+    "walking-route",
+    "map",
+    "openstreetmap",
+    "leaflet",
+    "osrm",
+    "travel",
+    "itinerary"
+  ],
+  "license": "MIT",
+  "author": "huangfeng1995",
+  "files": [
+    "README.md",
+    "README.en.md",
+    "LICENSE",
+    "package.json",
+    "scripts/generate.py"
+  ],
+  "scripts": {
+    "generate": "python3 scripts/generate.py",
+    "demo-haikou": "python3 scripts/generate.py '海口一日游' '20.0352,110.3104,万绿园,起点|20.0315,110.2468,观海台,终点'",
+    "demo-paris": "COLOR=#0055A4 python3 scripts/generate.py '巴黎卢浮宫Citywalk' '48.8606,2.3376,卢浮宫|48.8641,2.3276,杜乐丽花园|48.8656,2.3211,协和广场|48.8637,2.3130,亚历山大三世桥|48.8738,2.2950,凯旋门|48.8595,2.3122,荣军院|48.8584,2.2945,埃菲尔铁塔'",
+    "demo-london": "COLOR=#012169 python3 scripts/generate.py '伦敦一日游' '51.5055,-0.0754,Tower Bridge|51.5138,-0.0984,St Pauls Cathedral|51.5080,-0.1277,Trafalgar Square|51.5007,-0.1246,Big Ben'"
+  },
+  "python-requires": ">=3.7",
+  "dependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/skill-citywalk-map"
+  },
+  "clawhub": {
+    "name": "citywalk-map",
+    "description": "无需API！零成本生成真实OSM地图+OSRM步行路线的精美Citywalk路线图，一行命令搞定自定义主题色、全屏布局、详细步行数据",
+    "description_en": "Zero-cost walking route maps with real OSM tiles + OSRM routing, one-command setup, custom colors, full-width layout, detailed walk stats",
+    "tags": [
+      "map",
+      "walking",
+      "travel",
+      "route",
+      "osrm",
+      "openstreetmap"
+    ],
+    "platforms": [
+      "openclaw"
+    ]
+  }
+}

@@ -1,0 +1,147 @@
+[
+  {
+    "name": "search_company_info",
+    "description": "搜索企业基础信息（财报、规模、行业、融资等）",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "company_name": {
+          "type": "string",
+          "description": "企业名称"
+        },
+        "info_type": {
+          "type": "string",
+          "enum": ["financial", "headcount", "funding", "overview"],
+          "description": "信息类型"
+        }
+      },
+      "required": ["company_name"]
+    }
+  },
+  {
+    "name": "search_tender_info",
+    "description": "搜索企业招投标信息",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "company_name": {
+          "type": "string",
+          "description": "企业名称"
+        },
+        "category": {
+          "type": "string",
+          "enum": ["IT", "software", "cloud", "AI", "all"],
+          "description": "招投标类别"
+        },
+        "time_range": {
+          "type": "string",
+          "description": "时间范围，如'2024-2025'"
+        }
+      },
+      "required": ["company_name"]
+    }
+  },
+  {
+    "name": "search_job_info",
+    "description": "搜索企业招聘信息（推断技术团队规模和技术栈）",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "company_name": {
+          "type": "string",
+          "description": "企业名称"
+        },
+        "job_category": {
+          "type": "string",
+          "enum": ["tech", "product", "data", "ai", "all"],
+          "description": "职位类别"
+        }
+      },
+      "required": ["company_name"]
+    }
+  },
+  {
+    "name": "search_news_pr",
+    "description": "搜索企业新闻稿和 PR 信息",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "company_name": {
+          "type": "string",
+          "description": "企业名称"
+        },
+        "topic": {
+          "type": "string",
+          "enum": ["digital", "AI", "IT", "partnership", "all"],
+          "description": "新闻主题"
+        }
+      },
+      "required": ["company_name"]
+    }
+  },
+  {
+    "name": "calculate_budget",
+    "description": "调用 budget_engine.py 计算预算区间和置信度",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "company_name": {
+          "type": "string",
+          "description": "企业名称"
+        },
+        "revenue": {
+          "type": "number",
+          "description": "年营收（万元）"
+        },
+        "industry": {
+          "type": "string",
+          "description": "行业"
+        },
+        "headcount": {
+          "type": "number",
+          "description": "员工人数"
+        },
+        "tech_headcount": {
+          "type": "number",
+          "description": "技术团队人数"
+        },
+        "funding": {
+          "type": "number",
+          "description": "最新融资额（万元）"
+        },
+        "tender_amount": {
+          "type": "number",
+          "description": "历史招投标金额（万元）"
+        }
+      },
+      "required": ["company_name", "industry"]
+    }
+  },
+  {
+    "name": "generate_sales_advice",
+    "description": "基于预算分析生成销售建议",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "budget_range": {
+          "type": "object",
+          "description": "预算区间"
+        },
+        "industry": {
+          "type": "string",
+          "description": "行业"
+        },
+        "procurement_cycle": {
+          "type": "string",
+          "description": "采购周期信息"
+        },
+        "existing_vendors": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "现有供应商列表"
+        }
+      },
+      "required": ["budget_range", "industry"]
+    }
+  }
+]

@@ -1,0 +1,183 @@
+{
+  "name": "ClawChimera",
+  "id": "clawchimera-ecs",
+  "version": "1.0.0",
+  "description": "融合怪测试 (ECS) Skill — 基于 oneclickvirt/ecs，支持 VPS 全方位性能与网络测试：系统信息、CPU/内存/磁盘基准、三网测速、流媒体解锁(20+平台)、IP质量(18库)、邮件端口、回程路由、三网详细路由等12项测试。",
+  "author": "oneclickvirt",
+  "license": "MIT-0",
+  "homepage": "https://github.com/oneclickvirt/ClawChimera",
+  "upstream": "https://github.com/oneclickvirt/ecs",
+  "entry": "run.sh",
+  "runtime": {
+    "os": ["linux", "darwin", "freebsd"],
+    "arch": ["amd64", "arm64", "arm", "386", "mips", "mipsle", "s390x", "riscv64"],
+    "dependencies": ["bash>=4", "curl_or_wget", "unzip_or_python3"],
+    "notes": "首次运行自动从 GitHub Releases 下载 goecs 预编译二进制（自动选 CDN/国内/直连），缓存于 ~/.cache/clawchimera/"
+  },
+  "env": {
+    "CN": {
+      "description": "强制指定网络环境: true=国内CNB镜像, false=跳过CN检测。不设则自动检测。",
+      "required": false
+    }
+  },
+  "args": [
+    {
+      "flag": "-l",
+      "alias": "-lang",
+      "type": "string",
+      "default": "zh",
+      "description": "输出语言: zh | en"
+    },
+    {
+      "flag": "-basic",
+      "type": "bool",
+      "default": true,
+      "description": "系统基础信息测试"
+    },
+    {
+      "flag": "-cpu",
+      "type": "bool",
+      "default": true,
+      "description": "CPU 基准测试"
+    },
+    {
+      "flag": "-cpum",
+      "alias": "-cpu-method",
+      "type": "string",
+      "default": "sysbench",
+      "description": "CPU 测试工具: sysbench | geekbench | winsat"
+    },
+    {
+      "flag": "-cput",
+      "alias": "-cpu-thread",
+      "type": "string",
+      "default": "multi",
+      "description": "CPU 线程模式: multi | single"
+    },
+    {
+      "flag": "-memory",
+      "type": "bool",
+      "default": true,
+      "description": "内存基准测试"
+    },
+    {
+      "flag": "-memorym",
+      "alias": "-memory-method",
+      "type": "string",
+      "default": "stream",
+      "description": "内存测试工具: stream | sysbench | dd | winsat | auto"
+    },
+    {
+      "flag": "-disk",
+      "type": "bool",
+      "default": true,
+      "description": "磁盘 IO 基准测试"
+    },
+    {
+      "flag": "-diskm",
+      "alias": "-disk-method",
+      "type": "string",
+      "default": "fio",
+      "description": "磁盘测试工具: fio | dd | winsat"
+    },
+    {
+      "flag": "-diskp",
+      "type": "string",
+      "default": "",
+      "description": "磁盘测试路径, 如 /data"
+    },
+    {
+      "flag": "-diskmc",
+      "type": "bool",
+      "default": true,
+      "description": "多路径磁盘检测"
+    },
+    {
+      "flag": "-ut",
+      "type": "bool",
+      "default": true,
+      "description": "流媒体解锁检测"
+    },
+    {
+      "flag": "-security",
+      "type": "bool",
+      "default": true,
+      "description": "IP 安全质量检测（18个数据库）"
+    },
+    {
+      "flag": "-email",
+      "type": "bool",
+      "default": true,
+      "description": "邮件端口检测（SMTP/IMAP/POP3）"
+    },
+    {
+      "flag": "-backtrace",
+      "type": "bool",
+      "default": true,
+      "description": "上行回程 BGP 路由追踪（en 模式下强制关闭）"
+    },
+    {
+      "flag": "-nt3",
+      "type": "bool",
+      "default": true,
+      "description": "三网详细路由（en 模式下强制关闭）"
+    },
+    {
+      "flag": "-nt3loc",
+      "alias": "-nt3-location",
+      "type": "string",
+      "default": "GZ",
+      "description": "NT3 测试位置: GZ | SH | BJ | CD | ALL"
+    },
+    {
+      "flag": "-nt3t",
+      "alias": "-nt3-type",
+      "type": "string",
+      "default": "ipv4",
+      "description": "NT3 IP 协议: ipv4 | ipv6 | both"
+    },
+    {
+      "flag": "-speed",
+      "type": "bool",
+      "default": true,
+      "description": "多节点测速"
+    },
+    {
+      "flag": "-spnum",
+      "type": "int",
+      "default": 2,
+      "description": "每运营商测速节点数"
+    },
+    {
+      "flag": "-ping",
+      "type": "bool",
+      "default": false,
+      "description": "延迟/PING 测试"
+    },
+    {
+      "flag": "-tgdc",
+      "type": "bool",
+      "default": false,
+      "description": "Telegram DC 延迟测试"
+    },
+    {
+      "flag": "-web",
+      "type": "bool",
+      "default": false,
+      "description": "主流网站延迟测试"
+    },
+    {
+      "flag": "-upload",
+      "type": "bool",
+      "default": true,
+      "description": "上传测试结果到公共粘贴板"
+    },
+    {
+      "flag": "-log",
+      "type": "bool",
+      "default": false,
+      "description": "在当前目录记录日志文件"
+    }
+  ],
+  "tags": ["vps", "benchmark", "network", "streaming", "china", "ecs", "融合怪", "backtrace", "ipquality", "speedtest"]
+}

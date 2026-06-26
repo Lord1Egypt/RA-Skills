@@ -1,0 +1,19 @@
+{
+  "slug": "boss-fight-planner-skill",
+  "name": "Boss Fight Planner Skill",
+  "version": "0.1.0",
+  "tags": [
+    "boss-fight-planner",
+    "game",
+    "openclaw",
+    "templates"
+  ],
+  "category": "Game Design",
+  "changelog": [
+    {
+      "version": "0.1.0",
+      "date": "2026-06-05",
+      "notes": "Generated from local idea bank (no AI). Pending Telegram approval."
+    }
+  ]
+}

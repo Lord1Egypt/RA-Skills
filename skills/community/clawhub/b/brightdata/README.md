@@ -1,0 +1,1 @@
+Fixes for https://clawhub.ai/meirkad/bright-data as it was not registering in Openclaw skills after install. Mostly changes to YAML frontmatter of SKILL.md.

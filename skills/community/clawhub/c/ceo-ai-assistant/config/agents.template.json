@@ -1,0 +1,72 @@
+{
+  "meta": {
+    "version": "2.8.0",
+    "template": "ceo-ai-assistant",
+    "lastTouchedAt": "2026-04-25T11:20:00.000Z"
+  },
+  "agents": {
+    "list": [
+      {
+        "id": "main",
+        "model": "minimax/MiniMax-M2.7",
+        "skills": [
+          "self-improving",
+          "jarvis-core",
+          "tiered-recall",
+          "duckduckgo-search"
+        ]
+      },
+      {
+        "id": "news",
+        "model": "qwen/qwen3.5-plus",
+        "skills": [
+          "duckduckgo-web-search",
+          "multi-search-engine",
+          "feishu-doc",
+          "feishu-drive",
+          "feishu-wiki"
+        ]
+      },
+      {
+        "id": "stocks",
+        "model": "qwen/qwen3.5-plus",
+        "skills": [
+          "duckduckgo-search",
+          "feishu-doc",
+          "feishu-wiki",
+          "session-logs"
+        ]
+      },
+      {
+        "id": "work",
+        "model": "qwen/qwen3.5-plus",
+        "skills": [
+          "duckduckgo-search",
+          "search-x",
+          "feishu-doc",
+          "feishu-wiki"
+        ]
+      },
+      {
+        "id": "projectmanager",
+        "model": "qwen/qwen3.5-plus",
+        "skills": [
+          "duckduckgo-search",
+          "feishu-doc",
+          "feishu-wiki",
+          "session-logs"
+        ]
+      },
+      {
+        "id": "secretary",
+        "model": "qwen/qwen3.5-plus",
+        "skills": [
+          "duckduckgo-search",
+          "feishu-doc",
+          "feishu-wiki",
+          "summarize"
+        ]
+      }
+    ]
+  }
+}

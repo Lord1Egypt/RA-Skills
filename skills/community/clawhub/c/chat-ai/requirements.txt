@@ -1,0 +1,5 @@
+langchain==0.1.x
+autogen==0.3.x
+sqlalchemy
+pandas
+pydantic>=2.0

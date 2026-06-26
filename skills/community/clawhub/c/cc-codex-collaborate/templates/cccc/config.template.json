@@ -1,0 +1,62 @@
+{
+  "skill": {
+    "name": "cc-codex-collaborate",
+    "installed_version": "0.1.13",
+    "workspace_schema_version": 1,
+    "last_updated_at": null
+  },
+  "version": "0.1.13",
+  "language": {
+    "user_language": "auto",
+    "auto_detect": true
+  },
+  "workspace": {
+    "root": "docs/cccc",
+    "commit_planning_docs": true,
+    "ignore_logs_and_runtime": true
+  },
+  "mode": "supervised-auto",
+  "planning": {
+    "require_claude_self_review": true,
+    "require_codex_adversarial_review": true,
+    "max_plan_review_rounds": 3,
+    "ask_human_on_ambiguity": true,
+    "brainstorm_questions": true
+  },
+  "milestones": {
+    "max_milestones_per_run": 5,
+    "max_diff_lines_per_milestone": 1200,
+    "max_changed_files_per_milestone": 20,
+    "prefer_small_milestones": true
+  },
+  "review": {
+    "max_review_rounds_per_milestone": 3,
+    "max_fix_attempts_per_milestone": 3,
+    "block_on_p0": true,
+    "block_on_p1": true,
+    "allow_continue_with_p2": true
+  },
+  "automation": {
+    "stop_hook_loop_enabled": false,
+    "max_stop_hook_continuations": 10
+  },
+  "safety": {
+    "pause_on_real_secrets": true,
+    "pause_on_wallet_private_keys": true,
+    "pause_on_production_access": true,
+    "pause_on_real_money": true,
+    "pause_on_destructive_commands": true
+  },
+  "codex": {
+    "enabled": true,
+    "required": true,
+    "fail_closed": true,
+    "cli_command": "codex",
+    "sandbox": "read-only",
+    "require_context_bundle": true,
+    "allow_direct_repo_inspection": true,
+    "require_plan_review_before_implementation": true,
+    "require_milestone_review_before_pass": true,
+    "require_final_review_before_done": true
+  }
+}

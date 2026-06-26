@@ -1,0 +1,43 @@
+# Newsman Configuration
+# Kimi Coding API 配置 (Allegretto 订阅)
+
+[api]
+# API 类型: kimi | openai | local
+provider = "kimi"
+
+[kimi]
+# Kimi API 配置
+# 使用 Moonshot AI 开放平台 (中国区)
+base_url = "https://api.moonshot.cn/v1"
+# 或使用 Kimi Code 平台
+# base_url = "https://api.kimi.com/coding/v1"
+
+# API Key - 从环境变量读取 (推荐)
+# 在环境变量中设置: $env:KIMI_API_KEY="your-api-key"
+api_key = "${KIMI_API_KEY}"
+
+# 模型选择
+# 可选: moonshot-v1-8k, moonshot-v1-32k, moonshot-v1-128k
+# 或 kimi-k2, kimi-for-coding 等
+model = "moonshot-v1-8k"
+
+# 摘要生成参数
+max_tokens = 500
+temperature = 0.3
+
+[summarization]
+# 默认摘要方法: extractive | api
+default_method = "api"
+
+# 摘要长度 (词数)
+max_length = 150
+
+# 是否生成中文摘要
+chinese_output = true
+
+[cache]
+# 缓存目录
+dir = "./.cache/newsman"
+
+# 缓存过期时间 (小时)
+expire_hours = 24

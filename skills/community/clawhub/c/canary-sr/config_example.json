@@ -1,0 +1,45 @@
+{
+  "log_file": "canary.log",
+  "protected_paths": [
+    "/etc/",
+    "/sys/",
+    "/proc/",
+    "/boot/",
+    "/dev/",
+    "~/.ssh/",
+    "~/.aws/",
+    "~/.gnupg/",
+    "~/.config/"
+  ],
+  "forbidden_patterns": [
+    "rm\\s+-rf\\s+/",
+    "rm\\s+-rf\\s+\\*",
+    "rm\\s+-rf\\s+~",
+    "chmod\\s+777",
+    "chmod\\s+-R\\s+777",
+    "curl.*\\|\\s*sh",
+    "wget.*\\|\\s*sh",
+    "curl.*\\|\\s*bash",
+    "eval\\s*\\(",
+    "exec\\s*\\(",
+    "nc\\s+.*-e",
+    "bash\\s+-i\\s+>&"
+  ],
+  "severity_levels": {
+    "critical": 100,
+    "high": 75,
+    "medium": 50,
+    "low": 25,
+    "info": 10
+  },
+  "halt_threshold": 5,
+  "allow_auto_restart": false,
+  "rate_limits": {
+    "file_operations": {"limit": 100, "window": 60},
+    "network_requests": {"limit": 50, "window": 60},
+    "command_executions": {"limit": 20, "window": 60}
+  },
+  "tripwire_dir": ".canary_tripwires",
+  "tripwire_check_interval": 60,
+  "alert_min_severity": "high"
+}

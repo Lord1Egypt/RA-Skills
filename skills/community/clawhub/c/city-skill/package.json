@@ -1,0 +1,9 @@
+{
+  "name": "city-skill",
+  "version": "1.0.0",
+  "description": "City.Skills - One-stop travel assistant for first-time visitors to China",
+  "author": "OpenClaw AI Team",
+  "license": "MIT-0",
+  "main": "SKILL.md",
+  "keywords": ["travel", "city", "china", "tourism", "multilingual"]
+}

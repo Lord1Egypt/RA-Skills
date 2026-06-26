@@ -1,35 +1,102 @@
 ---
-name: "Breaker"
+name: "breaker"
+version: "1.0.0"
 description: "Circuit breaker sizing and coordination tool. Use when json breaker tasks, csv breaker tasks, checking breaker status."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/breaker"
-sourceUrl: "https://clawhub.ai/skills/breaker"
+author: "BytesAgain"
+homepage: "https://bytesagain.com"
+source: "https://github.com/bytesagain/ai-skills"
+tags: [breaker, electrical, cli, tool]
+category: "electrical"
 ---
 
-# Breaker
+# breaker
 
-> Circuit breaker sizing and coordination tool. Use when json breaker tasks, csv breaker tasks, checking breaker status.
+Circuit breaker sizing and coordination tool. Use when json breaker tasks, csv breaker tasks, checking breaker status.
+## Commands
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/breaker`
-- **Source URL:** [https://clawhub.ai/skills/breaker](https://clawhub.ai/skills/breaker)
+### `status`
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/breaker
+scripts/script.sh status
 ```
+
+Show current status
+
+### `add`
+
+```bash
+scripts/script.sh add
+```
+
+Add new entry
+
+### `list`
+
+```bash
+scripts/script.sh list
+```
+
+List all entries
+
+### `search`
+
+```bash
+scripts/script.sh search
+```
+
+Search entries
+
+### `remove`
+
+```bash
+scripts/script.sh remove
+```
+
+Remove entry by number
+
+### `export`
+
+```bash
+scripts/script.sh export
+```
+
+Export data to file
+
+### `stats`
+
+```bash
+scripts/script.sh stats
+```
+
+Show statistics
+
+### `config`
+
+```bash
+scripts/script.sh config
+```
+
+View or set config
+
+### `help`
+
+```bash
+scripts/script.sh help
+```
+
+### `version`
+
+```bash
+scripts/script.sh version
+```
+
+## Configuration
+
+Use `scripts/script.sh config <key> <value>` to set preferences.
+
+| Variable | Description |
+|----------|-------------|
+| `BREAKER_DIR` | Data directory (default: ~/.breaker/) |
+---
+
+*Powered by BytesAgain | bytesagain.com | hello@bytesagain.com*

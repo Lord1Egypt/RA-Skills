@@ -1,0 +1,23 @@
+{
+  "name": "claw-janitor",
+  "version": "1.1.0",
+  "description": "A safe, transparent, and multi-platform system cleaner designed for OpenClaw.",
+  "main": "janitor.js",
+  "scripts": {
+    "start": "node janitor.js",
+    "test": "node test-janitor.js",
+    "test:dry": "node janitor.js --dry-run"
+  },
+  "keywords": [
+    "openclaw",
+    "agent-skill",
+    "system-cleaner",
+    "disk-space",
+    "docker-prune",
+    "janitor",
+    "transparent",
+    "open-source"
+  ],
+  "author": "Prince & Pi",
+  "license": "MIT"
+}

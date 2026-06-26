@@ -1,0 +1,28 @@
+{
+  "name": "cfgpu-api-skill",
+  "version": "1.0.0",
+  "description": "OpenClaw skill for managing CFGPU GPU cloud instances",
+  "main": "SKILL.md",
+  "scripts": {
+    "test": "bash scripts/check-config.sh",
+    "lint": "shellcheck scripts/*.sh"
+  },
+  "keywords": [
+    "openclaw",
+    "skill",
+    "cfgpu",
+    "gpu",
+    "cloud",
+    "api"
+  ],
+  "author": "CFGPU API Skill Contributors",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/cfgpu-api-skill.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yourusername/cfgpu-api-skill/issues"
+  },
+  "homepage": "https://github.com/yourusername/cfgpu-api-skill#readme"
+}

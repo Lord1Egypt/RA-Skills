@@ -1,0 +1,14 @@
+{
+  "version": "v1",
+  "categories": [
+    "route_mismatch",
+    "defs_reference_missing",
+    "canvas_clipping",
+    "legend_intrusion",
+    "label_collision",
+    "premature_text_wrapping",
+    "actor_system_semantic_confusion",
+    "dark_theme_incomplete_coverage",
+    "sparse_input_hallucination_risk"
+  ]
+}

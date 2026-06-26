@@ -1,0 +1,113 @@
+name: city-skill
+version: 1.0.0
+type: openclaw-skill
+description: "城市.Skills - 一站式旅行助手，专为第一次来中国的外国游客服务，支持6种语言"
+author: "OpenClaw AI Team"
+homepage: https://xiaping.coze.site
+license: MIT-0
+emoji: "🏙️"
+homepage: https://openclaw.ai
+
+# Platform Compatibility
+platforms:
+  - openclaw
+  - clawhub
+  - qbotclaw
+
+# Category & Tags
+category: travel
+tags:
+  - travel
+  - city
+  - immigration
+  - tourism
+  - multilingual
+  - china
+  - foreigner
+  - visa
+  - guide
+
+# Triggers
+triggers:
+  - "城市攻略"
+  - "city guide"
+  - "来中国"
+  - "签证政策"
+  - "旅游景点"
+  - "美食推荐"
+  - "出入境"
+  - "旅行助手"
+  - "外国人来华"
+  - "visa free"
+  - "144小时免签"
+
+# Language Support
+language_support:
+  - zh-CN
+  - en
+  - es
+  - fr
+  - ru
+  - ar
+
+# Output Modules
+output_modules:
+  - safety_reassurance
+  - immigration_policy
+  - entry_exit_process
+  - local_culture
+  - etiquette_tips
+  - must_eat
+  - must_visit
+  - transport_hotel
+  - 3_day_itinerary
+  - compliance_reminder
+  - emergency_contacts
+
+# Emergency Contacts
+emergency:
+  police: "110"
+  ambulance: "120"
+  fire: "119"
+  consular_protection: "+86-10-12308"
+
+# Pricing
+pricing:
+  free:
+    price: 0
+    currency: CNY
+    period: forever
+    features:
+      - "所有城市攻略"
+      - "多语言输出"
+      - "出入境政策查询"
+      - "紧急联系方式"
+
+# Requirements
+requirements:
+  python: ">=3.8"
+  memory: "512MB"
+  bins:
+    - python3
+
+# Files
+files:
+  - SKILL.md
+  - README.md
+  - clawhub.yaml
+
+# Keywords for search
+keywords:
+  - 城市
+  - 攻略
+  - 旅游
+  - 签证
+  - 出入境
+  - 外国人
+  - 中国旅行
+  - 多语言
+  - city
+  - travel
+  - guide
+  - china
+  - visa

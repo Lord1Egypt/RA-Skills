@@ -1,0 +1,4 @@
+interface:
+  display_name: "Church Announcement"
+  short_description: "Write one-liner, SMS, and full announcement for church events"
+  default_prompt: "Use $church-announcement to write one-liner, SMS, and full announcement for [occasion], [time], [place]."

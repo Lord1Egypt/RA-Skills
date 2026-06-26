@@ -1,0 +1,396 @@
+{
+  "name": "browser-web-search",
+  "version": "0.4.10",
+  "versionNotes": "0.4.10 — Residual-risk hardening on the v0.4.4 sealed-tier model. Adds Gate 4 (platform consent ledger at ~/.bws/consents.json bound to (site, pkgVersion, entrySha512)), a structured stderr transparency block on every sensitive call, and a --dry-run launcher flag that runs all four gates + integrity verification without importing the package. Directly responds to the ClawScan May 2026 verdict's residual concern that 'core functionality inherently relies on a third-party dependency to handle sensitive session data'. Underlying npm package browser-web-search remains pinned at 0.4.3 (no change to SHA-512 integrity gate, ENTRY_EXPECTED_SIZE, or symlink rejection).",
+  "requiredEnvVars": [],
+  "requires": {
+    "runtime": {
+      "node": ">=18.0.0"
+    },
+    "binaries": ["openclaw"],
+    "packages": {
+      "npm": "browser-web-search@0.4.3"
+    }
+  },
+  "skill": {
+    "name": "browser-web-search",
+    "version": "0.4.10",
+    "enabled": true,
+    "autoInvoke": false
+  },
+  "commands": {
+    "list": {
+      "script": "./scripts/run.js",
+      "args": ["list"],
+      "description": "列出所有可用 adapter"
+    },
+    "search": {
+      "script": "./scripts/run.js",
+      "args": ["search"],
+      "description": "搜索 adapter"
+    },
+    "info": {
+      "script": "./scripts/run.js",
+      "args": ["info"],
+      "description": "查看 adapter 详情"
+    },
+    "run": {
+      "script": "./scripts/run.js",
+      "args": ["run"],
+      "description": "运行 adapter"
+    },
+    "help": {
+      "script": "./scripts/postinstall.js",
+      "args": [],
+      "description": "显示使用帮助"
+    }
+  },
+  "environment": {
+    "required": [
+      "NODE_VERSION>=18.0.0"
+    ],
+    "optional": []
+  },
+  "install": {
+    "type": "npm-global",
+    "package": "browser-web-search",
+    "version": "0.4.3",
+    "command": "npm install -g browser-web-search@0.4.3 --ignore-scripts",
+    "binary": "bws",
+    "global": true,
+    "autoInstall": false,
+    "autoUpdate": false,
+    "riskLevel": "medium",
+    "riskReason": "通过 npm 全局安装第三方包，该包会在浏览器页面上下文中执行 JavaScript。安装前请审计源码。",
+    "requiresApproval": true,
+    "source": {
+      "type": "npm",
+      "registry": "https://registry.npmjs.org",
+      "package": "browser-web-search",
+      "repository": "https://github.com/sipingme/browser-web-search",
+      "license": "MIT",
+      "audit": "https://github.com/sipingme/browser-web-search/blob/v0.4.3/src/index.ts"
+    },
+    "verification": {
+      "command": "node -e \"console.log(require(require('path').join(require('path').dirname(process.execPath),'..','lib','node_modules','browser-web-search','package.json')).version)\"",
+      "expectedOutput": "0.4.3",
+      "integrity": {
+        "tarball": {
+          "url": "https://registry.npmjs.org/browser-web-search/-/browser-web-search-0.4.3.tgz",
+          "sha512": "sha512-BppWwwWoAQ5VYFdLj0jiQo8n8PCNTYGeJoscRcwYBVB90SNcWVNR1jMbEvBK1FmdNzyYHB+XqrexveNUgDiB0g==",
+          "sha256Hex": "e14f8274892eb74157f8ad317f718d981de17dedad72e5341b2192c8e6f63a8b",
+          "verifyCommand": "npm view browser-web-search@0.4.3 dist.integrity"
+        },
+        "entry": {
+          "relPath": "dist/index.js",
+          "size": 22871,
+          "sha512": "sha512-qoGLsUMOPgzIpdxtGMv08Gjy84bkh0AF90mKG9qvagq9O2ngcKcLg+GAy3Z8bljkvdfKcrQSp55xPO9mVCuv3Q==",
+          "enforcedBy": "scripts/run.js:verifyBwsIntegrity (no env override)",
+          "verifyCommand": "P=$(npm root -g)/browser-web-search/dist/index.js && shasum -a 512 \"$P\" | awk '{print $1}' | xxd -r -p | base64 | sed 's|^|sha512-|'"
+        },
+        "policy": {
+          "envOverride": false,
+          "failureMode": "deny + audit-log",
+          "rationale": "Decouples per-install trust from manual auditing; mismatch always denies regardless of opt-in flags."
+        }
+      }
+    }
+  },
+  "dependencies": {
+    "npm": [
+      "browser-web-search@0.4.3"
+    ],
+    "binaries": [
+      "openclaw"
+    ],
+    "note": "Package is installed globally via npm and loaded in-process by the launcher (no subprocess). OpenClaw CLI is required by browser-web-search internally."
+  },
+  "permissions": {
+    "filesystem": {
+      "read": [],
+      "write": ["~/.bws/"],
+      "writeDetails": {
+        "~/.bws/audit.log": "append-only JSON Lines audit log; rotated at 1 MiB",
+        "~/.bws/consents.json": "v0.4.10 platform consent ledger keyed by site; bound to (pkgVersion, entrySha512)"
+      }
+    },
+    "network": {
+      "domains": [
+        "registry.npmjs.org",
+        "*.npmjs.com",
+        "*.zhihu.com",
+        "*.xiaohongshu.com",
+        "*.bilibili.com",
+        "*.thepaper.cn",
+        "*.qq.com",
+        "*.163.com",
+        "*.sina.com.cn",
+        "*.weibo.com",
+        "*.sogou.com",
+        "*.weixin.qq.com",
+        "*.toutiao.com",
+        "*.36kr.com",
+        "*.baidu.com",
+        "*.bing.com",
+        "*.google.com",
+        "*.csdn.net",
+        "*.cnblogs.com",
+        "*.zhipin.com",
+        "*.juejin.cn",
+        "*.v2ex.com",
+        "*.infoq.cn",
+        "*.huxiu.com",
+        "api-search.huxiu.com",
+        "*.wallstreetcn.com",
+        "api-one-wscn.awtmt.com",
+        "*.xueqiu.com",
+        "*.x.com",
+        "*.twitter.com",
+        "*.reddit.com",
+        "*.ycombinator.com",
+        "hn.algolia.com",
+        "*.github.com",
+        "api.github.com",
+        "*.theverge.com",
+        "*.arstechnica.com",
+        "*.engadget.com",
+        "*.douban.com",
+        "*.eastmoney.com",
+        "*.jike.ruguoapp.com",
+        "*.hupu.com",
+        "*.linkedin.com",
+        "*.youtube.com",
+        "*.googleapis.com",
+        "*.arxiv.org",
+        "*.bbc.com",
+        "*.bbc.co.uk",
+        "*.reuters.com",
+        "*.dev.to",
+        "*.stackoverflow.com",
+        "*.pypi.org",
+        "*.imdb.com",
+        "*.genius.com",
+        "*.gsmarena.com",
+        "*.producthunt.com",
+        "*.wikipedia.org",
+        "*.openlibrary.org",
+        "*.yahoo.com",
+        "*.youdao.com",
+        "*.smzdm.com",
+        "*.qidian.com",
+        "*.duckduckgo.com",
+        "*.ctrip.com",
+        "*.thehackernews.com",
+        "*.duckduckgo.com"
+      ],
+      "note": "访问支持的平台域名，通过 OpenClaw 浏览器执行"
+    },
+    "browser": {
+      "type": "openclaw",
+      "access": [
+        "当前页面 DOM",
+        "当前页面 Session（继承登录态）",
+        "站点 API 响应"
+      ],
+      "scope": "按 adapter 域名隔离"
+    },
+    "subprocess": {
+      "declared": false,
+      "note": "Launcher does not spawn subprocesses. The pinned npm package is loaded in-process via dynamic ESM import; see permissions.inProcessLoad."
+    },
+    "inProcessLoad": {
+      "declared": true,
+      "package": "browser-web-search",
+      "loader": "dynamic ESM import (await import(file://...))",
+      "sink": "scripts/run.js:safeRunBws (single call site)",
+      "resolution": "platform-standard global node_modules roots only by default; launcher-local and CWD node_modules require BWS_ALLOW_LOCAL_INSTALL=1 (off by default)",
+      "symlinkPolicy": "rejected at lstat time for both candidate iteration and require.resolve fallback",
+      "argvPolicy": "allow-listed subcommands & flags; length-bounded; control-char filtered; '--' delimited; injected via process.argv mutation",
+      "preImportIntegrityGate": "verifyBwsIntegrity(): package.json name + version + entry size + entry SHA-512 (timing-safe compare). No env override.",
+      "justification": "In-process loader removes the exec sink from the skill repository while preserving argv validation, sensitivity-gating policy, and a hard supply-chain integrity gate."
+    }
+  },
+  "capabilities": {
+    "sensitive": [
+      {
+        "type": "browser-session-access",
+        "riskLevel": "high",
+        "description": "通过 OpenClaw 在已认证的浏览器标签页中执行 JavaScript",
+        "scope": "按 adapter 域名隔离（设计意图，非运行时强制）",
+        "risks": [
+          "第三方 npm 包在页面上下文中执行，可访问站点认证数据",
+          "恶意或被篡改的包可能窃取 cookies、私信、收藏、订单等账户数据",
+          "包代码不包含在此 Skill 中，需独立审计每个版本",
+          "Launcher 无法阻止包内 JS 访问当前 OpenClaw 中其他已打开的标签"
+        ],
+        "mitigations": [
+          "adapter 脚本开源可审计 (https://github.com/sipingme/browser-web-search)",
+          "Launcher 对敏感 adapter 默认拒绝，需 BWS_ALLOW_SENSITIVE=1 或 --i-understand-sensitive 显式 opt-in",
+          "BWS_PUBLIC_ONLY=1 硬隔离模式可拒绝所有敏感 adapter",
+          "所有调用记录到 ~/.bws/audit.log（仅元数据）",
+          "建议为 OpenClaw 使用独立浏览器 profile，不复用日常 profile",
+          "建议 npm install 时加 --ignore-scripts 降低供应链注入面"
+        ]
+      }
+    ],
+    "policy": {
+      "defaultForUnknownAdapter": "sensitive-deny",
+      "sensitiveTierDefault": "sealed",
+      "sensitiveTierEnableEnv": "BWS_ENABLE_SENSITIVE_TIER",
+      "sensitiveOptInEnv": "BWS_ALLOW_SENSITIVE",
+      "sensitiveOptInFlag": "--i-understand-sensitive",
+      "platformConsentLedger": "~/.bws/consents.json",
+      "platformConsentBoundTo": ["site", "pkgVersion", "entrySha512"],
+      "platformConsentFlag": "--accept-platform-consent",
+      "platformConsentSkipEnv": "BWS_SKIP_PLATFORM_CONSENT",
+      "publicOnlyModeEnv": "BWS_PUBLIC_ONLY",
+      "transparencyEnvForPublic": "BWS_TRANSPARENCY",
+      "dryRunFlag": "--dry-run",
+      "localInstallOptInEnv": "BWS_ALLOW_LOCAL_INSTALL",
+      "gateOrder": [
+        "Gate 1: BWS_PUBLIC_ONLY=1 hard-isolates (overrides everything)",
+        "Gate 2: sensitive tier sealed unless BWS_ENABLE_SENSITIVE_TIER=1",
+        "Gate 3: per-call/session opt-in via BWS_ALLOW_SENSITIVE=1 or --i-understand-sensitive",
+        "Gate 4 (v0.4.10): platform consent ledger at ~/.bws/consents.json bound to (site, pkgVersion, entrySha512); first sensitive call requires --accept-platform-consent; any drift in pkgVersion or entrySha512 invalidates prior consent"
+      ],
+      "auditLog": "~/.bws/audit.log",
+      "auditLogContent": "metadata-only (no payloads, no responses, args hashed via SHA-256); fields: ts, pid, adapter, site, primaryDomain (when known), classification, decision, reason, argHash, pkgVersion (sensitive allow records), dryRun",
+      "transparencyBlock": "Structured stderr line '[bws] transparency:{...}' emitted before every sensitive call and (when BWS_TRANSPARENCY=1) before every call. Names third-party pkg + audited SHA-512 + gate path + audit log path + consent ledger path. Cannot be suppressed without editing scripts/run.js.",
+      "alwaysSensitiveSites": [
+        "weixin", "xiaohongshu", "weibo", "xueqiu", "jike",
+        "douban", "qidian", "ctrip", "x", "linkedin"
+      ],
+      "sensitiveCommandSuffixes": [
+        "me", "feed", "history", "comments", "user_posts", "article"
+      ],
+      "publicSites": [
+        "thepaper", "qqnews", "netease", "sina", "36kr", "huxiu",
+        "wallstreetcn", "eastmoney", "juejin", "csdn", "cnblogs",
+        "v2ex", "baidu", "hupu", "youdao", "smzdm", "infoq",
+        "google", "bing", "duckduckgo", "github", "hn", "reddit",
+        "bbc", "reuters", "verge", "ars", "engadget", "stackoverflow",
+        "devto", "npm", "pypi", "arxiv", "imdb", "genius", "wikipedia",
+        "openlibrary", "yahoo-finance", "gsmarena", "producthunt",
+        "toutiao", "zhihu", "bilibili", "boss", "youtube"
+      ]
+    },
+    "residualMitigations": {
+      "version": "0.4.10",
+      "appliesToSkillVersion": "0.4.10+",
+      "respondsTo": {
+        "source": "ClawScan May 2026 verdict for browser-web-search-skill",
+        "verdict": "suspicious",
+        "quote": "the core functionality inherently relies on a third-party dependency to handle sensitive session data"
+      },
+      "mitigations": [
+        {
+          "name": "Platform consent ledger (Gate 4)",
+          "where": "scripts/run.js:enforceConsentAndEmitTransparency",
+          "store": "~/.bws/consents.json",
+          "boundTo": ["site", "pkgVersion", "entrySha512"],
+          "firstCallFlag": "--accept-platform-consent",
+          "bypassEnv": "BWS_SKIP_PLATFORM_CONSENT",
+          "rationale": "Even with the v0.4.4 sealed sensitive tier, a fresh package upgrade that re-passes the SHA-512 gate (after re-audit + lockstep launcher bump) would otherwise auto-allow previously consented sites. Binding consent to entrySha512 forces a deliberate re-consent on any drift."
+        },
+        {
+          "name": "Transparency block",
+          "where": "scripts/run.js:emitTransparencyBlock",
+          "format": "stderr line '[bws] transparency:' + JSON",
+          "fields": ["adapter", "site", "primaryDomain", "classification", "pkg", "pkgEntrySha512", "gate", "dryRun", "auditLog", "consentLedger"],
+          "alwaysEmittedFor": "classification=='sensitive'",
+          "optionalForPublic": "BWS_TRANSPARENCY=1",
+          "rationale": "A wrapping AI agent cannot silently invoke a sensitive call; downstream consumers see the third-party identity and audited bytes."
+        },
+        {
+          "name": "--dry-run launcher flag",
+          "where": "scripts/run.js:safeRunBws Step 5",
+          "behavior": "Runs Gates 1-4 + integrity + symlink rejection + audit log write, then exits without importing the package. Exit 0 = would allow, non-zero = denied.",
+          "rationale": "CI / agent dispatch can confirm permission and bytes-binding without ever invoking a sensitive browser-session call."
+        }
+      ]
+    },
+    "supplyChain": {
+      "package": "browser-web-search@0.4.3",
+      "registry": "https://registry.npmjs.org",
+      "tarballSha512": "sha512-BppWwwWoAQ5VYFdLj0jiQo8n8PCNTYGeJoscRcwYBVB90SNcWVNR1jMbEvBK1FmdNzyYHB+XqrexveNUgDiB0g==",
+      "tarballSha256Hex": "e14f8274892eb74157f8ad317f718d981de17dedad72e5341b2192c8e6f63a8b",
+      "entrySha512": "sha512-qoGLsUMOPgzIpdxtGMv08Gjy84bkh0AF90mKG9qvagq9O2ngcKcLg+GAy3Z8bljkvdfKcrQSp55xPO9mVCuv3Q==",
+      "entrySize": 22871,
+      "verifyCommand": "npm view browser-web-search@0.4.3 dist.integrity dist.shasum",
+      "auditUrl": "https://github.com/sipingme/browser-web-search/blob/v0.4.3/src/index.ts",
+      "recommendedInstallCommand": "npm install -g browser-web-search@0.4.3 --ignore-scripts",
+      "runtimeIntegrityGate": {
+        "enforcedBy": "scripts/run.js:verifyBwsIntegrity",
+        "checks": [
+          "package.json name == 'browser-web-search'",
+          "package.json version == '0.4.3'",
+          "stat(dist/index.js).size == 22871",
+          "sha512(dist/index.js) == ENTRY_SHA512_BASE64 (timing-safe compare)"
+        ],
+        "envOverride": false,
+        "rejectsSymlinks": true
+      },
+      "policy": {
+        "allowFloatingVersions": false,
+        "requireAuditPerVersion": true,
+        "preferredMirror": "internal-npm-registry-if-available"
+      }
+    },
+    "privacyNotice": {
+      "summary": "此 Skill 在你显式同意后会复用浏览器登录态，可读取你已登录站点的任何可见数据",
+      "details": [
+        "默认 sensitive tier 是封印的（v0.4.4+）；公开 adapter（hn/github/arxiv 等）无需任何 env",
+        "敏感 adapter 需要先 BWS_ENABLE_SENSITIVE_TIER=1 然后再 BWS_ALLOW_SENSITIVE=1 / --i-understand-sensitive",
+        "敏感 adapter 调用会在 stderr 打印警告，并写入 ~/.bws/audit.log（含 site / primaryDomain 字段）",
+        "访问范围取决于你在目标站点的登录权限",
+        "建议使用独立 OpenClaw 浏览器 profile，不要复用日常 profile"
+      ]
+    },
+    "recommendedRuntimeProfile": {
+      "version": "1.1",
+      "appliesToSkillVersion": "0.4.10+",
+      "rationale": "Mitigates ClawScan May 2026 findings: 'Tool Misuse and Exploitation' (cross-tab containment is not enforced by the launcher), 'Identity and Privilege Abuse' (skill can read authenticated browser sessions), and the residual 'inherently relies on a third-party dependency' verdict. With this profile applied, sensitive adapters are sealed at the tier gate AND hard-isolated, AND (when re-enabled) bound to (site, pkgVersion, entrySha512) by Gate 4, AND every sensitive call emits a transparency block to stderr.",
+      "default": {
+        "BWS_PUBLIC_ONLY": "1",
+        "BWS_ENABLE_SENSITIVE_TIER": "0",
+        "BWS_ALLOW_SENSITIVE": "0",
+        "BWS_SKIP_PLATFORM_CONSENT": "0",
+        "BWS_TRANSPARENCY": "0",
+        "BWS_ALLOW_LOCAL_INSTALL": "0"
+      },
+      "minimumSafeForSensitive": {
+        "BWS_PUBLIC_ONLY": "0",
+        "BWS_ENABLE_SENSITIVE_TIER": "1",
+        "BWS_ALLOW_SENSITIVE": "1",
+        "BWS_SKIP_PLATFORM_CONSENT": "0",
+        "firstCallFlag": "--accept-platform-consent",
+        "browserProfile": "dedicated",
+        "openTabsPolicy": "single-target-domain-only",
+        "preflightChecklist": [
+          "Confirm the OpenClaw browser profile is dedicated to bws (not your daily profile)",
+          "Close all tabs except the target site for the adapter you are about to call",
+          "Do not be logged in to unrelated high-value sites (banking, email, SSO) in this profile",
+          "Re-audit browser-web-search source for the pinned version before enabling the tier",
+          "First sensitive call to a site: add --accept-platform-consent (records to ~/.bws/consents.json)",
+          "Prefer running --dry-run first to confirm gate path before the real call"
+        ]
+      },
+      "operatorGuidance": [
+        "Treat BWS_ENABLE_SENSITIVE_TIER=1 like sudo: enable for the smallest possible scope (single shell, single agent task), not in your shell rc",
+        "Prefer per-call --i-understand-sensitive over session-wide BWS_ALLOW_SENSITIVE=1 when running ad hoc",
+        "For unattended agents, periodically diff ~/.bws/audit.log for unexpected (site, primaryDomain) tuples",
+        "Periodically review ~/.bws/consents.json; remove records for sites you no longer need authenticated access to",
+        "If you genuinely never need authenticated access, leave BWS_PUBLIC_ONLY=1 always set and treat it as the production posture",
+        "Use --dry-run in CI to validate config without invoking the package; the exit code reflects gate decisions",
+        "When upgrading browser-web-search: re-audit the new source, update REQUIRED_VERSION + ENTRY_SHA512_BASE64 + ENTRY_EXPECTED_SIZE in scripts/run.js, then re-consent (the ledger auto-invalidates on entrySha512 drift)"
+      ],
+      "machineReadableContract": {
+        "ifTierEnvUnset": "all sensitive adapters denied at scripts/run.js:enforcePreIntegrityGates Gate 2",
+        "ifTierEnvSetAndPublicOnlyAlsoSet": "PUBLIC_ONLY wins; sensitive adapters still denied at Gate 1",
+        "ifAllPreGatesPassButNoConsent": "denied at scripts/run.js:enforceConsentAndEmitTransparency with reason no-platform-consent:no-record (or :pkg-version-changed / :pkg-integrity-changed)",
+        "ifDryRunFlag": "all gates run, audit record written, transparency block emitted, package NOT imported; exit 0=would-allow",
+        "auditFieldsForDecision": ["adapter", "site", "primaryDomain", "classification", "decision", "reason", "argHash", "pkgVersion", "dryRun"]
+      }
+    }
+  }
+}

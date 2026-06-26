@@ -1,0 +1,28 @@
+{
+  "name": "claw-apply",
+  "version": "0.1.5",
+  "description": "Automated job search and application for LinkedIn and Wellfound. Searches for matching roles, applies automatically using stealth browsers, and learns from every unknown question.",
+  "author": "MattJackson",
+  "license": "AGPL-3.0-or-later",
+  "permissions": ["network", "browser", "filesystem", "messaging"],
+  "entry": "SKILL.md",
+  "tags": ["job-search", "automation", "linkedin", "wellfound", "playwright", "apply"],
+  "models": ["claude-*"],
+  "minOpenClawVersion": "0.8.0",
+  "env": {
+    "KERNEL_API_KEY": {
+      "required": true,
+      "description": "Kernel API key for stealth browser sessions (kernel.sh)"
+    },
+    "ANTHROPIC_API_KEY": {
+      "required": false,
+      "description": "Anthropic API key for AI filtering, keyword generation, and suggested answers"
+    }
+  },
+  "credentials": {
+    "telegram": {
+      "required": false,
+      "description": "Telegram bot token + user ID for notifications and interactive Q&A (configured in settings.json)"
+    }
+  }
+}

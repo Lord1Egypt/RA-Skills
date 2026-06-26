@@ -1,0 +1,14 @@
+[
+  {"id":"tc-001","input":"帮我发一条推文","expected_trigger":true,"reason":"明确发推需求"},
+  {"id":"tc-002","input":"post a tweet about AI agent skills","expected_trigger":true,"reason":"英文发推需求"},
+  {"id":"tc-003","input":"监控有没有人提到bytesagain","expected_trigger":true,"reason":"品牌监控场景"},
+  {"id":"tc-004","input":"点赞一些AI相关的推文","expected_trigger":true,"reason":"自动点赞场景"},
+  {"id":"tc-005","input":"scan for mentions of our brand on X","expected_trigger":true,"reason":"提及监控"},
+  {"id":"tc-006","input":"今天的推文草稿生成一下","expected_trigger":true,"reason":"内容生成场景"},
+  {"id":"tc-007","input":"帮我写一篇博客文章","expected_trigger":false,"reason":"博客写作不是X manager职责"},
+  {"id":"tc-008","input":"分析一下我们X账号的粉丝增长趋势","expected_trigger":false,"reason":"深度数据分析超出当前scope"},
+  {"id":"tc-009","input":"给这个用户发私信","expected_trigger":false,"reason":"DM功能不在当前API权限内"},
+  {"id":"tc-010","input":"删掉那条推文","expected_trigger":false,"reason":"删推需要明确人工授权，不在自动化范围"},
+  {"id":"tc-011","input":"帮我搜索竞争对手的推文","expected_trigger":false,"reason":"竞品深度分析用其他工具"},
+  {"id":"tc-012","input":"发布一个新的skill到ClawHub","expected_trigger":false,"reason":"skill发布不是X manager的职责"}
+]

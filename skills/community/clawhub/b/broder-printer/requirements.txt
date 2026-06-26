@@ -1,0 +1,3 @@
+# No external dependencies required — uses Python stdlib (socket, argparse, subprocess)
+# Python 3.7+ required
+# CUPS + driverless recommended for full image/PDF support

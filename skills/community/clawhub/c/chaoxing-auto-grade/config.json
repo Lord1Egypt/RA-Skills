@@ -1,0 +1,10 @@
+{
+  "username": "你的学习通账号",
+  "password": "你的学习通密码",
+  "courseName": "",
+  "apiKey": "你的通义千问 API Key",
+  "model": "qwen-plus",
+  "minScore": 60,
+  "maxScore": 99,
+  "chromePath": ""
+}

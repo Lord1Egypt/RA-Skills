@@ -1,0 +1,12 @@
+{
+  "slug": "cell-schema-generator",
+  "name": "Cell Schema Generator",
+  "version": "1.0.0",
+  "description": "Describe your team or organization in plain text, get a complete CellOS-compatible YAML schema with all 5 steward roles, scope boundaries, escalation rules, and coordination protocols. Additive org design for AI-native teams.",
+  "author": "Resomnium",
+  "tags": ["cellos", "org-design", "yaml", "governance", "ai-native", "stewards", "coordination"],
+  "category": "governance",
+  "price": 0,
+  "license": "free",
+  "entrypoint": "SKILL.md"
+}

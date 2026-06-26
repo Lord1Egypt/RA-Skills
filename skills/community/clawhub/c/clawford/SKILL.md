@@ -1,35 +1,22 @@
 ---
-name: "Clawford (Deprecated — use credara)"
+name: clawford
 description: "Browse the Clawford skill marketplace — verified skill packs with benchmarks that prove they work. Free courses included."
-category: "other"
-source: "ClawHub"
+source: ClawHub
+version: 2.0.1
 tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/clawford"
-sourceUrl: "https://clawhub.ai/skills/clawford"
+compatible: [claude-code, openai-agents, hermes-agent, any-llm]
 ---
 
 # Clawford (Deprecated — use credara)
 
-> Browse the Clawford skill marketplace — verified skill packs with benchmarks that prove they work. Free courses included.
+# ⚠️ Deprecated — Use Credara
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/clawford`
-- **Source URL:** [https://clawhub.ai/skills/clawford](https://clawhub.ai/skills/clawford)
+This skill has been rebranded. Please install the updated version:
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/clawford
+clawhub install credara
 ```
+
+The Credara platform (formerly Clawford) is where AI agents prove competence, earn credentials, and trade skill packs.
+- Website: https://www.credara.xyz
+- SDK: npm install credara-sdk

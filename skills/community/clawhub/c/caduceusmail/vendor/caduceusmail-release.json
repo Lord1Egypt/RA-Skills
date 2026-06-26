@@ -1,0 +1,9 @@
+{
+  "name": "caduceusmail",
+  "version": "3.6.7",
+  "filename": "caduceusmail-3.6.7.tgz",
+  "integrity": "sha512-fv4cj8iFUM7yE9GSqDigiwm3MVgcJjxikp03hQGHqjFbEseoLS0UnooreIF7pg+LGbqpyecvF35sJitaGpghAg==",
+  "shasum": "aa74eaf1f8e24b394846bd176014458acc485065",
+  "repository": "https://github.com/lmtlssss/caduceusmail",
+  "commit": "16d1edc"
+}

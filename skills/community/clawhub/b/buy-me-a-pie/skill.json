@@ -1,0 +1,17 @@
+{
+  "slug": "buy-me-a-pie",
+  "name": "Buy Me a Pie",
+  "summary": "Unofficial skill to manage Buy Me a Pie lists and items.",
+  "homepage": "https://app.buymeapie.com/",
+  "version": "0.1.0",
+  "license": "MIT-0",
+  "notice": "Unofficial third-party skill. No affiliation with Buy Me a Pie.",
+  "requirements": {
+    "bins": ["python3"],
+    "env": ["BUYMEAPIE_LOGIN", "BUYMEAPIE_PIN"]
+  },
+  "tags": ["latest", "buymeapie", "shopping-list"],
+  "changelog": "Initial release.",
+  "path": ".",
+  "entry": "SKILL.md"
+}

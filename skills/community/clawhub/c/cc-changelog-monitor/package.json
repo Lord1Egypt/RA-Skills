@@ -1,0 +1,30 @@
+{
+  "name": "cc-changelog-monitor",
+  "version": "1.0.0",
+  "description": "Monitor Claude Code releases and get Telegram alerts. Zero AI credits.",
+  "author": "antoinersx",
+  "license": "MIT",
+  "keywords": [
+    "openclaw",
+    "claude-code",
+    "monitoring",
+    "telegram",
+    "changelog",
+    "npm-monitor"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/antoinersx/cc-changelog-monitor"
+  },
+  "homepage": "https://github.com/antoinersx/cc-changelog-monitor#readme",
+  "bugs": {
+    "url": "https://github.com/antoinersx/cc-changelog-monitor/issues"
+  },
+  "engines": {
+    "node": ">=16"
+  },
+  "scripts": {
+    "setup": "bash scripts/setup.sh",
+    "monitor": "bash scripts/monitor.sh"
+  }
+}

@@ -1,0 +1,26 @@
+// example: re-enable native skill dispatch on telegram for an agent
+//
+// Symptom this fixes: workspace skills are not visible in the agent's
+// telegram chat — slash-commands typed into chat are not routed.
+//
+// Replace `myagent` with your $OPENCLAW_AGENT_ID before applying.
+//
+// Workflow:
+//   1. claw-config docs search:nativeSkills
+//   2. claw-config schema channels/telegram/accounts/myagent/commands
+//   3. OPENCLAW_AGENT_ID=myagent claw-config plan  examples/enable-native-skills.json5
+//   4. OPENCLAW_AGENT_ID=myagent claw-config apply examples/enable-native-skills.json5
+
+{
+  channels: {
+    telegram: {
+      accounts: {
+        myagent: {
+          commands: {
+            nativeSkills: true,
+          },
+        },
+      },
+    },
+  },
+}

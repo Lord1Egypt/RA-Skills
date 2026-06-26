@@ -1,35 +1,33 @@
 ---
-name: "Cat Tool"
-description: "Concatenate and display file contents to standard output."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/cat-tool"
-sourceUrl: "https://clawhub.ai/skills/cat-tool"
+name: cat-tool
+description: Concatenate and display file contents to standard output.
 ---
 
-# Cat Tool
+# Cat Tool - File Display
 
-> Concatenate and display file contents to standard output.
+Read and concatenate files, displaying contents to stdout.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/cat-tool`
-- **Source URL:** [https://clawhub.ai/skills/cat-tool](https://clawhub.ai/skills/cat-tool)
+## Quick Start
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/cat-tool
+cat-tool myfile.txt
 ```
+
+## Features
+
+- Display file contents
+- Concatenate multiple files
+- Line numbers (-n)
+- Squeeze blank lines (-s)
+
+## Examples
+
+```bash
+cat-tool README.md
+cat-tool file1.txt file2.txt > combined.txt
+cat-tool -n script.py
+```
+
+## See Also
+
+- Related documentation: `man cat` (if available)

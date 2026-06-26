@@ -1,0 +1,15 @@
+{
+  "name": "chrome-cdp-controller",
+  "version": "1.0.0",
+  "description": "Control Chrome browser via CDP using Puppeteer",
+  "main": "scripts/cdp_controller.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": ["chrome", "cdp", "puppeteer", "automation"],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "puppeteer-core": "^23.0.0"
+  }
+}

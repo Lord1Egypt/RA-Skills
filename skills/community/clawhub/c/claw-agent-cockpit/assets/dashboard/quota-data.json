@@ -1,0 +1,23 @@
+{
+  "config": {
+    "monthlyQuota": 18000,
+    "billingCycleDay": 11,
+    "billingCycleStart": "",
+    "billingCycleEnd": "",
+    "avgCallsPerInteraction": 4,
+    "note": "Edit billingCycleStart/End to match your Coding Plan cycle"
+  },
+  "currentMonth": "",
+  "trackingStartDate": "",
+  "usage": {
+    "total": 0,
+    "estimated": true,
+    "daily": {}
+  },
+  "previousTokenSnapshot": {},
+  "model": {
+    "tokensPerCall": 1500,
+    "calibrations": 0
+  },
+  "lastUpdated": 0
+}

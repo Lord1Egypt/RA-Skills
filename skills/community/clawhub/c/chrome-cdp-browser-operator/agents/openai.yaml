@@ -1,0 +1,3 @@
+interface:
+  display_name: "Chrome CDP Browser Operator"
+  short_description: "attach to chrome through CDP and drive it with human-like input"

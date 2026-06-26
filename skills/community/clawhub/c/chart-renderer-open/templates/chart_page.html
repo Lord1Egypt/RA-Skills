@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{PAGE_TITLE}}</title>
+<!--__CDN_LIBS__-->
+<style>
+/*__CORE_CSS__*/
+/*__TYPE_CSS__*/
+</style>
+</head>
+<body>
+
+<div class="report" id="captureArea">
+  <div class="body">
+    <div id="content"></div>
+  </div>
+</div>
+
+<div class="dl-bar">
+  <button class="btn btn-g" onclick="dlImg()" id="dlBtn">⬇ 下载图片</button>
+  <button class="btn btn-b" onclick="window.print()">🖨 打印</button>
+</div>
+<div class="toast" id="toast"></div>
+
+<script id="__cfg" type="application/json">/*__CFG__*/{}/*__END__*/</script>
+<script id="__sections" type="application/json">/*__SECTIONS__*/[]/*__END__*/</script>
+
+<script>
+/* ===== RENDERER REGISTRY ===== */
+const RENDERERS={};
+function registerRenderer(type,renderFn,afterRenderFn){
+  RENDERERS[type]={render:renderFn,afterRender:afterRenderFn||null};
+}
+
+/* ===== DATA (JSON.parse from safe script tags) ===== */
+const CFG=JSON.parse(document.getElementById('__cfg').textContent);
+const SECTIONS=JSON.parse(document.getElementById('__sections').textContent);
+
+/* ===== INIT ===== */
+function init(){
+  document.title=CFG.title||'图表报告';
+  SECTIONS.forEach(renderSection);
+}
+
+/* ===== SECTION ROUTER ===== */
+function renderSection(sec){
+  const el=document.getElementById('content');
+  const r=RENDERERS[sec.type];
+  if(!r)return;
+  let h='';
+  if(sec.title) h+=`<div class="sec-title">${sec.title}</div>`;
+  const uid=r.afterRender?('chart_'+Date.now()+'_'+Math.random().toString(36).slice(2,6)):null;
+  h+=r.render(sec.data,uid);
+  el.innerHTML+=h;
+  if(r.afterRender&&uid) setTimeout(()=>r.afterRender(sec.data,uid),50);
+}
+
+/* ===== DOWNLOAD ===== */
+function dlImg(){
+  const btn=document.getElementById('dlBtn');
+  btn.disabled=true;btn.textContent='⏳ 生成中...';
+  document.body.classList.add('print-mode');
+  setTimeout(()=>{
+    html2canvas(document.getElementById('captureArea'),{
+      scale:2,backgroundColor:'#fff',useCORS:true,logging:false
+    }).then(canvas=>{
+      const link=document.createElement('a');
+      link.download=(CFG.title||'图表报告')+'.png';
+      link.href=canvas.toDataURL('image/png');
+      link.click();
+      showToast('图片已生成并下载');
+    }).catch(e=>{
+      showToast('生成失败: '+e.message);
+    }).finally(()=>{
+      document.body.classList.remove('print-mode');
+      btn.disabled=false;btn.textContent='⬇ 下载图片';
+    });
+  },300);
+}
+function showToast(msg){
+  const t=document.getElementById('toast');
+  t.textContent=msg;t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),2500);
+}
+
+/*__TYPE_JS__*/
+
+/* ===== START ===== */
+init();
+</script>
+
+</body>
+</html>

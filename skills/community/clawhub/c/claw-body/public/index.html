@@ -1,0 +1,1680 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Claw Body — 给你的龙虾一个真身</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg-primary: #0b0b0f;
+  --bg-secondary: #12121a;
+  --bg-card: rgba(255,255,255,0.04);
+  --bg-glass: rgba(255,255,255,0.06);
+  --border: rgba(255,255,255,0.08);
+  --border-light: rgba(255,255,255,0.12);
+  --text-primary: #e8e8ed;
+  --text-secondary: #8888a0;
+  --text-dim: #55556a;
+  --accent: #6366f1;
+  --accent-glow: rgba(99,102,241,0.3);
+  --accent-soft: rgba(99,102,241,0.15);
+  --success: #34d399;
+  --warning: #fbbf24;
+  --danger: #f87171;
+  --user-bubble: linear-gradient(135deg, #6366f1, #8b5cf6);
+  --agent-bubble: rgba(255,255,255,0.06);
+  --radius: 16px;
+  --radius-sm: 10px;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ─── Welcome Screen ─── */
+#welcome-screen {
+  position: fixed; inset: 0; z-index: 100;
+  background: var(--bg-primary);
+  display: flex; align-items: center; justify-content: center;
+  transition: opacity 0.5s; 
+}
+#welcome-screen.hidden { opacity: 0; pointer-events: none; }
+
+.welcome-card {
+  width: 480px; max-width: calc(100vw - 40px);
+  text-align: center;
+}
+.welcome-card .hero-icon { font-size: 72px; margin-bottom: 20px; animation: float 3s ease-in-out infinite; }
+@keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+.welcome-card h1 { font-size: 32px; font-weight: 700; margin-bottom: 10px; background: linear-gradient(135deg, #e8e8ed, #6366f1); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.welcome-card .tagline { font-size: 16px; color: var(--text-secondary); margin-bottom: 36px; line-height: 1.6; }
+
+.welcome-actions { display: flex; flex-direction: column; gap: 12px; max-width: 320px; margin: 0 auto; }
+.btn-primary {
+  padding: 15px 28px; border: none; border-radius: 14px;
+  background: var(--accent); color: #fff;
+  font-size: 16px; font-weight: 600; font-family: inherit;
+  cursor: pointer; transition: all 0.2s;
+  box-shadow: 0 4px 20px var(--accent-glow);
+}
+.btn-primary:hover { background: #5558e6; transform: translateY(-2px); box-shadow: 0 8px 30px var(--accent-glow); }
+.btn-primary:active { transform: scale(0.98); }
+
+.btn-secondary {
+  padding: 13px 28px; border: 1px solid var(--border-light); border-radius: 14px;
+  background: transparent; color: var(--text-secondary);
+  font-size: 14px; font-weight: 500; font-family: inherit;
+  cursor: pointer; transition: all 0.2s;
+}
+.btn-secondary:hover { background: var(--bg-glass); color: var(--text-primary); border-color: var(--accent); }
+
+.welcome-footer { margin-top: 32px; font-size: 12px; color: var(--text-dim); line-height: 1.8; }
+.welcome-footer a { color: var(--accent); text-decoration: none; }
+.welcome-footer a:hover { text-decoration: underline; }
+
+/* ─── Setup Screen ─── */
+#setup-screen {
+  position: fixed; inset: 0; z-index: 100;
+  background: var(--bg-primary);
+  display: none; align-items: center; justify-content: center;
+}
+#setup-screen.show { display: flex; }
+
+.setup-card {
+  width: 440px; max-width: calc(100vw - 40px);
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-light);
+  border-radius: 24px; padding: 40px;
+  box-shadow: 0 40px 80px rgba(0,0,0,0.5);
+}
+.setup-card .logo-area { text-align: center; margin-bottom: 28px; }
+.setup-card .logo-area .icon { font-size: 42px; margin-bottom: 10px; }
+.setup-card .logo-area h2 { font-size: 20px; font-weight: 600; margin-bottom: 6px; }
+.setup-card .logo-area p { font-size: 13px; color: var(--text-secondary); line-height: 1.6; }
+
+.form-group { margin-bottom: 16px; }
+.form-group label { display: block; font-size: 12px; font-weight: 500; color: var(--text-secondary); margin-bottom: 6px; letter-spacing: 0.03em; text-transform: uppercase; }
+.form-group input {
+  width: 100%; background: var(--bg-card); border: 1px solid var(--border); color: var(--text-primary);
+  padding: 12px 14px; border-radius: var(--radius-sm); font-size: 14px; font-family: inherit; outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.form-group input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+.form-group input::placeholder { color: var(--text-dim); }
+.form-group .hint { font-size: 11px; color: var(--text-dim); margin-top: 4px; }
+.form-group .hint a { color: var(--accent); text-decoration: none; }
+
+.setup-btn { width: 100%; padding: 13px; border: none; border-radius: var(--radius-sm); background: var(--accent); color: #fff; font-size: 15px; font-weight: 500; font-family: inherit; cursor: pointer; margin-top: 8px; transition: all 0.2s; box-shadow: 0 4px 16px var(--accent-glow); }
+.setup-btn:hover { background: #5558e6; }
+.setup-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+.setup-error { color: var(--danger); font-size: 12px; text-align: center; margin-top: 10px; min-height: 18px; }
+.setup-back { display: block; margin-top: 16px; text-align: center; font-size: 13px; color: var(--text-dim); cursor: pointer; border: none; background: none; font-family: inherit; }
+.setup-back:hover { color: var(--text-secondary); }
+
+/* ─── Trial Expired Overlay ─── */
+#trial-overlay {
+  position: fixed; inset: 0; z-index: 90;
+  background: rgba(11,11,15,0.85); backdrop-filter: blur(12px);
+  display: none; align-items: center; justify-content: center;
+}
+#trial-overlay.show { display: flex; }
+
+#reconnect-overlay {
+  position: fixed; inset: 0; z-index: 90;
+  background: rgba(11,11,15,0.85); backdrop-filter: blur(12px);
+  display: none; align-items: center; justify-content: center;
+}
+#reconnect-overlay.show { display: flex; }
+
+.trial-card, .overlay-card {
+  width: 440px; max-width: calc(100vw - 40px);
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-light);
+  border-radius: 24px; padding: 40px; text-align: center;
+  box-shadow: 0 40px 80px rgba(0,0,0,0.5);
+}
+.trial-card .icon, .overlay-card .icon { font-size: 48px; margin-bottom: 16px; }
+.trial-card h2, .overlay-card h2 { font-size: 22px; font-weight: 600; margin-bottom: 8px; }
+.trial-card p, .overlay-card p { font-size: 14px; color: var(--text-secondary); line-height: 1.6; margin-bottom: 24px; }
+.trial-card .actions, .overlay-card .actions { display: flex; flex-direction: column; gap: 10px; }
+
+/* ─── Timer Bar ─── */
+#timer-bar {
+  position: absolute; top: 0; left: 0; right: 0; height: 3px; z-index: 20;
+  background: rgba(255,255,255,0.05); display: none;
+}
+#timer-bar.show { display: block; }
+#timer-progress {
+  height: 100%; background: var(--accent); transition: width 1s linear;
+  box-shadow: 0 0 8px var(--accent-glow);
+}
+#timer-text {
+  position: absolute; top: 8px; right: 12px; z-index: 20;
+  font-size: 11px; color: var(--text-dim); display: none;
+}
+#timer-text.show { display: block; }
+
+/* ─── Top Bar ─── */
+#top-bar {
+  height: 48px; padding: 0 24px;
+  display: flex; align-items: center; justify-content: space-between;
+  background: var(--bg-secondary); border-bottom: 1px solid var(--border);
+  flex-shrink: 0; z-index: 10; position: relative;
+}
+.brand { display: flex; align-items: center; gap: 10px; font-weight: 500; font-size: 14px; }
+.brand .logo { font-size: 18px; }
+.top-right { display: flex; align-items: center; gap: 16px; }
+.indicators { display: flex; gap: 20px; }
+.indicator { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--text-secondary); }
+.dot { width: 7px; height: 7px; border-radius: 50%; transition: all 0.3s; }
+.dot-connecting { background: var(--warning); box-shadow: 0 0 8px var(--warning); animation: pulse 1.5s ease-in-out infinite; }
+.dot-connected { background: var(--success); box-shadow: 0 0 8px rgba(52,211,153,0.4); }
+.dot-error { background: var(--danger); box-shadow: 0 0 8px rgba(248,113,113,0.4); }
+@keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.3; } }
+
+.icon-btn {
+  width: 32px; height: 32px; border-radius: 8px;
+  border: 1px solid var(--border); background: var(--bg-glass);
+  color: var(--text-secondary); cursor: pointer;
+  display: flex; align-items: center; justify-content: center; font-size: 15px; transition: all 0.2s;
+}
+.icon-btn:hover { background: var(--border-light); color: var(--text-primary); }
+
+/* ─── Language Toggle ─── */
+.lang-switch {
+  display: flex; gap: 2px;
+  background: var(--bg-card); border-radius: 8px; padding: 2px;
+  border: 1px solid var(--border);
+}
+.lang-btn {
+  padding: 4px 10px; border: none; border-radius: 6px;
+  background: transparent; color: var(--text-dim);
+  font-size: 12px; font-weight: 500; font-family: inherit;
+  cursor: pointer; transition: all 0.2s;
+}
+.lang-btn.active { background: var(--accent); color: #fff; }
+.lang-btn:hover:not(.active) { color: var(--text-primary); }
+
+/* ─── Main Layout ─── */
+#main { flex: 1; display: flex; overflow: hidden; }
+
+#avatar-section {
+  flex: 1; position: relative;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--bg-primary); overflow: hidden;
+}
+#avatar-bg { position: absolute; inset: -40px; z-index: 0; overflow: hidden; }
+#avatar-bg canvas { width: calc(100% + 80px); height: calc(100% + 80px); filter: blur(60px) brightness(0.3) saturate(1.5); transform: scale(1.1); }
+
+#avatar-frame {
+  position: relative; z-index: 1;
+  max-width: calc(100% - 60px); max-height: calc(100vh - 48px - 40px);
+  border-radius: 24px; overflow: hidden;
+  box-shadow: 0 0 0 1px var(--border-light), 0 20px 60px rgba(0,0,0,0.5), 0 0 40px rgba(99,102,241,0.08);
+  background: #000;
+  width: auto; height: 80vh; aspect-ratio: 9/16;
+  transition: all 0.4s ease;
+}
+#avatar-frame.landscape { height: auto; width: 90%; max-width: 900px; aspect-ratio: 16/9; }
+#avatar-frame.square { height: auto; width: 60%; max-width: 700px; aspect-ratio: 1/1; }
+
+#avatar-video { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+#subtitle-overlay {
+  position: absolute; bottom: 24px; left: 50%; transform: translateX(-50%); z-index: 5;
+  background: rgba(30,30,40,0.7); backdrop-filter: blur(12px);
+  padding: 10px 22px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.2);
+  font-size: 15px; color: #fff; max-width: 80%; text-align: center; display: none; line-height: 1.5;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+}
+
+#play-overlay {
+  position: absolute; inset: 0; z-index: 6;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  background: rgba(0,0,0,0.5); backdrop-filter: blur(4px);
+  cursor: pointer; transition: opacity 0.3s;
+}
+#play-overlay.hidden { opacity: 0; pointer-events: none; }
+#play-overlay .play-icon {
+  width: 64px; height: 64px; border-radius: 50%;
+  background: var(--accent); display: flex; align-items: center; justify-content: center;
+  font-size: 28px; box-shadow: 0 0 30px var(--accent-glow); margin-bottom: 12px; transition: transform 0.2s;
+}
+#play-overlay:hover .play-icon { transform: scale(1.1); }
+#play-overlay .play-text { font-size: 13px; color: rgba(255,255,255,0.7); }
+
+/* ─── Loading Overlay (on video) ─── */
+#loading-overlay {
+  position: absolute; inset: 0; z-index: 7;
+  display: none; flex-direction: column; align-items: center; justify-content: center;
+  background: rgba(0,0,0,0.6); backdrop-filter: blur(8px);
+}
+#loading-overlay.show { display: flex; }
+.loading-spinner {
+  width: 48px; height: 48px; border: 3px solid rgba(255,255,255,0.1);
+  border-top-color: var(--accent); border-radius: 50%;
+  animation: spin 0.8s linear infinite; margin-bottom: 16px;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+#loading-text {
+  font-size: 15px; color: rgba(255,255,255,0.9); font-weight: 500; text-align: center; line-height: 1.6;
+}
+#loading-sub {
+  font-size: 12px; color: rgba(255,255,255,0.4); margin-top: 6px;
+}
+
+/* ─── Chat Panel ─── */
+#chat-panel {
+  width: 380px; flex-shrink: 0;
+  display: flex; flex-direction: column;
+  background: var(--bg-secondary); border-left: 1px solid var(--border);
+}
+#chat-header { padding: 16px 20px; border-bottom: 1px solid var(--border); font-size: 13px; font-weight: 500; color: var(--text-secondary); letter-spacing: 0.05em; text-transform: uppercase; }
+#chat-log {
+  flex: 1; overflow-y: auto; padding: 16px;
+  display: flex; flex-direction: column; gap: 8px;
+  scrollbar-width: thin; scrollbar-color: rgba(255,255,255,0.1) transparent;
+}
+#chat-log::-webkit-scrollbar { width: 4px; }
+#chat-log::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 4px; }
+
+.msg { padding: 10px 14px; border-radius: var(--radius-sm); max-width: 88%; font-size: 13.5px; line-height: 1.55; word-wrap: break-word; animation: msgIn 0.25s ease-out; }
+@keyframes msgIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; } }
+.msg-user { background: var(--user-bubble); align-self: flex-end; color: #fff; border-bottom-right-radius: 4px; }
+.msg-agent { background: var(--agent-bubble); align-self: flex-start; border: 1px solid var(--border); border-bottom-left-radius: 4px; }
+.msg-system { background: transparent; color: var(--text-dim); font-size: 12px; align-self: center; text-align: center; max-width: 100%; padding: 4px 0; }
+
+/* ─── Thinking indicator ─── */
+.msg-thinking { display: flex; align-items: center; gap: 8px; }
+.thinking-dots { display: flex; gap: 6px; align-items: center; }
+.thinking-dots span {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: #fff; opacity: 0.4;
+  animation: thinkBounce 1.4s ease-in-out infinite;
+}
+.thinking-dots span:nth-child(2) { animation-delay: 0.2s; }
+.thinking-dots span:nth-child(3) { animation-delay: 0.4s; }
+@keyframes thinkBounce {
+  0%, 80%, 100% { opacity: 0.4; transform: scale(1); }
+  40% { opacity: 1; transform: scale(1.4); box-shadow: 0 0 8px rgba(255,255,255,0.6); }
+}
+.thinking-label { font-size: 12px; color: rgba(255,255,255,0.6); }
+
+#input-area { padding: 16px; border-top: 1px solid var(--border); display: flex; gap: 10px; align-items: center; }
+#text-input {
+  flex: 1; background: var(--bg-card); border: 1px solid var(--border); color: var(--text-primary);
+  padding: 11px 16px; border-radius: 12px; font-size: 13.5px; font-family: inherit; outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+#text-input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+#text-input::placeholder { color: var(--text-dim); }
+
+.btn-icon {
+  width: 42px; height: 42px; border-radius: 12px; border: none; cursor: pointer;
+  display: flex; align-items: center; justify-content: center; font-size: 18px; transition: all 0.2s; flex-shrink: 0;
+}
+#mic-btn { background: var(--accent); color: #fff; box-shadow: 0 2px 12px var(--accent-glow); }
+#mic-btn:hover { background: #5558e6; transform: translateY(-1px); }
+#mic-btn.recording { background: var(--danger); box-shadow: 0 2px 16px rgba(248,113,113,0.4); animation: pulse 1s infinite; }
+#send-btn { background: var(--bg-glass); color: var(--text-secondary); border: 1px solid var(--border); }
+#send-btn:hover { background: var(--border-light); color: var(--text-primary); }
+
+body.video-landscape #main { flex-direction: column; }
+body.video-landscape #avatar-section { flex: 0 0 auto; min-height: 50vh; }
+body.video-landscape #chat-panel { width: 100%; flex: 1; border-left: none; border-top: 1px solid var(--border); }
+body.video-landscape #chat-panel #chat-header { display: none; }
+
+/* ─── Presentation Mode ─── */
+#presentation-panel {
+  display: none; position: fixed; top: 48px; left: 0; right: 0; bottom: 0; z-index: 15;
+  flex-direction: column; background: var(--bg-primary);
+  border: none; outline: none;
+}
+body.presentation-mode #presentation-panel { display: flex; }
+body.presentation-mode #avatar-section { display: none !important; }
+body.presentation-mode #chat-panel { display: none !important; border: none !important; }
+body.presentation-mode #main { background: var(--bg-primary); }
+
+/* Presentation avatar pip (picture-in-picture) */
+#pres-avatar-pip {
+  position: absolute; bottom: 80px; left: 20px; z-index: 18;
+  width: 180px; height: 240px; border-radius: 16px; overflow: hidden;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.6); border: 2px solid var(--border-light);
+  display: none; background: #000;
+  transition: all 0.4s ease;
+}
+#pres-avatar-pip video { width: 100%; height: 100%; object-fit: cover; }
+.pip-thinking-overlay {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  display: none; justify-content: center; padding: 12px 0;
+  background: linear-gradient(transparent, rgba(0,0,0,0.7));
+  border-radius: 0 0 16px 16px;
+}
+.pip-thinking-overlay.show { display: flex; }
+.avatar-thinking-overlay {
+  position: absolute; bottom: 80px; left: 50%; transform: translateX(-50%);
+  display: none; justify-content: center; padding: 10px 24px;
+  background: rgba(0,0,0,0.5); backdrop-filter: blur(12px);
+  border-radius: 20px; border: 1px solid rgba(255,255,255,0.15); z-index: 6;
+}
+.avatar-thinking-overlay.show { display: flex; }
+body.presentation-mode.pres-playing #pres-avatar-pip { display: block; }
+body.presentation-mode.pres-paused #pres-avatar-pip {
+  display: block;
+  /* Move from corner to center, enlarge to chat-mode size */
+  width: 300px; height: 400px; border-radius: 20px;
+  bottom: auto; left: 50%; top: 50%;
+  transform: translate(-50%, -55%);
+  box-shadow: 0 12px 50px rgba(0,0,0,0.8);
+  transition: all 0.4s ease;
+}
+body.presentation-mode.pres-paused #slide-viewer {
+  opacity: 0.6;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+body.presentation-mode.pres-paused #pres-subtitle {
+  display: block !important;
+  top: auto; bottom: 60px; left: 50%; right: auto;
+  transform: translateX(-50%);
+  max-width: 70%; max-height: none;
+  background: rgba(30,30,40,0.7); backdrop-filter: blur(12px);
+  font-size: 17px; color: #fff; text-align: center; padding: 14px 28px;
+  border-top: none; border-radius: 16px; border: 1px solid rgba(255,255,255,0.2);
+  text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+}
+
+/* Presentation chat toggle */
+#pres-chat-toggle {
+  position: absolute; bottom: 20px; right: 20px; z-index: 18;
+  width: 48px; height: 48px; border-radius: 50%;
+  background: var(--accent); color: #fff; border: none; cursor: pointer;
+  display: none; align-items: center; justify-content: center;
+  font-size: 20px; box-shadow: 0 4px 20px var(--accent-glow);
+  transition: transform 0.2s;
+}
+#pres-chat-toggle:hover { transform: scale(1.1); }
+body.presentation-mode #pres-chat-toggle { display: flex; }
+
+#pres-chat-panel {
+  position: absolute; bottom: 80px; right: 20px; z-index: 18;
+  width: 340px; max-height: 400px; border-radius: 16px; overflow: hidden;
+  background: var(--bg-secondary); border: 1px solid var(--border-light);
+  box-shadow: 0 10px 40px rgba(0,0,0,0.5); display: none;
+  flex-direction: column;
+}
+#pres-chat-panel.show { display: flex; }
+#pres-chat-log {
+  flex: 1; overflow-y: auto; padding: 12px; max-height: 300px;
+  display: flex; flex-direction: column; gap: 6px;
+}
+#pres-chat-input {
+  display: flex; gap: 8px; padding: 10px; border-top: 1px solid var(--border);
+}
+#pres-chat-input input {
+  flex: 1; background: var(--bg-card); border: 1px solid var(--border);
+  color: var(--text-primary); padding: 8px 12px; border-radius: 10px;
+  font-size: 13px; font-family: inherit; outline: none;
+}
+
+/* Presentation list */
+#pres-list-view { display: flex; flex-direction: column; height: 100%; }
+#pres-list-header {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 16px 20px; font-size: 15px; font-weight: 500;
+  border-bottom: 1px solid var(--border);
+}
+#pres-list {
+  flex: 1; overflow-y: auto; padding: 12px;
+}
+.pres-item {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px 16px; margin-bottom: 8px;
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: var(--radius-sm); cursor: pointer; transition: all 0.2s;
+}
+.pres-item:hover { border-color: var(--accent); background: var(--accent-soft); }
+.pres-item .pres-info { flex: 1; }
+.pres-item .pres-name { font-size: 14px; font-weight: 500; margin-bottom: 4px; }
+.pres-item .pres-meta { font-size: 12px; color: var(--text-dim); }
+.pres-item .pres-badge {
+  font-size: 11px; padding: 3px 8px; border-radius: 6px;
+  background: var(--success); color: #000; font-weight: 500;
+}
+.pres-item .pres-badge.not-ready { background: var(--warning); }
+#pres-add {
+  display: flex; gap: 8px; padding: 12px 16px;
+  border-top: 1px solid var(--border);
+}
+#pres-add-path {
+  flex: 1; background: var(--bg-card); border: 1px solid var(--border);
+  color: var(--text-primary); padding: 10px 14px; border-radius: var(--radius-sm);
+  font-size: 13px; font-family: inherit; outline: none;
+}
+#pres-add-path:focus { border-color: var(--accent); }
+
+#slide-viewer {
+  flex: 1; display: flex; align-items: center; justify-content: center;
+  padding: 40px; overflow: hidden; position: relative;
+}
+#slide-image {
+  max-width: 100%; max-height: calc(100% - 80px); object-fit: contain;
+  border-radius: 8px; box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+}
+#pres-subtitle {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  max-height: 30%; padding: 14px 24px; overflow-y: auto;
+  background: rgba(30,30,40,0.75); backdrop-filter: blur(8px);
+  color: #fff; font-size: 16px; line-height: 1.8; text-align: left;
+  display: none; border-top: 1px solid rgba(255,255,255,0.15);
+  text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+}
+#pres-subtitle-toggle {
+  position: absolute; top: 12px; right: 12px; z-index: 10;
+  background: rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.2);
+  color: #fff; border-radius: 8px; padding: 6px 12px; cursor: pointer;
+  font-size: 13px; backdrop-filter: blur(8px);
+}
+#pres-subtitle-toggle:hover { background: rgba(0,0,0,0.7); }
+#slide-controls {
+  display: flex; align-items: center; justify-content: center; gap: 16px;
+  padding: 12px; background: var(--bg-secondary); border-top: 1px solid var(--border);
+}
+.slide-nav {
+  width: 36px; height: 36px; border-radius: 8px; border: 1px solid var(--border);
+  background: var(--bg-glass); color: var(--text-secondary); cursor: pointer;
+  display: flex; align-items: center; justify-content: center; font-size: 14px;
+  transition: all 0.2s;
+}
+.slide-nav:hover { background: var(--border-light); color: var(--text-primary); }
+.slide-exit { color: var(--danger); }
+.slide-exit:hover { background: rgba(248,113,113,0.15); color: var(--danger); }
+#slide-counter { font-size: 13px; color: var(--text-secondary); min-width: 60px; text-align: center; }
+
+@media (max-width: 900px) {
+  #main { flex-direction: column; }
+  #avatar-section { flex: 0 0 auto; min-height: 40vh; }
+  #avatar-frame { max-height: 45vh; max-width: calc(100% - 32px); }
+  #chat-panel { width: 100%; flex: 1; border-left: none; border-top: 1px solid var(--border); }
+  .welcome-card h1 { font-size: 26px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ─── Welcome Screen ─── -->
+<div id="welcome-screen">
+  <div class="welcome-card">
+    <div style="text-align:right;margin-bottom:8px;">
+      <div class="lang-switch" style="display:inline-flex;">
+        <button class="lang-btn active" data-lang="zh" onclick="setLang('zh')">中文</button>
+        <button class="lang-btn" data-lang="en" onclick="setLang('en')">EN</button>
+      </div>
+    </div>
+    <div class="hero-icon">🦞</div>
+    <h1>给你的龙虾一个真身</h1>
+    <p class="tagline">让你的 AI 龙虾拥有形象、声音和表情<br>看着它对你说话，而不只是冰冷的文字</p>
+    <div class="welcome-actions">
+      <button class="btn-primary" id="btn-trial">🎤 免费体验 5 分钟</button>
+      <button class="btn-secondary" id="btn-own">我已有自己的数字人形象</button>
+    </div>
+    <div class="welcome-footer">
+      🎁 前往 <a href="https://nuwaai.com" target="_blank">nuwaai.com</a> 注册即可免费创建你的专属形象<br>
+      可爱龙虾 · 二次元 · 真人风格 · 任你塑造
+    </div>
+  </div>
+</div>
+
+<!-- ─── Setup Screen ─── -->
+<div id="setup-screen">
+  <div class="setup-card">
+    <div class="logo-area">
+      <div class="icon">🦞</div>
+      <h2>连接你的数字人</h2>
+      <p>在 <a href="https://nuwaai.com" target="_blank" style="color:var(--accent)">nuwaai.com</a> 注册即可免费创建形象</p>
+    </div>
+    <div class="form-group">
+      <label>API Key</label>
+      <input type="password" id="cfg-apikey" placeholder="sk-..." />
+      <div class="hint">在「API 密钥」页面免费生成</div>
+    </div>
+    <div class="form-group">
+      <label>数字人 ID</label>
+      <input type="text" id="cfg-avatarid" placeholder="例如：2027947817079644162" />
+      <div class="hint">创建形象后，在详情页可找到</div>
+    </div>
+    <div class="form-group">
+      <label>用户 ID</label>
+      <input type="text" id="cfg-userid" placeholder="例如：50" />
+      <div class="hint">登录后在个人中心可查看</div>
+    </div>
+    <button class="setup-btn" id="setup-go">🦞 让龙虾活过来</button>
+    <div class="setup-error" id="setup-error"></div>
+    <button class="setup-back" id="setup-back">← 返回</button>
+  </div>
+</div>
+
+<!-- ─── Trial Expired Overlay ─── -->
+<div id="trial-overlay">
+  <div class="trial-card">
+    <div class="icon">⏰</div>
+    <h2>体验时间到了！</h2>
+    <p>你已经体验了 5 分钟的龙虾真身<br>想拥有属于自己的专属形象吗？</p>
+    <div class="actions">
+      <button class="btn-primary" onclick="window.open('https://nuwaai.com','_blank')">🎨 去 NuwaAI 创建我的形象（免费）</button>
+      <button class="btn-secondary" id="btn-expired-own">我已经有了，输入配置</button>
+    </div>
+  </div>
+</div>
+
+<!-- ─── Reconnect Overlay ─── -->
+<div id="reconnect-overlay">
+  <div class="overlay-card">
+    <div class="icon">🔌</div>
+    <h2 id="reconnect-title">连接已断开</h2>
+    <p id="reconnect-desc">数字人已离线，是否重新连接？</p>
+    <div class="actions">
+      <button class="btn-primary" id="btn-reconnect">🔄 重新连接</button>
+      <button class="btn-secondary" id="btn-back-home">返回首页</button>
+    </div>
+  </div>
+</div>
+
+<!-- ─── Main App ─── -->
+<div id="top-bar">
+  <div id="timer-bar"><div id="timer-progress" style="width:100%"></div></div>
+  <div id="timer-text"></div>
+  <div class="brand"><span class="logo">🦞</span><span>Claw Body</span></div>
+  <div class="top-right">
+    <div class="indicators">
+      <div class="indicator"><div class="dot dot-connecting" id="nuwa-dot"></div><span id="nuwa-status">连接中</span></div>
+      <div class="indicator"><div class="dot dot-connecting" id="claw-dot"></div><span id="claw-status">连接中</span></div>
+    </div>
+    <div class="lang-switch">
+      <button class="lang-btn active" data-lang="zh" onclick="setLang('zh')">中文</button>
+      <button class="lang-btn" data-lang="en" onclick="setLang('en')">EN</button>
+    </div>
+    <button class="icon-btn" id="pres-mode-btn" title="演讲模式">📊</button>
+    <button class="icon-btn" id="new-chat-btn" title="新会话">💬</button>
+    <button class="icon-btn" id="disconnect-btn" title="断开连接">⏏</button>
+    <button class="icon-btn" id="settings-btn" title="设置">⚙</button>
+  </div>
+</div>
+
+<div id="main">
+  <div id="avatar-section">
+    <div id="avatar-bg"><canvas id="bg-canvas"></canvas></div>
+    <div id="avatar-frame">
+      <video id="avatar-video" autoplay playsinline muted poster="/poster.png"></video>
+      <div id="avatar-thinking" class="avatar-thinking-overlay">
+        <div class="thinking-dots"><span></span><span></span><span></span></div>
+      </div>
+      <div id="subtitle-overlay"></div>
+      <div id="loading-overlay">
+        <div class="loading-spinner"></div>
+        <div id="loading-text">正在唤醒龙虾...</div>
+        <div id="loading-sub">首次连接需要几秒钟</div>
+      </div>
+      <div id="play-overlay">
+        <div class="play-icon">▶</div>
+        <div class="play-text">点击开始</div>
+      </div>
+    </div>
+  </div>
+  <div id="chat-panel">
+    <div id="chat-header">对话</div>
+    <div id="chat-log"></div>
+    <div id="input-area">
+      <button class="btn-icon" id="mic-btn" title="点击录音">🎤</button>
+      <input type="text" id="text-input" placeholder="输入消息..." />
+      <button class="btn-icon" id="send-btn" title="发送">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Presentation mode: list + slide viewer -->
+  <div id="presentation-panel">
+    <!-- Presentation list (shown when entering pres mode, before selecting) -->
+    <div id="pres-list-view">
+      <div id="pres-list-header">
+        <span>📊 选择要讲解的演示文件</span>
+        <button class="slide-nav slide-exit" id="pres-list-exit" title="退出演讲模式">✕</button>
+      </div>
+      <div id="pres-list"></div>
+      <div id="pres-add">
+        <input type="file" id="pres-file-input" accept=".ppt,.pptx,.pdf" style="display:none;" />
+        <button class="slide-nav" id="pres-add-btn" title="添加文件" style="background:var(--accent);color:#fff;width:auto;padding:0 16px;font-size:13px;">📁 选择 PPT / PDF 文件</button>
+      </div>
+      <div id="pres-add-status" style="font-size:12px;color:var(--text-dim);padding:8px 16px;"></div>
+    </div>
+
+    <!-- Slide viewer (shown during playback) -->
+    <div id="slide-viewer" style="display:none;">
+      <img id="slide-image" src="" alt="Slide" />
+      <div id="pres-subtitle"></div>
+      <button id="pres-subtitle-toggle" title="显示/隐藏字幕">字幕 OFF</button>
+    </div>
+
+    <!-- Avatar PIP window -->
+    <div id="pres-avatar-pip">
+      <video id="pres-avatar-video" autoplay playsinline></video>
+      <div id="pip-thinking" class="pip-thinking-overlay">
+        <div class="thinking-dots"><span></span><span></span><span></span></div>
+      </div>
+    </div>
+
+    <!-- Chat toggle + panel -->
+    <button id="pres-chat-toggle">💬</button>
+    <div id="pres-chat-panel">
+      <div id="pres-chat-log"></div>
+      <div id="pres-chat-input">
+        <input type="text" id="pres-text-input" placeholder="提问..." />
+      </div>
+    </div>
+
+    <div id="slide-controls" style="display:none;">
+      <button class="slide-nav" id="slide-prev" title="上一页">◀</button>
+      <button class="slide-nav" id="slide-play" title="开始讲解" style="background:var(--accent);color:#fff;">▶</button>
+      <span id="slide-counter">1 / 1</span>
+      <button class="slide-nav" id="slide-next" title="下一页">▶</button>
+      <button class="slide-nav" id="slide-back-list" title="返回列表">☰</button>
+      <button class="slide-nav slide-exit" id="slide-exit" title="退出演讲模式">✕</button>
+    </div>
+  </div>
+</div>
+
+<script src="/i18n.js"></script>
+<script>
+const TRIAL_DURATION = 5 * 60 * 1000; // 5 minutes
+
+const welcomeScreen = document.getElementById('welcome-screen');
+const setupScreen = document.getElementById('setup-screen');
+const trialOverlay = document.getElementById('trial-overlay');
+const timerBar = document.getElementById('timer-bar');
+const timerProgress = document.getElementById('timer-progress');
+const timerText = document.getElementById('timer-text');
+const chatLog = document.getElementById('chat-log');
+const textInput = document.getElementById('text-input');
+const sendBtn = document.getElementById('send-btn');
+const micBtn = document.getElementById('mic-btn');
+const subtitleOverlay = document.getElementById('subtitle-overlay');
+const avatarVideo = document.getElementById('avatar-video');
+const playOverlay = document.getElementById('play-overlay');
+const bgCanvas = document.getElementById('bg-canvas');
+const bgCtx = bgCanvas.getContext('2d');
+
+let config = {};
+let wsNuwa = null;
+
+// Session management
+let chatSessionKey = 'agent:main:claw-body-' + Date.now();
+function newChatSession() {
+  chatSessionKey = 'agent:main:claw-body-' + Date.now();
+  chatLog.innerHTML = '';
+  if (presMode) exitPresentationMode();
+  addMsg('💬 ' + t('newSession') || '💬 已开启新会话', 'system');
+  console.log('[Session] New session:', chatSessionKey);
+}
+let peerConnection = null;
+let peerStream = null;
+let sessionId = null;
+let isProcessing = false;
+let isTrial = false;
+let trialStart = 0;
+let trialTimer = null;
+
+const loadingOverlay = document.getElementById('loading-overlay');
+const loadingText = document.getElementById('loading-text');
+const reconnectOverlay = document.getElementById('reconnect-overlay');
+const disconnectBtn = document.getElementById('disconnect-btn');
+
+function showLoading(key) { loadingText.textContent = typeof I18N !== 'undefined' ? t(key) : key; loadingOverlay.classList.add('show'); }
+function hideLoading() { loadingOverlay.classList.remove('show'); }
+
+// ─── Flow Control ───
+
+// Trial mode: use demo config
+document.getElementById('btn-trial').addEventListener('click', async () => {
+  isTrial = true;
+  welcomeScreen.classList.add('hidden');
+  startTrial();
+  startAppDemo();
+});
+
+// Own avatar: if configured, connect directly; otherwise show setup form
+document.getElementById('btn-own').addEventListener('click', () => {
+  welcomeScreen.classList.add('hidden');
+  if (config.configured) {
+    isTrial = false;
+    startApp();
+  } else {
+    setupScreen.classList.add('show');
+  }
+});
+document.getElementById('setup-back').addEventListener('click', () => {
+  setupScreen.classList.remove('show');
+  welcomeScreen.classList.remove('hidden');
+});
+document.getElementById('btn-expired-own').addEventListener('click', () => {
+  trialOverlay.classList.remove('show');
+  setupScreen.classList.add('show');
+});
+// Presentation mode button
+document.getElementById('pres-mode-btn').addEventListener('click', () => {
+  if (presMode) exitPresMode();
+  else enterPresMode();
+});
+
+// New chat button
+document.getElementById('new-chat-btn').addEventListener('click', () => {
+  newChatSession();
+});
+
+// Disconnect button
+disconnectBtn.addEventListener('click', () => {
+  stopRec();
+  if (wsNuwa) { wsNuwa.close(); wsNuwa = null; }
+  if (peerConnection) { peerConnection.close(); peerConnection = null; }
+  stopTrialTimer();
+  reconnectOverlay.classList.add('show');
+});
+
+// Reconnect
+document.getElementById('btn-reconnect').addEventListener('click', () => {
+  reconnectOverlay.classList.remove('show');
+  if (isTrial) {
+    startTrial();
+    startAppDemo();
+  } else {
+    startApp();
+  }
+});
+
+// Back to home from reconnect
+document.getElementById('btn-back-home').addEventListener('click', () => {
+  reconnectOverlay.classList.remove('show');
+  welcomeScreen.classList.remove('hidden');
+});
+
+document.getElementById('settings-btn').addEventListener('click', () => {
+  if (wsNuwa) { wsNuwa.close(); wsNuwa = null; }
+  if (peerConnection) { peerConnection.close(); peerConnection = null; }
+  stopTrialTimer();
+  setupScreen.classList.add('show');
+});
+
+// Setup form submit
+document.getElementById('setup-go').addEventListener('click', async () => {
+  const apiKey = document.getElementById('cfg-apikey').value.trim();
+  const avatarId = document.getElementById('cfg-avatarid').value.trim();
+  const userId = document.getElementById('cfg-userid').value.trim();
+  const errEl = document.getElementById('setup-error');
+
+  if (!avatarId || !userId) { errEl.textContent = '请填写数字人 ID 和用户 ID'; return; }
+  if (!apiKey && !config.hasApiKey) { errEl.textContent = '请填写 API Key'; return; }
+
+  const btn = document.getElementById('setup-go');
+  btn.disabled = true; btn.textContent = '连接中...'; errEl.textContent = '';
+
+  try {
+    const body = { avatarId, userId };
+    if (apiKey) body.apiKey = apiKey;
+    await fetch('/api/config', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
+
+    const tokenResp = await fetch('/api/token');
+    const tokenData = await tokenResp.json();
+    if (tokenData.code !== 0) throw new Error('API Key 无效: ' + (tokenData.msg || '鉴权失败'));
+
+    config.avatarId = avatarId;
+    config.userId = userId;
+    config.configured = true;
+    isTrial = false;
+
+    setupScreen.classList.remove('show');
+    stopTrialTimer();
+    timerBar.classList.remove('show');
+    timerText.classList.remove('show');
+    startApp();
+  } catch (e) {
+    errEl.textContent = e.message;
+  } finally {
+    btn.disabled = false; btn.textContent = '🦞 让龙虾活过来';
+  }
+});
+
+// ─── Trial Timer ───
+function startTrial() {
+  trialStart = Date.now();
+  timerBar.classList.add('show');
+  timerText.classList.add('show');
+  updateTrialTimer();
+  trialTimer = setInterval(updateTrialTimer, 1000);
+}
+
+function updateTrialTimer() {
+  const elapsed = Date.now() - trialStart;
+  const remaining = Math.max(0, TRIAL_DURATION - elapsed);
+  const pct = (remaining / TRIAL_DURATION) * 100;
+  
+  timerProgress.style.width = pct + '%';
+  if (pct < 30) timerProgress.style.background = 'var(--danger)';
+  else if (pct < 60) timerProgress.style.background = 'var(--warning)';
+  
+  const mins = Math.floor(remaining / 60000);
+  const secs = Math.floor((remaining % 60000) / 1000);
+  timerText.textContent = `${t('timerPrefix')} ${mins}:${secs.toString().padStart(2, '0')}`;
+
+  if (remaining <= 0) {
+    stopTrialTimer();
+    // Disconnect
+    if (wsNuwa) { wsNuwa.close(); wsNuwa = null; }
+    if (peerConnection) { peerConnection.close(); peerConnection = null; }
+    trialOverlay.classList.add('show');
+  }
+}
+
+function stopTrialTimer() {
+  if (trialTimer) { clearInterval(trialTimer); trialTimer = null; }
+}
+
+// ─── Utility ───
+function addMsg(text, type = 'system') {
+  const div = document.createElement('div');
+  div.className = `msg msg-${type}`;
+  div.textContent = text;
+  chatLog.appendChild(div);
+  chatLog.scrollTop = chatLog.scrollHeight;
+}
+function setStatus(id, text, state) {
+  document.getElementById(`${id}-status`).textContent = text;
+  document.getElementById(`${id}-dot`).className = 'dot dot-' + state;
+}
+function showSubtitle(text) { subtitleOverlay.innerHTML = ''; subtitleOverlay.textContent = text; subtitleOverlay.style.display = 'block'; }
+function hideSubtitle() { subtitleOverlay.innerHTML = ''; subtitleOverlay.style.display = 'none'; }
+
+// ─── Video aspect ───
+let videoAspectDetected = false;
+function detectVideoAspect() {
+  if (videoAspectDetected) return;
+  const w = avatarVideo.videoWidth, h = avatarVideo.videoHeight;
+  if (!w || !h) return;
+  videoAspectDetected = true;
+  const frame = document.getElementById('avatar-frame');
+  const ratio = w / h;
+  frame.classList.remove('landscape', 'square');
+  document.body.classList.remove('video-landscape');
+  if (ratio > 1.2) { frame.classList.add('landscape'); document.body.classList.add('video-landscape'); }
+  else if (ratio > 0.85 && ratio < 1.2) { frame.classList.add('square'); }
+}
+
+let bgAnimFrame;
+function drawBg() {
+  if (avatarVideo.readyState >= 2 && avatarVideo.videoWidth > 0) {
+    detectVideoAspect();
+    bgCanvas.width = 320; bgCanvas.height = 180;
+    bgCtx.drawImage(avatarVideo, 0, 0, 320, 180);
+  }
+  bgAnimFrame = requestAnimationFrame(drawBg);
+}
+
+playOverlay.addEventListener('click', () => {
+  avatarVideo.muted = false;
+  avatarVideo.play().catch(() => {});
+  playOverlay.classList.add('hidden');
+});
+
+// ─── Demo/Trial App ───
+async function startAppDemo() {
+  chatLog.innerHTML = '';
+  videoAspectDetected = false;
+  showLoading('loadWake');
+
+  // Gateway check
+  try {
+    const gwResp = await fetch('/api/health');
+    const gwData = await gwResp.json();
+    if (gwData.ok) setStatus('claw', t('statusConnected'), 'connected');
+    else setStatus('claw', t('statusGwOff'), 'error');
+  } catch { setStatus('claw', t('statusGwOff'), 'error'); }
+
+  // Get demo token + avatarId
+  showLoading('loadConnect');
+  const demoResp = await fetch('/api/demo/token?lang=' + currentLang);
+  const demoData = await demoResp.json();
+  if (demoData.code !== 0) {
+    hideLoading();
+    setStatus('nuwa', t('statusAuthFail'), 'error');
+    addMsg(t('msgTrialUnavail'));
+    return;
+  }
+  config.avatarId = demoData.avatarId;
+  showLoading('loadVideo');
+  connectNuwa(demoData.data);
+}
+
+// ─── Main App ───
+async function startApp() {
+  chatLog.innerHTML = '';
+  videoAspectDetected = false;
+  showLoading('loadWake');
+
+  const cfgResp = await fetch('/api/config');
+  config = await cfgResp.json();
+
+  // Gateway check
+  try {
+    const gwResp = await fetch('/api/health');
+    const gwData = await gwResp.json();
+    if (gwData.ok) setStatus('claw', t('statusConnected'), 'connected');
+    else setStatus('claw', t('statusGwOff'), 'error');
+  } catch { setStatus('claw', t('statusGwOff'), 'error'); }
+
+  // Token
+  showLoading('loadConnect');
+  const tokenResp = await fetch('/api/token');
+  const tokenData = await tokenResp.json();
+  if (tokenData.code !== 0) {
+    hideLoading();
+    setStatus('nuwa', t('statusAuthFail'), 'error');
+    addMsg(t('msgAuthFail'));
+    return;
+  }
+  showLoading('loadVideo');
+  connectNuwa(tokenData.data);
+}
+
+// ─── NuwaAI ───
+function connectNuwa(token) {
+  const wsUrl = `wss://wsapi.nuwaai.com/websk/humanAgent/humanctrl/webrtc/${config.avatarId}/asr?access_token=${token}`;
+  wsNuwa = new WebSocket(wsUrl);
+
+  wsNuwa.onopen = () => {
+    console.log('[NuwaAI] WebSocket connected, starting audio capture (asr mode)');
+    // 参考 demo: humanctrl + bizId=asr 时，WebSocket 连接成功后立即开启音频采集
+    if (!isRecording) { startRec(); }
+  };
+
+  wsNuwa.onmessage = (event) => {
+    if (event.data instanceof Blob) return;
+    let msg;
+    try { msg = JSON.parse(event.data); } catch { return; }
+    switch (msg.type) {
+      case 'avator-connect':
+        if (msg.code === 200) {
+          sessionId = msg.data?.sessionid;
+          setStatus('nuwa', t('statusConnected'), 'connected');
+          showLoading('loadMakeup');
+          startWebRTC();
+        } else { setStatus('nuwa', t('statusError'), 'error'); addMsg('❌ ' + msg.msg); }
+        break;
+      case 'avator-play':
+        if (msg.code === 200 && msg.data?.sdp) {
+          peerConnection.setRemoteDescription(new RTCSessionDescription({ type: 'answer', sdp: msg.data.sdp }))
+            .then(() => {
+              hideLoading();
+              // 自动播放并解除静音
+              avatarVideo.muted = false;
+              avatarVideo.play().catch(() => {});
+              playOverlay.classList.add('hidden');
+              addMsg(t('msgReady'));
+              drawBg();
+              // 龙虾主动打招呼
+              setTimeout(() => {
+                const greeting = isTrial ? t('greetingTrial') : t('greetingNormal');
+                addMsg(greeting, 'agent');
+                sendToAvatar(greeting);
+              }, 1500);
+            });
+        }
+        break;
+      case 'asr-text': if (msg.data?.content) showSubtitle('🎤 ' + msg.data.content); break;
+      case 'asr-commit': if (msg.data?.content) { hideSubtitle(); addMsg(msg.data.content, 'user'); sendToOpenClaw(msg.data.content); } break;
+      case 'avator-text': if (msg.data?.text) showSubtitle(msg.data.text); break;
+      case 'avator-playstop': console.log('[NuwaAI] avator-playstop received'); onAvatarPlayStop(); break;
+    }
+  };
+  wsNuwa.onerror = () => setStatus('nuwa', t('statusError'), 'error');
+  wsNuwa.onclose = () => {
+    setStatus('nuwa', t('statusDisconnected'), 'error');
+    isProcessing = false;
+    // Show reconnect overlay (unless trial expired or setup is open)
+    if (!trialOverlay.classList.contains('show') && !setupScreen.classList.contains('show')) {
+      reconnectOverlay.classList.add('show');
+    }
+  };
+}
+
+// ─── WebRTC ───
+function startWebRTC() {
+  peerConnection = new RTCPeerConnection(null);
+  peerStream = new MediaStream();
+  avatarVideo.srcObject = peerStream;
+  peerConnection.ontrack = (e) => { peerStream.addTrack(e.track); avatarVideo.play().catch(() => {}); };
+  peerConnection.addTransceiver('audio', { direction: 'recvonly' });
+  peerConnection.addTransceiver('video', { direction: 'recvonly' });
+  peerConnection.createOffer().then(o => peerConnection.setLocalDescription(o)).then(() => {
+    wsNuwa.send(JSON.stringify({ type: 'playStream', data: { sdp: peerConnection.localDescription.sdp } }));
+  }).catch(err => addMsg('❌ ' + err.message));
+}
+
+// ─── Chat (streaming with sentence-level TTS) ───
+// 句子分隔符：中英文句号、问号、感叹号、换行
+const SENTENCE_DELIMITERS = /([。！？.!?\n])/;
+
+// 直接发给数字人播报
+function sendToAvatar(text) {
+  if (!text || !wsNuwa || wsNuwa.readyState !== WebSocket.OPEN) return;
+  console.log('[Avatar] Sending:', text);
+  wsNuwa.send(JSON.stringify({ type: 'avatar', data: { content: text } }));
+}
+
+// 打断：参考 demo humanctrl 的 sendInterruptChat，直接发 interrupt_chat 即可
+function interruptAvatar() {
+  if (wsNuwa?.readyState === WebSocket.OPEN) {
+    console.log('[Avatar] interrupt_chat');
+    wsNuwa.send(JSON.stringify({ type: 'interrupt_chat' }));
+  }
+  hideSubtitle();
+}
+
+function onAvatarPlayStop() {
+  hideSubtitle();
+  isProcessing = false;
+  // 只有在自动播放中才自动翻页，暂停状态不触发
+  if (presPlaying && presMode) {
+    onPresPlayStop();
+  }
+}
+
+// 检测是否要进入演讲模式
+function detectPresIntent(text) {
+  const t = text.trim().toLowerCase();
+  const keywords = ['演讲模式', '讲解模式', '进入演讲', '讲ppt', '讲解ppt', '讲pdf',
+    'presentation mode', '开始演讲', '帮我讲'];
+  return keywords.some(k => t.includes(k));
+}
+
+// 演讲模式下的语音命令
+function handlePresVoiceCommand(text) {
+  const t = text.trim().toLowerCase();
+  if (t.includes('暂停') || t.includes('停') || t.includes('pause') || t.includes('stop')) {
+    if (presPlaying) stopAutoNarrate();
+    return true;
+  }
+  if (t.includes('继续') || t.includes('continue') || t.includes('resume') || t.includes('播放')) {
+    if (!presPlaying && presData) startAutoNarrate();
+    return true;
+  }
+  if (t.includes('下一页') || t.includes('next')) {
+    if (presData && presPage < presData.total_pages - 1) { stopAutoNarrate(); showSlide(presPage + 1); }
+    return true;
+  }
+  if (t.includes('上一页') || t.includes('previous') || t.includes('back')) {
+    if (presData && presPage > 0) { stopAutoNarrate(); showSlide(presPage - 1); }
+    return true;
+  }
+  if (t.includes('退出') || t.includes('exit') || t.includes('结束讲解')) {
+    exitPresMode();
+    return true;
+  }
+  const pageMatch = t.match(/(?:跳到|第)(\d+)页/);
+  if (pageMatch && presData) {
+    const p = parseInt(pageMatch[1], 10) - 1;
+    if (p >= 0 && p < presData.total_pages) { stopAutoNarrate(); showSlide(p); }
+    return true;
+  }
+  return false;
+}
+
+async function sendToOpenClaw(text) {
+  // 检测是否要进入演讲模式
+  if (detectPresIntent(text)) {
+    enterPresMode();
+    return;
+  }
+
+  // 演讲模式下拦截语音命令
+  if (presMode && handlePresVoiceCommand(text)) {
+    return;
+  }
+
+  // 打断当前播放，然后直接发新内容，不需要等待
+  interruptAvatar();
+  isProcessing = true;
+
+  // Show thinking indicator on avatar subtitle
+  subtitleOverlay.innerHTML = '<div class="thinking-dots" style="justify-content:center;padding:4px 0;"><span></span><span></span><span></span></div>';
+  subtitleOverlay.style.display = 'block';
+  const avatarThinking = document.getElementById('avatar-thinking');
+  if (avatarThinking && !presMode) avatarThinking.classList.add('show');
+
+  // In presentation pause mode, also show thinking on pres-subtitle and pres-chat-log
+  let presMsgDiv = null;
+  const pipThinking = document.getElementById('pip-thinking');
+  if (presMode && !presPlaying) {
+    const presSubEl = document.getElementById('pres-subtitle');
+    if (presSubEl) {
+      presSubEl.innerHTML = '<div class="thinking-dots" style="justify-content:center;padding:4px 0;"><span></span><span></span><span></span></div>';
+      presSubEl.style.display = 'block';
+    }
+    if (pipThinking) pipThinking.classList.add('show');
+    const presChatLog = document.getElementById('pres-chat-log');
+    if (presChatLog) {
+      presMsgDiv = document.createElement('div');
+      presMsgDiv.className = 'msg msg-agent msg-thinking';
+      presMsgDiv.innerHTML = '<div class="thinking-dots"><span></span><span></span><span></span></div><span class="thinking-label">思考中</span>';
+      presChatLog.appendChild(presMsgDiv);
+      presChatLog.scrollTop = presChatLog.scrollHeight;
+    }
+  }
+
+  // Create a thinking indicator
+  const msgDiv = document.createElement('div');
+  msgDiv.className = 'msg msg-agent msg-thinking';
+  msgDiv.innerHTML = '<div class="thinking-dots"><span></span><span></span><span></span></div><span class="thinking-label">思考中</span>';
+  chatLog.appendChild(msgDiv);
+  chatLog.scrollTop = chatLog.scrollHeight;
+
+  let fullReply = '';
+  let sentenceBuffer = ''; // 未发送给数字人的文本缓冲
+
+  try {
+    const resp = await fetch('/api/chat/stream', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ message: text, sessionKey: chatSessionKey }),
+    });
+
+    if (!resp.ok || !resp.body) {
+      // Fallback to non-streaming
+      const data = await resp.json().catch(() => ({}));
+      fullReply = data.reply || data.error || '...';
+      // Clear thinking state
+      msgDiv.classList.remove('msg-thinking');
+      msgDiv.innerHTML = '';
+      msgDiv.textContent = fullReply;
+      if (avatarThinking) avatarThinking.classList.remove('show');
+      sendToAvatar(fullReply);
+    } else {
+      const reader = resp.body.getReader();
+      const decoder = new TextDecoder();
+      let buffer = '';
+      // Clear thinking state when stream starts
+      msgDiv.classList.remove('msg-thinking');
+      msgDiv.innerHTML = '';
+      msgDiv.textContent = '';
+      if (avatarThinking) avatarThinking.classList.remove('show');
+      // Also clear pres thinking state
+      if (presMsgDiv) {
+        presMsgDiv.classList.remove('msg-thinking');
+        presMsgDiv.innerHTML = '';
+        presMsgDiv.textContent = '';
+      }
+      if (presMode && !presPlaying) {
+        const presSubEl = document.getElementById('pres-subtitle');
+        if (presSubEl) { presSubEl.innerHTML = ''; presSubEl.textContent = ''; }
+        if (pipThinking) pipThinking.classList.remove('show');
+      }
+
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+        buffer += decoder.decode(value, { stream: true });
+        const lines = buffer.split('\n');
+        buffer = lines.pop() || '';
+
+        for (const line of lines) {
+          const trimmed = line.trim();
+          if (!trimmed || !trimmed.startsWith('data: ')) continue;
+          const data = trimmed.slice(6);
+          if (data === '[DONE]') continue;
+          try {
+            const parsed = JSON.parse(data);
+            if (parsed.error) { fullReply += parsed.error; msgDiv.textContent = fullReply; continue; }
+            if (parsed.content) {
+              fullReply += parsed.content;
+              msgDiv.textContent = fullReply;
+              chatLog.scrollTop = chatLog.scrollHeight;
+
+              // Also stream to pres subtitle + chat bubble during pause
+              if (presMode && !presPlaying) {
+                if (presMsgDiv) presMsgDiv.textContent = fullReply;
+                const presSubEl = document.getElementById('pres-subtitle');
+                if (presSubEl) { presSubEl.textContent = fullReply; presSubEl.style.display = 'block'; }
+              }
+
+              // 逐句推送给数字人播报
+              sentenceBuffer += parsed.content;
+              const parts = sentenceBuffer.split(SENTENCE_DELIMITERS);
+              // parts: [text, delimiter, text, delimiter, ..., remaining]
+              // 每两个为一组（文本+分隔符），最后一个是未完成的句子
+              while (parts.length > 2) {
+                const sentence = parts.shift() + parts.shift(); // text + delimiter
+                const trimmed = sentence.trim();
+                if (trimmed) sendToAvatar(trimmed);
+              }
+              sentenceBuffer = parts.join('');
+            }
+          } catch {}
+        }
+      }
+
+      // 流结束，发送剩余的文本
+      const remaining = sentenceBuffer.trim();
+      if (remaining) sendToAvatar(remaining);
+    }
+
+    if (!fullReply) fullReply = '...';
+    // In presentation pause mode, show agent reply as subtitle + update chat bubble
+    if (presMode && !presPlaying) {
+      const subtitleEl = document.getElementById('pres-subtitle');
+      if (subtitleEl) {
+        subtitleEl.innerHTML = '';
+        subtitleEl.textContent = fullReply;
+        subtitleEl.style.display = 'block';
+      }
+      if (presMsgDiv) {
+        presMsgDiv.classList.remove('msg-thinking');
+        presMsgDiv.innerHTML = '';
+        presMsgDiv.textContent = fullReply;
+      }
+      if (pipThinking) pipThinking.classList.remove('show');
+    }
+  } catch (e) {
+    msgDiv.textContent = '❌ ' + e.message;
+    // 发送已有的缓冲
+    const remaining = sentenceBuffer.trim();
+    if (remaining) sendToAvatar(remaining);
+    isProcessing = false;
+  }
+}
+
+sendBtn.addEventListener('click', () => {
+  const msg = textInput.value.trim(); if (!msg) return;
+  textInput.value = ''; addMsg(msg, 'user'); sendToOpenClaw(msg);
+});
+textInput.addEventListener('keydown', (e) => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendBtn.click(); } });
+
+
+// ─── Mic (click-to-toggle, matching NuwaAI demo pattern) ───
+let audioContext, mediaStream, workletNode, isRecording = false;
+let micStarting = false;
+
+micBtn.addEventListener('click', () => {
+  console.log('[Mic] Button clicked, isRecording:', isRecording, 'micStarting:', micStarting);
+  console.log('[Mic] wsNuwa state:', wsNuwa?.readyState, 'OPEN=', WebSocket.OPEN);
+  if (isRecording) { stopRec(); }
+  else { startRec(); }
+});
+
+async function startRec() {
+  if (micStarting || isRecording) return;
+  if (!wsNuwa || wsNuwa.readyState !== WebSocket.OPEN) {
+    addMsg(t('msgMicNoWs') || '⚠️ 请先连接数字人');
+    return;
+  }
+  micStarting = true;
+  micBtn.classList.add('recording');
+  if (avatarVideo.muted) { avatarVideo.muted = false; playOverlay.classList.add('hidden'); }
+
+  if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+    addMsg('⚠️ ' + t('msgMicNoSecure'));
+    micStarting = false; micBtn.classList.remove('recording');
+    return;
+  }
+
+  try {
+    // Step 1: Get mic stream
+    mediaStream = await navigator.mediaDevices.getUserMedia({ audio: true });
+    console.log('[Mic] Got microphone stream');
+
+    // Step 2: Create AudioContext at 16kHz
+    audioContext = new (window.AudioContext || window.webkitAudioContext)({
+      sampleRate: 16000,
+      channelCount: 1
+    });
+    console.log('[Mic] AudioContext created, sampleRate:', audioContext.sampleRate);
+
+    // Step 3: Load AudioWorklet
+    await audioContext.audioWorklet.addModule('/pcm-processor.js');
+
+    // Step 4: Connect mic → worklet → destination
+    const source = audioContext.createMediaStreamSource(mediaStream);
+    workletNode = new AudioWorkletNode(audioContext, 'pcm-processor');
+
+    workletNode.port.onmessage = (event) => {
+      if (event.data.type === 'audioData') {
+        if (isRecording && wsNuwa?.readyState === WebSocket.OPEN) {
+          wsNuwa.send(event.data.data);
+        }
+      }
+    };
+
+    source.connect(workletNode);
+    workletNode.connect(audioContext.destination);
+
+    isRecording = true;
+    micStarting = false;
+    addMsg(t('msgMicOn') || '🎤 录音中... 再次点击停止', 'system');
+    console.log('[Mic] Recording started (16kHz, 100ms chunks)');
+  } catch (err) {
+    console.error('[Mic] Error:', err.name, err.message);
+    if (err.name === 'NotAllowedError' || err.name === 'PermissionDeniedError') addMsg(t('msgMicDenied'));
+    else if (err.name === 'NotFoundError' || err.name === 'DevicesNotFoundError') addMsg(t('msgMicNotFound'));
+    else if (err.name === 'NotReadableError' || err.name === 'TrackStartError') addMsg(t('msgMicBusy'));
+    else addMsg(t('msgMicError') + ' (' + err.name + ': ' + err.message + ')');
+    micStarting = false; micBtn.classList.remove('recording');
+    if (mediaStream) { mediaStream.getTracks().forEach(tk => tk.stop()); mediaStream = null; }
+    if (audioContext) { audioContext.close().catch(() => {}); audioContext = null; }
+  }
+}
+
+function stopRec() {
+  if (!isRecording && !micStarting) return;
+  isRecording = false; micStarting = false;
+  micBtn.classList.remove('recording');
+  if (workletNode) { workletNode.port.postMessage('stop'); workletNode.disconnect(); workletNode = null; }
+  if (audioContext) { audioContext.close().catch(() => {}); audioContext = null; }
+  if (mediaStream) { mediaStream.getTracks().forEach(tk => tk.stop()); mediaStream = null; }
+  console.log('[Mic] Recording stopped');
+}
+
+// ─── Presentation Mode ───
+let presData = null;
+let presDir = '';
+let presPage = 0;
+let presMode = false;    // in presentation mode (list or playback)
+let presPlaying = false; // auto-narrating
+let presSubtitleVisible = false; // subtitle hidden by default
+let presTimer = null;
+
+const slideImage = document.getElementById('slide-image');
+const slideCounter = document.getElementById('slide-counter');
+const presListView = document.getElementById('pres-list-view');
+const slideViewer = document.getElementById('slide-viewer');
+const slideControls = document.getElementById('slide-controls');
+
+// ── Enter presentation mode: show list ──
+function enterPresMode() {
+  presMode = true;
+  document.body.classList.add('presentation-mode');
+  showPresList();
+}
+
+// ── Exit presentation mode entirely ──
+function exitPresMode() {
+  presMode = false;
+  presPlaying = false;
+  presData = null;
+  presDir = '';
+  presPage = 0;
+  document.body.classList.remove('presentation-mode', 'pres-playing', 'pres-paused');
+  presListView.style.display = '';
+  slideViewer.style.display = 'none';
+  slideControls.style.display = 'none';
+  document.getElementById('pres-chat-panel').classList.remove('show');
+  interruptAvatar();
+  addMsg('📊 已退出演讲模式', 'system');
+}
+
+// ── Load and show presentation list ──
+async function showPresList() {
+  presListView.style.display = '';
+  slideViewer.style.display = 'none';
+  slideControls.style.display = 'none';
+  presPlaying = false;
+
+  const listEl = document.getElementById('pres-list');
+  listEl.innerHTML = '<div style="color:var(--text-dim);text-align:center;padding:40px;">加载中...</div>';
+
+  try {
+    const resp = await fetch('/api/presentations');
+    const items = await resp.json();
+    if (!items.length) {
+      listEl.innerHTML = '<div style="color:var(--text-dim);text-align:center;padding:40px;">还没有演示文件<br>在下方输入文件路径添加</div>';
+      return;
+    }
+    listEl.innerHTML = '';
+    items.forEach(item => {
+      const div = document.createElement('div');
+      div.className = 'pres-item';
+      div.innerHTML = `
+        <div class="pres-info">
+          <div class="pres-name">${item.source}</div>
+          <div class="pres-meta">${item.totalPages} 页</div>
+        </div>
+        <span class="pres-badge ${item.ready ? '' : 'not-ready'}">${item.ready ? '✓ 就绪' : '⚠ 未完成'}</span>
+      `;
+      if (item.ready) {
+        div.addEventListener('click', () => startPlayback(item.dir));
+      } else {
+        div.addEventListener('click', () => {
+          addMsg(`⚠ "${item.source}" 还没有演讲词，请先用 Claw Presenter 生成`, 'system');
+        });
+      }
+      listEl.appendChild(div);
+    });
+  } catch (e) {
+    listEl.innerHTML = `<div style="color:var(--danger);text-align:center;padding:40px;">加载失败: ${e.message}</div>`;
+  }
+}
+
+// ── Start playback of a presentation ──
+async function startPlayback(dir) {
+  try {
+    const resp = await fetch(`/api/presentation/data?dir=${encodeURIComponent(dir)}`);
+    const data = await resp.json();
+    if (!data.slides) { addMsg('❌ 无法加载', 'system'); return; }
+    presData = data;
+    presDir = dir;
+    presPage = 0;
+
+    presListView.style.display = 'none';
+    slideViewer.style.display = '';
+    slideControls.style.display = '';
+    showSlide(0);
+    addMsg(`📊 ${data.source || '演示文件'} — ${data.total_pages} 页，点 ▶ 开始讲解`, 'system');
+
+    // Mirror avatar video to PIP
+    const mainVideo = document.getElementById('avatar-video');
+    const pipVideo = document.getElementById('pres-avatar-video');
+    if (mainVideo.srcObject) {
+      pipVideo.srcObject = mainVideo.srcObject;
+      pipVideo.muted = false;
+      pipVideo.play().catch(() => {});
+    }
+  } catch (e) {
+    addMsg('❌ ' + e.message, 'system');
+  }
+}
+
+// ── Back to list from playback ──
+function backToList() {
+  presPlaying = false;
+  interruptAvatar();
+  presData = null;
+  showPresList();
+}
+
+function showSlide(pageIndex) {
+  if (!presData || pageIndex < 0 || pageIndex >= presData.total_pages) return;
+  presPage = pageIndex;
+  const slide = presData.slides[pageIndex];
+  slideImage.src = `/api/presentation/slide/${slide.image.replace('slides/', '')}?dir=${encodeURIComponent(presDir)}`;
+  slideCounter.textContent = `${pageIndex + 1} / ${presData.total_pages}`;
+}
+
+function narrateCurrentSlide() {
+  if (!presData || !presMode) return;
+  const slide = presData.slides[presPage];
+  const script = slide.script || slide.notes || '';
+  const subtitleEl = document.getElementById('pres-subtitle');
+
+  if (!script) {
+    if (subtitleEl) subtitleEl.style.display = 'none';
+    if (presPlaying && presPage < presData.total_pages - 1) {
+      showSlide(presPage + 1);
+      presTimer = setTimeout(narrateCurrentSlide, 500);
+    } else if (presPlaying) {
+      stopAutoNarrate();
+      addMsg('📊 全部讲解完毕！', 'system');
+      sendToAvatar('全部讲解完毕');
+    }
+    return;
+  }
+
+  // Show full script in bottom subtitle area
+  if (subtitleEl && presSubtitleVisible) {
+    subtitleEl.textContent = script;
+    subtitleEl.style.display = 'block';
+    subtitleEl.scrollTop = 0;
+  } else if (subtitleEl) {
+    subtitleEl.style.display = 'none';
+  }
+
+  addMsg(script, 'agent');
+  interruptAvatar();
+  sendToAvatar(script);
+}
+
+function startAutoNarrate() {
+  presPlaying = true;
+  document.body.classList.remove('pres-paused');
+  document.body.classList.add('pres-playing');
+  document.getElementById('slide-play').textContent = '⏸';
+  document.getElementById('slide-play').title = '暂停';
+  narrateCurrentSlide();
+}
+
+function stopAutoNarrate() {
+  presPlaying = false;
+  if (presTimer) { clearTimeout(presTimer); presTimer = null; }
+  document.body.classList.remove('pres-playing');
+  document.body.classList.add('pres-paused');
+  document.getElementById('slide-play').textContent = '▶';
+  document.getElementById('slide-play').title = '继续讲解';
+  interruptAvatar();
+  // Show pause subtitle
+  const subtitleEl = document.getElementById('pres-subtitle');
+  if (subtitleEl) {
+    subtitleEl.textContent = '已暂停 — 你可以提问或说「继续」';
+    subtitleEl.style.display = 'block';
+  }
+}
+
+function onPresPlayStop() {
+  if (presPlaying && presMode && presPage < presData.total_pages - 1) {
+    showSlide(presPage + 1);
+    presTimer = setTimeout(narrateCurrentSlide, 800);
+  } else if (presPlaying && presMode) {
+    stopAutoNarrate();
+    addMsg('📊 全部讲解完毕！', 'system');
+    sendToAvatar('全部讲解完毕');
+  }
+}
+
+// ── Slide controls ──
+document.getElementById('slide-prev').addEventListener('click', () => {
+  if (presData && presPage > 0) { stopAutoNarrate(); showSlide(presPage - 1); }
+});
+document.getElementById('slide-next').addEventListener('click', () => {
+  if (presData && presPage < presData.total_pages - 1) { stopAutoNarrate(); showSlide(presPage + 1); }
+});
+document.getElementById('slide-play').addEventListener('click', () => {
+  if (!presData) return;
+  if (presPlaying) { stopAutoNarrate(); }
+  else { startAutoNarrate(); }
+});
+document.getElementById('slide-back-list').addEventListener('click', backToList);
+document.getElementById('slide-exit').addEventListener('click', exitPresMode);
+document.getElementById('pres-list-exit').addEventListener('click', exitPresMode);
+
+// Chat toggle in presentation mode
+document.getElementById('pres-chat-toggle').addEventListener('click', () => {
+  document.getElementById('pres-chat-panel').classList.toggle('show');
+});
+document.getElementById('pres-text-input').addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') {
+    const text = e.target.value.trim();
+    if (!text) return;
+    e.target.value = '';
+    // Pause narration, send question to agent
+    if (presPlaying) stopAutoNarrate();
+    addMsg(text, 'user');
+    sendToOpenClaw(text);
+  }
+});
+
+// ── Add new presentation ──
+document.getElementById('pres-add-btn').addEventListener('click', () => {
+  document.getElementById('pres-file-input').click();
+});
+document.getElementById('pres-file-input').addEventListener('change', async (e) => {
+  const file = e.target.files[0];
+  if (!file) return;
+  const statusEl = document.getElementById('pres-add-status');
+  statusEl.textContent = '⏳ 正在上传并解析 ' + file.name + '...';
+
+  try {
+    const formData = new FormData();
+    formData.append('file', file);
+    const resp = await fetch('/api/presentations/upload', {
+      method: 'POST',
+      body: formData,
+    });
+    const result = await resp.json();
+    if (result.error) {
+      statusEl.textContent = '❌ ' + result.error;
+      return;
+    }
+    statusEl.textContent = `✅ ${file.name} — ${result.total_pages} 页已解析`;
+    e.target.value = ''; // reset file input
+    showPresList();
+  } catch (err) {
+    statusEl.textContent = '❌ ' + err.message;
+  }
+});
+
+// Parse agent reply for presentation control tags
+function processPresCommands(text) {
+  return text; // 不再依赖 agent 控制标签
+}
+
+// ── Subtitle toggle ──
+document.getElementById('pres-subtitle-toggle').addEventListener('click', () => {
+  presSubtitleVisible = !presSubtitleVisible;
+  const btn = document.getElementById('pres-subtitle-toggle');
+  const subtitleEl = document.getElementById('pres-subtitle');
+  btn.textContent = presSubtitleVisible ? '字幕 ON' : '字幕 OFF';
+  if (!presSubtitleVisible && subtitleEl) {
+    subtitleEl.style.display = 'none';
+  } else if (presSubtitleVisible && subtitleEl && presData && presData.slides[presPage]) {
+    const script = presData.slides[presPage].script || presData.slides[presPage].notes || '';
+    if (script) {
+      subtitleEl.textContent = script;
+      subtitleEl.style.display = 'block';
+    }
+  }
+});
+
+// ─── Init ───
+applyI18n();
+// Ensure clean state on load
+document.body.classList.remove('presentation-mode', 'pres-playing');
+(async () => {
+  const resp = await fetch('/api/config');
+  config = await resp.json();
+  // Always show welcome page, but if configured, "I have my own" button goes straight to connect
+})();
+</script>
+</body>
+</html>

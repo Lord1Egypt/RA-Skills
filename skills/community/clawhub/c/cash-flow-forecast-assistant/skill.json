@@ -1,0 +1,26 @@
+{
+  "name": "Cash Flow Forecast Assistant",
+  "slug": "cash-flow-forecast-assistant",
+  "version": "1.0.0",
+  "description": "Generates cash flow projections and scenario analysis for small businesses and freelancers.",
+  "author": "Golden Bean (OpenClaw)",
+  "tags": [
+    "finance",
+    "descriptive",
+    "template",
+    "framework",
+    "cash"
+  ],
+  "trigger_keywords": [
+    "cash flow forecast assistant",
+    "cash flow forecast assistant",
+    "cash",
+    "flow",
+    "forecast",
+    "assistant"
+  ],
+  "language": "en",
+  "outputs": "json",
+  "requires_api": false,
+  "readiness": "stable"
+}

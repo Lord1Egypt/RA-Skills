@@ -1,0 +1,33 @@
+{
+  "name": "calculator-chat",
+  "version": "1.0.0",
+  "description": "Universal CLI tool for typing numbers into system calculator - works with any AI agent",
+  "main": "src/index.js",
+  "bin": {
+    "calc-chat": "./src/index.js"
+  },
+  "scripts": {
+    "start": "node src/index.js",
+    "test": "node src/index.js \"520\""
+  },
+  "keywords": [
+    "ai-agent",
+    "calculator",
+    "automation",
+    "cli",
+    "universal"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ShenyfZero9211/calculator-chat.git"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "os": [
+    "win32",
+    "darwin",
+    "linux"
+  ]
+}

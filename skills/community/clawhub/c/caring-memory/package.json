@@ -1,0 +1,13 @@
+{
+  "name": "caring-memory",
+  "version": "2.0.0",
+  "description": "AI-powered task reminder with Ebbinghaus curve + gamification + active time learning",
+  "author": "fan",
+  "license": "MIT",
+  "keywords": ["task", "reminder", "ebbinghaus", "gamification", "memory", "cron"],
+  "openclaw": {
+    "type": "skill",
+    "triggers": ["待办", "任务", "提醒", "remind", "task", "todo"],
+    "platform": "any"
+  }
+}

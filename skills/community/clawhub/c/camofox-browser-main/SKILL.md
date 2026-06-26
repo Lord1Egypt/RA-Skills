@@ -1,35 +1,25 @@
 ---
-name: "Camofox Browser Main"
-description: "Use the main local camofox-browser service for standard browser automation in this workspace. Trigger this when Lotfi asks for the main/local camofox browser..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/camofox-browser-main"
-sourceUrl: "https://clawhub.ai/skills/camofox-browser-main"
+name: camofox-browser-main
+description: Use the main local camofox-browser service for standard browser automation in this workspace. Trigger this when Lotfi asks for the main/local camofox browser, the default camofox browser, or work against the service on `http://127.0.0.1:9377`.
 ---
 
-# Camofox Browser Main
+Use the main local camofox-browser service.
 
-> Use the main local camofox-browser service for standard browser automation in this workspace. Trigger this when Lotfi asks for the main/local camofox browser...
+Default target:
+- API base URL: `http://127.0.0.1:9377`
+- Docker container: `peaceful_kare`
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/camofox-browser-main`
-- **Source URL:** [https://clawhub.ai/skills/camofox-browser-main](https://clawhub.ai/skills/camofox-browser-main)
+Workflow:
+1. Check `/health`.
+2. Open or reuse a tab.
+3. Wait/snapshot.
+4. Act.
+5. Snapshot again after state-changing actions.
 
-## Overview
+Hard rules:
+- Always send `userId`.
+- Prefer `sessionKey` when creating or reusing tabs.
+- Re-snapshot after click, type, press, or navigation.
+- If the user names another browser target explicitly, stop and use that specific skill instead.
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/camofox-browser-main
-```
+Use this as the default local camofox-browser target unless Lotfi explicitly asks for Selkies/test or the detached tailnet browser.

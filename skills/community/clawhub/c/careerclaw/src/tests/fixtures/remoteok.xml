@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Remote OK</title>
+    <link>https://remoteok.com</link>
+    <description>Remote OK Job Board</description>
+
+    <!-- Job 1: full fields including salary and known "at" title split -->
+    <item>
+      <title><![CDATA[Senior TypeScript Engineer at Acme Corp]]></title>
+      <link>https://remoteok.com/remote-jobs/1001</link>
+      <pubDate>Mon, 03 Mar 2026 10:00:00 +0000</pubDate>
+      <description><![CDATA[<p>We are looking for a Senior TypeScript Engineer with 5+ years of experience to join our distributed team.</p><p>You will work on our Node.js backend and React frontend.</p>]]></description>
+      <location>Worldwide</location>
+      <salary>$120,000 - $180,000</salary>
+      <company><![CDATA[Acme Corp]]></company>
+      <tag>typescript</tag>
+      <tag>node</tag>
+      <tag>react</tag>
+    </item>
+
+    <!-- Job 2: remote keyword in description, no explicit salary, no "at" in title -->
+    <item>
+      <title><![CDATA[Backend Engineer]]></title>
+      <link>https://remoteok.com/remote-jobs/1002</link>
+      <pubDate>Tue, 03 Mar 2026 09:00:00 +0000</pubDate>
+      <description><![CDATA[<p>100% remote position for a backend engineer. 3 years experience required.</p>]]></description>
+      <location>Remote</location>
+      <company><![CDATA[Beta Startup]]></company>
+    </item>
+
+    <!-- Job 3: hybrid work mode in description -->
+    <item>
+      <title><![CDATA[Product Designer at Gamma Inc]]></title>
+      <link>https://remoteok.com/remote-jobs/1003</link>
+      <pubDate>Sun, 01 Mar 2026 08:00:00 +0000</pubDate>
+      <description><![CDATA[<p>Hybrid role based in Austin TX. 2+ years of experience preferred.</p>]]></description>
+      <location>Austin, TX</location>
+      <salary>$80k - $110k</salary>
+    </item>
+  </channel>
+</rss>

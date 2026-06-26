@@ -1,0 +1,269 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "CCPA Privacy Checker Tool",
+    "version": "0.1.0"
+  },
+  "paths": {
+    "/ccpa-compliance": {
+      "post": {
+        "summary": "Ccpa Privacy Compliance Check",
+        "operationId": "ccpa_privacy_compliance_check_ccpa_compliance_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CCPAAssessment"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "CCPAAssessment": {
+        "properties": {
+          "business_name": {
+            "type": "string",
+            "title": "Business Name"
+          },
+          "business_type": {
+            "type": "string",
+            "title": "Business Type"
+          },
+          "annual_revenue": {
+            "type": "string",
+            "title": "Annual Revenue"
+          },
+          "california_consumers": {
+            "type": "string",
+            "title": "California Consumers"
+          },
+          "personal_info_types": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Personal Info Types"
+          },
+          "data_sources": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Data Sources"
+          },
+          "sells_personal_info": {
+            "type": "boolean",
+            "title": "Sells Personal Info"
+          },
+          "shares_for_advertising": {
+            "type": "boolean",
+            "title": "Shares For Advertising"
+          },
+          "has_website": {
+            "type": "boolean",
+            "title": "Has Website"
+          },
+          "has_mobile_app": {
+            "type": "boolean",
+            "title": "Has Mobile App"
+          },
+          "uses_third_parties": {
+            "type": "boolean",
+            "title": "Uses Third Parties"
+          },
+          "collects_sensitive_info": {
+            "type": "boolean",
+            "title": "Collects Sensitive Info"
+          },
+          "right_to_know": {
+            "type": "boolean",
+            "title": "Right To Know"
+          },
+          "right_to_delete": {
+            "type": "boolean",
+            "title": "Right To Delete"
+          },
+          "right_to_opt_out": {
+            "type": "boolean",
+            "title": "Right To Opt Out"
+          },
+          "right_to_correct": {
+            "type": "boolean",
+            "title": "Right To Correct"
+          },
+          "right_to_limit": {
+            "type": "boolean",
+            "title": "Right To Limit"
+          },
+          "non_discrimination": {
+            "type": "boolean",
+            "title": "Non Discrimination"
+          },
+          "privacy_policy_updated": {
+            "type": "boolean",
+            "title": "Privacy Policy Updated"
+          },
+          "collection_disclosure": {
+            "type": "boolean",
+            "title": "Collection Disclosure"
+          },
+          "business_purposes": {
+            "type": "boolean",
+            "title": "Business Purposes"
+          },
+          "third_party_sharing": {
+            "type": "boolean",
+            "title": "Third Party Sharing"
+          },
+          "retention_periods": {
+            "type": "boolean",
+            "title": "Retention Periods"
+          },
+          "contact_info": {
+            "type": "boolean",
+            "title": "Contact Info"
+          },
+          "request_processing": {
+            "type": "boolean",
+            "title": "Request Processing"
+          },
+          "identity_verification": {
+            "type": "boolean",
+            "title": "Identity Verification"
+          },
+          "response_timeframes": {
+            "type": "boolean",
+            "title": "Response Timeframes"
+          },
+          "employee_training": {
+            "type": "boolean",
+            "title": "Employee Training"
+          },
+          "vendor_contracts": {
+            "type": "boolean",
+            "title": "Vendor Contracts"
+          },
+          "data_inventory": {
+            "type": "boolean",
+            "title": "Data Inventory"
+          },
+          "record_keeping": {
+            "type": "boolean",
+            "title": "Record Keeping"
+          },
+          "regular_audits": {
+            "type": "boolean",
+            "title": "Regular Audits"
+          }
+        },
+        "type": "object",
+        "required": [
+          "business_name",
+          "business_type",
+          "annual_revenue",
+          "california_consumers",
+          "personal_info_types",
+          "data_sources",
+          "sells_personal_info",
+          "shares_for_advertising",
+          "has_website",
+          "has_mobile_app",
+          "uses_third_parties",
+          "collects_sensitive_info",
+          "right_to_know",
+          "right_to_delete",
+          "right_to_opt_out",
+          "right_to_correct",
+          "right_to_limit",
+          "non_discrimination",
+          "privacy_policy_updated",
+          "collection_disclosure",
+          "business_purposes",
+          "third_party_sharing",
+          "retention_periods",
+          "contact_info",
+          "request_processing",
+          "identity_verification",
+          "response_timeframes",
+          "employee_training",
+          "vendor_contracts",
+          "data_inventory",
+          "record_keeping",
+          "regular_audits"
+        ],
+        "title": "CCPAAssessment"
+      },
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "type": "array",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
+      },
+      "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Location"
+          },
+          "msg": {
+            "type": "string",
+            "title": "Message"
+          },
+          "type": {
+            "type": "string",
+            "title": "Error Type"
+          }
+        },
+        "type": "object",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError"
+      }
+    }
+  }
+}

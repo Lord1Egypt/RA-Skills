@@ -1,0 +1,4 @@
+interface:
+  display_name: "China Holiday Calendar Sync"
+  short_description: "Official China holiday notice discovery and parsing"
+  default_prompt: "Use $china-holiday-calendar-sync to discover and parse official China holiday notices from gov.cn."

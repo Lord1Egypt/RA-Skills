@@ -1,0 +1,25 @@
+{
+  "version": "v1",
+  "fields": [
+    {
+      "name": "fixtureId",
+      "type": "string"
+    },
+    {
+      "name": "route",
+      "type": "string"
+    },
+    {
+      "name": "defectCategory",
+      "type": "string"
+    },
+    {
+      "name": "severity",
+      "type": "string"
+    },
+    {
+      "name": "status",
+      "type": "string"
+    }
+  ]
+}

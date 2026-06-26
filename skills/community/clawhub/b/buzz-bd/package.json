@@ -1,0 +1,39 @@
+{
+  "name": "@solcex/buzz-bd-skill",
+  "version": "1.0.0",
+  "description": "Buzz BD — Token Discovery & BD Intelligence for OpenClaw/ClawHub",
+  "type": "module",
+  "main": "scripts/eliza-adapter.mjs",
+  "scripts": {
+    "scan": "node scripts/buzz-scan.mjs",
+    "scan:sol": "node scripts/buzz-scan.mjs --chain solana",
+    "scan:eth": "node scripts/buzz-scan.mjs --chain ethereum",
+    "scan:bsc": "node scripts/buzz-scan.mjs --chain bsc",
+    "scan:hot": "node scripts/buzz-scan.mjs --min-score 85",
+    "scan:json": "node scripts/buzz-scan.mjs --json",
+    "publish": "bash scripts/publish-to-clawhub.sh"
+  },
+  "keywords": [
+    "openclaw",
+    "clawhub",
+    "buzz-bd",
+    "solcex",
+    "token-discovery",
+    "business-development",
+    "dexscreener",
+    "erc-8004",
+    "x402",
+    "agent-skill",
+    "crypto"
+  ],
+  "author": "SolCex Exchange (buzzbysolcex@gmail.com)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/buzzbysolcex/buzz-bd-skill"
+  },
+  "homepage": "https://github.com/buzzbysolcex/buzz-bd-skill",
+  "engines": {
+    "node": ">=18"
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "chip": "esp32c6",
+  "series": "ESP32-C6",
+  "arch": "RISC-V Single-Core",
+  "vendor": "Espressif",
+  "physical_limits": {
+    "gpio_range": [0, 30],
+    "total_gpios": 31,
+    "input_only_pins": {
+      "pins": [],
+      "restriction": "NONE",
+      "has_internal_pull": true,
+      "warning": "ESP32-C6 没有经典 ESP32 风格的纯输入 GPIO 域，但仍需避免误用启动引脚和 SPI0/1 保留引脚。"
+    },
+    "internal_flash_psram": {
+      "pins": [24, 25, 26, 27, 28, 29, 30],
+      "interface": "SPI0_SPI1",
+      "warning": "根据 ESP-IDF GPIO 文档，GPIO24-30 通常用于 SPI0/1（常见为 SPI Flash），不建议作为普通 GPIO 使用。"
+    },
+    "strapping_pins": {
+      "pins": [4, 5, 8, 9, 15],
+      "critical_logic": {
+        "4": "启动配置引脚；上电时的外部电平会影响启动与调试行为。",
+        "5": "启动配置引脚；与上电启动判定相关，外部强驱动需谨慎。",
+        "8": "启动配置引脚；错误上下拉可能导致下载或启动行为异常。",
+        "9": "启动配置引脚；外部电平会影响启动模式选择。",
+        "15": "启动配置引脚；上电期间不宜被外设强驱动。"
+      },
+      "audit_level": "CRITICAL"
+    }
+  },
+  "peripherals": {
+    "adc": {
+      "adc1": [0, 1, 2, 3, 4, 5, 6],
+      "adc2": [],
+      "conflict": {
+        "target": "adc2",
+        "with": "Wi-Fi",
+        "warning": "ESP32-C6 当前规则库未启用 ADC2/Wi-Fi 冲突审计，因为官方 GPIO/ADC 文档主要暴露 ADC1 通道。"
+      }
+    },
+    "uart_default": {
+      "uart0": { "tx": 16, "rx": 17, "role": "Console/Log (board-dependent)" }
+    }
+  },
+  "expert_audit_rules": [
+    {
+      "id": "ERR_FLASH_PINS",
+      "condition": "GPIO 24-30 configured as I/O",
+      "level": "FATAL",
+      "message": "检测到对 ESP32-C6 SPI0/1 保留引脚的操作。"
+    },
+    {
+      "id": "WARN_STRAPPING",
+      "condition": "Strapping pin configured or externally driven",
+      "level": "WARNING",
+      "message": "ESP32-C6 启动配置引脚需要谨慎使用。"
+    }
+  ]
+}

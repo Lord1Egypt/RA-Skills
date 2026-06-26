@@ -1,0 +1,6 @@
+/* ===== TEXT BLOCK ===== */
+.text-block{border-radius:0;padding:16px 20px;margin-top:0;line-height:1.7;font-size:13px}
+.text-block h3{font-size:14px;font-weight:700;margin-bottom:6px}
+.text-block.success{background:#eafaf1;border:1px solid #a9dfbf;color:#1e8449}
+.text-block.warning{background:#fef9e7;border:1px solid #f9e79f;color:#7d6608}
+.text-block.danger{background:#fdf2f2;border:1px solid #f0b8b8;color:#b03a3a}

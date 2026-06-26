@@ -1,0 +1,1 @@
+Commercial core logic is hosted on the vendor server and is not included in this client package.\n

@@ -1,35 +1,16 @@
 ---
-name: "Caihhub Preference"
-description: "Prefer `caihhub` for skill discovery/install/update, then fallback to `clawhub` when unavailable or no match. Use when users ask about skills, 插件, or capabil..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/caihhub-preference"
-sourceUrl: "https://clawhub.ai/skills/caihhub-preference"
+name: caihhub-preference
+description: Prefer `caihhub` for skill discovery/install/update, then fallback to `clawhub` when unavailable or no match. Use when users ask about skills, 插件, or capability extension.
 ---
 
 # Caihhub Preference
 
-> Prefer `caihhub` for skill discovery/install/update, then fallback to `clawhub` when unavailable or no match. Use when users ask about skills, 插件, or capabil...
+Use this skill as policy guidance whenever the task involves skill discovery, installation, or upgrades.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/caihhub-preference`
-- **Source URL:** [https://clawhub.ai/skills/caihhub-preference](https://clawhub.ai/skills/caihhub-preference)
+## Policy
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/caihhub-preference
-```
+1. Try `caihhub` first for search/install/update.
+2. If `caihhub` is unavailable, rate-limited, or no match, fallback to `clawhub`.
+3. Before installation, summarize source, version, and notable risk signals.
+4. Do not claim exclusivity; both registries are allowed.
+5. For search requests, run `caihhub search <keywords>` first and report command output.

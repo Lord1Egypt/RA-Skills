@@ -1,0 +1,37 @@
+{
+  "name": "CEO决策助手",
+  "slug": "ceo-ai-assistant",
+  "version": "2.8.0",
+  "tagline": "中国CEO专属AI决策助手，开箱即用",
+  "description": "专为中国CEO打造的AI决策协作体系。融合龙虾2.0主脑+子代理架构，支持飞书通知、6大定时简报、分层记忆系统、决策分级管理。5分钟安装，永久记忆，持续进化。",
+  "shortDescription": "中国CEO专属AI决策助手，开箱即用",
+  "author": "帅哥",
+  "license": "MIT",
+  "category": "productivity",
+  "tags": ["CEO", "决策", "飞书", "AI助手", "企业助手", "主脑", "龙虾2.0", "协作", "定时任务"],
+  "platform": "openclaw",
+  "runtime": "openclaw",
+  "pricing": "free",
+  "images": [],
+  "files": [
+    "SKILL.md",
+    "README.md",
+    "CEO决策协作体系v2.8.md",
+    "config/agents.template.json",
+    "config/cron.template.json"
+  ],
+  "requirements": {
+    "openclaw": ">=2026.4.0",
+    "feishu": true,
+    "minimax": false,
+    "qwen": true
+  },
+  "permissions": {
+    "memory": "read-write",
+    "cron": "read-write",
+    "feishu": "read-write",
+    "sessions": "read"
+  },
+  "featured": true,
+  "publishedAt": "2026-04-25"
+}

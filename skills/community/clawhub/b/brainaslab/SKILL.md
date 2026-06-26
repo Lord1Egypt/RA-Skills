@@ -1,35 +1,21 @@
----
-name: "BrainASLab"
-description: "Automatically analyzes FreeSurfer stats files to compute cortical asymmetry indices, generating CSV results and publication-ready plots."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/brainaslab"
-sourceUrl: "https://clawhub.ai/skills/brainaslab"
----
+# BrainASLab — FreeSurfer Asymmetry Analyzer
 
-# BrainASLab
+Upload FreeSurfer `lh.aparc.stats` and `rh.aparc.stats`.
 
-> Automatically analyzes FreeSurfer stats files to compute cortical asymmetry indices, generating CSV results and publication-ready plots.
+This skill automatically:
+- Parses cortical ROI metrics
+- Computes Asymmetry Index (AS) for Thickness, Area, and Volume
+- Generates publication-ready plots
+- Outputs AS_results.csv
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/brainaslab`
-- **Source URL:** [https://clawhub.ai/skills/brainaslab](https://clawhub.ai/skills/brainaslab)
+## Input
+- lh.aparc.stats
+- rh.aparc.stats
 
-## Overview
+## Output
+- AS_results.csv
+- AS_bar_*.png
+- AS_hist_*.png
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/brainaslab
-```
+## Requirement
+- Matlab installed and available in PATH

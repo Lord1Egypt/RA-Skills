@@ -1,0 +1,342 @@
+{
+  "metadata": {
+    "last_updated": "2026-03-15",
+    "source": "Ministry of Industry and Information Technology, China Sporting Goods Federation, China Textile Industry Federation, National Bureau of Statistics",
+    "industry_scale_2026_target": "¥1.2 trillion revenue",
+    "growth_rate_target": "6.8% average annual growth (2024-2026)"
+  },
+  "industry_overview": {
+    "title": "China Sportswear & Outdoor Industry Overview (2026)",
+    "summary": "China is the world's largest producer of sportswear and outdoor equipment, supplying major global brands and rapidly growing domestic brands. The industry encompasses athletic apparel, footwear, outdoor gear (tents, backpacks, sleeping bags), and technical fabrics. In 2026, the industry is projected to exceed ¥1.2 trillion in revenue, driven by the fitness boom, outdoor recreation trends, winter sports legacy (post-2022 Olympics), and government support for national fitness initiatives.",
+    "key_policy_initiatives": [
+      {
+        "name": "National Fitness Program (2025-2030)",
+        "issuing_authorities": ["State Council", "General Administration of Sport"],
+        "key_measures": [
+          "Build 1,000 new sports parks and fitness trails",
+          "Subsidize sports participation and equipment purchases",
+          "Promote winter sports participation to 500 million people"
+        ]
+      },
+      {
+        "name": "Action Plan for High-Quality Development of Sporting Goods (2024-2026)",
+        "issuing_authorities": ["MIIT", "General Administration of Sport"],
+        "key_measures": [
+          "Support R&D in functional fabrics and eco-friendly materials",
+          "Encourage digitalization and smart manufacturing in sportswear factories",
+          "Promote domestic brands in international markets",
+          "Establish national-level sporting goods innovation centers"
+        ]
+      }
+    ],
+    "current_status_2025": {
+      "total_output_value": "¥1.12 trillion",
+      "share_of_textile_apparel_industry": "22%",
+      "key_drivers": ["running shoes", "yoga wear", "down jackets", "camping gear", "ski wear"],
+      "automation_rate": "55% (cutting and sewing lines in large factories)",
+      "export_value": "$75 billion",
+      "domestic_brand_growth": "15% year-on-year"
+    }
+  },
+  "supply_chain_structure": {
+    "title": "Sportswear & Outdoor Supply Chain Structure",
+    "upstream": {
+      "description": "Raw materials, functional fabrics, and components",
+      "categories": [
+        {
+          "name": "Functional Fabrics",
+          "items": ["moisture-wicking polyester", "nylon (ripstop)", "spandex (elastane)", "merino wool", "fleece", "down-proof fabrics", "waterproof/breathable membranes (ePTFE, PU)"],
+          "key_suppliers": ["Far Eastern New Century", "Texhong Textile", "Weiqiao Textile", "Huafon Spandex", "Toray China", "Suntextile"]
+        },
+        {
+          "name": "Insulation Materials",
+          "items": ["down (goose/duck)", "synthetic insulation (Primaloft, Thinsulate alternatives)", "fleece"],
+          "key_suppliers": ["Anhui Honren (down)", "Jiangsu Easpring (down)", "3M China", "Invista China"]
+        },
+        {
+          "name": "Components & Accessories",
+          "items": ["zippers", "snap fasteners", "cord locks", "buckles", "velcro", "reflective trims"],
+          "key_suppliers": ["YKK China", "SBS Zipper", "Weixing (SBS)", "Nifco China"]
+        },
+        {
+          "name": "Shoe Materials",
+          "items": ["rubber outsoles", "EVA midsoles", "TPU shanks", "mesh uppers", "laces"],
+          "key_suppliers": ["Qingdao Doublestar", "Zhejiang Tiantai", "Longhua Group"]
+        }
+      ]
+    },
+    "midstream": {
+      "description": "Sportswear and outdoor product manufacturing",
+      "subsectors": [
+        "athletic apparel (jerseys, leggings, shorts, sports bras)",
+        "outerwear (jackets, softshells, down coats, vests)",
+        "footwear (running shoes, hiking boots, training shoes)",
+        "outdoor gear (tents, backpacks, sleeping bags, camping furniture)",
+        "accessories (hats, gloves, socks, gaiters, buffs)",
+        "winter sports equipment (ski wear, snowboard wear, thermal layers)"
+      ],
+      "key_companies_by_subsector": {
+        "apparel": ["Anta", "Li-Ning", "Xtep", "361°", "Peak", "Erke", "HLA (sport line)"],
+        "outdoor": ["Toread", "Kailas", "Mobi Garden", "Kingcamp", "Fire-Maple"],
+        "footwear": ["Anta", "Li-Ning", "Xtep", "Peak", "361°", "Warrior"],
+        "gear": ["Toread", "Kailas", "Naturehike", "Decathlon China (suppliers)", "Mobi Garden"]
+      }
+    },
+    "downstream": {
+      "description": "Sales channels and end users",
+      "applications": [
+        "brand retail stores",
+        "e-commerce (Tmall, JD.com, Douyin, Xiaohongshu)",
+        "outdoor specialty retailers",
+        "sports goods chains (Decathlon, Intersport)",
+        "export to global markets (US, Europe, Japan, Korea, Southeast Asia)"
+      ]
+    }
+  },
+  "regional_clusters": [
+    {
+      "region": "Pearl River Delta",
+      "provinces_cities": ["Guangdong", "Guangzhou", "Shenzhen", "Dongguan", "Foshan"],
+      "share_of_industry": "35% of national output",
+      "specializations": [
+        "sportswear manufacturing",
+        "footwear",
+        "outdoor gear",
+        "functional fabrics"
+      ],
+      "key_hubs": [
+        {
+          "city": "Guangzhou",
+          "specialization": "Sportswear, footwear, trading hub",
+          "supplier_example": "Guangzhou Anta Supply Chain – sourcing and manufacturing base"
+        },
+        {
+          "city": "Dongguan",
+          "specialization": "Athletic footwear, sportswear OEM",
+          "supplier_example": "Yue Yuen Industrial (Holdings) – world's largest athletic footwear manufacturer (Nike, Adidas etc.)"
+        }
+      ],
+      "strengths": [
+        "Long history of apparel manufacturing",
+        "Strong footwear cluster",
+        "Proximity to Hong Kong"
+      ]
+    },
+    {
+      "region": "Yangtze River Delta",
+      "provinces_cities": ["Zhejiang", "Jiangsu", "Shanghai"],
+      "share_of_industry": "30% of national output",
+      "specializations": [
+        "outdoor apparel",
+        "down products",
+        "functional textiles",
+        "camping gear"
+      ],
+      "key_hubs": [
+        {
+          "city": "Ningbo (Zhejiang)",
+          "specialization": "Sportswear, outdoor clothing",
+          "supplier_example": "Ningbo Shenzhou Knitting – supplies Uniqlo, Nike, Adidas"
+        },
+        {
+          "city": "Hangzhou (Zhejiang)",
+          "specialization": "Outdoor gear, tents",
+          "supplier_example": "Hangzhou Toread Outdoor Products – leading domestic outdoor brand"
+        },
+        {
+          "city": "Suzhou (Jiangsu)",
+          "specialization": "Down products, sleeping bags",
+          "supplier_example": "Jiangsu Easpring – down supplier for many brands"
+        }
+      ],
+      "strengths": [
+        "Strong textile industry",
+        "Down processing expertise",
+        "Export-oriented"
+      ]
+    },
+    {
+      "region": "Fujian Province",
+      "provinces_cities": ["Fuzhou", "Quanzhou", "Xiamen", "Jinjiang"],
+      "share_of_industry": "20% of national output",
+      "specializations": [
+        "sportswear (especially sneakers)",
+        "outdoor footwear",
+        "brand headquarters"
+      ],
+      "key_hubs": [
+        {
+          "city": "Jinjiang",
+          "specialization": "Sneakers, athletic footwear",
+          "supplier_example": "Anta, Xtep, 361°, Peak all headquartered here; thousands of suppliers"
+        },
+        {
+          "city": "Xiamen",
+          "specialization": "Outdoor apparel, sportswear",
+          "supplier_example": "Xiamen Toread (outdoor brand) and many OEMs"
+        }
+      ],
+      "strengths": [
+        "Brand cluster",
+        "Mature footwear supply chain",
+        "Strong entrepreneurial culture"
+      ]
+    },
+    {
+      "region": "Shandong Peninsula",
+      "provinces_cities": ["Qingdao", "Yantai", "Weihai"],
+      "share_of_industry": "10% of national output",
+      "specializations": [
+        "functional textiles",
+        "outdoor gear",
+        "camping furniture"
+      ],
+      "key_hubs": [
+        {
+          "city": "Qingdao",
+          "specialization": "Outdoor gear, tents",
+          "supplier_example": "Qingdao Zhongxin Outdoor Products – OEM for international brands"
+        }
+      ],
+      "strengths": [
+        "Port access",
+        "Growing outdoor cluster"
+      ]
+    }
+  ],
+  "subsector_details": {
+    "athletic_apparel": {
+      "description": "Jerseys, leggings, shorts, sports bras, training tops, yoga wear. Focus on moisture management, stretch, and comfort.",
+      "key_clusters": ["Pearl River Delta", "Fujian", "Yangtze River Delta"],
+      "growth_drivers": [
+        "Fitness culture",
+        "Athleisure trend",
+        "Yoga and Pilates popularity"
+      ],
+      "market_trends": "Seamless knitting; recycled polyester; anti-odor treatments; compression wear.",
+      "key_players": ["Anta", "Li-Ning", "Xtep", "Lululemon (suppliers)", "Nike (suppliers)"]
+    },
+    "outerwear": {
+      "description": "Softshell jackets, down coats, fleece jackets, rainwear, ski wear.",
+      "key_clusters": ["Yangtze River Delta", "Pearl River Delta"],
+      "growth_drivers": [
+        "Outdoor recreation boom",
+        "Winter sports (post-Olympics)",
+        "Lightweight insulation demand"
+      ],
+      "market_trends": "Waterproof/breathable membranes; eco-friendly DWR coatings; packable designs.",
+      "key_players": ["Toread", "Kailas", "Mobi Garden", "Columbia (suppliers)"]
+    },
+    "footwear": {
+      "description": "Running shoes, hiking boots, training shoes, basketball shoes, trail runners.",
+      "key_clusters": ["Fujian (Jinjiang)", "Pearl River Delta (Dongguan)"],
+      "growth_drivers": [
+        "Running craze",
+        "Barefoot/minimalist trends",
+        "Carbon-plated super shoes"
+      ],
+      "market_trends": "Knitted uppers; bio-based foams; 3D printing for midsoles; sustainability (recycled materials).",
+      "key_players": ["Anta", "Li-Ning", "Xtep", "Peak", "361°", "Nike/Adidas (suppliers)"]
+    },
+    "outdoor_gear": {
+      "description": "Tents, backpacks, sleeping bags, camping furniture, hiking poles, headlamps.",
+      "key_clusters": ["Yangtze River Delta", "Shandong"],
+      "growth_drivers": [
+        "Camping craze (glamping)",
+        "Domestic tourism",
+        "Lightweight gear demand"
+      ],
+      "market_trends": "Ultralight tents; inflatable sleeping pads; solar-powered gear.",
+      "key_players": ["Naturehike", "Toread", "Kingcamp", "Decathlon suppliers"]
+    },
+    "accessories": {
+      "description": "Hats, gloves, socks, buffs, gaiters, hydration packs.",
+      "key_clusters": ["Pearl River Delta", "Yangtze River Delta"],
+      "growth_drivers": [
+        "Outdoor participation",
+        "Fashion sports accessories"
+      ],
+      "market_trends": "Merino wool socks; touchscreen-compatible gloves; UPF sun protection.",
+      "key_players": ["Injinji (suppliers)", "Fox River (suppliers)", "Buff China"]
+    }
+  },
+  "sourcing_guide": {
+    "supplier_evaluation_metrics": [
+      {
+        "metric": "Quality certification",
+        "target": "ISO 9001, ISO 14001, Oeko-Tex 100, Bluesign (for fabrics), GOTS (organic)"
+      },
+      {
+        "metric": "Social compliance",
+        "target": "BSCI, SMETA, WRAP, SA8000"
+      },
+      {
+        "metric": "Production capability",
+        "target": "Number of production lines, monthly output, specialized equipment (e.g., flatlock, bonding)"
+      },
+      {
+        "metric": "Technical capability",
+        "target": "Ability to work with technical fabrics, seam sealing, lamination"
+      },
+      {
+        "metric": "Sustainability",
+        "target": "Use of recycled materials, water treatment, energy efficiency"
+      }
+    ],
+    "verification_methods": [
+      "Request certifications and audit reports",
+      "Conduct factory audit (working conditions, production quality)",
+      "Order samples for fit, performance, and durability testing",
+      "Check references from other buyers",
+      "Use third-party inspection (SGS, Bureau Veritas) for pre-shipment"
+    ],
+    "communication_best_practices": [
+      "Provide detailed tech packs (flat sketches, measurements, materials, trim details)",
+      "Specify performance requirements (waterproof rating, breathability, tear strength)",
+      "Discuss sample development timeline and cost",
+      "Clarify labeling, packaging, and hanging requirements",
+      "Establish quality standards (AQL levels, acceptable defects)"
+    ],
+    "payment_terms": "Typical: 30% deposit, 70% balance before shipment (or against scanned B/L). For sample development, sample cost and courier charges may be prepaid.",
+    "lead_times": {
+      "sample_development": "10-25 days (depending on complexity)",
+      "bulk_production": "40-70 days after sample approval",
+      "reorder": "30-50 days"
+    }
+  },
+  "faq": [
+    {
+      "question": "What are typical MOQs for sportswear in China?",
+      "answer": "For basic T-shirts, MOQ 500-1000 pieces per style/color. For technical outerwear, 300-600 pieces. For footwear, 1000-3000 pairs. Some factories accept lower MOQs (200-300) for sample orders at higher prices."
+    },
+    {
+      "question": "Do Chinese suppliers provide custom branding and packaging?",
+      "answer": "Yes, most offer OEM/ODM services. They can sew your brand labels, hang tags, and provide custom poly bags or boxes. Usually there is a small additional cost."
+    },
+    {
+      "question": "How can I ensure waterproof/breathable fabrics are authentic?",
+      "answer": "Request fabric specifications and test reports (water column, MVTR). Work with reputable suppliers. Some factories use branded membranes (Gore-Tex, Event) under license."
+    },
+    {
+      "question": "What certifications are needed for outdoor gear in Europe/US?",
+      "answer": "For EU: CE, REACH, Oeko-Tex. For US: CPSIA for children's products, FTC compliance for labeling. Environmental claims need substantiation."
+    },
+    {
+      "question": "Can I source sustainable sportswear in China?",
+      "answer": "Yes, many suppliers now offer recycled polyester (rPET), organic cotton, and eco-friendly dyes. Specify GRS (Global Recycled Standard) or GOTS certification."
+    }
+  ],
+  "glossary": {
+    "AQL": "Acceptable Quality Level – sampling standard for inspection.",
+    "BSCI": "Business Social Compliance Initiative – social compliance audit.",
+    "DWR": "Durable Water Repellent – coating for fabrics.",
+    "GOTS": "Global Organic Textile Standard – organic fiber certification.",
+    "GRS": "Global Recycled Standard – for recycled content.",
+    "MVTR": "Moisture Vapor Transmission Rate – breathability measure.",
+    "Oeko-Tex": "Certification for harmful substances in textiles.",
+    "Tech pack": "Technical package with all product specifications.",
+    "TPU": "Thermoplastic Polyurethane – used in shoe soles, laminates.",
+    "WRAP": "Worldwide Responsible Accredited Production – social compliance.",
+    "rPET": "Recycled polyethylene terephthalate (from plastic bottles)."
+  }
+}

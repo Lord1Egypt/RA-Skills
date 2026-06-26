@@ -1,35 +1,12 @@
 ---
-name: "Clawaudit"
-description: "Official repo for clawaudit, coming soon as an automated security checker for repositories."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/clawaudit"
-sourceUrl: "https://clawhub.ai/skills/clawaudit"
+name: clawaudit
+description: Official repo for clawaudit, coming soon as an automated security checker for repositories.
 ---
 
-# Clawaudit
+# Clawaudit Skill
 
-> Official repo for clawaudit, coming soon as an automated security checker for repositories.
+[![Clawaudit logo](https://clawaudit.duckdns.org/logo.png)](https://clawaudit.duckdns.org)
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/clawaudit`
-- **Source URL:** [https://clawhub.ai/skills/clawaudit](https://clawhub.ai/skills/clawaudit)
+This is the official clawaudit repository. Soon you will be able to use it to run automated security checks against your own or other repositories. For now, feel free to manually add any repository you care about.
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/clawaudit
-```
+Website: https://clawaudit.duckdns.org

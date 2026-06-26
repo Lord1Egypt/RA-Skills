@@ -1,0 +1,402 @@
+{
+  "metadata": {
+    "last_updated": "2026-03-15",
+    "source": "Ministry of Industry and Information Technology, China National Furniture Association (CNFA), National Bureau of Statistics,中国家具协会",
+    "industry_scale_2026_target": "¥1.8 trillion revenue",
+    "growth_rate_target": "4.8% average annual growth (2024-2026)"
+  },
+  "industry_overview": {
+    "title": "China Furniture Industry Overview (2026)",
+    "summary": "China is the world's largest furniture producer, exporter, and consumer, with a complete and highly competitive supply chain covering residential, office, hotel, outdoor, and custom furniture. In 2026, the industry is projected to exceed ¥1.8 trillion in revenue, driven by urbanization, real estate development, consumption upgrades, smart home integration, and e-commerce growth. The industry is shifting toward green manufacturing, sustainable materials, and intelligent furniture.",
+    "key_policy_initiatives": [
+      {
+        "name": "Action Plan for Green and Smart Furniture Development (2024-2026)",
+        "issuing_authorities": ["MIIT", "NDRC", "Ministry of Commerce"],
+        "key_measures": [
+          "Promote low-formaldehyde emission standards (E0, ENF)",
+          "Support R&D in smart furniture (IoT integration)",
+          "Encourage use of sustainable materials (FSC-certified wood, recycled materials)",
+          "Establish national-level furniture design innovation centers",
+          "Facilitate cross-border e-commerce for furniture exports"
+        ]
+      },
+      {
+        "name": "Furniture Industry High-Quality Development Guidelines",
+        "issuing_authorities": ["MIIT", "CNFA"],
+        "key_measures": [
+          "Accelerate digital and intelligent manufacturing (CNC, robotic finishing)",
+          "Strengthen core component R&D (hardware, mechanisms)",
+          "Promote Chinese furniture brands globally"
+        ]
+      }
+    ],
+    "current_status_2025": {
+      "total_output_value": "¥1.72 trillion",
+      "share_of_light_industry_value_added": "12.5%",
+      "key_drivers": ["custom furniture", "smart furniture", "ergonomic office chairs", "outdoor furniture", "child furniture"],
+      "automation_rate": "45% (CNC and finishing lines in large enterprises)",
+      "export_value": "$85 billion",
+      "green_certified_share": "22% of total output"
+    }
+  },
+  "supply_chain_structure": {
+    "title": "Furniture Supply Chain Structure",
+    "upstream": {
+      "description": "Raw materials, components, and design",
+      "categories": [
+        {
+          "name": "Wood & Panels",
+          "items": ["solid wood (oak, walnut, rubberwood, pine)", "engineered wood (MDF, particleboard, plywood)", "veneer"],
+          "key_suppliers": ["Dare Wood", "Foresun Group", "Shengda Wood", "Jiangsu Furen"]
+        },
+        {
+          "name": "Metal & Hardware",
+          "items": ["steel frames", "aluminum profiles", "hinges", "drawer slides", "locks", "handles", "legs"],
+          "key_suppliers": ["Blum China", "Hettich China", "DTC (Dongtai)", "Taiming", "Jusen"]
+        },
+        {
+          "name": "Upholstery & Padding",
+          "items": ["foam (polyurethane, memory foam)", "springs", "fabrics (cotton, linen, polyester, leather)", "filling materials"],
+          "key_suppliers": ["Sinomax", "Zhejiang Henglin", "Huafon", "Guangzhou Huarun"]
+        },
+        {
+          "name": "Finishing Materials",
+          "items": ["paints, stains, varnishes", "laminates (HPL, melamine)", "adhesives"],
+          "key_suppliers": ["AkzoNobel China", "PPG China", "Nippon Paint", "Huayi"]
+        }
+      ]
+    },
+    "midstream": {
+      "description": "Furniture manufacturing and assembly",
+      "subsectors": [
+        "residential furniture (bedroom, living room, dining room, kitchen)",
+        "office furniture (desks, chairs, filing cabinets, partitions)",
+        "hotel furniture (bed frames, wardrobes, reception desks)",
+        "outdoor furniture (garden sets, patio furniture, umbrellas)",
+        "custom and built-in furniture (wardrobes, kitchen cabinets)",
+        "children's furniture (beds, study desks)",
+        "upholstered furniture (sofas, mattresses, armchairs)"
+      ],
+      "key_companies_by_subsector": {
+        "residential": ["Quanyou", "Kuka Home", "Landbond", "Huafeng", "Red Apple"],
+        "office": ["Sunon", "UE Furniture", "Haworth China", "Steelcase China", "Okamura China"],
+        "hotel": ["Jinjiang Hotel Furniture", "Guangzhou Mingliang", "Foshan Golden Lion"],
+        "outdoor": ["Yotrio", "Zhejiang Zhengte", "Gloster China"],
+        "custom": ["Suofeiya", "Oppein", "Holike", "Wayes"],
+        "mattresses": ["Dorel", "Mlily", "Sinomax", "Airland"]
+      }
+    },
+    "downstream": {
+      "description": "Sales channels and end users",
+      "applications": [
+        "retail (furniture malls, brand stores, home improvement centers)",
+        "e-commerce (Tmall, JD.com, Pinduoduo, Douyin)",
+        "B2B (hotel chains, office developers, real estate developers)",
+        "export to global markets (US, EU, Southeast Asia, Middle East)",
+        "custom projects (interior designers, architects)"
+      ]
+    }
+  },
+  "regional_clusters": [
+    {
+      "region": "Pearl River Delta",
+      "provinces_cities": ["Guangdong", "Foshan", "Shenzhen", "Dongguan", "Guangzhou"],
+      "share_of_industry": "38% of national output",
+      "specializations": [
+        "residential furniture (sofas, bedroom sets)",
+        "office furniture",
+        "hotel furniture",
+        "upholstered furniture"
+      ],
+      "key_hubs": [
+        {
+          "city": "Foshan (Shunde)",
+          "specialization": "Sofas, bedroom furniture, furniture wholesale market",
+          "supplier_example": "Foshan Quanyou Furniture Co., Ltd. – large residential furniture manufacturer, ISO 9001"
+        },
+        {
+          "city": "Dongguan (Houjie)",
+          "specialization": "Office furniture, furniture fairs (International Famous Furniture Fair)",
+          "supplier_example": "Dongguan Sino-Holly Furniture – office and hotel furniture"
+        },
+        {
+          "city": "Shenzhen",
+          "specialization": "High-end custom furniture, design",
+          "supplier_example": "Shenzhen Landbond – high-end residential and contract furniture"
+        }
+      ],
+      "strengths": [
+        "Complete supply chain",
+        "Strong design capabilities",
+        "Proximity to Hong Kong",
+        "Major furniture exhibitions"
+      ]
+    },
+    {
+      "region": "Yangtze River Delta",
+      "provinces_cities": ["Zhejiang", "Jiangsu", "Shanghai"],
+      "share_of_industry": "28% of national output",
+      "specializations": [
+        "office chairs (Anji)",
+        "outdoor furniture",
+        "wooden bedroom furniture",
+        "hotel furniture"
+      ],
+      "key_hubs": [
+        {
+          "city": "Anji (Zhejiang)",
+          "specialization": "Office chairs, ergonomic chairs",
+          "supplier_example": "UE Furniture – one of China's largest office chair manufacturers, exports globally"
+        },
+        {
+          "city": "Hangzhou (Zhejiang)",
+          "specialization": "Outdoor furniture, garden sets",
+          "supplier_example": "Yotrio Group – world's leading outdoor furniture manufacturer, listed company"
+        },
+        {
+          "city": "Suzhou (Jiangsu)",
+          "specialization": "Wooden furniture, classical Chinese furniture",
+          "supplier_example": "Suzhou Red Star Furniture – traditional and modern wooden furniture"
+        }
+      ],
+      "strengths": [
+        "Strong export orientation",
+        "Specialized clusters (e.g., Anji chairs)",
+        "Access to Shanghai port"
+      ]
+    },
+    {
+      "region": "Sichuan Basin (Chengdu-Chongqing)",
+      "provinces_cities": ["Sichuan", "Chongqing"],
+      "share_of_industry": "12% of national output",
+      "specializations": [
+        "panel furniture (bedroom sets, wardrobes)",
+        "custom furniture",
+        "mattresses"
+      ],
+      "key_hubs": [
+        {
+          "city": "Chengdu",
+          "specialization": "Panel furniture, custom wardrobes",
+          "supplier_example": "Chengdu Quanyou (West) – panel furniture; also Holike custom furniture"
+        },
+        {
+          "city": "Chongqing",
+          "specialization": "Mattresses, upholstery",
+          "supplier_example": "Chongqing Menglong Furniture – mattresses and sofas"
+        }
+      ],
+      "strengths": [
+        "Lower labor costs",
+        "Growing domestic market",
+        "Government incentives for western development"
+      ]
+    },
+    {
+      "region": "North China (Hebei, Shandong, Beijing-Tianjin)",
+      "provinces_cities": ["Hebei (Xianghe)", "Shandong (Dezhou)", "Beijing"],
+      "share_of_industry": "15% of national output",
+      "specializations": [
+        "office furniture",
+        "panel furniture",
+        "wooden furniture",
+        "hotel furniture"
+      ],
+      "key_hubs": [
+        {
+          "city": "Xianghe (Hebei)",
+          "specialization": "Furniture wholesale market, residential furniture",
+          "supplier_example": "Xianghe Golden Key Furniture – large manufacturer in the cluster"
+        },
+        {
+          "city": "Dezhou (Shandong)",
+          "specialization": "Office furniture, classroom furniture",
+          "supplier_example": "Shandong Nuode Office Furniture"
+        }
+      ],
+      "strengths": [
+        "Proximity to Beijing market",
+        "Large wholesale distribution"
+      ]
+    },
+    {
+      "region": "Jiangxi (Ganzhou)",
+      "provinces_cities": ["Ganzhou (Nankang)", "Jiangxi"],
+      "share_of_industry": "7% of national output",
+      "specializations": [
+        "solid wood furniture (rubberwood, pine)",
+        "panel furniture"
+      ],
+      "key_hubs": [
+        {
+          "city": "Nankang (Ganzhou)",
+          "specialization": "Solid wood furniture, furniture manufacturing base",
+          "supplier_example": "Jiangxi Huian Furniture – specializes in solid wood bedroom sets"
+        }
+      ],
+      "strengths": [
+        "Strong woodworking tradition",
+        "Government support",
+        "Cost-competitive"
+      ]
+    }
+  ],
+  "subsector_details": {
+    "residential_furniture": {
+      "description": "Bedroom (beds, wardrobes, nightstands), living room (sofas, TV stands, coffee tables), dining room (tables, chairs), kitchen furniture.",
+      "key_clusters": ["Pearl River Delta", "Yangtze River Delta", "Sichuan"],
+      "growth_drivers": [
+        "New housing demand",
+        "Renovation and replacement cycles",
+        "Customization trend",
+        "Smart furniture integration"
+      ],
+      "market_trends": "Multi-functional furniture (storage beds, extendable tables); eco-friendly materials; modular designs.",
+      "domestic_brand_share": "70% of domestic market"
+    },
+    "office_furniture": {
+      "description": "Desks, ergonomic chairs, filing cabinets, bookcases, partitions, reception desks.",
+      "key_clusters": ["Zhejiang (Anji)", "Pearl River Delta"],
+      "growth_drivers": [
+        "Workplace modernization (hot desking, agile offices)",
+        "Ergonomics awareness",
+        "Home office demand (post-pandemic)"
+      ],
+      "market_trends": "Height-adjustable desks; ergonomic mesh chairs; acoustic panels; cable management.",
+      "key_players": ["UE Furniture", "Sunon", "Haworth China", "Steelcase China"]
+    },
+    "hotel_furniture": {
+      "description": "Hotel room furniture, lobby furniture, restaurant seating, outdoor hotel furniture.",
+      "key_clusters": ["Pearl River Delta", "Yangtze River Delta"],
+      "growth_drivers": [
+        "Hotel construction boom",
+        "Renovation cycles",
+        "Boutique and themed hotels"
+      ],
+      "market_trends": "Fire-retardant materials; durability; customized designs.",
+      "key_players": ["Jinjiang Hotel Furniture", "Guangzhou Mingliang", "Foshan Golden Lion"]
+    },
+    "outdoor_furniture": {
+      "description": "Garden sets (tables, chairs), loungers, umbrellas, patio sofas, outdoor dining.",
+      "key_clusters": ["Zhejiang (Yotrio)", "Pearl River Delta"],
+      "growth_drivers": [
+        "Outdoor living trend",
+        "Hospitality (hotels, resorts)",
+        "Weather-resistant materials"
+      ],
+      "market_trends": "Rattan/wicker look (synthetic), aluminum frames, all-weather fabrics.",
+      "key_players": ["Yotrio", "Zhejiang Zhengte", "Gloster"]
+    },
+    "custom_furniture": {
+      "description": "Built-in wardrobes, kitchen cabinets, custom shelving, tailor-made furniture for spaces.",
+      "key_clusters": ["Pearl River Delta", "Sichuan", "Yangtze River Delta"],
+      "growth_drivers": [
+        "Small apartment optimization",
+        "Interior design integration",
+        "Premium housing"
+      ],
+      "market_trends": "Digital design tools (3D configurators); modular components; quick delivery.",
+      "key_players": ["Suofeiya", "Oppein", "Holike", "Wayes"]
+    },
+    "children_furniture": {
+      "description": "Beds, study desks, chairs, storage for children's rooms.",
+      "key_clusters": ["Pearl River Delta", "Yangtze River Delta"],
+      "growth_drivers": [
+        "Safety regulations",
+        "Ergonomic study furniture",
+        "Themed designs"
+      ],
+      "market_trends": "Convertible beds (crib to toddler); non-toxic finishes; rounded corners.",
+      "key_players": ["Goodbaby (child furniture)", "Pado", "Aing"]
+    },
+    "mattresses": {
+      "description": "Innerspring, memory foam, latex, hybrid mattresses, adjustable bases.",
+      "key_clusters": ["Pearl River Delta", "Yangtze River Delta", "Sichuan"],
+      "growth_drivers": [
+        "Sleep health awareness",
+        "E-commerce bed-in-a-box",
+        "Hotel replacement"
+      ],
+      "market_trends": "Cooling gels; organic materials; smart mattresses (sleep tracking).",
+      "key_players": ["Dorel", "Mlily", "Sinomax", "Airland"]
+    }
+  },
+  "sourcing_guide": {
+    "supplier_evaluation_metrics": [
+      {
+        "metric": "Quality certification",
+        "target": "ISO 9001, ISO 14001, ISO 45001; specific product certifications (CARB/ULEF, FSC, Greenguard)"
+      },
+      {
+        "metric": "Material compliance",
+        "target": "Low formaldehyde (E0/ENF), heavy metal-free paints, REACH compliance"
+      },
+      {
+        "metric": "Production capability",
+        "target": "CNC machines, finishing lines, assembly capacity, testing equipment (stability, fatigue)"
+      },
+      {
+        "metric": "Customization",
+        "target": "Ability to produce custom sizes, finishes, designs"
+      },
+      {
+        "metric": "Export experience",
+        "target": "Experience with target market standards (e.g., ANSI/BIFMA for office, ASTM for children)"
+      }
+    ],
+    "verification_methods": [
+      "Request certificates and test reports (formaldehyde emission, strength tests)",
+      "Conduct factory audit (wood sourcing, finishing process, QC)",
+      "Order samples for quality, finish, and assembly check",
+      "Check references from other buyers",
+      "Use third-party inspection (SGS, Bureau Veritas) for pre-shipment"
+    ],
+    "communication_best_practices": [
+      "Provide detailed specifications: dimensions, materials, finishes, hardware",
+      "Share photos or drawings of desired style",
+      "Discuss packaging requirements (flat-pack, assembled, protective corners)",
+      "Clarify sample policy and timeline",
+      "Establish quality agreement (AQL levels, allowable defects)"
+    ],
+    "payment_terms": "Typical: 30% deposit, 70% balance before shipment (or against scanned B/L). For custom orders, 50% deposit, 50% before shipment.",
+    "lead_times": {
+      "samples": "15-30 days (for custom designs)",
+      "bulk_production": "30-60 days after sample approval",
+      "container_loading": "7-15 days after production"
+    }
+  },
+  "faq": [
+    {
+      "question": "What are typical MOQs for furniture in China?",
+      "answer": "For residential furniture, MOQ often 100-300 pieces per style. For office chairs, MOQ can be 300-500 units. Some factories accept lower MOQs (50-100) for sample orders. Custom furniture may have higher MOQs due to tooling."
+    },
+    {
+      "question": "Do Chinese suppliers provide custom branding and packaging?",
+      "answer": "Yes, most offer OEM/ODM. They can apply your logo, use custom cartons, and provide assembly instructions in your language. Custom packaging may have additional costs and MOQs."
+    },
+    {
+      "question": "How can I ensure furniture meets environmental standards (low formaldehyde)?",
+      "answer": "Request test reports for formaldehyde emission (e.g., EN 717-1, ASTM E1333, GB 18580). Specify materials like E0/P2 grade boards. Use FSC-certified wood if required."
+    },
+    {
+      "question": "What is the best way to get samples made?",
+      "answer": "Provide detailed drawings or photos. Sample cost and shipping are usually borne by buyer. Some suppliers refund sample cost on bulk order. Allow 2-4 weeks for sample production."
+    },
+    {
+      "question": "Can I source flat-pack (RTA) furniture for easy shipping?",
+      "answer": "Yes, many Chinese suppliers specialize in ready-to-assemble (RTA) furniture. Specify flat-pack requirements and provide instruction manual needs."
+    }
+  ],
+  "glossary": {
+    "RTA": "Ready-to-Assemble – furniture shipped flat-packed for assembly.",
+    "MDF": "Medium Density Fiberboard – engineered wood product.",
+    "PB": "Particle Board – chipboard.",
+    "HPL": "High-Pressure Laminate – durable surface material.",
+    "FSC": "Forest Stewardship Council – sustainable wood certification.",
+    "CARB": "California Air Resources Board – formaldehyde emission standard.",
+    "E0/E1": "Formaldehyde emission classes (E0 lowest).",
+    "BIFMA": "Business and Institutional Furniture Manufacturers Association – office furniture standards.",
+    "Greenguard": "Certification for low chemical emissions.",
+    "CNC": "Computer Numerical Control – automated woodworking."
+  }
+}

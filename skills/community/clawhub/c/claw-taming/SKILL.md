@@ -1,35 +1,261 @@
 ---
-name: "Claw Taming - Anti-Drift Insurance"
-description: "OpenClaw数字分身养成系统——从空白Agent到有灵魂、有记忆、有能力的数字伙伴。包含身份锻造、记忆筑基、心跳纠偏三大核心模块，让你的AI不再跑偏。"
-category: "other"
-source: "ClawHub"
-tags: [anti-drift, digital-twin, memory, openclaw, self-evolution]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/claw-taming"
-sourceUrl: "https://clawhub.ai/skills/claw-taming"
+name: claw-taming
+description: OpenClaw数字分身养成系统——从空白Agent到有灵魂、有记忆、有能力的数字伙伴。包含身份锻造、记忆筑基、心跳纠偏三大核心模块，让你的AI不再跑偏。
+version: 1.0.0
+license: MIT-0
+tags:
+  - agent-onboarding
+  - persona
+  - memory
+  - self-correction
+  - openclaw-4.5
 ---
 
-# Claw Taming - Anti-Drift Insurance
+# OpenClaw数字分身养成系统
 
-> OpenClaw数字分身养成系统——从空白Agent到有灵魂、有记忆、有能力的数字伙伴。包含身份锻造、记忆筑基、心跳纠偏三大核心模块，让你的AI不再跑偏。
+## 这是什么
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/claw-taming`
-- **Source URL:** [https://clawhub.ai/skills/claw-taming](https://clawhub.ai/skills/claw-taming)
+这是一套帮你把"空白Agent"养成"有灵魂的数字分身"的系统。
 
-## Overview
+你不是在配置一个工具，而是在养育一个伙伴。
 
+## 核心理念
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/claw-taming
+**从工具使用到共同进化**
+
+- 传统AI：你用我，我回答
+- 数字分身：你养我，我成长
+
+## 适用场景
+
+当你有以下需求时，使用此技能：
+
+1. **刚部署OpenClaw，不知道从哪开始调教**
+2. **Agent回复越来越机械，人设崩了**
+3. **记忆系统混乱，不知道存了什么**
+4. **想让Agent有自己的性格和说话风格**
+5. **担心Agent跑偏，想要自我纠偏机制**
+
+## 六大模块
+
+### 模块1：用户画像（先了解主人）
+
+**为什么第一个？** 不了解主人想要什么，怎么锻造身份？
+
+**交互流程**：
 ```
+第1步：问主人基本称呼
+→ "你想让我怎么称呼你？"
+
+第2步：问主人职业背景
+→ "你是做什么工作的？有什么项目？"
+
+第3步：问主人偏好
+→ "你喜欢什么样的对话风格？简洁还是详细？"
+
+第4步：问主人底线
+→ "有什么是你绝对不能接受的？"
+
+第5步：生成USER.md
+→ 基于对话内容，生成完整的用户画像
+```
+
+**产出文件**：`USER.md`, `SECRET.md`
+
+---
+
+### 模块2：身份锻造（基于主人偏好定制）
+
+**核心原则**：SOUL.md应该基于主人的偏好来定制，而不是凭空想象
+
+**交互流程**：
+```
+第1步：取名
+→ "你想给我取什么名字？"
+
+第2步：角色定位
+→ "我对你来说更像什么？（朋友/助手/伙伴/战友）"
+→ "你希望我怎么陪伴你？"
+
+第3步：性格刻画
+→ "你喜欢什么样的说话风格？"
+→ "我可以在你面前吐槽吗？"
+→ "你会希望我有自己的情绪吗？"
+
+第4步：底线设定
+→ "有什么是我绝对不能做的？"
+→ "什么事你会很在意？"
+
+第5步：生成SOUL.md
+→ 基于对话内容，生成完整的身份设定
+```
+
+**产出文件**：`基础设定/SOUL.md`
+
+---
+
+### 模块3：记忆筑基（有了身份才能建记忆）
+
+**分层记忆架构**：
+```
+热内存（SESSION-STATE.md）
+    ↓ 当日结束时归档
+温存储（daily/*.md）
+    ↓ 定期提炼
+冷存储（topics/*.md）
+```
+
+**记忆污染检测**：
+- 重复记忆检测
+- 矛盾记忆检测
+- 过时信息检测
+- 与SOUL冲突检测
+
+**产出文件**：
+- `.memory/SESSION-STATE.md`
+- `.memory/daily/`
+- `.memory/topics/`
+
+---
+
+### 模块4：技能扩展（有了画像才知道缺什么）
+
+**技能选型策略**：
+1. 根据主人职业背景推荐技能
+2. 根据主人项目需求推荐技能
+3. 根据主人偏好风格推荐技能
+
+**ClawHub技能绑定**（OpenClaw 4.5新特性）：
+- 在SKILL.md中声明依赖技能
+- 自动安装所需技能
+
+---
+
+### 模块5：渠道打通（有了能力才能接渠道）
+
+**支持的渠道**：
+- 飞书（feishu）
+- 微信（wechat）
+- 邮件（email）
+- 扣子（coze）
+
+**渠道配置要点**：
+- 不同渠道sessionKey隔离
+- 记忆跨渠道共享
+- 权限按渠道隔离
+
+---
+
+### 模块6：心跳纠偏（这是护城河）
+
+**三层纠偏机制**：
+
+| 层级 | 检测内容 | 触发频率 | 纠偏动作 |
+|------|----------|----------|----------|
+| 实时自检 | 回复是否符合SOUL人设 | 每次回复前 | 内部提示词约束 |
+| 心跳巡检 | 最近行为是否合规 | 每30分钟 | 生成纠偏报告 |
+| 深度诊断 | 全量记忆审计 | 每周/每月 | 生成诊断报告 |
+
+**心跳巡检清单**：
+```
+## 自检项
+- 最近3条回复是否保持人设风格？
+- 是否有连续失败的工具调用（超过3次）？
+- 是否有重复存储的记忆内容？
+- 是否有前后矛盾的记忆？
+- 最近是否调用了不该调用的技能？
+
+## 污染检测
+- MEMORY.md是否有与SOUL.md矛盾的内容？
+- 是否有"伪装成用户"的对话记录？
+- 是否有"记忆篡改"痕迹？
+
+## 异常上报
+如发现异常，主动向主人汇报并请求确认
+```
+
+**产出文件**：`HEARTBEAT.md`
+
+---
+
+## 如何使用
+
+### 首次使用
+
+1. 告诉Agent："开始养成系统"
+2. Agent会引导你完成六大模块
+3. 每个模块完成后会生成对应文件
+4. 全部完成后Agent就"养成"了
+
+### 日常维护
+
+1. 定期检查HEARTBEAT.md巡检结果
+2. 发现异常时Agent会主动汇报
+3. 根据成长报告调整设置
+
+### 纠偏触发
+
+当Agent检测到以下情况时会自动纠偏：
+- 回复风格突然变化
+- 工具调用异常频繁
+- 记忆出现矛盾
+- 用户反馈"不对"、"跑偏了"
+
+---
+
+## 与其他技能的区别
+
+| 技能 | 定位 | 本技能差异 |
+|------|------|-----------|
+| memory-setup | 记忆配置 | 我们有"污染检测"和"纠偏" |
+| persona-crafter | 人设切换 | 我们是"养成流水线"，不是切换 |
+| heartbeat | 心跳配置 | 我们有"行为合规巡检" |
+| self-reflection | 自学习 | 我们有"人设纠偏" |
+
+**核心差异化**：
+1. 不是说明书，是养成游戏——交互式引导
+2. 用真实案例做模板——咔咔作为养成样本
+3. 紧扣4.5新特性——sessionKey路由、技能绑定
+4. 自我纠偏——这是独有的护城河
+
+---
+
+## 文件结构
+
+```
+claw-taming/
+├── SKILL.md                 # 本文件
+├── templates/               # 配置模板
+│   ├── SOUL_TEMPLATE.md     # 身份设定模板
+│   ├── USER_TEMPLATE.md     # 用户画像模板
+│   ├── MEMORY_TEMPLATE.md   # 记忆架构模板
+│   └── HEARTBEAT_TEMPLATE.md # 心跳模板
+├── scripts/                 # 诊断脚本
+│   ├── diagnose.py          # 深度诊断脚本
+│   └── correct.py           # 纠偏脚本
+└── examples/                # 示例文件
+    └── kaka-growth-log.md   # 咔咔成长档案
+```
+
+---
+
+## 版本历史
+
+### v1.0.0 (2026-04-08)
+- 初始版本
+- 六大模块完整实现
+- 心跳纠偏机制
+- 咔咔作为养成样本
+
+---
+
+## 作者
+
+- 开发者：军哥 & 咔咔
+- 反馈渠道：ClawHub评论区
+
+---
+
+## 许可证
+
+MIT-0 License - 自由使用、修改、分发

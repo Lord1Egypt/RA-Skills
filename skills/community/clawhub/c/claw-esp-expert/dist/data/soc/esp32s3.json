@@ -1,0 +1,65 @@
+{
+  "chip": "esp32s3",
+  "series": "ESP32-S3",
+  "arch": "Xtensa LX7 Dual-Core",
+  "vendor": "Espressif",
+  "physical_limits": {
+    "gpio_range": [0, 48],
+    "total_gpios": 49,
+    "input_only_pins": {
+      "pins": [],
+      "restriction": "NONE",
+      "has_internal_pull": true,
+      "warning": "ESP32-S3 没有经典 ESP32 那种 34-39 纯输入域，但仍需避免将保留引脚用于普通 GPIO。"
+    },
+    "internal_flash_psram": {
+      "pins": [26, 27, 28, 29, 30, 31, 32],
+      "interface": "SPI0_SPI1",
+      "warning": "GPIO 26-32 通常连接 SPI Flash/PSRAM。部分八线 Flash/PSRAM 变体还会继续占用更高编号引脚，因此量产板卡务必结合原理图确认。"
+    },
+    "strapping_pins": {
+      "pins": [0, 3, 45, 46],
+      "critical_logic": {
+        "0": "下载模式相关启动引脚；上电时外部强拉会改变启动行为。",
+        "3": "JTAG/启动相关配置引脚；启动瞬间电平会影响调试与启动行为。",
+        "45": "启动配置相关引脚；外部驱动可能影响电源域或启动模式。",
+        "46": "启动配置相关引脚；常用于下载/启动判定，外部强拉需谨慎。"
+      },
+      "audit_level": "CRITICAL"
+    }
+  },
+  "peripherals": {
+    "adc": {
+      "adc1": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+      "adc2": [11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
+      "conflict": {
+        "target": "adc2",
+        "with": "Wi-Fi",
+        "warning": "ESP32-S3 在 Wi-Fi 打开时，ADC2 读数会受到占用影响，请优先使用 ADC1。"
+      }
+    },
+    "uart_default": {
+      "uart0": { "tx": 43, "rx": 44, "role": "Download/Log" }
+    }
+  },
+  "expert_audit_rules": [
+    {
+      "id": "ERR_FLASH_PINS",
+      "condition": "GPIO 26-32 configured as I/O",
+      "level": "FATAL",
+      "message": "检测到对 ESP32-S3 SPI Flash/PSRAM 保留引脚的操作。"
+    },
+    {
+      "id": "WARN_STRAPPING",
+      "condition": "Strapping pin configured or externally driven",
+      "level": "WARNING",
+      "message": "ESP32-S3 启动配置引脚需要谨慎使用。"
+    },
+    {
+      "id": "WARN_WIFI_ADC2",
+      "condition": "Wi-Fi enabled AND ADC2 used",
+      "level": "CRITICAL",
+      "message": "Wi-Fi 模式下 ADC2 资源冲突。"
+    }
+  ]
+}

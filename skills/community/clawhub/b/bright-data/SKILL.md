@@ -1,35 +1,52 @@
 ---
-name: "Bright Data"
-description: "Web scraping and search via Bright Data API. Requires BRIGHTDATA_API_KEY and BRIGHTDATA_UNLOCKER_ZONE. Use for scraping any webpage as markdown (bypassing bot detection/CAPTCHA) or searching Google with structured results."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/bright-data"
-sourceUrl: "https://clawhub.ai/skills/bright-data"
+name: brightdata
+description: Web scraping and search via Bright Data API. Requires BRIGHTDATA_API_KEY and BRIGHTDATA_UNLOCKER_ZONE. Use for scraping any webpage as markdown (bypassing bot detection/CAPTCHA) or searching Google with structured results.
 ---
 
-# Bright Data
+# Bright Data - Web Scraping & Search
 
-> Web scraping and search via Bright Data API. Requires BRIGHTDATA_API_KEY and BRIGHTDATA_UNLOCKER_ZONE. Use for scraping any webpage as markdown (bypassing bot detection/CAPTCHA) or searching Google with structured results.
+Direct API access to Bright Data's Web Unlocker and SERP APIs.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/bright-data`
-- **Source URL:** [https://clawhub.ai/skills/bright-data](https://clawhub.ai/skills/bright-data)
+## Setup
 
-## Overview
+**1. Get your API Key:**
+Get a key from [Bright Data Dashboard](https://brightdata.com/cp).
 
+**2. Create a Web Unlocker zone:**
+Create a zone at brightdata.com/cp by clicking "Add" (top-right), selecting "Unlocker zone".
 
-## Installation
-To install this skill, run the following command in your terminal:
+**3. Set environment variables:**
 ```bash
-hermes skills install clawhub/bright-data
+export BRIGHTDATA_API_KEY="your-api-key"
+export BRIGHTDATA_UNLOCKER_ZONE="your-zone-name"
 ```
+
+## Usage
+
+### Google Search
+Search Google and get structured JSON results (title, link, description).
+```bash
+bash scripts/search.sh "query" [cursor]
+```
+- `cursor`: Optional page number for pagination (0-indexed, default: 0)
+
+### Web Scraping
+Scrape any webpage as markdown. Bypasses bot detection and CAPTCHA.
+```bash
+bash scripts/scrape.sh "url"
+```
+
+## Output Formats
+
+### Search Results
+Returns JSON with structured `organic` array:
+```json
+{
+  "organic": [
+    {"link": "...", "title": "...", "description": "..."}
+  ]
+}
+```
+
+### Scrape Results
+Returns clean markdown content from the webpage.

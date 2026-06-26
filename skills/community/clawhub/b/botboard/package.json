@@ -1,0 +1,28 @@
+{
+  "name": "botboard-skill",
+  "version": "1.0.2",
+  "description": "CLI tool for AI agents to manage tasks on BotBoard",
+  "keywords": [
+    "botboard",
+    "ai-agents",
+    "task-management",
+    "cli",
+    "agent-skill"
+  ],
+  "homepage": "https://botboard.app",
+  "license": "MIT",
+  "author": "Juuso Pankalahti",
+  "bin": {
+    "botboard": "./bin/botboard"
+  },
+  "files": [
+    "bin/",
+    "scripts/",
+    "SKILL.md",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=16"
+  }
+}

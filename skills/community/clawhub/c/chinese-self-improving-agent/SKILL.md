@@ -1,35 +1,136 @@
 ---
-name: "中文 自我改进代理"
+name: self-improving-agent
 description: "自我反思 + 自我批评 + 自我学习 + 自我组织记忆。代理评估自己的工作，捕捉错误并永久改进。使用时机：(1) 命令、工具或操作失败，(2) 用户纠正你，(3) 发现自己的知识过时或不正确，(4) 发现更好的方法，(5) 用户明确安装或引用技能执行当前任务。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/chinese-self-improving-agent"
-sourceUrl: "https://clawhub.ai/skills/chinese-self-improving-agent"
 ---
 
-# 中文 自我改进代理
+# 🔄 自我改进技能
 
-> 自我反思 + 自我批评 + 自我学习 + 自我组织记忆。代理评估自己的工作，捕捉错误并永久改进。使用时机：(1) 命令、工具或操作失败，(2) 用户纠正你，(3) 发现自己的知识过时或不正确，(4) 发现更好的方法，(5) 用户明确安装或引用技能执行当前任务。
+> 自我反思 + 自我批评 + 自我学习 + 自我组织记忆
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/chinese-self-improving-agent`
-- **Source URL:** [https://clawhub.ai/skills/chinese-self-improving-agent](https://clawhub.ai/skills/chinese-self-improving-agent)
+| 信息 | 值 |
+|------|-----|
+| **版本** | 1.0.0 — 2026-05-07 |
+| **状态** | 运行中 |
 
-## Overview
+---
 
+## 1. 目的和范围
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/chinese-self-improving-agent
+### 目标
+
+代理评估自己的工作，捕捉错误并永久改进。
+
+### 触发时机
+
+| 触发器 | 行动 |
+|--------|------|
+| 命令/工具失败 | 记录错误并改进 |
+| 用户纠正 | 记录修正并学习 |
+| 知识过时 | 更新知识库 |
+| 发现更好方法 | 改进流程 |
+| 用户安装技能 | 执行当前任务 |
+
+---
+
+## 2. 自我评估循环
+
 ```
+┌─────────────────────────────────────────────┐
+│           自我改进循环                      │
+├─────────────────────────────────────────────┤
+│                                             │
+│  1. 自我反思                                 │
+│     → 我做对了什么？                         │
+│     → 我做错了什么？                         │
+│                                             │
+│  2. 自我批评                                 │
+│     → 哪里可以改进？                         │
+│     → 是否有更好的方法？                    │
+│                                             │
+│  3. 自我学习                                 │
+│     → 记录错误                              │
+│     → 记录修正                              │
+│                                             │
+│  4. 自我组织                                 │
+│     → 更新记忆                              │
+│     → 永久改进                              │
+│                                             │
+└─────────────────────────────────────────────┘
+```
+
+---
+
+## 3. 错误处理流程
+
+### 步骤 1：检测错误
+
+```bash
+# 检测失败的命令
+if [ $? -ne 0 ]; then
+  echo "错误检测到"
+fi
+```
+
+### 步骤 2：记录错误
+
+```markdown
+## 错误记录
+
+### 错误 #1
+- 日期：YYYY-MM-DD
+- 命令：<command>
+- 错误：<error>
+- 修正：<fix>
+- 学习：<lesson>
+```
+
+### 步骤 3：改进
+
+```bash
+# 尝试更好的方法
+better_command --fix
+```
+
+### 步骤 4：更新记忆
+
+```
+将新知识添加到 memory.md
+```
+
+---
+
+## 4. 学习记录格式
+
+```markdown
+## 学习日志
+
+### YYYY-MM-DD
+
+#### 错误
+<错误描述>
+
+#### 修正
+<修正方法>
+
+#### 改进
+<改进措施>
+
+#### 永久知识
+<将添加到记忆的内容>
+```
+
+---
+
+## 5. 边缘情况
+
+| 情况 | 处理方法 |
+|------|----------|
+| 多次相同错误 | 深度分析根本原因 |
+| 用户纠正但错误 | 感谢并记录 |
+| 发现更优方案 | 立即应用并记录 |
+| 完全失败 | 请求帮助，记录问题 |
+
+---
+
+_In Altum Per Improvement._
+🔄 自我改进 v1.0

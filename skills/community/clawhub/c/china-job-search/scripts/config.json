@@ -1,0 +1,33 @@
+{
+  "platforms": {
+    "boss": {
+      "name": "BOSS直聘",
+      "base_url": "https://www.zhipin.com",
+      "search_url": "https://www.zhipin.com/web/geek/job",
+      "enabled": true
+    },
+    "zhilian": {
+      "name": "智联招聘",
+      "base_url": "https://www.zhaopin.com",
+      "search_url": "https://sou.zhaopin.com",
+      "enabled": true
+    },
+    "qiancheng": {
+      "name": "前程无忧",
+      "base_url": "https://www.51job.com",
+      "search_url": "https://search.51job.com",
+      "enabled": true
+    }
+  },
+  "search": {
+    "default_city": "北京",
+    "default_page_size": 20,
+    "max_results": 50,
+    "request_delay": 1.0
+  },
+  "output": {
+    "format": "table",
+    "show_fields": ["职位", "公司", "薪资", "地点", "经验", "学历"],
+    "sort_by": "薪资"
+  }
+}

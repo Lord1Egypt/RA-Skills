@@ -1,0 +1,5 @@
+pydantic>=2,<3
+jsonschema>=4,<5
+rich>=13,<14
+cryptography>=42,<43
+PyYAML>=6,<7

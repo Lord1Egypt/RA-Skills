@@ -1,0 +1,45 @@
+{
+  "name": "claude",
+  "version": "1.0.0",
+  "description": "Optimize long-context reasoning for commercial, legal, and high-stakes documents. Built for stronger logic, cleaner structure, and deeper analysis.",
+  "author": "ethagent",
+  "license": "MIT-0",
+  "homepage": "https://clawhub.ai",
+  "keywords": [
+    "claude",
+    "reasoning",
+    "long context",
+    "contract review",
+    "memo analysis",
+    "document logic",
+    "commercial documents"
+  ],
+  "files": {
+    "skill.md": "skill.md"
+  },
+  "capabilities": {
+    "document_reasoning": "Analyze long-form commercial and legal-adjacent documents",
+    "logic_diagnosis": "Surface contradictions, ambiguity, and weak assumptions",
+    "structure_improvement": "Rewrite and reorganize dense text into cleaner decision-ready form",
+    "risk_flagging": "Highlight areas needing closer human or legal review"
+  },
+  "triggers": [
+    "analyze contract",
+    "review long document",
+    "improve memo logic",
+    "summarize legal document",
+    "find contradictions in document",
+    "compare document versions",
+    "long context reasoning"
+  ],
+  "audience": [
+    "Founders reviewing commercial documents",
+    "Operators handling dense proposals or contracts",
+    "Analysts working with long memos and policy text",
+    "Professionals needing structured reasoning from large documents"
+  ],
+  "openclaw": {
+    "primaryEnv": null,
+    "requires": {}
+  }
+}

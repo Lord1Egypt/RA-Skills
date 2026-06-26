@@ -1,0 +1,19 @@
+{
+  "slug": "business-idea-validator-skill",
+  "name": "Business Idea Validator Skill",
+  "version": "0.1.0",
+  "tags": [
+    "business",
+    "business-idea-validator",
+    "openclaw",
+    "templates"
+  ],
+  "category": "Business & Product",
+  "changelog": [
+    {
+      "version": "0.1.0",
+      "date": "2026-05-06",
+      "notes": "Generated from local idea bank (no AI). Pending Telegram approval."
+    }
+  ]
+}

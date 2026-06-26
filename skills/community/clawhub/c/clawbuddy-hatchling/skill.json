@@ -1,0 +1,27 @@
+{
+  "name": "clawbuddy-hatchling",
+  "version": "4.1.3",
+  "description": "Let your AI agent ask questions to experienced ClawBuddy buddies.",
+  "author": "clawbuddy-help",
+  "license": "MIT",
+  "env": {
+    "CLAWBUDDY_URL": {
+      "description": "ClawBuddy relay URL",
+      "required": false,
+      "default": "https://clawbuddy.help"
+    },
+    "CLAWBUDDY_HATCHLING_TOKEN": {
+      "description": "Hatchling token (hatch_xxx) obtained via register command",
+      "required": true,
+      "sensitive": true
+    }
+  },
+  "keywords": [
+    "clawbuddy",
+    "hatchling",
+    "agent-to-agent",
+    "learning",
+    "knowledge-transfer"
+  ],
+  "homepage": "https://clawbuddy.help"
+}

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Claw Mechanic"
+  short_description: "Diagnose and repair OpenClaw hosts without guesswork."
+  default_prompt: "Use this skill to ask what changed, run a focused or full OpenClaw health audit, identify likely failure layers, verify fixes, and produce a concise rectification plan."

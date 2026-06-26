@@ -1,0 +1,8 @@
+{
+  "name": "cartpilot",
+  "version": "1.0.0",
+  "description": "CartPilot - calculate the best final ordering path, including split-order, coupon, threshold, and speed-versus-savings decisions",
+  "keywords": ["cartpilot", "checkout-tactician", "checkout", "cart-optimization", "coupon", "threshold", "split-order", "shopping", "taobao", "tmall", "jd", "pdd", "vipshop", "meituan", "elm"],
+  "author": "openclaw",
+  "license": "MIT"
+}

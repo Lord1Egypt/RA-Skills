@@ -1,0 +1,19 @@
+{
+  "name": "chalk-art-image-generator",
+  "private": true,
+  "type": "module",
+  "description": "Generate chalkboard art and chalk drawings. Use when the user asks for chalk art, blackboard menu, or pastel drawing on dark background.",
+  "scripts": {
+    "bootstrap": "node scripts/bootstrap.mjs",
+    "doctor": "node scripts/doctor.mjs",
+    "ensure-ready": "node scripts/ensure-ready.mjs",
+    "setup": "node scripts/setup.mjs",
+    "discover-image-models": "node scripts/discover-models.mjs",
+    "recommend-model": "node scripts/recommend-model.mjs",
+    "build-visual-brief": "node scripts/build-visual-brief.mjs",
+    "style-menu": "node scripts/style-menu.mjs",
+    "smoke": "node scripts/smoke-check.mjs",
+    "generate": "node ./scripts/vendor/weryai-image/run-generate.mjs scripts/main.ts",
+    "test": "npm --prefix scripts test"
+  }
+}

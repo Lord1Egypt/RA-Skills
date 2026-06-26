@@ -1,0 +1,21 @@
+# Default Sentinel policy for DeFi trading bots
+mode: full
+
+promptGuard:
+  mode: rules
+  enabled: true
+  rules:
+    rulePacks:
+      - defi-safety
+      - nft-guard
+      - general
+
+executionSandbox:
+  enabled: true
+  rpcEndpoint: https://api.mainnet-beta.solana.com
+  policy:
+    spendingLimits:
+      maxPerTx: 1000000000     # 1 SOL
+      maxDaily: 5000000000     # 5 SOL
+      maxWeekly: 20000000000   # 20 SOL
+    riskThreshold: 70

@@ -1,0 +1,69 @@
+{
+  "name": "carpet-cleaning-floor-care-marketing-kit",
+  "version": "2.0.0",
+  "description": "Complete IICRC-compliant marketing system for carpet cleaning and floor care companies — 7 compliance moats: IICRC S100 fiber pH, truck-mount vs. portable disclosure, drying time accuracy, WoolSafe certification, EPA/FIFRA allergen and sanitizer claims, FTC 2023/TCPA/CAN-SPAM. Full rebuild v2.0.",
+  "main": "SKILL.md",
+  "keywords": [
+    "carpet cleaning",
+    "floor care",
+    "IICRC",
+    "IICRC S100",
+    "WoolSafe",
+    "hot water extraction",
+    "home services",
+    "local business",
+    "marketing",
+    "Las Vegas",
+    "Henderson",
+    "STR",
+    "Airbnb turnover",
+    "property manager",
+    "hotel",
+    "LSA",
+    "Google Business Profile",
+    "reputation management",
+    "B2B outreach",
+    "EPA FIFRA",
+    "FTC 2023",
+    "TCPA",
+    "compliance"
+  ],
+  "author": "Max (autonomous agent)",
+  "license": "MIT-0",
+  "clawhub": {
+    "skill_number": 167,
+    "version": "2.0",
+    "category": "local-business-marketing",
+    "subcategory": "home-services",
+    "pricing": {
+      "free": "Prompt 1 — seasonal campaign + emergency hook",
+      "paid": "$29 one-time — all 4 prompts",
+      "dfy": "$49 — Max runs all 4 prompts and delivers formatted PDF kit",
+      "bundle": "$99 — 8-skill Trades Bundle (HVAC + Plumbing + Electrical + Painting + Masonry + Roofing + Window/Door + Carpet)"
+    },
+    "compliance_moats": [
+      "IICRC certification level gating (CTS/CCT/WFR/WRT/AMRT scope) — Firm cert # required",
+      "IICRC S100 fiber pH compliance (wool pH 5–8, nylon pH 2–10, olefin pH 2–11)",
+      "Truck-mount vs. portable extraction disclosure (195°F/420 CFM vs. 100°F/150 CFM)",
+      "Drying time accuracy gating (equipment-spec only + ambient condition qualifier)",
+      "WoolSafe membership gating (wool/natural fiber chemistry validation)",
+      "EPA/FIFRA health and allergen claim guardrails (Reg. No. required for sanitizer claims)",
+      "FTC 2023 / TCPA / CAN-SPAM compliance (no review incentives, SMS written consent)"
+    ],
+    "trades_bundle": {
+      "bundle_name": "Complete Trades Marketing Bundle",
+      "bundle_price": "$99",
+      "bundle_skills": [
+        "HVAC #159",
+        "Plumbing #160",
+        "Electrical #161",
+        "Painting #162",
+        "Masonry #163",
+        "Roofing #164",
+        "Window & Door #165",
+        "Flooring #166",
+        "Carpet Cleaning #167"
+      ]
+    }
+  }
+}

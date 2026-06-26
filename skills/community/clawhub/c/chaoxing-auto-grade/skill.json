@@ -1,0 +1,49 @@
+{
+  "name": "chaoxing-auto-grade",
+  "version": "1.0.0",
+  "description": "超星学习通作业自动批改，AI智能评分",
+  "author": "",
+  "license": "MIT",
+  "config": {
+    "username": {
+      "type": "string",
+      "description": "学习通登录账号",
+      "required": true
+    },
+    "password": {
+      "type": "string",
+      "description": "学习通登录密码",
+      "required": true
+    },
+    "courseName": {
+      "type": "string",
+      "description": "课程名称（留空选择第一个课程）",
+      "default": ""
+    },
+    "apiKey": {
+      "type": "string",
+      "description": "通义千问 API Key",
+      "required": true
+    },
+    "model": {
+      "type": "string",
+      "description": "AI 模型",
+      "default": "qwen-plus"
+    },
+    "minScore": {
+      "type": "number",
+      "description": "最低分数",
+      "default": 60
+    },
+    "maxScore": {
+      "type": "number",
+      "description": "最高分数",
+      "default": 99
+    },
+    "chromePath": {
+      "type": "string",
+      "description": "Chrome 浏览器路径（可选）",
+      "default": ""
+    }
+  }
+}

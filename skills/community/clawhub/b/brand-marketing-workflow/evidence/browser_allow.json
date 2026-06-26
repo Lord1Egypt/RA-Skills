@@ -1,0 +1,31 @@
+{
+  "requested_action": "collect public signals",
+  "normalized_action": "collect_public_signals",
+  "platform": "weibo",
+  "allowed_actions": [
+    "collect_public_signals",
+    "gather_authorized_data",
+    "open_public_page",
+    "prepare_draft_publication",
+    "read_public_content"
+  ],
+  "blocked_actions": [
+    "bypass_captcha",
+    "bypass_login",
+    "bypass_rate_limits",
+    "evade_platform_controls",
+    "stealth_scraping"
+  ],
+  "capability_plan": [
+    "navigate",
+    "state",
+    "extract likes/comments/saves/public metadata"
+  ],
+  "compliance": {
+    "compliant": true,
+    "decision": "allow",
+    "reasons": [],
+    "degrade_to": []
+  },
+  "notes": "browser capability and compliance are unified: execute only within compliant scope"
+}

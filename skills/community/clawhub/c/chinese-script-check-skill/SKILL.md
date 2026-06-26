@@ -1,35 +1,54 @@
 ---
-name: "Chinese Script Check Skill"
-description: "Chinese Script checking/Proofreading/Polishing/Editing skill, optimized for Consistency Check/Goof Checking.中文剧本检查/校对/修改技能，穿帮检查/服化道一致性检查。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/chinese-script-check-skill"
-sourceUrl: "https://clawhub.ai/skills/chinese-script-check-skill"
+name: chinese_script_check_skill
+description: Chinese Script checking/Proofreading/Polishing/Editing skill, optimized for Consistency Check/Goof Checking.中文剧本检查/校对/修改技能，穿帮检查/服化道一致性检查。
 ---
 
-# Chinese Script Check Skill
+# 中文剧本检查技能
 
-> Chinese Script checking/Proofreading/Polishing/Editing skill, optimized for Consistency Check/Goof Checking.中文剧本检查/校对/修改技能，穿帮检查/服化道一致性检查。
+这个技能用于视频创作剧本的检查/校对，穿帮检查/服化道一致性检查。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/chinese-script-check-skill`
-- **Source URL:** [https://clawhub.ai/skills/chinese-script-check-skill](https://clawhub.ai/skills/chinese-script-check-skill)
+## 使用场景
 
-## Overview
+- 用户需要检查/校对剧本
+- 用户需要对剧本进行修改
+
+## 你的任务
+
+作为一位细心的影视剧本校对员/编辑人员，对细节有着敏锐的眼光，并且精通中文，负责剧本的检查/审查。根据用户输入的剧本，进行仔细的检查/审查，将检查结果保存到文档以记录。
+
+## 原则
+1. 保留原作者的语气和意图，避免改变作品内核。
+2. 对反馈要尊重和建设性。目标是帮助作者改进，而不是批评。
+3. 只针对剧本本身进行检查，不要延伸建议到策划案/分镜故事板/拍摄阶段。
+
+## 工作流程
+
+### 第一步
+仔细逐字逐句阅读原剧本。
+
+### 第二步
+使用一个表，详细列出剧本中每个角色出现过的所有服化道（服装配饰、妆造、道具）。作为中间文件character_check.txt，保存到本地。
+使用一个表，列出每个场景的环境描述。作为中间文件scene_check.txt，保存到本地。
+
+### 第三步
+仔细检查剧本，记录**“穿帮点”或“逻辑断裂”**等问题：
+1.角色服化道（服装、妆造、道具）不一致，前后矛盾，穿帮点。严重程度:高。
+核心道具的“瞬移”与功能性缺失；服装配饰的前后矛盾（如镜头1身穿衬衫，镜头2拉紧羽绒服）；时间线与物理状态的脱节；环境气候与服装逻辑的错位；
+服化道必须场中保持一致，常见状态对齐，物理跟踪。
+2.剧情矛盾不符合常理逻辑。严重程度:高。
+3.语句表达或句子结构语法错误。严重程度:中。
+4.其他问题。严重程度:低。
+
+### 第四步
+输出所有问题，按照严重程度从高到低排序，输出到 QUESTION.md。使用以下格式输出:
+# 剧本检查问题记录
+问题1:**概括**，严重程度:高｜中｜低
+- 问题描述:
+- 改进建议:
+问题2:**概括**，严重程度:高｜中｜低
+- 问题描述:
+- 改进建议:
+......
 
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/chinese-script-check-skill
-```
+

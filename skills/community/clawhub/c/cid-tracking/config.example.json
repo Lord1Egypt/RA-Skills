@@ -1,0 +1,29 @@
+{
+  "oceanengine": {
+    "app_id": "",
+    "access_token": "",
+    "sandbox": false
+  },
+  "kuaishou": {
+    "app_id": "",
+    "access_token": "",
+    "sandbox": false
+  },
+  "tencent": {
+    "account_id": "",
+    "secret_id": "",
+    "secret_key": "",
+    "sandbox": false
+  },
+  "report": {
+    "output_dir": "./reports",
+    "include_charts": true,
+    "theme": "professional"
+  },
+  "anomaly": {
+    "min_roi": 1.5,
+    "max_cpa": 100,
+    "consumption_threshold": 500,
+    "notify_channels": ["wechat"]
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "name": "cartpilot",
+  "version": "1.0.0",
+  "description": "CartPilot - a checkout-path optimization skill that calculates the best final ordering route",
+  "main": "SKILL.md",
+  "keywords": [
+    "cartpilot",
+    "checkout-tactician",
+    "checkout",
+    "cart-optimization",
+    "coupon",
+    "threshold",
+    "split-order",
+    "shopping",
+    "taobao",
+    "tmall",
+    "jd",
+    "pdd",
+    "vipshop",
+    "meituan",
+    "elm",
+    "openclaw-skill"
+  ],
+  "author": "openclaw",
+  "license": "MIT"
+}

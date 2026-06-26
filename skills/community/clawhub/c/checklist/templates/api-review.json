@@ -1,0 +1,19 @@
+{
+  "name": "API Design Review",
+  "description": "REST API design review checklist",
+  "category": "development",
+  "items": [
+    {"id": 1, "text": "Verify RESTful URL structure", "required": true},
+    {"id": 2, "text": "Check HTTP methods usage (GET/POST/PUT/DELETE)", "required": true},
+    {"id": 3, "text": "Verify proper HTTP status codes", "required": true},
+    {"id": 4, "text": "Review authentication/authorization design", "required": true},
+    {"id": 5, "text": "Check rate limiting strategy", "required": true},
+    {"id": 6, "text": "Verify error response format consistency", "required": true},
+    {"id": 7, "text": "Review versioning strategy", "required": true},
+    {"id": 8, "text": "Check pagination for list endpoints", "required": true},
+    {"id": 9, "text": "Verify request/response schemas", "required": true},
+    {"id": 10, "text": "Review API documentation completeness", "required": true},
+    {"id": 11, "text": "Check for sensitive data exposure", "required": true},
+    {"id": 12, "text": "Verify idempotency for mutations", "required": true}
+  ]
+}

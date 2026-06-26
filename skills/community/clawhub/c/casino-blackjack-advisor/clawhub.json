@@ -1,0 +1,13 @@
+{
+  "emoji": "🃏",
+  "version": "1.0.0",
+  "requires": {
+    "pip": [],
+    "env": []
+  },
+  "cron": "0 0 1 1 *",
+  "automaton": {
+    "managed": true,
+    "entrypoint": "blackjack_advisor.py"
+  }
+}

@@ -1,35 +1,43 @@
----
-name: "Clawfeed Digest"
-description: "Fetch ClawFeed AI news digests (4h/daily/weekly) and save them automatically to a specified Obsidian directory with flexible CLI options."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/clawfeed-digest"
-sourceUrl: "https://clawhub.ai/skills/clawfeed-digest"
----
+# ClawFeed Digest Fetcher
 
-# Clawfeed Digest
+> 抓取 ClawFeed AI 新闻简报，写入 Obsidian 知识库
 
-> Fetch ClawFeed AI news digests (4h/daily/weekly) and save them automatically to a specified Obsidian directory with flexible CLI options.
+## 功能
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/clawfeed-digest`
-- **Source URL:** [https://clawhub.ai/skills/clawfeed-digest](https://clawhub.ai/skills/clawfeed-digest)
+- 抓取 ClawFeed 简报（4h/日报/周报）
+- 自动写入 Obsidian 指定目录
 
-## Overview
+## 使用方法
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/clawfeed-digest
+# 安装依赖
+pip install requests
+
+# 获取今日日报
+python scripts/fetch_clawfeed.py
+
+# 获取 4h 简报
+python scripts/fetch_clawfeed.py -t 4h
+```
+
+## 参数
+
+- `--type`, `-t`: 简报类型 (4h, daily, weekly)
+- `--limit`, `-l`: 获取数量
+- `--output`, `-out`: 输出目录
+
+## 数据来源
+
+- [ClawFeed](https://clawfeed.kevinhe.io/)
+
+## OpenClaw 定时任务
+
+```json
+{
+  "name": "每日 AI 新闻简报",
+  "schedule": "0 17 * * *",
+  "payload": {
+    "message": "运行 python ~/.openclaw/skills/clawfeed-digest/scripts/fetch_clawfeed.py"
+  }
+}
 ```

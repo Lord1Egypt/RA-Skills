@@ -1,0 +1,15 @@
+{
+  "name": "caduceusmail-skill",
+  "version": "3.6.7",
+  "private": true,
+  "description": "OpenClaw skill adapter for an audited pinned caduceusmail release",
+  "license": "MIT",
+  "author": "lmtlssss",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lmtlssss/caduceusmail-skill"
+  },
+  "dependencies": {
+    "caduceusmail": "file:vendor/caduceusmail-3.6.7.tgz"
+  }
+}

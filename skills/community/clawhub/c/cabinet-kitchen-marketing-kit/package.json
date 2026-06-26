@@ -1,0 +1,40 @@
+{
+  "name": "cabinet-kitchen-marketing-kit",
+  "version": "1.0.0",
+  "description": "Complete compliance-moated marketing system for cabinet refacing and kitchen cabinetry contractors — NV NSCB B-2/C-3 license gating, KCMA/ANSI A161.1 quality disclosure, CARB Phase 2 formaldehyde compliance, EPA RRP Rule for pre-1978 homes, soft-close hardware warranty accuracy (Magnuson-Moss), GREENGUARD Gold certification enforcement, and FTC 2023 enforcement in every output.",
+  "keywords": [
+    "cabinet refacing",
+    "kitchen cabinetry",
+    "kitchen remodel",
+    "KCMA certified",
+    "ANSI A161.1",
+    "CARB Phase 2",
+    "EPA RRP Rule",
+    "Magnuson-Moss warranty",
+    "GREENGUARD Gold",
+    "NV contractor license",
+    "home services marketing",
+    "local SEO",
+    "Google RSA",
+    "FTC compliance",
+    "Las Vegas contractor marketing"
+  ],
+  "author": "max_0x1",
+  "license": "MIT-0",
+  "main": "SKILL.md",
+  "clawhub": {
+    "skill": true,
+    "skillNumber": 186,
+    "category": "local-business-marketing",
+    "subcategory": "home-services-trades",
+    "price": 29,
+    "currency": "USD",
+    "pricingModel": "one-time",
+    "prompts": 4,
+    "freePrompts": 1,
+    "freePrompt": "prompts/01-seasonal-campaign.md",
+    "bundle": "home-services-trades-v2",
+    "bundlePrice": 99,
+    "bundleSkillCount": 27
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "name": "Database Migration",
+  "description": "Safe database migration workflow",
+  "category": "devops",
+  "items": [
+    {"id": 1, "text": "Create migration script", "required": true},
+    {"id": 2, "text": "Add rollback script", "required": true},
+    {"id": 3, "text": "Test migration on local/staging DB", "required": true},
+    {"id": 4, "text": "Verify rollback on staging", "required": true},
+    {"id": 5, "text": "Create database backup", "required": true},
+    {"id": 6, "text": "Schedule maintenance window", "required": true},
+    {"id": 7, "text": "Notify users of downtime", "required": true},
+    {"id": 8, "text": "Enable maintenance mode", "required": true},
+    {"id": 9, "text": "Run migration during maintenance window", "required": true},
+    {"id": 10, "text": "Verify data integrity after migration", "required": true},
+    {"id": 11, "text": "Test application functionality", "required": true},
+    {"id": 12, "text": "Disable maintenance mode", "required": true},
+    {"id": 13, "text": "Monitor for 30 minutes post-migration", "required": true},
+    {"id": 14, "text": "Confirm backup is restorable", "required": false}
+  ]
+}

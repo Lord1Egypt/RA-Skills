@@ -1,0 +1,226 @@
+#!/bin/bash
+# tpf-init.sh - Initialize a new travel page project
+#
+# Usage:
+#   bash tpf-init.sh <project-name>
+#   bash tpf-init.sh hangzhou-2026-05
+#
+# Creates a ready-to-use project directory with:
+#   - index.html (references shared templates)
+#   - data/trip-data.json (empty scaffold matching schema)
+
+set -e
+
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+FRAMEWORK_DIR="$(dirname "$SCRIPT_DIR")"
+TEMPLATES_DIR="$FRAMEWORK_DIR/templates"
+
+if [ -z "$1" ]; then
+  echo "Usage: bash tpf-init.sh <project-name>"
+  echo "Example: bash tpf-init.sh hangzhou-2026-05"
+  exit 1
+fi
+
+PROJECT_NAME="$1"
+PROJECT_DIR="$FRAMEWORK_DIR/examples/$PROJECT_NAME"
+
+if [ -d "$PROJECT_DIR" ]; then
+  echo "Error: $PROJECT_DIR already exists"
+  exit 1
+fi
+
+echo "Creating project: $PROJECT_NAME"
+mkdir -p "$PROJECT_DIR/data"
+
+# ── Create index.html ──
+cat > "$PROJECT_DIR/index.html" << 'HTMLEOF'
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>旅行计划</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      html { scroll-behavior: smooth; }
+      .paper-grid {
+        background-image:
+          linear-gradient(rgba(15,23,42,0.03) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(15,23,42,0.03) 1px, transparent 1px);
+        background-size: 28px 28px;
+      }
+      .modal-open { overflow: hidden; }
+    </style>
+  </head>
+  <body class="bg-paper text-ink antialiased paper-grid">
+    <header class="relative overflow-hidden border-b border-stone-200 bg-gradient-to-br from-orange-50 via-white to-sky-50">
+      <div id="hero-bg" class="absolute inset-0 opacity-15 bg-cover bg-center"></div>
+      <div class="absolute inset-0 bg-white/70"></div>
+      <div class="relative mx-auto max-w-7xl px-6 py-14 lg:px-8 lg:py-20">
+        <div class="grid gap-10 lg:grid-cols-[1.35fr_0.85fr] lg:items-end">
+          <div>
+            <div id="hero-tags" class="mb-5 flex flex-wrap gap-3"></div>
+            <h1 id="hero-title" class="max-w-4xl text-4xl font-black leading-tight tracking-tight text-slate-900 sm:text-5xl lg:text-6xl"></h1>
+            <p id="hero-subtitle" class="mt-5 max-w-3xl text-lg text-slate-600 sm:text-xl"></p>
+            <div class="mt-6 flex flex-wrap gap-4 text-sm text-slate-600">
+              <span id="hero-date" class="rounded-full border border-orange-200 bg-white px-4 py-2 shadow-soft"></span>
+              <span class="rounded-full border border-sky-200 bg-white px-4 py-2 shadow-soft">travel-page-framework</span>
+            </div>
+          </div>
+          <div class="rounded-[28px] border border-white bg-white/90 p-6 shadow-card backdrop-blur">
+            <div class="text-sm uppercase tracking-[0.2em] text-tealsoft">行程摘要</div>
+            <p id="hero-summary" class="mt-4 text-sm leading-7 text-slate-600"></p>
+            <div id="hero-quick" class="mt-6 grid grid-cols-2 gap-3 text-sm"></div>
+          </div>
+        </div>
+      </div>
+    </header>
+    <div class="sticky top-0 z-30 border-b border-stone-200 bg-white/90 backdrop-blur">
+      <nav class="mx-auto flex max-w-7xl gap-2 overflow-x-auto px-6 py-3 lg:px-8">
+        <a href="#overview" class="rounded-full border border-stone-200 bg-white px-4 py-2 text-sm text-slate-700 shadow-soft">总览</a>
+        <a href="#hotels" class="rounded-full border border-stone-200 bg-white px-4 py-2 text-sm text-slate-700 shadow-soft">酒店</a>
+        <a href="#metro" class="rounded-full border border-stone-200 bg-white px-4 py-2 text-sm text-slate-700 shadow-soft">地铁</a>
+        <a href="#days" class="rounded-full border border-stone-200 bg-white px-4 py-2 text-sm text-slate-700 shadow-soft">每日行程</a>
+        <a href="#side-trips" class="rounded-full border border-stone-200 bg-white px-4 py-2 text-sm text-slate-700 shadow-soft">周边侧游</a>
+        <a href="#attractions" class="rounded-full border border-stone-200 bg-white px-4 py-2 text-sm text-slate-700 shadow-soft">景点</a>
+      </nav>
+    </div>
+    <main class="mx-auto max-w-7xl space-y-16 px-6 py-10 lg:px-8 lg:py-14">
+      <section id="overview">
+        <div class="mb-6"><p class="text-sm uppercase tracking-[0.2em] text-tealsoft">Overview</p><h2 class="mt-2 text-2xl font-bold text-slate-900">整体概览</h2></div>
+        <div id="stats-grid" class="grid gap-4 sm:grid-cols-2 xl:grid-cols-6"></div>
+      </section>
+      <section id="hotels" class="grid gap-8 lg:grid-cols-[1.1fr_0.9fr]">
+        <div>
+          <div class="mb-6"><p class="text-sm uppercase tracking-[0.2em] text-tealsoft">Hotels</p><h2 class="mt-2 text-2xl font-bold text-slate-900">酒店安排</h2></div>
+          <div id="hotel-grid" class="grid gap-5 xl:grid-cols-2"></div>
+        </div>
+        <div id="metro">
+          <div class="mb-6"><p class="text-sm uppercase tracking-[0.2em] text-tealsoft">Metro Coverage</p><h2 class="mt-2 text-2xl font-bold text-slate-900">地铁覆盖目标</h2></div>
+          <div class="rounded-[28px] border border-stone-200 bg-white p-6 shadow-card">
+            <p id="metro-goal" class="text-sm leading-7 text-slate-600"></p>
+            <div id="metro-lines" class="mt-6 flex flex-wrap gap-3"></div>
+          </div>
+        </div>
+      </section>
+      <section id="days">
+        <div class="mb-6"><p class="text-sm uppercase tracking-[0.2em] text-tealsoft">Timeline</p><h2 class="mt-2 text-2xl font-bold text-slate-900">每日行程</h2><p class="mt-3 text-sm text-slate-500">点击卡片可查看当日景点详情。</p></div>
+        <div id="day-list" class="grid gap-5 lg:grid-cols-2"></div>
+      </section>
+      <section id="side-trips" class="grid gap-8 lg:grid-cols-2">
+        <div>
+          <div class="mb-6"><p class="text-sm uppercase tracking-[0.2em] text-tealsoft">Side Trips</p><h2 class="mt-2 text-2xl font-bold text-slate-900">周边城市侧游</h2></div>
+          <div id="side-trips-list" class="grid gap-5"></div>
+        </div>
+        <div>
+          <div class="mb-6"><p class="text-sm uppercase tracking-[0.2em] text-tealsoft">Tips</p><h2 class="mt-2 text-2xl font-bold text-slate-900">实用提醒</h2></div>
+          <div id="tips-panel" class="space-y-4"></div>
+        </div>
+      </section>
+      <section id="attractions">
+        <div class="mb-6"><p class="text-sm uppercase tracking-[0.2em] text-tealsoft">Attractions</p><h2 class="mt-2 text-2xl font-bold text-slate-900">景点灵感</h2></div>
+        <div id="attraction-grid" class="grid gap-5 md:grid-cols-2 xl:grid-cols-3"></div>
+      </section>
+    </main>
+    <div id="day-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-900/45 p-4">
+      <div class="relative max-h-[90vh] w-full max-w-5xl overflow-hidden rounded-[32px] bg-white shadow-2xl">
+        <button id="modal-close" class="absolute right-4 top-4 z-10 rounded-full bg-white/90 px-3 py-2 text-sm text-slate-700 shadow-soft">关闭</button>
+        <div class="grid max-h-[90vh] overflow-y-auto lg:grid-cols-[0.95fr_1.05fr]">
+          <div id="modal-gallery" class="grid gap-3 bg-stone-100 p-4"></div>
+          <div class="p-6 lg:p-8">
+            <div id="modal-meta" class="text-sm uppercase tracking-[0.2em] text-tealsoft"></div>
+            <h3 id="modal-title" class="mt-3 text-3xl font-black text-slate-900"></h3>
+            <p id="modal-note" class="mt-4 rounded-2xl bg-orange-50 px-4 py-3 text-sm leading-7 text-slate-600"></p>
+            <div class="mt-6 grid gap-4 md:grid-cols-3">
+              <div class="rounded-2xl bg-slate-50 p-4"><div class="text-sm font-semibold text-slate-900">上午</div><ul id="modal-morning" class="mt-3 space-y-2 text-sm text-slate-600"></ul></div>
+              <div class="rounded-2xl bg-slate-50 p-4"><div class="text-sm font-semibold text-slate-900">下午</div><ul id="modal-afternoon" class="mt-3 space-y-2 text-sm text-slate-600"></ul></div>
+              <div class="rounded-2xl bg-slate-50 p-4"><div class="text-sm font-semibold text-slate-900">晚上</div><ul id="modal-evening" class="mt-3 space-y-2 text-sm text-slate-600"></ul></div>
+            </div>
+            <div class="mt-8"><h4 class="text-lg font-bold text-slate-900">当日景点</h4><div id="modal-attractions" class="mt-4 space-y-4"></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer class="border-t border-stone-200 bg-white py-8">
+      <div class="mx-auto flex max-w-7xl flex-col gap-2 px-6 text-sm text-slate-500 lg:px-8">
+        <div>Powered by travel-page-framework</div>
+      </div>
+    </footer>
+    <script src="../../templates/themes/light.js"></script>
+    <script src="../../templates/trip-renderer.js"></script>
+    <script>TripRenderer.init({ dataUrl: './data/trip-data.json', theme: 'light' });</script>
+  </body>
+</html>
+HTMLEOF
+
+# ── Create empty trip-data.json scaffold ──
+cat > "$PROJECT_DIR/data/trip-data.json" << 'JSONEOF'
+{
+  "meta": {
+    "title": "旅行计划标题",
+    "subtitle": "副标题",
+    "description": "行程描述"
+  },
+  "hero": {
+    "title": "旅行计划标题",
+    "subtitle": "副标题",
+    "dateRange": "2026/01/01 - 2026/01/07",
+    "tags": ["标签1", "标签2"],
+    "summary": "行程摘要文字。",
+    "heroImage": ""
+  },
+  "stats": [
+    { "label": "出发", "value": "出发地 → 目的地" },
+    { "label": "返程", "value": "日期" },
+    { "label": "时长", "value": "X 天" },
+    { "label": "酒店", "value": "待定" }
+  ],
+  "hotels": [],
+  "metroCoverage": {
+    "goal": "地铁覆盖目标说明",
+    "lines": []
+  },
+  "days": [],
+  "sideTrips": [],
+  "attractions": [],
+  "tips": []
+}
+JSONEOF
+
+# ── Create README ──
+cat > "$PROJECT_DIR/README.md" << MDEOF
+# $PROJECT_NAME
+
+Generated by \`tpf-init.sh\`.
+
+## Quick Start
+
+\`\`\`bash
+# From the framework root:
+cd examples/$PROJECT_NAME
+python3 -m http.server 8766
+
+# Open http://localhost:8766
+\`\`\`
+
+## Edit
+
+1. Edit \`data/trip-data.json\` with your trip data
+2. Use \`scripts/wikimedia_image_search.py\` to find free images
+3. Refresh the browser
+
+## Find Images
+
+\`\`\`bash
+python3 ../../scripts/wikimedia_image_search.py "景点名称" --limit 5 --pretty
+\`\`\`
+MDEOF
+
+echo ""
+echo "✅ Project created: $PROJECT_DIR"
+echo ""
+echo "Next steps:"
+echo "  1. Edit data:   vim $PROJECT_DIR/data/trip-data.json"
+echo "  2. Find images:  python3 $FRAMEWORK_DIR/scripts/wikimedia_image_search.py \"景点\" --pretty"
+echo "  3. Preview:      cd $PROJECT_DIR && python3 -m http.server 8766"
+echo "  4. Open:         http://localhost:8766"

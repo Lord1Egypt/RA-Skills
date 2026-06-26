@@ -1,0 +1,122 @@
+"""
+VOD 请求传输层：apig（SkillHub Bearer）优先，否则 cloud（火山 HMAC OpenAPI）。
+"""
+from __future__ import annotations
+
+import json
+import os
+from typing import Literal, Union
+
+import requests
+from urllib.parse import quote, urlencode
+
+from volc_request import VolcRequestClient
+
+
+def _strip_env(name: str) -> str:
+    raw = os.getenv(name)
+    return (raw or "").strip()
+
+
+def _normalize_skillhub_api_base(base: str) -> str:
+    """ARK_SKILL_API_BASE 可能只配主机名；requests 需要带 scheme 的绝对 URL。"""
+    base = base.strip().rstrip("/")
+    if not base:
+        return base
+    if "://" in base:
+        return base
+    return f"https://{base}"
+
+
+def resolve_vod_transport() -> Literal["apig", "cloud"]:
+    if (_strip_env("ARK_SKILL_API_BASE")
+            and _strip_env("ARK_SKILL_API_KEY")
+            and os.getenv("EXECUTION_MODE", "").strip().lower() == "apig"):
+        return "apig"
+    return "cloud"
+
+
+class SkillhubApigVodClient:
+    """
+    SkillHub API 网关：请求形态与火山 VOD OpenAPI 一致（Action/Version + query / JSON body），
+    鉴权为 Bearer + ServiceName: vod，不做 HMAC 签算。
+    """
+
+    def __init__(self, api_base: str, api_key: str):
+        self.api_base = _normalize_skillhub_api_base(api_base)
+        self.api_key = api_key.strip()
+
+    def get(self, action: str, version: str, params: dict | None = None) -> str:
+        return self._request(action, params or {}, "GET", version)
+
+    def post(self, action: str, version: str, body: dict) -> str:
+        return self._request(action, body or {}, "POST", version)
+
+    def _request(
+        self, action: str, data: dict, method: str, version: str,
+        *, _max_retries: int = 3, _backoff: float = 1.0,
+    ) -> str:
+        import time as _time
+
+        query_params = {"Action": action, "Version": version}
+        body_dict: dict = {}
+        if method == "GET":
+            if data:
+                query_params.update(data)
+        else:
+            body_dict = data or {}
+
+        canonical_query = urlencode(sorted(query_params.items()), quote_via=quote, safe="-_.~")
+        url = f"{self.api_base}?{canonical_query}"
+
+        json_body = "" if method == "GET" else json.dumps(body_dict, ensure_ascii=False)
+        headers = {
+            "Content-Type": "application/json; charset=utf-8",
+            "Authorization": f"Bearer {self.api_key}",
+            "ServiceName": "vod",
+        }
+
+        last_exc: Exception | None = None
+        for attempt in range(_max_retries):
+            try:
+                if method == "GET":
+                    r = requests.get(url, headers=headers, timeout=30)
+                else:
+                    r = requests.post(url, headers=headers, data=json_body.encode("utf-8"), timeout=60)
+                if r.status_code != 200:
+                    raise Exception(f"HTTP {r.status_code}: {r.text}")
+                return r.text
+            except (requests.exceptions.SSLError,
+                    requests.exceptions.ConnectionError) as e:
+                last_exc = e
+                wait = _backoff * (2 ** attempt)
+                print(f"[APIG] {action} 请求失败(第{attempt+1}次): {type(e).__name__}, {wait:.1f}s 后重试...")
+                _time.sleep(wait)
+
+        raise last_exc  # type: ignore[misc]
+
+
+def get_vod_transport_client() -> Union[SkillhubApigVodClient, VolcRequestClient]:
+    if resolve_vod_transport() == "apig":
+        base = _strip_env("ARK_SKILL_API_BASE")
+        key = _strip_env("ARK_SKILL_API_KEY")
+        if not base or not key:
+            raise ValueError(
+                "Missing ARK_SKILL_API_BASE or ARK_SKILL_API_KEY environment variables"
+            )
+        return SkillhubApigVodClient(base, key)
+
+    ak = _strip_env("VOLC_ACCESS_KEY_ID")
+    sk = _strip_env("VOLC_ACCESS_KEY_SECRET")
+    if not ak or not sk:
+        raise ValueError(
+            "Missing VOLC_ACCESS_KEY_ID or VOLC_ACCESS_KEY_SECRET "
+            "(or set both ARK_SKILL_API_BASE and ARK_SKILL_API_KEY for SkillHub gateway)"
+        )
+    return VolcRequestClient(
+        ak=ak,
+        sk=sk,
+        host=os.getenv("VOLC_HOST", "vod.volcengineapi.com"),
+        region=os.getenv("VOLC_REGION", "cn-north-1"),
+        service="vod",
+    )

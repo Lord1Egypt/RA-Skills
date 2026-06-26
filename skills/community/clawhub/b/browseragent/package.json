@@ -1,0 +1,16 @@
+{
+  "name": "browseragent",
+  "version": "1.0.0",
+  "description": "Browser automation with human-like behavior. Use when: sites require JavaScript, login sessions, form filling, clicking, scrolling, or complex interactions.",
+  "homepage": "https://playwright.dev",
+  "author": "OpenClaw Community",
+  "license": "MIT",
+  "keywords": ["openclaw", "skill", "browser", "automation", "playwright"],
+  "openclaw": {
+    "emoji": "🤖",
+    "requires": {
+      "bins": ["node", "npx"],
+      "npm": ["playwright"]
+    }
+  }
+}

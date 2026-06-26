@@ -1,0 +1,1648 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CLAW Agent 智控驾驶舱</title>
+<style>
+  :root {
+    /* DESIGN.md 色彩系统 */
+    --primary: #0073BB;
+    --primary-hover: #005A92;
+    --primary-light: #E6F4FF;
+    --text-primary: #1A1A1A;
+    --text-secondary: #595959;
+    --text-disabled: #BFBFBF;
+    --border: #D9D9D9;
+    --border-light: #F0F0F0;
+    --bg: #F5F5F5;
+    --bg-white: #FFFFFF;
+    --bg-alt: #F5F5F5;
+    --success: #52C41A;
+    --success-bg: #F6FFED;
+    --warning: #FAAD14;
+    --warning-bg: #FFFBE6;
+    --error: #FF4D4F;
+    --error-bg: #FFF2F0;
+    --info: #1890FF;
+    --info-bg: #E6F7FF;
+    --idle: #FF8D4E;
+    --idle-bg: #FFF7E6;
+    /* 间距系统 */
+    --spacing-xs: 4px;
+    --spacing-sm: 8px;
+    --spacing-md: 16px;
+    --spacing-lg: 24px;
+    --spacing-xl: 32px;
+    --spacing-xxl: 48px;
+    /* 阴影系统 */
+    --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+    --shadow-md: 0 4px 12px rgba(0,0,0,0.1);
+    --shadow-lg: 0 8px 24px rgba(0,0,0,0.15);
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text-primary);
+    min-height: 100vh;
+  }
+
+  /* 顶部导航 - DESIGN.md 导航规范 */
+  .top-nav {
+    background: var(--bg-white);
+    border-bottom: 1px solid var(--border-light);
+    padding: 0 var(--spacing-lg);
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: var(--shadow-sm);
+  }
+  .top-nav h1 {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+  }
+  .nav-right {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+  }
+  .last-update {
+    font-size: 12px;
+    color: var(--text-secondary);
+  }
+
+  /* 按钮 - DESIGN.md 按钮规范 */
+  .btn-primary {
+    background: var(--primary);
+    color: #FFFFFF;
+    border: 1px solid var(--primary);
+    border-radius: 4px;
+    padding: 8px 16px;
+    font-size: 14px;
+    line-height: 1.5;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  .btn-primary:hover {
+    background: var(--primary-hover);
+    border-color: var(--primary-hover);
+  }
+
+  /* 主内容区 */
+  .main-content {
+    padding: var(--spacing-lg);
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  /* 统计卡片 - DESIGN.md 卡片规范 */
+  .summary {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-lg);
+  }
+  .summary-card {
+    background: var(--bg-white);
+    border: 1px solid var(--border-light);
+    border-radius: 4px;
+    box-shadow: var(--shadow-sm);
+    padding: var(--spacing-lg);
+    text-align: center;
+  }
+  .summary-card .num {
+    font-size: 32px;
+    font-weight: 600;
+    line-height: 1.2;
+  }
+  .summary-card .label {
+    font-size: 12px;
+    color: var(--text-secondary);
+    margin-top: var(--spacing-xs);
+  }
+  .summary-card.total .num { color: var(--primary); }
+  .summary-card.ok .num { color: var(--success); }
+  .summary-card.rest .num { color: var(--info); }
+  .summary-card.idle .num { color: var(--idle); }
+  .summary-card.stuck .num { color: var(--warning); }
+  .summary-card.lost .num { color: var(--error); }
+
+  /* ========== 额度监控卡片 ========== */
+  .quota-section {
+    margin-bottom: var(--spacing-lg);
+  }
+  .quota-section h2 {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-md);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+  }
+  .quota-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-md);
+  }
+  .quota-card {
+    background: var(--bg-white);
+    border: 1px solid var(--border-light);
+    border-radius: 4px;
+    box-shadow: var(--shadow-sm);
+    padding: var(--spacing-lg);
+  }
+  .quota-card h3 {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    margin-bottom: var(--spacing-md);
+  }
+
+  /* 大号额度环 */
+  .quota-ring-container {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xl);
+  }
+  .quota-ring {
+    position: relative;
+    width: 140px;
+    height: 140px;
+    flex-shrink: 0;
+  }
+  .quota-ring svg {
+    transform: rotate(-90deg);
+    width: 140px;
+    height: 140px;
+  }
+  .quota-ring .ring-bg {
+    fill: none;
+    stroke: var(--border-light);
+    stroke-width: 12;
+  }
+  .quota-ring .ring-fill {
+    fill: none;
+    stroke-width: 12;
+    stroke-linecap: round;
+    transition: stroke-dashoffset 1s ease, stroke 0.5s;
+  }
+  .quota-ring .ring-center {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+  }
+  .quota-ring .ring-pct {
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1;
+  }
+  .quota-ring .ring-label {
+    font-size: 11px;
+    color: var(--text-secondary);
+    margin-top: 4px;
+  }
+  .quota-stats {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .quota-stat-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+  }
+  .quota-stat-row .qs-label {
+    color: var(--text-secondary);
+  }
+  .quota-stat-row .qs-value {
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+
+  /* 告警横幅 */
+  .quota-alert {
+    padding: 10px 16px;
+    border-radius: 4px;
+    font-size: 13px;
+    font-weight: 500;
+    margin-bottom: var(--spacing-md);
+    display: none;
+  }
+  .quota-alert.normal { display: none; }
+  .quota-alert.caution {
+    display: block;
+    background: var(--info-bg);
+    color: var(--info);
+    border: 1px solid #91D5FF;
+  }
+  .quota-alert.warning {
+    display: block;
+    background: var(--warning-bg);
+    color: #D48806;
+    border: 1px solid #FFE58F;
+  }
+  .quota-alert.danger {
+    display: block;
+    background: var(--error-bg);
+    color: var(--error);
+    border: 1px solid #FFA39E;
+  }
+
+  /* 日用量柱状图 */
+  .daily-chart {
+    display: flex;
+    align-items: flex-end;
+    gap: 3px;
+    height: 100px;
+    padding-top: 8px;
+  }
+  .daily-bar-wrap {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    justify-content: flex-end;
+  }
+  .daily-bar {
+    width: 100%;
+    max-width: 28px;
+    border-radius: 3px 3px 0 0;
+    transition: height 0.6s ease;
+    min-height: 2px;
+    position: relative;
+  }
+  .daily-bar:hover {
+    opacity: 0.8;
+  }
+  .daily-bar .bar-tooltip {
+    display: none;
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0,0,0,0.75);
+    color: #fff;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-size: 11px;
+    white-space: nowrap;
+    margin-bottom: 4px;
+  }
+  .daily-bar:hover .bar-tooltip {
+    display: block;
+  }
+  .daily-date {
+    font-size: 10px;
+    color: var(--text-disabled);
+    margin-top: 4px;
+    writing-mode: vertical-lr;
+    text-orientation: mixed;
+    max-height: 36px;
+    overflow: hidden;
+  }
+
+  /* 安全线 */
+  .chart-wrapper {
+    position: relative;
+  }
+  .safe-line {
+    position: absolute;
+    left: 0; right: 0;
+    border-top: 1.5px dashed var(--error);
+    pointer-events: none;
+    z-index: 2;
+  }
+  .safe-line-label {
+    position: absolute;
+    right: 0;
+    top: -16px;
+    font-size: 10px;
+    color: var(--error);
+  }
+
+  @media (max-width: 768px) {
+    .quota-grid { grid-template-columns: 1fr; }
+    .quota-ring-container { flex-direction: column; align-items: center; }
+  }
+
+  /* ========== Token 用量模块 ========== */
+  .token-section {
+    margin-top: var(--spacing-md);
+  }
+  .token-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-md);
+  }
+  .token-card {
+    background: var(--bg-white);
+    border: 1px solid var(--border-light);
+    border-radius: 4px;
+    box-shadow: var(--shadow-sm);
+    padding: var(--spacing-lg);
+  }
+  .token-card h3 {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    margin-bottom: var(--spacing-md);
+  }
+  .token-total {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 4px;
+  }
+  .token-total-label {
+    font-size: 12px;
+    color: var(--text-secondary);
+    margin-bottom: var(--spacing-md);
+  }
+  .token-bar-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+    font-size: 12px;
+  }
+  .token-bar-name {
+    width: 80px;
+    text-align: right;
+    color: var(--text-secondary);
+    flex-shrink: 0;
+  }
+  .token-bar-track {
+    flex: 1;
+    height: 16px;
+    background: var(--bg-alt);
+    border-radius: 3px;
+    overflow: hidden;
+    position: relative;
+  }
+  .token-bar-fill {
+    height: 100%;
+    border-radius: 3px;
+    transition: width 0.6s ease;
+    min-width: 2px;
+  }
+  .token-bar-val {
+    width: 65px;
+    text-align: right;
+    color: var(--text-primary);
+    font-weight: 500;
+    flex-shrink: 0;
+  }
+  .token-pie-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-lg);
+  }
+  .token-pie {
+    width: 140px;
+    height: 140px;
+    flex-shrink: 0;
+  }
+  .token-legend {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .token-legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+  }
+  .token-legend-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 2px;
+    flex-shrink: 0;
+  }
+  @media (max-width: 768px) {
+    .token-grid { grid-template-columns: 1fr; }
+    .token-pie-container { flex-direction: column; }
+  }
+
+  /* ========== Cron 管理 ========== */
+  .cron-section {
+    margin-top: var(--spacing-md);
+    margin-bottom: var(--spacing-lg);
+  }
+  .cron-table {
+    width: 100%;
+    background: var(--bg-white);
+    border: 1px solid var(--border-light);
+    border-radius: 4px;
+    box-shadow: var(--shadow-sm);
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+  .cron-table th {
+    text-align: left;
+    padding: 12px 16px;
+    background: var(--bg-alt);
+    color: var(--text-secondary);
+    font-weight: 500;
+    font-size: 12px;
+    border-bottom: 1px solid var(--border-light);
+  }
+  .cron-table td {
+    padding: 10px 16px;
+    border-bottom: 1px solid var(--border-light);
+    vertical-align: middle;
+  }
+  .cron-table tr:last-child td { border-bottom: none; }
+  .cron-table tr:hover { background: var(--primary-light); }
+  .cron-name {
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+  .cron-desc {
+    font-size: 11px;
+    color: var(--text-secondary);
+    margin-top: 2px;
+  }
+  .cron-freq {
+    font-family: monospace;
+    font-size: 12px;
+    color: var(--primary);
+  }
+  .cron-toggle {
+    position: relative;
+    width: 36px;
+    height: 20px;
+    cursor: pointer;
+  }
+  .cron-toggle input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  .cron-toggle .slider {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: var(--border);
+    border-radius: 10px;
+    transition: 0.3s;
+  }
+  .cron-toggle .slider:before {
+    content: '';
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    left: 2px;
+    bottom: 2px;
+    background: white;
+    border-radius: 50%;
+    transition: 0.3s;
+  }
+  .cron-toggle input:checked + .slider {
+    background: var(--success);
+  }
+  .cron-toggle input:checked + .slider:before {
+    transform: translateX(16px);
+  }
+  .cron-badge {
+    display: inline-block;
+    padding: 1px 6px;
+    border-radius: 3px;
+    font-size: 10px;
+    font-weight: 500;
+  }
+  .cron-badge.agent-cto { background: #F6FFED; color: var(--success); }
+  .cron-badge.agent-main { background: var(--primary-light); color: var(--primary); }
+  .cron-freq-select {
+    padding: 3px 6px;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    font-size: 12px;
+    font-family: monospace;
+    background: var(--bg-white);
+    cursor: pointer;
+  }
+  .cron-cost {
+    font-size: 11px;
+    color: var(--text-secondary);
+  }
+  .cron-time {
+    font-size: 11px;
+    color: var(--text-disabled);
+  }
+
+  /* Agent 卡片网格 */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: var(--spacing-md);
+  }
+
+  /* Agent 卡片 - DESIGN.md 卡片规范 */
+  .agent-card {
+    background: var(--bg-white);
+    border: 1px solid var(--border-light);
+    border-radius: 4px;
+    box-shadow: var(--shadow-sm);
+    padding: var(--spacing-lg);
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+  .agent-card:hover {
+    box-shadow: var(--shadow-md);
+  }
+
+  /* 卡片顶部状态条 */
+  .agent-card .status-bar {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+  }
+  .agent-card.ok .status-bar { background: var(--success); }
+  .agent-card.rest .status-bar { background: var(--info); }
+  .agent-card.idle .status-bar { background: var(--idle); }
+  .agent-card.stuck .status-bar { background: var(--warning); }
+  .agent-card.lost .status-bar { background: var(--error); }
+
+  /* 卡片头部 */
+  .card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: var(--spacing-md);
+    padding-bottom: var(--spacing-md);
+    border-bottom: 1px solid var(--border-light);
+  }
+  .agent-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .avatar {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    background: var(--bg-alt);
+    border: 1px solid var(--border-light);
+  }
+  .agent-name {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+  .agent-role {
+    font-size: 12px;
+    color: var(--text-secondary);
+  }
+
+  /* 状态标签 - DESIGN.md 状态标签规范 */
+  .status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 500;
+  }
+  .status-badge .dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+  }
+  .status-badge.ok { background: var(--success-bg); color: var(--success); }
+  .status-badge.ok .dot { background: var(--success); }
+  .status-badge.rest { background: var(--info-bg); color: var(--info); }
+  .status-badge.rest .dot { background: var(--info); }
+  .status-badge.idle { background: var(--idle-bg); color: var(--idle); }
+  .status-badge.idle .dot { background: var(--idle); }
+  .status-badge.stuck { background: var(--warning-bg); color: var(--warning); }
+  .status-badge.stuck .dot { background: var(--warning); }
+  .status-badge.lost { background: var(--error-bg); color: var(--error); }
+  .status-badge.lost .dot { background: var(--error); }
+
+  /* 任务区域 */
+  .task-section { margin-bottom: var(--spacing-md); }
+  .task-label {
+    font-size: 12px;
+    color: var(--text-secondary);
+    margin-bottom: var(--spacing-sm);
+  }
+  .task-name {
+    font-size: 14px;
+    color: var(--text-primary);
+    margin-bottom: 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  /* 进度条 */
+  .progress-bar {
+    width: 100%;
+    height: 8px;
+    background: var(--bg-alt);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    border-radius: 4px;
+    transition: width 0.6s ease;
+  }
+  .progress-fill.ok { background: var(--success); }
+  .progress-fill.rest { background: var(--info); }
+  .progress-fill.idle { background: var(--idle); }
+  .progress-fill.stuck { background: var(--warning); }
+  .progress-fill.lost { background: var(--error); opacity: .6; }
+
+  .progress-text {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    color: var(--text-secondary);
+    margin-top: 6px;
+  }
+  .progress-pct {
+    font-weight: 600;
+    font-size: 12px;
+  }
+  .progress-pct.ok { color: var(--success); }
+  .progress-pct.rest { color: var(--info); }
+  .progress-pct.idle { color: var(--idle); }
+  .progress-pct.stuck { color: var(--warning); }
+  .progress-pct.lost { color: var(--error); }
+
+  /* 元信息行 */
+  .meta-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    color: var(--text-secondary);
+    padding-top: var(--spacing-md);
+    border-top: 1px solid var(--border-light);
+  }
+  .meta-row span {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  /* 页脚 */
+  .footer {
+    text-align: center;
+    margin-top: var(--spacing-xxl);
+    padding: var(--spacing-lg);
+    color: var(--text-disabled);
+    font-size: 12px;
+  }
+
+  /* 响应式 - DESIGN.md 断点规范 */
+  /* ========== 订阅倒计时 Lite ========== */
+  .sub-countdown {
+    background: var(--bg-white);
+    border: 1px solid var(--border-light);
+    border-radius: 4px;
+    box-shadow: var(--shadow-sm);
+    padding: 14px var(--spacing-lg);
+    margin-bottom: var(--spacing-lg);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--spacing-md);
+  }
+  .sub-countdown .sub-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 14px;
+    color: var(--text-primary);
+  }
+  .sub-countdown .sub-icon {
+    font-size: 22px;
+  }
+  .sub-countdown .sub-plan {
+    font-weight: 600;
+  }
+  .sub-countdown .sub-expire {
+    font-size: 12px;
+    color: var(--text-secondary);
+    margin-top: 2px;
+  }
+  .sub-countdown .sub-right {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+  }
+  .sub-countdown .sub-days {
+    display: flex;
+    align-items: baseline;
+    gap: 2px;
+  }
+  .sub-countdown .sub-days-num {
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 1;
+  }
+  .sub-countdown .sub-days-unit {
+    font-size: 13px;
+    color: var(--text-secondary);
+    font-weight: 500;
+  }
+  .sub-countdown .sub-hms {
+    display: flex;
+    gap: 4px;
+  }
+  .sub-countdown .sub-hms-block {
+    background: var(--bg-alt);
+    border-radius: 4px;
+    padding: 4px 8px;
+    text-align: center;
+    min-width: 38px;
+  }
+  .sub-countdown .sub-hms-val {
+    font-size: 18px;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+    line-height: 1.2;
+  }
+  .sub-countdown .sub-hms-label {
+    font-size: 9px;
+    color: var(--text-disabled);
+    text-transform: uppercase;
+  }
+  .sub-countdown .sub-bar {
+    width: 120px;
+    height: 6px;
+    background: var(--bg-alt);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+  .sub-countdown .sub-bar-fill {
+    height: 100%;
+    border-radius: 3px;
+    transition: width 1s;
+  }
+  /* 倒计时颜色阶梯 */
+  .sub-countdown.sub-safe .sub-days-num { color: var(--success); }
+  .sub-countdown.sub-safe .sub-bar-fill { background: var(--success); }
+  .sub-countdown.sub-safe .sub-hms-val { color: var(--success); }
+  .sub-countdown.sub-notice .sub-days-num { color: var(--info); }
+  .sub-countdown.sub-notice .sub-bar-fill { background: var(--info); }
+  .sub-countdown.sub-notice .sub-hms-val { color: var(--info); }
+  .sub-countdown.sub-warn .sub-days-num { color: var(--warning); }
+  .sub-countdown.sub-warn .sub-bar-fill { background: var(--warning); }
+  .sub-countdown.sub-warn .sub-hms-val { color: var(--warning); }
+  .sub-countdown.sub-danger .sub-days-num { color: var(--error); }
+  .sub-countdown.sub-danger .sub-bar-fill { background: var(--error); }
+  .sub-countdown.sub-danger .sub-hms-val { color: var(--error); }
+  .sub-renew-btn {
+    background: var(--primary);
+    color: #fff;
+    border: 1px solid var(--primary);
+    border-radius: 4px;
+    padding: 6px 16px;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s;
+    white-space: nowrap;
+  }
+  .sub-renew-btn:hover {
+    background: var(--primary-hover);
+    border-color: var(--primary-hover);
+  }
+  /* 续订弹窗 */
+  .sub-modal-overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.45);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: subFadeIn 0.2s;
+  }
+  @keyframes subFadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  .sub-modal {
+    background: var(--bg-white);
+    border-radius: 8px;
+    box-shadow: var(--shadow-lg);
+    padding: var(--spacing-xl);
+    max-width: 400px;
+    width: 90%;
+    text-align: center;
+    animation: subSlideUp 0.25s;
+  }
+  @keyframes subSlideUp {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+  }
+  .sub-modal h3 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 12px;
+    color: var(--text-primary);
+  }
+  .sub-modal p {
+    font-size: 14px;
+    color: var(--text-secondary);
+    margin-bottom: var(--spacing-lg);
+    line-height: 1.6;
+  }
+  .sub-modal-actions {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+  }
+  .sub-modal-actions button {
+    padding: 8px 28px;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s;
+    border: 1px solid var(--border);
+  }
+  .sub-modal-actions .btn-confirm {
+    background: var(--primary);
+    color: #fff;
+    border-color: var(--primary);
+  }
+  .sub-modal-actions .btn-confirm:hover {
+    background: var(--primary-hover);
+  }
+  .sub-modal-actions .btn-cancel {
+    background: var(--bg-white);
+    color: var(--text-primary);
+  }
+  .sub-modal-actions .btn-cancel:hover {
+    background: var(--bg-alt);
+  }
+  @media (max-width: 768px) {
+    .sub-countdown { flex-direction: column; text-align: center; }
+    .sub-countdown .sub-left { flex-direction: column; }
+    .sub-countdown .sub-right { flex-direction: column; }
+  }
+
+  @media (max-width: 768px) {
+    .main-content { padding: var(--spacing-md); }
+    .grid { grid-template-columns: 1fr; }
+    .summary { grid-template-columns: repeat(2, 1fr); }
+    .top-nav { padding: 0 var(--spacing-md); }
+    .top-nav h1 { font-size: 16px; }
+  }
+
+  @media (min-width: 769px) and (max-width: 1024px) {
+    .grid { grid-template-columns: repeat(2, 1fr); }
+    .summary { grid-template-columns: repeat(3, 1fr); }
+  }
+</style>
+</head>
+<body>
+
+<!-- 顶部导航 -->
+<div class="top-nav">
+  <h1>🦞 CLAW Agent 智控驾驶舱 <span style="font-size:12px;color:var(--text-secondary);font-weight:400;margin-left:8px">Coding Plan Edition · 专为小龙虾订阅用户打造</span></h1>
+  <div class="nav-right">
+    <span class="last-update" id="lastUpdate">加载中...</span>
+    <button class="btn-primary" onclick="refreshData()">🔄 刷新数据</button>
+  </div>
+</div>
+
+<!-- 主内容 -->
+<div class="main-content">
+  <div class="summary" id="summaryBar"></div>
+
+  <!-- 订阅倒计时 Lite -->
+  <div class="sub-countdown sub-safe" id="subCountdown">
+    <div class="sub-left">
+      <span class="sub-icon">🦞</span>
+      <div>
+        <div class="sub-plan">Coding Plan · Lite 订阅</div>
+        <div class="sub-expire" id="subExpireDate">到期日：--</div>
+      </div>
+    </div>
+    <div class="sub-right">
+      <div class="sub-days">
+        <span class="sub-days-num" id="subDaysNum">--</span>
+        <span class="sub-days-unit">天</span>
+      </div>
+      <div class="sub-hms">
+        <div class="sub-hms-block">
+          <div class="sub-hms-val" id="subHours">--</div>
+          <div class="sub-hms-label">时</div>
+        </div>
+        <div class="sub-hms-block">
+          <div class="sub-hms-val" id="subMins">--</div>
+          <div class="sub-hms-label">分</div>
+        </div>
+        <div class="sub-hms-block">
+          <div class="sub-hms-val" id="subSecs">--</div>
+          <div class="sub-hms-label">秒</div>
+        </div>
+      </div>
+      <div>
+        <div class="sub-bar">
+          <div class="sub-bar-fill" id="subBarFill" style="width:0%"></div>
+        </div>
+        <div style="font-size:10px;color:var(--text-disabled);text-align:right;margin-top:2px" id="subBarLabel">剩余 --%</div>
+      </div>
+      <button class="sub-renew-btn" onclick="showRenewModal()">🔄 续订</button>
+    </div>
+  </div>
+
+  <!-- 续订弹窗 -->
+  <div class="sub-modal-overlay" id="subModalOverlay" style="display:none" onclick="closeRenewModal(event)">
+    <div class="sub-modal">
+      <h3>🦞 确认续订</h3>
+      <p>是否确定延长套餐周期 <strong>30 天</strong>？<br>续订后到期日将自动顺延。</p>
+      <div class="sub-modal-actions">
+        <button class="btn-cancel" onclick="closeRenewModal()">取消</button>
+        <button class="btn-confirm" onclick="confirmRenew()">✅ 确认续订</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 额度监控区 -->
+  <div class="quota-section" id="quotaSection" style="display:none">
+    <h2>💰 Coding Plan 额度监控</h2>
+    <div class="quota-alert" id="quotaAlert"></div>
+    <div class="quota-grid">
+      <div class="quota-card">
+        <h3>📊 本月用量</h3>
+        <div class="quota-ring-container">
+          <div class="quota-ring" id="quotaRing">
+            <svg viewBox="0 0 140 140">
+              <circle class="ring-bg" cx="70" cy="70" r="58"/>
+              <circle class="ring-fill" id="ringFill" cx="70" cy="70" r="58"/>
+            </svg>
+            <div class="ring-center">
+              <div class="ring-pct" id="ringPct">--%</div>
+              <div class="ring-label">实际已用</div>
+            </div>
+          </div>
+          <div class="quota-stats">
+            <div class="quota-stat-row">
+              <span class="qs-label">📝 实际已用</span>
+              <span class="qs-value">
+                <input type="number" id="manualInput" style="width:80px;padding:2px 6px;border:1px solid var(--border);border-radius:3px;font-size:13px;font-weight:600;text-align:right" placeholder="--">
+                <button onclick="saveManual()" style="margin-left:4px;padding:2px 8px;border:1px solid var(--primary);background:var(--primary);color:#fff;border-radius:3px;font-size:11px;cursor:pointer">保存</button>
+              </span>
+            </div>
+            <div class="quota-stat-row"><span class="qs-label">🤖 系统预估</span><span class="qs-value" id="qEstimated">--</span></div>
+            <div class="quota-stat-row"><span class="qs-label">月额度</span><span class="qs-value" id="qTotal">18,000</span></div>
+            <div class="quota-stat-row"><span class="qs-label">剩余</span><span class="qs-value" id="qRemain">--</span></div>
+            <div class="quota-stat-row"><span class="qs-label">安全日上限</span><span class="qs-value" id="qSafeLimit">--</span></div>
+            <div class="quota-stat-row"><span class="qs-label">🎓 校准精度</span><span class="qs-value" id="qCalibration" style="font-size:11px">--</span></div>
+          </div>
+        </div>
+        <!-- 对比表 -->
+        <div style="margin-top:16px;padding-top:12px;border-top:1px solid var(--border-light)">
+          <table style="width:100%;font-size:12px;border-collapse:collapse">
+            <thead><tr style="color:var(--text-secondary)">
+              <th style="text-align:left;padding:4px 0"></th>
+              <th style="text-align:right;padding:4px 0">📝 实际值</th>
+              <th style="text-align:right;padding:4px 0">🤖 预测值</th>
+              <th style="text-align:right;padding:4px 0">偏差</th>
+            </tr></thead>
+            <tbody id="compareTable"></tbody>
+          </table>
+        </div>
+      </div>
+      <div class="quota-card">
+        <h3>📈 每日用量趋势</h3>
+        <div class="chart-wrapper" id="chartWrapper">
+          <div class="daily-chart" id="dailyChart"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cron 管理区 -->
+  <div class="cron-section" id="cronSection" style="display:none">
+    <h2 style="font-size:16px;font-weight:600;margin-bottom:16px;display:flex;align-items:center;gap:8px">⏰ Cron 定时任务管理</h2>
+    <table class="cron-table">
+      <thead>
+        <tr>
+          <th>状态</th>
+          <th>任务名称</th>
+          <th>Agent</th>
+          <th>执行频率</th>
+          <th>预估消耗</th>
+          <th>下次执行</th>
+        </tr>
+      </thead>
+      <tbody id="cronTableBody"></tbody>
+    </table>
+    <div style="margin-top:8px;font-size:11px;color:var(--text-disabled)">💡 开关控制任务启用/禁用，下拉框调整执行频率。修改后通过洋子后台生效。</div>
+  </div>
+
+  <!-- Token 用量区 -->
+  <div class="token-section" id="tokenSection" style="display:none">
+    <h2 style="font-size:16px;font-weight:600;margin-bottom:16px;display:flex;align-items:center;gap:8px">🧠 Token 用量分析</h2>
+    <div class="token-grid">
+      <div class="token-card">
+        <h3>📊 各 Agent Token 消耗</h3>
+        <div class="token-total" id="tokenTotal">--</div>
+        <div class="token-total-label">总 Token 消耗</div>
+        <div id="tokenBars"></div>
+      </div>
+      <div class="token-card">
+        <h3>🥧 Token 占比分布</h3>
+        <div class="token-pie-container">
+          <svg class="token-pie" viewBox="0 0 140 140" id="tokenPie"></svg>
+          <div class="token-legend" id="tokenLegend"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid" id="agentGrid"></div>
+</div>
+
+<div class="footer">🦞 CLAW Agent 智控驾驶舱 · 专为 OpenClaw Coding Plan 订阅用户打造 · Powered by OpenClaw</div>
+
+<script>
+// ========== 配置 ==========
+const CONFIG = {
+  refreshIntervalMs: 180000,
+  apiEndpoint: 'http://localhost:8889/api/agents',
+};
+
+// ========== 数据获取 ==========
+async function fetchAgentData() {
+  try {
+    const res = await fetch(CONFIG.apiEndpoint);
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    const data = await res.json();
+    console.log('✅ 获取到数据:', data.length, '个 Agent');
+    return data;
+  } catch (e) {
+    console.error('❌ 获取数据失败:', e);
+    return [];
+  }
+}
+
+async function fetchQuotaData() {
+  try {
+    // 加时间戳参数，避免浏览器缓存
+    const res = await fetch(CONFIG.apiEndpoint.replace('/agents', '/quota') + '?t=' + Date.now());
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    const data = await res.json();
+    if (data.error) return null;
+    return data;
+  } catch (e) {
+    console.error('❌ 获取额度数据失败:', e);
+    return null;
+  }
+}
+
+async function saveManual() {
+  const input = document.getElementById('manualInput');
+  const val = parseInt(input.value);
+  if (isNaN(val) || val < 0) { alert('请输入有效数字'); return; }
+  try {
+    const res = await fetch(CONFIG.apiEndpoint.replace('/agents', '/quota'), {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ manualTotal: val })
+    });
+    if (res.ok) {
+      refreshData();
+    } else {
+      alert('保存失败');
+    }
+  } catch (e) {
+    alert('保存失败: ' + e.message);
+  }
+}
+
+// ========== 渲染逻辑 ==========
+function timeAgo(ts) {
+  const diff = Date.now() - ts;
+  const min = Math.floor(diff / 60000);
+  if (min < 1) return '刚刚';
+  if (min < 60) return min + ' 分钟前';
+  const hr = Math.floor(min / 60);
+  if (hr < 24) return hr + ' 小时前';
+  const d = Math.floor(hr / 24);
+  return d + ' 天前';
+}
+
+function statusLabel(s) {
+  return { ok: '正常', rest: '休息', idle: '待业 ing', stuck: '卡住', lost: '失联' }[s] || '未知';
+}
+
+function renderSummary(agents) {
+  const ok = agents.filter(a => a.status === 'ok').length;
+  const rest = agents.filter(a => a.status === 'rest').length;
+  const idle = agents.filter(a => a.status === 'idle').length;
+  const stuck = agents.filter(a => a.status === 'stuck').length;
+  const lost = agents.filter(a => a.status === 'lost').length;
+  document.getElementById('summaryBar').innerHTML = `
+    <div class="summary-card total"><div class="num">${agents.length}</div><div class="label">全部 Agent</div></div>
+    <div class="summary-card ok"><div class="num">${ok}</div><div class="label">🟢 正常运行</div></div>
+    <div class="summary-card rest"><div class="num">${rest}</div><div class="label">🔵 休息中</div></div>
+    <div class="summary-card idle"><div class="num">${idle}</div><div class="label">🟠 待业 ing</div></div>
+    <div class="summary-card stuck"><div class="num">${stuck}</div><div class="label">🟡 卡住</div></div>
+    <div class="summary-card lost"><div class="num">${lost}</div><div class="label">🔴 失联</div></div>
+  `;
+}
+
+function renderAgents(agents) {
+  const grid = document.getElementById('agentGrid');
+  grid.innerHTML = agents.map(a => {
+    const statusDesc = a.statusText
+      ? a.statusText
+      : (a.progress >= 100 ? '✅ 已完成' : '🔄 进行中');
+
+    return `
+    <div class="agent-card ${a.status}">
+      <div class="status-bar"></div>
+      <div class="card-header">
+        <div class="agent-info">
+          <div class="avatar">${a.emoji}</div>
+          <div>
+            <div class="agent-name">${a.name}</div>
+            <div class="agent-role">${a.role}</div>
+          </div>
+        </div>
+        <div class="status-badge ${a.status}">
+          <span class="dot"></span>
+          ${statusLabel(a.status)}
+        </div>
+      </div>
+      <div class="task-section">
+        <div class="task-label">📌 当前任务</div>
+        <div class="task-name">${a.task}</div>
+        <div class="progress-bar">
+          <div class="progress-fill ${a.status}" style="width:${a.progress}%"></div>
+        </div>
+        <div class="progress-text">
+          <span>${statusDesc}</span>
+          <span class="progress-pct ${a.status}">${a.progress}%</span>
+        </div>
+      </div>
+      <div class="meta-row">
+        <span>🕐 ${timeAgo(a.lastActive)}</span>
+        <span>🧠 ${a.model}</span>
+        <span>📊 ${a.contextPct}%</span>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+// ========== 额度渲染 ==========
+function renderQuota(quota) {
+  if (!quota || !quota.stats) {
+    document.getElementById('quotaSection').style.display = 'none';
+    return;
+  }
+  document.getElementById('quotaSection').style.display = 'block';
+  const s = quota.stats;
+
+  // 环形图 — 优先用实际值
+  const manual = quota.manualStats || null;
+  const actualUsed = manual ? manual.usedTotal : s.usedTotal;
+  const actualPct = Math.min(Math.round((actualUsed / s.monthlyQuota) * 100), 100);
+  const circumference = 2 * Math.PI * 58;
+  const offset = circumference - (actualPct / 100) * circumference;
+  const ringFill = document.getElementById('ringFill');
+  ringFill.style.strokeDasharray = circumference;
+  ringFill.style.strokeDashoffset = offset;
+
+  // 颜色基于实际值告警
+  const actualProjectedPct = manual ? manual.projectedPct : s.projectedPct;
+  let ringColor = 'var(--success)';
+  if (actualProjectedPct > 100) ringColor = 'var(--error)';
+  else if (actualProjectedPct > 85) ringColor = 'var(--warning)';
+  else if (actualProjectedPct > 70) ringColor = 'var(--info)';
+  ringFill.style.stroke = ringColor;
+
+  const pctEl = document.getElementById('ringPct');
+  pctEl.textContent = actualPct + '%';
+  pctEl.style.color = ringColor;
+
+  // 填充手动输入框
+  if (quota.manualTotal != null) {
+    document.getElementById('manualInput').value = quota.manualTotal;
+  }
+
+  // 统计数字
+  document.getElementById('qEstimated').textContent = s.usedTotal.toLocaleString();
+  document.getElementById('qTotal').textContent = s.monthlyQuota.toLocaleString();
+  const remain = manual ? (s.monthlyQuota - manual.usedTotal) : (s.monthlyQuota - s.usedTotal);
+  document.getElementById('qRemain').textContent = remain.toLocaleString();
+  const safeLimit = manual ? manual.safeDailyLimit : s.safeDailyLimit;
+  document.getElementById('qSafeLimit').textContent = safeLimit.toLocaleString() + ' 次/天';
+
+  // 校准状态
+  const calEl = document.getElementById('qCalibration');
+  const tpc = s.tokensPerCall || 1500;
+  const calCount = s.calibrations || 0;
+  if (calCount > 0) {
+    calEl.innerHTML = `<span style="color:var(--success)">✅ 已校准 ${calCount} 次</span> <span style="color:var(--text-disabled)">(${tpc} tok/call)</span>`;
+  } else {
+    calEl.innerHTML = `<span style="color:var(--text-disabled)">← 填写实际值后自动学习</span>`;
+  }
+
+  // 告警
+  const alertEl = document.getElementById('quotaAlert');
+  const alertLevel = manual ? (actualProjectedPct > 100 ? 'danger' : actualProjectedPct > 85 ? 'warning' : actualProjectedPct > 70 ? 'caution' : 'normal') : s.alertLevel;
+  alertEl.className = 'quota-alert ' + alertLevel;
+  if (alertLevel === 'caution') {
+    alertEl.textContent = '📋 额度消耗 >70%，建议关注用量趋势';
+  } else if (alertLevel === 'warning') {
+    alertEl.textContent = '⚠️ 预估周期末将达 ' + actualProjectedPct + '%，建议减少不必要的调用';
+  } else if (alertLevel === 'danger') {
+    alertEl.textContent = '🚨 预估周期末将超额！安全日上限 ' + safeLimit + ' 次/天';
+  }
+
+  // 对比表
+  renderCompareTable(s, manual);
+
+  // 日用量柱状图 — 直接使用后端返回的每日数据（已在后端按实际值重新分配）
+  const dailyData = quota.usage.daily || {};
+  renderDailyChart(dailyData, safeLimit);
+}
+
+function renderCompareTable(estimated, manual) {
+  const tbody = document.getElementById('compareTable');
+  if (!manual) {
+    tbody.innerHTML = '<tr><td colspan="4" style="text-align:center;color:var(--text-disabled);padding:8px">← 输入实际额度后显示对比</td></tr>';
+    return;
+  }
+  const rows = [
+    ['已用总量', manual.usedTotal, estimated.usedTotal],
+    ['日均消耗', manual.dailyAvg, estimated.dailyAvg],
+    ['预估月末', manual.projectedTotal, estimated.projectedTotal],
+    ['安全日上限', manual.safeDailyLimit, estimated.safeDailyLimit],
+  ];
+  tbody.innerHTML = rows.map(([label, actual, predict]) => {
+    const diff = actual - predict;
+    const diffStr = diff > 0 ? '+' + diff.toLocaleString() : diff.toLocaleString();
+    const diffColor = Math.abs(diff) < predict * 0.1 ? 'var(--success)' : Math.abs(diff) < predict * 0.3 ? 'var(--warning)' : 'var(--error)';
+    return `<tr>
+      <td style="padding:3px 0;color:var(--text-secondary)">${label}</td>
+      <td style="text-align:right;padding:3px 0;font-weight:600">${actual.toLocaleString()}</td>
+      <td style="text-align:right;padding:3px 0;color:var(--text-secondary)">${predict.toLocaleString()}</td>
+      <td style="text-align:right;padding:3px 0;color:${diffColor};font-weight:500">${diffStr}</td>
+    </tr>`;
+  }).join('');
+}
+
+function renderDailyChart(daily, safeLimit) {
+  const chartEl = document.getElementById('dailyChart');
+  const wrapperEl = document.getElementById('chartWrapper');
+  if (!daily) return;
+
+  // 按日期排序，取最近 30 天
+  const entries = Object.entries(daily).sort((a, b) => a[0].localeCompare(b[0])).slice(-30);
+  if (entries.length === 0) return;
+
+  const maxVal = Math.max(...entries.map(e => e[1]), safeLimit || 1);
+  const chartHeight = 100;
+
+  // 安全线位置
+  const existingSafeLine = wrapperEl.querySelector('.safe-line');
+  if (existingSafeLine) existingSafeLine.remove();
+  if (safeLimit > 0 && safeLimit <= maxVal) {
+    const lineTop = chartHeight - (safeLimit / maxVal) * chartHeight;
+    const safeLine = document.createElement('div');
+    safeLine.className = 'safe-line';
+    safeLine.style.top = lineTop + 'px';
+    safeLine.innerHTML = '<span class="safe-line-label">安全线 ' + safeLimit + '</span>';
+    wrapperEl.appendChild(safeLine);
+  }
+
+  chartEl.innerHTML = entries.map(([date, val]) => {
+    const h = maxVal > 0 ? Math.max(2, (val / maxVal) * chartHeight) : 2;
+    let color = 'var(--success)';
+    if (safeLimit > 0 && val > safeLimit) color = 'var(--error)';
+    else if (safeLimit > 0 && val > safeLimit * 0.8) color = 'var(--warning)';
+    const dayLabel = date.slice(5); // MM-DD
+    return `
+      <div class="daily-bar-wrap">
+        <div class="daily-bar" style="height:${h}px;background:${color}">
+          <span class="bar-tooltip">${date}: ${val} 次</span>
+        </div>
+        <span class="daily-date">${dayLabel}</span>
+      </div>`;
+  }).join('');
+}
+
+// ========== Cron 管理 ==========
+async function fetchCronData() {
+  try {
+    const res = await fetch(CONFIG.apiEndpoint.replace('/agents', '/cron'));
+    if (!res.ok) return null;
+    return await res.json();
+  } catch { return null; }
+}
+
+function formatFrequency(schedule) {
+  if (schedule.kind === 'every') {
+    const hours = schedule.everyMs / 3600000;
+    if (hours >= 1) return `每 ${hours} 小时`;
+    return `每 ${schedule.everyMs / 60000} 分钟`;
+  }
+  if (schedule.kind === 'cron') {
+    const expr = schedule.expr;
+    // 常见模式翻译
+    if (expr === '0 3 * * *') return '每天 03:00';
+    if (expr === '0 9,17 * * *') return '每天 09:00, 17:00';
+    if (expr.match(/^\d+ \*\/\d+ /)) return `每 ${expr.split('/')[1].split(' ')[0]} 小时`;
+    return expr;
+  }
+  return '-';
+}
+
+function getFrequencyOptions(schedule) {
+  if (schedule.kind === 'every') {
+    return [
+      { label: '每 1 小时', value: 3600000 },
+      { label: '每 2 小时', value: 7200000 },
+      { label: '每 3 小时', value: 10800000 },
+      { label: '每 4 小时', value: 14400000 },
+      { label: '每 6 小时', value: 21600000 },
+      { label: '每 8 小时', value: 28800000 },
+      { label: '每 12 小时', value: 43200000 },
+    ];
+  }
+  if (schedule.kind === 'cron') {
+    return [
+      { label: '每天 1 次 (09:00)', value: '0 9 * * *' },
+      { label: '每天 2 次 (09:00,17:00)', value: '0 9,17 * * *' },
+      { label: '每天 3 次 (09:00,13:00,17:00)', value: '0 9,13,17 * * *' },
+      { label: '每天 4 次 (每6h)', value: '0 3,9,15,21 * * *' },
+      { label: '凌晨 03:00', value: '0 3 * * *' },
+    ];
+  }
+  return [];
+}
+
+function renderCronSection(cronData) {
+  if (!cronData || !cronData.jobs || cronData.jobs.length === 0) {
+    document.getElementById('cronSection').style.display = 'none';
+    return;
+  }
+  document.getElementById('cronSection').style.display = 'block';
+  const tbody = document.getElementById('cronTableBody');
+
+  tbody.innerHTML = cronData.jobs.map(job => {
+    const agentClass = 'agent-' + (job.agentId || 'main');
+    const options = getFrequencyOptions(job.schedule);
+    const currentVal = job.schedule.kind === 'every' ? job.schedule.everyMs : job.schedule.expr;
+
+    const selectHtml = options.length > 0 ? `
+      <select class="cron-freq-select" data-job-id="${job.id}" data-kind="${job.schedule.kind}" onchange="onCronFreqChange(this)">
+        ${options.map(o => `<option value="${o.value}" ${String(o.value) === String(currentVal) ? 'selected' : ''}>${o.label}</option>`).join('')}
+      </select>` : `<span class="cron-freq">${formatFrequency(job.schedule)}</span>`;
+
+    const nextRun = job.nextRun ? new Date(job.nextRun).toLocaleString('zh-CN', { month:'numeric', day:'numeric', hour:'2-digit', minute:'2-digit' }) : '-';
+
+    return `<tr>
+      <td>
+        <label class="cron-toggle">
+          <input type="checkbox" ${job.enabled ? 'checked' : ''} data-job-id="${job.id}" onchange="onCronToggle(this)">
+          <span class="slider"></span>
+        </label>
+      </td>
+      <td>
+        <div class="cron-name">${job.name}</div>
+        <div class="cron-desc">${job.description || ''}</div>
+      </td>
+      <td><span class="cron-badge ${agentClass}">${job.agentId || 'main'}</span></td>
+      <td>${selectHtml}</td>
+      <td><span class="cron-cost">${job.estimatedCost || '-'}</span></td>
+      <td><span class="cron-time">${nextRun}</span></td>
+    </tr>`;
+  }).join('');
+}
+
+// 用户修改频率，记录到 pending changes
+let cronPendingChanges = {};
+
+function onCronFreqChange(el) {
+  const jobId = el.dataset.jobId;
+  const kind = el.dataset.kind;
+  const value = el.value;
+  if (!cronPendingChanges[jobId]) cronPendingChanges[jobId] = {};
+  if (kind === 'every') {
+    cronPendingChanges[jobId].everyMs = parseInt(value);
+  } else {
+    cronPendingChanges[jobId].expr = value;
+  }
+  cronPendingChanges[jobId].kind = kind;
+  showCronSaveHint();
+}
+
+function onCronToggle(el) {
+  const jobId = el.dataset.jobId;
+  if (!cronPendingChanges[jobId]) cronPendingChanges[jobId] = {};
+  cronPendingChanges[jobId].enabled = el.checked;
+  showCronSaveHint();
+}
+
+function showCronSaveHint() {
+  let hint = document.getElementById('cronSaveHint');
+  if (!hint) {
+    hint = document.createElement('div');
+    hint.id = 'cronSaveHint';
+    hint.style.cssText = 'margin-top:8px;padding:8px 16px;background:var(--warning-bg);border:1px solid #FFE58F;border-radius:4px;font-size:13px;display:flex;align-items:center;gap:8px';
+    document.getElementById('cronSection').appendChild(hint);
+  }
+  const count = Object.keys(cronPendingChanges).length;
+  hint.innerHTML = `⚠️ ${count} 项修改待保存 <button onclick="saveCronChanges()" style="padding:4px 12px;background:var(--primary);color:#fff;border:none;border-radius:3px;cursor:pointer;font-size:12px">保存并生效</button>`;
+}
+
+async function saveCronChanges() {
+  const changes = Object.entries(cronPendingChanges);
+  if (changes.length === 0) return;
+
+  // 写入 cron-pending.json 让洋子后台处理
+  try {
+    const res = await fetch(CONFIG.apiEndpoint.replace('/agents', '/cron-update'), {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ changes: cronPendingChanges })
+    });
+    if (res.ok) {
+      cronPendingChanges = {};
+      const hint = document.getElementById('cronSaveHint');
+      if (hint) hint.innerHTML = '✅ 已提交，洋子后台处理中...';
+      setTimeout(() => { if (hint) hint.remove(); refreshData(); }, 3000);
+    }
+  } catch (e) {
+    alert('保存失败: ' + e.message);
+  }
+}
+
+// ========== Token 用量渲染 ==========
+const AGENT_COLORS = {
+  'main': '#0073BB', 'cto': '#52C41A', 'pm': '#FAAD14',
+  'coding': '#FF4D4F', 'dj': '#722ED1', 'db': '#13C2C2',
+  'work': '#FA8C16', 'xiaowu': '#EB2F96'
+};
+
+function renderTokenSection(agents) {
+  if (!agents || agents.length === 0) {
+    document.getElementById('tokenSection').style.display = 'none';
+    return;
+  }
+  document.getElementById('tokenSection').style.display = 'block';
+
+  const sorted = [...agents].sort((a, b) => (b.tokens || 0) - (a.tokens || 0));
+  const totalTokens = sorted.reduce((sum, a) => sum + (a.tokens || 0), 0);
+
+  // 总数
+  document.getElementById('tokenTotal').textContent = totalTokens.toLocaleString();
+
+  // 柱状图
+  const maxTokens = sorted[0]?.tokens || 1;
+  document.getElementById('tokenBars').innerHTML = sorted.map(a => {
+    const pct = ((a.tokens || 0) / maxTokens) * 100;
+    const color = AGENT_COLORS[a.id] || 'var(--primary)';
+    const sharePct = totalTokens > 0 ? ((a.tokens || 0) / totalTokens * 100).toFixed(1) : '0';
+    return `<div class="token-bar-row">
+      <span class="token-bar-name">${a.emoji} ${a.name}</span>
+      <div class="token-bar-track">
+        <div class="token-bar-fill" style="width:${pct}%;background:${color}"></div>
+      </div>
+      <span class="token-bar-val">${(a.tokens || 0).toLocaleString()} <span style="color:var(--text-disabled);font-size:10px">${sharePct}%</span></span>
+    </div>`;
+  }).join('');
+
+  // 饼图
+  renderTokenPie(sorted, totalTokens);
+}
+
+function renderTokenPie(agents, total) {
+  const svg = document.getElementById('tokenPie');
+  const legend = document.getElementById('tokenLegend');
+  if (total === 0) return;
+
+  const cx = 70, cy = 70, r = 55;
+  let startAngle = -90;
+  let paths = '';
+  let legendHtml = '';
+
+  agents.forEach(a => {
+    const share = (a.tokens || 0) / total;
+    if (share < 0.005) return; // 忽略 <0.5%
+    const angle = share * 360;
+    const endAngle = startAngle + angle;
+    const largeArc = angle > 180 ? 1 : 0;
+    const x1 = cx + r * Math.cos(startAngle * Math.PI / 180);
+    const y1 = cy + r * Math.sin(startAngle * Math.PI / 180);
+    const x2 = cx + r * Math.cos(endAngle * Math.PI / 180);
+    const y2 = cy + r * Math.sin(endAngle * Math.PI / 180);
+    const color = AGENT_COLORS[a.id] || '#999';
+
+    paths += `<path d="M${cx},${cy} L${x1},${y1} A${r},${r} 0 ${largeArc},1 ${x2},${y2} Z" fill="${color}" opacity="0.85"><title>${a.name}: ${(share*100).toFixed(1)}%</title></path>`;
+    legendHtml += `<div class="token-legend-item"><span class="token-legend-dot" style="background:${color}"></span>${a.emoji} ${a.name} ${(share*100).toFixed(1)}%</div>`;
+    startAngle = endAngle;
+  });
+
+  svg.innerHTML = paths;
+  legend.innerHTML = legendHtml;
+}
+
+async function refreshData() {
+  const [agents, quota, cronData] = await Promise.all([fetchAgentData(), fetchQuotaData(), fetchCronData()]);
+  if (agents.length > 0) {
+    renderSummary(agents);
+    renderAgents(agents);
+    renderTokenSection(agents);
+  }
+  renderQuota(quota);
+  renderCronSection(cronData);
+  document.getElementById('lastUpdate').textContent = '更新于 ' + new Date().toLocaleTimeString('zh-CN');
+}
+
+// ========== 订阅倒计时 Lite ==========
+let subExpire = new Date('2026-06-11T23:59:59+08:00'); // 到期日
+let subTotalDays = 60; // 订阅周期总天数（用于进度条）
+
+function showRenewModal() {
+  document.getElementById('subModalOverlay').style.display = 'flex';
+}
+function closeRenewModal(e) {
+  if (e && e.target !== e.currentTarget) return;
+  document.getElementById('subModalOverlay').style.display = 'none';
+}
+function confirmRenew() {
+  subExpire = new Date(subExpire.getTime() + 30 * 86400000);
+  subTotalDays += 30;
+  document.getElementById('subModalOverlay').style.display = 'none';
+  updateCountdown();
+}
+
+function updateCountdown() {
+  const now = new Date();
+  const diff = subExpire - now;
+  const el = document.getElementById('subCountdown');
+  if (diff <= 0) {
+    document.getElementById('subDaysNum').textContent = '0';
+    document.getElementById('subHours').textContent = '00';
+    document.getElementById('subMins').textContent = '00';
+    document.getElementById('subSecs').textContent = '00';
+    el.className = 'sub-countdown sub-danger';
+    document.getElementById('subBarFill').style.width = '0%';
+    document.getElementById('subBarLabel').textContent = '已到期';
+    return;
+  }
+  const days = Math.floor(diff / 86400000);
+  const hours = Math.floor((diff % 86400000) / 3600000);
+  const mins = Math.floor((diff % 3600000) / 60000);
+  const secs = Math.floor((diff % 60000) / 1000);
+  document.getElementById('subDaysNum').textContent = days;
+  document.getElementById('subHours').textContent = String(hours).padStart(2, '0');
+  document.getElementById('subMins').textContent = String(mins).padStart(2, '0');
+  document.getElementById('subSecs').textContent = String(secs).padStart(2, '0');
+
+  // 颜色阶梯
+  let level = 'sub-safe';
+  if (days <= 3) level = 'sub-danger';
+  else if (days <= 7) level = 'sub-warn';
+  else if (days <= 14) level = 'sub-notice';
+  el.className = 'sub-countdown ' + level;
+
+  // 进度条：剩余占比
+  const totalMs = subTotalDays * 86400000;
+  const remainPct = Math.max(0, Math.min(100, (diff / totalMs) * 100));
+  document.getElementById('subBarFill').style.width = remainPct.toFixed(1) + '%';
+  document.getElementById('subBarLabel').textContent = '剩余 ' + remainPct.toFixed(0) + '%';
+
+  // 到期日
+  document.getElementById('subExpireDate').textContent = '到期日：' + subExpire.toLocaleDateString('zh-CN', { year:'numeric', month:'long', day:'numeric' });
+}
+
+updateCountdown();
+setInterval(updateCountdown, 1000);
+
+// Init
+refreshData();
+setInterval(refreshData, CONFIG.refreshIntervalMs);
+</script>
+</body>
+</html>

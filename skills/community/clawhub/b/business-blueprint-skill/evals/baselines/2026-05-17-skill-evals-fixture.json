@@ -1,0 +1,329 @@
+{
+  "cases": [
+    {
+      "case_id": "explicit-blueprint",
+      "total_score": 100,
+      "passed": true,
+      "eval_complete": true,
+      "scores": {
+        "outcome": 25,
+        "process": 25,
+        "style": 25,
+        "efficiency": 25
+      },
+      "failures": [],
+      "style_rubric": {
+        "source": "fixture",
+        "path": "scripts/tests/fixtures/skill-evals/explicit-blueprint-style-rubric.json",
+        "score": 96,
+        "overall_pass": true
+      },
+      "metrics": {
+        "runner": "fixture",
+        "trace_format_version": "normalized-v1",
+        "tool_calls": [],
+        "shell_commands": [
+          "python3 scripts/business_blueprint/cli.py --validate scripts/tests/fixtures/skill-evals/artifacts/explicit-blueprint/solution.blueprint.json",
+          "python3 scripts/business_blueprint/cli.py --export scripts/tests/fixtures/skill-evals/artifacts/explicit-blueprint/solution.blueprint.json"
+        ],
+        "failed_shell_commands": [],
+        "read_paths": [
+          "SKILL.md",
+          "references/blueprint-schema.md",
+          "references/entities-schema.md",
+          "references/systems-schema.md",
+          "references/route-eligibility.md"
+        ],
+        "write_paths": [
+          "scripts/tests/fixtures/skill-evals/artifacts/explicit-blueprint/solution.blueprint.json",
+          "scripts/tests/fixtures/skill-evals/artifacts/explicit-blueprint/solution.svg",
+          "scripts/tests/fixtures/skill-evals/artifacts/explicit-blueprint/solution.viewer.html"
+        ],
+        "artifact_paths": [
+          "scripts/tests/fixtures/skill-evals/artifacts/explicit-blueprint/solution.blueprint.json",
+          "scripts/tests/fixtures/skill-evals/artifacts/explicit-blueprint/solution.svg",
+          "scripts/tests/fixtures/skill-evals/artifacts/explicit-blueprint/solution.viewer.html"
+        ],
+        "input_tokens": 12000,
+        "output_tokens": 3200,
+        "wall_ms": 41000,
+        "run_completed": true,
+        "skill_evidence": {
+          "skill_contract_read": true,
+          "blueprint_flow_observed": true,
+          "validate_observed": true,
+          "export_observed": true,
+          "projection_observed": false
+        },
+        "runner_warnings": []
+      },
+      "artifact_dir": "evals/artifacts/current/skill-runs/explicit-blueprint"
+    },
+    {
+      "case_id": "implicit-meeting-notes",
+      "total_score": 99,
+      "passed": true,
+      "eval_complete": true,
+      "scores": {
+        "outcome": 25,
+        "process": 25,
+        "style": 24,
+        "efficiency": 25
+      },
+      "failures": [],
+      "style_rubric": {
+        "source": "fixture",
+        "path": "scripts/tests/fixtures/skill-evals/implicit-meeting-notes-style-rubric.json",
+        "score": 94,
+        "overall_pass": true
+      },
+      "metrics": {
+        "runner": "fixture",
+        "trace_format_version": "normalized-v1",
+        "tool_calls": [],
+        "shell_commands": [
+          "python3 scripts/business_blueprint/cli.py --validate scripts/tests/fixtures/skill-evals/artifacts/implicit-meeting-notes/solution.blueprint.json",
+          "python3 scripts/business_blueprint/cli.py --export scripts/tests/fixtures/skill-evals/artifacts/implicit-meeting-notes/solution.blueprint.json"
+        ],
+        "failed_shell_commands": [],
+        "read_paths": [
+          "SKILL.md",
+          "references/blueprint-schema.md",
+          "references/entities-schema.md",
+          "references/systems-schema.md",
+          "references/route-eligibility.md"
+        ],
+        "write_paths": [
+          "scripts/tests/fixtures/skill-evals/artifacts/implicit-meeting-notes/solution.blueprint.json",
+          "scripts/tests/fixtures/skill-evals/artifacts/implicit-meeting-notes/solution.svg",
+          "scripts/tests/fixtures/skill-evals/artifacts/implicit-meeting-notes/solution.viewer.html"
+        ],
+        "artifact_paths": [
+          "scripts/tests/fixtures/skill-evals/artifacts/implicit-meeting-notes/solution.blueprint.json",
+          "scripts/tests/fixtures/skill-evals/artifacts/implicit-meeting-notes/solution.svg",
+          "scripts/tests/fixtures/skill-evals/artifacts/implicit-meeting-notes/solution.viewer.html"
+        ],
+        "input_tokens": 14800,
+        "output_tokens": 3600,
+        "wall_ms": 48000,
+        "run_completed": true,
+        "skill_evidence": {
+          "skill_contract_read": true,
+          "blueprint_flow_observed": true,
+          "validate_observed": true,
+          "export_observed": true,
+          "projection_observed": false
+        },
+        "runner_warnings": []
+      },
+      "artifact_dir": "evals/artifacts/current/skill-runs/implicit-meeting-notes"
+    },
+    {
+      "case_id": "contextual-domain-knowledge",
+      "total_score": 100,
+      "passed": true,
+      "eval_complete": true,
+      "scores": {
+        "outcome": 25,
+        "process": 25,
+        "style": 25,
+        "efficiency": 25
+      },
+      "failures": [],
+      "style_rubric": {
+        "source": "fixture",
+        "path": "scripts/tests/fixtures/skill-evals/contextual-domain-knowledge-style-rubric.json",
+        "score": 95,
+        "overall_pass": true
+      },
+      "metrics": {
+        "runner": "fixture",
+        "trace_format_version": "normalized-v1",
+        "tool_calls": [],
+        "shell_commands": [
+          "python3 scripts/business_blueprint/cli.py --validate scripts/tests/fixtures/skill-evals/artifacts/contextual-domain-knowledge/solution.blueprint.json",
+          "python3 scripts/business_blueprint/cli.py --export scripts/tests/fixtures/skill-evals/artifacts/contextual-domain-knowledge/solution.blueprint.json"
+        ],
+        "failed_shell_commands": [],
+        "read_paths": [
+          "SKILL.md",
+          "references/domain-knowledge-extraction.md",
+          "references/knowledge-entities-schema.md",
+          "references/blueprint-schema.md",
+          "references/route-eligibility.md"
+        ],
+        "write_paths": [
+          "scripts/tests/fixtures/skill-evals/artifacts/contextual-domain-knowledge/solution.blueprint.json",
+          "scripts/tests/fixtures/skill-evals/artifacts/contextual-domain-knowledge/solution.svg",
+          "scripts/tests/fixtures/skill-evals/artifacts/contextual-domain-knowledge/solution.viewer.html"
+        ],
+        "artifact_paths": [
+          "scripts/tests/fixtures/skill-evals/artifacts/contextual-domain-knowledge/solution.blueprint.json",
+          "scripts/tests/fixtures/skill-evals/artifacts/contextual-domain-knowledge/solution.svg",
+          "scripts/tests/fixtures/skill-evals/artifacts/contextual-domain-knowledge/solution.viewer.html"
+        ],
+        "input_tokens": 17600,
+        "output_tokens": 4200,
+        "wall_ms": 53000,
+        "run_completed": true,
+        "skill_evidence": {
+          "skill_contract_read": true,
+          "blueprint_flow_observed": true,
+          "validate_observed": true,
+          "export_observed": true,
+          "projection_observed": false
+        },
+        "runner_warnings": []
+      },
+      "artifact_dir": "evals/artifacts/current/skill-runs/contextual-domain-knowledge"
+    },
+    {
+      "case_id": "boundary-projection-handoff",
+      "total_score": 99,
+      "passed": true,
+      "eval_complete": true,
+      "scores": {
+        "outcome": 25,
+        "process": 25,
+        "style": 24,
+        "efficiency": 25
+      },
+      "failures": [],
+      "style_rubric": {
+        "source": "fixture",
+        "path": "scripts/tests/fixtures/skill-evals/boundary-projection-handoff-style-rubric.json",
+        "score": 94,
+        "overall_pass": true
+      },
+      "metrics": {
+        "runner": "fixture",
+        "trace_format_version": "normalized-v1",
+        "tool_calls": [],
+        "shell_commands": [
+          "python3 scripts/business_blueprint/cli.py --validate scripts/tests/fixtures/skill-evals/artifacts/boundary-projection-handoff/solution.blueprint.json",
+          "python3 scripts/business_blueprint/cli.py --project scripts/tests/fixtures/skill-evals/artifacts/boundary-projection-handoff/solution.blueprint.json"
+        ],
+        "failed_shell_commands": [],
+        "read_paths": [
+          "SKILL.md",
+          "references/blueprint-schema.md",
+          "references/entities-schema.md",
+          "references/systems-schema.md",
+          "references/prompt-orchestration-templates.md"
+        ],
+        "write_paths": [
+          "scripts/tests/fixtures/skill-evals/artifacts/boundary-projection-handoff/solution.blueprint.json",
+          "scripts/tests/fixtures/skill-evals/artifacts/boundary-projection-handoff/solution.projection.json"
+        ],
+        "artifact_paths": [
+          "scripts/tests/fixtures/skill-evals/artifacts/boundary-projection-handoff/solution.blueprint.json",
+          "scripts/tests/fixtures/skill-evals/artifacts/boundary-projection-handoff/solution.projection.json"
+        ],
+        "input_tokens": 15400,
+        "output_tokens": 3500,
+        "wall_ms": 46000,
+        "run_completed": true,
+        "skill_evidence": {
+          "skill_contract_read": true,
+          "blueprint_flow_observed": true,
+          "validate_observed": true,
+          "export_observed": false,
+          "projection_observed": true
+        },
+        "runner_warnings": []
+      },
+      "artifact_dir": "evals/artifacts/current/skill-runs/boundary-projection-handoff"
+    },
+    {
+      "case_id": "negative-report",
+      "total_score": 100,
+      "passed": true,
+      "eval_complete": true,
+      "scores": {
+        "outcome": 25,
+        "process": 25,
+        "style": 25,
+        "efficiency": 25
+      },
+      "failures": [],
+      "style_rubric": null,
+      "metrics": {
+        "runner": "fixture",
+        "trace_format_version": "normalized-v1",
+        "tool_calls": [],
+        "shell_commands": [],
+        "failed_shell_commands": [],
+        "read_paths": [
+          "SKILL.md"
+        ],
+        "write_paths": [],
+        "artifact_paths": [],
+        "input_tokens": 1800,
+        "output_tokens": 260,
+        "wall_ms": 4000,
+        "run_completed": true,
+        "skill_evidence": {
+          "skill_contract_read": true,
+          "blueprint_flow_observed": false,
+          "validate_observed": false,
+          "export_observed": false,
+          "projection_observed": false
+        },
+        "runner_warnings": []
+      },
+      "artifact_dir": "evals/artifacts/current/skill-runs/negative-report"
+    },
+    {
+      "case_id": "negative-slide-deck",
+      "total_score": 100,
+      "passed": true,
+      "eval_complete": true,
+      "scores": {
+        "outcome": 25,
+        "process": 25,
+        "style": 25,
+        "efficiency": 25
+      },
+      "failures": [],
+      "style_rubric": null,
+      "metrics": {
+        "runner": "fixture",
+        "trace_format_version": "normalized-v1",
+        "tool_calls": [],
+        "shell_commands": [],
+        "failed_shell_commands": [],
+        "read_paths": [
+          "SKILL.md"
+        ],
+        "write_paths": [],
+        "artifact_paths": [],
+        "input_tokens": 2100,
+        "output_tokens": 310,
+        "wall_ms": 5000,
+        "run_completed": true,
+        "skill_evidence": {
+          "skill_contract_read": true,
+          "blueprint_flow_observed": false,
+          "validate_observed": false,
+          "export_observed": false,
+          "projection_observed": false
+        },
+        "runner_warnings": []
+      },
+      "artifact_dir": "evals/artifacts/current/skill-runs/negative-slide-deck"
+    }
+  ],
+  "summary": {
+    "total": 6,
+    "passed": 6,
+    "failed": 0,
+    "incomplete": 0,
+    "average_score": 99.67,
+    "average_category_scores": {
+      "outcome": 25.0,
+      "process": 25.0,
+      "style": 24.67,
+      "efficiency": 25.0
+    }
+  }
+}

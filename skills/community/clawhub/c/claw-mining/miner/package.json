@@ -1,0 +1,31 @@
+{
+  "name": "openclaw-miner",
+  "version": "1.0.0",
+  "description": "OpenClaw Miner CLI — mine CLAW tokens by calling AI APIs",
+  "type": "module",
+  "bin": {
+    "openclaw-miner": "./dist/index.js"
+  },
+  "scripts": {
+    "dev": "tsx src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "mine": "tsx src/index.ts mine",
+    "auto": "tsx src/index.ts auto",
+    "status": "tsx src/index.ts status"
+  },
+  "dependencies": {
+    "commander": "^12.0.0",
+    "dotenv": "^16.4.0",
+    "ethers": "^6.13.0",
+    "chalk": "^5.3.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.0",
+    "tsx": "^4.19.0",
+    "vitest": "^2.1.0",
+    "@types/node": "^22.10.0"
+  }
+}

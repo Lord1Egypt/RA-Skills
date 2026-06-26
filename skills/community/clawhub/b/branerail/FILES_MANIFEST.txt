@@ -1,0 +1,280 @@
+================================================================================
+                      SYSTEMDESIGN SKILL - PACKAGE MANIFEST
+================================================================================
+
+STATUS: ✅ Production Ready - Complete CTO-Level Architectural Skill
+
+================================================================================
+                              FILE CONTENTS
+================================================================================
+
+1. README.md (447 lines)
+   - Overview of SystemDesign skill
+   - When to use (trigger keywords)
+   - Use cases and scenarios
+   - Integration with Claude Code
+   - Real-world examples
+   - Evaluation rubric
+   START HERE: Read this first for orientation
+
+2. SKILL.md (726 lines) - MAIN SKILL
+   - The Three Pillars (state, feedback, blast radius)
+   - Design Process (before code, templates, deletion test)
+   - AI as Probabilistic Collaborator (why audit?)
+   - Code Review Checklist (9 sections, 100+ items)
+   - Architectural Patterns (circuit breaker, retry, event sourcing, etc.)
+   - Anti-Patterns (what not to do)
+   - Full Development Workflow (pre-code to post-deployment)
+   - Concurrency and Distributed Systems
+   - Claude Code Integration
+   - Evaluation Rubric (assessment matrix)
+   REFERENCE THIS OFTEN: Comprehensive, well-organized guide
+
+3. spec_template.md (319 lines)
+   - Architectural Specification Template
+   - Component overview
+   - Data model (inputs, outputs)
+   - State and ownership
+   - Critical paths and performance targets
+   - Failure modes and recovery (table format)
+   - Observability plan (logs, metrics, alerts)
+   - Dependencies and fallbacks
+   - Testing strategy
+   - Scaling plan
+   - Security requirements
+   - Deployment checklist
+   COPY AND USE: For every feature you build
+
+4. DESIGN_template.md (462 lines)
+   - Visual Design System Template (Google's DESIGN.md format)
+   - YAML Front Matter (machine-readable tokens)
+   - Colors (semantic and functional)
+   - Typography Scale (h1-h3, body, labels, monospace)
+   - Spacing System (8px base units)
+   - Border Radius Conventions
+   - Shadow Levels
+   - Component Patterns (buttons, inputs, cards, forms, modals)
+   - Responsive Breakpoints
+   - WCAG AA Accessibility
+   - Implementation (CSS variables, Tailwind, W3C DTCG)
+   COPY AND USE: For UI/design consistency
+
+5. code_review_checklist.md (594 lines)
+   - Code Review and Architectural Audit Checklist
+   - Quick Summary (Three Pillars)
+   - Spec Compliance
+   - State and Data Ownership
+   - Error Handling and Resilience
+   - Observability (logging, metrics, tracing)
+   - Dependencies and Coupling
+   - Testing Coverage
+   - Security Checklist
+   - Performance and Scaling
+   - Full Three Pillars Check
+   - Review Template
+   BOOKMARK AND USE: For every code review
+
+6. INTEGRATION_GUIDE.md (Installation and Setup)
+   - Installation instructions
+   - Quick Start (3-step workflow)
+   - Using DESIGN.md
+   - Real example (payment service)
+   - Integration patterns (monorepo, feature branch, automation)
+   - Key concepts to internalize
+   - Common mistakes to avoid
+   - FAQ
+   - Next steps
+   READ THIS: For project setup
+
+7. PACKAGE_SUMMARY.md (This Overview)
+   - Complete package summary
+   - File descriptions
+   - Quick start guide
+   - When to use
+   - Real-world scenarios
+   - Success criteria
+   READ AFTER README: Comprehensive orientation
+
+8. FILES_MANIFEST.txt (This File)
+   - Package contents
+   - File descriptions
+   - Line counts
+   - Usage guidance
+   REFERENCE: When navigating the package
+
+================================================================================
+                              STATISTICS
+================================================================================
+
+Total Lines of Content:    ~2,900 lines
+Total Files:               8 markdown files
+Compressed Skill:          SKILL.md (726 lines) + templates (1,300+ lines)
+
+File Breakdown:
+- SKILL.md                 726 lines (main skill)
+- code_review_checklist.md 594 lines
+- DESIGN_template.md       462 lines
+- README.md                447 lines
+- spec_template.md         319 lines
+- INTEGRATION_GUIDE.md     [deployment guide]
+- PACKAGE_SUMMARY.md       [orientation guide]
+- FILES_MANIFEST.txt       [this file]
+
+================================================================================
+                            RECOMMENDED READING ORDER
+================================================================================
+
+FIRST TIME:
+1. README.md              (15 min) - Get oriented
+2. PACKAGE_SUMMARY.md     (10 min) - Understand structure
+3. INTEGRATION_GUIDE.md   (10 min) - Learn how to set up
+
+BEFORE BUILDING:
+4. spec_template.md       (copy & fill) - Define architecture
+5. DESIGN_template.md     (copy & fill, if UI) - Define visual system
+
+DURING DEVELOPMENT:
+6. SKILL.md               (reference as needed) - Architecture guidance
+
+BEFORE DEPLOYMENT:
+7. code_review_checklist.md (run through) - Audit the code
+
+ONGOING:
+- Bookmark SKILL.md for quick reference
+- Use spec_template.md for every new component
+- Use code_review_checklist.md for every PR
+
+================================================================================
+                            KEY CONCEPTS
+================================================================================
+
+THE THREE PILLARS (Everything flows from these):
+
+1. Where does state live?
+   → Single source of truth for each data type
+   → Prevents race conditions and corruption
+   → Defined in spec_template.md § State and Ownership
+
+2. Where does feedback live?
+   → Structured logging, metrics, alerts
+   → You can reconstruct failures from logs
+   → Defined in spec_template.md § Observability
+
+3. What breaks if I delete this?
+   → Blast radius is known and documented
+   → Fallbacks exist for external services
+   → Defined in spec_template.md § Blast Radius
+
+================================================================================
+                              QUICK START
+================================================================================
+
+STEP 1: Read README.md
+   → Understand what SystemDesign does
+   → Learn when to trigger it
+
+STEP 2: Copy spec_template.md to /specs/my-feature.md
+   → Fill in your architecture
+   → Get team alignment on design
+
+STEP 3: Prompt Claude Code
+   → "Implement per /specs/my-feature.md"
+   → "Run through code_review_checklist.md"
+
+STEP 4: Review with code_review_checklist.md
+   → Run through all sections
+   → Flag issues before merging
+
+STEP 5: Deploy with confidence
+   → Monitoring is in place
+   → Fallbacks have been tested
+   → Documentation is complete
+
+================================================================================
+                          TRIGGER KEYWORDS
+================================================================================
+
+Use this skill whenever you mention:
+
+MUST USE:
+- architecture, design, system design, blueprint
+- scale, performance, bottleneck, latency
+- failure, resilience, fault tolerance, crash
+- state, consistency, sync, consistency model
+- blast radius, cascade, coupling, dependencies
+- Claude Code, code review, code audit
+
+SHOULD USE:
+- refactor, migration, monolith, microservices
+- observability, monitoring, logging, alerting
+- dependency, circular, tight coupling, loose coupling
+- concurrency, race condition, deadlock
+- distributed, consensus, replication, quorum
+- DESIGN.md, design system, visual identity
+
+================================================================================
+                         FILE INTEGRATION GUIDE
+================================================================================
+
+In Your Project:
+
+my-project/
+├── CLAUDE.md                      (← Reference all these files)
+├── DESIGN.md                      (← Copy from DESIGN_template.md)
+├── specs/                         (← Create using spec_template.md)
+│   ├── auth.md
+│   ├── payment.md
+│   └── notifications.md
+├── .systemdesign/
+│   ├── code_review_checklist.md   (← Reference during PR review)
+│   ├── spec_template.md           (← Template)
+│   └── patterns.md                (← From SKILL.md)
+└── src/
+    ├── auth/
+    ├── payment/
+    └── notifications/
+
+In CLAUDE.md:
+- Reference the spec at /specs/[feature].md
+- Reference the checklist at .systemdesign/code_review_checklist.md
+- Reference DESIGN.md for UI consistency
+
+================================================================================
+                        ENGAGEMENT CHECKLIST
+================================================================================
+
+You're using SystemDesign effectively when:
+
+✓ You write specs BEFORE coding (using spec_template.md)
+✓ You can answer The Three Pillars with certainty
+✓ Your code has structured logging and metrics
+✓ All failure modes are documented and handled
+✓ Dependencies are explicit (injected, not global)
+✓ You trace blast radius before deploying
+✓ You use code_review_checklist.md for every PR
+✓ Monitoring catches issues before users do
+✓ Fallback strategies are tested regularly
+✓ Specs are living documents (updated regularly)
+
+================================================================================
+                            NEXT STEPS
+================================================================================
+
+1. Read README.md (15 min)
+2. Skim SKILL.md (30 min) - Get familiar with the structure
+3. Copy spec_template.md to your project
+4. Write one spec (2 hours) - Define architecture for a feature
+5. Prompt Claude Code with spec as constraint
+6. Review code with code_review_checklist.md (30 min)
+7. Deploy with confidence
+8. Reference SKILL.md as needed for questions
+
+================================================================================
+                         PACKAGE COMPLETE ✓
+================================================================================
+
+All files are in /mnt/user-data/outputs/
+
+You have everything needed to implement CTO-level thinking in Claude Code.
+
+Start with README.md. Everything flows from there.

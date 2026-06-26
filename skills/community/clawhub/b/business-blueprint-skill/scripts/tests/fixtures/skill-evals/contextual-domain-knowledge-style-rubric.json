@@ -1,0 +1,32 @@
+{
+  "case_id": "contextual-domain-knowledge",
+  "overall_pass": true,
+  "score": 95,
+  "checks": [
+    {
+      "id": "knowledge_entity_coverage",
+      "pass": true,
+      "score": 5,
+      "notes": "Pain points, strategies, rules, metrics, practices, and pitfalls are all represented."
+    },
+    {
+      "id": "governance_story",
+      "pass": true,
+      "score": 5,
+      "notes": "The relationships explain how owners, glossary, and citations address governance failures."
+    },
+    {
+      "id": "metric_alignment",
+      "pass": true,
+      "score": 5,
+      "notes": "Metrics map to traceability, staleness, and correction quality instead of vanity usage counts."
+    },
+    {
+      "id": "no_placeholder_content",
+      "pass": true,
+      "score": 5,
+      "notes": "The fixture avoids generic AI governance labels and keeps source-specific terms."
+    }
+  ],
+  "summary": "A domain-knowledge fixture that evaluates the non-architecture blueprint path."
+}

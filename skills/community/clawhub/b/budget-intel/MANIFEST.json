@@ -1,0 +1,23 @@
+{
+  "id": "budget_intel_v1",
+  "name": "企业预算情报",
+  "version": "1.0.0",
+  "author": "Elatia",
+  "entry_point": "SKILL.md",
+  "description": "面向销售/CSM 的企业数字化预算情报工具。输入企业名称，输出数字化/智能化预算估算、构成分析、采购周期和销售建议。",
+  "capabilities": {
+    "search": {
+      "engines": ["web_search", "tavily", "deep-research-pro"],
+      "require_public_sources": true
+    },
+    "code_execution": {
+      "runtime": "python3",
+      "files": ["budget_engine.py"]
+    },
+    "reasoning": "chain_of_thought"
+  },
+  "runtime_requirements": {
+    "timeout": 300,
+    "memory_limit": "512MB"
+  }
+}

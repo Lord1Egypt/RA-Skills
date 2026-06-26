@@ -1,0 +1,29 @@
+{
+  "name": "buff-openclaw-skill",
+  "version": "2.3.5",
+  "description": "Transaction round-up helper. Calculates spare change from payments and builds unsigned Solana transfer instructions for user review.",
+  "main": "SKILL.md",
+  "keywords": ["openclaw", "skill", "buff", "roundup", "solana", "agent"],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nightcode112/Buff"
+  },
+  "requiredEnvVars": {
+    "BUFF_API_KEY": {
+      "description": "API key for authenticating with the Buff API",
+      "sensitive": true,
+      "required": true
+    },
+    "BUFF_WALLET_PUBKEY": {
+      "description": "Your Buff wallet Solana public key",
+      "sensitive": false,
+      "required": true
+    },
+    "BUFF_PLAN": {
+      "description": "Round-up tier: seed, sprout, tree, or forest",
+      "sensitive": false,
+      "required": false
+    }
+  }
+}

@@ -1,35 +1,48 @@
 ---
-name: "A股短线营收分析助手"
-description: "A股短线营收分析助手，聚焦"短线交易信号+营收质量"双轨研判，8位专家并行分析，输出可复核证据链、双轨评分与明确交易条件"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/china-stock-analyst"
-sourceUrl: "https://clawhub.ai/skills/china-stock-analyst"
+name: china-stock-analyst
+description: A股短线营收分析助手，聚焦"短线交易信号+营收质量"双轨研判，8位专家并行分析，输出可复核证据链、双轨评分与明确交易条件
 ---
 
 # A股短线营收分析助手
 
-> A股短线营收分析助手，聚焦"短线交易信号+营收质量"双轨研判，8位专家并行分析，输出可复核证据链、双轨评分与明确交易条件
+## 快速开始
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/china-stock-analyst`
-- **Source URL:** [https://clawhub.ai/skills/china-stock-analyst](https://clawhub.ai/skills/china-stock-analyst)
+**分析股票**：`请分析 600519（茅台）`
 
-## Overview
+**验证报告**：`验证 stock-reports/xxx.md`
 
+## 核心架构
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/china-stock-analyst
-```
+- **8位专家并行**：基本面大师、技术分析派、量化模型师、风险控制官、宏观策略师、行业研究家、消息面猎手、专家鉴别Agent
+- **双轨评分**：短线动量(40%) + 营收质量(35%) + 风险约束(25%)
+- **决策标签**：可做 / 观察 / 回避
+
+## 分析流程
+
+1. 数据采集 → 2. 8专家并行分析 → 3. 讨论整合 → 4. 报告输出
+
+## 报告必含模块
+
+- 时效性警告（数据截至日期、短线有效期2-3日）
+- 近5日资金流向数据
+- 支撑位/压力位/止损位
+- 资金流向反转预警（与前期对比）
+- 营收快照（营收/同比/环比/口径/来源）
+- 双轨评分（短线动量/营收质量/风险约束）
+- 专家鉴别（身份+价格校验）
+- 证据链（结论→数据→来源→时间戳）
+
+## 数据来源
+
+Web Search 优先，东财结构化查询复核（`${EASTMONEY_APIKEY}`）
+
+## 适用场景
+
+1. 用户询问A股短线机会
+2. 需要结合资金流和营收趋势做快决策
+3. 查询近5日资金与关键位
+4. 验证历史报告与最新数据差异
+
+## 免责声明
+
+所有分析仅供参考，不构成投资建议。股市有风险，投资需谨慎。

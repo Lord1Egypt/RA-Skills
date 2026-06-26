@@ -1,0 +1,7 @@
+{
+  "name": "claude-code-setup",
+  "version": "1.0.0",
+  "description": "Setup production-grade .claude/ AI collaboration layer for projects",
+  "author": "Eave",
+  "license": "MIT"
+}

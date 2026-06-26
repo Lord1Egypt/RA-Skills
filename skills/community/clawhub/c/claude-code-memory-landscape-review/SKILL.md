@@ -1,35 +1,47 @@
 ---
-name: "Memory Landscape Review"
+name: "memory_landscape_review"
 description: "Use when the user wants to review auto-memory, promote durable instructions into CLAUDE.md or local memory, and clean up duplicates or conflicts."
-category: "other"
-source: "ClawHub"
-tags: [claude-code, extracted]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/claude-code-memory-landscape-review"
-sourceUrl: "https://clawhub.ai/skills/claude-code-memory-landscape-review"
 ---
+
 
 # Memory Landscape Review
 
-> Use when the user wants to review auto-memory, promote durable instructions into CLAUDE.md or local memory, and clean up duplicates or conflicts.
+Use this skill to review project memory, local memory, and auto-memory together.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/claude-code-memory-landscape-review`
-- **Source URL:** [https://clawhub.ai/skills/claude-code-memory-landscape-review](https://clawhub.ai/skills/claude-code-memory-landscape-review)
+## Workflow
+1. Gather repo memory files and current auto-memory context.
+2. Classify each entry as repo-wide, personal, team-wide, or temporary.
+3. Detect duplicates, conflicts, and outdated instructions.
+4. Present a grouped report before making any changes.
+5. Only apply promotions or cleanup after explicit approval.
 
-## Overview
+## Guardrails
+- Propose first, edit second.
+- Do not guess when an instruction might be personal vs shared.
+- Keep transient notes out of durable memory files.
 
+## Example Requests
+- Review my auto-memory and tell me what belongs in durable memory.
+- Find duplicate or conflicting instructions across memory layers.
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/claude-code-memory-landscape-review
-```
+## Inputs
+- Repo memory files
+- Auto-memory state
+- User preference for shared vs local memory
+
+## Outputs
+- Promotion proposals
+- Conflict cleanup report
+- No-change recommendations
+
+## Success Criteria
+- Durable memory candidates are identified clearly.
+- Duplicates and stale entries are surfaced.
+- No edits happen before approval.
+
+## Non-Goals
+- Silently editing memory files
+- Guessing personal vs shared intent when ambiguous
+
+## Source Provenance
+Derived from `src/skills/bundled/remember.ts`.

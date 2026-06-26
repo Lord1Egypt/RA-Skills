@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{title}}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;600;700&display=swap');
+        body {
+            font-family: 'Inter', 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            min-height: 100vh;
+        }
+        .card {
+            background: white;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            border-radius: 1rem;
+        }
+        .gradient-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .gradient-a {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .gradient-b {
+            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+        }
+    </style>
+</head>
+<body class="p-6">
+    <div class="max-w-5xl mx-auto">
+        <div class="card overflow-hidden mb-6">
+            <div class="gradient-header px-10 py-12 text-white text-center">
+                <h1 class="text-3xl font-bold mb-3">{{title}}</h1>
+                <p class="text-lg opacity-90 font-light">{{subtitle}}</p>
+            </div>
+        </div>
+        
+        <!-- 方案 A -->
+        <div class="card px-10 py-8 mb-6">
+            <div class="gradient-a text-white px-6 py-4 rounded-lg mb-6">
+                <h2 class="text-2xl font-bold">{{plan_a_title}}</h2>
+                <p class="text-sm opacity-90 mt-2">{{plan_a_subtitle}}</p>
+            </div>
+            <div id="content-a">{{plan_a_content}}</div>
+            <div id="map-a" class="mt-6 rounded-xl overflow-hidden bg-gray-50">{{map_iframe_a}}</div>
+        </div>
+        
+        <!-- 方案 B -->
+        <div class="card px-10 py-8 mb-6">
+            <div class="gradient-b text-white px-6 py-4 rounded-lg mb-6">
+                <h2 class="text-2xl font-bold">{{plan_b_title}}</h2>
+                <p class="text-sm opacity-90 mt-2">{{plan_b_subtitle}}</p>
+            </div>
+            <div id="content-b">{{plan_b_content}}</div>
+            <div id="map-b" class="mt-6 rounded-xl overflow-hidden bg-gray-50">{{map_iframe_b}}</div>
+        </div>
+        
+        <div class="text-center text-gray-400 text-sm py-6">
+            <p>City Life Copilot · Generated on {{date}}</p>
+        </div>
+    </div>
+</body>
+</html>

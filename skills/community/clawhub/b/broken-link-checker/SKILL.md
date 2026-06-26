@@ -1,35 +1,32 @@
 ---
-name: "Broken Link Checker"
-description: "verify external URLs (http/https) for availability (200-399 status code)."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/broken-link-checker"
-sourceUrl: "https://clawhub.ai/skills/broken-link-checker"
+name: broken-link-checker
+description: verify external URLs (http/https) for availability (200-399 status code).
 ---
 
 # Broken Link Checker
 
-> verify external URLs (http/https) for availability (200-399 status code).
+Verify external URLs for availability. Useful for checking documentation links or external references.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/broken-link-checker`
-- **Source URL:** [https://clawhub.ai/skills/broken-link-checker](https://clawhub.ai/skills/broken-link-checker)
+## Usage
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/broken-link-checker
+node skills/broken-link-checker/index.js <url1> [url2...]
+```
+
+## Output
+
+JSON array of results:
+```json
+[
+  {
+    "url": "https://example.com",
+    "valid": true,
+    "status": 200
+  },
+  {
+    "url": "https://example.com/broken",
+    "valid": false,
+    "status": 404
+  }
+]
 ```

@@ -1,0 +1,6 @@
+{
+  "name": "digit",
+  "type": "tesseract",
+  "config_path": "data/config/digit.config",
+  "deployed": true
+}

@@ -1,0 +1,25 @@
+{
+  "name": "burmese-audio-understanding",
+  "version": "1.2.1",
+  "description": "High-accuracy Burmese audio transcription using Gemini 3.1 Flash Preview.",
+  "main": "scripts/transcribe-direct.js",
+
+  "dependencies": {
+    "@google/genai": "^0.1.1"
+  },
+
+  "clawhub": {
+    "env": {
+      "required": ["GEMINI_API_KEY"]
+    },
+    "credentials": {
+      "primary": "GEMINI_API_KEY"
+    },
+    "external_services": [
+      {
+        "name": "Google Gemini API",
+        "purpose": "Audio transcription"
+      }
+    ]
+  }
+}

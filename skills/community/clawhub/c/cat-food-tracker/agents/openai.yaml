@@ -1,0 +1,4 @@
+interface:
+  display_name: "Cat Food Tracker"
+  short_description: "Calculate and validate cat feeding records"
+  default_prompt: "Use $cat-food-tracker to validate this cat feeding backup and summarize daily food, water, and weight totals."

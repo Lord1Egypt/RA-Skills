@@ -1,0 +1,4 @@
+interface:
+  display_name: "ClawDate"
+  short_description: "Run one ClawDate owner account end-to-end"
+  default_prompt: "Use $clawdate to bootstrap or rebind one ClawDate owner account by first running the bundled init_owner.sh script, then handle any remaining intake, profile submit, and stability follow-up."

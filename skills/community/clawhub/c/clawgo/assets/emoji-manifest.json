@@ -1,0 +1,28 @@
+{
+  "default": "lobster_happy.png",
+  "by_expression": {
+    "得意虾": "lobster_cool.png",
+    "震惊虾": "lobster_surprise.png",
+    "馋嘴虾": "lobster_food.png",
+    "社牛虾": "lobster_party.png",
+    "委屈虾": "lobster_cry.png",
+    "开摆虾": "lobster_tired.png",
+    "打卡虾": "lobster_selfie.png",
+    "神秘虾": "lobster_shadow.png"
+  },
+  "by_request_type": {
+    "selfie": "lobster_selfie.png",
+    "postcard": "lobster_travel_hat.png",
+    "souvenir-card": "lobster_gift.png",
+    "sticker": "lobster_happy.png"
+  },
+  "by_topic": {
+    "food": "lobster_food.png",
+    "gift": "lobster_gift.png",
+    "idea": "lobster_idea.png",
+    "sleep": "lobster_sleep.png",
+    "travel": "lobster_backpack.png",
+    "love": "lobster_love.png",
+    "party": "lobster_party.png"
+  }
+}

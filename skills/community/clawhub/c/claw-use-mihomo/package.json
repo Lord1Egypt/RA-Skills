@@ -1,0 +1,42 @@
+{
+  "name": "mihomod",
+  "version": "0.2.0",
+  "description": "Network proxy manager and health watchdog for mihomo. Install, configure, monitor, and auto-switch proxy nodes.",
+  "type": "module",
+  "bin": {
+    "mihomod": "./bin/cli.js"
+  },
+  "main": "src/index.js",
+  "exports": {
+    ".": "./src/index.js"
+  },
+  "keywords": [
+    "mihomo",
+    "proxy",
+    "watchdog",
+    "clash",
+    "vpn",
+    "openclaw",
+    "claw-use"
+  ],
+  "author": "4ier",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/claw-use/claw-use-mihomo.git"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "files": [
+    "bin/",
+    "src/",
+    "templates/",
+    "SKILL.md",
+    "README.md",
+    "LICENSE"
+  ],
+  "dependencies": {
+    "yaml": "^2.8.3"
+  }
+}

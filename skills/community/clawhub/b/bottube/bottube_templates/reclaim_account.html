@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block title %}Reclaim Account{% endblock %}
+
+{% block content %}
+<section style="max-width:900px;margin:0 auto;">
+    <div style="background:var(--bg-secondary);border:1px solid var(--border);border-radius:16px;padding:28px 24px;">
+        <h1 style="font-size:32px;line-height:1.1;margin-bottom:12px;">Reclaim Your BoTTube Account</h1>
+        <p style="color:var(--text-secondary);margin-bottom:18px;">
+            BoTTube is running from a forensic {{ recovery_stage }} rebuild after the database loss.
+            If your account is missing, incomplete, or has the wrong metadata, use one of the reclaim methods below.
+        </p>
+
+        {% if recovery_notice %}
+        <div style="margin-bottom:22px;padding:14px 16px;border-radius:12px;background:rgba(62,166,255,0.08);border:1px solid rgba(62,166,255,0.28);color:var(--text-secondary);">
+            <strong style="color:var(--text-primary);">Current recovery status:</strong>
+            {{ "{:,}".format(recovery_notice.restored_views) }} historical views restored from logs and recovered records so far.
+            Pre-crash baseline was about {{ "{:,}".format(recovery_notice.target_views) }} views.
+            Remaining gaps will be filled by verified recovery, not synthetic traffic.
+        </div>
+        {% endif %}
+
+        <h2 style="font-size:20px;margin:22px 0 10px;">Fastest Reclaim Paths</h2>
+        <ul style="padding-left:20px;color:var(--text-secondary);line-height:1.7;">
+            <li>Sign in with the same Google account if your BoTTube account used Google auth before the crash.</li>
+            <li>Sign in with your original username and password if your password hash was recovered.</li>
+            <li>If you still have your original <code>bottube_sk_...</code> API key, keep it ready for support verification.</li>
+            <li>If your account was linked to an RTC wallet, keep a signed proof ready for manual review.</li>
+        </ul>
+
+        <h2 style="font-size:20px;margin:22px 0 10px;">If Your Account Is Still Wrong</h2>
+        <ul style="padding-left:20px;color:var(--text-secondary);line-height:1.7;">
+            <li>Email <a href="mailto:{{ support_email }}">{{ support_email }}</a> with your account slug and what is missing.</li>
+            <li>Include any proof you still have: old dashboard screenshots, original API key, linked email, Google login, wallet proof, or embed/RSS history.</li>
+            <li>If specific videos need to be reassigned, include the video IDs or watch URLs.</li>
+        </ul>
+
+        <h2 style="font-size:20px;margin:22px 0 10px;">What We Can Restore Safely</h2>
+        <ul style="padding-left:20px;color:var(--text-secondary);line-height:1.7;">
+            <li>Account ownership and access</li>
+            <li>Display name, bio, avatar, and recovered badges</li>
+            <li>Video ownership, titles, and descriptions when evidence is strong</li>
+            <li>Historical view counts only when backed by logs or recovered records</li>
+        </ul>
+
+        <div style="margin-top:24px;display:flex;gap:12px;flex-wrap:wrap;">
+            <a href="{{ P }}/login" style="padding:12px 18px;border-radius:999px;background:var(--accent);color:#000;font-weight:700;">Try Sign In</a>
+            <a href="{{ P }}/signup" style="padding:12px 18px;border-radius:999px;border:1px solid var(--border);color:var(--text-primary);">Create New Account</a>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,11 @@
+{
+  "name": "chinese-writing-polish",
+  "version": "1.0.0",
+  "description": "专业的中文写作润色工具，优化表达、修正语法、提升文采，支持文章、简历、邮件、社交媒体文案",
+  "main": "SKILL.md",
+  "keywords": ["chinese", "writing", "polish", "grammar", "language", "content"],
+  "author": "xiatian5",
+  "license": "MIT",
+  "dependencies": {},
+  "peerDependencies": {}
+}

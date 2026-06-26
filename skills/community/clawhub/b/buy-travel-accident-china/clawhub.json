@@ -1,0 +1,19 @@
+{
+  "slug": "buy-travel-accident-china",
+  "name": "旅游意外险",
+  "name_zh": "旅游意外险",
+  "name_en": "Travel accident insurance (China)",
+  "tagline": "旅游意外险报价、下单、提交保司与支付链接，支持身份证智能填表",
+  "tagline_zh": "旅游意外险报价、下单、提交保司与支付链接，支持身份证智能填表",
+  "tagline_en": "Quote, order, submit to insurer and get payment link for travel accident insurance; smart form-fill for Chinese ID",
+  "description": "本技能让 Agent 能够调用旅游意外险后端 API，完成用户注册/登录、获取产品与计划列表、报价、创建订单、提交到保司、查询订单列表与单笔状态、获取支付链接等全流程。适用于需要为用户办理旅游意外险、获取报价或管理投保订单的场景。API 支持智能填表：中国身份证场景下被保险人只需提供姓名和证件号即可下单，出生日期、性别、年龄等由服务端自动推导。",
+  "description_zh": "本技能让 Agent 能够调用旅游意外险后端 API，完成用户注册/登录、获取产品与计划列表、报价、创建订单、提交到保司、查询订单列表与单笔状态、获取支付链接等全流程。适用于需要为用户办理旅游意外险、获取报价或管理投保订单的场景。API 支持智能填表：中国身份证场景下被保险人只需提供姓名和证件号即可下单，出生日期、性别、年龄等由服务端自动推导。",
+  "description_en": "This skill lets the Agent call the travel accident insurance backend API for the full flow: register/login, product and plan lists, quote, create order, submit to insurer, list orders, single order status and payment link. It fits scenarios where you need to arrange travel accident insurance, get a quote or manage orders. The API supports smart form-fill: with a Chinese ID, the insured only needs name and ID number to place an order; date of birth, gender and age are derived by the server.",
+  "category": "utility",
+  "tags": ["保险", "旅游", "旅游意外险", "API", "agent", "智能填表"],
+  "tags_zh": ["保险", "旅游", "旅游意外险", "API", "agent", "智能填表"],
+  "tags_en": ["insurance", "travel", "travel insurance", "API", "agent", "smart form-fill"],
+  "version": "2.0.4",
+  "license": "MIT",
+  "pricing": "free"
+}

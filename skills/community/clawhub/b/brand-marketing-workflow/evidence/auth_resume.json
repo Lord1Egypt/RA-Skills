@@ -1,0 +1,13 @@
+{
+  "has_boundary": true,
+  "reasons": [
+    "action 'publish' requires human confirmation"
+  ],
+  "authorization_request": "[需要人类确认]\n当前操作超出允许边界。\n\n原因：\n- action 'publish' requires human confirmation\n\n需要你的确认：\n- 是否继续\n- 是否授权访问\n- 是否授权发布/投放\n- 是否授权支付/充值\n\n可回复：\n- 确认继续\n- 授权执行\n- 授权支付\n- 拒绝",
+  "state": "resumed",
+  "decision": "allow",
+  "pause": false,
+  "fallback": "",
+  "resume_condition": "",
+  "allowed_scope": "public+authorized-only"
+}

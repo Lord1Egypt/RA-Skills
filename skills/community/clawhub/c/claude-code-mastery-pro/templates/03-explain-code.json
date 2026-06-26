@@ -1,0 +1,5 @@
+{
+  "name": "Explain Code",
+  "description": "Explain what selected code does",
+  "command": "Explain this code section in simple terms. Include: what it does, how it works, and any potential issues I should be aware of."
+}

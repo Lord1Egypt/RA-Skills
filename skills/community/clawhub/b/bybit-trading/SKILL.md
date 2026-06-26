@@ -1,35 +1,19 @@
 ---
-name: "Bybit AI Trading Skill"
-description: "Bybit AI Trading Skill — deprecated"
-category: "blockchain"
-source: "ClawHub"
-tags: [bybit, crypto, exchange, trading]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/bybit-trading"
-sourceUrl: "https://clawhub.ai/skills/bybit-trading"
+name: bybit-trading
+description: Bybit AI Trading Skill — deprecated
+metadata:
+  version: 1.0.4
+  author: Bybit
+  updated: 2026-04-30
+license: MIT
 ---
 
-# Bybit AI Trading Skill
+# Bybit Trading Skill (Bootstrap)
 
-> Bybit AI Trading Skill — deprecated
+This skill has been deprecated, please use new one: https://clawhub.ai/victorwu-bybit/bybit-exchange-trading-skill
 
-- **Category:** Blockchain
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/bybit-trading`
-- **Source URL:** [https://clawhub.ai/skills/bybit-trading](https://clawhub.ai/skills/bybit-trading)
+## Load the full skill
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/bybit-trading
+```
+This skill has been deprecated, please use new one: https://clawhub.ai/victorwu-bybit/bybit-exchange-trading-skill
 ```

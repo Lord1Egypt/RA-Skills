@@ -1,0 +1,4 @@
+interface:
+  display_name: "CLAUDE MD Initializer"
+  short_description: "Bootstrap repo guidance for future agents"
+  default_prompt: "Analyze this repository and create a practical CLAUDE.md with architecture, commands, and agent guidance."

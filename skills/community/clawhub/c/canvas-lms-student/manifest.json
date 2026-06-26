@@ -1,0 +1,177 @@
+{
+  "name": "canvas-lms-student",
+  "version": "0.1.1",
+  "description": "Interact with Canvas LMS as a student - list courses, get assignments, download files, export deadlines",
+  "author": "Efan404",
+  "homepage": "https://github.com/Efan404/canvas-lms-student-skill",
+  "license": "MIT",
+  "runtime": {
+    "type": "python",
+    "python_version": ">=3.8",
+    "entry_point": "wrapper.py",
+    "setup_script": "setup.sh"
+  },
+  "dependencies": {
+    "pip": ["canvasapi>=3.0.0", "requests>=2.25.0"]
+  },
+  "configuration": {
+    "env": ["CANVAS_BASE_URL", "CANVAS_API_TOKEN"],
+    "config_file": "~/.config/canvas-lms/config.json",
+    "setup_command": "bash setup.sh"
+  },
+  "tools": [
+    {
+      "name": "list_courses",
+      "description": "List all Canvas courses for the current user",
+      "command": "python3 scripts/list_courses.py --json",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "active_only": {
+            "type": "boolean",
+            "description": "Show only active enrollments"
+          },
+          "with_grades": {
+            "type": "boolean", 
+            "description": "Include current grades"
+          }
+        }
+      }
+    },
+    {
+      "name": "resolve_course",
+      "description": "Find course ID by name or code",
+      "command": "python3 scripts/list_courses.py --resolve --json",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Course name, code, or partial name (e.g., 'CS5293')"
+          }
+        },
+        "required": ["name"]
+      }
+    },
+    {
+      "name": "get_assignments",
+      "description": "Get assignments for a course",
+      "command": "python3 scripts/get_assignments.py --json",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "course": {
+            "type": "string",
+            "description": "Course ID or name (e.g., '67488' or 'CS5293')"
+          },
+          "upcoming": {
+            "type": "boolean",
+            "description": "Show only upcoming assignments"
+          },
+          "overdue": {
+            "type": "boolean",
+            "description": "Show only overdue assignments"
+          },
+          "unsubmitted": {
+            "type": "boolean",
+            "description": "Show only unsubmitted assignments"
+          }
+        },
+        "required": ["course"]
+      }
+    },
+    {
+      "name": "get_assignment_detail",
+      "description": "Get detailed information about a specific assignment",
+      "command": "python3 scripts/get_assignment_detail.py --json",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "course": {
+            "type": "string",
+            "description": "Course ID"
+          },
+          "assignment": {
+            "type": "string",
+            "description": "Assignment ID"
+          }
+        },
+        "required": ["course", "assignment"]
+      }
+    },
+    {
+      "name": "search_canvas",
+      "description": "Search across courses for files, assignments, and announcements",
+      "command": "python3 scripts/search_canvas.py --json",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string",
+            "description": "Search query"
+          },
+          "type": {
+            "type": "string",
+            "enum": ["assignment", "file", "announcement", "discussion", "all"],
+            "description": "Content type to search"
+          },
+          "course": {
+            "type": "string",
+            "description": "Limit to specific course ID (optional)"
+          }
+        },
+        "required": ["query"]
+      }
+    },
+    {
+      "name": "download_files",
+      "description": "Download course files with folder structure preserved",
+      "command": "python3 scripts/download_files.py",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "course": {
+            "type": "string",
+            "description": "Course ID"
+          },
+          "output": {
+            "type": "string",
+            "description": "Output directory (default: ./course-materials)"
+          },
+          "type": {
+            "type": "string",
+            "description": "Filter by file extension (e.g., 'pdf')"
+          },
+          "folder": {
+            "type": "string",
+            "description": "Download only from specific folder"
+          }
+        },
+        "required": ["course"]
+      }
+    },
+    {
+      "name": "export_calendar",
+      "description": "Export assignment deadlines to iCalendar (.ics) format",
+      "command": "python3 scripts/export_calendar.py",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "courses": {
+            "type": "string",
+            "description": "Comma-separated course IDs"
+          },
+          "output": {
+            "type": "string",
+            "description": "Output file (default: canvas-deadlines.ics)"
+          },
+          "unsubmitted_only": {
+            "type": "boolean",
+            "description": "Only export unsubmitted assignments"
+          }
+        },
+        "required": ["courses"]
+      }
+    }
+  ]
+}

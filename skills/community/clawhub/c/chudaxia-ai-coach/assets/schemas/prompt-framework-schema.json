@@ -1,0 +1,328 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://chudaxia.ai/schemas/prompt-framework-schema.json",
+  "title": "数字员工七层提示词框架",
+  "description": "验证数字员工身份定义的七层提示词结构，每层定义数字员工在特定维度的身份、能力和约束",
+  "type": "object",
+  "required": [
+    "identity",
+    "persona",
+    "capability",
+    "knowledge",
+    "workflow",
+    "compliance",
+    "kpi"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "identity": {
+      "title": "身份层 (Identity Layer)",
+      "description": "定义数字员工的身份、职责和边界。Agent只有执行层，没有管理/审批/反馈层",
+      "type": "object",
+      "required": [
+        "role_title",
+        "department",
+        "core_responsibility",
+        "value_goal",
+        "boundary"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "role_title": {
+          "type": "string",
+          "description": "数字员工角色名称，不超过三层：岗位→技能→工作流",
+          "examples": ["AI客服专员", "智能数据分析师"]
+        },
+        "department": {
+          "type": "string",
+          "description": "所属部门或业务线"
+        },
+        "core_responsibility": {
+          "type": "string",
+          "description": "核心职责描述，一句话概括该数字员工的主要工作内容"
+        },
+        "value_goal": {
+          "type": "string",
+          "description": "该数字员工为企业创造的预期价值目标"
+        },
+        "boundary": {
+          "type": "object",
+          "title": "行为边界",
+          "description": "数字员工的行为边界定义，Agent只有执行层权限",
+          "required": [
+            "allowed",
+            "forbidden",
+            "escalation"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "allowed": {
+              "type": "array",
+              "description": "允许执行的操作列表",
+              "items": {
+                "type": "string"
+              },
+              "minItems": 1
+            },
+            "forbidden": {
+              "type": "array",
+              "description": "禁止执行的操作列表",
+              "items": {
+                "type": "string"
+              },
+              "minItems": 1
+            },
+            "escalation": {
+              "type": "array",
+              "description": "需升级处理的情形列表",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "persona": {
+      "title": "人格层 (Persona Layer)",
+      "description": "定义数字员工的沟通风格、话术框架和禁忌",
+      "type": "object",
+      "required": [
+        "communication_style",
+        "speech_framework",
+        "taboos"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "communication_style": {
+          "type": "string",
+          "description": "沟通风格描述，如直接/委婉、正式/亲切、简洁/详尽等"
+        },
+        "speech_framework": {
+          "type": "array",
+          "description": "话术框架列表，定义标准对话结构和表达模板",
+          "items": {
+            "type": "object",
+            "required": ["name", "description"],
+            "additionalProperties": false,
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "话术框架名称"
+              },
+              "description": {
+                "type": "string",
+                "description": "话术框架内容或使用规则"
+              }
+            }
+          },
+          "minItems": 1
+        },
+        "taboos": {
+          "type": "array",
+          "description": "禁忌列表，定义不允许出现的表达或行为",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "capability": {
+      "title": "能力层 (Capability Layer)",
+      "description": "定义数字员工的核心技能和降级策略",
+      "type": "object",
+      "required": [
+        "core_capabilities",
+        "degradation_strategy"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "core_capabilities": {
+          "type": "array",
+          "description": "核心能力列表，数字员工最主要的技能集合",
+          "items": {
+            "type": "object",
+            "required": ["name", "description"],
+            "additionalProperties": false,
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "能力名称"
+              },
+              "description": {
+                "type": "string",
+                "description": "能力详细描述，包括输入、处理、输出"
+              }
+            }
+          },
+          "minItems": 1
+        },
+        "degradation_strategy": {
+          "type": "string",
+          "description": "降级策略：当能力不可用时（如API故障、知识库未覆盖），数字员工应如何处理"
+        }
+      }
+    },
+    "knowledge": {
+      "title": "知识层 (Knowledge Layer)",
+      "description": "定义数字员工的知识来源和引用规则",
+      "type": "object",
+      "required": [
+        "reference_foundation",
+        "citation_rules"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "reference_foundation": {
+          "type": "array",
+          "description": "参考基础，列出知识来源的文档、数据库或系统",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1
+        },
+        "citation_rules": {
+          "type": "string",
+          "description": "引用规则：如何在回答中正确引用知识来源"
+        }
+      }
+    },
+    "workflow": {
+      "title": "工作流层 (Workflow Layer)",
+      "description": "定义数字员工的标准工作流程和异常处理机制",
+      "type": "object",
+      "required": [
+        "standard_steps",
+        "error_handling"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "standard_steps": {
+          "type": "array",
+          "description": "标准工作步骤列表，定义数字员工执行任务的完整流程",
+          "items": {
+            "type": "object",
+            "required": ["step", "name", "action"],
+            "additionalProperties": false,
+            "properties": {
+              "step": {
+                "type": "integer",
+                "description": "步骤序号"
+              },
+              "name": {
+                "type": "string",
+                "description": "步骤名称"
+              },
+              "action": {
+                "type": "string",
+                "description": "该步骤执行的具体动作描述"
+              }
+            }
+          },
+          "minItems": 1
+        },
+        "error_handling": {
+          "type": "array",
+          "description": "异常处理列表，定义常见异常场景及应对策略",
+          "items": {
+            "type": "object",
+            "required": ["scenario", "response"],
+            "additionalProperties": false,
+            "properties": {
+              "scenario": {
+                "type": "string",
+                "description": "异常场景描述"
+              },
+              "response": {
+                "type": "string",
+                "description": "应对策略或回复"
+              }
+            }
+          }
+        }
+      }
+    },
+    "compliance": {
+      "title": "合规层 (Compliance Layer)",
+      "description": "定义数字员工的内容安全和合规约束",
+      "type": "object",
+      "required": [
+        "whitelist",
+        "blacklist",
+        "escalation_rules"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "whitelist": {
+          "type": "array",
+          "description": "白名单：允许讨论的主题或可调用的资源列表",
+          "items": {
+            "type": "string"
+          }
+        },
+        "blacklist": {
+          "type": "array",
+          "description": "黑名单：禁止讨论的主题或不允许使用的资源列表",
+          "items": {
+            "type": "string"
+          }
+        },
+        "escalation_rules": {
+          "type": "array",
+          "description": "升级规则：当遇到超出权限或无法处理的情形时的上报规则",
+          "items": {
+            "type": "object",
+            "required": ["condition", "action"],
+            "additionalProperties": false,
+            "properties": {
+              "condition": {
+                "type": "string",
+                "description": "触发升级的条件"
+              },
+              "action": {
+                "type": "string",
+                "description": "对应的升级动作"
+              }
+            }
+          }
+        }
+      }
+    },
+    "kpi": {
+      "title": "KPI层 (KPI Layer)",
+      "description": "定义数字员工的效能指标和自优化机制",
+      "type": "object",
+      "required": [
+        "metrics",
+        "self_optimization"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "metrics": {
+          "type": "array",
+          "description": "效能指标列表，用于衡量数字员工的工作效果",
+          "items": {
+            "type": "object",
+            "required": ["name", "description"],
+            "additionalProperties": false,
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "指标名称"
+              },
+              "description": {
+                "type": "string",
+                "description": "指标定义和衡量方式"
+              }
+            }
+          },
+          "minItems": 1
+        },
+        "self_optimization": {
+          "type": "string",
+          "description": "自优化机制：数字员工如何基于反馈和数据进行自我迭代"
+        }
+      }
+    }
+  }
+}

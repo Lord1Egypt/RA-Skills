@@ -1,35 +1,85 @@
 ---
-name: "基于艾宾浩斯遗忘曲线的英语六级词汇记忆系统"
-description: "基于艾宾浩斯遗忘曲线的英语六级词汇记忆系统。支持：(1) 新单词学习与测验 (2) 智能复习计划 (3) 定时任务提醒 (4) 学习进度追踪。触发时机：用户说"开始背六级单词"、"复习六级单词"、"设置六级背单词时间"、"六级单词测验"、"CET-6词汇"等。适用于中国大学生备考CET-6。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/cet6vocabularymemory"
-sourceUrl: "https://clawhub.ai/skills/cet6vocabularymemory"
+name: cet6-word-memory
+description: 基于艾宾浩斯遗忘曲线的英语六级词汇记忆系统。支持：(1) 新单词学习与测验 (2) 智能复习计划 (3) 定时任务提醒 (4) 学习进度追踪。触发时机：用户说"开始背六级单词"、"复习六级单词"、"设置六级背单词时间"、"六级单词测验"、"CET-6词汇"等。适用于中国大学生备考CET-6。
 ---
 
-# 基于艾宾浩斯遗忘曲线的英语六级词汇记忆系统
+# CET-6 单词记忆系统
 
-> 基于艾宾浩斯遗忘曲线的英语六级词汇记忆系统。支持：(1) 新单词学习与测验 (2) 智能复习计划 (3) 定时任务提醒 (4) 学习进度追踪。触发时机：用户说"开始背六级单词"、"复习六级单词"、"设置六级背单词时间"、"六级单词测验"、"CET-6词汇"等。适用于中国大学生备考CET-6。
+基于间隔重复算法的科学六级词汇记忆工具。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/cet6vocabularymemory`
-- **Source URL:** [https://clawhub.ai/skills/cet6vocabularymemory](https://clawhub.ai/skills/cet6vocabularymemory)
+## 与 CET-4 的区别
 
-## Overview
+| 项目 | CET-4 | CET-6 |
+|------|-------|-------|
+| 词汇量 | 约4500词 | 约5500词 |
+| 词汇难度 | 基础 | 进阶 |
+| 建议每日学习 | 5-10个 | 8-15个 |
+| 考试要求 | 大学本科 | 研究生/求职 |
 
+## 快速开始
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/cet6vocabularymemory
+用户说"开始背六级单词"时：
+
+1. 检查 `references/user_schedule.csv` 中是否存在用户记录
+2. 存在 → 直接进入学习流程
+3. 不存在 → 引导首次设置
+
+**首次设置流程：**
+- 询问每日学习时间（如 8:00、21:00）
+- 询问每次学习数量（建议 8-15 个，六级词汇量大）
+- 写入 user_schedule.csv
+- 设置定时任务
+
+## 核心流程
+
+### 学习新单词
+
+1. 从 `references/cet6-vocabulary.md` 排除已学单词
+2. 随机选取用户计划数量
+3. 展示：音标、词性、中文释义、例句（六级强调例句理解）
+4. 用户说"完成" → 进入测验
+
+### 单词测验
+
+三种测验方式：
+- **拼写测验**：展示中文，让用户拼写英文
+- **选择测验**：展示英文，选择中文释义
+- **翻译测验**：展示例句，让用户翻译（六级重点）
+
+答错的单词标记为"需重新记忆"，循环测验直到掌握。
+
+### 复习单词
+
+触发：定时任务或用户说"复习六级单词"
+
+查询 `word_memory_status.csv` 中 `next_review_date <= 今天` 的单词，按复习流程处理。
+
+## 数据文件
+
+| 文件 | 说明 |
+|------|------|
+| `references/cet6-vocabulary.md` | 六级词汇库 |
+| `references/user_schedule.csv` | 用户学习计划 |
+| `references/word_memory_status.csv` | 记忆状态追踪 |
+
+## 详细规范
+
+- [复习计划与记忆算法](references/memory-algorithm.md)
+- [数据库表结构](references/schema.md)
+- [定时任务配置](references/schedule-config.md)
+
+## 提醒话术
+
 ```
+📚 同学你好！六级单词复习时间到了~
+今天你有 {num} 个单词需要复习，准备好了吗？
+六级词汇量更大，坚持复习才能拿高分！💪
+回复"开始"让我们一起复习！
+```
+
+## 六级备考建议
+
+1. **词汇量大**：建议每天至少学习10个单词
+2. **例句重要**：六级考试强调语境理解，例句要重点记忆
+3. **长期坚持**：5500词需要3-6个月完成，保持耐心
+4. **错词复盘**：答错的单词要特别标记，重点复习

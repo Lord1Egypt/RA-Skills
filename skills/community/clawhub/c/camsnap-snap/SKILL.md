@@ -1,35 +1,37 @@
 ---
-name: "Camsnap"
-description: "Take webcam snapshots with path validation, safe resource handling, and flexible output options."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/camsnap-snap"
-sourceUrl: "https://clawhub.ai/skills/camsnap-snap"
+name: camsnap
+description: Take webcam snapshots with path validation, safe resource handling, and flexible output options.
+metadata:
+  openclaw:
+    requires:
+      commands: [python3]
+      pypi: [opencv-python]
 ---
 
 # Camsnap
 
-> Take webcam snapshots with path validation, safe resource handling, and flexible output options.
+Camera snapshot utility for AI agents.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/camsnap-snap`
-- **Source URL:** [https://clawhub.ai/skills/camsnap-snap](https://clawhub.ai/skills/camsnap-snap)
+## Features
 
-## Overview
+- Safe webcam capture with guaranteed resource release
+- Path traversal protection and extension validation
+- Configurable camera index and output directory
+- Structured logging (no print statements)
+- Type-annotated API
 
+## Usage
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/camsnap-snap
+python3 camsnap.py
+python3 camsnap.py --output-dir ./photos
+python3 camsnap.py snapshot.png --camera 1
+```
+
+### As a module
+
+```python
+from camsnap import take_snapshot
+
+path = take_snapshot(output_dir="snapshots", camera_index=0)
 ```

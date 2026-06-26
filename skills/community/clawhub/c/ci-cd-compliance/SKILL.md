@@ -1,35 +1,33 @@
 ---
-name: "Ci Cd Compliance"
-description: "CI/CD pipeline requirements and deployment standards. Use when (1) Setting up CI/CD pipelines, (2) Debugging CI failures, (3) Configuring deployment workflow..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ci-cd-compliance"
-sourceUrl: "https://clawhub.ai/skills/ci-cd-compliance"
+name: ci-cd-compliance
+description: CI/CD pipeline requirements and deployment standards. Use when (1) Setting up CI/CD pipelines, (2) Debugging CI failures, (3) Configuring deployment workflows, (4) Managing staging/production releases, (5) Investigating build failures. Covers CI gate requirements, merge policies, auto-deploy to staging, production approval process.
 ---
 
-# Ci Cd Compliance
+# CI/CD Compliance Rules
 
-> CI/CD pipeline requirements and deployment standards. Use when (1) Setting up CI/CD pipelines, (2) Debugging CI failures, (3) Configuring deployment workflow...
+## CI Gates Sequence
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ci-cd-compliance`
-- **Source URL:** [https://clawhub.ai/skills/ci-cd-compliance](https://clawhub.ai/skills/ci-cd-compliance)
+**install → lint/format → typecheck → unit → integration → (optional e2e) → package**
 
-## Overview
+## Merge Policy
 
+* **Merge only if green**
+* Auto-deploy to **staging** on merge
+* Production requires tag/approval
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/ci-cd-compliance
-```
+## CI Failure Handling
+
+When CI fails:
+1. **Explain root cause** in PR comment
+2. **Include the fix** in the same PR when feasible
+3. Don't merge until all gates pass
+
+## IDE Integration
+
+* **AINative / Windsurf / Cursor / Claude Code:** Use built-in code actions and terminal to run tests/linters
+* Prefer **unified diffs** in responses so changes are patchable across IDEs
+* Attach artifacts (test output, screenshots, logs) whenever you assert a claim
+
+## Reference Files
+
+See `references/pipeline-requirements.md` for detailed CI configuration, gate definitions, and failure debugging guide.

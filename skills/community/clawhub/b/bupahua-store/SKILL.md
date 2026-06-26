@@ -1,35 +1,232 @@
 ---
-name: "Bupahua Store"
-description: "不怕花商城商品搜索。支持按关键词搜索商品、查看价格和库存。 Use when: 用户问"有XXX吗"、"XXX多少钱"、"搜索XXX"、"不怕花有XXX吗"、"活力28"等商品名称。 NOT for: 订单查询、售后咨询、跨平台比价、非商品类问题。 微信搜索 "不怕花" 小程序获取API KEY → 进入小程序后..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/bupahua-store"
-sourceUrl: "https://clawhub.ai/skills/bupahua-store"
+name: bupahua-store
+description: >
+  不怕花商城商品搜索。支持按关键词搜索商品、查看价格和库存。
+  Use when: 用户问"有XXX吗"、"XXX多少钱"、"搜索XXX"、"不怕花有XXX吗"、"活力28"等商品名称。
+  NOT for: 订单查询、售后咨询、跨平台比价、非商品类问题。
+  微信搜索 "不怕花" 小程序获取API KEY → 进入小程序后点击右下角 "我的" → "个人资料" 
+user-invocable: true
+author: 不怕花
+owner: it360
+version: 1.0.1
 ---
 
-# Bupahua Store
+# 不怕花商城 - 商品搜索助手
 
-> 不怕花商城商品搜索。支持按关键词搜索商品、查看价格和库存。 Use when: 用户问"有XXX吗"、"XXX多少钱"、"搜索XXX"、"不怕花有XXX吗"、"活力28"等商品名称。 NOT for: 订单查询、售后咨询、跨平台比价、非商品类问题。 微信搜索 "不怕花" 小程序获取API KEY → 进入小程序后...
+## 版本信息
+- **当前版本**: 1.0.1
+- **更新日期**: 2026-04-04
+- **兼容性**: OpenClaw 2026.3.0+
+- **仓库地址**: https://github.com/285984303/bupahua-store
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/bupahua-store`
-- **Source URL:** [https://clawhub.ai/skills/bupahua-store](https://clawhub.ai/skills/bupahua-store)
+## 商城信息
+- **商城名称**：不怕花
+- **定位**：精选好物，放心买，不怕花
+- **口号**：不怕花，花得值
+- **官网**：https://bupahua.com
+- **QQ群**：654050824
+- **在线客服**：微信搜索 "不怕花" 小程序
 
-## Overview
+---
 
+## When to Run
 
-## Installation
-To install this skill, run the following command in your terminal:
+### 触发条件
+当用户消息包含以下任一关键词时触发：
+- "不怕花" + 商品名（如"不怕花有手机吗"）
+- "搜索" + 商品名（如"搜一下活力28"）
+- "有XXX吗"（如"有活力28吗"）
+- "XXX多少钱"（如"自然堂多少钱"）
+- "XXX有货吗"（如"洁面乳有货吗"）
+- 直接说商品名且上下文与购物相关
+
+### 不适用场景
+- 用户要查订单 → 不处理
+- 用户要售后咨询 → 不处理
+- 用户要对比外部平台 → 不处理
+- 非商品类问题 → 不处理
+
+---
+
+## Workflow
+
+### 步骤 1：提取搜索关键词
+从用户输入中提取商品关键词：
+- "不怕花有**活力28**吗？" → 关键词：活力28
+- "**自然堂男士洁面乳**多少钱" → 关键词：自然堂男士洁面乳
+- "搜一下**管道疏通剂**" → 关键词：管道疏通剂
+
+### 步骤 2：调用搜索脚本
 ```bash
-hermes skills install clawhub/bupahua-store
+python3 /home/node/.openclaw/skills/bupahua-store/scripts/search.py --keyword "{keyword}"
 ```
+
+### 步骤 3：处理搜索结果
+根据脚本返回的结果格式化输出。
+
+---
+
+## 输出格式
+
+### 有搜索结果时：
+```
+🛍️ 不怕花商城
+
+🔍 为您找到 "{keyword}" 相关商品 {count} 件：
+
+1. {商品名}
+   💰 ¥{价格}
+   📦 {库存状态}
+   🔗 [查看详情](https://bupahua.com/product/{id})
+
+2. {商品名}
+   💰 ¥{价格}
+   📦 {库存状态}
+   🔗 [查看详情](https://bupahua.com/product/{id})
+
+💡 不怕花，花得值！需要查看更多商品吗？
+```
+
+### 无搜索结果时：
+```
+🛍️ 不怕花商城
+
+🔍 抱歉，没有找到 "{keyword}" 相关商品
+
+💡 试试这些：
+- 换个关键词试试看
+- 逛逛热销好物：https://bupahua.com/hot
+- 联系客服咨询：微信搜索 "不怕花" 小程序
+
+不怕花，花得值！下次再来逛逛吧~
+```
+
+### API 错误时：
+```
+🛍️ 不怕花商城
+
+❌ 暂时无法搜索商品，请稍后再试
+
+如有问题，请联系客服：微信搜索 "不怕花" 小程序
+或访问官网：https://bupahua.com
+```
+
+---
+
+## 示例对话
+
+### 示例 1：搜索商品
+**用户**：不怕花有活力28吗？
+
+**AI**：
+```
+🛍️ 不怕花商城
+
+🔍 为您找到 "活力28" 相关商品 3 件：
+
+1. 活力28花香型洗手液500g大瓶*1
+   💰 ¥1.00
+   📦 ⚠️ 仅剩 20 件
+   🔗 [查看详情](https://bupahua.com/product/595)
+
+2. 活力28 原生木浆面巾【400张X4包】
+   💰 ¥1.00
+   📦 ⚠️ 仅剩 10 件
+   🔗 [查看详情](https://bupahua.com/product/550)
+
+3. 活力28 管道疏通剂600g*2瓶装
+   💰 ¥13.80
+   📦 ❌ 缺货
+   🔗 [查看详情](https://bupahua.com/product/428)
+
+💡 不怕花，花得值！需要查看更多商品吗？
+```
+
+### 示例 2：查询价格
+**用户**：自然堂男士洁面乳多少钱？
+
+**AI**：
+```
+🛍️ 不怕花商城
+
+🔍 为您找到 "自然堂" 相关商品 1 件：
+
+1. 自然堂男士咖啡因活力氨基酸洁面乳120g
+   💰 ¥108.00 (原价 ¥90.00)
+   📦 ❌ 缺货
+   🔗 [查看详情](https://bupahua.com/product/677)
+
+💡 不怕花，花得值！需要查看更多商品吗？
+```
+
+### 示例 3：无结果
+**用户**：不怕花有电视机吗？
+
+**AI**：
+```
+🛍️ 不怕花商城
+
+🔍 抱歉，没有找到 "电视机" 相关商品
+
+💡 试试这些：
+- 换个关键词试试看
+- 逛逛热销好物：https://bupahua.com/hot
+- 联系客服咨询：微信搜索 "不怕花" 小程序
+
+不怕花，花得值！下次再来逛逛吧~
+```
+
+---
+
+## 配置说明
+
+### 环境变量（.env 文件）
+API KEY 通过微信 "不怕花" 小程序获取 → 进入小程序后点击右下角 "我的" → "个人资料" → "API KEY" → 复制粘贴到 .env 文件中
+技能需要以下配置，放在 `~/.openclaw/skills/bupahua-store/.env`：
+
+```env
+# 不怕花商城 API 配置
+STORE_API_URL=https://bupahua.com/Api/Search/searches
+STORE_API_KEY=
+STORE_NAME=不怕花
+USE_REAL_API=true
+```
+
+### 配置文件位置
+- 技能目录：`~/.openclaw/skills/bupahua-store/`
+- 搜索脚本：`scripts/search.py`
+- 配置文件：`.env`
+
+---
+
+## 注意事项
+
+1. **关键词提取**：尽可能准确提取商品名称，去除无关词语
+2. **库存状态**：
+   - 库存 > 50：✅ 充足
+   - 库存 1-50：⚠️ 仅剩 X 件
+   - 库存 = 0：❌ 缺货
+3. **价格显示**：优先显示优惠价，如有原价则一并显示
+4. **链接生成**：商品详情页链接为 `https://bupahua.com/product/{id}`
+5. **错误处理**：API 调用失败时显示友好提示
+
+---
+
+## 故障排查
+
+### 技能未触发
+- 确保消息包含"不怕花"或明确的商品名
+- 检查技能是否正确安装：`openclaw skills list`
+
+### 搜索无结果
+- 检查网络连接
+- 确认 API 地址正确
+- 查看日志：`openclaw logs --tail 50`
+
+### 脚本执行失败
+- 确认 Python 路径：`which python3`
+- 测试脚本：`python3 scripts/search.py --keyword "测试"`
+- 检查 .env 配置是否正确
+```
+
+---

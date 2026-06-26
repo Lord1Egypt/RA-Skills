@@ -1,0 +1,11 @@
+{
+  "name": "Church Announcement (OpenClaw Church)",
+  "tagline": "Create church announcements in one-liner, SMS, and full formats.",
+  "description": "Generates church announcements in three lengths for a given occasion, time, and place: one-liner (headline/verbal), SMS (short text), and full announcement (bulletin/email). Formal, clear tone; suitable for mass distribution. No devotional content unless the user adds it. For church staff and communicators. Related: Bible QA, Sermon Outline, Pastoral Prayer skills by OpenClaw Church.",
+  "category": "utility",
+  "tags": ["church announcement", "bulletin", "service notice", "event notice", "ministry", "congregation", "church", "openclaw", "pastor"],
+  "version": "1.0.1",
+  "license": "MIT",
+  "pricing": "free",
+  "homepage": "https://github.com/cheniOS/bible-church-ministry-skills"
+}

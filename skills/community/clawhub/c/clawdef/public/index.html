@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>ClawDef — Token 优化与管控</title>
+<script src="/lib/chart.min.js"></script>
+<style>
+:root{--bg:#070a10;--bg2:#0e1219;--bg3:#161a25;--bg4:#1e2333;--border:#252a3a;--text:#e0e4ee;--text2:#6b7194;--accent:#10b981;--accent2:#34d399;--purple:#7c3aed;--green:#10b981;--yellow:#f59e0b;--red:#ef4444;--orange:#f97316;--blue:#3b82f6;--cyan:#06b6d4;--r:10px;--sw:220px}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',system-ui,sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
+::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px}
+#loginPage{position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;background:var(--bg)}
+.login-box{background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:40px;width:380px;max-width:90vw;text-align:center}
+.login-box .ico{width:48px;height:48px;margin:0 auto 12px;background:linear-gradient(135deg,var(--accent),var(--cyan));border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:900;color:#fff}
+.login-box h1{font-size:20px;margin-bottom:4px}.login-box .sub{color:var(--text2);font-size:12px;margin-bottom:24px}
+.login-box input{width:100%;padding:12px 16px;background:var(--bg3);border:1px solid var(--border);border-radius:8px;color:var(--text);font-size:14px;margin-bottom:10px;outline:none}
+.login-box input:focus{border-color:var(--accent)}
+.login-box .btn{width:100%;padding:12px;font-size:14px;margin-top:4px}
+.login-box .error{color:var(--red);font-size:12px;margin-top:8px;min-height:16px}
+#app{display:none}
+.sidebar{position:fixed;left:0;top:0;bottom:0;width:var(--sw);background:var(--bg2);border-right:1px solid var(--border);z-index:100;display:flex;flex-direction:column}
+.sidebar .logo{padding:14px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px}
+.sidebar .logo .ico{width:30px;height:30px;background:linear-gradient(135deg,var(--accent),var(--cyan));border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;color:#fff}
+.sidebar .logo h1{font-size:14px;font-weight:700}
+.sidebar .logo .tag{font-size:9px;color:var(--accent);background:rgba(16,185,129,.1);padding:1px 6px;border-radius:99px}
+.sidebar nav{flex:1;padding:4px 0;overflow-y:auto}
+.sidebar nav a{display:flex;align-items:center;gap:8px;padding:7px 14px;color:var(--text2);text-decoration:none;font-size:11px;transition:.15s;border-left:3px solid transparent}
+.sidebar nav a:hover{color:var(--text);background:var(--bg3)}
+.sidebar nav a.active{color:var(--accent2);background:rgba(16,185,129,.06);border-left-color:var(--accent)}
+.sidebar nav a .ic{width:15px;text-align:center;font-size:12px}
+.sidebar .btm{padding:8px 12px;border-top:1px solid var(--border)}
+.gw-row{display:flex;align-items:center;justify-content:space-between;font-size:10px}
+.gw-dot{width:7px;height:7px;border-radius:50%;display:inline-block;margin-right:3px}
+.gw-dot.running{background:var(--green);box-shadow:0 0 6px var(--green)}.gw-dot.stopped{background:var(--red)}.gw-dot.unknown{background:var(--yellow)}
+.lang-btn{background:var(--bg3);border:1px solid var(--border);border-radius:4px;color:var(--text2);font-size:9px;padding:1px 6px;cursor:pointer}
+.user-info{font-size:9px;color:var(--text2);margin-top:5px;display:flex;justify-content:space-between;align-items:center}
+.main{margin-left:var(--sw);padding:20px 24px;min-height:100vh}
+.page{display:none}.page.active{display:block}
+.ph{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}
+.ph h2{font-size:17px;font-weight:700}
+.ph .act{display:flex;gap:5px}
+.sg{display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:8px;margin-bottom:14px}
+.sc{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:12px}
+.sc .lb{font-size:9px;color:var(--text2);text-transform:uppercase;letter-spacing:.3px;margin-bottom:3px}
+.sc .vl{font-size:22px;font-weight:700}.sc .sb{font-size:9px;color:var(--text2);margin-top:2px}
+.sc .vl.green{color:var(--green)}.sc .vl.red{color:var(--red)}
+.cg{display:grid;grid-template-columns:2fr 1fr;gap:12px;margin-bottom:14px}
+.cd{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;margin-bottom:12px}
+.cd h3{font-size:11px;font-weight:600;padding:10px 14px;border-bottom:1px solid var(--border);color:var(--text2)}
+.cbd{padding:12px 14px}.cw{position:relative;height:200px}
+.tw{max-height:400px;overflow-y:auto}
+table{width:100%;border-collapse:collapse}th,td{padding:8px 10px;text-align:left;font-size:10px}
+th{background:var(--bg3);color:var(--text2);font-weight:600;position:sticky;top:0;z-index:1}
+tr:hover td{background:rgba(16,185,129,.03)}
+.btn{display:inline-flex;align-items:center;gap:3px;padding:5px 10px;border:none;border-radius:5px;font-size:10px;font-weight:600;cursor:pointer;transition:.15s}
+.btn-p{background:var(--accent);color:#fff}.btn-p:hover{opacity:.85}
+.btn-d{background:var(--red);color:#fff}.btn-s{background:var(--green);color:#fff}
+.btn-g{background:transparent;color:var(--text2);border:1px solid var(--border)}.btn-g:hover{background:var(--bg3);color:var(--text)}
+.btn-sm{padding:3px 7px;font-size:9px}.btn-xs{padding:2px 5px;font-size:9px}
+.badge{display:inline-block;padding:1px 5px;border-radius:99px;font-size:8px;font-weight:600}
+.b-g{background:rgba(16,185,129,.12);color:var(--green)}.b-y{background:rgba(245,158,11,.12);color:var(--yellow)}
+.b-r{background:rgba(239,68,68,.12);color:var(--red)}.b-b{background:rgba(59,130,246,.12);color:var(--blue)}
+.b-gray{background:rgba(107,113,148,.12);color:var(--text2)}.b-p{background:rgba(124,58,237,.12);color:var(--purple)}
+.toggle{position:relative;width:34px;height:18px;cursor:pointer;display:inline-block}
+.toggle input{display:none}.toggle .sl{position:absolute;inset:0;background:var(--border);border-radius:99px;transition:.2s}
+.toggle .sl::before{content:'';position:absolute;width:12px;height:12px;border-radius:50%;background:#fff;top:3px;left:3px;transition:.2s}
+.toggle input:checked+.sl{background:var(--green)}.toggle input:checked+.sl::before{transform:translateX(16px)}
+.progress{height:4px;background:var(--bg3);border-radius:2px;overflow:hidden;margin-top:4px}
+.pb{height:100%;border-radius:2px;transition:width .5s}.pb-g{background:var(--green)}.pb-y{background:var(--yellow)}.pb-r{background:var(--red)}
+.modal-bg{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:1000;display:flex;align-items:center;justify-content:center}
+.modal{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:20px;max-width:480px;width:90%}
+.modal h3{font-size:15px;margin-bottom:6px}.modal p{color:var(--text2);font-size:11px;margin-bottom:14px;line-height:1.6}
+.modal .mb{display:flex;gap:7px;justify-content:flex-end;margin-top:14px}
+.toast-box{position:fixed;top:12px;right:12px;z-index:2000}
+.toast{padding:8px 14px;border-radius:6px;font-size:10px;margin-bottom:4px;animation:si .3s ease;max-width:300px}
+.t-s{background:rgba(16,185,129,.9);color:#fff}.t-e{background:rgba(239,68,68,.9);color:#fff}.t-i{background:rgba(16,185,129,.9);color:#fff}
+@keyframes si{from{transform:translateX(100%);opacity:0}to{transform:translateX(0);opacity:1}}
+.sk-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:10px 14px;margin-bottom:6px}
+.sk-hd{display:flex;justify-content:space-between;align-items:center;margin-bottom:3px}
+.sk-nm{font-size:12px;font-weight:600}.sk-desc{font-size:10px;color:var(--text2);line-height:1.5;margin-bottom:4px}
+.sk-desc-zh{font-size:10px;color:var(--accent2);line-height:1.5;margin-bottom:4px}
+.al-item{display:flex;gap:7px;padding:8px 12px;border-bottom:1px solid var(--border);align-items:flex-start}
+.al-body{flex:1}.al-t{font-size:10px;font-weight:600}.al-m{font-size:9px;color:var(--text2);margin-top:2px;line-height:1.4}
+.al-tm{font-size:8px;color:var(--text2);white-space:nowrap}
+.chat-c{display:flex;flex-direction:column;height:calc(100vh - 140px)}
+.chat-msgs{flex:1;overflow-y:auto;padding:12px;display:flex;flex-direction:column;gap:8px}
+.chat-m{max-width:80%;padding:8px 12px;border-radius:10px;font-size:11px;line-height:1.6;word-wrap:break-word}
+.chat-m.user{align-self:flex-end;background:var(--accent);color:#fff;border-bottom-right-radius:3px}
+.chat-m.assistant{align-self:flex-start;background:var(--bg3);border-bottom-left-radius:3px}
+.chat-m.sys{align-self:center;color:var(--text2);font-size:9px}
+.chat-in{display:flex;gap:5px;padding:8px 0;border-top:1px solid var(--border);margin-top:5px}
+.chat-in textarea{flex:1;background:var(--bg3);border:1px solid var(--border);border-radius:6px;color:var(--text);padding:7px 10px;font-size:11px;resize:none;outline:none;max-height:90px;font-family:inherit}
+.chat-in textarea:focus{border-color:var(--accent)}
+.mf-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:12px;margin-bottom:8px}
+.mf-hd{display:flex;justify-content:space-between;align-items:center;margin-bottom:5px}
+.mf-nm{font-size:12px;font-weight:600}
+.log-v{background:var(--bg);border:1px solid var(--border);border-radius:var(--r);padding:8px;font-family:'JetBrains Mono',monospace;font-size:9px;height:calc(100vh - 160px);overflow-y:auto;line-height:1.5}
+.log-l .li{color:var(--blue)}.log-l .lw{color:var(--yellow)}.log-l .le{color:var(--red)}
+.bu-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:12px;margin-bottom:8px}
+.fg{margin-bottom:10px}.fg label{display:block;font-size:10px;color:var(--text2);margin-bottom:2px}
+.fg input,.fg select{width:100%;padding:6px 9px;background:var(--bg3);border:1px solid var(--border);border-radius:5px;color:var(--text);font-size:11px;outline:none}
+.fg input:focus{border-color:var(--accent)}
+.fr{display:flex;gap:8px}.fr .fg{flex:1}
+.health-dot{width:7px;height:7px;border-radius:50%;display:inline-block}
+.health-dot.healthy{background:var(--green);box-shadow:0 0 4px var(--green)}.health-dot.unhealthy{background:var(--red)}.health-dot.unknown{background:var(--yellow)}
+/* Optimization panel */
+.opt-panel{background:linear-gradient(135deg,rgba(16,185,129,.05),rgba(6,182,212,.05));border:1px solid rgba(16,185,129,.15);border-radius:var(--r);padding:16px;margin-bottom:14px}
+.opt-panel h3{font-size:13px;font-weight:700;color:var(--accent2);margin-bottom:10px}
+.cost-bar{display:flex;align-items:center;gap:10px;margin:8px 0}
+.cost-bar .bar{flex:1;height:28px;background:var(--bg);border-radius:6px;position:relative;overflow:hidden}
+.cost-bar .fill{height:100%;border-radius:6px;transition:width .6s;display:flex;align-items:center;padding:0 8px;font-size:9px;font-weight:600;color:#fff;min-width:40px}
+.cost-bar .label{font-size:10px;white-space:nowrap;min-width:100px}
+.cost-bar .arrow{font-size:16px;color:var(--green)}
+.tip-card{background:var(--bg3);border-radius:8px;padding:8px 10px;margin-bottom:5px;display:flex;align-items:flex-start;gap:6px;font-size:10px;line-height:1.5}
+.tip-card .saving{margin-left:auto;white-space:nowrap;color:var(--green);font-weight:600;font-size:9px}
+/* Template cards */
+.tpl-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px;margin-bottom:14px}
+.tpl-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:14px;cursor:pointer;transition:.2s}
+.tpl-card:hover{border-color:var(--accent);background:rgba(16,185,129,.03)}
+.tpl-card .tpl-icon{font-size:24px;margin-bottom:6px}
+.tpl-card .tpl-name{font-size:12px;font-weight:600;margin-bottom:2px}
+.tpl-card .tpl-models{font-size:9px;color:var(--text2)}
+.tpl-card .tpl-hint{font-size:9px;color:var(--cyan);margin-top:6px;line-height:1.4}
+@media(max-width:768px){.sidebar{width:46px}.sidebar nav a span:last-child,.sidebar .logo h1,.sidebar .logo .tag{display:none}.main{margin-left:46px;padding:10px}.cg{grid-template-columns:1fr}.sg{grid-template-columns:repeat(2,1fr)}}
+</style>
+</head>
+<body>
+<div id="loginPage">
+  <div class="login-box">
+    <div class="ico">C</div>
+    <h1>ClawDef</h1>
+    <p class="sub" data-i18n="login_sub">Token 优化与管控平台</p>
+    <input type="text" id="loginUser" placeholder="Username" autocomplete="off">
+    <input type="password" id="loginPass" placeholder="Password">
+    <button class="btn btn-p" onclick="doLogin()" data-i18n="login_btn">登 录</button>
+    <div class="error" id="loginError"></div>
+    <div style="margin-top:12px;display:flex;gap:4px;justify-content:center">
+      <button class="lang-btn" onclick="setLang('zh')">中文</button>
+      <button class="lang-btn" onclick="setLang('en')">EN</button>
+    </div>
+  </div>
+</div>
+<div id="app">
+  <div class="sidebar">
+    <div class="logo"><div class="ico">C</div><div><h1>ClawDef</h1><span class="tag" data-i18n="tag_save">省钱模式</span></div></div>
+    <nav>
+      <a href="#" class="active" data-page="dashboard"><span class="ic">💰</span><span data-i18n="n_dash">省钱总览</span></a>
+      <a href="#" data-page="optimize"><span class="ic">⚡</span><span data-i18n="n_opt">成本预估</span></a>
+      <a href="#" data-page="tokens"><span class="ic">📊</span><span data-i18n="n_tok">Token 明细</span></a>
+      <a href="#" data-page="skills"><span class="ic">🧩</span><span data-i18n="n_skill">技能管理</span></a>
+      <a href="#" data-page="models"><span class="ic">🤖</span><span data-i18n="n_model">模型接入</span></a>
+      <a href="#" data-page="failover"><span class="ic">🔄</span><span data-i18n="n_fail">故障转移</span></a>
+      <a href="#" data-page="budget"><span class="ic">💳</span><span data-i18n="n_bud">预算管控</span></a>
+      <a href="#" data-page="chat"><span class="ic">💬</span><span data-i18n="n_chat">AI 对话</span></a>
+      <a href="#" data-page="logs"><span class="ic">📜</span><span data-i18n="n_log">实时日志</span></a>
+      <a href="#" data-page="alerts"><span class="ic">🚨</span><span data-i18n="n_alert">告警</span></a>
+      <a href="#" data-page="settings"><span class="ic">⚙️</span><span data-i18n="n_set">设置</span></a>
+    </nav>
+    <div class="btm">
+      <div class="gw-row"><span><span class="gw-dot unknown" id="gwDot"></span><span id="gwTxt">...</span></span>
+        <div style="display:flex;gap:3px"><button class="btn btn-xs btn-g" onclick="restartGw()">🔄</button><button class="btn btn-xs btn-d" onclick="showEmergency()">🛑</button></div>
+      </div>
+      <div class="user-info"><span id="uDisp">admin</span><div style="display:flex;gap:3px;align-items:center"><button class="lang-btn" onclick="setLang(LANG==='zh'?'en':'zh')" id="langBtn">EN</button><button class="lang-btn" onclick="doLogout()">⏻</button></div></div>
+    </div>
+  </div>
+  <div class="main">
+    <!-- Dashboard -->
+    <div class="page active" id="page-dashboard">
+      <div class="ph"><h2>💰 <span data-i18n="n_dash">省钱总览</span></h2><div class="act"><button class="btn btn-g btn-sm" onclick="loadDash()">🔄</button></div></div>
+      <div class="sg">
+        <div class="sc"><div class="lb" data-i18n="today_tok">今日 Token</div><div class="vl" id="s-tok">-</div><div class="sb" id="s-tok-s"></div></div>
+        <div class="sc"><div class="lb" data-i18n="today_cost">今日费用</div><div class="vl" id="s-cost">-</div><div class="sb">Estimated (CNY)</div></div>
+        <div class="sc"><div class="lb">Cache 节省</div><div class="vl green" id="s-saved">-</div><div class="sb" id="s-saved-s">通过缓存省的 Token</div></div>
+        <div class="sc"><div class="lb">请求</div><div class="vl" id="s-req">-</div><div class="sb" id="s-req-s"></div></div>
+        <div class="sc"><div class="lb">当前模型</div><div class="vl" id="s-model" style="font-size:11px">-</div><div class="sb" id="s-model-s"></div></div>
+        <div class="sc"><div class="lb">Gateway</div><div class="vl" id="s-gw">-</div></div>
+      </div>
+      <div class="opt-panel">
+        <h3>💡 <span data-i18n="opt_tip_title">省钱建议</span></h3>
+        <div id="optTips"><div style="color:var(--text2);font-size:10px">分析中...</div></div>
+      </div>
+      <div class="cd"><h3>🔍 <span data-i18n="waste_title">Token 浪费检测</span></h3><div class="cbd" id="wastePanel"><div style="color:var(--text2);font-size:10px">分析中...</div></div></div>
+      <div class="cd"><h3>🧠 <span data-i18n="auto_title">智能守护</span> <span id="optStatus" class="badge b-g">运行中</span></h3><div class="cbd" id="optimizerPanel"><div style="color:var(--text2);font-size:10px">启动中...</div></div></div>
+      <div class="cg"><div class="cd"><div class="cbd"><div class="cw"><canvas id="hChart"></canvas></div></div></div><div class="cd"><div class="cbd"><div class="cw"><canvas id="sChart"></canvas></div></div></div></div>
+      <div class="cd"><div class="cbd"><div class="cw" style="height:160px"><canvas id="dChart"></canvas></div></div></div>
+    </div>
+    <!-- Optimize -->
+    <div class="page" id="page-optimize">
+      <div class="ph"><h2>⚡ <span data-i18n="n_opt">成本预估 & 最优选择</span></h2></div>
+      <div class="opt-panel">
+        <h3 data-i18n="opt_enter">输入你的任务，自动计算最优方案</h3>
+        <div style="display:flex;gap:6px;margin-bottom:12px">
+          <textarea id="optInput" rows="2" placeholder="比如：帮我翻译一段话 / 写一个 Python 脚本 / 分析一下这段代码的问题..." style="flex:1;background:var(--bg);border:1px solid var(--border);border-radius:6px;color:var(--text);padding:8px 10px;font-size:11px;resize:none;outline:none;font-family:inherit"></textarea>
+          <button class="btn btn-p" onclick="estimateCost()" style="align-self:flex-end">⚡ <span data-i18n="estimate">预估</span></button>
+        </div>
+        <div id="optResult"></div>
+      </div>
+      <div class="cd"><h3>💡 <span data-i18n="saving_strategies">省 Token 策略</span></h3><div class="cbd" id="optStrategies"></div></div>
+    </div>
+    <!-- Tokens -->
+    <div class="page" id="page-tokens"><div class="ph"><h2>📊 <span data-i18n="n_tok">Token 明细</span></h2></div><div class="cd"><div class="tw"><table><thead><tr><th>Time</th><th>Model</th><th>In</th><th>Out</th><th>Cache</th><th>Total</th><th>Cost</th><th>Tools</th></tr></thead><tbody id="tokBody"></tbody></table></div></div></div>
+    <!-- Skills -->
+    <div class="page" id="page-skills">
+      <div class="ph"><h2>🧩 <span data-i18n="n_skill">技能管理</span></h2><div class="act"><button class="btn btn-d btn-sm" onclick="disableAll()">禁用全部</button></div></div>
+      <div class="sg" style="margin-bottom:12px">
+        <div class="sc"><div class="lb">已安装</div><div class="vl" id="sk-t">-</div></div>
+        <div class="sc"><div class="lb">已启用</div><div class="vl" id="sk-on" style="color:var(--green)">-</div></div>
+        <div class="sc"><div class="lb">已禁用</div><div class="vl" id="sk-off" style="color:var(--red)">-</div></div>
+      </div>
+      <div id="skList"></div>
+    </div>
+    <!-- Models (fool-proof) -->
+    <div class="page" id="page-models">
+      <div class="ph"><h2>🤖 <span data-i18n="n_model">模型接入（傻瓜式）</span></h2></div>
+      <div class="opt-panel">
+        <h3>🚀 <span data-i18n="quick_setup">一键接入模型</span></h3>
+        <p style="font-size:10px;color:var(--text2);margin-bottom:10px" data-i18n="select_provider">选择模型厂商，只需填 API Key 即可</p>
+        <div class="tpl-grid" id="tplGrid"></div>
+      </div>
+      <div class="cd"><h3 data-i18n="current_providers">已接入的 Provider</h3><div class="cbd" id="mdCards"></div></div>
+    </div>
+    <!-- Failover -->
+    <div class="page" id="page-failover">
+      <div class="ph"><h2>🔄 <span data-i18n="n_fail">故障转移 & 健康检测</span></h2><div class="act">
+        <button class="btn btn-p btn-sm" onclick="checkAllModels()">检测全部</button>
+        <button class="btn btn-s btn-sm" onclick="switchToCheapest()">切换最便宜</button>
+      </div></div>
+      <div class="sg" style="margin-bottom:12px">
+        <div class="sc"><div class="lb">当前模型</div><div class="vl" id="fo-cur" style="font-size:12px">-</div></div>
+        <div class="sc"><div class="lb">最便宜</div><div class="vl" id="fo-cheap" style="font-size:12px;color:var(--green)">-</div></div>
+        <div class="sc"><div class="lb">故障转移</div><div class="vl" id="fo-status">-</div></div>
+      </div>
+      <div class="cd"><h3>模型健康状态</h3><div class="cbd" id="foHealth"></div></div>
+      <div class="cd"><h3>切换记录</h3><div class="tw"><table><thead><tr><th>Time</th><th>From</th><th>To</th><th>Reason</th><th>Auto</th></tr></thead><tbody id="foLog"></tbody></table></div></div>
+    </div>
+    <!-- Budget -->
+    <div class="page" id="page-budget">
+      <div class="ph"><h2>💳 <span data-i18n="n_bud">预算管控</span></h2><div class="act"><button class="btn btn-p btn-sm" onclick="addBudget()">+ 预算</button></div></div>
+      <div class="sg"><div class="sc"><div class="lb">今日已用</div><div class="vl" id="bu-d">-</div><div class="sb" id="bu-dc"></div></div><div class="sc"><div class="lb">本月已用</div><div class="vl" id="bu-m">-</div><div class="sb" id="bu-mc"></div></div></div>
+      <div id="buCards"></div>
+    </div>
+    <!-- Chat -->
+    <div class="page" id="page-chat">
+      <div class="ph"><h2>💬 <span data-i18n="n_chat">AI 对话</span></h2></div>
+      <div class="chat-c"><div class="chat-msgs" id="chatMsgs"><div class="chat-m sys">通过此界面直接与 OpenClaw Agent 对话</div></div>
+        <div class="chat-in"><textarea id="chatIn" rows="1" placeholder="Type a message..." onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();sendChat()}" oninput="ar(this)"></textarea><button class="btn btn-p" onclick="sendChat()">➤</button></div>
+      </div>
+    </div>
+    <!-- Logs -->
+    <div class="page" id="page-logs"><div class="ph"><h2>📜 <span data-i18n="n_log">实时日志</span></h2><div class="act"><button class="btn btn-g btn-sm" onclick="clearLogs()">🗑️</button></div></div><div class="log-v" id="logV"><div style="color:var(--text2);padding:14px;text-align:center">Connecting...</div></div></div>
+    <!-- Alerts -->
+    <div class="page" id="page-alerts"><div class="ph"><h2>🚨 <span data-i18n="n_alert">告警中心</span></h2><div class="act"><button class="btn btn-g btn-sm" onclick="clearAlerts()">清除全部</button></div></div><div class="cd"><div class="tw" id="alList" style="max-height:600px"></div></div></div>
+    <!-- Settings -->
+    <div class="page" id="page-settings">
+      <div class="ph"><h2>⚙️ <span data-i18n="n_set">设置</span></h2></div>
+      <div class="cd"><div class="cbd">
+        <table><thead><tr><th>Username</th><th>Role</th><th>Last Login</th><th></th></tr></thead><tbody id="usrBody"></tbody></table>
+        <div style="margin-top:10px;padding-top:10px;border-top:1px solid var(--border)">
+          <div class="fr"><div class="fg"><label>Username</label><input id="nuU"></div><div class="fg"><label>Password</label><input id="nuP" type="password"></div><div class="fg"><label>Role</label><select id="nuR"><option value="viewer">Viewer</option><option value="editor">Editor</option><option value="admin">Admin</option></select></div></div>
+          <button class="btn btn-p btn-sm" style="margin-top:6px" onclick="addUser()">添加用户</button>
+        </div>
+        <div style="margin-top:14px;padding-top:10px;border-top:1px solid var(--border)">
+          <div class="fr"><div class="fg"><label>旧密码</label><input id="oPwd" type="password"></div><div class="fg"><label>新密码</label><input id="nPwd" type="password"></div><div class="fg"><label>确认</label><input id="cPwd" type="password"></div></div>
+          <button class="btn btn-p btn-sm" style="margin-top:6px" onclick="changePwd()">保存</button>
+        </div>
+      </div></div>
+    </div>
+  </div>
+</div>
+<div class="toast-box" id="toastBox"></div>
+<script>
+const I18N={zh:{login_sub:'Token 优化与管控平台',login_btn:'登 录',n_dash:'省钱总览',n_opt:'成本预估',n_tok:'Token 明细',n_tool:'工具调用',n_skill:'技能管理',n_model:'模型接入',n_fail:'故障转移',n_bud:'预算管控',n_chat:'AI 对话',n_log:'实时日志',n_alert:'告警',n_set:'设置',tag_save:'省钱模式',today_tok:'今日 Token',today_cost:'今日费用',estimate:'预估',opt_enter:'输入你的任务，自动计算最优方案',opt_tip_title:'省钱建议',saving_strategies:'省 Token 策略',quick_setup:'一键接入模型',select_provider:'选择模型厂商，只需填 API Key 即可',current_providers:'已接入的 Provider',resolve:'处理'},
+en:{login_sub:'Token Optimization & Control',login_btn:'Login',n_dash:'Overview',n_opt:'Cost Estimator',n_tok:'Tokens',n_tool:'Tool Calls',n_skill:'Skills',n_model:'Models',n_fail:'Failover',n_bud:'Budget',n_chat:'AI Chat',n_log:'Live Logs',n_alert:'Alerts',n_set:'Settings',tag_save:'Save Mode',today_tok:'Today Tokens',today_cost:'Today Cost',estimate:'Estimate',opt_enter:'Enter your task, auto-calculate optimal plan',opt_tip_title:'Saving Tips',saving_strategies:'Token Saving Strategies',quick_setup:'Quick Setup',select_provider:'Select provider, just fill in API Key',current_providers:'Connected Providers',resolve:'Resolve'}};
+let LANG=localStorage.getItem('clawdef-lang')||'zh';
+function t(k){return I18N[LANG]?.[k]||k}
+function setLang(l){LANG=l;localStorage.setItem('clawdef-lang',l);document.querySelectorAll('[data-i18n]').forEach(e=>{const k=e.dataset.i18n;if(I18N[l][k])e.textContent=I18N[l][k]});document.getElementById('langBtn').textContent=l==='zh'?'EN':'中文'}
+let token=localStorage.getItem('clawdef-token');
+async function doLogin(){const u=document.getElementById('loginUser').value,p=document.getElementById('loginPass').value;try{const r=await api('/api/auth/login',{method:'POST',body:JSON.stringify({username:u,password:p})});if(r.token){token=r.token;localStorage.setItem('clawdef-token',token);document.getElementById('loginPage').style.display='none';document.getElementById('app').style.display='block';document.getElementById('uDisp').textContent=r.user.username+' ('+r.user.role+')';initApp()}else{document.getElementById('loginError').textContent=r.error||'Failed'}}catch{document.getElementById('loginError').textContent='Connection error'}}
+function doLogout(){localStorage.removeItem('clawdef-token');token=null;location.reload()}
+async function api(p,o={}){const h={'Content-Type':'application/json'};if(token)h['Authorization']='Bearer '+token;const r=await fetch(p,{...o,headers:{...h,...(o.headers||{})}});if(r.status===401){doLogout();throw new Error('Auth')}return r.json()}
+function fm(n){return n>=1e6?(n/1e6).toFixed(1)+'M':n>=1e3?(n/1e3).toFixed(1)+'K':String(Math.round(n))}
+function fc(c){return c===0?'¥0':c<0.001?'<¥0.01':'¥'+c.toFixed(4)}
+function ft(i){if(!i)return'-';try{return new Date(i).toLocaleString(LANG==='zh'?'zh-CN':'en-US',{month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit'})}catch{return i}}
+function toast(m,tp='i'){const e=document.createElement('div');e.className='toast t-'+(tp==='s'?'s':'i');e.textContent=m;document.getElementById('toastBox').appendChild(e);setTimeout(()=>e.remove(),3500)}
+function ar(e){e.style.height='auto';e.style.height=Math.min(e.scrollHeight,90)+'px'}
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+const CC=['#10b981','#06b6d4','#f97316','#7c3aed','#ef4444','#f59e0b','#ec4899','#a855f7','#14b8a6','#3b82f6'];
+let charts={};
+function mkC(id,cfg){if(charts[id])charts[id].destroy();const ctx=document.getElementById(id);if(!ctx)return;charts[id]=new Chart(ctx,cfg)}
+
+// Nav
+document.querySelectorAll('nav a[data-page]').forEach(a=>{a.onclick=e=>{e.preventDefault();document.querySelectorAll('nav a').forEach(x=>x.classList.remove('active'));a.classList.add('active');document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.getElementById('page-'+a.dataset.page).classList.add('active');loadPage(a.dataset.page)}});
+function loadPage(p){switch(p){case'dashboard':loadDash();break;case'optimize':loadOpt();break;case'tokens':loadTok();break;case'skills':loadSk();break;case'models':loadMd();break;case'failover':loadFo();break;case'budget':loadBud();break;case'logs':connectLogs();break;case'alerts':loadAl();break;case'settings':loadUsr();break}}
+
+// Dashboard
+async function loadDash(){
+  const d=await api('/api/dashboard');if(!d.stats)return;
+  const st=d.stats;
+  document.getElementById('s-tok').textContent=fm(st.total_tokens||0);
+  document.getElementById('s-tok-s').textContent=`In: ${fm(st.input_tokens)} Out: ${fm(st.output_tokens)}`;
+  document.getElementById('s-cost').textContent=fc(st.total_cost||0);
+  document.getElementById('s-saved').textContent=fm(d.savings?.cache_tokens||0);
+  document.getElementById('s-saved-s').textContent=d.savings?.estimated_saved?`≈${fc(d.savings.estimated_saved)}`:'';
+  document.getElementById('s-req').textContent=String(st.total_requests||0);
+  document.getElementById('s-req-s').textContent=`${st.sessions} 会话`;
+  document.getElementById('s-model').textContent=d.currentModel||'-';
+  document.getElementById('s-model-s').textContent='最便宜: '+(suggestCheapestText());
+  document.getElementById('s-gw').textContent=d.gatewayStatus;
+  document.getElementById('s-gw').className='vl '+(d.gatewayStatus==='running'?'green':'red');
+  updateGw(d.gatewayStatus);
+  // Charts
+  const hL=Array.from({length:24},(_,i)=>String(i).padStart(2,'0')+':00'),hD=Array(24).fill(0);
+  (d.hourly||[]).forEach(h=>{hD[parseInt(h.hour)]=h.tokens||0});
+  mkC('hChart',{type:'bar',data:{labels:hL,datasets:[{data:hD,backgroundColor:'rgba(16,185,129,.4)',borderRadius:2}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{grid:{display:false}},y:{grid:{color:'rgba(255,255,255,.02)'}}}}});
+  const sk=d.topSkills||[];
+  mkC('sChart',{type:'doughnut',data:{labels:sk.map(s=>s.skill),datasets:[{data:sk.map(s=>s.calls),backgroundColor:CC.slice(0,sk.length)}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'right',labels:{color:'#6b7194',font:{size:9}}}}}});
+  const dl=d.daily||[];
+  mkC('dChart',{type:'line',data:{labels:dl.map(x=>x.day),datasets:[{label:'Token',data:dl.map(x=>x.tokens),borderColor:'#10b981',backgroundColor:'rgba(16,185,129,.06)',fill:true,tension:.3}]},options:{responsive:true,maintainAspectRatio:false,scales:{x:{grid:{display:false}},y:{grid:{color:'rgba(255,255,255,.02)'}}}}});
+  // Tips
+  loadTips(st,d);
+  // Waste analysis
+  loadWaste();
+  // Smart optimizer
+  loadOptimizer();
+}
+function loadTips(st,d){
+  const tips=[];
+  if(!d.currentModel||d.currentModel.includes('5')||d.currentModel.includes('max')||d.currentModel.includes('opus')){
+    tips.push({icon:'💰',text:'当前使用高端模型，简单任务可以切到便宜模型节省 60-90%',saving:'最高 90%'});
+  }
+  if(st.cache_read>st.input_tokens*0.5){
+    tips.push({icon:'✅',text:`Cache 命中率 ${(st.cache_read/(st.input_tokens+st.cache_read)*100).toFixed(0)}%，节省了大量重复输入 Token`});
+  }
+  if(st.output_tokens>st.input_tokens*3){
+    tips.push({icon:'⚠️',text:'输出 Token 远超输入，考虑减少 max_tokens 或精简输出要求'});
+  }
+  tips.push({icon:'💡',text:'使用「成本预估」页面，发任务前先看需要花多少钱'});
+  tips.push({icon:'🔄',text:'开启故障转移，模型不可用时自动切换，避免浪费重试 Token'});
+  if(!tips.length) tips.push({icon:'✨',text:'一切正常！继续保持省 Token 习惯'});
+  document.getElementById('optTips').innerHTML=tips.map(t=>`<div class="tip-card"><span>${t.icon}</span><span>${t.text}</span>${t.saving?`<span class="saving">省 ${t.saving}</span>`:''}</div>`).join('');
+}
+let cheapestCache='';
+async function suggestCheapestText(){if(cheapestCache)return cheapestCache;try{const d=await api('/api/failover');cheapestCache=d.cheapest?.full||'-';return cheapestCache}catch{return'-'}}
+
+// Waste Analysis
+async function loadWaste(){
+  try{
+    var d=await api('/api/waste-analysis');
+    var html='';
+    // Summary
+    var s=d.summary;
+    html+='<div style="display:flex;gap:12px;margin-bottom:10px;flex-wrap:wrap">';
+    html+='<div style="font-size:10px"><span style="color:var(--text2)">今日消耗:</span> <b>'+fm(s.today_tokens)+'</b> tokens = '+fc(s.today_cost)+'</div>';
+    html+='<div style="font-size:10px"><span style="color:var(--text2)">Cache 命中率:</span> <b style="color:'+(parseFloat(s.cache_hit_rate)>50?'var(--green)':'var(--yellow)')+'">'+s.cache_hit_rate+'%</b></div>';
+    if(s.yesterday_tokens>0) html+='<div style="font-size:10px"><span style="color:var(--text2)">环比:</span> <b style="color:'+(parseFloat(s.day_over_day)>0?'var(--red)':'var(--green)')+'">'+s.day_over_day+'%</b></div>';
+    html+='</div>';
+    // Suggestions
+    if(d.suggestions&&d.suggestions.length){
+      d.suggestions.forEach(function(sg){
+        var bc=sg.priority==='high'?'b-r':sg.priority==='medium'?'b-y':'b-b';
+        html+='<div class="tip-card"><span>'+sg.icon+'</span><div style="flex:1"><b style="font-size:10px">'+sg.title+'</b><div style="color:var(--text2)">'+sg.detail+'</div></div>';
+        if(sg.action==='auto-cheapest') html+='<button class="btn btn-xs btn-p" onclick="autoRoute()">自动切换</button>';
+        html+='</div>';
+      });
+    }
+    // Simple task waste
+    if(d.waste.simpleTaskExpensive&&d.waste.simpleTaskExpensive.length){
+      var totalW=d.waste.simpleTaskExpensive.reduce(function(s,r){return s+parseFloat(r.waste)},0);
+      html+='<div style="margin-top:8px;padding:8px;background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.15);border-radius:8px">';
+      html+='<div style="font-size:10px;font-weight:600;color:var(--red);margin-bottom:4px">⚠️ '+d.waste.simpleTaskExpensive.length+' 次简单任务用了贵模型，多花了 ¥'+totalW.toFixed(4)+'</div>';
+      d.waste.simpleTaskExpensive.slice(0,5).forEach(function(r){
+        html+='<div style="font-size:9px;color:var(--text2);padding:2px 0">'+r.model+': '+fm(r.total_tokens)+' tokens, 实际 ¥'+r.actual_cost+' → 可省 ¥'+r.waste+'</div>';
+      });
+      html+='</div>';
+    }
+    // Cache miss
+    if(d.waste.noCache&&d.waste.noCache.cnt>0){
+      html+='<div style="margin-top:8px;padding:8px;background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.15);border-radius:8px">';
+      html+='<div style="font-size:10px;color:var(--yellow)">📦 '+d.waste.noCache.cnt+' 次请求无 Cache 命中，提升上下文复用可省 ¥'+(d.waste.noCache.wouldSave||0)+'</div>';
+      html+='</div>';
+    }
+    if(!html) html='<div style="color:var(--text2)">暂无浪费</div>';
+    document.getElementById('wastePanel').innerHTML=html;
+  }catch(err){document.getElementById('wastePanel').innerHTML='<div style="color:var(--text2)">分析出错</div>'}
+}
+async function autoRoute(){
+  var r=await api('/api/auto-route',{method:'POST'});
+  if(r.switched){toast('已自动切换到: '+r.to,'s');cheapestCache='';loadDash();}
+  else toast(r.reason||'无需切换','i');
+}
+
+// Smart Optimizer Panel
+async function loadOptimizer(){
+  try{
+    var d=await api('/api/optimizer/status');
+    var html='<div style="display:flex;gap:12px;align-items:center;margin-bottom:10px;flex-wrap:wrap">';
+    var statusBadge=d.cheapMode?'<span class="badge b-y">💰 省钱模式</span>':'<span class="badge b-g">✅ 智能模式</span>';
+    html+=statusBadge;
+    html+='<span style="font-size:10px;color:var(--text2)">当前: <b>'+esc(d.current)+'</b></span>';
+    html+='<span style="font-size:10px;color:var(--text2)">最便宜: <b style="color:var(--green)">'+esc(d.cheapest||'-')+'</b></span>';
+    html+='</div>';
+    // Estimated savings
+    if(d.estimatedSaved>0.001){
+      html+='<div style="background:rgba(16,185,129,.08);border:1px solid rgba(16,185,129,.15);border-radius:8px;padding:10px;margin-bottom:10px">';
+      html+='<div style="font-size:11px;color:var(--green);font-weight:600">💰 今日预估节省: ¥'+d.estimatedSaved.toFixed(4)+'</div>';
+      html+='<div style="font-size:9px;color:var(--text2);margin-top:3px">用高端模型会花 ¥'+d.wouldCostPremium.toFixed(4)+' → 当前只花了 ¥'+d.wouldCostCheap.toFixed(4)+'</div>';
+      html+='</div>';
+    }
+    // Rules display
+    html+='<div style="font-size:10px;margin-bottom:8px;font-weight:600">🤖 自动规则</div>';
+    html+='<div style="display:grid;grid-template-columns:1fr 1fr;gap:4px;margin-bottom:10px">';
+    html+='<div class="tip-card"><span>📊</span><span>预算 >80% → 自动降级</span></div>';
+    html+='<div class="tip-card"><span>🔥</span><span>消费异常 → 自动降级</span></div>';
+    html+='<div class="tip-card"><span>💡</span><span>简单任务 → 切便宜模型</span></div>';
+    html+='<div class="tip-card"><span>✅</span><span>预算恢复 → 自动升级</span></div>';
+    html+='</div>';
+    // Manual controls
+    html+='<div style="display:flex;gap:5px;flex-wrap:wrap;margin-bottom:10px">';
+    html+='<button class="btn btn-s btn-sm" onclick="forceCheap()">💰 强制省钱模式</button>';
+    html+='<button class="btn btn-p btn-sm" onclick="forceBalanced()">⚖️ 均衡模式</button>';
+    html+='<button class="btn btn-g btn-sm" onclick="pauseOptimizer()">⏸ 暂停24h</button>';
+    html+='</div>';
+    // Recent actions
+    if(d.recentActions&&d.recentActions.length){
+      html+='<div style="font-size:10px;margin-bottom:4px;font-weight:600">📋 最近自动操作</div>';
+      d.recentActions.slice(0,5).forEach(function(a){
+        var icon=a.action.includes('downgrade')?'💰':a.action.includes('upgrade')?'⬆️':a.action.includes('restore')?'✅':a.action.includes('force')?'👤':'🔄';
+        html+='<div style="font-size:9px;color:var(--text2);padding:2px 0;border-bottom:1px solid var(--border)">'+icon+' '+ft(a.timestamp)+' | '+esc(a.from_model)+' → '+esc(a.to_model)+'<br><span style="color:var(--text2);opacity:.7">'+esc(a.reason)+'</span></div>';
+      });
+    } else {
+      html+='<div style="font-size:9px;color:var(--text2)">暂无自动操作记录</div>';
+    }
+    document.getElementById('optimizerPanel').innerHTML=html;
+    document.getElementById('optStatus').textContent=d.cheapMode?'省钱模式':'运行中';
+    document.getElementById('optStatus').className='badge '+(d.cheapMode?'b-y':'b-g');
+  }catch(e){document.getElementById('optimizerPanel').innerHTML='<div style="color:var(--text2)">加载失败</div>'}
+}
+async function forceCheap(){await api('/api/optimizer/force-cheap',{method:'POST'});toast('已切换到省钱模式','s');setTimeout(loadDash,500)}
+async function forceBalanced(){await api('/api/optimizer/force-balanced',{method:'POST'});toast('已切换到均衡模式','s');setTimeout(loadDash,500)}
+async function pauseOptimizer(){await api('/api/optimizer/disable',{method:'POST'});toast('自动优化已暂停24小时','i');loadDash()}
+async function estimateCost(){
+  const input=document.getElementById('optInput').value.trim();
+  if(!input)return toast('请输入任务描述','e');
+  const d=await api('/api/optimize/estimate',{method:'POST',body:JSON.stringify({input})});
+  if(d.error)return document.getElementById('optResult').innerHTML=`<div style="color:var(--red)">${d.error}</div>`;
+  const r=d;
+  const complexityLabel={simple:'🟢 简单',medium:'🟡 中等',complex:'🔴 复杂'}[r.complexity]||'⬜';
+  let html=`<div style="margin-bottom:10px"><span class="badge b-${r.complexity==='simple'?'g':r.complexity==='complex'?'r':'y'}" style="font-size:11px;padding:3px 10px">${complexityLabel}</span> <span style="font-size:10px;color:var(--text2);margin-left:6px">预计输入 ~${r.inputTokens} tokens / 输出 ~${r.estimatedOutputTokens} tokens</span></div>`;
+  if(r.recommended){
+    html+=`<div style="background:var(--bg);border-radius:8px;padding:12px;margin-bottom:10px"><div style="font-size:11px;margin-bottom:8px;font-weight:600">🎯 推荐模型: <span style="color:var(--accent2)">${esc(r.recommended.model)}</span></div>`;
+    html+=`<div style="font-size:10px;color:var(--text2);margin-bottom:8px">预计费用: <b style="color:var(--green)">¥${r.recommended.estimatedCost.toFixed(4)}</b></div>`;
+    if(r.comparison){
+      const c=r.comparison;
+      html+=`<div class="cost-bar"><div class="label" style="color:var(--red)">当前: ${esc(c.current.model)}</div><div class="bar"><div class="fill" style="width:${Math.min(c.current.cost*10000,100)}%;background:var(--red)">¥${c.current.cost.toFixed(4)}</div></div></div>`;
+      html+=`<div class="cost-bar"><div class="label" style="color:var(--green)">推荐: ${esc(c.recommended.model)}</div><div class="bar"><div class="fill" style="width:${Math.max(Math.min(c.recommended.cost*10000,100),5)}%;background:var(--green)">¥${c.recommended.cost.toFixed(4)}</div></div></div>`;
+      if(c.saved>0) html+=`<div style="text-align:center;margin-top:6px;font-size:12px;color:var(--green);font-weight:700">💡 省 ¥${c.saved.toFixed(4)} (${c.savedPercent}%)</div>`;
+    }
+    html+=`</div>`;
+    html+=`<button class="btn btn-p btn-sm" onclick="applyModel('${r.recommended.provider}','${r.recommended.modelId}')">⚡ 切换到推荐模型</button>`;
+  }
+  if(r.tips?.length){
+    html+=`<div style="margin-top:10px">${r.tips.map(tip=>`<div class="tip-card"><span>${tip.icon}</span><span>${tip.text}</span>${tip.saving?`<span class="saving">${tip.saving}</span>`:''}</div>`).join('')}</div>`;
+  }
+  document.getElementById('optResult').innerHTML=html;
+}
+async function applyModel(provider,modelId){await api('/api/models/active',{method:'POST',body:JSON.stringify({provider,model:modelId})});toast(`已切换到 ${provider}/${modelId}`,'s');cheapestCache='';loadDash()}
+async function loadOpt(){
+  // Load strategies
+  document.getElementById('optStrategies').innerHTML=[
+    {icon:'💰',title:'简单任务用便宜模型',desc:'问答、翻译、摘要等用最便宜模型即可，省钱 60-90%',tag:'高性价比'},
+    {icon:'📝',title:'大任务拆小步骤',desc:'把复杂需求拆成多个简单步骤，每步用合适的模型',tag:'省 20-40%'},
+    {icon:'📋',title:'初稿+精修策略',desc:'先用便宜模型写初稿，再用高端模型精修，省钱 40-60%',tag:'聪明省钱'},
+    {icon:'✂️',title:'精简输入',desc:'去掉不必要的上下文和描述，每少 1000 token ≈ 省 ¥0.005',tag:'积少成多'},
+    {icon:'🔄',title:'开启故障转移',desc:'模型报错自动切换，避免重试浪费 Token',tag:'防浪费'},
+    {icon:'⚙️',title:'检查 Cache 命中率',desc:'Cache 命中的 token 费用低 80-90%，保持相同上下文可提高命中率',tag:'自动省钱'},
+  ].map(s=>`<div class="tip-card"><span>${s.icon}</span><div style="flex:1"><b>${s.title}</b><div style="color:var(--text2);margin-top:2px">${s.desc}</div></div><span class="badge b-g">${s.tag}</span></div>`).join('');
+  // Show recommended model
+  try{const d=await api('/api/failover');if(d.cheapest)document.getElementById('optStrategies').innerHTML+=`<div style="margin-top:8px;padding:8px;background:rgba(16,185,129,.08);border-radius:8px;font-size:11px">🎯 当前最便宜: <b style="color:var(--green)">${d.cheapest.full}</b> <button class="btn btn-xs btn-p" style="margin-left:6px" onclick="switchToCheapest()">切换</button></div>`}catch{}
+}
+
+// Tokens/Skills
+async function loadTok(){const d=await api('/api/tokens?limit=200');document.getElementById('tokBody').innerHTML=(d.data||[]).map(r=>`<tr><td style="white-space:nowrap">${ft(r.timestamp)}</td><td><span class="badge b-gray">${r.model||'-'}</span></td><td>${fm(r.input_tokens)}</td><td>${fm(r.output_tokens)}</td><td style="color:var(--cyan)">${fm(r.cache_read_tokens)}</td><td><b>${fm(r.total_tokens)}</b></td><td>${fc(r.cost_total)}</td><td style="max-width:140px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${r.tool_calls||'-'}</td></tr>`).join('')}
+async function loadSk(){
+  const skills=await api('/api/skills');if(!Array.isArray(skills))return;
+  document.getElementById('sk-t').textContent=skills.length;
+  document.getElementById('sk-on').textContent=skills.filter(s=>s.enabled).length;
+  document.getElementById('sk-off').textContent=skills.filter(s=>!s.enabled).length;
+  document.getElementById('skList').innerHTML=skills.map(s=>`<div class="sk-card"><div class="sk-hd"><div><span class="sk-nm">${s.name}</span><span class="badge ${s.source==='plugin'?'b-p':s.source==='workspace'?'b-g':'b-gray'}" style="margin-left:4px">${s.source}</span>${s.todayCalls>0?`<span class="badge b-y" style="margin-left:3px">${s.todayCalls}/d</span>`:''}</div><label class="toggle"><input type="checkbox" ${s.enabled?'checked':''} onchange="togSk('${s.name}',this.checked)"><span class="sl"></span></label></div>${s.description_zh?`<div class="sk-desc-zh">🇨🇳 ${esc(s.description_zh)}</div>`:''}<div class="sk-desc">${esc(s.description||'-')}</div></div>`).join('');
+}
+async function togSk(n,on){await api('/api/skills/'+encodeURIComponent(n)+'/toggle',{method:'POST',body:JSON.stringify({enabled:on})});toast(n+(on?' ON':' OFF'),'s');setTimeout(loadSk,500)}
+async function disableAll(){showModal('禁用全部技能','',async()=>{const r=await api('/api/emergency/disable-all-skills',{method:'POST'});toast(r.disabled+' disabled','s');loadSk()})}
+
+// Models (Fool-proof templates)
+var _tplCache = {};
+async function loadMd(){
+  const templates = await api('/api/templates');
+  _tplCache = templates;
+  var html = '';
+  for (var id in templates) {
+    var tp = templates[id];
+    html += '<div class="tpl-card" onclick="showSetup(\''+id+'\')"><div class="tpl-icon">'+tp.icon+'</div><div class="tpl-name">'+tp.name+'</div><div class="tpl-models">'+tp.models.join(', ')+'</div><div class="tpl-hint">'+tp.keyHint+'</div></div>';
+  }
+  document.getElementById('tplGrid').innerHTML = html;
+  // Existing providers
+  var d = await api('/api/models'); var ps = d.providers || {};
+  var provHtml = '';
+  for (var k in ps) {
+    var v = ps[k]; var isActive = d.current && d.current.indexOf(k+'/')===0;
+    provHtml += '<div class="mf-card"><div class="mf-hd"><div class="mf-nm">'+k+(isActive?' <span class="badge b-p">Active</span>':'')+'</div><div style="display:flex;gap:3px"><button class="btn btn-xs btn-p" onclick="setActive(\''+k+'\',JSON.parse(decodeURIComponent(\''+encodeURIComponent(JSON.stringify(v.models||[]))+'\')))">⚡</button><button class="btn btn-xs btn-g" onclick="editProv(\''+k+'\')">✏️</button><button class="btn btn-xs btn-d" onclick="delProv(\''+k+'\')">🗑️</button></div></div><div style="font-size:9px;color:var(--text2);margin-bottom:4px;word-break:break-all">'+v.baseUrl+'</div><div style="display:flex;gap:2px;flex-wrap:wrap">'+(v.models||[]).map(function(m){return '<span class="badge b-b">'+(typeof m==='string'?m:m.id)+'</span>'}).join('')+'</div><div style="margin-top:4px;font-size:9px;color:var(--text2)">API: '+(v.api||'-')+' | Key: '+(v.apiKey||'-')+'</div></div>';
+  }
+  document.getElementById('mdCards').innerHTML = provHtml || '<div style="color:var(--text2);padding:16px;text-align:center">暂无 Provider，点击上方卡片一键接入</div>';
+}
+function showSetup(tplId){
+  var tp = _tplCache[tplId];
+  if (!tp) { loadMd().then(function(){ showSetup(tplId); }); return; }
+  var modal = document.createElement('div'); modal.className = 'modal-bg';
+  modal.innerHTML = '<div class="modal"><h3>'+tp.icon+' 接入 '+tp.name+'</h3><p>'+tp.keyHint+'<br><br>文档: <a href="'+tp.docs+'" target="_blank" style="color:var(--cyan)">'+tp.docs+'</a></p><div class="fg"><label>API Key</label><input id="setupKey" placeholder="'+tp.keyPrefix+'..." type="password"></div><div class="fg"><label>名称 (可选)</label><input id="setupName" placeholder="'+tplId+'"></div><div style="font-size:9px;color:var(--text2);margin:8px 0">将接入模型: '+tp.models.join(', ')+'</div><div class="mb"><button class="btn btn-g" onclick="this.closest(\'.modal-bg\').remove()">取消</button><button class="btn btn-p" onclick="doSetup(\''+tplId+'\')">🚀 一键接入</button></div></div>';
+  document.body.appendChild(modal);
+}
+async function doSetup(tplId){
+  const key=document.getElementById('setupKey').value;
+  const name=document.getElementById('setupName').value||tplId;
+  if(!key)return toast('请输入 API Key','e');
+  const r=await api('/api/templates/setup',{method:'POST',body:JSON.stringify({templateId:tplId,apiKey:key,name})});
+  if(r.success){toast(r.message,'s');document.querySelector('.modal-bg')?.remove();loadMd()}
+  else toast(r.error||'Failed','e');
+}
+async function editProv(n){const k=prompt('New API Key (empty=keep):');if(k===null)return;const ms=prompt('Models (empty=keep):');if(ms===null)return;const body={};if(k)body.apiKey=k;if(ms)body.models=ms.split(',').map(s=>s.trim());api('/api/models/providers/'+n,{method:'PUT',body:JSON.stringify(body)}).then(()=>{toast('Updated','s');loadMd()})}
+async function delProv(n){if(!confirm('Delete '+n+'?'))return;await api('/api/models/providers/'+n,{method:'DELETE'});loadMd()}
+async function setActive(prov,models){if(!models||!models.length)return;const mid=typeof models[0]==='string'?models[0]:models[0].id;await api('/api/models/active',{method:'POST',body:JSON.stringify({provider:prov,model:mid})});toast(`Active: ${prov}/${mid}`,'s');loadMd();loadDash()}
+
+// Failover
+async function loadFo(){
+  const d=await api('/api/failover');
+  document.getElementById('fo-cur').textContent=d.current||'-';
+  document.getElementById('fo-cheap').textContent=d.cheapest?.full||'-';
+  document.getElementById('fo-status').textContent=d.config?.enabled?'已启用 ✅':'未启用';
+  document.getElementById('foHealth').innerHTML=(d.available||[]).map(m=>`<div style="display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid var(--border)"><span class="health-dot ${m.status}"></span><div style="flex:1"><div style="font-size:11px;font-weight:600">${m.full}</div><div style="font-size:9px;color:var(--text2)">${m.last_error||'OK'} | ${Math.round(m.avg_latency_ms)}ms | ¥${(m.pricing.input||5).toFixed(1)}/¥${(m.pricing.output||15).toFixed(1)} per M</div></div><div style="display:flex;gap:3px">${d.current===m.full?'<span class="badge b-g">Active</span>':''}<button class="btn btn-xs btn-p" onclick="manualSwitch('${m.full}')">切换</button></div></div>`).join('')||'<div style="color:var(--text2);padding:16px;text-align:center">No models</div>';
+  document.getElementById('foLog').innerHTML=(d.log||[]).map(l=>`<tr><td style="white-space:nowrap">${ft(l.timestamp)}</td><td>${esc(l.from_model)}</td><td>${esc(l.to_model)}</td><td style="max-width:180px;overflow:hidden;text-overflow:ellipsis">${esc(l.reason||'')}</td><td>${l.auto?'🤖':'👤'}</td></tr>`).join('');
+}
+async function checkAllModels(){toast('检测所有模型...','i');const d=await api('/api/failover');for(const m of d.available||[]){try{const r=await api('/api/failover/check',{method:'POST',body:JSON.stringify({model:m.full})});toast(`${m.full}: ${r.healthy?'✅ '+r.latency+'ms':'❌ '+r.error}`,r.healthy?'s':'e')}catch{}}loadFo()}
+async function manualSwitch(model){await api('/api/failover/switch',{method:'POST',body:JSON.stringify({model})});toast(`Switched to ${model}`,'s');cheapestCache='';loadFo();loadDash()}
+async function switchToCheapest(){const r=await api('/api/failover/cheapest',{method:'POST'});toast(`Switched to: ${r.to}`,'s');cheapestCache='';loadFo();loadDash()}
+
+// Budget
+async function loadBud(){
+  const d=await api('/api/budget/usage?period=today');document.getElementById('bu-d').textContent=fm(d.total?.total_tokens||0);document.getElementById('bu-dc').textContent=fc(d.total?.total_cost||0)+` (省了 ${fc(d.savings?.estimated_saved_cny||0)})`;
+  const m=await api('/api/budget/usage?period=month');document.getElementById('bu-m').textContent=fm(m.total?.total_tokens||0);document.getElementById('bu-mc').textContent=fc(m.total?.total_cost||0);
+  const bs=await api('/api/budgets');
+  document.getElementById('buCards').innerHTML=bs.map(b=>`<div class="bu-card"><div style="display:flex;justify-content:space-between;align-items:center"><span style="font-size:12px;font-weight:600">${b.name}</span><div style="display:flex;gap:3px;align-items:center"><span class="badge ${b.enabled?'b-g':'b-gray'}">${b.enabled?'ON':'OFF'}</span><span style="font-size:9px;color:var(--text2)">${b.period}</span><button class="btn btn-xs btn-g" onclick="delBud(${b.id})">🗑️</button></div></div><div style="font-size:10px;color:var(--text2);margin-top:3px">Token: ${b.token_limit?fm(b.token_limit):'∞'} | ¥${b.cost_limit||'∞'}</div></div>`).join('');
+}
+function addBudget(){const n=prompt('Budget name:');if(!n)return;const p=prompt('Period (daily/weekly/monthly):','daily');const tk=parseInt(prompt('Token limit:','5000000'))||0;const cs=parseFloat(prompt('Cost limit (¥):','10'))||0;api('/api/budgets',{method:'POST',body:JSON.stringify({name:n,period:p,token_limit:tk,cost_limit:cs,enabled:true})}).then(()=>{toast('Added','s');loadBud()})}
+async function delBud(id){if(!confirm('Delete?'))return;await api('/api/budgets/'+id,{method:'DELETE'});loadBud()}
+
+// Chat
+async function sendChat(){
+  const inp=document.getElementById('chatIn');const msg=inp.value.trim();if(!msg)return;
+  document.getElementById('chatMsgs').insertAdjacentHTML('beforeend',`<div class="chat-m user">${esc(msg)}</div>`);
+  inp.value='';ar(inp);scrChat();
+  try{const r=await fetch('/api/chat',{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+token},body:JSON.stringify({message:msg})});
+  const div=document.createElement('div');div.className='chat-m assistant';document.getElementById('chatMsgs').appendChild(div);
+  const rd=r.body?.getReader();if(rd){const dc=new TextDecoder();let full='';while(true){const{done,value}=await rd.read();if(done)break;const ch=dc.decode(value,{stream:true});for(const ln of ch.split('\n').filter(l=>l.startsWith('data:'))){try{const j=JSON.parse(ln.slice(5).trim());const c=j.choices?.[0]?.delta?.content;if(c){full+=c;div.textContent=full;}}catch{}}scrChat()}if(!full)div.textContent=r.status===200?'(empty)':'Error '+r.status}
+  else{const j=await r.json();div.textContent=j.choices?.[0]?.message?.content||j.error||'Error'}}catch(e){document.getElementById('chatMsgs').insertAdjacentHTML('beforeend',`<div class="chat-m sys" style="color:var(--red)">${esc(e.message)}</div>`)}
+  scrChat()}
+function scrChat(){const c=document.getElementById('chatMsgs');c.scrollTop=c.scrollHeight}
+
+// Alerts/Logs/Settings
+async function loadAl(){const a=await api('/api/alerts?limit=100');if(!a.length){document.getElementById('alList').innerHTML='<div style="padding:24px;text-align:center;color:var(--text2)">✅ 暂无告警</div>';return}document.getElementById('alList').innerHTML=a.map(x=>`<div class="al-item"><div>${x.level==='critical'?'🔴':'🟡'}</div><div class="al-body"><div class="al-t">${esc(x.title)}</div><div class="al-m">${esc(x.message||'')}</div>${!x.resolved?`<button class="btn btn-xs btn-g" style="margin-top:2px" onclick="resolveAl(${x.id})">处理</button>`:''}</div><div class="al-tm">${ft(x.timestamp)}</div></div>`).join('')}
+async function resolveAl(id){await api('/api/alerts/'+id+'/resolve',{method:'POST'});loadAl()}
+async function clearAlerts(){await api('/api/alerts/clear-all',{method:'POST'});toast('Cleared','s');loadAl()}
+let logWs=null;
+function connectLogs(){if(logWs){logWs.close();logWs=null}const p=location.protocol==='https:'?'wss':'ws';logWs=new WebSocket(`${p}://${location.host}?token=${token}`);logWs.onopen=()=>{logWs.send(JSON.stringify({type:'subscribe_logs',lines:60}));document.getElementById('logV').innerHTML=''};logWs.onmessage=e=>{try{const d=JSON.parse(e.data);if(d.type==='log_line'){const lv=document.getElementById('logV');const ln=d.data.trim();if(!ln)return;let clean=ln.replace(/\\"/g,'"').replace(/^"|"$/g,'');if(clean.length>350)clean=clean.substring(0,350)+'...';const lm=clean.match(/"logLevelName":"(\w+)"/);const lvl=lm?lm[1]:'';const div=document.createElement('div');div.className='log-l';div.innerHTML=`<span class="l${lvl[0]}">[${lvl}]</span> ${esc(clean)}`;lv.appendChild(div);if(lv.scrollHeight-lv.scrollTop-lv.clientHeight<180)lv.scrollTop=lv.scrollHeight}}catch{}};logWs.onclose=()=>{document.getElementById('logV').innerHTML+=`<div style="color:var(--yellow);padding:4px">Reconnecting...</div>`;setTimeout(()=>{if(document.getElementById('page-logs').classList.contains('active'))connectLogs()},3000)}}
+function clearLogs(){document.getElementById('logV').innerHTML=''}
+async function loadUsr(){const u=await api('/api/users');document.getElementById('usrBody').innerHTML=u.map(x=>`<tr><td>${x.username}</td><td><span class="badge ${x.role==='admin'?'b-p':x.role==='editor'?'b-b':'b-gray'}">${x.role}</span></td><td style="font-size:9px;color:var(--text2)">${x.last_login?ft(x.last_login):'-'}</td><td>${x.id>1?`<button class="btn btn-xs btn-d" onclick="delUsr(${x.id})">🗑️</button>`:''}</td></tr>`).join('')}
+async function addUser(){const u=document.getElementById('nuU').value,p=document.getElementById('nuP').value,r=document.getElementById('nuR').value;if(!u||!p)return;await api('/api/users',{method:'POST',body:JSON.stringify({username:u,password:p,role:r})});toast('Added','s');loadUsr()}
+async function delUsr(id){if(!confirm('Delete?'))return;await api('/api/users/'+id,{method:'DELETE'});loadUsr()}
+async function changePwd(){const o=document.getElementById('oPwd').value,n=document.getElementById('nPwd').value,c=document.getElementById('cPwd').value;if(n!==c)return toast('Mismatch','e');const r=await api('/api/auth/change-password',{method:'POST',body:JSON.stringify({oldPassword:o,newPassword:n})});if(r.success)toast('Changed','s');else toast(r.error,'e')}
+function showEmergency(){showModal('🚨 紧急关停','立即停止 Gateway，确认？',async()=>{const r=await api('/api/emergency/shutdown',{method:'POST'});toast(r.message,'e');updateGw('stopped')})}
+async function restartGw(){toast('Restarting...','i');const r=await api('/api/gateway/restart',{method:'POST'});toast(r.message,r.success?'s':'e');setTimeout(()=>updateGw(),5000)}
+async function updateGw(s){if(!s){try{const r=await api('/api/gateway/status');s=r.status}catch{s='unknown'}}document.getElementById('gwDot').className='gw-dot '+s;document.getElementById('gwTxt').textContent=s==='running'?'Running':s==='stopped'?'Stopped':'Unknown'}
+function showModal(title,msg,cb){const bg=document.createElement('div');bg.className='modal-bg';bg.innerHTML=`<div class="modal"><h3>${title}</h3><p>${msg}</p><div class="mb"><button class="btn btn-g" onclick="this.closest('.modal-bg').remove()">取消</button><button class="btn btn-d" id="_mc">确认</button></div></div>`;document.body.appendChild(bg);document.getElementById('_mc').onclick=()=>{bg.remove();cb()}}
+
+// Init
+function initApp(){setLang(LANG);loadDash();const proto=location.protocol==='https:'?'wss':'ws';const ws=new WebSocket(proto+'://'+location.host+'?token='+token);ws.onmessage=function(e){try{var m=JSON.parse(e.data);if(m.type==='collected'&&document.getElementById('page-dashboard').classList.contains('active'))loadDash();if(m.type==='budget_exceeded')toast('⚠️ 预算超限: '+m.budget,'e')}catch(err){}};ws.onclose=function(){setTimeout(function(){var w2=new WebSocket(proto+'://'+location.host+'?token='+token)},5000)};setInterval(function(){updateGw()},30000)}
+if(token){fetch('/api/auth/me',{headers:{'Authorization':'Bearer '+token}}).then(r=>{if(r.ok){r.json().then(u=>{document.getElementById('loginPage').style.display='none';document.getElementById('app').style.display='block';document.getElementById('uDisp').textContent=u.username+' ('+u.role+')';initApp()})}else{localStorage.removeItem('clawdef-token');token=null}}).catch(()=>{})}
+document.getElementById('loginPass').addEventListener('keydown',e=>{if(e.key==='Enter')doLogin()});
+</script>
+</body>
+</html>

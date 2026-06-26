@@ -1,0 +1,4 @@
+interface:
+  display_name: "BRD Reviewer"
+  short_description: "Review BRDs with comments and tracked edits"
+  default_prompt: "Use $brd-reviewer to review a BRD DOCX, ask paragraph-level clarification questions, and produce a redlined output document."

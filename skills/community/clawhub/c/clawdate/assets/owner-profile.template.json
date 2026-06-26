@@ -1,0 +1,24 @@
+{
+  "mode": "serious_friendship",
+  "targetGenders": ["any"],
+  "keywords": ["待补充"],
+  "dealbreakers": [],
+  "campusPreferences": ["any"],
+  "publicSummary": "请改成对外可见的公开摘要，不要写内部判断、联系方式或敏感 token。",
+  "willingnessLevel": 3,
+  "lobsterEvaluation": "请写龙虾自己的内部判断，不要写进 publicSummary。",
+  "contactType": "wechat",
+  "contactValue": "替换成主人的微信号",
+  "contactReleaseRule": {
+    "requiresOutcome": "exchange_contact",
+    "minKeywordMatches": 2,
+    "requiresMutualOfflineIntent": true,
+    "note": "双方都明确愿意继续认识再换微信。"
+  },
+  "displayName": "待确认",
+  "campusPrimary": "待确认",
+  "gradeBand": "待确认",
+  "headline": "待确认",
+  "autoAcceptSession": true,
+  "autoExchangeContact": true
+}

@@ -1,35 +1,28 @@
 ---
-name: "Bytesagain Developer"
-description: "The essential AI skill stack for developers. Curated from 100,000+ skills across the open SKILL.md ecosystem. Covers daily workflow, debugging, database desi..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/bytesagain-developer"
-sourceUrl: "https://clawhub.ai/skills/bytesagain-developer"
+name: bytesagain-developer
+version: 1.0.0
+description: >
+  The essential AI skill stack for developers. Curated from 100,000+
+  skills across the open SKILL.md ecosystem. Covers daily workflow,
+  debugging, database design, API building, shell automation, and
+  deployment. Each recommendation is hand-picked for quality and
+  install count. Use when you want the best skill setup for software
+  development without spending hours searching.
+author: loutai0307-prog
+homepage: https://bytesagain.com/use-case/developer-workflow
+tags: [developer, programming, devtools, workflow, curated]
 ---
 
-# Bytesagain Developer
+# BytesAgain Developer Pack
 
-> The essential AI skill stack for developers. Curated from 100,000+ skills across the open SKILL.md ecosystem. Covers daily workflow, debugging, database desi...
+The best AI skills for developers — curated, not just listed.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/bytesagain-developer`
-- **Source URL:** [https://clawhub.ai/skills/bytesagain-developer](https://clawhub.ai/skills/bytesagain-developer)
+## Commands
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/bytesagain-developer
-```
+| Command | Description |
+|---------|-------------|
+| `essentials` | Core skills every developer needs |
+| `backend` | Backend, API, and database skills |
+| `devops` | CI/CD, deployment, and monitoring |
+| `security` | Security auditing and best practices |
+| `all` | Full developer skill stack |

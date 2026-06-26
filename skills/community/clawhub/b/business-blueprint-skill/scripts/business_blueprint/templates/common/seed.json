@@ -1,0 +1,73 @@
+{
+  "version": "1.0",
+  "meta": {},
+  "context": {
+    "goals": [],
+    "scope": [],
+    "assumptions": [],
+    "constraints": [],
+    "sourceRefs": [],
+    "clarifyRequests": [],
+    "clarifications": []
+  },
+  "library": {
+    "capabilities": [
+      {
+        "id": "cap-example",
+        "name": "流程审批",
+        "level": 1,
+        "description": "提供请假、报销、采购等全场景审批能力",
+        "ownerActorIds": ["actor-001"],
+        "supportingSystemIds": ["sys-example-service"]
+      }
+    ],
+    "actors": [
+      {
+        "id": "actor-example",
+        "name": "企业普通员工"
+      }
+    ],
+    "flowSteps": [
+      {
+        "id": "flow-example",
+        "name": "发起审批申请",
+        "actorId": "actor-example",
+        "capabilityIds": ["cap-example"],
+        "systemIds": ["sys-example-service"],
+        "stepType": "task",
+        "inputRefs": [],
+        "outputRefs": []
+      }
+    ],
+    "systems": [
+      {
+        "id": "sys-example-layer",
+        "kind": "system",
+        "name": "客户端层",
+        "category": "layer",
+        "layer": "访问入口层",
+        "aliases": ["前端层", "Frontend"],
+        "description": "包含移动端APP、Web端、桌面端等多端访问入口",
+        "resolution": {"status": "canonical", "canonicalName": "客户端层"},
+        "capabilityIds": []
+      },
+      {
+        "id": "sys-example-service",
+        "kind": "system",
+        "name": "会议日程服务",
+        "category": "service",
+        "aliases": [],
+        "description": "提供会议预约、日程管理、会议室预订等能力",
+        "resolution": {"status": "canonical", "canonicalName": "会议日程服务"},
+        "capabilityIds": []
+      }
+    ]
+  },
+  "relations": [],
+  "views": [],
+  "editor": {
+    "fieldLocks": {},
+    "theme": "enterprise-default"
+  },
+  "artifacts": {}
+}

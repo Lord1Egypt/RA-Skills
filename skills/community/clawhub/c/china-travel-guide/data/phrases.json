@@ -1,0 +1,137 @@
+{
+  "version": "1.0.0",
+  
+  "restaurant": {
+    "category": "Restaurant",
+    "phrases": [
+      {"chinese": "不要辣。", "pinyin": "Bù yào là.", "english": "No spicy, please."},
+      {"chinese": "微辣。", "pinyin": "Wēi là.", "english": "A little spicy."},
+      {"chinese": "中辣。", "pinyin": "Zhōng là.", "english": "Medium spicy."},
+      {"chinese": "我对花生过敏。", "pinyin": "Wǒ duì huāshēng guòmǐn.", "english": "I'm allergic to peanuts."},
+      {"chinese": "我对海鲜过敏。", "pinyin": "Wǒ duì hǎixiān guòmǐn.", "english": "I'm allergic to seafood."},
+      {"chinese": "有素食吗？", "pinyin": "Yǒu sùshí ma?", "english": "Do you have vegetarian food?"},
+      {"chinese": "有清真食品吗？", "pinyin": "Yǒu Qīngzhēn shípǐn ma?", "english": "Do you have halal food?"},
+      {"chinese": "买单。", "pinyin": "Mǎidān.", "english": "Check, please."},
+      {"chinese": "可以刷卡吗？", "pinyin": "Kěyǐ shuākǎ ma?", "english": "Can I pay by card?"},
+      {"chinese": "可以打包吗？", "pinyin": "Kěyǐ dǎbāo ma?", "english": "Can I get a takeaway box?"},
+      {"chinese": "请给我水。", "pinyin": "Qǐng gěi wǒ shuǐ.", "english": "Please give me water."},
+      {"chinese": "请给我筷子。", "pinyin": "Qǐng gěi wǒ kuàizi.", "english": "Please give me chopsticks."}
+    ],
+    "allergens": [
+      {"chinese": "花生", "pinyin": "huāshēng", "english": "peanuts"},
+      {"chinese": "坚果", "pinyin": "jiānguǒ", "english": "nuts"},
+      {"chinese": "海鲜", "pinyin": "hǎixiān", "english": "seafood"},
+      {"chinese": "虾", "pinyin": "xiā", "english": "shrimp"},
+      {"chinese": "蟹", "pinyin": "xiè", "english": "crab"},
+      {"chinese": "鸡蛋", "pinyin": "jīdàn", "english": "eggs"},
+      {"chinese": "牛奶", "pinyin": "niúnǎi", "english": "milk"},
+      {"chinese": "麸质", "pinyin": "fūzhì", "english": "gluten"},
+      {"chinese": "大豆", "pinyin": "dàdòu", "english": "soy"}
+    ],
+    "allergy_card_template": "⚠️ ALLERGY WARNING ⚠️\n\nI am allergic to [ALLERGEN].\nPlease confirm this dish contains NO [ALLERGEN].\n\n我对[过敏原]过敏。\n请确认这道菜不含[过敏原]。\n\nThank you! / 谢谢！"
+  },
+
+  "transportation": {
+    "category": "Transportation",
+    "phrases": [
+      {"chinese": "去这里。", "pinyin": "Qù zhèlǐ.", "english": "Go here. (Show destination)"},
+      {"chinese": "去机场。", "pinyin": "Qù jīchǎng.", "english": "Go to the airport."},
+      {"chinese": "去火车站。", "pinyin": "Qù huǒchē zhàn.", "english": "Go to the train station."},
+      {"chinese": "多少钱？", "pinyin": "Duōshao qián?", "english": "How much?"},
+      {"chinese": "请打表。", "pinyin": "Qǐng dǎbiǎo.", "english": "Please use the meter."},
+      {"chinese": "请在这里停。", "pinyin": "Qǐng zài zhèlǐ tíng.", "english": "Please stop here."},
+      {"chinese": "地铁站在哪里？", "pinyin": "Dìtiě zhàn zài nǎlǐ?", "english": "Where is the subway station?"},
+      {"chinese": "怎么去...？", "pinyin": "Zěnme qù...?", "english": "How to get to...?"},
+      {"chinese": "买票", "pinyin": "Mǎi piào", "english": "Buy ticket"},
+      {"chinese": "去...多少钱？", "pinyin": "Qù... duōshao qián?", "english": "How much to...?"}
+    ],
+    "directions": [
+      {"chinese": "直走", "pinyin": "Zhí zǒu", "english": "Go straight"},
+      {"chinese": "左转", "pinyin": "Zuǒ zhuǎn", "english": "Turn left"},
+      {"chinese": "右转", "pinyin": "Yòu zhuǎn", "english": "Turn right"},
+      {"chinese": "前面", "pinyin": "Qiánmiàn", "english": "In front"},
+      {"chinese": "后面", "pinyin": "Hòumiàn", "english": "Behind"},
+      {"chinese": "左边", "pinyin": "Zuǒbiān", "english": "Left side"},
+      {"chinese": "右边", "pinyin": "Yòubiān", "english": "Right side"},
+      {"chinese": "对面", "pinyin": "Duìmiàn", "english": "Opposite"},
+      {"chinese": "附近", "pinyin": "Fùjìn", "english": "Nearby"}
+    ],
+    "destination_card_template": "📍 DESTINATION\n\nI want to go to:\n[DESTINATION NAME]\n\n我要去[地点名称]\n\nPlease take me there.\n谢谢！"
+  },
+
+  "shopping": {
+    "category": "Shopping",
+    "phrases": [
+      {"chinese": "多少钱？", "pinyin": "Duōshao qián?", "english": "How much?"},
+      {"chinese": "太贵了。", "pinyin": "Tài guì le.", "english": "Too expensive."},
+      {"chinese": "便宜一点。", "pinyin": "Piányi yīdiǎn.", "english": "Cheaper, please."},
+      {"chinese": "可以试穿吗？", "pinyin": "Kěyǐ shìchuān ma?", "english": "Can I try it on?"},
+      {"chinese": "我买了。", "pinyin": "Wǒ mǎi le.", "english": "I'll take it."},
+      {"chinese": "有折扣吗？", "pinyin": "Yǒu zhékòu ma?", "english": "Any discount?"},
+      {"chinese": "可以刷卡吗？", "pinyin": "Kěyǐ shuākǎ ma?", "english": "Can I pay by card?"},
+      {"chinese": "请给我发票。", "pinyin": "Qǐng gěi wǒ fāpiào.", "english": "Please give me a receipt."}
+    ]
+  },
+
+  "hotel": {
+    "category": "Hotel",
+    "phrases": [
+      {"chinese": "我预订了房间。", "pinyin": "Wǒ yùdìng le fángjiān.", "english": "I have a reservation."},
+      {"chinese": "护照。", "pinyin": "Hùzhào.", "english": "Passport."},
+      {"chinese": "WiFi密码是什么？", "pinyin": "WiFi mìmǎ shì shénme?", "english": "What's the WiFi password?"},
+      {"chinese": "明天退房。", "pinyin": "Míngtiān tuìfáng.", "english": "Check out tomorrow."},
+      {"chinese": "请帮我叫出租车。", "pinyin": "Qǐng bāng wǒ jiào chūzūchē.", "english": "Please call a taxi for me."},
+      {"chinese": "有早餐吗？", "pinyin": "Yǒu zǎocān ma?", "english": "Is breakfast included?"},
+      {"chinese": "房间在哪里？", "pinyin": "Fángjiān zài nǎlǐ?", "english": "Where is my room?"}
+    ]
+  },
+
+  "emergency": {
+    "category": "Emergency",
+    "phrases": [
+      {"chinese": "救命！", "pinyin": "Jiùmìng!", "english": "Help!"},
+      {"chinese": "我迷路了。", "pinyin": "Wǒ mílù le.", "english": "I'm lost."},
+      {"chinese": "我需要医生。", "pinyin": "Wǒ xūyào yīshēng.", "english": "I need a doctor."},
+      {"chinese": "我受伤了。", "pinyin": "Wǒ shòushāng le.", "english": "I'm injured."},
+      {"chinese": "我发烧了。", "pinyin": "Wǒ fāshāo le.", "english": "I have a fever."},
+      {"chinese": "我肚子疼。", "pinyin": "Wǒ dùzi téng.", "english": "I have a stomachache."},
+      {"chinese": "我过敏了。", "pinyin": "Wǒ guòmǐn le.", "english": "I'm having an allergic reaction."},
+      {"chinese": "请帮我报警。", "pinyin": "Qǐng bāng wǒ bàojǐng.", "english": "Please help me call the police."},
+      {"chinese": "我的钱包丢了。", "pinyin": "Wǒ de qiánbāo diū le.", "english": "I lost my wallet."},
+      {"chinese": "我的护照丢了。", "pinyin": "Wǒ de hùzhào diū le.", "english": "I lost my passport."},
+      {"chinese": "我不会说中文。", "pinyin": "Wǒ bù huì shuō Zhōngwén.", "english": "I don't speak Chinese."},
+      {"chinese": "我需要翻译。", "pinyin": "Wǒ xūyào fānyì.", "english": "I need a translator."}
+    ],
+    "emergency_numbers": [
+      {"number": "120", "service": "Ambulance", "when": "Medical emergency"},
+      {"number": "110", "service": "Police", "when": "Crime, danger, theft"},
+      {"number": "119", "service": "Fire", "when": "Fire, rescue"},
+      {"number": "+86-10-12308", "service": "Consular Protection", "when": "Overseas citizen emergency"}
+    ],
+    "emergency_card_template": "═══════════════════════════\n        🆘 EMERGENCY 🆘\n═══════════════════════════\n\nI need help.\nWǒ xūyào bāngzhù.\n\nI don't speak Chinese.\nWǒ bù huì shuō Zhōngwén.\n\nPlease contact:\n□ Doctor (医生 yīshēng)\n□ Police (警察 jǐngchá)\n□ Hotel (酒店 jiǔdiàn)\n□ Embassy (大使馆 dàshǐguǎn)\n\nThank you!\nXièxie!\n═══════════════════════════"
+  },
+
+  "general": {
+    "category": "General",
+    "phrases": [
+      {"chinese": "你好。", "pinyin": "Nǐ hǎo.", "english": "Hello."},
+      {"chinese": "谢谢。", "pinyin": "Xièxie.", "english": "Thank you."},
+      {"chinese": "对不起。", "pinyin": "Duìbùqǐ.", "english": "Sorry."},
+      {"chinese": "没关系。", "pinyin": "Méi guānxi.", "english": "It's okay."},
+      {"chinese": "我不懂。", "pinyin": "Wǒ bù dǒng.", "english": "I don't understand."},
+      {"chinese": "你会说英语吗？", "pinyin": "Nǐ huì shuō Yīngyǔ ma?", "english": "Do you speak English?"},
+      {"chinese": "请慢一点。", "pinyin": "Qǐng màn yīdiǎn.", "english": "Please speak slower."},
+      {"chinese": "请写下来。", "pinyin": "Qǐng xiě xiàlái.", "english": "Please write it down."},
+      {"chinese": "再见。", "pinyin": "Zàijiàn.", "english": "Goodbye."}
+    ],
+    "numbers": [
+      {"chinese": "一", "pinyin": "yī", "english": "1"},
+      {"chinese": "二", "pinyin": "èr", "english": "2"},
+      {"chinese": "三", "pinyin": "sān", "english": "3"},
+      {"chinese": "四", "pinyin": "sì", "english": "4"},
+      {"chinese": "五", "pinyin": "wǔ", "english": "5"},
+      {"chinese": "十", "pinyin": "shí", "english": "10"},
+      {"chinese": "百", "pinyin": "bǎi", "english": "100"}
+    ]
+  }
+}

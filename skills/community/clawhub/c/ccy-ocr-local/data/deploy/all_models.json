@@ -1,0 +1,48 @@
+{
+  "tesseract": {
+    "digit": {
+      "name": "digit",
+      "type": "tesseract",
+      "config_path": "data/config/digit.config",
+      "deployed": true
+    },
+    "axis": {
+      "name": "axis",
+      "type": "tesseract",
+      "config_path": "data/config/axis.config",
+      "deployed": true
+    },
+    "legend": {
+      "name": "legend",
+      "type": "tesseract",
+      "config_path": "data/config/legend.config",
+      "deployed": true
+    },
+    "title": {
+      "name": "title",
+      "type": "tesseract",
+      "config_path": "data/config/title.config",
+      "deployed": true
+    }
+  },
+  "opencv": {
+    "chart_detection": {
+      "name": "chart_detection",
+      "type": "opencv",
+      "model_path": "data/models/chart_detection.pb",
+      "deployed": true
+    },
+    "line_detection": {
+      "name": "line_detection",
+      "type": "opencv",
+      "model_path": "data/models/line_detection.pb",
+      "deployed": true
+    },
+    "shape_detection": {
+      "name": "shape_detection",
+      "type": "opencv",
+      "model_path": "data/models/shape_detection.pb",
+      "deployed": true
+    }
+  }
+}

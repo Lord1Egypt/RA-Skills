@@ -1,0 +1,4 @@
+interface:
+  display_name: "BP母版维护"
+  short_description: "维护BP报告母版、映射关系和版本规则"
+  default_prompt: "使用 $bp-template-maintainer 创建、修订或质检 BP 报告母版，并维护跨周期一致的 BP 锚点、版本和结构规则。"

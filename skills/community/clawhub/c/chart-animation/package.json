@@ -1,0 +1,15 @@
+{
+  "name": "chart-animation",
+  "version": "1.0.0",
+  "description": "Generate animated trend charts from time-series data",
+  "main": "scripts/chart_animation.py",
+  "scripts": {
+    "generate": "python3 scripts/chart_animation.py"
+  },
+  "dependencies": {
+    "matplotlib": ">=3.5.0",
+    "numpy": ">=1.20.0",
+    "pillow": ">=8.0.0"
+  },
+  "keywords": ["chart", "animation", "visualization", "time-series", "trend"]
+}

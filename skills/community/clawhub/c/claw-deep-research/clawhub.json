@@ -1,0 +1,13 @@
+{
+  "name": "claw-deep-research",
+  "description": "Turn your AI agent into a real research assistant. Goes beyond 'search and summarize' — multi-phase iterative deep research with contradiction mining, cross-verification, structured reporting, and sub-agent async execution. Zero extra API keys needed.",
+  "author": "midboss1028-beep",
+  "version": "1.0.0",
+  "license": "MIT",
+  "tags": ["research", "deep-research", "analysis", "report", "search", "agent", "openclaw", "workflow"],
+  "openclaw": {
+    "minVersion": "2025.1.0",
+    "tools": ["web_search", "web_fetch", "sessions_spawn"],
+    "categories": ["research", "productivity"]
+  }
+}

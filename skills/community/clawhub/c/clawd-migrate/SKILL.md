@@ -1,35 +1,44 @@
----
-name: "clawd-migrate"
-description: "Migrates moltbot or clawdbot data to openclaw by backing up, transferring config, memory, and clawdbook data with verification and automatic setup."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/clawd-migrate"
-sourceUrl: "https://clawhub.ai/skills/clawd-migrate"
----
-
 # clawd-migrate
 
-> Migrates moltbot or clawdbot data to openclaw by backing up, transferring config, memory, and clawdbook data with verification and automatic setup.
+Migrate from **moltbot** or **clawdbot** to **openclaw**. Preserves config, memory, and clawdbook (Moltbook) data safely on any system.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/clawd-migrate`
-- **Source URL:** [https://clawhub.ai/skills/clawd-migrate](https://clawhub.ai/skills/clawd-migrate)
+## What it does
 
-## Overview
+- **Discovers** existing bot assets (memory files, config, clawdbook/Moltbook credentials)
+- **Backs up** everything into a timestamped folder before any changes
+- **Migrates** files into the openclaw layout: `memory/`, `.config/openclaw/`, `.config/clawdbook/`
+- **Verifies** every source file was copied to its destination (existence + size match)
+- **Reinstalls openclaw** (`npm i -g openclaw`) and runs `openclaw onboard` automatically
 
+## Quick start
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/clawd-migrate
+npx clawd-migrate
 ```
+
+Interactive menu walks you through: Discover -> Backup -> Migrate -> Verify -> Reinstall openclaw.
+
+## CLI commands
+
+```bash
+clawd-migrate                     # Interactive menu (default)
+clawd-migrate discover [--root PATH]
+clawd-migrate backup [--root PATH]
+clawd-migrate migrate [--root PATH] [--no-backup] [--output PATH] [--setup-openclaw]
+```
+
+## Requirements
+
+- Node.js 14+
+- Python 3.x
+
+## What gets migrated
+
+- **Memory/identity:** SOUL.md, USER.md, TOOLS.md, IDENTITY.md, AGENTS.md, MEMORY.md
+- **Config:** `.config/moltbook/`, `.config/moltbot/`
+- **Clawdbook/Moltbook:** Kept under `.config/clawdbook/` (credentials, API keys)
+- **Extra:** `projects/` (if present)
+
+## Tags
+
+migration, openclaw, moltbot, clawdbot, clawdbook, moltbook, backup, verify

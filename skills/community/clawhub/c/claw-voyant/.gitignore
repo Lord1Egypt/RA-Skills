@@ -1,0 +1,18 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+.venv/
+build/
+dist/
+*.egg-info/
+
+# OpenClaw
+*.skill
+.openclaw/
+
+# IDEs
+.vscode/
+.idea/
+.DS_Store

@@ -1,0 +1,70 @@
+{
+  "strategyId": "product-capability",
+  "kind": "perspective",
+  "version": "1.0",
+  "name": "产品能力分层",
+  "description": "按产品价值层次分层，适用于产品蓝图",
+  "rules": [
+    {
+      "layer": "user-entry",
+      "layerName": "用户接入层",
+      "description": "用户访问系统的入口层",
+      "signals": [
+        {"type": "category", "values": ["frontend", "client", "mobile"], "weight": 100},
+        {"type": "nameKeyword", "values": ["客户端", "APP", "Portal", "前端", "小程序"], "weight": 80}
+      ],
+      "minScore": 60
+    },
+    {
+      "layer": "gateway",
+      "layerName": "服务网关层",
+      "description": "流量控制、认证鉴权等网关能力",
+      "signals": [
+        {"type": "category", "values": ["gateway", "api"], "weight": 100},
+        {"type": "nameKeyword", "values": ["网关", "Gateway", "API网关", "接入层"], "weight": 80}
+      ],
+      "minScore": 60
+    },
+    {
+      "layer": "platform-core",
+      "layerName": "平台基础层",
+      "description": "平台基础能力（用户中心、消息中心、权限中心等）",
+      "signals": [
+        {"type": "nameKeyword", "values": ["用户中心", "消息中心", "权限中心", "认证中心", "配置中心"], "weight": 90}
+      ],
+      "minScore": 60
+    },
+    {
+      "layer": "platform-capability",
+      "layerName": "平台能力层",
+      "description": "平台开放能力（开放平台、开发者服务等）",
+      "signals": [
+        {"type": "nameKeyword", "values": ["开放平台", "API平台", "开发者"], "weight": 85}
+      ],
+      "minScore": 60
+    },
+    {
+      "layer": "core-business",
+      "layerName": "核心业务层",
+      "description": "具体业务服务",
+      "signals": [
+        {"type": "nameKeyword", "values": ["服务", "系统"], "weight": 60}
+      ],
+      "minScore": 50
+    },
+    {
+      "layer": "data-storage",
+      "layerName": "数据存储层",
+      "description": "数据存储和数据库",
+      "signals": [
+        {"type": "category", "values": ["database", "storage"], "weight": 100},
+        {"type": "nameKeyword", "values": ["数据", "存储", "数据库", "Database", "DB"], "weight": 80}
+      ],
+      "minScore": 60
+    }
+  ],
+  "fallbackLayer": "core-business",
+  "reviewThreshold": 0.75,
+  "conflictPolicy": "highest_score",
+  "layerOrder": ["user-entry", "gateway", "platform-core", "platform-capability", "core-business", "data-storage"]
+}

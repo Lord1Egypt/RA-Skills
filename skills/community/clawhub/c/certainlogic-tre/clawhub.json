@@ -1,0 +1,37 @@
+{
+  "name": "Token Reduction Engine",
+  "slug": "certainlogic-tre",
+  "owner": "CertainLogicAI",
+  "version": "1.0.1",
+  "description": "Cut AI token costs 60-85% with deterministic query validation and intelligent caching. Standalone or integrates with Company Brain Core OS. Free, open-source.",
+  "repository": "https://github.com/CertainLogicAI/token-reduction-engine",
+  "license": "MIT",
+  "author": "CertainLogicAI",
+  "tags": [
+    "token-reduction",
+    "cost-optimization",
+    "ai-costs",
+    "caching",
+    "deterministic-ai",
+    "hallucination-guard",
+    "llm-gateway",
+    "performance",
+    "cache-hit",
+    "cost-savings"
+  ],
+  "category": "ai-optimization",
+  "homepage": "https://certainlogic.ai/tre",
+  "keywords": [
+    "token reduction",
+    "ai cost savings",
+    "llm caching",
+    "deterministic queries",
+    "cache hit rate",
+    "hallucination detection",
+    "cost optimization",
+    "agent performance"
+  ],
+  "compatibility": {
+    "openclaw": ">=0.8.0"
+  }
+}

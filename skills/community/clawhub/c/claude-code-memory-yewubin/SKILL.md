@@ -1,35 +1,190 @@
 ---
-name: "Claude级 · AI第二大脑"
-description: "由叶武滨设计的AI第二大脑，基于Claude Code记忆架构，为大模型提供全生命周期自动记忆与文件管理。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/claude-code-memory-yewubin"
-sourceUrl: "https://clawhub.ai/skills/claude-code-memory-yewubin"
+metadata.clawdbot:
+  name: claude-code-memory-yewubin
+  description: "由全球时间管理专家叶武滨设计的 AI 第二大脑。基于 Claude Code 泄露源码中的顶级记忆架构，为任何大模型提供全生命周期的自动化记忆与文件管理。"
+  version: 1.3.1
+  homepage: "https://github.com/yewubin-jpg/claude-code-memory-yewubin"
+requires.env: []
+files:
+  - templates/ONBOARDING_GUIDE.md
+  - templates/IDENTITY_TEMPLATE.md
+  - templates/MEMORY_TEMPLATE.md
+  - templates/TOPIC_TEMPLATE.md
+  - templates/FILE_SYSTEM_GUIDE.md
+  - templates/ERRORS_AND_LESSONS_TEMPLATE.md
+  - templates/DREAM_PROTOCOL.md
 ---
 
-# Claude级 · AI第二大脑
+# Claude-Code-Memory (Claude级·AI第二大脑)
 
-> 由叶武滨设计的AI第二大脑，基于Claude Code记忆架构，为大模型提供全生命周期自动记忆与文件管理。
+## 1. 技能定位
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/claude-code-memory-yewubin`
-- **Source URL:** [https://clawhub.ai/skills/claude-code-memory-yewubin](https://clawhub.ai/skills/claude-code-memory-yewubin)
+**独立大众化记忆管理系统**，任何 OpenClaw 用户安装即用，无需依赖其他技能。
 
-## Overview
+**开放兼容**：自动检测 `MEMORY.md` 中已有的结构化数据（如 `productivity-skill` 写入的目标/项目），纳入三层记忆管理：
+- **梦想/目标** → 标记为最高优先级长期记忆，AutoDream 永不归档
+- **项目数据** → 在 `topics/` 中维护独立主题文件
+- **每日笔记** → AutoDream 自动扫描提取，过期内容归档
+- **偏好/规则** → 作为长期记忆保留不动
 
+> 本技能只负责"记住"和"整理"，不负责"执行"和"排序"。数据通过共享的 `MEMORY.md` 和 `memory/` 目录自然流通。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/claude-code-memory-yewubin
-```
+**设计背景**：叶武滨老师受 **Claude Code 泄露源码中的"记忆架构与工程模式"** 启发，为 OpenClaw 龙虾打造"第二大脑"——从工作记忆 → 短期记忆 → 长期记忆 → 科学文件系统，实现全生命周期自动化管理与双通道沉淀。
+
+**知识产权声明**：
+- **受启发**：三层记忆架构、怀疑式记忆、三重门触发器、KAIROS 主动式思维、AutoDream 机制
+- **叶武滨独创**：自主可控记忆体系、易效能八大领域文件系统、闭环流转架构（记忆→笔记→文件→日历清单）、双通道沉淀（内部本地+外部MCP）、透明自动化（用户报告与选择机制）
+
+## 2. 三层记忆架构
+
+### 2.0 Bootstrap 文件感知
+
+本技能感知 `workspace` 根目录下的核心引导文件：
+
+| 文件 | 管理方式 |
+|---|---|
+| `SOUL.md` | 记录核心特征摘要，AutoDream 不与 SOUL 冲突 |
+| `IDENTITY.md` | 维护身份指针，确保角色定位一致 |
+| `USER.md` | 双向同步：提取用户信息写入 `topics/identity.md`，更新时提醒用户同步 |
+| `AGENTS.md` | 关键行为规则纳入记忆索引 |
+| `TOOLS.md` | 记录工具配置摘要 |
+| `HEARTBEAT.md` | 用于三重门触发器的时间门和会话门判断 |
+
+**协同规则**：只读不写（不修改用户的"宪法"文件）；双向同步 USER.md；冲突检测以 Bootstrap 文件为准。
+
+### 2.1 内部通道：本地三层架构
+
+**第一层：索引层** (`memory/MEMORY.md`)
+- 每次对话开始时必须首先读取
+- 仅存指针和极简摘要，每行≤150字符
+- 格式：`- [主题标签] 核心事实摘要 -> 见 topics/xxx.md`
+
+**第二层：主题层** (`memory/topics/*.md`)
+- 按需读取：仅当用户提及相关主题或索引中有指针时加载
+- 存放项目知识、用户偏好、长篇笔记
+
+**第三层：归档层** (`memory/archive/`)
+- 从不直接读取，仅在 `/dream` 时处理
+- 存放过期任务、已完成项目、原始记录
+
+### 2.2 外部通道：MCP 同步
+
+当对话中提取到明确的日程或任务时，主动询问用户是否通过 MCP 同步到 Google Calendar / Notion 等外部工具。
+
+### 2.3 怀疑式记忆原则
+
+> Claude Code 源码的精妙设计：AI 将记忆视为"提示"(hints)而非"事实"(facts)。
+
+1. **记忆是提示不是事实**：基于记忆采取重要行动前，必须与实际文件/代码/用户确认交叉验证
+2. **变更检测**：发现记忆与现实不一致时，立即更新而非盲目执行旧信息
+3. **验证清单**：执行关键操作前快速验证——何时写入？是否仍有效？有无更新覆盖？
+
+## 3. 写入协议
+
+**严格顺序**：先写主题文件（`topics/`）→ 后更新索引（`MEMORY.md`）→ 时间绝对化（"明天"转为具体日期）
+
+## 4. 工作空间与目录规划
+
+### 4.1 路径适配
+基于环境定位 `workspace` 根目录（通常 `~/.openclaw/workspace/`）：
+- 云虾：`/home/ubuntu/.openclaw/workspace/`
+- 虚拟虾：`/home/openclaw/.openclaw/workspace/`（需 volume 映射）
+- 本地虾：`/Users/username/.openclaw/workspace/`
+
+### 4.2 目录结构
+
+| 目录 | 用途 |
+|---|---|
+| `memory/` | 数字大脑：`MEMORY.md` + `topics/` + `archive/` |
+| `notes/` | 工作笔记收件箱（临时输出，待整理） |
+| `files/` | 易效能标准文件系统（长期数字资产） |
+| `skills/` | 技能与能力库 |
+
+### 4.3 易效能文件系统
+
+**三层结构**：一级（八大领域：`01_健康` ~ `08_休闲`）→ 二级（项目/工作流）→ 三级（具体文档）
+
+**标准命名法**：`[大主题]-[日期]-[子主题].[扩展名]`
+- 示例：`产品研发-20260402-需求评审会议记录.md`
+
+## 5. 错误保留与自愈
+
+犯错被纠正时，**必须**记录到 `topics/errors_and_lessons.md`。输出复杂方案前进行对抗性自检：逻辑是否严密？前提是否验证？是否查阅了错误记录？
+
+## 6. 自动化机制
+
+### 6.1 AutoDream 三重门触发
+
+用户输入 `/dream` 或同时满足三重门时进入整理模式：
+1. **时间门**：距上次整理 ≥ 24h
+2. **会话门**：距上次整理 ≥ 5 次会话
+3. **锁门**：`memory/.dream_lock` 不存在（存在且超1h视为死锁，强制清除）
+
+**五阶段流程**：
+1. **定向**：读取 MEMORY.md，评估记忆健康度
+2. **收集**：扫描最近对话和新笔记
+3. **整合**：消除矛盾，合并零散观察为确定事实，应用怀疑式记忆原则
+4. **老化检测**：30天未访问标记为老化（`[梦想/目标]` 豁免）
+5. **剪枝**：压缩冗长描述，失效信息移至 `archive/`，MEMORY.md 保持≤200行
+
+### 6.2 自动备份
+
+每周日凌晨2点将 `workspace` 打包为 `backup-YYYYMMDD.zip`。执行前向用户发送报告并请求确认，绝不静默操作。
+
+### 6.3 KAIROS 主动式思维
+
+从"被动响应"升级为"主动预判"：
+
+| 场景 | 主动行为 |
+|---|---|
+| 出现明确日期/截止日 | 提醒记录到记忆或同步日历 |
+| 提到新项目/目标 | 询问是否创建 `topics/` 专题 |
+| MEMORY.md 接近200行 | 建议执行 `/dream` |
+| 反复询问同类信息 | 提升到索引层加速召回 |
+| 与已有记忆矛盾 | 提醒并询问是否更新 |
+
+> KAIROS 是"主动建议"而非"擅自行动"，决定权始终在用户。
+
+## 7. 记忆迁移：从其他大模型导入
+
+### 7.1 通用流程
+
+**导出 → 提取 → 格式化 → 用户确认 → 写入**
+
+龙虾自动提取五类信息：身份信息、偏好习惯、目标梦想、项目进展、重要事实。
+
+### 7.2 各平台导出方法
+
+| 平台 | 推荐方式 | 备选方式 |
+|---|---|---|
+| **ChatGPT** | Settings → Data Controls → Export Data | 直接让 ChatGPT 列出所有记忆 |
+| **豆包** | 让豆包总结所有记住的信息 | NousSave 插件导出 |
+| **Kimi** | 让 Kimi 输出结构化记忆总结 | 网页端打印为 PDF |
+| **DeepSeek** | 让 DeepSeek 总结记忆 | NousSave 插件导出 |
+| **Gemini** | Google Takeout 导出 | — |
+| **Claude** | Settings → Privacy → Export Data | — |
+
+### 7.3 导入规则
+
+1. 生成迁移报告，表格展示每条记忆及写入位置
+2. **用户确认后**才写入，标注来源：`[迁移自ChatGPT 2026-04-02]`
+3. 多平台导入时自动去重合并，以最新版本为准
+4. 所有处理在本地完成，数据不出境
+
+## 8. 安全安装协议
+
+> **核心铁律**：未经用户确认，绝不修改/覆盖/删除任何现有文件。
+
+**第一步：扫描备份** — 检查现有记忆文件，存在则备份为 `MEMORY_backup_YYYYMMDD.md`
+
+**第二步：报告确认** — 介绍"由叶武滨老师设计的 AI 第二大脑"，展示功能清单和变更预告，明确询问用户是否同意
+
+**第三步：执行写入**（仅在用户同意后）：
+1. 增量注入核心指令到配置文件（不清零旧内容）
+2. `mkdir -p` 创建标准目录
+3. 配置自动做梦和备份定时任务
+4. 收集用户身份信息和3个核心目标
+
+## 9. 免责声明
+
+本技能基于叶武滨老师原创构想，通过 Manus AI 辅助设计编写。已通过 ClawHub 安全合规扫描。所有记忆和文件存储在用户本地/私有云，开发者不收集任何隐私数据。因不可抗力、系统故障或误操作导致的损失，开发者不承担法律责任。

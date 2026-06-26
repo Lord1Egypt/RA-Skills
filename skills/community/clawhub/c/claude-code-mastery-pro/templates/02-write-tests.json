@@ -1,0 +1,5 @@
+{
+  "name": "Write Tests",
+  "description": "Generate unit tests for selected files",
+  "command": "Write comprehensive unit tests for the files I've mentioned. Use the testing framework already in the project. Cover edge cases and error scenarios."
+}

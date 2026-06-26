@@ -1,0 +1,56 @@
+# OpenClaw CA File Processing Skills
+# Open-Source Path — No AWS Textract required
+# =============================================
+
+# PDF processing
+PyMuPDF==1.24.0          # Text-layer PDF extraction (fitz)
+pdf2image==1.17.0         # Scanned PDF → images for OCR
+
+# OCR
+pytesseract==0.3.10       # Python wrapper for Tesseract
+Pillow==10.3.0            # Image preprocessing
+
+# Excel
+openpyxl==3.1.2           # .xlsx read/write
+xlrd==1.2.0               # Legacy .xls support (must be 1.x, not 2.x)
+
+# CSV / Data
+pandas==2.2.2             # CSV parsing + data normalisation
+chardet==5.2.0            # Encoding detection for unusual bank exports
+
+# ── SYSTEM DEPENDENCIES (install on your AWS EC2 / Ubuntu server) ────────────
+# sudo apt-get update
+# sudo apt-get install -y \
+#     tesseract-ocr \
+#     tesseract-ocr-hin \
+#     tesseract-ocr-mar \
+#     poppler-utils
+#
+# Verify Tesseract install:
+#     tesseract --version
+#     tesseract --list-langs    # should show: eng, hin
+#
+# ── FOLDER STRUCTURE ────────────────────────────────────────────────────────
+# openclaw_skills/
+# ├── skill_router.py     ← OpenClaw registers this as the entry point
+# ├── skill_pdf.py
+# ├── skill_excel.py
+# ├── skill_csv.py
+# ├── skill_image.py
+# └── requirements.txt
+#
+# ── OPENCLAW REGISTRATION (in your openclaw config) ─────────────────────────
+# skills:
+#   - name: file_router
+#     path: ./openclaw_skills/skill_router.py
+#     entry: route_file
+#     triggers:
+#       - file_upload
+#       - attachment_received
+#
+# ── QUICK TEST ───────────────────────────────────────────────────────────────
+# pip install -r requirements.txt
+# python skill_router.py sample_invoice.jpg
+# python skill_router.py gstr_return.pdf
+# python skill_router.py trial_balance.xlsx
+# python skill_router.py bank_statement.csv

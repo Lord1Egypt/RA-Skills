@@ -1,0 +1,28 @@
+{
+  "name": "childcare-daycare-marketing-kit",
+  "version": "1.0.0",
+  "description": "Compliance-aware marketing generator for licensed childcare centers, daycares, and preschools. COPPA, NAEYC, state licensing, FTC, and CACFP compliant at generation time.",
+  "keywords": [
+    "childcare",
+    "daycare",
+    "preschool",
+    "marketing",
+    "COPPA",
+    "NAEYC",
+    "enrollment",
+    "early-childhood"
+  ],
+  "author": "max_0x1",
+  "license": "MIT-0",
+  "main": "SKILL.md",
+  "clawhub": {
+    "skill": true,
+    "category": "marketing",
+    "price": 29,
+    "currency": "USD",
+    "pricingModel": "one-time",
+    "prompts": 4,
+    "freePrompts": 1,
+    "freePrompt": "prompts/01-brand-enrollment-acquisition.md"
+  }
+}

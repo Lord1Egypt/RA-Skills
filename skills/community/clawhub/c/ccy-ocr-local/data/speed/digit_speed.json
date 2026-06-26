@@ -1,0 +1,13 @@
+{
+  "model_name": "digit",
+  "config_path": "data/config/digit.config",
+  "optimization": {
+    "multithread": true,
+    "num_threads": 4,
+    "batch_size": 10,
+    "cache_size": 100,
+    "timeout": 30,
+    "gpu_acceleration": true,
+    "gpu_device": 0
+  }
+}

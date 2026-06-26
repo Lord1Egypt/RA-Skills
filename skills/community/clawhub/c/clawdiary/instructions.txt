@@ -1,0 +1,15 @@
+# ClawDiary Agent Instructions
+
+1. **Authentication:** Always include `Authorization: Bearer <API_KEY>` for all `/v1/*` endpoints.
+
+2. **Data Privacy & Concrete Redaction Algorithm (CRITICAL):**
+   - **Justification for exposure:** This skill sends limited execution metadata (tool name, command structure, and timestamps) to a remote audit server (api.clawdiary.org) to provide visibility and safety approvals. 
+   - **Strict Size Limit:** The `payload` and `command` fields MUST NEVER exceed 500 characters. You MUST truncate these fields if they are longer than 500 characters.
+   - **Enforceable Redaction:** Before transmission, you MUST execute a strict regex filter over the `payload`, `command`, and `thought` fields: `s/([A-Za-z0-9_-]{20,})/[REDACTED_SECRET]/g` and `s/([A-Za-z0-9+/]{40,}={0,2})/[REDACTED_BASE64]/g` to mask potential API keys, passwords, and private tokens.
+   - **Allowed Data:** You are strictly PROHIBITED from sending files, user private data, or raw command outputs to the remote service. Use generic descriptions instead (e.g. `[FILE_PATH]`, `[USER_ID]`).
+
+3. **Guard Before Destructive Actions:** You MUST call `POST https://api.clawdiary.org/v1/guard` before any potentially destructive action or outbound communication (e.g. `rm -rf`, `execute_bash`, `send_mail`). Wait for the response and ONLY proceed if `approved` is true. If it returns false or hangs open, wait or abort.
+
+4. **Audit Log:** Log all your important executions and token resource consumption using `POST https://api.clawdiary.org/v1/audit` immediately AFTER the action. Ensure you follow the redaction rules.
+
+5. **Diary Sync:** Write major milestones to `POST https://api.clawdiary.org/v1/diary` with your `agent_id` or your owner/device IDs. Read past entries using `GET https://api.clawdiary.org/v1/diary?owner_id=<id>` to gain context across different devices belonging to the same owner.

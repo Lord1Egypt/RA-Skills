@@ -1,35 +1,42 @@
 ---
-name: "Canvas Claw"
-description: "Generate images and videos through AI-video-agent. Supports image create, image remix, video create, and video animate."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/canvas-claw"
-sourceUrl: "https://clawhub.ai/skills/canvas-claw"
+name: canvas-claw
+description: Generate images and videos through AI-video-agent. Supports image create, image remix, video create, and video animate.
+metadata:
+  {
+    "openclaw":
+      {
+        "emoji": "🎬",
+        "requires":
+          {
+            "bins": ["python3"],
+            "env":
+              [
+                "AI_VIDEO_AGENT_BASE_URL",
+                "AI_VIDEO_AGENT_TOKEN",
+                "AI_VIDEO_AGENT_SITE_ID",
+              ],
+          },
+        "primaryEnv": "AI_VIDEO_AGENT_TOKEN",
+      },
+  }
 ---
 
 # Canvas Claw
 
-> Generate images and videos through AI-video-agent. Supports image create, image remix, video create, and video animate.
+Canvas Claw is an OpenClaw skill package that sends generation tasks to AI-video-agent.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/canvas-claw`
-- **Source URL:** [https://clawhub.ai/skills/canvas-claw](https://clawhub.ai/skills/canvas-claw)
+## Core Capabilities
 
-## Overview
+- 图片生成：`python3 {baseDir}/scripts/generate_image.py --prompt "cinematic portrait"`
+- 参考图生成：`python3 {baseDir}/scripts/generate_image.py --prompt "same character, winter coat" --reference-image "/tmp/char.png"`
+- 文本生成视频：`python3 {baseDir}/scripts/generate_video.py --prompt "a rainy city street at night"`
+- 图片生成视频：`python3 {baseDir}/scripts/generate_video.py --prompt "the character turns and smiles" --first-frame "/tmp/frame.png"`
 
+## Model Discovery
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/canvas-claw
-```
+- 图片模型：`python3 {baseDir}/scripts/image_models.py`
+- 视频模型：`python3 {baseDir}/scripts/video_models.py`
+
+## Login Helper
+
+- `python3 {baseDir}/scripts/login.py --base-url "http://localhost:8000" --site-id 10000 --username "demo" --password "secret"`

@@ -1,0 +1,751 @@
+#!/usr/bin/env node
+
+const { createDAVClient, DAVClient, fetchCalendars } = require('tsdav');
+const { randomUUID } = require('crypto');
+const config = require('./config');
+const { parseEvent, generateEvent, parseTodo, generateTodo, parseFreebusy } = require('./ical');
+const { syncCalendarObjects } = require('./sync');
+const { clearCache, getCalendarUid, upsertCachedEvent, upsertCachedTodo, deleteCachedObject } = require('./cache');
+
+function parseArgs() {
+  const args = process.argv.slice(2);
+  const command = args[0];
+  const options = {};
+  const positional = [];
+
+  for (let i = 1; i < args.length; i++) {
+    const arg = args[i];
+    if (arg.startsWith('--')) {
+      const key = arg.slice(2);
+      const value = args[i + 1];
+      options[key] = value || true;
+      if (value && !value.startsWith('--')) i++;
+    } else {
+      positional.push(arg);
+    }
+  }
+
+  return { command, options, positional };
+}
+
+async function createClient() {
+  if (!config.serverUrl || !config.username || !config.password) {
+    throw new Error('Missing CalDAV configuration. Run "bash setup.sh" to configure.');
+  }
+
+  const clientParams = {
+    serverUrl: config.serverUrl,
+    credentials: {
+      username: config.username,
+      password: config.password,
+    },
+    authMethod: 'Basic',
+    defaultAccountType: 'caldav',
+  };
+
+  // If principalUrl/homeUrl provided in config, use direct DAVClient with manual account
+  const principalUrl = config.principalUrl || inferPrincipalUrl(config.serverUrl, config.username);
+  const homeUrl = config.homeUrl || inferHomeUrl(config.serverUrl, config.username);
+
+  if (principalUrl && homeUrl) {
+    const client = new DAVClient(clientParams);
+    // Skip login() — set auth headers and account directly for non-standard servers
+    client.authHeaders = getBasicAuthHeaders(clientParams.credentials);
+
+    // Verify credentials before proceeding
+    const authResp = await fetch(principalUrl, {
+      method: 'PROPFIND',
+      headers: { ...client.authHeaders, 'Content-Type': 'application/xml; charset=utf-8', Depth: '0' },
+      body: '<?xml version="1.0" encoding="utf-8"?><propfind xmlns="DAV:"><prop><displayname/></prop></propfind>',
+    });
+    if (authResp.status === 401 || authResp.status === 403) {
+      throw new Error(`Authentication failed (HTTP ${authResp.status}). Check your username and password.`);
+    }
+
+    client.account = {
+      serverUrl: config.serverUrl,
+      credentials: clientParams.credentials,
+      accountType: 'caldav',
+      principalUrl,
+      homeUrl,
+      rootUrl: homeUrl,
+      calendarHomeUrl: homeUrl,
+      calendars: [],
+    };
+    return client;
+  }
+
+  try {
+    return await createDAVClient(clientParams);
+  } catch (e) {
+    if (e.message && /401|403|auth/i.test(e.message)) {
+      throw new Error(`Authentication failed. Check your username and password. (${e.message})`);
+    }
+    throw e;
+  }
+}
+
+function getBasicAuthHeaders(credentials) {
+  const encoded = Buffer.from(`${credentials.username}:${credentials.password}`).toString('base64');
+  return { Authorization: `Basic ${encoded}` };
+}
+
+function inferPrincipalUrl(serverUrl, username) {
+  const url = new URL(serverUrl);
+  // NetEase pattern: caldav.163.com -> /caldav/dav/<user>/user/
+  if (url.hostname === 'caldav.163.com' || url.hostname === 'caldav.qiye.163.com' || url.hostname === 'caldavhz.qiye.163.com') {
+    return `${url.origin}/caldav/dav/${username}/user/`;
+  }
+  return null;
+}
+
+function inferHomeUrl(serverUrl, username) {
+  const url = new URL(serverUrl);
+  if (url.hostname === 'caldav.163.com' || url.hostname === 'caldav.qiye.163.com' || url.hostname === 'caldavhz.qiye.163.com') {
+    return `${url.origin}/caldav/dav/${username}/calendar/`;
+  }
+  return null;
+}
+
+function needsNativeFetch() {
+  return !!(inferPrincipalUrl(config.serverUrl, config.username));
+}
+
+const _vtodoSupportCache = new Map();
+
+async function hasVtodoSupport(calendar) {
+  const components = calendar.supportedCalendarComponentSet;
+  if (components) {
+    return components.some((c) => (typeof c === 'string' ? c.toUpperCase() : '') === 'VTODO');
+  }
+
+  if (_vtodoSupportCache.has(calendar.url)) {
+    return _vtodoSupportCache.get(calendar.url);
+  }
+
+  try {
+    const encoded = Buffer.from(`${config.username}:${config.password}`).toString('base64');
+    const resp = await fetch(calendar.url, {
+      method: 'PROPFIND',
+      headers: {
+        Authorization: `Basic ${encoded}`,
+        'Content-Type': 'application/xml; charset=utf-8',
+        Depth: '0',
+      },
+      body: '<?xml version="1.0" encoding="utf-8"?><propfind xmlns="DAV:" xmlns:C="urn:ietf:params:xml:ns:caldav"><prop><C:supported-calendar-component-set/></prop></propfind>',
+    });
+
+    const text = await resp.text();
+    const supported = !text.includes('VEVENT') || text.includes('VTODO');
+    _vtodoSupportCache.set(calendar.url, supported);
+    return supported;
+  } catch {
+    _vtodoSupportCache.set(calendar.url, true);
+    return true;
+  }
+}
+
+async function requireVtodoCalendar(client, calendarId) {
+  const calendar = await resolveCalendar(client, calendarId);
+  if (!(await hasVtodoSupport(calendar))) {
+    throw new Error(`Calendar "${calendar.displayName || calendar.url}" does not support VTODO. ` +
+      `Todo operations require a calendar that supports VTODO.`);
+  }
+  return calendar;
+}
+
+function authHeaders() {
+  const encoded = Buffer.from(`${config.username}:${config.password}`).toString('base64');
+  return { Authorization: `Basic ${encoded}`, 'Content-Type': 'text/calendar; charset=utf-8' };
+}
+
+async function davPut(url, body, etag) {
+  const headers = authHeaders();
+  if (etag) headers['If-Match'] = etag;
+  const resp = await fetch(url, {
+    method: 'PUT',
+    headers,
+    body,
+  });
+  if (!resp.ok) throw new Error(`PUT ${url} failed: ${resp.status} ${resp.statusText}`);
+  return resp.headers.get('etag');
+}
+
+async function davDelete(url) {
+  const resp = await fetch(url, { method: 'DELETE', headers: authHeaders() });
+  if (!resp.ok && resp.status !== 404) throw new Error(`DELETE ${url} failed: ${resp.status} ${resp.statusText}`);
+}
+
+async function listCalendars() {
+  const client = await createClient();
+  const calendars = await client.fetchCalendars();
+
+  return {
+    calendars: calendars.map((cal) => ({
+      id: cal.url,
+      displayName: cal.displayName || '',
+      color: cal.calendarColor || '',
+      components: cal.supportedCalendarComponentSet || ['VEVENT'],
+    })),
+  };
+}
+
+async function resolveCalendar(client, calendarId) {
+  if (calendarId) {
+    const calendars = await client.fetchCalendars();
+    const found = calendars.find((c) => c.url === calendarId || c.displayName === calendarId);
+    if (!found) throw new Error(`Calendar not found: ${calendarId}`);
+    return found;
+  }
+
+  const calendars = await client.fetchCalendars();
+  if (config.defaultCalendar) {
+    const found = calendars.find(
+      (c) => c.url === config.defaultCalendar || c.displayName === config.defaultCalendar
+    );
+    if (found) return found;
+  }
+  return calendars[0];
+}
+
+async function listEvents(options) {
+  const client = await createClient();
+  const calendar = await resolveCalendar(client, options.calendar);
+  const accountName = config._accountName || 'default';
+
+  const objects = await syncCalendarObjects(client, calendar, accountName, options['force-refresh']);
+
+  // Filter by time range
+  let events = Object.values(objects.events || {});
+  if (options.start) {
+    const start = new Date(options.start).getTime();
+    events = events.filter(e => e.end && new Date(e.end).getTime() >= start);
+  }
+  if (options.end) {
+    const end = new Date(options.end).getTime();
+    events = events.filter(e => e.start && new Date(e.start).getTime() <= end);
+  }
+
+  return { events };
+}
+
+async function getEvent(options) {
+  const client = await createClient();
+  const calendar = await resolveCalendar(client, options.calendar);
+
+  const objects = await client.fetchCalendarObjects({ calendar });
+
+  const found = objects.find((obj) => {
+    const event = parseEvent(obj.data, calendar.displayName);
+    return event && event.uid === options.uid;
+  });
+
+  if (!found) throw new Error(`Event not found: ${options.uid}`);
+
+  return { event: parseEvent(found.data, calendar.displayName) };
+}
+
+async function createEvent(options) {
+  const client = await createClient();
+  const calendar = await resolveCalendar(client, options.calendar);
+
+  const uid = randomUUID();
+  const eventObj = {
+    uid,
+    summary: options.summary,
+    start: options.start,
+    end: options.end,
+    description: options.description || '',
+    location: options.location || '',
+  };
+
+  const iCalString = generateEvent(eventObj);
+  const filename = `${uid}.ics`;
+  const url = new URL(filename, calendar.url).href;
+
+  if (needsNativeFetch()) {
+    await davPut(url, iCalString);
+  } else {
+    await client.createCalendarObject({ calendar, iCalString, filename });
+  }
+
+  const accountName = config._accountName || 'default';
+  const calendarUid = getCalendarUid(calendar);
+  upsertCachedEvent(accountName, calendarUid, {
+    uid,
+    summary: eventObj.summary,
+    start: eventObj.start,
+    end: eventObj.end,
+    location: eventObj.location || '',
+    description: eventObj.description || '',
+    recurrence: false,
+    calendar: calendar.displayName || '',
+  });
+  return { success: true, uid, url };
+}
+
+async function updateEvent(options) {
+  const client = await createClient();
+  const calendar = await resolveCalendar(client, options.calendar);
+
+  const objects = await client.fetchCalendarObjects({ calendar });
+
+  const found = objects.find((obj) => {
+    const event = parseEvent(obj.data, calendar.displayName);
+    return event && event.uid === options.uid;
+  });
+
+  if (!found) throw new Error(`Event not found: ${options.uid}`);
+
+  const existing = parseEvent(found.data, calendar.displayName);
+
+  const updatedObj = {
+    uid: existing.uid,
+    summary: options.summary || existing.summary,
+    start: options.start || existing.start,
+    end: options.end || existing.end,
+    description: options.description !== undefined ? options.description : existing.description,
+    location: options.location !== undefined ? options.location : existing.location,
+  };
+
+  const iCalString = generateEvent(updatedObj);
+
+  if (needsNativeFetch()) {
+    await davPut(found.url, iCalString, found.etag);
+  } else {
+    found.data = iCalString;
+    await client.updateCalendarObject({ calendarObject: found });
+  }
+
+  const accountName = config._accountName || 'default';
+  upsertCachedEvent(accountName, getCalendarUid(calendar), {
+    uid: updatedObj.uid,
+    summary: updatedObj.summary,
+    start: updatedObj.start,
+    end: updatedObj.end,
+    location: updatedObj.location,
+    description: updatedObj.description,
+    recurrence: existing.recurrence,
+    calendar: calendar.displayName || '',
+  });
+  return { success: true, uid: existing.uid };
+}
+
+async function deleteEvent(options) {
+  const client = await createClient();
+  const calendar = await resolveCalendar(client, options.calendar);
+
+  const objects = await client.fetchCalendarObjects({ calendar });
+
+  const found = objects.find((obj) => {
+    const event = parseEvent(obj.data, calendar.displayName);
+    return event && event.uid === options.uid;
+  });
+
+  if (!found) throw new Error(`Event not found: ${options.uid}`);
+
+  if (needsNativeFetch()) {
+    await davDelete(found.url);
+  } else {
+    await client.deleteCalendarObject({ calendarObject: found });
+  }
+
+  deleteCachedObject(config._accountName || 'default', getCalendarUid(calendar), options.uid);
+  return { success: true, uid: options.uid };
+}
+
+async function listTodos(options) {
+  const client = await createClient();
+  const calendars = await client.fetchCalendars();
+  const accountName = config._accountName || 'default';
+  const targetCalendars = options.calendar
+    ? calendars.filter((c) => c.url === options.calendar || c.displayName === options.calendar)
+    : calendars;
+
+  const vtodoCalendars = [];
+  for (const cal of targetCalendars) {
+    if (await hasVtodoSupport(cal)) vtodoCalendars.push(cal);
+  }
+  if (targetCalendars.length > 0 && vtodoCalendars.length === 0) {
+    const names = targetCalendars.map((c) => c.displayName || c.url).join(', ');
+    throw new Error(`None of the selected calendars support VTODO: ${names}`);
+  }
+
+  const allTodos = [];
+  const statusFilter = options.status || 'all';
+
+  for (const calendar of vtodoCalendars) {
+    const objects = await syncCalendarObjects(client, calendar, accountName, options['force-refresh']);
+    const todos = Object.values(objects.todos || {});
+
+    for (const todo of todos) {
+      if (statusFilter === 'pending' && todo.status !== 'pending') continue;
+      if (statusFilter === 'completed' && todo.status !== 'completed') continue;
+      allTodos.push(todo);
+    }
+  }
+
+  return { todos: allTodos };
+}
+
+async function fetchObjectsViaPropfind(calendarUrl) {
+  const resp = await fetch(calendarUrl, {
+    method: 'PROPFIND',
+    headers: {
+      ...authHeaders(),
+      Depth: '1',
+    },
+    body: '<?xml version="1.0" encoding="utf-8"?><propfind xmlns="DAV:" xmlns:C="urn:ietf:params:xml:ns:caldav"><prop><C:calendar-data/><D:getetag xmlns:D="DAV:"/></prop></propfind>',
+  });
+  if (!resp.ok && resp.status !== 207) return [];
+
+  const text = await resp.text();
+  const results = [];
+
+  // Split by <response> blocks to correctly associate href/data/etag
+  const responseBlocks = text.split(/<\/[^>]*response>/i);
+  for (const block of responseBlocks) {
+    const hrefMatch = block.match(/<[^>]*href[^>]*>(.*?)<\/[^>]*href>/i);
+    const dataMatch = block.match(/<[^>]*calendar-data[^>]*><!\[CDATA\[(.*?)\]\]><\/[^>]*calendar-data>/is);
+    const etagMatch = block.match(/<[^>]*getetag[^>]*>(.*?)<\/[^>]*getetag>/i);
+
+    if (!dataMatch) continue;
+
+    const href = hrefMatch ? hrefMatch[1] : '';
+    const fullUrl = href.startsWith('http') ? href : new URL(href, calendarUrl).href;
+    results.push({
+      url: fullUrl,
+      data: dataMatch[1],
+      etag: etagMatch ? etagMatch[1] : null,
+    });
+  }
+
+  return results;
+}
+
+async function createTodo(options) {
+  const client = await createClient();
+  const calendar = await requireVtodoCalendar(client, options.calendar);
+
+  const uid = randomUUID();
+  const todoObj = {
+    uid,
+    summary: options.summary,
+    due: options.due || null,
+    description: options.description || '',
+    priority: options.priority ? parseInt(options.priority) : 0,
+    status: 'pending',
+  };
+
+  const iCalString = generateTodo(todoObj);
+  const filename = `${uid}.ics`;
+  const url = new URL(filename, calendar.url).href;
+
+  if (needsNativeFetch()) {
+    await davPut(url, iCalString);
+  } else {
+    await client.createCalendarObject({ calendar, iCalString, filename });
+  }
+
+  const accountName = config._accountName || 'default';
+  upsertCachedTodo(accountName, getCalendarUid(calendar), {
+    uid,
+    summary: todoObj.summary,
+    due: todoObj.due,
+    status: todoObj.status,
+    priority: todoObj.priority,
+    description: todoObj.description,
+    calendar: calendar.displayName || '',
+  });
+  return { success: true, uid, url };
+}
+
+async function findTodoByUid(calendars, uid) {
+  for (const calendar of calendars) {
+    let objects;
+    if (needsNativeFetch()) {
+      objects = await fetchObjectsViaPropfind(calendar.url);
+    } else {
+      objects = await (await createClient()).fetchCalendarObjects({ calendar });
+    }
+    for (const obj of objects) {
+      const todo = parseTodo(obj.data, calendar.displayName);
+      if (todo && todo.uid === uid) {
+        return { ...obj, calendarName: calendar.displayName };
+      }
+    }
+  }
+  return null;
+}
+
+async function updateTodo(options) {
+  const client = await createClient();
+  const calendars = await client.fetchCalendars();
+  const vtodoCalendars = [];
+  for (const cal of calendars) {
+    if (await hasVtodoSupport(cal)) vtodoCalendars.push(cal);
+  }
+  if (vtodoCalendars.length === 0) {
+    throw new Error('No calendar with VTODO support available');
+  }
+
+  const found = await findTodoByUid(vtodoCalendars, options.uid);
+  if (!found) throw new Error(`Todo not found: ${options.uid}`);
+
+  const existing = parseTodo(found.data, found.calendarName);
+
+  const updatedObj = {
+    uid: existing.uid,
+    summary: options.summary || existing.summary,
+    due: options.due || existing.due,
+    description: options.description !== undefined ? options.description : existing.description,
+    priority: options.priority ? parseInt(options.priority) : existing.priority,
+    status: options.status || existing.status,
+  };
+
+  const iCalString = generateTodo(updatedObj);
+
+  if (needsNativeFetch()) {
+    await davPut(found.url, iCalString, found.etag);
+  } else {
+    found.data = iCalString;
+    await client.updateCalendarObject({ calendarObject: found });
+  }
+
+  const accountName = config._accountName || 'default';
+  for (const cal of vtodoCalendars) {
+    upsertCachedTodo(accountName, getCalendarUid(cal), {
+      uid: updatedObj.uid,
+      summary: updatedObj.summary,
+      due: updatedObj.due,
+      status: updatedObj.status,
+      priority: updatedObj.priority,
+      description: updatedObj.description,
+      calendar: found.calendarName || '',
+    });
+  }
+  return { success: true, uid: existing.uid };
+}
+
+async function deleteTodo(options) {
+  const client = await createClient();
+  const calendars = await client.fetchCalendars();
+  const vtodoCalendars = [];
+  for (const cal of calendars) {
+    if (await hasVtodoSupport(cal)) vtodoCalendars.push(cal);
+  }
+  if (vtodoCalendars.length === 0) {
+    throw new Error('No calendar with VTODO support available');
+  }
+
+  const found = await findTodoByUid(vtodoCalendars, options.uid);
+  if (!found) throw new Error(`Todo not found: ${options.uid}`);
+
+  if (needsNativeFetch()) {
+    await davDelete(found.url);
+  } else {
+    await client.deleteCalendarObject({ calendarObject: found });
+  }
+
+  const accountName = config._accountName || 'default';
+  for (const cal of vtodoCalendars) {
+    deleteCachedObject(accountName, getCalendarUid(cal), options.uid);
+  }
+  return { success: true, uid: options.uid };
+}
+
+async function freebusy(options) {
+  const client = await createClient();
+  const calendar = await resolveCalendar(client, options.calendar);
+
+  // Try CalDAV free-busy-query REPORT
+  const startUtc = new Date(options.start).toISOString().replace(/[-:]/g, '').replace(/\.\d{3}/, '');
+  const endUtc = new Date(options.end).toISOString().replace(/[-:]/g, '').replace(/\.\d{3}/, '');
+
+  const reportBody = `<?xml version="1.0" encoding="utf-8"?>
+<C:free-busy-query xmlns:C="urn:ietf:params:xml:ns:caldav">
+  <C:time-range start="${startUtc}" end="${endUtc}"/>
+</C:free-busy-query>`;
+
+  try {
+    const resp = await fetch(calendar.url, {
+      method: 'REPORT',
+      headers: {
+        ...authHeaders(),
+        Depth: '0',
+      },
+      body: reportBody,
+    });
+
+    if (resp.ok) {
+      const text = await resp.text();
+      let iCalData = text;
+      const calDataMatch = text.match(/<[^>]*calendar-data[^>]*>([\s\S]*?)<\/[^>]*calendar-data>/);
+      if (calDataMatch) {
+        iCalData = calDataMatch[1].trim();
+      }
+      const periods = parseFreebusy(iCalData);
+      if (periods.length > 0) return { busy: periods };
+    }
+  } catch {
+    // REPORT not supported, fall through to event-based approach
+  }
+
+  // Fallback: derive busy times from events in the time range
+  const objects = await client.fetchCalendarObjects({
+    calendar,
+    timeRange: {
+      start: options.start,
+      end: options.end,
+    },
+  });
+
+  const busy = objects
+    .map((obj) => {
+      const event = parseEvent(obj.data, calendar.displayName);
+      if (!event) return null;
+      return { start: event.start, end: event.end, type: 'BUSY' };
+    })
+    .filter(Boolean);
+
+  return { busy };
+}
+
+function displayAccounts(accounts, configPath) {
+  if (!configPath) {
+    console.error('No configuration file found.');
+    console.error('Run "bash setup.sh" to configure your CalDAV account.');
+    process.exit(1);
+  }
+
+  if (accounts.length === 0) {
+    console.error(`No accounts configured in ${configPath}`);
+    process.exit(0);
+  }
+
+  console.log(`Configured accounts (from ${configPath}):\n`);
+
+  const maxNameLen = Math.max(7, ...accounts.map((a) => a.name.length));
+  const maxUrlLen = Math.max(10, ...accounts.map((a) => a.serverUrl.length));
+  const maxUserLen = Math.max(8, ...accounts.map((a) => a.username.length));
+
+  const header = `  ${padRight('Account', maxNameLen)}  ${padRight('Server', maxUrlLen)}  ${padRight('Username', maxUserLen)}  Status`;
+  console.log(header);
+
+  const separator =
+    '  ' + '-'.repeat(maxNameLen) + '  ' + '-'.repeat(maxUrlLen) + '  ' + '-'.repeat(maxUserLen) + '  ' + '-'.repeat(16);
+  console.log(separator);
+
+  for (const account of accounts) {
+    const statusIcon = account.isComplete ? 'OK' : '!!';
+    const statusText = account.isComplete ? 'Complete' : 'Incomplete';
+    const row = `  ${padRight(account.name, maxNameLen)}  ${padRight(account.serverUrl, maxUrlLen)}  ${padRight(account.username, maxUserLen)}  ${statusIcon} ${statusText}`;
+    console.log(row);
+  }
+
+  console.log(`\n  ${accounts.length} account${accounts.length > 1 ? 's' : ''} total`);
+}
+
+function padRight(str, len) {
+  return (str + ' '.repeat(len)).slice(0, len);
+}
+
+async function main() {
+  const { command, options, positional } = parseArgs();
+
+  try {
+    let result;
+
+    switch (command) {
+      case 'list-calendars':
+        result = await listCalendars();
+        break;
+
+      case 'list-accounts': {
+        const { listAccounts } = require('./config');
+        const { accounts, configPath } = listAccounts();
+        displayAccounts(accounts, configPath);
+        return;
+      }
+
+      case 'list-events':
+        if (!options.start || !options.end) {
+          throw new Error('Missing required options: --start <date> --end <date>');
+        }
+        result = await listEvents(options);
+        break;
+
+      case 'get-event':
+        if (!options.uid) {
+          throw new Error('Missing required option: --uid <uid>');
+        }
+        result = await getEvent(options);
+        break;
+
+      case 'create-event':
+        if (!options.summary || !options.start || !options.end) {
+          throw new Error('Missing required options: --summary <text> --start <datetime> --end <datetime>');
+        }
+        result = await createEvent(options);
+        break;
+
+      case 'update-event':
+        if (!options.uid) {
+          throw new Error('Missing required option: --uid <uid>');
+        }
+        result = await updateEvent(options);
+        break;
+
+      case 'delete-event':
+        if (!options.uid) {
+          throw new Error('Missing required option: --uid <uid>');
+        }
+        result = await deleteEvent(options);
+        break;
+
+      case 'list-todos':
+        result = await listTodos(options);
+        break;
+
+      case 'create-todo':
+        if (!options.summary) {
+          throw new Error('Missing required option: --summary <text>');
+        }
+        result = await createTodo(options);
+        break;
+
+      case 'update-todo':
+        if (!options.uid) {
+          throw new Error('Missing required option: --uid <uid>');
+        }
+        result = await updateTodo(options);
+        break;
+
+      case 'delete-todo':
+        if (!options.uid) {
+          throw new Error('Missing required option: --uid <uid>');
+        }
+        result = await deleteTodo(options);
+        break;
+
+      case 'freebusy':
+        if (!options.start || !options.end) {
+          throw new Error('Missing required options: --start <datetime> --end <datetime>');
+        }
+        result = await freebusy(options);
+        break;
+
+      default:
+        console.error('Unknown command:', command);
+        console.error('Available commands: list-calendars, list-events, get-event, create-event, update-event, delete-event, list-todos, create-todo, update-todo, delete-todo, freebusy, list-accounts');
+        process.exit(1);
+    }
+
+    console.log(JSON.stringify(result, null, 2));
+  } catch (err) {
+    console.log(JSON.stringify({ error: err.message }));
+    process.exit(1);
+  }
+}
+
+main();

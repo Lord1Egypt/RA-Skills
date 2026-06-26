@@ -1,0 +1,46 @@
+{
+  "name": "CEO决策助手",
+  "slug": "ceo-ai-assistant",
+  "version": "2.8.0",
+  "description": "专为中国CEO打造的AI决策协作体系。主脑+子代理架构，支持飞书通知，定时简报，记忆系统，决策分级管理。",
+  "shortDescription": "中国CEO专属AI决策助手，开箱即用",
+  "author": "帅哥",
+  "homepage": "https://clawhub.ai",
+  "license": "MIT",
+  "keywords": ["CEO", "决策", "飞书", "AI助手", "企业助手", "主脑", "龙虾2.0"],
+  "platform": "openclaw",
+  "runtime": "openclaw",
+  "skills": [
+    "ceo-advisor",
+    "self-improving",
+    "jarvis-core",
+    "tiered-recall",
+    "duckduckgo-search"
+  ],
+  "agents": [
+    "main",
+    "news", 
+    "stocks",
+    "work",
+    "projectmanager",
+    "secretary"
+  ],
+  "channels": ["feishu"],
+  "requirements": {
+    "openclaw": ">=2026.4.0",
+    "feishu": true,
+    "apiKeys": ["minimax"]
+  },
+  "settings": {
+    "defaultLanguage": "zh-CN",
+    "timezone": "Asia/Shanghai"
+  },
+  "manifest": {
+    "always": false,
+    "permissions": {
+      "memory": "read-write",
+      "cron": "read-write",
+      "feishu": "read-write"
+    }
+  }
+}

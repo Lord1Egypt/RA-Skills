@@ -1,0 +1,178 @@
+{
+  "version": "baseline-v1",
+  "description": "Baseline routing eval for CURRENT skill behavior. No blueprint_type or new feature fields. Used for regression detection during optimization.",
+  "updated": "2026-05-16",
+
+  "hero_queries": [
+    {
+      "id": "hero-01",
+      "query": "根据这份售前需求文档生成商业蓝图",
+      "expected_route": "kai-business-blueprint",
+      "expected_industry": "common",
+      "note": "核心 hero case：中文、售前场景、通用行业"
+    },
+    {
+      "id": "hero-02",
+      "query": "生成跨境电商的领域知识大图，包含痛点和策略",
+      "expected_route": "kai-business-blueprint",
+      "expected_industry": "cross-border-ecommerce",
+      "note": "domain-knowledge 模式触发"
+    },
+    {
+      "id": "hero-03",
+      "query": "把这个方案导出为 SVG 架构图",
+      "expected_route": "kai-business-blueprint",
+      "expected_command": "--export",
+      "note": "纯导出场景"
+    },
+    {
+      "id": "hero-04",
+      "query": "生成零售行业的业务能力蓝图",
+      "expected_route": "kai-business-blueprint",
+      "expected_industry": "retail",
+      "note": "明确行业指定"
+    },
+    {
+      "id": "hero-05",
+      "query": "帮我画一个微服务架构图",
+      "expected_route": "kai-business-blueprint",
+      "note": "架构图触发，architecture-template 路由"
+    },
+    {
+      "id": "hero-06",
+      "query": "Generate a business capability blueprint from these meeting notes",
+      "expected_route": "kai-business-blueprint",
+      "expected_industry": "common",
+      "note": "英文 hero case"
+    },
+    {
+      "id": "hero-07",
+      "query": "金融行业风控系统蓝图",
+      "expected_route": "kai-business-blueprint",
+      "expected_industry": "finance",
+      "note": "finance 行业覆盖"
+    },
+    {
+      "id": "hero-08",
+      "query": "生成制造业的生产管理能力蓝图",
+      "expected_route": "kai-business-blueprint",
+      "expected_industry": "manufacturing",
+      "note": "manufacturing 行业覆盖"
+    },
+    {
+      "id": "hero-09",
+      "query": "Create a strategy canvas showing our competitive advantages",
+      "expected_route": "kai-business-blueprint",
+      "note": "英文、strategy canvas 关键词"
+    },
+    {
+      "id": "hero-10",
+      "query": "这个蓝图的能力层太粗了，帮我细化一下",
+      "expected_route": "kai-business-blueprint",
+      "expected_command": "--refine",
+      "note": "refine 命令触发"
+    }
+  ],
+
+  "negative_queries": [
+    {
+      "id": "neg-01",
+      "query": "帮我做一个 PPT 演示文稿",
+      "expected_route": "NOT kai-business-blueprint",
+      "confused_with": "kai-slide-creator",
+      "reason": "PPT 生成不是蓝图生成"
+    },
+    {
+      "id": "neg-02",
+      "query": "写一份商业计划书文档",
+      "expected_route": "NOT kai-business-blueprint",
+      "confused_with": "kai-report-creator",
+      "reason": "文档生成不是蓝图生成"
+    },
+    {
+      "id": "neg-03",
+      "query": "画一个流程图",
+      "expected_route": "NOT kai-business-blueprint",
+      "confused_with": "none-or-mermaid",
+      "reason": "简单流程图不需要蓝图 skill"
+    },
+    {
+      "id": "neg-04",
+      "query": "帮我分析竞争对手",
+      "expected_route": "NOT kai-business-blueprint",
+      "confused_with": "none",
+      "reason": "竞争分析是研究任务"
+    },
+    {
+      "id": "neg-05",
+      "query": "生成业务数据看板",
+      "expected_route": "NOT kai-business-blueprint",
+      "confused_with": "json-render",
+      "reason": "数据看板是 dashboard，不是蓝图"
+    },
+    {
+      "id": "neg-06",
+      "query": "帮我设计前端组件架构",
+      "expected_route": "NOT kai-business-blueprint",
+      "confused_with": "frontend-design",
+      "reason": "前端组件架构是 UI 设计，不是业务蓝图"
+    },
+    {
+      "id": "neg-07",
+      "query": "给我一个商业计划蓝图",
+      "expected_route": "NOT kai-business-blueprint",
+      "confused_with": "kai-report-creator",
+      "reason": "含'蓝图'但实际要的是商业计划文档，不是可视化蓝图"
+    },
+    {
+      "id": "neg-08",
+      "query": "画一个思维导图整理产品策略",
+      "expected_route": "NOT kai-business-blueprint",
+      "confused_with": "obsidian-bases or none",
+      "reason": "思维导图不是蓝图"
+    }
+  ],
+
+  "boundary_queries": [
+    {
+      "id": "bnd-01",
+      "query": "生成商业蓝图并导出为 PPT",
+      "expected_route": "kai-business-blueprint THEN kai-slide-creator",
+      "reason": "跨 skill 协作：蓝图生成 + PPT 导出"
+    },
+    {
+      "id": "bnd-02",
+      "query": "优化 ROI 策略",
+      "expected_route": "ambiguous",
+      "ambiguity": "关键词'策略'可能触发 domain-knowledge，但用户可能想要系统架构或纯分析",
+      "desired_behavior": "ask user to clarify"
+    },
+    {
+      "id": "bnd-03",
+      "query": "帮我分析一下这个方案",
+      "expected_route": "ambiguous",
+      "ambiguity": "分析不等于生成蓝图，但用户后续可能要求生成",
+      "desired_behavior": "analyze first, offer blueprint generation as follow-up"
+    },
+    {
+      "id": "bnd-04",
+      "query": "我的 blueprint.json 已经生成好了，帮我导出 drawio",
+      "expected_route": "kai-business-blueprint",
+      "expected_command": "--export --format drawio",
+      "reason": "纯导出，跳过生成步骤"
+    },
+    {
+      "id": "bnd-05",
+      "query": "我有个零售项目想看看能怎么规划",
+      "expected_route": "ambiguous",
+      "ambiguity": "意图模糊，可能是蓝图也可能是文档",
+      "desired_behavior": "ask user to clarify: blueprint or document?"
+    },
+    {
+      "id": "bnd-06",
+      "query": "基于刚才的蓝图帮我做个报告",
+      "expected_route": "kai-business-blueprint THEN kai-report-creator",
+      "reason": "跨 skill 协作：projection → report"
+    }
+  ]
+}

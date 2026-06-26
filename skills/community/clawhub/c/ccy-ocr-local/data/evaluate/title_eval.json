@@ -1,0 +1,10 @@
+{
+  "model_name": "title",
+  "config_path": "data/config/title.config",
+  "accuracy": 0.95,
+  "precision": 0.93,
+  "recall": 0.97,
+  "f1_score": 0.95,
+  "inference_time": 0.1001129150390625,
+  "memory_usage": 10.5
+}

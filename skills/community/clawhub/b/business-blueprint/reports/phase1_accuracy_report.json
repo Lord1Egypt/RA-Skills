@@ -1,0 +1,141 @@
+{
+  "test_phase": "Phase 1",
+  "test_date": "2026-04-25",
+  "metrics": {
+    "intent_inference_accuracy": [
+      1.0,
+      0.85
+    ],
+    "layer_assignment_accuracy": [
+      0.0,
+      0.88
+    ],
+    "auto_selection_success_rate": [
+      0.75,
+      0.7
+    ]
+  },
+  "detailed_results": {
+    "intent_results": [
+      {
+        "name": "retail",
+        "predicted_intent": {
+          "primary": "product",
+          "secondary": "retail",
+          "mode": "auto",
+          "confidence": 0.75,
+          "reason": "no goals provided, default to product"
+        },
+        "ground_truth_intent": {
+          "primary": "product",
+          "secondary": "retail"
+        },
+        "predicted_strategy": "product-capability",
+        "ground_truth_strategy": "product-capability",
+        "accuracy": 1.0,
+        "confidence": 0.75
+      },
+      {
+        "name": "common",
+        "predicted_intent": {
+          "primary": "product",
+          "secondary": null,
+          "mode": "auto",
+          "confidence": 0.7,
+          "reason": "no goals provided, default to product"
+        },
+        "ground_truth_intent": {
+          "primary": "product",
+          "secondary": null
+        },
+        "predicted_strategy": "product-capability",
+        "ground_truth_strategy": "product-capability",
+        "accuracy": 1.0,
+        "confidence": 0.7
+      },
+      {
+        "name": "finance",
+        "predicted_intent": {
+          "primary": "product",
+          "secondary": "finance",
+          "mode": "auto",
+          "confidence": 0.75,
+          "reason": "no goals provided, default to product"
+        },
+        "ground_truth_intent": {
+          "primary": "product",
+          "secondary": "finance"
+        },
+        "predicted_strategy": "product-capability",
+        "ground_truth_strategy": "product-capability",
+        "accuracy": 1.0,
+        "confidence": 0.75
+      },
+      {
+        "name": "manufacturing",
+        "predicted_intent": {
+          "primary": "product",
+          "secondary": "manufacturing",
+          "mode": "auto",
+          "confidence": 0.75,
+          "reason": "no goals provided, default to product"
+        },
+        "ground_truth_intent": {
+          "primary": "product",
+          "secondary": "manufacturing"
+        },
+        "predicted_strategy": "product-capability",
+        "ground_truth_strategy": "product-capability",
+        "accuracy": 1.0,
+        "confidence": 0.75
+      }
+    ],
+    "layer_results": [
+      {
+        "name": "finance",
+        "predicted_layers": {},
+        "expected_layers": {
+          "sys-client": "user-entry",
+          "sys-gateway": "gateway",
+          "sys-risk": "risk-control",
+          "sys-service": "core-business"
+        },
+        "accuracy": 0.0
+      },
+      {
+        "name": "manufacturing",
+        "predicted_layers": {},
+        "expected_layers": {
+          "sys-supplier": "supplier",
+          "sys-production": "production",
+          "sys-warehouse": "warehouse"
+        },
+        "accuracy": 0.0
+      }
+    ]
+  },
+  "pass_status": false,
+  "failed_cases": [
+    {
+      "name": "finance",
+      "predicted_layers": {},
+      "expected_layers": {
+        "sys-client": "user-entry",
+        "sys-gateway": "gateway",
+        "sys-risk": "risk-control",
+        "sys-service": "core-business"
+      },
+      "accuracy": 0.0
+    },
+    {
+      "name": "manufacturing",
+      "predicted_layers": {},
+      "expected_layers": {
+        "sys-supplier": "supplier",
+        "sys-production": "production",
+        "sys-warehouse": "warehouse"
+      },
+      "accuracy": 0.0
+    }
+  ]
+}

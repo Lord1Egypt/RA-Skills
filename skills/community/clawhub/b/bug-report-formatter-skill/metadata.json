@@ -1,0 +1,19 @@
+{
+  "slug": "bug-report-formatter-skill",
+  "name": "Bug Report Formatter Skill",
+  "version": "0.1.0",
+  "tags": [
+    "bug-report-formatter",
+    "openclaw",
+    "software",
+    "templates"
+  ],
+  "category": "Software Quality",
+  "changelog": [
+    {
+      "version": "0.1.0",
+      "date": "2026-05-17",
+      "notes": "Generated from local idea bank (no AI). Pending Telegram approval."
+    }
+  ]
+}

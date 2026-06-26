@@ -1,0 +1,12 @@
+{
+  "default": {
+    "entity": "Your Company Name Ltd",
+    "swift": "XXXXXXXXXX",
+    "iban": "XXXX XXXX XXXX XXXX XXXX XXXX",
+    "companyNumber": "XXXXXXX",
+    "currency": "EUR",
+    "vatRate": "20%",
+    "headerColor": "#2F3640",
+    "accentColor": "#FFC11E"
+  }
+}

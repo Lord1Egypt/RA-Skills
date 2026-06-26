@@ -1,0 +1,167 @@
+{
+  "skill_name": "chudaxia-ai-coach",
+  "version": "1.0.0",
+  "knowledge_base": {
+    "platform": "IMA",
+    "kb_name": "楚大侠的知识库",
+    "kb_id": "Y2Z7PuwrXA3KZGhXkXFTD-CYTK2Ip4YK0Pg0CZnBDbQ=",
+    "content_count": 82,
+    "linked_source_docs": 9
+  },
+  "description": "AI战略转型实战培训教练技能——面向2B企业客户的AI实训营、AI共创工作坊、AI创新营、AI实战课交付",
+  "author": "Chudaxia Team",
+  "settings": {
+    "max_trainees": 50,
+    "default_duration_days": 2,
+    "teaching_style": "实训为主、授课为辅",
+    "tools": [
+      "飞书（含AI权益）",
+      "企微（含AI权益）",
+      "钉钉（含AI权益）",
+      "腾讯IMA"
+    ],
+    "language": "zh-CN"
+  },
+  "recommended_tools": [
+    {
+      "name": "选题卡",
+      "usage": "Day1上午90分钟实训环节，帮助参与者从业务痛点、商业价值、技术可行性、数据基础、组织准备度五个维度评估并锁定AI应用场景",
+      "source": "references/sources/05-scene-selection-card.md"
+    },
+    {
+      "name": "实战工具包与画布",
+      "usage": "包含痛点诊断、场景对齐、数字员工定义、PoC规划的全套实训工具",
+      "source": "references/sources/01-job-description.md"
+    },
+    {
+      "name": "数字员工模板",
+      "usage": "预适配主流ERP/CRM的行业数字员工模板，拿来即用",
+      "source": "references/sources/06-digital-employee-business-insights.md"
+    },
+    {
+      "name": "岗位智能体提示词生成器",
+      "usage": "在数字员工身份定义与智能体构建实训中，将企业岗位职责说明书转化为可部署的七层数字员工系统提示词",
+      "source": "../chudaxia-ai-coach-tools-position-agent-prompts-generator/SKILL.md"
+    },
+    {
+      "name": "岗位智能体技能生成器",
+      "usage": "在岗位智能体提示词生成后，分析技能层核心能力，从腾讯IMA或本地目录萃取技能知识文档，逐项生成符合 Agent Skills 规范的技能目录，并回写提示词技能映射",
+      "source": "../chudaxia-ai-coach-tools-position-agent-skills-generator/SKILL.md"
+    }
+  ],
+  "courses": [
+    {
+      "title": "AI实战训练营（2天）",
+      "audience": "企业管理层、业务负责人、数字化负责人和核心骨干",
+      "duration": "2天",
+      "schedule": [
+        {
+          "day": 1,
+          "morning": "AI趋势洞察（授课90分钟）+ 识别企业内AI高价值场景（实训90分钟，使用选题卡）",
+          "afternoon": "AI工具与智能体架构应用（授课60分钟）+ 业务场景AI应用落地初步验证（实训180分钟）"
+        },
+        {
+          "day": 2,
+          "morning": "如何打造企业智能体与AI原生组织（授课60分钟）+ 从构建智能体到构建数字员工（实训120分钟）",
+          "afternoon": "如何打造企业AI项目组织（授课60分钟）+ 构建数字员工应用（实训90分钟）+ 路演总结（90分钟）"
+        }
+      ],
+      "source": "references/sources/03-training-syllabus-2day.md"
+    }
+  ],
+  "lectures": [
+    "《生成式人工智能技术、应用与机遇》",
+    "《人工智能时代的产品创新方法》",
+    "《企业AI架构理论与实践》",
+    "《企业数智化转型实施路径与策略》",
+    "《大模型提示工程与智能体开发》",
+    "《3步打造您的AI数字员工》"
+  ],
+  "cases": [
+    {
+      "client": "南方电网",
+      "source_document": "03-training-syllabus-2day.md",
+      "notes": "代表案例"
+    },
+    {
+      "client": "广汽集团",
+      "source_document": "03-training-syllabus-2day.md",
+      "notes": "代表案例"
+    },
+    {
+      "client": "广东省建设银行",
+      "source_document": "03-training-syllabus-2day.md",
+      "notes": "代表案例"
+    },
+    {
+      "client": "广东省环保协会",
+      "source_document": "03-training-syllabus-2day.md",
+      "notes": "代表案例"
+    },
+    {
+      "client": "深圳机场",
+      "source_document": "03-training-syllabus-2day.md",
+      "notes": "代表案例"
+    },
+    {
+      "client": "东风集团",
+      "source_document": "03-training-syllabus-2day.md",
+      "notes": "代表案例"
+    },
+    {
+      "client": "福建海关",
+      "source_document": "03-training-syllabus-2day.md",
+      "notes": "代表案例"
+    },
+    {
+      "client": "拓尔思智能学院",
+      "source_document": "03-training-syllabus-2day.md",
+      "notes": "代表案例"
+    },
+    {
+      "client": "中关村人工智能学院",
+      "source_document": "03-training-syllabus-2day.md",
+      "notes": "代表案例"
+    },
+    {
+      "client": "鲁邦通",
+      "source_document": "04-meeting-minutes-lubangtong.md",
+      "notes": "2026-03-14培训，博维咨询协助，楚大侠主教练"
+    },
+    {
+      "client": "里弗斯医疗",
+      "source_document": "09-rivers-ai-growth-breakthrough-case.md",
+      "notes": "2026-04-24至25日AI增长破局训练营，覆盖客服、运营、采销、财务、设计5部门"
+    }
+  ],
+  "client_portfolio": [
+    "国家电网",
+    "南方电网",
+    "中国建设银行",
+    "中国工商银行",
+    "广发银行",
+    "上海银行",
+    "招商证券",
+    "中国移动",
+    "中国联通",
+    "中国电信",
+    "广汽丰田",
+    "广汽本田",
+    "长安汽车",
+    "北汽",
+    "里弗斯医疗",
+    "茅台集团",
+    "中国石化"
+  ],
+  "knowledge_framework": {
+    "core_principles": [
+      "AI时代没有人能完全帮到你，但AI能帮到你",
+      "企业要做AI转型最重要的人是自己",
+      "那些供应商没有他的专业性",
+      "先有组织再构建AI生产力体系",
+      "直接从'如何打造AI原生组织——价值创造'开始"
+    ],
+    "digital_employee_model": "行业专家牵头+AI工具辅助+工程师兜底",
+    "teaching_philosophy": "训战结合，即学即用"
+  }
+}

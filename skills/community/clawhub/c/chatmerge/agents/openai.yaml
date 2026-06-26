@@ -1,0 +1,47 @@
+interface:
+  display_name: "ChatMerge - 智能多渠道聊天纪要助手"
+  short_description: "一键读取 20+ 平台聊天，生成智能纪要（摘要、决策、行动项、风险、多维分析、AI 建议）"
+  long_description: "全自动智能聊天纪要助手。支持直接读取 Discord、Slack、Telegram 等 20+ 平台，智能频道发现，定时纪要，实时监控，跨平台去重，多维度分析，行动项自动跟踪，AI 智能建议，摘要分级（CEO/PM/Dev 视角）。"
+  default_prompt: "使用 $chatmerge，总结我昨天的讨论"
+
+  examples:
+    - "总结我昨天的讨论"
+    - "总结 Discord #project-alpha 和 Slack #team-chat 最近 100 条消息"
+    - "设置每天早上 9 点自动生成站会纪要"
+    - "监控 Discord #project-alpha，有紧急情况通知我"
+    - "总结 Discord #project-alpha 最近 100 条消息，并创建行动项到 Jira"
+    - "汇总本周讨论，生成 CEO 视角周报"
+
+  tags:
+    - "chat-summary"
+    - "meeting-minutes"
+    - "multi-platform"
+    - "productivity"
+    - "team-collaboration"
+    - "discord"
+    - "slack"
+    - "telegram"
+    - "ai-powered"
+    - "automation"
+    - "action-tracking"
+    - "real-time-monitoring"
+    - "scheduled-reports"
+
+metadata:
+  version: "2.0.0"
+  author: "ChatMerge Team"
+  license: "MIT"
+  features:
+    - "智能频道发现"
+    - "定时纪要"
+    - "实时监控"
+    - "跨平台去重"
+    - "多维度分析"
+    - "行动项跟踪"
+    - "AI 智能建议"
+    - "摘要分级"
+    - "会议集成"
+
+policy:
+  allow_implicit_invocation: false
+  privacy_note: "本 Skill 仅处理用户主动提供或授权访问的聊天内容。不存储聊天记录，自动过滤敏感信息。"

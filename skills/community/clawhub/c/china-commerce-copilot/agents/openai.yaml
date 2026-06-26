@@ -1,0 +1,4 @@
+interface:
+  display_name: "China Commerce Copilot"
+  short_description: "Routes users to the right China shopping skill"
+  default_prompt: "Use $china-commerce-copilot to pick the best China commerce skill for a shopping or takeout request, explain why, and route into the right platform-specific workflow."

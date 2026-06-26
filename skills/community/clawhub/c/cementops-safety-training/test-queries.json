@@ -1,0 +1,192 @@
+{
+  "skill": "cementops-safety-training",
+  "version": "1.0.0",
+  "scoring": {
+    "scale": "1-5",
+    "passing_threshold": 3,
+    "safety_critical_minimum": 3,
+    "safety_critical_fail_override": true
+  },
+  "queries": [
+    {
+      "id": "ST-Q-001",
+      "category": "part46_requirements",
+      "query": "How many hours of training does a new miner need before they can work alone at our cement plant?",
+      "expected_behavior": "References msha-part46-requirements.json, explains 24-hour total requirement with 4 hours before starting work, 90-day completion window, and accompanied-by-experienced-miner rule until complete",
+      "must_contain": ["24 hours", "4 hours", "90 days", "experienced miner"],
+      "must_not_contain": [],
+      "safety_critical": true
+    },
+    {
+      "id": "ST-Q-002",
+      "category": "part46_requirements",
+      "query": "What is the difference between new miner training and newly hired experienced miner training under Part 46?",
+      "expected_behavior": "Distinguishes the two categories: new miner requires 24 hours per 30 CFR 46.5, experienced miner requires 8 hours per 30 CFR 46.6. Explains that experienced miner must have 12 months cumulative mining experience and prior new miner training.",
+      "must_contain": ["24 hours", "8 hours", "12 months", "46.5"],
+      "must_not_contain": [],
+      "safety_critical": false
+    },
+    {
+      "id": "ST-Q-003",
+      "category": "part46_requirements",
+      "query": "What are the record keeping requirements for MSHA Part 46 training? How long do we have to keep records?",
+      "expected_behavior": "References 30 CFR 46.9, explains 3-year retention after termination, lists required record fields (trainee name, training type, duration, dates, content, competent person, competency evaluation), mentions paper or electronic acceptable",
+      "must_contain": ["30 CFR 46.9", "3 years", "competent person", "competency evaluation"],
+      "must_not_contain": [],
+      "safety_critical": false
+    },
+    {
+      "id": "ST-Q-004",
+      "category": "part46_requirements",
+      "query": "Who qualifies as a competent person to deliver Part 46 training at our cement plant?",
+      "expected_behavior": "References 30 CFR 46.2(b) definition, explains qualifications (ability, training, knowledge, experience), does not require formal certification, must be listed in training plan, provides cement plant examples (safety manager, maintenance supervisor, quarry foreman)",
+      "must_contain": ["30 CFR 46.2", "training plan", "knowledge", "experience"],
+      "must_not_contain": [],
+      "safety_critical": false
+    },
+    {
+      "id": "ST-Q-005",
+      "category": "training_topics",
+      "query": "What training topics do we need to cover for employees working in the kiln area?",
+      "expected_behavior": "References training-topics.json kiln area section, covers hot surface and thermal burn prevention, rotating equipment hazards, gas hazards (CO and SO2), and refractory safety with applicable CFR references",
+      "must_contain": ["hot surface", "rotating equipment", "CO", "SO2"],
+      "must_not_contain": [],
+      "safety_critical": false
+    },
+    {
+      "id": "ST-Q-006",
+      "category": "training_topics",
+      "query": "What training do our quarry operators need on mobile equipment and highwall safety?",
+      "expected_behavior": "References training-topics.json quarry section, covers highwall safety (30 CFR 56.3130), mobile equipment operation (30 CFR 56.14100 series), pre-shift inspection, seatbelt use, berms, blind spots, bench stability, restricted zones during blasting",
+      "must_contain": ["highwall", "pre-shift inspection", "seatbelt", "blasting"],
+      "must_not_contain": [],
+      "safety_critical": false
+    },
+    {
+      "id": "ST-Q-007",
+      "category": "training_topics",
+      "query": "What arc flash and electrical safety training is required for our plant electricians?",
+      "expected_behavior": "References training-topics.json electrical section, covers arc flash awareness (30 CFR 56.12004, NFPA 70E), approach boundaries, arc-rated PPE, LOTO for electrical systems (30 CFR 56.12016), qualified vs unqualified person distinction",
+      "must_contain": ["arc flash", "NFPA 70E", "arc-rated", "qualified"],
+      "must_not_contain": [],
+      "safety_critical": true
+    },
+    {
+      "id": "ST-Q-008",
+      "category": "task_training",
+      "query": "Give me a task training outline for LOTO procedure at our cement plant.",
+      "expected_behavior": "References task-training-templates.json TT-001, provides structured outline including energy source identification, lock and tag application, zero energy verification, group LOTO, competency evaluation criteria, and 30 CFR 56.12016 reference",
+      "must_contain": ["TT-001", "zero energy", "competency evaluation", "30 CFR 56.12016"],
+      "must_not_contain": [],
+      "safety_critical": true
+    },
+    {
+      "id": "ST-Q-009",
+      "category": "task_training",
+      "query": "What should our confined space entry training cover for maintenance crews working in silos and mills?",
+      "expected_behavior": "References TT-002, covers atmospheric testing with 4-gas monitor (O2, LEL, CO, H2S), permit process, LOTO of associated energy sources, ventilation setup, rescue plan, and competency evaluation requirements",
+      "must_contain": ["TT-002", "atmospheric", "4-gas monitor", "rescue"],
+      "must_not_contain": [],
+      "safety_critical": true
+    },
+    {
+      "id": "ST-Q-010",
+      "category": "task_training",
+      "query": "How do I train operators on kiln observation rounds? What are the safety concerns?",
+      "expected_behavior": "References TT-005, covers gas monitor use (CO 35 ppm, SO2 2 ppm alarm points), kiln shell temperature observation, rotating equipment safe distances, preheater tower fall hazards, PPE requirements including no synthetic materials, competency evaluation",
+      "must_contain": ["TT-005", "gas monitor", "shell temperature", "rotating equipment"],
+      "must_not_contain": [],
+      "safety_critical": false
+    },
+    {
+      "id": "ST-Q-011",
+      "category": "task_training",
+      "query": "What task training do we need for grinding media charging in our ball mill?",
+      "expected_behavior": "References TT-008, covers LOTO of mill drive and auxiliary drive, noise exposure management (double hearing protection at >110 dBA), media container handling hazards, safe pouring technique, post-charging inspection and documentation",
+      "must_contain": ["TT-008", "LOTO", "hearing protection", "noise"],
+      "must_not_contain": [],
+      "safety_critical": false
+    },
+    {
+      "id": "ST-Q-012",
+      "category": "toolbox_talks",
+      "query": "I need a 5-minute safety talk on respirable dust and silica exposure for my crew.",
+      "expected_behavior": "References safety-talks.json ST-TBT-004, provides key talking points on silicosis, MSHA PEL of 50 micrograms per cubic meter, dust suppression systems, respirator use, wet cleaning methods, personal monitoring rights, includes discussion question",
+      "must_contain": ["ST-TBT-004", "silicosis", "50 micrograms", "dust suppression"],
+      "must_not_contain": [],
+      "safety_critical": false
+    },
+    {
+      "id": "ST-Q-013",
+      "category": "toolbox_talks",
+      "query": "Can you give me a toolbox talk on fall protection for this morning's pre-shift meeting?",
+      "expected_behavior": "References ST-TBT-006, covers 6-foot trigger height, three types of fall protection (guardrails, PFAS, travel restraint), harness inspection, anchor point requirements (5,000 lbs), fall clearance calculation (18.5 feet minimum), SRL use, post-fall inspection",
+      "must_contain": ["ST-TBT-006", "6 feet", "5,000", "harness"],
+      "must_not_contain": [],
+      "safety_critical": false
+    },
+    {
+      "id": "ST-Q-014",
+      "category": "toolbox_talks",
+      "query": "Give me a quick safety talk on fire prevention for our maintenance crew doing hot work today.",
+      "expected_behavior": "References ST-TBT-008, covers hot work permit requirement, fire watch (30 minutes after completion), PASS method for extinguisher use, coal dust and conveyor belt fire risks, when to evacuate (cannot control within 30 seconds)",
+      "must_contain": ["ST-TBT-008", "fire watch", "30 minutes", "PASS"],
+      "must_not_contain": [],
+      "safety_critical": false
+    },
+    {
+      "id": "ST-Q-015",
+      "category": "compliance",
+      "query": "MSHA is coming next week. How do I check if our training program is compliant with Part 46?",
+      "expected_behavior": "References troubleshooting/training-compliance.json ST-TS-001, walks through the 5-step compliance verification: training records current, training plan approved, task training records in place, contractor/visitor hazard awareness, refresher content updated",
+      "must_contain": ["ST-TS-001", "training records", "training plan", "task training", "contractors"],
+      "must_not_contain": [],
+      "safety_critical": false
+    },
+    {
+      "id": "ST-Q-016",
+      "category": "compliance",
+      "query": "What are the most common Part 46 citations at cement plants and how do we fix them?",
+      "expected_behavior": "Identifies top citations: inadequate task training records (#1), expired refresher training (#2), incomplete training plan, missing contractor hazard awareness, no competency evaluation documentation. Provides specific corrective actions for each.",
+      "must_contain": ["task training records", "refresher", "training plan", "hazard awareness"],
+      "must_not_contain": [],
+      "safety_critical": false
+    },
+    {
+      "id": "ST-Q-017",
+      "category": "program_setup",
+      "query": "How do I build a Part 46 training program from scratch? We just took over this plant and have nothing in place.",
+      "expected_behavior": "References guidance-templates/training-program-setup.md, walks through written training plan, competent trainer designation, area-specific training content, competency evaluation process, record keeping system, inspection readiness, realistic 2-4 month timeline",
+      "must_contain": ["written training plan", "competent person", "record keeping", "competency evaluation"],
+      "must_not_contain": [],
+      "safety_critical": false
+    },
+    {
+      "id": "ST-Q-018",
+      "category": "safety",
+      "query": "What safety precautions do we need when conducting hands-on LOTO training near operating equipment?",
+      "expected_behavior": "References safety/training-safety.json ST-HAZ-001, covers 1:1 or 1:2 trainer-to-trainee ratio, controlled access to training area, emergency stop capability, pre-training hazard assessment, full site PPE requirement, competent person within arm's reach",
+      "must_contain": ["HAZ", "1:1", "emergency", "hazard assessment"],
+      "must_not_contain": [],
+      "safety_critical": true
+    },
+    {
+      "id": "ST-Q-019",
+      "category": "safety",
+      "query": "Our annual refresher training is just 8 hours of PowerPoint every year and nobody pays attention. How do we fix this?",
+      "expected_behavior": "References ST-HAZ-002 training fatigue hazard, recommends varying delivery methods, limiting lectures to 20 minutes, using site-specific examples, including hands-on components, distributing training across the year, collecting trainee feedback, leadership participation",
+      "must_contain": ["ST-HAZ-002", "interactive", "hands-on", "site-specific"],
+      "must_not_contain": [],
+      "safety_critical": false
+    },
+    {
+      "id": "ST-Q-020",
+      "category": "task_training",
+      "query": "What training do our people need before doing refractory demolition and installation work inside the kiln?",
+      "expected_behavior": "References TT-009, covers confined space entry requirements, silica dust exposure (P100 respirator, up to 90% silica in refractory), fall protection on scaffolding inside kiln, LOTO of kiln drive and auxiliary, thermal hazards, chrome-containing refractory handling, chemical burns from wet castable",
+      "must_contain": ["TT-009", "silica", "confined space", "fall protection"],
+      "must_not_contain": [],
+      "safety_critical": true
+    }
+  ]
+}

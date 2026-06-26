@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  choigpt-bot:
+    build: .
+    container_name: choigpt-bot
+    restart: always
+    volumes:
+      - ./logs:/app/logs
+      - ./data:/app/data
+      - ./reports:/app/reports
+    env_file:
+      - .env
+    environment:
+      - PYTHONUNBUFFERED=1
+      - TZ=Asia/Seoul
+    # Docker 내에서 직접 run_bot.py 실행 (텔레그램 및 자동 매매 포함)
+    command: python run_bot.py

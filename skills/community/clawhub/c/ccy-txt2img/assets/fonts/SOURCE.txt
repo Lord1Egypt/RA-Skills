@@ -1,0 +1,42 @@
+# 中文字体说明
+
+由于版权原因，本技能包不包含中文字体文件。
+
+## 推荐的免费中文字体
+
+1. **思源黑体 (Source Han Sans)** - Adobe 和 Google 联合开发
+   - 下载地址: https://github.com/adobe-fonts/source-han-sans
+   - 文件名: SourceHanSansSC-Regular.otf
+
+2. **文泉驿微米黑**
+   - 开源中文字体，适合屏幕显示
+   - 文件名: wqy-microhei.ttc
+
+3. **站酷字体系列**
+   - 站酷酷黑体、站酷快乐体等
+   - 免费可商用
+
+## 使用方法
+
+将下载的字体文件放入 assets/fonts/ 目录，然后在调用时指定：
+
+```python
+from scripts.txt2img import text_to_image
+
+text_to_image(
+    text="中文测试",
+    output_path="output.png",
+    font_path="assets/fonts/SourceHanSansSC-Regular.otf"
+)
+```
+
+## 自动字体检测
+
+如果未指定字体，技能会自动尝试以下字体（按优先级）：
+1. 黑体 (simhei.ttf)
+2. 宋体 (simsun.ttc) 
+3. 微软雅黑 (msyh.ttf)
+4. 苹方 (PingFang.ttc)
+5. 文泉驿正黑 (wqy-zenhei.ttc)
+6. Noto Sans CJK
+7. Arial/DejaVu（后备）

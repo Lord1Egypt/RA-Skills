@@ -1,0 +1,20 @@
+{
+  "name": "Container Security",
+  "description": "Docker/container security scanning checklist",
+  "category": "security",
+  "items": [
+    {"id": 1, "text": "Use official base images", "required": true},
+    {"id": 2, "text": "Verify base image is up to date", "required": true},
+    {"id": 3, "text": "Run container security scan", "required": true},
+    {"id": 4, "text": "Fix critical vulnerabilities found", "required": true},
+    {"id": 5, "text": "Don't run as root user", "required": true},
+    {"id": 6, "text": "Use minimal base image (Alpine/distroless)", "required": false},
+    {"id": 7, "text": "Remove unnecessary packages", "required": true},
+    {"id": 8, "text": "Scan for secrets in image", "required": true},
+    {"id": 9, "text": "Verify file permissions", "required": true},
+    {"id": 10, "text": "Check for exposed secrets in environment", "required": true},
+    {"id": 11, "text": "Verify HEALTHCHECK is defined", "required": true},
+    {"id": 12, "text": "Test container runs correctly", "required": true},
+    {"id": 13, "text": "Scan application dependencies", "required": true}
+  ]
+}

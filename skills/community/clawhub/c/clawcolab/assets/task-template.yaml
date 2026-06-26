@@ -1,0 +1,23 @@
+id: TASK-XXX
+title: Replace with concise task title
+summary: Replace with a short execution-oriented summary.
+demo_space: replace-with-project-space-or-null
+visibility: shared-team
+status: open
+priority: medium
+mode: proposal-approval
+approval_required: true
+risk_level: medium
+owner: null
+proposed_by: agent-name
+approved_by: null
+eligible_roles:
+  - coordinator
+  - architect
+dependencies: []
+inputs: []
+outputs: []
+sealed_refs: []
+risks: []
+notes: |
+  Add any additional context that is safe at the selected visibility level.

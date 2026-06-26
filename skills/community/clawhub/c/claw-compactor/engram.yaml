@@ -1,0 +1,49 @@
+# engram.yaml — Engram unified configuration
+# Place this file in the claw-compactor root directory.
+# All paths support ~ expansion.  Sensitive values stay in .env (not here).
+
+llm:
+  # Provider: "anthropic" or "openai-compatible"
+  provider: openai-compatible
+
+  # Base URL for OpenAI-compatible endpoint (ignored if provider=anthropic)
+  base_url: http://localhost:8403
+
+  # Name of the environment variable that holds the API key
+  api_key_env: OPENAI_API_KEY
+
+  # Model identifier sent to the LLM API
+  model: claude-code/sonnet
+
+  # Maximum tokens the LLM may produce per call
+  max_tokens: 4096
+
+threads:
+  # Default thresholds for all thread IDs (can be overridden per thread below)
+  default:
+    observer_threshold: 10000    # pending-message tokens before Observer fires
+    reflector_threshold: 15000   # accumulated-observation tokens before Reflector fires
+
+  # Per-thread overrides (optional).  Key is the thread_id.
+  # example:
+  #   discord-general:
+  #     observer_threshold: 20000
+  #     reflector_threshold: 30000
+
+sessions:
+  # Directory to scan for OpenClaw session JSONL files
+  scan_dir: ~/.openclaw/agents/main/sessions
+
+  # Only process sessions modified within this many hours
+  max_age_hours: 48
+
+storage:
+  # Base directory for Engram memory files ({base_dir}/{thread_id}/)
+  base_dir: ~/.openclaw/workspace/memory/engram
+
+concurrency:
+  # Max parallel workers when processing multiple sessions
+  max_workers: 4
+
+logging:
+  level: INFO

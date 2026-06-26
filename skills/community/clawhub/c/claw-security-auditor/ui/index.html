@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OpenClaw Security Auditor</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg:        #0d1117;
+    --surface:   #161b22;
+    --border:    #30363d;
+    --text:      #e6edf3;
+    --muted:     #8b949e;
+    --high:      #f85149;
+    --high-bg:   #3d1a1a;
+    --med:       #d29922;
+    --med-bg:    #3d2e0a;
+    --low:       #3fb950;
+    --low-bg:    #0d2e18;
+    --accent:    #58a6ff;
+    --radius:    8px;
+  }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  /* ── Layout ── */
+  header {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 16px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  header h1 { font-size: 16px; font-weight: 600; display: flex; align-items: center; gap: 8px; }
+  header h1 span.logo { font-size: 20px; }
+
+  .header-right { display: flex; align-items: center; gap: 12px; }
+
+  main { max-width: 1100px; margin: 0 auto; padding: 24px 16px; }
+
+  /* ── Buttons ── */
+  button {
+    cursor: pointer;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 6px 14px;
+    font-size: 13px;
+    font-weight: 500;
+    transition: opacity .15s;
+  }
+  button:hover { opacity: .8; }
+  button:disabled { opacity: .4; cursor: not-allowed; }
+
+  .btn-primary { background: var(--accent); color: #000; border-color: var(--accent); }
+  .btn-ghost   { background: transparent; color: var(--text); }
+  .btn-danger  { background: var(--high-bg); color: var(--high); border-color: var(--high); }
+  .btn-sm      { padding: 3px 10px; font-size: 12px; }
+
+  /* ── Summary bar ── */
+  .summary {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+  .stat {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 16px;
+    text-align: center;
+  }
+  .stat .num  { font-size: 32px; font-weight: 700; line-height: 1; }
+  .stat .lbl  { font-size: 12px; color: var(--muted); margin-top: 4px; }
+  .stat.high  { border-color: var(--high); }
+  .stat.med   { border-color: var(--med); }
+  .stat.low   { border-color: var(--low); }
+  .stat.high .num { color: var(--high); }
+  .stat.med  .num { color: var(--med); }
+  .stat.low  .num { color: var(--low); }
+
+  /* ── Filter bar ── */
+  .filters {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .filter-btn {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 4px 14px;
+    font-size: 12px;
+    color: var(--muted);
+    cursor: pointer;
+    transition: all .15s;
+  }
+  .filter-btn:hover, .filter-btn.active { color: var(--text); border-color: var(--accent); }
+  .filter-btn.active { background: rgba(88,166,255,.1); }
+
+  .search-box {
+    margin-left: auto;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 5px 12px;
+    color: var(--text);
+    font-size: 13px;
+    width: 200px;
+    outline: none;
+  }
+  .search-box:focus { border-color: var(--accent); }
+
+  /* ── Skill cards ── */
+  .cards { display: flex; flex-direction: column; gap: 12px; }
+
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    transition: border-color .15s;
+  }
+  .card:hover { border-color: #484f58; }
+  .card.high  { border-left: 3px solid var(--high); }
+  .card.med   { border-left: 3px solid var(--med); }
+  .card.low   { border-left: 3px solid var(--low); }
+
+  .card-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 16px;
+    cursor: pointer;
+    user-select: none;
+  }
+  .card-header:hover { background: rgba(255,255,255,.02); }
+
+  .risk-badge {
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 12px;
+    white-space: nowrap;
+  }
+  .badge-high { background: var(--high-bg); color: var(--high); }
+  .badge-med  { background: var(--med-bg);  color: var(--med); }
+  .badge-low  { background: var(--low-bg);  color: var(--low); }
+
+  .card-name { font-weight: 600; font-size: 15px; flex: 1; }
+  .card-score { font-size: 13px; color: var(--muted); }
+
+  .score-ring {
+    width: 40px; height: 40px;
+    flex-shrink: 0;
+  }
+  .score-ring circle { fill: none; stroke-width: 4; }
+  .score-ring .track { stroke: var(--border); }
+  .score-ring .fill  { stroke-linecap: round; transition: stroke-dashoffset .4s ease; }
+
+  .chevron { color: var(--muted); font-size: 12px; transition: transform .2s; }
+  .card.open .chevron { transform: rotate(90deg); }
+
+  /* ── Card body ── */
+  .card-body { display: none; padding: 0 16px 16px; border-top: 1px solid var(--border); }
+  .card.open .card-body { display: block; }
+
+  .card-body section { margin-top: 14px; }
+  .card-body h3 { font-size: 12px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: .05em; margin-bottom: 8px; }
+
+  .tag-list { display: flex; flex-wrap: wrap; gap: 6px; }
+  .tag {
+    font-size: 12px;
+    padding: 2px 8px;
+    border-radius: 4px;
+    background: rgba(255,255,255,.06);
+    border: 1px solid var(--border);
+  }
+
+  .rule-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 6px 0;
+    border-bottom: 1px solid rgba(255,255,255,.04);
+    font-size: 13px;
+  }
+  .rule-row:last-child { border-bottom: none; }
+  .rule-id {
+    font-family: monospace;
+    font-size: 11px;
+    padding: 1px 6px;
+    border-radius: 4px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .rule-id.H { background: var(--high-bg); color: var(--high); }
+  .rule-id.M { background: var(--med-bg);  color: var(--med); }
+  .rule-id.L { background: var(--low-bg);  color: var(--low); }
+  .rule-id.U { background: #2d2d2d; color: var(--muted); }
+
+  .rule-label { flex: 1; }
+  .rule-score { color: var(--muted); font-size: 12px; white-space: nowrap; }
+  .rule-evidence { font-size: 11px; color: var(--muted); font-family: monospace; margin-top: 2px; word-break: break-all; }
+
+  .sim-box {
+    background: rgba(248,81,73,.07);
+    border: 1px solid rgba(248,81,73,.2);
+    border-radius: 6px;
+    padding: 10px 12px;
+    font-size: 13px;
+    color: #ffa198;
+    margin-bottom: 6px;
+  }
+  .sim-box::before { content: "⚠ "; }
+
+  .rec-item {
+    display: flex;
+    gap: 8px;
+    padding: 5px 0;
+    font-size: 13px;
+    border-bottom: 1px solid rgba(255,255,255,.04);
+  }
+  .rec-item:last-child { border-bottom: none; }
+  .rec-arrow { color: var(--accent); flex-shrink: 0; }
+
+  /* ── Trust bar ── */
+  .trust-bar-wrap { display: flex; align-items: center; gap: 10px; margin-top: 4px; }
+  .trust-bar-bg { flex: 1; height: 6px; background: var(--border); border-radius: 3px; overflow: hidden; }
+  .trust-bar-fill { height: 100%; border-radius: 3px; transition: width .4s ease; }
+  .trust-label { font-size: 12px; color: var(--muted); white-space: nowrap; }
+
+  /* ── Whitelist toggle ── */
+  .wl-btn { margin-left: auto; }
+
+  /* ── Loading / empty states ── */
+  .state-box {
+    text-align: center;
+    padding: 60px 20px;
+    color: var(--muted);
+  }
+  .state-box .icon { font-size: 40px; margin-bottom: 12px; }
+  .state-box p { font-size: 14px; }
+
+  .spinner {
+    width: 32px; height: 32px;
+    border: 3px solid var(--border);
+    border-top-color: var(--accent);
+    border-radius: 50%;
+    animation: spin .7s linear infinite;
+    margin: 0 auto 12px;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* ── Scan timestamp ── */
+  .scan-meta { font-size: 12px; color: var(--muted); margin-bottom: 16px; }
+
+  /* ── Whitelisted card ── */
+  .card.whitelisted { opacity: .5; }
+  .card.whitelisted .card-header { cursor: default; }
+
+  /* ── Tabs ── */
+  .tabs { display: flex; gap: 0; border-bottom: 1px solid var(--border); margin-bottom: 20px; }
+  .tab-btn {
+    background: none; border: none; border-bottom: 2px solid transparent;
+    padding: 8px 18px; font-size: 13px; color: var(--muted); cursor: pointer;
+    margin-bottom: -1px; border-radius: 0; transition: color .15s;
+  }
+  .tab-btn:hover { color: var(--text); }
+  .tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); }
+
+  /* ── Stats panel ── */
+  .stats-panel { display: none; }
+  .stats-panel.visible { display: block; }
+  .stat-row {
+    display: flex; align-items: center; gap: 10px;
+    padding: 6px 0; border-bottom: 1px solid rgba(255,255,255,.04);
+    font-size: 13px;
+  }
+  .stat-row:last-child { border-bottom: none; }
+  .stat-bar-bg { flex: 1; height: 8px; background: var(--border); border-radius: 4px; overflow: hidden; }
+  .stat-bar-fill { height: 100%; border-radius: 4px; }
+  .stat-count { font-size: 12px; color: var(--muted); white-space: nowrap; min-width: 60px; text-align: right; }
+  .stat-rule-id { font-family: monospace; font-size: 11px; padding: 1px 6px; border-radius: 4px; white-space: nowrap; min-width: 52px; text-align: center; }
+
+  /* ── Score breakdown tooltip ── */
+  .breakdown-list { margin-top: 8px; }
+  .breakdown-row { display: flex; justify-content: space-between; font-size: 12px; padding: 2px 0; color: var(--muted); }
+  .breakdown-row span:last-child { color: var(--text); }
+
+  /* ── Sparkline ── */
+  .sparkline { display: inline-block; vertical-align: middle; margin-left: 8px; }
+
+  /* ── Responsive ── */
+  @media (max-width: 600px) {
+    .summary { grid-template-columns: repeat(2, 1fr); }
+    .search-box { width: 100%; margin-left: 0; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1><span class="logo">🛡️</span> OpenClaw Security Auditor</h1>
+  <div class="header-right">
+    <span id="scan-status" style="font-size:12px;color:var(--muted)"></span>
+    <button class="btn-ghost" id="btn-export" title="Export CSV">⬇ CSV</button>
+    <button class="btn-primary" id="btn-scan">Scan Now</button>
+  </div>
+</header>
+
+<main>
+  <div id="summary" class="summary" style="display:none">
+    <div class="stat"><div class="num" id="s-total">0</div><div class="lbl">Skills Scanned</div></div>
+    <div class="stat high"><div class="num" id="s-high">0</div><div class="lbl">High Risk</div></div>
+    <div class="stat med"><div class="num" id="s-med">0</div><div class="lbl">Medium Risk</div></div>
+    <div class="stat low"><div class="num" id="s-low">0</div><div class="lbl">Low Risk</div></div>
+  </div>
+
+  <div id="filters" class="filters" style="display:none">
+    <button class="filter-btn active" data-filter="all">All</button>
+    <button class="filter-btn" data-filter="High">🔴 High</button>
+    <button class="filter-btn" data-filter="Medium">🟡 Medium</button>
+    <button class="filter-btn" data-filter="Low">🟢 Low</button>
+    <input class="search-box" id="search" type="text" placeholder="Search skills…">
+  </div>
+
+  <div id="scan-meta" class="scan-meta" style="display:none"></div>
+
+  <div id="tabs" class="tabs" style="display:none">
+    <button class="tab-btn active" data-tab="skills">Skills</button>
+    <button class="tab-btn" data-tab="stats">Stats</button>
+  </div>
+
+  <div id="tab-skills">
+    <div id="cards" class="cards"></div>
+  </div>
+
+  <div id="tab-stats" class="stats-panel">
+    <div id="stats-content" style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:20px"></div>
+  </div>
+
+  <div id="loading" class="state-box">
+    <div class="spinner"></div>
+    <p>Running security scan…</p>
+  </div>
+
+  <div id="empty" class="state-box" style="display:none">
+    <div class="icon">🔍</div>
+    <p>No skills found matching your filter.</p>
+  </div>
+</main>
+
+<script>
+"use strict";
+
+// ── State ─────────────────────────────────────────────────────────────────────
+let allResults   = [];
+let activeFilter = "all";
+let searchQuery  = "";
+let activeTab    = "skills";
+
+// ── API ───────────────────────────────────────────────────────────────────────
+async function fetchScan() {
+  const res = await fetch("/api/scan");
+  if (!res.ok) throw new Error(await res.text());
+  return res.json();
+}
+
+async function fetchStats() {
+  const res = await fetch("/api/stats");
+  if (!res.ok) throw new Error(await res.text());
+  return res.json();
+}
+
+async function whitelistAdd(name) {
+  await fetch("/api/whitelist/add", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ name }),
+  });
+}
+
+async function whitelistRemove(name) {
+  await fetch("/api/whitelist/remove", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ name }),
+  });
+}
+
+// ── Scan ──────────────────────────────────────────────────────────────────────
+async function runScan() {
+  setLoading(true);
+  document.getElementById("btn-scan").disabled = true;
+  document.getElementById("scan-status").textContent = "Scanning…";
+
+  try {
+    allResults = await fetchScan();
+    renderAll();
+    const ts = new Date().toLocaleTimeString();
+    document.getElementById("scan-status").textContent = `Last scan: ${ts}`;
+    document.getElementById("scan-meta").textContent =
+      `Scanned ${allResults.length} skill${allResults.length !== 1 ? "s" : ""} · ${ts}  (press R to rescan)`;
+    document.getElementById("scan-meta").style.display = "block";
+    document.getElementById("tabs").style.display = "";
+  } catch (err) {
+    showError(err.message);
+  } finally {
+    setLoading(false);
+    document.getElementById("btn-scan").disabled = false;
+  }
+}
+
+function setLoading(on) {
+  document.getElementById("loading").style.display = on ? "block" : "none";
+  if (!on) {
+    document.getElementById("summary").style.display = "";
+    document.getElementById("filters").style.display = "";
+  }
+}
+
+function showError(msg) {
+  document.getElementById("loading").innerHTML =
+    `<div class="icon">⚠️</div><p style="color:var(--high)">${msg}</p>`;
+}
+
+// ── Render ────────────────────────────────────────────────────────────────────
+function renderAll() {
+  updateSummary();
+  renderCards();
+  if (activeTab === "stats") renderStats();
+}
+
+function updateSummary() {
+  const high = allResults.filter(r => r.riskLevel === "High").length;
+  const med  = allResults.filter(r => r.riskLevel === "Medium").length;
+  const low  = allResults.filter(r => r.riskLevel === "Low").length;
+  document.getElementById("s-total").textContent = allResults.length;
+  document.getElementById("s-high").textContent  = high;
+  document.getElementById("s-med").textContent   = med;
+  document.getElementById("s-low").textContent   = low;
+}
+
+function filteredResults() {
+  return allResults.filter(r => {
+    const matchFilter = activeFilter === "all" || r.riskLevel === activeFilter;
+    const matchSearch = !searchQuery ||
+      r.name.toLowerCase().includes(searchQuery) ||
+      (r.behaviors || []).some(b => b.toLowerCase().includes(searchQuery)) ||
+      (r.triggeredRules || []).some(rule => rule.id.toLowerCase().includes(searchQuery) || rule.label.toLowerCase().includes(searchQuery));
+    return matchFilter && matchSearch;
+  });
+}
+
+function renderCards() {
+  const container = document.getElementById("cards");
+  const results   = filteredResults();
+
+  const order = { High: 0, Medium: 1, Low: 2 };
+  results.sort((a, b) => order[a.riskLevel] - order[b.riskLevel] || b.riskScore - a.riskScore);
+
+  document.getElementById("empty").style.display = results.length === 0 ? "block" : "none";
+
+  container.innerHTML = results.map(r => buildCard(r)).join("");
+
+  container.querySelectorAll(".card-header[data-name]").forEach(el => {
+    el.addEventListener("click", () => toggleCard(el.dataset.name));
+  });
+  container.querySelectorAll(".wl-btn").forEach(btn => {
+    btn.addEventListener("click", async (e) => {
+      e.stopPropagation();
+      const name     = btn.dataset.name;
+      const isListed = btn.dataset.listed === "true";
+      btn.disabled   = true;
+      if (isListed) await whitelistRemove(name);
+      else          await whitelistAdd(name);
+      await runScan();
+    });
+  });
+}
+
+// ── Stats panel ───────────────────────────────────────────────────────────────
+async function renderStats() {
+  const el = document.getElementById("stats-content");
+  el.innerHTML = `<div class="spinner" style="margin:20px auto"></div>`;
+  try {
+    const data = await fetchStats();
+    const maxCount = data.rules[0]?.count || 1;
+
+    let html = `<div style="margin-bottom:16px;font-size:13px;color:var(--muted)">
+      ${data.total} skills · avg risk score <strong style="color:var(--text)">${data.avgScore}/100</strong>
+    </div>`;
+
+    if (data.rules.length === 0) {
+      html += `<p style="color:var(--muted);font-size:13px">No rules triggered yet.</p>`;
+    } else {
+      html += `<div>`;
+      for (const rule of data.rules) {
+        const tier  = rule.id[0];
+        const color = tier === "H" ? "var(--high)" : tier === "M" ? "var(--med)" : "var(--low)";
+        const bgCls = tier === "H" ? "H" : tier === "M" ? "M" : "L";
+        const pct   = Math.round((rule.count / maxCount) * 100);
+        html += `
+        <div class="stat-row">
+          <span class="stat-rule-id ${bgCls}" style="background:${tier==="H"?"var(--high-bg)":tier==="M"?"var(--med-bg)":"var(--low-bg)"};color:${color}">${esc(rule.id)}</span>
+          <span style="flex:1;font-size:12px;color:var(--muted);min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="${esc(rule.label)}">${esc(rule.label)}</span>
+          <div class="stat-bar-bg" style="max-width:160px">
+            <div class="stat-bar-fill" style="width:${pct}%;background:${color}"></div>
+          </div>
+          <span class="stat-count">${rule.count}/${data.total} (${rule.pct}%)</span>
+        </div>`;
+      }
+      html += `</div>`;
+    }
+    el.innerHTML = html;
+  } catch (err) {
+    el.innerHTML = `<p style="color:var(--high);font-size:13px">Failed to load stats: ${esc(err.message)}</p>`;
+  }
+}
+
+// ── Card builder ──────────────────────────────────────────────────────────────
+function buildCard(r) {
+  const levelClass = r.riskLevel === "High" ? "high" : r.riskLevel === "Medium" ? "med" : "low";
+  const badgeClass = `badge-${levelClass}`;
+  const emoji      = r.riskLevel === "High" ? "🔴" : r.riskLevel === "Medium" ? "🟡" : "🟢";
+
+  const ringColor     = r.riskLevel === "High" ? "#f85149" : r.riskLevel === "Medium" ? "#d29922" : "#3fb950";
+  const circumference = 2 * Math.PI * 16;
+  const offset        = circumference - (r.riskScore / 100) * circumference;
+
+  const trustColor = r.trustScore.score >= 70 ? "#3fb950" : r.trustScore.score >= 40 ? "#d29922" : "#f85149";
+
+  const wlLabel = r.isWhitelisted ? "Remove from whitelist" : "Add to whitelist";
+  const wlClass = r.isWhitelisted ? "btn-danger btn-sm wl-btn" : "btn-ghost btn-sm wl-btn";
+
+  // Sparkline from trust history
+  const sparkline = buildSparkline(r.trustScore.history || []);
+
+  if (r.isWhitelisted) {
+    return `
+    <div class="card whitelisted ${levelClass}" id="card-${r.name}">
+      <div class="card-header">
+        <span class="card-name">${esc(r.name)}</span>
+        <span class="risk-badge ${badgeClass}">${emoji} ${r.riskLevel}</span>
+        <span style="font-size:12px;color:var(--muted);margin-left:4px">✅ Whitelisted</span>
+        <button class="${wlClass}" data-name="${esc(r.name)}" data-listed="true">${wlLabel}</button>
+      </div>
+    </div>`;
+  }
+
+  const rulesHtml = (r.triggeredRules || []).map(rule => {
+    const tier = rule.id[0] || "U";
+    const ev   = Array.isArray(rule.evidence) ? rule.evidence.join(" · ") : (rule.evidence || "");
+    return `
+    <div class="rule-row">
+      <span class="rule-id ${tier}">${esc(rule.id)}</span>
+      <div class="rule-label">
+        ${esc(rule.label)}
+        ${ev ? `<div class="rule-evidence">${esc(ev)}</div>` : ""}
+      </div>
+      <span class="rule-score">+${rule.score}pts</span>
+    </div>`;
+  }).join("");
+
+  // Score breakdown
+  const breakdownHtml = (r.scoreBreakdown || []).length > 0
+    ? `<div class="breakdown-list">` +
+      (r.scoreBreakdown || []).map(b =>
+        `<div class="breakdown-row"><span>[${esc(b.id)}] ${esc(b.label)}</span><span>+${b.score}pts</span></div>`
+      ).join("") +
+      `</div>`
+    : "";
+
+  const behaviorsHtml = (r.behaviors || [])
+    .map(b => `<span class="tag">${esc(b)}</span>`).join("");
+
+  const threatsHtml = (r.threats || [])
+    .map(t => `<div class="rec-item"><span class="rec-arrow">•</span><span>${esc(t)}</span></div>`).join("");
+
+  const simHtml = (r.simulation || [])
+    .map(s => `<div class="sim-box">${esc(s)}</div>`).join("");
+
+  const recsHtml = (r.recommendations || [])
+    .map(rec => `<div class="rec-item"><span class="rec-arrow">→</span><span>${esc(rec)}</span></div>`).join("");
+
+  return `
+  <div class="card ${levelClass}" id="card-${r.name}">
+    <div class="card-header" data-name="${esc(r.name)}">
+      <svg class="score-ring" viewBox="0 0 40 40" title="Risk score: ${r.riskScore}/100">
+        <circle class="track" cx="20" cy="20" r="16"/>
+        <circle class="fill" cx="20" cy="20" r="16"
+          stroke="${ringColor}"
+          stroke-dasharray="${circumference}"
+          stroke-dashoffset="${offset}"
+          transform="rotate(-90 20 20)"/>
+      </svg>
+      <div style="flex:1;min-width:0">
+        <div class="card-name">${esc(r.name)}</div>
+        <div class="card-score">${r.riskScore}/100 · ${r.fileCount} file${r.fileCount !== 1 ? "s" : ""}${sparkline ? ` ${sparkline}` : ""}</div>
+      </div>
+      <span class="risk-badge ${badgeClass}">${emoji} ${r.riskLevel}</span>
+      <button class="${wlClass}" data-name="${esc(r.name)}" data-listed="false">${wlLabel}</button>
+      <span class="chevron">▶</span>
+    </div>
+
+    <div class="card-body">
+
+      <section>
+        <h3>Trust Score</h3>
+        <div class="trust-bar-wrap">
+          <div class="trust-bar-bg">
+            <div class="trust-bar-fill" style="width:${r.trustScore.score}%;background:${trustColor}"></div>
+          </div>
+          <span class="trust-label">${r.trustScore.score}/100 · ${r.trustScore.scanCount} scan${r.trustScore.scanCount !== 1 ? "s" : ""}</span>
+        </div>
+      </section>
+
+      ${breakdownHtml ? `<section><h3>Score Breakdown</h3>${breakdownHtml}</section>` : ""}
+
+      ${behaviorsHtml ? `<section><h3>Detected Behaviors</h3><div class="tag-list">${behaviorsHtml}</div></section>` : ""}
+
+      ${rulesHtml ? `<section><h3>Triggered Rules</h3>${rulesHtml}</section>` : ""}
+
+      ${threatsHtml ? `<section><h3>Potential Threats</h3>${threatsHtml}</section>` : ""}
+
+      ${simHtml ? `<section><h3>Malicious Simulation</h3>${simHtml}</section>` : ""}
+
+      ${recsHtml ? `<section><h3>Recommended Actions</h3>${recsHtml}</section>` : ""}
+
+      <section style="margin-top:14px">
+        <div style="font-size:11px;color:var(--muted);word-break:break-all">${esc(r.location)}</div>
+      </section>
+
+    </div>
+  </div>`;
+}
+
+// ── Sparkline ─────────────────────────────────────────────────────────────────
+function buildSparkline(history) {
+  if (!history || history.length < 2) return "";
+  const scores = history.map(h => h.riskScore);
+  const max    = Math.max(...scores, 1);
+  const w = 40, h = 14, pad = 1;
+  const pts = scores.map((s, i) => {
+    const x = pad + (i / (scores.length - 1)) * (w - pad * 2);
+    const y = h - pad - ((s / max) * (h - pad * 2));
+    return `${x.toFixed(1)},${y.toFixed(1)}`;
+  }).join(" ");
+  const last  = scores[scores.length - 1];
+  const prev  = scores[scores.length - 2];
+  const color = last > prev ? "#f85149" : last < prev ? "#3fb950" : "#8b949e";
+  return `<svg class="sparkline" width="${w}" height="${h}" viewBox="0 0 ${w} ${h}" title="Risk trend (last ${scores.length} scans)">
+    <polyline points="${pts}" fill="none" stroke="${color}" stroke-width="1.5" stroke-linejoin="round"/>
+  </svg>`;
+}
+
+// ── Tabs ──────────────────────────────────────────────────────────────────────
+document.querySelectorAll(".tab-btn").forEach(btn => {
+  btn.addEventListener("click", () => {
+    document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+    activeTab = btn.dataset.tab;
+    document.getElementById("tab-skills").style.display = activeTab === "skills" ? "" : "none";
+    const statsPanel = document.getElementById("tab-stats");
+    statsPanel.classList.toggle("visible", activeTab === "stats");
+    if (activeTab === "stats") renderStats();
+  });
+});
+
+// ── Interactions ──────────────────────────────────────────────────────────────
+function toggleCard(name) {
+  const card = document.getElementById("card-" + name);
+  if (card) card.classList.toggle("open");
+}
+
+document.querySelectorAll(".filter-btn").forEach(btn => {
+  btn.addEventListener("click", () => {
+    document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+    activeFilter = btn.dataset.filter;
+    renderCards();
+  });
+});
+
+document.getElementById("search").addEventListener("input", e => {
+  searchQuery = e.target.value.toLowerCase().trim();
+  renderCards();
+});
+
+document.getElementById("btn-scan").addEventListener("click", runScan);
+
+document.getElementById("btn-export").addEventListener("click", () => {
+  window.location.href = "/api/export/csv";
+});
+
+// Keyboard shortcut: R = rescan
+document.addEventListener("keydown", e => {
+  if (e.key === "r" || e.key === "R") {
+    if (document.activeElement.tagName !== "INPUT") runScan();
+  }
+});
+
+// ── Utility ───────────────────────────────────────────────────────────────────
+function esc(str) {
+  return String(str ?? "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
+}
+
+// ── Boot ──────────────────────────────────────────────────────────────────────
+runScan();
+</script>
+</body>
+</html>

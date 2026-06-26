@@ -1,0 +1,24 @@
+{
+  "name": "browser-local-chrome",
+  "version": "1.0.0",
+  "description": "本地 Chrome 调试模式浏览器自动化配置",
+  "main": "scripts/setup.js",
+  "author": "Like Liu",
+  "license": "MIT",
+  "scripts": {
+    "start": "node scripts/start-chrome.js",
+    "stop": "node scripts/stop-chrome.js",
+    "config": "node scripts/configure-browser.js",
+    "status": "node scripts/check-status.js",
+    "setup": "node scripts/setup.js",
+    "troubleshoot": "node scripts/troubleshoot.js"
+  },
+  "bin": {
+    "browser-local-chrome": "./scripts/setup.js"
+  },
+  "config": {
+    "cdpPort": 9222,
+    "userDataDir": "C:\\chrome-debug-profile",
+    "chromePath": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe"
+  }
+}

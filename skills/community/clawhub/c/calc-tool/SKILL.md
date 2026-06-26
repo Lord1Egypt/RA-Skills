@@ -1,35 +1,33 @@
 ---
-name: "Calc Tool"
-description: "Perform mathematical calculations from the command line. Arithmetic, trig, and unit conversion."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/calc-tool"
-sourceUrl: "https://clawhub.ai/skills/calc-tool"
+name: calc-tool
+description: Perform mathematical calculations from the command line. Arithmetic, trig, and unit conversion.
 ---
 
-# Calc Tool
+# Calc Tool - CLI Calculator
 
-> Perform mathematical calculations from the command line. Arithmetic, trig, and unit conversion.
+Command-line calculator supporting arithmetic, trig, and unit conversion.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/calc-tool`
-- **Source URL:** [https://clawhub.ai/skills/calc-tool](https://clawhub.ai/skills/calc-tool)
+## Quick Start
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/calc-tool
+calc-tool '2 + 2'
 ```
+
+## Features
+
+- Basic arithmetic
+- Trig functions (sin, cos, tan)
+- Unit conversion
+- Expression grouping
+
+## Examples
+
+```bash
+calc-tool '2 + 2'
+calc-tool 'sin(45) * 10'
+calc-tool '100 cm to inches'
+```
+
+## See Also
+
+- Related documentation: `man bc` (if available)

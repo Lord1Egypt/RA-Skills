@@ -1,35 +1,35 @@
 ---
-name: "Bytesagain Crypto Tax Calc"
+name: bytesagain-crypto-tax-calc
+version: "3.0.0"
 description: "Cryptocurrency tax reference — IRS guidance, FIFO/LIFO/HIFO cost basis methods, Form 8949, tax loss harvesting, and DeFi transaction categorization"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/bytesagain-crypto-tax-calc"
-sourceUrl: "https://clawhub.ai/skills/bytesagain-crypto-tax-calc"
+author: "BytesAgain"
+homepage: "https://bytesagain.com"
+source: "https://github.com/bytesagain/ai-skills"
+tags: [crypto-tax, irs, capital-gains, form-8949, defi]
+category: "blockchain"
 ---
 
-# Bytesagain Crypto Tax Calc
+# Crypto Tax Calc
 
-> Cryptocurrency tax reference — IRS guidance, FIFO/LIFO/HIFO cost basis methods, Form 8949, tax loss harvesting, and DeFi transaction categorization
+Cryptocurrency tax reference — IRS guidance, FIFO/LIFO/HIFO cost basis methods, Form 8949, tax loss harvesting, and DeFi transaction categorization. No API keys or credentials required — outputs reference documentation only.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/bytesagain-crypto-tax-calc`
-- **Source URL:** [https://clawhub.ai/skills/bytesagain-crypto-tax-calc](https://clawhub.ai/skills/bytesagain-crypto-tax-calc)
+## Commands
 
-## Overview
+| Command | Description |
+|---------|-------------|
+| `intro` | Taxable events, tax categories, IRS guidance |
+| `standards` | Cost basis methods, Form 8949, reporting |
+| `troubleshooting` | Missing basis, DeFi categorization, wash sales |
+| `performance` | Tax loss harvesting, donation strategy |
+| `security` | Record-keeping, audit preparation, FBAR |
+| `migration` | Spreadsheet to tax software, exchange exports |
+| `cheatsheet` | Tax brackets, form fields, key dates |
+| `faq` | Reporting requirements, gas fees, IRS tracking |
 
+## Output Format
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/bytesagain-crypto-tax-calc
-```
+All commands output plain-text reference documentation via heredoc. No external API calls, no credentials needed, no network access.
+
+---
+
+*Powered by BytesAgain | bytesagain.com | hello@bytesagain.com*

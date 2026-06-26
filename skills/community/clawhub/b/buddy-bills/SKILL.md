@@ -1,35 +1,103 @@
 ---
-name: "账单伙伴"
-description: "智能收支手帐。记录个人和家庭日常收支、管理固定支出、生成月度汇总报告。 触发场景：用户说"记账"、"花了多少"、"买了xxx花了xxx"、"这个月支出"、"工资发了"、"转账给xxx"、"消费记录"、"月底汇总"、"固定支出"、"收支明细"、"结余多少"、"储蓄率"、"帮我记一笔"、"调出账单"、"查看消费"等与..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/buddy-bills"
-sourceUrl: "https://clawhub.ai/skills/buddy-bills"
+name: buddy-bills
+description: 智能收支手帐。记录个人和家庭日常收支、管理固定支出、生成月度汇总报告。
+  触发场景：用户说"记账"、"花了多少"、"买了xxx花了xxx"、"这个月支出"、"工资发了"、"转账给xxx"、"消费记录"、"月底汇总"、"固定支出"、"收支明细"、"结余多少"、"储蓄率"、"帮我记一笔"、"调出账单"、"查看消费"等与收支记录、财务查询、预算管理相关的请求时触发。
+metadata:
+  openclaw:
+    emoji: "💰"
 ---
 
-# 账单伙伴
+# 智能收支手帐
 
-> 智能收支手帐。记录个人和家庭日常收支、管理固定支出、生成月度汇总报告。 触发场景：用户说"记账"、"花了多少"、"买了xxx花了xxx"、"这个月支出"、"工资发了"、"转账给xxx"、"消费记录"、"月底汇总"、"固定支出"、"收支明细"、"结余多少"、"储蓄率"、"帮我记一笔"、"调出账单"、"查看消费"等与...
+## 新用户引导
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/buddy-bills`
-- **Source URL:** [https://clawhub.ai/skills/buddy-bills](https://clawhub.ai/skills/buddy-bills)
+**检测方式**：首次触发时检查数据目录下 `finance-records/` 是否存在。
+- 不存在 → 判定为新用户，执行引导流程
+- 已存在 → 直接处理用户请求
 
-## Overview
+**新用户引导流程**：
 
+1. 发送欢迎语：
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/buddy-bills
 ```
+💰 欢迎使用智能收支手帐！
+
+我可以帮你：
+📝 随口记账 — 直接说"午饭花了35元"，我自动记好
+📊 查看消费 — "这个月花了多少？""餐饮超了吗？"
+📅 月底报告 — 每月自动生成完整收支汇总
+🔄 固定支出 — 房贷、工资等按规则自动录入
+
+开始前，我需要了解你的基本情况：
+1. 月收入大概是多少？工资几号发？
+2. 每月有哪些固定支出？（房贷、车贷、保险等）
+3. 有年付的固定支出吗？（物业费、车位费等）
+
+可以逐条回答，也可以一起说 😊
+```
+
+2. 根据用户回答，依次完成：
+   - 创建 `finance-records/` 目录结构
+   - 写入 `收入/收入配置.yaml`
+   - 写入 `固定支出配置.yaml`（仅写入用户提供的信息，不预设金额）
+   - 创建当月各分类目录
+   - 初始化 `index.yaml`
+
+3. 完成后告知用户可以开始记账。
+
+---
+
+## 数据存储路径
+`{workspace}/finance-records/`
+
+## 查询优先级（重要）
+
+1. **先读 `summary/YYYY/MM.yaml`**（月度汇总，已存在则直接用）
+2. 汇总不存在时读 `index.yaml`（总索引）
+3. 需要明细时才读对应分类的月份文件
+
+> 数据结构详见 [data-schema.md](references/data-schema.md)
+
+## 记账规则
+
+### 自然语言解析
+用户随口说即可记录，AI 自动提取金额、商户、日期、分类。
+不确定时询问用户确认，不要猜测。
+
+### 分类体系
+> 详见 [categories.md](references/categories.md)
+
+常用分类：餐饮 / 生活购物 / 医疗 / 通讯 / 交通 / 娱乐 / 房贷 / 家庭转账 / 医保 / 收入
+
+### 固定支出自动录入
+读取 `finance-records/固定支出配置.yaml`，按配置中的规则自动录入。
+- 每月固定支出：按配置的发放日/扣款日触发
+- 年付项目：用户告知缴费后手动录入
+- 配置文件不存在时，提示用户先完成初始化
+
+## 月度汇总生成规则
+
+- **触发时机**：每月最后一天，或用户主动要求
+- **生成路径**：`summary/YYYY/MM.yaml`
+- **内容**：收支总览 + 每周明细 + 分类排行 + 统计分析 + 环比对比
+- **生成后**：同步更新 `index.yaml` 总索引
+
+## 数据录入后必须同步更新
+
+每次录入新数据后，必须同步更新：
+1. 对应分类的月份文件（`分类/YYYY/MM.yaml`）
+2. 对应分类的年度索引（`分类/index.yaml`）
+3. 总索引（`index.yaml`）
+4. 当月汇总文件（`summary/YYYY/MM.yaml`，若已存在）
+
+## 数据修正规则
+
+用户说"刚才记错了"、"修改xxx"、"删除xxx"时：
+1. 读取对应文件，找到该条记录
+2. 展示原始数据，让用户确认修改内容
+3. 修改后同步更新所有关联文件（同上方同步规则）
+4. 告知用户修改结果
+
+## 数据安全
+- 所有数据本地存储，严禁上传至任何网络服务
+- 财务数据属于用户隐私，不在任何公开场合引用

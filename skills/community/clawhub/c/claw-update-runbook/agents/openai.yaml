@@ -1,0 +1,7 @@
+interface:
+  display_name: "OpenClaw Update Runbook"
+  short_description: "Runbook for OpenClaw updates and repairs"
+  default_prompt: "Use $openclaw-update-runbook to update OpenClaw safely, inspect post-update regressions, and verify the system is healthy."
+
+policy:
+  allow_implicit_invocation: true

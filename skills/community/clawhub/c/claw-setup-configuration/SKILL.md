@@ -1,35 +1,29 @@
 ---
-name: "Claw Setup Configuration"
-description: "NotebookLM-powered setup and configuration assistant for OpenClaw. 185 sources, cited answers."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/claw-setup-configuration"
-sourceUrl: "https://clawhub.ai/skills/claw-setup-configuration"
+name: claw-setup-configuration
+description: NotebookLM-powered setup and configuration assistant for OpenClaw. 185 sources, cited answers.
+tags:
+  - setup
+  - configuration
+  - notebooklm
+  - assistant
+  - support
 ---
 
-# Claw Setup Configuration
+# claw-setup-configuration
 
-> NotebookLM-powered setup and configuration assistant for OpenClaw. 185 sources, cited answers.
+A NotebookLM-powered setup and configuration assistant for OpenClaw.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/claw-setup-configuration`
-- **Source URL:** [https://clawhub.ai/skills/claw-setup-configuration](https://clawhub.ai/skills/claw-setup-configuration)
+## What it does
 
-## Overview
+- Answers setup and configuration questions about OpenClaw with cited sources
+- Powered by 185 curated sources from official OpenClaw documentation
+- Provides accurate, referenced answers in ~40 lines
+- Covers installation, configuration, skills, hooks, agents, and troubleshooting
 
+## Usage
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/claw-setup-configuration
-```
+Ask any question about OpenClaw setup or configuration. The assistant will respond with cited answers from the official documentation.
+
+## Author
+
+Carlos De La Torre — AI Orchestration Architect

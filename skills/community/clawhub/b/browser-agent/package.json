@@ -1,0 +1,55 @@
+{
+  "name": "browser-agent",
+  "version": "1.0.0",
+  "description": "浏览器自动化 Agent 技能，基于 Chrome CDP 实现 AI 直接控制浏览器",
+  "displayName": "Browser Agent - Chrome CDP 自动化",
+  "author": "peng yi (@Justinyi4413)",
+  "license": "MIT",
+  "keywords": [
+    "browser",
+    "automation",
+    "cdp",
+    "chrome",
+    "agent",
+    "websocket",
+    "ai-control"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/openclaw",
+    "directory": "skills/browser-agent"
+  },
+  "scripts": {
+    "check": "python scripts/browser_agent.py --check",
+    "test": "python scripts/browser_agent.py --url https://example.com --action screenshot"
+  },
+  "dependencies": {
+    "python": ">=3.8",
+    "websocket-client": ">=1.6.0",
+    "requests": ">=2.31.0"
+  },
+  "engines": {
+    "openclaw": ">=0.6.0"
+  },
+  "categories": [
+    "automation",
+    "browser",
+    "developer-tools"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "browser-agent.check",
+        "title": "检查浏览器连接",
+        "script": "scripts/browser_agent.py",
+        "args": ["--check"]
+      },
+      {
+        "command": "browser-agent.screenshot",
+        "title": "网页截图",
+        "script": "scripts/browser_agent.py",
+        "args": ["--action", "screenshot"]
+      }
+    ]
+  }
+}

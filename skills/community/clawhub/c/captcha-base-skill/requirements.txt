@@ -1,0 +1,5 @@
+requests==2.31.0
+numpy==1.26.4
+Pillow==10.4.0
+opencv-python-headless==4.10.0.84
+ddddocr==1.5.6

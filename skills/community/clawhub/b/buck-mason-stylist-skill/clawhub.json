@@ -1,0 +1,138 @@
+{
+  "name": "buck-mason-stylist-skill",
+  "namespace": "nickmerwin",
+  "version": "0.7.2",
+  "visibility": "public",
+  "description": "Personal shopping skill for Buck Mason \u2014 stock checks, wardrobe gap analysis, default gpt-image-2 virtual try-on lookbooks with voting, and one-shot fully agent-driven MPP checkout via stripe/link-cli. Talks to the pima.io MCP at /mcp/buckmason/*.",
+  "homepage": "https://github.com/pima-io/buck-mason-stylist-skill",
+  "repository": "https://github.com/pima-io/buck-mason-stylist-skill",
+  "license": "MIT",
+  "primaryEnv": [],
+  "env": [],
+  "optional_env": [
+    "OPENAI_API_KEY"
+  ],
+  "envDetails": {
+    "OPENAI_API_KEY": {
+      "required": false,
+            "conditional": "Default for any unqualified lookbook request: Premium-tier gpt-image-2 virtual try-on imagery, with Editorial/Minimum used only when Premium prerequisites are missing, fail, or the customer explicitly asks for no AI. Stock checks, wardrobe gap analysis, recommend, MPP checkout, and order tracking are all unaffected by absence.",
+      "purpose": "OpenAI /v1/images/edits with model gpt-image-2 for AI try-on imagery. Optional capability, not a hard prereq.",
+      "format": "OpenAI API secret key (sk-...)",
+      "obtain_url": "https://platform.openai.com/api-keys",
+      "verification_required": "gpt-image-2 \u2014 see https://help.openai.com/en/articles/10910291",
+      "how_to_set": "export OPENAI_API_KEY=sk-..."
+    }
+  },
+  "requires": {
+    "binaries": [
+      "curl",
+      "jq"
+    ],
+    "optional_binaries": [
+      "magick"
+    ],
+    "python": [
+      "python-pptx",
+      "Pillow"
+    ],
+    "optional_clis": [
+      "@stripe/link-cli"
+    ]
+  },
+  "optionalCliDetails": {
+    "@stripe/link-cli": {
+      "install": "npm i -g @stripe/link-cli",
+      "publisher": "Stripe (verified npm publisher)",
+      "source": "https://github.com/stripe/link-cli",
+      "npm": "https://www.npmjs.com/package/@stripe/link-cli",
+      "purpose": "MPP fully-agent-driven checkout (workflow #4 step 3)",
+      "notes": "Install only from the @stripe scope on npm. Pin to a reviewed version in production deployments. The skill never bundles or vendors this CLI."
+    }
+  },
+  "categories": [
+    "commerce",
+    "image-generation",
+    "lookbook"
+  ],
+  "tags": [
+    "buck-mason",
+    "pima",
+    "stylist",
+    "shopping",
+    "stock",
+    "mcp"
+  ],
+  "permissions": {
+    "network": [
+      {
+        "host": "pima.io",
+                "purpose": "MCP catalog/stock/locations/checkout"
+      },
+      {
+        "host": "www.buckmason.com",
+                "purpose": "MCP catalog/stock/locations/checkout (public alias)"
+      },
+      {
+        "host": "cdn.shopify.com",
+        "purpose": "Product imagery for lookbook generation"
+      },
+      {
+        "host": "api.openai.com",
+        "purpose": "Image generation (gpt-image-2). Default path for unqualified lookbook requests when OPENAI_API_KEY is set and the profile has enough reference photos.",
+        "opt_in": true,
+        "trigger": "Workflow #3 default try-on; OPENAI_API_KEY present"
+      },
+      {
+        "host": "api.cloudflare.com",
+        "purpose": "Cloudflare Pages deploy of HTML lookbook plus default KV-backed voting via wrangler. Operator-installed CLI; the skill's scripts/deploy-lookbook.sh shells out to it.",
+        "opt_in": true,
+        "trigger": "scripts/deploy-lookbook.sh invocation",
+        "via": "wrangler (operator-installed, https://github.com/cloudflare/workers-sdk)"
+      },
+      {
+        "host": "*.pages.dev",
+        "purpose": "Generated HTML lookbook destination on Cloudflare Pages. URL is returned to the customer; the skill itself does not POST after deploy.",
+        "opt_in": true,
+        "trigger": "scripts/deploy-lookbook.sh invocation",
+        "via": "wrangler (operator-installed)"
+      },
+      {
+        "host": "api.stripe.com",
+        "purpose": "Stripe Link / SPT mint, reached only by @stripe/link-cli when the customer push-approves a fully-agent-driven MPP checkout. The skill never touches api.stripe.com directly.",
+        "opt_in": true,
+        "trigger": "Workflow #4 step 3 MPP path; @stripe/link-cli installed",
+        "via": "@stripe/link-cli (operator-installed)"
+      }
+    ],
+    "network_alternatives_documented_only": [
+      {
+        "menu": ["surge.sh", "*.surge.sh", "api.netlify.com", "*.netlify.app", "api.vercel.com", "*.vercel.app", "api.github.com", "gist.githubusercontent.com", "0x0.st", "s3.amazonaws.com"],
+        "purpose": "Alternate hosting destinations for the HTML lookbook listed as a menu in references/hosting-options.md. The skill ships ONLY the Cloudflare Pages wrapper (scripts/deploy-lookbook.sh). All other entries are operator-driven via their own pre-installed CLIs (npx surge, gh gist, curl 0x0.st, etc.) that this skill neither bundles nor invokes. Same trust model as @stripe/link-cli — listed here for full disclosure, not as skill egress."
+      }
+    ],
+    "filesystem": [
+      {
+        "path": "<workspace>/profile.md",
+        "mode": "read"
+      },
+      {
+        "path": "<workspace>/wardrobe.md",
+        "mode": "read"
+      },
+      {
+        "path": "<workspace>/events.md",
+        "mode": "read"
+      },
+      {
+        "path": "<workspace>/lookbook/",
+        "mode": "write",
+        "purpose": "Generated lookbook PNG/PPTX/HTML output"
+      },
+      {
+        "path": "~/.buck-mason-stylist/wishlist.jsonl",
+        "mode": "read-write",
+        "purpose": "Cross-session wishlist + purchase history. Appended after html-cart handoff selections and successful MPP orders so the agent has continuity across sessions. JSONL, append-only; contains slug + size + qty + lookbook_id + order_id + timestamps. No card data, no shipping address, no email."
+      }
+    ]
+  }
+}

@@ -1,35 +1,73 @@
 ---
-name: "chattts_local"
-description: "本地 ChatTTS 语音合成技能。使用 ChatTTS 模型将文字转换为自然流畅的中文语音。完全本地运行，免费无需 API Key。支持调节语速、音调、情感。使用场景：(1) QQ 消息语音回复 (2) 文档朗读 (3) 通知提醒语音化 (4) 长文本转语音"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/chattts-local"
-sourceUrl: "https://clawhub.ai/skills/chattts-local"
+name: chattts-local
+description: 本地 ChatTTS 语音合成技能。使用 ChatTTS 模型将文字转换为自然流畅的中文语音。完全本地运行，免费无需 API Key。支持调节语速、音调、情感。使用场景：(1) QQ 消息语音回复 (2) 文档朗读 (3) 通知提醒语音化 (4) 长文本转语音
 ---
 
-# chattts_local
+# ChatTTS 本地语音合成
 
-> 本地 ChatTTS 语音合成技能。使用 ChatTTS 模型将文字转换为自然流畅的中文语音。完全本地运行，免费无需 API Key。支持调节语速、音调、情感。使用场景：(1) QQ 消息语音回复 (2) 文档朗读 (3) 通知提醒语音化 (4) 长文本转语音
+## 快速开始
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/chattts-local`
-- **Source URL:** [https://clawhub.ai/skills/chattts-local](https://clawhub.ai/skills/chattts-local)
+### 使用方法
 
-## Overview
+在消息中要求生成语音，例如：
+- "用语音回复我"
+- "把这段话读出来：[文字内容]"
+- "生成语音：今天天气真好"
 
+### 输出格式
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/chattts-local
+使用 `<qqvoice>` 标签发送语音文件：
 ```
+<qqvoice>/path/to/output.wav</qqvoice>
+```
+
+## 技术细节
+
+### 模型信息
+
+- **模型**: ChatTTS
+- **语言**: 中文（主要优化）
+- **采样率**: 24000Hz
+- **格式**: WAV/MP3
+- **运行**: 本地 GPU/CPU
+
+### 参数配置
+
+| 参数 | 默认值 | 说明 |
+|------|--------|------|
+| speed | 1.0 | 语速 (0.5-2.0) |
+| pitch | 1.0 | 音调 (0.5-2.0) |
+| temperature | 0.3 | 随机性 (0-1) |
+| top_k | 20 | 采样参数 |
+| top_p | 0.7 | 采样参数 |
+
+## 脚本调用
+
+使用 `scripts/tts.py` 生成语音：
+
+```bash
+python3 scripts/tts.py "要转换的文字" --output output.wav
+```
+
+### 参数
+
+- `text`: 要转换的文字（必填）
+- `--output`: 输出文件路径
+- `--speed`: 语速调节
+- `--pitch`: 音调调节
+- `--seed`: 随机种子（固定音色）
+
+## 依赖安装
+
+首次使用需要安装依赖：
+
+```bash
+pip install ChatTTS torch torchaudio
+```
+
+## 注意事项
+
+1. **首次运行**会下载模型（约 500MB）
+2. **GPU 加速**可选，CPU 也能运行但较慢
+3. **长文本**建议分段处理（<500 字/段）
+4. **音色**由 seed 参数控制，固定 seed 可复现相同音色

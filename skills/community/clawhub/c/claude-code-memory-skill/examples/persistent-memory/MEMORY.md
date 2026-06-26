@@ -1,0 +1,4 @@
+- [User Profile](user-profile.md) - This user is strong in backend systems and prefers frontend explanations that tie back to architecture
+- [Testing Policy](testing-policy.md) - Changes touching persistence should be validated against a real database
+- [Release Context](release-context.md) - Non-critical merges are avoided during the mobile release window
+- [Latency Dashboard](external-reference.md) - Request-path changes should be checked against the on-call latency dashboard

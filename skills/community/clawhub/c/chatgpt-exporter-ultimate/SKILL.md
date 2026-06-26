@@ -1,35 +1,37 @@
 ---
-name: "TinkerClaw ChatGPT Exporter"
-description: "Export all your ChatGPT conversations instantly — full context, timestamps, and metadata in seconds. Built for the TinkerClaw fork — github.com/globalcaos/ti..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/chatgpt-exporter-ultimate"
-sourceUrl: "https://clawhub.ai/skills/chatgpt-exporter-ultimate"
+name: chatgpt-exporter-ultimate
+version: 1.3.1
+description: "Export all your ChatGPT conversations instantly — full context, timestamps, and metadata in seconds. Built for the TinkerClaw fork — github.com/globalcaos/tinkerclaw."
+metadata:
+  openclaw:
+    owner: kn7623hrcwt6rg73a67xw3wyx580asdw
+    category: utilities
+    tags:
+      - chatgpt
+      - export
+      - backup
+      - conversations
+    license: MIT
 ---
 
-# TinkerClaw ChatGPT Exporter
+# ChatGPT Exporter Ultimate
 
-> Export all your ChatGPT conversations instantly — full context, timestamps, and metadata in seconds. Built for the TinkerClaw fork — github.com/globalcaos/ti...
+Your entire ChatGPT history, exported in seconds — not tomorrow.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/chatgpt-exporter-ultimate`
-- **Source URL:** [https://clawhub.ai/skills/chatgpt-exporter-ultimate](https://clawhub.ai/skills/chatgpt-exporter-ultimate)
+## What You Get
 
-## Overview
+- **Every conversation.** Projects, chats, timestamps, roles, metadata. Nothing left behind.
+- **Instant.** No 24-hour wait. No email with a ZIP of cryptic JSON. Just your data, now.
+- **Context preserved.** Conversations stay readable. Who said what, when, and why — all intact.
 
+## How It Works
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/chatgpt-exporter-ultimate
-```
+Install the skill. Run it. Get your full export. That's it.
+
+ChatGPT's built-in export makes you wait a day and hands you raw JSON. This skill respects your time.
+
+**Won't:** email you a ZIP file 24 hours later like you requested declassified government documents.
+
+👉 Explore the full project: [github.com/globalcaos/clawdbot-moltbot-openclaw](https://github.com/globalcaos/clawdbot-moltbot-openclaw)
+
+*Clone it. Fork it. Break it. Make it yours.*

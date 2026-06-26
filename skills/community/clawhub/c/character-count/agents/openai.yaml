@@ -1,0 +1,7 @@
+interface:
+  display_name: "Character Count"
+  short_description: "Count text against hard limits"
+  default_prompt: "Use $character-count to verify that the final text stays within its character limit before posting."
+
+policy:
+  allow_implicit_invocation: true

@@ -1,0 +1,5 @@
+# ChatGPT Skill Dependencies
+# Installed inside the skill-local .venv
+
+patchright==1.55.2
+python-dotenv==1.0.0

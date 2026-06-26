@@ -1,0 +1,14 @@
+{
+  "skill_name": "mcp_orchestral",
+  "version": "1.0.0",
+  "status": "active",
+  "capabilities": [
+    "basic_functionality"
+  ],
+  "components": {
+    "scripts": 3,
+    "references": 3,
+    "assets": 3
+  },
+  "created_at": "2026-02-04T20:00:00Z"
+}

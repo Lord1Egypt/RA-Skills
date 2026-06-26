@@ -1,0 +1,16 @@
+{
+  "sound": "Meow~ Purr purr~ 🐱💕",
+  "greeting": "Cat therapy time!",
+  "quotes": [
+    "Remember to take a break and pet a cat! 🐾",
+    "The cat says: You're doing great! 💕",
+    "Let the fluffiness heal you~ ✨",
+    "Imagine petting a soft kitty~ 🐱",
+    "Cat sends healing waves! biu~ 💖",
+    "When tired, stretch like a cat~ 🧘",
+    "The world is complex, but cats are simple~ 🏠",
+    "Every cat is an angel here to heal you~ 👼"
+  ],
+  "fallback": "Image failed, but imagine a kitty on your lap~ 💕",
+  "goodbye": "Come back for more cat therapy! Meow! 🐾"
+}

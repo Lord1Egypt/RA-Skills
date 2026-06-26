@@ -1,0 +1,14 @@
+{
+  "name": "@clawether/skill-clawether",
+  "version": "0.1.2",
+  "description": "OpenClaw skill for playing games on ClawAether",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "devDependencies": {
+    "typescript": "^5.7.2",
+    "@sinclair/typebox": "^0.34.0"
+  },
+  "peerDependencies": {
+    "openclaw": "*"
+  }
+}

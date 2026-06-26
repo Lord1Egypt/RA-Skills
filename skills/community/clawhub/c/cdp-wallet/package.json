@@ -1,0 +1,44 @@
+{
+  "name": "openclaw-cdp-wallet-skill",
+  "version": "0.2.2",
+  "description": "OpenClaw / Hermes / agentskills.io skill: CDP server wallet v2 with USDC sending and x402 client capability on Base",
+  "type": "module",
+  "main": "src/index.js",
+  "bin": {
+    "cdp-wallet": "src/index.js"
+  },
+  "files": [
+    "src",
+    "SKILL.md",
+    "README.md",
+    "LICENSE",
+    ".env.example"
+  ],
+  "scripts": {
+    "start": "node src/index.js",
+    "address": "node src/index.js address",
+    "balance": "node src/index.js balance",
+    "history": "node src/index.js history"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "dependencies": {
+    "@coinbase/cdp-sdk": "^1.40.0",
+    "@x402/core": "^2.0.0",
+    "@x402/evm": "^2.0.0",
+    "@x402/fetch": "^2.0.0",
+    "bs58": "^6.0.0",
+    "commander": "^12.1.0",
+    "dotenv": "^16.4.5",
+    "viem": "^2.21.0"
+  },
+  "overrides": {
+    "axios": "^1.16.0"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Ales375/openclaw-cdp-wallet-skill"
+  }
+}

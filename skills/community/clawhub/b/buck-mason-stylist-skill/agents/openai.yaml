@@ -1,0 +1,5 @@
+interface:
+  display_name: "Buck Mason Stylist"
+  short_description: "Shop Buck Mason with fit-aware MPP checkout"
+  brand_color: "#2F3A33"
+  default_prompt: "Use $buck-mason-stylist to build a gpt-image-2 Buck Mason lookbook with voting and fully agent-driven MPP checkout via link-cli."

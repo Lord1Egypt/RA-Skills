@@ -1,0 +1,6 @@
+{
+  "name": "chrome-cdp-skill",
+  "version": "1.0.6",
+  "description": "Chrome CDP skill bundle for OpenClaw / ClawHub",
+  "main": "SKILL.md"
+}

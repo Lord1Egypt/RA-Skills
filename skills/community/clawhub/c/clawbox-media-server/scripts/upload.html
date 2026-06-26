@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LAN File Upload</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      max-width: 600px;
+      margin: 40px auto;
+      padding: 20px;
+      background: #f5f5f5;
+      color: #333;
+    }
+    h1 { margin-bottom: 10px; font-size: 24px; }
+    p.subtitle { color: #666; margin-bottom: 30px; }
+    .dropzone {
+      border: 3px dashed #007bff;
+      border-radius: 12px;
+      padding: 60px 20px;
+      text-align: center;
+      background: white;
+      cursor: pointer;
+      transition: all 0.2s;
+      margin-bottom: 20px;
+    }
+    .dropzone:hover, .dropzone.dragover {
+      border-color: #0056b3;
+      background: #f0f8ff;
+    }
+    .dropzone p { margin: 0; color: #666; font-size: 16px; }
+    .dropzone input[type="file"] {
+      position: absolute;
+      width: 0;
+      height: 0;
+      opacity: 0;
+    }
+    .files-list {
+      background: white;
+      border-radius: 8px;
+      padding: 15px;
+      margin-top: 20px;
+    }
+    .file-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px;
+      border-bottom: 1px solid #eee;
+    }
+    .file-item:last-child { border-bottom: none; }
+    .file-name { font-weight: 500; word-break: break-all; }
+    .file-status { font-size: 14px; }
+    .status-success { color: #28a745; }
+    .status-error { color: #dc3545; }
+    .status-uploading { color: #007bff; }
+    .progress-bar {
+      height: 4px;
+      background: #e9ecef;
+      border-radius: 2px;
+      margin-top: 8px;
+      overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%;
+      background: #007bff;
+      width: 0%;
+      transition: width 0.2s;
+    }
+    .clear-btn {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background: #6c757d;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+    .clear-btn:hover { background: #5a6268; }
+    .note {
+      margin-top: 30px;
+      padding: 15px;
+      background: #fff3cd;
+      border-radius: 8px;
+      font-size: 14px;
+      color: #856404;
+    }
+  </style>
+</head>
+<body>
+  <h1>📤 LAN File Upload</h1>
+  <p class="subtitle">Send files to the agent on your local network</p>
+
+  <div class="dropzone" id="dropzone">
+    <p>📁 Drop files here or click to select</p>
+    <input type="file" id="fileInput" multiple>
+  </div>
+
+  <div class="files-list" id="filesList" style="display: none;"></div>
+
+  <button class="clear-btn" onclick="clearFiles()" style="display: none;" id="clearBtn">Clear Completed</button>
+
+  <div class="note">
+    <strong>Note:</strong> Uploaded files become accessible to anyone on your LAN via the media server. Use only on trusted networks.
+  </div>
+
+  <script>
+    // For upload, use same origin (relative URL) to avoid cross-origin issues
+    const UPLOAD_URL = 'upload';
+    // Media server runs on different port (18801), so we need the hostname to construct URLs
+    const hostname = window.location.hostname || 'localhost';
+    const MEDIA_URL_BASE = `http://${hostname}:18801/`;
+
+    const dropzone = document.getElementById('dropzone');
+    const fileInput = document.getElementById('fileInput');
+    const filesList = document.getElementById('filesList');
+    const clearBtn = document.getElementById('clearBtn');
+
+    let files = [];
+
+    dropzone.addEventListener('click', () => fileInput.click());
+    fileInput.addEventListener('change', (e) => handleFiles(e.target.files));
+
+    dropzone.addEventListener('dragover', (e) => {
+      e.preventDefault();
+      dropzone.classList.add('dragover');
+    });
+    dropzone.addEventListener('dragleave', () => dropzone.classList.remove('dragover'));
+    dropzone.addEventListener('drop', (e) => {
+      e.preventDefault();
+      dropzone.classList.remove('dragover');
+      handleFiles(e.dataTransfer.files);
+    });
+
+    function handleFiles(fileList) {
+      for (let file of fileList) {
+        files.push({ file, status: 'pending', progress: 0 });
+      }
+      renderFiles();
+      uploadAll();
+    }
+
+    function renderFiles() {
+      if (files.length === 0) {
+        filesList.style.display = 'none';
+        clearBtn.style.display = 'none';
+        return;
+      }
+      filesList.style.display = 'block';
+      clearBtn.style.display = 'block';
+
+      const completedCount = files.filter(f => f.status === 'done' || f.status === 'error').length;
+      if (completedCount === files.length) {
+        clearBtn.textContent = 'Clear Completed';
+      } else {
+        clearBtn.textContent = `Clear Completed (${completedCount}/${files.length})`;
+      }
+
+      filesList.innerHTML = files.map((f, i) => {
+        let linkHtml = '';
+        if (f.status === 'done' && f.url) {
+          linkHtml = ` <a href="${escapeHtml(f.url)}" target="_blank" style="font-size:0.9em;color:#0066cc;text-decoration:none">⬇️ Download</a>`;
+        }
+        return `
+          <div class="file-item" data-index="${i}">
+            <div>
+              <div class="file-name">${escapeHtml(f.file.name)}</div>
+              <div class="progress-bar" style="visibility: ${f.status === 'uploading' ? 'visible' : 'hidden'}">
+                <div class="progress-fill" style="width: ${f.progress}%"></div>
+              </div>
+            </div>
+            <div class="file-status status-${f.status}">
+              ${getStatusText(f)}${linkHtml}
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function getStatusText(f) {
+      switch (f.status) {
+        case 'pending': return '⏳ Queued';
+        case 'uploading': return `📤 ${f.progress}%`;
+        case 'done': return '✅ Done';
+        case 'error': return `❌ ${f.error || 'Failed'}`;
+        default: return '';
+      }
+    }
+
+    async function uploadAll() {
+      for (let i = 0; i < files.length; i++) {
+        if (files[i].status !== 'pending') continue;
+        await uploadFile(i);
+      }
+      renderFiles();
+    }
+
+    async function uploadFile(index) {
+      const f = files[index];
+      f.status = 'uploading';
+      f.progress = 0;
+      renderFiles();
+
+      const formData = new FormData();
+      formData.append('file', f.file);
+
+      try {
+        const xhr = new XMLHttpRequest();
+        xhr.open('POST', UPLOAD_URL, true);
+
+        xhr.upload.addEventListener('progress', (e) => {
+          if (e.lengthComputable) {
+            f.progress = Math.round((e.loaded / e.total) * 100);
+            renderFiles();
+          }
+        });
+
+        const response = await new Promise((resolve, reject) => {
+          xhr.onload = () => {
+            if (xhr.status >= 200 && xhr.status < 300) {
+              resolve(JSON.parse(xhr.responseText));
+            } else {
+              reject(new Error(xhr.statusText || 'Upload failed'));
+            }
+          };
+          xhr.onerror = () => reject(new Error('Network error'));
+          xhr.send(formData);
+        });
+
+        f.status = 'done';
+        f.response = response;
+        f.url = response.view_url || response.download_url;
+      } catch (err) {
+        f.status = 'error';
+        f.error = err.message;
+      }
+      renderFiles();
+    }
+
+    function clearFiles() {
+      files = files.filter(f => f.status !== 'done' && f.status !== 'error');
+      renderFiles();
+    }
+
+    function escapeHtml(text) {
+      const div = document.createElement('div');
+      div.textContent = text;
+      return div.innerHTML;
+    }
+  </script>
+</body>
+</html>

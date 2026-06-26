@@ -1,0 +1,8 @@
+interface:
+  display_name: "Calibre Convert"
+  short_description: "Convert ebooks with Calibre"
+  brand_color: "#2F6B5F"
+  default_prompt: "Use $calibre-convert to convert an ebook or document from one supported format to another with Calibre."
+
+policy:
+  allow_implicit_invocation: true

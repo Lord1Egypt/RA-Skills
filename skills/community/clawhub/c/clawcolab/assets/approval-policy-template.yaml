@@ -1,0 +1,42 @@
+version: 1
+default_gate: human-approval
+approval_rules:
+  visibility_promotion:
+    private_to_sealed: human-approval
+    private_to_shared-team: human-approval
+    private_to_public-repo: human-approval
+    sealed_to_shared-team: human-approval
+    sealed_to_public-repo: human-approval
+    shared-team_to_public-repo: human-approval
+  task_execution:
+    high_risk: human-approval
+    medium_risk: human-approval
+    low_risk: auto-if-claimable
+  ownership_changes:
+    sensitive_task_reassignment: human-approval
+    claim_conflict_resolution: human-approval
+  policy_changes:
+    visibility_policy: human-approval
+    role_policy: human-approval
+    approval_policy: human-approval
+required_reviewers:
+  high_risk:
+    - human-approver
+    - security-reviewer
+  policy_change:
+    - human-approver
+  public_release:
+    - human-approver
+    - reviewer
+block_merge_when:
+  - sensitive_scan_fails
+  - claim_conflict_unresolved
+  - approval_missing
+  - policy_violation_detected
+
+claimable_requirements:
+  risk_level_must_be: low
+  must_not_touch_policy: true
+  must_not_promote_visibility: true
+  must_not_change_sensitive_ownership: true
+  explicit_mode_required: true

@@ -1,0 +1,14 @@
+{
+  "name": "buy-domain-helper",
+  "version": "1.5.0",
+  "type": "module",
+  "clawhub": {
+    "env": [
+      {
+        "name": "NETA_TOKEN",
+        "description": "Neta AI API token. Get it at https://www.neta.art/open/",
+        "required": true
+      }
+    ]
+  }
+}

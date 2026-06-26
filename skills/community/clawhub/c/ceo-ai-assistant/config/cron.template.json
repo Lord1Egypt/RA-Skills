@@ -1,0 +1,102 @@
+{
+  "jobs": [
+    {
+      "name": "CEO早晨简报",
+      "schedule": {
+        "kind": "cron",
+        "expr": "50 7 * * *",
+        "tz": "Asia/Shanghai"
+      },
+      "sessionTarget": "isolated",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "【CEO早晨简报】每日7:50执行，合并晨会+work+pm三个汇报为一份简报（≤800字）：\n\n1. 检查cron任务状态\n2. 汇总隔夜市场数据（美股/原油/黄金/沪深）\n3. 生成统一简报：\n📋 CEO早晨简报 [日期]\n📌 今日必须关注3件事\n⚠️ 系统健康状态\n🎯 各部门今日重点\n💡 重大机会/风险提示\n⏳ 待决策事项（≤3条）"
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "feishu"
+      }
+    },
+    {
+      "name": "超级检索日报",
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 8,18 * * *",
+        "tz": "Asia/Shanghai"
+      },
+      "sessionTarget": "isolated",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "【超级检索日报】每天8:00和18:00执行，搜集整理10个板块热点情报，每条附带原始链接（≤1500字）"
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "feishu"
+      }
+    },
+    {
+      "name": "周度部门例会",
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 9 * * 1",
+        "tz": "Asia/Shanghai"
+      },
+      "sessionTarget": "isolated",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "【周度部门例会】每周一9:00执行，汇总各部门本周重点工作计划"
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "feishu"
+      }
+    },
+    {
+      "name": "日度汇总简报",
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 21 * * 1-5",
+        "tz": "Asia/Shanghai"
+      },
+      "sessionTarget": "isolated",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "【日度汇总简报】每日21:00执行，整合所有代理今日输出，生成CEO统一简报（≤800字）"
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "feishu"
+      }
+    },
+    {
+      "name": "知识库每日自动更新",
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 20 * * *",
+        "tz": "Asia/Shanghai"
+      },
+      "sessionTarget": "isolated",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "【知识库自动更新】每日20:00执行，从今日对话中提取新偏好、禁忌、指令模式，更新知识库"
+      }
+    },
+    {
+      "name": "周度复盘",
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 17 * * 5",
+        "tz": "Asia/Shanghai"
+      },
+      "sessionTarget": "isolated",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "【周度复盘】每周五17:00执行，生成本周决策清单+收益+下周部署（≤3000字）"
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "feishu"
+      }
+    }
+  ]
+}

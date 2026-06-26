@@ -1,0 +1,18 @@
+{
+  "name": "china-social-policy-public-data",
+  "slug": "china-social-policy-public-data",
+  "description": "中国社保、公积金、医保等公共政策信息助手。仅查询、整合、转发公开、权威、免费的全国与地方官方政策信息，不做个案判断或操作建议。",
+  "author": "ToBeWin",
+  "version": "1.0.0",
+  "tags": [
+    "social-security",
+    "housing-fund",
+    "medical-insurance",
+    "china-policy",
+    "public-data",
+    "official-sources",
+    "local-policy",
+    "government-info"
+  ],
+  "entry": "SKILL.md"
+}

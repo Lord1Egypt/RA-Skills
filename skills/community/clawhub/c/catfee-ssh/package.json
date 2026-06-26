@@ -1,0 +1,7 @@
+{
+  "name": "catfee-ssh",
+  "version": "1.0.0",
+  "description": "SSH远程服务器密码连接技能，支持执行命令、查看配置、诊断问题等运维操作",
+  "author": "Catfee Team",
+  "license": "MIT"
+}

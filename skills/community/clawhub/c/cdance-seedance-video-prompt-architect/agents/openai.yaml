@@ -1,0 +1,7 @@
+interface:
+  display_name: "C Dance Seedance Prompt Architect"
+  short_description: "Turns Seedance ideas into tighter video prompts"
+  default_prompt: "Use $cdance-seedance-video-prompt-architect to turn my Seedance idea into a cleaner prompt pack with variants and revision steps."
+
+policy:
+  allow_implicit_invocation: true

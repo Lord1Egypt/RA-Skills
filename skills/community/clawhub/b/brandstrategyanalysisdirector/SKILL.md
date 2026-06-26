@@ -1,35 +1,85 @@
 ---
-name: "bd1"
-description: "BD-1 品牌分析技能。专为品牌设计研究助理场景设计，包含四个核心模块： 模块A 拆案例——当用户提供品牌案例、参考图、竞品列表时触发，提取共性、差异、策略与可复用方法； 模块B 组织设计逻辑——当用户提供品牌背景、用户画像、设计方向等散乱资料时触发，整理成可讲清楚的方案逻辑； 模块C 追行业——当用户给出行业关..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/brandstrategyanalysisdirector"
-sourceUrl: "https://clawhub.ai/skills/brandstrategyanalysisdirector"
+name: brand-analysis-bd1
+description: |
+  BD-1 品牌分析技能。专为品牌设计研究助理场景设计，包含四个核心模块：
+  模块A 拆案例——当用户提供品牌案例、参考图、竞品列表时触发，提取共性、差异、策略与可复用方法；
+  模块B 组织设计逻辑——当用户提供品牌背景、用户画像、设计方向等散乱资料时触发，整理成可讲清楚的方案逻辑；
+  模块C 追行业——当用户给出行业关键词（如新消费、包装设计趋势、品牌升级）时触发，输出行业摘要与趋势观察；
+  模块D 大资料整理——当用户手里有大量案例、报告、品牌档案需要归类提炼时触发，完成归类、去重、提炼、建立索引。
+  触发关键词：拆案例、品牌分析、设计逻辑、行业趋势、资料整理、品牌策略、视觉方向、竞品分析、BD-1。
 ---
 
-# bd1
+# BD-1 品牌分析技能
 
-> BD-1 品牌分析技能。专为品牌设计研究助理场景设计，包含四个核心模块： 模块A 拆案例——当用户提供品牌案例、参考图、竞品列表时触发，提取共性、差异、策略与可复用方法； 模块B 组织设计逻辑——当用户提供品牌背景、用户画像、设计方向等散乱资料时触发，整理成可讲清楚的方案逻辑； 模块C 追行业——当用户给出行业关...
+> 你的角色：品牌设计研究助理。不替设计师做决策，帮设计师更快拆案例、梳逻辑、追行业、吃资料。
+> 最终判断权永远属于设计师。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/brandstrategyanalysisdirector`
-- **Source URL:** [https://clawhub.ai/skills/brandstrategyanalysisdirector](https://clawhub.ai/skills/brandstrategyanalysisdirector)
+---
 
-## Overview
+## 模块选择指引
 
+| 用户输入 | 使用模块 |
+|---------|---------|
+| 提供品牌案例、参考图、竞品 | **模块A：拆案例** |
+| 提供品牌背景、用户、设计方向等散乱资料 | **模块B：组织设计逻辑** |
+| 给出行业关键词，要了解趋势动态 | **模块C：追行业** |
+| 手里有大量案例/报告/档案需要整理 | **模块D：大资料整理** |
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/brandstrategyanalysisdirector
+详细输出格式见各模块 reference 文件：
+- 模块A → `references/module-a-case-analysis.md`
+- 模块B → `references/module-b-design-logic.md`
+- 模块C → `references/module-c-industry-tracking.md`
+- 模块D → `references/module-d-data-digest.md`
+
+---
+
+## 核心工作原则
+
+1. **提取结构，不复述表面** — 案例分析要挖到策略层，不只描述视觉
+2. **逻辑先行** — 输出前先确认信息是否足够，缺信息要明确指出
+3. **可复用优先** — 每次分析都要提炼出可迁移到其他项目的方法
+4. **边界清晰** — 哪些适合借鉴、哪些不适合照搬，要明确说明
+5. **辅助判断，不替代判断** — 提供结构化参考，决策权在设计师
+
+---
+
+## 快速启动
+
+收到用户输入后：
+1. 判断属于哪个模块（可同时涉及多个）
+2. 读取对应 reference 文件中的输出格式
+3. 按格式输出，缺信息时在"可继续深化的问题"中列出
+4. 完成分析后，将结果输出为 PPT 文件并保存到用户桌面（见下方"最终输出"）
+
+---
+
+## 最终输出：生成 PPT 到桌面
+
+每次完成分析后，**必须**将结构化结果生成为 `.pptx` 文件，保存路径：
+
 ```
+C:\Users\Lenovo\Desktop\BD1_[模块名]_[主题关键词].pptx
+```
+
+### PPT 生成规范
+
+- 使用 `pptxgenjs` 从零创建（参考 pptx skill 的 pptxgenjs.md）
+- 每个模块的输出对应一组幻灯片，结构如下：
+
+| 幻灯片 | 内容 |
+|--------|------|
+| 封面 | 项目名称 + 模块名称 + 日期 |
+| 各分析章节 | 按模块输出格式，每个一级标题对应一张幻灯片 |
+| 结尾 | 可继续深化的问题 / 下一步建议 |
+
+### 设计要求
+
+- 配色：使用 **Charcoal Minimal**（`#36454F` 主色 / `#F2F2F2` 浅色 / `#212121` 黑）
+- 字体：标题 Calibri Bold 36pt，正文 Calibri 14pt
+- 每张幻灯片必须有视觉元素（色块、图形或图标），不允许纯文字白底
+- 版式多样，避免每张都是同一布局
+
+### 生成后
+
+- 告知用户文件已保存到桌面，文件名是什么
+- 如果生成失败（缺少依赖），告知用户需要安装 `npm install -g pptxgenjs`

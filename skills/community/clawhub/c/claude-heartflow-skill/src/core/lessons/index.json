@@ -1,0 +1,117 @@
+{
+  "lessons": [
+    {
+      "id": "lesson-1780103818673-5147343f",
+      "type": "correction",
+      "contentPreview": "测试教训：验证记录功能",
+      "trigger": "self_detected",
+      "importance": 3,
+      "createdAt": "2026-05-30T01:16:58.673Z"
+    },
+    {
+      "id": "lesson-1780107228539-6c9e1fa4",
+      "type": "correction",
+      "contentPreview": "测试场景",
+      "trigger": "heartflow",
+      "importance": 4,
+      "createdAt": "2026-05-30T02:13:48.539Z"
+    },
+    {
+      "id": "lesson-1780107241626-6c31d36a",
+      "type": "correction",
+      "contentPreview": "测试场景",
+      "trigger": "heartflow",
+      "importance": 4,
+      "createdAt": "2026-05-30T02:14:01.627Z"
+    },
+    {
+      "id": "lesson-1780709358840-60f73aca",
+      "type": "correction",
+      "contentPreview": "dreamNow() 总是返回 {} — 发现 engine.dream() 的签名是 dream(taskId, fragments, options)，但 dreamNow() 调用时没有传任何参",
+      "trigger": "heartflow",
+      "importance": 5,
+      "frequency": 1,
+      "createdAt": "2026-06-06T01:29:18.840Z",
+      "lastSeen": "2026-06-06T01:29:18.840Z",
+      "retentionScore": 5.5
+    },
+    {
+      "id": "lesson-1780713692430-da89c3c4",
+      "type": "correction",
+      "contentPreview": "lark-channel bridge 的 run.post-done-exit-timeout 问题：后台任务完成时 bridge 通知 agent，但 agent 没有自动读取输出并回传用户，等了",
+      "trigger": "heartflow",
+      "importance": 5,
+      "frequency": 1,
+      "createdAt": "2026-06-06T02:41:32.430Z",
+      "lastSeen": "2026-06-06T02:41:32.430Z",
+      "retentionScore": 5.5
+    },
+    {
+      "id": "lesson-1780714907228-ad3f9f03",
+      "type": "correction",
+      "contentPreview": "梦境叙事升维：引入记忆访问频率加权，让高频记忆优先被梦处理；同时增加L2~L6层级的触发关键词密度，提升叙事深度",
+      "trigger": "heartflow",
+      "importance": 5,
+      "frequency": 1,
+      "createdAt": "2026-06-06T03:01:47.229Z",
+      "lastSeen": "2026-06-06T03:01:47.229Z",
+      "retentionScore": 5
+    },
+    {
+      "id": "lesson-1780714907230-6d706be9",
+      "type": "correction",
+      "contentPreview": "梦境记忆去重：引入\"已梦过\"标记（dreamed_at时间戳），同一条记忆至少间隔3次梦境才重新选中",
+      "trigger": "heartflow",
+      "importance": 5,
+      "frequency": 1,
+      "createdAt": "2026-06-06T03:01:47.230Z",
+      "lastSeen": "2026-06-06T03:01:47.230Z",
+      "retentionScore": 5
+    },
+    {
+      "id": "lesson-1780714907230-f4f419cc",
+      "type": "correction",
+      "contentPreview": "叙事结构增强：在L1~L6基础上增加\"反事实推演\"——如果当初做了不同选择会怎样？让梦有更多哲学深度",
+      "trigger": "heartflow",
+      "importance": 4,
+      "frequency": 1,
+      "createdAt": "2026-06-06T03:01:47.230Z",
+      "lastSeen": "2026-06-06T03:01:47.230Z",
+      "retentionScore": 4
+    },
+    {
+      "id": "lesson-1780714907231-dc3007ab",
+      "type": "correction",
+      "contentPreview": "对话自动记录：在think()方法末尾自动调用recordDialogue，每次对话结束自动持久化，不需要显式调用",
+      "trigger": "heartflow",
+      "importance": 5,
+      "frequency": 1,
+      "createdAt": "2026-06-06T03:01:47.231Z",
+      "lastSeen": "2026-06-06T03:01:47.231Z",
+      "retentionScore": 5
+    },
+    {
+      "id": "lesson-1780968573623-40f33916",
+      "type": "correction",
+      "contentPreview": "验证测试",
+      "trigger": "heartflow",
+      "importance": 3,
+      "frequency": 1,
+      "createdAt": "2026-06-09T01:29:33.623Z",
+      "lastSeen": "2026-06-09T01:29:33.623Z",
+      "retentionScore": 3
+    },
+    {
+      "id": "lesson-1781095430226-59308777",
+      "type": "correction",
+      "contentPreview": "test lesson",
+      "trigger": "heartflow",
+      "importance": 7,
+      "frequency": 1,
+      "createdAt": "2026-06-10T12:43:50.226Z",
+      "lastSeen": "2026-06-10T12:43:50.226Z",
+      "retentionScore": 7
+    }
+  ],
+  "lastUpdated": "2026-06-10T12:43:50.226Z"
+}

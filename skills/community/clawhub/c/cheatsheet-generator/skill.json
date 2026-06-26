@@ -1,0 +1,32 @@
+{
+  "name": "cheatsheet-generator",
+  "version": "1.0.0",
+  "description": "速查表生成器 - 生成结构化 Markdown 速查表",
+  "triggers": {
+    "type": "regex",
+    "patterns": [
+      "生成.*速查表",
+      ".*速查",
+      ".*快速参考",
+      ".*命令大全",
+      ".*配置指南",
+      ".*手册",
+      ".*cheat sheet"
+    ],
+    "flags": "i"
+  },
+  "action": {
+    "type": "exec",
+    "command": "node",
+    "args": ["~/.openclaw/skills/cheatsheet-generator/index.js"],
+    "extractArg": true
+  },
+  "output": {
+    "format": "markdown",
+    "prefix": "📋"
+  },
+  "help": {
+    "command": "node ~/.openclaw/skills/cheatsheet-generator/index.js --help",
+    "triggers": ["速查表 帮助", "cheatsheet help"]
+  }
+}

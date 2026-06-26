@@ -1,0 +1,180 @@
+{
+  "survey_schema": {
+    "title": "Career Planning Information Collection",
+    "description": "Career planning information collection applicable to all life stages",
+    "sections": [
+      {
+        "id": "current_stage",
+        "title": "Current Status",
+        "fields": [
+          {
+            "name": "life_stage",
+            "label": "What stage are you at?",
+            "type": "select",
+            "options": [
+              "Student (Freshman/Sophomore) - Exploration phase",
+              "Student (Junior/Senior) - Sprint phase",
+              "Graduate student",
+              "Recent graduate",
+              "Early career (1-3 years)",
+              "Career development (3-7 years)",
+              "Mid-career transition (7+ years)",
+              "Unemployed/Gap Year",
+              "Returning to workforce"
+            ],
+            "required": true
+          }
+        ]
+      },
+      {
+        "id": "background",
+        "title": "Background Information",
+        "fields": [
+          {
+            "name": "education",
+            "label": "Education Background",
+            "type": "text",
+            "placeholder": "School, major, degree",
+            "required": true
+          },
+          {
+            "name": "work_experience",
+            "label": "Work/Internship Experience",
+            "type": "textarea",
+            "placeholder": "Company, position, duration (if applicable)",
+            "required": false
+          },
+          {
+            "name": "skills",
+            "label": "Core Skills",
+            "type": "checkbox",
+            "options": [
+              "Software Development",
+              "Data Analysis",
+              "Product Design",
+              "UI/UX Design",
+              "Marketing",
+              "Content Creation",
+              "Project Management",
+              "Team Management",
+              "Finance/Accounting",
+              "Legal/Compliance",
+              "Sales/Business Development",
+              "Operations",
+              "Human Resources",
+              "Consulting",
+              "Research/Academia",
+              "Other"
+            ],
+            "required": true
+          }
+        ]
+      },
+      {
+        "id": "personality",
+        "title": "Personality & Preferences",
+        "fields": [
+          {
+            "name": "work_style",
+            "label": "Preferred Work Style",
+            "type": "radio",
+            "options": [
+              "Deep Specialist - Focused on technical/professional expertise",
+              "Coordinator - Leading teams/cross-functional collaboration",
+              "Innovator - Creating new things from 0 to 1",
+              "Executor - Process-driven efficient execution"
+            ],
+            "required": true
+          },
+          {
+            "name": "risk_tolerance",
+            "label": "Risk Tolerance",
+            "type": "radio",
+            "options": [
+              "Conservative - Stability first, avoid uncertainty",
+              "Moderate - Willing to take calculated risks with safety net",
+              "Progressive - Willing to take higher risks for higher returns",
+              "Aggressive - High risk high reward, willing to go all-in"
+            ],
+            "required": true
+          },
+          {
+            "name": "personality_traits",
+            "label": "Personality Traits",
+            "type": "radio",
+            "options": [
+              "Extrovert + Future-focused",
+              "Extrovert + Detail-oriented",
+              "Introvert + Future-focused",
+              "Introvert + Detail-oriented"
+            ],
+            "required": true
+          }
+        ]
+      },
+      {
+        "id": "values",
+        "title": "Values",
+        "fields": [
+          {
+            "name": "career_values",
+            "label": "What do you value most in a career? (Rank by importance)",
+            "type": "sortable",
+            "options": [
+              "Financial reward (High salary/Financial freedom)",
+              "Job stability (Low risk/Security)",
+              "Professional growth (Skill development/Domain expert)",
+              "Work-life balance (No overtime/Personal time)",
+              "Social impact (Helping others/Changing the world)",
+              "Flexibility (Time freedom/Location independence)",
+              "Influence (Management/Decision-making power)",
+              "Meaning (Doing meaningful work)"
+            ],
+            "required": true
+          }
+        ]
+      },
+      {
+        "id": "future",
+        "title": "Future Intent",
+        "fields": [
+          {
+            "name": "target_direction",
+            "label": "Industries/Directions of Interest",
+            "type": "checkbox",
+            "options": [
+              "Internet/Tech",
+              "AI/Large Language Models",
+              "Finance/Investment",
+              "Consulting/Professional Services",
+              "Healthcare/Wellness",
+              "Education/Training",
+              "Clean Energy/Manufacturing",
+              "Consumer/Retail",
+              "Entertainment/Media/Gaming",
+              "Government/Public Sector",
+              "Entrepreneurship",
+              "Freelance/Remote Work",
+              "Unsure - Looking for recommendations"
+            ],
+            "required": true
+          },
+          {
+            "name": "expected_income",
+            "label": "Expected Income Level",
+            "type": "text",
+            "placeholder": "e.g., $80K-100K/year, or $150K+",
+            "required": true
+          },
+          {
+            "name": "confusion",
+            "label": "Your Biggest Confusion or Dilemma",
+            "type": "textarea",
+            "placeholder": "e.g., grad school vs. work, career pivot direction, age anxiety, skill gaps...",
+            "required": true
+          }
+        ]
+      }
+    ]
+  }
+}

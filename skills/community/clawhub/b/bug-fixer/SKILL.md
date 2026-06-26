@@ -1,35 +1,29 @@
 ---
-name: "Bug Fixer"
-description: "Autonomous bug diagnosis and repair. Use when user reports a bug, error, or unexpected behavior in code or systems."
-category: "autonomous-ai-agents"
-source: "ClawHub"
-tags: [ai, automation, development]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/bug-fixer"
-sourceUrl: "https://clawhub.ai/skills/bug-fixer"
+name: bug-fixer
+description: Autonomous bug diagnosis and repair. Use when user reports a bug, error, or unexpected behavior in code or systems.
 ---
 
-# Bug Fixer
+# bug-fixer
 
-> Autonomous bug diagnosis and repair. Use when user reports a bug, error, or unexpected behavior in code or systems.
+## 使用方式
 
-- **Category:** AI Agents
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/bug-fixer`
-- **Source URL:** [https://clawhub.ai/skills/bug-fixer](https://clawhub.ai/skills/bug-fixer)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/bug-fixer
+# 自动诊断并修复
+./scripts/autonomous-fix.sh <问题描述>
+
+# 或直接运行诊断
+./scripts/autonomous-fix.sh diagnose <错误信息>
 ```
+
+## 工作流程
+
+1. **问题收集**: 收集错误日志、症状描述
+2. **根因分析**: 定位问题根源
+3. **修复执行**: 实施修复
+4. **验证确认**: 确保问题解决
+
+## 注意事项
+
+- 修复前先备份原文件
+- 修复后运行验证
+- 记录修复过程到 `.learnings/ERRORS.md`

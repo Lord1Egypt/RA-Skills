@@ -1,0 +1,48 @@
+
+============================================================
+📊 SKILL EVALUATION REPORT — AUTO_SKILL
+============================================================
+Path: /media/ezekiel/Morgana/skills/AUTO_SKILL
+Score: 60/100 🟠 NEEDS_WORK
+------------------------------------------------------------
+STRUCTURE       18/20 [92m██████████████████░░[0m 90%
+CLARITY         16/20 [92m████████████████░░░░[0m 80%
+COMPLETENESS     6/20 [91m██████░░░░░░░░░░░░░░[0m 30%
+CONSISTENCY      8/20 [91m████████░░░░░░░░░░░░[0m 40%
+FUNCTIONALITY   12/20 [93m████████████░░░░░░░░[0m 60%
+------------------------------------------------------------
+DETAILS:
+  STRUCTURE:
+    ✅ Header complet
+    ⚠️ Sections: 2/3
+    ✅ Formatting: 5/5
+    ✅ Meta: 5/5
+  CLARITY:
+    ✅ Description présente
+    ✅ Commandes/exemples: 5
+    ✅ Exemples présents
+    ❌ Contraintes non documentées
+  COMPLETENESS:
+    ⚠️ Outils partiels: 1
+    ❌ Prérequis non documentés
+    ❌ Erreurs non documentées
+    ❌ Cas limites non documentés
+  CONSISTENCY:
+    ✅ Cluster alignment: 3
+    ⚠️ Style: 2/5
+    ✅ Naming: 5/5
+    ⚠️ Integration non documentée
+  FUNCTIONALITY:
+    ❌ Commandes problèmes: 0/5
+    ✅ Résultats documentés
+------------------------------------------------------------
+RECOMMENDATIONS:
+  • [COMPLETENESS] Score bas (30%)
+  •   → ❌ Prérequis non documentés
+  •   → ❌ Erreurs non documentées
+  •   → ❌ Cas limites non documentés
+  • [CONSISTENCY] Score bas (40%)
+  • [FUNCTIONALITY] Score bas (60%)
+  •   → ❌ Commandes problèmes: 0/5
+============================================================
+STATUS: ✅ APPROVED (score >= 70%)

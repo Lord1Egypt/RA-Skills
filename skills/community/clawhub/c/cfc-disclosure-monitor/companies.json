@@ -1,0 +1,157 @@
+{
+  "version": "2026-04-11",
+  "description": "30家消费金融公司信息披露采集配置（唯一配置源）",
+  "note": "所有采集入口（collect.py / verify_skill.py / cdp3.py）均应读此文件",
+  "companies": [
+    {
+      "name": "蚂蚁消费金融",
+      "url": "https://www.myxiaojin.cn/information",
+      "method": "html_dom"
+    },
+    {
+      "name": "中邮消费金融",
+      "url": "https://www.youcash.com/xxgg.html",
+      "method": "zhongyou_detail"
+    },
+    {
+      "name": "中信消费金融",
+      "url": "https://www.eciticcfc.com/",
+      "method": "html_dom"
+    },
+    {
+      "name": "中银消费金融",
+      "url": "https://www.boccfc.cn/xinwen/gonggao/",
+      "method": "zhongyin_layui"
+    },
+    {
+      "name": "天津京东消费金融",
+      "url": "https://www.jdcfc.cn/pub-info",
+      "method": "pdf_link"
+    },
+    {
+      "name": "阳光消费金融",
+      "url": "https://www.cebscf.com/cebscf/xfzqybh/xxgg/",
+      "method": "yangguang_detail"
+    },
+    {
+      "name": "中原消费金融",
+      "url": "https://www.hnzycfc.com/html/news",
+      "method": "zhongyuan"
+    },
+    {
+      "name": "河北幸福消费金融",
+      "url": "https://www.happycfc.com",
+      "method": "hebei_detail"
+    },
+    {
+      "name": "蒙商消费金融",
+      "url": "https://www.mengshangxiaofei.com/html/1//208/217/index.html",
+      "method": "mengshang_v2"
+    },
+    {
+      "name": "尚诚消费金融",
+      "url": "https://www.sccfc.cn/Index/news.html",
+      "method": "shangcheng_news"
+    },
+    {
+      "name": "杭银消费金融",
+      "url": "https://www.51xf.cn/news/?type=1",
+      "method": "hangyin"
+    },
+    {
+      "name": "湖北消费金融",
+      "url": "https://www.hubeicfc.com/news-notice.html",
+      "method": "hubei_list"
+    },
+    {
+      "name": "平安消费金融",
+      "url": "https://www.pacfc.com",
+      "method": "pingan_detail"
+    },
+    {
+      "name": "长银五八消费金融",
+      "url": "https://www.hncy58.com/telling.html",
+      "method": "changyin58_telling"
+    },
+    {
+      "name": "晋商消费金融",
+      "url": "https://www.jcfc.cn/col23/list.html",
+      "method": "jinshang_detail"
+    },
+    {
+      "name": "南银法巴消费金融",
+      "url": "https://www.boncfc.com/boncfc/xwgg/gsgg/",
+      "method": "nyfb"
+    },
+    {
+      "name": "建信消费金融",
+      "url": "https://www.ccbcf.cn/#/NewsIndex",
+      "method": "jianxin_dmyy"
+    },
+    {
+      "name": "小米消费金融",
+      "url": "https://www.mixiaojin.com/news",
+      "method": "xiaomi_detail"
+    },
+    {
+      "name": "招联消费金融",
+      "url": "https://www.mucfc.com/news/?module=module3",
+      "method": "zhaolian"
+    },
+    {
+      "name": "北银消费金融",
+      "url": "https://www.bobcfc.com",
+      "method": "beiyin_marquee"
+    },
+    {
+      "name": "宁银消费金融",
+      "url": "https://www.cfcbnb.com/xwgg/zygg/",
+      "method": "cfcbnb_v2"
+    },
+    {
+      "name": "海尔消费金融",
+      "url": "https://www.haiercash.com/news?tab=notice",
+      "method": "haier_news_detail"
+    },
+    {
+      "name": "金美信消费金融",
+      "url": "https://www.jmxcfc.com",
+      "method": "jinmixin_detail"
+    },
+    {
+      "name": "盛银消费金融",
+      "url": "https://www.syxfjr.cn/info/xfgg/297",
+      "method": "time_prefix"
+    },
+    {
+      "name": "苏银凯基消费金融",
+      "url": "https://www.sykcfc.cn/#/layout/information",
+      "method": "suyinkaiji"
+    },
+    {
+      "name": "哈银消费金融",
+      "url": "https://www.hrbbcf.com/news-list?type=1",
+      "method": "cdp_rpa"
+    },
+    {
+      "name": "马上消费金融",
+      "url": "https://www.msxf.com/consumer/zygg",
+      "method": "paginated"
+    },
+    {
+      "name": "锦程消费金融",
+      "url": "https://www.jccfc.com/news/notice",
+      "method": "notice_link_parse"
+    },
+    {
+      "name": "陕西长银消费金融",
+      "url": "https://m.cycfc.com/#/news",
+      "method": "shaanxi_changyin"
+    },
+    {
+      "name": "兴业消费金融",
+      "url": "https://www.ksdao.com/mob/notice.html",
+      "method": "xingye_detail"
+    }
+  ]
+}

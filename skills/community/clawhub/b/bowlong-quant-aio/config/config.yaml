@@ -1,0 +1,125 @@
+# quant-aio 主配置文件
+# 复制此文件为 config.yaml 并填入你的真实配置
+
+# ==================== 数据源配置 ====================
+data:
+  primary: tushare          # 主数据源: tushare / akshare / wind
+  fallback: akshare         # 备用数据源
+  cache_dir: ./data/cache   # 本地缓存目录
+  update_time: "09:00"      # 每日数据更新时间
+
+  tushare:
+    token: "${TUSHARE_TOKEN}"   # 环境变量注入
+    retry: 3                    # 失败重试次数
+    timeout: 30                 # 超时秒数
+
+  akshare:
+    delay: 15                   # 数据延迟分钟数（免费版）
+    retry: 3
+
+  wind:
+    enabled: false              # Wind需要本地安装，默认关闭
+    timeout: 30
+
+# ==================== 选股配置 ====================
+stock_picker:
+  enabled: true
+  run_time: "09:35"             # 每日运行时间（开盘后5分钟）
+  top_n: 20                     # 输出TOP N只股票
+  output_dir: ./output/stock_picks
+
+  universe:                     # 股票池范围
+    include:
+      - 沪深300
+      - 中证500
+      - 创业板指
+    exclude_st: true            # 排除ST股
+    exclude_new: true           # 排除上市不足60天新股
+    min_market_cap: 20          # 最小市值（亿元）
+    min_volume: 5000            # 最小日均成交额（万元）
+
+# ==================== 回测配置 ====================
+backtest:
+  initial_cash: 1000000         # 初始资金（元）
+  commission: 0.0003            # 佣金率（万3）
+  stamp_duty: 0.001             # 印花税（卖出千1）
+  slippage: 0.0002              # 滑点
+  benchmark: "000300.SH"        # 基准指数（沪深300）
+  output_dir: ./output/backtest_reports
+
+  rules:
+    t_plus_1: true              # A股T+1制度
+    price_limit: true           # 涨跌停限制
+    avoid_limit_up: true        # 涨停不买入
+    avoid_limit_down: true      # 跌停不卖出
+
+# ==================== 实盘执行配置 ====================
+executor:
+  mode: paper                   # paper=模拟盘, live=实盘（谨慎！）
+  default: huaxin               # 默认执行器: huaxin / wenhua / tbquant
+
+  huaxin:                       # 华鑫证券QMT
+    enabled: true
+    account: "${QMT_ACCOUNT}"
+    password: "${QMT_PASSWORD}"
+    server: "127.0.0.1"         # QMT本地服务地址
+    port: 58610
+    path: "C:/Huaxin/QMT"       # QMT安装路径
+
+  wenhua:                       # 文华财经WH8
+    enabled: true
+    path: "C:/wenhua8"          # 文华财经安装路径
+    account: "${WH8_ACCOUNT}"
+    password: "${WH8_PASSWORD}"
+
+  tbquant:                      # TBQuant3
+    enabled: false
+    path: "C:/TBQuant3"
+    account: "${TB_ACCOUNT}"
+    password: "${TB_PASSWORD}"
+
+# ==================== 风险监控配置 ====================
+risk:
+  enabled: true
+  check_interval: 60            # 检查间隔（秒）
+
+  position:
+    max_per_stock: 0.20         # 单股最大仓位20%
+    max_total: 0.80             # 总仓位上限80%
+    min_cash: 0.10              # 最低现金储备10%
+
+  loss_limit:
+    daily: 0.02                 # 单日最大亏损2%
+    total_drawdown: 0.15        # 总回撤上限15%
+    per_trade: 0.05             # 单笔止损5%
+
+  alert:
+    drawdown_threshold: 0.10    # 回撤10%触发告警
+    position_change: true       # 仓位变化告警
+    unusual_volume: true        # 异动告警
+
+  trade_limit:
+    max_per_day: 20             # 每日最大交易次数
+
+# ==================== 推送通知配置 ====================
+notify:
+  enabled: true
+  channels:
+    - telegram                  # 推送渠道
+
+  telegram:
+    token: "${PUSH_TOKEN}"
+    chat_id: "${PUSH_CHAT_ID}"
+
+  events:                       # 推送事件
+    daily_picks: true           # 每日选股结果
+    trade_signal: true          # 交易信号
+    order_filled: true          # 订单成交
+    risk_alert: true            # 风控告警
+    daily_report: true          # 每日收盘报告
+
+# ==================== 日志配置 ====================
+log:
+  level: INFO                   # DEBUG / INFO / WARNING / ERROR
+  dir: ./logs
+  max_days: 30                  # 日志保留天数

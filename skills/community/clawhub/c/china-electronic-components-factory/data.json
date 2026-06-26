@@ -1,0 +1,410 @@
+{
+  "metadata": {
+    "last_updated": "2026-03-13",
+    "source": "Ministry of Industry and Information Technology, National Bureau of Statistics, China Electronic Components Association",
+    "industry_scale_2026_target": "¥5.2 trillion revenue",
+    "growth_rate_target": "6.8% average annual growth (2024-2026)"
+  },
+  "industry_overview": {
+    "title": "China Electronic Components Industry Overview (2026)",
+    "summary": "Electronic components form the core foundation of China's electronics information industry, supporting applications from consumer electronics to automotive and industrial systems. In 2026, the industry is projected to exceed ¥5.2 trillion in revenue, driven by new energy vehicles, 5G/6G infrastructure, AI servers, and the continued push for domestic substitution in high-end components.",
+    "key_policy_initiatives": [
+      {
+        "name": "Action Plan for High-Quality Development of Electronic Components (2024-2026)",
+        "issuing_authorities": ["MIIT", "NDRC", "Ministry of Finance", "General Administration of Customs"],
+        "key_measures": [
+          "Establish 15 national innovation platforms for key components",
+          "Achieve 70% self-sufficiency rate in high-end components by 2026",
+          "Promote intelligent manufacturing and green production in component factories",
+          "Support cross-border M&A for advanced packaging and materials technologies",
+          "Strengthen supply chain resilience through multi-sourcing strategies"
+        ]
+      }
+    ],
+    "current_status_2025": {
+      "total_output_value": "¥4.87 trillion",
+      "share_of_electronics_industry_value_added": "34.2%",
+      "key_drivers": ["automotive semiconductors", "MLCCs", "high-frequency connectors", "flexible PCBs"],
+      "automation_rate": "58% (assembly and testing lines)",
+      "energy_consumption_reduction": "15.3% per unit output compared to 2020"
+    }
+  },
+  "supply_chain_structure": {
+    "title": "Electronic Components Supply Chain Structure",
+    "upstream": {
+      "description": "Raw materials, substrates, and design tools",
+      "categories": [
+        {
+          "name": "Semiconductor Materials",
+          "items": ["silicon wafers (8-inch, 12-inch)", "photoresist", "etching gases", "CMP slurries", "leadframes", "bonding wires"],
+          "key_suppliers": ["Zhonghuan Semiconductor", "NSIG", "Sinyang Semiconductor Materials", "Huawei HiSilicon (design)"]
+        },
+        {
+          "name": "Passive Component Materials",
+          "items": ["ceramic powders (BTO, X7R)", "copper foil", "electrode pastes", "magnetic cores", "electrolyte solutions"],
+          "key_suppliers": ["Fenghua Advanced Technology", "Torch Electron", "Dongguan Mentech", "Galaxy Magnetic"]
+        },
+        {
+          "name": "PCB Substrates",
+          "items": ["copper-clad laminates (CCL)", "prepreg", "solder mask", "drill bits"],
+          "key_suppliers": ["Shengyi Technology", "Kingboard Laminates", "Wazam New Materials"]
+        }
+      ]
+    },
+    "midstream": {
+      "description": "Component manufacturing and assembly",
+      "subsectors": [
+        "integrated circuit fabrication (logic, memory, analog)",
+        "discrete semiconductors (MOSFETs, IGBTs, diodes)",
+        "passive components (MLCC, chip resistors, inductors)",
+        "connectors and sockets",
+        "printed circuit boards (rigid, flexible, HDI)",
+        "sensors (MEMS, image sensors, pressure sensors)",
+        "electromechanical components (relays, switches)",
+        "microwave and RF components"
+      ],
+      "key_companies_by_subsector": {
+        "semiconductors": ["SMIC", "HuaHong", "Yangtze Memory", "GigaDevice"],
+        "passives": ["Fenghua", "Yageo (China ops)", "Holy Stone", "Microgate"],
+        "connectors": ["Foxconn Interconnect", "Luxshare Precision", "Deren Electronic"],
+        "PCBs": ["Shennan Circuits", "Zhen Ding Tech", "Tripod Technology"],
+        "sensors": ["Goertek", "Memsensing", "Senodia Technologies"]
+      }
+    },
+    "downstream": {
+      "description": "Application industries",
+      "applications": [
+        "smartphones and consumer electronics",
+        "automotive electronics (new energy vehicles, ADAS)",
+        "communication infrastructure (5G/6G base stations, optical networks)",
+        "industrial automation and robotics",
+        "medical devices and healthcare",
+        "aerospace and defense",
+        "IoT and smart home devices"
+      ]
+    }
+  },
+  "regional_clusters": [
+    {
+      "region": "Yangtze River Delta",
+      "provinces_cities": ["Shanghai", "Jiangsu", "Zhejiang"],
+      "share_of_industry": "45% of national output",
+      "specializations": [
+        "IC design and manufacturing",
+        "advanced packaging",
+        "automotive electronics",
+        "power semiconductors",
+        "sensors"
+      ],
+      "key_hubs": [
+        {
+          "city": "Shanghai",
+          "specialization": "IC design, 12-inch fabs, automotive MCUs",
+          "supplier_example": "Shanghai Huahong Grace Semiconductor ($50M+ annual revenue, ISO26262 certified)"
+        },
+        {
+          "city": "Wuxi",
+          "specialization": "Power semiconductors (IGBT, MOSFET)",
+          "supplier_example": "Wuxi NCE Power Co., Ltd. (AEC-Q101 qualified devices, samples within 2 weeks)"
+        },
+        {
+          "city": "Suzhou",
+          "specialization": "Sensors and MEMS",
+          "supplier_example": "Suzhou Memsensing Co., Ltd. (pressure sensors for automotive, 10M units/month capacity)"
+        }
+      ],
+      "strengths": [
+        "Strongest R&D talent pool",
+        "Mature semiconductor ecosystem",
+        "Proximity to automotive OEMs (SAIC, Geely, NIO)"
+      ]
+    },
+    {
+      "region": "Pearl River Delta",
+      "provinces_cities": ["Guangdong", "Shenzhen", "Dongguan", "Foshan"],
+      "share_of_industry": "32% of national output",
+      "specializations": [
+        "consumer electronics components (connectors, antennas, speakers)",
+        "PCBs (rigid, flexible)",
+        "passive components (MLCC, resistors)",
+        "electromechanical components",
+        "rapid prototyping of custom components"
+      ],
+      "key_hubs": [
+        {
+          "city": "Shenzhen",
+          "specialization": "High-speed connectors, USB-C, RF connectors",
+          "supplier_example": "Shenzhen Deren Electronic Co., Ltd. (20+ years experience, ISO 9001/14001, 50M units/month)"
+        },
+        {
+          "city": "Dongguan",
+          "specialization": "Miniature passive components, chip inductors",
+          "supplier_example": "Dongguan Mentech Optical & Magnetic Co., Ltd. (automotive-grade inductors, AEC-Q200)"
+        },
+        {
+          "city": "Foshan",
+          "specialization": "PCB fabrication (quick-turn prototypes)",
+          "supplier_example": "Foshan Jiecheng Electronic Technology (24-hour prototype service, 8-layer boards)"
+        }
+      ],
+      "strengths": [
+        "Fastest product development cycles",
+        "Strong integration with consumer electronics brands (Huawei, Xiaomi, OPPO)",
+        "Highly flexible small-to-medium batch production"
+      ]
+    },
+    {
+      "region": "Beijing-Tianjin-Hebei",
+      "provinces_cities": ["Beijing", "Tianjin", "Hebei"],
+      "share_of_industry": "12% of national output",
+      "specializations": [
+        "semiconductor equipment and materials",
+        "RF and microwave components",
+        "aerospace-grade electronics",
+        "advanced memory development"
+      ],
+      "key_hubs": [
+        {
+          "city": "Beijing",
+          "specialization": "IC design (AI chips, RF), MEMS R&D",
+          "supplier_example": "Beijing Huada Jiutian (EDA tools, design services)"
+        },
+        {
+          "city": "Tianjin",
+          "specialization": "Semiconductor materials (silicon wafers)",
+          "supplier_example": "Tianjin Zhonghuan Semiconductor (8-inch epi-wafers, 500k pcs/month)"
+        }
+      ],
+      "strengths": [
+        "Strong government research institutes",
+        "Leadership in semiconductor equipment",
+        "High-reliability components for defense/aerospace"
+      ]
+    },
+    {
+      "region": "Chengdu-Chongqing (Western China)",
+      "provinces_cities": ["Sichuan", "Chongqing"],
+      "share_of_industry": "7% of national output",
+      "specializations": [
+        "automotive electronics",
+        "military-grade components",
+        "notebook supply chain",
+        "discrete semiconductors"
+      ],
+      "key_hubs": [
+        {
+          "city": "Chengdu",
+          "specialization": "Automotive sensors, IGBT modules",
+          "supplier_example": "Chengdu Chipown Microelectronics (AC-DC controllers, smart meters)"
+        },
+        {
+          "city": "Chongqing",
+          "specialization": "Notebook batteries, power management ICs",
+          "supplier_example": "Chongqing Xinyuan Electronics (BMS for laptops, 100k units/day)"
+        }
+      ],
+      "strengths": [
+        "Lower labor and land costs",
+        "Government incentives for western development",
+        "Growing EV supply chain (Tesla, BYD suppliers)"
+      ]
+    },
+    {
+      "region": "Fujian Province",
+      "provinces_cities": ["Fuzhou", "Xiamen", "Quanzhou"],
+      "share_of_industry": "4% of national output",
+      "specializations": [
+        "LED epitaxy and packaging",
+        "semiconductor lighting",
+        "integrated circuit assembly",
+        "passive components"
+      ],
+      "key_hubs": [
+        {
+          "city": "Xiamen",
+          "specialization": "LED chip manufacturing",
+          "supplier_example": "Xiamen Changelight Co., Ltd. (GaN LED epiwafers, 4-inch capability)"
+        },
+        {
+          "city": "Fuzhou",
+          "specialization": "MEMS sensors",
+          "supplier_example": "Fuzhou Rockchip Electronics (MEMS microphones, automotive modules)"
+        }
+      ],
+      "strengths": [
+        "Strong optoelectronics ecosystem",
+        "Proximity to Taiwan for cross-strait collaboration",
+        "Active government support for semiconductor startups"
+      ]
+    }
+  ],
+  "subsector_details": {
+    "semiconductors": {
+      "description": "Includes logic ICs, memory, analog chips, microcontrollers, and discrete semiconductors. China remains the world's largest semiconductor market, with localization rate steadily increasing.",
+      "key_clusters": ["Yangtze River Delta", "Beijing-Tianjin-Hebei", "Pearl River Delta"],
+      "growth_drivers": [
+        "New energy vehicles (xEVs use 2-3x more semiconductors than ICE vehicles)",
+        "AI server expansion driving demand for high-bandwidth memory",
+        "Consumer electronics product upgrades (foldables, AR/VR)",
+        "Industrial chip self-sufficiency push"
+      ],
+      "market_trends": "Mature process nodes (28nm and above) reach near self-sufficiency; advanced nodes (14nm and below) remain constrained but progress with domestic DUV multi-patterning; chiplet packaging gaining momentum.",
+      "domestic_substitution_rate": "52% overall (2025), with 32% in high-end ICs"
+    },
+    "passive_components": {
+      "description": "Covers MLCCs, chip resistors, inductors, aluminum electrolytic capacitors, film capacitors, and supercapacitors. China accounts for over 40% of global passive component consumption.",
+      "key_clusters": ["Pearl River Delta", "Yangtze River Delta", "Fujian"],
+      "growth_drivers": [
+        "5G smartphones (30-40% more MLCCs per phone)",
+        "Automotive electrification (EVs use 10,000+ MLCCs per vehicle)",
+        "Renewable energy inverters and industrial power supplies"
+      ],
+      "policy_support": [
+        "Special funds for ultra-miniature and high-voltage capacitors",
+        "Automotive-grade component certification support",
+        "Green manufacturing incentives"
+      ],
+      "domestic_substitution_rate": "68% for consumer-grade, 38% for automotive/industrial-grade"
+    },
+    "PCBs": {
+      "description": "Rigid, flexible, HDI, IC substrates, and metal-core PCBs. China produces over 50% of global PCB output.",
+      "key_clusters": ["Pearl River Delta", "Yangtze River Delta", "Chengdu-Chongqing"],
+      "trends": "Shift toward HDI and IC substrates due to chip packaging demand; rapid growth in automotive PCBs (ADAS, battery management).",
+      "key_players": ["Shennan Circuits", "Zhen Ding Tech", "Tripod Technology", "Kinwong"]
+    },
+    "connectors": {
+      "description": "Includes board-to-board, wire-to-board, FPC connectors, high-speed I/O (USB-C, HDMI), and automotive connectors.",
+      "key_clusters": ["Pearl River Delta", "Yangtze River Delta"],
+      "growth_drivers": [
+        "Data centers (high-speed 112G/224G connectors)",
+        "New energy vehicles (high-voltage connectors)",
+        "Wearables and miniaturization"
+      ],
+      "domestic_substitution_rate": "45% overall, but >80% in low-speed consumer connectors"
+    },
+    "sensors": {
+      "description": "MEMS sensors (accelerometers, gyroscopes, pressure sensors), image sensors, temperature/humidity sensors, and magnetic sensors.",
+      "key_clusters": ["Yangtze River Delta", "Beijing-Tianjin-Hebei", "Pearl River Delta"],
+      "growth_drivers": [
+        "Automotive ADAS (LiDAR, radar, ultrasonic)",
+        "Industrial IoT and predictive maintenance",
+        "Smart home and smart city deployments"
+      ],
+      "policy_support": [
+        "National key R&D program for high-end sensors",
+        "Subsidies for foundry capacity for MEMS startups"
+      ]
+    }
+  },
+  "sourcing_guide": {
+    "supplier_evaluation_metrics": [
+      {
+        "metric": "On-time delivery rate",
+        "target": ">95%, ideally >98%"
+      },
+      {
+        "metric": "Response time to technical queries",
+        "target": "<24 hours indicates strong engineering support"
+      },
+      {
+        "metric": "Reorder rate",
+        "target": ">30% indicates client trust and product quality"
+      },
+      {
+        "metric": "Online revenue or export scale",
+        "target": "$2M+ annual online sales suggests export readiness"
+      },
+      {
+        "metric": "Certifications",
+        "target": "ISO9001 (baseline), IATF16949 (automotive), ISO14001, RoHS/REACH compliance"
+      }
+    ],
+    "verification_methods": [
+      "Request datasheets and reliability test reports (HTOL, HTSL, TC, etc.)",
+      "Ask for samples for electrical characterization (IV curves, impedance analysis)",
+      "Request material declarations (IMDS, FMD for automotive)",
+      "Conduct factory audits (onsite or virtual) focusing on QC and ESD control",
+      "Utilize third-party labs for destructive physical analysis (DPA)",
+      "Validate supply chain traceability (raw material certificates)"
+    ],
+    "communication_best_practices": [
+      "Provide target specifications: operating temperature range, tolerance, voltage rating, package size",
+      "Request PPAP (Production Part Approval Process) levels for critical components",
+      "Use engineering drawings or reference designs to clarify requirements",
+      "Establish a single point of contact with technical fluency",
+      "Schedule regular video meetings for project tracking"
+    ],
+    "payment_terms": "Typical: 30% deposit, 70% balance before shipment (or against scanned B/L). For large volume, 30% deposit, 70% within 30-60 days after BL date with LC.",
+    "lead_times": {
+      "prototypes": "3-10 days (for PCBs, passive samples)",
+      "standard_production": "15-25 days (for passives, connectors)",
+      "custom_design_components": "45-90 days (including NRE and qualification)"
+    }
+  },
+  "faq": [
+    {
+      "question": "What are typical MOQs for electronic components in China?",
+      "answer": "For standard passive components (MLCC, resistors), MOQ can be as low as 1 reel (3000-5000 pcs). For semiconductors, MOQ often starts at 1 tray (approx. 250-1000 pcs). Some suppliers offer 'sample orders' of 10-100 pcs for testing at higher unit price."
+    },
+    {
+      "question": "Do Chinese component suppliers provide AEC-Q qualified parts?",
+      "answer": "Yes, many larger suppliers (e.g., Fenghua, NCE Power, Luxshare) have automotive-grade product lines with AEC-Q100/Q101/Q200 certification. Always request the qualification documents to verify."
+    },
+    {
+      "question": "Can I get custom-designed components (ASICs, custom magnetics)?",
+      "answer": "Many mid-to-large sized companies offer custom design services. Lead times vary: simple custom passives (inductors) 4-6 weeks, full-custom ASICs 6-12 months. NRE costs depend on complexity."
+    },
+    {
+      "question": "How do I ensure components meet RoHS/REACH standards?",
+      "answer": "Reputable suppliers provide material composition reports and can sign a declaration of conformity. For high-reliability applications, you may request third-party lab analysis (e.g., SGS testing)."
+    },
+    {
+      "question": "What is the best shipping method for small component batches?",
+      "answer": "For prototypes and small quantities (under 50kg), DHL/FedEx/UPS express is common (2-5 days). For larger volumes, air freight or sea freight (LCL/FCL) can be arranged. Suppliers usually help with export documentation."
+    }
+  ],
+  "glossary": {
+    "ASIC": "Application-Specific Integrated Circuit – custom chip designed for a specific application.",
+    "BOM": "Bill of Materials – list of components required for assembly.",
+    "COTS": "Commercial Off-The-Shelf – standard components not custom made.",
+    "DFM": "Design for Manufacturability – designing products to ease manufacturing.",
+    "DPA": "Destructive Physical Analysis – testing method to verify construction and materials.",
+    "ESD": "Electrostatic Discharge – a critical concern in handling sensitive components.",
+    "FOB": "Free on Board – seller delivers goods to vessel; buyer pays freight and insurance.",
+    "IGBT": "Insulated-Gate Bipolar Transistor – key power switching device.",
+    "MEMS": "Micro-Electro-Mechanical Systems – microscopic sensors/actuators.",
+    "MLCC": "Multi-Layer Ceramic Capacitor – common passive component.",
+    "MOQ": "Minimum Order Quantity.",
+    "NDA": "Non-Disclosure Agreement – common when sharing specifications.",
+    "NRE": "Non-Recurring Engineering – one-time cost for design/development.",
+    "PCB": "Printed Circuit Board.",
+    "PPAP": "Production Part Approval Process – automotive quality standard.",
+    "RoHS": "Restriction of Hazardous Substances Directive – restricts use of certain hazardous materials.",
+    "SMT": "Surface-Mount Technology – method for mounting components on PCBs.",
+    "SoC": "System on Chip – integrates all components of a computer into a single chip."
+  },
+  "factories": [
+    {"name": "Shenzhen Huaqiang Electronics", "location": "Shenzhen, Guangdong", "specialization": "PCB manufacturing, PCB assembly", "capacity": "50,000 sqm/month", "certifications": ["ISO 9001", "ISO 14001", "UL"], "contact": "sales@huaqiang-pcb.com"},
+    {"name": "Foxconn Precision Component", "location": "Shenzhen, Guangdong", "specialization": "Connectors, cables, precision parts", "capacity": "10M units/month", "certifications": ["ISO 9001", "IATF 16949", "ISO 14001"], "contact": "components@foxconn.com"},
+    {"name": "Luxshare Precision Industry", "location": "Dongguan, Guangdong", "specialization": "Connectors, acoustic components", "capacity": "100M units/month", "certifications": ["ISO 9001", "ISO 14001"], "contact": "sales@luxshare.com.cn"},
+    {"name": "Shenzhen Sunlord Electronics", "location": "Shenzhen, Guangdong", "specialization": "Inductors, EMI components", "capacity": "500M pcs/month", "certifications": ["ISO 9001", "ISO 14001", "IATF 16949"], "contact": "sales@sunlord.com.cn"},
+    {"name": "Fenghua Advanced Technology", "location": "Ningbo, Zhejiang", "specialization": "MLCC, chip resistors, capacitors", "capacity": "300B pcs/year", "certifications": ["ISO 9001", "ISO 14001"], "contact": "sales@fenghua.com"},
+    {"name": "TDK China", "location": "Dalian, Liaoning", "specialization": "Capacitors, inductors, sensors", "capacity": "200M pcs/month", "certifications": ["ISO 9001", "ISO 14001", "IATF 16949"], "contact": "sales@tdk.com.cn"},
+    {"name": "Yageo Corporation", "location": "Suzhou, Jiangsu", "specialization": "Chip resistors, MLCC, inductors", "capacity": "400B pcs/year", "certifications": ["ISO 9001", "ISO 14001", "AEC-Q200"], "contact": "sales@yageo.com"},
+    {"name": "Murata Electronics", "location": "Wuxi, Jiangsu", "specialization": "MLCC, EMI filters, sensors", "capacity": "150M pcs/month", "certifications": ["ISO 9001", "ISO 14001", "IATF 16949"], "contact": "sales@murata.com.cn"},
+    {"name": "AVX Corporation", "location": "Tianjin", "specialization": "Tantalum capacitors, connectors", "capacity": "80M pcs/month", "certifications": ["ISO 9001", "AS9100", "IATF 16949"], "contact": "sales@avx.com"},
+    {"name": "Kemet Electronics", "location": "Suzhou, Jiangsu", "specialization": "Capacitors, EMI filters", "capacity": "100M pcs/month", "certifications": ["ISO 9001", "IATF 16949", "AEC-Q200"], "contact": "sales@kemet.com"},
+    {"name": "Taiyo Yuden", "location": "Dongguan, Guangdong", "specialization": "MLCC, inductors, ferrite beads", "capacity": "120M pcs/month", "certifications": ["ISO 9001", "ISO 14001"], "contact": "sales@taiyo-yuden.com"},
+    {"name": "Samsung Electro-Mechanics", "location": "Tianjin", "specialization": "MLCC, chip resistors, camera modules", "capacity": "200M pcs/month", "certifications": ["ISO 9001", "ISO 14001", "IATF 16949"], "contact": "sales@sem.samsung.com"},
+    {"name": "BOE Technology Group", "location": "Beijing", "specialization": "LCD/OLED displays, panels", "capacity": "10M panels/month", "certifications": ["ISO 9001", "ISO 14001"], "contact": "sales@boe.com.cn"},
+    {"name": "Tianma Microelectronics", "location": "Shenzhen, Guangdong", "specialization": "LCD modules, displays", "capacity": "5M modules/month", "certifications": ["ISO 9001", "IATF 16949", "ISO 14001"], "contact": "sales@tianma.com"},
+    {"name": "Innolux Corporation", "location": "Ningbo, Zhejiang", "specialization": "TFT-LCD panels, displays", "capacity": "8M panels/month", "certifications": ["ISO 9001", "ISO 14001"], "contact": "sales@innolux.com"},
+    {"name": "CSOT (TCL)", "location": "Shenzhen, Guangdong", "specialization": "LCD/OLED panels, displays", "capacity": "12M panels/month", "certifications": ["ISO 9001", "ISO 14001"], "contact": "sales@csot.com"},
+    {"name": "ON Semiconductor", "location": "Suzhou, Jiangsu", "specialization": "Power management ICs, discretes", "capacity": "500M units/month", "certifications": ["ISO 9001", "IATF 16949", "AS9100"], "contact": "sales@onsemi.com"},
+    {"name": "Infineon Technologies", "location": "Wuxi, Jiangsu", "specialization": "Power semiconductors, sensors", "capacity": "200M units/month", "certifications": ["ISO 9001", "IATF 16949", "ISO 14001"], "contact": "sales@infineon.com.cn"},
+    {"name": "NXP Semiconductors", "location": "Tianjin", "specialization": "Automotive ICs, MCUs", "capacity": "150M units/month", "certifications": ["ISO 9001", "IATF 16949", "ISO 14001"], "contact": "sales@nxp.com"},
+    {"name": "Texas Instruments China", "location": "Chengdu, Sichuan", "specialization": "Analog ICs, processors", "capacity": "300M units/month", "certifications": ["ISO 9001", "IATF 16949"], "contact": "sales@ti.com"},
+    {"name": "STMicroelectronics", "location": "Shenzhen, Guangdong", "specialization": "MCUs, sensors, power ICs", "capacity": "250M units/month", "certifications": ["ISO 9001", "IATF 16949", "ISO 14001"], "contact": "sales@st.com"},
+    {"name": "Renesas Electronics", "location": "Suzhou, Jiangsu", "specialization": "MCUs, automotive ICs", "capacity": "180M units/month", "certifications": ["ISO 9001", "IATF 16949"], "contact": "sales@renesas.com"}
+  ]
+}

@@ -1,0 +1,7 @@
+interface:
+  display_name: "CarryFeed Twitter Tools"
+  short_description: "Resolve public X/Twitter links for agents."
+  default_prompt: "Use $carryfeed-twitter-tools and its CLI workflow to extract public source context and media candidates from this X/Twitter link."
+
+policy:
+  allow_implicit_invocation: true

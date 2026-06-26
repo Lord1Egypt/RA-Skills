@@ -1,0 +1,14 @@
+{
+  "name": "chinese-almanac",
+  "version": "1.0.0",
+  "description": "Chinese Almanac — Classical date selection based on Xie Ji Bian Fang Shu (协纪辨方书). Trilingual: English, 中文, 日本語.",
+  "main": "scripts/cli.js",
+  "scripts": {
+    "start": "node scripts/cli.js"
+  },
+  "keywords": ["almanac", "chinese-calendar", "auspicious-date", "择日", "黄道吉日", "中国暦"],
+  "license": "MIT",
+  "engines": {
+    "node": ">=14"
+  }
+}

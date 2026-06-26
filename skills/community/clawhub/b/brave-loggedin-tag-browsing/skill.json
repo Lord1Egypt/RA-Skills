@@ -1,0 +1,105 @@
+{
+  "name": "brave-loggedin-tag-browsing",
+  "version": "2.0.1",
+  "description": "使用 Brave 瀏覽器（已登入狀態）瀏覽 X/Twitter、Facebook 用戶頁面並提取最新帖子",
+  "tags": ["browser", "social-media", "x", "twitter", "facebook", "brave", "logged-in", "multi-platform"],
+  "inputs": {
+    "username": {
+      "type": "string",
+      "description": "社交平台帳號名稱（不需 @ 符號）",
+      "example": "realDonaldTrump, markzuckerberg"
+    },
+    "platform": {
+      "type": "string",
+      "enum": ["x", "twitter", "facebook", "fb"],
+      "default": "x",
+      "description": "目標平台：x/twitter（X/Twitter）或 facebook/fb（Facebook）"
+    },
+    "maxPosts": {
+      "type": "number",
+      "description": "最大提取帖子數（預設 5，建議 ≤ 20）",
+      "default": 5,
+      "min": 1,
+      "max": 50
+    },
+    "includeStats": {
+      "type": "boolean",
+      "description": "是否包含互動數據（轉推/喜歡/分享 或 留言/分享/心情）",
+      "default": true
+    }
+  },
+  "output": {
+    "type": "object",
+    "properties": {
+      "username": { "type": "string", "description": "查詢的帳號名稱" },
+      "platform": { "type": "string", "description": "使用的平台（x 或 facebook）" },
+      "loginStatus": { "type": "string", "description": "當前瀏覽器的登入帳號狀態" },
+      "profile": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string", "description": "用戶顯示名稱" },
+          "handle": { "type": "string", "description": "用戶帳號（@xxx）" },
+          "bio": { "type": "string", "description": "個人簡介" },
+          "followers": { "type": "string", "description": "粉絲/追蹤數" },
+          "verified": { "type": "boolean", "description": "是否為驗證帳號（僅 X）" }
+        }
+      },
+      "posts": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "time": { "type": "string", "description": "發布時間（ISO 8601 或原始格式）" },
+            "text": { "type": "string", "description": "帖子文字內容（如無則為 null）" },
+            "stats": {
+              "type": "object",
+              "properties": {
+                "replies": { "type": "string" },
+                "retweets": { "type": "string" },
+                "likes": { "type": "string" },
+                "shares": { "type": "string" }
+              }
+            }
+          }
+        }
+      },
+      "metadata": {
+        "type": "object",
+        "properties": {
+          "maxPosts": { "type": "number" },
+          "includeStats": { "type": "boolean" },
+          "timestamp": { "type": "string" },
+          "connectionMode": { "type": "string", "description": "瀏覽器連接模式（opencdl/cdp/launch）" }
+        }
+      }
+    }
+  },
+  "examples": [
+    {
+      "input": { "username": "realDonaldTrump", "platform": "x", "maxPosts": 5, "includeStats": true },
+      "output": { "username": "realDonaldTrump", "platform": "x", "posts": [{ "time": "...", "text": "...", "stats": { "likes": "100K" } }] }
+    },
+    {
+      "input": { "username": "markzuckerberg", "platform": "facebook", "maxPosts": 3, "includeStats": false },
+      "output": { "username": "markzuckerberg", "platform": "facebook", "posts": [{ "time": "...", "text": "..." }] }
+    }
+  ],
+  "installation": {
+    "method": "local",
+    "location": "~/.openclaw/workspace/skills/brave-loggedin-tag-browsing/",
+    "dependencies": ["playwright"]
+  },
+  "compatibility": {
+    "openclaw": ">=1.0.0",
+    "node": ">=18"
+  },
+  "author": "Shuttle AI",
+  "license": "CC BY-NC 4.0",
+  "homepage": "https://clawhub.com/skills/brave-loggedin-tag-browsing",
+  "bugs": "https://github.com/your-repo/issues",
+  "notes": [
+    "需要 Brave 瀏覽器已安裝並登入目標平台",
+    "首次使用會自動啟動瀏覽器（需執行權限）",
+    "Facebook 的選擇器可能因 Facebook 更新而失效，請定期檢查"
+  ]
+}

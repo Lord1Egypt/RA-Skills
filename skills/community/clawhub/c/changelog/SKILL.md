@@ -1,35 +1,62 @@
 ---
-name: "Changelog"
+name: changelog
+version: "2.0.0"
+author: BytesAgain
+homepage: https://bytesagain.com
+source: https://github.com/bytesagain/ai-skills
+license: MIT-0
+tags: [changelog, tool, utility]
 description: "Changelog - command-line tool for everyday use Use when you need changelog."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/changelog"
-sourceUrl: "https://clawhub.ai/skills/changelog"
 ---
 
 # Changelog
 
-> Changelog - command-line tool for everyday use Use when you need changelog.
+Changelog generator — commit parsing, version grouping, markdown output, conventional commits, breaking change detection, and templates.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/changelog`
-- **Source URL:** [https://clawhub.ai/skills/changelog](https://clawhub.ai/skills/changelog)
+## Commands
 
-## Overview
+| Command | Description |
+|---------|-------------|
+| `changelog run` | Execute main function |
+| `changelog list` | List all items |
+| `changelog add <item>` | Add new item |
+| `changelog status` | Show current status |
+| `changelog export <format>` | Export data |
+| `changelog help` | Show help |
 
+## Usage
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/changelog
+# Show help
+changelog help
+
+# Quick start
+changelog run
 ```
+
+## Examples
+
+```bash
+# Run with defaults
+changelog run
+
+# Check status
+changelog status
+
+# Export results
+changelog export json
+```
+
+- Run `changelog help` for all commands
+- Data stored in `~/.local/share/changelog/`
+
+---
+*Powered by BytesAgain | bytesagain.com*
+*Feedback & Feature Requests: https://bytesagain.com/feedback*
+
+- Run `changelog help` for all commands
+
+## When to Use
+
+- Quick changelog tasks from terminal
+- Automation pipelines

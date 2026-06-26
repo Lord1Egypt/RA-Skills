@@ -1,35 +1,23 @@
----
-name: "Broedkrumme Kalibr"
-description: "Captures agent outcomes and LLM telemetry for continuous self-improvement and optional intelligent model routing."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/broedkrumme-kalibr"
-sourceUrl: "https://clawhub.ai/skills/broedkrumme-kalibr"
----
+# Kalibr
 
-# Broedkrumme Kalibr
+Agent self-improvement and telemetry. Captures agent outcomes and LLM calls for continuous improvement.
 
-> Captures agent outcomes and LLM telemetry for continuous self-improvement and optional intelligent model routing.
+## Features
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/broedkrumme-kalibr`
-- **Source URL:** [https://clawhub.ai/skills/broedkrumme-kalibr](https://clawhub.ai/skills/broedkrumme-kalibr)
+- Outcome capture
+- LLM telemetry
+- Intelligent model routing (optional)
+- Self-improvement tracking
 
-## Overview
+## Config
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/broedkrumme-kalibr
+```json
+{
+  "apiKey": "your-kalibr-api-key",
+  "tenantId": "your-tenant-id",
+  "apiUrl": "https://kalibr-intelligence.fly.dev",
+  "enableRouting": false,
+  "captureOutcomes": true,
+  "captureLlmTelemetry": true
+}
 ```

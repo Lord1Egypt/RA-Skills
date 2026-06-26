@@ -1,0 +1,13 @@
+{
+  "name": "claw-calendar-skill",
+  "version": "1.0.0",
+  "type": "module",
+  "private": true,
+  "description": "Claw Calendar API client for WorkBuddy",
+  "scripts": {
+    "list-calendars": "node scripts/list-calendars.js",
+    "create-calendar": "node scripts/create-calendar.js",
+    "list-events": "node scripts/list-events.js",
+    "create-event": "node scripts/create-event.js"
+  }
+}

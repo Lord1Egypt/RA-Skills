@@ -1,35 +1,70 @@
----
-name: "Chaos Cognitive Resilience"
-description: "Design and test cognitive systems to gracefully recover from errors and overloads using chaos engineering principles and resilience metrics."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/chaos-cognitive-resilience"
-sourceUrl: "https://clawhub.ai/skills/chaos-cognitive-resilience"
----
-
 # Chaos Cognitive Resilience
 
-> Design and test cognitive systems to gracefully recover from errors and overloads using chaos engineering principles and resilience metrics.
+> 混沌工程 × 认知科学：在不确定性中构建弹性认知系统。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/chaos-cognitive-resilience`
-- **Source URL:** [https://clawhub.ai/skills/chaos-cognitive-resilience](https://clawhub.ai/skills/chaos-cognitive-resilience)
+## 何时使用
+- 设计能在信息噪声、对抗性输入、部分故障下仍正常工作的认知系统
+- 评估AI系统在认知过载场景下的鲁棒性
+- 构建人类-AI协作中的认知韧性
 
-## Overview
+## 核心认知
 
+### 1. 认知系统的混沌面
+传统混沌工程关注基础设施（网络延迟、节点故障）。认知系统的混沌面完全不同：
+- **信息混沌**：输入数据包含错误、矛盾、缺失
+- **注意力混沌**：同时处理多个竞争性任务导致认知过载
+- **记忆混沌**：长期记忆退化、短期记忆溢出、记忆冲突
+- **推理混沌**：部分前提错误导致推理链崩溃
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/chaos-cognitive-resilience
+认知系统不需要"不犯错"，而是需要"犯错后优雅恢复"。这与传统混沌工程的"blast radius控制"概念完美对应。
+
+### 2. 认知混沌猴子（Cognitive Chaos Monkey）
+类似Netflix的Chaos Monkey，但注入的是认知干扰：
+- **语义翻转**：随机将输入中的关键词替换为反义词
+- **上下文截断**：模拟注意力窗口不足，截断关键上下文
+- **记忆注入**：插入虚假"历史记忆"，测试系统辨别能力
+- **推理分支炸弹**：注入需要指数级推理时间的输入
+
+关键指标不是"是否出错"，而是"错误后的恢复路径质量和时间"。
+
+### 3. 认知弹性指数（Cognitive Resilience Index, CRI）
 ```
+CRI = Σ(恢复速度_i × 恢复质量_i × 权重_i) / N
+
+其中：
+- 恢复速度：从错误状态恢复到正常状态的时间
+- 恢复质量：恢复后的认知输出准确度
+- 权重：该故障模式的重要程度
+- N：测试的故障模式数量
+```
+
+## 实践框架
+
+```
+Phase 1: 认知故障模式枚举
+├── 输入层故障（噪声、缺失、矛盾、对抗）
+├── 处理层故障（注意力不足、推理链断裂、偏见放大）
+├── 输出层故障（幻觉、过度自信、决策瘫痪）
+└── 系统层故障（记忆溢出、上下文丢失、模型切换异常）
+
+Phase 2: 混沌注入实验
+├── 定义稳态基线（正常状态下的输出质量）
+├── 注入单一故障 → 测量偏差
+├── 注入组合故障 → 测量交互效应
+└── 渐进加大故障强度 → 找到系统崩溃临界点
+
+Phase 3: 弹性增强
+├── 输入校验层（异常检测 → 置信度标注 → 降级处理）
+├── 推理冗余层（多路径推理 → 交叉验证 → 共识机制）
+├── 输出保护层（事实核查 → 一致性检查 → 不确定性表达）
+└元认知监控层（自我评估 → 异常检测 → 主动降级）
+
+Phase 4: 持续验证
+├── 自动化混沌测试管线
+├── CRI趋势追踪
+└── 新故障模式发现与归类
+```
+
+## 碰撞来源
+- `chaos-engineering-playbook` × `cognitive-load-testing` × `cognitive-bias-in-engineering`
+- `self-healing-database`（恢复模式）× `neuroscience-for-devs`（认知模型）

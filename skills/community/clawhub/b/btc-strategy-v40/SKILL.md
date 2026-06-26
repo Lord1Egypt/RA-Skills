@@ -1,35 +1,143 @@
 ---
-name: "Btc Strategy V40"
-description: "BTC V4.0 量化交易策略 - 基于 EMA3/EMA8 交叉、RSI 和动量的多因子信号系统。 通过 Agent Trade Kit 自动执行 BTC-USDT-SWAP 永续合约交易。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/btc-strategy-v40"
-sourceUrl: "https://clawhub.ai/skills/btc-strategy-v40"
+name: btc-strategy-v40
+description: |
+  BTC V4.0 量化交易策略 - 基于 EMA3/EMA8 交叉、RSI 和动量的多因子信号系统。
+  通过 Agent Trade Kit 自动执行 BTC-USDT-SWAP 永续合约交易。
+metadata:
+  author: qianzhentao1
+  version: "4.0.0"
+  tags: [trading, btc, crypto, strategy, signals, okx-competition]
 ---
 
-# Btc Strategy V40
+# 多信号融合 BTC 趋势策略 V4.0
 
-> BTC V4.0 量化交易策略 - 基于 EMA3/EMA8 交叉、RSI 和动量的多因子信号系统。 通过 Agent Trade Kit 自动执行 BTC-USDT-SWAP 永续合约交易。
+## 策略名称
+多信号融合 BTC 趋势策略 V4.0
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/btc-strategy-v40`
-- **Source URL:** [https://clawhub.ai/skills/btc-strategy-v40](https://clawhub.ai/skills/btc-strategy-v40)
+## 执行节奏
+每 5 分钟触发一次
 
-## Overview
+## Step 1 · 行情数据采集
 
+调用 `market_get_candles` 获取 BTC-USDT-SWAP 的 5m K线数据，计算以下指标：
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/btc-strategy-v40
+- **EMA3**: 快速指数移动平均线
+- **EMA8**: 慢速指数移动平均线
+- **RSI (14)**: 相对强弱指数
+- **ATR (14)**: 平均真实波幅
+- **价格动量**: (当前价 - 5周期前价格) / 5周期前价格 × 100%
+
+## Step 2 · 市场情绪采集
+
+调用以下接口获取市场状态：
+
+- `market_get_funding_rate`: 获取 BTC-USDT-SWAP 资金费率
+- `market_get_open_interest`: 获取持仓量变化
+- `market_get_long_short_ratio`: 获取多空比
+
+## Step 3 · AI 综合判断（核心）
+
+基于以上数据，AI 需要进行以下推理：
+
+### 1. 趋势判断
+- EMA3 > EMA8 且 EMA3 向上 →  bullish 信号 (+2分)
+- EMA3 < EMA8 且 EMA3 向下 →  bearish 信号 (-2分)
+- EMA3 与 EMA8 纠缠 →  neutral (0分)
+
+### 2. RSI 判断
+- RSI < 35 → 超卖，做多信号 (+1分)
+- RSI > 65 → 超买，做空信号 (-1分)
+- 35 ≤ RSI ≤ 65 → 中性 (0分)
+
+### 3. 动量判断
+- 动量 > 1.5% → 强势上涨 (+1.5分)
+- 动量 < -1.5% → 强势下跌 (-1.5分)
+- -1.5% ≤ 动量 ≤ 1.5% → 震荡 (0分)
+
+### 4. 资金费率检查
+- 资金费率 > 0.1% → 多头过度拥挤，降低做多仓位 50%
+- 资金费率 < -0.1% → 空头过度拥挤，降低做空仓位 50%
+
+### 5. ATR 风险评估
+- ATR > 近期均值 × 1.5 → 波动过大，降低仓位或跳过
+- ATR < 近期均值 × 0.5 → 波动过小，降低仓位或跳过
+
+### 最终决策逻辑
+
+**加权评分 = 趋势分 + RSI分 + 动量分**
+
+| 总分 | 决策 | 仓位比例 |
+|------|------|----------|
+| ≥ 3 | 开多 | 80% |
+| 1.5 ~ 3 | 开多 | 50% |
+| -1.5 ~ 1.5 | 观望 | 0% |
+| -3 ~ -1.5 | 开空 | 50% |
+| ≤ -3 | 开空 | 80% |
+
+**AI 必须给出明确的决策理由**，例如：
+- "EMA3/8金叉 + RSI超卖 + 动量强劲，综合评分3.5，建议开多80%仓位"
+- "资金费率过高，虽然趋势看多但降低仓位至40%"
+
+## Step 4 · 执行下单（仅当 AI 判断明确开仓时）
+
+调用 `swap_place_order`：
+
 ```
+instId = "BTC-USDT-SWAP"
+side = <AI判断的方向，buy/sell>
+ordType = "market"
+sz = <按账户净值和仓位比例计算>
+posSide = <long/short>
+tag = "agentTradeKit"  // 必填，否则不计入排行榜
+```
+
+**仓位计算公式**：
+```
+仓位大小 = 账户净值 × 仓位比例 × (1 / 当前价格) × 杠杆倍数
+最大杠杆：10x
+```
+
+## Step 5 · 止损设置
+
+开仓后立即调用 `swap_place_algo_order` 设置止损：
+
+**多头止损**：
+- 止损价 = 开仓价 × 0.97 (3%止损)
+- 或：开仓价 - 2 × ATR
+
+**空头止损**：
+- 止损价 = 开仓价 × 1.03 (3%止损)
+- 或：开仓价 + 2 × ATR
+
+## 风控规则
+
+```
+// 单笔最大亏损不超过账户净值 3%
+// 当日净值回撤超 8% 则停止新开仓
+// 最多同时持有 1 个标的（BTC）
+// 禁止对冲持仓（不能同时持有多空仓位）
+// 每次触发只执行一个方向的订单
+// 已有持仓时，同方向信号加仓，反方向信号平仓并反向开仓
+```
+
+## 策略特点
+
+1. **多因子融合**: EMA趋势 + RSI超买超卖 + 动量确认
+2. **动态仓位**: 根据信号强度调整仓位大小
+3. **风险可控**: 严格的止损和回撤控制
+4. **自适应**: 根据市场波动率(ATR)调整策略
+
+## 参数配置
+
+| 参数 | 值 | 说明 |
+|------|-----|------|
+| EMA短周期 | 3 | 快速EMA |
+| EMA长周期 | 8 | 慢速EMA |
+| RSI周期 | 14 | 标准RSI |
+| RSI做多阈值 | 35 | 超卖区间 |
+| RSI做空阈值 | 65 | 超买区间 |
+| 动量阈值 | ±1.5% | 动能确认 |
+| 检查频率 | 5分钟 | 执行节奏 |
+| 最大杠杆 | 10x | 杠杆上限 |
+| 止损比例 | 3% | 固定止损 |
+| 日回撤限制 | 8% | 风控线 |

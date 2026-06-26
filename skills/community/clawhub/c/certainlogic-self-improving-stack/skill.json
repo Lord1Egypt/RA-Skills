@@ -1,0 +1,15 @@
+{
+  "name": "certainlogic-self-improving-stack",
+  "slug": "certainlogic-self-improving-stack",
+  "version": "1.0.0",
+  "description": "CertainLogic's curated self-improving agent stack. Honest comparison of 8 top tools + Company Brain Core OS as recommended foundation.",
+  "author": "CertainLogic",
+  "license": "MIT",
+  "category": "productivity",
+  "tags": ["self-improving", "proactive", "learning", "memory", "bundle", "company-brain", "certainlogic"],
+  "repository": "https://github.com/certainlogic/certainlogic-self-improving-stack",
+  "homepage": "https://certainlogic.ai/docs/self-improving-stack",
+  "marketplace": {
+    "clawhub": "certainlogicai/certainlogic-self-improving-stack"
+  }
+}

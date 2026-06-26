@@ -1,0 +1,3 @@
+interface:
+  display_name: "Campus Candidate Screener"
+  short_description: "Screen campus candidates against role requirements and produce explainable shortlists."

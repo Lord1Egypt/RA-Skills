@@ -1,0 +1,41 @@
+# claw-social-feed — Configuration Template
+# Copy this file and fill in your accounts.
+
+# ── Accounts to fetch ──
+# Run `bb-browser site list` to see all supported platforms.
+accounts:
+  - platform: twitter
+    username: replace_with_your_target_handle
+  # - platform: reddit
+  #   username: your_reddit_username
+
+# ── Obsidian Vault ──
+# Content will be saved to vault_base/@username/
+vault_base: ~/Documents/Obsidian Vault/SocialFeed
+
+# ── Fetch settings ──
+fetch:
+  count: 20  # tweets per account per run; max 100
+
+# ── Content filters ──
+filters:
+  min_text_length: 30          # skip posts shorter than this
+  skip_retweet_no_comment: true # skip retweets without original text
+  skip_link_only: true         # skip link/image-only posts with little text
+  blocked_keywords: []           # skip posts containing any keyword
+
+# ── Auto-tagging ──
+# Keywords are OR-separated within each group; case-insensitive matching.
+tagging:
+  enabled: true
+  keywords:
+    AI / LLM / GPT / Claude / 大模型: AI
+    skill / Skills: skill
+    Python / JavaScript / Rust / coding: coding
+    产品 / product / PM: product
+    投资 / 股票 / 加密 / finance: finance
+    视频 / YouTube / B站 / bilibili: video
+
+# ── Incremental sync ──
+# How many days of backfill to capture if a run was missed.
+catchup_window_days: 3

@@ -1,0 +1,19 @@
+{
+  "name": "changebrief",
+  "version": "1.1.2",
+  "description": "变化简报官 ChangeBrief - 对比前后知识快照，提炼新增重点、说法变化、失效结论、待拍板冲突和立即行动优先级",
+  "keywords": [
+    "changebrief",
+    "change-intelligence",
+    "knowledge-delta",
+    "weekly-brief",
+    "stale-conclusions",
+    "management-brief",
+    "decision-support",
+    "knowledge",
+    "productivity"
+  ],
+  "author": "openclaw",
+  "license": "MIT",
+  "repository": "https://github.com/harrylabsj/changebrief"
+}

@@ -1,35 +1,73 @@
 ---
-name: "Cc Coder"
-description: "使用 Claude Code CLI 自动编写代码。触发条件：用户要求写代码、创建项目、修复 bug、实现功能等编程任务。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/cc-coder"
-sourceUrl: "https://clawhub.ai/skills/cc-coder"
+name: cc-coder
+description: 使用 Claude Code CLI 自动编写代码。触发条件：用户要求写代码、创建项目、修复 bug、实现功能等编程任务。
 ---
 
-# Cc Coder
+# CC Coder - Claude Code 代码助手
 
-> 使用 Claude Code CLI 自动编写代码。触发条件：用户要求写代码、创建项目、修复 bug、实现功能等编程任务。
+使用 Claude Code CLI 自动完成编程任务。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/cc-coder`
-- **Source URL:** [https://clawhub.ai/skills/cc-coder](https://clawhub.ai/skills/cc-coder)
+## 任务跟踪
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/cc-coder
+每次任务必须使用 TASKS.md 跟踪进度：
 ```
+[TIMESTAMP] 任务名称
+状态: 进行中/已完成/等待中
+进度: X/Y
+- 步骤1 ✓/🔄/⏳
+- 步骤2 ✓/🔄/⏳
+
+结果: 成功/失败/待测试
+```
+
+符号说明：
+- ✓ 完成
+- 🔄 进行中
+- ⏳ 等待中
+
+## 执行流程
+
+### 步骤 1: 解析需求
+- 理解用户要实现的功能
+- 确定目标文件路径
+- 列出需要修改/创建的文件
+
+### 步骤 2: 调用 Claude Code 写代码
+使用以下命令格式：
+```bash
+claude -p --dangerously-skip-permissions "你的具体要求"
+```
+
+关键参数：
+- `-p` : 单次查询模式
+- `--dangerously-skip-permissions` : 跳过审批
+
+### 步骤 3: 验证代码
+- 检查文件是否创建/修改
+- 运行语法检查
+- 如果是 web 项目，尝试启动服务器并测试
+
+### 步骤 4: Review 结果
+- 对比实现与预期
+- 如果有问题，循环修复
+- 最终给出测试结论
+
+## 输出要求
+
+每次任务完成必须输出：
+1. 任务状态（成功/失败）
+2. 改动内容摘要
+3. 测试结论（可用/需手动验证/有问题）
+
+## 示例
+
+用户要求："修复子弹发射 bug"
+
+执行：
+1. 调用 CC CLI 修复代码
+2. 检查代码改动
+3. 验证语法
+4. 提交 Git
+5. 汇报结果
+
+---

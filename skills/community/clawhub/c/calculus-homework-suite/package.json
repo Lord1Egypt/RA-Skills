@@ -1,0 +1,59 @@
+{
+  "name": "calculus-homework-suite",
+  "version": "1.0.0",
+  "description": "高等数学作业全生命周期管理套件",
+  "author": "代国兴",
+  "license": "MIT",
+  "keywords": [
+    "calculus",
+    "homework",
+    "grading",
+    "analytics",
+    "education",
+    "mathematics"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/daiguoxing/calculus-homework-suite"
+  },
+  "homepage": "https://clawhub.ai/skills/calculus-homework-suite",
+  "bugs": {
+    "url": "https://github.com/daiguoxing/calculus-homework-suite/issues"
+  },
+  "engines": {
+    "node": ">=16.0.0",
+    "openclaw": ">=2026.4.0"
+  },
+  "dependencies": {
+    "calculus-homework-assignment": "^1.0.0",
+    "calculus-intelligent-grading": "^1.0.0",
+    "calculus-learning-analytics": "^1.0.0",
+    "calculus-error-analyzer": "^1.0.0"
+  },
+  "peerDependencies": {
+    "calculus-concept-visualizer": "^1.0.0",
+    "question-type-generator": "^1.0.0",
+    "math-edu-assistant": "^1.0.0"
+  },
+  "scripts": {
+    "install": "echo 'Installing calculus homework suite...'",
+    "test": "python -m pytest tests/",
+    "build": "python build.py",
+    "deploy": "clawhub publish --skill-dir ."
+  },
+  "config": {
+    "skill_type": "education",
+    "category": "mathematics",
+    "subcategory": "calculus",
+    "audience": ["teachers", "students", "educators"],
+    "complexity": "advanced"
+  },
+  "files": [
+    "SKILL.md",
+    "package.json",
+    "README.md",
+    "examples/",
+    "config/",
+    "src/"
+  ]
+}

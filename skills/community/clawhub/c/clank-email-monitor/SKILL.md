@@ -1,35 +1,77 @@
 ---
-name: "Clank Email Monitor"
-description: "Monitor email inboxes for important messages and get alerts. Works with AgentMail, Gmail, and any IMAP inbox."
-category: "productivity"
-source: "ClawHub"
-tags: [agentmail, email, monitoring]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/clank-email-monitor"
-sourceUrl: "https://clawhub.ai/skills/clank-email-monitor"
+name: email-monitor
+description: Monitor email inboxes for important messages and get alerts. Works with AgentMail, Gmail, and any IMAP inbox.
+metadata:
+  openclaw:
+    emoji: "📧"
 ---
 
-# Clank Email Monitor
+# Email Monitor Skill
 
-> Monitor email inboxes for important messages and get alerts. Works with AgentMail, Gmail, and any IMAP inbox.
+Monitor your email inboxes and get alerts for important messages.
 
-- **Category:** Productivity
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/clank-email-monitor`
-- **Source URL:** [https://clawhub.ai/skills/clank-email-monitor](https://clawhub.ai/skills/clank-email-monitor)
+## Features
 
-## Overview
+- **Multi-Inbox Support** – Monitor multiple email addresses
+- **Keyword Alerts** – Get notified when specific keywords appear
+- **Priority Detection** – Automatically prioritize important emails
+- **Digest Mode** – Daily/weekly email summaries
+- **Auto-Reply** – Optional automatic responses for urgent messages
 
+## Usage
+
+```bash
+# Check inbox for new messages
+email-monitor check
+
+# Set up keyword alerts
+email-monitor alert add "urgent" "invoice" "deadline"
+
+# Generate daily digest
+email-monitor digest --daily
+
+# Monitor in background (cron)
+email-monitor watch --interval 5m
+```
 
 ## Installation
-To install this skill, run the following command in your terminal:
+
 ```bash
-hermes skills install clawhub/clank-email-monitor
+clawhub install email-monitor
 ```
+
+## Configuration
+
+Create `~/.email-monitor/config.json`:
+
+```json
+{
+  "inboxes": [
+    {
+      "name": "work",
+      "provider": "agentmail",
+      "api_key": "your_key",
+      "inbox_id": "you@agentmail.to"
+    }
+  ],
+  "alerts": {
+    "keywords": ["urgent", "invoice", "deadline"],
+    "notify": ["telegram", "email"]
+  },
+  "digest": {
+    "enabled": true,
+    "time": "08:00",
+    "timezone": "UTC"
+  }
+}
+```
+
+## Requirements
+
+- Node.js >= 20
+- AgentMail API key OR IMAP credentials
+- OpenClaw (for notifications)
+
+## License
+
+MIT

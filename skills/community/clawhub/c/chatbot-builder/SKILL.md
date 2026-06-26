@@ -1,35 +1,44 @@
----
-name: "Chatbot Builder"
-description: "Create, train, and deploy AI chatbots using your data across multiple channels like web, Slack, Discord, and WhatsApp with context-aware responses."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/chatbot-builder"
-sourceUrl: "https://clawhub.ai/skills/chatbot-builder"
----
-
 # Chatbot Builder
 
-> Create, train, and deploy AI chatbots using your data across multiple channels like web, Slack, Discord, and WhatsApp with context-aware responses.
+Build AI-powered chatbots in minutes.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/chatbot-builder`
-- **Source URL:** [https://clawhub.ai/skills/chatbot-builder](https://clawhub.ai/skills/chatbot-builder)
+## Features
 
-## Overview
+- **Train on your data** - PDFs, websites, documents
+- **Multiple channels** - Website, Slack, Discord, WhatsApp
+- **LLM Integration** - OpenAI, Anthropic, local models
+- **Conversational memory** - Context-aware responses
+- **Analytics** - Track conversations
 
+## Quick Start
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/chatbot-builder
+# Create chatbot
+./chatbot.sh create support-bot
+
+# Train on data
+./chatbot.sh train support-bot --data ./docs
+
+# Deploy to web
+./chatbot.sh deploy support-bot --channel web
+
+# Deploy to Slack
+./chatbot.sh deploy support-bot --channel slack
 ```
+
+## Channels
+
+- Website widget
+- Slack
+- Discord
+- WhatsApp
+- Telegram
+
+## Requirements
+
+- Python 3.8+
+- OpenAI API key (or use local models)
+
+## Author
+
+Sunshine-del-ux

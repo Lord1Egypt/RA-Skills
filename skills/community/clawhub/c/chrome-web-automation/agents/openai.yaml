@@ -1,0 +1,4 @@
+interface:
+  display_name: "Chrome Web Automation"
+  short_description: "Drive Chrome for browser-based tasks"
+  default_prompt: "Open the active Chrome context, inspect tabs, and automate this browser flow step by step."

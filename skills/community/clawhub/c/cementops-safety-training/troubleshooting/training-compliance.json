@@ -1,0 +1,201 @@
+{
+  "title": "Training Compliance Verification",
+  "metadata": {
+    "skill": "cementops-safety-training",
+    "domain": "Training Compliance Troubleshooting",
+    "troubleshoot_id": "ST-TS-001",
+    "version": "1.0.0",
+    "last_updated": "2026-04-01"
+  },
+  "entry_symptoms": ["training compliance", "training records", "MSHA Part 46", "training plan", "task training", "refresher training", "contractor training", "citation"],
+  "steps": [
+    {
+      "id": 1,
+      "question": "Are training records current for all employees?",
+      "description": "Verify new miner, experienced miner, and annual refresher records are complete and current for every active employee including temporary and seasonal workers.",
+      "action": "Pull training records for all active employees. Check new miner (24 hrs/90 days), experienced miner (8 hrs before work), and annual refresher (8 hrs within 12 months).",
+      "check": [
+        "Every employee has applicable training type documented",
+        "Annual refresher is within 12-month window",
+        "All required fields present: trainee name, content, trainer, dates, duration, competency evaluation",
+        "No employees on extended leave or light duty with expired refreshers"
+      ]
+    },
+    {
+      "id": 2,
+      "question": "Is the training plan approved and up to date?",
+      "description": "Review the written training plan required under 30 CFR 46.3 for completeness and currency.",
+      "action": "Locate the training plan. Verify it includes mine name, MSHA ID, responsible person, competent persons list, training methods, and effectiveness evaluation procedure.",
+      "check": [
+        "Plan is available at the mine site for inspection",
+        "Competent persons listed are current employees",
+        "Plan reflects current operations, equipment, and hazards",
+        "Plan has been reviewed and signed with current date"
+      ]
+    },
+    {
+      "id": 3,
+      "question": "Are task training records in place for all assigned tasks?",
+      "description": "Verify each employee has documented task training for every task they perform, per 30 CFR 46.7.",
+      "action": "Create or review task training matrix mapping job roles to required task training. Check each employee's records against their current duties.",
+      "check": [
+        "Task training matrix exists and covers all equipment and procedures",
+        "Each employee has documented task training for assigned tasks",
+        "Records are specific (equipment ID, location, procedures covered)",
+        "Competency evaluation documented for each task"
+      ]
+    },
+    {
+      "id": 4,
+      "question": "Are contractors and visitors receiving site-specific hazard awareness training?",
+      "description": "Under 30 CFR 46.11, all persons entering the mine site must receive hazard awareness training before going to the site.",
+      "action": "Review contractor and visitor sign-in records. Verify hazard awareness content is documented and delivered before site access.",
+      "check": [
+        "Sign-in records exist for all contractors and visitors",
+        "Hazard awareness content documented (site hazards, emergency procedures, PPE, restricted areas)",
+        "Long-term contractors have experienced miner level training",
+        "Delivery drivers receive at minimum a hazard awareness briefing"
+      ]
+    },
+    {
+      "id": 5,
+      "question": "Is annual refresher content relevant and updated?",
+      "description": "Verify refresher training content is current, site-specific, and includes a mix of instructional methods.",
+      "action": "Review refresher training materials and delivery records. Check for updates reflecting past year incidents and site changes.",
+      "check": [
+        "Content updated within past 12 months",
+        "Includes review of incidents and near misses from past year",
+        "Includes hands-on or practical components (not just lecture)",
+        "Content is site-specific with local equipment and procedure references"
+      ]
+    }
+  ],
+  "troubleshooting_guide": {
+    "title": "Training Compliance Verification",
+    "description": "Step-by-step guide to verify MSHA Part 46 training compliance and identify gaps before they become citations",
+    "steps": [
+      {
+        "step": 1,
+        "question": "Are training records current for all employees?",
+        "details": "Pull the training records for every active employee (including temporary and seasonal workers). Verify that each person has a completed record for their applicable training type (new miner or experienced miner) and that their most recent annual refresher is within the 12-month window.",
+        "what_to_check": [
+          "New miner training: 24 hours documented within 90 days of hire, with minimum 4 hours before beginning work",
+          "Experienced miner training: 8 hours documented before starting work at this mine",
+          "Annual refresher: 8 hours completed within the last 12 months from date of last refresher or initial training",
+          "All required fields present: trainee name, content covered, trainer name, dates, duration, competency evaluation"
+        ],
+        "common_findings": [
+          "Refresher training expired for employees who were on extended leave or light duty",
+          "New hires completed orientation but the 24-hour new miner training was never finished within 90 days",
+          "Records exist but are missing competency evaluation documentation"
+        ],
+        "corrective_actions": [
+          "Schedule immediate refresher training for any employee past the 12-month deadline",
+          "Complete remaining new miner training hours for anyone still within the 90-day window",
+          "For employees past the 90-day window without completed training, stop work until training is completed",
+          "Add competency evaluation documentation to any records where it is missing"
+        ]
+      },
+      {
+        "step": 2,
+        "question": "Is the training plan approved and up to date?",
+        "details": "Review the written training plan required under 30 CFR 46.3. The plan must be available at the mine site and must reflect current operations, trainers, and training methods.",
+        "what_to_check": [
+          "Written plan exists and is available at the mine site",
+          "Plan includes mine name, MSHA ID, and responsible person for training",
+          "Plan lists all competent persons by name and area of expertise",
+          "Plan describes training methods, materials, and approximate duration for each training type",
+          "Plan has been reviewed and updated to reflect any changes in operations, equipment, or hazards in the past year",
+          "Plan includes procedure for evaluating training effectiveness"
+        ],
+        "common_findings": [
+          "Training plan exists but lists former employees as competent persons who are no longer on site",
+          "Plan does not reflect new equipment or process changes made in the past year",
+          "Plan is stored in a manager's office and not readily available during an MSHA inspection"
+        ],
+        "corrective_actions": [
+          "Update the competent person list to reflect current personnel",
+          "Revise training content descriptions to include new equipment, processes, or hazards",
+          "Place a copy of the plan in a location accessible to MSHA inspectors and miners (e.g., safety office, control room)",
+          "Have the plan reviewed and signed by the responsible person with the current date"
+        ]
+      },
+      {
+        "step": 3,
+        "question": "Are task training records in place for all assigned tasks?",
+        "details": "Review task training records for each employee against their current job duties. Every task that involves specific equipment operation or exposure to specific hazards requires documented task training under 30 CFR 46.7.",
+        "what_to_check": [
+          "List of tasks requiring training is current and covers all equipment and procedures at the site",
+          "Each employee has documented task training for every task they are assigned to perform",
+          "Task training records include the specific equipment or procedure trained on, not just generic descriptions",
+          "Records show competency evaluation (observation, demonstration, quiz, or practical test)",
+          "Task training was documented when employees changed positions, departments, or were assigned new equipment"
+        ],
+        "common_findings": [
+          "Inadequate task training records is the single most common Part 46 citation; many plants train informally but do not document it",
+          "Employees transferred between departments without task training for new equipment",
+          "New equipment was installed but task training for operators was not documented",
+          "Generic task training records that say 'conveyor operation' without specifying which conveyors or what content was covered"
+        ],
+        "corrective_actions": [
+          "Create a task training matrix mapping each job role to required task training records",
+          "Conduct and document task training for any gaps identified in the matrix",
+          "Ensure task training records are specific: include equipment ID, location, and specific procedures covered",
+          "Implement a process to trigger task training documentation whenever an employee changes roles or new equipment is installed"
+        ]
+      },
+      {
+        "step": 4,
+        "question": "Are contractors and visitors receiving site-specific hazard awareness training?",
+        "details": "Under 30 CFR 46.11, all persons who enter the mine site must receive site-specific hazard awareness training before going to the mine site. This includes contractors, delivery drivers, visitors, inspectors, and any other non-employees.",
+        "what_to_check": [
+          "A site-specific hazard awareness program exists and covers: site hazards, emergency procedures, PPE requirements, restricted areas",
+          "Sign-in records exist for all contractors and visitors showing hazard awareness training was provided",
+          "Contractor companies provide documentation that their employees have received applicable Part 46 training from their employer",
+          "Long-term contractors (e.g., refractory crews, construction) have been provided training equivalent to experienced miner or have their own Part 46 records on file",
+          "Delivery drivers receive at minimum a hazard awareness briefing covering traffic patterns, PPE requirements, and emergency procedures"
+        ],
+        "common_findings": [
+          "Delivery drivers are allowed on site without any hazard awareness training",
+          "Contractor sign-in sheets exist but do not document the content of the hazard awareness training provided",
+          "Long-term contractors working multiple months on site have only visitor-level hazard awareness, not experienced miner training",
+          "Weekend or off-shift visitors bypass the training because the safety office is closed"
+        ],
+        "corrective_actions": [
+          "Implement a gate-level check-in process that requires hazard awareness training verification before site entry",
+          "Create a standardized hazard awareness briefing sheet that documents content covered, signed by the visitor/contractor",
+          "Require long-term contractors to provide their Part 46 training records or complete experienced miner training at the site",
+          "Provide a video or self-paced hazard awareness module for off-hours arrivals with a sign-off sheet"
+        ]
+      },
+      {
+        "step": 5,
+        "question": "Is annual refresher content relevant and updated?",
+        "details": "Annual refresher training (30 CFR 46.8) must include 8 hours of instruction on subjects related to the mine environment and relevant health and safety topics. The content should not be a repeat of the same generic presentation year after year.",
+        "what_to_check": [
+          "Refresher content has been updated within the past 12 months to reflect current site conditions",
+          "Content includes review of any incidents, near misses, or new hazards from the past year",
+          "Content addresses any regulatory changes or new MSHA enforcement initiatives",
+          "Training methods include a mix of classroom, hands-on, and interactive elements (not 8 hours of lecture)",
+          "Content is specific to the mine site, not generic off-the-shelf material that does not reference site equipment or procedures",
+          "Feedback from previous refresher sessions has been incorporated to improve quality"
+        ],
+        "common_findings": [
+          "Same PowerPoint presentation used for 3+ years with no updates for site changes or incidents",
+          "Refresher conducted as a single 8-hour day of lecture with no interactive or hands-on components",
+          "Content is generic industry material with no site-specific examples, equipment references, or incident reviews",
+          "No mechanism to collect or act on trainee feedback about refresher quality",
+          "Expired refresher is the second most common Part 46 citation after inadequate task training records"
+        ],
+        "corrective_actions": [
+          "Form a refresher content review team including operations, maintenance, and safety to update topics annually",
+          "Include a review of all recordable incidents and significant near misses from the past year with root cause discussion",
+          "Incorporate at least 2 hours of hands-on or practical training (e.g., fire extinguisher use, LOTO practice, confined space equipment familiarization)",
+          "Add site-specific case studies and photos to replace or supplement generic materials",
+          "Distribute refresher training across the year in shorter segments (e.g., monthly 45-minute sessions) to improve retention and reduce fatigue",
+          "Collect written feedback after each refresher session and track improvements year over year"
+        ]
+      }
+    ]
+  }
+}

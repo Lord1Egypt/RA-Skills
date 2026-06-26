@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title>Cross-platform install examples / 三平台安装示例</title>
+  <desc>Windows, macOS, Linux, manual install, and AI link install flows.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0b1020" />
+      <stop offset="55%" stop-color="#10192b" />
+      <stop offset="100%" stop-color="#1e293b" />
+    </linearGradient>
+  </defs>
+
+<style>
+  .bg { fill: url(#bg); }
+  .panel { fill: #111827; stroke: #243041; stroke-width: 1.2; }
+  .terminal { fill: #0b1020; stroke: #334155; stroke-width: 1.2; }
+  .title { fill: #f8fafc; font: 700 34px 'Segoe UI', 'Inter', Arial, sans-serif; }
+  .subtitle { fill: #94a3b8; font: 500 17px 'Segoe UI', 'Inter', Arial, sans-serif; }
+  .section { fill: #e2e8f0; font: 700 21px 'Segoe UI', 'Inter', Arial, sans-serif; }
+  .body { fill: #dbe4f0; font: 500 18px 'Segoe UI', 'Inter', Arial, sans-serif; }
+  .small { fill: #94a3b8; font: 500 15px 'Segoe UI', 'Inter', Arial, sans-serif; }
+  .mono-small { fill: #dbe4f0; font: 500 17px 'Cascadia Code', Consolas, Menlo, monospace; }
+  .accent-text { fill: #7dd3fc; font: 700 15px 'Segoe UI', 'Inter', Arial, sans-serif; }
+</style>
+
+  <rect class="bg" x="0" y="0" width="1600" height="900" rx="0"/>
+  <rect x="48" y="38" width="1504" height="824" rx="28" fill="rgba(15,23,42,0.65)" stroke="#334155" stroke-width="1.2"/>
+  <text class="title" x="90" y="102">Cross-platform install examples / 三平台安装示例</text>
+  <text class="subtitle" x="90" y="136">Windows, macOS, Linux, manual install, and AI link install flows.</text>
+  <rect class="panel" x="90" y="184" width="450" height="286" rx="24"/>
+  <rect x="90" y="184" width="450" height="10" rx="24" fill="#60a5fa"/>
+  <text class="section" x="116" y="232">Windows</text>
+  <text class="small" x="116" y="261">Preset install example / 预设安装示例</text>
+  <text class="body" x="116" y="302">bash ~/.claude/skills/cc-statusline/scripts/activate_preset_statusline.sh</text>
+  <text class="body" x="116" y="336">Backup: ~/.claude/statusline.sh.bak</text>
+  <text class="body" x="116" y="370">Updates only the statusLine field / 仅修改 statusLine</text>
+  <text class="body" x="116" y="404">Preview first when invoked via skill / 通过 skill 时先预览</text>
+  <rect class="panel" x="575" y="184" width="450" height="286" rx="24"/>
+  <rect x="575" y="184" width="450" height="10" rx="24" fill="#a78bfa"/>
+  <text class="section" x="601" y="232">macOS</text>
+  <text class="small" x="601" y="261">Preset install example / 预设安装示例</text>
+  <text class="body" x="601" y="302">bash ~/.claude/skills/cc-statusline/scripts/activate_preset_statusline.sh</text>
+  <text class="body" x="601" y="336">Writes ~/.claude/statusline.sh by default</text>
+  <text class="body" x="601" y="370">Reuses jq if available / 优先复用 jq</text>
+  <text class="body" x="601" y="404">Same preset/theme/icon arguments / 同一套参数</text>
+  <rect class="panel" x="1060" y="184" width="450" height="286" rx="24"/>
+  <rect x="1060" y="184" width="450" height="10" rx="24" fill="#34d399"/>
+  <text class="section" x="1086" y="232">Linux</text>
+  <text class="small" x="1086" y="261">Preset install example / 预设安装示例</text>
+  <text class="body" x="1086" y="302">bash ~/.claude/skills/cc-statusline/scripts/activate_preset_statusline.sh</text>
+  <text class="body" x="1086" y="336">Keeps previous snapshot in cc-statusline-state.json</text>
+  <text class="body" x="1086" y="370">No unrelated settings touched / 不改无关设置</text>
+  <text class="body" x="1086" y="404">Works with preset and custom flows / 预设与 custom 通用</text>
+  <rect class="terminal" x="90" y="524" width="1420" height="210" rx="24"/>
+  <rect x="90" y="524" width="1420" height="44" rx="24" fill="#111827" stroke="#334155" stroke-width="1.2"/>
+  <circle cx="114" cy="546" r="6" fill="#fb7185"/>
+  <circle cx="136" cy="546" r="6" fill="#fbbf24"/>
+  <circle cx="158" cy="546" r="6" fill="#34d399"/>
+  <text class="small" x="186" y="551">Manual install + AI link install / 手动安装 + AI 链接安装</text>
+  <rect x="90" y="568" width="1420" height="6" fill="#f59e0b"/>
+  <text class="mono-small" x="114" y="612">git clone https://github.com/Miluer-tcq/cc-statusline</text>
+  <text class="mono-small" x="114" y="643">cp -r cc-statusline/{SKILL.md,scripts,presets,themes,icons,references} ~/.claude/skills/cc-statusline</text>
+  <text class="mono-small" x="114" y="674">Paste this URL to AI and ask it to install the skill automatically:</text>
+  <text class="mono-small" x="114" y="705">https://github.com/Miluer-tcq/cc-statusline</text>
+  <text class="accent-text" x="90" y="780">The release flow now supports self-contained skill install, manual install, and AI link install / 现已支持自包含 skill 安装、手动安装与 AI 链接安装。</text>
+</svg>

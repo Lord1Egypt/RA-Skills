@@ -1,0 +1,250 @@
+{
+  "constitution_types": [
+    {
+      "id": "balanced",
+      "name_en": "Balanced Constitution",
+      "name_cn": "平和质",
+      "name_pinyin": "Ping He Zhi",
+      "description_en": "Harmonious Yin-Yang balance with robust health and good adaptability.",
+      "description_cn": "阴阳气血调和，体态适中，面色红润，精力充沛，脏腑功能状态强健。",
+      "characteristics": {
+        "physical": ["Moderate body build", "Rosy complexion", "Bright eyes", "Healthy hair"],
+        "mental": ["Cheerful disposition", "Good stress tolerance", "Stable emotions"],
+        "physiological": ["Good sleep", "Regular bowel movements", "Normal appetite", "Strong immunity"]
+      },
+      "tendencies": ["Maintains good health", "Quick recovery from illness", "Strong adaptability to environment"],
+      "recommendations": {
+        "diet": ["Balanced diet", "Eat according to seasons", "Moderate intake of all flavors"],
+        "lifestyle": ["Regular sleep schedule", "Moderate exercise", "Maintain emotional balance"],
+        "exercise": ["Tai Chi", "Walking", "Swimming", "Any enjoyable activity"]
+      },
+      "search_keywords": ["healthy body type", "balanced constitution TCM", "ideal health pattern"],
+      "western_equivalent": "Optimal homeostasis - balanced physiological function"
+    },
+    {
+      "id": "qi_deficient",
+      "name_en": "Qi Deficient Constitution",
+      "name_cn": "气虚质",
+      "name_pinyin": "Qi Xu Zhi",
+      "description_en": "Insufficient vital energy leading to fatigue, weakness, and low immunity.",
+      "description_cn": "元气不足，气息低弱，机体、脏腑功能状态低下。",
+      "characteristics": {
+        "physical": ["Soft voice", "Shortness of breath", "Easily fatigued", "Muscle weakness"],
+        "mental": ["Low motivation", "Introverted tendency", "Avoids conflict"],
+        "physiological": ["Sweats easily with activity", "Frequent colds", "Slow recovery", "Prolapsed organs tendency"]
+      },
+      "tendencies": ["Catches colds easily", "Chronic fatigue", "Organ prolapse", "Poor wound healing"],
+      "recommendations": {
+        "diet": ["Astragalus (Huang Qi)", "Chinese yam (Shan Yao)", "Ginseng (Ren Shen)", "Avoid cold/raw foods"],
+        "lifestyle": ["Avoid overexertion", "Gradual activity increase", "Warm clothing"],
+        "exercise": ["Gentle Qigong", "Walking", "Tai Chi", "Avoid intense exercise"]
+      },
+      "search_keywords": ["always tired TCM", "chronic fatigue chinese medicine", "low energy body type", "weak immunity herbs"],
+      "western_equivalent": "Chronic fatigue pattern / Low functional reserve"
+    },
+    {
+      "id": "yang_deficient",
+      "name_en": "Yang Deficient Constitution",
+      "name_cn": "阳虚质",
+      "name_pinyin": "Yang Xu Zhi",
+      "description_en": "Insufficient warming function leading to cold intolerance and low metabolism.",
+      "description_cn": "阳气不足，失于温煦，以畏寒怕冷、手足不温等虚寒表现为特征。",
+      "characteristics": {
+        "physical": ["Cold limbs", "Pale complexion", "Soft muscles", "Edema tendency"],
+        "mental": ["Quiet personality", "Emotional sensitivity", "Prefers solitude"],
+        "physiological": ["Intolerance of cold", "Clear copious urine", "Loose stools", "Low libido"]
+      },
+      "tendencies": ["Edema", "Diarrhea", "Impotence/frigidity", "Infertility", "Joint pain in cold"],
+      "recommendations": {
+        "diet": ["Cinnamon (Rou Gui)", "Ginger (Gan Jiang)", "Lamb", "Walnuts", "Avoid cold foods/drinks"],
+        "lifestyle": ["Keep warm especially lower back", "Moxibustion therapy", "Sun exposure"],
+        "exercise": ["Morning exercise", "Yang-enhancing Qigong", "Avoid cold environments"]
+      },
+      "search_keywords": ["always cold body type", "cold hands feet TCM", "low metabolism chinese medicine", "yang deficiency symptoms"],
+      "western_equivalent": "Low metabolic fire / Hypothyroid tendency pattern"
+    },
+    {
+      "id": "yin_deficient",
+      "name_en": "Yin Deficient Constitution",
+      "name_cn": "阴虚质",
+      "name_pinyin": "Yin Xu Zhi",
+      "description_en": "Insufficient nourishing fluids leading to internal heat and dryness.",
+      "description_cn": "体内阴液亏少，以口燥咽干、手足心热等虚热表现为特征。",
+      "characteristics": {
+        "physical": ["Thin body type", "Flushed cheeks", "Dry skin", "Heat in palms/soles"],
+        "mental": ["Impatient", "Active mind", "Difficulty relaxing"],
+        "physiological": ["Dry mouth/throat", "Night sweats", "Constipation", "Insomnia", "Low-grade fever"]
+      },
+      "tendencies": ["Insomnia", "Anxiety", "Dry eyes", "Premature aging", "Hypertension"],
+      "recommendations": {
+        "diet": ["Lily bulb (Bai He)", "Ophiopogon (Mai Dong)", "Pear", "White fungus", "Avoid spicy/fried foods"],
+        "lifestyle": ["Regular sleep schedule", "Avoid late nights", "Meditation", "Cool environment"],
+        "exercise": ["Swimming", "Yin yoga", "Gentle Tai Chi", "Avoid overheating"]
+      },
+      "search_keywords": ["hot flashes TCM", "night sweats chinese medicine", "dry skin body type", "yin deficiency pattern"],
+      "western_equivalent": "Internal dryness / Depletion pattern / Hyperactive sympathetic"
+    },
+    {
+      "id": "phlegm_damp",
+      "name_en": "Phlegm-Damp Constitution",
+      "name_cn": "痰湿质",
+      "name_pinyin": "Tan Shi Zhi",
+      "description_en": "Impaired fluid metabolism leading to heaviness and metabolic congestion.",
+      "description_cn": "痰湿凝聚，形体肥胖，腹部肥满，口黏苔腻。",
+      "characteristics": {
+        "physical": ["Overweight", "Abdominal obesity", "Oily skin", "Puffy face", "Soft muscles"],
+        "mental": ["Mild temperament", "Patient", "Heavy mental feeling"],
+        "physiological": ["Sweet/sticky taste in mouth", "Profuse phlegm", "Chest congestion", "Sticky stools"]
+      },
+      "tendencies": ["Metabolic syndrome", "Diabetes", "Hypertension", "Fatty liver", "Sleep apnea"],
+      "recommendations": {
+        "diet": ["Tangerine peel (Chen Pi)", "Barley (Yi Yi Ren)", "White radish", "Avoid greasy/sweet foods"],
+        "lifestyle": ["Dry environment", "Regular meal times", "Avoid overeating"],
+        "exercise": ["Aerobic exercise", "Brisk walking", "Swimming", "Consistent activity"]
+      },
+      "search_keywords": ["overweight body type TCM", "oily skin chinese medicine", "phlegm dampness pattern", "metabolic congestion"],
+      "western_equivalent": "Metabolic congestion / Fluid retention pattern"
+    },
+    {
+      "id": "damp_heat",
+      "name_en": "Damp-Heat Constitution",
+      "name_cn": "湿热质",
+      "name_pinyin": "Shi Re Zhi",
+      "description_en": "Accumulation of dampness and heat causing oily skin and irritability.",
+      "description_cn": "湿热内蕴，面垢油光，口苦苔黄腻，易生痤疮。",
+      "characteristics": {
+        "physical": ["Oily face/acne", "Bitter taste", "Dark urine", "Body odor"],
+        "mental": ["Irritable", "Impatient", "Mood swings"],
+        "physiological": ["Sticky stools", "Burning urination", "Heavy limbs", " afternoon fever"]
+      },
+      "tendencies": ["Acne", "Urinary infections", "Gout", "Gallstones", "Eczema"],
+      "recommendations": {
+        "diet": ["Mung beans", "Celery", "Bitter melon", "Avoid alcohol/spicy/greasy"],
+        "lifestyle": ["Dry environment", "Adequate hydration", "Avoid damp places"],
+        "exercise": ["Sweat-inducing exercise", "Sauna (moderate)", "Swimming"]
+      },
+      "search_keywords": ["oily acne skin TCM", "bitter taste chinese medicine", "damp heat pattern", "body odor herbs"],
+      "western_equivalent": "Inflammatory congestion / Toxic metabolic pattern"
+    },
+    {
+      "id": "blood_stasis",
+      "name_en": "Blood Stasis Constitution",
+      "name_cn": "血瘀质",
+      "name_pinyin": "Xue Yu Zhi",
+      "description_en": "Impaired blood circulation causing dark complexion and fixed pain.",
+      "description_cn": "血行不畅，肤色晦暗，舌质紫黯，易出现瘀斑。",
+      "characteristics": {
+        "physical": ["Dark complexion", "Dark circles", "Spider veins", "Easy bruising"],
+        "mental": ["Forgetful", "Emotional suppression", "Holds grudges"],
+        "physiological": ["Fixed stabbing pain", "Painful menstruation", "Dark clots", "Cold limbs"]
+      },
+      "tendencies": ["Cardiovascular disease", "Stroke", "Varicose veins", "Endometriosis", "Chronic pain"],
+      "recommendations": {
+        "diet": ["Safflower (Hong Hua)", "Peach kernel (Tao Ren)", "Vinegar", "Avoid cold foods"],
+        "lifestyle": ["Regular movement", "Avoid prolonged sitting", "Massage therapy"],
+        "exercise": ["Aerobic exercise", "Dance", "Martial arts", "Keep blood flowing"]
+      },
+      "search_keywords": ["dark circles TCM", "bruising easily chinese medicine", "blood stasis pattern", "poor circulation herbs"],
+      "western_equivalent": "Circulatory stagnation / Microcirculation impairment"
+    },
+    {
+      "id": "qi_stagnation",
+      "name_en": "Qi Stagnation Constitution",
+      "name_cn": "气郁质",
+      "name_pinyin": "Qi Yu Zhi",
+      "description_en": "Constrained Qi flow leading to emotional sensitivity and chest tightness.",
+      "description_cn": "气机郁滞，神情抑郁，忧虑脆弱，烦闷不乐。",
+      "characteristics": {
+        "physical": ["Thin body type", "Sighing frequently", "Chest tightness", "Lump in throat feeling"],
+        "mental": ["Depressed mood", "Anxious", "Mood swings", "Hypersensitive"],
+        "physiological": ["Insomnia", "Poor appetite", "Bloating", "Irregular menstruation"]
+      },
+      "tendencies": ["Depression", "Anxiety disorders", "IBS", "Fibromyalgia", "PMS"],
+      "recommendations": {
+        "diet": ["Tangerine peel (Chen Pi)", "Rose buds", "Mint", "Avoid excessive coffee"],
+        "lifestyle": ["Emotional expression", "Social activities", "Nature time", "Aromatherapy"],
+        "exercise": ["Dance", "Yoga", "Group sports", "Anything enjoyable"]
+      },
+      "search_keywords": ["stress relief TCM", "depression anxiety chinese medicine", "liver qi stagnation", "mood swings herbs"],
+      "western_equivalent": "Stress response pattern / Emotional tension pattern"
+    },
+    {
+      "id": "special",
+      "name_en": "Special Constitution",
+      "name_cn": "特禀质",
+      "name_pinyin": "Te Bing Zhi",
+      "description_en": "Innate sensitivity leading to allergies and idiosyncratic reactions.",
+      "description_cn": "先天失常，生理缺陷，过敏反应等。",
+      "characteristics": {
+        "physical": ["Allergic history", "Skin reactions", "Nasal allergies", "Asthma tendency"],
+        "mental": ["Anxious about health", "Hypervigilant", "Easily worried"],
+        "physiological": ["Seasonal allergies", "Food intolerances", "Drug sensitivities", "Skin rashes"]
+      },
+      "tendencies": ["Allergic rhinitis", "Eczema", "Urticaria", "Asthma", "Autoimmune conditions"],
+      "recommendations": {
+        "diet": ["Astragalus (Huang Qi)", "Jujube (Da Zao)", "Local honey", "Avoid known allergens"],
+        "lifestyle": ["Clean environment", "Air filtration", "Allergy testing", "Gradual desensitization"],
+        "exercise": ["Indoor exercise during high pollen", "Swimming", "Gentle activities"]
+      },
+      "search_keywords": ["allergies TCM", "sensitive body type chinese medicine", "allergic constitution", "immune support herbs"],
+      "western_equivalent": "Atopic constitution / Hypersensitive reactivity pattern"
+    }
+  ],
+  "assessment_questions": [
+    {
+      "id": "energy",
+      "question_en": "How would you describe your typical energy level?",
+      "question_cn": "您平时的精力状态如何？",
+      "options": [
+        {"text_en": "Always energetic", "text_cn": "精力充沛", "scores": {"balanced": 3}},
+        {"text_en": "Tired easily, need rest", "text_cn": "容易疲劳，需要休息", "scores": {"qi_deficient": 3}},
+        {"text_en": "Low energy, prefer warmth", "text_cn": "精神不振，喜欢温暖", "scores": {"yang_deficient": 3}},
+        {"text_en": "Active but tire quickly", "text_cn": "活动后容易累", "scores": {"yin_deficient": 2}}
+      ]
+    },
+    {
+      "id": "temperature",
+      "question_en": "How do you feel about temperature?",
+      "question_cn": "您对温度的感觉如何？",
+      "options": [
+        {"text_en": "Comfortable in most temperatures", "text_cn": "适应力强，不敏感", "scores": {"balanced": 3}},
+        {"text_en": "Always cold, need layers", "text_cn": "怕冷，手脚冰凉", "scores": {"yang_deficient": 3}},
+        {"text_en": "Often warm, prefer cool", "text_cn": "怕热，手脚心发热", "scores": {"yin_deficient": 3}},
+        {"text_en": "Dislike humid weather", "text_cn": "怕湿热天气", "scores": {"damp_heat": 2}}
+      ]
+    },
+    {
+      "id": "digestion",
+      "question_en": "How is your digestion?",
+      "question_cn": "您的消化情况如何？",
+      "options": [
+        {"text_en": "Good appetite, regular bowels", "text_cn": "食欲正常，排便规律", "scores": {"balanced": 3}},
+        {"text_en": "Poor appetite, bloating", "text_cn": "食欲差，容易腹胀", "scores": {"qi_deficient": 3}},
+        {"text_en": "Loose stools often", "text_cn": "大便不成形", "scores": {"yang_deficient": 2, "phlegm_damp": 2}},
+        {"text_en": "Constipation, dry stools", "text_cn": "大便干燥，容易便秘", "scores": {"yin_deficient": 2}}
+      ]
+    },
+    {
+      "id": "sleep",
+      "question_en": "How do you sleep?",
+      "question_cn": "您的睡眠情况如何？",
+      "options": [
+        {"text_en": "Sleep well, wake refreshed", "text_cn": "睡眠好，精神饱满", "scores": {"balanced": 3}},
+        {"text_en": "Light sleep, vivid dreams", "text_cn": "睡眠浅，多梦", "scores": {"qi_deficient": 2, "blood_stasis": 1}},
+        {"text_en": "Difficulty falling asleep", "text_cn": "入睡困难", "scores": {"yin_deficient": 3, "qi_stagnation": 2}},
+        {"text_en": "Wake early, can't return to sleep", "text_cn": "早醒后难入睡", "scores": {"yin_deficient": 2}}
+      ]
+    },
+    {
+      "id": "emotion",
+      "question_en": "How would you describe your emotional state?",
+      "question_cn": "您的情绪状态如何？",
+      "options": [
+        {"text_en": "Stable and positive", "text_cn": "稳定乐观", "scores": {"balanced": 3}},
+        {"text_en": "Low energy, unmotivated", "text_cn": "情绪低落，缺乏动力", "scores": {"qi_deficient": 2}},
+        {"text_en": "Irritable, easily angered", "text_cn": "容易烦躁发怒", "scores": {"damp_heat": 2, "yin_deficient": 1}},
+        {"text_en": "Anxious, worried, stressed", "text_cn": "焦虑担忧，压力大", "scores": {"qi_stagnation": 3}}
+      ]
+    }
+  ]
+}

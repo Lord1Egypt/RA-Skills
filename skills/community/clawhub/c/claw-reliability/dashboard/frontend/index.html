@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🦞 claw-reliability</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.9/babel.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0a0a0f;--bg2:#12121a;--card:#1a1a25;--border:#2a2a3a;--text:#e8e8f0;--text2:#8888a0;--muted:#555570;--accent:#ff6b4a;--ok:#4ade80;--warn:#fbbf24;--crit:#ef4444;--info:#60a5fa}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
+.mono{font-family:'JetBrains Mono',monospace}
+.dash{max-width:1400px;margin:0 auto;padding:24px}
+.hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:32px;padding-bottom:20px;border-bottom:1px solid var(--border)}
+.hdr h1{font-size:22px;font-weight:700;letter-spacing:-.5px}
+.hdr h1 span{color:var(--accent)}
+.hdr-s{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--text2)}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--ok);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.g{display:grid;gap:16px}.g4{grid-template-columns:repeat(4,1fr)}.g2{grid-template-columns:repeat(2,1fr)}.g3{grid-template-columns:2fr 1fr}
+@media(max-width:900px){.g4,.g2,.g3{grid-template-columns:1fr}}
+.c{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;transition:border-color .2s}
+.c:hover{border-color:#3a3a50}
+.ct{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:var(--muted);margin-bottom:12px}
+.sv{font-family:'JetBrains Mono',monospace;font-size:32px;font-weight:700;letter-spacing:-1px}
+.sl{font-size:13px;color:var(--text2);margin-top:4px}
+.col-a{color:var(--accent)}.col-ok{color:var(--ok)}.col-w{color:var(--warn)}.col-c{color:var(--crit)}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th{text-align:left;padding:10px 12px;font-weight:600;color:var(--muted);border-bottom:1px solid var(--border);font-size:11px;text-transform:uppercase;letter-spacing:.5px}
+td{padding:10px 12px;border-bottom:1px solid rgba(255,255,255,.03);font-family:'JetBrains Mono',monospace;font-size:12px}
+tr:hover td{background:rgba(255,255,255,.02)}
+.badge{display:inline-block;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:600;font-family:'JetBrains Mono',monospace}
+.b-ok{background:rgba(74,222,128,.15);color:var(--ok)}.b-w{background:rgba(251,191,36,.15);color:var(--warn)}.b-c{background:rgba(239,68,68,.15);color:var(--crit)}
+.arow{display:flex;align-items:flex-start;gap:10px;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.03)}
+.arow .t{font-size:13px;line-height:1.4}.arow .tm{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);margin-top:2px}
+.bars{display:flex;align-items:flex-end;gap:3px;height:120px;padding-top:10px}
+.bar{flex:1;min-width:4px;border-radius:2px 2px 0 0;transition:height .3s}
+.bar-ok{background:var(--ok);opacity:.7}.bar-f{background:var(--crit);opacity:.8}
+.empty{text-align:center;padding:40px 20px;color:var(--muted)}.empty .e{font-size:40px;margin-bottom:12px}
+.sec{margin-top:24px}
+.btn{background:0;border:1px solid var(--border);color:var(--text2);padding:6px 14px;border-radius:6px;cursor:pointer;font-size:12px;font-family:'DM Sans',sans-serif;transition:all .2s}
+.btn:hover{border-color:var(--accent);color:var(--accent)}
+.ld{display:flex;justify-content:center;padding:60px;color:var(--muted)}
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+const {useState,useEffect,useCallback}=React;
+const API=window.location.origin+'/api';
+
+function useFetch(ep,ms=10000){
+  const[data,setData]=useState(null);
+  const[loading,setLoading]=useState(true);
+  const fetch_=useCallback(()=>{
+    fetch(API+ep).then(r=>r.json()).then(d=>{setData(d);setLoading(false)}).catch(()=>setLoading(false));
+  },[ep]);
+  useEffect(()=>{fetch_();const t=setInterval(fetch_,ms);return()=>clearInterval(t)},[fetch_,ms]);
+  return{data,loading,refresh:fetch_};
+}
+
+function Stat({title,value,label,cls}){
+  return <div className="c"><div className="ct">{title}</div><div className={`sv ${cls||''}`}>{value}</div><div className="sl">{label}</div></div>;
+}
+
+function Tools({tools}){
+  if(!tools?.length) return <div className="empty"><div className="e">🔧</div><p>No tool calls yet.</p></div>;
+  return <table><thead><tr><th>Tool</th><th>Calls</th><th>OK</th><th>Fail</th><th>Rate</th><th>Latency</th></tr></thead>
+  <tbody>{tools.map(t=>{
+    const r=t.total_calls>0?(t.successes/t.total_calls*100):0;
+    const bc=r>=95?'b-ok':r>=80?'b-w':'b-c';
+    return <tr key={t.tool_name}><td>{t.tool_name}</td><td>{t.total_calls}</td>
+    <td style={{color:'var(--ok)'}}>{t.successes}</td>
+    <td style={{color:t.failures>0?'var(--crit)':'var(--muted)'}}>{t.failures}</td>
+    <td><span className={`badge ${bc}`}>{r.toFixed(0)}%</span></td>
+    <td>{(t.avg_duration_ms||0).toFixed(0)}ms</td></tr>
+  })}</tbody></table>;
+}
+
+function Alerts({alerts}){
+  if(!alerts?.length) return <div className="empty"><div className="e">✅</div><p>All systems nominal.</p></div>;
+  const ic={info:'ℹ️',warning:'⚠️',critical:'🚨'};
+  return <div>{alerts.map((a,i)=><div className="arow" key={i}><span style={{fontSize:16,flexShrink:0}}>{ic[a.severity]||'📢'}</span>
+  <div><div className="t">{a.message}</div><div className="tm">{a.timestamp?.slice(0,19).replace('T',' ')}</div></div></div>)}</div>;
+}
+
+function Chart({timeline}){
+  if(!timeline?.length) return <div className="empty"><div className="e">📊</div><p>No activity data.</p></div>;
+  const mx=Math.max(...timeline.map(t=>t.event_count),1);
+  return <div className="bars">{timeline.map((t,i)=>{
+    const fH=(t.failures/mx)*100,sH=((t.event_count-t.failures)/mx)*100;
+    return <div key={i} style={{flex:1,display:'flex',flexDirection:'column',justifyContent:'flex-end',height:'100%'}}>
+    {fH>0&&<div className="bar bar-f" style={{height:`${fH}%`}}/>}
+    <div className="bar bar-ok" style={{height:`${sH}%`}}/></div>
+  })}</div>;
+}
+
+function App(){
+  const{data,loading,refresh}=useFetch('/summary',10000);
+  if(loading) return <div className="ld">Loading...</div>;
+  const ts=data?.tool_stats_24h||[],cs=data?.cost_summary_24h||{},al=data?.recent_alerts||[],tl=data?.activity_timeline||[];
+  const tc=ts.reduce((s,t)=>s+t.total_calls,0),tf=ts.reduce((s,t)=>s+t.failures,0);
+  const sr=tc>0?((tc-tf)/tc*100):100,ca=al.filter(a=>a.severity==='critical').length;
+
+  return <div className="dash">
+    <div className="hdr"><h1>🦞 claw<span>-reliability</span></h1>
+    <div className="hdr-s"><div className="dot"/><span className="mono">monitoring</span><button className="btn" onClick={refresh}>↻ refresh</button></div></div>
+
+    <div className="g g4">
+      <Stat title="Tool Calls (24h)" value={tc.toLocaleString()} label={`${ts.length} unique tools`}/>
+      <Stat title="Success Rate" value={`${sr.toFixed(1)}%`} label={`${tf} failures`} cls={sr>=95?'col-ok':sr>=80?'col-w':'col-c'}/>
+      <Stat title="Est. Cost (24h)" value={`$${(cs.total_cost_usd||0).toFixed(2)}`} label={`${(cs.total_tokens||0).toLocaleString()} tokens`} cls="col-a"/>
+      <Stat title="Alerts" value={al.length} label={ca>0?`${ca} critical`:'all clear'} cls={ca>0?'col-c':'col-ok'}/>
+    </div>
+
+    <div className="sec g g3">
+      <div className="c"><div className="ct">Activity Timeline (24h)</div><Chart timeline={tl}/></div>
+      <div className="c"><div className="ct">Recent Alerts</div><Alerts alerts={al.slice(0,8)}/></div>
+    </div>
+
+    <div className="sec"><div className="c"><div className="ct">Tool Invocations (24h)</div><Tools tools={ts}/></div></div>
+
+    <div className="sec g g2">
+      <div className="c"><div className="ct">Cost by Model</div>
+      {cs.by_model?.length?<table><thead><tr><th>Model</th><th>Calls</th><th>Tokens</th><th>Cost</th></tr></thead>
+      <tbody>{cs.by_model.map(m=><tr key={m.model}><td>{m.model}</td><td>{m.call_count}</td>
+      <td>{((m.total_tokens_in||0)+(m.total_tokens_out||0)).toLocaleString()}</td>
+      <td style={{color:'var(--accent)'}}>${(m.total_cost||0).toFixed(4)}</td></tr>)}</tbody></table>
+      :<div className="empty"><div className="e">💰</div><p>No cost data.</p></div>}</div>
+
+      <div className="c"><div className="ct">Sessions</div>
+      {data?.sessions?.length?<table><thead><tr><th>Session</th><th>Tools</th><th>LLM</th><th>Cost</th></tr></thead>
+      <tbody>{data.sessions.slice(0,10).map(s=><tr key={s.session_id}><td title={s.session_id}>{s.session_id?.slice(0,12)}...</td>
+      <td>{s.tool_calls}</td><td>{s.llm_calls}</td>
+      <td style={{color:'var(--accent)'}}>${(s.total_cost||0).toFixed(4)}</td></tr>)}</tbody></table>
+      :<div className="empty"><div className="e">📋</div><p>No sessions.</p></div>}</div>
+    </div>
+
+    <div style={{textAlign:'center',padding:24,color:'var(--muted)',fontSize:12}}>🦞 claw-reliability v1.0.0</div>
+  </div>;
+}
+
+ReactDOM.render(<App/>,document.getElementById('root'));
+</script>
+</body>
+</html>

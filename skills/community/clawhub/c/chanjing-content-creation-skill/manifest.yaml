@@ -1,0 +1,109 @@
+# skill文档规范 §1–§2 合规
+name: chanjing-content-creation-skill
+version: 0.1.0
+vendor: chanjing
+runtime:
+  interpreter: python3
+  dependencies:
+    - ffmpeg
+    - ffprobe
+env:
+  required: []
+  optional:
+    - CHANJING_APP_ID
+    - CHANJING_SECRET_KEY
+    - CHANJING_ACCESS_TOKEN
+    - CHANJING_TOKEN_EXPIRE_IN
+    - CHANJING_API_BASE
+    - CHAN_SKILLS_DIR
+permissions:
+  network_mode: allowlist
+  allowed_hosts:
+    - open-api.chanjing.cc
+    - www.chanjing.cc
+  filesystem:
+    read_roots:
+      - "${WORKSPACE_ROOT}"
+      - "${SKILL_DIR}"
+    write_roots:
+      - "${WORKSPACE_ROOT}"
+  allowed_commands:
+    - python3
+    - ffmpeg
+    - ffprobe
+
+schemaVersion: 1
+skill:
+  id: chanjing-content-creation-skill
+  author: chan-skills
+  category: 媒体处理
+  tags:
+    - 蝉镜
+    - Chanjing
+    - TTS
+    - 数字人
+    - 对口型
+    - 文生视频
+    - 一键成片
+    - 卡通视频
+  summary: >-
+    蝉镜内容创作聚合技能包：凭据管理、TTS、数字人口播、对口型、文生视频、声音克隆、
+    定制数字人、一键成片编排等。本 Skill 是路由入口，按意图分流到子产品/编排。
+  skillDoc: SKILL.md
+
+environment:
+  variables:
+    - name: CHANJING_API_BASE
+      required: false
+      description: Open API 基址，默认 https://open-api.chanjing.cc
+    - name: CHAN_SKILLS_DIR
+      required: false
+      description: 一键成片脚本仓库根路径（当前实现实际读取）
+
+credentials:
+  model: environment
+  persistAccessTokenOnDisk: false
+  sensitiveFields: []
+
+clientPermissions:
+  network:
+    httpsOutbound: true
+    documentedHosts:
+      - open-api.chanjing.cc
+  filesystem:
+    read:
+      - "${SKILL_DIR}/"
+      - user_workflow_and_output_paths
+    write:
+      - "${SKILL_DIR}/.env"
+      - user_output_directory
+  browser:
+    mayOpenForAuth: true
+  subprocess:
+    allowedPatterns:
+      - python3
+      - ffmpeg
+      - ffprobe
+    mayInvokeSiblingSkillScripts: true
+  userContent:
+    mayDownloadFromApiResponseUrls: true
+
+metadata:
+  openclaw:
+    homepage: https://doc.chanjing.cc
+    os:
+      - darwin
+      - linux
+    requires:
+      bins:
+        - python3
+      anyBins:
+        - ffmpeg
+        - ffprobe
+      env:
+        - CHANJING_APP_ID
+        - CHANJING_SECRET_KEY
+
+agentPolicy:
+  alwaysSkill: false
+  modifiesOtherSkillsOrGlobalAgent: false

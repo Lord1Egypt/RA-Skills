@@ -1,0 +1,45 @@
+{
+  "name": "classical-chinese-translator",
+  "version": "1.0.0",
+  "description": "Professional skill for translating Classical Chinese texts to modern vernacular Chinese with high-quality standards (98.5+ points). Supports EPUB/AZW3/MOBI electronic book format conversion, preservation of original structure, and specialized terminology handling.",
+  "main": "scripts/translator.py",
+  "scripts": {
+    "test": "python scripts/translator.py --help"
+  },
+  "keywords": [
+    "classical-chinese",
+    "translation",
+    "epub",
+    "daoist",
+    "buddhist",
+    "confucian",
+    "electronic-books",
+    "openclaw-skill"
+  ],
+  "author": "OpenClaw Assistant",
+  "license": "MIT",
+  "dependencies": {
+    "ebooklib": "^0.17.1",
+    "lxml": "^4.9.0"
+  },
+  "openclaw": {
+    "skillVersion": "1.0",
+    "category": "translation",
+    "compatibility": ">=0.1.0",
+    "entryPoint": "scripts/translator.py",
+    "requires": ["python3", "ebooklib", "lxml"],
+    "security": {
+      "networkAccess": false,
+      "fileSystemAccess": "scoped",
+      "safeMode": true
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw-skills/classical-chinese-translator.git"
+  },
+  "bugs": {
+    "url": "https://github.com/openclaw-skills/classical-chinese-translator/issues"
+  },
+  "homepage": "https://clawhub.ai/skills/classical-chinese-translator"
+}

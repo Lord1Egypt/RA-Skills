@@ -1,0 +1,4 @@
+﻿interface:
+  display_name: "创业训练教练"
+  short_description: "诊断创业阶段，追问关键信息，并输出训练题、检查清单和行动方案。"
+  default_prompt: "使用创业训练教练，帮我诊断当前创业项目，并给出下一步训练和行动清单。"

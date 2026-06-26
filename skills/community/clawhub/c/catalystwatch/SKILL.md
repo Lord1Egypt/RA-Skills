@@ -1,35 +1,41 @@
 ---
-name: "CatalystWatch"
-description: "Monitor and analyze market-moving catalysts including earnings, FDA decisions, economic data releases, and corporate events"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/catalystwatch"
-sourceUrl: "https://clawhub.ai/skills/catalystwatch"
+metadata:
+  name: CatalystWatch
+  description: Monitor and analyze market-moving catalysts including earnings, FDA decisions, economic data releases, and corporate events
+  version: 0.0.2
+  tags: [finance, trading, catalysts, earnings, market-events]
+  openclaw:
+    requires:
+      env: [CATALYSTWATCH_API_KEY]
+    primaryEnv: CATALYSTWATCH_API_KEY
 ---
 
 # CatalystWatch
 
-> Monitor and analyze market-moving catalysts including earnings, FDA decisions, economic data releases, and corporate events
+Monitor and analyze market-moving catalysts for equities and other financial instruments.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/catalystwatch`
-- **Source URL:** [https://clawhub.ai/skills/catalystwatch](https://clawhub.ai/skills/catalystwatch)
+## What it does
 
-## Overview
+CatalystWatch tracks upcoming and recent catalysts that can move stock prices, including:
 
+- **Earnings reports** — scheduled dates, consensus estimates, whisper numbers, and historical surprise trends
+- **FDA decisions** — PDUFA dates, advisory committee meetings, and approval/rejection outcomes
+- **Economic data** — jobs reports, CPI/PPI, FOMC meetings, and other macro releases
+- **Corporate events** — M&A announcements, spin-offs, share buybacks, insider transactions, and activist campaigns
+- **Sector catalysts** — industry conferences, regulatory rulings, and commodity supply disruptions
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/catalystwatch
-```
+## Usage
+
+Ask your agent to monitor catalysts for a ticker, sector, or watchlist:
+
+- "What catalysts are coming up for AAPL this month?"
+- "Show me all FDA decision dates for biotech stocks this quarter"
+- "Alert me when any stock on my watchlist has an earnings surprise above 10%"
+- "Summarize today's macro calendar and expected market impact"
+
+## Configuration
+
+Set the following environment variables for data source access:
+
+- `CATALYSTWATCH_API_KEY` — API key for CatalystWatch. Used to authenticate requests for earnings calendars, FDA event dates, macro release schedules, and corporate action data.
+- `CATALYSTWATCH_WATCHLIST` — (optional) default watchlist of tickers to monitor, comma-separated (e.g., `AAPL,TSLA,NVDA`).

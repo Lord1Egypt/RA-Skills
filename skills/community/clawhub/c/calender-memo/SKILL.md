@@ -1,35 +1,53 @@
 ---
-name: "calender-memo"
-description: "本地日程记事本 - 添加、查看、完成和删除待办事项和日程安排。 触发条件：用户需要记录待办事项、安排日程、提醒自己未来的事情。 具体场景：添加会议、记录购物清单、设置提醒、查看今天/未来的安排。 关键词：日程、待办、提醒、安排、备忘、计划、今天有什么、添加任务。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/calender-memo"
-sourceUrl: "https://clawhub.ai/skills/calender-memo"
+name: calendar_memo
+description: |
+  本地日程记事本 - 添加、查看、完成和删除待办事项和日程安排。
+  触发条件：用户需要记录待办事项、安排日程、提醒自己未来的事情。
+  具体场景：添加会议、记录购物清单、设置提醒、查看今天/未来的安排。
+  关键词：日程、待办、提醒、安排、备忘、计划、今天有什么、添加任务。
 ---
 
-# calender-memo
+# 日历记事本技能
 
-> 本地日程记事本 - 添加、查看、完成和删除待办事项和日程安排。 触发条件：用户需要记录待办事项、安排日程、提醒自己未来的事情。 具体场景：添加会议、记录购物清单、设置提醒、查看今天/未来的安排。 关键词：日程、待办、提醒、安排、备忘、计划、今天有什么、添加任务。
+这是一个本地日程管理工具，可以帮你记住所有待办事项和日程安排。所有数据保存在本地文件 `MEMORY.md` 中，重启 OpenClaw 也不会丢失。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/calender-memo`
-- **Source URL:** [https://clawhub.ai/skills/calender-memo](https://clawhub.ai/skills/calender-memo)
+## 使用场景
 
-## Overview
+✅ **适用：**
+- 用户说“添加明天下午3点开会”、“记一下后天买牛奶”
+- 用户问“今天有什么安排”、“我有哪些待办”
+- 用户要“完成第1项”、“删除第2项”
+- 任何需要记录未来某时间要做的事情
 
+❌ **不适用：**
+- 查询历史天气、股票等外部数据
+- 需要联网搜索的信息
+- 多人协作的共享日历（本技能仅限个人使用）
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/calender-memo
-```
+## 核心功能与执行流程
+
+### 1. 添加日程
+
+**用户输入示例**：
+- “添加 明天下午3点 团队周会”
+- “新增 后天上午10点 和李经理开会”
+- “提醒我 周六晚上8点 看直播”
+
+**解析规则**：
+- 去掉前缀“添加”或“新增”后，剩余内容格式为 `[时间描述] [事件标题]`
+- 时间描述支持：今天/明天/后天 + HH:MM（如“明天下午3点”）
+- 默认时间：如果用户没写时间，默认设置为早上9点
+
+**执行步骤**：
+1. 调用 `parseDateTime()` 函数解析时间
+2. 创建新事件对象：
+   ```json
+   {
+     "id": "当前时间戳",
+     "title": "用户输入的事件标题",
+     "startTime": "解析后的ISO时间",
+     "endTime": "开始时间 +1小时",
+     "status": "upcoming",
+     "reminded": false,
+     "reminderOffset": 15
+   }

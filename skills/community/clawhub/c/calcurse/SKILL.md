@@ -1,35 +1,43 @@
 ---
-name: "calcurse"
-description: "A text-based calendar and scheduling application. Use strictly for CLI-based calendar management."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/calcurse"
-sourceUrl: "https://clawhub.ai/skills/calcurse"
+name: calcurse
+description: A text-based calendar and scheduling application. Use strictly for CLI-based calendar management.
+metadata: {"clawdbot":{"emoji":"📅","requires":{"bins":["calcurse"]}}}
 ---
 
 # calcurse
 
-> A text-based calendar and scheduling application. Use strictly for CLI-based calendar management.
+A text-based calendar and scheduling application.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/calcurse`
-- **Source URL:** [https://clawhub.ai/skills/calcurse](https://clawhub.ai/skills/calcurse)
+## Usage (CLI Mode)
 
-## Overview
+Use `calcurse` in non-interactive mode for quick queries and updates.
 
-
-## Installation
-To install this skill, run the following command in your terminal:
+### Query
+List appointments for the next 2 days:
 ```bash
-hermes skills install clawhub/calcurse
+calcurse -r2
+```
+
+Query a specific date range:
+```bash
+calcurse -Q --from 2026-01-20 --to 2026-01-22
+```
+
+### Add Items
+Add an appointment:
+```bash
+calcurse -a "Meeting with Team" 2026-01-21 14:00 60
+```
+(Format: Description, Date, Time, Duration in mins)
+
+Add a todo:
+```bash
+calcurse -t "Buy milk" 1
+```
+(Format: Description, Priority)
+
+## Interactive Mode (TUI)
+For the full TUI experience, run in a PTY session (e.g., inside `tmux` or using `process` with `pty=true`).
+```bash
+calcurse
 ```

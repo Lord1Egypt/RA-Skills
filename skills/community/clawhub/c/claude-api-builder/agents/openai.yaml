@@ -1,0 +1,4 @@
+interface:
+  display_name: "Claude API Builder"
+  short_description: "Build apps on the Claude API and Agent SDK"
+  default_prompt: "Help me implement this feature with the Claude API and choose the right Anthropic SDK pattern."

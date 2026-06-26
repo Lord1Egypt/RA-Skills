@@ -1,0 +1,38 @@
+[
+  {
+    "content": "Can you review this budget proposal? Need approval by EOD.",
+    "sender": "Sarah (Manager)",
+    "timestamp": "2026-04-15T10:30:00Z",
+    "subject": "Budget Approval Needed"
+  },
+  {
+    "content": "Great job on the presentation yesterday! Keep it up.",
+    "sender": "Team Lead",
+    "timestamp": "2026-04-15T09:15:00Z",
+    "subject": "Good work!"
+  },
+  {
+    "content": "Get 50% off all products! Limited time offer.",
+    "sender": "Store Newsletter",
+    "timestamp": "2026-04-15T08:00:00Z",
+    "subject": "Special Sale Inside"
+  },
+  {
+    "content": "Your password was changed. If this wasn't you, contact support immediately.",
+    "sender": "Security Alert",
+    "timestamp": "2026-04-15T07:45:00Z",
+    "subject": "Password Changed"
+  },
+  {
+    "content": "Meeting reminder: Team sync at 3PM today in Conference Room A",
+    "sender": "Calendar Bot",
+    "timestamp": "2026-04-15T08:00:00Z",
+    "subject": "Meeting Today at 3PM"
+  },
+  {
+    "content": "When you have time, can you look at this PR?",
+    "sender": "Developer",
+    "timestamp": "2026-04-15T11:00:00Z",
+    "subject": "PR Review Request"
+  }
+]

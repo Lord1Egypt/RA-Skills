@@ -1,0 +1,450 @@
+# 工具分类配置文件（基于Claude Code架构）
+# 版本: v1.0
+# 创建: 2026-04-18
+# 更新: 2026-04-18
+
+# 权限级别定义
+permission_levels:
+  L0:
+    name: "自由行动区"
+    description: "信息获取、只读操作、无害查询"
+    color: "🟢"
+    approval: "自动授权，无需确认"
+    risk: "无风险"
+  
+  L1:
+    name: "征询意见区"
+    description: "配置修改、开发环境操作、Git非破坏性操作"
+    color: "🟡"
+    approval: "告知用户后执行，除非明确反对"
+    risk: "低风险"
+  
+  L2:
+    name: "严格审批区"
+    description: "数据修改、外部通信、系统操作"
+    color: "🔴"
+    approval: "必须收到明确'/approve'才执行"
+    risk: "中高风险"
+  
+  L3:
+    name: "默认禁止区"
+    description: "高度危险、违反安全策略的操作"
+    color: "⛔"
+    approval: "默认禁止，需要特殊授权流程"
+    risk: "极高风险"
+
+# 工具分类
+tool_categories:
+  core:
+    name: "核心工具"
+    description: "基础操作工具，始终加载"
+    permission: "L0-L1"
+    loading: "always"
+    defer_loading: false
+    
+  extended:
+    name: "扩展工具"
+    description: "高级功能工具，按需加载"
+    permission: "L2"
+    loading: "on_demand"
+    defer_loading: true
+    
+  communication:
+    name: "通信工具"
+    description: "消息发送和会话管理工具"
+    permission: "L2"
+    loading: "on_demand"
+    defer_loading: true
+    
+  management:
+    name: "管理工具"
+    description: "系统管理和维护工具"
+    permission: "L2-L3"
+    loading: "admin_only"
+    defer_loading: true
+    
+  skills:
+    name: "技能工具"
+    description: "特定技能提供的工具"
+    permission: "varies"
+    loading: "skill_activated"
+    defer_loading: true
+
+# 具体工具映射
+tools:
+  # === 核心工具 (L0-L1) ===
+  read:
+    category: "core"
+    permission: "L0"
+    risk_level: "none"
+    description: "读取文件内容"
+    always_available: true
+    
+  web_search:
+    category: "core"
+    permission: "L0"
+    risk_level: "low"
+    description: "网络搜索"
+    always_available: true
+    
+  web_fetch:
+    category: "core"
+    permission: "L0"
+    risk_level: "low"
+    description: "获取网页内容"
+    always_available: true
+    
+  memory_search:
+    category: "core"
+    permission: "L0"
+    risk_level: "none"
+    description: "记忆检索"
+    always_available: true
+    
+  memory_get:
+    category: "core"
+    permission: "L0"
+    risk_level: "none"
+    description: "获取记忆片段"
+    always_available: true
+    
+  sessions_list:
+    category: "core"
+    permission: "L0"
+    risk_level: "none"
+    description: "查看会话列表"
+    always_available: true
+    
+  session_status:
+    category: "core"
+    permission: "L0"
+    risk_level: "none"
+    description: "查看会话状态"
+    always_available: true
+    
+  agents_list:
+    category: "core"
+    permission: "L0"
+    risk_level: "none"
+    description: "查看Agent列表"
+    always_available: true
+    
+  write:
+    category: "core"
+    permission: "L1"
+    risk_level: "low"
+    description: "创建文件"
+    always_available: true
+    
+  edit:
+    category: "core"
+    permission: "L1"
+    risk_level: "low"
+    description: "编辑文件"
+    always_available: true
+    
+  # === 扩展工具 (L1-L2) ===
+  exec:
+    category: "extended"
+    permission: "L2"  # 非危险命令L1，危险命令L2
+    risk_level: "variable"
+    description: "执行shell命令"
+    defer_loading: true
+    load_when: ["command_execution", "system_operation"]
+    
+  process:
+    category: "extended"
+    permission: "L2"  # poll/log是L1，kill是L2
+    risk_level: "variable"
+    description: "进程管理"
+    defer_loading: true
+    load_when: ["process_management", "background_tasks"]
+    
+  browser:
+    category: "extended"
+    permission: "L1"
+    risk_level: "medium"
+    description: "浏览器控制"
+    defer_loading: true
+    load_when: ["web_automation", "scraping", "login_required"]
+    
+  canvas:
+    category: "extended"
+    permission: "L1"
+    risk_level: "low"
+    description: "画布控制"
+    defer_loading: true
+    load_when: ["ui_automation", "screenshot"]
+    
+  image:
+    category: "extended"
+    permission: "L0"
+    risk_level: "none"
+    description: "图像分析"
+    defer_loading: true
+    load_when: ["image_analysis", "vision_tasks"]
+    
+  image_generate:
+    category: "extended"
+    permission: "L1"
+    risk_level: "low"
+    description: "图像生成"
+    defer_loading: true
+    load_when: ["image_generation", "content_creation"]
+    
+  tts:
+    category: "extended"
+    permission: "L1"
+    risk_level: "low"
+    description: "语音合成"
+    defer_loading: true
+    load_when: ["audio_output", "voice_interaction"]
+    
+  # === 通信工具 (L2) ===
+  message:
+    category: "communication"
+    permission: "L2"
+    risk_level: "high"
+    description: "发送消息到外部渠道"
+    defer_loading: true
+    require_approval: true
+    load_when: ["external_communication", "notification"]
+    
+  sessions_send:
+    category: "communication"
+    permission: "L2"
+    risk_level: "medium"
+    description: "跨会话发送消息"
+    defer_loading: true
+    require_approval: true
+    load_when: ["agent_collaboration", "task_delegation"]
+    
+  sessions_spawn:
+    category: "communication"
+    permission: "L2"
+    risk_level: "medium"
+    description: "创建新会话"
+    defer_loading: true
+    require_approval: true
+    load_when: ["parallel_processing", "isolated_tasks"]
+    
+  subagents:
+    category: "communication"
+    permission: "L2"
+    risk_level: "medium"
+    description: "子Agent管理"
+    defer_loading: true
+    require_approval: true
+    load_when: ["agent_orchestration", "workflow_management"]
+    
+  # === 管理工具 (L2-L3) ===
+  gateway:
+    category: "management"
+    permission: "L3"
+    risk_level: "critical"
+    description: "Gateway管理"
+    defer_loading: true
+    require_approval: true
+    admin_only: true
+    
+  nodes:
+    category: "management"
+    permission: "L3"
+    risk_level: "critical"
+    description: "节点管理"
+    defer_loading: true
+    require_approval: true
+    admin_only: true
+    
+  # === 危险操作特殊处理 ===
+  exec_elevated:
+    category: "management"
+    permission: "L3"
+    risk_level: "critical"
+    description: "高危命令执行"
+    defer_loading: true
+    require_approval: true
+    admin_only: true
+    
+  exec_rm_rf:
+    category: "management"
+    permission: "L3"
+    risk_level: "critical"
+    description: "递归删除文件"
+    defer_loading: true
+    require_approval: true
+    admin_only: true
+    
+  # === 技能工具 (权限随技能而定) ===
+  xiaohongshu_mcp:
+    category: "skills"
+    permission: "L2"
+    risk_level: "medium"
+    description: "小红书内容操作"
+    skill: "xiaohongshu-mcp"
+    defer_loading: true
+    require_approval: true
+    
+  baoyu_post_to_wechat:
+    category: "skills"
+    permission: "L2"
+    risk_level: "medium"
+    description: "微信公众号发布"
+    skill: "baoyu-post-to-wechat"
+    defer_loading: true
+    require_approval: true
+    
+  ima_note:
+    category: "skills"
+    permission: "L1"
+    risk_level: "low"
+    description: "IMA笔记管理"
+    skill: "ima-note"
+    defer_loading: true
+    
+  openai_whisper:
+    category: "skills"
+    permission: "L0"
+    risk_level: "none"
+    description: "本地语音转文字"
+    skill: "openai-whisper"
+    defer_loading: true
+
+# 加载策略
+loading_strategies:
+  default:
+    - category: "core"
+      permission: "L0-L1"
+      loading: "always"
+    
+  on_demand:
+    - category: "extended"
+      trigger: "explicit_request"
+      timeout: 5000  # ms
+      
+    - category: "communication"
+      trigger: "external_communication_needed"
+      require_approval: true
+      
+    - category: "skills"
+      trigger: "skill_activation"
+      check_skill_available: true
+      
+  admin_only:
+    - category: "management"
+      trigger: "system_maintenance"
+      require_admin: true
+      approval_required: true
+
+# 权限检查规则
+permission_rules:
+  # 自动升级条件
+  auto_upgrade:
+    - condition: "path_sensitive"
+      patterns: ["~/.ssh/", "/etc/", "/root/", "/var/log/"]
+      from: "L2"
+      to: "L3"
+      
+    - condition: "command_dangerous"
+      patterns: ["rm -rf", "format", "dd", "mkfs", "chmod 777"]
+      from: "L1"
+      to: "L2-L3"
+      
+    - condition: "external_target"
+      patterns: ["non_trusted", "public_channel"]
+      from: "L1"
+      to: "L2"
+      
+    - condition: "production_environment"
+      patterns: ["prod", "production", "live"]
+      from: "L2"
+      to: "L3"
+  
+  # 降级条件（需明确授权）
+  auto_downgrade:
+    - condition: "test_environment"
+      patterns: ["test", "staging", "dev"]
+      require_confirmation: true
+      
+    - condition: "backup_exists"
+      require_verification: true
+      
+    - condition: "user_preset"
+      require_preset_authorization: true
+
+# 审批流程
+approval_workflow:
+  standard:
+    - step: "识别权限级别"
+      timeout: 1000  # ms
+      
+    - step: "L0: 自动执行"
+      action: "execute_immediately"
+      
+    - step: "L1: 告知用户"
+      action: "notify_and_wait"
+      wait_time: 3000  # ms
+      
+    - step: "L2: 显示完整命令"
+      action: "show_command_and_wait_approval"
+      approval_command: "/approve"
+      timeout: 120000  # 120秒
+      
+    - step: "L3: 拒绝执行"
+      action: "reject_and_explain"
+      explanation: "L3操作默认禁止，需要特殊授权"
+      
+  batch_approval:
+    enabled: true
+    max_batch_size: 5
+    approval_command: "/approve-all"
+    separate_approval_command: "/approve <number>"
+
+# 异常处理
+error_handling:
+  permission_check_failed:
+    action: "reject_and_suggest"
+    suggestions:
+      - "使用更安全的替代命令"
+      - "确认备份存在"
+      - "请求特殊授权"
+      
+  tool_unavailable:
+    action: "suggest_alternative"
+    fallback_timeout: 1000  # ms
+    
+  approval_timeout:
+    action: "cancel_and_save_draft"
+    save_location: "memory/awaiting-approval.md"
+    timeout: 120000  # 120秒
+
+# 审计日志
+audit_log:
+  enabled: true
+  log_all_L1_plus: true
+  save_location: "memory/audit-logs/"
+  retention_days: 90
+  
+  fields:
+    - timestamp
+    - tool_name
+    - permission_level
+    - command_or_params
+    - approval_status
+    - result_status
+    - user_context
+
+# 实施状态
+implementation:
+  phase: "2"
+  status: "config_created"
+  next_steps:
+    - "更新AGENTS.md权限定义"
+    - "创建权限检查脚本"
+    - "测试工具分类加载"
+    - "实施审批流程"
+  version: "1.0"
+  based_on: "Claude Code工具系统设计"
+  reference_docs:
+    - "memory/tool-system-enhancement.md"
+    - "memory/tools-quick-reference.md"

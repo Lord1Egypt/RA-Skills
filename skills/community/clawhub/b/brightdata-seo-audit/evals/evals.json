@@ -1,0 +1,160 @@
+{
+  "skill_name": "seo-audit",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Can you do an SEO audit of our SaaS website? We're getting about 2,000 organic visits/month but feel like we should be getting more. URL: https://example.com",
+      "expected_output": "Comprehensive SEO audit following the five-tier priority order, with each finding citing a runnable bdata command and output excerpt as Evidence. Should detect JS-injected schema via bdata scrape -f html, sample 10-15 pages via sitemap stratification, and produce the full Executive Summary + Findings + Out-of-Scope + Action Plan structure.",
+      "expectations": [
+        "Checks for .agents/product-marketing-context.md or .claude/product-marketing-context.md before deep questioning",
+        "Asks clarifying questions about priority keywords, Search Console access, recent changes, and competitors",
+        "Runs bdata scrape https://example.com/sitemap.xml first for URL discovery, not homepage-only",
+        "Applies stratified sampling across path-prefix groups (default 10-15 pages)",
+        "Issues all bdata scrape calls for the sample in parallel (single Bash message, multiple tool calls)",
+        "Uses bdata scrape -f html to detect JS-injected schema markup (no caveat needed)",
+        "Follows audit priority order: crawlability first, then technical, on-page, content, authority",
+        "Checks robots.txt and XML sitemap with bdata scrape",
+        "Evaluates title tags, meta descriptions, heading structure",
+        "Output has Executive Summary with Top priorities and Quick wins",
+        "Output has Prioritized Action Plan",
+        "Each finding has Issue, Impact, Evidence, Fix, and Priority",
+        "Each Evidence field cites a runnable bdata command and an output excerpt"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Why am I not ranking for 'project management software'? We have a page targeting that keyword but it's stuck on page 3.",
+      "expected_output": "Diagnostic audit triggered by the casual 'why am I not ranking' phrasing. Should run bdata search for the keyword to see who's ranking, check the user's domain position, and run a cannibalization check via site: query.",
+      "expectations": [
+        "Triggers signal-driven SERP: runs bdata search 'project management software' --json to see top results",
+        "Identifies user's current rank position (or absence) from the SERP results",
+        "Runs cannibalization check: bdata search 'project management software site:<domain>' --json",
+        "Checks title tag, H1, URL alignment with target keyword on the user's page",
+        "Evaluates content depth vs. top-ranking competitors using their scraped pages",
+        "Checks indexation status and canonical tags",
+        "Assesses E-E-A-T signals (author byline, dates, outbound citations)",
+        "Provides actionable fixes organized by priority",
+        "Each finding has Issue, Impact, Evidence, Fix, and Priority"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "We just migrated from WordPress to Next.js and our organic traffic dropped 40% in the last month. Help!",
+      "expected_output": "Urgent migration diagnostic. Should check redirect mapping, canonical tags, robots.txt, sitemap, soft 404s, and use bdata search 'site:<domain>' to spot indexation regression.",
+      "expectations": [
+        "Treats as urgent migration diagnostic",
+        "Uses bdata scrape on suspected old URLs to detect 404s vs. 301s vs. soft-404s",
+        "Cross-references sitemap-listed URLs with bdata search 'site:<domain>' --json to spot indexation regression",
+        "Checks redirect mapping (301s from old URLs to new)",
+        "Checks canonical tags on new pages",
+        "Checks robots.txt for unintentional blocks",
+        "Checks XML sitemap is updated and accessible",
+        "Checks for redirect chains or loops",
+        "Checks for soft 404s",
+        "Provides prioritized recovery plan",
+        "Mentions recovery timeline expectations (weeks)"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "Review the technical SEO of our e-commerce site. We have about 50,000 products and use faceted navigation.",
+      "expected_output": "Site-wide audit applying the e-commerce playbook. Stratified sampling MUST include homepage, at least one category page, and at least one product page. Detects faceted-nav parameter URLs and crawl-budget risk.",
+      "expectations": [
+        "Applies stratified sampling: homepage + at least one category + one product page",
+        "Detects faceted-nav parameters in sitemap (URLs containing '?') and flags crawl-budget risk",
+        "Uses bdata scrape -f html to actually detect product schema (no detection-limitation caveat)",
+        "Checks for thin category pages via word count",
+        "Checks for duplicate product descriptions across sampled product pages",
+        "Addresses out-of-stock product page handling",
+        "Addresses pagination and infinite scroll",
+        "Findings include Impact ratings and specific fixes",
+        "Each finding has Issue, Impact, Evidence, Fix, and Priority"
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "Can you check our blog posts for on-page SEO issues? We publish 4 posts per week but traffic has been flat for 6 months.",
+      "expected_output": "Site-wide audit applying the content/blog playbook. Stratified sample includes at least 3 blog posts. Extracts publication/updated dates to identify outdated posts.",
+      "expectations": [
+        "Stratified sample includes at least 3 blog post pages from sitemap",
+        "Extracts publication/updated dates via <time datetime> or Schema.org dateModified to identify outdated posts",
+        "Checks for keyword cannibalization (only if target keywords are provided or inferable)",
+        "Checks for topical clustering via internal-link map",
+        "Checks for author pages reachable (no 404s on /author/<x>)",
+        "Audits title tags, meta descriptions, heading structure per post",
+        "Assesses E-E-A-T signals (author byline, dates, outbound citations)",
+        "Provides prioritized action plan with refresh candidates and content audit recommendations"
+      ]
+    },
+    {
+      "id": 6,
+      "prompt": "I run a local plumbing business with 3 locations. My website barely shows up when people search for 'plumber near me' in our areas. What's wrong?",
+      "expected_output": "Local-business audit with NAP consistency check, LocalBusiness schema detection (now possible since we render JS), per-location SERP visibility check.",
+      "expectations": [
+        "Applies the Local Business playbook",
+        "Stratified sample includes each /locations/* page found in sitemap",
+        "Uses bdata scrape -f html to actually detect LocalBusiness schema (no caveat)",
+        "Extracts NAP from each sampled page and flags inconsistencies (regex-based normalization)",
+        "Runs bdata search 'plumber <city>' for each city to validate local SERP visibility",
+        "Recommends individual location pages where missing",
+        "Recommends local content strategy",
+        "Checks standard technical SEO factors too",
+        "Provides prioritized local SEO action plan"
+      ]
+    },
+    {
+      "id": 7,
+      "prompt": "Our site loads really slowly, especially on mobile. Pages take 5-6 seconds to load. Is this hurting our SEO?",
+      "expected_output": "CWV-focused audit using HTML-level proxies (page weight, render-blocking scripts, images without dimensions, lazy loading, resource hints). Always paired with explicit pointer to PageSpeed Insights for field measurement.",
+      "expectations": [
+        "Confirms page speed impacts SEO rankings",
+        "Explains CWV thresholds (LCP < 2.5s, INP < 200ms, CLS < 0.1)",
+        "Identifies 5-6s as well above acceptable",
+        "Reports HTML-level CWV proxies from bdata scrape -f html: page weight, render-blocking script count, images-without-dimensions count, lazy-loading presence, resource hints",
+        "Explicitly directs user to PageSpeed Insights at https://pagespeed.web.dev for field-data CWV measurement (in Out-of-Scope Notes)",
+        "Provides prioritized speed fixes",
+        "Addresses mobile-specific performance considerations"
+      ]
+    },
+    {
+      "id": 8,
+      "prompt": "I want to add FAQ schema to my product pages. Can you help me set that up?",
+      "expected_output": "Recognizes this as a schema markup implementation task, not an audit. Defers to the schema-markup skill.",
+      "expectations": [
+        "Recognizes this as a schema markup implementation task, not an SEO audit",
+        "References or defers to the schema-markup skill",
+        "Does not attempt a full SEO audit",
+        "May briefly mention FAQ schema benefits but does not implement"
+      ]
+    },
+    {
+      "id": 9,
+      "prompt": "Can you audit https://example-shop.com? It's a WooCommerce site with maybe 200 pages.",
+      "expected_output": "Mode B site-wide audit with sitemap-stratified sampling. Demonstrates the architectural distinguisher: stratified sample across path-prefix groups, parallel page fetch, default 10-15 page budget.",
+      "expectations": [
+        "Fetches bdata scrape https://example-shop.com/sitemap.xml -f html before scraping any individual page",
+        "Groups discovered URLs by path prefix (e.g., /product/, /category/, /blog/, /)",
+        "Stratified sample includes homepage + per-group representatives, not 10 random URLs",
+        "Default page budget is 10-15; documents how user can raise budget",
+        "All bdata scrape calls for the sample are issued in parallel (single Bash message, multiple tool calls)",
+        "Detects WooCommerce site type via R-15 cues",
+        "Applies the e-commerce playbook (category page, product page, faceted-nav check)",
+        "Output has the full Executive Summary + Findings + Out-of-Scope + Action Plan structure"
+      ]
+    },
+    {
+      "id": 10,
+      "prompt": "Audit my site https://example.com — I really need to rank for 'CRM for small business'.",
+      "expected_output": "Audit with signal-driven SERP triggered by the named target keyword. Demonstrates the architectural distinguisher: SERP fires only on signal, never gratuitously.",
+      "expectations": [
+        "Runs bdata search 'CRM for small business' --json because user named a target keyword",
+        "Identifies user's current rank position (or absence) for that keyword",
+        "Runs cannibalization check: bdata search 'CRM for small business site:example.com' --json",
+        "Identifies top 3 ranking competitor URLs for content-depth comparison",
+        "Also runs the always-on indexation proxy: bdata search 'site:example.com' --json (R-12)",
+        "Performs the standard site-wide audit alongside the SERP work",
+        "Each finding has Issue, Impact, Evidence, Fix, and Priority"
+      ]
+    }
+  ]
+}

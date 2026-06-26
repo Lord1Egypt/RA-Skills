@@ -1,0 +1,19 @@
+{
+  skills: {
+    entries: {
+      "caduceusmail": {
+        enabled: true,
+        env: {
+          ENTRA_TENANT_ID: "00000000-0000-0000-0000-000000000000",
+          ENTRA_CLIENT_ID: "11111111-1111-1111-1111-111111111111",
+          ENTRA_CLIENT_SECRET: "replace-me",
+          EXCHANGE_DEFAULT_MAILBOX: "ops@example.com",
+          EXCHANGE_ORGANIZATION: "tenantname.onmicrosoft.com",
+          ORGANIZATION_DOMAIN: "example.com",
+          CLOUDFLARE_API_TOKEN: "replace-me",
+          CLOUDFLARE_ZONE_ID: "replace-me"
+        }
+      }
+    }
+  }
+}

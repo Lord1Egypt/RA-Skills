@@ -1,0 +1,25 @@
+// example: override the primary model for a single agent (without touching agents.defaults)
+//
+// Replace `myagent` with your $OPENCLAW_AGENT_ID and pick a provider/model that
+// exists in your `openclaw config get models.providers` output.
+//
+// Verify the schema accepts what you're writing:
+//   claw-config schema agents/list/items/properties/model
+//
+// Then dry-run and apply as usual.
+
+{
+  agents: {
+    list: [
+      // NOTE: arrays REPLACE in JSON5 patch semantics. To edit a single entry
+      // you need to either (a) submit the entire list, or (b) use the
+      // `--replace-path` flag on `openclaw config patch` for the specific
+      // array index. Easier path: use `openclaw config set` for single-field
+      // edits, or pre-read the list with `claw-config whoami`
+      // and submit a full updated `list:`.
+      //
+      // This file is just a sketch; consult `claw-config docs cli/config`
+      // before editing array entries.
+    ],
+  },
+}

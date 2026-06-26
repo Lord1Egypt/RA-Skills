@@ -1,0 +1,29 @@
+{
+  "description": "C 盘白名单目录 - 这些目录绝对不能删除或移动",
+  "protectedPaths": [
+    "C:\\Windows\\System32",
+    "C:\\Windows\\SysWOW64",
+    "C:\\Program Files",
+    "C:\\Program Files (x86)",
+    "C:\\ProgramData",
+    "C:\\Users\\*\\Documents",
+    "C:\\Users\\*\\Desktop",
+    "C:\\Users\\*\\Pictures",
+    "C:\\Users\\*\\Videos",
+    "C:\\Users\\*\\Music",
+    "C:\\Users\\*\\Downloads\\*",
+    "C:\\Users\\*\\OneDrive"
+  ],
+  "protectedExtensions": [
+    "*.sys",
+    "*.dll",
+    "*.exe",
+    "*.msi"
+  ],
+  "notes": [
+    "System32 和 SysWOW64 是系统核心目录，绝对不能动",
+    "Program Files 是程序安装目录，删除会导致程序无法运行",
+    "用户文档目录（Documents、Desktop 等）包含个人文件，需要保护",
+    "OneDrive 是云同步目录，删除会导致数据丢失"
+  ]
+}

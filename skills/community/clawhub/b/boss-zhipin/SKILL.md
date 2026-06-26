@@ -1,35 +1,49 @@
 ---
-name: "Boss Zhipin"
-description: "提供BOSS直聘公开职位与公司信息检索与摘要，不支持登录、投递或批量抓取功能。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/boss-zhipin"
-sourceUrl: "https://clawhub.ai/skills/boss-zhipin"
+name: boss-zhipin-hot-trend
+description: 注册“BOSS直聘”热门技能；当需要访问或自动化BOSS直聘相关内容时调用。
+homepage: `https://www.zhipin.com/`
+metadata: {"clawdbot":{"emoji":"🔥"}}
 ---
 
-# Boss Zhipin
+# BOSS直聘
 
-> 提供BOSS直聘公开职位与公司信息检索与摘要，不支持登录、投递或批量抓取功能。
+用途与边界
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/boss-zhipin`
-- **Source URL:** [https://clawhub.ai/skills/boss-zhipin](https://clawhub.ai/skills/boss-zhipin)
+- 面向公开职位与公司页的检索与信息摘要
+- 不提供投递、登录自动化、聊天或批量抓取能力
+- 仅用于公开页面的轻量分析与提醒
 
-## Overview
+关键入口
 
+- 主页：https://www.zhipin.com/
+- 职位搜索：https://www.zhipin.com/job_detail/
+- 公司页：通过职位详情进入公司主页
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/boss-zhipin
-```
+常见任务
+
+- 指定关键词/城市的职位列表摘要（薪资、经验、学历、类型）
+- 职位详情核心字段整理（职责、要求、技能标签）
+- 公司信息摘要（行业、规模、福利）
+
+数据字段
+
+- 职位名称、薪资范围、城市、经验要求、学历、职位类型、发布时间、链接
+- 职责与要求、技能标签、福利亮点
+- 公司名称、行业、规模、公司链接
+
+自动化要点
+
+- 动态渲染与人机校验严格，建议人工打开后触发解析
+- 频率控制，避免批量抓取；标注采集时间
+- 不进行登录、投递或聊天等交互
+
+示例流程
+
+- 关键词清单：输入关键词/城市 → 搜索 → 抽取列表 → 输出职位摘要
+- 职位摘要：访问详情页 → 提取职责/要求/薪资 → 生成对比卡片
+- 公司速览：进入公司页 → 抽取行业/规模 → 输出摘要
+
+合规提示
+
+- 遵守平台规则，不进行接口调用或批量采集
+- 结果仅用于内部分析与提醒

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Claude Code Memory"
+  short_description: "Recreate Claude Code style layered memory in your repo"
+  default_prompt: "Set up or maintain a Claude Code style layered memory workflow for this project, including CLAUDE.md rules, session memory, durable memory, and promotion review."

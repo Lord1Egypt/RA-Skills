@@ -1,0 +1,26 @@
+{
+  "北京": {
+    "summer": "07-15~08-31",
+    "winter": "01-20~02-15",
+    "spring": null,
+    "autumn": null
+  },
+  "上海": {
+    "summer": "07-01~08-31",
+    "winter": "01-20~02-15",
+    "spring": null,
+    "autumn": null
+  },
+  "广州": {
+    "summer": "07-15~08-31",
+    "winter": "01-20~02-15",
+    "spring": null,
+    "autumn": null
+  },
+  "深圳": {
+    "summer": "07-15~08-31",
+    "winter": "01-20~02-15",
+    "spring": null,
+    "autumn": null
+  }
+}

@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Claw Operations Manager - Multilingual</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .header {
+            background: white;
+            border-radius: 12px;
+            padding: 25px 30px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header h1 {
+            color: #667eea;
+            font-size: 28px;
+            font-weight: 700;
+        }
+
+        .header-controls {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        /* 语言切换器 */
+        .language-selector {
+            position: relative;
+        }
+
+        .lang-btn {
+            background: white;
+            border: 2px solid #667eea;
+            padding: 8px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            color: #667eea;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s;
+        }
+
+        .lang-btn:hover {
+            background: #667eea;
+            color: white;
+        }
+
+        .lang-dropdown {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            margin-top: 8px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            min-width: 150px;
+            z-index: 100;
+        }
+
+        .lang-dropdown.active {
+            display: block;
+        }
+
+        .lang-option {
+            padding: 12px 16px;
+            cursor: pointer;
+            transition: background 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .lang-option:hover {
+            background: #f8f9fa;
+        }
+
+        .lang-option.selected {
+            background: #667eea;
+            color: white;
+        }
+
+        .lang-flag {
+            font-size: 20px;
+        }
+
+        .refresh-btn {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .refresh-btn:hover {
+            background: #5568d3;
+            transform: translateY(-2px);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .stat-card {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .stat-label {
+            color: #999;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .stat-value {
+            font-size: 36px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .main-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 20px;
+        }
+
+        @media (max-width: 1200px) {
+            .main-grid { grid-template-columns: 1fr; }
+        }
+
+        .panel {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .panel-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .panel-title {
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .operation-item {
+            background: #f8f9fa;
+            border-left: 4px solid #667eea;
+            padding: 15px;
+            margin-bottom: 12px;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+
+        .operation-item:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transform: translateX(4px);
+        }
+
+        .operation-item.failed {
+            border-left-color: #ef4444;
+        }
+
+        .operation-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .operation-desc {
+            font-weight: 600;
+            color: #333;
+            font-size: 15px;
+        }
+
+        .operation-meta {
+            font-size: 12px;
+            color: #999;
+            margin-bottom: 10px;
+        }
+
+        .snapshot-tag {
+            background: #fef3c7;
+            color: #92400e;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            margin-left: 8px;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        .badge-success {
+            background: #d1fae5;
+            color: #065f46;
+        }
+
+        .badge-danger {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        .btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            font-size: 14px;
+        }
+
+        .btn-sm {
+            padding: 5px 12px;
+            font-size: 12px;
+        }
+
+        .btn-primary {
+            background: #667eea;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #5568d3;
+        }
+
+        .alert-item {
+            background: #fef3c7;
+            border-left: 4px solid #f59e0b;
+            padding: 15px;
+            margin-bottom: 12px;
+            border-radius: 8px;
+        }
+
+        .alert-item.high {
+            background: #fee2e2;
+            border-left-color: #ef4444;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: #999;
+        }
+
+        .empty-state-icon {
+            font-size: 64px;
+            margin-bottom: 20px;
+            opacity: 0.3;
+        }
+
+        .filters {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .filter-input, .filter-select {
+            padding: 8px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+
+        .filter-input {
+            flex: 1;
+            min-width: 200px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div>
+                <h1 data-i18n="title">⚡ Claw Operations Manager</h1>
+                <span class="badge badge-success" style="margin-left: 10px;">v3.0 - Multilingual</span>
+            </div>
+            <div class="header-controls">
+                <!-- 语言切换器 -->
+                <div class="language-selector">
+                    <button class="lang-btn" onclick="toggleLangDropdown()">
+                        <span class="lang-flag">🌐</span>
+                        <span id="current-lang">English</span>
+                        <span>▼</span>
+                    </button>
+                    <div class="lang-dropdown" id="lang-dropdown">
+                        <div class="lang-option selected" onclick="setLanguage('en')">
+                            <span class="lang-flag">🇺🇸</span>
+                            <span>English</span>
+                        </div>
+                        <div class="lang-option" onclick="setLanguage('zh')">
+                            <span class="lang-flag">🇨🇳</span>
+                            <span>简体中文</span>
+                        </div>
+                        <div class="lang-option" onclick="setLanguage('ja')">
+                            <span class="lang-flag">🇯🇵</span>
+                            <span>日本語</span>
+                        </div>
+                        <div class="lang-option" onclick="setLanguage('es')">
+                            <span class="lang-flag">🇪🇸</span>
+                            <span>Español</span>
+                        </div>
+                        <div class="lang-option" onclick="setLanguage('fr')">
+                            <span class="lang-flag">🇫🇷</span>
+                            <span>Français</span>
+                        </div>
+                        <div class="lang-option" onclick="setLanguage('de')">
+                            <span class="lang-flag">🇩🇪</span>
+                            <span>Deutsch</span>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="refresh-btn" onclick="refreshAll()" data-i18n="refresh">🔄 Refresh</button>
+            </div>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-label" data-i18n="total_ops">Total Operations</div>
+                <div class="stat-value" id="total-ops">-</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label" data-i18n="failed_ops">Failed Operations</div>
+                <div class="stat-value" id="failed-ops">-</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label" data-i18n="snapshots">Snapshots</div>
+                <div class="stat-value" id="snapshots-count">-</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label" data-i18n="alerts">Active Alerts</div>
+                <div class="stat-value" id="alerts-count">-</div>
+            </div>
+        </div>
+
+        <div class="main-grid">
+            <div class="panel">
+                <div class="panel-header">
+                    <div class="panel-title" data-i18n="operations">📋 Operations</div>
+                </div>
+
+                <div class="filters">
+                    <input type="text" class="filter-input" id="search-input" data-i18n-placeholder="search" placeholder="🔍 Search operations..." onkeyup="filterOperations()">
+                    <select class="filter-select" id="status-filter" onchange="filterOperations()">
+                        <option value="" data-i18n="all">All</option>
+                        <option value="success" data-i18n="success">Success</option>
+                        <option value="failed" data-i18n="failed">Failed</option>
+                        <option value="snapshot" data-i18n="with_snapshot">With Snapshot</option>
+                    </select>
+                </div>
+
+                <div id="operations-list"></div>
+            </div>
+
+            <div class="panel">
+                <div class="panel-header">
+                    <div class="panel-title" data-i18n="alerts_title">🚨 Alerts</div>
+                </div>
+                <div id="alerts-list"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 多语言翻译
+        const translations = {
+            en: {
+                title: "⚡ Claw Operations Manager",
+                refresh: "🔄 Refresh",
+                total_ops: "Total Operations",
+                failed_ops: "Failed Operations",
+                snapshots: "Snapshots",
+                alerts: "Active Alerts",
+                operations: "📋 Operations",
+                alerts_title: "🚨 Alerts",
+                search: "🔍 Search operations...",
+                all: "All",
+                success: "Success",
+                failed: "Failed",
+                with_snapshot: "With Snapshot",
+                success_badge: "✓ Success",
+                failed_badge: "✗ Failed",
+                snapshot_tag: "📸 Snapshot",
+                rollback_btn: "🔄 Rollback",
+                resolve_btn: "Resolve",
+                no_operations: "No operations recorded",
+                no_alerts: "No alerts"
+            },
+            zh: {
+                title: "⚡ Claw 运营管理中心",
+                refresh: "🔄 刷新",
+                total_ops: "总操作数",
+                failed_ops: "失败操作",
+                snapshots: "快照数量",
+                alerts: "活跃告警",
+                operations: "📋 操作记录",
+                alerts_title: "🚨 告警",
+                search: "🔍 搜索操作...",
+                all: "全部",
+                success: "成功",
+                failed: "失败",
+                with_snapshot: "有快照",
+                success_badge: "✓ 成功",
+                failed_badge: "✗ 失败",
+                snapshot_tag: "📸 快照",
+                rollback_btn: "🔄 回滚",
+                resolve_btn: "解决",
+                no_operations: "暂无操作记录",
+                no_alerts: "暂无告警"
+            },
+            ja: {
+                title: "⚡ Claw運営管理センター",
+                refresh: "🔄 更新",
+                total_ops: "総操作数",
+                failed_ops: "失敗した操作",
+                snapshots: "スナップショット",
+                alerts: "アクティブなアラート",
+                operations: "📋 操作履歴",
+                alerts_title: "🚨 アラート",
+                search: "🔍 操作を検索...",
+                all: "すべて",
+                success: "成功",
+                failed: "失敗",
+                with_snapshot: "スナップショットあり",
+                success_badge: "✓ 成功",
+                failed_badge: "✗ 失敗",
+                snapshot_tag: "📸 スナップショット",
+                rollback_btn: "🔄 ロールバック",
+                resolve_btn: "解決",
+                no_operations: "操作記録なし",
+                no_alerts: "アラートなし"
+            },
+            es: {
+                title: "⚡ Claw Operations Manager",
+                refresh: "🔄 Actualizar",
+                total_ops: "Operaciones Totales",
+                failed_ops: "Operaciones Fallidas",
+                snapshots: "Instantáneas",
+                alerts: "Alertas Activas",
+                operations: "📋 Operaciones",
+                alerts_title: "🚨 Alertas",
+                search: "🔍 Buscar operaciones...",
+                all: "Todas",
+                success: "Éxito",
+                failed: "Fallida",
+                with_snapshot: "Con Instantánea",
+                success_badge: "✓ Éxito",
+                failed_badge: "✗ Fallida",
+                snapshot_tag: "📸 Instantánea",
+                rollback_btn: "🔄 Revertir",
+                resolve_btn: "Resolver",
+                no_operations: "Sin operaciones",
+                no_alerts: "Sin alertas"
+            },
+            fr: {
+                title: "⚡ Claw Operations Manager",
+                refresh: "🔄 Actualiser",
+                total_ops: "Opérations Totales",
+                failed_ops: "Opérations Échouées",
+                snapshots: "Instantanés",
+                alerts: "Alertes Actives",
+                operations: "📋 Opérations",
+                alerts_title: "🚨 Alertes",
+                search: "🔍 Rechercher...",
+                all: "Toutes",
+                success: "Succès",
+                failed: "Échoué",
+                with_snapshot: "Avec Instantané",
+                success_badge: "✓ Succès",
+                failed_badge: "✗ Échoué",
+                snapshot_tag: "📸 Instantané",
+                rollback_btn: "🔄 Restaurer",
+                resolve_btn: "Résoudre",
+                no_operations: "Aucune opération",
+                no_alerts: "Aucune alerte"
+            },
+            de: {
+                title: "⚡ Claw Operations Manager",
+                refresh: "🔄 Aktualisieren",
+                total_ops: "Gesamte Operationen",
+                failed_ops: "Fehlgeschlagene Operationen",
+                snapshots: "Snapshots",
+                alerts: "Aktive Alarme",
+                operations: "📋 Operationen",
+                alerts_title: "🚨 Alarme",
+                search: "🔍 Suche...",
+                all: "Alle",
+                success: "Erfolg",
+                failed: "Fehlgeschlagen",
+                with_snapshot: "Mit Snapshot",
+                success_badge: "✓ Erfolg",
+                failed_badge: "✗ Fehlgeschlagen",
+                snapshot_tag: "📸 Snapshot",
+                rollback_btn: "🔄 Wiederherstellen",
+                resolve_btn: "Lösen",
+                no_operations: "Keine Operationen",
+                no_alerts: "Keine Alarme"
+            }
+        };
+
+        let currentLang = 'en';
+        let allOperations = [];
+
+        // 语言切换
+        function toggleLangDropdown() {
+            document.getElementById('lang-dropdown').classList.toggle('active');
+        }
+
+        function setLanguage(lang) {
+            currentLang = lang;
+            
+            // 更新 UI 文本
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[lang] && translations[lang][key]) {
+                    el.textContent = translations[lang][key];
+                }
+            });
+
+            // 更新占位符
+            document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+                const key = el.getAttribute('data-i18n-placeholder');
+                if (translations[lang] && translations[lang][key]) {
+                    el.placeholder = translations[lang][key];
+                }
+            });
+
+            // 更新当前语言显示
+            const langNames = {
+                'en': 'English',
+                'zh': '简体中文',
+                'ja': '日本語',
+                'es': 'Español',
+                'fr': 'Français',
+                'de': 'Deutsch'
+            };
+            document.getElementById('current-lang').textContent = langNames[lang];
+
+            // 更新下拉选项状态
+            document.querySelectorAll('.lang-option').forEach(opt => {
+                opt.classList.remove('selected');
+            });
+            event.target.closest('.lang-option').classList.add('selected');
+
+            // 关闭下拉菜单
+            document.getElementById('lang-dropdown').classList.remove('active');
+
+            // 重新显示操作（使用新语言）
+            displayOperations();
+        }
+
+        // 点击外部关闭下拉菜单
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.language-selector')) {
+                document.getElementById('lang-dropdown').classList.remove('active');
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            refreshAll();
+            setInterval(refreshAll, 30000);
+        });
+
+        async function refreshAll() {
+            await Promise.all([
+                loadStats(),
+                loadOperations(),
+                loadAlerts()
+            ]);
+        }
+
+        async function loadStats() {
+            try {
+                const response = await fetch('/api/stats');
+                const stats = await response.json();
+
+                document.getElementById('total-ops').textContent = stats.total_operations;
+                document.getElementById('failed-ops').textContent = stats.failed_operations;
+                document.getElementById('snapshots-count').textContent = stats.snapshots_count || 0;
+                document.getElementById('alerts-count').textContent = stats.unresolved_alerts;
+            } catch (error) {
+                console.error('Error loading stats:', error);
+            }
+        }
+
+        async function loadOperations() {
+            try {
+                const response = await fetch('/api/operations?limit=100');
+                allOperations = await response.json();
+                displayOperations();
+            } catch (error) {
+                console.error('Error loading operations:', error);
+            }
+        }
+
+        function filterOperations() {
+            const search = document.getElementById('search-input').value.toLowerCase();
+            const status = document.getElementById('status-filter').value;
+
+            const filtered = allOperations.filter(op => {
+                if (search && !op.friendly_name?.toLowerCase().includes(search)) {
+                    return false;
+                }
+                if (status === 'success' && !op.success) return false;
+                if (status === 'failed' && op.success) return false;
+                if (status === 'snapshot' && !op.snapshot_id) return false;
+                return true;
+            });
+
+            displayOperations(filtered);
+        }
+
+        function displayOperations(operations = null) {
+            const ops = operations || allOperations;
+            const container = document.getElementById('operations-list');
+
+            if (ops.length === 0) {
+                container.innerHTML = `<div class="empty-state"><div class="empty-state-icon">📭</div><p>${translations[currentLang].no_operations}</p></div>`;
+                return;
+            }
+
+            let html = '';
+            ops.forEach(op => {
+                const time = new Date(op.timestamp).toLocaleString(currentLang === 'zh' ? 'zh-CN' : currentLang === 'ja' ? 'ja-JP' : 'en-US');
+                const statusClass = op.success ? 'badge-success' : 'badge-danger';
+                const statusText = op.success ? translations[currentLang].success_badge : translations[currentLang].failed_badge;
+                const itemClass = op.success ? '' : 'failed';
+                const snapshotTag = op.snapshot_id ? `<span class="snapshot-tag">${translations[currentLang].snapshot_tag}: ${op.snapshot_id.substring(0, 8)}</span>` : '';
+
+                html += `
+                    <div class="operation-item ${itemClass}">
+                        <div class="operation-header">
+                            <div class="operation-desc">${op.friendly_name || op.action} ${snapshotTag}</div>
+                            <span class="badge ${statusClass}">${statusText}</span>
+                        </div>
+                        <div class="operation-meta">
+                            🕐 ${time} | 🛠️ ${op.tool_name}
+                        </div>
+                    </div>
+                `;
+            });
+
+            container.innerHTML = html;
+        }
+
+        async function loadAlerts() {
+            try {
+                const response = await fetch('/api/alerts?resolved=false');
+                const alerts = await response.json();
+
+                const container = document.getElementById('alerts-list');
+
+                if (alerts.length === 0) {
+                    container.innerHTML = `<div class="empty-state"><div class="empty-state-icon">✅</div><p>${translations[currentLang].no_alerts}</p></div>`;
+                    return;
+                }
+
+                let html = '';
+                alerts.forEach(alert => {
+                    const time = new Date(alert.timestamp).toLocaleString(currentLang === 'zh' ? 'zh-CN' : currentLang === 'ja' ? 'ja-JP' : 'en-US');
+
+                    html += `
+                        <div class="alert-item ${alert.severity || 'medium'}">
+                            <div class="alert-header">
+                                <div style="font-weight: 700;">${alert.alert_type}</div>
+                                <button class="btn btn-sm btn-success" onclick="resolveAlert(${alert.id})">${translations[currentLang].resolve_btn}</button>
+                            </div>
+                            <div style="font-size: 14px; color: #666; margin-top: 8px;">${alert.message}</div>
+                            <div style="font-size: 12px; color: #999; margin-top: 8px;">${time}</div>
+                        </div>
+                    `;
+                });
+
+                container.innerHTML = html;
+            } catch (error) {
+                console.error('Error loading alerts:', error);
+            }
+        }
+
+        async function resolveAlert(id) {
+            try {
+                await fetch(`/api/alerts/${id}/resolve`, { method: 'POST' });
+                loadAlerts();
+                loadStats();
+            } catch (error) {
+                console.error('Error resolving alert:', error);
+            }
+        }
+    </script>
+</body>
+</html>

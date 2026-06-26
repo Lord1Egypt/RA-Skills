@@ -1,0 +1,24 @@
+{
+  "name": "capability-match",
+  "version": "1.0.0",
+  "description": "AI-powered skill router that analyzes your request and recommends the best installed skill for the job",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "openclaw",
+    "skill",
+    "router",
+    "capability",
+    "match",
+    "ai",
+    "automation"
+  ],
+  "author": "AutoClaw",
+  "license": "MIT",
+  "openclaw": {
+    "skill": {}
+  }
+}

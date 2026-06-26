@@ -1,0 +1,41 @@
+{
+  "version": "1.0",
+  "meta": {
+    "title": "Finance Loan Origination Handoff Blueprint",
+    "industry": "finance",
+    "blueprintType": "architecture"
+  },
+  "entities": {
+    "capabilities": [
+      {"id": "cap-origination", "name": "Loan Origination"},
+      {"id": "cap-risk-decision", "name": "Risk Decisioning"},
+      {"id": "cap-compliance-review", "name": "Compliance Review"},
+      {"id": "cap-loan-booking", "name": "Loan Booking"}
+    ],
+    "actors": [
+      {"id": "actor-applicant", "name": "Applicant"},
+      {"id": "actor-officer", "name": "Loan Officer"},
+      {"id": "actor-risk", "name": "Risk Analyst"},
+      {"id": "actor-compliance", "name": "Compliance Reviewer"}
+    ],
+    "systems": [
+      {"id": "sys-los", "name": "Loan Origination System"},
+      {"id": "sys-risk", "name": "Risk Decision Engine"},
+      {"id": "sys-compliance", "name": "Compliance Case System"},
+      {"id": "sys-core", "name": "Core Banking"}
+    ],
+    "flowSteps": [
+      {"id": "step-apply", "name": "Capture Application"},
+      {"id": "step-score", "name": "Score Risk"},
+      {"id": "step-review", "name": "Compliance Review"},
+      {"id": "step-book", "name": "Book Approved Loan"}
+    ]
+  },
+  "relations": [
+    {"from": "sys-los", "to": "sys-risk", "type": "flows-to"},
+    {"from": "sys-risk", "to": "cap-risk-decision", "type": "supports"},
+    {"from": "sys-compliance", "to": "cap-compliance-review", "type": "supports"},
+    {"from": "sys-core", "to": "cap-loan-booking", "type": "supports"},
+    {"from": "step-book", "to": "sys-core", "type": "flows-to"}
+  ]
+}

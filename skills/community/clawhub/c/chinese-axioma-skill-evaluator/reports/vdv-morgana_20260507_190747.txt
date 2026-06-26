@@ -1,0 +1,44 @@
+
+============================================================
+📊 SKILL EVALUATION REPORT — vdv-morgana
+============================================================
+Path: skills/vdv-morgana/SKILL.md
+Score: 74/100 🟡 GOOD
+------------------------------------------------------------
+STRUCTURE       18/20 [92m██████████████████░░[0m 90%
+CLARITY         17/20 [92m█████████████████░░░[0m 85%
+COMPLETENESS    16/20 [92m████████████████░░░░[0m 80%
+CONSISTENCY     11/20 [93m███████████░░░░░░░░░[0m 55%
+FUNCTIONALITY   12/20 [93m████████████░░░░░░░░[0m 60%
+------------------------------------------------------------
+DETAILS:
+  STRUCTURE:
+    ✅ Header complet
+    ✅ Sections: 3/3
+    ✅ Formatting: 5/5
+    ⚠️ Meta: 3/5
+  CLARITY:
+    ⚠️ Description trop courte
+    ✅ Commandes/exemples: 21
+    ✅ Exemples présents
+    ✅ Contraintes documentées: 2
+  COMPLETENESS:
+    ✅ Outils documentés: 7
+    ⚠️ Prérequis partiels: 1
+    ✅ Erreurs documentées: 2
+    ⚠️ Cas limites partiels: 1
+  CONSISTENCY:
+    ✅ Cluster alignment: 5
+    ⚠️ Style: 2/5
+    ✅ Naming: 4/5
+    ✅ Integration: 3
+  FUNCTIONALITY:
+    ❌ Commandes problèmes: 0/5
+    ✅ Résultats documentés
+------------------------------------------------------------
+RECOMMENDATIONS:
+  • [CONSISTENCY] Score bas (55%)
+  • [FUNCTIONALITY] Score bas (60%)
+  •   → ❌ Commandes problèmes: 0/5
+============================================================
+STATUS: ✅ APPROVED (score >= 70%)

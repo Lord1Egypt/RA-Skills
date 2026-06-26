@@ -1,0 +1,16 @@
+{
+  "name": "career-news",
+  "version": "1.1.0",
+  "description": "Daily profession-targeted news from X, Google, Grok, and global media. Supports multi-profession subscriptions.",
+  "main": "scripts/morning-push.js",
+  "scripts": {
+    "push": "node scripts/morning-push.js",
+    "query": "node scripts/news-query.js",
+    "register": "node scripts/register.js",
+    "manage": "node scripts/manage-professions.js",
+    "toggle": "node scripts/push-toggle.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

@@ -1,35 +1,141 @@
----
-name: "Channel Follow-up Automation"
-description: "自动每日09:00检查渠道，按ROI、响应速度和成交概率评分排序，分级提醒跟进，降低遗漏率和成交周期。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/channel-followup-automation"
-sourceUrl: "https://clawhub.ai/skills/channel-followup-automation"
+# Channel Follow-up Automation - 渠道跟进自动化系统
+
+为商务人士打造的渠道跟进自动化工具。每日 09:00 例行检查，分级跟进提醒 (TOP3 每 24 小时/底部每 72 小时)，遗漏率从 30% 降至<5%，平均成交周期从 22 天降至 15 天。
+
 ---
 
-# Channel Follow-up Automation
+## 触发条件
 
-> 自动每日09:00检查渠道，按ROI、响应速度和成交概率评分排序，分级提醒跟进，降低遗漏率和成交周期。
+- 用户提到 "渠道跟进" 或 "跟进提醒"
+- 用户提到 "忘记跟进" 或 "跟进计划"
+- 每日 09:00 自动检查 (手动自动化方案)
+- 用户提供渠道列表要求排序
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/channel-followup-automation`
-- **Source URL:** [https://clawhub.ai/skills/channel-followup-automation](https://clawhub.ai/skills/channel-followup-automation)
+---
 
-## Overview
+## 核心指令
 
+### 1. 渠道动态排序
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/channel-followup-automation
+使用公式：
 ```
+综合评分 = ROI×50% + 响应速度×30% + 成交概率×20%
+```
+
+每日自动重算，生成 TOP3 清单。
+
+### 2. 分级跟进频率
+
+- **TOP3 (高优先级)**: 每 24 小时提醒
+- **中段 (中优先级)**: 每 48 小时提醒
+- **底部 (低优先级)**: 每 72 小时提醒
+
+### 3. 每日检查清单
+
+- 09:00 例行检查
+- 生成当日待跟进清单
+- 标记已跟进/待回复/已成交
+
+### 4. 跟进模板库
+
+- A/B 测试版本 (价值导向/案例导向)
+- 首次联系/跟进/谈判/成交全阶段
+- 行业定制 (科技/电商/教育/金融)
+
+### 5. 效果追踪
+
+- 回复率追踪
+- 成交周期统计
+- ROI 实时计算
+
+---
+
+## 输出格式
+
+```markdown
+## 渠道跟进报告 - {日期}
+
+### TOP3 优先级
+1. {渠道 1} - 综合评分 {N} - 最后跟进 {N}天前
+2. {渠道 2} - 综合评分 {N} - 最后跟进 {N}天前
+3. {渠道 3} - 综合评分 {N} - 最后跟进 {N}天前
+
+### 今日待跟进 ({N}个)
+- {渠道 1}: {跟进模板}
+- {渠道 2}: {跟进模板}
+
+### 效果统计
+- 本周跟进：{N}次
+- 回复率：{N}%
+- 平均成交周期：{N}天
+```
+
+---
+
+## 版本信息
+
+- **版本**: 1.0.0
+- **作者**: 商务 AI (@business-ai)
+- **创建日期**: 2026-03-24
+- **定价**: ¥499 ($69)
+- **分类**: Business/Sales/Productivity
+
+---
+
+## 使用示例
+
+### 示例 1: 生成今日跟进清单
+
+```
+用户：生成今天的渠道跟进清单
+
+AI:
+## 渠道跟进报告 - 2026-03-24
+
+### TOP3 优先级
+1. Tech With Tim - 83.0 分 - 最后跟进 2 天前
+2. Sabrina Ramonov - 83.0 分 - 最后跟进 1 天前
+3. Florian Darroman - 82.0 分 - 最后跟进 3 天前
+
+### 今日待跟进 (5 个)
+- Tech With Tim: 跟进模板 A (价值导向)
+- n8n 社区：跟进模板 B (案例导向)
+...
+```
+
+### 示例 2: 添加新渠道
+
+```
+用户：添加新渠道慕课网，ROI 预估 3.0，响应速度中等
+
+AI:
+已添加慕课网到渠道列表。
+
+**初始评估**:
+- ROI: 3.0 (高)
+- 响应速度：中 (50%)
+- 成交概率：70% (基于行业基准)
+- 综合评分：74.0
+
+**跟进频率**: 每 48 小时 (中段优先级)
+**下次跟进**: 2026-03-26 09:00
+```
+
+---
+
+## 参考文件
+
+- `references/templates.md` - 50+ 跟进模板
+- `references/examples.md` - 实际案例 (5 个渠道)
+- `references/checklist.md` - 每日检查清单
+- `scripts/followup-check.py` - 每日检查脚本
+- `scripts/sort-channels.py` - 动态排序脚本
+
+---
+
+## 注意事项
+
+1. **手动自动化**: 本技能采用手动自动化方案 (符合公司 cron 禁令)
+2. **每日检查**: 需每日 09:00 主动调用或设置日历提醒
+3. **数据更新**: 每次跟进后更新渠道状态
+4. **模板选择**: 根据渠道特点选择 A/B 版本模板

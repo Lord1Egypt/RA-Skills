@@ -1,0 +1,422 @@
+{
+  "integration_date": "2026-04-01T13:53:48.182524",
+  "tools_count": 184,
+  "commands_count": 200,
+  "tools": [
+    {
+      "name": "AgentTool",
+      "source": "tools/AgentTool/AgentTool.tsx"
+    },
+    {
+      "name": "UI",
+      "source": "tools/AgentTool/UI.tsx"
+    },
+    {
+      "name": "agentColorManager",
+      "source": "tools/AgentTool/agentColorManager.ts"
+    },
+    {
+      "name": "agentDisplay",
+      "source": "tools/AgentTool/agentDisplay.ts"
+    },
+    {
+      "name": "agentMemory",
+      "source": "tools/AgentTool/agentMemory.ts"
+    },
+    {
+      "name": "agentMemorySnapshot",
+      "source": "tools/AgentTool/agentMemorySnapshot.ts"
+    },
+    {
+      "name": "agentToolUtils",
+      "source": "tools/AgentTool/agentToolUtils.ts"
+    },
+    {
+      "name": "clawCodeGuideAgent",
+      "source": "tools/AgentTool/built-in/clawCodeGuideAgent.ts"
+    },
+    {
+      "name": "exploreAgent",
+      "source": "tools/AgentTool/built-in/exploreAgent.ts"
+    },
+    {
+      "name": "generalPurposeAgent",
+      "source": "tools/AgentTool/built-in/generalPurposeAgent.ts"
+    },
+    {
+      "name": "planAgent",
+      "source": "tools/AgentTool/built-in/planAgent.ts"
+    },
+    {
+      "name": "statuslineSetup",
+      "source": "tools/AgentTool/built-in/statuslineSetup.ts"
+    },
+    {
+      "name": "verificationAgent",
+      "source": "tools/AgentTool/built-in/verificationAgent.ts"
+    },
+    {
+      "name": "builtInAgents",
+      "source": "tools/AgentTool/builtInAgents.ts"
+    },
+    {
+      "name": "constants",
+      "source": "tools/AgentTool/constants.ts"
+    },
+    {
+      "name": "forkSubagent",
+      "source": "tools/AgentTool/forkSubagent.ts"
+    },
+    {
+      "name": "loadAgentsDir",
+      "source": "tools/AgentTool/loadAgentsDir.ts"
+    },
+    {
+      "name": "prompt",
+      "source": "tools/AgentTool/prompt.ts"
+    },
+    {
+      "name": "resumeAgent",
+      "source": "tools/AgentTool/resumeAgent.ts"
+    },
+    {
+      "name": "runAgent",
+      "source": "tools/AgentTool/runAgent.ts"
+    },
+    {
+      "name": "AskUserQuestionTool",
+      "source": "tools/AskUserQuestionTool/AskUserQuestionTool.tsx"
+    },
+    {
+      "name": "prompt",
+      "source": "tools/AskUserQuestionTool/prompt.ts"
+    },
+    {
+      "name": "BashTool",
+      "source": "tools/BashTool/BashTool.tsx"
+    },
+    {
+      "name": "BashToolResultMessage",
+      "source": "tools/BashTool/BashToolResultMessage.tsx"
+    },
+    {
+      "name": "UI",
+      "source": "tools/BashTool/UI.tsx"
+    },
+    {
+      "name": "bashCommandHelpers",
+      "source": "tools/BashTool/bashCommandHelpers.ts"
+    },
+    {
+      "name": "bashPermissions",
+      "source": "tools/BashTool/bashPermissions.ts"
+    },
+    {
+      "name": "bashSecurity",
+      "source": "tools/BashTool/bashSecurity.ts"
+    },
+    {
+      "name": "commandSemantics",
+      "source": "tools/BashTool/commandSemantics.ts"
+    },
+    {
+      "name": "commentLabel",
+      "source": "tools/BashTool/commentLabel.ts"
+    },
+    {
+      "name": "destructiveCommandWarning",
+      "source": "tools/BashTool/destructiveCommandWarning.ts"
+    },
+    {
+      "name": "modeValidation",
+      "source": "tools/BashTool/modeValidation.ts"
+    },
+    {
+      "name": "pathValidation",
+      "source": "tools/BashTool/pathValidation.ts"
+    },
+    {
+      "name": "prompt",
+      "source": "tools/BashTool/prompt.ts"
+    },
+    {
+      "name": "readOnlyValidation",
+      "source": "tools/BashTool/readOnlyValidation.ts"
+    },
+    {
+      "name": "sedEditParser",
+      "source": "tools/BashTool/sedEditParser.ts"
+    },
+    {
+      "name": "sedValidation",
+      "source": "tools/BashTool/sedValidation.ts"
+    },
+    {
+      "name": "shouldUseSandbox",
+      "source": "tools/BashTool/shouldUseSandbox.ts"
+    },
+    {
+      "name": "toolName",
+      "source": "tools/BashTool/toolName.ts"
+    },
+    {
+      "name": "utils",
+      "source": "tools/BashTool/utils.ts"
+    },
+    {
+      "name": "BriefTool",
+      "source": "tools/BriefTool/BriefTool.ts"
+    },
+    {
+      "name": "UI",
+      "source": "tools/BriefTool/UI.tsx"
+    },
+    {
+      "name": "attachments",
+      "source": "tools/BriefTool/attachments.ts"
+    },
+    {
+      "name": "prompt",
+      "source": "tools/BriefTool/prompt.ts"
+    },
+    {
+      "name": "upload",
+      "source": "tools/BriefTool/upload.ts"
+    },
+    {
+      "name": "ConfigTool",
+      "source": "tools/ConfigTool/ConfigTool.ts"
+    },
+    {
+      "name": "UI",
+      "source": "tools/ConfigTool/UI.tsx"
+    },
+    {
+      "name": "constants",
+      "source": "tools/ConfigTool/constants.ts"
+    },
+    {
+      "name": "prompt",
+      "source": "tools/ConfigTool/prompt.ts"
+    },
+    {
+      "name": "supportedSettings",
+      "source": "tools/ConfigTool/supportedSettings.ts"
+    }
+  ],
+  "commands": [
+    {
+      "name": "add-dir",
+      "source": "commands/add-dir/add-dir.tsx"
+    },
+    {
+      "name": "add-dir",
+      "source": "commands/add-dir/index.ts"
+    },
+    {
+      "name": "validation",
+      "source": "commands/add-dir/validation.ts"
+    },
+    {
+      "name": "advisor",
+      "source": "commands/advisor.ts"
+    },
+    {
+      "name": "agents",
+      "source": "commands/agents/agents.tsx"
+    },
+    {
+      "name": "agents",
+      "source": "commands/agents/index.ts"
+    },
+    {
+      "name": "ant-trace",
+      "source": "commands/ant-trace/index.js"
+    },
+    {
+      "name": "autofix-pr",
+      "source": "commands/autofix-pr/index.js"
+    },
+    {
+      "name": "backfill-sessions",
+      "source": "commands/backfill-sessions/index.js"
+    },
+    {
+      "name": "branch",
+      "source": "commands/branch/branch.ts"
+    },
+    {
+      "name": "branch",
+      "source": "commands/branch/index.ts"
+    },
+    {
+      "name": "break-cache",
+      "source": "commands/break-cache/index.js"
+    },
+    {
+      "name": "bridge",
+      "source": "commands/bridge/bridge.tsx"
+    },
+    {
+      "name": "bridge",
+      "source": "commands/bridge/index.ts"
+    },
+    {
+      "name": "bridge-kick",
+      "source": "commands/bridge-kick.ts"
+    },
+    {
+      "name": "brief",
+      "source": "commands/brief.ts"
+    },
+    {
+      "name": "btw",
+      "source": "commands/btw/btw.tsx"
+    },
+    {
+      "name": "btw",
+      "source": "commands/btw/index.ts"
+    },
+    {
+      "name": "bughunter",
+      "source": "commands/bughunter/index.js"
+    },
+    {
+      "name": "chrome",
+      "source": "commands/chrome/chrome.tsx"
+    },
+    {
+      "name": "chrome",
+      "source": "commands/chrome/index.ts"
+    },
+    {
+      "name": "caches",
+      "source": "commands/clear/caches.ts"
+    },
+    {
+      "name": "clear",
+      "source": "commands/clear/clear.ts"
+    },
+    {
+      "name": "conversation",
+      "source": "commands/clear/conversation.ts"
+    },
+    {
+      "name": "clear",
+      "source": "commands/clear/index.ts"
+    },
+    {
+      "name": "color",
+      "source": "commands/color/color.ts"
+    },
+    {
+      "name": "color",
+      "source": "commands/color/index.ts"
+    },
+    {
+      "name": "commit-push-pr",
+      "source": "commands/commit-push-pr.ts"
+    },
+    {
+      "name": "commit",
+      "source": "commands/commit.ts"
+    },
+    {
+      "name": "compact",
+      "source": "commands/compact/compact.ts"
+    },
+    {
+      "name": "compact",
+      "source": "commands/compact/index.ts"
+    },
+    {
+      "name": "config",
+      "source": "commands/config/config.tsx"
+    },
+    {
+      "name": "config",
+      "source": "commands/config/index.ts"
+    },
+    {
+      "name": "context-noninteractive",
+      "source": "commands/context/context-noninteractive.ts"
+    },
+    {
+      "name": "context",
+      "source": "commands/context/context.tsx"
+    },
+    {
+      "name": "context",
+      "source": "commands/context/index.ts"
+    },
+    {
+      "name": "copy",
+      "source": "commands/copy/copy.tsx"
+    },
+    {
+      "name": "copy",
+      "source": "commands/copy/index.ts"
+    },
+    {
+      "name": "cost",
+      "source": "commands/cost/cost.ts"
+    },
+    {
+      "name": "cost",
+      "source": "commands/cost/index.ts"
+    },
+    {
+      "name": "createMovedToPluginCommand",
+      "source": "commands/createMovedToPluginCommand.ts"
+    },
+    {
+      "name": "ctx_viz",
+      "source": "commands/ctx_viz/index.js"
+    },
+    {
+      "name": "debug-tool-call",
+      "source": "commands/debug-tool-call/index.js"
+    },
+    {
+      "name": "desktop",
+      "source": "commands/desktop/desktop.tsx"
+    },
+    {
+      "name": "desktop",
+      "source": "commands/desktop/index.ts"
+    },
+    {
+      "name": "diff",
+      "source": "commands/diff/diff.tsx"
+    },
+    {
+      "name": "diff",
+      "source": "commands/diff/index.ts"
+    },
+    {
+      "name": "doctor",
+      "source": "commands/doctor/doctor.tsx"
+    },
+    {
+      "name": "doctor",
+      "source": "commands/doctor/index.ts"
+    },
+    {
+      "name": "effort",
+      "source": "commands/effort/effort.tsx"
+    }
+  ],
+  "total_capabilities": 384,
+  "example_tools": {
+    "security": [
+      "bashSecurity",
+      "powershellSecurity"
+    ],
+    "analysis": [
+      "Check with: python3 -m src.main tools --query 'analysis'"
+    ],
+    "development": [
+      "Check with: python3 -m src.main tools --query 'development'"
+    ]
+  }
+}

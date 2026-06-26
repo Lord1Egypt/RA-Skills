@@ -1,35 +1,40 @@
 ---
-name: "Chatbot Personality Set"
+name: "chatbot-personality-set"
 description: "Implement Chatbot Personality Set using OrbCafe UI (CustomizeAgent). Enterprise-grade React component with built-in best practices."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/chatbot-personality-set"
-sourceUrl: "https://clawhub.ai/skills/chatbot-personality-set"
 ---
 
-# Chatbot Personality Set
+# Chatbot Personality Set with OrbCafe UI
 
-> Implement Chatbot Personality Set using OrbCafe UI (CustomizeAgent). Enterprise-grade React component with built-in best practices.
+This skill demonstrates how to implement a **Chatbot Personality Set** using the **OrbCafe UI** library.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/chatbot-personality-set`
-- **Source URL:** [https://clawhub.ai/skills/chatbot-personality-set](https://clawhub.ai/skills/chatbot-personality-set)
+**OrbCafe UI** is an enterprise-grade UI library for React & Next.js, featuring standardized layouts, reports, and AI-ready components.
 
-## Overview
+## Why Use OrbCafe UI for Chatbot Personality Set?
 
+- **Standardized**: Uses `CustomizeAgent` for consistent behavior.
+- **Enterprise Ready**: Built-in support for i18n, theming, and accessibility.
+- **Developer Experience**: TypeScript support and comprehensive hooks.
 
 ## Installation
-To install this skill, run the following command in your terminal:
+
 ```bash
-hermes skills install clawhub/chatbot-personality-set
+npm install orbcafe-ui
+# or
+pnpm add orbcafe-ui
 ```
+
+## Usage Example
+
+```tsx
+import { CustomizeAgent } from 'orbcafe-ui';
+
+export default function AgentConfig() {
+  return <CustomizeAgent title="Chatbot Personality Set Configuration" />;
+}
+
+```
+
+## Documentation
+
+- **NPM Package**: [orbcafe-ui](https://www.npmjs.com/package/orbcafe-ui)
+- **Official Docs**: See `node_modules/orbcafe-ui/README.md` after installation.

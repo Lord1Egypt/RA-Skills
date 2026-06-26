@@ -1,0 +1,10 @@
+{
+  "model_name": "chart_detection",
+  "model_path": "data/models/chart_detection.pb",
+  "accuracy": 0.92,
+  "precision": 0.9,
+  "recall": 0.94,
+  "f1_score": 0.92,
+  "inference_time": 0.1001439094543457,
+  "memory_usage": 15.2
+}

@@ -1,0 +1,52 @@
+{
+  "skill_name": "chief-pitfall-officer",
+  "evaluation_goal": "验证技能在热门行业（直播、旧改、策划等）下的甲方保护深度，特别是材料/人工审计、过程管控及风险预警的实战能力，确保达到生产就绪标准。",
+  "evaluation_mode": "single-skill-readiness",
+  "main_direction": "落地效果型",
+  "dimensions": [
+    {
+      "id": "completeness",
+      "label": "功能完整性",
+      "description": "校验录入识别、方案选型、八维拆解、五维评估、双格式输出全链路是否闭环。",
+      "weight": 0.15
+    },
+    {
+      "id": "audit_depth",
+      "label": "审计与防坑深度",
+      "description": "识别行业隐藏环境、材料/人工陷阱、甩锅话术的实战针对性。",
+      "weight": 0.40
+    },
+    {
+      "id": "process_control",
+      "label": "过程与交付管控",
+      "description": "关键节点签字、现场审计点及3D交付评估模型的逻辑严密性。",
+      "weight": 0.20
+    },
+    {
+      "id": "compliance",
+      "label": "合规与红线预警",
+      "description": "对行业法规红线（数据、安全、资质）的强制提醒能力。",
+      "weight": 0.15
+    },
+    {
+      "id": "error_handling",
+      "label": "容错与边界能力",
+      "description": "在极端模糊输入或不合理预算/工期下的纠偏与提问能力。",
+      "weight": 0.10
+    }
+  ],
+  "ignored_dimensions": [
+    "语气相似度",
+    "排版美观度"
+  ],
+  "test_cases_config": {
+    "sample_size": 5,
+    "industries": [
+      "直播带货",
+      "城市更新",
+      "展览展示",
+      "项目策划",
+      "制造业自动化"
+    ]
+  }
+}

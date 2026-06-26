@@ -1,0 +1,41 @@
+{
+  "_schema": "EDL v1 - 编辑决策列表，时间单位均为 ms。开头/片段间无说话段必须在 output 显式标记 mute。",
+  "_actions": {
+    "mute": "无说话：保留时长，做静音处理（音量置 0）",
+    "delete": "整段删除，不参与输出（仅用于明确需剪掉的冗余内容，非无说话段）",
+    "concat": "句内剪辑：取多个 trim 片段拼接，中间删除（如去掉重复词、语气词）",
+    "keep": "原样保留"
+  },
+  "optimized_segments": [
+    {
+      "text": "大家好，今天跟大家聊一下我最近做的一个口播剪辑的工具。",
+      "source_text": "大家好，今天跟大家聊一下我最近做的一个一个口播剪辑的工具。",
+      "start_time": 630,
+      "end_time": 7470,
+      "reason": "句内重复：一个一个（A+A 模式），删前留后，保留最后一个「一个」",
+      "action": "concat",
+      "actionTime": [
+        { "start_time": 630, "end_time": 5310 },
+        { "start_time": 5950, "end_time": 7470 }
+      ]
+    },
+    {
+      "text": "",
+      "source_text": "",
+      "start_time": 7470,
+      "end_time": 25960,
+      "reason": "片段间静音 18490ms（约 18.5s），无说话，保留时长做静音处理",
+      "action": "mute",
+      "actionTime": [{ "start_time": 7470, "end_time": 25960 }]
+    },
+    {
+      "text": "那个，做这个工具的原因其实很简单，就是我们平时录口播视频的时候，总会有各种各样的口癖，对吧？",
+      "source_text": "那个，做这个工具的原因其实很简单，就是我们平时录口播视频的时候，总会有各种各样的口癖，对吧？",
+      "start_time": 25960,
+      "end_time": 35520,
+      "reason": "保留",
+      "action": "keep",
+      "actionTime": [{ "start_time": 25960, "end_time": 35520 }]
+    }
+  ]
+}

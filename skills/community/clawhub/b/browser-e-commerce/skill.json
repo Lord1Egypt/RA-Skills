@@ -1,0 +1,7 @@
+{
+  "name": "browser-e-commerce",
+  "version": "0.1.3",
+  "description": "Browser shopping assistant. Input a product link or keyword; compare browser-visible prices, seller type, reviews, promotions, delivery/return signals, and after-sales risk, then output buy/wait/switch-platform advice. No login, checkout, order submission, or payment.",
+  "author": "harrylabsj",
+  "license": "MIT-0"
+}

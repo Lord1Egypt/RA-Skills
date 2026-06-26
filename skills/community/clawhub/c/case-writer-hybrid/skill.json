@@ -1,0 +1,9 @@
+{
+  "id": "case-writer-hybrid",
+  "name": "Case Writer Hybrid",
+  "layer": "create",
+  "executor": "case_writer_hybrid_v1",
+  "input_kind": "brief_markdown",
+  "output_kind": "article_markdown",
+  "description": "Parse a structured brief, run a local writer/critic/judge loop with constrained humanization, and emit an article draft plus writing sidecars."
+}

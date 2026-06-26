@@ -1,0 +1,35 @@
+{
+  "module": "short-term-memory",
+  "version": "1.0.0",
+  "updated": "2026-03-08T14:04:26.432057",
+  "config": {
+    "ttl_seconds": 60,
+    "max_entries": 50,
+    "cleanup_interval_seconds": 10,
+    "auto_cleanup": true,
+    "upgrade_to_long_term": true
+  },
+  "entries": [
+    {
+      "id": "1772949866_b2ef53eb",
+      "timestamp": 1772949866.431853,
+      "created_at": "2026-03-08T14:04:26.431853",
+      "expires_at": 1772949926.431853,
+      "ttl_seconds": 60,
+      "channel": "feishu",
+      "user_id": "ou_472d0b86d66dd43850b6d7c249c76d28",
+      "content": "星之君说：记住要完成X任务",
+      "context": {
+        "type": "task",
+        "priority": "high"
+      }
+    }
+  ],
+  "stats": {
+    "total_entries": 1,
+    "channels": {
+      "feishu": 1
+    },
+    "last_cleanup": "2026-03-08T14:04:26.431778"
+  }
+}

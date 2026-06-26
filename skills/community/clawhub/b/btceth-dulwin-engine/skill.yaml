@@ -1,0 +1,15 @@
+name: btceth-dualwin-engine
+description: BTC/ETH期权双币赢策略分析，实时获取市场数据并给出买卖建议
+trigger:
+  - "双币赢分析"
+  - "双币赢"
+  - "dualwin"
+  - "btc dual"
+  - "eth dual"
+action:
+  type: exec
+  command: python3
+  args:
+    - /root/.openclaw/workspace-finance/skills/btceth-dualwin-engine/run.py
+  env: {}
+  timeout: 60

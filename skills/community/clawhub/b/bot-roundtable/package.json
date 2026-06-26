@@ -1,0 +1,15 @@
+{
+  "name": "bot-roundtable",
+  "version": "1.0.0",
+  "description": "多Bot圆桌讨论系统 - 让飞书群里的多个Bot像真人一样讨论问题",
+  "author": "linbo405",
+  "license": "MIT",
+  "keywords": ["feishu", "multi-bot", "discussion", "roundtable", "openclaw"],
+  "files": [
+    "SKILL.md",
+    "feishu_sender.py",
+    "coordinator.py",
+    "config.json",
+    "README.md"
+  ]
+}

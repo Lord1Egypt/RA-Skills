@@ -1,0 +1,385 @@
+{
+  "name": "browser-harness",
+  "version": "0.2.3",
+  "requiredEnvVars": [],
+  "requires": {
+    "runtime": {
+      "node": ">=20.6.0",
+      "python": ">=3.10"
+    },
+    "binaries": ["bhts", "browser-harness", "uv"],
+    "packages": {
+      "npm": "browser-harness-ts@0.1.1",
+      "pip": "browser-harness==0.0.1"
+    }
+  },
+  "skill": {
+    "name": "browser-harness",
+    "version": "0.2.3",
+    "enabled": true,
+    "autoInvoke": false
+  },
+  "commands": {
+    "setup": {
+      "script": "./scripts/run.sh",
+      "args": ["setup"],
+      "description": "一次性安装：bhts + browser-harness CLI 上 PATH，并引导 browser-harness --setup 接管 Chrome"
+    },
+    "doctor": {
+      "script": "./scripts/run.sh",
+      "args": ["doctor"],
+      "description": "体检：node/uv/bhts/browser-harness 版本、守护进程状态、当前标签信息"
+    },
+    "stop": {
+      "script": "./scripts/run.sh",
+      "args": ["stop"],
+      "description": "停掉 browser-harness 守护进程；任务完成后建议用，避免守护常驻持有 CDP"
+    },
+    "js": {
+      "script": "./scripts/run.sh",
+      "args": ["js"],
+      "description": "在当前标签页跑一段 JS 表达式，stdout 输出 JSON 序列化结果（命中敏感模式默认拒绝）"
+    },
+    "exec": {
+      "script": "./scripts/run.sh",
+      "args": ["exec"],
+      "description": "执行任意 bh.* 调用序列（snippet 内 bh / h 可用，支持顶层 await；命中敏感模式默认拒绝）"
+    },
+    "shot": {
+      "script": "./scripts/run.sh",
+      "args": ["shot"],
+      "description": "截图当前标签视口（PNG）；--full 截整页；命中敏感模式默认拒绝"
+    },
+    "page": {
+      "script": "./scripts/run.sh",
+      "args": ["page"],
+      "description": "输出当前页 url/title/viewport/scroll/pageSize（只读，不受 sensitive-deny 影响）"
+    },
+    "tabs": {
+      "script": "./scripts/run.sh",
+      "args": ["tabs"],
+      "description": "列出真实标签（只读，不受 sensitive-deny 影响）"
+    },
+    "open": {
+      "script": "./scripts/run.sh",
+      "args": ["open"],
+      "description": "新建标签并导航到 URL（含 waitForLoad；URL 命中敏感模式默认拒绝）"
+    },
+    "switch": {
+      "script": "./scripts/run.sh",
+      "args": ["switch"],
+      "description": "切换到 url 或 title 含关键词的那个标签"
+    },
+    "upload": {
+      "script": "./scripts/run.sh",
+      "args": ["upload"],
+      "description": "给 input[type=file] 设置文件（路径必须绝对；命中敏感模式默认拒绝）"
+    },
+    "click": {
+      "script": "./scripts/run.sh",
+      "args": ["click"],
+      "description": "在视口坐标点击；不推荐——优先用 js + querySelector"
+    },
+    "type": {
+      "script": "./scripts/run.sh",
+      "args": ["type"],
+      "description": "在当前焦点元素输入文本（IME 友好的 insertText；命中敏感模式默认拒绝）"
+    },
+    "key": {
+      "script": "./scripts/run.sh",
+      "args": ["key"],
+      "description": "按下单键（Enter / Tab / Escape / ArrowDown / ...）"
+    },
+    "scroll": {
+      "script": "./scripts/run.sh",
+      "args": ["scroll"],
+      "description": "滚动页面，传 dy（负值向上）"
+    },
+    "helpers": {
+      "script": "./scripts/run.sh",
+      "args": ["helpers"],
+      "description": "列出 agent-workspace/agent_helpers.ts 注册的自定义函数"
+    },
+    "raw": {
+      "script": "./scripts/run.sh",
+      "args": ["raw"],
+      "description": "直接转发到 bhts；默认禁用，需 BH_RAW_OK=1 显式开启（绕过 sensitive-deny + in-snippet policy gate；只记 metadata 审计；Agent 不应使用，用 exec 替代）"
+    },
+    "help": {
+      "script": "./scripts/run.sh",
+      "args": ["help"],
+      "description": "显示本 skill 所有子命令"
+    }
+  },
+  "environment": {
+    "required": [],
+    "optional": [
+      {
+        "name": "BU_NAME",
+        "description": "守护进程命名空间，多 Agent 并行时用（默认 default）"
+      },
+      {
+        "name": "BH_AGENT_WORKSPACE",
+        "description": "覆盖 agent-workspace 目录路径"
+      },
+      {
+        "name": "BH_TMP_DIR",
+        "description": "与 Python 端 socket 路径对齐时使用（隔离 tmpdir 场景）"
+      },
+      {
+        "name": "BH_ALLOW_SENSITIVE",
+        "description": "=1 时允许操作命中 sensitive-deny 模式的页面（银行 / 邮箱 / 内网 / admin 等）。等价于每条命令都附 --i-understand-sensitive。"
+      },
+      {
+        "name": "BH_PUBLIC_ONLY",
+        "description": "=1 时进入硬隔离模式：仅允许操作 publicSites allow-list 内的域名（github / wikipedia / arxiv 等），其它一律拒绝。优先级高于 BH_ALLOW_SENSITIVE。"
+      },
+      {
+        "name": "BH_AUDIT_LOG",
+        "description": "覆盖审计日志路径（默认 ~/.cache/browser-harness/skill-audit.log）；置空字符串可禁用日志。"
+      },
+      {
+        "name": "BH_RAW_OK",
+        "description": "=1 时启用 raw 子命令（默认禁用以避免后门）；启用后 raw 仍写一行 sub=raw mode=raw-bypass 的元数据审计，但绕过 URL 策略门——这是用户接管全部责任的逃生口。"
+      }
+    ]
+  },
+  "install": {
+    "type": "npm+pip",
+    "autoInstall": false,
+    "riskLevel": "high",
+    "riskReason": "本 skill 通过 CDP 接管用户当前 Chrome——可见所有登录态、cookie、saved password、邮件、银行页等。仅本机本地通信（无远程数据传输），但 Agent 操作风险极高，使用前必须用户授权。已实施 sensitive-deny 默认策略 + BH_PUBLIC_ONLY 硬隔离模式 + 元数据审计日志 + raw 子命令默认禁用 + 安装钉死版本 + --ignore-scripts。",
+    "requiresApproval": true,
+    "installCommand": "npm install -g browser-harness-ts@0.1.1 --ignore-scripts && uv tool install --force browser-harness==0.0.1 && browser-harness --setup",
+    "source": [
+      {
+        "type": "npm",
+        "registry": "https://registry.npmjs.org",
+        "package": "browser-harness-ts",
+        "version": "0.1.1",
+        "repository": "https://github.com/sipingme/browser-harness-ts",
+        "license": "MIT",
+        "audit": "https://github.com/sipingme/browser-harness-ts/blob/v0.1.1/src/harness.ts"
+      },
+      {
+        "type": "pypi",
+        "registry": "https://pypi.org",
+        "package": "browser-harness",
+        "version": "0.0.1",
+        "repository": "https://github.com/browser-use/browser-harness",
+        "license": "MIT",
+        "audit": "https://github.com/browser-use/browser-harness/tree/main/src/browser_harness"
+      }
+    ],
+    "verification": {
+      "command": "bhts --version && browser-harness --version",
+      "expectedOutputContains": ["browser-harness-ts 0.1.1", "0.0.1"]
+    }
+  },
+  "dependencies": {
+    "npm": ["browser-harness-ts@0.1.1"],
+    "pip": ["browser-harness==0.0.1"],
+    "binaries": ["uv"],
+    "note": "两端版本独立钉死。升级流程：(1) 审计 upstream 新版 diff；(2) 在 config.json/SKILL.md 同步 bump；(3) 重新发布本 skill。绝不允许浮动版本（policy.allowFloatingVersions=false）。"
+  },
+  "recommendedSkills": [],
+  "permissions": {
+    "filesystem": {
+      "read": [
+        "~/.cache/browser-harness/",
+        "agent-workspace/",
+        "<screenshot output paths provided by user>"
+      ],
+      "write": [
+        "agent-workspace/",
+        "~/.cache/browser-harness/skill-audit.log",
+        "<screenshot output paths provided by user>"
+      ]
+    },
+    "network": {
+      "domains": [
+        "127.0.0.1",
+        "<URL provided by user (any HTTP/HTTPS, since the skill controls a browser; gated by sensitive-deny / publicOnly policy)>"
+      ],
+      "note": "本机进程间走 unix socket / TCP loopback；Chrome 自身的网络请求由用户在浏览器里发出，skill 不直接联网。"
+    },
+    "browser": {
+      "type": "chrome-cdp",
+      "access": [
+        "当前标签的 DOM",
+        "当前标签的 Session（继承用户登录态）",
+        "可切换 / 新建 / 关闭标签",
+        "可截图 / 上传文件 / 调任意 CDP 方法"
+      ],
+      "scope": "守护进程附着到用户 setup 时选中的那一个 Chrome 实例；不会主动接管其它 Chrome 进程"
+    },
+    "subprocess": {
+      "declared": true,
+      "spawned": ["bhts"],
+      "loader": "Node stdlib subprocess launcher, no-shell variant; aliased locally as `launch` for clarity",
+      "sink": "scripts/lib/runner.mjs::runBhtsSubprocess (the single launch site in the entire skill repo, see SAFE_LAUNCH comment block)",
+      "argvPolicy": "program is BHTS_PATH (absolute, resolved via manual PATH walk at startup, re-validated at call time); argv is a fixed shape [\"-c\", code]; code is built from a switch on subcommand with all user-provided strings sanitised via lit() (JSON.stringify); numbers are Number()-coerced; snippet length capped at 1 MiB; subprocess timeout default 60s (cap 30 min) via BH_TIMEOUT_MS",
+      "envPolicy": "filtered passthrough only — SAFE_ENV_KEYS = {PATH, HOME, USER, LANG, LC_ALL, LC_CTYPE, TMPDIR, TEMP, TMP, NODE_OPTIONS, BU_NAME, BH_AGENT_WORKSPACE, BH_TMP_DIR}; arbitrary env vars are NOT propagated to the child",
+      "stdioPolicy": "child stdout piped through to parent stdout; child stderr tee'd through (last 4 KiB kept in memory only to parse the in-snippet __BH_POLICY__ report line for the audit log); no stdout/stderr buffered into Node memory (avoids large-output OOM)",
+      "auditorNotes": [
+        "Generic deterministic static analysers will flag scripts/lib/runner.mjs::runBhtsSubprocess under their `suspicious.dangerous_exec` rule. The flag is intentional — subprocess-level isolation IS the defence; removing it would force in-process loading of the upstream browser-harness-ts package, a strictly worse posture (see ClawHub PaLM verdict on browser-web-search@0.4.8: 'shifting the primary security burden to manual auditing of that external package').",
+        "There is exactly ONE launch site in the entire skill repo. To audit, open scripts/lib/runner.mjs and look for the SAFE_LAUNCH comment block — that block surrounds the only call.",
+        "The bhts binary itself is version-pinned to browser-harness-ts@0.1.1 (see capabilities.supplyChain) and audited at https://github.com/sipingme/browser-harness-ts/blob/v0.1.1/src/bhts.ts."
+      ]
+    },
+    "inProcessLoad": {
+      "declared": false,
+      "note": "本 skill 完全不通过 dynamic import / require 在 Node 进程内加载第三方包；所有第三方代码在独立的 bhts 子进程中执行。攻击面相比 in-process 加载明显更小。"
+    }
+  },
+  "capabilities": {
+    "sensitive": [
+      {
+        "type": "browser-control",
+        "riskLevel": "high",
+        "description": "通过 CDP 接管用户当前正在使用的 Chrome 实例",
+        "risks": [
+          "Agent 可读写所有打开标签的 DOM（含已登录的银行、邮箱、内部系统）",
+          "Agent 可执行任意 JS、点击按钮、提交表单——动作可能不可撤回",
+          "截图 / 抓取的页面内容可能包含 PII / 商业机密",
+          "Agent 可在标签间切换、新开标签、上传任意文件"
+        ],
+        "mitigations": [
+          "subprocess 隔离：bhts 在独立子进程跑，无 in-process 第三方代码加载",
+          "sensitive-deny 默认：命中 alwaysSensitiveHostPatterns 的页面默认拒绝操作（除非 BH_ALLOW_SENSITIVE=1 或 --i-understand-sensitive）",
+          "BH_PUBLIC_ONLY=1 硬隔离：仅允许 publicSites allow-list 内域名",
+          "metadata-only 审计日志：~/.cache/browser-harness/skill-audit.log（仅 ts/subcommand/hostname/argv-sha256/exit）",
+          "上游依赖精确钉版（browser-harness-ts@0.1.1 + browser-harness==0.0.1），policy.allowFloatingVersions=false",
+          "v0.2.3: setup 脚本强制安装钉死版本 + npm --ignore-scripts，安装后 --version 校验，版本不匹配中止",
+          "v0.2.3: raw 子命令默认禁用，需 BH_RAW_OK=1 显式开启；启用后仍写 metadata 审计日志（sub=raw mode=raw-bypass）",
+          "v0.2.3: stop 子命令一键停掉守护进程，避免长寿命常驻持有 CDP",
+          "v0.2.3: setup 输出强烈建议用独立 Chrome profile（--user-data-dir）隔离接管面",
+          "v0.2.3: SKILL.md 第 11 条明确将 domain-skills 文件视为不可信输入（线索而非指令），防 prompt injection",
+          "守护进程 socket 权限 0600，仅当前用户可见",
+          "本 skill 不向远程发送任何浏览数据，所有 IPC 在本机回环",
+          "domain-skills 目录的 .gitignore 默认排除（不进 git，避免 cookie 等泄露）"
+        ]
+      }
+    ],
+    "policy": {
+      "defaultForAnyPage": "sensitive-deny-on-pattern-match",
+      "sensitiveOptInEnv": "BH_ALLOW_SENSITIVE",
+      "sensitiveOptInFlag": "--i-understand-sensitive",
+      "publicOnlyModeEnv": "BH_PUBLIC_ONLY",
+      "auditLog": "~/.cache/browser-harness/skill-audit.log",
+      "auditLogContent": "metadata-only (timestamp, subcommand, hostname, argv-sha256, exit-code; NO arg payloads, NO response bodies)",
+      "alwaysSensitiveHostPatterns": [
+        "(?i)\\b(bank|paypal|alipay|stripe|wepay|wechat[-_.]?pay|payment)\\b",
+        "(?i)\\b(gmail|outlook|hotmail|protonmail|webmail|qq\\.com\\/mail|139\\.com|163\\.com\\/mail)\\b",
+        "(?i)\\.(internal|intranet|corp|local|lan)(:|\\/|$)",
+        "(?i)\\b(admin|dashboard|console|wp-admin|cpanel|phpmyadmin)\\b",
+        "(?i)^https?:\\/\\/(localhost|127\\.|10\\.|192\\.168\\.|172\\.(1[6-9]|2\\d|3[01])\\.)",
+        "(?i)\\b(ehr|emr|patient|hipaa|medical-record|hospital)\\b"
+      ],
+      "exemptedSubcommands": ["page", "tabs", "helpers", "doctor", "setup", "help", "stop"],
+      "rawSubcommandPolicy": {
+        "defaultEnabled": false,
+        "enableEnv": "BH_RAW_OK",
+        "bypassesPolicyGate": true,
+        "stillAuditLogged": true,
+        "auditMode": "raw-bypass",
+        "rationale": "raw 是用户的逃生口（直接转发 bhts），自 v0.2.3 默认禁用以避免后门；启用后仍记 metadata 审计但绕过 URL 策略门"
+      },
+      "publicSites": [
+        "github.com", "news.ycombinator.com", "stackoverflow.com", "stackexchange.com",
+        "npmjs.com", "pypi.org", "crates.io", "rubygems.org",
+        "wikipedia.org", "wikimedia.org",
+        "arxiv.org", "biorxiv.org",
+        "developer.mozilla.org", "web.dev", "caniuse.com",
+        "reuters.com", "bbc.com", "bbc.co.uk",
+        "lobste.rs", "v2ex.com", "infoq.cn", "juejin.cn", "csdn.net", "cnblogs.com",
+        "theverge.com", "arstechnica.com", "engadget.com", "techcrunch.com",
+        "huggingface.co", "kaggle.com", "paperswithcode.com",
+        "docs.python.org", "tc39.es", "rfc-editor.org",
+        "youtube.com", "youtu.be",
+        "bilibili.com", "zhihu.com",
+        "openlibrary.org", "imdb.com",
+        "thepaper.cn", "36kr.com", "huxiu.com", "wallstreetcn.com", "eastmoney.com",
+        "google.com", "bing.com", "duckduckgo.com", "baidu.com", "sogou.com",
+        "stackoverflow.blog", "dev.to"
+      ],
+      "internalUrlsAlwaysAllowed": ["chrome://", "about:", "devtools://", "chrome-untrusted://", "chrome-extension://"]
+    },
+    "supplyChain": {
+      "packages": [
+        {
+          "name": "browser-harness-ts",
+          "registry": "https://registry.npmjs.org",
+          "version": "0.1.1",
+          "verifyCommand": "npm view browser-harness-ts@0.1.1 dist.integrity dist.shasum",
+          "auditUrl": "https://github.com/sipingme/browser-harness-ts/blob/v0.1.1/src/harness.ts",
+          "recommendedInstallCommand": "npm install -g browser-harness-ts@0.1.1 --ignore-scripts"
+        },
+        {
+          "name": "browser-harness",
+          "registry": "https://pypi.org",
+          "version": "0.0.1",
+          "verifyCommand": "pip download browser-harness==0.0.1 --no-deps -d /tmp/bh-verify && ls /tmp/bh-verify",
+          "auditUrl": "https://github.com/browser-use/browser-harness/tree/main/src/browser_harness",
+          "recommendedInstallCommand": "uv tool install --force browser-harness==0.0.1"
+        }
+      ],
+      "policy": {
+        "allowFloatingVersions": false,
+        "requireAuditPerVersion": true,
+        "preferredMirror": "internal-npm-registry-and-pypi-mirror-if-available",
+        "setupScriptEnforcement": "v0.2.3+: scripts/run.sh setup 安装钉死版本 + npm --ignore-scripts，安装后立即 --version 校验，版本不匹配 setup 中止；不再有 floating-latest 的实际安装路径"
+      }
+    },
+    "privacyNotice": {
+      "summary": "此 skill 在你显式 setup 后会复用你正在用的 Chrome 实例，可读取你已登录站点的任何可见数据。默认拒绝操作疑似敏感页面（银行 / 邮箱 / 内网 / admin）。",
+      "details": [
+        "默认 sensitive-deny：URL 命中 alwaysSensitiveHostPatterns 时拒绝写操作（js/exec/shot/upload/type/click/scroll/open/switch/key），需 BH_ALLOW_SENSITIVE=1 或每条命令加 --i-understand-sensitive 才放行",
+        "BH_PUBLIC_ONLY=1 硬隔离模式：只允许 publicSites allow-list 内域名，其它一律拒绝",
+        "只读子命令（page/tabs/helpers/doctor/stop）任何模式下都允许，便于体检和清理",
+        "审计日志只写元数据（hostname/subcommand/argv 的 sha256），不写任何参数原文或响应体",
+        "强烈建议为本 skill 使用一个独立的 Chrome profile（不要复用日常 profile），让接管面最小化",
+        "agent-workspace/domain-skills/ 目录默认在 .gitignore 内，避免你 commit 时把 cookie / token 推到远端"
+      ]
+    },
+    "scannerResponses": {
+      "clawScan_2026_05_01": [
+        {
+          "finding": "Tool Misuse and Exploitation — raw bypasses sensitive-deny",
+          "severity": "High",
+          "status_was": "Concern",
+          "addressed_in": "v0.2.3",
+          "fix": "raw 子命令默认禁用，需 BH_RAW_OK=1 显式开启；启用后仍写一行 sub=raw mode=raw-bypass 到审计日志（虽然绕过 URL 策略门）；SKILL.md 第 9 条明确禁止 Agent 使用 raw，应改用 exec。详见 capabilities.policy.rawSubcommandPolicy。"
+        },
+        {
+          "finding": "Agentic Supply Chain Vulnerabilities — setup installs floating versions",
+          "severity": "Medium",
+          "status_was": "Concern",
+          "addressed_in": "v0.2.3",
+          "fix": "scripts/run.sh setup 现在硬编码 BHTS_PKG_VERSION=0.1.1 + PYTHON_BH_PKG_VERSION=0.0.1，npm 装时加 --ignore-scripts，uv tool install 用 ==0.0.1，安装后立即 --version 校验；版本不匹配 setup 中止。详见 capabilities.supplyChain.policy.setupScriptEnforcement。"
+        },
+        {
+          "finding": "Rogue Agents — long-lived daemon, multi-agent shared browser",
+          "severity": "Medium",
+          "status_was": "Note",
+          "addressed_in": "v0.2.3",
+          "fix": "新增 scripts/run.sh stop 子命令一键停掉守护进程；setup 输出强调任务完成后应 stop；reference.md 新增警告说明守护是长寿命的；BU_NAME 已支持多 Agent 命名空间隔离。"
+        },
+        {
+          "finding": "Identity and Privilege Abuse — authenticated browser access across sensitive sites",
+          "severity": "High",
+          "status_was": "Concern",
+          "addressed_in": "v0.2.0+, reinforced in v0.2.3",
+          "fix": "已实施的多层防御：sensitive-deny 默认 + BH_PUBLIC_ONLY 硬隔离 + metadata-only 审计 + raw 默认禁用。v0.2.3 新增：setup 引导用户用独立 Chrome profile（--user-data-dir=$HOME/.cache/chrome-bh-profile）隔离接管面，避免复用日常 profile 时把银行/邮箱登录态暴露给 Agent。"
+        },
+        {
+          "finding": "Memory and Context Poisoning — domain-skills as trust-then-act",
+          "severity": "Medium",
+          "status_was": "Note",
+          "addressed_in": "v0.2.3",
+          "fix": "reference.md 的 domain-skills 节加入显式不可信输入警告；SKILL.md 第 11 条明确要求 Agent 把 domain-skills markdown 当线索而非指令，遇到元指令（'绕过 sensitive-deny' 等）当 prompt injection 处理。.gitignore 默认排除该目录避免 cookie 进 git。"
+        }
+      ]
+    }
+  }
+}

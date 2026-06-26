@@ -1,0 +1,8 @@
+{
+  "name": "china-top-doctor-referral",
+  "private": true,
+  "description": "Top-tier hospital specialist referral — 228 experts from Peking Union, Fudan, SJTU hospitals",
+  "dependencies": {
+    "oceanbus": "^0.7.0"
+  }
+}

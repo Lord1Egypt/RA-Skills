@@ -1,0 +1,75 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Codex Adversarial Plan Review",
+  "type": "object",
+  "required": [
+    "status",
+    "summary",
+    "findings",
+    "needs_human",
+    "human_questions",
+    "approved_first_milestone",
+    "missing_context",
+    "language",
+    "requires_translation"
+  ],
+  "properties": {
+    "status": {
+      "type": "string",
+      "enum": [
+        "approved",
+        "rejected_fixable",
+        "insufficient_context",
+        "needs_human",
+        "unsafe"
+      ]
+    },
+    "summary": { "type": "string" },
+    "findings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["severity", "title", "evidence", "recommendation"],
+        "properties": {
+          "severity": { "type": "string", "enum": ["P0", "P1", "P2", "P3"] },
+          "title": { "type": "string" },
+          "evidence": { "type": "string" },
+          "recommendation": { "type": "string" },
+          "files": { "type": "array", "items": { "type": "string" } }
+        }
+      }
+    },
+    "needs_human": { "type": "boolean" },
+    "human_questions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["question", "reason", "options"],
+        "properties": {
+          "question": { "type": "string" },
+          "reason": { "type": "string" },
+          "recommended_option": { "type": "string" },
+          "options": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["id", "label", "consequence"],
+              "properties": {
+                "id": { "type": "string" },
+                "label": { "type": "string" },
+                "consequence": { "type": "string" }
+              }
+            }
+          },
+          "allow_freeform": { "type": "boolean", "default": true }
+        }
+      }
+    },
+    "approved_first_milestone": { "type": ["string", "null"] },
+    "missing_context": { "type": "array", "items": { "type": "string" } },
+    "plan_changes_required": { "type": "array", "items": { "type": "string" } },
+    "language": { "type": "string" },
+    "requires_translation": { "type": "boolean" }
+  },
+  "additionalProperties": true
+}

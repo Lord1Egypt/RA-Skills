@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Claude Buddy Card — Generate Your Unique AI Companion Card</title>
+<meta name="description" content="Generate a stunning holographic trading card of your unique Claude Buddy. 18 species, 5 rarities, 7128 combinations. Only you can generate yours.">
+<meta property="og:title" content="Claude Buddy Card">
+<meta property="og:description" content="Generate a stunning holographic trading card of your unique Claude Buddy. 7128 combinations. What's yours?">
+<meta property="og:image" content="https://raw.githubusercontent.com/dyz2102/buddy-card/main/examples/octopus-legendary.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&family=JetBrains+Mono:wght@600&display=swap');
+:root { --bg: #08080f; --card: #12121f; --border: #1e1e35; --accent: #a78bfa; --gold: #fbbf24; --green: #4ade80; --text: #e2e2ef; --muted: #666680; }
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; line-height: 1.6; }
+.container { max-width: 960px; margin: 0 auto; padding: 0 24px; }
+
+/* Hero */
+.hero { text-align: center; padding: 80px 0 40px; }
+.hero h1 { font-size: clamp(36px, 6vw, 64px); font-weight: 900; background: linear-gradient(135deg, #a78bfa, #60a5fa, #4ade80, #fbbf24); -webkit-background-clip: text; -webkit-text-fill-color: transparent; line-height: 1.2; }
+.hero .sub { font-size: 20px; color: var(--muted); margin-top: 16px; max-width: 600px; margin-left: auto; margin-right: auto; }
+.hero .cta { display: inline-block; margin-top: 32px; padding: 16px 40px; background: var(--accent); color: #000; font-weight: 700; font-size: 18px; border-radius: 12px; text-decoration: none; }
+.hero .cta:hover { opacity: 0.9; }
+.hero .install-cmd { font-family: 'JetBrains Mono', monospace; background: var(--card); border: 1px solid var(--border); padding: 16px 32px; border-radius: 12px; display: inline-block; margin-top: 20px; font-size: 16px; color: var(--green); }
+
+/* Gallery */
+.gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; padding: 40px 0; }
+.gallery img { width: 100%; border-radius: 16px; box-shadow: 0 8px 32px rgba(0,0,0,0.5); transition: transform 0.2s; }
+.gallery img:hover { transform: scale(1.03); }
+.gallery .label { text-align: center; margin-top: 8px; font-size: 14px; color: var(--muted); }
+
+/* How */
+.how { padding: 60px 0; }
+.how h2 { font-size: 36px; font-weight: 900; text-align: center; margin-bottom: 40px; }
+.steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 24px; }
+.step { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 28px; text-align: center; }
+.step .num { font-size: 48px; font-weight: 900; color: var(--accent); }
+.step h3 { margin: 12px 0 8px; font-size: 18px; }
+.step p { font-size: 14px; color: var(--muted); }
+
+/* Stats */
+.stats-section { text-align: center; padding: 60px 0; }
+.stats-grid { display: flex; justify-content: center; gap: 48px; flex-wrap: wrap; margin-top: 24px; }
+.stat-item .number { font-size: 48px; font-weight: 900; color: var(--gold); }
+.stat-item .label { font-size: 14px; color: var(--muted); }
+
+/* Rarity */
+.rarity-table { padding: 40px 0; }
+.rarity-table h2 { text-align: center; font-size: 36px; margin-bottom: 24px; }
+table { width: 100%; border-collapse: collapse; background: var(--card); border-radius: 12px; overflow: hidden; }
+th, td { padding: 14px 20px; text-align: left; border-bottom: 1px solid var(--border); }
+th { background: rgba(167,139,250,0.1); color: var(--accent); font-weight: 700; }
+.rarity-common { color: #8a8a8a; }
+.rarity-uncommon { color: #4ade80; }
+.rarity-rare { color: #60a5fa; }
+.rarity-epic { color: #c084fc; }
+.rarity-legendary { color: #fbbf24; }
+
+/* Footer */
+footer { text-align: center; padding: 40px 0; border-top: 1px solid var(--border); color: var(--muted); font-size: 14px; }
+footer a { color: var(--accent); text-decoration: none; }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <section class="hero">
+    <h1>Claude Buddy Card</h1>
+    <p class="sub">Every Claude Code user has a unique AI companion hidden in the code. Generate a stunning holographic trading card of yours.</p>
+    <div class="install-cmd">claude install-skill dyz2102/buddy-card</div>
+    <br>
+    <p style="color: var(--muted); margin-top: 12px; font-size: 14px;">Then type <code style="color:var(--green);">/buddy-card</code> in Claude Code</p>
+  </section>
+
+  <section class="gallery">
+    <div>
+      <img src="https://raw.githubusercontent.com/dyz2102/buddy-card/main/examples/blob-uncommon.jpg" alt="Blob Uncommon">
+      <div class="label">Blob — ★★ Uncommon</div>
+    </div>
+    <div>
+      <img src="https://raw.githubusercontent.com/dyz2102/buddy-card/main/examples/axolotl-epic.jpg" alt="Axolotl Epic">
+      <div class="label">Axolotl — ★★★★ Epic</div>
+    </div>
+    <div>
+      <img src="https://raw.githubusercontent.com/dyz2102/buddy-card/main/examples/octopus-legendary.jpg" alt="Octopus Legendary">
+      <div class="label">Octopus — ★★★★★ Legendary</div>
+    </div>
+  </section>
+
+  <section class="how">
+    <h2>How It Works</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="num">1</div>
+        <h3>Your Identity</h3>
+        <p>Reads your Claude account UUID from your local macOS Keychain. Only you have access.</p>
+      </div>
+      <div class="step">
+        <div class="num">2</div>
+        <h3>The Algorithm</h3>
+        <p>Runs the exact code from Claude Code's leaked source — FNV-1a hash + Mulberry32 PRNG.</p>
+      </div>
+      <div class="step">
+        <div class="num">3</div>
+        <h3>AI Art</h3>
+        <p>Generates a premium holographic trading card with AI. Don't like it? Regenerate.</p>
+      </div>
+      <div class="step">
+        <div class="num">4</div>
+        <h3>Share</h3>
+        <p>Post your card. Flex your rarity. Only 1% of users get a Legendary.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="stats-section">
+    <h2>The Numbers</h2>
+    <div class="stats-grid">
+      <div class="stat-item"><div class="number">18</div><div class="label">Species</div></div>
+      <div class="stat-item"><div class="number">7,128</div><div class="label">Combinations</div></div>
+      <div class="stat-item"><div class="number">1%</div><div class="label">Legendary Rate</div></div>
+      <div class="stat-item"><div class="number">5</div><div class="label">Stat Dimensions</div></div>
+    </div>
+  </section>
+
+  <section class="rarity-table">
+    <h2>Rarity Tiers</h2>
+    <table>
+      <tr><th>Rarity</th><th>Probability</th><th>Features</th></tr>
+      <tr><td class="rarity-common">★ Common</td><td>60%</td><td>No hat, basic stats</td></tr>
+      <tr><td class="rarity-uncommon">★★ Uncommon</td><td>25%</td><td>Hat unlocked, higher base stats</td></tr>
+      <tr><td class="rarity-rare">★★★ Rare</td><td>10%</td><td>Holographic frame, premium hat</td></tr>
+      <tr><td class="rarity-epic">★★★★ Epic</td><td>4%</td><td>Purple crystal glow, powerful stats</td></tr>
+      <tr><td class="rarity-legendary">★★★★★ Legendary</td><td>1%</td><td>Full gold frame, max power, blazing effects</td></tr>
+    </table>
+  </section>
+
+  <footer>
+    <p>Built by <a href="https://x.com/dyz2102">dyz2102</a> | Algorithm from Claude Code v2.1.88 leaked source</p>
+    <p style="margin-top: 8px;"><a href="https://github.com/dyz2102/buddy-card">GitHub</a></p>
+  </footer>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,8 @@
+{
+  "name": "ssq-predictor",
+  "version": "1.0.0",
+  "description": "双色球彩票分析预测助手 - 基于12大科学方法论的彩票数据分析工具",
+  "keywords": ["双色球", "彩票", "数据分析", "选号", "lottery"],
+  "license": "MIT",
+  "homepage": "https://github.com/gechengling/ssq-predictor"
+}

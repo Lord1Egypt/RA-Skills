@@ -1,0 +1,151 @@
+{
+  "name": "chart-library",
+  "version": "1.0.0",
+  "description": "Visual chart pattern search engine. Find historically similar stock charts from 24M+ patterns across 15K+ symbols and 10 years of data. See what happened next. Powered by ML embeddings and pgvector similarity search.",
+  "category": ["finance", "investing", "technical-analysis"],
+  "author": "chartlibrary",
+  "homepage": "https://chartlibrary.io",
+  "api_docs": "https://chartlibrary.io/api/openapi.json",
+  "auth": {
+    "type": "bearer",
+    "prefix": "cl_",
+    "signup_url": "https://chartlibrary.io/developers"
+  },
+  "tools": [
+    {
+      "name": "analyze_pattern",
+      "description": "Complete pattern analysis in one call: search + forward returns + AI summary. Recommended for most use cases.",
+      "endpoint": "POST /api/v1/analyze",
+      "parameters": {
+        "query": {
+          "type": "string",
+          "required": true,
+          "description": "Ticker + date, e.g. 'AAPL 2024-06-15' or 'TSLA 6/15/24 3d'"
+        },
+        "timeframe": {
+          "type": "string",
+          "required": false,
+          "default": "auto",
+          "enum": ["auto", "rth", "premarket", "rth_3d", "rth_5d", "rth_10d"],
+          "description": "Trading session / window size"
+        },
+        "top_n": {
+          "type": "integer",
+          "required": false,
+          "default": 10,
+          "description": "Number of results (1-50)"
+        },
+        "include_summary": {
+          "type": "boolean",
+          "required": false,
+          "default": true,
+          "description": "Include AI-generated English summary"
+        }
+      }
+    },
+    {
+      "name": "search_charts",
+      "description": "Find the 10 most similar historical chart patterns for a given ticker and date.",
+      "endpoint": "POST /api/v1/search/text",
+      "parameters": {
+        "query": {
+          "type": "string",
+          "required": true,
+          "description": "Ticker + date, e.g. 'AAPL 2024-06-15' or 'TSLA 6/15/24 3d'"
+        },
+        "timeframe": {
+          "type": "string",
+          "required": false,
+          "default": "auto",
+          "enum": ["auto", "rth", "premarket", "rth_3d", "rth_5d", "rth_10d"],
+          "description": "Trading session / window size"
+        },
+        "top_n": {
+          "type": "integer",
+          "required": false,
+          "default": 10,
+          "description": "Number of results (1-50)"
+        }
+      }
+    },
+    {
+      "name": "get_follow_through",
+      "description": "Compute 1/3/5/10-day forward returns from search results to see what happened next.",
+      "endpoint": "POST /api/v1/follow-through",
+      "parameters": {
+        "results": {
+          "type": "array",
+          "required": true,
+          "description": "Search results from search_charts (list of {symbol, date, timeframe})"
+        }
+      }
+    },
+    {
+      "name": "get_pattern_summary",
+      "description": "Generate a plain-English AI summary of pattern search results.",
+      "endpoint": "POST /api/v1/summary",
+      "parameters": {
+        "query_label": {
+          "type": "string",
+          "required": true,
+          "description": "Human-readable query label, e.g. 'AAPL 2024-06-15'"
+        },
+        "n_matches": {
+          "type": "integer",
+          "required": true,
+          "description": "Number of matches found"
+        },
+        "horizon_returns": {
+          "type": "object",
+          "required": true,
+          "description": "Forward returns dict keyed by horizon days: {1: [...], 3: [...], 5: [...], 10: [...]}"
+        }
+      }
+    },
+    {
+      "name": "get_discover_picks",
+      "description": "Get today's most interesting chart patterns, ranked by interest score with AI summaries.",
+      "endpoint": "GET /api/v1/discover/picks"
+    },
+    {
+      "name": "search_batch",
+      "description": "Search for similar patterns across multiple symbols at once (max 20).",
+      "endpoint": "POST /api/v1/search/batch",
+      "parameters": {
+        "symbols": {
+          "type": "array",
+          "required": true,
+          "description": "List of ticker symbols, e.g. ['AAPL', 'MSFT', 'NVDA']"
+        },
+        "date": {
+          "type": "string",
+          "required": true,
+          "description": "Date in YYYY-MM-DD format"
+        },
+        "timeframe": {
+          "type": "string",
+          "required": false,
+          "default": "rth",
+          "description": "Trading session"
+        },
+        "top_n": {
+          "type": "integer",
+          "required": false,
+          "default": 10,
+          "description": "Number of results per symbol"
+        }
+      }
+    },
+    {
+      "name": "get_status",
+      "description": "Get database statistics: total embeddings, symbol count, date range, coverage.",
+      "endpoint": "GET /api/v1/status"
+    }
+  ],
+  "rate_limits": {
+    "free": "100 requests/day",
+    "pro": "10,000 requests/month ($49/mo)",
+    "business": "100,000 requests/month ($199/mo)"
+  },
+  "soul": "SOUL.md"
+}

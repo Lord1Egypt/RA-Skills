@@ -1,0 +1,547 @@
+{
+  "herbs": [
+    {
+      "id": "ren_shen",
+      "name_cn": "人参",
+      "name_pinyin": "Ren Shen",
+      "name_latin": "Radix et Rhizoma Ginseng",
+      "name_common": "Ginseng",
+      "category": "Tonify Qi",
+      "properties": {
+        "nature": "Slightly Warm",
+        "flavor": ["Sweet", "Slightly Bitter"],
+        "meridians": ["Lung", "Spleen", "Heart"]
+      },
+      "dosage": "3-9g",
+      "preparation": "Decoction added near end; can be taken as powder",
+      "functions": [
+        "Powerfully tonifies Yuan Qi",
+        "Tonifies Lung Qi",
+        "Strengthens Spleen Qi",
+        "Generates fluids and stops thirst",
+        "Calms the Shen (Spirit)"
+      ],
+      "indications": [
+        "Severe Qi deficiency",
+        "Collapse patterns",
+        "Fatigue and weakness",
+        "Poor appetite",
+        "Shortness of breath",
+        "Palpitations",
+        "Insomnia"
+      ],
+      "common_pairings": [
+        {"herb": "Huang Qi", "effect": "Enhanced Qi tonification"},
+        {"herb": "Mai Dong", "effect": "Qi and Yin dual tonification"},
+        {"herb": "Wu Wei Zi", "effect": "Generates fluids, stops sweating"}
+      ],
+      "safety": {
+        "pregnancy_category": "B - Generally considered safe",
+        "hepatotoxicity": "Low risk",
+        "contraindications": ["Excess heat patterns", "High blood pressure (use with caution)"],
+        "drug_interactions": ["May interact with blood thinners", "May affect blood sugar levels"],
+        "safety_tags": ["adaptogenic", "immune_modulating"]
+      },
+      "modern_research": {
+        "active_compounds": ["Ginsenosides", "Polysaccharides", "Peptides"],
+        "pharmacological_effects": [
+          "Adaptogenic - improves stress response",
+          "Immune modulation",
+          "Cognitive enhancement",
+          "Anti-fatigue effects",
+          "Cardiovascular support"
+        ],
+        "clinical_studies": "Multiple RCTs show benefits for fatigue, cognitive function, and immune support"
+      },
+      "search_keywords": ["ginseng benefits", "energy tonic", "immune boost", "adaptogen"],
+      "western_equivalent": "Adaptogenic tonic"
+    },
+    {
+      "id": "huang_qi",
+      "name_cn": "黄芪",
+      "name_pinyin": "Huang Qi",
+      "name_latin": "Radix Astragali",
+      "name_common": "Astragalus",
+      "category": "Tonify Qi",
+      "properties": {
+        "nature": "Slightly Warm",
+        "flavor": ["Sweet"],
+        "meridians": ["Lung", "Spleen"]
+      },
+      "dosage": "9-30g",
+      "preparation": "Long decoction; can be used in food therapy",
+      "functions": [
+        "Tonifies Qi and raises Yang",
+        "Strengthens Spleen",
+        "Tonifies Lung Qi",
+        "Promotes urination and reduces edema",
+        "Promotes healing of sores",
+        "Stops sweating"
+      ],
+      "indications": [
+        "Qi deficiency with prolapse",
+        "Weak immunity",
+        "Chronic fatigue",
+        "Poor appetite",
+        "Spontaneous sweating",
+        "Chronic sores",
+        "Edema"
+      ],
+      "common_pairings": [
+        {"herb": "Ren Shen", "effect": "Powerful Qi tonification"},
+        {"herb": "Dang Gui", "effect": "Tonifies Qi and Blood"},
+        {"herb": "Fang Feng", "effect": "Secures the exterior, stops sweating"}
+      ],
+      "safety": {
+        "pregnancy_category": "A - Generally recognized as safe",
+        "hepatotoxicity": "Very low risk",
+        "contraindications": ["Exterior excess conditions", "Qi stagnation", "Yin deficiency with heat"],
+        "drug_interactions": ["May enhance immune effects of immunosuppressants"],
+        "safety_tags": ["immune_support", "safe_long_term"]
+      },
+      "modern_research": {
+        "active_compounds": ["Astragalosides", "Polysaccharides", "Flavonoids"],
+        "pharmacological_effects": [
+          "Immune enhancement",
+          "Anti-fatigue",
+          "Cardioprotective",
+          "Anti-aging (telomerase activation)",
+          "Kidney protection"
+        ],
+        "clinical_studies": "Widely studied for immune support; used in cancer supportive care"
+      },
+      "search_keywords": ["astragalus immune", "qi tonic", "fatigue remedy", "immune support"],
+      "western_equivalent": "Immune tonic / Qi builder"
+    },
+    {
+      "id": "dang_gui",
+      "name_cn": "当归",
+      "name_pinyin": "Dang Gui",
+      "name_latin": "Radix Angelicae Sinensis",
+      "name_common": "Chinese Angelica Root",
+      "category": "Tonify Blood",
+      "properties": {
+        "nature": "Warm",
+        "flavor": ["Sweet", "Pungent"],
+        "meridians": ["Liver", "Heart", "Spleen"]
+      },
+      "dosage": "6-12g",
+      "preparation": "Decoction; head tonifies blood, tail moves blood",
+      "functions": [
+        "Tonifies Blood",
+        "Regulates menstruation",
+        "Moves Blood and stops pain",
+        "Moistens intestines"
+      ],
+      "indications": [
+        "Blood deficiency",
+        "Irregular menstruation",
+        "Painful menstruation",
+        "Postpartum recovery",
+        "Constipation from dryness",
+        "Traumatic injury"
+      ],
+      "common_pairings": [
+        {"herb": "Shu Di Huang", "effect": "Four Substances Formula base - tonifies Blood"},
+        {"herb": "Huang Qi", "effect": "Tonifies Qi and Blood together"},
+        {"herb": "Chuan Xiong", "effect": "Moves Blood, stops pain"}
+      ],
+      "safety": {
+        "pregnancy_category": "B - Use with guidance",
+        "hepatotoxicity": "Low risk",
+        "contraindications": ["Diarrhea from Spleen deficiency", "Excess bleeding patterns"],
+        "drug_interactions": ["May enhance anticoagulant effects"],
+        "safety_tags": ["blood_tonifying", "womens_herb"]
+      },
+      "modern_research": {
+        "active_compounds": ["Ferulic acid", "Polysaccharides", "Phthalides"],
+        "pharmacological_effects": [
+          "Hematopoietic effects",
+          "Uterine regulation",
+          "Cardiovascular protection",
+          "Anti-inflammatory",
+          "Analgesic"
+        ],
+        "clinical_studies": "Commonly used for menstrual disorders and anemia"
+      },
+      "search_keywords": ["womens tonic", "blood tonic", "menstrual support", "anemia herbs"],
+      "western_equivalent": "Female reproductive tonic / Blood builder"
+    },
+    {
+      "id": "chen_pi",
+      "name_cn": "陈皮",
+      "name_pinyin": "Chen Pi",
+      "name_latin": "Pericarpium Citri Reticulatae",
+      "name_common": "Aged Tangerine Peel",
+      "category": "Regulate Qi",
+      "properties": {
+        "nature": "Warm",
+        "flavor": ["Pungent", "Bitter"],
+        "meridians": ["Lung", "Spleen"]
+      },
+      "dosage": "3-9g",
+      "preparation": "Decoction; older peel is more valued",
+      "functions": [
+        "Regulates Qi and harmonizes Stomach",
+        "Dries dampness and transforms phlegm",
+        "Prevents stagnation from tonics"
+      ],
+      "indications": [
+        "Abdominal distension",
+        "Nausea and vomiting",
+        "Cough with phlegm",
+        "Poor appetite",
+        "Chest congestion"
+      ],
+      "common_pairings": [
+        {"herb": "Bai Zhu", "effect": "Strengthens Spleen, dries dampness"},
+        {"herb": "Ban Xia", "effect": "Transforms phlegm, stops vomiting"},
+        {"herb": "Ren Shen", "effect": "Prevents Qi stagnation from tonification"}
+      ],
+      "safety": {
+        "pregnancy_category": "A - Generally safe",
+        "hepatotoxicity": "Very low risk",
+        "contraindications": ["Yin deficiency with dry cough", "Excess heat"],
+        "drug_interactions": [],
+        "safety_tags": ["digestive_aid", "generally_safe"]
+      },
+      "modern_research": {
+        "active_compounds": ["Hesperidin", "Nobiletin", "Tangeretin"],
+        "pharmacological_effects": [
+          "Digestive stimulant",
+          "Anti-inflammatory",
+          "Antioxidant",
+          "Respiratory support"
+        ],
+        "clinical_studies": "Traditional digestive remedy with modern antioxidant support"
+      },
+      "search_keywords": ["digestive herbs", "bloating relief", "nausea remedy", "phlegm relief"],
+      "western_equivalent": "Digestive carminative"
+    },
+    {
+      "id": "gan_cao",
+      "name_cn": "甘草",
+      "name_pinyin": "Gan Cao",
+      "name_latin": "Radix et Rhizoma Glycyrrhizae",
+      "name_common": "Licorice Root",
+      "category": "Tonify Qi",
+      "properties": {
+        "nature": "Neutral",
+        "flavor": ["Sweet"],
+        "meridians": ["All 12 meridians"]
+      },
+      "dosage": "2-10g",
+      "preparation": "Decoction; harmonizes other herbs",
+      "functions": [
+        "Tonifies Spleen Qi",
+        "Moistens Lung and stops cough",
+        "Clears heat and detoxifies",
+        "Harmonizes other herbs",
+        "Relieves spasm and pain"
+      ],
+      "indications": [
+        "Spleen deficiency",
+        "Cough",
+        "Toxic swellings",
+        "Muscle spasms",
+        "Harmonizes formulas"
+      ],
+      "common_pairings": [
+        {"herb": "All herbs", "effect": "Harmonizes formula, reduces side effects"}
+      ],
+      "safety": {
+        "pregnancy_category": "B - Generally safe in normal doses",
+        "hepatotoxicity": "Moderate risk with long-term high-dose use",
+        "contraindications": ["Dampness accumulation", "Nausea and vomiting", "Hypertension (with prolonged use)"],
+        "drug_interactions": ["May potentiate corticosteroids", "May affect potassium levels", "Interacts with many medications"],
+        "safety_tags": ["caution_long_term", "drug_interactions"]
+      },
+      "modern_research": {
+        "active_compounds": ["Glycyrrhizin", "Flavonoids", "Coumarins"],
+        "pharmacological_effects": [
+          "Anti-inflammatory",
+          "Antiviral",
+          "Adrenal support",
+          "Gastric protection",
+          "Antispasmodic"
+        ],
+        "clinical_studies": "Widely used; caution needed for long-term high-dose use due to pseudoaldosteronism risk"
+      },
+      "search_keywords": ["licorice root", "cough remedy", "adrenal support", "formula harmonizer"],
+      "western_equivalent": "Adrenal tonic / Anti-inflammatory"
+    },
+    {
+      "id": "shan_yao",
+      "name_cn": "山药",
+      "name_pinyin": "Shan Yao",
+      "name_latin": "Rhizoma Dioscoreae",
+      "name_common": "Chinese Yam",
+      "category": "Tonify Qi",
+      "properties": {
+        "nature": "Neutral",
+        "flavor": ["Sweet"],
+        "meridians": ["Lung", "Spleen", "Kidney"]
+      },
+      "dosage": "15-30g",
+      "preparation": "Decoction; also used in food therapy",
+      "functions": [
+        "Tonifies Spleen Qi",
+        "Nourishes Stomach Yin",
+        "Tonifies Lung Qi",
+        "Tonifies Kidney Qi and Yin"
+      ],
+      "indications": [
+        "Spleen deficiency with poor appetite",
+        "Chronic diarrhea",
+        "Lung deficiency cough",
+        "Kidney deficiency",
+        "Diabetes (Xiao Ke)"
+      ],
+      "common_pairings": [
+        {"herb": "Ren Shen", "effect": "Tonifies Spleen Qi"},
+        {"herb": "Shu Di Huang", "effect": "Tonifies Kidney Yin and Yang"}
+      ],
+      "safety": {
+        "pregnancy_category": "A - Very safe",
+        "hepatotoxicity": "Very low risk",
+        "contraindications": ["Dampness or phlegm accumulation"],
+        "drug_interactions": [],
+        "safety_tags": ["food_grade", "very_safe"]
+      },
+      "modern_research": {
+        "active_compounds": ["Diosgenin", "Polysaccharides", "Mucilage"],
+        "pharmacological_effects": [
+          "Digestive support",
+          "Immune modulation",
+          "Blood sugar regulation",
+          "Anti-aging"
+        ],
+        "clinical_studies": "Used as food-medicine; safe for long-term use"
+      },
+      "search_keywords": ["chinese yam", "digestive tonic", "safe tonic", "food therapy"],
+      "western_equivalent": "Nutritive tonic / Digestive support"
+    },
+    {
+      "id": "bai_shao",
+      "name_cn": "白芍",
+      "name_pinyin": "Bai Shao",
+      "name_latin": "Radix Paeoniae Alba",
+      "name_common": "White Peony Root",
+      "category": "Tonify Blood",
+      "properties": {
+        "nature": "Slightly Cold",
+        "flavor": ["Sour", "Bitter"],
+        "meridians": ["Liver", "Spleen"]
+      },
+      "dosage": "6-15g",
+      "preparation": "Decoction",
+      "functions": [
+        "Nourishes Blood",
+        "Regulates menstruation",
+        "Preserves Yin and stops sweating",
+        "Softens Liver and relieves pain",
+        "Calms Liver Yang"
+      ],
+      "indications": [
+        "Blood deficiency",
+        "Irregular menstruation",
+        "Spontaneous sweating",
+        "Liver Qi stagnation pain",
+        "Headache from Liver Yang rising"
+      ],
+      "common_pairings": [
+        {"herb": "Dang Gui", "effect": "Nourishes and moves Blood"},
+        {"herb": "Gui Zhi", "effect": "Harmonizes Ying and Wei, stops sweating"},
+        {"herb": "Chai Hu", "effect": "Softens Liver, relieves stagnation"}
+      ],
+      "safety": {
+        "pregnancy_category": "B - Use with guidance",
+        "hepatotoxicity": "Low risk",
+        "contraindications": ["Yang deficiency with cold", "Diarrhea from cold"],
+        "drug_interactions": ["May enhance anticoagulant effects"],
+        "safety_tags": ["blood_nourishing", "pain_relief"]
+      },
+      "modern_research": {
+        "active_compounds": ["Paeoniflorin", "Albiflorin", "Tannins"],
+        "pharmacological_effects": [
+          "Analgesic",
+          "Anti-inflammatory",
+          "Antispasmodic",
+          "Immunomodulatory"
+        ],
+        "clinical_studies": "Used for pain conditions and menstrual disorders"
+      },
+      "search_keywords": ["peony root", "menstrual pain", "liver calming", "blood nourishing"],
+      "western_equivalent": "Antispasmodic / Blood nourisher"
+    },
+    {
+      "id": "mai_dong",
+      "name_cn": "麦冬",
+      "name_pinyin": "Mai Dong",
+      "name_latin": "Radix Ophiopogonis",
+      "name_common": "Ophiopogon Root",
+      "category": "Tonify Yin",
+      "properties": {
+        "nature": "Slightly Cold",
+        "flavor": ["Sweet", "Slightly Bitter"],
+        "meridians": ["Lung", "Stomach", "Heart"]
+      },
+      "dosage": "6-15g",
+      "preparation": "Decoction",
+      "functions": [
+        "Nourishes Stomach Yin",
+        "Generates fluids and moistens dryness",
+        "Nourishes Lung Yin",
+        "Nourishes Heart Yin"
+      ],
+      "indications": [
+        "Stomach Yin deficiency with dry mouth",
+        "Lung Yin deficiency with dry cough",
+        "Heart Yin deficiency with insomnia",
+        "Constipation from dryness"
+      ],
+      "common_pairings": [
+        {"herb": "Sha Shen", "effect": "Nourishes Lung and Stomach Yin"},
+        {"herb": "Ren Shen", "effect": "Generates fluids, tonifies Qi and Yin"},
+        {"herb": "Wu Wei Zi", "effect": "Stops cough, generates fluids"}
+      ],
+      "safety": {
+        "pregnancy_category": "A - Generally safe",
+        "hepatotoxicity": "Very low risk",
+        "contraindications": ["Spleen deficiency with dampness", "Diarrhea"],
+        "drug_interactions": [],
+        "safety_tags": ["yin_nourishing", "generally_safe"]
+      },
+      "modern_research": {
+        "active_compounds": ["Ophiopogonins", "Polysaccharides", "Homoisoflavonoids"],
+        "pharmacological_effects": [
+          "Anti-inflammatory",
+          "Antioxidant",
+          "Cardiovascular protection",
+          "Immune modulation"
+        ],
+        "clinical_studies": "Used for Yin deficiency patterns and cardiovascular support"
+      },
+      "search_keywords": ["yin tonic", "dry cough remedy", "thirst relief", "insomnia dryness"],
+      "western_equivalent": "Yin nourisher / Moistening tonic"
+    },
+    {
+      "id": "wu_wei_zi",
+      "name_cn": "五味子",
+      "name_pinyin": "Wu Wei Zi",
+      "name_latin": "Fructus Schisandrae Chinensis",
+      "name_common": "Schisandra Berry",
+      "category": "Stabilize and Bind",
+      "properties": {
+        "nature": "Warm",
+        "flavor": ["Sour", "Sweet"],
+        "meridians": ["Lung", "Heart", "Kidney"]
+      },
+      "dosage": "2-6g",
+      "preparation": "Decoction or powder",
+      "functions": [
+        "Contains Lung Qi and stops cough",
+        "Nourishes Kidney and astringes essence",
+        "Generates fluids and stops sweating",
+        "Calms the Shen"
+      ],
+      "indications": [
+        "Chronic cough",
+        "Night sweats",
+        "Spontaneous sweating",
+        "Diarrhea",
+        "Insomnia",
+        "Dream-disturbed sleep"
+      ],
+      "common_pairings": [
+        {"herb": "Mai Dong", "effect": "Nourishes Lung Yin, stops cough"},
+        {"herb": "Ren Shen", "effect": "Generates fluids, stops sweating"},
+        {"herb": "Suan Zao Ren", "effect": "Calms Shen, improves sleep"}
+      ],
+      "safety": {
+        "pregnancy_category": "B - Use with guidance",
+        "hepatotoxicity": "Low risk; protective at normal doses",
+        "contraindications": ["Early stage exterior conditions", "Excess heat patterns"],
+        "drug_interactions": ["May affect liver enzyme metabolism"],
+        "safety_tags": ["astringent", "liver_protective"]
+      },
+      "modern_research": {
+        "active_compounds": ["Schisandrins", "Gomisins", "Lignans"],
+        "pharmacological_effects": [
+          "Hepatoprotective",
+          "Adaptogenic",
+          "Antioxidant",
+          "Cognitive enhancement",
+          "Respiratory support"
+        ],
+        "clinical_studies": "Studied for liver protection and cognitive enhancement"
+      },
+      "search_keywords": ["schisandra benefits", "cough remedy", "night sweats", "liver protection"],
+      "western_equivalent": "Adaptogenic astringent"
+    },
+    {
+      "id": "suan_zao_ren",
+      "name_cn": "酸枣仁",
+      "name_pinyin": "Suan Zao Ren",
+      "name_latin": "Semen Ziziphi Spinosae",
+      "name_common": "Sour Jujube Seed",
+      "category": "Nourish Heart and Calm Shen",
+      "properties": {
+        "nature": "Neutral",
+        "flavor": ["Sour", "Sweet"],
+        "meridians": ["Liver", "Gallbladder", "Heart"]
+      },
+      "dosage": "9-15g",
+      "preparation": "Decoction; crush before cooking",
+      "functions": [
+        "Nourishes Heart Yin and Liver Blood",
+        "Calms the Shen",
+        "Stops sweating"
+      ],
+      "indications": [
+        "Insomnia",
+        "Palpitations",
+        "Anxiety",
+        "Night sweats",
+        "Restlessness"
+      ],
+      "common_pairings": [
+        {"herb": "Bai Zi Ren", "effect": "Enhances Shen calming"},
+        {"herb": "Wu Wei Zi", "effect": "Stops sweating, calms Shen"},
+        {"herb": "Zhi Mu", "effect": "Clears heat, stops night sweats"}
+      ],
+      "safety": {
+        "pregnancy_category": "B - Generally safe",
+        "hepatotoxicity": "Very low risk",
+        "contraindications": ["Diarrhea from Spleen deficiency"],
+        "drug_interactions": ["May enhance sedative effects"],
+        "safety_tags": ["sleep_aid", "shen_calming"]
+      },
+      "modern_research": {
+        "active_compounds": ["Jujubosides", "Flavonoids", "Saponins"],
+        "pharmacological_effects": [
+          "Sedative and hypnotic",
+          "Anxiolytic",
+          "Antioxidant",
+          "Cardiovascular protection"
+        ],
+        "clinical_studies": "Well-studied for insomnia and anxiety"
+      },
+      "search_keywords": ["insomnia remedy", "natural sleep aid", "anxiety relief", "calm mind"],
+      "western_equivalent": "Natural sedative / Sleep support"
+    }
+  ],
+  "safety_categories": {
+    "pregnancy": {
+      "category_a": ["Huang Qi", "Shan Yao", "Chen Pi", "Mai Dong"],
+      "category_b": ["Ren Shen", "Dang Gui", "Bai Shao", "Wu Wei Zi", "Suan Zao Ren"],
+      "category_c": ["Chuan Xiong", "Tao Ren", "Hong Hua"],
+      "category_x": ["Ma Huang", "Fu Zi", "Gan Sui", "Yuan Hua"]
+    },
+    "hepatotoxicity": {
+      "high_risk": ["He Shou Wu (raw)", "Tu Jin Pi"],
+      "moderate_risk": ["Gan Cao (long-term high dose)"],
+      "low_risk": ["Ren Shen", "Huang Qi", "Dang Gui", "Bai Shao"]
+    }
+  }
+}

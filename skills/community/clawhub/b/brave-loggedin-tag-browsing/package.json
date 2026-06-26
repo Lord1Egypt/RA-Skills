@@ -1,0 +1,27 @@
+{
+  "name": "brave-loggedin-tag-browsing",
+  "version": "2.0.1",
+  "description": "使用 Brave 瀏覽器（已登入狀態）瀏覽 X/Twitter 用戶頁面並提取最新帖子",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.js realDonaldTrump 5 true"
+  },
+  "keywords": [
+    "openclaw",
+    "browser",
+    "twitter",
+    "x",
+    "brave",
+    "social-media"
+  ],
+  "author": "Shuttle AI",
+  "license": "CC BY-NC 4.0",
+  "dependencies": {
+    "playwright": "^1.58.2"
+  },
+  "devDependencies": {
+    "@types/node": "^25.5.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3"
+  }
+}

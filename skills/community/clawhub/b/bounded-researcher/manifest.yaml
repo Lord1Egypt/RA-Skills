@@ -1,0 +1,12 @@
+name: bounded-researcher
+version: 0.1.0
+description: Bounded evidence-first research workflow for software agents.
+author: leslie
+license: MIT
+tags:
+  - research
+  - coding
+  - triage
+  - validation
+  - localization
+entry: SKILL.md

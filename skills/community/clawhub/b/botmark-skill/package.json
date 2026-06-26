@@ -1,0 +1,26 @@
+{
+  "name": "botmark-skill",
+  "version": "2.20.0",
+  "description": "5-minute AI capability benchmark across 5 dimensions (IQ/EQ/TQ/AQ/SQ) with scored report",
+  "keywords": ["botmark", "benchmark", "ai", "agent", "evaluation", "openclaw", "skill"],
+  "author": "BotMark (OAEAS)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/KimberleyOCaseyfv/botmark-skill.git"
+  },
+  "files": [
+    "SKILL.md",
+    "CHANGELOG.md",
+    "README.md",
+    "botmark_engine.py",
+    "engine_meta.json",
+    "skill_anthropic.json",
+    "skill_generic.json",
+    "skill_openai.json",
+    "skill_openclaw.json",
+    "system_prompt.md",
+    "system_prompt_en.md",
+    "examples"
+  ]
+}

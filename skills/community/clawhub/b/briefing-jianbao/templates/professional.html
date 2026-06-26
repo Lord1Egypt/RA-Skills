@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>{{title}}</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html, body { width: 100%; height: 100%; overflow: hidden; }
+        body { font-family: 'Noto Sans SC', sans-serif; background: linear-gradient(135deg, #1a365d 0%, #2c5282 50%, #2b6cb0 100%); display: flex; justify-content: center; align-items: center; padding: 20px; }
+        .slide { width: 210mm; height: 297mm; background: linear-gradient(180deg, #0f172a 0%, #1e293b 100%); border-radius: 12px; box-shadow: 0 30px 60px rgba(0,0,0,0.4); overflow: hidden; position: relative; }
+        .slide-content { position: relative; z-index: 1; height: 100%; display: flex; flex-direction: column; padding: 50mm 45mm 40mm 45mm; }
+        .tag { display: inline-flex; align-items: center; gap: 8px; background: rgba(59, 130, 246, 0.2); color: #60a5fa; padding: 6px 16px; border-radius: 4px; font-size: 12px; font-weight: 600; letter-spacing: 1px; width: fit-content; margin-bottom: 25px; border: 1px solid rgba(59, 130, 246, 0.3); }
+        .title { font-size: 42px; font-weight: 900; color: #f8fafc; line-height: 1.2; margin-bottom: 10px; }
+        .subtitle { font-size: 18px; color: #94a3b8; font-weight: 500; margin-bottom: 30px; }
+        .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; margin-bottom: 30px; }
+        .stat-card { background: rgba(30, 41, 59, 0.8); border-radius: 8px; padding: 18px 12px; text-align: center; border: 1px solid rgba(59, 130, 246, 0.2); }
+        .stat-number { font-size: 32px; font-weight: 800; color: #60a5fa; }
+        .stat-label { font-size: 12px; color: #64748b; font-weight: 500; margin-top: 4px; }
+        .points-section { margin-bottom: 25px; }
+        .section-title { font-size: 16px; font-weight: 700; color: #e2e8f0; margin-bottom: 12px; display: flex; align-items: center; gap: 10px; }
+        .section-title::before { content: ''; width: 3px; height: 16px; background: #3b82f6; border-radius: 2px; }
+        .point-list { list-style: none; }
+        .point-item { display: flex; align-items: flex-start; gap: 10px; padding: 10px 0; border-bottom: 1px solid rgba(100, 116, 139, 0.2); }
+        .point-item:last-child { border-bottom: none; }
+        .point-icon { width: 24px; height: 24px; background: rgba(59, 130, 246, 0.2); border-radius: 6px; display: flex; align-items: center; justify-content: center; color: #60a5fa; font-size: 12px; flex-shrink: 0; }
+        .point-text { font-size: 14px; color: #cbd5e1; line-height: 1.5; flex: 1; }
+        .point-text strong { color: #60a5fa; font-weight: 600; }
+        .agents-section { margin-top: auto; }
+        .agents-title { font-size: 14px; font-weight: 700; color: #94a3b8; margin-bottom: 10px; }
+        .agents-list { display: flex; flex-wrap: wrap; gap: 6px; }
+        .agent-tag { background: rgba(30, 41, 59, 0.8); border: 1px solid rgba(100, 116, 139, 0.3); padding: 6px 12px; border-radius: 4px; font-size: 12px; color: #94a3b8; }
+        .footer { position: absolute; bottom: 25mm; left: 45mm; right: 45mm; display: flex; justify-content: space-between; align-items: center; padding-top: 12px; border-top: 1px solid rgba(100, 116, 139, 0.2); }
+        .footer-text { font-size: 11px; color: #64748b; }
+        .footer-badge { background: #3b82f6; color: white; padding: 4px 12px; border-radius: 4px; font-size: 10px; font-weight: 600; }
+    </style>
+</head>
+<body>
+    <div class="slide">
+        <div class="slide-content">
+            <div class="tag">{{tag}}</div>
+            <h1 class="title">{{title}}</h1>
+            <p class="subtitle">{{subtitle}}</p>
+            <div class="stats-grid" id="stats"></div>
+            <div class="points-section">
+                <h3 class="section-title">核心亮点</h3>
+                <ul class="point-list" id="points"></ul>
+            </div>
+            <div class="agents-section" id="agents" style="display:none"></div>
+        </div>
+        <div class="footer">
+            <span class="footer-text">{{footer}}</span>
+            <span class="footer-badge">{{badge}}</span>
+        </div>
+    </div>
+    <script>
+        const stats = {{stats}};
+        document.getElementById('stats').innerHTML = stats.map(s => `<div class="stat-card"><div class="stat-number">${s.num}</div><div class="stat-label">${s.label}</div></div>`).join('');
+        const points = {{points}};
+        document.getElementById('points').innerHTML = points.map(p => `<li class="point-item"><span class="point-icon">${p.icon}</span><span class="point-text">${p.text}</span></li>`).join('');
+        const agents = {{agents}};
+        if (agents.length > 0) {
+            const agentsDiv = document.getElementById('agents');
+            agentsDiv.style.display = 'block';
+            agentsDiv.innerHTML = `<div class="agents-title">团队成员</div><div class="agents-list">${agents.map(a => `<span class="agent-tag">${a.emoji}${a.name}</span>`).join('')}</div>`;
+        }
+    </script>
+</body>
+</html>

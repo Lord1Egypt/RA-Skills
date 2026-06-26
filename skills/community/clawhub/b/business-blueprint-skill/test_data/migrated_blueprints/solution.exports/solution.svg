@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 502" width="900" height="502" font-family="system-ui, -apple-system, sans-serif">
+<defs><pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1E293B" stroke-width="0.5"/></pattern><marker id="arrow-solid" markerWidth="8" markerHeight="6" refX="4" refY="3" orient="auto" markerUnits="userSpaceOnUse"><polygon points="0 0, 8 3, 0 6" fill="#F97316"/></marker><marker id="arrow-dashed" markerWidth="8" markerHeight="6" refX="4" refY="3" orient="auto" markerUnits="userSpaceOnUse"><polygon points="0 0, 8 3, 0 6" fill="#6B7280"/></marker><marker id="arrow-open" markerWidth="8" markerHeight="6" refX="4" refY="3" orient="auto" markerUnits="userSpaceOnUse"><polygon points="0 0, 8 3, 0 6" fill="none" stroke="#6B7280" stroke-width="1"/></marker><marker id="arrow-dot" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto" markerUnits="userSpaceOnUse"><circle cx="4" cy="4" r="3" fill="#F97316"/></marker></defs>
+<rect width="900" height="502" fill="#020617"/>
+<rect width="900" height="502" fill="url(#grid)"/>
+<g class="title-block"><rect x="40" y="10" width="860" height="52" rx="6" fill="#0F172A" stroke="#1E293B" stroke-width="1"/><text x="56" y="34" font-size="16" fill="#E2E8F0" font-family="system-ui, -apple-system, sans-serif" font-weight="700">Generated Blueprint</text><text x="56" y="52" font-size="11" fill="#94A3B8" font-family="'JetBrains Mono', 'SF Mono', monospace">行业：retail</text></g>
+<rect x="590" y="195" width="230" height="292" rx="16" fill="none" stroke="#F59E0B" stroke-width="1.5" stroke-dasharray="8,4" opacity="0.4"/>
+<text x="610" y="185" font-size="12" fill="#F59E0B" font-weight="600">系统边界</text>
+<g class="legend" transform="translate(40, 364)">
+<rect x="0" y="0" width="160" height="126" rx="6" fill="#0F172A" stroke="#1E293B" stroke-width="1" opacity="0.95"/>
+<text x="12" y="16" font-size="11" fill="#E2E8F0" font-weight="600" letter-spacing="0.3">图 例</text>
+<rect x="12" y="28" width="12" height="12" rx="3" fill="#0E2E1F" stroke="#34D399" stroke-width="1"/><text x="30" y="38" font-size="9" fill="#94A3B8">计算/核心</text>
+<line x1="12" y1="58" x2="30" y2="58" stroke="#F97316" stroke-width="1.5" marker-end="url(#arrow-solid)"/><text x="38" y="62" font-size="9" fill="#94A3B8">supports</text>
+<line x1="12" y1="76" x2="30" y2="76" stroke="#6B7280" stroke-width="1.5" stroke-dasharray="6,4" marker-end="url(#arrow-open)"/><text x="38" y="80" font-size="9" fill="#94A3B8">depends-on</text>
+<line x1="12" y1="94" x2="30" y2="94" stroke="#60A5FA" stroke-width="1.5" marker-end="url(#arrow-solid)"/><text x="38" y="98" font-size="9" fill="#94A3B8">flows-to</text>
+<line x1="12" y1="112" x2="30" y2="112" stroke="#FBBF24" stroke-width="1.5" stroke-dasharray="3,3" marker-end="url(#arrow-dot)"/><text x="38" y="116" font-size="9" fill="#94A3B8">owned-by</text>
+</g>
+<g class="node" id="clients">
+<rect x="270" y="95" width="140" height="80" rx="8" fill="#1A2030" stroke="#94A3B8" stroke-width="1.5"/>
+<rect x="270" y="95" width="4" height="80" rx="2" fill="#94A3B8"/>
+<text x="340" y="124" text-anchor="middle" font-size="14" fill="#E2E8F0" font-weight="600">门店导购 / 客服</text>
+<text x="340" y="138" text-anchor="middle" font-size="10" fill="#94A3B8">门店导购</text>
+<text x="340" y="152" text-anchor="middle" font-size="10" fill="#94A3B8">客服</text>
+</g>
+<g class="node" id="sys-crm">
+<rect x="630" y="225" width="150" height="80" rx="8" fill="#0E2E1F" stroke="#34D399" stroke-width="1.5"/>
+<rect x="630" y="225" width="4" height="80" rx="2" fill="#34D399"/>
+<text x="705" y="261" text-anchor="middle" font-size="14" fill="#E2E8F0" font-weight="600">CRM</text>
+<text x="705" y="275" text-anchor="middle" font-size="10" fill="#34D399">客户关系管理系统</text>
+</g>
+<g class="node" id="sys-pos">
+<rect x="630" y="321" width="140" height="60" rx="8" fill="#0E2E1F" stroke="#34D399" stroke-width="1.5"/>
+<rect x="630" y="321" width="4" height="60" rx="2" fill="#34D399"/>
+<text x="700" y="347" text-anchor="middle" font-size="14" fill="#E2E8F0" font-weight="600">POS</text>
+<text x="700" y="361" text-anchor="middle" font-size="10" fill="#34D399">门店收银与交易系统</text>
+</g>
+<g class="node" id="sys-erp">
+<rect x="630" y="397" width="140" height="60" rx="8" fill="#0E2E1F" stroke="#34D399" stroke-width="1.5"/>
+<rect x="630" y="397" width="4" height="60" rx="2" fill="#34D399"/>
+<text x="700" y="423" text-anchor="middle" font-size="14" fill="#E2E8F0" font-weight="600">ERP</text>
+<text x="700" y="437" text-anchor="middle" font-size="10" fill="#34D399">企业资源计划系统</text>
+</g>
+<text x="450" y="487" text-anchor="middle" font-size="10" fill="#94A3B8" letter-spacing="0.5">Generated Blueprint • 自由流布局</text>
+</svg>

@@ -1,0 +1,73 @@
+{
+  "name": "brand_knowledge_base_builder",
+  "description": "品牌知识母库构建 Skill。支持“上传资料”与“填写 intake 表单”双入口，将公司简介、产品服务、目标客户、核心卖点、案例、FAQ、联系方式、官网链接、竞品、禁用词、品牌语气等信息结构化为标准品牌资料包，并输出 JSON / YAML / Markdown / llms.txt / FAQ / 术语库 / 标准话术。⚠️ 隐私声明：本 Skill 会将您传入的本地资料全文发送至您配置的大模型 API (由 OPENAI_BASE_URL 决定) 进行结构化提取，请勿传入敏感机密文件。",
+  "environment_variables": {
+    "OPENAI_API_KEY": {
+      "description": "Required to authenticate with the compatible LLM API provider.",
+      "required": true
+    },
+    "OPENAI_BASE_URL": {
+      "description": "Optional custom base URL for the LLM API provider (e.g. Doubao, DeepSeek).",
+      "required": false
+    }
+  },
+  "network": {
+    "external_apis": [
+      "OpenAI Compatible API"
+    ],
+    "data_transfer_description": "The full contents of the provided raw materials and/or intake form will be sent over HTTPS to the configured OpenAI-compatible API provider (determined by OPENAI_BASE_URL) for extraction and asset generation."
+  },
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "input": {
+        "type": "string",
+        "description": "单个原始品牌资料文件路径，兼容旧版入口"
+      },
+      "inputs": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "多个原始品牌资料文件路径，可同时上传官网文案、案例、FAQ 草稿等"
+      },
+      "intake_file": {
+        "type": "string",
+        "description": "结构化 intake 文件路径，支持 .md / .json / .yaml"
+      },
+      "render_from_json": {
+        "type": "string",
+        "description": "已存在的 brand_knowledge_base.json 路径。传入后跳过模型抽取，只重新渲染完整资料包"
+      },
+      "generate_intake_template": {
+        "type": "boolean",
+        "description": "是否生成 intake_form.md / .yaml / .json 模板并退出"
+      },
+      "output_dir": {
+        "type": "string",
+        "description": "生成的结果文件输出目录，默认为 ./output"
+      },
+      "model": {
+        "type": "string",
+        "description": "底层调用的大语言模型，默认为 deepseek-chat 或 gpt-4o"
+      }
+    },
+    "anyOf": [
+      {
+        "required": ["input"]
+      },
+      {
+        "required": ["inputs"]
+      },
+      {
+        "required": ["intake_file"]
+      },
+      {
+        "required": ["render_from_json"]
+      },
+      {
+        "required": ["generate_intake_template"]
+      }
+    ]
+  }
+}

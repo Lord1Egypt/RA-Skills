@@ -1,0 +1,15 @@
+{
+  "title": "Finance Loan Origination Handoff Blueprint",
+  "source": "solution.blueprint.json",
+  "summary": "Loan origination flows from LOS to risk decisioning, compliance review, and core banking booking.",
+  "entities": [
+    "Loan Origination System",
+    "Risk Decision Engine",
+    "Compliance Case System",
+    "Core Banking"
+  ],
+  "handoff": {
+    "downstream_skills": ["report-creator", "slide-creator"],
+    "do_not_generate_downstream_artifact": true
+  }
+}

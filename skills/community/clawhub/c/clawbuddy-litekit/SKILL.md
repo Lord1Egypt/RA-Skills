@@ -1,35 +1,56 @@
 ---
-name: "Clawbuddy Litekit"
-description: "Open the ClawBuddy LiteKit mission-control dashboard for AI agents — live OpenClaw Gateway status, agent profiles, task board, meeting intelligence, council..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/clawbuddy-litekit"
-sourceUrl: "https://clawhub.ai/skills/clawbuddy-litekit"
+name: clawbuddy-litekit
+description: Open the ClawBuddy LiteKit mission-control dashboard for AI agents — live OpenClaw Gateway status, agent profiles, task board, meeting intelligence, council debates, and AI logs. Use when the user wants to visually inspect agents, monitor gateway health, browse agent activity, or set up the OpenClaw integration.
 ---
 
-# Clawbuddy Litekit
+# ClawBuddy LiteKit
 
-> Open the ClawBuddy LiteKit mission-control dashboard for AI agents — live OpenClaw Gateway status, agent profiles, task board, meeting intelligence, council...
+A premium, NASA-style mission-control dashboard for your OpenClaw agents.
+Use this skill to launch the dashboard, check Gateway status, or guide the
+user through one-click setup.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/clawbuddy-litekit`
-- **Source URL:** [https://clawhub.ai/skills/clawbuddy-litekit](https://clawhub.ai/skills/clawbuddy-litekit)
+## When to use
 
-## Overview
+- "Open my agent dashboard / command deck / mission control"
+- "Show me my OpenClaw agents / tasks / meetings"
+- "Is my OpenClaw Gateway connected?"
+- "Install ClawBuddy" / "set up the dashboard"
 
+## Quick actions
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/clawbuddy-litekit
-```
+| Goal | Run |
+| --- | --- |
+| Open the live dashboard | `bash scripts/open-dashboard.sh` |
+| Check Gateway connection | `bash scripts/status.sh` |
+| Jump straight to setup wizard | `bash scripts/open-dashboard.sh setup` |
+
+## Dashboard URL
+
+Live: <https://agentcommander.lovable.app>
+
+Local dev: clone <https://github.com/stevekaplanai/clawbuddy-litekit>, then
+`bun install && bun dev`.
+
+## OpenClaw integration
+
+ClawBuddy proxies the OpenResponses HTTP API through a Lovable Cloud edge
+function. To go live, the user adds two secrets in Lovable Cloud:
+
+- `OPENCLAW_GATEWAY_URL`
+- `OPENCLAW_API_KEY`
+
+The setup wizard at `/setup` walks through this in three steps.
+See `references/openclaw.md` for endpoint details.
+
+## Modules
+
+- **Command Deck** — KPIs, activity feed, agent status
+- **Agent Profiles** — per-agent skill + health cards
+- **Task Board** — kanban of agent tasks
+- **Meeting Intelligence** — meeting types, monthly trend, search
+- **Council** — multi-agent debate transcripts
+- **AI Log** — streaming tool/agent call log
+- **Integrations** — OpenClaw Gateway status + docs
+
+Stay visual. When the user asks for data the dashboard already surfaces,
+prefer launching the relevant tab over re-fetching from the Gateway.

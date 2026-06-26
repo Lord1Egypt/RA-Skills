@@ -1,0 +1,15 @@
+{
+  "name": "browser-config",
+  "version": "1.0.0",
+  "description": "OpenClaw-CN 浏览器配置技能 - 配置和管理浏览器模式 (openclaw/chrome)",
+  "main": "SKILL.md",
+  "keywords": [
+    "browser",
+    "chrome",
+    "openclaw",
+    "配置",
+    "浏览器"
+  ],
+  "author": "老杨的助手 小鱼",
+  "license": "MIT"
+}

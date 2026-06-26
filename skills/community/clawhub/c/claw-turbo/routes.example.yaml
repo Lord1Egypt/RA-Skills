@@ -1,0 +1,55 @@
+# claw-turbo route configuration example
+# Copy this file to routes.yaml and customize for your use case.
+#
+# Each route defines:
+#   - name: unique identifier
+#   - patterns: list of regex patterns with named capture groups (?P<name>...)
+#   - command: bash command template (use {{raw_message}}, {{capture_name}})
+#   - response_template: response sent back to the user
+
+routes:
+  # --- DevOps examples ---
+
+  - name: deploy-service
+    description: "Deploy a service to an environment"
+    patterns:
+      - 'deploy\s+(?P<service>[\w-]+)\s+(?:to\s+)?(?P<env>staging|production|prod)'
+      - '部署\s+(?P<service>[\w-]+)\s+到\s*(?P<env>staging|production|prod)'
+    command: 'bash /opt/scripts/deploy.sh {{service}} {{env}}'
+    response_template: "Deployed {{service}} to {{env}}"
+
+  - name: restart-service
+    description: "Restart a running service"
+    patterns:
+      - 'restart\s+(?P<service>[\w-]+)'
+      - '重启\s+(?P<service>[\w-]+)'
+    command: 'systemctl restart {{service}}'
+    response_template: "Restarted {{service}}"
+
+  - name: check-logs
+    description: "Show recent logs for a service"
+    patterns:
+      - '(?:show|check|tail)\s+logs?\s+(?:for\s+)?(?P<service>[\w-]+)'
+      - '查看\s+(?P<service>[\w-]+)\s*日志'
+    command: 'journalctl -u {{service}} --no-pager -n 50'
+    response_template: "Showing last 50 log lines for {{service}}"
+
+  # --- Document / report examples ---
+
+  - name: generate-report
+    description: "Generate a report by ID"
+    patterns:
+      - '(?:generate|create|run)\s+report\s+(?P<report_id>[\w-]+)'
+      - '生成\s*报告\s*(?P<report_id>[\w-]+)'
+    command: 'bash /opt/scripts/report.sh {{report_id}}'
+    response_template: "Generated report {{report_id}}"
+
+  # --- Custom skill example ---
+
+  - name: print-document
+    description: "Print a document by ID"
+    patterns:
+      - 'print\s+(?P<doc_id>[A-Z]{4}\d{7})'
+      - '打印\s*(?P<doc_id>[A-Z]{4}\d{7})\s*(的)?\s*(资料|全部|所有)'
+    command: 'bash /path/to/your/skill/run.sh "{{raw_message}}"'
+    response_template: "Printed document {{doc_id}}"

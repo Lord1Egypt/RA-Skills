@@ -1,0 +1,18 @@
+interface:
+  display_name: "Circulus Map Offline"
+  short_description: "Local aviation mapping and route planning"
+  icon_small: "./assets/circulus-map-small.svg"
+  brand_color: "#0f172a"
+  default_prompt: "Use $circulus-map-offline to solve or render an aviation route map through the local Circulus MCP worker."
+
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "circulus-map-mcp-local"
+      description: "Circulus Map local MCP server"
+      transport: "streamable_http"
+      # Operator must configure this to a localhost MCP endpoint.
+      url: "http://localhost:8788/mcp"
+
+policy:
+  allow_implicit_invocation: false

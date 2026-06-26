@@ -1,0 +1,13 @@
+source_dirs:
+  - ~/Downloads
+
+target_base: ~/organized-files
+auto_sort: true
+rename_pattern: "{name}_{date}"
+max_file_size_mb: 500
+exclude_patterns:
+  - "*.tmp"
+  - "*.swp"
+  - ".DS_Store"
+  - "Thumbs.db"
+log_file: ORGANIZE_LOG.json

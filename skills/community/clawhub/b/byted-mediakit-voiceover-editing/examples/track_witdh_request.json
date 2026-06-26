@@ -1,0 +1,89 @@
+{
+  // 画布大小
+  "Canvas": {
+    "Width": 1280,
+    "Height": 2160 // 画布高度为单个视频高度的 3 倍 (720 * 3)
+  },
+  "Track": [
+    [
+      {
+        "Type": "video",
+        "Source": "vid://your_main_video_vid",
+        "TargetTime": [0, " 视频原始时长"], // 单位 ms
+        "Extra": [{ "Type": "a_volume", "Volume": 0 }]
+      }
+    ],
+    [
+      {
+        "Type": "audio",
+        "Source": "vid://your_voice_vid",
+        "TargetTime": [0, 10000], // 音频在播放的那个时间节点出现 ， 背景音需要按照原始duration 进行处理
+        "Extra": [{ "Type": "trim", "StartTime": 0, "EndTime": 10000 }] // 需要处理的原视频时间
+      }
+    ],
+    [
+      {
+        "Type": "audio",
+        "Source": "vid://your_bgm_vid",
+        "TargetTime": [0, 10000], // 人声需要根据岂止 时间处理
+        "Extra": [{ "Type": "a_volume", "Volume": 0.3 }]
+      }
+    ],
+    [
+      {
+        "Type": "text",
+        "TargetTime": [0, 3000],
+        "Text": "第一句字幕",
+        "FontType": "SY_Black",
+        "FontSize": 54,
+        "FontColor": "#FFFFFFFF",
+        "AlignType": 1,
+        "Extra": [
+          {
+            "Type": "transform",
+            "Width": 1800,
+            "Height": 200,
+            "PosX": 60,
+            "PosY": 440
+          }
+        ]
+      },
+      {
+        "Type": "text",
+        "TargetTime": [3000, 7000],
+        "Text": "第二句字幕",
+        "FontType": "SY_Black",
+        "FontSize": 54,
+        "FontColor": "#FFFFFFFF",
+        "AlignType": 1,
+        "Extra": [
+          {
+            "Type": "transform",
+            "Width": 1800,
+            "Height": 200,
+            "PosX": 60,
+            "PosY": 440
+          }
+        ]
+      },
+      {
+        "Type": "text",
+        "TargetTime": [7000, 10000],
+        "Text": "第三句字幕",
+        "FontType": "SY_Black",
+        "FontSize": 54,
+        "FontColor": "#FFFFFFFF",
+        "AlignType": 1,
+        "Extra": [
+          {
+            "Type": "transform",
+            "Width": 1800,
+            "Height": 200,
+            "PosX": 60,
+            "PosY": 440
+          }
+        ]
+      }
+    ]
+  ]
+}

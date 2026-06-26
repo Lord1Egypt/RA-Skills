@@ -1,0 +1,14 @@
+{
+  "name": "byt-workflow",
+  "version": "1.0.0",
+  "description": "YouTube video translation workflow, download audio, launch Doubao, play audio, capture translation",
+  "main": "index.js",
+  "openclaw": {
+    "plugin": "openclaw.plugin.json"
+  },
+  "keywords": [
+    "openclaw",
+    "skill"
+  ],
+  "license": "MIT"
+}

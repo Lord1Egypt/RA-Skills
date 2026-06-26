@@ -1,35 +1,37 @@
 ---
 name: "网红卤味"
 description: "提供关于网红卤味的推荐清单、打卡路线与指南。用户搜索网红卤味或规划相关出行时调用。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/braised-delicacies"
-sourceUrl: "https://clawhub.ai/skills/braised-delicacies"
 ---
 
 # 网红卤味
 
-> 提供关于网红卤味的推荐清单、打卡路线与指南。用户搜索网红卤味或规划相关出行时调用。
+## 适用场景
+- 用户搜索网红卤味或规划相关出行时调用
+- 需要获取网红卤味的推荐清单、打卡路线与简要指南
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/braised-delicacies`
-- **Source URL:** [https://clawhub.ai/skills/braised-delicacies](https://clawhub.ai/skills/braised-delicacies)
+## 使用方式
+- 输入城市或区域，可筛选主题、预算、时段
+- 支持返回快速路线建议与人气分级
 
-## Overview
+## 返回内容
+- 推荐清单：名称/亮点/地址/时间/人气
+- 路线草案：交通方式/用时/顺序/避坑提示
+- 注意事项：预约/排队时长/最佳时段/费用范围
 
+## 示例请求
+- “成都 网红卤味 一日打卡路线”
+- “上海适合情侣的 网红卤味 TOP10”
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/braised-delicacies
-```
+## 更新频率
+- 每周迭代，结合新热度与口碑反馈
+
+## 注意事项
+- 高峰期排队较久，建议提前预约或错峰
+- 部分项目有拍摄限制或最低消费，按现场规则执行
+
+## 更新频率
+- 每周迭代，结合新热度与口碑反馈
+
+## 注意事项
+- 高峰期排队较久，建议提前预约或错峰
+- 部分项目有拍摄限制或最低消费，按现场规则执行

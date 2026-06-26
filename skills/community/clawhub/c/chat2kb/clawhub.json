@@ -1,0 +1,34 @@
+{
+  "name": "chat2kb",
+  "version": "0.0.4",
+  "description": "Convert chat conversations into structured Markdown knowledge-base files. Use when the user wants to save, capture, export, or document a conversation.",
+  "author": "Bagel",
+  "license": "MIT",
+  "tags": ["knowledge-base", "notes", "export", "markdown", "productivity"],
+  "category": "Productivity",
+  "homepage": "https://clawhub.ai/extraterrest/chat2kb",
+  "main": "SKILL.md",
+  "files": [
+    "SKILL.md"
+  ],
+  "engines": {
+    "openclaw": ">=1.0.0"
+  },
+  "metadata": {
+    "openclaw": {
+      "requires": {
+        "bins": ["date", "openssl"],
+        "env": ["CHAT2KB_FOLDER", "CHAT2KB_DRY_RUN", "CHAT2KB_LOG_LEVEL"],
+        "configPaths": ["~/.chat2kb/config.yml"]
+      }
+    }
+  },
+  "keywords": [
+    "chat to kb",
+    "conversation export",
+    "knowledge base",
+    "markdown notes",
+    "save conversation"
+  ],
+  "releaseNotes": "v0.0.4 - Fix code block visibility: remove text language hint from all example blocks so they render with proper contrast on ClawHub; v0.0.3 added MIT license; v0.0.2 declared required bins, env vars, and config path in metadata."
+}

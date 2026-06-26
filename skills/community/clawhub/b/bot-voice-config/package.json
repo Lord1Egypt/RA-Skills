@@ -1,0 +1,37 @@
+{
+  "name": "bot-voice-config",
+  "displayName": "机器人音色配置",
+  "description": "为机器人配置和绑定火山引擎 TTS 音色，支持音色查询、绑定、设置默认音色等全流程操作",
+  "version": "1.1.0",
+  "author": "沉寂 (chenji)",
+  "license": "MIT",
+  "keywords": [
+    "bot",
+    "voice",
+    "tts",
+    "音色",
+    "配置",
+    "火山引擎",
+    "飞书"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/chenji/openclaw-skills"
+  },
+  "engines": {
+    "openclaw": ">=2026.3.0"
+  },
+  "scripts": {
+    "test": "bash scripts/voice-config.sh test"
+  },
+  "config": {
+    "volcengine": {
+      "api_key": "环境变量：VOLC_API_KEY",
+      "resource_id": "volc.service_type.10029"
+    },
+    "feishu": {
+      "app_id": "环境变量：FEISHU_APP_ID",
+      "app_secret": "环境变量：FEISHU_APP_SECRET"
+    }
+  }
+}

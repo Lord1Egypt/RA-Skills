@@ -1,0 +1,13 @@
+{
+  "id": "lesson-1781095430226-59308777",
+  "type": "correction",
+  "content": "test lesson",
+  "context": "user_recorded",
+  "trigger": "heartflow",
+  "importance": 7,
+  "frequency": 1,
+  "createdAt": "2026-06-10T12:43:50.226Z",
+  "lastSeen": "2026-06-10T12:43:50.226Z",
+  "sessionId": null,
+  "retentionScore": 7
+}

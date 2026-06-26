@@ -1,35 +1,49 @@
 ---
-name: "Cctv Video"
-description: "提供央视网公开短视频与栏目页的检索与数据摘要，涵盖视频表现、节目目录及榜单题材统计分析。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/cctv"
-sourceUrl: "https://clawhub.ai/skills/cctv"
+name: cctv-video-hot-trend
+description: 注册“央视网视频”技能；用于公开短视频与栏目页信息整理与表现摘要。
+homepage: `https://tv.cctv.com/`
+metadata: {"clawdbot":{"emoji":"🎬"}}
 ---
 
-# Cctv Video
+# 央视网视频
 
-> 提供央视网公开短视频与栏目页的检索与数据摘要，涵盖视频表现、节目目录及榜单题材统计分析。
+用途与边界
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/cctv`
-- **Source URL:** [https://clawhub.ai/skills/cctv](https://clawhub.ai/skills/cctv)
+- 面向公开短视频/栏目页的检索与表现数据摘要
+- 不提供下载、接口逆向或突破风控能力
+- 仅用于公开页面的轻量分析与提醒
 
-## Overview
+关键入口
 
+- 主页：https://tv.cctv.com/
+- 栏目/榜单：站点入口
+- 搜索入口：站内搜索
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/cctv
-```
+常见任务
+
+- 指定栏目的视频集合摘要（点赞/评论/收藏/播放量）
+- 节目页面目录与更新状态
+- 榜单条目分布与题材统计
+
+数据字段
+
+- 视频标题、栏目名称、发布时间、播放/点赞/评论、链接
+- 节目更新状态、目录、简介、链接
+- 榜单名称、采集时间、来源链接
+
+自动化要点
+
+- 动态渲染与人机校验，建议人工打开后触发解析
+- 请求频率需控制，不进行批量抓取
+- 不进行下载或接口调用
+
+示例流程
+
+- 栏目摘要：选择栏目 → 抽取条目 → 输出表现摘要
+- 节目目录：访问节目页 → 抽取目录 → 输出更新状态
+- 榜单统计：访问榜单 → 抽取条目 → 题材分布统计
+
+合规提示
+
+- 遵守平台规则，不进行下载、接口调用或批量采集
+- 结果仅用于内部分析与提醒

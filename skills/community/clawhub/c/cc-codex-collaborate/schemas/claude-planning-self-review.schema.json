@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Claude Planning Self Review",
+  "type": "object",
+  "required": [
+    "status",
+    "summary",
+    "assumptions",
+    "potential_misreadings",
+    "missing_context",
+    "questions_for_human",
+    "plan_changes_required"
+  ],
+  "properties": {
+    "status": {
+      "type": "string",
+      "enum": ["ok", "revise_plan", "ask_human", "read_more_project"]
+    },
+    "summary": { "type": "string" },
+    "assumptions": { "type": "array", "items": { "type": "string" } },
+    "potential_misreadings": { "type": "array", "items": { "type": "string" } },
+    "missing_context": { "type": "array", "items": { "type": "string" } },
+    "questions_for_human": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["question", "reason", "options"],
+        "properties": {
+          "question": { "type": "string" },
+          "reason": { "type": "string" },
+          "recommended_option": { "type": "string" },
+          "options": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["id", "label", "consequence"],
+              "properties": {
+                "id": { "type": "string" },
+                "label": { "type": "string" },
+                "consequence": { "type": "string" }
+              }
+            }
+          },
+          "allow_freeform": { "type": "boolean", "default": true }
+        }
+      }
+    },
+    "plan_changes_required": { "type": "array", "items": { "type": "string" } }
+  },
+  "additionalProperties": true
+}

@@ -1,0 +1,19 @@
+{
+  "name": "claw-search",
+  "version": "1.0.0",
+  "description": "Claw Search - 免费 AI 搜索 API 服务",
+  "homepage": "https://github.com",
+  "keywords": [
+    "search",
+    "ai",
+    "api",
+    "openclaw"
+  ],
+  "author": "yuanchao193",
+  "repository": "",
+  "dependencies": {
+    "express": "^5.2.1",
+    "puppeteer": "^24.39.1",
+    "puppeteer-core": "^24.39.1"
+  }
+}

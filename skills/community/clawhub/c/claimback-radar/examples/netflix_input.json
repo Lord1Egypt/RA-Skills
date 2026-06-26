@@ -1,0 +1,10 @@
+{
+  "source": "email_text",
+  "content": "Hi User,\n\nThank you for staying with Netflix!\n\nYour plan: Standard - $15.49/month\nNext billing date: May 15, 2026\n\nYou can cancel anytime at netflix.com/cancel\n\nIf you cancel within 7 days of being charged, you may be eligible for a refund.\n\nQuestions? Visit help.netflix.com\n",
+  "user_timezone": "America/New_York",
+  "current_date": "2026-04-22",
+  "user_context": {
+    "last_used_date": "2026-03-15",
+    "monthly_budget": 50
+  }
+}

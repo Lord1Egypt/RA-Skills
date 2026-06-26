@@ -1,35 +1,41 @@
 ---
-name: "Build Opportunity Scout"
-description: "Analyze harvested trend data and generate prioritized build opportunities for new skills/apps (P0/P1/P2) with implementation hints. Use when user wants actio..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/build-opportunity-scout"
-sourceUrl: "https://clawhub.ai/skills/build-opportunity-scout"
+name: build-opportunity-scout
+description: Analyze harvested trend data and generate prioritized build opportunities for new skills/apps (P0/P1/P2) with implementation hints. Use when user wants actionable project direction from continuous trend scraping.
 ---
 
 # Build Opportunity Scout
 
-> Analyze harvested trend data and generate prioritized build opportunities for new skills/apps (P0/P1/P2) with implementation hints. Use when user wants actio...
+Turn trend feed noise into actionable build queue.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/build-opportunity-scout`
-- **Source URL:** [https://clawhub.ai/skills/build-opportunity-scout](https://clawhub.ai/skills/build-opportunity-scout)
+## Inputs
 
-## Overview
+- `/root/.openclaw/workspace/data/harvest/feature_patterns.json`
 
+## Outputs
 
-## Installation
-To install this skill, run the following command in your terminal:
+- `/root/.openclaw/workspace/data/harvest/opportunities.json`
+- `/root/.openclaw/workspace/data/harvest/opportunities.md`
+
+## Run
+
 ```bash
-hermes skills install clawhub/build-opportunity-scout
+python3 /root/.openclaw/workspace/skills/build-opportunity-scout/scripts/scout.py
 ```
+
+## What it generates
+
+For each opportunity:
+- title
+- type (skill/app)
+- priority (P0/P1/P2)
+- impact (1-5)
+- effort (1-5)
+- score
+- why_now
+- mvp_steps
+
+## Operator rules
+
+- Prefer practical opportunities with clear MVP steps
+- Keep output concise and execution-first
+- Deduplicate similar ideas

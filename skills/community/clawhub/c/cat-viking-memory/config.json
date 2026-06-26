@@ -1,0 +1,56 @@
+{
+  "name": "cat-viking-memory",
+  "version": "1.0.0",
+  "description": "Viking 记忆系统技能包 - 五级记忆层级自动管理、重要记忆保护、向量相似度提及检测、飞书群聊会话自动保存",
+  "author": "猫助理",
+  "license": "MIT",
+  "repository": "https://github.com/your-repo/viking-memory-system",
+  "dependencies": [
+    "simple-viking",
+    "memory-pipeline",
+    "feishu"
+  ],
+  "config": {
+    "memory_workspace": "~/.openclaw/viking-{agent}",
+    "global_workspace": "~/.openclaw/viking-global",
+    "auto_save_enabled": true,
+    "feishu_integration": {
+      "enabled": false,
+      "check_interval_ms": 300000,
+      "timeout_ms": 1800000,
+      "session_hook_path": "~/.openclaw/skills/memory-pipeline/scripts/memory-session-hook.sh"
+    },
+    "cron_jobs": [
+      {
+        "schedule": "0 3 * * *",
+        "script": "memory-pipeline/memory-tier-cron.sh",
+        "description": "每天凌晨3点执行记忆降级和索引重建"
+      }
+    ]
+  },
+  "tags": [
+    "memory",
+    "viking",
+    "autosave",
+    "feishu",
+    "context-management"
+  ],
+  "icon": "🧠",
+  "readme": "references/README.md",
+  "installation": {
+    "steps": [
+      "确保依赖技能已安装：simple-viking, memory-pipeline, feishu",
+      "将技能目录复制到 ~/.openclaw/workspace/agents/maozhuli/ 或技能安装目录",
+      "根据需求修改 config.json 中的配置选项",
+      "如需飞书自动保存功能，确保 feishu 插件启用并配置 sessionManager.enabled = true",
+      "配置 crontab 定时任务（可选，建议启用）",
+      "运行 ~/.openclaw/skills/memory-pipeline/scripts/memory-pipeline mp_autoload 测试加载"
+    ],
+    "feishu_setup": [
+      "在 OpenClaw 配置中启用 feishu 插件",
+      "编辑 feishu 插件的配置文件，加入 sessionManager 配置段",
+      "重启 OpenClaw Gateway 使配置生效",
+      "查看日志确认会话管理器已启动"
+    ]
+  }
+}

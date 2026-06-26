@@ -1,0 +1,5 @@
+{
+  "language": "bilingual",
+  "notifyOnChange": true,
+  "description": "语言设置：zh=中文通知, en=英文通知, bilingual=中英双语通知"
+}

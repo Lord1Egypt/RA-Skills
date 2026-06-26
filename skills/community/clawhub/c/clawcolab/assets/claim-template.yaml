@@ -1,0 +1,8 @@
+task_id: TASK-XXX
+agent: agent-name
+action: claim
+timestamp: 2026-03-12T01:00:00-04:00
+role: implementer
+justification: Explain why this agent is eligible to claim the task.
+visibility: shared-team
+requested_state: pending_approval

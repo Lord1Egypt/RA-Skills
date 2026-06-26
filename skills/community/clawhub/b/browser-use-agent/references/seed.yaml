@@ -1,0 +1,1509 @@
+meta:
+  id: finance-bp-133-v6.1
+  version: v6.1
+  blueprint_id: finance-bp-133
+  sop_version: crystal-compilation-v6.1
+  source_language: en
+  compiled_at: '2026-04-25T09:07:13.859419+00:00'
+  target_host: openclaw
+  authoritative_artifact:
+    primary: seed.yaml
+    non_authoritative_derivatives:
+    - SKILL.md (host-generated summary, may lag)
+    - HEARTBEAT.md (host telemetry)
+    - memory/*.md (host conversational memory)
+    rule: On any behavioral decision (preconditions check, OV assertion, EQ rule firing, spec_lock verification), agents MUST
+      re-read seed.yaml. Derivatives are for UI display only and may be out-of-date.
+  execution_protocol:
+    install_trigger:
+    - Execute resources.host_adapter.install_recipes[] in declared order
+    - Verify each package with import check before proceeding
+    execute_trigger: When user intent matches intent_router.uc_entries[].positive_terms AND user uses action verb (run/execute/跑/执行/backtest/fetch/collect)
+    on_execute:
+    - Reload seed.yaml (do not rely on SKILL.md or cached summaries)
+    - Run preconditions[] in declared order; halt on first fatal failure with on_fail message to user
+    - Enter context_state_machine.CA1_MEMORY_CHECKED state
+    - Evaluate evidence_quality.enforcement_rules[]; prepend user_disclosure_template
+    - Translate user_facing_fields to user locale per locale_contract
+    workspace_resolution:
+      scripts_path: '{host_workspace}/scripts/'
+      skills_path: '{host_workspace}/skills/'
+      trace_path: '{host_workspace}/.trace/'
+locale_contract:
+  source_language: en
+  user_facing_fields:
+  - human_summary.what_i_can_do.tagline
+  - human_summary.what_i_can_do.use_cases[]
+  - human_summary.what_i_auto_fetch[]
+  - human_summary.what_i_ask_you[]
+  - evidence_quality.user_disclosure_template
+  - post_install_notice.message_template.positioning
+  - post_install_notice.message_template.capability_catalog.groups[].name
+  - post_install_notice.message_template.capability_catalog.groups[].description
+  - post_install_notice.message_template.capability_catalog.groups[].ucs[].name
+  - post_install_notice.message_template.capability_catalog.groups[].ucs[].short_description
+  - post_install_notice.message_template.call_to_action
+  - post_install_notice.message_template.featured_entries[].beginner_prompt
+  - post_install_notice.message_template.more_info_hint
+  - preconditions[].description
+  - preconditions[].on_fail
+  - intent_router.uc_entries[].name
+  - intent_router.uc_entries[].ambiguity_question
+  - architecture.pipeline
+  - architecture.stages[].narrative.does_what
+  - architecture.stages[].narrative.key_decisions
+  - architecture.stages[].narrative.common_pitfalls
+  - constraints.fatal[].consequence
+  - constraints.regular[].consequence
+  - output_validator.assertions[].failure_message
+  - acceptance.hard_gates[].on_fail
+  - skill_crystallization.action
+  locale_detection_order:
+  - explicit_user_declaration
+  - first_message_language
+  - system_locale
+  translation_enforcement:
+    trigger: on_first_user_message
+    action: Render user_facing_fields in detected locale, preserving all IDs (BD-/SL-/UC-/finance-C-) and code identifiers
+      verbatim
+    violation_code: LOCALE-01
+    violation_signal: User receives untranslated English Human Summary when detected locale != en
+evidence_quality:
+  declared:
+    evidence_coverage_ratio: null
+    evidence_verify_ratio: null
+    evidence_invalid: 0
+    evidence_verified: null
+    evidence_auto_fixed: null
+    audit_coverage: 20 finance-universal not_applicable + 6 AIL items reviewed (4 warn + 2 fail) + 5 DAT items reviewed (1
+      pass + 3 warn + 1 NA) + 8 round2-verified anti-pattern/divergence findings = 39 items reviewed across applicable scope
+    audit_pass_rate: 1/13 (8% applicable items pass; 12 warn/fail/missing capture the architectural boundaries and divergences
+      worth surfacing as constraints)
+    audit_fail_total: 0
+    audit_finance_universal:
+      pass: 0
+      warn: 0
+      fail: 0
+    audit_subdomain_totals:
+      pass: 0
+      warn: 0
+      fail: 0
+  enforcement_rules:
+  - id: EQ-01
+    trigger: declared.evidence_verify_ratio < 0.5
+    action: MUST invoke traceback lookup for all cited BD-IDs in output before emitting business code — read LATEST.yaml sections
+      for each BD referenced
+    violation_code: EQ-01-V
+    violation_signal: Generated script references BD-IDs but no tool_call to read LATEST.yaml preceded code generation
+  - id: EQ-02
+    trigger: always
+    action: MUST prepend user_disclosure_template (translated to user locale) to first user-facing response
+    violation_code: EQ-02-V
+    violation_signal: First agent response to user does not contain audit warning phrase
+  user_disclosure_template: '[QUALITY NOTICE] This crystal was compiled from blueprint finance-bp-133. Evidence verify ratio
+    = 0.0% and audit fail total = 0. Generated results may have uncaptured requirement gaps. Verify critical decisions against
+    source files (LATEST.yaml / LATEST.jsonl).'
+traceback:
+  source_files:
+    blueprint: LATEST.yaml
+    constraints: LATEST.jsonl
+  mandatory_lookup_scenarios:
+  - id: TB-01
+    condition: Two constraints have apparently conflicting enforcement rules
+    lookup_target: LATEST.jsonl — find both constraint IDs, compare `consequence` + `evidence_refs` to determine priority
+  - id: TB-02
+    condition: A business decision rationale is unclear or disputed
+    lookup_target: LATEST.yaml — locate BD-ID under business_decisions, read `rationale` + `alternative_considered` fields
+  - id: TB-03
+    condition: evidence_invalid > 0 in evidence_quality.declared
+    lookup_target: LATEST.yaml _enrich_meta — cross-check specific BD `evidence_refs` fields for invalid markers
+  - id: TB-04
+    condition: User asks where a rule comes from
+    lookup_target: LATEST.jsonl — find constraint by ID, read `confidence.evidence_refs` for source file + line number
+  - id: TB-05
+    condition: Generated code does not match expected ZVT API behavior
+    lookup_target: LATEST.yaml stages[].required_methods — verify method signature and evidence locator in source code
+  degraded_lookup:
+    no_fs_access: 'Ask the user to paste the relevant LATEST.yaml section or LATEST.jsonl lines for the BD-/finance-C- IDs
+      in question. Crystal ID: finance-bp-133-v5.0.'
+trace_schema:
+  event_types:
+  - precondition_check
+  - spec_lock_check
+  - evidence_rule_fired
+  - evidence_rule_skipped
+  - locale_translation_emitted
+  - hard_gate_passed
+  - hard_gate_failed
+  - skill_emitted
+  - false_completion_claim
+preconditions:
+- id: PC-01
+  description: zvt package installed and importable
+  check_command: python3 -c 'import zvt; print(zvt.__version__)'
+  on_fail: 'Run: python3 -m pip install zvt  then re-run: python3 -m zvt.init_dirs to initialize data directories'
+  severity: fatal
+- id: PC-02
+  description: K-data exists for target entities (required before backtesting)
+  check_command: python3 -c "from zvt.api.kdata import get_kdata; df = get_kdata(entity_ids=['stock_sh_600000'], limit=1);
+    assert df is not None and len(df) > 0, 'No kdata found'"
+  on_fail: 'Run recorder first: python3 -m zvt.recorders.em.em_stock_kdata_recorder --entity_ids stock_sh_600000  (replace
+    with your target entity IDs)'
+  severity: fatal
+  applies_to_uc: []
+- id: PC-03
+  description: ZVT data directory initialized (~/.zvt or ZVT_HOME)
+  check_command: 'python3 -c "import os; from pathlib import Path; zvt_home = Path(os.environ.get(''ZVT_HOME'', Path.home()
+    / ''.zvt'')); assert zvt_home.exists(), f''ZVT home not found: {zvt_home}''"'
+  on_fail: 'Run: python3 -m zvt.init_dirs'
+  severity: fatal
+- id: PC-04
+  description: SQLite write permission for ZVT data directory
+  check_command: python3 -c "import os, tempfile; from pathlib import Path; zvt_home = Path(os.environ.get('ZVT_HOME', Path.home()
+    / '.zvt')); test_f = zvt_home / '.write_test'; test_f.touch(); test_f.unlink()"
+  on_fail: 'Check directory permissions: chmod u+w ~/.zvt  or set ZVT_HOME environment variable to a writable location'
+  severity: warn
+intent_router:
+  uc_entries:
+  - uc_id: UC-001
+    name: Apply to a Job (Rochester Health) — auto-fill form + upload resume
+    positive_terms:
+    - apply
+    - job application
+    - resume upload
+    - form fill
+    data_domain: web
+    negative_terms:
+    - 1password
+    - secret manager login
+    ambiguity_question: Does the user store credentials in a password manager? If yes, see UC-006.
+  - uc_id: UC-002
+    name: Migros online groceries shopping + checkout (TWINT)
+    positive_terms:
+    - shopping
+    - groceries
+    - cart
+    - checkout
+    data_domain: web
+    negative_terms:
+    - phone comparison
+    - itx pc build
+    ambiguity_question: Is the goal cross-site comparison (UC-008) or end-of-flow checkout (UC-002)?
+  - uc_id: UC-003
+    name: Greek MFA visa appointment monitoring
+    positive_terms:
+    - visa
+    - appointment
+    - monitor
+    - schedule
+    data_domain: web
+    negative_terms:
+    - one-shot tasks (this is recurring polling)
+  - uc_id: UC-004
+    name: Extract PDF content (House.gov documents)
+    positive_terms:
+    - pdf
+    - extract
+    - read pages
+    - document parse
+    data_domain: web
+    negative_terms:
+    - excel
+    - pydantic schema output
+    ambiguity_question: Output target is PDF-text vs Excel vs Pydantic? PDF-text = UC-004; Excel = UC-017; Pydantic = UC-016.
+  - uc_id: UC-005
+    name: Captcha demo (cloud-only solving)
+    positive_terms:
+    - captcha
+    - solve
+    - demo
+    data_domain: web
+    negative_terms:
+    - air-gapped / OSS-only deployments
+  - uc_id: UC-006
+    name: 1Password secure login (vault-backed credentials)
+    positive_terms:
+    - login
+    - 1password
+    - credential vault
+    - secret manager
+    data_domain: web
+    negative_terms:
+    - apply to job
+    - simple form fill
+    ambiguity_question: If credentials live in a password manager, use UC-006. Otherwise UC-001.
+  - uc_id: UC-007
+    name: PCPartPicker — build an ITX PC with budget constraint
+    positive_terms:
+    - pc build
+    - itx
+    - budget
+    - parts compatibility
+    data_domain: web
+    negative_terms:
+    - non-PCPartPicker hardware sites
+  - uc_id: UC-008
+    name: Phone cross-site comparison (structured output)
+    positive_terms:
+    - compare
+    - phone
+    - cross-site
+    - structured output
+    data_domain: web
+    negative_terms:
+    - groceries checkout
+    - itx build
+    ambiguity_question: Goal is comparison (UC-008), checkout (UC-002), or compatibility (UC-007)?
+  - uc_id: UC-009
+    name: Find influencer profiles across platforms
+    positive_terms:
+    - influencer
+    - social
+    - profile search
+    data_domain: web
+    negative_terms:
+    - single-platform-only search
+  - uc_id: UC-010
+    name: Multi-tab parallel exploration
+    positive_terms:
+    - multi-tab
+    - parallel exploration
+    data_domain: web
+    negative_terms:
+    - single-tab linear flows
+  - uc_id: UC-011
+    name: Multi-agent parallel runs
+    positive_terms:
+    - parallel agents
+    - fan-out
+    - multi-agent
+    data_domain: web
+    negative_terms:
+    - tasks needing single-agent state continuity
+  - uc_id: UC-012
+    name: File download (Excel / PDF)
+    positive_terms:
+    - download
+    - file
+    - save
+    data_domain: web
+    negative_terms:
+    - in-page rendering only (no download trigger)
+  - uc_id: UC-013
+    name: Sensitive-data form fill (LLM never sees plaintext)
+    positive_terms:
+    - sensitive data
+    - password
+    - mask credentials
+    data_domain: web
+    negative_terms:
+    - workflows on untrusted domains without allowed_domains lockdown
+  - uc_id: UC-014
+    name: Domain access restrictions (allowed/prohibited)
+    positive_terms:
+    - allowed_domains
+    - prohibited
+    - scope lockdown
+    - security
+    data_domain: web
+    negative_terms:
+    - open-web exploration tasks
+  - uc_id: UC-015
+    name: Custom system prompt (extend or override)
+    positive_terms:
+    - system prompt
+    - customize
+    - override
+    data_domain: web
+    negative_terms:
+    - users who would lose AP4 protection by stripping "only use indexes provided" rule
+  - uc_id: UC-016
+    name: Structured output (Pydantic schema)
+    positive_terms:
+    - structured output
+    - pydantic
+    - schema
+    data_domain: web
+    negative_terms:
+    - free-form natural-language outputs
+  - uc_id: UC-017
+    name: Excel generation (Alphabet earnings)
+    positive_terms:
+    - excel
+    - csv
+    - earnings
+    - file write
+    data_domain: web
+    negative_terms:
+    - in-memory pipeline only
+  - uc_id: UC-018
+    name: Sandbox deployment via @sandbox decorator
+    positive_terms:
+    - sandbox
+    - production
+    - cloud deploy
+    data_domain: web
+    negative_terms:
+    - air-gapped / on-prem
+  - uc_id: UC-019
+    name: Cloud browser + persistent profile + proxy
+    positive_terms:
+    - cloud
+    - profile
+    - proxy
+    - stealth
+    - captcha bypass
+    data_domain: web
+    negative_terms:
+    - air-gapped
+    - cost-sensitive batch
+  - uc_id: UC-020
+    name: CLI daemon (terminal control of local browser)
+    positive_terms:
+    - cli
+    - daemon
+    - terminal
+    - interactive
+    data_domain: web
+    negative_terms:
+    - programmatic Python integration (use Agent class directly)
+context_state_machine:
+  states:
+  - id: CA1_MEMORY_CHECKED
+    entry: Task started
+    exit: All memory queries attempted and recorded; memory_unavailable set if failed
+    timeout: 30s — skip memory, mark memory_unavailable=true, proceed to CA2
+  - id: CA2_GAPS_FILLED
+    entry: CA1 complete
+    exit: 'All FATAL-priority required inputs answered: target market (A-share/HK/US), data source, time range, strategy type'
+    timeout: NOT skippable — FATAL inputs MUST be user-answered before proceeding
+  - id: CA3_PATH_SELECTED
+    entry: CA2 complete
+    exit: intent_router matched single use case with confidence gap > 20% over next candidate, no data_domain ambiguity
+    timeout: Trigger ambiguity_question for top-2 candidates, await user selection
+  - id: CA4_EXECUTING
+    entry: CA3 complete + user explicit confirmation received
+    exit: All hard gates G1-Gn passed and output files written
+    timeout: NOT skippable — user confirmation of execution path required
+  enforcement: Code generation is PROHIBITED before CA4_EXECUTING. Any regression to earlier state MUST be announced to user.
+    buy/sell ordering SL-01 check runs at CA4 entry.
+spec_lock_registry:
+  semantic_locks:
+  - id: SL-01
+    description: Execute sell orders before buy orders in every trading cycle
+    locked_value: sell() called before buy() in each Trader.run() iteration
+    violation_is: fatal
+    source_bd_ids:
+    - BD-018
+  - id: SL-02
+    description: Trading signals MUST use next-bar execution (no look-ahead)
+    locked_value: due_timestamp = happen_timestamp + level.to_second()
+    violation_is: fatal
+    source_bd_ids:
+    - BD-014
+    - BD-025
+  - id: SL-03
+    description: Entity IDs MUST follow format entity_type_exchange_code
+    locked_value: stock_sh_600000 | stockhk_hk_0700 | stockus_nasdaq_AAPL
+    violation_is: fatal
+    source_bd_ids: []
+  - id: SL-04
+    description: DataFrame index MUST be MultiIndex (entity_id, timestamp)
+    locked_value: df.index.names == ['entity_id', 'timestamp']
+    violation_is: fatal
+    source_bd_ids: []
+  - id: SL-05
+    description: 'TradingSignal MUST have EXACTLY ONE of: position_pct, order_money, order_amount'
+    locked_value: XOR enforcement in trading/__init__.py:68
+    violation_is: fatal
+    source_bd_ids: []
+  - id: SL-06
+    description: 'filter_result column semantics: True=BUY, False=SELL, None/NaN=NO ACTION'
+    locked_value: factor.py:475 order_type_flag mapping
+    violation_is: fatal
+    source_bd_ids: []
+  - id: SL-07
+    description: Transformer MUST run BEFORE Accumulator in factor pipeline
+    locked_value: 'compute_result(): transform at :403 before accumulator at :409'
+    violation_is: fatal
+    source_bd_ids: []
+  - id: SL-08
+    description: 'MACD parameters locked: fast=12, slow=26, signal=9'
+    locked_value: factors/algorithm.py:30 macd(slow=26, fast=12, n=9)
+    violation_is: fatal
+    source_bd_ids:
+    - BD-036
+  - id: SL-09
+    description: 'Default transaction costs: buy_cost=0.001, sell_cost=0.001, slippage=0.001'
+    locked_value: sim_account.py:25 SimAccountService default costs
+    violation_is: warning
+    source_bd_ids:
+    - BD-029
+  - id: SL-10
+    description: A-share equity trading is T+1 (no same-day close of buy positions)
+    locked_value: sim_account.available_long filters by trading_t
+    violation_is: fatal
+    source_bd_ids: []
+  - id: SL-11
+    description: Recorder subclass MUST define provider AND data_schema class attributes
+    locked_value: contract/recorder.py:71 Meta; register_schema decorator
+    violation_is: fatal
+    source_bd_ids: []
+  - id: SL-12
+    description: Factor result_df MUST contain either 'filter_result' OR 'score_result' column
+    locked_value: result_df.columns.intersection({'filter_result', 'score_result'}) non-empty
+    violation_is: fatal
+    source_bd_ids: []
+  implementation_hints:
+  - id: IH-01
+    hint: 'Use AdjustType enum exactly: qfq (pre-adjust), hfq (post-adjust), bfq (none) — contract/__init__.py:121'
+  - id: IH-02
+    hint: For A-share kdata, default to hfq for long-term analysis (dividend-adjusted) — trader.py:538 StockTrader
+  - id: IH-03
+    hint: SQLite connection MUST use check_same_thread=False for multi-threaded recorders
+  - id: IH-04
+    hint: Accumulator state serialization uses JSON with custom encoder/decoder hooks — contract/base_service.py
+  - id: IH-05
+    hint: Factor.level MUST match TargetSelector.level (enforced at add_factor) — factors/target_selector.py:84
+preservation_manifest:
+  required_objects:
+    business_decisions_count: 20
+    fatal_constraints_count: 4
+    non_fatal_constraints_count: 36
+    use_cases_count: 20
+    semantic_locks_count: 12
+    preconditions_count: 4
+    evidence_quality_rules_count: 2
+    traceback_scenarios_count: 5
+architecture:
+  pipeline: data_collection -> data_storage -> factor_computation -> target_selection -> trading_execution -> visualization
+  stages:
+  - id: data_collection
+    narrative:
+      does_what: TimeSeriesDataRecorder and FixedCycleDataRecorder fetch OHLCV and fundamental data from providers (eastmoney,
+        joinquant, baostock, akshare) and persist domain objects (Stock1dKdata, BalanceSheet) to SQLite via df_to_db().
+      key_decisions: BD-002 chose evaluate_start_end_size_timestamps for incremental fetch (not full refresh) because comparing
+        to get_latest_saved_record avoids redundant API calls; BD-003 chose get_data_map field transformation to keep domain
+        schema provider-agnostic.
+      common_pitfalls: 'Don''t forget SL-11: Recorder subclass MUST declare both provider and data_schema class attributes
+        else initialization fails with assertion error; finance-C-001 fatal violation.'
+    business_decisions: []
+  - id: data_storage
+    narrative:
+      does_what: StorageBackend persists DataFrames to per-provider SQLite databases at {data_path}/{provider}/{provider}_{db_name}.db
+        using path templates from _get_path_template; Mixin.record_data and Mixin.query_data provide uniform read/write interface.
+      key_decisions: BD-004 chose StorageBackend abstraction (not hardcoded SQLite) to allow future cloud storage swap; BD-006
+        derives db_name from data_schema __tablename__ for per-domain database isolation.
+      common_pitfalls: SL-04 violation (wrong DataFrame index) causes factor pipeline failures downstream; always ensure df.index.names
+        == ['entity_id', 'timestamp'] before calling record_data.
+    business_decisions: []
+  - id: factor_computation
+    narrative:
+      does_what: Factor.compute() applies Transformer (stateless, e.g. MacdTransformer) then Accumulator (stateful, e.g. MaStatsAccumulator)
+        to produce filter_result or score_result columns; EntityStateService persists per-entity rolling state across batches.
+      key_decisions: BD-007 chose Factor inheriting DataReader for composable data access; SL-08 locks MACD at (fast=12, slow=26,
+        n=9) — chose standard Appel parameters not adaptive because interpretability matters for practitioners.
+      common_pitfalls: 'SL-07: Transformer MUST run before Accumulator — swapping order causes NaN propagation; SL-12: result_df
+        must contain filter_result OR score_result column or TargetSelector silently drops all signals.'
+    business_decisions: []
+  - id: target_selection
+    narrative:
+      does_what: TargetSelector.add_factor() registers Factor instances; get_targets() returns entity_ids passing threshold
+        filter at a specific timestamp, enabling point-in-time historical backtesting without look-ahead.
+      key_decisions: BD-012 chose registrable factor list (not hardcoded) for runtime customization; BD-013 chose timestamp-specific
+        filtering not current-only because backtests need historical point-in-time correctness.
+      common_pitfalls: Factor.level MUST match TargetSelector.level (IH-05); mismatched levels cause silent empty target lists
+        that look like no signals but are actually level-mismatch bugs.
+    business_decisions: []
+  - id: trading_execution
+    narrative:
+      does_what: Trader.run() calls sell() before buy() each cycle, generates TradingSignals with due_timestamp = happen_timestamp
+        + level.to_second() for next-bar execution, and applies on_profit_control() for stop-loss/take-profit before regular
+        target selection.
+      key_decisions: SL-01 locks sell-before-buy order because available_long check in sim_account depends on it — chose this
+        over symmetric ordering to prevent implicit leverage; BD-039 chose long=AND/short=OR multi-level logic to reflect
+        risk asymmetry.
+      common_pitfalls: 'SL-02 violation (immediate execution instead of next-bar) introduces look-ahead bias and makes backtest
+        results unreproducible in live trading; SL-10: A-share T+1 constraint — backtesting without it overstates returns.'
+    business_decisions: []
+  - id: visualization
+    narrative:
+      does_what: Drawer.draw() combines kline main chart with factor overlays and Rect annotations for entry/exit signals
+        using Plotly; Drawable interface on Factor enables consistent chart rendering across data types.
+      key_decisions: BD-019 chose drawer_rects subclass override for custom annotations not hardcoded markers — allows traders
+        to define entry/exit visuals without modifying base drawing logic.
+      common_pitfalls: draw_result=True by default (BD-055) is fine for development but set draw_result=False in production/headless
+        environments to avoid Plotly server startup overhead.
+    business_decisions: []
+  - id: cross_cutting_concerns
+    narrative:
+      does_what: 'Invariants and utilities that span multiple pipeline stages — collected from 7 source groups: action_execute(2),
+        browser_session_init(1), cross_cutting(8), llm_step(2), post_step(2), prompt_render(2), and 1 more.'
+      key_decisions: 20 BDs merged here because they apply to more than one main stage (e.g. algorithm helpers, default value
+        choices, ordering contracts, error handling). Agent should inspect individual BD summaries and link back to affected
+        main stages via shared IDs.
+      common_pitfalls: Cross-cutting concerns frequently surface as bugs when changes to one main stage unintentionally break
+        another. Check constraints referencing these BDs and verify invariants still hold after any stage-local modification.
+    business_decisions:
+    - id: BD-003
+      type: B/BA
+      summary: JS dialogs alert + confirm + beforeunload auto-accepted; prompt auto-cancelled (destructive confirms included)
+    - id: BD-007
+      type: B/BA
+      summary: max_actions_per_step default = 5 (code) — DOC SAYS 3 (AGENTS.md:303 stale)
+    - id: BD-004
+      type: B
+      summary: Default browser_target = local_chromium spawned by local_browser_watchdog
+    - id: BD-013
+      type: missing
+      summary: sensitive_data is fail-OPEN when allowed_domains is unset (warning only, no raise)
+    - id: BD-014
+      type: missing
+      summary: SPA DOM rerender bypasses multi_act Layer-2 guard (URL + focus_target_id only)
+    - id: BD-015
+      type: missing
+      summary: JS dialog auto-accept does not distinguish destructive vs harmless confirms
+    - id: BD-016
+      type: missing
+      summary: DOM text truncation at 40000 chars is a silent hard cut
+    - id: BD-017
+      type: missing
+      summary: max_iframes=100 silent log warning, not surfaced to LLM
+    - id: BD-018
+      type: missing
+      summary: CAPTCHA solving depends on private CDP event from cloud proxy
+    - id: BD-019
+      type: missing
+      summary: Multi-LLM-vendor support is duck-typed (no ABC) — copy-paste class drift risk
+    - id: BD-020
+      type: missing
+      summary: OSS path lacks fingerprint/anti-detection — only available via use_cloud=True
+    - id: BD-002
+      type: B
+      summary: observe + think + act fused in a single LLM call (NOT ReAct)
+    - id: BD-010
+      type: B
+      summary: use_vision != 'auto' force-removes screenshot tool from registry (silent user config rewrite)
+    - id: BD-005
+      type: B/BA
+      summary: max_failures = 5 default + final_response_after_failure = True (one extra retry)
+    - id: BD-006
+      type: B
+      summary: Loop detection rolling window = 20 with two metrics (action repetition + page stagnation)
+    - id: BD-009
+      type: B/BA
+      summary: 8 system_prompt template matrix selected by (model_family x use_thinking x flash_mode)
+    - id: BD-012
+      type: B
+      summary: Tasks classified into specific step-by-step vs open-ended (system_prompt.md:91-94)
+    - id: BD-001
+      type: B
+      summary: Numeric integer indices replace CSS selectors / XPath in the LLM-visible DOM
+    - id: BD-008
+      type: B
+      summary: PDF auto-download + file_system read pattern (not in-browser DOM)
+    - id: BD-011
+      type: M
+      summary: Paint-order filtering excludes occluded interactive elements from LLM view
+resources:
+  packages:
+  - name: pandas
+    version_pin: ==1.5.3
+  - name: numpy
+    version_pin: ==1.24.4
+  - name: matplotlib
+    version_pin: '>=2'
+  - name: requests
+    version_pin: ==2.31.0
+  - name: scipy
+    version_pin: '>=1.3.0'
+  - name: scikit-learn
+    version_pin: '>1.4.2'
+  - name: pytest
+    version_pin: '>=8.3'
+  strategy_scaffold:
+    entry_point_name: run_backtest
+    output_path: result.csv
+    execution_mode: backtest
+    conditional_entry_points:
+      backtest:
+        entry_point_name: run_backtest
+        output_path: result.csv
+      collector:
+        entry_point_name: run_collector
+        output_path: result.json
+      factor:
+        entry_point_name: run_factor
+        output_path: result.parquet
+      training:
+        entry_point_name: run_training
+        output_path: result.json
+      serving:
+        entry_point_name: run_server
+        output_path: result.json
+      research:
+        entry_point_name: run_research
+        output_path: result.json
+    tail_template: "# === DO NOT MODIFY BELOW THIS LINE ===\nif __name__ == \"__main__\":\n    result = run_backtest()  #\
+      \ implement above\n    from validate import enforce_validation\n    enforce_validation(result, output_path=\"{workspace}/result.csv\"\
+      )\n# === END DO NOT MODIFY ==="
+  host_adapter:
+    target: openclaw
+    timeout_seconds: 1800
+    shell_operator_restriction: 'exec tool intercepts && / ; / | — never chain: ''pip install X && python Y''. Use separate
+      exec calls.'
+    install_recipes:
+    - python3 -m pip install zvt
+    credential_injection: JoinQuant/QMT credentials require user-side '!' prefix shell login. Never hardcode credentials in
+      generated scripts.
+    path_resolution: '{workspace} resolves to ~/.openclaw/workspace/doramagic at execution time.'
+    file_io_tooling: Use openclaw 'write' tool for .py/.sql files; 'exec' tool for python3 /absolute/path/script.py (absolute
+      paths only).
+constraints:
+  fatal:
+  - id: '?'
+    when: When designing or coding any browser-use workflow that touches admin tools, file management, settings pages, or
+      any UI where confirm dialogs may guard irreversible operations
+    action: Either (a) register a custom @tools.action that intercepts dialogs BEFORE popups_watchdog dispatches them (override
+      dispatch order); (b) write a custom watchdog subclassing BaseWatchdog that LISTENS_TO Page.javascriptDialogOpening and
+      overrides should_accept logic with semantic dialog-text classification; or (c) explicitly tell the LLM in the system
+      prompt extension that destructive operations require a separate user-confirmation step recorded in todo.md before any
+      click that could surface a confirm dialog. Document this as a hard prerequisite in your skill — host AI cannot rely
+      on the framework to refuse destructive confirms.
+    severity: fatal
+    kind: domain_rule
+    modality: must_not
+    consequence: null
+  - id: '?'
+    when: When constructing an Agent and passing the sensitive_data parameter (passwords, API keys, PII, financial credentials)
+    action: 'Wrap Agent construction in your own factory that explicitly raises ValueError if sensitive_data is provided AND
+      browser_profile.allowed_domains is empty/None. Recommended pattern: def make_agent(task, llm, sensitive_data, allowed_domains):
+      assert allowed_domains, ''allowed_domains REQUIRED when sensitive_data set''; return Agent(task=task, llm=llm, sensitive_data=sensitive_data,
+      browser=Browser(allowed_domains=allowed_domains)). Treat the framework''s warning as documentation, not as protection.'
+    severity: fatal
+    kind: domain_rule
+    modality: must_not
+    consequence: null
+  - id: '?'
+    when: When designing an agent task targeting a SPA — single-page-application, React/Vue/Angular routing, or any site with
+      frequent client-side DOM rerenders that do not change the URL
+    action: 'Set max_actions_per_step=1 for SPA-heavy targets so each LLM step is forced to re-read state before the next
+      click. Alternatively, write a custom Layer-3 guard: subclass BaseWatchdog, LISTENS_TO ActionExecutedEvent, run a CDP
+      DOMSnapshot.captureSnapshot pre/post and compare a hash of the interactive subtree; emit a synthetic PageChangedEvent
+      on diff so multi_act breaks. Do NOT trust the default Layer-2 guard for SPA flows.'
+    severity: fatal
+    kind: domain_rule
+    modality: must_not
+    consequence: null
+  - id: '?'
+    when: When extending or overriding the system prompt via Agent(extend_system_message=...) or override_system_message=...,
+      or when designing few-shot reasoning patterns for the LLM
+    action: If you override the system prompt, KEEP the system_prompt.md:71 sentence verbatim ('Only use indexes that are
+      explicitly provided in the [N] prefix of the most recent state'). If you extend the prompt, never instruct the LLM to
+      memorize indices across steps. In any custom @tools.action that emits messages back to the LLM, do not echo numeric
+      indices from prior steps. Audit your prompt extensions for any text that could encourage cross-step index reuse.
+    severity: fatal
+    kind: domain_rule
+    modality: must_not
+    consequence: null
+  regular:
+  - id: '?'
+    when: When building an agent that targets React/Vue/Angular SPAs, infinite-scroll feeds, or any site whose DOM rerenders
+      without URL changes
+    action: 'Pass max_actions_per_step=1 explicitly to Agent(): agent = Agent(task=..., llm=..., max_actions_per_step=1, browser=Browser(...)).
+      Trade-off: ~3-5x more LLM calls per task vs default 5, but eliminates the silent-misclick risk. Document the choice
+      in your skill / wrapper so reviewers see the SPA-specific tuning. Do NOT silently inherit the code default 5 on SPA
+      targets.'
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: null
+  - id: '?'
+    when: When writing any host wrapper, skill recipe, or LLM prompt that references the max_actions_per_step default value,
+      or when reading AGENTS.md to understand framework behavior
+    action: 'Encode 5 as the default value in any documentation, recipe, or wrapper code. If you need to override (e.g. SPA
+      workflows per browseruse-C-004), pass an explicit value. Treat AGENTS.md:303 as out of sync — when it disagrees with
+      code, code wins. Note: this constraint exists only because round1 inherited the stale doc value in three places; any
+      future re-reading of AGENTS.md must double-check service.py:175.'
+    severity: medium
+    kind: domain_rule
+    modality: must
+    consequence: null
+  - id: '?'
+    when: When documenting llm_timeout behavior, choosing a custom value, or when an LLM call is timing out and the developer
+      needs to know which timeout actually applies
+    action: 'Bucket the timeout in any documentation: gemini-3-pro / o3 / claude / sonnet / deepseek = 90s; groq = 30s; everything
+      else (other gemini, openai, ollama, lmstudio, ChatBrowserUse, unrecognized) = 75s. To override, pass llm_timeout=N to
+      Agent(); choose 90s+ for slow reasoning models, 30s for groq-fast workloads. Do not assume the default is 90s for unrecognized
+      models — that gives a false sense of headroom.'
+    severity: low
+    kind: domain_rule
+    modality: must
+    consequence: null
+  - id: '?'
+    when: When documenting prompt template selection logic, or when extending the framework with a new model family that needs
+      a custom prompt template
+    action: 'Reference the 8 templates by name in any documentation. To add a new model family: copy the closest existing
+      template, edit the selection logic in browser_use/agent/prompts.py:60-91, register the new template path. Do not assume
+      there are 9 — only 8 exist. The Anthropic 4.5 specialized template is intentionally engineered to exceed 4096 tokens
+      for prompt-cache eligibility — preserve this when extending.'
+    severity: low
+    kind: domain_rule
+    modality: must
+    consequence: null
+  - id: '?'
+    when: When publishing a skill / recipe / wrapper for browser-use to OSS users, or when an LLM agent encounters a CAPTCHA
+      on a self-hosted run
+    action: 'In any host wrapper or skill targeting OSS users: explicitly document that CAPTCHA auto-solving requires use_cloud=True
+      (paid). Override or extend the system prompt to remove or qualify the ''CAPTCHAs are automatically solved'' claim —
+      replace with ''CAPTCHAs may require user intervention or use_cloud=True''. Implement a fallback action (custom @tools.action)
+      that detects CAPTCHA presence and pauses for human input or fails gracefully, instead of relying on the no-op watchdog.'
+    severity: medium
+    kind: domain_rule
+    modality: must_not
+    consequence: null
+  - id: '?'
+    when: When publishing a skill / recipe / wrapper claiming browser-use can scrape e-commerce / aggregator / fintech / streaming
+      sites that ship anti-bot stacks
+    action: 'Explicitly state in your skill/wrapper that anti-bot bypass requires use_cloud=True (paid hosted plan). For OSS
+      users targeting bot-protected sites: document that they will likely hit 403/CAPTCHA walls, recommend either (a) upgrading
+      to use_cloud=True, (b) targeting an unprotected mirror or API endpoint, or (c) accepting the limitation. Do not promise
+      stealth in OSS-only documentation; the stealth modules are not present in the OSS source tree.'
+    severity: medium
+    kind: domain_rule
+    modality: must_not
+    consequence: null
+  - id: '?'
+    when: When the agent task targets long-list pages (search results, infinite-scroll feeds, e-commerce SKU listings) where
+      critical interactive elements may live below the first ~40000 characters of serialized DOM
+    action: '(a) Extend the system prompt with a hint: ''If the page state mentions (truncated to N characters), use scroll(direction=down)
+      to bring more elements into view, then re-evaluate.'' (b) For known long-page targets, set scroll-first as a deterministic
+      step before the main task. (c) Increase max_clickable_elements_length only with care — larger DOM text inflates LLM
+      token cost on every step. Do not silently assume the LLM ''sees the whole page''.'
+    severity: medium
+    kind: domain_rule
+    modality: should
+    consequence: null
+  - id: '?'
+    when: When the agent task targets portal-style sites with many embedded iframes (ad slots, social embeds, multi-tenant
+      dashboards, news aggregators)
+    action: (a) For known iframe-heavy targets, raise max_iframes via BrowserProfile(max_iframes=200) or higher — at the cost
+      of longer DOM snapshot time. (b) Monitor logger output for the 'Limiting processing of N iframes' warning during dev
+      runs and adjust accordingly. (c) For tasks that depend on iframes likely below the cap, document the dependency in your
+      wrapper. Do not assume the LLM will know iframes were dropped — the log is invisible to it.
+    severity: medium
+    kind: domain_rule
+    modality: should
+    consequence: null
+  - id: '?'
+    when: When constructing Agent with use_vision=False/True (anything except 'auto') and also passing custom Tools that include
+      or expect screenshot capability
+    action: If you need screenshot capability, set use_vision='auto' (the default; allows the LLM to call screenshot on demand).
+      If you set use_vision=False, accept that the screenshot tool is gone — do not register it via custom Tools or expect
+      it in the action list. To debug why screenshot is missing, look at service.py:319 second-pass cleanup, NOT the user-side
+      Tools() config. Document this surprise in any wrapper that exposes use_vision to end users.
+    severity: medium
+    kind: domain_rule
+    modality: must_not
+    consequence: null
+  - id: '?'
+    when: When auto-selecting an LLM model in a wrapper / skill, or when a user passes a DeepSeek / grok-3 / grok-code model
+      with use_vision left at default True
+    action: 'In any model-selection layer: if model name matches /deepseek/i or /grok-3/i or /grok-code/i, set use_vision=False
+      explicitly before constructing Agent. This avoids the warning log and makes the configuration explicit. Note: grok-2
+      and grok-4 DO support vision per the framework; only grok-3 and grok-code are downgraded. Document the vision-capable
+      vs vision-blocked model list in your wrapper.'
+    severity: medium
+    kind: domain_rule
+    modality: must_not
+    consequence: null
+  - id: '?'
+    when: When implementing a custom @tools.action that needs access to the BrowserSession (most non-trivial actions do)
+    action: 'Use exact signature: `async def my_action(params: MyActionParams, browser_session: BrowserSession) -> ActionResult`.
+      Do NOT rename to `browser` / `bs` / `session`. The registry uses Python parameter introspection to inject — name match
+      is exact. AGENTS.md:842-846 documents this pitfall. Add a unit test that calls your custom action through the registry
+      path (not direct call) to catch name typos at test time.'
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: null
+  - id: '?'
+    when: When extending browser-use with new browser-side functionality (new dialog handler, custom event reaction, additional
+      CDP subscription, new persistence layer)
+    action: 'Create browser_use/browser/watchdogs/{your_name}_watchdog.py: subclass BaseWatchdog, declare LISTENS_TO = [EventClass1,
+      ...] and EMITS = [...], implement on_<EventName> handlers. Wire into BrowserSession by adding to the import list at
+      session.py:1-50. Do NOT add inline if/elif logic to session.py methods. The bubus EventBus dispatches to watchdogs based
+      on the LISTENS_TO declaration — this is the seam for extension.'
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: null
+  - id: '?'
+    when: When a contributor or wrapper-author wants to use Playwright APIs (e.g. page.locator(), expect(), trace recording)
+      inside browser-use code
+    action: 'Implement the desired functionality via cdp-use directly: use cdp_session.cdp_client.send.<Domain>.<Method>(...)
+      calls. For DOM querying, use the existing DomService / serializer pipeline. For interactions, use Input.dispatchKeyEvent
+      / Input.dispatchMouseEvent. For screenshots, use Page.captureScreenshot. For tracing, use Tracing domain. The cdp-use
+      library is the typed wrapper — see https://github.com/browser-use/cdp-use. If you genuinely need Playwright, write a
+      separate wrapper layer outside browser-use rather than mixing protocols inside it.'
+    severity: high
+    kind: domain_rule
+    modality: must_not
+    consequence: null
+  - id: '?'
+    when: When designing prompt templates or system_prompt extensions that describe how the LLM should emit the done action
+    action: 'In any prompt extension or skill instruction, instruct the LLM: ''When you decide the task is complete, emit
+      done as the SOLE action in that step — do not combine with click/input/navigate/etc.'' If you build a custom output
+      validator on top of AgentOutput, enforce this rule pre-submit. Note: pre_done_verification (5-step checklist in system_prompt.md:119-153)
+      is intended to fire BEFORE done is emitted, not in the same step as done.'
+    severity: medium
+    kind: domain_rule
+    modality: must
+    consequence: null
+  - id: '?'
+    when: When implementing a custom @tools.action that may navigate, switch tabs, close tabs, or otherwise change the page/tab
+      context the LLM was looking at
+    action: 'If your action triggers any of: URL navigation, tab switch, tab close, history navigation (back/forward), iframe
+      context change — set terminates_sequence=True on the @tools.action decorator. The framework will then break the multi-action
+      loop after your action runs, forcing the next step to re-collect state. Reference: navigate (line 486), search (442),
+      go_back (562), switch_tab (970), close_tab (995) all set this flag. evaluate (JS execution) is also implicitly treated
+      as page-changing per global_contracts.'
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: null
+  - id: '?'
+    when: When designing a multi-action step that includes the `evaluate` JS action, or when extending the framework with
+      custom JS-injection tooling
+    action: 'Treat evaluate as having terminates_sequence-equivalent semantics in your prompt design: do not chain click/input
+      after evaluate in the same step. If you need to read JS-computed state without mutating, prefer (a) a dedicated read-only
+      @tools.action that calls a constrained Runtime.evaluate with a returnByValue: true on a deliberately side-effect-free
+      expression, AND (b) explicitly re-collect state after — but understand the framework cannot prove your JS is side-effect-free,
+      so multi_act treats it as page-changing regardless.'
+    severity: medium
+    kind: domain_rule
+    modality: must
+    consequence: null
+  - id: '?'
+    when: When tuning Agent settings for long or brittle tasks where the default 5-failure budget feels too tight
+    action: Raise max_steps to allow more total work units (default 100 in many examples). Only raise max_failures if you
+      have explicit evidence that 5 consecutive failures are recoverable in your domain (rare). Never raise max_failures as
+      a workaround for prompt bugs or stale-index loops — the cost is N×llm_timeout per extra failure with no real progress.
+      If your task takes 50 steps and you expect occasional retries, max_steps=80 + max_failures=5 is correct, NOT max_failures=20.
+    severity: medium
+    kind: domain_rule
+    modality: must
+    consequence: null
+  - id: '?'
+    when: When the agent on your workload either (a) trips loop detection on legitimate work or (b) fails to detect real stuck
+      states
+    action: 'Profile the workload first: count typical action-repetition rate on a successful run. For long form-filling flows
+      (50-step questionnaires), raising loop_detection_window to 30-40 is reasonable. For short scrape tasks (~10 steps),
+      lowering to 10-15 catches loops faster. Override via Agent(loop_detection_window=N). Never raise beyond ~50 — at that
+      point, you have effectively disabled detection and your real failure mode will be runaway LLM cost.'
+    severity: low
+    kind: domain_rule
+    modality: should
+    consequence: null
+  - id: '?'
+    when: When configuring BrowserProfile for any workflow that may navigate to PDF URLs and need to read PDF content
+    action: Verify both flags remain True in your BrowserProfile (the default) for any PDF-reading workflow. Also confirm
+      downloads_path is set to a writable location. To explicitly opt-out of downloads (e.g. read-only browser session), accept
+      that PDF reading degrades — the LLM will see the PDF viewer chrome only. The prompts.py:294-300 PDF-viewer hint will
+      guide the LLM to attempt read_file on the auto-downloaded copy; without the download having happened, this hint misleads.
+    severity: medium
+    kind: domain_rule
+    modality: must
+    consequence: null
+  - id: '?'
+    when: When writing install scripts, Dockerfiles, CI YAMLs, or skill bundles that pin Python versions for browser-use deployment
+    action: Pin python_requires>=3.11 in any wrapper pyproject.toml. In Dockerfile, use FROM python:3.11-slim or higher. In
+      CI matrix, exclude 3.10 / 3.9 / 3.8 from test runs. In install docs, prominently state '3.11 or higher required'. If
+      you must support 3.10 hosts, browser-use is not the right dependency — pick a different framework.
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: null
+  - id: '?'
+    when: When deploying browser-use with use_cloud=True OR with the default ChatBrowserUse LLM (i.e. the LLM passed to Agent
+      has not been explicitly switched)
+    action: 'Set BROWSER_USE_API_KEY in your env / .env / secrets manager BEFORE Agent construction. Verify with: assert os.getenv(''BROWSER_USE_API_KEY''),
+      ''BROWSER_USE_API_KEY required for default ChatBrowserUse / cloud path''. To avoid the requirement entirely, switch
+      to a different LLM provider: pass llm=ChatOpenAI(...) or llm=ChatAnthropic(...) AND ensure their respective env vars
+      (OPENAI_API_KEY / ANTHROPIC_API_KEY / etc.) are set. ChatBrowserUse remains the recommended default per AGENTS.md but
+      is not the only option.'
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: null
+  - id: '?'
+    when: When adding a new LLM provider to browser_use/llm/, or when AgentOutput schema (in agent/views.py) gains a new field
+    action: 'Add a new provider via the copy-paste recipe but ALSO: (a) write a smoke test that round-trips an AgentOutput
+      with all current fields through the new provider''s ainvoke; (b) set up a CI matrix that runs the smoke test against
+      every provider in browser_use/llm/; (c) when extending AgentOutput, grep browser_use/llm/ for ChatXxx implementations
+      and audit each for the new field. Without these, new providers get partial implementations that fail only when actually
+      used.'
+    severity: medium
+    kind: domain_rule
+    modality: must_not
+    consequence: null
+  - id: '?'
+    when: When implementing form-fill workflows that handle passwords, API keys, PII, or financial credentials
+    action: 'Pass sensitive values via Agent(sensitive_data={''password'': ''realvalue'', ''api_key'': ''realvalue''}). In
+      task description, reference by name: task = ''Log in to example.com using <secret>password</secret>''. The framework
+      substitutes the value at action-execution time without exposing it to the LLM. CRITICAL: also enforce browseruse-C-002
+      (set allowed_domains) — sensitive_data WITHOUT allowed_domains is fail-OPEN. The two constraints together provide the
+      full safety guarantee.'
+    severity: high
+    kind: domain_rule
+    modality: must_not
+    consequence: null
+  - id: '?'
+    when: When deciding whether to enable flash_mode for a given workload, or when designing a custom agent loop that diverges
+      from the single-call pattern
+    action: (a) Default to flash_mode=False unless your workload is latency-critical AND tolerates lower self-evaluation quality
+      (e.g. simple navigation, no destructive actions). (b) For destructive / high-stakes / brittle flows, keep full thinking
+      + evaluation enabled — the cost of one bad action exceeds the LLM cost of evaluation. (c) Do NOT split the loop into
+      separate observe / think / act calls thinking it improves reasoning — that breaks the architectural contract and roughly
+      doubles per-step LLM cost.
+    severity: medium
+    kind: domain_rule
+    modality: should
+    consequence: null
+  - id: '?'
+    when: When constructing the task string passed to Agent(task='...'), especially for production workflows where determinism
+      matters
+    action: 'For deterministic workflows: phrase the task as explicit steps — ''Step 1: navigate to X. Step 2: enter Y in
+      field Z. Step 3: click Submit. Step 4: verify success message.'' This pushes the LLM into the specific-step branch.
+      For exploration: use ''Find the cheapest flight from X to Y under $500'' — open verbs trigger the open-ended branch.
+      Avoid in-between phrasings like ''help me with X'' that the LLM may classify either way.'
+    severity: medium
+    kind: domain_rule
+    modality: should
+    consequence: null
+  - id: '?'
+    when: When the agent reports 'no element found' on a page where you can visually see the element, or when the agent clicks
+      something visually behind a modal/overlay
+    action: (a) Toggle BrowserProfile(paint_order_filtering=False) on a test run to see if the missing/wrong element appears
+      differently — confirms the algorithm is the cause. (b) On confirmed false-negative (LLM should see element X), file
+      a minimal-repro page in browser_use/dom/serializer/paint_order tests; workaround is to disable filtering on that page
+      only. (c) On confirmed false-positive (LLM clicks behind modal), the bug is in the page's stacking context and the agent
+      prompt should be extended with 'verify modal is dismissed before clicking underlying elements'. Do NOT disable globally
+      in production — the filtering prevents the more common modal-click bug.
+    severity: medium
+    kind: domain_rule
+    modality: should
+    consequence: null
+  - id: '?'
+    when: When tuning max_failures based on observed step failures, or when debugging why an agent ran longer than max_failures
+      should allow
+    action: 'Understand: max_failures applies to single-action step failures only. If your task uses multi-action steps and
+      you observe many ''failures'' but the agent doesn''t terminate, that is by design — the framework expects loop_detector
+      to catch the stuck state instead. To force per-action failure counting, set max_actions_per_step=1 (which has the side
+      effect described in browseruse-C-004 — useful for SPA targets). Do NOT raise max_failures expecting it to apply per-action
+      — it does not.'
+    severity: medium
+    kind: domain_rule
+    modality: must_not
+    consequence: null
+  - id: '?'
+    when: When wrapping browser-use in a higher-level retry / error-handler / recovery layer
+    action: 'In your wrapper''s exception handling: distinguish InterruptedError (re-raise to caller, do not retry), connection-level
+      (websocket-related, browser-process-died errors — wait + retry, not a logic failure), and other (treat as logic failure,
+      possibly consume retry budget). Do NOT lump all exceptions into one retry counter — connection blips look like ''agent
+      failure'' but the agent is fine, the network died. Reference: service.py:1246-1302 for the exact branches.'
+    severity: medium
+    kind: domain_rule
+    modality: should
+    consequence: null
+  - id: '?'
+    when: When choosing whether to set cross_origin_iframes explicitly in BrowserProfile, or when documenting browser-use
+      behavior
+    action: 'Do NOT write recipes / docs / wrappers that say ''cross_origin_iframes defaults to False — must explicitly enable
+      for SSO/payment''. The default IS True. Only set it to False as a deliberate performance optimization for tasks that
+      demonstrably never touch cross-origin iframes (rare). When in doubt, leave the default. Reading dom/service.py:50 ''s
+      `cross_origin_iframes: bool = False` is misleading — that default is dead, only triggered for direct DomService construction
+      without profile, which the framework never does.'
+    severity: medium
+    kind: domain_rule
+    modality: must
+    consequence: null
+  - id: '?'
+    when: When designing prompt extensions for destructive workflows or when wrapping browser-use for safety-critical tasks
+    action: 'In any prompt extension targeting destructive flows, add an explicit instruction: ''On each step, FIRST inspect
+      _closed_popup_messages from the previous state. If any message contains keywords (delete, discard, remove, leave, unsaved),
+      evaluate whether the action you just took was intended. If unintended, attempt rollback (undo / re-create) before proceeding.
+      Always log the popup text in your memory field for audit.'' This is a prompt-side mitigation for browseruse-C-001; the
+      framework provides the data, not the safety logic.'
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: null
+  - id: '?'
+    when: When evaluating browser-use for use cases with regulatory audit requirements (HIPAA, GDPR, SOC2, financial compliance)
+      or post-incident forensic analysis needs
+    action: (a) Enable har_recording_watchdog explicitly via BrowserProfile if you need network-trace auditability (HAR file
+      written to disk). (b) Set save_conversation_path on Agent if you need LLM I/O auditability. (c) For full action trail,
+      register a custom watchdog LISTENS_TO every action-completion event and write to your durable log (DB / event stream
+      / file). The framework provides the seams (event bus, watchdog pattern) but does not provide the persistent audit log
+      itself.
+    severity: medium
+    kind: domain_rule
+    modality: must_not
+    consequence: null
+  - id: '?'
+    when: When choosing which LLM to pass to Agent in a production deployment, especially when vendor neutrality / cost /
+      data residency / on-prem requirements apply
+    action: 'Explicitly choose an LLM provider matching your constraints: on-prem → ChatOllama / ChatLMStudio / ChatOpenAICompatible
+      (point at vLLM); cost-sensitive → ChatGroq (fast, cheap, narrower model menu); vendor-aligned → ChatOpenAI / ChatAnthropic
+      / ChatGoogle. Document the chosen provider + rationale in your wrapper. Be aware: ChatBrowserUse may genuinely be the
+      fastest/cheapest/most-accurate for browser tasks (per AGENTS.md claim), but that is not verifiable from OSS source —
+      it is a vendor claim. Validate against your own metrics if it matters.'
+    severity: medium
+    kind: domain_rule
+    modality: should
+    consequence: null
+  - id: '?'
+    when: When extending the system prompt or designing safety-critical workflows that depend on the framework rejecting stale-index
+      actions
+    action: 'Treat the rule as an LLM-side instruction, not a guardrail. If you override system_prompt, KEEP the rule verbatim
+      (browseruse-C-005). For safety-critical flows, add explicit detection: register a custom @tools.action wrapper that
+      checks the index against the latest browser_state.dom_state.selector_map BEFORE acting; raise on mismatch instead of
+      returning extracted_content. This is the only way to convert the soft rule into a hard guardrail.'
+    severity: high
+    kind: domain_rule
+    modality: must_not
+    consequence: null
+  - id: '?'
+    when: When designing an agent task that uses many `extract` actions per step or has predictable structured-output extraction
+      needs
+    action: 'Pass page_extraction_llm explicitly: agent = Agent(task=..., llm=ChatAnthropic(''claude-sonnet''), page_extraction_llm=ChatOpenAI(''gpt-4o-mini''),
+      browser=...). Estimate the cost split: each extract call = 1 LLM round-trip; if you have 5+ extracts per task, the savings
+      are significant. Validate the cheaper model produces correct structured output for your schema (Pydantic validation
+      will surface schema-mismatch failures); if quality drops, walk back to the main LLM.'
+    severity: low
+    kind: domain_rule
+    modality: should
+    consequence: null
+  - id: '?'
+    when: When implementing custom tools by passing a Tools instance to Agent(tools=...)
+    action: 'Use Tools(exclude_actions=[''action_name'', ...]) to remove specific defaults while keeping the rest. To add
+      custom actions, use the @tools.action decorator on the same Tools instance. Reference: service.py:316-321 shows the
+      framework constructs Tools(exclude_actions=[''screenshot'']) when use_vision is not ''auto''. Do NOT pass actions=[...]
+      expecting your custom set to merge with defaults — it does not.'
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: null
+  - id: '?'
+    when: When choosing max_steps for a task where the natural workload step count is close to the budget you'd pick
+    action: Set max_steps to (estimated task steps) + 10 minimum buffer. For workloads averaging 30 steps, use max_steps=50;
+      for 100-step workloads, use max_steps=150. Never set max_steps exactly equal to estimated step count — pre_done_verification,
+      final_response, and occasional retries need headroom. If your workload genuinely needs more than 200 steps, consider
+      decomposing into multiple agent runs with handoff state.
+    severity: medium
+    kind: domain_rule
+    modality: must
+    consequence: null
+output_validator:
+  assertions:
+  - id: OV-01
+    check_predicate: all(p in inspect.getsource(zvt.factors.algorithm.macd) for p in ['slow=26', 'fast=12', 'n=9'])
+    failure_message: 'FATAL: MACD params drifted from (fast=12, slow=26, n=9) — SL-08 violation, non-reproducible signals'
+    business_meaning: Standard MACD parameters are a semantic lock; drift makes results incomparable with industry-standard
+      indicators and non-reproducible.
+    source_ids:
+    - SL-08
+    - BD-036
+  - id: OV-02
+    check_predicate: result.get('total_trades', 0) > 0 or result.get('explicit_zero_trade_ack') is True
+    failure_message: Zero trades executed — likely missing pre-fetched data (see PC-02) or over-restrictive filters
+    business_meaning: A backtest with zero trades is not a valid result; either data is missing or the strategy never triggered.
+      Structural non-emptiness check is insufficient — we need business confirmation.
+    source_ids:
+    - SL-01
+    - finance-C-073
+  - id: OV-03
+    check_predicate: result.get('annual_return') is None or abs(float(result['annual_return'])) <= 5.0
+    failure_message: 'FATAL: |annual_return| > 500% — likely look-ahead bias or data error'
+    business_meaning: Annual returns exceeding 500% are physically implausible for A-share strategies; indicates look-ahead
+      bias or corrupt data.
+    source_ids: []
+  - id: OV-04
+    check_predicate: result.get('holding_change_pct') is None or abs(float(result['holding_change_pct'])) <= 1.0
+    failure_message: 'FATAL: |holding_change_pct| > 100% — physically impossible'
+    business_meaning: Holding change percentage cannot exceed 100%; violation indicates position accounting error.
+    source_ids:
+    - BD-029
+  - id: OV-05
+    check_predicate: result.get('max_drawdown') is None or abs(float(result['max_drawdown'])) <= 1.0
+    failure_message: 'FATAL: |max_drawdown| > 100% — impossible for non-leveraged account'
+    business_meaning: Maximum drawdown cannot exceed 100% without leverage; violation indicates calculation error or look-ahead
+      bias.
+    source_ids: []
+  - id: OV-06
+    check_predicate: not (hasattr(result, 'trade_log') and result.trade_log and any(result.trade_log[i].action == 'sell' and
+      i+1 < len(result.trade_log) and result.trade_log[i+1].action == 'buy' and result.trade_log[i].timestamp == result.trade_log[i+1].timestamp
+      for i in range(len(result.trade_log)-1)))
+    failure_message: 'FATAL: buy-before-sell detected in same cycle — SL-01 violation, creates implicit leverage'
+    business_meaning: SL-01 requires sell() before buy() in each cycle; violation means available_long was not updated before
+      buying, risking duplicate positions.
+    source_ids:
+    - SL-01
+  scaffold:
+    validate_py_path: '{workspace}/validate.py'
+    tail_block: "# === DO NOT MODIFY BELOW THIS LINE ===\nif __name__ == \"__main__\":\n    result = run_backtest()\n    from\
+      \ validate import enforce_validation\n    enforce_validation(result, output_path=\"{workspace}/result.csv\")\n# ===\
+      \ END DO NOT MODIFY ==="
+  enforcement_protocol: 1. Never edit validate.py. 2. Never delete the DO NOT MODIFY tail block from the main script. 3. Never
+    wrap enforce_validation() in try/except. 4. Never rewrite result write logic — it MUST go through enforce_validation.
+    5. If validate.py raises ImportError, fix the dependency, do not remove the call.
+acceptance:
+  hard_gates:
+  - id: G1
+    check: '{workspace}/result.csv exists AND file size > 0'
+    on_fail: Strategy did not produce output; check run_backtest() return value and enforce_validation() call
+  - id: G2
+    check: '{workspace}/result.csv.validation_passed marker file exists'
+    on_fail: Validation did not complete; review validate.py output and fix assertion failures
+  - id: G3
+    check: 'Main script contains literal: from validate import enforce_validation'
+    on_fail: Validation chain stripped; re-add the import in the DO NOT MODIFY block
+  - id: G4
+    check: 'Main script contains literal: # === DO NOT MODIFY BELOW THIS LINE ==='
+    on_fail: Validation fence removed; regenerate DO NOT MODIFY tail block
+  - id: G5
+    check: 'result.csv has at least 1 row: pandas.read_csv(result.csv).shape[0] >= 1'
+    on_fail: Empty result; check if trade_log is non-empty and factors generated signals. Confirm PC-02 (k-data exists) passed.
+  - id: G6
+    check: 'If MACD strategy: source contains ''slow=26'' AND ''fast=12'' AND ''n=9'' in algorithm call'
+    on_fail: MACD params drifted from SL-08 lock; restore standard (12, 26, 9)
+  - id: G7
+    check: 'For data pipeline tasks: result.csv contains ''entity_id'' and ''timestamp'' fields'
+    on_fail: Missing required columns; check Mixin.query_data return schema and DataFrame MultiIndex reset_index() before
+      writing
+  - id: G8
+    check: 'OV-03 passes: abs(annual_return) <= 5.0 (500%)'
+    on_fail: Physical plausibility check failed; investigate look-ahead bias or data corruption in input kdata
+  soft_gates:
+  - id: SG-01
+    rubric: 'Strategy narrative consistency: user intent aligns with generated strategy.py logic. dim_a: signal direction
+      (buy/sell) matches intent [1-5, pass>=4]; dim_b: frequency (daily/intraday) aligns [1-5, pass>=4]; dim_c: risk controls
+      match user intent [1-5, pass>=4].'
+  - id: SG-02
+    rubric: 'Factor combination quality. dim_a: no highly correlated factor duplication [1-5, pass>=4]; dim_b: multi-period
+      alignment correct [1-5, pass>=4]; dim_c: liquidity filter present for A-share [1-5, pass>=4].'
+  - id: SG-03
+    rubric: 'Data source selection appropriateness. dim_a: coverage sufficient for target entities [1-5, pass>=4]; dim_b:
+      provider latency acceptable for strategy frequency [1-5, pass>=4]; dim_c: no unauthorized provider used without credentials
+      [1-5, pass>=4].'
+skill_crystallization:
+  trigger: all_hard_gates_passed AND user_opt_out_skill_saving != true
+  output_path_template: '{workspace}/../skills/{slug}.skill'
+  slug_template: '{blueprint_id_short}-{uc_id_lower}'
+  captured_fields:
+  - name
+  - intent_keywords
+  - entry_point_script
+  - validate_script
+  - fatal_constraints
+  - spec_locks
+  - preconditions
+  - install_recipes
+  - human_summary_translated
+  action: 'After all Hard Gates PASS, resolve slug via slug_template using the executed UC, then write the .skill YAML file
+    at output_path_template. Notify user in their detected locale: ''Skill saved as {slug}.skill — next time say one of {sample_triggers}
+    from the matched UC to invoke directly.'''
+  violation_signal: All hard gates passed but no .skill file exists at expected path
+  skill_file_schema:
+    name: finance-bp-133 / Apply to a Job (Rochester Health) — auto-fill form + upload resume
+    version: v6.1
+    intent_keywords:
+    - apply
+    - job application
+    - resume upload
+    - form fill
+    entry_point: run_backtest
+    fatal_guards:
+    - SL-01
+    - SL-02
+    - SL-03
+    - SL-04
+    - SL-05
+    - SL-06
+    - SL-07
+    - SL-08
+    - SL-10
+    - SL-11
+    - SL-12
+    spec_locks:
+    - SL-01
+    - SL-02
+    - SL-03
+    - SL-04
+    - SL-05
+    - SL-06
+    - SL-07
+    - SL-08
+    - SL-09
+    - SL-10
+    - SL-11
+    - SL-12
+    preconditions:
+    - PC-01
+    - PC-02
+    - PC-03
+    - PC-04
+post_install_notice:
+  trigger: skill_installation_complete
+  message_template:
+    positioning: I help you build quant strategies on A-share with ZVT — from data fetch to backtest, one flow.
+    capability_catalog:
+      group_strategy:
+        source: auto_grouped
+        strategy_reason: auto-grouped by UC.type (5 distinct values, balanced distribution)
+      groups:
+      - group_id: complete_strategy
+        name: Complete Strategy
+        description: ''
+        emoji: 📦
+        uc_count: 3
+        ucs:
+        - uc_id: UC-001
+          name: Apply to a Job (Rochester Health) — auto-fill form + upload resume
+          short_description: Use a structured resume + LLM-driven form filling to complete a job application end-to-end, including
+            PDF upload and submit click
+          sample_triggers:
+          - apply
+          - job application
+          - resume upload
+        - uc_id: UC-002
+          name: Migros online groceries shopping + checkout (TWINT)
+          short_description: Search products, add to cart, choose delivery slot, and pay via Swiss TWINT
+          sample_triggers:
+          - shopping
+          - groceries
+          - cart
+        - uc_id: UC-007
+          name: PCPartPicker — build an ITX PC with budget constraint
+          short_description: Configure a compatible PC build within budget on PCPartPicker
+          sample_triggers:
+          - pc build
+          - itx
+          - budget
+      - group_id: monitoring
+        name: Monitoring
+        description: ''
+        emoji: 📦
+        uc_count: 1
+        ucs:
+        - uc_id: UC-003
+          name: Greek MFA visa appointment monitoring
+          short_description: Periodically poll for appointment availability and report when slots open
+          sample_triggers:
+          - visa
+          - appointment
+          - monitor
+      - group_id: data_pipeline
+        name: Data Pipeline
+        description: ''
+        emoji: 📊
+        uc_count: 5
+        ucs:
+        - uc_id: UC-004
+          name: Extract PDF content (House.gov documents)
+          short_description: 'Auto-download a PDF on visit and read specific page content via the file_system read_file action
+            — the in-browser PDF viewer cannot be DOM-interacted '
+          sample_triggers:
+          - pdf
+          - extract
+          - read pages
+        - uc_id: UC-008
+          name: Phone cross-site comparison (structured output)
+          short_description: Crawl multiple e-commerce sites and emit a structured Pydantic phone comparison table
+          sample_triggers:
+          - compare
+          - phone
+          - cross-site
+        - uc_id: UC-009
+          name: Find influencer profiles across platforms
+          short_description: Search multiple social platforms for influencer profiles matching criteria
+          sample_triggers:
+          - influencer
+          - social
+          - profile search
+        - uc_id: UC-012
+          name: File download (Excel / PDF)
+          short_description: Trigger and wait-for download events, surface downloaded paths
+          sample_triggers:
+          - download
+          - file
+          - save
+        - uc_id: UC-017
+          name: Excel generation (Alphabet earnings)
+          short_description: Scrape earnings data and write to Excel via file_system write_file
+          sample_triggers:
+          - excel
+          - csv
+          - earnings
+      - group_id: extension_example
+        name: Extension Example
+        description: ''
+        emoji: 📦
+        uc_count: 8
+        ucs:
+        - uc_id: UC-005
+          name: Captcha demo (cloud-only solving)
+          short_description: Demonstration of captcha handling
+          sample_triggers:
+          - captcha
+          - solve
+          - demo
+        - uc_id: UC-010
+          name: Multi-tab parallel exploration
+          short_description: Open multiple tabs and compare/cross-reference content
+          sample_triggers:
+          - multi-tab
+          - parallel exploration
+        - uc_id: UC-011
+          name: Multi-agent parallel runs
+          short_description: Run several Agent instances in parallel for fan-out tasks
+          sample_triggers:
+          - parallel agents
+          - fan-out
+          - multi-agent
+        - uc_id: UC-013
+          name: Sensitive-data form fill (LLM never sees plaintext)
+          short_description: Pass sensitive_data={...} to Agent so it can fill forms without surfacing plaintext to the LLM
+          sample_triggers:
+          - sensitive data
+          - password
+          - mask credentials
+        - uc_id: UC-014
+          name: Domain access restrictions (allowed/prohibited)
+          short_description: Limit agent's reachable URL set via allowed_domains / prohibited_domains
+          sample_triggers:
+          - allowed_domains
+          - prohibited
+          - scope lockdown
+        - uc_id: UC-015
+          name: Custom system prompt (extend or override)
+          short_description: Append (extend_system_message) or replace (override_system_message) the default Agent prompt
+          sample_triggers:
+          - system prompt
+          - customize
+          - override
+        - uc_id: UC-016
+          name: Structured output (Pydantic schema)
+          short_description: Force `done` action to return a Pydantic-validated structure
+          sample_triggers:
+          - structured output
+          - pydantic
+          - schema
+        - uc_id: UC-020
+          name: CLI daemon (terminal control of local browser)
+          short_description: Run `browser-use open / state / click / ...` from the terminal to drive a persistent daemon-managed
+            browser at ~50ms per command latency
+          sample_triggers:
+          - cli
+          - daemon
+          - terminal
+      - group_id: live_trading
+        name: Live Trading
+        description: ''
+        emoji: 📦
+        uc_count: 3
+        ucs:
+        - uc_id: UC-006
+          name: 1Password secure login (vault-backed credentials)
+          short_description: Pull credentials from 1Password vault into a custom @tools.action and fill them into forms; LLM
+            never sees the plaintext
+          sample_triggers:
+          - login
+          - 1password
+          - credential vault
+        - uc_id: UC-018
+          name: Sandbox deployment via @sandbox decorator
+          short_description: Wrap local agent code with @sandbox() to run in cloud production
+          sample_triggers:
+          - sandbox
+          - production
+          - cloud deploy
+        - uc_id: UC-019
+          name: Cloud browser + persistent profile + proxy
+          short_description: Use cloud-hosted browser to reuse logged-in profiles, bypass captcha / bot detection
+          sample_triggers:
+          - cloud
+          - profile
+          - proxy
+    call_to_action: Tell me which one you want to try.
+    featured_entries:
+    - uc_id: UC-001
+      beginner_prompt: Try apply to a job (rochester health) — auto-fill form + upload resume
+      auto_selected: true
+    - uc_id: UC-002
+      beginner_prompt: Try migros online groceries shopping + checkout (twint)
+      auto_selected: true
+    - uc_id: UC-003
+      beginner_prompt: Try greek mfa visa appointment monitoring
+      auto_selected: true
+    more_info_hint: Ask me 'what else can you do?' to see all 20 capabilities.
+  locale_rendering:
+    instruction: On skill_installation_complete, translate ALL user-facing strings (positioning + capability_catalog.groups[].name
+      + capability_catalog.groups[].description + capability_catalog.groups[].ucs[].short_description + call_to_action + featured_entries[].beginner_prompt
+      + more_info_hint) into detected user locale per locale_contract. Preserve UC-IDs, group_id, emoji, and sample_triggers
+      verbatim.
+    preserve_verbatim:
+    - UC-IDs
+    - group_id
+    - emoji
+    - sample_triggers
+    - technical_class_names
+  enforcement:
+    action: 'Host agent MUST send composed message to user as the FIRST user-facing response after skill_installation_complete
+      event. Message MUST contain: positioning, capability_catalog (rendered as markdown tables per group), 3 featured_entries,
+      call_to_action, and more_info_hint.'
+    violation_code: PIN-01
+    violation_signal: First user-facing message post-install does not contain the full capability_catalog (all UCs grouped)
+      OR skips featured_entries OR skips call_to_action.
+human_summary:
+  persona: Doraemon
+  what_i_can_do:
+    tagline: 'I help you build quant strategies on A-share with ZVT — from data fetch to backtest, one flow. Just tell me
+      what you want; I''ll write the code, you don''t have to dig docs. (Heads up: ZVT natively supports A-share, HK, and
+      crypto. US stocks — stockus_nasdaq_AAPL — are half-baked; don''t bother for serious work.)'
+    use_cases:
+    - Greek MFA visa appointment monitoring
+    - Migros online groceries shopping + checkout (TWINT)
+    - Apply to a Job (Rochester Health) — auto-fill form + upload resume
+    - A-share MACD daily golden-cross backtest with hfq price adjustment from eastmoney
+    - 'End-to-end ZVT pipeline: FinanceRecorder + GoodCompanyFactor + StockTrader'
+    - Multi-factor strategy with TargetSelector (AND mode) combining MACD + volume breakout
+    - Index composition data collection (SZ1000, SZ2000) with EM recorder
+  what_i_auto_fetch:
+  - ZVT stage pipeline structure (data_collection → visualization) from LATEST.yaml
+  - Semantic locks (SL-01 through SL-12) — especially sell-before-buy ordering and MACD params
+  - Fatal constraints (finance-C-*) relevant to your target strategy type
+  - 'Default parameters: MACD(12,26,9), hfq adjustment, buy_cost=0.001, base_capital=1M CNY'
+  - Entity ID format (stock_sh_600000) and DataFrame MultiIndex convention
+  - Provider-specific recorder class names and required class attributes
+  what_i_ask_you:
+  - 'Target market: A-share (default), HK, or crypto? (US stocks in ZVT are half-baked — stockus_nasdaq_AAPL exists but coverage
+    is thin)'
+  - 'Data source / provider: eastmoney (free, no account), joinquant (account+paid), baostock (free, good history), akshare,
+    or qmt (broker)?'
+  - 'Strategy type: MACD golden-cross, MA crossover, volume breakout, fundamental screen, or custom factor?'
+  - 'Time range: start_timestamp and end_timestamp for backtest period'
+  - 'Target entity IDs: specific stocks (stock_sh_600000) or index components (SZ1000)?'
+  locale_rendering:
+    instruction: On first user contact, translate all fields above into detected user locale while preserving Doraemon persona
+      (direct, frank, mildly snarky, knows limits).
+    preserve_verbatim:
+    - BD-IDs
+    - SL-IDs
+    - UC-IDs
+    - finance-C-IDs
+    - class_names
+    - function_names
+    - file_paths
+    - numeric_thresholds

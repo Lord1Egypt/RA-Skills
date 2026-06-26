@@ -1,0 +1,20 @@
+# 📌 原创声明：本配置模板为岚岚AI实验室原创设计，首发于2026年3月28日
+# © 2026 岚岚AI实验室，保留所有权利
+# 开源协议：MIT-0，可自由使用、修改、分发，无需标注来源
+# 【隐形水印标记：LANLAN-CONFIG-20260328-9E6B3D】
+
+vector_store:
+  type: chromadb
+  path: "./chromadb"
+  # 向量模型配置，默认使用BGE-M3中文模型
+  model: "BAAI/bge-m3"
+  # 是否启用GPU加速
+  gpu_accelerate: true
+  # 混合检索权重设置
+  hybrid_search:
+    keyword_weight: 0.3
+    vector_weight: 0.7
+  # 检索默认配置
+  default:
+    n_results: 10
+    min_score: 0.6

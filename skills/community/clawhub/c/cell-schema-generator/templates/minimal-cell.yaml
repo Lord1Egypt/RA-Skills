@@ -1,0 +1,65 @@
+# Minimal Cell Schema — use for quick reference
+# Required fields only. See SKILL.md for full schema.
+
+cell:
+  id: {slug-id}
+  name: "{Name}"
+  type: operational  # operational | project | coordination | advisory
+  version: "1.0"
+  created: {YYYY-MM-DD}
+  status: active
+
+description: |
+  What this cell does and why it exists.
+
+mission: "Single sentence mission."
+
+stewards:
+  clarity:
+    name: "{Name}"
+    role_title: "{Title}"
+    responsibilities:
+      - Own goals and scope decisions
+  execution:
+    name: "{Name}"
+    role_title: "{Title}"
+    responsibilities:
+      - Manage workflow and deadlines
+  narrative:
+    name: "{Name}"
+    role_title: "{Title}"
+    responsibilities:
+      - Own external communications
+  access:
+    name: "{Name or TBD}"
+    role_title: "{Title}"
+    responsibilities:
+      - Manage tools and permissions
+  integrity:
+    name: "{Name or TBD}"
+    role_title: "{Title}"
+    responsibilities:
+      - Monitor quality and compliance
+
+scope:
+  in_scope:
+    - "{Item}"
+  out_of_scope:
+    - "{Item} — escalates to {target}"
+
+escalation_rules:
+  - trigger: "{Condition}"
+    target: "{Named person or role}"
+    method: "{Channel}"
+    timeout_hours: 4
+    timeout_action: "{Fallback}"
+
+coordination:
+  inbound:
+    - from: "{Source}"
+      type: "{Data type}"
+      cadence: "{Frequency}"
+  outbound:
+    - to: "{Destination}"
+      type: "{Output}"
+      cadence: "{Frequency}"

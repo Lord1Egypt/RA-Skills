@@ -1,0 +1,4 @@
+interface:
+  display_name: "Chrome Extension Studio"
+  short_description: "Build and ship lane-specific extensions"
+  default_prompt: "Use $chrome-extension-studio to design, prototype, validate, package, and prepare a Chrome extension while keeping plugin, template, and product repositories in their separate publish lanes."

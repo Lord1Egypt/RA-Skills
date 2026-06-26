@@ -1,0 +1,20 @@
+{
+  "name": "claude-anywhere",
+  "version": "1.6.2",
+  "type": "module",
+  "description": "Claude Anywhere — read files, write code, run scripts, analyze images from Telegram, WeChat Work & QQ",
+  "main": "start-all.mjs",
+  "scripts": {
+    "start": "node start-all.mjs",
+    "telegram": "node bridge-telegram.mjs",
+    "wecom": "node bridge-wecom.mjs",
+    "qq": "node bridge-qq.mjs"
+  },
+  "dependencies": {
+    "@wecom/aibot-node-sdk": "^1.0.1",
+    "dotenv": "^16.4.0",
+    "node-cron": "^3.0.0",
+    "node-telegram-bot-api": "^0.66.0",
+    "ws": "^8.20.0"
+  }
+}

@@ -1,0 +1,406 @@
+{
+  "metadata": {
+    "last_updated": "2026-03-14",
+    "source": "Ministry of Industry and Information Technology, China Association of Automobile Manufacturers (CAAM), China Motorcycle Association, National Bureau of Statistics, China Customs",
+    "industry_scale_2026_target": "¥12.5 trillion revenue",
+    "production_2026_target": "32 million vehicles (including motorcycles)",
+    "growth_rate_target": "4.2% average annual growth (2024-2026)"
+  },
+  "industry_overview": {
+    "title": "China Vehicle Industry Overview (2026)",
+    "summary": "China is the world's largest vehicle market, producing and selling more passenger cars, commercial vehicles, and motorcycles than any other country. In 2026, the industry is projected to generate over ¥12.5 trillion in revenue, with total vehicle production reaching 32 million units (including motorcycles). The market is undergoing a rapid transformation toward new energy vehicles (NEV), intelligent connectivity, and export expansion. China is also the world's largest motorcycle producer, with strong domestic and export demand.",
+    "key_policy_initiatives": [
+      {
+        "name": "New Energy Vehicle Industry Development Plan (2024-2026)",
+        "issuing_authorities": ["State Council", "MIIT", "NDRC"],
+        "key_measures": [
+          "Achieve 40% NEV penetration in total vehicle sales by 2026",
+          "Promote the adoption of electric commercial vehicles and motorcycles in cities",
+          "Support the development of solid-state battery and intelligent connected vehicle technologies",
+          "Expand charging infrastructure to 5 million public charging piles",
+          "Encourage domestic brands to increase global market share"
+        ]
+      },
+      {
+        "name": "Action Plan for Commercial Vehicle Electrification and Emission Upgrades (2024-2026)",
+        "issuing_authorities": ["MIIT", "Ministry of Ecology and Environment"],
+        "key_measures": [
+          "Implement China VII emission standards for heavy-duty trucks by 2026",
+          "Provide subsidies for electric trucks and buses",
+          "Establish low-emission zones in major cities"
+        ]
+      },
+      {
+        "name": "Motorcycle Industry Upgrade Guidelines",
+        "issuing_authorities": ["MIIT", "Ministry of Commerce"],
+        "key_measures": [
+          "Promote electric motorcycles and scooters",
+          "Support the export of premium motorcycles",
+          "Improve safety and emission standards (China IV for motorcycles)"
+        ]
+      }
+    ],
+    "current_status_2025": {
+      "total_production": "30.5 million vehicles (including 25 million passenger cars, 4.2 million commercial vehicles, 15 million motorcycles)",
+      "total_revenue": "¥11.9 trillion",
+      "NEV_share": "35% of passenger car sales",
+      "export_volume": "6.2 million vehicles (including motorcycles)",
+      "key_drivers": ["Domestic replacement demand", "NEV adoption", "Export growth to Southeast Asia, Europe, and Latin America", "Intelligent vehicle features"]
+    }
+  },
+  "supply_chain_structure": {
+    "title": "Vehicle Supply Chain Structure",
+    "upstream": {
+      "description": "Raw materials, key components, and R&D/design services",
+      "categories": [
+        {
+          "name": "Raw Materials",
+          "items": ["steel (automotive grade)", "aluminum alloys", "plastics", "composites", "rare earths (for magnets)", "lithium", "cobalt"],
+          "key_suppliers": ["Baowu Steel", "Aluminum Corporation of China", "Ganfeng Lithium", "Tianqi Lithium"]
+        },
+        {
+          "name": "Core Components",
+          "items": ["engines", "transmissions", "battery cells & packs", "electric motors", "ECUs", "ADAS sensors", "chassis systems"],
+          "key_suppliers": ["CATL", "BYD", "Weichai Power", "Huawei (auto BU)", "Bosch China", "ZF China"]
+        },
+        {
+          "name": "R&D & Design Services",
+          "items": ["vehicle design studios", "engineering consulting", "software development (autonomous driving, connected car)"],
+          "key_suppliers": ["Pininfarina China", "IAV China", "Huawei", "Baidu Apollo"]
+        }
+      ]
+    },
+    "midstream": {
+      "description": "Vehicle manufacturing and assembly",
+      "subsectors": [
+        "passenger cars (sedans, SUVs, MPVs, coupes)",
+        "commercial vehicles (trucks, buses, vans)",
+        "motorcycles (scooters, cruisers, sport bikes, electric two-wheelers)",
+        "special vehicles (ambulances, fire trucks, construction vehicles)",
+        "new energy vehicles (BEV, PHEV, FCEV)",
+        "autonomous driving vehicle development"
+      ],
+      "key_companies_by_subsector": {
+        "passenger_cars": ["BYD", "Geely", "SAIC", "Changan", "Chery", "Great Wall", "NIO", "Xpeng", "Li Auto"],
+        "commercial_vehicles": ["FAW Jiefang", "Dongfeng", "Sinotruk", "Foton", "Yutong (buses)", "King Long"],
+        "motorcycles": ["Dachangjiang (Haojue)", "Loncin", "Zongshen", "Qianjiang (Benelli)", "Linhai", "Yadea (electric)"],
+        "new_energy_vehicles": ["BYD", "Tesla China", "NIO", "Xpeng", "Li Auto", "AITO (Huawei)", "Zeekr"]
+      }
+    },
+    "downstream": {
+      "description": "Sales channels and end users",
+      "applications": [
+        "domestic retail sales (4S dealerships, online direct sales)",
+        "fleet sales (rental, ride-hailing, logistics)",
+        "government procurement (public buses, official vehicles)",
+        "exports (CBU, CKD kits)",
+        "leasing and subscription services"
+      ]
+    }
+  },
+  "regional_clusters": [
+    {
+      "region": "Yangtze River Delta",
+      "provinces_cities": ["Shanghai", "Jiangsu", "Zhejiang", "Anhui"],
+      "share_of_production": "32% of national vehicle output",
+      "specializations": [
+        "premium passenger cars (SAIC, NIO, Geely)",
+        "NEV batteries and motors",
+        "autonomous driving R&D",
+        "luxury and sports cars",
+        "motorcycle manufacturing (Zhejiang)"
+      ],
+      "key_hubs": [
+        {
+          "city": "Shanghai",
+          "specialization": "Passenger car assembly, NEV, luxury vehicles (SAIC, Tesla, NIO)",
+          "manufacturer_example": "Tesla Gigafactory Shanghai – produces Model 3/Y for domestic and export, annual capacity >1 million"
+        },
+        {
+          "city": "Ningbo (Zhejiang)",
+          "specialization": "Geely headquarters, vehicle assembly, R&D",
+          "manufacturer_example": "Geely Holding Group – owns Volvo, Polestar, Lotus, produces vehicles for export"
+        },
+        {
+          "city": "Hefei (Anhui)",
+          "specialization": "NEV manufacturing (NIO, Volkswagen Anhui)",
+          "manufacturer_example": "NIO Hefei plant – produces ET5, ES6, ES8 for domestic and European markets"
+        },
+        {
+          "city": "Taizhou (Zhejiang)",
+          "specialization": "Motorcycle manufacturing (Qianjiang, Benelli)",
+          "manufacturer_example": "Zhejiang Qianjiang Motorcycle Co., Ltd. – produces Benelli and QJ motorcycles, exports to Europe"
+        }
+      ],
+      "strengths": [
+        "Strongest R&D and software talent",
+        "Complete NEV supply chain",
+        "Proximity to major ports (Shanghai, Ningbo) for export",
+        "Leading motorcycle cluster in Taizhou"
+      ]
+    },
+    {
+      "region": "Pearl River Delta",
+      "provinces_cities": ["Guangdong", "Shenzhen", "Guangzhou", "Foshan", "Huizhou"],
+      "share_of_production": "28% of national vehicle output",
+      "specializations": [
+        "passenger cars (BYD, GAC, Honda, Toyota JVs)",
+        "NEV leadership (BYD)",
+        "commercial vehicles (bus manufacturing)",
+        "motorcycle manufacturing (Jiangmen)"
+      ],
+      "key_hubs": [
+        {
+          "city": "Shenzhen",
+          "specialization": "NEV manufacturing (BYD headquarters)",
+          "manufacturer_example": "BYD Co., Ltd. – world's largest NEV manufacturer, produces Qin, Han, Tang, Yuan, Song models, also electric buses"
+        },
+        {
+          "city": "Guangzhou",
+          "specialization": "Passenger cars (GAC, Honda, Toyota joint ventures)",
+          "manufacturer_example": "GAC Group – produces Trumpchi brand, also joint ventures with Honda and Toyota"
+        },
+        {
+          "city": "Foshan",
+          "specialization": "Commercial vehicles, buses",
+          "manufacturer_example": "Foshan Feichi (Fotye) – electric buses and light trucks"
+        },
+        {
+          "city": "Jiangmen",
+          "specialization": "Motorcycle manufacturing",
+          "manufacturer_example": "Jiangmen Dachangjiang Group (Haojue) – largest motorcycle manufacturer in China, produces Haojue and Suzuki-licensed models"
+        }
+      ],
+      "strengths": [
+        "Strong NEV ecosystem (BYD)",
+        "Japanese OEM joint ventures providing quality expertise",
+        "Well-developed motorcycle parts and assembly cluster"
+      ]
+    },
+    {
+      "region": "Southwest China (Chengdu-Chongqing)",
+      "provinces_cities": ["Sichuan", "Chongqing"],
+      "share_of_production": "15% of national vehicle output",
+      "specializations": [
+        "passenger cars (Changan, Ford)",
+        "motorcycle capital of China (Chongqing)",
+        "commercial vehicles (light trucks)",
+        "NEV batteries (Chongqing)"
+      ],
+      "key_hubs": [
+        {
+          "city": "Chongqing",
+          "specialization": "Passenger cars, motorcycles",
+          "manufacturer_example": "Changan Auto – produces Changan, Ford, Suzuki vehicles; also Loncin, Zongshen, Lifan motorcycles"
+        },
+        {
+          "city": "Chengdu",
+          "specialization": "Passenger cars (Geely, Volvo)",
+          "manufacturer_example": "Volvo Cars Chengdu plant – produces S60, XC60 for domestic and export"
+        }
+      ],
+      "strengths": [
+        "Largest motorcycle production base (Chongqing)",
+        "Lower labor and land costs",
+        "Government incentives for western development"
+      ]
+    },
+    {
+      "region": "Northeast China (Liaoning, Jilin, Heilongjiang)",
+      "provinces_cities": ["Changchun", "Shenyang", "Harbin"],
+      "share_of_production": "12% of national vehicle output",
+      "specializations": [
+        "passenger cars (FAW-VW, BMW)",
+        "commercial vehicles (FAW Jiefang trucks)",
+        "heavy-duty trucks",
+        "auto parts legacy"
+      ],
+      "key_hubs": [
+        {
+          "city": "Changchun",
+          "specialization": "Passenger cars, trucks (FAW)",
+          "manufacturer_example": "FAW Group – produces Hongqi luxury cars, FAW-VW, FAW Toyota, Jiefang trucks"
+        },
+        {
+          "city": "Shenyang",
+          "specialization": "BMW production, commercial vehicles",
+          "manufacturer_example": "BMW Brilliance Automotive – produces 3 Series, 5 Series, X3, iX3 for domestic and export"
+        }
+      ],
+      "strengths": [
+        "Long history of automotive manufacturing",
+        "Strong commercial vehicle base",
+        "BMW as anchor for premium segment"
+      ]
+    },
+    {
+      "region": "Central China (Hubei, Hunan, Henan)",
+      "provinces_cities": ["Wuhan", "Zhengzhou", "Changsha"],
+      "share_of_production": "10% of national vehicle output",
+      "specializations": [
+        "passenger cars (Dongfeng, Citroën, Nissan)",
+        "commercial vehicles (Dongfeng trucks)",
+        "NEV manufacturing"
+      ],
+      "key_hubs": [
+        {
+          "city": "Wuhan",
+          "specialization": "Passenger cars, commercial vehicles",
+          "manufacturer_example": "Dongfeng Motor Corporation – produces Dongfeng, Honda, Nissan, Peugeot, Citroën vehicles"
+        },
+        {
+          "city": "Zhengzhou",
+          "specialization": "Commercial vehicles, NEV buses",
+          "manufacturer_example": "Yutong Group – world's largest bus manufacturer, produces electric buses for global markets"
+        }
+      ],
+      "strengths": [
+        "Strong commercial vehicle ecosystem",
+        "Central location for logistics",
+        "Growing NEV bus production"
+      ]
+    }
+  ],
+  "vehicle_type_details": {
+    "passenger_cars": {
+      "description": "Includes sedans, SUVs, MPVs, hatchbacks, and coupes. China is the world's largest passenger car market, with domestic brands gaining share and NEVs leading growth.",
+      "key_clusters": ["Yangtze River Delta", "Pearl River Delta", "Southwest", "Northeast"],
+      "growth_drivers": [
+        "NEV adoption (40% target by 2026)",
+        "Premiumization and smart features",
+        "Export expansion to Europe, Southeast Asia, Latin America",
+        "Domestic brand upgrading"
+      ],
+      "market_trends": "Consolidation of domestic brands; rise of NEV-only automakers (NIO, Xpeng, Li Auto); increasing competition from Tesla and legacy JVs.",
+      "domestic_brand_share": "58% of passenger car sales (2025), 65% in NEV segment"
+    },
+    "commercial_vehicles": {
+      "description": "Trucks (light, medium, heavy), buses, vans, and special-purpose vehicles. China is the world's largest commercial vehicle market, driven by infrastructure, logistics, and public transport.",
+      "key_clusters": ["Northeast", "Central China", "Shandong"],
+      "growth_drivers": [
+        "E-commerce and last-mile delivery boosting light trucks",
+        "Electrification of buses and delivery vans",
+        "Infrastructure projects driving heavy truck demand",
+        "Export to Belt & Road countries"
+      ],
+      "market_trends": "Transition to electric and hydrogen fuel cell trucks; emission upgrades (China VII); platooning and autonomous driving in logistics.",
+      "key_players": ["FAW Jiefang", "Dongfeng", "Sinotruk", "Foton", "Yutong", "King Long"]
+    },
+    "motorcycles": {
+      "description": "Scooters, commuter motorcycles, sport bikes, cruisers, and electric two-wheelers. China is the world's largest motorcycle producer, with strong domestic demand and growing exports.",
+      "key_clusters": ["Chongqing", "Zhejiang (Taizhou)", "Guangdong (Jiangmen)"],
+      "growth_drivers": [
+        "Urban mobility demand (electric scooters)",
+        "Export growth to Southeast Asia, Africa, Latin America",
+        "Premium motorcycle segment (250cc+) expanding",
+        "Shared micromobility services"
+      ],
+      "market_trends": "Rapid electrification of two-wheelers; premiumization (Benelli, CFMoto, QJ Motor); increasing safety and emission standards (China IV).",
+      "domestic_brand_share": "95% of domestic market, but many international brands have JVs"
+    },
+    "new_energy_vehicles": {
+      "description": "Battery electric vehicles (BEV), plug-in hybrid electric vehicles (PHEV), and fuel cell electric vehicles (FCEV). China dominates global NEV production and sales.",
+      "key_clusters": ["Yangtze River Delta", "Pearl River Delta", "Southwest"],
+      "growth_drivers": [
+        "Government subsidies and policies",
+        "Consumer acceptance and range improvement",
+        "Charging infrastructure expansion",
+        "Export of NEVs to Europe and Southeast Asia"
+      ],
+      "market_trends": "800V architecture, solid-state batteries, autonomous driving integration, NEV platforms (e.g., Geely SEA, BYD e-platform 3.0).",
+      "key_players": ["BYD", "Tesla China", "NIO", "Xpeng", "Li Auto", "AITO", "Zeekr", "SAIC-GM-Wuling"]
+    }
+  },
+  "sourcing_guide": {
+    "buyer_evaluation_metrics": [
+      {
+        "metric": "Production capacity",
+        "target": "Annual output, utilization rate, expansion plans"
+      },
+      {
+        "metric": "Quality and reliability",
+        "target": "J.D. Power ratings, warranty claims data, recall history"
+      },
+      {
+        "metric": "Export experience",
+        "target": "Exported volume, target markets, compliance with international standards (ECE, DOT, Euro)"
+      },
+      {
+        "metric": "Financial stability",
+        "target": "Publicly listed or audited financials, credit rating"
+      },
+      {
+        "metric": "Technology and innovation",
+        "target": "R&D investment, patents, EV/ADAS capabilities"
+      },
+      {
+        "metric": "After-sales service",
+        "target": "Spare parts availability, dealer network in target market, warranty support"
+      }
+    ],
+    "verification_methods": [
+      "Request manufacturing licenses (CCC, MIIT production资质)",
+      "Conduct factory audit (production lines, QC, R&D center)",
+      "Review homologation certificates for target market (EU WVTA, GCC, etc.)",
+      "Check vehicle sample for build quality and test drive",
+      "Analyze export documentation and customs records",
+      "Obtain customer references from existing importers"
+    ],
+    "communication_best_practices": [
+      "Specify required vehicle type, specifications, and target market regulations",
+      "Discuss customization possibilities (badging, features, compliance modifications)",
+      "Clarify delivery terms (CBU, CKD, SKD) and lead times",
+      "Establish a clear quality and warranty agreement",
+      "Plan for after-sales support (spare parts, training, technical documentation)"
+    ],
+    "payment_terms": "Typical for CBU exports: 30% T/T deposit, 70% against scanned B/L or L/C at sight. For CKD/SKD, milestone payments (e.g., 30% deposit, 40% after tooling approval, 30% before shipment).",
+    "lead_times": {
+      "standard_CBU": "30-60 days after order confirmation",
+      "customized_CBU": "60-120 days (depending on modifications)",
+      "CKD_kits": "45-90 days after engineering approval"
+    }
+  },
+  "faq": [
+    {
+      "question": "What are the requirements to import vehicles from China?",
+      "answer": "Import requirements vary by country. Typically, you need: vehicle homologation/certification (e.g., EU WVTA, GCC, DOT), compliance with emission and safety standards, and customs clearance documents. Chinese manufacturers usually provide necessary technical documentation and can assist with testing."
+    },
+    {
+      "question": "Can I get vehicles with right-hand drive (RHD) from China?",
+      "answer": "Yes, many Chinese manufacturers produce RHD versions for markets like Australia, UK, Japan, and Southeast Asia. Specify RHD requirement in your inquiry. Some brands (e.g., BYD, MG, Great Wall) have established RHD models."
+    },
+    {
+      "question": "What is the minimum order quantity (MOQ) for vehicle exports?",
+      "answer": "For CBU (completely built-up) vehicles, MOQ can be as low as 1 unit for some brands through dealerships. For direct OEM purchases, MOQ is typically 50-100 units for standard models, and higher for custom configurations. For CKD kits, MOQ is usually 500-1000 kits per year."
+    },
+    {
+      "question": "Do Chinese vehicles meet Euro 6/7 or other international emission standards?",
+      "answer": "Many Chinese brands now offer Euro 6-compliant models, and some are developing Euro 7. For NEVs, there are no tailpipe emissions. Always confirm the specific emission standard with the manufacturer and request certification documents."
+    },
+    {
+      "question": "How do I handle spare parts and after-sales service?",
+      "answer": "Negotiate a spare parts package with your initial order. Some manufacturers offer to stock parts in your country or provide training for local workshops. Establish a warranty agreement and clarify how claims will be handled."
+    },
+    {
+      "question": "Can I import electric motorcycles from China?",
+      "answer": "Yes, China is the world's largest producer of electric two-wheelers. Brands like Yadea, Niu, Aima, and Sunra export globally. Ensure compliance with local regulations (e.g., EEC for Europe, DOT for US) and battery shipping requirements (UN38.3)."
+    }
+  ],
+  "glossary": {
+    "BEV": "Battery Electric Vehicle – runs solely on electricity.",
+    "PHEV": "Plug-in Hybrid Electric Vehicle – combines engine and rechargeable battery.",
+    "FCEV": "Fuel Cell Electric Vehicle – uses hydrogen to generate electricity.",
+    "CBU": "Completely Built-Up – fully assembled vehicle for export.",
+    "CKD": "Completely Knocked Down – vehicle shipped in parts for local assembly.",
+    "SKD": "Semi Knocked Down – partially assembled vehicle for final assembly.",
+    "Homologation": "Process of certifying a vehicle meets local regulations.",
+    "WVTA": "Whole Vehicle Type Approval – EU certification.",
+    "GCC": "Gulf Cooperation Council – certification for Middle East.",
+    "CCC": "China Compulsory Certification – required for vehicles sold in China.",
+    "ADAS": "Advanced Driver-Assistance Systems.",
+    "NEV": "New Energy Vehicle – Chinese term for EVs and PHEVs.",
+    "JV": "Joint Venture – partnership between Chinese and foreign automakers.",
+    "RHD": "Right-Hand Drive.",
+    "LHD": "Left-Hand Drive."
+  }
+}

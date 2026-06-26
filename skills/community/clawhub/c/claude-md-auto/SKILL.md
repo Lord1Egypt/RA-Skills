@@ -1,35 +1,19 @@
----
-name: "CLAUDE.md Auto Discovery"
-description: "Automatically discovers and loads CLAUDE.md files from the project root, supporting @include directives and reverse loading up to 40,000 characters."
-category: "other"
-source: "ClawHub"
-tags: [context, discovery]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/claude-md-auto"
-sourceUrl: "https://clawhub.ai/skills/claude-md-auto"
----
+# CLAUDE.md 自动发现技能
 
-# CLAUDE.md Auto Discovery
+自动发现并加载项目根目录的 CLAUDE.md 文件，参考 Claude Code 实现。
 
-> Automatically discovers and loads CLAUDE.md files from the project root, supporting @include directives and reverse loading up to 40,000 characters.
+## 功能
+1. 自动查找 ./CLAUDE.md 和 ./ CLAUDE.md
+2. 支持 @include 指令
+3. 最大 40000 字符限制
+4. 逆序加载（后面的文件优先级更高）
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/claude-md-auto`
-- **Source URL:** [https://clawhub.ai/skills/claude-md-auto](https://clawhub.ai/skills/claude-md-auto)
+## 触发条件
+- 当用户发送消息时自动执行
+- 无需用户手动调用
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/claude-md-auto
-```
+## 实现
+- 使用 fs.readFileWithinRoot 读取文件
+- 遍历当前工作目录向上查找
+- 解析 @include 指令
+- 注入到系统上下文

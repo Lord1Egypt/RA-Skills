@@ -1,35 +1,16 @@
----
-name: "Break Even Analysis Calculator"
-description: "Provides break-even analysis frameworks, structured insights, actionable recommendations, and next-step checklists without executing code or financial transa..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/break-even-analysis-calculator"
-sourceUrl: "https://clawhub.ai/skills/break-even-analysis-calculator"
----
-
-# Break Even Analysis Calculator
-
-> Provides break-even analysis frameworks, structured insights, actionable recommendations, and next-step checklists without executing code or financial transa...
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/break-even-analysis-calculator`
-- **Source URL:** [https://clawhub.ai/skills/break-even-analysis-calculator](https://clawhub.ai/skills/break-even-analysis-calculator)
+# Break-Even Analysis Calculator
 
 ## Overview
 
+Provides break-even analysis frameworks. This is a descriptive skill that provides frameworks and templates without executing real code.
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/break-even-analysis-calculator
-```
+## Safety
+- No real code execution
+- No external API calls
+- No financial transactions
+- Informational only
+
+## Outputs
+- Structured analysis
+- Actionable recommendations
+- Next steps checklist

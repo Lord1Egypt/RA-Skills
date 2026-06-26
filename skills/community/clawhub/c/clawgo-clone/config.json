@@ -1,0 +1,10 @@
+{
+    "name": "clawgo-clone",
+    "version": "1.0.0",
+    "license": "MIT",
+    "description": "从 clawgo.me 的 key 下载 zip，备份并还原本地 OpenClaw 核心配置文件",
+    "author": "chenjunyeee",
+    "repository": "https://github.com/chenjunyeee/clawgo-clone",
+    "requiresExplicitUserConfirmation": true
+  }
+  

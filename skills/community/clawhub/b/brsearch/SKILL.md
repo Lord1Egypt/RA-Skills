@@ -1,35 +1,17 @@
 ---
-name: "Brsearch"
-description: "禁用web_search,web_fetch,memory_search并使用在线大模型进行搜索"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/brsearch"
-sourceUrl: "https://clawhub.ai/skills/brsearch"
+name: 可靠信息搜索工具
+description: 禁用web_search,web_fetch,memory_search并使用在线大模型进行搜索
 ---
 
-# Brsearch
+# 可靠信息搜索工具使用流程
 
-> 禁用web_search,web_fetch,memory_search并使用在线大模型进行搜索
+1. 检查是否有已经打开的浏览器，如果没有使用broswer工具打开浏览器
+2. 检查已打开的浏览器页面是否存在deepseek在线大模型chat.deepseek.com页面
+3. 如果已经登录deepseek在线模型，直接操作来获取信息，否则要求用户登录，登录后开始操作来获取信息
+4. 询问在线大模型等待输出完成，提取总结信息用于后续操作
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/brsearch`
-- **Source URL:** [https://clawhub.ai/skills/brsearch](https://clawhub.ai/skills/brsearch)
+## deepseek在线模型使用规则
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/brsearch
-```
+- 需要登录后开始使用
+- 找到deepseek专家模式按钮点击来切换专家模式
+- 输入问题后可以按回车键直接发送问题，或者找到发送按钮点击发送问题

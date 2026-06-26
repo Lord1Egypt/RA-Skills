@@ -1,0 +1,833 @@
+openapi: 3.0.3
+info:
+  title: BrickEconomy API
+  description: |
+    Welcome to the BrickEconomy API for developers. The API is designed to provide easy, automated interaction with BrickEconomy data including accessing your personal collection data.
+
+    The BrickEconomy API is organized around REST. Our API has predictable resource-oriented URLs, accepts form-encoded request bodies, returns JSON-encoded responses, and uses standard HTTP response codes, authentication, and verbs.
+
+    The BrickEconomy API doesn't support bulk updates. You can work on only one object per request.
+
+    API version 1 is the default and encouraged way to programmatically interact with BrickEconomy.
+  version: "1.0"
+  contact:
+    name: BrickEconomy API Support
+    url: https://www.brickeconomy.com
+  license:
+    name: BrickEconomy API License
+    url: https://www.brickeconomy.com
+
+servers:
+  - url: https://www.brickeconomy.com/api/v1
+    description: Production server
+
+security:
+  - ApiKeyAuth: []
+
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: x-apikey
+
+  parameters:
+    CurrencyParam:
+      name: currency
+      in: query
+      required: false
+      schema:
+        type: string
+        default: "USD"
+        enum: ["USD", "GBP", "CAD", "AUD", "CNY", "KRW", "EUR", "JPY", "CHF", "INR", "BRL", "RUB", "ZAR", "MXN", "SGD", "HKD", "SEK", "NZD", "NOK", "TRY", "DKK", "PLN"]
+      description: Currency format for displaying values. Must use valid currency codes (ISO 4217 format).
+
+  schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          description: A message code describing the error
+      required:
+        - error
+
+    PriceEvent:
+      type: object
+      properties:
+        date:
+          type: string
+          format: date
+          description: Date in YYYY-MM-DD format
+        value:
+          type: number
+          format: double
+          description: Price value in the specified currency
+      required:
+        - date
+        - value
+
+    BrickSet:
+      type: object
+      properties:
+        retired:
+          type: boolean
+          description: Indication if the set has been retired from first party retail sales
+        set_number:
+          type: string
+          description: The number of the set
+        name:
+          type: string
+          description: The name of the set
+        theme:
+          type: string
+          description: The set's top level theme
+        subtheme:
+          type: string
+          description: The set's second level theme/subtheme
+        year:
+          type: integer
+          description: The year the set was initially released
+        pieces_count:
+          type: integer
+          description: Number of pieces in the set
+        minifigs_count:
+          type: integer
+          description: Number of minifigures in the set if exists
+        minifigs:
+          type: array
+          items:
+            type: string
+          description: The minifig numbers of each of the minifigs in the set
+        availability:
+          type: string
+          enum: ["retail", "retaillimited", "exclusive", "exclusivelegoland", "promotion", "promotional", "notforretail"]
+          description: The general sales availability of the set
+        retail_price_us:
+          type: number
+          format: double
+          description: The actual retail price the set was released for in the United States as USD
+        retail_price_uk:
+          type: number
+          format: double
+          description: The actual retail price the set was released for in the United Kingdom as GBP
+        retail_price_ca:
+          type: number
+          format: double
+          description: The actual retail price the set was released for in Canada as CAD
+        retail_price_eu:
+          type: number
+          format: double
+          description: The actual retail price the set was released for in the European Union as EUR
+        retail_price_au:
+          type: number
+          format: double
+          description: The actual retail price the set was released for in Australia as AUD
+        ean:
+          type: string
+          description: The EAN, European Article Number, barcode number
+        upc:
+          type: string
+          description: The UPC, Universal Product Code, barcode number
+        released_date:
+          type: string
+          format: date
+          description: The date the set was released as YYYY-MM-DD
+        retired_date:
+          type: string
+          format: date
+          description: The date the set was retired as YYYY-MM-DD
+        current_value_new:
+          type: number
+          format: double
+          description: The current estimated value of a new, factory sealed set in the currency specified
+        current_value_used:
+          type: number
+          format: double
+          description: The current estimated value of a used (complete with all parts) set in the currency specified
+        current_value_used_low:
+          type: number
+          format: double
+          description: The current estimated low value of a used set in the currency specified
+        current_value_used_high:
+          type: number
+          format: double
+          description: The current estimated high value range of a used set in the currency specified
+        forecast_value_new_2_years:
+          type: number
+          format: double
+          description: The forecasted future estimated value in 2 years from today, of a new, factory sealed set
+        forecast_value_new_5_years:
+          type: number
+          format: double
+          description: The forecasted future estimated value in 5 years from today, of a new, factory sealed set
+        rolling_growth_lastyear:
+          type: number
+          format: double
+          description: The average rolling growth, in percent, of the set over previous full year
+        rolling_growth_12months:
+          type: number
+          format: double
+          description: The average rolling growth, in percent, of the set over the last 12 months
+        price_events_new:
+          type: array
+          items:
+            $ref: '#/components/schemas/PriceEvent'
+          description: The last 12 interesting price events for new sets
+        price_events_used:
+          type: array
+          items:
+            $ref: '#/components/schemas/PriceEvent'
+          description: The last 12 interesting price events for used sets
+        currency:
+          type: string
+          description: The currency code of the values in the set object
+
+    BrickSetResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/BrickSet'
+      required:
+        - data
+
+    Minifig:
+      type: object
+      properties:
+        minifig_number:
+          type: string
+          description: The number of the minifig
+        name:
+          type: string
+          description: The name of the minifig
+        description:
+          type: string
+          description: Description of the minifig
+        set_count:
+          type: integer
+          description: Number of sets this minifig appears in
+        sets:
+          type: array
+          items:
+            type: string
+          description: List of set numbers containing this minifig
+        theme:
+          type: string
+          description: The minifig's top level theme
+        subtheme:
+          type: string
+          description: The minifig's second level theme/subtheme
+        year:
+          type: integer
+          description: The year the minifig was initially released
+        released_date:
+          type: string
+          description: The date the minifig was released
+        current_value_new:
+          type: number
+          format: double
+          description: The current estimated value of a new minifig in the currency specified
+        price_events_new:
+          type: array
+          items:
+            $ref: '#/components/schemas/PriceEvent'
+          description: The last 12 interesting price events for the minifig
+        currency:
+          type: string
+          description: The currency code of the values in the minifig object
+
+    MinifigResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Minifig'
+      required:
+        - data
+
+    CollectionBrickSet:
+      type: object
+      properties:
+        retired:
+          type: boolean
+          description: Indication if the set has been retired
+        set_number:
+          type: string
+          description: The number of the set
+        name:
+          type: string
+          description: The name of the set
+        theme:
+          type: string
+          description: The set's top level theme
+        subtheme:
+          type: string
+          description: The set's second level theme/subtheme
+        year:
+          type: integer
+          description: The year the set was initially released
+        pieces_count:
+          type: integer
+          description: Number of pieces in the set
+        minifigs_count:
+          type: integer
+          description: Number of minifigures in the set
+        retail_price:
+          type: number
+          format: double
+          description: The actual retail price the set was released for
+        released_date:
+          type: string
+          format: date
+          description: The date the set was released
+        retired_date:
+          type: string
+          format: date
+          description: The date the set was retired
+        acquired_date:
+          type: string
+          format: date
+          description: The date the set was originally acquired
+        collection:
+          type: string
+          description: If the set belongs to a user named collection, this is the name
+        condition:
+          type: string
+          enum: ["new", "used_as_new", "used_complete", "used_incomplete"]
+          description: The specified condition of the set
+        paid_price:
+          type: number
+          format: double
+          description: Price you paid for the set
+        current_value:
+          type: number
+          format: double
+          description: The current estimated value of the set based on condition
+        growth:
+          type: number
+          format: double
+          description: The percent of growth based on the current value and paid price
+
+    CollectionPeriod:
+      type: object
+      properties:
+        value:
+          type: number
+          format: double
+          description: The value of the collection at the specified date
+        date:
+          type: string
+          format: date
+          description: The date of the period in YYYY-MM-DD
+        sets_count:
+          type: integer
+          description: The number of sets in the collection during that period
+        sets_count_new:
+          type: integer
+          description: The number of sets in new condition during that period
+        sets_count_used:
+          type: integer
+          description: The number of sets in used condition during that period
+
+    CollectionSetsResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            sets_count:
+              type: integer
+              description: The number of total sets in the collection
+            sets_unique_count:
+              type: integer
+              description: The number of unique sets in the collection
+            sets_new_count:
+              type: integer
+              description: The number of new/factory sealed sets in the collection
+            sets_used_count:
+              type: integer
+              description: The number of used sets in the collection
+            sets_pieces_count:
+              type: integer
+              description: The total number of pieces in all sets in the collection
+            sets_minifigs_count:
+              type: integer
+              description: The total number of minifigs in all sets in the collection
+            current_value:
+              type: number
+              format: double
+              description: The current estimated value of the collection
+            currency:
+              type: string
+              description: The currency code of the values
+            sets:
+              type: array
+              items:
+                $ref: '#/components/schemas/CollectionBrickSet'
+              description: Each set in the collection
+            periods:
+              type: array
+              items:
+                $ref: '#/components/schemas/CollectionPeriod'
+              description: Historical collection value snapshots
+      required:
+        - data
+
+    CollectionMinifig:
+      type: object
+      properties:
+        minifig_number:
+          type: string
+          description: The number of the minifig
+        name:
+          type: string
+          description: The name of the minifig
+        acquired_date:
+          type: string
+          format: date
+          description: The date the minifig was originally acquired
+        collection:
+          type: string
+          description: If the minifig belongs to a user named collection, this is the name
+        paid_price:
+          type: number
+          format: double
+          description: Price you paid for the minifig
+        current_value:
+          type: number
+          format: double
+          description: The current estimated value of the minifig
+        growth:
+          type: number
+          format: double
+          description: The percent of growth based on current value and paid price
+
+    CollectionMinifigPeriod:
+      type: object
+      properties:
+        value:
+          type: number
+          format: double
+          description: The value of the minifig collection at the specified date
+        date:
+          type: string
+          format: date
+          description: The date of the period in YYYY-MM-DD
+        minifigs_count:
+          type: integer
+          description: The number of minifigs in the collection during that period
+
+    CollectionMinifigsResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            minifigs_count:
+              type: integer
+              description: The number of total minifigs in the collection
+            minifigs_unique_count:
+              type: integer
+              description: The number of unique minifigs in the collection
+            current_value:
+              type: number
+              format: double
+              description: The current estimated value of the collection
+            currency:
+              type: string
+              description: The currency code of the values
+            minifigs:
+              type: array
+              items:
+                $ref: '#/components/schemas/CollectionMinifig'
+              description: Each minifig in the collection
+            periods:
+              type: array
+              items:
+                $ref: '#/components/schemas/CollectionMinifigPeriod'
+              description: Historical minifig collection value snapshots
+      required:
+        - data
+
+    BrickSetSale:
+      type: object
+      properties:
+        set_number:
+          type: string
+          description: The number of the set
+        name:
+          type: string
+          description: The name of the set
+        theme:
+          type: string
+          description: The set's top level theme
+        subtheme:
+          type: string
+          description: The set's second level theme/subtheme
+        year:
+          type: integer
+          description: The year the set was initially released
+        pieces_count:
+          type: integer
+          description: Number of pieces in the set
+        minifigs_count:
+          type: integer
+          description: Number of minifigures in the set
+        currency:
+          type: string
+          description: The currency code that pertains to all values
+        sale_price_total:
+          type: number
+          format: double
+          description: The total sold price of the sale
+        sale_price_unit:
+          type: number
+          format: double
+          description: The unit sold price of the sale
+        sale_price_shipping:
+          type: number
+          format: double
+          description: Additional shipping price of the sale
+        sale_price_fees:
+          type: number
+          format: double
+          description: Additional unspecified fees of the sale
+        sale_quantity:
+          type: integer
+          description: The number of sets in the sale
+        sale_condition:
+          type: string
+          enum: ["new", "used_as_new", "used_complete", "used_incomplete"]
+          description: The condition of the sets in the sale
+        sale_date:
+          type: string
+          format: date
+          description: The date the sets were sold
+        sale_notes:
+          type: string
+          description: Any sales notes
+        buy_date:
+          type: string
+          format: date
+          description: The date the original items were purchased
+        buy_notes:
+          type: string
+          description: Any purchase notes
+        buy_condition:
+          type: string
+          enum: ["new", "used_as_new", "used_complete", "used_incomplete"]
+          description: The condition the sets were originally purchased in
+        buy_price:
+          type: number
+          format: double
+          description: The price originally paid for the sets
+
+    MinifigSale:
+      type: object
+      properties:
+        minifig_number:
+          type: string
+          description: The number of the minifig
+        name:
+          type: string
+          description: The name of the minifig
+        currency:
+          type: string
+          description: The currency code that pertains to all values
+        sale_price_total:
+          type: number
+          format: double
+          description: The total sold price of the sale
+        sale_price_unit:
+          type: number
+          format: double
+          description: The unit sold price of the sale
+        sale_price_shipping:
+          type: number
+          format: double
+          description: Additional shipping price of the sale
+        sale_price_fees:
+          type: number
+          format: double
+          description: Additional unspecified fees of the sale
+        sale_quantity:
+          type: integer
+          description: The number of minifigs in the sale
+        sale_condition:
+          type: string
+          enum: ["new", "used_as_new", "used_complete", "used_incomplete"]
+          description: The condition of the minifigs in the sale
+        sale_date:
+          type: string
+          format: date
+          description: The date the minifigs were sold
+        sale_notes:
+          type: string
+          description: Any sales notes
+        buy_date:
+          type: string
+          format: date
+          description: The date the original items were purchased
+        buy_notes:
+          type: string
+          description: Any purchase notes
+        buy_condition:
+          type: string
+          enum: ["new", "used_as_new", "used_complete", "used_incomplete"]
+          description: The condition the minifigs were originally purchased in
+        buy_price:
+          type: number
+          format: double
+          description: The price originally paid for the minifigs
+
+    SalesLedgerResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            set_sales_count:
+              type: integer
+              description: The number of set sales
+            minifig_sales_count:
+              type: integer
+              description: The number of minifig sales
+            set_sales:
+              type: array
+              items:
+                $ref: '#/components/schemas/BrickSetSale'
+              description: Each set sale
+            minifig_sales:
+              type: array
+              items:
+                $ref: '#/components/schemas/MinifigSale'
+              description: Each minifig sale
+      required:
+        - data
+
+paths:
+  /set/{setNumber}:
+    get:
+      tags:
+        - Sets
+      summary: Get a set
+      description: Returns a JSON object of a LEGO set
+      operationId: getSet
+      parameters:
+        - name: setNumber
+          in: path
+          required: true
+          schema:
+            type: string
+          description: The set number of a set to lookup (e.g., "10236" or "10236-1")
+        - $ref: '#/components/parameters/CurrencyParam'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BrickSetResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '429':
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /minifig/{minifigNumber}:
+    get:
+      tags:
+        - Minifigs
+      summary: Get a minifig
+      description: Returns a JSON object of a LEGO minifig (minifigure)
+      operationId: getMinifig
+      parameters:
+        - name: minifigNumber
+          in: path
+          required: true
+          schema:
+            type: string
+          description: The minifig number of the minifig to lookup (e.g., "sw0509")
+        - $ref: '#/components/parameters/CurrencyParam'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MinifigResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '429':
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /collection/sets:
+    get:
+      tags:
+        - Collection
+      summary: Get my sets
+      description: Returns your entire set collection data
+      operationId: getCollectionSets
+      parameters:
+        - $ref: '#/components/parameters/CurrencyParam'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CollectionSetsResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '429':
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /collection/minifigs:
+    get:
+      tags:
+        - Collection
+      summary: Get my minifigs
+      description: Returns your entire minifig collection data
+      operationId: getCollectionMinifigs
+      parameters:
+        - $ref: '#/components/parameters/CurrencyParam'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CollectionMinifigsResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '429':
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /salesledger:
+    get:
+      tags:
+        - Sales
+      summary: Get my sales ledger
+      description: Returns your sale ledger data set
+      operationId: getSalesLedger
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SalesLedgerResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '429':
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'

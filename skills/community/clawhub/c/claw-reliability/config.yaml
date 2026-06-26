@@ -1,0 +1,36 @@
+alert_destinations:
+  discord:
+    enabled: true
+    webhook_url: ""
+  logfile:
+    enabled: true
+    path: data/alerts.log
+alerts:
+  cooldown_seconds: 300
+  cost_spike_multiplier: 2.0
+  loop_detection_threshold: 10
+  tool_failure_threshold: 3
+  unusual_tool_alert: true
+cost_models:
+  anthropic/claude-haiku-4-5-20251001:
+    input: 0.8
+    output: 4.0
+  anthropic/claude-opus-4-20250514:
+    input: 15.0
+    output: 75.0
+  anthropic/claude-sonnet-4-20250514:
+    input: 3.0
+    output: 15.0
+  openai/gpt-4o:
+    input: 2.5
+    output: 10.0
+  openai/gpt-4o-mini:
+    input: 0.15
+    output: 0.6
+dashboard:
+  host: 127.0.0.1
+  port: 8777
+monitoring:
+  db_path: data/metrics.db
+  openclaw_state_dir: ~/.openclaw
+  poll_interval: 5

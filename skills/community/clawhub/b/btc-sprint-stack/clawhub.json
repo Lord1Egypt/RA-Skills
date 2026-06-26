@@ -1,0 +1,21 @@
+{
+  "version": "0.2.0",
+  "emoji": "btc",
+  "requires": {
+    "pip": [
+      "simmer-sdk",
+      "eth-account",
+      "google-auth",
+      "requests"
+    ],
+    "env": [
+      "SIMMER_API_KEY",
+      "LLM_API_KEY"
+    ]
+  },
+  "cron": "*/15 * * * *",
+  "automaton": {
+    "managed": true,
+    "entrypoint": "main.py"
+  }
+}

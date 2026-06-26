@@ -1,0 +1,36 @@
+{
+  "coins": [
+    {
+      "symbol": "BTCUSDT",
+      "name": "Bitcoin",
+      "coingecko_id": "bitcoin"
+    },
+    {
+      "symbol": "ETHUSDT",
+      "name": "Ethereum",
+      "coingecko_id": "ethereum"
+    }
+  ],
+  "binance": {
+    "interval": "1w",
+    "limit": 100,
+    "quote_currency": "USDT"
+  },
+  "thresholds": {
+    "rsi_max": 30.0,
+    "volume_ratio_max": 0.7,
+    "fear_greed_max": 25,
+    "mvrv_proxy_max": 1.0,
+    "lower_band_buffer": 1.05
+  },
+  "discord": {
+    "enabled": false,
+    "token_env": "DISCORD_TOKEN",
+    "channel_id": "",
+    "mention_user_id": ""
+  },
+  "schedule": "0 8 * * *",
+  "runtime": {
+    "request_timeout_seconds": 10
+  }
+}

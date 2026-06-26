@@ -1,0 +1,1912 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>字幕审核页（veveditor 最小版）</title>
+    <link
+      rel="stylesheet"
+      href="https://lf-unpkg.volccdn.com/obj/vcloudfe/sdk/@byted/veveditor/2.0.1-rc.11/veveditor.css"
+    />
+    <style>
+      :root {
+        --bg: #0b0d12;
+        --panel: #111525;
+        --text: #e8ecff;
+        --muted: rgba(232, 236, 255, 0.65);
+        --line: rgba(232, 236, 255, 0.12);
+        --danger: #ff4d4f;
+        --warn: #faad14;
+        --ok: #52c41a;
+        --btn: #2b5cff;
+      }
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+        background: var(--bg);
+        color: var(--text);
+        font-family:
+          ui-sans-serif,
+          system-ui,
+          -apple-system,
+          Segoe UI,
+          Roboto,
+          Helvetica,
+          Arial,
+          'PingFang SC',
+          'Hiragino Sans GB',
+          'Microsoft YaHei',
+          'Noto Sans CJK SC',
+          sans-serif;
+      }
+      .app {
+        height: 100%;
+        display: flex;
+      }
+      .col {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        border-right: 1px solid var(--line);
+      }
+      .left {
+        width: 360px;
+        background: var(--panel);
+      }
+      .right {
+        width: 360px;
+        background: var(--panel);
+        border-right: none;
+        border-left: 1px solid var(--line);
+      }
+      .center {
+        flex: 1;
+        min-width: 640px;
+        background: #0b0d12;
+      }
+      .toolbar {
+        padding: 12px;
+        display: flex;
+        gap: 8px;
+        align-items: center;
+        border-bottom: 1px solid var(--line);
+      }
+      .toolbar input[type='text'] {
+        flex: 1;
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid var(--line);
+        color: var(--text);
+        padding: 8px 10px;
+        border-radius: 8px;
+        outline: none;
+      }
+      .btn {
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid var(--line);
+        color: var(--text);
+        padding: 8px 10px;
+        border-radius: 8px;
+        cursor: pointer;
+        user-select: none;
+      }
+      .btn.primary {
+        background: var(--btn);
+        border-color: rgba(255, 255, 255, 0.18);
+      }
+      .btn.danger {
+        background: rgba(255, 77, 79, 0.12);
+        border-color: rgba(255, 77, 79, 0.35);
+      }
+      .btn:disabled {
+        opacity: 0.45;
+        cursor: not-allowed;
+      }
+      .list {
+        overflow: auto;
+        padding: 8px;
+        flex: 1;
+      }
+      .item {
+        border: 1px solid var(--line);
+        background: rgba(255, 255, 255, 0.03);
+        border-radius: 10px;
+        padding: 10px;
+        margin: 8px 0;
+        cursor: pointer;
+      }
+      .item.active {
+        border-color: rgba(43, 92, 255, 0.7);
+        box-shadow: 0 0 0 2px rgba(43, 92, 255, 0.18) inset;
+      }
+      .item.muted,
+      .item.removed {
+        opacity: 0.7;
+        border-color: rgba(255, 77, 79, 0.6);
+      }
+      .meta {
+        display: flex;
+        justify-content: space-between;
+        color: var(--muted);
+        font-size: 12px;
+        margin-bottom: 6px;
+      }
+      .tags {
+        display: flex;
+        gap: 6px;
+        flex-wrap: wrap;
+        margin-top: 8px;
+      }
+      .tag {
+        font-size: 12px;
+        padding: 2px 6px;
+        border-radius: 999px;
+        border: 1px solid var(--line);
+        color: var(--muted);
+      }
+      .tag.ok {
+        color: rgba(82, 196, 26, 0.9);
+        border-color: rgba(82, 196, 26, 0.35);
+        background: rgba(82, 196, 26, 0.12);
+      }
+      .tag.warn {
+        color: rgba(250, 173, 20, 0.95);
+        border-color: rgba(250, 173, 20, 0.35);
+        background: rgba(250, 173, 20, 0.12);
+      }
+      .tag.danger {
+        color: rgba(255, 77, 79, 0.95);
+        border-color: rgba(255, 77, 79, 0.35);
+        background: rgba(255, 77, 79, 0.12);
+      }
+      .editor {
+        padding: 12px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .field label {
+        display: block;
+        color: var(--muted);
+        font-size: 12px;
+        margin-bottom: 6px;
+      }
+      .field textarea,
+      .field input {
+        width: 100%;
+        box-sizing: border-box;
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid var(--line);
+        color: var(--text);
+        padding: 8px 10px;
+        border-radius: 8px;
+        outline: none;
+      }
+      .field textarea {
+        min-height: 92px;
+        resize: vertical;
+      }
+      .row {
+        display: flex;
+        gap: 10px;
+      }
+      .row .field {
+        flex: 1;
+      }
+      #editor-container {
+        height: 100%;
+        width: 100%;
+      }
+      .hint {
+        padding: 10px 12px;
+        border-top: 1px solid var(--line);
+        color: var(--muted);
+        font-size: 12px;
+      }
+      .hint code {
+        color: rgba(232, 236, 255, 0.9);
+      }
+      .vc-material-content div {
+        font-size: 12px !important;
+      }
+      .copyable-modal-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.6);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 10000;
+      }
+      .copyable-modal {
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        padding: 16px;
+        min-width: 360px;
+        max-width: 90vw;
+        max-height: 80vh;
+        display: flex;
+        flex-direction: column;
+      }
+      .copyable-modal-title {
+        font-weight: 600;
+        margin-bottom: 12px;
+        color: var(--text);
+      }
+      .copyable-modal-body {
+        flex: 1;
+        overflow: auto;
+        background: rgba(0, 0, 0, 0.2);
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        padding: 12px;
+        font-size: 13px;
+        color: var(--text);
+        white-space: pre-wrap;
+        word-break: break-all;
+        user-select: text;
+        margin-bottom: 12px;
+      }
+      .copyable-modal-actions {
+        display: flex;
+        gap: 8px;
+        justify-content: flex-end;
+      }
+      /* 静音人声轨样式：trackStyle 为主，trackClassName 为备选（SDK 可能将类名加在轨道块上） */
+      .voice-muted {
+        background-color: rgba(255, 77, 79, 0.45) !important;
+        border-color: rgba(255, 77, 79, 0.85) !important;
+      }
+      /* 音频轨 UI 隐藏（数据仍传 VeVEditor，仅时间轴不显示） */
+      .lane-audio-visually-hidden {
+        height: 0 !important;
+        min-height: 0 !important;
+        overflow: hidden !important;
+        visibility: hidden !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        border: none !important;
+      }
+      .export-status {
+        margin-top: 12px;
+        padding: 10px 12px;
+        background: rgba(43, 92, 255, 0.12);
+        border: 1px solid rgba(43, 92, 255, 0.35);
+        border-radius: 8px;
+        color: var(--text);
+        font-size: 13px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .export-spinner {
+        width: 18px;
+        height: 18px;
+        border: 2px solid rgba(255, 255, 255, 0.2);
+        border-top-color: var(--btn);
+        border-radius: 50%;
+        animation: export-spin 0.8s linear infinite;
+      }
+      @keyframes export-spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="app">
+      <div class="col left">
+        <div class="toolbar">
+          <input id="search" type="text" placeholder="搜索字幕（支持子串）" />
+          <button id="btn-undo" class="btn" disabled>撤回</button>
+          <button id="btn-redo" class="btn" disabled>重做</button>
+        </div>
+        <div id="list" class="list"></div>
+        <div class="hint">
+          数据入口：右侧“导入 JSON”里可粘贴 <code>sentences</code>（审核列表）和
+          <code>track</code>（主轨）。
+        </div>
+      </div>
+
+      <div class="col center">
+        <div id="editor-container"></div>
+      </div>
+
+      <div class="col right">
+        <div class="toolbar">
+          <span id="mode-badge" class="mode-badge" style="display:none; margin-right:8px; padding:2px 10px; border-radius:4px; font-size:13px; font-weight:600; color:#fff; background:#888;"></span>
+          <button id="btn-import" class="btn">导入 JSON</button>
+          <button id="btn-load-api" class="btn">从 API 加载</button>
+          <button id="btn-save-review" class="btn" style="display:none;" title="保存审核修改到磁盘（直接导出将使用最新修改）">💾 保存审核</button>
+          <span id="save-status" style="display:none; font-size:12px; margin-right:4px;"></span>
+          <button id="btn-export" class="btn primary">提交视频导出任务</button>
+        </div>
+        <div class="editor">
+          <div class="field">
+            <label>当前句子 ID</label>
+            <input id="cur-id" type="text" readonly />
+          </div>
+          <div class="row">
+            <div class="field">
+              <label>开始（秒）</label>
+              <input id="cur-start" type="text" placeholder="例如 12.345" />
+            </div>
+            <div class="field">
+              <label>结束（秒）</label>
+              <input id="cur-end" type="text" placeholder="例如 14.200" />
+            </div>
+          </div>
+          <div class="field">
+            <label>字幕内容</label>
+            <textarea id="cur-text" placeholder="修改字幕内容"></textarea>
+          </div>
+          <div class="field">
+            <label>本句调整（静音/删除/去重/标记）</label>
+            <div
+              id="cur-ops"
+              style="
+                white-space: pre-wrap;
+                min-height: 78px;
+                padding: 8px 10px;
+                background: rgba(255, 255, 255, 0.06);
+                border: 1px solid var(--line);
+                border-radius: 8px;
+                box-sizing: border-box;
+                color: var(--text);
+              "
+            ></div>
+          </div>
+          <div class="row">
+            <button id="btn-save" class="btn primary" disabled>保存修改</button>
+            <button id="btn-toggle-remove" class="btn danger" disabled>
+              删除/撤回删除
+            </button>
+          </div>
+          <!-- <div class="field" id="volume-ctl" style="display: none">
+            <label>选中元素音量（0–100%）</label>
+            <div class="row">
+              <input
+                id="cur-volume"
+                type="range"
+                min="0"
+                max="100"
+                value="100"
+                style="flex: 1"
+              />
+              <span id="cur-volume-val">100</span>
+            </div>
+          </div> -->
+          <div class="field">
+            <label>导入/导出区（JSON）</label>
+            <textarea
+              id="io"
+              placeholder='粘贴 JSON：{"sentences":[...],"track":[...]}'
+            ></textarea>
+          </div>
+          <div class="row">
+            <button id="btn-apply-io" class="btn">应用导入</button>
+            <button id="btn-dump-io" class="btn">导出当前 JSON</button>
+          </div>
+          <div class="field">
+            <label>导出服务地址（提交后调用 vod_direct_export 导出视频）</label>
+            <input id="service-url" type="text" value="/export" />
+          </div>
+          <div id="export-status" class="export-status" style="display: none">
+            <span class="export-spinner"></span>
+            <span id="export-status-text"></span>
+          </div>
+        </div>
+        <div class="hint">
+          本页是“最小可用审核页”，目标是验证：<code>字幕列表 + 字幕轨道</code>
+          联动、改文案/改时间、删除/撤回、并能一键导出。
+        </div>
+      </div>
+    </div>
+
+    <div id="copyable-modal-root"></div>
+
+    <!-- VeVEditor SDK: @byted/veveditor 2.0.1-rc.11 -->
+    <script src="https://lf-unpkg.volccdn.com/obj/vcloudfe/sdk/@byted/veveditor/2.0.1-rc.11/veveditor.umd.js"></script>
+    <script>
+      // 排查模式：仅向编辑器注册视频轨道（不含音频轨道），便于定位问题
+      const TRACK_VIDEO_ONLY = false
+      // 默认隐藏音频轨（数据仍传 VeVEditor，仅 UI 不显示；预览/导出能力保留）
+      const TRACK_HIDE_AUDIO_LANES = true
+
+      function showCopyableAlert(title, content) {
+        const root = document.getElementById('copyable-modal-root')
+        root.innerHTML = ''
+        const overlay = document.createElement('div')
+        overlay.className = 'copyable-modal-overlay'
+        overlay.onclick = (e) => {
+          if (e.target === overlay) close()
+        }
+        const modal = document.createElement('div')
+        modal.className = 'copyable-modal'
+        modal.onclick = (e) => e.stopPropagation()
+        const titleEl = document.createElement('div')
+        titleEl.className = 'copyable-modal-title'
+        titleEl.textContent = title
+        const bodyEl = document.createElement('div')
+        bodyEl.className = 'copyable-modal-body'
+        bodyEl.textContent = content
+        bodyEl.tabIndex = 0
+        const actions = document.createElement('div')
+        actions.className = 'copyable-modal-actions'
+        const copyBtn = document.createElement('button')
+        copyBtn.className = 'btn'
+        copyBtn.textContent = '复制'
+        const closeBtn = document.createElement('button')
+        closeBtn.className = 'btn primary'
+        closeBtn.textContent = '关闭'
+        actions.appendChild(copyBtn)
+        actions.appendChild(closeBtn)
+        modal.appendChild(titleEl)
+        modal.appendChild(bodyEl)
+        modal.appendChild(actions)
+        overlay.appendChild(modal)
+        root.appendChild(overlay)
+        const close = () => {
+          if (overlay.parentNode) root.removeChild(overlay)
+        }
+        closeBtn.onclick = close
+        copyBtn.onclick = async () => {
+          try {
+            await navigator.clipboard.writeText(content)
+            copyBtn.textContent = '已复制'
+            setTimeout(() => {
+              copyBtn.textContent = '复制'
+            }, 1500)
+          } catch (e) {
+            const r = document.createRange()
+            r.selectNodeContents(bodyEl)
+            window.getSelection().removeAllRanges()
+            window.getSelection().addRange(r)
+            document.execCommand('copy')
+            copyBtn.textContent = '已复制'
+            setTimeout(() => {
+              copyBtn.textContent = '复制'
+            }, 1500)
+          }
+        }
+        bodyEl.focus()
+      }
+
+      const STATUS = {
+        KEEP: 'keep',
+        MARKED: 'marked',
+        REMOVED: 'removed',
+        MUTED: 'muted',
+      }
+
+      const state = {
+        sentences: [],
+        baseTrack: [],
+        exportTrack: [],
+        sourceById: {},
+        canvas: null,
+        activeId: null,
+        mutedVoiceIds: [],
+        undo: [],
+        redo: [],
+        ve: null,
+        executionMode: 'cloud',  // 'apig' | 'cloud' | 'local' — 由 review_import_data._execution_mode 设置
+        dirty: false,            // 是否有未保存的审核修改
+      }
+
+      function restoreTrackSource(track) {
+        if (!track || !state.sourceById) return
+        for (const lane of track) {
+          if (!Array.isArray(lane)) continue
+          for (const el of lane) {
+            if (!el || typeof el !== 'object') continue
+            const typ = (el.Type || '').toLowerCase()
+            if (typ !== 'video' && typ !== 'audio') continue
+            const ud = el.UserData || {}
+            const previewUrl = ud.url
+            const src0 = el.Source
+            // 本地模式：prepare_export_data 在 UserData.url 提供 /local-media/...，必须用其预览，否则裸绝对路径会变成 http://host/Users/... 导致 404
+            if (
+              previewUrl &&
+              /^https?:\/\//i.test(String(previewUrl)) &&
+              src0 &&
+              !/^(vid|http|https|directurl):\/\//i.test(String(src0))
+            ) {
+              el.Source = String(previewUrl)
+              continue
+            }
+            const src = el.Source
+            if (!src || /^(vid|http|https|directurl):\/\//i.test(src)) continue
+            const prefix = state.sourceById[src]
+            if (prefix) el.Source = prefix + src
+          }
+        }
+      }
+
+      function getCanvas() {
+        if (state.canvas && state.canvas.Width > 0 && state.canvas.Height > 0)
+          return state.canvas
+        for (const lane of state.baseTrack || []) {
+          if (!Array.isArray(lane)) continue
+          for (const el of lane) {
+            if (
+              el &&
+              (el.Type || '').toLowerCase() === 'video' &&
+              el.UserData
+            ) {
+              const w = el.UserData.width || 0
+              const h = el.UserData.height || 0
+              if (w > 0 && h > 0) return { Width: w, Height: h }
+            }
+          }
+        }
+        return { Width: 1280, Height: 2160 }
+      }
+
+      // 参考 1.sj：按画布比例计算元素宽高，超出时等比缩放
+      function formatElementWH(
+        elementWidth,
+        elementHeight,
+        containerWidth,
+        containerHeight,
+        percent = 1,
+      ) {
+        const elementWHRatio = elementWidth / elementHeight
+        const containerWHRatio = containerWidth / containerHeight
+        if (elementWHRatio >= containerWHRatio) {
+          return {
+            width: Math.round(containerWidth * percent),
+            height: Math.round((containerWidth / elementWHRatio) * percent),
+          }
+        }
+        return {
+          width: Math.round(containerHeight * elementWHRatio * percent),
+          height: Math.round(containerHeight * percent),
+        }
+      }
+
+      // 参考 1.sj：计算视频在画布内的宽高与居中位置
+      function calculateVideoTransform(videoEl, canvas) {
+        const cw = canvas.Width || 1280
+        const ch = canvas.Height || 2160
+        let width = videoEl.UserData?.width || cw
+        let height = videoEl.UserData?.height || ch
+        const overSize = width > cw || height > ch
+        if (overSize) {
+          const fmt = formatElementWH(width, height, cw, ch)
+          width = fmt.width
+          height = fmt.height
+        }
+        const posX = ((cw - width) / 2) | 0
+        const posY = ((ch - height) / 2) | 0
+        return { Width: width, Height: height, PosX: posX, PosY: posY }
+      }
+
+      // 字幕安全区与字体：左右 8%，距底 10%，文本区域高度按画布 12%，统一字体大小
+      // PosX = 画布宽*8%（左边界）；Width = 画布宽*(1-2*8%)；Height = 画布高*12%
+      const MARGIN_H_PCT = 0.08
+      const MARGIN_BOTTOM_PCT = 0.1
+      const SUB_HEIGHT_RATIO = 0.12
+      const SUBTITLE_FONT_SIZE = 50
+      function subtitlePosition(canvas) {
+        const cw = canvas?.Width || 1080
+        const ch = canvas?.Height || 1920
+        const posX = Math.round(cw * MARGIN_H_PCT)
+        const subWidth = Math.round(cw * (1 - 2 * MARGIN_H_PCT))
+        const subHeight = Math.round(ch * SUB_HEIGHT_RATIO)
+        const posY = Math.round(ch * (1 - MARGIN_BOTTOM_PCT)) - subHeight
+        return { PosX: posX, PosY: posY, Width: subWidth, Height: subHeight }
+      }
+
+      // 按行宽折行，返回 fontText 供画布渲染。中文字幕每行 12～18 字为宜
+      // 中文字实际宽度常 > fontSize，加安全系数保障左右安全距离（0.8 更保守）
+      const MAX_CHARS_PER_LINE = 18
+      const SAFE_CHAR_WIDTH_RATIO = 0.8
+      function calculateText(
+        text,
+        fontSize,
+        posX,
+        posY,
+        width,
+        height,
+        canvasWidth,
+        canvasHeight,
+      ) {
+        const cw = canvasWidth || 1080
+        const ch = canvasHeight || 1920
+        let lineCount = Math.floor(
+          ((cw - posX * 2) / fontSize) * SAFE_CHAR_WIDTH_RATIO,
+        )
+        if (width && height)
+          lineCount = Math.floor((width / fontSize) * SAFE_CHAR_WIDTH_RATIO)
+        lineCount = Math.min(Math.max(lineCount, 1), MAX_CHARS_PER_LINE)
+        const lines = []
+        if (text?.length) {
+          for (let i = 0; i < text.length; i += lineCount) {
+            lines.push(text.slice(i, i + lineCount))
+          }
+        }
+        return {
+          fontText: lines?.length ? lines.join('\n') : '',
+          PosX: posX,
+          Width: width || cw - posX * 2,
+          Height: height || ch - posY,
+        }
+      }
+
+      function logFullState(op) {
+        let editorTrack = null
+        try {
+          if (state.ve && state.ve.getTrack) editorTrack = state.ve.getTrack()
+        } catch (e) {}
+        const data = {
+          _op: op,
+          _ts: new Date().toISOString(),
+          canvas: getCanvas(),
+          stateCanvas: state.canvas,
+          activeId: state.activeId,
+          sentences: state.sentences,
+          baseTrack: state.baseTrack,
+          exportTrack: state.exportTrack,
+          editorTrack,
+        }
+        console.log('[review] 全部数据', JSON.stringify(data))
+      }
+
+      const $ = (id) => document.getElementById(id)
+      const listEl = $('list')
+
+      function globalUniqueId() {
+        if (typeof crypto !== 'undefined' && crypto.randomUUID) {
+          return crypto.randomUUID().replace(/-/g, '').slice(0, 12)
+        }
+        return Date.now().toString(36) + Math.random().toString(36).slice(2, 10)
+      }
+
+      function clone(obj) {
+        return JSON.parse(JSON.stringify(obj))
+      }
+
+      // 移除 trackStyle.fontSize，避免时间轴列表项字体过大（VeVEditor 会将 trackStyle 应用到轨道块）
+      function sanitizeTrackStyleFontSize(track) {
+        if (!Array.isArray(track)) return
+        for (const lane of track) {
+          if (!Array.isArray(lane)) continue
+          for (const el of lane) {
+            if (
+              el?.UserData?.trackStyle &&
+              (el.Type || '').toLowerCase() === 'text'
+            ) {
+              delete el.UserData.trackStyle.fontSize
+            }
+          }
+        }
+      }
+
+      function pushHistory() {
+        state.undo.push({
+          sentences: clone(state.sentences),
+          baseTrack: clone(state.baseTrack),
+          activeId: state.activeId,
+        })
+        state.redo = []
+        _markDirty()
+        renderUndoRedo()
+      }
+
+      function restoreFrom(snapshot) {
+        state.sentences = clone(snapshot.sentences || [])
+        state.baseTrack = clone(snapshot.baseTrack || [])
+        if (snapshot.canvas)
+          state.canvas = { ...(state.canvas || {}), ...snapshot.canvas }
+        state.activeId = snapshot.activeId || null
+        updateExportTrack()
+        render()
+        syncTrackToEditor()
+        logFullState('restoreFrom(undo/redo)')
+      }
+
+      function renderUndoRedo() {
+        $('btn-undo').disabled = state.undo.length === 0
+        $('btn-redo').disabled = state.redo.length === 0
+        if (state.ve && state.ve.setUndoRedoOverride) {
+          state.ve.setUndoRedoOverride({
+            canUndo: state.undo.length > 0,
+            canRedo: state.redo.length > 0,
+          })
+        }
+      }
+
+      function fmtTime(sec) {
+        const v = Number(sec)
+        if (!isFinite(v)) return '-'
+        return v.toFixed(3)
+      }
+
+      function setUserOpsForSentence(s, userOps) {
+        const baseOps = Array.isArray(s.operations) ? s.operations : []
+        // 追加用户操作，配合 undo/redo 可回退
+        s.operations = baseOps.concat(userOps || [])
+      }
+
+      function sentenceToTrackElement(s, { exportMode = false } = {}) {
+        const start = Math.max(0, Math.round(Number(s.start || 0) * 1000))
+        const end = Math.max(start, Math.round(Number(s.end || 0) * 1000))
+        const canvas = getCanvas()
+        const pos = subtitlePosition(canvas)
+        const cw = canvas?.Width || 1080
+        const ch = canvas?.Height || 1920
+        const isPortrait = ch >= cw
+        const rawText = String(s.text || '')
+        const { fontText } = calculateText(
+          rawText,
+          SUBTITLE_FONT_SIZE,
+          pos.PosX,
+          pos.PosY,
+          pos.Width,
+          pos.Height,
+          cw,
+          ch,
+        )
+
+        const FONT_TYPE =
+          'https://lf3-static.bytednsdoc.com/obj/eden-cn/ljhwz_kvc/ljhwZthlaukjlkulzlp/ai_mediakit/字体/okt1LEaq5CAm0EAoBSFfACgGel7AdgEnVADspZ.zip'
+        const FONT_COLOR = '#ffffffff'
+        const TEXT_RES = 'loki://1179443'
+        const SOURCE_URL =
+          'https://lf26-effectcdn-tos.byteeffecttos.com/obj/ies.fe.effect/cf22c1986eb9e80649355618fd39c4fb'
+        const FONT_TYPE_URL =
+          'https://lf3-static.bytednsdoc.com/obj/eden-cn/ljhwz_kvc/ljhwZthlaukjlkulzlp/ai_mediakit/字体/okt1LEaq5CAm0EAoBSFfACgGel7AdgEnVADspZ.zip'
+        const FONT_FAMILY = 'noto sans'
+
+        const style =
+          s.status === STATUS.REMOVED
+            ? {
+                backgroundColor: 'rgba(255,77,79,0.45)',
+                color: '#fff',
+                borderColor: 'rgba(255,77,79,0.85)',
+                padding: '2px 8px',
+                borderRadius: '8px',
+              }
+            : s.status === STATUS.MUTED
+              ? {
+                  backgroundColor: 'rgba(255,77,79,0.45)',
+                  color: 'rgba(255,255,255,0.92)',
+                  borderColor: 'rgba(255,77,79,0.85)',
+                  padding: '2px 8px',
+                  borderRadius: '8px',
+                }
+              : s.status === STATUS.MARKED
+                ? {
+                    backgroundColor: 'rgba(250,173,20,0.22)',
+                    color: 'rgba(255,255,255,0.92)',
+                    padding: '2px 8px',
+                    borderRadius: '8px',
+                  }
+                : {
+                    backgroundColor: 'rgba(82,196,26,0.18)',
+                    color: 'rgba(255,255,255,0.92)',
+                    padding: '2px 8px',
+                    borderRadius: '8px',
+                  }
+
+        // 删除态：Alpha:0 隐藏；保留态：Alpha:1 展示（不再使用 remarkOnly）
+        const isDeleted =
+          s.status === STATUS.REMOVED || s.status === STATUS.MUTED
+        return {
+          ID: 'sub_' + s.id,
+          Type: 'text',
+          TargetTime: [start, end],
+          Text: fontText || rawText,
+          FontType: FONT_TYPE,
+          FontSize: SUBTITLE_FONT_SIZE,
+          FontColor: FONT_COLOR,
+          ShadowColor: '#00000000',
+          AlignType: 1,
+          Typesetting: 0,
+          LineMaxWidth: 1,
+          InnerPadding: 0,
+          Extra: [
+            {
+              ID: globalUniqueId(),
+              Type: 'transform',
+              PosX: pos.PosX,
+              PosY: pos.PosY,
+              // Width: pos.Width,
+              // Height: pos.Height,
+              Rotation: 0,
+              FlipX: false,
+              FlipY: false,
+              ScaleX: 1,
+              ScaleY: 1,
+              Alpha: isDeleted ? 0 : 1,
+            },
+          ],
+          UserData: {
+            type: 'text',
+            trackStyle: style,
+            trackClassName: '',
+            sentenceId: s.id,
+            status: s.status,
+            source: TEXT_RES,
+            url: SOURCE_URL,
+            fontFamily: FONT_FAMILY,
+            fontTypeUrl: FONT_TYPE_URL,
+            fontTypeRef: FONT_TYPE,
+            textType: 'baseText',
+            Text: fontText,
+            PosX: pos.PosX,
+            PosY: pos.PosY,
+            Width: pos.Width,
+            Height: pos.Height,
+            FontSize: SUBTITLE_FONT_SIZE,
+            FontColor: FONT_COLOR,
+            ShadowColor: '#00000000',
+          },
+        }
+      }
+
+      const MUTED_AUDIO_STYLE = {
+        backgroundColor: 'rgba(255,77,79,0.45)',
+        borderColor: 'rgba(255,77,79,0.85)',
+      }
+      const MUTED_AUDIO_CLASS = 'voice-muted'
+      function isMutedAudioElement(el) {
+        if (!el || (el.Type || '').toLowerCase() !== 'audio') return false
+        const extra = el.Extra || []
+        const av = extra.find((x) => x && x.Type === 'a_volume')
+        if (av != null) return Number(av.Volume) === 0
+        if ((el.UserData || {}).status === STATUS.MUTED) return true
+        const id = el.ID || (el.UserData || {}).id
+        return id && state.mutedVoiceIds.includes(id)
+      }
+
+      function findOverlappingSentence(startMs, endMs) {
+        const startS = startMs / 1000
+        const endS = endMs / 1000
+        for (const s of state.sentences || []) {
+          const sStart = Number(s.start || 0)
+          const sEnd = Number(s.end || 0)
+          if (sEnd > startS && sStart < endS) return s
+        }
+        return null
+      }
+
+      // SKILL：恢复时 a_volume 设为 1；删除态为 0
+      function applySentenceStatusToAudio(el) {
+        if (!el || (el.Type || '').toLowerCase() !== 'audio') return
+        const tt = el.TargetTime || []
+        const startMs = Number(tt[0]) || 0
+        const endMs = Number(tt[1]) || 0
+        const s = findOverlappingSentence(startMs, endMs)
+        const shouldMute =
+          !s || s.status === STATUS.MUTED || s.status === STATUS.REMOVED
+        const extra = el.Extra || []
+        let av = extra.find((x) => x && x.Type === 'a_volume')
+        if (!av) {
+          av = {
+            Type: 'a_volume',
+            Volume: shouldMute ? 0 : 1,
+            ID: globalUniqueId(),
+          }
+          el.Extra = [...extra, av]
+        } else {
+          av.Volume = shouldMute ? 0 : 1
+        }
+        const ud = el.UserData || {}
+        if (shouldMute) {
+          el.UserData = { ...ud, status: STATUS.MUTED }
+        } else {
+          const { status, ...rest } = ud
+          el.UserData = rest
+        }
+      }
+
+      function buildMergedTrack({ exportMode = false } = {}) {
+        let t = clone(state.baseTrack || [])
+        if (!Array.isArray(t)) return []
+
+        // 根据 sentences 状态同步：音频 a_volume（恢复时 1）、字幕 Alpha（0 隐藏 / 1 展示）
+        for (const lane of t) {
+          if (!Array.isArray(lane)) continue
+          for (const el of lane) {
+            if (el && (el.Type || '').toLowerCase() === 'audio') {
+              applySentenceStatusToAudio(el)
+            }
+          }
+        }
+
+        const canvas = getCanvas()
+        // 预览阶段：为视频元素注入 transform（宽高、位置）， review_import_data 489-501 完整结构
+        if (!exportMode) {
+          for (const lane of t) {
+            if (!Array.isArray(lane)) continue
+            for (const el of lane) {
+              if (!el) continue
+              const typ = (el.Type || '').toLowerCase()
+              if (typ === 'video' && el.UserData) {
+                const tf = calculateVideoTransform(el, canvas)
+                const transformFull = {
+                  ID: globalUniqueId(),
+                  Type: 'transform',
+                  Width: tf.Width,
+                  Height: tf.Height,
+                  PosX: tf.PosX,
+                  PosY: tf.PosY,
+                  Rotation: 0,
+                  FlipX: false,
+                  FlipY: false,
+                  ScaleX: 1,
+                  ScaleY: 1,
+                }
+                const extra = el.Extra || []
+                const hasTransform = extra.some(
+                  (f) => f && f.Type === 'transform',
+                )
+                if (hasTransform) {
+                  const idx = extra.findIndex(
+                    (f) => f && f.Type === 'transform',
+                  )
+                  extra[idx] = { ...extra[idx], ...transformFull }
+                } else {
+                  extra.unshift(transformFull)
+                }
+                el.Extra = extra
+              }
+              if (el && (el.Type || '').toLowerCase() === 'audio') {
+                const ud = el.UserData || {}
+                let style = { ...ud.trackStyle }
+                let cls = String(ud.trackClassName || '').trim()
+                if (isMutedAudioElement(el)) {
+                  style = { ...style, ...MUTED_AUDIO_STYLE }
+                  cls = (cls ? cls + ' ' : '') + MUTED_AUDIO_CLASS
+                }
+                if (TRACK_HIDE_AUDIO_LANES) {
+                  style = {
+                    ...style,
+                    height: 0,
+                    minHeight: 0,
+                    overflow: 'hidden',
+                    visibility: 'hidden',
+                  }
+                  cls = (cls ? cls + ' ' : '') + 'lane-audio-visually-hidden'
+                }
+                if (Object.keys(style).length || cls) {
+                  el.UserData = {
+                    ...ud,
+                    trackStyle: style,
+                    trackClassName: cls,
+                  }
+                }
+              }
+            }
+          }
+          // 确保所有轨道元素的 Extra 子项均有全局唯一 ID
+          for (const lane of t) {
+            if (!Array.isArray(lane)) continue
+            for (const el of lane) {
+              if (!el || !el.Extra || !Array.isArray(el.Extra)) continue
+              el.Extra = el.Extra.map((f) => {
+                if (!f || typeof f !== 'object') return f
+                if (f.ID) return f
+                return { ...f, ID: globalUniqueId() }
+              })
+            }
+          }
+        }
+
+        // 排查模式：仅向编辑器注册视频轨道（预览时不含音频）
+        if (TRACK_VIDEO_ONLY && !exportMode) {
+          t = t.filter((lane) => {
+            if (!Array.isArray(lane)) return false
+            const hasVideo = lane.some(
+              (el) => el && (el.Type || '').toLowerCase() === 'video',
+            )
+            return hasVideo
+          })
+        }
+
+        const sentences = exportMode
+          ? state.sentences.filter(
+              (s) => s.status !== STATUS.REMOVED && s.status !== STATUS.MUTED,
+            )
+          : state.sentences
+        const subtitleTrack = sentences.map((s) =>
+          sentenceToTrackElement(s, { exportMode }),
+        )
+        if (subtitleTrack.length > 0 && subtitleTrack[0].UserData) {
+          subtitleTrack[0].UserData.laneLabel = '字幕'
+        }
+        // 替换已有的字幕轨（若有），否则追加，避免重复且始终以 sentences 为准
+        const subIdx = t.findIndex(
+          (lane) =>
+            Array.isArray(lane) &&
+            lane.some((el) => el?.UserData?.sentenceId != null),
+        )
+        if (subIdx >= 0) {
+          t[subIdx] = subtitleTrack
+        } else {
+          t.push(subtitleTrack)
+        }
+        if (!exportMode) {
+          restoreTrackSource(t)
+        } else {
+          for (const lane of t) {
+            if (!Array.isArray(lane)) continue
+            for (const el of lane) {
+              if (!el || typeof el !== 'object') continue
+              const typ = (el.Type || '').toLowerCase()
+              if (typ !== 'video' && typ !== 'audio') continue
+              const ud = el.UserData || {}
+              // local 模式: Source 已是 /local-media/ URL（由后端 prepare_export_data 写入），
+              // 导出时 apply_review_to_export 会将其转回裸路径供 ffmpeg 使用，无需在前端恢复
+              if (state.executionMode === 'local') continue
+              if (ud.source != null && String(ud.source).length > 0) {
+                el.Source = String(ud.source)
+              }
+            }
+          }
+        }
+        return t
+      }
+
+      function normalizeTrackForExport(track) {
+        if (!Array.isArray(track)) return []
+        const out = []
+        for (const lane of track) {
+          if (!Array.isArray(lane)) continue
+          const elems = []
+          for (const el of lane) {
+            if (!el || typeof el !== 'object') continue
+            const ud = el.UserData || {}
+            if (ud.status === STATUS.REMOVED || ud.status === STATUS.MUTED)
+              continue
+            const typ = (el.Type || '').toLowerCase()
+            const clean = { Type: el.Type, TargetTime: el.TargetTime }
+            if (typ === 'video' || typ === 'audio') {
+              clean.Source =
+                ud.source != null && String(ud.source).length > 0
+                  ? String(ud.source)
+                  : el.Source
+              clean.Extra = (el.Extra || [])
+                .filter(
+                  (f) =>
+                    f &&
+                    (f.Type === 'trim' ||
+                      f.Type === 'a_volume' ||
+                      f.Type === 'transform'),
+                )
+                .map((f) => ({ ...f }))
+            } else if (typ === 'text') {
+              clean.Text = el.Text
+              clean.FontType =
+                el.FontType ||
+                'https://lf3-static.bytednsdoc.com/obj/eden-cn/ljhwz_kvc/ljhwZthlaukjlkulzlp/ai_mediakit/字体/okt1LEaq5CAm0EAoBSFfACgGel7AdgEnVADspZ.zip'
+              clean.FontSize = SUBTITLE_FONT_SIZE
+              clean.FontColor = el.FontColor || '#ffffffff'
+              clean.ShadowColor = el.ShadowColor ?? '#00000000'
+              clean.LineMaxWidth = el.LineMaxWidth ?? 1
+              clean.AlignType = 1
+              clean.Typesetting = el.Typesetting ?? 0
+              clean.InnerPadding = el.InnerPadding ?? 0
+              const canvas = getCanvas()
+              const pos = subtitlePosition(canvas)
+              clean.Extra = [
+                {
+                  ID: globalUniqueId(),
+                  Type: 'transform',
+                  PosX: pos.PosX,
+                  PosY: pos.PosY,
+                  Width: pos.Width,
+                  Height: pos.Height,
+                  Rotation: 0,
+                  FlipX: false,
+                  FlipY: false,
+                  Alpha: 1,
+                },
+              ]
+            } else {
+              continue
+            }
+            elems.push(clean)
+          }
+          out.push(elems)
+        }
+        return out
+      }
+
+      function updateExportTrack() {
+        state.exportTrack = buildMergedTrack({ exportMode: true })
+      }
+
+      async function syncTrackToEditor() {
+        if (!state.ve || !state.ve.setTrack) return
+        // 延迟一帧，确保 VeVEditor 挂载完成后再 setTrack（解决初次加载时轨道不显示）
+        await new Promise((r) => requestAnimationFrame(r))
+        const merged = buildMergedTrack({ exportMode: false })
+        sanitizeTrackStyleFontSize(merged)
+        if (
+          !merged.length ||
+          merged.every((lane) => !lane || lane.length === 0)
+        )
+          return
+        try {
+          await state.ve.setTrack(merged)
+        } catch (e) {
+          console.warn('setTrack failed', e)
+        }
+      }
+
+      function renderList() {
+        const q = ($('search').value || '').trim()
+        const filtered = state.sentences.filter(
+          (s) => !q || String(s.text || '').includes(q),
+        )
+        listEl.innerHTML = ''
+        for (const s of filtered) {
+          const item = document.createElement('div')
+          item.className =
+            'item' +
+            (s.id === state.activeId ? ' active' : '') +
+            (s.status === STATUS.REMOVED ? ' removed' : '') +
+            (s.status === STATUS.MUTED ? ' muted' : '')
+          item.onclick = () => selectSentence(s.id, true)
+          const meta = document.createElement('div')
+          meta.className = 'meta'
+          meta.innerHTML = `<span>${fmtTime(s.start)} → ${fmtTime(s.end)}</span><span>${s.status || STATUS.KEEP}</span>`
+          const text = document.createElement('div')
+          text.textContent =
+            s.text || (s.status === STATUS.MUTED ? '（静音）' : '')
+          item.appendChild(meta)
+          item.appendChild(text)
+          if (s.removedText) {
+            const removed = document.createElement('div')
+            removed.className = 'removed-preview'
+            removed.textContent = '已去掉：' + s.removedText
+            removed.style.cssText =
+              'font-size:12px;color:var(--muted);margin-top:4px;'
+            item.appendChild(removed)
+          }
+          const tags = document.createElement('div')
+          tags.className = 'tags'
+          const statusTag = document.createElement('span')
+          statusTag.className =
+            'tag ' +
+            (s.status === STATUS.REMOVED || s.status === STATUS.MUTED
+              ? 'danger'
+              : s.status === STATUS.MARKED
+                ? 'warn'
+                : 'ok')
+          statusTag.textContent =
+            s.status === STATUS.REMOVED
+              ? '删除'
+              : s.status === STATUS.MUTED
+                ? '静音'
+                : s.status === STATUS.MARKED
+                  ? '标记'
+                  : '保留'
+          tags.appendChild(statusTag)
+          const reasons = Array.isArray(s.reasonTags) ? s.reasonTags : []
+          for (const r of reasons.slice(0, 5)) {
+            const tag = document.createElement('span')
+            tag.className = 'tag'
+            tag.textContent = r
+            tags.appendChild(tag)
+          }
+          item.appendChild(tags)
+          listEl.appendChild(item)
+        }
+      }
+
+      function renderEditor() {
+        const s = state.sentences.find((x) => x.id === state.activeId) || null
+        $('cur-id').value = s ? String(s.id) : ''
+        $('cur-start').value = s ? String(s.start ?? '') : ''
+        $('cur-end').value = s ? String(s.end ?? '') : ''
+        $('cur-text').value = s ? String(s.text ?? '') : ''
+        const has = !!s
+        $('btn-save').disabled = !has
+        $('btn-toggle-remove').disabled = !has
+        $('btn-toggle-remove').textContent =
+          s && s.status === STATUS.REMOVED
+            ? '撤回删除'
+            : s && s.status === STATUS.MUTED
+              ? '恢复'
+              : '删除'
+
+        if (!s) {
+          $('cur-ops').textContent = ''
+        } else {
+          const parts = []
+          if (s.removedText) parts.push('已去掉：' + s.removedText)
+          const ops = Array.isArray(s.operations) ? s.operations : []
+          if (ops.length) parts.push(...ops)
+          $('cur-ops').textContent = parts.length
+            ? parts.join('\n')
+            : '（无该句可展示的调整信息）'
+        }
+      }
+
+      function render() {
+        renderList()
+        renderEditor()
+        renderUndoRedo()
+      }
+
+      function selectSentence(id, seek) {
+        state.activeId = id
+        render()
+        const s = state.sentences.find((x) => x.id === id)
+        if (seek && s && state.ve && state.ve.setCurrentTime) {
+          try {
+            state.ve.setCurrentTime(Number(s.start) || 0)
+          } catch (e) {}
+        }
+      }
+
+      function applyEdits() {
+        const s = state.sentences.find((x) => x.id === state.activeId)
+        if (!s) return
+        pushHistory()
+        const oldStart = s.start
+        const oldEnd = s.end
+        const oldText = s.text
+        s.start = Number($('cur-start').value)
+        s.end = Number($('cur-end').value)
+        s.text = $('cur-text').value
+        if (!isFinite(s.start)) s.start = 0
+        if (!isFinite(s.end) || s.end < s.start) s.end = s.start
+        const userOps = []
+        if (String(oldText ?? '') !== String(s.text ?? '')) {
+          const t = String(s.text ?? '')
+          userOps.push(
+            `【用户】修改字幕：${t.length > 60 ? t.slice(0, 60) + '…' : t}`,
+          )
+        }
+        if (
+          Number(oldStart) !== Number(s.start) ||
+          Number(oldEnd) !== Number(s.end)
+        ) {
+          userOps.push(
+            `【用户】修改时间：${fmtTime(oldStart)} → ${fmtTime(s.start)} / ${fmtTime(oldEnd)} → ${fmtTime(s.end)}`,
+          )
+        }
+        setUserOpsForSentence(s, userOps)
+        updateExportTrack()
+        render()
+        syncTrackToEditor()
+        logFullState('applyEdits')
+      }
+
+      function toggleRemove() {
+        const s = state.sentences.find((x) => x.id === state.activeId)
+        if (!s) return
+        pushHistory()
+        if (s.status === STATUS.REMOVED || s.status === STATUS.MUTED) {
+          s.status = STATUS.KEEP
+          if (!s.text && s.removedText) s.text = String(s.removedText)
+          setUserOpsForSentence(s, ['【用户】恢复该句'])
+        } else {
+          s.status = STATUS.REMOVED
+          setUserOpsForSentence(s, ['【用户】删除该句（可撤回）'])
+        }
+        updateExportTrack()
+        render()
+        syncTrackToEditor()
+        logFullState('toggleRemove')
+      }
+
+      function applyImport(jsonText) {
+        const data = JSON.parse(jsonText)
+        const sentences = Array.isArray(data.sentences) ? data.sentences : []
+        const track = Array.isArray(data.track) ? data.track : []
+        if (data.canvas && (data.canvas.Width > 0 || data.canvas.Height > 0)) {
+          state.canvas = {
+            Width: data.canvas.Width || 1280,
+            Height: data.canvas.Height || 2160,
+          }
+        }
+        state.sentences = sentences.map((x, idx) => {
+          const id =
+            x.id !== undefined && x.id !== null ? String(x.id) : String(idx + 1)
+
+          // 兼容老结构：
+          // - start/end：秒
+          // - startTime/endTime：毫秒
+          // - deleted：true/false
+          let startS = 0
+          let endS = 0
+          if (x.start !== undefined || x.end !== undefined) {
+            startS = Number(x.start ?? 0)
+            endS = Number(x.end ?? 0)
+          } else if (
+            x.startTime !== undefined ||
+            x.endTime !== undefined ||
+            x.start_time !== undefined ||
+            x.end_time !== undefined
+          ) {
+            const startMs = Number(x.startTime ?? x.start_time ?? 0)
+            const endMs = Number(x.endTime ?? x.end_time ?? 0)
+            startS = startMs / 1000.0
+            endS = endMs / 1000.0
+          }
+
+          const status =
+            x.status || (x.deleted === true ? STATUS.REMOVED : STATUS.KEEP)
+
+          return {
+            id,
+            start: startS,
+            end: Math.max(startS, endS),
+            text: String(x.text ?? ''),
+            status,
+            reasonTags: Array.isArray(x.reasonTags) ? x.reasonTags : [],
+            operations: Array.isArray(x.operations) ? x.operations : [],
+            removedText: x.removedText ? String(x.removedText) : undefined,
+          }
+        })
+
+        state.baseTrack = track
+        state.mutedVoiceIds = Array.isArray(data.mutedVoiceIds)
+          ? data.mutedVoiceIds
+          : []
+
+        // 读取执行模式并更新 UI
+        if (data._execution_mode) {
+          state.executionMode = data._execution_mode
+        }
+        _updateModeUI()
+        state.dirty = false
+        _updateSaveUI()
+        state.sourceById = {}
+        for (const lane of track) {
+          if (!Array.isArray(lane)) continue
+          for (const el of lane) {
+            if (!el || typeof el !== 'object') continue
+            const typ = (el.Type || '').toLowerCase()
+            if (typ !== 'video' && typ !== 'audio') continue
+            const src = el.Source
+            if (!src || typeof src !== 'string') continue
+            if (src.startsWith('vid://')) {
+              state.sourceById[src.slice(6)] = 'vid://'
+            } else if (src.startsWith('directurl://')) {
+              state.sourceById[src.slice(12)] = 'directurl://'
+            } else if (/^https?:\/\/.*\/local-media\//i.test(src)) {
+              // local 模式: Source 已是 /local-media/ URL, 无需额外映射
+            }
+          }
+        }
+        console.log(
+          '[sourceById] 初始化完成',
+          JSON.stringify(state.sourceById, null, 2),
+        )
+        updateExportTrack()
+        state.activeId = state.sentences[0]?.id ?? null
+        state.undo = []
+        state.redo = []
+        render()
+        syncTrackToEditor()
+        logFullState('applyImport')
+      }
+
+      function dumpExportJson() {
+        const payload = {
+          sentences: state.sentences,
+          track: state.baseTrack,
+          exportTrack: state.exportTrack,
+        }
+        $('io').value = JSON.stringify(payload, null, 2)
+      }
+
+      function setExportStatus(visible, text) {
+        const el = document.getElementById('export-status')
+        const textEl = document.getElementById('export-status-text')
+        el.style.display = visible ? 'flex' : 'none'
+        if (textEl) textEl.textContent = text || ''
+      }
+
+      async function callExport() {
+        logFullState('callExport')
+        const url = ($('service-url').value || '').trim()
+        if (!url)
+          return showCopyableAlert(
+            '提示',
+            '请填写导出服务地址（默认 /export，会代理到导出服务 7860 端口）',
+          )
+        const trackToExport =
+          state.exportTrack.length > 0
+            ? state.exportTrack
+            : buildMergedTrack({ exportMode: true })
+        const body = {
+          sentences: state.sentences,
+          baseTrack: state.baseTrack,
+          mergedTrack: trackToExport,
+          Canvas: getCanvas(),
+        }
+        try {
+          $('btn-export').disabled = true
+          setExportStatus(true, '正在提交导出任务...')
+          const progressTimer = setTimeout(() => {
+            setExportStatus(true, '正在合成视频，请稍候（可能需要数分钟）...')
+          }, 3000)
+          console.log('body', JSON.stringify(body))
+          const resp = await fetch(url, {
+            method: 'POST',
+            headers: { 'content-type': 'application/json' },
+            body: JSON.stringify(body),
+          })
+          clearTimeout(progressTimer)
+          setExportStatus(true, '正在处理结果...')
+          const text = await resp.text()
+          if (!resp.ok) {
+            const hint =
+              resp.status === 501
+                ? '（501 通常表示请求到了审核页服务而非导出服务，请确认导出服务地址为 http://127.0.0.1:7860/export 且已在 scripts/.venv 下运行 python ./export_server.py）'
+                : ''
+            throw new Error(
+              `HTTP ${resp.status} ${resp.statusText}${hint}\n${text || ''}`.trim(),
+            )
+          }
+          const data = (() => {
+            try {
+              return JSON.parse(text)
+            } catch {
+              return {}
+            }
+          })()
+          const msg =
+            data.Status === 'success'
+              ? (state.executionMode === 'local'
+                ? `本地导出成功\n输出文件: ${data.OutputFile || data.PlayURL || ''}`
+                : `导出成功\nOutputVid: ${data.OutputVid || ''}\nPlayURL: ${data.PlayURL || ''}`)
+              : data.error
+                ? `导出失败: ${data.error}`
+                : data.Status === 'failed_run' && data.Message
+                  ? `导出失败 (failed_run)\nReqId: ${data.ReqId || ''}\n原因: ${data.Message}`
+                  : (text || JSON.stringify(data)).slice(0, 800)
+          setExportStatus(false)
+          showCopyableAlert(
+            data.Status === 'success' ? '导出成功' : '导出失败',
+            msg,
+          )
+        } catch (e) {
+          setExportStatus(false)
+          showCopyableAlert(
+            '导出失败',
+            '导出失败：\n' + (e?.message || String(e)),
+          )
+        } finally {
+          $('btn-export').disabled = false
+        }
+      }
+
+      // ─── 模式感知 UI ────────────────────────────────────
+      function _updateModeUI() {
+        const badge = $('mode-badge')
+        const exportBtn = $('btn-export')
+        const saveBtn = $('btn-save-review')
+        if (!badge) return
+        const mode = state.executionMode || 'cloud'
+        const modeMap = {
+          apig:  { label: 'APIG 模式',  color: '#1890ff' },
+          cloud: { label: '云端模式',    color: '#52c41a' },
+          local: { label: '本地模式',    color: '#fa8c16' },
+        }
+        const info = modeMap[mode] || modeMap.cloud
+        badge.textContent = info.label
+        badge.style.background = info.color
+        badge.style.display = 'inline-block'
+        // 导出按钮文案
+        if (exportBtn) {
+          exportBtn.textContent = mode === 'local' ? '本地导出视频' : '提交视频导出任务'
+        }
+        // 保存按钮仅在有后端支持时显示
+        if (saveBtn) saveBtn.style.display = 'inline-block'
+      }
+
+      function _updateSaveUI() {
+        const el = $('save-status')
+        if (!el) return
+        if (state.dirty) {
+          el.textContent = '● 未保存'
+          el.style.color = '#fa8c16'
+          el.style.display = 'inline'
+        } else {
+          el.textContent = '✓ 已保存'
+          el.style.color = '#52c41a'
+          el.style.display = 'inline'
+          setTimeout(() => { if (!state.dirty) el.style.display = 'none' }, 3000)
+        }
+      }
+
+      function _markDirty() {
+        if (!state.dirty) {
+          state.dirty = true
+          _updateSaveUI()
+        }
+      }
+
+      async function saveReview() {
+        const saveBtn = $('btn-save-review')
+        const saveStatus = $('save-status')
+        if (saveBtn) saveBtn.disabled = true
+        if (saveStatus) { saveStatus.textContent = '正在保存...'; saveStatus.style.color = '#1890ff'; saveStatus.style.display = 'inline'; }
+        const payload = {
+          sentences: state.sentences,
+          baseTrack: state.baseTrack,
+          mergedTrack: buildMergedTrack({ exportMode: false }),
+          canvas: getCanvas(),
+          _execution_mode: state.executionMode,
+        }
+        try {
+          const resp = await fetch('/api/save-review', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload),
+          })
+          if (!resp.ok) throw new Error(`HTTP ${resp.status}`)
+          const data = await resp.json()
+          state.dirty = false
+          _updateSaveUI()
+          console.log('[save-review] 保存成功', data)
+        } catch (e) {
+          if (saveStatus) { saveStatus.textContent = '保存失败'; saveStatus.style.color = '#ff4d4f'; saveStatus.style.display = 'inline'; }
+          console.error('[save-review] 保存失败', e)
+          showCopyableAlert('保存失败', '审核数据保存失败：' + (e?.message || String(e)))
+        } finally {
+          if (saveBtn) saveBtn.disabled = false
+        }
+      }
+
+            function initEditor() {
+        if (!window.VeVEditor) {
+          alert('VeVEditor 未加载成功')
+          return
+        }
+        state.ve = new window.VeVEditor({
+          container: document.getElementById('editor-container'),
+          config: {
+            serveless: true,
+            header: { show: false },
+            layout: { simpleMode: true },
+            track: { mainTrackOnTop: true, mainTrackDraggable: false },
+          },
+          actions: {
+            describeProject: async () => {
+              const hasData =
+                state.sentences?.length > 0 || state.baseTrack?.length > 0
+              const track = hasData
+                ? buildMergedTrack({ exportMode: false })
+                : []
+              return [
+                {
+                  LatestEditParam: {
+                    Canvas: {
+                      Width: getCanvas().Width,
+                      Height: getCanvas().Height,
+                      BackgroundColor: '#000000FF',
+                    },
+                    Track: track,
+                  },
+                },
+              ]
+            },
+            updateProject: async (params) => {
+              const latest = params?.LatestEditParam
+              if (latest) {
+                if (
+                  latest.Canvas &&
+                  (latest.Canvas.Width > 0 || latest.Canvas.Height > 0)
+                ) {
+                  state.canvas = { ...(state.canvas || {}), ...latest.Canvas }
+                }
+                if (Array.isArray(latest.Track)) {
+                  const raw = clone(latest.Track)
+                  sanitizeTrackStyleFontSize(raw)
+                  restoreTrackSource(raw)
+                  state.baseTrack = raw
+                  updateExportTrack()
+                }
+              }
+              logFullState('updateProject')
+              return {}
+            },
+          },
+          handlers: {
+            onBeforeUndo: (payload) => {
+              console.log('[review] onBeforeUndo', payload)
+              return true
+            },
+            onBeforeRedo: (payload) => {
+              console.log('[review] onBeforeRedo', payload)
+              return true
+            },
+            onBeforeKeyframeMount: (params) => {
+              console.log('[review] onBeforeKeyframeMount', params)
+              return true
+            },
+          },
+        })
+
+        const E = window.VeVEditor.Events
+        state.ve.on(E.System.ExportStatus, (data) => {
+          console.log('[review] ExportStatus', data)
+        })
+        state.ve.on(E.Timeline.ScaleChanged, (payload) => {
+          console.log('[review] ScaleChanged', payload)
+        })
+        state.ve.on(E.Track.Changed, (payload) => {
+          const k = payload?.kind || ''
+          if (['replaced', 'cut', 'updated', 'added', 'removed'].includes(k)) {
+            try {
+              const t = state.ve.getTrack && state.ve.getTrack()
+              if (!Array.isArray(t) || t.length === 0) return
+              if (TRACK_VIDEO_ONLY) {
+                // 排查模式：将编辑器视频轨道变更合并回 baseTrack
+                const videoLane = t.find(
+                  (lane) =>
+                    Array.isArray(lane) &&
+                    lane.some(
+                      (el) => el && (el.Type || '').toLowerCase() === 'video',
+                    ),
+                )
+                if (videoLane && state.baseTrack && state.baseTrack[0]) {
+                  state.baseTrack[0] = clone(videoLane)
+                }
+              }
+              const src = TRACK_VIDEO_ONLY ? state.baseTrack : t
+              sanitizeTrackStyleFontSize(src)
+              restoreTrackSource(src)
+              const normalized = normalizeTrackForExport(src)
+              if (normalized.length > 0) state.exportTrack = normalized
+            } catch (e) {
+              console.warn('[review] Track.Changed getTrack failed', e)
+            }
+          }
+          logFullState('Track.Changed')
+        })
+        state.ve.on(E.Playback.Play, () => {
+          console.log('[review] Playback.Play')
+        })
+        state.ve.on(E.Playback.Pause, () => {
+          console.log('[review] Playback.Pause')
+        })
+        state.ve.on(E.History.StackChanged, (payload) => {
+          console.log('[review] History.StackChanged', payload)
+        })
+        state.ve.on(E.Timestamp.Triggered, (payload) => {
+          console.log('[review] Timestamp.Triggered', payload)
+        })
+        state.ve.on(E.Keyframe.Triggered, (payload) => {
+          console.log('[review] Keyframe.Triggered', payload)
+        })
+        state.ve.on(E.Playback.Seek, (payload) => {
+          const t = payload?.currentTime ?? 0
+          const s = state.sentences.find(
+            (x) =>
+              x.status !== STATUS.REMOVED &&
+              t >= (x.start || 0) &&
+              t <= (x.end || 0),
+          )
+          if (s && s.id !== state.activeId) selectSentence(s.id, false)
+        })
+        state.ve.on(E.Element.Selected, (payload) => {
+          state.ve._lastSelectedPayload = payload
+          const el = payload?.element || payload
+          const id = el?.ID || payload?.id || ''
+          if (typeof id === 'string' && id.startsWith('sub_')) {
+            const sid = id.slice(4)
+            if (sid) selectSentence(sid, false)
+          }
+          const typ = (el?.Type || '').toLowerCase()
+          const volCtl = $('volume-ctl')
+          const volInput = $('cur-volume')
+          const volVal = $('cur-volume-val')
+          if ((typ === 'video' || typ === 'audio') && volCtl && volInput) {
+            volCtl.style.display = 'block'
+            const track = state.ve.getTrack && state.ve.getTrack()
+            let v = 100
+            if (Array.isArray(track)) {
+              for (const lane of track) {
+                if (!Array.isArray(lane)) continue
+                const elem = lane.find((e) => e && (e.ID === id || e.id === id))
+                if (!elem) continue
+                const extra = elem.Extra || []
+                const av = extra.find((f) => f && f.Type === 'a_volume')
+                v =
+                  av && typeof av.Volume === 'number'
+                    ? Math.round(av.Volume * 100)
+                    : 100
+                break
+              }
+            }
+            volInput.value = v
+            if (volVal) volVal.textContent = v
+          } else if (volCtl) {
+            volCtl.style.display = 'none'
+          }
+        })
+        const volSlider = $('cur-volume')
+        if (volSlider)
+          volSlider.addEventListener('input', async () => {
+            const volInput = $('cur-volume')
+            const volVal = $('cur-volume-val')
+            if (!state.ve || !state.ve.getTrack || !state.ve.setTrack) return
+            const v = Math.max(0, Math.min(100, Number(volInput?.value) || 100))
+            if (volVal) volVal.textContent = v
+            const payload = state.ve._lastSelectedPayload
+            const id = payload?.element?.ID || payload?.id || ''
+            const typ = (
+              (payload?.element || payload)?.Type || ''
+            ).toLowerCase()
+            if (!id || (typ !== 'video' && typ !== 'audio')) return
+            try {
+              const track = state.ve.getTrack()
+              if (!Array.isArray(track)) return
+              const next = clone(track)
+              for (let i = 0; i < next.length; i++) {
+                if (!Array.isArray(next[i])) continue
+                for (let j = 0; j < next[i].length; j++) {
+                  const e = next[i][j]
+                  if (!e || (e.ID !== id && e.id !== id)) continue
+                  const extra = e.Extra || []
+                  let av = extra.find((f) => f && f.Type === 'a_volume')
+                  if (!av) {
+                    av = { Type: 'a_volume', Volume: v / 100 }
+                    e.Extra = [...extra, av]
+                  } else {
+                    av.Volume = v / 100
+                  }
+                  await state.ve.setTrack(next)
+                  updateExportTrackFromGetTrack()
+                  logFullState('volume-slider')
+                  return
+                }
+              }
+            } catch (e) {
+              console.warn('[review] volume apply failed', e)
+            }
+          })
+        function updateExportTrackFromGetTrack() {
+          try {
+            const t = state.ve.getTrack && state.ve.getTrack()
+            if (!Array.isArray(t) || t.length === 0) return
+            if (TRACK_VIDEO_ONLY) {
+              const videoLane = t.find(
+                (lane) =>
+                  Array.isArray(lane) &&
+                  lane.some(
+                    (el) => el && (el.Type || '').toLowerCase() === 'video',
+                  ),
+              )
+              if (videoLane && state.baseTrack && state.baseTrack[0]) {
+                state.baseTrack[0] = clone(videoLane)
+              }
+            }
+            const src = TRACK_VIDEO_ONLY ? state.baseTrack : t
+            const n = normalizeTrackForExport(src)
+            if (n.length > 0) state.exportTrack = n
+          } catch (e) {}
+        }
+        renderUndoRedo()
+      }
+
+      // events
+      $('search').addEventListener('input', renderList)
+      $('btn-save').addEventListener('click', applyEdits)
+      $('btn-toggle-remove').addEventListener('click', toggleRemove)
+      $('btn-undo').addEventListener('click', () => {
+        if (state.undo.length === 0) return
+        const cur = {
+          sentences: clone(state.sentences),
+          baseTrack: clone(state.baseTrack),
+          activeId: state.activeId,
+        }
+        state.redo.push(cur)
+        const snap = state.undo.pop()
+        restoreFrom(snap)
+      })
+      $('btn-redo').addEventListener('click', () => {
+        if (state.redo.length === 0) return
+        const cur = {
+          sentences: clone(state.sentences),
+          baseTrack: clone(state.baseTrack),
+          activeId: state.activeId,
+        }
+        state.undo.push(cur)
+        const snap = state.redo.pop()
+        restoreFrom(snap)
+      })
+      $('btn-import').addEventListener('click', () => {
+        const v = $('io').value.trim()
+        if (!v) {
+          $('io').value = JSON.stringify(
+            {
+              sentences: [
+                {
+                  id: '1',
+                  start: 0.0,
+                  end: 2.5,
+                  text: '示例字幕 1',
+                  status: 'keep',
+                  reasonTags: ['asr'],
+                },
+                {
+                  id: '2',
+                  start: 2.5,
+                  end: 5.0,
+                  text: '示例字幕 2',
+                  status: 'marked',
+                  reasonTags: ['口癖'],
+                },
+              ],
+              track: [
+                [
+                  {
+                    Type: 'video',
+                    Source: 'vid://your_vid',
+                    TargetTime: [0, 5000],
+                  },
+                ],
+              ],
+            },
+            null,
+            2,
+          )
+        }
+      })
+      $('btn-apply-io').addEventListener('click', () => {
+        const v = $('io').value.trim()
+        if (!v) return showCopyableAlert('提示', '请先粘贴 JSON')
+        try {
+          applyImport(v)
+        } catch (e) {
+          showCopyableAlert(
+            'JSON 解析失败',
+            'JSON 解析失败：' + (e?.message || String(e)),
+          )
+        }
+      })
+      $('btn-load-api').addEventListener('click', async () => {
+        try {
+          const resp = await fetch('/api/review-data', { cache: 'no-store' })
+          if (!resp.ok) throw new Error(`HTTP ${resp.status}`)
+          const data = await resp.json()
+          applyImport(JSON.stringify(data))
+          $('io').value = JSON.stringify(data, null, 2)
+        } catch (e) {
+          showCopyableAlert(
+            '从 API 加载失败',
+            '从 API 加载失败（请确保已用 serve_review_page.py 启动服务）：' +
+              (e?.message || String(e)),
+          )
+        }
+      })
+      $('btn-dump-io').addEventListener('click', dumpExportJson)
+      $('btn-export').addEventListener('click', callExport)
+      $('btn-save-review').addEventListener('click', saveReview)
+
+      // boot：先加载数据再初始化编辑器，确保 canvas 使用视频真实尺寸（非默认 1280x2160）
+      ;(async () => {
+        try {
+          const resp = await fetch('/api/review-data', { cache: 'no-store' })
+          if (resp.ok) {
+            const data = await resp.json()
+            const text = JSON.stringify(data)
+            $('io').value = text
+            applyImport(text)
+          }
+        } catch (e) {
+          console.warn('auto import skipped (非 serve 模式或数据未生成)', e)
+        } finally {
+          initEditor()
+          render()
+          syncTrackToEditor()
+          logFullState('boot')
+        }
+      })()
+    </script>
+  </body>
+</html>

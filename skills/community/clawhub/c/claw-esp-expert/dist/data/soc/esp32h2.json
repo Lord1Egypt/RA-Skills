@@ -1,0 +1,60 @@
+{
+  "chip": "esp32h2",
+  "series": "ESP32-H2",
+  "arch": "RISC-V Single-Core",
+  "vendor": "Espressif",
+  "physical_limits": {
+    "gpio_range": [0, 27],
+    "total_gpios": 28,
+    "input_only_pins": {
+      "pins": [],
+      "restriction": "NONE",
+      "has_internal_pull": true,
+      "warning": "ESP32-H2 没有经典 ESP32 风格的纯输入 GPIO 域，但启动引脚、USB/JTAG 引脚和封装内存相关引脚仍需严格审计。"
+    },
+    "internal_flash_psram": {
+      "pins": [23, 24, 25, 26, 27],
+      "interface": "FSPI/SiP Flash",
+      "warning": "根据 ESP32-H2 GPIO 与硬件设计文档，GPIO23-27 与封装内 Flash/FSPI/USB-JTAG 复用关系密切；在通用项目中应优先视为保留引脚。"
+    },
+    "strapping_pins": {
+      "pins": [2, 3, 8, 9, 25],
+      "critical_logic": {
+        "2": "JTAG/启动相关配置引脚；上电外部电平会影响调试接口选择。",
+        "3": "JTAG/启动相关配置引脚；错误上下拉会影响启动/调试行为。",
+        "8": "Boot strap 引脚；与 GPIO9 组合决定下载/启动模式。",
+        "9": "Boot strap 引脚；默认建议上拉，且不应外挂大电容，否则可能误入下载模式。",
+        "25": "Strapping 引脚；同时与 FSPI/封装内存复用，外部强驱动需谨慎。"
+      },
+      "audit_level": "CRITICAL"
+    }
+  },
+  "peripherals": {
+    "adc": {
+      "adc1": [1, 2, 3, 4, 5],
+      "adc2": [],
+      "conflict": {
+        "target": "adc2",
+        "with": "802.15.4/BLE",
+        "warning": "ESP32-H2 当前规则库未启用 ADC2 无线冲突审计，公开资料主要暴露 ADC1 通道。"
+      }
+    },
+    "uart_default": {
+      "uart0": { "tx": 24, "rx": 23, "role": "Console/Download (board-dependent)" }
+    }
+  },
+  "expert_audit_rules": [
+    {
+      "id": "ERR_FLASH_PINS",
+      "condition": "GPIO 23-27 configured as I/O",
+      "level": "FATAL",
+      "message": "检测到对 ESP32-H2 FSPI/封装内存相关引脚的操作。"
+    },
+    {
+      "id": "WARN_STRAPPING",
+      "condition": "Strapping pin configured or externally driven",
+      "level": "WARNING",
+      "message": "ESP32-H2 启动配置引脚需要谨慎使用。"
+    }
+  ]
+}

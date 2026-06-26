@@ -1,0 +1,6 @@
+{
+  "name": "title",
+  "type": "tesseract",
+  "config_path": "data/config/title.config",
+  "deployed": true
+}

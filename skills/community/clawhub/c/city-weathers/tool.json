@@ -1,0 +1,31 @@
+{
+  "name": "get_weather",
+  "description": "获取指定城市的天气信息",
+  "parameters": {
+    "type": "object",
+    "required": ["city"],
+    "properties": {
+      "city": {
+        "type": "string",
+        "description": "城市名称，如北京、上海、广州"
+      },
+      "date": {
+        "type": "string",
+        "description": "日期：today/tomorrow/after_tomorrow/7d",
+        "default": "today"
+      }
+    }
+  },
+  "response": {
+    "city": "string",
+    "date": "string",
+    "condition": "string",
+    "temp_min": "number",
+    "temp_max": "number",
+    "humidity": "number",
+    "wind": "string",
+    "precip": "number",
+    "feels_like": "number",
+    "advice": "string"
+  }
+}

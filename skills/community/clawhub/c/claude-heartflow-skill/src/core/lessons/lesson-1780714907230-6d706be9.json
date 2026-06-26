@@ -1,0 +1,13 @@
+{
+  "id": "lesson-1780714907230-6d706be9",
+  "type": "correction",
+  "content": "梦境记忆去重：引入\"已梦过\"标记（dreamed_at时间戳），同一条记忆至少间隔3次梦境才重新选中",
+  "context": "教训dreamNow参数缺失被连续选中3次，需要去重机制",
+  "trigger": "heartflow",
+  "importance": 5,
+  "frequency": 1,
+  "createdAt": "2026-06-06T03:01:47.230Z",
+  "lastSeen": "2026-06-06T03:01:47.230Z",
+  "sessionId": null,
+  "retentionScore": 5
+}

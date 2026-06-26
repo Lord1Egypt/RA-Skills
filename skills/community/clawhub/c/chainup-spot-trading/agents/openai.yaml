@@ -1,0 +1,4 @@
+interface:
+  display_name: "ChainUp Spot"
+  short_description: "ChainUp OpenAPI V2 spot and margin trading plus account queries"
+  default_prompt: "Use ChainUp OpenAPI V2 (`sapi`) for spot or margin market data, order placement, cancellation, order queries, and balance queries. Signing rules: GET = timestamp + GET + requestPath (do not append body or `{}`), POST/PUT/PATCH = timestamp + METHOD + requestPath + bodyStr (use `{}` for an empty body), requestPath must be the relative path with the base URL removed, and include X-CH-APIKEY, X-CH-TS, X-CH-SIGN, and admin-language=en_US."

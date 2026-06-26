@@ -1,0 +1,70 @@
+{
+  "skill_description": "Generate a weekly project status report from raw project updates. Output should be structured, accurate, and highlight risks clearly.",
+  "test_inputs": [
+    {
+      "name": "multi_project_normal",
+      "input": "本周项目进展：\n1. 用户系统重构：完成了数据库迁移脚本编写，已在 staging 环境测试通过。下周计划上线生产环境。风险：生产数据量是 staging 的 50 倍，迁移预计需要 4 小时停机。\n2. 支付网关集成：对接了 Stripe webhook，完成了 3 种支付方式（信用卡、Apple Pay、Google Pay）的联调。剩余：退款流程还没做，需要 2 天。\n3. 移动端 App：iOS 已提交 App Store 审核，Android 在做性能优化。Android 冷启动时间从 3.2 秒降到 1.8 秒。风险：iOS 审核可能因为隐私政策描述被拒。"
+    },
+    {
+      "name": "single_project_delayed",
+      "input": "本周项目进展：\nAPI Gateway 重写项目：原计划本周完成所有路由迁移，实际只完成了 60%（18/30 个路由）。原因：发现旧系统有 5 个未文档化的中间件，需要逆向工程理解逻辑后才能迁移。团队两人本周请假，人力不足。下周需要从其他组借调 1 名后端开发。风险：如果下周无法补上进度，整体上线时间将从 4 月 15 日推迟到 4 月 30 日。已与产品经理沟通过延期可能性。"
+    },
+    {
+      "name": "infra_project_chinese",
+      "input": "本周项目进展：\n1. K8s 集群升级：从 1.27 升级到 1.29，已完成 dev 和 staging 集群。生产集群计划下周二滚动升级。已验证所有 Helm chart 兼容性，发现 ingress-nginx 需要从 4.7 升到 4.9。风险：升级期间可能有 2-3 分钟的 ingress 流量中断。\n2. 监控告警优化：重新调整了 CPU/内存告警阈值，误报率从每天 15 次降到 2 次。新增了 SLO 面板，覆盖 3 个核心服务的 P99 延迟和可用性。\n3. 成本优化：将 3 台 m5.xlarge 节点替换为 m6g.xlarge（ARM），预计月度成本降低 $420。已运行 1 周无异常。"
+    },
+    {
+      "name": "mixed_good_and_bad",
+      "input": "本周项目进展：\n1. 搜索服务：Elasticsearch 索引重建完成，搜索延迟从 P95 800ms 降到 200ms。新增了同义词词典和拼音搜索支持。本周无风险。\n2. 数据管道：Spark 作业频繁 OOM，本周花了 3 天排查。根因是上游数据量突增 3 倍（从 200GB/天到 600GB/天）但没有通知我们。临时方案：增加了 executor 内存到 16GB。长期方案：需要重新设计分区策略，预计 2 周。风险：如果上游数据量继续增长，当前临时方案也会撑不住。\n3. CI/CD：Jenkins 迁移到 GitHub Actions 完成了 80%（16/20 个 pipeline）。剩余 4 个涉及自建 runner 的 pipeline 需要额外配置。"
+    }
+  ],
+  "evals": [
+    {
+      "type": "rule",
+      "name": "has_status_keywords",
+      "rule": "contains",
+      "values": ["进度", "风险", "下周"],
+      "match": "all",
+      "description": "Report must contain status tracking keywords: progress, risks, and next week plan"
+    },
+    {
+      "type": "rule",
+      "name": "no_vague_language",
+      "rule": "banned_phrases",
+      "phrases": [
+        "基本完成",
+        "差不多",
+        "还行",
+        "大概",
+        "应该没问题",
+        "可能会好",
+        "总体来说还可以",
+        "各方面都不错",
+        "正在推进中"
+      ],
+      "description": "No vague or non-committal status language"
+    },
+    {
+      "type": "rule",
+      "name": "report_length",
+      "rule": "word_count",
+      "min": 200,
+      "max": 800,
+      "description": "Report is between 200-800 characters (concise but complete)"
+    },
+    {
+      "type": "llm",
+      "name": "no_hallucination",
+      "question": "Compare every factual claim in the weekly report output (dates, numbers, percentages, project names, technical details) against the input data. Is there any information in the output that was not present in or directly derivable from the input?",
+      "pass_description": "Every fact in the report (numbers, dates, project names, status descriptions) can be traced back to the input. No invented details, no embellished metrics, no assumed timelines.",
+      "fail_description": "The report contains at least one claim that cannot be found in or reasonably derived from the input data -- for example, an invented completion percentage, a made-up deadline, or a fabricated metric."
+    },
+    {
+      "type": "llm",
+      "name": "actionable_risks",
+      "question": "Look at each risk mentioned in the output. Does every risk description include: (1) what specifically could go wrong, (2) what the impact would be, and (3) what mitigation or next step is suggested?",
+      "pass_description": "Each risk is specific (not generic like 'might have issues'), states the potential impact (delay, cost, outage, etc.), and suggests or implies a concrete next step.",
+      "fail_description": "At least one risk is vague (e.g., '可能有风险' without specifics), missing impact assessment, or has no suggested mitigation."
+    }
+  ]
+}

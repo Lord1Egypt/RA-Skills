@@ -1,0 +1,4 @@
+interface:
+  display_name: "Hospital Recommendation Report"
+  short_description: "Generate premium English hospital recommendation reports"
+  default_prompt: "Use $hospital-recommendation-report to generate a premium English hospital recommendation report with 3 hospitals and a delivery-ready PDF."

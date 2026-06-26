@@ -1,0 +1,23 @@
+name: business_license_ocr
+version: 1.0.4
+description: 精准识别中国大陆本营业执照。自动提取统一社会信用代码、企业名称、法定代表人、注册资本、成立日期、经营范围、住所等信息。
+author: SCNet
+license: MIT
+tags:
+  - ocr
+  - 文字提取
+
+required_env_vars:
+  - SCNET_API_KEY
+
+optional_env_vars:
+  - SCNET_API_BASE
+
+primary_credential: SCNET_API_KEY
+
+# 增加项目主页，解决 missing homepage 警告
+homepage: https://github.com/SCNet-sugon/business_license_ocr.git  # 请替换为实际仓库地址
+
+dependencies:
+  - python3
+  - requests

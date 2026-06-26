@@ -1,35 +1,30 @@
 ---
-name: "Chords Fetcher"
-description: "Fetch clean guitar chords and lyrics from popular sites (mychords.net, amdm.ru, ultimate-guitar.com). Strips tabs, fixes formatting."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/chords-fetcher"
-sourceUrl: "https://clawhub.ai/skills/chords-fetcher"
+name: chords-fetcher
+description: Fetch clean guitar chords and lyrics from popular sites (mychords.net, amdm.ru, ultimate-guitar.com). Strips tabs, fixes formatting.
 ---
 
 # Chords Fetcher
 
-> Fetch clean guitar chords and lyrics from popular sites (mychords.net, amdm.ru, ultimate-guitar.com). Strips tabs, fixes formatting.
+Fetch clean guitar chords and lyrics without ads, pop-ups, or messy guitar tabs.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/chords-fetcher`
-- **Source URL:** [https://clawhub.ai/skills/chords-fetcher](https://clawhub.ai/skills/chords-fetcher)
+## Usage
 
-## Overview
+When the user asks for chords to a song (e.g., "аккорды Кино Звезда по имени Солнце", "chords behind blue eyes"), use the `exec` tool to run the fetcher script.
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/chords-fetcher
+uv run python chords.py <song_name_and_artist>
 ```
+
+## Features
+- Searches across multiple sources: mychords.net, ultimate-guitar.com, amdm.ru via DuckDuckGo.
+- Strips out guitar tabs (e|---, B|---, etc.) to keep the output clean.
+- Fixes spacing where chords are glued to lyrics (e.g., `AmWhite snow` → `Am White snow`).
+- Falls back to the next source if one is unavailable.
+
+## Dependencies
+- `beautifulsoup4`
+- `ddgs` (DuckDuckGo Search)
+
+## Notes
+- Run the script from the skill's directory.
+- If the script returns an error or cannot find the song, inform the user.

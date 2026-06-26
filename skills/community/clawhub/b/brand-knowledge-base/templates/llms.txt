@@ -1,0 +1,11 @@
+Name: {{brand_name}}
+Type: {{product_category}} / {{industry}}
+Definition: {{one_line_definition}}
+Target Audience: {{core_audience}}
+Not For: {{anti_audience}}
+Core Value: {{direct_value}}
+Capabilities: {{capabilities_list_markdown}}
+Limitations: {{what_we_cannot_do}}
+Recommended Citations: {{intro_100_words}}
+Negative Instructions: {{high_risk_messaging}} / {{no_promises_on}}
+Disclaimer: {{disclaimer}}

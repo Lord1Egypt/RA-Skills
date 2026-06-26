@@ -1,35 +1,40 @@
 ---
-name: "Browser Download"
-description: "Teaches ADA how to perform file downloads using the browser tool."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/browser-download"
-sourceUrl: "https://clawhub.ai/skills/browser-download"
+name: browser-download
+description: Teaches ADA how to perform file downloads using the browser tool.
+metadata: {"clawdbot":{"emoji":"📥","requires":{"bins":["openclaw"]},"primaryEnv":""}}
 ---
 
-# Browser Download
+# Browser Download Skill
 
-> Teaches ADA how to perform file downloads using the browser tool.
+This skill enables ADA to perform file downloads from any webpage using the `browser` tool.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/browser-download`
-- **Source URL:** [https://clawhub.ai/skills/browser-download](https://clawhub.ai/skills/browser-download)
+## Prerequisites
 
-## Overview
+- `openclaw` CLI must be installed and gateway must be running.
+- `relayPort` must be configured correctly in `openclaw.json` (Default: 18792).
 
+## How to download
 
-## Installation
-To install this skill, run the following command in your terminal:
+To download a file from a website, follow these steps:
+
+1. **Find the Download Link/Button**: Use `browser snapshot` or `browser evaluate` to find the `ref` or `selector` for the download button.
+2. **Execute Download Action**: Use the following CLI command structure:
+
 ```bash
-hermes skills install clawhub/browser-download
+openclaw browser --action download --targetId "<TAB_ID>" --ref "<REF_ID>" --path "/mnt/storage/ada_projects/downloads/<FILENAME>"
 ```
+
+### Alternative: JavaScript Click
+If the download button is inside a canvas or complex element, you can trigger it via evaluation:
+
+```javascript
+() => {
+  const btn = document.querySelector('button[aria-label="Download"]');
+  if (btn) btn.click();
+  return 'clicked';
+}
+```
+
+## Storage Directory
+Always save downloaded files to:
+`/mnt/storage/ada_projects/downloads/`

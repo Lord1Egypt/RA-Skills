@@ -1,0 +1,4 @@
+interface:
+  display_name: "Check Workday CN"
+  short_description: "Check whether today is a working day in China."
+  default_prompt: "Use this skill to determine whether today is a Chinese working day based on holiday-cn data."

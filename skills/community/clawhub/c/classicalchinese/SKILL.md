@@ -1,35 +1,69 @@
 ---
-name: "classical-chinese"
-description: "以文言文压缩输出、节省 token。当用户要求文言回复、节省 token、省输出时触发。支持三档：极致(/e/Extreme)、适度(/m/Medium)、轻微(/l/Light)。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/classicalchinese"
-sourceUrl: "https://clawhub.ai/skills/classicalchinese"
+name: classical-chinese
+description: 以文言文压缩输出、节省 token。当用户要求文言回复、节省 token、省输出时触发。支持三档：极致(/e/Extreme)、适度(/m/Medium)、轻微(/l/Light)。
 ---
 
-# classical-chinese
+# 文言压缩（省 Token）
 
-> 以文言文压缩输出、节省 token。当用户要求文言回复、节省 token、省输出时触发。支持三档：极致(/e/Extreme)、适度(/m/Medium)、轻微(/l/Light)。
+## 核心原则
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/classicalchinese`
-- **Source URL:** [https://clawhub.ai/skills/classicalchinese](https://clawhub.ai/skills/classicalchinese)
+以文言代白话，最大化信息密度。**省 token 为首要目标**，可读性按需妥协。
 
-## Overview
+## 压缩等级
 
+| 等级 | 命令 | 目标节省 | 规则 |
+|------|------|----------|------|
+| 极致 | /e | 50%+ | 能一字不两字，省主语/虚词/关联词 |
+| 适度 | /m | 30-40% | 简练文言，保基本可读（默认） |
+| 轻微 | /l | ~20% | 浅白文言，优先可读 |
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/classicalchinese
-```
+默认 /m。用户可在首句指定，如"【极致】解释递归"。
+
+## 使用流程
+
+1. 识别等级（/e /m /l 或默认 /m）
+2. 转写为文言（调用 `references/compression_rules.md`）
+3. 技术内容原文保留（代码、路径、专有名词、错误信息）
+4. 估算压缩率（见下）
+
+## 量化验证
+
+回复后简记：`[原~N字→文~M字，省X%]`
+- 若节省 < 预期下限，等级不变，下次更精简
+- 若节省 > 预期上限，可适当放宽
+
+## 边界处理
+
+### 用户输入为文言
+直接以同档或更高压缩等级回复，无需转换。
+
+### 专有名词
+- 已知：框架/库/品牌名 → 保留原文（React, Python, Git）
+- 未知：新产品/概念 → 音译或原文，必要时加注
+
+### 歧义处理
+- 文言多义时，优先取最简义
+- 关键术语首次用原文括注：功能→功能（function）
+
+### 连续对话
+- 切换等级须显式标注
+- 上下文已建立的文言术语保持一致
+- 追问若需详细解释，可临时降一档
+
+## 低压缩例外
+
+以下情况可临时降档：
+- 复杂逻辑首次解释
+- 错误诊断需清晰步骤
+- 用户明确要求详细
+
+降档时注明：[降档说明]
+
+## 技术内容保护
+
+以下原文不译：
+- 代码、变量名、函数名、类名
+- 路径、URL、端口号
+- 错误代码、日志内容
+- 公式、数字、版本号
+- JSON/XML/HTML 等标记语言

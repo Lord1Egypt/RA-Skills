@@ -1,35 +1,15 @@
----
-name: "Check Emails 1.0.0"
-description: "Lists the last 10 emails from the user's inbox using Himalaya for quick recent email review."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/check-emails-1-0-0"
-sourceUrl: "https://clawhub.ai/skills/check-emails-1-0-0"
----
+# Check Emails from Himalaya
 
-# Check Emails 1.0.0
-
-> Lists the last 10 emails from the user's inbox using Himalaya for quick recent email review.
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/check-emails-1-0-0`
-- **Source URL:** [https://clawhub.ai/skills/check-emails-1-0-0](https://clawhub.ai/skills/check-emails-1-0-0)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
+## Commands
 ```bash
-hermes skills install clawhub/check-emails-1-0-0
+himalaya envelope list --page 1 --page-size 10
 ```
+
+## Usage
+When user says "check emails" or similar, execute:
+- `himalaya envelope list --page 1 --page-size 10`
+
+## Notes
+- This skill reads the last 10 emails from the user's mail
+- Use for checking recent mail quickly
+- No special flags beyond page and page-size

@@ -1,0 +1,387 @@
+{
+  "metadata": {
+    "last_updated": "2026-03-14",
+    "source": "Ministry of Industry and Information Technology, China Machinery Industry Federation, National Bureau of Statistics",
+    "industry_scale_2026_target": "¥11.8 trillion revenue",
+    "growth_rate_target": "5.2% average annual growth (2024-2026)"
+  },
+  "industry_overview": {
+    "title": "China Industrial Machinery Industry Overview (2026)",
+    "summary": "Industrial machinery is the backbone of China's manufacturing sector, encompassing machine tools, construction machinery, agricultural equipment, textile machinery, packaging lines, and industrial robots. In 2026, the industry is projected to exceed ¥11.8 trillion in revenue, driven by smart manufacturing upgrades, equipment replacement cycles, green transformation, and Belt & Road exports.",
+    "key_policy_initiatives": [
+      {
+        "name": "Action Plan for High-End Equipment Manufacturing Innovation (2024-2026)",
+        "issuing_authorities": ["MIIT", "NDRC", "Ministry of Science and Technology"],
+        "key_measures": [
+          "Establish 20 national manufacturing innovation centers for key machinery sectors",
+          "Achieve 75% self-sufficiency rate in core components (hydraulics, controllers, precision spindles) by 2026",
+          "Promote digitalization and intelligent manufacturing in machinery plants",
+          "Support cross-border M&A for advanced servo drives and control systems",
+          "Strengthen supply chain resilience through localized sourcing of castings and forgings"
+        ]
+      }
+    ],
+    "current_status_2025": {
+      "total_output_value": "¥11.2 trillion",
+      "share_of_equipment_manufacturing_value_added": "42.5%",
+      "key_drivers": ["industrial robots", "CNC machine tools", "large excavators", "high-speed packaging lines"],
+      "automation_rate": "62% (assembly and testing lines in large enterprises)",
+      "energy_consumption_reduction": "12.8% per unit output compared to 2020"
+    }
+  },
+  "supply_chain_structure": {
+    "title": "Industrial Machinery Supply Chain Structure",
+    "upstream": {
+      "description": "Raw materials, key components, and design/ simulation software",
+      "categories": [
+        {
+          "name": "Raw Materials",
+          "items": ["carbon steel", "alloy steel", "cast iron", "aluminum ingots", "engineering plastics", "composites"],
+          "key_suppliers": ["Baowu Steel", "HBIS Group", "Shagang Group", "Aluminum Corporation of China"]
+        },
+        {
+          "name": "Core Components & Subsystems",
+          "items": ["hydraulic pumps & valves", "servo motors & drives", "linear guides & ball screws", "bearings", "PLCs & CNCs", "reducers", "sensors"],
+          "key_suppliers": ["Hengli Hydraulic", "Inovance Technology", "Estun Automation", "LYC Bearing", "Guangshu Numerical Control"]
+        },
+        {
+          "name": "Design & Simulation Tools",
+          "items": ["CAD/CAM/CAE software", "digital twin platforms", "PLM systems"],
+          "key_suppliers": ["Huawei (digital twin)", "Siemens China (local partners)", "Yonyou", "Kingdee"]
+        }
+      ]
+    },
+    "midstream": {
+      "description": "Machinery manufacturing and assembly",
+      "subsectors": [
+        "metal cutting machine tools (CNC lathes, milling, grinding)",
+        "metal forming machinery (presses, shears, bending)",
+        "construction machinery (excavators, cranes, loaders)",
+        "agricultural machinery (tractors, harvesters, irrigation)",
+        "textile machinery (looms, spinning, dyeing)",
+        "packaging machinery (filling, sealing, wrapping)",
+        "food processing machinery",
+        "plastic & rubber machinery (injection molding, extrusion)",
+        "industrial robots & automation lines",
+        "printing & papermaking machinery"
+      ],
+      "key_companies_by_subsector": {
+        "machine_tools": ["DMTG", "Shenyang Machine Tool", "Qinchuan Machine Tool", "Beijing Jingdiao"],
+        "construction": ["SANY", "XCMG", "Zoomlion", "Liugong"],
+        "agricultural": ["YTO Group", "Zoomlion Heavy Industry", "Shandong Shifeng"],
+        "textile": ["Jingwei Textile", "Pacific Mechatronic", "Huasen"],
+        "packaging": ["Newamstar", "KHS China", "Guangdong Hongming"],
+        "robots": ["Estun", "Inovance", "EFORT", "STEP"]
+      }
+    },
+    "downstream": {
+      "description": "Application industries",
+      "applications": [
+        "automotive manufacturing",
+        "electronics assembly",
+        "construction & infrastructure",
+        "agriculture & farming",
+        "textile & apparel production",
+        "food & beverage processing",
+        "pharmaceutical & medical device manufacturing",
+        "logistics & warehousing",
+        "energy equipment (wind, solar, thermal)"
+      ]
+    }
+  },
+  "regional_clusters": [
+    {
+      "region": "Yangtze River Delta",
+      "provinces_cities": ["Shanghai", "Jiangsu", "Zhejiang"],
+      "share_of_industry": "42% of national output",
+      "specializations": [
+        "precision CNC machine tools",
+        "industrial robots & automation",
+        "construction machinery",
+        "textile machinery",
+        "hydraulic components"
+      ],
+      "key_hubs": [
+        {
+          "city": "Shanghai",
+          "specialization": "High-end machine tools, robotics R&D, automation system integration",
+          "supplier_example": "Shanghai Electric Group – provides complete production lines for automotive and aerospace, ISO 9001/14001, annual revenue >$8B"
+        },
+        {
+          "city": "Suzhou",
+          "specialization": "Precision machining, linear guides, ball screws",
+          "supplier_example": "Suzhou Hannover Precision Machinery Co., Ltd. – ISO 9001 certified, supplies THK-alternative linear motion components, 50k units/month"
+        },
+        {
+          "city": "Wuxi",
+          "specialization": "Hydraulic systems and components",
+          "supplier_example": "Wuxi Hengli Hydraulic Co., Ltd. – leading domestic hydraulic pump manufacturer, supplies SANY, XCMG, A-grade supplier status"
+        }
+      ],
+      "strengths": [
+        "Strongest R&D talent pool and university collaboration",
+        "Mature supply chain for precision parts",
+        "Proximity to major automotive and electronics OEMs"
+      ]
+    },
+    {
+      "region": "Pearl River Delta",
+      "provinces_cities": ["Guangdong", "Shenzhen", "Dongguan", "Foshan"],
+      "share_of_industry": "28% of national output",
+      "specializations": [
+        "injection molding machines",
+        "packaging machinery",
+        "electronics assembly equipment",
+        "robotics (SCARA, delta)",
+        "3C manufacturing equipment"
+      ],
+      "key_hubs": [
+        {
+          "city": "Shenzhen",
+          "specialization": "Industrial robots, CNC controllers, automation lines",
+          "supplier_example": "Inovance Technology – leading domestic servo drive and PLC supplier, IEC 61131-3 compliant, 200k+ systems shipped"
+        },
+        {
+          "city": "Dongguan",
+          "specialization": "Injection molding machines and auxiliaries",
+          "supplier_example": "Dongguan Yizumi Precision Machinery Co., Ltd. – all-electric injection molding machines, CE certified, export to 80+ countries"
+        },
+        {
+          "city": "Foshan",
+          "specialization": "Packaging machinery (filling, sealing, labeling)",
+          "supplier_example": "Foshan Coretamp Packaging Machinery Co., Ltd. – provides turnkey liquid filling lines, 500+ installations worldwide"
+        }
+      ],
+      "strengths": [
+        "Fastest product development cycles",
+        "Strong integration with consumer electronics and 3C industries",
+        "Highly flexible small-to-medium batch production capabilities"
+      ]
+    },
+    {
+      "region": "Shandong Peninsula",
+      "provinces_cities": ["Shandong", "Qingdao", "Yantai", "Weifang"],
+      "share_of_industry": "15% of national output",
+      "specializations": [
+        "agricultural machinery (tractors, harvesters)",
+        "construction machinery (wheel loaders, forklifts)",
+        "heavy-duty truck components",
+        "oilfield equipment"
+      ],
+      "key_hubs": [
+        {
+          "city": "Qingdao",
+          "specialization": "Agricultural machinery, rubber machinery",
+          "supplier_example": "Qingdao Saigaoke Agricultural Equipment Co., Ltd. – ISO 9001, produces corn harvesters and seeders, 3000 units/year"
+        },
+        {
+          "city": "Yantai",
+          "specialization": "Construction machinery attachments, hydraulic breakers",
+          "supplier_example": "Yantai Eddie Precision Machinery Co., Ltd. – ISO 9001, supplies hydraulic breakers to global OEMs, 2000 units/month"
+        }
+      ],
+      "strengths": [
+        "Established heavy machinery industrial base",
+        "Strong government support for agricultural modernization",
+        "Convenient port access for exports"
+      ]
+    },
+    {
+      "region": "Northeast China (Liaoning, Jilin, Heilongjiang)",
+      "provinces_cities": ["Shenyang", "Dalian", "Changchun", "Harbin"],
+      "share_of_industry": "8% of national output",
+      "specializations": [
+        "heavy-duty machine tools (large lathes, boring mills)",
+        "railway equipment",
+        "power generation equipment (turbines, boilers)",
+        "automotive production lines"
+      ],
+      "key_hubs": [
+        {
+          "city": "Shenyang",
+          "specialization": "Large-scale CNC machine tools",
+          "supplier_example": "Shenyang Machine Tool Co., Ltd. – one of China's oldest machine tool builders, ISO 9001, supplies aerospace and automotive industries"
+        },
+        {
+          "city": "Dalian",
+          "specialization": "Heavy machinery and port equipment",
+          "supplier_example": "Dalian Huarui Heavy Industry Group – cranes, bulk material handling equipment, used in ports and mining"
+        }
+      ],
+      "strengths": [
+        "Deep industrial heritage and skilled workforce",
+        "Specialization in heavy, large-scale equipment",
+        "State-owned enterprise support for major projects"
+      ]
+    },
+    {
+      "region": "Chengdu-Chongqing (Western China)",
+      "provinces_cities": ["Sichuan", "Chongqing"],
+      "share_of_industry": "5% of national output",
+      "specializations": [
+        "aviation & aerospace machinery",
+        "automotive powertrain components",
+        "gearboxes & transmissions",
+        "energy equipment"
+      ],
+      "key_hubs": [
+        {
+          "city": "Chengdu",
+          "specialization": "Aeronic machining, CNC equipment",
+          "supplier_example": "Chengdu Forward Technology Corporation – supplies precision parts for commercial aircraft, AS9100D certified"
+        },
+        {
+          "city": "Chongqing",
+          "specialization": "Gearboxes, transmission systems",
+          "supplier_example": "Chongqing Gearbox Co., Ltd. – supplies gearboxes for wind turbines and industrial applications, ISO 9001, 10,000 units/year"
+        }
+      ],
+      "strengths": [
+        "Lower labor and land costs",
+        "Government incentives for western development",
+        "Growing aerospace and EV supply chain"
+      ]
+    }
+  ],
+  "subsector_details": {
+    "metal_cutting_machine_tools": {
+      "description": "Includes CNC lathes, milling machines, grinding machines, machining centers, and EDM. China is the world's largest machine tool producer and consumer.",
+      "key_clusters": ["Yangtze River Delta", "Northeast China", "Pearl River Delta"],
+      "growth_drivers": [
+        "Automotive lightweighting (aluminum and composite machining)",
+        "Aerospace demand for high-speed five-axis machines",
+        "General equipment replacement cycle (15-year upgrade)",
+        "Domestic substitution of mid-to-high-end CNC systems"
+      ],
+      "market_trends": "Shift toward five-axis and multi-tasking machines; growing adoption of domestic CNC systems (GSK, Huazhong); retrofit market expanding.",
+      "domestic_substitution_rate": "65% overall, 38% in five-axis and high-speed machines"
+    },
+    "construction_machinery": {
+      "description": "Excavators, wheel loaders, cranes, bulldozers, concrete machinery. China accounts for over 50% of global excavator sales.",
+      "key_clusters": ["Yangtze River Delta", "Shandong", "Pearl River Delta"],
+      "growth_drivers": [
+        "Infrastructure investment (highways, rail, water conservancy)",
+        "Green transformation (electric excavators, hydrogen fuel cells)",
+        "Export growth to Belt & Road countries",
+        "Equipment rental market expansion"
+      ],
+      "policy_support": [
+        "National IV emission standards driving technology upgrade",
+        "Subsidies for electric construction machinery R&D",
+        "Export credit support for overseas projects"
+      ],
+      "domestic_substitution_rate": "95% for core machinery, 50% for high-end hydraulic components"
+    },
+    "agricultural_machinery": {
+      "description": "Tractors, harvesters, planters, irrigation systems, and drones. China aims for comprehensive mechanization of major crops by 2026.",
+      "key_clusters": ["Shandong", "Henan", "Heilongjiang"],
+      "trends": "Smart agriculture driving demand for GPS-guided tractors and autonomous harvesters; strong growth in high-horsepower models.",
+      "key_players": ["YTO Group", "Zoomlion Agriculture", "Shandong Shifeng", "XAG (drones)"]
+    },
+    "packaging_machinery": {
+      "description": "Filling machines, sealing machines, labeling machines, wrapping machines, and complete packaging lines.",
+      "key_clusters": ["Pearl River Delta", "Yangtze River Delta"],
+      "growth_drivers": [
+        "E-commerce boom (secondary packaging automation)",
+        "Food & beverage safety regulations",
+        "Pharmaceutical serialization requirements",
+        "Labor cost reduction in manufacturing"
+      ],
+      "domestic_substitution_rate": "85% in standard machines, 60% in high-speed/aseptic lines"
+    },
+    "industrial_robots": {
+      "description": "SCARA, six-axis, delta, collaborative robots, and automation cells.",
+      "key_clusters": ["Yangtze River Delta", "Pearl River Delta"],
+      "growth_drivers": [
+        "Automotive & 3C manufacturing automation",
+        "SME adoption of low-cost robots",
+        "Government subsidies for robot integration",
+        "Rise of human-robot collaboration"
+      ],
+      "policy_support": [
+        "National key R&D program for core components (reducers, controllers)",
+        "Subsidies for robot demonstration lines",
+        "Tax incentives for robot makers"
+      ]
+    }
+  },
+  "sourcing_guide": {
+    "supplier_evaluation_metrics": [
+      {
+        "metric": "Quality management certification",
+        "target": "ISO 9001:2015 (minimum), ISO 14001, ISO 45001 preferred"
+      },
+      {
+        "metric": "Production capacity & lead time",
+        "target": "Clear capacity planning, typical lead time 30-60 days for standard machines"
+      },
+      {
+        "metric": "Technical capabilities",
+        "target": "In-house R&D team, CAD/CAM/CAE tools, patents, ability to customize"
+      },
+      {
+        "metric": "Export experience",
+        "target": "≥3 years export, CE certification for EU, UL for US, compliance with target market standards"
+      },
+      {
+        "metric": "After-sales service",
+        "target": "Global service network, remote diagnostics, spare parts availability"
+      }
+    ],
+    "verification_methods": [
+      "Request ISO certificates and product-specific certifications (CE, UL, CSA)",
+      "Conduct factory audit focusing on production processes, QC, and testing equipment",
+      "Review customer references and case studies (especially for similar applications)",
+      "Ask for sample machine test run (video or on-site) and performance data",
+      "Request dimensional inspection reports for key components",
+      "Check financial stability via credit reports (e.g., Sinosure report)"
+    ],
+    "communication_best_practices": [
+      "Provide detailed technical specifications: cycle time, precision, power, dimensions",
+      "Share 2D/3D drawings of parts to be machined (for machine tools) or product samples (for packaging lines)",
+      "Discuss acceptance criteria and commissioning plan upfront",
+      "Clarify warranty terms and spare parts availability",
+      "Establish a single point of contact with engineering background"
+    ],
+    "payment_terms": "Typical: 30% T/T deposit, 70% balance before shipment (or against scanned B/L). L/C at sight for large contracts. Some suppliers offer 30% deposit, 70% within 30 days after B/L with bank guarantee.",
+    "lead_times": {
+      "standard_machines": "30-60 days",
+      "customized_lines": "90-180 days (including engineering, procurement, assembly, testing)",
+      "spare_parts": "7-15 days by air"
+    }
+  },
+  "faq": [
+    {
+      "question": "What are typical MOQs for industrial machinery?",
+      "answer": "For standard machines (e.g., a CNC lathe), MOQ is usually 1 unit. For customized production lines, MOQ may be 1 line, but engineering and project management costs apply. Spare parts can be ordered in small quantities."
+    },
+    {
+      "question": "Do Chinese machinery suppliers provide CE certification?",
+      "answer": "Many exporters offer CE certification as an option (usually at additional cost). Always request the CE declaration and technical file to ensure compliance with EU directives."
+    },
+    {
+      "question": "Can I get customized machinery for my specific product?",
+      "answer": "Yes, most mid-to-large machinery companies have engineering teams for customization. Expect longer lead times and NRE fees. Provide detailed product drawings or samples for quotation."
+    },
+    {
+      "question": "How do I ensure machinery meets my quality standards?",
+      "answer": "Conduct a factory acceptance test (FAT) before shipment, and a site acceptance test (SAT) after installation. Include performance test clauses in the contract (e.g., machining accuracy, cycle time)."
+    },
+    {
+      "question": "What is the best shipping method for heavy machinery?",
+      "answer": "For large machines, sea freight in containers (if fits) or break-bulk shipping. FOB terms are common. Suppliers usually arrange packaging suitable for ocean transport (waterproof, fumigation-free crates)."
+    }
+  ],
+  "glossary": {
+    "CNC": "Computer Numerical Control – automated control of machining tools.",
+    "PLC": "Programmable Logic Controller – industrial digital computer for automation.",
+    "Servo motor": "Motor with closed-loop control for precise positioning.",
+    "Hydraulics": "Use of pressurized fluid to transmit power (e.g., excavators).",
+    "Reducer": "Gearbox that reduces speed and increases torque (critical for robots).",
+    "FAT": "Factory Acceptance Test – testing at supplier's site before shipment.",
+    "SAT": "Site Acceptance Test – testing after installation at buyer's facility.",
+    "CE": "Conformité Européenne – mandatory conformity mark for machinery in EU.",
+    "OEM": "Original Equipment Manufacturer – company that makes parts for others.",
+    "Turnkey": "A complete solution delivered ready for operation."
+  }
+}

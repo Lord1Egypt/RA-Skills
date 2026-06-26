@@ -1,0 +1,80 @@
+{
+  "name": "booskill",
+  "display_name": "BossSkill 老板经营秘书",
+  "version": "0.2.0-commercial-client",
+  "description": "面向创业者和老板的经营秘书与训练顾问。免费版提供基础记录、基础简报和关系提醒；授权版开放经营判断、主动秘书、行业作战包、长期记忆、任务闭环、客户经营、团队用人建议、老板操作系统和商业交付体系。",
+  "entry": "SKILL.md",
+  "language": "zh-CN",
+  "install_source": "https://github.com/Fanfanscoin/booskill-demo.git",
+  "license_contact": {
+    "telegram": "fanfans555",
+    "wechat": "fanfans555"
+  },
+  "categories": [
+    "startup",
+    "business-coaching",
+    "sales",
+    "team-management",
+    "customer-management",
+    "executive-assistant"
+  ],
+  "resources": {
+    "references": "references",
+    "scripts": "scripts",
+    "agent_metadata": "agents/openai.yaml",
+    "user_agreement": "USER_AGREEMENT.md",
+    "privacy": "PRIVACY.md",
+    "license_notice": "LICENSE_NOTICE.md"
+  },
+  "tools": [
+    {
+      "name": "startup_os_db",
+      "type": "python-script",
+      "path": "scripts/startup_os_db.py",
+      "description": "BossSkill 客户端命令行工具，用于授权、基础 SQLite 记录导出，以及调用云端商业核心能力。"
+    }
+  ],
+  "permissions": {
+    "filesystem": "local-skill-directory-and-user-selected-db",
+    "network": "required-for-license-and-cloud-core",
+    "database": "sqlite-local"
+  },
+  "default_commands": {
+    "init_database": "python scripts/startup_os_db.py init --db startup_os.sqlite3",
+    "first_use_guide": "python scripts/startup_os_db.py first-use-guide --db startup_os.sqlite3",
+    "help": "python scripts/startup_os_db.py 帮助 --db startup_os.sqlite3",
+    "activate_license": "python scripts/startup_os_db.py activate-license --db startup_os.sqlite3 --license-key YOUR_LICENSE_KEY",
+    "license_status": "python scripts/startup_os_db.py license-status --db startup_os.sqlite3",
+    "export_memory": "python scripts/startup_os_db.py export --db startup_os.sqlite3",
+    "quick_add": "python scripts/startup_os_db.py quick-add --db startup_os.sqlite3 --text \"李总是客户，做餐饮加盟，预算5万，5月12日再跟进\"",
+    "add_customer": "python scripts/startup_os_db.py add-customer --db startup_os.sqlite3 --name \"李总\" --status \"高意向\" --next-followup \"2026-05-12\" --text \"做餐饮加盟，预算5万，关心回本周期\"",
+    "add_team_member": "python scripts/startup_os_db.py add-team-member --db startup_os.sqlite3 --name \"张三\" --role \"销售\" --text \"执行力可以，成交话术弱\"",
+    "add_contact": "python scripts/startup_os_db.py add-contact --db startup_os.sqlite3 --name \"王总\" --relation-type \"朋友\" --text \"懂本地生活投流，可以咨询获客问题\"",
+    "find_helper": "python scripts/startup_os_db.py find-helper --db startup_os.sqlite3 --keyword \"投流\"",
+    "add_task": "python scripts/startup_os_db.py add-task --db startup_os.sqlite3 --title \"周三跟进李总预算\" --owner \"张三\" --due-date \"2026-05-12\"",
+    "assistant_action": "python scripts/startup_os_db.py assistant-action --db startup_os.sqlite3 --text \"今天帮我看看哪些客户需要跟进\"",
+    "engine_link_brief": "python scripts/startup_os_db.py engine-link-brief --db startup_os.sqlite3",
+    "boss_learning_brief": "python scripts/startup_os_db.py boss-learning-brief --db startup_os.sqlite3",
+    "natural_followup_v2": "python scripts/startup_os_db.py natural-followup-v2 --db startup_os.sqlite3",
+    "evening_review_v2": "python scripts/startup_os_db.py evening-review-v2 --db startup_os.sqlite3",
+    "advice_calibration": "python scripts/startup_os_db.py advice-calibration --db startup_os.sqlite3 --text \"这个建议有效，因为客户愿意继续推进\"",
+    "secretary_rhythm": "python scripts/startup_os_db.py secretary-rhythm --db startup_os.sqlite3",
+    "boss_loop_v2": "python scripts/startup_os_db.py boss-loop-v2 --db startup_os.sqlite3",
+    "tomorrow_command_plan": "python scripts/startup_os_db.py tomorrow-command-plan --db startup_os.sqlite3",
+    "conversation_intelligence": "python scripts/startup_os_db.py conversation-intelligence --db startup_os.sqlite3 --text \"李总今天说预算有点高，想再看看案例，下周三再聊\"",
+    "daily_brief": "python scripts/startup_os_db.py daily-brief --db startup_os.sqlite3",
+    "industry_examples": "python scripts/startup_os_db.py industry-examples --db startup_os.sqlite3 --industry \"餐饮\"",
+    "deep_industry_pack": "python scripts/startup_os_db.py deep-industry-pack --db startup_os.sqlite3",
+    "customer_followup_strategy": "python scripts/startup_os_db.py customer-followup-strategy --db startup_os.sqlite3",
+    "team_diagnosis_deep": "python scripts/startup_os_db.py team-diagnosis-deep --db startup_os.sqlite3",
+    "execution_score": "python scripts/startup_os_db.py execution-score --db startup_os.sqlite3",
+    "execution_training_plan": "python scripts/startup_os_db.py execution-training-plan --db startup_os.sqlite3 --name \"张三\"",
+    "execution_risk_brief": "python scripts/startup_os_db.py execution-risk-brief --db startup_os.sqlite3",
+    "task_review_chaser": "python scripts/startup_os_db.py task-review-chaser --db startup_os.sqlite3",
+    "metric_diagnosis_deep": "python scripts/startup_os_db.py metric-diagnosis-deep --db startup_os.sqlite3",
+    "knowledge_growth_brief": "python scripts/startup_os_db.py knowledge-growth-brief --db startup_os.sqlite3",
+    "customer_review": "python scripts/startup_os_db.py review-customer --db startup_os.sqlite3 --text \"客户今天说预算太高，下周三再联系\"",
+    "team_brief": "python scripts/startup_os_db.py team-brief --db startup_os.sqlite3"
+  },
+  "commercial_notice": "本公开客户端仓库不包含商业核心源码。商业核心能力由官方云端服务提供，授权联系 Telegram: fanfans555；微信号: fanfans555。"
+}

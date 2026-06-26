@@ -1,35 +1,33 @@
 ---
-name: "Claude Usage Analyzer"
-description: "Analyze Claude Code token usage. Shows where tokens went, which projects cost most, and how to reduce waste. Use when user asks about token usage, costs, or..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/claude-usage-analyzer"
-sourceUrl: "https://clawhub.ai/skills/claude-usage-analyzer"
+name: claude-usage-analyzer
+description: Analyze Claude Code token usage. Shows where tokens went, which projects cost most, and how to reduce waste. Use when user asks about token usage, costs, or burn rate.
+config_paths:
+  - ~/.claude/projects/*/*.jsonl
+requires:
+  - claude-usage-analyzer
 ---
 
 # Claude Usage Analyzer
 
-> Analyze Claude Code token usage. Shows where tokens went, which projects cost most, and how to reduce waste. Use when user asks about token usage, costs, or...
+Analyze your Claude Code token usage by parsing local session logs.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/claude-usage-analyzer`
-- **Source URL:** [https://clawhub.ai/skills/claude-usage-analyzer](https://clawhub.ai/skills/claude-usage-analyzer)
+## Data access
 
-## Overview
+- Reads `~/.claude/projects/*/*.jsonl` (local Claude Code session logs)
+- Runs offline, no network access, no API keys, no credentials
+- Open source: https://github.com/SingggggYee/claude-usage-analyzer
 
+## Usage
 
-## Installation
-To install this skill, run the following command in your terminal:
+Requires the `claude-usage-analyzer` CLI to be pre-installed. See https://github.com/SingggggYee/claude-usage-analyzer for installation instructions.
+
 ```bash
-hermes skills install clawhub/claude-usage-analyzer
+claude-usage-analyzer
 ```
+
+More commands:
+
+- `claude-usage-analyzer report --days 7` (last 7 days)
+- `claude-usage-analyzer sessions` (top sessions by cost)
+- `claude-usage-analyzer session <id>` (per-turn breakdown)
+- `claude-usage-analyzer --json` (machine-readable output)

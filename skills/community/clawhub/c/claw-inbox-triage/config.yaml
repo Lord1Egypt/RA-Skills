@@ -1,0 +1,69 @@
+# Inbox Triage Configuration
+
+# Input sources to process
+sources:
+  - type: signal
+    enabled: true
+  - type: telegram
+    enabled: true
+  - type: discord
+    enabled: false
+  - type: whatsapp
+    enabled: false
+  - type: email
+    enabled: false
+
+# Classification rules - adjust thresholds as needed
+rules:
+  # Keywords that trigger urgent classification (high weight)
+  urgent_keywords:
+    - "urgent"
+    - "ASAP"
+    - "immediately"
+    - "deadline"
+    - "by end of day"
+    - "as soon as possible"
+  
+  # Spam/priority keywords (negative weight)
+  spam_keywords:
+    - "discount"
+    - "sale"
+    - "promo"
+    - "offer"
+    - "limited time"
+    - "subscribe"
+    - "unsubscribe"
+  
+  # Question patterns that suggest urgent action
+  question_patterns:
+    - "can you"
+    - "please help"
+    - "need response"
+    - "when can"
+    - "do you think"
+  
+  # Notification patterns (usually low priority)
+  notification_patterns:
+    - "password"
+    - "login"
+    - "verification"
+    - "security alert"
+    - "account update"
+
+# Response templates
+responses:
+  normal_ack:
+    - "Thanks for reaching out! I'll review and get back to you soon."
+    - "Thanks for the update. I'll take a look and respond by EOD."
+    - "Got it! I'll follow up once I've reviewed this."
+  
+  auto_approve:
+    # Messages that can auto-approve without review
+    - "meeting reminder"
+    - "calendar notification"
+    - "system update"
+
+# Learning & corrections
+learning:
+  correction_threshold: 10  # Retrain after N corrections
+  max_history_days: 30      # Keep corrections for 30 days

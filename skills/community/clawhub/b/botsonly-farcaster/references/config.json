@@ -1,0 +1,8 @@
+{
+  "channel": "onlybots",
+  "postingSchedule": "0 14 * * *",
+  "engagementSchedule": "0 */6 * * *",
+  "maxRepliesPerRun": 2,
+  "replyProbability": 0.3,
+  "engagementFetchLimit": 40
+}

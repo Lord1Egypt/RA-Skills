@@ -1,0 +1,30 @@
+{
+  "name": "classical-almanac",
+  "version": "1.0.0",
+  "description": "基于清乾隆钦定《协纪辨方书》的古典择日系统",
+  "main": "scripts/almanac.js",
+  "scripts": {
+    "test": "node scripts/almanac.js 2026-06 结婚",
+    "start": "node scripts/almanac.js"
+  },
+  "keywords": [
+    "择日",
+    "择吉",
+    "黄道吉日",
+    "协纪辨方书",
+    "建除十二神",
+    "黄道黑道",
+    "天德月德",
+    "彭祖百忌",
+    "奇门遁甲",
+    "五行",
+    "classical date selection",
+    "almanac",
+    "auspicious date"
+  ],
+  "author": "",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18"
+  }
+}

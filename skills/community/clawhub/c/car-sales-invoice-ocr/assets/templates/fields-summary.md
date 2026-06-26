@@ -1,0 +1,41 @@
+# 各识别类型的字段说明（elements 内容）
+
+根据 ocrType 不同，返回的 `elements` 对象包含以下字段：
+
+## VEHICLE_SALE_INVOICE (机动车销售统一发票)
+- `title`: 发票名称
+- `invoiceForm`: 发票联次
+- `invoiceCode`: 发票代码
+- `invoiceNo`: 发票号码
+- `issueDate`: 开票日期
+- `printedCode`: 机打代码
+- `printedNo`: 机打号码
+- `machineCode`: 机器编号
+- `taxControlCode`: 税控码
+- `buyerName`: 购方名称
+- `buyerTaxId`: 购方纳税人识别号
+- `buyerCode`: 购买方身份证或组织机构代码
+- `vehicleType`: 车辆类型
+- `brandModel`: 厂牌型号
+- `originalPlace`: 产地
+- `qualifiedNo`: 合格证号
+- `importCertificateNo`: 进口证明书号
+- `commodityInspectionNo`: 商检单号
+- `engineNo`: 发动机号码
+- `vehicleIdentificationNo`: 车辆识别代号
+- `totalAmountUpper`: 价税合计(大写)
+- `totalAmountLower`: 价税合计(小写)
+- `sellerName`: 销售方名称
+- `sellerTaxId`: 销售方纳税人识别号
+- `sellerAddressAndPhone`: 销售方地址及电话
+- `sellerBankAndAccount`: 销售方开户行及账号
+- `taxRate`: 增值税税率
+- `taxAmount`: 增值税税额
+- `taxAuthorityName`: 主管税务机关名称
+- `taxAuthorityCode`: 主管税务机关代码
+- `preTaxAmount`: 不含税价
+- `taxPaymentVoucher`: 完税凭证号码
+- `tonnage`: 吨位
+- `maxCapacity`: 限乘人数
+- `drawer`: 开票人
+- `remark`: 备注

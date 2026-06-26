@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "paths": [
+    {
+      "waypoints": ["LAX", "HNL", "NRT"],
+      "type": "geodesic"
+    }
+  ],
+  "etops": {
+    "enabled": true,
+    "ruleTimes": [180],
+    "engineOutSpeed": 420,
+    "speedUnit": "kts"
+  },
+  "distance": {
+    "units": "nm"
+  }
+}

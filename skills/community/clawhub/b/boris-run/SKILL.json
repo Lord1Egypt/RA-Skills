@@ -1,0 +1,131 @@
+{
+  "name": "boris-workflow",
+  "version": "1.0.0",
+  "description": "Parallel agent task runner for OpenClaw implementing the Boris Cherny multi-agent pattern. Execute multiple independent tasks across multiple agents with automatic progress tracking, configurable error retry, and organized artifact management.",
+  "author": "Goli / mukston",
+  "tags": ["workflow", "parallel", "agents", "boris", "orchestration", "multi-agent", "task-runner"],
+  "homepage": "https://github.com/mukston-debug/boris-workflow",
+  "repository": "https://github.com/mukston-debug/boris-workflow",
+  "license": "MIT",
+  "requirements": {
+    "openclaw": {
+      "min_version": "0.1.0",
+      "features": ["subagent-spawning", "session-management"]
+    },
+    "system": {
+      "python": ">=3.9",
+      "os": ["linux", "macos", "wsl"],
+      "memory_mb": 4096,
+      "disk_mb": 100
+    },
+    "dependencies": {
+      "required": [
+        {
+          "name": "pyyaml",
+          "version": ">=6.0",
+          "purpose": "YAML configuration parsing"
+        },
+        {
+          "name": "requests",
+          "version": ">=2.28.0",
+          "purpose": "HTTP client for API calls"
+        }
+      ],
+      "optional": [
+        {
+          "name": "fastapi",
+          "version": ">=0.100.0",
+          "purpose": "Web UI backend",
+          "required_for": ["web-ui"]
+        },
+        {
+          "name": "uvicorn",
+          "version": ">=0.23.0",
+          "purpose": "ASGI server for Web UI",
+          "required_for": ["web-ui"]
+        },
+        {
+          "name": "pydantic",
+          "version": ">=2.0.0",
+          "purpose": "Data validation for Web UI",
+          "required_for": ["web-ui"]
+        }
+      ]
+    },
+    "config_files": [
+      {
+        "path": "~/.boris/config.yaml",
+        "purpose": "User-level configuration",
+        "required": false
+      },
+      {
+        "path": "./.boris/config.yaml",
+        "purpose": "Project-level configuration",
+        "required": false
+      }
+    ],
+    "environment_variables": [
+      {
+        "name": "BORIS_CONFIG",
+        "description": "Path to config file",
+        "required": false
+      },
+      {
+        "name": "BORIS_AGENTS_DEFAULT",
+        "description": "Default agent count",
+        "required": false
+      },
+      {
+        "name": "BORIS_OUTPUT_DIR",
+        "description": "Base artifacts directory",
+        "required": false
+      },
+      {
+        "name": "BORIS_LOG_LEVEL",
+        "description": "Logging level (debug, info, warn, error)",
+        "required": false
+      },
+      {
+        "name": "BORIS_MODEL",
+        "description": "Default AI model",
+        "required": false
+      }
+    ]
+  },
+  "features": [
+    {
+      "name": "Parallel Execution",
+      "description": "Run 1-20 agents simultaneously with work-stealing pattern"
+    },
+    {
+      "name": "Progress Tracking",
+      "description": "Real-time progress updates with compact or verbose modes"
+    },
+    {
+      "name": "Retry Logic",
+      "description": "Configurable retry strategies with exponential backoff"
+    },
+    {
+      "name": "Verification",
+      "description": "Optional verification agent for quality assurance"
+    },
+    {
+      "name": "Web UI",
+      "description": "Modern dark-themed interface with real-time updates"
+    },
+    {
+      "name": "Artifact Management",
+      "description": "Organized directory structure with cleanup policies"
+    }
+  ],
+  "entry_points": {
+    "cli": "./bin/boris-run",
+    "webui": "./webui/start.sh"
+  },
+  "documentation": {
+    "skill_readme": "SKILL.md",
+    "submission_readme": "submission/README.md",
+    "install_guide": "submission/INSTALL.md",
+    "changelog": "submission/CHANGELOG.md"
+  }
+}

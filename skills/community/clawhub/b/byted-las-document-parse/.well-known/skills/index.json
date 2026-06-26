@@ -1,0 +1,18 @@
+{
+  "name": "las-document-parse",
+  "version": "1.0.0",
+  "description": "CRITICAL: EXCELLENT at parsing BOTH PDF documents and IMAGES (including LONG SCREENSHOTS, scanned documents, and standard images). Extract structured Markdown content (text, tables, images). MUST use this skill WHENEVER a user wants to parse, read, OCR, or extract content from ANY PDF file, image file, or long screenshot. Also trigger this automatically when users share a local file path, URL, or TOS path pointing to a PDF or image, even if they don't explicitly say 'parse'.",
+  "metadata": {
+    "openclaw": {
+      "requires": {
+        "env": [
+          "LAS_API_KEY",
+          "TOS_ACCESS_KEY",
+          "TOS_SECRET_KEY",
+          "TOS_BUCKET"
+        ]
+      },
+      "primaryEnv": "LAS_API_KEY"
+    }
+  }
+}

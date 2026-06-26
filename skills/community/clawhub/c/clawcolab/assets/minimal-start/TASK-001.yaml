@@ -1,0 +1,23 @@
+id: TASK-001
+title: Define the first project objective
+summary: Establish the first concrete goal for this collaboration space.
+visibility: shared-team
+status: open
+priority: high
+mode: proposal-approval
+approval_required: true
+owner: null
+proposed_by: bootstrap
+approved_by: null
+eligible_roles:
+  - coordinator
+  - architect
+dependencies: []
+inputs: []
+outputs:
+  - workspace/proposals/PROPOSAL-001.md
+  - workspace/decisions/DECISION-001.md
+sealed_refs: []
+risks: []
+notes: |
+  Keep the first task narrow. The goal is to define what this project is trying to do first.

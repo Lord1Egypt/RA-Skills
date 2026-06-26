@@ -1,0 +1,30 @@
+{
+  "digit": {
+    "tessedit_char_whitelist": "0123456789.,-%",
+    "tessedit_pageseg_mode": "6",
+    "tessedit_ocr_engine_mode": "1",
+    "tessedit_min_confidence": "60",
+    "tessedit_max_variance": "0.3"
+  },
+  "axis": {
+    "tessedit_char_whitelist": "0123456789.,-%abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ",
+    "tessedit_pageseg_mode": "7",
+    "tessedit_ocr_engine_mode": "1",
+    "tessedit_min_confidence": "60",
+    "tessedit_max_variance": "0.3"
+  },
+  "legend": {
+    "tessedit_char_whitelist": "0123456789.,-%abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ:：",
+    "tessedit_pageseg_mode": "8",
+    "tessedit_ocr_engine_mode": "1",
+    "tessedit_min_confidence": "60",
+    "tessedit_max_variance": "0.3"
+  },
+  "title": {
+    "tessedit_char_whitelist": "0123456789.,-%abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ:：",
+    "tessedit_pageseg_mode": "6",
+    "tessedit_ocr_engine_mode": "1",
+    "tessedit_min_confidence": "60",
+    "tessedit_max_variance": "0.3"
+  }
+}

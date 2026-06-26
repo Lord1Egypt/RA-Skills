@@ -1,0 +1,222 @@
+# 角色管理配置
+
+# ==================== 角色类型定义 ====================
+character_roles:
+  主角:
+    priority: 1
+    required_fields: [name, role, background, motivation]
+    min_word_count: 500
+    description: "故事核心人物，贯穿全文"
+    
+  女主角:
+    priority: 2
+    required_fields: [name, role, relationship]
+    min_word_count: 300
+    description: "感情线核心，与主角有情感纠葛"
+    
+  重要配角:
+    priority: 3
+    required_fields: [name, role, function]
+    min_word_count: 200
+    description: "推动剧情的关键配角"
+    
+  配角:
+    priority: 4
+    required_fields: [name, role]
+    min_word_count: 100
+    description: "一般配角，丰富故事世界"
+    
+  反派:
+    priority: 2
+    required_fields: [name, role, motivation, conflict]
+    min_word_count: 300
+    description: "对立面角色，制造冲突"
+    
+  中立:
+    priority: 5
+    required_fields: [name, role]
+    min_word_count: 100
+    description: "立场不明确的角色"
+
+# ==================== 关系类型定义 ====================
+relationship_types:
+  盟友:
+    category: positive
+    description: "站在主角一方的角色"
+    
+  敌人:
+    category: negative
+    description: "对立面角色"
+    
+  竞争对手:
+    category: neutral
+    description: "亦敌亦友的关系"
+    
+  师徒:
+    category: positive
+    description: "师傅/徒弟关系"
+    
+  亲人:
+    category: positive
+    description: "父母、兄弟姐妹等血缘关系"
+    
+  暧昧:
+    category: romantic
+    description: "感情线未明确"
+    
+  恋人:
+    category: romantic
+    description: "确定的恋爱关系"
+    
+  恩人:
+    category: positive
+    description: "对主角有恩的角色"
+    
+  债主:
+    category: negative
+    description: "主角欠其人情或债务"
+
+# ==================== 性格特征库 ====================
+personality_traits:
+  positive:
+    - 坚韧不拔
+    - 重情重义
+    - 聪明机智
+    - 善良正直
+    - 勇敢无畏
+    - 乐观开朗
+    - 细心谨慎
+    - 宽容大度
+    
+  negative:
+    - 冲动易怒
+    - 自私自利
+    - 懦弱胆小
+    - 阴险狡诈
+    - 骄傲自大
+    - 多疑善变
+    - 固执己见
+    - 优柔寡断
+    
+  neutral:
+    - 冷静理智
+    - 沉默寡言
+    - 圆滑世故
+    - 特立独行
+    - 追求完美
+    - 现实主义
+
+# ==================== MBTI 类型参考 ====================
+mbti_types:
+  ISTJ: "物流师 - 安静、严肃、责任感强"
+  ISFJ: "守卫者 - 安静、友好、有责任感"
+  INFJ: "提倡者 - 安静、神秘、理想主义"
+  INTJ: "建筑师 - 独立、战略思维、追求完美"
+  ISTP: "鉴赏家 - 大胆、实际、擅长工具"
+  ISFP: "探险家 - 安静、友好、敏感"
+  INFP: "调停者 - 诗意、善良、利他主义"
+  INTP: "逻辑学家 - 创新、好奇、理论导向"
+  ESTP: "企业家 - 聪明、精力充沛、冒险"
+  ESFP: "表演者 - 外向、友好、爱表现"
+  ENFP: "竞选者 - 热情、有创造力、社交"
+  ENTP: "辩论家 - 聪明、好奇、喜欢辩论"
+  ESTJ: "总经理 - 实际、注重事实、果断"
+  ESFJ: "执政官 - 外向、受欢迎、热心"
+  ENFJ: "主人公 - 魅力、领导力、利他"
+  ENTJ: "指挥官 - 大胆、果断、领导力强"
+
+# ==================== 角色模板 ====================
+templates:
+  玄幻小说主角:
+    role: 主角
+    age_range: [15, 25]
+    required_sections:
+      - appearance
+      - personality
+      - background
+      - abilities
+      - relationships
+      - motivation
+    archetype_options:
+      - 废柴崛起
+      - 天才陨落
+      - 重生复仇
+      - 穿越异界
+      
+  都市小说主角:
+    role: 主角
+    age_range: [20, 35]
+    required_sections:
+      - appearance
+      - personality
+      - background
+      - skills
+      - relationships
+      - motivation
+    archetype_options:
+      - 退婚流
+      - 扮猪吃虎
+      - 神医下山
+      - 重生商战
+      
+  科幻小说主角:
+    role: 主角
+    age_range: [18, 40]
+    required_sections:
+      - appearance
+      - personality
+      - background
+      - abilities
+      - relationships
+      - motivation
+    archetype_options:
+      - 星际殖民
+      - AI 觉醒
+      - 末日求生
+      - 时空穿梭
+      
+  历史小说主角:
+    role: 主角
+    age_range: [15, 35]
+    required_sections:
+      - appearance
+      - personality
+      - background
+      - skills
+      - relationships
+      - motivation
+    archetype_options:
+      - 穿越称帝
+      - 权谋斗争
+      - 科举崛起
+      - 战争争霸
+
+# ==================== 情感弧光阶段 ====================
+emotional_arc_stages:
+  - name: 初始状态
+    description: "故事开始时的角色状态"
+    typical_emotions: [平静，迷茫，满足，不满]
+    
+  - name: 催化剂反应
+    description: "面对催化剂事件的反应"
+    typical_emotions: [震惊，抗拒，恐惧，兴奋]
+    
+  - name: 适应期
+    description: "逐渐适应新环境"
+    typical_emotions: [好奇，挣扎，成长，挫折]
+    
+  - name: 中点转折
+    description: "重大转折后的情感变化"
+    typical_emotions: [觉醒，决心，愤怒，悲伤]
+    
+  - name: 低谷期
+    description: "失去一切后的状态"
+    typical_emotions: [绝望，自责，迷茫，放弃]
+    
+  - name: 领悟期
+    description: "灵魂黑夜后的领悟"
+    typical_emotions: [平静，接受，坚定，希望]
+    
+  - name: 最终状态
+    description: "故事结束时的状态"
+    typical_emotions: [满足，释然，成长，圆满]

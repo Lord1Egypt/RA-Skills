@@ -1,0 +1,10 @@
+{
+  "model_name": "line_detection",
+  "model_path": "data/models/line_detection.pb",
+  "optimization": {
+    "multithread": true,
+    "batch_size": 10,
+    "cache_size": 100,
+    "timeout": 30
+  }
+}

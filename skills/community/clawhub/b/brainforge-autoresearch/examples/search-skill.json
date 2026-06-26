@@ -1,0 +1,54 @@
+{
+  "skill_description": "Perform a web search on a given query and return a structured summary of findings with source citations. The output should be accurate to search results, well-organized, and immediately useful.",
+  "test_inputs": [
+    {
+      "name": "technical_english",
+      "input": "What are the main differences between SQLite WAL mode and journal mode? When should I use each?"
+    },
+    {
+      "name": "current_events_chinese",
+      "input": "2026年3月 OpenAI 和 Anthropic 最新发布了什么模型？各自有什么特点？"
+    },
+    {
+      "name": "comparison_query",
+      "input": "Compare Cloudflare Workers vs AWS Lambda for edge computing: cold start times, pricing, and language support"
+    }
+  ],
+  "evals": [
+    {
+      "type": "rule",
+      "name": "has_source_citation",
+      "rule": "regex",
+      "pattern": "https?://[^\\s)\\]]+",
+      "description": "Output contains at least one URL as a source citation"
+    },
+    {
+      "type": "rule",
+      "name": "no_hallucination_markers",
+      "rule": "not_contains",
+      "values": [
+        "[Source needed]",
+        "[citation needed]",
+        "I couldn't find",
+        "I don't have access",
+        "As of my knowledge cutoff",
+        "I'm not able to browse"
+      ],
+      "description": "No placeholder citations or disclaimers about inability to search"
+    },
+    {
+      "type": "llm",
+      "name": "captures_key_findings",
+      "question": "Based on the search query, does the output identify and summarize the most important findings? Check that: (1) the core question is directly answered, not deflected, (2) key distinctions or comparisons requested are addressed, and (3) the information appears factually consistent (no self-contradictions).",
+      "pass_description": "The output directly answers the query with specific, substantive information. Key points are covered (e.g., for a comparison query, both sides are discussed with concrete details like numbers or features). No self-contradictions.",
+      "fail_description": "The output is vague, generic, or fails to address the core question. For comparison queries, one side may be missing or described only in generalities. Contains self-contradicting statements."
+    },
+    {
+      "type": "llm",
+      "name": "clear_structure",
+      "question": "Is the output organized with clear visual structure? Look for: distinct sections or categories (using headers, bullet points, or numbered lists), a logical flow from overview to details, and separation between different sub-topics.",
+      "pass_description": "Output uses headers, bullets, or numbered lists to separate information into logical sections. A reader can scan the output and find specific information without reading everything.",
+      "fail_description": "Output is a wall of text, or uses formatting inconsistently. Information about different sub-topics is mixed together without clear separation."
+    }
+  ]
+}

@@ -1,0 +1,1594 @@
+meta:
+  id: finance-bp-138-v6.1
+  version: v6.1
+  blueprint_id: finance-bp-138
+  sop_version: crystal-compilation-v6.1
+  source_language: en
+  compiled_at: '2026-04-25T09:19:04.243962+00:00'
+  target_host: openclaw
+  authoritative_artifact:
+    primary: seed.yaml
+    non_authoritative_derivatives:
+    - SKILL.md (host-generated summary, may lag)
+    - HEARTBEAT.md (host telemetry)
+    - memory/*.md (host conversational memory)
+    rule: On any behavioral decision (preconditions check, OV assertion, EQ rule firing, spec_lock verification), agents MUST
+      re-read seed.yaml. Derivatives are for UI display only and may be out-of-date.
+  execution_protocol:
+    install_trigger:
+    - Execute resources.host_adapter.install_recipes[] in declared order
+    - Verify each package with import check before proceeding
+    execute_trigger: When user intent matches intent_router.uc_entries[].positive_terms AND user uses action verb (run/execute/跑/执行/backtest/fetch/collect)
+    on_execute:
+    - Reload seed.yaml (do not rely on SKILL.md or cached summaries)
+    - Run preconditions[] in declared order; halt on first fatal failure with on_fail message to user
+    - Enter context_state_machine.CA1_MEMORY_CHECKED state
+    - Evaluate evidence_quality.enforcement_rules[]; prepend user_disclosure_template
+    - Translate user_facing_fields to user locale per locale_contract
+    workspace_resolution:
+      scripts_path: '{host_workspace}/scripts/'
+      skills_path: '{host_workspace}/skills/'
+      trace_path: '{host_workspace}/.trace/'
+locale_contract:
+  source_language: en
+  user_facing_fields:
+  - human_summary.what_i_can_do.tagline
+  - human_summary.what_i_can_do.use_cases[]
+  - human_summary.what_i_auto_fetch[]
+  - human_summary.what_i_ask_you[]
+  - evidence_quality.user_disclosure_template
+  - post_install_notice.message_template.positioning
+  - post_install_notice.message_template.capability_catalog.groups[].name
+  - post_install_notice.message_template.capability_catalog.groups[].description
+  - post_install_notice.message_template.capability_catalog.groups[].ucs[].name
+  - post_install_notice.message_template.capability_catalog.groups[].ucs[].short_description
+  - post_install_notice.message_template.call_to_action
+  - post_install_notice.message_template.featured_entries[].beginner_prompt
+  - post_install_notice.message_template.more_info_hint
+  - preconditions[].description
+  - preconditions[].on_fail
+  - intent_router.uc_entries[].name
+  - intent_router.uc_entries[].ambiguity_question
+  - architecture.pipeline
+  - architecture.stages[].narrative.does_what
+  - architecture.stages[].narrative.key_decisions
+  - architecture.stages[].narrative.common_pitfalls
+  - constraints.fatal[].consequence
+  - constraints.regular[].consequence
+  - output_validator.assertions[].failure_message
+  - acceptance.hard_gates[].on_fail
+  - skill_crystallization.action
+  locale_detection_order:
+  - explicit_user_declaration
+  - first_message_language
+  - system_locale
+  translation_enforcement:
+    trigger: on_first_user_message
+    action: Render user_facing_fields in detected locale, preserving all IDs (BD-/SL-/UC-/finance-C-) and code identifiers
+      verbatim
+    violation_code: LOCALE-01
+    violation_signal: User receives untranslated English Human Summary when detected locale != en
+evidence_quality:
+  declared:
+    evidence_coverage_ratio: null
+    evidence_verify_ratio: null
+    evidence_invalid: 0
+    evidence_verified: null
+    evidence_auto_fixed: null
+    audit_coverage: 20 finance-universal not_applicable + 6 AIL items + 5 DAT items = 31 items reviewed across applicable
+      scope
+    audit_pass_rate: 3/11 (27% applicable items pass; 8 warn/fail/missing capture the architectural boundaries and divergences
+      worth surfacing as constraints)
+    audit_fail_total: 0
+    audit_finance_universal:
+      pass: 0
+      warn: 0
+      fail: 0
+    audit_subdomain_totals:
+      pass: 0
+      warn: 0
+      fail: 0
+  enforcement_rules:
+  - id: EQ-01
+    trigger: declared.evidence_verify_ratio < 0.5
+    action: MUST invoke traceback lookup for all cited BD-IDs in output before emitting business code — read LATEST.yaml sections
+      for each BD referenced
+    violation_code: EQ-01-V
+    violation_signal: Generated script references BD-IDs but no tool_call to read LATEST.yaml preceded code generation
+  - id: EQ-02
+    trigger: always
+    action: MUST prepend user_disclosure_template (translated to user locale) to first user-facing response
+    violation_code: EQ-02-V
+    violation_signal: First agent response to user does not contain audit warning phrase
+  user_disclosure_template: '[QUALITY NOTICE] This crystal was compiled from blueprint finance-bp-138. Evidence verify ratio
+    = 0.0% and audit fail total = 0. Generated results may have uncaptured requirement gaps. Verify critical decisions against
+    source files (LATEST.yaml / LATEST.jsonl).'
+traceback:
+  source_files:
+    blueprint: LATEST.yaml
+    constraints: LATEST.jsonl
+  mandatory_lookup_scenarios:
+  - id: TB-01
+    condition: Two constraints have apparently conflicting enforcement rules
+    lookup_target: LATEST.jsonl — find both constraint IDs, compare `consequence` + `evidence_refs` to determine priority
+  - id: TB-02
+    condition: A business decision rationale is unclear or disputed
+    lookup_target: LATEST.yaml — locate BD-ID under business_decisions, read `rationale` + `alternative_considered` fields
+  - id: TB-03
+    condition: evidence_invalid > 0 in evidence_quality.declared
+    lookup_target: LATEST.yaml _enrich_meta — cross-check specific BD `evidence_refs` fields for invalid markers
+  - id: TB-04
+    condition: User asks where a rule comes from
+    lookup_target: LATEST.jsonl — find constraint by ID, read `confidence.evidence_refs` for source file + line number
+  - id: TB-05
+    condition: Generated code does not match expected ZVT API behavior
+    lookup_target: LATEST.yaml stages[].required_methods — verify method signature and evidence locator in source code
+  degraded_lookup:
+    no_fs_access: 'Ask the user to paste the relevant LATEST.yaml section or LATEST.jsonl lines for the BD-/finance-C- IDs
+      in question. Crystal ID: finance-bp-138-v5.0.'
+trace_schema:
+  event_types:
+  - precondition_check
+  - spec_lock_check
+  - evidence_rule_fired
+  - evidence_rule_skipped
+  - locale_translation_emitted
+  - hard_gate_passed
+  - hard_gate_failed
+  - skill_emitted
+  - false_completion_claim
+preconditions:
+- id: PC-01
+  description: zvt package installed and importable
+  check_command: python3 -c 'import zvt; print(zvt.__version__)'
+  on_fail: 'Run: python3 -m pip install zvt  then re-run: python3 -m zvt.init_dirs to initialize data directories'
+  severity: fatal
+- id: PC-02
+  description: K-data exists for target entities (required before backtesting)
+  check_command: python3 -c "from zvt.api.kdata import get_kdata; df = get_kdata(entity_ids=['stock_sh_600000'], limit=1);
+    assert df is not None and len(df) > 0, 'No kdata found'"
+  on_fail: 'Run recorder first: python3 -m zvt.recorders.em.em_stock_kdata_recorder --entity_ids stock_sh_600000  (replace
+    with your target entity IDs)'
+  severity: fatal
+  applies_to_uc: []
+- id: PC-03
+  description: ZVT data directory initialized (~/.zvt or ZVT_HOME)
+  check_command: 'python3 -c "import os; from pathlib import Path; zvt_home = Path(os.environ.get(''ZVT_HOME'', Path.home()
+    / ''.zvt'')); assert zvt_home.exists(), f''ZVT home not found: {zvt_home}''"'
+  on_fail: 'Run: python3 -m zvt.init_dirs'
+  severity: fatal
+- id: PC-04
+  description: SQLite write permission for ZVT data directory
+  check_command: python3 -c "import os, tempfile; from pathlib import Path; zvt_home = Path(os.environ.get('ZVT_HOME', Path.home()
+    / '.zvt')); test_f = zvt_home / '.write_test'; test_f.touch(); test_f.unlink()"
+  on_fail: 'Check directory permissions: chmod u+w ~/.zvt  or set ZVT_HOME environment variable to a writable location'
+  severity: warn
+intent_router:
+  uc_entries:
+  - uc_id: UC-001
+    name: RAG basics (chat-with-your-documents)
+    positive_terms:
+    - RAG
+    - chat with documents
+    - context-augmented generation
+    - question answering
+    data_domain: text + metadata
+    negative_terms:
+    - multimodal
+    - agentic memory
+    - image
+    ambiguity_question: If user mentions image/audio → UC-004 multimodal; if user mentions 'agent memory' → consider mem0
+      (finance-bp-131), not chroma directly
+  - uc_id: UC-002
+    name: Where-Filter metadata-scoped retrieval
+    positive_terms:
+    - where filter
+    - metadata filtering
+    - $eq
+    - $gt
+    - $in
+    - $nin
+    - metadata filter
+    data_domain: metadata + vectors
+    negative_terms:
+    - full-text search
+    - FTS
+    - regex
+    ambiguity_question: If user wants substring/regex → use where_document $contains or Cloud's FTS index
+  - uc_id: UC-003
+    name: Local persistent database (PersistentClient)
+    positive_terms:
+    - PersistentClient
+    - persistence
+    - local database
+    - single node
+    - persistence
+    data_domain: vectors + metadata
+    negative_terms:
+    - distributed
+    - cloud
+    - HttpClient
+    ambiguity_question: Multi-machine or Cloud → use HttpClient/CloudClient
+  - uc_id: UC-004
+    name: Multimodal retrieval (text + image)
+    positive_terms:
+    - multimodal
+    - image
+    - CLIP
+    - OpenCLIP
+    - text-image retrieval
+    data_domain: text + image + URI metadata
+    negative_terms:
+    - RAG
+    - text-only
+    - documents
+    ambiguity_question: Pure text → UC-001
+  - uc_id: UC-005
+    name: Server-side embedding (thin client)
+    positive_terms:
+    - server-side embedding
+    - thin client
+    - HttpClient
+    - remote EF
+    data_domain: text + metadata
+    negative_terms:
+    - local
+    - in-process
+    - PersistentClient
+    ambiguity_question: In-process embedding → EphemeralClient + DefaultEmbeddingFunction
+  - uc_id: UC-006
+    name: Custom Embedding Function
+    positive_terms:
+    - custom embedding
+    - EmbeddingFunction
+    - alternative embedding
+    - OpenAI EF
+    - Cohere EF
+    data_domain: text + custom vectors
+    negative_terms:
+    - default embedding
+    ambiguity_question: Default fits → no custom EF needed
+  - uc_id: UC-007
+    name: Collection Forking (zero-copy snapshot)
+    positive_terms:
+    - fork
+    - snapshot
+    - branch collection
+    - version
+    data_domain: Cloud metadata
+    negative_terms:
+    - local
+    - OSS
+    - PersistentClient
+    ambiguity_question: OSS users use export/import workflows
+  - uc_id: UC-008
+    name: Production Deployment (Docker / Terraform / systemd)
+    positive_terms:
+    - deployment
+    - Terraform
+    - Docker
+    - systemd
+    - production
+    data_domain: deployment configuration
+    negative_terms:
+    - EphemeralClient
+    - Colab
+    - prototype
+    ambiguity_question: Prototype → EphemeralClient; local persistent → PersistentClient
+  - uc_id: UC-009
+    name: Observability / OTel Monitoring
+    positive_terms:
+    - observability
+    - OTel
+    - tracing
+    - metrics
+    - monitoring
+    data_domain: ops signals
+    negative_terms:
+    - client-only
+    - EphemeralClient
+    ambiguity_question: Client-only → use local logging
+  - uc_id: UC-010
+    name: Cloud Task API (async batch jobs)
+    positive_terms:
+    - task
+    - async
+    - batch
+    - long-running
+    data_domain: Cloud tasks
+    negative_terms:
+    - EphemeralClient
+    - PersistentClient
+    - OSS
+    ambiguity_question: Local has no task API
+context_state_machine:
+  states:
+  - id: CA1_MEMORY_CHECKED
+    entry: Task started
+    exit: All memory queries attempted and recorded; memory_unavailable set if failed
+    timeout: 30s — skip memory, mark memory_unavailable=true, proceed to CA2
+  - id: CA2_GAPS_FILLED
+    entry: CA1 complete
+    exit: 'All FATAL-priority required inputs answered: target market (A-share/HK/US), data source, time range, strategy type'
+    timeout: NOT skippable — FATAL inputs MUST be user-answered before proceeding
+  - id: CA3_PATH_SELECTED
+    entry: CA2 complete
+    exit: intent_router matched single use case with confidence gap > 20% over next candidate, no data_domain ambiguity
+    timeout: Trigger ambiguity_question for top-2 candidates, await user selection
+  - id: CA4_EXECUTING
+    entry: CA3 complete + user explicit confirmation received
+    exit: All hard gates G1-Gn passed and output files written
+    timeout: NOT skippable — user confirmation of execution path required
+  enforcement: Code generation is PROHIBITED before CA4_EXECUTING. Any regression to earlier state MUST be announced to user.
+    buy/sell ordering SL-01 check runs at CA4 entry.
+spec_lock_registry:
+  semantic_locks:
+  - id: SL-01
+    description: Execute sell orders before buy orders in every trading cycle
+    locked_value: sell() called before buy() in each Trader.run() iteration
+    violation_is: fatal
+    source_bd_ids:
+    - BD-018
+  - id: SL-02
+    description: Trading signals MUST use next-bar execution (no look-ahead)
+    locked_value: due_timestamp = happen_timestamp + level.to_second()
+    violation_is: fatal
+    source_bd_ids:
+    - BD-014
+    - BD-025
+  - id: SL-03
+    description: Entity IDs MUST follow format entity_type_exchange_code
+    locked_value: stock_sh_600000 | stockhk_hk_0700 | stockus_nasdaq_AAPL
+    violation_is: fatal
+    source_bd_ids: []
+  - id: SL-04
+    description: DataFrame index MUST be MultiIndex (entity_id, timestamp)
+    locked_value: df.index.names == ['entity_id', 'timestamp']
+    violation_is: fatal
+    source_bd_ids: []
+  - id: SL-05
+    description: 'TradingSignal MUST have EXACTLY ONE of: position_pct, order_money, order_amount'
+    locked_value: XOR enforcement in trading/__init__.py:68
+    violation_is: fatal
+    source_bd_ids: []
+  - id: SL-06
+    description: 'filter_result column semantics: True=BUY, False=SELL, None/NaN=NO ACTION'
+    locked_value: factor.py:475 order_type_flag mapping
+    violation_is: fatal
+    source_bd_ids: []
+  - id: SL-07
+    description: Transformer MUST run BEFORE Accumulator in factor pipeline
+    locked_value: 'compute_result(): transform at :403 before accumulator at :409'
+    violation_is: fatal
+    source_bd_ids: []
+  - id: SL-08
+    description: 'MACD parameters locked: fast=12, slow=26, signal=9'
+    locked_value: factors/algorithm.py:30 macd(slow=26, fast=12, n=9)
+    violation_is: fatal
+    source_bd_ids:
+    - BD-036
+  - id: SL-09
+    description: 'Default transaction costs: buy_cost=0.001, sell_cost=0.001, slippage=0.001'
+    locked_value: sim_account.py:25 SimAccountService default costs
+    violation_is: warning
+    source_bd_ids:
+    - BD-029
+  - id: SL-10
+    description: A-share equity trading is T+1 (no same-day close of buy positions)
+    locked_value: sim_account.available_long filters by trading_t
+    violation_is: fatal
+    source_bd_ids: []
+  - id: SL-11
+    description: Recorder subclass MUST define provider AND data_schema class attributes
+    locked_value: contract/recorder.py:71 Meta; register_schema decorator
+    violation_is: fatal
+    source_bd_ids: []
+  - id: SL-12
+    description: Factor result_df MUST contain either 'filter_result' OR 'score_result' column
+    locked_value: result_df.columns.intersection({'filter_result', 'score_result'}) non-empty
+    violation_is: fatal
+    source_bd_ids: []
+  implementation_hints:
+  - id: IH-01
+    hint: 'Use AdjustType enum exactly: qfq (pre-adjust), hfq (post-adjust), bfq (none) — contract/__init__.py:121'
+  - id: IH-02
+    hint: For A-share kdata, default to hfq for long-term analysis (dividend-adjusted) — trader.py:538 StockTrader
+  - id: IH-03
+    hint: SQLite connection MUST use check_same_thread=False for multi-threaded recorders
+  - id: IH-04
+    hint: Accumulator state serialization uses JSON with custom encoder/decoder hooks — contract/base_service.py
+  - id: IH-05
+    hint: Factor.level MUST match TargetSelector.level (enforced at add_factor) — factors/target_selector.py:84
+preservation_manifest:
+  required_objects:
+    business_decisions_count: 24
+    fatal_constraints_count: 3
+    non_fatal_constraints_count: 49
+    use_cases_count: 10
+    semantic_locks_count: 12
+    preconditions_count: 4
+    evidence_quality_rules_count: 2
+    traceback_scenarios_count: 5
+architecture:
+  pipeline: data_collection -> data_storage -> factor_computation -> target_selection -> trading_execution -> visualization
+  stages:
+  - id: data_collection
+    narrative:
+      does_what: TimeSeriesDataRecorder and FixedCycleDataRecorder fetch OHLCV and fundamental data from providers (eastmoney,
+        joinquant, baostock, akshare) and persist domain objects (Stock1dKdata, BalanceSheet) to SQLite via df_to_db().
+      key_decisions: BD-002 chose evaluate_start_end_size_timestamps for incremental fetch (not full refresh) because comparing
+        to get_latest_saved_record avoids redundant API calls; BD-003 chose get_data_map field transformation to keep domain
+        schema provider-agnostic.
+      common_pitfalls: 'Don''t forget SL-11: Recorder subclass MUST declare both provider and data_schema class attributes
+        else initialization fails with assertion error; finance-C-001 fatal violation.'
+    business_decisions: []
+  - id: data_storage
+    narrative:
+      does_what: StorageBackend persists DataFrames to per-provider SQLite databases at {data_path}/{provider}/{provider}_{db_name}.db
+        using path templates from _get_path_template; Mixin.record_data and Mixin.query_data provide uniform read/write interface.
+      key_decisions: BD-004 chose StorageBackend abstraction (not hardcoded SQLite) to allow future cloud storage swap; BD-006
+        derives db_name from data_schema __tablename__ for per-domain database isolation.
+      common_pitfalls: SL-04 violation (wrong DataFrame index) causes factor pipeline failures downstream; always ensure df.index.names
+        == ['entity_id', 'timestamp'] before calling record_data.
+    business_decisions: []
+  - id: factor_computation
+    narrative:
+      does_what: Factor.compute() applies Transformer (stateless, e.g. MacdTransformer) then Accumulator (stateful, e.g. MaStatsAccumulator)
+        to produce filter_result or score_result columns; EntityStateService persists per-entity rolling state across batches.
+      key_decisions: BD-007 chose Factor inheriting DataReader for composable data access; SL-08 locks MACD at (fast=12, slow=26,
+        n=9) — chose standard Appel parameters not adaptive because interpretability matters for practitioners.
+      common_pitfalls: 'SL-07: Transformer MUST run before Accumulator — swapping order causes NaN propagation; SL-12: result_df
+        must contain filter_result OR score_result column or TargetSelector silently drops all signals.'
+    business_decisions: []
+  - id: target_selection
+    narrative:
+      does_what: TargetSelector.add_factor() registers Factor instances; get_targets() returns entity_ids passing threshold
+        filter at a specific timestamp, enabling point-in-time historical backtesting without look-ahead.
+      key_decisions: BD-012 chose registrable factor list (not hardcoded) for runtime customization; BD-013 chose timestamp-specific
+        filtering not current-only because backtests need historical point-in-time correctness.
+      common_pitfalls: Factor.level MUST match TargetSelector.level (IH-05); mismatched levels cause silent empty target lists
+        that look like no signals but are actually level-mismatch bugs.
+    business_decisions: []
+  - id: trading_execution
+    narrative:
+      does_what: Trader.run() calls sell() before buy() each cycle, generates TradingSignals with due_timestamp = happen_timestamp
+        + level.to_second() for next-bar execution, and applies on_profit_control() for stop-loss/take-profit before regular
+        target selection.
+      key_decisions: SL-01 locks sell-before-buy order because available_long check in sim_account depends on it — chose this
+        over symmetric ordering to prevent implicit leverage; BD-039 chose long=AND/short=OR multi-level logic to reflect
+        risk asymmetry.
+      common_pitfalls: 'SL-02 violation (immediate execution instead of next-bar) introduces look-ahead bias and makes backtest
+        results unreproducible in live trading; SL-10: A-share T+1 constraint — backtesting without it overstates returns.'
+    business_decisions: []
+  - id: visualization
+    narrative:
+      does_what: Drawer.draw() combines kline main chart with factor overlays and Rect annotations for entry/exit signals
+        using Plotly; Drawable interface on Factor enables consistent chart rendering across data types.
+      key_decisions: BD-019 chose drawer_rects subclass override for custom annotations not hardcoded markers — allows traders
+        to define entry/exit visuals without modifying base drawing logic.
+      common_pitfalls: draw_result=True by default (BD-055) is fine for development but set draw_result=False in production/headless
+        environments to avoid Plotly server startup overhead.
+    business_decisions: []
+  - id: cross_cutting_concerns
+    narrative:
+      does_what: 'Invariants and utilities that span multiple pipeline stages — collected from 7 source groups: api_layer(3),
+        client_factory(2), cross_cutting(4), embedding_function(2), index(7), persistence(4), and 1 more.'
+      key_decisions: 24 BDs merged here because they apply to more than one main stage (e.g. algorithm helpers, default value
+        choices, ordering contracts, error handling). Agent should inspect individual BD summaries and link back to affected
+        main stages via shared IDs.
+      common_pitfalls: Cross-cutting concerns frequently surface as bugs when changes to one main stage unintentionally break
+        another. Check constraints referencing these BDs and verify invariants still hold after any stage-local modification.
+    business_decisions:
+    - id: BD-013
+      type: B
+      summary: Default chroma_api_impl = RustBindingsAPI since v1.0.0 (March 2025)
+    - id: BD-016
+      type: B
+      summary: $ne / $nin / $not_contains semantics changed in v0.5.12 — now match records where the key does not exist
+    - id: BD-019
+      type: B
+      summary: list_collections returns Sequence[Collection] (v1.0.0 reverted v0.6.0's name-only behavior)
+    - id: BD-012
+      type: RC/B
+      summary: Chroma Cloud quotas — dim≤4096 / doc≤16KB / URI≤256B / ID≤128B / metadata key≤36B / metadata value≤8182B (record)
+        256B (collection) / metadata keys≤32 / where predicates≤8 / n_results≤300 / records/wr
+    - id: BD-020
+      type: B
+      summary: Async surface is HTTP-only — no AsyncEphemeralClient / AsyncPersistentClient / AsyncRustClient
+    - id: BD-021
+      type: missing
+      summary: No EF–normalization mismatch detection when user supplies space=cosine with custom un-normalized EF
+    - id: BD-022
+      type: missing
+      summary: Embedding-dimension change requires manual create-new-collection + re-add (no in-place migration helper)
+    - id: BD-023
+      type: missing
+      summary: No EmbeddingFunction persistence — multi-process consumers can silently disagree on which EF backs a collection
+    - id: BD-024
+      type: missing
+      summary: No detection that user is on Rust default but configured Python-only legacy settings
+    - id: BD-010
+      type: B/M
+      summary: Default EmbeddingFunction = ONNXMiniLM_L6_V2 (all-MiniLM-L6-v2)
+    - id: BD-018
+      type: B/T
+      summary: EmbeddingFunction is not persisted into collection metadata
+    - id: BD-001
+      type: B/BA
+      summary: Source-level default distance metric is `l2`, but built-in EFs override to `cosine` via default_space() at
+        collection-create time
+    - id: BD-002
+      type: M/BA
+      summary: Cosine implementation is `1 - dot(a,b)` and assumes pre-normalized vectors
+    - id: BD-003
+      type: B
+      summary: Filter is PRE-vector — where-clause produces allowed_ids before HNSW search
+    - id: BD-004
+      type: B/BA
+      summary: HNSW default M=16 / ef_construction=100 / ef_search=100
+    - id: BD-005
+      type: B/BA
+      summary: default_batch_size=100, sync_threshold=1000 (HNSW batch + persistence cadence)
+    - id: BD-006
+      type: B
+      summary: HNSW dimension is latched at first write — no in-place dim change
+    - id: BD-017
+      type: B
+      summary: Static vs dynamic HNSW parameters governed by collection_configuration.UpdateHNSWConfiguration (NOT legacy
+        configuration.is_static path)
+    - id: BD-007
+      type: T
+      summary: Local persistence uses SQLite + on-disk HNSW files (not embedded KV like LMDB/RocksDB in single-node mode)
+    - id: BD-011
+      type: B/T
+      summary: max_batch_size is dynamic — inferred from SQLite MAX_VARIABLE_NUMBER PRAGMA / 6
+    - id: BD-014
+      type: T/RC
+      summary: SQLite ≥ 3.35.0 is a hard startup requirement — raises ImportError if older
+    - id: BD-015
+      type: B
+      summary: WAL pruning is automatic since v0.5.6; pre-v0.5.6 DBs need one-time `chroma utils vacuum` on upgrade
+    - id: BD-008
+      type: B/T
+      summary: Distributed mode adds a 3rd segment (BLOCKFILE_RECORD) separating record body from metadata index
+    - id: BD-009
+      type: B
+      summary: Local default vector segment is HNSW_LOCAL_MEMORY; switches to HNSW_LOCAL_PERSISTED only when is_persistent=True
+resources:
+  packages:
+  - name: hnswlib (chroma-core fork)
+    version_pin: latest
+  - name: pysqlite3-binary
+    version_pin: latest
+  strategy_scaffold:
+    entry_point_name: run_backtest
+    output_path: result.csv
+    execution_mode: backtest
+    conditional_entry_points:
+      backtest:
+        entry_point_name: run_backtest
+        output_path: result.csv
+      collector:
+        entry_point_name: run_collector
+        output_path: result.json
+      factor:
+        entry_point_name: run_factor
+        output_path: result.parquet
+      training:
+        entry_point_name: run_training
+        output_path: result.json
+      serving:
+        entry_point_name: run_server
+        output_path: result.json
+      research:
+        entry_point_name: run_research
+        output_path: result.json
+    tail_template: "# === DO NOT MODIFY BELOW THIS LINE ===\nif __name__ == \"__main__\":\n    result = run_backtest()  #\
+      \ implement above\n    from validate import enforce_validation\n    enforce_validation(result, output_path=\"{workspace}/result.csv\"\
+      )\n# === END DO NOT MODIFY ==="
+  host_adapter:
+    target: openclaw
+    timeout_seconds: 1800
+    shell_operator_restriction: 'exec tool intercepts && / ; / | — never chain: ''pip install X && python Y''. Use separate
+      exec calls.'
+    install_recipes:
+    - python3 -m pip install hnswlib (chroma-core fork)
+    - python3 -m pip install pysqlite3-binary
+    - python3 -m pip install zvt
+    credential_injection: JoinQuant/QMT credentials require user-side '!' prefix shell login. Never hardcode credentials in
+      generated scripts.
+    path_resolution: '{workspace} resolves to ~/.openclaw/workspace/doramagic at execution time.'
+    file_io_tooling: Use openclaw 'write' tool for .py/.sql files; 'exec' tool for python3 /absolute/path/script.py (absolute
+      paths only).
+constraints:
+  fatal:
+  - id: chroma-C-005
+    when: Switching the EmbeddingFunction on an existing collection (e.g. ada-002 1536d → text-embedding-3-large 3072d).
+    action: Do NOT expect in-place dimension changes — you must create_collection(new_name) with the new EF, iterate the old
+      collection regenerating all vectors, and write to the new collection.
+    severity: fatal
+    kind: domain_rule
+    modality: must_not
+    consequence: Dimensionality is latched at first write (local_hnsw.py:222-233 _ensure_index sets _dimensionality; mismatched
+      dim then raises InvalidDimensionException). HNSW graph structure is dim-bound and not resizable. Forcing different-dim
+      writes raises a hard exception and the entire batch rolls back.
+    stage_ids:
+    - index
+    - embedding_function
+    derived_from_bd_id: BD-006
+  - id: chroma-C-019
+    when: Deploying Chroma outside Colab (production servers, Docker images, local dev).
+    action: First confirm the host system has sqlite3.sqlite_version_info ≥ (3, 35, 0); if not, install pysqlite3-binary and
+      swap it manually — outside Colab, chromadb does not auto hot-swap.
+    severity: fatal
+    kind: resource_boundary
+    modality: must
+    consequence: chromadb/__init__.py:137-155 checks the SQLite version at import time; below 3.35.0 it raises RuntimeError
+      on the non-Colab path, and the entire chromadb module fails to import.
+    stage_ids:
+    - persistence
+    derived_from_bd_id: BD-014
+  - id: chroma-C-024
+    when: Deploying a Chroma v1.0.0+ server to production.
+    action: Do NOT rely on Chroma's built-in auth provider — since v1.0.0 the server no longer ships built-in auth; you must
+      front it with a reverse proxy (nginx/Traefik) or an external auth gateway.
+    severity: fatal
+    kind: claim_boundary
+    modality: must_not
+    consequence: If you configure chroma_server_auth_provider per old docs, v1.0.0+ images will not enable any auth and the
+      service may be fully open, exposing it to unauthenticated access.
+    stage_ids:
+    - client_factory
+    - api_layer
+  regular:
+  - id: chroma-C-001
+    when: Implementing a Chroma custom EmbeddingFunction intended for the cosine distance path.
+    action: Implement default_space() returning 'cosine' on the custom EF class, and L2-normalize at the __call__ output (vec
+      / np.linalg.norm(vec)).
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: When the custom EF does not implement default_space(), create_collection's fallback path writes space='l2'
+      (collection_configuration.py:442); the user expects cosine retrieval but gets l2, and recall is completely different.
+      When the EF returns un-normalized vectors with cosine selected, cosine_distance_scalar=1-dot may return negative values
+      or values >2 (illegal distances).
+    stage_ids:
+    - index
+    - embedding_function
+    derived_from_bd_id: BD-001
+  - id: chroma-C-002
+    when: Calling chromadb.Client().create_collection(name=...) without passing embedding_function and without setting hnsw:space
+      in metadata.
+    action: Do NOT assume the default distance is cosine — under this path collection_configuration.py:442 hits the fallback
+      and space is written as 'l2' (squared L2 norm, no sqrt).
+    severity: high
+    kind: domain_rule
+    modality: must_not
+    consequence: Text-similarity tasks under l2 distance produce different rankings than cosine (especially when vector magnitudes
+      vary), so callers expecting 'cosine default for text' silently get l2 results and recall quality degrades noticeably.
+    stage_ids:
+    - index
+    derived_from_bd_id: BD-001
+  - id: chroma-C-003
+    when: Choosing space='cosine' for a Chroma collection and inserting custom embeddings.
+    action: L2-normalize all vectors (v / np.linalg.norm(v)) BEFORE writing and querying — do not assume Chroma will normalize
+      internally.
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: rust/distance/src/distance.rs:9-15 cosine_distance_scalar implements `1 - sum(a[i]*b[i])` with no division
+      by magnitude. Un-normalized vectors yield mathematically meaningless distances (possibly negative, >2, or NaN), and
+      similarity ranking breaks completely.
+    stage_ids:
+    - index
+    derived_from_bd_id: BD-002
+  - id: chroma-C-004
+    when: Reading the cosine distance formula in docs/mintlify/docs/collections/configure.mdx.
+    action: Do NOT infer from the formula `d = 1 - (ΣAB) / (√ΣA² · √ΣB²)` that Chroma auto-normalizes vectors — the doc shows
+      the math definition, but rust/distance/src/distance.rs:9-15 implements `1 - dot(a,b)` and skips the denominator.
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: 'Doc/code semantics disagree: the doc suggests Chroma divides by magnitudes, but the code does not. Feeding
+      un-normalized vectors yields wrong distances with no error or warning, and recall drifts entirely off-target.'
+    stage_ids:
+    - index
+    derived_from_bd_id: pitfall-005
+  - id: chroma-C-006
+    when: Calling Chroma collection.query(query_embeddings=..., where={...}, n_results=K) where the where-clause is highly
+      selective (hit rate < 1%).
+    action: Estimate the where-hit count via metadata segment first; when hits < n_results × 10, cap n_results to hits/10;
+      OR set ef_construction=400, M=32 at create_collection time and bump ef_search to 400 via collection.modify(configuration=Configuration(hnsw=UpdateHNSWConfiguration(ef_search=400))).
+    severity: medium
+    kind: operational_lesson
+    modality: must
+    consequence: 'Chroma filtering is PRE-vector: where computes allowed_ids in the metadata segment first, then feeds them
+      to HNSW.query. With high selectivity, the HNSW graph traversal cannot find k candidates inside the small subset, triggering
+      ''Cannot return the results in a contiguous 2D array. Probably ef or M is too small'' — the query fails entirely.'
+    stage_ids:
+    - index
+    derived_from_bd_id: BD-003
+  - id: chroma-C-007
+    when: 'Upgrading Chroma from < v1.0.0 to v1.0.0+ where the application config relies on any of: chroma_segment_cache_policy
+      / chroma_memory_limit_bytes / chroma_server_thread_pool_size / chroma_server_nofile.'
+    action: If those settings must take effect, explicitly set chroma_api_impl='chromadb.api.segment.SegmentAPI' in Settings
+      (forcing the Python path); otherwise the v1.0.0+ default RustBindingsAPI silently ignores all four.
+    severity: high
+    kind: operational_lesson
+    modality: must
+    consequence: Since v1.0.0 chroma_api_impl defaults to RustBindingsAPI (config.py:120). The Rust path does not read these
+      four settings; the fields still exist in config.py but only the Python LocalSegmentManager (local.py:73-77) and the
+      FastAPI server (fastapi/__init__.py:205) consume them — and neither is the default. Cache/memory/threadpool tuning becomes
+      a silent no-op and observed performance diverges sharply from expectation.
+    stage_ids:
+    - api_layer
+    derived_from_bd_id: BD-013
+  - id: chroma-C-008
+    when: Writing async (asyncio) Chroma client code that uses local persistence (PersistentClient/EphemeralClient/RustClient).
+    action: Do NOT try to import AsyncPersistentClient or AsyncEphemeralClient — those classes do not exist. Either switch
+      to AsyncHttpClient (HTTP mode), or wrap the sync local client in asyncio.to_thread().
+    severity: high
+    kind: architecture_guardrail
+    modality: must_not
+    consequence: chromadb exposes only AsyncHttpClient as an async entry point (__init__.py:312-368); the other four local
+      factories are sync. Calling `await EphemeralClient().add(...)` raises TypeError or AttributeError, and long queries
+      block the event loop.
+    stage_ids:
+    - client_factory
+    derived_from_bd_id: BD-020
+  - id: chroma-C-009
+    when: Implementing a Chroma DB migration script or other code that must force the Rust implementation.
+    action: Use the chromadb.RustClient(...) factory — it forces chroma_api_impl='chromadb.api.rust.RustBindingsAPI' even
+      if the user has overridden it in Settings, guaranteeing the Rust path.
+    severity: medium
+    kind: architecture_guardrail
+    modality: must
+    consequence: If you instead use PersistentClient + Settings with chroma_api_impl=SegmentAPI, you take the Python legacy
+      path instead of Rust, contradicting the migration intent. The RustClient factory exists precisely to bypass user overrides.
+    stage_ids:
+    - client_factory
+  - id: chroma-C-010
+    when: Writing Chroma v1.0.0+ code that iterates the current collection list and calls methods on each item.
+    action: Do NOT assume list_collections() returns just names (the temporary v0.6.0 behaviour) — v1.0.0 reverted that change;
+      list_collections() now returns Sequence[Collection], so you can iterate and call collection.add/.query directly.
+    severity: medium
+    kind: domain_rule
+    modality: must_not
+    consequence: Code written for the v0.6.0 assumption gets list[str] and AttributeErrors when calling .add; calling get_collection
+      again is a wasteful round-trip. v1.0.0 (2025-03) migration.mdx:32 explicitly states 'list_collections now reverts back
+      to returning Collection objects'.
+    stage_ids:
+    - api_layer
+    derived_from_bd_id: BD-019
+  - id: chroma-C-011
+    when: Implementing a custom ServerAPI by inheriting BaseAPI/ClientAPI.
+    action: Implement all 53 @abstractmethod entries declared in chromadb/api/__init__.py:389 (ClientAPI sync path); for async
+      support, additionally implement the 51 @abstractmethod entries in AsyncClientAPI in chromadb/api/async_api.py.
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Missing any abstractmethod implementation raises TypeError 'Can't instantiate abstract class ... with abstract
+      method ...' at instantiation, rendering the entire client unusable.
+    stage_ids:
+    - api_layer
+  - id: chroma-C-012
+    when: Writing Chroma v0.5.12+ where-clauses with $ne / $nin / $not_contains.
+    action: 'To preserve the pre-v0.5.11 ''match only records that have this key'' semantics, explicitly write `where={''$and'':
+      [{''X'': {''$ne'': Y}}, {''X'': {''$exists'': True}}]}` — the new semantics also match records where the key is absent.'
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: v0.5.12 changed $ne / $nin / $not_contains to SQL-standard 'unknown is not equal' — key-absent records now
+      count as not-equal. Migrating without adding the $exists check unintentionally pulls records lacking the field into
+      results, derailing downstream business logic.
+    stage_ids:
+    - api_layer
+    derived_from_bd_id: BD-016
+  - id: chroma-C-013
+    when: Writing Chroma v1.x code that dynamically tunes HNSW params (ef_search / num_threads / batch_size / sync_threshold
+      / resize_factor).
+    action: 'Use the new path: collection.modify(configuration=UpdateCollectionConfiguration(hnsw=UpdateHNSWConfiguration(ef_search=400)))
+      (chromadb/api/collection_configuration.py:460); do NOT use the legacy chromadb/api/configuration.py:Configuration is_static
+      path.'
+    severity: medium
+    kind: architecture_guardrail
+    modality: must
+    consequence: The legacy configuration.py is_static flag marks batch_size/sync_threshold/resize_factor as static (immutable),
+      contradicting configure.mdx:41-46 which describes them as runtime-tunable. The new collection_configuration.py:460 UpdateHNSWConfiguration
+      TypedDict is the real 1.x runtime path; the old path may be deprecated or behave inconsistently.
+    stage_ids:
+    - index
+    derived_from_bd_id: BD-017
+  - id: chroma-C-014
+    when: Writing a create_collection call for Chroma and filling in CreateHNSWConfiguration default params.
+    action: If the dataset is ≤ 1M vectors and ~90% recall is acceptable, keep defaults max_neighbors=16, ef_construction=100,
+      ef_search=100. For > 10M vectors set max_neighbors ≥ 32 and ef_construction ≥ 200; for high-recall workloads also set
+      ef_search ≥ 200.
+    severity: medium
+    kind: domain_rule
+    modality: must
+    consequence: The default M=16/ef=100 comes from the HNSW paper Pareto frontier under small-to-medium data + medium recall.
+      At 10M+ records, M=16 recall drops noticeably (< 80%), and high-selectivity PRE-filter queries are much more likely
+      to trigger the 'Cannot return contiguous 2D array' error (see chroma-C-006).
+    stage_ids:
+    - index
+    derived_from_bd_id: BD-004
+  - id: chroma-C-015
+    when: Setting both batch_size and sync_threshold inside CreateHNSWConfiguration or UpdateHNSWConfiguration.
+    action: Ensure batch_size ≤ sync_threshold (defaults 100/1000); when raising batch_size, raise sync_threshold by at least
+      the same amount.
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: chromadb/api/configuration.py:281-287 cross-validates these — batch_size > sync_threshold raises ValueError
+      and the CreateCollectionConfiguration construction fails outright.
+    stage_ids:
+    - index
+    derived_from_bd_id: BD-005
+  - id: chroma-C-016
+    when: Running Chroma in a container (Docker/k8s) under cgroup CPU limits and using the default num_threads.
+    action: Explicitly set num_threads in Settings or HNSW configuration (e.g. equal to the cgroup CPU quota); do NOT rely
+      on the Rust default std::thread::available_parallelism() and the Python multiprocessing.cpu_count() to behave the same
+      in containers.
+    severity: medium
+    kind: resource_boundary
+    modality: should
+    consequence: Rust available_parallelism() is cgroup-aware (returns the cgroup quota), but Python multiprocessing.cpu_count()
+      returns the host's full CPU count by default. The two paths agree on bare metal but diverge under cgroups, potentially
+      over-spawning threads and causing scheduler thrash or throttling.
+    stage_ids:
+    - index
+  - id: chroma-C-017
+    when: Writing custom scoring logic that distinguishes Chroma 'ip' vs 'cosine' space.
+    action: Recognize that ip (inner product) and cosine share the same scalar implementation in Chroma rust/distance/src/distance.rs
+      (`1 - sum(a[i]*b[i])`); the only difference is the assumed normalization — cosine assumes you normalize, ip is meant
+      for un-normalized max-inner-product workloads.
+    severity: medium
+    kind: domain_rule
+    modality: must
+    consequence: If you mistakenly read ip as 'pure dot product' and treat a higher score as 'more similar', you invert the
+      ranking — under 1-dot, smaller is more similar (the opposite of dot). You end up with reversed rankings.
+    stage_ids:
+    - index
+  - id: chroma-C-018
+    when: Switching the distance metric (space) or tuning ef_construction / max_neighbors on an existing Chroma collection.
+    action: Do NOT expect collection.modify() to alter space / ef_construction / max_neighbors — these are static HNSW parameters
+      baked into the graph at create time; you must create a new collection and rebuild.
+    severity: high
+    kind: architecture_guardrail
+    modality: must_not
+    consequence: UpdateHNSWConfiguration only exposes ef_search/num_threads/batch_size/sync_threshold/resize_factor — space/ef_construction/max_neighbors
+      are not allowed. Forcing a change is a no-op or raises ValueError, and the tuning never takes effect.
+    stage_ids:
+    - index
+    derived_from_bd_id: BD-017
+  - id: chroma-C-020
+    when: Bulk-adding/upserting many embeddings (> ~5000) to Chroma.
+    action: Use chromadb.utils.batch_utils.create_batches(api, ids, embeddings, ...) to auto-split; do NOT cram everything
+      into one collection.add() call.
+    severity: high
+    kind: resource_boundary
+    modality: must
+    consequence: EmbeddingsQueue's max_batch_size is computed dynamically from SQLite PRAGMA MAX_VARIABLE_NUMBER / 6 (modern
+      SQLite=5461, legacy <3.32=166). Going over raises BatchSizeExceededError without silent truncation (embeddings_queue.py:198-203).
+    stage_ids:
+    - persistence
+    derived_from_bd_id: BD-011
+  - id: chroma-C-021
+    when: Upgrading Chroma from < v0.5.6 to ≥ v0.5.6 and starting up for the first time.
+    action: Run `chroma utils vacuum` once against the existing persist_directory; otherwise the SQLite WAL files do not auto-prune
+      and the database grows without bound.
+    severity: medium
+    kind: operational_lesson
+    modality: must
+    consequence: Automatic WAL pruning was added after v0.5.6; older databases never enabled it. Without a one-time vacuum,
+      chroma.sqlite3-wal grows unboundedly and eventually impacts disk usage and startup time.
+    stage_ids:
+    - persistence
+    derived_from_bd_id: BD-015
+  - id: chroma-C-022
+    when: Building a single-tenant Chroma application.
+    action: Be aware that default_tenant='default_tenant' / default_database='default_database' (config.py:83-84); HttpClient/CloudClient
+      operating in multi-tenant mode must explicitly pass tenant + database, or writes will land in the default tenant alongside
+      other tenants.
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: In multi-tenant scenarios, omitting tenant/database routes all writes into default_tenant; tenant isolation
+      is lost, leaking data across tenants or causing collection-name collisions.
+    stage_ids:
+    - persistence
+    - client_factory
+  - id: chroma-C-023
+    when: Upgrading a Chroma Docker deployment to v1.0.0+.
+    action: Switch the Docker volume mount point from /chroma/chroma to /data; the old path is no longer the default data
+      directory in v1.0.0+ images.
+    severity: high
+    kind: operational_lesson
+    modality: must
+    consequence: If the Docker volume still points at /chroma/chroma, the new image starts up against an empty DB at /data;
+      users assume data is lost when in fact the path drifted. Existing volume data must be migrated manually.
+    stage_ids:
+    - persistence
+  - id: chroma-C-025
+    when: Implementing a custom EmbeddingFunction class that extends chromadb.api.types.EmbeddingFunction Protocol.
+    action: 'Implement all 6 abstractmethods: __call__, name, build_from_config, get_config, validate_config_update, default_space.'
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: The EmbeddingFunction Protocol lives at chromadb/api/types.py:826. Missing default_space() falls through
+      to 'l2' at collection_configuration.py:442 (chroma-C-002). Missing build_from_config makes register_embedding_function
+      fail.
+    stage_ids:
+    - embedding_function
+  - id: chroma-C-026
+    when: Reopening the same Chroma collection across processes or after a restart.
+    action: Pass an embedding_function instance equivalent to the one used at creation time (same model, same dimension, same
+      config) into client.get_collection(name=..., embedding_function=ef); do NOT assume Chroma will restore the EF from collection
+      metadata.
+    severity: high
+    kind: claim_boundary
+    modality: must
+    consequence: EmbeddingFunction is NOT persisted into collection metadata (types.py:826-1000 protocol has no persist hook).
+      A consumer that opens the same collection (even with the same dim) using a different EF gets geometrically different
+      vectors; recall collapses with no error.
+    stage_ids:
+    - embedding_function
+    derived_from_bd_id: BD-018
+  - id: chroma-C-027
+    when: A production deployment that needs to guarantee multiple consumer processes use a consistent EmbeddingFunction.
+    action: Record the EF class name + model version + key config (e.g. model_name='text-embedding-3-small') for every collection
+      in your own application metadata store (DB or config file); validate on every read and write.
+    severity: high
+    kind: operational_lesson
+    modality: must
+    consequence: 'See chroma-C-022. This is the remedy for the BD-G03 missing gap: Chroma offers no EF version validation,
+      the caller must implement it. Otherwise process A using OpenAI EF and process B using SentenceTransformer EF (both 384d)
+      get geometrically different vectors with no warning.'
+    stage_ids:
+    - embedding_function
+    derived_from_bd_id: BD-G03
+  - id: chroma-C-028
+    when: Using Chroma's default DefaultEmbeddingFunction (ONNXMiniLM_L6_V2) on text that may exceed 256 tokens.
+    action: Chunk the text yourself (chunk_size ≤ 256 tokens) before calling collection.add(); do NOT pass a long document
+      directly — ONNXMiniLM_L6_V2 has max_seq_length=256 tokens and silently truncates.
+    severity: medium
+    kind: resource_boundary
+    modality: must
+    consequence: ONNX MiniLM has max_seq_length=256; Chroma issues no warning on overlong text and excess tokens are dropped
+      silently. Long-document recall fails (only the first 256 tokens contribute to the embedding).
+    stage_ids:
+    - embedding_function
+    derived_from_bd_id: BD-010
+  - id: chroma-C-029
+    when: A multi-tenant Chroma deployment that uses OpenAIEmbeddingFunction or another API-key-bearing EF.
+    action: Do NOT write API keys into collection metadata or settings — EF API keys must come from environment variables
+      or a secret manager, with the caller responsible for per-tenant isolation.
+    severity: high
+    kind: domain_rule
+    modality: must_not
+    consequence: API keys placed in collection metadata leak via list_collections / export endpoints. BD-018 confirms EF is
+      not persisted, implicitly stating API keys should not be stored in collections; sharing collection metadata across tenants
+      leaks keys cross-tenant.
+    stage_ids:
+    - embedding_function
+  - id: chroma-C-030
+    when: Building Chroma multimodal retrieval (text + image, UC-004).
+    action: Use a single shared-space EmbeddingFunction (e.g. OpenCLIPEmbeddingFunction) for both text and images in the same
+      collection; do NOT mix text-only and image-only EFs.
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Different EFs produce vectors in different semantic spaces; cosine distance has no cross-modal meaning. Querying
+      with an image returns text candidates that are completely unrelated, and multimodal retrieval breaks.
+    stage_ids:
+    - embedding_function
+  - id: chroma-C-031
+    when: Creating a collection on Chroma Cloud (CloudClient) and writing vectors.
+    action: Ensure vector dim ≤ 4096; over-dim vectors are rejected by Cloud (HTTP error). Common EFs (OpenAI 1536/3072, SentenceTransformer
+      384/768) are within range, but stacking multiple model averages or concatenations can exceed it.
+    severity: high
+    kind: resource_boundary
+    modality: must
+    consequence: docs/mintlify/cloud/quotas-limits.mdx explicitly lists dim ≤ 4096 as a hard Cloud limit; over-dim writes
+      are rejected and the entire batch fails.
+    stage_ids:
+    - client_factory
+    - index
+    derived_from_bd_id: BD-012
+  - id: chroma-C-032
+    when: Calling collection.add() per batch on Chroma Cloud or collection.query(n_results=...).
+    action: Cap each add batch at 300 records and n_results at 300; loop and split when more is needed.
+    severity: high
+    kind: resource_boundary
+    modality: must
+    consequence: 'Cloud quotas: records/write ≤ 300, n_results ≤ 300 (quotas-limits.mdx). Exceeding either returns a 4xx and
+      the operation fails. Local PersistentClient is not subject to this.'
+    stage_ids:
+    - api_layer
+    derived_from_bd_id: BD-012
+  - id: chroma-C-033
+    when: Writing compound where-clauses for Chroma Cloud collection.query(where={...}).
+    action: Keep the total predicate (leaf-condition) count ≤ 8 in the where-clause; ≤ 32 metadata keys; per-record metadata
+      value ≤ 8182B; per-collection ≤ 256B.
+    severity: medium
+    kind: resource_boundary
+    modality: must
+    consequence: 'Cloud quotas: where ≤ 8 predicates, metadata keys ≤ 32, value-length caps. Going over returns 4xx. Local
+      deployments are not subject to this but should leave headroom for a future Cloud migration.'
+    stage_ids:
+    - api_layer
+    derived_from_bd_id: BD-012
+  - id: chroma-C-034
+    when: Writing documents, URIs, or ids on Chroma Cloud.
+    action: document length ≤ 16KB, URI ≤ 256B, ID ≤ 128B, metadata key name ≤ 36B; over-quota writes are rejected by Cloud.
+    severity: medium
+    kind: resource_boundary
+    modality: must
+    consequence: Cloud quota hard limits — exceedances are server-side rejections and the entire batch fails.
+    stage_ids:
+    - api_layer
+    derived_from_bd_id: BD-012
+  - id: chroma-C-035
+    when: Planning collection count or per-collection capacity on a Chroma Cloud deployment.
+    action: 'Per tenant: max_collections ≤ 1M, records/collection ≤ 5M, concurrent reads/writes per collection ≤ 10, fork
+      edges ≤ 256.'
+    severity: medium
+    kind: resource_boundary
+    modality: must
+    consequence: Cloud multi-tenant fairness quotas; exceeding triggers throttling or rejection in the control plane. > 5M
+      records/collection requires sharding across collections or a quota-bump request.
+    stage_ids:
+    - client_factory
+    derived_from_bd_id: BD-012
+  - id: chroma-C-036
+    when: Designing Chroma collection snapshot / branching strategy.
+    action: Do NOT assume local PersistentClient supports collection.fork() or zero-copy snapshots — that is Cloud-only (UC-007);
+      local users must implement snapshots via export/import.
+    severity: medium
+    kind: claim_boundary
+    modality: must_not
+    consequence: Calling collection.fork() on a local client raises NotImplementedError or AttributeError; UC-007 is CloudClient-only.
+    stage_ids:
+    - api_layer
+  - id: chroma-C-037
+    when: Designing Chroma async batch jobs.
+    action: Do NOT assume local PersistentClient/EphemeralClient expose an async Task API (task submit + poll) — that is Cloud-only
+      (UC-010).
+    severity: medium
+    kind: claim_boundary
+    modality: must_not
+    consequence: Local clients have no task_api; calling client.task.* raises AttributeError. Local batching must be done
+      via asyncio.to_thread or multiprocessing yourself.
+    stage_ids:
+    - client_factory
+  - id: chroma-C-038
+    when: Writing Chroma TypeScript client code (@chroma-core/chromadb-default-embed) that creates a collection.
+    action: Be aware the TS client follows the same EF.defaultSpace()-priority logic as Python at collection-configuration.ts:99-110;
+      a custom EmbeddingFunction must implement defaultSpace().
+    severity: medium
+    kind: domain_rule
+    modality: must
+    consequence: 'The TS client mirrors Python: when EF lacks defaultSpace(), space falls back to ''l2''; the constraint is
+      consistent across languages and the same chroma-C-002 trap applies.'
+    stage_ids:
+    - embedding_function
+    - index
+  - id: chroma-C-039
+    when: Writing Chroma Rust client crate code (without PyO3) for a high-level application.
+    action: Do NOT assume the Rust crate exposes high-level Collection wrappers identical to Python — the Rust side is a lower-level
+      server / pyo3 binding and does not provide convenience methods like Collection.add/.query; you must build the high-level
+      API yourself around ServerAPI.
+    severity: medium
+    kind: claim_boundary
+    modality: must_not
+    consequence: Code that expects API parity with the Python client will fail to compile or behave wrongly; blueprint res-010
+      explicitly notes the Rust crate 'does not provide a high-level Collection wrapper like Python'.
+    stage_ids:
+    - client_factory
+  - id: chroma-C-040
+    when: Implementing an alternative Chroma rust/distance algorithm or benchmarking distance computations.
+    action: Be aware that Rust SIMD distance implementations (avx/avx512/sse/neon) fall back to scalar for vector lengths
+      that are not a multiple of the SIMD register width; do NOT assume the SIMD path handles the entire vector.
+    severity: low
+    kind: operational_lesson
+    modality: must
+    consequence: rust/distance/src/distance_avx*.rs files invoke the scalar function for the unaligned tail; performance estimates
+      must include that fallback overhead, especially for vectors whose dim is not a multiple of 8/16.
+    stage_ids:
+    - index
+  - id: chroma-C-041
+    when: Configuring a Chroma collection with a custom EmbeddingFunction + space=cosine.
+    action: Do NOT assume Chroma will detect at write/query time whether EF outputs are L2-normalized — Chroma performs no
+      runtime normalization check, and un-normalized vectors are silently accepted, yielding meaningless distance values.
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: 'BD-G01 missing gap: chroma has no EF normalization detection. distance.rs:9-15 directly does 1-dot; types.py:826-1000
+      EF Protocol has no validation hook. The failure is fully silent.'
+    stage_ids:
+    - embedding_function
+    - index
+    derived_from_bd_id: BD-G01
+  - id: chroma-C-042
+    when: Implementing the __call__ output of a custom EmbeddingFunction.
+    action: 'Self-assert at the output: `norm = np.linalg.norm(vec); assert 0.99 < norm < 1.01, f''EF output not L2-normalized:
+      norm={norm}''`, as a sanity check.'
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Remedy for BD-G01 missing gap. If a custom EF's internal model.encode config drifts (e.g. forgetting normalize_embeddings=True),
+      the assert catches it immediately, preventing the silent error from propagating into cosine math.
+    stage_ids:
+    - embedding_function
+    derived_from_bd_id: BD-G01
+  - id: chroma-C-043
+    when: Planning the Chroma collection EmbeddingFunction upgrade path.
+    action: 'Do NOT assume chromadb provides an in-place dim migration tool — chromadb/utils/ has no such helper. You must
+      implement: create_collection(new_name, ef=new_ef) → iterate the old collection in batches → re-embed → add to the new
+      collection → assert count → flip the application reference.'
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: 'BD-G02 missing gap: chroma has no dimension-migration helper. Assuming a built-in tool exists leads to the
+      upgrade jamming on InvalidDimensionException.'
+    stage_ids:
+    - embedding_function
+    - index
+    derived_from_bd_id: BD-G02
+  - id: chroma-C-044
+    when: Actually executing a Chroma collection EmbeddingFunction / dim upgrade.
+    action: 'Run in this order: 1) client.create_collection(new_name, embedding_function=new_ef); 2) for batch in old_collection.get(include=[''documents'',''metadatas''],
+      limit=create_batches_size, offset=...) → new_collection.add(ids, documents, metadatas); 3) assert new_collection.count()
+      == old_collection.count(); 4) point application code at the new_collection; 5) only after validation: client.delete_collection(old_name).'
+    severity: high
+    kind: operational_lesson
+    modality: must
+    consequence: BD-G02 missing gap remedy. Skipping step 3's count check may drop data; deleting the old collection before
+      step 4 validation makes data unrecoverable; ignoring create_batches limits triggers BatchSizeExceededError.
+    stage_ids:
+    - embedding_function
+    derived_from_bd_id: BD-G02
+  - id: chroma-C-045
+    when: 'After upgrading to Chroma v1.0.0+ but the application code or deployment config still keeps any of: chroma_segment_cache_policy
+      / chroma_memory_limit_bytes / chroma_server_thread_pool_size / chroma_server_nofile.'
+    action: Do NOT assume chroma will emit a deprecation warning when these settings become inert under the Rust default path
+      — chroma has no warning mechanism. You must grep config code yourself to confirm none of these settings are relied on.
+    severity: medium
+    kind: claim_boundary
+    modality: must_not
+    consequence: 'BD-G04 missing gap: under the v1.0.0+ Rust default path, four legacy settings silently become inert with
+      no warning. Operators believe their tuning takes effect when in fact RustBindingsAPI ignores them entirely, and observed
+      performance contradicts the config without an obvious cause.'
+    stage_ids:
+    - api_layer
+    derived_from_bd_id: BD-G04
+  - id: chroma-C-046
+    when: The audit phase before upgrading a Chroma deployment to v1.0.0+.
+    action: 'Before upgrade, grep the application code and config for the four legacy setting names (chroma_segment_cache_policy
+      / chroma_memory_limit_bytes / chroma_server_thread_pool_size / chroma_server_nofile). For each hit, decide: keep means
+      explicitly set chroma_api_impl=''chromadb.api.segment.SegmentAPI'' in Settings to force the Python path; otherwise remove
+      it from Settings.'
+    severity: medium
+    kind: operational_lesson
+    modality: must
+    consequence: BD-G04 missing gap remedy. Without an active audit, operators end up trapped in the 'why isn't my Rust-path
+      tuning taking effect?' blind spot.
+    stage_ids:
+    - api_layer
+    derived_from_bd_id: BD-G04
+  - id: chroma-C-047
+    when: Configuring chroma as the vector store backend in mem0.
+    action: Be aware chroma does not provide a keyword_search override (mem0 res-007 lists it among the 9 backends with no
+      keyword_search), so mem0 hybrid search degrades to vector-only + entity_boost with no BM25/FTS.
+    severity: medium
+    kind: claim_boundary
+    modality: must
+    consequence: If you expected mem0 + chroma to provide hybrid keyword + semantic search, in practice you only get semantic
+      recall; exact-keyword recall is missing. Evaluate whether the business case can tolerate it.
+  - id: chroma-C-048
+    when: Connecting to a multi-tenant Chroma server with HttpClient or CloudClient.
+    action: Pass tenant + database explicitly (omitting them falls back to 'default_tenant' / 'default_database', shared by
+      every tenant).
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Without tenant params, HttpClient/CloudClient land on the default namespace and tenant isolation breaks.
+      AdminAPI is the entry point for creating additional tenants.
+    stage_ids:
+    - client_factory
+  - id: chroma-C-049
+    when: Implementing a custom Chroma SegmentManager.
+    action: Local mode follows the 2-segment topology (VECTOR + METADATA); distributed mode follows the 3-segment topology
+      (VECTOR + METADATA + RECORD). Do NOT manually add a BLOCKFILE_RECORD segment in local mode — it adds gratuitous write
+      amplification.
+    severity: medium
+    kind: architecture_guardrail
+    modality: must
+    consequence: LocalSegmentManager (local.py:140-149) and DistributedSegmentManager (distributed.py:46-77) differ in segment
+      count to optimize for each deployment mode; forcing local to 3-segment increases SQLite write counts.
+    stage_ids:
+    - segment
+    derived_from_bd_id: BD-008
+  - id: chroma-C-050
+    when: Designing a Chroma index-algorithm selection strategy.
+    action: Do NOT assume HNSW vs SPANN can be switched per-collection — HNSW is single-node only, SPANN is distributed/Cloud
+      only, and the choice is bound to the deployment topology, not configurable per collection.
+    severity: medium
+    kind: claim_boundary
+    modality: must_not
+    consequence: Specifying SPANN config on a PersistentClient is ignored or rejected; rust/segment/src/lib.rs shows the algorithm
+      is bound to deployment topology.
+    stage_ids:
+    - index
+    derived_from_bd_id: BD-008
+  - id: chroma-C-051
+    when: Using server-side embedding (UC-005, HttpClient mode running EF on the server).
+    action: Ensure the chroma server's EF class and version (model_name + config) match the client expectation exactly — declare
+      it via the embedding_function block in config.yaml, and validate at client startup against the embedding_function metadata
+      returned by the server's /api/v2/healthcheck.
+    severity: high
+    kind: operational_lesson
+    modality: must
+    consequence: UC-005 must_validate explicitly lists 'server EF version matches client expectation'. If the server upgrades
+      the EF model version without notifying the client, queries return results incompatible with historical vectors.
+    stage_ids:
+    - embedding_function
+  - id: chroma-C-052
+    when: Deploying OpenTelemetry monitoring for Chroma.
+    action: Do NOT assume client-only deployments (EphemeralClient/PersistentClient) emit OTel signals automatically — OTel
+      integration is a server-side feature (chroma run --config); client-only mode requires manual local logging.
+    severity: low
+    kind: claim_boundary
+    modality: must_not
+    consequence: UC-009 not_suitable_for explicitly lists client-only deployments; in client mode the trace_method decorator
+      exists but no exporter is configured by default.
+    stage_ids:
+    - api_layer
+output_validator:
+  assertions:
+  - id: OV-01
+    check_predicate: all(p in inspect.getsource(zvt.factors.algorithm.macd) for p in ['slow=26', 'fast=12', 'n=9'])
+    failure_message: 'FATAL: MACD params drifted from (fast=12, slow=26, n=9) — SL-08 violation, non-reproducible signals'
+    business_meaning: Standard MACD parameters are a semantic lock; drift makes results incomparable with industry-standard
+      indicators and non-reproducible.
+    source_ids:
+    - SL-08
+    - BD-036
+  - id: OV-02
+    check_predicate: result.get('total_trades', 0) > 0 or result.get('explicit_zero_trade_ack') is True
+    failure_message: Zero trades executed — likely missing pre-fetched data (see PC-02) or over-restrictive filters
+    business_meaning: A backtest with zero trades is not a valid result; either data is missing or the strategy never triggered.
+      Structural non-emptiness check is insufficient — we need business confirmation.
+    source_ids:
+    - SL-01
+    - finance-C-073
+  - id: OV-03
+    check_predicate: result.get('annual_return') is None or abs(float(result['annual_return'])) <= 5.0
+    failure_message: 'FATAL: |annual_return| > 500% — likely look-ahead bias or data error'
+    business_meaning: Annual returns exceeding 500% are physically implausible for A-share strategies; indicates look-ahead
+      bias or corrupt data.
+    source_ids: []
+  - id: OV-04
+    check_predicate: result.get('holding_change_pct') is None or abs(float(result['holding_change_pct'])) <= 1.0
+    failure_message: 'FATAL: |holding_change_pct| > 100% — physically impossible'
+    business_meaning: Holding change percentage cannot exceed 100%; violation indicates position accounting error.
+    source_ids:
+    - BD-029
+  - id: OV-05
+    check_predicate: result.get('max_drawdown') is None or abs(float(result['max_drawdown'])) <= 1.0
+    failure_message: 'FATAL: |max_drawdown| > 100% — impossible for non-leveraged account'
+    business_meaning: Maximum drawdown cannot exceed 100% without leverage; violation indicates calculation error or look-ahead
+      bias.
+    source_ids: []
+  - id: OV-06
+    check_predicate: not (hasattr(result, 'trade_log') and result.trade_log and any(result.trade_log[i].action == 'sell' and
+      i+1 < len(result.trade_log) and result.trade_log[i+1].action == 'buy' and result.trade_log[i].timestamp == result.trade_log[i+1].timestamp
+      for i in range(len(result.trade_log)-1)))
+    failure_message: 'FATAL: buy-before-sell detected in same cycle — SL-01 violation, creates implicit leverage'
+    business_meaning: SL-01 requires sell() before buy() in each cycle; violation means available_long was not updated before
+      buying, risking duplicate positions.
+    source_ids:
+    - SL-01
+  scaffold:
+    validate_py_path: '{workspace}/validate.py'
+    tail_block: "# === DO NOT MODIFY BELOW THIS LINE ===\nif __name__ == \"__main__\":\n    result = run_backtest()\n    from\
+      \ validate import enforce_validation\n    enforce_validation(result, output_path=\"{workspace}/result.csv\")\n# ===\
+      \ END DO NOT MODIFY ==="
+  enforcement_protocol: 1. Never edit validate.py. 2. Never delete the DO NOT MODIFY tail block from the main script. 3. Never
+    wrap enforce_validation() in try/except. 4. Never rewrite result write logic — it MUST go through enforce_validation.
+    5. If validate.py raises ImportError, fix the dependency, do not remove the call.
+acceptance:
+  hard_gates:
+  - id: G1
+    check: '{workspace}/result.csv exists AND file size > 0'
+    on_fail: Strategy did not produce output; check run_backtest() return value and enforce_validation() call
+  - id: G2
+    check: '{workspace}/result.csv.validation_passed marker file exists'
+    on_fail: Validation did not complete; review validate.py output and fix assertion failures
+  - id: G3
+    check: 'Main script contains literal: from validate import enforce_validation'
+    on_fail: Validation chain stripped; re-add the import in the DO NOT MODIFY block
+  - id: G4
+    check: 'Main script contains literal: # === DO NOT MODIFY BELOW THIS LINE ==='
+    on_fail: Validation fence removed; regenerate DO NOT MODIFY tail block
+  - id: G5
+    check: 'result.csv has at least 1 row: pandas.read_csv(result.csv).shape[0] >= 1'
+    on_fail: Empty result; check if trade_log is non-empty and factors generated signals. Confirm PC-02 (k-data exists) passed.
+  - id: G6
+    check: 'If MACD strategy: source contains ''slow=26'' AND ''fast=12'' AND ''n=9'' in algorithm call'
+    on_fail: MACD params drifted from SL-08 lock; restore standard (12, 26, 9)
+  - id: G7
+    check: 'For data pipeline tasks: result.csv contains ''entity_id'' and ''timestamp'' fields'
+    on_fail: Missing required columns; check Mixin.query_data return schema and DataFrame MultiIndex reset_index() before
+      writing
+  - id: G8
+    check: 'OV-03 passes: abs(annual_return) <= 5.0 (500%)'
+    on_fail: Physical plausibility check failed; investigate look-ahead bias or data corruption in input kdata
+  soft_gates:
+  - id: SG-01
+    rubric: 'Strategy narrative consistency: user intent aligns with generated strategy.py logic. dim_a: signal direction
+      (buy/sell) matches intent [1-5, pass>=4]; dim_b: frequency (daily/intraday) aligns [1-5, pass>=4]; dim_c: risk controls
+      match user intent [1-5, pass>=4].'
+  - id: SG-02
+    rubric: 'Factor combination quality. dim_a: no highly correlated factor duplication [1-5, pass>=4]; dim_b: multi-period
+      alignment correct [1-5, pass>=4]; dim_c: liquidity filter present for A-share [1-5, pass>=4].'
+  - id: SG-03
+    rubric: 'Data source selection appropriateness. dim_a: coverage sufficient for target entities [1-5, pass>=4]; dim_b:
+      provider latency acceptable for strategy frequency [1-5, pass>=4]; dim_c: no unauthorized provider used without credentials
+      [1-5, pass>=4].'
+skill_crystallization:
+  trigger: all_hard_gates_passed AND user_opt_out_skill_saving != true
+  output_path_template: '{workspace}/../skills/{slug}.skill'
+  slug_template: '{blueprint_id_short}-{uc_id_lower}'
+  captured_fields:
+  - name
+  - intent_keywords
+  - entry_point_script
+  - validate_script
+  - fatal_constraints
+  - spec_locks
+  - preconditions
+  - install_recipes
+  - human_summary_translated
+  action: 'After all Hard Gates PASS, resolve slug via slug_template using the executed UC, then write the .skill YAML file
+    at output_path_template. Notify user in their detected locale: ''Skill saved as {slug}.skill — next time say one of {sample_triggers}
+    from the matched UC to invoke directly.'''
+  violation_signal: All hard gates passed but no .skill file exists at expected path
+  skill_file_schema:
+    name: finance-bp-138 / RAG basics (chat-with-your-documents)
+    version: v6.1
+    intent_keywords:
+    - RAG
+    - chat with documents
+    - context-augmented generation
+    - question answering
+    entry_point: run_backtest
+    fatal_guards:
+    - SL-01
+    - SL-02
+    - SL-03
+    - SL-04
+    - SL-05
+    - SL-06
+    - SL-07
+    - SL-08
+    - SL-10
+    - SL-11
+    - SL-12
+    spec_locks:
+    - SL-01
+    - SL-02
+    - SL-03
+    - SL-04
+    - SL-05
+    - SL-06
+    - SL-07
+    - SL-08
+    - SL-09
+    - SL-10
+    - SL-11
+    - SL-12
+    preconditions:
+    - PC-01
+    - PC-02
+    - PC-03
+    - PC-04
+post_install_notice:
+  trigger: skill_installation_complete
+  message_template:
+    positioning: I help you build quant strategies on A-share with ZVT — from data fetch to backtest, one flow.
+    capability_catalog:
+      group_strategy:
+        source: auto_grouped
+        strategy_reason: auto-grouped by UC.type (7 distinct values, balanced distribution)
+      groups:
+      - group_id: complete_strategy
+        name: Complete Strategy
+        description: ''
+        emoji: 📦
+        uc_count: 2
+        ucs:
+        - uc_id: UC-001
+          name: RAG basics (chat-with-your-documents)
+          short_description: Convert private documents into a vector store that can be retrieved and used as LLM context for
+            question-answering
+          sample_triggers:
+          - RAG
+          - chat with documents
+          - context-augmented generation
+        - uc_id: UC-004
+          name: Multimodal retrieval (text + image)
+          short_description: Index text and images in a single collection using a shared embedding space (e.g., CLIP) for
+            cross-modal retrieval
+          sample_triggers:
+          - multimodal
+          - image
+          - CLIP
+      - group_id: screening_logic
+        name: Screening Logic
+        description: ''
+        emoji: 📦
+        uc_count: 1
+        ucs:
+        - uc_id: UC-002
+          name: Where-Filter metadata-scoped retrieval
+          short_description: Filter a large vector collection by metadata fields (source, date, category, numeric range) BEFORE
+            semantic search to scope candidates
+          sample_triggers:
+          - where filter
+          - metadata filtering
+          - $eq
+      - group_id: data_pipeline
+        name: Data Pipeline
+        description: ''
+        emoji: 📊
+        uc_count: 1
+        ucs:
+        - uc_id: UC-003
+          name: Local persistent database (PersistentClient)
+          short_description: Single-machine persistent vector store that survives process restarts, no server deployment required
+          sample_triggers:
+          - PersistentClient
+          - persistence
+          - local database
+      - group_id: extension_example
+        name: Extension Example
+        description: ''
+        emoji: 📦
+        uc_count: 2
+        ucs:
+        - uc_id: UC-005
+          name: Server-side embedding (thin client)
+          short_description: Thin client sends raw text; chroma server runs the embedding function
+          sample_triggers:
+          - server-side embedding
+          - thin client
+          - HttpClient
+        - uc_id: UC-006
+          name: Custom Embedding Function
+          short_description: Replace default ONNXMiniLM_L6_V2 with custom in-house model or third-party API (Cohere/Jina/Voyage/etc.)
+          sample_triggers:
+          - custom embedding
+          - EmbeddingFunction
+          - alternative embedding
+      - group_id: live_trading
+        name: Live Trading
+        description: ''
+        emoji: 📦
+        uc_count: 2
+        ucs:
+        - uc_id: UC-007
+          name: Collection Forking (zero-copy snapshot)
+          short_description: Cloud-only feature — fork a collection to take a logical snapshot for A/B testing or point-in-time
+            rollback
+          sample_triggers:
+          - fork
+          - snapshot
+          - branch collection
+        - uc_id: UC-008
+          name: Production Deployment (Docker / Terraform / systemd)
+          short_description: Deploy chroma server to AWS / GCP / Render / bare-metal with persistent volume + auth + OTel
+            observability
+          sample_triggers:
+          - deployment
+          - Terraform
+          - Docker
+      - group_id: monitoring
+        name: Monitoring
+        description: ''
+        emoji: 📦
+        uc_count: 1
+        ucs:
+        - uc_id: UC-009
+          name: Observability / OTel Monitoring
+          short_description: Collect chroma server traces and metrics via OpenTelemetry collector for production monitoring
+          sample_triggers:
+          - observability
+          - OTel
+          - tracing
+      - group_id: builtin_factor
+        name: Builtin Factor
+        description: ''
+        emoji: 🧮
+        uc_count: 1
+        ucs:
+        - uc_id: UC-010
+          name: Cloud Task API (async batch jobs)
+          short_description: Submit asynchronous bulk-processing tasks to Chroma Cloud (large-batch re-embed/re-index/recompute)
+            and poll for results
+          sample_triggers:
+          - task
+          - async
+          - batch
+    call_to_action: Tell me which one you want to try.
+    featured_entries:
+    - uc_id: UC-001
+      beginner_prompt: Try rag basics (chat-with-your-documents)
+      auto_selected: true
+    - uc_id: UC-002
+      beginner_prompt: Try where-filter metadata-scoped retrieval
+      auto_selected: true
+    - uc_id: UC-003
+      beginner_prompt: Try local persistent database (persistentclient)
+      auto_selected: true
+    more_info_hint: Ask me 'what else can you do?' to see all 10 capabilities.
+  locale_rendering:
+    instruction: On skill_installation_complete, translate ALL user-facing strings (positioning + capability_catalog.groups[].name
+      + capability_catalog.groups[].description + capability_catalog.groups[].ucs[].short_description + call_to_action + featured_entries[].beginner_prompt
+      + more_info_hint) into detected user locale per locale_contract. Preserve UC-IDs, group_id, emoji, and sample_triggers
+      verbatim.
+    preserve_verbatim:
+    - UC-IDs
+    - group_id
+    - emoji
+    - sample_triggers
+    - technical_class_names
+  enforcement:
+    action: 'Host agent MUST send composed message to user as the FIRST user-facing response after skill_installation_complete
+      event. Message MUST contain: positioning, capability_catalog (rendered as markdown tables per group), 3 featured_entries,
+      call_to_action, and more_info_hint.'
+    violation_code: PIN-01
+    violation_signal: First user-facing message post-install does not contain the full capability_catalog (all UCs grouped)
+      OR skips featured_entries OR skips call_to_action.
+human_summary:
+  persona: Doraemon
+  what_i_can_do:
+    tagline: 'I help you build quant strategies on A-share with ZVT — from data fetch to backtest, one flow. Just tell me
+      what you want; I''ll write the code, you don''t have to dig docs. (Heads up: ZVT natively supports A-share, HK, and
+      crypto. US stocks — stockus_nasdaq_AAPL — are half-baked; don''t bother for serious work.)'
+    use_cases:
+    - Local persistent database (PersistentClient)
+    - Where-Filter metadata-scoped retrieval
+    - RAG basics (chat-with-your-documents)
+    - A-share MACD daily golden-cross backtest with hfq price adjustment from eastmoney
+    - 'End-to-end ZVT pipeline: FinanceRecorder + GoodCompanyFactor + StockTrader'
+    - Multi-factor strategy with TargetSelector (AND mode) combining MACD + volume breakout
+    - Index composition data collection (SZ1000, SZ2000) with EM recorder
+  what_i_auto_fetch:
+  - ZVT stage pipeline structure (data_collection → visualization) from LATEST.yaml
+  - Semantic locks (SL-01 through SL-12) — especially sell-before-buy ordering and MACD params
+  - Fatal constraints (finance-C-*) relevant to your target strategy type
+  - 'Default parameters: MACD(12,26,9), hfq adjustment, buy_cost=0.001, base_capital=1M CNY'
+  - Entity ID format (stock_sh_600000) and DataFrame MultiIndex convention
+  - Provider-specific recorder class names and required class attributes
+  what_i_ask_you:
+  - 'Target market: A-share (default), HK, or crypto? (US stocks in ZVT are half-baked — stockus_nasdaq_AAPL exists but coverage
+    is thin)'
+  - 'Data source / provider: eastmoney (free, no account), joinquant (account+paid), baostock (free, good history), akshare,
+    or qmt (broker)?'
+  - 'Strategy type: MACD golden-cross, MA crossover, volume breakout, fundamental screen, or custom factor?'
+  - 'Time range: start_timestamp and end_timestamp for backtest period'
+  - 'Target entity IDs: specific stocks (stock_sh_600000) or index components (SZ1000)?'
+  locale_rendering:
+    instruction: On first user contact, translate all fields above into detected user locale while preserving Doraemon persona
+      (direct, frank, mildly snarky, knows limits).
+    preserve_verbatim:
+    - BD-IDs
+    - SL-IDs
+    - UC-IDs
+    - finance-C-IDs
+    - class_names
+    - function_names
+    - file_paths
+    - numeric_thresholds

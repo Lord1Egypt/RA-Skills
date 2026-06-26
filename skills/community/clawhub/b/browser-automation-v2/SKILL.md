@@ -1,35 +1,71 @@
----
-name: "Browser Automation V2"
-description: "Enterprise-grade browser automation with automatic tab cleanup, timeout retries, concurrency lock, smart waiting, and configurable environment settings."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/browser-automation-v2"
-sourceUrl: "https://clawhub.ai/skills/browser-automation-v2"
----
+# Browser Automation v2
 
-# Browser Automation V2
+Enterprise-grade browser automation for OpenClaw with robust resource management.
 
-> Enterprise-grade browser automation with automatic tab cleanup, timeout retries, concurrency lock, smart waiting, and configurable environment settings.
+## Features
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/browser-automation-v2`
-- **Source URL:** [https://clawhub.ai/skills/browser-automation-v2](https://clawhub.ai/skills/browser-automation-v2)
+- ✅ **Automatic tab cleanup** - No more tab accumulation
+- ✅ **Timeout & retry** - Exponential backoff on network errors
+- ✅ **Smart waiting** - `waitForLoadState`, `waitForSelector`
+- ✅ **Concurrency lock** - Prevents profile conflicts
+- ✅ **Structured logging** - DEBUG=1 for verbose output
+- ✅ **Configurable** - Environment variables for timeout, retries, profile
 
-## Overview
+## Files
 
+- `browser-manager.v2.js` - Core manager class
+- `search-google.js` - Google search with screenshot + PDF
+- `fetch-summary.js` - Fetch page content (static or dynamic)
+- `multi-pages.js` - Batch process multiple URLs
+- `fill-form.js` - Auto-fill forms by field names
 
-## Installation
-To install this skill, run the following command in your terminal:
+## Usage
+
 ```bash
-hermes skills install clawhub/browser-automation-v2
+# Set environment (optional)
+export BROWSER_PROFILE=openclaw
+export BROWSER_TIMEOUT=30000
+export BROWSER_RETRIES=2
+export DEBUG=1
+
+cd ~/.openclaw/workspace/skills/browser-automation-v2
+
+# Search Google
+node search-google.js "OpenClaw automation"
+
+# Batch process
+node multi-pages.js "https://example.com" "https://github.com"
+
+# Fill form
+node fill-form.js "https://example.com/form" '{"email":"test@xx.com"}'
 ```
+
+## Integration
+
+Register as OpenClaw skill:
+```bash
+openclaw skills install ~/.openclaw/workspace/skills/browser-automation-v2
+```
+
+Or call directly from agent:
+```
+run search-google.js "query"
+```
+
+## Requirements
+
+- OpenClaw v2026.2.15+
+- Browser profile configured (default: `openclaw`)
+- Gateway running
+
+## Troubleshooting
+
+- **Timeout errors**: Increase `BROWSER_TIMEOUT`
+- **Profile locked**: Wait for other instance to finish
+- **Element not found**: Use `snapshot --format ai` to debug refs
+
+---
+
+*Created: 2026-02-16*
+*Version: 2.0.0*
+*License: MIT*

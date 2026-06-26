@@ -1,35 +1,146 @@
 ---
-name: "除秽·调优魄"
-description: "除秽·调优魄 - 环境优化与性能调优，让AI像修士一样净化环境、持续精进"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/chu-hui-optimizer"
-sourceUrl: "https://clawhub.ai/skills/chu-hui-optimizer"
+name: performance-optimizer
+version: 1.0.0
+description: 除秽·调优魄 - 环境优化与性能调优，让AI像修士一样净化环境、持续精进
+tags:
+  - performance
+  - optimization
+  - tuning
+  - environment
+  - cleanup
 ---
 
-# 除秽·调优魄
+# 除秽·调优魄 (Performance Optimizer) - 环境优化与性能调优
 
-> 除秽·调优魄 - 环境优化与性能调优，让AI像修士一样净化环境、持续精进
+## 技能说明
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/chu-hui-optimizer`
-- **Source URL:** [https://clawhub.ai/skills/chu-hui-optimizer](https://clawhub.ai/skills/chu-hui-optimizer)
+**除秽·调优魄** 是硅灵决七魄之一，主管环境优化、噪声过滤与参数调优，让AI能够像修士一样，净化环境、持续精进。
 
-## Overview
+---
 
+## 核心能力
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/chu-hui-optimizer
+### 1. 环境检测 (Environment Detection)
+- 系统资源分析
+- 性能瓶颈定位
+- 配置检查
+
+### 2. 噪声过滤 (Noise Filtering)
+- 无关信息过滤
+- 重复内容去重
+- 低价值数据清除
+
+### 3. 参数调优 (Parameter Tuning)
+- 超参数优化
+- 配置建议
+- 性能基准测试
+
+### 4. 环境净化 (Environment Cleanup)
+- 临时文件清理
+- 缓存优化
+- 日志管理
+
+---
+
+## 使用方法
+
+当用户要求优化系统或性能时：
+
 ```
+用户：系统有点慢，帮我看看
+→ 触发除秽·调优魄
+→ 输出诊断和优化方案
+
+用户：清理一下环境
+→ 触发除秽·调优魄
+→ 执行清理操作
+```
+
+---
+
+## 输出格式
+
+### 优化报告
+
+```markdown
+## 性能优化报告
+
+### 系统状态
+- CPU: XX% (正常/偏高/过高)
+- 内存: XX% (正常/偏高/过高)
+- 磁盘: XX% (正常/偏高/过高)
+
+### 瓶颈分析
+1. [瓶颈1] - 影响程度: XX%
+2. [瓶颈2] - 影响程度: XX%
+
+### 优化建议
+1. [建议1] - 预期提升: XX%
+2. [建议2] - 预期提升: XX%
+
+### 已执行优化
+- [优化1]
+- [优化2]
+
+### 效果验证
+[优化前后对比]
+```
+
+---
+
+## 优化维度
+
+### 系统层优化
+```
+- 内存管理优化
+- 进程优先级调整
+- 启动项优化
+- 服务配置调优
+```
+
+### 应用层优化
+```
+- 缓存策略优化
+- 连接池调优
+- 超时配置优化
+- 并发参数调整
+```
+
+### 数据层优化
+```
+- 数据库索引优化
+- 查询优化
+- 分页策略
+- 归档清理
+```
+
+---
+
+## 调度者守则
+
+1. **安全第一** - 优化前先备份，危险操作先评估
+2. **量化效果** - 用数据证明优化效果
+3. **渐进迭代** - 小步快跑，避免大步改革
+4. **持续监控** - 优化后持续观察
+
+---
+
+## 适用场景
+
+- 系统性能分析
+- 环境清理
+- 参数调优
+- 瓶颈定位
+- 配置优化
+
+---
+
+## 依赖技能
+
+- silicon-soul（硅灵决基础）
+- auto-healer（吞贼·净化魄）
+- task-planner（伏矢·路径魄）
+
+## 版本
+
+v1.0.0 | 2026-04-12 | 硅灵宗·菩提

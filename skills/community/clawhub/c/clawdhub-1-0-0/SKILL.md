@@ -1,35 +1,53 @@
 ---
-name: "Clawdhub 1.0.0"
-description: "Use the ClawdHub CLI to search, install, update, and publish agent skills from clawdhub.com. Use when you need to fetch new skills on the fly, sync installed..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/clawdhub-1-0-0"
-sourceUrl: "https://clawhub.ai/skills/clawdhub-1-0-0"
+name: clawdhub
+description: Use the ClawdHub CLI to search, install, update, and publish agent skills from clawdhub.com. Use when you need to fetch new skills on the fly, sync installed skills to latest or a specific version, or publish new/updated skill folders with the npm-installed clawdhub CLI.
+metadata: {"clawdbot":{"requires":{"bins":["clawdhub"]},"install":[{"id":"node","kind":"node","package":"clawdhub","bins":["clawdhub"],"label":"Install ClawdHub CLI (npm)"}]}}
 ---
 
-# Clawdhub 1.0.0
+# ClawdHub CLI
 
-> Use the ClawdHub CLI to search, install, update, and publish agent skills from clawdhub.com. Use when you need to fetch new skills on the fly, sync installed...
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/clawdhub-1-0-0`
-- **Source URL:** [https://clawhub.ai/skills/clawdhub-1-0-0](https://clawhub.ai/skills/clawdhub-1-0-0)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
+Install
 ```bash
-hermes skills install clawhub/clawdhub-1-0-0
+npm i -g clawdhub
 ```
+
+Auth (publish)
+```bash
+clawdhub login
+clawdhub whoami
+```
+
+Search
+```bash
+clawdhub search "postgres backups"
+```
+
+Install
+```bash
+clawdhub install my-skill
+clawdhub install my-skill --version 1.2.3
+```
+
+Update (hash-based match + upgrade)
+```bash
+clawdhub update my-skill
+clawdhub update my-skill --version 1.2.3
+clawdhub update --all
+clawdhub update my-skill --force
+clawdhub update --all --no-input --force
+```
+
+List
+```bash
+clawdhub list
+```
+
+Publish
+```bash
+clawdhub publish ./my-skill --slug my-skill --name "My Skill" --version 1.2.0 --changelog "Fixes + docs"
+```
+
+Notes
+- Default registry: https://clawdhub.com (override with CLAWDHUB_REGISTRY or --registry)
+- Default workdir: cwd; install dir: ./skills (override with --workdir / --dir)
+- Update command hashes local files, resolves matching version, and upgrades to latest unless --version is set

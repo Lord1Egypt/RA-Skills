@@ -1,0 +1,39 @@
+{
+  "data_sources": [
+    {"name": "BLS Occupational Outlook Handbook", "url": "https://www.bls.gov/ooh/", "type": "official", "coverage": "US: 800+ occupations, salary, growth, education"},
+    {"name": "LinkedIn Workforce Report", "url": "https://economicgraph.linkedin.com/", "type": "workforce", "coverage": "Hiring rate, skills demand shifts, migration patterns"},
+    {"name": "Glassdoor Salaries", "url": "https://www.glassdoor.com/Salaries/", "type": "compensation", "coverage": "Crowd-sourced salaries by role/location/company"},
+    {"name": "Levels.fyi", "url": "https://www.levels.fyi/", "type": "compensation", "coverage": "Tech compensation, levels, negotiation data"},
+    {"name": "World Economic Forum Future of Jobs", "url": "https://www.weforum.org/reports/the-future-of-jobs-report/", "type": "trends", "coverage": "5-year skills outlook, emerging roles, declining roles"},
+    {"name": "Burning Glass / Lightcast", "url": "https://lightcast.io/", "type": "labor_market", "coverage": "Real-time job posting analytics, skills taxonomy"},
+    {"name": "QS / Times Higher Education Rankings", "url": "https://www.topuniversities.com/ / https://www.timeshighereducation.com/", "type": "education", "coverage": "Global university rankings, program rankings"},
+    {"name": "Coursera / edX / Udemy", "url": "https://www.coursera.org/ / https://www.edx.org/ / https://www.udemy.com/", "type": "learning", "coverage": "Online courses, specializations, micro-credentials"},
+    {"name": "ONET Online", "url": "https://www.onetonline.org/", "type": "official", "coverage": "Comprehensive occupation taxonomy, skills, tools, technology"},
+    {"name": "IMF / World Bank Labour Data", "url": "https://data.imf.org/employment / https://data.worldbank.org/topic/labor-and-social-protection", "type": "macro", "coverage": "Country-level employment, participation, migration"},
+    {"name": "Indeed Hiring Lab", "url": "https://www.hiringlab.org/", "type": "labor_market", "coverage": "Job posting trends, wage growth, sector analysis"},
+    {"name": "OECD Education at a Glance", "url": "https://www.oecd.org/education/education-at-a-glance/", "type": "education", "coverage": "Education spending, outcomes, equity across 38 countries"}
+  ],
+  "career_domains": [
+    {"domain": "AI & Data Science", "hot_roles": ["ML Engineer", "AI Safety Researcher", "Prompt Engineer", "Data Scientist", "AI Product Manager"], "avg_salary_usd": "$120K-$300K", "growth_rating": "EXPLOSIVE"},
+    {"domain": "Software Engineering", "hot_roles": ["Full-Stack Developer", "Platform Engineer", "Security Engineer", "SRE/DevOps", "Rust/Go Systems Engineer"], "avg_salary_usd": "$100K-$250K", "growth_rating": "STRONG"},
+    {"domain": "Climate & Sustainability", "hot_roles": ["Carbon Accountant", "ESG Analyst", "Renewable Energy Engineer", "Climate Risk Modeler", "Sustainability Consultant"], "avg_salary_usd": "$70K-$180K", "growth_rating": "ACCELERATING"},
+    {"domain": "Healthcare & Biotech", "hot_roles": ["Clinical Data Manager", "Bioinformatics Scientist", "Digital Health PM", "CRISPR Researcher", "Telehealth Operations"], "avg_salary_usd": "$80K-$200K", "growth_rating": "STRONG"},
+    {"domain": "Cybersecurity", "hot_roles": ["Cloud Security Architect", "Penetration Tester", "GRC Specialist", "Incident Response Lead", "Zero Trust Architect"], "avg_salary_usd": "$90K-$220K", "growth_rating": "STRONG"},
+    {"domain": "Digital Marketing & Growth", "hot_roles": ["SEO Specialist", "Growth Hacker", "Content Strategist", "Performance Marketing Manager", "Community Manager"], "avg_salary_usd": "$60K-$160K", "growth_rating": "STEADY"},
+    {"domain": "Remote / Digital Nomad Careers", "hot_roles": ["Virtual Assistant (AI-enhanced)", "Online Educator", "Freelance Developer", "Digital Content Creator", "Remote Operations Manager"], "avg_salary_usd": "$40K-$120K", "growth_rating": "ACCELERATING"}
+  ],
+  "education_pathways": [
+    {"type": "Traditional Degree", "duration": "3-4 years", "cost": "$20K-$200K", "roi_note": "High for STEM, mixed for humanities"},
+    {"type": "Bootcamp", "duration": "3-6 months", "cost": "$5K-$20K", "roi_note": "High for software engineering, data analytics"},
+    {"type": "MOOC / Online Specialization", "duration": "2-6 months", "cost": "$0-$500", "roi_note": "Best for skills augmentation, employer-agnostic"},
+    {"type": "Professional Certification", "duration": "1-6 months prep", "cost": "$300-$3,000", "roi_note": "High for established certs (CPA, PMP, CFA, AWS, CISSP)"},
+    {"type": "Apprenticeship", "duration": "1-4 years", "cost": "Earn while learning", "roi_note": "High for skilled trades, growing in tech"}
+  ],
+  "career_transition_matrix": [
+    {"from": "Traditional SWE", "to": "ML/AI Engineer", "moonshot_move": true, "time": "6-12 months", "key_learning": "Math fundamentals, ML frameworks, Kaggle competitions"},
+    {"from": "Marketing", "to": "Growth / Product Marketing", "moonshot_move": false, "time": "3-6 months", "key_learning": "SQL, A/B testing, PLG metrics"},
+    {"from": "Finance", "to": "Climate Finance / ESG", "moonshot_move": true, "time": "4-8 months", "key_learning": "GHG Protocol, SASB/ISSB, carbon accounting"},
+    {"from": "Teacher", "to": "Instructional Designer / EdTech", "moonshot_move": false, "time": "2-4 months", "key_learning": "Learning Management Systems, ADDIE model, UX for education"},
+    {"from": "General Manager", "to": "AI Product Manager", "moonshot_move": true, "time": "4-8 months", "key_learning": "AI/ML product lifecycle, data strategy, responsible AI principles"}
+  ]
+}

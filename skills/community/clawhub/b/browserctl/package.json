@@ -1,0 +1,37 @@
+{
+  "name": "@yorelog/browsectl",
+  "version": "0.1.1",
+  "description": "WebDriver automation CLI for AI-driven browser control",
+  "bin": {
+    "browsectl": "scripts/run.js"
+  },
+  "scripts": {
+    "postinstall": "node scripts/install.js",
+    "release": "bash scripts/release.sh"
+  },
+  "os": [
+    "darwin",
+    "linux",
+    "win32"
+  ],
+  "cpu": [
+    "x64",
+    "arm64"
+  ],
+  "engines": {
+    "node": ">=16"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yorelog/browsectl.git"
+  },
+  "license": "MIT",
+  "files": [
+    "README.md",
+    "CHANGELOG.md",
+    "SKILL.md",
+    "scripts/install.js",
+    "scripts/run.js",
+    "skills/"
+  ]
+}

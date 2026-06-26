@@ -1,0 +1,17 @@
+{
+  "feishu": {
+    "app_id": "your_feishu_app_id",
+    "secret": "your_feishu_app_secret",
+    "user_id": "your_feishu_open_id"
+  },
+  "telegram": {
+    "bot_token": "",
+    "chat_id": ""
+  },
+  "discord": {
+    "webhook_url": ""
+  },
+  "wecom": {
+    "webhook_url": ""
+  }
+}

@@ -1,0 +1,26 @@
+name: brand-marketing-workflow
+version: 3.0.1
+author: halfmoon82
+license: MIT
+metadata:
+  title: "Brand Marketing Workflow — Structural Reference"
+  description: |
+    Documentation-only replacement for the brand marketing workflow skill.
+    This update remains framework-only and contains no executable implementation.
+  author: halfmoon82
+  tags:
+    - marketing
+    - brand
+    - documentation
+    - workflow
+    - structure
+    - reference
+clawhub:
+  category: marketing
+  featured: false
+  verified: false
+install: |
+  This is a documentation-only replacement artifact.
+examples:
+  - command: none
+    description: No runnable example; this artifact intentionally contains no executable code

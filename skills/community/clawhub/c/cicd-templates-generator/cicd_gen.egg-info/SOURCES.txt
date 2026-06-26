@@ -1,0 +1,13 @@
+setup.py
+cicd_gen/__init__.py
+cicd_gen/cli.py
+cicd_gen.egg-info/PKG-INFO
+cicd_gen.egg-info/SOURCES.txt
+cicd_gen.egg-info/dependency_links.txt
+cicd_gen.egg-info/entry_points.txt
+cicd_gen.egg-info/requires.txt
+cicd_gen.egg-info/top_level.txt
+cicd_gen/generator/__init__.py
+cicd_gen/generator/github_actions.py
+cicd_gen/generator/gitlab_ci.py
+cicd_gen/generator/jenkins.py

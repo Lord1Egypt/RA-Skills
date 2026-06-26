@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{title}}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;600;700&display=swap');
+        body {
+            font-family: 'Inter', 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%);
+            min-height: 100vh;
+        }
+        .card {
+            background: white;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            border-radius: 1rem;
+        }
+        .gradient-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .timeline-item {
+            position: relative;
+            padding-left: 2rem;
+            padding-bottom: 1.5rem;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 10px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, #d1d5db, #e5e7eb);
+        }
+    </style>
+</head>
+<body class="p-6">
+    <div class="max-w-4xl mx-auto">
+        <div class="card overflow-hidden mb-6">
+            <div class="gradient-header px-10 py-12 text-white text-center">
+                <h1 class="text-3xl font-bold mb-3">{{title}}</h1>
+                <p class="text-lg opacity-90 font-light">{{subtitle}}</p>
+            </div>
+        </div>
+        
+        <div class="card px-10 py-8 mb-6">
+            <h2 class="text-xl font-bold text-gray-900 mb-6">📍 行程详情</h2>
+            <div id="route-content">{{route_content}}</div>
+        </div>
+        
+        <div class="card px-10 py-8 mb-6">
+            <h2 class="text-xl font-bold text-gray-900 mb-4">🗺️ 路线地图</h2>
+            <div class="rounded-xl overflow-hidden bg-gray-50">{{map_iframe}}</div>
+        </div>
+        
+        <div class="text-center text-gray-400 text-sm py-6">
+            <p>City Life Copilot · Generated on {{date}}</p>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,41 @@
+# CacheLint -- lefthook configuration
+# Installed by: cachelint hooks install
+# Documentation: https://cachelint.pages.dev/docs/hooks
+#
+# This configuration integrates CacheLint with git hooks via lefthook.
+# Pre-commit: scans staged files for caching issues (blocks on critical/high)
+# Pre-push: runs full scan of the working tree before push
+
+pre-commit:
+  parallel: true
+  commands:
+    cachelint-check:
+      run: |
+        CACHELINT_SKILL_DIR="${CACHELINT_SKILL_DIR:-$HOME/.openclaw/skills/cachelint}"
+        if [[ -f "$CACHELINT_SKILL_DIR/scripts/analyzer.sh" ]]; then
+          source "$CACHELINT_SKILL_DIR/scripts/patterns.sh"
+          source "$CACHELINT_SKILL_DIR/scripts/analyzer.sh"
+          hook_cachelint_check
+        else
+          echo "[CacheLint] Skill not found at $CACHELINT_SKILL_DIR -- skipping scan"
+        fi
+      fail_text: |
+        Caching issues detected in staged files!
+        Run 'cachelint scan' to see details.
+        Or 'git commit --no-verify' to skip (NOT recommended).
+
+pre-push:
+  parallel: true
+  commands:
+    cachelint-full-scan:
+      run: |
+        CACHELINT_SKILL_DIR="${CACHELINT_SKILL_DIR:-$HOME/.openclaw/skills/cachelint}"
+        if [[ -f "$CACHELINT_SKILL_DIR/scripts/dispatcher.sh" ]]; then
+          bash "$CACHELINT_SKILL_DIR/scripts/dispatcher.sh" --path . --format text
+        else
+          echo "[CacheLint] Skill not found at $CACHELINT_SKILL_DIR -- skipping scan"
+        fi
+      fail_text: |
+        CacheLint detected caching quality issues in your codebase.
+        Run 'cachelint scan --verbose' for detailed findings.
+        Fix critical/high issues before pushing.

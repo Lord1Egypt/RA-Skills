@@ -1,0 +1,20 @@
+{
+  "name": "Code Merge",
+  "description": "Pull request/merge request review checklist",
+  "category": "development",
+  "items": [
+    {"id": 1, "text": "All tests passing", "required": true},
+    {"id": 2, "text": "Code follows style guidelines", "required": true},
+    {"id": 3, "text": "No hardcoded credentials", "required": true},
+    {"id": 4, "text": "Input validation implemented", "required": true},
+    {"id": 5, "text": "Error handling in place", "required": true},
+    {"id": 6, "text": "No security vulnerabilities", "required": true},
+    {"id": 7, "text": "Unit tests included", "required": true},
+    {"id": 8, "text": "Documentation updated", "required": false},
+    {"id": 9, "text": "No debug code left behind", "required": true},
+    {"id": 10, "text": "Reviewed git diff", "required": true},
+    {"id": 11, "text": "Reviewed by at least 1 peer", "required": true},
+    {"id": 12, "text": "No merge conflicts", "required": true},
+    {"id": 13, "text": "Branch up to date with target", "required": true}
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "meta": {"title": "Evolution Route"},
+  "library": {
+    "capabilities": [],
+    "actors": [{"id": "actor-1", "name": "Manager"}],
+    "flowSteps": [
+      {"id": "flow-1", "name": "2026-03-11：发布超级套件", "actorId": "actor-1"},
+      {"id": "flow-2", "name": "2026-04-03：强化行业定位", "actorId": "actor-1"}
+    ],
+    "systems": []
+  },
+  "relations": []
+}

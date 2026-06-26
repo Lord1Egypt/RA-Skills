@@ -1,0 +1,39 @@
+{
+  "version": "1.0",
+  "meta": {
+    "title": "Retail Unified Returns Blueprint",
+    "industry": "retail",
+    "blueprintType": "architecture"
+  },
+  "entities": {
+    "capabilities": [
+      {"id": "cap-order-lookup", "name": "Unified Order Lookup"},
+      {"id": "cap-return-approval", "name": "Return Approval"},
+      {"id": "cap-inventory-sync", "name": "Inventory Restock Sync"}
+    ],
+    "actors": [
+      {"id": "actor-customer", "name": "Customer"},
+      {"id": "actor-associate", "name": "Store Associate"},
+      {"id": "actor-warehouse", "name": "Warehouse Operator"}
+    ],
+    "systems": [
+      {"id": "sys-pos", "name": "POS"},
+      {"id": "sys-crm", "name": "CRM"},
+      {"id": "sys-oms", "name": "OMS"},
+      {"id": "sys-wms", "name": "WMS"}
+    ],
+    "flowSteps": [
+      {"id": "step-request", "name": "Return Request"},
+      {"id": "step-lookup", "name": "Cross-channel Lookup"},
+      {"id": "step-refund", "name": "Refund Approval"},
+      {"id": "step-restock", "name": "Restock Update"}
+    ]
+  },
+  "relations": [
+    {"from": "actor-associate", "to": "sys-pos", "type": "uses"},
+    {"from": "sys-pos", "to": "sys-oms", "type": "flows-to"},
+    {"from": "sys-oms", "to": "cap-return-approval", "type": "supports"},
+    {"from": "sys-wms", "to": "cap-inventory-sync", "type": "supports"},
+    {"from": "step-restock", "to": "sys-wms", "type": "flows-to"}
+  ]
+}

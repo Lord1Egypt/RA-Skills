@@ -1,0 +1,97 @@
+{
+  "tesseract": {
+    "digit": {
+      "model_name": "digit",
+      "config_path": "data/config/digit.config",
+      "optimization": {
+        "lstm_model": true,
+        "lstm_layers": 3,
+        "lstm_hidden_size": 256,
+        "lstm_dropout": 0.1,
+        "lstm_learning_rate": 0.001,
+        "lstm_batch_size": 32,
+        "lstm_epochs": 100
+      }
+    },
+    "axis": {
+      "model_name": "axis",
+      "config_path": "data/config/axis.config",
+      "optimization": {
+        "lstm_model": true,
+        "lstm_layers": 3,
+        "lstm_hidden_size": 256,
+        "lstm_dropout": 0.1,
+        "lstm_learning_rate": 0.001,
+        "lstm_batch_size": 32,
+        "lstm_epochs": 100
+      }
+    },
+    "legend": {
+      "model_name": "legend",
+      "config_path": "data/config/legend.config",
+      "optimization": {
+        "lstm_model": true,
+        "lstm_layers": 3,
+        "lstm_hidden_size": 256,
+        "lstm_dropout": 0.1,
+        "lstm_learning_rate": 0.001,
+        "lstm_batch_size": 32,
+        "lstm_epochs": 100
+      }
+    },
+    "title": {
+      "model_name": "title",
+      "config_path": "data/config/title.config",
+      "optimization": {
+        "lstm_model": true,
+        "lstm_layers": 3,
+        "lstm_hidden_size": 256,
+        "lstm_dropout": 0.1,
+        "lstm_learning_rate": 0.001,
+        "lstm_batch_size": 32,
+        "lstm_epochs": 100
+      }
+    }
+  },
+  "opencv": {
+    "chart_detection": {
+      "model_name": "chart_detection",
+      "model_path": "data/models/chart_detection.pb",
+      "optimization": {
+        "morphology": true,
+        "morphology_kernel": 3,
+        "morphology_iterations": 2,
+        "threshold": true,
+        "threshold_method": "adaptive",
+        "threshold_block_size": 11,
+        "threshold_c": 2
+      }
+    },
+    "line_detection": {
+      "model_name": "line_detection",
+      "model_path": "data/models/line_detection.pb",
+      "optimization": {
+        "morphology": true,
+        "morphology_kernel": 3,
+        "morphology_iterations": 2,
+        "threshold": true,
+        "threshold_method": "adaptive",
+        "threshold_block_size": 11,
+        "threshold_c": 2
+      }
+    },
+    "shape_detection": {
+      "model_name": "shape_detection",
+      "model_path": "data/models/shape_detection.pb",
+      "optimization": {
+        "morphology": true,
+        "morphology_kernel": 3,
+        "morphology_iterations": 2,
+        "threshold": true,
+        "threshold_method": "adaptive",
+        "threshold_block_size": 11,
+        "threshold_c": 2
+      }
+    }
+  }
+}

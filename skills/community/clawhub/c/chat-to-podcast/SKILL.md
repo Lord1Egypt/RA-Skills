@@ -1,35 +1,347 @@
 ---
-name: "Chat to Podcast"
-description: "将与 AI 的对话内容整理成 Podcast 风格文稿，经用户确认后一键发布到 Halo 博客。 支持：指定话题/时间范围/关键词提取对话 → 自动整理成播客文稿（开场白、对话体、要点总结、结尾）→ 预览确认 → 发布 Halo。 当用户提到「整理成播客」「对话转文稿」「发布播客」「聊天内容发博客」「把我们的对话..."
-category: "productivity"
-source: "ClawHub"
-tags: [automation, content-generation, halo, podcast]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/chat-to-podcast"
-sourceUrl: "https://clawhub.ai/skills/chat-to-podcast"
+name: chat-to-podcast
+displayName: 对话转播客文稿
+version: 1.0.0
+description: >
+  将与 AI 的对话内容整理成 Podcast 风格文稿，经用户确认后一键发布到 Halo 博客。
+  支持：指定话题/时间范围/关键词提取对话 → 自动整理成播客文稿（开场白、对话体、要点总结、结尾）→ 预览确认 → 发布 Halo。
+  当用户提到「整理成播客」「对话转文稿」「发布播客」「聊天内容发博客」「把我们的对话整理成文章」
+  「对话整理成播客」「chat to podcast」「生成播客文稿」时触发。
+metadata:
+  openclaw:
+    category: content-management
+    requires:
+      bins: ["halo"]
 ---
 
-# Chat to Podcast
+# Chat to Podcast — 对话转播客文稿
 
-> 将与 AI 的对话内容整理成 Podcast 风格文稿，经用户确认后一键发布到 Halo 博客。 支持：指定话题/时间范围/关键词提取对话 → 自动整理成播客文稿（开场白、对话体、要点总结、结尾）→ 预览确认 → 发布 Halo。 当用户提到「整理成播客」「对话转文稿」「发布播客」「聊天内容发博客」「把我们的对话...
+将你与 AI 助手的特定对话内容，自动整理成 Podcast 风格的文稿，确认后一键发布到 Halo 博客。
 
-- **Category:** Productivity
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/chat-to-podcast`
-- **Source URL:** [https://clawhub.ai/skills/chat-to-podcast](https://clawhub.ai/skills/chat-to-podcast)
+## 前置依赖
 
-## Overview
+- 已安装 `@halo-dev/cli`：
+  ```bash
+  npm install -g @halo-dev/cli
+  ```
+- 已配置 Halo profile（如 `blog-danke`）并完成登录
+- 已有 `halo-blog` skill 作为发布规范参考
 
+## 工作流程
 
-## Installation
-To install this skill, run the following command in your terminal:
+### Step 1: 确定对话范围
+
+询问用户要整理哪些对话内容。支持以下方式定位：
+
+| 定位方式 | 示例 | 说明 |
+|---------|------|------|
+| **话题关键词** | "关于 Halo 配置变更的对话" | 从当前/历史 session 中搜索匹配内容 |
+| **时间范围** | "今天下午的对话"、"最近3天" | 按时间过滤 session 消息 |
+| **当前对话** | "刚才我们聊的"、"这段对话" | 从当前 session 上下文提取 |
+| **指定 session** | "上一次关于 XX 的对话" | 从历史 session 日志中查找 |
+
+#### 提取方法
+
+**方式 A：从当前 session 提取**
+
+直接读取当前会话的上下文或 `memory/YYYY-MM-DD.md` 中的当日记录。
+
+**方式 B：按日期筛选历史 session**
+
 ```bash
-hermes skills install clawhub/chat-to-podcast
+# 列出最近 session 文件
+ls -lt ~/.openclaw/agents/main/sessions/*.jsonl | head -20
+
+# 按日期筛选
+for f in ~/.openclaw/agents/main/sessions/*.jsonl; do
+  ts=$(head -1 "$f" | python3 -c "import sys,json; print(json.load(sys.stdin).get('timestamp',''))" 2>/dev/null)
+  echo "$ts $f"
+done | grep "2026-04-15"
 ```
+
+**方式 C：按关键词搜索历史 session**
+
+```bash
+for f in ~/.openclaw/agents/main/sessions/*.jsonl; do
+  if python3 -m json.tool "$f" 2>/dev/null | grep -qi "Halo"; then
+    echo "MATCH: $f"
+  fi
+done | head -10
+```
+
+找到目标 session 后，提取完整对话记录（不做条数限制）。
+
+---
+
+### Step 1.5: 获取并更新播客序号
+
+**序号计数器文件**：`~/.openclaw/workspace/memory/podcast-counter.json`
+
+默认格式：
+```json
+{
+  "nextEpisode": 1,
+  "lastGenerated": ""
+}
+```
+
+**操作规则**：
+1. 读取 `podcast-counter.json` 获取当前 `nextEpisode` 值
+2. 将本期序号格式化为两位数字（如 `05`、`12`）
+3. 文章标题格式固定为：`「XX.」文章主标题`
+4. **发布成功后**，将 `nextEpisode` 加 1，`lastGenerated` 更新为当天日期，写回文件
+
+---
+
+### Step 2: 整理成 Podcast 文稿
+
+将提取的对话内容加工为播客风格文稿。核心理念：**不是整理会议纪要，而是还原一场真实的探索对话——有提问、有试探、有卡壳、有恍然大悟。**
+
+**文稿结构**：
+
+```markdown
+# [播客标题]
+
+> 📅 录制日期：YYYY-MM-DD  
+> 🎙️ 主播：[用户名] & [AI助手名]  
+> 📝 时长：约 X 分钟阅读  
+> 🏷️ 标签：#话题1 #话题2
+
+---
+
+## 🎬 开场
+
+[用对话体写开场，像播客主持人开场一样自然。]
+
+**[用户名]**：[用一两句话抛出本期核心话题/问题/困惑，像是随口聊起]
+
+**[AI助手名]**：[自然接话，表达兴趣或初步反应]
+
+---
+
+## 💬 正文
+
+### [章节1标题 — 用疑问句或口语化短语]
+
+**[用户名]**：[提出问题/想法/困惑——保留真实的思考痕迹]
+
+**[AI助手名]**：[回应，但不是直接给答案。展现分析思路：
+"我先想到的是..." → "但仔细一看..." → "所以其实..."]
+
+**[用户名]**：[追问、质疑、或者补充新信息——体现对话的推进感]
+
+**[AI助手名]**：[进一步展开，可以有修正之前观点的过程]
+
+> 🤔 **[用户名]的思考**：[记录用户在这个环节的关键洞察或决策理由]
+
+### [章节2标题]
+
+**[用户名]**：[新的问题或话题转折——可以加入"等等，我突然想到..."]
+
+**[AI助手名]**：[回应，保留探索过程中的不确定性]
+
+**[用户名]**：[反馈、验证、或表达新理解]
+
+**[AI助手名]**：[确认、补充、或给出最终建议]
+
+> 💡 **转折点**：[记录"从不确定到想明白"的关键拐点]
+
+---
+
+## 🧵 复盘：我们是怎么想明白的
+
+一开始我们以为 [初始假设/问题]...
+
+聊着聊着发现 [转折点/新发现]...
+
+最后得出的结论是 [最终洞察]...
+
+**如果用一句话总结**：[一句精辟的总结]
+
+---
+
+## 🎯 尾声
+
+**[用户名]**：[用对话体收尾——这次聊下来最大的收获/下一步打算做什么]
+
+**[AI助手名]**：[自然回应，可以带一点展望或调侃]
+
+---
+
+*本文由 [AI助手名] 基于真实对话整理，经 [用户名] 确认发布。*
+```
+
+**整理原则**：
+1. **保留思考链条**：假设 → 验证 → 修正 → 结论
+2. **保留不确定性**：试错、犹豫都是真实感的来源
+3. **对话感 > 结构感**：宁可像两个人在聊天，也不要像在做汇报
+4. **章节标题用问题或口语**：用"这个方案靠谱吗？"代替"方案可行性分析"
+5. **用户视角的思考**：在关键节点插入用户的内心独白（🤔 标记）
+6. **转折点高亮**：每个章节标记"从不确定到想明白"的关键拐点（💡 标记）
+7. **结尾用复盘叙事**：用"一开始...后来...最终..."的叙事弧线回顾
+8. **工具调用细节省略**：不展示具体的 API 调用、代码执行过程，只保留结论和关键发现
+9. **脱敏处理**：去除敏感信息（token、密码、API key 等）
+
+---
+
+### Step 3: 预览确认
+
+将生成的文稿完整展示给用户，并发送封面图（如果已生成），询问：
+
+> 播客文稿已整理完毕，请确认：
+> 1. ✅ 内容准确，直接发布到 Halo 博客
+> 2. ✏️ 需要修改（请告诉我哪里需要调整）
+> 3. ❌ 放弃发布
+
+如果用户要求修改，按反馈调整后再次确认，直到用户满意。
+
+---
+
+### Step 4: 生成头图与封面图（3 分钟超时）
+
+**头图**和**封面图**是两个不同的东西：
+
+- **头图**：放在**正文最顶部**的吉卜力风格插画，增强阅读氛围
+- **封面图**：Halo 文章的 `cover` 字段，用于列表/卡片缩略图展示
+
+#### 头图
+
+1. **提取全文主题**：综合文稿标题、开场和各章节内容，提炼出一个能概括全文场景的画面描述
+2. **生成 prompt**：**风格固定为「吉卜力（Studio Ghibli）卡通风格」**——手绘质感、柔和光影、温暖色调、画面富有故事感和治愈感，横版 16:9
+3. **调用方式**：使用 `image_generate` 生成
+4. **插入位置**：文章正文最顶部，在 `## 🎬 开场` 之前
+5. **Markdown 语法**：**必须使用 `![](url)`**，禁止写 `![头图](url)` 或任何带 alt 文本的语法，否则 Halo 会显示图片标题
+
+Prompt 必须包含：
+- 「吉卜力卡通风格，手绘质感，柔和光影，温暖色调」
+- 体现全文核心场景的画面描述
+- 「画面富有故事感和治愈感，横版16:9构图」
+
+#### 封面图
+
+头图生成后，**另外生成一张封面图**，用于 Halo 文章封面（`cover`）。
+
+- **比例**：**21:9 超宽横幅**（Halo 主题封面区域偏横幅，16:9 会被严重裁剪）
+- **目的**：**以符合文章主题为第一原则**，根据播客内容生成对应的场景或意象画面
+- **注意**：**封面图和文章标题不会叠加显示**，不需要刻意留出标题空白区域
+- **用途**：设置为 Halo 文章 `cover`，不在正文中显示
+
+#### 超时处理
+
+- 成功 → 头图插入正文顶部，封面图设为 Halo `cover`
+- 超时 → 纯文字发布，并在回复中说明：「⏱️ 头图生成超时，以纯文字版本发布」
+
+---
+
+### Step 5: 发布到 Halo 博客
+
+用户确认后，按 `halo-blog` skill 的发布规范执行：
+
+1. **Markdown → HTML**
+   - 去掉 front matter，正文用 `npx marked` 转成 HTML
+   - 失败则降级为 `halo post import-markdown --file article.md --force`
+
+2. **创建文章**
+   ```bash
+   halo post create \
+     --profile blog-danke \
+     --name <slug> \
+     --title <标题> \
+     --slug <slug> \
+     --content <html> \
+     --raw-type html \
+     --publish true
+   ```
+
+3. **设置头图、封面、分类、标签**
+   - 头图：插入到正文 HTML 最顶部（Markdown 语法为 `![](url)`）
+   - 封面图：上传并设置为 Halo 文章 `cover`
+   - 分类：优先使用已有分类（如"日常"），没有合适的再新建
+   - 标签：根据文章主题自行补充（如"碎碎念"、"AI"、"Halo"等）
+
+4. **AI 生成声明（必选）**
+   **所有由 AI 生成的播客文稿，必须添加 AI 生成声明。** Halo 后台实际读取的是这两个字段：
+   ```bash
+   halo post export-json <name> --output /tmp/post.json
+   python3 -c "
+   import json
+   with open('/tmp/post.json', 'r') as f:
+       d = json.load(f)
+   d['post']['metadata']['annotations']['ai_generated'] = 'true'
+   d['post']['metadata']['annotations']['ai_generated_desc'] = '本文内容由 AI 辅助生成，已经人工审核和编辑。'
+   with open('/tmp/post.json', 'w') as f:
+       json.dump(d, f, ensure_ascii=False)
+   "
+   halo post import-json --file /tmp/post.json --force
+   ```
+
+   ⚠️ **注意**：`import-json` 会将文章状态重置为 **DRAFT（未发布）**，导入后必须重新执行 `halo post update <name> --publish true`。
+
+5. **可见性检查**
+   ```bash
+   halo post update <name> --visible PUBLIC
+   halo post update <name> --publish true
+   ```
+
+5. **更新播客序号**
+   发布成功后，立即更新 `~/.openclaw/workspace/memory/podcast-counter.json`：
+   - `nextEpisode` = `nextEpisode + 1`
+   - `lastGenerated` = 当天日期（`YYYY-MM-DD`）
+
+发布成功后，返回完整反馈：
+
+> ✅ 播客文稿已发布到 Halo 博客！
+> 📄 **文章链接**：https://blog.codingshen.top/archives/<slug>
+> 🖼️ 头图：[✅ 吉卜力风格头图已插入正文 / ⏱️ 头图生成超时，纯文字版本]
+> 📕 封面：[✅ Podcast 风格封面已设置 / ⏱️ 封面生成超时]
+> 📝 字数：约 XXXX 字
+> 🏷️ 标签：#日常 #AI生成 #碎碎念
+
+---
+
+## 文稿风格指南
+
+### 语气风格
+- **像真播客**：允许"嗯我想想..."、"对对对"、"等等这里有问题"
+- **有思考弧线**：每段对话都应该有"提出问题 → 探索 → 发现 → 结论"的弧线
+- **保留转折和意外**："我以为是A，结果发现是B"的时刻要重点保留
+- **有温度**：保留困惑、兴奋、恍然大悟、调侃等情绪反应
+- **节奏感**：长段分析之后跟一句简短的回应或调侃
+
+### 对话感技巧
+- **用追问推进**："那如果..."、"但是..."、"换个角度想..."
+- **展示思考过程**："我先想到..."→"但是..."→"所以实际上..."
+- **允许修正**：保留观点被推翻或修正的过程
+- **用户内心戏**：在关键决策点加入用户视角的思考（🤔 标记）
+
+### 标题命名
+- 风格：**口语化、有悬念感**
+- 格式建议：`🎙️ [引发好奇的短句]`
+- 示例：
+  - `🎙️ 工单能不能自己变聪明？— 我和 AI 折腾了一天配置自动化`
+  - `🎙️ 从"查不到数据"到"原来是这么回事" — 一次排查的完整探索`
+  - `🎙️ 这个权限为什么总是报错？— 踩坑三小时的真实记录`
+
+### 长度控制
+- 短篇（单个话题）：1000-2000 字
+- 中篇（多个话题）：2000-4000 字
+- 长篇（深度探索）：4000-8000 字
+- 超过 8000 字建议拆分为上下篇
+
+### ❌ 避免的写法
+- "本期我们将探讨..." → ✅ "最近遇到个事儿..."
+- "经过分析，我们得出结论..." → ✅ "聊到这儿我突然意识到..."
+- "综上所述" → ✅ "所以说到底..."
+- 纯 bullet point 罗列 → ✅ 用叙事串起来
+- 一问一答的扁平结构 → ✅ 多轮追问、有来有回的深入探讨
+
+---
+
+## 注意事项
+
+- **隐私脱敏**：自动去除 token、密码、API key、个人敏感信息
+- **不暴露工具细节**：省略具体命令、JSON 响应原文、调试过程
+- **保留决策链**：重点呈现"为什么这么做"而非"执行了什么命令"
+- **用户确认必须**：文稿必须经用户确认后才能发布，不可自动发布
+- **允许多轮修改**：用户可反复修改直到满意
+- **发图规则**：生成图片后必须先发送到当前对话给用户看，再进行后续操作

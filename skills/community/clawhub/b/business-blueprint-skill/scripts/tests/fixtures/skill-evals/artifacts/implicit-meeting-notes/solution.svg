@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="540" viewBox="0 0 960 540">
+  <title>Manufacturing Plan-to-Quality Blueprint</title>
+  <rect width="960" height="540" fill="#f8fafc"/>
+  <text x="48" y="72" font-family="Arial" font-size="28" fill="#0f172a">Manufacturing Plan-to-Quality Blueprint</text>
+  <rect x="48" y="130" width="180" height="84" rx="10" fill="#e5e7eb" stroke="#64748b"/>
+  <text x="82" y="180" font-family="Arial" font-size="18">APS</text>
+  <rect x="288" y="130" width="180" height="84" rx="10" fill="#e0f2fe" stroke="#0284c7"/>
+  <text x="322" y="180" font-family="Arial" font-size="18">MES</text>
+  <rect x="528" y="130" width="180" height="84" rx="10" fill="#fef3c7" stroke="#d97706"/>
+  <text x="562" y="180" font-family="Arial" font-size="18">QMS</text>
+  <rect x="768" y="130" width="144" height="84" rx="10" fill="#dcfce7" stroke="#16a34a"/>
+  <text x="802" y="180" font-family="Arial" font-size="18">WMS</text>
+</svg>

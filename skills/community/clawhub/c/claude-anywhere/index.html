@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Claude Anywhere — Your AI engineer, in your pocket.</title>
+  <meta name="description" content="Claude Anywhere 让你通过 Telegram、企业微信、QQ 随时随地读写文件、执行命令、分析图片、管理代码。Claude Anywhere gives you the power to read/write files, execute commands, analyze images — from Telegram, WeChat Work, or QQ.">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0a0a0a;
+      --bg2: #111111;
+      --bg3: #1a1a1a;
+      --border: #2a2a2a;
+      --text: #e8e8e8;
+      --text2: #999;
+      --text3: #666;
+      --orange: #ff6b35;
+      --red: #e8304a;
+      --grad: linear-gradient(135deg, #ff6b35, #e8304a);
+      --grad2: linear-gradient(135deg, #ff6b3520, #e8304a10);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Noto Sans SC', sans-serif;
+      line-height: 1.6;
+      font-size: 16px;
+    }
+
+    /* NAV */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(10,10,10,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 24px;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 700;
+      font-size: 17px;
+      text-decoration: none;
+      color: var(--text);
+    }
+    .logo-icon {
+      width: 32px;
+      height: 32px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    /* CSS lobster + star icon */
+    .logo-svg {
+      width: 32px;
+      height: 32px;
+    }
+    .nav-links {
+      display: flex;
+      gap: 24px;
+      list-style: none;
+    }
+    .nav-links a {
+      color: var(--text2);
+      text-decoration: none;
+      font-size: 14px;
+      transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--text); }
+    .nav-cta {
+      background: var(--grad);
+      color: #fff !important;
+      padding: 6px 16px;
+      border-radius: 6px;
+      font-weight: 600;
+    }
+    .nav-cta:hover { opacity: .9; }
+
+    /* HERO */
+    .hero {
+      text-align: center;
+      padding: 100px 24px 80px;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--grad2);
+      border: 1px solid #ff6b3540;
+      border-radius: 100px;
+      padding: 5px 14px;
+      font-size: 13px;
+      color: var(--orange);
+      margin-bottom: 28px;
+    }
+    .hero h1 {
+      font-size: clamp(36px, 6vw, 72px);
+      font-weight: 800;
+      letter-spacing: -1.5px;
+      line-height: 1.1;
+      margin-bottom: 10px;
+    }
+    .grad-text {
+      background: var(--grad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-sub-en {
+      font-size: clamp(16px, 2.5vw, 22px);
+      color: var(--text2);
+      margin-bottom: 16px;
+      font-style: italic;
+    }
+    .hero-desc-zh {
+      font-size: 16px;
+      color: var(--text2);
+      margin-bottom: 8px;
+    }
+    .hero-desc-en {
+      font-size: 15px;
+      color: var(--text3);
+      margin-bottom: 40px;
+    }
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--grad);
+      color: #fff;
+      text-decoration: none;
+      padding: 13px 28px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 15px;
+      transition: opacity .2s, transform .15s;
+    }
+    .btn-primary:hover { opacity: .88; transform: translateY(-1px); }
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: transparent;
+      color: var(--text2);
+      text-decoration: none;
+      padding: 13px 28px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 15px;
+      border: 1px solid var(--border);
+      transition: border-color .2s, color .2s, transform .15s;
+    }
+    .btn-secondary:hover { border-color: #444; color: var(--text); transform: translateY(-1px); }
+
+    /* DIVIDER */
+    .section-divider {
+      width: 60px;
+      height: 3px;
+      background: var(--grad);
+      border-radius: 2px;
+      margin: 0 auto 16px;
+    }
+
+    /* SECTION */
+    section { padding: 80px 24px; }
+    .section-inner { max-width: 1000px; margin: 0 auto; }
+    .section-header { text-align: center; margin-bottom: 56px; }
+    .section-header h2 {
+      font-size: clamp(26px, 4vw, 40px);
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      margin-bottom: 6px;
+    }
+    .section-header .sub-zh { font-size: 15px; color: var(--text2); margin-bottom: 4px; }
+    .section-header .sub-en { font-size: 14px; color: var(--text3); }
+
+    /* FEATURES */
+    #features { background: var(--bg2); }
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 16px;
+    }
+    .feature-card {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px 20px;
+      transition: border-color .2s, transform .2s;
+    }
+    .feature-card:hover { border-color: #ff6b3560; transform: translateY(-2px); }
+    .feature-icon { font-size: 28px; margin-bottom: 12px; }
+    .feature-zh { font-size: 15px; font-weight: 600; margin-bottom: 3px; }
+    .feature-en { font-size: 13px; color: var(--text3); }
+
+    /* PRICING */
+    #pricing { background: var(--bg); }
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      max-width: 680px;
+      margin: 0 auto;
+    }
+    .pricing-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 32px 28px;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      transition: transform .2s;
+    }
+    .pricing-card:hover { transform: translateY(-3px); }
+    .pricing-card.pro {
+      border-color: #ff6b3580;
+      background: linear-gradient(160deg, #1a1410, #111111);
+    }
+    .pro-badge {
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--grad);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 14px;
+      border-radius: 100px;
+      white-space: nowrap;
+      letter-spacing: .5px;
+    }
+    .pricing-tier {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text3);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+    }
+    .pricing-price {
+      font-size: 42px;
+      font-weight: 800;
+      letter-spacing: -1px;
+      margin-bottom: 4px;
+      line-height: 1;
+    }
+    .pricing-price span { font-size: 18px; font-weight: 400; color: var(--text2); }
+    .pricing-price-sub {
+      font-size: 13px;
+      color: var(--text3);
+      margin-bottom: 6px;
+    }
+    .pricing-annual {
+      font-size: 13px;
+      color: var(--orange);
+      margin-bottom: 24px;
+      font-weight: 500;
+    }
+    .pricing-divider {
+      height: 1px;
+      background: var(--border);
+      margin-bottom: 20px;
+    }
+    .pricing-features {
+      list-style: none;
+      flex: 1;
+      margin-bottom: 28px;
+    }
+    .pricing-features li {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      margin-bottom: 12px;
+      font-size: 14px;
+    }
+    .pricing-features li::before {
+      content: '✓';
+      color: var(--orange);
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .pricing-features li .li-zh { display: block; }
+    .pricing-features li .li-en { display: block; color: var(--text3); font-size: 12px; }
+    .btn-pricing-free {
+      display: block;
+      text-align: center;
+      padding: 12px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--text2);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 14px;
+      transition: border-color .2s, color .2s;
+    }
+    .btn-pricing-free:hover { border-color: #555; color: var(--text); }
+    .btn-pricing-pro {
+      display: block;
+      text-align: center;
+      padding: 13px;
+      background: var(--grad);
+      border-radius: 8px;
+      color: #fff;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 14px;
+      transition: opacity .2s;
+    }
+    .btn-pricing-pro:hover { opacity: .88; }
+
+    /* SETUP CARDS */
+    #setup { background: var(--bg2); }
+    .setup-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+    }
+    .setup-card {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 32px 28px;
+      transition: border-color .2s, transform .2s;
+    }
+    .setup-card:hover { border-color: #ff6b3560; transform: translateY(-2px); }
+    .setup-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 24px;
+    }
+    .setup-card-title {
+      font-size: 20px;
+      font-weight: 700;
+    }
+    .setup-card-time {
+      font-size: 12px;
+      color: var(--orange);
+      background: #ff6b3515;
+      border: 1px solid #ff6b3530;
+      padding: 3px 10px;
+      border-radius: 100px;
+      white-space: nowrap;
+    }
+    .setup-step {
+      display: flex;
+      gap: 14px;
+      margin-bottom: 20px;
+    }
+    .setup-step:last-child { margin-bottom: 0; }
+    .setup-step-num {
+      width: 28px;
+      height: 28px;
+      min-width: 28px;
+      background: var(--grad);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 700;
+      color: #fff;
+      margin-top: 2px;
+    }
+    .setup-step-content { flex: 1; }
+    .setup-step-title {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+    .setup-step-desc {
+      font-size: 13px;
+      color: var(--text2);
+      line-height: 1.5;
+    }
+    .setup-step-desc code {
+      background: #0d0d0d;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 1px 6px;
+      font-family: 'JetBrains Mono', 'Fira Code', Menlo, monospace;
+      font-size: 12px;
+      color: var(--orange);
+      word-break: break-all;
+    }
+
+    /* CONTACT */
+    #contact { background: var(--bg); }
+    .contact-grid {
+      display: flex;
+      gap: 24px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .contact-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px 28px;
+      text-align: center;
+      min-width: 180px;
+      transition: border-color .2s;
+    }
+    .contact-card:hover { border-color: #ff6b3560; }
+    .contact-icon { font-size: 24px; margin-bottom: 8px; }
+    .contact-label { font-size: 12px; color: var(--text3); margin-bottom: 4px; }
+    .contact-val { font-size: 14px; color: var(--text2); word-break: break-all; }
+    .contact-val a { color: var(--text2); text-decoration: none; }
+    .contact-val a:hover { color: var(--orange); }
+
+    /* FOOTER */
+    footer {
+      background: var(--bg);
+      border-top: 1px solid var(--border);
+      padding: 28px 24px;
+      text-align: center;
+    }
+    .footer-links {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      margin-bottom: 12px;
+      flex-wrap: wrap;
+    }
+    .footer-links a {
+      color: var(--text3);
+      text-decoration: none;
+      font-size: 14px;
+      transition: color .2s;
+    }
+    .footer-links a:hover { color: var(--text2); }
+    .footer-copy { font-size: 13px; color: var(--text3); }
+
+    /* RESPONSIVE */
+    @media (max-width: 600px) {
+      nav { padding: 0 16px; }
+      .nav-links { display: none; }
+      .hero { padding: 70px 16px 60px; }
+      section { padding: 60px 16px; }
+      .hero-actions { flex-direction: column; align-items: center; }
+      .btn-primary, .btn-secondary { width: 100%; justify-content: center; }
+      .setup-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">
+    <svg class="logo-svg" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Lobster body -->
+      <ellipse cx="16" cy="18" rx="7" ry="5" fill="url(#lg1)"/>
+      <!-- Claws -->
+      <ellipse cx="7" cy="15" rx="3.5" ry="2.2" fill="url(#lg1)" transform="rotate(-20 7 15)"/>
+      <ellipse cx="25" cy="15" rx="3.5" ry="2.2" fill="url(#lg1)" transform="rotate(20 25 15)"/>
+      <!-- Tail -->
+      <ellipse cx="16" cy="24" rx="4" ry="2.5" fill="url(#lg1)"/>
+      <!-- Antennae -->
+      <line x1="13" y1="13" x2="8" y2="7" stroke="url(#lg1)" stroke-width="1.2" stroke-linecap="round"/>
+      <line x1="19" y1="13" x2="24" y2="7" stroke="url(#lg1)" stroke-width="1.2" stroke-linecap="round"/>
+      <!-- Star -->
+      <path d="M16 4 L16.9 6.7 L19.8 6.7 L17.5 8.4 L18.4 11.1 L16 9.4 L13.6 11.1 L14.5 8.4 L12.2 6.7 L15.1 6.7 Z" fill="#ffd700"/>
+      <defs>
+        <linearGradient id="lg1" x1="0" y1="0" x2="32" y2="32" gradientUnits="userSpaceOnUse">
+          <stop offset="0%" stop-color="#ff6b35"/>
+          <stop offset="100%" stop-color="#e8304a"/>
+        </linearGradient>
+      </defs>
+    </svg>
+    Claude Anywhere
+  </a>
+  <ul class="nav-links">
+    <li><a href="#features">Features</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#setup">Setup</a></li>
+    <li><a href="https://claudeanywhere.gumroad.com/l/claude-anywhere" class="nav-cta">Get Pro</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section style="padding: 0; background: var(--bg);">
+  <div class="hero">
+    <div class="hero-badge">
+      <span>📱</span> <span>Telegram &middot; WeChat Work &middot; QQ</span> <span>⭐</span>
+    </div>
+    <h1><span class="grad-text">Claude Anywhere</span></h1>
+    <p class="hero-sub-en">Your AI engineer, in your pocket.</p>
+    <p class="hero-desc-zh">不是聊天机器人。是你口袋里的 AI 员工。</p>
+    <p class="hero-desc-zh">Claude Anywhere 让你随时随地读写文件、执行命令、分析图片、管理代码</p>
+    <p class="hero-desc-en">Read files, write code, run scripts, analyze images &mdash; from Telegram, WeChat Work, or QQ. Anywhere.</p>
+    <div class="hero-actions">
+      <a href="#setup" class="btn-primary">⚡ 3 步上手 / Get Started</a>
+      <a href="https://claudeanywhere.gumroad.com/l/claude-anywhere" class="btn-secondary">✦ Get Pro — $4.99/mo</a>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section id="features">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-divider"></div>
+      <h2>功能特性 <span class="grad-text">Features</span></h2>
+      <p class="sub-zh">Claude Anywhere 的能力，在手机上随时调用</p>
+      <p class="sub-en">Everything Claude Anywhere can do, right in your pocket.</p>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">📱</div>
+        <div class="feature-zh">三平台支持</div>
+        <div class="feature-en">Telegram, WeChat Work &amp; QQ</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📂</div>
+        <div class="feature-zh">读写文件</div>
+        <div class="feature-en">Read &amp; write files remotely</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">⚡</div>
+        <div class="feature-zh">执行命令</div>
+        <div class="feature-en">Run commands on your server</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📷</div>
+        <div class="feature-zh">图片分析</div>
+        <div class="feature-en">Image analysis</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📄</div>
+        <div class="feature-zh">文件分析</div>
+        <div class="feature-en">PDF, Excel, CSV, code analysis</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🔄</div>
+        <div class="feature-zh">会话恢复</div>
+        <div class="feature-en">Cross-device session resume</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">⏰</div>
+        <div class="feature-zh">定时任务</div>
+        <div class="feature-en">Scheduled tasks &amp; cron</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">💬</div>
+        <div class="feature-zh">多轮对话</div>
+        <div class="feature-en">Multi-turn conversations</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-divider"></div>
+      <h2>定价方案 <span class="grad-text">Pricing</span></h2>
+      <p class="sub-zh">从免费开始，随时升级</p>
+      <p class="sub-en">Start free, upgrade anytime.</p>
+    </div>
+    <div class="pricing-grid">
+      <!-- Free -->
+      <div class="pricing-card">
+        <div class="pricing-tier">Free</div>
+        <div class="pricing-price">$0</div>
+        <div class="pricing-price-sub">永久免费 · Forever free</div>
+        <div class="pricing-divider"></div>
+        <ul class="pricing-features">
+          <li>
+            <div>
+              <span class="li-zh">每天 5 条消息</span>
+              <span class="li-en">5 messages / day</span>
+            </div>
+          </li>
+          <li>
+            <div>
+              <span class="li-zh">7 天试用期</span>
+              <span class="li-en">7-day trial</span>
+            </div>
+          </li>
+          <li>
+            <div>
+              <span class="li-zh">单轮对话</span>
+              <span class="li-en">Single-turn only</span>
+            </div>
+          </li>
+          <li>
+            <div>
+              <span class="li-zh">仅文字</span>
+              <span class="li-en">Text only</span>
+            </div>
+          </li>
+          <li>
+            <div>
+              <span class="li-zh">含广告</span>
+              <span class="li-en">With ads</span>
+            </div>
+          </li>
+        </ul>
+        <a href="https://github.com/yizhao1978/claude-anywhere" class="btn-pricing-free">⬇ Download Free</a>
+      </div>
+
+      <!-- Pro -->
+      <div class="pricing-card pro">
+        <div class="pro-badge">MOST POPULAR</div>
+        <div class="pricing-tier" style="color: var(--orange);">Pro</div>
+        <div class="pricing-price" style="background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">$4.99<span>/mo</span></div>
+        <div class="pricing-price-sub">每月 4.99 美元</div>
+        <div class="pricing-annual">💰 年付 $49.9/year — 省 2 个月 · Save 2 months</div>
+        <div class="pricing-divider"></div>
+        <ul class="pricing-features">
+          <li>
+            <div>
+              <span class="li-zh">无限对话</span>
+              <span class="li-en">Unlimited messages</span>
+            </div>
+          </li>
+          <li>
+            <div>
+              <span class="li-zh">多轮续接 + /resume</span>
+              <span class="li-en">Multi-turn + /resume</span>
+            </div>
+          </li>
+          <li>
+            <div>
+              <span class="li-zh">图片 + 文件分析</span>
+              <span class="li-en">Image + file analysis</span>
+            </div>
+          </li>
+          <li>
+            <div>
+              <span class="li-zh">企业微信 + QQ 支持</span>
+              <span class="li-en">WeChat Work + QQ support</span>
+            </div>
+          </li>
+          <li>
+            <div>
+              <span class="li-zh">无广告</span>
+              <span class="li-en">No ads</span>
+            </div>
+          </li>
+        </ul>
+        <a href="https://claudeanywhere.gumroad.com/l/claude-anywhere" class="btn-pricing-pro">✦ Get Pro</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SETUP — 3 Platform Cards -->
+<section id="setup">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-divider"></div>
+      <h2>3 步上手 <span class="grad-text">Setup</span></h2>
+      <p class="sub-zh">选择你的平台，3 步搞定</p>
+      <p class="sub-en">Pick your platform. 3 steps. Done.</p>
+    </div>
+    <div class="setup-grid">
+
+      <!-- Telegram -->
+      <div class="setup-card" id="setup-telegram">
+        <div class="setup-card-header">
+          <div class="setup-card-title">💬 Telegram</div>
+          <div class="setup-card-time">~3 min</div>
+        </div>
+        <div class="setup-step">
+          <div class="setup-step-num">1</div>
+          <div class="setup-step-content">
+            <div class="setup-step-title">创建 Bot / Create Bot</div>
+            <div class="setup-step-desc">打开 Telegram → 搜索 @BotFather → 发送 /newbot → 复制 Token<br>Open Telegram → Search @BotFather → Send /newbot → Copy token</div>
+          </div>
+        </div>
+        <div class="setup-step">
+          <div class="setup-step-num">2</div>
+          <div class="setup-step-content">
+            <div class="setup-step-title">安装配置 / Install &amp; Configure</div>
+            <div class="setup-step-desc">
+              <code>git clone https://github.com/yizhao1978/claude-anywhere.git</code><br>
+              <code>cd claude-anywhere &amp;&amp; npm install</code><br>
+              <code>cp .env.example .env</code><br>
+              填入 TELEGRAM_BOT_TOKEN / Fill in your token
+            </div>
+          </div>
+        </div>
+        <div class="setup-step">
+          <div class="setup-step-num">3</div>
+          <div class="setup-step-content">
+            <div class="setup-step-title">启动 / Start</div>
+            <div class="setup-step-desc"><code>npm run telegram</code><br>看到 "Bot started" 即成功 ✅</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- WeChat Work -->
+      <div class="setup-card" id="setup-wecom">
+        <div class="setup-card-header">
+          <div class="setup-card-title">💼 企业微信</div>
+          <div class="setup-card-time">~5 min</div>
+        </div>
+        <div class="setup-step">
+          <div class="setup-step-num">1</div>
+          <div class="setup-step-content">
+            <div class="setup-step-title">创建 AI Bot</div>
+            <div class="setup-step-desc">登录 work.weixin.qq.com → 应用管理 → AI助手 → 创建机器人<br>记录 Bot ID 和 Secret</div>
+          </div>
+        </div>
+        <div class="setup-step">
+          <div class="setup-step-num">2</div>
+          <div class="setup-step-content">
+            <div class="setup-step-title">安装配置 / Install &amp; Configure</div>
+            <div class="setup-step-desc">
+              <code>git clone https://github.com/yizhao1978/claude-anywhere.git</code><br>
+              <code>cd claude-anywhere &amp;&amp; npm install</code><br>
+              <code>cp .env.example .env</code><br>
+              填入 WECOM_BOT_ID 和 WECOM_SECRET
+            </div>
+          </div>
+        </div>
+        <div class="setup-step">
+          <div class="setup-step-num">3</div>
+          <div class="setup-step-content">
+            <div class="setup-step-title">启动 / Start</div>
+            <div class="setup-step-desc"><code>npm run wecom</code><br>看到 "Bot started" 即成功 ✅</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- QQ -->
+      <div class="setup-card" id="setup-qq">
+        <div class="setup-card-header">
+          <div class="setup-card-title">🐧 QQ</div>
+          <div class="setup-card-time">~5 min</div>
+        </div>
+        <div class="setup-step">
+          <div class="setup-step-num">1</div>
+          <div class="setup-step-content">
+            <div class="setup-step-title">创建 QQ 机器人 / Create QQ Bot</div>
+            <div class="setup-step-desc">打开 <code>q.qq.com/qqbot/openclaw</code> → 手机 QQ 扫码 → 创建机器人<br>获取 AppID 和 AppSecret</div>
+          </div>
+        </div>
+        <div class="setup-step">
+          <div class="setup-step-num">2</div>
+          <div class="setup-step-content">
+            <div class="setup-step-title">安装配置 / Install &amp; Configure</div>
+            <div class="setup-step-desc">
+              <code>git clone https://github.com/yizhao1978/claude-anywhere.git</code><br>
+              <code>cd claude-anywhere &amp;&amp; npm install</code><br>
+              <code>cp .env.example .env</code><br>
+              填入 QQ_APP_ID 和 QQ_APP_SECRET
+            </div>
+          </div>
+        </div>
+        <div class="setup-step">
+          <div class="setup-step-num">3</div>
+          <div class="setup-step-content">
+            <div class="setup-step-title">启动 / Start</div>
+            <div class="setup-step-desc"><code>npm run qq</code><br>看到 "Bot started" 即成功 ✅</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-divider"></div>
+      <h2>联系我们 <span class="grad-text">Contact</span></h2>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-card">
+        <div class="contact-icon">✉️</div>
+        <div class="contact-label">Email</div>
+        <div class="contact-val"><a href="mailto:support@claudeanywhere.com">support@claudeanywhere.com</a></div>
+      </div>
+      <div class="contact-card">
+        <div class="contact-icon">🐙</div>
+        <div class="contact-label">GitHub</div>
+        <div class="contact-val"><a href="https://github.com/yizhao1978/claude-anywhere" target="_blank">github.com/yizhao1978/claude-anywhere</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-links">
+    <a href="https://github.com/yizhao1978/claude-anywhere" target="_blank">GitHub</a>
+    <a href="https://claudeanywhere.gumroad.com/l/claude-anywhere" target="_blank">Gumroad</a>
+    <a href="https://clawhub.io" target="_blank">ClawHub</a>
+  </div>
+  <div class="footer-copy">© 2026 Claude Anywhere · Built with 🦞 &amp; ⭐</div>
+</footer>
+
+</body>
+</html>

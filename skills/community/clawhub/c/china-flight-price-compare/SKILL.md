@@ -1,35 +1,95 @@
 ---
-name: "机票比价"
-description: "零配置即装即用｜5源实时比价一次出结果｜含预订链接和航班对比｜覆盖经济舱至头等舱"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/china-flight-price-compare"
-sourceUrl: "https://clawhub.ai/skills/china-flight-price-compare"
+name: china-flight-price-compare
+description: 零配置即装即用｜5源实时比价一次出结果｜含预订链接和航班对比｜覆盖经济舱至头等舱
+tags: [机票比价, 机票预订, 机票搜索, 机票查询, 订机票, 机票对比, 特价机票, 途牛机票, 航班查询, 打折机票, flight, airfare, travel]
+tools:
+  - name: flight_compare
+    description: 多平台机票比价，飞猪/途牛/同程/美团/RG同时查询直飞航班
+    primaryEnv: FLIGHT_COMPARE_PROXY_URL
+    env:
+      - name: FLIGHT_COMPARE_PROXY_URL
+        description: 比价代理URL（自动配置，无需手动设置）
+        required: false
+      - name: PROXY_TOKEN
+        description: 代理认证Token（自动配置，无需手动设置）
+        required: false
+    parameters:
+      - name: from_city
+        type: string
+        description: 出发城市，如"上海"、"北京"
+        required: true
+      - name: to_city
+        type: string
+        description: 到达城市，如"三亚"、"广州"
+        required: true
+      - name: date
+        type: string
+        description: 出发日期，格式YYYY-MM-DD
+        required: true
 ---
 
-# 机票比价
+# 机票比价 — 多平台直飞航班实时对比
 
-> 零配置即装即用｜5源实时比价一次出结果｜含预订链接和航班对比｜覆盖经济舱至头等舱
+> ⚡ **真实多源并发 · 约20秒返回 · 仅直飞 · 每条价格标注来源 · 零配置即装即用**
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/china-flight-price-compare`
-- **Source URL:** [https://clawhub.ai/skills/china-flight-price-compare](https://clawhub.ai/skills/china-flight-price-compare)
+---
 
-## Overview
+## 快速入门
 
+**3个开场白示例，复制即用：**
+1. "帮我查7月1号上海到三亚的机票"
+2. "北京飞广州下周五的机票多少钱"
+3. "深圳到成都15号便宜的航班"
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/china-flight-price-compare
-```
+---
+
+## 核心能力
+
+1. **多源并发查询**：同时请求飞猪、途牛、同程、美团、RG，约15-25秒返回全部结果
+2. **同一航班跨平台匹配**：按航班号自动匹配同一航班在不同平台的报价，合并展示比价结果
+3. **每条结果标注来源**：价格旁清晰标注"飞猪 ¥580 | 途牛 ¥620 | 同程 ¥595"，绝不含糊
+4. **同程双源合并**：同程同时查询DeepTrip（自然语言）和结构化API，去重后覆盖更多航班
+5. **35+城市映射**：内置主要城市代码映射，自动转换查询
+6. **RG智能回退**：RG当天航班不可查时自动查询次日航班供参考
+7. **价差异常提醒**：当某平台价格异常偏低或平台间价差过大时自动提醒用户核实
+8. **航空公司中文显示**：CA→国航、MU→东航、CZ→南航等60+航司自动翻译为中文
+
+---
+
+## 能做什么
+
+- 按出发/到达城市+日期查直飞航班实时价格，多平台对比一目了然
+- 发现同一航班在不同平台的价格差异，帮用户省钱
+- 出差、旅游、商旅等场景的机票比价
+- 展示航班时刻、航司、机场等完整信息
+
+## 不能做什么
+
+- 不支持直接预订机票（仅比价并附最低价平台链接，用户点击跳转购票）
+- 不支持查询中转航班（仅展示直飞航线）
+- 不支持查询国际航班和港澳台航班
+- 不支持查询已预订机票状态或办理值机
+
+## 使用示例
+
+1. "帮我查7月1号上海到三亚的机票"
+2. "北京飞广州下周五的机票多少钱"
+3. "深圳到成都15号便宜的航班"
+
+## 注意事项
+
+- 价格实时变动，以实际预订页面为准
+- 美团返回起步价，可能不含税费
+- RG全价票为参考价，标有"全价"字样
+- 查询通过云端代理并发转发到飞猪、途牛、同程、美团、RG等OTA平台，代理不存储用户数据
+- 部分平台偶发超时无数据，结果末尾会标注缺失平台
+
+## 数据流向
+
+用户输入 → 本技能 → 腾讯云SCF代理（密钥安全存储）→ 飞猪/途牛/同程/美团/RG → 代理返回数据 → 本技能解析比价 → 返回结果给用户
+
+## 使用提示
+
+- 用户未提供日期时，必须询问具体出发日期，不能默认
+- 同一航班不同平台价格差大时，可能是舱位/含税差异，结果会自动提醒
+- 想继续筛选可补充：时段偏好（早班/午班/晚班）、航司偏好（国航/东航/南航）、价格上限

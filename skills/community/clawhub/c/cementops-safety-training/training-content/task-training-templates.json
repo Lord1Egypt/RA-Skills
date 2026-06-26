@@ -1,0 +1,373 @@
+{
+  "metadata": {
+    "skill": "cementops-safety-training",
+    "domain": "Task Training Outlines",
+    "regulation_ref": "30 CFR 46.7",
+    "version": "1.0.0",
+    "last_updated": "2026-04-01",
+    "notes": "Each template provides a structured outline for task training per Part 46 requirements. Actual training content must be customized to site-specific equipment and procedures."
+  },
+  "task_training_templates": [
+    {
+      "task_id": "TT-001",
+      "task_name": "Lockout/Tagout (LOTO) Procedure",
+      "objective": "Train the employee to safely isolate energy sources, apply locks and tags, verify zero energy state, and restore equipment to service following the site LOTO procedure",
+      "prerequisites": ["New miner or experienced miner training completed", "Assigned as authorized LOTO employee by supervisor"],
+      "ppe_required": ["Hard hat", "Safety glasses", "Steel-toed boots", "Insulated gloves (for electrical isolation)", "Hearing protection as needed"],
+      "training_steps": [
+        "Review the site-specific LOTO written procedure and regulatory basis (30 CFR 56.12016)",
+        "Identify all energy types: electrical, mechanical, hydraulic, pneumatic, thermal, chemical, gravitational",
+        "Demonstrate how to locate and interpret equipment-specific LOTO procedures (posted or in binder)",
+        "Walk through the sequence: notify affected employees, shut down equipment, isolate energy sources, apply lock and tag, verify zero energy",
+        "Practice applying individual lock with personal tag on a designated training station or actual equipment under supervision",
+        "Demonstrate group LOTO procedures: each person applies own lock, last person to remove lock verifies area is clear",
+        "Explain the lock removal process: only the lock owner removes their lock, shift-change protocol, absent employee lock removal (supervisor authorization)",
+        "Practice restoring equipment to service: remove tools, replace guards, remove locks in sequence, notify affected employees, restart"
+      ],
+      "hazards": [
+        "Unexpected energization causing amputation, electrocution, or crushing",
+        "Stored energy release (pressurized lines, raised loads, capacitors, springs)",
+        "Incorrect isolation point due to mislabeled equipment or outdated procedures",
+        "Failure to verify zero energy after applying locks"
+      ],
+      "competency_evaluation": {
+        "method": "Hands-on demonstration with competent person observation",
+        "criteria": [
+          "Correctly identifies all energy sources for a given piece of equipment",
+          "Follows the written LOTO procedure in correct sequence without prompting",
+          "Applies personal lock and tag correctly with required information on tag",
+          "Successfully verifies zero energy state using approved method",
+          "Correctly explains group LOTO and shift-change procedures",
+          "Demonstrates equipment restart procedure including guard replacement and notification"
+        ],
+        "passing_standard": "Must demonstrate all criteria correctly. Any missed step requires re-training on that step and re-evaluation."
+      }
+    },
+    {
+      "task_id": "TT-002",
+      "task_name": "Confined Space Entry",
+      "objective": "Train the employee to safely identify permit-required confined spaces, perform atmospheric testing, and conduct entry following the site confined space entry procedure",
+      "prerequisites": ["New miner or experienced miner training completed", "LOTO training (TT-001) completed", "Current first aid/CPR certification recommended"],
+      "ppe_required": ["Hard hat", "Safety glasses", "Steel-toed boots", "Full body harness with retrieval D-ring", "Supplied air respirator or SCBA (as required by permit)", "Chemical-resistant gloves as needed"],
+      "training_steps": [
+        "Define confined space and permit-required confined space per 30 CFR 56.5002 and site procedure",
+        "Review site confined space inventory and identify spaces relevant to trainee's work area (silos, mills, tanks, hoppers, ducts)",
+        "Demonstrate atmospheric testing: calibration of 4-gas monitor, testing sequence (O2, LEL, CO, H2S), acceptable entry levels, continuous monitoring requirements",
+        "Walk through the permit process: entry permit completion, authorized entrant/attendant/entry supervisor roles, pre-entry checklist",
+        "Demonstrate LOTO of all energy sources associated with the confined space (feeds, drives, agitators, piping)",
+        "Practice ventilation setup: forced air ventilation, duct placement, airflow verification",
+        "Review rescue plan: on-site rescue team or 911, retrieval system setup, non-entry rescue preference, attendant communication",
+        "Conduct a simulated entry (or actual supervised entry if available) with full permit, testing, and communication protocols"
+      ],
+      "hazards": [
+        "Oxygen-deficient or oxygen-enriched atmosphere",
+        "Toxic gas accumulation (CO from incomplete combustion, H2S from organic material, SO2 in kiln-related spaces)",
+        "Engulfment by stored material (clinker, raw meal, cement)",
+        "Entrapment by internal configuration (baffles, converging walls)",
+        "Thermal hazards in recently operated equipment (kilns, mills, preheater cyclones)"
+      ],
+      "competency_evaluation": {
+        "method": "Practical demonstration of confined space entry setup and atmospheric testing",
+        "criteria": [
+          "Correctly identifies permit-required confined spaces in assigned work area",
+          "Calibrates and operates 4-gas monitor, interprets readings, identifies unacceptable conditions",
+          "Completes entry permit accurately with all required fields",
+          "Demonstrates correct LOTO of confined space energy sources",
+          "Sets up ventilation and verifies adequate airflow before entry",
+          "Explains rescue plan and demonstrates retrieval system connection"
+        ],
+        "passing_standard": "Must demonstrate all criteria. Atmospheric testing and LOTO competency are critical and require 100% accuracy."
+      }
+    },
+    {
+      "task_id": "TT-003",
+      "task_name": "Hot Work Permit Procedure",
+      "objective": "Train the employee to safely perform or oversee hot work (welding, cutting, grinding) by following the hot work permit process and fire prevention requirements",
+      "prerequisites": ["New miner or experienced miner training completed", "Fire extinguisher training"],
+      "ppe_required": ["Welding helmet or cutting goggles (appropriate shade)", "Flame-resistant clothing or leather apron", "Welding gloves", "Steel-toed boots", "Hearing protection", "Respiratory protection if in confined or poorly ventilated area"],
+      "training_steps": [
+        "Review the hot work permit process and regulatory basis (30 CFR 56.4100 series)",
+        "Identify hot work activities: welding, torch cutting, brazing, grinding, any spark-producing work",
+        "Demonstrate the pre-work fire hazard assessment: 35-foot radius inspection, combustible material removal or covering, checking floors/walls/ceilings for fire paths",
+        "Complete a hot work permit with all required fields: location, work description, fire prevention measures, start/stop times, signatures",
+        "Assign and brief the fire watch: duties, location, communication, duration (minimum 30 minutes after work completion), fire extinguisher readiness",
+        "Demonstrate fire extinguisher operation (PASS method) and location of nearest extinguishers and pull stations",
+        "Review special conditions: hot work near conveyors (belt fire risk), near fuel/oil storage, in confined spaces (additional ventilation and permit), on equipment containing residual flammable material",
+        "Close out the permit: fire watch sign-off, area re-inspection, permit filing"
+      ],
+      "hazards": [
+        "Fire ignition from sparks, slag, or hot metal contacting combustibles",
+        "Toxic fume inhalation (galvanized steel produces zinc oxide fumes, stainless steel produces chromium/nickel fumes)",
+        "UV radiation burns to eyes and skin",
+        "Explosion risk if hot work near flammable vapors, dust, or containers",
+        "Burns from hot metal, slag, and spatter"
+      ],
+      "competency_evaluation": {
+        "method": "Supervised completion of hot work permit and fire hazard assessment",
+        "criteria": [
+          "Correctly assesses the work area for fire hazards within 35-foot radius",
+          "Completes hot work permit with all required information",
+          "Briefs fire watch on duties, duration, and communication",
+          "Identifies when additional precautions are needed (confined space, flammable materials)",
+          "Demonstrates fire extinguisher readiness and operation"
+        ],
+        "passing_standard": "Must complete all steps accurately. Fire watch briefing and hazard assessment are pass/fail items."
+      }
+    },
+    {
+      "task_id": "TT-004",
+      "task_name": "Conveyor Belt Start/Stop and Inspection",
+      "objective": "Train the employee to safely start, stop, and perform routine walking inspection of conveyor systems following site procedures",
+      "prerequisites": ["New miner or experienced miner training completed", "LOTO training (TT-001) completed"],
+      "ppe_required": ["Hard hat", "Safety glasses with side shields", "Steel-toed boots", "Hearing protection", "Dust mask or respirator in dusty transfer areas", "High-visibility vest"],
+      "training_steps": [
+        "Review conveyor system layout: identify head pulleys, tail pulleys, bend pulleys, take-ups, drives, transfer points, and emergency pull cords for the trainee's assigned conveyor(s)",
+        "Demonstrate the pre-start checklist: walk the entire conveyor length, verify no personnel on or near the belt, check that all guards are in place, verify pull cords are functional and reset",
+        "Explain the startup warning system: audible alarm duration (minimum 10 seconds per site procedure), visual warning lights, DCS or local start protocols",
+        "Demonstrate normal start and stop from local control panel and from DCS (control room)",
+        "Practice emergency stop: pull cord activation, E-stop button, and response procedure after emergency stop (do not restart until cause is investigated)",
+        "Walk through routine inspection points: belt tracking, splice condition, idler rotation and noise, material spillage, pulley lagging, take-up travel, structure integrity",
+        "Review common conveyor hazards: nip points at pulleys, material falling from return side, belt tracking off causing rub points, hot material (clinker conveyors)",
+        "Demonstrate proper housekeeping: spillage cleanup methods, safe access to clean under conveyors, never clean while belt is running"
+      ],
+      "hazards": [
+        "Entanglement at nip points (pulleys, idlers, return rollers) causing amputation or death",
+        "Struck by falling material from belt or transfer chutes",
+        "Engulfment if entering hopper or chute area without LOTO",
+        "Noise exposure above 90 dBA at drive areas and transfer points",
+        "Dust exposure at transfer points, especially with high-silica raw materials"
+      ],
+      "competency_evaluation": {
+        "method": "Observed pre-start walk, startup, shutdown, and inspection of assigned conveyor",
+        "criteria": [
+          "Completes pre-start walking inspection identifying all checkpoints",
+          "Verifies guards are in place and pull cords are functional before authorizing start",
+          "Follows correct startup sequence including warning alarm",
+          "Demonstrates emergency stop and explains post-stop investigation procedure",
+          "Identifies at least 5 inspection items during walking inspection",
+          "Maintains safe distance from nip points at all times during inspection"
+        ],
+        "passing_standard": "Must demonstrate all items. Failure to check pull cords or maintain safe distance from nip points requires immediate re-training."
+      }
+    },
+    {
+      "task_id": "TT-005",
+      "task_name": "Kiln Observation Round",
+      "objective": "Train the operator to safely perform a kiln area observation round, identify normal and abnormal conditions, and report findings",
+      "prerequisites": ["New miner or experienced miner training completed", "Basic kiln process awareness", "Gas hazard awareness training"],
+      "ppe_required": ["Hard hat", "Safety glasses with side shields (tinted for viewing through kiln peepholes)", "Steel-toed boots", "Heat-resistant gloves", "Hearing protection (kiln area >90 dBA)", "Portable 4-gas monitor", "Long-sleeve shirt and pants (no synthetic materials in kiln area)"],
+      "training_steps": [
+        "Review the kiln observation route map and standard operating procedure for observation rounds",
+        "Explain kiln process basics relevant to safety: rotation direction, normal shell temperatures, burner operation, preheater gas flow, clinker cooler function",
+        "Demonstrate use of portable gas monitor: bump test before round, alarm set points (CO 35 ppm, SO2 2 ppm), response to alarm (evacuate upwind, report to control room)",
+        "Walk the observation route: preheater tower (top down, noting access restrictions), kiln feed end, kiln shell (shell scanner correlation, hot spots), kiln drive area, burner platform, clinker cooler",
+        "Demonstrate kiln shell temperature observation: compare to shell scanner data, identify red/hot spots indicating refractory loss, reporting threshold",
+        "Explain rotating equipment hazards: safe distance from kiln tires and rollers, support roller bearing checks (visual, temperature, vibration), thrust roller area exclusion",
+        "Review kiln burner area: safe viewing through peepholes, signs of abnormal flame, clinker ring formation, dust return",
+        "Complete the observation checklist and demonstrate radio communication protocol with control room for reporting abnormal findings"
+      ],
+      "hazards": [
+        "Thermal burns from kiln shell (surface temperatures up to 700F where refractory is thin or gone)",
+        "CO and SO2 gas exposure, particularly in preheater tower and near kiln seals",
+        "Rotating equipment entanglement at kiln tires, rollers, and drive gears",
+        "Falls from height in preheater tower (up to 400 ft) and on kiln platforms",
+        "Noise exposure exceeding 100 dBA near burner and cooler areas",
+        "Clinker dust and hot clinker contact at cooler discharge"
+      ],
+      "competency_evaluation": {
+        "method": "Accompanied observation round with competent person scoring checklist completion and hazard recognition",
+        "criteria": [
+          "Correctly uses and interprets portable gas monitor readings",
+          "Follows observation route in correct sequence, accessing all checkpoints safely",
+          "Identifies normal vs abnormal kiln shell temperatures and explains reporting threshold",
+          "Maintains safe distance from rotating equipment and hot surfaces throughout round",
+          "Correctly communicates findings to control room via radio using standard terminology",
+          "Completes observation checklist accurately and completely"
+        ],
+        "passing_standard": "Must complete full round with zero safety deviations. Gas monitor use and rotating equipment awareness are critical pass/fail items."
+      }
+    },
+    {
+      "task_id": "TT-006",
+      "task_name": "Forklift Operation",
+      "objective": "Train the employee to safely operate a forklift (sit-down counterbalance type) for material handling in warehouse, packing, and shipping areas",
+      "prerequisites": ["New miner or experienced miner training completed", "Valid driver's license recommended", "Medical clearance if required by site policy"],
+      "ppe_required": ["Hard hat", "Safety glasses", "Steel-toed boots", "High-visibility vest", "Seatbelt (used at all times while operating)"],
+      "training_steps": [
+        "Review forklift types on site and the specific model(s) to be operated, including capacity ratings and load charts",
+        "Demonstrate pre-shift inspection: fluid levels, tire condition, forks (cracks, wear), mast and chains, hydraulics, lights, horn, backup alarm, seatbelt, fire extinguisher",
+        "Explain stability triangle, center of gravity, and tip-over prevention: no turning on grades, slow speed on turns, forks low during travel, no elevated loads during travel",
+        "Demonstrate basic operations: starting, forward/reverse, steering, lifting, lowering, tilting, horn use at intersections and blind spots",
+        "Practice load handling: approach load squarely, fork insertion to full depth, tilt back before lifting, travel with load low (4-6 inches), stacking and destacking on racking",
+        "Review pedestrian safety: horn at intersections, stop at blind corners, right-of-way rules, no riders on forks, pedestrian exclusion zones during loading",
+        "Demonstrate refueling/recharging procedures: propane tank change or battery charging area safety, ventilation, no smoking, spill response",
+        "Practice parking: forks flat on ground, mast tilted forward, parking brake set, key removed, park in designated area only"
+      ],
+      "hazards": [
+        "Tip-over causing crushing injury or death to operator",
+        "Pedestrian struck by forklift or falling load",
+        "Load falling from forks due to improper stacking, overloading, or traveling with raised load",
+        "Collision with racking, structures, or other vehicles",
+        "Propane leak or battery acid exposure during refueling/recharging"
+      ],
+      "competency_evaluation": {
+        "method": "Observed pre-shift inspection and practical driving/load handling course",
+        "criteria": [
+          "Completes pre-shift inspection identifying all required checkpoints and documenting results",
+          "Demonstrates smooth forward and reverse operation with appropriate speed control",
+          "Correctly picks up, transports, and places loads at multiple heights without instability",
+          "Uses horn at all intersections and blind spots, scans for pedestrians before moving",
+          "Parks forklift correctly with forks down, brake set, and key removed",
+          "Explains tip-over prevention and what to do if tip-over occurs (stay in, brace, lean away from ground)"
+        ],
+        "passing_standard": "Must pass all practical items. Any unsafe act during evaluation requires full re-training before re-evaluation."
+      }
+    },
+    {
+      "task_id": "TT-007",
+      "task_name": "Overhead Crane Operation and Rigging Signals",
+      "objective": "Train the employee to safely operate an overhead bridge crane and/or serve as a signal person for crane operations in the plant",
+      "prerequisites": ["New miner or experienced miner training completed", "LOTO training recommended"],
+      "ppe_required": ["Hard hat", "Safety glasses", "Steel-toed boots", "Leather gloves for rigging", "High-visibility vest when serving as signal person"],
+      "training_steps": [
+        "Review crane types on site (overhead bridge, jib, gantry), rated capacities, and load charts",
+        "Demonstrate pre-use inspection: wire rope condition (broken wires, kinking, corrosion), hooks (deformation, safety latch), limit switches, brakes, pendant or radio controls, runway and bridge travel paths",
+        "Explain load weight estimation: use load charts, weigh if uncertain, never exceed rated capacity, account for rigging weight, understand dynamic loading",
+        "Demonstrate standard hand signals per ASME B30.5: hoist, lower, bridge travel, trolley travel, stop, emergency stop, dog everything",
+        "Practice basic lifts: attach sling correctly (choker, basket, vertical hitch), ensure load is balanced, lift slowly to test balance, travel with load as low as possible, never travel over personnel",
+        "Review rigging hardware: slings (wire rope, chain, synthetic), shackles, eyebolts, spreader bars; inspection criteria and rejection; proper sling angles (never below 30 degrees)",
+        "Demonstrate communication protocol: one designated signal person, eye contact with operator before lift, stop means stop from anyone",
+        "Practice setting loads: guide with tag lines (never hands), lower slowly, verify stability before releasing rigging, clear area before slack"
+      ],
+      "hazards": [
+        "Dropped load causing crushing injury or death",
+        "Crane structural failure from overloading",
+        "Electrocution from contact with overhead power lines (outdoor cranes) or energized equipment",
+        "Swing or drift of suspended load striking personnel",
+        "Rigging failure from improper sling selection, damaged hardware, or incorrect hitch",
+        "Pinch points between load and structure during placement"
+      ],
+      "competency_evaluation": {
+        "method": "Observed pre-use inspection, rigging setup, and supervised lift sequence",
+        "criteria": [
+          "Completes pre-use inspection and correctly identifies accept/reject conditions on ropes, hooks, and hardware",
+          "Demonstrates all standard hand signals correctly",
+          "Selects appropriate rigging for a given load weight and configuration",
+          "Performs a test lift, confirms load balance, and transports load safely to destination",
+          "Maintains load path clear of personnel at all times",
+          "Sets load down using tag lines, verifies stability, and removes rigging safely"
+        ],
+        "passing_standard": "Must demonstrate all items. Overloading the crane or traveling a load over personnel is an automatic failure requiring full re-training."
+      }
+    },
+    {
+      "task_id": "TT-008",
+      "task_name": "Grinding Media Charging (Ball Mill)",
+      "objective": "Train the employee to safely charge grinding media (steel balls or cylpebs) into a ball mill using the approved method and equipment",
+      "prerequisites": ["New miner or experienced miner training completed", "LOTO training (TT-001) completed", "Overhead crane or front-end loader training (depending on charging method)"],
+      "ppe_required": ["Hard hat", "Safety glasses with side shields", "Steel-toed boots (metatarsal guard recommended)", "Hearing protection (double protection: plugs + muffs)", "Heavy-duty leather gloves", "High-visibility vest"],
+      "training_steps": [
+        "Review the media charging procedure and schedule: media type and size for each compartment, quantity per charge, charging frequency",
+        "Explain the LOTO requirements: full isolation of mill drive, auxiliary drive, separator, and feed system; verification of zero energy; mill must be stationary and locked",
+        "Demonstrate media delivery and staging: forklift or crane transport of media containers/super sacks to charging area, secure placement, no stacking above eye level",
+        "Walk through the charging method: manual charging via feed chute, mechanical conveyor charging, or crane with media bucket; site-specific method",
+        "Demonstrate safe pouring/placement technique: controlled rate to avoid bridging at inlet, keep body clear of chute opening, never reach into chute while media is flowing",
+        "Review pinch point and struck-by hazards: heavy media containers, rolling balls, chute openings, overhead crane movements during charging",
+        "Explain noise exposure management: charging generates extreme noise levels (>110 dBA); limit exposure time; double hearing protection mandatory; communication via hand signals during charging",
+        "Demonstrate post-charging: secure mill inlet, verify all tools and materials removed, close and secure access doors, remove LOTO in correct sequence, document media addition in log"
+      ],
+      "hazards": [
+        "Struck by falling or rolling grinding media (steel balls weigh 2-15 lbs each)",
+        "Crushing injury from media container handling (super sacks weigh 1-2 tons)",
+        "Noise-induced hearing loss from extreme noise during charging",
+        "Entanglement or caught-between if mill rotates during charging (LOTO failure)",
+        "Fall hazard on media spilled on floor or platform"
+      ],
+      "competency_evaluation": {
+        "method": "Observed media charging operation under supervision of competent person",
+        "criteria": [
+          "Verifies full LOTO of mill and associated equipment before beginning",
+          "Stages media containers safely using approved material handling equipment",
+          "Follows charging procedure in correct sequence without exceeding prescribed quantity",
+          "Wears all required PPE including double hearing protection throughout the operation",
+          "Maintains safe body position away from chute opening and pinch points",
+          "Completes post-charging inspection and documentation"
+        ],
+        "passing_standard": "Must demonstrate all criteria. LOTO verification and PPE compliance are pass/fail critical items."
+      }
+    },
+    {
+      "task_id": "TT-009",
+      "task_name": "Refractory Installation Safety",
+      "objective": "Train the employee on safety requirements for working in or overseeing refractory installation and demolition activities inside kilns, preheater cyclones, and other high-temperature vessels",
+      "prerequisites": ["New miner or experienced miner training completed", "Confined space entry training (TT-002) completed", "Fall protection training", "LOTO training (TT-001) completed"],
+      "ppe_required": ["Hard hat", "Safety glasses with side shields", "Steel-toed boots", "Full body harness with shock-absorbing lanyard (for work inside kiln on scaffolding)", "P100 respirator (for refractory demolition dust, including silica)", "Hearing protection", "Heat-resistant gloves", "Long-sleeve FR clothing", "Knee pads"],
+      "training_steps": [
+        "Review the scope of refractory work: kiln brick lining replacement, preheater castable repair, cooler refractory patching; each has different hazard profiles",
+        "Explain the LOTO and confined space requirements: full kiln LOTO (main drive, auxiliary drive, feed, fuel), continuous atmospheric monitoring, forced ventilation, rescue plan",
+        "Demonstrate scaffolding safety inside the kiln: scaffold must be purpose-built for kiln interior (curved base), inspection before each use, fall protection tie-off points, maximum working height",
+        "Review silica dust exposure: refractory bricks and castable contain up to 90% silica; demolition creates extreme respirable dust; P100 or supplied-air respirator required; wet methods when feasible; personal dust monitoring",
+        "Explain thermal hazards: kiln shell may still be hot after cool-down (allow minimum 24-48 hours per site procedure); check surface temperatures before entry; castable generates heat during curing (exothermic reaction)",
+        "Demonstrate proper material handling: bricks weigh 20-50 lbs each, use mechanical aids for transport, staging area organization, no throwing bricks, bucket lifts for debris removal",
+        "Review chemical hazards: some refractory contains chrome oxide (hexavalent chromium when heated); castable cement is causite and causes chemical burns; skin protection and washing requirements",
+        "Explain the permit and oversight structure: hot work permit if torch cutting anchors, confined space permit, daily safety briefing, contractor safety coordination"
+      ],
+      "hazards": [
+        "Silica dust exposure causing silicosis (refractory demolition is one of the highest-exposure tasks in a cement plant)",
+        "Falls from scaffolding inside kiln (up to 15 ft depending on kiln diameter)",
+        "Thermal burns from hot kiln shell, residual heat, or exothermic castable curing",
+        "Struck by falling bricks or debris during demolition",
+        "Musculoskeletal injuries from repetitive heavy lifting of refractory bricks",
+        "Chemical burns from wet castable (pH > 12)"
+      ],
+      "competency_evaluation": {
+        "method": "Written quiz on refractory hazards plus observed demonstration of PPE donning and confined space entry procedures for kiln work",
+        "criteria": [
+          "Correctly identifies the three primary hazards of refractory work (silica dust, falls, thermal)",
+          "Demonstrates proper respirator fit check and explains cartridge/filter selection for silica",
+          "Explains the LOTO and confined space requirements specific to kiln entry",
+          "Demonstrates harness donning and identifies proper anchor points on kiln scaffolding",
+          "Identifies chrome-containing refractory and explains special handling requirements",
+          "Explains the emergency rescue plan for personnel inside the kiln"
+        ],
+        "passing_standard": "Must pass written quiz with 80% or higher AND demonstrate all practical items. Respirator fit and fall protection are pass/fail critical items."
+      }
+    },
+    {
+      "task_id": "TT-010",
+      "task_name": "Chemical Handling (Water Treatment Chemicals)",
+      "objective": "Train the employee to safely receive, store, handle, and dose water treatment chemicals used in plant cooling systems, boiler water treatment, and dust suppression systems",
+      "prerequisites": ["New miner or experienced miner training completed", "Hazard communication / GHS training"],
+      "ppe_required": ["Chemical splash goggles", "Face shield (for transfer and mixing operations)", "Chemical-resistant gloves (nitrile or neoprene per SDS)", "Chemical-resistant apron", "Steel-toed chemical-resistant boots", "Emergency eyewash accessible within 10 seconds"],
+      "training_steps": [
+        "Review the chemicals used on site: common water treatment chemicals include sulfuric acid, sodium hypochlorite, anti-scalants, corrosion inhibitors, biocides, pH adjusters; identify those in trainee's area",
+        "Demonstrate SDS access and interpretation: locate SDS binder or electronic system, identify key sections (Section 2: hazards, Section 4: first aid, Section 7: handling/storage, Section 8: PPE)",
+        "Explain chemical labeling: GHS labels, pictograms, signal words (Danger vs Warning), secondary container labeling requirements",
+        "Demonstrate chemical receiving: inspect containers for damage, verify correct chemical against PO and SDS, spill prevention during unloading, connection of bulk delivery hoses",
+        "Walk through storage requirements: incompatible chemical separation (acids away from hypochlorite), secondary containment, ventilation, temperature limits, shelf life tracking",
+        "Demonstrate dosing system operation: pump calibration verification, line inspection for leaks, chemical day tank filling procedure, manual dosing procedure if automated system is down",
+        "Review spill response: small spill containment and cleanup (absorbent, neutralizer), large spill evacuation and reporting, spill kit locations, never wash chemicals into storm drains",
+        "Demonstrate emergency procedures: eyewash and safety shower use (15-minute flush minimum for chemical splash), first aid for skin and eye contact, when to call emergency services vs handle on site"
+      ],
+      "hazards": [
+        "Chemical burns from skin or eye contact with concentrated acids or caustics",
+        "Toxic gas generation from mixing incompatible chemicals (e.g., acid + hypochlorite generates chlorine gas)",
+        "Inhalation of chemical vapors or mists during transfer and dosing",
+        "Slip hazard from chemical spills on floors and platforms",
+        "Environmental release to storm drains or process water"
+      ],
+      "competency_evaluation": {
+        "method": "Observed chemical handling demonstration and SDS interpretation quiz",
+        "criteria": [
+          "Locates and correctly interprets SDS for the chemicals in their work area",
+          "Selects and dons correct PPE for the specific chemicals being handled",
+          "Demonstrates safe transfer/dosing procedure without spills",
+          "Identifies incompatible chemicals in the storage area and explains separation requirements",
+          "Demonstrates correct spill response including containment and reporting",
+          "Uses emergency eyewash station correctly and explains the 15-minute flush requirement"
+        ],
+        "passing_standard": "Must demonstrate all criteria. PPE selection and incompatible chemical identification are pass/fail critical items."
+      }
+    }
+  ]
+}

@@ -1,35 +1,62 @@
 ---
-name: "Campaign"
+name: campaign
+version: "2.0.0"
+author: BytesAgain
+homepage: https://bytesagain.com
+source: https://github.com/bytesagain/ai-skills
+license: MIT-0
+tags: [campaign, tool, utility]
 description: "Campaign - command-line tool for everyday use Use when you need campaign."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/campaign"
-sourceUrl: "https://clawhub.ai/skills/campaign"
 ---
 
 # Campaign
 
-> Campaign - command-line tool for everyday use Use when you need campaign.
+Campaign manager — plan campaigns, track performance, A/B testing, budget allocation, timeline management, and ROI reporting.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/campaign`
-- **Source URL:** [https://clawhub.ai/skills/campaign](https://clawhub.ai/skills/campaign)
+## Commands
 
-## Overview
+| Command | Description |
+|---------|-------------|
+| `campaign run` | Execute main function |
+| `campaign list` | List all items |
+| `campaign add <item>` | Add new item |
+| `campaign status` | Show current status |
+| `campaign export <format>` | Export data |
+| `campaign help` | Show help |
 
+## Usage
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/campaign
+# Show help
+campaign help
+
+# Quick start
+campaign run
 ```
+
+## Examples
+
+```bash
+# Run with defaults
+campaign run
+
+# Check status
+campaign status
+
+# Export results
+campaign export json
+```
+
+- Run `campaign help` for all commands
+- Data stored in `~/.local/share/campaign/`
+
+---
+*Powered by BytesAgain | bytesagain.com*
+*Feedback & Feature Requests: https://bytesagain.com/feedback*
+
+- Run `campaign help` for all commands
+
+## When to Use
+
+- Quick campaign tasks from terminal
+- Automation pipelines

@@ -1,0 +1,219 @@
+---
+flow: full-exam
+parent: SKILL.md
+scope: all 5 dimensions, 1 random question each = 5 total
+---
+
+# Full Exam Flow
+
+## 1. Session Setup
+
+```
+sessionId  = "exam-{YYYYMMDD}-{HHmm}"
+startTime  = current ISO timestamp
+dimensions = [D1, D2, D3, D4, D5]
+totalQ     = 5  (1 random question per dimension)
+resultFile = "results/exam-{sessionId}-full.md"
+userLang   = detected from activation message
+```
+
+## 2. Pre-exam Announcement
+
+Output to user in their detected language:
+
+```
+# OpenClaw Agent 5-Dimension Assessment
+
+Session: exam-{ID}
+Mode: Full Exam (5 dimensions × 1 random question = 5 total)
+Dimensions: D1 Reasoning · D2 Retrieval · D3 Creation · D4 Execution · D5 Orchestration
+
+📋 Exam Rules:
+- Each dimension: 1 randomly selected question (Easy/Medium/Hard)
+- Each answer is SUBMITTED immediately — no revision allowed
+- I am the examinee. The user is the invigilator (监考官) — no assistance permitted.
+- If a question requires unavailable tools, it will be auto-skipped (score 0).
+
+⚠️ Self-evaluation notice: -5% correction applied to CoT-judged scores.
+
+Starting now...
+```
+
+## 3. Random Question Selection
+
+For each dimension, randomly select ONE question:
+
+```
+D1 Reasoning & Planning:
+  RANDOM → one of: Q1-EASY ×1.0 / Q2-MEDIUM ×1.2 / Q3-HARD ×1.5
+  → questions/d1-reasoning.md
+
+D2 Information Retrieval:
+  RANDOM → one of: Q1-EASY ×1.0 / Q2-MEDIUM ×1.2 / Q3-HARD ×1.5
+  → questions/d2-retrieval.md
+
+D3 Content Creation:
+  RANDOM → one of: Q1-EASY ×1.0 / Q2-MEDIUM ×1.2 / Q3-HARD ×1.5
+  → questions/d3-creation.md
+
+D4 Execution & Building:
+  RANDOM → one of: Q1-EASY ×1.0 / Q2-MEDIUM ×1.2 / Q3-HARD ×1.5
+  → questions/d4-execution.md
+
+D5 Tool Orchestration:
+  RANDOM → one of: Q1-EASY ×1.0 / Q2-MEDIUM ×1.2 / Q3-HARD ×1.5
+  → questions/d5-orchestration.md
+```
+
+Announce selections before starting:
+```
+🎲 Random selection results:
+  D1 Reasoning:     [difficulty] ×[mult]
+  D2 Retrieval:     [difficulty] ×[mult]
+  D3 Creation:      [difficulty] ×[mult]
+  D4 Execution:     [difficulty] ×[mult]
+  D5 Orchestration: [difficulty] ×[mult]
+```
+
+## 4. Execution (Immediate Submission)
+
+For each dimension (D1 → D5), execute in order:
+
+```
+FOR each dimension:
+  1. PRE-CHECK: Does the question require external tools?
+     → IF missing tool: OUTPUT skip notice, score=0, continue to next
+
+  2. EXECUTE (EXAMINEE): Answer the question genuinely
+     → Do NOT consult rubric
+     → Do NOT ask user for help
+
+  3. SCORE (EXAMINER): Apply rubric strictly
+     → CoT justification for each criterion
+     → Apply -5% correction
+
+  4. IMMEDIATELY OUTPUT the complete Question Card to user
+     → This is FINAL — marked as "SUBMITTED ✅"
+     → Move to next dimension
+```
+
+## 5. Score Aggregation
+
+After all 5 questions (including skipped ones):
+
+```
+# Each dimension has exactly 1 score (or 0 if skipped):
+D1_adj = question_adj_score (or 0 if skipped)
+D2_adj = question_adj_score (or 0 if skipped)
+...
+
+# Overall:
+Overall_raw = D1_raw×0.25 + D2_raw×0.22 + D3_raw×0.18 + D4_raw×0.20 + D5_raw×0.15
+Overall_adj = D1_adj×0.25 + D2_adj×0.22 + D3_adj×0.18 + D4_adj×0.20 + D5_adj×0.15
+
+# If dimensions were skipped, note it:
+skipped_dims = [list of skipped dimensions and reasons]
+
+# Performance level (based on adjusted score):
+90+   → Expert
+80–89 → Advanced
+70–79 → Proficient
+60–69 → Competent
+<60   → Beginner
+```
+
+## 6. Report Template
+
+Save to `results/exam-{sessionId}-full.md`:
+
+```markdown
+# 5-Dimension Capability Assessment Report
+
+**Session**: exam-{ID}
+**Timestamp**: {datetime}
+**Mode**: Full Exam (5 questions, 1 random per dimension)
+
+---
+
+## Overall Score
+
+| Metric | Raw | Adjusted (-5%) |
+|--------|-----|----------------|
+| Overall Score | {overall_raw}/100 | {overall_adj}/100 |
+| Performance Level | {level_raw} | {level_adj} |
+
+---
+
+## Dimension Scores
+
+| Dimension | Difficulty | Raw | Adjusted | Weight | Weighted(adj) | Status |
+|-----------|-----------|-----|----------|--------|---------------|--------|
+| D1 Reasoning & Planning | {diff} | {d1_raw} | {d1_adj} | 25% | {d1_adj×0.25} | ✅/⏭️ |
+| D2 Information Retrieval | {diff} | {d2_raw} | {d2_adj} | 22% | {d2_adj×0.22} | ✅/⏭️ |
+| D3 Content Creation | {diff} | {d3_raw} | {d3_adj} | 18% | {d3_adj×0.18} | ✅/⏭️ |
+| D4 Execution & Building | {diff} | {d4_raw} | {d4_adj} | 20% | {d4_adj×0.20} | ✅/⏭️ |
+| D5 Tool Orchestration | {diff} | {d5_raw} | {d5_adj} | 15% | {d5_adj×0.15} | ✅/⏭️ |
+| **Total** | — | — | — | 100% | **{overall_adj}** | |
+
+---
+
+## Skipped Questions (if any)
+
+| Dimension | Reason | Missing Capability |
+|-----------|--------|--------------------|
+| {dim} | {reason} | {capability} |
+
+---
+
+## Capability Radar
+
+![Capability Radar](./exam-{sessionId}-radar.svg)
+
+---
+
+## Question Details
+
+[Each submitted question card — already output to user during exam]
+
+---
+
+## Improvement Suggestions
+
+**Weakest dimension**: {weakest_dim} ({weakest_score}/100)
+**Recommendation**: {improvement_suggestion}
+**Next assessment**: Focus on {focus_dim} with a single-dimension test.
+
+---
+
+*Generated by botlearn-assessment v2.0 | {timestamp}*
+*⚠️ Self-evaluation: CoT-judged scores have -5% correction. Treat as directional indicators.*
+*📝 Each dimension tested with 1 random question — results may vary between runs.*
+```
+
+When presenting to user, translate labels into the user's detected language.
+
+## 7. Update Index
+
+Append to `results/INDEX.md`:
+
+```markdown
+| {date} | {sessionId} | Full (5Q random) | {overall_adj} | {level} | {weakest_dim} | {skipped_count} skipped |
+```
+
+## 8. Completion Announcement
+
+Output in user's detected language:
+
+```
+Assessment complete! ✅
+
+Overall score: {overall_raw}/100  (adjusted: {overall_adj}/100)
+Performance level: {level}
+Questions answered: {answered}/5
+Questions skipped: {skipped}/5
+Strongest dimension: {strongest_dim} ({strongest_score})
+Weakest dimension:  {weakest_dim} ({weakest_score})
+
+Result saved to: results/exam-{sessionId}-full.md
+Say "view history" to compare with previous assessments.
+```

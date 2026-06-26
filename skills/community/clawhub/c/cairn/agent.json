@@ -1,0 +1,354 @@
+{
+  "name": "cairn",
+  "description": "Local hybrid index for things you intentionally collect — code, docs, web pages, PDFs, raw text. FTS5 + vector embeddings + AST knowledge graph in a single sqlite file. v1.2 ships explicit safety gates: path allowlist (CAIRN_ALLOWED_ROOTS), ingest size caps, and CAIRN_OFFLINE for air-gapped deployment. v1.2.1 adds a startup warning when no allowlist is set and publishes GGUF SHA256s for pre-cached air-gapped deployment. MCP server lets models query and maintain a curated local knowledge base. No telemetry, no API keys, no accounts.",
+  "version": "1.2.2",
+  "type": "tool",
+  "disable-model-invocation": true,
+  "license": "MIT",
+  "distribution": {
+    "clawhub": "https://clawhub.ai/mrsirg97-rgb/cairn",
+    "source": "https://github.com/mrsirg97-rgb/cairn",
+    "npm_package": "cairn-index"
+  },
+  "requires": {
+    "node": ">=20",
+    "env": [
+      {
+        "name": "CAIRN_RUNTIME",
+        "description": "'ollama' (default — requires localhost ollama with nomic-embed-text pulled) or 'embedded' (in-process via node-llama-cpp; auto-downloads GGUFs to ~/.cairn/models on first use, ~785 MB; download is blocked if CAIRN_OFFLINE=1).",
+        "sensitive": false,
+        "required": false
+      },
+      {
+        "name": "CAIRN_CHAT_MODEL",
+        "description": "Override the default doc-extraction chat model. Default: hf.co/unsloth/Qwen3-0.6B-GGUF:UD-Q8_K_XL. Doc-extraction is skipped silently if the chat model isn't reachable; chunk indexing keeps working either way.",
+        "sensitive": false,
+        "required": false
+      },
+      {
+        "name": "CAIRN_CPU_ONLY",
+        "description": "Set to 1 to force CPU-only inference on the embedded runtime. Useful when sharing a GPU with another model.",
+        "sensitive": false,
+        "required": false
+      },
+      {
+        "name": "CAIRN_DEBUG_DOC",
+        "description": "Set to any truthy value to log per-doc extraction counts (concepts/edges/dropped) during cairn add / refresh.",
+        "sensitive": false,
+        "required": false
+      },
+      {
+        "name": "CAIRN_OFFLINE",
+        "description": "v1.2+. Set to '1' or 'true' to block all non-localhost network egress: web fetch (no `cairn add <url>`) and Hugging Face GGUF auto-download (embedded runtime requires pre-cached models via absolute modelPath). Localhost ollama is NOT blocked. Use for air-gapped or strict-egress deployments.",
+        "sensitive": false,
+        "required": false
+      },
+      {
+        "name": "CAIRN_ALLOWED_ROOTS",
+        "description": "v1.2+. Comma-separated list of absolute paths. When set, `cairn add` rejects any local-path ingestion (kind: code|file|pdf) outside these roots. Trailing slashes normalized. Defense-in-depth for MCP-connected agents that might be prompt-influenced into indexing the wrong place; real protection is host-side per-call approval. Unset = no restriction.",
+        "sensitive": false,
+        "required": false
+      },
+      {
+        "name": "CAIRN_MAX_INGEST_FILES",
+        "description": "v1.2+. Default 10000. Pre-check on `addCode`: aborts before any chunking/embedding if the directory's file count exceeds this. Bypassable via CLI `--force`; MCP intentionally has no force option (host-side per-call approval is the override).",
+        "sensitive": false,
+        "required": false
+      },
+      {
+        "name": "CAIRN_MAX_INGEST_BYTES",
+        "description": "v1.2+. Default 524288000 (500 MB). Pre-check on `addCode`: aborts before any work if total bytes exceed this. Same bypass model as the file cap.",
+        "sensitive": false,
+        "required": false
+      }
+    ],
+    "install": [
+      {
+        "id": "npm-cairn-index",
+        "kind": "npm",
+        "package": "cairn-index@1.2.1",
+        "label": "Install cairn (also bundled in lib/cairn/). Pinned to exact version."
+      }
+    ],
+    "external": [
+      {
+        "name": "ollama",
+        "description": "Required for the default runtime. Run `ollama serve` and `ollama pull nomic-embed-text`. Optionally `ollama pull hf.co/unsloth/Qwen3-0.6B-GGUF:UD-Q8_K_XL` for doc-extraction concept/edge/tag emission. Skip entirely by setting CAIRN_RUNTIME=embedded (which then needs Hugging Face access for the first-use GGUF download, unless CAIRN_OFFLINE=1 is set with pre-cached models).",
+        "required_unless": "CAIRN_RUNTIME=embedded"
+      }
+    ]
+  },
+  "capabilities": [
+    "hybrid-search",
+    "fts5",
+    "vector-search",
+    "rrf-fusion",
+    "knowledge-graph",
+    "ast-extraction",
+    "tree-sitter-rust",
+    "tree-sitter-typescript",
+    "tree-sitter-python",
+    "cross-file-edges",
+    "cross-source-edges",
+    "soft-delete",
+    "fk-cascade",
+    "doc-extraction-llm",
+    "concept-tags",
+    "tag-filtered-retrieval",
+    "shortest-path-bfs",
+    "composed-retrieval",
+    "pdf-ingest",
+    "html-ingest",
+    "code-ingest",
+    "ollama-runtime",
+    "embedded-runtime",
+    "node-llama-cpp",
+    "json-schema-constrained-output",
+    "hash-gated-rerun",
+    "mcp-server",
+    "local-first",
+    "no-telemetry",
+    "no-api-keys",
+    "path-allowlist",
+    "ingest-size-caps",
+    "offline-mode",
+    "air-gap-deployable"
+  ],
+  "endpoints": {
+    "skill": "https://github.com/mrsirg97-rgb/cairn/blob/main/clawhub/SKILL.md",
+    "docs": "https://github.com/mrsirg97-rgb/cairn/tree/main/docs",
+    "design": "https://github.com/mrsirg97-rgb/cairn/blob/main/docs/design.md",
+    "graph": "https://github.com/mrsirg97-rgb/cairn/blob/main/docs/graph.md",
+    "tags": "https://github.com/mrsirg97-rgb/cairn/blob/main/docs/v1.1-tags.md",
+    "setup": "https://github.com/mrsirg97-rgb/cairn/blob/main/docs/setup.md",
+    "next": "https://github.com/mrsirg97-rgb/cairn/blob/main/docs/next.md"
+  },
+  "binaries": [
+    {
+      "name": "cairn",
+      "description": "CLI for ingestion, retrieval, and admin: add / list / search / ask / graph / path / tags / refresh / reindex / link / unlink / links / remove / init."
+    },
+    {
+      "name": "cairn-mcp",
+      "description": "Stdio MCP server. Exposes the read + ingest surface so models can both query and maintain a curated local knowledge base. Mutating ops (remove / link / unlink / reindex) are intentionally CLI-only and not exposed via MCP."
+    }
+  ],
+  "actions": [
+    { "name": "CAIRN_SEARCH", "description": "Hybrid chunk search (FTS5 + vector, RRF-fused). Params: query, k?, kind?, source?, tag?. Returns ranked chunks with source/file/line/score." },
+    { "name": "CAIRN_LIST", "description": "List indexed sources. Params: kind?. Returns SourceRow[]." },
+    { "name": "CAIRN_GRAPH", "description": "Entity-level retrieval. Params: query? xor entity_id?, k?, tag?. Returns entities + outbound/inbound edges + tags." },
+    { "name": "CAIRN_ASK", "description": "Composed retrieval: search hit + per-hit entity context (entities in the hit's file + their 1-hop neighbors + tags) in one call. Params: query, k?, kind?, source?, tag?, maxEntitiesPerHit?, maxEdgesPerEntity?." },
+    { "name": "CAIRN_PATH", "description": "Shortest path between two entities via BFS over the edge graph (batched layer fetch). Params: from, to, maxDepth?, directed?. Returns path or null." },
+    { "name": "CAIRN_TAGS", "description": "List every tag in use across active entities, with counts. Discovery surface for the --tag filter on search/ask/graph." },
+    { "name": "CAIRN_ADD", "description": "Ingest a new source. Auto-detects kind: URLs → web, directories → code, *.pdf → pdf, other files → file. Params: kind?, target, label?, include?, exclude?. Subject to CAIRN_ALLOWED_ROOTS (path allowlist) and CAIRN_MAX_INGEST_FILES / CAIRN_MAX_INGEST_BYTES (size caps) when set. The MCP `force` option is intentionally absent — host-side per-call approval is the override path." },
+    { "name": "CAIRN_REFRESH", "description": "Re-index an existing source. Fetches latest content, re-chunks and re-embeds if changed. Use 'all' to refresh every source. Params: ref." }
+  ],
+  "privilege_levels": {
+    "read": [
+      "CAIRN_SEARCH",
+      "CAIRN_LIST",
+      "CAIRN_GRAPH",
+      "CAIRN_ASK",
+      "CAIRN_PATH",
+      "CAIRN_TAGS"
+    ],
+    "ingest": [
+      "CAIRN_ADD",
+      "CAIRN_REFRESH"
+    ],
+    "cli_only": [
+      "CAIRN_REMOVE",
+      "CAIRN_LINK",
+      "CAIRN_UNLINK",
+      "CAIRN_LINKS",
+      "CAIRN_REINDEX",
+      "CAIRN_INIT"
+    ]
+  },
+  "trust_model": {
+    "summary": "You trust what you index. Cairn does not auto-crawl. Every source enters via an explicit `cairn add` (CLI, library, or MCP) by a user or an agent the user explicitly authorized for that call.",
+    "autonomous_invocation": "Blocked via disable-model-invocation: true. The model cannot autonomously call cairn tools — every call requires explicit user invocation through the host. User-initiated flows ('index this repo for me', 'find related online files') work normally because the user's request is the explicit invocation context.",
+    "mcp_access": "When invoked, MCP gives the connected agent read + ingest access — that's what MCP is. The host (Claude Desktop, OpenCode, etc.) controls which agents connect AND (per disable-model-invocation: true) gates each call behind explicit user approval. Cairn assumes both gates are honored host-side.",
+    "mutating_ops_cli_only": [
+      "remove",
+      "link",
+      "unlink",
+      "reindex",
+      "init"
+    ],
+    "isolation_recommendation": "For sensitive content, run cairn against a different `dbPath` to physically isolate the index. The single-file sqlite design makes this trivial."
+  },
+  "safety": {
+    "autonomous_invocation_blocked": true,
+    "autonomous_invocation_blocked_note": "disable-model-invocation: true. Tool calls require explicit user invocation through the host. Matches the conservative default used by torch.market and other side-effect-bearing skills. The user's 'I tell the agent to index X' / 'I tell the agent to find related online files' flow still works because the user's request to the agent IS the explicit invocation context; what's blocked is the model autonomously deciding to call cairn without being asked.",
+    "local_only": true,
+    "no_telemetry": true,
+    "no_api_keys_required": true,
+    "no_account_required": true,
+    "network_egress": {
+      "summary": "Three categories of outbound traffic, all bounded.",
+      "categories": [
+        {
+          "name": "user-initiated web fetch",
+          "trigger": "explicit `cairn add <url>` (CLI / library / MCP CAIRN_ADD with kind=web)",
+          "blocked_by": "CAIRN_OFFLINE=1"
+        },
+        {
+          "name": "localhost ollama",
+          "trigger": "default runtime (CAIRN_RUNTIME unset or =ollama); embed + optional chat HTTP calls to 127.0.0.1:11434",
+          "blocked_by": "switch to CAIRN_RUNTIME=embedded; not affected by CAIRN_OFFLINE because localhost is not internet egress"
+        },
+        {
+          "name": "Hugging Face GGUF download",
+          "trigger": "first use of CAIRN_RUNTIME=embedded when the requested model is not in ~/.cairn/models cache",
+          "blocked_by": "CAIRN_OFFLINE=1 (forces fail-fast); pre-cache models on a connected machine and reference them via absolute `modelPath`"
+        }
+      ]
+    },
+    "no_remote_code_execution": true,
+    "content_stored_as_text_never_evald": true,
+    "destructive_ops_cli_only": [
+      "remove",
+      "link",
+      "unlink",
+      "reindex"
+    ],
+    "ingestion_safety_gates_v1_2": {
+      "path_allowlist": {
+        "env_var": "CAIRN_ALLOWED_ROOTS",
+        "description": "Comma-separated absolute paths. When set, `cairn add` rejects any local-path ingestion outside these roots. Defense-in-depth for prompt-influenced agent calls; the real protection is host-side MCP approval.",
+        "default": "unset (no restriction)"
+      },
+      "size_cap_files": {
+        "env_var": "CAIRN_MAX_INGEST_FILES",
+        "default": 10000,
+        "description": "Aborts directory ingestion before any work if file count exceeds this. Bypassable via CLI --force; MCP has no force option."
+      },
+      "size_cap_bytes": {
+        "env_var": "CAIRN_MAX_INGEST_BYTES",
+        "default": 524288000,
+        "description": "Aborts directory ingestion before any work if total bytes exceed this (default 500 MB). Same bypass model as the file cap."
+      },
+      "offline_mode": {
+        "env_var": "CAIRN_OFFLINE",
+        "description": "When set, blocks web fetch and Hugging Face GGUF download. Localhost ollama remains available."
+      }
+    },
+    "single_user_single_machine": true,
+    "data_at_rest_path": "~/.cairn/index.sqlite",
+    "models_cache_path": "~/.cairn/models (embedded runtime only; can be pre-populated for CAIRN_OFFLINE deployments)",
+    "dependencies_pinned": true,
+    "minimal_dependency_surface": [
+      "better-sqlite3",
+      "sqlite-vec",
+      "linkedom",
+      "unpdf",
+      "zod",
+      "@modelcontextprotocol/sdk",
+      "tree-sitter + tree-sitter-rust + tree-sitter-typescript + tree-sitter-python",
+      "node-llama-cpp (optional, embedded runtime only)"
+    ],
+    "supply_chain": {
+      "version_pinned": true,
+      "package_pin": "cairn-index@1.2.1 (exact, no caret/range in clawhub install entry)",
+      "publisher": "mrsirg97-rgb",
+      "source_repo": "https://github.com/mrsirg97-rgb/cairn",
+      "license": "MIT",
+      "model_checksums_published": "docs/setup.md → 'Verifying pre-cached models'. SHA256s for nomic-embed-text-v1.5.Q8_0.gguf and Qwen3-0.6B-UD-Q8_K_XL.gguf are pinned to the bytes cairn was developed against."
+    },
+    "startup_warnings": {
+      "cairn_mcp_no_allowlist": "On boot, cairn-mcp logs a warning line when CAIRN_ALLOWED_ROOTS is unset, surfacing the path-allowlist call to operators who didn't read the docs."
+    }
+  },
+  "deployment_profiles": {
+    "developer_default": {
+      "description": "Single-user laptop, ollama running locally. No env vars needed.",
+      "env": {}
+    },
+    "mcp_agent_curated": {
+      "description": "Confine MCP-driven ingestion to a known tree, with sensible size caps. Belt + suspenders to host-side approval.",
+      "env": {
+        "CAIRN_ALLOWED_ROOTS": "/var/cairn/repos,/var/cairn/docs",
+        "CAIRN_MAX_INGEST_FILES": "2000",
+        "CAIRN_MAX_INGEST_BYTES": "104857600"
+      }
+    },
+    "air_gapped": {
+      "description": "Zero network egress. Pre-cache GGUFs on a connected machine, copy ~/.cairn/models to the air-gapped host, then run.",
+      "env": {
+        "CAIRN_RUNTIME": "embedded",
+        "CAIRN_OFFLINE": "1",
+        "CAIRN_ALLOWED_ROOTS": "/var/cairn/sources"
+      }
+    }
+  },
+  "schema": {
+    "version": 2,
+    "tables": [
+      "sources",
+      "files",
+      "chunks",
+      "chunks_fts",
+      "chunks_vec",
+      "entities",
+      "entities_vec",
+      "edges",
+      "entity_tags",
+      "source_links",
+      "meta"
+    ],
+    "embed_dim": 768,
+    "embed_model": "nomic-embed-text",
+    "fk_cascade_chain": "sources → files → chunks; sources → entities → edges/entity_tags",
+    "soft_delete": "entities only (removed_at IS NULL filter on read); active-entity join hides edges of soft-deleted endpoints",
+    "additive_upgrade": "v1 → v1.1 picks up entity_tags via CREATE TABLE IF NOT EXISTS on next open; v1.2 added no schema changes (safety gates only)"
+  },
+  "verification": {
+    "tests": {
+      "total": 17,
+      "pure": 7,
+      "live": 10,
+      "covers": [
+        "DB CRUD + schema invariants",
+        "FK cascade + soft-delete edge filtering",
+        "tree-sitter entity extraction (rust / typescript / tsx / python)",
+        "intra/cross-file/cross-source edge derivation",
+        "doc-extract LLM pass with hash-gated rerun",
+        "tag CRUD (replace, getByTag, getForMany, listTags) + LLM tag emission",
+        "tag-filtered search/ask/graph end-to-end",
+        "BFS shortest-path with batched layer fetch",
+        "ollama runtime end-to-end",
+        "embedded (node-llama-cpp) runtime end-to-end",
+        "v1.2 safety gates: CAIRN_OFFLINE, CAIRN_ALLOWED_ROOTS (multi-root, trailing-slash, per-kind), size caps + force bypass"
+      ]
+    },
+    "model_validation": {
+      "default_chat_model": "Qwen3-0.6B-GGUF:UD-Q8_K_XL",
+      "rationale": "Sub-1GB Q8. Stable structured output via JSON-Schema-enforced decoding (ollama format / llama.cpp grammar). Prompt architecture engineered specifically for this model — bigger ≠ drop-in replacement."
+    }
+  },
+  "tags": [
+    "rag",
+    "hybrid-search",
+    "vector-search",
+    "fts5",
+    "sqlite",
+    "sqlite-vec",
+    "code-search",
+    "knowledge-graph",
+    "tree-sitter",
+    "ast",
+    "mcp",
+    "ollama",
+    "node-llama-cpp",
+    "local-first",
+    "no-telemetry",
+    "concept-tags",
+    "doc-extraction",
+    "embedded-llm",
+    "single-file-sqlite",
+    "air-gap-capable",
+    "path-allowlist",
+    "size-capped-ingest"
+  ]
+}

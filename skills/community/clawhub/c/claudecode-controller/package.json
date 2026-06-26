@@ -1,0 +1,12 @@
+{
+  "name": "claudecode-controller",
+  "version": "1.0.0",
+  "description": "控制和管理 Claude Code 编码助手，支持项目感知编码、代码审查、重构和功能实现",
+  "author": "小龙虾",
+  "license": "MIT",
+  "keywords": ["claude", "claude-code", "coding", "code-review", "anthropic", "ai-assistant"],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sundial-org/awesome-openclaw-skills"
+  }
+}

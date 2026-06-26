@@ -1,0 +1,13 @@
+{
+  "model_name": "digit",
+  "config_path": "data/config/digit.config",
+  "optimization": {
+    "error_handling": true,
+    "error_retry": 3,
+    "error_timeout": 30,
+    "logging": true,
+    "log_level": "INFO",
+    "monitoring": true,
+    "monitor_interval": 10
+  }
+}

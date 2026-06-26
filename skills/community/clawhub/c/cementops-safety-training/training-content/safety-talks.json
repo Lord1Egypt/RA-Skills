@@ -1,0 +1,190 @@
+{
+  "metadata": {
+    "skill": "cementops-safety-training",
+    "domain": "Toolbox Talk Topics (5-Minute Format)",
+    "version": "1.0.0",
+    "last_updated": "2026-04-01",
+    "usage_notes": "Each talk is designed for a 5-minute pre-shift or crew meeting format. Read key points aloud, then pose the discussion question to engage the crew."
+  },
+  "safety_talks": [
+    {
+      "talk_id": "ST-TBT-001",
+      "topic": "Housekeeping: Keeping Your Work Area Safe",
+      "key_points": [
+        "Slips, trips, and falls are among the top causes of injury in cement plants; most are preventable through good housekeeping",
+        "Clean up spills immediately: water, oil, hydraulic fluid, and chemical spills create slip hazards on concrete and steel surfaces",
+        "Keep walkways, stairways, and platforms clear of tools, hoses, cables, and material spillage at all times",
+        "Return tools and equipment to their designated storage after use; do not leave them on equipment or walkways",
+        "Report and tag damaged flooring, grating, and handrails so they can be repaired before someone is injured",
+        "Material spillage around conveyors and transfer points must be cleaned regularly; accumulated material is both a trip hazard and a fire fuel source",
+        "Good housekeeping is not just about cleanliness; it signals that safety is a priority and that we respect each other's workspace"
+      ],
+      "discussion_question": "Can anyone identify a housekeeping issue in our area right now that we should address before starting work today?",
+      "reference_standard": "30 CFR 56.20003 (Housekeeping)"
+    },
+    {
+      "talk_id": "ST-TBT-002",
+      "topic": "PPE Compliance: Your Last Line of Defense",
+      "key_points": [
+        "PPE does not eliminate hazards; it is the last line of defense after engineering and administrative controls",
+        "Minimum site PPE at all times: hard hat, safety glasses with side shields, steel-toed boots, hearing protection in posted areas, high-visibility vest in traffic areas",
+        "Inspect your PPE before each shift: cracked safety glasses, damaged hard hats (replace after any impact), worn boot soles, and frayed harness webbing all compromise protection",
+        "Task-specific PPE must match the hazard: chemical goggles for splash risk, face shield for grinding, P100 respirator for silica exposure, arc-rated clothing for electrical work",
+        "PPE must fit properly to protect you; ill-fitting respirators leak, loose gloves get caught in equipment, and oversized harnesses allow excessive free fall",
+        "Never modify PPE: do not drill holes in hard hats, cut fingers off gloves, or remove chin straps",
+        "If your PPE is damaged or does not fit, tell your supervisor immediately; replacement PPE is available at no cost to you"
+      ],
+      "discussion_question": "When was the last time you inspected your hard hat for cracks or your safety glasses for scratches that reduce visibility?",
+      "reference_standard": "30 CFR 56.15001-56.15020 (Personal Protection)"
+    },
+    {
+      "talk_id": "ST-TBT-003",
+      "topic": "Heat Stress Prevention",
+      "key_points": [
+        "Cement plant workers face heat stress from both environmental heat and process heat (kiln areas, cooler discharge, preheater tower)",
+        "Know the signs of heat exhaustion: heavy sweating, weakness, nausea, dizziness, headache, cool/clammy skin; if untreated, it can progress to heat stroke",
+        "Heat stroke is a medical emergency: hot/dry skin, confusion, loss of consciousness, body temperature above 104F; call 911 and cool the person immediately",
+        "Hydrate proactively: drink water every 15-20 minutes even if not thirsty; avoid caffeine and sugary drinks which increase dehydration",
+        "Use the buddy system in hot areas: watch each other for symptoms; a person with heat stroke may not recognize their own symptoms",
+        "Take advantage of cooling measures: shade, cooling stations, ventilated break areas, schedule heavy work during cooler hours when possible",
+        "Acclimatize gradually: new employees or those returning from absence need 7-14 days to adjust to hot work environments; start with 50% workload and increase"
+      ],
+      "discussion_question": "What is our plan today if someone in the crew starts showing signs of heat exhaustion while working in the kiln area?",
+      "reference_standard": "30 CFR 56.5001 (Exposure limits); OSHA/NIOSH Heat Illness Prevention guidance"
+    },
+    {
+      "talk_id": "ST-TBT-004",
+      "topic": "Respirable Dust and Silica Exposure",
+      "key_points": [
+        "Cement plants generate respirable dust at quarries, crushers, mills, kilns, silos, and packing areas; much of this dust contains crystalline silica",
+        "Silicosis is a serious, irreversible lung disease caused by inhaling respirable crystalline silica; it can take years to develop but has no cure",
+        "The MSHA PEL for respirable crystalline silica is 50 micrograms per cubic meter (8-hour TWA); this is an extremely small amount that you cannot see",
+        "Dust suppression and ventilation systems are your primary protection; report any malfunctioning dust collectors, water sprays, or ventilation fans immediately",
+        "When engineering controls are not sufficient (during maintenance, upset conditions, or demolition), wear the assigned respirator and ensure it is properly fitted",
+        "Avoid dry sweeping in dusty areas; use water, vacuum, or wet methods to clean up material without generating additional airborne dust",
+        "Personal dust monitoring results are your right to review; ask your supervisor about your most recent exposure results"
+      ],
+      "discussion_question": "Do you know your most recent personal dust monitoring results, and do you know how to access them?",
+      "reference_standard": "30 CFR 56.5001 (Exposure limits for airborne contaminants); 30 CFR 56.5005 (Control of exposure)"
+    },
+    {
+      "talk_id": "ST-TBT-005",
+      "topic": "Pinch Points and Machine Guarding",
+      "key_points": [
+        "Pinch points exist wherever two parts move together or where a moving part meets a stationary part: pulleys, gears, rollers, conveyors, crusher jaws, press rams",
+        "Machine guards are required on all exposed nip points, rotating parts, and areas where contact could cause injury (30 CFR 56.14107 and 56.14112)",
+        "Never remove a guard while equipment is running; if a guard must be removed for maintenance, the equipment must be locked out first",
+        "After maintenance, verify all guards are reinstalled before LOTO is removed and equipment is restarted; missing guards are among the most common MSHA citations",
+        "Keep your hands, clothing, and tools away from moving parts; loose clothing, dangling drawstrings, jewelry, and long hair are entanglement hazards",
+        "If you see a missing or damaged guard, do not operate the equipment; report it immediately and tag it out of service",
+        "Remember: guards protect you from the machine, and LOTO protects you from the energy; both are required, not one or the other"
+      ],
+      "discussion_question": "Has anyone noticed a missing or damaged guard on any equipment in our area that we need to address?",
+      "reference_standard": "30 CFR 56.14107 (Moving machine parts); 30 CFR 56.14112 (Guard construction)"
+    },
+    {
+      "talk_id": "ST-TBT-006",
+      "topic": "Fall Protection: Working at Heights Safely",
+      "key_points": [
+        "Falls are a leading cause of fatalities in mining and cement plants; any work above 6 feet requires fall protection",
+        "Three types of fall protection: guardrails (passive, preferred), personal fall arrest systems (harness/lanyard/anchor), and travel restraint (prevents reaching the edge)",
+        "Inspect your harness before each use: check webbing for cuts, fraying, and chemical damage; check D-rings and buckles for deformation; check stitching at attachment points",
+        "Know your anchor point: it must support 5,000 lbs per person or be engineered for fall arrest; never tie off to conduit, handrails not rated for fall arrest, or temporary structures",
+        "Calculate your fall clearance: with a 6-foot lanyard and shock absorber, you need at least 18.5 feet of clearance below your anchor point to avoid hitting the ground",
+        "Retractable self-retracting lifelines (SRLs) reduce fall distance but still require adequate clearance and proper anchor point overhead",
+        "After any fall arrest event, the harness and lanyard must be removed from service and inspected by a competent person before reuse; report all falls including near misses"
+      ],
+      "discussion_question": "For today's work at heights, can you identify your anchor points and confirm you have adequate fall clearance?",
+      "reference_standard": "30 CFR 56.15005 (Safety belts and lines)"
+    },
+    {
+      "talk_id": "ST-TBT-007",
+      "topic": "Electrical Safety Basics",
+      "key_points": [
+        "Electricity is invisible and can kill; as little as 50 milliamps across the heart can cause fibrillation and death",
+        "Only qualified electrical workers are permitted to work on energized electrical equipment; if you are not qualified, stay out of electrical rooms and panels",
+        "Report electrical hazards immediately: damaged cords, missing covers on junction boxes, exposed wires, tripped breakers that keep tripping, burning smell from motors or panels",
+        "Never reset a breaker more than once; repeated tripping indicates a fault that must be investigated by a qualified electrician before re-energizing",
+        "Water and electricity do not mix: never operate electrical equipment with wet hands, in standing water, or during washdown operations near open panels",
+        "Extension cords are for temporary use only; they must be rated for the load and environment, and never run through doorways, under mats, or across traffic areas"
+      ],
+      "discussion_question": "Do you know where the nearest emergency disconnect is for the equipment in your work area?",
+      "reference_standard": "30 CFR 56.12004 (Electrical conductors); 30 CFR 56.12016 (Energized power circuits); NFPA 70E"
+    },
+    {
+      "talk_id": "ST-TBT-008",
+      "topic": "Fire Prevention in the Plant",
+      "key_points": [
+        "Cement plants have significant fire risks: coal storage and grinding, conveyor belts, hydraulic oil systems, waste-derived fuels, welding and cutting operations",
+        "Know the location of fire extinguishers in your work area and verify they are inspected (monthly tag check) and accessible (not blocked or buried)",
+        "Remember PASS: Pull the pin, Aim at the base of the fire, Squeeze the handle, Sweep side to side; most extinguishers last only 10-30 seconds",
+        "Hot work (welding, cutting, grinding) requires a hot work permit and fire watch; the fire watch must stay for 30 minutes after hot work is complete",
+        "Coal dust and alternative fuel storage areas require strict housekeeping; accumulated coal dust is an explosion and fire hazard",
+        "Conveyor belt fires can spread rapidly through enclosed galleries; belt slip monitors and fire suppression systems at transfer points are critical safeguards that must be maintained",
+        "If a fire cannot be controlled with a portable extinguisher within 30 seconds, evacuate the area, close doors to contain the fire, and call the emergency number"
+      ],
+      "discussion_question": "Can you locate the nearest two fire extinguishers from where you are standing right now?",
+      "reference_standard": "30 CFR 56.4100 series (Fire prevention and control)"
+    },
+    {
+      "talk_id": "ST-TBT-009",
+      "topic": "Mobile Equipment Awareness",
+      "key_points": [
+        "Mobile equipment (haul trucks, loaders, forklifts, manlifts) is involved in a disproportionate number of serious injuries and fatalities in mining",
+        "As a pedestrian, assume that the equipment operator cannot see you; stay out of the swing radius, blind spots, and travel paths of mobile equipment",
+        "Make eye contact with the operator or communicate by radio before approaching mobile equipment; never assume they know you are there",
+        "Equipment operators must perform a pre-shift inspection (walkaround) including brakes, steering, lights, horn, backup alarm, mirrors, seatbelt, and fire extinguisher",
+        "Seatbelts save lives in rollovers; wear your seatbelt every time you operate mobile equipment, even for short moves",
+        "Berms or barriers at dump points, ramps, and elevated roadways must be at least mid-axle height; report any damaged or missing berms immediately",
+        "Never park equipment on a grade without wheels chocked and the bucket or blade lowered to the ground"
+      ],
+      "discussion_question": "What is the most dangerous intersection or blind spot in our area where pedestrians and mobile equipment interact?",
+      "reference_standard": "30 CFR 56.9100 series (Mobile equipment and transportation)"
+    },
+    {
+      "talk_id": "ST-TBT-010",
+      "topic": "Safe Lifting Techniques",
+      "key_points": [
+        "Back injuries are one of the most common workplace injuries in cement plants, and many are caused by improper lifting or overexertion",
+        "Plan your lift: assess the weight, check for handholds, clear your path, and decide if you need a partner or mechanical aid before you lift",
+        "Use proper technique: feet shoulder-width apart, bend at the knees (not the waist), grip the load firmly, keep it close to your body, lift with your legs, avoid twisting",
+        "A general guideline is 50 lbs for a single-person lift; if the load is heavier, awkward, or above shoulder height, get help or use a mechanical aid",
+        "Mechanical aids are available: forklifts, hoists, dollies, pallet jacks, and come-alongs; using them is not a sign of weakness; it is the smart and safe approach",
+        "Repetitive lifting is just as risky as a single heavy lift; pace yourself, rotate tasks, and stretch during breaks to prevent cumulative strain",
+        "If you feel pain during a lift, stop immediately; trying to finish the lift is how minor strains become serious injuries that keep you off work for weeks"
+      ],
+      "discussion_question": "What is the heaviest item you regularly lift manually, and is there a mechanical aid we could be using instead?",
+      "reference_standard": "30 CFR 56.20011 (Barricades and warning signals during material handling); NIOSH Lifting Equation guidelines"
+    },
+    {
+      "talk_id": "ST-TBT-011",
+      "topic": "Chemical Hazards and Safety Data Sheets (SDS)",
+      "key_points": [
+        "Chemicals in cement plants include fuels (coal, pet coke, diesel), process chemicals (water treatment, grinding aids), maintenance chemicals (solvents, lubricants), and the product itself (Portland cement is caustic with pH 12-13)",
+        "Every chemical on site must have a Safety Data Sheet (SDS) that is accessible to all employees; know where the SDS binder or electronic system is located in your area",
+        "The SDS has 16 sections; the most critical for daily work are: Section 2 (Hazards), Section 4 (First Aid), Section 7 (Handling/Storage), and Section 8 (PPE requirements)",
+        "GHS labels on containers tell you the hazard at a glance: red diamond = flammable, skull = toxic, exclamation mark = irritant, corrosion symbol = corrosive to skin/metal",
+        "Never transfer chemicals into unlabeled containers; secondary containers must have the chemical name and hazard information",
+        "Mixing incompatible chemicals can be deadly: acid + bleach (hypochlorite) generates chlorine gas; always check the SDS before mixing or storing chemicals near each other",
+        "If you get any chemical on your skin or in your eyes, go to the nearest eyewash or safety shower immediately; flush for a minimum of 15 minutes and report the exposure"
+      ],
+      "discussion_question": "Can everyone on the crew locate the nearest eyewash station and the SDS for the chemicals we use in this area?",
+      "reference_standard": "30 CFR 46.5 (Hazard communication training); OSHA 29 CFR 1910.1200 (GHS/HazCom)"
+    },
+    {
+      "talk_id": "ST-TBT-012",
+      "topic": "Emergency Procedures: Be Prepared",
+      "key_points": [
+        "In an emergency, the first 5 minutes determine the outcome; know your role before the emergency happens",
+        "Know the alarm signals: continuous horn = evacuate, intermittent horn = shelter in place (site-specific; confirm your plant's system)",
+        "Know your evacuation route from every area you work in, not just your primary work area; routes may be blocked, so know the alternate",
+        "Rally at the designated assembly point and wait for headcount; do not re-enter the plant until the all-clear is given by the incident commander",
+        "Know where AEDs, first aid kits, fire extinguishers, spill kits, and emergency showers are located in your work area",
+        "If you discover a medical emergency: call for help first (radio or phone), then provide first aid to the level of your training; do not move a person with a suspected spinal injury",
+        "Report ALL near misses and incidents, no matter how minor; near misses are free lessons that prevent the next serious injury"
+      ],
+      "discussion_question": "If the evacuation alarm sounded right now, what route would you take and where is your assembly point?",
+      "reference_standard": "30 CFR 46.5(b)(3) (Emergency procedures training); 30 CFR 56.18010 (First aid)"
+    }
+  ]
+}

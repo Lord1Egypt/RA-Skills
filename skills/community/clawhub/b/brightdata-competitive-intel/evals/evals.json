@@ -1,0 +1,70 @@
+{
+  "skill_name": "competitive-intel",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Analyze Notion as a competitor. I'm building a project management tool for small teams.",
+      "expected_output": "Comprehensive competitor snapshot including Notion's pricing, positioning, team size, and strategic recommendations",
+      "expectations": [
+        "Claude uses bdata CLI commands (bdata scrape, bdata search, or bdata pipelines) to gather data — not training knowledge alone",
+        "The output includes Notion's current pricing tiers with actual dollar amounts scraped from their pricing page",
+        "The output identifies Notion's target audience and positioning based on scraped homepage content",
+        "The output includes data from at least 2 different sources (e.g., website + Crunchbase or LinkedIn)",
+        "The output provides actionable positioning recommendations specific to small team project management",
+        "The output includes a Sources section with URLs of pages that were scraped",
+        "The output follows the Competitor Snapshot template structure"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Compare pricing between Slack, Microsoft Teams, and Discord for business communication.",
+      "expected_output": "Pricing comparison table with plan tiers, features, and strategic analysis",
+      "expectations": [
+        "Claude scrapes the pricing pages of all three competitors using bdata scrape commands",
+        "The output includes a comparison matrix/table with all three competitors side by side",
+        "Pricing data includes specific dollar amounts per plan tier sourced from live scraping",
+        "The output identifies each competitor's pricing model (per-seat, freemium, etc.)",
+        "The output includes a Positioning Opportunities section with actionable recommendations",
+        "The output follows the Pricing Intelligence Report template structure"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "What are people saying about Figma vs Canva? I want to understand which pain points I could exploit.",
+      "expected_output": "Review intelligence report with sentiment analysis and pain point extraction for both products",
+      "expectations": [
+        "Claude uses bdata to find and scrape review pages (G2, Capterra, app stores, or similar)",
+        "Pain points are identified and categorized for both Figma and Canva",
+        "The output includes actual user quotes as evidence for claims",
+        "The output identifies exploitable gaps — specific weaknesses the user could target",
+        "The output follows the Review Intelligence Report template structure",
+        "The output includes a Strategic Recommendations section"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "What can we learn from Stripe's hiring patterns? Are they expanding into new areas?",
+      "expected_output": "Hiring signal analysis with strategic interpretation of Stripe's job postings",
+      "expectations": [
+        "Claude uses bdata pipelines or bdata scrape to gather job posting data from LinkedIn or Stripe's careers page",
+        "Roles are categorized by department (engineering, sales, marketing, etc.)",
+        "The output interprets hiring patterns as strategic signals (tech bets, geographic expansion, product direction)",
+        "The output follows the Hiring Signal Analysis template structure",
+        "The output includes a Strategic Recommendations section"
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "Map out the competitive landscape for API documentation tools.",
+      "expected_output": "Market landscape map with categorized players, positioning analysis, and white space identification",
+      "expectations": [
+        "Claude uses bdata search to discover competitors in the API documentation space",
+        "At least 5 competitors are identified and categorized",
+        "Players are organized by tier (enterprise, mid-market, SMB, open-source)",
+        "The output identifies white space or underserved segments in the market",
+        "Each competitor has a one-line positioning summary based on scraped website content",
+        "The output follows the Market Landscape Map template structure"
+      ]
+    }
+  ]
+}

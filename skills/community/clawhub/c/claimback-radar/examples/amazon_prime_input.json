@@ -1,0 +1,10 @@
+{
+  "source": "email_text",
+  "content": "Your Amazon Prime membership will renew on May 1, 2026.\n\nAnnual fee: $139.00\n\nBenefits include free shipping, Prime Video, and more.\n\nTo cancel or manage your membership, go to amazon.com/prime.\n\nNeed help? Call 1-888-280-4331.\n\nNote: If you cancel within 3 business days of renewal, you may receive a full refund.",
+  "user_timezone": "America/Los_Angeles",
+  "current_date": "2026-04-22",
+  "user_context": {
+    "last_used_date": "2026-04-20",
+    "monthly_budget": 100
+  }
+}

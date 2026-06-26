@@ -1,0 +1,58 @@
+{
+  "apps": {
+    "abaqus": {
+      "saved_paths": [],
+      "candidate_paths": [
+        "C:\\SIMULIA\\Commands\\abaqus.bat",
+        "C:\\SIMULIA\\Commands\\abq2024.bat",
+        "C:\\SIMULIA\\Commands\\abq2023.bat",
+        "C:\\SIMULIA\\Commands\\abq2022.bat",
+        "E:\\SIMULIA\\Commands\\abaqus.bat",
+        "E:\\SIMULIA\\Commands\\abq2024.bat",
+        "E:\\SIMULIA\\Commands\\abq2023.bat",
+        "E:\\SIMULIA\\Commands\\abq2022.bat"
+      ],
+      "process_names": [
+        "ABQLauncher.exe",
+        "ABQcaeK.exe",
+        "ABQcaeG.exe"
+      ]
+    },
+    "ansys": {
+      "saved_paths": [],
+      "candidate_paths": [
+        "C:\\Program Files\\ANSYS Inc\\v241\\Framework\\bin\\Win64\\RunWB2.exe",
+        "C:\\Program Files\\ANSYS Inc\\v242\\Framework\\bin\\Win64\\RunWB2.exe",
+        "C:\\Program Files\\ANSYS Inc\\v231\\Framework\\bin\\Win64\\RunWB2.exe",
+        "D:\\Program Files\\ANSYS Inc\\v241\\Framework\\bin\\Win64\\RunWB2.exe"
+      ],
+      "process_names": [
+        "RunWB2.exe",
+        "AnsysWBU.exe",
+        "AnsMeshingServer.exe"
+      ]
+    },
+    "ansa": {
+      "saved_paths": [],
+      "candidate_paths": [
+        "C:\\BETA_CAE_Systems\\ansa_v24.1.0\\win64\\ansa64.exe",
+        "C:\\BETA_CAE_Systems\\ansa_v23.1.0\\win64\\ansa64.exe",
+        "D:\\BETA_CAE_Systems\\ansa_v24.1.0\\win64\\ansa64.exe"
+      ],
+      "process_names": [
+        "ansa64.exe"
+      ]
+    },
+    "hyperworks": {
+      "saved_paths": [],
+      "candidate_paths": [
+        "C:\\Program Files\\Altair\\2024\\hwdesktop\\hwdesktop.exe",
+        "C:\\Program Files\\Altair\\2023\\hwdesktop\\hwdesktop.exe",
+        "D:\\Program Files\\Altair\\2024\\hwdesktop\\hwdesktop.exe"
+      ],
+      "process_names": [
+        "hwdesktop.exe"
+      ]
+    }
+  }
+}

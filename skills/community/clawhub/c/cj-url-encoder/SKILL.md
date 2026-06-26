@@ -1,35 +1,57 @@
 ---
-name: "url编解码"
-description: "快速对文本或 URL 进行 Encode (编码) 和 Decode (解码) 操作，解决中文乱码和特殊字符传输问题。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/cj-url-encoder"
-sourceUrl: "https://clawhub.ai/skills/cj-url-encoder"
+name: cj-url-encoder
+version: 1.0.0
+description: 快速对文本或 URL 进行 Encode (编码) 和 Decode (解码) 操作，解决中文乱码和特殊字符传输问题。
+author: mark.cj
+# 指定入口文件,默认是agent.py
+# entry_point: my_logic.py 
+tags: [tools, utility, url, encode, decode, developer]
+trigger:
+  - "url 编码"
+  - "url encode"
+  - "url 解码"
+  - "url decode"
+  - "编码这个链接"
+  - "解码这段字符"
+  - "percent encode"
+requires:
+  - python: ">=3.6"
+  - packages: [] # 仅使用内置库，无外部依赖
 ---
 
-# url编解码
+# 技能指令：URL Encoder/Decoder
 
-> 快速对文本或 URL 进行 Encode (编码) 和 Decode (解码) 操作，解决中文乱码和特殊字符传输问题。
+你是一个专业的 URL 处理助手。当用户提供一段文本、链接或编码字符串时，请根据语境判断是需要**编码 (Encode)** 还是 **解码 (Decode)**，并调用相应工具进行处理。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/cj-url-encoder`
-- **Source URL:** [https://clawhub.ai/skills/cj-url-encoder](https://clawhub.ai/skills/cj-url-encoder)
+## 任务流程
+1. **意图识别**：
+   - 如果用户输入包含明显的 `%` 符号（如 `%E4%B8%AD%E6%96%87`），或者明确说“解码”，则执行 **Decode**。
+   - 如果用户输入包含中文、空格、特殊符号（如 `?`, `&`, `=` 以外的符号），或者明确说“编码”，则执行 **Encode**。
+   - 如果不确定，优先询问用户或同时展示编码和解码结果（但在本技能中，默认根据内容特征自动判断）。
 
-## Overview
+2. **调用工具**：
+   - 使用 `process_url_text` 工具，传入文本和操作类型 (`encode` 或 `decode`)。
 
+3. **格式化输出**：
+   - **清晰展示**：将“原始内容”和“处理结果”分开展示。
+   - **一键复制提示**：在结果下方提示用户“点击即可复制”。
+   - **解释说明**：如果是编码，简要说明哪些字符被转换了（例如：空格变成了 `%20`，中文变成了 UTF-8 十六进制）。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/cj-url-encoder
-```
+## 处理规则
+- **编码标准**：严格遵循 RFC 3986 标准，使用 UTF-8 编码。
+- **安全字符保留**：在编码时，保留 URL 中的安全字符（如 `A-Z`, `a-z`, `0-9`, `-`, `_`, `.`, `~`），只编码其他字符。
+- **错误处理**：如果解码失败（例如字符串格式不正确），请明确告知用户“这不是一个有效的 URL 编码字符串”，并列出可能的原因。
+
+## 示例对话
+用户: "帮我把 '你好 世界' 编码一下"
+助手: 
+✅ **URL 编码完成**:
+- 🔹 原始内容: `你好 世界`
+- 🔸 编码结果: `%E4%BD%A0%E5%A5%BD%20%E4%B8%96%E7%95%8C`
+> 说明：中文字符已转换为 UTF-8 十六进制，空格转换为 `%20`。
+
+用户: "解码这个：%E6%B5%8B%E8%AF%95"
+助手:
+✅ **URL 解码完成**:
+- 🔹 编码内容: `%E6%B5%8B%E8%AF%95`
+- 🔸 解码结果: `测试`

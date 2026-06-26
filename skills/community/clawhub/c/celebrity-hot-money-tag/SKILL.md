@@ -1,35 +1,143 @@
 ---
-name: "celebrity-hot-money-tag"
-description: "Analyzes famous Chinese traders (游资) from dragon-tiger lists, provides win rates, investment recommendations, and trading style analysis. Invoke when user ne..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/celebrity-hot-money-tag"
-sourceUrl: "https://clawhub.ai/skills/celebrity-hot-money-tag"
+name: celebrity-hot-money-tag
+description: "Analyzes famous Chinese traders (游资) from dragon-tiger lists, provides win rates, investment recommendations, and trading style analysis. Invoke when user needs to identify trader seats, analyze trading patterns, or get follow-investment advice based on 龙虎榜 data."
 ---
 
-# celebrity-hot-money-tag
+# 明星游资席位识别与跟投决策
 
-> Analyzes famous Chinese traders (游资) from dragon-tiger lists, provides win rates, investment recommendations, and trading style analysis. Invoke when user ne...
+**版本**: 2025-2026
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/celebrity-hot-money-tag`
-- **Source URL:** [https://clawhub.ai/skills/celebrity-hot-money-tag](https://clawhub.ai/skills/celebrity-hot-money-tag)
+**用途**: 用于龙虎榜游资识别、胜率判断、次日溢价预判、跟投建议输出
 
-## Overview
+---
 
+## When to Use This Skill
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/celebrity-hot-money-tag
-```
+Use this skill when the user:
+
+- Asks about specific trader seats (席位) from龙虎榜 data
+- Wants to know a trader's win rate (胜率) or investment recommendation
+- Needs to understand a trader's trading style (操作风格)
+- Wants to analyze which traders are buying/selling a particular stock
+- Asks for follow-investment advice (跟投建议) based on trader presence
+- Needs to identify who is behind a specific trading seat
+- Wants to understand trader preferences and holding periods
+
+---
+
+## 游资席位列表
+
+### 赵老哥
+
+- **真实姓名**: 赵强
+- **跟投建议**: 🔴 推荐跟投
+- **席位**: 银河证券绍兴、银河证券北京阜成路
+- **资金规模**: 50-60亿
+- **年上榜次数**: 180-220次
+- **次日胜率**: 65%-75%
+- **胜率说明**: 龙头主升期75%-85%；高位/退潮期50%-60%
+- **持股周期**: 1-5天
+- **操作风格**: 只做连板龙头，信奉二板定龙头，不做首板混沌期；主升浪重仓锁仓，分歧加仓；首阴/破位果断止损；题材切换极快，唯新是趋，不恋旧热点
+- **偏好**: 军工、科技、AI算力、大题材总龙头
+
+---
+
+### 章盟主
+
+- **真实姓名**: 章建平
+- **跟投建议**: 🔴 推荐跟投
+- **席位**: 国泰君安上海江苏路、国泰君安宁波彩虹北路
+- **资金规模**: 百亿级
+- **年上榜次数**: 120-150次
+- **次日胜率**: 70%-85%
+- **胜率说明**: 趋势股75%-90%；连板股65%-80%
+- **持股周期**: 3-10天
+- **操作风格**: 趋势+龙头双修，重基本面+情绪，极少核按钮；大票主升浪重仓，分批低吸，持股周期偏长；单票仓位≤5%，严格止损
+- **偏好**: 赛道趋势股、权重龙头、机构+游资合力标的
+
+---
+
+### 方新侠
+
+- **真实姓名**: （未公开）
+- **跟投建议**: 🔴 推荐跟投
+- **席位**: 兴业证券陕西分公司、中信证券西安朱雀大街
+- **资金规模**: 30-35亿
+- **年上榜次数**: 120次
+- **次日胜率**: 75%-90%
+- **胜率说明**: 趋势股80%-95%；连板股50%-60%
+- **持股周期**: 5-20天
+- **操作风格**: 专注核心赛道趋势股，不做超短套利；大资金运作，分批建仓，持股周期中长线；看重行业逻辑，不追纯情绪妖股
+- **偏好**: AI、半导体、新能源、大市值赛道龙头
+
+---
+
+### 孙哥
+
+- **真实姓名**: 孙煜
+- **跟投建议**: 🔴 推荐跟投
+- **席位**: 中信证券上海溧阳路、中信证券上海淮海中路
+- **资金规模**: 40-50亿
+- **年上榜次数**: 160-200次
+- **次日胜率**: 60%-75%
+- **胜率说明**: 连板股65%-80%；首板55%-65%
+- **持股周期**: 1-3天
+- **操作风格**: 情绪流大师，点火+接力龙头，快进快出；热点嗅觉极强，高位敢接盘，退潮期果断砸盘
+- **偏好**: 连板妖股、情绪主升、次新+题材
+
+---
+
+### 作手新一
+
+- **真实姓名**: （未公开）
+- **跟投建议**: 🔴 推荐跟投
+- **席位**: 国泰君安南京太平南路
+- **资金规模**: 30-40亿
+- **年上榜次数**: 150-180次
+- **次日胜率**: 68%-80%
+- **胜率说明**: 龙头接力70%-85%；首板50%-60%
+- **持股周期**: 1-3天
+- **操作风格**: 专注龙头接力，敢于高位接盘，锁仓意愿较强；只做市场辨识度最高的龙头，不做杂毛
+- **偏好**: 市场总龙头、连板加速、分歧转一致
+
+---
+
+### 炒股养家
+
+- **真实姓名**: （未公开）
+- **跟投建议**: 🔴 推荐跟投
+- **席位**: 华鑫证券上海宛平南路、华鑫证券上海茅台路、华鑫证券南昌分公司
+- **资金规模**: 30-40亿
+- **年上榜次数**: 140-170次
+- **次日胜率**: 65%-80%
+- **胜率说明**: 情绪上升期75%-90%；退潮期40%-50%
+- **持股周期**: 1-3天
+- **操作风格**: 情绪周期预判大师，买在分歧、卖在一致；通道优势抢一字板，隔日分批离场；仓位控制严格，注重风险对冲
+- **偏好**: 低位题材首板、情绪拐点、板块爆发初期
+
+---
+
+### 陈小群
+
+- **真实姓名**: （未公开）
+- **跟投建议**: 🔴 推荐跟投
+- **席位**: 银河证券大连黄河路、银河证券沈阳北关大街
+- **资金规模**: 10-15亿
+- **年上榜次数**: 200-250次
+- **次日胜率**: 61%-70%
+- **胜率说明**: 统计约61.24%
+- **持股周期**: 1-7天
+- **操作风格**: 只做核心龙头，分歧买入、一致滚动，高频做T；波段为主，跌停敢锁仓引导情绪
+- **偏好**: 泛科技、商业航天、军工、情绪龙头
+
+---
+
+### 小鳄鱼
+
+- **真实姓名**: （未公开）
+- **跟投建议**: 🔴 推荐跟投
+- **席位**: 中信证券南京太平南路、华泰证券南京中华路
+- **资金规模**: 20-30亿
+- **年上榜次数**: 130-160次
+- **次日胜率**: 60%-75%
+- **胜率说明**: 趋势股65%-80%；连板股60%-75

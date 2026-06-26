@@ -1,35 +1,165 @@
 ---
-name: "长图转小红书图片切割工具"
-description: "长图转小红书图片切割工具 - 将任意长图按小红书 3:4 比例自动切割，支持移动端协作。使用场景：用户需要将长图（如文档截图、设计稿等）切割成小红书友好的图片格式。"
-category: "creative"
-source: "ClawHub"
-tags: [cropper, image, social-media, xiaohongshu]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/changtu-xiaohongshu-cropper"
-sourceUrl: "https://clawhub.ai/skills/changtu-xiaohongshu-cropper"
+name: changtu-xiaohongshu-cropper
+description: 长图转小红书图片切割工具 - 将任意长图按小红书 3:4 比例自动切割，支持移动端协作。使用场景：用户需要将长图（如文档截图、设计稿等）切割成小红书友好的图片格式。
 ---
 
 # 长图转小红书图片切割工具
 
-> 长图转小红书图片切割工具 - 将任意长图按小红书 3:4 比例自动切割，支持移动端协作。使用场景：用户需要将长图（如文档截图、设计稿等）切割成小红书友好的图片格式。
+## 🎯 使用场景
 
-- **Category:** Creative
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/changtu-xiaohongshu-cropper`
-- **Source URL:** [https://clawhub.ai/skills/changtu-xiaohongshu-cropper](https://clawhub.ai/skills/changtu-xiaohongshu-cropper)
+当用户需要将长图切割成小红书友好的图片时使用：
 
-## Overview
+1. **移动端场景**：用户在手机 App 上，需要快速切割并发布
+2. **批量处理**：多张图片需要统一尺寸和比例
+3. **自动化需求**：需要自动填充空白、统一格式
 
+## 📋 核心功能
 
-## Installation
-To install this skill, run the following command in your terminal:
+- ✅ 按小红书 3:4 比例切割（1080×1440px）
+- ✅ 自动去除底部多余内容（可配置高度）
+- ✅ 支持自定义起始位置
+- ✅ 自动填充最后一张图片的空白
+- ✅ 移动端协作流程（手机发图 → AI 切割 → 返回结果）
+
+## 🚀 快速开始
+
+### 方式 1：命令行工具（推荐）
+
 ```bash
-hermes skills install clawhub/changtu-xiaohongshu-cropper
+# 基础用法（从顶部开始切割）
+python cropper.py 长图.png
+
+# 指定起始位置（如从 400px 开始）
+python cropper.py 长图.png --start-y 400
+
+# 完整参数
+python cropper.py 长图.png \
+  --start-y 0 \
+  --logo-height 160 \
+  --width 1080 \
+  --height 1440 \
+  --output ./output/
 ```
+
+### 方式 2：GUI 工具（可视化）
+
+```bash
+# 启动 GUI
+python cropper_gui.py
+
+# 操作步骤：
+# 1. 点击"选择图片"
+# 2. 滚动查看长图
+# 3. 点击选择起始位置（红线出现）
+# 4. 点击"开始切割"
+# 5. 自动打开输出目录
+```
+
+## 📱 移动端协作流程
+
+**当用户在手机 App 上时：**
+
+1. **用户操作：**
+   - 打开长图
+   - 发送原图或截图给 AI
+   - 告知起始位置（如"从顶部开始"或"0px"）
+
+2. **AI 操作：**
+   - 接收图片
+   - 使用切割工具处理
+   - 按 3:4 比例切割
+   - 逐张发送回用户
+
+3. **输出结果：**
+   - 小红书友好的 1080×1440px 图片
+   - 已去除底部多余内容
+   - 可直接发布
+
+## ⚙️ 参数说明
+
+| 参数 | 说明 | 默认值 |
+|------|------|--------|
+| `input` | 输入图片路径（必需） | - |
+| `--start-y` | 起始 Y 坐标 | `0` |
+| `--logo-height` | 底部切除高度 | `160` |
+| `--width` | 目标宽度 | `1080` |
+| `--height` | 目标高度 | `1440` |
+| `--format` | 输出格式（png/jpg） | `png` |
+| `--output` | 输出目录 | `./output/` |
+
+## 🛠️ 技术规格
+
+### 输入要求
+- 格式：PNG、JPG、JPEG、WEBP
+- 来源：任意长图（文档截图、设计稿等）
+
+### 输出规格
+- 尺寸：1080×1440px（3:4 比例）
+- 格式：PNG（默认）或 JPG
+- 质量：95%
+
+### 依赖安装
+```bash
+pip install Pillow
+```
+
+## 📁 文件结构
+
+```
+changtu-xiaohongshu-cropper/
+├── SKILL.md              # 技能说明文档
+├── scripts/
+│   ├── cropper.py        # 命令行工具
+│   └── cropper_gui.py    # GUI 工具
+└── references/
+    └── README.md         # 完整文档
+```
+
+## 💡 使用技巧
+
+### 技巧 1：确定起始位置
+- 如果从最顶部开始：`--start-y 0`
+- 如果跳过标题栏：`--start-y 300`（根据实际调整）
+- 使用 GUI 工具可视化选择（推荐）
+
+### 技巧 2：底部内容去除
+- 默认切除高度：160px
+- 如果去除不干净：增加数值（如 180）
+- 如果损失内容：减少数值（如 120）
+
+### 技巧 3：批量处理
+```bash
+# PowerShell 批量处理
+Get-ChildItem *.png | ForEach-Object {
+    python cropper.py $_.Name --start-y 0 --logo-height 160
+}
+```
+
+## ⚠️ 常见问题
+
+### Q1: 切割位置不准确？
+**A:** 使用 GUI 工具，可以可视化选择起始位置
+
+### Q2: 底部内容去除不干净？
+**A:** 调整 `--logo-height` 参数，增加或减少数值
+
+### Q3: 图片比例不对？
+**A:** 确认参数是 `--width 1080 --height 1440`（3:4 比例）
+
+### Q4: 移动端如何使用？
+**A:** 发送图片给 AI，告知起始位置，AI 代为切割
+
+## 🔄 更新日志
+
+### v1.0.0（2026-03-20）
+- ✅ 初始版本发布
+- ✅ 命令行工具
+- ✅ GUI 工具
+- ✅ 移动端协作流程
+- ✅ 小红书 3:4 比例支持
+- ✅ 自动切除底部内容
+
+## 📞 反馈与支持
+
+- 快速启动：`python cropper_gui.py`
+- 问题反馈：联系作者

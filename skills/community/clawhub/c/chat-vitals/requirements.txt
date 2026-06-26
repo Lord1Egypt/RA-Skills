@@ -1,0 +1,8 @@
+# No external dependencies required
+# Uses only Python standard library:
+# - json, os, sys, uuid, datetime, pathlib
+# - subprocess (for CLI usage)
+
+# Optional for enhanced features:
+# numpy>=1.20.0  # For statistical analysis
+# requests>=2.25.0  # For webhook integrations

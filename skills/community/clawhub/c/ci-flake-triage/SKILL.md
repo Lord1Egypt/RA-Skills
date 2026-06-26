@@ -1,35 +1,58 @@
 ---
-name: "CI Flake Triage"
-description: "Detect flaky tests from JUnit XML retries and emit a triage report with top unstable cases."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ci-flake-triage"
-sourceUrl: "https://clawhub.ai/skills/ci-flake-triage"
+name: ci-flake-triage
+description: Detect flaky tests from JUnit XML retries and emit a triage report with top unstable cases.
+version: 1.0.0
+metadata: {"openclaw":{"requires":{"bins":["bash","python3"]}}}
 ---
 
 # CI Flake Triage
 
-> Detect flaky tests from JUnit XML retries and emit a triage report with top unstable cases.
+Use this skill to turn noisy JUnit retry artifacts into a focused flaky-test report.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ci-flake-triage`
-- **Source URL:** [https://clawhub.ai/skills/ci-flake-triage](https://clawhub.ai/skills/ci-flake-triage)
+## What this skill does
+- Reads one or more JUnit XML files (for example: first run + rerun artifacts)
+- Aggregates status per test case (`passed`, `failed`, `skipped`, `error`)
+- Flags flaky candidates when a test has both fail-like and pass outcomes
+- Separates persistent failures from flaky failures
+- Prints top flaky tests to prioritize stabilization work
 
-## Overview
+## Inputs
+Optional:
+- `JUNIT_GLOB` (default: `test-results/**/*.xml`)
+- `TRIAGE_TOP` (default: `20`)
+- `OUTPUT_FORMAT` (`text` or `json`, default: `text`)
+- `FAIL_ON_PERSISTENT` (`0` or `1`, default: `0`) — exit non-zero when persistent failures exist
+- `FAIL_ON_FLAKE` (`0` or `1`, default: `0`) — exit non-zero when flaky candidates exist
 
+## Run
 
-## Installation
-To install this skill, run the following command in your terminal:
+Text report:
+
 ```bash
-hermes skills install clawhub/ci-flake-triage
+JUNIT_GLOB='artifacts/junit/**/*.xml' \
+TRIAGE_TOP=15 \
+bash skills/ci-flake-triage/scripts/triage-flakes.sh
 ```
+
+JSON output for CI ingestion:
+
+```bash
+JUNIT_GLOB='artifacts/junit/**/*.xml' \
+OUTPUT_FORMAT=json \
+FAIL_ON_PERSISTENT=1 \
+bash skills/ci-flake-triage/scripts/triage-flakes.sh
+```
+
+Run with bundled fixtures:
+
+```bash
+JUNIT_GLOB='skills/ci-flake-triage/fixtures/*.xml' \
+bash skills/ci-flake-triage/scripts/triage-flakes.sh
+```
+
+## Output contract
+- Exit `0` when no fail gates are enabled (default)
+- Exit `1` if `FAIL_ON_PERSISTENT=1` and persistent failures are found
+- Exit `1` if `FAIL_ON_FLAKE=1` and flaky candidates are found
+- In `text` mode, prints summary + top flaky + persistent failures
+- In `json` mode, prints machine-readable summary and testcase details

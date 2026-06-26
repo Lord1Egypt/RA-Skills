@@ -1,35 +1,118 @@
 ---
-name: "中文学术论文写作助手"
-description: "中文学术论文写作全流程助手，覆盖选题构思、大纲规划、开题报告、文献综述、分章写作、引用管理、语言润色到投稿自检。特别适用于中文研究、历史学、哲学、文学等人文学科论文写作。内建《中国文哲研究集刊》等学术引用规范，支持脚注与参考文献自动格式化。绝不编造文献信息，只处理用户提供的真实资料。Use when the us..."
-category: "research"
-source: "ClawHub"
-tags: [academic-writing, chinese-humanities, dissertation, literature-review, paper-writing, proposal, thesis]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/chinese-academic-writing"
-sourceUrl: "https://clawhub.ai/skills/chinese-academic-writing"
+name: chinese-academic-writing
+description: "中文学术论文写作全流程助手，覆盖选题构思、大纲规划、开题报告、文献综述、分章写作、引用管理、语言润色到投稿自检。特别适用于中文研究、历史学、哲学、文学等人文学科论文写作。内建《中国文哲研究集刊》等学术引用规范，支持脚注与参考文献自动格式化。绝不编造文献信息，只处理用户提供的真实资料。Use when the user is writing academic papers, theses, dissertations, journal articles, or research proposals in Chinese humanities, mentions 论文/学术写作/开题报告/文献综述/毕业论文/期刊投稿, or needs help with any stage of Chinese academic writing."
 ---
 
 # 中文学术论文写作助手
 
-> 中文学术论文写作全流程助手，覆盖选题构思、大纲规划、开题报告、文献综述、分章写作、引用管理、语言润色到投稿自检。特别适用于中文研究、历史学、哲学、文学等人文学科论文写作。内建《中国文哲研究集刊》等学术引用规范，支持脚注与参考文献自动格式化。绝不编造文献信息，只处理用户提供的真实资料。Use when the us...
+## 触发条件
 
-- **Category:** Research
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/chinese-academic-writing`
-- **Source URL:** [https://clawhub.ai/skills/chinese-academic-writing](https://clawhub.ai/skills/chinese-academic-writing)
+当用户提及以下任何内容时激活：
+- 论文写作、学术论文、毕业论文、学位论文
+- 开题报告、研究计划、研究提案
+- 文献综述、文献回顾
+- 期刊投稿、投稿准备
+- 论文大纲、章节规划
+- 学术写作、中文学术写作
+- 引用格式、脚注、参考文献
 
-## Overview
+## 写作流程
 
+### 1. 需求确认
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/chinese-academic-writing
-```
+首先明确用户当前所处的写作阶段：
+- **选题阶段**：有初步想法但不确定方向
+- **大纲阶段**：需要规划论文结构
+- **开题阶段**：撰写开题报告/研究计划
+- **写作阶段**：正在写正文（某一章/节）
+- **修改阶段**：已有初稿，需要润色和检查
+- **投稿阶段**：准备投稿，需要格式调整
+
+询问关键信息：
+- 学科领域（中文/历史/哲学/文学/其他）
+- 学位层次（本科/硕士/博士）
+- 论文类型（学位论文/期刊论文/会议论文）
+- 目标期刊或学校（如有特定格式要求）
+
+### 2. 加载对应规范
+
+根据用户学科和需求，加载 `references/` 中的对应文档：
+- `citation-guide.md` — 引用格式规范（默认加载《中國文哲研究集刊》规范）
+- `paper-structure.md` — 论文章节结构指南
+- `proposal-template.md` — 开题报告模板
+- `literature-review-guide.md` — 文献综述写作指南
+
+### 3. 执行写作任务
+
+#### 选题与大纲
+- 基于用户提供的选题方向，生成 2-3 个可行题目
+- 输出详细大纲（章-节-小节三级）
+- 标注每部分建议字数和核心论点
+- 提示可能的论证难点
+
+#### 开题报告
+- 按模板输出：研究背景、文献回顾、研究问题、研究方法、章节安排、预期贡献
+- 严格控制各部分内容比例
+- 学术语言风格，避免口语化
+
+#### 文献综述
+- 用户提供文献资料后，帮助梳理论争脉络
+- 识别研究空白（research gap）
+- 按主题/时间/学派组织综述结构
+- **绝不编造文献内容**，只基于用户提供的材料归纳
+
+#### 正文写作
+- 逐章/逐节辅助，每次聚焦一个论证单元
+- 帮助构建论点-论据-论证逻辑
+- 提供学术表达替换方案（把口语化改为学术化）
+- 提示需要补充文献或数据的地方
+
+#### 引用与格式（调用 cwphil-citation-style）
+- 当用户需要格式化引用或检查脚注/参考文献时，调用配套 skill `cwphil-citation-style`
+- 提取用户提供的文献信息，按《中國文哲研究集刊》规范生成脚注和参考文献
+- 自动处理「同上」「同註」缩写
+- 检查已有引用的格式合规性
+- **绝不编造书目信息**，缺失字段标记为 `【待補】`
+
+#### 润色与自检清单
+- **语言层面**：消除口语化、冗余、模糊表达
+- **逻辑层面**：检查论证链条完整性
+- **格式层面**：核对标题层级、标点、段落格式
+- **引用层面**：调用 `cwphil-citation-style` 检查脚注和参考文献格式合规性
+- **学术诚信**：确认所有引用都有出处，无抄袭风险
+- 提供修改对照版本
+
+### 4. 输出规范
+
+- 使用规范的学术中文，避免网络用语和口语化表达
+- 重要术语首次出现时标注外文原文（如适用）
+- 段落清晰，每段有明确的主题句
+- 输出可复制粘贴的纯文本格式，方便用户导入 Word
+
+## 核心原则
+
+**不编造原则**：
+- 不虚构文献、不编造作者、不捏造页码
+- 不编造研究数据、不捏造访谈内容
+- 不虚构学术观点归属
+- 所有基于用户提供的材料进行整理，缺失信息明确标记 `【待補：...】`
+
+**学术诚信原则**：
+- 提示用户正确引用，避免抄袭风险
+- 帮助改写和 paraphrase，而非直接复制
+- 强调引用边界：直接引用 vs 间接引用 vs 观点概述
+
+## References
+
+- `references/citation-guide.md` — 学术引用格式规范（《中國文哲研究集刊》标准）
+- `references/paper-structure.md` — 论文章节结构与写作要点
+- `references/proposal-template.md` — 开题报告/研究计划模板
+- `references/literature-review-guide.md` — 文献综述组织方法
+
+## 配套 Skill
+
+本 skill 与 `cwphil-citation-style` 深度集成：
+- 所有引用格式化和检查任务自动调用 `cwphil-citation-style`
+- 自检清单中的「引用层面」检查由 `cwphil-citation-style` 执行
+- 用户安装本 skill 时，建议同时安装 `cwphil-citation-style`
+- 如果 `cwphil-citation-style` 未安装，本 skill 仍可使用 `references/citation-guide.md` 中的规范进行基础引用处理

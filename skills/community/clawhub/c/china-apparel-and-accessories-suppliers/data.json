@@ -1,0 +1,442 @@
+{
+  "metadata": {
+    "last_updated": "2026-03-15",
+    "source": "Ministry of Industry and Information Technology, China National Textile and Apparel Council (CNTAC), China Leather Industry Association, National Bureau of Statistics",
+    "industry_scale_2026_target": "¥5.8 trillion revenue",
+    "growth_rate_target": "4.2% average annual growth (2024-2026)"
+  },
+  "industry_overview": {
+    "title": "China Apparel & Accessories Industry Overview (2026)",
+    "summary": "China remains the world's largest producer and exporter of apparel and accessories, encompassing garments, footwear, bags, hats, scarves, jewelry, and fashion accessories. In 2026, the industry is projected to exceed ¥5.8 trillion in revenue, driven by domestic consumption upgrades, cross-border e-commerce growth, sustainable fashion trends, and the integration of smart manufacturing. The industry is undergoing a transformation from mass production to flexible, on-demand manufacturing and brand building.",
+    "key_policy_initiatives": [
+      {
+        "name": "Guidelines for High-Quality Development of Textile and Apparel Industry (2024-2026)",
+        "issuing_authorities": ["MIIT", "NDRC", "Ministry of Commerce"],
+        "key_measures": [
+          "Promote digital and intelligent transformation in garment factories",
+          "Support the development of domestic fashion brands",
+          "Encourage green manufacturing and sustainable materials (recycled fibers, organic cotton)",
+          "Establish 20 national-level textile and apparel innovation centers",
+          "Facilitate cross-border e-commerce for apparel exports"
+        ]
+      },
+      {
+        "name": "Action Plan for Leather and Footwear Industry Upgrading",
+        "issuing_authorities": ["MIIT", "China Leather Industry Association"],
+        "key_measures": [
+          "Promote eco-friendly leather processing technologies",
+          "Support automation in footwear manufacturing",
+          "Enhance quality and safety standards for leather goods"
+        ]
+      }
+    ],
+    "current_status_2025": {
+      "total_output_value": "¥5.55 trillion",
+      "share_of_light_industry_value_added": "28.5%",
+      "key_drivers": ["athleisure wear", "outdoor apparel", "fast fashion", "sustainable clothing", "luxury accessories"],
+      "automation_rate": "42% (cutting and sewing lines in large enterprises)",
+      "export_value": "$350 billion",
+      "recycled_material_usage": "15% of total fiber consumption"
+    }
+  },
+  "supply_chain_structure": {
+    "title": "Apparel & Accessories Supply Chain Structure",
+    "upstream": {
+      "description": "Raw materials, fibers, fabrics, trims, and design",
+      "categories": [
+        {
+          "name": "Natural Fibers",
+          "items": ["cotton", "wool", "silk", "linen", "hemp"],
+          "key_suppliers": ["China National Cotton Group", "Xinjiang Cotton", "Zhejiang Silk"]
+        },
+        {
+          "name": "Synthetic Fibers",
+          "items": ["polyester", "nylon", "acrylic", "spandex", "viscose"],
+          "key_suppliers": ["Sinopec Yizheng", "Tongkun Group", "Xinjiang Zhongtai", "Zhejiang Hengyi"]
+        },
+        {
+          "name": "Fabrics & Textiles",
+          "items": ["woven fabrics", "knitted fabrics", "denim", "technical textiles", "lace", "embroidery"],
+          "key_suppliers": ["Luthai Textile", "Weiqiao Textile", "Huafu Fashion", "Bros Eastern"]
+        },
+        {
+          "name": "Trims & Accessories",
+          "items": ["buttons", "zippers", "threads", "labels", "elastic bands", "lace", "embroidery"],
+          "key_suppliers": ["YKK China", "SBS Zipper", "Weixing (SBS)", "Sanli Button"]
+        },
+        {
+          "name": "Leather & Materials",
+          "items": ["cowhide", "sheepskin", "PU leather", "vegan leather"],
+          "key_suppliers": ["Xingye Leather", "Anfu Leather", "Haining China Leather City"]
+        }
+      ]
+    },
+    "midstream": {
+      "description": "Apparel and accessory manufacturing",
+      "subsectors": [
+        "garments (men's, women's, children's wear)",
+        "knitwear and sweaters",
+        "jeans and casual wear",
+        "sportswear and athleisure",
+        "formal wear and uniforms",
+        "intimate apparel and lingerie",
+        "footwear (sports shoes, leather shoes, casual shoes)",
+        "bags and luggage",
+        "hats, scarves, gloves",
+        "fashion jewelry and accessories"
+      ],
+      "key_companies_by_subsector": {
+        "garments": ["Youngor", "Semir", "Heilan Home", "Peacebird", "Septwolves"],
+        "sportswear": ["Anta", "Li-Ning", "Xtep", "361°", "Peak"],
+        "footwear": ["Aokang", "Red Dragonfly", "Daphne", "Belle", "Warrior"],
+        "bags_luggage": ["Jinhou", "Osprey China", "Samsonite China", "Delsey China"],
+        "knitwear": ["Hengli Group", "Shenzhou International", "Crystal Group"],
+        "accessories": ["Neway (hats)", "Yiwu Fashion Accessories Cluster"]
+      }
+    },
+    "downstream": {
+      "description": "Sales channels and end users",
+      "applications": [
+        "domestic retail (department stores, brand stores, online platforms)",
+        "e-commerce (Tmall, JD.com, Douyin, Pinduoduo)",
+        "cross-border e-commerce (Amazon, AliExpress, Shein, Temu)",
+        "wholesale markets (Guangzhou, Yiwu, Hangzhou)",
+        "export to global markets (EU, US, Japan, Southeast Asia)",
+        "B2B sourcing for international brands"
+      ]
+    }
+  },
+  "regional_clusters": [
+    {
+      "region": "Pearl River Delta",
+      "provinces_cities": ["Guangdong", "Guangzhou", "Foshan", "Dongguan", "Huizhou", "Shenzhen"],
+      "share_of_industry": "32% of national output",
+      "specializations": [
+        "women's wear",
+        "jeans",
+        "footwear",
+        "bags",
+        "fashion accessories",
+        "fast fashion"
+      ],
+      "key_hubs": [
+        {
+          "city": "Guangzhou",
+          "specialization": "Women's fashion, wholesale markets, fabric markets",
+          "supplier_example": "Guangzhou Baiyun World Leather & Footwear Wholesale Center – thousands of suppliers for shoes, bags, accessories"
+        },
+        {
+          "city": "Foshan (Shunde)",
+          "specialization": "Jeans manufacturing, casual wear",
+          "supplier_example": "Foshan Shunde Jeans Industry Cluster – home to many denim manufacturers"
+        },
+        {
+          "city": "Dongguan (Humenzhen)",
+          "specialization": "Women's fashion, brand OEM/ODM",
+          "supplier_example": "Dongguan Yikemei Garment Co., Ltd. – specializes in fast fashion womenswear"
+        },
+        {
+          "city": "Huizhou",
+          "specialization": "Footwear (leather shoes)",
+          "supplier_example": "Huizhou Aokang Shoes Co., Ltd. – one of China's largest footwear manufacturers"
+        }
+      ],
+      "strengths": [
+        "Largest wholesale markets",
+        "Fast production turnaround",
+        "Strong design and trend adoption",
+        "Proximity to Hong Kong for logistics"
+      ]
+    },
+    {
+      "region": "Yangtze River Delta",
+      "provinces_cities": ["Zhejiang", "Jiangsu", "Shanghai"],
+      "share_of_industry": "30% of national output",
+      "specializations": [
+        "men's wear",
+        "silk garments",
+        "knitwear",
+        "sportswear",
+        "accessories",
+        "high-end fashion"
+      ],
+      "key_hubs": [
+        {
+          "city": "Ningbo (Zhejiang)",
+          "specialization": "Men's suits, formal wear, shirt manufacturing",
+          "supplier_example": "Youngor Group – leading men's apparel manufacturer, produces for global brands"
+        },
+        {
+          "city": "Hangzhou (Zhejiang)",
+          "specialization": "Women's fashion, silk, e-commerce base",
+          "supplier_example": "JNBY (江南布衣) – designer brand with own factories; also many e-commerce sellers"
+        },
+        {
+          "city": "Suzhou (Jiangsu)",
+          "specialization": "Silk garments, embroidery",
+          "supplier_example": "Suzhou Embroidery Research Institute – high-end embroidered products"
+        },
+        {
+          "city": "Wenzhou (Zhejiang)",
+          "specialization": "Footwear (leather shoes), bags",
+          "supplier_example": "Aokang Shoes, Red Dragonfly – major footwear brands"
+        },
+        {
+          "city": "Yiwu (Zhejiang)",
+          "specialization": "Fashion accessories, small goods, jewelry",
+          "supplier_example": "Yiwu International Trade Market – world's largest wholesale market for accessories"
+        }
+      ],
+      "strengths": [
+        "Strong brand development",
+        "High-quality manufacturing",
+        "Access to Shanghai port",
+        "Skilled labor in silk and embroidery"
+      ]
+    },
+    {
+      "region": "Bohai Rim (Beijing-Tianjin-Hebei, Shandong)",
+      "provinces_cities": ["Beijing", "Tianjin", "Hebei", "Shandong"],
+      "share_of_industry": "15% of national output",
+      "specializations": [
+        "athleisure and sportswear",
+        "knitwear",
+        "jeans",
+        "leather goods",
+        "workwear"
+      ],
+      "key_hubs": [
+        {
+          "city": "Qingdao (Shandong)",
+          "specialization": "Sportswear, knitwear",
+          "supplier_example": "Anta, Li-Ning have factories in region; also many OEMs"
+        },
+        {
+          "city": "Weihai (Shandong)",
+          "specialization": "Outdoor apparel, technical textiles",
+          "supplier_example": "Weihai Guangwei Composites – outdoor gear"
+        }
+      ],
+      "strengths": [
+        "Proximity to Beijing design talent",
+        "Good infrastructure",
+        "Growing outdoor and sportswear cluster"
+      ]
+    },
+    {
+      "region": "Fujian Province",
+      "provinces_cities": ["Fuzhou", "Jinjiang", "Xiamen", "Putian"],
+      "share_of_industry": "12% of national output",
+      "specializations": [
+        "sportswear and footwear",
+        "casual wear",
+        "bags",
+        "hats"
+      ],
+      "key_hubs": [
+        {
+          "city": "Jinjiang",
+          "specialization": "Sports shoes, sportswear",
+          "supplier_example": "Anta, Xtep, 361° headquarters; huge OEM cluster"
+        },
+        {
+          "city": "Putian",
+          "specialization": "Footwear (sports shoes, sneakers)",
+          "supplier_example": "Putian Shoes Industry Cluster – known for both genuine and replica, but many legitimate OEMs"
+        }
+      ],
+      "strengths": [
+        "Strong sports brand presence",
+        "Mature footwear supply chain",
+        "Entrepreneurial culture"
+      ]
+    },
+    {
+      "region": "Central China (Henan, Hubei, Jiangxi)",
+      "provinces_cities": ["Zhengzhou", "Wuhan", "Nanchang"],
+      "share_of_industry": "8% of national output",
+      "specializations": [
+        "casual wear",
+        "knitwear",
+        "jeans",
+        "garment manufacturing (relocated from coastal areas)"
+      ],
+      "key_hubs": [
+        {
+          "city": "Yudu (Jiangxi)",
+          "specialization": "Jeans manufacturing",
+          "supplier_example": "Yudu Jeans Industrial Park – many relocated denim factories"
+        }
+      ],
+      "strengths": [
+        "Lower labor costs",
+        "Government relocation incentives",
+        "Growing industrial parks"
+      ]
+    }
+  ],
+  "subsector_details": {
+    "garments": {
+      "description": "Men's, women's, and children's clothing including casual, formal, and sportswear. China produces over 30 billion garments annually.",
+      "key_clusters": ["Pearl River Delta", "Yangtze River Delta", "Fujian"],
+      "growth_drivers": [
+        "Domestic consumption upgrading",
+        "Athleisure trend",
+        "Fast fashion (Shein, etc.)",
+        "Sustainable fashion"
+      ],
+      "market_trends": "Smart manufacturing (automated cutting, sewing robots); on-demand production; digital printing.",
+      "domestic_brand_share": "55% of domestic market"
+    },
+    "footwear": {
+      "description": "Sports shoes, leather shoes, casual shoes, sandals, slippers. China produces over 15 billion pairs annually.",
+      "key_clusters": ["Fujian (Jinjiang, Putian)", "Pearl River Delta (Huizhou)", "Yangtze River Delta (Wenzhou)"],
+      "growth_drivers": [
+        "Athleisure and sneaker culture",
+        "E-commerce growth",
+        "Outdoor footwear",
+        "Eco-friendly materials"
+      ],
+      "market_trends": "3D printing for soles; sustainable materials (recycled plastics, bio-based); smart shoes.",
+      "key_players": ["Anta", "Li-Ning", "Aokang", "Red Dragonfly", "Belle"]
+    },
+    "bags_luggage": {
+      "description": "Handbags, backpacks, travel luggage, laptop bags, and fashion bags.",
+      "key_clusters": ["Pearl River Delta (Guangzhou, Dongguan)", "Zhejiang (Yiwu, Wenzhou)"],
+      "growth_drivers": [
+        "Travel rebound post-pandemic",
+        "Fashion accessories trend",
+        "E-commerce and cross-border sales"
+      ],
+      "market_trends": "Lightweight materials; smart luggage with charging; vegan leather.",
+      "key_players": ["Jinhou", "Samsonite China", "Delsey China", "Osprey China"]
+    },
+    "accessories": {
+      "description": "Hats, scarves, gloves, belts, ties, fashion jewelry, hair accessories, and small leather goods.",
+      "key_clusters": ["Yiwu (Zhejiang)", "Pearl River Delta", "Qingdao (hats)"],
+      "growth_drivers": [
+        "Fast fashion accessories",
+        "Seasonal demand",
+        "Personalization"
+      ],
+      "market_trends": "Sustainable accessories; matching sets; influencer-driven styles.",
+      "key_players": ["Yiwu market vendors", "Qingdao Neway (hats)"]
+    },
+    "intimate_apparel": {
+      "description": "Lingerie, shapewear, underwear, sleepwear, and loungewear.",
+      "key_clusters": ["Pearl River Delta (Guangdong)", "Zhejiang"],
+      "growth_drivers": [
+        "Comfort trend (post-pandemic)",
+        "Body positivity",
+        "Functional fabrics"
+      ],
+      "market_trends": "Seamless knitting; sustainable fabrics; inclusive sizing.",
+      "key_players": ["Aimer", "Maniform", "Ordifen", "Cosmo Lady"]
+    }
+  },
+  "sourcing_guide": {
+    "supplier_evaluation_metrics": [
+      {
+        "metric": "Quality certification",
+        "target": "ISO 9001, OEKO-TEX Standard 100, GOTS (organic), BSCI (social compliance), WRAP"
+      },
+      {
+        "metric": "Production capability",
+        "target": "Number of production lines, monthly output, machinery (e.g., automated cutting, digital printing)"
+      },
+      {
+        "metric": "Compliance",
+        "target": "Social compliance audits (SMETA, BSCI), environmental permits, child labor free"
+      },
+      {
+        "metric": "R&D / Design",
+        "target": "In-house design team, ability to develop samples from sketches"
+      },
+      {
+        "metric": "Sustainability",
+        "target": "Use of recycled materials, water treatment, energy efficiency"
+      }
+    ],
+    "verification_methods": [
+      "Request certifications and audit reports",
+      "Conduct factory audit (working conditions, production quality)",
+      "Order samples for quality, fit, and material testing",
+      "Check references from other buyers",
+      "Use third-party inspection services (SGS, Bureau Veritas) for pre-shipment inspection"
+    ],
+    "communication_best_practices": [
+      "Provide detailed tech packs (flat sketches, measurements, materials, trim details)",
+      "Discuss sample development timeline and cost",
+      "Clarify labeling, packaging, and hanging requirements",
+      "Establish quality standards (AQL levels, acceptable defects)",
+      "Agree on delivery terms (FOB, CIF, EXW)"
+    ],
+    "payment_terms": "Typical: 30% deposit, 70% balance before shipment (or against scanned B/L). For sample development, sample cost and courier charges may be prepaid.",
+    "lead_times": {
+      "sample_development": "7-21 days (depending on complexity)",
+      "bulk_production": "30-60 days after sample approval",
+      "reorder": "20-40 days"
+    }
+  },
+  "faq": [
+    {
+      "question": "What are typical MOQs for apparel in China?",
+      "answer": "MOQ varies: For simple T-shirts, 500-1000 pieces per style/color. For more complex garments (dresses, jackets), 300-600 pieces. For woven shirts, 600-1200 pieces. Some factories accept lower MOQs (100-300) at higher prices. For accessories, MOQ can be 500-2000 pieces depending on item."
+    },
+    {
+      "question": "Do Chinese suppliers provide custom labeling and packaging?",
+      "answer": "Yes, most suppliers offer OEM services. They can sew your brand labels, hang tags, and provide custom poly bags or boxes. Usually there is a small additional cost."
+    },
+    {
+      "question": "How can I ensure ethical production and avoid sweatshops?",
+      "answer": "Work with suppliers that have BSCI, SMETA, WRAP, or SA8000 certifications. Conduct your own audits or use third-party audit services. Be cautious of prices that seem too low."
+    },
+    {
+      "question": "What is the best way to get samples made?",
+      "answer": "Provide a detailed tech pack (sketches, measurements, materials). Some suppliers charge for samples (usually deducted from bulk order). Courier cost is usually paid by buyer. Sample development time is typically 1-3 weeks."
+    },
+    {
+      "question": "Can I source sustainable or organic apparel in China?",
+      "answer": "Yes, many suppliers now offer GOTS-certified organic cotton, recycled polyester, and eco-friendly dyes. Specify your requirements and ask for certificates."
+    }
+  ],
+  "glossary": {
+    "AQL": "Acceptable Quality Level – sampling standard for inspection.",
+    "BSCI": "Business Social Compliance Initiative – social compliance audit.",
+    "CAD": "Computer-Aided Design – used for pattern making.",
+    "CMT": "Cut, Make, Trim – basic garment production service.",
+    "FOB": "Free on Board – seller pays for factory to port shipping.",
+    "GOTS": "Global Organic Textile Standard – organic fiber certification.",
+    "MOQ": "Minimum Order Quantity.",
+    "OEM": "Original Equipment Manufacturer – produces according to buyer's design.",
+    "ODM": "Original Design Manufacturer – offers own designs for buyer branding.",
+    "OEKO-TEX": "Certification for harmful substances in textiles.",
+    "PP sample": "Pre-production sample – approved before mass production.",
+    "Tech pack": "Technical package with all product specifications.",
+    "WRAP": "Worldwide Responsible Accredited Production – social compliance."
+  },
+  "factories": [
+    {"name": "Shenzhen Jinguan Textile", "location": "Shenzhen, Guangdong", "specialization": "High-end fashion garments, OEM for international brands", "capacity": "50,000 pieces/day", "certifications": ["ISO 9001", "BSCI"], "contact": "sales@jinguan-textile.com"},
+    {"name": "Dongguan Humen Garment Factory", "location": "Dongguan, Guangdong", "specialization": "Women's fashion, casual wear", "capacity": "30,000 pieces/day", "certifications": ["ISO 9001"], "contact": "factory@humengarment.com"},
+    {"name": "Ningbo Youngor Manufacturing", "location": "Ningbo, Zhejiang", "specialization": "Men's suits, formal wear", "capacity": "25,000 pieces/day", "certifications": ["ISO 9001", "ISO 14001"], "contact": "manufacturing@youngor.com"},
+    {"name": "Hangzhou Silknets Silk Factory", "location": "Hangzhou, Zhejiang", "specialization": "Silk garments, scarves", "capacity": "8,000 pieces/day", "certifications": ["ISO 9001", "OEKO-TEX"], "contact": "factory@silknets.com"},
+    {"name": "Shanghai Metersbonwe Production", "location": "Shanghai", "specialization": "Casual wear, jeans", "capacity": "40,000 pieces/day", "certifications": ["ISO 9001", "BSCI"], "contact": "production@metersbonwe.com"},
+    {"name": "Guangzhou Baima Garment", "location": "Guangzhou, Guangdong", "specialization": "Wholesale fashion, fast fashion", "capacity": "20,000 pieces/day", "certifications": ["ISO 9001"], "contact": "sales@baima-garment.com"},
+    {"name": "Suzhou Taihu Silk", "location": "Suzhou, Jiangsu", "specialization": "Silk fabrics, silk garments", "capacity": "12,000 pieces/day", "certifications": ["ISO 9001", "OEKO-TEX"], "contact": "factory@taihusilk.com"},
+    {"name": "Xiamen Lianfa Textile", "location": "Xiamen, Fujian", "specialization": "Knitwear, sweaters", "capacity": "35,000 pieces/day", "certifications": ["ISO 9001", "BSCI"], "contact": "manufacturing@lianfa.com"},
+    {"name": "Qingdao Redcollar Clothing", "location": "Qingdao, Shandong", "specialization": "Custom suits, MTM manufacturing", "capacity": "5,000 pieces/day", "certifications": ["ISO 9001", "BSCI"], "contact": "factory@redcollar.com"},
+    {"name": "Shaoxing Keqiao Textile", "location": "Shaoxing, Zhejiang", "specialization": "Fabric production, textile printing", "capacity": "100,000 meters/day", "certifications": ["ISO 9001", "OEKO-TEX"], "contact": "sales@keqiao-textile.com"},
+    {"name": "Shenzhen Ellassay Fashion", "location": "Shenzhen, Guangdong", "specialization": "Women's high-end fashion", "capacity": "8,000 pieces/day", "certifications": ["ISO 9001", "BSCI"], "contact": "production@ellassay.com"},
+    {"name": "Guangzhou Kuegou Clothing", "location": "Guangzhou, Guangdong", "specialization": "Men's casual wear, online retail", "capacity": "15,000 pieces/day", "certifications": ["ISO 9001"], "contact": "factory@kuegou.com"},
+    {"name": "Wenzhou Lucheng Garment", "location": "Wenzhou, Zhejiang", "specialization": "Children's clothing, baby wear", "capacity": "18,000 pieces/day", "certifications": ["ISO 9001", "BSCI"], "contact": "sales@lucheng-garment.com"},
+    {"name": "Quanzhou Septwolves Manufacturing", "location": "Quanzhou, Fujian", "specialization": "Men's jackets, business casual", "capacity": "22,000 pieces/day", "certifications": ["ISO 9001"], "contact": "manufacturing@septwolves.com"},
+    {"name": "Nanjing HLA Production", "location": "Nanjing, Jiangsu", "specialization": "Men's fast fashion, affordable clothing", "capacity": "60,000 pieces/day", "certifications": ["ISO 9001", "ISO 14001"], "contact": "factory@hla.com.cn"},
+    {"name": "Beijing Bosideng Downwear", "location": "Beijing", "specialization": "Down jackets, winter wear", "capacity": "25,000 pieces/day", "certifications": ["ISO 9001", "BSCI"], "contact": "production@bosideng.com"},
+    {"name": "Shenzhen Marisfrolg Factory", "location": "Shenzhen, Guangdong", "specialization": "Premium women's fashion", "capacity": "6,000 pieces/day", "certifications": ["ISO 9001", "BSCI"], "contact": "factory@marisfrolg.com"},
+    {"name": "Hangzhou INMAN Clothing", "location": "Hangzhou, Zhejiang", "specialization": "Cotton linen wear, natural fiber", "capacity": "12,000 pieces/day", "certifications": ["ISO 9001", "GOTS"], "contact": "manufacturing@inman.com"},
+    {"name": "Guangzhou UR Fashion", "location": "Guangzhou, Guangdong", "specialization": "Fast fashion, trendy apparel", "capacity": "35,000 pieces/day", "certifications": ["ISO 9001", "BSCI"], "contact": "factory@ur.com.cn"},
+    {"name": "Suzhou Hengli Textile", "location": "Suzhou, Jiangsu", "specialization": "Synthetic fabrics, polyester", "capacity": "500,000 meters/day", "certifications": ["ISO 9001", "ISO 14001"], "contact": "sales@hengli.com"},
+    {"name": "Dongguan Yueda Accessories", "location": "Dongguan, Guangdong", "specialization": "Fashion accessories, belts, bags", "capacity": "50,000 units/day", "certifications": ["ISO 9001"], "contact": "factory@yueda-accessories.com"},
+    {"name": "Yiwu Hualei Jewelry", "location": "Yiwu, Zhejiang", "specialization": "Fashion jewelry, accessories", "capacity": "100,000 units/day", "certifications": ["ISO 9001"], "contact": "sales@hualei-jewelry.com"}
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "name": "china-localization",
+  "version": "2.0.0",
+  "description": "全中文界面 + 本地服务集成，让中国用户零门槛使用 OpenClaw",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": ["china", "localization", "chinese", "baidu", "feishu", "wechat"],
+  "author": "VincentLau2046",
+  "license": "MIT",
+  "type": "commonjs",
+  "dependencies": {
+    "@types/node": "^25.4.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3"
+  }
+}

@@ -1,0 +1,4847 @@
+{
+  "address": "39PqxGq8nGq8J4196SErTr39GfQdsW43JJCS4h1NFZvY",
+  "metadata": {
+    "name": "clawdtable",
+    "version": "0.1.0",
+    "spec": "0.1.0",
+    "description": "Provably fair blockchain blackjack for AI agents on Solana"
+  },
+  "instructions": [
+    {
+      "name": "consume_vrf",
+      "discriminator": [
+        147,
+        13,
+        167,
+        195,
+        209,
+        51,
+        78,
+        64
+      ],
+      "accounts": [
+        {
+          "name": "caller",
+          "signer": true
+        },
+        {
+          "name": "table",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  116,
+                  97,
+                  98,
+                  108,
+                  101
+                ]
+              },
+              {
+                "kind": "arg",
+                "path": "table_id"
+              }
+            ]
+          }
+        },
+        {
+          "name": "vrf_request",
+          "docs": [
+            "We deserialize manually to check fulfillment status."
+          ]
+        }
+      ],
+      "args": [
+        {
+          "name": "table_id",
+          "type": "u16"
+        }
+      ]
+    },
+    {
+      "name": "create_lounge",
+      "discriminator": [
+        28,
+        171,
+        82,
+        145,
+        29,
+        23,
+        148,
+        38
+      ],
+      "accounts": [
+        {
+          "name": "admin",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "config",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  111,
+                  110,
+                  102,
+                  105,
+                  103
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "lounge",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  108,
+                  111,
+                  117,
+                  110,
+                  103,
+                  101
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "create_poker_table",
+      "discriminator": [
+        109,
+        172,
+        118,
+        252,
+        16,
+        41,
+        174,
+        187
+      ],
+      "accounts": [
+        {
+          "name": "admin",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "config",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  111,
+                  110,
+                  102,
+                  105,
+                  103
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "poker_table",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  112,
+                  111,
+                  107,
+                  101,
+                  114,
+                  95,
+                  116,
+                  97,
+                  98,
+                  108,
+                  101
+                ]
+              },
+              {
+                "kind": "arg",
+                "path": "table_id"
+              }
+            ]
+          }
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "table_id",
+          "type": "u16"
+        },
+        {
+          "name": "small_blind",
+          "type": "u64"
+        },
+        {
+          "name": "big_blind",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "create_table",
+      "discriminator": [
+        214,
+        142,
+        131,
+        250,
+        242,
+        83,
+        135,
+        185
+      ],
+      "accounts": [
+        {
+          "name": "admin",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "config",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  111,
+                  110,
+                  102,
+                  105,
+                  103
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "table",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  116,
+                  97,
+                  98,
+                  108,
+                  101
+                ]
+              },
+              {
+                "kind": "arg",
+                "path": "table_id"
+              }
+            ]
+          }
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "table_id",
+          "type": "u16"
+        }
+      ]
+    },
+    {
+      "name": "deal",
+      "discriminator": [
+        128,
+        0,
+        138,
+        208,
+        72,
+        249,
+        203,
+        239
+      ],
+      "accounts": [
+        {
+          "name": "caller",
+          "signer": true
+        },
+        {
+          "name": "config",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  111,
+                  110,
+                  102,
+                  105,
+                  103
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "table",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  116,
+                  97,
+                  98,
+                  108,
+                  101
+                ]
+              },
+              {
+                "kind": "arg",
+                "path": "table_id"
+              }
+            ]
+          }
+        },
+        {
+          "name": "house_vault",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  118,
+                  97,
+                  117,
+                  108,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "config.house",
+                "account": "Config"
+              }
+            ]
+          }
+        }
+      ],
+      "args": [
+        {
+          "name": "table_id",
+          "type": "u16"
+        }
+      ]
+    },
+    {
+      "name": "deal_community",
+      "discriminator": [
+        215,
+        244,
+        254,
+        137,
+        164,
+        43,
+        57,
+        237
+      ],
+      "accounts": [
+        {
+          "name": "caller",
+          "signer": true
+        },
+        {
+          "name": "poker_table",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  112,
+                  111,
+                  107,
+                  101,
+                  114,
+                  95,
+                  116,
+                  97,
+                  98,
+                  108,
+                  101
+                ]
+              },
+              {
+                "kind": "arg",
+                "path": "table_id"
+              }
+            ]
+          }
+        }
+      ],
+      "args": [
+        {
+          "name": "table_id",
+          "type": "u16"
+        },
+        {
+          "name": "cards",
+          "type": "bytes"
+        }
+      ]
+    },
+    {
+      "name": "deposit",
+      "discriminator": [
+        242,
+        35,
+        198,
+        137,
+        82,
+        225,
+        242,
+        182
+      ],
+      "accounts": [
+        {
+          "name": "wallet",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "config",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  111,
+                  110,
+                  102,
+                  105,
+                  103
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "agent_vault",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  118,
+                  97,
+                  117,
+                  108,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "wallet"
+              }
+            ]
+          }
+        },
+        {
+          "name": "agent_token_account",
+          "docs": [
+            "Agent's personal USDC token account (source)"
+          ],
+          "writable": true
+        },
+        {
+          "name": "vault_token_account",
+          "docs": [
+            "Vault's USDC token account (destination)"
+          ],
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  118,
+                  97,
+                  117,
+                  108,
+                  116,
+                  95,
+                  116,
+                  111,
+                  107,
+                  101,
+                  110
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "wallet"
+              }
+            ]
+          }
+        },
+        {
+          "name": "usdc_mint"
+        },
+        {
+          "name": "token_program"
+        }
+      ],
+      "args": [
+        {
+          "name": "amount",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "enter_lounge",
+      "discriminator": [
+        119,
+        197,
+        151,
+        37,
+        12,
+        3,
+        244,
+        60
+      ],
+      "accounts": [
+        {
+          "name": "wallet",
+          "signer": true
+        },
+        {
+          "name": "config",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  111,
+                  110,
+                  102,
+                  105,
+                  103
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "lounge",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  108,
+                  111,
+                  117,
+                  110,
+                  103,
+                  101
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "agent_identity",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  97,
+                  103,
+                  101,
+                  110,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "wallet"
+              }
+            ]
+          }
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "initialize",
+      "discriminator": [
+        175,
+        175,
+        109,
+        31,
+        13,
+        152,
+        155,
+        237
+      ],
+      "accounts": [
+        {
+          "name": "admin",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "config",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  111,
+                  110,
+                  102,
+                  105,
+                  103
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "usdc_mint",
+          "type": "pubkey"
+        },
+        {
+          "name": "house",
+          "type": "pubkey"
+        },
+        {
+          "name": "min_bet",
+          "type": "u64"
+        },
+        {
+          "name": "max_bet",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "join_poker_table",
+      "discriminator": [
+        191,
+        57,
+        135,
+        4,
+        240,
+        127,
+        48,
+        141
+      ],
+      "accounts": [
+        {
+          "name": "wallet",
+          "signer": true
+        },
+        {
+          "name": "config",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  111,
+                  110,
+                  102,
+                  105,
+                  103
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "poker_table",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  112,
+                  111,
+                  107,
+                  101,
+                  114,
+                  95,
+                  116,
+                  97,
+                  98,
+                  108,
+                  101
+                ]
+              },
+              {
+                "kind": "arg",
+                "path": "table_id"
+              }
+            ]
+          }
+        },
+        {
+          "name": "agent_identity",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  97,
+                  103,
+                  101,
+                  110,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "wallet"
+              }
+            ]
+          }
+        }
+      ],
+      "args": [
+        {
+          "name": "table_id",
+          "type": "u16"
+        },
+        {
+          "name": "seat_index",
+          "type": "u8"
+        }
+      ]
+    },
+    {
+      "name": "join_table",
+      "discriminator": [
+        14,
+        117,
+        84,
+        51,
+        95,
+        146,
+        171,
+        70
+      ],
+      "accounts": [
+        {
+          "name": "wallet",
+          "signer": true
+        },
+        {
+          "name": "config",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  111,
+                  110,
+                  102,
+                  105,
+                  103
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "table",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  116,
+                  97,
+                  98,
+                  108,
+                  101
+                ]
+              },
+              {
+                "kind": "arg",
+                "path": "table_id"
+              }
+            ]
+          }
+        },
+        {
+          "name": "agent_identity",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  97,
+                  103,
+                  101,
+                  110,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "wallet"
+              }
+            ]
+          }
+        }
+      ],
+      "args": [
+        {
+          "name": "table_id",
+          "type": "u16"
+        },
+        {
+          "name": "seat_index",
+          "type": "u8"
+        }
+      ]
+    },
+    {
+      "name": "leave_lounge",
+      "discriminator": [
+        77,
+        117,
+        36,
+        117,
+        27,
+        212,
+        178,
+        132
+      ],
+      "accounts": [
+        {
+          "name": "wallet",
+          "signer": true
+        },
+        {
+          "name": "lounge",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  108,
+                  111,
+                  117,
+                  110,
+                  103,
+                  101
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "leave_poker_table",
+      "discriminator": [
+        31,
+        29,
+        218,
+        203,
+        41,
+        216,
+        136,
+        95
+      ],
+      "accounts": [
+        {
+          "name": "wallet",
+          "signer": true
+        },
+        {
+          "name": "poker_table",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  112,
+                  111,
+                  107,
+                  101,
+                  114,
+                  95,
+                  116,
+                  97,
+                  98,
+                  108,
+                  101
+                ]
+              },
+              {
+                "kind": "arg",
+                "path": "table_id"
+              }
+            ]
+          }
+        }
+      ],
+      "args": [
+        {
+          "name": "table_id",
+          "type": "u16"
+        },
+        {
+          "name": "seat_index",
+          "type": "u8"
+        }
+      ]
+    },
+    {
+      "name": "leave_table",
+      "discriminator": [
+        163,
+        153,
+        94,
+        194,
+        19,
+        106,
+        113,
+        32
+      ],
+      "accounts": [
+        {
+          "name": "wallet",
+          "signer": true
+        },
+        {
+          "name": "table",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  116,
+                  97,
+                  98,
+                  108,
+                  101
+                ]
+              },
+              {
+                "kind": "arg",
+                "path": "table_id"
+              }
+            ]
+          }
+        }
+      ],
+      "args": [
+        {
+          "name": "table_id",
+          "type": "u16"
+        },
+        {
+          "name": "seat_index",
+          "type": "u8"
+        }
+      ]
+    },
+    {
+      "name": "mock_poker_shuffle",
+      "discriminator": [
+        233,
+        241,
+        240,
+        252,
+        254,
+        62,
+        106,
+        136
+      ],
+      "accounts": [
+        {
+          "name": "admin",
+          "signer": true
+        },
+        {
+          "name": "config",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  111,
+                  110,
+                  102,
+                  105,
+                  103
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "poker_table",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  112,
+                  111,
+                  107,
+                  101,
+                  114,
+                  95,
+                  116,
+                  97,
+                  98,
+                  108,
+                  101
+                ]
+              },
+              {
+                "kind": "arg",
+                "path": "table_id"
+              }
+            ]
+          }
+        }
+      ],
+      "args": [
+        {
+          "name": "table_id",
+          "type": "u16"
+        },
+        {
+          "name": "seed",
+          "type": {
+            "array": [
+              "u8",
+              64
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "mock_shuffle",
+      "docs": [
+        "Mock shuffle for testing — admin only.",
+        "Available in dev/test builds. Stripped when built with `mainnet` feature."
+      ],
+      "discriminator": [
+        32,
+        120,
+        42,
+        244,
+        156,
+        157,
+        219,
+        155
+      ],
+      "accounts": [
+        {
+          "name": "admin",
+          "signer": true
+        },
+        {
+          "name": "config",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  111,
+                  110,
+                  102,
+                  105,
+                  103
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "table",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  116,
+                  97,
+                  98,
+                  108,
+                  101
+                ]
+              },
+              {
+                "kind": "arg",
+                "path": "table_id"
+              }
+            ]
+          }
+        }
+      ],
+      "args": [
+        {
+          "name": "table_id",
+          "type": "u16"
+        },
+        {
+          "name": "seed",
+          "type": {
+            "array": [
+              "u8",
+              64
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "pause",
+      "discriminator": [
+        211,
+        22,
+        221,
+        251,
+        74,
+        121,
+        193,
+        47
+      ],
+      "accounts": [
+        {
+          "name": "admin",
+          "signer": true
+        },
+        {
+          "name": "config",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  111,
+                  110,
+                  102,
+                  105,
+                  103
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "place_bet",
+      "discriminator": [
+        222,
+        62,
+        67,
+        220,
+        63,
+        166,
+        126,
+        33
+      ],
+      "accounts": [
+        {
+          "name": "wallet",
+          "signer": true
+        },
+        {
+          "name": "config",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  111,
+                  110,
+                  102,
+                  105,
+                  103
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "table",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  116,
+                  97,
+                  98,
+                  108,
+                  101
+                ]
+              },
+              {
+                "kind": "arg",
+                "path": "table_id"
+              }
+            ]
+          }
+        },
+        {
+          "name": "agent_vault",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  118,
+                  97,
+                  117,
+                  108,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "wallet"
+              }
+            ]
+          }
+        }
+      ],
+      "args": [
+        {
+          "name": "table_id",
+          "type": "u16"
+        },
+        {
+          "name": "amount",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "player_action",
+      "discriminator": [
+        37,
+        85,
+        25,
+        135,
+        200,
+        116,
+        96,
+        101
+      ],
+      "accounts": [
+        {
+          "name": "wallet",
+          "signer": true
+        },
+        {
+          "name": "config",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  111,
+                  110,
+                  102,
+                  105,
+                  103
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "table",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  116,
+                  97,
+                  98,
+                  108,
+                  101
+                ]
+              },
+              {
+                "kind": "arg",
+                "path": "table_id"
+              }
+            ]
+          }
+        },
+        {
+          "name": "agent_vault",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  118,
+                  97,
+                  117,
+                  108,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "wallet"
+              }
+            ]
+          }
+        },
+        {
+          "name": "house_vault",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  118,
+                  97,
+                  117,
+                  108,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "config.house",
+                "account": "Config"
+              }
+            ]
+          }
+        }
+      ],
+      "args": [
+        {
+          "name": "table_id",
+          "type": "u16"
+        },
+        {
+          "name": "action",
+          "type": {
+            "defined": {
+              "name": "Action"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "poker_action",
+      "discriminator": [
+        84,
+        72,
+        158,
+        114,
+        115,
+        236,
+        2,
+        104
+      ],
+      "accounts": [
+        {
+          "name": "wallet",
+          "signer": true
+        },
+        {
+          "name": "config",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  111,
+                  110,
+                  102,
+                  105,
+                  103
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "poker_table",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  112,
+                  111,
+                  107,
+                  101,
+                  114,
+                  95,
+                  116,
+                  97,
+                  98,
+                  108,
+                  101
+                ]
+              },
+              {
+                "kind": "arg",
+                "path": "table_id"
+              }
+            ]
+          }
+        },
+        {
+          "name": "agent_vault",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  118,
+                  97,
+                  117,
+                  108,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "wallet"
+              }
+            ]
+          }
+        }
+      ],
+      "args": [
+        {
+          "name": "table_id",
+          "type": "u16"
+        },
+        {
+          "name": "action",
+          "type": "u8"
+        },
+        {
+          "name": "raise_amount",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "poker_showdown",
+      "discriminator": [
+        118,
+        253,
+        157,
+        111,
+        21,
+        104,
+        235,
+        177
+      ],
+      "accounts": [
+        {
+          "name": "caller",
+          "signer": true
+        },
+        {
+          "name": "config",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  111,
+                  110,
+                  102,
+                  105,
+                  103
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "poker_table",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  112,
+                  111,
+                  107,
+                  101,
+                  114,
+                  95,
+                  116,
+                  97,
+                  98,
+                  108,
+                  101
+                ]
+              },
+              {
+                "kind": "arg",
+                "path": "table_id"
+              }
+            ]
+          }
+        }
+      ],
+      "args": [
+        {
+          "name": "table_id",
+          "type": "u16"
+        },
+        {
+          "name": "dealer_secret",
+          "type": {
+            "array": [
+              "u8",
+              32
+            ]
+          }
+        },
+        {
+          "name": "hole_cards",
+          "type": {
+            "vec": {
+              "array": [
+                "u8",
+                2
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "register_agent",
+      "discriminator": [
+        135,
+        157,
+        66,
+        195,
+        2,
+        113,
+        175,
+        30
+      ],
+      "accounts": [
+        {
+          "name": "wallet",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "config",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  111,
+                  110,
+                  102,
+                  105,
+                  103
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "agent_identity",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  97,
+                  103,
+                  101,
+                  110,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "wallet"
+              }
+            ]
+          }
+        },
+        {
+          "name": "agent_vault",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  118,
+                  97,
+                  117,
+                  108,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "wallet"
+              }
+            ]
+          }
+        },
+        {
+          "name": "vault_token_account",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  118,
+                  97,
+                  117,
+                  108,
+                  116,
+                  95,
+                  116,
+                  111,
+                  107,
+                  101,
+                  110
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "wallet"
+              }
+            ]
+          }
+        },
+        {
+          "name": "usdc_mint"
+        },
+        {
+          "name": "token_program"
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "name",
+          "type": {
+            "array": [
+              "u8",
+              32
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "request_shuffle",
+      "discriminator": [
+        130,
+        20,
+        53,
+        22,
+        23,
+        102,
+        225,
+        135
+      ],
+      "accounts": [
+        {
+          "name": "payer",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "config",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  111,
+                  110,
+                  102,
+                  105,
+                  103
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "table",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  116,
+                  97,
+                  98,
+                  108,
+                  101
+                ]
+              },
+              {
+                "kind": "arg",
+                "path": "table_id"
+              }
+            ]
+          }
+        },
+        {
+          "name": "vrf_state",
+          "writable": true
+        },
+        {
+          "name": "vrf_treasury",
+          "writable": true
+        },
+        {
+          "name": "vrf_request",
+          "writable": true
+        },
+        {
+          "name": "vrf_program",
+          "address": "VRFzZoJdhFWL8rkvu87LpKM3RbcVezpMEc6X5GVDr7y"
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "table_id",
+          "type": "u16"
+        },
+        {
+          "name": "seed",
+          "type": {
+            "array": [
+              "u8",
+              32
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "resolve_betting_timeout",
+      "discriminator": [
+        118,
+        113,
+        31,
+        212,
+        233,
+        31,
+        231,
+        44
+      ],
+      "accounts": [
+        {
+          "name": "caller",
+          "signer": true
+        },
+        {
+          "name": "table",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  116,
+                  97,
+                  98,
+                  108,
+                  101
+                ]
+              },
+              {
+                "kind": "arg",
+                "path": "table_id"
+              }
+            ]
+          }
+        }
+      ],
+      "args": [
+        {
+          "name": "table_id",
+          "type": "u16"
+        }
+      ]
+    },
+    {
+      "name": "resolve_hand",
+      "discriminator": [
+        161,
+        237,
+        38,
+        232,
+        65,
+        210,
+        202,
+        150
+      ],
+      "accounts": [
+        {
+          "name": "caller",
+          "signer": true
+        },
+        {
+          "name": "config",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  111,
+                  110,
+                  102,
+                  105,
+                  103
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "table",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  116,
+                  97,
+                  98,
+                  108,
+                  101
+                ]
+              },
+              {
+                "kind": "arg",
+                "path": "table_id"
+              }
+            ]
+          }
+        },
+        {
+          "name": "house_vault",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  118,
+                  97,
+                  117,
+                  108,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "config.house",
+                "account": "Config"
+              }
+            ]
+          }
+        }
+      ],
+      "args": [
+        {
+          "name": "table_id",
+          "type": "u16"
+        }
+      ]
+    },
+    {
+      "name": "resolve_timeout",
+      "discriminator": [
+        149,
+        55,
+        89,
+        144,
+        121,
+        143,
+        48,
+        210
+      ],
+      "accounts": [
+        {
+          "name": "caller",
+          "signer": true
+        },
+        {
+          "name": "table",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  116,
+                  97,
+                  98,
+                  108,
+                  101
+                ]
+              },
+              {
+                "kind": "arg",
+                "path": "table_id"
+              }
+            ]
+          }
+        }
+      ],
+      "args": [
+        {
+          "name": "table_id",
+          "type": "u16"
+        },
+        {
+          "name": "seat_index",
+          "type": "u8"
+        }
+      ]
+    },
+    {
+      "name": "start_hand",
+      "discriminator": [
+        50,
+        173,
+        164,
+        52,
+        65,
+        42,
+        197,
+        135
+      ],
+      "accounts": [
+        {
+          "name": "caller",
+          "signer": true
+        },
+        {
+          "name": "config",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  111,
+                  110,
+                  102,
+                  105,
+                  103
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "table",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  116,
+                  97,
+                  98,
+                  108,
+                  101
+                ]
+              },
+              {
+                "kind": "arg",
+                "path": "table_id"
+              }
+            ]
+          }
+        }
+      ],
+      "args": [
+        {
+          "name": "table_id",
+          "type": "u16"
+        }
+      ]
+    },
+    {
+      "name": "start_poker_hand",
+      "discriminator": [
+        10,
+        86,
+        69,
+        113,
+        122,
+        218,
+        169,
+        226
+      ],
+      "accounts": [
+        {
+          "name": "caller",
+          "signer": true
+        },
+        {
+          "name": "config",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  111,
+                  110,
+                  102,
+                  105,
+                  103
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "poker_table",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  112,
+                  111,
+                  107,
+                  101,
+                  114,
+                  95,
+                  116,
+                  97,
+                  98,
+                  108,
+                  101
+                ]
+              },
+              {
+                "kind": "arg",
+                "path": "table_id"
+              }
+            ]
+          }
+        }
+      ],
+      "args": [
+        {
+          "name": "table_id",
+          "type": "u16"
+        },
+        {
+          "name": "dealer_commitment",
+          "type": {
+            "array": [
+              "u8",
+              32
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "unpause",
+      "discriminator": [
+        169,
+        144,
+        4,
+        38,
+        10,
+        141,
+        188,
+        255
+      ],
+      "accounts": [
+        {
+          "name": "admin",
+          "signer": true
+        },
+        {
+          "name": "config",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  111,
+                  110,
+                  102,
+                  105,
+                  103
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "update_agent_name",
+      "discriminator": [
+        164,
+        86,
+        122,
+        197,
+        54,
+        75,
+        238,
+        116
+      ],
+      "accounts": [
+        {
+          "name": "wallet",
+          "signer": true
+        },
+        {
+          "name": "agent_identity",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  97,
+                  103,
+                  101,
+                  110,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "wallet"
+              }
+            ]
+          }
+        }
+      ],
+      "args": [
+        {
+          "name": "name",
+          "type": {
+            "array": [
+              "u8",
+              32
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "update_config",
+      "discriminator": [
+        29,
+        158,
+        252,
+        191,
+        10,
+        83,
+        219,
+        99
+      ],
+      "accounts": [
+        {
+          "name": "admin",
+          "signer": true
+        },
+        {
+          "name": "config",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  111,
+                  110,
+                  102,
+                  105,
+                  103
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "args": [
+        {
+          "name": "min_bet",
+          "type": "u64"
+        },
+        {
+          "name": "max_bet",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "withdraw",
+      "discriminator": [
+        183,
+        18,
+        70,
+        156,
+        148,
+        109,
+        161,
+        34
+      ],
+      "accounts": [
+        {
+          "name": "wallet",
+          "signer": true
+        },
+        {
+          "name": "config",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  111,
+                  110,
+                  102,
+                  105,
+                  103
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "agent_vault",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  118,
+                  97,
+                  117,
+                  108,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "wallet"
+              }
+            ]
+          }
+        },
+        {
+          "name": "agent_token_account",
+          "docs": [
+            "Agent's personal USDC token account (destination)"
+          ],
+          "writable": true
+        },
+        {
+          "name": "vault_token_account",
+          "docs": [
+            "Vault's USDC token account (source)"
+          ],
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  118,
+                  97,
+                  117,
+                  108,
+                  116,
+                  95,
+                  116,
+                  111,
+                  107,
+                  101,
+                  110
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "wallet"
+              }
+            ]
+          }
+        },
+        {
+          "name": "usdc_mint"
+        },
+        {
+          "name": "token_program"
+        }
+      ],
+      "args": [
+        {
+          "name": "amount",
+          "type": "u64"
+        }
+      ]
+    }
+  ],
+  "accounts": [
+    {
+      "name": "AgentIdentity",
+      "discriminator": [
+        11,
+        149,
+        31,
+        27,
+        186,
+        76,
+        241,
+        72
+      ]
+    },
+    {
+      "name": "AgentVault",
+      "discriminator": [
+        232,
+        220,
+        237,
+        164,
+        157,
+        9,
+        215,
+        194
+      ]
+    },
+    {
+      "name": "Config",
+      "discriminator": [
+        155,
+        12,
+        170,
+        224,
+        30,
+        250,
+        204,
+        130
+      ]
+    },
+    {
+      "name": "Lounge",
+      "discriminator": [
+        180,
+        106,
+        121,
+        82,
+        190,
+        204,
+        44,
+        51
+      ]
+    },
+    {
+      "name": "PokerTable",
+      "discriminator": [
+        128,
+        243,
+        17,
+        3,
+        215,
+        50,
+        15,
+        15
+      ]
+    },
+    {
+      "name": "Table",
+      "discriminator": [
+        34,
+        100,
+        138,
+        97,
+        236,
+        129,
+        230,
+        112
+      ]
+    }
+  ],
+  "events": [
+    {
+      "name": "AgentEnteredLounge",
+      "discriminator": [
+        174,
+        149,
+        4,
+        205,
+        28,
+        82,
+        63,
+        179
+      ]
+    },
+    {
+      "name": "AgentLeftLounge",
+      "discriminator": [
+        46,
+        4,
+        70,
+        60,
+        51,
+        236,
+        33,
+        35
+      ]
+    },
+    {
+      "name": "AgentRegistered",
+      "discriminator": [
+        191,
+        78,
+        217,
+        54,
+        232,
+        100,
+        189,
+        85
+      ]
+    },
+    {
+      "name": "BetPlaced",
+      "discriminator": [
+        88,
+        88,
+        145,
+        226,
+        126,
+        206,
+        32,
+        0
+      ]
+    },
+    {
+      "name": "BettingTimeoutResolved",
+      "discriminator": [
+        168,
+        234,
+        147,
+        59,
+        78,
+        103,
+        64,
+        251
+      ]
+    },
+    {
+      "name": "CardDealt",
+      "discriminator": [
+        72,
+        252,
+        207,
+        0,
+        100,
+        136,
+        112,
+        243
+      ]
+    },
+    {
+      "name": "CardsDealt",
+      "discriminator": [
+        115,
+        159,
+        224,
+        101,
+        212,
+        252,
+        148,
+        44
+      ]
+    },
+    {
+      "name": "ConfigUpdated",
+      "discriminator": [
+        40,
+        241,
+        230,
+        122,
+        11,
+        19,
+        198,
+        194
+      ]
+    },
+    {
+      "name": "DealerDrew",
+      "discriminator": [
+        38,
+        186,
+        135,
+        92,
+        97,
+        190,
+        22,
+        183
+      ]
+    },
+    {
+      "name": "DealerRevealed",
+      "discriminator": [
+        90,
+        86,
+        220,
+        23,
+        174,
+        156,
+        112,
+        94
+      ]
+    },
+    {
+      "name": "Deposited",
+      "discriminator": [
+        111,
+        141,
+        26,
+        45,
+        161,
+        35,
+        100,
+        57
+      ]
+    },
+    {
+      "name": "GamePaused",
+      "discriminator": [
+        16,
+        24,
+        66,
+        249,
+        21,
+        150,
+        165,
+        203
+      ]
+    },
+    {
+      "name": "GameUnpaused",
+      "discriminator": [
+        210,
+        108,
+        59,
+        121,
+        38,
+        112,
+        67,
+        125
+      ]
+    },
+    {
+      "name": "HandResolved",
+      "discriminator": [
+        205,
+        0,
+        234,
+        65,
+        250,
+        201,
+        175,
+        77
+      ]
+    },
+    {
+      "name": "HandResult",
+      "discriminator": [
+        1,
+        26,
+        105,
+        107,
+        82,
+        103,
+        61,
+        103
+      ]
+    },
+    {
+      "name": "HandStarted",
+      "discriminator": [
+        92,
+        115,
+        135,
+        103,
+        133,
+        169,
+        143,
+        43
+      ]
+    },
+    {
+      "name": "PlayerActionEvent",
+      "discriminator": [
+        206,
+        98,
+        179,
+        31,
+        252,
+        20,
+        116,
+        236
+      ]
+    },
+    {
+      "name": "PlayerBlackjack",
+      "discriminator": [
+        185,
+        198,
+        1,
+        128,
+        78,
+        228,
+        77,
+        21
+      ]
+    },
+    {
+      "name": "PlayerBusted",
+      "discriminator": [
+        153,
+        173,
+        21,
+        178,
+        156,
+        43,
+        148,
+        128
+      ]
+    },
+    {
+      "name": "PlayerJoined",
+      "discriminator": [
+        39,
+        144,
+        49,
+        106,
+        108,
+        210,
+        183,
+        38
+      ]
+    },
+    {
+      "name": "PlayerLeft",
+      "discriminator": [
+        7,
+        106,
+        62,
+        150,
+        175,
+        170,
+        96,
+        84
+      ]
+    },
+    {
+      "name": "PlayerTimedOut",
+      "discriminator": [
+        81,
+        130,
+        164,
+        214,
+        25,
+        213,
+        156,
+        78
+      ]
+    },
+    {
+      "name": "PokerActionEvent",
+      "discriminator": [
+        217,
+        48,
+        48,
+        81,
+        115,
+        252,
+        168,
+        18
+      ]
+    },
+    {
+      "name": "PokerBlindsPosted",
+      "discriminator": [
+        11,
+        132,
+        135,
+        67,
+        46,
+        172,
+        112,
+        18
+      ]
+    },
+    {
+      "name": "PokerCommunityDealt",
+      "discriminator": [
+        116,
+        45,
+        189,
+        40,
+        168,
+        24,
+        102,
+        39
+      ]
+    },
+    {
+      "name": "PokerHandResult",
+      "discriminator": [
+        66,
+        82,
+        144,
+        129,
+        211,
+        155,
+        103,
+        187
+      ]
+    },
+    {
+      "name": "PokerHandStarted",
+      "discriminator": [
+        236,
+        179,
+        120,
+        56,
+        82,
+        98,
+        46,
+        241
+      ]
+    },
+    {
+      "name": "PokerHoleCardsDealt",
+      "discriminator": [
+        70,
+        135,
+        48,
+        121,
+        119,
+        204,
+        228,
+        205
+      ]
+    },
+    {
+      "name": "PokerPlayerJoined",
+      "discriminator": [
+        114,
+        76,
+        11,
+        227,
+        49,
+        45,
+        74,
+        193
+      ]
+    },
+    {
+      "name": "PokerPlayerLeft",
+      "discriminator": [
+        67,
+        109,
+        190,
+        117,
+        48,
+        124,
+        35,
+        178
+      ]
+    },
+    {
+      "name": "PokerPotUpdated",
+      "discriminator": [
+        95,
+        56,
+        232,
+        186,
+        123,
+        16,
+        203,
+        254
+      ]
+    },
+    {
+      "name": "PokerShowdown",
+      "discriminator": [
+        184,
+        118,
+        170,
+        101,
+        217,
+        83,
+        186,
+        161
+      ]
+    },
+    {
+      "name": "PokerTableCreated",
+      "discriminator": [
+        8,
+        212,
+        84,
+        62,
+        174,
+        209,
+        111,
+        249
+      ]
+    },
+    {
+      "name": "ShuffleCompleted",
+      "discriminator": [
+        111,
+        107,
+        108,
+        237,
+        43,
+        77,
+        66,
+        122
+      ]
+    },
+    {
+      "name": "ShuffleRequested",
+      "discriminator": [
+        160,
+        152,
+        98,
+        115,
+        146,
+        97,
+        240,
+        12
+      ]
+    },
+    {
+      "name": "TableCreated",
+      "discriminator": [
+        164,
+        233,
+        12,
+        97,
+        250,
+        213,
+        187,
+        147
+      ]
+    },
+    {
+      "name": "Withdrawn",
+      "discriminator": [
+        20,
+        89,
+        223,
+        198,
+        194,
+        124,
+        219,
+        13
+      ]
+    }
+  ],
+  "errors": [
+    {
+      "code": 6000,
+      "name": "GamePaused",
+      "msg": "Game is paused"
+    },
+    {
+      "code": 6001,
+      "name": "Unauthorized",
+      "msg": "Only admin can perform this action"
+    },
+    {
+      "code": 6002,
+      "name": "AgentAlreadyRegistered",
+      "msg": "Agent already registered"
+    },
+    {
+      "code": 6003,
+      "name": "AgentNotRegistered",
+      "msg": "Agent not registered"
+    },
+    {
+      "code": 6004,
+      "name": "InvalidName",
+      "msg": "Name must be 1-32 bytes"
+    },
+    {
+      "code": 6005,
+      "name": "ZeroAmount",
+      "msg": "Amount must be greater than zero"
+    },
+    {
+      "code": 6006,
+      "name": "InsufficientAvailable",
+      "msg": "Insufficient available balance"
+    },
+    {
+      "code": 6007,
+      "name": "InsufficientLocked",
+      "msg": "Insufficient locked balance"
+    },
+    {
+      "code": 6008,
+      "name": "WrongPhase",
+      "msg": "Wrong game phase"
+    },
+    {
+      "code": 6009,
+      "name": "TableFull",
+      "msg": "Table is full"
+    },
+    {
+      "code": 6010,
+      "name": "SeatOccupied",
+      "msg": "Seat is occupied"
+    },
+    {
+      "code": 6011,
+      "name": "SeatEmpty",
+      "msg": "Seat is empty"
+    },
+    {
+      "code": 6012,
+      "name": "AlreadySeated",
+      "msg": "Player is already seated"
+    },
+    {
+      "code": 6013,
+      "name": "NotSeated",
+      "msg": "Player is not seated"
+    },
+    {
+      "code": 6014,
+      "name": "NotEnoughPlayers",
+      "msg": "Not enough players to start"
+    },
+    {
+      "code": 6015,
+      "name": "InvalidSeatIndex",
+      "msg": "Invalid seat index"
+    },
+    {
+      "code": 6016,
+      "name": "GameInProgress",
+      "msg": "Game in progress — cannot join or leave"
+    },
+    {
+      "code": 6017,
+      "name": "InvalidBetAmount",
+      "msg": "Bet amount outside allowed range"
+    },
+    {
+      "code": 6018,
+      "name": "AlreadyBet",
+      "msg": "Player has already bet"
+    },
+    {
+      "code": 6019,
+      "name": "NotAllBetsPlaced",
+      "msg": "Not all players have bet"
+    },
+    {
+      "code": 6020,
+      "name": "NotYourTurn",
+      "msg": "Not your turn"
+    },
+    {
+      "code": 6021,
+      "name": "InvalidAction",
+      "msg": "Invalid action for current state"
+    },
+    {
+      "code": 6022,
+      "name": "CannotDouble",
+      "msg": "Can only double on first two cards"
+    },
+    {
+      "code": 6023,
+      "name": "NoShoe",
+      "msg": "No shoe available — shuffle required"
+    },
+    {
+      "code": 6024,
+      "name": "VrfRequestPending",
+      "msg": "VRF request already pending"
+    },
+    {
+      "code": 6025,
+      "name": "RandomnessNotFulfilled",
+      "msg": "Randomness not yet fulfilled"
+    },
+    {
+      "code": 6026,
+      "name": "TimeoutNotReached",
+      "msg": "Timeout not yet reached"
+    },
+    {
+      "code": 6027,
+      "name": "InsufficientReserve",
+      "msg": "Insufficient house reserve"
+    },
+    {
+      "code": 6028,
+      "name": "Overflow",
+      "msg": "Arithmetic overflow"
+    }
+  ],
+  "types": [
+    {
+      "name": "Action",
+      "docs": [
+        "Player action — matches EVM Action enum ordering"
+      ],
+      "repr": {
+        "kind": "rust"
+      },
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "Hit"
+          },
+          {
+            "name": "Stand"
+          },
+          {
+            "name": "Double"
+          }
+        ]
+      }
+    },
+    {
+      "name": "AgentEnteredLounge",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "wallet",
+            "type": "pubkey"
+          },
+          {
+            "name": "present_count",
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "AgentIdentity",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "wallet",
+            "docs": [
+              "Agent's signing wallet"
+            ],
+            "type": "pubkey"
+          },
+          {
+            "name": "name",
+            "docs": [
+              "Display name (UTF-8, null-padded)"
+            ],
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          },
+          {
+            "name": "hands_played",
+            "docs": [
+              "Lifetime hands played"
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "hands_won",
+            "docs": [
+              "Lifetime hands won"
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "total_wagered",
+            "docs": [
+              "Lifetime USDC wagered"
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "total_earned",
+            "docs": [
+              "Lifetime net P&L (can be negative)"
+            ],
+            "type": "i64"
+          },
+          {
+            "name": "reputation",
+            "docs": [
+              "Reputation score 0-10000 (basis points)"
+            ],
+            "type": "u16"
+          },
+          {
+            "name": "created_at",
+            "docs": [
+              "Unix timestamp of account creation"
+            ],
+            "type": "i64"
+          },
+          {
+            "name": "last_seen",
+            "docs": [
+              "Unix timestamp of last activity"
+            ],
+            "type": "i64"
+          },
+          {
+            "name": "bump",
+            "docs": [
+              "PDA bump seed"
+            ],
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "AgentLeftLounge",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "wallet",
+            "type": "pubkey"
+          },
+          {
+            "name": "present_count",
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "AgentRegistered",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "wallet",
+            "type": "pubkey"
+          },
+          {
+            "name": "name",
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          },
+          {
+            "name": "timestamp",
+            "type": "i64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "AgentVault",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "owner",
+            "docs": [
+              "Owner wallet"
+            ],
+            "type": "pubkey"
+          },
+          {
+            "name": "available",
+            "docs": [
+              "Available (withdrawable) balance in USDC smallest unit"
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "locked",
+            "docs": [
+              "Locked balance (in active hands) in USDC smallest unit"
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "bump",
+            "docs": [
+              "PDA bump seed"
+            ],
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "BetPlaced",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "hand_id",
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          },
+          {
+            "name": "wallet",
+            "type": "pubkey"
+          },
+          {
+            "name": "seat_index",
+            "type": "u8"
+          },
+          {
+            "name": "amount",
+            "type": "u64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "BettingTimeoutResolved",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "players_removed",
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "CardDealt",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "hand_id",
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          },
+          {
+            "name": "seat",
+            "type": "u8"
+          },
+          {
+            "name": "card",
+            "type": "u8"
+          },
+          {
+            "name": "face_down",
+            "type": "bool"
+          },
+          {
+            "name": "timestamp",
+            "type": "i64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "CardsDealt",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "hand_id",
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "Config",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "admin",
+            "docs": [
+              "Admin authority (can pause, update config)"
+            ],
+            "type": "pubkey"
+          },
+          {
+            "name": "usdc_mint",
+            "docs": [
+              "USDC (or MockUSDC) SPL token mint"
+            ],
+            "type": "pubkey"
+          },
+          {
+            "name": "house",
+            "docs": [
+              "House wallet (counterparty to all bets)"
+            ],
+            "type": "pubkey"
+          },
+          {
+            "name": "min_bet",
+            "docs": [
+              "Minimum bet in USDC smallest unit (6 decimals)"
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "max_bet",
+            "docs": [
+              "Maximum bet in USDC smallest unit (6 decimals)"
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "paused",
+            "docs": [
+              "Whether the game is paused"
+            ],
+            "type": "bool"
+          },
+          {
+            "name": "bump",
+            "docs": [
+              "PDA bump seed"
+            ],
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "ConfigUpdated",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "min_bet",
+            "type": "u64"
+          },
+          {
+            "name": "max_bet",
+            "type": "u64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "DealerDrew",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "hand_id",
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          },
+          {
+            "name": "card",
+            "type": "u8"
+          },
+          {
+            "name": "new_total",
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "DealerRevealed",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "hand_id",
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          },
+          {
+            "name": "hole_card",
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Deposited",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "wallet",
+            "type": "pubkey"
+          },
+          {
+            "name": "amount",
+            "type": "u64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "GamePaused",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "admin",
+            "type": "pubkey"
+          },
+          {
+            "name": "timestamp",
+            "type": "i64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "GamePhase",
+      "docs": [
+        "Game phases — matches EVM GamePhase enum ordering"
+      ],
+      "repr": {
+        "kind": "rust"
+      },
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "Waiting"
+          },
+          {
+            "name": "Betting"
+          },
+          {
+            "name": "PlayerTurns"
+          },
+          {
+            "name": "DealerTurn"
+          }
+        ]
+      }
+    },
+    {
+      "name": "GameUnpaused",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "admin",
+            "type": "pubkey"
+          },
+          {
+            "name": "timestamp",
+            "type": "i64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "HandResolved",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "hand_id",
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          },
+          {
+            "name": "dealer_total",
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "HandResult",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "hand_id",
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          },
+          {
+            "name": "seat_index",
+            "type": "u8"
+          },
+          {
+            "name": "wallet",
+            "type": "pubkey"
+          },
+          {
+            "name": "outcome",
+            "type": "u8"
+          },
+          {
+            "name": "payout",
+            "type": "u64"
+          },
+          {
+            "name": "new_balance",
+            "type": "u64"
+          },
+          {
+            "name": "agent_hands_played",
+            "type": "u64"
+          },
+          {
+            "name": "agent_total_earned",
+            "type": "i64"
+          },
+          {
+            "name": "timestamp",
+            "type": "i64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "HandStarted",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "hand_id",
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          },
+          {
+            "name": "hand_number_in_shoe",
+            "type": "u16"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Lounge",
+      "docs": [
+        "Main Lounge — the social hub of ClawdTable.",
+        "Agents enter here first, see who's around, chat, and pick a room."
+      ],
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "room_id",
+            "docs": [
+              "Room ID (0 = main lounge)"
+            ],
+            "type": "u16"
+          },
+          {
+            "name": "present_count",
+            "docs": [
+              "Number of agents currently present"
+            ],
+            "type": "u8"
+          },
+          {
+            "name": "present",
+            "docs": [
+              "Agents currently in the lounge (wallet pubkeys)"
+            ],
+            "type": {
+              "array": [
+                "pubkey",
+                20
+              ]
+            }
+          },
+          {
+            "name": "bump",
+            "docs": [
+              "PDA bump"
+            ],
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Outcome",
+      "docs": [
+        "Hand outcome — matches EVM Outcome enum ordering"
+      ],
+      "repr": {
+        "kind": "rust"
+      },
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "None"
+          },
+          {
+            "name": "BlackjackWin"
+          },
+          {
+            "name": "Win"
+          },
+          {
+            "name": "Push"
+          },
+          {
+            "name": "Lose"
+          },
+          {
+            "name": "Bust"
+          }
+        ]
+      }
+    },
+    {
+      "name": "PlayerActionEvent",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "hand_id",
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          },
+          {
+            "name": "wallet",
+            "type": "pubkey"
+          },
+          {
+            "name": "seat_index",
+            "type": "u8"
+          },
+          {
+            "name": "action",
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "PlayerBlackjack",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "hand_id",
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          },
+          {
+            "name": "wallet",
+            "type": "pubkey"
+          },
+          {
+            "name": "seat_index",
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "PlayerBusted",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "hand_id",
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          },
+          {
+            "name": "wallet",
+            "type": "pubkey"
+          },
+          {
+            "name": "seat_index",
+            "type": "u8"
+          },
+          {
+            "name": "total",
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "PlayerJoined",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "wallet",
+            "type": "pubkey"
+          },
+          {
+            "name": "table_id",
+            "type": "u16"
+          },
+          {
+            "name": "seat_index",
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "PlayerLeft",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "wallet",
+            "type": "pubkey"
+          },
+          {
+            "name": "table_id",
+            "type": "u16"
+          },
+          {
+            "name": "seat_index",
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "PlayerTimedOut",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "hand_id",
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          },
+          {
+            "name": "wallet",
+            "type": "pubkey"
+          },
+          {
+            "name": "seat_index",
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "PokerActionEvent",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "table_id",
+            "type": "u16"
+          },
+          {
+            "name": "seat",
+            "type": "u8"
+          },
+          {
+            "name": "action",
+            "type": "u8"
+          },
+          {
+            "name": "amount",
+            "type": "u64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "PokerBlindsPosted",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "table_id",
+            "type": "u16"
+          },
+          {
+            "name": "small_blind_seat",
+            "type": "u8"
+          },
+          {
+            "name": "big_blind_seat",
+            "type": "u8"
+          },
+          {
+            "name": "small_blind",
+            "type": "u64"
+          },
+          {
+            "name": "big_blind",
+            "type": "u64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "PokerCommunityDealt",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "table_id",
+            "type": "u16"
+          },
+          {
+            "name": "round",
+            "type": "u8"
+          },
+          {
+            "name": "cards",
+            "type": {
+              "array": [
+                "u8",
+                5
+              ]
+            }
+          },
+          {
+            "name": "count",
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "PokerHandResult",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "table_id",
+            "type": "u16"
+          },
+          {
+            "name": "seat",
+            "type": "u8"
+          },
+          {
+            "name": "wallet",
+            "type": "pubkey"
+          },
+          {
+            "name": "payout",
+            "type": "u64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "PokerHandStarted",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "table_id",
+            "type": "u16"
+          },
+          {
+            "name": "hand_number",
+            "type": "u32"
+          },
+          {
+            "name": "dealer_button",
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "PokerHoleCardsDealt",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "table_id",
+            "type": "u16"
+          },
+          {
+            "name": "seat",
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "PokerPlayerJoined",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "wallet",
+            "type": "pubkey"
+          },
+          {
+            "name": "table_id",
+            "type": "u16"
+          },
+          {
+            "name": "seat_index",
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "PokerPlayerLeft",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "wallet",
+            "type": "pubkey"
+          },
+          {
+            "name": "table_id",
+            "type": "u16"
+          },
+          {
+            "name": "seat_index",
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "PokerPotUpdated",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "table_id",
+            "type": "u16"
+          },
+          {
+            "name": "pot",
+            "type": "u64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "PokerRound",
+      "docs": [
+        "Betting round phases in Texas Hold'em"
+      ],
+      "repr": {
+        "kind": "rust"
+      },
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "Waiting"
+          },
+          {
+            "name": "PreFlop"
+          },
+          {
+            "name": "Flop"
+          },
+          {
+            "name": "Turn"
+          },
+          {
+            "name": "River"
+          },
+          {
+            "name": "Showdown"
+          }
+        ]
+      }
+    },
+    {
+      "name": "PokerSeat",
+      "docs": [
+        "Per-seat state for poker"
+      ],
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "player",
+            "docs": [
+              "Player wallet (Pubkey::default() = empty)"
+            ],
+            "type": "pubkey"
+          },
+          {
+            "name": "hole_cards",
+            "docs": [
+              "Hole cards (2 cards, indices 0-51)"
+            ],
+            "type": {
+              "array": [
+                "u8",
+                2
+              ]
+            }
+          },
+          {
+            "name": "round_bet",
+            "docs": [
+              "Current bet in this round"
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "total_bet",
+            "docs": [
+              "Total chips committed this hand"
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "status",
+            "docs": [
+              "Seat status"
+            ],
+            "type": {
+              "defined": {
+                "name": "PokerSeatStatus"
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "PokerSeatStatus",
+      "docs": [
+        "Poker seat status"
+      ],
+      "repr": {
+        "kind": "rust"
+      },
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "Empty"
+          },
+          {
+            "name": "Sitting"
+          },
+          {
+            "name": "Active"
+          },
+          {
+            "name": "Acted"
+          },
+          {
+            "name": "Folded"
+          },
+          {
+            "name": "AllIn"
+          }
+        ]
+      }
+    },
+    {
+      "name": "PokerShowdown",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "table_id",
+            "type": "u16"
+          },
+          {
+            "name": "seat",
+            "type": "u8"
+          },
+          {
+            "name": "hole_cards",
+            "type": {
+              "array": [
+                "u8",
+                2
+              ]
+            }
+          },
+          {
+            "name": "hand_rank",
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "PokerTable",
+      "docs": [
+        "Poker table state PDA"
+      ],
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "table_id",
+            "docs": [
+              "Table ID"
+            ],
+            "type": "u16"
+          },
+          {
+            "name": "room_type",
+            "docs": [
+              "Room type (2 = poker)"
+            ],
+            "type": "u8"
+          },
+          {
+            "name": "round",
+            "docs": [
+              "Current betting round"
+            ],
+            "type": {
+              "defined": {
+                "name": "PokerRound"
+              }
+            }
+          },
+          {
+            "name": "seats",
+            "docs": [
+              "Player seats"
+            ],
+            "type": {
+              "array": [
+                {
+                  "defined": {
+                    "name": "PokerSeat"
+                  }
+                },
+                6
+              ]
+            }
+          },
+          {
+            "name": "player_count",
+            "docs": [
+              "Number of occupied seats"
+            ],
+            "type": "u8"
+          },
+          {
+            "name": "dealer_button",
+            "docs": [
+              "Dealer button position (seat index)"
+            ],
+            "type": "u8"
+          },
+          {
+            "name": "action_on",
+            "docs": [
+              "Index of player whose turn it is"
+            ],
+            "type": "u8"
+          },
+          {
+            "name": "last_action_slot",
+            "docs": [
+              "Slot of last action (for timeouts)"
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "community_cards",
+            "docs": [
+              "Community cards (up to 5)"
+            ],
+            "type": {
+              "array": [
+                "u8",
+                5
+              ]
+            }
+          },
+          {
+            "name": "community_count",
+            "docs": [
+              "Number of community cards revealed"
+            ],
+            "type": "u8"
+          },
+          {
+            "name": "pot",
+            "docs": [
+              "Main pot"
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "current_bet",
+            "docs": [
+              "Current bet to call (highest bet this round)"
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "min_raise",
+            "docs": [
+              "Minimum raise amount"
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "small_blind",
+            "docs": [
+              "Small blind amount"
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "big_blind",
+            "docs": [
+              "Big blind amount"
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "hand_number",
+            "docs": [
+              "Hand number (for tracking)"
+            ],
+            "type": "u32"
+          },
+          {
+            "name": "vrf_seed",
+            "docs": [
+              "VRF seed (64 bytes from ORAO — base randomness, publicly known)"
+            ],
+            "type": {
+              "array": [
+                "u8",
+                64
+              ]
+            }
+          },
+          {
+            "name": "dealer_commitment",
+            "docs": [
+              "Dealer secret commitment: SHA256(dealer_secret).",
+              "The actual deck = shuffle(SHA256(vrf_seed || dealer_secret)).",
+              "Nobody can compute the deck without dealer_secret.",
+              "At showdown, dealer_secret is revealed and verified."
+            ],
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          },
+          {
+            "name": "community_cards_revealed",
+            "docs": [
+              "Community cards revealed by server (verified at showdown)"
+            ],
+            "type": "bool"
+          },
+          {
+            "name": "deck_index",
+            "docs": [
+              "Next card index in the deck (tracks how many cards dealt)"
+            ],
+            "type": "u8"
+          },
+          {
+            "name": "deck_ready",
+            "docs": [
+              "Deck ready (VRF seed available)"
+            ],
+            "type": "bool"
+          },
+          {
+            "name": "pending_vrf",
+            "docs": [
+              "Whether a VRF request is pending"
+            ],
+            "type": "bool"
+          },
+          {
+            "name": "pending_vrf_seed",
+            "docs": [
+              "Pending VRF seed (for validation)"
+            ],
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          },
+          {
+            "name": "bb_seat",
+            "docs": [
+              "Big blind seat index (BB gets last action pre-flop)"
+            ],
+            "type": "u8"
+          },
+          {
+            "name": "bump",
+            "docs": [
+              "PDA bump"
+            ],
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "PokerTableCreated",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "table_id",
+            "type": "u16"
+          },
+          {
+            "name": "small_blind",
+            "type": "u64"
+          },
+          {
+            "name": "big_blind",
+            "type": "u64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Seat",
+      "docs": [
+        "Per-seat state. Fixed-size for deterministic account layout."
+      ],
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "player",
+            "docs": [
+              "Player wallet (Pubkey::default() = empty)"
+            ],
+            "type": "pubkey"
+          },
+          {
+            "name": "bet",
+            "docs": [
+              "Bet amount in USDC smallest unit"
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "cards",
+            "docs": [
+              "Cards dealt (card indices 0-51)"
+            ],
+            "type": {
+              "array": [
+                "u8",
+                12
+              ]
+            }
+          },
+          {
+            "name": "card_count",
+            "docs": [
+              "Number of cards dealt"
+            ],
+            "type": "u8"
+          },
+          {
+            "name": "status",
+            "docs": [
+              "Current status"
+            ],
+            "type": {
+              "defined": {
+                "name": "SeatStatus"
+              }
+            }
+          },
+          {
+            "name": "outcome",
+            "docs": [
+              "Hand outcome (set after resolution)"
+            ],
+            "type": {
+              "defined": {
+                "name": "Outcome"
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "SeatStatus",
+      "docs": [
+        "Seat status — matches EVM SeatStatus enum ordering"
+      ],
+      "repr": {
+        "kind": "rust"
+      },
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "Empty"
+          },
+          {
+            "name": "Betting"
+          },
+          {
+            "name": "Active"
+          },
+          {
+            "name": "Stood"
+          },
+          {
+            "name": "Bust"
+          },
+          {
+            "name": "Blackjack"
+          }
+        ]
+      }
+    },
+    {
+      "name": "ShuffleCompleted",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "shoe_id",
+            "type": "u16"
+          }
+        ]
+      }
+    },
+    {
+      "name": "ShuffleRequested",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "seed",
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "Table",
+      "docs": [
+        "Main table state PDA"
+      ],
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "table_id",
+            "docs": [
+              "Table ID (0 for v1 single table)"
+            ],
+            "type": "u16"
+          },
+          {
+            "name": "room_type",
+            "docs": [
+              "Room type (0 = blackjack)"
+            ],
+            "type": "u8"
+          },
+          {
+            "name": "phase",
+            "docs": [
+              "Current game phase"
+            ],
+            "type": {
+              "defined": {
+                "name": "GamePhase"
+              }
+            }
+          },
+          {
+            "name": "seats",
+            "docs": [
+              "Player seats"
+            ],
+            "type": {
+              "array": [
+                {
+                  "defined": {
+                    "name": "Seat"
+                  }
+                },
+                5
+              ]
+            }
+          },
+          {
+            "name": "player_count",
+            "docs": [
+              "Number of occupied seats"
+            ],
+            "type": "u8"
+          },
+          {
+            "name": "current_seat_index",
+            "docs": [
+              "Index of current player's turn"
+            ],
+            "type": "u8"
+          },
+          {
+            "name": "last_action_slot",
+            "docs": [
+              "Slot of last game action (for timeouts)"
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "hand_id",
+            "docs": [
+              "Current hand ID (hash)"
+            ],
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          },
+          {
+            "name": "hand_number_in_shoe",
+            "docs": [
+              "Hand number within current shoe"
+            ],
+            "type": "u16"
+          },
+          {
+            "name": "shoe_id",
+            "docs": [
+              "Current shoe ID"
+            ],
+            "type": "u16"
+          },
+          {
+            "name": "shoe_card_index",
+            "docs": [
+              "Next card index in shoe"
+            ],
+            "type": "u16"
+          },
+          {
+            "name": "shoe_ready",
+            "docs": [
+              "Whether shoe has been shuffled and is ready"
+            ],
+            "type": "bool"
+          },
+          {
+            "name": "vrf_seed",
+            "docs": [
+              "VRF seed (64 bytes from ORAO)"
+            ],
+            "type": {
+              "array": [
+                "u8",
+                64
+              ]
+            }
+          },
+          {
+            "name": "pending_vrf",
+            "docs": [
+              "Whether a VRF request is pending"
+            ],
+            "type": "bool"
+          },
+          {
+            "name": "pending_vrf_seed",
+            "docs": [
+              "The seed used for the pending VRF request (for validation in consume_vrf)"
+            ],
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          },
+          {
+            "name": "house_reserve_locked",
+            "docs": [
+              "House reserve locked for current hand"
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "dealer_cards",
+            "docs": [
+              "Dealer cards"
+            ],
+            "type": {
+              "array": [
+                "u8",
+                12
+              ]
+            }
+          },
+          {
+            "name": "dealer_card_count",
+            "docs": [
+              "Dealer card count"
+            ],
+            "type": "u8"
+          },
+          {
+            "name": "bump",
+            "docs": [
+              "PDA bump seed"
+            ],
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "TableCreated",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "table_id",
+            "type": "u16"
+          },
+          {
+            "name": "room_type",
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Withdrawn",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "wallet",
+            "type": "pubkey"
+          },
+          {
+            "name": "amount",
+            "type": "u64"
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,35 +1,65 @@
----
-name: "Chatgpt Consultation"
-description: "自动识别复杂或专业问题，调用ChatGPT提供最新、精准的技术咨询和解答，支持手动或自动触发。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/chatgpt-consultation"
-sourceUrl: "https://clawhub.ai/skills/chatgpt-consultation"
----
+# ChatGPT 咨询技能
 
-# Chatgpt Consultation
+当遇到无法解决的问题或用户明确要求时，自动咨询 ChatGPT 获取专业解答。
 
-> 自动识别复杂或专业问题，调用ChatGPT提供最新、精准的技术咨询和解答，支持手动或自动触发。
+## 触发条件
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/chatgpt-consultation`
-- **Source URL:** [https://clawhub.ai/skills/chatgpt-consultation](https://clawhub.ai/skills/chatgpt-consultation)
+### 自动触发（当以下情况发生时）：
+1. 问题超出当前模型的知识范围
+2. 无法确定或无法解决用户的问题
+3. 涉及专业技术配置问题
+4. 需要最新信息或专业意见
 
-## Overview
+### 手动触发（当用户明确要求时）：
+1. 用户包含 "咨询ChatGPT"、"问问ChatGPT" 等关键词
+2. 用户使用 "@browser" 指令
+3. 用户直接要求使用浏览器工具
 
+## 执行流程
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/chatgpt-consultation
+1. **识别需求**：分析问题是否适合咨询 ChatGPT
+2. **用户通知**：告知用户将咨询 ChatGPT
+3. **自动执行**：调用浏览器工具与 ChatGPT 交互
+4. **结果返回**：整理并返回 ChatGPT 的专业回答
+5. **错误处理**：优雅处理可能的失败情况
+
+## 配置
+
+- 浏览器配置：使用 `existing-session` 模式连接用户 Chrome
+- 超时设置：15秒等待回复生成
+- 重试机制：最多重试2次
+- 标签页管理：自动复用现有标签页
+
+## 使用方法
+
+### 自动模式：
 ```
+用户：如何配置 OpenClaw 的数据库连接？
+小七：这个问题涉及数据库配置，让我为您咨询ChatGPT获取专业指导。
+```
+
+### 手动模式：
+```
+用户：请咨询ChatGPT关于人工智能伦理的最新观点
+小七：好的，马上为您咨询ChatGPT...
+```
+
+## 文件依赖
+
+- `scripts/auto_chatgpt.js` - 主执行脚本
+- `config/auto_gpt_config.json` - 配置文件
+- 浏览器工具配置（`~/.openclaw/openclaw.json`）
+
+## 错误处理
+
+- 浏览器连接失败：提示用户检查 Chrome 连接
+- 页面加载超时：自动重试机制
+- 回复提取失败：返回原始快照数据
+- 网络问题：友好的错误提示
+
+## 优化建议
+
+1. 缓存常见问题的 ChatGPT 回复
+2. 添加对话历史管理
+3. 支持多轮对话上下文
+4. 优化回复提取算法

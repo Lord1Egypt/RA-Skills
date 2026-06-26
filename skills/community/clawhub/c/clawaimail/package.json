@@ -1,0 +1,38 @@
+{
+  "name": "clawaimail-mcp",
+  "version": "0.2.1",
+  "description": "ClawAIMail MCP Server - Email tools for AI agents (Claude, Cursor, OpenClaw)",
+  "main": "index.js",
+  "mcpName": "io.github.joansongjr/clawaimail",
+  "type": "module",
+  "bin": {
+    "clawaimail-mcp": "./index.js"
+  },
+  "keywords": [
+    "mcp",
+    "mcp-server",
+    "email",
+    "ai",
+    "agent",
+    "claude",
+    "cursor",
+    "openclaw",
+    "clawaimail",
+    "model-context-protocol",
+    "ai-tools"
+  ],
+  "author": "ClawAIMail <support@clawaimail.com>",
+  "license": "MIT",
+  "homepage": "https://clawaimail.com",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/joansongjr/clawaimail"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0",
+    "zod": "^3.22.0"
+  },
+  "files": [
+    "index.js"
+  ]
+}

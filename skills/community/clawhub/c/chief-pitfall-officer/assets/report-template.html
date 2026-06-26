@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{PROJECT_NAME}} - 甲方全链路保护方案报告</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Source+Serif+4:opsz,wght@8..60,300;8..60,400;8..60,600&family=IBM+Plex+Mono:wght@300;400;500&family=Noto+Serif+SC:wght@400;700;900&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <style>
+        :root {
+            /* 默认主题：🖋 甲方经典（蓝黑） */
+            --ink: #0a0a0b;
+            --ink-rgb: 10,10,11;
+            --paper: #f1efea;
+            --paper-rgb: 241,239,234;
+            --paper-tint: #e8e5de;
+            --accent: #1e40af; /* 深蓝 */
+            --risk-high: #dc2626;
+            --risk-mid: #d97706;
+            --risk-low: #059669;
+
+        /* 主题变体 */
+        .theme-indigo { --ink: #0a1f3d; --ink-rgb: 10,31,61; --paper: #f1f3f5; --paper-rgb: 241,243,245; --paper-tint: #e4e8ec; --accent: #2563eb; }
+        .theme-forest { --ink: #1a2e1f; --ink-rgb: 26,46,31; --paper: #f5f1e8; --paper-rgb: 245,241,232; --paper-tint: #ece7da; --accent: #059669; }
+        .theme-kraft { --ink: #2a1e13; --ink-rgb: 42,30,19; --paper: #eedfc7; --paper-rgb: 238,223,199; --paper-tint: #e0d0b6; --accent: #d97706; }
+        .theme-dune { --ink: #1f1a14; --ink-rgb: 31,26,20; --paper: #f0e6d2; --paper-rgb: 240,230,210; --paper-tint: #e3d7bf; --accent: #71717a; }
+
+        body {
+            background-color: var(--paper);
+            color: var(--ink);
+            font-family: var(--sans-zh);
+            transition: all 0.5s ease;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* 杂志风排版规则 */
+        .h-display { font-family: var(--serif-zh); font-weight: 900; line-height: 1.1; letter-spacing: -0.02em; }
+        .h-serif { font-family: var(--serif-zh); font-weight: 700; }
+        .f-mono { font-family: var(--mono); text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.75rem; }
+        
+        /* 演示模式 (Horizontal) */
+        .mode-deck { overflow: hidden; height: 100vh; width: 100vw; }
+        .mode-deck #deck-container { display: flex; transition: transform 0.8s cubic-bezier(0.77, 0, 0.175, 1); height: 100%; }
+        .slide { width: 100vw; height: 100vh; flex: 0 0 100vw; padding: 8vh 8vw; position: relative; display: flex; flex-direction: column; overflow: hidden; }
+        
+        /* 文档模式 (Vertical) */
+        .mode-doc { overflow-y: auto; }
+        .mode-doc .slide { width: 100%; height: auto; min-height: 80vh; padding: 4rem 2rem; border-bottom: 1px solid rgba(var(--ink-rgb), 0.1); }
+        .mode-doc .max-w-doc { max-width: 64rem; margin: 0 auto; }
+        
+        /* 完整文档模式 */
+        .mode-full { overflow-y: auto; }
+        .mode-full .slide { display: none; }
+        .mode-full .full-content { display: block; padding: 4rem 2rem; max-width: 64rem; margin: 0 auto; }
+        .mode-full .full-content h1 { font-family: var(--serif-zh); font-weight: 900; font-size: 2.5rem; margin-bottom: 2rem; border-bottom: 2px solid var(--accent); padding-bottom: 1rem; }
+        .mode-full .full-content h2 { font-family: var(--serif-zh); font-weight: 700; font-size: 1.8rem; margin-top: 3rem; margin-bottom: 1.5rem; color: var(--accent); }
+        .mode-full .full-content h3 { font-family: var(--serif-zh); font-weight: 700; font-size: 1.4rem; margin-top: 2rem; margin-bottom: 1rem; }
+        .mode-full .full-content p { line-height: 1.8; margin-bottom: 1.2rem; opacity: 0.9; }
+        .mode-full .full-content ul, .mode-full .full-content ol { margin-bottom: 1.5rem; padding-left: 1.5rem; }
+        .mode-full .full-content li { margin-bottom: 0.5rem; }
+        .mode-full .full-content table { width: 100%; border-collapse: collapse; margin: 2rem 0; background: rgba(var(--ink-rgb), 0.02); }
+        .mode-full .full-content th, .mode-full .full-content td { border: 1px solid rgba(var(--ink-rgb), 0.1); padding: 1rem; text-align: left; }
+        .mode-full .full-content th { background: rgba(var(--ink-rgb), 0.05); font-weight: 700; }
+        .mode-full .full-content blockquote { border-left: 4px solid var(--accent); padding-left: 1.5rem; font-style: italic; margin: 2rem 0; opacity: 0.8; }
+        .mode-full .full-content pre { background: rgba(var(--ink-rgb), 0.05); padding: 1.5rem; border-radius: 0.75rem; overflow-x: auto; margin: 1.5rem 0; font-family: var(--mono); font-size: 0.9rem; }
+        
+        .mode-deck .full-content, .mode-doc .full-content { display: none; }
+
+        /* Bento Grid 组件 */
+        .bento-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 1.5rem; }
+        .bento-card { background: rgba(var(--ink-rgb), 0.03); border: 1px solid rgba(var(--ink-rgb), 0.08); border-radius: 1.5rem; padding: 1.5rem; transition: all 0.3s ease; }
+        .bento-card:hover { background: rgba(var(--ink-rgb), 0.05); transform: translateY(-2px); }
+
+        /* 装饰元素 */
+        .kicker { font-family: var(--mono); font-size: 0.7rem; color: var(--accent); opacity: 0.8; margin-bottom: 0.5rem; display: block; }
+        .hr-magazine { border: 0; height: 1px; background: currentColor; opacity: 0.15; margin: 2rem 0; }
+        
+        /* WebGL 背景模拟 (CSS Gradient) */
+        .hero-bg {
+            position: absolute; inset: 0; z-index: -1;
+            background: radial-gradient(circle at 70% 30%, rgba(var(--ink-rgb), 0.03) 0%, transparent 50%),
+                        radial-gradient(circle at 20% 80%, rgba(var(--ink-rgb), 0.02) 0%, transparent 40%);
+        }
+
+        [x-cloak] { display: none !important; }
+    </style>
+</head>
+<body x-data="{ 
+    mode: 'doc', 
+    theme: 'default',
+    currentSlide: 0,
+    totalSlides: 8,
+    nextSlide() { if(this.currentSlide < this.totalSlides - 1) this.currentSlide++ },
+    prevSlide() { if(this.currentSlide > 0) this.currentSlide-- },
+    setMode(m) { this.mode = m; if(m === 'deck') document.body.classList.add('mode-deck'); else document.body.classList.remove('mode-deck'); }
+}" :class="'theme-' + theme + (mode === 'deck' ? ' mode-deck' : ' mode-doc')" 
+   @keydown.right.window="if(mode === 'deck') nextSlide()"
+   @keydown.left.window="if(mode === 'deck') prevSlide()"
+   @keydown.escape.window="setMode(mode === 'deck' ? 'doc' : 'deck')">
+
+    <!-- Controls -->
+    <div class="fixed top-6 right-6 z-50 flex items-center gap-3 no-print">
+        <div class="flex bg-white/20 backdrop-blur-md border border-white/30 rounded-full p-1 shadow-lg">
+            <button @click="setMode('doc')" :class="mode === 'doc' ? 'bg-white text-slate-900 shadow-sm' : 'text-slate-600'" class="px-4 py-1.5 rounded-full text-xs font-bold transition-all">报告模式</button>
+            <button @click="setMode('deck')" :class="mode === 'deck' ? 'bg-white text-slate-900 shadow-sm' : 'text-slate-600'" class="px-4 py-1.5 rounded-full text-xs font-bold transition-all">演示模式</button>
+            <button @click="setMode('full')" :class="mode === 'full' ? 'bg-white text-slate-900 shadow-sm' : 'text-slate-600'" class="px-4 py-1.5 rounded-full text-xs font-bold transition-all">完整文档</button>
+        </div>
+        <select x-model="theme" class="bg-white/20 backdrop-blur-md border border-white/30 rounded-full px-3 py-1.5 text-xs font-bold shadow-lg focus:outline-none">
+            <option value="default">🖋 墨水经典</option>
+            <option value="indigo">🌊 靛蓝瓷</option>
+            <option value="forest">🌿 森林墨</option>
+            <option value="kraft">🍂 牛皮纸</option>
+            <option value="dune">🌙 沙丘</option>
+        </select>
+    </div>
+
+    <!-- Presentation View Navigation -->
+    <template x-if="mode === 'deck'">
+        <div class="fixed bottom-8 left-0 right-0 z-50 flex justify-center items-center gap-8 no-print">
+            <button @click="prevSlide()" :disabled="currentSlide === 0" class="opacity-50 hover:opacity-100 disabled:opacity-10 transition-opacity">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 19l-7-7 7-7"></path></svg>
+            </button>
+            <div class="flex gap-2">
+                <template x-for="i in totalSlides">
+                    <div :class="currentSlide === i-1 ? 'w-8 bg-indigo-600' : 'w-2 bg-slate-300'" class="h-2 rounded-full transition-all duration-500"></div>
+                </template>
+            </div>
+            <button @click="nextSlide()" :disabled="currentSlide === totalSlides - 1" class="opacity-50 hover:opacity-100 disabled:opacity-10 transition-opacity">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5l7 7-7 7"></path></svg>
+            </button>
+        </div>
+    </template>
+
+    <!-- Content Container -->
+    <div id="deck-container" :style="mode === 'deck' ? 'transform: translateX(-' + (currentSlide * 100) + 'vw)' : ''">
+        
+        <!-- Slide 1: Cover -->
+        <section class="slide hero" id="slide-0">
+            <div class="hero-bg"></div>
+            <div class="flex flex-col h-full justify-center max-w-doc">
+                <span class="f-mono mb-4 text-indigo-600 font-bold tracking-[0.3em]">Project Delivery Plan</span>
+                <h1 class="h-display text-6xl lg:text-8xl mb-8">{{PROJECT_NAME}}</h1>
+                <div class="w-24 h-1 bg-indigo-600 mb-8"></div>
+                <p class="h-serif text-xl lg:text-2xl max-w-2xl opacity-80 leading-relaxed">{{PROJECT_DESC}}</p>
+                
+                <div class="mt-20 grid grid-cols-1 md:grid-cols-3 gap-12 border-t border-current/10 pt-12">
+                    <div>
+                        <span class="f-mono opacity-50 block mb-2">Success Rate</span>
+                        <span class="h-serif text-4xl font-black">98.5%</span>
+                    </div>
+                    <div>
+                        <span class="f-mono opacity-50 block mb-2">Duration</span>
+                        <span class="h-serif text-4xl font-black">{{PROJECT_DURATION}}</span>
+                    </div>
+                    <div>
+                        <span class="f-mono opacity-50 block mb-2">Risk Level</span>
+                        <span class="h-serif text-4xl font-black">{{PROJECT_RISK}}</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 2: Goals & Constraints (Bento Style) -->
+        <section class="slide" id="slide-1">
+            <div class="max-w-doc w-full h-full flex flex-col">
+                <header class="mb-12">
+                    <span class="f-mono opacity-60">Section 01</span>
+                    <h2 class="h-serif text-4xl mt-2">核心目标与关键约束</h2>
+                </header>
+                
+                <div class="bento-grid flex-1">
+                    <div class="bento-card col-span-12 md:col-span-8 flex flex-col justify-between">
+                        <div>
+                            <span class="kicker">Core Goal</span>
+                            <p class="h-serif text-3xl leading-snug">{{CORE_GOAL}}</p>
+                        </div>
+                        <div class="mt-8 flex gap-4">
+                            {{SUCCESS_TAGS}}
+                        </div>
+                    </div>
+                    <div class="bento-card col-span-12 md:col-span-4 bg-indigo-600 text-white border-none">
+                        <span class="f-mono opacity-70">Success Criteria</span>
+                        <div class="mt-6 space-y-4 h-serif text-lg">
+                            {{SUCCESS_CRITERIA_LIST}}
+                        </div>
+                    </div>
+                    <div class="bento-card col-span-12 md:col-span-12">
+                        <span class="kicker">Constraints</span>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-4">
+                            {{CONSTRAINTS_CARDS}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 3: Solution Selection -->
+        <section class="slide" id="slide-2">
+            <div class="max-w-doc w-full h-full flex flex-col">
+                <header class="mb-12">
+                    <span class="f-mono opacity-60">Section 02</span>
+                    <h2 class="h-serif text-4xl mt-2">方案选型与决策理由</h2>
+                </header>
+                
+                <div class="flex-1 overflow-x-auto">
+                    {{SELECTION_TABLE_MAGAZINE}}
+                </div>
+                
+                <div class="mt-8 p-8 bg-indigo-50 border-l-4 border-indigo-600 rounded-r-2xl">
+                    <span class="f-mono text-indigo-600 font-bold">Recommendation Reason</span>
+                    <p class="h-serif text-xl mt-4 leading-relaxed text-indigo-900">{{RECOMMENDATION_REASON}}</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 4: WBS & Workflow -->
+        <section class="slide" id="slide-3">
+            <div class="max-w-doc w-full h-full flex flex-col">
+                <header class="mb-12">
+                    <span class="f-mono opacity-60">Section 03</span>
+                    <h2 class="h-serif text-4xl mt-2">工作内容拆解 (WBS)</h2>
+                </header>
+                
+                <div class="flex-1 overflow-y-auto pr-4 space-y-6">
+                    {{WBS_MAGAZINE_LAYOUT}}
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 5: Skills & Roles -->
+        <section class="slide" id="slide-4">
+            <div class="max-w-doc w-full h-full flex flex-col">
+                <header class="mb-12 flex justify-between items-end">
+                    <div>
+                        <span class="f-mono opacity-60">Section 04</span>
+                        <h2 class="h-serif text-4xl mt-2">资源配置与材料/人工审计</h2>
+                    </div>
+                </header>
+                
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 flex-1">
+                    <div class="space-y-6">
+                        <h3 class="f-mono font-bold border-b pb-2">Materials & Labor Audit (甲方审计)</h3>
+                        {{MATERIALS_AUDIT_TABLE}}
+                        <div class="mt-4 p-4 bg-red-50 rounded-xl text-xs text-red-800 border-l-4 border-red-500">
+                            <strong>审计建议：</strong> {{MATERIALS_AUDIT_ADVICE}}
+                        </div>
+                    </div>
+                    <div class="space-y-6">
+                        <h3 class="f-mono font-bold border-b pb-2">Role Responsibilities & Risk</h3>
+                        <div class="space-y-4">
+                            {{ROLES_CARDS_MAGAZINE}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 6: Risk & Compliance Dashboard -->
+        <section class="slide" id="slide-5">
+            <div class="max-w-doc w-full h-full flex flex-col">
+                <header class="mb-12">
+                    <span class="f-mono opacity-60">Section 05</span>
+                    <h2 class="h-serif text-4xl mt-2">过程管控与交付评估模型</h2>
+                </header>
+                
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 flex-1">
+                    <div class="lg:col-span-2 bento-card border-l-8 border-indigo-500">
+                        <span class="kicker">Process Management & Key Decision Points (★)</span>
+                        {{PROCESS_TIMELINE_VISUAL}}
+                        <div class="mt-8">
+                            <span class="kicker">Delivery Evaluation Model (3D Model)</span>
+                            {{DELIVERY_3D_MODEL_VISUAL}}
+                        </div>
+                    </div>
+                    <div class="space-y-6">
+                        <span class="kicker">Risk Prediction & Compliance</span>
+                        <div class="p-6 bg-red-50 shadow-sm rounded-2xl border-t-4 border-red-500">
+                            <span class="h-serif text-2xl font-bold block mb-4 text-red-600">风险预警</span>
+                            <div class="text-xs space-y-2">
+                                {{RISK_PREDICTION_LIST}}
+                            </div>
+                        </div>
+                        <div class="space-y-4">
+                            {{COMPLIANCE_CARDS_MAGAZINE}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 7: Acceptance & Audit -->
+        <section class="slide" id="slide-6">
+            <div class="max-w-doc w-full h-full flex flex-col">
+                <header class="mb-12 flex justify-between items-end">
+                    <div>
+                        <span class="f-mono opacity-60">Section 06</span>
+                        <h2 class="h-serif text-4xl mt-2">验收标准与报价审计</h2>
+                    </div>
+                </header>
+                
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 flex-1">
+                    <div class="space-y-6">
+                        <h3 class="f-mono font-bold border-b pb-2">Acceptance Manual (Anti-Ambiguity)</h3>
+                        {{ACCEPTANCE_MATRIX_MAGAZINE}}
+                        <div class="mt-4 p-4 bg-amber-50 rounded-xl text-sm border-l-4 border-amber-500">
+                            <strong>歧义预警：</strong> {{AMBIGUITY_ALERTS}}
+                        </div>
+                    </div>
+                    <div class="space-y-6">
+                        <h3 class="f-mono font-bold border-b pb-2">Pricing Audit Checklist</h3>
+                        <div class="space-y-4">
+                            {{PRICING_AUDIT_LIST}}
+                        </div>
+                        <div class="mt-8">
+                            <span class="kicker text-red-600">乙方常见套路识别</span>
+                            {{VENDOR_TRAPS_LIST}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 8: Legal & Financial Risk -->
+        <section class="slide" id="slide-7">
+            <div class="max-w-doc w-full h-full flex flex-col">
+                <header class="mb-12">
+                    <span class="f-mono opacity-60">Section 07</span>
+                    <h2 class="h-serif text-4xl mt-2">法务合规与财务结算审计</h2>
+                </header>
+                
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 flex-1">
+                    <div class="lg:col-span-2 bento-card border-l-8 border-amber-500">
+                        <span class="kicker">Legal Compliance Audit</span>
+                        {{LEGAL_AUDIT_TABLE}}
+                        <div class="mt-8 p-4 bg-amber-50 rounded-xl text-xs border-l-4 border-amber-500">
+                            <strong>合同条款建议：</strong> {{LEGAL_CLAUSE_ADVICE}}
+                        </div>
+                    </div>
+                    <div class="space-y-6 bento-card border-l-8 border-emerald-500">
+                        <span class="kicker">Financial Settlement Audit</span>
+                        <div class="space-y-4">
+                            {{PAYMENT_RHYTHM_VISUAL}}
+                            <div class="mt-6">
+                                <span class="f-mono text-[10px] uppercase opacity-50">Settlement Traps</span>
+                                {{FINANCIAL_TRAPS_LIST}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Full Document Content -->
+    <div class="full-content no-print" x-show="mode === 'full'">
+        {{FULL_CONTENT_HTML}}
+    </div>
+
+    <!-- Footer for Document Mode -->
+    <footer>
+        <p class="f-mono opacity-40">Generated by Chief Pitfall Officer (CPO) x Magazine Style</p>
+    </footer>
+
+    <script>
+        // Smooth scroll for doc mode and slide control for deck mode
+        document.addEventListener('wheel', (e) => {
+            if (window.Alpine.store('mode') === 'deck') {
+                // Throttle wheel for deck mode
+            }
+        });
+    </script>
+</body>
+</html>

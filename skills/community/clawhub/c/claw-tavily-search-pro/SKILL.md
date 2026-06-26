@@ -1,35 +1,38 @@
 ---
-name: "Claw Tavily Search Pro"
-description: "AI-optimized web search via Tavily API. Returns concise, relevant results for AI agents."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/claw-tavily-search-pro"
-sourceUrl: "https://clawhub.ai/skills/claw-tavily-search-pro"
+name: tavily
+description: AI-optimized web search via Tavily API. Returns concise, relevant results for AI agents.
+homepage: https://tavily.com
+metadata: {"clawdbot":{"emoji":"🔍","requires":{"bins":["node"],"env":["TAVILY_API_KEY"]},"primaryEnv":"TAVILY_API_KEY"}}
 ---
 
-# Claw Tavily Search Pro
+# Tavily Search
 
-> AI-optimized web search via Tavily API. Returns concise, relevant results for AI agents.
+AI-optimized web search using Tavily API. Designed for AI agents - returns clean, relevant content.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/claw-tavily-search-pro`
-- **Source URL:** [https://clawhub.ai/skills/claw-tavily-search-pro](https://clawhub.ai/skills/claw-tavily-search-pro)
+## Search
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/claw-tavily-search-pro
+node {baseDir}/scripts/search.mjs "query"
+node {baseDir}/scripts/search.mjs "query" -n 10
+node {baseDir}/scripts/search.mjs "query" --deep
+node {baseDir}/scripts/search.mjs "query" --topic news
 ```
+
+## Options
+
+- `-n <count>`: Number of results (default: 5, max: 20)
+- `--deep`: Use advanced search for deeper research (slower, more comprehensive)
+- `--topic <topic>`: Search topic - `general` (default) or `news`
+- `--days <n>`: For news topic, limit to last n days
+
+## Extract content from URL
+
+```bash
+node {baseDir}/scripts/extract.mjs "https://example.com/article"
+```
+
+Notes:
+- Needs `TAVILY_API_KEY` from https://tavily.com
+- Tavily is optimized for AI - returns clean, relevant snippets
+- Use `--deep` for complex research questions
+- Use `--topic news` for current events

@@ -1,0 +1,12 @@
+{
+    "name": "CEP Lookup",
+    "description": "Skill that looks up address data for a Brazilian CEP using ViaCEP",
+    "version": "1.0.0",
+    "main": "index.js",
+    "triggers": [
+      {
+        "type": "message",
+        "pattern": "cep (\\d{5}-?\\d{3})"
+      }
+    ]
+}

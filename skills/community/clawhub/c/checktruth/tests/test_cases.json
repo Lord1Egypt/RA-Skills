@@ -1,0 +1,44 @@
+{
+  "test_cases": [
+    {
+      "name": "事实全部正确",
+      "question": "长城汽车哪年成立？",
+      "answer": "长城汽车成立于1984年，总部位于河北保定，创始人是魏建军。",
+      "expected_verdict": "true",
+      "expected_score_min": 80
+    },
+    {
+      "name": "事实部分错误",
+      "question": "长城汽车2023年销量多少？",
+      "answer": "长城汽车2023年销量200万辆，同比增长15%，海外市场占比30%。",
+      "expected_verdict": "partial",
+      "note": "实际销量约123万辆，增长率和海外占比也需要验证"
+    },
+    {
+      "name": "事实全部错误",
+      "question": "魏建军是谁？",
+      "answer": "魏建军是比亚迪创始人，1970年出生，现任比亚迪董事长。",
+      "expected_verdict": "false",
+      "note": "魏建军是长城汽车创始人，不是比亚迪"
+    },
+    {
+      "name": "内部自相矛盾",
+      "question": "长城汽车总部在哪？",
+      "answer": "长城汽车总部在河北保定。不对，应该说是在北京。反正保定北京都有总部。",
+      "expected_consistency": false,
+      "note": "同一回答中出现了两个互相矛盾的总部地点"
+    },
+    {
+      "name": "无法验证的主观问题",
+      "question": "长城汽车好不好？",
+      "answer": "长城汽车很好，质量可靠，性价比高，值得购买。",
+      "expected_verdict": "uncertain",
+      "note": "主观评价类问题难以用事实验证"
+    }
+  ],
+  "how_to_run": [
+    "1. 设置环境变量：export LLM_API_KEY=sk-...",
+    "2. 运行验证：python src/verify_answer.py --question '问题' --answer '回答'",
+    "3. 观察输出是否符合 expected_verdict"
+  ]
+}

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Chat Summary Card"
+  short_description: "Extract key ideas and turn a chat into a polished visual summary card"
+  default_prompt: "Use $chat-summary-image to condense a user-agent conversation into a polished summary image."

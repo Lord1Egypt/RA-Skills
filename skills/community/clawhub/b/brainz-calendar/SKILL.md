@@ -1,35 +1,56 @@
 ---
-name: "Calendar"
+name: calendar
 description: "Manage Google Calendar events using `gcalcli`. Create, list, and delete calendar events from the CLI."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/brainz-calendar"
-sourceUrl: "https://clawhub.ai/skills/brainz-calendar"
+metadata:
+  {
+    "openclaw":
+      {
+        "emoji": "📅",
+        "requires": { "bins": ["gcalcli"] },
+        "install":
+          [
+            {
+              "id": "pip",
+              "kind": "pip",
+              "package": "gcalcli",
+              "bins": ["gcalcli"],
+              "label": "Install gcalcli (pip)",
+            },
+          ],
+      },
+  }
 ---
 
-# Calendar
+# Calendar Skill
 
-> Manage Google Calendar events using `gcalcli`. Create, list, and delete calendar events from the CLI.
+Use `gcalcli` to interact with Google Calendar. Requires `GOOGLE_CALENDAR_API_KEY` (or `CALDAV_URL`/`CALDAV_USER`/`CALDAV_PASS` for CalDAV).
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/brainz-calendar`
-- **Source URL:** [https://clawhub.ai/skills/brainz-calendar](https://clawhub.ai/skills/brainz-calendar)
+## Listing Events
 
-## Overview
+List upcoming events in a date range:
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/brainz-calendar
+gcalcli agenda "2026-02-03" "2026-02-10"
+```
+
+## Creating Events
+
+Add a new calendar event:
+
+```bash
+gcalcli add --title "Team sync" --when "2026-02-04 10:00" --duration 30
+```
+
+## Deleting Events
+
+Delete an event by search term:
+
+```bash
+gcalcli delete "Team sync"
+```
+
+## Install
+
+```bash
+pip install gcalcli
 ```

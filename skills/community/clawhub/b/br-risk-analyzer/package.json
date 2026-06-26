@@ -1,0 +1,9 @@
+{
+  "name": "br-risk-analyzer",
+  "version": "1.0.0",
+  "description": "BR Risk Analyzer - Systematic code risk analysis following codeReview.md protocol",
+  "keywords": ["risk-analysis", "code-review", "requirements", "testing", "security"],
+  "author": "OpenClaw Assistant",
+  "license": "MIT",
+  "type": "module"
+}

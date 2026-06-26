@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "clawaimail": {
+      "command": "npx",
+      "args": ["clawaimail-mcp"],
+      "env": {
+        "CLAWAIMAIL_API_KEY": "your_api_key_here"
+      }
+    }
+  }
+}

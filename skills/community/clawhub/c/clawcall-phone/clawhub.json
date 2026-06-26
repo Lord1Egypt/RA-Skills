@@ -1,0 +1,19 @@
+{
+  "name": "clawcall",
+  "version": "2.1.0",
+  "displayName": "ClawCall — Phone Calls",
+  "description": "Give this agent a real phone number. Receive calls from the user, call user back when tasks complete, run scheduled briefings, or place autonomous calls to third parties. All Twilio infrastructure handled automatically.",
+  "author": "ClawCall",
+  "homepage": "https://clawcall.com",
+  "tags": ["phone", "voice", "twilio", "calling", "notifications"],
+  "license": "MIT",
+  "openclaw": {
+    "minVersion": "1.0.0",
+    "requires": {
+      "bins": ["node", "openclaw"],
+      "env": ["CLAWCALL_API_KEY", "CLAWCALL_EMAIL"]
+    },
+    "primaryEnv": "CLAWCALL_API_KEY",
+    "entrypoint": "SKILL.md"
+  }
+}

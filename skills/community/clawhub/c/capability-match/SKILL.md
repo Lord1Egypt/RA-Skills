@@ -1,35 +1,64 @@
 ---
-name: "capability-match"
-description: "AI-powered skill router that analyzes your request and recommends the best installed skill for the job"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/capability-match"
-sourceUrl: "https://clawhub.ai/skills/capability-match"
+name: capability-match
+description: AI-powered skill router that analyzes your request and recommends the best installed skill for the job
+version: 1.0.0
+author: AutoClaw
 ---
 
-# capability-match
+# Capability Match
 
-> AI-powered skill router that analyzes your request and recommends the best installed skill for the job
+**Intelligent skill routing for OpenClaw** - automatically discovers your installed skills and recommends the perfect one for any task.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/capability-match`
-- **Source URL:** [https://clawhub.ai/skills/capability-match](https://clawhub.ai/skills/capability-match)
+## Usage
 
-## Overview
+Simply describe what you want to do:
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/capability-match
 ```
+Use capability match to: "create a PowerPoint presentation from sales data"
+```
+
+Or directly:
+
+```
+"capability-match: extract text from this PDF and summarize it"
+```
+
+## What It Does
+
+1. **Discovers** all installed skills from your `skills/` directory
+2. **Analyzes** each skill's capabilities from its SKILL.md
+3. **Matches** your natural language request to the most relevant skills
+4. **Recommends** top 3 options with reasoning
+
+## Features
+
+- ✅ **Automatic skill discovery** - scans `skills/` directory
+- ✅ **Smart matching** - understands intents, not just keywords
+- ✅ **Ranked recommendations** - with confidence scores
+- ✅ **Zero config** - works out of the box
+- ✅ **Lightweight** - pure Node.js, no external dependencies
+
+## Commands
+
+The matcher recognizes these trigger phrases:
+
+- `use capability-match to [task]`
+- `capability-match: [task]`
+- `what skill should i use for [task]`
+- `recommend a skill for [task]`
+
+## Requirements
+
+- OpenClaw with skills directory at `~/.openclaw-autoclaw/skills/`
+- Node.js 18+
+
+## Configuration
+
+Optional environment variables:
+
+- `CAPABILITY_MATCH_THRESHOLD` - Minimum confidence score (default: 30)
+- `CAPABILITY_MATCH_MAX_RESULTS` - Max recommendations (default: 3)
+
+---
+
+**Ready to intelligently route your requests?** Just ask: `"capability-match: [your task]"`

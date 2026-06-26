@@ -1,35 +1,31 @@
 ---
-name: "Brew Install"
+name: brew-install
 description: "Install missing binaries via dnf (Fedora/Bazzite package manager)"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/brew-install"
-sourceUrl: "https://clawhub.ai/skills/brew-install"
+metadata:
+  {
+    "openclaw":
+      {
+        "emoji": "📦",
+        "requires": { "bins": ["dnf"] },
+        "install": [],
+      },
+  }
 ---
 
 # Brew Install
 
-> Install missing binaries via dnf (Fedora/Bazzite package manager)
+Install missing binaries via dnf, the Fedora/Bazzite package manager. Despite the name, this skill wraps `dnf` on Bazzite rather than Homebrew.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/brew-install`
-- **Source URL:** [https://clawhub.ai/skills/brew-install](https://clawhub.ai/skills/brew-install)
+## Commands
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/brew-install
+# Install a package
+brew-install <package>
+
+# Search for a package
+brew-install search <query>
 ```
+
+## Install
+
+No installation needed. `dnf` is the default package manager on Fedora/Bazzite and is always present.

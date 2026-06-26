@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Claw-List</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:        #0d0f14;
+    --bg2:       #13161e;
+    --bg3:       #1c2030;
+    --border:    #252a3a;
+    --text:      #c8d0e0;
+    --muted:     #4a5270;
+    --accent:    #4ade80;
+    --accent2:   #22c55e;
+    --danger:    #f87171;
+    --warn:      #fb923c;
+    --blue:      #60a5fa;
+    --mono:      'IBM Plex Mono', monospace;
+    --sans:      'IBM Plex Sans', sans-serif;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: 14px;
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    grid-template-rows: 48px 1fr;
+  }
+
+  /* ── Header ── */
+  header {
+    grid-column: 1 / -1;
+    background: var(--bg2);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    gap: 12px;
+  }
+  header .logo {
+    font-family: var(--mono);
+    font-size: 15px;
+    color: var(--accent);
+    letter-spacing: 0.05em;
+  }
+  header .logo span { color: var(--muted); }
+  #status-dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: var(--muted);
+    margin-left: auto;
+    transition: background 0.3s;
+  }
+  #status-dot.ok  { background: var(--accent); }
+  #status-dot.err { background: var(--danger); }
+  #status-label { font-family: var(--mono); font-size: 11px; color: var(--muted); }
+
+  /* ── Sidebar ── */
+  nav {
+    background: var(--bg2);
+    border-right: 1px solid var(--border);
+    padding: 16px 0;
+  }
+  nav .section-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 0 16px 8px;
+  }
+  nav a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 9px 16px;
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 13px;
+    cursor: pointer;
+    border-left: 2px solid transparent;
+    transition: all 0.15s;
+  }
+  nav a:hover { color: var(--text); background: var(--bg3); }
+  nav a.active { color: var(--accent); border-left-color: var(--accent); background: var(--bg3); }
+  nav a .icon { font-size: 15px; width: 18px; text-align: center; }
+  .nav-list-item {
+    display: flex;
+    align-items: center;
+    padding: 6px 16px 6px 44px;
+    color: var(--muted);
+    font-size: 12px;
+    cursor: pointer;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    border-left: 2px solid transparent;
+    transition: all 0.15s;
+  }
+  .nav-list-item:hover { color: var(--text); background: var(--bg3); }
+  .nav-list-item.active { color: var(--blue); border-left-color: var(--blue); }
+
+  /* ── Main ── */
+  main {
+    padding: 28px 32px;
+    overflow-y: auto;
+  }
+
+  .view { display: none; }
+  .view.active { display: block; }
+
+  h1 {
+    font-family: var(--mono);
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--text);
+    margin-bottom: 4px;
+  }
+  .subtitle {
+    color: var(--muted);
+    font-size: 12px;
+    margin-bottom: 24px;
+    font-family: var(--mono);
+  }
+
+  /* ── Toolbar ── */
+  .toolbar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+
+  /* ── Buttons ── */
+  button {
+    font-family: var(--sans);
+    font-size: 13px;
+    cursor: pointer;
+    border: none;
+    border-radius: 4px;
+    padding: 7px 14px;
+    transition: all 0.15s;
+  }
+  .btn-primary {
+    background: var(--accent);
+    color: #0d0f14;
+    font-weight: 500;
+  }
+  .btn-primary:hover { background: var(--accent2); }
+  .btn-ghost {
+    background: var(--bg3);
+    color: var(--text);
+    border: 1px solid var(--border);
+  }
+  .btn-ghost:hover { border-color: var(--muted); }
+  .btn-danger {
+    background: transparent;
+    color: var(--danger);
+    border: 1px solid transparent;
+    padding: 4px 8px;
+    font-size: 12px;
+  }
+  .btn-danger:hover { border-color: var(--danger); background: rgba(248,113,113,0.08); }
+  .btn-sm {
+    padding: 4px 10px;
+    font-size: 12px;
+  }
+
+  /* ── Table ── */
+  .table-wrap {
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  table { width: 100%; border-collapse: collapse; }
+  thead { background: var(--bg3); }
+  th {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 10px 14px;
+    text-align: left;
+    font-weight: 500;
+  }
+  td {
+    padding: 11px 14px;
+    border-top: 1px solid var(--border);
+    vertical-align: middle;
+  }
+  tr:hover td { background: var(--bg3); }
+  .mono { font-family: var(--mono); font-size: 12px; }
+  .empty-row td {
+    text-align: center;
+    color: var(--muted);
+    font-family: var(--mono);
+    font-size: 12px;
+    padding: 32px;
+  }
+  .empty-row:hover td { background: transparent; }
+
+  /* ── Badges ── */
+  .badge {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 11px;
+    padding: 2px 8px;
+    border-radius: 3px;
+    font-weight: 500;
+  }
+  .badge-own  { background: rgba(96,165,250,0.15); color: var(--blue); }
+  .badge-all  { background: rgba(74,222,128,0.15); color: var(--accent); }
+  .badge-done { background: rgba(74,222,128,0.1);  color: var(--accent2); }
+  .badge-open { background: rgba(74,82,112,0.3);   color: var(--muted); }
+  .priority   { font-family: var(--mono); font-size: 12px; }
+  .p1 { color: var(--danger); }
+  .p2 { color: var(--warn); }
+  .p3 { color: #facc15; }
+  .p4, .p5 { color: var(--muted); }
+
+  /* ── Modal ── */
+  .modal-backdrop {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+    z-index: 100;
+    align-items: center;
+    justify-content: center;
+  }
+  .modal-backdrop.open { display: flex; }
+  .modal {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 24px;
+    width: 420px;
+    max-width: 95vw;
+  }
+  .modal h2 {
+    font-family: var(--mono);
+    font-size: 14px;
+    margin-bottom: 20px;
+    color: var(--text);
+  }
+
+  /* ── Form ── */
+  .field { margin-bottom: 14px; }
+  label {
+    display: block;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  input, select, textarea {
+    width: 100%;
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: 13px;
+    padding: 8px 10px;
+    outline: none;
+    transition: border-color 0.15s;
+  }
+  input:focus, select:focus, textarea:focus { border-color: var(--accent); }
+  textarea { resize: vertical; min-height: 72px; }
+  select option { background: var(--bg3); }
+
+  .modal-footer {
+    display: flex;
+    gap: 8px;
+    justify-content: flex-end;
+    margin-top: 20px;
+  }
+
+  /* ── Breadcrumb ── */
+  .breadcrumb {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--muted);
+    margin-bottom: 8px;
+  }
+  .breadcrumb a { color: var(--blue); cursor: pointer; text-decoration: none; }
+  .breadcrumb a:hover { text-decoration: underline; }
+
+  /* ── Checkbox ── */
+  .check-done {
+    width: 16px; height: 16px;
+    accent-color: var(--accent);
+    cursor: pointer;
+  }
+
+  .notes-cell {
+    max-width: 240px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: var(--muted);
+    font-size: 12px;
+  }
+
+  .actions { display: flex; gap: 4px; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">🦞 claw<span>-list</span></div>
+  <div style="margin-left:auto; display:flex; align-items:center; gap:8px;">
+    <div id="status-label">connecting</div>
+    <div id="status-dot"></div>
+  </div>
+</header>
+
+<nav>
+  <div class="section-label">Navigation</div>
+  <a class="active" data-view="agents" onclick="showView('agents')">
+    <span class="icon">◈</span> Agents
+  </a>
+  <a data-view="lists" onclick="showView('lists')">
+    <span class="icon">☰</span> Lists
+  </a>
+  <div id="nav-lists"></div>
+</nav>
+
+<main>
+
+  <!-- ── Agents ── -->
+  <div id="view-agents" class="view active">
+    <h1>Agents</h1>
+    <div class="subtitle">// registered agents and their permissions</div>
+    <div class="toolbar">
+      <button class="btn-primary" onclick="openModal('agent')">+ Register Agent</button>
+      <button class="btn-ghost" onclick="loadAgents()">↻ Refresh</button>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Display Name</th>
+            <th>Agent ID</th>
+            <th>Scope</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="agents-body">
+          <tr class="empty-row"><td colspan="4">loading...</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ── Lists ── -->
+  <div id="view-lists" class="view">
+    <h1>Lists</h1>
+    <div class="subtitle">// all lists across all agents</div>
+    <div class="toolbar">
+      <button class="btn-primary" onclick="openModal('list')">+ New List</button>
+      <button class="btn-ghost" onclick="loadLists()">↻ Refresh</button>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Owner</th>
+            <th>Created</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="lists-body">
+          <tr class="empty-row"><td colspan="4">loading...</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ── Items ── -->
+  <div id="view-items" class="view">
+    <div class="breadcrumb">
+      <a onclick="showView('lists')">Lists</a> / <span id="items-list-name"></span>
+    </div>
+    <h1 id="items-heading">Items</h1>
+    <div class="subtitle">// tasks in this list</div>
+    <div class="toolbar">
+      <button class="btn-primary" onclick="openModal('item')">+ Add Item</button>
+      <button class="btn-ghost" onclick="loadItems(currentListId, currentListName, currentListAgentId)">↻ Refresh</button>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th style="width:32px"></th>
+            <th>Title</th>
+            <th>Priority</th>
+            <th>Due</th>
+            <th>Category</th>
+            <th>Notes</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="items-body">
+          <tr class="empty-row"><td colspan="7">loading...</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</main>
+
+<!-- ── Agent Modal ── -->
+<div class="modal-backdrop" id="modal-agent">
+  <div class="modal">
+    <h2>// register agent</h2>
+    <div class="field"><label>Agent ID (UUID)</label><input id="f-agent-id" placeholder="auto-generated uuid"></div>
+    <div class="field"><label>Display Name</label><input id="f-agent-name" placeholder="SysClaw"></div>
+    <div class="field">
+      <label>Scope</label>
+      <select id="f-agent-scope">
+        <option value="own">own — see only own lists</option>
+        <option value="all">all — see all agents' lists</option>
+      </select>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-ghost" onclick="closeModal('agent')">Cancel</button>
+      <button class="btn-primary" onclick="submitAgent()">Register</button>
+    </div>
+  </div>
+</div>
+
+<!-- ── Scope Edit Modal ── -->
+<div class="modal-backdrop" id="modal-scope">
+  <div class="modal">
+    <h2>// edit scope</h2>
+    <input type="hidden" id="f-scope-agent-id">
+    <div class="field">
+      <label>Scope for <span id="f-scope-name" style="color:var(--accent)"></span></label>
+      <select id="f-scope-value">
+        <option value="own">own — see only own lists</option>
+        <option value="all">all — see all agents' lists</option>
+      </select>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-ghost" onclick="closeModal('scope')">Cancel</button>
+      <button class="btn-primary" onclick="submitScope()">Save</button>
+    </div>
+  </div>
+</div>
+
+<!-- ── List Modal ── -->
+<div class="modal-backdrop" id="modal-list">
+  <div class="modal">
+    <h2>// new list</h2>
+    <div class="field"><label>Name</label><input id="f-list-name" placeholder="Shopping"></div>
+    <div class="field">
+      <label>Owner Agent</label>
+      <select id="f-list-agent"></select>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-ghost" onclick="closeModal('list')">Cancel</button>
+      <button class="btn-primary" onclick="submitList()">Create</button>
+    </div>
+  </div>
+</div>
+
+<!-- ── Item Modal ── -->
+<div class="modal-backdrop" id="modal-item">
+  <div class="modal" style="width:480px">
+    <h2 id="item-modal-title">// add item</h2>
+    <input type="hidden" id="f-item-id">
+    <div class="field"><label>Title</label><input id="f-item-title" placeholder="Do the thing"></div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+      <div class="field">
+        <label>Priority (1=high, 5=low)</label>
+        <select id="f-item-priority">
+          <option value="">— none —</option>
+          <option value="1">1 — critical</option>
+          <option value="2">2 — high</option>
+          <option value="3">3 — medium</option>
+          <option value="4">4 — low</option>
+          <option value="5">5 — someday</option>
+        </select>
+      </div>
+      <div class="field"><label>Due Date</label><input id="f-item-due" type="date"></div>
+    </div>
+    <div class="field"><label>Category</label><input id="f-item-category" placeholder="work, personal..."></div>
+    <div class="field"><label>Notes</label><textarea id="f-item-notes" placeholder="Context, links, conversation snippets..."></textarea></div>
+    <div class="modal-footer">
+      <button class="btn-ghost" onclick="closeModal('item')">Cancel</button>
+      <button class="btn-primary" onclick="submitItem()">Save</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const API = '/api';
+let agents = [];
+let currentListId = null;
+let currentListName = null;
+let currentListAgentId = null;
+
+// ── Utilities ──────────────────────────────────────────────────────────────
+
+function uuidv4() {
+  return ([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g, c =>
+    (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16));
+}
+
+async function api(method, path, body, agentId) {
+  const headers = { 'Content-Type': 'application/json' };
+  if (agentId) headers['X-Agent-Id'] = agentId;
+  const r = await fetch(API + path, {
+    method,
+    headers,
+    body: body ? JSON.stringify(body) : undefined
+  });
+  if (r.status === 204) return null;
+  return r.ok ? r.json() : Promise.reject(await r.json());
+}
+
+function agentName(id) {
+  const a = agents.find(a => a.agent_id === id);
+  return a ? a.display_name : id;
+}
+
+function fmtDate(d) {
+  if (!d) return '—';
+  return new Date(d).toLocaleDateString('en-GB', { day:'2-digit', month:'short', year:'numeric' });
+}
+
+function setStatus(ok) {
+  const dot = document.getElementById('status-dot');
+  const lbl = document.getElementById('status-label');
+  dot.className = ok ? 'ok' : 'err';
+  lbl.textContent = ok ? 'api ok' : 'api error';
+}
+
+// ── Navigation ─────────────────────────────────────────────────────────────
+
+function showView(name) {
+  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+  document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
+  document.getElementById('view-' + name).classList.add('active');
+  document.querySelector(`nav a[data-view="${name}"]`)?.classList.add('active');
+  if (name === 'agents') loadAgents();
+  if (name === 'lists')  loadLists();
+}
+
+// ── Agents ─────────────────────────────────────────────────────────────────
+
+async function loadAgents() {
+  try {
+    agents = await api('GET', '/admin/agents');
+    setStatus(true);
+    const tbody = document.getElementById('agents-body');
+    if (!agents.length) {
+      tbody.innerHTML = '<tr class="empty-row"><td colspan="4">no agents registered</td></tr>';
+      return;
+    }
+    tbody.innerHTML = agents.map(a => `
+      <tr>
+        <td>${a.display_name}</td>
+        <td class="mono" style="color:var(--muted)">${a.agent_id}</td>
+        <td><span class="badge badge-${a.scope}">${a.scope}</span></td>
+        <td class="actions">
+          <button class="btn-ghost btn-sm" onclick="openScopeModal('${a.agent_id}','${a.display_name}','${a.scope}')">scope</button>
+          <button class="btn-danger" onclick="deleteAgent('${a.agent_id}','${a.display_name}')">delete</button>
+        </td>
+      </tr>`).join('');
+  } catch(e) {
+    setStatus(false);
+    document.getElementById('agents-body').innerHTML =
+      '<tr class="empty-row"><td colspan="4">failed to load agents</td></tr>';
+  }
+}
+
+function openModal(name) {
+  if (name === 'agent') {
+    document.getElementById('f-agent-id').value = uuidv4();
+    document.getElementById('f-agent-name').value = '';
+    document.getElementById('f-agent-scope').value = 'own';
+  }
+  if (name === 'list') {
+    if (!agents.length) {
+      alert('No agents registered yet. Register an agent first before creating a list.');
+      return;
+    }
+    document.getElementById('f-list-name').value = '';
+    const sel = document.getElementById('f-list-agent');
+    sel.innerHTML = agents.map(a => `<option value="${a.agent_id}">${a.display_name}</option>`).join('');
+  }
+  if (name === 'item') {
+    document.getElementById('item-modal-title').textContent = '// add item';
+    document.getElementById('f-item-id').value = '';
+    ['title','category','notes'].forEach(f => document.getElementById('f-item-'+f).value = '');
+    document.getElementById('f-item-priority').value = '';
+    document.getElementById('f-item-due').value = '';
+  }
+  document.getElementById('modal-' + name).classList.add('open');
+}
+
+function closeModal(name) {
+  document.getElementById('modal-' + name).classList.remove('open');
+}
+
+async function submitAgent() {
+  const body = {
+    agent_id: document.getElementById('f-agent-id').value.trim(),
+    display_name: document.getElementById('f-agent-name').value.trim(),
+    scope: document.getElementById('f-agent-scope').value
+  };
+  if (!body.agent_id || !body.display_name) return alert('Agent ID and name are required.');
+  try {
+    await api('POST', '/admin/agents', body);
+    closeModal('agent');
+    loadAgents();
+  } catch(e) { alert(e.detail || 'Failed to register agent.'); }
+}
+
+function openScopeModal(id, name, scope) {
+  document.getElementById('f-scope-agent-id').value = id;
+  document.getElementById('f-scope-name').textContent = name;
+  document.getElementById('f-scope-value').value = scope;
+  document.getElementById('modal-scope').classList.add('open');
+}
+
+async function submitScope() {
+  const id = document.getElementById('f-scope-agent-id').value;
+  const scope = document.getElementById('f-scope-value').value;
+  try {
+    await api('PUT', `/admin/agents/${id}`, { scope });
+    closeModal('scope');
+    loadAgents();
+  } catch(e) { alert(e.detail || 'Failed to update scope.'); }
+}
+
+async function deleteAgent(id, name) {
+  if (!confirm(`Delete agent "${name}"? This cannot be undone.`)) return;
+  try {
+    await api('DELETE', `/admin/agents/${id}`);
+    loadAgents();
+  } catch(e) { alert(e.detail || 'Failed to delete agent.'); }
+}
+
+// ── Lists ──────────────────────────────────────────────────────────────────
+
+async function loadLists() {
+  // Load lists for all agents (scope=all agents see everything)
+  // We use the first all-scope agent, or fall back to any agent
+  await loadAgents();
+  const allAgent = agents.find(a => a.scope === 'all') || agents[0];
+  if (!allAgent) {
+    document.getElementById('lists-body').innerHTML =
+      '<tr class="empty-row"><td colspan="4">no agents registered — add an agent first</td></tr>';
+    return;
+  }
+  try {
+    const lists = await api('GET', '/lists', null, allAgent.agent_id);
+    const tbody = document.getElementById('lists-body');
+    if (!lists.length) {
+      updateSidebarLists([]);
+      tbody.innerHTML = '<tr class="empty-row"><td colspan="4">no lists yet</td></tr>';
+      return;
+    }
+    updateSidebarLists(lists);
+    tbody.innerHTML = lists.map(l => `
+      <tr>
+        <td style="cursor:pointer;color:var(--blue)" onclick="loadItems(${l.id},'${escHtml(l.name)}','${l.agent_id}')">${escHtml(l.name)}</td>
+        <td>${agentName(l.agent_id)}</td>
+        <td class="mono" style="color:var(--muted)">${fmtDate(l.created_at)}</td>
+        <td class="actions">
+          <button class="btn-ghost btn-sm" onclick="loadItems(${l.id},'${escHtml(l.name)}','${l.agent_id}')">open</button>
+          <button class="btn-danger" onclick="deleteList(${l.id},'${escHtml(l.name)}','${l.agent_id}')">delete</button>
+        </td>
+      </tr>`).join('');
+  } catch(e) {
+    setStatus(false);
+    document.getElementById('lists-body').innerHTML =
+      '<tr class="empty-row"><td colspan="4">failed to load lists</td></tr>';
+  }
+}
+
+async function submitList() {
+  const name = document.getElementById('f-list-name').value.trim();
+  const agentId = document.getElementById('f-list-agent').value;
+  if (!name) return alert('List name is required.');
+  try {
+    await api('POST', '/lists', { name }, agentId);
+    closeModal('list');
+    loadLists();
+  } catch(e) { alert(e.detail || 'Failed to create list.'); }
+}
+
+async function deleteList(id, name, agentId) {
+  if (!confirm(`Delete list "${name}" and all its items?`)) return;
+  try {
+    await api('DELETE', `/lists/${id}`, null, agentId);
+    loadLists();
+  } catch(e) { alert(e.detail || 'Failed to delete list.'); }
+}
+
+// ── Items ──────────────────────────────────────────────────────────────────
+
+async function loadItems(listId, listName, listAgentId) {
+  currentListId = listId;
+  currentListName = listName;
+  currentListAgentId = listAgentId;
+  document.getElementById('items-list-name').textContent = listName;
+  document.getElementById('items-heading').textContent = listName;
+  showView('items');
+  document.querySelector('nav a[data-view="items"]')?.classList.add('active');
+  setActiveSidebarList(listId);
+
+  const allAgent = agents.find(a => a.scope === 'all') || agents.find(a => a.agent_id === listAgentId) || agents[0];
+  try {
+    const items = await api('GET', `/lists/${listId}/items`, null, allAgent.agent_id);
+    const tbody = document.getElementById('items-body');
+    if (!items.length) {
+      tbody.innerHTML = '<tr class="empty-row"><td colspan="7">no items in this list</td></tr>';
+      return;
+    }
+    tbody.innerHTML = items.map(i => `
+      <tr id="item-row-${i.id}" class="${i.done ? 'done-row' : ''}">
+        <td><input type="checkbox" class="check-done" ${i.done ? 'checked' : ''}
+          onchange="toggleDone(${i.id}, this.checked)"></td>
+        <td style="${i.done ? 'text-decoration:line-through;color:var(--muted)' : ''}">${escHtml(i.title)}</td>
+        <td class="priority ${i.priority ? 'p'+i.priority : ''}">${i.priority ? '▪'.repeat(i.priority) : '—'}</td>
+        <td class="mono" style="color:var(--muted)">${fmtDate(i.due_date)}</td>
+        <td style="color:var(--muted)">${i.category || '—'}</td>
+        <td class="notes-cell" title="${escHtml(i.notes || '')}">${escHtml(i.notes || '') || '—'}</td>
+        <td class="actions">
+          <button class="btn-ghost btn-sm" onclick='openEditItem(${JSON.stringify(i)})'>edit</button>
+          <button class="btn-danger" onclick="deleteItem(${i.id})">del</button>
+        </td>
+      </tr>`).join('');
+  } catch(e) {
+    document.getElementById('items-body').innerHTML =
+      '<tr class="empty-row"><td colspan="7">failed to load items</td></tr>';
+  }
+}
+
+async function toggleDone(itemId, done) {
+  try {
+    await api('PUT', `/items/${itemId}`, { done }, currentListAgentId);
+    loadItems(currentListId, currentListName, currentListAgentId);
+  } catch(e) { alert('Failed to update item.'); }
+}
+
+function openEditItem(item) {
+  document.getElementById('item-modal-title').textContent = '// edit item';
+  document.getElementById('f-item-id').value = item.id;
+  document.getElementById('f-item-title').value = item.title || '';
+  document.getElementById('f-item-priority').value = item.priority || '';
+  document.getElementById('f-item-due').value = item.due_date ? item.due_date.split('T')[0] : '';
+  document.getElementById('f-item-category').value = item.category || '';
+  document.getElementById('f-item-notes').value = item.notes || '';
+  document.getElementById('modal-item').classList.add('open');
+}
+
+async function submitItem() {
+  const id = document.getElementById('f-item-id').value;
+  const body = {
+    title:    document.getElementById('f-item-title').value.trim(),
+    priority: document.getElementById('f-item-priority').value || null,
+    due_date: document.getElementById('f-item-due').value || null,
+    category: document.getElementById('f-item-category').value.trim() || null,
+    notes:    document.getElementById('f-item-notes').value.trim() || null,
+  };
+  if (!body.title) return alert('Title is required.');
+  if (body.priority) body.priority = parseInt(body.priority);
+  try {
+    if (id) {
+      await api('PUT', `/items/${id}`, body, currentListAgentId);
+    } else {
+      await api('POST', `/lists/${currentListId}/items`, body, currentListAgentId);
+    }
+    closeModal('item');
+    loadItems(currentListId, currentListName, currentListAgentId);
+  } catch(e) { alert(e.detail || 'Failed to save item.'); }
+}
+
+async function deleteItem(id) {
+  if (!confirm('Delete this item?')) return;
+  try {
+    await api('DELETE', `/items/${id}`, null, currentListAgentId);
+    loadItems(currentListId, currentListName, currentListAgentId);
+  } catch(e) { alert('Failed to delete item.'); }
+}
+
+// ── Helpers ────────────────────────────────────────────────────────────────
+
+function updateSidebarLists(lists) {
+  const nav = document.getElementById('nav-lists');
+  if (!lists.length) { nav.innerHTML = ''; return; }
+  nav.innerHTML = lists.map(l => `
+    <div class="nav-list-item" id="nav-list-${l.id}"
+      onclick="loadItems(${l.id},'${l.name.replace(/'/g,"\'")}','${l.agent_id}')">
+      ${l.name}
+    </div>`).join('');
+}
+
+function setActiveSidebarList(listId) {
+  document.querySelectorAll('.nav-list-item').forEach(el => el.classList.remove('active'));
+  document.getElementById('nav-list-' + listId)?.classList.add('active');
+}
+
+function escHtml(s) {
+  if (!s) return '';
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+// Close modals on backdrop click
+document.querySelectorAll('.modal-backdrop').forEach(b => {
+  b.addEventListener('click', e => { if (e.target === b) b.classList.remove('open'); });
+});
+
+// ── Init ───────────────────────────────────────────────────────────────────
+loadAgents();
+</script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+{
+  "name": "changebrief",
+  "version": "1.1.2",
+  "description": "ChangeBrief - compare previous and current knowledge snapshots to surface important additions, changed claims, stale conclusions, conflicts, and immediate priorities",
+  "main": "src/index.js",
+  "bin": {
+    "changebrief": "./bin/cli.js",
+    "cb": "./bin/cli.js"
+  },
+  "scripts": {
+    "start": "node bin/cli.js",
+    "test": "node test/test.js",
+    "verify": "node scripts/verify.js",
+    "publish:clawhub": "sh ./scripts/publish.sh"
+  },
+  "keywords": [
+    "changebrief",
+    "change-intelligence",
+    "knowledge-delta",
+    "weekly-brief",
+    "stale-conclusions",
+    "change-detection",
+    "decision-support",
+    "knowledge-connector",
+    "productivity"
+  ],
+  "author": "openclaw",
+  "license": "MIT",
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/harrylabsj/changebrief"
+  },
+  "bugs": {
+    "url": "https://github.com/harrylabsj/changebrief/issues"
+  },
+  "homepage": "https://github.com/harrylabsj/changebrief#readme"
+}

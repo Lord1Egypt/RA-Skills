@@ -1,35 +1,28 @@
 ---
-name: "CEO Capabilities Catalog"
-description: "Catalog the current OpenClaw instance's installed skills, custom skills, and coordination-oriented capabilities. Use when the user asks what this agent can d..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ceo-capabilities-catalog"
-sourceUrl: "https://clawhub.ai/skills/ceo-capabilities-catalog"
+name: ceo-capabilities-catalog
+description: Catalog the current OpenClaw instance's installed skills, custom skills, and coordination-oriented capabilities. Use when the user asks what this agent can do, what skills are installed, or needs a backup inventory of current capabilities.
 ---
 
 # CEO Capabilities Catalog
 
-> Catalog the current OpenClaw instance's installed skills, custom skills, and coordination-oriented capabilities. Use when the user asks what this agent can d...
+Use this skill to summarize the current instance's capabilities rather than to execute external systems directly.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ceo-capabilities-catalog`
-- **Source URL:** [https://clawhub.ai/skills/ceo-capabilities-catalog](https://clawhub.ai/skills/ceo-capabilities-catalog)
+## Include in summaries
 
-## Overview
+- Installed builtin skills from the OpenClaw package
+- Installed user skills from `~/.openclaw/skills`
+- Coordination role: task dispatch, progress tracking, reporting, risk spotting
+- Current connected workflow highlights if known from local workspace memory
 
+## Source of truth
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/ceo-capabilities-catalog
-```
+Read from:
+
+- Local workspace memory files
+- `capabilities-inventory.md` backup file if present
+- Installed `SKILL.md` files when needed
+
+## Do not
+
+- Claim unavailable channels or API keys are working unless verified
+- Expose secrets from scripts or config files in the summary

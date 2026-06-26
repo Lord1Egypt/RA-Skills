@@ -1,0 +1,14 @@
+# browser-collector Python依赖
+# 版本要求来自 INTEGRATION_PLAN.md
+
+playwright>=1.40.0
+ddddocr>=1.4.11
+opencv-python>=4.8.0
+numpy>=1.24.0
+Pillow>=10.0.0
+pytesseract>=0.3.10
+aiohttp>=3.9.0
+
+# 系统依赖（需另行安装）
+# - Tesseract OCR: apt install tesseract-ocr tesseract-ocr-chi-sim
+# - Playwright浏览器: playwright install chromium

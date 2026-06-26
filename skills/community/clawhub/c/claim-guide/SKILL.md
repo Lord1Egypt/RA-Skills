@@ -1,35 +1,32 @@
 ---
-name: "Claim Guide"
-description: "Step-by-step insurance claim filing guide. Walk users through the claim process for health, life, auto, travel, and property insurance. Use when users need t..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/claim-guide"
-sourceUrl: "https://clawhub.ai/skills/claim-guide"
+name: claim-guide
+version: 1.0.0
+description: Step-by-step insurance claim filing guide. Walk users through the claim process for health, life, auto, travel, and property insurance. Use when users need to file a claim and don't know where to start or what documents to prepare.
 ---
 
 # Claim Guide
 
-> Step-by-step insurance claim filing guide. Walk users through the claim process for health, life, auto, travel, and property insurance. Use when users need t...
+Guide users through the insurance claim process with step-by-step instructions, document checklists, and timeline expectations. Covers common insurance types: health, life, auto, travel, and property.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/claim-guide`
-- **Source URL:** [https://clawhub.ai/skills/claim-guide](https://clawhub.ai/skills/claim-guide)
+## When to Use
 
-## Overview
+- User needs to file an insurance claim
+- User asks "how do I claim my insurance?"
+- User wants to know what documents are needed for a claim
+- User's claim was rejected and they want to know next steps
+- User wants to understand claim status or timelines
 
+## How to Use
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/claim-guide
-```
+1. Identify the insurance type (health/life/auto/travel/property)
+2. Provide a numbered step-by-step claim process for that type
+3. Generate a document checklist specific to the claim type
+4. Explain typical processing timelines
+5. For rejected claims: explain appeal process and common rejection reasons
+6. Provide tips to maximize claim success
+
+## Examples
+
+- "I was in a car accident, how do I file an auto insurance claim?"
+- "My luggage was lost on a flight, how do I claim travel insurance?"
+- "My health insurance claim was rejected, what can I do?"

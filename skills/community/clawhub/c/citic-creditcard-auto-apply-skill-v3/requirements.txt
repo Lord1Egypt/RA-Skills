@@ -1,0 +1,2 @@
+# No third-party dependencies required for the included helper scripts.
+PyYAML>=6.0

@@ -1,0 +1,18 @@
+{
+  "name": "china-gaokao-public-data",
+  "slug": "china-gaokao-public-data",
+  "description": "中国高考公共信息助手。仅查询、整合、转发公开、权威、免费的官方高校与专业数据，不做志愿填报、概率预测或主观推荐。",
+  "author": "ToBeWin",
+  "version": "1.0.0",
+  "tags": [
+    "gaokao",
+    "china-education",
+    "university",
+    "major",
+    "public-data",
+    "official-sources",
+    "school-comparison",
+    "admissions-info"
+  ],
+  "entry": "SKILL.md"
+}

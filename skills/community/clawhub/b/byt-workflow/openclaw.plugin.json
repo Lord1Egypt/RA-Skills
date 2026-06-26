@@ -1,0 +1,10 @@
+{
+  "id": "byt-workflow",
+  "name": "Byt Workflow",
+  "version": "1.0.0",
+  "description": "YouTube video translation workflow, download audio, launch Doubao, play audio, capture translation",
+  "tools": [
+    "youtube_translate"
+  ],
+  "entry": "/mnt/h/AI/openclaw_workspace/video_translate/skills/workflow.py"
+}

@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "name": "高价警报",
+    "price": 70000.0,
+    "condition": "above",
+    "currency": "USD",
+    "active": true,
+    "created_at": "2026-03-31T11:24:34.289445"
+  },
+  {
+    "id": 2,
+    "name": "低价警报",
+    "price": 62000.0,
+    "condition": "below",
+    "currency": "USD",
+    "active": true,
+    "created_at": "2026-03-31T11:24:52.328972"
+  }
+]

@@ -1,0 +1,6 @@
+{
+  "name": "axis",
+  "type": "tesseract",
+  "config_path": "data/config/axis.config",
+  "deployed": true
+}

@@ -1,0 +1,87 @@
+{
+  "skill_name": "ccdb-factor-search",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "请帮我找中国全国电网电力因子，单位最好是tCO₂e/MWh。",
+      "expected_output": "Should find electricity-related candidates and rank the China/tCO₂e/MWh candidate highest.",
+      "files": [],
+      "expectations": [
+        "The result includes electricity-related candidates",
+        "The best match explains why the China candidate is preferred",
+        "The output records attempted Chinese and English search terms"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "帮我检索聚酯切片的碳因子，如果中文结果不好就切英文继续找。",
+      "expected_output": "Should derive Chinese and English search terms and attempt iterative search.",
+      "files": [],
+      "expectations": [
+        "The output contains both Chinese and English search terms",
+        "The output shows iterative search behavior when needed",
+        "The output gives a suitability classification"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "我要找外购蒸汽的排放因子，看看返回的因子是否适合，不适合就继续调整搜索词。",
+      "expected_output": "Should analyze suitability and either choose a close factor or explain why additional refinement is needed.",
+      "files": [],
+      "expectations": [
+        "The output includes suitability judgment",
+        "The output explains mismatch risk or fallback reasoning"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "请帮我找原铝的排放因子，优先物理量单位，不要误选成按金额计算的因子。",
+      "expected_output": "Should reject or downgrade spend-based or monetary-unit candidates if physical-activity factors are expected.",
+      "files": [],
+      "expectations": [
+        "The output flags spend-based or monetary-unit mismatch when present",
+        "The output prefers physical activity-based units"
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "帮我找中国的天然气因子，若没有完全匹配就给最接近的候选并说明风险。",
+      "expected_output": "Should return the best available candidate with explicit risk explanation if there is no direct match.",
+      "files": [],
+      "expectations": [
+        "The output contains a best-match explanation",
+        "The output contains risk notes when only close/fallback matches exist"
+      ]
+    },
+    {
+      "id": 6,
+      "prompt": "请帮我找江苏地区电力排放因子，单位最好是kgCO2e/kWh，没有就明确告诉我缺什么约束。",
+      "expected_output": "Should incorporate region and unit constraints, and explicitly surface missing constraints or mismatches when exact fit is weak.",
+      "files": [],
+      "expectations": [
+        "The output reflects region and unit constraints",
+        "The output explains whether the region and unit are matched, missing, or mismatched"
+      ]
+    },
+    {
+      "id": 7,
+      "prompt": "我要找英国蒸汽因子，如果 API 没返回可用结果，不要猜，直接说明查不到。",
+      "expected_output": "Should fail conservatively when API results are unavailable or unsuitable, instead of inventing a recommendation.",
+      "files": [],
+      "expectations": [
+        "The output can return not_suitable or api_unavailable conservatively",
+        "The output does not fabricate a recommended factor when evidence is weak"
+      ]
+    },
+    {
+      "id": 8,
+      "prompt": "请比较 PET resin 和 polyester chip 相关因子，给我最合适的一个，并附上备选项。",
+      "expected_output": "Should search bilingual PET/polyester terms, compare candidates, and return one recommendation with alternatives.",
+      "files": [],
+      "expectations": [
+        "The output contains bilingual or cross-term search behavior",
+        "The output includes one selected factor and alternative candidates"
+      ]
+    }
+  ]
+}

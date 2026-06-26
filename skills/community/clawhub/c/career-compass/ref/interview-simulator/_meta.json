@@ -1,0 +1,7 @@
+{
+  "slug": "interview-simulator",
+  "version": "1.0.0",
+  "author": "Barry",
+  "license": "MIT-0",
+  "description": "模拟面试工具，支持任意职位和经验级别的面试模拟"
+}

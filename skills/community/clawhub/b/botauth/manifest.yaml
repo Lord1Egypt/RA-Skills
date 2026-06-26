@@ -1,0 +1,13 @@
+slug: botauth
+name: botauth
+version: 0.1.0
+description: Retrieve secrets from an unlocked botauth vault through the botauth CLI with desktop approval prompts.
+author: eyhn
+license: MIT
+tags:
+  - security
+  - secrets
+  - auth
+  - cli
+  - agents
+entry: SKILL.md

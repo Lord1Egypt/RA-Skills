@@ -1,0 +1,4 @@
+interface:
+  display_name: "Buying"
+  short_description: "统一 Taobao、JD、PDD、VIPSHOP 等平台，输出风险调整后的最优购买路径"
+  default_prompt: "Use $buying to compare the same product across Taobao, Tmall, JD, PDD, VIPSHOP, and similar marketplaces, distinguish flagship, self-operated, and third-party sellers, normalize the real final price, explain whether cheapness comes from higher risk, and recommend the optimal purchase path."

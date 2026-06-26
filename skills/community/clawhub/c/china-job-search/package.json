@@ -1,0 +1,50 @@
+{
+  "name": "china-job-search",
+  "version": "1.0.0",
+  "description": "OpenClaw技能：国内招聘平台搜索（BOSS直聘、智联招聘、前程无忧）",
+  "main": "SKILL.md",
+  "scripts": {
+    "test": "python scripts/test_openclaw.py",
+    "install-deps": "pip install -r scripts/requirements.txt"
+  },
+  "keywords": [
+    "openclaw",
+    "skill",
+    "job-search",
+    "recruitment",
+    "china",
+    "boss直聘",
+    "智联招聘",
+    "前程无忧"
+  ],
+  "author": "鱼头",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/openclaw-skill-job-search.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yourusername/openclaw-skill-job-search/issues"
+  },
+  "homepage": "https://github.com/yourusername/openclaw-skill-job-search#readme",
+  "openclaw": {
+    "skill": true,
+    "category": "productivity",
+    "language": "zh-CN",
+    "requires": {
+      "python": ">=3.7",
+      "dependencies": ["requests", "beautifulsoup4", "fake-useragent"]
+    }
+  },
+  "files": [
+    "SKILL.md",
+    "package.json",
+    "README.md",
+    "LICENSE",
+    "scripts/",
+    "references/"
+  ],
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}

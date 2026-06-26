@@ -1,0 +1,19 @@
+{
+  "slug": "claude-code-memory-kit",
+  "name": "Claude Code Memory Kit",
+  "version": "1.0.1",
+  "description": "Stop Claude Code from repeating mistakes \u2014 enforce guardrails, preserve context, maintain consistency across sessions",
+  "author": "Abhinas Neupane",
+  "tags": [
+    "claude-code",
+    "memory",
+    "reliability",
+    "guardrails",
+    "ai-coding",
+    "productivity"
+  ],
+  "pricing": {
+    "type": "one-time",
+    "value": 99
+  }
+}

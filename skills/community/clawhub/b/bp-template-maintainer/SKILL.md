@@ -1,35 +1,135 @@
 ---
-name: "BP母版维护"
-description: "用于创建、维护、版本化和质检本工作区的 BP 报告母版。适用于月报、季报、半年报、年报模板的结构维护、字段提示优化、BP 锚点一致性维护、BP 映射调整、版本升级判断，以及判断 BPMAP 文件和 BP 系统资料在母版维护中的使用边界。"
-category: "other"
-source: "ClawHub"
-tags: [bp, template]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/bp-template-maintainer"
-sourceUrl: "https://clawhub.ai/skills/bp-template-maintainer"
+name: bp-template-maintainer
+description: 用于创建、维护、版本化和质检本工作区的 BP 报告母版。适用于月报、季报、半年报、年报模板的结构维护、字段提示优化、BP 锚点一致性维护、BP 映射调整、版本升级判断，以及判断 BPMAP 文件和 BP 系统资料在母版维护中的使用边界。
 ---
 
 # BP母版维护
 
-> 用于创建、维护、版本化和质检本工作区的 BP 报告母版。适用于月报、季报、半年报、年报模板的结构维护、字段提示优化、BP 锚点一致性维护、BP 映射调整、版本升级判断，以及判断 BPMAP 文件和 BP 系统资料在母版维护中的使用边界。
+## 概述
+以下四个模板文件是当前母版体系的第一版正式基线，也是日常维护时的第一优先级资料：
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/bp-template-maintainer`
-- **Source URL:** [https://clawhub.ai/skills/bp-template-maintainer](https://clawhub.ai/skills/bp-template-maintainer)
+- `P001-T001-MONTH-TPL-01_月报模板_v1.md`
+- `P001-T001-QUARTER-TPL-01_季报模板_v1.md`
+- `P001-T001-HALFYEAR-TPL-01_半年报模板_v1.md`
+- `P001-T001-YEAR-TPL-01_年报模板_v1.md`
 
-## Overview
+把这四个文件视为母版体系的官方 `v1` 基线。除非用户明确要求重做基线，否则后续所有维护都按以下方式处理：
 
+- 继承当前 `v1` 基线
+- 在 `v1` 上修改结构、字段提示或 BP 锚点
+- 形成新的版本文件，而不是重写起点
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/bp-template-maintainer
-```
+这个 skill 自带一份可分发的基线资产，位于：
+
+- `assets/基线母版/v1/`
+
+如果 skill 被安装到其他机器、其他工作区或云端环境，而目标工作区里还没有母版文件，先用 `assets/基线母版/v1/` 初始化目标工作区，再开始维护。
+
+## 资料分层
+### 1. 主资料
+日常维护母版时，优先读取目标工作区里的四个周期模板本身。
+
+如果目标工作区还没有母版，则使用 skill 自带的 `assets/基线母版/v1/` 作为初始化来源。
+
+### 2. BPMAP 资料
+按需使用 BPMAP 文件：
+
+- `P001-T001-BPMAP-01_专属BP预埋底图_v1.md`
+  - 当 BP 主线、组织 BP 映射关系、模块挂位发生变化时使用
+- `P001-T001-BPMAP-02_专属BP预埋底图审议意见_v1.md`
+  - 作为历史审议依据使用，不作为日常维护主资料
+- `P001-T001-BPMAP-03_专属BP预埋底图质控检查要点_v1.md`
+  - 作为人工质控或自动化校验规则来源使用
+
+### 3. BP 系统资料
+把 BP 系统资料视为“外部对齐源”，用于判断母版是否仍然符合当前 BP 体系和系统现实：
+
+- 业务说明：用于校准语义、层级、承接、衡量标准、责任边界
+- API 说明：用于确认系统已存在的稳定字段、任务结构和 Markdown 输出能力
+
+### 4. 非目标范围
+这个 skill 不负责“根据母版和 BP 实际内容生成填写规范”。那是第二个 skill 的职责。
+
+### 5. 默认审查视角
+这个 skill 默认把“母版”视为通用框架，而不是某个组织、某个人、某一套真实 BP 的专属实例。
+
+因此，除非用户明确说明“这是专属 BP 模板”或“需要按某套真实 BP 做专属化改造”，否则：
+
+- 不要拿真实 BP 的目标总数、目标名称、任务 ID 去审计母版
+- 不要因为系统里没有 `P4432-1`、`G-1.1` 这种编号，就直接判定母版错误
+- 不要要求母版必须一一覆盖集团/中心/部门当前所有真实 BP
+- 不要把“母版通用结构”和“节点填写规范”混为一体
+
+母版默认审查的是：
+
+- 结构是否清楚
+- 字段是否稳定
+- 周期差异是否合理
+- 是否便于后续专属化或生成填写规范
+
+## 快速路由
+- 如果请求修改模块名、字段名、字段顺序、字段提示，读取对应模板和 `references/template-rules.md`
+- 如果请求修改 BP 锚点、主题、组织 BP 映射，额外读取 `references/source-priority.md` 和 `P001-T001-BPMAP-01_专属BP预埋底图_v1.md`
+- 如果请求判断模板是否需要跟 BP 系统一起变化，读取 `references/bp-system-sources.md`
+- 如果请求是“检查母版要不要优化”，默认按通用母版视角检查，不按具体 BP 逐条对照
+- 如果请求创建新版本、改文件名、确定怎么升版，读取 `references/versioning-rules.md`
+- 如果请求判断 BPMAP 是否还重要，使用 `references/source-priority.md` 作为默认判断规则
+- 如果请求修改后做快速质检，运行 `python3 scripts/check_template_alignment.py --root <工作区路径>`
+
+## 工作流
+1. 先判断改动类型
+   - 字段提示优化
+   - 结构变更
+   - BP 锚点或映射变更
+   - 质控规则变更
+   - 版本升级
+2. 再判断应该读取哪些资料
+   - 默认先读目标工作区中的四个周期模板
+   - 如果目标工作区尚未初始化母版，先从 `assets/基线母版/v1/` 落地
+   - 如果改动由 BP 系统语义或系统字段引起，再读 BP 系统资料
+   - 即使读取了 BP 系统资料，也默认只用于校验“母版语义是否失真”，不用于要求母版逐条匹配真实 BP 清单
+   - 如果改动涉及 BP 主线、模块挂位、映射设计，再读 `BPMAP-01`
+   - 如果只是为了防止模板退化为通用模板，可参考 `BPMAP-02`
+   - 如果改动涉及放行口径或质控逻辑，再读 `BPMAP-03`
+3. 编辑时遵守这些约束
+   - 非经用户明确要求，不改动共同 8 模块骨架
+   - 如果当前目标是通用母版，允许使用通用章节和通用占位，不强制要求与某套真实 BP 编号硬绑定
+   - 只有在用户明确要求“专属 BP 模板”时，才把显式 BP 锚点作为强约束
+   - 固定锚点字段和运行期填写字段必须分离
+   - 业务运行中重复出现的问题，应沉淀为模板字段、字段提示或质控规则
+   - 改动若影响所有周期，要在同一轮里一起更新四个模板
+   - 版本管理必须严格遵守 `references/versioning-rules.md`
+4. 编辑后做校验
+   - 跑模板一致性检查脚本
+   - 若改动涉及 BP 映射，人工确认 6 条 BP 主线和组织 BP 锚点是否仍正确
+5. 输出结论
+   - 说明哪些文件是这次改动后的权威版本
+   - 说明这是整套升版还是单模板补丁
+   - 说明哪些历史版本保留在本地版本目录
+   - 说明是否需要同步更新 BPMAP 文件
+
+## 联动规则
+- 改共同模块名、共同字段、共同 BP 锚点：四个模板一起改
+- 只改某个周期自己的表达，不动共同骨架：只改该模板
+- 改 BP 锚点名称或组织 BP 映射：先改模板，再判断是否同步改 `BPMAP-01`
+- 改动来自 BP 系统语义或系统字段变化：先改模板，再判断是否把规则沉淀到 BP 系统参考文件
+- 只改审议说明：通常不动模板，只在确有必要时更新 `BPMAP-02`
+- 只改质控逻辑：更新 `BPMAP-03` 和/或 `scripts/check_template_alignment.py`
+
+## 版本管理原则
+- 版本管理不放在云端，默认放在当前工作区本地
+- 当前生效版本模板保留在工作区根目录
+- 历史版本和版本索引放在工作区的 `版本管理/` 目录
+- 如果当前仓库未来接入 Git，Git 是附加审计手段，不替代本地版本目录
+- skill 内的 `assets/基线母版/v1/` 是安装时自带的初始基线，不等于目标工作区里的运行中版本
+
+## 资源
+- `references/source-priority.md`
+- `references/bp-system-sources.md`
+- `references/template-rules.md`
+- `references/versioning-rules.md`
+- `assets/基线母版/v1/`
+- `assets/版本管理模板/`
+- `scripts/check_template_alignment.py`
+
+如果用户请求的是“生成节点填写规范”而不是“维护母版”，不要继续使用这个 skill，切换到第二个 skill。

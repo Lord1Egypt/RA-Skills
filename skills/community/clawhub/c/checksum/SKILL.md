@@ -1,35 +1,46 @@
 ---
-name: "Checksum"
-description: "A CLI utility for generating and verifying cryptographic file checksums (MD5, SHA1, SHA256). Supports recursive directory hashing and verification from file."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/checksum"
-sourceUrl: "https://clawhub.ai/skills/checksum"
+name: checksum
+description: A CLI utility for generating and verifying cryptographic file checksums (MD5, SHA1, SHA256). Supports recursive directory hashing and verification from file.
 ---
 
-# Checksum
+# Checksum Utility
 
-> A CLI utility for generating and verifying cryptographic file checksums (MD5, SHA1, SHA256). Supports recursive directory hashing and verification from file.
+A dedicated CLI tool for ensuring file integrity. Use this skill to verify downloads, check for changes in files, or generate checksums for release artifacts.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/checksum`
-- **Source URL:** [https://clawhub.ai/skills/checksum](https://clawhub.ai/skills/checksum)
+## Features
 
-## Overview
+- **Multi-Algorithm:** Supports `md5` (default), `sha1`, `sha256`, `sha512`.
+- **Recursive Hashing:** Generates checksums for entire directories.
+- **Verification:** (Planned) Validate files against a checksum list.
+- **JSON Output:** Machine-readable output for integration scripts.
 
+## Usage
 
-## Installation
-To install this skill, run the following command in your terminal:
+### Calculate File Checksum
+
 ```bash
-hermes skills install clawhub/checksum
+node skills/checksum/index.js --file <path> [--algo <md5|sha1|sha256>]
 ```
+
+Example:
+```bash
+node skills/checksum/index.js --file package.json --algo sha256
+# Output: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855  package.json
+```
+
+### Recursive Directory Checksum
+
+```bash
+node skills/checksum/index.js --dir <path> [--algo <md5|sha1|sha256>] [--json]
+```
+
+Example:
+```bash
+node skills/checksum/index.js --dir src/ --algo sha1 --json > checksums.json
+```
+
+## Why use this instead of `md5sum`?
+
+- **Cross-Platform:** Works on any OS with Node.js (Linux, macOS, Windows).
+- **No System Deps:** Doesn't rely on `coreutils` being installed.
+- **JSON Support:** Easy to parse in other scripts.

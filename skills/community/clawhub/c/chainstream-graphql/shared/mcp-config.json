@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "chainstream": {
+      "url": "https://mcp.chainstream.io/mcp",
+      "headers": {
+        "X-API-KEY": "<your-api-key>"
+      }
+    }
+  }
+}

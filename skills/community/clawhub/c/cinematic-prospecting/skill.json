@@ -1,0 +1,27 @@
+{
+  "name": "cinematic-prospecting",
+  "version": "1.0.0",
+  "description": "AI-powered business card prospecting with cinematic email outreach. Snap photos, get researched leads, send branded emails with visual mockups.",
+  "category": "Sales Automation",
+  "tags": ["sales", "outreach", "vision-ai", "email", "networking"],
+  "price": {
+    "oneTime": 69,
+    "subscription": 15,
+    "currency": "USD"
+  },
+  "requirements": [
+    "Termux (Android) or Linux environment",
+    "Node.js v16+",
+    "OpenClaw agent system",
+    "SMTP credentials (Gmail app password recommended)",
+    "Vision AI API (OpenClaw built-in)"
+  ],
+  "author": {
+    "name": "Cod3Black",
+    "email": "support@cod3black.agency"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cod3black/cinematic-prospecting"
+  }
+}

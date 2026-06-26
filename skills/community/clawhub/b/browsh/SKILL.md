@@ -1,35 +1,33 @@
 ---
-name: "browsh"
-description: "A modern text-based browser. Renders web pages in the terminal using headless Firefox."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/browsh"
-sourceUrl: "https://clawhub.ai/skills/browsh"
+name: browsh
+description: A modern text-based browser. Renders web pages in the terminal using headless Firefox.
+metadata: {"clawdbot":{"emoji":"🌐","requires":{"bins":["browsh","firefox"]}}}
 ---
 
-# browsh
+# Browsh
 
-> A modern text-based browser. Renders web pages in the terminal using headless Firefox.
+A fully-modern text-based browser. It renders stories and videos, filters ads, and saves bandwidth.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/browsh`
-- **Source URL:** [https://clawhub.ai/skills/browsh](https://clawhub.ai/skills/browsh)
+## Prerequisites
+- `browsh` binary must be in PATH.
+- `firefox` binary must be in PATH (Browsh uses it as a headless backend).
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
+**Local Setup (if installed in `~/apps`):**
+Ensure your PATH includes the installation directories:
 ```bash
-hermes skills install clawhub/browsh
+export PATH=$HOME/apps:$HOME/apps/firefox:$PATH
 ```
+
+## Usage
+
+Start Browsh:
+```bash
+browsh
+```
+
+Open a specific URL:
+```bash
+browsh --startup-url https://google.com
+```
+
+**Note:** Browsh is a TUI application. Run it inside a PTY session (e.g., using `tmux` or the `process` tool with `pty=true`).

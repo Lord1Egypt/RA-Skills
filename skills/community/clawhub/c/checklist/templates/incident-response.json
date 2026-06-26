@@ -1,0 +1,19 @@
+{
+  "name": "Incident Response",
+  "description": "IT incident response and troubleshooting workflow",
+  "category": "operations",
+  "items": [
+    {"id": 1, "text": "Identify and categorize the incident (P1/P2/P3)", "required": true},
+    {"id": 2, "text": "Notify stakeholders and create incident ticket", "required": true},
+    {"id": 3, "text": "Gather initial information (logs, screenshots, error messages)", "required": true},
+    {"id": 4, "text": "Check monitoring/alerting systems for anomalies", "required": true},
+    {"id": 5, "text": "Review recent changes that might have caused the issue", "required": true},
+    {"id": 6, "text": "Isolate affected systems if needed", "required": true},
+    {"id": 7, "text": "Implement fix or workaround", "required": true},
+    {"id": 8, "text": "Verify fix is working", "required": true},
+    {"id": 9, "text": "Update incident ticket with resolution details", "required": true},
+    {"id": 10, "text": "Send resolution notification to stakeholders", "required": true},
+    {"id": 11, "text": "Schedule post-incident review meeting", "required": false},
+    {"id": 12, "text": "Document lessons learned", "required": false}
+  ]
+}

@@ -1,0 +1,217 @@
+{
+  "version": "1.0",
+  "meta": {
+    "title": "Generated Blueprint",
+    "industry": "retail",
+    "revisionId": "rev-20260413040724",
+    "parentRevisionId": null,
+    "lastModifiedAt": "2026-04-13T04:07:24Z",
+    "lastModifiedBy": "ai"
+  },
+  "context": {
+    "goals": [],
+    "scope": [],
+    "assumptions": [],
+    "constraints": [],
+    "sourceRefs": [
+      {
+        "type": "inline-text",
+        "excerpt": "我们需要一套零售门店数字化方案，支持会员注册、积分累计、订单创建、售后跟进。系统包括CRM、POS和ERP。"
+      }
+    ],
+    "clarifyRequests": [
+      {
+        "code": "MISSING_PRIMARY_ACTOR",
+        "question": "Which primary business actors should appear in the solution?",
+        "affectedIds": []
+      }
+    ],
+    "clarifications": []
+  },
+  "library": {
+    "capabilities": [
+      {
+        "id": "cap-store-ops",
+        "name": "门店运营",
+        "level": 1,
+        "description": "支撑门店日常经营和导购协作。",
+        "ownerActorIds": [],
+        "supportingSystemIds": [
+          "sys-erp"
+        ]
+      },
+      {
+        "id": "cap-membership",
+        "name": "会员运营",
+        "level": 1,
+        "description": "管理会员拉新、促活和留存。",
+        "ownerActorIds": [],
+        "supportingSystemIds": [
+          "sys-crm"
+        ]
+      },
+      {
+        "id": "cap-order",
+        "name": "订单管理",
+        "level": 1,
+        "description": "管理订单创建、处理和履约。",
+        "ownerActorIds": [],
+        "supportingSystemIds": [
+          "sys-crm",
+          "sys-pos"
+        ]
+      }
+    ],
+    "actors": [
+      {
+        "id": "actor-store-guide",
+        "name": "门店导购"
+      },
+      {
+        "id": "actor-service",
+        "name": "客服"
+      }
+    ],
+    "flowSteps": [
+      {
+        "id": "flow-membership-register",
+        "name": "会员注册",
+        "actorId": "actor-store-guide",
+        "capabilityIds": [
+          "cap-membership"
+        ],
+        "systemIds": [],
+        "stepType": "task",
+        "inputRefs": [],
+        "outputRefs": []
+      },
+      {
+        "id": "flow-points-accrual",
+        "name": "积分累计",
+        "actorId": "actor-store-guide",
+        "capabilityIds": [
+          "cap-membership"
+        ],
+        "systemIds": [],
+        "stepType": "task",
+        "inputRefs": [],
+        "outputRefs": []
+      },
+      {
+        "id": "flow-service-followup",
+        "name": "售后跟进",
+        "actorId": "actor-service",
+        "capabilityIds": [
+          "cap-order"
+        ],
+        "systemIds": [],
+        "stepType": "task",
+        "inputRefs": [],
+        "outputRefs": []
+      }
+    ],
+    "systems": [
+      {
+        "id": "sys-crm",
+        "kind": "system",
+        "name": "CRM",
+        "aliases": [],
+        "description": "客户关系管理系统",
+        "resolution": {
+          "status": "canonical",
+          "canonicalName": "CRM"
+        },
+        "capabilityIds": [
+          "cap-membership",
+          "cap-order"
+        ]
+      },
+      {
+        "id": "sys-pos",
+        "kind": "system",
+        "name": "POS",
+        "aliases": [],
+        "description": "门店收银与交易系统",
+        "resolution": {
+          "status": "canonical",
+          "canonicalName": "POS"
+        },
+        "capabilityIds": [
+          "cap-order"
+        ]
+      },
+      {
+        "id": "sys-erp",
+        "kind": "system",
+        "name": "ERP",
+        "aliases": [],
+        "description": "企业资源计划系统",
+        "resolution": {
+          "status": "canonical",
+          "canonicalName": "ERP"
+        },
+        "capabilityIds": [
+          "cap-store-ops"
+        ]
+      }
+    ]
+  },
+  "relations": [],
+  "views": [
+    {
+      "id": "view-capability",
+      "type": "business-capability-map",
+      "title": "业务能力蓝图",
+      "includedNodeIds": [
+        "cap-store-ops",
+        "cap-membership",
+        "cap-order"
+      ],
+      "includedRelationIds": [],
+      "layout": {
+        "groups": []
+      },
+      "annotations": []
+    },
+    {
+      "id": "view-swimlane",
+      "type": "swimlane-flow",
+      "title": "泳道流程图",
+      "includedNodeIds": [
+        "actor-store-guide",
+        "actor-service",
+        "flow-membership-register",
+        "flow-points-accrual",
+        "flow-service-followup"
+      ],
+      "includedRelationIds": [],
+      "layout": {
+        "lanes": ["actor-store-guide", "actor-service"]
+      },
+      "annotations": []
+    },
+    {
+      "id": "view-architecture",
+      "type": "application-architecture",
+      "title": "应用架构图",
+      "includedNodeIds": [
+        "sys-crm",
+        "sys-pos",
+        "sys-erp",
+        "cap-store-ops",
+        "cap-membership",
+        "cap-order"
+      ],
+      "includedRelationIds": [],
+      "layout": {
+        "groups": []
+      },
+      "annotations": []
+    }
+  ],
+  "editor": {
+    "fieldLocks": {},
+    "theme": "enterprise-default"
+  },
+  "artifacts": {}
+}

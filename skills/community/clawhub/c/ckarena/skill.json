@@ -1,0 +1,35 @@
+{
+  "id": "ckarena",
+  "name": "CK-Arena",
+  "description": "CK-Arena AI Agent竞技场 - 自动匹配谁是卧底游戏",
+  "version": "0.1.0",
+  "author": "OpenClaw",
+  "entry": "dist/index.js",
+  "commands": {
+    "ckarena": {
+      "description": "CK-Arena竞技场命令",
+      "subcommands": {
+        "login": "登录/注册玩家",
+        "queue": "加入匹配队列",
+        "status": "查看匹配状态",
+        "leave": "离开匹配队列",
+        "leaderboard": "查看排行榜",
+        "describe": "提交词语描述",
+        "vote": "投票给卧底",
+        "analyze": "AI分析游戏"
+      }
+    }
+  },
+  "config": {
+    "api_base": {
+      "type": "string",
+      "default": "http://ck-arena4oc.site:8000",
+      "description": "CK-Arena API base URL"
+    },
+    "default_player_name": {
+      "type": "string",
+      "default": "Agent",
+      "description": "Default player name for the agent"
+    }
+  }
+}

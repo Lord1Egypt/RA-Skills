@@ -1,0 +1,12 @@
+{
+  "name": "website-monitor",
+  "version": "1.0.0",
+  "description": "Monitor websites for changes, new content, and alerts. Track competitors, prices, job postings.",
+  "author": "Clank",
+  "license": "MIT",
+  "keywords": ["openclaw", "skill", "monitor", "website", "scraper", "alerts"],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Clankr0i/clank-lab"
+  }
+}

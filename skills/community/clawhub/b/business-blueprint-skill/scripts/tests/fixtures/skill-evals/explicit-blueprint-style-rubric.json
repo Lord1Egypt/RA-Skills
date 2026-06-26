@@ -1,0 +1,32 @@
+{
+  "case_id": "explicit-blueprint",
+  "overall_pass": true,
+  "score": 96,
+  "checks": [
+    {
+      "id": "semantic_fidelity",
+      "pass": true,
+      "score": 5,
+      "notes": "The fixture preserves POS, CRM, OMS, WMS, returns, and restock details from the source notes."
+    },
+    {
+      "id": "capability_boundaries",
+      "pass": true,
+      "score": 5,
+      "notes": "Capabilities separate lookup, approval, and inventory synchronization instead of flattening all work into one node."
+    },
+    {
+      "id": "flow_readability",
+      "pass": true,
+      "score": 5,
+      "notes": "The return request through restock update flow is readable as a cross-channel operating path."
+    },
+    {
+      "id": "no_placeholder_content",
+      "pass": true,
+      "score": 5,
+      "notes": "No TODO markers, lorem ipsum, or generic placeholder labels remain."
+    }
+  ],
+  "summary": "A compact but complete retail architecture blueprint fixture."
+}

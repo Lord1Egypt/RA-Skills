@@ -1,0 +1,14 @@
+/* ===== ANALYSIS CARDS (3-col) ===== */
+.analysis-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-top:20px}
+.ana-card{border-radius:10px;padding:16px 18px;border:1px solid var(--border)}
+.ana-card h3{font-size:14px;font-weight:700;margin-bottom:8px;display:flex;align-items:center;gap:6px}
+.ana-card .item{font-size:12.5px;line-height:1.7;margin-bottom:4px}
+.ana-card .item b{font-size:13px}
+.ana-card.overview{background:#eef6ff;border-color:#b8d4f0}
+.ana-card.overview h3{color:#1a5276}
+.ana-card.growth{background:#eafaf1;border-color:#a9dfbf}
+.ana-card.growth h3{color:#1e8449}
+.ana-card.alert{background:#fdf2f2;border-color:#f0b8b8}
+.ana-card.alert h3{color:#b03a3a}
+.ana-card .up{color:var(--green);font-weight:700}
+.ana-card .down{color:var(--red);font-weight:700}

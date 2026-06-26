@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title>Installed statusline examples / 安装后状态栏示例</title>
+  <desc>Representative runtime layouts for Full, Developer, and Minimal presets.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0b1020" />
+      <stop offset="55%" stop-color="#10192b" />
+      <stop offset="100%" stop-color="#1e293b" />
+    </linearGradient>
+  </defs>
+  
+<style>
+  .bg { fill: url(#bg); }
+  .panel { fill: #111827; stroke: #243041; stroke-width: 1.2; }
+  .panel-soft { fill: #0f172a; stroke: #243041; stroke-width: 1.2; }
+  .panel-muted { fill: #0b1220; stroke: #1f2937; stroke-width: 1.2; }
+  .terminal { fill: #0b1020; stroke: #334155; stroke-width: 1.2; }
+  .title { fill: #f8fafc; font: 700 34px 'Segoe UI', 'Inter', Arial, sans-serif; }
+  .subtitle { fill: #94a3b8; font: 500 17px 'Segoe UI', 'Inter', Arial, sans-serif; }
+  .section { fill: #e2e8f0; font: 700 21px 'Segoe UI', 'Inter', Arial, sans-serif; }
+  .body { fill: #dbe4f0; font: 500 18px 'Segoe UI', 'Inter', Arial, sans-serif; }
+  .small { fill: #94a3b8; font: 500 15px 'Segoe UI', 'Inter', Arial, sans-serif; }
+  .mono { fill: #e5edf7; font: 600 19px 'Cascadia Code', Consolas, Menlo, monospace; }
+  .mono-small { fill: #dbe4f0; font: 500 17px 'Cascadia Code', Consolas, Menlo, monospace; }
+  .mono-tiny { fill: #cbd5e1; font: 500 15px 'Cascadia Code', Consolas, Menlo, monospace; }
+  .chip { fill: #0f172a; stroke: #334155; stroke-width: 1; }
+  .chip-text { fill: #cbd5e1; font: 600 14px 'Segoe UI', 'Inter', Arial, sans-serif; }
+  .badge { fill: #1d4ed8; }
+  .badge-text { fill: #eff6ff; font: 700 14px 'Segoe UI', 'Inter', Arial, sans-serif; }
+  .accent-text { fill: #7dd3fc; font: 700 15px 'Segoe UI', 'Inter', Arial, sans-serif; }
+  .green { fill: #86efac; }
+  .yellow { fill: #fde68a; }
+  .orange { fill: #fdba74; }
+  .pink { fill: #f9a8d4; }
+  .blue { fill: #93c5fd; }
+  .muted { fill: #64748b; }
+</style>
+
+  <rect class="bg" x="0" y="0" width="1600" height="900" rx="0"/>
+  <rect x="48" y="38" width="1504" height="824" rx="28" fill="rgba(15,23,42,0.65)" stroke="#334155" stroke-width="1.2"/>
+  <text class="title" x="90" y="102">Installed statusline examples / 安装后状态栏示例</text>
+  <text class="subtitle" x="90" y="136">Representative runtime layouts for Full, Developer, and Minimal presets.</text>
+  <rect class="terminal" x="90" y="186" width="1420" height="178" rx="24"/>
+<rect x="90" y="186" width="1420" height="44" rx="24" fill="#111827" stroke="#334155" stroke-width="1.2"/>
+<circle cx="114" cy="208" r="6" fill="#fb7185"/>
+<circle cx="136" cy="208" r="6" fill="#fbbf24"/>
+<circle cx="158" cy="208" r="6" fill="#34d399"/>
+<text class="small" x="186" y="213">Full / 完整版 · aurora · classic</text>
+<rect x="90" y="230" width="1420" height="6" fill="#8b5cf6"/>
+<text class="mono-small" x="114" y="274">✨ Claude Opus 4.6 │ ⚡ High · 🧠 Think · 🚀 Normal · 🔐 Plan │ ⚙ v2.1.77 │ ● Active</text>
+<text class="mono-small" x="114" y="305">🔋 92.5K/200.0K █████░░░░ 46% │ 🛠 Skills:4 · 🔌 MCP:1 │ 📂 cl/cc-statusline │ 🌿 main ✓</text>
+<text class="mono-small" x="114" y="336">💬 Ctx ↑92.5K ↓4.8K │ 📈 Sum ↑128.0K ↓12.4K (140.4K) │ ⏱ API 14s · ⏳ TTL 19s │ 💰 $0.28</text>
+<rect class="terminal" x="90" y="402" width="1420" height="178" rx="24"/>
+<rect x="90" y="402" width="1420" height="44" rx="24" fill="#111827" stroke="#334155" stroke-width="1.2"/>
+<circle cx="114" cy="424" r="6" fill="#fb7185"/>
+<circle cx="136" cy="424" r="6" fill="#fbbf24"/>
+<circle cx="158" cy="424" r="6" fill="#34d399"/>
+<text class="small" x="186" y="429">Developer / 开发者版 · ocean · developer</text>
+<rect x="90" y="446" width="1420" height="6" fill="#22d3ee"/>
+<text class="mono-small" x="114" y="490">λ Claude Opus 4.6 │ ≡ High · ∴ Think · - Default │ ● Active</text>
+<text class="mono-small" x="114" y="521">:: cl/cc-statusline │ git feat/statusline (+3 ?1) │ [] 92.5K/200.0K █████░░░░ 46%</text>
+<text class="mono-small" x="114" y="552">in Ctx ↑92.5K ↓4.8K │ Σ Sum ↑128.0K ↓12.4K (140.4K) │ api 14s · all 19s │ $ $0.28</text>
+<rect class="terminal" x="90" y="618" width="1420" height="132" rx="24"/>
+<rect x="90" y="618" width="1420" height="44" rx="24" fill="#111827" stroke="#334155" stroke-width="1.2"/>
+<circle cx="114" cy="640" r="6" fill="#fb7185"/>
+<circle cx="136" cy="640" r="6" fill="#fbbf24"/>
+<circle cx="158" cy="640" r="6" fill="#34d399"/>
+<text class="small" x="186" y="645">Minimal / 极简版 · mono · minimal</text>
+<rect x="90" y="662" width="1420" height="6" fill="#94a3b8"/>
+<text class="mono-small" x="114" y="706">M Claude Opus 4.6 │ V v2.1.77 │ • Active │ $ $0.28</text>
+<text class="accent-text" x="90" y="798">These examples match the current preset metadata and runtime layout / 这些示例对应当前预设元数据与运行时布局。</text>
+</svg>

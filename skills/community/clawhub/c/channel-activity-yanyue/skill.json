@@ -1,0 +1,31 @@
+{
+  "name": "channel-activity",
+  "version": "3.0.0",
+  "description": "多通道短期记忆系统，记录其他通道最近 30 分钟的活动摘要，解决多 AI 助手会话上下文隔离问题",
+  "author": "炎月",
+  "created": "2026-03-08",
+  "tags": ["memory", "cache", "multi-channel", "context", "summary"],
+  "capabilities": [
+    "channel-activity",
+    "multi-channel-integration",
+    "smart-summary",
+    "auto-cleanup",
+    "cross-channel-query"
+  ],
+  "config": {
+    "ttl_minutes": 30,
+    "max_entries": 50,
+    "summary_max_length": 50,
+    "context_max_chars": 300,
+    "auto_cleanup": true
+  },
+  "files": {
+    "main": "channel_activity.py",
+    "cache": "memory/channel-activity.json"
+  },
+  "usage": {
+    "record": "ca.record(channel, message, user_id)",
+    "query": "ca.get_context_summary(channel)",
+    "recent": "ca.get_recent(minutes=30)"
+  }
+}

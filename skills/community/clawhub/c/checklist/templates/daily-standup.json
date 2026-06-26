@@ -1,0 +1,14 @@
+{
+  "name": "Daily Standup",
+  "description": "Daily team standup meeting preparation",
+  "category": "meeting",
+  "items": [
+    {"id": 1, "text": "Review yesterday's accomplishments", "required": true},
+    {"id": 2, "text": "Identify today's planned tasks", "required": true},
+    {"id": 3, "text": "Note any blockers or impediments", "required": true},
+    {"id": 4, "text": "Update task management system", "required": true},
+    {"id": 5, "text": "Check for dependent tasks from teammates", "required": false},
+    {"id": 6, "text": "Review PRs needing attention", "required": false},
+    {"id": 7, "text": "Check calendar for meetings today", "required": false}
+  ]
+}

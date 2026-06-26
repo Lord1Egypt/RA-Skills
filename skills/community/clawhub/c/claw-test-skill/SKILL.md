@@ -1,35 +1,36 @@
 ---
-name: "Claw Test Skill"
-description: "Test skill created and published directly via ClawHub API using provided key. Use when testing ClawHub publish flow from agents or Grok."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/claw-test-skill"
-sourceUrl: "https://clawhub.ai/skills/claw-test-skill"
+name: claw-test-skill
+description: Test skill created and published directly via ClawHub API using provided key. Use when testing ClawHub publish flow from agents or Grok.
+version: 0.1.0
+metadata:
+  openclaw:
+    requires:
+      env: []
+    emoji: "🧪"
 ---
 
 # Claw Test Skill
 
-> Test skill created and published directly via ClawHub API using provided key. Use when testing ClawHub publish flow from agents or Grok.
+Simple test skill for validating ClawHub publish with raw API key.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/claw-test-skill`
-- **Source URL:** [https://clawhub.ai/skills/claw-test-skill](https://clawhub.ai/skills/claw-test-skill)
+## When to use
 
-## Overview
+- User or agent wants to verify ClawHub skill publishing works.
+- Confirm a new skill version is live on ClawHub.
 
+## Steps
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/claw-test-skill
-```
+1. Confirm the skill loaded from ClawHub registry.
+2. Greet and report success: "ClawHub publish via API key succeeded."
+3. Suggest next: run `openclaw skills install claw-test-skill` or `clawhub install claw-test-skill`.
+
+## ClawHub-safe policy
+
+- This skill performs no actions, no side effects, no credentials, no onchain calls.
+- Safe for any environment.
+- No user data collection.
+
+## Notes
+
+Published using the clh_ API key directly against ClawHub registry.
+Initial test publish.

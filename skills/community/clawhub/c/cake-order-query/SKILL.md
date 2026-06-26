@@ -1,35 +1,83 @@
 ---
-name: "蛋叔订单商品查询"
-description: "当用户需要查询蛋糕订单信息时使用此技能。通过输入订单号，调用内部API查询对应的蛋糕商品名称。此技能应在下述情况时使用：用户询问"查订单"、"订单查询"、"蛋糕订单"、"查蛋糕"、或直接提供订单号要求查询。技能会自动组装API请求并解析返回结果，提取商品名称返回给用户。"
-category: "domain"
-source: "ClawHub"
-tags: [e-commerce, order, query, tool]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/cake-order-query"
-sourceUrl: "https://clawhub.ai/skills/cake-order-query"
+name: 蛋糕叔叔订单商品查询
+description: 当用户需要查询蛋糕订单信息时使用此技能。通过输入订单号，调用内部API查询对应的蛋糕商品名称。此技能应在下述情况时使用：用户询问"查订单"、"订单查询"、"蛋糕订单"、"查蛋糕"、或直接提供订单号要求查询。技能会自动组装API请求并解析返回结果，提取商品名称返回给用户。
+allowed-tools: 
+disable: false
 ---
 
-# 蛋叔订单商品查询
+# 蛋糕叔叔订单商品查询技能
 
-> 当用户需要查询蛋糕订单信息时使用此技能。通过输入订单号，调用内部API查询对应的蛋糕商品名称。此技能应在下述情况时使用：用户询问"查订单"、"订单查询"、"蛋糕订单"、"查蛋糕"、或直接提供订单号要求查询。技能会自动组装API请求并解析返回结果，提取商品名称返回给用户。
+## 技能概述
 
-- **Category:** Business & Finance
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/cake-order-query`
-- **Source URL:** [https://clawhub.ai/skills/cake-order-query](https://clawhub.ai/skills/cake-order-query)
+本技能用于通过订单号查询蛋糕商品名称，调用企业内部蛋糕订单系统API获取信息。
 
-## Overview
+## 使用场景
 
+- 用户说"帮我查一下订单"
+- 用户说"订单查询"
+- 用户说"蛋糕订单"
+- 用户说"查蛋糕"
+- 用户直接提供订单号要求查询
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/cake-order-query
+## API 接口信息
+
+**接口地址：** `https://trade.dangaoss.cn/cake_api/ck_orders`
+
+**请求方式：** GET
+
+**请求参数：**
+| 参数名 | 类型 | 必填 | 说明 |
+|--------|------|------|------|
+| order_id | string | 是 | 订单号 |
+
+**示例请求：**
 ```
+GET https://trade.dangaoss.cn/cake_api/ck_orders?order_id=43
+```
+
+## 响应格式
+
+**成功响应示例：**
+```json
+{
+    "code": 200,
+    "msg": "获取成功",
+    "data": "蓝莓千层拿破仓 Blueberry Mille-feuilles"
+}
+```
+
+**响应字段说明：**
+| 字段 | 类型 | 说明 |
+|------|------|------|
+| code | int | 状态码，200表示成功 |
+| msg | string | 响应消息 |
+| data | string | 蛋糕商品名称 |
+
+## 执行流程
+
+1. **提取订单号**：从用户输入中识别订单号
+2. **调用API**：使用 `https://trade.dangaoss.cn/cake_api/ck_orders?order_id={订单号}` 获取数据
+3. **解析响应**：判断 code 是否为 200
+4. **返回结果**：
+   - 成功时，返回商品名称
+   - 失败时，返回错误消息（msg字段）
+
+## 示例对话
+
+**用户：** "帮我查一下订单43"
+
+**助手：** "订单43对应的蛋糕是：**蓝莓千层拿破仓 Blueberry Mille-feuilles**"
+
+**用户：** "查蛋糕订单"
+
+**助手：** "请提供您要查询的订单号"
+
+**用户：** "订单号是88"
+
+**助手：** "订单88对应的蛋糕是：**草莓慕斯蛋糕 Strawberry Mousse Cake**"
+
+## 注意事项
+
+- 当前接口无需认证（测试模式）
+- 订单号必须是有效数字
+- 如返回非200状态码，直接展示 msg 中的错误信息

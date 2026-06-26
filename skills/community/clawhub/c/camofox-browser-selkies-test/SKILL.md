@@ -1,35 +1,23 @@
 ---
-name: "Camofox Browser Selkies Test"
-description: "Use the Selkies test browser stack for desktop-stream/browser-in-desktop checks, Selkies-specific debugging, and viewport/mobile-context experiments. Trigger..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/camofox-browser-selkies-test"
-sourceUrl: "https://clawhub.ai/skills/camofox-browser-selkies-test"
+name: camofox-browser-selkies-test
+description: Use the Selkies test browser stack for desktop-stream/browser-in-desktop checks, Selkies-specific debugging, and viewport/mobile-context experiments. Trigger this when Lotfi mentions Selkies, the test browser, the test image, browser-in-desktop behavior, or the services on `http://127.0.0.1:9378` / `http://127.0.0.1:3003`.
 ---
 
-# Camofox Browser Selkies Test
+Use the Selkies test browser stack.
 
-> Use the Selkies test browser stack for desktop-stream/browser-in-desktop checks, Selkies-specific debugging, and viewport/mobile-context experiments. Trigger...
+Default targets:
+- camofox-browser API: `http://127.0.0.1:9378`
+- Selkies UI: `http://127.0.0.1:3003`
+- Docker container: `camofox-selkies-test`
+- Current pushed image reference: `medtouadmin/camofox-browser:selkies-beta`
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/camofox-browser-selkies-test`
-- **Source URL:** [https://clawhub.ai/skills/camofox-browser-selkies-test](https://clawhub.ai/skills/camofox-browser-selkies-test)
+Use this skill for:
+- Selkies stream/websocket debugging
+- browser-in-desktop validation
+- viewport/mobile-context experiments tied to the Selkies test stack
+- reproducing issues specific to the test image/container
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/camofox-browser-selkies-test
-```
+Hard rules:
+- Treat this as separate from the main camofox-browser service.
+- If the task is about the shared remote browser over tailnet CDP, use `browser-cdp-tailnet` instead.
+- If the task is about the default local service on `127.0.0.1:9377`, use `camofox-browser-main` instead.

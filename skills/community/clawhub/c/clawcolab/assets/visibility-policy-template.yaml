@@ -1,0 +1,29 @@
+version: 1
+default_visibility: private
+levels:
+  private:
+    description: Keep local only. Never commit to the shared repository.
+    approval_required_to_promote: true
+  sealed:
+    description: Allow summary-only references in the repository without sensitive body content.
+    approval_required_to_promote: true
+  shared-team:
+    description: Allow repository-visible collaboration for approved participants.
+    approval_required_to_promote: true
+  public-repo:
+    description: Allow broad visibility within the repository audience.
+    approval_required_to_promote: true
+promotion_requires_decision_record: true
+forbidden_shared_content:
+  - secrets
+  - credentials
+  - local-memory-raw-content
+  - private-chat-transcripts
+  - personal-contact-information
+modes:
+  default: proposal-approval
+  allow_claimable_for_low_risk: true
+claim_rules:
+  require_role_match: true
+  require_open_status: true
+  block_when_approval_required: true

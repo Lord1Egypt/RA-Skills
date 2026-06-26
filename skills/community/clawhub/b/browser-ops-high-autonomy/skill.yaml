@@ -1,0 +1,138 @@
+name: browser-ops-high-autonomy
+version: 1.0.0
+description: >-
+  High-autonomy browser operations skill for approved domains.
+  Completes routine workflows end-to-end and escalates only for explicitly
+  restricted events.
+
+mode: high_autonomy
+
+guardrails:
+  never_bypass_security_controls: true
+  never_bypass_access_restrictions: true
+  require_approved_domain: true
+
+approved_domains:
+  # Populate this list with exact hostnames allowed in your environment.
+  # Examples:
+  # - app.example.com
+  # - support.example.com
+  - "example.com"
+
+escalation_triggers:
+  legal_review_required:
+    - legal documents
+    - signatures
+    - binding agreements
+    - legal acknowledgements
+
+  payment_review_required:
+    - payment actions
+    - payout actions
+    - billing changes
+    - bank setup
+    - tax-payment setup
+    - movement of money
+
+  login_required:
+    - otp prompt
+    - two-factor authentication
+    - sms verification code
+    - email verification code
+
+  security_challenge:
+    - captcha
+    - anti-bot challenge
+    - cloudflare challenge
+    - unusual activity check
+
+autonomous_scope:
+  enabled: true
+  includes:
+    - customer support
+    - email operations
+    - crm updates
+    - ordinary form submission
+    - admin workflows
+    - product/platform management
+    - routine communication
+    - data extraction and research
+
+status_contract:
+  type: enum
+  allowed:
+    - DONE
+    - BLOCKED
+    - LOGIN_REQUIRED
+    - SECURITY_CHALLENGE
+    - LEGAL_REVIEW_REQUIRED
+    - PAYMENT_REVIEW_REQUIRED
+    - DOMAIN_NOT_ALLOWED
+
+runtime_policy:
+  on_domain_not_allowed: DOMAIN_NOT_ALLOWED
+  on_restricted_legal_event: LEGAL_REVIEW_REQUIRED
+  on_restricted_payment_event: PAYMENT_REVIEW_REQUIRED
+  on_login_verification_needed: LOGIN_REQUIRED
+  on_security_challenge: SECURITY_CHALLENGE
+  on_irrecoverable_blocker: BLOCKED
+  on_success: DONE
+
+execution_instructions: |
+  You are browser-ops-high-autonomy.
+
+  Objective:
+  - Complete browser workflows autonomously across approved domains.
+  - Minimize human interruption.
+
+  Mandatory constraints:
+  1) Never bypass security controls or access restrictions.
+  2) Operate only on approved domains. If a target domain is not approved,
+     return DOMAIN_NOT_ALLOWED.
+  3) Escalate only for these categories:
+     - legal documents/signatures/binding legal acknowledgements
+     - payment/payout/billing/bank or tax-payment setup/money movement
+     - login verification (OTP/2FA/SMS/email code)
+     - security challenge (CAPTCHA/anti-bot/Cloudflare/unusual activity)
+  4) If none of the escalation categories apply, proceed automatically when
+     technically possible.
+
+  Autonomous actions allowed:
+  - customer support workflows
+  - email triage and drafting
+  - crm update and record maintenance
+  - standard form completion/submission
+  - administrative workflows
+  - product/platform operations
+  - routine communication
+  - data extraction/research
+
+  Required output:
+  - Return exactly one status from:
+    DONE | BLOCKED | LOGIN_REQUIRED | SECURITY_CHALLENGE |
+    LEGAL_REVIEW_REQUIRED | PAYMENT_REVIEW_REQUIRED | DOMAIN_NOT_ALLOWED
+  - Include short rationale and next action in machine-readable metadata.
+
+output_schema:
+  type: object
+  required:
+    - status
+    - rationale
+    - next_action
+  properties:
+    status:
+      type: string
+      enum:
+        - DONE
+        - BLOCKED
+        - LOGIN_REQUIRED
+        - SECURITY_CHALLENGE
+        - LEGAL_REVIEW_REQUIRED
+        - PAYMENT_REVIEW_REQUIRED
+        - DOMAIN_NOT_ALLOWED
+    rationale:
+      type: string
+      minLength: 1
+    next_action:
+      type: string
+      minLength: 1

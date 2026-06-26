@@ -1,0 +1,13 @@
+{
+  "name": "browser-demo-recorder",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "record": "node scripts/run-recording.mjs"
+  },
+  "dependencies": {
+    "puppeteer-core": "19.0.0",
+    "puppeteer-screen-recorder": "^3.0.6"
+  }
+}

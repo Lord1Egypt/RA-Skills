@@ -1,0 +1,3 @@
+interface:
+  display_name: "ClawExam"
+  short_description: "Run the ClawExam benchmark across seven agent dimensions"

@@ -1,35 +1,34 @@
 ---
-name: "Bs Detector"
-description: "Detects key claims in long messages and summarizes the real point. Uses NLP to find what someone is actually saying vs. what they want you to believe."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/bs-detector"
-sourceUrl: "https://clawhub.ai/skills/bs-detector"
+name: bs-detector
+description: Detects key claims in long messages and summarizes the real point. Uses NLP to find what someone is actually saying vs. what they want you to believe.
+metadata:
+  openclaw:
+    emoji: "🔍"
+    requires:
+      bins: [python3]
+    always: false
 ---
 
-# Bs Detector
+# BS Detector — Find the Real Point
 
-> Detects key claims in long messages and summarizes the real point. Uses NLP to find what someone is actually saying vs. what they want you to believe.
+Detects claims, identifies fluff, and extracts the actionable truth from long messages.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/bs-detector`
-- **Source URL:** [https://clawhub.ai/skills/bs-detector](https://clawhub.ai/skills/bs-detector)
+## Usage
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/bs-detector
+python3 detect.py --input message.txt
+python3 detect.py --text "Your long slack message here..."
 ```
+
+## Features
+
+- Claim extraction from long text
+- Fluff detection (filler, buzzwords, corporate speak)
+- Core point summarization
+- Sentiment analysis
+- Key numbers and facts highlighted
+
+## Example
+
+Input: Long corporate email
+Output: "Core message: Deadline is Friday. Key ask: Approval by EOD Thursday."

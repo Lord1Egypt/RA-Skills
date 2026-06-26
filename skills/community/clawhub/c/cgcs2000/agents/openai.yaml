@@ -1,0 +1,7 @@
+interface:
+  display_name: "CGCS2000"
+  short_description: "Explain and choose the right CGCS2000 CRS for China GIS work."
+  default_prompt: "Use $cgcs2000 to determine whether the data is EPSG:4490 or a projected CGCS2000 CRS, compare it with WGS84 or GCJ-02 when needed, and recommend the right next step."
+
+policy:
+  allow_implicit_invocation: true

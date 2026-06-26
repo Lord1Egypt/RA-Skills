@@ -1,0 +1,21 @@
+{
+  "name": "Performance Testing",
+  "description": "Application performance testing checklist",
+  "category": "testing",
+  "items": [
+    {"id": 1, "text": "Define performance benchmarks", "required": true},
+    {"id": 2, "text": "Prepare test data", "required": true},
+    {"id": 3, "text": "Run load tests (normal load)", "required": true},
+    {"id": 4, "text": "Run load tests (peak load)", "required": true},
+    {"id": 5, "text": "Run stress tests", "required": true},
+    {"id": 6, "text": "Test API response times", "required": true},
+    {"id": 7, "text": "Check database query performance", "required": true},
+    {"id": 8, "text": "Verify caching effectiveness", "required": true},
+    {"id": 9, "text": "Check memory usage", "required": true},
+    {"id": 10, "text": "Verify CPU utilization", "required": true},
+    {"id": 11, "text": "Test concurrent user limits", "required": true},
+    {"id": 12, "text": "Check network latency", "required": true},
+    {"id": 13, "text": "Document performance bottlenecks", "required": true},
+    {"id": 14, "text": "Create performance report", "required": true}
+  ]
+}

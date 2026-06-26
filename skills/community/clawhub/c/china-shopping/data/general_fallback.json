@@ -1,0 +1,28 @@
+{
+  "websites": [
+    {
+      "id": "jd",
+      "name": "京东",
+      "url": "https://www.jd.com",
+      "reason": "正品保障，物流速度快，售后服务好"
+    },
+    {
+      "id": "tmall",
+      "name": "天猫",
+      "url": "https://www.tmall.com",
+      "reason": "品牌官方旗舰店，品质有保障"
+    },
+    {
+      "id": "taobao",
+      "name": "淘宝",
+      "url": "https://www.taobao.com",
+      "reason": "商品种类最全，价格实惠"
+    },
+    {
+      "id": "suning",
+      "name": "苏宁易购",
+      "url": "https://www.suning.com",
+      "reason": "家电数码专业平台，线下门店多"
+    }
+  ]
+}

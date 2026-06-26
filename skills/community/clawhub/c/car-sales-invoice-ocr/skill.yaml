@@ -1,0 +1,23 @@
+name: car_sales_invoice_ocr
+version: 1.0.3
+description: 支持从机动车销售发票中精准提取车架号（VIN码）、发动机号、厂牌型号、购车人信息、价税合计金额、完税凭证号等车辆专属字段。
+author: SCNet
+license: MIT
+tags:
+  - ocr
+  - 文字提取
+
+required_env_vars:
+  - SCNET_API_KEY
+
+optional_env_vars:
+  - SCNET_API_BASE
+
+primary_credential: SCNET_API_KEY
+
+# 增加项目主页，解决 missing homepage 警告
+homepage: https://github.com/SCNet-sugon/car_sales_invoice_ocr.git  # 请替换为实际仓库地址
+
+dependencies:
+  - python3
+  - requests

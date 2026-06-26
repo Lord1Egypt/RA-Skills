@@ -1,0 +1,82 @@
+[
+  {
+    "query": "I have a 1:1 with Sarah tomorrow morning, she's been really quiet the past two weeks and missed her last two daily check-ins. Her sentiment seems to be dropping. How should I approach the conversation?",
+    "should_trigger": true
+  },
+  {
+    "query": "我团队里有个菲律宾员工最近情绪很低落，连续三天没交日报了。作为管理者我该怎么跟他沟通比较合适？需要考虑文化差异",
+    "should_trigger": true
+  },
+  {
+    "query": "Give me a morning briefing — what's important today? I want to see top risks, any blocked tasks, and who hasn't checked in yet",
+    "should_trigger": true
+  },
+  {
+    "query": "David has been with us 2 years as a senior engineer, solid technically but not great at cross-team communication. He wants to be promoted to engineering lead. Should I do it? What would Elon Musk say about this?",
+    "should_trigger": true
+  },
+  {
+    "query": "I manage 8 people across Singapore and Manila offices. One of my Manila team members consistently underperforms but always has excuses. How do I give direct feedback without being culturally insensitive?",
+    "should_trigger": true
+  },
+  {
+    "query": "帮我用稻盛和夫的利他哲学设计每周签到问题，我的团队有12个人，主要是开发和设计",
+    "should_trigger": true
+  },
+  {
+    "query": "Show me this week's risk dashboard — I want to know what's blocking my team, any overdue tasks, and who might be overloaded. Sort by severity.",
+    "should_trigger": true
+  },
+  {
+    "query": "We're thinking about expanding into the Japan market next quarter. Can you run a virtual board meeting? I want to hear what my CFO, CTO, and CMO would each think about this move.",
+    "should_trigger": true
+  },
+  {
+    "query": "One of my devs, Alex, has been missing deadlines for the past 3 sprints. His daily reports show he's struggling with a blocker but hasn't escalated it. What's the best way to address this without micromanaging?",
+    "should_trigger": true
+  },
+  {
+    "query": "Generate a weekly team performance report. I want to see check-in rates, who's doing well, who might need support, and KPIs vs targets. Make it concise, I hate long reports.",
+    "should_trigger": true
+  },
+  {
+    "query": "Help me write a Python FastAPI backend that sends Slack webhook notifications when our CI pipeline fails on GitHub Actions. I need the endpoint and the webhook handler.",
+    "should_trigger": false
+  },
+  {
+    "query": "I need to build an employee management CRUD app with Vue 3 and a Go Gin backend — basic employee list, add/edit/delete, with a PostgreSQL database. Can you scaffold it?",
+    "should_trigger": false
+  },
+  {
+    "query": "How do I set up a cron job on Ubuntu to automatically backup my PostgreSQL database to S3 every night at 2am? I'm using pg_dump and aws cli.",
+    "should_trigger": false
+  },
+  {
+    "query": "Can you review this pull request? It changes the authentication middleware in our Express API to use JWT refresh tokens instead of session cookies. Here's the diff: ...",
+    "should_trigger": false
+  },
+  {
+    "query": "I want to build a Telegram bot in Python with aiogram that tracks when employees clock in and out. It should store timestamps in Postgres and generate weekly attendance reports.",
+    "should_trigger": false
+  },
+  {
+    "query": "How do I configure the Notion API to create a two-way sync with my PostgreSQL database? I need webhooks for when pages change and a batch import script.",
+    "should_trigger": false
+  },
+  {
+    "query": "Write me a comprehensive performance review template as a Google Doc — sections for goals achieved, areas of improvement, peer feedback, and development plan. Just the template structure.",
+    "should_trigger": false
+  },
+  {
+    "query": "I need to set up Grafana dashboards connected to Prometheus to monitor our Kubernetes cluster — CPU, memory, pod restarts, and custom application metrics.",
+    "should_trigger": false
+  },
+  {
+    "query": "Help me design a PostgreSQL schema for a multi-tenant SaaS HR system — employees, departments, leave requests, payroll. I need the CREATE TABLE statements and indexes.",
+    "should_trigger": false
+  },
+  {
+    "query": "What's the best way to implement role-based access control in my Go API? I'm using Gin and need middleware that checks user roles against route permissions stored in Redis.",
+    "should_trigger": false
+  }
+]

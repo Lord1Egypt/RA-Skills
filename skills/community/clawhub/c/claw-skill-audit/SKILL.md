@@ -1,35 +1,55 @@
----
-name: "Skill Audit"
-description: "Automatically audits newly installed skills to validate structure, security, and health before activation, preventing broken or malicious skills from running."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/claw-skill-audit"
-sourceUrl: "https://clawhub.ai/skills/claw-skill-audit"
----
+# skill-audit
 
-# Skill Audit
+Newly installed OpenClaw skill safety inspector & audit tool.
 
-> Automatically audits newly installed skills to validate structure, security, and health before activation, preventing broken or malicious skills from running.
+## Purpose
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/claw-skill-audit`
-- **Source URL:** [https://clawhub.ai/skills/claw-skill-audit](https://clawhub.ai/skills/claw-skill-audit)
+Automatically audit newly installed skills before activation. Validates structure, security, and basic health to prevent broken or malicious skills from affecting the system.
 
-## Overview
+## When to Use
 
+- After installing a new skill from ClawHub
+- Before enabling a skill for the first time
+- When debugging a malfunctioning skill
+- As part of routine skill maintenance
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/claw-skill-audit
+## What It Checks
+
+### 1. Structure Validation
+- `SKILL.md` exists and is readable
+- Required fields present: `name`, `description`, `location`
+- No broken internal links or references
+
+### 2. Security Scan
+- No hardcoded secrets, API keys, or credentials
+- No suspicious external network calls (untrusted URLs)
+- File permissions safe (no world-writable scripts)
+
+### 3. Health Check
+- Skill directory accessible
+- No circular imports or broken references
+- Basic syntax validity of SKILL.md
+
+## Usage
+
 ```
+skill-audit <skill-path>
+```
+
+Example:
+```
+skill-audit ~/.openclaw/skills/my-new-skill
+skill-audit /workspace/skills/awesome-skill
+```
+
+## Output
+
+- PASS  -- Skill passes all checks
+- WARN  -- Minor issues found (non-blocking)
+- FAIL  -- Critical issues found (blocking)
+- INFO  -- Informational notes
+
+## Notes
+
+- Run as part of your installation workflow, not just when things break
+- Combine with clawhub skill for full install -> audit -> enable flow

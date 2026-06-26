@@ -1,35 +1,360 @@
 ---
-name: "Chargebee"
-description: "Chargebee API integration with managed OAuth. Install only if you need Chargebee billing administration. Connect with least-privilege access, verify the inte..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/chargebee"
-sourceUrl: "https://clawhub.ai/skills/chargebee"
+name: chargebee
+description: |
+  Chargebee API integration with managed OAuth. Install only if you need Chargebee billing administration. Connect with least-privilege access, verify the intended connection ID before each request, and revoke unused connections promptly. This integration can mutate billing data — approve only specific write actions after checking the exact endpoint, account, resource ID, and consequence. For other third party apps, use the api-gateway skill (https://clawhub.ai/byungkyu/api-gateway).
+compatibility: Requires network access and valid Maton API key
+metadata:
+  author: maton
+  version: "1.0"
+  clawdbot:
+    emoji: 🧠
+    requires:
+      env:
+        - MATON_API_KEY
 ---
 
 # Chargebee
 
-> Chargebee API integration with managed OAuth. Install only if you need Chargebee billing administration. Connect with least-privilege access, verify the inte...
+Access the Chargebee API with managed OAuth authentication. Manage subscriptions, customers, invoices, and billing workflows.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/chargebee`
-- **Source URL:** [https://clawhub.ai/skills/chargebee](https://clawhub.ai/skills/chargebee)
+## Quick Start
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/chargebee
+# List customers
+python <<'EOF'
+import urllib.request, os, json
+req = urllib.request.Request('https://api.maton.ai/chargebee/api/v2/customers?limit=10')
+req.add_header('Authorization', f'Bearer {os.environ["MATON_API_KEY"]}')
+print(json.dumps(json.load(urllib.request.urlopen(req)), indent=2))
+EOF
 ```
+
+## Base URL
+
+```
+https://api.maton.ai/chargebee/{endpoint-path}
+```
+
+The gateway proxies requests to `{subdomain}.chargebee.com` (automatically replaced with your connection config) and injects authentication. Only the endpoints documented in the API Reference section below are supported — always use specific endpoint paths from that section rather than constructing arbitrary paths.
+
+## Authentication
+
+All requests require the Maton API key in the Authorization header:
+
+```
+Authorization: Bearer $MATON_API_KEY
+```
+
+**Environment Variable:** Set your API key as `MATON_API_KEY`:
+
+```bash
+export MATON_API_KEY="YOUR_API_KEY"
+```
+
+### Getting Your API Key
+
+1. Sign in or create an account at [maton.ai](https://maton.ai)
+2. Go to [maton.ai/settings](https://maton.ai/settings)
+3. Copy your API key
+
+## Connection Management
+
+Manage your Chargebee connections at `https://api.maton.ai`.
+
+### List Connections
+
+```bash
+python <<'EOF'
+import urllib.request, os, json
+req = urllib.request.Request('https://api.maton.ai/connections?app=chargebee&status=ACTIVE')
+req.add_header('Authorization', f'Bearer {os.environ["MATON_API_KEY"]}')
+print(json.dumps(json.load(urllib.request.urlopen(req)), indent=2))
+EOF
+```
+
+### Create Connection
+
+```bash
+python <<'EOF'
+import urllib.request, os, json
+data = json.dumps({'app': 'chargebee'}).encode()
+req = urllib.request.Request('https://api.maton.ai/connections', data=data, method='POST')
+req.add_header('Authorization', f'Bearer {os.environ["MATON_API_KEY"]}')
+req.add_header('Content-Type', 'application/json')
+print(json.dumps(json.load(urllib.request.urlopen(req)), indent=2))
+EOF
+```
+
+### Get Connection
+
+```bash
+python <<'EOF'
+import urllib.request, os, json
+req = urllib.request.Request('https://api.maton.ai/connections/{connection_id}')
+req.add_header('Authorization', f'Bearer {os.environ["MATON_API_KEY"]}')
+print(json.dumps(json.load(urllib.request.urlopen(req)), indent=2))
+EOF
+```
+
+**Response:**
+```json
+{
+  "connection": {
+    "connection_id": "{connection_id}",
+    "status": "ACTIVE",
+    "creation_time": "2025-12-08T07:20:53.488460Z",
+    "last_updated_time": "2026-01-31T20:03:32.593153Z",
+    "url": "https://connect.maton.ai/?session_token=...",
+    "app": "chargebee",
+    "metadata": {}
+  }
+}
+```
+
+Open the returned `url` in a browser to complete OAuth authorization.
+
+### Delete Connection
+
+```bash
+python <<'EOF'
+import urllib.request, os, json
+req = urllib.request.Request('https://api.maton.ai/connections/{connection_id}', method='DELETE')
+req.add_header('Authorization', f'Bearer {os.environ["MATON_API_KEY"]}')
+print(json.dumps(json.load(urllib.request.urlopen(req)), indent=2))
+EOF
+```
+
+### Specifying Connection
+
+If you have multiple Chargebee connections, specify which one to use with the `Maton-Connection` header:
+
+```bash
+python <<'EOF'
+import urllib.request, os, json
+req = urllib.request.Request('https://api.maton.ai/chargebee/api/v2/customers')
+req.add_header('Authorization', f'Bearer {os.environ["MATON_API_KEY"]}')
+req.add_header('Maton-Connection', '{connection_id}')
+print(json.dumps(json.load(urllib.request.urlopen(req)), indent=2))
+EOF
+```
+
+Always include the `Maton-Connection` header to ensure requests go to the intended Chargebee account, especially before any write operation. If you have multiple connections and omit this header, the gateway uses a default connection, which may not be the intended account.
+
+## Security & Permissions
+
+- Access is scoped to the Chargebee resources permitted by the connected account's credentials. Only install if you need Chargebee billing administration. Use least-privilege access and revoke unused connections promptly.
+- **Default to read-only operations.** Always start by listing or retrieving resources to confirm identifiers before proposing any changes.
+- **All write operations require explicit user approval with specific details.** Before executing any POST, PUT, or cancel/delete call:
+  1. Retrieve and display the target resource (customer name/ID, subscription ID, invoice number) so the user can verify.
+  2. Clearly describe the intended effect (e.g., "This will cancel subscription 'sub_123' for customer 'Acme Corp' — billing will stop at end of term").
+  3. Wait for explicit user confirmation before proceeding.
+- **Billing operations are high-impact.** Any action that affects subscriptions, invoices, or customer billing records must include a summary of financial consequences and require confirmation.
+
+## API Reference
+
+### Customers
+
+#### List Customers
+
+```bash
+GET /chargebee/api/v2/customers?limit=10
+```
+
+#### Get Customer
+
+```bash
+GET /chargebee/api/v2/customers/{customerId}
+```
+
+#### Create Customer
+
+```bash
+POST /chargebee/api/v2/customers
+Content-Type: application/x-www-form-urlencoded
+
+first_name=John&last_name=Doe&email=john@example.com
+```
+
+#### Update Customer
+
+```bash
+POST /chargebee/api/v2/customers/{customerId}
+Content-Type: application/x-www-form-urlencoded
+
+first_name=Jane
+```
+
+### Subscriptions
+
+#### List Subscriptions
+
+```bash
+GET /chargebee/api/v2/subscriptions?limit=10
+```
+
+#### Get Subscription
+
+```bash
+GET /chargebee/api/v2/subscriptions/{subscriptionId}
+```
+
+#### Create Subscription
+
+```bash
+POST /chargebee/api/v2/subscriptions
+Content-Type: application/x-www-form-urlencoded
+
+plan_id=basic-plan&customer[email]=john@example.com&customer[first_name]=John
+```
+
+#### Cancel Subscription
+
+```bash
+POST /chargebee/api/v2/subscriptions/{subscriptionId}/cancel
+Content-Type: application/x-www-form-urlencoded
+
+end_of_term=true
+```
+
+### Item Prices (Product Catalog 2.0)
+
+#### List Item Prices
+
+```bash
+GET /chargebee/api/v2/item_prices?limit=10
+```
+
+### Items
+
+#### List Items
+
+```bash
+GET /chargebee/api/v2/items?limit=10
+```
+
+### Invoices
+
+#### List Invoices
+
+```bash
+GET /chargebee/api/v2/invoices?limit=10
+```
+
+#### Download Invoice PDF
+
+```bash
+POST /chargebee/api/v2/invoices/{invoiceId}/pdf
+```
+
+### Hosted Pages
+
+#### Checkout New Subscription
+
+```bash
+POST /chargebee/api/v2/hosted_pages/checkout_new_for_items
+Content-Type: application/x-www-form-urlencoded
+
+subscription[plan_id]=basic-plan&customer[email]=john@example.com
+```
+
+### Portal Sessions
+
+#### Create Portal Session
+
+```bash
+POST /chargebee/api/v2/portal_sessions
+Content-Type: application/x-www-form-urlencoded
+
+customer[id]=cust_123
+```
+
+## Filtering
+
+```bash
+GET /chargebee/api/v2/subscriptions?status[is]=active
+GET /chargebee/api/v2/customers?email[is]=john@example.com
+GET /chargebee/api/v2/invoices?date[after]=1704067200
+```
+
+## Code Examples
+
+### JavaScript
+
+```javascript
+const response = await fetch(
+  'https://api.maton.ai/chargebee/api/v2/customers?limit=10',
+  {
+    headers: {
+      'Authorization': `Bearer ${process.env.MATON_API_KEY}`
+    }
+  }
+);
+```
+
+### Python
+
+```python
+import os
+import requests
+
+response = requests.get(
+    'https://api.maton.ai/chargebee/api/v2/customers',
+    headers={'Authorization': f'Bearer {os.environ["MATON_API_KEY"]}'},
+    params={'limit': 10}
+)
+```
+
+## Notes
+
+- Uses form-urlencoded data for POST requests
+- Nested objects use bracket notation: `customer[email]`
+- Timestamps are Unix timestamps
+- List responses include `next_offset` for pagination
+- Product Catalog 2.0: use `item_prices` and `items`
+- IMPORTANT: When using curl commands, use `curl -g` when URLs contain brackets (`fields[]`, `sort[]`, `records[]`) to disable glob parsing
+- IMPORTANT: When piping curl output to `jq` or other commands, environment variables like `$MATON_API_KEY` may not expand correctly in some shell environments. You may get "Invalid API key" errors when piping.
+
+## Error Handling
+
+| Status | Meaning |
+|--------|---------|
+| 400 | Missing Chargebee connection |
+| 401 | Invalid or missing Maton API key |
+| 429 | Rate limited (10 req/sec per account) |
+| 4xx/5xx | Passthrough error from Chargebee API |
+
+### Troubleshooting: API Key Issues
+
+1. Check that the `MATON_API_KEY` environment variable is set:
+
+```bash
+echo $MATON_API_KEY
+```
+
+2. Verify the API key is valid by listing connections:
+
+```bash
+python <<'EOF'
+import urllib.request, os, json
+req = urllib.request.Request('https://api.maton.ai/connections')
+req.add_header('Authorization', f'Bearer {os.environ["MATON_API_KEY"]}')
+print(json.dumps(json.load(urllib.request.urlopen(req)), indent=2))
+EOF
+```
+
+### Troubleshooting: Invalid App Name
+
+1. Ensure your URL path starts with `chargebee`. For example:
+
+- Correct: `https://api.maton.ai/chargebee/api/v2/customers`
+- Incorrect: `https://api.maton.ai/api/v2/customers`
+
+## Resources
+
+- [Chargebee API Overview](https://apidocs.chargebee.com/docs/api)
+- [Customers](https://apidocs.chargebee.com/docs/api/customers)
+- [Subscriptions](https://apidocs.chargebee.com/docs/api/subscriptions)
+- [Invoices](https://apidocs.chargebee.com/docs/api/invoices)
+- [Hosted Pages](https://apidocs.chargebee.com/docs/api/hosted_pages)
+- [Maton Community](https://discord.com/invite/dBfFAcefs2)
+- [Maton Support](mailto:support@maton.ai)

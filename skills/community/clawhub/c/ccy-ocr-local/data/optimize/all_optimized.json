@@ -1,0 +1,76 @@
+{
+  "tesseract": {
+    "digit": {
+      "model_name": "digit",
+      "config_path": "data/config/digit.config",
+      "optimization": {
+        "multithread": true,
+        "batch_size": 10,
+        "cache_size": 100,
+        "timeout": 30
+      }
+    },
+    "axis": {
+      "model_name": "axis",
+      "config_path": "data/config/axis.config",
+      "optimization": {
+        "multithread": true,
+        "batch_size": 10,
+        "cache_size": 100,
+        "timeout": 30
+      }
+    },
+    "legend": {
+      "model_name": "legend",
+      "config_path": "data/config/legend.config",
+      "optimization": {
+        "multithread": true,
+        "batch_size": 10,
+        "cache_size": 100,
+        "timeout": 30
+      }
+    },
+    "title": {
+      "model_name": "title",
+      "config_path": "data/config/title.config",
+      "optimization": {
+        "multithread": true,
+        "batch_size": 10,
+        "cache_size": 100,
+        "timeout": 30
+      }
+    }
+  },
+  "opencv": {
+    "chart_detection": {
+      "model_name": "chart_detection",
+      "model_path": "data/models/chart_detection.pb",
+      "optimization": {
+        "multithread": true,
+        "batch_size": 10,
+        "cache_size": 100,
+        "timeout": 30
+      }
+    },
+    "line_detection": {
+      "model_name": "line_detection",
+      "model_path": "data/models/line_detection.pb",
+      "optimization": {
+        "multithread": true,
+        "batch_size": 10,
+        "cache_size": 100,
+        "timeout": 30
+      }
+    },
+    "shape_detection": {
+      "model_name": "shape_detection",
+      "model_path": "data/models/shape_detection.pb",
+      "optimization": {
+        "multithread": true,
+        "batch_size": 10,
+        "cache_size": 100,
+        "timeout": 30
+      }
+    }
+  }
+}

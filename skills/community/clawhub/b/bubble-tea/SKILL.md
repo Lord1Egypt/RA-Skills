@@ -1,35 +1,32 @@
 ---
 name: "网红奶茶"
 description: "提供关于网红奶茶的推荐清单、打卡路线与指南。用户搜索网红奶茶或规划相关出行时调用。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/bubble-tea"
-sourceUrl: "https://clawhub.ai/skills/bubble-tea"
 ---
 
 # 网红奶茶
 
-> 提供关于网红奶茶的推荐清单、打卡路线与指南。用户搜索网红奶茶或规划相关出行时调用。
+## 筛选项
+- 城市/商圈/交通便利度
+- 人均预算/排队时长/是否可预约
+- 菜系/口味（辣度、清淡）/素食或清真
+- 卫生评分/儿童友好/无障碍设施
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/bubble-tea`
-- **Source URL:** [https://clawhub.ai/skills/bubble-tea](https://clawhub.ai/skills/bubble-tea)
+## 返回字段
+- 店名/亮点（签名菜、特色）/人均/评分/排队
+- 地址/营业时间/预约方式/是否外卖/氛围类型
+- 实时热度/最佳到访时段/避坑提示
 
-## Overview
+## 路线建议
+- 同商圈串联3-5家/步行与地铁优先
+- 高峰期替代方案/雨天备选/亲子与情侣偏好
 
+## 示例请求
+- “重庆 网红奶茶 辣度友好清单（人均≤80）”
+- “广州 网红奶茶 不排队TOP10（可预约）”
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/bubble-tea
-```
+## 更新频率
+- 每周迭代，结合新热度与口碑反馈
+
+## 注意事项
+- 高峰期排队较久，建议提前预约或错峰
+- 部分项目有拍摄限制或最低消费，按现场规则执行

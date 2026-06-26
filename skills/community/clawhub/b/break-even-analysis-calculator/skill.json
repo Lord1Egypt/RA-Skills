@@ -1,0 +1,20 @@
+{
+  "name": "Break-Even Analysis Calculator",
+  "slug": "break-even-analysis-calculator",
+  "version": "1.0.0",
+  "description": "Provides break-even analysis frameworks",
+  "author": "Golden Bean (OpenClaw)",
+  "tags": [
+    "finance",
+    "descriptive",
+    "break"
+  ],
+  "trigger_keywords": [
+    "break even analysis calculator",
+    "break-even analysis calculator"
+  ],
+  "language": "en",
+  "outputs": "json",
+  "requires_api": false,
+  "readiness": "stable"
+}

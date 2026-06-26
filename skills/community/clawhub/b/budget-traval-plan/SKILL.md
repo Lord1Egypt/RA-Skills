@@ -1,35 +1,228 @@
 ---
-name: "Budget Traval Plan"
-description: "Discover random budget travel destinations with cheap flights and hotels. Finds "hidden gem" deals by searching for lowest-priced flights and accommodations,..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/budget-traval-plan"
-sourceUrl: "https://clawhub.ai/skills/budget-traval-plan"
+name: budget-travel-deals
+description: Discover random budget travel destinations with cheap flights and hotels. Finds "hidden gem" deals by searching for lowest-priced flights and accommodations, validates destination has attractions worth visiting, and generates complete travel plans. Use when user wants surprise travel ideas, cheap getaways, budget trips, or asks for travel deals and discounts.
 ---
 
-# Budget Traval Plan
+# Budget Travel Deals - 穷游捡漏神器
 
-> Discover random budget travel destinations with cheap flights and hotels. Finds "hidden gem" deals by searching for lowest-priced flights and accommodations,...
+帮用户发现超值的随机旅行目的地，主打穷游和捡漏！
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/budget-traval-plan`
-- **Source URL:** [https://clawhub.ai/skills/budget-traval-plan](https://clawhub.ai/skills/budget-traval-plan)
+## When to Use
 
-## Overview
+当用户说以下关键词时触发：
+- "帮我找个便宜的地方玩"
+- "推荐个穷游目的地"
+- "最近哪里机票便宜"
+- "想捡漏去旅行"
+- "随机推荐个旅行地"
+- "预算有限去哪玩"
+- "特价机票酒店"
 
+## Core Workflow
 
-## Installation
-To install this skill, run the following command in your terminal:
+### Step 1: 收集用户偏好
+询问或确认：
+- 出发城市（默认北京）
+- 预算上限（默认 ¥1000 往返机票+酒店）
+- 旅行天数（默认 3天2晚）
+- 出发日期范围（默认未来7-30天）
+- 偏好：海岛/城市/自然/古镇/美食
+
+### Step 2: 搜索低价机票
+使用 flyai 搜索多个目的地的低价机票：
+
 ```bash
-hermes skills install clawhub/budget-traval-plan
+# 搜索热门穷游目的地的低价机票
+flyai search-flight --origin "[出发城市]" --destination "[目的地]" --dep-date [日期] --sort-type 1
 ```
+
+**热门穷游目的地列表**（国内）：
+- 成都、重庆、西安、长沙、武汉
+- 昆明、贵阳、南宁、桂林、厦门
+- 青岛、大连、沈阳、哈尔滨
+- 兰州、西宁、乌鲁木齐、拉萨
+- 三亚、海口、西双版纳
+
+### Step 3: 搜索低价酒店
+对低价机票目的地，搜索经济型酒店：
+
+```bash
+flyai search-hotel --city "[目的地]" --check-in [日期] --check-out [日期] --sort-type 1
+```
+
+### Step 4: 验证可玩性
+使用 keyword-search 确认目的地有值得玩的景点：
+
+```bash
+flyai keyword-search --query "[目的地] 必玩景点 攻略"
+flyai search-poi --city "[目的地]"
+```
+
+### Step 5: 计算总成本
+筛选条件：
+- 往返机票 + 2晚酒店 < 用户预算
+- 目的地有至少 3-5 个可玩景点
+- 飞行时间 < 4小时（除非用户接受长途）
+
+### Step 6: 生成旅行计划
+使用 travel-planner skill 生成完整文档。
+
+## Deal Scoring Algorithm
+
+对每个候选目的地计算"捡漏指数"：
+
+```
+捡漏指数 = (基础分 100)
+  - (机票价格 × 0.3)
+  - (酒店价格 × 0.2)
+  + (景点数量 × 10)
+  + (美食评分 × 5)
+  + (交通便利度 × 5)
+```
+
+**捡漏等级**：
+- 🔥🔥🔥 史诗级捡漏 (>150分)：机票<¥300，酒店<¥150/晚
+- 🔥🔥 超值捡漏 (120-150分)：机票<¥500，酒店<¥250/晚
+- 🔥 普通优惠 (90-120分)：机票<¥800，酒店<¥400/晚
+
+## Output Format
+
+```markdown
+# 🎲 穷游捡漏推荐 | [目的地]
+
+## 💰 捡漏指数：[等级] [分数]分
+
+## ✈️ 交通方案
+
+### 去程
+- 航班：[航空公司] [航班号]
+- 时间：[起飞时间] → [到达时间]
+- 价格：**¥[价格]**
+- [点击预订]([jumpUrl])
+
+### 返程
+- 航班：[航空公司] [航班号]
+- 时间：[起飞时间] → [到达时间]
+- 价格：**¥[价格]**
+- [点击预订]([jumpUrl])
+
+**往返总价：¥[总价]**
+
+## 🏨 住宿推荐
+
+| 酒店 | 位置 | 评分 | 价格/晚 | 预订 |
+|------|------|------|---------|------|
+| [酒店名] | [位置] | [评分] | **¥[价格]** | [预订]([url]) |
+
+**[X]晚总价：¥[总价]**
+
+## 💵 预算汇总
+
+| 项目 | 价格 |
+|------|------|
+| 往返机票 | ¥[价格] |
+| 住宿 ([X]晚) | ¥[价格] |
+| 当地交通 | ¥[预估] |
+| 餐饮 | ¥[预估] |
+| 门票 | ¥[预估] |
+| **总计** | **¥[总价]** |
+
+## 🎯 为什么推荐这里
+
+### 必玩景点（[数量]个）
+1. **[景点名]** - [一句话介绍]
+   ![](图片URL)
+   [预订门票](链接)
+
+2. **[景点名]** - [一句话介绍]
+   ...
+
+### 必吃美食
+- [美食1]：[推荐餐厅] ¥[人均]
+- [美食2]：[推荐餐厅] ¥[人均]
+
+### 当地特色
+- [特色1]
+- [特色2]
+
+## 📅 建议行程
+
+### Day 1
+- 上午：抵达，酒店入住
+- 下午：[主要景点1]
+- 晚上：[美食/夜景]
+
+### Day 2
+- 上午：[主要景点2]
+- 下午：[主要景点3]
+- 晚上：[特色体验]
+
+### Day 3
+- 上午：[轻松活动/购物]
+- 下午：返程
+
+## ⚡ 限时提醒
+- 机票价格实时变动，建议尽快预订
+- 酒店低价房量有限
+- 部分景点需提前预约
+
+---
+
+*Powered by Budget Travel Deals + FlyAI*
+*数据更新时间：[时间]*
+```
+
+## Search Strategy
+
+### 机票搜索策略
+1. **多日期搜索**：搜索未来7/14/21/28天的价格
+2. **多目的地并行**：同时搜索3-5个候选城市
+3. **排序方式**：按价格排序（sort-type: 1）
+
+### 酒店搜索策略
+1. **经济型优先**：筛选 ¥200-400/晚的酒店
+2. **位置优先**：市中心或景区附近
+3. **评分筛选**：4.0分以上
+
+### 景点验证策略
+1. 搜索目的地 + "必玩"
+2. 搜索目的地 + "攻略"
+3. 检查是否有5A/4A景区
+
+## Special Deal Categories
+
+### 周末快闪（2天1晚）
+- 周五晚/周六早出发
+- 周日返程
+- 适合周边城市
+
+### 小长假捡漏（3-4天）
+- 利用调休或短假期
+- 可去稍远目的地
+
+### 错峰出行（工作日）
+- 周二周三出发最便宜
+- 避开节假日
+
+## Tips for Best Deals
+
+1. **提前预订**：国内机票提前2-4周最便宜
+2. **灵活日期**：前后调整1-2天可能省几百
+3. **关注廉航**：春秋、九元等经常有特价
+4. **酒店套餐**：机票+酒店套餐有时更便宜
+5. **会员日**：航司会员日常有促销
+
+## Error Handling
+
+如果搜索失败：
+1. 尝试更换出发日期
+2. 扩大目的地范围
+3. 调整预算预期
+4. 建议用户关注航司促销活动
+
+## Integration with Other Skills
+
+生成推荐后，可以调用：
+- `travel-planner`：生成详细行程文档
+- `docx`：导出为 Word 文档
+- `pdf`：导出为 PDF 文档

@@ -1,35 +1,60 @@
 ---
-name: "Calculator Chat"
+name: calculator-chat
 description: "用计算器数字回应用户。当用户发送 /calc-chat 或表达情感时，在系统计算器上显示对应数字（如 520=我爱你，88=再见）。支持中文谐音翻译。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/calculator-chat"
-sourceUrl: "https://clawhub.ai/skills/calculator-chat"
+metadata:
+  {
+    "openclaw": {
+      "emoji": "🧮",
+      "requires": { "bins": ["node", "python3", "gnome-calculator"] }
+    }
+  }
 ---
 
 # Calculator Chat
 
-> 用计算器数字回应用户。当用户发送 /calc-chat 或表达情感时，在系统计算器上显示对应数字（如 520=我爱你，88=再见）。支持中文谐音翻译。
+让 AI 用计算器数字来回应你！
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/calculator-chat`
-- **Source URL:** [https://clawhub.ai/skills/calculator-chat](https://clawhub.ai/skills/calculator-chat)
+## 触发方式
 
-## Overview
+当你说：
+- `/calc-chat 我爱你`
+- `/calc-chat 再见`
+- `/calc-chat 恭喜发财`
 
+或者直接表达情感时自动触发。
 
-## Installation
-To install this skill, run the following command in your terminal:
+## 翻译规则
+
+| 你说 | 计算器显示 | 含义 |
+|-----|-----------|------|
+| 我爱你 / 爱你 / 喜欢 | 520 | 我爱你 |
+| 一生一世 | 1314 | 一生一世 |
+| 再见 / 拜拜 | 88 | 拜拜 |
+| 好累 / 哭 | 555 | 呜呜呜 |
+| 恭喜 / 发财 | 888 | 發發發 |
+| 帮我 / 救命 | 995 | 救救我 |
+| 想你 | 777 | 亲亲亲 |
+
+## 使用方法
+
 ```bash
-hermes skills install clawhub/calculator-chat
+# 直接运行
+calc-chat "我爱你"
+calc-chat "520+888"
+calc-chat "恭喜发财"
 ```
+
+## 技术实现
+
+- 自动检测桌面环境 (Wayland/X11)
+- 使用 gnome-calculator 打开系统计算器
+- 通过 --equation 参数预填表达式
+- 代码已优化，减少安全扫描误判
+
+## 安全说明
+
+本技能已通过安全优化：
+- 输入验证：只允许安全字符（数字和基本运算符）
+- 进程管理：使用 pgrep 检查，pkill 关闭
+- 计算安全：使用受限的 eval 命名空间
+- 无外部网络请求

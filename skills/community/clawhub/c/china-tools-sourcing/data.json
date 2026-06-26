@@ -1,0 +1,385 @@
+{
+  "metadata": {
+    "last_updated": "2026-03-15",
+    "source": "Ministry of Industry and Information Technology, China Hardware Association, National Bureau of Statistics, 中国五金制品协会",
+    "industry_scale_2026_target": "¥1.2 trillion revenue",
+    "growth_rate_target": "5.0% average annual growth (2024-2026)"
+  },
+  "industry_overview": {
+    "title": "China Tools Industry Overview (2026)",
+    "summary": "China is the world's largest producer and exporter of tools, including hand tools, power tools, garden tools, and industrial tools. The industry serves both professional tradespeople and DIY consumers globally. In 2026, the industry is projected to exceed ¥1.2 trillion in revenue, driven by infrastructure development, home improvement trends, industrial automation, and export growth. The industry is characterized by a complete supply chain, strong manufacturing capabilities, and increasing focus on innovation, ergonomics, and lithium-ion battery technology for power tools.",
+    "key_policy_initiatives": [
+      {
+        "name": "Action Plan for High-Quality Development of Hardware and Tools Industry (2024-2026)",
+        "issuing_authorities": ["MIIT", "Ministry of Commerce", "China Hardware Association"],
+        "key_measures": [
+          "Promote intelligent manufacturing and automation in tool factories",
+          "Support R&D in high-end power tools and battery technology",
+          "Encourage brand building and international marketing",
+          "Establish national-level tool testing and certification centers",
+          "Strengthen quality and safety standards (ergonomics, durability)"
+        ]
+      }
+    ],
+    "current_status_2025": {
+      "total_output_value": "¥1.14 trillion",
+      "share_of_global_exports": "55%",
+      "key_drivers": ["cordless power tools", "smart tools (IoT)", "garden tools", "automotive repair tools", "tool storage"],
+      "automation_rate": "52% (assembly lines in large factories)",
+      "export_value": "$75 billion",
+      "domestic_brand_share": "40% of domestic market"
+    }
+  },
+  "supply_chain_structure": {
+    "title": "Tools Supply Chain Structure",
+    "upstream": {
+      "description": "Raw materials, components, and R&D",
+      "categories": [
+        {
+          "name": "Steel & Metals",
+          "items": ["carbon steel", "alloy steel", "stainless steel", "chrome vanadium steel", "aluminum", "copper"],
+          "key_suppliers": ["Baowu Steel", "HBIS Group", "Shagang Group", "Jiangsu Tiangong"]
+        },
+        {
+          "name": "Plastics & Polymers",
+          "items": ["ABS", "PP", "nylon", "TPR", "fiberglass-reinforced plastic"],
+          "key_suppliers": ["Kingfa", "Sinopec", "BASF China"]
+        },
+        {
+          "name": "Electronic Components (for power tools)",
+          "items": ["motors", "battery cells (Li-ion)", "PCBs", "speed controllers", "chargers"],
+          "key_suppliers": ["Samsung SDI China", "LG Chem China", "Shenzhen Inovance", "Sunwoda"]
+        },
+        {
+          "name": "Abrasives & Blades",
+          "items": ["grinding wheels", "saw blades", "drill bits", "sandpaper"],
+          "key_suppliers": ["Bosun", "White Dove", "Saint-Gobain China"]
+        }
+      ]
+    },
+    "midstream": {
+      "description": "Tool manufacturing and assembly",
+      "subsectors": [
+        "hand tools (wrenches, pliers, screwdrivers, hammers, sockets)",
+        "power tools (drills, saws, grinders, sanders, impact wrenches)",
+        "garden tools (pruners, shears, trimmers, chainsaws, lawnmowers)",
+        "measuring tools (tape measures, levels, calipers, laser distance meters)",
+        "tool storage (tool boxes, tool bags, workbenches, chests)",
+        "automotive tools (jacks, pullers, diagnostic tools)",
+        "pneumatic tools (air impact wrenches, nail guns, spray guns)",
+        "cutting tools (drill bits, taps, dies, end mills, saw blades)"
+      ],
+      "key_companies_by_subsector": {
+        "hand_tools": ["Great Wall", "Jiangsu Dongcheng", "Hangzhou Great Star", "Shandong Wanda"],
+        "power_tools": ["Bosch China", "Stanley Black & Decker China", "Makita China", "Positec (Worx)", "Zhejiang Yat"],
+        "garden_tools": ["Zhejiang Yat (Lawn mowers)", "Fujian Linyi", "Taizhou Dongfeng"],
+        "measuring": ["Stanley China", "Great Wall (measuring)", "Guangdong Fuma"],
+        "tool_storage": ["Suzhou Stanley", "Zhejiang Jialong"],
+        "automotive": ["Shandong Jining (jack)", "Zhejiang Tianyuan (pullers)"],
+        "pneumatic": ["Taiwan-based but mainland production (JET, Sunmatch)"]
+      }
+    },
+    "downstream": {
+      "description": "Sales channels and end users",
+      "applications": [
+        "retail (hardware stores, home improvement centers, supermarkets)",
+        "e-commerce (Tmall, JD.com, Amazon, Alibaba International)",
+        "professional trades (construction, automotive repair, manufacturing)",
+        "industrial users (factories, assembly lines)",
+        "export to global markets (US, EU, Southeast Asia, Middle East)",
+        "OEM/ODM for international brands"
+      ]
+    }
+  },
+  "regional_clusters": [
+    {
+      "region": "Yangtze River Delta",
+      "provinces_cities": ["Zhejiang", "Jiangsu", "Shanghai"],
+      "share_of_industry": "40% of national output",
+      "specializations": [
+        "hand tools (wrenches, pliers, screwdrivers)",
+        "power tools",
+        "garden tools",
+        "tool storage"
+      ],
+      "key_hubs": [
+        {
+          "city": "Yongkang (Zhejiang)",
+          "specialization": "Hardware capital, 'China Hardware Capital' – hand tools, power tools, garden tools",
+          "supplier_example": "Yongkang is home to thousands of tool manufacturers including Great Wall, Zhejiang Yat, etc."
+        },
+        {
+          "city": "Ningbo (Zhejiang)",
+          "specialization": "Power tools, hand tools",
+          "supplier_example": "Ningbo Jinou Hardware – OEM for many global brands"
+        },
+        {
+          "city": "Suzhou (Jiangsu)",
+          "specialization": "Power tools, measuring tools",
+          "supplier_example": "Positec (Worx) – cordless power tools, robotics"
+        },
+        {
+          "city": "Shanghai",
+          "specialization": "R&D, brand HQ, high-end tools",
+          "supplier_example": "Bosch China, Stanley Black & Decker China headquarters"
+        }
+      ],
+      "strengths": [
+        "Most comprehensive cluster",
+        "Strong innovation and R&D",
+        "Access to Shanghai port"
+      ]
+    },
+    {
+      "region": "Pearl River Delta",
+      "provinces_cities": ["Guangdong", "Foshan", "Dongguan", "Shenzhen"],
+      "share_of_industry": "25% of national output",
+      "specializations": [
+        "hand tools",
+        "power tools (especially battery-operated)",
+        "hardware accessories"
+      ],
+      "key_hubs": [
+        {
+          "city": "Foshan (Shunde)",
+          "specialization": "Hardware, hand tools",
+          "supplier_example": "Guangdong Fuma – measuring tools, hand tools"
+        },
+        {
+          "city": "Dongguan",
+          "specialization": "Power tools, garden tools",
+          "supplier_example": "Dongguan Meridian – power tools OEM"
+        },
+        {
+          "city": "Shenzhen",
+          "specialization": "Smart tools, lithium battery tools",
+          "supplier_example": "Shenzhen Inovance – motor controllers for power tools"
+        }
+      ],
+      "strengths": [
+        "Strong electronics integration",
+        "Fast prototyping",
+        "Proximity to Hong Kong"
+      ]
+    },
+    {
+      "region": "Shandong Peninsula",
+      "provinces_cities": ["Shandong", "Jining", "Linyi", "Qingdao"],
+      "share_of_industry": "18% of national output",
+      "specializations": [
+        "automotive tools (jacks, pullers)",
+        "hand tools (wrenches, sockets)",
+        "hardware"
+      ],
+      "key_hubs": [
+        {
+          "city": "Jining",
+          "specialization": "Automotive repair tools, jacks",
+          "supplier_example": "Shandong Jining Shenli – hydraulic jacks"
+        },
+        {
+          "city": "Linyi",
+          "specialization": "Hand tools, hardware",
+          "supplier_example": "Linyi hardware cluster – wrenches, pliers"
+        }
+      ],
+      "strengths": [
+        "Heavy industry base",
+        "Logistics hub"
+      ]
+    },
+    {
+      "region": "Jiangsu Province (Danyang, Nantong)",
+      "provinces_cities": ["Danyang", "Nantong"],
+      "share_of_industry": "12% of national output",
+      "specializations": [
+        "cutting tools (drill bits, taps, dies)",
+        "measuring tools"
+      ],
+      "key_hubs": [
+        {
+          "city": "Danyang",
+          "specialization": "Cutting tools capital, 'China Cutting Tools Capital'",
+          "supplier_example": "Danyang Feida Tools – drill bits, end mills"
+        },
+        {
+          "city": "Nantong",
+          "specialization": "Measuring tools, hand tools",
+          "supplier_example": "Nantong Tianyuan – tape measures, levels"
+        }
+      ],
+      "strengths": [
+        "Specialized in cutting tools",
+        "Precision manufacturing"
+      ]
+    }
+  ],
+  "subsector_details": {
+    "hand_tools": {
+      "description": "Wrenches, pliers, screwdrivers, hammers, sockets, chisels, files, and striking tools. Largest segment by volume.",
+      "key_clusters": ["Yangtze River Delta (Yongkang)", "Shandong", "Guangdong"],
+      "growth_drivers": [
+        "DIY home improvement",
+        "Automotive repair",
+        "Industrial maintenance"
+      ],
+      "market_trends": "Ergonomic handles; chrome vanadium steel; heat treatment technology; multi-tools.",
+      "key_players": ["Great Wall", "Jiangsu Dongcheng", "Hangzhou Great Star", "Shandong Wanda"]
+    },
+    "power_tools": {
+      "description": "Drills, saws (circular, jig, miter), grinders, sanders, impact wrenches, rotary hammers. Cordless segment fastest growing.",
+      "key_clusters": ["Yangtze River Delta (Suzhou, Yongkang)", "Pearl River Delta"],
+      "growth_drivers": [
+        "Lithium-ion battery adoption",
+        "Brushless motor technology",
+        "Smart tools (IoT connectivity)",
+        "Construction activity"
+      ],
+      "market_trends": "20V/40V platforms; multi-voltage batteries; tool-body connectivity; compact designs.",
+      "key_players": ["Positec (Worx)", "Bosch China", "Makita China", "Zhejiang Yat", "Stanley Black & Decker China"]
+    },
+    "garden_tools": {
+      "description": "Pruners, shears, hedge trimmers, chainsaws, lawn mowers, brush cutters, leaf blowers.",
+      "key_clusters": ["Yangtze River Delta", "Pearl River Delta"],
+      "growth_drivers": [
+        "Gardening hobby boom",
+        "Landscaping services",
+        "Battery-powered garden tools"
+      ],
+      "market_trends": "Robotic mowers; battery-powered trimmers; lightweight designs.",
+      "key_players": ["Zhejiang Yat", "Positec (Worx)", "Taizhou Dongfeng", "Fujian Linyi"]
+    },
+    "measuring_tools": {
+      "description": "Tape measures, levels, calipers, micrometers, laser distance meters, thermometers.",
+      "key_clusters": ["Yangtze River Delta", "Jiangsu (Nantong)", "Guangdong"],
+      "growth_drivers": [
+        "Construction accuracy",
+        "Laser technology affordability",
+        "Digital measuring"
+      ],
+      "market_trends": "Laser distance meters with Bluetooth; digital levels; self-locking tape measures.",
+      "key_players": ["Stanley China", "Great Wall (measuring)", "Guangdong Fuma", "Nantong Tianyuan"]
+    },
+    "tool_storage": {
+      "description": "Tool boxes, tool bags, workbenches, chests, cabinets.",
+      "key_clusters": ["Yangtze River Delta", "Guangdong"],
+      "growth_drivers": [
+        "Professional trades organization",
+        "DIY enthusiasts",
+        "Modular storage trends"
+      ],
+      "market_trends": "Mobile workstations; modular interlocking; foam inserts for tool organization.",
+      "key_players": ["Suzhou Stanley", "Zhejiang Jialong", "Guangdong Sansheng"]
+    },
+    "automotive_tools": {
+      "description": "Hydraulic jacks, pullers, diagnostic tools, brake tools, specialty tools.",
+      "key_clusters": ["Shandong (Jining)", "Zhejiang"],
+      "growth_drivers": [
+        "Vehicle parc growth",
+        "DIY car maintenance",
+        "Professional garage equipment"
+      ],
+      "market_trends": "Portable diagnostic tools; EV-specific tools; lightweight jacks.",
+      "key_players": ["Shandong Jining Shenli", "Zhejiang Tianyuan"]
+    },
+    "pneumatic_tools": {
+      "description": "Air impact wrenches, nail guns, spray guns, air ratchets, air drills.",
+      "key_clusters": ["Pearl River Delta", "Taiwan-invested factories in Guangdong"],
+      "growth_drivers": [
+        "Automotive assembly",
+        "Furniture manufacturing",
+        "Construction"
+      ],
+      "market_trends": "Composite housings; quiet operation; oil-free designs.",
+      "key_players": ["JET China", "Sunmatch", "Airboss"]
+    },
+    "cutting_tools": {
+      "description": "Drill bits, taps, dies, end mills, reamers, saw blades, grinding wheels.",
+      "key_clusters": ["Jiangsu (Danyang)", "Zhejiang"],
+      "growth_drivers": [
+        "Machining industry",
+        "DIY drilling",
+        "Automotive manufacturing"
+      ],
+      "market_trends": "Carbide tools; coating technology (TiN, TiAlN); specialty geometries.",
+      "key_players": ["Danyang Feida", "Zhejiang Hongtu", "Jiangsu Tiangong (materials)"]
+    }
+  },
+  "sourcing_guide": {
+    "supplier_evaluation_metrics": [
+      {
+        "metric": "Quality certification",
+        "target": "ISO 9001, ISO 14001; specific product certifications (GS, UL, CE, EMC for power tools)"
+      },
+      {
+        "metric": "Material compliance",
+        "target": "RoHS, REACH; steel specifications (e.g., Cr-V, S2 for bits)"
+      },
+      {
+        "metric": "Production capability",
+        "target": "Forging lines, heat treatment, CNC machining, assembly lines, testing equipment (torque test, hardness test)"
+      },
+      {
+        "metric": "R&D/Design",
+        "target": "In-house design team, CAD/CAM, ability to develop new products"
+      },
+      {
+        "metric": "Export experience",
+        "target": "Experience with target market certifications and requirements"
+      }
+    ],
+    "verification_methods": [
+      "Request certifications and test reports",
+      "Conduct factory audit (production processes, QC, working conditions)",
+      "Order samples for performance testing (torque accuracy, durability, safety)",
+      "Check references from other buyers",
+      "Use third-party inspection (SGS, Bureau Veritas, TÜV) for pre-shipment"
+    ],
+    "communication_best_practices": [
+      "Provide detailed specifications (type, size, material, finish, packaging)",
+      "Share drawings or reference samples",
+      "Discuss customization options (branding, packaging)",
+      "Clarify quality standards (AQL levels, acceptable defects)",
+      "Discuss tooling costs for custom designs"
+    ],
+    "payment_terms": "Typical: 30% deposit, 70% balance before shipment. For custom forging molds, 50% deposit, 50% on sample approval.",
+    "lead_times": {
+      "samples": "15-30 days (new development), 7-15 days (existing designs)",
+      "bulk_production": "30-60 days after sample approval (depending on order size)",
+      "reorder": "25-45 days"
+    }
+  },
+  "faq": [
+    {
+      "question": "What are typical MOQs for hand tools in China?",
+      "answer": "For simple hand tools like wrenches or pliers, MOQ often 1000-5000 pieces per type. For power tools, MOQ 500-2000 units. Some factories accept lower MOQs for sample orders."
+    },
+    {
+      "question": "Do Chinese suppliers provide custom forging?",
+      "answer": "Yes, many have in-house forging capabilities. Custom forging requires dies (cost $1000-$5000). Provide drawings or samples."
+    },
+    {
+      "question": "How can I ensure the quality of power tool batteries?",
+      "answer": "Request battery cells from reputable suppliers (Samsung, LG, Panasonic, or Chinese brands like Sunwoda, Lishen). Ensure UN38.3 certification for transport."
+    },
+    {
+      "question": "What are common certifications needed for tools in Europe/US?",
+      "answer": "For hand tools: GS (Germany) for safety. For power tools: CE, EMC, RoHS; UL for US. For garden tools: compliance with noise and vibration directives."
+    },
+    {
+      "question": "Can I get tools with custom branding and packaging?",
+      "answer": "Yes, most suppliers offer OEM/ODM. They can laser engrave logos, custom printing on handles, and branded packaging. Minimum quantities apply."
+    }
+  ],
+  "glossary": {
+    "Cr-V": "Chrome-vanadium steel – common for hand tools.",
+    "S2": "Shock-resistant steel – used for screwdriver bits.",
+    "Heat treatment": "Process to harden and strengthen steel.",
+    "Forging": "Shaping metal using compressive forces.",
+    "Brushless motor": "More efficient motor for power tools.",
+    "Li-ion": "Lithium-ion battery.",
+    "Torque": "Rotational force measured in Nm or in-lbs.",
+    "Chuck": "Device that holds a drill bit.",
+    "AQL": "Acceptable Quality Level."
+  }
+}

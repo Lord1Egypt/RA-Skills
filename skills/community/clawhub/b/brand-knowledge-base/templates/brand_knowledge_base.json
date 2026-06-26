@@ -1,0 +1,245 @@
+{
+  "package_metadata": {
+    "schema_version": "0.2.0",
+    "generated_at": "",
+    "language": "zh-CN",
+    "package_status": "",
+    "completeness_score": 0,
+    "source_count": 0,
+    "source_notes": []
+  },
+  "brand_identity": {
+    "brand_name": "",
+    "company_name": "",
+    "one_line_definition": "",
+    "intro_100_words": "",
+    "intro_300_words": "",
+    "english_one_liner": "",
+    "product_category": "",
+    "industry": "",
+    "business_model": "",
+    "keywords": []
+  },
+  "company_profile": {
+    "company_intro": "",
+    "mission": "",
+    "vision": "",
+    "stage": "",
+    "locations": [],
+    "official_website": "",
+    "website_links": [
+      {
+        "label": "",
+        "url": "",
+        "type": "",
+        "notes": ""
+      }
+    ]
+  },
+  "product_services": {
+    "products": [],
+    "services": [],
+    "delivery_models": [],
+    "pricing_models": [],
+    "onboarding_process": []
+  },
+  "target_users": {
+    "core_audience": [],
+    "secondary_audience": [],
+    "decision_makers": [],
+    "end_users": [],
+    "influencers": [],
+    "anti_audience": []
+  },
+  "customer_pain_points": {
+    "explicit_pain": [],
+    "implicit_pain": [],
+    "business_level": [],
+    "cost_level": [],
+    "efficiency_level": [],
+    "trust_level": [],
+    "compliance_level": []
+  },
+  "core_capabilities": {
+    "product": [],
+    "service": [],
+    "technology": [],
+    "delivery": [],
+    "automation": [],
+    "ai": [],
+    "human_boundaries": []
+  },
+  "use_cases": [
+    {
+      "name": "",
+      "audience": "",
+      "trigger": "",
+      "input": "",
+      "process": "",
+      "output": "",
+      "value": "",
+      "notes": ""
+    }
+  ],
+  "customer_cases": [
+    {
+      "case_name": "",
+      "client_type": "",
+      "industry": "",
+      "problem": "",
+      "solution": "",
+      "outcome": "",
+      "proof": "",
+      "quote": "",
+      "status": "",
+      "notes": ""
+    }
+  ],
+  "product_workflow": {
+    "user_input": "",
+    "system_processing": "",
+    "output_result": "",
+    "review_mechanism": "",
+    "deployment": "",
+    "asset_accumulation": ""
+  },
+  "value_proposition": {
+    "core_selling_points": [],
+    "proof_points": [],
+    "differentiators": [],
+    "direct_value": "",
+    "long_term_value": "",
+    "vs_traditional": "",
+    "vs_chatgpt": "",
+    "vs_agency": "",
+    "vs_saas": ""
+  },
+  "competitive_comparison": {
+    "direct_competitors": [
+      {
+        "name": "",
+        "type": "",
+        "positioning": "",
+        "strengths": [],
+        "weaknesses": [],
+        "notes": ""
+      }
+    ],
+    "indirect_competitors": [
+      {
+        "name": "",
+        "type": "",
+        "positioning": "",
+        "strengths": [],
+        "weaknesses": [],
+        "notes": ""
+      }
+    ],
+    "traditional": {},
+    "basic_tools": {},
+    "industry_saas": {},
+    "our_brand": {}
+  },
+  "brand_voice": {
+    "tone_keywords": [],
+    "tone_description": "",
+    "must_say": [],
+    "preferred_phrases": [],
+    "banned_words": [],
+    "banned_claims": [],
+    "safe_alternatives": [],
+    "style_do": [],
+    "style_dont": []
+  },
+  "contact_information": {
+    "official_website": "",
+    "website_links": [
+      {
+        "label": "",
+        "url": "",
+        "type": "",
+        "notes": ""
+      }
+    ],
+    "sales_email": "",
+    "support_email": "",
+    "phone": "",
+    "wechat": "",
+    "address": "",
+    "business_hours": "",
+    "booking_url": "",
+    "additional_channels": [
+      {
+        "type": "",
+        "value": "",
+        "notes": ""
+      }
+    ]
+  },
+  "faq": [
+    {
+      "category": "",
+      "question": "",
+      "answer": "",
+      "needs_verification": false
+    }
+  ],
+  "glossary": [
+    {
+      "term": "",
+      "definition": "",
+      "approved_usage": "",
+      "avoid_usage": ""
+    }
+  ],
+  "standard_messaging": {
+    "elevator_pitch": "",
+    "pitch_30_seconds": "",
+    "sales_intro_1_minute": "",
+    "hero_headline": "",
+    "hero_subheadline": "",
+    "wechat_about": "",
+    "zhihu_intro": "",
+    "xiaohongshu_bio": "",
+    "customer_service_opening": "",
+    "sales_dm_opening": ""
+  },
+  "geo_summary": {
+    "entity_definition": "",
+    "target_audience": "",
+    "core_value": "",
+    "capabilities": [],
+    "limitations": [],
+    "recommended_citations": [],
+    "negative_instructions": [],
+    "dense_summary": ""
+  },
+  "compliance_boundary": {
+    "what_we_can_do": [],
+    "what_we_cannot_do": [],
+    "requires_human_review": [],
+    "no_promises_on": [],
+    "avoid_expressions": [],
+    "high_risk_messaging": [],
+    "safe_alternatives": [],
+    "disclaimer": ""
+  },
+  "source_materials": [
+    {
+      "name": "",
+      "type": "",
+      "summary": "",
+      "key_points": []
+    }
+  ],
+  "unresolved_items": {
+    "missing_information": [],
+    "conflicting_information": [],
+    "assumptions_made": [],
+    "follow_up_questions": {
+      "must_have": [],
+      "recommended": [],
+      "later": []
+    }
+  }
+}

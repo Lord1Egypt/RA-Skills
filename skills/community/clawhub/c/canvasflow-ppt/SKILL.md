@@ -1,35 +1,203 @@
 ---
-name: "canvasflow-专业杂志级PPT一键生成专家"
-description: "30秒出杂志级PPT，仅需要输入主题或大纲，AI一键生成杂志级高端PPT！自动排版、配色、图表、动画，秒变专业演示神器，无需设计基础。PPT 的制作依靠审美，可很多初学者需要模板。特别将 10 年设计经验的设计师进行知识、审美蒸馏提炼后，给每个刚入手的兄弟姐妹提供一个快速美观、简便的 PPT Skill。生成单文..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/canvasflow-ppt"
-sourceUrl: "https://clawhub.ai/skills/canvasflow-ppt"
+name: canvasflow-专业杂志级PPT一键生成专家
+description: |
+  30秒出杂志级PPT，仅需要输入主题或大纲，AI一键生成杂志级高端PPT！自动排版、配色、图表、动画，秒变专业演示神器，无需设计基础。PPT 的制作依靠审美，可很多初学者需要模板。特别将 10 年设计经验的设计师进行知识、审美蒸馏提炼后，给每个刚入手的兄弟姐妹提供一个快速美观、简便的 PPT Skill。生成单文件 HTML 横向翻页演示文档，WebGL 流体背景，5 套主题色预设。
+metadata:
+  version: "2.0.1"
+  author: "WuWenBin-BeiJing-ST"
+  license: "MIT"
 ---
 
-# canvasflow-专业杂志级PPT一键生成专家
+# CanvasFlow PPT Skill
 
-> 30秒出杂志级PPT，仅需要输入主题或大纲，AI一键生成杂志级高端PPT！自动排版、配色、图表、动画，秒变专业演示神器，无需设计基础。PPT 的制作依靠审美，可很多初学者需要模板。特别将 10 年设计经验的设计师进行知识、审美蒸馏提炼后，给每个刚入手的兄弟姐妹提供一个快速美观、简便的 PPT Skill。生成单文...
+> **作者**: WuWenBin-BeiJing-ST
+>
+> 30秒出杂志级PPT，仅需要输入主题或大纲，AI一键生成杂志级高端PPT！自动排版、配色、图表、动画，秒变专业演示神器，无需设计基础。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/canvasflow-ppt`
-- **Source URL:** [https://clawhub.ai/skills/canvasflow-ppt](https://clawhub.ai/skills/canvasflow-ppt)
+---
 
-## Overview
+## 这个 Skill 做什么
 
+**CanvasFlow PPT** —— 流畅的画布，流动的演示。
 
-## Installation
-To install this skill, run the following command in your terminal:
+生成一份**单文件 HTML** 的横向翻页演示文档，视觉基调是：
+
+- **Canvas（画布）**：WebGL 流体背景，像艺术画布一样呈现内容
+- **Flow（流动）**：横向翻页，主题平滑过渡，视觉节奏流动
+- **衬线标题 + 非衬线正文 + 等宽元数据** 三级字体分工
+- **Lucide 线性图标**（不用 emoji）
+- **键盘 ← → / 滚轮 / 触屏滑动 / 底部圆点** 全方位导航
+- **5 套主题色预设**：墨水经典 / 靛蓝瓷 / 森林墨 / 牛皮纸 / 沙丘
+
+## 何时使用
+
+**合适的场景**：
+- 线下分享 / 行业内部讲话 / 私享会
+- AI 新产品发布 / demo day
+- 带有强烈个人风格的演讲
+
+**不合适的场景**：
+- 大段表格数据、图表叠加（用常规 PPT）
+- 培训课件（信息密度不够）
+- 需要多人协作编辑（静态 HTML）
+
+---
+
+## 依赖说明
+
+**无外部依赖**。HTML 单文件包含所有 CSS/JS/字体 CDN，浏览器直接打开即可。
+
+如需生成 PPTX 格式：
 ```bash
-hermes skills install clawhub/canvasflow-ppt
+pip3 install python-pptx
 ```
+
+---
+
+## 标准工作流
+
+### Step 0 · 环境检测（必做）
+
+**在生成任何 slide 之前，必须先读取 `assets/template.html` 的 `<style>` 块**，确认所有需要的类都已定义。
+
+这是所有生成问题的源头——如果 template.html 里没有 `h-hero` / `stat-card` / `pipeline` 等类定义，浏览器会 fallback 到默认样式，导致整页样式崩坏。
+
+### Step 1 · 需求澄清（动手前必做）
+
+**如果用户已经给了完整的大纲 + 图片**，可以跳过直接进 Step 2。
+
+**如果用户只给了主题或一个模糊想法**，用这 6 个问题逐个对齐：
+
+| # | 问题 | 为什么要问 |
+|---|------|-----------|
+| 1 | **受众是谁？分享场景？**（行业内部 / 商业发布 / demo day / 私享会） | 决定语言风格和深度 |
+| 2 | **分享时长？** | 15 分钟 ≈ 10 页，30 分钟 ≈ 20 页 |
+| 3 | **有没有原始素材？**（文档 / 数据 / 旧 PPT / 文章链接） | 有素材就基于素材 |
+| 4 | **想要哪套主题色？** | 见 `references/themes.md`，5 套预设 |
+| 5 | **有没有硬约束？**（必须包含 XX 数据 / 不能出现 YY） | 避免返工 |
+| 6 | **输出格式？**（HTML / PPTX / 双格式） | HTML 适合线上分享，PPTX 适合企业汇报 |
+
+#### 大纲协助（如果用户没有大纲）
+
+用"叙事弧"模板搭骨架：
+
+```
+钩子(Hook)       → 1 页   : 抛一个反差 / 问题 / 硬数据
+定调(Context)    → 1-2 页 : 说明背景 / 你是谁 / 为什么讲这个
+主体(Core)       → 3-5 页 : 核心内容，用 Layout 3/4/5/6 穿插
+转折(Shift)      → 1 页   : 打破预期 / 提出新观点
+收束(Takeaway)   → 1-2 页 : 金句 / 悬念问题 / 行动建议
+```
+
+### Step 2 · 拷贝模板 + 主题选择
+
+从 `assets/template.html` 拷贝到目标位置，同时选定主题色。
+
+**5 套主题色预设**：
+
+| # | 主题 | 适合 |
+|---|------|------|
+| 1 | 🖋 墨水经典 | 通用 / 商业发布 / 不知道选啥的默认 |
+| 2 | 🌊 靛蓝瓷 | 科技 / 研究 / 数据 / 技术发布会 |
+| 3 | 🌿 森林墨 | 自然 / 可持续 / 文化 / 非虚构 |
+| 4 | 🍂 牛皮纸 | 怀旧 / 人文 / 文学 / 独立杂志 |
+| 5 | 🌙 沙丘 | 艺术 / 设计 / 创意 / 画廊 |
+
+**硬规则**：只允许从 5 套预设里选，不接受自定义 hex 值——颜色搭配错了画面瞬间变丑，保护美学比给自由更重要。
+
+### Step 3 · 规划主题节奏（和类预检同等重要）
+
+**在挑布局之前**，必须先列出每一页的主题 class（`hero dark` / `hero light` / `light` / `dark`）。
+
+**主题节奏硬规则**：
+
+- 每页 section 必须带 `light` / `dark` / `hero light` / `hero dark` 之一
+- 连续 3 页以上同主题 = 视觉疲劳，不允许
+- 8 页以上必须有 ≥1 个 `hero dark` + ≥1 个 `hero light`
+- 整个 deck 不能只有 `light` 正文页，必须有 `dark` 正文页制造呼吸
+- 每 3-4 页插入 1 个 hero 页（封面/幕封/问题/大引用）
+
+**按布局的主题默认值**：
+
+| Layout | 默认主题 | 原因 |
+|---|---|---|
+| 1. 开场封面 | `hero dark` | 开场仪式感 |
+| 2. 章节幕封 | `hero dark` 与 `hero light` 交替 | 呼吸节奏 |
+| 3. 数据大字报 | `light` | 数字需纸白底 |
+| 4. 左文右图 | **`light` / `dark` 交替** | 正文节奏主力 |
+| 5. 图片网格 | `light` | 截图需亮底 |
+| 6. Pipeline | `light` | 流程图需清晰 |
+| 7. 问题页 | `hero dark` | 强视觉冲击 |
+| 8. 大引用 | **`dark` 优先** | 金句仪式感靠暗底 |
+| 9. 对比页 | `light` | 双列需清晰 |
+| 10. 图文混排 | **`light` / `dark` 交替** | 节奏 |
+
+### Step 4 · 挑布局填充内容
+
+打开 `references/layouts.md`，里面有 10 种现成布局骨架，每种都是完整可粘贴的 `<section>` 代码块。
+
+**关键约束**：
+
+1. **图片比例规范**：永远用标准比例（16:10 / 4:3 / 3:2 / 1:1 / 16:9），不要用原图奇葩比例
+2. **图片网格用 `height:Nvh`，不用 `aspect-ratio`**（会撑破）
+3. **图片只裁底部**：用 `object-position: top center`
+4. **不要用 emoji 作图标**：用 Lucide 图标库
+5. **衬线/非衬线字体分工**：标题衬线、正文非衬线、元数据等宽
+6. **大标题 ≤ 5 字且 `nowrap`**：避免 1 字 1 行
+
+### Step 5 · 对照检查清单自检
+
+打开 `references/checklist.md`，逐项对照。P0 级问题必须全过。
+
+**特别要注意**：
+
+1. 大标题必须是衬线字体——如果显示成非衬线，99% 是类名在 template.html 里缺失
+2. 图片网格里只用 `height:Nvh`，不用 `aspect-ratio`
+3. chrome 和 kicker 不要写同一句话（chrome = 栏目标签，kicker = 本页钩子）
+4. 主题节奏要有交错，不要全是 light
+
+### Step 6 · 本地预览
+
+```bash
+open "项目/XXX/ppt/index.html"
+```
+
+不需要本地服务器，图片走相对路径 `images/xxx.png`。
+
+---
+
+## 参考文档
+
+- [布局系统详解](references/layouts.md) — 10 种骨架的完整代码
+- [主题色系统](references/themes.md) — 5 套预设
+- [质量检查清单](references/checklist.md) — P0/P1/P2/P3 分级
+- [组件手册](references/components.md) — 字体、网格、图标、callout 等
+
+---
+
+## 核心设计原则
+
+> 这些原则是"一人公司"分享 PPT 的 5 轮迭代总结出来的。违反其中任何一条，视觉感都会垮。
+
+1. **克制优于炫技** — WebGL 背景只在 hero 页透出，普通页几乎看不见
+2. **结构优于装饰** — 不用阴影、不用浮动卡片，一切信息靠**大字号 + 字体对比 + 网格留白**
+3. **内容层级由字号和字体共同定义** — 最大衬线 = 主标题，中衬线 = 副标，大非衬线 = lead，小非衬线 = body，等宽 = 元数据
+4. **图片是第一公民** — 图片只裁底部，保证顶部和左右完整
+5. **节奏靠 hero 页** — hero 和 non-hero 交替，才不累眼睛
+6. **术语统一** — Skills 就是 Skills，不要中英混合翻译
+
+---
+
+## 致谢
+
+本 Skill 基于设计师歸藏（op7418）开源的 [guizang-ppt-skill](https://github.com/op7418/guizang-ppt-skill) 优化而来，融合了其 10 年设计经验与审美智慧。
+
+**设计哲学来源**："克制胜于华丽、结构胜于装饰" — 歸藏
+
+---
+
+**CanvasFlow PPT** —— 让演示流动起来。
+
+> 名字寓意：
+> - **Canvas（画布）**：WebGL 背景，像艺术画布一样承载内容
+> - **Flow（流动）**：翻页流畅，主题过渡自然，视觉节奏呼吸

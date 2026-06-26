@@ -1,0 +1,4 @@
+interface:
+  display_name: "Business Data Analyst"
+  short_description: "Turn business data into decisions"
+  default_prompt: "Use $business-data-analyst to diagnose a business problem, define metric scope, quantify impact, and recommend next actions."

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clawface</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      background: #0d1117;
+      color: #c9d1d9;
+    }
+
+    #avatar-container {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #161b22;
+      min-height: 200px;
+    }
+
+    #thermion_canvas {
+      width: 100%;
+      height: 100%;
+    }
+
+    #chat-container {
+      display: flex;
+      flex-direction: column;
+      max-height: 50vh;
+      border-top: 1px solid #30363d;
+    }
+
+    .status {
+      padding: 6px 16px;
+      font-size: 12px;
+      color: #f85149;
+      background: #161b22;
+      border-bottom: 1px solid #30363d;
+    }
+    .status.connected { color: #3fb950; }
+    .status.error { color: #f85149; }
+
+    #messages {
+      flex: 1;
+      overflow-y: auto;
+      padding: 12px 16px;
+      background: #0d1117;
+    }
+
+    .message {
+      padding: 6px 0;
+      line-height: 1.5;
+    }
+
+    .message .label {
+      font-weight: 600;
+      margin-right: 8px;
+    }
+
+    .message.user .label { color: #58a6ff; }
+    .message.assistant .label { color: #3fb950; }
+    .message.error .label { color: #f85149; }
+
+    .message .body {
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    #input-row {
+      display: flex;
+      gap: 8px;
+      padding: 12px 16px;
+      background: #161b22;
+      border-top: 1px solid #30363d;
+    }
+
+    #chat-input {
+      flex: 1;
+      padding: 8px 12px;
+      border: 1px solid #30363d;
+      border-radius: 6px;
+      background: #0d1117;
+      color: #c9d1d9;
+      font-size: 14px;
+      outline: none;
+    }
+    #chat-input:focus { border-color: #58a6ff; }
+
+    #send-btn {
+      padding: 8px 20px;
+      background: #238636;
+      border: 1px solid #2ea043;
+      border-radius: 6px;
+      color: #fff;
+      font-size: 14px;
+      cursor: pointer;
+    }
+    #send-btn:hover { background: #2ea043; }
+    #send-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  </style>
+  <script type="text/javascript" src="./thermion_dart.js"></script>
+  <script type="module">
+    try {
+      window.thermion_dart = await thermion_dart();
+    } catch(err) {
+      console.error('Thermion init failed:', err);
+    }
+    const script = document.createElement('script');
+    script.src = 'main.dart.js';
+    document.head.append(script);
+  </script>
+</head>
+<body>
+  <div id="avatar-container">
+    <canvas id="thermion_canvas"></canvas>
+  </div>
+  <div id="chat-container">
+    <div id="status" class="status">Not connected</div>
+    <div id="messages"></div>
+    <div id="input-row">
+      <input type="text" id="chat-input" placeholder="Type a message..." autocomplete="off">
+      <button id="send-btn" disabled>Send</button>
+    </div>
+  </div>
+</body>
+</html>

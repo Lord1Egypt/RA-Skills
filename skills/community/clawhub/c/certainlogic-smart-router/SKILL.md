@@ -1,35 +1,29 @@
 ---
-name: "Certainlogic Smart Router"
+name: CertainLogic Smart Router
+version: 1.0.4
 description: "⚠️ DEPRECATED — Use smart-router-coding or smart-router-intents instead."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/certainlogic-smart-router"
-sourceUrl: "https://clawhub.ai/skills/certainlogic-smart-router"
+author: "CertainLogic <anton@certainlogic.ai>"
+license: MIT
+homepage: https://certainlogic.ai
+repository: https://github.com/CertainLogicAI/certainlogic-smart-router
+tags: ["deprecated", "model-routing"]
 ---
 
-# Certainlogic Smart Router
+# ⚠️ DEPRECATED
 
-> ⚠️ DEPRECATED — Use smart-router-coding or smart-router-intents instead.
+This skill has been replaced by two focused skills:
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/certainlogic-smart-router`
-- **Source URL:** [https://clawhub.ai/skills/certainlogic-smart-router](https://clawhub.ai/skills/certainlogic-smart-router)
+- **`smart-router-coding`** — Route coding queries to the right model. Fast for lint, deep for architecture.
+- **`smart-router-intents`** — Route any query by intent (code, analysis, creative, realtime, general).
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/certainlogic-smart-router
+clawhub install smart-router-coding
+clawhub install smart-router-intents
 ```
+
+**Why:** The original CertainLogic Smart Router tried to do everything. Two specialized routers serve users better.
+
+---
+
+**Author:** CertainLogic — deterministic AI infrastructure.
+certainlogic.ai

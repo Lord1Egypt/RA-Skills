@@ -1,0 +1,31 @@
+{
+  "icdar_2019": {
+    "name": "ICDAR 2019",
+    "url": "https://rrc.cvc.uab.es/?ch=14&com=downloads",
+    "description": "ICDAR 2019 图表识别挑战赛数据集",
+    "size": "约 1000 张图表",
+    "types": [
+      "饼图",
+      "柱状图",
+      "折线图",
+      "表格"
+    ],
+    "format": "PNG",
+    "license": "CC BY 4.0"
+  },
+  "icdar_2021": {
+    "name": "ICDAR 2021",
+    "url": "https://rrc.cvc.uab.es/?ch=15&com=downloads",
+    "description": "ICDAR 2021 图表识别挑战赛数据集",
+    "size": "约 1500 张图表",
+    "types": [
+      "饼图",
+      "柱状图",
+      "折线图",
+      "表格",
+      "散点图"
+    ],
+    "format": "PNG",
+    "license": "CC BY 4.0"
+  }
+}

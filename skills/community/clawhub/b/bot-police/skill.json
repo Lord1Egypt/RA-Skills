@@ -1,0 +1,16 @@
+{
+  "name": "bot-police",
+  "version": "1.0.0",
+  "description": "Score bot behavior, detect malicious indicators, and recommend containment actions.",
+  "author": "arhadnane",
+  "license": "MIT",
+  "emoji": "🚨",
+  "category": "defense",
+  "capabilities": [
+    "behavior-scoring",
+    "threat-classification",
+    "containment-recommendation",
+    "trust-penalty",
+    "incident-triage"
+  ]
+}

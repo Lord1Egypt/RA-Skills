@@ -1,0 +1,26 @@
+{
+  "overlayId": "finance-regulatory",
+  "kind": "overlay",
+  "version": "1.0",
+  "name": "金融监管叠加",
+  "description": "叠加金融监管和风控层",
+  "appliesTo": ["product-capability", "technical-architecture"],
+  "adjustments": [
+    {
+      "layer": "risk-control",
+      "layerName": "风险控制层",
+      "signals": [
+        {"type": "nameKeyword", "values": ["风控", "风险评估", "预警", "反欺诈", "风险"], "weight": 120}
+      ],
+      "scoreDelta": 30
+    },
+    {
+      "layer": "regulatory",
+      "layerName": "监管合规层",
+      "signals": [
+        {"type": "nameKeyword", "values": ["合规", "审计", "监管", "报送"], "weight": 120}
+      ],
+      "scoreDelta": 40
+    }
+  ]
+}

@@ -1,35 +1,68 @@
 ---
-name: "基于艾宾浩斯遗忘曲线的英语四级词汇记忆系统"
-description: "基于艾宾浩斯遗忘曲线的英语四级词汇记忆系统。支持：(1) 新单词学习与测验 (2) 智能复习计划 (3) 定时任务提醒 (4) 学习进度追踪。触发时机：用户说"开始背单词"、"复习单词"、"设置背单词时间"、"每日单词学习"、"单词测验"等。适用于中国大学生备考CET-4。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/cet4vocabularymemory"
-sourceUrl: "https://clawhub.ai/skills/cet4vocabularymemory"
+name: cet4-word-memory
+description: 基于艾宾浩斯遗忘曲线的英语四级词汇记忆系统。支持：(1) 新单词学习与测验 (2) 智能复习计划 (3) 定时任务提醒 (4) 学习进度追踪。触发时机：用户说"开始背单词"、"复习单词"、"设置背单词时间"、"每日单词学习"、"单词测验"等。适用于中国大学生备考CET-4。
 ---
 
-# 基于艾宾浩斯遗忘曲线的英语四级词汇记忆系统
+# CET-4 单词记忆系统
 
-> 基于艾宾浩斯遗忘曲线的英语四级词汇记忆系统。支持：(1) 新单词学习与测验 (2) 智能复习计划 (3) 定时任务提醒 (4) 学习进度追踪。触发时机：用户说"开始背单词"、"复习单词"、"设置背单词时间"、"每日单词学习"、"单词测验"等。适用于中国大学生备考CET-4。
+基于间隔重复算法的科学词汇记忆工具。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/cet4vocabularymemory`
-- **Source URL:** [https://clawhub.ai/skills/cet4vocabularymemory](https://clawhub.ai/skills/cet4vocabularymemory)
+## 快速开始
 
-## Overview
+用户说"开始背单词"时：
 
+1. 检查 `references/user_schedule.csv` 中是否存在用户记录
+2. 存在 → 直接进入学习流程
+3. 不存在 → 引导首次设置
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/cet4vocabularymemory
+**首次设置流程：**
+- 询问每日学习时间（如 8:00、21:00）
+- 询问每次学习数量（建议 5-10 个）
+- 写入 user_schedule.csv
+- 设置定时任务
+
+## 核心流程
+
+### 学习新单词
+
+1. 从 `references/cet4-vocabulary.md` 排除已学单词
+2. 随机选取用户计划数量
+3. 展示：音标、词性、中文释义
+4. 用户说"完成" → 进入测验
+
+### 单词测验
+
+三种测验方式：
+- 拼写测验：展示中文，让用户拼写英文
+- 选择测验：展示英文，选择中文释义
+- 翻译测验：展示例句，让用户翻译
+
+答错的单词标记为"需重新记忆"，循环测验直到掌握。
+
+### 复习单词
+
+触发：定时任务或用户说"复习单词"
+
+查询 `word_memory_status.csv` 中 `next_review_date <= 今天` 的单词，按复习流程处理。
+
+## 数据文件
+
+| 文件 | 说明 |
+|------|------|
+| `references/cet4-vocabulary.md` | 词汇库 |
+| `references/user_schedule.csv` | 用户学习计划 |
+| `references/word_memory_status.csv` | 记忆状态追踪 |
+
+## 详细规范
+
+- [复习计划与记忆算法](references/memory-algorithm.md)
+- [数据库表结构](references/schema.md)
+- [定时任务配置](references/schedule-config.md)
+
+## 提醒话术
+
+```
+🦆 同学你好！是时候复习单词啦~
+今天你有 {num} 个单词需要复习，准备好了吗？
+回复"开始"让我们一起复习！
 ```

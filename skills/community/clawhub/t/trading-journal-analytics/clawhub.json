@@ -1,0 +1,16 @@
+{
+  "name": "trading-journal-analytics",
+  "displayName": "Trading Journal & Performance Analytics",
+  "version": "1.0.0",
+  "description": "Professional trading journal with performance analytics, win rate tracking, emotion logging, strategy analysis, and comprehensive P&L monitoring for systematic trading improvement.",
+  "author": "ahmed181283",
+  "license": "MIT",
+  "pricing": {
+    "model": "subscription",
+    "price": 19900,
+    "interval": "monthly"
+  },
+  "tags": ["trading", "journal", "performance", "analytics", "win-rate", "p-l", "emotion-tracking", "strategy-analysis"],
+  "minOpenClawVersion": "1.0.0",
+  "category": "finance"
+}

@@ -1,0 +1,8 @@
+interface:
+  display_name: "TestTau"
+  short_description: "Disposable mail and webhook capture for tests"
+  brand_color: "#6366F1"
+  default_prompt: "Use $testtau to create a disposable inbox or webhook, wait for a capture, and report the inspect URL."
+
+policy:
+  allow_implicit_invocation: true

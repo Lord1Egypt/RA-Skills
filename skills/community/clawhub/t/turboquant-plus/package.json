@@ -1,0 +1,7 @@
+{
+  "name": "turboquant-plus",
+  "version": "1.0.0",
+  "description": "TurboQuant+ KV cache compression for llama.cpp on Apple Silicon — 3.8-6.4x compression with minimal quality loss",
+  "keywords": ["turboquant", "kv-cache", "compression", "llama-cpp", "apple-silicon", "quantization", "local-inference"],
+  "dependencies": []
+}

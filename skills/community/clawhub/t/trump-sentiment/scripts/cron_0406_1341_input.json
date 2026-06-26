@@ -1,0 +1,157 @@
+{
+  "run_time_cst": "2026-04-06 13:41 CST",
+  "run_time_utc": "2026-04-06 05:41 UTC",
+  "iran_war_day": 32,
+  "ceasefire_deadline": "2026-04-05T03:40:00Z (11:40 CST)",
+  "nasdaq_trigger": "forced_manual",
+  "source": "cron_nasdaq_trigger_sentiment_forced_1341",
+
+  "items": [
+    {
+      "time_cst": "2026-04-06 11:41",
+      "source": "X @WatcherGuru",
+      "content": "JUST IN: Brent crude oil falls after reports the US and Iran are discussing a 45-day ceasefire that could permanently end the war.",
+      "interactions": "375 replies, 412 RTs, 2705 likes, 226K views",
+      "signal": "high",
+      "tag": "ceasefire_oil_impact"
+    },
+    {
+      "time_cst": "2026-04-06 11:41",
+      "source": "X @babacryptoio",
+      "content": "Crypto Markets Rally as Trump Teases Potential Iran Peace Deal. Bitcoin hit $69,500 after Trump suggested a deal to reopen the Strait of Hormuz could be reached within 24 hours.",
+      "interactions": "17 views",
+      "signal": "high",
+      "tag": "crypto_bullish_ceasefire"
+    },
+    {
+      "time_cst": "2026-04-06 13:40",
+      "source": "X @IsraeliAvraham",
+      "content": "Chances of this happening are zero to slim.... US, Iran discuss potential two phase deal including 45-day ceasefire - Axios/JPost",
+      "interactions": "3 views",
+      "signal": "medium",
+      "tag": "ceasefire_skepticism"
+    },
+    {
+      "time_cst": "2026-04-06 13:40",
+      "source": "X @Coinwaft",
+      "content": "JUST IN: Iran warns that the next phase of its attacks on the United States and Israel will be more forceful, signaling further escalation, even when ceasefire negotiations ongoing.",
+      "interactions": "4 views",
+      "signal": "high",
+      "tag": "iran_escalation_war"
+    },
+    {
+      "time_cst": "2026-04-06 13:40",
+      "source": "X @Xskdvr",
+      "content": "Looks like Trump has lied his way into a corner, trying to lie his way out. Mediators push for 45-day truce in Iran war - Axios/rt.com",
+      "interactions": "11 views",
+      "signal": "medium",
+      "tag": "ceasefire_skepticism"
+    },
+    {
+      "time_cst": "2026-04-06 13:40",
+      "source": "X @MyNews366",
+      "content": "US, Iran in talks for a 45-day ceasefire to pave the way for lasting peace. Two-phase framework aims to de-escalate, reopen Strait of Hormuz, progress on Iran's uranium program.",
+      "interactions": "7 views",
+      "signal": "high",
+      "tag": "ceasefire_deal_structure"
+    },
+    {
+      "time_cst": "2026-04-06 13:38",
+      "source": "X @bulldoghill",
+      "content": "In phone interview with Fox, Trump said deal to end conflict in Iran could be reached by Monday. Iran rejected US proposal for 48-hour ceasefire sent through intermediaries.",
+      "interactions": "2 replies, 29 views",
+      "signal": "high",
+      "tag": "trump_fox_interview_monday_deadline"
+    },
+    {
+      "time_cst": "2026-04-06 13:40",
+      "source": "X @aquabella415",
+      "content": "Trump Says He's Not Ruling out Ground Troops If Iran Doesn't Take Deal - Epoch Times",
+      "interactions": "7 views",
+      "signal": "medium",
+      "tag": "ground_troops_threat"
+    },
+    {
+      "time_cst": "2026-04-06 07:41",
+      "source": "X @KobeissiLetter",
+      "content": "Oil prices now crossing above $115/barrel in US. Models indicate if sustained ~7 more weeks, US CPI inflation will rise to ~3.7% - highest since Sep 2023.",
+      "interactions": "166 replies, 477 RTs, 2852 likes, 291K views",
+      "signal": "high",
+      "tag": "oil_inflation_cpi"
+    },
+    {
+      "time_cst": "2026-04-06 06:41",
+      "source": "X @KobeissiLetter",
+      "content": "BREAKING: US stock market futures fall at open as Trump declares Tuesday as 'Power Plant and Bridge Day' in Iran. S&P -0.7%, Nasdaq -0.8%, WTI Crude +3.0%.",
+      "interactions": "204 replies, 344 RTs, 2743 likes, 229K views",
+      "signal": "high",
+      "tag": "market_reaction_power_plant_day"
+    },
+    {
+      "time_cst": "2026-04-06 06:41",
+      "source": "X @KobeissiLetter",
+      "content": "BREAKING: US oil prices surge above $114/barrel as US market futures officially reopen after 3-day weekend.",
+      "interactions": "301 replies, 1694 RTs, 6911 likes, 581K views",
+      "signal": "high",
+      "tag": "oil_price_114"
+    },
+    {
+      "time_cst": "2026-04-06 11:41",
+      "source": "X @WatcherGuru",
+      "content": "JUST IN: $69,000 Bitcoin. $100,000,000 worth of crypto shorts liquidated in the past 90 minutes.",
+      "interactions": "354 replies, 704 RTs, 4870 likes, 225K views",
+      "signal": "medium",
+      "tag": "crypto_short_liquidation"
+    }
+  ],
+
+  "high_signal_items": [
+    {
+      "time_cst": "2026-04-06 11:41",
+      "source": "X @WatcherGuru",
+      "content": "Brent crude oil FALLS after reports US and Iran discussing 45-day ceasefire - potential permanent end to war",
+      "signal": "market_bullish_ceasefire"
+    },
+    {
+      "time_cst": "2026-04-06 11:41",
+      "source": "X @babacryptoio",
+      "content": "Bitcoin hit $69,500 - Trump teases Iran peace deal, Strait of Hormuz reopening",
+      "signal": "crypto_rally_hormuz"
+    },
+    {
+      "time_cst": "2026-04-06 13:40",
+      "source": "X @Coinwaft",
+      "content": "Iran warns next attacks will be MORE FORCEFUL even as ceasefire negotiations ongoing",
+      "signal": "iran_escalation_contradiction"
+    },
+    {
+      "time_cst": "2026-04-06 13:40",
+      "source": "X @MyNews366",
+      "content": "US-Iran 45-day ceasefire framework: de-escalate + reopen Hormuz + uranium program progress",
+      "signal": "ceasefire_framework_details"
+    },
+    {
+      "time_cst": "2026-04-06 13:38",
+      "source": "X @bulldoghill",
+      "content": "Trump (Fox News): deal possible by Monday. Iran rejected 48-hour ceasefire proposal",
+      "signal": "trump_monday_deadline_iran_rejects"
+    },
+    {
+      "time_cst": "2026-04-06 07:41",
+      "source": "X @KobeissiLetter",
+      "content": "Oil above $115/barrel → CPI inflation projected at 3.7% in 7 weeks if sustained",
+      "signal": "oil_inflation_war_risk"
+    },
+    {
+      "time_cst": "2026-04-06 06:41",
+      "source": "X @KobeissiLetter",
+      "content": "S&P -0.7%, Nasdaq -0.8% at open. Trump declares Tuesday 'Power Plant and Bridge Day' in Iran",
+      "signal": "market_selloff_trump_deadline"
+    }
+  ],
+
+  "web_search": {
+    "status": "failed_api_token_invalid",
+    "note": "Brave Search API subscription token invalid"
+  }
+}

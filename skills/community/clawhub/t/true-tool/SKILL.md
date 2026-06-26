@@ -1,35 +1,25 @@
 ---
-name: "True Tool"
-description: "Return exit code 0 indicating success. Use as a no-op command that always succeeds in scripts and conditional expressions."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/true-tool"
-sourceUrl: "https://clawhub.ai/skills/true-tool"
+name: true-tool
+description: Return exit code 0 indicating success. Use as a no-op command that always succeeds in scripts and conditional expressions.
 ---
+# True - Success Return Utility
 
-# True Tool
+Do nothing and return exit code 0 (success). Used in shell scripts for infinite loops, as a placeholder command, or in conditional logic where a successful command is needed.
 
-> Return exit code 0 indicating success. Use as a no-op command that always succeeds in scripts and conditional expressions.
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/true-tool`
-- **Source URL:** [https://clawhub.ai/skills/true-tool](https://clawhub.ai/skills/true-tool)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
+## Usage
 ```bash
-hermes skills install clawhub/true-tool
+true-tool
+```
+
+## Common Patterns
+
+- `while true-tool; do ...; done`: Infinite loop
+- `true-tool && echo "always runs"`
+- Placeholder in if/then branches
+
+## Examples
+
+```bash
+true-tool
+true-tool && echo "This always executes"
 ```

@@ -1,35 +1,31 @@
 ---
-name: "Theme Core"
-description: "Theme design for novels. Define the core question of the story and validate sustainability for 300k-8M words. Use when starting a new novel project or enteri..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/theme-core"
-sourceUrl: "https://clawhub.ai/skills/theme-core"
+name: theme-core
+version: 1.0.0
+description: Theme design for novels. Define the core question of the story and validate sustainability for 300k-8M words. Use when starting a new novel project or entering PLANNING phase.
 ---
 
 # Theme Core
 
-> Theme design for novels. Define the core question of the story and validate sustainability for 300k-8M words. Use when starting a new novel project or enteri...
+## Core Question
+What question does this story ask?
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/theme-core`
-- **Source URL:** [https://clawhub.ai/skills/theme-core](https://clawhub.ai/skills/theme-core)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/theme-core
+## Quick Template
+```json
+{
+  "theme": {
+    "core_question": "One sentence question",
+    "scale": "micro/macro",
+    "antithesis": "The opposite of this question",
+    "statement": "Author's stance (answer at the end)"
+  }
+}
 ```
+
+## Sustainability Check
+- 300k words: Can the theme stand alone?
+- 3M words: How to deepen?
+- 8M words: How many iterations needed?
+
+## References
+- Full guide: See [references/full-guide.md](references/full-guide.md)
+- Prototypes: See [references/prototypes.md](references/prototypes.md)

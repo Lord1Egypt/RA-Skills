@@ -1,0 +1,6 @@
+{
+  "shell": false,
+  "package_install": false,
+  "browser_profile_access": false,
+  "network_hosts": ["api"]
+}

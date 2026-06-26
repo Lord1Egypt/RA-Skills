@@ -1,0 +1,40 @@
+{
+  "skill_name": "tc-protohub",
+  "evals": [
+    {
+      "id": 0,
+      "name": "upload-new-directory",
+      "prompt": "我已经在 ./mock-proto 目录下准备好了一个简单的 HTML 原型。请帮我上传到 ProtoHub，取名为 'Mock Project v1'。",
+      "expected_output": "应该调用 publish.py publish 打包目录并显示上传成功的 ID 和预览链接。",
+      "files": ["./mock-proto/index.html"]
+    },
+    {
+      "id": 1,
+      "name": "update-existing-zip",
+      "prompt": "我有一个现成的 prototype-v2.zip 文件。请帮我用它更新 ID 为 1024 的原型，并备注 '修复了样式 bug'。",
+      "expected_output": "应该调用 publish.py publish 并带有 --id 1024 和 --remark 参数。",
+      "files": ["./prototype-v2.zip"]
+    },
+    {
+      "id": 2,
+      "name": "intelligent-update-by-name",
+      "prompt": "帮我更新名为 'Auth Page' 的原型，使用 ./dist 目录下的内容。",
+      "expected_output": "应该先调用 publish.py list --name 'Auth Page' 找到 ID，然后调用 publish.py publish ./dist --id <found_id>。",
+      "files": ["./dist/index.html"]
+    },
+    {
+      "id": 3,
+      "name": "get-preview-link",
+      "prompt": "请帮我获取 ID 为 567 的原型预览链接。",
+      "expected_output": "应该调用 publish.py get-link 567。",
+      "files": []
+    },
+    {
+      "id": 4,
+      "name": "validation-failure",
+      "prompt": "请帮我上传 ./broken-proto 文件夹作为原型。这个文件夹里没有任何 HTML 文件。",
+      "expected_output": "脚本应该报错并停止上传，AI Agent 应该告知用户 index.html 缺失。",
+      "files": ["./broken-proto/readme.txt"]
+    }
+  ]
+}

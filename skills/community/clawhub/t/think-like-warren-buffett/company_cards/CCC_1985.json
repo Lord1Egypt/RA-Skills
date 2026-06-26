@@ -1,0 +1,36 @@
+{
+  "ticker": "CCC",
+  "company": "Capital Cities/ABC",
+  "analysis_year": 1985,
+  "data_source": "Berkshire Hathaway 1984 and 1986 shareholder letters",
+  "analyzed_date": "2026-03-25",
+
+  "hard_gates": {
+    "g1_roe_roic": { "value": null, "metric_used": "ROE", "years_averaged": "1983-1985", "pass": null },
+    "g2_fcf_to_ni": { "value": null, "fcf": null, "net_income": null, "pass": null },
+    "g3_leverage": { "metric_used": "Net Debt/Capital", "value": null, "pass": null },
+    "g4_revenue_trend": { "description": "Capital Cities was a high-quality broadcasting franchise with strong economics; Buffett's emphasis was on management quality and the enduring value of its media assets.", "structural_decline": false, "pass": true },
+    "g5_gross_margin_trend": { "description": "The business was admired for disciplined operations and strong media economics rather than showing any obvious sign of margin erosion.", "declining_2plus_years": false, "pass": true },
+    "g6_earnings_yield": { "value": null, "net_income_m": null, "ev_m": null, "exemption": null, "pass": null },
+    "g7_moat": { "verdict": "PASS", "moat_type": "network_effect", "description": "Capital Cities/ABC combined scarce broadcast assets, local advertising strength, and extraordinary management under Tom Murphy and Dan Burke. Buffett repeatedly stressed that management was tops in both ability and integrity, and the business itself enjoyed the economics that only a handful of media franchises had in that era.", "pass": true }
+  },
+
+  "special_channel": null,
+
+  "metrics_snapshot": {
+    "berkshire_purchase_shares_m": 3,
+    "purchase_price_per_share": 172.5,
+    "purchase_cost_m": 517.5
+  },
+
+  "control_groups": [
+    { "ticker": "CBS", "company": "CBS", "year": 1985, "gates_failed": ["g7_moat"], "conclusion": "PASS — good assets, but not the same management or capital-allocation quality that distinguished Capital Cities." },
+    { "ticker": "TIMESMIRROR", "company": "Times Mirror", "year": 1985, "gates_failed": ["g7_moat"], "conclusion": "PASS — strong media properties, but not the same rare operator-plus-asset combination." }
+  ],
+
+  "conclusion": "BUY",
+  "buffett_action": "Berkshire agreed in 1985 to buy 3M shares of Capital Cities at $172.50 as part of the Capital Cities/ABC transaction.",
+  "actual_result": "A major long-term winner and one of Berkshire's great media investments.",
+  "verdict": "✅ aligned",
+  "key_insight": "When extraordinary operators are matched with scarce media assets, Buffett is willing to act even without flashy short-term numbers."
+}

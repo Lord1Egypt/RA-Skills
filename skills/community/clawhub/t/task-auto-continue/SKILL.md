@@ -1,35 +1,44 @@
 ---
-name: "任务自动续接"
-description: "任务自动续接技能。检测未完成的任务并提醒 Agent 继续推进。 Keywords: 继续, 没完成, 还没做完, 继续做, 继续推进."
-category: "productivity"
-source: "ClawHub"
-tags: [automation, productivity, task, workflow]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/task-auto-continue"
-sourceUrl: "https://clawhub.ai/skills/task-auto-continue"
+slug: task-auto-continue
+name: 任务自动续接
+version: "1.0.0"
+author: 千策
 ---
+
 
 # 任务自动续接
 
-> 任务自动续接技能。检测未完成的任务并提醒 Agent 继续推进。 Keywords: 继续, 没完成, 还没做完, 继续做, 继续推进.
+检测未完成的任务，提醒 Agent 继续推进，避免任务中断。
 
-- **Category:** Productivity
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/task-auto-continue`
-- **Source URL:** [https://clawhub.ai/skills/task-auto-continue](https://clawhub.ai/skills/task-auto-continue)
+## 核心能力
 
-## Overview
+1. **任务检测** — 读取 in_progress.md 查找未完成任务
+2. **进度判断** — 分析任务状态（进行中/待决策/已完成）
+3. **优先排序** — 按优先级排列待办事项
+4. **自动提醒** — 在 Agent 启动时自动检查并提醒
 
+## 使用方式
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/task-auto-continue
+Agent 启动时自动检查 in_progress.md，发现未完成任务则提醒：
+
 ```
+检查 in_progress.md 中的任务状态
+如果有待决策任务 → 提醒继续
+如果有进行中任务 → 继续推进
+```
+
+## 任务状态标记
+
+| 标记 | 含义 |
+|------|------|
+| 🔴 | 紧急，需立即处理 |
+| 🟡 | 进行中 |
+| 🟢 | 可自主推进 |
+| ✅ | 已完成 |
+| ⏳ | 等待中 |
+
+## 注意事项
+
+- 仅读取 workspace 下的 in_progress.md
+- 不修改任何文件，仅提供状态报告
+- 配合 AGENTS.md 中的「任务没完不能停」规则使用

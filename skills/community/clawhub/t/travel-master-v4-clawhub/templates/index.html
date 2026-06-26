@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TravelMaster V4.2 - 闭环交付</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+        
+        /* Glassmorphism 毛玻璃风格 */
+        .glass { background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.3); border-radius: 16px; }
+        
+        .header { padding: 20px; margin-bottom: 20px; color: white; text-align: center; }
+        .header h1 { font-size: 28px; margin-bottom: 8px; }
+        
+        /* 实时思考链面板 */
+        .thought-panel { padding: 15px; margin-bottom: 20px; }
+        .thought-title { font-size: 12px; color: #6b7280; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+        .thought-content { background: #f0f4f8; padding: 12px; border-radius: 8px; font-size: 13px; line-height: 1.6; white-space: pre-wrap; font-family: monospace; }
+        .thought-tree { color: #3b82f6; }
+        
+        /* 进度面板 */
+        .progress-panel { padding: 15px; margin-bottom: 20px; }
+        .progress-bar { height: 12px; background: #e5e7eb; border-radius: 6px; margin: 10px 0; }
+        .progress-fill { height: 12px; background: linear-gradient(90deg, #10b981, #3b82f6); border-radius: 6px; transition: width 0.3s; }
+        .badges { display: flex; gap: 8px; flex-wrap: wrap; }
+        .badge { padding: 6px 14px; border-radius: 20px; font-size: 12px; font-weight: 500; }
+        .badge.done { background: linear-gradient(135deg, #10b981, #059669); color: white; }
+        .badge.pending { background: #e5e7eb; color: #6b7280; }
+        
+        /* 对话框 */
+        .chatbox { padding: 20px; min-height: 350px; max-height: 450px; overflow-y: auto; }
+        .message { margin: 12px 0; padding: 12px 16px; border-radius: 12px; max-width: 85%; }
+        .message.user { background: linear-gradient(135deg, #3b82f6, #2563eb); color: white; margin-left: auto; }
+        .message.bot { background: rgba(248,250,252,0.9); border: 1px solid rgba(255,255,255,0.3); }
+        
+        /* 方案选择卡片 */
+        .plan-card { margin-top: 15px; padding: 15px; border-radius: 12px; background: rgba(248,250,252,0.9); border: 2px solid transparent; cursor: pointer; transition: all 0.3s; }
+        .plan-card:hover { border-color: #3b82f6; transform: translateY(-2px); }
+        .plan-card.selected { border-color: #10b981; background: rgba(16,185,129,0.1); }
+        .plan-title { font-size: 16px; font-weight: 600; color: #1e40af; }
+        .plan-cost { font-size: 24px; font-weight: 700; margin: 8px 0; color: #059669; }
+        .plan-highlight { font-size: 13px; color: #6b7280; }
+        .plan-agent { font-size: 11px; color: #9ca3af; margin-top: 8px; }
+        
+        /* HTML预览 */
+        .html-preview { margin-top: 20px; border-radius: 12px; overflow: hidden; }
+        .html-badge { background: linear-gradient(135deg, #10b981, #059669); color: white; padding: 10px 15px; display: flex; justify-content: space-between; align-items: center; }
+        iframe { width: 100%; height: 500px; border: none; background: white; }
+        
+        /* 输入区 */
+        .input-area { padding: 15px; margin-top: 20px; display: flex; gap: 10px; }
+        .input-area input { flex: 1; padding: 12px 16px; border: none; border-radius: 25px; font-size: 14px; background: rgba(255,255,255,0.9); }
+        .input-area button { padding: 12px 24px; background: linear-gradient(135deg, #3b82f6, #2563eb); color: white; border: none; border-radius: 25px; cursor: pointer; font-weight: 600; }
+        .input-area button:hover { transform: scale(1.05); }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🧳 TravelMaster V4.2</h1>
+            <p style="font-size: 14px;">闭环交付 · 真实导航 · 真实支付</p>
+        </div>
+        
+        <!-- 实时思考链面板 -->
+        <div class="glass thought-panel">
+            <div class="thought-title">
+                <span>⚡</span>
+                <span>[THOUGHT_PROCESS] 实时思考链</span>
+            </div>
+            <div class="thought-content" id="thoughts">
+[系统就绪] 等待用户输入...
+Lighthouse Tree:
+├── 5W2H Matrix: [░░░░░░░░░░] 0%
+├── Swarm Logic: 待激活
+└── Final Artifact: 待生成
+            </div>
+        </div>
+        
+        <!-- 进度面板 -->
+        <div class="glass progress-panel">
+            <div style="display: flex; justify-content: space-between;">
+                <span><b>🔍 需求明确度</b></span>
+                <span id="progress-text">0%</span>
+            </div>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progress-fill" style="width: 0%;"></div>
+            </div>
+            <div class="badges" id="badges">
+                <span class="badge pending">👥人数</span>
+                <span class="badge pending">📍城市</span>
+                <span class="badge pending">📅天数</span>
+                <span class="badge pending">💰预算</span>
+                <span class="badge pending">🎯偏好</span>
+                <span class="badge pending">🎢必玩</span>
+                <span class="badge pending">🚗交通</span>
+            </div>
+        </div>
+        
+        <!-- 对话框 -->
+        <div class="glass chatbox" id="chatbox">
+            <div class="message bot">
+                <div>您好！我是 TravelMaster V4.2 闭环交付版。告诉我目的地和时间，我将通过数学收敛+蜂群博弈，最终交付一个带真实导航和支付的精美HTML攻略。</div>
+            </div>
+        </div>
+        
+        <!-- 输入区 -->
+        <div class="glass input-area">
+            <input type="text" id="input" placeholder="输入旅行想法，如：五一去西安5天，2大1小，预算5000..." />
+            <button onclick="sendMessage()">发送</button>
+            <button onclick="resetSession()" style="background: #ef4444; margin-left: 5px;">重置</button>
+        </div>
+    </div>
+
+    <script>
+        const badgesOrder = ['who', 'why', 'what', 'where', 'when', 'how', 'how_much'];
+        const badgeNames = {'who':'👥人数','why':'🎯偏好','what':'🎢必玩','where':'📍城市','when':'📅天数','how':'🚗交通','how_much':'💰预算'};
+        let selectedPlan = null;
+        
+        async function resetSession() {
+            try {
+                await fetch('/api/reset', {method: 'POST'});
+                document.getElementById('chatbox').innerHTML = '<div class="message bot">已重置！重新开始规划。</div>';
+                updateProgress({convergence_rate: 0, missing: badgesOrder});
+                updateThoughts('[重置] 系统已清空，等待新需求...');
+                selectedPlan = null;
+            } catch(e) {
+                console.log('重置失败');
+            }
+        }
+        
+        function updateThoughts(thoughts) {
+            document.getElementById('thoughts').textContent = thoughts || '[等待响应...]';
+        }
+        
+        function updateProgress(anchor) {
+            const rate = Math.round(anchor.convergence_rate * 100);
+            document.getElementById('progress-text').textContent = rate + '%';
+            document.getElementById('progress-fill').style.width = rate + '%';
+            
+            const missing = anchor.missing || [];
+            const badgesHtml = badgesOrder.map(k => 
+                `<span class="badge ${missing.includes(k) ? 'pending' : 'done'}">${badgeNames[k]}</span>`
+            ).join('');
+            document.getElementById('badges').innerHTML = badgesHtml;
+        }
+        
+        function addMessage(role, content, result, htmlReport) {
+            const chatbox = document.getElementById('chatbox');
+            const msgDiv = document.createElement('div');
+            msgDiv.className = 'message ' + role;
+            msgDiv.innerHTML = content;
+            
+            // 方案选择卡片
+            if (result && !selectedPlan) {
+                const plansDiv = document.createElement('div');
+                plansDiv.style.marginTop = '15px';
+                plansDiv.style.display = 'grid';
+                plansDiv.style.gridTemplateColumns = '1fr 1fr';
+                plansDiv.style.gap = '12px';
+                
+                plansDiv.innerHTML = `
+                    <div class="plan-card" onclick="selectPlan('A', this)">
+                        <div class="plan-title">方案A: ${result.planA.title}</div>
+                        <div class="plan-cost">${result.planA.cost}</div>
+                        <div class="plan-highlight">${result.planA.highlight}</div>
+                        <div class="plan-agent">Agent: ${result.planA.agent}</div>
+                    </div>
+                    <div class="plan-card" onclick="selectPlan('B', this)">
+                        <div class="plan-title">方案B: ${result.planB.title}</div>
+                        <div class="plan-cost">${result.planB.cost}</div>
+                        <div class="plan-highlight">${result.planB.highlight}</div>
+                        <div class="plan-agent">Agent: ${result.planB.agent}</div>
+                    </div>
+                    <div style="grid-column: 1/-1; text-align: center; color: #6b7280; font-size: 12px; margin-top: 10px;">
+                        请点击选择方案，我将生成最终HTML攻略文件
+                    </div>
+                `;
+                msgDiv.appendChild(plansDiv);
+            }
+            
+            // HTML预览
+            if (htmlReport) {
+                const previewDiv = document.createElement('div');
+                previewDiv.className = 'html-preview';
+                previewDiv.innerHTML = `
+                    <div class="html-badge">
+                        <span>✅ 最终HTML攻略已交付</span>
+                        <span>${htmlReport.length}字节 · 点击下载</span>
+                    </div>
+                    <iframe srcdoc="${htmlReport.replace(/"/g, '&quot;')}"></iframe>
+                `;
+                msgDiv.appendChild(previewDiv);
+            }
+            
+            chatbox.appendChild(msgDiv);
+            chatbox.scrollTop = chatbox.scrollHeight;
+        }
+        
+        async function selectPlan(plan, element) {
+            selectedPlan = plan;
+            
+            // 高亮选中
+            document.querySelectorAll('.plan-card').forEach(card => card.classList.remove('selected'));
+            element.classList.add('selected');
+            
+            updateThoughts(`[用户选择] 方案${plan}已确认
+Lighthouse Tree:
+├── 5W2H Matrix: [██████████] 100%
+├── Swarm Logic: 用户选择方案${plan}
+└── Final Artifact: 正在生成Standalone HTML...`);
+            
+            // 发送选择请求
+            addMessage('user', `选择方案${plan}`);
+            
+            try {
+                const response = await fetch('/api/select_plan', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ plan: plan })
+                });
+                const data = await response.json();
+                
+                updateThoughts(data.thoughts);
+                
+                if (data.html_report) {
+                    addMessage('bot', data.reply, null, data.html_report);
+                }
+            } catch (e) {
+                addMessage('bot', '❌ 生成失败: ' + e.message);
+            }
+        }
+        
+        async function sendMessage() {
+            const input = document.getElementById('input');
+            const message = input.value.trim();
+            if (!message) return;
+            
+            addMessage('user', message);
+            input.value = '';
+            
+            updateThoughts('[Phase 1] 正在解析用户意图...');
+            
+            try {
+                const response = await fetch('/api/travel', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ message: message, phase: 'discovery' })
+                });
+                const data = await response.json();
+                
+                updateThoughts(data.thoughts || '[响应完成]');
+                updateProgress(data.anchor || { convergence_rate: 0, missing: badgesOrder });
+                
+                if (data.phase === 'spvc_recommendation') {
+                    addMessage('bot', data.reply, data.result);
+                } else {
+                    addMessage('bot', data.reply);
+                }
+                
+            } catch (e) {
+                updateThoughts('[ERROR] ' + e.message);
+                addMessage('bot', '❌ 连接失败: ' + e.message);
+            }
+        }
+        
+        document.getElementById('input').addEventListener('keypress', e => {
+            if (e.key === 'Enter') sendMessage();
+        });
+    </script>
+</body>
+</html>

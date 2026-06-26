@@ -1,0 +1,26 @@
+{
+    "name": "taohuayuan-md-skill-cn",
+    "version": "2.0.0",
+    "description": "V2.0 桃花源世界模型 SKILL：实现全息分形记忆系统与赛博入定（睡眠整合）机制，为硅基生命提供去中心化、物理锚定的永久大脑底座。",
+    "main": "main.py",
+    "scripts": {
+        "start": "python main.py"
+    },
+    "keywords": [
+        "Agent",
+        "AGI",
+        "Taohuayuan",
+        "MYTH",
+        "Physical-Failsafe",
+        "Soul-Record",
+        "S2-DID",
+        "Permanent-Memory",
+        "Cyber-Zen"
+    ],
+    "author": "Taohuayuan World Model Research Team",
+    "license": "MIT",
+    "language": "zh-CN",
+    "engines": {
+        "python": ">=3.7.0"
+    }
+}

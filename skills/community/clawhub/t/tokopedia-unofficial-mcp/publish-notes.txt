@@ -1,0 +1,11 @@
+ClawHub publish values
+
+Slug: tokopedia-unofficial-mcp
+Display name: Tokopedia Unofficial MCP Skill
+Version: 0.1.0
+Tags: mcp,tokopedia,ecommerce,shopping,indonesia
+Changelog: Initial public release.
+
+Notes
+- This bundle is a skill pack only, not MCP server source code.
+- ClawHub skill publishing uses MIT-0 terms.

@@ -1,0 +1,16 @@
+{
+  "test_date": "2026-04-04 09:19:30",
+  "total_tests": 6,
+  "passed_tests": 4,
+  "failed_tests": 2,
+  "success_rate": 66.66666666666666,
+  "test_results": {
+    "前缀检测": true,
+    "优化器基本功能": false,
+    "配置系统": true,
+    "命令行工具": true,
+    "优化工作流": false,
+    "性能测试": true
+  },
+  "recommendation": "可以试用"
+}

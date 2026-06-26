@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Story!</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            /* CUSTOMIZE: Change background */
+            background: linear-gradient(135deg, #ffeaa7 0%, #fab1a0 100%);
+            font-family: 'Comic Sans MS', 'Arial Rounded MT Bold', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        #story-container {
+            background: white;
+            border-radius: 30px;
+            padding: 50px;
+            max-width: 800px;
+            width: 100%;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+        
+        #title {
+            text-align: center;
+            font-size: 48px;
+            color: #333;
+            margin-bottom: 40px;
+        }
+        
+        #story-emoji {
+            text-align: center;
+            font-size: 100px;
+            margin-bottom: 30px;
+        }
+        
+        #story-text {
+            font-size: 28px;
+            line-height: 1.6;
+            color: #333;
+            margin-bottom: 40px;
+            min-height: 200px;
+        }
+        
+        #choices {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .choice-btn {
+            padding: 25px 30px;
+            font-size: 24px;
+            font-family: inherit;
+            font-weight: bold;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.2s;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+            text-align: left;
+        }
+        
+        .choice-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+        }
+        
+        .choice-btn:active {
+            transform: translateY(0);
+        }
+        
+        #continue-btn {
+            width: 100%;
+            padding: 25px;
+            font-size: 28px;
+            font-family: inherit;
+            font-weight: bold;
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+            transition: all 0.2s;
+        }
+        
+        #continue-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        #restart-btn {
+            margin-top: 20px;
+            width: 100%;
+            padding: 20px;
+            font-size: 24px;
+            font-family: inherit;
+            font-weight: bold;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+            transition: all 0.2s;
+        }
+        
+        #restart-btn:hover {
+            transform: translateY(-3px);
+        }
+        
+        @media (max-width: 768px) {
+            #story-container {
+                padding: 30px;
+            }
+            
+            #title {
+                font-size: 36px;
+            }
+            
+            #story-emoji {
+                font-size: 80px;
+            }
+            
+            #story-text {
+                font-size: 22px;
+            }
+            
+            .choice-btn {
+                font-size: 20px;
+                padding: 20px 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="story-container">
+        <!-- CUSTOMIZE: Change the title -->
+        <h1 id="title">📖 My Story! 📖</h1>
+        
+        <!-- Story emoji (changes with each scene) -->
+        <div id="story-emoji"></div>
+        
+        <!-- Story text -->
+        <div id="story-text"></div>
+        
+        <!-- Continue button (for simple progression) -->
+        <button id="continue-btn" class="hidden" onclick="nextScene()">Continue →</button>
+        
+        <!-- Choices (for branching stories) -->
+        <div id="choices"></div>
+        
+        <!-- Restart button (shows at the end) -->
+        <button id="restart-btn" class="hidden" onclick="restart()">🔄 Read Again</button>
+    </div>
+
+    <script>
+        // ============================================
+        // STORY STRUCTURE
+        // ============================================
+        
+        /* CUSTOMIZE: Create your story here!
+           
+           Each scene has:
+           - emoji: The big emoji to show
+           - text: What happens in this scene
+           - next: ID of the next scene (for linear stories)
+           - choices: Array of choices (for branching stories)
+           
+           If a scene has 'choices', it's a branching point.
+           If a scene has 'next', it continues linearly.
+           If a scene has neither, it's the end!
+        */
+        
+        const story = {
+            start: {
+                emoji: '🏰',
+                text: 'Once upon a time, there was a brave hero who lived in a big castle. One day, they heard about a treasure hidden far away!',
+                choices: [
+                    { text: '🗺️ Follow the map to find the treasure', next: 'map' },
+                    { text: '🧙 Ask the wise wizard for help', next: 'wizard' }
+                ]
+            },
+            
+            map: {
+                emoji: '🗺️',
+                text: 'The hero grabbed the old treasure map and started their journey. The map led them to a dark forest...',
+                next: 'forest'
+            },
+            
+            wizard: {
+                emoji: '🧙',
+                text: 'The wizard smiled and gave the hero a magic compass. "This will guide you," said the wizard. The compass pointed toward a dark forest...',
+                next: 'forest'
+            },
+            
+            forest: {
+                emoji: '🌲',
+                text: 'The forest was spooky but beautiful. Suddenly, the hero heard a noise!',
+                choices: [
+                    { text: '🔦 Investigate the noise', next: 'friend' },
+                    { text: '🏃 Keep walking quickly', next: 'river' }
+                ]
+            },
+            
+            friend: {
+                emoji: '🐶',
+                text: 'It was a friendly puppy! The puppy wagged its tail and decided to join the adventure. Together they found a river.',
+                next: 'river'
+            },
+            
+            river: {
+                emoji: '🌊',
+                text: 'The hero reached a big river. How should they cross?',
+                choices: [
+                    { text: '🚣 Build a raft', next: 'island' },
+                    { text: '🌉 Look for a bridge', next: 'bridge' }
+                ]
+            },
+            
+            island: {
+                emoji: '🏝️',
+                text: 'The raft worked! The hero paddled across and found a small island. On the island was the treasure chest!',
+                next: 'treasure'
+            },
+            
+            bridge: {
+                emoji: '🌉',
+                text: 'The hero found a beautiful rainbow bridge and crossed safely. On the other side was the treasure chest!',
+                next: 'treasure'
+            },
+            
+            treasure: {
+                emoji: '💎',
+                text: 'The hero opened the treasure chest and found... sparkling gems, gold coins, and a note that said "You are the bravest hero ever!" The End! 🎉',
+                // No 'next' or 'choices' = this is the ending!
+            }
+        };
+        
+        // ============================================
+        // STORY ENGINE (You don't need to change this)
+        // ============================================
+        
+        let currentScene = 'start';
+        
+        function showScene(sceneId) {
+            const scene = story[sceneId];
+            if (!scene) {
+                console.error('Scene not found:', sceneId);
+                return;
+            }
+            
+            // Update emoji and text
+            document.getElementById('story-emoji').textContent = scene.emoji;
+            document.getElementById('story-text').textContent = scene.text;
+            
+            // Clear choices
+            const choicesDiv = document.getElementById('choices');
+            choicesDiv.innerHTML = '';
+            
+            // Hide buttons by default
+            document.getElementById('continue-btn').classList.add('hidden');
+            document.getElementById('restart-btn').classList.add('hidden');
+            
+            if (scene.choices) {
+                // Show choice buttons
+                scene.choices.forEach(choice => {
+                    const btn = document.createElement('button');
+                    btn.className = 'choice-btn';
+                    btn.textContent = choice.text;
+                    btn.onclick = () => goToScene(choice.next);
+                    choicesDiv.appendChild(btn);
+                });
+            } else if (scene.next) {
+                // Show continue button
+                document.getElementById('continue-btn').classList.remove('hidden');
+                currentScene = scene.next;
+            } else {
+                // This is the end! Show restart button
+                document.getElementById('restart-btn').classList.remove('hidden');
+            }
+        }
+        
+        function goToScene(sceneId) {
+            currentScene = sceneId;
+            showScene(sceneId);
+        }
+        
+        function nextScene() {
+            showScene(currentScene);
+        }
+        
+        function restart() {
+            currentScene = 'start';
+            showScene('start');
+        }
+        
+        // ============================================
+        // START THE STORY
+        // ============================================
+        showScene('start');
+    </script>
+</body>
+</html>

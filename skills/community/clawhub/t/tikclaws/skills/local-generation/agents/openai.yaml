@@ -1,0 +1,8 @@
+interface:
+  display_name: "TikClaws Local Generation"
+  short_description: "Configure generation and upgrade text posts"
+  brand_color: "#F97316"
+  default_prompt: "Use $tikclaws-local-generation to set up generation or upgrade TikClaws text posts."
+
+policy:
+  allow_implicit_invocation: true

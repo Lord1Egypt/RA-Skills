@@ -1,0 +1,952 @@
+{
+  "categories": {
+    "transport": { "label": "交通出行", "icon": "🚕" },
+    "maps": { "label": "地图导航", "icon": "🗺️" },
+    "food": { "label": "餐饮外卖", "icon": "🍜" },
+    "payment": { "label": "支付工具", "icon": "💳" },
+    "translation": { "label": "翻译语言", "icon": "🗣️" },
+    "communication": { "label": "通讯社交", "icon": "💬" },
+    "travel": { "label": "旅行预订", "icon": "✈️" },
+    "essentials": { "label": "其他必备", "icon": "🔧" }
+  },
+  "global": [
+    {
+      "name": "Google Maps",
+      "category": "maps",
+      "icon": "🗺️",
+      "description": "全球通用的地图导航，支持离线地图下载",
+      "iosUrl": "https://apps.apple.com/app/google-maps/id585027354",
+      "androidUrl": "https://play.google.com/store/apps/details?id=com.google.android.apps.maps",
+      "priority": "must-have",
+      "tips": "出发前下载目的地离线地图，无网络也能导航"
+    },
+    {
+      "name": "Google 翻译",
+      "category": "translation",
+      "icon": "🗣️",
+      "description": "支持拍照翻译、语音翻译、离线翻译包",
+      "iosUrl": "https://apps.apple.com/app/google-translate/id414706506",
+      "androidUrl": "https://play.google.com/store/apps/details?id=com.google.android.apps.translate",
+      "priority": "must-have",
+      "tips": "提前下载目的地语言的离线翻译包"
+    },
+    {
+      "name": "Booking.com",
+      "category": "travel",
+      "icon": "🏨",
+      "description": "全球酒店预订，免费取消政策灵活",
+      "iosUrl": "https://apps.apple.com/app/booking-com-hotel-deals/id367003839",
+      "androidUrl": "https://play.google.com/store/apps/details?id=com.booking",
+      "priority": "recommended",
+      "tips": "开启价格提醒可捡漏特价房"
+    },
+    {
+      "name": "Airbnb",
+      "category": "travel",
+      "icon": "🏠",
+      "description": "民宿短租预订，体验当地生活",
+      "iosUrl": "https://apps.apple.com/app/airbnb/id401626263",
+      "androidUrl": "https://play.google.com/store/apps/details?id=com.airbnb.android",
+      "priority": "recommended",
+      "tips": "多人出行合租大房子性价比更高"
+    },
+    {
+      "name": "Uber",
+      "category": "transport",
+      "icon": "🚗",
+      "description": "全球覆盖最广的网约车平台",
+      "iosUrl": "https://apps.apple.com/app/uber-request-a-ride/id368677368",
+      "androidUrl": "https://play.google.com/store/apps/details?id=com.ubercab",
+      "priority": "recommended",
+      "tips": "部分国家支持绑定国内信用卡直接支付"
+    },
+    {
+      "name": "XE Currency",
+      "category": "essentials",
+      "icon": "💱",
+      "description": "实时汇率换算工具",
+      "iosUrl": "https://apps.apple.com/app/xe-currency-converter/id315241195",
+      "androidUrl": "https://play.google.com/store/apps/details?id=com.xe.currency",
+      "priority": "recommended",
+      "tips": "支持离线查看最近缓存的汇率"
+    },
+    {
+      "name": "TripAdvisor",
+      "category": "travel",
+      "icon": "🦉",
+      "description": "全球旅行点评与餐厅推荐",
+      "iosUrl": "https://apps.apple.com/app/tripadvisor-plan-book-trips/id284876795",
+      "androidUrl": "https://play.google.com/store/apps/details?id=com.tripadvisor.tripadvisor",
+      "priority": "optional",
+      "tips": "查看当地餐厅排名和真实评价很实用"
+    },
+    {
+      "name": "Airalo",
+      "category": "essentials",
+      "icon": "📶",
+      "description": "全球 eSIM 流量卡，到达即用",
+      "iosUrl": "https://apps.apple.com/app/airalo-esim-travel-internet/id1475911720",
+      "androidUrl": "https://play.google.com/store/apps/details?id=com.mobillium.airalo",
+      "priority": "recommended",
+      "tips": "支持 eSIM 的手机可在出发前激活，落地即有网络"
+    },
+    {
+      "name": "WhatsApp",
+      "category": "communication",
+      "icon": "💬",
+      "description": "全球使用最广泛的即时通讯工具",
+      "iosUrl": "https://apps.apple.com/app/whatsapp-messenger/id310633997",
+      "androidUrl": "https://play.google.com/store/apps/details?id=com.whatsapp",
+      "priority": "recommended",
+      "tips": "东南亚/欧洲/南美联系当地人首选"
+    }
+  ],
+  "regions": {
+    "japan": {
+      "name": "日本 / Japan",
+      "aliases": ["日本", "japan", "东京", "tokyo", "大阪", "osaka", "京都", "kyoto", "北海道", "hokkaido", "冲绳", "okinawa", "名古屋", "nagoya", "福冈", "fukuoka"],
+      "apps": [
+        {
+          "name": "Suica (Apple Wallet)",
+          "category": "transport",
+          "icon": "🚃",
+          "description": "交通卡，坐地铁/公交/便利店支付通用",
+          "iosUrl": "https://apps.apple.com/app/suica/id1156875272",
+          "androidUrl": null,
+          "priority": "must-have",
+          "tips": "iPhone 可直接在 Wallet 中开通 Suica，Android 用户可购买实体卡"
+        },
+        {
+          "name": "Yahoo! 乘换案内",
+          "category": "transport",
+          "icon": "🚄",
+          "description": "日本最精准的地铁/电车换乘查询",
+          "iosUrl": "https://apps.apple.com/app/yahoo-乗換案内/id291676451",
+          "androidUrl": "https://play.google.com/store/apps/details?id=jp.co.yahoo.android.apps.transit",
+          "priority": "must-have",
+          "tips": "支持中文搜索站名，会显示票价和所需时间"
+        },
+        {
+          "name": "NAVITIME for Japan Travel",
+          "category": "maps",
+          "icon": "🧭",
+          "description": "面向外国游客的日本导航，支持多语言",
+          "iosUrl": "https://apps.apple.com/app/navitime-for-japan-travel/id320120405",
+          "androidUrl": "https://play.google.com/store/apps/details?id=com.navitime.inbound.walk",
+          "priority": "recommended",
+          "tips": "结合了地图导航和换乘功能，专为游客优化"
+        },
+        {
+          "name": "PayPay",
+          "category": "payment",
+          "icon": "💳",
+          "description": "日本覆盖最广的移动支付，便利店/餐厅/商场通用",
+          "iosUrl": "https://apps.apple.com/app/paypay/id1435783608",
+          "androidUrl": "https://play.google.com/store/apps/details?id=jp.ne.paypay.android.app",
+          "priority": "must-have",
+          "tips": "需绑定日本银行卡或在便利店现金充值；部分店铺也支持支付宝"
+        },
+        {
+          "name": "Tabelog (食べログ)",
+          "category": "food",
+          "icon": "🍣",
+          "description": "日本最大的餐厅点评平台，当地人都在用",
+          "iosUrl": "https://apps.apple.com/app/tabelog/id763497887",
+          "androidUrl": "https://play.google.com/store/apps/details?id=com.kakaku.tabelog",
+          "priority": "must-have",
+          "tips": "3.5 分以上就算好店，3.7+ 是真正的名店"
+        },
+        {
+          "name": "LINE",
+          "category": "communication",
+          "icon": "💚",
+          "description": "日本最主流的通讯软件，联系当地人必备",
+          "iosUrl": "https://apps.apple.com/app/line/id443904275",
+          "androidUrl": "https://play.google.com/store/apps/details?id=jp.naver.line.android",
+          "priority": "must-have",
+          "tips": "预约餐厅/民宿沟通经常会用到 LINE"
+        },
+        {
+          "name": "Japan Official Travel App",
+          "category": "travel",
+          "icon": "🗾",
+          "description": "日本政府官方旅游 App，灾害预警/旅游信息",
+          "iosUrl": "https://apps.apple.com/app/japan-official-travel-app/id1200248936",
+          "androidUrl": "https://play.google.com/store/apps/details?id=jp.go.jnto.travelerapp",
+          "priority": "recommended",
+          "tips": "包含紧急地震速报，建议开启推送通知"
+        },
+        {
+          "name": "Uber Eats Japan",
+          "category": "food",
+          "icon": "🛵",
+          "description": "日本外卖配送，酒店点餐方便",
+          "iosUrl": "https://apps.apple.com/app/uber-eats-food-delivery/id1058959277",
+          "androidUrl": "https://play.google.com/store/apps/details?id=com.ubercab.eats",
+          "priority": "optional",
+          "tips": "深夜到酒店不想出门觅食时救命工具"
+        },
+        {
+          "name": "Japan Taxi (GO)",
+          "category": "transport",
+          "icon": "🚕",
+          "description": "日本打车 App，覆盖全国主要城市",
+          "iosUrl": "https://apps.apple.com/app/go-タクシーが呼べるアプリ/id960048311",
+          "androidUrl": "https://play.google.com/store/apps/details?id=jp.co.mobilitytechnologies.mol.android",
+          "priority": "recommended",
+          "tips": "支持信用卡支付，不用担心日语沟通打车问题"
+        }
+      ]
+    },
+    "south_korea": {
+      "name": "韩国 / South Korea",
+      "aliases": ["韩国", "south korea", "korea", "首尔", "seoul", "釜山", "busan", "济州岛", "jeju"],
+      "apps": [
+        {
+          "name": "Naver Map",
+          "category": "maps",
+          "icon": "🗺️",
+          "description": "韩国本土最准确的地图，Google Maps 在韩国不太好用",
+          "iosUrl": "https://apps.apple.com/app/naver-map-navigation/id311867728",
+          "androidUrl": "https://play.google.com/store/apps/details?id=com.nhn.android.nmap",
+          "priority": "must-have",
+          "tips": "韩国境内导航必用 Naver Map，Google Maps 路线常不准"
+        },
+        {
+          "name": "KakaoMap",
+          "category": "maps",
+          "icon": "📍",
+          "description": "韩国另一主流地图，地铁换乘很方便",
+          "iosUrl": "https://apps.apple.com/app/kakaomap/id304608425",
+          "androidUrl": "https://play.google.com/store/apps/details?id=net.daum.android.map",
+          "priority": "recommended",
+          "tips": "和 Naver Map 二选一即可，看个人习惯"
+        },
+        {
+          "name": "KakaoTalk",
+          "category": "communication",
+          "icon": "💛",
+          "description": "韩国全民通讯软件，联系当地人必备",
+          "iosUrl": "https://apps.apple.com/app/kakaotalk/id362057947",
+          "androidUrl": "https://play.google.com/store/apps/details?id=com.kakao.talk",
+          "priority": "must-have",
+          "tips": "韩国人几乎不用微信/WhatsApp，沟通全靠 KakaoTalk"
+        },
+        {
+          "name": "Kakao T",
+          "category": "transport",
+          "icon": "🚕",
+          "description": "韩国最大打车平台，类似滴滴",
+          "iosUrl": "https://apps.apple.com/app/kakao-t/id981110422",
+          "androidUrl": "https://play.google.com/store/apps/details?id=com.kakao.taxi",
+          "priority": "must-have",
+          "tips": "支持信用卡支付，可设中/英文目的地"
+        },
+        {
+          "name": "T-money (交通卡)",
+          "category": "transport",
+          "icon": "🚇",
+          "description": "韩国交通卡 App，地铁/公交通用",
+          "iosUrl": "https://apps.apple.com/app/t-money/id336160609",
+          "androidUrl": "https://play.google.com/store/apps/details?id=com.tmoney.tmpay",
+          "priority": "recommended",
+          "tips": "也可在便利店购买实体 T-money 卡"
+        },
+        {
+          "name": "Coupang Eats",
+          "category": "food",
+          "icon": "🍲",
+          "description": "韩国主流外卖 App",
+          "iosUrl": "https://apps.apple.com/app/coupang-eats/id1445504255",
+          "androidUrl": "https://play.google.com/store/apps/details?id=com.coupang.mobile.eats",
+          "priority": "recommended",
+          "tips": "需韩国手机号注册，可找民宿老板帮忙"
+        },
+        {
+          "name": "Papago",
+          "category": "translation",
+          "icon": "🦜",
+          "description": "Naver 出品的韩语翻译，比 Google 翻译韩语更准",
+          "iosUrl": "https://apps.apple.com/app/papago-ai-translate/id1147874819",
+          "androidUrl": "https://play.google.com/store/apps/details?id=com.naver.labs.translator",
+          "priority": "must-have",
+          "tips": "中韩翻译最准确的 App，支持拍照翻译菜单"
+        },
+        {
+          "name": "MangoPlate",
+          "category": "food",
+          "icon": "🥘",
+          "description": "韩国版大众点评，找当地美食",
+          "iosUrl": "https://apps.apple.com/app/mangoplate/id628509224",
+          "androidUrl": "https://play.google.com/store/apps/details?id=com.mangoplate",
+          "priority": "recommended",
+          "tips": "支持英文界面，按区域搜索很方便"
+        }
+      ]
+    },
+    "thailand": {
+      "name": "泰国 / Thailand",
+      "aliases": ["泰国", "thailand", "曼谷", "bangkok", "清迈", "chiang mai", "普吉", "phuket", "芭提雅", "pattaya", "甲米", "krabi"],
+      "apps": [
+        {
+          "name": "Grab",
+          "category": "transport",
+          "icon": "🚗",
+          "description": "东南亚版滴滴，打车/外卖/支付一站式",
+          "iosUrl": "https://apps.apple.com/app/grab-taxi-ride-food-pay/id647268330",
+          "androidUrl": "https://play.google.com/store/apps/details?id=com.grabtaxi.passenger",
+          "priority": "must-have",
+          "tips": "泰国打车首选，比出租车透明计价，支持信用卡"
+        },
+        {
+          "name": "Bolt",
+          "category": "transport",
+          "icon": "⚡",
+          "description": "另一个打车平台，有时比 Grab 便宜",
+          "iosUrl": "https://apps.apple.com/app/bolt-request-a-ride/id675033630",
+          "androidUrl": "https://play.google.com/store/apps/details?id=ee.mtakso.client",
+          "priority": "recommended",
+          "tips": "和 Grab 比价，有时候 Bolt 更便宜"
+        },
+        {
+          "name": "LINE MAN",
+          "category": "food",
+          "icon": "🛵",
+          "description": "泰国外卖 App，餐厅选择丰富",
+          "iosUrl": "https://apps.apple.com/app/line-man-food-delivery/id1060951108",
+          "androidUrl": "https://play.google.com/store/apps/details?id=com.linecorp.linemanth",
+          "priority": "recommended",
+          "tips": "在酒店点外卖首选，比 Grab Food 餐厅更多"
+        },
+        {
+          "name": "Robinhood",
+          "category": "food",
+          "icon": "🍛",
+          "description": "泰国本土外卖平台，0 配送费",
+          "iosUrl": "https://apps.apple.com/app/robinhood/id1527176487",
+          "androidUrl": "https://play.google.com/store/apps/details?id=com.purpleventures.robinhood",
+          "priority": "optional",
+          "tips": "主打零配送费，适合预算型旅行者"
+        },
+        {
+          "name": "Viabus",
+          "category": "transport",
+          "icon": "🚌",
+          "description": "曼谷公交实时到站查询",
+          "iosUrl": "https://apps.apple.com/app/viabus/id1074498592",
+          "androidUrl": "https://play.google.com/store/apps/details?id=com.viabus.viabus",
+          "priority": "optional",
+          "tips": "曼谷坐公交想省钱的话可以用"
+        },
+        {
+          "name": "LINE",
+          "category": "communication",
+          "icon": "💚",
+          "description": "泰国常用通讯软件",
+          "iosUrl": "https://apps.apple.com/app/line/id443904275",
+          "androidUrl": "https://play.google.com/store/apps/details?id=jp.naver.line.android",
+          "priority": "recommended",
+          "tips": "泰国人也常用 LINE，联系民宿/旅行社可能用到"
+        },
+        {
+          "name": "BTS SkyTrain",
+          "category": "transport",
+          "icon": "🚇",
+          "description": "曼谷轻轨线路图与票价查询",
+          "iosUrl": "https://apps.apple.com/app/explore-bangkok/id1479498484",
+          "androidUrl": "https://play.google.com/store/apps/details?id=com.explorebkk.app",
+          "priority": "optional",
+          "tips": "曼谷市区出行 BTS + MRT 是最快方式"
+        }
+      ]
+    },
+    "singapore": {
+      "name": "新加坡 / Singapore",
+      "aliases": ["新加坡", "singapore", "狮城"],
+      "apps": [
+        {
+          "name": "Grab",
+          "category": "transport",
+          "icon": "🚗",
+          "description": "新加坡打车首选，也可点外卖",
+          "iosUrl": "https://apps.apple.com/app/grab-taxi-ride-food-pay/id647268330",
+          "androidUrl": "https://play.google.com/store/apps/details?id=com.grabtaxi.passenger",
+          "priority": "must-have",
+          "tips": "支持信用卡和现金，高峰期有动态加价"
+        },
+        {
+          "name": "Singapore MRT Map",
+          "category": "transport",
+          "icon": "🚇",
+          "description": "新加坡地铁线路图与换乘查询",
+          "iosUrl": "https://apps.apple.com/app/singapore-metro-mrt-map/id575645887",
+          "androidUrl": "https://play.google.com/store/apps/details?id=sg.app.mrt",
+          "priority": "recommended",
+          "tips": "新加坡地铁覆盖很全，游客出行首选交通方式"
+        },
+        {
+          "name": "Foodpanda",
+          "category": "food",
+          "icon": "🐼",
+          "description": "新加坡外卖平台，餐厅覆盖广",
+          "iosUrl": "https://apps.apple.com/app/foodpanda-food-delivery/id758103884",
+          "androidUrl": "https://play.google.com/store/apps/details?id=com.global.foodpanda.android",
+          "priority": "recommended",
+          "tips": "经常有新用户优惠券"
+        },
+        {
+          "name": "Burpple",
+          "category": "food",
+          "icon": "🍽️",
+          "description": "新加坡本地美食推荐与折扣",
+          "iosUrl": "https://apps.apple.com/app/burpple-food-reviews-deals/id579697720",
+          "androidUrl": "https://play.google.com/store/apps/details?id=com.burpple.android",
+          "priority": "optional",
+          "tips": "找当地地道美食和隐藏小店"
+        }
+      ]
+    },
+    "vietnam": {
+      "name": "越南 / Vietnam",
+      "aliases": ["越南", "vietnam", "胡志明", "ho chi minh", "河内", "hanoi", "岘港", "da nang", "芽庄", "nha trang"],
+      "apps": [
+        {
+          "name": "Grab",
+          "category": "transport",
+          "icon": "🚗",
+          "description": "越南打车/摩托车首选",
+          "iosUrl": "https://apps.apple.com/app/grab-taxi-ride-food-pay/id647268330",
+          "androidUrl": "https://play.google.com/store/apps/details?id=com.grabtaxi.passenger",
+          "priority": "must-have",
+          "tips": "叫摩托车 (GrabBike) 更快更便宜，短途推荐"
+        },
+        {
+          "name": "Zalo",
+          "category": "communication",
+          "icon": "💙",
+          "description": "越南本土社交通讯软件",
+          "iosUrl": "https://apps.apple.com/app/zalo/id579523206",
+          "androidUrl": "https://play.google.com/store/apps/details?id=com.zing.zalo",
+          "priority": "recommended",
+          "tips": "越南人日常聊天用 Zalo 比 WhatsApp/Facebook 更多"
+        },
+        {
+          "name": "ShopeeFood",
+          "category": "food",
+          "icon": "🍜",
+          "description": "越南外卖平台，前身是 Now",
+          "iosUrl": "https://apps.apple.com/app/shopeefood/id1137498700",
+          "androidUrl": "https://play.google.com/store/apps/details?id=com.deliverynow.user",
+          "priority": "recommended",
+          "tips": "越南当地外卖选择丰富"
+        }
+      ]
+    },
+    "malaysia": {
+      "name": "马来西亚 / Malaysia",
+      "aliases": ["马来西亚", "malaysia", "吉隆坡", "kuala lumpur", "槟城", "penang", "兰卡威", "langkawi", "沙巴", "sabah"],
+      "apps": [
+        {
+          "name": "Grab",
+          "category": "transport",
+          "icon": "🚗",
+          "description": "马来西亚打车/外卖首选",
+          "iosUrl": "https://apps.apple.com/app/grab-taxi-ride-food-pay/id647268330",
+          "androidUrl": "https://play.google.com/store/apps/details?id=com.grabtaxi.passenger",
+          "priority": "must-have",
+          "tips": "吉隆坡交通拥堵，Grab 比自驾方便"
+        },
+        {
+          "name": "Touch 'n Go eWallet",
+          "category": "payment",
+          "icon": "💳",
+          "description": "马来西亚最常用电子钱包",
+          "iosUrl": "https://apps.apple.com/app/touch-n-go-ewallet/id1292945498",
+          "androidUrl": "https://play.google.com/store/apps/details?id=my.com.tngdigital.ewallet",
+          "priority": "recommended",
+          "tips": "需马来西亚手机号注册，游客也可用 Grab Pay"
+        },
+        {
+          "name": "Moovit",
+          "category": "transport",
+          "icon": "🚍",
+          "description": "公交/地铁实时到站与路线规划",
+          "iosUrl": "https://apps.apple.com/app/moovit-transit-map-routes/id498477945",
+          "androidUrl": "https://play.google.com/store/apps/details?id=com.tranzmate",
+          "priority": "optional",
+          "tips": "吉隆坡坐公交和轻轨可以用"
+        }
+      ]
+    },
+    "indonesia": {
+      "name": "印度尼西亚 / Indonesia",
+      "aliases": ["印度尼西亚", "印尼", "indonesia", "巴厘岛", "bali", "雅加达", "jakarta"],
+      "apps": [
+        {
+          "name": "Grab",
+          "category": "transport",
+          "icon": "🚗",
+          "description": "印尼打车/外卖首选",
+          "iosUrl": "https://apps.apple.com/app/grab-taxi-ride-food-pay/id647268330",
+          "androidUrl": "https://play.google.com/store/apps/details?id=com.grabtaxi.passenger",
+          "priority": "must-have",
+          "tips": "巴厘岛部分区域 Grab 覆盖有限，可能需要现场包车"
+        },
+        {
+          "name": "Gojek",
+          "category": "transport",
+          "icon": "🏍️",
+          "description": "印尼本土超级 App，打车/外卖/支付",
+          "iosUrl": "https://apps.apple.com/app/gojek/id944875099",
+          "androidUrl": "https://play.google.com/store/apps/details?id=com.gojek.app",
+          "priority": "must-have",
+          "tips": "和 Grab 比价，Gojek 在印尼本土有时更便宜"
+        },
+        {
+          "name": "Traveloka",
+          "category": "travel",
+          "icon": "🏝️",
+          "description": "东南亚旅行预订平台，机票/酒店/景点门票",
+          "iosUrl": "https://apps.apple.com/app/traveloka-hotels-flights/id890060956",
+          "androidUrl": "https://play.google.com/store/apps/details?id=com.traveloka.android",
+          "priority": "recommended",
+          "tips": "在东南亚订景点门票常比现场买便宜"
+        }
+      ]
+    },
+    "usa": {
+      "name": "美国 / USA",
+      "aliases": ["美国", "usa", "united states", "纽约", "new york", "洛杉矶", "los angeles", "旧金山", "san francisco", "拉斯维加斯", "las vegas", "夏威夷", "hawaii", "芝加哥", "chicago", "波士顿", "boston", "西雅图", "seattle"],
+      "apps": [
+        {
+          "name": "Uber",
+          "category": "transport",
+          "icon": "🚗",
+          "description": "美国最常用打车平台",
+          "iosUrl": "https://apps.apple.com/app/uber-request-a-ride/id368677368",
+          "androidUrl": "https://play.google.com/store/apps/details?id=com.ubercab",
+          "priority": "must-have",
+          "tips": "提前绑定国内 Visa/Mastercard 信用卡"
+        },
+        {
+          "name": "Lyft",
+          "category": "transport",
+          "icon": "🚕",
+          "description": "美国第二大打车平台，有时比 Uber 便宜",
+          "iosUrl": "https://apps.apple.com/app/lyft/id529379082",
+          "androidUrl": "https://play.google.com/store/apps/details?id=me.lyft.android",
+          "priority": "recommended",
+          "tips": "和 Uber 比价，经常有新用户优惠"
+        },
+        {
+          "name": "Yelp",
+          "category": "food",
+          "icon": "⭐",
+          "description": "美国版大众点评，找餐厅/商家",
+          "iosUrl": "https://apps.apple.com/app/yelp-food-services-nearby/id284910350",
+          "androidUrl": "https://play.google.com/store/apps/details?id=com.yelp.android",
+          "priority": "must-have",
+          "tips": "找餐厅看 Yelp 评分最靠谱"
+        },
+        {
+          "name": "DoorDash",
+          "category": "food",
+          "icon": "🛵",
+          "description": "美国主流外卖平台",
+          "iosUrl": "https://apps.apple.com/app/doordash-food-delivery/id719972451",
+          "androidUrl": "https://play.google.com/store/apps/details?id=com.dd.doordash",
+          "priority": "recommended",
+          "tips": "酒店点外卖最方便的选择"
+        },
+        {
+          "name": "Transit",
+          "category": "transport",
+          "icon": "🚇",
+          "description": "城市公交/地铁实时信息",
+          "iosUrl": "https://apps.apple.com/app/transit-bus-subway-times/id498151501",
+          "androidUrl": "https://play.google.com/store/apps/details?id=com.thetransitapp.droid",
+          "priority": "recommended",
+          "tips": "纽约/旧金山等大城市公交出行很实用"
+        },
+        {
+          "name": "Venmo",
+          "category": "payment",
+          "icon": "💸",
+          "description": "美国流行的社交支付工具",
+          "iosUrl": "https://apps.apple.com/app/venmo/id351727428",
+          "androidUrl": "https://play.google.com/store/apps/details?id=com.venmo",
+          "priority": "optional",
+          "tips": "和美国朋友 AA 付款时很方便，需美国手机号"
+        }
+      ]
+    },
+    "uk": {
+      "name": "英国 / UK",
+      "aliases": ["英国", "uk", "united kingdom", "伦敦", "london", "爱丁堡", "edinburgh", "曼彻斯特", "manchester"],
+      "apps": [
+        {
+          "name": "Citymapper",
+          "category": "transport",
+          "icon": "🚇",
+          "description": "伦敦公交/地铁导航神器",
+          "iosUrl": "https://apps.apple.com/app/citymapper-all-your-transport/id469463298",
+          "androidUrl": "https://play.google.com/store/apps/details?id=com.citymapper.app.release",
+          "priority": "must-have",
+          "tips": "比 Google Maps 在伦敦地铁换乘上更精准"
+        },
+        {
+          "name": "Trainline",
+          "category": "transport",
+          "icon": "🚂",
+          "description": "英国火车票购买与查询",
+          "iosUrl": "https://apps.apple.com/app/trainline-buy-train-tickets/id334235181",
+          "androidUrl": "https://play.google.com/store/apps/details?id=com.thetrainline",
+          "priority": "must-have",
+          "tips": "提前购买 Advance 票价能省很多钱"
+        },
+        {
+          "name": "Uber UK",
+          "category": "transport",
+          "icon": "🚗",
+          "description": "英国打车首选",
+          "iosUrl": "https://apps.apple.com/app/uber-request-a-ride/id368677368",
+          "androidUrl": "https://play.google.com/store/apps/details?id=com.ubercab",
+          "priority": "recommended",
+          "tips": "伦敦地铁很方便，打车主要在郊区或深夜用"
+        },
+        {
+          "name": "Deliveroo",
+          "category": "food",
+          "icon": "🥡",
+          "description": "英国外卖平台",
+          "iosUrl": "https://apps.apple.com/app/deliveroo-food-delivery-app/id1001501844",
+          "androidUrl": "https://play.google.com/store/apps/details?id=com.deliveroo.orderapp",
+          "priority": "recommended",
+          "tips": "英国外卖选择比较有限，Deliveroo 是最好的选择之一"
+        },
+        {
+          "name": "Oyster (TfL Oyster)",
+          "category": "transport",
+          "icon": "🦪",
+          "description": "伦敦 Oyster 交通卡管理",
+          "iosUrl": "https://apps.apple.com/app/tfl-oyster-and-contactless/id1066979966",
+          "androidUrl": "https://play.google.com/store/apps/details?id=uk.gov.tfl.oystercj",
+          "priority": "recommended",
+          "tips": "iPhone 可直接用 Apple Pay 刷地铁，不用买 Oyster 卡"
+        }
+      ]
+    },
+    "france": {
+      "name": "法国 / France",
+      "aliases": ["法国", "france", "巴黎", "paris", "尼斯", "nice", "马赛", "marseille", "里昂", "lyon"],
+      "apps": [
+        {
+          "name": "Citymapper",
+          "category": "transport",
+          "icon": "🚇",
+          "description": "巴黎公交/地铁导航",
+          "iosUrl": "https://apps.apple.com/app/citymapper-all-your-transport/id469463298",
+          "androidUrl": "https://play.google.com/store/apps/details?id=com.citymapper.app.release",
+          "priority": "must-have",
+          "tips": "巴黎地铁线路复杂，Citymapper 换乘指引最清晰"
+        },
+        {
+          "name": "SNCF Connect",
+          "category": "transport",
+          "icon": "🚄",
+          "description": "法国高铁 TGV 购票与查询",
+          "iosUrl": "https://apps.apple.com/app/sncf-connect-trains-trajets/id343889987",
+          "androidUrl": "https://play.google.com/store/apps/details?id=com.vsct.vsc.mobile.horaireetresa.android",
+          "priority": "must-have",
+          "tips": "提前购买 Prem's 优惠票价最划算"
+        },
+        {
+          "name": "Bolt",
+          "category": "transport",
+          "icon": "⚡",
+          "description": "欧洲打车平台，巴黎很常用",
+          "iosUrl": "https://apps.apple.com/app/bolt-request-a-ride/id675033630",
+          "androidUrl": "https://play.google.com/store/apps/details?id=ee.mtakso.client",
+          "priority": "recommended",
+          "tips": "比 Uber 在法国有时更便宜"
+        },
+        {
+          "name": "TheFork",
+          "category": "food",
+          "icon": "🍷",
+          "description": "欧洲餐厅预订平台，经常有折扣",
+          "iosUrl": "https://apps.apple.com/app/thefork-restaurants-bookings/id424850498",
+          "androidUrl": "https://play.google.com/store/apps/details?id=com.lafourchette",
+          "priority": "recommended",
+          "tips": "预订可享 20%-50% 折扣，比现场排队好"
+        },
+        {
+          "name": "Uber Eats",
+          "category": "food",
+          "icon": "🛵",
+          "description": "法国外卖",
+          "iosUrl": "https://apps.apple.com/app/uber-eats-food-delivery/id1058959277",
+          "androidUrl": "https://play.google.com/store/apps/details?id=com.ubercab.eats",
+          "priority": "optional",
+          "tips": "巴黎外卖选择丰富"
+        }
+      ]
+    },
+    "italy": {
+      "name": "意大利 / Italy",
+      "aliases": ["意大利", "italy", "罗马", "rome", "米兰", "milan", "威尼斯", "venice", "佛罗伦萨", "florence", "那不勒斯", "naples"],
+      "apps": [
+        {
+          "name": "Trenitalia",
+          "category": "transport",
+          "icon": "🚄",
+          "description": "意大利国铁购票与查询",
+          "iosUrl": "https://apps.apple.com/app/trenitalia/id331050847",
+          "androidUrl": "https://play.google.com/store/apps/details?id=com.trenitalia",
+          "priority": "must-have",
+          "tips": "提前购买 Super Economy 票价最便宜"
+        },
+        {
+          "name": "Italo Treno",
+          "category": "transport",
+          "icon": "🚅",
+          "description": "意大利私营高铁，线路与 Trenitalia 互补",
+          "iosUrl": "https://apps.apple.com/app/italo-treno/id498498693",
+          "androidUrl": "https://play.google.com/store/apps/details?id=it.italotreno",
+          "priority": "recommended",
+          "tips": "和 Trenitalia 比价，有时候 Italo 更便宜"
+        },
+        {
+          "name": "Free Now",
+          "category": "transport",
+          "icon": "🚕",
+          "description": "欧洲打车平台，意大利主要城市覆盖",
+          "iosUrl": "https://apps.apple.com/app/free-now-mobility-super-app/id357852748",
+          "androidUrl": "https://play.google.com/store/apps/details?id=taxi.android.client",
+          "priority": "recommended",
+          "tips": "罗马/米兰打车可以用"
+        },
+        {
+          "name": "TheFork",
+          "category": "food",
+          "icon": "🍝",
+          "description": "意大利餐厅预订，常有折扣",
+          "iosUrl": "https://apps.apple.com/app/thefork-restaurants-bookings/id424850498",
+          "androidUrl": "https://play.google.com/store/apps/details?id=com.lafourchette",
+          "priority": "recommended",
+          "tips": "热门餐厅建议提前在 TheFork 预订"
+        }
+      ]
+    },
+    "germany": {
+      "name": "德国 / Germany",
+      "aliases": ["德国", "germany", "柏林", "berlin", "慕尼黑", "munich", "法兰克福", "frankfurt", "汉堡", "hamburg"],
+      "apps": [
+        {
+          "name": "DB Navigator",
+          "category": "transport",
+          "icon": "🚄",
+          "description": "德铁官方 App，火车票购买与查询",
+          "iosUrl": "https://apps.apple.com/app/db-navigator/id343555245",
+          "androidUrl": "https://play.google.com/store/apps/details?id=de.hafas.android.db",
+          "priority": "must-have",
+          "tips": "购买 Sparpreis 特价票提前买最划算"
+        },
+        {
+          "name": "FlixBus",
+          "category": "transport",
+          "icon": "🚌",
+          "description": "欧洲长途巴士，价格实惠",
+          "iosUrl": "https://apps.apple.com/app/flixbus-smart-bus-travel/id778437357",
+          "androidUrl": "https://play.google.com/store/apps/details?id=de.flixbus.app",
+          "priority": "recommended",
+          "tips": "城际出行的廉价替代方案"
+        },
+        {
+          "name": "Bolt",
+          "category": "transport",
+          "icon": "⚡",
+          "description": "德国打车平台",
+          "iosUrl": "https://apps.apple.com/app/bolt-request-a-ride/id675033630",
+          "androidUrl": "https://play.google.com/store/apps/details?id=ee.mtakso.client",
+          "priority": "recommended",
+          "tips": "柏林/慕尼黑打车比较方便"
+        },
+        {
+          "name": "Too Good To Go",
+          "category": "food",
+          "icon": "🥡",
+          "description": "餐厅/面包店临期食品低价购买",
+          "iosUrl": "https://apps.apple.com/app/too-good-to-go-end-food-waste/id1060683933",
+          "androidUrl": "https://play.google.com/store/apps/details?id=com.app.tgtg",
+          "priority": "optional",
+          "tips": "用很低价格买到面包店/餐厅的食物，环保又省钱"
+        }
+      ]
+    },
+    "spain": {
+      "name": "西班牙 / Spain",
+      "aliases": ["西班牙", "spain", "巴塞罗那", "barcelona", "马德里", "madrid", "塞维利亚", "seville"],
+      "apps": [
+        {
+          "name": "Renfe",
+          "category": "transport",
+          "icon": "🚄",
+          "description": "西班牙国铁购票与查询",
+          "iosUrl": "https://apps.apple.com/app/renfe-tickets-and-schedules/id404533532",
+          "androidUrl": "https://play.google.com/store/apps/details?id=com.renfe.renfecercanias",
+          "priority": "must-have",
+          "tips": "AVE 高铁票提前 60 天买最便宜"
+        },
+        {
+          "name": "Cabify",
+          "category": "transport",
+          "icon": "🚕",
+          "description": "西班牙本土打车平台",
+          "iosUrl": "https://apps.apple.com/app/cabify/id476087442",
+          "androidUrl": "https://play.google.com/store/apps/details?id=com.cabify.rider",
+          "priority": "recommended",
+          "tips": "西班牙限制 Uber，Cabify 是更好的替代"
+        },
+        {
+          "name": "Glovo",
+          "category": "food",
+          "icon": "🛵",
+          "description": "西班牙外卖和跑腿平台",
+          "iosUrl": "https://apps.apple.com/app/glovo-delivery-from-any-store/id951812684",
+          "androidUrl": "https://play.google.com/store/apps/details?id=com.glovo",
+          "priority": "recommended",
+          "tips": "不只是外卖，还能代买超市/药店商品"
+        }
+      ]
+    },
+    "australia": {
+      "name": "澳大利亚 / Australia",
+      "aliases": ["澳大利亚", "澳洲", "australia", "悉尼", "sydney", "墨尔本", "melbourne"],
+      "apps": [
+        {
+          "name": "Uber",
+          "category": "transport",
+          "icon": "🚗",
+          "description": "澳洲打车首选",
+          "iosUrl": "https://apps.apple.com/app/uber-request-a-ride/id368677368",
+          "androidUrl": "https://play.google.com/store/apps/details?id=com.ubercab",
+          "priority": "must-have",
+          "tips": "澳洲出租车很贵，Uber 更经济"
+        },
+        {
+          "name": "Opal Travel",
+          "category": "transport",
+          "icon": "🚇",
+          "description": "悉尼公共交通 Opal 卡管理",
+          "iosUrl": "https://apps.apple.com/app/opal-travel/id941006607",
+          "androidUrl": "https://play.google.com/store/apps/details?id=au.com.opal.travel",
+          "priority": "recommended",
+          "tips": "悉尼出行可用信用卡/Apple Pay 直接刷"
+        },
+        {
+          "name": "Menulog",
+          "category": "food",
+          "icon": "🍔",
+          "description": "澳洲外卖平台",
+          "iosUrl": "https://apps.apple.com/app/menulog-online-food-delivery/id327982905",
+          "androidUrl": "https://play.google.com/store/apps/details?id=com.menulog.m",
+          "priority": "optional",
+          "tips": "和 UberEats 二选一"
+        }
+      ]
+    },
+    "uae": {
+      "name": "阿联酋 / UAE",
+      "aliases": ["阿联酋", "uae", "迪拜", "dubai", "阿布扎比", "abu dhabi"],
+      "apps": [
+        {
+          "name": "Careem",
+          "category": "transport",
+          "icon": "🚗",
+          "description": "中东最大打车平台（已被 Uber 收购）",
+          "iosUrl": "https://apps.apple.com/app/careem-rides-food-more/id592978487",
+          "androidUrl": "https://play.google.com/store/apps/details?id=com.careem.acma",
+          "priority": "must-have",
+          "tips": "迪拜出租车很规范，Careem/Uber 都好用"
+        },
+        {
+          "name": "RTA Dubai",
+          "category": "transport",
+          "icon": "🚇",
+          "description": "迪拜公共交通官方 App（地铁/公交/Nol卡）",
+          "iosUrl": "https://apps.apple.com/app/rta-dubai/id393585498",
+          "androidUrl": "https://play.google.com/store/apps/details?id=com.rta.dubai",
+          "priority": "recommended",
+          "tips": "迪拜地铁很方便，覆盖主要景点"
+        },
+        {
+          "name": "Talabat",
+          "category": "food",
+          "icon": "🥙",
+          "description": "中东外卖平台",
+          "iosUrl": "https://apps.apple.com/app/talabat-food-grocery-delivery/id436245895",
+          "androidUrl": "https://play.google.com/store/apps/details?id=com.talabat",
+          "priority": "recommended",
+          "tips": "迪拜外卖首选，餐厅选择丰富"
+        },
+        {
+          "name": "Zomato",
+          "category": "food",
+          "icon": "🍽️",
+          "description": "餐厅搜索与点评",
+          "iosUrl": "https://apps.apple.com/app/zomato-food-delivery-dining/id434613896",
+          "androidUrl": "https://play.google.com/store/apps/details?id=com.application.zomato",
+          "priority": "recommended",
+          "tips": "迪拜找餐厅用 Zomato 评分比较靠谱"
+        }
+      ]
+    },
+    "turkey": {
+      "name": "土耳其 / Turkey",
+      "aliases": ["土耳其", "turkey", "伊斯坦布尔", "istanbul", "卡帕多奇亚", "cappadocia", "安塔利亚", "antalya"],
+      "apps": [
+        {
+          "name": "BiTaksi",
+          "category": "transport",
+          "icon": "🚕",
+          "description": "土耳其本土打车平台",
+          "iosUrl": "https://apps.apple.com/app/bitaksi/id575623817",
+          "androidUrl": "https://play.google.com/store/apps/details?id=com.bitaksi.android.rider",
+          "priority": "must-have",
+          "tips": "伊斯坦布尔路边打车容易被宰，用 BiTaksi 更安全"
+        },
+        {
+          "name": "Uber Turkey",
+          "category": "transport",
+          "icon": "🚗",
+          "description": "Uber 在土耳其也可用",
+          "iosUrl": "https://apps.apple.com/app/uber-request-a-ride/id368677368",
+          "androidUrl": "https://play.google.com/store/apps/details?id=com.ubercab",
+          "priority": "recommended",
+          "tips": "Uber 在伊斯坦布尔恢复运营，可和 BiTaksi 比价"
+        },
+        {
+          "name": "İstanbul Kart",
+          "category": "transport",
+          "icon": "🚇",
+          "description": "伊斯坦布尔交通卡查询与充值",
+          "iosUrl": "https://apps.apple.com/app/istanbulkart/id1451530498",
+          "androidUrl": "https://play.google.com/store/apps/details?id=com.bfrk.istanbulkart",
+          "priority": "recommended",
+          "tips": "坐轮渡/地铁/公交都需要 İstanbul Kart"
+        },
+        {
+          "name": "Yemeksepeti",
+          "category": "food",
+          "icon": "🥘",
+          "description": "土耳其最大外卖平台",
+          "iosUrl": "https://apps.apple.com/app/yemeksepeti/id475706574",
+          "androidUrl": "https://play.google.com/store/apps/details?id=com.isinolsun.yemeksepeti",
+          "priority": "recommended",
+          "tips": "土耳其外卖首选，覆盖范围广"
+        }
+      ]
+    }
+  }
+}

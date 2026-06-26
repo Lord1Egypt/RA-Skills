@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Token Burn</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+  <!-- No external font loads — uses system fonts for zero network dependency -->
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    :root {
+      --bg-base: #050508;
+      --bg-card: rgba(16, 18, 27, 0.5);
+      --bg-card-hover: rgba(22, 25, 38, 0.7);
+      --border: rgba(255, 255, 255, 0.08);
+      --text-main: #f8f9fa;
+      --text-muted: #8b92a5;
+      --accent-cyan: #00f0ff;
+      --accent-purple: #bd00ff;
+      --accent-blue: #0057ff;
+      --accent-amber: #ffaa00;
+      --accent-green: #00ff88;
+      --accent-red: #ff4466;
+      --accent-coral: #ff6b6b;
+      --card-radius: 20px;
+    }
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background-color: var(--bg-base);
+      color: var(--text-main);
+      min-height: 100vh;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    .bg-canvas {
+      position: fixed; inset: 0; z-index: -1;
+      background: radial-gradient(circle at 15% 50%, rgba(20, 10, 40, 0.5), transparent 50%),
+                  radial-gradient(circle at 85% 30%, rgba(0, 40, 60, 0.6), transparent 50%);
+      background-color: var(--bg-base);
+    }
+
+    .bg-grid {
+      position: fixed; inset: 0; z-index: -1;
+      background-image: 
+        linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+      background-size: 40px 40px;
+      mask-image: radial-gradient(ellipse at center, black 20%, transparent 80%);
+    }
+
+    .glow-orb {
+      position: absolute; border-radius: 50%; filter: blur(120px); z-index: -1;
+      animation: float 20s infinite alternate;
+    }
+    .glow-orb.cyan { width: 40vw; height: 40vh; background: rgba(0, 240, 255, 0.15); top: 10%; left: -10%; }
+    .glow-orb.purple { width: 50vw; height: 50vh; background: rgba(189, 0, 255, 0.15); bottom: -10%; right: -10%; animation-delay: -5s; }
+
+    @keyframes float { 0% { transform: translate(0, 0) scale(1); } 100% { transform: translate(5%, 10%) scale(1.1); } }
+
+    .container { max-width: 1400px; margin: 0 auto; padding: 48px 32px; position: relative; }
+
+    header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 48px; }
+
+    .logo { display: flex; align-items: baseline; gap: 2px; }
+    .logo h1 {
+      font-size: 24px; font-weight: 300; letter-spacing: 2px; text-transform: uppercase;
+      color: var(--text-muted);
+    }
+    .logo h1 span {
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--accent-amber), var(--accent-coral));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+
+    .controls {
+      display: flex; align-items: center; gap: 16px;
+      background: rgba(10, 12, 18, 0.6); backdrop-filter: blur(20px);
+      border: 1px solid var(--border); border-radius: 100px; padding: 8px 20px;
+    }
+
+    input[type="date"] {
+      background: transparent; border: none; color: var(--text-main);
+      font-family: 'SF Mono', 'Cascadia Code', 'Fira Code', Menlo, Consolas, monospace; font-size: 13px; outline: none; cursor: pointer;
+    }
+    input[type="date"]::-webkit-calendar-picker-indicator { filter: invert(1); cursor: pointer; }
+
+    .status {
+      display: flex; align-items: center; gap: 8px; font-size: 12px;
+      color: var(--accent-cyan); font-family: 'SF Mono', 'Cascadia Code', 'Fira Code', Menlo, Consolas, monospace;
+      padding-left: 16px; border-left: 1px solid var(--border);
+    }
+    .status-dot {
+      width: 7px; height: 7px; background: var(--accent-cyan); border-radius: 50%;
+      box-shadow: 0 0 10px var(--accent-cyan); animation: blink 2s ease-in-out infinite;
+    }
+    @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+
+    .stats-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; margin-bottom: 48px; }
+    .stat-item {
+      background: var(--bg-card); backdrop-filter: blur(30px);
+      border: 1px solid var(--border); border-radius: var(--card-radius);
+    }
+    .stat-item.clickable {
+      cursor: pointer; transition: all 0.2s;
+    }
+    .stat-item.clickable:hover {
+      border-color: var(--accent-amber); transform: translateY(-4px);
+      box-shadow: 0 10px 30px rgba(255,170,0,0.2);
+      padding: 20px; display: flex; flex-direction: column; gap: 6px;
+      transition: transform 0.3s, border-color 0.3s;
+    }
+    .stat-item:hover { transform: translateY(-4px); border-color: rgba(255,255,255,0.15); }
+    .stat-item .label { font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--text-muted); }
+    .stat-item .value { font-family: 'SF Mono', 'Cascadia Code', 'Fira Code', Menlo, Consolas, monospace; font-size: 28px; font-weight: 700; }
+    .stat-item .value.amber { color: var(--accent-amber); }
+    .stat-item .value.green { color: var(--accent-green); }
+    .stat-item .value.blue { color: var(--accent-cyan); }
+
+    .section-title {
+      font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 2px;
+      color: var(--text-muted); margin-bottom: 20px;
+      display: flex; align-items: center; gap: 12px;
+    }
+    .section-title::after { content: ''; flex: 1; height: 1px; background: linear-gradient(90deg, var(--border), transparent); }
+
+    .agents-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(480px, 1fr)); gap: 20px; }
+
+    .agent-card {
+      background: var(--bg-card); backdrop-filter: blur(30px);
+      border: 1px solid var(--border); border-radius: var(--card-radius);
+      padding: 28px; cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    .agent-card:hover {
+      background: var(--bg-card-hover); transform: translateY(-6px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.4), 0 0 20px rgba(0,240,255,0.15);
+      border-color: rgba(0,240,255,0.3);
+    }
+    .agent-card.inactive { opacity: 0.4; filter: grayscale(100%); cursor: default; }
+    .agent-card.inactive:hover { transform: none; box-shadow: none; background: var(--bg-card); }
+
+    .agent-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px; }
+    .agent-info { display: flex; align-items: center; gap: 16px; }
+    .agent-avatar {
+      width: 56px; height: 56px; border-radius: 14px;
+      background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); overflow: hidden;
+    }
+    .agent-avatar img { width: 100%; height: 100%; object-fit: cover; }
+    .agent-avatar .initials {
+      width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;
+      font-size: 22px; font-weight: 700; color: #fff; text-transform: uppercase;
+    }
+    .agent-name { font-size: 20px; font-weight: 700; margin-bottom: 4px; }
+    .agent-meta { display: flex; gap: 6px; flex-wrap: wrap; }
+
+    .badge { font-size: 10px; font-family: 'SF Mono', 'Cascadia Code', 'Fira Code', Menlo, Consolas, monospace; padding: 3px 8px; background: rgba(255,255,255,0.05); border-radius: 6px; color: var(--text-muted); }
+
+    .has-tooltip { position: relative; cursor: help; }
+    .tooltip {
+      position: absolute; z-index: 100; padding: 10px 14px;
+      background: rgba(10,12,18,0.95); backdrop-filter: blur(10px);
+      border: 1px solid var(--border); border-radius: 10px;
+      font-size: 11px; white-space: nowrap;
+      opacity: 0; visibility: hidden; transition: all 0.15s;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+    .has-tooltip:hover .tooltip { opacity: 1; visibility: visible; }
+    .tooltip.bottom { top: 100%; left: 50%; transform: translateX(-50%); margin-top: 8px; }
+    .tooltip.top { bottom: 100%; left: 50%; transform: translateX(-50%); margin-bottom: 8px; }
+    .tooltip.left-align { left: 0; transform: none; }
+
+    .badge.time { color: var(--accent-cyan); background: rgba(0,240,255,0.08); }
+
+    .agent-cost-value {
+      font-family: 'SF Mono', 'Cascadia Code', 'Fira Code', Menlo, Consolas, monospace; font-size: 32px; font-weight: 700;
+      background: linear-gradient(180deg, #fff, var(--accent-amber));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+
+    .agent-metrics { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 16px; }
+    .metric { background: rgba(0,0,0,0.2); border-radius: 10px; padding: 10px 12px; }
+    .metric-header { display: flex; justify-content: space-between; margin-bottom: 4px; }
+    .metric-label { font-size: 9px; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text-muted); }
+    .metric-cost { font-family: 'SF Mono', 'Cascadia Code', 'Fira Code', Menlo, Consolas, monospace; font-size: 9px; color: var(--accent-amber); opacity: 0.8; }
+    .metric-value { font-family: 'SF Mono', 'Cascadia Code', 'Fira Code', Menlo, Consolas, monospace; font-size: 16px; font-weight: 600; }
+    .metric-value.blue { color: var(--accent-blue); }
+    .metric-value.green { color: var(--accent-green); }
+    .metric-value.purple { color: var(--accent-purple); }
+    .metric-value.amber { color: var(--accent-amber); }
+
+    .token-bar { height: 4px; background: rgba(255,255,255,0.05); border-radius: 2px; display: flex; overflow: hidden; margin-bottom: 16px; }
+    .token-bar-segment { height: 100%; }
+    .token-bar-segment.input { background: var(--accent-blue); }
+    .token-bar-segment.cache-read { background: var(--accent-green); }
+    .token-bar-segment.cache-write { background: var(--accent-purple); }
+    .token-bar-segment.output { background: var(--accent-amber); }
+
+    .agent-models { display: flex; gap: 8px; flex-wrap: wrap; padding-top: 14px; border-top: 1px dashed rgba(255,255,255,0.05); }
+    .model-tag { font-family: 'SF Mono', 'Cascadia Code', 'Fira Code', Menlo, Consolas, monospace; font-size: 10px; background: rgba(255,255,255,0.03); padding: 5px 10px; border-radius: 6px; color: #a0a5b5; }
+    .tooltip-row { display: flex; justify-content: space-between; gap: 16px; padding: 3px 0; color: var(--text-muted); }
+    .tooltip-row .val { color: var(--text-main); font-weight: 500; }
+
+    .cron-section { margin-top: 48px; }
+    .cron-agent-group { margin-bottom: 24px; }
+    .cron-agent-title {
+      font-size: 13px; font-weight: 600; color: var(--text-main); margin-bottom: 12px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .cron-agent-title .agent-badge { font-size: 10px; padding: 3px 10px; background: rgba(189,0,255,0.15); border-radius: 4px; color: var(--accent-purple); }
+
+    .cron-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 12px; }
+    .cron-card {
+      background: var(--bg-card); backdrop-filter: blur(20px);
+      border: 1px solid var(--border); border-radius: 14px; padding: 16px 20px;
+      cursor: pointer; transition: all 0.2s;
+    }
+    .cron-card:hover { background: var(--bg-card-hover); border-color: rgba(255,255,255,0.12); transform: translateY(-2px); }
+    .cron-card.disabled { opacity: 0.4; }
+
+    .cron-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px; }
+    .cron-name { font-weight: 600; font-size: 14px; }
+    .cron-status { font-size: 9px; text-transform: uppercase; letter-spacing: 0.5px; padding: 3px 8px; border-radius: 4px; }
+    .cron-status.active { background: rgba(0,255,136,0.15); color: var(--accent-green); }
+    .cron-status.error { background: rgba(255,68,102,0.15); color: var(--accent-red); }
+    .cron-status.disabled { background: rgba(255,255,255,0.05); color: var(--text-muted); }
+
+    .cron-brief { font-size: 12px; color: var(--text-muted); margin-bottom: 10px; }
+    .cron-meta { display: flex; gap: 12px; flex-wrap: wrap; font-size: 10px; font-family: 'SF Mono', 'Cascadia Code', 'Fira Code', Menlo, Consolas, monospace; color: var(--text-muted); }
+    .cron-meta span { display: flex; align-items: center; gap: 4px; }
+    .cron-meta .schedule { color: var(--accent-cyan); }
+    .cron-meta .last-run { color: var(--accent-amber); }
+    .cron-meta .trigger { color: var(--accent-purple); font-size: 9px; }
+
+    .modal-overlay {
+      position: fixed; inset: 0; background: rgba(0,0,0,0.7); backdrop-filter: blur(15px);
+      display: none; align-items: center; justify-content: center; z-index: 1000; padding: 32px;
+    }
+    .modal-overlay.active { display: flex; }
+
+    .modal {
+      background: rgba(12,12,16,0.95); border: 1px solid var(--border);
+      border-radius: var(--card-radius); width: 100%; max-width: 1000px; max-height: 85vh;
+      display: flex; flex-direction: column; box-shadow: 0 30px 60px rgba(0,0,0,0.8);
+    }
+
+    .modal-header {
+      padding: 20px 28px; border-bottom: 1px solid rgba(255,255,255,0.05);
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .modal-title { font-size: 18px; font-weight: 600; display: flex; align-items: center; gap: 10px; }
+    .modal-title::before { content: ''; width: 3px; height: 18px; background: var(--accent-cyan); border-radius: 2px; }
+    .modal-close { background: transparent; border: none; color: var(--text-muted); font-size: 24px; cursor: pointer; }
+    .modal-close:hover { color: #fff; }
+
+    .modal-body { padding: 0; overflow-y: auto; flex: 1; }
+
+    .breakdown-table { width: 100%; border-collapse: collapse; text-align: left; }
+    .breakdown-table th {
+      padding: 14px 24px; font-size: 10px; text-transform: uppercase; letter-spacing: 1.5px;
+      color: var(--text-muted); background: rgba(0,0,0,0.4); position: sticky; top: 0; z-index: 10;
+    }
+    .breakdown-table td { padding: 12px 24px; border-bottom: 1px solid rgba(255,255,255,0.03); font-size: 12px; }
+    .breakdown-table tbody tr:hover { background: rgba(255,255,255,0.02); }
+    
+    /* High cost highlight */
+    .breakdown-table tbody tr.high-cost { background: rgba(255,107,107,0.08); }
+    .breakdown-table tbody tr.high-cost:hover { background: rgba(255,107,107,0.12); }
+    .cost-cell.high { color: var(--accent-coral); text-shadow: 0 0 10px rgba(255,107,107,0.5); }
+
+    /* History table */
+    .history-row { cursor: pointer; }
+    .history-row:hover { background: rgba(255,255,255,0.04); }
+    .expand-icon { width: 20px; color: var(--text-muted); font-size: 10px; }
+    .agent-subrow { background: rgba(0,0,0,0.2); }
+    .agent-subrow td { padding-left: 32px; }
+    .agent-name-cell { display: flex; align-items: center; gap: 8px; color: var(--text-main); }
+    .mini-avatar { width: 20px; height: 20px; border-radius: 4px; }
+
+    .time { font-family: 'SF Mono', 'Cascadia Code', 'Fira Code', Menlo, Consolas, monospace; color: var(--text-muted); }
+    .model-cell { font-family: 'SF Mono', 'Cascadia Code', 'Fira Code', Menlo, Consolas, monospace; color: var(--accent-cyan); }
+    .tokens { font-family: 'SF Mono', 'Cascadia Code', 'Fira Code', Menlo, Consolas, monospace; }
+    .cost-cell { font-family: 'SF Mono', 'Cascadia Code', 'Fira Code', Menlo, Consolas, monospace; color: var(--accent-amber); font-weight: 600; }
+
+    .dist-cell { position: relative; }
+    .mini-bar { display: flex; height: 4px; width: 100px; background: rgba(255,255,255,0.05); border-radius: 2px; overflow: hidden; cursor: help; }
+    .dist-tooltip { position: absolute; left: 0; top: 100%; margin-top: 8px; }
+    .dist-row { display: flex; justify-content: space-between; gap: 20px; padding: 3px 0; }
+    .dist-row .label { display: flex; align-items: center; gap: 6px; color: var(--text-muted); }
+    .dist-row .dot { width: 6px; height: 6px; border-radius: 2px; }
+    .dist-row .tk { color: var(--text-main); font-family: 'SF Mono', 'Cascadia Code', 'Fira Code', Menlo, Consolas, monospace; }
+    .dist-row .ct { color: var(--accent-amber); font-family: 'SF Mono', 'Cascadia Code', 'Fira Code', Menlo, Consolas, monospace; }
+
+    .tools-cell { position: relative; }
+    .tools-badge {
+      font-family: 'SF Mono', 'Cascadia Code', 'Fira Code', Menlo, Consolas, monospace; font-size: 11px;
+      padding: 3px 8px; background: rgba(0,87,255,0.1); border-radius: 4px; color: var(--accent-blue); cursor: help;
+    }
+    .tools-tooltip ul { list-style: none; font-family: 'SF Mono', 'Cascadia Code', 'Fira Code', Menlo, Consolas, monospace; color: var(--text-muted); }
+    .tools-tooltip li { padding: 2px 0; }
+
+    /* Expandable prompt rows */
+    .breakdown-table tbody tr.expandable { cursor: pointer; }
+    .breakdown-table tbody tr.expandable:hover { background: rgba(255,255,255,0.04); }
+    .expand-arrow { display: inline-block; width: 14px; font-size: 9px; color: var(--text-muted); transition: transform 0.2s; }
+    .expand-arrow.open { transform: rotate(90deg); }
+    .prompt-row { display: none; }
+    .prompt-row.open { display: table-row; }
+    .prompt-row td {
+      padding: 10px 24px 14px 38px !important;
+      border-bottom: 1px solid rgba(255,255,255,0.06) !important;
+      background: rgba(0,240,255,0.02);
+    }
+    .prompt-text {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 13px; line-height: 1.5;
+      color: var(--text-muted); white-space: pre-wrap; word-break: break-word;
+      max-width: 800px;
+    }
+    .prompt-label {
+      font-size: 9px; text-transform: uppercase; letter-spacing: 1px;
+      color: var(--accent-cyan); margin-bottom: 4px; opacity: 0.7;
+    }
+
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: rgba(0,0,0,0.2); }
+    ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 3px; }
+
+    .empty-state { padding: 40px; text-align: center; color: var(--text-muted); }
+
+    @media (max-width: 1024px) {
+      .agents-grid { grid-template-columns: 1fr; }
+      .agent-metrics { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-canvas">
+    <div class="bg-grid"></div>
+    <div class="glow-orb cyan"></div>
+    <div class="glow-orb purple"></div>
+  </div>
+
+  <div class="container">
+    <header>
+      <div class="logo">
+        <h1>token<span>burn</span></h1>
+      </div>
+      <div class="controls">
+        <input type="date" id="datePicker" />
+        <div class="status">
+          <div class="status-dot"></div>
+          <span id="lastUpdate">Live</span>
+        </div>
+      </div>
+    </header>
+    
+    <div class="stats-row" id="statsRow"></div>
+    
+    <section>
+      <div class="section-title">Active Agents</div>
+      <div class="agents-grid" id="agentsGrid"></div>
+    </section>
+
+    <section class="cron-section">
+      <div class="section-title">Scheduled Jobs</div>
+      <div id="cronsContainer"></div>
+    </section>
+  </div>
+  
+  <div class="modal-overlay" id="modal">
+    <div class="modal">
+      <div class="modal-header">
+        <div class="modal-title" id="modalTitle">Breakdown</div>
+        <button class="modal-close" onclick="closeModal()">×</button>
+      </div>
+      <div class="modal-body" id="modalBody"></div>
+    </div>
+  </div>
+
+  <script>
+    const API = '/api';
+    let currentDate = new Date().toISOString().split('T')[0];
+    let pricingData = {};
+    
+    const IGNORED_MODELS = ['delivery-mirror', 'mirror', 'internal'];
+    const HIGH_COST_THRESHOLD = 1.0; // $1
+    
+    let AGENTS = {}; // Loaded from /api/config
+    
+    // Generate a deterministic color from agent ID
+    function agentColor(id) {
+      let hash = 0;
+      for (let i = 0; i < id.length; i++) hash = id.charCodeAt(i) + ((hash << 5) - hash);
+      const hue = Math.abs(hash) % 360;
+      return `hsl(${hue}, 60%, 50%)`;
+    }
+    
+    const fmt = n => n.toLocaleString('en-US');
+    const fmtK = n => n >= 1000000 ? (n/1000000).toFixed(1) + 'M' : n >= 1000 ? (n/1000).toFixed(1) + 'K' : n;
+    const fmtCost = n => '$' + n.toFixed(2);
+    const fmtCostDetail = n => '$' + n.toFixed(4);
+    
+    function toCST(ts) {
+      return new Date(ts).toLocaleString('zh-CN', { 
+        timeZone: 'Asia/Shanghai', hour12: false,
+        hour: '2-digit', minute: '2-digit', second: '2-digit'
+      });
+    }
+    
+    function toFullCST(ts) {
+      if (!ts) return '';
+      return new Date(ts).toLocaleString('zh-CN', {
+        timeZone: 'Asia/Shanghai', hour12: false,
+        year: 'numeric', month: '2-digit', day: '2-digit',
+        hour: '2-digit', minute: '2-digit', second: '2-digit'
+      }) + ' (UTC+8)';
+    }
+    
+    function formatLastActive(ts) {
+      if (!ts) return { display: 'Never', full: '' };
+      const d = new Date(ts);
+      const now = new Date();
+      const diffMs = now - d;
+      const diffMins = Math.floor(diffMs / 60000);
+      
+      let display;
+      if (diffMins < 1) display = 'Just now';
+      else if (diffMins < 60) display = `${diffMins}m ago`;
+      else {
+        const diffHours = Math.floor(diffMins / 60);
+        if (diffHours < 24) display = `${diffHours}h ago`;
+        else display = d.toLocaleString('zh-CN', { 
+          timeZone: 'Asia/Shanghai', hour12: false,
+          month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit'
+        });
+      }
+      return { display, full: toFullCST(ts) };
+    }
+    
+    function filterModels(models) {
+      const filtered = {};
+      for (const [m, d] of Object.entries(models || {})) {
+        if (!IGNORED_MODELS.some(ig => m.toLowerCase().includes(ig))) {
+          filtered[m] = d;
+        }
+      }
+      return filtered;
+    }
+    
+    function renderStats(totals) {
+      document.getElementById('statsRow').innerHTML = `
+        <div class="stat-item"><span class="label">Tokens</span><span class="value">${fmtK(totals.totalTokens)}</span></div>
+        <div class="stat-item"><span class="label">Queries</span><span class="value blue">${fmt(totals.queryCount || 0)}</span></div>
+        <div class="stat-item"><span class="label">Messages</span><span class="value">${fmt(totals.messageCount)}</span></div>
+        <div class="stat-item"><span class="label">Cache Hit</span><span class="value green">${fmtK(totals.cacheReadTokens)}</span></div>
+        <div class="stat-item clickable" onclick="showHistory()" title="Click to view history">
+          <span class="label">Cost</span><span class="value amber">${fmtCost(totals.totalCost)}</span>
+        </div>
+      `;
+    }
+    
+    function getTokenBarWidths(a) {
+      const total = a.inputTokens + a.cacheReadTokens + a.cacheWriteTokens + a.outputTokens;
+      if (total === 0) return { input: 0, cacheRead: 0, cacheWrite: 0, output: 0 };
+      return {
+        input: (a.inputTokens / total * 100).toFixed(1),
+        cacheRead: (a.cacheReadTokens / total * 100).toFixed(1),
+        cacheWrite: (a.cacheWriteTokens / total * 100).toFixed(1),
+        output: (a.outputTokens / total * 100).toFixed(1)
+      };
+    }
+    
+    function renderAgents(agents) {
+      const sorted = Object.entries(agents).sort((a, b) => b[1].totalCost - a[1].totalCost);
+      
+      document.getElementById('agentsGrid').innerHTML = sorted.map(([id, agent]) => {
+        const cfg = AGENTS[id] || { name: id };
+        const inactive = agent.messageCount === 0;
+        const status = agent.latestStatus;
+        const widths = getTokenBarWidths(agent);
+        
+        const models = filterModels(agent.models);
+        const sortedModels = Object.entries(models).sort((a, b) => b[1].cost - a[1].cost);
+        
+        const lastActive = status?.lastTimestamp;
+        const lastActiveInfo = formatLastActive(lastActive);
+        
+        const inputCost = agent.inputCost || 0;
+        const cacheReadCost = agent.cacheReadCost || 0;
+        const cacheWriteCost = agent.cacheWriteCost || 0;
+        const outputCost = agent.outputCost || 0;
+        
+        return `
+          <div class="agent-card ${inactive ? 'inactive' : ''}" ${inactive ? '' : `onclick="showBreakdown('${id}')"`}>
+            <div class="agent-header">
+              <div class="agent-info">
+                <div class="agent-avatar">
+                  ${cfg.icon ? `<img src="${cfg.icon}" alt="${cfg.name}" onerror="this.outerHTML='<div class=\\'initials\\' style=\\'background:${agentColor(id)}\\'>${(cfg.name||id)[0]}</div>'">` : `<div class="initials" style="background:${agentColor(id)}">${(cfg.name||id)[0]}</div>`}
+                </div>
+                <div>
+                  <div class="agent-name">${cfg.name}</div>
+                  <div class="agent-meta">
+                    ${status ? `<span class="badge">ctx ${fmtK(status.contextLength)}</span><span class="badge">cache ${status.cacheHitRate}%</span>` : ''}
+                    <span class="badge time has-tooltip">
+                      ${lastActiveInfo.display}
+                      ${lastActiveInfo.full ? `<span class="tooltip top">${lastActiveInfo.full}</span>` : ''}
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <div class="agent-cost"><div class="agent-cost-value">${fmtCost(agent.totalCost)}</div></div>
+            </div>
+            
+            ${!inactive ? `
+              <div class="agent-metrics">
+                <div class="metric"><div class="metric-header"><span class="metric-label">Input</span><span class="metric-cost">${fmtCostDetail(inputCost)}</span></div><div class="metric-value blue">${fmtK(agent.inputTokens)}</div></div>
+                <div class="metric"><div class="metric-header"><span class="metric-label">Cache R</span><span class="metric-cost">${fmtCostDetail(cacheReadCost)}</span></div><div class="metric-value green">${fmtK(agent.cacheReadTokens)}</div></div>
+                <div class="metric"><div class="metric-header"><span class="metric-label">Cache W</span><span class="metric-cost">${fmtCostDetail(cacheWriteCost)}</span></div><div class="metric-value purple">${fmtK(agent.cacheWriteTokens)}</div></div>
+                <div class="metric"><div class="metric-header"><span class="metric-label">Output</span><span class="metric-cost">${fmtCostDetail(outputCost)}</span></div><div class="metric-value amber">${fmtK(agent.outputTokens)}</div></div>
+              </div>
+              <div class="token-bar">
+                <div class="token-bar-segment input" style="width:${widths.input}%"></div>
+                <div class="token-bar-segment cache-read" style="width:${widths.cacheRead}%"></div>
+                <div class="token-bar-segment cache-write" style="width:${widths.cacheWrite}%"></div>
+                <div class="token-bar-segment output" style="width:${widths.output}%"></div>
+              </div>
+              ${sortedModels.length > 0 ? `
+                <div class="agent-models">
+                  ${sortedModels.map(([m, d]) => {
+                    const p = pricingData[m] || pricingData['default'] || {};
+                    return `
+                      <span class="model-tag has-tooltip">
+                        ${m.split('/').pop()}: ${fmtCost(d.cost)}
+                        <span class="tooltip top">
+                          <div class="tooltip-row"><span>Input</span><span class="val">$${p.input || '?'}/M</span></div>
+                          <div class="tooltip-row"><span>Output</span><span class="val">$${p.output || '?'}/M</span></div>
+                          <div class="tooltip-row"><span>Cache Read</span><span class="val">$${p.cacheRead || '?'}/M</span></div>
+                          <div class="tooltip-row"><span>Cache Write</span><span class="val">$${p.cacheWrite || '?'}/M</span></div>
+                        </span>
+                      </span>
+                    `;
+                  }).join('')}
+                </div>
+              ` : ''}
+            ` : `<div class="empty-state" style="padding:16px 0; text-align:left;">Offline / No activity today</div>`}
+          </div>
+        `;
+      }).join('');
+    }
+    
+    function renderCrons(data) {
+      const container = document.getElementById('cronsContainer');
+      if (!data.byAgent || Object.keys(data.byAgent).length === 0) {
+        container.innerHTML = '<div class="empty-state">No scheduled jobs</div>';
+        return;
+      }
+      
+      container.innerHTML = Object.entries(data.byAgent).map(([agentId, jobs]) => {
+        const cfg = AGENTS[agentId] || { name: agentId };
+        return `
+          <div class="cron-agent-group">
+            <div class="cron-agent-title">
+              ${cfg.name}
+              <span class="agent-badge">${jobs.length} jobs</span>
+            </div>
+            <div class="cron-grid">
+              ${jobs.map(job => {
+                const statusClass = !job.enabled ? 'disabled' : (job.consecutiveErrors > 0 ? 'error' : 'active');
+                const statusText = !job.enabled ? 'Disabled' : (job.consecutiveErrors > 0 ? 'Error' : 'Active');
+                const lastRunInfo = formatLastActive(job.lastRunAt);
+                const showTrigger = job.triggerAgent && job.triggerAgent !== agentId;
+                return `
+                  <div class="cron-card ${!job.enabled ? 'disabled' : ''}" onclick="showCronRuns('${job.id}', '${job.name}')">
+                    <div class="cron-header">
+                      <div class="cron-name">${job.name || 'Unnamed'}</div>
+                      <span class="cron-status ${statusClass}">${statusText}</span>
+                    </div>
+                    <div class="cron-brief">${job.brief}</div>
+                    <div class="cron-meta">
+                      <span class="schedule has-tooltip">⏰ ${job.scheduleHuman}<span class="tooltip bottom left-align">${job.scheduleRaw}</span></span>
+                      <span>📍 ${job.sessionTarget}</span>
+                      ${showTrigger ? `<span class="trigger">← ${AGENTS[job.triggerAgent]?.name || job.triggerAgent}</span>` : ''}
+                      ${job.lastRunAt ? `<span class="last-run has-tooltip">🕐 ${lastRunInfo.display}<span class="tooltip bottom left-align">${lastRunInfo.full}</span></span>` : ''}
+                      ${job.lastDurationMs ? `<span>⚡ ${(job.lastDurationMs/1000).toFixed(1)}s</span>` : ''}
+                    </div>
+                  </div>
+                `;
+              }).join('')}
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+    
+    async function showBreakdown(agentId) {
+      const cfg = AGENTS[agentId] || { name: agentId };
+      document.getElementById('modalTitle').textContent = `${cfg.name} Breakdown`;
+      document.getElementById('modalBody').innerHTML = '<div class="empty-state">Loading...</div>';
+      document.getElementById('modal').classList.add('active');
+      
+      try {
+        const res = await fetch(`${API}/agent/${agentId}?date=${currentDate}`);
+        const data = await res.json();
+        
+        const messages = (data.messages || []).filter(m => 
+          !IGNORED_MODELS.some(ig => (m.model || '').toLowerCase().includes(ig))
+        );
+        
+        if (messages.length === 0) {
+          document.getElementById('modalBody').innerHTML = '<div class="empty-state">No data</div>';
+          return;
+        }
+        
+        document.getElementById('modalBody').innerHTML = `
+          <table class="breakdown-table">
+            <thead><tr><th>Time</th><th>Model</th><th>Tokens</th><th>Distribution</th><th>Tools</th><th>Cost</th></tr></thead>
+            <tbody>
+              ${messages.map((m, idx) => {
+                const total = (m.input||0) + (m.cacheRead||0) + (m.cacheWrite||0) + (m.output||0);
+                const iW = total > 0 ? (m.input / total * 100) : 0;
+                const crW = total > 0 ? (m.cacheRead / total * 100) : 0;
+                const cwW = total > 0 ? (m.cacheWrite / total * 100) : 0;
+                const oW = total > 0 ? (m.output / total * 100) : 0;
+                
+                const iC = m.inputCost || 0;
+                const crC = m.cacheReadCost || 0;
+                const cwC = m.cacheWriteCost || 0;
+                const oC = m.outputCost || 0;
+                const cost = m.cost || 0;
+                const isHighCost = cost >= HIGH_COST_THRESHOLD;
+                
+                const tools = m.toolNames || [];
+                const hasPrompt = !!m.userPrompt;
+                const escapedPrompt = hasPrompt ? m.userPrompt.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;') : '';
+                
+                return `
+                  <tr class="${isHighCost ? 'high-cost' : ''} ${hasPrompt ? 'expandable' : ''}" ${hasPrompt ? `onclick="togglePrompt(${idx})"` : ''}>
+                    <td class="time">${hasPrompt ? `<span class="expand-arrow" id="arrow-${idx}">▶</span>` : '<span style="width:14px;display:inline-block"></span>'}${toCST(m.timestamp)}</td>
+                    <td class="model-cell">${(m.model||'?').split('/').pop()}</td>
+                    <td class="tokens">${fmt(m.totalTokens||0)}</td>
+                    <td class="dist-cell has-tooltip">
+                      <div class="mini-bar">
+                        <div class="token-bar-segment input" style="width:${iW}%"></div>
+                        <div class="token-bar-segment cache-read" style="width:${crW}%"></div>
+                        <div class="token-bar-segment cache-write" style="width:${cwW}%"></div>
+                        <div class="token-bar-segment output" style="width:${oW}%"></div>
+                      </div>
+                      <div class="tooltip dist-tooltip bottom left-align">
+                        <div class="dist-row"><span class="label"><span class="dot" style="background:var(--accent-blue)"></span>Input</span><span class="tk">${fmt(m.input||0)}</span><span class="ct">${fmtCostDetail(iC)}</span></div>
+                        <div class="dist-row"><span class="label"><span class="dot" style="background:var(--accent-green)"></span>Cache R</span><span class="tk">${fmt(m.cacheRead||0)}</span><span class="ct">${fmtCostDetail(crC)}</span></div>
+                        <div class="dist-row"><span class="label"><span class="dot" style="background:var(--accent-purple)"></span>Cache W</span><span class="tk">${fmt(m.cacheWrite||0)}</span><span class="ct">${fmtCostDetail(cwC)}</span></div>
+                        <div class="dist-row"><span class="label"><span class="dot" style="background:var(--accent-amber)"></span>Output</span><span class="tk">${fmt(m.output||0)}</span><span class="ct">${fmtCostDetail(oC)}</span></div>
+                      </div>
+                    </td>
+                    <td class="tools-cell ${tools.length > 0 ? 'has-tooltip' : ''}">
+                      <span class="tools-badge">${m.toolCallCount||0}</span>
+                      ${tools.length > 0 ? `<div class="tooltip tools-tooltip bottom left-align"><ul>${tools.map(t => `<li>${t}</li>`).join('')}</ul></div>` : ''}
+                    </td>
+                    <td class="cost-cell ${isHighCost ? 'high' : ''}">${fmtCostDetail(cost)}</td>
+                  </tr>
+                  ${hasPrompt ? `<tr class="prompt-row" id="prompt-${idx}"><td colspan="6"><div class="prompt-label">Trigger Prompt</div><div class="prompt-text">${escapedPrompt}</div></td></tr>` : ''}
+                `;
+              }).join('')}
+            </tbody>
+          </table>
+        `;
+      } catch (e) {
+        document.getElementById('modalBody').innerHTML = `<div class="empty-state">Error: ${e.message}</div>`;
+      }
+    }
+    
+    let historyData = null;
+    let expandedDates = new Set();
+    
+    async function showHistory() {
+      document.getElementById('modalTitle').textContent = 'Cost History (Last 30 Days)';
+      document.getElementById('modalBody').innerHTML = '<div class="empty-state">Loading...</div>';
+      document.getElementById('modal').classList.add('active');
+      
+      try {
+        const res = await fetch(`${API}/history?days=30`);
+        const data = await res.json();
+        historyData = data.history || [];
+        expandedDates.clear();
+        
+        if (historyData.length === 0) {
+          document.getElementById('modalBody').innerHTML = '<div class="empty-state">No history data</div>';
+          return;
+        }
+        
+        renderHistoryTable();
+      } catch (e) {
+        document.getElementById('modalBody').innerHTML = `<div class="empty-state">Error: ${e.message}</div>`;
+      }
+    }
+    
+    function toggleDateExpand(date) {
+      if (expandedDates.has(date)) {
+        expandedDates.delete(date);
+      } else {
+        expandedDates.add(date);
+      }
+      renderHistoryTable();
+    }
+    
+    function renderHistoryTable() {
+      let html = `
+        <table class="breakdown-table">
+          <thead><tr><th></th><th>Date</th><th>Messages</th><th>Tokens</th><th>Cost</th></tr></thead>
+          <tbody>
+      `;
+      
+      for (const day of historyData) {
+        const isExpanded = expandedDates.has(day.date);
+        const isHighCost = day.totalCost >= HIGH_COST_THRESHOLD;
+        
+        html += `
+          <tr class="history-row ${isHighCost ? 'high-cost' : ''}" onclick="toggleDateExpand('${day.date}')">
+            <td class="expand-icon">${isExpanded ? '▼' : '▶'}</td>
+            <td class="time">${day.date}</td>
+            <td class="tokens">${fmt(day.messageCount)}</td>
+            <td class="tokens">${fmtK(day.totalTokens)}</td>
+            <td class="cost-cell ${isHighCost ? 'high' : ''}">${fmtCost(day.totalCost)}</td>
+          </tr>
+        `;
+        
+        if (isExpanded && day.agents) {
+          const sortedAgents = Object.entries(day.agents)
+            .filter(([_, a]) => a.totalCost > 0 || a.messageCount > 0)
+            .sort((a, b) => b[1].totalCost - a[1].totalCost);
+          
+          for (const [agentId, agent] of sortedAgents) {
+            const cfg = AGENTS[agentId] || { name: agentId };
+            html += `
+              <tr class="agent-subrow">
+                <td></td>
+                <td class="agent-name-cell">
+                  ${cfg.icon ? `<img src="${cfg.icon}" class="mini-avatar" onerror="this.outerHTML='<span class=\\'mini-avatar\\' style=\\'display:inline-flex;align-items:center;justify-content:center;background:${agentColor(agentId)};color:#fff;font-size:10px;font-weight:700;border-radius:4px\\'>${(cfg.name||agentId)[0]}</span>'">` : `<span class="mini-avatar" style="display:inline-flex;align-items:center;justify-content:center;background:${agentColor(agentId)};color:#fff;font-size:10px;font-weight:700;border-radius:4px">${(cfg.name||agentId)[0]}</span>`}
+                  ${cfg.name}
+                </td>
+                <td class="tokens">${fmt(agent.messageCount || 0)}</td>
+                <td class="tokens">${fmtK(agent.totalTokens || 0)}</td>
+                <td class="cost-cell">${fmtCost(agent.totalCost || 0)}</td>
+              </tr>
+            `;
+          }
+        }
+      }
+      
+      html += '</tbody></table>';
+      document.getElementById('modalBody').innerHTML = html;
+    }
+
+    async function showCronRuns(jobId, jobName) {
+      document.getElementById('modalTitle').textContent = `${jobName} — Run History`;
+      document.getElementById('modalBody').innerHTML = '<div class="empty-state">Loading...</div>';
+      document.getElementById('modal').classList.add('active');
+      
+      try {
+        const res = await fetch(`${API}/cron/${jobId}/runs`);
+        const data = await res.json();
+        const runs = data.runs || [];
+        
+        if (runs.length === 0) {
+          document.getElementById('modalBody').innerHTML = '<div class="empty-state">No run history available</div>';
+          return;
+        }
+        
+        document.getElementById('modalBody').innerHTML = `
+          <table class="breakdown-table">
+            <thead><tr><th>Time</th><th>Status</th><th>Duration</th><th>Next Run</th></tr></thead>
+            <tbody>
+              ${runs.map(r => `
+                <tr>
+                  <td class="time">${toFullCST(r.runAtMs)}</td>
+                  <td><span class="cron-status ${r.status === 'ok' ? 'active' : 'error'}">${r.status}</span></td>
+                  <td class="tokens">${r.durationMs ? (r.durationMs/1000).toFixed(1) + 's' : '-'}</td>
+                  <td class="time">${r.nextRunAtMs ? toFullCST(r.nextRunAtMs) : '-'}</td>
+                </tr>
+              `).join('')}
+            </tbody>
+          </table>
+        `;
+      } catch (e) {
+        document.getElementById('modalBody').innerHTML = `<div class="empty-state">Error: ${e.message}</div>`;
+      }
+    }
+    
+    function togglePrompt(idx) {
+      const row = document.getElementById(`prompt-${idx}`);
+      const arrow = document.getElementById(`arrow-${idx}`);
+      if (!row) return;
+      row.classList.toggle('open');
+      if (arrow) arrow.classList.toggle('open');
+    }
+    
+    function closeModal() { document.getElementById('modal').classList.remove('active'); }
+    document.getElementById('modal').addEventListener('click', e => { if (e.target.id === 'modal') closeModal(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+    
+    let configLoaded = false;
+    
+    async function fetchData() {
+      try {
+        // Load config + pricing on first call
+        if (!configLoaded) {
+          const [cfgRes, pRes] = await Promise.all([
+            fetch(`${API}/config`),
+            fetch(`${API}/pricing`)
+          ]);
+          if (cfgRes.ok) {
+            const cfg = await cfgRes.json();
+            AGENTS = {};
+            for (const [id, a] of Object.entries(cfg.agents || {})) {
+              AGENTS[id] = { name: a.name || id, icon: a.icon || null };
+            }
+          }
+          if (pRes.ok) pricingData = await pRes.json();
+          configLoaded = true;
+        }
+        
+        const [statsRes, cronsRes] = await Promise.all([
+          fetch(`${API}/stats?date=${currentDate}`),
+          fetch(`${API}/crons`)
+        ]);
+        
+        const stats = await statsRes.json();
+        renderStats(stats.totals);
+        renderAgents(stats.agents);
+        
+        if (cronsRes.ok) {
+          const crons = await cronsRes.json();
+          renderCrons(crons);
+        }
+        
+        document.getElementById('lastUpdate').textContent = new Date().toLocaleTimeString('en-US', { hour12: false });
+      } catch (e) {
+        console.error(e);
+      }
+    }
+    
+    document.getElementById('datePicker').value = currentDate;
+    document.getElementById('datePicker').addEventListener('change', e => {
+      currentDate = e.target.value;
+      fetchData();
+    });
+    
+    fetchData();
+    setInterval(fetchData, 30000);
+  </script>
+</body>
+</html>

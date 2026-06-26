@@ -1,35 +1,14 @@
----
-name: "Thor Generator"
-description: "Generate high-quality images locally using the ComfyUI Thor pipeline from user-provided text prompts."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/thor-generator"
-sourceUrl: "https://clawhub.ai/skills/thor-generator"
----
+# Thor Image Generation Skill
 
-# Thor Generator
+This skill allows the assistant to generate high-quality images using the local ComfyUI "Thor" pipeline.
 
-> Generate high-quality images locally using the ComfyUI Thor pipeline from user-provided text prompts.
+## System Capabilities
+- **Model:** ComfyUI / Thor
+- **Input:** String (Prompt)
+- **Output:** Image file saved to `~/Desktop/bring_img`
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/thor-generator`
-- **Source URL:** [https://clawhub.ai/skills/thor-generator](https://clawhub.ai/skills/thor-generator)
+## Execution Protocol
+When the user asks to generate an image, the assistant MUST execute the following command via the `exec` tool:
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/thor-generator
-```
+cd ~/ComfyUI && source venv/bin/activate && python3 thor_generate_image.py "{{prompt}}" ~/Desktop/bring_img

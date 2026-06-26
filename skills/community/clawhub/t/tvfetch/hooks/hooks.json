@@ -1,0 +1,10 @@
+{
+  "hooks": [
+    {
+      "event": "SessionStart",
+      "command": "bash ${CLAUDE_SKILL_DIR}/hooks/scripts/check-config.sh",
+      "description": "Validate tvfetch configuration on session start",
+      "timeout": 10
+    }
+  ]
+}

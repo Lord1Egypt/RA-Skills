@@ -1,35 +1,270 @@
 ---
-name: "科技新闻日报"
-description: "科技新闻日报技能。每日科技新闻热榜整理与报告生成。当用户说"科技新闻日报"、"整理今日科技新闻"、"生成科技新闻热榜"、"tech-news-daily"、"TechNews-Daily-Report"或类似表达时触发。功能包括：(1) 使用 Tavily 搜索引擎近7天科技/AI 新闻进行搜索；(2) 按相关度..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/tech-news-daily-cn"
-sourceUrl: "https://clawhub.ai/skills/tech-news-daily-cn"
+name: tech-news-daily
+version: 0.2.4
+description: 科技新闻日报技能。每日科技新闻热榜整理与报告生成。当用户说"科技新闻日报"、"整理今日科技新闻"、"生成科技新闻热榜"、"tech-news-daily"、"TechNews-Daily-Report"或类似表达时触发。功能包括：(1) 使用 Tavily 搜索引擎近7天科技/AI 新闻进行搜索；(2) 按相关度和推荐度评分整理；(3) 自动写入本地 markdown 文件；(4) 同步创建飞书文档到个人知识库；(5) 直接发送报告到飞书群。
 ---
 
-# 科技新闻日报
+# 科技新闻日报 | Tech News Daily
 
-> 科技新闻日报技能。每日科技新闻热榜整理与报告生成。当用户说"科技新闻日报"、"整理今日科技新闻"、"生成科技新闻热榜"、"tech-news-daily"、"TechNews-Daily-Report"或类似表达时触发。功能包括：(1) 使用 Tavily 搜索引擎近7天科技/AI 新闻进行搜索；(2) 按相关度...
+> **版本：** 0.2.4（进度 checkpoint + 可靠超时补救）
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/tech-news-daily-cn`
-- **Source URL:** [https://clawhub.ai/skills/tech-news-daily-cn](https://clawhub.ai/skills/tech-news-daily-cn)
+## 概述
 
-## Overview
+> **ClawHub slug：** `TechNews-Daily-Report`
 
+按日收集、整理并生成科技新闻热榜报告，包含相关度评分、推荐度评分、来源链接，自动同步到本地文件和飞书文档。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/tech-news-daily-cn
+---
+
+## 工作流程
+
+### 第一步：搜索新闻
+
+使用 `tavily_search` 并行搜索中英文科技新闻：
+
 ```
+搜索词（英文）: "tech news today April YYYY" + "AI artificial intelligence"
+搜索词（中文）: "科技新闻 YYYY年MM月DD日 热榜" + "AI 人工智能 科技 最新消息"
+时间范围: time_range="week"  （近7天，过滤掉更早的新闻）
+结果数量: max_results=10~15
+```
+
+**并行搜索策略：**
+- 英文 TechCrunch / The Guardian / Fortune / Ars Technica
+- 中文 新华网 / 证券时报 / 行业垂直媒体
+
+### 第二步（插入）：合并去重
+
+**先合并，再去重，最后评分。**
+
+将所有搜索结果（英文 + 中文）合并后，执行两轮去重：
+
+**第一轮：URL 精准去重**
+- 同一 URL 只保留一条（不同搜索词可能返回相同链接）
+- 保留信息最完整的那条（摘要更长、来源更权威优先）
+
+**第二轮：语义去重（核心事实去重 + 独立价值保留）**
+
+**两步判断，先去重，后判断是否保留独立价值：**
+
+**Step A — 识别「同一核心事实」的重复：**
+提取每条新闻的**核心三元组**（主体 + 动作 + 客体），判断两条新闻是否属于同一核心事实：
+- 示例：微软(主体) 投资(动作) 日本100亿美元(客体)
+- 中文"微软宣布向日本投资100亿美元"和英文"Microsoft to invest $10B in Japan" → 核心三元组相同，判定为「同一核心事实」
+
+**Step B — 判断独立保留价值（同一核心事实的多条报道，是否都保留）：**
+
+同一核心事实的报道，**仅在以下条件同时满足时才都保留**，否则只保留最权威的一条：
+1. **来源有独立信息**（记者独立采写，非转载，且有补充事实/数据/背景）
+2. **角度/维度不同**（财务分析 vs 技术解读 vs 政策分析）
+
+**去重优先级：来源权威性 > 摘要完整性 > 发布时间更新**
+
+**具体判断规则：**
+- 同一核心事实 + 无独立信息 + 无新角度 → **去重**，保留最权威一条
+- 同一核心事实 + 有独立信息 + 有新角度 → **保留**，合并摘要精华
+- 不同核心事实（哪怕相关）→ **保留**
+
+**具体例子：**
+- ✅ 微软投资日本（Reuters）+ 微软投资日本（新华网）→ 同一核心事实，均为转载，无独立信息 → **去重，保留 Reuters**
+- ✅ 微软投资日本（Reuters）+ 微软投资日本（36kr独立分析）→ 同一核心事实，但36kr有独立分析视角 → **都保留**
+- ✅ OpenAI收购TBPN（确认报道）+ OpenAI收购TBPN（谈判进展）→ 核心事实相同，但阶段不同 → **都保留**
+- ✅ OpenAI收购TBPN（中文翻译版）→ 与英文同一核心事实，无独立信息 → **去重**
+
+### 第三步：评估与筛选
+
+对每条新闻评估两个维度：
+
+| 维度 | 说明 | 评分标准 |
+|------|------|---------|
+| **相关度** | 与科技/AI 领域的关联程度 | ⭐1-5 星 |
+| **推荐度** | 对读者的阅读价值 | 0-100 分 |
+
+**评分原则：**
+- 相关度 5星：AI 技术、芯片、太空探索、重大产品发布
+- 相关度 4星：科技政策、行业趋势、并购融资
+- 相关度 3星：间接相关的科技新闻
+- 推荐度综合考虑：时效性、重要性、独家性、可操作性
+
+### 第四步：写入本地文件
+
+保存路径：`memory/YYYY-MM-DD-tech-news.md`
+
+**文件格式要求：**
+- 文件头包含整理时间和来源
+- 按国际/国内分类
+- 每条新闻包含：标题、相关度(⭐)、推荐度(分)、摘要、来源、链接
+- 底部包含数据总览表格
+- 末尾同步记录（本地文件 ✅、飞书文档链接）
+
+### 第五步：同步飞书文档
+
+**创建飞书文档：**
+1. 调用 `feishu_wiki(action="spaces")` 获取个人知识库 space_id
+2. 调用 `feishu_doc(action="create", title="科技新闻日报 | YYYY年MM月DD日", folder_token="首页节点token", owner_open_id="请求用户open_id")`
+3. 调用 `feishu_doc(action="write", doc_token="新文档token", content="markdown内容")` 写入完整报告
+
+**文档格式：** 与本地文件内容一致（飞书不支持表格，使用列表+粗体替代）
+
+### 第六步：更新本地文件同步记录
+
+在本地文件末尾添加：
+```
+## 📋 同步记录
+- ✅ 本地文件：`memory/YYYY-MM-DD-tech-news.md`
+- ✅ 飞书文档：`科技新闻日报 | YYYY年MM月DD日`
+  - 文档链接：https://feishu.cn/docx/xxxxx
+  - 知识库：个人知识库
+```
+
+---
+
+## 输出模板
+
+```
+# 科技新闻日报 | YYYY年MM月DD日
+
+> 整理时间：YYYY-MM-DD HH:MM GMT+8
+> 来源：Tavily 搜索 + 公开新闻聚合
+
+---
+
+## 🌐 国际科技热榜
+
+### 1. [新闻标题]
+- 相关度：⭐⭐⭐⭐⭐ | 推荐度：XX/100
+- 摘要：[1-2句话描述]
+- 来源：[媒体名称]
+- 链接：[URL]
+
+[... 7条国际新闻 ...]
+
+---
+
+## 🇨🇳 国内 AI 热榜
+
+### 1. [新闻标题]
+- 相关度：⭐⭐⭐⭐⭐ | 推荐度：XX/100
+- 摘要：[1-2句话描述]
+- 来源：[媒体名称]
+- 链接：[URL]
+
+[... 8条国内新闻 ...]
+
+---
+
+## 📊 数据总览
+
+- 国际：X 条，平均推荐度 XX
+- 国内：X 条，平均推荐度 XX
+- 合计：XX 条，平均推荐度 XX
+
+---
+
+## 🔗 关键来源
+
+- [来源1名称]：URL
+- [来源2名称]：URL
+[...]
+
+---
+
+整理：牛管家 | 整理工具：Tavily 搜索
+
+## 📋 同步记录
+
+- ✅ 本地文件：`memory/YYYY-MM-DD-tech-news.md`
+- ✅ 飞书文档：`科技新闻日报 | YYYY年MM月DD日`
+  - 文档链接：https://feishu.cn/docx/xxxxx
+  - 知识库：个人知识库
+```
+
+---
+
+## 参考资源
+
+- **飞书文档操作：** 见 `references/feishu-doc.md`
+- **Tavily 搜索：** 使用 `tavily_search` 工具，topic="news"，search_depth="basic" 或 "advanced"
+
+---
+
+## 注意事项
+
+1. **并行搜索**：中英文搜索同时进行，提高效率
+2. **时效过滤**：只收录近7天内的新闻，老旧新闻（超过7天）不再收藏，已过期的新闻不计入报告
+3. **链接有效性**：优先使用原始来源链接，避免短链接
+4. **评分一致性**：相关度和推荐度应有明显区分，相关度高不等于推荐度高
+5. **飞书权限**：创建文档时必须传入 `owner_open_id` 确保用户有编辑权限
+6. **文件命名**：使用 `YYYY-MM-DD-tech-news.md` 格式，便于排序检索
+7. **去重时机**：去重必须在合并所有搜索结果之后、评分之前进行，先去重再评分，不能边搜边去重
+
+---
+
+## ⚠️ 执行建议（重要）
+
+**本任务涉及多轮搜索 + 内容整理 + 飞书文档写入，建议使用子会话执行以避免超时：**
+
+```markdown
+使用 `sessions_spawn` 启动子会话执行：
+- runtime: "subagent"
+- mode: "run"
+- runTimeoutSeconds: 600（10分钟足够）
+- task: 完整的科技新闻日报任务描述
+```
+
+**不建议在主会话直接执行的原因：**
+- 任务包含多轮 Tavily 搜索（4-6次）
+- 需要整理15-20条新闻并评分
+- 写入飞书文档操作较重
+- 主会话超时窗口（默认180s）可能不够
+
+**子会话执行流程：**
+1. 并行中英文搜索（tavily_search）
+2. **合并所有搜索结果**（不评分，不分类，先拢到一起）
+3. **两轮去重**：
+   a) URL精准去重（同一链接只一条）
+   b) 语义去重：提取核心三元组（主体+动作+客体），同一核心事实的报道：无独立信息无新角度 → 只保留最权威那条；有独立信息或新角度 → 保留多条
+4. **评分**（去重完成后，才开始评分）
+5. 分类（国际/国内）
+6. 写入本地文件 `memory/YYYY-MM-DD-tech-news.md`
+7. 创建飞书文档并写入内容
+8. **直接发送报告到飞书群**（使用 `message` 工具，channel="feishu"，target="chat:群组ID"）
+9. 更新本地文件同步记录
+
+**进度 Checkpoint（v0.2.4 新增）：每步必须写checkpoint**
+子会话在每个关键步骤完成后，立即将进度写入 checkpoint 文件 `memory/YYYY-MM-DD-tech-news-checkpoint.json`：
+
+```json
+{
+  "step": 6,
+  "stepName": "飞书文档创建完成",
+  "feishuDocUrl": "https://feishu.cn/docx/xxx",
+  "localFile": "memory/2026-04-17-tech-news.md",
+  "timestamp": 1776396500000,
+  "pendingAction": "发送飞书消息"
+}
+```
+
+**步骤说明：**
+- step 1: 搜索完成 → 写入 checkpoint
+- step 2: 去重完成 → 写入 checkpoint（附上去重后条数）
+- step 3: 评分完成 → 写入 checkpoint
+- step 4: 本地文件写入完成 → 写入 checkpoint（标记 localFile 路径）
+- step 5: 飞书文档创建完成 → 写入 checkpoint（标记 feishuDocUrl）
+- step 6: **发送飞书消息** → 最后一步，**必须成功**，完成后写入 step: done
+
+**超时补救机制（v0.2.4 强化版）：**
+如果主会话收到子会话超时事件，按以下顺序检查：
+
+1. 读取 checkpoint 文件 `memory/YYYY-MM-DD-tech-news-checkpoint.json`
+2. 如果 `step >= 4`（本地文件已写）→ 读取本地文件，直接发送飞书消息
+3. 如果 `step >= 5`（飞书文档已建）→ 跳过创建，直接发送飞书消息
+4. 如果 `step == done` → 任务已完成，无需补救（但用户没收到消息，说明channel问题）
+5. 如果 `step < 4` → 任务早期失败，需要重新执行
+
+**⚠️ 关键修复（v0.2.3/v0.2.4）：子会话必须直接发飞书消息**
+- 步骤6（发送飞书消息）是整个流程中**最后一步**，也是唯一向用户传递报告的途径
+- 飞书群组 ID（目标）：`oc_d591432cedf9a00c01878c24754cb050`
+- 必须使用 `message(action="send", channel="feishu", target="chat:oc_d591432cedf9a00c01878c24754cb050", message="完整报告内容")`
+- **禁止**在发送飞书消息之前结束会话——即使所有文件/文档操作都完成了，也要留足时间发送消息
+- 飞书消息发送成功后，才更新 checkpoint 为 `step: done`

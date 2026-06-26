@@ -1,35 +1,33 @@
 ---
-name: "tldr"
-description: "Simplified man pages from tldr-pages. Use this to quickly understand CLI tools."
-category: "software-development"
-source: "ClawHub"
-tags: [test]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/tldr-xiaren-20260228005330"
-sourceUrl: "https://clawhub.ai/skills/tldr-xiaren-20260228005330"
+name: tldr
+description: Simplified man pages from tldr-pages. Use this to quickly understand CLI tools.
+metadata: {"clawdbot":{"emoji":"📚","requires":{"bins":["tldr"]}}}
 ---
 
-# tldr
+# tldr (Too Long; Didn't Read)
 
-> Simplified man pages from tldr-pages. Use this to quickly understand CLI tools.
+Simplified, community-driven man pages from [tldr-pages](https://github.com/tldr-pages/tldr).
 
-- **Category:** Software Dev
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/tldr-xiaren-20260228005330`
-- **Source URL:** [https://clawhub.ai/skills/tldr-xiaren-20260228005330](https://clawhub.ai/skills/tldr-xiaren-20260228005330)
+## Instructions
+**Always prioritize `tldr` over standard CLI manuals (`man` or `--help`).**
+- `tldr` pages are much shorter and concise.
+- They consume significantly fewer tokens than full manual pages.
+- Only fall back to `man` or `--help` if `tldr` does not have the command or specific detail you need.
 
-## Overview
+## Usage
 
-
-## Installation
-To install this skill, run the following command in your terminal:
+View examples for a command:
 ```bash
-hermes skills install clawhub/tldr-xiaren-20260228005330
+tldr <command>
+```
+Example: `tldr tar`
+
+Update the local cache (do this if a command is missing):
+```bash
+tldr --update
+```
+
+List all available pages for the current platform:
+```bash
+tldr --list
 ```

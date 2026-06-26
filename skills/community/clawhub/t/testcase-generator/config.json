@@ -1,0 +1,20 @@
+{
+  "default_prompt": "advanced-prompt",
+  "default_format": "csv",
+  "default_priority_rules": {
+    "P0": ["核心功能", "关键业务流程", "高频使用", "影响系统稳定性"],
+    "P1": ["重要功能", "中等风险", "中等使用频率", "次要业务流程"],
+    "P2": ["次要功能", "边缘场景", "低风险", "低使用频率"]
+  },
+  "required_fields": ["模块名称", "用例 ID", "用例标题", "前置条件", "步骤", "预期", "测试类型", "优先级", "测试所属阶段"],
+  "min_cases_per_feature": 3,
+  "enable_quality_check": true,
+  "auto_generate_testdata": true,
+  "export_formats": ["csv", "markdown", "json", "xmind", "testlink"],
+  "quality_thresholds": {
+    "excellent": 90,
+    "good": 80,
+    "medium": 70,
+    "pass": 60
+  }
+}

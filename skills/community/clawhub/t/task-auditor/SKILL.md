@@ -1,35 +1,101 @@
----
-name: "Task Auditor"
-description: "独立第三方审计auto-iterator任务质量，按执行日志、迭代次数、报告质量等指标评分防止偷懒并自动警报。"
-category: "other"
-source: "ClawHub"
-tags: [auto-optimized]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/task-auditor"
-sourceUrl: "https://clawhub.ai/skills/task-auditor"
+# Task Auditor - 任务审计与防偷懒系统
+
+## 功能说明
+
+**独立的第三方审计系统**，验收 auto-iterator 执行的任务质量，防止偷懒。
+
 ---
 
-# Task Auditor
+## 🎯 三方制衡机制
 
-> 独立第三方审计auto-iterator任务质量，按执行日志、迭代次数、报告质量等指标评分防止偷懒并自动警报。
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/task-auditor`
-- **Source URL:** [https://clawhub.ai/skills/task-auditor](https://clawhub.ai/skills/task-auditor)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/task-auditor
 ```
+┌─────────────────┐
+│  执行者         │
+│  auto-iterator  │
+│  (干活的)       │
+└────────┬────────┘
+         │
+         ↓ 提交任务
+┌─────────────────┐
+│  审计者         │
+│  task-auditor   │
+│  (验收的)       │
+└────────┬────────┘
+         │
+         ↓ 审计报告
+┌─────────────────┐
+│  总裁您         │
+│  (最终决策)     │
+└─────────────────┘
+```
+
+---
+
+## 📊 验收标准 (100 分制)
+
+| 检查项 | 分值 | 说明 |
+|--------|------|------|
+| **执行日志** | 20 分 | 日志>20 行得满分 |
+| **迭代次数** | 25 分 | ≥5 次得满分 |
+| **报告质量** | 25 分 | 报告>1000 字得满分 |
+| **时间记录** | 15 分 | 时间戳完整 |
+| **实质内容** | 15 分 | 有分析/发现/总结 |
+
+---
+
+## 🎯 评级标准
+
+| 分数 | 评级 | 处理 |
+|------|------|------|
+| **≥80** | ✅ 优秀 | 通过，归档 |
+| **60-79** | 👍 合格 | 通过，归档 |
+| **40-59** | ⚠️ 警告 | 标记，建议重做 |
+| **<40** | ❌ 失败 | 拒绝，发警报 |
+
+---
+
+## 🚨 防偷懒机制
+
+### 1. 独立审计
+- 执行者和审计者分离
+- 审计系统独立评分
+- 低分自动触发警报
+
+### 2. 量化指标
+- 必须有执行日志 (行数检查)
+- 必须有足够迭代 (次数检查)
+- 必须有报告输出 (字数检查)
+- 必须有实质内容 (关键词检查)
+
+### 3. 随机抽查
+- 您随时可以查看审计报告
+- 低质量任务自动标记
+- 连续低质量触发警报
+
+### 4. 透明日志
+- 所有执行过程记录
+- 时间戳不可伪造
+- 输出文件可追溯
+
+---
+
+## 📁 输出文件
+
+| 文件 | 说明 |
+|------|------|
+| `tasks/audits/*.audit.md` | 审计报告 |
+| `memory/alert-*.md` | 质量警报 |
+| `memory/audit-YYYY-MM-DD.md` | 每日审计日志 |
+
+---
+
+## 🫡 总裁，这样您就不用担心了：
+
+1. **执行者不能自己评分** - 有独立审计
+2. **偷懒会被发现** - 量化指标检查
+3. **低质量会警报** - 自动通知您
+4. **随时可追溯** - 完整日志记录
+
+---
+
+**系统已部署，请验收！** 🫡

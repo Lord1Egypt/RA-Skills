@@ -1,35 +1,15 @@
 ---
-name: "Wordpress Auto Publish Clean"
-description: "Automatically publish Markdown articles to WordPress blog via REST API"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/test-wp"
-sourceUrl: "https://clawhub.ai/skills/test-wp"
+name: wordpress-auto-publish
+description: Automatically publish Markdown articles to WordPress blog via REST API
 ---
 
-# Wordpress Auto Publish Clean
+# WordPress Auto-Publish Skill
 
-> Automatically publish Markdown articles to WordPress blog via REST API
+Automatically publish Markdown articles to WordPress blog. Supports REST API publishing, batch processing, draft management, category and tag management.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/test-wp`
-- **Source URL:** [https://clawhub.ai/skills/test-wp](https://clawhub.ai/skills/test-wp)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/test-wp
-```
+## Features
+- Publish Markdown articles to WordPress via REST API
+- Batch publishing support
+- Draft and published status management
+- Category and tag management
+- Featured image upload support

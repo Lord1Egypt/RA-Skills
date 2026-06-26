@@ -1,35 +1,58 @@
 ---
-name: "Tutur Bali"
-description: "Produce, adapt, or review text for Bahasa Bali with an offline-first regional-language workflow. Use when the user asks for Bahasa Bali, Bali regional dictio..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/tutur-bali"
-sourceUrl: "https://clawhub.ai/skills/tutur-bali"
+name: tutur-bali
+description: Produce, adapt, or review text for Bahasa Bali with an offline-first regional-language workflow. Use when the user asks for Bahasa Bali, Bali regional diction, local-language adaptation, or culturally aware Indonesian-to-Bali wording without claiming native-level fluency or inventing undocumented vocabulary.
 ---
 
 # Tutur Bali
 
-> Produce, adapt, or review text for Bahasa Bali with an offline-first regional-language workflow. Use when the user asks for Bahasa Bali, Bali regional dictio...
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/tutur-bali`
-- **Source URL:** [https://clawhub.ai/skills/tutur-bali](https://clawhub.ai/skills/tutur-bali)
-
 ## Overview
 
+Use this skill to produce, adapt, or review text related to Bahasa Bali. Produce usable ordinary-context output from local resources. Mark uncertain wording instead of pretending it is verified.
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/tutur-bali
-```
+Region/context: Bali, Nusa Penida, Lombok bagian barat, dan komunitas Bali diaspora
+
+Source confidence: Level 2. Public dictionary and anggah-ungguh references exist, but ritual, adat, caste/status, and speech-level choices require expert caution.
+
+## Search And Discovery
+
+Relevant searches: Bahasa Bali, kamus Bahasa Bali, contoh Bahasa Bali, belajar Bahasa Bali, terjemahan Indonesia Bali, translate Bahasa Bali, Bali alus, anggah-ungguh Basa Bali, bahasa Bali sehari-hari, AI skill Bahasa Bali.
+
+Use this skill for source-aware Balinese generation and review. It is not a certified translator and must keep anggah-ungguh, adat, temple, ritual, public, legal, educational, or official text under competent speaker review when uncertain.
+
+## Workflow
+
+1. Identify the task.
+   - If the user asks for translation, check whether a source sample or dictionary reference is available.
+   - If the user asks for style, preserve meaning and adapt register carefully.
+   - If the user asks for cultural tone, avoid stereotypes and ask for audience/context when needed.
+
+2. Check source confidence.
+   - Use `references/sources.md` first.
+   - Identify whether the user needs everyday Bali, alus, ceremonial/adat, tourism-facing, or Nusa Penida/Bali Aga context.
+   - Use dictionary and anggah-ungguh references for important word and structure choices.
+   - If a local spelling or dialect choice is unclear, preserve the Indonesian term and add a short note.
+
+3. Compose with source discipline.
+   - Keep names, places, titles, dates, and facts unchanged.
+   - Prefer verified local words only.
+   - For unknown terms, use Indonesian or ask for a local sample.
+
+4. Final pass.
+   - State uncertainty briefly when relevant.
+   - Do not claim native-speaker or official authority.
+   - Do not flatten the language into generic Indonesian slang.
+
+## Output Style
+
+- For direct requests, return the adapted output first.
+- For review requests, list risks and then provide a safer rewrite.
+- For public, ritual, legal, educational, or official use, recommend native-speaker or Balai Bahasa review.
+
+## Resources
+
+- `references/offline-brief.md`: compact local brief for agents without internet access.
+- `references/local-mirror.md`: local mirror of source facts, vocabulary policy, and semantic guidance.
+- `references/usage-patterns.md`: task patterns and review checklist for offline use.
+- `references/sources.md`: source links and confidence level.
+- `references/style-guide.md`: practical register and safety rules.
+- `references/examples.md`: safe usage examples.

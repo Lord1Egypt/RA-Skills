@@ -1,0 +1,4 @@
+interface:
+  display_name: "Thesis Conclusion Writer"
+  short_description: "Chinese academic conclusion section writer"
+  default_prompt: "Use $thesis-conclusion-writer to write the Conclusion section from my complete thesis."

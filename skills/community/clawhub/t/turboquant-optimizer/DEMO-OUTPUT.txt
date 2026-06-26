@@ -1,0 +1,113 @@
+╔══════════════════════════════════════════════════════════════╗
+║                                                              ║
+║     🚀 TurboQuant Optimizer - Token Savings Demo             ║
+║                                                              ║
+║     Demonstrating up to 99% token reduction                  ║
+║     Inspired by Google's TurboQuant Research                 ║
+║                                                              ║
+║     Built by MincoSoft Technologies                          ║
+║     https://mincosoft.com | (866) 667-3063                   ║
+║                                                              ║
+╚══════════════════════════════════════════════════════════════╝
+
+============================================================
+  DEMO 1: Long Conversation Compression (50 turns)
+============================================================
+
+  Original Messages             118
+  Original Tokens               13,990
+
+  Token Savings
+  Before: [████████████████████████████████████████] 13,990
+  After:  [████                                    ]  1,538
+  Saved:  12,452 tokens (89.0%)
+
+  Optimization Stages:
+    deduplication        +12,452 saved
+    tool_compression     skipped
+    adaptive_budget      skipped
+
+============================================================
+  DEMO 2: Semantic Deduplication (Repetitive Tools)
+============================================================
+
+  Original Messages             61
+  Original Tokens               5,592
+
+  Deduplication Savings
+  Before: [████████████████████████████████████████] 5,592
+  After:  [██                                      ] 318
+  Saved:  5,274 tokens (94.3%)
+
+  Cache Statistics:
+    Deduplication Hits          49
+    Tool Result Cache Hits      0
+    Cache Size                  1
+
+============================================================
+  DEMO 3: Real-Time Statistics (4 Scenarios)
+============================================================
+
+  ✓ Code Review
+  ✓ Architecture Discussion
+  ✓ Debugging Session
+  ✓ Documentation
+
+  Aggregate Statistics:
+    Total Optimizations         4
+    Total Tokens Saved          19,214
+    Total Original Tokens       25,378
+    Compression Ratio           75.71%
+    Efficiency Score            100.00/100
+    Avg Response Time           10.50ms
+    Checkpoints Created         4
+
+============================================================
+  DEMO 4: Adaptive Token Budget
+============================================================
+
+  Task Type Budget Allocations:
+
+  simpleQA     Context:  ██████               2100 tokens
+               Response: ██████████████       4900 tokens
+
+  codeGen      Context:  ██████████           3500 tokens
+               Response: ██████████           3500 tokens
+
+  analysis     Context:  ██████████████       4900 tokens
+               Response: ██████               2100 tokens
+
+  multiStep    Context:  ████████████         4200 tokens
+               Response: ████████             2800 tokens
+
+  Sample Budget Visualization:
+
+  Budget: 8,000 tokens
+  ┌──────────────────────────────────────────┐
+  │█████████████░░░░░░░░░░░░░░░░░░░░░░░░░░░░│
+  └──────────────────────────────────────────┘
+   Used: 1845  Reserved: 1000  Free: 5155
+
+============================================================
+  FINAL SUMMARY
+============================================================
+
+  Key Achievements:
+
+  ✓ Long conversations: 89.01% token reduction
+  ✓ Deduplication: 94.31% token reduction
+  ✓ Aggregate compression: 75.7%
+  ✓ Total tokens saved: 19,214
+  ✓ Efficiency score: 100.00/100
+
+  Business Impact:
+
+  💰 Estimated monthly cost savings: $17+
+  ⚡ Average optimization time: 10.50ms
+  📊 Checkpoints for rollback: 4
+
+  Built by MincoSoft Technologies
+  AI automation for small businesses
+  https://mincosoft.com | (866) 667-3063
+
+============================================================

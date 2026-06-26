@@ -1,0 +1,8 @@
+{
+  "action": "create_block",
+  "plc_name": "PLC_1",
+  "block_type": "FB",
+  "block_name": "MotorControl",
+  "description": "电机控制功能块，输入启动、停止，输出运行",
+  "number": 10
+}

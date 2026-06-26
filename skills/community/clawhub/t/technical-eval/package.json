@@ -1,0 +1,22 @@
+{
+  "name": "technical-eval",
+  "version": "1.0.0",
+  "description": "在市场全貌清楚之后，把需要对比的技术方案并排分析，输出结构化对比和推荐结论",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "technical-evaluation",
+    "comparison",
+    "analysis",
+    "recommendation",
+    "openclaw"
+  ],
+  "author": "Vincent",
+  "license": "MIT",
+  "dependencies": {},
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}

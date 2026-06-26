@@ -1,0 +1,4 @@
+interface:
+  display_name: "Technical Accounting Research"
+  short_description: "Research accounting treatment and disclosure guidance"
+  default_prompt: "Use $technical-accounting-research to analyze this transaction and produce a DOCX memo, email, or Q&A response."

@@ -1,0 +1,9 @@
+{
+  "id": "topic-research",
+  "name": "Topic Research",
+  "layer": "collect",
+  "executor": "topic_research_v1",
+  "input_kind": "research_request_markdown",
+  "output_kind": "report_markdown",
+  "description": "Run Tavily CLI deep research from a structured request and write a standardized research report plus raw JSON into content-production/inbox/, including a writing-decision layer."
+}

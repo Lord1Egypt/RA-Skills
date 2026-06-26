@@ -1,35 +1,153 @@
 ---
-name: "Task Executor"
-description: "任务执行器。接收用户需求，自动拆分任务，异步执行，返回结果。 **核心功能**： - 需求输入：用户直接说需求 - 任务拆分：AI 分析，自动拆分 - 自动执行：subagent 异步执行 - 进度跟踪：本地状态 **使用场景**： - "帮我分析AI发展趋势" - "调研某个话题" - "写一份报告"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/task-executor"
-sourceUrl: "https://clawhub.ai/skills/task-executor"
+version: 4.0.0
+name: task-executor
+description: |
+  任务执行器。接收用户需求，自动拆分任务，异步执行，返回结果。
+  
+  **核心功能**：
+  - 需求输入：用户直接说需求
+  - 任务拆分：AI 分析，自动拆分
+  - 自动执行：subagent 异步执行
+  - 进度跟踪：本地状态
+  
+  **使用场景**：
+  - "帮我分析AI发展趋势"
+  - "调研某个话题"
+  - "写一份报告"
 ---
 
-# Task Executor
+# 任务执行器 Skill (v4.0.0)
 
-> 任务执行器。接收用户需求，自动拆分任务，异步执行，返回结果。 **核心功能**： - 需求输入：用户直接说需求 - 任务拆分：AI 分析，自动拆分 - 自动执行：subagent 异步执行 - 进度跟踪：本地状态 **使用场景**： - "帮我分析AI发展趋势" - "调研某个话题" - "写一份报告
+## 🎯 核心价值
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/task-executor`
-- **Source URL:** [https://clawhub.ai/skills/task-executor](https://clawhub.ai/skills/task-executor)
+**用户给一个需求 → AI 自动完成，不需要跟踪细节**
 
-## Overview
+---
 
+## ⚡ 核心流程
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/task-executor
 ```
+用户需求
+    ↓
+AI 拆分任务
+    ↓
+并行执行
+    ↓
+返回结果
+```
+
+---
+
+## 📋 Agent 角色
+
+| Agent | 职责 |
+|-------|------|
+| 主Agent | 接收需求、拆分任务、协调、执行 |
+| 搜索Agent | 网络搜索、信息收集 |
+| 文档Agent | 撰写文档、编辑内容 |
+| 分析Agent | 数据分析、处理 |
+
+---
+
+## 🎯 核心功能
+
+### 1. 接收需求
+```
+用户：帮我分析AI发展趋势
+```
+
+### 2. 拆分任务
+AI 分析需求，拆分成可执行的任务：
+```
+- 搜索AI最新动态（搜索Agent）
+- 整理行业报告（分析Agent）
+- 撰写分析报告（文档Agent）
+```
+
+### 3. 执行任务
+并行执行各个任务：
+```
+搜索Agent → 搜索信息
+文档Agent → 创建文档
+分析Agent → 处理数据
+```
+
+### 4. 返回结果
+完成后通知用户：
+```
+✅ 分析完成！
+文档链接：xxx
+```
+
+---
+
+## 📖 使用示例
+
+### 例1: 简单需求
+```
+用户：帮我搜索量子计算最新进展
+
+主Agent：
+1. 拆分任务：搜索信息
+2. 执行：调用搜索
+3. 返回结果
+```
+
+### 例2: 复杂需求
+```
+用户：帮我分析新能源汽车行业
+
+主Agent：
+1. 拆分任务：
+   - 搜索行业数据（搜索Agent）
+   - 整理市场分析（分析Agent）
+   - 撰写报告（文档Agent）
+2. 异步执行任务
+3. 汇总结果
+4. 通知用户
+```
+
+---
+
+## 📁 状态管理（可选）
+
+### 本地状态文件
+`memory/tasks/active.json`
+
+```json
+{
+  "tasks": [
+    {
+      "id": "task-001",
+      "需求": "分析AI趋势",
+      "状态": "已完成",
+      "结果": "文档链接"
+    }
+  ]
+}
+```
+
+### 飞书表格（可选扩展）
+用户需要可视化时，可以添加飞书表格同步。
+
+---
+
+## 🔗 触发关键词
+
+```
+帮我、分析、调研、写报告
+创建需求、执行任务
+```
+
+---
+
+## ⚠️ 注意事项
+
+1. **异步执行**：使用 sessions_spawn 不阻塞
+2. **并行执行**：多个任务同时进行
+3. **结果汇总**：完成后统一通知用户
+4. **状态可选**：可以不用飞书表格
+
+---
+
+*版本: 4.0.0 | 2026-03-22*

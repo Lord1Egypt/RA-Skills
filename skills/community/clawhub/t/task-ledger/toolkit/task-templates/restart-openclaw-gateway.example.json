@@ -1,0 +1,68 @@
+{
+  "taskId": "restart-openclaw-gateway-20260307-2200",
+  "title": "安全重启 OpenClaw gateway",
+  "goal": "重启 gateway，完成健康检查与对用户的恢复后通知",
+  "status": "pending",
+  "priority": "high",
+  "createdAt": "2026-03-07T22:00:00+08:00",
+  "startedAt": null,
+  "updatedAt": "2026-03-07T22:00:00+08:00",
+  "completedAt": null,
+  "lastVerifiedAt": null,
+  "ownerSession": "main",
+  "owner": "main",
+  "assignedAgent": null,
+  "executionMode": "external-side-effect",
+  "idempotent": false,
+  "canResume": true,
+  "retryCount": 0,
+  "maxRetries": 2,
+  "stage": "precheck",
+  "stages": [
+    { "id": "precheck", "status": "todo" },
+    { "id": "checkpoint", "status": "todo" },
+    { "id": "restart", "status": "todo" },
+    { "id": "healthcheck", "status": "todo" },
+    { "id": "reconcile", "status": "todo" },
+    { "id": "notify", "status": "todo" }
+  ],
+  "dependsOn": [],
+  "blockedBy": [],
+  "blockedReason": null,
+  "nextAction": "Run prechecks before touching the gateway runtime",
+  "resumeHint": "After restart, verify real gateway health before assuming success or notifying the user.",
+  "decisionNotes": "Restart, healthcheck, and notification are isolated so recovery does not accidentally duplicate risky side effects.",
+  "workingSummary": "Awaiting precheck and checkpoint creation before restart.",
+  "artifacts": {
+    "logPath": "logs/restart-openclaw-gateway-20260307-2200.log",
+    "outputDir": "outputs/restart-openclaw-gateway-20260307-2200",
+    "files": []
+  },
+  "process": {
+    "sessionId": null,
+    "pid": null
+  },
+  "subtask": {
+    "sessionKey": null,
+    "agentId": null
+  },
+  "cron": {
+    "jobId": null,
+    "schedule": null,
+    "nextRunAt": null
+  },
+  "rollback": {
+    "available": true,
+    "strategy": "Restore the previous gateway package/config snapshot and restart known-good state.",
+    "status": "available",
+    "artifacts": []
+  },
+  "notifications": {
+    "notifiedStart": false,
+    "notifiedCompletion": false,
+    "notifiedRecovery": false
+  },
+  "events": [],
+  "result": null,
+  "error": null
+}

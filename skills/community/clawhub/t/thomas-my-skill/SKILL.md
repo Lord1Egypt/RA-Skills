@@ -1,35 +1,14 @@
----
-name: "My Skill"
-description: "Provides local data processing and environment status tools to extend the AI agent's workflow for user Thomas."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/thomas-my-skill"
-sourceUrl: "https://clawhub.ai/skills/thomas-my-skill"
----
+# Thomas My Skill
 
-# My Skill
+## Description
+This is a custom utility skill designed for OpenClaw. It helps the AI agent perform specific data processing tasks locally. It extends the core capabilities of the agent by providing a dedicated workspace toolkit for the user Thomas.
 
-> Provides local data processing and environment status tools to extend the AI agent's workflow for user Thomas.
+## Usage
+When the agent needs to process custom text, manage local files, or handle specific workflow automation, it can invoke the tools provided in this skill.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/thomas-my-skill`
-- **Source URL:** [https://clawhub.ai/skills/thomas-my-skill](https://clawhub.ai/skills/thomas-my-skill)
+## Tools Included
+* `process_data`: A tool to format and clean up local data streams.
+* `get_status`: Returns the current environment status for the agent.
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/thomas-my-skill
-```
+## Note
+This is my first published skill for testing the deployment pipeline and ensuring all systems are operational.

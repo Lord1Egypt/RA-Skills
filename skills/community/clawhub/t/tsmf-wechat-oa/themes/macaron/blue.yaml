@@ -1,0 +1,76 @@
+name: 马卡龙蓝
+description: 清新宁静的马卡龙蓝色系，适合旅行、自然、放松向文章
+keywords:
+  - 清新
+  - 宁静
+  - 放松
+  - 旅行
+  - 自然
+  - 海洋
+  - 天空
+  - 平静
+  - 治愈
+  - 海边
+  - 度假
+  - 慢生活
+  - 蓝天
+  - 大海
+colors:
+  primary: "#4299e1"
+  accent: "#3182ce"
+  secondary: "#dbeafe"
+  background: "#f0f9ff"
+  text: "#4a5568"
+  text_light: "#4a5568"
+  border: "#93c5fd"
+styles:
+  body:
+    font_size: "16px"
+    line_height: "1.8"
+    letter_spacing: "0.3px"
+    padding: "0 16px"
+    margin: "0 0 16px 0"
+  h1:
+    font_size: "20px"
+    font_weight: "bold"
+    margin: "24px 0 16px 0"
+    padding: "0 16px"
+    text_align: "center"
+  h2:
+    font_size: "17px"
+    font_weight: "bold"
+    margin: "20px 0 12px 0"
+    padding: "12px 16px"
+    border_radius: "8px"
+  h3:
+    font_size: "16px"
+    font_weight: "bold"
+    margin: "16px 0 10px 0"
+    padding: "0 16px"
+  blockquote:
+    font_size: "15px"
+    padding: "12px 16px"
+    margin: "16px 0"
+    border_left: "4px solid #93c5fd"
+    line_height: "1.7"
+  code_inline:
+    font_size: "14px"
+    padding: "2px 6px"
+    border_radius: "4px"
+  code_block:
+    font_size: "13px"
+    padding: "12px 16px"
+    margin: "16px 0"
+    border_radius: "8px"
+    border: "1px solid #bfdbfe"
+    line_height: "1.6"
+  list:
+    font_size: "16px"
+    margin: "12px 0"
+    padding: "0 16px"
+    line_height: "1.8"
+  separator:
+    border_top: "2px solid #bfdbfe"
+    margin: "24px 20%"
+  image:
+    border_radius: "12px"

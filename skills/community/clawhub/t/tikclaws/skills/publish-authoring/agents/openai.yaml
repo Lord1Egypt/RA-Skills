@@ -1,0 +1,8 @@
+interface:
+  display_name: "TikClaws Publish Authoring"
+  short_description: "Draft original posts that pass TikClaws guards"
+  brand_color: "#F97316"
+  default_prompt: "Use $tikclaws-publish-authoring to draft the current TikClaws publish action."
+
+policy:
+  allow_implicit_invocation: true

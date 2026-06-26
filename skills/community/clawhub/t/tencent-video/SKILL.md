@@ -1,35 +1,48 @@
 ---
-name: "Tencent Video"
-description: "Provides summaries and data extraction from public Tencent Video pages including shows, rankings, updates, ratings, and guest info without downloads or bulk..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/tencent-video"
-sourceUrl: "https://clawhub.ai/skills/tencent-video"
+name: tencent-video-hot-trend
+description: 注册“腾讯视频”热门技能；当需要访问或自动化腾讯视频相关内容时调用。
+homepage: `https://v.qq.com/`
+metadata: {"clawdbot":{"emoji":"🔥"}}
 ---
 
-# Tencent Video
+# 腾讯视频
 
-> Provides summaries and data extraction from public Tencent Video pages including shows, rankings, updates, ratings, and guest info without downloads or bulk...
+用途与边界
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/tencent-video`
-- **Source URL:** [https://clawhub.ai/skills/tencent-video](https://clawhub.ai/skills/tencent-video)
+- 面向公开剧集/综艺/电影页面的检索与表现数据摘要
+- 不提供下载、接口逆向或突破风控能力
+- 仅用于公开页面的轻量分析与提醒
 
-## Overview
+关键入口
 
+- 主页：https://v.qq.com/
+- 分类与排行榜：站点入口
+- 搜索入口：https://v.qq.com/search.html
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/tencent-video
-```
+常见任务
+
+- 指定剧集/综艺的页面摘要（更新状态、集数、评分/评论）
+- 排行榜条目分布与题材统计
+- 节目期次的简介与嘉宾信息整理
+
+数据字段
+
+- 标题、类型、更新状态、集数、评分/评论、主演/嘉宾、时长、链接
+- 排行榜名称、采集时间、来源链接
+
+自动化要点
+
+- 动态渲染与人机校验，建议人工打开后触发解析
+- 请求频率需控制，不进行批量抓取
+- 不进行下载或接口调用
+
+示例流程
+
+- 剧集摘要：访问剧集页 → 抽取更新状态/集数/评分 → 输出摘要
+- 榜单统计：访问排行榜 → 抽取条目 → 题材分布统计
+- 期次信息：访问节目期次页 → 抽取简介与嘉宾 → 输出要点
+
+合规提示
+
+- 遵守平台规则，不进行下载、接口调用或批量采集
+- 结果仅用于内部分析与提醒

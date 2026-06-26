@@ -1,0 +1,7 @@
+{
+  "name": "Ai Coach",
+  "version": "3.1.0",
+  "description": "基于TrainingPeaks和Garmin数据，智能生成个性化铁三训练计划并动态调整，支持每日微信推送和多赛事管理。",
+  "license": "MIT-0",
+  "tags": ["ai-coach", "garmin", "sport", "training", "triathlon"]
+}

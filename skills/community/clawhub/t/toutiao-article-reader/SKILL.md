@@ -1,35 +1,61 @@
----
-name: "头条文章阅读"
-description: "使用浏览器自动化阅读今日头条、微信公众号、知乎等平台文章。自动提取标题、作者、发布时间、正文内容，支持内容清洗和 AI 总结。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/toutiao-article-reader"
-sourceUrl: "https://clawhub.ai/skills/toutiao-article-reader"
+﻿---
+name: toutiao-article-reader
+description: 使用浏览器自动化阅读今日头条、微信公众号、知乎等平台文章。自动提取标题、作者、发布时间、正文内容，支持内容清洗和 AI 总结。
+metadata:
+  openclaw:
+    emoji: "📰"
+    version: "1.0.0"
 ---
 
-# 头条文章阅读
+# Toutiao Article Reader - 增强版
 
-> 使用浏览器自动化阅读今日头条、微信公众号、知乎等平台文章。自动提取标题、作者、发布时间、正文内容，支持内容清洗和 AI 总结。
+使用浏览器自动化技术阅读今日头条、微信公众号、知乎等平台的长篇文章。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/toutiao-article-reader`
-- **Source URL:** [https://clawhub.ai/skills/toutiao-article-reader](https://clawhub.ai/skills/toutiao-article-reader)
+## 功能特性
 
-## Overview
+- ✅ 多平台支持：头条/公众号/知乎/雪球等
+- ✅ 智能识别：自动识别平台并应用最佳提取规则
+- ✅ 内容清洗：去除广告、水印、无关内容
+- ✅ 错误处理：完善的重试和错误处理机制
+- ✅ 性能优化：缓存支持、快速加载
+- ✅ 详细统计：字数、阅读时间等
+- ✅ AI 总结：智能生成内容摘要
 
+## 支持平台
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/toutiao-article-reader
-```
+| 平台 | 域名 | 支持度 |
+|------|------|--------|
+| 今日头条 | toutiao.com | ⭐⭐⭐⭐⭐ |
+| 微信公众号 | mp.weixin.qq.com | ⭐⭐⭐⭐⭐ |
+| 知乎 | zhihu.com | ⭐⭐⭐⭐⭐ |
+| 雪球 | xueqiu.com | ⭐⭐⭐⭐⭐ |
+| 其他 | 通用规则 | ⭐⭐⭐⭐ |
+
+## 使用方法
+
+用户提供文章链接，说：
+- "阅读这篇文章"
+- "总结这篇文章"
+- "看看这篇文章讲什么"
+- "分析这篇文章"
+
+## 工作流程
+
+1. 识别平台
+2. 启动浏览器（Playwright）
+3. 访问页面
+4. 提取标题/作者/时间/正文
+5. 内容清洗
+6. AI 分析总结
+7. 输出结构化报告
+
+## 环境要求
+
+- playwright：浏览器自动化
+- beautifulsoup4：HTML 解析
+
+## 注意事项
+
+- 首次运行会下载 Chromium 浏览器（约 100MB）
+- 访问速度比直接请求慢（需要加载页面，约 5-10 秒）
+- 部分需要登录的文章可能无法访问

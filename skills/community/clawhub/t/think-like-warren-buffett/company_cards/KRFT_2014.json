@@ -1,0 +1,38 @@
+{
+  "ticker": "KRFT",
+  "company": "Kraft Foods Group",
+  "analysis_year": 2015,
+  "data_source": "FY2014 10-K, SEC EDGAR (press release)",
+  "analyzed_date": "2026-03-12",
+
+  "hard_gates": {
+    "g1_roe_roic": { "value": 0.18, "metric_used": "ROIC", "years_averaged": "2012-2014", "pass": true },
+    "g2_fcf_to_ni": { "value": 1.42, "fcf": 1485, "net_income": 1043, "pass": true },
+    "g3_leverage": { "metric_used": "Net Debt/EBITDA", "value": 2.3, "pass": true },
+    "g4_revenue_trend": { "description": "Revenue flat (-0.1%), organic +0.9% but VOLUME -0.3% — price masking volume decline. Meals & Desserts segment -6.5%.", "structural_decline": true, "pass": false },
+    "g5_gross_margin_trend": { "description": "Reported 26.6% (2014) vs 37.4% (2013) — pension accounting distortion, normalized ~34-35%, but 3-year trend declining from 38%→36%→35%.", "declining_2plus_years": true, "pass": false },
+    "g6_earnings_yield": { "value": 0.050, "net_income_m": 2300, "ev_m": 46000, "exemption": null, "pass": false },
+    "g7_moat": { "verdict": "FAIL", "moat_type": null, "description": "Brands are 'recognized' not 'loved.' Oscar Mayer (processed meat, health trend headwind), Maxwell House (losing to premium/K-Cup), Jell-O (category dying), Velveeta (processed cheese), Planters (commodity nuts). Only Philadelphia cream cheese has genuine pricing power. No pricing power = no moat.", "pass": false }
+  },
+
+  "special_channel": null,
+
+  "metrics_snapshot": {
+    "revenue_2014_m": 18205,
+    "revenue_2013_m": 18218,
+    "fcf_m": 1485,
+    "total_debt_m": 10032,
+    "normalized_gross_margin_pct": 0.34
+  },
+
+  "control_groups": [
+    { "ticker": "CL", "company": "Colgate-Palmolive", "year": 2014, "gates_failed": ["g6_earnings_yield"], "conclusion": "PASS — earnings yield ~4.5%, borderline. But moat (Colgate toothpaste #1 globally) is far stronger than Kraft." },
+    { "ticker": "HSY", "company": "Hershey", "year": 2014, "gates_failed": [], "conclusion": "BUY — passes all gates. Chocolate brand with genuine pricing power, consumers trade up, holiday/emotional consumption stickiness." }
+  ],
+
+  "conclusion": "PASS",
+  "buffett_action": "Berkshire + 3G Capital engineered the Kraft-Heinz merger, Berkshire invested ~$5B additional cash",
+  "actual_result": "$15.4B goodwill impairment 2018, SEC investigation, dividend cut, stock fell from $90→$25. Berkshire lost ~$20B+ on paper.",
+  "verdict": "⭐ framework_wins",
+  "key_insight": "Gates ④⑤⑥⑦ all triggered simultaneously — rare case of multiple failures. Volume declining while price rises is the classic sign of a brand losing relevance. Hershey passes the same framework: the difference is genuine vs. legacy brand."
+}

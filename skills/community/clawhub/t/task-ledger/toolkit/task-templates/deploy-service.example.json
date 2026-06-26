@@ -1,0 +1,68 @@
+{
+  "taskId": "deploy-service-20260307-2210",
+  "title": "部署服务",
+  "goal": "完成部署、验证健康状态，并在需要时执行回滚",
+  "status": "pending",
+  "priority": "high",
+  "createdAt": "2026-03-07T22:10:00+08:00",
+  "startedAt": null,
+  "updatedAt": "2026-03-07T22:10:00+08:00",
+  "completedAt": null,
+  "lastVerifiedAt": null,
+  "ownerSession": "main",
+  "owner": "main",
+  "assignedAgent": null,
+  "executionMode": "external-side-effect",
+  "idempotent": false,
+  "canResume": true,
+  "retryCount": 0,
+  "maxRetries": 2,
+  "stage": "prepare",
+  "stages": [
+    { "id": "prepare", "status": "todo" },
+    { "id": "backup", "status": "todo" },
+    { "id": "deploy", "status": "todo" },
+    { "id": "verify", "status": "todo" },
+    { "id": "rollback_if_needed", "status": "todo" },
+    { "id": "notify", "status": "todo" }
+  ],
+  "dependsOn": [],
+  "blockedBy": [],
+  "blockedReason": null,
+  "nextAction": "Prepare deployment inputs and create a rollback-safe backup first",
+  "resumeHint": "Do not replay deploy or rollback steps blindly; verify the service and release state first.",
+  "decisionNotes": "Backup and rollback are explicit stages so deploy recovery can distinguish safe continuation from rollback.",
+  "workingSummary": "Waiting to prepare deployment inputs and capture backup before deploy.",
+  "artifacts": {
+    "logPath": "logs/deploy-service-20260307-2210.log",
+    "outputDir": "outputs/deploy-service-20260307-2210",
+    "files": []
+  },
+  "process": {
+    "sessionId": null,
+    "pid": null
+  },
+  "subtask": {
+    "sessionKey": null,
+    "agentId": null
+  },
+  "cron": {
+    "jobId": null,
+    "schedule": null,
+    "nextRunAt": null
+  },
+  "rollback": {
+    "available": true,
+    "strategy": "Restore the previous release artifact and restart the known-good service version.",
+    "status": "available",
+    "artifacts": []
+  },
+  "notifications": {
+    "notifiedStart": false,
+    "notifiedCompletion": false,
+    "notifiedRecovery": false
+  },
+  "events": [],
+  "result": null,
+  "error": null
+}

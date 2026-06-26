@@ -1,0 +1,253 @@
+<!--
+  Travel App Toolkit - HTML 模板
+
+  使用方法：Agent 读取此模板，根据用户目的地替换模板变量，生成最终的 .html 文件。
+
+  模板变量（Agent 需替换）：
+  - {{DESTINATION_NAME}}: 目的地名称，如 "日本 / Japan"
+  - {{DESTINATION_EMOJI}}: 目的地 emoji，如 "🇯🇵"
+  - {{TRAVEL_STYLE}}: 旅行风格，如 "自助游"
+  - {{APPS_JSON}}: 完整的 App 数组 JSON（合并 global + region），格式见下方 APPS 变量
+  - {{FOOTER_TIPS}}: 针对目的地的温馨提示 HTML（多条 <br> 分隔）
+  - {{DEFAULT_PLATFORM}}: 默认平台，"ios" 或 "android"
+
+  每个 App 对象格式：
+  {
+    name: "App 名称",
+    category: "transport|maps|food|payment|translation|communication|travel|essentials",
+    icon: "emoji",
+    description: "一句话描述",
+    iosUrl: "App Store 链接" | null,
+    androidUrl: "Play 商店链接" | null,
+    priority: "must-have|recommended|optional",
+    tips: "使用小贴士"
+  }
+-->
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{DESTINATION_EMOJI}} {{DESTINATION_NAME}} 旅行 App 工具包</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; background: linear-gradient(135deg, #f0f9ff 0%, #fff 50%, #ecfdf5 100%); min-height: 100vh; }
+
+  .header { background: linear-gradient(90deg, #0ea5e9, #10b981); color: #fff; }
+  .header-inner { max-width: 900px; margin: 0 auto; padding: 32px 16px; text-align: center; }
+  .header h1 { font-size: 24px; font-weight: 700; margin: 0 0 4px; }
+  .header .sub { color: #bae6fd; font-size: 14px; }
+  .stats { display: flex; justify-content: center; gap: 32px; margin-top: 16px; font-size: 14px; }
+  .stats .num { font-size: 20px; font-weight: 700; }
+  .stats .lbl { color: #bae6fd; font-size: 12px; }
+
+  .container { max-width: 900px; margin: 0 auto; padding: 16px; }
+
+  /* Platform toggle */
+  .platform-wrap { display: flex; justify-content: center; margin-bottom: 16px; }
+  .platform-group { display: inline-flex; background: #f3f4f6; border-radius: 12px; padding: 4px; }
+  .platform-btn { padding: 8px 24px; border-radius: 8px; font-size: 14px; font-weight: 500; border: none; cursor: pointer; background: transparent; color: #6b7280; transition: all .2s; }
+  .platform-btn.active { background: #fff; box-shadow: 0 1px 3px rgba(0,0,0,.12); color: #1f2937; }
+
+  /* Search & filter bar */
+  .toolbar { display: flex; gap: 8px; margin-bottom: 12px; flex-wrap: wrap; }
+  .search-wrap { flex: 1; min-width: 200px; position: relative; }
+  .search-wrap input { width: 100%; padding: 10px 16px 10px 36px; border-radius: 12px; border: 1px solid #e5e7eb; font-size: 14px; outline: none; }
+  .search-wrap input:focus { border-color: #7dd3fc; box-shadow: 0 0 0 3px rgba(125,211,252,.3); }
+  .search-icon { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: #9ca3af; }
+  .must-btn { padding: 10px 16px; border-radius: 12px; font-size: 14px; font-weight: 500; border: 1px solid #e5e7eb; cursor: pointer; background: #fff; color: #6b7280; white-space: nowrap; transition: all .2s; }
+  .must-btn.active { background: #fef2f2; border-color: #fecaca; color: #b91c1c; }
+
+  /* Category tabs */
+  .cat-tabs { display: flex; gap: 6px; overflow-x: auto; padding-bottom: 8px; margin-bottom: 16px; }
+  .cat-btn { display: flex; align-items: center; gap: 4px; padding: 6px 12px; border-radius: 9999px; font-size: 12px; font-weight: 500; white-space: nowrap; cursor: pointer; border: 1px solid #e5e7eb; background: #fff; color: #6b7280; transition: all .2s; }
+  .cat-btn.active { background: #0ea5e9; color: #fff; border-color: #0ea5e9; }
+
+  /* App grid */
+  .app-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(270px, 1fr)); gap: 12px; }
+  .app-card { background: #fff; border-radius: 12px; border: 1px solid #f3f4f6; padding: 16px; transition: box-shadow .2s; }
+  .app-card:hover { box-shadow: 0 4px 12px rgba(0,0,0,.1); }
+  .card-head { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+  .card-icon { font-size: 28px; }
+  .card-name { font-weight: 600; color: #1f2937; font-size: 14px; }
+  .card-desc { color: #6b7280; font-size: 12px; margin-bottom: 8px; line-height: 1.5; }
+  .card-tips { background: #fffbeb; border: 1px solid #fef3c7; border-radius: 8px; padding: 6px 12px; margin-bottom: 12px; color: #92400e; font-size: 12px; }
+
+  /* Priority badges */
+  .badge { display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 9999px; border: 1px solid; margin-top: 2px; }
+  .badge-must { background: #fef2f2; color: #b91c1c; border-color: #fecaca; }
+  .badge-rec  { background: #eff6ff; color: #1d4ed8; border-color: #bfdbfe; }
+  .badge-opt  { background: #f9fafb; color: #6b7280; border-color: #e5e7eb; }
+
+  /* Download button */
+  .dl-btn { display: block; width: 100%; text-align: center; padding: 10px; border-radius: 8px; font-size: 14px; font-weight: 500; background: #10b981; color: #fff; text-decoration: none; transition: background .2s; }
+  .dl-btn:hover { background: #059669; }
+  .dl-na { display: block; width: 100%; text-align: center; padding: 10px; border-radius: 8px; font-size: 14px; font-weight: 500; background: #f3f4f6; color: #9ca3af; }
+
+  /* Footer */
+  .footer-tips { margin-top: 24px; background: #f0f9ff; border: 1px solid #e0f2fe; border-radius: 12px; padding: 16px; }
+  .footer-tips h3 { font-size: 14px; font-weight: 500; color: #075985; margin-bottom: 8px; }
+  .footer-tips .content { color: #0369a1; font-size: 12px; line-height: 1.8; }
+  .footer-note { text-align: center; color: #9ca3af; font-size: 12px; margin: 16px 0 24px; }
+
+  .empty { display: none; text-align: center; padding: 48px 0; color: #9ca3af; }
+  .empty .icon { font-size: 48px; margin-bottom: 8px; }
+
+  @keyframes fadeIn { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:translateY(0); } }
+  .fade-in { animation: fadeIn .3s ease; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-inner">
+    <div style="font-size:48px; margin-bottom:8px;">{{DESTINATION_EMOJI}}</div>
+    <h1>{{DESTINATION_NAME}} 旅行 App 工具包</h1>
+    <p class="sub">{{TRAVEL_STYLE}} · 共 <span id="total-count"></span> 款精选 App</p>
+    <div class="stats">
+      <div><div class="num" id="stat-must"></div><div class="lbl">必装</div></div>
+      <div><div class="num" id="stat-rec"></div><div class="lbl">推荐</div></div>
+      <div><div class="num" id="stat-opt"></div><div class="lbl">可选</div></div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <!-- Platform Toggle -->
+  <div class="platform-wrap">
+    <div class="platform-group">
+      <button class="platform-btn active" onclick="setPlatform('ios')" id="btn-ios">🍎 iOS</button>
+      <button class="platform-btn" onclick="setPlatform('android')" id="btn-android">🤖 Android</button>
+    </div>
+  </div>
+
+  <!-- Search + Must-have Filter -->
+  <div class="toolbar">
+    <div class="search-wrap">
+      <input type="text" id="search-input" placeholder="搜索 App 名称..." oninput="renderApps()">
+      <span class="search-icon">🔍</span>
+    </div>
+    <button id="must-toggle" class="must-btn" onclick="toggleMustHave()">🔥 只看必装</button>
+  </div>
+
+  <!-- Category Tabs -->
+  <div id="cat-tabs" class="cat-tabs"></div>
+
+  <!-- App Grid -->
+  <div id="app-grid" class="app-grid"></div>
+
+  <!-- Empty State -->
+  <div id="empty-state" class="empty">
+    <div class="icon">🔍</div>
+    <p>没有找到匹配的 App</p>
+  </div>
+
+  <!-- Footer Tips -->
+  <div class="footer-tips">
+    <h3>📋 温馨提示</h3>
+    <div class="content">{{FOOTER_TIPS}}</div>
+  </div>
+
+  <p class="footer-note">由 Travel App Toolkit 生成</p>
+</div>
+
+<script>
+// ===== Agent 生成时替换此处 APPS 数组 =====
+const APPS = {{APPS_JSON}};
+
+const CATEGORIES = {
+  all:           { label:"全部",     icon:"📱" },
+  transport:     { label:"交通出行", icon:"🚕" },
+  maps:          { label:"地图导航", icon:"🗺️" },
+  food:          { label:"餐饮外卖", icon:"🍜" },
+  payment:       { label:"支付工具", icon:"💳" },
+  translation:   { label:"翻译语言", icon:"🗣️" },
+  communication: { label:"通讯社交", icon:"💬" },
+  travel:        { label:"旅行预订", icon:"✈️" },
+  essentials:    { label:"其他必备", icon:"🔧" }
+};
+
+const PRI = {
+  "must-have":   { label:"必装", cls:"badge-must", sort:0 },
+  "recommended": { label:"推荐", cls:"badge-rec",  sort:1 },
+  "optional":    { label:"可选", cls:"badge-opt",  sort:2 }
+};
+
+let platform = "{{DEFAULT_PLATFORM}}";
+let category = "all";
+let mustOnly = false;
+
+// Stats
+const mustCount = APPS.filter(a => a.priority === "must-have").length;
+const recCount  = APPS.filter(a => a.priority === "recommended").length;
+const optCount  = APPS.filter(a => a.priority === "optional").length;
+document.getElementById("total-count").textContent = APPS.length;
+document.getElementById("stat-must").textContent = mustCount;
+document.getElementById("stat-rec").textContent  = recCount;
+document.getElementById("stat-opt").textContent  = optCount;
+
+function buildCatTabs() {
+  const cats = new Set(APPS.map(a => a.category));
+  const keys = ["all", ...cats];
+  const el = document.getElementById("cat-tabs");
+  el.innerHTML = "";
+  keys.forEach(k => {
+    const c = CATEGORIES[k]; if (!c) return;
+    const b = document.createElement("button");
+    b.className = "cat-btn" + (category === k ? " active" : "");
+    b.innerHTML = "<span>" + c.icon + "</span><span>" + c.label + "</span>";
+    b.onclick = () => { category = k; buildCatTabs(); renderApps(); };
+    el.appendChild(b);
+  });
+}
+
+function setPlatform(p) {
+  platform = p;
+  document.getElementById("btn-ios").className     = "platform-btn" + (p === "ios" ? " active" : "");
+  document.getElementById("btn-android").className  = "platform-btn" + (p === "android" ? " active" : "");
+  renderApps();
+}
+
+function toggleMustHave() {
+  mustOnly = !mustOnly;
+  document.getElementById("must-toggle").className = "must-btn" + (mustOnly ? " active" : "");
+  renderApps();
+}
+
+function renderApps() {
+  const q = document.getElementById("search-input").value.toLowerCase().trim();
+  let list = [...APPS];
+  if (category !== "all") list = list.filter(a => a.category === category);
+  if (q) list = list.filter(a => a.name.toLowerCase().includes(q) || a.description.includes(q));
+  if (mustOnly) list = list.filter(a => a.priority === "must-have");
+  list.sort((a, b) => (PRI[a.priority]?.sort ?? 9) - (PRI[b.priority]?.sort ?? 9));
+
+  const grid  = document.getElementById("app-grid");
+  const empty = document.getElementById("empty-state");
+  if (!list.length) { grid.style.display = "none"; empty.style.display = "block"; return; }
+  grid.style.display = "grid"; empty.style.display = "none";
+
+  grid.innerHTML = list.map(app => {
+    const p = PRI[app.priority] || PRI.optional;
+    const url = platform === "ios" ? app.iosUrl : app.androidUrl;
+    const ok  = url != null;
+    const label = platform === "ios" ? "🍎 App Store 下载" : "🤖 Play 商店下载";
+    const na    = platform === "ios" ? "iOS 暂不可用" : "Android 暂不可用";
+    return '<div class="app-card fade-in">' +
+      '<div class="card-head"><span class="card-icon">' + app.icon + '</span><div>' +
+        '<div class="card-name">' + app.name + '</div>' +
+        '<span class="badge ' + p.cls + '">' + p.label + '</span>' +
+      '</div></div>' +
+      '<p class="card-desc">' + app.description + '</p>' +
+      (app.tips ? '<div class="card-tips">💡 ' + app.tips + '</div>' : '') +
+      (ok ? '<a href="' + url + '" target="_blank" rel="noopener noreferrer" class="dl-btn">' + label + '</a>'
+           : '<div class="dl-na">' + na + '</div>') +
+    '</div>';
+  }).join("");
+}
+
+buildCatTabs();
+renderApps();
+</script>
+</body>
+</html>

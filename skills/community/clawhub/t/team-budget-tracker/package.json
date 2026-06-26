@@ -1,0 +1,10 @@
+{
+  "name": "team-budget-tracker",
+  "version": "0.9.0",
+  "description": "团队预算追踪工具 - 创建、分配和追踪项目预算",
+  "author": "张磊",
+  "license": "MIT",
+  "scripts": {
+    "install": "bash install.sh"
+  }
+}

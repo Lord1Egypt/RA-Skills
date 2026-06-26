@@ -1,0 +1,30 @@
+[
+  {
+    "id": "03-01",
+    "topic": "functions",
+    "difficulty": "easy",
+    "question": "Write a function called `square` that takes a number and returns its square. Call it with 5 and print the result.",
+    "hint": "Use the ** operator to raise a number to a power."
+  },
+  {
+    "id": "03-02",
+    "topic": "functions",
+    "difficulty": "easy",
+    "question": "Write a function `is_even` that returns `True` if a number is even, `False` otherwise. Test it with 4 and 7.",
+    "hint": "Use the modulo operator %. A number is even if n % 2 == 0."
+  },
+  {
+    "id": "03-03",
+    "topic": "functions",
+    "difficulty": "medium",
+    "question": "Write a function `greet` that takes a `name` and an optional `greeting` (default `\"Hello\"`). Print the greeting and the name together. Call it twice: once with only a name, once with both arguments.",
+    "hint": "Define the second parameter with a default value: def greet(name, greeting=\"Hello\")."
+  },
+  {
+    "id": "03-04",
+    "topic": "functions",
+    "difficulty": "hard",
+    "question": "Write a function `fizzbuzz` that takes an integer `n` and returns `\"Fizz\"` if divisible by 3, `\"Buzz\"` if divisible by 5, `\"FizzBuzz\"` if divisible by both, and the number as a string otherwise. Print the result for every number from 1 to 15.",
+    "hint": "Check for FizzBuzz first (divisible by both), then Fizz, then Buzz, then default. Use a for loop to call the function."
+  }
+]

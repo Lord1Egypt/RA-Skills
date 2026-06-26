@@ -1,0 +1,37 @@
+{
+  "ticker": "USAIR",
+  "company": "USAir Group, Inc.",
+  "analysis_year": 1989,
+  "data_source": "USAir 1988 earnings releases as reported contemporaneously in The Washington Post, plus Berkshire 1989 and 1995 shareholder letters",
+  "analyzed_date": "2026-03-25",
+
+  "hard_gates": {
+    "g1_roe_roic": { "value": null, "metric_used": "ROE", "years_averaged": "1987-1988", "pass": null },
+    "g2_fcf_to_ni": { "value": null, "fcf": null, "net_income": 165, "pass": null },
+    "g3_leverage": { "metric_used": "Net Debt/EBITDA", "value": null, "pass": null },
+    "g4_revenue_trend": { "description": "Reported revenue was growing through acquisitions and merger integration, but that growth did not solve the industry's structurally weak economics.", "structural_decline": false, "pass": true },
+    "g5_gross_margin_trend": { "description": "Margins were unstable and heavily influenced by merger costs, fuel, labor, and fare competition; no durable gross-margin signal existed.", "declining_2plus_years": false, "pass": true },
+    "g6_earnings_yield": { "value": null, "net_income_m": null, "ev_m": null, "exemption": null, "pass": null },
+    "g7_moat": { "verdict": "FAIL", "moat_type": null, "description": "USAir had routes, gates, and a recognizable brand, but none created a durable moat. Customers still bought on price and schedule, unions captured much of the upside, and any shock in fuel, recession, labor, or competition could wipe out economics. A senior security improved the payoff profile, but it did not fix the business.", "pass": false }
+  },
+
+  "special_channel": null,
+
+  "metrics_snapshot": {
+    "revenue_1988_m": 5700,
+    "net_income_1988_m": 165,
+    "revenue_q1_1989_m": 1500,
+    "operating_income_q1_1989_m": 57.7
+  },
+
+  "control_groups": [
+    { "ticker": "EAL", "company": "Eastern Air Lines", "year": 1989, "gates_failed": ["g3_leverage", "g7_moat"], "conclusion": "PASS — financially weaker and exposed to the same commodity-industry economics." },
+    { "ticker": "PANAM", "company": "Pan Am Corporation", "year": 1989, "gates_failed": ["g3_leverage", "g4_revenue_trend", "g7_moat"], "conclusion": "PASS — weaker balance sheet and no defensible moat in an already brutal industry." }
+  ],
+
+  "conclusion": "PASS",
+  "buffett_action": "Berkshire bought $358M of 9.25% convertible preferred in 1989, redeemable in ten years and convertible at $60 per share.",
+  "actual_result": "The preferred dividend was suspended and Buffett later called the deal a case of sloppy analysis. USAir eventually survived and Berkshire exited with a profit, but only after years of near-disaster and poor opportunity cost.",
+  "verdict": "⭐ framework_wins",
+  "key_insight": "A strong preferred coupon cannot rescue a deal when the underlying business has no moat and management cannot control industry economics."
+}

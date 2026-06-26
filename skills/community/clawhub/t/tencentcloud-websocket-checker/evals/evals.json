@@ -1,0 +1,23 @@
+{
+  "skill_name": "tencentcloud-websocket-checker",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "帮我检测一下 wss://tts-international.tencentcloud.com/stream_ws?Action=TextToStreamAudioWS 的连接延迟，测试5轮",
+      "expected_output": "运行 ws_check.sh 脚本对目标 URL 进行5轮延迟检测，输出包含 DNS、TCP、TLS、WS Upgrade 各阶段耗时的性能分析报告",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "我的 WebSocket 连接很慢，TLS 握手要 800ms 以上，怎么排查和优化？",
+      "expected_output": "使用 ws_check.sh 检测确认 TLS 耗时，然后根据 TROUBLESHOOTING.md 提供 TLS 优化建议（TLS 1.3、Session Resumption、证书链优化、OCSP Stapling 等）",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "我需要对比同一个 WebSocket 服务在 ws 和 wss 两种协议下的建连性能差异",
+      "expected_output": "分别使用 -p ws 和 -p wss 参数对同一个 URL 执行检测，对比两种协议下的各阶段耗时差异，特别是 TLS 握手的额外开销",
+      "files": []
+    }
+  ]
+}

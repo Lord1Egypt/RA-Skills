@@ -1,0 +1,4 @@
+interface:
+  display_name: "Thesis Writing Advisor"
+  short_description: "Psychology thesis topic and writing guide"
+  default_prompt: "Use $thesis-writing-advisor to turn my psychology thesis topic and influencing factors into a complete proposal and writing guide."

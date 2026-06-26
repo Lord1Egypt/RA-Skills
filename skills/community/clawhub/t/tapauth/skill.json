@@ -1,0 +1,5 @@
+{
+  "name": "tapauth",
+  "description": "Get delegated access for AI agents via TapAuth \u2014 the trust layer between humans and AI agents. Use when your agent needs OAuth access to GitHub, Google Workspace, Gmail, Linear, or other providers, or when a user must supply a password or fixed API key through the manual secret flow. One API call creates an approval request; the user approves in browser; the agent gets the scoped token or encrypted user-entered secret. No TapAuth API key required. Do NOT use when the agent already has direct credentials.",
+  "version": "1.0.6"
+}

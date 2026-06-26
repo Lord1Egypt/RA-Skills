@@ -1,35 +1,44 @@
 ---
-name: "Token省钱管家"
-description: "OpenClaw Token省钱管家 - 智能缓存、动态路由、实时监控，运行时自动优化，降低70%成本消耗。当用户询问成本优化、Token节省、缓存策略、模型路由或需要成本监控时使用。"
-category: "other"
-source: "ClawHub"
-tags: [cache, cost, openclaw, optimization, token]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/token-cost-controller"
-sourceUrl: "https://clawhub.ai/skills/token-cost-controller"
+name: token-cost-controller
+description: OpenClaw Token省钱管家 - 智能缓存、动态路由、实时监控，运行时自动优化，降低70%成本消耗。当用户询问成本优化、Token节省、缓存策略、模型路由或需要成本监控时使用。
 ---
 
-# Token省钱管家
+# Token省钱管家 v2.1.1
 
-> OpenClaw Token省钱管家 - 智能缓存、动态路由、实时监控，运行时自动优化，降低70%成本消耗。当用户询问成本优化、Token节省、缓存策略、模型路由或需要成本监控时使用。
+> 你的AI消费智能管家 - 让每一分Token钱都花得明明白白
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/token-cost-controller`
-- **Source URL:** [https://clawhub.ai/skills/token-cost-controller](https://clawhub.ai/skills/token-cost-controller)
+## 核心功能
 
-## Overview
+- **智能缓存**: 语义相似请求直接命中缓存，节省30-50%成本
+- **动态路由**: 简单任务自动路由到便宜模型，复杂任务用旗舰模型
+- **实时监控**: 5秒内检测异常消耗，自动告警
+- **一键管控**: 禁用技能、设置预算上限、暂停计划
 
+## 性能优化 (v2.1.1)
 
-## Installation
-To install this skill, run the following command in your terminal:
+- 异步CLI调用 - 不阻塞主线程
+- Ring Buffer固定内存 - 告别内存泄漏
+- 动态异常检测 - 基于变异系数的智能阈值
+- 安全缓存Key - 对象键排序提高命中率
+
+## 快速使用
+
 ```bash
-hermes skills install clawhub/token-cost-controller
+openclaw cost report      # 查看今日成本报告
+openclaw cost top-skills  # 查看Top消耗技能
+openclaw cost disable-skill <技能名>  # 禁用高消耗技能
 ```
+
+## 节省效果
+
+| 优化前 | 优化后 | 节省 |
+|--------|--------|------|
+| $156/月 | $47/月 | 70% |
+| 125K Token/天 | 45K Token/天 | 64% |
+
+## 技术栈
+
+- Node.js 18+
+- 异步execAsync调用
+- Ring Buffer数据结构
+- 动态阈值异常检测

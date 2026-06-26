@@ -1,0 +1,36 @@
+{
+  "report_version": 1,
+  "suite": "personal-hooks-v1",
+  "generated_at": "1970-01-01T00:00:00+00:00",
+  "summary": {
+    "pass_count": 3,
+    "fail_count": 0
+  },
+  "cases": [
+    {
+      "case_id": "parked_topic",
+      "category": "parked_topic",
+      "expected_memory_layer": "staged_memory",
+      "actual_memory_layer": "staged_memory",
+      "pass/fail": "pass"
+    },
+    {
+      "case_id": "delegated_task",
+      "category": "delegated_task",
+      "expected_memory_layer": "tracked_followup",
+      "actual_memory_layer": "tracked_followup",
+      "pass/fail": "pass"
+    },
+    {
+      "case_id": "new_session_carryover",
+      "category": "/new carryover",
+      "expected_carryover_behavior": true,
+      "actual_carryover_flags": {
+        "new_session_carryover_applied": true,
+        "carryover_source": "last_3_to_5_turns",
+        "carryover_summary_present": true
+      },
+      "pass/fail": "pass"
+    }
+  ]
+}

@@ -1,0 +1,459 @@
+[
+  {
+    "code": "600276",
+    "name": "恒瑞医药",
+    "chip_distribution": {
+      "min_price": 41.81,
+      "max_price": 51.63,
+      "current_position": "最高位",
+      "dense_intervals": [
+        {
+          "start": 45.74,
+          "end": 46.72,
+          "chips": 4102143,
+          "percentage": 20.9
+        },
+        {
+          "start": 46.72,
+          "end": 47.7,
+          "chips": 3751018,
+          "percentage": 19.2
+        }
+      ],
+      "concentration_ratio": 0.546,
+      "concentration_level": "中度集中",
+      "total_volume": 19584072
+    },
+    "shareholder_trend": {
+      "current_count": 138630,
+      "previous_count": 141934,
+      "change_pct": -2.33,
+      "trend": "小幅减少",
+      "signal": "筹码略集中",
+      "strength": "弱",
+      "long_term_trend": "震荡整理",
+      "recent_quarters": [
+        146843,
+        128831,
+        141934,
+        138630
+      ]
+    },
+    "profitable_ratio": {
+      "profitable_ratio": 98.3,
+      "level": "多数获利",
+      "total_periods": 60,
+      "profitable_periods": 59
+    },
+    "pressure_support": {
+      "support_level": 47.7,
+      "resistance_level": 51.63,
+      "support_distance": 7.61,
+      "resistance_distance": 0.0,
+      "dense_intervals": [
+        {
+          "start": 45.74,
+          "end": 46.72,
+          "chips": 4102143,
+          "percentage": 20.9
+        },
+        {
+          "start": 46.72,
+          "end": 47.7,
+          "chips": 3751018,
+          "percentage": 19.2
+        }
+      ]
+    },
+    "chip_score": 65,
+    "chip_suggestion": "适度关注",
+    "chip_signals": [
+      "筹码中度集中",
+      "股东小幅减少",
+      "多数获利",
+      "接近阻力位"
+    ]
+  },
+  {
+    "code": "600760",
+    "name": "中航沈飞",
+    "chip_distribution": {
+      "min_price": 41.76,
+      "max_price": 51.23,
+      "current_position": "中位",
+      "dense_intervals": [
+        {
+          "start": 45.55,
+          "end": 46.49,
+          "chips": 3463996,
+          "percentage": 18.9
+        },
+        {
+          "start": 46.49,
+          "end": 47.44,
+          "chips": 3116976,
+          "percentage": 17.0
+        },
+        {
+          "start": 47.44,
+          "end": 48.39,
+          "chips": 3559755,
+          "percentage": 19.5
+        }
+      ],
+      "concentration_ratio": 0.554,
+      "concentration_level": "中度集中",
+      "total_volume": 18288680
+    },
+    "shareholder_trend": {
+      "current_count": 130301,
+      "previous_count": 130951,
+      "change_pct": -0.5,
+      "trend": "基本稳定",
+      "signal": "筹码稳定",
+      "strength": "中性",
+      "long_term_trend": "震荡整理",
+      "recent_quarters": [
+        121130,
+        127201,
+        130951,
+        130301
+      ]
+    },
+    "profitable_ratio": {
+      "profitable_ratio": 63.3,
+      "level": "部分获利",
+      "total_periods": 60,
+      "profitable_periods": 38
+    },
+    "pressure_support": {
+      "support_level": 47.44,
+      "resistance_level": 47.44,
+      "support_distance": 0.67,
+      "resistance_distance": -0.67,
+      "dense_intervals": [
+        {
+          "start": 45.55,
+          "end": 46.49,
+          "chips": 3463996,
+          "percentage": 18.9
+        },
+        {
+          "start": 46.49,
+          "end": 47.44,
+          "chips": 3116976,
+          "percentage": 17.0
+        },
+        {
+          "start": 47.44,
+          "end": 48.39,
+          "chips": 3559755,
+          "percentage": 19.5
+        }
+      ]
+    },
+    "chip_score": 60,
+    "chip_suggestion": "适度关注",
+    "chip_signals": [
+      "筹码中度集中",
+      "接近支撑位",
+      "接近阻力位"
+    ]
+  },
+  {
+    "code": "600999",
+    "name": "招商证券",
+    "chip_distribution": {
+      "min_price": 13.36,
+      "max_price": 15.17,
+      "current_position": "最高位",
+      "dense_intervals": [
+        {
+          "start": 13.54,
+          "end": 13.72,
+          "chips": 3640997,
+          "percentage": 20.7
+        },
+        {
+          "start": 13.9,
+          "end": 14.08,
+          "chips": 3388959,
+          "percentage": 19.3
+        },
+        {
+          "start": 14.08,
+          "end": 14.26,
+          "chips": 3509488,
+          "percentage": 20.0
+        }
+      ],
+      "concentration_ratio": 0.6,
+      "concentration_level": "中度集中",
+      "total_volume": 17553715
+    },
+    "shareholder_trend": {
+      "current_count": 83638,
+      "previous_count": 80500,
+      "change_pct": 3.9,
+      "trend": "小幅增加",
+      "signal": "筹码略分散",
+      "strength": "弱",
+      "long_term_trend": "震荡整理",
+      "recent_quarters": [
+        85125,
+        87579,
+        80500,
+        83638
+      ]
+    },
+    "profitable_ratio": {
+      "profitable_ratio": 98.3,
+      "level": "多数获利",
+      "total_periods": 60,
+      "profitable_periods": 59
+    },
+    "pressure_support": {
+      "support_level": 14.26,
+      "resistance_level": 15.17,
+      "support_distance": 6.0,
+      "resistance_distance": 0.0,
+      "dense_intervals": [
+        {
+          "start": 13.54,
+          "end": 13.72,
+          "chips": 3640997,
+          "percentage": 20.7
+        },
+        {
+          "start": 13.9,
+          "end": 14.08,
+          "chips": 3388959,
+          "percentage": 19.3
+        },
+        {
+          "start": 14.08,
+          "end": 14.26,
+          "chips": 3509488,
+          "percentage": 20.0
+        }
+      ]
+    },
+    "chip_score": 60,
+    "chip_suggestion": "适度关注",
+    "chip_signals": [
+      "筹码中度集中",
+      "多数获利",
+      "接近阻力位"
+    ]
+  },
+  {
+    "code": "601888",
+    "name": "中国中免",
+    "chip_distribution": {
+      "min_price": 62.82,
+      "max_price": 88.98,
+      "current_position": "中位",
+      "dense_intervals": [
+        {
+          "start": 70.67,
+          "end": 73.28,
+          "chips": 4711346,
+          "percentage": 29.0
+        }
+      ],
+      "concentration_ratio": 0.612,
+      "concentration_level": "中度集中",
+      "total_volume": 16222533
+    },
+    "shareholder_trend": {
+      "current_count": 152717,
+      "previous_count": 135916,
+      "change_pct": 12.36,
+      "trend": "显著增加",
+      "signal": "筹码高度分散",
+      "strength": "强",
+      "long_term_trend": "震荡整理",
+      "recent_quarters": [
+        136922,
+        129728,
+        135916,
+        152717
+      ]
+    },
+    "profitable_ratio": {
+      "profitable_ratio": 33.3,
+      "level": "部分套牢",
+      "total_periods": 60,
+      "profitable_periods": 20
+    },
+    "pressure_support": {
+      "support_level": 62.82,
+      "resistance_level": 70.67,
+      "support_distance": 11.13,
+      "resistance_distance": -0.03,
+      "dense_intervals": [
+        {
+          "start": 70.67,
+          "end": 73.28,
+          "chips": 4711346,
+          "percentage": 29.0
+        }
+      ]
+    },
+    "chip_score": 50,
+    "chip_suggestion": "观望",
+    "chip_signals": [
+      "筹码中度集中",
+      "接近阻力位"
+    ]
+  },
+  {
+    "code": "002202",
+    "name": "金风科技",
+    "chip_distribution": {
+      "min_price": 23.2,
+      "max_price": 28.13,
+      "current_position": "最高位",
+      "dense_intervals": [
+        {
+          "start": 24.18,
+          "end": 24.68,
+          "chips": 4321551,
+          "percentage": 21.1
+        },
+        {
+          "start": 24.68,
+          "end": 25.17,
+          "chips": 4511370,
+          "percentage": 22.0
+        },
+        {
+          "start": 26.16,
+          "end": 26.65,
+          "chips": 3182343,
+          "percentage": 15.5
+        }
+      ],
+      "concentration_ratio": 0.585,
+      "concentration_level": "中度集中",
+      "total_volume": 20523684
+    },
+    "shareholder_trend": {
+      "current_count": 188092,
+      "previous_count": 209138,
+      "change_pct": -10.06,
+      "trend": "显著减少",
+      "signal": "筹码高度集中",
+      "strength": "强",
+      "long_term_trend": "震荡整理",
+      "recent_quarters": [
+        184519,
+        208334,
+        209138,
+        188092
+      ]
+    },
+    "profitable_ratio": {
+      "profitable_ratio": 98.3,
+      "level": "多数获利",
+      "total_periods": 60,
+      "profitable_periods": 59
+    },
+    "pressure_support": {
+      "support_level": 26.65,
+      "resistance_level": 28.13,
+      "support_distance": 5.26,
+      "resistance_distance": 0.0,
+      "dense_intervals": [
+        {
+          "start": 24.18,
+          "end": 24.68,
+          "chips": 4321551,
+          "percentage": 21.1
+        },
+        {
+          "start": 24.68,
+          "end": 25.17,
+          "chips": 4511370,
+          "percentage": 22.0
+        },
+        {
+          "start": 26.16,
+          "end": 26.65,
+          "chips": 3182343,
+          "percentage": 15.5
+        }
+      ]
+    },
+    "chip_score": 75,
+    "chip_suggestion": "积极关注",
+    "chip_signals": [
+      "筹码中度集中",
+      "股东大幅减少",
+      "多数获利",
+      "接近阻力位"
+    ]
+  },
+  {
+    "code": "300188",
+    "name": "国投智能",
+    "chip_distribution": {
+      "min_price": 10.61,
+      "max_price": 12.33,
+      "current_position": "最高位",
+      "dense_intervals": [
+        {
+          "start": 11.3,
+          "end": 11.47,
+          "chips": 5069839,
+          "percentage": 29.6
+        }
+      ],
+      "concentration_ratio": 0.631,
+      "concentration_level": "中度集中",
+      "total_volume": 17132418
+    },
+    "shareholder_trend": {
+      "current_count": 127788,
+      "previous_count": 115347,
+      "change_pct": 10.79,
+      "trend": "显著增加",
+      "signal": "筹码高度分散",
+      "strength": "强",
+      "long_term_trend": "持续分散",
+      "recent_quarters": [
+        110534,
+        125569,
+        115347,
+        127788
+      ]
+    },
+    "profitable_ratio": {
+      "profitable_ratio": 98.3,
+      "level": "多数获利",
+      "total_periods": 60,
+      "profitable_periods": 59
+    },
+    "pressure_support": {
+      "support_level": 11.47,
+      "resistance_level": 12.33,
+      "support_distance": 6.97,
+      "resistance_distance": 0.0,
+      "dense_intervals": [
+        {
+          "start": 11.3,
+          "end": 11.47,
+          "chips": 5069839,
+          "percentage": 29.6
+        }
+      ]
+    },
+    "chip_score": 60,
+    "chip_suggestion": "适度关注",
+    "chip_signals": [
+      "筹码中度集中",
+      "多数获利",
+      "接近阻力位"
+    ]
+  }
+]

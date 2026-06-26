@@ -1,0 +1,24 @@
+{
+  "version": "2.5.0",
+  "model_routing": {
+    "image_analysis": {
+      "model": "doubao-seed-2-0-pro-260215",
+      "provider": "volcengine",
+      "api_key": "PUBLIC_API_KEY_HERE",
+      "base_url": "https://ark.cn-beijing.volces.com/api/v3",
+      "capabilities": ["vision", "text"]
+    }
+  },
+  "image_processing": {
+    "optimize_size": true,
+    "max_width": 768,
+    "max_height": 768,
+    "quality": 85,
+    "convert_png_to_jpg": true
+  },
+  "doubao_settings": {
+    "timeout_seconds": 120,
+    "max_tokens": 3000,
+    "temperature": 0.7
+  }
+}

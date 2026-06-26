@@ -1,0 +1,1294 @@
+{
+  "meta": {
+    "name": "standardized_huangli_rules",
+    "generated": "2026-05-11T11:25:55.002340"
+  },
+  "shen_sha": {
+    "description": "神煞系统",
+    "jian_chu_twelve_gods": {
+      "description": "建除十二神（十二值位），决定每日吉凶宜忌的核心系统。按农历月干支推算每日值神。",
+      "order": [
+        "建",
+        "除",
+        "满",
+        "平",
+        "定",
+        "执",
+        "破",
+        "危",
+        "成",
+        "收",
+        "开",
+        "闭"
+      ],
+      "cycle_length": 12,
+      "gods": [
+        {
+          "name": "建",
+          "pinyin": "Jian",
+          "meaning": "建立、开始",
+          "day_quality": "一般/凶",
+          "description": "建日为一月之始，代表事物开始，但诸事不宜冒进",
+          "suitable": [
+            "祭祀",
+            "祈福",
+            "入学",
+            "出行"
+          ],
+          "unsuitable": [
+            "动土",
+            "开张",
+            "嫁娶",
+            "搬家"
+          ],
+          "element": "土"
+        },
+        {
+          "name": "除",
+          "pinyin": "Chu",
+          "meaning": "除旧布新、去除",
+          "day_quality": "吉",
+          "description": "除旧布新之日，适合去除旧事物、求医等",
+          "suitable": [
+            "求医",
+            "祭祀",
+            "沐浴",
+            "扫除",
+            "出殡",
+            "破屋",
+            "服药"
+          ],
+          "unsuitable": [
+            "嫁娶",
+            "开市",
+            "入宅",
+            "签约"
+          ]
+        },
+        {
+          "name": "满",
+          "pinyin": "Man",
+          "meaning": "圆满、丰盈",
+          "day_quality": "吉",
+          "description": "万事圆满之日，适合祭祀、求财等",
+          "suitable": [
+            "祭祀",
+            "祈福",
+            "求财",
+            "开市",
+            "交易",
+            "纳财",
+            "进人口"
+          ],
+          "unsuitable": [
+            "动土",
+            "嫁娶",
+            "搬家"
+          ]
+        },
+        {
+          "name": "平",
+          "pinyin": "Ping",
+          "meaning": "平常、平稳",
+          "day_quality": "一般",
+          "description": "平稳之日，诸事可行但无大吉",
+          "suitable": [
+            "平治道涂",
+            "修屋",
+            "祭祀",
+            "出行"
+          ],
+          "unsuitable": [
+            "开张",
+            "嫁娶"
+          ]
+        },
+        {
+          "name": "定",
+          "pinyin": "Ding",
+          "meaning": "安定、确定",
+          "day_quality": "吉",
+          "description": "安定之日，适合定盟、签约、交易等",
+          "suitable": [
+            "订婚",
+            "签约",
+            "交易",
+            "祭祀",
+            "会亲友",
+            "入学"
+          ],
+          "unsuitable": [
+            "诉讼",
+            "出师",
+            "远行"
+          ]
+        },
+        {
+          "name": "执",
+          "pinyin": "Zhi",
+          "meaning": "执行、固执",
+          "day_quality": "一般/凶",
+          "description": "固执执行之日，适合捕捉、建筑，不利出行",
+          "suitable": [
+            "捕捉",
+            "建筑",
+            "立碑",
+            "栽种"
+          ],
+          "unsuitable": [
+            "出行",
+            "开市",
+            "嫁娶"
+          ]
+        },
+        {
+          "name": "破",
+          "pinyin": "Po",
+          "meaning": "破坏、冲破",
+          "day_quality": "凶",
+          "description": "冲破之日，诸事不宜",
+          "suitable": [
+            "求医",
+            "破屋",
+            "坏垣",
+            "服药"
+          ],
+          "unsuitable": [
+            "嫁娶",
+            "开市",
+            "出行",
+            "签约",
+            "交易",
+            "搬家",
+            "入宅"
+          ]
+        },
+        {
+          "name": "危",
+          "pinyin": "Wei",
+          "meaning": "危险、危机",
+          "day_quality": "凶",
+          "description": "危险之日，宜静不宜动",
+          "suitable": [
+            "祭祀",
+            "沐浴",
+            "安床"
+          ],
+          "unsuitable": [
+            "出行",
+            "开市",
+            "嫁娶",
+            "搬家",
+            "远行"
+          ]
+        },
+        {
+          "name": "成",
+          "pinyin": "Cheng",
+          "meaning": "成就、成功",
+          "day_quality": "大吉",
+          "description": "成就之日，百事大吉之良辰",
+          "suitable": [
+            "嫁娶",
+            "开市",
+            "交易",
+            "签约",
+            "搬家",
+            "入宅",
+            "出行",
+            "祈福",
+            "祭祀"
+          ],
+          "unsuitable": [
+            "诉讼",
+            "词讼"
+          ]
+        },
+        {
+          "name": "收",
+          "pinyin": "Shou",
+          "meaning": "收获、收敛",
+          "day_quality": "吉",
+          "description": "收获之日，适合收财、入库等",
+          "suitable": [
+            "纳财",
+            "收债",
+            "进人口",
+            "嫁娶",
+            "祭祀"
+          ],
+          "unsuitable": [
+            "出行",
+            "开市",
+            "搬家"
+          ]
+        },
+        {
+          "name": "开",
+          "pinyin": "Kai",
+          "meaning": "开放、开始",
+          "day_quality": "大吉",
+          "description": "开放之日，百事可行之大吉日",
+          "suitable": [
+            "开市",
+            "嫁娶",
+            "搬家",
+            "出行",
+            "开工",
+            "祭祀"
+          ],
+          "unsuitable": [
+            "出殡",
+            "诉讼"
+          ]
+        },
+        {
+          "name": "闭",
+          "pinyin": "Bi",
+          "meaning": "关闭、闭塞",
+          "day_quality": "凶",
+          "description": "闭塞之日，诸事不宜",
+          "suitable": [
+            "埋葬",
+            "出殡",
+            "修造",
+            "筑堤"
+          ],
+          "unsuitable": [
+            "开市",
+            "嫁娶",
+            "出行",
+            "开光",
+            "搬家"
+          ]
+        }
+      ]
+    }
+  },
+  "jian_chu": {
+    "description": "建除十二神",
+    "data": {
+      "description": "建除十二神（十二值位），决定每日吉凶宜忌的核心系统。按农历月干支推算每日值神。",
+      "order": [
+        "建",
+        "除",
+        "满",
+        "平",
+        "定",
+        "执",
+        "破",
+        "危",
+        "成",
+        "收",
+        "开",
+        "闭"
+      ],
+      "cycle_length": 12,
+      "gods": [
+        {
+          "name": "建",
+          "pinyin": "Jian",
+          "meaning": "建立、开始",
+          "day_quality": "一般/凶",
+          "description": "建日为一月之始，代表事物开始，但诸事不宜冒进",
+          "suitable": [
+            "祭祀",
+            "祈福",
+            "入学",
+            "出行"
+          ],
+          "unsuitable": [
+            "动土",
+            "开张",
+            "嫁娶",
+            "搬家"
+          ],
+          "element": "土"
+        },
+        {
+          "name": "除",
+          "pinyin": "Chu",
+          "meaning": "除旧布新、去除",
+          "day_quality": "吉",
+          "description": "除旧布新之日，适合去除旧事物、求医等",
+          "suitable": [
+            "求医",
+            "祭祀",
+            "沐浴",
+            "扫除",
+            "出殡",
+            "破屋",
+            "服药"
+          ],
+          "unsuitable": [
+            "嫁娶",
+            "开市",
+            "入宅",
+            "签约"
+          ]
+        },
+        {
+          "name": "满",
+          "pinyin": "Man",
+          "meaning": "圆满、丰盈",
+          "day_quality": "吉",
+          "description": "万事圆满之日，适合祭祀、求财等",
+          "suitable": [
+            "祭祀",
+            "祈福",
+            "求财",
+            "开市",
+            "交易",
+            "纳财",
+            "进人口"
+          ],
+          "unsuitable": [
+            "动土",
+            "嫁娶",
+            "搬家"
+          ]
+        },
+        {
+          "name": "平",
+          "pinyin": "Ping",
+          "meaning": "平常、平稳",
+          "day_quality": "一般",
+          "description": "平稳之日，诸事可行但无大吉",
+          "suitable": [
+            "平治道涂",
+            "修屋",
+            "祭祀",
+            "出行"
+          ],
+          "unsuitable": [
+            "开张",
+            "嫁娶"
+          ]
+        },
+        {
+          "name": "定",
+          "pinyin": "Ding",
+          "meaning": "安定、确定",
+          "day_quality": "吉",
+          "description": "安定之日，适合定盟、签约、交易等",
+          "suitable": [
+            "订婚",
+            "签约",
+            "交易",
+            "祭祀",
+            "会亲友",
+            "入学"
+          ],
+          "unsuitable": [
+            "诉讼",
+            "出师",
+            "远行"
+          ]
+        },
+        {
+          "name": "执",
+          "pinyin": "Zhi",
+          "meaning": "执行、固执",
+          "day_quality": "一般/凶",
+          "description": "固执执行之日，适合捕捉、建筑，不利出行",
+          "suitable": [
+            "捕捉",
+            "建筑",
+            "立碑",
+            "栽种"
+          ],
+          "unsuitable": [
+            "出行",
+            "开市",
+            "嫁娶"
+          ]
+        },
+        {
+          "name": "破",
+          "pinyin": "Po",
+          "meaning": "破坏、冲破",
+          "day_quality": "凶",
+          "description": "冲破之日，诸事不宜",
+          "suitable": [
+            "求医",
+            "破屋",
+            "坏垣",
+            "服药"
+          ],
+          "unsuitable": [
+            "嫁娶",
+            "开市",
+            "出行",
+            "签约",
+            "交易",
+            "搬家",
+            "入宅"
+          ]
+        },
+        {
+          "name": "危",
+          "pinyin": "Wei",
+          "meaning": "危险、危机",
+          "day_quality": "凶",
+          "description": "危险之日，宜静不宜动",
+          "suitable": [
+            "祭祀",
+            "沐浴",
+            "安床"
+          ],
+          "unsuitable": [
+            "出行",
+            "开市",
+            "嫁娶",
+            "搬家",
+            "远行"
+          ]
+        },
+        {
+          "name": "成",
+          "pinyin": "Cheng",
+          "meaning": "成就、成功",
+          "day_quality": "大吉",
+          "description": "成就之日，百事大吉之良辰",
+          "suitable": [
+            "嫁娶",
+            "开市",
+            "交易",
+            "签约",
+            "搬家",
+            "入宅",
+            "出行",
+            "祈福",
+            "祭祀"
+          ],
+          "unsuitable": [
+            "诉讼",
+            "词讼"
+          ]
+        },
+        {
+          "name": "收",
+          "pinyin": "Shou",
+          "meaning": "收获、收敛",
+          "day_quality": "吉",
+          "description": "收获之日，适合收财、入库等",
+          "suitable": [
+            "纳财",
+            "收债",
+            "进人口",
+            "嫁娶",
+            "祭祀"
+          ],
+          "unsuitable": [
+            "出行",
+            "开市",
+            "搬家"
+          ]
+        },
+        {
+          "name": "开",
+          "pinyin": "Kai",
+          "meaning": "开放、开始",
+          "day_quality": "大吉",
+          "description": "开放之日，百事可行之大吉日",
+          "suitable": [
+            "开市",
+            "嫁娶",
+            "搬家",
+            "出行",
+            "开工",
+            "祭祀"
+          ],
+          "unsuitable": [
+            "出殡",
+            "诉讼"
+          ]
+        },
+        {
+          "name": "闭",
+          "pinyin": "Bi",
+          "meaning": "关闭、闭塞",
+          "day_quality": "凶",
+          "description": "闭塞之日，诸事不宜",
+          "suitable": [
+            "埋葬",
+            "出殡",
+            "修造",
+            "筑堤"
+          ],
+          "unsuitable": [
+            "开市",
+            "嫁娶",
+            "出行",
+            "开光",
+            "搬家"
+          ]
+        }
+      ]
+    }
+  },
+  "yi_ji": {
+    "description": "每日宜忌规则",
+    "activities": [
+      {
+        "activity": "祭祀",
+        "category": "礼仪",
+        "description": "拜祭祖先、神明",
+        "generally_suitable": true,
+        "notes": "多数吉日可祭，不宜凶煞日"
+      },
+      {
+        "activity": "祈福",
+        "category": "礼仪",
+        "description": "向神明祈求福佑",
+        "generally_suitable": true,
+        "notes": "宜吉日，忌刑、害、冲日"
+      },
+      {
+        "activity": "嫁娶",
+        "category": "婚嫁",
+        "description": "婚嫁迎娶",
+        "generally_suitable": true,
+        "notes": "需择大吉日，要避开新人生肖相冲、三娘煞等"
+      },
+      {
+        "activity": "订婚",
+        "category": "婚嫁",
+        "description": "定盟、纳采",
+        "generally_suitable": true,
+        "notes": "宜定日、成日等"
+      },
+      {
+        "activity": "开市",
+        "category": "商业",
+        "description": "店铺开张、开业",
+        "generally_suitable": true,
+        "notes": "宜开日、成日、满日，忌破日、闭日"
+      },
+      {
+        "activity": "交易",
+        "category": "商业",
+        "description": "买卖交易、签约",
+        "generally_suitable": true
+      },
+      {
+        "activity": "纳财",
+        "category": "商业",
+        "description": "收账、进货、收取财物",
+        "generally_suitable": true,
+        "notes": "宜收日、满日"
+      },
+      {
+        "activity": "出行",
+        "category": "生活",
+        "description": "外出远行、旅游",
+        "generally_suitable": true,
+        "notes": "宜开日、成日，忌危日、破日"
+      },
+      {
+        "activity": "搬家",
+        "category": "生活",
+        "description": "入宅、移居",
+        "generally_suitable": true,
+        "notes": "宜成日、开日，忌破日、闭日"
+      },
+      {
+        "activity": "入宅",
+        "category": "生活",
+        "description": "迁入新居",
+        "generally_suitable": true,
+        "notes": "重要事件，需择吉日，避开冲煞"
+      },
+      {
+        "activity": "安床",
+        "category": "生活",
+        "description": "安置睡床",
+        "generally_suitable": true
+      },
+      {
+        "activity": "动土",
+        "category": "建筑",
+        "description": "建筑开工、破土",
+        "generally_suitable": true,
+        "notes": "需择吉日，忌土王用事日"
+      },
+      {
+        "activity": "上梁",
+        "category": "建筑",
+        "description": "房梁上架",
+        "generally_suitable": true,
+        "notes": "重大建筑吉事"
+      },
+      {
+        "activity": "修造",
+        "category": "建筑",
+        "description": "修缮、建造",
+        "generally_suitable": true
+      },
+      {
+        "activity": "竖柱",
+        "category": "建筑",
+        "description": "立柱子",
+        "generally_suitable": true
+      },
+      {
+        "activity": "栽种",
+        "category": "农业",
+        "description": "种植农作物",
+        "generally_suitable": true
+      },
+      {
+        "activity": "牧养",
+        "category": "农业",
+        "description": "饲养动物",
+        "generally_suitable": true
+      },
+      {
+        "activity": "捕捉",
+        "category": "农业",
+        "description": "捕捉动物",
+        "generally_suitable": true
+      },
+      {
+        "activity": "入学",
+        "category": "教育",
+        "description": "入学读书",
+        "generally_suitable": true
+      },
+      {
+        "activity": "求医",
+        "category": "健康",
+        "description": "看病求医",
+        "generally_suitable": true,
+        "notes": "宜除日（除旧布新）"
+      },
+      {
+        "activity": "服药",
+        "category": "健康",
+        "description": "吃药治疗",
+        "generally_suitable": true
+      },
+      {
+        "activity": "沐浴",
+        "category": "生活",
+        "description": "洗澡、斋戒",
+        "generally_suitable": true
+      },
+      {
+        "activity": "剃头",
+        "category": "生活",
+        "description": "理发",
+        "generally_suitable": true
+      },
+      {
+        "activity": "会亲友",
+        "category": "社交",
+        "description": "聚会亲友",
+        "generally_suitable": true
+      },
+      {
+        "activity": "签约",
+        "category": "商业",
+        "description": "签署合同、契约",
+        "generally_suitable": true,
+        "notes": "宜定日、成日"
+      },
+      {
+        "activity": "诉讼",
+        "category": "法律",
+        "description": "打官司、起诉",
+        "generally_suitable": false,
+        "notes": "一般不宜，需另择专用日"
+      },
+      {
+        "activity": "埋葬",
+        "category": "丧葬",
+        "description": "下葬",
+        "generally_suitable": true,
+        "notes": "宜闭日，需结合仙命生肖等"
+      },
+      {
+        "activity": "出殡",
+        "category": "丧葬",
+        "description": "送葬出殡",
+        "generally_suitable": true,
+        "notes": "宜除日、闭日"
+      },
+      {
+        "activity": "开光",
+        "category": "宗教",
+        "description": "神佛塑像开光点眼",
+        "generally_suitable": true,
+        "notes": "需择大吉日"
+      }
+    ]
+  },
+  "xing_xiu": {
+    "description": "二十八星宿",
+    "groups": {
+      "east_azure_dragon": {
+        "name": "东方青龙七宿",
+        "direction": "东",
+        "element": "木",
+        "constellations": [
+          {
+            "name": "角",
+            "meaning": "角木蛟",
+            "animal": "蛟",
+            "day_quality": "吉"
+          },
+          {
+            "name": "亢",
+            "meaning": "亢金龙",
+            "animal": "龙",
+            "day_quality": "凶"
+          },
+          {
+            "name": "氐",
+            "meaning": "氐土貉",
+            "animal": "貉",
+            "day_quality": "吉"
+          },
+          {
+            "name": "房",
+            "meaning": "房日兔",
+            "animal": "兔",
+            "day_quality": "吉"
+          },
+          {
+            "name": "心",
+            "meaning": "心月狐",
+            "animal": "狐",
+            "day_quality": "凶"
+          },
+          {
+            "name": "尾",
+            "meaning": "尾火虎",
+            "animal": "虎",
+            "day_quality": "吉"
+          },
+          {
+            "name": "箕",
+            "meaning": "箕水豹",
+            "animal": "豹",
+            "day_quality": "吉"
+          }
+        ]
+      },
+      "north_black_tortoise": {
+        "name": "北方玄武七宿",
+        "direction": "北",
+        "element": "水",
+        "constellations": [
+          {
+            "name": "斗",
+            "meaning": "斗木獬",
+            "animal": "獬",
+            "day_quality": "吉"
+          },
+          {
+            "name": "牛",
+            "meaning": "牛金牛",
+            "animal": "牛",
+            "day_quality": "凶"
+          },
+          {
+            "name": "女",
+            "meaning": "女土蝠",
+            "animal": "蝠",
+            "day_quality": "吉"
+          },
+          {
+            "name": "虚",
+            "meaning": "虚日鼠",
+            "animal": "鼠",
+            "day_quality": "凶"
+          },
+          {
+            "name": "危",
+            "meaning": "危月燕",
+            "animal": "燕",
+            "day_quality": "凶"
+          },
+          {
+            "name": "室",
+            "meaning": "室火猪",
+            "animal": "猪",
+            "day_quality": "吉"
+          },
+          {
+            "name": "壁",
+            "meaning": "壁水貐",
+            "animal": "貐",
+            "day_quality": "吉"
+          }
+        ]
+      },
+      "west_white_tiger": {
+        "name": "西方白虎七宿",
+        "direction": "西",
+        "element": "金",
+        "constellations": [
+          {
+            "name": "奎",
+            "meaning": "奎木狼",
+            "animal": "狼",
+            "day_quality": "凶"
+          },
+          {
+            "name": "娄",
+            "meaning": "娄金狗",
+            "animal": "狗",
+            "day_quality": "吉"
+          },
+          {
+            "name": "胃",
+            "meaning": "胃土雉",
+            "animal": "雉",
+            "day_quality": "吉"
+          },
+          {
+            "name": "昴",
+            "meaning": "昴日鸡",
+            "animal": "鸡",
+            "day_quality": "凶"
+          },
+          {
+            "name": "毕",
+            "meaning": "毕月乌",
+            "animal": "乌",
+            "day_quality": "吉"
+          },
+          {
+            "name": "觜",
+            "meaning": "觜火猴",
+            "animal": "猴",
+            "day_quality": "凶"
+          },
+          {
+            "name": "参",
+            "meaning": "参水猿",
+            "animal": "猿",
+            "day_quality": "吉"
+          }
+        ]
+      },
+      "south_vermilion_bird": {
+        "name": "南方朱雀七宿",
+        "direction": "南",
+        "element": "火",
+        "constellations": [
+          {
+            "name": "井",
+            "meaning": "井木犴",
+            "animal": "犴",
+            "day_quality": "吉"
+          },
+          {
+            "name": "鬼",
+            "meaning": "鬼金羊",
+            "animal": "羊",
+            "day_quality": "凶"
+          },
+          {
+            "name": "柳",
+            "meaning": "柳土獐",
+            "animal": "獐",
+            "day_quality": "凶"
+          },
+          {
+            "name": "星",
+            "meaning": "星日马",
+            "animal": "马",
+            "day_quality": "吉"
+          },
+          {
+            "name": "张",
+            "meaning": "张月鹿",
+            "animal": "鹿",
+            "day_quality": "吉"
+          },
+          {
+            "name": "翼",
+            "meaning": "翼火蛇",
+            "animal": "蛇",
+            "day_quality": "凶"
+          },
+          {
+            "name": "轸",
+            "meaning": "轸水蚓",
+            "animal": "蚓",
+            "day_quality": "吉"
+          }
+        ]
+      }
+    }
+  },
+  "jia_zi": {
+    "description": "六十甲子纳音五行",
+    "table": [
+      {
+        "ganzhi": "甲子乙丑",
+        "nayin": "海中金"
+      },
+      {
+        "ganzhi": "丙寅丁卯",
+        "nayin": "炉中火"
+      },
+      {
+        "ganzhi": "戊辰己巳",
+        "nayin": "大林木"
+      },
+      {
+        "ganzhi": "庚午辛未",
+        "nayin": "路旁土"
+      },
+      {
+        "ganzhi": "壬申癸酉",
+        "nayin": "剑锋金"
+      },
+      {
+        "ganzhi": "甲戌乙亥",
+        "nayin": "山头火"
+      },
+      {
+        "ganzhi": "丙子丁丑",
+        "nayin": "涧下水"
+      },
+      {
+        "ganzhi": "戊寅己卯",
+        "nayin": "城墙土"
+      },
+      {
+        "ganzhi": "庚辰辛巳",
+        "nayin": "白蜡金"
+      },
+      {
+        "ganzhi": "壬午癸未",
+        "nayin": "杨柳木"
+      },
+      {
+        "ganzhi": "甲申乙酉",
+        "nayin": "泉中水"
+      },
+      {
+        "ganzhi": "丙戌丁亥",
+        "nayin": "屋上土"
+      },
+      {
+        "ganzhi": "戊子己丑",
+        "nayin": "霹雳火"
+      },
+      {
+        "ganzhi": "庚寅辛卯",
+        "nayin": "松柏木"
+      },
+      {
+        "ganzhi": "壬辰癸巳",
+        "nayin": "长流水"
+      },
+      {
+        "ganzhi": "甲午乙未",
+        "nayin": "沙中金"
+      },
+      {
+        "ganzhi": "丙申丁酉",
+        "nayin": "山下火"
+      },
+      {
+        "ganzhi": "戊戌己亥",
+        "nayin": "平地木"
+      },
+      {
+        "ganzhi": "庚子辛丑",
+        "nayin": "壁上土"
+      },
+      {
+        "ganzhi": "壬寅癸卯",
+        "nayin": "金箔金"
+      },
+      {
+        "ganzhi": "甲辰乙巳",
+        "nayin": "覆灯火"
+      },
+      {
+        "ganzhi": "丙午丁未",
+        "nayin": "天河水"
+      },
+      {
+        "ganzhi": "戊申己酉",
+        "nayin": "大驿土"
+      },
+      {
+        "ganzhi": "庚戌辛亥",
+        "nayin": "钗钏金"
+      },
+      {
+        "ganzhi": "壬子癸丑",
+        "nayin": "桑柘木"
+      },
+      {
+        "ganzhi": "甲寅乙卯",
+        "nayin": "大溪水"
+      },
+      {
+        "ganzhi": "丙辰丁巳",
+        "nayin": "沙中土"
+      },
+      {
+        "ganzhi": "戊午己未",
+        "nayin": "天上火"
+      },
+      {
+        "ganzhi": "庚申辛酉",
+        "nayin": "石榴木"
+      },
+      {
+        "ganzhi": "壬戌癸亥",
+        "nayin": "大海水"
+      }
+    ]
+  },
+  "peng_zu": {
+    "description": "彭祖百忌",
+    "rules": [
+      {
+        "item": "甲不开仓",
+        "meaning": "甲日不宜开仓出货"
+      },
+      {
+        "item": "乙不栽植",
+        "meaning": "乙日不宜栽种"
+      },
+      {
+        "item": "丙不修灶",
+        "meaning": "丙日不宜修理灶台"
+      },
+      {
+        "item": "丁不剃头",
+        "meaning": "丁日不宜理发"
+      },
+      {
+        "item": "戊不受田",
+        "meaning": "戊日不宜接受田地"
+      },
+      {
+        "item": "己不破券",
+        "meaning": "己日不宜撕毁契约"
+      },
+      {
+        "item": "庚不经络",
+        "meaning": "庚日不宜织布"
+      },
+      {
+        "item": "辛不合酱",
+        "meaning": "辛日不宜做酱料"
+      },
+      {
+        "item": "壬不汲水",
+        "meaning": "壬日不宜打水"
+      },
+      {
+        "item": "癸不词讼",
+        "meaning": "癸日不宜诉讼"
+      },
+      {
+        "item": "子不问卜",
+        "meaning": "子日不宜占卜"
+      },
+      {
+        "item": "丑不冠带",
+        "meaning": "丑日不宜戴冠（成人礼）"
+      },
+      {
+        "item": "寅不祭祀",
+        "meaning": "寅日不宜祭祀"
+      },
+      {
+        "item": "卯不穿井",
+        "meaning": "卯日不宜挖井"
+      },
+      {
+        "item": "辰不哭泣",
+        "meaning": "辰日不宜大哭"
+      },
+      {
+        "item": "巳不远行",
+        "meaning": "巳日不宜远行"
+      },
+      {
+        "item": "午不苫盖",
+        "meaning": "午日不宜盖屋顶"
+      },
+      {
+        "item": "未不服药",
+        "meaning": "未日不宜服药"
+      },
+      {
+        "item": "申不安床",
+        "meaning": "申日不宜安置卧床"
+      },
+      {
+        "item": "酉不宴客",
+        "meaning": "酉日不宜宴请客人"
+      },
+      {
+        "item": "戌不吃犬",
+        "meaning": "戌日不宜吃狗肉"
+      },
+      {
+        "item": "亥不嫁娶",
+        "meaning": "亥日不宜婚嫁"
+      }
+    ]
+  },
+  "jie_qi": {
+    "description": "二十四节气",
+    "terms": [
+      {
+        "name": "立春",
+        "type": "节",
+        "month_index": 1,
+        "description": "春季开始"
+      },
+      {
+        "name": "雨水",
+        "type": "气",
+        "month_index": 1,
+        "description": "降雨开始"
+      },
+      {
+        "name": "惊蛰",
+        "type": "节",
+        "month_index": 2,
+        "description": "冬眠动物苏醒"
+      },
+      {
+        "name": "春分",
+        "type": "气",
+        "month_index": 2,
+        "description": "昼夜平分"
+      },
+      {
+        "name": "清明",
+        "type": "节",
+        "month_index": 3,
+        "description": "天气清澈明朗"
+      },
+      {
+        "name": "谷雨",
+        "type": "气",
+        "month_index": 3,
+        "description": "雨生百谷"
+      },
+      {
+        "name": "立夏",
+        "type": "节",
+        "month_index": 4,
+        "description": "夏季开始"
+      },
+      {
+        "name": "小满",
+        "type": "气",
+        "month_index": 4,
+        "description": "麦类灌浆"
+      },
+      {
+        "name": "芒种",
+        "type": "节",
+        "month_index": 5,
+        "description": "麦类收割、稻谷播种"
+      },
+      {
+        "name": "夏至",
+        "type": "气",
+        "month_index": 5,
+        "description": "白昼最长"
+      },
+      {
+        "name": "小暑",
+        "type": "节",
+        "month_index": 6,
+        "description": "天气开始炎热"
+      },
+      {
+        "name": "大暑",
+        "type": "气",
+        "month_index": 6,
+        "description": "一年中最热"
+      },
+      {
+        "name": "立秋",
+        "type": "节",
+        "month_index": 7,
+        "description": "秋季开始"
+      },
+      {
+        "name": "处暑",
+        "type": "气",
+        "month_index": 7,
+        "description": "暑气消退"
+      },
+      {
+        "name": "白露",
+        "type": "节",
+        "month_index": 8,
+        "description": "露水凝结"
+      },
+      {
+        "name": "秋分",
+        "type": "气",
+        "month_index": 8,
+        "description": "昼夜平分"
+      },
+      {
+        "name": "寒露",
+        "type": "节",
+        "month_index": 9,
+        "description": "露水寒冷"
+      },
+      {
+        "name": "霜降",
+        "type": "气",
+        "month_index": 9,
+        "description": "开始有霜"
+      },
+      {
+        "name": "立冬",
+        "type": "节",
+        "month_index": 10,
+        "description": "冬季开始"
+      },
+      {
+        "name": "小雪",
+        "type": "气",
+        "month_index": 10,
+        "description": "开始降雪"
+      },
+      {
+        "name": "大雪",
+        "type": "节",
+        "month_index": 11,
+        "description": "降雪量增大"
+      },
+      {
+        "name": "冬至",
+        "type": "气",
+        "month_index": 11,
+        "description": "白昼最短"
+      },
+      {
+        "name": "小寒",
+        "type": "节",
+        "month_index": 12,
+        "description": "天气寒冷"
+      },
+      {
+        "name": "大寒",
+        "type": "气",
+        "month_index": 12,
+        "description": "一年中最冷"
+      }
+    ]
+  }
+}

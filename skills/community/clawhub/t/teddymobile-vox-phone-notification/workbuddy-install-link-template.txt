@@ -1,0 +1,1 @@
+workbuddy://codebuddy-ide/skill/install?skillname=vox-phone-notification&downloadurl={{URL_ENCODED_ZIP_URL}}&channelType=custom&injectid=true

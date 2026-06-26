@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>行程 - {{TRIP_TITLE}}</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-container">
+    <div class="hero">
+      <div class="hero-content">
+        <h1>{{TRIP_TITLE}}</h1>
+        <div class="sub">{{TRAVELERS}} | {{START_DATE}} - {{END_DATE}} | {{DURATION}}</div>
+        <div class="tags">
+          <!-- TAGS_START -->
+          <span class="tag">{{TAG_1}}</span>
+          <span class="tag">{{TAG_2}}</span>
+          <span class="tag">{{TAG_3}}</span>
+          <!-- TAGS_END -->
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="section-title">每日行程</div>
+
+      <!-- DAY_START -->
+      <div class="glass-card animate-in" style="animation-delay: {{ANIMATION_DELAY}}">
+        <div class="day-header" onclick="toggleDay(this)">
+          <div class="day-number gradient-{{GRADIENT}}">{{DAY_NUMBER}}</div>
+          <div class="day-info">
+            <h3>{{DAY_TITLE}}</h3>
+            <p>{{DATE}} | {{SUBTITLE}}</p>
+            <div class="hotel">{{HOTEL}}</div>
+          </div>
+          <span class="arrow">&#9654;</span>
+        </div>
+        <div class="day-body">
+          <div class="day-body-inner">
+            <div class="timeline">
+              <!-- TIMELINE_START -->
+              <div class="timeline-item{{HIGHLIGHT_CLASS}}">
+                <div class="time">{{TIME}}</div>
+                <div class="activity">{{ACTIVITY}}</div>
+                <div class="detail">{{DETAIL}}</div>
+              </div>
+              <!-- TIMELINE_END -->
+            </div>
+            <!-- GUIDE_START -->
+            <div class="guide">
+              <div class="guide-title" onclick="toggleGuide(this)">
+                {{GUIDE_TITLE}} <span>&#9660;</span>
+              </div>
+              <div class="guide-body">
+                <div class="guide-content">
+                  <ul>
+                    <!-- GUIDE_ITEMS_START -->
+                    <li>{{GUIDE_ITEM}}</li>
+                    <!-- GUIDE_ITEMS_END -->
+                  </ul>
+                  <!-- TIP_START -->
+                  <div class="tip">{{TIP}}</div>
+                  <!-- TIP_END -->
+                </div>
+              </div>
+            </div>
+            <!-- GUIDE_END -->
+          </div>
+        </div>
+      </div>
+      <!-- DAY_END -->
+
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+  <script>renderTabbar('index');</script>
+</body>
+</html>

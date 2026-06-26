@@ -1,35 +1,42 @@
 ---
-name: "tsx"
-description: "TSX namespace for Netsnek e.U. TypeScript component toolkit. React component scaffolding, type-safe props, Storybook integration, and component docs."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/tsx"
-sourceUrl: "https://clawhub.ai/skills/tsx"
+name: tsx
+description: TSX namespace for Netsnek e.U. TypeScript component toolkit. React component scaffolding, type-safe props, Storybook integration, and component docs.
+user-invocable: true
+version: 0.1.0
+metadata:
+  openclaw:
+    os: [linux]
+    permissions: [exec]
 ---
 
-# tsx
+# What is TSX?
 
-> TSX namespace for Netsnek e.U. TypeScript component toolkit. React component scaffolding, type-safe props, Storybook integration, and component docs.
+TSX is the TypeScript component toolkit by Netsnek e.U. It enables rapid development of React components with type-safe props, Storybook integration, and automatic component documentation.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/tsx`
-- **Source URL:** [https://clawhub.ai/skills/tsx](https://clawhub.ai/skills/tsx)
+## Component Workflow
 
-## Overview
+1. Scaffold a new component with `scripts/component-gen.sh --scaffold <Name>`
+2. Define props in the generated types file
+3. Run Storybook to visualize variants with `scripts/component-gen.sh --info`
+4. List existing components with `scripts/component-gen.sh --list`
 
+## Available Commands
 
-## Installation
-To install this skill, run the following command in your terminal:
+| Command | Args | Purpose |
+|---------|------|---------|
+| component-gen.sh | `--scaffold <Name>` | Create component files, types, and Story |
+| component-gen.sh | `--list` | List all components in the project |
+| component-gen.sh | `--info` | Show Storybook integration details |
+
+## Real-World Example
+
 ```bash
-hermes skills install clawhub/tsx
+# Create a new Button component
+./scripts/component-gen.sh --scaffold Button
+
+# List available components
+./scripts/component-gen.sh --list
+
+# Get Storybook info
+./scripts/component-gen.sh --info
 ```

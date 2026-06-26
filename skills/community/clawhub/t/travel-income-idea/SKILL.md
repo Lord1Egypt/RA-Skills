@@ -1,35 +1,57 @@
 ---
-name: "Travel Income Idea"
+name: travel-income-idea
 description: "发现边玩边赚钱的旅行方案，让预算有限的人也能说走就走。当用户提到旅行赚钱、边玩边赚、旅行创收、赚旅费、旅行副业、演唱会周边、旅拍、免税代购、酒店试睡员、怎么覆盖旅费、旅行怎么赚钱等话题时触发。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/travel-income-idea"
-sourceUrl: "https://clawhub.ai/skills/travel-income-idea"
 ---
 
-# Travel Income Idea
+# 旅行创收助手
 
-> 发现边玩边赚钱的旅行方案，让预算有限的人也能说走就走。当用户提到旅行赚钱、边玩边赚、旅行创收、赚旅费、旅行副业、演唱会周边、旅拍、免税代购、酒店试睡员、怎么覆盖旅费、旅行怎么赚钱等话题时触发。
+## 技能概述
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/travel-income-idea`
-- **Source URL:** [https://clawhub.ai/skills/travel-income-idea](https://clawhub.ai/skills/travel-income-idea)
+**定位**：发现边玩边赚钱的旅行方案，让预算有限的人也能说走就走
 
-## Overview
+**核心价值**：
+- 扫描全网活动/赛事/展会，识别创收机会
+- 基于历史数据预测收入，计算净收益
+- 技能×预算×时间 三维匹配推荐
+- 生成倒计时任务清单
 
+**适用场景**：
+- 想旅行但资金不足
+- 知道可以边旅行边创收，但不知道有哪些方式
+- 信息分散在各大平台，难以系统规划
+- 不知道某个创收方式能赚多少钱、是否值得去
+- 缺乏执行路径，不知道从哪开始
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/travel-income-idea
-```
+## 触发词
+
+- 旅行赚钱
+- 边玩边赚
+- 旅行创收
+- 赚旅费
+- 旅行副业
+- 演唱会周边
+- 旅拍
+- 免税代购
+- 酒店试睡员
+- 怎么覆盖旅费
+- 旅行怎么赚钱
+
+## 核心功能
+
+1. **机会发现**：扫描全网活动/赛事/展会，识别创收机会
+2. **收益测算**：基于历史数据预测收入，计算净收益
+3. **个性化匹配**：技能×预算×时间 三维匹配推荐
+4. **执行计划**：生成倒计时任务清单
+
+## 数据支持
+
+- 100+ 种旅行创收玩法（活动套利/技能变现/内容创作/代购带货/资源变现/反常识创意）
+- 真实用户案例库
+- 收益数据沉淀
+
+## 风险提醒
+
+- 场馆周边售卖可能涉及城管/安保
+- 代购需注意海关限额
+- 票务倒卖需合规操作
+- 内容创作注意版权

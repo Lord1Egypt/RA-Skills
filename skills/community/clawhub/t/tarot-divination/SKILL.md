@@ -1,35 +1,84 @@
 ---
-name: "塔罗牌占卜"
-description: "塔罗牌占卜付费服务，每日为你抽取一张塔罗牌，解读牌意与运势指引。包含78张塔罗牌数据（大阿尔卡纳22张 + 小阿尔卡纳56张），每次占卜随机抽取一张牌，给你牌意解读和今日指引。"
-category: "other"
-source: "ClawHub"
-tags: [divination, fortune, tarot]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/tarot-divination"
-sourceUrl: "https://clawhub.ai/skills/tarot-divination"
+name: '塔罗牌占卜'
+description: >
+  塔罗牌占卜付费服务，每日为你抽取一张塔罗牌，解读牌意与运势指引。包含78张塔罗牌数据（大阿尔卡纳22张 + 小阿尔卡纳56张），每次占卜随机抽取一张牌，给你牌意解读和今日指引。
+tags: [divination, tarot, fortune, 运势, 占卜]
 ---
 
 # 塔罗牌占卜
 
-> 塔罗牌占卜付费服务，每日为你抽取一张塔罗牌，解读牌意与运势指引。包含78张塔罗牌数据（大阿尔卡纳22张 + 小阿尔卡纳56张），每次占卜随机抽取一张牌，给你牌意解读和今日指引。
+每日塔罗牌运势解读服务，带你探索命运的启示。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/tarot-divination`
-- **Source URL:** [https://clawhub.ai/skills/tarot-divination](https://clawhub.ai/skills/tarot-divination)
+## 功能特点
 
-## Overview
+- **每日抽牌**：每次占卜随机抽取一张塔罗牌
+- **78张牌库**：涵盖大阿尔卡纳22张 + 小阿尔卡纳56张
+- **详细解读**：包含牌意解读和行动指引
+- **付费服务**：每次占卜仅需 1 分钱
 
+## 使用方式
 
-## Installation
-To install this skill, run the following command in your terminal:
+### 第一步：创建订单
+
 ```bash
-hermes skills install clawhub/tarot-divination
+cd ~/.hermes/skills/塔罗牌占卜
+python3 scripts/create_order.py "今日运势"
 ```
+
+### 第二步：完成支付
+
+使用 clawtip 完成支付（1分钱）
+
+### 第三步：获取占卜结果
+
+```bash
+python3 scripts/serve.py <订单号>
+```
+
+## 牌阵说明
+
+### 大阿尔卡纳（22张）
+愚人、魔术师、女祭司、皇后、皇帝、教皇、恋人、战车、力量、隐士、命运之轮、正义、倒吊人、死亡、节制、恶魔、塔、星星、月亮、太阳、审判、世界
+
+### 小阿尔卡纳（56张）
+- 权杖牌组（10张）： Ace~十
+- 圣杯牌组（10张）： Ace~十
+- 金币牌组（10张）： Ace~十
+- 宝剑牌组（10张）： Ace~十
+
+## 配置
+
+编辑 `configs/config.yaml` 配置你的收款账号和加密密钥：
+
+```yaml
+crypto:
+  sm4_key: "你的SM4密钥"
+payment:
+  pay_to: "你的收款账号"
+service:
+  amount: 1
+```
+
+## 牌意解读示例
+
+**愚人牌**
+- 牌意：新的开始、自由、冒险、信任
+- 指引：跟随你的直觉，勇敢迈出第一步
+
+**太阳牌**
+- 牌意：成功、活力、快乐、温暖
+- 指引：这是属于你的闪耀时刻！
+
+**星星牌**
+- 牌意：希望、灵感、平静、疗愈
+- 指引：保持希望，光明就在前方
+
+## 注意事项
+
+1. 塔罗牌是指引而非预言，仅供参考
+2. 每张牌的解读都有多个层面，需结合实际情况理解
+3. 牌面显示的是当前能量状态，代表的是"现在进行式"
+
+---
+
+配置: configs/config.yaml

@@ -1,0 +1,18 @@
+{
+  "name": "terminal",
+  "version": "1.0.2",
+  "description": "Local shell copilot for command planning, safe execution, preview-first workflows, output summarization, privacy-aware history controls, and step-by-step terminal help.",
+  "entrypoints": [],
+  "files": [
+    "SKILL.md",
+    "skill.json",
+    "scripts/init_storage.py",
+    "scripts/plan_command.py",
+    "scripts/run_command.py",
+    "scripts/summarize_result.py",
+    "scripts/show_history.py",
+    "scripts/lib/storage.py",
+    "scripts/lib/safety.py",
+    "references/philosophy.md"
+  ]
+}

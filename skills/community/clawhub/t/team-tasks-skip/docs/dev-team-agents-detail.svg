@@ -1,0 +1,283 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 960" font-family="'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0a0a1a"/><stop offset="100%" style="stop-color:#1a1a2e"/>
+    </linearGradient>
+    <linearGradient id="codeG" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3b82f6"/><stop offset="100%" style="stop-color:#06b6d4"/>
+    </linearGradient>
+    <linearGradient id="testG" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#8b5cf6"/><stop offset="100%" style="stop-color:#a78bfa"/>
+    </linearGradient>
+    <linearGradient id="docsG" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#10b981"/><stop offset="100%" style="stop-color:#34d399"/>
+    </linearGradient>
+    <linearGradient id="monG" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f59e0b"/><stop offset="100%" style="stop-color:#fbbf24"/>
+    </linearGradient>
+    <linearGradient id="agiG" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ef4444"/><stop offset="100%" style="stop-color:#f97316"/>
+    </linearGradient>
+    <filter id="gl"><feGaussianBlur stdDeviation="2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <filter id="sh"><feDropShadow dx="1" dy="2" stdDeviation="3" flood-color="#00000055"/></filter>
+    <marker id="aw" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0,8 3,0 6" fill="#ffffff66"/></marker>
+    <marker id="ac" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0,8 3,0 6" fill="#3b82f6"/></marker>
+    <marker id="at" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0,8 3,0 6" fill="#8b5cf6"/></marker>
+    <marker id="ad" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0,8 3,0 6" fill="#10b981"/></marker>
+    <marker id="am" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0,8 3,0 6" fill="#f59e0b"/></marker>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="1100" height="960" fill="url(#bg)" rx="14"/>
+
+  <!-- 标题 -->
+  <text x="550" y="40" text-anchor="middle" fill="white" font-size="22" font-weight="bold">🏢 开发团队 Agent 详情 — 四大专职 AI 成员</text>
+  <text x="550" y="62" text-anchor="middle" fill="#64748b" font-size="12">AGI 中心调度 · 独立工作空间 · Agent 间通信 (agentToAgent)</text>
+  <line x1="60" y1="76" x2="1040" y2="76" stroke="#ffffff12" stroke-width="1"/>
+
+  <!-- ══════════════════════════════════════ -->
+  <!-- 中央: AGI 调度中心                       -->
+  <!-- ══════════════════════════════════════ -->
+  <rect x="410" y="90" width="280" height="70" rx="14" fill="url(#agiG)" opacity="0.15" stroke="#ef4444" stroke-width="1.8" filter="url(#sh)"/>
+  <text x="550" y="118" text-anchor="middle" fill="#ef4444" font-size="18" font-weight="bold" filter="url(#gl)">🧠 AGI 调度中心 (main)</text>
+  <text x="550" y="140" text-anchor="middle" fill="#ef444499" font-size="11">Claude Opus 4.6 · 中心化编排 · 任务分发与结果收集</text>
+
+  <!-- 连线: AGI → 4 agents -->
+  <line x1="440" y1="160" x2="270" y2="195" stroke="#3b82f688" stroke-width="1.5" marker-end="url(#ac)" stroke-dasharray="5,3"/>
+  <line x1="510" y1="160" x2="270" y2="530" stroke="#8b5cf688" stroke-width="1.5" marker-end="url(#at)" stroke-dasharray="5,3"/>
+  <line x1="590" y1="160" x2="830" y2="195" stroke="#10b98188" stroke-width="1.5" marker-end="url(#ad)" stroke-dasharray="5,3"/>
+  <line x1="660" y1="160" x2="830" y2="530" stroke="#f59e0b88" stroke-width="1.5" marker-end="url(#am)" stroke-dasharray="5,3"/>
+
+  <!-- sessions_send 标签 -->
+  <text x="340" y="178" text-anchor="middle" fill="#ffffff44" font-size="9">sessions_send</text>
+  <text x="370" y="348" text-anchor="middle" fill="#ffffff44" font-size="9">sessions_send</text>
+  <text x="730" y="178" text-anchor="middle" fill="#ffffff44" font-size="9">sessions_send</text>
+  <text x="760" y="348" text-anchor="middle" fill="#ffffff44" font-size="9">sessions_send</text>
+
+  <!-- ══════════════════════════════════════ -->
+  <!-- Agent 1: Code Agent 🔧                  -->
+  <!-- ══════════════════════════════════════ -->
+  <rect x="40" y="200" width="460" height="290" rx="14" fill="#3b82f608" stroke="#3b82f644" stroke-width="1.2"/>
+
+  <!-- 头部 -->
+  <rect x="40" y="200" width="460" height="50" rx="14" fill="url(#codeG)" opacity="0.12"/>
+  <text x="60" y="230" fill="#3b82f6" font-size="20" font-weight="bold" filter="url(#gl)">🔧 Code Agent</text>
+  <rect x="210" y="214" width="80" height="22" rx="6" fill="#3b82f622"/>
+  <text x="250" y="229" text-anchor="middle" fill="#3b82f6" font-size="11">code-agent</text>
+
+  <!-- 模型标签 -->
+  <rect x="310" y="214" width="178" height="22" rx="6" fill="#ef444422"/>
+  <text x="399" y="229" text-anchor="middle" fill="#ef4444" font-size="10" font-weight="bold">Anthropic Claude Opus 4.6</text>
+
+  <!-- 职责 -->
+  <text x="60" y="272" fill="#94a3b8" font-size="12" font-weight="bold">核心职责</text>
+  <text x="60" y="292" fill="#cbd5e1" font-size="11">• 代码审查 — 质量分析、命名规范、设计模式</text>
+  <text x="60" y="310" fill="#cbd5e1" font-size="11">• Bug 分析 — 定位根因、给出修复方案和示例代码</text>
+  <text x="60" y="328" fill="#cbd5e1" font-size="11">• 重构建议 — 识别代码异味、提供改进路径</text>
+  <text x="60" y="346" fill="#cbd5e1" font-size="11">• 代码开发 — 直接使用 read/write/edit/exec 开发</text>
+  <text x="60" y="364" fill="#cbd5e1" font-size="11">• PR 审查 / CI 状态 — 通过 gh CLI 查询</text>
+
+  <!-- 工具 & Skill -->
+  <text x="60" y="392" fill="#94a3b8" font-size="12" font-weight="bold">工具 &amp; Skill</text>
+  <rect x="60" y="400" width="50" height="18" rx="4" fill="#3b82f622"/>
+  <text x="85" y="413" text-anchor="middle" fill="#3b82f6" font-size="9">GitHub</text>
+  <rect x="118" y="400" width="36" height="18" rx="4" fill="#3b82f622"/>
+  <text x="136" y="413" text-anchor="middle" fill="#3b82f6" font-size="9">read</text>
+  <rect x="162" y="400" width="36" height="18" rx="4" fill="#3b82f622"/>
+  <text x="180" y="413" text-anchor="middle" fill="#3b82f6" font-size="9">write</text>
+  <rect x="206" y="400" width="30" height="18" rx="4" fill="#3b82f622"/>
+  <text x="221" y="413" text-anchor="middle" fill="#3b82f6" font-size="9">edit</text>
+  <rect x="244" y="400" width="36" height="18" rx="4" fill="#3b82f622"/>
+  <text x="262" y="413" text-anchor="middle" fill="#3b82f6" font-size="9">exec</text>
+  <rect x="288" y="400" width="50" height="18" rx="4" fill="#3b82f622"/>
+  <text x="313" y="413" text-anchor="middle" fill="#3b82f6" font-size="9">gh CLI</text>
+
+  <!-- 工作空间 -->
+  <text x="60" y="442" fill="#94a3b8" font-size="12" font-weight="bold">工作空间</text>
+  <rect x="60" y="450" width="260" height="18" rx="4" fill="#ffffff08"/>
+  <text x="68" y="463" fill="#64748b" font-size="10" font-family="monospace">/home/ubuntu/clawd-code-agent</text>
+
+  <!-- 输出标准 -->
+  <text x="350" y="272" fill="#94a3b8" font-size="12" font-weight="bold">输出标准</text>
+  <text x="350" y="292" fill="#f87171" font-size="11">🔴 Critical</text>
+  <text x="350" y="310" fill="#fbbf24" font-size="11">🟡 Warning</text>
+  <text x="350" y="328" fill="#60a5fa" font-size="11">💡 Info</text>
+
+  <!-- ══════════════════════════════════════ -->
+  <!-- Agent 2: Test Agent 🧪                  -->
+  <!-- ══════════════════════════════════════ -->
+  <rect x="40" y="510" width="460" height="290" rx="14" fill="#8b5cf608" stroke="#8b5cf644" stroke-width="1.2"/>
+
+  <rect x="40" y="510" width="460" height="50" rx="14" fill="url(#testG)" opacity="0.12"/>
+  <text x="60" y="540" fill="#8b5cf6" font-size="20" font-weight="bold" filter="url(#gl)">🧪 Test Agent</text>
+  <rect x="200" y="524" width="78" height="22" rx="6" fill="#8b5cf622"/>
+  <text x="239" y="539" text-anchor="middle" fill="#8b5cf6" font-size="11">test-agent</text>
+
+  <rect x="296" y="524" width="192" height="22" rx="6" fill="#10b98122"/>
+  <text x="392" y="539" text-anchor="middle" fill="#10b981" font-size="10" font-weight="bold">Gemini 3 Pro High (免费)</text>
+
+  <text x="60" y="582" fill="#94a3b8" font-size="12" font-weight="bold">核心职责</text>
+  <text x="60" y="602" fill="#cbd5e1" font-size="11">• 运行测试 — 通过 Claude Code CLI 执行单元/集成测试</text>
+  <text x="60" y="620" fill="#cbd5e1" font-size="11">• 覆盖率分析 — 检查测试覆盖率、找未覆盖代码</text>
+  <text x="60" y="638" fill="#cbd5e1" font-size="11">• 测试用例生成 — 边界值、异常路径、回归测试</text>
+  <text x="60" y="656" fill="#cbd5e1" font-size="11">• CI 检查 — 使用 gh run 查看 GitHub Actions 结果</text>
+  <text x="60" y="674" fill="#cbd5e1" font-size="11">• 回归测试 — 检查新改动是否破坏现有功能</text>
+
+  <text x="60" y="702" fill="#94a3b8" font-size="12" font-weight="bold">工具 &amp; Skill</text>
+  <rect x="60" y="710" width="80" height="18" rx="4" fill="#8b5cf622"/>
+  <text x="100" y="723" text-anchor="middle" fill="#8b5cf6" font-size="9">Claude Code</text>
+  <rect x="148" y="710" width="50" height="18" rx="4" fill="#8b5cf622"/>
+  <text x="173" y="723" text-anchor="middle" fill="#8b5cf6" font-size="9">GitHub</text>
+  <rect x="206" y="710" width="46" height="18" rx="4" fill="#8b5cf622"/>
+  <text x="229" y="723" text-anchor="middle" fill="#8b5cf6" font-size="9">pytest</text>
+  <rect x="260" y="710" width="32" height="18" rx="4" fill="#8b5cf622"/>
+  <text x="276" y="723" text-anchor="middle" fill="#8b5cf6" font-size="9">jest</text>
+  <rect x="300" y="710" width="50" height="18" rx="4" fill="#8b5cf622"/>
+  <text x="325" y="723" text-anchor="middle" fill="#8b5cf6" font-size="9">go test</text>
+
+  <text x="60" y="752" fill="#94a3b8" font-size="12" font-weight="bold">工作空间</text>
+  <rect x="60" y="760" width="260" height="18" rx="4" fill="#ffffff08"/>
+  <text x="68" y="773" fill="#64748b" font-size="10" font-family="monospace">/home/ubuntu/clawd-test-agent</text>
+
+  <!-- 测试报告格式 -->
+  <text x="350" y="582" fill="#94a3b8" font-size="12" font-weight="bold">报告格式</text>
+  <text x="350" y="602" fill="#22c55e" font-size="11">✅ 通过: N</text>
+  <text x="350" y="620" fill="#ef4444" font-size="11">❌ 失败: N</text>
+  <text x="350" y="638" fill="#94a3b8" font-size="11">⏭️ 跳过: N</text>
+  <text x="350" y="656" fill="#60a5fa" font-size="11">📊 覆盖率: XX%</text>
+
+  <text x="350" y="686" fill="#94a3b8" font-size="12" font-weight="bold">用例生成原则</text>
+  <text x="350" y="706" fill="#a5b4fc" font-size="10">边界值 · 异常路径</text>
+  <text x="350" y="722" fill="#a5b4fc" font-size="10">正常路径 · 回归防护</text>
+
+  <!-- ══════════════════════════════════════ -->
+  <!-- Agent 3: Docs Agent 📝                  -->
+  <!-- ══════════════════════════════════════ -->
+  <rect x="600" y="200" width="460" height="290" rx="14" fill="#10b98108" stroke="#10b98144" stroke-width="1.2"/>
+
+  <rect x="600" y="200" width="460" height="50" rx="14" fill="url(#docsG)" opacity="0.12"/>
+  <text x="620" y="230" fill="#10b981" font-size="20" font-weight="bold" filter="url(#gl)">📝 Docs Agent</text>
+  <text x="773" y="229" fill="#10b981" font-size="11">docs-agent</text>
+
+  <rect x="848" y="214" width="200" height="22" rx="6" fill="#8b5cf622"/>
+  <text x="948" y="229" text-anchor="middle" fill="#8b5cf6" font-size="10" font-weight="bold">Claude Sonnet 4.5 Thinking</text>
+
+  <text x="620" y="272" fill="#94a3b8" font-size="12" font-weight="bold">核心职责</text>
+  <text x="620" y="292" fill="#cbd5e1" font-size="11">• API 文档 — 根据代码自动生成接口文档</text>
+  <text x="620" y="310" fill="#cbd5e1" font-size="11">• README 生成 — 简介、特性、快速开始、配置说明</text>
+  <text x="620" y="328" fill="#cbd5e1" font-size="11">• CHANGELOG 维护 — Keep a Changelog 规范</text>
+  <text x="620" y="346" fill="#cbd5e1" font-size="11">• 代码注释 — 函数/类文档字符串</text>
+  <text x="620" y="364" fill="#cbd5e1" font-size="11">• 使用指南 — 操作手册和教程</text>
+
+  <text x="620" y="392" fill="#94a3b8" font-size="12" font-weight="bold">工具 &amp; Skill</text>
+  <rect x="620" y="400" width="50" height="18" rx="4" fill="#10b98122"/>
+  <text x="645" y="413" text-anchor="middle" fill="#10b981" font-size="9">GitHub</text>
+  <rect x="678" y="400" width="50" height="18" rx="4" fill="#10b98122"/>
+  <text x="703" y="413" text-anchor="middle" fill="#10b981" font-size="9">gh CLI</text>
+  <rect x="736" y="400" width="50" height="18" rx="4" fill="#10b98122"/>
+  <text x="761" y="413" text-anchor="middle" fill="#10b981" font-size="9">git log</text>
+  <rect x="794" y="400" width="36" height="18" rx="4" fill="#10b98122"/>
+  <text x="812" y="413" text-anchor="middle" fill="#10b981" font-size="9">read</text>
+  <rect x="838" y="400" width="36" height="18" rx="4" fill="#10b98122"/>
+  <text x="856" y="413" text-anchor="middle" fill="#10b981" font-size="9">write</text>
+
+  <text x="620" y="442" fill="#94a3b8" font-size="12" font-weight="bold">工作空间</text>
+  <rect x="620" y="450" width="260" height="18" rx="4" fill="#ffffff08"/>
+  <text x="628" y="463" fill="#64748b" font-size="10" font-family="monospace">/home/ubuntu/clawd-docs-agent</text>
+
+  <!-- 文档标准 -->
+  <text x="900" y="272" fill="#94a3b8" font-size="12" font-weight="bold">文档标准</text>
+  <text x="900" y="292" fill="#6ee7b7" font-size="10">Added · Changed</text>
+  <text x="900" y="308" fill="#6ee7b7" font-size="10">Fixed · Security</text>
+  <text x="900" y="324" fill="#6ee7b7" font-size="10">Removed · Deprecated</text>
+
+  <text x="900" y="352" fill="#94a3b8" font-size="12" font-weight="bold">语言规则</text>
+  <text x="900" y="372" fill="#6ee7b7" font-size="10">API 文档 → 英文</text>
+  <text x="900" y="388" fill="#6ee7b7" font-size="10">用户指南 → 中文</text>
+
+  <!-- ══════════════════════════════════════ -->
+  <!-- Agent 4: Monitor Bot 🚨                 -->
+  <!-- ══════════════════════════════════════ -->
+  <rect x="600" y="510" width="460" height="290" rx="14" fill="#f59e0b08" stroke="#f59e0b44" stroke-width="1.2"/>
+
+  <rect x="600" y="510" width="460" height="50" rx="14" fill="url(#monG)" opacity="0.12"/>
+  <text x="620" y="540" fill="#f59e0b" font-size="20" font-weight="bold" filter="url(#gl)">🚨 Monitor Bot</text>
+  <text x="786" y="539" fill="#f59e0b" font-size="11">monitor-bot</text>
+
+  <rect x="875" y="524" width="173" height="22" rx="6" fill="#10b98122"/>
+  <text x="961" y="539" text-anchor="middle" fill="#10b981" font-size="10" font-weight="bold">Gemini 3 Pro High (免费)</text>
+
+  <text x="620" y="582" fill="#94a3b8" font-size="12" font-weight="bold">核心职责</text>
+  <text x="620" y="602" fill="#cbd5e1" font-size="11">• 服务器监控 — CPU、内存、磁盘、网络状态</text>
+  <text x="620" y="620" fill="#cbd5e1" font-size="11">• API 健康检查 — 端点可用性、响应时间</text>
+  <text x="620" y="638" fill="#cbd5e1" font-size="11">• 日志分析 — 错误日志、异常模式识别</text>
+  <text x="620" y="656" fill="#cbd5e1" font-size="11">• 安全审计 — 使用 healthcheck skill 检查</text>
+  <text x="620" y="674" fill="#cbd5e1" font-size="11">• 告警通知 — 发现异常立即报告</text>
+
+  <text x="620" y="702" fill="#94a3b8" font-size="12" font-weight="bold">工具 &amp; Skill</text>
+  <rect x="620" y="710" width="80" height="18" rx="4" fill="#f59e0b22"/>
+  <text x="660" y="723" text-anchor="middle" fill="#f59e0b" font-size="9">healthcheck</text>
+  <rect x="708" y="710" width="30" height="18" rx="4" fill="#f59e0b22"/>
+  <text x="723" y="723" text-anchor="middle" fill="#f59e0b" font-size="9">top</text>
+  <rect x="746" y="710" width="26" height="18" rx="4" fill="#f59e0b22"/>
+  <text x="759" y="723" text-anchor="middle" fill="#f59e0b" font-size="9">df</text>
+  <rect x="780" y="710" width="34" height="18" rx="4" fill="#f59e0b22"/>
+  <text x="797" y="723" text-anchor="middle" fill="#f59e0b" font-size="9">curl</text>
+  <rect x="822" y="710" width="24" height="18" rx="4" fill="#f59e0b22"/>
+  <text x="834" y="723" text-anchor="middle" fill="#f59e0b" font-size="9">ss</text>
+  <rect x="854" y="710" width="60" height="18" rx="4" fill="#f59e0b22"/>
+  <text x="884" y="723" text-anchor="middle" fill="#f59e0b" font-size="9">journalctl</text>
+
+  <text x="620" y="752" fill="#94a3b8" font-size="12" font-weight="bold">工作空间</text>
+  <rect x="620" y="760" width="270" height="18" rx="4" fill="#ffffff08"/>
+  <text x="628" y="773" fill="#64748b" font-size="10" font-family="monospace">/home/ubuntu/clawd-monitor-bot</text>
+
+  <!-- 告警级别 -->
+  <text x="900" y="582" fill="#94a3b8" font-size="12" font-weight="bold">告警级别</text>
+  <rect x="900" y="590" width="120" height="22" rx="4" fill="#ef444418"/>
+  <text x="960" y="605" text-anchor="middle" fill="#ef4444" font-size="11">🔴 Critical</text>
+  <text x="900" y="624" fill="#ef444499" font-size="9">服务宕机 · 磁盘满 · 内存溢出</text>
+
+  <rect x="900" y="636" width="120" height="22" rx="4" fill="#fbbf2418"/>
+  <text x="960" y="651" text-anchor="middle" fill="#fbbf24" font-size="11">🟡 Warning</text>
+  <text x="900" y="670" fill="#fbbf2499" font-size="9">CPU&gt;80% · 磁盘&gt;85% · 响应&gt;5s</text>
+
+  <rect x="900" y="682" width="120" height="22" rx="4" fill="#22c55e18"/>
+  <text x="960" y="697" text-anchor="middle" fill="#22c55e" font-size="11">🟢 Normal</text>
+  <text x="900" y="716" fill="#22c55e99" font-size="9">一切正常</text>
+
+  <!-- ══════════════════════════════════════ -->
+  <!-- 底部: 架构概览                            -->
+  <!-- ══════════════════════════════════════ -->
+  <line x1="60" y1="820" x2="1040" y2="820" stroke="#ffffff12" stroke-width="1"/>
+
+  <!-- 通信方式 -->
+  <rect x="60" y="838" width="310" height="105" rx="10" fill="#ffffff06" stroke="#ffffff15" stroke-width="1"/>
+  <text x="80" y="862" fill="#94a3b8" font-size="13" font-weight="bold">📡 通信架构</text>
+  <text x="80" y="884" fill="#cbd5e1" font-size="11">• AGI → Agent: sessions_send 派发任务</text>
+  <text x="80" y="902" fill="#cbd5e1" font-size="11">• Agent → AGI: 回复自动返回调度中心</text>
+  <text x="80" y="920" fill="#cbd5e1" font-size="11">• Agent ↔ Agent: agentToAgent 直接通信</text>
+  <text x="80" y="938" fill="#64748b" font-size="10">所有 Agent 均在 allow 列表中，可互相调用</text>
+
+  <!-- 模型策略 -->
+  <rect x="400" y="838" width="310" height="105" rx="10" fill="#ffffff06" stroke="#ffffff15" stroke-width="1"/>
+  <text x="420" y="862" fill="#94a3b8" font-size="13" font-weight="bold">🤖 模型策略</text>
+
+  <rect x="420" y="872" width="10" height="10" rx="2" fill="#ef4444"/>
+  <text x="438" y="882" fill="#cbd5e1" font-size="11">Code Agent → Claude Opus 4.6 (代码重)</text>
+
+  <rect x="420" y="892" width="10" height="10" rx="2" fill="#8b5cf6"/>
+  <text x="438" y="902" fill="#cbd5e1" font-size="11">Docs Agent → Sonnet 4.5 Thinking (写作)</text>
+
+  <rect x="420" y="912" width="10" height="10" rx="2" fill="#10b981"/>
+  <text x="438" y="922" fill="#cbd5e1" font-size="11">Test / Monitor → Gemini 3 Pro (快速+免费)</text>
+
+  <!-- 隔离特性 -->
+  <rect x="740" y="838" width="310" height="105" rx="10" fill="#ffffff06" stroke="#ffffff15" stroke-width="1"/>
+  <text x="760" y="862" fill="#94a3b8" font-size="13" font-weight="bold">🔒 隔离特性</text>
+  <text x="760" y="884" fill="#cbd5e1" font-size="11">• 独立工作空间 — 文件互不干扰</text>
+  <text x="760" y="902" fill="#cbd5e1" font-size="11">• 独立 Session — 记忆和上下文隔离</text>
+  <text x="760" y="920" fill="#cbd5e1" font-size="11">• 独立 Cron — 只响应自身 agentId 的任务</text>
+  <text x="760" y="938" fill="#cbd5e1" font-size="11">• 独立 Skill — 各自加载专属 skill 文件</text>
+
+</svg>

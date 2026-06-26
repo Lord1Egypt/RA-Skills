@@ -1,35 +1,25 @@
----
-name: "Tgsearch Telethon"
-description: "Search public Telegram channels and groups by keyword using an authorized Telethon session, returning up to 50 results as JSON."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/tgsearch-telethon"
-sourceUrl: "https://clawhub.ai/skills/tgsearch-telethon"
----
+# tg_search
 
-# Tgsearch Telethon
+Search public Telegram channels and groups by keyword using an already-authorized Telethon session on this VPS.
 
-> Search public Telegram channels and groups by keyword using an authorized Telethon session, returning up to 50 results as JSON.
+## What it does
+- Runs global Telegram search for public channels/groups matching a query
+- Returns up to `limit` results as JSON
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/tgsearch-telethon`
-- **Source URL:** [https://clawhub.ai/skills/tgsearch-telethon](https://clawhub.ai/skills/tgsearch-telethon)
+## Command executed
+`/usr/local/bin/tg_search "<query>" <limit>`
 
-## Overview
+## Inputs
+- query (string, required): e.g. "crypto", "здоровье", "ai agents"
+- limit (int, optional, default 10, max 50)
 
+## Output (JSON)
+[
+  { "type": "channel|group", "title": "...", "username": "...", "id": 123456789 },
+  ...
+]
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/tgsearch-telethon
-```
+## Notes / limitations
+- Only public channels/groups discoverable by Telegram search.
+- No access to private groups/chats without an invite.
+- `username` can be null if there is no public @username.

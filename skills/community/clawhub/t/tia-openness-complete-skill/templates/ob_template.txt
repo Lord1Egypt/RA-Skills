@@ -1,0 +1,8 @@
+ORGANIZATION_BLOCK "{{ block_name }}"
+// {{ description }}
+BEGIN
+    // 主程序循环
+    {{ logic }}
+    // 调用功能块示例
+    // "MotorControl"(Start := #Start, Stop := #Stop, Run => #MotorRun);
+END_ORGANIZATION_BLOCK

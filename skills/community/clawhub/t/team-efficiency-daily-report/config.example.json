@@ -1,0 +1,58 @@
+{
+  "reports": [
+    {
+      "name": "完成交付的需求列表",
+      "url": "https://kwaibi.corp.kuaishou.com/pc/dashboard/preview/single?chartId=8283679&dashboardId=2048120&filterConfig=46997027&shareId=15038&shareWay=DASHBOARD_PARAM&sheetId=113276",
+      "dataAPI": "https://kwaibi.corp.kuaishou.com/api/v1/data/query",
+      "needModify": true,
+      "column": {
+        "name": "需求名称",
+        "teamId": "需求 ID",
+        "teamType": "任务类型",
+        "status": "状态",
+        "createTime": "需求创建时间",
+        "waitDevTime": "待开发时间",
+        "devTime": "开发中时间",
+        "endTime": "需求完成时间",
+        "devDays": "开发工作量",
+        "totalDays": "需求总耗时",
+        "group": "所属小组",
+        "owner": "负责人"
+      }
+    },
+    {
+      "name": "主 R 的产品需求列表",
+      "url": "https://kwaibi.corp.kuaishou.com/pc/dashboard/preview/single?chartId=8028157&dashboardId=2048120&filterConfig=46997034&shareId=15039&shareWay=DASHBOARD_PARAM&sheetId=113276",
+      "dataAPI": "https://kwaibi.corp.kuaishou.com/api/v1/data/query",
+      "needModify": false,
+      "column": {
+        "name": "需求名称",
+        "teamId": "需求 ID",
+        "createTime": "需求创建时间",
+        "waitDevTime": "待开发时间",
+        "devTime": "开发中时间",
+        "devDays": "开发工作量",
+        "status": "状态",
+        "group": "所属小组",
+        "owner": "负责人"
+      }
+    },
+    {
+      "name": "所有产品需求子任务列表",
+      "url": "https://kwaibi.corp.kuaishou.com/pc/dashboard/preview/single?chartId=8028323&dashboardId=2048120&filterConfig=46997035&shareId=15040&shareWay=DASHBOARD_PARAM&sheetId=113276",
+      "dataAPI": "https://kwaibi.corp.kuaishou.com/api/v1/data/query",
+      "needModify": false,
+      "column": {
+        "name": "需求名称",
+        "teamId": "需求 ID",
+        "devType": "技术方案",
+        "createTime": "需求创建时间",
+        "devDays": "开发工作量",
+        "usedDays": "已开发时长",
+        "status": "状态",
+        "group": "所属小组",
+        "owner": "负责人"
+      }
+    }
+  ]
+}

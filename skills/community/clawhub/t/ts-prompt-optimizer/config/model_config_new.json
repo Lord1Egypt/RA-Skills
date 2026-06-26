@@ -1,0 +1,44 @@
+{
+  "models": {
+    "deepseek": {
+      "provider": "deepseek",
+      "model": "deepseek-chat",
+      "api_key_source": "env",
+      "api_key_env": "DEEPSEEK_API_KEY",
+      "enabled": true,
+      "priority": 1,
+      "cost_per_1k_tokens": 0.42,
+      "capabilities": ["日常对话", "简单优化", "代码审查"]
+    },
+    "qwen35": {
+      "provider": "bailian",
+      "model": "qwen3.5-plus",
+      "api_key_source": "env",
+      "api_key_env": "BAILIAN_API_KEY",
+      "enabled": true,
+      "priority": 2,
+      "cost_per_1k_tokens": 0.00,
+      "capabilities": ["复杂任务", "图像识别", "中文写作"]
+    },
+    "qwen_coder": {
+      "provider": "bailian",
+      "model": "qwen3-coder-next",
+      "api_key_source": "env",
+      "api_key_env": "BAILIAN_API_KEY",
+      "enabled": true,
+      "priority": 3,
+      "cost_per_1k_tokens": 0.00,
+      "capabilities": ["技术开发", "代码生成", "系统设计"]
+    }
+  },
+  "routing": {
+    "strategy": "cost_effective",
+    "fallback_model": "deepseek",
+    "cost_threshold": 1.00
+  },
+  "user_preferences": {
+    "default_optimization_level": "standard",
+    "show_config_summary": true,
+    "auto_test_connections": true
+  }
+}

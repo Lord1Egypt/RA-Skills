@@ -1,0 +1,9 @@
+{
+  "name": "com.today.earnings.host",
+  "description": "Today Earnings Native Messaging Host",
+  "path": "__REPO_PATH__/native-host/host.js",
+  "type": "stdio",
+  "allowed_origins": [
+    "chrome-extension://__EXTENSION_ID__/"
+  ]
+}

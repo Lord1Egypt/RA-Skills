@@ -1,35 +1,33 @@
 ---
-name: "NotebookLM CLI"
-description: "NotebookLM CLI wrapper via `node {baseDir}/scripts/notebooklm.mjs`. Use for auth, notebooks, chat, sources, notes, sharing, research, and artifact generation/download."
-category: "software-development"
-source: "ClawHub"
-tags: [cli, notebooklm, research]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/tiangong-notebooklm-cli"
-sourceUrl: "https://clawhub.ai/skills/tiangong-notebooklm-cli"
+name: notebooklm
+description: NotebookLM CLI wrapper via `node {baseDir}/scripts/notebooklm.mjs`. Use for auth, notebooks, chat, sources, notes, sharing, research, and artifact generation/download.
 ---
 
-# NotebookLM CLI
+# NotebookLM CLI Wrapper
 
-> NotebookLM CLI wrapper via `node {baseDir}/scripts/notebooklm.mjs`. Use for auth, notebooks, chat, sources, notes, sharing, research, and artifact generation/download.
+## Required parameters
+- `node` and `notebooklm` available on PATH.
+- NotebookLM CLI authenticated (run `login` if needed).
 
-- **Category:** Software Dev
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/tiangong-notebooklm-cli`
-- **Source URL:** [https://clawhub.ai/skills/tiangong-notebooklm-cli](https://clawhub.ai/skills/tiangong-notebooklm-cli)
+## Quick start
+- Wrapper script: `scripts/notebooklm.mjs` (invokes `notebooklm` CLI).
+- Run from the skill directory or use an absolute `{baseDir}` path.
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/tiangong-notebooklm-cli
+node {baseDir}/scripts/notebooklm.mjs status
+node {baseDir}/scripts/notebooklm.mjs login
+node {baseDir}/scripts/notebooklm.mjs list
+node {baseDir}/scripts/notebooklm.mjs use <notebook_id>
+node {baseDir}/scripts/notebooklm.mjs ask "Summarize the key takeaways" --notebook <notebook_id>
 ```
+
+## Request & output
+- Command form: `node {baseDir}/scripts/notebooklm.mjs <command> [args...]`.
+- Prefer `--json` for machine-readable output.
+- For long-running tasks, use `--exec-timeout <seconds>`; `--timeout` is reserved for wait/poll commands.
+
+## References
+- `references/cli-commands.md`
+
+## Assets
+- None.

@@ -1,0 +1,32 @@
+{
+  "feishu_webhook": "https://open.feishu.cn/open-apis/bot/v2/hook/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+  "query_settings": {
+    "headless": true,
+    "timeout_seconds": 30,
+    "max_results": 10,
+    "retry_times": 3,
+    "use_mock_data": false
+  },
+  "subscription_settings": {
+    "check_interval_hours": 6,
+    "price_drop_threshold": 5.0,
+    "min_check_interval_minutes": 30,
+    "max_history_records": 100
+  },
+  "notification_settings": {
+    "enable_price_drop": true,
+    "enable_query_result": true,
+    "enable_error_alerts": true,
+    "notification_channels": ["feishu"]
+  },
+  "security_settings": {
+    "max_queries_per_day": 100,
+    "user_agent_rotation": true,
+    "delay_between_requests": 1.0
+  },
+  "data_storage": {
+    "data_dir": "data",
+    "backup_enabled": true,
+    "backup_interval_days": 7
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "run_time": "2026-04-04T06:35:00+08:00",
+  "trigger_source": "forced_run (nasdaq_trigger_sentiment.json not found)",
+  "x_search_trump_iran_deal": [
+    {"time_cst":"2026-04-04 00:35","source":"@GBNT1952","content":"Iran close to nuke, EU should thank US - pro Trump/military action","engagement":"6小时前"},
+    {"time_cst":"2026-04-04 06:14","source":"@NicholasOShaug1","content":"Obama deal sabotaged due to irrational hatred for first black president","engagement":"45次观看"},
+    {"time_cst":"2026-04-04 06:14","source":"@WokeRightExpose","content":"Would be better if Trump didn't abandon nuclear deal","engagement":"1赞·16次观看"},
+    {"time_cst":"2026-04-04 06:14","source":"@harman_geoff","content":"Trump tore up deal because it was Obama's, will impose worse deal and declare victory","engagement":"未显示互动"},
+    {"time_cst":"2026-04-04 06:18","source":"@CamNgo90027","content":"Trump family children representing USA in Iran deal - public vs private?","engagement":"1回复·1赞·64次观看"},
+    {"time_cst":"2026-04-04 06:18","source":"@mac_lod31","content":"ARTE series on Iran nuclear deals - Accord annule par Trump","engagement":"11次观看"},
+    {"time_cst":"2026-04-04 06:31","source":"@Murray62606381","content":"Trump will tweet Iran is begging for a deal within the hour (sarcastic)","engagement":"13次观看"},
+    {"time_cst":"2026-04-04 06:29","source":"@MichaelJFell","content":"They should take the deal Trump is offering. Redstate: Panic Setting In?","engagement":"2赞·22次观看"},
+    {"time_cst":"2026-04-04 06:33","source":"@TAL9000","content":"Trump created situation, ripped up deal then bombed Iran during negotiations","engagement":"3次观看"},
+    {"time_cst":"2026-04-04 06:33","source":"@hypergraphing","content":"Problem never existed if Trump hadn't pulled out of deal, inspectors were in place","engagement":"1回复·16次观看"}
+  ],
+  "x_search_iran_ceasefire": [
+    {"time_cst":"2026-04-04 06:34","source":"@wogoa1 (PPN)","content":"Qatar refused mediation role in Iran War, complicating ceasefire - WSJ","engagement":"15秒前"},
+    {"time_cst":"2026-04-04 06:34","source":"@ZE281152","content":"BREAKING: Iran rejected US 48-hour ceasefire proposal","engagement":"36秒前·1次观看"},
+    {"time_cst":"2026-04-04 06:34","source":"@_glowingirl","content":"Trump BLINDSIDED as Iran REJECTS CEASEFIRE - MeidasTouch video","engagement":"45秒前·3次观看"},
+    {"time_cst":"2026-04-04 06:34","source":"@OddsFirst_","content":"Polymarket $109M 91% odds US stays. Oil at 2008 highs. Hormuz push = parabolic oil","engagement":"1分钟前"}
+  ],
+  "big_accounts": [
+    {"account":"@KobeissiLetter","content":"Pinned: 2025 +30.7% return (S&P +16.4%). No Iran posts in view."},
+    {"account":"@WatcherGuru","content":"Pinned (Apr 3): Trump $1.5T defense budget - largest since WWII (Reuters)."}
+  ],
+  "web_search":"API_UNAVAILABLE",
+  "analysis_output":"analysis_output.json",
+  "feishu_message_id":"om_x100b52305249ad30b2c1c01cf092821"
+}

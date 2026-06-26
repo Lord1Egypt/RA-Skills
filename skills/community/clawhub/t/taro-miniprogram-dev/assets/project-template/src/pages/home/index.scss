@@ -1,0 +1,24 @@
+.home-page {
+  min-height: 100vh; padding: 18px 16px 120px;
+  background: linear-gradient(180deg, #fffdfa 0%, #fff5ec 100%); box-sizing: border-box;
+  .status-bar { display: flex; justify-content: space-between; font-size: 12px; color: #7d6662; padding: 4px 2px 18px; }
+  .app-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+  .small { font-size: 12px; color: #8f6d64; }
+  .circle-name { display: block; font-size: 22px; font-weight: 900; color: #5e3930; margin-top: 4px; }
+  .art-card {
+    height: 260px; border-radius: 28px; background-color: #8b665f; background-repeat: no-repeat;
+    background-position: center; background-size: 84%; border: 2px solid #fff;
+    box-shadow: 0 16px 34px rgba(109,74,63,0.1); position: relative; overflow: hidden; margin-bottom: 14px;
+    background-image: url('https://via.placeholder.com/320x260/8b665f/fff?text=🐻🐻+双熊合照');
+    &::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 84px; background: linear-gradient(180deg, rgba(255,255,255,0), rgba(255,248,241,0.9)); }
+    .art-tag { position: absolute; right: 14px; bottom: 14px; z-index: 1; padding: 8px 12px; border-radius: 999px; background: rgba(255,255,255,0.86); font-size: 12px; font-weight: 800; color: #8f685f; }
+  }
+  .row { display: flex; justify-content: space-between; align-items: center; }
+  .title-strong { font-size: 16px; font-weight: 900; color: #5e3930; }
+  .muted { color: #8f6d64; }
+  .task-desc { display: block; margin-top: 10px; font-size: 12px; color: #8f6d64; line-height: 1.7; }
+  .field { display: grid; gap: 8px; }
+  .label { font-size: 12px; color: #9a7a72; font-weight: 700; }
+  .input { min-height: 44px; border-radius: 14px; background: #fff; border: 2px solid #f6e3d9; padding: 12px 14px; display: flex; align-items: center; justify-content: center; }
+  .invite-code { font-size: 16px; font-weight: 900; color: #d96b8a; letter-spacing: 2px; }
+}

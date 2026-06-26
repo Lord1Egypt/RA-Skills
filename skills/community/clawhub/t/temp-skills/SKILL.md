@@ -1,35 +1,27 @@
----
-name: "Temp Skills"
-description: "Integrates OKX API for spot and contract trading, asset management, risk control, and real-time market data with automated risk checks and logging."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/temp-skills"
-sourceUrl: "https://clawhub.ai/skills/temp-skills"
----
+# OKX API 集成技能
 
-# Temp Skills
+## API配置
+- **账户名**: 太玄资本BOT
+- **UID**: 406344003542497297
+- **API Key**: 418d477d-7247-4df9-9270-66055550c1cc
+- **权限**: 读取 + 交易（无提现）
+- **代理**: http://127.0.0.1:7890
 
-> Integrates OKX API for spot and contract trading, asset management, risk control, and real-time market data with automated risk checks and logging.
+## 功能模块
+- **现货交易**: BTC/ETH/SOL等主流币种买卖
+- **合约交易**: 永续合约、交割合约
+- **资金管理**: 资产查询、资金划转
+- **风控监控**: 止损止盈、仓位控制
+- **市场数据**: 实时行情、资金费率、深度数据
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/temp-skills`
-- **Source URL:** [https://clawhub.ai/skills/temp-skills](https://clawhub.ai/skills/temp-skills)
+## 使用方法
+1. 初始化API连接：`okx_init()`
+2. 查询资产：`okx_get_balance()`
+3. 下单交易：`okx_place_order(symbol, side, price, size)`
+4. 风控检查：`okx_risk_check()`
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/temp-skills
-```
+## 安全限制
+- 单策略最大回撤：20%
+- 无手动取消止损线
+- 所有交易必须记录日志
+- 异常情况立即暂停并通知Steve

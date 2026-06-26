@@ -1,0 +1,9 @@
+{
+  "name": "talonforge-launch",
+  "version": "1.0.0",
+  "description": "Bilingual (EN/AR) 21-platform launch playbook for AI companies. X strategy, Arabic market plan, press templates. From TalonForge.",
+  "author": "TalonForge",
+  "license": "MIT",
+  "homepage": "https://talonforge.xyz",
+  "keywords": ["launch", "marketing", "ai-company", "bilingual", "arabic"]
+}

@@ -1,35 +1,192 @@
----
-name: "Tushare A股数据"
-description: "提供23个明确股票接口的Tushare Pro数据查询，包括行情、基础信息、复权因子，支持指定股票代码和日期范围调用。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/tushare-stocks"
-sourceUrl: "https://clawhub.ai/skills/tushare-stocks"
----
+# Tushare 股票数据技能详细文档
 
-# Tushare A股数据
+## 技能概述
+本技能是一个**接口明确的** Tushare Pro 股票数据获取工具。与通用调用器不同，它**有明确的边界**，支持文档中描述的 **23 个股票数据接口**。这确保了技能能力的透明度和可预测性，用户无需猜测其功能范围。
 
-> 提供23个明确股票接口的Tushare Pro数据查询，包括行情、基础信息、复权因子，支持指定股票代码和日期范围调用。
+## 核心特性：明确的接口支持
+本技能的核心价值在于**明确性**。您不需要猜测它能做什么，所有功能都已预先定义：
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/tushare-stocks`
-- **Source URL:** [https://clawhub.ai/skills/tushare-stocks](https://clawhub.ai/skills/tushare-stocks)
+### 完整接口支持表
+| 分类 | 接口数量 | 接口名称 (api_name) | 主要功能 |
+| :--- | :--- | :--- | :--- |
+| 行情数据 | 13 | `daily`, `rt_k`, `stk_mins`, `rt_min`, `weekly`, `monthly`, `stk_weekly_monthly`, `stk_week_month_adj`, `adj_factor`, `daily_basic`, `stk_limit`, `suspend_d`, `hsgt_top10` | 日线、实时K线、分钟线、周月线、复权因子、基础行情、涨跌停、停牌、沪深港通 |
+| 基础信息 | 10 | `stock_basic`, `trade_cal`, `stock_st`, `stock_hsgt`, `namechange`, `stock_company`, `stk_managers`, `stk_rewards`, `bse_mapping`, `new_share`, `bak_basic` | 股票列表、交易日历、ST股、沪深港通、更名、公司信息、管理层、分红、BSE映射、新股、备用基础信息 |
 
-## Overview
+## 调用前必读：核心参数说明
+大部分接口都依赖以下核心参数，请务必了解其格式：
 
+| 参数名 | 含义 | 格式/示例 | 如何获取/注意事项 |
+| :--- | :--- | :--- | :--- |
+| **`api_name`** | 接口名称 | 必须是支持的23个接口之一，如 `"daily"` | 详见上方“完整接口支持表” |
+| **`ts_code`** | 股票代码 | `股票代码.交易所`<br>例如：`000001.SZ` (平安银行)<br>`600000.SH` (浦发银行)<br>支持通配符：`6*.SH` (所有沪市6开头股票) | 使用 `stock_basic` 接口查询有效代码 |
+| **`trade_date`** | 单个交易日 | `YYYYMMDD`<br>例如：`20240115` | 查询单日数据时使用，需为交易日 |
+| **`start_date`** /<br>**`end_date`** | 开始/结束日期 | 日线/周月线：`YYYYMMDD`<br>分钟线：`YYYY-MM-DD HH:MM:SS`<br>示例：<br>日线范围：`20240101` 到 `20240110`<br>分钟线：`2024-01-15 09:00:00` 到 `2024-01-15 15:00:00` | 查询日期范围时使用 |
+| **`freq`** | 分钟线频率 | `1min`, `5min`, `15min`, `30min`, `60min` | 仅 `stk_mins` 接口需要 |
+| **`token`** | Tushare Token | 您的Tushare API Token字符串 | 可在每次调用时传入，或通过环境变量`TUSHARE_TOKEN`设置 |
+| **`exchange`** | 交易所代码 | `SSE` (上交所), `SZSE` (深交所)<br>`BSE` (北交所) | 部分接口如`stock_basic`可用，非必需 |
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/tushare-stocks
-```
+**重要提示**：
+1.  **代码格式**：股票代码必须包含交易所后缀（`.SH`/`.SZ`/`.BJ`）
+2.  **日期格式**：日线接口使用`YYYYMMDD`（无短横线），分钟线接口使用`YYYY-MM-DD HH:MM:SS`（必须包含短横线和空格）
+3.  **交易日**：查询日线数据时，请确保日期为交易日，可通过`trade_cal`接口验证
+4.  **通配符**：`rt_k`接口支持通配符查询，如`6*.SH`查询所有沪市6开头股票
+5.  **必填参数**：每个接口的必填参数不同，不传必填参数会报错
+
+## 接口详细说明（精选）
+
+### 1. 日线行情 (`daily`)
+*   **描述**: 获取股票日线行情数据，包含开盘、最高、最低、收盘、成交量、成交额、涨跌幅等核心指标
+*   **必填参数**: `ts_code` 或 `trade_date` 二选一
+*   **常用参数**: `ts_code`（单只股票）, `trade_date`（单个交易日）, `start_date` + `end_date`（日期范围）
+*   **输出示例**:
+json
+{
+"api_name": "daily",
+"ts_code": "000001.SZ",
+"start_date": "20240101",
+"end_date": "20240110"
+}
+*   **典型用途**: 获取股票历史价格、计算技术指标、回测分析
+
+### 2. 基础信息 (`stock_basic`)
+*   **描述**: 获取股票列表基本信息，包括代码、名称、上市日期、退市日期、所属板块等
+*   **必填参数**: 无
+*   **常用参数**: `exchange`（交易所）, `list_status`（上市状态：L上市 D退市 P暂停上市）, `fields`（指定字段）
+*   **输出示例**:
+json
+{
+"api_name": "stock_basic",
+"exchange": "SSE",
+"list_status": "L"
+}
+*   **典型用途**: 获取全市场股票列表、筛选特定交易所股票、验证股票代码有效性
+
+### 3. 分钟行情 (`stk_mins`)
+*   **描述**: 获取A股历史分钟数据，支持1、5、15、30、60分钟频率
+*   **必填参数**: `ts_code`, `freq`, `start_date`, `end_date`
+*   **重要参数**: `freq`（频率）, `start_date`（精确到秒）, `end_date`（精确到秒）
+*   **输出示例**:
+json
+{
+"api_name": "stk_mins",
+"ts_code": "600000.SH",
+"freq": "5min",
+"start_date": "2024-01-15 09:00:00",
+"end_date": "2024-01-15 15:00:00"
+}
+*   **注意**: 分钟线的起止时间格式必须包含秒，且为`YYYY-MM-DD HH:MM:SS`
+
+### 4. 复权因子 (`adj_factor`)
+*   **描述**: 获取股票复权因子，用于计算前复权、后复权价格
+*   **必填参数**: `ts_code` 或 `trade_date` 二选一
+*   **常用参数**: `ts_code`（单只股票）, `trade_date`（单个交易日）, `start_date` + `end_date`（日期范围）
+*   **输出示例**:
+json
+{
+"api_name": "adj_factor",
+"ts_code": "000001.SZ",
+"start_date": "20230101",
+"end_date": "20231231"
+}
+*   **典型用途**: 配合日线数据计算复权价格，进行准确的收益率计算
+
+## 快速开始示例
+
+### 示例1：获取单只股票近期日线行情
+json
+{
+"api_name": "daily",
+"ts_code": "000001.SZ",
+"start_date": "20240101",
+"end_date": "20240131"
+}
+### 示例2：获取多只股票实时行情（使用通配符）
+json
+{
+"api_name": "rt_k",
+"ts_code": "6*.SH"
+}
+### 示例3：获取上证所所有上市股票列表
+json
+{
+"api_name": "stock_basic",
+"exchange": "SSE",
+"list_status": "L"
+}
+### 示例4：获取交易日历
+json
+{
+"api_name": "trade_cal",
+"start_date": "20240101",
+"end_date": "20241231"
+}
+## 如何获取完整接口详情
+虽然本技能文档列出了所有支持的接口及其基本信息，但每个接口的**完整参数列表、所有输出字段的详细说明、数据更新频率、以及所需的Tushare积分要求**等，均需以 **[Tushare Pro 官方文档](https://tushare.pro/document/2)** 为准。调用前强烈建议查阅。
+
+## 返回数据格式
+本技能始终返回一个结构化的JSON对象：
+
+**成功响应**：
+json
+{
+"success": true,
+"data": [...], // 数据数组
+"msg": "查询成功",
+"api": "daily"
+}
+**失败响应**：
+json
+{
+"success": false,
+"error": "错误信息详情",
+"api": "daily"
+}
+## 开发说明
+### 接口增删原则
+本技能的接口列表已基于明确的需求文档固化。如需增加或删减接口，需要按顺序完成以下步骤：
+1.  **确认接口**：确认目标接口在 [Tushare 官方文档](https://tushare.pro/document/2) 中存在且可用。
+2.  **更新代码**：修改 `__init__.py` 文件中的 `SUPPORTED_APIS` 字典。
+3.  **更新文档**：同步更新 `README.md` 和本文件 (`SKILL.md`) 中的接口列表和描述。
+4.  **更新版本**：在 `metadata.json` 中更新技能版本号，以区分不同发布。
+
+### 代码与文件结构
+本技能作为一个标准的 **ClawHub 纯 Python 技能**，由以下核心文件构成：
+- `__init__.py`：技能的主逻辑文件，包含 `SUPPORTED_APIS` 字典、`handler` 主函数以及从标准输入读取参数的标准入口。
+- `metadata.json`：**技能的核心配置文件**，定义了技能在 ClawHub 平台上的元数据，包括名称、版本、依赖和运行环境要求 (`python3`)。
+- `requirements.txt`：Python 第三方依赖包列表 (`tushare`, `pandas`)。
+- `README.md`：面向最终用户的快速使用指南和完整接口列表。
+- `SKILL.md`：本文件，即面向开发者和高级用户的详细技术文档。
+
+## 常见问题
+**Q: 这个技能和通用的 Tushare 调用器有什么区别？**
+**A**: 主要区别在于**接口的明确性**。通用调用器可能声称支持“所有”Tushare接口，但用户无法确知其具体支持哪些。本技能明确列出了所支持的 **23 个股票接口**，让用户对其能力边界一目了然，避免了猜测和试错。
+
+**Q: 我想用的某个 Tushare 接口不在这 23 个列表中怎么办？**
+**A**: 本技能的设计初衷是提供确定性的功能集，因此仅支持文档中明确的接口。如果您需要其他接口，有两个选择：1) 根据上述“开发说明”自行修改代码添加；2) 使用功能更宽泛的通用 Tushare 调用器。
+
+**Q: 如何知道某个接口具体需要哪些参数？**
+**A**: 虽然本技能文档提供了核心参数说明，但最权威和完整的参数信息来源于 [Tushare 官方文档](https://tushare.pro/document/2)。调用时若参数错误，Tushare API 本身也会返回具体的错误信息。
+
+**Q: 如何区分沪市、深市、北交所股票代码？**
+**A**: 通过代码后缀区分：
+- `.SH`：上海证券交易所（主板688开头为科创板）
+- `.SZ`：深圳证券交易所（000/001/002/003开头为主板，300开头为创业板）
+- `.BJ`：北京证券交易所
+
+**Q: 通过此技能获取的数据是实时的吗？**
+**A**: 数据的实时性取决于您的 **Tushare 账户权限和积分**。免费账号或基础积分账号获取的行情数据通常有 **15分钟** 的延迟。实时数据接口（如 `rt_min`、`rt_k`）通常需要更高的积分或单独的数据权限。
+
+**Q: 复权因子 (`adj_factor`) 怎么用？**
+**A**: 复权因子用于计算复权价格。以`adj_factor`为基准：
+- 后复权价格 = 当日收盘价 × 当日复权因子
+- 前复权价格 = 当日收盘价 × (当日复权因子 / 最新复权因子)
+通常结合`daily`接口的收盘价进行计算。
+
+**Q: Token 应该如何配置？**
+**A**: 您可以通过两种方式配置 Tushare Token (按优先级):
+1.  **调用参数传入**：在每次调用的 JSON 参数中传入 `"token": "您的token"`。
+2.  **环境变量**：设置系统环境变量 `TUSHARE_TOKEN` 为您的 token。
+如果以上均未提供，技能初始化将失败并提示错误。
+
+**Q: 返回的数据格式是什么？**
+**A**: 技能始终返回一个结构化的 JSON 对象。成功的调用会包含 `"success": true`、`"data"` (数据列表) 等字段；失败的调用会包含 `"success": false` 和 `"error"` (错误信息) 字段。

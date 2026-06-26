@@ -1,0 +1,142 @@
+{
+  "report_time": "2026-03-31T14:44:00+08:00",
+  "report_time_cst": "2026年3月31日 14:44 CST",
+  "trigger": "manual",
+  "timeline": [
+    {
+      "time_cst": "2026-03-31 14:44",
+      "source": "CNBC Futures",
+      "content": "S&P 500期货涨0.8%，Nasdaq期货涨0.7%，道指期货涨394点，因Wall Street Journal报道Trump告诉助手他希望结束伊朗战争",
+      "market_data": "S&P +0.8%, Nasdaq +0.7%, Dow +394pts",
+      "sentiment_indicator": "bullish"
+    },
+    {
+      "time_cst": "2026-03-31 约14:00",
+      "source": "Fox News Live",
+      "content": "Trump再次威胁：如果霍尔木兹海峡不立即重新开放，将炸毁伊朗所有发电厂、油井和哈格岛（Kharg Island），并可能摧毁所有海水淡化厂",
+      "market_data": "Brent原油突破$115",
+      "sentiment_indicator": "hawkish"
+    },
+    {
+      "time_cst": "2026-03-31 约13:00",
+      "source": "CBS News",
+      "content": "Trump确认正与伊朗新政府谈判，称谈判'进展顺利'，称伊朗谈判代表比前任领导人'更理性'",
+      "market_data": "股市盘中震荡",
+      "sentiment_indicator": "mixed"
+    },
+    {
+      "time_cst": "2026-03-31 上午",
+      "source": "AP News",
+      "content": "Trump接受New York Post采访，确认正与伊朗议长Mohammad Bagher Qalibaf谈判，称约一周内会有结果",
+      "market_data": "",
+      "sentiment_indicator": "neutral"
+    },
+    {
+      "time_cst": "2026-03-30 晚间",
+      "source": "NYT",
+      "content": "科威特油轮在迪拜水域被无人机击中，满载石油，引发漏油担忧",
+      "market_data": "油价再度飙升",
+      "sentiment_indicator": "bearish"
+    },
+    {
+      "time_cst": "2026-03-30",
+      "source": "Trump Truth Social",
+      "content": "美国正与'一个全新、更理性的政权'就结束伊朗军事行动进行严肃讨论，'取得了重大进展'，但如果不迅速达成协议，将炸毁所有发电厂、油井和哈格岛",
+      "market_data": "Brent原油上涨",
+      "sentiment_indicator": "hawkish"
+    },
+    {
+      "time_cst": "2026-03-30",
+      "source": "Bloomberg",
+      "content": "Trump声称伊朗接受了美国15项要求中的大部分，但尚不清楚双方是否真的在谈判；Trump考虑'夺取伊朗石油'",
+      "market_data": "股市波动加剧",
+      "sentiment_indicator": "hawkish"
+    },
+    {
+      "time_cst": "2026-03-30",
+      "source": "CNN",
+      "content": "美以联合袭击伊朗孤儿院造成至少2人死亡；Trump称谈判'进展顺利'",
+      "market_data": "",
+      "sentiment_indicator": "hawkish"
+    },
+    {
+      "time_cst": "2026-03-30 早间",
+      "source": "Benzinga",
+      "content": "Brent原油突破$115，道指期货下跌249点，Trump称'最喜欢做的事情就是夺取伊朗石油'",
+      "market_data": "Dow -249pts, S&P -0.52%, Brent >$115",
+      "sentiment_indicator": "bearish"
+    },
+    {
+      "time_cst": "2026-03-30",
+      "source": "White House/Leavitt",
+      "content": "白宫新闻秘书Karoline Leavitt：与伊朗的谈判'进展顺利'，伊朗谈判代表比前任更理性",
+      "market_data": "乐观情绪短暂提振股市",
+      "sentiment_indicator": "bullish"
+    },
+    {
+      "time_cst": "2026-03-30",
+      "source": "Fox News/Leavitt",
+      "content": "Trump希望在10天内达成伊朗协议（Epic Fury行动第31天）",
+      "market_data": "",
+      "sentiment_indicator": "neutral"
+    },
+    {
+      "time_cst": "2026-03-30",
+      "source": "Bloomberg Evening",
+      "content": "Trump的伊朗战争信息反复无常：时而威胁摧毁民用基础设施，时而声称和平谈判取得进展",
+      "market_data": "市场不确定性高企",
+      "sentiment_indicator": "mixed"
+    },
+    {
+      "time_cst": "2026-03-29 晚间",
+      "source": "CNBC",
+      "content": "道指周一下跌，因油价上涨和对伊朗谈判的疑虑",
+      "market_data": "Dow -800pts进入回调区域，S&P连跌5周",
+      "sentiment_indicator": "bearish"
+    }
+  ],
+  "key_events": [
+    {
+      "event": "Trump声称与伊朗新政权谈判",
+      "time": "2026-03-30",
+      "market_impact": "短期利好股市期货",
+      "credibility": "存疑 - 伊朗方面否认直接谈判"
+    },
+    {
+      "event": "Trump威胁摧毁伊朗能源设施",
+      "time": "2026-03-30-31",
+      "market_impact": "油价上涨，Brent>$115",
+      "credibility": "确定 - Truth Social帖子"
+    },
+    {
+      "event": "科威特油轮被袭",
+      "time": "2026-03-30",
+      "market_impact": "油价飙升，漏油风险",
+      "credibility": "确定 - NYT报道"
+    },
+    {
+      "event": "美以袭击伊朗孤儿院",
+      "time": "2026-03-30",
+      "market_impact": "地缘政治风险升级",
+      "credibility": "确定 - CNN报道"
+    },
+    {
+      "event": "Trump考虑'夺取伊朗石油'",
+      "time": "2026-03-30",
+      "market_impact": "能源板块高度波动",
+      "credibility": "确定 - CNBC/Bloomberg"
+    }
+  ],
+  "market_summary": {
+    "sp500_futures": "+0.8% (最新报6,379→6,428)",
+    "nasdaq_futures": "+0.7%",
+    "dow_futures": "+394pts / -249pts (日内大幅波动)",
+    "brent_crude": "突破$115/桶",
+    "wti": "同步上涨",
+    "overall": "高度波动，市场情绪跟随Trump推文快速切换"
+  },
+  "sentiment_score": 45,
+  "sentiment_label": "谨慎偏空",
+  "confidence": "high",
+  "notes": "战争进入第31天，Trump反复无常的市场信号导致S&P连跌5周。当前市场对任何和平消息即时反应（+0.8%反弹），但对威胁即刻抛售。关键观察：霍尔木兹海峡是否重新开放。"
+}

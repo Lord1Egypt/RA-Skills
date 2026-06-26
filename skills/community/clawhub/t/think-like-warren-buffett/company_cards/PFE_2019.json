@@ -1,0 +1,47 @@
+{
+  "ticker": "PFE",
+  "company": "Pfizer Inc.",
+  "analysis_year": 2020,
+  "data_source": "Pfizer FY2019 10-K, Pfizer Q3 2020 10-Q, Berkshire 2020-09-30 13F-HR, and Berkshire 2021-12-31 13F-HR",
+  "analyzed_date": "2026-03-26",
+
+  "hard_gates": {
+    "g1_roe_roic": { "value": 0.244, "metric_used": "ROE", "years_averaged": "2017-2019", "pass": true },
+    "g2_fcf_to_ni": { "value": 1.2, "fcf": 10408, "net_income": 8686, "pass": true },
+    "g3_leverage": { "metric_used": "Net Debt/2019 EBITDA proxy", "value": 2.09, "pass": true },
+    "g4_revenue_trend": { "description": "Revenue moved from $52.55B in 2017 to $53.65B in 2018 and $51.75B in 2019. The top line was not collapsing, but it also was not showing the kind of unmistakable structural compounding Buffett usually wants. By late 2020 the company was still reshaping itself around Upjohn and a broad drug portfolio rather than demonstrating a clean secular growth runway.", "structural_decline": false, "pass": true },
+    "g5_gross_margin_trend": { "description": "Gross margin improved rather than deteriorated: roughly 78.6% in 2017, 79.0% in 2018, and 80.3% in 2019 based on revenue less cost of goods and services sold. There was no two-year margin erosion.", "declining_2plus_years": false, "pass": true },
+    "g6_earnings_yield": { "value": 0.0335, "net_income_m": 8686, "ev_m": 258976, "exemption": null, "pass": false },
+    "g7_moat": { "verdict": "FAIL", "moat_type": null, "description": "Pfizer had immense scale, commercial reach, and scientific capability, but the enterprise in late 2020 was still a broad portfolio of patent-driven drug assets rather than a single Buffett-style tollbooth. Competitors could not replicate its global organization overnight, yet the economics still depended on continuous pipeline renewal, lifecycle management, and portfolio reshaping. That is good enough for a tactical pharma basket, but not for the kind of decade-long irreplicable moat this framework wants in a permanent core holding.", "pass": false }
+  },
+
+  "special_channel": null,
+
+  "metrics_snapshot": {
+    "sales_2019_usd_m": 51750,
+    "net_income_2019_usd_m": 16273,
+    "operating_cash_flow_2019_usd_m": 12588,
+    "capital_expenditures_2019_usd_m": 2176,
+    "cash_2020q3_usd_m": 1587,
+    "short_term_investments_2020q3_usd_m": 8912,
+    "debt_2020q3_usd_m": 63148,
+    "ttm_net_income_2020q3_usd_m": 8686,
+    "ttm_operating_cash_flow_2020q3_usd_m": 12547,
+    "ttm_capex_2020q3_usd_m": 2139,
+    "implied_price_2020q3_usd": 36.7,
+    "market_value_2020q3_usd_m": 206327,
+    "berkshire_shares_2020q3_m": 3.712,
+    "berkshire_value_2020q3_usd_m": 136.2
+  },
+
+  "control_groups": [
+    { "ticker": "GSK", "company": "GlaxoSmithKline plc", "year": 2020, "gates_failed": ["g1_roe_roic", "g4_revenue_trend", "g7_moat"], "conclusion": "PASS — another global pharma incumbent, but weaker recent economics and an equally portfolio-driven moat profile." },
+    { "ticker": "SNY", "company": "Sanofi", "year": 2020, "gates_failed": ["g4_revenue_trend", "g6_earnings_yield", "g7_moat"], "conclusion": "PASS — large diversified pharma peer, but not a cleaner decade-long franchise and not obviously cheap enough to underwrite around those limits." }
+  ],
+
+  "conclusion": "PASS",
+  "buffett_action": "Berkshire disclosed 3,711,780 Pfizer shares worth about $136.2M at September 30, 2020 via its 13F-HR.",
+  "actual_result": "Pfizer quickly proved to be a small, tactical healthcare basket position rather than a defining Berkshire compounder; the stake no longer appeared in Berkshire's 2021-12-31 13F.",
+  "verdict": "⭐ framework_wins",
+  "key_insight": "A profitable large-cap drug company can still be a pass when the moat is portfolio-based rather than structurally irreplicable and the earnings yield is only about 3%."
+}

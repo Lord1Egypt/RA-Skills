@@ -1,35 +1,111 @@
 ---
-name: "Tongyong Shenhe"
+name: tongyong-shenhe
 description: "通用内容审核 Skill。配置驱动，适用于所有 d.php 后台站点。内置审核规则自动判断 + 可选技术部API增强。其他组只需填写站点账号密码即可使用，审核规则可自行修改适配。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/tongyong-shenhe"
-sourceUrl: "https://clawhub.ai/skills/tongyong-shenhe"
 ---
 
-# Tongyong Shenhe
+# 通用内容审核 Skill
 
-> 通用内容审核 Skill。配置驱动，适用于所有 d.php 后台站点。内置审核规则自动判断 + 可选技术部API增强。其他组只需填写站点账号密码即可使用，审核规则可自行修改适配。
+## 概述
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/tongyong-shenhe`
-- **Source URL:** [https://clawhub.ai/skills/tongyong-shenhe](https://clawhub.ai/skills/tongyong-shenhe)
+配置驱动的通用内容审核技能，适用于公司所有基于 `d.php` 框架的后台站点。内置通用审核规则（联系方式检测、违禁内容、广告导流等），开箱即用。各组可根据自身站点需求修改 `rules.json` 适配。
 
-## Overview
+**核心特性：**
+- 开箱即用：填入账号密码即可运行，内置审核规则覆盖常见违规类型
+- 规则可定制：`rules.json` 结构清晰，可直接让 AI 帮忙修改适配
+- 可选 API 增强：配置技术部审核 API key 后可获得 AI 模型双重审核
+- 安全机制：dry-run 模式先验证再上线
 
+## 工作流
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/tongyong-shenhe
+```
+VPN 连接（ppp0 接口）
+  │
+  ├─ TOTP 登录后台
+  │
+  ├─ 拉取待审列表
+  │
+  ├─ 逐条审核判断
+  │    │
+  │    ├─ 第1层：本地规则（rules.json）
+  │    │    ├─ 命中 → 自动拒绝 + 原因
+  │    │    └─ 未命中 → 进入第2层
+  │    │
+  │    └─ 第2层：技术部 API（可选，需配置 api_key）
+  │         ├─ rejected → 自动拒绝
+  │         ├─ flagged → 不提交，留给人工
+  │         └─ approved → 通过
+  │
+  │    如果未配置 API：本地规则通过即自动通过
+  │
+  └─ 输出统计
+```
+
+## 内置审核规则
+
+`rules.json` 预置以下规则（从现有三个站点提取的通用标准）：
+
+| 规则 | 默认启用 | 说明 |
+|------|---------|------|
+| 联系方式检测 | 是 | 微信/QQ/TG/手机号/连续数字 |
+| 网址链接检测 | 是 | URL、域名、网址 |
+| 广告导流话术 | 是 | "加我"、"私聊"、"扫码"等 |
+| 未成年人内容 | 是 | "学生妹"、"初中"、"幼女"等 |
+| 违规服务描述 | 是 | 色情服务关键词 |
+| 诈骗赌博黑产 | 是 | 赌博、刷单、彩票等 |
+| 多地区限制 | 否 | "全国"、"可空降多地"（本地服务站点可启用） |
+| 联系方式格式 | 否 | phone 字段格式校验（有 phone 字段的站点启用） |
+| 地址详细度 | 否 | 地址质量检查（有 address 字段的站点启用） |
+| 价格范围 | 否 | 价格区间+整百校验（有 price 字段的站点启用） |
+| 标题格式 | 否 | 标题格式校验（VIP 资源类站点启用） |
+
+**默认关闭的规则**适用于特定业务场景，启用只需在 `rules.json` 中将 `"enabled": false` 改为 `true`。
+
+## 适配原理
+
+公司所有站点后台基于同一套 `d.php` 框架，接口模式固定：
+
+| 操作 | 路径风格（默认） | 查询参数风格 |
+|------|-----------------|-------------|
+| 登录 | `/d.php/admin/login/doLogin` | `d.php?mod=login&code=dologin` |
+| 拉取列表 | `/d.php/admin/{模块}/listAjax` | `d.php?mod={模块}&code=listAjax` |
+| 提交结果 | `/d.php/admin/{模块}/verifyStatus` | `d.php?mod={模块}&code=verifyStatus` |
+
+## 模块清单
+
+| 文件 | 功能 |
+|------|------|
+| `review.py` | 主审核脚本 |
+| `rules.json` | 审核规则（可自定义） |
+| `config.example.json` | 配置模板 |
+| `SKILL.md` | 本文档 |
+| `DEPLOY.md` | 部署指南 |
+| `USAGE.md` | 使用指南 |
+
+## 配置文件
+
+| 配置项 | 必填 | 说明 |
+|--------|------|------|
+| `site.base_url` | 是 | 后台地址 |
+| `site.module` | 是 | 审核模块名 |
+| `auth.username` | 是 | 登录用户名 |
+| `auth.password` | 是 | 登录密码 |
+| `auth.totp_seed` | 是 | TOTP 密钥 |
+| `moderation.content_fields` | 否 | 送审字段（默认 `["title", "content"]`） |
+| `moderation.api_key` | 否 | 技术部 API 密钥（不填则仅用本地规则） |
+
+## 输出示例
+
+```
+[14:30:01] ═══ 通用审核 [茶馆大厅] (LIVE) ═══
+[14:30:01] 已加载 6 条审核规则
+[14:30:01] 正在登录...
+[14:30:02] 登录成功
+[14:30:02] 待审总量: 45 条
+[14:30:02] ── 第 1 页（45 条）──
+[14:30:02]   [1001] PASS
+[14:30:02]   [1002] REJECT [contact_keywords]: 含联系方式或疑似导流信息，审核失败
+[14:30:02]   [1003] PASS
+[14:30:02]   [1004] REJECT [underage_content]: 平台禁止发布未成年人相关信息，审核失败
+...
+[14:30:15] 完成: 共45条 | 通过32 | 拒绝8 | 待复审0 | 跳过3 | 异常2
 ```

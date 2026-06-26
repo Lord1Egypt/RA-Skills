@@ -1,0 +1,4 @@
+interface:
+  display_name: "图片视频生成"
+  short_description: "可调用 banana、sora、veo 等模型生成图片视频，短剧创作者福音！可跑工作流"
+  default_prompt: "Use -openclaw to generate images or videos with banana, sora, veo, and related workflow-capable models through the platform API."

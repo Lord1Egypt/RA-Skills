@@ -1,0 +1,11 @@
+{
+  "text": "Hello World",
+  "highlight_ranges": [
+    { "start": 6, "end": 11, "color": "#ff4d4f" }
+  ],
+  "width": 600,
+  "height": 220,
+  "format": "svg",
+  "background": "#ffffff",
+  "padding": 20
+}

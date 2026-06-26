@@ -1,0 +1,30 @@
+{
+  "ticker": "VZ",
+  "company": "Verizon Communications Inc.",
+  "analysis_year": 2020,
+  "data_source": "Verizon FY2019 10-K and Berkshire 2020-12-31 / 2021-03-31 / 2021-12-31 / 2022-12-31 13F-HR",
+  "analyzed_date": "2026-03-26",
+
+  "hard_gates": {
+    "g1_roe_roic": { "value": 0.431, "metric_used": "ROE", "years_averaged": "2017-2019", "pass": true },
+    "g2_fcf_to_ni": { "value": 0.991, "fcf": 19088, "net_income": 19265, "pass": true },
+    "g3_leverage": { "metric_used": "Net Debt/EBITDA", "value": 2.39, "pass": true },
+    "g4_revenue_trend": { "description": "Revenue moved from $126.0B in 2017 to $130.9B in 2018 to $131.9B in 2019. The wireless base looked mature, but there was no obvious structural collapse at the decision point.", "structural_decline": false, "pass": true },
+    "g5_gross_margin_trend": { "description": "Wireless and broadband economics moved around with handset mix and accounting presentation, but there was no clean two-year structural margin deterioration visible in the pre-2021 public filings.", "declining_2plus_years": false, "pass": true },
+    "g6_earnings_yield": { "value": 0.055, "net_income_m": 19265, "ev_m": 348490, "exemption": null, "pass": false },
+    "g7_moat": { "verdict": "FAIL", "moat_type": null, "description": "Verizon had real assets in spectrum, towers, brand, and postpaid customer relationships, but the overall business still sat inside a capital-intensive oligopoly where required reinvestment and competition make the moat less pristine than a Buffett tollbooth.", "pass": false }
+  },
+
+  "special_channel": null,
+
+  "control_groups": [
+    { "ticker": "T", "company": "AT&T Inc.", "year": 2020, "gates_failed": ["g4_revenue_trend", "g5_gross_margin_trend"], "conclusion": "PASS — heavier strategic drift and weaker capital discipline than Verizon." },
+    { "ticker": "LUMN", "company": "Lumen Technologies, Inc.", "year": 2020, "gates_failed": ["g4_revenue_trend", "g7_moat"], "conclusion": "PASS — far more obvious structural decline and franchise erosion." }
+  ],
+
+  "conclusion": "PASS",
+  "buffett_action": "Berkshire reported 146.7M Verizon shares worth about $8.62B at 2020-12-31, then increased the stake to 158.8M shares by 2021-03-31.",
+  "actual_result": "Berkshire still held 158.8M shares at 2021-12-31, but the position no longer appeared by 2022-12-31. This was large, but not permanent.",
+  "verdict": "⭐ framework_wins",
+  "key_insight": "A statistically cheap-looking telecom can still be a pass when the moat is not clean enough and the starting return only barely misses the hurdle."
+}

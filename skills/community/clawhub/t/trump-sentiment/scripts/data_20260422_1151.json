@@ -1,0 +1,160 @@
+{
+  "collection_time": "2026-04-22T03:51:00Z",
+  "collection_time_cst": "2026-04-22 11:51 CST",
+  "triggers": ["定时监控（每4小时）"],
+  "timeline": [
+    {
+      "time_utc": "2026-04-22T03:38:00Z",
+      "time_cst": "11:38 CST",
+      "source": "XCancel/CEASEFIRE",
+      "content": "Trump announces ceasefire extension on Truth Social — indefinite extension requested by Pakistan (PM Shehbaz Sharif + COAS Asim Munir) to give Iran time for unified proposal",
+      "engagement": "major",
+      "market": "Oil fell back below $90/barrel; S&P 500 recovered from earlier -$420B selloff"
+    },
+    {
+      "time_utc": "2026-04-22T03:40:00Z",
+      "time_cst": "11:40 CST",
+      "source": "XCancel/CEASEFIRE",
+      "content": "Iranian Foreign Ministry: 'no final decision' on whether to attend US-Iran ceasefire talks — Reuters",
+      "engagement": "major",
+      "market": "USD at week high; markets raise doubts over ceasefire durability"
+    },
+    {
+      "time_utc": "2026-04-22T03:39:00Z",
+      "time_cst": "11:39 CST",
+      "source": "XCancel/CEASEFIRE",
+      "content": "IRGC spokesman: Tehran doesn't recognize Trump's ceasefire extension, may not adhere to it, will act in line with national interest",
+      "engagement": "high",
+      "market": "Iran rejection amplifies uncertainty"
+    },
+    {
+      "time_utc": "2026-04-22T03:39:00Z",
+      "time_cst": "11:39 CST",
+      "source": "XCancel/CEASEFIRE",
+      "content": "Iranian official: Trump ceasefire extension is 'ploy to buy time for a surprise strike'; extending ceasefire has no meaning",
+      "engagement": "high",
+      "market": " hawkish Iran stance adds risk premium"
+    },
+    {
+      "time_utc": "2026-04-22T03:42:00Z",
+      "time_cst": "11:42 CST",
+      "source": "KobeissiLetter/XCancel",
+      "content": "Trump: 'Iran will be forced into negotiations'; strong deal expected; US claims full control over Hormuz Strait; blockade termed highly successful",
+      "engagement": "moderate",
+      "market": "HORMUZ control narrative remains"
+    },
+    {
+      "time_utc": "2026-04-22T03:38:00Z",
+      "time_cst": "11:38 CST",
+      "source": "KobeissiLetter/7h ago",
+      "content": "BREAKING: US oil prices pare gains and fall back below $90/barrel as Trump extends US ceasefire with Iran",
+      "engagement": "726RT/1136LIKE/6731REPLY",
+      "market": "Oil -$X below $90 from earlier $90+ highs"
+    },
+    {
+      "time_utc": "2026-04-22T03:44:00Z",
+      "time_cst": "11:44 CST",
+      "source": "XCancel/DEAL",
+      "content": "Trump: People approached me 4 days ago saying Iran wants to open Strait immediately — but if we do that, there can never be a deal unless we blow up the rest of their country",
+      "engagement": "high",
+      "market": "Trump claims $500M/day Iran losses from blockade"
+    },
+    {
+      "time_utc": "2026-04-22T03:42:00Z",
+      "time_cst": "11:42 CST",
+      "source": "XCancel/DEAL",
+      "content": "HuffPost: Eight Weeks In, Trump May Be Headed Toward An Iran Deal Similar To Obama's — sanctions relief in return for nuclear moratorium",
+      "engagement": "moderate",
+      "market": "Deal narrative shifting"
+    },
+    {
+      "time_utc": "2026-04-22T03:43:00Z",
+      "time_cst": "11:43 CST",
+      "source": "XCancel/DEAL",
+      "content": "Iran threatens to destroy oil production in neighboring Gulf countries if attacked from their territory (IRGC statement pre-ceasefire)",
+      "engagement": "moderate",
+      "market": "Regional escalation risk"
+    },
+    {
+      "time_utc": "2026-04-22T03:45:00Z",
+      "time_cst": "11:45 CST",
+      "source": "XCancel/WAR",
+      "content": "Cryptobriefing: Iran faces oil shut-ins in 15 days due to sanctions + war damage. Regime fall by June 30 rises to 9% YES",
+      "engagement": "moderate",
+      "market": "15-day oil production deadline creates time pressure"
+    },
+    {
+      "time_utc": "2026-04-22T03:42:00Z",
+      "time_cst": "11:42 CST",
+      "source": "zerohedge",
+      "content": "Tehran Timeline: Iran Has 15 Days Until Its Oil Industry Begins Full Shut-Ins (ZeroHedge analysis confirming 15-day timeline)",
+      "engagement": "64RT/93LIKE",
+      "market": "Shut-in risk is structural once exports blocked long enough"
+    },
+    {
+      "time_utc": "2026-04-22T03:41:00Z",
+      "time_cst": "11:41 CST",
+      "source": "KobeissiLetter",
+      "content": "BREAKING: President Trump extends the US ceasefire with Iran indefinitely",
+      "engagement": "726RT/1136LIKE/6731REPLY/765K views",
+      "market": "Most engaged Iran-related post today"
+    },
+    {
+      "time_utc": "2026-04-22T03:00:00Z",
+      "time_cst": "11:00 CST",
+      "source": "zerohedge",
+      "content": "US SUSPENDED U.S. DOLLAR SHIPMENTS TO IRAQ: WSJ",
+      "engagement": "24RT/52LIKE",
+      "market": "USD sanctions escalation in Iraq"
+    },
+    {
+      "time_utc": "2026-04-22T02:30:00Z",
+      "time_cst": "10:30 CST",
+      "source": "WatcherGuru",
+      "content": "JUST IN: TRON Founder Justin Sun files lawsuit against Trump Family's crypto project World Liberty Financial — 'wrongfully froze all tokens, stripped voting rights'",
+      "engagement": "124RT/71LIKE",
+      "market": "WLFI conflict-of-interest controversy"
+    }
+  ],
+  "contradictory_signals": [
+    {
+      "time_utc": "2026-04-22T03:38:00Z",
+      "source": "Trump/Truth Social",
+      "content": "Trump extends ceasefire indefinitely (Pakistan-brokered)"
+    },
+    {
+      "time_utc": "2026-04-22T03:39:00Z",
+      "source": "IRGC/Iran",
+      "content": "Iran rejects extension: 'ploy for surprise strike'"
+    },
+    {
+      "time_utc": "2026-04-22T03:40:00Z",
+      "source": "Iranian Foreign Ministry",
+      "content": "'No final decision' on attending talks — yet IRGC says not adhering"
+    }
+  ],
+  "taco_signals": [
+    {
+      "number": 5,
+      "description": "Trump extends ceasefire indefinitely after Pakistan request — Iran says it's a ploy; Iran has not confirmed attendance; ceasefire expires 7:50PM ET (11 hours from now). This is TACO #5 — Trump again buying time at deadline."
+    }
+  ],
+  "market_summary": {
+    "oil": "WTI fell below $90 on ceasefire extension news; Brent briefly over $100 earlier today when talks paused; now retreating as ceasefire extended",
+    "sp500": "Closed lower -$420B earlier when Iran refused talks; recovered on ceasefire extension",
+    "dollar": "USD at week high on ceasefire doubts",
+    "silver": "India silver prices surged 2% on weaker oil",
+    "gold": "Gold at $4,755/oz; China buying record gold (162T March imports)"
+  },
+  "key_themes": [
+    "Trump extends ceasefire indefinitely at Pakistan's request",
+    "Iran split: Foreign Ministry undecided, IRGC says extension is a 'ploy'",
+    "Ceasefire expires 7:50PM ET today (Apr 22) — 11 hours",
+    "Iran 15-day oil shut-in countdown running — regime fall June 30 at 9% YES",
+    "JD Vance Pakistan trip still paused",
+    "Hormuz blockade remains in place; Iran demands it lifted before talks",
+    "US Treasury sanctions 14 targets helping Iran obtain weapons",
+    "Trump: Iran losing $500M/day under blockade"
+  ],
+  "noteworthy": true
+}

@@ -1,35 +1,197 @@
----
-name: "tender-similarity-analyzer"
-description: "提供本地多文档投标文件交叉查重，精确到段落，支持标题过滤、短段合并，输出可视化HTML相似度报告。"
-category: "productivity"
-source: "ClawHub"
-tags: [document, plagiarism, tender]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/tender-similarity-analyzer"
-sourceUrl: "https://clawhub.ai/skills/tender-similarity-analyzer"
----
-
 # tender-similarity-analyzer
 
-> 提供本地多文档投标文件交叉查重，精确到段落，支持标题过滤、短段合并，输出可视化HTML相似度报告。
+**投标文件查重与分析工具** — 本地多文档交叉查重，精确到段的重复检测。
 
-- **Category:** Productivity
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/tender-similarity-analyzer`
-- **Source URL:** [https://clawhub.ai/skills/tender-similarity-analyzer](https://clawhub.ai/skills/tender-similarity-analyzer)
+---
 
-## Overview
+## 🎯 功能定位
 
+| 特性 | 说明 |
+|------|------|
+| 🔍 **核心功能** | 多文档交叉查重，精确到段落 |
+| 📊 **输出报告** | 美化HTML查重报告，含图表展示 |
+| ✍️ **自动修改** | 可选：自动生成修改建议（仅建议，不写入文件） |
+| 🔒 **安全保证** | 文件仅本地读取，网络隔离保护 |
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/tender-similarity-analyzer
+---
+
+## 🚀 快速开始
+
 ```
+你: 查重 ~/Desktop/投标文件
+AI: 扫描中... 找到 3 个文件
+    执行查重... ✅ 完成！
+    [发送HTML报告]
+```
+
+---
+
+## 📖 使用指南
+
+### 基本命令
+
+```
+命令格式：
+  查重 <目录路径> [选项]
+
+示例：
+  查重 ~/Desktop/投标项目
+  查重 /Users/xxx/Desktop/tender_files --recursive
+```
+
+### 可选参数
+
+```
+--include docx,pdf    指定文件格式（默认支持所有格式）
+--output <路径>       指定报告输出位置
+```
+
+---
+
+## 📊 报告说明
+
+报告包含：
+- **总体统计** — 文件数、段落数、重复率
+- **核心指标卡** — 重复率进度条、段落对分布、相似度仪表盘
+- **状态判定** — 通过/警告/不合格
+- **重复详情** — 每个重复段落的原文对比
+- **修改建议** — AI生成的改写方向（仅建议，不写入文件）
+
+### 判定标准
+
+| 状态 | 正文重复率 | 说明 |
+|------|-----------|------|
+| ✅ 通过 | < 10% | 符合投标规范 |
+| ⚠️ 警告 | 10% ~ 30% | 建议检查 |
+| ❌ 不合格 | ≥ 30% | 需大幅修改 |
+
+---
+
+## 🔒 安全机制
+
+### ✅ 默认安全保证
+
+执行查重分析时：
+- ✅ 文件仅在本地读取，不上传任何内容
+- ✅ 网络隔离启用（禁用 requests/urllib/httpx）
+- ✅ 不修改任何源文件
+- ✅ 不发送任何外部请求
+
+### 📦 依赖安装（首次使用）
+
+首次运行时会提示缺少依赖，需手动安装：
+
+```bash
+pip install -r requirements.txt
+```
+
+这是标准Python实践，仅下载包，不涉及文件内容。
+
+---
+
+## 🔧 算法原理（v4 优化版）
+
+### 三层漏斗模型
+
+```
+原始文本
+  ↓
+┌─────────────────────────────────────────┐
+│ 第一层：段落分类 + 短段落合并            │
+│   - 智能识别标题（章节编号/长度/格式）  │
+│   - 过滤标题-vs-标题重复                │
+│   - 短段落合并为完整语义单元            │
+├─────────────────────────────────────────┤
+│ 第二层：N-gram 快速初筛（3-gram）       │
+│   - Jaccard相似度 ≥ 0.25 进入下一轮     │
+├─────────────────────────────────────────┤
+│ 第三层：TF-IDF 精确比对                 │
+│   - 字符级(2-4) TF-IDF向量             │
+│   - 动态阈值(0.30~0.50)自适应长度       │
+└─────────────────────────────────────────┘
+```
+
+### 核心优化点
+
+| 优化 | 说明 |
+|------|------|
+| **标题过滤** | 识别章节编号(第X章/1.1/X.X)、短标题 |
+| **短段落合并** | <50字段落与上下文合并，避免碎片误判 |
+| **动态阈值** | 短文本用高阈值(0.50)，长文本用低阈值(0.32) |
+
+---
+
+## 📁 支持的文件格式
+
+| 格式 | 扩展名 |
+|------|--------|
+| Word文档 | .docx / .doc |
+| PDF | .pdf |
+| 纯文本 | .txt |
+| Markdown | .md |
+
+---
+
+## 📝 命令行用法
+
+```bash
+cd ~/.openclaw/workspace/skills/tender-similarity-analyzer
+
+# 首次使用先安装依赖
+pip install -r requirements.txt
+
+# 扫描本地目录
+python scripts/main.py --dir ~/Desktop/投标文件
+
+# 指定文件格式
+python scripts/main.py --dir ./docs --include docx,pdf
+
+# 指定输出报告
+python scripts/main.py --dir ~/Desktop/tender -o my_report.html
+```
+
+---
+
+## ⚙️ 依赖说明
+
+### 必需依赖
+
+| 依赖 | 用途 |
+|------|------|
+| python-docx | Word文档读取 |
+| pdfplumber | PDF文本提取 |
+| scikit-learn | TF-IDF向量计算 |
+| Jinja2 | 报告模板渲染 |
+
+---
+
+## 📌 常见问题
+
+**Q: 查重需要几个文件？**
+A: 至少2个文件。
+
+**Q: 标题会被算入重复率吗？**
+A: 不会。标题已被智能识别并过滤，只统计正文段落。
+
+**Q: 文件内容会离开本机吗？**
+A: 不会。文件仅本地读取，网络隔离确保无外传。
+
+**Q: 报告保存在哪里？**
+A: 默认保存在当前目录，可通过 `-o` 参数指定。
+
+---
+
+## 🔄 版本历史
+
+| 版本 | 日期 | 更新 |
+|------|------|------|
+| v1.0 | 2026-03-20 | 初始版本 |
+| v1.1 | 2026-03-25 | 标题/正文分类过滤 |
+| v1.2 | 2026-04-01 | 短段落合并、动态阈值 |
+| v2.0 | 2026-04-01 | 美化报告界面 |
+| v2.1 | 2026-04-01 | 移除外部告警，改为手动安装依赖 |
+
+---
+
+**版本:** v2.1  
+**日期:** 2026-04-01

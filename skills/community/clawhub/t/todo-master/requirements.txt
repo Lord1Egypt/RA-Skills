@@ -1,0 +1,4 @@
+# This skill currently uses only the Python standard library.
+# Recommended runtime: Python 3.10+
+# Install command:
+#   python3 -m pip install -r requirements.txt

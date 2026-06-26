@@ -1,0 +1,53 @@
+# 淘宝商品上架草稿生成 Skill 配置
+# 版本：1.0.0
+
+# ==================== 草稿配置 ====================
+draft:
+  output_dir: "./drafts"                # 草稿输出目录
+  template_dir: "./templates"           # 模板目录
+
+# ==================== SEO 标题配置 ====================
+seo_title:
+  max_length: 60                        # 标题最大长度
+  min_length: 30                        # 标题最小长度
+  include_keywords: true                # 包含核心关键词
+  avoid_forbidden_words: true           # 规避违禁词
+
+# ==================== 五维材质一致性配置 ====================
+material_consistency:
+  enabled: true                         # 启用一致性校验（强制 true）
+  dimensions:
+    - title                             # 标题材质
+    - attribute                         # 属性栏材质
+    - detail                            # 详情页材质
+    - tag                               # 吊牌材质
+    - report                            # 质检报告材质
+  fail_on_inconsistency: true           # 不一致直接拦截（强制 true）
+
+# ==================== 价格库存配置 ====================
+price_inventory:
+  min_discount: 0.3                     # 最低折扣（3 折）
+  min_price: 1.0                        # 最低价格（1 元）
+  min_stock: 10                         # 最低库存（10 件）
+  max_stock: 9999                       # 最高库存
+
+# ==================== 详情页配置 ====================
+detail_page:
+  first_screen:
+    - size_chart                        # 首屏：尺码表
+    - fabric_description                # 首屏：面料说明
+  last_screen:
+    - care_instructions                 # 尾部：洗涤说明
+    - after_sales_rules                 # 尾部：售后规则
+
+# ==================== 合规终审配置 ====================
+compliance_audit:
+  forbidden_words_check: true           # 违禁词检测
+  category_check: true                  # 类目正确性检测
+  attribute_completeness_check: true    # 属性完整性检测
+  fail_on_audit_fail: true              # 审计失败直接拦截（强制 true）
+
+# ==================== 日志配置 ====================
+logging:
+  level: "INFO"
+  file: "./logs/draft_generator.log"

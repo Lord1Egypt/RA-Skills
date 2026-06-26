@@ -1,0 +1,27 @@
+# UI metadata for OpenClaw agents/openai agent runtime. Mirrors the pattern
+# used by official skills (.agents/skills/clawsweeper/agents/openai.yaml etc.)
+# so the OpenClaw Skills UI can render a friendly entry without parsing the
+# full SKILL.md body.
+interface:
+  display_name: "tt-download"
+  short_description: "提取并下载素材中心 video_player 页面背后的真实视频地址。"
+  default_prompt: "提取这个 Oceanengine 素材中心视频链接的真实地址："
+  examples:
+    - "下载这个视频：https://ad.oceanengine.com/material_center/outer/video_player?token=..."
+    - "把这个素材中心链接解析成 mp4：..."
+    - "我要这个视频的真实下载地址"
+  triggers:
+    - regex: "https://ad\\.oceanengine\\.com/material_center/outer/video_player\\?token="
+      message: "检测到素材中心视频链接，建议调用 tt-download 提取。"
+    - keywords:
+        - 素材中心 视频
+        - oceanengine 下载
+        - "video_player?token="
+  branding:
+    emoji: "🎬"
+    color: "#E34F26"
+  hints:
+    requires_internet: true
+    requires_local_browser: true
+    typical_duration_seconds: "10-30 (headless Chrome render) + download speed"
+    output_kind: "url-or-file"

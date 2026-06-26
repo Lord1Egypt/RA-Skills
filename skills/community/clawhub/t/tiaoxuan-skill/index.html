@@ -1,0 +1,1630 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title id="pageTitle">挑选Skill - SkillPick v6.5.0</title>
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html {
+  scroll-behavior: smooth;
+  font-family: -apple-system, "SF Pro Text", "Helvetica Neue", Arial, "PingFang SC", "Microsoft YaHei", sans-serif;
+  background: #f8f9fb;
+  color: #0f172a;
+  -webkit-font-smoothing: antialiased;
+}
+a { text-decoration: none; color: inherit; }
+body {
+  background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='1' cy='1' r='0.6' fill='%23c8cdd5' fill-opacity='0.45'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  min-height: 100vh;
+}
+:root {
+  --blue: #2563eb;
+  --blue-light: #3b82f6;
+  --blue-dim: #1d4ed8;
+  --blue-bg: #eff6ff;
+  --blue-border: rgba(37,99,235,0.15);
+  --blue-glow: rgba(37,99,235,0.08);
+  --green: #16a34a;
+  --green-bg: #f0fdf4;
+  --green-border: rgba(22,163,74,0.15);
+  --amber: #d97706;
+  --amber-bg: #fffbeb;
+  --amber-border: rgba(217,119,6,0.15);
+  --red: #dc2626;
+  --red-bg: #fef2f2;
+  --red-border: rgba(220,38,38,0.15);
+  --bg: #ffffff;
+  --bg-hover: #f8fafc;
+  --border: #e2e8f0;
+  --border-light: #f1f5f9;
+  --text: #0f172a;
+  --text-2: #475569;
+  --text-3: #94a3b8;
+  --mono: "JetBrains Mono", "SF Mono", "Fira Code", "Cascadia Code", monospace;
+}
+
+/* NAV */
+.nav {
+  position: sticky; top: 0; z-index: 100;
+  height: 48px; display: flex; align-items: center; justify-content: space-between;
+  padding: 0 40px;
+  border-bottom: 1px solid var(--border);
+  background: rgba(255,255,255,0.85); backdrop-filter: blur(16px) saturate(180%);
+}
+.nav-brand { font-size: 14px; font-weight: 700; color: var(--text); letter-spacing: -0.3px; }
+.nav-brand span { color: var(--text-3); font-weight: 400; font-size: 12px; margin-left: 6px; }
+.nav-slogan { font-size: 12px; color: var(--blue); font-weight: 600; }
+
+/* HERO */
+.hero {
+  padding: 28px 40px 20px;
+  display: flex; align-items: center; justify-content: space-between;
+  background: linear-gradient(180deg, #ffffff 0%, #f8f9fb 100%);
+  max-width: 1440px; margin: 0 auto;
+}
+.hero .section-label { font-size: 9px; letter-spacing: 3px; text-transform: uppercase; color: var(--blue); margin-bottom: 4px; font-weight: 600; }
+.hero .section-title { font-size: 22px; font-weight: 700; color: var(--text); letter-spacing: -0.5px; margin-bottom: 4px; }
+.hero .section-desc { font-size: 13px; color: var(--text-2); line-height: 1.5; margin-bottom: 0; }
+.hero-stats { display: flex; gap: 24px; }
+.stat-item { text-align: center; }
+.stat-num { font-size: 22px; font-weight: 700; color: var(--blue); letter-spacing: -1px; font-family: var(--mono); }
+.stat-label { font-size: 9px; color: var(--text-3); margin-top: 1px; text-transform: uppercase; letter-spacing: 1px; }
+
+/* TAB BAR */
+.tab-bar {
+  display: flex; justify-content: center; gap: 0;
+  max-width: 1440px; margin: 0 auto;
+  border-bottom: 2px solid var(--border);
+  padding: 0 40px;
+}
+.tab-btn {
+  padding: 12px 28px;
+  font-size: 14px; font-weight: 500;
+  color: var(--text-2);
+  background: none; border: none; cursor: pointer;
+  position: relative; transition: color 0.2s;
+  display: flex; align-items: center; gap: 6px;
+}
+.tab-btn:hover { color: var(--blue); }
+.tab-btn.active { color: var(--blue); font-weight: 700; }
+.tab-btn.active::after {
+  content: ''; position: absolute; bottom: -2px; left: 0; right: 0;
+  height: 2px; background: var(--blue); border-radius: 1px 1px 0 0;
+}
+.tab-audience { font-size: 9px; padding: 1px 5px; border-radius: 3px; font-weight: 600; vertical-align: middle; }
+.tab-audience.human { background: var(--amber-bg); color: var(--amber); border: 1px solid var(--amber-border); }
+.tab-audience.agent { background: var(--green-bg); color: var(--green); border: 1px solid var(--green-border); }
+
+/* TAB CONTENT */
+.tab-content {
+  display: none;
+  max-width: 1440px; margin: 0 auto;
+  padding: 28px 40px 60px;
+  min-height: 400px;
+}
+.tab-content.active { display: block; }
+
+/* SECTION SHARED */
+.section-label { font-size: 9px; letter-spacing: 3px; text-transform: uppercase; color: var(--blue); margin-bottom: 4px; font-weight: 600; }
+.section-title { font-size: 20px; font-weight: 700; color: var(--text); letter-spacing: -0.5px; margin-bottom: 6px; line-height: 1.3; }
+.section-desc { font-size: 13px; color: var(--text-2); line-height: 1.6; max-width: 680px; margin-bottom: 20px; }
+
+/* SEARCH INPUT (shared) */
+.search-row { display: flex; gap: 10px; max-width: 640px; margin-bottom: 16px; }
+.search-input {
+  flex: 1; padding: 10px 16px 10px 36px; background: var(--bg); border: 1px solid var(--border);
+  border-radius: 6px; color: var(--text); font-size: 13px; outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  background-image: url("data:image/svg+xml,%3Csvg width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cline x1='21' y1='21' x2='16.65' y2='16.65'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: 12px center;
+}
+.search-input:focus { border-color: var(--blue-light); box-shadow: 0 0 0 3px var(--blue-glow); }
+.search-input::placeholder { color: var(--text-3); }
+.search-btn {
+  padding: 10px 24px; background: var(--blue); color: #fff;
+  font-size: 13px; font-weight: 600; border-radius: 6px;
+  border: none; cursor: pointer; transition: background 0.2s, box-shadow 0.2s;
+}
+.search-btn:hover { background: var(--blue-light); box-shadow: 0 2px 12px var(--blue-glow); }
+
+/* ====== TAB 1: 赛道精选 ====== */
+.cat-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(560px, 1fr)); gap: 14px; }
+.top3-toolbar {
+  display: flex; align-items: center; justify-content: space-between; gap: 10px;
+  margin-bottom: 12px; flex-wrap: wrap;
+}
+.top3-filters { display: flex; gap: 8px; flex-wrap: wrap; }
+.top3-filter-btn {
+  border: 1px solid var(--blue-border); background: #fff; color: var(--blue-dim);
+  border-radius: 999px; padding: 4px 10px; font-size: 12px; cursor: pointer;
+}
+.top3-filter-btn.active { background: var(--blue-bg); color: var(--blue); font-weight: 600; }
+.top3-legend {
+  border: 1px dashed var(--border); background: #fafcff; border-radius: 8px;
+  padding: 8px 10px; font-size: 12px; color: var(--text-2); margin-bottom: 12px;
+}
+.top3-legend span { color: var(--text); font-weight: 600; margin-right: 10px; }
+.cat-card {
+  background: var(--bg); border: 1px solid var(--border); border-radius: 10px;
+  overflow: hidden; transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+}
+.cat-card:hover { border-color: var(--blue-border); transform: translateY(-1px); box-shadow: 0 4px 16px rgba(0,0,0,0.06); }
+.cat-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 12px 14px; border-bottom: 1px solid var(--border-light); background: var(--blue-bg);
+}
+.cat-name { font-size: 14px; font-weight: 700; color: var(--text); }
+.cat-count { font-size: 11px; color: var(--blue); background: var(--blue-bg); padding: 2px 8px; border-radius: 4px; border: 1px solid var(--blue-border); font-family: var(--mono); }
+.cat-header-right { display: flex; align-items: center; gap: 8px; }
+.cat-confidence { font-size: 10px; color: var(--text-3); font-family: var(--mono); }
+.cat-tier { font-size: 9px; padding: 2px 6px; border-radius: 3px; margin-left: 8px; }
+.cat-tier.t1 { background: #fef3c7; color: #92400e; }
+.cat-tier.t2 { background: #e0e7ff; color: #3730a3; }
+
+/* TOP3 列表 - 双行布局 */
+.cat-top3 { padding: 0; }
+.cat-skill { display: flex; align-items: center; gap: 10px; padding: 10px 14px; border-bottom: 1px solid var(--border-light); cursor: pointer; transition: background 0.15s; flex-wrap: wrap; }
+.cat-skill:last-child { border-bottom: none; }
+.cat-skill:hover { background: var(--blue-bg); }
+.cat-skill.chart-highlight { background: linear-gradient(90deg, #fffbeb 0%, #fff 60%); }
+.cat-rank { width: 22px; height: 22px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; font-family: var(--mono); flex-shrink: 0; }
+.cat-rank.r1 { background: #fef3c7; color: #92400e; }
+.cat-rank.r2 { background: #f1f5f9; color: #475569; }
+.cat-rank.r3 { background: #e0e7ff; color: #3730a3; }
+.cat-skill-name { flex: 1; font-size: 13px; font-weight: 600; color: var(--text); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; min-width: 120px; }
+.cat-skill-score { font-size: 12px; color: var(--blue); font-weight: 600; font-family: var(--mono); flex-shrink: 0; width: 32px; text-align: right; }
+.cat-score-gap {
+  font-size: 10px; color: #9a3412; background: #fff7ed;
+  border: 1px solid #fed7aa; border-radius: 10px; padding: 0 6px;
+  flex-shrink: 0; min-width: 34px; text-align: center;
+}
+.cat-skill-stars { font-size: 9px; color: #f59e0b; flex-shrink: 0; }
+.cat-skill-conf { font-size: 10px; flex-shrink: 0; }
+.cat-skill-chart { font-size: 10px; color: #92400e; flex-shrink: 0; }
+.cat-skill-region { font-size: 10px; flex-shrink: 0; }
+/* TOP3 人话描述 - 占满整行 */
+.cat-skill-human {
+  flex-basis: 100%; font-size: 12px; color: var(--text-2); line-height: 1.5; margin-top: -2px; padding-left: 32px;
+  font-style: normal;
+}
+.cat-skill-human .human-quote {
+  color: var(--text-2); font-weight: 400;
+}
+.cat-skill-human .human-compare {
+  color: var(--blue); font-weight: 500;
+}
+
+/* ====== TAB 2: 搜索推荐 ====== */
+.search-verdict { margin-bottom: 20px; }
+.verdict-card {
+  background: var(--bg); border: 1px solid var(--border); border-radius: 10px;
+  padding: 18px 20px; margin-bottom: 10px;
+  cursor: pointer; transition: border-color 0.2s, box-shadow 0.2s;
+  border-left: 4px solid var(--border);
+}
+.verdict-card:hover { border-color: var(--blue-border); box-shadow: 0 4px 16px rgba(0,0,0,0.06); }
+.verdict-card.recommend { border-left-color: var(--green); background: linear-gradient(90deg, var(--green-bg) 0%, var(--bg) 40%); }
+.verdict-card.alternative { border-left-color: var(--amber); background: linear-gradient(90deg, var(--amber-bg) 0%, var(--bg) 40%); }
+.verdict-card.skip { border-left-color: var(--text-3); }
+.verdict-label { font-size: 11px; font-weight: 700; letter-spacing: 1px; margin-bottom: 6px; }
+.verdict-label.recommend { color: var(--green); }
+.verdict-label.alternative { color: var(--amber); }
+.verdict-label.skip { color: var(--text-3); }
+.verdict-header { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; flex-wrap: wrap; }
+.verdict-name { font-size: 16px; font-weight: 700; color: var(--text); }
+.verdict-score { font-size: 14px; color: var(--blue); font-weight: 600; font-family: var(--mono); }
+.verdict-conf { font-size: 9px; font-weight: 700; padding: 2px 6px; border-radius: 3px; letter-spacing: 1px; }
+.verdict-conf.high { background: var(--red-bg); color: var(--red); border: 1px solid var(--red-border); }
+.verdict-conf.medium { background: var(--amber-bg); color: var(--amber); border: 1px solid var(--amber-border); }
+.verdict-conf.low { background: var(--blue-bg); color: var(--blue); border: 1px solid var(--blue-border); }
+.verdict-chart { font-size: 9px; background: #fef3c7; color: #92400e; border: 1px solid #fcd34d; border-radius: 3px; padding: 0 4px; }
+.verdict-region { font-size: 9px; }
+.verdict-reason { font-size: 13px; color: var(--text-2); line-height: 1.6; }
+.verdict-vs { font-size: 11px; color: var(--text-3); margin-top: 4px; font-style: italic; }
+.verdict-install { font-size: 11px; color: var(--text-3); margin-top: 6px; font-family: var(--mono); }
+.verdict-install a { color: var(--blue); }
+.search-conclusion {
+  margin-top: 16px; padding: 14px 18px;
+  background: var(--blue-bg); border: 1px solid var(--blue-border); border-radius: 8px;
+  font-size: 14px; font-weight: 600; color: var(--blue-dim);
+}
+.intent-hint { font-size: 12px; color: var(--blue); margin-bottom: 12px; }
+
+/* ====== TAB 3: 相似推荐 ====== */
+.similar-anchor {
+  margin-bottom: 20px; padding: 16px 18px;
+  background: var(--blue-bg); border: 1px solid var(--blue-border); border-radius: 8px;
+}
+.similar-anchor-name { font-size: 16px; font-weight: 700; color: var(--text); }
+.similar-anchor-meta { font-size: 12px; color: var(--text-2); margin-top: 4px; }
+
+.similar-card {
+  background: var(--bg); border: 1px solid var(--border); border-radius: 8px;
+  padding: 16px 18px; margin-bottom: 10px;
+  cursor: pointer; transition: border-color 0.2s, box-shadow 0.2s;
+  border-left: 4px solid var(--border);
+}
+.similar-card:hover { border-color: var(--blue-border); box-shadow: 0 4px 16px rgba(0,0,0,0.06); }
+.similar-card.better { border-left-color: var(--green); }
+.similar-card.comparable { border-left-color: var(--amber); }
+.similar-card.worse { border-left-color: var(--text-3); }
+
+.similar-header { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; flex-wrap: wrap; }
+.similar-verdict-tag { font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 4px; letter-spacing: 0.5px; }
+.similar-verdict-tag.better { background: var(--green-bg); color: var(--green); border: 1px solid var(--green-border); }
+.similar-verdict-tag.comparable { background: var(--amber-bg); color: var(--amber); border: 1px solid var(--amber-border); }
+.similar-verdict-tag.worse { background: var(--bg-hover); color: var(--text-3); border: 1px solid var(--border-light); }
+.similar-name { font-size: 15px; font-weight: 700; color: var(--text); }
+.similar-score { font-size: 13px; color: var(--blue); font-weight: 600; font-family: var(--mono); }
+.similar-conf { font-size: 9px; font-weight: 700; padding: 2px 6px; border-radius: 3px; }
+.similar-conf.high { background: var(--red-bg); color: var(--red); border: 1px solid var(--red-border); }
+.similar-conf.medium { background: var(--amber-bg); color: var(--amber); border: 1px solid var(--amber-border); }
+.similar-conf.low { background: var(--blue-bg); color: var(--blue); border: 1px solid var(--blue-border); }
+.similar-cat { font-size: 11px; color: var(--text-3); }
+.similar-diff { font-size: 12px; color: var(--text-2); line-height: 1.5; margin-top: 4px; }
+.similar-vs { font-size: 11px; color: var(--text-3); margin-top: 2px; }
+
+/* ====== TAB 4: 工作流推荐 ====== */
+.wf-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+.wf-card {
+  background: var(--bg); border: 1px solid var(--border); border-left: 3px solid var(--blue); border-radius: 8px;
+  padding: 20px; cursor: pointer; transition: all 0.2s ease;
+}
+.wf-card:hover { border-left-width: 6px; padding-left: 17px; box-shadow: 0 4px 16px var(--blue-glow); }
+.wf-card-title { font-size: 16px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+.wf-card-desc { font-size: 13px; color: var(--text-2); margin-bottom: 10px; }
+.wf-card-roles { display: flex; flex-wrap: wrap; gap: 6px; }
+.wf-role-tag { font-size: 11px; padding: 3px 8px; border-radius: 4px; background: var(--blue-bg); color: var(--blue); border: 1px solid var(--blue-border); }
+.wf-back { display: inline-block; margin-bottom: 20px; color: var(--blue); font-size: 13px; cursor: pointer; }
+.wf-back:hover { text-decoration: underline; }
+.wf-slot {
+  background: var(--bg); border: 1px solid var(--border); border-left: 3px solid var(--blue);
+  border-radius: 8px; padding: 18px; margin-bottom: 14px;
+}
+.wf-slot-role { font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 2px; }
+.wf-slot-tips { font-size: 12px; color: var(--text-3); margin-bottom: 12px; }
+.wf-skill {
+  padding: 10px 0; border-bottom: 1px solid var(--border-light);
+}
+.wf-skill:last-child { border-bottom: none; }
+.wf-skill-row { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; flex-wrap: wrap; }
+.wf-skill-name { font-weight: 600; font-size: 14px; color: var(--text); }
+.wf-skill-score { font-family: var(--mono); font-size: 12px; color: var(--blue); }
+.wf-skill-conf { font-size: 9px; font-weight: 700; padding: 2px 6px; border-radius: 3px; }
+.wf-skill-conf.high { background: var(--red-bg); color: var(--red); border: 1px solid var(--red-border); }
+.wf-skill-conf.medium { background: var(--amber-bg); color: var(--amber); border: 1px solid var(--amber-border); }
+.wf-skill-conf.low { background: var(--blue-bg); color: var(--blue); border: 1px solid var(--blue-border); }
+.wf-skill-region { font-size: 10px; }
+.wf-skill-desc { font-size: 12px; color: var(--text-2); margin-bottom: 2px; }
+.wf-skill-reason { font-size: 11px; color: var(--green); margin-top: 2px; }
+.wf-skill-install { font-size: 10px; color: var(--text-3); font-family: var(--mono); }
+.wf-skill-install a { color: var(--blue); }
+.wf-empty { font-size: 13px; color: var(--text-3); padding: 8px 0; }
+
+/* MODAL */
+.modal-overlay {
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(15,23,42,0.25); z-index: 200;
+  display: none; align-items: center; justify-content: center;
+  backdrop-filter: blur(4px);
+}
+.modal-overlay.show { display: flex; }
+.modal {
+  background: var(--bg); border: 1px solid var(--border); border-radius: 12px;
+  padding: 28px; max-width: 520px; width: 90%; max-height: 80vh; overflow-y: auto;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.12);
+  border-top: 3px solid var(--blue);
+}
+.modal-close { float: right; background: none; border: none; color: var(--text-3); font-size: 18px; cursor: pointer; padding: 2px 6px; }
+.modal-close:hover { color: var(--text); }
+.modal-name { font-size: 20px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+.modal-meta { display: flex; gap: 6px; align-items: center; margin-bottom: 14px; flex-wrap: wrap; }
+.modal-desc { font-size: 13px; color: var(--text-2); line-height: 1.7; margin-bottom: 18px; }
+.modal-section-title { font-size: 10px; letter-spacing: 2px; color: var(--text-3); margin-bottom: 6px; text-transform: uppercase; font-weight: 600; }
+.modal-tags { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 18px; }
+.modal-tag { font-size: 10px; color: var(--blue); background: var(--blue-bg); padding: 2px 10px; border-radius: 3px; border: 1px solid var(--blue-border); }
+.modal-highlights { margin-bottom: 18px; }
+.modal-hl { font-size: 12px; color: var(--text-2); margin-bottom: 4px; padding-left: 10px; border-left: 2px solid var(--blue-light); }
+.modal-install-box {
+  background: #f8fafc; border: 1px solid var(--border); border-radius: 6px;
+  padding: 14px; font-family: var(--mono); font-size: 11px; color: var(--text-2); line-height: 1.8;
+}
+.modal-install-box a { color: var(--blue); }
+.modal-score-breakdown { margin-bottom: 18px; }
+.modal-score-row { display: flex; justify-content: space-between; font-size: 11px; color: var(--text-2); margin-bottom: 2px; padding: 2px 0; }
+.modal-score-row .label { color: var(--text-3); }
+.modal-score-row .value { font-family: var(--mono); color: var(--blue); font-weight: 600; }
+.modal-score-row.total { border-top: 1px solid var(--border); padding-top: 4px; margin-top: 4px; }
+.modal-score-row.total .label { color: var(--text); font-weight: 600; }
+.modal-score-row.total .value { color: var(--blue-dim); font-size: 13px; }
+.modal-reason { margin-bottom: 18px; padding: 12px; background: var(--green-bg); border: 1px solid var(--green-border); border-radius: 6px; font-size: 13px; color: var(--green); font-weight: 500; }
+
+/* FOOTER */
+.footer {
+  padding: 20px 40px; border-top: 1px solid var(--border);
+  display: flex; justify-content: center; align-items: center; gap: 24px;
+  font-size: 11px; color: var(--text-3); background: var(--bg);
+}
+.footer span:first-child { color: var(--text-2); font-weight: 500; }
+
+/* LANGUAGE TOGGLE */
+.lang-toggle {
+  background: none; border: 1px solid var(--border); border-radius: 999px;
+  padding: 3px 10px; font-size: 11px; font-weight: 700; color: var(--text-2);
+  cursor: pointer; transition: all 0.2s; letter-spacing: 0.5px;
+}
+.lang-toggle:hover { border-color: var(--blue); color: var(--blue); background: var(--blue-bg); }
+
+/* HELPER */
+.conf-badge { font-size: 9px; font-weight: 700; padding: 2px 6px; border-radius: 3px; letter-spacing: 1px; }
+.conf-badge.high { background: var(--red-bg); color: var(--red); border: 1px solid var(--red-border); }
+.conf-badge.medium { background: var(--amber-bg); color: var(--amber); border: 1px solid var(--amber-border); }
+.conf-badge.low { background: var(--blue-bg); color: var(--blue); border: 1px solid var(--blue-border); }
+.chart-badge { font-size: 9px; background: #fef3c7; color: #92400e; border: 1px solid #fcd34d; border-radius: 3px; padding: 0 4px; white-space: nowrap; }
+.no-results { text-align: center; padding: 32px; color: var(--text-3); font-size: 13px; }
+.score-bar-bg { width: 48px; height: 4px; border-radius: 2px; background: var(--border-light); display: inline-block; vertical-align: middle; margin-left: 4px; overflow: hidden; }
+.score-bar-fill { height: 100%; border-radius: 2px; background: var(--blue); transition: width 0.3s; }
+
+@media (max-width: 768px) {
+  .nav { padding: 0 20px; }
+  .hero { flex-direction: column; gap: 16px; padding: 20px; max-width: 100%; }
+  .tab-bar { padding: 0 16px; max-width: 100%; }
+  .tab-btn { padding: 10px 16px; font-size: 13px; }
+  .tab-content { padding: 20px 16px 40px; max-width: 100%; }
+  .cat-grid { grid-template-columns: 1fr; }
+  .search-row { flex-direction: column; }
+  .wf-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-brand">Skill优选<span>/ SkillPick</span></div>
+  <div class="nav-slogan" id="navSlogan">💡 挑选Skill</div>
+  <button class="lang-toggle" id="langToggle" onclick="toggleLang()" title="Switch language">EN</button>
+</nav>
+
+<section class="hero">
+  <div>
+    <div class="section-label" id="heroLabel">SkillPick Engine v6.5.0 — 挑选Skill · 13维质量融合 + 人话推荐</div>
+    <h1 class="section-title" id="heroTitle">挑选Skill</h1>
+    <p class="section-desc" id="heroDesc">不是搜索，不是排行，是帮你判断。<b>13维深度扫描</b> · GitHub验证 · SkillHub全量25000 · 市场验证 · 置信度量化 · 国内优先 · 人话推荐</p>
+  </div>
+  <div class="hero-stats">
+    <div class="stat-item"><div class="stat-num" id="statSkills">-</div><div class="stat-label">Skills</div></div>
+    <div class="stat-item"><div class="stat-num" id="statCats">-</div><div class="stat-label">Categories</div></div>
+    <div class="stat-item"><div class="stat-num" id="statSources">-</div><div class="stat-label">Sources</div></div>
+  </div>
+</section>
+
+<div class="tab-bar">
+  <button class="tab-btn active" data-tab="tab-pick" onclick="switchTab(this)">
+    <span>🏆</span> 赛道 TOP3
+  </button>
+  <button class="tab-btn" data-tab="tab-search" onclick="switchTab(this)">
+    <span>🔍</span> 搜索推荐 <span class="tab-audience agent">Agent</span>
+  </button>
+  <button class="tab-btn" data-tab="tab-similar" onclick="switchTab(this)">
+    <span>🔄</span> 相似替代 <span class="tab-audience agent">Agent</span>
+  </button>
+  <button class="tab-btn" data-tab="tab-workflow" onclick="switchTab(this)">
+    <span>🧩</span> 工作流 <span class="tab-audience agent">Agent</span>
+  </button>
+</div>
+
+<!-- TAB 1: 赛道 TOP3 -->
+<div class="tab-content active" id="tab-pick">
+  <div class="section-label">Categories</div>
+  <h2 class="section-title">赛道 TOP3</h2>
+  <p class="section-desc">按细分赛道分类，每个赛道的 TOP3 精选推荐。榜单认证skill优先排列，赛道按榜单skill数量排序。</p>
+  <div class="top3-toolbar">
+    <div class="top3-filters">
+      <button class="top3-filter-btn active" id="f-all" onclick="setTop3Filter('all')">&#20840;&#37096;&#36187;&#36947;</button>
+      <button class="top3-filter-btn" id="f-chart" onclick="setTop3Filter('chart')">&#20165;&#30475;&#19978;&#27036;</button>
+      <button class="top3-filter-btn" id="f-strong" onclick="setTop3Filter('strong')">&#20165;&#30475;&#24378;&#25512;</button>
+    </div>
+  </div>
+  <div class="top3-legend">
+    <span>&#31532;1&#21517;/&#24046;X&#20998;</span> &#34920;&#31034;&#19982;&#35813;&#36187;&#36947;&#31532;&#19968;&#21517;&#30340;&#20998;&#24046;&#65307;
+    <span>&#19978;&#27036;N</span> &#34920;&#31034;&#35813; skill &#21629;&#20013;&#27036;&#21333;&#27425;&#25968;&#65307;
+    <span>&#24179;&#22343;&#32622;&#20449;1.0-3.0</span> &#36234;&#39640;&#36234;&#31283;&#12290;
+  </div>
+  <div class="cat-grid" id="catGrid"></div>
+</div>
+
+<!-- TAB 2: 搜索推荐（Agent用） -->
+<div class="tab-content" id="tab-search">
+  <div class="section-label">Recommend</div>
+  <h2 class="section-title">搜索推荐</h2>
+  <p class="section-desc">输入意图，返回1-3个推荐 + 对比分析 + 结论。精准至上，宁缺毋滥。</p>
+  <div class="search-row">
+    <input class="search-input" id="searchInput" type="text" placeholder="如：PDF处理、视频剪辑、电商运营、数据分析...">
+    <button class="search-btn" onclick="doSearch()">推荐</button>
+  </div>
+  <div id="searchResults"></div>
+</div>
+
+<!-- TAB 3: 相似替代（Agent用） -->
+<div class="tab-content" id="tab-similar">
+  <div class="section-label">Alternative</div>
+  <h2 class="section-title">相似替代</h2>
+  <p class="section-desc">输入已有的或考虑的 Skill，看1-3个替代选择 + 差异分析 + 值不值得换。</p>
+  <div class="search-row">
+    <input class="search-input" id="similarInput" type="text" placeholder="如：summarize、pdf、agent-browser...">
+    <button class="search-btn" onclick="doSimilar()">分析</button>
+  </div>
+  <div id="similarResults"></div>
+</div>
+
+<!-- TAB 4: 工作流推荐（Agent用） -->
+<div class="tab-content" id="tab-workflow">
+  <div class="section-label">Workflow</div>
+  <h2 class="section-title">工作流推荐</h2>
+  <p class="section-desc">选择业务场景，每个角色推荐1个最优 Skill + 理由。数据驱动，不硬编码。</p>
+  <div class="wf-grid" id="wfGrid"></div>
+</div>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modalOverlay" onclick="if(event.target===this)closeModal()">
+  <div class="modal" id="modalContent"></div>
+</div>
+
+<footer class="footer">
+  <span>挑选Skill / SkillPick v6.5.0（13维质量融合 + 人话推荐）</span>
+  <span>判断 · 不是搜索不是排行</span>
+</footer>
+
+<script src="skills_data.js"></script>
+<script>
+// ====== STATE ======
+const allSkills = SKILLS_DATA.all_skills;
+const categories = SKILLS_DATA.categories;
+const workflows = SKILLS_DATA.workflows;
+
+// ====== I18N SYSTEM ======
+const I18N = {
+  // Nav & Hero
+  nav_slogan: { zh: '💡 挑选Skill', en: '💡 Which AI Skill is Worth Installing?' },
+  hero_label: { zh: 'SkillPick Engine v6.3.0 — 13维质量融合 + 人话推荐', en: 'SkillPick v6.3.0 — 13-Dim Quality + Human-Readable' },
+  hero_title: { zh: '挑选Skill', en: 'Which AI Skill is Worth Installing?' },
+  hero_desc_zh: '不是搜索，不是排行，是帮你判断。<b>13维深度扫描</b> · GitHub验证 · SkillHub全量25000 · 市场验证 · 置信度量化 · 国内优先 · 人话推荐',
+  hero_desc_en: 'Not a search engine, not a ranking list — it helps you decide.<b>13-dimension deep scan</b> · GitHub validation · 25,000 SkillHub skills · Market validation · Confidence scoring · CN-first · Human-readable',
+  page_title_zh: '挑选Skill - SkillPick v6.5.0',
+  page_title_en: 'Which AI Skill is Worth Installing? - SkillPick v6.3.0',
+  footer_left_zh: '挑选Skill / SkillPick v6.5.0（13维质量融合 + 人话推荐）',
+  footer_left_en: 'Which AI Skill is Worth Installing? / SkillPick v6.3.0 (13-Dim Quality + Human-Readable)',
+  footer_right_zh: '判断 · 不是搜索不是排行',
+  footer_right_en: 'Decide · Not Search, Not Ranking',
+
+  // STATS
+  stat_skills: { zh: 'Skills', en: 'Skills' },
+  stat_cats: { zh: 'Categories', en: 'Categories' },
+  stat_sources: { zh: 'Sources', en: 'Sources' },
+
+  // Tab 1
+  tab1_title: { zh: '赛道 TOP3', en: 'Track TOP3' },
+  tab1_desc_zh: '按细分赛道分类，每个赛道的 TOP3 精选推荐。榜单认证skill优先排列，赛道按榜单skill数量排序。',
+  tab1_desc_en: 'Categorized by track. Each track shows TOP 3 picks. Chart-certified skills are prioritized. Tracks sorted by chart-certified skill count.',
+  filter_all: { zh: '全部赛道', en: 'All Categories' },
+  filter_chart: { zh: '仅看上榜', en: 'Chart Only' },
+  filter_strong: { zh: '仅看强推', en: 'Top Picks Only' },
+  legend_gap: { zh: '第1名/差X分', en: 'Rank 1 / X pts behind' },
+  legend_chart: { zh: '上榜N', en: 'Chart N' },
+  legend_conf: { zh: '平均置信1.0-3.0', en: 'Avg Conf 1.0-3.0, higher = more stable' },
+  empty_filter: { zh: '当前筛选下没有赛道，试切换到"全部赛道"', en: "No tracks match this filter. Try switching to 'All Categories'." },
+  small_cats: { zh: '还有 X 个小赛道（≤3个skill），点击展开 ▼', en: ' X more small tracks (≤3 skills), click to expand ▼' },
+  rank1: { zh: '第1名', en: 'Rank 1' },
+  gap_prefix: { zh: '差', en: 'pts behind' },
+
+  // Tab 2
+  tab2_title: { zh: '搜索推荐', en: 'Search Recommendations' },
+  tab2_desc_zh: '输入意图，返回1-3个推荐 + 对比分析 + 结论。精准至上，宁缺毋滥。',
+  tab2_desc_en: 'Enter your intent. Get 1-3 recommendations with comparison analysis and verdict. Precision first, never overload.',
+  search_ph_zh: '如：PDF处理、视频剪辑、电商运营、数据分析...',
+  search_ph_en: 'e.g. PDF processing, video editing, e-commerce ops, data analytics...',
+  search_btn_zh: '推荐',
+  search_btn_en: 'Recommend',
+  intent_hint_zh: '🎯 识别意图：',
+  intent_hint_en: '🎯 Intent detected: ',
+  intent_arrow_zh: ' → 扩展搜索：',
+  intent_arrow_en: ' → expanded: ',
+  verdict_recommend: { zh: '🏆 推荐', en: '🏆 Recommend' },
+  verdict_alternative: { zh: '⚡ 备选', en: '⚡ Alternative' },
+  verdict_skip: { zh: '⏭️ 跳过', en: '⏭️ Skip' },
+  no_results_zh: '未找到相关Skill，',
+  no_results_en: 'No matching skills found. Try ',
+  try_all_zh: '试试全部赛道',
+  try_all_en: 'browse all categories',
+
+  // Tab 3
+  tab3_title: { zh: '相似替代', en: 'Similar Alternatives' },
+  tab3_desc_zh: '输入已有的或考虑的 Skill，看1-3个替代选择 + 差异分析 + 值不值得换。',
+  tab3_desc_en: "Enter a skill you know or are considering. See 1-3 alternatives with diff analysis and decide if switching is worth it.",
+  similar_ph_zh: '如：summarize、pdf、agent-browser...',
+  similar_ph_en: 'e.g. summarize, pdf, agent-browser...',
+  similar_btn_zh: '分析',
+  similar_btn_en: 'Analyze',
+  similar_better: { zh: '✅ 更好', en: '✅ Better' },
+  similar_comparable: { zh: '🔄 相当', en: '🔄 Comparable' },
+  similar_weaker: { zh: '⚠️ 较弱', en: '⚠️ Weaker' },
+
+  // Tab 4
+  tab4_title: { zh: '工作流', en: 'Workflows' },
+  tab4_title_full: { zh: '工作流推荐', en: 'Workflow Recommendations' },
+  tab4_desc_zh: '选择业务场景，每个角色推荐1个最优 Skill + 理由。数据驱动，不硬编码。',
+  tab4_desc_en: 'Pick a business scenario. Get 1 optimal Skill per role with reasoning. Data-driven, no hardcoding.',
+  choose_one_zh: '（选其一）',
+  choose_one_en: '(choose one)',
+
+  // Modal quality
+  dim_desc: { zh: '描述质量', en: 'Description Quality' },
+  dim_tags: { zh: '标签完整', en: 'Tag Completeness' },
+  dim_install: { zh: '安装便捷', en: 'Install Ease' },
+  dim_safety: { zh: '安全评分', en: 'Safety Score' },
+  dim_dep: { zh: '依赖复杂度', en: 'Dependency' },
+  dim_doc: { zh: '文档结构', en: 'Documentation' },
+  dim_err: { zh: '错误处理', en: 'Error Handling' },
+  dim_maint: { zh: '维护活跃', en: 'Maintenance' },
+  dim_tests: { zh: '测试覆盖', en: 'Test Coverage' },
+  dim_market: { zh: '市场热度', en: 'Market Popularity' },
+  dim_mkt_val: { zh: '🏅市场验证', en: '🏅Market Validation' },
+  modal_breakdown: { zh: '评测明细', en: 'Score Breakdown' },
+  modal_tags_label: { zh: '标签', en: 'Tags' },
+  modal_install: { zh: '安装命令', en: 'Install Command' },
+  modal_raw: { zh: '原始分', en: 'Raw Score' },
+  modal_chart_boost: { zh: '🏅 榜单加权', en: '🏅 Chart Boost' },
+  modal_calibrated: { zh: '校准后总分', en: 'Calibrated Score' },
+  modal_final: { zh: '最终评分', en: 'Final Score' },
+  modal_best_track: { zh: '👑 赛道最优', en: '👑 Best in Track' },
+  modal_chart_cert: { zh: '🏅 榜单认证', en: '🏅 Chart Certifications' },
+
+  // confLabel
+  conf_high_zh: '🔴高', conf_high_en: 'High',
+  conf_med_zh: '🟡中', conf_med_en: 'Medium',
+  conf_low_zh: '🟢低', conf_low_en: 'Low',
+
+  // Quality table
+  q_excellent: { zh: '🟢 卓越', en: 'Outstanding' },
+  q_great: { zh: '🟢 优秀', en: 'Excellent' },
+  q_good_plus: { zh: '🔵 良好+', en: 'Good+' },
+  q_good: { zh: '🔵 良好', en: 'Good' },
+  q_pass: { zh: '🟡 及格', en: 'Pass' },
+  q_below: { zh: '🔴 较差', en: 'Below Avg' },
+  q_no: { zh: '⛔ 不推荐', en: 'Not Recommended' },
+  q_unknown: { zh: '❓ 未扫描', en: 'Unscanned' },
+};
+
+// Workflow names i18n
+const I18N_WF = {
+  '短视频带货': '短视频带货',
+  '电商运营': '电商运营',
+  '内容营销': '内容营销',
+  'AI研究助手': 'AI研究助手',
+  '全栈开发': '全栈开发',
+  '开发者效率': '开发者效率',
+  '开发者效率平台': '开发者效率平台',
+  '创作者工具链': '创作者工具链',
+  '个人生活助手': '个人生活助手',
+  'AI教育辅导': 'AI教育辅导',
+  '语音AI系统': '语音AI系统',
+  '知识管理': '知识管理',
+  '品牌出海': '品牌出海',
+  '数据驱动运营': '数据驱动运营',
+  '智能客服': '智能客服',
+};
+const I18N_WF_DESC = {
+  '短视频带货': '抖音/快手短视频带货工作流：AI脚本生成 + 选品策略 + 视觉营销 + 流量运营',
+  '电商运营': '淘宝/京东电商运营：商品管理 + 营销推广 + 客服 + 数据分析',
+  '内容营销': '自媒体内容创作者：内容策划 + 文案写作 + 视觉设计 + 社媒分发 + SEO优化',
+  'AI研究助手': '深度研究与竞品分析：情报采集 + 结构化分析 + 报告生成 + 监控告警',
+  '全栈开发': 'Web全栈开发：前端 + 后端 + 数据库 + DevOps + 代码管理',
+  '开发者效率': '开发团队效率提升：代码审查 + 安全扫描 + 知识检索 + 文档维护',
+  '开发者效率平台': '开发团队效率提升：代码审查 + 安全扫描 + 知识检索 + 文档维护',
+  '创作者工具链': '播客/视频创作者：多模态输入 + 文字处理 + 多平台分发 + 数据追踪',
+  '个人生活助手': '智能日程 + 天气查询 + 重要日子提醒的个人生活管家',
+  'AI教育辅导': 'AI智能家教：学情诊断 + 个性化内容 + 练习生成 + 进度追踪',
+  '语音AI系统': 'AI外呼与语音助手：语音识别 + 对话管理 + 业务执行 + 数据记录',
+  '知识管理': '个人/团队知识库：笔记整理 + 文档处理 + 知识搜索 + 信息聚合 + 任务管理',
+  '品牌出海': '中国品牌出海：市场调研 + 多语言内容 + 海外社交 + 跨境电商 + 数据分析',
+  '数据驱动运营': '数据全链路：数据采集 + 数据处理 + 数据分析 + 报表生成 + 自动化',
+  '智能客服': 'AI客服系统：问答知识库 + 多渠道接入 + 意图识别 + 对话管理 + 工单系统',
+};
+const I18N_WF_ROLE = {
+  '内容规划': 'Content Planner',
+  '写作助手': 'Writing Assistant',
+  '配图生成': 'Image Generator',
+  '数据可视化': 'Data Visualizer',
+  '运营': 'Operator',
+  '投手': 'Ads Optimizer',
+  '客服': 'Customer Service',
+  '选品师': 'Product Selector',
+  '投流手': 'Traffic Strategist',
+  '内容运营': 'Content Ops',
+  '增长黑客': 'Growth Hacker',
+  '前端开发': 'Frontend Dev',
+  '后端开发': 'Backend Dev',
+  '运维': 'DevOps',
+  '监控': 'Monitor',
+  '测试': 'QA',
+  '代码审查': 'Code Review',
+  '产品经理': 'Product Manager',
+  '全栈开发': 'Full-Stack Dev',
+  '效率专家': 'Efficiency Expert',
+  '助理': 'Assistant',
+  '策划': 'Planner',
+  '老师': 'Teacher',
+  '学生': 'Student',
+  '家长': 'Parent',
+};
+
+// Language state
+let LANG = localStorage.getItem('skillpick_lang') || 'zh';
+if (new URLSearchParams(location.search).get('lang') === 'en') LANG = 'en';
+
+function t(key) {
+  var v = I18N[key];
+  if (!v) return key;
+  if (typeof v === 'object') return v[LANG] || v.zh || key;
+  if (LANG === 'en' && key.endsWith('_zh')) return I18N[key.replace('_zh', '_en')] || v;
+  return v;
+}
+
+function applyI18N() {
+  // Nav & hero
+  document.getElementById('navSlogan').textContent = t('nav_slogan');
+  document.getElementById('heroLabel').textContent = t('hero_label');
+  document.getElementById('heroTitle').textContent = t('hero_title');
+  document.getElementById('heroDesc').innerHTML = (LANG === 'zh' ? I18N.hero_desc_zh : I18N.hero_desc_en);
+  document.getElementById('pageTitle').textContent = (LANG === 'zh' ? I18N.page_title_zh : I18N.page_title_en);
+  // Footer
+  document.querySelector('.footer span:first-child').textContent = (LANG === 'zh' ? I18N.footer_left_zh : I18N.footer_left_en);
+  document.querySelector('.footer span:last-child').textContent = (LANG === 'zh' ? I18N.footer_right_zh : I18N.footer_right_en);
+  // STATS labels
+  var statItems = document.querySelectorAll('.stat-item');
+  if (statItems[0]) statItems[0].querySelector('.stat-label').textContent = t('stat_skills');
+  if (statItems[1]) statItems[1].querySelector('.stat-label').textContent = t('stat_cats');
+  if (statItems[2]) statItems[2].querySelector('.stat-label').textContent = t('stat_sources');
+  // Tab 1
+  document.querySelector('#tab-pick .section-title').textContent = t('tab1_title');
+  document.querySelector('#tab-pick .section-desc').innerHTML = (LANG === 'zh' ? I18N.tab1_desc_zh : I18N.tab1_desc_en);
+  document.getElementById('f-all').textContent = t('filter_all');
+  document.getElementById('f-chart').textContent = t('filter_chart');
+  document.getElementById('f-strong').textContent = t('filter_strong');
+  // Tab 2
+  document.querySelector('#tab-search .section-title').textContent = t('tab2_title');
+  document.querySelector('#tab-search .section-desc').innerHTML = (LANG === 'zh' ? I18N.tab2_desc_zh : I18N.tab2_desc_en);
+  document.getElementById('searchInput').placeholder = (LANG === 'zh' ? I18N.search_ph_zh : I18N.search_ph_en);
+  document.querySelector('#tab-search .search-btn').textContent = (LANG === 'zh' ? I18N.search_btn_zh : I18N.search_btn_en);
+  // Tab 3
+  document.querySelector('#tab-similar .section-title').textContent = t('tab3_title');
+  document.querySelector('#tab-similar .section-desc').innerHTML = (LANG === 'zh' ? I18N.tab3_desc_zh : I18N.tab3_desc_en);
+  document.getElementById('similarInput').placeholder = (LANG === 'zh' ? I18N.similar_ph_zh : I18N.similar_ph_en);
+  document.querySelector('#tab-similar .search-btn').textContent = (LANG === 'zh' ? I18N.similar_btn_zh : I18N.similar_btn_en);
+  // Tab 4
+  document.querySelector('#tab-workflow .section-title').textContent = t('tab4_title_full');
+  document.querySelector('#tab-workflow .section-desc').innerHTML = (LANG === 'zh' ? I18N.tab4_desc_zh : I18N.tab4_desc_en);
+  // Lang toggle button
+  var btn = document.getElementById('langToggle');
+  btn.textContent = (LANG === 'zh' ? 'EN' : '中');
+  btn.title = (LANG === 'zh' ? 'Switch to English' : '切换到中文');
+  // Re-render dynamic sections
+  renderCategories();
+  if (document.getElementById('wfGrid').children.length > 0) renderWorkflowGrid();
+}
+
+function toggleLang() {
+  LANG = (LANG === 'zh' ? 'en' : 'zh');
+  localStorage.setItem('skillpick_lang', LANG);
+  applyI18N();
+}
+
+// Apply i18n on load
+document.addEventListener('DOMContentLoaded', applyI18N);
+
+// ★ 13维质量数据（优先内嵌，兼容外部加载）
+let qualityV2Map = {}; // name → {q, g, dims, label}
+if (SKILLS_DATA.quality_map && Object.keys(SKILLS_DATA.quality_map).length > 0) {
+  qualityV2Map = SKILLS_DATA.quality_map;
+  console.log('✅ 质量映射已加载（内嵌）:', Object.keys(qualityV2Map).length, '条');
+} else if (typeof QUALITY_V2_DATA !== 'undefined' && QUALITY_V2_DATA.length > 0) {
+  QUALITY_V2_DATA.forEach(q => {
+    qualityV2Map[q.name] = {
+      q: q.quality_score || 0, g: q.quality_grade || '?',
+      dims: q.dimensions || {}, label: q.quality_label || '',
+    };
+  });
+  console.log('✅ 质量数据已加载（外部）:', QUALITY_V2_DATA.length, '条');
+}
+
+// ====== INIT STATS ======
+document.getElementById('statSkills').textContent = allSkills.length;
+document.getElementById('statCats').textContent = Object.keys(categories).length;
+const uniqueSources = new Set(allSkills.map(s => s.source));
+document.getElementById('statSources').textContent = uniqueSources.size;
+
+// ====== HELPERS ======
+function isCN(s) { return s.is_cn; }
+function renderStars(n) { return '★'.repeat(n) + '☆'.repeat(5-n); }
+function scoreBar(score, max) { max = max || 120; return '<span class="score-bar-bg"><span class="score-bar-fill" style="width:'+Math.min(score/max*100,100)+'%"></span></span>'; }
+function confLabel(c) { return { high: (LANG==='en'?'🔴High':'🔴高'), medium: (LANG==='en'?'🟡Med':'🟡中'), low: (LANG==='en'?'🟢Low':'🟢低') }[c] || c; }
+
+// ★ v6.1.0：13维质量辅助
+function getQ(name) { return (qualityV2Map[name] && qualityV2Map[name].q) || null; }
+function getQGrade(name) { return (qualityV2Map[name] && qualityV2Map[name].g) || ''; }
+function getQDims(name) { return (qualityV2Map[name] && qualityV2Map[name].dims) || null; }
+// 质量等级颜色
+function qGradeColor(g) {
+  if (g === 'A+') return '#7c3aed';
+  if (g === 'A') return '#16a34a';
+  if (g === 'B+') return '#2563eb';
+  if (g === 'B') return '#64748b';
+  if (g === 'C') return '#d97706';
+  if (g === 'D') return '#dc2626';
+  return '#94a3b8';
+}
+function qGradeLabel(g) {
+  if (g === 'A+') return '💎A+';
+  if (g === 'A') return '🏆A';
+  if (g === 'B+') return '⭐B+';
+  if (g === 'B') return '📗B';
+  if (g === 'C') return '📙C';
+  if (g === 'D') return '🔴D';
+  return g;
+}
+
+// ★ v6.3.2 Security: HTML entity encoder (防 XSS)
+function escapeHtml(str) {
+  if (str == null) return '';
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+// ★ v6.3.2 Security: 用于 onclick data-name 属性（仅 HTML attribute 安全编码）
+function safeDataName(name) { return escapeHtml(name); }
+
+// ====== ★ v6.1.0 Phase 1: 三层漏斗质量融合 ======
+const QUALITY_BOOST_TABLE = {
+  'A+': { m: 1.20, d: '🟢 ' + (LANG==='zh'?'卓越':'Outstanding'), g: 'pass' },
+  'A':  { m: 1.15, d: '🟢 ' + (LANG==='zh'?'优秀':'Excellent'), g: 'pass' },
+  'B+': { m: 1.08, d: '🔵 ' + (LANG==='zh'?'良好+':'Good+'), g: 'pass' },
+  'B':  { m: 1.00, d: '🔵 ' + (LANG==='zh'?'良好':'Good'),  g: 'pass' },
+  'C':  { m: 0.70, d: '🟡 ' + (LANG==='zh'?'及格':'Adequate'),  g: 'warn', p: LANG==='zh'?'降权30%':'Demoted 30%' },
+  'D':  { m: 0.0,  d: '🔴 ' + (LANG==='zh'?'较差':'Poor'),  g: 'block', r: LANG==='zh'?'质量不达标':'Below quality bar' },
+  'F':  { m: 0.0,  d: '⛔ ' + (LANG==='zh'?'不推荐':'Not recommended'), g: 'block', r: LANG==='zh'?'存在严重缺陷':'Critical defects found' },
+};
+/** Layer 1: 质量门控 */
+function qGate(name) {
+  var g = getQGrade(name);
+  var c = QUALITY_BOOST_TABLE[g] || { m: 0.90, d: '❓ ' + (LANG==='zh'?'未扫描':'Not scanned'), g: 'warn', p: '无数据' };
+  return { ok: c.g !== 'block', boost: c.m, label: c.d, grade: g, warn: c.g === 'warn', block: c.g === 'block', pen: c.p || null };
+}
+// 维度条形图（用于Modal）
+function dimBar(score, max) { 
+  var s = score !== undefined ? score : 0; 
+  max = max || 100; 
+  var pct = Math.min(Math.round(s/max*100), 100);
+  var color = pct >= 70 ? '#16a34a' : pct >= 45 ? '#2563eb' : pct >= 25 ? '#d97706' : '#94a3b8';
+  return '<span style="display:inline-block;width:60px;height:6px;border-radius:3px;background:#e2e8f0;vertical-align:middle;margin-left:4px"><span style="display:block;height:100%;width:'+pct+'%;border-radius:3px;background:'+color+'"></span></span>';
+}
+
+// ====== TAB SWITCH ======
+function switchTab(btn) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById(btn.dataset.tab).classList.add('active');
+}
+
+// humanizeSkill signal map (bilingual)
+var _signals = null;
+function getSignals() {
+  if (_signals) return _signals;
+  var isZh = LANG === 'zh';
+  _signals = {
+    quality_a:        isZh ? '代码扎实' : 'Solid code quality',
+    quality_bplus:    isZh ? '质量不错' : 'Good quality',
+    chart_multi:     isZh ? '多次上榜认证' : 'Multi-chart certified',
+    chart_single:     isZh ? '有榜单背书' : 'Chart endorsed',
+    cn_source:        isZh ? '国内源' : 'CN source',
+    direct_install:   isZh ? '一键直装' : 'One-click install',
+    easy_install:     isZh ? '装起来方便' : 'Easy to install',
+    no_dep:           isZh ? '零依赖' : 'Zero dependencies',
+    active_maint:     isZh ? '维护积极' : 'Active maintenance',
+    weak_api:         isZh ? '需要配 API Key' : 'Requires API Key',
+    weak_install:      isZh ? '安装稍麻烦' : 'Slightly complex setup',
+    weak_dep:         isZh ? '依赖偏重' : 'Heavy dependencies',
+    cn_convenient:    isZh ? '国内用方便' : 'Convenient for CN users',
+    install_first:     isZh ? '优先装 ' : 'Install first: ',
+    but:              isZh ? '，但' : ', but ',
+    and:              isZh ? '，' : ', ',
+  };
+  return _signals;
+}
+
+// ====== INTENT MAP ======
+const INTENT_MAP = {
+  '电商': { expand: ['shopify','ecommerce','店铺','商品','带货','直播','选品','投流','订单'], avoid_cats: ['开发测试','前端开发','DevOps'] },
+  '带货': { expand: ['直播','短视频','选品','话术','投流','shop','商品'], avoid_cats: ['开发测试','前端开发','DevOps'] },
+  '写作': { expand: ['文案','文章','内容创作','写作助手','小说','writing','copy','content'], avoid_cats: ['开发测试','前端开发','DevOps'] },
+  '文案': { expand: ['写作','内容创作','营销','推广','copywriting','content'], avoid_cats: ['开发测试','前端开发'] },
+  '金融': { expand: ['投资','理财','股票','基金','风控','财务','finance','stock','trading'], avoid_cats: ['开发测试','前端开发'] },
+  '安全': { expand: ['网络安全','隐私','加密','漏洞','防护','security','crypto','vuln'], avoid_cats: ['办公文档','办公效率'] },
+  '营销': { expand: ['广告','投放','增长','获客','转化','推广','marketing','ad','growth'], avoid_cats: ['开发测试','前端开发'] },
+  '广告': { expand: ['投放','投流','竞价','ROI','CPM','ad','campaign','bid'], avoid_cats: ['开发测试'] },
+  '数据分析': { expand: ['BI','可视化','报表','统计','图表','analytics','dashboard','chart'], avoid_cats: ['开发测试'] },
+  '设计': { expand: ['UI','UX','海报','图片','品牌','design','figma','sketch'], avoid_cats: ['开发测试','DevOps'] },
+  '视频': { expand: ['剪辑','短视频','直播','制作','video','edit','clip'], avoid_cats: ['开发测试'] },
+  '直播': { expand: ['带货','话术','互动','投流','live','stream'], avoid_cats: ['开发测试','DevOps'] },
+  '文档': { expand: ['PDF','Word','Excel','表格','幻灯片','document','doc','file'], avoid_cats: ['开发测试','DevOps'] },
+  'PDF': { expand: ['pdf','文档','转换','合并','阅读','extract','text'], avoid_cats: ['前端开发','DevOps'] },
+  'pdf': { expand: ['pdf','文档','转换','合并','阅读','extract','text'], avoid_cats: ['前端开发','DevOps'] },
+  '爬虫': { expand: ['抓取','采集','数据','网页','浏览器','scrape','crawl','spider'], avoid_cats: ['办公文档','内容写作'] },
+  '测试': { expand: ['QA','自动化','单元测试','E2E','test','testing','jest','vitest'], avoid_cats: ['办公文档','内容写作','设计创意'] },
+  '浏览器': { expand: ['browser','自动化','scraping','puppeteer','playwright','web'], avoid_cats: ['办公文档','内容写作'] },
+  'browser': { expand: ['browser','自动化','scraping','puppeteer','playwright','web','browsing'], avoid_cats: ['办公文档','内容写作'] },
+  'Agent': { expand: ['agent','自动化','增强','orchestration','workflow','autonomous'], avoid_cats: ['办公文档','设计创意'] },
+  'agent': { expand: ['agent','自动化','增强','orchestration','workflow','autonomous'], avoid_cats: ['办公文档','设计创意'] },
+  '搜索': { expand: ['search','find','检索','tavily','发现','query','engine'], avoid_cats: ['设计创意','视频创作'] },
+  'search': { expand: ['search','find','检索','tavily','发现','query','engine'], avoid_cats: ['设计创意','视频创作'] },
+  '部署': { expand: ['deploy','docker','k8s','devops','运维','ci/cd','release'], avoid_cats: ['办公文档','设计创意','内容写作'] },
+  'PPT': { expand: ['演示','幻灯片','presentation','report','slide','powerpoint'], avoid_cats: ['开发测试','DevOps'] },
+  'ppt': { expand: ['演示','幻灯片','presentation','report','slide','powerpoint'], avoid_cats: ['开发测试','DevOps'] },
+  'Excel': { expand: ['表格','spreadsheet','数据处理','报表','xlsx','sheet'], avoid_cats: ['开发测试','DevOps'] },
+  'excel': { expand: ['表格','spreadsheet','数据处理','报表','xlsx','sheet'], avoid_cats: ['开发测试','DevOps'] },
+  '自我进化': { expand: ['self-improv','evolv','capability','autonomous','learning','improve','grow'], avoid_cats: ['办公文档','设计创意'] },
+  '记忆': { expand: ['memory','knowledge','RAG','知识库','知识','长期','long-term','vector'], avoid_cats: ['设计创意','视频创作'] },
+  '微信': { expand: ['wechat','miniprogram','小程序','公众号','wecom','企业微信'], avoid_cats: ['设计创意','办公文档'] },
+  '小程序': { expand: ['miniprogram','微信','小程序','mini program','wechat'], avoid_cats: ['设计创意','办公文档'] },
+};
+
+// ====== SEARCH SCORING ======
+function searchScore(skill, query, expandedWords, avoidCats) {
+  let sc = 0;
+  const q = query.toLowerCase();
+  const name = skill.name.toLowerCase();
+  const desc = (skill.desc || '').toLowerCase();
+  const tagsEnh = (skill.tags_enhanced || []).join(' ').toLowerCase();
+  const cat = (skill.cat || '').toLowerCase();
+  const all = name + ' ' + desc + ' ' + tagsEnh + ' ' + cat;
+
+  // 1. Name match
+  if (name === q) sc += 200;
+  else {
+    try {
+      if (new RegExp('\\b' + q + '\\b', 'i').test(name)) sc += 150;
+      else if (name.startsWith(q)) sc += 120;
+      else if (name.includes(q)) sc += 100;
+      else {
+        const qEnWords = (q.match(/[a-z][a-z0-9_-]{1,}/g) || []);
+        let nameHits = 0;
+        for (const w of qEnWords) { if (w.length >= 2 && name.includes(w)) nameHits++; }
+        if (nameHits > 0) sc += 50 * nameHits;
+      }
+    } catch(e) { if (name.includes(q)) sc += 100; }
+  }
+
+  // 2. Enhanced tags match
+  if (tagsEnh.includes(q)) sc += 40;
+  else {
+    const qEnWords2 = (q.match(/[a-z][a-z0-9_-]{1,}/g) || []);
+    let tagHits = 0;
+    for (const w of qEnWords2) { if (w.length >= 2 && tagsEnh.includes(w)) tagHits++; }
+    sc += 25 * tagHits;
+  }
+
+  // 3. Desc match
+  if (desc.includes(q)) sc += 20;
+  else {
+    const qEnWords3 = (q.match(/[a-z][a-z0-9_-]{1,}/g) || []);
+    let descHits = 0;
+    for (const w of qEnWords3) { if (w.length >= 2 && desc.includes(w)) descHits++; }
+    sc += 10 * descHits;
+  }
+
+  // 4. Cat match
+  if (cat.includes(q)) sc += 10;
+
+  // 5. Intent expansion
+  if (expandedWords && expandedWords.length > 0) {
+    let expandHits = 0;
+    for (const w of expandedWords) { if (all.includes(w.toLowerCase())) expandHits++; }
+    sc += Math.min(expandHits * 10, 40);
+  }
+
+  // 6. CN bigram match
+  const qBigrams = [];
+  const clean = q.replace(/[\s\d\p{P}]/gu, '');
+  for (let i = 0; i < clean.length - 1; i++) qBigrams.push(clean[i] + clean[i+1]);
+  if (qBigrams.length > 0) {
+    let hits = 0;
+    for (const bg of qBigrams) if (all.includes(bg)) hits++;
+    sc += Math.min(hits * 5, 20);
+  }
+
+  // 7. Avoid cats penalty
+  if (avoidCats && avoidCats.length > 0) {
+    for (const ac of avoidCats) {
+      if (skill.cat.includes(ac) || ac.includes(skill.cat)) { sc -= 40; break; }
+    }
+  }
+
+  // ★ v6.1.0 Phase 1: Layer 1 门控 + Layer 3 质量乘法（与api.js对齐）
+  if (sc > 0) {
+    var gate = qGate(skill.name);
+    if (gate.block) return -999; // D/F级一票否决
+    sc = Math.round(sc * gate.boost);
+  }
+
+  return sc;
+}
+
+// ====== ★ v6.1.1: 人话描述引擎 ======
+// 画像分类 + 模板框架 + 信号填充
+// 原则：数据驱动，不硬编码；人话要像人说的，不像数据报告
+
+function humanizeSkill(skill, rank, top1Name) {
+  var qg = getQGrade(skill.name);
+  var qs = getQ(skill.name);
+  var dims = getQDims(skill.name) || {};
+  var details = (qualityV2Map[skill.name] && qualityV2Map[skill.name].details) || {};
+  var hasChart = (skill.chart_count || 0) > 0;
+  var isCn = skill.is_cn;
+  var install = skill.install_method || 'search';
+  var conf = skill.confidence || 'low';
+
+  // ---- 1. 提取核心定位 ----
+  var rawDesc = (skill.desc || '').trim();
+  // 中文描述：取第一个句号/分号前的核心功能（去掉细节列举）
+  var coreDesc = rawDesc.split(/[。；.；\n]/)[0]
+    .replace(/^(一个|一款|基于|通过|利用|支持|提供|实现|帮助|用于|专注|擅长)\s*/g, '')
+    .replace(/的(工具|平台|服务|引擎|框架|库|插件|助手|技能|解决方案)$/g, '')
+    .trim();
+  // 英文描述：提取核心动词+名词短语（取前2-3个有意义的词）
+  var isEnglishDesc = coreDesc && /^[A-Z]/.test(coreDesc);
+  if (isEnglishDesc) {
+    // 提取有意义的英文词组（过滤停用词+去重）
+    var stopWords = new Set(['a','an','the','is','are','was','were','be','been','being','have','has','had','do','does','did','will','would','could','should','may','might','can','shall','to','of','in','for','on','with','at','by','from','as','into','through','during','before','after','above','below','between','and','but','or','nor','not','so','yet','both','either','neither','each','every','all','any','few','more','most','other','some','such','no','only','own','same','than','too','very','just','because','also','that','this','these','those','it','its','their','them','they','we','our','you','your','he','she','him','her','which','what','when','where','how','who','whom','end']);
+    var seenLower = new Set();
+    var enWords = [];
+    coreDesc.split(/[\s,，.。;；:：\-–—!?！？()（）[\]【】{}\/\\`'"]+/).forEach(function(w) {
+      var wl = w.toLowerCase();
+      if (w.length >= 3 && !stopWords.has(wl) && !seenLower.has(wl)) {
+        enWords.push(w);
+        seenLower.add(wl);
+      }
+    });
+    if (enWords.length >= 2) {
+      coreDesc = enWords.slice(0, 3).join(' ');
+    } else if (enWords.length === 1) {
+      coreDesc = enWords[0];
+    } else {
+      coreDesc = '';
+    }
+  }
+  if (coreDesc.length > 30) coreDesc = coreDesc.substring(0, 28) + '…';
+  // 兜底：如果 desc 提取后太短或为空，用 cat + name 关键词
+  if (!coreDesc || coreDesc.length < 2) {
+    var nameParts = skill.name.split(/[-_\s]+/).filter(function(p) { return p.length >= 2; });
+    coreDesc = skill.cat + (nameParts.length > 0 ? ' · ' + nameParts.slice(0, 2).join('/') : '');
+  }
+
+  // ---- 2. 收集信号（去重、控量，避免千篇一律） ----
+  var qualitySignal = '';
+  if (qg === 'A+' || qg === 'A') qualitySignal = getSignals().quality_a;
+  else if (qg === 'B+') qualitySignal = getSignals().quality_bplus;
+
+  var chartSignal = '';
+  if (hasChart && (skill.chart_count || 0) >= 2) chartSignal = getSignals().chart_multi;
+  else if (hasChart) chartSignal = getSignals().chart_single;
+
+  var regionSignal = isCn ? getSignals().cn_source : '';
+
+  var installSignal = '';
+  if (install === 'direct') installSignal = getSignals().direct_install;
+  else if (dims.install && dims.install >= 80) installSignal = getSignals().easy_install;
+
+  var depList = details.dependencies || [];
+  var hasNoDep = depList.some(function(d) { return d.indexOf('无显式依赖') >= 0 || d.indexOf('无依赖') >= 0; });
+  var depSignal = hasNoDep ? getSignals().no_dep : '';
+
+  var maintSignal = '';
+  if (dims.maintenance && dims.maintenance >= 90) maintSignal = getSignals().active_maint;
+
+  // 短板
+  var weakness = '';
+  var hasApiDep = depList.some(function(d) { return d.indexOf('LLM') >= 0 || d.indexOf('API') >= 0; });
+  if (hasApiDep) weakness = getSignals().weak_api;
+  else if (install === 'search' && (!dims.install || dims.install < 60)) weakness = getSignals().weak_install;
+  else if (dims.dependency && dims.dependency < 50) weakness = getSignals().weak_dep;
+
+  // ---- 3. 按画像选模板，拼人话 ----
+  var reason;
+
+  if (rank === 1) {
+    // 🥇 榜首型：核心定位 + 最多2个强信号
+    var parts = [coreDesc];
+    if (chartSignal && qualitySignal) parts.push(qualitySignal + '，' + chartSignal);
+    else if (chartSignal) parts.push(chartSignal);
+    else if (qualitySignal) parts.push(qualitySignal);
+    // 加一个差异化信号（非国内源，因为太常见）
+    var extra = [installSignal, depSignal, maintSignal].filter(Boolean)[0];
+    if (extra && parts.join(getSignals().and).length < 35) parts.push(extra);
+    reason = parts.join(getSignals().and);
+  } else if (rank === 3 && weakness) {
+    // 🥉 备选型：定位 + 短板 + 推荐 TOP1
+    reason = coreDesc + getSignals().but + weakness;
+    if (top1Name) reason += getSignals().and + getSignals().install_first + top1Name;
+  } else if (rank >= 2 && chartSignal && !qualitySignal) {
+    // 🥈 有榜单但质量非顶尖
+    reason = coreDesc + getSignals().and + chartSignal;
+    if (isCn && reason.length < 35) reason += getSignals().and + getSignals().cn_convenient;
+  } else if (rank >= 2) {
+    // 🥈 默认：定位 + 1-2个信号
+    var sig2 = [qualitySignal, chartSignal, installSignal, depSignal, regionSignal].filter(Boolean).slice(0, 2);
+    reason = coreDesc + (sig2.length > 0 ? getSignals().and + sig2.join(getSignals().and) : '');
+  } else {
+    reason = coreDesc;
+  }
+
+  // ---- 4. 修剪 ----
+  if (reason.length > 50) reason = reason.substring(0, 48) + '…';
+
+  return reason;
+}
+
+// ====== TAB 1: 赛道精选 ======
+// 榜单skill优先排列：有chart_count的排在top3列表最前面
+// ★ v6.1.0: 同分时质量高的排前（与api.js对齐）
+function renderTop3List(top3) {
+  const sorted = [...top3].sort((a, b) => {
+    // 1. 榜单优先
+    var aChart = a.chart_count || 0, bChart = b.chart_count || 0;
+    if (bChart !== aChart) return bChart - aChart;
+    // 2. final_score
+    if ((b.final_score || 0) !== (a.final_score || 0)) return (b.final_score || 0) - (a.final_score || 0);
+    // ★ v6.1.0: 3. 同分时按质量分排序
+    return (getQ(b.name) || 50) - (getQ(a.name) || 50);
+  });
+  const topScore = sorted[0] ? sorted[0].final_score : 0;
+  const top1Name = sorted[0] ? sorted[0].name : '';
+  return sorted.map((s, i) => {
+    var hasChart = (s.chart_count || 0) > 0;
+    var conf = s.confidence || 'low';
+    var confText = { high: (LANG==='en'?'High conf.':'高置信'), medium: (LANG==='en'?'Med conf.':'中置信'), low: (LANG==='en'?'Low conf.':'低置信') }[conf] || (LANG==='en'?'Low conf.':'低置信');
+    var rankClass = i === 0 ? 'r1' : i === 1 ? 'r2' : 'r3';
+    var gap = i === 0 ? t('rank1') : (t('gap_prefix') + (topScore - s.final_score) + (LANG==='en'?' pts':''));
+    
+    // ★ v6.1.0: 质量门控
+    var gate = qGate(s.name);
+    var warnStyle = gate.warn ? 'border-left:3px solid #d97706;background:#fefce8' : '';
+    var blockStyle = gate.block ? 'border-left:3px solid #dc2626;background:#fef2f2;opacity:0.7' : '';
+
+    // ★ v6.1.1: 人话描述
+    var humanText = humanizeSkill(s, i + 1, top1Name);
+
+    return '<div class="cat-skill' + (hasChart ? ' chart-highlight' : '') + '" data-skill-name="' + safeDataName(s.name) + '" onclick="showDetail(this.dataset.skillName)" style="'+(warnStyle||blockStyle||'')+'">' +
+      '<span class="cat-rank ' + rankClass + '">' + (i + 1) + '</span>' +
+      '<span class="cat-skill-name" title="' + escapeHtml(s.name) + '">' + escapeHtml(s.name) + '</span>' +
+      '<span class="cat-skill-score">' + s.final_score + '</span>' +
+      '<span class="cat-score-gap">' + gap + '</span>' +
+      // ★ v6.1.0 质量等级（增强：A+/C/D带警告色）
+      (function(){ 
+        var qg=getQGrade(s.name); 
+        if(!qg) return ''; 
+        var color = qGradeColor(qg); 
+        var extra = gate.warn ? ';background:'+color+'18;border-color:'+color+'44' : (gate.block ? ';background:#fee;color:#dc2626;border-color:#dc2626' : '');
+        return '<span style="font-size:9px;font-weight:700;color:'+color+';flex-shrink:0;padding:1px 5px;border-radius:3px;border:1px solid '+color+'33'+extra+'">'+qGradeLabel(qg)+(gate.warn?'⚠':'')+(gate.block?'🚫':'')+'</span>'; 
+      })() +
+      '<span class="cat-skill-stars">' + renderStars(s.stars) + '</span>' +
+      '<span class="cat-skill-conf" title="' + (LANG==='zh'?'置信度:':'Conf: ') + conf + '">' + confText + '</span>' +
+      (hasChart ? '<span class="cat-skill-chart" title="' + (LANG==='zh'?'上榜来源:':'Chart source: ') + (s.chart_list ? s.chart_list.join(',') : '') + '">' + (LANG==='zh'?'上榜':'On ') + s.chart_count + (LANG==='zh'?' 榜':' charts') + '</span>' : '') +
+      (isCN(s) ? '<span class="cat-skill-region">' + (LANG==='zh'?'国内':'CN') + '</span>' : '') +
+      // ★ v6.1.1: 人话描述行
+      '<div class="cat-skill-human"><span class="human-quote">"' + humanText + '"</span></div>' +
+    '</div>';
+  }).join('');
+}
+
+let top3FilterMode = 'all';
+
+function setTop3Filter(mode) {
+  top3FilterMode = mode || 'all';
+  document.querySelectorAll('.top3-filter-btn').forEach(btn => btn.classList.remove('active'));
+  const idMap = { all: 'f-all', chart: 'f-chart', strong: 'f-strong' };
+  const active = document.getElementById(idMap[top3FilterMode] || 'f-all');
+  if (active) active.classList.add('active');
+  renderCategories();
+}
+
+function renderCategories() {
+  const grid = document.getElementById('catGrid');
+  const sorted = Object.entries(categories).sort((a,b) => {
+    // 排序权重：总榜单含量（top3的chart_count之和）> 榜单skill数量 > 赛道skill总数
+    const aChartSum = a[1].top3.reduce((sum, s) => sum + (s.chart_count || 0), 0);
+    const bChartSum = b[1].top3.reduce((sum, s) => sum + (s.chart_count || 0), 0);
+    if (bChartSum !== aChartSum) return bChartSum - aChartSum;
+    const aChartCount = a[1].top3.filter(s => (s.chart_count || 0) > 0).length;
+    const bChartCount = b[1].top3.filter(s => (s.chart_count || 0) > 0).length;
+    if (bChartCount !== aChartCount) return bChartCount - aChartCount;
+    return b[1].count - a[1].count;
+  });
+
+  const mainCats = sorted.filter(([_, info]) => info.count > 3);
+  const smallCats = sorted.filter(([_, info]) => info.count <= 3);
+  var isZhCat = LANG === 'zh';
+  var tierLabels = isZhCat
+    ? {t1s:'🏅🔥强推',t1:'🏅热门',t2:'🏅上榜'}
+    : {t1s:'🏅🔥Top Pick',t1:'🏅Popular',t2:'🏅Charted'};
+
+  let html = mainCats.map(([cat, info]) => {
+    const chartCount = info.top3.filter(s => (s.chart_count || 0) > 0).length;
+    const chartSum = info.top3.reduce((sum, s) => sum + (s.chart_count || 0), 0);
+    let tierClass = '', tierLabel = '';
+    if (chartSum >= 3) { tierClass = 't1'; tierLabel = tierLabels.t1s; }
+    else if (chartCount >= 2 || chartSum >= 2) { tierClass = 't1'; tierLabel = tierLabels.t1; }
+    else if (chartCount >= 1) { tierClass = 't2'; tierLabel = tierLabels.t2; }
+    return '<div class="cat-card">' +
+      '<div class="cat-header">' +
+        '<span class="cat-name">' + cat + (tierLabel ? '<span class="cat-tier ' + tierClass + '">' + tierLabel + '</span>' : '') + '</span>' +
+        '<span class="cat-header-right">' +
+          '<span class="cat-confidence" title="TOP3 ' + (LANG==='zh'?'平均置信度(1-3)':'Avg conf (1-3)') + '">' + (LANG==='zh'?'均置信':'Avg conf ') + (info.top3.reduce((sum, s) => sum + ({ high:3, medium:2, low:1 }[s.confidence || 'low'] || 1), 0) / Math.max(info.top3.length, 1)).toFixed(1) + '</span>' +
+          '<span class="cat-count">' + info.count + '</span>' +
+        '</span>' +
+      '</div>' +
+      '<div class="cat-top3">' +
+        renderTop3List(info.top3) +
+      '</div>' +
+    '</div>';
+  }).join('');
+
+  if (!html) {
+    var emptyTxt = LANG==='zh' ? '当前筛选下没有赛道，试切换到"全部赛道"' : "No tracks match this filter. Try switching to 'All Categories'.";
+    html = '<div style="grid-column:1/-1;padding:14px;border:1px dashed var(--border);border-radius:8px;color:var(--text-3);text-align:center">'+emptyTxt+'</div>';
+  }
+
+  if (smallCats.length > 0 && top3FilterMode === 'all') {
+    var smallTxt = LANG==='zh' ? ('还有 ' + smallCats.length + ' 个小赛道（≤3个skill），点击展开 ▼') : (' ' + smallCats.length + ' more small tracks (≤3 skills), click to expand ▼');
+    html += '<div id="smallCatsToggle" style="grid-column:1/-1;text-align:center;padding:12px;cursor:pointer;color:var(--blue);font-size:13px;border:1px dashed var(--blue-border);border-radius:8px;background:var(--blue-glow);" onclick="document.getElementById(\'smallCatsGrid\').style.display=\'grid\';this.style.display=\'none\'">📂' + smallTxt + '</div>';
+    html += '<div id="smallCatsGrid" style="display:none">' + smallCats.map(([cat, info]) => {
+      return '<div class="cat-card" style="opacity:0.85">' +
+        '<div class="cat-header">' +
+        '<span class="cat-name">' + cat + '</span>' +
+        '<span class="cat-header-right">' +
+          '<span class="cat-confidence" title="TOP3\u5e73\u5747\u7f6e\u4fe1\u5ea6\uff081-3\uff09">\u5e73\u5747\u7f6e\u4fe1' + (info.top3.reduce((sum, s) => sum + ({ high:3, medium:2, low:1 }[s.confidence || 'low'] || 1), 0) / Math.max(info.top3.length, 1)).toFixed(1) + '</span>' +
+          '<span class="cat-count">' + info.count + '</span>' +
+        '</span>' +
+      '</div>' +
+        '<div class="cat-top3">' +
+          renderTop3List(info.top3) +
+        '</div>' +
+      '</div>';
+    }).join('') + '</div>';
+  }
+
+  grid.innerHTML = html;
+}
+
+// ====== TAB 2: 搜索推荐 ======
+function doSearch() {
+  const query = document.getElementById('searchInput').value.trim();
+  if (!query) return;
+
+  let expandedWords = [], avoidCats = [], intentHtml = '';
+  for (const [kw, intent] of Object.entries(INTENT_MAP)) {
+    if (query.includes(kw) || kw.includes(query)) {
+      expandedWords = intent.expand;
+      avoidCats = intent.avoid_cats;
+      intentHtml = '<div class="intent-hint">' + (LANG==='en'?I18N.intent_hint_en:I18N.intent_hint_zh) + kw + (LANG==='en'?I18N.intent_arrow_en:I18N.intent_arrow_zh) + intent.expand.slice(0,5).join(', ') + '</div>';
+      break;
+    }
+  }
+
+  const results = allSkills
+    .map(s => ({ ...s, _search_score: searchScore(s, query, expandedWords, avoidCats), _gate: qGate(s.name) }))
+    .filter(s => s._search_score > 0)
+    // ★ v6.1.0: 排序 = 搜索分↓ → 质量分↓
+    .sort((a, b) => {
+      if (b._search_score !== a._search_score) return b._search_score - a._search_score;
+      return (getQ(b.name)||50) - (getQ(a.name)||50);
+    })
+    .slice(0, 10);
+
+  const container = document.getElementById('searchResults');
+  if (results.length === 0) {
+    container.innerHTML = '<div class="no-results">' + (LANG==='en'?'No matching skills found, try a different keyword':'未找到匹配的Skill，试试其他关键词') + '</div>';
+    return;
+  }
+
+  // 分类：推荐/备选/不推荐（取前3）
+  const top3 = results.slice(0, 3);
+  const bestScore = top3[0].final_score;
+
+  let html = intentHtml + '<div class="search-verdict">';
+
+  top3.forEach((s, i) => {
+    // ★ v6.1.0: 质量门控标签
+    var gate = s._gate;
+    let verdictType, verdictLabel;
+    var isZhV = LANG === 'zh';
+    if (i === 0) {
+      if (gate.block) { verdictType = 'blocked'; verdictLabel = isZhV ? '🚫 已拦截' : '🚫 Blocked'; }
+      else if (gate.warn) { verdictType = 'recommend'; verdictLabel = isZhV ? '✅ 推荐⚠️' : '✅ Recommend⚠️'; }
+      else { verdictType = 'recommend'; verdictLabel = isZhV ? '✅ 推荐' : '✅ Recommend'; }
+    } else {
+      if (gate.block) { verdictType = 'blocked'; verdictLabel = isZhV ? '🚫 已拦截' : '🚫 Blocked'; }
+      else if (gate.warn) { verdictType = s._search_score >= bestScore * 0.7 ? 'alternative' : 'skip'; verdictLabel = isZhV ? '⚠️ 备选⚠️' : '⚠️ Alt⚠️'; }
+      else if (s.final_score >= bestScore * 0.7) { verdictType = 'alternative'; verdictLabel = isZhV ? '⚠️ 备选' : '⚠️ Alternative'; }
+      else { verdictType = 'skip'; verdictLabel = isZhV ? '⏭️ 不推荐' : '⏭️ Skip'; }
+    }
+
+    const conf = s.confidence || 'low';
+    const hasChart = (s.chart_count || 0) > 0;
+    var installText = s.install_hint ? s.install_hint.hint : (LANG==='zh'?'无安装信息':'No install info');
+    
+    var qg = getQGrade(s.name);
+
+    // 推荐理由（使用预计算的 + 质量增强）
+    let reason = '';
+    if (s.recommend_reason) reason = '💡 ' + escapeHtml(s.recommend_reason);
+    if (s.vs_note && !s.best_in_track) reason += ' · 📊 ' + escapeHtml(s.vs_note);
+    // ★ v6.1.0 质量信息
+    if (!gate.block) {
+      if (qg === 'A+' || qg === 'A' || qg === 'B+') reason += ' · '+(LANG==='zh'?'13维验证通过':'13-dim verified');
+      else if (qg === 'C') reason += ' · ⚠️ '+(LANG==='zh'?'质量'+(getQ(s.name)||'?'):'Quality '+(getQ(s.name)||'?'));
+      if (gate.warn && gate.pen) reason += ' · '+gate.pen;
+    } else {
+      reason += ' · 🔴 '+(gate.r||(LANG==='zh'?'质量不达标':'Below quality bar'));
+    }
+
+    html += '<div class="verdict-card ' + verdictType + '" data-skill-name="' + safeDataName(s.name) + '" onclick="showDetail(this.dataset.skillName)" style="'+(gate.block?'opacity:0.6;border-left:3px solid #dc2626':'')+(gate.warn&&!gate.block?'border-left:3px solid #d97706;background:#fefce8':'')+'">' +
+      '<div class="verdict-label ' + verdictType + '">' + verdictLabel + '</div>' +
+      '<div class="verdict-header">' +
+        (hasChart ? '<span class="chart-badge">🏅' + s.chart_count + (LANG==='zh'?'榜':' charts') + '</span>' : '') +
+        '<span class="conf-badge ' + conf + '">' + confLabel(conf) + '</span>' +
+        '<span class="verdict-name">' + escapeHtml(s.name) + '</span>' +
+        '<span class="verdict-score">' + s.final_score + '</span>' +
+        scoreBar(s.final_score) +
+        // ★ v6.1.0: 质量等级徽章
+        (qg ? '<span style="font-size:10px;font-weight:700;color:'+qGradeColor(qg)+';padding:1px 6px;border-radius:4px;border:1px solid '+qGradeColor(qg)+'33;margin-left:2px">'+qGradeLabel(qg)+(gate.warn?'⚠':'')+'</span>' : '') +
+        (isCN(s) ? '<span class="verdict-region">🇨🇳</span>' : '') +
+        '<span class="verdict-region" style="font-size:10px;color:var(--text-3)">' + escapeHtml(s.cat) + '</span>' +
+      '</div>' +
+      (reason ? '<div class="verdict-reason">' + reason + '</div>' : '') +
+      '<div class="verdict-install">📦 ' + escapeHtml(installText) + '</div>' +
+    '</div>';
+  });
+
+  html += '</div>';
+
+  // 结论
+  if (top3.length > 0) {
+    const best = top3[0];
+    html += '<div class="search-conclusion">🏆 结论：装 <strong>' + best.name + '</strong>，不用纠结</div>';
+  }
+
+  container.innerHTML = html;
+}
+
+// ====== TAB 3: 相似替代 ======
+function calcSimilar(a, b) {
+  let sim = 0;
+  if (a.cat === b.cat) sim += 40;
+  else {
+    const ac = a.cat.toLowerCase(), bc = b.cat.toLowerCase();
+    if (ac.includes(bc) || bc.includes(ac)) sim += 25;
+  }
+  const aTags = new Set((a.tags_enhanced || a.tags || []).map(t => t.toLowerCase()));
+  const bTags = new Set((b.tags_enhanced || b.tags || []).map(t => t.toLowerCase()));
+  let overlap = 0;
+  for (const t of aTags) if (bTags.has(t)) overlap++;
+  sim += (overlap / Math.max(aTags.size, bTags.size, 1)) * 30;
+  const aWords = new Set((a.desc||'').toLowerCase().split(/[\s,，.。;；!！?？/\\|]+/).filter(w=>w.length>2));
+  const bWords = new Set((b.desc||'').toLowerCase().split(/[\s,，.。;；!！?？/\\|]+/).filter(w=>w.length>2));
+  let descOverlap = 0;
+  for (const w of aWords) if (bWords.has(w)) descOverlap++;
+  sim += Math.min(descOverlap * 3, 15);
+  const aName = a.name.toLowerCase(), bName = b.name.toLowerCase();
+  if (aName === bName) sim += 30;
+  else if (aName.includes(bName) || bName.includes(aName)) sim += 15;
+  else {
+    const aParts = new Set(aName.split(/[-_\s]/));
+    const bParts = new Set(bName.split(/[-_\s]/));
+    let partHit = 0;
+    for (const p of aParts) if (p.length >= 2 && bParts.has(p)) partHit++;
+    sim += Math.min(partHit * 5, 15);
+  }
+  if (isCN(a) === isCN(b)) sim += 5;
+  return Math.round(sim);
+}
+
+function doSimilar() {
+  const query = document.getElementById('similarInput').value.trim();
+  if (!query) return;
+  const ql = query.toLowerCase();
+
+  // 多字段锚点查找
+  let target = null;
+  const findStrategies = [
+    () => allSkills.filter(s => s.name.toLowerCase() === ql),
+    () => allSkills.filter(s => s.name.toLowerCase().includes(ql)),
+    () => allSkills.filter(s => (s.tags_enhanced || s.tags || []).some(t => t.toLowerCase().includes(ql))),
+    () => allSkills.filter(s => (s.desc||'').toLowerCase().includes(ql)),
+    () => allSkills.filter(s => (s.cat||'').toLowerCase().includes(ql)),
+  ];
+  for (const strategy of findStrategies) {
+    const matches = strategy();
+    if (matches.length > 0) {
+      target = matches.sort((a,b) => b.final_score - a.final_score)[0];
+      break;
+    }
+  }
+  if (!target) {
+    const qParts = ql.split(/[-_\s]+/).filter(p => p.length >= 2);
+    if (qParts.length > 0) {
+      const partMatches = allSkills.filter(s => {
+        const fields = (s.name + ' ' + (s.tags_enhanced || s.tags || []).join(' ')).toLowerCase();
+        return qParts.some(p => fields.includes(p));
+      });
+      if (partMatches.length > 0) target = partMatches.sort((a,b) => b.final_score - a.final_score)[0];
+    }
+  }
+  if (!target) {
+    document.getElementById('similarResults').innerHTML = '<div class="no-results">未找到该 Skill，试试更精确的名称</div>';
+    return;
+  }
+
+  const results = allSkills
+    .filter(s => s.name !== target.name)
+    .map(s => ({ ...s, _sim: calcSimilar(target, s) }))
+    .sort((a, b) => {
+      if (b._sim !== a._sim) return b._sim - a._sim;
+      return b.final_score - a.final_score;
+    })
+    .slice(0, 3);
+
+  const container = document.getElementById('similarResults');
+
+  // 锚点信息
+  let html = '<div class="similar-anchor">' +
+    '<div class="similar-anchor-name">📌 ' + target.name + '</div>' +
+    '<div class="similar-anchor-meta">' + target.cat + ' · ' + target.final_score + '分 · ' + confLabel(target.confidence) +
+    (target.chart_count > 0 ? ' · 🏅' + target.chart_count + (LANG==='zh'?'榜':' charts') : '') +
+    (isCN(target) ? ' · 🇨🇳' : '') +
+    '</div></div>';
+
+  // 替代品分析
+  results.forEach(s => {
+    let verdictType, verdictTag;
+    const scoreDiff = s.final_score - target.final_score;
+    const simPct = s._sim;
+
+    var isZhSim = LANG === 'zh';
+    if (scoreDiff > 5 && simPct >= 30) { verdictType = 'better'; verdictTag = isZhSim ? '👍 更优替代' : '👍 Better Alternative'; }
+    else if (scoreDiff >= -5 && simPct >= 40) { verdictType = 'comparable'; verdictTag = isZhSim ? '⚖️ 可比替代' : '⚖️ Comparable'; }
+    else { verdictType = 'worse'; verdictTag = isZhSim ? '📉 较弱替代' : '📉 Weaker'; }
+
+    // 差异分析
+    let diffLines = [];
+    var diffCat = isZhSim ? '不同赛道：' : 'Different track: ';
+    var diffScore = isZhSim ? '评分' : 'Score ';
+    var diffPts = isZhSim ? ' 分' : ' pts';
+    var diffSame = isZhSim ? '评分相同' : 'Same score';
+    var diffChart = isZhSim ? '榜单认证' : 'Chart cert ';
+    if (s.cat !== target.cat) diffLines.push(diffCat + s.cat + ' vs ' + target.cat);
+    if (scoreDiff > 0) diffLines.push(diffScore + '+' + scoreDiff + diffPts);
+    else if (scoreDiff < 0) diffLines.push(diffScore + '-' + Math.abs(scoreDiff) + diffPts);
+    else diffLines.push(diffSame);
+
+    const sChart = s.chart_count || 0;
+    const tChart = target.chart_count || 0;
+    var diffChartMore = isZhSim ? '榜单认证更多(' : 'More charts(';
+    var diffChartFew = isZhSim ? '榜单认证较少(' : 'Fewer charts(';
+    if (sChart > tChart) diffLines.push(diffChartMore + sChart + ' vs ' + tChart + ')');
+    else if (sChart < tChart) diffLines.push(diffChartFew + sChart + ' vs ' + tChart + ')');
+
+    if (isCN(s) && !isCN(target)) diffLines.push(isZhSim ? '有国内镜像' : 'Has CN mirror');
+    else if (!isCN(s) && isCN(target)) diffLines.push(isZhSim ? '无国内镜像' : 'No CN mirror');
+
+    if (s.install_method === 'direct' && target.install_method !== 'direct') diffLines.push(isZhSim ? '可直装' : 'Direct install');
+    if (s.best_in_track) diffLines.push(isZhSim ? '赛道最优' : 'Best in track');
+
+    const conf = s.confidence || 'low';
+    const installText = s.install_hint ? s.install_hint.hint : '';
+
+    html += '<div class="similar-card ' + verdictType + '" data-skill-name="' + safeDataName(s.name) + '" onclick="showDetail(this.dataset.skillName)">' +
+      '<div class="similar-header">' +
+        '<span class="similar-verdict-tag ' + verdictType + '">' + verdictTag + '</span>' +
+        '<span class="similar-name">' + escapeHtml(s.name) + '</span>' +
+        '<span class="similar-score">' + s.final_score + '</span>' +
+        scoreBar(s.final_score) +
+        '<span class="conf-badge ' + conf + '">' + confLabel(conf) + '</span>' +
+        '<span class="similar-cat">' + escapeHtml(s.cat) + '</span>' +
+        (isCN(s) ? ' 🇨🇳' : '') +
+      '</div>' +
+      '<div class="similar-diff">' + diffLines.map(l => '• ' + escapeHtml(l)).join(' &nbsp; ') + '</div>' +
+      (s.vs_note ? '<div class="similar-vs">📊 ' + escapeHtml(s.vs_note) + '</div>' : '') +
+      (installText ? '<div class="similar-vs">📦 ' + escapeHtml(installText) + '</div>' : '') +
+    '</div>';
+  });
+
+  container.innerHTML = html;
+}
+
+// ====== TAB 4: 工作流推荐（数据驱动） ======
+function renderWorkflowGrid() {
+  const grid = document.getElementById('wfGrid');
+  grid.innerHTML = Object.entries(workflows).map(([name, wf]) =>
+    '<div class="wf-card" data-wf-name="' + escapeHtml(name) + '" onclick="showWorkflowDetail(this.dataset.wfName)">' +
+      '<div class="wf-card-title">' + escapeHtml(I18N_WF[name] || name) + '</div>' +
+      '<div class="wf-card-desc">' + escapeHtml(I18N_WF_DESC[name] || wf.description) + '</div>' +
+      '<div class="wf-card-roles">' + wf.steps.map(s => '<span class="wf-role-tag">' + escapeHtml(I18N_WF_ROLE[s.role] || s.role) + '</span>').join('') + '</div>' +
+    '</div>'
+  ).join('');
+}
+
+function showWorkflowDetail(sceneName) {
+  const scene = workflows[sceneName];
+  if (!scene) return;
+  const container = document.getElementById('wfGrid');
+
+  var isZhWF = LANG === 'zh';
+  var wfBack = isZhWF ? '← 返回场景列表' : '← Back to scenarios';
+  var wfTip1 = isZhWF ? '找 ' : 'Find best for ';
+  var wfTip2 = isZhWF ? ' 相关的最优skill' : ' related skills';
+  var wfEmpty = isZhWF ? '⚠️ 未找到合适Skill，建议手动搜索' : '⚠️ No matching skills found, try manual search';
+  let html = '<div>' +
+    '<div class="wf-back" onclick="renderWorkflowGrid()">' + wfBack + '</div>' +
+    '<h3 style="margin-bottom:4px;">' + (I18N_WF[sceneName] || sceneName) + '</h3>' +
+    '<p style="font-size:13px;color:var(--text-2);margin-bottom:24px;">' + (I18N_WF_DESC[sceneName] || scene.description) + '</p>';
+
+  for (const step of scene.steps) {
+    // 从 keywords 匹配 skill
+    const keywords = step.keywords || [];
+    const candidates = allSkills
+      .map(s => {
+        const searchable = (s.name + ' ' + (s.tags_enhanced || s.tags || []).join(' ') + ' ' + (s.desc || '') + ' ' + s.cat).toLowerCase();
+        let hits = 0;
+        for (const kw of keywords) {
+          const kwLower = kw.toLowerCase();
+          if (s.name.toLowerCase().includes(kwLower)) hits += 3;
+          else if (searchable.includes(kwLower)) hits += 1;
+        }
+        return { skill: s, hits };
+      })
+      .filter(item => item.hits > 0)
+      .sort((a, b) => {
+        if (b.hits !== a.hits) return b.hits - a.hits;
+        return b.skill.final_score - a.skill.final_score;
+      })
+      .map(item => item.skill);
+
+    // 只取1个最优
+    const best = candidates.length > 0 ? candidates[0] : null;
+
+    html += '<div class="wf-slot">' +
+      '<div class="wf-slot-role">' + (I18N_WF_ROLE[step.role] || step.role) + '</div>' +
+      '<div class="wf-slot-tips">' + wfTip1 + keywords.slice(0, 4).join(', ') + wfTip2 + '</div>';
+
+    if (best) {
+      const conf = best.confidence || 'low';
+      const installText = best.install_hint ? best.install_hint.hint : '';
+      html += '<div class="wf-skill">' +
+        '<div class="wf-skill-row">' +
+          '<span class="wf-skill-name">' + best.name + '</span>' +
+          '<span class="wf-skill-score">' + best.final_score + '</span>' +
+          scoreBar(best.final_score) +
+          '<span class="wf-skill-conf ' + conf + '">' + confLabel(conf) + '</span>' +
+          (isCN(best) ? '<span class="wf-skill-region">🇨🇳</span>' : '') +
+          (best.chart_count > 0 ? '<span class="chart-badge">🏅' + best.chart_count + (LANG==='zh'?'榜':' charts') + '</span>' : '') +
+        '</div>' +
+        '<div class="wf-skill-desc">' + (best.desc || '').slice(0, 80) + '</div>' +
+        (best.recommend_reason ? '<div class="wf-skill-reason">💡 ' + best.recommend_reason + '</div>' : '') +
+        (installText ? '<div class="wf-skill-install">📦 ' + installText + '</div>' : '') +
+      '</div>';
+    } else {
+      html += '<div class="wf-empty">' + wfEmpty + '</div>';
+    }
+
+    html += '</div>';
+  }
+
+  html += '</div>';
+  container.innerHTML = html;
+}
+
+// ====== DETAIL MODAL ======
+function closeModal() {
+  document.getElementById('modalOverlay').classList.remove('show');
+}
+
+function showDetail(name) {
+  const s = allSkills.find(x => x.name === name);
+  if (!s) return;
+  const conf = s.confidence || 'low';
+  var isZhM = LANG === 'zh'; var confLabels = isZhM ? { high: '🔴高置信度 - 推荐使用', medium: '🟡中置信度 - 可参考使用', low: '🟢低置信度 - 谨慎使用' } : { high: '🔴High confidence - Recommended', medium: '🟡Med confidence - Use with caution', low: '🟢Low confidence - Be careful' };
+  const hasChart = (s.chart_count || 0) > 0;
+  var installText = s.install_hint ? s.install_hint.hint : (isZhM?'无安装信息':'No install info');
+  
+  // ★ v6.1.0：13维质量数据
+  var qg = getQGrade(name);
+  var qs = getQ(name);
+  var dims = getQDims(name);
+
+  document.getElementById('modalContent').innerHTML =
+    '<button class="modal-close" onclick="closeModal()">&times;</button>' +
+    '<div class="modal-name">' + escapeHtml(s.name) + '</div>' +
+    '<div class="modal-meta">' +
+      '<span class="result-stars">' + renderStars(s.stars) + '</span>' +
+      '<span class="result-score" style="font-size:15px">' + s.final_score + (isZhM?'分':' pts') + '</span>' +
+      scoreBar(s.final_score) +
+      // ★ v6.1.0：质量等级标签
+      (qg ? '<span style="font-size:11px;font-weight:700;color:'+qGradeColor(qg)+';padding:2px 8px;border-radius:4px;border:1px solid '+qGradeColor(qg)+'33;background:'+qGradeColor(qg)+'11">'+qGradeLabel(qg)+' '+(qs||'?')+'</span> ' : '') +
+      '<span style="font-size:10px;color:var(--text-3)">' + escapeHtml(s.source) + '</span>' +
+      (isCN(s) ? ' 🇨🇳 CN' : ' 🌐 GL') +
+      ' <span style="font-size:10px;color:var(--text-3)">' + escapeHtml(s.cat) + '</span>' +
+      (hasChart ? ' <span class="chart-badge">🏅' + s.chart_count + '榜</span>' : '') +
+      ' <span class="conf-badge ' + conf + '">' + confLabels[conf] + '</span>' +
+    '</div>' +
+    (s.recommend_reason ? '<div class="modal-reason">💡 ' + escapeHtml(s.recommend_reason) + '</div>' : '') +
+    
+    // ★ v6.1.0：13维雷达图
+    (dims ? 
+    '<div class="modal-section-title">📊 ' + (isZhM?'13维质量扫描（GitHub + SkillHub + 市场验证 三增强）':'13-Dimension Quality Scan (GitHub + SkillHub + Market Validation)') + '</div>' +
+    '<div style="margin-bottom:16px;font-size:11px;color:var(--text-2)">'+
+      '<div style="display:flex;justify-content:space-between;margin-bottom:3px"><span>\u63cf\u8ff0\u8d28\u91cf</span><span style="color:var(--blue);font-weight:600;font-family:var(--mono)">'+(dims.description||0)+'<span style="opacity:0.5;font-weight:400">\u2f20</span></span>'+dimBar(dims.description,100)+'</div>'+
+      '<div style="display:flex;justify-content:space-between;margin-bottom:3px"><span>\u6807\u7b7e\u5b8c\u6574</span><span style="color:var(--blue);font-weight:600;font-family:var(--mono)">'+(dims.tags||0)+'<span style="opacity:0.5;font-weight:400">\u2f20</span></span>'+dimBar(dims.tags,100)+'</div>'+
+      '<div style="display:flex;justify-content:space-between;margin-bottom:3px"><span>\u5b89\u88c5\u4fbf\u6377</span><span style="color:var(--blue);font-weight:600;font-family:var(--mono)">'+(dims.install||0)+'<span style="opacity:0.5;font-weight:400">\u2f20</span></span>'+dimBar(dims.install,100)+'</div>'+
+      '<div style="display:flex;justify-content:space-between;margin-bottom:3px"><span>\u5b89\u5168\u8bc4\u5206</span><span style="color:var(--blue);font-weight:600;font-family:var(--mono)">'+(dims.safety||0)+'<span style="opacity:0.5;font-weight:400">\u2f20</span></span>'+dimBar(dims.safety,100)+'</div>'+
+      '<div style="display:flex;justify-content:space-between;margin-bottom:3px"><span>\u4f9d\u8d56\u590d\u6742</span><span style="color:var(--blue);font-weight:600;font-family:var(--mono)">'+(dims.dependency||0)+'<span style="opacity:0.5;font-weight:400">\u2f20</span></span>'+dimBar(dims.dependency,100,true)+'</div>'+
+      '<div style="display:flex;justify-content:space-between;margin-bottom:3px"><span>\u6587\u6863\u7ed3\u6784</span><span style="color:var(--blue);font-weight:600;font-family:var(--mono)">'+(dims.doc_structure||0)+'<span style="opacity:0.5;font-weight:400">\u2f20</span></span>'+dimBar(dims.doc_structure,100)+'</div>'+
+      '<div style="display:flex;justify-content:space-between;margin-bottom:3px"><span>\u9519\u8bef\u5904\u7406</span><span style="color:var(--blue);font-weight:600;font-family:var(--mono)">'+(dims.error_handling||0)+'<span style="opacity:0.5;font-weight:400">\u2f20</span></span>'+dimBar(dims.error_handling,100)+'</div>'+
+      '<div style="display:flex;justify-content:space-between;margin-bottom:3px"><span>\u7ef4\u62a4\u6d3b\u8dc3</span><span style="color:var(--blue);font-weight:600;font-family:var(--mono)">'+(dims.maintenance||0)+'<span style="opacity:0.5;font-weight:400">\u2f20</span></span>'+dimBar(dims.maintenance,100)+'</div>'+
+      '<div style="display:flex;justify-content:space-between;margin-bottom:3px"><span>\u6d4b\u8bd6\u8986\u76d6</span><span style="color:var(--blue);font-weight:600;font-family:var(--mono)">'+(dims.tests||0)+'<span style="opacity:0.5;font-weight:400">\u2f20</span></span>'+dimBar(dims.tests,100)+'</div>'+
+      '<div style="display:flex;justify-content:space-between;margin-bottom:3px"><span>\u5e02\u573a\u70ed\u5ea6</span><span style="color:var(--blue);font-weight:600;font-family:var(--mono)">'+(dims.market||0)+'<span style="opacity:0.5;font-weight:400">\u2f20</span></span>'+dimBar(dims.market,100)+'</div>'+
+      '<div style="display:flex;justify-content:space-between;margin-bottom:3px"><span>🏅' + (isZhM?'市场验证':'Market Validation') + '</span><span style="color:var(--blue);font-weight:600;font-family:var(--mono)">'+(dims.market_validation||0)+'<span style="opacity:0.5;font-weight:400">\u2f20</span></span>'+dimBar(dims.market_validation,100)+'</div>'+
+    '</div>' : '') +
+
+
+    (hasChart && s.chart_list && s.chart_list.length ?
+      '<div class="modal-section-title">🏅 ' + (isZhM?'榜单认证':'Chart Certifications') + '</div>' +
+      '<div style="margin-bottom:12px">' + s.chart_list.map(c => '<span style="display:inline-block;background:#fef3c7;color:#92400e;border:1px solid #fcd34d;border-radius:4px;padding:3px 8px;font-size:11px;margin:2px">' + escapeHtml(c) + '</span>').join(' ') + '</div>'
+    : '') +
+    '<div class="modal-desc">' + escapeHtml(s.desc || '') + '</div>' +
+    (s.best_in_track ? '<div style="margin-bottom:12px;padding:8px 12px;background:var(--green-bg);border:1px solid var(--green-border);border-radius:6px;font-size:12px;color:var(--green);font-weight:600">👑 ' + (isZhM?'赛道最优':'Track Best') + ' - ' + escapeHtml(s.cat) + '</div>' : '') +
+    (s.vs_note && !s.best_in_track ? '<div style="margin-bottom:12px;padding:8px 12px;background:var(--amber-bg);border:1px solid var(--amber-border);border-radius:6px;font-size:12px;color:var(--amber)">📊 ' + escapeHtml(s.vs_note) + '</div>' : '') +
+    '<div class="modal-section-title">' + (isZhM?'评分明细（原始体系）':'Score Breakdown (Original System)') + '</div>' +
+    '<div class="modal-score-breakdown">' +
+      '<div class="modal-score-row"><span class="label">' + (isZhM?'原始分':'Raw Score') + '</span><span class="value">' + s.score + '</span></div>' +
+      (hasChart ? '<div class="modal-score-row"><span class="label">🏅 ' + (isZhM?'榜单加权':'Chart Boost') + '</span><span class="value" style="color:#e8a838">×' + s.chart_count + '榜单</span></div>' : '') +
+      '<div class="modal-score-row"><span class="label">' + (isZhM?'校准后总分':'Calibrated Score') + '</span><span class="value">' + s.final_score + '</span></div>' +
+      '<div class="modal-score-row total"><span class="label">' + (isZhM?'最终评分':'Final Score') + '</span><span class="value">' + s.final_score + '</span></div>' +
+    '</div>' +
+    '<div class="modal-section-title">' + (isZhM?'标签':'Tags') + '</div>' +
+    '<div class="modal-tags">' + (s.tags_enhanced || s.tags || []).slice(0, 12).map(t => '<span class="modal-tag">' + escapeHtml(t) + '</span>').join('') + '</div>' +
+    (s.highlights && s.highlights.length ?
+      '<div class="modal-section-title">' + (isZhM?'亮点':'Highlights') + '</div>' +
+      '<div class="modal-highlights">' + s.highlights.map(h => '<div class="modal-hl">' + escapeHtml(h) + '</div>').join('') + '</div>'
+    : '') +
+    '<div class="modal-section-title">' + (isZhM?'安装方式':'Install Method') + '</div>' +
+    '<div class="modal-install-box">📦 ' + escapeHtml(installText) + '</div>';
+
+  document.getElementById('modalOverlay').classList.add('show');
+}
+
+// ====== KEYBOARD ======
+document.getElementById('searchInput').addEventListener('keydown', e => { if (e.key === 'Enter') doSearch(); });
+document.getElementById('similarInput').addEventListener('keydown', e => { if (e.key === 'Enter') doSimilar(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+// ====== INIT ======
+renderCategories();
+renderWorkflowGrid();
+</script>
+</body>
+</html>

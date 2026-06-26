@@ -1,35 +1,14 @@
 ---
-name: "Trading System Pro"
-description: "Automation skill for Trading System Pro."
-category: "blockchain"
-source: "ClawHub"
-tags: [algorithmic, backtesting, crypto, options, quantitative, stocks, trading]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/trading-system-pro"
-sourceUrl: "https://clawhub.ai/skills/trading-system-pro"
----
-
-# Trading System Pro
-
-> Automation skill for Trading System Pro.
-
-- **Category:** Blockchain
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/trading-system-pro`
-- **Source URL:** [https://clawhub.ai/skills/trading-system-pro](https://clawhub.ai/skills/trading-system-pro)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/trading-system-pro
-```
+name: trading-system-pro
+description: >-
+  A complete algorithmic trading system for stocks, crypto, and options.
+  Features real-time market scanning using RSI, Bollinger Bands, MACD, and Elliott Wave
+  analysis. Includes automated trade execution, risk management, and portfolio
+  balancing. Built for day traders, swing traders, and quant investors who need
+  institutional-grade technical analysis combined with easy-to-use signals.
+  Works with Interactive Brokers, Alpaca, Binance, and Bybit. Integrates whale
+  tracking data, options flow analysis, and liquidity mapping for superior
+  trade timing. Python-based backtesting included. Use cases: stock trading,
+  crypto trading, options trading, algorithmic trading, quantitative trading,
+  day trading signals, swing trading strategy.
+version: 1.0.0

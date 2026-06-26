@@ -1,0 +1,30 @@
+{
+  "ticker": "CVX",
+  "company": "Chevron",
+  "analysis_year": 2020,
+  "data_source": "FY2020 10-K, SEC EDGAR",
+  "analyzed_date": "2026-03-10",
+
+  "hard_gates": {
+    "g1_roe_roic": { "value": 0.14, "metric_used": "ROE", "years_averaged": "2017-2019 normalized", "pass": true },
+    "g2_fcf_to_ni": { "value": 1.1, "fcf": 11000, "net_income": 10000, "pass": true },
+    "g3_leverage": { "metric_used": "Net Debt/EBITDA", "value": 1.2, "pass": true },
+    "g4_revenue_trend": { "description": "COVID cyclical decline — not structural. Core demand intact.", "structural_decline": false, "pass": true },
+    "g5_gross_margin_trend": { "description": "Stable structurally, cyclical 2020 impact", "declining_2plus_years": false, "pass": true },
+    "g6_earnings_yield": { "value": 0.079, "net_income_m": null, "ev_m": null, "exemption": null, "pass": true },
+    "g7_moat": { "verdict": "PASS", "moat_type": "cost_advantage", "description": "Moat is the balance sheet, not the product. CVX entered COVID with lowest debt/capital ratio in major oil (22.7%). 33 consecutive years of dividend increases including loss years. Can outlast competitors in downturns and acquire assets cheaply.", "pass": true }
+  },
+
+  "special_channel": null,
+
+  "control_groups": [
+    { "ticker": "XOM", "company": "ExxonMobil", "year": 2020, "gates_failed": ["g1_roe_roic", "g2_fcf_to_ni"], "conclusion": "PASS" },
+    { "ticker": "COP", "company": "ConocoPhillips", "year": 2020, "gates_failed": ["g5_gross_margin_trend"], "conclusion": "PASS" }
+  ],
+
+  "conclusion": "BUY",
+  "buffett_action": "Bought $4.1B in Q4 2020, added to $19.8B by 2022",
+  "actual_result": "Large win — oil recovery + dividend income",
+  "verdict": "✅ aligned",
+  "key_insight": "For cyclical businesses, normalize ROE/FCF over the cycle. The key differentiator between CVX and XOM was balance sheet discipline — same industry, vastly different financial quality."
+}

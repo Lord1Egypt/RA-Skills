@@ -1,0 +1,44 @@
+examples:
+  - id: tokyo-ghibli-map
+    title:
+      en: Tokyo Ghibli-style travel map
+      zh: 东京吉卜力风格旅行地图
+    description:
+      en: Generate a Ghibli-style illustrated map of Tokyo with popular attractions
+      zh: 生成一张包含热门景点的东京吉卜力风格手绘地图
+    prompt:
+      en: Create a Ghibli-style travel map of Tokyo with Tokyo Tower, Senso-ji Temple, Shibuya Crossing, Meiji Shrine, and Tsukiji Market
+      zh: 帮我生成一张东京旅行地图，吉卜力风格，包含东京塔、浅草寺、涩谷十字路口、明治神宫和筑地市场
+
+  - id: paris-cartoon-map
+    title:
+      en: Paris cartoon travel map
+      zh: 巴黎卡通旅行地图
+    description:
+      en: Generate a cute illustrated map for a Paris trip
+      zh: 生成一张可爱的巴黎旅行手绘地图
+    prompt:
+      en: I'm planning a trip to Paris. Can you make me a cute illustrated travel map?
+      zh: 我计划去巴黎旅行，能帮我制作一张可爱的手绘旅行地图吗？
+
+  - id: rome-itinerary-map
+    title:
+      en: Rome itinerary map with route
+      zh: 罗马带路线的行程地图
+    description:
+      en: Generate a travel map for Rome with a specific visit order
+      zh: 生成一张带有指定游览顺序的罗马旅行地图
+    prompt:
+      en: Generate a cartoon travel itinerary map for my Rome trip - I want to visit the Colosseum first, then the Vatican, then Trevi Fountain, then the Pantheon, and finally Piazza Navona
+      zh: 帮我生成一张罗马旅行行程图，先去斗兽场，然后梵蒂冈，再去许愿池，接着万神殿，最后纳沃纳广场
+
+  - id: kyoto-hand-drawn
+    title:
+      en: Kyoto hand-drawn map
+      zh: 京都手绘地图
+    description:
+      en: Generate a Miyazaki-style hand-drawn map of Kyoto
+      zh: 生成一张宫崎骏风格的京都手绘地图
+    prompt:
+      en: Make me a Miyazaki-style map of Kyoto with the top 5 must-see spots
+      zh: 帮我画一张宫崎骏风格的京都地图，标出5个必去景点

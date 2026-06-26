@@ -1,0 +1,404 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Agriculture Research Roadmap API",
+    "description": "Generates personalized agriculture research career roadmaps",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/": {
+      "get": {
+        "summary": "Root",
+        "operationId": "root__get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/agri/health": {
+      "get": {
+        "summary": "Health Check",
+        "operationId": "health_check_api_agri_health_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/agri/roadmap": {
+      "post": {
+        "summary": "Create Roadmap",
+        "description": "Generate a personalized agriculture research career roadmap.",
+        "operationId": "create_roadmap_api_agri_roadmap_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RoadmapRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "AssessmentData": {
+        "properties": {
+          "experience": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ExperienceData"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": {
+              "education": "",
+              "fieldOfStudy": "",
+              "yearsExperience": ""
+            }
+          },
+          "skills": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/SkillsData"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": {
+              "researchAreas": [],
+              "existingSkills": []
+            }
+          },
+          "goals": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/GoalsData"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": {
+              "targetRole": "",
+              "preferredSector": "",
+              "timeline": "",
+              "additionalInfo": ""
+            }
+          },
+          "sessionId": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Sessionid",
+            "default": ""
+          },
+          "timestamp": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Timestamp",
+            "default": ""
+          }
+        },
+        "type": "object",
+        "title": "AssessmentData"
+      },
+      "ExperienceData": {
+        "properties": {
+          "education": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Education",
+            "default": ""
+          },
+          "fieldOfStudy": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Fieldofstudy",
+            "default": ""
+          },
+          "yearsExperience": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Yearsexperience",
+            "default": ""
+          }
+        },
+        "type": "object",
+        "title": "ExperienceData"
+      },
+      "GoalsData": {
+        "properties": {
+          "targetRole": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Targetrole",
+            "default": ""
+          },
+          "preferredSector": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Preferredsector",
+            "default": ""
+          },
+          "timeline": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Timeline",
+            "default": ""
+          },
+          "additionalInfo": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Additionalinfo",
+            "default": ""
+          }
+        },
+        "type": "object",
+        "title": "GoalsData"
+      },
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "type": "array",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
+      },
+      "RoadmapRequest": {
+        "properties": {
+          "assessmentData": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/AssessmentData"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": {
+              "experience": {
+                "education": "",
+                "fieldOfStudy": "",
+                "yearsExperience": ""
+              },
+              "skills": {
+                "existingSkills": [],
+                "researchAreas": []
+              },
+              "goals": {
+                "additionalInfo": "",
+                "preferredSector": "",
+                "targetRole": "",
+                "timeline": ""
+              },
+              "sessionId": "",
+              "timestamp": ""
+            }
+          },
+          "sessionId": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Sessionid",
+            "default": ""
+          },
+          "userId": {
+            "anyOf": [
+              {},
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Userid"
+          },
+          "timestamp": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Timestamp",
+            "default": ""
+          }
+        },
+        "type": "object",
+        "title": "RoadmapRequest"
+      },
+      "SkillsData": {
+        "properties": {
+          "researchAreas": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Researchareas",
+            "default": []
+          },
+          "existingSkills": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Existingskills",
+            "default": []
+          }
+        },
+        "type": "object",
+        "title": "SkillsData"
+      },
+      "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Location"
+          },
+          "msg": {
+            "type": "string",
+            "title": "Message"
+          },
+          "type": {
+            "type": "string",
+            "title": "Error Type"
+          }
+        },
+        "type": "object",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError"
+      }
+    }
+  }
+}

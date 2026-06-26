@@ -1,0 +1,16 @@
+{
+"name": "@openclaw/terminal-executor",
+"version": "1.0.0",
+"description": "Execute terminal commands with sudo support",
+"main": "index.js",
+"scripts": {
+"test": "echo \"Error: no test specified\" && exit 1"
+},
+"keywords": ["terminal", "exec", "sudo", "command", "openclaw"],
+"author": "OpenClaw Assistant",
+"license": "MIT",
+"openclaw": {
+"tools": ["exec", "sudo_exec"],
+"activation": "When user needs to run system commands or install software"
+}
+}

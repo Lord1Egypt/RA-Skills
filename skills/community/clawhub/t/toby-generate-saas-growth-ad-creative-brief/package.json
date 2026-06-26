@@ -1,0 +1,12 @@
+{
+  "name": "generate-saas-growth-ad-creative-brief",
+  "version": "1.0.0",
+  "description": "Generate SaaS Growth Ad Creative Brief",
+  "author": "SkillBoss",
+  "license": "MIT",
+  "keywords": ["agent-skill", "openclaw"],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/TobeyRebecca/generate-saas-growth-ad-creative-brief.git"
+  }
+}

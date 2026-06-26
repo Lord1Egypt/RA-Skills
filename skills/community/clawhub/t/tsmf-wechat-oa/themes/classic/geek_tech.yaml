@@ -1,0 +1,96 @@
+name: 极客科技
+description: 极客风格科技主题，适合游戏、二次元、数码类文章
+keywords:
+  - 游戏
+  - 电竞
+  - 二次元
+  - 动漫
+  - 极客
+  - 赛博
+  - 科幻
+  - 未来
+  - 虚拟
+  - 电子
+  - 像素
+
+colors:
+  primary: "#8b5cf6"
+  accent: "#a78bfa"
+  text: "#1e293b"
+  text_light: "#475569"
+  background: "#fafbfc"
+  code_bg: "#1e293b"
+  blockquote_bg: "#f5f3ff"
+  border: "#e5e7eb"
+
+styles:
+  body:
+    font_size: "16px"
+    line_height: "1.8"
+    letter_spacing: "0.3px"
+    padding: "0 16px"
+    margin: "0 0 16px 0"
+
+  h1:
+    font_size: "22px"
+    font_weight: "700"
+    margin: "28px 0 18px 0"
+    padding: "0 16px"
+    text_align: "center"
+
+  h2:
+    font_size: "18px"
+    font_weight: "600"
+    margin: "24px 0 14px 0"
+    padding: "8px 14px"
+    border_left: "4px solid #8b5cf6"
+    background_color: "#f3f4f6"
+    border_radius: "0 6px 6px 0"
+
+  h3:
+    font_size: "16px"
+    font_weight: "600"
+    margin: "20px 0 10px 0"
+    padding: "0 16px"
+    border_left: "3px solid #a78bfa"
+    padding_left: "10px"
+
+  blockquote:
+    font_size: "15px"
+    padding: "14px 16px"
+    margin: "18px 0"
+    border_left: "4px solid #8b5cf6"
+    background_color: "#f5f3ff"
+    border_radius: "0 8px 8px 0"
+    line_height: "1.75"
+
+  code_inline:
+    font_size: "14px"
+    padding: "2px 6px"
+    border_radius: "4px"
+    background_color: "#ede9fe"
+    color: "#6d28d9"
+
+  code_block:
+    font_size: "14px"
+    padding: "16px 18px"
+    margin: "20px 0"
+    border_radius: "8px"
+    background_color: "#1e293b"
+    border: "1px solid #374151"
+    line_height: "1.65"
+    color: "#e2e8f0"
+
+  list:
+    font_size: "16px"
+    margin: "14px 0"
+    padding: "0 16px 0 32px"
+    line_height: "1.8"
+
+  separator:
+    border_top: "2px solid #e5e7eb"
+    margin: "24px 20%"
+
+  image:
+    border_radius: "8px"
+    border: "1px solid #e5e7eb"

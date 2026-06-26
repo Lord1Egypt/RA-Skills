@@ -1,0 +1,37 @@
+id: tg-news-digest-lite
+name: "Telegram News Digest (Lite)"
+version: "1.0.0"
+description: |
+  Monitors public Telegram channels via web scraping (t.me/s/*), extracts new messages,
+  generates AI-powered summaries, and delivers structured digests to your configured
+  OpenClaw notification channel. Zero authentication required — just provide channel names.
+entrypoint: "src/index.js"
+runtime: "node20"
+permissions:
+  network: ["t.me", "*.t.me", "api.openai.com", "*.openrouter.ai", "*.deepinfra.com"]
+  filesystem: ["./state", "./config.yaml"]
+  env: ["OPENCLAW_GATEWAY_URL", "OPENCLAW_GATEWAY_TOKEN"]
+tools:
+  - name: run_digest_cycle
+    description: "Executes the full monitoring cycle: fetch channel messages → detect new content → generate AI summary → deliver digest to configured channel"
+    parameters:
+      type: object
+      properties:
+        channels:
+          type: array
+          items: { type: string }
+          description: "List of channels to check (username, @username, or full t.me URL). Overrides config.yaml if provided."
+        force:
+          type: boolean
+          default: false
+          description: "Ignore seen-messages cache and re-fetch all messages (useful for debugging or cache reset)"
+  - name: configure_channels
+    description: "Dynamically add or remove channels from the monitoring list without editing config files"
+    parameters:
+      type: object
+      properties:
+        add: { type: array, items: { type: string }, description: "Channel identifiers to add" }
+        remove: { type: array, items: { type: string }, description: "Channel identifiers to remove" }
+  - name: get_status
+    description: "Return current operational status: tracked channels, cache size, last update timestamp"
+    parameters: { type: object, properties: {} }

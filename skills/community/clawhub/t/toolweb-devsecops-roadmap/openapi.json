@@ -1,0 +1,567 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "DevSecOps Roadmap Generator",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/": {
+      "get": {
+        "summary": "Root",
+        "description": "Health check endpoint",
+        "operationId": "root__get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/devsecops/roadmap": {
+      "post": {
+        "summary": "Generate Roadmap",
+        "description": "Generate DevSecOps implementation roadmap",
+        "operationId": "generate_roadmap_api_devsecops_roadmap_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RoadmapRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RoadmapResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/health": {
+      "get": {
+        "summary": "Health Check",
+        "description": "Health check endpoint",
+        "operationId": "health_check_health_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "AssessmentData": {
+        "properties": {
+          "step1": {
+            "$ref": "#/components/schemas/Step1"
+          },
+          "step2": {
+            "$ref": "#/components/schemas/Step2"
+          },
+          "step3": {
+            "$ref": "#/components/schemas/Step3"
+          },
+          "step4": {
+            "$ref": "#/components/schemas/Step4"
+          },
+          "step5": {
+            "$ref": "#/components/schemas/Step5"
+          },
+          "step6": {
+            "$ref": "#/components/schemas/Step6"
+          },
+          "step7": {
+            "$ref": "#/components/schemas/Step7"
+          },
+          "step8": {
+            "$ref": "#/components/schemas/Step8"
+          },
+          "step9": {
+            "$ref": "#/components/schemas/Step9"
+          },
+          "step10": {
+            "$ref": "#/components/schemas/Step10"
+          },
+          "step11": {
+            "$ref": "#/components/schemas/Step11"
+          },
+          "step12": {
+            "$ref": "#/components/schemas/Step12"
+          },
+          "step13": {
+            "$ref": "#/components/schemas/Step13"
+          },
+          "context": {
+            "$ref": "#/components/schemas/Context"
+          }
+        },
+        "type": "object",
+        "required": [
+          "step1",
+          "step2",
+          "step3",
+          "step4",
+          "step5",
+          "step6",
+          "step7",
+          "step8",
+          "step9",
+          "step10",
+          "step11",
+          "step12",
+          "step13",
+          "context"
+        ],
+        "title": "AssessmentData"
+      },
+      "Context": {
+        "properties": {
+          "org_size": {
+            "type": "string",
+            "title": "Org Size"
+          },
+          "industry": {
+            "type": "string",
+            "title": "Industry"
+          },
+          "methodology": {
+            "type": "string",
+            "title": "Methodology"
+          },
+          "challenges": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Challenges",
+            "default": ""
+          }
+        },
+        "type": "object",
+        "required": [
+          "org_size",
+          "industry",
+          "methodology"
+        ],
+        "title": "Context"
+      },
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "type": "array",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
+      },
+      "RoadmapRequest": {
+        "properties": {
+          "assessmentData": {
+            "$ref": "#/components/schemas/AssessmentData"
+          },
+          "sessionId": {
+            "type": "string",
+            "title": "Sessionid"
+          },
+          "userId": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Userid"
+          },
+          "timestamp": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Timestamp"
+          }
+        },
+        "type": "object",
+        "required": [
+          "assessmentData",
+          "sessionId"
+        ],
+        "title": "RoadmapRequest"
+      },
+      "RoadmapResponse": {
+        "properties": {
+          "maturity_score": {
+            "type": "integer",
+            "title": "Maturity Score"
+          },
+          "maturity_level": {
+            "type": "string",
+            "title": "Maturity Level"
+          },
+          "executive_summary": {
+            "type": "string",
+            "title": "Executive Summary"
+          },
+          "immediate_priorities": {
+            "items": {
+              "type": "object"
+            },
+            "type": "array",
+            "title": "Immediate Priorities"
+          },
+          "short_term_goals": {
+            "items": {
+              "type": "object"
+            },
+            "type": "array",
+            "title": "Short Term Goals"
+          },
+          "long_term_goals": {
+            "items": {
+              "type": "object"
+            },
+            "type": "array",
+            "title": "Long Term Goals"
+          },
+          "step_analysis": {
+            "items": {
+              "type": "object"
+            },
+            "type": "array",
+            "title": "Step Analysis"
+          },
+          "recommended_tools": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Recommended Tools"
+          },
+          "success_metrics": {
+            "type": "string",
+            "title": "Success Metrics"
+          },
+          "sessionId": {
+            "type": "string",
+            "title": "Sessionid"
+          },
+          "timestamp": {
+            "type": "string",
+            "title": "Timestamp"
+          }
+        },
+        "type": "object",
+        "required": [
+          "maturity_score",
+          "maturity_level",
+          "executive_summary",
+          "immediate_priorities",
+          "short_term_goals",
+          "long_term_goals",
+          "step_analysis",
+          "recommended_tools",
+          "success_metrics",
+          "sessionId",
+          "timestamp"
+        ],
+        "title": "RoadmapResponse"
+      },
+      "Step1": {
+        "properties": {
+          "education": {
+            "type": "string",
+            "title": "Education"
+          },
+          "workshops": {
+            "type": "string",
+            "title": "Workshops"
+          },
+          "platform": {
+            "type": "string",
+            "title": "Platform"
+          }
+        },
+        "type": "object",
+        "required": [
+          "education",
+          "workshops",
+          "platform"
+        ],
+        "title": "Step1"
+      },
+      "Step10": {
+        "properties": {
+          "sast": {
+            "type": "string",
+            "title": "Sast"
+          },
+          "local": {
+            "type": "string",
+            "title": "Local"
+          }
+        },
+        "type": "object",
+        "required": [
+          "sast",
+          "local"
+        ],
+        "title": "Step10"
+      },
+      "Step11": {
+        "properties": {
+          "dast": {
+            "type": "string",
+            "title": "Dast"
+          },
+          "local": {
+            "type": "string",
+            "title": "Local"
+          }
+        },
+        "type": "object",
+        "required": [
+          "dast",
+          "local"
+        ],
+        "title": "Step11"
+      },
+      "Step12": {
+        "properties": {
+          "fuzz": {
+            "type": "string",
+            "title": "Fuzz"
+          }
+        },
+        "type": "object",
+        "required": [
+          "fuzz"
+        ],
+        "title": "Step12"
+      },
+      "Step13": {
+        "properties": {
+          "manual": {
+            "type": "string",
+            "title": "Manual"
+          }
+        },
+        "type": "object",
+        "required": [
+          "manual"
+        ],
+        "title": "Step13"
+      },
+      "Step2": {
+        "properties": {
+          "business_education": {
+            "type": "string",
+            "title": "Business Education"
+          },
+          "resources": {
+            "type": "string",
+            "title": "Resources"
+          }
+        },
+        "type": "object",
+        "required": [
+          "business_education",
+          "resources"
+        ],
+        "title": "Step2"
+      },
+      "Step3": {
+        "properties": {
+          "culture": {
+            "type": "string",
+            "title": "Culture"
+          },
+          "embedded": {
+            "type": "string",
+            "title": "Embedded"
+          }
+        },
+        "type": "object",
+        "required": [
+          "culture",
+          "embedded"
+        ],
+        "title": "Step3"
+      },
+      "Step4": {
+        "properties": {
+          "scanning": {
+            "type": "string",
+            "title": "Scanning"
+          },
+          "remediation": {
+            "type": "string",
+            "title": "Remediation"
+          }
+        },
+        "type": "object",
+        "required": [
+          "scanning",
+          "remediation"
+        ],
+        "title": "Step4"
+      },
+      "Step5": {
+        "properties": {
+          "requirements": {
+            "type": "string",
+            "title": "Requirements"
+          },
+          "documentation": {
+            "type": "string",
+            "title": "Documentation"
+          }
+        },
+        "type": "object",
+        "required": [
+          "requirements",
+          "documentation"
+        ],
+        "title": "Step5"
+      },
+      "Step6": {
+        "properties": {
+          "quality_bars": {
+            "type": "string",
+            "title": "Quality Bars"
+          }
+        },
+        "type": "object",
+        "required": [
+          "quality_bars"
+        ],
+        "title": "Step6"
+      },
+      "Step7": {
+        "properties": {
+          "threat_modeling": {
+            "type": "string",
+            "title": "Threat Modeling"
+          },
+          "training": {
+            "type": "string",
+            "title": "Training"
+          }
+        },
+        "type": "object",
+        "required": [
+          "threat_modeling",
+          "training"
+        ],
+        "title": "Step7"
+      },
+      "Step8": {
+        "properties": {
+          "safeguards": {
+            "type": "string",
+            "title": "Safeguards"
+          }
+        },
+        "type": "object",
+        "required": [
+          "safeguards"
+        ],
+        "title": "Step8"
+      },
+      "Step9": {
+        "properties": {
+          "deprecation": {
+            "type": "string",
+            "title": "Deprecation"
+          },
+          "response": {
+            "type": "string",
+            "title": "Response"
+          }
+        },
+        "type": "object",
+        "required": [
+          "deprecation",
+          "response"
+        ],
+        "title": "Step9"
+      },
+      "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Location"
+          },
+          "msg": {
+            "type": "string",
+            "title": "Message"
+          },
+          "type": {
+            "type": "string",
+            "title": "Error Type"
+          }
+        },
+        "type": "object",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError"
+      }
+    }
+  }
+}

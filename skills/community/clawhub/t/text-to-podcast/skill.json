@@ -1,0 +1,21 @@
+{
+  "name": "text-to-podcast",
+  "version": "1.0.0",
+  "description": "将文本转换为播客音频（使用 TTS）",
+  "author": "小叮当",
+  "license": "MIT",
+  "tags": ["tts", "audio", "podcast", "text-to-speech"],
+  "requirements": ["openai>=1.0.0", "python-dotenv>=1.0.0"],
+  "env_vars": {
+    "OPENAI_API_KEY": {
+      "description": "OpenAI API key for TTS",
+      "required": true
+    }
+  },
+  "scripts": {
+    "install": "install.sh",
+    "uninstall": "uninstall.sh"
+  },
+  "source": "source/podcast_generator.py",
+  "expose": ["text-to-podcast"]
+}

@@ -1,0 +1,37 @@
+{
+  "slug": "template-snippet-switchboard",
+  "title": "模板片段总控台",
+  "category": "productivity",
+  "categoryLabel": "本地效率",
+  "mode": "structured_brief",
+  "summary": "管理常用模板和片段，按场景、角色、语气、长度切换并维护版本。",
+  "inputHint": "已有模板、适用场景、风格要求",
+  "sections": [
+    "模板目录",
+    "适用场景",
+    "角色版本",
+    "语气切换",
+    "维护规则",
+    "淘汰标准"
+  ],
+  "useCases": [
+    "写作模板",
+    "客服片段",
+    "销售脚本"
+  ],
+  "positiveExamples": [
+    "帮我整理一套模板片段库",
+    "按角色和语气切换"
+  ],
+  "negativeExamples": [
+    "不要塞入未经审校的敏感话术",
+    "不要替代版本管理系统"
+  ],
+  "risk": "适合作为本地模板治理工具。",
+  "tags": [
+    "templates",
+    "snippets",
+    "writing",
+    "operations"
+  ]
+}

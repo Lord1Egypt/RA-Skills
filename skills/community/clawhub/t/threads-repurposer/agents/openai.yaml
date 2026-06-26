@@ -1,0 +1,4 @@
+interface:
+  display_name: "Threads Repurposer"
+  short_description: "Turn source content into strong Threads posts and threads"
+  default_prompt: "Use $threads-repurposer to turn this source content into a short Threads thread for founders or creators."

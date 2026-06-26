@@ -1,0 +1,597 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Invoice Generator",
+    "version": "0.1.0"
+  },
+  "paths": {
+    "/": {
+      "get": {
+        "summary": "Root",
+        "operationId": "root__get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/status": {
+      "get": {
+        "summary": "Status",
+        "operationId": "status_status_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/generate": {
+      "post": {
+        "summary": "Generate Invoice",
+        "operationId": "generate_invoice_generate_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InvoiceRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/download/{invoice_id}": {
+      "get": {
+        "summary": "Download Invoice",
+        "operationId": "download_invoice_download__invoice_id__get",
+        "parameters": [
+          {
+            "name": "invoice_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Invoice Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/send-email": {
+      "post": {
+        "summary": "Send Email",
+        "operationId": "send_email_send_email_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EmailRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "CompanyDetails": {
+        "properties": {
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "address": {
+            "type": "string",
+            "title": "Address"
+          },
+          "city": {
+            "type": "string",
+            "title": "City"
+          },
+          "state": {
+            "type": "string",
+            "title": "State"
+          },
+          "pincode": {
+            "type": "string",
+            "title": "Pincode"
+          },
+          "phone": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Phone",
+            "default": ""
+          },
+          "email": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Email",
+            "default": ""
+          },
+          "gstin": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Gstin",
+            "default": ""
+          },
+          "pan": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Pan",
+            "default": ""
+          },
+          "logo_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Logo Url",
+            "default": ""
+          }
+        },
+        "type": "object",
+        "required": [
+          "name",
+          "address",
+          "city",
+          "state",
+          "pincode"
+        ],
+        "title": "CompanyDetails"
+      },
+      "CustomerDetails": {
+        "properties": {
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "address": {
+            "type": "string",
+            "title": "Address"
+          },
+          "city": {
+            "type": "string",
+            "title": "City"
+          },
+          "state": {
+            "type": "string",
+            "title": "State"
+          },
+          "pincode": {
+            "type": "string",
+            "title": "Pincode"
+          },
+          "phone": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Phone",
+            "default": ""
+          },
+          "email": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Email",
+            "default": ""
+          },
+          "gstin": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Gstin",
+            "default": ""
+          }
+        },
+        "type": "object",
+        "required": [
+          "name",
+          "address",
+          "city",
+          "state",
+          "pincode"
+        ],
+        "title": "CustomerDetails"
+      },
+      "EmailRequest": {
+        "properties": {
+          "invoice_id": {
+            "type": "string",
+            "title": "Invoice Id"
+          },
+          "to_email": {
+            "type": "string",
+            "format": "email",
+            "title": "To Email"
+          },
+          "to_name": {
+            "type": "string",
+            "title": "To Name",
+            "default": ""
+          },
+          "from_email": {
+            "type": "string",
+            "format": "email",
+            "title": "From Email"
+          },
+          "from_name": {
+            "type": "string",
+            "title": "From Name",
+            "default": ""
+          },
+          "subject": {
+            "type": "string",
+            "title": "Subject",
+            "default": ""
+          },
+          "message": {
+            "type": "string",
+            "title": "Message",
+            "default": ""
+          },
+          "smtp_host": {
+            "type": "string",
+            "title": "Smtp Host",
+            "default": "localhost"
+          },
+          "smtp_port": {
+            "type": "integer",
+            "title": "Smtp Port",
+            "default": 587
+          },
+          "smtp_user": {
+            "type": "string",
+            "title": "Smtp User",
+            "default": ""
+          },
+          "smtp_pass": {
+            "type": "string",
+            "title": "Smtp Pass",
+            "default": ""
+          },
+          "use_tls": {
+            "type": "boolean",
+            "title": "Use Tls",
+            "default": true
+          }
+        },
+        "type": "object",
+        "required": [
+          "invoice_id",
+          "to_email",
+          "from_email"
+        ],
+        "title": "EmailRequest"
+      },
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "type": "array",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
+      },
+      "InvoiceRequest": {
+        "properties": {
+          "company": {
+            "$ref": "#/components/schemas/CompanyDetails"
+          },
+          "customer": {
+            "$ref": "#/components/schemas/CustomerDetails"
+          },
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/LineItem"
+            },
+            "type": "array",
+            "title": "Items"
+          },
+          "invoice_number": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Invoice Number",
+            "default": ""
+          },
+          "invoice_date": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Invoice Date",
+            "default": ""
+          },
+          "due_date": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Due Date",
+            "default": ""
+          },
+          "payment_terms": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Payment Terms",
+            "default": "Due on Receipt"
+          },
+          "notes": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Notes",
+            "default": ""
+          },
+          "bank_name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Bank Name",
+            "default": ""
+          },
+          "account_number": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Account Number",
+            "default": ""
+          },
+          "ifsc_code": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Ifsc Code",
+            "default": ""
+          },
+          "upi_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Upi Id",
+            "default": ""
+          },
+          "is_igst": {
+            "type": "boolean",
+            "title": "Is Igst",
+            "default": false
+          }
+        },
+        "type": "object",
+        "required": [
+          "company",
+          "customer",
+          "items"
+        ],
+        "title": "InvoiceRequest"
+      },
+      "LineItem": {
+        "properties": {
+          "description": {
+            "type": "string",
+            "title": "Description"
+          },
+          "quantity": {
+            "type": "number",
+            "title": "Quantity",
+            "default": 1
+          },
+          "rate": {
+            "type": "number",
+            "title": "Rate"
+          },
+          "tax_percent": {
+            "type": "number",
+            "title": "Tax Percent",
+            "default": 0
+          }
+        },
+        "type": "object",
+        "required": [
+          "description",
+          "rate"
+        ],
+        "title": "LineItem"
+      },
+      "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Location"
+          },
+          "msg": {
+            "type": "string",
+            "title": "Message"
+          },
+          "type": {
+            "type": "string",
+            "title": "Error Type"
+          }
+        },
+        "type": "object",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError"
+      }
+    }
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "name": "trading-agents",
+  "version": "1.0.0",
+  "description": "基于 AgentScope 的多智能体股票诊断系统",
+  "author": "Gan Yu",
+  "environment_variables": {
+    "required": [
+      {
+        "name": "TUSHARE_TOKEN",
+        "description": "Tushare API Token，用于获取股票行情数据",
+        "type": "secret"
+      },
+      {
+        "name": "ALIYUN_BAILIAN_API_KEY",
+        "description": "阿里云百炼 API Key，用于调用大语言模型",
+        "type": "secret"
+      }
+    ]
+  },
+  "dependencies": [
+    "agentscope>=0.0.5",
+    "tushare>=1.2.89",
+    "akshare>=1.12.0",
+    "pandas>=2.0.0",
+    "numpy>=1.24.0",
+    "requests>=2.31.0",
+    "openai>=1.0.0",
+    "fpdf2>=2.8.0",
+    "python-dotenv"
+  ],
+  "python_version": ">=3.8"
+}

@@ -1,0 +1,9 @@
+{
+  "name": "title-replier",
+  "version": "1.0.0",
+  "description": "为助手回复添加随机不重复称号",
+  "main": "index.js",
+  "license": "MIT",
+  "keywords": ["openclaw", "skill", "title", "replier"],
+  "dependencies": {}
+}

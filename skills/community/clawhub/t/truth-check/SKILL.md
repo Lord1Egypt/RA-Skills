@@ -1,35 +1,70 @@
 ---
-name: "Truth Check"
-description: "真相核查与幻觉检测。在生成内容后检测并纠正可能的幻觉、编造或不准确信息。 触发条件：(1) 生成技术内容后 (2) 提供统计数据时 (3) 引用人物/事件时 (4) 生成代码示例后"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/truth-check"
-sourceUrl: "https://clawhub.ai/skills/truth-check"
+name: truth-check
+description: |
+  真相核查与幻觉检测。在生成内容后检测并纠正可能的幻觉、编造或不准确信息。
+  触发条件：(1) 生成技术内容后 (2) 提供统计数据时 (3) 引用人物/事件时 (4) 生成代码示例后
 ---
 
-# Truth Check
+# Fact-Check
 
-> 真相核查与幻觉检测。在生成内容后检测并纠正可能的幻觉、编造或不准确信息。 触发条件：(1) 生成技术内容后 (2) 提供统计数据时 (3) 引用人物/事件时 (4) 生成代码示例后
+## 核心原则
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/truth-check`
-- **Source URL:** [https://clawhub.ai/skills/truth-check](https://clawhub.ai/skills/truth-check)
+**验证结果 > 报告完成**
 
-## Overview
+22%的"完成"任务实际失败，需要独立验证。
 
+## 触发条件
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/truth-check
+以下情况应触发事实核查：
+
+1. 生成技术内容后
+2. 提供统计数据或数字
+3. 引用人物、事件、日期
+4. 生成代码示例后
+5. 完成外部操作后
+
+## 验证协议
+
+### 1. 结果验证 vs 动作验证
+
+| 类型 | 说明 | 例子 |
+|------|------|------|
+| 动作验证 | 确认操作执行 | "文件已创建" |
+| 结果验证 | 确认结果正确 | "文件内容正确" |
+
+**优先结果验证**
+
+### 2. 验证清单
+
 ```
+□ 事实陈述有来源吗？
+□ 数字/统计数据准确吗？
+□ 代码能运行吗？
+□ 引用的人物/事件存在吗？
+□ 逻辑自洽吗？
+```
+
+### 3. 置信度报告
+
+生成后添加验证标签：
+
+```
+VERIFIED: 已通过验证
+LIKELY: 可能有小问题
+UNCERTAIN: 需要用户确认
+```
+
+## 实践技巧
+
+1. **外部操作必须验证**: 文件/API/消息创建后确认存在
+2. **数字敏感**: 看到具体数字时质疑
+3. **代码测试**: 生成的代码先运行验证
+4. **引用验证**: 重要引用查找来源
+5. **沉默失败意识**: 22%失败率，验证成本低于失败成本
+
+## 验证流程
+
+1. 完成后停顿
+2. 检查关键声明
+3. 标记置信度
+4. 不确定时主动说明

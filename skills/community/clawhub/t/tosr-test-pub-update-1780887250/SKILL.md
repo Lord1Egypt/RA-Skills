@@ -1,35 +1,29 @@
----
-name: "TOSR Publish Then Update Test"
-description: "Automated test skill verifying skill creation, inspection, updating, and deletion via the clawhub REST API lifecycle."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/tosr-test-pub-update-1780887250"
-sourceUrl: "https://clawhub.ai/skills/tosr-test-pub-update-1780887250"
----
-
 # TOSR Publish Then Update Test
 
-> Automated test skill verifying skill creation, inspection, updating, and deletion via the clawhub REST API lifecycle.
+> TOSR Publish Then Update Test — version 0.2.0
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/tosr-test-pub-update-1780887250`
-- **Source URL:** [https://clawhub.ai/skills/tosr-test-pub-update-1780887250](https://clawhub.ai/skills/tosr-test-pub-update-1780887250)
+## Description
 
-## Overview
+This is an automated integration test skill (tosr-test-pub-update-1780887250) created by the TOSR project.
+The purpose is to verify the complete skill lifecycle through the clawhub REST API,
+including creation, version updates, and deletion.
 
+## Test Identifier
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/tosr-test-pub-update-1780887250
-```
+- Slug: tosr-test-pub-update-1780887250
+- Version: 0.2.0
+- Created: 2026-06-08T10:54:21+08:00
+
+## How It Works
+
+This skill validates the following operations against the real clawhub API:
+
+1. **Publish** — Creates a new skill via POST /api/v1/skills with multipart form data
+2. **Inspect** — Retrieves skill metadata via GET /api/v1/skills/{slug}
+3. **Update** — Publishes a new version of an existing skill
+4. **Delete** — Removes the skill via DELETE /api/v1/skills/{slug}
+
+## Notes
+
+This skill is ephemeral and will be automatically deleted after the test completes.
+If you see this skill listed on clawhub, it means a test run failed to clean up properly.

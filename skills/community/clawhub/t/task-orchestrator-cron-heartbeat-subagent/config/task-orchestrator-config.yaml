@@ -1,0 +1,331 @@
+# =============================================================================
+# Task Orchestrator Configuration
+# =============================================================================
+# 动态配置文件 - 定义管道、Agent 映射、阈值参数和业务规则
+# =============================================================================
+
+# ===========================================
+# 1. 管道配置 (Pipeline Config)
+# ===========================================
+pipelines:
+  # ---------------------------------------------------------------------------
+  # Simple Pipeline - 简单任务
+  # ---------------------------------------------------------------------------
+  simple:
+    name: "Simple Pipeline"
+    description: "适用于简单、低风险任务"
+    complexity_range: [1, 3]
+    
+    stages:
+      - id: "execute"
+        name: "Task Execution"
+        agent: "coder"
+        timeout: 120
+        retry: 1
+        
+      - id: "validate"
+        name: "Basic Validation"
+        type: "validation"
+        checks:
+          - "syntax_check"
+          - "format_check"
+        timeout: 30
+        
+      - id: "complete"
+        name: "Completion"
+        type: "finalize"
+        
+    on_complete:
+      - "notify_user"
+      - "log_metrics"
+
+  # ---------------------------------------------------------------------------
+  # Standard Pipeline - 一般任务
+  # ---------------------------------------------------------------------------
+  standard:
+    name: "Standard Pipeline"
+    description: "适用于中等复杂度任务"
+    complexity_range: [4, 6]
+    
+    stages:
+      - id: "analyze"
+        name: "Task Analysis"
+        agent: "coder"
+        timeout: 60
+        output:
+          - "task_breakdown"
+          - "complexity_score"
+          
+      - id: "execute"
+        name: "Main Execution"
+        agent_selection: "dynamic"
+        timeout: 300
+        retry: 2
+        
+      - id: "review"
+        name: "Code Review"
+        agent: "reviewer"
+        timeout: 180
+        review_mode: "standard"
+        
+      - id: "test"
+        name: "Testing"
+        agent: "tester"
+        timeout: 120
+        checks:
+          - "unit_tests"
+          - "integration_tests"
+          
+      - id: "validate"
+        name: "Validation"
+        type: "validation"
+        checks:
+          - "quality_gate"
+          - "security_scan"
+          
+      - id: "complete"
+        name: "Completion"
+        type: "finalize"
+        
+    on_complete:
+      - "notify_user"
+      - "log_metrics"
+      - "archive_artifacts"
+
+  # ---------------------------------------------------------------------------
+  # Complex Pipeline - 高风险/高复杂度任务
+  # ---------------------------------------------------------------------------
+  complex:
+    name: "Complex Pipeline"
+    description: "适用于高复杂度、高风险任务"
+    complexity_range: [7, 10]
+    
+    stages:
+      - id: "deep_analyze"
+        name: "Deep Analysis"
+        agent: "architect"
+        timeout: 120
+        output:
+          - "architecture_design"
+          - "risk_assessment"
+          - "implementation_plan"
+          
+      - id: "design_review"
+        name: "Design Review"
+        type: "review"
+        review_mode: "strict"
+        requires_approval: true
+        
+      - id: "execute"
+        name: "Main Execution"
+        agent_selection: "dynamic"
+        timeout: 600
+        retry: 3
+        
+      - id: "parallel_reviews"
+        name: "Parallel Reviews"
+        type: "parallel"
+        branches:
+          - id: "code_review"
+            name: "Code Quality Review"
+            agent: "reviewer"
+            timeout: 180
+            
+          - id: "security_review"
+            name: "Security Review"
+            agent: "reviewer"
+            timeout: 180
+            config:
+              focus: "security"
+              
+          - id: "performance_review"
+            name: "Performance Review"
+            agent: "reviewer"
+            timeout: 120
+            config:
+              focus: "performance"
+              
+      - id: "aggregate"
+        name: "Aggregate Reviews"
+        type: "aggregation"
+        inputs:
+          - "parallel_reviews.code_review"
+          - "parallel_reviews.security_review"
+          - "parallel_reviews.performance_review"
+          
+      - id: "test"
+        name: "Comprehensive Testing"
+        agent: "tester"
+        timeout: 300
+        checks:
+          - "unit_tests"
+          - "integration_tests"
+          - "e2e_tests"
+          - "performance_tests"
+          
+      - id: "validate"
+        name: "Full Validation"
+        type: "validation"
+        checks:
+          - "quality_gate"
+          - "security_scan"
+          - "performance_benchmark"
+          - "documentation_check"
+          
+      - id: "complete"
+        name: "Completion"
+        type: "finalize"
+        requires_approval: true
+        
+    on_complete:
+      - "notify_user"
+      - "log_metrics"
+      - "archive_artifacts"
+      - "generate_report"
+
+# ===========================================
+# 2. Agent 映射 (Agent Mapping)
+# ===========================================
+agent_mappings:
+  # 任务类型 → Agent 映射
+  task_types:
+    code: coder
+    research: researcher
+    document: docs_writer
+    test: tester
+    review: reviewer
+    architecture: architect
+    deployment: devops
+    retrospective: retrospective
+    scheduled_task: scheduler
+    analysis: analyst
+    
+  # 技能标签 → Agent 映射
+  skill_tags:
+    security: [critic, reviewer]
+    performance: [reviewer]
+    docs: [docs_writer]
+    data: [analyst, researcher]
+
+# ===========================================
+# 3. 阈值参数 (Thresholds)
+# ===========================================
+thresholds:
+  # 复杂度判断
+  complexity:
+    simple_max_steps: 1
+    normal_max_steps: 3
+    complex_min_steps: 4
+  
+  # 风险判断
+  risk:
+    low_cost_threshold: 10      # $10
+    medium_cost_threshold: 50  # $50
+    high_cost_threshold: 100    # $100
+  
+  # 防死循环
+  deadlock_prevention:
+    max_token_per_task: 100000
+    max_time_minutes: 30
+    max_retries: 2
+    progress_check_interval: 5  # 每 5 分钟检查一次进度
+    
+    # 任务类型系数
+    token_multipliers:
+      code: 1.0
+      research: 1.5
+      review: 0.8
+      test: 1.2
+    
+    # 时间系数
+    time_multipliers:
+      simple: 0.5    # 15 min
+      normal: 1.0    # 30 min
+      complex: 2.0   # 60 min
+  
+  # 审核汇总
+  review:
+    parallel_timeout: 10  # minutes
+    sequential_timeout: 30  # minutes
+
+# ===========================================
+# 4. 业务规则 (Business Rules)
+# ===========================================
+business_rules:
+  # 审核模式选择
+  review_modes:
+    # 并行审核适用场景
+    parallel:
+      - code + docs + test
+      - multiple_features
+      - research + analysis
+    
+    # 串联审核适用场景
+    sequential:
+      - architecture + implementation
+      - security + any
+      - design + code
+  
+  # 确认要求
+  confirm_requirements:
+    auto_execute: [LOW]
+    brief_confirm: [MEDIUM]
+    detailed_confirm: [HIGH]
+    explicit_authorization: [CRITICAL]
+  
+  # 审核汇总规则
+  summary_rules:
+    default_mode: majority  # majority | unanimous | veto
+    veto_allowed_roles: [critic]  # 可一票否决的角色
+    
+    # 汇总模式定义
+    modes:
+      majority:
+        threshold: 0.5  # >50%
+        applicable_to: [LOW, MEDIUM]
+      unanimous:
+        threshold: 1.0  # 100%
+        applicable_to: [HIGH]
+      veto:
+        threshold: "any_reject"
+        applicable_to: [CRITICAL, security]
+
+# ===========================================
+# 5. 心跳模式 (Heartbeat Modes)
+# ===========================================
+heartbeat_modes:
+  conservative:
+    default_interval: 45  # minutes
+    burst_interval: 10
+    best_for: "低噪音、成本敏感"
+  
+  balanced:
+    default_interval: 30
+    burst_interval: 5
+    best_for: "通用（默认）"
+  
+  aggressive:
+    default_interval: 15
+    burst_interval: 2
+    best_for: "高优先级事件窗口"
+
+# ===========================================
+# 6. 触发器策略 (Trigger Strategies)
+# ===========================================
+triggers:
+  time_based:
+    - interval: 30m
+      description: "定期 reassessment"
+  
+  event_based:
+    - event: "build_failed"
+      action: "notify"
+    - event: "urgent_inbox"
+      threshold: 1
+      action: "notify"
+  
+  conditional:
+    - condition: "next_calendar <= 30m"
+      action: "remind"
+    - condition: "unread_urgent >= 1"
+      action: "notify"

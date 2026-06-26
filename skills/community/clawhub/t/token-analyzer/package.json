@@ -1,0 +1,12 @@
+{
+  "name": "token-analyzer",
+  "version": "2.2.2",
+  "description": "基于官方 GMGN API 的代币分析工具，提供准确的市场数据、安全检测和 AI 评分",
+  "main": "scripts/token_query_v2.py",
+  "scripts": {
+    "query": "python3 scripts/token_query_v2.py"
+  },
+  "keywords": ["token", "analyzer", "crypto", "solana", "bsc", "base", "gmgn", "api"],
+  "author": "hanguang254",
+  "license": "MIT"
+}

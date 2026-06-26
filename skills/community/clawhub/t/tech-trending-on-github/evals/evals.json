@@ -1,0 +1,23 @@
+{
+  "skill_name": "github-trend-analyzer",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "今天GitHub有什么热门项目？帮我分析一下趋势",
+      "expected_output": "获取GitHub Trending数据，生成包含热门项目概览、创新项目分析和趋势建议的中文报告",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "Show me what's trending on GitHub today and analyze the tech trends",
+      "expected_output": "Fetch GitHub Trending data and generate an English report with trending projects overview, innovative projects analysis, and tech trend recommendations",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "最近开源社区有什么值得关注的新项目吗？特别是有创新性的",
+      "expected_output": "分析GitHub趋势，重点关注创新项目，给出项目介绍和技术价值分析",
+      "files": []
+    }
+  ]
+}

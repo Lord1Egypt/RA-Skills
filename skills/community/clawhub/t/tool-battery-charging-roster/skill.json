@@ -1,0 +1,46 @@
+{
+  "slug": "tool-battery-charging-roster",
+  "name": "Tool Battery Charging Roster",
+  "version": "1.0.1",
+  "language": "en",
+  "license": "MIT-0",
+  "type": "prompt-flow",
+  "description": "Create a practical charging roster for cordless tool batteries, chargers, labels, rotation status, storage locations, and basic fire-safe charging reminders without giving electrical repair guidance.",
+  "category": "Urgent Admin/Logistics",
+  "tags": [
+    "workshop",
+    "tools",
+    "battery-safety",
+    "charging",
+    "checklist"
+  ],
+  "trigger_keywords": [
+    "tool battery charging roster",
+    "cordless tool battery checklist",
+    "battery charging schedule",
+    "tool charger station",
+    "power tool battery rotation",
+    "workshop charging log",
+    "drill battery charging plan",
+    "garage battery roster"
+  ],
+  "use_cases": [
+    "Track cordless tool batteries by label, platform, status, and location.",
+    "Create a charger map and charging queue for a workshop or garage.",
+    "Add basic fire-safe charging reminders without repair instructions."
+  ],
+  "requires": {},
+  "requires_api": false,
+  "no_code_execution": true,
+  "hasExecutableCode": false,
+  "no_network": true,
+  "no_credentials": true,
+  "contentType": "document-only",
+  "project": "daily-50-skills-2026-05-08",
+  "safety_notes": [
+    "Organization and basic fire-safe charging reminders only; follow manufacturer instructions.",
+    "Do not provide electrical repair, live testing, battery rebuilding, wiring, soldering, plug modification, or charger modification guidance.",
+    "Use only compatible battery and charger combinations; hold unknown items for manual or manufacturer check.",
+    "Stop using batteries or chargers with swelling, leaks, smoke, burning smell, unusual heat, damaged casing, damaged cords, corrosion, or repeated error lights."
+  ]
+}

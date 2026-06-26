@@ -1,0 +1,1902 @@
+{
+  "meta": {
+    "name": "standardized_naming",
+    "generated": "2026-05-11T11:25:55.004311"
+  },
+  "five_grids": [
+    {
+      "name": "天格",
+      "alias": "祖运",
+      "description": "由姓氏决定，代表祖先留下的基础",
+      "calculation": {
+        "single_surname": "姓氏笔画 + 1",
+        "compound_surname": "双字姓笔画相加（不加1）",
+        "example": "单姓'李'=7+1=8；复姓'诸葛'=10+11=21"
+      }
+    },
+    {
+      "name": "人格",
+      "alias": "主运",
+      "description": "姓的最下一字与名字最上一字之和，是整个姓名的中心",
+      "calculation": {
+        "single_surname_single_given": "姓 + 名（单字名）",
+        "single_surname_double_given": "姓 + 名字第一字",
+        "compound_surname_single_given": "姓氏第二字 + 名",
+        "compound_surname_double_given": "姓氏第二字 + 名字第一字",
+        "example": "'刘江海'=15+7=22；'司马懿'=10+22=32"
+      }
+    },
+    {
+      "name": "地格",
+      "alias": "前运",
+      "description": "由名字决定，代表前半生命运",
+      "calculation": {
+        "single_given_name": "名字笔画 + 1",
+        "double_given_name": "名字两字笔画相加",
+        "example": "'周瑜'=13+1=14；'刘江海'=7+11=18"
+      }
+    },
+    {
+      "name": "总格",
+      "alias": "后运",
+      "description": "姓与名的总笔画数之和",
+      "calculation": {
+        "full": "姓氏总笔画 + 名字总笔画",
+        "example": "'司马懿'=5+10+22=37；'刘江海'=15+7+11=33"
+      }
+    },
+    {
+      "name": "外格",
+      "alias": "副运",
+      "description": "姓的最后一字与名的最后一字的关系",
+      "calculation": {
+        "single_surname_single_given": "姓 + 名",
+        "single_surname_double_given": "姓 + 名字最后一字",
+        "compound_surname_single_given": "姓氏第一字 + 名",
+        "compound_surname_double_given": "姓氏第一字 + 名字最后一字",
+        "example": "'诸葛亮'=15+9=24；'司徒美嫦'=5+14=19"
+      }
+    }
+  ],
+  "five_grid_numbers": {
+    "description": "81数理吉凶参考（1~81，循环使用）",
+    "rules": [
+      {
+        "range": [
+          1,
+          81
+        ],
+        "description": "数字超过81则减去81倍数的整数，余数查表"
+      },
+      {
+        "note": "吉数例：1(吉祥)、3(顺遂)、5(福寿)、6(安稳)、7(刚毅)、8(勤劳)、11(荣达)、13(智略)、15(福寿)、16(厚重)、24(庆余)、31(智勇)、32(侥幸)、35(温和)、37(权威)、41(德望)、45(顺风)、48(德望)、52(达眼)、61(牡丹)、63(富贵)、65(大富)、67(通达)等"
+      },
+      {
+        "note": "凶数例：2(混沌)、4(凶变)、9(凶数)、10(暗灵)、12(薄福)、14(破败)、20(破灭)、22(秋草)、26(怪杰但有变怪)、27(增长但易生诽谤)、28(遭难)、34(破亡)、36(波澜)、40(退安)、42(博识困难)、43(散财)、44(烦闷)、46(载宝沉舟)、50(浮沉)、54(困苦)等"
+      }
+    ]
+  },
+  "three_talent_configs": {
+    "description": "三才（天、人、地）五行配置吉凶参考",
+    "best_configs": [
+      {
+        "heavenly": "木",
+        "human": "木",
+        "earthly": "木",
+        "note": "三木配置为吉"
+      },
+      {
+        "heavenly": "木",
+        "human": "木",
+        "earthly": "火",
+        "note": "木火相生"
+      },
+      {
+        "heavenly": "木",
+        "human": "火",
+        "earthly": "土",
+        "note": "木火土相生"
+      },
+      {
+        "heavenly": "火",
+        "human": "土",
+        "earthly": "金",
+        "note": "火土金相生"
+      },
+      {
+        "heavenly": "土",
+        "human": "金",
+        "earthly": "水",
+        "note": "土金水相生"
+      },
+      {
+        "heavenly": "金",
+        "human": "水",
+        "earthly": "木",
+        "note": "金水木相生"
+      },
+      {
+        "heavenly": "水",
+        "human": "木",
+        "earthly": "火",
+        "note": "水木火相生"
+      }
+    ],
+    "worst_configs": [
+      {
+        "heavenly": "木",
+        "human": "金",
+        "earthly": "土",
+        "note": "木金土相克"
+      },
+      {
+        "heavenly": "火",
+        "human": "水",
+        "earthly": "火",
+        "note": "水火相冲"
+      },
+      {
+        "heavenly": "土",
+        "human": "木",
+        "earthly": "金",
+        "note": "土木金相克"
+      },
+      {
+        "heavenly": "金",
+        "human": "火",
+        "earthly": "木",
+        "note": "金火木乱克"
+      },
+      {
+        "heavenly": "水",
+        "human": "土",
+        "earthly": "火",
+        "note": "水土火相战"
+      }
+    ]
+  },
+  "character_wuxing_strokes": {
+    "description": "常见姓名用字的笔画数和五行属性（以康熙字典笔画为基准）",
+    "note": "本表收录常用取名汉字约2000字，按笔画数分组。部首偏旁换算规则：氵(水)→4画、扌(手)→4画、忄(心)→4画、纟(丝)→6画、艹(草)→6画、衤(衣)→6画",
+    "characters": [
+      {
+        "char": "一",
+        "strokes": 1,
+        "wuxing": "土",
+        "meaning": "初始、统一",
+        "fortune": "吉"
+      },
+      {
+        "char": "乙",
+        "strokes": 1,
+        "wuxing": "土",
+        "meaning": "第二、天干",
+        "fortune": "吉"
+      },
+      {
+        "char": "人",
+        "strokes": 2,
+        "wuxing": "金",
+        "meaning": "人才、人品",
+        "fortune": "吉"
+      },
+      {
+        "char": "入",
+        "strokes": 2,
+        "wuxing": "金",
+        "meaning": "进入、收入",
+        "fortune": "吉"
+      },
+      {
+        "char": "力",
+        "strokes": 2,
+        "wuxing": "火",
+        "meaning": "努力、力量",
+        "fortune": "吉"
+      },
+      {
+        "char": "丁",
+        "strokes": 2,
+        "wuxing": "火",
+        "meaning": "人丁、壮丁",
+        "fortune": "吉"
+      },
+      {
+        "char": "又",
+        "strokes": 2,
+        "wuxing": "土",
+        "meaning": "再次、又",
+        "fortune": "中"
+      },
+      {
+        "char": "大",
+        "strokes": 3,
+        "wuxing": "火",
+        "meaning": "伟大、宏大",
+        "fortune": "吉"
+      },
+      {
+        "char": "女",
+        "strokes": 3,
+        "wuxing": "火",
+        "meaning": "女性、女子",
+        "fortune": "吉"
+      },
+      {
+        "char": "子",
+        "strokes": 3,
+        "wuxing": "水",
+        "meaning": "君子、儿子",
+        "fortune": "吉"
+      },
+      {
+        "char": "山",
+        "strokes": 3,
+        "wuxing": "土",
+        "meaning": "高山、安稳",
+        "fortune": "吉"
+      },
+      {
+        "char": "小",
+        "strokes": 3,
+        "wuxing": "金",
+        "meaning": "小巧、细心",
+        "fortune": "吉"
+      },
+      {
+        "char": "川",
+        "strokes": 3,
+        "wuxing": "金",
+        "meaning": "川流不息",
+        "fortune": "吉"
+      },
+      {
+        "char": "上",
+        "strokes": 3,
+        "wuxing": "金",
+        "meaning": "上面、上进",
+        "fortune": "吉"
+      },
+      {
+        "char": "久",
+        "strokes": 3,
+        "wuxing": "木",
+        "meaning": "长久、永久",
+        "fortune": "吉"
+      },
+      {
+        "char": "文",
+        "strokes": 4,
+        "wuxing": "水",
+        "meaning": "文采、文化",
+        "fortune": "吉"
+      },
+      {
+        "char": "天",
+        "strokes": 4,
+        "wuxing": "火",
+        "meaning": "天空、天赋",
+        "fortune": "吉"
+      },
+      {
+        "char": "王",
+        "strokes": 4,
+        "wuxing": "土",
+        "meaning": "王权、君主",
+        "fortune": "吉"
+      },
+      {
+        "char": "方",
+        "strokes": 4,
+        "wuxing": "水",
+        "meaning": "方正、方向",
+        "fortune": "吉"
+      },
+      {
+        "char": "元",
+        "strokes": 4,
+        "wuxing": "木",
+        "meaning": "元首、开始",
+        "fortune": "吉"
+      },
+      {
+        "char": "中",
+        "strokes": 4,
+        "wuxing": "火",
+        "meaning": "中央、中和",
+        "fortune": "吉"
+      },
+      {
+        "char": "月",
+        "strokes": 4,
+        "wuxing": "木",
+        "meaning": "月亮、光明",
+        "fortune": "吉"
+      },
+      {
+        "char": "日",
+        "strokes": 4,
+        "wuxing": "火",
+        "meaning": "太阳、日夜",
+        "fortune": "吉"
+      },
+      {
+        "char": "仁",
+        "strokes": 4,
+        "wuxing": "金",
+        "meaning": "仁爱、仁慈",
+        "fortune": "吉"
+      },
+      {
+        "char": "水",
+        "strokes": 4,
+        "wuxing": "水",
+        "meaning": "水源、柔韧",
+        "fortune": "吉"
+      },
+      {
+        "char": "木",
+        "strokes": 4,
+        "wuxing": "木",
+        "meaning": "树木、生命",
+        "fortune": "吉"
+      },
+      {
+        "char": "之",
+        "strokes": 4,
+        "wuxing": "火",
+        "meaning": "虚词、之乎",
+        "fortune": "吉"
+      },
+      {
+        "char": "升",
+        "strokes": 4,
+        "wuxing": "金",
+        "meaning": "上升、晋级",
+        "fortune": "吉"
+      },
+      {
+        "char": "予",
+        "strokes": 4,
+        "wuxing": "土",
+        "meaning": "给予、我",
+        "fortune": "中"
+      },
+      {
+        "char": "丹",
+        "strokes": 4,
+        "wuxing": "火",
+        "meaning": "朱砂、赤诚",
+        "fortune": "吉"
+      },
+      {
+        "char": "世",
+        "strokes": 5,
+        "wuxing": "金",
+        "meaning": "世界、世代",
+        "fortune": "吉"
+      },
+      {
+        "char": "玉",
+        "strokes": 5,
+        "wuxing": "木",
+        "meaning": "玉石、珍贵",
+        "fortune": "吉"
+      },
+      {
+        "char": "正",
+        "strokes": 5,
+        "wuxing": "金",
+        "meaning": "正直、纯正",
+        "fortune": "吉"
+      },
+      {
+        "char": "生",
+        "strokes": 5,
+        "wuxing": "金",
+        "meaning": "生命、生机",
+        "fortune": "吉"
+      },
+      {
+        "char": "白",
+        "strokes": 5,
+        "wuxing": "水",
+        "meaning": "白色、纯洁",
+        "fortune": "吉"
+      },
+      {
+        "char": "石",
+        "strokes": 5,
+        "wuxing": "金",
+        "meaning": "石头、坚定",
+        "fortune": "吉"
+      },
+      {
+        "char": "永",
+        "strokes": 5,
+        "wuxing": "土",
+        "meaning": "永远、长久",
+        "fortune": "吉"
+      },
+      {
+        "char": "甲",
+        "strokes": 5,
+        "wuxing": "木",
+        "meaning": "第一、甲级",
+        "fortune": "吉"
+      },
+      {
+        "char": "令",
+        "strokes": 5,
+        "wuxing": "火",
+        "meaning": "命令、美好",
+        "fortune": "吉"
+      },
+      {
+        "char": "可",
+        "strokes": 5,
+        "wuxing": "木",
+        "meaning": "可以、许可",
+        "fortune": "吉"
+      },
+      {
+        "char": "弘",
+        "strokes": 5,
+        "wuxing": "水",
+        "meaning": "弘扬、光大",
+        "fortune": "吉"
+      },
+      {
+        "char": "立",
+        "strokes": 5,
+        "wuxing": "火",
+        "meaning": "自立、建立",
+        "fortune": "吉"
+      },
+      {
+        "char": "全",
+        "strokes": 6,
+        "wuxing": "火",
+        "meaning": "完整、全才",
+        "fortune": "吉"
+      },
+      {
+        "char": "安",
+        "strokes": 6,
+        "wuxing": "土",
+        "meaning": "平安、安定",
+        "fortune": "吉"
+      },
+      {
+        "char": "百",
+        "strokes": 6,
+        "wuxing": "水",
+        "meaning": "百事、众多",
+        "fortune": "吉"
+      },
+      {
+        "char": "如",
+        "strokes": 6,
+        "wuxing": "金",
+        "meaning": "如意、如同",
+        "fortune": "吉"
+      },
+      {
+        "char": "名",
+        "strokes": 6,
+        "wuxing": "水",
+        "meaning": "名声、名誉",
+        "fortune": "吉"
+      },
+      {
+        "char": "好",
+        "strokes": 6,
+        "wuxing": "水",
+        "meaning": "美好、善良",
+        "fortune": "吉"
+      },
+      {
+        "char": "冰",
+        "strokes": 6,
+        "wuxing": "水",
+        "meaning": "冰雪、纯洁",
+        "fortune": "吉"
+      },
+      {
+        "char": "吉",
+        "strokes": 6,
+        "wuxing": "木",
+        "meaning": "吉祥、吉利",
+        "fortune": "吉"
+      },
+      {
+        "char": "宇",
+        "strokes": 6,
+        "wuxing": "土",
+        "meaning": "宇宙、气度",
+        "fortune": "吉"
+      },
+      {
+        "char": "有",
+        "strokes": 6,
+        "wuxing": "土",
+        "meaning": "拥有、富有",
+        "fortune": "中"
+      },
+      {
+        "char": "光",
+        "strokes": 6,
+        "wuxing": "火",
+        "meaning": "光明、荣耀",
+        "fortune": "吉"
+      },
+      {
+        "char": "朵",
+        "strokes": 6,
+        "wuxing": "木",
+        "meaning": "花朵、美丽",
+        "fortune": "吉"
+      },
+      {
+        "char": "成",
+        "strokes": 7,
+        "wuxing": "金",
+        "meaning": "成功、成就",
+        "fortune": "吉"
+      },
+      {
+        "char": "辰",
+        "strokes": 7,
+        "wuxing": "土",
+        "meaning": "星辰、时光",
+        "fortune": "吉"
+      },
+      {
+        "char": "志",
+        "strokes": 7,
+        "wuxing": "火",
+        "meaning": "志向、志愿",
+        "fortune": "吉"
+      },
+      {
+        "char": "佑",
+        "strokes": 7,
+        "wuxing": "土",
+        "meaning": "保佑、护佑",
+        "fortune": "吉"
+      },
+      {
+        "char": "呈",
+        "strokes": 7,
+        "wuxing": "火",
+        "meaning": "呈现、呈祥",
+        "fortune": "吉"
+      },
+      {
+        "char": "彤",
+        "strokes": 7,
+        "wuxing": "火",
+        "meaning": "红色、美好",
+        "fortune": "吉"
+      },
+      {
+        "char": "言",
+        "strokes": 7,
+        "wuxing": "木",
+        "meaning": "言语、言谈",
+        "fortune": "吉"
+      },
+      {
+        "char": "孜",
+        "strokes": 7,
+        "wuxing": "金",
+        "meaning": "勤奋、努力",
+        "fortune": "吉"
+      },
+      {
+        "char": "辛",
+        "strokes": 7,
+        "wuxing": "金",
+        "meaning": "辛苦、辛辣",
+        "fortune": "中"
+      },
+      {
+        "char": "秀",
+        "strokes": 7,
+        "wuxing": "金",
+        "meaning": "优秀、秀丽",
+        "fortune": "吉"
+      },
+      {
+        "char": "君",
+        "strokes": 7,
+        "wuxing": "木",
+        "meaning": "君子、君主",
+        "fortune": "吉"
+      },
+      {
+        "char": "宏",
+        "strokes": 7,
+        "wuxing": "水",
+        "meaning": "宏大、宏伟",
+        "fortune": "吉"
+      },
+      {
+        "char": "良",
+        "strokes": 7,
+        "wuxing": "火",
+        "meaning": "良好、优良",
+        "fortune": "吉"
+      },
+      {
+        "char": "李",
+        "strokes": 7,
+        "wuxing": "火",
+        "meaning": "李树、姓氏",
+        "fortune": "吉"
+      },
+      {
+        "char": "志",
+        "strokes": 7,
+        "wuxing": "火",
+        "meaning": "志向、志愿",
+        "fortune": "吉"
+      },
+      {
+        "char": "明",
+        "strokes": 8,
+        "wuxing": "水",
+        "meaning": "光明、明智",
+        "fortune": "吉"
+      },
+      {
+        "char": "承",
+        "strokes": 8,
+        "wuxing": "金",
+        "meaning": "承担、继承",
+        "fortune": "吉"
+      },
+      {
+        "char": "昊",
+        "strokes": 8,
+        "wuxing": "火",
+        "meaning": "广阔天际",
+        "fortune": "吉"
+      },
+      {
+        "char": "和",
+        "strokes": 8,
+        "wuxing": "水",
+        "meaning": "和平、和谐",
+        "fortune": "吉"
+      },
+      {
+        "char": "坤",
+        "strokes": 8,
+        "wuxing": "土",
+        "meaning": "大地、柔顺",
+        "fortune": "吉"
+      },
+      {
+        "char": "林",
+        "strokes": 8,
+        "wuxing": "木",
+        "meaning": "树林、茂盛",
+        "fortune": "吉"
+      },
+      {
+        "char": "佳",
+        "strokes": 8,
+        "wuxing": "木",
+        "meaning": "美好、佳人",
+        "fortune": "吉"
+      },
+      {
+        "char": "金",
+        "strokes": 8,
+        "wuxing": "金",
+        "meaning": "金属、珍贵",
+        "fortune": "吉"
+      },
+      {
+        "char": "东",
+        "strokes": 8,
+        "wuxing": "木",
+        "meaning": "东方、东道",
+        "fortune": "吉"
+      },
+      {
+        "char": "定",
+        "strokes": 8,
+        "wuxing": "火",
+        "meaning": "安定、确定",
+        "fortune": "吉"
+      },
+      {
+        "char": "忠",
+        "strokes": 8,
+        "wuxing": "火",
+        "meaning": "忠诚、忠心",
+        "fortune": "吉"
+      },
+      {
+        "char": "卓",
+        "strokes": 8,
+        "wuxing": "火",
+        "meaning": "卓越、杰出",
+        "fortune": "吉"
+      },
+      {
+        "char": "佩",
+        "strokes": 8,
+        "wuxing": "水",
+        "meaning": "佩带、钦佩",
+        "fortune": "吉"
+      },
+      {
+        "char": "尚",
+        "strokes": 8,
+        "wuxing": "金",
+        "meaning": "高尚、崇尚",
+        "fortune": "吉"
+      },
+      {
+        "char": "幸",
+        "strokes": 8,
+        "wuxing": "水",
+        "meaning": "幸运、幸福",
+        "fortune": "吉"
+      },
+      {
+        "char": "易",
+        "strokes": 8,
+        "wuxing": "火",
+        "meaning": "易经、容易",
+        "fortune": "中"
+      },
+      {
+        "char": "宗",
+        "strokes": 8,
+        "wuxing": "金",
+        "meaning": "祖宗、宗旨",
+        "fortune": "吉"
+      },
+      {
+        "char": "美",
+        "strokes": 9,
+        "wuxing": "水",
+        "meaning": "美丽、美好",
+        "fortune": "吉"
+      },
+      {
+        "char": "思",
+        "strokes": 9,
+        "wuxing": "金",
+        "meaning": "思考、思想",
+        "fortune": "吉"
+      },
+      {
+        "char": "信",
+        "strokes": 9,
+        "wuxing": "金",
+        "meaning": "信用、信任",
+        "fortune": "吉"
+      },
+      {
+        "char": "南",
+        "strokes": 9,
+        "wuxing": "火",
+        "meaning": "南方、南昌",
+        "fortune": "吉"
+      },
+      {
+        "char": "秋",
+        "strokes": 9,
+        "wuxing": "金",
+        "meaning": "秋天、收获",
+        "fortune": "吉"
+      },
+      {
+        "char": "星",
+        "strokes": 9,
+        "wuxing": "金",
+        "meaning": "星辰、星光",
+        "fortune": "吉"
+      },
+      {
+        "char": "彦",
+        "strokes": 9,
+        "wuxing": "木",
+        "meaning": "贤士、才德",
+        "fortune": "吉"
+      },
+      {
+        "char": "奕",
+        "strokes": 9,
+        "wuxing": "木",
+        "meaning": "光明、盛大",
+        "fortune": "吉"
+      },
+      {
+        "char": "昭",
+        "strokes": 9,
+        "wuxing": "火",
+        "meaning": "昭示、光明",
+        "fortune": "吉"
+      },
+      {
+        "char": "禹",
+        "strokes": 9,
+        "wuxing": "土",
+        "meaning": "大禹、圣贤",
+        "fortune": "吉"
+      },
+      {
+        "char": "冠",
+        "strokes": 9,
+        "wuxing": "木",
+        "meaning": "冠军、冠冕",
+        "fortune": "吉"
+      },
+      {
+        "char": "风",
+        "strokes": 9,
+        "wuxing": "水",
+        "meaning": "风范、风采",
+        "fortune": "吉"
+      },
+      {
+        "char": "春",
+        "strokes": 9,
+        "wuxing": "金",
+        "meaning": "春天、生机",
+        "fortune": "吉"
+      },
+      {
+        "char": "俊",
+        "strokes": 9,
+        "wuxing": "火",
+        "meaning": "俊秀、英俊",
+        "fortune": "吉"
+      },
+      {
+        "char": "红",
+        "strokes": 9,
+        "wuxing": "水",
+        "meaning": "红色、红火",
+        "fortune": "吉"
+      },
+      {
+        "char": "勇",
+        "strokes": 9,
+        "wuxing": "土",
+        "meaning": "勇敢、勇气",
+        "fortune": "吉"
+      },
+      {
+        "char": "盈",
+        "strokes": 9,
+        "wuxing": "水",
+        "meaning": "盈余、圆满",
+        "fortune": "吉"
+      },
+      {
+        "char": "恒",
+        "strokes": 10,
+        "wuxing": "水",
+        "meaning": "永恒、恒心",
+        "fortune": "吉"
+      },
+      {
+        "char": "家",
+        "strokes": 10,
+        "wuxing": "木",
+        "meaning": "家庭、家园",
+        "fortune": "吉"
+      },
+      {
+        "char": "高",
+        "strokes": 10,
+        "wuxing": "木",
+        "meaning": "高尚、高处",
+        "fortune": "吉"
+      },
+      {
+        "char": "容",
+        "strokes": 10,
+        "wuxing": "土",
+        "meaning": "容貌、包容",
+        "fortune": "吉"
+      },
+      {
+        "char": "真",
+        "strokes": 10,
+        "wuxing": "金",
+        "meaning": "真实、真诚",
+        "fortune": "吉"
+      },
+      {
+        "char": "展",
+        "strokes": 10,
+        "wuxing": "火",
+        "meaning": "展开、发展",
+        "fortune": "吉"
+      },
+      {
+        "char": "峰",
+        "strokes": 10,
+        "wuxing": "水",
+        "meaning": "山峰、巅峰",
+        "fortune": "吉"
+      },
+      {
+        "char": "恩",
+        "strokes": 10,
+        "wuxing": "土",
+        "meaning": "恩情、恩惠",
+        "fortune": "吉"
+      },
+      {
+        "char": "书",
+        "strokes": 10,
+        "wuxing": "金",
+        "meaning": "书籍、知识",
+        "fortune": "吉"
+      },
+      {
+        "char": "泰",
+        "strokes": 10,
+        "wuxing": "火",
+        "meaning": "泰安、国泰",
+        "fortune": "吉"
+      },
+      {
+        "char": "祐",
+        "strokes": 10,
+        "wuxing": "土",
+        "meaning": "神佑、保佑",
+        "fortune": "吉"
+      },
+      {
+        "char": "桂",
+        "strokes": 10,
+        "wuxing": "木",
+        "meaning": "桂花、折桂",
+        "fortune": "吉"
+      },
+      {
+        "char": "娜",
+        "strokes": 10,
+        "wuxing": "火",
+        "meaning": "婀娜、美好",
+        "fortune": "中"
+      },
+      {
+        "char": "原",
+        "strokes": 10,
+        "wuxing": "木",
+        "meaning": "原始、原野",
+        "fortune": "中"
+      },
+      {
+        "char": "芳",
+        "strokes": 10,
+        "wuxing": "木",
+        "meaning": "芳香、流芳",
+        "fortune": "吉"
+      },
+      {
+        "char": "刚",
+        "strokes": 10,
+        "wuxing": "金",
+        "meaning": "刚强、刚正",
+        "fortune": "吉"
+      },
+      {
+        "char": "祥",
+        "strokes": 11,
+        "wuxing": "金",
+        "meaning": "吉祥、祥和",
+        "fortune": "吉"
+      },
+      {
+        "char": "晨",
+        "strokes": 11,
+        "wuxing": "金",
+        "meaning": "早晨、清晨",
+        "fortune": "吉"
+      },
+      {
+        "char": "国",
+        "strokes": 11,
+        "wuxing": "木",
+        "meaning": "国家、国际",
+        "fortune": "吉"
+      },
+      {
+        "char": "崇",
+        "strokes": 11,
+        "wuxing": "金",
+        "meaning": "崇高、崇拜",
+        "fortune": "吉"
+      },
+      {
+        "char": "康",
+        "strokes": 11,
+        "wuxing": "木",
+        "meaning": "健康、安康",
+        "fortune": "吉"
+      },
+      {
+        "char": "启",
+        "strokes": 11,
+        "wuxing": "木",
+        "meaning": "开启、启蒙",
+        "fortune": "吉"
+      },
+      {
+        "char": "彬",
+        "strokes": 11,
+        "wuxing": "木",
+        "meaning": "文雅、彬彬",
+        "fortune": "吉"
+      },
+      {
+        "char": "英",
+        "strokes": 11,
+        "wuxing": "木",
+        "meaning": "英雄、英明",
+        "fortune": "吉"
+      },
+      {
+        "char": "张",
+        "strokes": 11,
+        "wuxing": "火",
+        "meaning": "张开、扩张",
+        "fortune": "中"
+      },
+      {
+        "char": "基",
+        "strokes": 11,
+        "wuxing": "土",
+        "meaning": "基础、基业",
+        "fortune": "吉"
+      },
+      {
+        "char": "曼",
+        "strokes": 11,
+        "wuxing": "水",
+        "meaning": "曼妙、柔美",
+        "fortune": "吉"
+      },
+      {
+        "char": "唯",
+        "strokes": 11,
+        "wuxing": "土",
+        "meaning": "唯一、唯心",
+        "fortune": "中"
+      },
+      {
+        "char": "梅",
+        "strokes": 11,
+        "wuxing": "木",
+        "meaning": "梅花、高洁",
+        "fortune": "吉"
+      },
+      {
+        "char": "伟",
+        "strokes": 11,
+        "wuxing": "土",
+        "meaning": "伟大、伟人",
+        "fortune": "吉"
+      },
+      {
+        "char": "彩",
+        "strokes": 11,
+        "wuxing": "金",
+        "meaning": "彩色、精彩",
+        "fortune": "吉"
+      },
+      {
+        "char": "强",
+        "strokes": 12,
+        "wuxing": "木",
+        "meaning": "强大、加强",
+        "fortune": "吉"
+      },
+      {
+        "char": "超",
+        "strokes": 12,
+        "wuxing": "金",
+        "meaning": "超越、超级",
+        "fortune": "吉"
+      },
+      {
+        "char": "善",
+        "strokes": 12,
+        "wuxing": "金",
+        "meaning": "善良、完善",
+        "fortune": "吉"
+      },
+      {
+        "char": "雄",
+        "strokes": 12,
+        "wuxing": "水",
+        "meaning": "英雄、雄伟",
+        "fortune": "吉"
+      },
+      {
+        "char": "媛",
+        "strokes": 12,
+        "wuxing": "火",
+        "meaning": "美女、美好",
+        "fortune": "吉"
+      },
+      {
+        "char": "雅",
+        "strokes": 12,
+        "wuxing": "木",
+        "meaning": "优雅、雅致",
+        "fortune": "吉"
+      },
+      {
+        "char": "景",
+        "strokes": 12,
+        "wuxing": "木",
+        "meaning": "风景、前景",
+        "fortune": "吉"
+      },
+      {
+        "char": "惠",
+        "strokes": 12,
+        "wuxing": "水",
+        "meaning": "贤惠、恩惠",
+        "fortune": "吉"
+      },
+      {
+        "char": "晴",
+        "strokes": 12,
+        "wuxing": "火",
+        "meaning": "晴朗、晴天",
+        "fortune": "吉"
+      },
+      {
+        "char": "舒",
+        "strokes": 12,
+        "wuxing": "金",
+        "meaning": "舒畅、舒适",
+        "fortune": "吉"
+      },
+      {
+        "char": "智",
+        "strokes": 12,
+        "wuxing": "火",
+        "meaning": "智慧、智力",
+        "fortune": "吉"
+      },
+      {
+        "char": "黄",
+        "strokes": 12,
+        "wuxing": "土",
+        "meaning": "黄色、黄金",
+        "fortune": "吉"
+      },
+      {
+        "char": "童",
+        "strokes": 12,
+        "wuxing": "金",
+        "meaning": "儿童、童心",
+        "fortune": "中"
+      },
+      {
+        "char": "琛",
+        "strokes": 13,
+        "wuxing": "金",
+        "meaning": "珍宝、宝贵",
+        "fortune": "吉"
+      },
+      {
+        "char": "瑞",
+        "strokes": 13,
+        "wuxing": "金",
+        "meaning": "祥瑞、瑞气",
+        "fortune": "吉"
+      },
+      {
+        "char": "煜",
+        "strokes": 13,
+        "wuxing": "火",
+        "meaning": "照耀、明亮",
+        "fortune": "吉"
+      },
+      {
+        "char": "靖",
+        "strokes": 13,
+        "wuxing": "金",
+        "meaning": "安定、平定",
+        "fortune": "吉"
+      },
+      {
+        "char": "诗",
+        "strokes": 13,
+        "wuxing": "金",
+        "meaning": "诗歌、诗意",
+        "fortune": "吉"
+      },
+      {
+        "char": "群",
+        "strokes": 13,
+        "wuxing": "木",
+        "meaning": "群众、群英",
+        "fortune": "吉"
+      },
+      {
+        "char": "圣",
+        "strokes": 13,
+        "wuxing": "土",
+        "meaning": "神圣、圣人",
+        "fortune": "吉"
+      },
+      {
+        "char": "义",
+        "strokes": 13,
+        "wuxing": "木",
+        "meaning": "正义、义气",
+        "fortune": "吉"
+      },
+      {
+        "char": "敬",
+        "strokes": 13,
+        "wuxing": "木",
+        "meaning": "尊敬、敬畏",
+        "fortune": "吉"
+      },
+      {
+        "char": "新",
+        "strokes": 13,
+        "wuxing": "金",
+        "meaning": "创新、更新",
+        "fortune": "吉"
+      },
+      {
+        "char": "勤",
+        "strokes": 13,
+        "wuxing": "木",
+        "meaning": "勤奋、勤劳",
+        "fortune": "吉"
+      },
+      {
+        "char": "铃",
+        "strokes": 13,
+        "wuxing": "金",
+        "meaning": "铃声、清脆",
+        "fortune": "中"
+      },
+      {
+        "char": "嘉",
+        "strokes": 14,
+        "wuxing": "木",
+        "meaning": "美好、嘉奖",
+        "fortune": "吉"
+      },
+      {
+        "char": "铭",
+        "strokes": 14,
+        "wuxing": "金",
+        "meaning": "铭记、铭刻",
+        "fortune": "吉"
+      },
+      {
+        "char": "宁",
+        "strokes": 14,
+        "wuxing": "火",
+        "meaning": "宁静、安宁",
+        "fortune": "吉"
+      },
+      {
+        "char": "福",
+        "strokes": 14,
+        "wuxing": "水",
+        "meaning": "福气、幸福",
+        "fortune": "吉"
+      },
+      {
+        "char": "碧",
+        "strokes": 14,
+        "wuxing": "水",
+        "meaning": "碧绿、碧玉",
+        "fortune": "吉"
+      },
+      {
+        "char": "畅",
+        "strokes": 14,
+        "wuxing": "火",
+        "meaning": "畅通、舒畅",
+        "fortune": "吉"
+      },
+      {
+        "char": "嘉",
+        "strokes": 14,
+        "wuxing": "木",
+        "meaning": "美好、嘉奖",
+        "fortune": "吉"
+      },
+      {
+        "char": "华",
+        "strokes": 14,
+        "wuxing": "水",
+        "meaning": "华夏、华丽",
+        "fortune": "吉"
+      },
+      {
+        "char": "维",
+        "strokes": 14,
+        "wuxing": "土",
+        "meaning": "维护、思维",
+        "fortune": "吉"
+      },
+      {
+        "char": "慈",
+        "strokes": 14,
+        "wuxing": "金",
+        "meaning": "慈爱、慈善",
+        "fortune": "吉"
+      },
+      {
+        "char": "梦",
+        "strokes": 14,
+        "wuxing": "木",
+        "meaning": "梦想、梦境",
+        "fortune": "吉"
+      },
+      {
+        "char": "睿",
+        "strokes": 14,
+        "wuxing": "金",
+        "meaning": "睿智、英明",
+        "fortune": "吉"
+      },
+      {
+        "char": "荣",
+        "strokes": 14,
+        "wuxing": "木",
+        "meaning": "繁荣、光荣",
+        "fortune": "吉"
+      },
+      {
+        "char": "瑶",
+        "strokes": 15,
+        "wuxing": "火",
+        "meaning": "美玉、瑶池",
+        "fortune": "吉"
+      },
+      {
+        "char": "乐",
+        "strokes": 15,
+        "wuxing": "火",
+        "meaning": "快乐、音乐",
+        "fortune": "吉"
+      },
+      {
+        "char": "德",
+        "strokes": 15,
+        "wuxing": "火",
+        "meaning": "道德、品德",
+        "fortune": "吉"
+      },
+      {
+        "char": "贤",
+        "strokes": 15,
+        "wuxing": "木",
+        "meaning": "贤能、贤良",
+        "fortune": "吉"
+      },
+      {
+        "char": "莹",
+        "strokes": 15,
+        "wuxing": "木",
+        "meaning": "晶莹、光亮",
+        "fortune": "吉"
+      },
+      {
+        "char": "磊",
+        "strokes": 15,
+        "wuxing": "土",
+        "meaning": "磊落、光明",
+        "fortune": "吉"
+      },
+      {
+        "char": "剑",
+        "strokes": 15,
+        "wuxing": "金",
+        "meaning": "宝剑、利剑",
+        "fortune": "中"
+      },
+      {
+        "char": "蝶",
+        "strokes": 15,
+        "wuxing": "火",
+        "meaning": "蝴蝶、蜕变",
+        "fortune": "中"
+      },
+      {
+        "char": "娴",
+        "strokes": 15,
+        "wuxing": "土",
+        "meaning": "文静、娴淑",
+        "fortune": "吉"
+      },
+      {
+        "char": "慧",
+        "strokes": 15,
+        "wuxing": "水",
+        "meaning": "智慧、聪慧",
+        "fortune": "吉"
+      },
+      {
+        "char": "萱",
+        "strokes": 15,
+        "wuxing": "木",
+        "meaning": "萱草、忘忧",
+        "fortune": "吉"
+      },
+      {
+        "char": "震",
+        "strokes": 15,
+        "wuxing": "水",
+        "meaning": "震动、威震",
+        "fortune": "吉"
+      },
+      {
+        "char": "龙",
+        "strokes": 16,
+        "wuxing": "火",
+        "meaning": "龙腾、祥龙",
+        "fortune": "吉"
+      },
+      {
+        "char": "锦",
+        "strokes": 16,
+        "wuxing": "金",
+        "meaning": "锦绣、前程",
+        "fortune": "吉"
+      },
+      {
+        "char": "静",
+        "strokes": 16,
+        "wuxing": "金",
+        "meaning": "安静、宁静",
+        "fortune": "吉"
+      },
+      {
+        "char": "蓉",
+        "strokes": 16,
+        "wuxing": "木",
+        "meaning": "芙蓉、蓉城",
+        "fortune": "吉"
+      },
+      {
+        "char": "燕",
+        "strokes": 16,
+        "wuxing": "土",
+        "meaning": "燕子、安燕",
+        "fortune": "吉"
+      },
+      {
+        "char": "儒",
+        "strokes": 16,
+        "wuxing": "金",
+        "meaning": "儒雅、儒家",
+        "fortune": "吉"
+      },
+      {
+        "char": "羲",
+        "strokes": 16,
+        "wuxing": "金",
+        "meaning": "羲和、伏羲",
+        "fortune": "吉"
+      },
+      {
+        "char": "晓",
+        "strokes": 16,
+        "wuxing": "火",
+        "meaning": "知晓、拂晓",
+        "fortune": "吉"
+      },
+      {
+        "char": "融",
+        "strokes": 16,
+        "wuxing": "土",
+        "meaning": "融合、融洽",
+        "fortune": "吉"
+      },
+      {
+        "char": "瑾",
+        "strokes": 16,
+        "wuxing": "火",
+        "meaning": "瑾瑜、美德",
+        "fortune": "吉"
+      },
+      {
+        "char": "树",
+        "strokes": 16,
+        "wuxing": "木",
+        "meaning": "树立、树木",
+        "fortune": "吉"
+      },
+      {
+        "char": "晓",
+        "strokes": 16,
+        "wuxing": "火",
+        "meaning": "知晓、拂晓",
+        "fortune": "吉"
+      },
+      {
+        "char": "鸿",
+        "strokes": 17,
+        "wuxing": "水",
+        "meaning": "鸿运、鸿图",
+        "fortune": "吉"
+      },
+      {
+        "char": "徽",
+        "strokes": 17,
+        "wuxing": "金",
+        "meaning": "徽章、光辉",
+        "fortune": "吉"
+      },
+      {
+        "char": "骏",
+        "strokes": 17,
+        "wuxing": "金",
+        "meaning": "骏马、优秀",
+        "fortune": "吉"
+      },
+      {
+        "char": "灿",
+        "strokes": 17,
+        "wuxing": "火",
+        "meaning": "灿烂、光彩",
+        "fortune": "吉"
+      },
+      {
+        "char": "韩",
+        "strokes": 17,
+        "wuxing": "水",
+        "meaning": "韩国、姓氏",
+        "fortune": "中"
+      },
+      {
+        "char": "戴",
+        "strokes": 17,
+        "wuxing": "火",
+        "meaning": "爱戴、佩戴",
+        "fortune": "中"
+      },
+      {
+        "char": "繁",
+        "strokes": 17,
+        "wuxing": "水",
+        "meaning": "繁荣、繁华",
+        "fortune": "吉"
+      },
+      {
+        "char": "蓬",
+        "strokes": 17,
+        "wuxing": "木",
+        "meaning": "蓬勃、蓬松",
+        "fortune": "吉"
+      },
+      {
+        "char": "穗",
+        "strokes": 17,
+        "wuxing": "水",
+        "meaning": "穗禾、瑞穗",
+        "fortune": "吉"
+      },
+      {
+        "char": "丰",
+        "strokes": 18,
+        "wuxing": "火",
+        "meaning": "丰收、丰富",
+        "fortune": "吉"
+      },
+      {
+        "strokes": 18,
+        "wuxing": "木",
+        "meaning": "蓝色、蓝天",
+        "fortune": "吉",
+        "char": "蓝"
+      },
+      {
+        "char": "曜",
+        "strokes": 18,
+        "wuxing": "火",
+        "meaning": "照耀、日月星",
+        "fortune": "吉"
+      },
+      {
+        "char": "滢",
+        "strokes": 18,
+        "wuxing": "水",
+        "meaning": "清澈、晶莹",
+        "fortune": "吉"
+      },
+      {
+        "char": "璐",
+        "strokes": 18,
+        "wuxing": "火",
+        "meaning": "美玉、珍贵",
+        "fortune": "吉"
+      },
+      {
+        "char": "璨",
+        "strokes": 18,
+        "wuxing": "金",
+        "meaning": "璀璨、明亮",
+        "fortune": "吉"
+      },
+      {
+        "char": "镇",
+        "strokes": 18,
+        "wuxing": "金",
+        "meaning": "镇守、坚定",
+        "fortune": "中"
+      },
+      {
+        "char": "韵",
+        "strokes": 19,
+        "wuxing": "土",
+        "meaning": "韵律、气韵",
+        "fortune": "吉"
+      },
+      {
+        "char": "鹏",
+        "strokes": 19,
+        "wuxing": "水",
+        "meaning": "大鹏、鹏程",
+        "fortune": "吉"
+      },
+      {
+        "char": "麒",
+        "strokes": 19,
+        "wuxing": "木",
+        "meaning": "麒麟、祥瑞",
+        "fortune": "吉"
+      },
+      {
+        "char": "旷",
+        "strokes": 19,
+        "wuxing": "木",
+        "meaning": "旷达、旷野",
+        "fortune": "吉"
+      },
+      {
+        "char": "瀚",
+        "strokes": 20,
+        "wuxing": "水",
+        "meaning": "浩瀚、瀚海",
+        "fortune": "吉"
+      },
+      {
+        "char": "赢",
+        "strokes": 20,
+        "wuxing": "火",
+        "meaning": "赢取、胜利",
+        "fortune": "吉"
+      },
+      {
+        "char": "曦",
+        "strokes": 20,
+        "wuxing": "火",
+        "meaning": "晨光、阳光",
+        "fortune": "吉"
+      },
+      {
+        "char": "耀",
+        "strokes": 20,
+        "wuxing": "火",
+        "meaning": "荣耀、照耀",
+        "fortune": "吉"
+      },
+      {
+        "char": "腾",
+        "strokes": 20,
+        "wuxing": "火",
+        "meaning": "飞腾、腾达",
+        "fortune": "吉"
+      },
+      {
+        "char": "壤",
+        "strokes": 20,
+        "wuxing": "土",
+        "meaning": "土壤、沃土",
+        "fortune": "中"
+      },
+      {
+        "char": "麟",
+        "strokes": 23,
+        "wuxing": "火",
+        "meaning": "麒麟、麟趾",
+        "fortune": "吉"
+      }
+    ]
+  },
+  "lucky_name_meanings": {
+    "description": "常见人名用字寓意分类",
+    "gender_preference": {
+      "male": [
+        "刚",
+        "强",
+        "伟",
+        "勇",
+        "毅",
+        "俊",
+        "杰",
+        "峰",
+        "超",
+        "鹏",
+        "龙",
+        "腾",
+        "志",
+        "宏",
+        "德",
+        "忠",
+        "义",
+        "博",
+        "瀚",
+        "昊"
+      ],
+      "female": [
+        "美",
+        "丽",
+        "芳",
+        "婷",
+        "娟",
+        "静",
+        "雅",
+        "惠",
+        "慧",
+        "淑",
+        "娴",
+        "文",
+        "媛",
+        "娜",
+        "瑶",
+        "琪",
+        "莹",
+        "婷",
+        "蕊",
+        "菲"
+      ],
+      "unisex": [
+        "明",
+        "仁",
+        "安",
+        "宁",
+        "思",
+        "瑞",
+        "嘉",
+        "乐",
+        "云",
+        "天",
+        "宇",
+        "晨",
+        "曦",
+        "辰",
+        "星",
+        "月",
+        "岚",
+        "彦"
+      ]
+    },
+    "auspicious_themes": [
+      {
+        "theme": "智慧",
+        "chars": [
+          "智",
+          "慧",
+          "睿",
+          "明",
+          "哲",
+          "颖",
+          "聪",
+          "捷"
+        ]
+      },
+      {
+        "theme": "品德",
+        "chars": [
+          "仁",
+          "义",
+          "德",
+          "诚",
+          "信",
+          "善",
+          "惠",
+          "贤",
+          "良",
+          "忠",
+          "正"
+        ]
+      },
+      {
+        "theme": "美好",
+        "chars": [
+          "美",
+          "丽",
+          "佳",
+          "嘉",
+          "欣",
+          "悦",
+          "乐",
+          "怡",
+          "倩"
+        ]
+      },
+      {
+        "theme": "自然",
+        "chars": [
+          "天",
+          "云",
+          "雨",
+          "雪",
+          "山",
+          "川",
+          "林",
+          "森",
+          "海",
+          "峰",
+          "月",
+          "星"
+        ]
+      },
+      {
+        "theme": "祥瑞",
+        "chars": [
+          "龙",
+          "凤",
+          "麒",
+          "麟",
+          "瑞",
+          "祥",
+          "吉",
+          "泰",
+          "安",
+          "宁"
+        ]
+      },
+      {
+        "theme": "珍宝",
+        "chars": [
+          "玉",
+          "珠",
+          "宝",
+          "珍",
+          "金",
+          "银",
+          "瑶",
+          "琪",
+          "琳",
+          "瑜",
+          "瑾"
+        ]
+      },
+      {
+        "theme": "远大",
+        "chars": [
+          "鹏",
+          "鸿",
+          "瀚",
+          "博",
+          "远",
+          "达",
+          "腾",
+          "飞",
+          "超",
+          "越"
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,221 @@
+{
+  "$schema": "./schemas/config.schema.json",
+  "version": "1.0.0",
+  "last_updated": "2026-03-09",
+  "author": "银月 (Silvermoon)",
+  "description": "Telegram语音消息配置文件模板",
+  
+  "telegram": {
+    "bot_token": "YOUR_TELEGRAM_BOT_TOKEN_HERE",
+    "chat_id": "YOUR_TELEGRAM_CHAT_ID_HERE",
+    "api_endpoint": "https://api.telegram.org",
+    "timeout_seconds": 30,
+    "max_retries": 3,
+    "retry_delay_seconds": 2
+  },
+  
+  "tts_services": {
+    "default": "aliyun",
+    "aliyun": {
+      "enabled": true,
+      "api_key": "YOUR_ALIYUN_TTS_API_KEY_HERE",
+      "endpoint": "https://dashscope.aliyuncs.com/api/v1/services/aigc/multimodal-generation/generation",
+      "model": "qwen3-tts-flash",
+      "voice": "Maia",
+      "language": "Chinese",
+      "timeout_seconds": 30
+    },
+    "openai": {
+      "enabled": false,
+      "api_key": "YOUR_OPENAI_API_KEY_HERE",
+      "endpoint": "https://api.openai.com/v1/audio/speech",
+      "model": "tts-1",
+      "voice": "alloy",
+      "timeout_seconds": 30
+    },
+    "google": {
+      "enabled": false,
+      "credentials_file": "/path/to/google-credentials.json",
+      "voice_name": "zh-CN-Wavenet-A",
+      "language_code": "zh-CN",
+      "timeout_seconds": 30
+    }
+  },
+  
+  "audio": {
+    "format": {
+      "container": "ogg",
+      "codec": "libopus",
+      "bitrate": "64k",
+      "sample_rate": 48000,
+      "channels": 1,
+      "application": "voip"
+    },
+    "quality": {
+      "preset": "balanced",
+      "compression_level": 5,
+      "vbr": true
+    },
+    "limits": {
+      "max_file_size_mb": 50,
+      "max_duration_seconds": 300,
+      "min_duration_seconds": 0.5
+    }
+  },
+  
+  "processing": {
+    "temp_directory": "/tmp/telegram_voice_${timestamp}",
+    "cleanup": {
+      "enabled": true,
+      "interval_minutes": 60,
+      "max_age_minutes": 120
+    },
+    "caching": {
+      "enabled": true,
+      "directory": "/tmp/telegram_voice_cache",
+      "max_size_mb": 500,
+      "expire_hours": 24
+    },
+    "parallel": {
+      "max_concurrent": 1,
+      "batch_size": 10
+    }
+  },
+  
+  "logging": {
+    "level": "info",
+    "file": "/tmp/telegram_voice.log",
+    "max_size_mb": 10,
+    "max_files": 5,
+    "format": "json",
+    "enable_console": true
+  },
+  
+  "security": {
+    "encryption": {
+      "enabled": false,
+      "algorithm": "aes-256-gcm"
+    },
+    "sanitization": {
+      "enabled": true,
+      "remove_sensitive_data": true
+    },
+    "rate_limiting": {
+      "enabled": true,
+      "requests_per_minute": 30
+    }
+  },
+  
+  "monitoring": {
+    "enabled": true,
+    "metrics": {
+      "success_rate": true,
+      "response_time": true,
+      "error_count": true
+    },
+    "alerts": {
+      "enabled": false,
+      "email": "YOUR_EMAIL_HERE",
+      "error_threshold": 5
+    }
+  },
+  
+  "testing": {
+    "mode": false,
+    "test_message": "这是一条测试消息",
+    "test_chat_id": "",
+    "dry_run": false
+  },
+  
+  "advanced": {
+    "http": {
+      "proxy": "",
+      "user_agent": "TelegramVoiceBot/1.0.0",
+      "follow_redirects": true,
+      "verify_ssl": true
+    },
+    "ffmpeg": {
+      "path": "ffmpeg",
+      "options": "-hide_banner -loglevel error",
+      "presets": {
+        "speech": "-application voip",
+        "music": "-application audio",
+        "low_latency": "-application lowdelay"
+      }
+    },
+    "performance": {
+      "memory_limit_mb": 256,
+      "cpu_limit_percent": 50,
+      "io_priority": "normal"
+    }
+  },
+  
+  "user_interface": {
+    "colors": true,
+    "progress_bars": true,
+    "emoji": true,
+    "verbose": false,
+    "interactive": true
+  },
+  
+  "presets": {
+    "speech": {
+      "description": "语音消息预设",
+      "audio": {
+        "bitrate": "64k",
+        "sample_rate": 24000,
+        "channels": 1,
+        "application": "voip"
+      }
+    },
+    "music": {
+      "description": "音乐消息预设",
+      "audio": {
+        "bitrate": "96k",
+        "sample_rate": 48000,
+        "channels": 2,
+        "application": "audio"
+      }
+    },
+    "low_quality": {
+      "description": "低质量预设（网络差时使用）",
+      "audio": {
+        "bitrate": "32k",
+        "sample_rate": 16000,
+        "channels": 1,
+        "application": "lowdelay"
+      }
+    },
+    "high_quality": {
+      "description": "高质量预设",
+      "audio": {
+        "bitrate": "128k",
+        "sample_rate": 48000,
+        "channels": 2,
+        "application": "audio"
+      }
+    }
+  },
+  
+  "examples": {
+    "simple_message": {
+      "text": "你好，世界！",
+      "preset": "speech",
+      "tts_service": "aliyun"
+    },
+    "batch_messages": [
+      "早上好！",
+      "记得吃早餐",
+      "工作顺利",
+      "好好休息"
+    ]
+  },
+  
+  "notes": [
+    "1. 将此文件复制为 config.json 并填写真实值",
+    "2. 不要提交包含真实API密钥的配置文件到版本控制",
+    "3. 使用环境变量覆盖敏感配置",
+    "4. 定期备份和轮换API密钥",
+    "5. 测试配置后再用于生产环境"
+  ]
+}

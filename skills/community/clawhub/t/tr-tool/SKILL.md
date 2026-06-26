@@ -1,35 +1,27 @@
 ---
-name: "Tr Tool"
-description: "Translate or delete characters from input streams. Use for character substitution, deletion, and squeezing repeated characters."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/tr-tool"
-sourceUrl: "https://clawhub.ai/skills/tr-tool"
+name: tr-tool
+description: Translate or delete characters from input streams. Use for character substitution, deletion, and squeezing repeated characters.
 ---
+# Tr - Character Translation Utility
 
-# Tr Tool
+Translate, squeeze, or delete characters from standard input. Replaces specified characters with alternatives or removes them entirely.
 
-> Translate or delete characters from input streams. Use for character substitution, deletion, and squeezing repeated characters.
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/tr-tool`
-- **Source URL:** [https://clawhub.ai/skills/tr-tool](https://clawhub.ai/skills/tr-tool)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
+## Usage
 ```bash
-hermes skills install clawhub/tr-tool
+tr-tool [options] <set1> [set2]
+```
+
+## Common Uses
+
+- `'a-z' 'A-Z'`: Convert lowercase to uppercase
+- `'\n' ' '`: Replace newlines with spaces
+- `-d 'aeiou'`: Delete all vowels
+- `-s ' '`: Squeeze repeated spaces
+
+## Examples
+
+```bash
+echo "hello" | tr-tool 'a-z' 'A-Z'
+echo "foo bar" | tr-tool -d ' '
+echo "hello   world" | tr-tool -s ' '
 ```

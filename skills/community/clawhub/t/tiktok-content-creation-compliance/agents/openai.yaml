@@ -1,0 +1,4 @@
+interface:
+  display_name: "TikTok Content Creation Compliance"
+  short_description: "Check TikTok Shop seller or creator content compliance"
+  default_prompt: "Use $tiktok-content-creation-compliance to review TikTok Shop seller or creator videos, LIVEs, scripts, captions, listing images, or exported ads for permitted, risky, and prohibited elements."

@@ -1,35 +1,121 @@
 ---
-name: "Tech Debate"
-description: "针对技术话题，模拟正方与反方两派进行多阶段、多轮结构化辩论，阶段之间用户可干预（支持某方/补充论点/提出新视角），最终由 Judge 提炼全局共识、分歧与实践建议。当用户说【对XXX进行技术辩论】、【debate: XXX】、【正反两方讨论XXX】、【辩论一下XXX】、【tech debate】时触发。支持用户设..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/tech-debate"
-sourceUrl: "https://clawhub.ai/skills/tech-debate"
+name: tech-debate
+version: 1.0.0
+description: "针对技术话题，模拟正方与反方两派进行多阶段、多轮结构化辩论，阶段之间用户可干预（支持某方/补充论点/提出新视角），最终由 Judge 提炼全局共识、分歧与实践建议。当用户说【对XXX进行技术辩论】、【debate: XXX】、【正反两方讨论XXX】、【辩论一下XXX】、【tech debate】时触发。支持用户设置最大轮数（默认5轮/阶段），Judge 根据辩论情况动态决定阶段内是否提前收敛。"
 ---
 
-# Tech Debate
+# Tech Debate Skill
 
-> 针对技术话题，模拟正方与反方两派进行多阶段、多轮结构化辩论，阶段之间用户可干预（支持某方/补充论点/提出新视角），最终由 Judge 提炼全局共识、分歧与实践建议。当用户说【对XXX进行技术辩论】、【debate: XXX】、【正反两方讨论XXX】、【辩论一下XXX】、【tech debate】时触发。支持用户设...
+多 Agent 辩论框架，参考 MAD（Multi-Agent Debate）论文和 TradingAgents 项目实现。
+支持多阶段辩论 + 用户干预机制。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/tech-debate`
-- **Source URL:** [https://clawhub.ai/skills/tech-debate](https://clawhub.ai/skills/tech-debate)
+## 参数
 
-## Overview
+- **topic**：辩论话题（必填，从用户输入提取）
+- **max_rounds_per_phase**：每阶段最大轮数（可选，默认 5，用户可指定）
 
+## 整体结构
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/tech-debate
 ```
+初始化（Phase 0）
+  ↓
+[阶段 N]
+  开场/继续陈述
+  → 多轮对抗（最多 max_rounds_per_phase 轮）
+  → Judge 阶段小结 + 暂停
+  ↓
+用户干预（必须等用户回复）
+  ↓
+[阶段 N+1] 或 结束
+  ↓
+Judge 全局共识提炼
+```
+
+## 执行流程
+
+### Phase 0：辩题框架生成（仅首次）
+
+以 Judge 角色输出：
+- 正方核心立场（1句话）
+- 反方核心立场（1句话）
+- 3个预期争议焦点
+
+然后进入阶段 1。
+
+### 阶段内流程（每个阶段重复此结构）
+
+**Step 1 - 开场/续场陈述**
+- 首阶段：正方和反方各自独立开场陈述（不超过300字/方）
+- 后续阶段：正方和反方各用1~2句话声明本阶段立场是否因用户干预而调整，并注明是否引用用户论点
+
+**Step 2 - 多轮对抗**
+见"对抗轮流程"。
+
+**Step 3 - Judge 阶段小结**
+每阶段结束时 Judge 输出：
+- 本阶段新出现的论点
+- 本阶段双方立场变化（如有）
+- 当前共识进展
+- 仍存在的主要分歧
+
+**Step 4 - 暂停，等待用户干预**
+输出用户干预提示，**停止执行，等待用户回复**：
+
+```
+⏸️ 阶段 N 结束。您可以：
+① 支持正方，补充论据 → "支持正方：[你的论点]"
+② 支持反方，补充论据 → "支持反方：[你的论点]"
+③ 提出新视角（双方都需回应） → "新视角：[观点]"
+④ 结束辩论，提炼共识 → "结束辩论"
+
+（不干预直接回复"继续"也可以进入下一阶段）
+```
+
+### 对抗轮流程（阶段内每轮）
+
+1. **正方发言**：
+   - 必须直接回应反方上一轮具体论点
+   - 若本阶段有用户干预，必须说明是否采纳用户论点，以及理由
+   - 不超过300字
+
+2. **反方发言**：
+   - 同上，回应正方上一轮论点
+   - 若用户支持正方，需正面回应用户论点（不能无视）
+   - 不超过300字
+
+3. **Judge 收敛检测**：
+   - 双方论点高度重复（>60% 相似）→ 提前结束本阶段
+   - 双方已在核心争议点充分表态 → 提前结束本阶段
+   - 达到 max_rounds_per_phase → 结束本阶段
+
+### 用户干预处理规则
+
+收到用户干预后，在下一阶段开始时注入以下上下文（Prompt 模板见 `references/prompts.md`）：
+
+| 干预类型 | 处理方式 |
+|---------|---------|
+| 支持正方 + 论点 | 正方可引用；反方必须正面回应，不能无视 |
+| 支持反方 + 论点 | 反方可引用；正方必须正面回应，不能无视 |
+| 新视角 | 双方都必须在本阶段第一轮回应这个视角 |
+| 继续 | 无特殊注入，双方继续原有辩论线 |
+
+### 全局共识提炼（收到"结束辩论"后执行）
+
+综合所有阶段的辩论记录 + 用户干预内容，输出：
+1. **共识点**：双方均认可的观点（标注是哪个阶段收敛的）
+2. **核心分歧**：用表格对比双方坚持的根本对立
+3. **用户视角**：用户干预对辩论走向的影响
+4. **实践建议**：场景化的技术决策建议
+
+完整输出格式见 `references/output-format.md`。
+
+## Prompt 模板
+
+三角色完整 prompt 见 `references/prompts.md`。
+
+## 关键原则
+
+- 每个角色维护**独立论点历史**（跨阶段累积）
+- 用户论点**不可被无视**，被支持方可引用，对立方必须回应
+- Judge **不偏袒任何一方**，包括用户
+- **阶段间必须暂停等待用户**，不得自动进入下一阶段

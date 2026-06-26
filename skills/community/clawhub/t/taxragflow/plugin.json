@@ -1,0 +1,24 @@
+{
+  "name": "tax-knowledge-skill",
+  "version": "1.0.0",
+  "description": "调用 TAX 知识库进行智能问答的专属技能",
+  "author": "zhao xin",
+  "skills": [
+    {
+      "action": "query-tax-knowledge",
+      "description": "向 TAX 知识库发送问题并获取答案",
+      "parameters": [
+        {
+          "name": "user_query",
+          "type": "string",
+          "required": true,
+          "description": "用户的原始问题"
+        }
+      ],
+      "permissions": [
+        "exec.run",
+        "network.access"
+      ]
+    }
+  ]
+}

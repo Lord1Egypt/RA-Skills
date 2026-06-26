@@ -1,0 +1,30 @@
+{
+  "name": "travel-master-mini",
+  "version": "1.0.0",
+  "description": "旅游大师极简版 - 数学收敛+关键词匹配，无外部依赖",
+  "author": "Timo2026",
+  "license": "MIT",
+  "keywords": ["旅游规划", "数学收敛", "极简版"],
+  "repository": {
+    "type": "git",
+    "url": "https://gitee.com/timo2026/travel-master-mini"
+  },
+  "triggers": ["旅游规划"],
+  "output": {
+    "type": "text",
+    "delivery": "text"
+  },
+  "security": {
+    "no_external_llm": true,
+    "no_async": true,
+    "no_flask": true,
+    "no_aiohttp": true,
+    "no_exec_eval": true,
+    "no_subprocess": true,
+    "no_hardcoded_paths": true,
+    "no_daemon_scripts": true,
+    "no_watchdog": true,
+    "user_managed_service": true,
+    "verified": "ClawHub-Mini-V1"
+  }
+}

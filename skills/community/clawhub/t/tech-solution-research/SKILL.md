@@ -1,35 +1,301 @@
 ---
-name: "Tech Solution Research"
+name: Tech Solution Research
+slug: tech-solution-research
 description: "技术方案调研/框架选型/技术对比/最终报告生成 — multi-source evidence orchestration for technical decision-making"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/tech-solution-research"
-sourceUrl: "https://clawhub.ai/skills/tech-solution-research"
+version: 0.3.0
+author: OpenClaw Team
+license: MIT
+tags: [research, technical, decision-making, multi-source, evidence-based]
 ---
 
-# Tech Solution Research
+## 定位与边界
 
-> 技术方案调研/框架选型/技术对比/最终报告生成 — multi-source evidence orchestration for technical decision-making
+### 技术方案调研 vs 市场调研
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/tech-solution-research`
-- **Source URL:** [https://clawhub.ai/skills/tech-solution-research](https://clawhub.ai/skills/tech-solution-research)
+| 维度 | 技术方案调研（本技能） | 市场调研（market-research） |
+|------|---------------------|--------------------------|
+| **核心问题** | "哪个技术方案最适合解决 X 问题？" | "这个市场有多大？竞争对手是谁？" |
+| **证据类型** | 文档、代码、基准测试、集成实测 | 市场规模、用户数、营收、融资 |
+| **评估维度** | 功能/性能/开发体验/成本/集成/安全/维护 | TAM/SAM/SOM/竞争格局/进入壁垒 |
+| **输出** | 技术选型建议 + 实施路径 | 市场机会评估 + 进入策略 |
+| **受众** | 工程师/CTO/技术决策者 | 创始人/投资人/业务决策者 |
 
-## Overview
+**本技能不做**：市场规模估算、竞品商业分析、用户调研、定价策略、SaaS 产品商业对比（非技术维度）
 
+---
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/tech-solution-research
+## 触发条件
+
+### ✅ 使用本技能当：
+
+- "调研 X 技术方案" / "对比 X 和 Y" / "做技术选型"
+- "X 框架怎么样？" / "X 和 Y 哪个更适合 Z 场景？"
+- "输出 X 技术的实施建议" / "评估 X 技术的风险"
+- "我们该用 X 还是 Y？" / "X 技术的优缺点是什么？"
+- "调研浏览器自动化方案" / "对比几个 ORM 框架" / "评估 X 库的可行性"
+
+**典型场景示例**：
+- 浏览器自动化方案调研（Playwright / Stagehand / agent-browser / BrowserUse / WebMCP）
+- 后端框架选型（Express / Fastify / Hono / Bun）
+- 数据库方案对比（PostgreSQL / MongoDB / Redis / SQLite）
+- 状态管理库评估（Zustand / Jotai / Redux / Valtio）
+- SaaS 服务技术评估（如"Supabase vs 自建后端"的技术可行性）
+
+### ❌ 不使用本技能（应转介其他技能）：
+
+- **市场规模估算** → 使用 `market-research` 技能
+- **竞品商业分析** → 使用 `market-research` 技能
+- **纯产品选型（非技术维度）** → 如"选哪个 CRM 系统"（业务功能优先）
+- **用户调研/需求验证** → 需要人工访谈
+- **纯业务决策（定价、市场进入）** → 需要业务输入
+- **紧急故障排查** → 使用调试/排障技能
+- **单纯查文档/API 用法** → 直接 web_search / web_fetch 即可
+
+**边界模糊处理**：如用户问题同时包含技术和商业维度，先完成技术调研部分，明确说明"商业维度建议用 market-research 技能补充"。
+
+---
+
+## 核心设计：Multi-Source Evidence Orchestration
+
+本技能不是 simple web search aggregation，而是**多源证据编排与仲裁**。
+
+### 7 个 Source Lanes
+
+| Lane | 作用 | 输出 | 工具/来源示例 |
+|------|------|------|---------------|
+| **official-docs** | 官方声明的能力、API、限制 | 功能清单、版本信息、官方基准 | 官网文档、API reference、release notes |
+| **github** | 真实代码质量、活跃度、问题 | Star 数、issue 响应、commit 频率、代码示例 | GitHub repo、issues、PRs、Actions |
+| **clawhub** | OpenClaw 生态内可用技能/工具 | 已集成技能、兼容性、使用示例 | ClawHub registry、已安装技能 |
+| **platform-native** | 直接从目标平台获取一手数据 | 原始帖子/搜索结果/互动数据/平台内趋势 | feedgrab、last30days、x-hot-topics-daily、xiaohongshu、moltbook、agent-browser（必要时） |
+| **community-discourse** | 开发者真实体验、坑、最佳实践 | 教程、博客、Reddit、StackOverflow、Discord、公开社区讨论 | 技术博客、论坛、社交媒体公开索引 |
+| **runtime-test** | 实测数据（性能、功能验证） | 基准测试结果、功能验证记录 | 本地运行测试、基准脚本 |
+| **internal-assets** | 组织内部历史经验、现有代码 | 内部文档、历史项目、现有集成 | 内部 wiki、代码库、过往报告 |
+
+### 证据优先级与冲突仲裁
+
 ```
+证据可信度（从高到低，默认）：
+1. runtime-test（自己实测）
+2. official-docs（官方文档）
+3. platform-native（平台一手数据）
+4. github（真实代码/问题追踪）
+5. community-discourse（开发者经验，需交叉验证）
+6. internal-assets（可能有偏见或过时）
+
+冲突仲裁规则：
+- 实测 vs 官方声称不一致 → 以实测为准，标注"官方声称 X，实测 Y"
+- 平台一手数据 vs 二手社区总结冲突 → 以平台一手数据为准，标注二手解释可能失真
+- 多个 community-discourse 来源一致 vs 单一相反意见 → 采纳多数，标注少数观点
+- 官方文档版本 vs GitHub 最新 release 不一致 → 以 GitHub release 为准，标注文档可能过时
+- 缺失实测数据 → 必须标注"待补核"，不得将二手信息当作实测
+- 无法仲裁的冲突 → 并列呈现双方证据，标注"存在争议，建议实测验证"
+```
+
+---
+
+## 标准工作流
+
+```
+1. 范围界定 → 2. 候选生成 → 3. 多源采证 → 4. 实测 → 5. 评分 → 6. 结论
+```
+
+### 1. 范围界定（Scoping）
+- 明确业务场景、约束条件、成功标准
+- 确定评估范围（必须有的功能、可选功能、排除条件）
+- 输出：调研范围文档
+
+### 2. 候选生成（Candidate Generation）
+- 从各 source lanes 收集候选方案
+- 初步筛选（排除明显不满足约束的）
+- 输出：候选方案清单（3-5 个为宜）
+- **候选锁定**：清单确定后不得随意扩展，如确需增加需记录理由
+
+### 3. 多源采证（Evidence Collection）
+- 并行从 7 个 lanes 采集证据
+- 统一证据 schema（见 references/evidence-schema.md）
+- 输出：证据矩阵
+
+**强制 source routing（必须遵守）：**
+- 涉及 **X/Twitter** → **必须优先使用** `feedgrab`，趋势补充用 `last30days` / `x-hot-topics-daily`，必要时再用 `agent-browser` 页面验证
+- 涉及 **小红书** → **必须优先使用** `xiaohongshu` skill，补充用 `feedgrab`
+- 涉及 **GitHub** → **必须优先使用** GitHub/gh CLI 数据，再补社区口碑
+- 涉及 **ClawHub** → **必须优先使用** registry / 已安装技能 / skill metadata
+- 涉及 **Moltbook** → **必须优先使用** `moltbook-global` 作为平台/内部内容资产入口
+- **降级记录要求**：如上述平台原生工具不可用，**必须明确记录**"降级原因 + 降级到的替代方案"，不得伪装成一手数据
+
+**证据新鲜度要求**：
+- GitHub 数据（star、issues、commits）：采集时间 ≤30 天
+- 社区讨论/帖子：优先 ≤6 个月内容，超过 1 年需标注"可能过时"
+- 官方文档：记录文档版本/最后更新时间
+
+### 4. 实测（Runtime Validation）
+- 对 top 2-3 候选进行关键功能/性能实测
+- 记录测试环境、步骤、结果
+- 输出：实测报告（**如无法实测，必须明确标注"待补核"及原因**）
+
+### 5. 评分（Scoring）
+- 使用 7 维评分体系（见下文）
+- 加权计算（权重根据场景调整）
+- 输出：评分表
+- **权重调整记录**：如偏离默认权重，需说明理由
+
+### 6. 结论（Conclusion）
+- 推荐方案 + 备选方案
+- 风险清单 + 缓解措施
+- 实施路径（分阶段）
+- 输出：最终报告（见 references/report-template.md）
+
+---
+
+## 7 维评分体系
+
+| 维度 | 说明 | 评分要点 |
+|------|------|----------|
+| **功能** | 是否满足需求 | 核心功能覆盖度、扩展性、插件生态 |
+| **性能** | 速度、资源消耗 | 基准测试、内存占用、并发能力 |
+| **开发体验** | 易用性、文档、工具链 | API 设计、文档质量、调试工具、错误信息 |
+| **成本** | 直接 + 间接成本 | License 费用、云资源成本、学习成本、维护人力 |
+| **集成难度** | 与现有系统集成 | API 兼容性、依赖复杂度、迁移成本 |
+| **安全性** | 安全记录、实践 | 漏洞历史、安全特性、合规性 |
+| **长期维护** | 可持续性 | 社区活跃度、背后组织、版本更新频率、向后兼容 |
+
+**评分方法**：每个维度 1-5 分，可根据场景设置权重。详细评分标准见 references/scoring-rubric.md。
+
+**参考权重**（根据场景选择）：
+- 内部工具（效率优先）：功能 20% / 性能 10% / 开发体验 25% / 成本 15% / 集成 15% / 安全 5% / 维护 10%
+- 对外产品（质量优先）：功能 25% / 性能 20% / 开发体验 10% / 成本 10% / 集成 10% / 安全 15% / 维护 10%
+- 创业 MVP（速度优先）：功能 30% / 性能 10% / 开发体验 20% / 成本 20% / 集成 10% / 安全 5% / 维护 5%
+- 企业核心系统（稳定优先）：功能 15% / 性能 15% / 开发体验 10% / 成本 10% / 集成 15% / 安全 20% / 维护 15%
+
+---
+
+## 输出要求
+
+### 核心章节（8 部分，缺一不可）
+
+1. **候选方案清单**：3-5 个候选，简述各自特点
+2. **证据矩阵**：各方案在各 source lane 的证据摘要
+3. **7 维度对比表**：结构化评分
+4. **推荐方案**：明确推荐 + 理由
+5. **备选方案**：次优选择 + 适用场景
+6. **风险清单**：已知风险 + 缓解措施
+7. **实施路径**：分阶段实施建议（PoC → 试点 → 推广）
+8. **引用/证据清单**：所有引用来源的完整列表
+
+### 强制检查清单（发布前必须完成）
+
+**Source Coverage Checklist**（必须全部满足）：
+- [ ] 每个候选方案至少 **5 条证据**
+- [ ] 证据覆盖至少 **4 个 source lanes**
+- [ ] platform-native lane 已尝试（如不可用需记录降级原因）
+- [ ] GitHub 数据已采集（star/issues/commits）
+- [ ] 实测状态已明确（已完成 或 标注"待补核"及原因）
+- [ ] 无单一来源结论（关键结论需≥2 个独立来源支持）
+
+**报告质量 Checklist**：
+- [ ] 8 个核心章节完整
+- [ ] 7 维度评分有证据支持（每个评分附证据 ID）
+- [ ] 推荐方案理由清晰（≤3 条核心理由）
+- [ ] 风险清单具体可操作（至少 3 条风险）
+- [ ] 实施路径有明确里程碑和成功标准
+- [ ] 所有引用来源可追溯（有 URL 或路径）
+- [ ] 证据新鲜度符合要求（GitHub≤30 天，社区≤6 个月优先）
+
+**报告模板**：见 references/report-template.md（必须使用该模板）
+
+---
+
+## Guardrails（红线）
+
+### 必须遵守（违反=报告不合格）
+
+- ❌ **禁止单一来源**：不得仅基于单一来源（尤其是营销文案）下结论
+- ❌ **禁止抄袭营销文案**：官方营销内容必须经第三方或实测验证
+- ❌ **禁止缺失实测不标注**：如无实测数据，必须明确标注"待补核"及原因
+- ❌ **禁止伪装 platform-native**：如无法使用平台原生工具，必须记录降级原因
+- ✅ **必须多源交叉验证**：关键结论需至少 2 个独立来源支持
+- ✅ **必须标注证据等级**：每个结论需标注证据来源和可信度
+- ✅ **必须说明适用场景**：推荐方案需明确"在 X 场景下推荐，因为 Y"
+- ✅ **必须完成 coverage checklist**：发布前逐项勾选确认
+
+### 常见陷阱
+
+| 陷阱 | 表现 | 避免方法 |
+|------|------|----------|
+| **最新即最好** | 盲目追求最新技术 | 评估成熟度、社区支持、长期维护 |
+| **大厂即靠谱** | 仅因背后是大厂就推荐 | 独立评估产品本身，大厂也可能砍项目 |
+| **Star 数即质量** | 仅看 GitHub Star | 看 issue 响应、commit 频率、代码质量 |
+| **基准测试即真实** | 盲目相信官方基准 | 自己在相似环境复现或找第三方基准 |
+| **个人经验即普适** | 将单一项目经验泛化 | 明确说明经验边界，找更多案例验证 |
+| **范围蔓延** | 调研中不断扩展候选 | 候选锁定后变更需记录理由 |
+
+---
+
+## 适用与不适用场景
+
+### ✅ 适用场景
+
+- 技术选型决策（框架、库、工具、服务）
+- 架构方案对比（单体 vs 微服务、同步 vs 异步）
+- 新技术评估（是否引入团队）
+- 技术债务分析（是否重构/替换）
+- 供应商技术评估（SaaS、API 服务的技术可行性）
+
+### ❌ 不适用场景
+
+- 市场规模估算 → 使用 market-research 技能
+- 竞品商业分析 → 使用 market-research 技能
+- 用户调研/需求验证 → 需要人工访谈
+- 纯业务决策（定价、市场进入） → 需要业务输入
+- 紧急故障排查 → 使用调试/排障技能
+- 单纯查文档/API 用法 → 直接 web_search / web_fetch
+
+---
+
+## 与 ClawHub 技能的关系
+
+本技能是**编排型技能**，不是某个单技能的薄包装。
+
+**可能调用的工具/技能**（根据场景选择，非硬依赖）：
+- web_search / web_fetch / multi-search-engine：通用搜索
+- agent-browser / playwright-mcp：浏览器自动化实测
+- github（gh CLI）：GitHub 数据采集
+- feedgrab / xiaohongshu / x-hot-topics-daily / moltbook-global：平台原生数据
+- 其他 ClawHub 技能：如已集成相关工具
+
+**原则**：source-first / tool-first 兼容，不硬依赖某个具体技能名。如某工具不可用，降级到其他来源并记录原因。
+
+---
+
+## 快速开始
+
+```bash
+# 触发示例（自然语言）
+"调研浏览器自动化方案，对比 Playwright、Stagehand、agent-browser"
+"我们该用 Express 还是 Fastify？需要性能对比"
+"评估一下用 Supabase 替代自建后端的可行性"
+```
+
+**预期输出**：
+- 10 分钟内：初步候选清单 + 证据矩阵
+- 30 分钟内：完整报告（含评分和推荐）
+- 如需实测：标注实测计划 + 初步结论（实测后更新）
+
+---
+
+## References
+
+详细模板和标准见：
+
+- `references/evidence-schema.md`：统一证据 schema
+- `references/report-template.md`：报告模板（必须使用）
+- `references/workflow.md`：详细工作流
+- `references/scoring-rubric.md`：评分标准
+
+---
+
+## 版本历史
+
+- **0.3.0**（2026-03-30）：结构性改进 — 新增强制性 source coverage gate、重构 platform-native lane 为"必须优先"、明确触发边界排除项、增加证据新鲜度要求、统一清理重复内容
+- **0.2.0**（2026-03-29）：方向性优化 — 完善 7 源编排框架、冲突仲裁规则、评分体系
+- **0.1.0**（2026-03-29）：初版 — 核心框架 + 工作流 + 评分体系

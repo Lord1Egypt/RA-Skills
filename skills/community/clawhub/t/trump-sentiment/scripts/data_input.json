@@ -1,0 +1,22 @@
+{
+  "collection_time": "2026-04-22T03:51:00Z",
+  "collection_time_cst": "2026-04-22 11:51 CST",
+  "triggers": ["定时监控（每4小时）"],
+  "noteworthy": true,
+  "key_themes": [
+    "Trump extends ceasefire indefinitely at Pakistan request",
+    "Iran split: Foreign Ministry undecided vs IRGC says ploy",
+    "Ceasefire expires 7:50PM ET today (11 hours away)",
+    "Iran 15-day oil shut-in countdown running",
+    "Hormuz blockade remains in place; Iran demands it lifted before talks",
+    "US Treasury sanctions 14 targets for helping Iran obtain weapons",
+    "Oil fell below $90 on extension news; Brent briefly over $100 earlier",
+    "JD Vance Pakistan trip still paused"
+  ],
+  "market_summary": {
+    "oil": "WTI fell below 90 on ceasefire extension; Brent briefly over 100 when talks paused",
+    "sp500": "Closed lower 420B earlier when Iran refused talks; recovered on extension",
+    "dollar": "USD at week high on ceasefire doubts",
+    "gold": "Gold at 4755 per oz; China buying record gold"
+  }
+}

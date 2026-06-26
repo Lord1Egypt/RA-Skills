@@ -1,35 +1,74 @@
----
-name: "中国传统术数实战-算卦"
-description: "提供小六壬占卜、梅花易数、八字命理、祝由术、风水布局与面相解读的实战指导。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/tianyi-divination"
-sourceUrl: "https://clawhub.ai/skills/tianyi-divination"
----
+# 中国传统术数实战技能-算卦
 
-# 中国传统术数实战-算卦
+## 技能描述
 
-> 提供小六壬占卜、梅花易数、八字命理、祝由术、风水布局与面相解读的实战指导。
+六大中国传统术数实操经验，涵盖：
+- **小六壬** - 诸葛马前课快速占卜
+- **梅花易数** - 邵雍观物取象占卜
+- **祝由术** - 传统符咒心身调理
+- **八字命理** - 四柱八字自我认知
+- **风水布局** - 家居办公环境优化
+- **面相解读** - 观人识人特征分析
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/tianyi-divination`
-- **Source URL:** [https://clawhub.ai/skills/tianyi-divination](https://clawhub.ai/skills/tianyi-divination)
+适用于日常决策、趋势预判、自我认知、环境优化等场景。
 
-## Overview
+## 使用场景
+
+- 日常小事快速占卜（出行、失物、求财、感情）
+- 观察物象预判趋势（梅花易数万物可占）
+- 八字排盘分析性格特质与运势
+- 家居/办公室风水布局指导
+- 面部特征解读与识人
+
+## 核心能力
+
+### 1. 小六壬占卜
+- 六大六神：大安、留连、速喜、赤口、小吉、空亡
+- 五大起卦法：时辰、数字、方位、物象、外应
+- 断卦四大原则：气场契合、主次分明、场景适配、适度解读
+
+### 2. 梅花易数
+- 先天八卦与后天八卦体系
+- 五行生克关系（相生/相克/相合/相冲）
+- 报数起卦、观物起卦方法
+
+### 3. 八字命理
+- 四柱八字排盘（年柱、月柱、日柱、时柱）
+- 十神定位与格局分析
+- 五行平衡与性格特质解读
+
+### 4. 祝由术
+- 基础原理：祝说病由、符咒调气、引导自愈
+- 操作准备：环境、心态、姿势
+- 辨证施术原则
+
+### 5. 风水布局
+- 家居风水（入户门、客厅、卧室、厨房、卫生间）
+- 办公室风水（办公桌、电脑、文昌位）
+- 方位吉凶与化煞方法
+
+### 6. 面相解读
+- 核心部位：额头、眉毛、眼睛、鼻子、嘴巴、下巴
+- 气色神态判断原则
+
+## 使用说明
+
+用户可直接向技能提问，例如：
+
+- "今天子时出行，起卦得到什么结果？"
+- "甲木日主遇到丙火是什么意思？"
+- "床头朝西好不好？"
 
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/tianyi-divination
-```
+技能将基于作者的实操经验进行精准解答。
+
+## 注意事项
+
+- 所有术数均为辅助工具，非绝对定论
+- 不迷信、不滥用，主动努力才是核心
+- 不可用于违背道德、法律的事情
+- 循序渐进，结合实际场景练习
+
+## 来源
+
+涵盖小六壬篇、梅花易数篇、祝由术篇、命理篇、风水篇、面相篇六大篇章。

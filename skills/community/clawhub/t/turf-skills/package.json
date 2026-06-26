@@ -1,0 +1,39 @@
+{
+  "name": "turf-skills",
+  "version": "1.0.2",
+  "description": "Claude Code skill for Turf.js spatial analysis",
+  "main": "index.js",
+  "bin": {
+    "turf-skills": "index.js"
+  },
+  "scripts": {
+    "test": "node test/test.js"
+  },
+  "keywords": [
+    "claude-code-skill",
+    "turf",
+    "spatial",
+    "geojson",
+    "gis"
+  ],
+  "dependencies": {
+    "@turf/clusters-kmeans": "^7.3.4",
+    "@turf/random": "^7.3.4",
+    "@turf/turf": "^7.0.0"
+  },
+  "author": "zhangyuting",
+  "license": "MIT",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zhyt1985/turf-skills.git"
+  },
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/zhyt1985/turf-skills/issues"
+  },
+  "homepage": "https://github.com/zhyt1985/turf-skills#readme"
+}

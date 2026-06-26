@@ -1,0 +1,11 @@
+{
+  "name": "tasktodolist",
+  "version": "1.0.0",
+  "description": "OpenClaw 简易待办事项 Skill",
+  "main": "src/index.js",
+  "bin": { "tasktodolist": "./src/index.js" },
+  "scripts": { "postinstall": "chmod +x src/index.js" },
+  "author": "小助手",
+  "license": "MIT",
+  "dependencies": { "commander": "^12.0.0" }
+}

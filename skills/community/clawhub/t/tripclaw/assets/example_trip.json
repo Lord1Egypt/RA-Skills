@@ -1,0 +1,76 @@
+{
+  "name": "云南自驾之旅",
+  "description": "从昆明出发，途经大理、丽江，最后抵达香格里拉",
+  "startDate": "2024-01-15",
+  "endDate": "2024-01-22",
+  "travelers": 2,
+  "waypoints": [
+    {
+      "order": 1,
+      "name": "昆明",
+      "type": "start",
+      "location": {
+        "address": "昆明市，云南省",
+        "coordinates": {
+          "lat": 25.0389,
+          "lng": 102.7183
+        }
+      },
+      "arrivalDate": "2024-01-15",
+      "stay": {
+        "accommodation": "昆明云上四季酒店",
+        "nights": 1
+      }
+    },
+    {
+      "order": 2,
+      "name": "大理",
+      "type": "waypoint",
+      "location": {
+        "address": "大理古城，大理白族自治州",
+        "coordinates": {
+          "lat": 25.6872,
+          "lng": 100.1815
+        }
+      },
+      "arrivalDate": "2024-01-16",
+      "stay": {
+        "accommodation": "大理古城客栈",
+        "nights": 2
+      }
+    },
+    {
+      "order": 3,
+      "name": "香格里拉",
+      "type": "destination",
+      "location": {
+        "address": "香格里拉市，迪庆藏族自治州",
+        "coordinates": {
+          "lat": 27.8186,
+          "lng": 99.7035
+        }
+      },
+      "arrivalDate": "2024-01-18",
+      "stay": {
+        "accommodation": "香格里拉松赞林卡酒店",
+        "nights": 2
+      }
+    }
+  ],
+  "activities": [
+    {
+      "date": "2024-01-16",
+      "name": "洱海骑行",
+      "description": "环洱海骑行，欣赏苍山洱海美景",
+      "location": {
+        "address": "洱海环湖路，大理市"
+      },
+      "duration": "3小时",
+      "cost": 150
+    }
+  ],
+  "budget": {
+    "total": 15000,
+    "currency": "CNY"
+  }
+}

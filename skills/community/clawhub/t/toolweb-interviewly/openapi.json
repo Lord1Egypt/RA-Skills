@@ -1,0 +1,522 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Interviewly API",
+    "description": "AI-Powered Voice Mock Interview Platform",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/": {
+      "get": {
+        "summary": "Root",
+        "description": "API health check",
+        "operationId": "root__get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/status": {
+      "get": {
+        "summary": "Status",
+        "description": "Detailed health check",
+        "operationId": "status_status_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/analyze-jd": {
+      "post": {
+        "summary": "Analyze Job Description",
+        "description": "Step 1: Analyze Job Description\n- Extract required skills, experience level, role type\n- Generate interview questions based on JD\n- Create session in database",
+        "operationId": "analyze_job_description_api_v1_analyze_jd_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AnalyzeJDRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AnalyzeJDResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/start-interview": {
+      "post": {
+        "summary": "Start Interview",
+        "description": "Step 2: Start Interview Session\n- Update user_id in session\n- Generate first question\n- Store session state in Redis",
+        "operationId": "start_interview_api_v1_start_interview_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/StartInterviewRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StartInterviewResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/submit-response": {
+      "post": {
+        "summary": "Submit Response",
+        "description": "Step 3: Submit User Response\n- Store user's answer\n- Evaluate response with Claude\n- Generate next question or end interview",
+        "operationId": "submit_response_api_v1_submit_response_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SubmitResponseRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SubmitResponseResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/end-interview": {
+      "post": {
+        "summary": "End Interview",
+        "description": "Step 4: End Interview & Generate Report\n- Evaluate all responses\n- Generate comprehensive feedback\n- Create PDF report\n- Return download URL",
+        "operationId": "end_interview_api_v1_end_interview_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EndInterviewRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EndInterviewResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/download/{session_id}": {
+      "get": {
+        "summary": "Download Report",
+        "description": "Download interview report",
+        "operationId": "download_report_api_v1_download__session_id__get",
+        "parameters": [
+          {
+            "name": "session_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Session Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "AnalyzeJDRequest": {
+        "properties": {
+          "job_description": {
+            "type": "string",
+            "title": "Job Description"
+          }
+        },
+        "type": "object",
+        "required": [
+          "job_description"
+        ],
+        "title": "AnalyzeJDRequest"
+      },
+      "AnalyzeJDResponse": {
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "title": "Success"
+          },
+          "session_id": {
+            "type": "string",
+            "title": "Session Id"
+          },
+          "analysis": {
+            "type": "object",
+            "title": "Analysis"
+          },
+          "estimated_questions": {
+            "type": "integer",
+            "title": "Estimated Questions"
+          },
+          "message": {
+            "type": "string",
+            "title": "Message"
+          }
+        },
+        "type": "object",
+        "required": [
+          "success",
+          "session_id",
+          "analysis",
+          "estimated_questions",
+          "message"
+        ],
+        "title": "AnalyzeJDResponse"
+      },
+      "EndInterviewRequest": {
+        "properties": {
+          "session_id": {
+            "type": "string",
+            "title": "Session Id"
+          }
+        },
+        "type": "object",
+        "required": [
+          "session_id"
+        ],
+        "title": "EndInterviewRequest"
+      },
+      "EndInterviewResponse": {
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "title": "Success"
+          },
+          "overall_score": {
+            "type": "integer",
+            "title": "Overall Score"
+          },
+          "report_url": {
+            "type": "string",
+            "title": "Report Url"
+          },
+          "message": {
+            "type": "string",
+            "title": "Message"
+          }
+        },
+        "type": "object",
+        "required": [
+          "success",
+          "overall_score",
+          "report_url",
+          "message"
+        ],
+        "title": "EndInterviewResponse"
+      },
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "type": "array",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
+      },
+      "StartInterviewRequest": {
+        "properties": {
+          "session_id": {
+            "type": "string",
+            "title": "Session Id"
+          },
+          "user_id": {
+            "type": "integer",
+            "title": "User Id"
+          }
+        },
+        "type": "object",
+        "required": [
+          "session_id",
+          "user_id"
+        ],
+        "title": "StartInterviewRequest"
+      },
+      "StartInterviewResponse": {
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "title": "Success"
+          },
+          "first_question": {
+            "type": "string",
+            "title": "First Question"
+          },
+          "question_number": {
+            "type": "integer",
+            "title": "Question Number"
+          },
+          "total_questions": {
+            "type": "integer",
+            "title": "Total Questions"
+          },
+          "time_limit_minutes": {
+            "type": "integer",
+            "title": "Time Limit Minutes"
+          }
+        },
+        "type": "object",
+        "required": [
+          "success",
+          "first_question",
+          "question_number",
+          "total_questions",
+          "time_limit_minutes"
+        ],
+        "title": "StartInterviewResponse"
+      },
+      "SubmitResponseRequest": {
+        "properties": {
+          "session_id": {
+            "type": "string",
+            "title": "Session Id"
+          },
+          "question_number": {
+            "type": "integer",
+            "title": "Question Number"
+          },
+          "user_response": {
+            "type": "string",
+            "title": "User Response"
+          },
+          "response_time_seconds": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Response Time Seconds"
+          },
+          "transcription_confidence": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Transcription Confidence"
+          }
+        },
+        "type": "object",
+        "required": [
+          "session_id",
+          "question_number",
+          "user_response"
+        ],
+        "title": "SubmitResponseRequest"
+      },
+      "SubmitResponseResponse": {
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "title": "Success"
+          },
+          "next_question": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Next Question"
+          },
+          "question_number": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Question Number"
+          },
+          "feedback": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Feedback"
+          },
+          "interview_complete": {
+            "type": "boolean",
+            "title": "Interview Complete",
+            "default": false
+          }
+        },
+        "type": "object",
+        "required": [
+          "success"
+        ],
+        "title": "SubmitResponseResponse"
+      },
+      "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Location"
+          },
+          "msg": {
+            "type": "string",
+            "title": "Message"
+          },
+          "type": {
+            "type": "string",
+            "title": "Error Type"
+          }
+        },
+        "type": "object",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError"
+      }
+    }
+  }
+}

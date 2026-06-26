@@ -1,0 +1,20 @@
+{
+  "trigger": "forced",
+  "timestamp": "2026-04-02T04:37:00Z",
+  "nasdaq_flag": "false_but_forced",
+  "timeline": [
+    {"time_cst": "2026-04-02 12:37", "source": "Web/NYT Live", "text": "Trump: Iran war core objectives near completion; deal possible but irrelevant — US will leave when regime cannot build nuclear weapon for years", "market": "Oil WTI surged past $103 after Trump Apr 1 prime time address"},
+    {"time_cst": "2026-04-02 09:37", "source": "Reuters", "text": "Trump: war could end in 2-3 weeks. Iran demands guaranteed permanent ceasefire. VP Vance in contact with Pakistan intermediaries as ceasefire conduit", "market": "S&P 500 +0.72%, Nasdaq +1.16% Wed; Energy index -3.9%"},
+    {"time_cst": "2026-04-02 06:00", "source": "CNBC/Wiki", "text": "Iran demands guaranteed ceasefire to end war permanently. FM Araghchi: no ongoing negotiations, messages exchanged via US envoy Witkoff. Tehran calls Trump deceitful", "market": "Oil Brent $105+, WTI $103+ after Trump speech uncertainty"},
+    {"time_cst": "2026-04-02 00:50", "source": "Forbes/WSJ", "text": "Trump prime time address: war nearing completion but no clear exit timeline. Reiterated nuclear justification. Threatened to blow up Iran energy infrastructure if no deal", "market": "S&P 500 futures -0.8 to -1%, Dow futures -0.8% post-speech"},
+    {"time_cst": "2026-04-01 21:18", "source": "NYT Live", "text": "Trump frames Strait of Hormuz as allied nations' problem; ceasefire only when strait opened. Iran denies Trump claim president asked for ceasefire", "market": "Oil jumped then fell; S&P 500/Dow/Nasdaq futures fell ~1%"},
+    {"time_cst": "2026-04-01 20:00", "source": "DailyMail/JPost", "text": "Trump posts Truth Social: Iran new leader begged for ceasefire; conditions: Hormuz open free and clear. Tehran denies any such request", "market": "Markets rallied pre-speech: S&P 500 +2.9% at open, closed +0.72%"},
+    {"time_cst": "2026-04-01 15:00", "source": "Guardian/Al Jazeera", "text": "FM Araghchi: no negotiations, no ceasefire sought. Calls for Lebanon to be part of any deal. Iran rejected 15-point US peace plan. Tehran says Trump deceitful about talks", "market": "Relief rally ongoing; oil easing on ceasefire speculation"},
+    {"time_cst": "2026-04-01 12:37", "source": "Arms Control/TIME", "text": "Trump claims US achieved regime change by killing Iran leader. Says Iran agreed to never have nuclear weapon and forgo enrichment", "market": "Oil eased from $105 peak"},
+    {"time_cst": "2026-03-31 20:00", "source": "BBC/Le Monde", "text": "Trump: deal with Iran irrelevant, US will leave when regime cannot build nuclear weapon for years. Threatens to put Iran in stone ages", "market": "Markets reacted positively to deal speculation"},
+    {"time_cst": "2026-03-30 15:00", "source": "CNN", "text": "Trump threatens to blow up and completely obliterate Iran electric plants and oil wells if no deal to end war", "market": "Oil spiked on energy infrastructure threat"}
+  ],
+  "summary": "Day 33 of Iran conflict. Core narrative: Trump claims victory, seeks exit ramp; Iran denies talks, demands permanent ceasefire guarantee. Market in two minds — relief rally when Trump signals wind-down, sell-off when no clear timeline. Oil extremely volatile: fell on ceasefire speculation, surged on Trump speech uncertainty. Key risk: Hormuz Strait remains contested, energy infrastructure threats unresolved.",
+  "sentiment_score": 55,
+  "risk_level": "HIGH"
+}

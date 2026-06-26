@@ -1,35 +1,68 @@
 ---
-name: "multi-image-to-text"
-description: "批量识别图片中的文字内容并按图片分段输出为结构化文档；当用户需要从多张图片中提取文字、整理图片文字内容、将图片文字转为可编辑文档时使用"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/test20260402"
-sourceUrl: "https://clawhub.ai/skills/test20260402"
+name: image-text-extractor
+description: 批量识别图片中的文字内容并按图片分段输出为结构化文档；当用户需要从多张图片中提取文字、整理图片文字内容、将图片文字转为可编辑文档时使用
 ---
 
-# multi-image-to-text
+# 图片文字提取器
 
-> 批量识别图片中的文字内容并按图片分段输出为结构化文档；当用户需要从多张图片中提取文字、整理图片文字内容、将图片文字转为可编辑文档时使用
+## 任务目标
+- 本 Skill 用于：批量处理用户上传的图片，识别并提取每张图片中的文字内容
+- 能力包含：图片OCR识别、文字内容整理、分段输出、文档生成
+- 触发条件：用户上传一张或多张图片，并要求提取文字、识别内容、转为文档
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/test20260402`
-- **Source URL:** [https://clawhub.ai/skills/test20260402](https://clawhub.ai/skills/test20260402)
+## 操作步骤
 
-## Overview
+### 步骤1：接收图片
+- 引导用户上传图片（支持批量上传）
+- 接受的图片格式：PNG、JPG、JPEG、GIF、WebP等常见格式
+- 确认图片数量和顺序
 
+### 步骤2：识别文字内容
+- 对每张图片调用 `read_image` 工具进行文字识别
+- 识别参数设置：
+  - `prompt`: "提取图片中的所有文字内容，保持原有的段落和格式"
+- 按图片上传顺序依次处理
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/test20260402
-```
+### 步骤3：整理识别结果
+- 为每张图片的文字内容添加清晰的图片标识（如"图片1"、"图片2"）
+- 保留原文的段落结构和格式
+- 如识别到标题、正文、列表等结构，保持原有层次
+
+### 步骤4：生成文档
+- 将整理好的内容按标准格式生成Markdown文档
+- 文档格式参考：[references/output-format.md](references/output-format.md)
+- 输出文档结构：
+  1. 文档标题
+  2. 提取时间
+  3. 图片总数
+  4. 各图片文字内容（按图片分段）
+- 将文档内容直接输出给用户，或生成.md文件供用户下载
+
+## 资源索引
+- 输出格式参考：见 [references/output-format.md](references/output-format.md)（包含文档模板和格式规范）
+
+## 注意事项
+- 图片质量：建议图片清晰、光线充足、文字明显，以提高识别准确率
+- 文字语言：支持中英文混合识别，其他语言根据图片内容自动识别
+- 处理顺序：严格按照用户上传图片的顺序进行处理和输出
+- 格式保留：尽可能保留原文的段落、标题、列表等结构
+- 错误处理：如某张图片识别失败，跳过该图片并告知用户，继续处理其他图片
+- 隐私保护：图片内容仅在当前会话中使用，不会存储或泄露
+
+## 使用示例
+
+### 示例1：批量提取文档图片
+**用户上传**：3张文档截图
+**执行流程**：
+1. 接收3张图片
+2. 逐张调用read_image识别文字
+3. 整理为"图片1"、"图片2"、"图片3"三个部分
+4. 生成包含所有内容的Markdown文档
+
+### 示例2：提取演示文稿内容
+**用户上传**：多张PPT截图
+**执行流程**：
+1. 接收图片并确认数量
+2. 识别每张PPT中的标题和正文
+3. 按幻灯片顺序分段输出
+4. 保持原有的标题层次结构

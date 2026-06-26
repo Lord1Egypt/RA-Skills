@@ -1,0 +1,22 @@
+# Audio TTS Skill - Python Dependencies
+# Install: pip install -r requirements.txt
+#
+# ⚠️ System dependencies required (install separately):
+#   Ubuntu/Debian: sudo apt install ffmpeg libopus-tools
+#   macOS:         brew install ffmpeg
+#   Windows:       download ffmpeg and add to PATH
+
+# ── Core TTS ─────────────────────────────────────────────────────────────────
+# edge-tts: Microsoft Neural TTS (free, high quality, offline)
+edge-tts>=7.0.0
+
+# ── API Support ───────────────────────────────────────────────────────────────
+# For OpenAI-compatible API TTS
+openai>=1.0.0
+
+# ── Audio Conversion ─────────────────────────────────────────────────────────
+# av (PyAV): audio/video conversion, required for OGG/Opus conversion
+av>=10.0.0
+
+# ── Core ─────────────────────────────────────────────────────────────────────
+aiohttp>=3.8.0

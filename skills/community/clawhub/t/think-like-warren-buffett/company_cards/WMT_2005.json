@@ -1,0 +1,50 @@
+{
+  "ticker": "WMT",
+  "company": "Wal-Mart Stores, Inc.",
+  "analysis_year": 2005,
+  "data_source": "Wal-Mart FY2005 annual report / 10-K, SEC EDGAR; Berkshire 2005 annual report",
+  "analyzed_date": "2026-03-25",
+
+  "hard_gates": {
+    "g1_roe_roic": { "value": 0.221, "metric_used": "ROE", "years_averaged": "2004-2006", "pass": true },
+    "g2_fcf_to_ni": { "value": 0.27, "fcf": 3070, "net_income": 11231, "pass": false },
+    "g3_leverage": { "metric_used": "Net Debt/EBITDA", "value": 1.39, "pass": true },
+    "g4_revenue_trend": { "description": "Net sales rose from $256.3B to $285.2B to $312.4B. The issue was not structural decline but whether growth capex was consuming too much of the accounting profit.", "structural_decline": false, "pass": true },
+    "g5_gross_margin_trend": { "description": "Gross margin remained stable to slightly higher across 2004-2006; there was no two-year structural margin decay.", "declining_2plus_years": false, "pass": true },
+    "g6_earnings_yield": { "value": 0.074, "net_income_m": 11231, "ev_m": 152682, "exemption": null, "pass": true },
+    "g7_moat": { "verdict": "PASS", "moat_type": "cost_advantage", "description": "Wal-Mart clearly had a moat: unmatched scale, everyday-low-price purchasing power, distribution density, and customer traffic that smaller retailers could not replicate. The problem in 2005 was not business quality but that a large portion of the economics was still being reinvested through store growth, logistics, and international expansion, which kept raw free cash flow conversion below the framework threshold.", "pass": true }
+  },
+
+  "special_channel": null,
+
+  "review_notes": {
+    "owner_earnings_note": {
+      "summary": "Wal-Mart's raw free cash flow looked weak mainly because the company was still funding a very large global store, logistics, and international expansion program.",
+      "maintenance_vs_growth_view": "A meaningful portion of 2005-2006 capex was expansionary rather than maintenance-like, so raw FCF / NI overstated how weak the underlying economics really were.",
+      "decision_impact": "This is exactly the kind of case where g2 needs interpretation. The archived conclusion stays PASS for comparability, but the note records that the raw gate was too harsh."
+    },
+    "management_veto": {
+      "status": "clear",
+      "summary": "Management quality and capital allocation were not the problem. This was a pricing and reinvestment-interpretation issue, not an integrity or stewardship failure."
+    }
+  },
+
+  "metrics_snapshot": {
+    "net_sales_2006_usd_m": 312427,
+    "net_income_2006_usd_m": 11231,
+    "operating_cash_flow_2006_usd_m": 17633,
+    "capital_expenditures_2006_usd_m": 14563,
+    "market_value_july_2005_usd_m": 120277
+  },
+
+  "control_groups": [
+    { "ticker": "SHLD", "company": "Sears Holdings", "year": 2005, "gates_failed": ["g4_revenue_trend", "g7_moat"], "conclusion": "PASS — merger complexity and deteriorating retail relevance made the economics far less dependable than Wal-Mart's." },
+    { "ticker": "TGT", "company": "Target Corporation", "year": 2005, "gates_failed": ["g2_fcf_to_ni"], "conclusion": "PASS — still a strong retailer, but free-cash conversion and scale economics were not cleaner than Wal-Mart's at the time." }
+  ],
+
+  "conclusion": "PASS",
+  "buffett_action": "Berkshire established a 19.9M-share Wal-Mart position in 2005 at an actual cost of about $944M.",
+  "actual_result": "Wal-Mart remained a strong company, but Berkshire never turned the position into a canonical high-conviction compounder and ultimately exited years later after ordinary, not extraordinary, results.",
+  "verdict": "❌ framework_wrong",
+  "key_insight": "The current framework is still too harsh on reinvestment-heavy retail compounders when moat quality is exceptional but growth capex suppresses raw FCF."
+}

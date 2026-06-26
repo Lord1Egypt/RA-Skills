@@ -1,0 +1,124 @@
+{
+  "styles": [
+    {
+      "name": "2D动漫风格",
+      "category": "常用",
+      "prompt": "anime style, 2D animation, cel shading, vibrant colors, clean line art",
+      "description": "经典日式/国创2D动画风格"
+    },
+    {
+      "name": "真人写实",
+      "category": "常用",
+      "prompt": "photorealistic, cinematic lighting, high detail, realistic textures, natural colors",
+      "description": "接近真人照片的写实风格"
+    },
+    {
+      "name": "3D国创",
+      "category": "常用",
+      "prompt": "3D Chinese animation style, smooth shading, stylized proportions, vibrant lighting",
+      "description": "国产3D动画风格（如斗罗大陆、完美世界）"
+    },
+    {
+      "name": "三渲二",
+      "category": "常用",
+      "prompt": "3D toon shading, anime-like 3D, cel-shaded 3D, bold outlines, flat colors with shading",
+      "description": "3D模型搭配2D渲染效果"
+    },
+    {
+      "name": "吉卜力",
+      "category": "IP风格",
+      "prompt": "Studio Ghibli style, Hayao Miyazaki aesthetic, hand-painted backgrounds, soft lighting, whimsical",
+      "description": "宫崎骏/吉卜力工作室风格"
+    },
+    {
+      "name": "龙族传说",
+      "category": "IP风格",
+      "prompt": "Dragon-themed fantasy style, epic scale, mythical creatures, dramatic lighting",
+      "description": "奇幻龙族世界风格"
+    },
+    {
+      "name": "浮世绘",
+      "category": "插画",
+      "prompt": "Ukiyo-e style, Japanese woodblock print, bold outlines, flat color areas, traditional patterns",
+      "description": "日本浮世绘风格"
+    },
+    {
+      "name": "油画釉光",
+      "category": "插画",
+      "prompt": "oil painting style, impasto texture, rich colors, glazed finish, classical art",
+      "description": "油画质感，色彩浓郁"
+    },
+    {
+      "name": "水彩",
+      "category": "插画",
+      "prompt": "watercolor painting, soft edges, translucent layers, flowing colors, paper texture",
+      "description": "水彩画风格，柔和通透"
+    },
+    {
+      "name": "哥特",
+      "category": "插画",
+      "prompt": "gothic art style, dark atmosphere, ornate details, dramatic shadows, Victorian elements",
+      "description": "哥特式暗黑华丽风格"
+    },
+    {
+      "name": "波普",
+      "category": "插画",
+      "prompt": "pop art style, bold colors, Ben-Day dots, comic-inspired, high contrast",
+      "description": "波普艺术，高对比度"
+    },
+    {
+      "name": "Q萌马克笔",
+      "category": "可爱Q版",
+      "prompt": "chibi style, cute proportions, big head small body, marker coloring, bright cheerful colors",
+      "description": "Q版大头小身，马克笔质感"
+    },
+    {
+      "name": "火柴人",
+      "category": "可爱Q版",
+      "prompt": "stick figure style, minimalist, simple lines, expressive poses",
+      "description": "极简火柴人风格"
+    },
+    {
+      "name": "像素",
+      "category": "可爱Q版",
+      "prompt": "pixel art style, retro game aesthetic, limited palette, blocky forms, 16-bit",
+      "description": "复古像素艺术"
+    },
+    {
+      "name": "美式3D",
+      "category": "立体",
+      "prompt": "American 3D animation style, Pixar-like, expressive characters, soft lighting, subsurface scattering",
+      "description": "美式3D动画（皮克斯风格）"
+    },
+    {
+      "name": "乐高",
+      "category": "立体",
+      "prompt": "LEGO style, blocky construction toy aesthetic, plastic textures, stud details",
+      "description": "乐高积木风格"
+    },
+    {
+      "name": "折纸艺术",
+      "category": "立体",
+      "prompt": "origami art style, paper folding aesthetic, geometric forms, paper texture, soft shadows",
+      "description": "折纸艺术风格"
+    },
+    {
+      "name": "日式少女漫",
+      "category": "日系",
+      "prompt": "shoujo manga style, sparkling eyes, flowing hair, delicate line work, pastel colors, romantic atmosphere",
+      "description": "少女漫画风格，唯美浪漫"
+    },
+    {
+      "name": "东方古典",
+      "category": "日系",
+      "prompt": "traditional East Asian painting style, ink wash, calligraphic lines, misty atmosphere, classical composition",
+      "description": "东方古典水墨风格"
+    },
+    {
+      "name": "复古赛璐璐",
+      "category": "日系",
+      "prompt": "retro cel animation style, 1980s anime aesthetic, film grain, vibrant colors, classic shading",
+      "description": "80-90年代复古动画风格"
+    }
+  ]
+}

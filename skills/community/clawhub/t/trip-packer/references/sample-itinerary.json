@@ -1,0 +1,224 @@
+{
+  "metadata": {
+    "title": "京都古刹二日游",
+    "subtitle": "京都站附近1晚 · 2日慢游",
+    "mapCenter": { "lat": 35.0116, "lng": 135.7681 },
+    "mapZoom": 13,
+    "cityLabel": "京都",
+    "seasonLabel": "AUTUMN",
+    "flag": "🇯🇵",
+    "country": "JP"
+  },
+  "locations": {
+    "kyoto_station_hotel": {
+      "id": "kyoto_station_hotel",
+      "name": "京都格兰比亚大酒店",
+      "lat": 34.985,
+      "lng": 135.758,
+      "color": "#3b82f6",
+      "type": "hotel_group",
+      "description": "JR京都站上盖 · 交通便利",
+      "address": "京都府京都市下京区烏丸通塩小路下ル東塩小路町901",
+      "children": []
+    },
+    "kiyomizudera": {
+      "id": "kiyomizudera",
+      "name": "清水寺",
+      "type": "spot",
+      "lat": 34.9949,
+      "lng": 135.785,
+      "color": "#ef4444",
+      "description": "世界遗产 · 清水舞台",
+      "address": "京都府京都市东山区清水1-294",
+      "parentId": "kyoto_station_hotel"
+    },
+    "sannenzaka": {
+      "id": "sannenzaka",
+      "name": "二年坂三年坂",
+      "type": "spot",
+      "lat": 34.9975,
+      "lng": 135.781,
+      "color": "#8b5cf6",
+      "description": "京都风情石板路",
+      "address": "京都府京都市东山区清水2-204",
+      "parentId": "kyoto_station_hotel"
+    },
+    "fushimi_inari": {
+      "id": "fushimi_inari",
+      "name": "伏见稻荷大社",
+      "type": "spot",
+      "lat": 34.9671,
+      "lng": 135.7727,
+      "color": "#f97316",
+      "description": "千本鸟居",
+      "address": "京都府京都市伏见区深草薮之内町68",
+      "parentId": "kyoto_station_hotel"
+    }
+  },
+  "days": [
+    {
+      "day": 1,
+      "date": "2026-11-15",
+      "title": "东山古刹巡礼",
+      "note": "上午清水寺参拜与二年坂三年坂漫步",
+      "baseHotelId": "kyoto_station_hotel",
+      "path": [
+        {
+          "locationId": "kyoto_station_hotel",
+          "label": "起点",
+          "isHotel": true
+        },
+        {
+          "locationId": "kiyomizudera",
+          "label": "公交206路 · 约20分钟",
+          "transit": {
+            "distance": "约4公里",
+            "duration": "约20分钟",
+            "startName": "京都站",
+            "endName": "清水寺",
+            "steps": [
+              {
+                "mode": "bus",
+                "from": "京都站",
+                "to": "五条坂站",
+                "duration": "约15分钟",
+                "distance": "约4公里",
+                "instruction": "乘坐市营巴士206路至五条坂"
+              },
+              {
+                "mode": "walk",
+                "from": "五条坂站",
+                "to": "清水寺",
+                "duration": "约5分钟",
+                "distance": "约300米",
+                "instruction": "沿清水坂步行 uphill"
+              }
+            ]
+          }
+        },
+        {
+          "locationId": "sannenzaka",
+          "label": "步行 · 约5分钟",
+          "transit": {
+            "distance": "约300米",
+            "duration": "约5分钟",
+            "startName": "清水寺",
+            "endName": "二年坂三年坂",
+            "steps": [
+              {
+                "mode": "walk",
+                "from": "清水寺",
+                "to": "二年坂三年坂",
+                "duration": "约5分钟",
+                "distance": "约300米",
+                "instruction": "沿清水坂下坡步行"
+              }
+            ]
+          }
+        },
+        {
+          "locationId": "kyoto_station_hotel",
+          "label": "公交 · 约20分钟",
+          "isHotel": true,
+          "transit": {
+            "distance": "约4公里",
+            "duration": "约20分钟",
+            "startName": "二年坂三年坂",
+            "endName": "京都站",
+            "steps": [
+              {
+                "mode": "walk",
+                "from": "二年坂三年坂",
+                "to": "清水道站",
+                "duration": "约5分钟",
+                "distance": "约300米",
+                "instruction": "步行至清水道巴士站"
+              },
+              {
+                "mode": "bus",
+                "from": "清水道站",
+                "to": "京都站",
+                "duration": "约15分钟",
+                "distance": "约4公里",
+                "instruction": "乘坐市营巴士206路返回京都站"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "date": "2026-11-16",
+      "title": "伏见稻荷朝圣",
+      "note": "上午穿越千本鸟居",
+      "baseHotelId": "kyoto_station_hotel",
+      "path": [
+        {
+          "locationId": "kyoto_station_hotel",
+          "label": "起点",
+          "isHotel": true
+        },
+        {
+          "locationId": "fushimi_inari",
+          "label": "JR奈良线 · 约5分钟",
+          "transit": {
+            "distance": "约2公里",
+            "duration": "约5分钟",
+            "startName": "京都站",
+            "endName": "伏见稻荷大社",
+            "steps": [
+              {
+                "mode": "train",
+                "line": "JR奈良线",
+                "from": "京都站",
+                "to": "稻荷站",
+                "duration": "约2分钟",
+                "distance": "约2公里",
+                "instruction": "乘坐JR奈良线至稻荷站"
+              },
+              {
+                "mode": "walk",
+                "from": "稻荷站",
+                "to": "伏见稻荷大社",
+                "duration": "约3分钟",
+                "distance": "约200米",
+                "instruction": "出站即达大社入口"
+              }
+            ]
+          }
+        },
+        {
+          "locationId": "kyoto_station_hotel",
+          "label": "JR奈良线 · 约5分钟",
+          "isHotel": true,
+          "transit": {
+            "distance": "约2公里",
+            "duration": "约5分钟",
+            "startName": "稻荷站",
+            "endName": "京都站",
+            "steps": [
+              {
+                "mode": "walk",
+                "from": "伏见稻荷大社",
+                "to": "稻荷站",
+                "duration": "约3分钟",
+                "distance": "约200米",
+                "instruction": "步行返回稻荷站"
+              },
+              {
+                "mode": "train",
+                "line": "JR奈良线",
+                "from": "稻荷站",
+                "to": "京都站",
+                "duration": "约2分钟",
+                "distance": "约2公里",
+                "instruction": "乘坐JR奈良线返回京都站"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

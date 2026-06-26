@@ -1,0 +1,43 @@
+{
+  "name": "travel-income-assistant",
+  "version": "1.0.0",
+  "description": "旅行创收助手 - 发现边玩边赚钱的旅行方案，让预算有限的人也能说走就走",
+  "author": "徐文祥（出心）<wenxiang.xwx@alibaba-inc.com>",
+  "license": "MIT",
+  "keywords": [
+    "flyai",
+    "travel",
+    "income",
+    "hackathon",
+    "旅行",
+    "创收",
+    "边玩边赚"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/alibaba-flyai/flyai-skill-travel-income"
+  },
+  "homepage": "https://github.com/alibaba-flyai/flyai-skill-travel-income#readme",
+  "bugs": {
+    "url": "https://github.com/alibaba-flyai/flyai-skill-travel-income/issues"
+  },
+  "category": "旅行",
+  "tags": [
+    "旅行规划",
+    "赚钱",
+    "副业",
+    "活动套利",
+    "技能变现"
+  ],
+  "triggerWords": [
+    "旅行赚钱",
+    "边玩边赚",
+    "旅行创收",
+    "赚旅费",
+    "旅行副业",
+    "演唱会周边",
+    "旅拍",
+    "免税代购",
+    "酒店试睡员"
+  ]
+}

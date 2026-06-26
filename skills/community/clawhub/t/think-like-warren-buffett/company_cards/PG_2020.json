@@ -1,0 +1,42 @@
+{
+  "ticker": "PG",
+  "company": "The Procter & Gamble Company",
+  "analysis_year": 2020,
+  "data_source": "Procter & Gamble FY2020 10-K and Berkshire 2020-12-31 / 2021-12-31 / 2022-12-31 13F-HR",
+  "analyzed_date": "2026-03-26",
+
+  "hard_gates": {
+    "g1_roe_roic": { "value": 0.179, "metric_used": "ROE", "years_averaged": "2018-2020", "pass": true },
+    "g2_fcf_to_ni": { "value": 1.094, "fcf": 14330, "net_income": 13103, "pass": true },
+    "g3_leverage": { "metric_used": "Net Debt/EBITDA", "value": 0.95, "pass": true },
+    "g4_revenue_trend": { "description": "Revenue rose from $66.8B in FY2018 to $67.7B in FY2019 to $71.0B in FY2020. The portfolio was plainly not in structural decline.", "structural_decline": false, "pass": true },
+    "g5_gross_margin_trend": { "description": "Gross margin improved from roughly 48.5% in FY2018 to 48.6% in FY2019 to 50.3% in FY2020. No deterioration was visible.", "declining_2plus_years": false, "pass": true },
+    "g6_earnings_yield": { "value": 0.036, "net_income_m": 13103, "ev_m": 363277, "exemption": null, "pass": false },
+    "g7_moat": { "verdict": "PASS", "moat_type": "brand", "description": "P&G still had one of the strongest portfolios of household brands in the world, backed by advertising scale, shelf presence, and global distribution. The only real issue was paying a premium consumer-staples multiple for that quality.", "pass": true }
+  },
+
+  "special_channel": null,
+
+  "review_notes": {
+    "quality_multiple_note": {
+      "summary": "P&G's low earnings yield was a pure quality multiple on a globally dominant branded-consumer platform.",
+      "reason_for_low_yield": "This was not a dubious story stock. It was a great business already priced like one in a low-rate environment.",
+      "decision_impact": "The valuation note explains why Buffett could still hold a token stake, but it does not overturn the framework's PASS."
+    },
+    "management_veto": {
+      "status": "clear",
+      "summary": "No management veto applied. This is a price-discipline rejection against a very high-quality staple franchise."
+    }
+  },
+
+  "control_groups": [
+    { "ticker": "KMB", "company": "Kimberly-Clark Corporation", "year": 2020, "gates_failed": ["g4_revenue_trend", "g6_earnings_yield"], "conclusion": "PASS — respectable brand portfolio, but slower growth and still not cheap." },
+    { "ticker": "CL", "company": "Colgate-Palmolive Company", "year": 2020, "gates_failed": ["g6_earnings_yield"], "conclusion": "PASS — another excellent staple, but also priced below the framework's required return." }
+  ],
+
+  "conclusion": "PASS",
+  "buffett_action": "Berkshire reported 315,400 P&G shares worth about $43.9M at 2020-12-31 in its 13F-HR.",
+  "actual_result": "That tiny stake remained unchanged at both 2021-12-31 and 2022-12-31. It looked like a legacy position, not a fresh high-conviction Berkshire move.",
+  "verdict": "⭐ framework_wins",
+  "key_insight": "World-class staple franchises can remain passes when the only thing clearly on offer is safety, not a sufficient forward return."
+}

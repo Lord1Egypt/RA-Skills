@@ -1,0 +1,7 @@
+{
+  "name": "tikhub-api-skill",
+  "version": "1.1.0",
+  "description": "TikHub API 多平台数据爬取工具 - 抖音/TikTok/B站/小红书",
+  "slug": "tikhub-api-skill",
+  "skill": "./SKILL.md"
+}

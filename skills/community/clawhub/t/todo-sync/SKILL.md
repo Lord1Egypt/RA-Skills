@@ -1,35 +1,34 @@
 ---
-name: "Todo Sync"
+name: todo-sync
 description: "企业微信待办与飞书任务不同步"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/todo-sync"
-sourceUrl: "https://clawhub.ai/skills/todo-sync"
+version: "0.1.0"
+license: MIT
+user-invocable: true
+allowed-tools: Read, Write, Edit, Bash
 ---
 
-# Todo Sync
+# todo-sync
 
-> 企业微信待办与飞书任务不同步
+**灵感来源**: 太子观察用户痛点  
+**创建时间**: 2026-04-08 11:44
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/todo-sync`
-- **Source URL:** [https://clawhub.ai/skills/todo-sync](https://clawhub.ai/skills/todo-sync)
+## 触发方式
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/todo-sync
 ```
+/todo_sync
+```
+
+## 功能
+
+企业微信待办与飞书任务不同步
+
+## 使用示例
+
+用户：[示例输入]
+助手：[示例输出]
+
+## 待开发
+
+- [ ] 核心功能实现
+- [ ] 测试用例
+- [ ] 文档完善

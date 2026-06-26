@@ -1,0 +1,322 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Chain of Custody Manager API",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/": {
+      "get": {
+        "summary": "Root",
+        "operationId": "root__get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/custody/generate": {
+      "post": {
+        "summary": "Generate Custody Report",
+        "description": "Generate Chain of Custody HTML report",
+        "operationId": "generate_custody_report_api_custody_generate_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CustodyRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/custody/health": {
+      "get": {
+        "summary": "Health Check",
+        "description": "Health check endpoint",
+        "operationId": "health_check_api_custody_health_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "CaseInfo": {
+        "properties": {
+          "caseNumber": {
+            "type": "string",
+            "title": "Casenumber"
+          },
+          "caseName": {
+            "type": "string",
+            "title": "Casename"
+          },
+          "investigator": {
+            "type": "string",
+            "title": "Investigator"
+          },
+          "organization": {
+            "type": "string",
+            "title": "Organization"
+          },
+          "reportDate": {
+            "type": "string",
+            "title": "Reportdate"
+          }
+        },
+        "type": "object",
+        "required": [
+          "caseNumber",
+          "caseName",
+          "investigator",
+          "organization",
+          "reportDate"
+        ],
+        "title": "CaseInfo"
+      },
+      "CustodyEntry": {
+        "properties": {
+          "person": {
+            "type": "string",
+            "title": "Person"
+          },
+          "timestamp": {
+            "type": "string",
+            "title": "Timestamp"
+          },
+          "purpose": {
+            "type": "string",
+            "title": "Purpose"
+          },
+          "action": {
+            "type": "string",
+            "title": "Action"
+          }
+        },
+        "type": "object",
+        "required": [
+          "person",
+          "timestamp",
+          "purpose",
+          "action"
+        ],
+        "title": "CustodyEntry"
+      },
+      "CustodyRequest": {
+        "properties": {
+          "reportData": {
+            "$ref": "#/components/schemas/ReportData"
+          },
+          "sessionId": {
+            "type": "string",
+            "title": "Sessionid"
+          },
+          "userId": {
+            "type": "integer",
+            "title": "Userid"
+          },
+          "timestamp": {
+            "type": "string",
+            "title": "Timestamp"
+          },
+          "userEmail": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Useremail",
+            "default": ""
+          },
+          "userName": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Username",
+            "default": ""
+          }
+        },
+        "type": "object",
+        "required": [
+          "reportData",
+          "sessionId",
+          "userId",
+          "timestamp"
+        ],
+        "title": "CustodyRequest"
+      },
+      "EvidenceItem": {
+        "properties": {
+          "evidenceId": {
+            "type": "string",
+            "title": "Evidenceid"
+          },
+          "evidenceType": {
+            "type": "string",
+            "title": "Evidencetype"
+          },
+          "description": {
+            "type": "string",
+            "title": "Description"
+          },
+          "collectionDate": {
+            "type": "string",
+            "title": "Collectiondate"
+          },
+          "collectionLocation": {
+            "type": "string",
+            "title": "Collectionlocation"
+          },
+          "collectedBy": {
+            "type": "string",
+            "title": "Collectedby"
+          },
+          "hashAlgorithm": {
+            "type": "string",
+            "title": "Hashalgorithm"
+          },
+          "hashValue": {
+            "type": "string",
+            "title": "Hashvalue"
+          },
+          "custodyChain": {
+            "items": {
+              "$ref": "#/components/schemas/CustodyEntry"
+            },
+            "type": "array",
+            "title": "Custodychain"
+          }
+        },
+        "type": "object",
+        "required": [
+          "evidenceId",
+          "evidenceType",
+          "description",
+          "collectionDate",
+          "collectionLocation",
+          "collectedBy",
+          "hashAlgorithm",
+          "hashValue",
+          "custodyChain"
+        ],
+        "title": "EvidenceItem"
+      },
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "type": "array",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
+      },
+      "ReportData": {
+        "properties": {
+          "caseInfo": {
+            "$ref": "#/components/schemas/CaseInfo"
+          },
+          "evidenceItems": {
+            "items": {
+              "$ref": "#/components/schemas/EvidenceItem"
+            },
+            "type": "array",
+            "title": "Evidenceitems"
+          },
+          "sessionId": {
+            "type": "string",
+            "title": "Sessionid"
+          }
+        },
+        "type": "object",
+        "required": [
+          "caseInfo",
+          "evidenceItems",
+          "sessionId"
+        ],
+        "title": "ReportData"
+      },
+      "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Location"
+          },
+          "msg": {
+            "type": "string",
+            "title": "Message"
+          },
+          "type": {
+            "type": "string",
+            "title": "Error Type"
+          }
+        },
+        "type": "object",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError"
+      }
+    }
+  }
+}

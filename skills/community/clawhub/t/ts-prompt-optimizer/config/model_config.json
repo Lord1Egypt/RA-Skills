@@ -1,0 +1,30 @@
+{
+  "optimization_models": {
+    "simple": "deepseek/deepseek-chat",
+    "complex": "bailian/qwen3.5-plus",
+    "technical": "bailian/qwen3-coder-next",
+    "creative": "bailian/qwen3.5-plus",
+    "analysis": "bailian/qwen3.5-plus",
+    "writing": "bailian/qwen3.5-plus"
+  },
+  "routing_strategy": "cost_effective",
+  "fallback_model": "deepseek/deepseek-chat",
+  "cost_priority": true,
+  "quality_thresholds": {
+    "simple_tasks": ["日常问答", "简单查询", "基本信息"],
+    "complex_tasks": ["技术开发", "创意写作", "深度分析", "系统设计"],
+    "expert_tasks": ["架构设计", "安全审计", "算法优化", "专业咨询"]
+  },
+  "model_capabilities": {
+    "deepseek/deepseek-chat": ["日常对话", "简单优化", "代码审查", "基础分析"],
+    "bailian/qwen3.5-plus": ["复杂优化", "创意任务", "中文写作", "图像理解", "深度分析"],
+    "bailian/qwen3-coder-next": ["技术开发", "算法实现", "系统设计", "代码生成"]
+  },
+  "integration_settings": {
+    "with_smart_router": true,
+    "auto_detect_prefix": true,
+    "prefixes": ["ts:", "ts-opt:", "优化:"],
+    "learning_enabled": true,
+    "feedback_mechanism": true
+  }
+}

@@ -1,0 +1,132 @@
+{
+  "collected_at": "2026-04-07T05:29:00+08:00",
+  "trigger": "nasdaq_trigger",
+  "items": [
+    {
+      "time_cst": "2026-04-06 21:28 CST",
+      "source": "X/@KobeissiLetter",
+      "content": "Trump tells Iran 'open the f***** Strait of Hormuz, you crazy bastards' — BREAKING",
+      "engagement": "978 rt / 3817 like / 355K views",
+      "market_reaction": "Trump threat rhetoric escalating"
+    },
+    {
+      "time_cst": "2026-04-06 21:35 CST",
+      "source": "X/@KobeissiLetter",
+      "content": "Trump announces military news conference tomorrow 1PM ET — 3 hours after 48-hour Iran warning expires",
+      "engagement": "218 rt / 1550 like / 78.7K views",
+      "market_reaction": "Military escalation timeline confirmed"
+    },
+    {
+      "time_cst": "2026-04-06 21:54 CST",
+      "source": "X/@Naveen10293847",
+      "content": "Iran rejected proposed ceasefire yesterday afternoon — White House called lid",
+      "engagement": "23 views",
+      "market_reaction": "Negotiation path closing"
+    },
+    {
+      "time_cst": "2026-04-06 21:52 CST",
+      "source": "X/@game5ball",
+      "content": "Wall Street epic rally on Iran ceasefire hopes — Dow +1100 pts, S&P +2.9%",
+      "engagement": "8 views",
+      "market_reaction": "Dow +1100 pts, S&P +2.9% — ceasefire hope rally"
+    },
+    {
+      "time_cst": "2026-04-06 21:51 CST",
+      "source": "X/@MPG37685458",
+      "content": "Iran will not accept ceasefire — will strike back, goodbye power plants and desalination plants in the Gulf",
+      "engagement": "59 views",
+      "market_reaction": "Iranian defiance, escalation risk"
+    },
+    {
+      "time_cst": "2026-04-06 21:52 CST",
+      "source": "X/@Two2ferdi7Seven",
+      "content": "America begging for ceasefire — Iran saying 'we're good, we'll finish what you started'",
+      "engagement": "6 views",
+      "market_reaction": "Narrative shift: US seen as seeking deal, Iran confident"
+    },
+    {
+      "time_cst": "2026-04-06 21:52 CST",
+      "source": "X/@dublinvoter",
+      "content": "Doesn't sound like Iran is begging Trump for a deal — contradicts his previous claims",
+      "engagement": "63 views",
+      "market_reaction": "Contradicts Trump narrative"
+    },
+    {
+      "time_cst": "2026-04-06 21:47 CST",
+      "source": "X/@KnableHeather",
+      "content": "Obama deal had inspectors until Trump ripped it up causing all of this",
+      "engagement": "2 like / 30 views",
+      "market_reaction": "Blame Trump narrative"
+    },
+    {
+      "time_cst": "2026-04-07 05:28 CST",
+      "source": "X/@Kredo0 (Free Beacon)",
+      "content": "'For 47 Years, They've Been Bullshitting Other Presidents': Trump threatens to take out entire Iran in one night if regime rejects ceasefire deal — deadline tomorrow 8PM Eastern",
+      "engagement": "51 views",
+      "market_reaction": "Final ultimatum, escalation to 'one night' total destruction threat"
+    },
+    {
+      "time_cst": "2026-04-07 05:27 CST",
+      "source": "X/@HISteveWilliams (InfoWars)",
+      "content": "Israel warns Trump against ceasefire deal with Iran — Netanyahu bombed Tehran's negotiator before he could meet with JD Vance, now warning against ceasefire",
+      "engagement": "19 views",
+      "market_reaction": "Israel opposed to deal, complicating negotiation"
+    },
+    {
+      "time_cst": "2026-04-07 05:27 CST",
+      "source": "X/@NormRoulet",
+      "content": "Trump plan to destroy every bridge and power plant in Iran by midnight tomorrow if no deal — Hormuz 'a priority', or Iran 'taken out entirely in one night'",
+      "engagement": "12 views",
+      "market_reaction": "Specific infrastructure targets, midnight tomorrow deadline"
+    },
+    {
+      "time_cst": "2026-04-07 05:29 CST",
+      "source": "X/@etudnet",
+      "content": "Iran rebuffed major US ceasefire proposal on April 6, triggering volatility across emerging markets and energy sectors",
+      "engagement": "2 views",
+      "market_reaction": "EM and energy volatility confirmed"
+    },
+    {
+      "time_cst": "2026-04-07 05:29 CST",
+      "source": "X/@MansaTesla",
+      "content": "Iran rejected 45-day ceasefire, wants permanent war end + sanctions relief. Tehran sent 10-point peace plan via Pakistan — Washington said it was unacceptable",
+      "engagement": "1 view",
+      "market_reaction": "Iran counter-offers with permanent demands"
+    },
+    {
+      "time_cst": "2026-04-07 05:29 CST",
+      "source": "X/@TousiTVOfficial",
+      "content": "Trump confirmed weapons were sent to Iranians during January uprising — some reached inside Iran. Regime rejected temporary ceasefire but now [message cut off]",
+      "engagement": "1 rt / 4 like / 37 views",
+      "market_reaction": "New detail: US-backed weapons reached Iran insurgents"
+    },
+    {
+      "time_cst": "2026-04-07 05:29 CST",
+      "source": "X/@lindsay497",
+      "content": "Trump hints at potential Iran deal amid ongoing negotiations (Fox News) — rescue of downed F-15E airman in Iran as negotiations remain ongoing",
+      "engagement": "4 views",
+      "market_reaction": "Fox News: potential deal hints, F-15E airman rescue detail"
+    },
+    {
+      "time_cst": "2026-04-07 04:29 CST",
+      "source": "X/@KobeissiLetter",
+      "content": "UnitedHealth $UNH surges +11% after Medicare/Medicaid finalizes plans with +2.5% annual increase for private insurers",
+      "engagement": "130 reply / 206 rt / 1764 like / 263K views",
+      "market_reaction": "UNH +11% on policy favorable ruling"
+    },
+    {
+      "time_cst": "2026-04-07 04:29 CST",
+      "source": "X/@WatcherGuru",
+      "content": "President Trump considers charging tolls for ships passing through the Strait of Hormuz",
+      "engagement": "417 reply / 206 rt / 1587 like / 159K views",
+      "market_reaction": "Hormuz toll proposal — energy/maritime implications"
+    },
+    {
+      "time_cst": "2026-04-07 ~01:00 CST",
+      "source": "X/@WatcherGuru",
+      "content": "Bitcoin on Easter 2026: $67,000 (down from $84,500 in 2025 peak)",
+      "engagement": "247 rt / 2008 like / 107K views",
+      "market_reaction": "BTC $67K, -20.7% from 2025 peak"
+    }
+  ]
+}

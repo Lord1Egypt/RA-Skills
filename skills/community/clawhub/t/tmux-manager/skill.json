@@ -1,0 +1,36 @@
+{
+  "platform": "openclaw",
+  "displayName": "tmux-manager",
+  "installType": "full",
+  "folderStructure": {
+    "root": ".agent",
+    "skillPath": "skills/tmux-manager",
+    "filename": "SKILL.md"
+  },
+  "scriptPath": "skills/tmux-manager/scripts/tmux-manager.py",
+  "frontmatter": {
+    "name": "tmux-manager",
+    "description": "Manage tmux sessions from a YAML config file. Create, kill, restart, list, or inspect sessions, send commands, tail output, and validate config. Supports session and window groups, hooks, env vars, panes, and layouts."
+  },
+  "sections": {
+    "quickReference": true
+  },
+  "title": "tmux-manager",
+  "description": "Manage tmux sessions from a YAML config file. Create, kill, restart, list, or inspect sessions, send commands, tail output, and validate config. Supports session groups, window groups, pre/post hooks, environment variables, panes, and layouts.",
+  "skillOrWorkflow": "Skill",
+  "dependencies": [
+    "tmux",
+    "uv"
+  ],
+  "keywords": [
+    "tmux",
+    "terminal",
+    "session",
+    "development",
+    "workflow",
+    "automation",
+    "yaml"
+  ],
+  "version": "1.0.0",
+  "license": "MIT"
+}

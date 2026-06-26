@@ -1,0 +1,14 @@
+{
+  "name": "truth",
+  "version": "1.5.0",
+  "description": "AI Content Authenticity Verification Tool. 事实核查技能，6层深度核查（含区块链存证验证），元认知置信度输出，维度权重可配置，支持定时核查。识别AI幻觉、虚假信息，输出可信度评分和问题标注。完美适配2核2G环境，100%隐私保护。可简称truth/qiuzhen使用。",
+  "author": "tangtaozhanshen",
+  "homepage": "https://clawhub.ai/tangtaozhanshen/truth-seeking-fact-check",
+  "license": "MIT-0",
+  "permissions": ["content_verify", "file_read"],
+  "dependencies": {},
+  "main": "main.py",
+  "keywords": ["truth", "verification", "AI hallucination", "authenticity", "blockchain", "fact-check", "security", "qiuzhen"],
+  "category": "productivity",
+  "icon": "🔍"
+}

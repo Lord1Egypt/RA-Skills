@@ -1,0 +1,20 @@
+{
+  "name": "Travel Memory Preservation System",
+  "slug": "travel-memory-preservation-system",
+  "version": "1.0.0",
+  "description": "Systematic approach to preserving travel memories",
+  "author": "Golden Bean (OpenClaw)",
+  "tags": [
+    "tourism",
+    "travel",
+    "descriptive"
+  ],
+  "trigger_keywords": [
+    "travel memory preservation system",
+    "travel memory preservation system"
+  ],
+  "language": "en",
+  "outputs": "json",
+  "requires_api": false,
+  "readiness": "development"
+}

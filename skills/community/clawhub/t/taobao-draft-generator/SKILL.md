@@ -1,35 +1,109 @@
 ---
-name: "Taobao Draft Generator"
+name: taobao-draft-generator
+slug: taobao-draft-generator
+version: 1.0.0
 description: "淘宝商品上架草稿生成 - 人工触发，五维材质一致性校验，SEO 标题二次原创，仅生成草稿不自动上架"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/taobao-draft-generator"
-sourceUrl: "https://clawhub.ai/skills/taobao-draft-generator"
+changelog: "v1.0.0 初始版本：草稿生成、五维校验、SEO 原创、合规终审"
+metadata: {"clawdbot":{"emoji":"📝","requires":{"bins":["python3"],"python_deps":["requests","pandas","openpyxl"]},"os":["win32"]}}
 ---
 
-# Taobao Draft Generator
+# 淘宝商品上架草稿生成 Skill
 
-> 淘宝商品上架草稿生成 - 人工触发，五维材质一致性校验，SEO 标题二次原创，仅生成草稿不自动上架
+## ⚠️ 重要安全声明
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/taobao-draft-generator`
-- **Source URL:** [https://clawhub.ai/skills/taobao-draft-generator](https://clawhub.ai/skills/taobao-draft-generator)
+**本技能严格遵守以下安全铁律：**
 
-## Overview
+1. **不自动上架** - 仅生成草稿和终审表，必须人工审核后手动发布
+2. **五维材质一致性** - 标题、属性栏、详情页、吊牌、质检报告 100% 一致
+3. **官方 API 操作** - 仅通过淘宝官方 API，禁止模拟点击、无头浏览器
+4. **人工触发** - 必须人工确认素材编辑完成后触发
 
+---
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/taobao-draft-generator
+## 功能概述
+
+### 能力映射（仅人工触发）
+
 ```
+用户输入：款号 + 确认素材已完成（人工提供）
+    ↓
+Step 1: 商品合规信息提取
+    ↓
+Step 2: SEO 标题二次原创（100% 原创，禁违禁词）
+    ↓
+Step 3: 类目属性合规填充
+    ↓
+Step 4: 五维材质一致性校验（不一致直接拦截）
+    ↓
+Step 5: 素材精准匹配上传（按命名顺序）
+    ↓
+Step 6: 价格库存合规设置（≥3 折，安全阈值）
+    ↓
+Step 7: 上架前合规终审（双重违禁词校验）
+    ↓
+输出：淘宝商品上架草稿 + 《上架信息终审表》
+```
+
+---
+
+## 强制合规规则（硬限制）
+
+### 1. 标题 100% 二次原创
+
+- ✅ 禁止搬运网商园原标题
+- ✅ 符合男装 SEO 规则
+- ✅ 规避违禁词、极限词
+
+### 2. 五维材质一致性校验
+
+| 维度 | 校验对象 | 一致性要求 |
+|------|----------|------------|
+| 1 | 标题材质描述 | 100% 一致 |
+| 2 | 属性栏材质 | 100% 一致 |
+| 3 | 详情页材质说明 | 100% 一致 |
+| 4 | 吊牌材质 | 100% 一致 |
+| 5 | 质检报告材质 | 100% 一致 |
+
+### 3. 价格库存合规
+
+- ✅ 折扣不低于一口价的 3 折
+- ✅ 禁止 1 元以下引流 SKU
+- ✅ 库存安全阈值：≥10 件
+
+---
+
+## 使用命令
+
+```bash
+python scripts/draft_generator.py generate --款号 KZ20260326 --确认素材已完成
+```
+
+---
+
+## 输出物
+
+### 1. 淘宝商品上架草稿（JSON）
+
+### 2. 《上架信息终审表》（Excel）
+
+包含：全量信息、五维一致性校验结果、违禁词检测、类目正确性、属性完整性、风险点标注
+
+---
+
+## 安全与合规声明
+
+**本技能不会：**
+- ❌ 自动执行商品上架发布
+- ❌ 搬运网商园原标题
+- ❌ 修改材质描述
+- ❌ 模拟点击、无头浏览器操作
+
+**本技能仅支持：**
+- ✅ 生成上架草稿
+- ✅ 生成终审表
+- ✅ 人工审核后手动发布
+- ✅ 官方 API 操作
+
+---
+
+*📝 淘宝商品上架草稿生成 — 人工审核，合规第一*

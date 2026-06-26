@@ -1,35 +1,49 @@
 ---
-name: "Terms Checker"
-description: "Analyze Terms of Service documents for completeness and fairness. Use when checking ToS sections, detecting unfair clauses, generating TL;DR summaries, scori..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/terms-checker"
-sourceUrl: "https://clawhub.ai/skills/terms-checker"
+name: "terms-checker"
+description: "Analyze Terms of Service documents for completeness and fairness. Use when checking ToS sections, detecting unfair clauses, generating TL;DR summaries, scoring user-friendliness, or comparing two versions."
 ---
 
 # Terms Checker
 
-> Analyze Terms of Service documents for completeness and fairness. Use when checking ToS sections, detecting unfair clauses, generating TL;DR summaries, scori...
+## Triggers on
+terms of service, ToS check, unfair clauses, terms summary, TOS fairness score, compare terms, service agreement
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/terms-checker`
-- **Source URL:** [https://clawhub.ai/skills/terms-checker](https://clawhub.ai/skills/terms-checker)
+## What This Skill Does
+Analyze Terms of Service documents for completeness and fairness. Use when checking ToS sections, detecting unfair clauses, generating TL;DR summaries, scoring user-friendliness, or comparing two versions.
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
+## Commands
+### check
 ```bash
-hermes skills install clawhub/terms-checker
+bash scripts/script.sh check [args]
 ```
+
+### unfair
+```bash
+bash scripts/script.sh unfair [args]
+```
+
+### summary
+```bash
+bash scripts/script.sh summary [args]
+```
+
+### score
+```bash
+bash scripts/script.sh score [args]
+```
+
+### compare
+```bash
+bash scripts/script.sh compare [args]
+```
+
+### help
+```bash
+bash scripts/script.sh help
+```
+
+## Requirements
+- bash 4+
+- python3 (standard library)
+
+Powered by BytesAgain | bytesagain.com

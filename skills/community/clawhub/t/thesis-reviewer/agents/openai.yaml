@@ -1,0 +1,25 @@
+interface:
+  display_name: "Thesis Reviewer"
+  short_description: "Systematically review master's and doctoral theses across all disciplines with two-phase workflow, 7 discipline-specific modules, and blind review risk assessment"
+  brand_color: "#2E7D32"
+
+policy:
+  allow_implicit_invocation: true
+
+capabilities:
+  - Convert .docx thesis to Markdown via markitdown
+  - Support all disciplines with 7 discipline-specific review modules (life sciences, medicine, CS/AI, engineering, chemistry, physics, social sciences)
+  - Support master's + doctoral theses, academic + professional degrees
+  - Full-spectrum review across 5 dimensions (academic quality, writing, formatting per GB/T 7713.1, data, academic integrity)
+  - 149 universal checklist items plus 22-34 discipline-specific supplements (170+ per review)
+  - PhD-specific evaluation (originality, independent research, system coherence, publications)
+  - Phase 1 auto deep analysis with chapter-by-chapter checklist evaluation
+  - Phase 2 interactive refinement with per-chapter discussion
+  - Cross-chapter consistency checks (questions↔results, methods↔data, citations↔references)
+  - Blind review risk assessment across 5 evaluation dimensions
+  - Structured review report with severity markers (serious/needs improvement/good)
+  - Prioritized revision roadmap for students
+  - National standards aligned (GB/T 7713.1-2006, GB/T 7714-2015, 2025 Degree Law)
+
+prerequisites:
+  - markitdown MCP (for .docx to Markdown conversion)

@@ -1,0 +1,343 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Network & Security Skills Assessment Generator API",
+    "description": "Generates comprehensive skill assessments and personalized learning roadmaps",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/": {
+      "get": {
+        "summary": "Root",
+        "operationId": "root__get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/modules": {
+      "get": {
+        "summary": "Get Modules",
+        "operationId": "get_modules_api_modules_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/careers": {
+      "get": {
+        "summary": "Get Careers",
+        "operationId": "get_careers_api_careers_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/certifications": {
+      "get": {
+        "summary": "Get Certifications",
+        "operationId": "get_certifications_api_certifications_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/generate-assessment": {
+      "post": {
+        "summary": "Generate Assessment",
+        "operationId": "generate_assessment_api_generate_assessment_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AssessmentRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AssessmentResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/module/{module_key}": {
+      "get": {
+        "summary": "Get Module Details",
+        "operationId": "get_module_details_api_module__module_key__get",
+        "parameters": [
+          {
+            "name": "module_key",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Module Key"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "AssessmentRequest": {
+        "properties": {
+          "candidate_name": {
+            "type": "string",
+            "title": "Candidate Name",
+            "description": "Candidate/Student name"
+          },
+          "organization": {
+            "type": "string",
+            "title": "Organization",
+            "description": "Organization or Institution",
+            "default": ""
+          },
+          "current_role": {
+            "type": "string",
+            "title": "Current Role",
+            "description": "Current job role or student status"
+          },
+          "experience_level": {
+            "type": "string",
+            "title": "Experience Level",
+            "description": "beginner/intermediate/advanced"
+          },
+          "target_career": {
+            "type": "string",
+            "title": "Target Career",
+            "description": "Target career path"
+          },
+          "selected_modules": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Selected Modules",
+            "description": "Modules to assess"
+          },
+          "skill_ratings": {
+            "title": "Skill Ratings",
+            "description": "Self-rated skills 1-5",
+            "default": {}
+          },
+          "target_certifications": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Target Certifications",
+            "description": "Target certifications",
+            "default": []
+          },
+          "preferred_vendors": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Preferred Vendors",
+            "description": "Preferred vendors",
+            "default": []
+          },
+          "include_labs": {
+            "type": "boolean",
+            "title": "Include Labs",
+            "description": "Include lab scenarios",
+            "default": true
+          },
+          "include_questions": {
+            "type": "boolean",
+            "title": "Include Questions",
+            "description": "Include knowledge checks",
+            "default": true
+          },
+          "weekly_study_hours": {
+            "type": "integer",
+            "title": "Weekly Study Hours",
+            "description": "Weekly study hours",
+            "default": 10
+          }
+        },
+        "additionalProperties": true,
+        "type": "object",
+        "required": [
+          "candidate_name",
+          "current_role",
+          "experience_level",
+          "target_career",
+          "selected_modules"
+        ],
+        "title": "AssessmentRequest"
+      },
+      "AssessmentResponse": {
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "title": "Success"
+          },
+          "assessment_html": {
+            "type": "string",
+            "title": "Assessment Html"
+          },
+          "roadmap_html": {
+            "type": "string",
+            "title": "Roadmap Html"
+          },
+          "certification_html": {
+            "type": "string",
+            "title": "Certification Html"
+          },
+          "labs_html": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Labs Html"
+          },
+          "questions_html": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Questions Html"
+          },
+          "generated_at": {
+            "type": "string",
+            "title": "Generated At"
+          }
+        },
+        "type": "object",
+        "required": [
+          "success",
+          "assessment_html",
+          "roadmap_html",
+          "certification_html",
+          "generated_at"
+        ],
+        "title": "AssessmentResponse"
+      },
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "type": "array",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
+      },
+      "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Location"
+          },
+          "msg": {
+            "type": "string",
+            "title": "Message"
+          },
+          "type": {
+            "type": "string",
+            "title": "Error Type"
+          }
+        },
+        "type": "object",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError"
+      }
+    }
+  }
+}

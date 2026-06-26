@@ -1,35 +1,41 @@
----
-name: "test-fixture-generator"
-description: "Automatically generate pytest fixtures for databases, API mocks, and file handling with setup and teardown support."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/test-fixture-generator"
-sourceUrl: "https://clawhub.ai/skills/test-fixture-generator"
----
-
 # test-fixture-generator
 
-> Automatically generate pytest fixtures for databases, API mocks, and file handling with setup and teardown support.
+## 名称
+test-fixture-generator
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/test-fixture-generator`
-- **Source URL:** [https://clawhub.ai/skills/test-fixture-generator](https://clawhub.ai/skills/test-fixture-generator)
+## 描述
+自动生成pytest fixtures的工具，支持常见测试场景（数据库、API mock、文件处理等）
 
-## Overview
+## 触发词
+fixture, pytest fixture, conftest, 测试夹具
 
+## 指令
+生成pytest fixtures代码
 
-## Installation
-To install this skill, run the following command in your terminal:
+## 使用方式
 ```bash
-hermes skills install clawhub/test-fixture-generator
+# 生成数据库fixture
+python -m test_fixture_generator generate --type db --db-type mysql
+
+# 生成API mock fixture
+python -m test_fixture_generator generate --type api --framework requests
+
+# 生成文件处理fixture
+python -m test_fixture_generator generate --type file --format json
+
+# 生成conftest.py
+python -m test_fixture_generator init
+
+# 交互式生成
+python -m test_fixture_generator interactive
 ```
+
+## 参数说明
+- `--type`: fixture类型 (db|api|file|random)
+- `--db-type`: 数据库类型 (mysql|postgres|sqlite)
+- `--framework`: mock框架 (requests|httpx|boto3)
+- `--format`: 文件格式 (json|yaml|csv|toml)
+- `--output`: 输出文件路径
+
+## 输出
+生成符合pytest规范的fixture代码，自动处理setup/teardown

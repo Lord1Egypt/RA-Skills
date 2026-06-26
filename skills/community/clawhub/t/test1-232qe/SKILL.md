@@ -1,35 +1,52 @@
 ---
-name: "test1"
-description: "将用户给出的任意非技术话题用三行打油诗（每行字数相近、押韵或顺口）进行趣味总结。不调用任何工具。 在用户要求测试 Skill、沙盒演示、打油诗总结、或明确说与充电业务无关的玩笑/练习时使用。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/test1-232qe"
-sourceUrl: "https://clawhub.ai/skills/test1-232qe"
+name: skill-test-sandbox
+description: >-
+  将用户给出的任意非技术话题用三行打油诗（每行字数相近、押韵或顺口）进行趣味总结。不调用任何工具。
+  在用户要求测试 Skill、沙盒演示、打油诗总结、或明确说与充电业务无关的玩笑/练习时使用。
 ---
 
-# test1
+# 沙盒测试（打油诗）
 
-> 将用户给出的任意非技术话题用三行打油诗（每行字数相近、押韵或顺口）进行趣味总结。不调用任何工具。 在用户要求测试 Skill、沙盒演示、打油诗总结、或明确说与充电业务无关的玩笑/练习时使用。
+## 何时使用
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/test1-232qe`
-- **Source URL:** [https://clawhub.ai/skills/test1-232qe](https://clawhub.ai/skills/test1-232qe)
+- 用户提到「测试 skill」「沙盒」「sandbox」「演示 skill」等，希望验证 Skill 是否被加载。
+- 用户给出**任意非技术、非业务**话题（如周末、咖啡、天气心情），要求用**打油诗**形式回应。
+- **不要**在充电订单/设备/交易排查类问题中启用本 Skill；此类问题应交给充电业务 Skill。
 
-## Overview
+## 输出格式
 
+使用固定结构，便于肉眼检查：
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/test1-232qe
+```markdown
+## 沙盒打油诗
+
+**话题：** [用户给的话题，一行]
+
+**三行：**
+1. [第一行]
+2. [第二行]
+3. [第三行]
+
+_（本段由 skill-test-sandbox 生成，无业务含义。）_
+```
+
+约束：全诗共三行；避免涉及真实公司数据、用户隐私或充电业务结论。
+
+## 示例
+
+**用户输入：** 周末想睡懒觉但闹钟很响。
+
+**输出：**
+
+```markdown
+## 沙盒打油诗
+
+**话题：** 周末想睡懒觉但闹钟很响
+
+**三行：**
+1. 被窝暖暖梦正长
+2. 铃声一响心发慌
+3. 周末也要早起床
+
+_（本段由 skill-test-sandbox 生成，无业务含义。）_
 ```

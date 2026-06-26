@@ -1,35 +1,110 @@
----
-name: "趋势启动扫描器"
-description: "基于历史技术指标验证，实时扫描筛选处于上升趋势初期的潜力股票，评分≥60分为重点关注标的。"
-category: "other"
-source: "ClawHub"
-tags: [china, scanner, stock, technical-analysis, trend]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/trend-launch-scanner"
-sourceUrl: "https://clawhub.ai/skills/trend-launch-scanner"
+# 趋势启动扫描器 (Trend Launch Scanner)
+
+## 简介
+
+基于历史数据验证的趋势跟踪选股系统。通过对比"上涨组"与"对照组"的技术指标差异，找出真正有区分度的信号，用于筛选当前处于上升趋势初期的潜力股。
+
+**核心能力：** 方向2（行业分散）+ 方向3（动态权重）+ 方向4（卖出信号）+ 方向5（确认信号）+ 方向6（情绪指标）
+
 ---
 
-# 趋势启动扫描器
+## 功能模块
 
-> 基于历史技术指标验证，实时扫描筛选处于上升趋势初期的潜力股票，评分≥60分为重点关注标的。
+### 1. 核心评分系统
+满分 100 分，筛选标准 >= 60 分：
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/trend-launch-scanner`
-- **Source URL:** [https://clawhub.ai/skills/trend-launch-scanner](https://clawhub.ai/skills/trend-launch-scanner)
+| 信号 | 分值 | 区分度 |
+|------|------|--------|
+| MACD柱线为正 | 25分 | +26% |
+| 价格>MA20 | 20分 | +21% |
+| RSI上升 | 15分 | +19% |
+| RSI>50 | 15分 | +18% |
+| 窗口内上升 | 10分 | +18% |
+| 均线多头 | 10分 | +16% |
+| MACD柱增 | 5分 | +15% |
 
-## Overview
+### 2. 动态权重系统 (`dynamic_weights.py`)
+根据近期验证数据自动调整信号权重：
+- 持续追踪推荐股票的收益表现
+- 高收益信号权重上调
+- 低收益信号权重下调
 
+### 3. 确认信号系统 (`confirmation.py`)
+增加二次确认，避免假信号：
 
-## Installation
-To install this skill, run the following command in your terminal:
+| 检查项 | 条件 | 说明 |
+|--------|------|------|
+| 不过热 | 5日涨幅<15% | 避免追高 |
+| 布林位置 | <1.0 | 不在上轨 |
+| 量比 | 0.5-2.0 | 温和放量 |
+| RSI | <80 | 避免超买 |
+| MACD柱线 | <5% | 避免过度强势 |
+| MA20趋势 | 连续5日上升 | 趋势确认 |
+
+### 4. 卖出信号系统 (`tracking.py`)
+动态止盈止损：
+
+| 评分 | 止盈 | 止损 |
+|------|------|------|
+| 100分 | +20% | -10% |
+| 90-99分 | +15% | -8% |
+| 80-89分 | +12% | -7% |
+| 60-79分 | +10% | -5% |
+
+### 5. 行业分散系统 (`industry_data.py`)
+- 每个行业最多推荐2只
+- 显示行业标签和emoji
+- 保证推荐多样性
+
+### 6. 情绪指标系统 (`sentiment.py`)
+- 大盘指数涨跌
+- 涨跌停数量
+- 热门板块排行
+
+---
+
+## 验证结果
+
+基于 117 个上涨样本 vs 186 个对照样本：
+
+✅ **启动组特征：**
+- MACD柱线为正（最强信号）
+- 价格在MA20上方（趋势向上）
+- RSI偏强且在上升（动能增强）
+
+❌ **常见误区：**
+- 不是低位蓄势
+- 不是缩量
+- 不是大幅回调
+
+**核心结论：真正的启动点是"强势延续"，而不是"低位反弹"。**
+
+---
+
+## 脚本说明
+
+| 脚本 | 用途 |
+|------|------|
+| `trend_scanner.py` | 主扫描脚本 |
+| `dynamic_weights.py` | 动态权重系统 |
+| `confirmation.py` | 确认信号系统 |
+| `tracking.py` | 卖出追踪系统 |
+| `industry_data.py` | 行业分类数据 |
+| `sentiment.py` | 情绪指标系统 |
+| `verification.py` | 验证追踪系统 |
+| `stock_pool.py` | 股票池（306只） |
+
+---
+
+## 使用方法
+
 ```bash
-hermes skills install clawhub/trend-launch-scanner
+python trend_scanner.py
 ```
+
+---
+
+## 免责声明
+
+本系统仅供学习研究使用，不构成任何投资建议。
+股票投资有风险，入市需谨慎。

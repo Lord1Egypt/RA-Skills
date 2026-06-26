@@ -1,35 +1,26 @@
----
-name: "Taxragflow"
-description: "Answers tax-related questions using a private corporate tax knowledge base via RAGFlow configuration."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/taxragflow"
-sourceUrl: "https://clawhub.ai/skills/taxragflow"
----
+# tax-knowledge 对话技能
 
-# Taxragflow
+## 描述
+查询 TAX 知识库，返回基于企业私有知识的税务问题答案。
 
-> Answers tax-related questions using a private corporate tax knowledge base via RAGFlow configuration.
+## 前置条件
+- 已从管理员处获取 RAGFlow 配置（API URL、API Key、Chat ID）
+- 已配置 `.env` 文件
+- 已安装依赖：`pip install -r requirements.txt`
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/taxragflow`
-- **Source URL:** [https://clawhub.ai/skills/taxragflow](https://clawhub.ai/skills/taxragflow)
+## 触发条件
+用户询问税务相关问题时：
+- 税务政策和法规
+- 增值税、企业所得税、个人所得税等
+- 税收优惠政策
+- 税务申报流程
 
-## Overview
+## 指令
+1. 使用 `query_tax.py` 脚本查询知识库
+2. 将用户问题作为参数传递
+3. 返回答案给用户
+4. 如遇错误，简要说明原因
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/taxragflow
-```
+## 示例
+用户："最新的增值税优惠政策是什么？"  
+→ 调用此技能查询并返回答案

@@ -1,0 +1,10 @@
+{
+  "skill_name": "today-task-for-xiaoyi-claw",
+  "display_name": "负一屏任务推送",
+  "current_version": "1.0.26",
+  "release_date": "2026-04-13",
+  "changelog": {
+    "1.0.26": ["1、切换推送服务域名", "2、修改source的取值为小艺 Claw"],
+    "1.0.25": ["为小艺claw适配的版本，支持将小艺claw中执行的任务结果推送到负一屏显示，负一屏在15.0.22.300版本以上支持，harmony系统在6.0.0.328版本以上支持"]
+  }
+}

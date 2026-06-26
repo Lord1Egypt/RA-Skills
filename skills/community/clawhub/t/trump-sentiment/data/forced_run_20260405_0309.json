@@ -1,0 +1,299 @@
+﻿{
+    "market_data":  [
+                        {
+                            "content":  "\u003c!doctype html\u003e\n\u003chtml lang=\"en-US\" theme=\"auto\" data-color-theme-enabled=\"true\" data-color-scheme=\"auto\" class=\"desktop neo-green dock-upscale failsafe\"\u003e\n    \u003chead\u003e\n        \u003cmeta charset=\"utf-8\"\u003e\n        \u003cmeta name=\"oath:guce:consent-host\" content=\"guce.yahoo.com\"\u003e\n        \u003clink rel=\"preconnect\" href=\"//s.yimg.com\" crossorigin=\"anonymous\"\u003e\u003clink rel=\"preconnect\" href=\"//geo.yahoo.com\"\u003e\u003clink rel=\"preconnect\" href=\"//query1.finance.yahoo.com\"\u003e\u003clink rel=\"preconnect\" href=\"//consent.cmp.oath.com\"\u003e\u003clink rel=\"preload\" href=\"/__rapidworker-1.2.js\" as=\"worker\"\u003e\u003clink rel=\"preconnect\" href=\"https://s.yimg.com/uc/finance/webcore/js/_staticFinProtobuf.4ac0aa7cd811394598dc.js\"\u003e\u003clink rel=\"preconnect\" href=\"https://cdn.jsdelivr.net/npm/protobufjs@7.1.2/dist/minimal/protobuf.min.js\"\u003e\u003cscript\u003ewindow.finNeoPageStart = Date.now();\u003c/script\u003e\u003cscript\u003e\n    (function(){if(!window.YAHOO){window.YAHOO={}};window.YAHOO.context={\"consent\":{\"allowContentPersonalization\":false,\"allowCrossDeviceMapping\":false,\"allowFirstPartyAds\":false,\"allowSellPersonalInfo\":false,\"canEmbedThirdPartyContent\":false,\"canSell\":false,\"consentedVendors\":[]},\"authed\":\"0\",\"ynet\":\"0\",\"ssl\":\"1\",\"spdy\":\"0\",\"ytee\":\"0\",\"mode\":\"failsafe\",\"tpConsent\":false,\"site\":\"finance\",\"adblock\":\"0\",\"bucket\":\"\",\"colo\":\"gq1\",\"device\":\"desktop\",\"bot\":\"0\",\"browser\":\"chrome\",\"app\":\"unknown\",\"ecma\":\"modern\",\"environment\":\"canary\",\"gdpr\":false,\"lang\":\"en-US\",\"dir\":\"ltr\",\"intl\":\"us\",\"network\":\"broadband\",\"os\":\"mac os x\",\"partner\":\"none\",\"region\":\"US\",\"time\":1775329412873,\"tz\":\"America/Los_Angeles\",\"usercountry\":\"US\",\"rmp\":\"0\",\"webview\":\"0\",\"feature\":[\"awsCds\",\"disableAppFlyerSmartBanner\",\"disableInterstitialUpsells\",\"disableServiceRewrite\",\"disableBack2Classic\",\"disableYPFTaxArticleDisclosure\",\"enable1PVideoTranscript\",\"enableAnalystRatings\",\"enableAPIRedisCaching\",\"enableArticleCSN\",\"enableArticleBodyInjectionSlot\",\"enableCccBoost\",\"enableCGPersonalFinancePagination\",\"enableCGPfContentLists\",\"enableCGEventsLanding\",\"enableCGShowsLanding\",\"enableCG",
+                            "source":  "Market_OilFutures",
+                            "note":  "Oil futures page fetched"
+                        }
+                    ],
+    "items":  [
+                  {
+                      "pubDate":  "Wed, 01 Apr 2026 16:29:10 GMT",
+                      "title":  "US to leave Iran \u0027pretty quickly\u0027 and return if needed, Trump tells Reuters - Reuters",
+                      "description":  "US to leave Iran \u0027pretty quickly\u0027 and return if needed, Trump tells Reuters\u0026nbsp;\u0026nbsp;Reuters",
+                      "link":  "https://news.google.com/rss/articles/CBMiuwFBVV95cUxOQkNNSHlXV2dyc2dEWng3bm84T3dGdEhpdTVqNFFoQXNydDhsUzdYRkVYT1FmNUsxQlhWR1p1bHFRendVVGFrb0RJdVB2Zjhydno2MHFId05HYmtKb1Vfei1Ha0dLYW0wWU8xSlRIRHU3dWRQSXN2OVFNT0VFTlIyaHEwYlUyR1BFWFV1VXp2bGlLcE9NZGJXbExUbzE2eHVldVFGWWVSSl9vX0NneURyeFp0WjFER0VzOFZ3?oc=5",
+                      "source":  "GoogleNews_TrumpIranNuclear"
+                  },
+                  {
+                      "pubDate":  "Thu, 02 Apr 2026 21:29:45 GMT",
+                      "title":  "FactChecking Trump’s Prime-Time Address on Iran - FactCheck.org",
+                      "description":  "FactChecking Trump’s Prime-Time Address on Iran\u0026nbsp;\u0026nbsp;FactCheck.org",
+                      "link":  "https://news.google.com/rss/articles/CBMiiAFBVV95cUxPZmc0dW1KOUJ4STAyckJHOXZveDZ4SjZOT1JScndWRWFodFBrZFRmQUJZX0oyR2podTdXV0lfdFMzSEV4Q29mNzU0MkQtWlNLeEJ3TDBudk81dy14SkRGSTBiYWZkQVdYS2RPWVBrNXJBa1JDMjNRTGV2QWI1eFdidmJTYlkzdmhx?oc=5",
+                      "source":  "GoogleNews_TrumpIranNuclear"
+                  },
+                  {
+                      "pubDate":  "Sat, 04 Apr 2026 18:03:23 GMT",
+                      "title":  "Trump gives Iran 48 hours to make a deal as search continues for missing U.S. pilot - CBC",
+                      "description":  "Trump gives Iran 48 hours to make a deal as search continues for missing U.S. pilot\u0026nbsp;\u0026nbsp;CBC",
+                      "link":  "https://news.google.com/rss/articles/CBMidkFVX3lxTE4yNGh6OE9tcU1CcUoybzFOemIzRUR6d2ZiSTVURElMZ2VLdUVCbEhROWlMYXE2NGRBM1ppZ0JvNU5IYmFnSXdWN1Y2TnVJRE5MVnphUWRHT1EzRUpHYm9SXzZ2MmlJUW5VcUl4UURaUWFWWFhrdXc?oc=5",
+                      "source":  "GoogleNews_TrumpIranNuclear"
+                  },
+                  {
+                      "pubDate":  "Fri, 03 Apr 2026 18:00:09 GMT",
+                      "title":  "Iran\u0027s radicalized regime fuels threat of nuclear bomb - Le Monde.fr",
+                      "description":  "Iran\u0027s radicalized regime fuels threat of nuclear bomb\u0026nbsp;\u0026nbsp;Le Monde.fr",
+                      "link":  "https://news.google.com/rss/articles/CBMixwFBVV95cUxQTW9ialU2b1BSSEVuZ3d6enpHWmhsSkswaU9yWkRVVllKcVVLeXdGbFBIdlZSRnlabXlTWEtTenZTYzJ1dlN6V2VjbFVzcFVIakctRWxrcWlUUWdwSGYyMXd3Wm84SWJOZDN4aDVtVngxd1o0ekVMdmFIWWNtNzhZeHRXSmw4d2E1ZURBdUJLVVNjaXhnVkNCVEhqa3ZWOFVWSFhuWl9qbHpHSkZoTDVBQk5RVUlUTG1ta0NsQjZXNWlmWlBYdkd3?oc=5",
+                      "source":  "GoogleNews_TrumpIranNuclear"
+                  },
+                  {
+                      "pubDate":  "Thu, 02 Apr 2026 01:58:41 GMT",
+                      "title":  "Risky commando plan to seize Iran’s uranium came at Trump’s request - The Washington Post",
+                      "description":  "Risky commando plan to seize Iran’s uranium came at Trump’s request\u0026nbsp;\u0026nbsp;The Washington Post",
+                      "link":  "https://news.google.com/rss/articles/CBMioAFBVV95cUxQYmIxek5TZlBtLU5tTXd0TzZCNDN6bEVyT1d2aXdzajFNa09OckJtNE1WNC1sV1Q1R3FaSUYwR1RQOUtvRUM1bWp0UXJNS2RqU0Q3eVd0SURHM3VPWlBZeWVfSWdvdUV2UWdFc1N0VUtYLXBsckUtUDV1UlFXQXRyQWFPLUZxSG9JOXRDV0t1NWQzX0pNcWZwb0lxVzhKVGxT?oc=5",
+                      "source":  "GoogleNews_TrumpIranNuclear"
+                  },
+                  {
+                      "pubDate":  "Fri, 03 Apr 2026 03:47:00 GMT",
+                      "title":  "Iran War Live Updates: Trump Claims Military Success but Offers No Clear Timeline to End Fighting - The New York Times",
+                      "description":  "Iran War Live Updates: Trump Claims Military Success but Offers No Clear Timeline to End Fighting\u0026nbsp;\u0026nbsp;The New York Times",
+                      "link":  "https://news.google.com/rss/articles/CBMieEFVX3lxTE5FX1k1RVNLZEtqbUY2WnNnc2gyNWs2UkI4WlVFY3oxemhKV04tQ2RacjZyd2JoNDNhRjV0TG9iVUNRbHZSRTFuQU5kS1k0RHd4cmQ3LVRJS3o2Y1pEdWNOYWRvTFNVTXM2TERvd2xTWXhtclkxSTk3SA?oc=5",
+                      "source":  "GoogleNews_TrumpIranNuclear"
+                  },
+                  {
+                      "pubDate":  "Thu, 02 Apr 2026 20:00:55 GMT",
+                      "title":  "What We Learned From Trump’s Iran Address – And What We Didn’t - U.S. News \u0026 World Report",
+                      "description":  "What We Learned From Trump’s Iran Address – And What We Didn’t\u0026nbsp;\u0026nbsp;U.S. News \u0026 World Report",
+                      "link":  "https://news.google.com/rss/articles/CBMi2AFBVV95cUxQVnZSTWhfNzlSTS1lUEd5S0tmdDlFMTBObUdFZEtJZDlvQUdic25PV1hWRFZzRVdPWTFjTFFuWWJ2akFZVjBtanhSRl9QenhzUDdiR1hFRDg0UkZSaU9Vay1BWUhubjJ4VGFhNi1Ed1hHT0JfTDF2SjF0SWJQSzFCRDJidTRIdUZGRTJUaVNNQnBmbkZIMF81bzVYZFl1bUdzS1hPZVBuQmp6c1M0NzhQRGpGNU01WWhwcDJzVXZ3RVExOEYxcE9fRFltbUY5ZmZBVXN3S1pBSmk?oc=5",
+                      "source":  "GoogleNews_TrumpIranNuclear"
+                  },
+                  {
+                      "pubDate":  "Thu, 02 Apr 2026 20:17:04 GMT",
+                      "title":  "Options for the United States to Resolve the Iran Nuclear Challenge - CSIS | Center for Strategic and International Studies",
+                      "description":  "Options for the United States to Resolve the Iran Nuclear Challenge\u0026nbsp;\u0026nbsp;CSIS | Center for Strategic and International Studies",
+                      "link":  "https://news.google.com/rss/articles/CBMiigFBVV95cUxQaUktY0FIQ3p6Z0Z4SnJ0VFE5Z3hOcVhqTnpyQnBQaElOZEU2eHFVTC1MazFmV0tfZWdpSWExYmtFeDU1TE1ENnJoeXQ1aDJMNDYzbUtzLWR6cXljODE5T2NpSGVpSlVwa2pMRHh0WEJ2Mno3T2ZEdFN6MjRlYWd0VUN3SUhuY2Y4bGc?oc=5",
+                      "source":  "GoogleNews_TrumpIranNuclear"
+                  },
+                  {
+                      "pubDate":  "Thu, 02 Apr 2026 10:00:00 GMT",
+                      "title":  "Opinion | Trump’s oddly low-energy prime-time Iran war address failed at its main objective - ms.now",
+                      "description":  "Opinion | Trump’s oddly low-energy prime-time Iran war address failed at its main objective\u0026nbsp;\u0026nbsp;ms.now",
+                      "link":  "https://news.google.com/rss/articles/CBMidEFVX3lxTE53bUNxOW91emFaUklqRmg4MEJYXzVPUTZ5VXd3eWZubGlJd3JtZ2hpaWpIY3p0cGFWUHdoS0F0MmtGdHJvQzFkTXpjR2E3XzZkNFpRSDlGRkR2RVVqOWNXU2UwaDBNMVI5LWhtdEQtMnNjenNj?oc=5",
+                      "source":  "GoogleNews_TrumpIranNuclear"
+                  },
+                  {
+                      "pubDate":  "Thu, 02 Apr 2026 10:00:08 GMT",
+                      "title":  "Trump unleashes on Obama\u0027s \u0027disaster\u0027 Iran nuclear deal, says he was \u0027honored\u0027 to rip it apart - Fox News",
+                      "description":  "Trump unleashes on Obama\u0027s \u0027disaster\u0027 Iran nuclear deal, says he was \u0027honored\u0027 to rip it apart\u0026nbsp;\u0026nbsp;Fox News",
+                      "link":  "https://news.google.com/rss/articles/CBMioAFBVV95cUxNWFZNdUZBdi1ablRfWklqa2FfTGo4U1pJYU5QNnk2RzNfeWpxcXJoNmc4cUVPcUd0X1U4QUVGRGJDYUotU2hwLTlpOFVGUW9TNGFQOVdvTENSWkdMX0taWHlqS3gzZm9MRDRZcjhZSXEzQi00X2IybmNEQnNacGdoT1oyMWRKRnl6My1fVVdMNEtVN2tMTUY4WHU5NE0yYjhU0gGmAUFVX3lxTE41RmVxN3oyZjk5Ums5dF80OERIN1hPSVRnaWdVdzI2YnlFY0dNWjZqTVp4MDZlNU1CSFI2QzJJYUlON0FudkF5cWZaYllJY09sMUxyQlZHQU5taEFIenZoSUpuSmh6dU1hMkxOaHFPN2xmUkNHdDA1TDNvcmVnWWdueFdra2ktbU5fTXozYndrWW9UOElWMkcwMWttVzctN3NQYjl3cGc?oc=5",
+                      "source":  "GoogleNews_TrumpIranNuclear"
+                  },
+                  {
+                      "pubDate":  "Fri, 03 Apr 2026 18:37:08 GMT",
+                      "title":  "Iran says it rejects Trump offer of 48-hour ceasefire: Report - Middle East Eye",
+                      "description":  "Iran says it rejects Trump offer of 48-hour ceasefire: Report\u0026nbsp;\u0026nbsp;Middle East Eye",
+                      "link":  "https://news.google.com/rss/articles/CBMilwFBVV95cUxQYWZPLTVUSWFQWnQ2WmJCeDcya3VMRmozbHh3bXFSa2g0QmljcmJmZWZqTmxNeW9UbF8zTG1WYXE4QmRjQkxmUmlNbDV3eG1JMTRzZjNMLXpYeDhKVTRCY0NWZm8zS3dVR0RxbnlLd3N3NWw0RnpCVEFmdFBWa25yWHlvRWxQZGV4ZThuZ0VXbVF0eGxBVWdr?oc=5",
+                      "source":  "GoogleNews_IranCeasefire"
+                  },
+                  {
+                      "pubDate":  "Wed, 01 Apr 2026 18:29:23 GMT",
+                      "title":  "US, Iran Negotiating Ceasefire Deal In Exchange For Hormuz Reopening: Report - NDTV",
+                      "description":  "US, Iran Negotiating Ceasefire Deal In Exchange For Hormuz Reopening: Report\u0026nbsp;\u0026nbsp;NDTV",
+                      "link":  "https://news.google.com/rss/articles/CBMiyAFBVV95cUxQZDFBanEzSlQ0cHczdFJoRlJXQl85c2ctSW16eFhhanBsNVpsWk91OHpCTWVXWVpsb0pValgtRU9sY2x2WDFoWlFmVXU0b09ycVpKRFJiRXBoUk16MkxFTTVGUkVWZmlFSmNhX2JJM3Zsa01oZmxQZDJLMnRVZUE2djhINnlBZ09jdVpkbUZFeWs0MzYtYzdRVjgwYUdSbVVRblJXQTBrb0FPZzcyTXhmZU9Gc3kxVVBvSXR0Z0hvTk1SMjkzSTVLR9IB0AFBVV95cUxQTUFRMXBiU2RueWIyUjV1WDZzTjRxQU9qWUtzaDhBMEVUMWVMQnd3OXRPZFhNWGlvRVdaV3prbUZ4dHRUblBucF9XRkNwZ0VkRk5qc2pvOGhFeXdVMVBIZy0zZVZzWXhOYS13VFNTdmFlZHJKbzFYd3FwWlRPYnAwdHh3dGV4dXdEbWt0aHFFLXIwcmFoQXAxZExXQTRVeEExRnV6SjhMMHBNMkRvdDhYeDJ1X0lKNnV6d2RfRlhfQV96TzFOSXZMVC1GMmN0Y1BK?oc=5",
+                      "source":  "GoogleNews_IranCeasefire"
+                  },
+                  {
+                      "pubDate":  "Tue, 31 Mar 2026 18:22:26 GMT",
+                      "title":  "China and Pakistan present new Iran deal: Ceasefire for opening Hormuz - Axios",
+                      "description":  "China and Pakistan present new Iran deal: Ceasefire for opening Hormuz\u0026nbsp;\u0026nbsp;Axios",
+                      "link":  "https://news.google.com/rss/articles/CBMihwFBVV95cUxQWjlaSVJXNDZnN0tydFNQYk5nQkJWMUNvMnktYUlRelhkM243YmFTQzZlamVCVkZZeGE5VjdPbktFaUVPRFJFSTBSSmxNbTlQazE5VVo0d1lkX3VCc0dRcnBZRFpMX1N1V2Z4czNRYkd4Y3VOamxBSmZoTk4yeGYtcXB5NnV6NFU?oc=5",
+                      "source":  "GoogleNews_IranCeasefire"
+                  },
+                  {
+                      "pubDate":  "Wed, 25 Mar 2026 07:00:00 GMT",
+                      "title":  "Here are Iran’s 5 conditions for ending war after rejecting US ceasefire plan - The Hill",
+                      "description":  "Here are Iran’s 5 conditions for ending war after rejecting US ceasefire plan\u0026nbsp;\u0026nbsp;The Hill",
+                      "link":  "https://news.google.com/rss/articles/CBMijgFBVV95cUxPNVJwbHBtZ3VXSWNyU1l5QWxVNmt4SnRXM0N5eFVNTlFIcVVwdmN2Mm9qWTdYbnN4aGNVdE84Qmo3UDVDRXhVOXV2Q1hjb19kRzdzeHpNd09qcWQ1U3VlM3dILTJzZG5jZWFuYnBOcEhhelU0TDdmZ29wcmdvMmM1WElrQTJqNGdZYjcweXRn0gGTAUFVX3lxTE1nMkIya3dwM2JodXNBTkc1UXdROGVXYWszYVFzTExKbm90TVVzb3BlU1Zjbk5aTkRma1JQcmx6TnFYbWU5a3hYRU5ta3VQM2owU2xvRTl5VUJXTGRKdXMwdnA3WFdhZHJVRDBuQ0Zyd2Nmbnh1ZE5ObmZ4dmZiaUN4cy1mSWUtV3FFaVpSYnRoTFh5RQ?oc=5",
+                      "source":  "GoogleNews_IranCeasefire"
+                  },
+                  {
+                      "pubDate":  "Thu, 26 Mar 2026 07:00:00 GMT",
+                      "title":  "Trump pauses attacks on Iran\u0027s energy plants, says talks \u0027going well\u0027 - Reuters",
+                      "description":  "Trump pauses attacks on Iran\u0027s energy plants, says talks \u0027going well\u0027\u0026nbsp;\u0026nbsp;Reuters",
+                      "link":  "https://news.google.com/rss/articles/CBMizgFBVV95cUxPS0hIcVlXMlA3NVNtTzZiX2FBSlk0cmtyc2JCdnpNdlB2UFhUTFRWZ3dQZkU4TmtSdjNuWUJ1bm1NblMtWkR6Y3pwV09nRFlneGxBQi1IQWdfLWI2UDd4cGR2ZkJGcndXTy15dGxkMkpjNWd5OU1ZQ2w4X3hLWm16Q0xGd1hRaTFBZXI2UTdWaGNIYkg4SmVMRk55Tlg5c2NCcG95d205SmxWYVdOYW9MOVlQaGNJUlZLMDRxY05aaE5weDVEeFl5ajEwejNrZw?oc=5",
+                      "source":  "GoogleNews_IranCeasefire"
+                  },
+                  {
+                      "pubDate":  "Tue, 24 Mar 2026 07:00:00 GMT",
+                      "title":  "Trump administration offers 15-point ceasefire plan to Iran - AP News",
+                      "description":  "Trump administration offers 15-point ceasefire plan to Iran\u0026nbsp;\u0026nbsp;AP News",
+                      "link":  "https://news.google.com/rss/articles/CBMipAFBVV95cUxOQmNqX0xqUURjclQ0RkdQOFhFUWwxemU2Z3dnZFFudDZkZlJnRFp3dVVtZWpKdjEwRWxpVVVkZ2pWdWJRQWhCWUt5RzFkU1ZiYjF4dzg1d0Jsd283MzR6N1lsSGxnYTVqRFo0b05iNVFfN3JYUGVvMy1JTkRCaExVaDFWdlI4b1pCQUxTVmZPSzdJVkFUUjV6b00wbU1ZVU44eEl0aw?oc=5",
+                      "source":  "GoogleNews_IranCeasefire"
+                  },
+                  {
+                      "pubDate":  "Wed, 25 Mar 2026 07:00:00 GMT",
+                      "title":  "US-Iran mediation: What are each side’s demands – and is a deal possible? - Al Jazeera",
+                      "description":  "US-Iran mediation: What are each side’s demands – and is a deal possible?\u0026nbsp;\u0026nbsp;Al Jazeera",
+                      "link":  "https://news.google.com/rss/articles/CBMisgFBVV95cUxOLUhVMEpadUE0SzJpVDNuYVBfcmpIZVZ1eXN6RmRIMDlnaU5wQVN3M0tDMDhPN0Q1MHJWSjd0YjNDbU9kbGZtcXZRcXF6OFJ6VWFHYjUzMDNTWE1lWGVrdC1aX0JxaUVUVjRvdC10ZDladkVZYzlYNjZvc1huR09Ed3JtYnRPV2RqSVc5TDU1Nm5sZ1JwVG5yZGRuV0RpMTVENzBBTXVZUkZpUjM3akZfRV9n0gG3AUFVX3lxTE1ROGtBSWJOMW1GWGVGS3RVSjVvZWpqWURTOEhUVTFaQ0wzTjNaSG9UV3d2N3pubk02SkxZU0tXd3E4MEVzNDZFdTJ4NjhxT2Y4d2hKUEhUSW1WQ1JuVUo1aGx0T2RyX095b2pyUF9hX19pempYSUdRQ0thUllScTlLWkJHTGNYRG1yWHJmSU9nZ25FRXo1YmFEUUVldDlZc3ZycnY4OC04RElUdVZoZVhja1lrTUNzNA?oc=5",
+                      "source":  "GoogleNews_IranCeasefire"
+                  },
+                  {
+                      "pubDate":  "Wed, 25 Mar 2026 07:00:00 GMT",
+                      "title":  "Iran has no intention to hold talks with U.S; foreign minister says Trump proposal to end war being reviewed - cnbc.com",
+                      "description":  "Iran has no intention to hold talks with U.S; foreign minister says Trump proposal to end war being reviewed\u0026nbsp;\u0026nbsp;cnbc.com",
+                      "link":  "https://news.google.com/rss/articles/CBMiZEFVX3lxTE5WcExsdUFhckdKU08yLXJwQmJ2dmthVVRlc3FMbDlFNldrTkNPdFg3OGdRVlFDYVd2akJkQ3VuT1ZKeTZETzJ3d3dOQ19yR3BnWHl2VjdNc05zR3VjWjZMczMzVDPSAWpBVV95cUxNMVFmU05vZDlMSGk3aVlJRDRBZU01bmVEWXJZQ0owYWRjOUlpcWRjc25VLUhsMnltVTFIYkZnZVRNeUxmZ29UOGQ2by1kcnMyVzMyTGJnaUVKdGRkV3dnLXA5ZHVoODhnSzZn?oc=5",
+                      "source":  "GoogleNews_IranCeasefire"
+                  },
+                  {
+                      "pubDate":  "Sun, 15 Mar 2026 07:00:00 GMT",
+                      "title":  "US not ready to seek deal to end war with Iran, Donald Trump says - The Guardian",
+                      "description":  "US not ready to seek deal to end war with Iran, Donald Trump says\u0026nbsp;\u0026nbsp;The Guardian",
+                      "link":  "https://news.google.com/rss/articles/CBMipwFBVV95cUxQV0RxSUtWWExjWnpjRURXWWJQY21DdFc2VjRYR0JKTVUwREhiNVN1N245NGY5eDVXRVlnXzJmX1FmbWJ6SkprNzdlSTJXR2g3WFJjcDBqUFhJVFNnbDRZLVBFeWpTVlhwdGdZdzRCb3Bic21DZ29HLWwzNWlwTGRCU3k1Mkxta0lhSWFrUHB4Y0tkRTlQUzFqbFlicGJhTE40bzVXa3VMSQ?oc=5",
+                      "source":  "GoogleNews_IranCeasefire"
+                  },
+                  {
+                      "pubDate":  "Wed, 25 Mar 2026 07:00:00 GMT",
+                      "title":  "Iran rejects US ceasefire plan, issues its own demands as strikes land across the Mideast - AP News",
+                      "description":  "Iran rejects US ceasefire plan, issues its own demands as strikes land across the Mideast\u0026nbsp;\u0026nbsp;AP News",
+                      "link":  "https://news.google.com/rss/articles/CBMipAFBVV95cUxNTVVzQjRTdGtHV0k2X0ZQYWRpRXJqMHhpUE80ZUFTZTFadFl3RGZjSWpjV1FTTEJYY1h5WTdwU2d3RWlmdEFGNV9QX3dpaEhFU3QtLVdKQldfUmdqY2JRUjY4SU5SY0NhNFY5WDBQaVlMOUQ4NTdsRXIxZHllOUsxclR4N3JmMTc5Z2NMR2IyZDJ0ZS02M3dzSjdCSFFULWFxeVNrYg?oc=5",
+                      "source":  "GoogleNews_IranCeasefire"
+                  },
+                  {
+                      "pubDate":  "Fri, 03 Apr 2026 15:26:31 GMT",
+                      "title":  "Trump Gambled by Easing Oil Sanctions on Iran and Russia. Will It Pay Off? - Council on Foreign Relations",
+                      "description":  "Trump Gambled by Easing Oil Sanctions on Iran and Russia. Will It Pay Off?\u0026nbsp;\u0026nbsp;Council on Foreign Relations",
+                      "link":  "https://news.google.com/rss/articles/CBMiowFBVV95cUxPbHJsMXkyTmstOHFlWmx3VjJ2aFRSaU5IWUNhWHd6dldqdVJERUdIMDk3azM3S1V0aGNHRWFINXZObVYwUy1FTF9EM0pONU5sdjltVGpJcTIta080Y21KekVMcGNZMHM1OHBfZGpjdy1nbUo2NXh1cWFoaGpvMFYyMTJXUzZUaGtvOVhZTlBYaGJ3VEltVjZRU09EbGZKRUFTeUlR?oc=5",
+                      "source":  "GoogleNews_OilPriceIran"
+                  },
+                  {
+                      "pubDate":  "Thu, 02 Apr 2026 01:17:00 GMT",
+                      "title":  "U.S. oil prices soar 11% as Trump\u0027s Iran war speech stokes fears of further escalation - cnbc.com",
+                      "description":  "U.S. oil prices soar 11% as Trump\u0027s Iran war speech stokes fears of further escalation\u0026nbsp;\u0026nbsp;cnbc.com",
+                      "link":  "https://news.google.com/rss/articles/CBMijwFBVV95cUxPeWR6UEhjR3hzODlPZ3gtR2JOR1p1M0tPZHhuYXZiLVhwUjVIS2Q3UlVZRjU0b3NlVTVpMGkzTFFjLU1LcEY5MVd2ZW1fVVVVaWdvMC1TWnZkVVZHcG1HRmNGU3VING5FeGRVQUlMSEtCODhsZUJ4bDNRdy1RbXQxaW51dFI0OUJ1ci1oenFLb9IBlAFBVV95cUxNN1kya1Z3MzAwSVN0eDBYaEVsVW00V3l0ci1aX0RhQjlfYUR3N0syYnFmcXB4S09XNHBiMFM2LUVjcUJqMW5Ec0NPaUFrbnpfWVFHaFpkaGxoQThTbUlNYl9QNVRJOUNuNlU4dV9lWFFvWHdIbHN2WlVIcDQtYVZfSmRyeVVLc28wVWg5VTJmWHhBZkNz?oc=5",
+                      "source":  "GoogleNews_OilPriceIran"
+                  },
+                  {
+                      "pubDate":  "Thu, 02 Apr 2026 21:06:20 GMT",
+                      "title":  "U.S. oil has its biggest one-day price increase in six years, driving up the cost of gas - NBC News",
+                      "description":  "U.S. oil has its biggest one-day price increase in six years, driving up the cost of gas\u0026nbsp;\u0026nbsp;NBC News",
+                      "link":  "https://news.google.com/rss/articles/CBMilAFBVV95cUxOUVJqVmFldTFfLXhwaDl0MHpSenpMT1NpSFp3Y2FlcHZvTUxpOURfQlpoUWhKTWllS0dIcEl1cWRfQkdsWHlxTDdFUFRCSi1KOEpwNTJoUVUwcjIyaFhCSS0xTXRndXJNRGd2ZE11U2lLVGdITW9LMjJyMlNXN2xSQ2g1QUNSSWthVjVFckh3VXluV0No?oc=5",
+                      "source":  "GoogleNews_OilPriceIran"
+                  },
+                  {
+                      "pubDate":  "Fri, 03 Apr 2026 01:25:42 GMT",
+                      "title":  "World anxious to open Hormuz Strait while Trump and Iran trade threats - Reuters",
+                      "description":  "World anxious to open Hormuz Strait while Trump and Iran trade threats\u0026nbsp;\u0026nbsp;Reuters",
+                      "link":  "https://news.google.com/rss/articles/CBMiwgFBVV95cUxOclFYSC10dV9USHVJSkFHbk5lZzk3U2daVHJPOWFwNnNsajFua2RQMzVfamRIOVR3dmRLUlI2Q2JlcDM5Z2g1MnNwcTM3VUFuS05PMjI5OGFMUGV6azlOenFvRnZtY2hvNkZaZTBYTFhVVDBidkFrUVVvYVY3elN2amxwLS1iNDBrVlVYcDRCdzBFbVlJcEp5SlFoOG0xZ0JfSnQxY215ekVhR0ZKSm9BZFRkdEx0LU0zeEsydDVvb3lRZw?oc=5",
+                      "source":  "GoogleNews_OilPriceIran"
+                  },
+                  {
+                      "pubDate":  "Thu, 02 Apr 2026 09:35:00 GMT",
+                      "title":  "As Iran war rages on and oil prices rise, Trump says U.S. \"hasn\u0027t even started destroying what\u0027s left\" - CBS News",
+                      "description":  "As Iran war rages on and oil prices rise, Trump says U.S. \"hasn\u0027t even started destroying what\u0027s left\"\u0026nbsp;\u0026nbsp;CBS News",
+                      "link":  "https://news.google.com/rss/articles/CBMisAFBVV95cUxQSDBtSW1WMkVtNVMtNW1iNU1BcTV4R3NOZ01BUk95cTR5SHdfRFE3ZjdVTWV1bWhmemgyRVBTQzFjYnBWcy1SUTBhS2RITWhIUWhQb0UxSDlLWXotTEJYeFVxS3BkcWxvMkpUOFN0VklNRkc1OWI5bnpJRkIxY3JyZk5UWm5zOWlweTUyNno5UGpudFdHaklfTXAyNXhmR3ZsaXJBZFlEXzc0TzZ6bFFXX9IBtgFBVV95cUxNdU5yY0swcXYxTS1HVzRWWEhybS0wMnR0dUdjbGdtOVVTSUlEYTFjYTRQUzcyMndORmhGc0VZaVk2S2szckRDcU4zaW5yVGF5WTMzcFU4SC00VkxpUkxEVlFVZTBuT1o4VHluMmI3elRZVUFySHZFS1VyX0Zob3V1WjBlN1gzYmpLX1dycWJnYWowRE8tc0E1N3ZHck1DOVpMOWNYLXU5bWRVMlJCYXlpS2ZTV3UzUQ?oc=5",
+                      "source":  "GoogleNews_OilPriceIran"
+                  },
+                  {
+                      "pubDate":  "Fri, 03 Apr 2026 05:11:12 GMT",
+                      "title":  "As Trump doubles down on Iran war, markets shudder and oil prices climb - The Washington Post",
+                      "description":  "As Trump doubles down on Iran war, markets shudder and oil prices climb\u0026nbsp;\u0026nbsp;The Washington Post",
+                      "link":  "https://news.google.com/rss/articles/CBMiiAFBVV95cUxQRFMtOXZjSzY3dnVoRl84eFNSSnAzcmhUZWJXeDQ5TVRETUVkdnhUUUNHRlE2ci0zY1V1MjlZQk1YbGxvQlJVQmljQlRyQTVYMkU1bENjcC1TOUsyd0U3TXRCaDFlZWxzTHRsWHNWRUZHWFdCWFk4UENVVm1CRmlTWlpSMlgtOXZs?oc=5",
+                      "source":  "GoogleNews_OilPriceIran"
+                  },
+                  {
+                      "pubDate":  "Thu, 02 Apr 2026 02:37:46 GMT",
+                      "title":  "Oil Stocks and Gas Prices Swing After Trump’s Speech on Iran - The New York Times",
+                      "description":  "Oil Stocks and Gas Prices Swing After Trump’s Speech on Iran\u0026nbsp;\u0026nbsp;The New York Times",
+                      "link":  "https://news.google.com/rss/articles/CBMijwFBVV95cUxQMVJDVElvemFPSlBZeXlsUFdjeHJnakNtNUxhNWh6cXBXSHNsYUxZc0ZLMGpmVF9LT2hFVXZyNl9aYWFKRWFZRUZCTHQ4VW91dlVIdnBJVm9DdzExdmIxUV9FWFh1dWV1S2RhYXJrbEZWTXdZV21yRVkyMmtOQjhJQ2VoZ1NxZV9tdWJZejd5SQ?oc=5",
+                      "source":  "GoogleNews_OilPriceIran"
+                  },
+                  {
+                      "pubDate":  "Thu, 02 Apr 2026 22:45:36 GMT",
+                      "title":  "Global leaders work to ease oil price surge as Trump signals more weeks of Iran war - PBS",
+                      "description":  "Global leaders work to ease oil price surge as Trump signals more weeks of Iran war\u0026nbsp;\u0026nbsp;PBS",
+                      "link":  "https://news.google.com/rss/articles/CBMiuAFBVV95cUxORVFTVXhERUs2d3RBb1dmcWRBcHRubmVYWnFRNW1JVllPRDlzM0dHcXFTT1cxLXRnNm00U0d4NVZZTERrV0tmX3JaeGhGVGcxSU51NW5YTkNBRlFKNFVhSE1zMjZSMmREUmNwdXk1ZTBNMlpLVjBvTzlYZHNiRTNBMkxreWJqRWY0MU8ydjdmSVdQckNZUlFieTJXUkswRmd5WUg5RnFtZkdyaWk3ZGV1SmFOZ0I1cGV2?oc=5",
+                      "source":  "GoogleNews_OilPriceIran"
+                  },
+                  {
+                      "pubDate":  "Thu, 02 Apr 2026 22:25:44 GMT",
+                      "title":  "Oil prices jump and shares drop after Trump threatens more Iran strikes - BBC",
+                      "description":  "Oil prices jump and shares drop after Trump threatens more Iran strikes\u0026nbsp;\u0026nbsp;BBC",
+                      "link":  "https://news.google.com/rss/articles/CBMiWkFVX3lxTE1NbG8wZk0wS0VtVF9FeHNpVlZNdkRfM1RwazJBbDBTM3F3Zy1sRjJNWVVMUFdQUnpJUEtCbFhVczZlTkZLOUNsYm9XejFLcE1nZnZONDlRd0RyUQ?oc=5",
+                      "source":  "GoogleNews_OilPriceIran"
+                  },
+                  {
+                      "pubDate":  "Thu, 02 Apr 2026 19:05:00 GMT",
+                      "title":  "Why U.S. WTI Oil Prices Settled Higher Than Brent After Trump’s Iran Speech - Barron\u0027s",
+                      "description":  "Why U.S. WTI Oil Prices Settled Higher Than Brent After Trump’s Iran Speech\u0026nbsp;\u0026nbsp;Barron\u0027s",
+                      "link":  "https://news.google.com/rss/articles/CBMilgNBVV95cUxNS1U3ZjFKcEx3NV9jWWZTMHVIdV9UNGFsUHR4c04wUzFJbVdkNXM1RVNjdHR5OTMySlpKSG5Vd2J3cnJhamxuTkZsMEp5NWREODNsd29Hd3BKZWk2ZGcxU3JuWkxpWUNaWG1JLU40WDRyNUZybGd0Yi11MUt6NlY3cktmbEtxTmNHRUxlbVhKblkwOUltOTlZeXpCb01Cc3I5VUs3WFBPdklsQ09TMjl3a2lZaUJxRTdWMG5uR1EwQW90WXlhQU8zUDJlQV9mTVdhU0cyR283eUxyb0kwN1BkQllRbWRULV81MU1hSTFwc1RRd1dGX3NfclE0NGYxLUFYcTgxQVcyaWFkQkY3MnhReXVSazlTTGh4TXduVEVBQ1IyVFIwMFYxYWdwZ3JVcUZ2T0VNQnRSNDc2Y3JHaE5pUk1SUmd6X1UxenhQTTB6eS1yN0xtUDBZYXJOdnRCOERMM3dyNXJCRUVseHp2Sk1NNDhHenRTZUhXcmdsN3pMTUV0REkwR2ZZaGhObHZZREVMS0ZteUdR?oc=5",
+                      "source":  "GoogleNews_OilPriceIran"
+                  },
+                  {
+                      "error":  "基础连接已经关闭: 发送时发生错误。",
+                      "source":  "Reuters_WorldNews"
+                  },
+                  {
+                      "pubDate":  "Wed, 25 Mar 2026 07:00:00 GMT",
+                      "title":  "Trump repeats the mistakes of Afghanistan: Why are we funding the enemy, again? - The Hill",
+                      "description":  "Trump repeats the mistakes of Afghanistan: Why are we funding the enemy, again?\u0026nbsp;\u0026nbsp;The Hill",
+                      "link":  "https://news.google.com/rss/articles/CBMihgFBVV95cUxPam1tY2RTM1dfQTgwQXhGM0NWWmJ6eUhjSEhUVEd1WEdqSjVfQ0VrUWd1RTBIaE1ySGQzbVM3aXlfamdWeG8xVU9Ta0ZidXNSVEVacTE4aTBtQnhjakJhUElBTVlQVG9GQ0pOdDF0Qk1PMWIzWmE1MUZRZzlOUFlDZ1RaT0gzZ9IBiwFBVV95cUxNVGEzeTRrSXBzaFBBLXNSWmxjbVZxUW5MVXlMeFVrdmsyVUVtQ0FGQjBZT2w1RXhLYVAwNlM0bGR4a2hybXJDaHAxeWNoQ3NZelU1dF9NME1PalZZMWdDU21jODhSSVFRVEpPWmN0Ujd0SzNSOTc4TnZIOTRPanl1UUhkelRtU09MNC00?oc=5",
+                      "source":  "GoogleNews_TrumpIranSanctions"
+                  },
+                  {
+                      "pubDate":  "Thu, 12 Mar 2026 07:00:00 GMT",
+                      "title":  "Trump Removes Sanctions on Russia to Help Oil Flow Amid Iran Conflict - The New York Times",
+                      "description":  "Trump Removes Sanctions on Russia to Help Oil Flow Amid Iran Conflict\u0026nbsp;\u0026nbsp;The New York Times",
+                      "link":  "https://news.google.com/rss/articles/CBMihAFBVV95cUxNU2Ewb2JoTjJVTnJqaGFVVklQVWtGci1qZ3NCZmFOeko3XzhvT3JvQS1QZThSemVIT1lwd2VxSHFmVHZrUHNITEZ5N0lzMjloSy1idFBuRVNHNTdRTFlpMDVWbFlObjFnOHpBSEY1cVdsNVVsd24yTHdwdFQ3VE1yQVBuaDg?oc=5",
+                      "source":  "GoogleNews_TrumpIranSanctions"
+                  },
+                  {
+                      "pubDate":  "Tue, 13 Jan 2026 08:00:00 GMT",
+                      "title":  "Trump Threatens Tariffs on Countries ‘Doing Business’ With Iran. Here’s Who Could Be Affected - Time Magazine",
+                      "description":  "Trump Threatens Tariffs on Countries ‘Doing Business’ With Iran. Here’s Who Could Be Affected\u0026nbsp;\u0026nbsp;Time Magazine",
+                      "link":  "https://news.google.com/rss/articles/CBMiiAFBVV95cUxNNjRyMjN3eGJFYkhDVXBMSmhPWm53d0ZqcFBUVWhtbGRKdzFHMXVSQXBZWTlDYlpfSUhORzkwS3E0VXkwOG5RYXg1S1p0NU5lWGp2bl9XeGtEUW9oVGVOemkwVk1lRzl6bWZxZUNaVWpyUng0SFl2WWMyQVhkOUFKMVNPMFNGWGFL?oc=5",
+                      "source":  "GoogleNews_TrumpIranSanctions"
+                  },
+                  {
+                      "pubDate":  "Mon, 12 Jan 2026 08:00:00 GMT",
+                      "title":  "Iran trade partners will face 25% tariffs from U.S., Trump says - PBS",
+                      "description":  "Iran trade partners will face 25% tariffs from U.S., Trump says\u0026nbsp;\u0026nbsp;PBS",
+                      "link":  "https://news.google.com/rss/articles/CBMimwFBVV95cUxONFVLMmFIb1VaSkdkU3VvaGFsZmNtMFhUX04xSVpMRm1lRmZrWFB6cUg1aERtTXJkdkFjS1VEVTcxcFZieFBrZENpZmtDN2FoUkFKV24zLXJDVS1ONFNSb01QQ3Z5dnJUaFdMZVY1RHU4N2IxbkR1WmJpbndxMHVxaEdCSEFTSmt0MjV6U05qLU11QnhWRkRXRG9EWdIBoAFBVV95cUxNaVhwVzc0WWhTSUlzMi0yU1FnU2FRVGcyOElDTVM2NzNUbVlvcEZ0bkNyMVdacnp0dURRYXVucktVVlBEZUVnRl9SUVpPanhXX0N3VnlUOFl6VlFEWnpSRWMyQ1BxSmNxc29KZXYxS21EeHdRVmFQazNVa3p5dEdZRmVHdWRUeW8tV0lHMWtZdk1MLTBWRWZDLU9PRThyZVE5?oc=5",
+                      "source":  "GoogleNews_TrumpIranSanctions"
+                  },
+                  {
+                      "pubDate":  "Fri, 06 Feb 2026 08:00:00 GMT",
+                      "title":  "US imposes sanctions on ‘shadow fleet’ accused of transporting Iranian oil - Al Jazeera",
+                      "description":  "US imposes sanctions on ‘shadow fleet’ accused of transporting Iranian oil\u0026nbsp;\u0026nbsp;Al Jazeera",
+                      "link":  "https://news.google.com/rss/articles/CBMisgFBVV95cUxOQ1ppczJOc0FGTGloTzA1c0QybWotUXgtMGoxeW9UYVpzQkNxRWxObW5iSzJ5M2lEREgtcGsxTWhKS0NEYXJaeGVJTDNtVlM0QlNZVkVoSEE2c0NWRU1qS3JscDFHcEVyN21vQ09lOEtZdTVrQVgzZ0xSekxmc0dzZ2FfVm9HM2c1cDVVckZ3Zl9BX2lFQnNBcHIxcXNmYjU4T0hDN2FMeWlQeHlVMllqZHln0gG3AUFVX3lxTFBjR1l1cmpuczUwcXdnc185LV9XUmR5V0FTbm1nM2pmeUs3RGZRM0Fsb0M5SHdtUUo4Z2NjaDhpSm5SeThZYTF6ZW9BblUwTFVvRGRiNXlGc2FlbTgtWERpbi1UZVBZdFpIdF9PeU5rdXZGSmdGTEZ2bGp6Y0EzZmFLSFM1RGQwVjBCSGVTeU9nUEd0SkR0aVNXck1BTU9uOHNkMUNmZ0RPczZxb2trTy1CdWdoN002UQ?oc=5",
+                      "source":  "GoogleNews_TrumpIranSanctions"
+                  },
+                  {
+                      "pubDate":  "Sat, 07 Feb 2026 08:00:00 GMT",
+                      "title":  "Trump signs executive order threatening tariffs for countries trading with Iran - BBC",
+                      "description":  "Trump signs executive order threatening tariffs for countries trading with Iran\u0026nbsp;\u0026nbsp;BBC",
+                      "link":  "https://news.google.com/rss/articles/CBMiWkFVX3lxTE84aTZ3SE1iWEJEbWNNZFhMMjdob2hBaUN2bGVqQWx6azRuUE1YdktPX0ktMlVwNzl2X1JreWgtNERCcWN0VzFMdXB1Ul92eS1DOEpCQURpR2d4UQ?oc=5",
+                      "source":  "GoogleNews_TrumpIranSanctions"
+                  },
+                  {
+                      "pubDate":  "Tue, 13 Jan 2026 08:00:00 GMT",
+                      "title":  "Will Trump risk a clash with China over Iran tariff? - DW.com",
+                      "description":  "Will Trump risk a clash with China over Iran tariff?\u0026nbsp;\u0026nbsp;DW.com",
+                      "link":  "https://news.google.com/rss/articles/CBMijwFBVV95cUxPcTVRcXVsUlNQMVhwenpyR0o5bW84S1h1c20yXzhoUWhHUkNDZ1RONWVPZTJxRmlZcUJnYkRVUmNYR2RMMDFmeGNTa0ZfS0tNQUlFX3hBUTdMRDN0aEFqRTFObUxyOW1ZYm00bnFQQnczTTBFQm9kVDBhZ0lGT3JJU0ItOXcyTERvblkwTHlnb9IBjwFBVV95cUxNSWpBMEJBb2drenJlNHNXN1BEcFVqWEJhSkpNZ2VPY21GTWFTenZOOTZQTk56MTBWcXZmZVJYYTRWdXp6ZXBpdDk3a21IUUV5MWJOamx4R3hEbEFYLWItZ2piOFEyMW9uaHFiQTFfU1lXNGNuYUxka3c4dUZvZktiaUk1RGlSVE0tY3NXZ0RSYw?oc=5",
+                      "source":  "GoogleNews_TrumpIranSanctions"
+                  },
+                  {
+                      "pubDate":  "Tue, 13 Jan 2026 08:00:00 GMT",
+                      "title":  "Trump\u0027s Iran tariff threat risks reopening China rift - Reuters",
+                      "description":  "Trump\u0027s Iran tariff threat risks reopening China rift\u0026nbsp;\u0026nbsp;Reuters",
+                      "link":  "https://news.google.com/rss/articles/CBMiogFBVV95cUxPRl9wbVRsOG81RGh0bXlJeTVyWkdfTElZT01KektTV3dVbDhuS05ZcEJGWWQ2UHdMWk0wcnczMEYtZ1hhWnB0QlViQ2VPLWtlNk80eXBPZXlfY0pTNlBvWHlHRFJwbFFJeTFISWlWdVJEaEpxS0J1V09wTENKRWhBODVpVkZCSUNfeWVmdmd6NDY2Q3dlbm1TRnpUZUtJejgtY1E?oc=5",
+                      "source":  "GoogleNews_TrumpIranSanctions"
+                  },
+                  {
+                      "pubDate":  "Mon, 12 Jan 2026 08:00:00 GMT",
+                      "title":  "China threatens to retaliate over Trump’s 25% tariff on countries trading with Iran - The Guardian",
+                      "description":  "China threatens to retaliate over Trump’s 25% tariff on countries trading with Iran\u0026nbsp;\u0026nbsp;The Guardian",
+                      "link":  "https://news.google.com/rss/articles/CBMidEFVX3lxTE84N0VVeXFkOThhb1ZZVm5URm10b0VFMzIyeFl5S3RSYVFRTTVPb0dVcGZnQmtOUjllcXZVRjhVNHFkZHJ6dzc1WHRobzVBX05ZWTRhUVR3b09zUVpFSEczSkJpS29vWlVCRlF4Mzk2NHI3c1At?oc=5",
+                      "source":  "GoogleNews_TrumpIranSanctions"
+                  },
+                  {
+                      "pubDate":  "Mon, 12 Jan 2026 08:00:00 GMT",
+                      "title":  "Trump slaps 25% tariffs on any countries that do business with Iran - CBS News",
+                      "description":  "Trump slaps 25% tariffs on any countries that do business with Iran\u0026nbsp;\u0026nbsp;CBS News",
+                      "link":  "https://news.google.com/rss/articles/CBMiakFVX3lxTE9tbnVqa2sxMDNnWXN3MTBVeDNnTXlwNlpMOXZXMW9ocTg2S2syVFNiRjZnaTYtYmZLS1RtSnR3MmlITjgwNXV3VXZ0VlYwUFJmdWtJQU9vQzA3aDZtNkpvdDVLNmVpRExpZUHSAW9BVV95cUxOel9fQlZURDRCLWlSNGZPU0gwd19LdUtpV1RYeVFDdGU4YUZpZGI4NHdLc3dtdzZ6YmMxWWU3ZFBYbEphcDY1S0RTcFdYT2ZSZnNKU2p0UV9VM2RRR1k3LThWaHpuWm10UWczSm1odDA?oc=5",
+                      "source":  "GoogleNews_TrumpIranSanctions"
+                  }
+              ],
+    "timestamp_utc":  "2026-04-05T03:11:51Z",
+    "notes":  "Web search API unavailable. Used RSS feeds as data source.",
+    "timestamp_cst":  "2026-04-05 03:11 CST",
+    "run_id":  "forced_run_20260405_0309"
+}

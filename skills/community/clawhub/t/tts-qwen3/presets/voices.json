@@ -1,0 +1,58 @@
+{
+  "voices": [
+    {
+      "name": "qiqi_clone",
+      "label": "琪琪（克隆）",
+      "type": "voice_clone",
+      "ref_audio": "qiqi_voice_v3.wav",
+      "ref_text": "春天来了花园里的花朵都开放了小兔子琪琪蹦蹦跳跳的跑过来说好漂亮啊我们一起玩吧朋友们开心的笑着在阳光下奔跑",
+      "usage": "琪琪对话台词",
+      "status": "✅ 已验证可用"
+    },
+    {
+      "name": "narrator_teacher",
+      "label": "旁白-幼儿园老师",
+      "type": "voice_design",
+      "instruct": "A warm and gentle female voice, like a kindergarten teacher telling stories to children, speaking slowly and clearly with affection",
+      "seed": 100,
+      "usage": "旁白/叙事",
+      "status": "✅ 已生成"
+    },
+    {
+      "name": "boy_child",
+      "label": "男孩",
+      "type": "voice_design",
+      "instruct": "A cheerful young boy's voice, energetic and curious, around 8 years old, speaking with enthusiasm",
+      "seed": 200,
+      "usage": "小男孩角色",
+      "status": "✅ 已生成"
+    },
+    {
+      "name": "girl_child",
+      "label": "女孩",
+      "type": "voice_design",
+      "instruct": "A sweet young girl's voice, bright and lively, around 7 years old, speaking with innocence and joy",
+      "seed": 300,
+      "usage": "小女孩角色",
+      "status": "✅ 已生成"
+    },
+    {
+      "name": "adult_male",
+      "label": "大人男",
+      "type": "voice_design",
+      "instruct": "A mature and steady male voice, deep and warm, speaking with confidence and calmness",
+      "seed": 400,
+      "usage": "成年男性角色",
+      "status": "✅ 已生成"
+    },
+    {
+      "name": "adult_female",
+      "label": "大人女",
+      "type": "voice_design",
+      "instruct": "An elegant and gentle female voice, warm and reassuring, speaking with grace and kindness",
+      "seed": 500,
+      "usage": "成年女性角色",
+      "status": "✅ 已生成"
+    }
+  ]
+}

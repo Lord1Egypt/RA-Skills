@@ -1,0 +1,42 @@
+{
+  "ticker": "PCC",
+  "company": "Precision Castparts Corp.",
+  "analysis_year": 2015,
+  "data_source": "FY2014 10-K, SEC EDGAR",
+  "analyzed_date": "2026-03-10",
+
+  "hard_gates": {
+    "g1_roe_roic": { "value": 0.16, "metric_used": "ROE", "years_averaged": "2012-2014", "pass": true },
+    "g2_fcf_to_ni": { "value": 0.95, "fcf": 1520, "net_income": 1600, "pass": true },
+    "g3_leverage": { "metric_used": "Net Debt/EBITDA", "value": 0.5, "pass": true },
+    "g4_revenue_trend": { "description": "Growing with aerospace cycle", "structural_decline": false, "pass": true },
+    "g5_gross_margin_trend": { "description": "Expanding margins", "declining_2plus_years": false, "pass": true },
+    "g6_earnings_yield": { "value": 0.043, "net_income_m": 1600, "ev_m": 37200, "exemption": null, "pass": false },
+    "g7_moat": { "verdict": "PASS", "moat_type": "switching_cost", "description": "Aerospace component manufacturer with FAA certifications, 5-10 year qualification cycles. Switching cost is time (years to qualify new supplier) not money.", "pass": true }
+  },
+
+  "special_channel": null,
+
+  "review_notes": {
+    "quality_multiple_note": {
+      "summary": "Precision Castparts was a real moat business, and part of its low yield reflected genuine aerospace qualification barriers and switching costs.",
+      "reason_for_low_yield": "The market was paying for quality, but in this case the multiple still required too much optimism about aerospace-cycle durability and future growth.",
+      "decision_impact": "The quality note is important, but it does not overturn PASS. PCC remains the model case for excellent business, bad price."
+    },
+    "management_veto": {
+      "status": "clear",
+      "summary": "There was no management veto. The rejection remains a valuation call, not a stewardship or integrity concern."
+    }
+  },
+
+  "control_groups": [
+    { "ticker": "TDG", "company": "TransDigm", "year": 2014, "gates_failed": ["g3_leverage"], "conclusion": "PASS" },
+    { "ticker": "HWM", "company": "Arconic (then Alcoa)", "year": 2014, "gates_failed": ["g4_revenue_trend"], "conclusion": "PASS" }
+  ],
+
+  "conclusion": "PASS",
+  "buffett_action": "Acquired entire company for $37.2B ($235/share)",
+  "actual_result": "$11B goodwill impairment, Buffett admitted overpaying",
+  "verdict": "⭐ framework_wins",
+  "key_insight": "Gate ⑥ is the price discipline gate. Earnings yield of 4.3% means you need strong growth assumptions to justify the price — PCC is a quality business bought at a bad price. Quality ≠ good investment."
+}

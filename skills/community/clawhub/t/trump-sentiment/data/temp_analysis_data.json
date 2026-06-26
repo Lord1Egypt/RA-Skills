@@ -1,0 +1,55 @@
+{
+  "timestamp": "2026-03-31T03:51:00+08:00",
+  "source": "scheduled",
+  "keywords": {
+    "trump_iran_deal": [
+      "Trump claims great progress in negotiations with new regime via Pakistan mediation",
+      "Iran parliament speaker Ghalibaf contradicts Trump: US demands excessive and unreasonable",
+      "Trump threatens to obliterate Iranian energy plants oil wells Kharg Island if deal not reached",
+      "Iran acknowledges indirect talks via Pakistan but denies full negotiation"
+    ],
+    "iran_ceasefire": [
+      "Iran allows 20 oil ships through Strait of Hormuz as confidence-building gesture",
+      "IDF launches widespread strikes in Tehran amid talks",
+      "Iran warns against US ground invasion",
+      "Iranian speaker calls Trump social media posts reverse indicators for markets"
+    ],
+    "iran_war": [
+      "Day 30 of conflict - tensions remain high",
+      "Trump confirms more troops arriving in Middle East",
+      "Trump floating seizure of Kharg Island",
+      "Trump says favorite thing would be to take the oil in Iran"
+    ]
+  },
+  "vip_accounts": {
+    "kobeissi_letter": [
+      "KobeissiLetter documents Trump market manipulation: 4:12 PM ET Iran posts trigger S&P futures -1%",
+      "Iranian speaker Ghalibaf responds: pre-market news is reverse indicator - if they pump dump short if they dump go long",
+      "Trump trying to manipulate oil prices down but not working"
+    ],
+    "watcher_guru": [],
+    "zerohedge": []
+  },
+  "market_data": {
+    "sp500_futures": "S&P 500 fell 0.7% Monday - now down 9.3% from record since war began",
+    "brent_crude": "Brent crude above $115 per barrel",
+    "dow_futures": "Dow futures down 249 points Sunday evening",
+    "nasdaq": "Turned negative amid mixed signals",
+    "characterization": "Extreme volatility - markets highly sensitive to Trump social media posts"
+  },
+  "contradictory_signals": [
+    {
+      "signal": "Trump says great progress talks in serious discussions",
+      "contradiction": "Iran parliament speaker says US demands excessive unreasonable, Iran denies full negotiation"
+    },
+    {
+      "signal": "Iran allows 20 oil ships through Hormuz",
+      "contradiction": "IDF launches widespread strikes in Tehran same day"
+    },
+    {
+      "signal": "Trump says deal probably will be reached shortly",
+      "contradiction": "Iranian speaker publicly taunts Trump on social media about market manipulation"
+    }
+  ],
+  "noteworthy_development": "Trump acknowledges indirect talks via Pakistani mediation with Iranian parliament speaker Ghalibaf - first direct naming of negotiating partner. Iran publicly contradicts Trump narrative, calling his demands unrealistic. Iranian speaker actively countering Trump on social media with market manipulation accusations. S&P down 9.3% from peak, Brent above $115. April 6 Trump deadline looms."
+}

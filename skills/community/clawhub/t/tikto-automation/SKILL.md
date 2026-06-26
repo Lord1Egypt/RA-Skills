@@ -1,35 +1,32 @@
----
-name: "tiktok-carousel"
-description: "Generates a 6-slide TikTok carousel with images and text, creates a draft post via Postiz API, and outputs a caption for review and publishing."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/tikto-automation"
-sourceUrl: "https://clawhub.ai/skills/tikto-automation"
----
+# TikTok Carousel Generation Skill (openclaw-style)
 
-# tiktok-carousel
+Short description
+-----------------
+This skill generates a 6-slide TikTok carousel (portrait images + text overlays), drafts a TikTok post using a draft API (Postiz in this repository), and outputs a ready-to-review caption. The focus is cost-effective, reproducible content generation and automating as much of the drafting process as possible while keeping final publishing manual.
 
-> Generates a 6-slide TikTok carousel with images and text, creates a draft post via Postiz API, and outputs a caption for review and publishing.
+Quick install & run
+-------------------
+1. Create and activate a Python virtual environment.
+2. Install dependencies: `pip install -r requirements.txt`.
+3. Create environment variables: `OPENAI_API_KEY` (for image/text generation) and `POSTIZ_API_KEY` (optional, for uploading and creating drafts).
+4. Run the generator (examples in `README.md` / `scripts/`).
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/tikto-automation`
-- **Source URL:** [https://clawhub.ai/skills/tikto-automation](https://clawhub.ai/skills/tikto-automation)
+What this skill contains
+-----------------------
+- `tiktok_content_gen.py` — orchestrator: creates hook, locked architecture, images, captions and can upload a draft.
+- `postiz_api_integration.py` — small Postiz client used to upload media and create drafts (keeps drafts private by default).
+- `scripts/generate.py` — thin CLI wrapper to run generation locally.
+- `scripts/upload.py` — CLI wrapper to upload generated images and create a draft.
+- `requirements.txt` — Python dependencies.
 
-## Overview
+Inputs / outputs (contract)
+--------------------------
+- Inputs: target persona/topic, optional prompt seeds, number of slides (default 6), style hints.
+- Outputs: `images/final_slide_{i}.png`, `caption.txt`, optional Postiz draft (returns draft id/url).
 
+Security & cost notes
+---------------------
+- Keep API keys out of source control and use environment variables.
+- Image generation costs depend on the model (DALL·E 3 or similar). Use batching or lower-res variants for cost savings.
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/tikto-automation
-```
+Installation details and examples are in `README.md` inside this folder.

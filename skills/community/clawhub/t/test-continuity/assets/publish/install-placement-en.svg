@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="520" viewBox="0 0 1200 520" role="img" aria-labelledby="title desc">
+  <title id="title">OpenClaw Continuity install placement</title>
+  <desc id="desc">Place the personal-hooks skill folder under an OpenClaw workspace skills directory.</desc>
+  <rect width="1200" height="520" rx="36" fill="#101820"/>
+  <circle cx="1050" cy="90" r="120" fill="#f2a65a" opacity="0.18"/>
+  <circle cx="140" cy="440" r="160" fill="#4fb3bf" opacity="0.14"/>
+  <rect x="72" y="70" width="1056" height="380" rx="28" fill="#f8f4e9"/>
+  <text x="116" y="128" font-family="Menlo, Consolas, monospace" font-size="34" font-weight="700" fill="#101820">Install placement</text>
+  <text x="116" y="178" font-family="Menlo, Consolas, monospace" font-size="24" fill="#30444c">Copy or link the skill folder here:</text>
+  <text x="150" y="245" font-family="Menlo, Consolas, monospace" font-size="28" fill="#101820">openclaw-workspace/</text>
+  <text x="190" y="295" font-family="Menlo, Consolas, monospace" font-size="28" fill="#101820">skills/</text>
+  <text x="230" y="345" font-family="Menlo, Consolas, monospace" font-size="28" font-weight="700" fill="#b8402b">personal-hooks/</text>
+  <text x="270" y="395" font-family="Menlo, Consolas, monospace" font-size="24" fill="#30444c">SKILL.md  scripts/  docs/  examples/</text>
+  <path d="M760 250h170" stroke="#b8402b" stroke-width="8" stroke-linecap="round"/>
+  <path d="M910 222l48 28-48 28" fill="none" stroke="#b8402b" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="756" y="328" font-family="Menlo, Consolas, monospace" font-size="24" fill="#30444c">Then run:</text>
+  <text x="756" y="366" font-family="Menlo, Consolas, monospace" font-size="22" fill="#101820">python3 skills/personal-hooks/scripts/personal_hooks.py init</text>
+</svg>

@@ -1,0 +1,14 @@
+{
+  "name": "tradebot-alpha",
+  "version": "0.1.13",
+  "description": "Read-only signal fetcher for TradeBot Alpha API",
+  "main": "src/index.js",
+  "scripts": {},
+  "keywords": ["trading", "signals", "api"],
+  "author": "BlueFeza KG",
+  "license": "MIT-0",
+  "homepage": "https://tradebot-alpha.bluefeza.com",
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

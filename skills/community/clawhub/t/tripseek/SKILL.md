@@ -1,35 +1,41 @@
 ---
-name: "TripSeek"
-description: "Comprehensive travel planning, booking, and management skill. Use when needing to plan international trips, manage multi-destination itineraries, handle fami..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/tripseek"
-sourceUrl: "https://clawhub.ai/skills/tripseek"
+name: tripseek
+description: Comprehensive travel planning, booking, and management skill. Use when needing to plan international trips, manage multi-destination itineraries, handle family travel logistics, optimize travel costs, and coordinate complex travel arrangements.
 ---
 
-# TripSeek
+# TripSeek Skill
 
-> Comprehensive travel planning, booking, and management skill. Use when needing to plan international trips, manage multi-destination itineraries, handle fami...
+## Core Capabilities
+- International trip planning
+- Multi-destination itinerary creation
+- Family travel logistics
+- Cost optimization
+- Travel document management
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/tripseek`
-- **Source URL:** [https://clawhub.ai/skills/tripseek](https://clawhub.ai/skills/tripseek)
+## Workflow Steps
+1. Destination Analysis
+2. Route Optimization
+3. Cost Calculation
+4. Document Preparation
+5. Booking Coordination
 
-## Overview
+## Key Considerations for Family Travel
+- Child-friendly routes
+- Stopover comfort
+- Baggage requirements
+- Age-specific travel needs
+
+## References
+- [Family Travel Checklist](references/family-travel-checklist.md)
+- [International Travel Documents](references/travel-documents.md)
+- [Travel Consultants](references/agents.md)
+- [Hotel Recommendations](references/hotels.md)
+- [Attractions & Sights](references/sights.md)
+- [Flights](references/flights.md)
+- [Tour Packages & Vacations](references/vacations.md)
 
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/tripseek
-```
+## Usage Examples
+- "Plan a family trip to China"
+- "Find the most cost-effective international travel route"
+- "Prepare travel documents for a multi-country trip"

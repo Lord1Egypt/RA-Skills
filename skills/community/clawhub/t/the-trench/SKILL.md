@@ -1,35 +1,34 @@
 ---
-name: "The Trench"
-description: "Call The Trench Solana program on devnet using the public IDL and TS types."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/the-trench"
-sourceUrl: "https://clawhub.ai/skills/the-trench"
+name: the-trench
+description: Call The Trench Solana program on devnet using the public IDL and TS types.
+homepage: https://github.com/BAGWATCHER/the-trench-demo
+metadata: {"openclaw":{"emoji":"🕳️"}}
 ---
 
-# The Trench
+# The Trench Skill
 
-> Call The Trench Solana program on devnet using the public IDL and TS types.
+Use this skill to construct Anchor clients that call The Trench program on **devnet**. This repo is public and contains only the IDL and TS types (no private bot logic).
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/the-trench`
-- **Source URL:** [https://clawhub.ai/skills/the-trench](https://clawhub.ai/skills/the-trench)
+## Program
+- Program ID (devnet): `6fs4qcRYSdR8pd2ZPoAmLpthrqZR94Dhf6J4PLvtqQt1`
+- IDL: `{baseDir}/../idl.json`
+- TS types: `{baseDir}/../the_trench.ts`
 
-## Overview
+## Usage (TypeScript)
+```ts
+import { Connection, PublicKey } from "@solana/web3.js";
+import { AnchorProvider, Program } from "@coral-xyz/anchor";
+import idl from "../idl.json";
 
+const programId = new PublicKey("6fs4qcRYSdR8pd2ZPoAmLpthrqZR94Dhf6J4PLvtqQt1");
+const connection = new Connection("https://api.devnet.solana.com", "confirmed");
+const provider = AnchorProvider.env();
+const program = new Program(idl as any, programId, provider);
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/the-trench
+// Example call
+// await program.methods.listDeadToken(...).accounts({ ... }).rpc();
 ```
+
+## Notes
+- This skill does **not** include any private trading logic or alpha.
+- If you need mainnet, update the program ID and IDL accordingly.

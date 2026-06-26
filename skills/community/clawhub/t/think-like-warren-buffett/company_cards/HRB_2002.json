@@ -1,0 +1,51 @@
+{
+  "ticker": "HRB",
+  "company": "H&R Block, Inc.",
+  "analysis_year": 2002,
+  "data_source": "H&R Block FY2002 annual report / EX-13, SEC EDGAR; Berkshire 2002 annual report",
+  "analyzed_date": "2026-03-26",
+
+  "hard_gates": {
+    "g1_roe_roic": { "value": 0.319, "metric_used": "ROE", "years_averaged": "2000-2002", "pass": true },
+    "g2_fcf_to_ni": { "value": 1.39, "fcf": 604.1, "net_income": 434.4, "pass": true },
+    "g3_leverage": { "metric_used": "Net Debt/EBITDA", "value": 0.57, "pass": true },
+    "g4_revenue_trend": { "description": "Revenue rose from $2.43B to $2.98B to $3.32B across 2000-2002. The tax-prep core stayed structurally intact while mortgage and business-services operations added growth.", "structural_decline": false, "pass": true },
+    "g5_gross_margin_trend": { "description": "The closest economic proxy is operating efficiency rather than reported gross margin. Return on total revenues moved from 10.4% in 2000 to 9.3% in 2001 and 13.1% in 2002, so there was no two-year structural deterioration.", "declining_2plus_years": false, "pass": true },
+    "g6_earnings_yield": { "value": 0.05, "net_income_m": 434.4, "ev_m": 8650.9, "exemption": null, "pass": false },
+    "g7_moat": { "verdict": "PASS", "moat_type": "brand", "description": "H&R Block had a real though not impregnable moat: national consumer trust in tax prep, a dense seasonal storefront network, franchise reach, software and e-file scale, and customer behavior built around annual repetition in a compliance-driven category. That is a better business than a generic tax shop, even if it is not Coca-Cola-level permanence.", "pass": true }
+  },
+
+  "special_channel": null,
+
+  "review_notes": {
+    "quality_multiple_note": {
+      "summary": "H&R Block's sub-6% earnings yield reflected a genuine franchise in tax preparation and consumer finance adjacency, not a broken business being dressed up.",
+      "reason_for_low_yield": "The market was paying for trusted national distribution, repeat-file behavior, and strong cash generation, but the franchise still lacked the depth and duration of Berkshire's very best consumer compounds.",
+      "decision_impact": "This note supports keeping the valuation gate intact here. The business was good, but not so extraordinary that a 5% earnings yield obviously represented a bargain."
+    },
+    "management_veto": {
+      "status": "clear",
+      "summary": "No management-integrity veto is visible in the filed materials used here. The underwriting debate is about franchise quality versus valuation, not stewardship trust."
+    }
+  },
+
+  "metrics_snapshot": {
+    "revenue_2002_usd_m": 3317.7,
+    "net_income_2002_usd_m": 434.4,
+    "net_operating_free_cash_flow_2002_usd_m": 604.1,
+    "cash_2002_usd_m": 436.1,
+    "long_term_debt_2002_usd_m": 928.0,
+    "berkshire_cost_2002_usd_m": 255.0
+  },
+
+  "control_groups": [
+    { "ticker": "INTU", "company": "Intuit Inc.", "year": 2002, "gates_failed": ["g6_earnings_yield"], "conclusion": "PASS — excellent software franchise, but at the time the valuation gave even less margin of safety than H&R Block." },
+    { "ticker": "JTX", "company": "Jackson Hewitt Tax Service Inc.", "year": 2002, "gates_failed": ["g7_moat"], "conclusion": "PASS — a meaningful competitor, but with weaker brand trust, less national density, and less durable economics than H&R Block." }
+  ],
+
+  "conclusion": "PASS",
+  "buffett_action": "By year-end 2002 Berkshire held 15,999,200 H&R Block shares at a cost of about $255M.",
+  "actual_result": "A respectable but non-canonical outcome: Berkshire's position appreciated, but H&R Block never became a defining long-duration compounder in the way Berkshire's very best public-equity wins did.",
+  "verdict": "⭐ framework_wins",
+  "key_insight": "A good branded service business can still be a pass if the valuation leaves too little room for extraordinary long-term compounding."
+}

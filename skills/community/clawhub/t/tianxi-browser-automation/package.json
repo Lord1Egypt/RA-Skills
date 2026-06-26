@@ -1,0 +1,43 @@
+{
+  "name": "tianxi-browser-automation",
+  "version": "1.0.0",
+  "description": "浏览器自动化操作Skill，支持网页导航、表单填写、社交媒体发布、数据提取等全场景浏览器操作",
+  "main": "SKILL.md",
+  "keywords": [
+    "browser",
+    "automation",
+    "网页操作",
+    "表单填写",
+    "社交媒体",
+    "浏览器"
+  ],
+  "author": "小天",
+  "license": "MIT",
+  "skill": {
+    "id": "browser_automation_20260507",
+    "name": "浏览器自动化操作",
+    "description": "通过联想浏览器实现网页自动化操作，支持网页导航、元素交互、表单填写、文件上传、截图等功能",
+    "trigger": [
+      "使用浏览器",
+      "打开网页",
+      "访问网站",
+      "填写表单",
+      "发布微博",
+      "发布小红书",
+      "查看邮件",
+      "发送邮件",
+      "网页搜索",
+      "填写信息",
+      "注册账号",
+      "网页截图"
+    ],
+    "dependencies": [
+      "tai-app-browser-mcp-server"
+    ],
+    "securityLevel": "medium",
+    "requiredPermissions": [
+      "browser.access",
+      "file.read"
+    ]
+  }
+}

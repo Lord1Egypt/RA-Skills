@@ -1,0 +1,140 @@
+{
+  "collected_at": "2026-04-05T20:45:00CST",
+  "run_type": "forced_timestamp_timeline_v6",
+  "searches": {
+    "x_trump_iran_deal": {
+      "query": "Trump Iran deal",
+      "url": "https://x.com/search?q=Trump%20Iran%20deal&f=live",
+      "results": [
+        {
+          "time_ago": "17分钟前",
+          "cst_time": "20:28",
+          "author": "@DeadRedCloud (Chris Peck)",
+          "content": "Who cancelled the deal with Iran not to develop nukes? Trump.",
+          "views": 26,
+          "replies": 0,
+          "retweets": 0,
+          "likes": 0
+        },
+        {
+          "time_ago": "17分钟前",
+          "cst_time": "20:28",
+          "author": "@John34760076823 (John)",
+          "content": "Again, Iranians only hope for survival is that the US doesn't want an all out war scenario... Trump is allowing them make a deal. If you really think the US can't invade Iran then you are not coherent... will there be a lot of US casualties yes.. but in the end Iran will lose.",
+          "views": 46,
+          "replies": 1,
+          "retweets": 0,
+          "likes": 1
+        },
+        {
+          "time_ago": "18分钟前",
+          "cst_time": "20:27",
+          "author": "@Intellectanchor (IntellectAnchor)",
+          "content": "Sir Mr. TRUMP will Accept his defeat and make a deal before leaving the middle East or if he runs before accepting the whole middle East will be controlled or dominated by Iran for the next 10-15 years.",
+          "views": 84,
+          "replies": 0,
+          "retweets": 0,
+          "likes": 0
+        },
+        {
+          "time_ago": "18分钟前",
+          "cst_time": "20:27",
+          "author": "@BullTheoryio (Bull Theory) [VERIFIED]",
+          "content": "BREAKING: Trump threatens to destroy Iran's bridges and power plants if no deal is reached and Hormuz is not reopened. Says open the Strait or 'you'll be living in hell.'",
+          "views": 2441,
+          "replies": 9,
+          "retweets": 8,
+          "likes": 51
+        },
+        {
+          "time_ago": "18分钟前",
+          "cst_time": "20:27",
+          "author": "@TrueNorthLarry (Larry of the North)",
+          "content": "The US had a nuclear deal with Iran. Inspectors were watching, and ensuring no weapons grade uranium and then Trump scrapped it. Iran wasn't a threat to the US at all.",
+          "views": 38,
+          "replies": 0,
+          "retweets": 0,
+          "likes": 0
+        }
+      ]
+    },
+    "x_iran_ceasefire": {
+      "query": "Iran ceasefire",
+      "url": "https://x.com/search?q=Iran%20ceasefire&f=live",
+      "results": [
+        {
+          "time_ago": "51秒前",
+          "cst_time": "20:44",
+          "author": "@FlowPredict_io (FlowPredict) [VERIFIED]",
+          "content": "Trump drops Easter Sunday f-bomb in new threat to Iran. Prediction markets: US-Iran ceasefire by April 30: 18¢; May 31: 34¢; June 30: 47¢; Dec 31: 70¢",
+          "views": 16,
+          "replies": 0,
+          "retweets": 0,
+          "likes": 0
+        },
+        {
+          "time_ago": "58秒前",
+          "cst_time": "20:44",
+          "author": "@dawsonjohn95 (John Dawson)",
+          "content": "Remember when Trump restarted a WAR he initially ended by negotiating a ceasefire? Then the WAR forced the insurers to end coverage on ships going thru the Strait? Now he's blaming the nation he struck for something that his WAR caused.",
+          "views": 8,
+          "replies": 0,
+          "retweets": 0,
+          "likes": 0
+        },
+        {
+          "time_ago": "1分钟前",
+          "cst_time": "20:44",
+          "author": "@MarioNawfal (Mario Nawfal) [VERIFIED]",
+          "content": "\"Tuesday will be Power Plant Day, and Bridge Day all wrapped in one\" I really hope he doesn't mean that, and I really hope Iran accepts a ceasefire, for the sake of their people. This entire war was a mistake, and if Trump delivers on his threats, it could become a catastrophe.",
+          "views": 1175,
+          "replies": 14,
+          "retweets": 1,
+          "likes": 15
+        },
+        {
+          "time_ago": "1分钟前",
+          "cst_time": "20:44",
+          "author": "@Khoza0124 (Ghost)",
+          "content": "Trump after Iran denies another ceasefire before Tuesday.",
+          "views": 94,
+          "replies": 0,
+          "retweets": 0,
+          "likes": 1
+        }
+      ]
+    },
+    "bigv_kobeissi_letter": {
+      "url": "https://x.com/KobeissiLetter",
+      "results": [
+        {
+          "time_ago": "11分钟前",
+          "cst_time": "20:34",
+          "author": "@KobeissiLetter (The Kobeissi Letter) [VERIFIED]",
+          "content": "BREAKING: President Trump announces he will be having a news conference with the US Military at 1 PM ET tomorrow. This is just 3 hours after his '48 hour warning' to Iran expires. He also just declared Tuesday as 'power plant and bridge day.' We will be covering it real-time.",
+          "views": 38431,
+          "replies": 100,
+          "retweets": 126,
+          "likes": 893,
+          "bookmarks": 70
+        }
+      ]
+    },
+    "bigv_watcherguru": {
+      "url": "https://x.com/WatcherGuru",
+      "results": [
+        {
+          "time_ago": "5分钟前",
+          "cst_time": "20:40",
+          "author": "@WatcherGuru (Watcher.Guru) [VERIFIED]",
+          "content": "JUST IN: Michael Saylor hints at buying more Bitcoin. '₿ack to Work.'",
+          "views": 8147,
+          "replies": 115,
+          "retweets": 28,
+          "likes": 277
+        }
+      ]
+    }
+  },
+  "notes": "web_search failed (Brave API token invalid). Reuters, FT, Al Jazeera, Yahoo Finance also blocked. All data from X.com browser scraping. Trump declared Tuesday 'Power Plant and Bridge Day'; 48hr ultimatum expires ~April 6 4PM ET; Military news conference April 6 1PM ET."
+}

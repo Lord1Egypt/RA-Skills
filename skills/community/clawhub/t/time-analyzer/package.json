@@ -1,0 +1,28 @@
+{
+  "name": "time-analyzer",
+  "version": "1.0.3",
+  "description": "Time tracking and analysis skill for OpenClaw",
+  "main": "scripts/time-analyzer.js",
+  "bin": {
+    "time-analyzer": "./scripts/time-analyzer.js"
+  },
+  "scripts": {
+    "start": "node scripts/time-analyzer.js start",
+    "stop": "node scripts/time-analyzer.js stop",
+    "analyze": "node scripts/time-analyzer.js analyze",
+    "suggest": "node scripts/time-analyzer.js suggest",
+    "status": "node scripts/time-analyzer.js status",
+    "report": "node scripts/time-analyzer.js report"
+  },
+  "keywords": [
+    "time-tracking",
+    "productivity",
+    "analysis",
+    "openclaw-skill"
+  ],
+  "author": "OpenClaw",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

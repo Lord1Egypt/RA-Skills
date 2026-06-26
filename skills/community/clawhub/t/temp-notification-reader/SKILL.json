@@ -1,0 +1,7 @@
+{
+  "name": "macos-notification-reader",
+  "description": "Read macOS notifications and generate work summaries for OpenClaw",
+  "version": "0.1.0",
+  "skills": ["notification", "macos", "memory"],
+  "integration": "openclaw"
+}

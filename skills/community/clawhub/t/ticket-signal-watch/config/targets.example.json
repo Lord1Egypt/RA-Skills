@@ -1,0 +1,19 @@
+{
+  "targets": [
+    {
+      "name": "Jay Chou Hangzhou - Damai Search",
+      "platform": "大麦",
+      "url": "https://search.damai.cn/search.htm?keyword=%E5%91%A8%E6%9D%B0%E4%BC%A6%20%E6%9D%AD%E5%B7%9E",
+      "require_all": ["周杰伦", "杭州"],
+      "match_any": ["立即购买", "立即预订", "可选座", "有票", "开售", "预售中", "补票", "回流", "加场"],
+      "signal_keywords": {
+        "high": ["立即购买", "立即预订", "可选座", "有票"],
+        "medium": ["开售", "预售中", "补票", "回流", "加场"]
+      },
+      "note": "Replace this with an official detail page URL when possible."
+    }
+  ],
+  "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",
+  "timeout_seconds": 12,
+  "preview_chars": 280
+}

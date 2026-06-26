@@ -1,0 +1,455 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Remindy - Smart Reminder Service v2",
+    "description": "Email + Browser Push notifications 15 minutes before your event",
+    "version": "2.0.0"
+  },
+  "paths": {
+    "/api/push/subscribe": {
+      "post": {
+        "summary": "Push Subscribe",
+        "description": "Save or update a user's push subscription.",
+        "operationId": "push_subscribe_api_push_subscribe_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PushSubscription"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/push/unsubscribe": {
+      "post": {
+        "summary": "Push Unsubscribe",
+        "description": "Remove a user's push subscription.",
+        "operationId": "push_unsubscribe_api_push_unsubscribe_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PushUnsubscribe"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/push/vapid-public-key": {
+      "get": {
+        "summary": "Get Vapid Public Key",
+        "description": "Return the VAPID public key for the browser to use.",
+        "operationId": "get_vapid_public_key_api_push_vapid_public_key_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/push/status": {
+      "post": {
+        "summary": "Push Status",
+        "description": "Check whether a user has an active push subscription stored.",
+        "operationId": "push_status_api_push_status_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PushUnsubscribe"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/reminders/create": {
+      "post": {
+        "summary": "Create Reminder",
+        "operationId": "create_reminder_api_reminders_create_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReminderCreate"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/reminders/list": {
+      "post": {
+        "summary": "List Reminders",
+        "operationId": "list_reminders_api_reminders_list_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReminderListRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/reminders/delete": {
+      "post": {
+        "summary": "Delete Reminder",
+        "operationId": "delete_reminder_api_reminders_delete_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReminderDeleteRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/": {
+      "get": {
+        "summary": "Root",
+        "operationId": "root__get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/health": {
+      "get": {
+        "summary": "Health",
+        "operationId": "health_health_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "type": "array",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
+      },
+      "PushSubscription": {
+        "properties": {
+          "userId": {
+            "type": "integer",
+            "title": "Userid"
+          },
+          "endpoint": {
+            "type": "string",
+            "title": "Endpoint"
+          },
+          "p256dh": {
+            "type": "string",
+            "title": "P256Dh"
+          },
+          "auth": {
+            "type": "string",
+            "title": "Auth"
+          }
+        },
+        "type": "object",
+        "required": [
+          "userId",
+          "endpoint",
+          "p256dh",
+          "auth"
+        ],
+        "title": "PushSubscription"
+      },
+      "PushUnsubscribe": {
+        "properties": {
+          "userId": {
+            "type": "integer",
+            "title": "Userid"
+          }
+        },
+        "type": "object",
+        "required": [
+          "userId"
+        ],
+        "title": "PushUnsubscribe"
+      },
+      "ReminderCreate": {
+        "properties": {
+          "userId": {
+            "type": "integer",
+            "title": "Userid"
+          },
+          "title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "description": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Description"
+          },
+          "remindAt": {
+            "type": "string",
+            "title": "Remindat"
+          },
+          "timezone": {
+            "type": "string",
+            "title": "Timezone",
+            "default": "UTC"
+          },
+          "channel": {
+            "type": "string",
+            "title": "Channel",
+            "default": "email"
+          },
+          "notifyEmail": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Notifyemail"
+          }
+        },
+        "type": "object",
+        "required": [
+          "userId",
+          "title",
+          "remindAt"
+        ],
+        "title": "ReminderCreate"
+      },
+      "ReminderDeleteRequest": {
+        "properties": {
+          "reminderId": {
+            "type": "string",
+            "title": "Reminderid"
+          },
+          "userId": {
+            "type": "integer",
+            "title": "Userid"
+          }
+        },
+        "type": "object",
+        "required": [
+          "reminderId",
+          "userId"
+        ],
+        "title": "ReminderDeleteRequest"
+      },
+      "ReminderListRequest": {
+        "properties": {
+          "userId": {
+            "type": "integer",
+            "title": "Userid"
+          }
+        },
+        "type": "object",
+        "required": [
+          "userId"
+        ],
+        "title": "ReminderListRequest"
+      },
+      "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Location"
+          },
+          "msg": {
+            "type": "string",
+            "title": "Message"
+          },
+          "type": {
+            "type": "string",
+            "title": "Error Type"
+          }
+        },
+        "type": "object",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError"
+      }
+    }
+  }
+}

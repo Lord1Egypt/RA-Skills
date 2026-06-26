@@ -1,0 +1,194 @@
+{
+  "report_id": "2026-04-06_0841_cst",
+  "generated_at": "2026-04-06T00:41:00Z",
+  "cst_time": "2026-04-06 08:41 CST",
+  "source": "cron",
+  "trigger_file_exists": false,
+  "items": [
+    {
+      "time_cst": "~08:40",
+      "source": "X/KobeissiLetter",
+      "content": "Oil prices now crossing above $115/barrel in US. If sustained ~7 more weeks, US CPI inflation will rise to ~3.7% — highest since Sept 2023.",
+      "engagement": "140回复 319转推 1706喜欢 115书签 164K观看",
+      "market_data": "WTI ~$115, CPI inflation risk rising"
+    },
+    {
+      "time_cst": "~08:39",
+      "source": "X/KobeissiLetter",
+      "content": "BREAKING: US stock market futures fall at open as Trump declares Tuesday 'Power Plant and Bridge Day' in Iran. S&P -0.7%, Nasdaq -0.8%, DJ -0.7%, WTI +3.0%, Nat Gas +1.0%, Gold -0.9%. Deadline: Tuesday.",
+      "engagement": "195回复 295转推 2189喜欢 128书签 158K观看",
+      "market_data": "S&P -0.7% Nasdaq -0.8% DJ -0.7% WTI +3.0% Gold -0.9%"
+    },
+    {
+      "time_cst": "~08:39",
+      "source": "X/KobeissiLetter",
+      "content": "BREAKING: US oil prices surge above $114/barrel as US market futures reopen after 3-day weekend.",
+      "engagement": "270回复 1431转推 5572喜欢 203书签 437K观看",
+      "market_data": "WTI ~$114+"
+    },
+    {
+      "time_cst": "~08:38",
+      "source": "X/WatcherGuru",
+      "content": "JUST IN: $69,000 Bitcoin — $100,000,000 worth of crypto shorts liquidated in past 90 minutes.",
+      "engagement": "249回复 344转推 2348喜欢 41书签 101K观看",
+      "market_data": "BTC $69K, $100M crypto shorts liquidated"
+    },
+    {
+      "time_cst": "~08:38",
+      "source": "X/WatcherGuru",
+      "content": "JUST IN: $2,100 ETH",
+      "engagement": "205回复 191转推 1624喜欢 15书签 73K观看",
+      "market_data": "ETH $2,100"
+    },
+    {
+      "time_cst": "~08:38",
+      "source": "X/FirstCoastLedger",
+      "content": "IRAN DEFIES TRUMP: 'STRAIT OF HORMUZ WILL NEVER RETURN TO FORMER STATE' — OIL TOPS $110. Iran's IRGC flatly rejected Trump's ultimatum, declaring Strait of Hormuz permanently closed to US/Israeli interests.",
+      "engagement": "新发布",
+      "market_data": "Oil tops $110+, Strait of Hormuz closed"
+    },
+    {
+      "time_cst": "~08:38",
+      "source": "X/MrTopStep",
+      "content": "$CL Oil prices rising again after Trump threatened Iran over Strait of Hormuz closure. Brent ~$110, WTI +3% to $115. War impacted oil, gas, food, commodities availability.",
+      "engagement": "新发布",
+      "market_data": "Brent ~$110 WTI $115 +3%"
+    },
+    {
+      "time_cst": "~08:40",
+      "source": "X/JC Wandemberg",
+      "content": "US equity-index futures dropped and oil climbed after Trump's warning of significant escalation in Iran war, worsening energy-price shock upending global economic outlook.",
+      "engagement": "新发布",
+      "market_data": "Equity futures down, oil up, global economic outlook worsening"
+    },
+    {
+      "time_cst": "~08:37",
+      "source": "X/LindGo",
+      "content": "Gas Buddy Arizona Gas Price Stats: $3.89 Low / $4.75 Average. Oil prices rose Sunday with US crude topping $114/bbl after Trump gave Iran until Tuesday to open Strait of Hormuz or face attacks on power plants.",
+      "engagement": "1喜欢 63观看",
+      "market_data": "US gasoline prices rising, US crude $114+"
+    },
+    {
+      "time_cst": "~08:37",
+      "source": "X/agtprpnabsrdty",
+      "content": "USrael-Iran War EOD sitrep (Apr 5): Iran refuses to open Strait of Hormuz without full war compensation. Tehran won't make concessions before April 7. Strait opens only after full war compensation is paid.",
+      "engagement": "新发布",
+      "market_data": "Iran demands war compensation before Strait opens"
+    },
+    {
+      "time_cst": "~08:36",
+      "source": "X/Mr_Ak_India",
+      "content": "President Trump on Sunday issued renewed ultimatum to Iran, threatening to bomb critical energy infrastructure if not open Strait of Hormuz — a transit route for 1/5 of world's oil and gas. Citing NYTimes timeline of Trump's ultimatums.",
+      "engagement": "1喜欢 3观看",
+      "market_data": "Trump ultimatum: open Strait or face infrastructure strikes"
+    },
+    {
+      "time_cst": "~08:35",
+      "source": "X/HormuzWatch",
+      "content": "Trump to Axios (Apr 5): 'Iran deal possible by Tues., otherwise I am blowing up everything.' Source: axios.com",
+      "engagement": "2分钟前",
+      "market_data": "Trump-Axios: deal by Tuesday or total destruction"
+    },
+    {
+      "time_cst": "~08:34",
+      "source": "X/vanhoa2272",
+      "content": "NOW: Iran rejected latest US ceasefire proposal and refused to open Strait of Hormuz. US military-IDF operational coordination completed after high-level meeting last Thursday involving Chief of Staff and CENTCOM leadership.",
+      "engagement": "1喜欢 30观看",
+      "market_data": "Ceasefire rejected, US-IDF coordination complete"
+    },
+    {
+      "time_cst": "~08:34",
+      "source": "X/HenryLawson55",
+      "content": "Wall Street Journal: Iran refused proposal for temporary ceasefire in exchange for opening Strait of Hormuz.",
+      "engagement": "新发布",
+      "market_data": "WSJ: Iran refused ceasefire-for-Hormuz deal"
+    },
+    {
+      "time_cst": "~08:33",
+      "source": "X/JefferyMaytag",
+      "content": "Trump is having a mental breakdown and he's begging Iran for a ceasefire.",
+      "engagement": "新发布",
+      "market_data": null
+    },
+    {
+      "time_cst": "~08:33",
+      "source": "X/PiratensenderDE",
+      "content": "Iran just signaled they have no interest in a ceasefire deal. Tuesday is going to be epic.",
+      "engagement": "1喜欢 9观看",
+      "market_data": null
+    },
+    {
+      "time_cst": "~08:36",
+      "source": "X/X_O_O_A_A",
+      "content": "ABC News: 'President Trump said Sunday that if no peace deal is reached with Iran in the next 48 hours, we're blowing up the entire country.' Selina Wang reports from White House.",
+      "engagement": "引用ABC",
+      "market_data": "Trump: no deal = 'blowing up entire country'"
+    },
+    {
+      "time_cst": "~08:33",
+      "source": "X/RickRofl",
+      "content": "This is naive. Multiple leaders/politicians were assassinated in Iran & thousands of targets bombed. You can't kill a leader & expect them to agree to ceasefire when attacker asks.",
+      "engagement": "1喜欢 140观看",
+      "market_data": null
+    },
+    {
+      "time_cst": "~08:40",
+      "source": "X/Bill_Hayes",
+      "content": "America doesn't buy gas from Iran. America will just take gas from Iran if it wants to. Iran will be left in ruins if they don't make a deal with Trump. 🇺🇸",
+      "engagement": "~11秒前",
+      "market_data": null
+    },
+    {
+      "time_cst": "~08:40",
+      "source": "X/TheReeveOliver",
+      "content": "Trump said specifically if he was president there would be no war with Iran because he would get a deal. Stop lying.",
+      "engagement": "44秒前",
+      "market_data": null
+    },
+    {
+      "time_cst": "~08:40",
+      "source": "X/uclongarms",
+      "content": "Iran will not surrender to Israel. They will not be Israel's bitch. No deal unless Trump agrees to Iran's demands.",
+      "engagement": "57秒前",
+      "market_data": null
+    },
+    {
+      "time_cst": "~08:39",
+      "source": "X/Silencercrypt",
+      "content": "So I'm betting on Trump announcing a deal with Iran by Tuesday and oil price crashes.",
+      "engagement": "1分钟前",
+      "market_data": "Bet: deal by Tuesday → oil crash"
+    }
+  ],
+  "key_developments": [
+    "Trump ultimatum: Iran deal by Tuesday April 7 OR 'blowing up everything'",
+    "Iran rejected US ceasefire proposal, refuses to open Strait of Hormuz",
+    "US-IDF operational coordination completed after high-level meeting",
+    "Iran demands full war compensation before Strait can reopen",
+    "Oil surged: WTI ~$115 (+3%), Brent ~$110 at market open",
+    "Stock futures: S&P -0.7%, Nasdaq -0.8%, Dow -0.7%; Gold -0.9%",
+    "Kobeissi Letter: Oil at $115 sustained 7 weeks → CPI 3.7%",
+    "Crypto: BTC $69K, ETH $2,100; $100M crypto shorts liquidated",
+    "Gas prices rising (US avg $4.75/gallon)",
+    "Axios: Deal possible by Tuesday, otherwise 'blowing up everything'"
+  ],
+  "market_summary": {
+    "sp500_futures": "-0.7%",
+    "nasdaq_futures": "-0.8%",
+    "dow_futures": "-0.7%",
+    "wti_oil": "+3.0% to ~$115",
+    "brent_oil": "~$110",
+    "natural_gas": "+1.0%",
+    "gold": "-0.9%",
+    "btc": "$69,000",
+    "eth": "$2,100",
+    "us_gas_avg": "~$4.75/gallon"
+  },
+  "sentiment_summary": {
+    "bullish_deal": "DeEskimo bets on Tuesday deal → oil crash",
+    "iran_defiant": "IRGC declares Strait permanently closed to US/Israeli interests",
+    "escalation_risk": "US-IDF coordination complete; Trump deadline Tuesday",
+    "economic_impact": "Inflation spike risk if oil sustains $115+; equity sell-off",
+    "market_fear": "Crypto shorts liquidated; gold down (risk-off reversal?)"
+  }
+}

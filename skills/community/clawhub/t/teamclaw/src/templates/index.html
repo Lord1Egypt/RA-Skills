@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>Teamclaw | AI Agent</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+
+    <!-- PWA / iOS Full-screen support -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Teamclaw">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#111827">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="msapplication-TileColor" content="#111827">
+    <link rel="apple-touch-icon" href="https://img.icons8.com/fluency/180/robot-2.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="https://img.icons8.com/fluency/152/robot-2.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://img.icons8.com/fluency/180/robot-2.png">
+    <link rel="apple-touch-icon" sizes="167x167" href="https://img.icons8.com/fluency/167/robot-2.png">
+    <!-- iOS splash screens -->
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="manifest" href="/manifest.json">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/9.1.2/marked.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body class="bg-gray-100 font-sans leading-normal tracking-normal">
+
+    <!-- Splash Screen -->
+    <div id="app-splash">
+        <img class="splash-icon" src="https://img.icons8.com/fluency/180/robot-2.png" alt="">
+        <div class="splash-title">Teamclaw</div>
+        <div class="splash-sub">TeamBot AI Agent</div>
+    </div>
+
+    <!-- Offline Banner -->
+    <div id="offline-banner" data-i18n="offline_banner">⚠️ 网络已断开，请检查连接</div>
+
+    <!-- ========== 登录页 ========== -->
+    <div id="login-screen" class="min-h-screen flex items-center justify-center safe-top safe-bottom px-4" style="width:100%;height:100%;overflow:auto;">
+        <div class="bg-white rounded-2xl shadow-2xl p-6 sm:p-8 w-full max-w-md border">
+            <div class="flex items-center justify-center space-x-3 mb-6">
+                <div class="bg-blue-600 p-3 rounded-xl text-white font-bold text-2xl">X</div>
+                <h1 class="text-2xl font-bold text-gray-800" data-i18n="login_title">Teamclaw</h1>
+            </div>
+            <p class="text-center text-gray-500 text-sm mb-8" data-i18n="login_subtitle">请登录以开始对话</p>
+            <div class="space-y-4">
+                <input id="username-input" type="text" maxlength="32"
+                    class="w-full p-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 text-center text-lg"
+                    data-i18n-placeholder="username" placeholder="用户名" autofocus>
+                <input id="password-input" type="password" maxlength="64"
+                    class="w-full p-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 text-center text-lg"
+                    data-i18n-placeholder="password" placeholder="密码">
+                <div id="login-error" class="text-red-500 text-sm text-center hidden"></div>
+                <button onclick="handleLogin()" id="login-btn"
+                    class="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-xl font-bold text-lg transition-all shadow-lg"
+                    data-i18n="login_btn">登录</button>
+            </div>
+            <p class="text-xs text-gray-400 text-center mt-6" data-i18n="login_footer">身份验证后方可使用，对话和文件按用户隔离</p>
+        </div>
+    </div>
+
+    <!-- ========== 主布局（聊天 + OASIS）（初始隐藏） ========== -->
+    <div id="chat-screen" class="main-layout safe-top safe-bottom safe-left safe-right" style="display:none;">
+
+        <!-- ===== 历史会话侧边栏 ===== -->
+        <div id="session-sidebar" class="session-sidebar" style="display:none;">
+            <div class="p-3 border-b bg-gray-50 flex justify-between items-center flex-shrink-0">
+                <span class="text-sm font-bold text-gray-700" data-i18n="history_title">🤖 Agents</span>
+                <div class="flex items-center gap-2">
+                    <button id="toggle-oasis-sessions-btn" onclick="toggleOasisSessionsVisible()" class="text-[10px] text-gray-400 hover:text-blue-600 px-1.5 py-0.5 rounded border border-gray-200 transition-colors" title="切换 OASIS/普通会话">🏛️ OASIS</button>
+                    <button onclick="deleteAllSessions()" class="text-xs text-red-400 hover:text-red-600" data-i18n="delete_all">🗑️ 清空全部</button>
+                    <button onclick="closeSessionSidebar()" class="text-gray-400 hover:text-gray-600 text-lg leading-none">&times;</button>
+                </div>
+            </div>
+            <div id="session-list" class="flex-1 overflow-y-auto p-2 space-y-1">
+                <div class="text-xs text-gray-400 text-center py-4" data-i18n="loading">加载中...</div>
+            </div>
+        </div>
+
+        <!-- ===== 左侧：聊天区 ===== -->
+        <div class="chat-main h-screen flex flex-col bg-white border-x border-gray-200 shadow-2xl">
+            <!-- Page Switch Tab Bar -->
+            <div class="page-tab-bar">
+                <div class="page-tab active" id="tab-chat" onclick="switchPage('chat')" data-i18n="tab_chat">💬 对话</div>
+                <div class="page-tab" id="tab-group" onclick="switchPage('group')" data-i18n="tab_group">👥 群聊</div>
+                <div class="page-tab" id="tab-orchestrate" onclick="switchPage('orchestrate')" data-i18n="tab_orchestrate">🎨 编排</div>
+            </div>
+
+            <!-- === Chat Page === -->
+            <div id="page-chat" class="chat-page">
+            <header class="p-3 sm:p-4 border-b bg-white flex justify-between items-start sm:items-center gap-2 flex-shrink-0">
+                <div class="flex items-center space-x-2 sm:space-x-3 mobile-header-top flex-shrink-0">
+                    <div class="bg-blue-600 p-1.5 sm:p-2 rounded-lg text-white font-bold text-lg sm:text-xl">X</div>
+                    <div>
+                        <h1 class="text-sm sm:text-lg font-bold text-gray-800 leading-tight">Teamclaw</h1>
+                        <p class="text-[10px] sm:text-xs text-green-500 flex items-center" data-i18n="encrypted">● 已加密</p>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-1 sm:space-x-2 mobile-header-actions flex-shrink-0">
+                    <div id="uid-display" class="text-xs sm:text-sm font-mono bg-gray-100 px-2 sm:px-3 py-1 rounded border truncate max-w-[80px] sm:max-w-none"></div>
+                    <div id="session-display" class="text-[10px] sm:text-xs font-mono bg-blue-50 text-blue-600 px-1.5 sm:px-2 py-1 rounded border border-blue-200 cursor-default" data-i18n-title="current_session" title="当前对话号"></div>
+                    <!-- History Button -->
+                    <button onclick="toggleSessionSidebar()" class="desktop-only-btn text-[10px] sm:text-xs bg-gray-50 text-gray-600 hover:bg-gray-100 px-2 py-1 rounded border border-gray-200 transition-colors flex items-center justify-center" data-i18n-title="history_title" title="Agents">
+                        <span class="hidden sm:inline" data-i18n="history">🤖Agents</span>
+                        <span class="sm:hidden text-base leading-none">🤖</span>
+                    </button>
+                    <!-- New Session Button: Visible on all devices -->
+                    <button onclick="handleNewSession()" class="text-[10px] sm:text-xs bg-green-50 text-green-600 hover:bg-green-100 px-2 py-1 rounded border border-green-200 transition-colors mr-1 flex items-center justify-center" data-i18n-title="new_session_confirm" title="开启新对话">
+                        <span class="sm:hidden text-base font-bold leading-none">+</span>
+                        <span class="hidden sm:inline" data-i18n="new_chat">+新</span>
+                    </button>
+                    <button onclick="toggleLanguage()" id="lang-toggle-btn" class="text-[10px] sm:text-xs bg-purple-50 text-purple-600 hover:bg-purple-100 px-2 py-1 rounded border border-purple-200 transition-colors" title="Switch Language">EN</button>
+                    <button onclick="openSettings()" class="desktop-only-btn text-[10px] sm:text-xs bg-gray-50 text-gray-600 hover:bg-gray-100 px-2 py-1 rounded border border-gray-200 transition-colors" data-i18n="settings" data-i18n-title="settings_title" title="系统设置">⚙️</button>
+                    <button onclick="handleLogout()" class="desktop-only-btn text-[10px] sm:text-xs text-gray-400 hover:text-red-500 px-1.5 sm:px-2 py-1 rounded transition-colors" data-i18n="logout" data-i18n-title="logout" title="切换用户">退出</button>
+                    <!-- Mobile: hamburger menu -->
+                    <div class="mobile-menu-wrapper" style="position:relative;">
+                        <button onclick="toggleMobileMenu()" class="mobile-menu-btn text-[10px] bg-gray-100 hover:bg-gray-200 px-2 py-1 rounded border border-gray-300 transition-colors" data-i18n-title="more_actions" title="更多操作">⋮</button>
+                        <div id="mobile-menu-dropdown" class="mobile-menu-dropdown" style="display:none;">
+                            <button onclick="toggleSessionSidebar(); closeMobileMenu();" class="mobile-menu-item" data-i18n="menu_history">🤖 Agents</button>
+                            <button onclick="handleNewSession(); closeMobileMenu();" class="mobile-menu-item" data-i18n="menu_new">➕ 新对话</button>
+                            <button onclick="toggleOasisMobile(); closeMobileMenu();" class="mobile-menu-item" data-i18n="menu_oasis">🏛️ TeamsWork</button>
+                            <button onclick="openSettings(); closeMobileMenu();" class="mobile-menu-item" data-i18n="menu_settings">⚙️ 设置</button>
+                            <button onclick="handleLogout(); closeMobileMenu();" class="mobile-menu-item text-red-500" data-i18n="menu_logout">🚪 退出</button>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <div id="chat-box" class="chat-container overflow-y-auto p-4 sm:p-6 space-y-4 sm:space-y-6 flex-grow bg-gray-50">
+                <div class="flex justify-start">
+                    <div class="message-agent bg-white border p-4 max-w-[85%] shadow-sm text-gray-700" data-i18n="welcome_message">
+                        你好！我是 TeamBot 智能助手。我已经准备好为你服务，请输入你的指令。
+                    </div>
+                </div>
+            </div>
+
+            <!-- 聊天区上方小刷新按钮 -->
+            <div style="position:relative;">
+                <button id="refresh-chat-btn" class="refresh-chat-btn" onclick="handleNewMsgRefresh()" title="刷新消息" data-i18n-title="refresh_chat">
+                    🔄
+                </button>
+            </div>
+
+            <div class="p-2 sm:p-4 border-t bg-white flex-shrink-0">
+                <!-- Tool List Panel -->
+                <div id="tool-panel-wrapper" class="mb-2" style="display:none;">
+                    <div class="flex items-center justify-between mb-1">
+                        <div class="tool-toggle-btn flex items-center space-x-1 text-sm text-gray-500 font-medium" onclick="toggleToolPanel()">
+                            <span data-i18n="available_tools">🧰 可用工具</span>
+                            <span id="tool-count" class="text-xs text-gray-400"></span>
+                            <span id="tool-toggle-icon" class="tool-toggle-icon text-xs">▼</span>
+                        </div>
+                    </div>
+                    <div id="tool-panel" class="tool-panel collapsed">
+                        <div id="tool-list" class="flex flex-wrap gap-2 p-2 bg-gray-50 rounded-xl border border-gray-200">
+                            <!-- tools will be injected here -->
+                        </div>
+                    </div>
+                </div>
+                <div id="image-preview-area" class="image-preview-area" style="display:none;"></div>
+                <div id="file-preview-area" class="image-preview-area" style="display:none;"></div>
+                <div id="audio-preview-area" class="image-preview-area" style="display:none;"></div>
+                <div id="workflow-preview-area"></div>
+                <div class="flex items-end space-x-2 sm:space-x-3">
+                    <label class="image-upload-btn" title="上传图片/文件/音频">
+                        📎
+                        <input type="file" id="image-input" accept="image/*,.pdf,.txt,.md,.csv,.json,.xml,.yaml,.yml,.log,.py,.js,.ts,.html,.css,.java,.c,.cpp,.h,.go,.rs,.sh,.bat,.ini,.toml,.cfg,.conf,.sql,.r,.rb,.mp3,.wav,.ogg,.m4a,.webm,.flac,.aac,.avi,.mp4,.mkv,.mov" multiple style="display:none;" onchange="handleFileSelect(event)">
+                    </label>
+                    <button id="record-btn" class="audio-record-btn" data-i18n-title="recording_title" title="录音" onclick="toggleRecording()">🎤</button>
+                    <button id="workflow-add-btn" class="workflow-add-btn" data-i18n-title="wf_btn_title" title="添加工作流" onclick="showWorkflowPopup()">📋</button>
+                    <div class="flex-grow">
+                        <textarea id="user-input" rows="1" 
+                            class="w-full p-2 sm:p-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none transition-all text-sm sm:text-base"
+                            data-i18n-placeholder="input_placeholder" placeholder="输入指令...（可粘贴图片/上传文件/录音）"></textarea>
+                    </div>
+                    <button onclick="handleSend()" id="send-btn"
+                        class="bg-blue-600 hover:bg-blue-700 text-white px-4 sm:px-6 py-2 sm:py-3 rounded-xl transition-all font-bold shadow-lg h-[42px] sm:h-[50px] text-sm sm:text-base flex-shrink-0"
+                        data-i18n="send_btn">发送
+                    </button>
+                    <button onclick="handleCancel()" id="cancel-btn"
+                        class="bg-red-500 hover:bg-red-600 text-white px-4 sm:px-6 py-2 sm:py-3 rounded-xl transition-all font-bold shadow-lg h-[42px] sm:h-[50px] text-sm sm:text-base flex-shrink-0"
+                        style="display:none;" data-i18n="cancel_btn">终止
+                    </button>
+                    <button id="busy-btn" disabled
+                        class="busy-indicator-btn h-[42px] sm:h-[50px] text-sm sm:text-base flex-shrink-0"
+                        style="display:none;" data-i18n="busy_btn">
+                        <span class="busy-spinner"></span>系统占用中
+                    </button>
+                </div>
+                <p class="text-[10px] text-center text-gray-400 mt-2 sm:mt-3 font-mono hidden sm:block" data-i18n="secure_footer">Secured by Nginx Reverse Proxy & SSH Tunnel</p>
+            </div>
+        </div>
+        <!-- end of chat-page -->
+
+        <!-- === Group Chat Page === -->
+        <div id="page-group" class="group-page">
+            <div style="display:flex; flex:1; overflow:hidden;">
+                <!-- Group list sidebar -->
+                <div class="group-list-sidebar">
+                    <div class="p-3 border-b bg-gray-50 flex justify-between items-center flex-shrink-0">
+                        <span class="text-sm font-bold text-gray-700" data-i18n="group_title">👥 群聊列表</span>
+                        <div class="flex items-center gap-2">
+                            <button onclick="toggleSessionSidebar()" class="text-[10px] bg-gray-50 text-gray-600 hover:bg-gray-100 px-2 py-1 rounded border border-gray-200" data-i18n-title="history_title" title="Agents">🤖</button>
+                            <button onclick="showCreateGroupModal()" class="text-xs bg-blue-50 text-blue-600 hover:bg-blue-100 px-2 py-1 rounded border border-blue-200" data-i18n="group_new">+ 新建</button>
+                        </div>
+                    </div>
+                    <div id="group-list" class="flex-1 overflow-y-auto">
+                        <div class="group-empty-state" style="padding:40px 0;">
+                            <div class="empty-icon">👥</div>
+                            <div class="empty-text" data-i18n="group_no_groups">暂无群聊</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Group chat main area -->
+                <div class="group-chat-area" id="group-chat-area">
+                    <div class="group-empty-state" id="group-empty-placeholder">
+                        <div class="empty-icon">💬</div>
+                        <div class="empty-text" data-i18n="group_select_hint">选择或创建一个群聊</div>
+                    </div>
+                    <!-- Active group chat (hidden initially) -->
+                    <div id="group-active-chat" style="display:none; flex-direction:column; height:100%;">
+                        <div class="group-chat-header">
+                            <div class="flex items-center gap-2">
+                                <button onclick="groupBackToList()" class="group-back-btn text-xs text-gray-500 hover:text-gray-700 px-1" style="display:none;">← </button>
+                                <span id="group-active-name" class="font-bold text-gray-800 text-sm"></span>
+                                <span id="group-active-id" class="text-[10px] text-gray-400 ml-1"></span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <button id="group-mute-btn" onclick="toggleGroupMute()" class="text-xs px-2 py-1 rounded border font-bold" style="background:#fef2f2;color:#dc2626;border-color:#fecaca;" data-i18n="group_mute">🔇 急停</button>
+                                <button onclick="toggleGroupMemberPanel()" class="text-xs bg-gray-50 hover:bg-gray-100 px-2 py-1 rounded border border-gray-200" data-i18n="group_members_btn">👤 成员</button>
+                            </div>
+                        </div>
+                        <div id="group-messages-box" class="group-messages-box"></div>
+                        <div class="group-input-area" style="position:relative;">
+                            <div class="mention-popup" id="mention-popup">
+                                <div class="mention-title">@ 选择要通知的 Agent</div>
+                                <div id="mention-list"></div>
+                                <button class="mention-confirm" onclick="confirmMention()">确认</button>
+                            </div>
+                            <textarea id="group-input" rows="1" placeholder="发送消息... 输入@选择Agent" data-i18n-placeholder="group_input_placeholder" onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();sendGroupMessage();}" oninput="onGroupInputChange(event)"></textarea>
+                            <button onclick="sendGroupMessage()" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-xl font-bold text-sm flex-shrink-0" data-i18n="send_btn">发送</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Member panel (right side) -->
+                <div class="group-member-panel" id="group-member-panel" style="display:none;">
+                    <div class="panel-header flex justify-between items-center">
+                        <span data-i18n="group_members">成员管理</span>
+                        <button onclick="toggleGroupMemberPanel()" class="text-gray-400 hover:text-gray-600 text-sm">&times;</button>
+                    </div>
+                    <div class="p-2 border-b">
+                        <div class="text-xs font-semibold text-gray-500 mb-2" data-i18n="group_current_members">当前成员</div>
+                        <div id="group-current-members" class="member-list" style="max-height:200px;"></div>
+                    </div>
+                    <div class="p-2 flex-1 overflow-hidden flex flex-col">
+                        <div class="text-xs font-semibold text-gray-500 mb-2" data-i18n="group_add_agents">添加 Agent Session</div>
+                        <div id="group-available-sessions" class="flex-1 overflow-y-auto"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- end of group-page -->
+
+        <!-- === Orchestration Page === -->
+        <div id="page-orchestrate" class="orch-page">
+            <div class="orch-layout">
+                <!-- Left: Expert Pool -->
+                <div class="orch-sidebar" style="overflow-y:auto;">
+                    <div class="orch-sidebar-header" style="display:flex;align-items:center;justify-content:space-between;cursor:pointer;user-select:none;" onclick="toggleOrchExpertList()">
+                        <span class="text-sm font-bold text-gray-700">🧑‍💼 <span data-i18n="orch_expert_pool_text">专家池</span></span>
+                        <span id="orch-expert-toggle-icon" style="font-size:12px;transition:transform 0.2s;margin-right:4px;">▼</span>
+                        <!-- Manual injection -->
+                        <div class="orch-manual-card" draggable="true" id="orch-manual-card" style="margin:0;padding:4px 8px;font-size:11px;">
+                            <span style="font-size:14px;">📝</span>
+                            <div><span class="text-xs font-semibold text-gray-700" data-i18n="orch_manual_inject">手动注入</span></div>
+                        </div>
+                    </div>
+                    <div class="orch-sidebar-grid">
+                        <!-- Top-left: Public experts -->
+                        <div class="orch-sidebar-grid-cell">
+                            <div class="orch-sidebar-grid-cell-header">
+                                <span data-i18n="orch_preset_experts">📚 预设专家</span>
+                            </div>
+                            <div class="orch-expert-list" id="orch-expert-list-public"></div>
+                        </div>
+                        <!-- Top-right: Custom experts -->
+                        <div class="orch-sidebar-grid-cell">
+                            <div class="orch-sidebar-grid-cell-header">
+                                <span data-i18n="orch_custom_experts">🛠️ 自定义专家</span>
+                <button onclick="orchShowAddExpertModal()" data-i18n-title="orch_add_expert_btn" title="添加自定义专家">➕</button>
+                            </div>
+                            <div class="orch-expert-list" id="orch-expert-list-custom"></div>
+                        </div>
+                        <!-- Bottom-left: Session agents -->
+                        <div class="orch-sidebar-grid-cell">
+                            <div class="orch-sidebar-grid-cell-header">
+                                <span data-i18n="orch_session_agents">💬 Session Agent</span>
+                                <button onclick="orchLoadSessionAgents()" data-i18n-title="refresh" title="刷新">🔄</button>
+                            </div>
+                            <div class="orch-expert-list" id="orch-expert-list-sessions"></div>
+                        </div>
+                        <!-- Bottom-right: OpenClaw sessions -->
+                        <div class="orch-sidebar-grid-cell">
+                            <div class="orch-sidebar-grid-cell-header">
+<span data-i18n="orch_openclaw_sessions">🦞 OpenClaw</span>
+                                <button onclick="orchLoadOpenClawSessions()" data-i18n-title="refresh" title="刷新">🔄</button>
+                            </div>
+                            <div class="orch-expert-list" id="orch-expert-list-openclaw"></div>
+                        </div>
+                    </div>
+                    <div style="padding:4px 10px;font-size:10px;color:#9ca3af;border-top:1px solid #e5e7eb;flex-shrink:0;">
+                        <b data-i18n="orch_shortcuts_title">快捷操作：</b><span data-i18n="orch_shortcuts_body">拖入专家到画布 · 连接端口=工作流 · Ctrl+G=分组 · 双击快速添加</span>
+                    </div>
+                </div>
+
+                <!-- Center: Canvas -->
+                <div class="orch-canvas-wrapper">
+                    <!-- Toolbar -->
+                    <div class="orch-toolbar">
+                        <button onclick="orchAutoArrange()" class="orch-btn" data-i18n-title="orch_tip_arrange" title="自动排列"><span data-i18n="orch_btn_arrange">🔄 排列</span></button>
+                        <button onclick="orchSaveLayout()" class="orch-btn" data-i18n-title="orch_tip_save" title="保存布局"><span data-i18n="orch_btn_save">💾 保存</span></button>
+                        <button onclick="orchLoadLayout()" class="orch-btn" data-i18n-title="orch_tip_load" title="加载布局"><span data-i18n="orch_btn_load">📂 加载</span></button>
+                        <button onclick="orchGenerateAgentYaml()" class="orch-btn orch-btn-primary" data-i18n-title="orch_tip_ai" title="AI 生成 YAML"><span data-i18n="orch_btn_ai">🤖 AI编排</span></button>
+                        <button onclick="orchExportYaml()" class="orch-btn orch-btn-primary" data-i18n-title="orch_tip_export" title="复制 YAML"><span data-i18n="orch_btn_export">📋 导出</span></button>
+                        <button onclick="orchDownloadYaml()" class="orch-btn" data-i18n-title="orch_tip_download" title="下载 YAML 文件"><span data-i18n="orch_btn_download">⬇️ 下载</span></button>
+                        <button onclick="orchUploadYamlClick()" class="orch-btn" data-i18n-title="orch_tip_upload" title="上传 YAML 文件"><span data-i18n="orch_btn_upload">⬆️ 上传</span></button>
+                        <input type="file" id="orch-yaml-upload-input" accept=".yaml,.yml" style="display:none;" onchange="orchHandleYamlUpload(event)">
+                        <button onclick="orchRefreshSessions()" class="orch-btn" data-i18n-title="orch_tip_status" title="刷新 session 状态"><span data-i18n="orch_btn_status">🔄 状态</span></button>
+                        <button onclick="orchClearCanvas()" class="orch-btn orch-btn-danger" data-i18n-title="orch_tip_clear" title="清空画布"><span data-i18n="orch_btn_clear">🗑️ 清空</span></button>
+                        <button onclick="toggleOrchFocusMode()" id="orch-focus-btn" class="orch-btn" title="专注模式：隐藏两侧面板"><span data-i18n="orch_btn_focus">🎯 专注</span></button>
+                    </div>
+                    <div class="orch-canvas" id="orch-canvas-area">
+                        <div class="orch-canvas-inner" id="orch-canvas-inner">
+                            <svg id="orch-edge-svg" style="width:10000px;height:10000px;position:absolute;top:0;left:0;z-index:5;pointer-events:none;">
+                                <defs><marker id="orch-arrowhead" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#2563eb" /></marker></defs>
+                            </svg>
+                            <div id="orch-canvas-hint" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;color:#9ca3af;pointer-events:none;z-index:1;">
+                                <div style="font-size:40px;margin-bottom:8px;">🎯</div>
+                                <div style="font-size:14px;font-weight:500;color:#6b7280;" data-i18n="orch_hint_drag">拖入专家开始编排</div>
+                                <div style="font-size:11px;margin-top:6px;color:#9ca3af;" data-i18n="orch_hint_drag">拖入专家开始编排</div>
+                            </div>
+                        </div>
+                        <div class="orch-nav-controls">
+                            <div class="nav-row">
+                                <button onclick="orchPanBy(0,-60)" data-i18n-title="orch_tip_up" title="上移">▲</button>
+                            </div>
+                            <div class="nav-row">
+                                <button onclick="orchPanBy(-60,0)" data-i18n-title="orch_tip_left" title="左移">◀</button>
+                                <button class="nav-center" onclick="orchResetView()" data-i18n-title="orch_tip_reset" title="重置视图">⌂</button>
+                                <button onclick="orchPanBy(60,0)" data-i18n-title="orch_tip_right" title="右移">▶</button>
+                            </div>
+                            <div class="nav-row">
+                                <button onclick="orchPanBy(0,60)" data-i18n-title="orch_tip_down" title="下移">▼</button>
+                            </div>
+                            <div class="nav-zoom-row">
+                                <button onclick="orchZoom(-0.1)" data-i18n-title="orch_tip_zoomout" title="缩小">−</button>
+                                <span id="orch-zoom-label" class="zoom-label">100%</span>
+                                <button onclick="orchZoom(0.1)" data-i18n-title="orch_tip_zoomin" title="放大">+</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Settings + YAML -->
+                <div class="orch-right-panel">
+                    <div class="orch-right-section">
+                        <div class="text-xs font-bold text-gray-500 uppercase tracking-wide px-3 pt-3 pb-1" data-i18n="orch_settings">⚙️ 设置</div>
+                        <div class="px-3 pb-2 space-y-1 text-xs text-gray-600 border-b border-gray-100">
+                            <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" id="orch-repeat" class="accent-blue-600"> <span data-i18n="orch_repeat">每轮重复计划</span></label>
+                            <label class="flex items-center gap-2"><span data-i18n="orch_rounds">轮次:</span> <input type="number" id="orch-rounds" value="5" min="1" max="20" class="w-12 px-1 py-0.5 border border-gray-300 rounded text-xs"></label>
+                            <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" id="orch-bot-session" class="accent-blue-600"> <span data-i18n="orch_stateful">有状态模式</span></label>
+                            <label class="flex items-center gap-2"><span data-i18n="orch_threshold">聚类阈值:</span> <input type="range" id="orch-threshold" min="50" max="400" value="150" class="flex-1 accent-blue-600"><span id="orch-threshold-val" class="text-[10px] text-gray-400">150</span></label>
+                        </div>
+                    </div>
+
+                    <div class="orch-right-section">
+                        <div class="text-xs font-bold text-gray-500 uppercase tracking-wide px-3 pt-2 pb-1" data-i18n="orch_ai_gen">🤖 AI 生成</div>
+                        <div id="orch-agent-status" class="mx-3 mb-1 px-2 py-1 rounded text-[10px] bg-gray-50 border border-gray-200 text-gray-400" data-i18n="orch_ai_hint">
+                            点击「🤖 AI编排」自动生成 YAML
+                        </div>
+                        <div class="px-3 pb-1">
+                            <div class="text-[10px] text-gray-400 mb-1"><span data-i18n="orch_prompt_label">📨 发送的 Prompt</span> <button onclick="orchCopyPrompt()" class="text-[10px] text-blue-500 hover:underline float-right" data-i18n="orch_prompt_copy">复制</button></div>
+                            <div class="orch-yaml-box text-[10px] text-amber-600" id="orch-prompt-content" style="max-height:100px;" data-i18n="orch_prompt_hint">点击 AI编排 后显示</div>
+                        </div>
+                        <div class="px-3 pb-1">
+                            <div class="text-[10px] text-gray-400 mb-1"><span data-i18n="orch_agent_yaml_label">🤖 Agent YAML</span> <button onclick="orchCopyAgentYaml()" class="text-[10px] text-blue-500 hover:underline float-right" data-i18n="orch_agent_yaml_copy">复制</button></div>
+                            <div class="orch-yaml-box text-[10px] text-green-600" id="orch-agent-yaml" style="max-height:140px;" data-i18n="orch_agent_yaml_hint">等待 Agent 生成</div>
+                        </div>
+                    </div>
+
+                    <div class="orch-right-section flex-1 flex flex-col min-h-0">
+                        <div class="text-xs font-bold text-gray-500 uppercase tracking-wide px-3 pt-2 pb-1" data-i18n="orch_rule_yaml">📄 规则 YAML</div>
+                        <div class="orch-yaml-box flex-1 mx-3 mb-2 text-xs text-green-700" id="orch-yaml-content" data-i18n="orch_rule_yaml_hint">拖入专家后自动生成...</div>
+                    </div>
+
+                    <div class="orch-status-bar" id="orch-status-bar" data-i18n="orch_status_bar_init">节点: 0 | 连线: 0 | 分组: 0</div>
+                </div>
+            </div>
+        </div>
+        <!-- end of orchestrate-page -->
+        </div>
+        <!-- end of chat-main -->
+
+        <!-- ===== 分割线 ===== -->
+        <div class="oasis-divider" id="oasis-divider"></div>
+
+        <!-- ===== 右侧：TeamsWork 讨论面板 ===== -->
+        <div class="oasis-panel collapsed-panel bg-white border-l border-gray-200 flex flex-col h-screen" id="oasis-panel">
+            <!-- Collapsed state expand button -->
+            <div class="oasis-expand-btn items-center justify-center h-full text-gray-400 hover:text-blue-600 cursor-pointer text-sm font-bold" onclick="toggleOasisPanel()">
+                🏛️ T E A M S
+            </div>
+
+            <!-- Panel content -->
+            <div class="oasis-content flex flex-col h-full">
+                <!-- Header -->
+                <div class="p-3 border-b bg-gradient-to-r from-purple-50 to-blue-50 flex items-center justify-between flex-shrink-0">
+                    <div class="flex items-center space-x-2">
+                        <span class="text-lg">🏛️</span>
+                        <div>
+                            <h2 class="text-sm font-bold text-gray-800" data-i18n="oasis_title">TeamsWork 讨论论坛</h2>
+                            <p class="text-[10px] text-gray-500" data-i18n="oasis_subtitle">多专家并行讨论系统</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center space-x-1">
+                        <button onclick="refreshOasisTopics()" class="text-gray-400 hover:text-blue-600 p-1 rounded transition-colors" data-i18n-title="refresh" title="刷新">🔄</button>
+                        <button onclick="toggleOasisPanel()" class="text-gray-400 hover:text-red-500 p-1 rounded transition-colors" data-i18n-title="collapse" title="收起">✕</button>
+                    </div>
+                </div>
+
+                <!-- Topic list view -->
+                <div id="oasis-topic-list-view" class="flex flex-col flex-1 overflow-hidden">
+                    <div class="p-3 border-b flex-shrink-0">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs font-semibold text-gray-600" data-i18n="oasis_topics">📋 讨论话题</span>
+                            <div class="flex items-center space-x-2">
+                                <button onclick="deleteAllOasisTopics()" class="text-xs text-red-400 hover:text-red-600" data-i18n="delete_all">🗑️ 清空全部</button>
+                                <span id="oasis-topic-count" class="text-[10px] text-gray-400"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="oasis-topic-list" class="flex-1 overflow-y-auto">
+                        <div class="p-6 text-center text-gray-400 text-sm">
+                            <div class="text-3xl mb-2">🏛️</div>
+                            <p data-i18n="oasis_no_topics">暂无讨论话题</p>
+                            <p class="text-xs mt-1" data-i18n="oasis_start_hint">在聊天中让 Agent 发起 TeamsWork 讨论</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Topic detail view (hidden by default) -->
+                <div id="oasis-detail-view" class="flex flex-col flex-1 overflow-hidden" style="display:none;">
+                    <!-- Detail header -->
+                    <div class="p-3 border-b flex-shrink-0">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center space-x-2">
+                                <button onclick="showOasisTopicList()" class="text-gray-400 hover:text-blue-600 text-sm" data-i18n="oasis_back">← 返回</button>
+                                <span id="oasis-detail-status" class="oasis-status-badge"></span>
+                                <span id="oasis-detail-round" class="text-[10px] text-gray-400"></span>
+                            </div>
+                            <div id="oasis-detail-actions" class="flex items-center space-x-1">
+                            </div>
+                        </div>
+                        <p id="oasis-detail-question" class="text-sm font-semibold text-gray-800 mt-1 line-clamp-2"></p>
+                    </div>
+
+                    <!-- Posts stream -->
+                    <div id="oasis-posts-box" class="oasis-discussion-box flex-1 p-3 space-y-3 bg-gray-50">
+                        <!-- Posts will be injected here -->
+                    </div>
+
+                    <!-- Conclusion area (collapsible) -->
+                    <div id="oasis-conclusion-area" class="p-3 border-t flex-shrink-0" style="display:none;">
+                        <div class="oasis-conclusion-box">
+                            <div class="flex items-center justify-between cursor-pointer" onclick="toggleConclusionCollapse()">
+                                <div class="flex items-center space-x-1">
+                                    <span class="text-sm">🏆</span>
+                                    <span class="text-xs font-bold text-green-800" data-i18n="oasis_conclusion">讨论结论</span>
+                                </div>
+                                <span id="oasis-conclusion-toggle" class="text-xs text-gray-400 transition-transform" style="display:inline-block;">▼</span>
+                            </div>
+                            <p id="oasis-conclusion-text" class="text-xs text-gray-700 leading-relaxed mt-2"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+    // Toggle orchestration expert list expand/collapse
+    function toggleOrchExpertList() {
+        const grid = document.querySelector('.orch-sidebar-grid');
+        const shortcuts = grid ? grid.nextElementSibling : null;
+        const icon = document.getElementById('orch-expert-toggle-icon');
+        if (grid.style.display === 'none') {
+            grid.style.display = '';
+            if (shortcuts) shortcuts.style.display = '';
+            icon.style.transform = 'rotate(0deg)';
+        } else {
+            grid.style.display = 'none';
+            if (shortcuts) shortcuts.style.display = 'none';
+            icon.style.transform = 'rotate(-90deg)';
+        }
+    }
+
+    // Toggle orchestration focus mode (collapse both sidebar and right panel)
+    function toggleOrchFocusMode() {
+        const sidebar = document.querySelector('.orch-sidebar');
+        const rightPanel = document.querySelector('.orch-right-panel');
+        const btn = document.getElementById('orch-focus-btn');
+        const isFocused = sidebar.classList.toggle('focus-hidden');
+        rightPanel.classList.toggle('focus-hidden', isFocused);
+        btn.classList.toggle('focus-active', isFocused);
+    }
+    </script>
+
+    <!-- Settings Modal -->
+    <div id="settings-modal" class="settings-modal-overlay" style="display:none;" onclick="if(event.target===this)closeSettings()">
+        <div class="settings-modal">
+            <div class="settings-header">
+                <h2 data-i18n="settings_title">⚙️ 系统设置</h2>
+                <button onclick="closeSettings()" class="settings-close-btn">&times;</button>
+            </div>
+            <div class="settings-body" id="settings-body">
+                <div class="settings-loading" data-i18n="loading">加载中...</div>
+            </div>
+            <div class="settings-footer">
+                <button onclick="closeSettings()" class="settings-btn settings-btn-cancel" data-i18n="cancel">取消</button>
+                <button onclick="saveSettings()" class="settings-btn settings-btn-save" data-i18n="settings_save">保存</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/js/main.js"></script>
+    <script src="/static/js/app.js"></script>
+    <!-- ===== Orchestration Page JavaScript ===== -->
+    <script src="/static/js/orchestration.js"></script>
+</body>
+</html>

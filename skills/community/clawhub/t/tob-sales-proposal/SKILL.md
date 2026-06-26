@@ -1,35 +1,91 @@
 ---
-name: "Tob Sales Proposal"
-description: "ToB销售提案生成器。输入客户信息/行业/痛点/产品，基于知识库真实案例输出带品牌色CSS的4模块HTML分页提案。"
-category: "domain"
-source: "ClawHub"
-tags: [b2b, proposal, sales, tob]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/tob-sales-proposal"
-sourceUrl: "https://clawhub.ai/skills/tob-sales-proposal"
+name: tob-sales-proposal
+description: ToB销售提案生成器。输入客户信息/行业/痛点/产品，基于知识库真实案例输出带品牌色CSS的4模块HTML分页提案。
+priority: high
+source: experience-backed
+workers: Sales, PM
+created: 2026-05-16
+tags: [tob, sales, proposal, b2b, presales]
 ---
 
-# Tob Sales Proposal
+# tob-sales-proposal — HTML 提案生成器
 
-> ToB销售提案生成器。输入客户信息/行业/痛点/产品，基于知识库真实案例输出带品牌色CSS的4模块HTML分页提案。
+> 把客户信息变成有知识库案例支撑的 HTML 提案页面。
 
-- **Category:** Business & Finance
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/tob-sales-proposal`
-- **Source URL:** [https://clawhub.ai/skills/tob-sales-proposal](https://clawhub.ai/skills/tob-sales-proposal)
+基于知识库匹配过往相似项目，输出带品牌色/CSS的4模块分页提案——不堆方法论，只讲客户能信的东西。
 
-## Overview
+## 使用方式
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/tob-sales-proposal
+# 交互模式（推荐）
+tob-sales-proposal
+
+# 快速模式
+tob-sales-proposal --quick --client "某连锁便利店" --industry "零售" \
+  --painpoints "库存不准,会员流失" --budget "150万"
+
 ```
+
+输入：客户名 / 行业 / 痛点（最多5个，逗号分隔）/ 预算 / 决策周期
+
+## 输出4模块
+
+输出为 HTML 格式，带品牌色/CSS和分页导航。每模块包含：**客户输入摘要 → 知识库匹配案例引用 → 模块正文**。页面底部固定提示：复制内容给 AI 生成 PPT。
+
+示例（痛点对齐模块）：
+```html
+<section class="page" id="page-1">
+  <h2>痛点对齐：让客户觉得你懂他</h2>
+  <p>客户输入：零售行业，库存不准，会员流失</p>
+  <p>匹配案例：某连锁便利店（50家门店）→ 库存准确率65%→93%，6周</p>
+</section>
+```
+
+### 1. 痛点对齐（让客户觉得你懂他）
+- 基于同行业客户的知识库痛点分布（非猜测）
+- 把客户说的「痛点」翻译成可解决的技术问题
+- 引用案例：「XX零售集团也遇到过同样问题，他们的解法是...」
+
+### 2. 方案对齐（为什么要选你）
+- 痛点→功能映射表（一句话痛点 → 一个功能）
+- 差异化定位：竞品怎么解决 vs 你怎么解决
+- 引用案例：「XX客户用了类似方案，6周上线，首月表现...」
+
+### 3. 实施路径（消除落地恐惧）
+- 分阶段交付：Lite → 爬坡 → 优化（默以3个月基准）
+- 客户配合清单（数据、接口、人员）
+- 引用案例：「XX同体量客户从签约到上线8周」
+
+### 4. 承诺型ROI（给数字，不给空话）
+- 基于同行业同体量过往项目的实际数据算收益
+- 三档输出：保守/中性/乐观
+- 引用案例：「XX客户上线后3个月初见效果，6个月回本周期」
+
+## 知识库匹配规则
+
+| 行业 | 优先collection |
+|------|---------------|
+| 零售/鞋服 | knowledge-baisheng |
+| 金融/银行 | knowledge-unified-v2 |
+| 政务/央企 | knowledge-zhongruan |
+| 零售科技（慧博对标） | knowledge-huibo |
+
+找不到高置信案例时输出：「无高置信匹配，建议补充知识库」
+
+## 实战原则
+
+1. **痛点对齐 > 方案展示** — 模块1花30%精力，比其他模块重要
+2. **案例用真不用编** — 格式：「某[行业]客户（[规模]）→ [效果]」。编的客户一眼看穿
+3. **ROI给三档** — 客户信保底，你朝着乐观做
+4. **预算决定了深度** — 50万以下出Lite版，50-200万标准版，200万+深度版
+
+## 联用
+
+- 新提案前跑一遍 `tob-win-loss-review`（丢单复盘），避开之前踩的坑
+- 成功提案交付后跑一遍 `tob-win-loss-review` 复盘，沉淀到知识库
+
+## 注意事项
+
+- 输出 HTML 提案页面，不再输出 Markdown。具体内容仍需人工适配填充
+- 案例引用标注来源，不编造。知识库未覆盖时不强推
+- 敏感信息自动脱敏

@@ -1,0 +1,31 @@
+[project]
+name = "sparki-cli"
+version = "1.0.0"
+description = "OpenClaw skill for Sparki AI video editing"
+requires-python = ">=3.11"
+dependencies = [
+    "typer>=0.9.0",
+    "httpx>=0.27.0",
+    "pydantic>=2.0.0",
+]
+
+[project.scripts]
+sparki = "sparki_cli.cli:app"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/sparki_cli"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
+
+[dependency-groups]
+dev = [
+    "pytest>=8.0.0",
+    "pytest-asyncio>=0.23.0",
+    "respx>=0.21.0",
+]

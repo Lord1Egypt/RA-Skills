@@ -1,0 +1,23 @@
+{
+    "nasdaq_last": 21879.18,
+    "market_status": "closed_good_friday",
+    "timestamp": "2026-04-03T19:40:00+08:00",
+    "items": [
+        {"time": "2026-04-03T13:54:00+08:00", "source": "Truth Social/X@rapid_x_recap", "content": "Trump warns Iran: US military could target bridges and power plants if they don't comply with swift peace deal demands", "engagement": "", "category": "macro", "market": "", "sig": "high"},
+        {"time": "2026-04-03T13:54:00+08:00", "source": "X@trend_en", "content": "Trump demands deal from Iran and threatens more strikes", "engagement": "", "category": "macro", "market": "", "sig": "high"},
+        {"time": "2026-04-03T13:53:00+08:00", "source": "X@Mcgoohanforever", "content": "Trump says new regime in Iran is much more moderate, we should do an oil deal with them", "engagement": "", "category": "commodity", "market": "Oil deal hope", "sig": "high"},
+        {"time": "2026-04-03T13:52:00+08:00", "source": "X@DanWilliams/Bloomberg", "content": "Trump threatens Iran's infrastructure as markets fear longer war — Bloomberg", "engagement": "", "category": "macro", "market": "Markets fear longer war", "sig": "high"},
+        {"time": "2026-04-03T13:52:00+08:00", "source": "X@1withGod81361", "content": "Iran REJECTS Ceasefire, HAMMERS Israel as Trump deploys 3,000 US Troops", "engagement": "", "category": "macro", "market": "", "sig": "high"},
+        {"time": "2026-04-03T13:49:00+08:00", "source": "X@AP/tayyab_llc", "content": "Trump claims talks over ceasefire and Hormuz reopened progressed — Tehran denies direct negotiations", "engagement": "", "category": "macro", "market": "Conflicting signals", "sig": "high"},
+        {"time": "2026-04-03T13:47:00+08:00", "source": "X@danette1721/NBC", "content": "Trump says war will end shortly; Iran denies requesting a ceasefire. Trump also says considering pulling out of NATO", "engagement": "", "category": "macro", "market": "NATO concern", "sig": "high"},
+        {"time": "2026-04-03T13:47:00+08:00", "source": "X@ChinaConSydney", "content": "China: Root cause of Hormuz obstruction is US-Israeli illegal military ops; only ceasefire can ensure safe shipping", "engagement": "", "category": "commodity", "market": "Oil shipping risk", "sig": "medium"},
+        {"time": "2026-04-03T09:55:00+08:00", "source": "X@KobeissiLetter", "content": "BREAKING: 50% of Iran's missile launchers and thousands of attack drones remain intact — CNN", "engagement": "", "category": "macro", "market": "War escalation risk", "sig": "high"},
+        {"time": "2026-04-03T09:55:00+08:00", "source": "X@KobeissiLetter", "content": "Forward-looking data: jobs plentiful vs hard to find gap at lowest since 2020 pandemic; only 27.3% say jobs plentiful", "engagement": "", "category": "macro", "market": "Labor market weakening", "sig": "medium"},
+        {"time": "2026-04-02T09:00:00+08:00", "source": "CNN/Fox News", "content": "Trump threatens to blow up and completely obliterate Iran's electric plants and oil wells if no deal reached", "engagement": "", "category": "macro", "market": "Oil surged", "sig": "high"},
+        {"time": "2026-04-01T21:00:00+08:00", "source": "NYT/Guardian", "content": "Oil price falls and markets rally after Trump says Iran war over in two to three weeks. S&P 500 closed +0.72%", "engagement": "", "category": "commodity", "market": "S&P +0.72%, Oil fell", "sig": "high"},
+        {"time": "2026-04-01T09:00:00+08:00", "source": "Bloomberg", "content": "Trump Seeks War Off-Ramp: VP JD Vance delivers ultimatum to Tehran — make a deal or face infrastructure attacks", "engagement": "", "category": "macro", "market": "", "sig": "high"},
+        {"time": "2026-04-03T12:00:00+08:00", "source": "NYT", "content": "Gasoline crossed $4/gallon avg in US for first time since August 2022", "engagement": "", "category": "commodity", "market": "$4 gas impact", "sig": "medium"},
+        {"time": "2026-04-01T09:00:00+08:00", "source": "Yahoo Finance", "content": "S&P 500, Dow, Nasdaq futures lost more than 0.8% after Trump prime-time speech with no clear timeline", "engagement": "", "category": "equity", "market": "Futures -0.8%", "sig": "high"}
+    ],
+    "trigger": "forced_timestamp_timeline"
+}

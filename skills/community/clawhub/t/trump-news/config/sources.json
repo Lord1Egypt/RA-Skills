@@ -1,0 +1,16 @@
+{
+  "_comment": "信息源仅作参考；实际拉取 URL 以 scripts/fetch_trump_news.py 内 SOURCES 为准",
+  "official": [
+    "Truth Social (@realDonaldTrump) - 个人首发，已通过 truthbrush 接入（需凭证）",
+    "X (@TeamTrump / @CLF) - 需 X API",
+    "White House Briefing Room - RSS 已接入",
+    "Federal Register - API 已接入",
+    "SCOTUSblog - RSS 已接入"
+  ],
+  "wires": [
+    "Reuters - RSS 已接入",
+    "Associated Press - RSS 已接入",
+    "Bloomberg - 多需订阅，未接入",
+    "AFP - RSS 已接入"
+  ]
+}

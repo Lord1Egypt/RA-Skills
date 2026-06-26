@@ -1,35 +1,293 @@
 ---
-name: "token-tracker-daily"
-description: "Token 消耗追踪工具。当用户需要监控 API token 使用情况、生成每日/每周消耗报告、分析使用趋势时使用此 Skill。功能包括：自动记录每次对话的 token 消耗、生成数据表格报告、计算使用趋势和预测、支持定时推送日报。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/token-tracker-daily"
-sourceUrl: "https://clawhub.ai/skills/token-tracker-daily"
+name: token-tracker
+description: Token 消耗追踪工具。当用户需要监控 API token 使用情况、生成每日/每周消耗报告、分析使用趋势时使用此 Skill。功能包括：自动记录每次对话的 token 消耗、生成数据表格报告、计算使用趋势和预测、支持定时推送日报。
 ---
 
-# token-tracker-daily
-
-> Token 消耗追踪工具。当用户需要监控 API token 使用情况、生成每日/每周消耗报告、分析使用趋势时使用此 Skill。功能包括：自动记录每次对话的 token 消耗、生成数据表格报告、计算使用趋势和预测、支持定时推送日报。
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/token-tracker-daily`
-- **Source URL:** [https://clawhub.ai/skills/token-tracker-daily](https://clawhub.ai/skills/token-tracker-daily)
+# Token Tracker - API Token 消耗追踪
 
 ## Overview
 
+本 Skill 用于追踪和监控 API Token 的使用情况，帮助用户了解自己的消耗模式，合理规划使用预算。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/token-tracker-daily
+### 主要功能
+
+1. **自动记录** - 每次对话后自动记录 token 消耗（输入/输出/总计）
+2. **日报生成** - 生成每日消耗汇总报告
+3. **周报统计** - 生成每周消耗趋势分析
+4. **趋势预测** - 基于历史数据预测月度消耗
+5. **定时推送** - 支持 cron 定时发送日报/周报
+
+### 报告格式
+
+采用数据表格 + 趋势符号的形式，清晰直观：
+
 ```
+📊 Token 消耗日报 - 2026年3月19日
+
+💰 今日汇总
+• 输入：2,400 tokens
+• 输出：1,800 tokens
+• 总计：4,200 tokens
+• 较昨日：📈 +15.3%
+
+📅 近7天消耗明细
+
+| 日期 | 输入 | 输出 | 总计 | 环比 | 趋势 |
+|------|------|------|------|------|------|
+| 3/13 | 1,200 | 800 | 2,000 | - | 📊 |
+| 3/14 | 1,350 | 900 | 2,250 | +12.5% | 📈 |
+| 3/15 | 1,500 | 1,000 | 2,500 | +11.1% | 📈 |
+| 3/16 | 1,400 | 950 | 2,350 | -6.0% | 📉 |
+| 3/17 | 1,600 | 1,100 | 2,700 | +14.9% | 📈 |
+| 3/18 | 1,750 | 1,200 | 2,950 | +9.3% | 📈 |
+| 3/19 | 2,000 | 1,400 | 3,400 | +15.3% | 📈 |
+
+📈 趋势分析
+• 本周总计：18,150 tokens
+• 日均消耗：2,593 tokens
+• 趋势方向：📈 上升
+• 预估月耗：约 77,790 tokens
+```
+
+## 核心概念
+
+### Token 消耗类型
+
+| 类型 | 说明 | 占比参考 |
+|-----|------|---------|
+| 输入 (Input) | 用户发送的消息（含上下文） | 约 60% |
+| 输出 (Output) | AI 生成的回复 | 约 40% |
+| 总计 (Total) | 输入 + 输出 | 100% |
+
+### 趋势符号说明
+
+| 符号 | 含义 | 触发条件 |
+|-----|------|---------|
+| 📈 | 上升 | 较昨日增长 > 5% |
+| 📉 | 下降 | 较昨日减少 > 5% |
+| 📊 | 持平 | 波动在 ±5% 以内 |
+| ⭐ | 最高 | 本周/本月最高值 |
+| 🔥 | 异常 | 单日消耗超过平均值 50% |
+
+## 使用流程
+
+### 1. 记录 Token 消耗
+
+**执行脚本：**
+```bash
+python3 scripts/log_token.py <输入> <输出>
+```
+
+**示例：**
+```bash
+python3 scripts/log_token.py 1200 800
+# 输出：已记录 2026-03-19 12:00 的 token 消耗
+```
+
+**说明：**
+- 脚本会自动获取当前日期时间
+- 计算总计并保存到数据文件
+- 如果同一天多次记录，会累加数值
+
+### 2. 生成日报
+
+**执行脚本：**
+```bash
+python3 scripts/daily_report.py
+```
+
+**输出示例：**
+```
+📊 Token 消耗日报 - 2026年3月19日
+
+💰 今日汇总
+• 输入：2,400 tokens
+• 输出：1,800 tokens
+• 总计：4,200 tokens
+• 较昨日：📈 +15.3%
+
+📅 近7天消耗明细
+...
+
+📈 趋势分析
+• 本周总计：18,150 tokens
+• 日均消耗：2,593 tokens
+• 趋势方向：📈 上升
+• 预估月耗：约 77,790 tokens
+```
+
+**参数：**
+- `-d, --date` - 指定日期（默认今天）
+- `-w, --weeks` - 显示几周数据（默认1周）
+
+### 3. 生成周报
+
+**执行脚本：**
+```bash
+python3 scripts/weekly_report.py
+```
+
+**输出示例：**
+```
+📈 Token 消耗周报 - 2026年第11周
+
+💰 本周汇总
+• 输入：18,150 tokens
+• 输出：12,300 tokens
+• 总计：30,450 tokens
+• 较上周：📈 +8.5%
+
+📊 周对比
+
+| 周次 | 输入 | 输出 | 总计 | 环比 | 趋势 |
+|------|------|------|------|------|------|
+| W9 | 15,000 | 10,000 | 25,000 | - | 📊 |
+| W10 | 16,200 | 11,000 | 27,200 | +8.8% | 📈 |
+| W11 | 18,150 | 12,300 | 30,450 | +11.9% | 📈 |
+
+📈 月度预测
+• 本月累计：45,000 tokens
+• 预估月总：约 82,000 tokens
+• 建议关注：消耗呈上升趋势
+```
+
+### 4. 设置定时推送
+
+**每天晚上 22:00 发送日报：**
+```bash
+cron add --name "token-daily-report" \
+  --schedule "0 22 * * *" \
+  --command "python3 /path/to/token-tracker/scripts/daily_report.py"
+```
+
+**每周一早上 9:00 发送周报：**
+```bash
+cron add --name "token-weekly-report" \
+  --schedule "0 9 * * 1" \
+  --command "python3 /path/to/token-tracker/scripts/weekly_report.py"
+```
+
+## 数据存储
+
+Token 数据存储在 `data/token_log.json`：
+
+```json
+{
+  "2026-03-19": {
+    "date": "2026-03-19",
+    "input": 2400,
+    "output": 1800,
+    "total": 4200,
+    "sessions": [
+      {"time": "09:00", "input": 1200, "output": 800},
+      {"time": "14:00", "input": 1200, "output": 1000}
+    ]
+  }
+}
+```
+
+## 使用建议
+
+### 监控频率
+
+| 场景 | 建议频率 | 用途 |
+|-----|---------|------|
+| 个人使用 | 每日查看 | 了解自己的使用习惯 |
+| 团队协作 | 每周查看 | 掌握团队整体消耗 |
+| 成本控制 | 实时监控 | 防止意外超额 |
+
+### 成本控制参考
+
+| 日均消耗 | 预估月耗 | 建议 |
+|---------|---------|------|
+| < 2K | < 60K | 轻度使用，无需担心 |
+| 2K-5K | 60K-150K | 正常使用，关注趋势 |
+| 5K-10K | 150K-300K | 重度使用，考虑优化 |
+| > 10K | > 300K | 需要审查使用方式 |
+
+### 优化建议
+
+1. **精简上下文** - 定期清理不相关的历史对话
+2. **分段处理** - 长文档分多次处理，避免单次超限
+3. **缓存结果** - 重复查询使用缓存，减少 API 调用
+4. **模型选择** - 简单任务使用轻量级模型
+
+## 示例对话
+
+**场景1：查看今日消耗**
+
+> **用户：** 查看今天的 token 消耗
+
+> **助手：** 
+> 📊 Token 消耗日报 - 2026年3月19日
+> 
+> 💰 今日汇总
+> • 输入：2,400 tokens
+> • 输出：1,800 tokens
+> • 总计：4,200 tokens
+> • 较昨日：📈 +15.3%
+> 
+> 📅 近7天消耗明细...
+
+**场景2：设置自动推送**
+
+> **用户：** 每天晚上给我发 token 消耗报告
+
+> **助手：** 
+> 好的！已为您设置每天晚上 22:00 自动发送 Token 消耗日报。
+> 
+> 任务名称：token-daily-report
+> 推送时间：每天 22:00
+> 报告内容：当日消耗 + 近7天趋势
+
+**场景3：查看周报**
+
+> **用户：** 查看本周的 token 消耗
+
+> **助手：**
+> 📈 Token 消耗周报 - 2026年第11周
+> 
+> 💰 本周汇总
+> • 输入：18,150 tokens
+> • 输出：12,300 tokens
+> • 总计：30,450 tokens
+> • 较上周：📈 +8.5%
+> 
+> 本周消耗呈上升趋势，建议关注是否有异常使用。
+
+## 实现脚本
+
+主要脚本位于 `scripts/` 目录：
+
+| 脚本 | 功能 | 用法 |
+|-----|-----|-----|
+| `log_token.py` | 记录一次 token 消耗 | `python3 log_token.py 1200 800` |
+| `daily_report.py` | 生成日报 | `python3 daily_report.py` |
+| `weekly_report.py` | 生成周报 | `python3 weekly_report.py` |
+
+## 注意事项
+
+1. **数据持久化** - `data/token_log.json` 需要定期备份
+2. **时区设置** - 默认使用系统时区，跨时区使用需注意
+3. **数据准确性** - 脚本记录的是调用时的数据，实际账单以 API 提供商为准
+4. **隐私保护** - token 数据仅存储在本地，不会上传
+
+## 安装
+
+1. 将本 Skill 复制到 OpenClaw skills 目录：
+   ```bash
+   cp -r token-tracker /path/to/openclaw/skills/
+   ```
+
+2. 确保脚本可执行：
+   ```bash
+   chmod +x /path/to/openclaw/skills/token-tracker/scripts/*.py
+   ```
+
+3. 重启 OpenClaw 或重新加载配置
+
+## 版本信息
+
+- 版本：1.0.0
+- 作者：OpenClaw Community
+- 更新日期：2026-03-19

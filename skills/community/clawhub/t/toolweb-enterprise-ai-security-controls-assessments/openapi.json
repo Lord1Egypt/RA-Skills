@@ -1,0 +1,280 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Enterprise AI Security Controls Assessment",
+    "description": "Comprehensive AI Security Posture Assessment across 14 Enterprise Domains",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/": {
+      "get": {
+        "summary": "Root",
+        "description": "Health check endpoint",
+        "operationId": "root__get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/ai-security/assess": {
+      "post": {
+        "summary": "Assess Security",
+        "description": "Generate comprehensive AI security controls assessment",
+        "operationId": "assess_security_api_ai_security_assess_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AssessmentRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/ai-security/domains": {
+      "get": {
+        "summary": "Get Domains",
+        "description": "Get all security domain definitions",
+        "operationId": "get_domains_api_ai_security_domains_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/ai-security/domain/{domain_key}": {
+      "get": {
+        "summary": "Get Domain Details",
+        "description": "Get detailed information for a specific security domain",
+        "operationId": "get_domain_details_api_ai_security_domain__domain_key__get",
+        "parameters": [
+          {
+            "name": "domain_key",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Domain Key"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "AssessmentData": {
+        "properties": {
+          "identity_access": {
+            "type": "object",
+            "title": "Identity Access",
+            "default": {}
+          },
+          "data_protection": {
+            "type": "object",
+            "title": "Data Protection",
+            "default": {}
+          },
+          "prompt_injection_defense": {
+            "type": "object",
+            "title": "Prompt Injection Defense",
+            "default": {}
+          },
+          "model_protection": {
+            "type": "object",
+            "title": "Model Protection",
+            "default": {}
+          },
+          "api_security": {
+            "type": "object",
+            "title": "Api Security",
+            "default": {}
+          },
+          "agent_permissioning": {
+            "type": "object",
+            "title": "Agent Permissioning",
+            "default": {}
+          },
+          "output_filtering": {
+            "type": "object",
+            "title": "Output Filtering",
+            "default": {}
+          },
+          "monitoring_anomaly": {
+            "type": "object",
+            "title": "Monitoring Anomaly",
+            "default": {}
+          },
+          "compliance_mapping": {
+            "type": "object",
+            "title": "Compliance Mapping",
+            "default": {}
+          },
+          "incident_response": {
+            "type": "object",
+            "title": "Incident Response",
+            "default": {}
+          },
+          "encryption_kms": {
+            "type": "object",
+            "title": "Encryption Kms",
+            "default": {}
+          },
+          "risk_intelligence": {
+            "type": "object",
+            "title": "Risk Intelligence",
+            "default": {}
+          },
+          "sessionId": {
+            "type": "string",
+            "title": "Sessionid"
+          },
+          "timestamp": {
+            "type": "string",
+            "title": "Timestamp"
+          }
+        },
+        "type": "object",
+        "required": [
+          "sessionId",
+          "timestamp"
+        ],
+        "title": "AssessmentData"
+      },
+      "AssessmentRequest": {
+        "properties": {
+          "assessmentData": {
+            "$ref": "#/components/schemas/AssessmentData"
+          },
+          "sessionId": {
+            "type": "string",
+            "title": "Sessionid"
+          },
+          "userId": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Userid"
+          },
+          "timestamp": {
+            "type": "string",
+            "title": "Timestamp"
+          }
+        },
+        "type": "object",
+        "required": [
+          "assessmentData",
+          "sessionId",
+          "timestamp"
+        ],
+        "title": "AssessmentRequest"
+      },
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "type": "array",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
+      },
+      "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Location"
+          },
+          "msg": {
+            "type": "string",
+            "title": "Message"
+          },
+          "type": {
+            "type": "string",
+            "title": "Error Type"
+          }
+        },
+        "type": "object",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError"
+      }
+    }
+  }
+}

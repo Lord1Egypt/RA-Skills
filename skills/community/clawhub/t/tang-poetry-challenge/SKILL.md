@@ -1,35 +1,72 @@
 ---
-name: "tang poetry challenge"
-description: "唐诗三百首对诗挑战游戏，提供诗句上句，用户需要对出下句。包含挑战结束评分和错题分析功能。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/tang-poetry-challenge"
-sourceUrl: "https://clawhub.ai/skills/tang-poetry-challenge"
+name: tang-poetry-challenge
+description: 唐诗三百首对诗挑战游戏，提供诗句上句，用户需要对出下句。包含挑战结束评分和错题分析功能。
 ---
 
-# tang poetry challenge
+# 唐诗三百首对诗挑战
 
-> 唐诗三百首对诗挑战游戏，提供诗句上句，用户需要对出下句。包含挑战结束评分和错题分析功能。
+## 功能说明
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/tang-poetry-challenge`
-- **Source URL:** [https://clawhub.ai/skills/tang-poetry-challenge](https://clawhub.ai/skills/tang-poetry-challenge)
+本技能提供唐诗三百首对诗挑战游戏，具体功能包括：
 
-## Overview
+1. **诗句挑战**：随机抽取唐诗三百首中的诗句，提供上句，用户需要对出下句
+2. **挑战评分**：挑战结束后，根据答对题目数量和用时给出评分
+3. **错题分析**：挑战结束后，对用户答错的题目进行分析，提供正确答案和相关解析
 
+## 使用流程
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/tang-poetry-challenge
-```
+1. 启动挑战：用户可以指定挑战题目数量（默认10题）
+2. 开始挑战：系统随机抽取指定数量的唐诗诗句
+3. 答题过程：
+   - 系统显示诗句上句
+   - 用户输入下句
+   - 系统判断答案正确性
+4. 挑战结束：
+   - 显示总得分
+   - 展示错题分析
+   - 提供挑战结果总结
+
+## 数据来源
+
+本技能使用 `references/tang_poetry.json` 文件中的唐诗三百首数据，包含诗句、作者、朝代等信息。
+
+## 脚本说明
+
+- `scripts/challenge.py`：核心挑战逻辑，处理题目抽取、答案验证、评分计算等
+- `scripts/feedback.py`：处理错误提示和错题分析
+
+## 使用示例
+
+### 启动挑战
+
+用户：开始唐诗挑战
+
+系统：欢迎参加唐诗三百首对诗挑战！请问您想挑战多少题？（默认10题）
+
+用户：5题
+
+系统：好的，准备开始5题挑战！
+
+### 答题过程
+
+系统：第1题，请对出下句：
+床前明月光，
+
+用户：疑是地上霜
+
+系统：回答正确！
+
+系统：第2题，请对出下句：
+春眠不觉晓，
+
+用户：处处闻啼鸟
+
+系统：回答正确！
+
+### 挑战结束
+
+系统：挑战结束！您的得分：5/5，用时：1分30秒
+
+系统：评分：优秀！您对唐诗的掌握非常出色。
+
+系统：错题分析：无错题，继续保持！

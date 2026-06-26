@@ -1,0 +1,22 @@
+{
+  "name": "team-lead-skill",
+  "version": "1.0.0",
+  "description": "Multi-Agent Orchestration Lead for OpenClaw",
+  "author": "worldhello321",
+  "license": "MIT",
+  "type": "module",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "node --test src/*.test.js",
+    "lint": "eslint src/"
+  },
+  "dependencies": {},
+  "keywords": [
+    "openclaw",
+    "skill",
+    "multi-agent",
+    "orchestration",
+    "workflow",
+    "automation"
+  ]
+}

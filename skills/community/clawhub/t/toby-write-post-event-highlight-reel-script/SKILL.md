@@ -1,35 +1,49 @@
 ---
-name: "write-post-event-highlight-reel-script"
+name: "Write Post-Event Highlight Reel Script"
 description: "Turn event notes into a short recap script for social and recap videos. Use when working on event recap content for event marketers, field teams,..."
-category: "autonomous-ai-agents"
-source: "ClawHub"
-tags: [ai]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/toby-write-post-event-highlight-reel-script"
-sourceUrl: "https://clawhub.ai/skills/toby-write-post-event-highlight-reel-script"
+homepage: "https://www.skillboss.co/skills/write-post-event-highlight-reel-script"
+metadata: {"category":"event-marketing","subcategory":"event-recap-content","skill_id":"write-post-event-highlight-reel-script","generated_day":"","seo_keywords":["event recap script AI", "highlight reel narration", "conference recap voiceover", "post event content generator"]}
 ---
 
-# write-post-event-highlight-reel-script
+# Write Post-Event Highlight Reel Script
 
-> Turn event notes into a short recap script for social and recap videos. Use when working on event recap content for event marketers, field teams,...
+Turn event notes into a short recap script for social and recap videos. Use when working on event recap content for event marketers, field teams,...
 
-- **Category:** AI Agents
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/toby-write-post-event-highlight-reel-script`
-- **Source URL:** [https://clawhub.ai/skills/toby-write-post-event-highlight-reel-script](https://clawhub.ai/skills/toby-write-post-event-highlight-reel-script)
+## Use When
 
-## Overview
+Use this skill for event recap content work for event marketers, field teams, sponsorship managers.
 
+## Workflow
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/toby-write-post-event-highlight-reel-script
-```
+1. Clarify the audience, business goal, constraints, and deliverable.
+2. Produce the strongest first draft for the target use case.
+3. Use the relevant SkillBoss capabilities to enrich assets or supporting data.
+4. Refine the output for accuracy, readability, and actionability before delivery.
+
+## SEO / GEO
+
+- Primary keywords: event recap script AI, highlight reel narration, conference recap voiceover, post event content generator
+- Search intent: event recap content
+- Canonical slug: `write-post-event-highlight-reel-script`
+- Install query: Install Write Post-Event Highlight Reel Script with SkillBoss
+
+## APIs Used
+
+- `chat`
+- `tts`
+
+## Suggested Prompt
+
+[Write Post-Event Highlight Reel Script] for my event-marketing business
+
+## Notes
+
+- Turn event notes into a short recap script for social and recap videos
+- Review outputs before external publication or automated execution.
+
+## SEO Keywords
+
+- event recap script AI
+- highlight reel narration
+- conference recap voiceover
+- post event content generator

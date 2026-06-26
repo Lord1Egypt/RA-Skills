@@ -1,0 +1,931 @@
+global_keywords:
+- 外挂
+keyword_rules:
+  mode: OR
+  case_sensitive: false
+targets:
+- id: ch_001
+  type: channel
+  identifier: BoLe9912
+  note: 外挂相关频道
+- id: ch_002
+  type: channel
+  identifier: waiguaaa
+  note: 外挂相关频道
+- id: ch_003
+  type: channel
+  identifier: hhdhhbdv7
+  note: 外挂相关频道
+- id: ch_004
+  type: channel
+  identifier: sotsyy
+  note: 外挂相关频道
+- id: ch_005
+  type: channel
+  identifier: hujiejie
+  note: 外挂相关频道
+- id: ch_006
+  type: channel
+  identifier: ndndn112
+  note: 外挂相关频道
+- id: ch_007
+  type: channel
+  identifier: xscqdxw
+  note: 外挂相关频道
+- id: ch_008
+  type: channel
+  identifier: niunainb666
+  note: 外挂相关频道
+- id: ch_009
+  type: channel
+  identifier: qiuyuezt
+  note: 外挂相关频道
+- id: ch_010
+  type: channel
+  identifier: shdndndbd11
+  note: 外挂相关频道
+- id: ch_011
+  type: channel
+  identifier: pojiedashi1
+  note: 破解/外挂相关频道
+- id: ch_012
+  type: channel
+  identifier: AS_HaxCN
+  note: 外挂相关频道
+- id: ch_013
+  type: channel
+  identifier: rjyxfx
+  note: 外挂相关频道
+- id: ch_014
+  type: channel
+  identifier: awang686
+  note: 外挂相关频道
+- id: ch_015
+  type: channel
+  identifier: gypjzyfx
+  note: 外挂相关频道
+- id: ch_016
+  type: channel
+  identifier: iosvvv
+  note: 外挂相关频道
+- id: ch_017
+  type: channel
+  identifier: jddnndndnfjfjg
+  note: 外挂相关频道
+- id: ch_018
+  type: channel
+  identifier: duteba
+  note: 外挂相关频道
+- id: ch_019
+  type: channel
+  identifier: jdjdjjdmjd
+  note: 外挂相关频道
+- id: ch_020
+  type: channel
+  identifier: POMOzhizhuang
+  note: 外挂相关频道
+- id: ch_021
+  type: channel
+  identifier: xlnb191003
+  note: 外挂相关频道
+- id: ch_022
+  type: channel
+  identifier: youxigs
+  note: 外挂相关频道
+- id: ch_023
+  type: channel
+  identifier: djdhhdndbdbdbfn
+  note: 外挂相关频道
+- id: ch_024
+  type: channel
+  identifier: klzrr
+  note: 外挂相关频道
+- id: ch_025
+  type: channel
+  identifier: yingditongzhijsq
+  note: 外挂相关频道
+- id: ch_026
+  type: channel
+  identifier: ebsbsbbdbdjdjf
+  note: 外挂相关频道
+- id: ch_027
+  type: channel
+  identifier: Swlgwlg
+  note: 外挂相关频道
+- id: ch_028
+  type: channel
+  identifier: MTXFXS
+  note: 外挂相关频道
+- id: ch_029
+  type: channel
+  identifier: pj_bp
+  note: 外挂相关频道
+- id: ch_030
+  type: channel
+  identifier: aipojujlb
+  note: 外挂相关频道
+- id: ch_031
+  type: channel
+  identifier: hjss6
+  note: 外挂相关频道
+- id: ch_032
+  type: channel
+  identifier: XYMODty
+  note: 外挂相关频道
+- id: ch_033
+  type: channel
+  identifier: zwaaa333
+  note: 外挂相关频道
+- id: ch_034
+  type: channel
+  identifier: HUIYIYYDS6
+  note: 外挂相关频道
+- id: ch_035
+  type: channel
+  identifier: sosozr
+  note: 外挂相关频道
+- id: ch_036
+  type: channel
+  identifier: lhldpd
+  note: 外挂相关频道
+- id: ch_037
+  type: channel
+  identifier: YESziyuan
+  note: 外挂相关频道
+- id: ch_038
+  type: channel
+  identifier: wjhshsne
+  note: 外挂相关频道
+- id: ch_039
+  type: channel
+  identifier: laomuxss
+  note: 外挂相关频道
+- id: ch_040
+  type: channel
+  identifier: REBAC8
+  note: 外挂相关频道
+- id: ch_041
+  type: channel
+  identifier: aadaili
+  note: 外挂相关频道
+- id: ch_042
+  type: channel
+  identifier: aiyouxigongyifuzhu
+  note: 外挂相关频道
+- id: ch_043
+  type: channel
+  identifier: gekuGou
+  note: 外挂相关频道
+- id: ch_044
+  type: channel
+  identifier: chuzhou688
+  note: 外挂相关频道
+- id: ch_045
+  type: channel
+  identifier: AFZYFX
+  note: 外挂相关频道
+- id: ch_046
+  type: channel
+  identifier: laomuxsss
+  note: 外挂相关频道
+- id: ch_047
+  type: channel
+  identifier: Geek_iOS
+  note: 外挂相关频道
+- id: ch_048
+  type: channel
+  identifier: qdggfk
+  note: 外挂相关频道
+- id: ch_049
+  type: channel
+  identifier: yypubg2
+  note: 外挂相关频道
+- id: ch_050
+  type: channel
+  identifier: mbxwbg
+  note: 外挂相关频道
+- id: ch_051
+  type: channel
+  identifier: laomuxs
+  note: 外挂相关频道
+- id: ch_052
+  type: channel
+  identifier: BYGWJJ
+  note: 外挂相关频道
+- id: ch_053
+  type: channel
+  identifier: CWNB2
+  note: 外挂相关频道
+- id: ch_054
+  type: channel
+  identifier: ikun_188
+  note: 外挂相关频道
+- id: ch_055
+  type: channel
+  identifier: Czenb66
+  note: 外挂相关频道
+- id: ch_056
+  type: channel
+  identifier: mmyydsmm
+  note: 外挂相关频道
+- id: ch_057
+  type: channel
+  identifier: jintianjidewanyx
+  note: 外挂相关频道
+- id: ch_058
+  type: channel
+  identifier: BEARMOD666
+  note: 外挂相关频道
+- id: ch_059
+  type: channel
+  identifier: wg0007
+  note: 外挂相关频道
+- id: ch_060
+  type: channel
+  identifier: egegwegwe
+  note: 外挂相关频道
+- id: ch_061
+  type: channel
+  identifier: txbb881
+  note: 外挂相关频道
+- id: ch_062
+  type: channel
+  identifier: APRgame
+  note: 外挂相关频道
+- id: ch_063
+  type: channel
+  identifier: mdcmavp
+  note: 外挂相关频道
+- id: ch_064
+  type: channel
+  identifier: YESPJ7828
+  note: 外挂相关频道
+- id: ch_065
+  type: channel
+  identifier: xjndndn
+  note: 外挂相关频道
+- id: grp_001
+  type: group
+  identifier: +Rwqr-niWBEZjZjY1
+  invite_link: https://t.me/+Rwqr-niWBEZjZjY1
+  note: 外挂私密群组 - 需通过邀请链接加入，高风险操作
+- id: auto_066
+  type: channel
+  identifier: jilijilicom
+  note: '自动发现: tg_search | 迷你枪战精英减J科技最新频道'
+  enabled: true
+- id: auto_067
+  type: group
+  identifier: mnqz8
+  note: '自动发现: tg_search | 迷你枪战精英大家庭 @mnqz8 骗子曝光/合法交易/项目推荐/评价聚集'
+  enabled: true
+- id: auto_068
+  type: group
+  identifier: we520521
+  note: '自动发现: tg_search | 迷你枪战精英拦截'
+  enabled: true
+- id: auto_069
+  type: channel
+  identifier: NDKJKND
+  note: '自动发现: tg_search | 迷你枪战精英'
+  enabled: true
+- id: auto_070
+  type: group
+  identifier: MIHGSB4M666
+  note: '自动发现: tg_search | 迷你枪战精英减J科技聊天'
+  enabled: true
+- id: wool_001
+  type: channel
+  identifier: jdbroo
+  note: 羊毛线报-Bug价/小程序活动/抽奖
+- id: wool_002
+  type: channel
+  identifier: xbcia
+  note: 羊毛线报-淘宝京东拼多多优惠
+- id: wool_003
+  type: channel
+  identifier: superbuffg
+  note: 羊毛线报-综合羊毛3.27K成员
+- id: wool_004
+  type: channel
+  identifier: supershop66
+  note: 羊毛线报-捡漏优惠中心
+- id: wool_005
+  type: channel
+  identifier: get_coupons
+  note: 羊毛线报-优惠券CPS推广
+- id: auto_071
+  type: channel
+  identifier: kykk454
+  note: '自动发现: xbso1 | kykk454'
+  enabled: true
+- id: auto_072
+  type: channel
+  identifier: dd254s2
+  note: '自动发现: xbso1 | dd254s2'
+  enabled: true
+- id: auto_073
+  type: channel
+  identifier: zz121192
+  note: '自动发现: xbso1 | zz121192'
+  enabled: true
+- id: auto_074
+  type: channel
+  identifier: xinbiwu
+  note: '自动发现: xbso1 | xinbiwu'
+  enabled: true
+- id: auto_075
+  type: channel
+  identifier: haiwaieeee
+  note: '自动发现: xbso1 | haiwaieeee'
+  enabled: true
+- id: auto_076
+  type: channel
+  identifier: dongman335
+  note: '自动发现: xbso1 | dongman335'
+  enabled: true
+- id: auto_077
+  type: channel
+  identifier: kpkpt2
+  note: '自动发现: xbso1 | kpkpt2'
+  enabled: true
+- id: auto_078
+  type: channel
+  identifier: PeoplesWar_zh
+  note: '自动发现: xbso1 | PeoplesWar_zh'
+  enabled: true
+- id: auto_079
+  type: channel
+  identifier: SWAGVVIP888
+  note: '自动发现: xbso1 | SWAGVVIP888'
+  enabled: true
+- id: auto_080
+  type: channel
+  identifier: lyf2944118
+  note: '自动发现: xbso1 | lyf2944118'
+  enabled: true
+- id: auto_081
+  type: channel
+  identifier: NetflixFirst
+  note: '自动发现: xbso1 | NetflixFirst'
+  enabled: true
+- id: auto_082
+  type: channel
+  identifier: mrcgfl
+  note: '自动发现: xbso1 | mrcgfl'
+  enabled: true
+- id: auto_083
+  type: channel
+  identifier: TGQQCG
+  note: '自动发现: xbso1 | TGQQCG'
+  enabled: true
+- id: auto_084
+  type: channel
+  identifier: cosjoy1
+  note: '自动发现: xbso1 | cosjoy1'
+  enabled: true
+- id: auto_085
+  type: channel
+  identifier: zhenaiwang168
+  note: '自动发现: xbso1 | zhenaiwang168'
+  enabled: true
+- id: auto_086
+  type: channel
+  identifier: lithree
+  note: '自动发现: xbso1 | lithree'
+  enabled: true
+- id: auto_087
+  type: channel
+  identifier: muyedegen
+  note: '自动发现: xbso1 | muyedegen'
+  enabled: true
+- id: auto_088
+  type: channel
+  identifier: mbn1y
+  note: '自动发现: xbso1 | mbn1y'
+  enabled: true
+- id: auto_089
+  type: channel
+  identifier: Fjnanmin
+  note: '自动发现: xbso1 | Fjnanmin'
+  enabled: true
+- id: auto_090
+  type: channel
+  identifier: pmknb6667
+  note: '自动发现: xbso1 | pmknb6667'
+  enabled: true
+- id: auto_091
+  type: channel
+  identifier: rjdjj6682
+  note: '自动发现: xbso1 | rjdjj6682'
+  enabled: true
+- id: auto_092
+  type: channel
+  identifier: sytt888
+  note: '自动发现: xbso1 | sytt888'
+  enabled: true
+- id: auto_093
+  type: channel
+  identifier: qwerndj
+  note: '自动发现: xbso1 | qwerndj'
+  enabled: true
+- id: auto_094
+  type: channel
+  identifier: dacaidaquan
+  note: '自动发现: xbso1 | dacaidaquan'
+  enabled: true
+- id: auto_095
+  type: channel
+  identifier: f5xow
+  note: '自动发现: xbso1 | f5xow'
+  enabled: true
+- id: auto_096
+  type: channel
+  identifier: me88dsjkfh
+  note: '自动发现: xbso1 | me88dsjkfh'
+  enabled: true
+- id: auto_097
+  type: channel
+  identifier: dxc2e
+  note: '自动发现: xbso1 | dxc2e'
+  enabled: true
+- id: auto_098
+  type: channel
+  identifier: iwbsj4349
+  note: '自动发现: xbso1 | iwbsj4349'
+  enabled: true
+- id: auto_099
+  type: channel
+  identifier: vfdgryre
+  note: '自动发现: xbso1 | vfdgryre'
+  enabled: true
+- id: auto_100
+  type: channel
+  identifier: bbty89
+  note: '自动发现: jisou | bbty89'
+  enabled: true
+- id: auto_101
+  type: channel
+  identifier: yzzxin666
+  note: '自动发现: jisou | yzzxin666'
+  enabled: true
+- id: auto_102
+  type: channel
+  identifier: Lemaned1314
+  note: '自动发现: jisou | Lemaned1314'
+  enabled: true
+- id: auto_103
+  type: channel
+  identifier: Ai479
+  note: '自动发现: jisou | Ai479'
+  enabled: true
+- id: auto_104
+  type: channel
+  identifier: HanaCS2
+  note: '自动发现: jisou | HanaCS2'
+  enabled: true
+- id: auto_105
+  type: channel
+  identifier: JoyHentai_CG
+  note: '自动发现: jisou | JoyHentai_CG'
+  enabled: true
+- id: auto_106
+  type: channel
+  identifier: Tesla_share
+  note: '自动发现: jisou | Tesla_share'
+  enabled: true
+- id: auto_107
+  type: channel
+  identifier: voachinese123
+  note: '自动发现: jisou | voachinese123'
+  enabled: true
+- id: auto_108
+  type: channel
+  identifier: hyR18
+  note: '自动发现: jisou | hyR18'
+  enabled: true
+- id: auto_109
+  type: channel
+  identifier: kgqgxx
+  note: '自动发现: jisou | kgqgxx'
+  enabled: true
+- id: auto_110
+  type: channel
+  identifier: popdailydose
+  note: '自动发现: jisou | popdailydose'
+  enabled: true
+- id: auto_111
+  type: channel
+  identifier: old8277
+  note: '自动发现: jisou | old8277'
+  enabled: true
+- id: auto_112
+  type: channel
+  identifier: teahubnews
+  note: '自动发现: jisou | teahubnews'
+  enabled: true
+- id: auto_113
+  type: channel
+  identifier: xzjlb1
+  note: '自动发现: jisou | xzjlb1'
+  enabled: true
+- id: auto_114
+  type: channel
+  identifier: TGQQ12345
+  note: '自动发现: jisou | TGQQ12345'
+  enabled: true
+- id: auto_115
+  type: channel
+  identifier: DNYJRDSJ
+  note: '自动发现: jisou | DNYJRDSJ'
+  enabled: true
+- id: auto_116
+  type: channel
+  identifier: bajiao0530
+  note: '自动发现: jisou | bajiao0530'
+  enabled: true
+- id: auto_117
+  type: channel
+  identifier: jiema1ii
+  note: '自动发现: jisou | jiema1ii'
+  enabled: true
+- id: auto_118
+  type: channel
+  identifier: RedNewsCN
+  note: '自动发现: jisou | RedNewsCN'
+  enabled: true
+- id: auto_119
+  type: channel
+  identifier: quanwangxinxiliu
+  note: '自动发现: jisou | quanwangxinxiliu'
+  enabled: true
+- id: auto_120
+  type: channel
+  identifier: sgsgl8648
+  note: '自动发现: jisou | sgsgl8648'
+  enabled: true
+- id: auto_121
+  type: channel
+  identifier: ysbg7799
+  note: '自动发现: jisou | ysbg7799'
+  enabled: true
+- id: auto_122
+  type: channel
+  identifier: wangyiy1
+  note: '自动发现: jisou | wangyiy1'
+  enabled: true
+- id: auto_123
+  type: channel
+  identifier: jiema1080
+  note: '自动发现: jisou | jiema1080'
+  enabled: true
+- id: auto_124
+  type: channel
+  identifier: puaypkt666
+  note: '自动发现: jisou | puaypkt666'
+  enabled: true
+- id: auto_125
+  type: channel
+  identifier: zhenl3l
+  note: '自动发现: jisou | zhenl3l'
+  enabled: true
+- id: auto_126
+  type: channel
+  identifier: uubg351
+  note: '自动发现: jisou | uubg351'
+  enabled: true
+- id: auto_127
+  type: channel
+  identifier: TestRanKING
+  note: '自动发现: tg_search | Test RanKING'
+  enabled: true
+- id: auto_128
+  type: channel
+  identifier: testbookcom
+  note: '自动发现: tg_search | Testbook.com Official'
+  enabled: true
+- id: auto_129
+  type: channel
+  identifier: Testosterovich
+  note: '自动发现: tg_search | Тестостерович'
+  enabled: true
+- id: auto_130
+  type: group
+  identifier: ChlorineDioxideTestimonies
+  note: '自动发现: tg_search | Chlorine Dioxide Testimonies'
+  enabled: true
+- id: auto_131
+  type: channel
+  identifier: testx
+  note: '自动发现: tg_search | Test'
+  enabled: true
+- id: auto_132
+  type: channel
+  identifier: test7
+  note: '自动发现: tg_search | Test'
+  enabled: true
+- id: auto_133
+  type: channel
+  identifier: cemiuiler_canary
+  note: '自动发现: xbso1 | cemiuiler_canary'
+  enabled: true
+- id: auto_134
+  type: channel
+  identifier: xiaozhenag04
+  note: '自动发现: xbso1 | xiaozhenag04'
+  enabled: true
+- id: auto_135
+  type: channel
+  identifier: mt6666nb
+  note: '自动发现: xbso1 | mt6666nb'
+  enabled: true
+- id: auto_136
+  type: channel
+  identifier: HostEvaluate
+  note: '自动发现: xbso1 | HostEvaluate'
+  enabled: true
+- id: auto_137
+  type: channel
+  identifier: Oku_Anla_Yasa_TEST
+  note: '自动发现: xbso1 | Oku_Anla_Yasa_TEST'
+  enabled: true
+- id: auto_138
+  type: channel
+  identifier: test_fjib
+  note: '自动发现: xbso1 | test_fjib'
+  enabled: true
+- id: auto_139
+  type: channel
+  identifier: sdafyst
+  note: '自动发现: xbso1 | sdafyst'
+  enabled: true
+- id: auto_140
+  type: channel
+  identifier: LOKmiu94
+  note: '自动发现: xbso1 | LOKmiu94'
+  enabled: true
+- id: auto_141
+  type: channel
+  identifier: NBASpeedtest
+  note: '自动发现: xbso1 | NBASpeedtest'
+  enabled: true
+- id: auto_142
+  type: channel
+  identifier: nomediocres
+  note: '自动发现: xbso1 | nomediocres'
+  enabled: true
+- id: auto_143
+  type: channel
+  identifier: ETHqklscdB
+  note: '自动发现: xbso1 | ETHqklscdB'
+  enabled: true
+- id: auto_144
+  type: channel
+  identifier: TONqkldqjf
+  note: '自动发现: xbso1 | TONqkldqjf'
+  enabled: true
+- id: auto_145
+  type: channel
+  identifier: BNBqbpjhyjF
+  note: '自动发现: xbso1 | BNBqbpjhyjF'
+  enabled: true
+- id: auto_146
+  type: channel
+  identifier: wangqian7
+  note: '自动发现: xbso1 | wangqian7'
+  enabled: true
+- id: auto_147
+  type: channel
+  identifier: keqingIsMyLove
+  note: '自动发现: xbso1 | keqingIsMyLove'
+  enabled: true
+- id: auto_148
+  type: channel
+  identifier: luolixueshen6
+  note: '自动发现: xbso1 | luolixueshen6'
+  enabled: true
+- id: auto_149
+  type: channel
+  identifier: nannnjink
+  note: '自动发现: xbso1 | nannnjink'
+  enabled: true
+- id: auto_150
+  type: channel
+  identifier: byxsm520
+  note: '自动发现: xbso1 | byxsm520'
+  enabled: true
+- id: auto_151
+  type: channel
+  identifier: hdbbdss
+  note: '自动发现: xbso1 | hdbbdss'
+  enabled: true
+- id: auto_152
+  type: channel
+  identifier: NN_XCDD
+  note: '自动发现: xbso1 | NN_XCDD'
+  enabled: true
+- id: auto_153
+  type: channel
+  identifier: nanning001
+  note: '自动发现: xbso1 | nanning001'
+  enabled: true
+- id: auto_154
+  type: channel
+  identifier: e555k
+  note: '自动发现: xbso1 | e555k'
+  enabled: true
+- id: auto_155
+  type: channel
+  identifier: kiraraschool
+  note: '自动发现: xbso1 | kiraraschool'
+  enabled: true
+- id: auto_156
+  type: channel
+  identifier: wenzigerenpd
+  note: '自动发现: xbso1 | wenzigerenpd'
+  enabled: true
+- id: auto_157
+  type: channel
+  identifier: qinglou0772
+  note: '自动发现: xbso1 | qinglou0772'
+  enabled: true
+- id: auto_158
+  type: channel
+  identifier: NanNIngLC9895
+  note: '自动发现: xbso1 | NanNIngLC9895'
+  enabled: true
+- id: auto_159
+  type: channel
+  identifier: SVIP1927
+  note: '自动发现: xbso1 | SVIP1927'
+  enabled: true
+- id: auto_160
+  type: channel
+  identifier: tg9285
+  note: '自动发现: xbso1 | tg9285'
+  enabled: true
+- id: auto_161
+  type: channel
+  identifier: Bj111111111
+  note: '自动发现: xbso1 | Bj111111111'
+  enabled: true
+- id: auto_162
+  type: channel
+  identifier: nn55p
+  note: '自动发现: xbso1 | nn55p'
+  enabled: true
+- id: auto_163
+  type: channel
+  identifier: testbotsays
+  note: '自动发现: jisou | testbotsays'
+  enabled: true
+- id: auto_164
+  type: channel
+  identifier: MAISpeed_bot
+  note: '自动发现: jisou | MAISpeed_bot'
+  enabled: true
+- id: auto_165
+  type: channel
+  identifier: username_to_id_test_bot
+  note: '自动发现: jisou | username_to_id_test_bot'
+  enabled: true
+- id: auto_166
+  type: channel
+  identifier: Nahida_Leak
+  note: '自动发现: jisou | Nahida_Leak'
+  enabled: true
+- id: auto_167
+  type: channel
+  identifier: FireflyLeak
+  note: '自动发现: jisou | FireflyLeak'
+  enabled: true
+- id: auto_168
+  type: channel
+  identifier: Quantumultxxxx
+  note: '自动发现: jisou | Quantumultxxxx'
+  enabled: true
+- id: auto_169
+  type: channel
+  identifier: SINGAPOREGIRL6969
+  note: '自动发现: jisou | SINGAPOREGIRL6969'
+  enabled: true
+- id: auto_170
+  type: channel
+  identifier: ShadowrocketNews
+  note: '自动发现: jisou | ShadowrocketNews'
+  enabled: true
+- id: auto_171
+  type: channel
+  identifier: QT1277
+  note: '自动发现: jisou | QT1277'
+  enabled: true
+- id: auto_172
+  type: channel
+  identifier: JGshuoshu
+  note: '自动发现: jisou | JGshuoshu'
+  enabled: true
+- id: auto_173
+  type: channel
+  identifier: xitoytili59
+  note: '自动发现: jisou | xitoytili59'
+  enabled: true
+- id: auto_174
+  type: channel
+  identifier: QuanXNews
+  note: '自动发现: jisou | QuanXNews'
+  enabled: true
+- id: auto_175
+  type: channel
+  identifier: JoyHentai_Doujin
+  note: '自动发现: jisou | JoyHentai_Doujin'
+  enabled: true
+- id: auto_176
+  type: channel
+  identifier: SurgeTestFlightChangelog
+  note: '自动发现: jisou | SurgeTestFlightChangelog'
+  enabled: true
+- id: auto_177
+  type: channel
+  identifier: stymei1
+  note: '自动发现: jisou | stymei1'
+  enabled: true
+- id: auto_178
+  type: channel
+  identifier: jdr669
+  note: '自动发现: jisou | jdr669'
+  enabled: true
+- id: auto_179
+  type: channel
+  identifier: shenyangSPA555bot
+  note: '自动发现: jisou | shenyangSPA555bot'
+  enabled: true
+- id: auto_180
+  type: channel
+  identifier: jinbaospa1
+  note: '自动发现: jisou | jinbaospa1'
+  enabled: true
+- id: auto_181
+  type: channel
+  identifier: NannihsBot
+  note: '自动发现: jisou | NannihsBot'
+  enabled: true
+- id: auto_182
+  type: channel
+  identifier: nanningKTV2025
+  note: '自动发现: jisou | nanningKTV2025'
+  enabled: true
+- id: auto_183
+  type: channel
+  identifier: kong0692
+  note: '自动发现: jisou | kong0692'
+  enabled: true
+- id: auto_184
+  type: channel
+  identifier: opop2256
+  note: '自动发现: jisou | opop2256'
+  enabled: true
+- id: auto_185
+  type: channel
+  identifier: nnszhs
+  note: '自动发现: jisou | nnszhs'
+  enabled: true
+- id: auto_186
+  type: channel
+  identifier: xiaoxixi1216
+  note: '自动发现: jisou | xiaoxixi1216'
+  enabled: true
+- id: auto_187
+  type: channel
+  identifier: pp66544
+  note: '自动发现: jisou | pp66544'
+  enabled: true
+- id: auto_188
+  type: channel
+  identifier: nanningziyuan12
+  note: '自动发现: jisou | nanningziyuan12'
+  enabled: true
+- id: auto_189
+  type: channel
+  identifier: aiaibe
+  note: '自动发现: jisou | aiaibe'
+  enabled: true
+- id: auto_190
+  type: channel
+  identifier: GXNNQIXI956
+  note: '自动发现: jisou | GXNNQIXI956'
+  enabled: true
+- id: auto_191
+  type: channel
+  identifier: U7ltimate
+  note: '自动发现: jisou | U7ltimate'
+  enabled: true
+- id: auto_192
+  type: channel
+  identifier: naichammi88
+  note: '自动发现: jisou | naichammi88'
+  enabled: true
+- id: auto_193
+  type: channel
+  identifier: ahik282828
+  note: '自动发现: jisou | ahik282828'
+  enabled: true

@@ -1,0 +1,70 @@
+{
+  "name": "texas-llc-formation-skill",
+  "version": "1.0.0",
+  "description": "Expert Texas LLC formation guidance through LLCClass.com - filing steps, registered agent requirements, franchise tax basics, and compliance guidance",
+  "main": "texas-llc.js",
+  "scripts": {
+    "test": "node texas-llc.js 'What does Texas LLC formation cost?'",
+    "demo": "node texas-llc.js",
+    "cost": "node texas-llc.js 'Texas LLC costs and fees'",
+    "compare": "node texas-llc.js 'Texas vs Wyoming LLC comparison'",
+    "timeline": "node texas-llc.js 'How long does Texas LLC take?'",
+    "nonresident": "node texas-llc.js 'Can non-residents form Texas LLC?'"
+  },
+  "keywords": [
+    "texas",
+    "llc",
+    "formation",
+    "business",
+    "legal",
+    "incorporation",
+    "llcclass",
+    "registered-agent",
+    "franchise-tax",
+    "business-formation",
+    "entity-formation",
+    "texas-llc",
+    "ai-skill",
+    "openclaw"
+  ],
+  "author": "LLCClass.com Expert Team <saraparker@llcclass.com>",
+  "license": "MIT",
+  "homepage": "https://llcclass.com/texas",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/llcclass/texas-llc-formation-skill"
+  },
+  "bugs": {
+    "url": "https://github.com/llcclass/texas-llc-formation-skill/issues",
+    "email": "saraparker@llcclass.com"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "bin": {
+    "texas-llc": "./texas-llc.js"
+  },
+  "categories": [
+    "business",
+    "legal",
+    "formation",
+    "texas",
+    "llc"
+  ],
+  "tags": [
+    "texas-llc-formation",
+    "business-entity-setup",
+    "legal-compliance",
+    "registered-agent-service",
+    "franchise-tax",
+    "state-comparison-analysis",
+    "llc-cost-calculator",
+    "business-formation-guide"
+  ],
+  "website": "https://llcclass.com",
+  "documentation": "https://llcclass.com/texas",
+  "support": {
+    "email": "saraparker@llcclass.com",
+    "url": "https://llcclass.com/about"
+  }
+}

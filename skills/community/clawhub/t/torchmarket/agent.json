@@ -1,0 +1,248 @@
+{
+  "name": "torch.market",
+  "description": "Every token is its own margin market. Depth-adaptive risk engine, treasury-backed lending, real-token short selling, on-chain pricing from pool reserves. No oracles. No stored state. No keepers. The pool is the source of truth. Full-custody vault. Quote-driven trading across bonding curves and DEX.",
+  "version": "11.1.0",
+  "type": "protocol",
+  "disable-model-invocation": true,
+  "website": "https://torch.market",
+  "socials": {
+    "twitter": "https://twitter.com/torch_market"
+  },
+  "distribution": {
+    "clawhub": "https://clawhub.ai/mrsirg97-rgb/torchmarket",
+    "sdk": "https://github.com/mrsirg97-rgb/torchsdk",
+    "npm_sdk": "torchsdk",
+    "whitepaper": "https://torch.market/whitepaper"
+  },
+  "requires": {
+    "env": [
+      {
+        "name": "SOLANA_RPC_URL",
+        "description": "Solana RPC endpoint (HTTPS)",
+        "sensitive": false,
+        "required": true
+      },
+      {
+        "name": "SOLANA_PRIVATE_KEY",
+        "description": "Disposable controller keypair. Optional -- only needed for direct signing. Fresh keypair, ~0.01 SOL for gas. Holds no value. All capital lives in vault. NEVER supply a vault authority key.",
+        "sensitive": true,
+        "required": false
+      },
+      {
+        "name": "TORCH_NETWORK",
+        "description": "Set to 'devnet' for devnet. Omit for mainnet.",
+        "sensitive": false,
+        "required": false
+      }
+    ],
+    "install": [
+      {
+        "id": "npm-torchsdk",
+        "kind": "npm",
+        "package": "torchsdk@^11.1.0",
+        "label": "Install Torch SDK (also bundled in lib/torchsdk/)"
+      }
+    ]
+  },
+  "capabilities": [
+    "margin-lending",
+    "short-selling",
+    "vault-full-custody",
+    "authority-separation",
+    "token-creation",
+    "token-trading",
+    "bonding-curves",
+    "community-treasury",
+    "on-chain-messaging",
+    "treasury-lending",
+    "dex-trading",
+    "read-only-mode",
+    "protocol-rewards",
+    "permissionless-liquidation",
+    "permissionless-migration",
+    "creator-revenue",
+    "community-token",
+    "versioned-transactions",
+    "address-lookup-tables",
+    "quote-driven-trading",
+    "on-chain-pricing",
+    "circuit-breakers",
+    "depth-based-risk-bands",
+    "formally-verified"
+  ],
+  "chain": "solana",
+  "network": "mainnet",
+  "network_support": ["mainnet", "devnet"],
+  "program_id": "8hbUkonssSEEtkqzwM7ZcZrD9evacM92TcWSooVF4BeT",
+  "endpoints": {
+    "skill": "https://torch.market/skill.md",
+    "llms_txt": "https://torch.market/llms.txt",
+    "docs": "https://torch-market-docs.vercel.app",
+    "whitepaper": "https://torch.market/whitepaper",
+     "program_source": "https://github.com/mrsirg97-rgb/torch_market",
+    "verification": "https://torch.market/verification.md",
+    "risk_model": "https://torch.market/risk.md"
+  },
+  "actions": [
+    { "name": "TORCH_LIST_TOKENS", "description": "List tokens with filtering and sorting" },
+    { "name": "TORCH_GET_TOKEN", "description": "Full token detail: price, treasury, status" },
+    { "name": "TORCH_GET_TOKEN_METADATA", "description": "On-chain Token-2022 metadata (name, symbol, URI)" },
+    { "name": "TORCH_GET_HOLDERS", "description": "Top holders with balance and percentage" },
+    { "name": "TORCH_GET_MESSAGES", "description": "On-chain memos from token message board" },
+    { "name": "TORCH_GET_BUY_QUOTE", "description": "Preview buy: tokens out, fees, impact. source: bonding|dex" },
+    { "name": "TORCH_GET_SELL_QUOTE", "description": "Preview sell: SOL out, impact. source: bonding|dex" },
+    { "name": "TORCH_GET_BORROW_QUOTE", "description": "Max borrowable SOL for given collateral" },
+    { "name": "TORCH_GET_LENDING_INFO", "description": "Lending parameters and pool state for migrated token" },
+    { "name": "TORCH_GET_LOAN", "description": "Loan position: collateral, debt, LTV, health" },
+    { "name": "TORCH_GET_ALL_LOAN_POSITIONS", "description": "All loans sorted by liquidation risk" },
+    { "name": "TORCH_GET_SHORT_POSITION", "description": "Short position: SOL collateral, token debt, LTV, health" },
+    { "name": "TORCH_GET_VAULT", "description": "Vault state: SOL balance, linked wallets, authority" },
+    { "name": "TORCH_GET_VAULT_FOR_WALLET", "description": "Reverse lookup: find vault by linked wallet" },
+    { "name": "TORCH_GET_VAULT_WALLET_LINK", "description": "Link state for a wallet" },
+    { "name": "TORCH_GET_USER_STATS", "description": "Per-user trading stats: lifetime volume, current/previous epoch volume, rewards-claimed history" },
+    { "name": "TORCH_GET_PROTOCOL_TREASURY", "description": "Protocol treasury state: current epoch, aggregate volumes, distributable amount for reward claims" },
+    { "name": "TORCH_GET_TREASURY", "description": "Per-token treasury state: SOL balance, tokens held, harvested fees, baseline pool reserves at migration, stars" },
+    { "name": "TORCH_VERIFY_SAID", "description": "Check SAID verification status and trust tier" },
+    { "name": "TORCH_BUY_TOKEN", "description": "Buy via vault. Auto-routes bonding or DEX based on quote" },
+    { "name": "TORCH_DIRECT_BUY_TOKEN", "description": "Buy without vault (human wallets)" },
+    { "name": "TORCH_SEND_BUY", "description": "Build + submit vault buy via signAndSendTransaction" },
+    { "name": "TORCH_SEND_DIRECT_BUY", "description": "Build + submit direct buy via signAndSendTransaction" },
+    { "name": "TORCH_SELL_TOKEN", "description": "Sell via vault. Auto-routes bonding or DEX based on quote" },
+    { "name": "TORCH_CREATE_TOKEN", "description": "Launch token with bonding curve + treasury + 300M token lock" },
+    { "name": "TORCH_SEND_CREATE_TOKEN", "description": "Build + submit token creation via signAndSendTransaction (Phantom-friendly)" },
+    { "name": "TORCH_STAR_TOKEN", "description": "Star token (0.02 SOL, sybil-resistant)" },
+    { "name": "TORCH_MIGRATE", "description": "Migrate to Raydium DEX (permissionless). LP burned, authority revoked." },
+    { "name": "TORCH_BORROW", "description": "Borrow SOL against token collateral (depth-adaptive LTV 25-50%, vault-routed)" },
+    { "name": "TORCH_REPAY", "description": "Repay SOL debt, unlock collateral (vault-routed)" },
+    { "name": "TORCH_LIQUIDATE", "description": "Liquidate underwater loan (>65% LTV, 10% bonus, permissionless)" },
+    { "name": "TORCH_OPEN_SHORT", "description": "Post SOL collateral, borrow real tokens from 300M treasury lock (vault-routed)" },
+    { "name": "TORCH_CLOSE_SHORT", "description": "Return tokens + interest, recover SOL collateral (vault-routed)" },
+    { "name": "TORCH_LIQUIDATE_SHORT", "description": "Liquidate underwater short (>65% LTV, 10% bonus, permissionless)" },
+    { "name": "TORCH_ENABLE_SHORT_SELLING", "description": "Enable shorts for pre-V5 tokens (admin only)" },
+    { "name": "TORCH_CLAIM_PROTOCOL_REWARDS", "description": "Claim epoch trading rewards (vault-routed)" },
+    { "name": "TORCH_CONFIRM", "description": "Report tx to SAID for reputation tracking" },
+    { "name": "TORCH_CREATE_VAULT", "description": "Create vault (creator auto-linked as authority)" },
+    { "name": "TORCH_DEPOSIT_VAULT", "description": "Deposit SOL into vault (permissionless)" },
+    { "name": "TORCH_WITHDRAW_VAULT", "description": "Withdraw SOL (authority only)" },
+    { "name": "TORCH_WITHDRAW_TOKENS", "description": "Withdraw tokens from vault ATA (authority only)" },
+    { "name": "TORCH_LINK_WALLET", "description": "Link controller wallet to vault (authority only)" },
+    { "name": "TORCH_UNLINK_WALLET", "description": "Revoke controller access (authority only, instant)" },
+    { "name": "TORCH_TRANSFER_VAULT_AUTHORITY", "description": "Transfer vault admin (authority only, irreversible)" },
+    { "name": "TORCH_HARVEST_FEES", "description": "Harvest 0.07% transfer fees to treasury (permissionless)" },
+    { "name": "TORCH_SWAP_FEES_TO_SOL", "description": "Swap harvested tokens to SOL via Raydium (permissionless)" },
+    { "name": "TORCH_ADVANCE_PROTOCOL_EPOCH", "description": "Advance protocol epoch so previous-epoch rewards become claimable (permissionless)" },
+    { "name": "TORCH_RECLAIM_FAILED_TOKEN", "description": "Reclaim inactive token (7+ days, permissionless)" }
+  ],
+  "constants": {
+    "total_supply": "1000000000",
+    "curve_supply": "700000000",
+    "treasury_lock": "300000000",
+    "bonding_tiers": {
+      "flame": 100,
+      "torch": 200
+    },
+    "treasury_rate": {
+      "max_bps": 1750,
+      "min_bps": 250,
+      "note": "17.5%→2.5% decay. Creator tokens: creator gets 0.2%→1% carved from this. Community tokens (default): 0% to creator."
+    },
+    "protocol_fee_bps": 50,
+    "max_wallet_percent": 2,
+    "transfer_fee_bps": 7,
+    "star_cost_sol": 0.02,
+    "lending": {
+      "max_ltv_bps": "depth-adaptive: 2500 (<50 SOL), 3500 (50-200), 4500 (200-500), 5000 (500+)",
+      "liquidation_threshold_bps": 6500,
+      "interest_rate_bps": 200,
+      "liquidation_bonus_bps": 1000,
+      "utilization_cap_bps": 8000,
+      "borrow_share_multiplier": 23,
+      "min_borrow_sol": 0.1,
+      "min_pool_sol": 5,
+      "depth_tiers_sol": [5, 50, 200, 500],
+      "depth_ltv_bps": [0, 2500, 3500, 4500, 5000],
+      "note": "Depth-based risk bands: max LTV scales with pool SOL depth. Deeper pools are harder to manipulate, so higher leverage is permitted. Combined with per-user borrow cap, effective LTV for longs is typically <5% — making liquidation structurally near-impossible. No oracles, no baseline, no keepers. The pool is the source of truth."
+    },
+    "fee_swap_split": {
+      "community_token": "100% treasury",
+      "creator_token": "85% treasury / 15% creator"
+    }
+  },
+  "safety": {
+    "vault_full_custody": true,
+    "controller_holds_no_value": true,
+    "private_key_optional": true,
+    "read_only_mode_supported": true,
+    "no_api_dependency": true,
+    "keys_never_transmitted": true,
+    "signing_is_local_only": true,
+    "vault_authority_only_withdrawals": true,
+    "vault_instant_revocation": true,
+    "positions_isolated": true,
+    "no_cascading_liquidations": true,
+    "parameters_immutable": true,
+    "no_oracle_dependency": true,
+    "lp_tokens_burned": true,
+    "mint_authority_revoked": true,
+    "core_arithmetic_formally_verified": true,
+    "kani_proof_harnesses": 71,
+    "litesvm_tests": 97,
+    "e2e_tests": 62,
+    "independent_cross_audit": true,
+    "autonomous_invocation_blocked": true,
+    "credential_risk_mitigations": [
+      "SOLANA_PRIVATE_KEY must be a fresh disposable controller -- never a vault authority key",
+      "On-chain program rejects authority operations from non-authority signers",
+      "Controller wallets hold ~0.01 SOL dust only",
+      "Vault authority can revoke any controller in one transaction"
+    ]
+  },
+  "privilege_levels": {
+    "read": [
+      "TORCH_LIST_TOKENS", "TORCH_GET_TOKEN", "TORCH_GET_TOKEN_METADATA",
+      "TORCH_GET_HOLDERS", "TORCH_GET_MESSAGES",
+      "TORCH_GET_BUY_QUOTE", "TORCH_GET_SELL_QUOTE", "TORCH_GET_BORROW_QUOTE",
+      "TORCH_GET_LENDING_INFO", "TORCH_GET_LOAN", "TORCH_GET_ALL_LOAN_POSITIONS",
+      "TORCH_GET_SHORT_POSITION",
+      "TORCH_GET_VAULT", "TORCH_GET_VAULT_FOR_WALLET", "TORCH_GET_VAULT_WALLET_LINK",
+      "TORCH_GET_USER_STATS", "TORCH_GET_PROTOCOL_TREASURY", "TORCH_GET_TREASURY",
+      "TORCH_VERIFY_SAID"
+    ],
+    "controller": [
+      "TORCH_BUY_TOKEN", "TORCH_DIRECT_BUY_TOKEN",
+      "TORCH_SEND_BUY", "TORCH_SEND_DIRECT_BUY",
+      "TORCH_SELL_TOKEN", "TORCH_STAR_TOKEN", "TORCH_CREATE_TOKEN", "TORCH_SEND_CREATE_TOKEN",
+      "TORCH_BORROW", "TORCH_REPAY",
+      "TORCH_OPEN_SHORT", "TORCH_CLOSE_SHORT",
+      "TORCH_CLAIM_PROTOCOL_REWARDS", "TORCH_CONFIRM"
+    ],
+    "authority": [
+      "TORCH_CREATE_VAULT", "TORCH_WITHDRAW_VAULT", "TORCH_WITHDRAW_TOKENS",
+      "TORCH_LINK_WALLET", "TORCH_UNLINK_WALLET", "TORCH_TRANSFER_VAULT_AUTHORITY"
+    ],
+    "permissionless": [
+      "TORCH_DEPOSIT_VAULT",
+      "TORCH_LIQUIDATE", "TORCH_LIQUIDATE_SHORT",
+      "TORCH_MIGRATE", "TORCH_RECLAIM_FAILED_TOKEN",
+      "TORCH_HARVEST_FEES", "TORCH_SWAP_FEES_TO_SOL",
+      "TORCH_ADVANCE_PROTOCOL_EPOCH"
+    ]
+  },
+  "tags": [
+    "solana", "defi", "margin", "lending", "short-selling",
+    "vault-custody", "bonding-curve", "fair-launch",
+    "ai-agents", "on-chain-messaging", "on-chain-pricing",
+    "treasury-yield", "liquidation", "token-2022", "raydium",
+    "dex-trading", "community-treasury", "agent-safety",
+    "formally-verified", "permissionless", "no-oracle"
+  ],
+  "verification": {
+    "said": {
+      "wallet": "8cpWmV4kGdvxVYYNBEMPNwsJSRVQw5MQ9NXn4t293nMa",
+      "pda": "2rNknLxB7nWYJRgr2tZrNoc7PNDy3PKwKZa9YStbLMmb",
+      "verified": true,
+      "trust_tier": "medium",
+      "badge": "https://api.saidprotocol.com/api/badge/8cpWmV4kGdvxVYYNBEMPNwsJSRVQw5MQ9NXn4t293nMa.svg"
+    }
+  }
+}

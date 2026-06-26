@@ -1,0 +1,161 @@
+{
+  "name": "english-tutor",
+  "version": "3.0.4",
+  "description": "英语口语陪练基座。飞书语音推送 + MiniMax/本地 TTS + SenseVoice ASR + 艾宾浩斯复习。全部模块选填，按需启用。",
+  "credential_using": true,
+  "all_optional": true,
+  "optional_credentials": [
+    {
+      "name": "FEISHU_APP_ID",
+      "type": "feishu_app_id",
+      "required": false,
+      "description": "飞书应用 App ID（填了才能发飞书语音）"
+    },
+    {
+      "name": "FEISHU_APP_SECRET",
+      "type": "feishu_app_secret",
+      "required": false,
+      "description": "飞书应用 Secret（填了才能发飞书语音）"
+    },
+    {
+      "name": "FEISHU_USER_OPEN_ID",
+      "type": "feishu_open_id",
+      "required": false,
+      "description": "接收语音的飞书用户 Open ID（填了才能发飞书语音）"
+    },
+    {
+      "name": "MINIMAX_API_KEY",
+      "type": "api_key",
+      "required": false,
+      "description": "MiniMax API Key（填了启用云端 TTS，不填则跳过）"
+    },
+    {
+      "name": "PIPER_BIN",
+      "type": "file_path",
+      "required": false,
+      "description": "Piper 主程序路径（填了启用本地 TTS 兜底）"
+    },
+    {
+      "name": "PIPER_MODEL",
+      "type": "file_path",
+      "required": false,
+      "description": "Piper ONNX 模型路径（填了启用本地 TTS 兜底）"
+    },
+    {
+      "name": "SENSE_VOICE_MODEL_DIR",
+      "type": "directory_path",
+      "required": false,
+      "description": "SenseVoice 模型目录（填了启用本地 ASR，不填则跳过）"
+    },
+    {
+      "name": "BITABLE_APP_TOKEN",
+      "type": "feishu_bitable_token",
+      "required": false,
+      "description": "飞书多维表格 App Token（不填则无艾宾浩斯记忆）"
+    },
+    {
+      "name": "BITABLE_WORDS_TABLE_ID",
+      "type": "string",
+      "required": false,
+      "description": "words 表 ID（单词记录表）"
+    },
+    {
+      "name": "BITABLE_CHAT_TABLE_ID",
+      "type": "string",
+      "required": false,
+      "description": "chat_log 表 ID（对话历史表）"
+    }
+  ],
+  "module_design": {
+    "principle": "填了变量启用该模块，没填则静默跳过，不报错",
+    "modules": [
+      {
+        "name": "飞书语音推送",
+        "env": ["FEISHU_APP_ID", "FEISHU_APP_SECRET", "FEISHU_USER_OPEN_ID"],
+        "behavior_when_empty": "静默跳过，不发飞书语音"
+      },
+      {
+        "name": "MiniMax TTS",
+        "env": ["MINIMAX_API_KEY"],
+        "behavior_when_empty": "静默跳过，尝试 Piper 本地 TTS"
+      },
+      {
+        "name": "Piper 本地 TTS",
+        "env": ["PIPER_BIN", "PIPER_MODEL"],
+        "behavior_when_empty": "静默跳过，无 TTS 功能"
+      },
+      {
+        "name": "SenseVoice 本地 ASR",
+        "env": ["SENSE_VOICE_MODEL_DIR"],
+        "behavior_when_empty": "静默跳过，仅支持文字输入"
+      },
+      {
+        "name": "多维表格记忆",
+        "env": ["BITABLE_APP_TOKEN", "BITABLE_WORDS_TABLE_ID", "BITABLE_CHAT_TABLE_ID"],
+        "behavior_when_empty": "静默跳过，不记录学习进度"
+      }
+    ]
+  },
+  "scheduled_actions": [
+    {
+      "name": "每日晨间练习 08:00",
+      "cron": "0 8 * * *",
+      "timezone": "Asia/Shanghai",
+      "default_enabled": false,
+      "behavior": "用户选择开启后，自动生成跟读对话，发飞书语音，等待用户回复"
+    },
+    {
+      "name": "每日午间练习 12:00",
+      "cron": "0 12 * * *",
+      "timezone": "Asia/Shanghai",
+      "default_enabled": false,
+      "behavior": "同上"
+    },
+    {
+      "name": "每日晚间练习 20:00",
+      "cron": "0 20 * * *",
+      "timezone": "Asia/Shanghai",
+      "default_enabled": false,
+      "behavior": "同上"
+    }
+  ],
+  "data_storage": {
+    "conversation_history": {
+      "location": "飞书多维表格（BITABLE_APP_TOKEN 指向的多维表格）",
+      "enabled": "当 BITABLE_APP_TOKEN 存在时",
+      "fields": ["user_id", "role", "text", "voice_url", "created_at"],
+      "note": "口语练习对话内容和语音 URL 会被存储用于艾宾浩斯复习"
+    },
+    "word_records": {
+      "location": "飞书多维表格",
+      "enabled": "当 BITABLE_APP_TOKEN 存在时",
+      "fields": ["word", "user_id", "first_seen", "last_review", "next_review", "review_count", "mastery", "source"]
+    },
+    "config_file": {
+      "location": "~/.openclaw/english-tutor/config.json",
+      "sensitive": true,
+      "permission": "600",
+      "enabled": "always"
+    }
+  },
+  "external_downloads": [
+    {
+      "name": "Piper TTS",
+      "urls": [
+        "https://github.com/rhasspy/piper/releases/download/v1.2.0/piper_amd64.tar.gz",
+        "https://hf-mirror.com/rhasspy/piper-voices/resolve/main/en/en_US/lessac/medium/en_US-lessac-medium.onnx"
+      ],
+      "required": false,
+      "note": "本地 TTS 兜底方案。下载后建议校验 SHA256：sha256sum piper_amd64.tar.gz en_US-lessac-medium.onnx"
+    },
+    {
+      "name": "SenseVoice ASR",
+      "urls": [
+        "https://modelscope.cn/api/v1/models/xiaowangge/sherpa-onnx-sense-voice-small/resolve/master/model.onnx",
+        "https://modelscope.cn/api/v1/models/xiaowangge/sherpa-onnx-sense-voice-small/resolve/master/tokens.txt"
+      ],
+      "required": false,
+      "note": "本地 ASR，下载后建议校验 SHA256：sha256sum model.onnx tokens.txt"
+    }
+  ]
+}

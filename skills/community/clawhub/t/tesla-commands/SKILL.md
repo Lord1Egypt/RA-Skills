@@ -1,35 +1,57 @@
 ---
-name: "Tesla Commands"
-description: "Control your Tesla via MyTeslaMate API. Supports multi-vehicle accounts, climate control, and charging schedules."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/tesla-commands"
-sourceUrl: "https://clawhub.ai/skills/tesla-commands"
+name: tesla-commands
+description: Control your Tesla via MyTeslaMate API. Supports multi-vehicle accounts, climate control, and charging schedules.
+metadata: {"tags": ["tesla", "myteslamate", "ev", "car-control", "automation"]}
 ---
 
-# Tesla Commands
+# Tesla Commands Skill 🚗
 
-> Control your Tesla via MyTeslaMate API. Supports multi-vehicle accounts, climate control, and charging schedules.
+This skill allows you to monitor and control your Tesla vehicle using the MyTeslaMate API.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/tesla-commands`
-- **Source URL:** [https://clawhub.ai/skills/tesla-commands](https://clawhub.ai/skills/tesla-commands)
+## Prerequisites
 
-## Overview
+To use this skill, you must have:
+1.  A **MyTeslaMate** account with a configured vehicle.
+2.  An **API Token** from MyTeslaMate (Get it at [app.myteslamate.com/fleet](https://app.myteslamate.com/fleet)).
+3.  The **VIN** of your vehicle.
 
+### Environment Variables
+The following environment variables must be set for the skill to work:
+- `TESLA_MATE_TOKEN`: Your MyTeslaMate API token.
+- `TESLA_VIN`: Your vehicle's VIN (optional if you specify it via command line).
 
-## Installation
-To install this skill, run the following command in your terminal:
+## Tools
+
+### tesla-control
+
+Manage vehicle status, climate, charging, and schedules.
+
+**Usage:**
+`public-skills/tesla-commands/bin/tesla-control.py [options]`
+
+**Options:**
+- `--list`: List all vehicles on the account and their VINs.
+- `--status`: Fetch full vehicle data (battery, climate, location, locks, etc.).
+- `--wake`: Wake up the vehicle from sleep mode.
+- `--climate [on|off]`: Start or stop the climate control.
+- `--charge-limit [50-100]`: Set the battery charge limit percentage.
+- `--set-schedule [HH:MM]`: Set a scheduled charging start time.
+- `--clear-schedule`: Disable scheduled charging.
+- `--vin [VIN]`: Target a specific vehicle (overrides the default `TESLA_VIN`).
+
+## Examples
+
+**Wake up the car:**
 ```bash
-hermes skills install clawhub/tesla-commands
+./bin/tesla-control.py --wake
+```
+
+**Set charge limit to 80%:**
+```bash
+./bin/tesla-control.py --charge-limit 80
+```
+
+**Set charging to start at 02:00:**
+```bash
+./bin/tesla-control.py --set-schedule 02:00
 ```

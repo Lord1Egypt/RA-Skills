@@ -1,0 +1,9 @@
+{
+    "cpu_warning": 70,
+    "cpu_critical": 85,
+    "mem_warning": 75,
+    "mem_critical": 90,
+    "disk_warning": 80,
+    "disk_critical": 95,
+    "retention_days": 7
+}

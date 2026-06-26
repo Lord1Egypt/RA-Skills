@@ -1,0 +1,6 @@
+{
+  "name": "@tolstoy/clawhub-tolstoy-skill",
+  "version": "1.0.0",
+  "private": true,
+  "description": "ClawHub skill to connect OpenClaw to Tolstoy's MCP server"
+}

@@ -1,0 +1,78 @@
+{
+  "name": "TikTok B2B 引流台词生成器",
+  "version": "1.0.1",
+  "description": "根据产品信息自动生成 20-50 秒的 TikTok 视频台词，符合外贸引流规律（真人出镜、产品细节、公司实力、客户案例、互动引导）",
+  "icon": "https://example.com/icon.png",
+  "tags": ["TikTok", "B2B", "外贸", "视频脚本"],
+  "author": "Your Name",
+  "inputs": {
+    "type": "object",
+    "properties": {
+      "product_type": {
+        "type": "string",
+        "description": "产品类型，如男士休闲鞋、运动鞋等",
+        "example": "男士休闲鞋"
+      },
+      "material": {
+        "type": "string",
+        "description": "主要材质，如 PU 皮革、真皮等",
+        "example": "优质 PU 皮革"
+      },
+      "colors": {
+        "type": "array",
+        "items": {"type": "string"},
+        "description": "可提供的颜色列表",
+        "example": ["黑色", "白色", "棕色"]
+      },
+      "moq": {
+        "type": "string",
+        "description": "最小起订量描述",
+        "example": "120 双（可混 2-3 色）"
+      },
+      "customization": {
+        "type": "string",
+        "description": "可定制内容，如 logo、颜色等",
+        "example": "可定制 logo"
+      },
+      "target_markets": {
+        "type": "array",
+        "items": {"type": "string"},
+        "description": "主要目标市场国家",
+        "example": ["巴基斯坦", "埃及", "南非"]
+      },
+      "company_experience": {
+        "type": "string",
+        "description": "公司经验年数",
+        "example": "15 年"
+      },
+      "factory_own": {
+        "type": "boolean",
+        "description": "是否自有工厂",
+        "example": true
+      },
+      "extra_features": {
+        "type": "string",
+        "description": "其他亮点，如免费样品、认证等",
+        "example": "免费样品"
+      },
+      "contact_url": {
+        "type": "string",
+        "description": "服务联系网址，用于引导客户访问",
+        "example": "http://www.doumaotong.com",
+        "default": "http://www.doumaotong.com"
+      },
+      "style": {
+        "type": "string",
+        "enum": ["普通", "幽默", "惊喜"],
+        "description": "台词风格",
+        "default": "普通"
+      }
+    },
+    "required": ["product_type", "material", "colors", "moq", "target_markets"]
+  },
+  "output": {
+    "type": "string",
+    "description": "生成的视频台词（时长约20-50秒）"
+  },
+  "prompt_template": "你是一个 TikTok 外贸视频的脚本撰写专家。请根据以下信息，生成一段 20-50 秒的真人出镜视频台词。台词需口语化、自然，以第一人称（如 Hi guys, this is Anna）开场，突出产品细节、公司实力、客户案例。结尾处明确引导观众访问以下网站联系：{contact_url}。风格为 {style}。\n\n产品信息：\n- 产品类型：{product_type}\n- 材质：{material}\n- 颜色：{colors}\n- 最小起订量：{moq}\n- 可定制：{customization}\n- 主要市场：{target_markets}\n- 公司经验：{company_experience}\n- 自有工厂：{factory_own}\n- 其他亮点：{extra_features}\n\n请直接输出台词，不要有多余解释。"
+}

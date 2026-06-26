@@ -1,0 +1,88 @@
+{
+  "analysis_scope": "live",
+  "ticker": "600900.SH",
+  "company": "China Yangtze Power Co., Ltd.",
+  "analysis_year": 2026,
+  "data_source": "Yangtze Power 2024 annual report (published 2025-04-30), company investor-relations disclosures for 2025 Q1/H1/Q3, and market valuation data available through 2026-03-12",
+  "analyzed_date": "2026-03-24",
+
+  "hard_gates": {
+    "g1_roe_roic": {
+      "value": 0.1285,
+      "metric_used": "ROE",
+      "years_averaged": "2022-2024",
+      "pass": true
+    },
+    "g2_fcf_to_ni": {
+      "value": 1.39,
+      "fcf": 45228.0,
+      "net_income": 32496.0,
+      "pass": true
+    },
+    "g3_leverage": {
+      "metric_used": "Net Debt/EBITDA",
+      "value": 4.48,
+      "pass": false
+    },
+    "g4_revenue_trend": {
+      "description": "Revenue rose from RMB 68.86bn in 2022 to RMB 78.11bn in 2023 and RMB 84.49bn in 2024. 2025 disclosed Q1/H1/Q3 earnings remained stable to improving.",
+      "structural_decline": false,
+      "pass": true
+    },
+    "g5_gross_margin_trend": {
+      "description": "Hydropower gross margin improved from about 59.74% in 2022 to 60.97% in 2023 and 62.51% in 2024; no multi-year deterioration.",
+      "declining_2plus_years": false,
+      "pass": true
+    },
+    "g6_earnings_yield": {
+      "value": 0.0339,
+      "net_income_m": 32496.0,
+      "ev_m": 958303.0,
+      "exemption": "INFRA_EXEMPTION",
+      "pass": false
+    },
+    "g7_moat": {
+      "verdict": "PASS",
+      "moat_type": "monopoly",
+      "description": "Yangtze Power owns and operates the core cascade assets of the world's largest hydropower corridor. These are irreplaceable strategic assets with dispatch advantages, low variable costs, state-backed importance, and decades-long remaining lives. In China, this is as close as a listed utility gets to a true monopoly moat.",
+      "pass": true
+    }
+  },
+
+  "special_channel": "INFRA_EXEMPTION",
+
+  "review_notes": {
+    "quality_multiple_note": {
+      "summary": "Yangtze Power deserves a quality premium because it owns irreplaceable hydropower assets and sits close to a listed monopoly in China.",
+      "reason_for_low_yield": "The low yield reflects genuine infrastructure quality, but also a price that has already moved near the upper end of what the infra-exemption should tolerate once leverage is considered.",
+      "decision_impact": "This note explains why the company is a great asset yet still a PASS today: the quality is real, but the valuation and leverage do not leave enough safety margin."
+    },
+    "management_veto": {
+      "status": "clear",
+      "summary": "No integrity or capital-allocation veto is visible from the public disclosures used here; the constraint is price and balance-sheet load, not stewardship trust."
+    }
+  },
+
+  "control_groups": [
+    {
+      "ticker": "600025.SH",
+      "company": "Huaneng Lancang River Hydropower Inc.",
+      "year": 2026,
+      "gates_failed": ["g1_roe_roic", "g2_fcf_to_ni", "g3_leverage", "g6_earnings_yield"],
+      "conclusion": "PASS — still a good hydro asset, but ROE is only about 11.28%, free cash flow is negative, leverage is 6.43x debt/EBITDA, and EV/EBITDA is above the infra-exemption boundary."
+    },
+    {
+      "ticker": "600886.SH",
+      "company": "SDIC Power Holdings Co., Ltd.",
+      "year": 2026,
+      "gates_failed": ["g1_roe_roic", "g3_leverage", "g6_earnings_yield", "g7_moat"],
+      "conclusion": "PASS — mixed hydro/thermal/new energy portfolio lacks Yangtze Power's monopoly position, while ROE is about 10.37% and debt/EBITDA is 5.65x."
+    }
+  ],
+
+  "conclusion": "PASS",
+  "buffett_action": "N/A — live analysis, not a Berkshire historical backtest case",
+  "actual_result": "Open",
+  "verdict": "N/A",
+  "key_insight": "This is one of the best infrastructure assets in A-shares, but even great regulated monopolies become mediocre investments when leverage is high and the price moves to the top end of the fair range."
+}

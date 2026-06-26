@@ -1,0 +1,42 @@
+name: tax-knowledge-skill
+version: 1.0.0
+description: 基于 RAGFlow 的税务知识智能问答技能，支持增值税、所得税等税务政策查询
+author: zhao xin
+license: MIT
+repository: https://github.com/zhaoxin139/tax-knowledge-skill
+homepage: https://github.com/zhaoxin139/tax-knowledge-skill
+category: business
+tags:
+  - tax
+  - knowledge-base
+  - ragflow
+  - chinese
+  - enterprise
+  - vat
+  - income-tax
+dependencies:
+  - python>=3.6
+  - requests>=2.28.0
+  - python-dotenv>=1.0.0
+entry_point: query_tax.py
+parameters:
+  - name: user_query
+    type: string
+    required: true
+    description: 用户的税务问题
+examples:
+  - question: "最新的增值税优惠政策是什么？"
+    description: "查询最新增值税政策"
+  - question: "企业所得税的扣除标准有哪些？"
+    description: "了解企业所得税扣除规定"
+  - question: "个人所得税专项附加扣除包括哪些？"
+    description: "查询个税专项附加扣除项目"
+requirements:
+  - RAGFLOW_API_URL
+  - RAGFLOW_API_KEY
+  - RAGFLOW_CHAT_ID
+notes: |
+  使用前需要配置 RAGFlow 环境变量：
+  1. 复制 .env.example 为 .env
+  2. 填入你的 RAGFlow API 配置
+  3. 运行 python query_tax.py 测试

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Thesis Defense Q&A Generator"
+  short_description: "Generate thesis defense questions and answers"
+  default_prompt: "Use $thesis-defense-qa-generator to generate likely defense questions and answers from my complete thesis in the same language as the thesis."

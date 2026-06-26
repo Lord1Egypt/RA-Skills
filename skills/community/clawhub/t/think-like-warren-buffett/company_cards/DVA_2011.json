@@ -1,0 +1,56 @@
+{
+  "ticker": "DVA",
+  "company": "DaVita Inc.",
+  "analysis_year": 2012,
+  "data_source": "DaVita FY2011 10-K, SEC EDGAR; Berkshire/DaVita Schedule 13G filed 2012-10-01",
+  "analyzed_date": "2026-03-26",
+
+  "hard_gates": {
+    "g1_roe_roic": { "value": 0.209, "metric_used": "ROE", "years_averaged": "2009-2011", "pass": true },
+    "g2_fcf_to_ni": { "value": 1.63, "fcf": 779.9, "net_income": 478.0, "pass": true },
+    "g3_leverage": { "metric_used": "Net Debt/EBITDA", "value": 2.94, "pass": true },
+    "g4_revenue_trend": { "description": "Net operating revenue rose from $6.10B in 2009 to $6.44B in 2010 to $6.98B in 2011, supported by recurring dialysis treatments, steady patient growth, and the DSI acquisition. No structural decline was visible in the business.", "structural_decline": false, "pass": true },
+    "g5_gross_margin_trend": { "description": "For this service-heavy business, operating margin is the more useful proxy. It improved from about 15.4% in 2009 to 15.5% in 2010 to 16.2% in 2011, so there was no two-year deterioration.", "declining_2plus_years": false, "pass": true },
+    "g6_earnings_yield": { "value": 0.041, "net_income_m": 478.0, "ev_m": 11753, "exemption": null, "pass": false },
+    "g7_moat": { "verdict": "PASS", "moat_type": "switching_cost", "description": "DaVita had a real moat by 2012: chronic dialysis is a life-sustaining recurring service, patients return multiple times per week, physician relationships matter, local center density improves economics, and only a handful of scaled operators can handle the reimbursement, clinical, and procurement complexity. Rivals could build centers, but replicating DaVita's network density, care protocols, and operating system across markets was much harder.", "pass": true }
+  },
+
+  "special_channel": null,
+
+  "review_notes": {
+    "quality_multiple_note": {
+      "summary": "DaVita screened expensive on a blunt earnings-yield basis even though the underlying business had recurring demand, strong local density economics, and oligopoly structure.",
+      "reason_for_low_yield": "The low yield reflected the market's willingness to pay for predictable chronic-care cash flows and a concentrated dialysis market, not pure hype. But the premium also sat alongside reimbursement risk, legal scrutiny, and non-trivial leverage.",
+      "decision_impact": "This note softens g6 but does not override it. The archived PASS remains because a 4% earnings yield left limited margin of safety for a regulated healthcare-services operator with active federal inquiries."
+    },
+    "management_veto": {
+      "status": "watch",
+      "summary": "The 2011 10-K disclosed multiple federal inquiries and subpoenas related to physician relationships and Medicaid matters. No proceedings had been initiated, but the governance and regulatory overhang was material enough to keep the case under watch rather than treating management quality as fully clean."
+    }
+  },
+
+  "metrics_snapshot": {
+    "net_operating_revenue_2011_usd_m": 6982.2,
+    "operating_income_2011_usd_m": 1130.8,
+    "net_income_attributable_2011_usd_m": 478.0,
+    "operating_cash_flow_2011_usd_m": 1180.0,
+    "capital_expenditures_2011_usd_m": 400.2,
+    "cash_2011_usd_m": 365.3,
+    "long_term_debt_2011_usd_m": 4417.6,
+    "weighted_avg_basic_shares_2011_m": 94.658,
+    "market_value_jan_2012_usd_m": 7700,
+    "berkshire_shares_2012_m": 10.198,
+    "berkshire_stake_pct_2012": 10.8
+  },
+
+  "control_groups": [
+    { "ticker": "FMS", "company": "Fresenius Medical Care AG & Co. KGaA", "year": 2012, "gates_failed": ["g6_earnings_yield"], "conclusion": "PASS — close industry peer with real scale, but no clearer bargain and a more complicated integrated device-and-services model." },
+    { "ticker": "THC", "company": "Tenet Healthcare Corporation", "year": 2012, "gates_failed": ["g3_leverage", "g7_moat"], "conclusion": "PASS — hospital-system economics were more levered, less recurring, and less protected than DaVita's chronic dialysis franchise." }
+  ],
+
+  "conclusion": "PASS",
+  "buffett_action": "By September 21, 2012 Berkshire reported beneficial ownership of 10,197,569 DaVita shares, or 10.8% of the company, via Schedule 13G.",
+  "actual_result": "DaVita went on to become a long-duration Berkshire healthcare holding, and Berkshire's ownership percentage later climbed much higher as the company kept repurchasing stock.",
+  "verdict": "❌ framework_wrong",
+  "key_insight": "DaVita extends the g6 problem beyond brands and ratings: a dense, recurring, regulated healthcare-service oligopoly can still compound even when a blunt earnings-yield screen says the stock is too expensive."
+}

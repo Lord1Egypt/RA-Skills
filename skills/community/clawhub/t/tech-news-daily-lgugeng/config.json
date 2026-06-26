@@ -1,0 +1,77 @@
+{
+  "sources": {
+    "github": {
+      "url": "https://github.com/trending",
+      "enabled": true,
+      "languages": ["python", "typescript", "go", "rust"],
+      "name": "GitHub Trending"
+    },
+    "baidu": {
+      "url": "https://top.baidu.com/board?tab=realtime&category=tech",
+      "enabled": true,
+      "name": "百度热搜科技榜",
+      "keywords": ["AI", "aigc", "大模型", "芯片"]
+    },
+    "jiqizhixin": {
+      "url": "https://www.jiqizhixin.com/",
+      "enabled": true,
+      "name": "机器之心"
+    },
+    "qbitai": {
+      "url": "https://www.qbitai.com/",
+      "enabled": true,
+      "name": "量子位"
+    },
+    "xinzhigyuan": {
+      "url": "https://www.jiqizhixin.com/",
+      "enabled": true,
+      "name": "新智元"
+    },
+    "zhidx": {
+      "url": "https://www.zhidx.com/",
+      "enabled": true,
+      "name": "智东西"
+    },
+    "36kr": {
+      "url": "https://36kr.com/",
+      "enabled": true,
+      "name": "36氪",
+      "category": "ai"
+    },
+    "infoq": {
+      "url": "https://www.infoq.cn/",
+      "enabled": true,
+      "name": "InfoQ"
+    },
+    "tmtpost": {
+      "url": "https://www.tmtpost.com/",
+      "enabled": true,
+      "name": "钛媒体"
+    },
+    "leiphone": {
+      "url": "https://www.leiphone.com/",
+      "enabled": true,
+      "name": "雷锋网"
+    },
+    "deeptech": {
+      "url": "https://www.deeptech.cn/",
+      "enabled": true,
+      "name": "DeepTech深科技"
+    }
+  },
+  "keywords": [
+    "大模型", "LLM", "GPT", "AI", "人工智能", "AIGC",
+    "芯片", "GPU", "算力", "NVIDIA",
+    "机器人", "自动驾驶", "AGI",
+    "深度学习", "机器学习", "神经网络"
+  ],
+  "exclude_keywords": [
+    "公关稿", "推广", "广告", "软文", "转载"
+  ],
+  "push_target": {
+    "type": "user",
+    "user_id": "ou_1015a19e1425cf0fd02e41bde45b986b"
+  },
+  "max_articles": 15,
+  "retention_days": 30
+}

@@ -1,35 +1,26 @@
 ---
-name: "TickHub"
-description: "股票实时行情查询技能。支持A股、港股、美股个股的实时价格、涨跌幅、成交量查询。 Use when: 用户询问某只股票的"股价"、"行情"、"涨了没"、"多少钱了"。 NOT for: 历史K线分析、技术指标计算、投资建议推荐。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/tickhub"
-sourceUrl: "https://clawhub.ai/skills/tickhub"
+name: stock-query
+description: |
+  股票实时行情查询技能。支持A股、港股、美股个股的实时价格、涨跌幅、成交量查询。
+  Use when: 用户询问某只股票的"股价"、"行情"、"涨了没"、"多少钱了"。
+  NOT for: 历史K线分析、技术指标计算、投资建议推荐。
 ---
 
-# TickHub
+# 股票查询助手
 
-> 股票实时行情查询技能。支持A股、港股、美股个股的实时价格、涨跌幅、成交量查询。 Use when: 用户询问某只股票的"股价"、"行情"、"涨了没"、"多少钱了"。 NOT for: 历史K线分析、技术指标计算、投资建议推荐。
+## 概述
+根据用户提供的股票代码或名称，通过东方财富/新浪财经API获取该股票的实时行情数据，返回当前价格、涨跌幅、成交量等核心指标。适用于快速查看股价、判断涨跌场景。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/tickhub`
-- **Source URL:** [https://clawhub.ai/skills/tickhub](https://clawhub.ai/skills/tickhub)
+## 工作流程
+1. 从用户消息中提取股票标识（代码优先，其次是名称）
+2. 判断市场：6位数字且60/00/30开头 → A股；数字.HK → 港股；字母组合 → 美股
+3. 调用对应市场的实时行情API
+4. 解析返回的JSON数据
+5. 格式化为易读文本输出
 
-## Overview
+## API 调用示例
 
-
-## Installation
-To install this skill, run the following command in your terminal:
+### A股行情接口
 ```bash
-hermes skills install clawhub/tickhub
-```
+# 获取贵州茅台（600519）实时行情
+curl "https://tickhub.net/stock/600519"

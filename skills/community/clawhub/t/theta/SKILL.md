@@ -1,35 +1,103 @@
 ---
-name: "Theta"
+name: "theta"
+version: "1.0.0"
 description: "Theta reference tool. Use when working with theta in finance contexts."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/theta"
-sourceUrl: "https://clawhub.ai/skills/theta"
+author: "BytesAgain"
+homepage: "https://bytesagain.com"
+source: "https://github.com/bytesagain/ai-skills"
+tags: [theta, finance, finance, reference, cli]
+category: "finance"
 ---
 
 # Theta
 
-> Theta reference tool. Use when working with theta in finance contexts.
+Theta reference tool. Use when working with theta in finance contexts.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/theta`
-- **Source URL:** [https://clawhub.ai/skills/theta](https://clawhub.ai/skills/theta)
+## When to Use
 
-## Overview
+- Working with theta and need quick reference
+- Looking up finance standards or best practices for theta
+- Troubleshooting theta issues
+- Need a checklist or guide for theta tasks
 
+## Commands
 
-## Installation
-To install this skill, run the following command in your terminal:
+### `intro`
+
 ```bash
-hermes skills install clawhub/theta
+scripts/script.sh intro
 ```
+
+Overview and fundamentals
+
+### `formulas`
+
+```bash
+scripts/script.sh formulas
+```
+
+Key formulas and calculations
+
+### `regulations`
+
+```bash
+scripts/script.sh regulations
+```
+
+Regulatory framework and compliance
+
+### `risks`
+
+```bash
+scripts/script.sh risks
+```
+
+Risk factors and mitigation
+
+### `instruments`
+
+```bash
+scripts/script.sh instruments
+```
+
+Instruments and tools overview
+
+### `strategies`
+
+```bash
+scripts/script.sh strategies
+```
+
+Common strategies and approaches
+
+### `glossary`
+
+```bash
+scripts/script.sh glossary
+```
+
+Key terms and definitions
+
+### `checklist`
+
+```bash
+scripts/script.sh checklist
+```
+
+Due diligence checklist
+
+### `help`
+
+```bash
+scripts/script.sh help
+```
+
+### `version`
+
+```bash
+scripts/script.sh version
+```
+
+---
+
+*Powered by BytesAgain | bytesagain.com | hello@bytesagain.com*

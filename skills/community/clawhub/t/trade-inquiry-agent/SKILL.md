@@ -1,35 +1,105 @@
 ---
-name: "外贸工厂询盘全流程 Agent"
-description: "外贸工厂询盘全流程 Agent。覆盖：询盘解析、产品可行性分析、报价单生成（中英文）、专业外贸邮件起草、客户建档与跟进管理。当用户提到外贸询盘、海外客户报价、出口报价单、外贸邮件、FOB/CIF 报价、工厂对外贸、出口报价等场景时触发。"
-category: "other"
-source: "ClawHub"
-tags: [export, foreign-trade, inquiry, manufacturing, quotation, trade]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/trade-inquiry-agent"
-sourceUrl: "https://clawhub.ai/skills/trade-inquiry-agent"
+name: trade-inquiry-agent
+description: 外贸工厂询盘全流程 Agent。覆盖：询盘解析、产品可行性分析、报价单生成（中英文）、专业外贸邮件起草、客户建档与跟进管理。当用户提到外贸询盘、海外客户报价、出口报价单、外贸邮件、FOB/CIF 报价、工厂对外贸、出口报价等场景时触发。
 ---
 
-# 外贸工厂询盘全流程 Agent
+# Trade Inquiry Agent — 外贸工厂询盘全流程
 
-> 外贸工厂询盘全流程 Agent。覆盖：询盘解析、产品可行性分析、报价单生成（中英文）、专业外贸邮件起草、客户建档与跟进管理。当用户提到外贸询盘、海外客户报价、出口报价单、外贸邮件、FOB/CIF 报价、工厂对外贸、出口报价等场景时触发。
+## 核心能力
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/trade-inquiry-agent`
-- **Source URL:** [https://clawhub.ai/skills/trade-inquiry-agent](https://clawhub.ai/skills/trade-inquiry-agent)
+1. **询盘解析** — 从客户邮件/消息中提取：品名、规格、数量、交期、目标价、付款方式、贸易术语
+2. **产品可行性分析** — 判断需求匹配度、原材料行情、产能判断、风险提示
+3. **报价单生成** — 输出标准外贸报价单（中英文，含 FOB/CIF/EXW 多种报价）
+4. **专业邮件起草** — 首封报价、跟进、还盘、拒绝、感谢等场景
+5. **客户建档** — 结构化记录客户信息、跟进节点、往来记录
 
-## Overview
+---
 
+## 工作流
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/trade-inquiry-agent
+### Step 1 — 询盘解析
+
+当用户提供原始询盘内容（邮件原文、截图、关键词），提取以下结构化字段：
+
 ```
+产品名称：
+规格/参数：
+数量：
+目标单价：
+目标总价：
+目标交期：
+付款方式：
+贸易术语（FOB/CIF/EXW）：
+其他要求（认证/包装/样品）：
+```
+
+若信息缺失，在回复中列出「需确认事项清单」，不要凭空假设。
+
+### Step 2 — 产品可行性分析
+
+基于工厂能力评估：
+- 原材料是否有库存/可采购
+- 最低起订量（MOQ）是否满足
+- 标准交期 vs 客户要求
+- 是否需要开模/定制（成本+时间）
+- 汇率/原材料波动风险提示
+- 给出「可接单」「有条件可接」「无法承接」的明确判断
+
+### Step 3 — 报价单生成
+
+生成标准报价单，包含：
+- 公司抬头、联系方式
+- 报价有效期
+- 产品明细（品名/规格/MOQ/单价/总价）
+- 贸易术语（FOB/CIF/EXW 分别报价）
+- 交货周期
+- 付款条件
+- 包装方式
+- 验货标准
+
+中文 + 英文双语版本。用 Markdown 表格输出，可直接复制发送。
+
+### Step 4 — 邮件起草
+
+根据场景选择对应模板（详见 `references/email_templates.md`）：
+- **首封报价邮件**：专业简洁，包含核心参数 + 有效期
+- **跟进邮件**：3/7/14 天节奏，不同催单力度
+- **还盘邮件**：处理客户议价，策略性让步
+- **拒绝/转介邮件**：礼貌拒绝，维护关系
+
+### Step 5 — 客户建档
+
+使用结构化格式记录：
+
+```
+## 客户档案
+- 公司名称：
+- 联系人 / 职位：
+- 国家/地区：
+- 主营产品：
+- 询盘次数：
+- 成交记录：
+- 跟进记录（日期 | 内容 | 下一步）：
+- 备注：
+```
+
+---
+
+## 报价计算参考
+
+**FOB = EXW + 内陆运费 + 港口费 + 订舱费 + 文件费**
+**CIF = FOB + 海运费 + 保险费**
+**CFR = FOB + 海运费**
+
+利润率建议区间：
+- 老客户/大订单：8%-15%
+- 新客户/小订单：15%-25%
+- 定制品/小批量：25%-40%
+
+---
+
+## 参考文件
+
+- 邮件模板库 → `references/email_templates.md`
+- 报价单结构参考 → `references/quotation.md`
+- 产品分类与参数参考 → `references/product_classification.md`

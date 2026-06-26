@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "graph-task.expected-result.schema.v0",
+  "title": "ExpectedResult",
+  "type": "object",
+  "required": ["summary", "verification"],
+  "properties": {
+    "summary": {
+      "type": "string",
+      "description": "Natural-language statement of what should be true after the work."
+    },
+    "verification": {
+      "type": "object",
+      "required": ["level", "checks"],
+      "properties": {
+        "level": {
+          "type": "string",
+          "enum": ["unit", "integrated", "closed"]
+        },
+        "checks": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["id", "type", "prompt"],
+            "properties": {
+              "id": {"type": "string"},
+              "type": {
+                "type": "string",
+                "enum": ["state", "artifact", "behavior", "human-review"]
+              },
+              "prompt": {
+                "type": "string",
+                "description": "Structured natural-language assertion that OpenClaw can review."
+              },
+              "must_pass": {"type": "boolean", "default": true}
+            }
+          }
+        }
+      }
+    },
+    "failure_handling": {
+      "type": "object",
+      "properties": {
+        "retry_hint": {"type": "string"},
+        "branch_hint": {"type": "string"},
+        "escalate_when": {"type": "string"}
+      }
+    }
+  }
+}

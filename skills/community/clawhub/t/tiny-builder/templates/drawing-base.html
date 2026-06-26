@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Drawing Pad!</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            /* CUSTOMIZE: Change background */
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Comic Sans MS', 'Arial Rounded MT Bold', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        #title {
+            color: white;
+            font-size: 48px;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+        }
+        
+        #canvas-container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+        
+        #canvas {
+            border: 4px solid #333;
+            border-radius: 10px;
+            cursor: crosshair;
+            touch-action: none;
+            display: block;
+            background: white;
+        }
+        
+        #controls {
+            background: white;
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            max-width: 800px;
+        }
+        
+        #color-palette {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
+            gap: 10px;
+        }
+        
+        .color-btn {
+            width: 100%;
+            aspect-ratio: 1;
+            border: 4px solid transparent;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.2s;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .color-btn:hover {
+            transform: scale(1.1);
+        }
+        
+        .color-btn.selected {
+            border-color: #333;
+            transform: scale(1.05);
+        }
+        
+        #size-control {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        #size-label {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+            min-width: 180px;
+        }
+        
+        #size-slider {
+            flex: 1;
+            height: 50px;
+            -webkit-appearance: none;
+            appearance: none;
+            background: linear-gradient(to right, #ddd, #333);
+            border-radius: 25px;
+            outline: none;
+        }
+        
+        #size-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 60px;
+            height: 60px;
+            background: white;
+            cursor: pointer;
+            border-radius: 50%;
+            border: 4px solid #667eea;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        #size-slider::-moz-range-thumb {
+            width: 60px;
+            height: 60px;
+            background: white;
+            cursor: pointer;
+            border-radius: 50%;
+            border: 4px solid #667eea;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        #button-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        
+        .action-btn {
+            padding: 20px;
+            font-size: 28px;
+            font-family: inherit;
+            font-weight: bold;
+            border: none;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.2s;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+            color: white;
+        }
+        
+        #clear-btn {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+        
+        #save-btn {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+        
+        .action-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <!-- CUSTOMIZE: Change the title -->
+    <h1 id="title">🎨 My Drawing Pad!</h1>
+    
+    <div id="canvas-container">
+        <!-- CUSTOMIZE: Change canvas size if needed (width/height) -->
+        <canvas id="canvas" width="800" height="600"></canvas>
+    </div>
+    
+    <div id="controls">
+        <!-- CUSTOMIZE: Add, remove, or change colors -->
+        <div id="color-palette">
+            <button class="color-btn selected" style="background: #FF6B6B;" data-color="#FF6B6B"></button>
+            <button class="color-btn" style="background: #FFA500;" data-color="#FFA500"></button>
+            <button class="color-btn" style="background: #FFD93D;" data-color="#FFD93D"></button>
+            <button class="color-btn" style="background: #6BCF7F;" data-color="#6BCF7F"></button>
+            <button class="color-btn" style="background: #4D96FF;" data-color="#4D96FF"></button>
+            <button class="color-btn" style="background: #9D4EDD;" data-color="#9D4EDD"></button>
+        </div>
+        
+        <div id="size-control">
+            <label id="size-label">Brush Size: <span id="size-value">10</span>px</label>
+            <!-- CUSTOMIZE: Change min/max brush size -->
+            <input type="range" id="size-slider" min="2" max="50" value="10">
+        </div>
+        
+        <div id="button-row">
+            <button id="clear-btn" class="action-btn">🗑️ Clear</button>
+            <button id="save-btn" class="action-btn">💾 Save</button>
+        </div>
+    </div>
+
+    <script>
+        // ============================================
+        // CANVAS SETUP
+        // ============================================
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        
+        // Scale for high-DPI displays
+        const dpr = window.devicePixelRatio || 1;
+        const rect = canvas.getBoundingClientRect();
+        canvas.width = rect.width * dpr;
+        canvas.height = rect.height * dpr;
+        ctx.scale(dpr, dpr);
+        canvas.style.width = rect.width + 'px';
+        canvas.style.height = rect.height + 'px';
+        
+        // CUSTOMIZE: Change initial canvas background color
+        ctx.fillStyle = '#FFFFFF';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        
+        // ============================================
+        // DRAWING STATE
+        // ============================================
+        let isDrawing = false;
+        let currentColor = '#FF6B6B'; // Default color
+        let brushSize = 10;
+        let lastX = 0;
+        let lastY = 0;
+        
+        // ============================================
+        // COLOR SELECTION
+        // ============================================
+        document.querySelectorAll('.color-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remove selected class from all buttons
+                document.querySelectorAll('.color-btn').forEach(b => b.classList.remove('selected'));
+                // Add selected class to clicked button
+                btn.classList.add('selected');
+                // Update current color
+                currentColor = btn.dataset.color;
+            });
+        });
+        
+        // ============================================
+        // BRUSH SIZE
+        // ============================================
+        const sizeSlider = document.getElementById('size-slider');
+        const sizeValue = document.getElementById('size-value');
+        
+        sizeSlider.addEventListener('input', (e) => {
+            brushSize = parseInt(e.target.value);
+            sizeValue.textContent = brushSize;
+        });
+        
+        // ============================================
+        // GET DRAWING POSITION
+        // ============================================
+        function getPosition(e) {
+            const rect = canvas.getBoundingClientRect();
+            const touch = e.touches?.[0];
+            const x = (touch ? touch.clientX : e.clientX) - rect.left;
+            const y = (touch ? touch.clientY : e.clientY) - rect.top;
+            return { x, y };
+        }
+        
+        // ============================================
+        // DRAWING FUNCTIONS
+        // ============================================
+        function startDrawing(e) {
+            e.preventDefault();
+            isDrawing = true;
+            const pos = getPosition(e);
+            lastX = pos.x;
+            lastY = pos.y;
+        }
+        
+        function draw(e) {
+            if (!isDrawing) return;
+            e.preventDefault();
+            
+            const pos = getPosition(e);
+            
+            // Set drawing style
+            ctx.strokeStyle = currentColor;
+            ctx.lineWidth = brushSize;
+            ctx.lineCap = 'round';
+            ctx.lineJoin = 'round';
+            
+            // Draw line from last position to current position
+            ctx.beginPath();
+            ctx.moveTo(lastX, lastY);
+            ctx.lineTo(pos.x, pos.y);
+            ctx.stroke();
+            
+            // Update last position
+            lastX = pos.x;
+            lastY = pos.y;
+        }
+        
+        function stopDrawing() {
+            isDrawing = false;
+        }
+        
+        // ============================================
+        // EVENT LISTENERS
+        // ============================================
+        
+        // Mouse events
+        canvas.addEventListener('mousedown', startDrawing);
+        canvas.addEventListener('mousemove', draw);
+        canvas.addEventListener('mouseup', stopDrawing);
+        canvas.addEventListener('mouseout', stopDrawing);
+        
+        // Touch events (for tablets/phones)
+        canvas.addEventListener('touchstart', startDrawing);
+        canvas.addEventListener('touchmove', draw);
+        canvas.addEventListener('touchend', stopDrawing);
+        
+        // ============================================
+        // CLEAR BUTTON
+        // ============================================
+        document.getElementById('clear-btn').addEventListener('click', () => {
+            ctx.fillStyle = '#FFFFFF';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+        });
+        
+        // ============================================
+        // SAVE BUTTON
+        // ============================================
+        document.getElementById('save-btn').addEventListener('click', () => {
+            // Create download link
+            const link = document.createElement('a');
+            link.download = 'my-drawing.png';
+            link.href = canvas.toDataURL();
+            link.click();
+            
+            // Show feedback
+            const btn = document.getElementById('save-btn');
+            const originalText = btn.textContent;
+            btn.textContent = '✅ Saved!';
+            setTimeout(() => {
+                btn.textContent = originalText;
+            }, 2000);
+        });
+    </script>
+</body>
+</html>

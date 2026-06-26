@@ -1,0 +1,1062 @@
+{
+  "errors": [
+    {
+      "message": "Exception while fetching data (/search/search_response) : Failed to retrieve Sponsored Search",
+      "locations": [
+        {
+          "line": 161,
+          "column": 3
+        }
+      ],
+      "path": [
+        "search",
+        "search_response"
+      ],
+      "extensions": {
+        "backend": {
+          "name": "sponsored-search",
+          "status": 400,
+          "reason": "Bad Request"
+        },
+        "classification": "DataFetchingException"
+      }
+    }
+  ],
+  "data": {
+    "search": {
+      "search_recommendations": {},
+      "search_response": {
+        "facet_list": [
+          {
+            "facet_id": "d_channel",
+            "type": "checkbox",
+            "display_name": "Shipping & Pickup",
+            "expand": true,
+            "options": [
+              {
+                "display_name": "buy online & pick up",
+                "id": "5zl7w",
+                "url": "d_channel:buy online & pick up",
+                "value": "buy online & pick up"
+              },
+              {
+                "display_name": "get it today",
+                "id": "n0nx1",
+                "url": "d_channel:get it today",
+                "value": "get it today"
+              },
+              {
+                "display_name": "in stores",
+                "id": "5zkty",
+                "url": "d_channel:in stores",
+                "value": "in stores"
+              },
+              {
+                "display_name": "same day delivery",
+                "id": "cl92v",
+                "url": "d_channel:same day delivery",
+                "value": "same day delivery"
+              },
+              {
+                "display_name": "shipping",
+                "id": "5zktx",
+                "url": "d_channel:shipping",
+                "value": "shipping"
+              },
+              {
+                "display_name": "include out of stock",
+                "id": "fwtfr",
+                "url": "d_channel:include out of stock",
+                "value": "include out of stock"
+              }
+            ]
+          },
+          {
+            "facet_id": "d_brand_all",
+            "type": "checkbox",
+            "display_name": "Brand",
+            "expand": true,
+            "options": [
+              {
+                "display_name": "Parmalat",
+                "id": "q643lel3dct",
+                "url": "d_brand_all:parmalat",
+                "value": "parmalat"
+              },
+              {
+                "display_name": "Yoplait",
+                "id": "56fcd",
+                "url": "d_brand_all:yoplait",
+                "value": "yoplait"
+              }
+            ]
+          },
+          {
+            "facet_id": "d_milk_type",
+            "type": "checkbox",
+            "display_name": "Milk Type",
+            "expand": true,
+            "options": [
+              {
+                "display_name": "2 Percent",
+                "id": "5zlkd",
+                "url": "d_milk_type:2 percent",
+                "value": "2 percent"
+              },
+              {
+                "display_name": "Whole",
+                "id": "5zlky",
+                "url": "d_milk_type:whole",
+                "value": "whole"
+              }
+            ],
+            "popular_facet_values": [
+              {
+                "id": "5zlky",
+                "name": "Whole"
+              },
+              {
+                "id": "5zlkd",
+                "name": "2 Percent"
+              }
+            ]
+          },
+          {
+            "facet_id": "d_package_qty_grocery",
+            "type": "checkbox",
+            "display_name": "Package Count",
+            "expand": false,
+            "options": [
+              {
+                "display_name": "1",
+                "id": "fcfmj",
+                "url": "d_package_qty_grocery:0000 1",
+                "value": "0000 1"
+              }
+            ]
+          },
+          {
+            "facet_id": "d_item_type_all",
+            "type": "checkbox",
+            "display_name": "Type",
+            "expand": false,
+            "options": [
+              {
+                "display_name": "Milk and Buttermilk",
+                "id": "3npbd",
+                "url": "d_item_type_all:milk and buttermilk",
+                "value": "milk and buttermilk"
+              }
+            ],
+            "popular_facet_values": [
+              {
+                "id": "3npbd",
+                "name": "Milk and Buttermilk"
+              }
+            ]
+          },
+          {
+            "facet_id": "d_diet_type",
+            "type": "checkbox",
+            "display_name": "Diet Type",
+            "expand": false,
+            "options": [
+              {
+                "display_name": "Vegetarian",
+                "id": "ct6j",
+                "url": "d_diet_type:0000 vegetarian",
+                "value": "0000 vegetarian"
+              },
+              {
+                "display_name": "Keto",
+                "id": "k5pky",
+                "url": "d_diet_type:0005 keto",
+                "value": "0005 keto"
+              }
+            ],
+            "popular_facet_values": [
+              {
+                "id": "ct6j",
+                "name": "Vegetarian"
+              },
+              {
+                "id": "k5pky",
+                "name": "Keto"
+              }
+            ]
+          },
+          {
+            "facet_id": "d_sellers_all",
+            "type": "checkbox",
+            "display_name": "Sold by",
+            "expand": false,
+            "options": [
+              {
+                "display_name": "Target",
+                "id": "dq4mn",
+                "url": "d_sellers_all:0000 target",
+                "value": "0000 target"
+              }
+            ],
+            "popular_facet_values": [
+              {
+                "id": "dq4mn",
+                "name": "Target"
+              }
+            ]
+          },
+          {
+            "facet_id": "d_price_5_dollar_ranges",
+            "type": "checkbox",
+            "display_name": "Price",
+            "expand": false,
+            "options": [
+              {
+                "display_name": "$0 &nbsp;&ndash;&nbsp; $4.99",
+                "id": "tb9f0",
+                "url": "d_price_5_dollar_ranges:0000 $0 - $4.99",
+                "value": "0000 $0 - $4.99"
+              }
+            ]
+          },
+          {
+            "facet_id": "d_categorytaxonomy",
+            "type": "url",
+            "display_name": "Category",
+            "expand": false,
+            "options": [
+              {
+                "display_name": "Grocery",
+                "url": "keyword=milk&sort_by=relevance&count=3&offset=0&category=5xt1a",
+                "value": "5xt1a"
+              }
+            ]
+          },
+          {
+            "facet_id": "d_rating",
+            "type": "rating",
+            "display_name": "Guest Rating",
+            "expand": false,
+            "options": [
+              {
+                "display_name": "1",
+                "id": "5zkq2",
+                "url": "d_rating:0000 1",
+                "value": "0000 1"
+              },
+              {
+                "display_name": "2",
+                "id": "5zkq3",
+                "url": "d_rating:0001 2",
+                "value": "0001 2"
+              },
+              {
+                "display_name": "3",
+                "id": "5zkq4",
+                "url": "d_rating:0002 3",
+                "value": "0002 3"
+              },
+              {
+                "display_name": "4",
+                "id": "5zkq5",
+                "url": "d_rating:0003 4",
+                "value": "0003 4"
+              }
+            ]
+          }
+        ],
+        "metadata": {
+          "response_ids": [
+            "search-5fbc2628-d245-45eb-8817-27f34a4de350"
+          ],
+          "count": 3,
+          "current_page": 1,
+          "keyword": "milk",
+          "offset": 0,
+          "sort_by": "relevance",
+          "total_pages": 26,
+          "total_results": 76
+        },
+        "sort_options": [
+          {
+            "name": "relevance",
+            "value": "relevance"
+          },
+          {
+            "name": "Featured",
+            "value": "Featured"
+          },
+          {
+            "name": "PriceLow",
+            "value": "price-low to high"
+          },
+          {
+            "name": "PriceHigh",
+            "value": "price-high to low"
+          },
+          {
+            "name": "RatingHigh",
+            "value": "average ratings"
+          },
+          {
+            "name": "bestselling",
+            "value": "best seller"
+          },
+          {
+            "name": "newest",
+            "value": "newest"
+          }
+        ]
+      },
+      "products": [
+        {
+          "__typename": "ProductSummary",
+          "tcin": "15078348",
+          "original_tcin": "15078348",
+          "item": {
+            "cart_add_on_threshold": 35.0,
+            "relationship_type": "Variation Child",
+            "relationship_type_code": "VC",
+            "merchandise_classification": {
+              "class_id": 16,
+              "department_id": 231
+            },
+            "eligibility_rules": {
+              "add_on": {
+                "is_active": true
+              },
+              "scheduled_delivery": {
+                "is_active": true
+              }
+            },
+            "enrichment": {
+              "buy_url": "https://www.target.com/p/parmalat-grade-a-uht-2-reduced-fat-milk-32-fl-oz/-/A-15078348",
+              "image_info": {
+                "base_url": "//target.scene7.com/is/image/Target/",
+                "primary_image": {
+                  "url": "https://target.scene7.com/is/image/Target/GUEST_97be6dca-baa0-4079-ba56-9b90d1397de6",
+                  "image_name": "GUEST_97be6dca-baa0-4079-ba56-9b90d1397de6"
+                },
+                "alternate_images": [
+                  {
+                    "url": "https://target.scene7.com/is/image/Target/GUEST_582b3600-32f9-4d38-92de-7b3bde752d46",
+                    "image_name": "GUEST_582b3600-32f9-4d38-92de-7b3bde752d46"
+                  },
+                  {
+                    "url": "https://target.scene7.com/is/image/Target/GUEST_4006df06-9f47-42c1-b279-530eee050946",
+                    "image_name": "GUEST_4006df06-9f47-42c1-b279-530eee050946"
+                  },
+                  {
+                    "url": "https://target.scene7.com/is/image/Target/GUEST_c27c7341-85f1-46b4-881a-ef2b2a25edc4",
+                    "image_name": "GUEST_c27c7341-85f1-46b4-881a-ef2b2a25edc4"
+                  }
+                ],
+                "swatch_image": {}
+              }
+            },
+            "product_classification": {
+              "item_type": {
+                "name": "Milk and Buttermilk",
+                "type": "434372"
+              }
+            },
+            "compliance": {
+              "is_snap_eligible": true
+            },
+            "dpci": "231-16-0400",
+            "wellness_merchandise_attributes": [],
+            "product_description": {
+              "title": "Parmalat UHT 2% Reduced Fat Shelf Stable Milk - 32 fl oz",
+              "bullet_descriptions": [
+                "<B>Form:</B> Liquid",
+                "<B>State of Readiness:</B> Ready to Drink",
+                "<B>Package Quantity:</B> 1",
+                "<B>Milk fat level:</B> 2 Percent",
+                "<B>Net weight:</B> 32 fl oz (US)",
+                "<B>Beverage container material:</B> Paper or Cardboard"
+              ],
+              "soft_bullets": {
+                "bullets": [
+                  "Creamy 2% reduced-fat taste.",
+                  "Parmalat Shelf Stable 2% Reduced Fat Milk 32 fl oz.",
+                  "Pantry-ready UHT milk longer shelf life.",
+                  "Packed with calcium and protein.",
+                  "Enriched with vitamins A and D.",
+                  "No preservatives, just real milk.",
+                  "Perfect for coffee, cereal, baking."
+                ]
+              }
+            },
+            "fulfillment": {},
+            "primary_brand": {
+              "canonical_url": "/b/parmalat/-/N-q643lel3dct",
+              "linking_id": "q643lel3dct",
+              "name": "Parmalat"
+            },
+            "variation_info": {
+              "is_expanded_variation": true
+            }
+          },
+          "parent": {
+            "__typename": "ParentProductSummary",
+            "tcin": "94758333",
+            "item": {
+              "cart_add_on_threshold": 35.0,
+              "relationship_type": "Variation Parent",
+              "relationship_type_code": "VAP",
+              "merchandise_classification": {
+                "class_id": 16,
+                "department_id": 231
+              },
+              "enrichment": {
+                "buy_url": "https://www.target.com/p/parmalat-shelf-stable-milk-32-fl-oz/-/A-94758333",
+                "image_info": {
+                  "base_url": "//target.scene7.com/is/image/Target/",
+                  "primary_image": {
+                    "url": "https://target.scene7.com/is/image/Target/GUEST_97be6dca-baa0-4079-ba56-9b90d1397de6",
+                    "image_name": "GUEST_97be6dca-baa0-4079-ba56-9b90d1397de6"
+                  },
+                  "alternate_images": [
+                    {
+                      "url": "https://target.scene7.com/is/image/Target/GUEST_582b3600-32f9-4d38-92de-7b3bde752d46",
+                      "image_name": "GUEST_582b3600-32f9-4d38-92de-7b3bde752d46"
+                    },
+                    {
+                      "url": "https://target.scene7.com/is/image/Target/GUEST_4006df06-9f47-42c1-b279-530eee050946",
+                      "image_name": "GUEST_4006df06-9f47-42c1-b279-530eee050946"
+                    },
+                    {
+                      "url": "https://target.scene7.com/is/image/Target/GUEST_c27c7341-85f1-46b4-881a-ef2b2a25edc4",
+                      "image_name": "GUEST_c27c7341-85f1-46b4-881a-ef2b2a25edc4"
+                    }
+                  ],
+                  "swatch_image": {}
+                }
+              },
+              "compliance": {
+                "is_snap_eligible": true
+              },
+              "has_extended_sizing": false,
+              "wellness_merchandise_attributes": [],
+              "product_description": {
+                "title": "Parmalat Shelf Stable Milk - 32 fl oz",
+                "bullet_descriptions": [
+                  "<B>Form:</B> Liquid",
+                  "<B>State of Readiness:</B> Ready to Drink",
+                  "<B>Package Quantity:</B> 1",
+                  "<B>Milk fat level:</B> 2 Percent",
+                  "<B>Net weight:</B> 32 fl oz (US)",
+                  "<B>Beverage container material:</B> Paper or Cardboard"
+                ]
+              },
+              "product_classification": {
+                "item_type": {
+                  "name": "Milk and Buttermilk",
+                  "type": "434372"
+                }
+              },
+              "primary_brand": {
+                "canonical_url": "/b/parmalat/-/N-q643lel3dct",
+                "linking_id": "q643lel3dct",
+                "name": "Parmalat"
+              },
+              "variation_info": {}
+            },
+            "promotions": [],
+            "price": {
+              "formatted_current_price": "$3.69",
+              "formatted_current_price_type": "reg",
+              "location_id": 2281
+            },
+            "ratings_and_reviews": {
+              "statistics": {
+                "rating": {
+                  "average": 4.69,
+                  "count": 51,
+                  "secondary_averages": [
+                    {
+                      "id": "quality",
+                      "label": "quality",
+                      "value": 4.95
+                    },
+                    {
+                      "id": "taste",
+                      "label": "taste",
+                      "value": 4.83
+                    },
+                    {
+                      "id": "value",
+                      "label": "value",
+                      "value": 4.84
+                    }
+                  ]
+                }
+              }
+            },
+            "variation_summary": {
+              "themes": [
+                {
+                  "name": "Fat Content",
+                  "has_swatch": true,
+                  "swatches": [
+                    {
+                      "value": "2 Percent",
+                      "first_child": {
+                        "image_info": {
+                          "primary_image": {
+                            "url": "https://target.scene7.com/is/image/Target/GUEST_97be6dca-baa0-4079-ba56-9b90d1397de6",
+                            "image_name": "GUEST_97be6dca-baa0-4079-ba56-9b90d1397de6"
+                          },
+                          "swatch_image": {},
+                          "alternate_images": [
+                            {
+                              "url": "https://target.scene7.com/is/image/Target/GUEST_582b3600-32f9-4d38-92de-7b3bde752d46",
+                              "image_name": "GUEST_582b3600-32f9-4d38-92de-7b3bde752d46"
+                            },
+                            {
+                              "url": "https://target.scene7.com/is/image/Target/GUEST_4006df06-9f47-42c1-b279-530eee050946",
+                              "image_name": "GUEST_4006df06-9f47-42c1-b279-530eee050946"
+                            },
+                            {
+                              "url": "https://target.scene7.com/is/image/Target/GUEST_c27c7341-85f1-46b4-881a-ef2b2a25edc4",
+                              "image_name": "GUEST_c27c7341-85f1-46b4-881a-ef2b2a25edc4"
+                            }
+                          ]
+                        },
+                        "tcin": "15078348"
+                      }
+                    },
+                    {
+                      "value": "Whole",
+                      "first_child": {
+                        "image_info": {
+                          "primary_image": {
+                            "url": "https://target.scene7.com/is/image/Target/GUEST_879449a4-b002-4e52-b00a-7014b1cdce3a",
+                            "image_name": "GUEST_879449a4-b002-4e52-b00a-7014b1cdce3a"
+                          },
+                          "swatch_image": {},
+                          "alternate_images": [
+                            {
+                              "url": "https://target.scene7.com/is/image/Target/GUEST_8a761ec7-efe0-468f-99b2-616b61df626a",
+                              "image_name": "GUEST_8a761ec7-efe0-468f-99b2-616b61df626a"
+                            },
+                            {
+                              "url": "https://target.scene7.com/is/image/Target/GUEST_356a9a1f-9ae1-4d52-a741-5b03dfc8ca88",
+                              "image_name": "GUEST_356a9a1f-9ae1-4d52-a741-5b03dfc8ca88"
+                            },
+                            {
+                              "url": "https://target.scene7.com/is/image/Target/GUEST_26dfcb89-dcc0-4687-8f43-9788c0873a9f",
+                              "image_name": "GUEST_26dfcb89-dcc0-4687-8f43-9788c0873a9f"
+                            }
+                          ]
+                        },
+                        "tcin": "15078349"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "Size",
+                  "has_swatch": true,
+                  "swatches": [
+                    {
+                      "value": "32 fl oz",
+                      "first_child": {
+                        "image_info": {
+                          "primary_image": {
+                            "url": "https://target.scene7.com/is/image/Target/GUEST_97be6dca-baa0-4079-ba56-9b90d1397de6",
+                            "image_name": "GUEST_97be6dca-baa0-4079-ba56-9b90d1397de6"
+                          },
+                          "swatch_image": {},
+                          "alternate_images": [
+                            {
+                              "url": "https://target.scene7.com/is/image/Target/GUEST_582b3600-32f9-4d38-92de-7b3bde752d46",
+                              "image_name": "GUEST_582b3600-32f9-4d38-92de-7b3bde752d46"
+                            },
+                            {
+                              "url": "https://target.scene7.com/is/image/Target/GUEST_4006df06-9f47-42c1-b279-530eee050946",
+                              "image_name": "GUEST_4006df06-9f47-42c1-b279-530eee050946"
+                            },
+                            {
+                              "url": "https://target.scene7.com/is/image/Target/GUEST_c27c7341-85f1-46b4-881a-ef2b2a25edc4",
+                              "image_name": "GUEST_c27c7341-85f1-46b4-881a-ef2b2a25edc4"
+                            }
+                          ]
+                        },
+                        "tcin": "15078348"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          },
+          "promotions": [],
+          "price": {
+            "current_retail": 3.69,
+            "display_was_now": false,
+            "formatted_current_price": "$3.69",
+            "formatted_current_price_type": "reg",
+            "formatted_unit_price": "$0.12",
+            "formatted_unit_price_suffix": "/fluid ounce",
+            "reg_retail": 3.69,
+            "location_id": 2281
+          },
+          "category": {
+            "category_id": "h29og",
+            "parent_category_id": "5xszh"
+          }
+        },
+        {
+          "__typename": "ProductSummary",
+          "tcin": "15078349",
+          "original_tcin": "15078349",
+          "item": {
+            "cart_add_on_threshold": 35.0,
+            "relationship_type": "Variation Child",
+            "relationship_type_code": "VC",
+            "merchandise_classification": {
+              "class_id": 16,
+              "department_id": 231
+            },
+            "eligibility_rules": {
+              "add_on": {
+                "is_active": true
+              },
+              "scheduled_delivery": {
+                "is_active": true
+              }
+            },
+            "enrichment": {
+              "buy_url": "https://www.target.com/p/parmalat-uht-shelf-stable-whole-milk-32-fl-oz/-/A-15078349",
+              "image_info": {
+                "base_url": "//target.scene7.com/is/image/Target/",
+                "primary_image": {
+                  "url": "https://target.scene7.com/is/image/Target/GUEST_879449a4-b002-4e52-b00a-7014b1cdce3a",
+                  "image_name": "GUEST_879449a4-b002-4e52-b00a-7014b1cdce3a"
+                },
+                "alternate_images": [
+                  {
+                    "url": "https://target.scene7.com/is/image/Target/GUEST_8a761ec7-efe0-468f-99b2-616b61df626a",
+                    "image_name": "GUEST_8a761ec7-efe0-468f-99b2-616b61df626a"
+                  },
+                  {
+                    "url": "https://target.scene7.com/is/image/Target/GUEST_356a9a1f-9ae1-4d52-a741-5b03dfc8ca88",
+                    "image_name": "GUEST_356a9a1f-9ae1-4d52-a741-5b03dfc8ca88"
+                  },
+                  {
+                    "url": "https://target.scene7.com/is/image/Target/GUEST_26dfcb89-dcc0-4687-8f43-9788c0873a9f",
+                    "image_name": "GUEST_26dfcb89-dcc0-4687-8f43-9788c0873a9f"
+                  }
+                ],
+                "swatch_image": {}
+              }
+            },
+            "product_classification": {
+              "item_type": {
+                "name": "Milk and Buttermilk",
+                "type": "434372"
+              }
+            },
+            "compliance": {
+              "is_snap_eligible": true
+            },
+            "dpci": "231-16-0401",
+            "wellness_merchandise_attributes": [],
+            "product_description": {
+              "title": "Parmalat UHT Shelf Stable Whole Milk - 32 fl oz",
+              "bullet_descriptions": [
+                "<B>Form:</B> Liquid",
+                "<B>State of Readiness:</B> Ready to Drink",
+                "<B>Package Quantity:</B> 1",
+                "<B>Milk fat level:</B> Whole",
+                "<B>Net weight:</B> 32 fl oz (US)",
+                "<B>Beverage container material:</B> Paper or Cardboard"
+              ],
+              "soft_bullets": {
+                "bullets": [
+                  "Creamy shelf-stable whole milk.",
+                  "Parmalat Shelf Stable Whole Milk – 32 fl oz.",
+                  "Long shelf life, no refrigeration until opened.",
+                  "Rich source of calcium and protein.",
+                  "Nutrient-packed with vitamin D added.",
+                  "Grade A UHT milk for safety.",
+                  "Affordable shelf-safe everyday dairy option."
+                ]
+              }
+            },
+            "fulfillment": {},
+            "primary_brand": {
+              "canonical_url": "/b/parmalat/-/N-q643lel3dct",
+              "linking_id": "q643lel3dct",
+              "name": "Parmalat"
+            },
+            "variation_info": {
+              "is_expanded_variation": true
+            }
+          },
+          "parent": {
+            "__typename": "ParentProductSummary",
+            "tcin": "94758333",
+            "item": {
+              "cart_add_on_threshold": 35.0,
+              "relationship_type": "Variation Parent",
+              "relationship_type_code": "VAP",
+              "merchandise_classification": {
+                "class_id": 16,
+                "department_id": 231
+              },
+              "enrichment": {
+                "buy_url": "https://www.target.com/p/parmalat-shelf-stable-milk-32-fl-oz/-/A-94758333",
+                "image_info": {
+                  "base_url": "//target.scene7.com/is/image/Target/",
+                  "primary_image": {
+                    "url": "https://target.scene7.com/is/image/Target/GUEST_97be6dca-baa0-4079-ba56-9b90d1397de6",
+                    "image_name": "GUEST_97be6dca-baa0-4079-ba56-9b90d1397de6"
+                  },
+                  "alternate_images": [
+                    {
+                      "url": "https://target.scene7.com/is/image/Target/GUEST_582b3600-32f9-4d38-92de-7b3bde752d46",
+                      "image_name": "GUEST_582b3600-32f9-4d38-92de-7b3bde752d46"
+                    },
+                    {
+                      "url": "https://target.scene7.com/is/image/Target/GUEST_4006df06-9f47-42c1-b279-530eee050946",
+                      "image_name": "GUEST_4006df06-9f47-42c1-b279-530eee050946"
+                    },
+                    {
+                      "url": "https://target.scene7.com/is/image/Target/GUEST_c27c7341-85f1-46b4-881a-ef2b2a25edc4",
+                      "image_name": "GUEST_c27c7341-85f1-46b4-881a-ef2b2a25edc4"
+                    }
+                  ],
+                  "swatch_image": {}
+                }
+              },
+              "compliance": {
+                "is_snap_eligible": true
+              },
+              "has_extended_sizing": false,
+              "wellness_merchandise_attributes": [],
+              "product_description": {
+                "title": "Parmalat Shelf Stable Milk - 32 fl oz",
+                "bullet_descriptions": [
+                  "<B>Form:</B> Liquid",
+                  "<B>State of Readiness:</B> Ready to Drink",
+                  "<B>Package Quantity:</B> 1",
+                  "<B>Milk fat level:</B> 2 Percent",
+                  "<B>Net weight:</B> 32 fl oz (US)",
+                  "<B>Beverage container material:</B> Paper or Cardboard"
+                ]
+              },
+              "product_classification": {
+                "item_type": {
+                  "name": "Milk and Buttermilk",
+                  "type": "434372"
+                }
+              },
+              "primary_brand": {
+                "canonical_url": "/b/parmalat/-/N-q643lel3dct",
+                "linking_id": "q643lel3dct",
+                "name": "Parmalat"
+              },
+              "variation_info": {}
+            },
+            "promotions": [],
+            "price": {
+              "formatted_current_price": "$3.69",
+              "formatted_current_price_type": "reg",
+              "location_id": 2281
+            },
+            "ratings_and_reviews": {
+              "statistics": {
+                "rating": {
+                  "average": 4.69,
+                  "count": 51,
+                  "secondary_averages": [
+                    {
+                      "id": "quality",
+                      "label": "quality",
+                      "value": 4.95
+                    },
+                    {
+                      "id": "taste",
+                      "label": "taste",
+                      "value": 4.83
+                    },
+                    {
+                      "id": "value",
+                      "label": "value",
+                      "value": 4.84
+                    }
+                  ]
+                }
+              }
+            },
+            "variation_summary": {
+              "themes": [
+                {
+                  "name": "Fat Content",
+                  "has_swatch": true,
+                  "swatches": [
+                    {
+                      "value": "2 Percent",
+                      "first_child": {
+                        "image_info": {
+                          "primary_image": {
+                            "url": "https://target.scene7.com/is/image/Target/GUEST_97be6dca-baa0-4079-ba56-9b90d1397de6",
+                            "image_name": "GUEST_97be6dca-baa0-4079-ba56-9b90d1397de6"
+                          },
+                          "swatch_image": {},
+                          "alternate_images": [
+                            {
+                              "url": "https://target.scene7.com/is/image/Target/GUEST_582b3600-32f9-4d38-92de-7b3bde752d46",
+                              "image_name": "GUEST_582b3600-32f9-4d38-92de-7b3bde752d46"
+                            },
+                            {
+                              "url": "https://target.scene7.com/is/image/Target/GUEST_4006df06-9f47-42c1-b279-530eee050946",
+                              "image_name": "GUEST_4006df06-9f47-42c1-b279-530eee050946"
+                            },
+                            {
+                              "url": "https://target.scene7.com/is/image/Target/GUEST_c27c7341-85f1-46b4-881a-ef2b2a25edc4",
+                              "image_name": "GUEST_c27c7341-85f1-46b4-881a-ef2b2a25edc4"
+                            }
+                          ]
+                        },
+                        "tcin": "15078348"
+                      }
+                    },
+                    {
+                      "value": "Whole",
+                      "first_child": {
+                        "image_info": {
+                          "primary_image": {
+                            "url": "https://target.scene7.com/is/image/Target/GUEST_879449a4-b002-4e52-b00a-7014b1cdce3a",
+                            "image_name": "GUEST_879449a4-b002-4e52-b00a-7014b1cdce3a"
+                          },
+                          "swatch_image": {},
+                          "alternate_images": [
+                            {
+                              "url": "https://target.scene7.com/is/image/Target/GUEST_8a761ec7-efe0-468f-99b2-616b61df626a",
+                              "image_name": "GUEST_8a761ec7-efe0-468f-99b2-616b61df626a"
+                            },
+                            {
+                              "url": "https://target.scene7.com/is/image/Target/GUEST_356a9a1f-9ae1-4d52-a741-5b03dfc8ca88",
+                              "image_name": "GUEST_356a9a1f-9ae1-4d52-a741-5b03dfc8ca88"
+                            },
+                            {
+                              "url": "https://target.scene7.com/is/image/Target/GUEST_26dfcb89-dcc0-4687-8f43-9788c0873a9f",
+                              "image_name": "GUEST_26dfcb89-dcc0-4687-8f43-9788c0873a9f"
+                            }
+                          ]
+                        },
+                        "tcin": "15078349"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "Size",
+                  "has_swatch": true,
+                  "swatches": [
+                    {
+                      "value": "32 fl oz",
+                      "first_child": {
+                        "image_info": {
+                          "primary_image": {
+                            "url": "https://target.scene7.com/is/image/Target/GUEST_97be6dca-baa0-4079-ba56-9b90d1397de6",
+                            "image_name": "GUEST_97be6dca-baa0-4079-ba56-9b90d1397de6"
+                          },
+                          "swatch_image": {},
+                          "alternate_images": [
+                            {
+                              "url": "https://target.scene7.com/is/image/Target/GUEST_582b3600-32f9-4d38-92de-7b3bde752d46",
+                              "image_name": "GUEST_582b3600-32f9-4d38-92de-7b3bde752d46"
+                            },
+                            {
+                              "url": "https://target.scene7.com/is/image/Target/GUEST_4006df06-9f47-42c1-b279-530eee050946",
+                              "image_name": "GUEST_4006df06-9f47-42c1-b279-530eee050946"
+                            },
+                            {
+                              "url": "https://target.scene7.com/is/image/Target/GUEST_c27c7341-85f1-46b4-881a-ef2b2a25edc4",
+                              "image_name": "GUEST_c27c7341-85f1-46b4-881a-ef2b2a25edc4"
+                            }
+                          ]
+                        },
+                        "tcin": "15078348"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          },
+          "promotions": [],
+          "price": {
+            "current_retail": 3.69,
+            "display_was_now": false,
+            "formatted_current_price": "$3.69",
+            "formatted_current_price_type": "reg",
+            "formatted_unit_price": "$0.12",
+            "formatted_unit_price_suffix": "/fluid ounce",
+            "reg_retail": 3.69,
+            "location_id": 2281
+          },
+          "category": {
+            "category_id": "h29og",
+            "parent_category_id": "5xszh"
+          }
+        },
+        {
+          "__typename": "ProductSummary",
+          "tcin": "79362193",
+          "original_tcin": "79362193",
+          "item": {
+            "cart_add_on_threshold": 35.0,
+            "is_limited_time_offer": false,
+            "relationship_type": "Stand Alone",
+            "relationship_type_code": "SA",
+            "merchandise_classification": {
+              "class_id": 5,
+              "department_id": 261
+            },
+            "eligibility_rules": {
+              "add_on": {
+                "is_active": true
+              },
+              "scheduled_delivery": {
+                "is_active": true
+              }
+            },
+            "enrichment": {
+              "buy_url": "https://www.target.com/p/sweetened-condensed-milk-14-fl-oz-good-38-gather-8482/-/A-79362193",
+              "image_info": {
+                "base_url": "//target.scene7.com/is/image/Target/",
+                "primary_image": {
+                  "url": "https://target.scene7.com/is/image/Target/GUEST_b94b2b04-232c-4d40-bb59-13962c21b44d",
+                  "image_name": "GUEST_b94b2b04-232c-4d40-bb59-13962c21b44d",
+                  "alt_text": "A can of Good & Gather Sweetened Condensed Milk with a red label and a net weight of 14 oz (397 g)."
+                },
+                "alternate_images": [
+                  {
+                    "url": "https://target.scene7.com/is/image/Target/GUEST_b93e6a0f-cc9f-449a-a7af-a8d83ca2b3da",
+                    "image_name": "GUEST_b93e6a0f-cc9f-449a-a7af-a8d83ca2b3da",
+                    "alt_text": "A red can with a nutrition facts label showing 130 calories per serving, ingredients including milk and sugar, and a note about bioengineered food ingredients."
+                  },
+                  {
+                    "url": "https://target.scene7.com/is/image/Target/GUEST_ce4e88b2-8b77-48e5-8da4-f5107bb568e9",
+                    "image_name": "GUEST_ce4e88b2-8b77-48e5-8da4-f5107bb568e9",
+                    "alt_text": "Red can with text stating \"Perfect for Making Fudge, Tres Leches Cake or Vietnamese Iced Coffee\" and \"100% Satisfaction Guaranteed or Your Money Back.\""
+                  },
+                  {
+                    "url": "https://target.scene7.com/is/image/Target/GUEST_ab5278de-8bfd-4f4e-b8de-4f29fedb0491",
+                    "image_name": "GUEST_ab5278de-8bfd-4f4e-b8de-4f29fedb0491",
+                    "alt_text": "Nutrition label showing serving size of 2 Tbsp (39g), 130 calories per serving, and ingredients including milk and sugar."
+                  }
+                ],
+                "swatch_image": {}
+              },
+              "videos": [
+                {
+                  "is_list_page_eligible": false,
+                  "video_files": [
+                    {
+                      "mime_type": "video/mp4",
+                      "video_url": "https://target.scene7.com/is/content/Target/GUEST_28c884b5-ac8d-434a-a2d1-c68b31868d7a"
+                    }
+                  ]
+                }
+              ]
+            },
+            "product_classification": {
+              "item_type": {
+                "name": "Canned and Powdered Milk",
+                "type": "90351008"
+              }
+            },
+            "compliance": {
+              "is_snap_eligible": true
+            },
+            "dpci": "261-05-0497",
+            "wellness_merchandise_attributes": [],
+            "product_description": {
+              "title": "Sweetened Condensed Milk - 14oz - Good &#38; Gather&#8482;",
+              "bullet_descriptions": [
+                "<B>Form:</B> Liquid",
+                "<B>State of Readiness:</B> Ingredient",
+                "<B>Package Quantity:</B> 1",
+                "<B>Net weight:</B> 14 Ounces"
+              ],
+              "soft_bullets": {
+                "bullets": [
+                  "Perfect for making fudge, tres leche cake or Vietnamese iced coffee",
+                  "Thicker and sweeter than regular milk — perfect for baking, making sauces or flavoring coffee/tea",
+                  "Kosher OU-D",
+                  "Good & Gather™"
+                ]
+              }
+            },
+            "fulfillment": {},
+            "primary_brand": {
+              "canonical_url": "/b/good-gather/-/N-yfqzk",
+              "linking_id": "yfqzk",
+              "name": "Good & Gather"
+            },
+            "ribbons": [
+              "Only At Target"
+            ]
+          },
+          "desirability_cues": [
+            {
+              "code": "highly_rated",
+              "display": "Highly rated",
+              "long_description": "Based on average star rating, number of ratings and reviews (including incentivized), and verified purchases."
+            }
+          ],
+          "ornaments": [
+            {
+              "ornament": "highly_rated",
+              "display": "Highly rated",
+              "long_description": "Based on average star rating, number of ratings and reviews (including incentivized), and verified purchases.",
+              "ornament_type": "guest",
+              "template_type": "light_marker_with_star"
+            }
+          ],
+          "promotions": [],
+          "price": {
+            "current_retail": 1.99,
+            "display_was_now": false,
+            "formatted_current_price": "$1.99",
+            "formatted_current_price_type": "reg",
+            "formatted_unit_price": "$0.14",
+            "formatted_unit_price_suffix": "/ounce",
+            "reg_retail": 1.99,
+            "location_id": 2281
+          },
+          "ratings_and_reviews": {
+            "statistics": {
+              "rating": {
+                "average": 4.7,
+                "count": 1225,
+                "secondary_averages": [
+                  {
+                    "id": "quality",
+                    "label": "quality",
+                    "value": 3.91
+                  },
+                  {
+                    "id": "value",
+                    "label": "value",
+                    "value": 3.93
+                  }
+                ]
+              }
+            }
+          },
+          "category": {
+            "category_id": "5xt03",
+            "parent_category_id": "4u9lv"
+          }
+        }
+      ]
+    }
+  }
+}

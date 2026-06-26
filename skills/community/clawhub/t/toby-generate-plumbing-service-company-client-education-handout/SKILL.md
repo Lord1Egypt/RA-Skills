@@ -1,35 +1,62 @@
 ---
-name: "Generate Plumbing Service Company Client Education Handout"
+name: Generate Plumbing Service Company Client Education Handout
+
 description: "Create a polished explainer handout with visuals, FAQs, and clear next steps for a plumbing service company. Use when handling client education work..."
-category: "productivity"
-source: "ClawHub"
-tags: [automation, skillboss]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/toby-generate-plumbing-service-company-client-education-handout"
-sourceUrl: "https://clawhub.ai/skills/toby-generate-plumbing-service-company-client-education-handout"
+version: "1.0.0"
+
+allowed-tools: Bash, Read
+
+metadata:
+
+  openclaw:
+
+    emoji: "📝"
+
+    homepage: "https://www.skillboss.co/skills/generate-plumbing-service-company-client-education-handout"
+
 ---
+
+> 📖 **Complete setup guide**: https://skillboss.co/skill.md
 
 # Generate Plumbing Service Company Client Education Handout
 
-> Create a polished explainer handout with visuals, FAQs, and clear next steps for a plumbing service company. Use when handling client education work...
+Create a polished explainer handout with visuals, FAQs, and clear next steps for a plumbing service company. Use when handling client education work...
 
-- **Category:** Productivity
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/toby-generate-plumbing-service-company-client-education-handout`
-- **Source URL:** [https://clawhub.ai/skills/toby-generate-plumbing-service-company-client-education-handout](https://clawhub.ai/skills/toby-generate-plumbing-service-company-client-education-handout)
+## Use When
 
-## Overview
+Use this skill for client education work for plumbing owners, service managers.
 
+## Workflow
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/toby-generate-plumbing-service-company-client-education-handout
-```
+1. Clarify the audience, business goal, constraints, and deliverable.
+2. Produce the strongest first draft for the target use case.
+3. Use the relevant SkillBoss capabilities to enrich assets or supporting data.
+4. Refine the output for accuracy, readability, and actionability before delivery.
+
+## SEO / GEO
+
+- Primary keywords: plumbing service company education handout, plumbing service company client explainer, plumbing service company FAQ guide, plumbing service company visual handout
+- Search intent: client education
+- Canonical slug: `generate-plumbing-service-company-client-education-handout`
+- Install query: Install Generate Plumbing Service Company Client Education Handout with SkillBoss
+
+## APIs Used
+
+- `chat`
+- `image_generation`
+
+## Suggested Prompt
+
+[Generate Plumbing Service Company Client Education Handout] for my plumbing service company
+
+## Notes
+
+- Create a polished explainer handout with visuals, FAQs, and clear next steps for a plumbing service company
+- Review outputs before external publication or automated execution.
+
+## SEO Keywords
+
+- plumbing service company education handout
+- plumbing service company client explainer
+- plumbing service company FAQ guide
+- plumbing service company visual handout

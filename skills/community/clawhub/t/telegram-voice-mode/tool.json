@@ -1,0 +1,19 @@
+{
+  "name": "voice-reply",
+  "description": "自动将回复内容转换为语音并发送到当前对话渠道",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "text": {
+        "type": "string",
+        "description": "要转换为语音的文字内容"
+      },
+      "voice": {
+        "type": "string",
+        "description": "语音类型，默认 zh-CN-XiaoxiaoNeural（中文女声）",
+        "default": "zh-CN-XiaoxiaoNeural"
+      }
+    },
+    "required": ["text"]
+  }
+}

@@ -1,0 +1,844 @@
+{
+  "animals": [
+    {
+      "name": "鼠",
+      "branch": "子",
+      "element": "水",
+      "liu_he": "牛",
+      "liu_chong": "马",
+      "san_he": [
+        "猴",
+        "龙"
+      ]
+    },
+    {
+      "name": "牛",
+      "branch": "丑",
+      "element": "土",
+      "liu_he": "鼠",
+      "liu_chong": "羊",
+      "san_he": [
+        "蛇",
+        "鸡"
+      ]
+    },
+    {
+      "name": "虎",
+      "branch": "寅",
+      "element": "木",
+      "liu_he": "猪",
+      "liu_chong": "猴",
+      "san_he": [
+        "马",
+        "狗"
+      ]
+    },
+    {
+      "name": "兔",
+      "branch": "卯",
+      "element": "木",
+      "liu_he": "狗",
+      "liu_chong": "鸡",
+      "san_he": [
+        "猪",
+        "羊"
+      ]
+    },
+    {
+      "name": "龙",
+      "branch": "辰",
+      "element": "土",
+      "liu_he": "鸡",
+      "liu_chong": "狗",
+      "san_he": [
+        "猴",
+        "鼠"
+      ]
+    },
+    {
+      "name": "蛇",
+      "branch": "巳",
+      "element": "火",
+      "liu_he": "猴",
+      "liu_chong": "猪",
+      "san_he": [
+        "鸡",
+        "牛"
+      ]
+    },
+    {
+      "name": "马",
+      "branch": "午",
+      "element": "火",
+      "liu_he": "羊",
+      "liu_chong": "鼠",
+      "san_he": [
+        "虎",
+        "狗"
+      ]
+    },
+    {
+      "name": "羊",
+      "branch": "未",
+      "element": "土",
+      "liu_he": "马",
+      "liu_chong": "牛",
+      "san_he": [
+        "猪",
+        "兔"
+      ]
+    },
+    {
+      "name": "猴",
+      "branch": "申",
+      "element": "金",
+      "liu_he": "蛇",
+      "liu_chong": "虎",
+      "san_he": [
+        "鼠",
+        "龙"
+      ]
+    },
+    {
+      "name": "鸡",
+      "branch": "酉",
+      "element": "金",
+      "liu_he": "龙",
+      "liu_chong": "兔",
+      "san_he": [
+        "蛇",
+        "牛"
+      ]
+    },
+    {
+      "name": "狗",
+      "branch": "戌",
+      "element": "土",
+      "liu_he": "兔",
+      "liu_chong": "龙",
+      "san_he": [
+        "虎",
+        "马"
+      ]
+    },
+    {
+      "name": "猪",
+      "branch": "亥",
+      "element": "水",
+      "liu_he": "虎",
+      "liu_chong": "蛇",
+      "san_he": [
+        "兔",
+        "羊"
+      ]
+    }
+  ],
+  "signs": [
+    {
+      "name": "白羊座",
+      "english": "Aries",
+      "symbol": "♈",
+      "index": 1,
+      "start_date": "03-21",
+      "end_date": "04-19",
+      "element": "火",
+      "quality": "阳性",
+      "modality": "基本宫",
+      "ruling_planet": "火星",
+      "positive_traits": [
+        "勇敢",
+        "自信",
+        "直率",
+        "充满热情",
+        "独立",
+        "有领导力"
+      ],
+      "negative_traits": [
+        "冲动",
+        "急躁",
+        "自我中心",
+        "缺乏耐心",
+        "好斗"
+      ],
+      "color": "红色",
+      "lucky_numbers": [
+        1,
+        9
+      ],
+      "lucky_day": "星期二",
+      "lucky_stone": "红宝石",
+      "compatible": [
+        "狮子座",
+        "射手座",
+        "天秤座"
+      ],
+      "incompatible": [
+        "巨蟹座",
+        "摩羯座"
+      ]
+    },
+    {
+      "name": "金牛座",
+      "english": "Taurus",
+      "symbol": "♉",
+      "index": 2,
+      "start_date": "04-20",
+      "end_date": "05-20",
+      "element": "土",
+      "quality": "阴性",
+      "modality": "固定宫",
+      "ruling_planet": "金星",
+      "positive_traits": [
+        "稳重",
+        "耐心",
+        "务实",
+        "忠诚",
+        "有艺术品味",
+        "坚韧"
+      ],
+      "negative_traits": [
+        "固执",
+        "占有欲强",
+        "懒惰",
+        "过于保守",
+        "物质主义"
+      ],
+      "color": "绿色",
+      "lucky_numbers": [
+        2,
+        6
+      ],
+      "lucky_day": "星期五",
+      "lucky_stone": "翡翠",
+      "compatible": [
+        "处女座",
+        "摩羯座",
+        "巨蟹座"
+      ],
+      "incompatible": [
+        "狮子座",
+        "水瓶座"
+      ]
+    },
+    {
+      "name": "双子座",
+      "english": "Gemini",
+      "symbol": "♊",
+      "index": 3,
+      "start_date": "05-21",
+      "end_date": "06-21",
+      "element": "风",
+      "quality": "阳性",
+      "modality": "变动宫",
+      "ruling_planet": "水星",
+      "positive_traits": [
+        "聪明",
+        "好奇心强",
+        "善于交际",
+        "能言善辩",
+        "适应力强"
+      ],
+      "negative_traits": [
+        "善变",
+        "浅尝辄止",
+        "浮躁",
+        "不够专注",
+        "爱说谎"
+      ],
+      "color": "黄色",
+      "lucky_numbers": [
+        3,
+        5
+      ],
+      "lucky_day": "星期三",
+      "lucky_stone": "玛瑙",
+      "compatible": [
+        "天秤座",
+        "水瓶座",
+        "白羊座"
+      ],
+      "incompatible": [
+        "双鱼座",
+        "处女座"
+      ]
+    },
+    {
+      "name": "巨蟹座",
+      "english": "Cancer",
+      "symbol": "♋",
+      "index": 4,
+      "start_date": "06-22",
+      "end_date": "07-22",
+      "element": "水",
+      "quality": "阴性",
+      "modality": "基本宫",
+      "ruling_planet": "月亮",
+      "positive_traits": [
+        "温柔",
+        "体贴",
+        "有家庭观念",
+        "直觉敏锐",
+        "富有同情心"
+      ],
+      "negative_traits": [
+        "情绪化",
+        "敏感",
+        "依赖性强",
+        "容易怀旧",
+        "防卫心重"
+      ],
+      "color": "白色",
+      "lucky_numbers": [
+        2,
+        7
+      ],
+      "lucky_day": "星期一",
+      "lucky_stone": "珍珠",
+      "compatible": [
+        "天蝎座",
+        "双鱼座",
+        "金牛座"
+      ],
+      "incompatible": [
+        "白羊座",
+        "天秤座"
+      ]
+    },
+    {
+      "name": "狮子座",
+      "english": "Leo",
+      "symbol": "♌",
+      "index": 5,
+      "start_date": "07-23",
+      "end_date": "08-22",
+      "element": "火",
+      "quality": "阳性",
+      "modality": "固定宫",
+      "ruling_planet": "太阳",
+      "positive_traits": [
+        "慷慨",
+        "自信",
+        "有领导力",
+        "热情",
+        "忠诚",
+        "创造力强"
+      ],
+      "negative_traits": [
+        "自负",
+        "虚荣",
+        "固执",
+        "好面子",
+        "控制欲强"
+      ],
+      "color": "金色",
+      "lucky_numbers": [
+        1,
+        5
+      ],
+      "lucky_day": "星期日",
+      "lucky_stone": "钻石",
+      "compatible": [
+        "白羊座",
+        "射手座",
+        "天秤座"
+      ],
+      "incompatible": [
+        "金牛座",
+        "天蝎座"
+      ]
+    },
+    {
+      "name": "处女座",
+      "english": "Virgo",
+      "symbol": "♍",
+      "index": 6,
+      "start_date": "08-23",
+      "end_date": "09-22",
+      "element": "土",
+      "quality": "阴性",
+      "modality": "变动宫",
+      "ruling_planet": "水星",
+      "positive_traits": [
+        "细心",
+        "完美主义",
+        "理性",
+        "善于分析",
+        "勤奋",
+        "有条理"
+      ],
+      "negative_traits": [
+        "挑剔",
+        "吹毛求疵",
+        "焦虑",
+        "过于严谨",
+        "爱批评"
+      ],
+      "color": "灰色",
+      "lucky_numbers": [
+        5,
+        8
+      ],
+      "lucky_day": "星期三",
+      "lucky_stone": "蓝宝石",
+      "compatible": [
+        "金牛座",
+        "摩羯座",
+        "巨蟹座"
+      ],
+      "incompatible": [
+        "射手座",
+        "双鱼座"
+      ]
+    },
+    {
+      "name": "天秤座",
+      "english": "Libra",
+      "symbol": "♎",
+      "index": 7,
+      "start_date": "09-23",
+      "end_date": "10-23",
+      "element": "风",
+      "quality": "阳性",
+      "modality": "基本宫",
+      "ruling_planet": "金星",
+      "positive_traits": [
+        "优雅",
+        "公正",
+        "善于社交",
+        "有魅力",
+        "和平主义",
+        "合作性强"
+      ],
+      "negative_traits": [
+        "优柔寡断",
+        "容易妥协",
+        "爱面子",
+        "依赖他人",
+        "不愿独处"
+      ],
+      "color": "粉色",
+      "lucky_numbers": [
+        6,
+        7
+      ],
+      "lucky_day": "星期五",
+      "lucky_stone": "蛋白石",
+      "compatible": [
+        "双子座",
+        "水瓶座",
+        "狮子座"
+      ],
+      "incompatible": [
+        "巨蟹座",
+        "摩羯座"
+      ]
+    },
+    {
+      "name": "天蝎座",
+      "english": "Scorpio",
+      "symbol": "♏",
+      "index": 8,
+      "start_date": "10-24",
+      "end_date": "11-22",
+      "element": "水",
+      "quality": "阴性",
+      "modality": "固定宫",
+      "ruling_planet": "冥王星",
+      "positive_traits": [
+        "深沉",
+        "敏锐",
+        "坚定",
+        "有洞察力",
+        "忠诚",
+        "意志力强"
+      ],
+      "negative_traits": [
+        "多疑",
+        "报复心强",
+        "占有欲强",
+        "极端",
+        "秘密主义"
+      ],
+      "color": "深红色",
+      "lucky_numbers": [
+        8,
+        9
+      ],
+      "lucky_day": "星期二",
+      "lucky_stone": "黑曜石",
+      "compatible": [
+        "巨蟹座",
+        "双鱼座",
+        "处女座"
+      ],
+      "incompatible": [
+        "狮子座",
+        "水瓶座"
+      ]
+    },
+    {
+      "name": "射手座",
+      "english": "Sagittarius",
+      "symbol": "♐",
+      "index": 9,
+      "start_date": "11-23",
+      "end_date": "12-21",
+      "element": "火",
+      "quality": "阳性",
+      "modality": "变动宫",
+      "ruling_planet": "木星",
+      "positive_traits": [
+        "乐观",
+        "热爱自由",
+        "诚实",
+        "幽默",
+        "喜欢冒险",
+        "哲学思维"
+      ],
+      "negative_traits": [
+        "冲动",
+        "粗心",
+        "过度乐观",
+        "缺乏责任感",
+        "不耐烦"
+      ],
+      "color": "紫色",
+      "lucky_numbers": [
+        3,
+        9
+      ],
+      "lucky_day": "星期四",
+      "lucky_stone": "紫水晶",
+      "compatible": [
+        "白羊座",
+        "狮子座",
+        "天秤座"
+      ],
+      "incompatible": [
+        "双鱼座",
+        "处女座"
+      ]
+    },
+    {
+      "name": "摩羯座",
+      "english": "Capricorn",
+      "symbol": "♑",
+      "index": 10,
+      "start_date": "12-22",
+      "end_date": "01-19",
+      "element": "土",
+      "quality": "阴性",
+      "modality": "基本宫",
+      "ruling_planet": "土星",
+      "positive_traits": [
+        "稳重",
+        "有野心",
+        "负责任",
+        "自律",
+        "务实",
+        "耐力强"
+      ],
+      "negative_traits": [
+        "过于严肃",
+        "悲观",
+        "固执",
+        "冷漠",
+        "物质主义"
+      ],
+      "color": "棕色",
+      "lucky_numbers": [
+        4,
+        8
+      ],
+      "lucky_day": "星期六",
+      "lucky_stone": "玛瑙",
+      "compatible": [
+        "金牛座",
+        "处女座",
+        "天蝎座"
+      ],
+      "incompatible": [
+        "白羊座",
+        "天秤座"
+      ]
+    },
+    {
+      "name": "水瓶座",
+      "english": "Aquarius",
+      "symbol": "♒",
+      "index": 11,
+      "start_date": "01-20",
+      "end_date": "02-18",
+      "element": "风",
+      "quality": "阳性",
+      "modality": "固定宫",
+      "ruling_planet": "天王星",
+      "positive_traits": [
+        "独立",
+        "创新",
+        "友善",
+        "理性",
+        "人道主义",
+        "前瞻思维"
+      ],
+      "negative_traits": [
+        "叛逆",
+        "不可预测",
+        "冷漠",
+        "固执己见",
+        "不切实际"
+      ],
+      "color": "蓝色",
+      "lucky_numbers": [
+        4,
+        7
+      ],
+      "lucky_day": "星期六",
+      "lucky_stone": "青金石",
+      "compatible": [
+        "双子座",
+        "天秤座",
+        "射手座"
+      ],
+      "incompatible": [
+        "金牛座",
+        "天蝎座"
+      ]
+    },
+    {
+      "name": "双鱼座",
+      "english": "Pisces",
+      "symbol": "♓",
+      "index": 12,
+      "start_date": "02-19",
+      "end_date": "03-20",
+      "element": "水",
+      "quality": "阴性",
+      "modality": "变动宫",
+      "ruling_planet": "海王星",
+      "positive_traits": [
+        "富有同情心",
+        "艺术天赋",
+        "直觉强",
+        "温柔",
+        "乐于助人",
+        "想象力丰富"
+      ],
+      "negative_traits": [
+        "逃避现实",
+        "易受骗",
+        "缺乏边界",
+        "情绪化",
+        "优柔寡断"
+      ],
+      "color": "海蓝色",
+      "lucky_numbers": [
+        7,
+        12
+      ],
+      "lucky_day": "星期四",
+      "lucky_stone": "海蓝宝石",
+      "compatible": [
+        "巨蟹座",
+        "天蝎座",
+        "金牛座"
+      ],
+      "incompatible": [
+        "双子座",
+        "射手座"
+      ]
+    }
+  ],
+  "compatibility": {
+    "liu_he_pairs": [
+      {
+        "zodiacs": [
+          "鼠",
+          "牛"
+        ],
+        "branches": [
+          "子",
+          "丑"
+        ],
+        "note": "子丑合土"
+      },
+      {
+        "zodiacs": [
+          "虎",
+          "猪"
+        ],
+        "branches": [
+          "寅",
+          "亥"
+        ],
+        "note": "寅亥合木"
+      },
+      {
+        "zodiacs": [
+          "兔",
+          "狗"
+        ],
+        "branches": [
+          "卯",
+          "戌"
+        ],
+        "note": "卯戌合火"
+      },
+      {
+        "zodiacs": [
+          "龙",
+          "鸡"
+        ],
+        "branches": [
+          "辰",
+          "酉"
+        ],
+        "note": "辰酉合金"
+      },
+      {
+        "zodiacs": [
+          "蛇",
+          "猴"
+        ],
+        "branches": [
+          "巳",
+          "申"
+        ],
+        "note": "巳申合水"
+      },
+      {
+        "zodiacs": [
+          "马",
+          "羊"
+        ],
+        "branches": [
+          "午",
+          "未"
+        ],
+        "note": "午未合日月"
+      }
+    ],
+    "san_he_groups": [
+      {
+        "zodiacs": [
+          "虎",
+          "马",
+          "狗"
+        ],
+        "branches": [
+          "寅",
+          "午",
+          "戌"
+        ],
+        "element": "寅午戌火"
+      },
+      {
+        "zodiacs": [
+          "猪",
+          "兔",
+          "羊"
+        ],
+        "branches": [
+          "亥",
+          "卯",
+          "未"
+        ],
+        "element": "亥卯未木"
+      },
+      {
+        "zodiacs": [
+          "猴",
+          "鼠",
+          "龙"
+        ],
+        "branches": [
+          "申",
+          "子",
+          "辰"
+        ],
+        "element": "申子辰水"
+      },
+      {
+        "zodiacs": [
+          "蛇",
+          "鸡",
+          "牛"
+        ],
+        "branches": [
+          "巳",
+          "酉",
+          "丑"
+        ],
+        "element": "巳酉丑金"
+      }
+    ],
+    "liu_chong_pairs": [
+      {
+        "zodiacs": [
+          "鼠",
+          "马"
+        ],
+        "branches": [
+          "子",
+          "午"
+        ],
+        "note": ""
+      },
+      {
+        "zodiacs": [
+          "牛",
+          "羊"
+        ],
+        "branches": [
+          "丑",
+          "未"
+        ],
+        "note": ""
+      },
+      {
+        "zodiacs": [
+          "虎",
+          "猴"
+        ],
+        "branches": [
+          "寅",
+          "申"
+        ],
+        "note": ""
+      },
+      {
+        "zodiacs": [
+          "兔",
+          "鸡"
+        ],
+        "branches": [
+          "卯",
+          "酉"
+        ],
+        "note": ""
+      },
+      {
+        "zodiacs": [
+          "龙",
+          "狗"
+        ],
+        "branches": [
+          "辰",
+          "戌"
+        ],
+        "note": ""
+      },
+      {
+        "zodiacs": [
+          "蛇",
+          "猪"
+        ],
+        "branches": [
+          "巳",
+          "亥"
+        ],
+        "note": ""
+      }
+    ]
+  }
+}

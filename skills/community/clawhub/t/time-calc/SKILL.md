@@ -1,35 +1,172 @@
 ---
-name: "time-calc"
-description: "通过 7 个原子操作完成日期时间的计算与解析：获取当前时间、日期元信息查询、相对星期查找、 日期时间加减、日期时间差值、时区转换、Unix 时间戳互转。 两类触发场景：(1) 用户直接提问时间问题，如当前日期、星期几、日期加减、日期差值、 时区换算、时间戳转换、闰年判断、第几周等。 (2) 用户请求中包含可解析为..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/time-calc"
-sourceUrl: "https://clawhub.ai/skills/time-calc"
+name: time-calc
+description: >
+  通过 7 个原子操作完成日期时间的计算与解析：获取当前时间、日期元信息查询、相对星期查找、
+  日期时间加减、日期时间差值、时区转换、Unix 时间戳互转。
+  两类触发场景：(1) 用户直接提问时间问题，如当前日期、星期几、日期加减、日期差值、
+  时区换算、时间戳转换、闰年判断、第几周等。
+  (2) 用户请求中包含可解析为具体日期的相对时间表达（明天、下周三、3天后等），
+  此时先将其解析为具体日期，再继续执行后续任务。
+  所有时间计算通过执行 shell 命令完成，不依赖心算。
+user-invocable: true
 ---
 
-# time-calc
+# Time Calc
 
-> 通过 7 个原子操作完成日期时间的计算与解析：获取当前时间、日期元信息查询、相对星期查找、 日期时间加减、日期时间差值、时区转换、Unix 时间戳互转。 两类触发场景：(1) 用户直接提问时间问题，如当前日期、星期几、日期加减、日期差值、 时区换算、时间戳转换、闰年判断、第几周等。 (2) 用户请求中包含可解析为...
+通过原生 shell 命令完成日期时间的查询、计算和转换，无需外部依赖。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/time-calc`
-- **Source URL:** [https://clawhub.ai/skills/time-calc](https://clawhub.ai/skills/time-calc)
+## 工作流程
 
-## Overview
+1. **检测平台**，读取对应命令参考：
+   - macOS → `$SKILL_ROOT/references/macos.md`
+   - Linux / WSL / Git Bash → `$SKILL_ROOT/references/linux.md`
+   - Windows PowerShell → `$SKILL_ROOT/references/windows.md`
+   - 检测方式：环境 Platform 字段，或 `uname -s`（macOS/Linux），或 `$env:OS`（PowerShell）
+2. **识别时间表达**，映射到对应操作：
+   | 用户表达 | 操作 |
+   |----------|------|
+   | 今天/现在 | today |
+   | 明天/后天/昨天/前天 | offset +1d / +2d / -1d / -2d |
+   | X天后/前 | offset +Xd / -Xd |
+   | 这周三/下周五/上周一 | weekday this wed / next fri / last mon |
+   | 下个月/上个月 | offset +1m / -1m |
+   | 月底 | offset +1m 到下月1号，再 -1d |
+3. **执行 shell 命令**获取结果（不要心算）
+4. **输出或继续**：直接回答用户，或将结果用于后续任务
 
+## 操作定义
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/time-calc
+### 1. today -- 获取当前日期时间
+
+返回当前的日期和/或时间信息。
+
+**参数：** 无
+**输出：** 日期（YYYY-MM-DD）、星期、时间（HH:MM）、时区、ISO 周数
+
 ```
+输入: "今天几号" / "现在几点" / "今天第几周"
+输出: 2026-04-09 Wednesday (星期三) 14:30 CST ISO-Week:2026-W15
+```
+
+### 2. info -- 日期元信息查询
+
+返回指定日期的详细元信息。
+
+**参数：** 一个日期（YYYY-MM-DD）或年份
+**输出：** 星期、ISO 周数、年内第几天、当月天数、是否闰年
+
+```
+输入: info 2026-06-15
+输出:
+  date:         2026-06-15 Monday (星期一)
+  iso_week:     2026-W25
+  day_of_year:  166
+  days_in_month: 30
+  leap_year:    false
+```
+
+### 3. weekday -- 相对星期查找
+
+根据"本周/下周/上周 + 星期几"定位具体日期。
+
+**参数：** 修饰词（this/next/last）+ 星期几
+**输出：** 目标日期
+
+```
+输入: weekday next fri  (假设今天是周四 2026-04-09)
+输出: 2026-04-17 Friday (星期五)  -- 下一个 ISO 周的周五
+```
+
+语义规则（基于 ISO 周，周一起始）：
+- "this" = 当前 ISO 周内的目标日（可能在今天之前或之后）
+- "next" = 下一个 ISO 周内的目标日（当前周一 +7 天所在周）
+- "last" = 上一个 ISO 周内的目标日（当前周一 -7 天所在周）
+
+各平台原生命令（如 BSD `date -v +fri`、GNU `date -d "next friday"`）的语义是"下一个出现的周五"，与上述 ISO 周定义不同。例如今天周四，"下周五"应为 12 天后，但 `date -v +fri` 返回明天。具体的正确命令写法见各平台 references 文件。
+
+### 4. offset -- 日期/时间加减
+
+对日期或时间进行算术运算。
+
+**参数：** 基准日期/时间 + 偏移量
+**偏移量格式：** `[+/-]数字[单位]`，单位支持：d(天) w(周) m(月) y(年) H(小时) M(分钟)
+**输出：** 计算后的日期/时间
+
+```
+输入: offset 2026-04-09 +3d       → 2026-04-12
+输入: offset 2026-01-31 +1m       → 2026-02-28 (回退到月末)
+输入: offset 2024-02-29 +1y       → 2025-02-28 (回退到月末)
+输入: offset 2026-04-09T22:00 +5H → 2026-04-10T03:00 (跨日)
+```
+
+**月份/年份加减的边界处理（重要）：**
+
+当目标日期不存在时（如 1月31日 +1月），期望行为是**回退到目标月最后一天**。各平台原生命令行为不同：
+
+| 场景 | macOS (BSD) | Linux (GNU) | Windows (PS) |
+|------|-------------|-------------|--------------|
+| 01-31 +1m | 02-28 (回退) | 03-03 (溢出) | 02-28 (回退) |
+| 02-29 +1y | 03-01 (溢出) | 03-01 (溢出) | 02-28 (回退) |
+
+**执行月份或年份加减时，必须使用各平台 references 中的安全方案**，不要直接用原生命令结果。安全方案检测溢出并回退到月末。
+
+### 5. diff -- 日期/时间差值
+
+计算两个日期或时间之间的差值。
+
+**参数：** 两个日期或 datetime
+**输出：** 差值（天数，或天+时+分）
+
+```
+输入: diff 2026-04-09 2026-04-15       → 6 天
+输入: diff 2026-04-09T08:00 2026-04-11T17:30 → 2天9小时30分钟
+输入: diff 2025-12-25 2026-01-03       → 9 天 (1周2天)
+```
+
+注意事项：
+- 结果为有符号数，d1 > d2 时为负值（或标明方向）
+- 超过 7 天时同时给出"X周Y天"的表示
+- 用户问"含首尾"时（如"4月9号到15号一共几天"），结果需 +1
+
+### 6. convert -- 时区转换
+
+将时间从一个时区转换到另一个时区。
+
+**参数：** datetime + 源时区 + 目标时区
+**时区格式：** IANA 时区名（如 Asia/Shanghai, America/New_York, UTC）
+**输出：** 转换后的时间 + 时差
+
+```
+输入: convert 2026-04-09T15:00 Asia/Shanghai America/New_York
+输出:
+  from: 2026-04-09 15:00 CST (Asia/Shanghai)
+  to:   2026-04-09 03:00 EDT (America/New_York)
+  diff: -12h
+```
+
+常用时区映射（用户可能使用口语化表达）：
+- 北京时间 → Asia/Shanghai
+- 东京时间 → Asia/Tokyo
+- 纽约时间 → America/New_York
+- 伦敦时间 → Europe/London
+- UTC/GMT → UTC
+
+注意：macOS 和 Linux 使用 IANA 时区名（如 Asia/Shanghai），Windows PowerShell 使用 Windows 时区 ID（如 China Standard Time）。在 Windows 上需要先将 IANA 名称转换为 Windows ID，转换方法见 windows.md。
+
+### 7. epoch -- Unix 时间戳互转
+
+在 Unix 时间戳和可读日期时间之间互转。
+
+**参数：** 时间戳（秒或毫秒）或 datetime
+**输出：** 对应的可读时间或时间戳
+
+```
+输入: epoch 1775701378            → 2026-04-09 02:22:58 UTC
+输入: epoch 1775701378000         → 同上（自动识别毫秒级）
+输入: epoch 2026-04-09T12:00:00   → 1775923200
+```
+
+识别规则：
+- 数字长度 >= 13 位视为毫秒级时间戳，自动除以 1000
+- 输出可读时间时默认使用 UTC，同时附上本地时区时间
+

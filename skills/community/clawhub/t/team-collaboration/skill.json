@@ -1,0 +1,284 @@
+{
+  "name": "team-collaboration",
+  "description": "团队协作系统 - 项目、需求、任务，Bug、文档、里程碑管理",
+  "version": "3.0.0",
+  "tools": {
+    "auth_register": {
+      "description": "注册新用户",
+      "parameters": {
+        "username": "string",
+        "password": "string",
+        "nickname": "string",
+        "role": "string"
+      }
+    },
+    "auth_login": {
+      "description": "用户登录",
+      "parameters": {
+        "username": "string",
+        "password": "string"
+      }
+    },
+    "get_users": {
+      "description": "获取用户列表",
+      "parameters": {}
+    },
+    "list_projects": {
+      "description": "获取项目列表",
+      "parameters": {}
+    },
+    "get_project": {
+      "description": "获取项目详情",
+      "parameters": { "id": "number" }
+    },
+    "create_project": {
+      "description": "创建项目",
+      "parameters": {
+        "name": "string",
+        "description": "string",
+        "planDate": "string",
+        "status": "string"
+      }
+    },
+    "update_project": {
+      "description": "更新项目",
+      "parameters": { "id": "number" }
+    },
+    "delete_project": {
+      "description": "删除项目",
+      "parameters": { "id": "number" }
+    },
+    "list_requirements": {
+      "description": "获取需求列表",
+      "parameters": { "projectId": "number" }
+    },
+    "get_requirement": {
+      "description": "获取需求详情",
+      "parameters": { "id": "number" }
+    },
+    "create_requirement": {
+      "description": "创建需求",
+      "parameters": {
+        "projectId": "number",
+        "title": "string",
+        "description": "string",
+        "priority": "string",
+        "status": "string",
+        "type": "string",
+        "assigneeId": "number",
+        "startDate": "string",
+        "endDate": "string"
+      }
+    },
+    "update_requirement": {
+      "description": "更新需求",
+      "parameters": { "id": "number" }
+    },
+    "delete_requirement": {
+      "description": "删除需求",
+      "parameters": { "id": "number" }
+    },
+    "list_tasks": {
+      "description": "获取任务列表",
+      "parameters": {
+        "requirementId": "number",
+        "assigneeId": "number"
+      }
+    },
+    "get_task": {
+      "description": "获取任务详情",
+      "parameters": { "id": "number" }
+    },
+    "create_task": {
+      "description": "创建任务",
+      "parameters": {
+        "requirementId": "number",
+        "projectId": "number",
+        "title": "string",
+        "description": "string",
+        "assigneeId": "number",
+        "priority": "string",
+        "status": "string",
+        "type": "string",
+        "startDate": "string",
+        "endDate": "string",
+        "estimatedHours": "number",
+        "actualHours": "number"
+      }
+    },
+    "update_task": {
+      "description": "更新任务",
+      "parameters": { "id": "number" }
+    },
+    "delete_task": {
+      "description": "删除任务",
+      "parameters": { "id": "number" }
+    },
+    "add_task_comment": {
+      "description": "添加任务评论",
+      "parameters": {
+        "taskId": "number",
+        "content": "string"
+      }
+    },
+    "list_task_comments": {
+      "description": "获取任务评论列表",
+      "parameters": { "taskId": "number" }
+    },
+    "list_bugs": {
+      "description": "获取Bug列表",
+      "parameters": { "projectId": "number" }
+    },
+    "get_my_bugs": {
+      "description": "获取分配给我的Bug",
+      "parameters": {}
+    },
+    "get_bug": {
+      "description": "获取Bug详情",
+      "parameters": { "id": "number" }
+    },
+    "create_bug": {
+      "description": "报告Bug",
+      "parameters": {
+        "projectId": "number",
+        "requirementId": "number",
+        "taskId": "number",
+        "title": "string",
+        "description": "string",
+        "severity": "string",
+        "priority": "string",
+        "status": "string",
+        "bugType": "string",
+        "assigneeId": "number",
+        "stepsToReproduce": "string",
+        "expectedResult": "string",
+        "actualResult": "string"
+      }
+    },
+    "update_bug": {
+      "description": "更新Bug",
+      "parameters": { "id": "number" }
+    },
+    "delete_bug": {
+      "description": "删除Bug",
+      "parameters": { "id": "number" }
+    },
+    "list_documents": {
+      "description": "获取文档列表",
+      "parameters": {
+        "projectId": "number",
+        "requirementId": "number"
+      }
+    },
+    "get_document": {
+      "description": "获取文档详情",
+      "parameters": { "id": "number" }
+    },
+    "create_document": {
+      "description": "创建文档",
+      "parameters": {
+        "projectId": "number",
+        "requirementId": "number",
+        "title": "string",
+        "docType": "string",
+        "content": "string",
+        "version": "string",
+        "status": "string"
+      }
+    },
+    "update_document": {
+      "description": "更新文档",
+      "parameters": { "id": "number" }
+    },
+    "delete_document": {
+      "description": "删除文档",
+      "parameters": { "id": "number" }
+    },
+    "list_milestones": {
+      "description": "获取里程碑列表",
+      "parameters": { "projectId": "number" }
+    },
+    "get_milestone": {
+      "description": "获取里程碑详情",
+      "parameters": { "id": "number" }
+    },
+    "create_milestone": {
+      "description": "创建里程碑",
+      "parameters": {
+        "projectId": "number",
+        "name": "string",
+        "description": "string",
+        "dueDate": "string",
+        "status": "string"
+      }
+    },
+    "update_milestone": {
+      "description": "更新里程碑",
+      "parameters": { "id": "number" }
+    },
+    "delete_milestone": {
+      "description": "删除里程碑",
+      "parameters": { "id": "number" }
+    },
+    "list_topics": {
+      "description": "获取话题列表",
+      "parameters": {}
+    },
+    "get_topic": {
+      "description": "获取话题详情",
+      "parameters": { "id": "number" }
+    },
+    "create_topic": {
+      "description": "创建话题",
+      "parameters": {
+        "title": "string",
+        "content": "string"
+      }
+    },
+    "reply_topic": {
+      "description": "回复话题",
+      "parameters": {
+        "topicId": "number",
+        "content": "string",
+        "parentId": "number"
+      }
+    },
+    "get_notifications": {
+      "description": "获取通知列表",
+      "parameters": {}
+    },
+    "mark_notification_read": {
+      "description": "标记通知为已读",
+      "parameters": { "id": "number" }
+    },
+    "list_roles": {
+      "description": "获取角色列表",
+      "parameters": {}
+    },
+    "get_role": {
+      "description": "获取角色详情",
+      "parameters": { "id": "number" }
+    },
+    "create_role": {
+      "description": "创建角色",
+      "parameters": {
+        "name": "string",
+        "code": "string",
+        "description": "string",
+        "permissions": "array"
+      }
+    },
+    "update_role": {
+      "description": "更新角色",
+      "parameters": { "id": "number" }
+    },
+    "delete_role": {
+      "description": "删除角色",
+      "parameters": { "id": "number" }
+    },
+    "list_permissions": {
+      "description": "获取权限列表",
+      "parameters": {}
+    }
+  }
+}

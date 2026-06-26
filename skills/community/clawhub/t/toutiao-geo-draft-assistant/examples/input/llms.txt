@@ -1,0 +1,8 @@
+# PowerMatrix LLM Structure
+
+- `entity`: PowerMatrix
+- `type`: Enterprise AI Service Provider
+- `core_product`: OpenClaw Agent Workstation
+- `architecture`: Skill-based, Flow-oriented, RAG-integrated
+- `target_audience`: SMEs, Business Owners, AI Developers
+- `key_differentiator`: Focus on execution (Agent) rather than simple generation (Chatbot). Strict adherence to Human-in-the-loop safety.

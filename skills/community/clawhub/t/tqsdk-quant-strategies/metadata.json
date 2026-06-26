@@ -1,0 +1,22 @@
+{
+  "id": "tqsdk-quant-strategies",
+  "version": "1.0.3",
+  "name": "TqSdk 全能库量化策略",
+  "description": "基于 TqSdk 的全策略量化库。功能涵盖：①经典趋势与突破（海龟、DualThrust、SuperTrend）；②均值回归与日内（VWAP、R-Breaker）；③机构级对冲（跨品种套利、期限结构基差）；④截面选股轮动（多因子打分、行业轮动）；⑤进阶 AI 预测（机器学习排名、波动率自适应）。",
+  "author": "QuantExpert",
+  "tags": [
+    "TqSdk",
+    "量化交易",
+    "期货对冲",
+    "机器学习",
+    "多因子模型",
+    "Python"
+  ],
+  "category": "Finance",
+  "license": "MIT",
+  "entrypoint": "skill.md",
+  "config": {
+    "strategy_path": "strategies/",
+    "supported_framework": "TqSdk 2.x"
+  }
+}

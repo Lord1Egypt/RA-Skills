@@ -1,0 +1,112 @@
+{
+  "trending/unknown?since=daily": {
+    "first_seen": "2026-03-27",
+    "last_recommended": "2026-03-27",
+    "source": "github_trending"
+  },
+  "sponsors/explore": {
+    "first_seen": "2026-03-27",
+    "last_recommended": "2026-03-27",
+    "source": "github_trending"
+  },
+  "trending/developers": {
+    "first_seen": "2026-03-27",
+    "last_recommended": "2026-03-27",
+    "source": "github_trending"
+  },
+  "mvanhorn/last30days-skill": {
+    "first_seen": "2026-03-27",
+    "last_recommended": "2026-03-27",
+    "source": "github_trending"
+  },
+  "hacksider/Deep-Live-Cam": {
+    "first_seen": "2026-03-27",
+    "last_recommended": "2026-03-28",
+    "source": "github_trending"
+  },
+  "SakanaAI/AI-Scientist-v2": {
+    "first_seen": "2026-03-27",
+    "last_recommended": "2026-03-28",
+    "source": "github_trending"
+  },
+  "microsoft/VibeVoice": {
+    "first_seen": "2026-03-27",
+    "last_recommended": "2026-03-29",
+    "source": "github_trending"
+  },
+  "Textualize/rich": {
+    "first_seen": "2026-03-27",
+    "last_recommended": "2026-03-27",
+    "source": "awesome_list"
+  },
+  "httpie/cli": {
+    "first_seen": "2026-03-27",
+    "last_recommended": "2026-03-27",
+    "source": "awesome_list"
+  },
+  "alibaba/pipcook": {
+    "first_seen": "2026-03-27",
+    "last_recommended": "2026-03-27",
+    "source": "awesome_list"
+  },
+  "bitcoinjs/bitcoinjs-lib": {
+    "first_seen": "2026-03-27",
+    "last_recommended": "2026-03-27",
+    "source": "awesome_list"
+  },
+  "nodejs/node": {
+    "first_seen": "2026-03-27",
+    "last_recommended": "2026-03-27",
+    "source": "awesome_list"
+  },
+  "webtorrent/webtorrent": {
+    "first_seen": "2026-03-27",
+    "last_recommended": "2026-03-27",
+    "source": "awesome_list"
+  },
+  "foliojs/pdfkit": {
+    "first_seen": "2026-03-27",
+    "last_recommended": "2026-03-27",
+    "source": "awesome_list"
+  },
+  "Turfjs/turf": {
+    "first_seen": "2026-03-27",
+    "last_recommended": "2026-03-29",
+    "source": "awesome_list"
+  },
+  "mafintosh/peerflix": {
+    "first_seen": "2026-03-27",
+    "last_recommended": "2026-03-27",
+    "source": "awesome_list"
+  },
+  "ai-tools/awesome-ai": {
+    "first_seen": "2026-03-29",
+    "last_recommended": "2026-03-29",
+    "source": "github_topic"
+  },
+  "ipfs/helia": {
+    "first_seen": "2026-03-29",
+    "last_recommended": "2026-03-29",
+    "source": "awesome_list"
+  },
+  "bitpay/bitcore": {
+    "first_seen": "2026-03-29",
+    "last_recommended": "2026-03-29",
+    "source": "awesome_list"
+  },
+  "Yeachan-Heo/oh-my-claudecode": {
+    "first_seen": "2026-03-29",
+    "last_recommended": "2026-03-29",
+    "source": "github_trending"
+  },
+  "luongnv89/claude-howto": {
+    "first_seen": "2026-03-29",
+    "last_recommended": "2026-03-29",
+    "source": "github_trending"
+  },
+  "NousResearch/hermes-agent": {
+    "first_seen": "2026-03-29",
+    "last_recommended": "2026-03-29",
+    "source": "github_trending"
+  }
+}

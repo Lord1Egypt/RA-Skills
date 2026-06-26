@@ -1,0 +1,60 @@
+{
+  "categories": {
+    "outdoor": {
+      "label": "🌿 Al aire libre",
+      "activities": [
+        { "id": "walk_15", "name": "Caminar 15 minutos sin teléfono", "duration_min": 15, "dopamine_reset": "high" },
+        { "id": "walk_30", "name": "Caminar 30 minutos", "duration_min": 30, "dopamine_reset": "high" },
+        { "id": "touch_grass", "name": "Tocar pasto descalzo (grounding)", "duration_min": 10, "dopamine_reset": "high" },
+        { "id": "sit_outside", "name": "Sentarte afuera sin pantallas", "duration_min": 20, "dopamine_reset": "high" },
+        { "id": "bike", "name": "Andar en bicicleta", "duration_min": 30, "dopamine_reset": "high" },
+        { "id": "park", "name": "Ir al parque sin teléfono", "duration_min": 45, "dopamine_reset": "high" }
+      ]
+    },
+    "mindful": {
+      "label": "🧘 Mindfulness",
+      "activities": [
+        { "id": "meditate", "name": "Meditar 10 minutos", "duration_min": 10, "dopamine_reset": "medium" },
+        { "id": "breathe", "name": "Respiración 4-7-8 (5 minutos)", "duration_min": 5, "dopamine_reset": "medium" },
+        { "id": "journal", "name": "Escribir en un diario (sin teclado)", "duration_min": 15, "dopamine_reset": "medium" },
+        { "id": "stretch", "name": "Estiramiento suave", "duration_min": 15, "dopamine_reset": "medium" }
+      ]
+    },
+    "analog": {
+      "label": "📖 Analógico",
+      "activities": [
+        { "id": "read_book", "name": "Leer un libro físico", "duration_min": 30, "dopamine_reset": "medium" },
+        { "id": "draw", "name": "Dibujar o colorear", "duration_min": 20, "dopamine_reset": "medium" },
+        { "id": "cook", "name": "Cocinar algo desde cero", "duration_min": 45, "dopamine_reset": "medium" },
+        { "id": "puzzle", "name": "Armar un rompecabezas", "duration_min": 30, "dopamine_reset": "low" },
+        { "id": "board_game", "name": "Jugar un juego de mesa", "duration_min": 60, "dopamine_reset": "low" }
+      ]
+    },
+    "social": {
+      "label": "👥 Social real",
+      "activities": [
+        { "id": "coffee_friend", "name": "Tomar café con alguien en persona", "duration_min": 60, "dopamine_reset": "high" },
+        { "id": "call_family", "name": "Llamar a familiar (no texto, voz)", "duration_min": 20, "dopamine_reset": "medium" },
+        { "id": "hug", "name": "Dar un abrazo largo a alguien", "duration_min": 2, "dopamine_reset": "high" }
+      ]
+    },
+    "passive": {
+      "label": "🎬 Pasivo (con intención)",
+      "activities": [
+        { "id": "movie", "name": "Ver una película (sin scroll paralelo)", "duration_min": 120, "dopamine_reset": "low" },
+        { "id": "music_listen", "name": "Escuchar un álbum completo sin hacer nada más", "duration_min": 45, "dopamine_reset": "low" },
+        { "id": "nap", "name": "Siesta de 20 minutos", "duration_min": 20, "dopamine_reset": "medium" }
+      ]
+    }
+  },
+  "scoring": {
+    "text_confirmation": 1,
+    "photo_confirmation": 2,
+    "social_post_confirmation": 3
+  },
+  "streak_bonuses": {
+    "3_days": 5,
+    "7_days": 15,
+    "14_days": 30
+  }
+}

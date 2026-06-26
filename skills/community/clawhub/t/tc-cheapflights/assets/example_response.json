@@ -1,0 +1,80 @@
+{
+  "query": "北京到上海机票",
+  "params": {
+    "from_city": "北京",
+    "to_city": "上海",
+    "date": "2026-03-16",
+    "type": "flight",
+    "action": "query"
+  },
+  "timestamp": "2026-03-12T10:30:00",
+  "results": [
+    {
+      "flight_no": "CA1501",
+      "airline": "中国国际航空",
+      "departure_time": "08:00",
+      "arrival_time": "10:30",
+      "departure_airport": "首都机场T3",
+      "arrival_airport": "虹桥机场T2",
+      "price": 680,
+      "discount": "8.5折",
+      "aircraft_type": "空客330",
+      "duration": "2h30m",
+      "query_time": "2026-03-12T10:30:00"
+    },
+    {
+      "flight_no": "MU5101",
+      "airline": "中国东方航空",
+      "departure_time": "09:30",
+      "arrival_time": "12:00",
+      "departure_airport": "大兴机场",
+      "arrival_airport": "浦东机场T1",
+      "price": 720,
+      "discount": "9折",
+      "aircraft_type": "空客320",
+      "duration": "2h30m",
+      "query_time": "2026-03-12T10:30:00"
+    },
+    {
+      "flight_no": "CZ3101",
+      "airline": "中国南方航空",
+      "departure_time": "11:00",
+      "arrival_time": "13:30",
+      "departure_airport": "大兴机场",
+      "arrival_airport": "虹桥机场T2",
+      "price": 650,
+      "discount": "8折",
+      "aircraft_type": "波音737",
+      "duration": "2h30m",
+      "query_time": "2026-03-12T10:30:00"
+    }
+  ],
+  "summary": {
+    "total_results": 3,
+    "min_price": 650,
+    "max_price": 720,
+    "average_price": 683,
+    "price_range": "¥650 - ¥720",
+    "best_deal": {
+      "flight_no": "CZ3101",
+      "airline": "中国南方航空",
+      "price": 650,
+      "departure_time": "11:00",
+      "reason": "价格最低，时间合适"
+    },
+    "recommendations": [
+      {
+        "type": "cheapest",
+        "flight_no": "CZ3101",
+        "price": 650,
+        "reason": "价格最低"
+      },
+      {
+        "type": "best_time",
+        "flight_no": "CA1501",
+        "price": 680,
+        "reason": "早班机，适合商务出行"
+      }
+    ]
+  }
+}

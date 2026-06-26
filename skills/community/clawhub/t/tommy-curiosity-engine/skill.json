@@ -1,0 +1,23 @@
+{
+  "name": "curiosity-engine",
+  "version": "1.0.0",
+  "description": "A behavioral engagement scaffold for stateless heartbeat-loop agents. Implements a question queue, engagement tracking, competence mapping, and breadcrumb system grounded in Loewenstein (information gaps), Berlyne (diversive/epistemic modes), Deci & Ryan (SDT competence loop), and behavioral activation therapy. Chinese Room design: functional curiosity-equivalent behavior without claiming genuine inner states.",
+  "author": "tommy-openclaw",
+  "license": "MIT",
+  "keywords": [
+    "curiosity",
+    "heartbeat",
+    "exploration",
+    "behavioral-activation",
+    "question-queue",
+    "competence-tracking",
+    "self-directed-learning"
+  ],
+  "openclaw": {
+    "minVersion": "2026.2.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/keylimesoda/curiosity-engine"
+  }
+}

@@ -1,0 +1,74 @@
+[build-system]
+requires = ["setuptools>=61", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "tvfetch"
+version = "1.0.0"
+description = "Free TradingView data fetcher — historical OHLCV + live streaming for any symbol, no API key required"
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.11"
+keywords = ["tradingview", "trading", "backtesting", "ohlcv", "historical-data", "crypto", "forex", "stocks"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Financial and Insurance Industry",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Office/Business :: Financial :: Investment",
+]
+
+dependencies = [
+    "websocket-client>=1.8",
+    "httpx>=0.27",
+    "pandas>=2.0",
+    "click>=8.0",
+    "rich>=13.0",
+    "numpy",
+]
+
+[project.optional-dependencies]
+parquet  = ["pyarrow>=15.0"]
+yahoo    = ["yfinance>=0.2"]
+crypto   = ["ccxt>=4.0"]
+browser  = ["playwright>=1.40"]
+async    = ["websockets>=12.0"]
+secure   = ["keyring>=24.0"]
+full     = ["pyarrow>=15.0", "yfinance>=0.2", "ccxt>=4.0", "playwright>=1.40", "websockets>=12.0", "keyring>=24.0"]
+dev      = ["pytest>=8.0", "pytest-cov", "ruff", "black", "mypy"]
+
+[project.scripts]
+tvfetch     = "scripts.main:main"
+tvfetch-cli = "cli.main:cli"
+
+[project.urls]
+Repository = "https://github.com/tarun-khatri/tvfetch"
+Issues     = "https://github.com/tarun-khatri/tvfetch/issues"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["tvfetch*", "scripts*", "cli*"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts   = "--tb=short -p no:pytest_ethereum"
+markers   = ["integration: tests that hit TradingView network (deselect with -m 'not integration')"]
+
+[tool.coverage.run]
+source = ["tvfetch"]
+omit   = ["*/tests/*", "tvfetch/__main__.py"]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "raise NotImplementedError",
+    "if __name__ == .__main__.:",
+]

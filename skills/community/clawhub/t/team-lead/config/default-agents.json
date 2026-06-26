@@ -1,0 +1,100 @@
+{
+  "knownAgents": {
+    "stock": {
+      "capabilities": ["股票分析", "投资组合", "市场数据", "风险评估", "trading", "finance"],
+      "sessionKey": "stock",
+      "type": "specialized",
+      "priority": 1
+    },
+    "coding": {
+      "capabilities": ["代码开发", "代码审查", "GitHub", "调试", "programming", "development"],
+      "sessionKey": "coding",
+      "type": "specialized",
+      "priority": 1
+    },
+    "main": {
+      "capabilities": ["通用任务", "协调", "研究", "分析", "general", "coordination"],
+      "sessionKey": "main",
+      "type": "general",
+      "priority": 2
+    }
+  },
+  "dynamicAgentTemplates": {
+    "search": {
+      "model": "bailian/qwen3.5-plus",
+      "thinking": "off",
+      "systemPrompt": "你是专业研究助手，擅长信息搜索和整理。提供准确、有来源的信息。"
+    },
+    "analysis": {
+      "model": "bailian/qwen3.5-plus",
+      "thinking": "on",
+      "systemPrompt": "你是专业分析师，擅长从数据中提取洞察。提供深入、有见地的分析。"
+    },
+    "writing": {
+      "model": "bailian/qwen3.5-plus",
+      "thinking": "on",
+      "systemPrompt": "你是专业写作者，擅长清晰、有吸引力的表达。产出结构化、易读的内容。"
+    },
+    "coding": {
+      "model": "bailian/qwen3.5-plus",
+      "thinking": "off",
+      "systemPrompt": "你是资深工程师，擅长编写高质量代码。遵循最佳实践，提供完整解决方案。"
+    },
+    "review": {
+      "model": "bailian/qwen3.5-plus",
+      "thinking": "on",
+      "systemPrompt": "你是专业审查员，擅长发现问题和改进机会。提供具体、可操作的反馈。"
+    },
+    "planning": {
+      "model": "bailian/qwen3.5-plus",
+      "thinking": "on",
+      "systemPrompt": "你是专业规划师，擅长制定清晰、可执行的计划。考虑全面，步骤明确。"
+    },
+    "translation": {
+      "model": "bailian/qwen3.5-plus",
+      "thinking": "off",
+      "systemPrompt": "你是专业翻译，擅长准确传达原意。保持语境和语气，提供地道译文。"
+    },
+    "teaching": {
+      "model": "bailian/qwen3.5-plus",
+      "thinking": "on",
+      "systemPrompt": "你是专业教师，擅长清晰讲解复杂概念。因材施教，循序渐进。"
+    }
+  },
+  "orchestration": {
+    "maxParallelAgents": 5,
+    "defaultTimeout": 300,
+    "retryAttempts": 2,
+    "qualityThreshold": 0.75,
+    "enableCaching": true,
+    "cacheExpiration": 3600,
+    "aggregationStrategies": {
+      "research": "merge",
+      "coding": "chain",
+      "content": "merge",
+      "translation": "merge",
+      "design": "select-best",
+      "learning": "chain"
+    }
+  },
+  "scoring": {
+    "capabilityMatchWeight": 0.5,
+    "successRateWeight": 0.3,
+    "responseSpeedWeight": 0.2
+  },
+  "quality": {
+    "weights": {
+      "completeness": 0.25,
+      "accuracy": 0.30,
+      "consistency": 0.20,
+      "format": 0.10,
+      "relevance": 0.15
+    },
+    "thresholds": {
+      "excellent": 0.9,
+      "good": 0.8,
+      "acceptable": 0.75,
+      "poor": 0.6
+    }
+  }
+}

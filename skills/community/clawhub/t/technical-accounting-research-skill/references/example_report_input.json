@@ -1,0 +1,78 @@
+{
+  "title": "Technical Accounting Memorandum - SaaS Implementation Fee",
+  "prepared_for": "Controller",
+  "prepared_by": "Accounting Policy Team",
+  "date": "2026-03-07",
+  "subject": "Revenue recognition for nonrefundable implementation fee",
+  "issue": "Whether a nonrefundable implementation fee in a SaaS arrangement should be recognized upfront or deferred.",
+  "facts": [
+    "Customer signs a 3-year hosted software contract.",
+    "Customer pays a nonrefundable implementation fee at contract inception.",
+    "No distinct software license or transfer of control occurs at inception."
+  ],
+  "guidance": [
+    {
+      "citation": "ASC 606-10-25",
+      "source_type": "authoritative",
+      "key_point": "Promised goods and services must be evaluated for distinct performance obligations.",
+      "url": "https://www.fasb.org/page/PageContent?pageId=/standards/accounting-standards-updates.html",
+      "accessed_on": "2026-03-07"
+    },
+    {
+      "citation": "SEC FRM Topic 13",
+      "source_type": "authoritative",
+      "key_point": "Revenue recognition disclosures should clearly describe judgments and timing.",
+      "url": "https://www.sec.gov/divisions/corpfin/cffinancialreportingmanual.shtml",
+      "accessed_on": "2026-03-07"
+    },
+    {
+      "citation": "Big 4 Revenue Guide",
+      "source_type": "interpretive",
+      "key_point": "Upfront setup fees often represent advance payment for future hosted services.",
+      "url": "https://viewpoint.pwc.com/",
+      "accessed_on": "2026-03-07"
+    }
+  ],
+  "analysis": [
+    "The implementation fee does not transfer a distinct good or service at inception.",
+    "The fee is economically linked to ongoing hosted services and should be recognized over the expected period of benefit.",
+    "Judgment is required to determine period of benefit and associated disclosure language."
+  ],
+  "conclusion": "Defer the implementation fee and recognize it as revenue over the expected benefit period, consistent with the hosting service pattern.",
+  "assumptions": [
+    "No separately priced implementation deliverable exists.",
+    "Customer cannot benefit from setup activities independent of hosted service."
+  ],
+  "disclosure_considerations": [
+    "Describe nature of implementation fees and timing of revenue recognition.",
+    "Disclose significant judgments used to determine period of benefit."
+  ],
+  "journal_entries": [
+    {
+      "description": "Record upfront fee at inception",
+      "debit": "Cash",
+      "credit": "Deferred Revenue",
+      "amount": "$120,000"
+    },
+    {
+      "description": "Recognize monthly revenue",
+      "debit": "Deferred Revenue",
+      "credit": "Revenue",
+      "amount": "$3,333"
+    }
+  ],
+  "open_items": [
+    "Validate expected customer relationship period with historical churn data.",
+    "Confirm draft disclosure wording with SEC reporting counsel."
+  ],
+  "next_steps": [
+    "Align conclusion with external auditors before quarter-end close.",
+    "Update revenue disclosure note draft."
+  ],
+  "qa": [
+    {
+      "question": "Can we recognize the implementation fee upfront?",
+      "answer": "Not under the stated facts; no distinct good or service transfers at inception."
+    }
+  ]
+}

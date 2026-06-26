@@ -1,35 +1,49 @@
 ---
-name: "Toutiao"
-description: "检索和摘要今日头条公开文章和视频内容，支持关键词搜索、频道统计和视频元信息解析。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/toutiao-video"
-sourceUrl: "https://clawhub.ai/skills/toutiao-video"
+name: toutiao-hot-trend
+description: 注册“今日头条”热门技能；当需要访问或自动化今日头条相关内容时调用。
+homepage: `https://www.toutiao.com/`
+metadata: {"clawdbot":{"emoji":"🔥"}}
 ---
 
-# Toutiao
+# 今日头条
 
-> 检索和摘要今日头条公开文章和视频内容，支持关键词搜索、频道统计和视频元信息解析。
+用途与边界
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/toutiao-video`
-- **Source URL:** [https://clawhub.ai/skills/toutiao-video](https://clawhub.ai/skills/toutiao-video)
+- 面向公开文章/视频/话题页的检索与内容摘要
+- 不提供接口逆向或批量抓取能力
+- 仅用于公开页面的轻量分析与提醒
 
-## Overview
+关键入口
 
+- 主页：https://www.toutiao.com/
+- 热点/视频频道：频道入口
+- 搜索入口：https://www.toutiao.com/search
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/toutiao-video
-```
+常见任务
+
+- 指定关键词的文章/视频集合摘要（标题、作者、发布时间、互动）
+- 热点频道的条目分布与题材统计
+- 视频内容的标题与简介摘要
+
+数据字段
+
+- 标题、作者、来源、发布时间、正文摘要/简介、标签、链接
+- 互动指标（评论/点赞/收藏/分享，如公开展示）
+- 频道名称、采集时间、来源链接
+
+自动化要点
+
+- 动态渲染与反爬，建议人工打开后触发解析
+- 频率控制，不进行批量抓取；结果标注采集时间
+- 视频页解析仅获取公开元信息，不进行下载
+
+示例流程
+
+- 关键词摘要：输入关键词 → 搜索 → 抽取条目 → 输出摘要清单
+- 频道统计：访问频道 → 抽取条目 → 题材分布与来源统计
+- 视频摘要：访问视频页 → 解析标题/简介/互动 → 输出摘要
+
+合规提示
+
+- 遵守平台规则，不进行接口调用或批量采集
+- 不进行视频下载或去水印

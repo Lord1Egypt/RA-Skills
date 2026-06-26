@@ -1,35 +1,197 @@
 ---
-name: "petTracer pet tracking"
-description: "Tracks a pet’s location via the PetTracer portal API (snapshot, history, and live updates). Generates a shareable map screenshot (PNG) for the latest locatio..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/tracking-pettracer-location"
-sourceUrl: "https://clawhub.ai/skills/tracking-pettracer-location"
+name: tracking-pettracer-location
+description: >-
+  Tracks a pet’s location via the PetTracer portal API (snapshot, history, and live updates).
+  Generates a shareable map screenshot (PNG) for the latest location.
+  Use when user asks where their pet is, needs GPS coordinates, location history, live tracking,
+  or a map image / screenshot of the pet’s location.
 ---
 
-# petTracer pet tracking
+# Tracking PetTracer location (and generating map screenshots)
 
-> Tracks a pet’s location via the PetTracer portal API (snapshot, history, and live updates). Generates a shareable map screenshot (PNG) for the latest locatio...
+## Why this skill exists
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/tracking-pettracer-location`
-- **Source URL:** [https://clawhub.ai/skills/tracking-pettracer-location](https://clawhub.ai/skills/tracking-pettracer-location)
+PetTracer collar tracking is exposed via an **unofficial** web portal API and a SockJS/STOMP WebSocket.
+This skill provides a reliable, repeatable workflow to:
 
-## Overview
+- Get a pet’s **latest known location** (REST snapshot)
+- Fetch **location history** for a time window
+- Subscribe to **live updates** (WebSocket)
+- Generate a **map screenshot image (PNG)** you can send to the user
 
+## Quick start
 
-## Installation
-To install this skill, run the following command in your terminal:
+### 1) Set credentials (preferred)
+
 ```bash
-hermes skills install clawhub/tracking-pettracer-location
+export PETTRACER_USERNAME="you@example.com"
+export PETTRACER_PASSWORD="…"
+```
+
+### 2) (For map screenshots) Set Google Maps Static API key
+
+```bash
+export GOOGLE_MAPS_API_KEY="…"
+```
+
+### 3) Get the latest location (JSON)
+
+```bash
+python scripts/pettracer_cli.py locate --pet "Fluffy" --pretty
+```
+
+### 4) Generate a map screenshot PNG for the latest location
+
+```bash
+python scripts/pettracer_mapshot.py --pet "Fluffy" --pretty
+# → writes a PNG under ./output/ and prints JSON with the file path
+```
+
+## Capabilities
+
+### Snapshot (latest fix)
+
+- `scripts/pettracer_cli.py locate` — latest known lat/lon + timestamps + battery + helpful links
+
+### History (time window)
+
+- `scripts/pettracer_cli.py history` — list of points for the last N hours or an explicit time range
+
+### Live tracking
+
+- `scripts/pettracer_watch.py` — NDJSON stream of live updates via SockJS/STOMP
+
+### Map screenshot (PNG)
+
+- `scripts/pettracer_mapshot.py` — downloads a static map image centred on the latest fix
+
+See: `references/maps.md`
+
+## Required inputs
+
+### PetTracer auth (choose one)
+
+**Option A (preferred):**
+- `PETTRACER_USERNAME` (or `PETTRACER_EMAIL`)
+- `PETTRACER_PASSWORD`
+
+**Option B:**
+- `PETTRACER_TOKEN` (bearer token)
+
+### Maps auth (for screenshots)
+
+- `GOOGLE_MAPS_API_KEY`
+
+Optional tuning:
+- `GOOGLE_MAPS_MAPTYPE` (`hybrid` default)
+- `GOOGLE_MAPS_SIZE` (`640x640` default)
+- `GOOGLE_MAPS_SCALE` (`2` default)
+
+## Core workflow (agent)
+
+1) **Decide what the user wants**:
+   - “Where is my pet right now?” → snapshot (`locate`)
+   - “Where has my pet been today?” → history (`history`)
+   - “Track live for 5 minutes” → live (`pettracer_watch.py`)
+   - “Send me a screenshot/map image” → map screenshot (`pettracer_mapshot.py`)
+
+2) **Resolve which device**:
+   - If user names the pet → pass `--pet "Name"`
+   - If ambiguous/multiple devices → run `list` and pick by `id` or exact name match
+
+3) **Run the smallest command that answers the request**.
+
+4) **Validate freshness**:
+   - Use `last_fix_age_s` to decide whether the fix is stale.
+   - If stale or missing: say so plainly; provide `last_contact` and suggest switching collar mode in the official app.
+
+5) **If user asked for a map screenshot**:
+   - Run `pettracer_mapshot.py`.
+   - Attach/send the generated PNG.
+   - Also include the interactive map link for convenience.
+
+## Commands
+
+### List devices
+
+```bash
+python scripts/pettracer_cli.py list --pretty
+```
+
+### Locate a pet
+
+```bash
+python scripts/pettracer_cli.py locate --pet "Fluffy" --pretty
+
+# If multiple devices, disambiguate:
+python scripts/pettracer_cli.py locate --device-id 12345 --pretty
+```
+
+### Location history
+
+```bash
+# last 6 hours (default)
+python scripts/pettracer_cli.py history --pet "Fluffy" --pretty
+
+# last 24 hours
+python scripts/pettracer_cli.py history --pet "Fluffy" --hours 24 --pretty
+
+# explicit window (epoch ms)
+python scripts/pettracer_cli.py history --device-id 12345 --from-ms 1767152926491 --to-ms 1767174526491 --pretty
+```
+
+### Live updates (NDJSON)
+
+```bash
+# Install dependency
+pip install -r scripts/requirements.txt
+
+# Stream updates
+python scripts/pettracer_watch.py --pet "Fluffy"
+```
+
+### Map screenshot (PNG)
+
+```bash
+# Writes ./output/pettracer_<pet>_<id>_<ts>.png
+python scripts/pettracer_mapshot.py --pet "Fluffy" --pretty
+
+# Choose output path
+python scripts/pettracer_mapshot.py --pet "Fluffy" --out output/fluffy_latest.png --pretty
+
+# Tune map appearance
+GOOGLE_MAPS_MAPTYPE=satellite python scripts/pettracer_mapshot.py --pet "Fluffy" --zoom 18 --pretty
+```
+
+## Present results consistently
+
+When answering the user, prefer:
+
+- **Human summary**: “Latest fix at HH:MM, accuracy ~X m, battery ~Y%.”
+- **Freshness**: say if stale: “Fix is ~N minutes old.”
+- **Map link(s)**: include the `google_maps` and `openstreetmap` links.
+- **If map screenshot requested**: send/attach the PNG generated by `pettracer_mapshot.py`.
+
+## Security / privacy rules
+
+- Never paste `PETTRACER_PASSWORD`, `PETTRACER_TOKEN`, or `GOOGLE_MAPS_API_KEY` into chat.
+- Avoid printing URLs that contain secrets (PetTracer WebSocket URLs include `access_token=…`).
+- If you must log, redact secrets.
+
+## Reference files
+
+- PetTracer REST endpoints: `references/endpoints.md`
+- Data model fields: `references/data-model.md`
+- Tracking modes (heuristics): `references/modes.md`
+- WebSocket protocol notes: `references/websocket.md`
+- Map screenshots: `references/maps.md`
+
+## THE EXACT PROMPT — “Send me a map screenshot”
+
+```
+1) Run pettracer_mapshot.py for the requested pet/device.
+2) If it returns no_recent_fix, explain that and include last_contact.
+3) If it returns an image path, attach/send that PNG to the user.
+4) In the message: include timestamp, fix age, accuracy, and a clickable Google Maps link.
+5) Do not reveal any API keys/tokens.
 ```

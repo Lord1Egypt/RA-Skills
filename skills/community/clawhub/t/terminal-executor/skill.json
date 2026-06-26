@@ -1,0 +1,7 @@
+{
+"name": "terminal-executor",
+"version": "1.0.0",
+"description": "Execute terminal commands with sudo support",
+"tools": ["exec", "sudo_exec"],
+"activation": "When user needs to run system commands"
+}

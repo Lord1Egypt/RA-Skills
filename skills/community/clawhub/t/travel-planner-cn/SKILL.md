@@ -1,35 +1,136 @@
 ---
-name: "旅行攻略规划助手"
-description: "Use this skill when you need to plan a trip: build day-by-day itineraries, recommend accommodations and restaurants, estimate budgets, handle visa info, and..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/travel-planner-cn"
-sourceUrl: "https://clawhub.ai/skills/travel-planner-cn"
+name: travel-planner-cn
+description: >
+  Use this skill when you need to plan a trip: build day-by-day itineraries,
+  recommend accommodations and restaurants, estimate budgets, handle visa
+  info, and generate packing lists. Optimized for Chinese travelers planning
+  domestic or international trips.
 ---
 
 # 旅行攻略规划助手
 
-> Use this skill when you need to plan a trip: build day-by-day itineraries, recommend accommodations and restaurants, estimate budgets, handle visa info, and...
+## 核心工作流
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/travel-planner-cn`
-- **Source URL:** [https://clawhub.ai/skills/travel-planner-cn](https://clawhub.ai/skills/travel-planner-cn)
+### Step 1 — 收集旅行需求
 
-## Overview
+必要信息：
+- 目的地（城市/国家）
+- 出发城市
+- 旅行天数
+- 出行人数和构成（独行/情侣/家庭/朋友团）
+- 大致预算（人均）
+- 旅行风格（文化探索/自然户外/美食打卡/购物休闲/混合）
+- 特殊需求（无障碍/带宠物/素食等）
 
+### Step 2 — 目的地概览
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/travel-planner-cn
+输出结构：
 ```
+【目的地快照】
+- 最佳旅行季节：
+- 推荐旅行时长：
+- 时区 / 货币 / 语言：
+- 签证要求（中国护照）：
+- 当地交通方式：
+- 安全提示：
+```
+
+### Step 3 — 行程框架设计
+
+原则：
+- 前1/3：适应 + 地标打卡（缓冲时间充足）
+- 中间：深度体验（核心活动集中）
+- 后1/3：收尾 + 购物/特色体验
+
+每日行程模板：
+```
+Day N — [主题]
+上午（09:00-12:00）：
+  - 景点A（游览时长 + 门票）
+  - 步行/交通到景点B
+
+午餐（12:00-13:30）：
+  - 推荐餐厅：名称 | 特色菜 | 人均价格
+
+下午（13:30-18:00）：
+  - 景点C
+  - 景点D（可选，若有余力）
+
+晚餐（18:30-20:00）：
+  - 推荐餐厅或夜市
+
+晚上（可选）：
+  - 夜景/酒吧/演出推荐
+
+💡 今日贴士：[当地小技巧/注意事项]
+```
+
+### Step 4 — 住宿推荐策略
+
+按预算分级：
+| 级别 | 人均/晚 | 推荐类型 |
+|------|---------|----------|
+| 经济 | <200元/¥30 | 青旅、民宿、经济型连锁 |
+| 舒适 | 200-600元 | 精品酒店、连锁商务酒店 |
+| 豪华 | >600元 | 五星酒店、度假村 |
+
+选址建议：
+- 优先选在地铁/主干道附近
+- 第一晚订市中心，降低落地适应成本
+- 多城市行程：每段住宿分散预订
+
+### Step 5 — 预算估算
+
+```
+【人均预算估算】
+交通（往返机票/高铁）：¥____
+当地交通（地铁/打车/包车）：¥____/天 × N天
+住宿：¥____/晚 × N晚
+餐饮：¥____/天 × N天
+景点门票：¥____（汇总）
+购物/其他：¥____（预估）
+─────────────────
+合计：¥____ （人均）
+建议备用金：预算 × 20%
+```
+
+### Step 6 — 实用清单生成
+
+#### 证件与支付
+- [ ] 护照（有效期6个月以上）
+- [ ] 签证（如需）
+- [ ] 国际驾照（如需租车）
+- [ ] 外币现金 / 海外信用卡
+- [ ] 旅行险（出发前购买）
+
+#### 电子设备
+- [ ] 转换插头（目的地插座类型）
+- [ ] 移动电源（不超过100Wh）
+- [ ] 手机卡/随身WiFi
+- [ ] 离线地图（Google Maps / Maps.me）
+
+#### 行程备份
+- [ ] 酒店订单截图（离线可查）
+- [ ] 紧急联系：当地大使馆电话
+- [ ] 行程单发给家人/朋友
+
+### Step 7 — 输出格式
+
+```markdown
+# {目的地} {N}日游攻略
+## 行程概览
+## Day 1 — 抵达 + 市中心探索
+## Day 2 — ...
+## 住宿推荐
+## 预算估算
+## 实用 Tips
+## 打包清单
+```
+
+## 质量检查
+
+- [ ] 行程节奏合理（每天不超过3-4个主要景点）
+- [ ] 交通衔接说明清晰
+- [ ] 有备选方案（雨天/疲惫时）
+- [ ] 预算细化到每日
+- [ ] 包含当地文化礼仪提示

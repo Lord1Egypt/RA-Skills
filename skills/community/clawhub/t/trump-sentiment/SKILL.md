@@ -1,35 +1,250 @@
 ---
-name: "Trump Sentiment"
-description: "Trump 舆情分析 Skill。通过多渠道覆盖（Truth Social/X搜索/Google News实时/大V主页）捕获 Trump 言行，结合市场反应验证，辅助投资决策。触发：「/trump」「分析Trump舆情」。📢微信公众号：PM熊叔（打造一人公司的投研团队）"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/trump-sentiment"
-sourceUrl: "https://clawhub.ai/skills/trump-sentiment"
+name: trump-sentiment
+description: Trump 舆情分析 Skill。通过多渠道覆盖（Truth Social/X搜索/Google News实时/大V主页）捕获 Trump 言行，结合市场反应验证，辅助投资决策。触发：「/trump」「分析Trump舆情」。📢微信公众号：PM熊叔（打造一人公司的投研团队）
 ---
 
-# Trump Sentiment
+# Trump 舆情分析 Skill
 
-> Trump 舆情分析 Skill。通过多渠道覆盖（Truth Social/X搜索/Google News实时/大V主页）捕获 Trump 言行，结合市场反应验证，辅助投资决策。触发：「/trump」「分析Trump舆情」。📢微信公众号：PM熊叔（打造一人公司的投研团队）
+## 核心教训（2026-04-08 实操复盘）
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/trump-sentiment`
-- **Source URL:** [https://clawhub.ai/skills/trump-sentiment](https://clawhub.ai/skills/trump-sentiment)
+- **Google News Live 是比分渠道更快的第一手源** — 通讯社（AP/Reuters）发稿后1-3分钟就被Google索引，远早于X讨论爆发
+- **分析窗口和重大事件可能重叠** — 如果已知有活跃的最后通牒/截止日期，必须在截止时间后追加一次检查
+- **Trump TACO的历史规律** — 他习惯在最后时刻接受调解，而不是真的动手。已知的截止日期本身就是最强信号
+- **巴基斯坦等中间人角色** — 重大调解往往由第三方（非美国官方）居中促成
+- **因果不能倒置**：先 Trump/新闻说了什么 → 市场怎么反应
 
-## Overview
+---
 
+## 两种触发场景的 Workflow
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/trump-sentiment
+### 场景A：Nasdaq 波动触发（自动化）
+
 ```
+Nasdaq cron 检测到连续2次同向波动
+  → 立即执行步骤1（不等待，不跳过）
+  → 执行步骤2（X大V主页）
+  → 执行步骤3（Google News Live + X搜索）
+  → 执行步骤4-8（分析+推送飞书）
+```
+
+**关键原则：Nasdaq触发时，数据收集必须在同一个session内完成，不能分两个cron**
+
+### 场景B：手动触发 /trump
+
+```
+用户说 /trump
+  → 执行步骤1（Truth Social）
+  → 执行步骤2-4（Google News Live + X搜索 + X大V）
+  → 执行步骤5-8（分析+推送飞书）
+```
+
+---
+
+## 数据收集规范（强制）
+
+### 第一步：Truth Social @realDonaldTrump（最重要，必须做）
+
+**URL**：`https://truthsocial.com/@realDonaldTrump`
+
+Trump 首选在 Truth Social 首发，内容平均 5-10 分钟内被主流媒体转载。
+
+**执行方式**：
+- 用 `browser` 工具打开该 URL（profile=openclaw）
+- 截图或提取最新帖文内容
+- 记录：发布时间 + 内容摘要 + 互动数
+
+**Truth Social 直接访问失败时**：
+- 用 **浏览器 + Google 搜索** `site:truthsocial.com Trump` 或 Trump 最近在 Truth Social 发的内容关键词
+- 监控 Reuters/Bloomberg 对 Trump Truth Social 发帖的编译报道（通常10分钟内出稿）
+
+---
+
+### 第二步：Google News Live（必须做，优先级最高）
+
+**URL**：`https://news.google.com/rss/search?q=Trump+Iran+ceasefire+when:1h&hl=en-US&gl=US&ceid=US:en`
+
+或用浏览器打开：`https://news.google.com/search?q=Trump+Iran&when=1h`
+
+**为什么这个步骤最重要：**
+- AP/Reuters 发稿后 1-3 分钟即被 Google 索引
+- 比 X 讨论爆发早 5-30 分钟
+- **停火、协议、重大升级等突发事件** 通常第一时间出现在这里
+- 如果 Trump 有活跃截止日期（deadline），**必须在截止时间之后立即做一次 1h 过滤搜索**
+
+**执行方式**：
+- 用浏览器打开 Google News，when=1h 过滤器
+- 找最新发布的文章（不点进去，只看标题+摘要）
+- 如果有"Breaking"或"Developing"标签，立刻深入阅读
+- 记录：发布时间 + 标题 + 摘要
+
+**强制规则**：
+> 如果已知 Trump 设定了某一天的 8PM ET（或任何明确）截止日期，在截止时间之后执行本步骤时，**必须先确认该截止日期后的最新动态**，再继续其他步骤。
+
+---
+
+### 第三步：X 关键词搜索（重要，必须做）
+
+在 X 搜索栏搜索以下关键词（选 `最新` tab）：
+
+| 关键词 | 目的 |
+|--------|------|
+| `Trump Iran deal` | Trump谈判表态 |
+| `Iran ceasefire` | 停火进展 |
+| `Iran war` | 战争状态 |
+| `Hormuz oil` | 能源命脉 |
+
+**记录每条帖文**：
+- 发布时间（换算为 CST：`当前时间 - N分钟前`）
+- 发布者（@xxx）
+- 内容摘要
+- 互动数（转帖 / 喜欢 / 观看）
+
+**X搜索失败时的备选**：
+- 关键词加空格：`Trump Iran deal site:x.com`
+- 改用 `https://xcancel.com/search?q=关键词` 备选
+
+---
+
+### 第四步：X 大V 主页浏览（补充）
+
+刷以下账号的最新帖文：
+
+| 账号 | 专长 |
+|-------|------|
+| @KobeissiLetter | 市场实时反应 |
+| @WatcherGuru | 加密/金融 |
+| @zerohedge | 综合 |
+| @realDonaldTrump | Trump自述（X同步） |
+
+**记录**：时间戳 + 内容 + 互动数
+
+---
+
+## 信息记录格式（强制）
+
+每条信息必须同时记录：
+
+```
+[时间 CST] [来源] [内容摘要] | [互动数] [市场反应]
+```
+
+**时间换算示例**：当前 17:59，X 显示"3分钟前" → 17:56 CST
+
+---
+
+## 分析顺序（强制）
+
+1. **明确触发原因**：先说清楚是什么触发了这次分析
+2. **按时间排序**（Latest first）：每条信息都要有时间戳
+3. **市场反应要紧跟言论**：Trump/新闻说了什么，所以市场怎么反应
+4. **矛盾信号**：同一时间段内的反向信息单独标注
+5. **TACO信号**：如果 Trump 刚宣布了停火/推迟，标注这是第几次TACO
+6. **投资含义**
+
+---
+
+## 报告格式（强制）
+
+```
+📡 Trump舆情快报 | [日期] [时间 CST]
+
+【触发原因】
+[事件]
+
+【时间线】（按时间倒序）
+
+[时间] [来源] [内容摘要]
+  → 市场反应
+  → 互动数
+
+...
+
+【TACO记录】（如有）
+[第N次TACO] [日期] [事件描述]
+
+【矛盾信号】
+[时间] [来源] [内容摘要]
+
+【投资含义】
+[综合判断]
+```
+
+---
+
+## 多渠道覆盖（按重要性排序）
+
+| 优先级 | 渠道 | 说明 |
+|--------|------|------|
+| 1 | **Google News Live（1h过滤）** | 突发事件最快来源，必须优先检查 |
+| 2 | **Truth Social @realDonaldTrump** | Trump 首选首发平台，必须优先检查 |
+| 3 | **X 关键词搜索** | 第一手实时信息，必须做 |
+| 4 | **X 大V 主页** | 补充主页动态 |
+| 5 | **Bloomberg / Reuters** | 第一时间报道 Truth Social 转载 |
+| 6 | **Fox News** | Trump 常在此发声 |
+| 7 | **CNN / WSJ / FT** | 深度分析 |
+
+---
+
+## 投资判断原则
+
+- **Trump 说什么不重要，市场怎么反应才重要**
+- **谈判表态 + 股市立即回应 = 信号有效**
+- **表态 + 市场反向走 = 烟雾弹**
+- **极端威胁 + 市场不跌反涨 = TACO信号（Trump在虚张声势）**
+- **矛盾信号出现时，看最新那个时间点的价格**
+- **X 实时讨论热度是市场情绪的温度计**
+
+---
+
+## TACO 检测规则（重要）
+
+**什么是 TACO**：Trump 在最后时刻接受调解/推迟行动，而不是真的动手。
+
+**TACO 的市场特征**：
+1. 威胁发出后市场暴跌
+2. 但最终没有动手，市场反弹
+3. 油价从峰值大幅回落
+
+**TACO 历史追踪**（持续更新）：
+
+| # | 日期 | 事件 | 结果 |
+|---|------|------|------|
+| 1 | ~3周前 | 10天暂停攻击伊朗能源设施 | TACO #1 |
+| 2 | ~1周前 | 延长暂停至4月6日 | TACO #2 |
+| 3 | 04月7日 | 宣布2周停火，换取霍尔木兹重开 | **TACO #3** |
+| 4 | 04月7日 | "文明死亡"威胁，8PM最后通牒前2小时TACO | TACO #4 |
+
+**每次分析如果涉及活跃截止日期，必须搜索该截止日期之后是否有 TACO 发生。**
+
+---
+
+## 地缘政治中间人角色（补充背景）
+
+以下国家/角色在美伊冲突中可能充当调停人：
+
+| 国家/角色 | 调停方式 |
+|-----------|----------|
+| **巴基斯坦** | 边境接伊朗，美军长期盟友，可接触双方 |
+| 阿曼 | 霍尔木兹海峡对岸，传统调停人 |
+| 卡塔尔 | 哈马斯/塔利班调解经验 |
+| 瑞士 | 美国在伊朗的利益代表方 |
+
+**注意**：当出现"XX国呼吁停火"新闻时，意味着局势可能即将转向。
+
+---
+
+## 使用方式
+
+- `/trump` → 完整分析（场景B）
+- **Nasdaq触发 → 自动执行完整流程（场景A）**
+- 每4小时定时监控（场景B简化版）
+
+---
+
+## 已知活跃截止日期规则
+
+> 如果 Trump 公开设定了某个明确截止日期（如"4月7日8PM ET"），则：
+> 1. **截止日期前** — 分析当前威胁的严重程度
+> 2. **截止日期后** — 必须立即做一次 Google News 1h 过滤搜索，确认是否发生 TACO
+> 3. **截止日期后若无新暴力行动** — 这是强 TACO 信号，市场大概率反弹
+

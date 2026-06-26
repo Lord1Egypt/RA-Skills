@@ -1,0 +1,38 @@
+{
+  "ticker": "WFC",
+  "company": "Wells Fargo & Company",
+  "analysis_year": 1991,
+  "data_source": "Berkshire Hathaway 1990 shareholder letter",
+  "analyzed_date": "2026-03-25",
+
+  "hard_gates": {
+    "g1_roe_roic": { "value": 0.20, "metric_used": "ROE", "years_averaged": "1989-1990", "pass": true },
+    "g2_fcf_to_ni": { "value": null, "fcf": null, "net_income": null, "pass": null },
+    "g3_leverage": { "metric_used": "Tier1 / capital buffer", "value": null, "pass": null },
+    "g4_revenue_trend": { "description": "The issue in 1990 was credit panic around California real estate, not franchise decline. Buffett described Wells as a superbly managed, high-return banking operation.", "structural_decline": false, "pass": true },
+    "g5_gross_margin_trend": { "description": "Bank margins were under stress from panic and provisioning, but the underlying franchise economics remained intact.", "declining_2plus_years": false, "pass": true },
+    "g6_earnings_yield": { "value": 0.20, "net_income_m": 580, "ev_m": 2900, "exemption": null, "pass": true },
+    "g7_moat": { "verdict": "PASS", "moat_type": "switching_cost", "description": "Wells Fargo combined a low-cost deposit franchise, disciplined management, and entrenched customer relationships in California banking. Buffett's 1990 letter framed it as a rare bank able to earn more than 20% on equity and 1.25% on assets, evidence of a real competitive advantage rather than a commodity lender surviving on leverage.", "pass": true }
+  },
+
+  "special_channel": null,
+
+  "metrics_snapshot": {
+    "berkshire_cost_1990_m": 290,
+    "assets_1990_b": 56,
+    "pre_tax_earnings_1990_m": 1000,
+    "roe_pct_floor": 0.20,
+    "roa_pct": 0.0125
+  },
+
+  "control_groups": [
+    { "ticker": "BAC", "company": "BankAmerica", "year": 1990, "gates_failed": ["g7_moat"], "conclusion": "PASS — larger institution, but without Wells Fargo's management quality and clean economics." },
+    { "ticker": "SPC", "company": "Security Pacific", "year": 1990, "gates_failed": ["g7_moat"], "conclusion": "PASS — another California bank exposed to the same fear, but without the same proven earnings power and management edge." }
+  ],
+
+  "conclusion": "BUY",
+  "buffett_action": "Berkshire accumulated just under 10% of Wells Fargo in 1989-1990 for about $290M.",
+  "actual_result": "A three-decade winner and one of Berkshire's canonical crisis purchases.",
+  "verdict": "✅ aligned",
+  "key_insight": "Banking leverage is dangerous, but a panic can still create an extraordinary opportunity when franchise quality and management discipline are exceptional."
+}

@@ -1,0 +1,13 @@
+# 依赖说明
+
+## 运行示例脚本需要
+
+```bash
+pip install requests
+```
+
+## 可选：使用腾讯云 SDK
+
+```bash
+pip install tencentcloud-sdk-python
+```

@@ -1,0 +1,14 @@
+{
+  "name": "ths-stock-themes",
+  "version": "1.0.1",
+  "description": "获取同花顺个股题材/概念板块和人气排名数据",
+  "license": "MIT",
+  "keywords": [
+    "stock",
+    "A 股",
+    "同花顺",
+    "题材",
+    "概念",
+    "人气排名"
+  ]
+}

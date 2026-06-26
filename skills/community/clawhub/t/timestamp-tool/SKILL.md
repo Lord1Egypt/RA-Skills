@@ -1,35 +1,26 @@
 ---
-name: "Timestamp Tool"
-description: "Convert between Unix timestamps and human-readable dates. Use for time conversion, log analysis, and date arithmetic."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/timestamp-tool"
-sourceUrl: "https://clawhub.ai/skills/timestamp-tool"
+name: timestamp-tool
+description: Convert between Unix timestamps and human-readable dates. Use for time conversion, log analysis, and date arithmetic.
 ---
+# Timestamp - Time Conversion Utility
 
-# Timestamp Tool
+Convert Unix epoch timestamps to human-readable date/time formats and vice versa. Supports multiple timezones and common date formats for log processing.
 
-> Convert between Unix timestamps and human-readable dates. Use for time conversion, log analysis, and date arithmetic.
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/timestamp-tool`
-- **Source URL:** [https://clawhub.ai/skills/timestamp-tool](https://clawhub.ai/skills/timestamp-tool)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
+## Usage
 ```bash
-hermes skills install clawhub/timestamp-tool
+timestamp-tool [options] <value>
+```
+
+## Options
+
+- `-u`: Output as Unix timestamp
+- `-f FORMAT`: Custom output format
+- `-z TIMEZONE`: Convert to timezone
+
+## Examples
+
+```bash
+timestamp-tool 1714896000
+timestamp-tool -u "2026-05-05 12:00:00"
+timestamp-tool -z Asia/Shanghai now
 ```

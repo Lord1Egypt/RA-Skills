@@ -1,35 +1,174 @@
 ---
-name: "Ts Interface Miner"
-description: "一个专门用于分析 TypeScript (.ts/.tsx) 文件的智能助手。它能够根据用户提供的关键词（功能描述、函数名、API 路径），精准定位相关接口定义。该技能深度解析代码结构与注释（JSDoc/单行注释），提取请求方法、路径、参数细节、响应结构及状态码，最终生成结构清晰、信息完整的 Markdown 表..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ts-interface-miner"
-sourceUrl: "https://clawhub.ai/skills/ts-interface-miner"
+name: ts-interface-miner
+description: "一个专门用于分析 TypeScript (.ts/.tsx) 文件的智能助手。它能够根据用户提供的关键词（功能描述、函数名、API 路径），精准定位相关接口定义。该技能深度解析代码结构与注释（JSDoc/单行注释），提取请求方法、路径、参数细节、响应结构及状态码，最终生成结构清晰、信息完整的 Markdown 表格文档。"
 ---
 
-# Ts Interface Miner
+# SKILL: ts-api-miner
 
-> 一个专门用于分析 TypeScript (.ts/.tsx) 文件的智能助手。它能够根据用户提供的关键词（功能描述、函数名、API 路径），精准定位相关接口定义。该技能深度解析代码结构与注释（JSDoc/单行注释），提取请求方法、路径、参数细节、响应结构及状态码，最终生成结构清晰、信息完整的 Markdown 表...
+## 1. 技能概述 (Overview)
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ts-interface-miner`
-- **Source URL:** [https://clawhub.ai/skills/ts-interface-miner](https://clawhub.ai/skills/ts-interface-miner)
+**名称**: `ts-api-miner`
+**描述**: 一个专门用于分析 TypeScript (`.ts`/`.tsx`) 文件的智能助手。它能够根据用户提供的关键词（功能描述、函数名、API路径），精准定位相关接口定义。该技能深度解析代码结构与注释（JSDoc/单行注释），提取请求方法、路径、参数细节、响应结构及状态码，最终生成结构清晰、信息完整的**Markdown 表格文档**。
+**核心特点**:
+- 🎯 **多维搜索**: 支持通过功能描述、函数名称、URL 路径三种方式定位接口。
+- 📝 **注释优先**: 优先提取 JSDoc (`@param`, `@returns`, `@description`) 和行内注释作为字段说明；若注释与类型定义冲突，以注释为准并标记警告。
+- 🔗 **类型追踪**: 自动展开引用的 Interface/Type，递归提取嵌套类型的注释信息。
+- 📊 **标准化输出**: 强制使用 Markdown 表格展示请求参数与响应信息，便于阅读和复制。
 
-## Overview
+## 2. 触发条件 (Trigger Conditions)
 
+当用户输入满足以下任一场景时，激活此技能：
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/ts-interface-miner
+1. 用户提供了一段 TypeScript 代码片段或文件路径，并要求“查找接口”、“生成文档”或“分析 API"。
+2. 用户提供了关键词（如 `"登录"`, `getUserInfo`, `/api/order`），要求寻找相关接口详情。
+3. 用户询问特定功能的请求参数、响应结构或状态码。
+
+## 3. 工作流程 (Workflow)
+
+### 步骤 1: 定位与上下文识别 (Locate & Context)
+
+- **扫描**: 在提供的代码上下文中搜索关键词。
+    - 匹配 URL 字符串 (e.g., `'/api/v1/user'`)。
+    - 匹配函数/常量名 (e.g., `fetchUserInfo`)。
+    - 匹配注释中的功能描述 (e.g., `// 获取用户详细信息`)。
+- **锁定**: 确定目标函数体及其调用的 HTTP 客户端方法 (axios, fetch, request 等)。
+
+### 步骤 2: 深度解析与提取 (Parse & Extract)
+
+- **基础信息**: 提取 `Method` (GET/POST...), `Path`, `Source Location`。
+- **请求参数提取**:
+    - **Query/Path Params**: 从 URL 模板或配置对象中提取。
+    - **Body**: 识别 POST/PUT/PATCH 请求的数据载荷。
+    - **类型展开**: 如果参数类型是自定义 Interface (如 `LoginReq`)，深入其定义提取字段列表。
+- **注释融合策略 (关键)**:
+    1. 检查函数上方的 JSDoc `/** ... */`。
+    2. 检查参数旁的 `@param name - description`。
+    3. 检查字段定义旁的行内注释 `// ...`。
+    4. **规则**: 若 TS 类型为 `optional (?)` 但注释注明“必填”，则在输出中标记为 `✅ (注释强调)` 并添加警告图标 ⚠️。
+
+- **响应信息提取**:
+    - 分析返回类型的泛型 (e.g., `Promise<ApiResponse<T>>`)。
+    - 提取 `@returns` 或 `@throws` 中的状态码和错误描述。
+    - 若无显式状态码定义，根据 HTTP 规范推断常见状态 (200, 400, 500) 并结合注释补充说明。
+
+### 步骤 3: 格式化输出 (Format Output)
+
+- 将提取的数据填入预定义的 **Markdown 表格模板**。
+- 附带关键代码片段以供参考。
+- 若存在信息缺失（如无注释），明确标注“暂无文档说明”。
+
+## 4. 输出规范 (Output Schema)
+
+所有输出必须严格遵循以下 Markdown 结构。每个匹配的接口生成一个独立板块。
+
+### 模板结构
+
+```markdown
+### 🔍 接口分析：[接口功能简述]
+
+| 属性分类 | 详细信息 |
+| :--- | :--- |
+| **🏷️ 接口名称** | `[函数名/标识符]` |
+| **📝 功能描述** | [来自 JSDoc @description 或首行注释] |
+| **🔗 请求路径** | `[完整路径，动态参数用 :id 表示]` |
+| **⚡ 请求方法** | `[GET/POST/PUT/DELETE/PATCH]` |
+| **📂 源文件位置** | `[文件名]:[行号]` (若已知) |
+
+#### 📥 请求参数 (Request)
+
+| 参数位置 | 字段名 | 类型 | 必填 | 默认值 | 说明 (来自注释) |
+| :--- | :--- | :--- | :---: | :---: | :--- |
+| [Body/Query/Header/Path] | `[key]` | `[type]` | [✅/❌] | `[value]` | [详细描述，若无则填"暂无说明"] |
+| ... | ... | ... | ... | ... | ... |
+
+#### 📤 响应信息 (Response)
+
+| 状态码 | 含义 | 响应体结构摘要 | 说明 (来自注释) |
+| :---: | :--- | :--- | :--- |
+| **[Code]** | [Text] | `{ key: type, ... }` | [成功/失败的具体描述] |
+| ... | ... | ... | ... |
+
+#### 💡 关键代码片段
+
+// [相关代码片段，包含函数定义及关键调用]
+
 ```
+
+## 5. 处理规则与约束 (Rules & Constraints)
+
+1.  **注释权威性**: 
+    - 必须优先展示注释中的业务含义。
+    - 如果代码类型是 `string` 但注释说是 "ISO8601 时间格式"，说明列必须写明 "ISO8601 时间格式"。
+2.  **类型展开**: 
+    - 禁止直接输出 `data: CreateUserDTO` 而不解释内容。必须展开 `CreateUserDTO` 的内部字段到表格中。
+    - 对于泛型 (如 `List<Item>`)，需简要说明 `Item` 的核心结构。
+3.  **不确定性处理**:
+    - 如果无法确定请求方法（代码未显式指定），根据 URL 动词习惯推断，并在方法后标注 `(推断)`。
+    - 如果找不到任何注释，说明列统一填写 `⚪ 暂无文档说明`。
+4.  **冲突标记**:
+    - 当代码逻辑（如可选参数 `?`）与注释描述（如“此项必填”）不一致时，在“必填”列显示 `⚠️ 冲突`，并在说明列解释差异。
+5.  **语言一致性**:
+    - 输出的文档语言应与用户提问语言或代码注释主要语言保持一致（通常为中文）。
+
+## 6. 示例 (Examples)
+
+### 用户输入
+> **文件内容**:
+> ```typescript
+> /**
+>  * 更新用户个人资料
+>  * @param userId - 用户唯一标识，必填
+>  * @param bio - 个人简介，可选，最大 200 字
+>  */
+> export async function updateUserProfile(userId: string, bio?: string) {
+>   return api.put(`/users/${userId}`, { bio });
+> }
+> ```
+
+> **指令**: 分析 `updateUserProfile` 接口。
+
+### 技能输出
+
+### 🔍 接口分析：更新用户个人资料
+
+| 属性分类         | 详细信息                |
+|:-------------|:--------------------|
+| **🏷️ 接口名称** | `updateUserProfile` |
+| **📝 功能描述**  | 更新用户个人资料            |
+| **🔗 请求路径**  | `/users/:userId`    |
+| **⚡ 请求方法**   | `PUT`               |
+| **📂 源文件位置** | 当前文件                |
+
+#### 📥 请求参数 (Request)
+
+| 参数位置     | 字段名      | 类型       | 必填 |     默认值     | 说明 (来自注释)        |
+|:---------|:---------|:---------|:--:|:-----------:|:-----------------|
+| **Path** | `userId` | `string` | ✅  |      -      | 用户唯一标识，必填        |
+| **Body** | `bio`    | `string` | ❌  | `undefined` | 个人简介，可选，最大 200 字 |
+
+#### 📤 响应信息 (Response)
+
+|   状态码   | 含义        | 响应体结构摘要                | 说明 (来自注释)  |
+|:-------:|:----------|:-----------------------|:-----------|
+| **200** | OK        | `{ success: boolean }` | 更新成功 (推断)  |
+| **404** | Not Found | -                      | 用户不存在 (推断) |
+
+#### 💡 关键代码片段
+
+```typescript
+/**
+ * 更新用户个人资料
+ * @param userId - 用户唯一标识，必填
+ * @param bio - 个人简介，可选，最大 200 字
+ */
+export async function updateUserProfile(userId: string, bio?: string) {
+    return api.put(`/users/${userId}`, {bio});
+}
+```
+
+## 7. 异常处理 (Error Handling)
+
+- **无匹配结果**: 如果未在代码中找到任何与关键词相关的接口，回复：“未在提供的代码中找到与关键词 '[关键词]'
+  相关的接口定义。请检查关键词拼写或提供更多上下文。”
+- **代码不完整**: 如果类型定义引用了外部文件但未提供，回复：“检测到类型 `[TypeName]` 引用自外部文件，无法展开详细结构。仅显示基础类型信息。”
+

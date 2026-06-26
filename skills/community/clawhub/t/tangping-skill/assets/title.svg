@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="220" viewBox="0 0 1200 220" role="img" aria-label="躺平.skill">
+  <rect width="1200" height="220" fill="transparent"/>
+  <text x="600" y="135"
+        text-anchor="middle"
+        font-family="'Noto Sans SC', 'Microsoft YaHei', 'PingFang SC', Arial, sans-serif"
+        font-size="112"
+        font-weight="900"
+        fill="#ffffff"
+        stroke="#111827"
+        stroke-width="7"
+        stroke-linejoin="round"
+        paint-order="stroke fill">躺平.skill 🛋️</text>
+</svg>

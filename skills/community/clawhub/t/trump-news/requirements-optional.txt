@@ -1,0 +1,4 @@
+# 可选：启用 Truth Social 拉取（@realDonaldTrump 等）
+# pip install -r requirements-optional.txt
+# 并配置 TRUTHSOCIAL_USERNAME / TRUTHSOCIAL_PASSWORD 或 TRUTHSOCIAL_TOKEN
+truthbrush>=0.2.0

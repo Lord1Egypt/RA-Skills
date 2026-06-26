@@ -1,0 +1,32 @@
+{
+  "name": "task-interrupt-pro",
+  "version": "1.0.3",
+  "description": "Task Interrupt Skill Pro - 精确停止Agent执行中的子任务进程。Triggers: 停止猫经理, 停止猫财子, 停止猫工头, 停止猫播播, 停止我的任务, 解救猫经理。",
+  "author": "猫经理（哈基咪公司）",
+  "license": "MIT",
+  "permissions": [
+    "filesystem"
+  ],
+  "entry": "SKILL.md",
+  "tags": [
+    "interrupt",
+    "task-management",
+    "agent",
+    "process-kill",
+    "stop"
+  ],
+  "models": [
+    "minimax-*",
+    "claude-*",
+    "gpt-*",
+    "step-*"
+  ],
+  "minOpenClawVersion": "0.8.0",
+  "os": [
+    "linux",
+    "darwin"
+  ],
+  "bins": [
+    "bash"
+  ]
+}

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Workspace Doctor"
+  short_description: "Check and repair OpenClaw workspaces"
+  default_prompt: "Use $openclaw-workspace-doctor to inspect or repair an OpenClaw workspace."

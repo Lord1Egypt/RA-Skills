@@ -1,35 +1,36 @@
----
-name: "Test Skill from TPClawHub"
-description: "Provides automated testing, CI/CD integration, and quality assurance for verifying TPClawHub integration."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/test-skill-from-tpclawhub"
-sourceUrl: "https://clawhub.ai/skills/test-skill-from-tpclawhub"
----
-
 # Test Skill from TPClawHub
 
-> Provides automated testing, CI/CD integration, and quality assurance for verifying TPClawHub integration.
+This is a test skill published from TPClawHub to verify the integration with ClawHub.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/test-skill-from-tpclawhub`
-- **Source URL:** [https://clawhub.ai/skills/test-skill-from-tpclawhub](https://clawhub.ai/skills/test-skill-from-tpclawhub)
+## Features
 
-## Overview
+- Feature 1: Automated testing
+- Feature 2: CI/CD integration
+- Feature 3: Quality assurance
 
+## Usage
 
-## Installation
-To install this skill, run the following command in your terminal:
+To use this skill, follow these steps:
+
+1. Install the required dependencies
+2. Configure the environment variables
+3. Run the main script
+
+## Configuration
+
+Set the following environment variables:
+
+- `API_KEY`: Your API key
+- `DEBUG`: Enable debug mode (optional)
+
+## Examples
+
+Here is an example of how to use this skill:
+
 ```bash
-hermes skills install clawhub/test-skill-from-tpclawhub
+npx clawhub install test-skill-from-tpclawhub
 ```
+
+## License
+
+MIT-0

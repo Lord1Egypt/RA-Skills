@@ -1,0 +1,21 @@
+[project]
+name = "tdoc-docx"
+version = "1.0.0"
+description = "Word 文档全能处理技能 - 创建、读取、编辑、转换"
+requires-python = ">=3.9"
+dependencies = [
+    "python-docx>=1.1.0",
+    "reportlab>=4.0",
+    "defusedxml>=0.7.0",
+    "lxml>=5.0",
+]
+
+[project.optional-dependencies]
+images = [
+    "Pillow>=10.0",
+]
+dev = [
+    "pytest>=7.0",
+]
+
+# 注意: 同步维护 requirements.txt 供非 uv 用户使用

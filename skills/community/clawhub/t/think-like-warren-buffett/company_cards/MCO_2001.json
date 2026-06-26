@@ -1,0 +1,54 @@
+{
+  "ticker": "MCO",
+  "company": "Moody's Corporation",
+  "analysis_year": 2001,
+  "data_source": "Moody's FY2001 10-K, SEC EDGAR; Berkshire 2001 annual report",
+  "analyzed_date": "2026-03-25",
+
+  "hard_gates": {
+    "g1_roe_roic": { "value": 0.34, "metric_used": "ROIC", "years_averaged": "1999-2001 adjusted for buyback-distorted equity", "pass": true },
+    "g2_fcf_to_ni": { "value": 1.37, "fcf": 291.5, "net_income": 212.2, "pass": true },
+    "g3_leverage": { "metric_used": "Net Debt/EBITDA", "value": 0.33, "pass": true },
+    "g4_revenue_trend": { "description": "Revenue rose from $564.2M to $602.3M to $796.7M, driven by expanding structured finance, corporate ratings, and international demand. No structural decline was visible.", "structural_decline": false, "pass": true },
+    "g5_gross_margin_trend": { "description": "Operating margin improved from roughly 48% in 2000 to 50% in 2001, with no evidence of a two-year profitability collapse. For this asset-light ratings business, margin structure was strengthening, not weakening.", "declining_2plus_years": false, "pass": true },
+    "g6_earnings_yield": { "value": 0.03, "net_income_m": 212.2, "ev_m": 6973, "exemption": null, "pass": false },
+    "g7_moat": { "verdict": "PASS", "moat_type": "brand", "description": "Moody's had a real moat: regulatory entrenchment, reputational trust, issuer habit, global analyst infrastructure, and the self-reinforcing position of being one of the few agencies embedded in the bond market's plumbing. Competitors could not easily replicate the installed role Moody's played in global debt issuance.", "pass": true }
+  },
+
+  "special_channel": null,
+
+  "review_notes": {
+    "quality_multiple_note": {
+      "summary": "Moody's looked expensive on a blunt earnings-yield basis because the market was already capitalizing a deeply embedded, asset-light ratings tollbooth.",
+      "reason_for_low_yield": "The low yield reflected regulatory entrenchment, global market infrastructure status, and very low incremental capital needs more than speculative hype.",
+      "decision_impact": "This note does not change the archived PASS, but it records that g6 is too blunt for elite information-service monopolies."
+    },
+    "management_veto": {
+      "status": "clear",
+      "summary": "No management-integrity veto was visible in the filed materials. The disagreement here is almost entirely about valuation framework, not trust."
+    }
+  },
+
+  "metrics_snapshot": {
+    "revenue_2001_usd_m": 796.7,
+    "operating_income_2001_usd_m": 398.5,
+    "net_income_2001_usd_m": 212.2,
+    "operating_cash_flow_2001_usd_m": 306.3,
+    "capital_expenditures_2001_usd_m": 14.8,
+    "cash_2001_usd_m": 163.2,
+    "notes_payable_2001_usd_m": 300.0,
+    "berkshire_shares_2001_m": 24.0,
+    "berkshire_cost_2001_usd_m": 499
+  },
+
+  "control_groups": [
+    { "ticker": "MHP", "company": "The McGraw-Hill Companies", "year": 2001, "gates_failed": ["g6_earnings_yield"], "conclusion": "PASS — Standard & Poor's was excellent, but it sat inside a broader publishing and information conglomerate that did not offer Moody's purity or margins at an obviously cheap price." },
+    { "ticker": "DNB", "company": "The New Dun & Bradstreet Corporation", "year": 2001, "gates_failed": ["g1_roe_roic", "g7_moat"], "conclusion": "PASS — useful data assets, but the economics and strategic position were less singular than Moody's post-spin ratings franchise." }
+  ],
+
+  "conclusion": "PASS",
+  "buffett_action": "By year-end 2001 Berkshire held 24.0M Moody's shares with a carrying cost of about $499M and described the business as one of the companies it still liked.",
+  "actual_result": "Moody's became one of Berkshire's strongest long-duration public-equity winners after the spin-era hold decision, compounding sharply over the following decade.",
+  "verdict": "❌ framework_wrong",
+  "key_insight": "The framework still underestimates elite asset-light information monopolies whose quality can justify earnings yields far below a blunt 6% screen."
+}

@@ -1,0 +1,13 @@
+{
+  "prompts": {
+    "character_prefix": "{style_prompt}, character design, high quality, detailed",
+    "scene_prefix": "{style_prompt}, background art, environmental design, atmospheric lighting",
+    "storyboard_prefix": "{style_prompt}, storyboard frame, cinematic composition, clear narrative",
+    "video_prefix": "{style_prompt}, cinematic shot, smooth motion, professional quality"
+  },
+  "negative_prompts": {
+    "common": "low quality, blurry, distorted, deformed, ugly, duplicate, watermark, text, signature, logo",
+    "character": "extra limbs, missing limbs, bad anatomy, bad proportions, fused fingers, too many fingers",
+    "scene": "chaotic composition, unclear perspective, inconsistent lighting, cluttered"
+  }
+}

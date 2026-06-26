@@ -1,0 +1,12 @@
+{
+  "name": "tushare-cli",
+  "version": "1.0.0",
+  "description": "Tushare 数据查询",
+  "author": "滚滚家族",
+  "license": "MIT",
+  "keywords": ["tushare", "finance", "data", "stock"],
+  "clawhub": {
+    "category": "finance",
+    "tags": ["Tushare", "数据查询", "股票数据", "财经新闻"]
+  }
+}

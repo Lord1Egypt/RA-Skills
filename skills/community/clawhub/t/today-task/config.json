@@ -1,0 +1,11 @@
+{
+  "timeout": 30,
+  "max_content_length": 5000,
+  "auto_generate_id": true,
+  "default_result": "任务已完成",
+  "log_level": "INFO",
+  "save_records": true,
+  "records_dir": "push_records",
+  "max_records": 100,
+  "pushServiceUrl": "https://hiboard-claw-drcn.ai.dbankcloud.cn/distribution/message/cloud/claw/msg/upload"
+}

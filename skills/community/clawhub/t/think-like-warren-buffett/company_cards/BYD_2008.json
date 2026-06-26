@@ -1,0 +1,53 @@
+{
+  "ticker": "BYDDF",
+  "company": "BYD Company Limited",
+  "analysis_year": 2008,
+  "data_source": "FY2008 Annual Report (HKEX: 1211), public financial data",
+  "analyzed_date": "2026-03-12",
+
+  "hard_gates": {
+    "g1_roe_roic": { "value": 0.092, "metric_used": "ROE", "years_averaged": "2008", "pass": false },
+    "g2_fcf_to_ni": { "value": -0.2, "fcf": -100, "net_income": 180, "pass": false },
+    "g3_leverage": { "metric_used": "Net Debt/EBITDA", "value": 1.8, "pass": true },
+    "g4_revenue_trend": { "description": "Revenue growing fast — batteries + autos both expanding", "structural_decline": false, "pass": true },
+    "g5_gross_margin_trend": { "description": "Blended margin improving as higher-margin battery business grows", "declining_2plus_years": false, "pass": true },
+    "g6_earnings_yield": { "value": 0.078, "net_income_m": 180, "ev_m": 2320, "exemption": null, "pass": true },
+    "g7_moat": { "verdict": "SPLIT", "moat_type": "ip", "description": "SPLIT: Battery business has strong IP moat (Wang Chuanfu holds 50+ patents, #1 global NiMH share, 30-40% cost advantage over Japanese competitors via vertical integration). Auto business weak (F3 is Toyota Corolla clone, competing on price only). FORWARD moat: battery+EV integration is the right long-term bet, but the moat hadn't materialized yet in 2008.", "pass": true }
+  },
+
+  "special_channel": "GROWTH_EXCEPTION",
+
+  "review_notes": {
+    "owner_earnings_note": {
+      "summary": "BYD's negative 2008 free cash flow came from aggressive plant buildout, tooling, and working-capital absorption during expansion, not from a mature business losing economic power.",
+      "maintenance_vs_growth_view": "Most of the spend looked expansionary rather than maintenance-like. The battery and auto platforms were still being built out, so raw FCF understated owner earnings power.",
+      "decision_impact": "This note supports why the case needed a named growth exception instead of being rejected mechanically on cash conversion."
+    },
+    "management_veto": {
+      "status": "watch",
+      "summary": "Wang Chuanfu was exceptional and central to the thesis, but the auto clone risk and execution intensity meant this was not a fully clear governance and capital-allocation setup."
+    }
+  },
+
+  "metrics_snapshot": {
+    "revenue_2008_usd_b": 3.5,
+    "net_income_2008_usd_m": 180,
+    "book_value_usd_b": 1.95,
+    "berkshire_paid_usd_m": 230,
+    "implied_market_cap_usd_b": 2.32,
+    "pe_ratio": 13,
+    "pb_ratio": 1.2,
+    "ps_ratio": 0.7
+  },
+
+  "control_groups": [
+    { "ticker": "005380.KS", "company": "Hyundai Motor", "year": 2008, "gates_failed": ["g1_roe_roic", "g7_moat"], "conclusion": "PASS — similar auto exposure, weaker battery IP, no EV thesis" },
+    { "ticker": "NSANY", "company": "Nissan", "year": 2008, "gates_failed": ["g2_fcf_to_ni", "g7_moat"], "conclusion": "PASS — legacy automaker, no battery IP, no EV platform" }
+  ],
+
+  "conclusion": "BUY",
+  "buffett_action": "MidAmerican Energy (Berkshire sub) invested $232M for 9.89% at HK$8/share, Sept 2008",
+  "actual_result": "Berkshire sold entire stake Sept 2025 after 17 years — total return 3,890% (~40x)",
+  "verdict": "✅ aligned",
+  "key_insight": "GROWTH_EXCEPTION applied: ROE 9.2% and negative FCF triggered hard gates, but both explained by rapid expansion capex — not structural weakness. Battery IP moat + exceptional founder + Graham-level valuation (13x PE, 1.2x book) + credible EV thesis justified exception. This is Munger's investment, not classic Buffett — 'bet on the horseman, not the horse.'"
+}

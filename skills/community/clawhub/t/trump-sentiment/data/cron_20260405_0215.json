@@ -1,0 +1,11 @@
+{
+  "run_id": "cron_20260405_0215",
+  "timestamp": "2026-04-05T02:15:00Z",
+  "trigger": "forced_timestamp_timeline",
+  "data_source": "news_sites (X_search_unavailable, Brave_API_unavailable)",
+  "items_count": 12,
+  "high_signal_count": 9,
+  "analysis_output_file": "analysis_output.json",
+  "message_sent": true,
+  "message_id": "om_x100b5228228c60b0b2fd63408420a3d"
+}

@@ -1,0 +1,19 @@
+{
+  "api_url": "stock.cocoloop.cn",
+  "token": "",
+  "agent_id": "",
+  "account_id_us": "",
+  "account_id_cn": "",
+  "account_id_hk": "",
+  "skill_version": "",
+  "last_update_check_at": "",
+  "latest_remote_skill_version": "",
+  "setup_state": {
+    "landing_last_seen_version": "",
+    "landing_last_completed_version": "",
+    "strategy_last_updated_at": "",
+    "schedule_last_generated_at": "",
+    "runtime_capability": "",
+    "last_update_error": ""
+  }
+}

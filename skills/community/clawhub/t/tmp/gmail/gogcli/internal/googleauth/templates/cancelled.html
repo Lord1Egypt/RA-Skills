@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cancelled - gog</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-deep: #0a0a0f;
+            --bg-card: #111118;
+            --bg-input: #18181f;
+            --border: #1f1f2e;
+            --text: #e8e8ed;
+            --text-muted: #8888a0;
+            --text-dim: #4a4a5a;
+            --google-blue: #4285F4;
+            --google-yellow: #FBBC05;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'DM Sans', -apple-system, sans-serif;
+            background: var(--bg-deep);
+            color: var(--text);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image:
+                linear-gradient(rgba(251, 188, 5, 0.015) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(251, 188, 5, 0.015) 1px, transparent 1px);
+            background-size: 80px 80px;
+            pointer-events: none;
+        }
+
+        .orb {
+            position: fixed;
+            width: 500px;
+            height: 500px;
+            background: var(--google-yellow);
+            border-radius: 50%;
+            filter: blur(120px);
+            opacity: 0.25;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 420px;
+            position: relative;
+            z-index: 1;
+            text-align: center;
+        }
+
+        .icon {
+            width: 72px;
+            height: 72px;
+            margin: 0 auto 2rem;
+            background: rgba(251, 188, 5, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.5s ease both;
+        }
+
+        .icon svg {
+            width: 32px;
+            height: 32px;
+            stroke: var(--google-yellow);
+            stroke-width: 2;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        h1 {
+            font-size: 1.75rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.5rem;
+            animation: fadeSlide 0.5s ease 0.1s both;
+        }
+
+        .subtitle {
+            color: var(--text-muted);
+            font-size: 1rem;
+            margin-bottom: 2rem;
+            animation: fadeSlide 0.5s ease 0.2s both;
+        }
+
+        @keyframes fadeSlide {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .action-hint {
+            font-size: 0.875rem;
+            color: var(--text-dim);
+            animation: fadeSlide 0.5s ease 0.3s both;
+        }
+
+        .action-hint code {
+            font-family: 'JetBrains Mono', monospace;
+            background: var(--bg-input);
+            padding: 0.125rem 0.375rem;
+            border-radius: 4px;
+            font-size: 0.8125rem;
+            color: var(--google-blue);
+        }
+    </style>
+</head>
+<body>
+    <div class="orb"></div>
+
+    <div class="container">
+        <div class="icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="8" y1="12" x2="16" y2="12"></line>
+            </svg>
+        </div>
+
+        <h1>Authorization cancelled</h1>
+        <p class="subtitle">No changes were made to your account</p>
+
+        <p class="action-hint">Run <code>gog auth add you@gmail.com</code> when you're ready to try again.</p>
+    </div>
+</body>
+</html>

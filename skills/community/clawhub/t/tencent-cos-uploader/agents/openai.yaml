@@ -1,0 +1,4 @@
+interface:
+  display_name: "Tencent COS Uploader"
+  short_description: "Upload files to Tencent COS and create signed links"
+  default_prompt: "上传指定文件到腾讯云 COS 桶，并返回可查看/下载的预签名链接。"

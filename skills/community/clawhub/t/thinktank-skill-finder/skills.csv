@@ -1,0 +1,53 @@
+bundle_id,slug,title,keep,restricted_keep,primary_stage,dependencies,downloads,stars,installs_current,checked_at,reason,review_note
+academic-research-plus,arxiv-watcher,ArXiv Watcher,yes,no,information_acquisition,公共 API,9585,9,111,2026-04-08,如果研究涉及大模型、算力、算法前沿，ArXiv 监测仍然是高价值入口，适合作为学术包中的轻量前沿跟踪条目。,已实装检查；带脚本；直接调用 ArXiv API；能力与名称一致；但核心依赖 arXiv，按当前 restricted 口径视为依赖中国以外网络。
+academic-research-plus,google-scholar-search-skill,Google Scholar Search Skill,yes,no,information_acquisition,网页抓取/爬取,820,1,3,2026-04-08,Google Scholar 方向可选项不多，这个条目是相对更完整的候选。,已实装检查；带 Python 脚本和 requirements.txt；本质是 Google Scholar 爬取方案，按当前 restricted 口径视为依赖中国以外网络。
+academic-research-plus,paper-parse,Paper Parse,yes,yes,knowledge_structuring,需要论文 PDF 或 URL,2992,7,17,2026-04-14,适合作为论文精读与结构化拆解能力，能补强学术研究包里“找到论文之后怎么快速吃透”的环节。,已实装检查；带双模报告模板；要求先抽全文再生成 Part A/Part B 两部分研读报告；更适合作为论文解析补位项，不替代检索类 skill。
+academic-research-plus,research-paper-compare,Research Paper Compare,yes,yes,analysis_modeling,需要论文全文,172,1,1,2026-04-08,对比分析是高价值研究动作，这个方向值得保留。,已实装检查；方法约束清楚；强调必须获取全文后再比较；适合作为高价值论文对比技能。
+academic-research-plus,academic-research-hub,Academic Research Hub,yes,no,information_acquisition,本地 Python 与外部检索工作流,5200,7,49,2026-04-14,多源学术检索能力更强，适合作为学术研究包里的主力检索条目。,已实装检查；带 scripts 和 references；覆盖 arXiv、PubMed、Semantic Scholar、Google Scholar 与 PDF 下载/引文导出；其中 arXiv、Semantic Scholar、Google Scholar 按当前 restricted 口径视为依赖中国以外网络，因此 restricted_keep=no。
+analysis-modeling-plus,afrexai-swot-analyzer,SWOT Analyzer,yes,yes,analysis_modeling,分析框架，可配合检索,832,2,5,2026-04-08,适合作为固定分析模板型技能，尤其是策略部分。,已实装检查；更像高质量 SWOT 模板，适合分析建模增强包。
+analysis-modeling-plus,competitor-analysis-report,Competitor Analysis Report,yes,yes,analysis_modeling,外部检索工作流,1034,0,3,2026-04-09,竞对研究是常见智库任务，这个条目直接面向结构化竞品报告产出，适合补回分析建模包。,已实装检查；提供完整竞对报告框架、矩阵、SWOT 和建议结构；更像高质量研究模板，需结合公开资料检索使用。
+analysis-modeling-plus,data-analysis,Data Analysis,yes,yes,analysis_modeling,无,25032,84,299,2026-04-13,数据分析与可视化是研究建模的重要补充，这个条目质量明显高于此前的数据分析候选，值得纳入。,已实装检查；带 metric-contracts、chart-selection、decision-briefs 等参考文件；更像成熟的数据分析方法框架，不是空壳或收费服务。
+analysis-modeling-plus,mckinsey-research,McKinsey Research,yes,yes,analysis_modeling,外部检索工作流,3187,8,19,2026-04-13,适合补强行业研究、竞争分析、市场进入和战略分析等高阶研究建模任务。,已实装检查；带 README、模板、参考资料和 12 个分析提示；结构完整，适合作为策略研究增强项；依赖在线检索，但未明确绑定特定境外 API 平台。
+analysis-modeling-plus,porters-five-forces,Porters Five Forces,yes,yes,analysis_modeling,分析框架,99,0,1,2026-04-09,五力模型是典型商业分析框架，和分析建模包定位高度一致，值得保留一个专门条目。,已实装检查；内容较轻但框架清楚、边界明确；属于方法模板型 skill，不是自动抓数工具。
+analysis-modeling-plus,strategic-competitor-analysis,Strategic Competitor Analysis,yes,yes,analysis_modeling,分析框架,150,0,0,2026-04-09,适合补强竞对画像和竞争格局分析，让分析建模包不只剩 SWOT。,已实装检查；结构化程度高；覆盖竞争集合、画像、对比矩阵和战略含义；属于分析框架型 skill。
+delivery-plus,article-to-infographic,Article to Infographic,yes,yes,visualization,浏览器自动化,814,0,1,2026-04-08,信息图方向可选项不多，更适合做成果展示和传播材料。,已实装检查；包结构完整；但流程较重、确认步骤多，更适合增强包。
+delivery-plus,summarize-1-0-0,Summarize 1.0.0,yes,no,knowledge_structuring,需本地 summarize CLI 和模型 API Key,3425,1,149,2026-04-13,通用总结能力很强，但因依赖 CLI 和模型 API，更适合作为增强包里的摘要与提炼补充项。,已实装检查；能力覆盖网页、PDF、本地文件和 YouTube 内容总结；依赖本地 summarize CLI，并需配置对应模型提供商 API Key。
+monitoring-and-insight,brave-api-search,Brave Api Search,yes,no,information_acquisition,需要 API Key,6309,1,29,2026-04-09,适合作为 Tavily 之外的补充搜索源，用于交叉验证和备份检索。,已实装检查；有独立 JS 工具文件；需要 BRAVE_SEARCH_API_KEY 和 BRAVE_ANSWERS_API_KEY。
+monitoring-and-insight,firecrawl-search,Firecrawl Search,yes,no,information_acquisition,需要 API Key,16870,48,133,2026-04-09,网页抓取和结构化提取能力很强，适合作为动态监测与补充抓取能力。,已实装检查；带 scripts 和参考文档；明确依赖 FIRECRAWL_API_KEY。
+monitoring-and-insight,news-aggregator,News Aggregator,yes,yes,information_acquisition,外部检索工作流,9324,9,110,2026-04-08,对政策环境、产业动态和舆情跟踪类研究有直接价值。,已实装检查；更像新闻聚合工作流模板；本身不带抓取脚本，依赖 Tavily 或 web_fetch。
+thinktank-core,multi-search-engine,Multi Search Engine,yes,yes,information_acquisition,无,114525,538,1725,2026-04-13,聚合搜索能力很强，且不需要 API Key，适合作为核心包里的免配置搜索入口。,已核 API 与线上页面；覆盖多搜索引擎与高级检索语法；公开说明为 instruction-only，无额外凭据依赖。
+thinktank-core,document-summary,Document Summary,yes,yes,knowledge_structuring,无,2899,2,24,2026-04-08,适合作为跨 PDF 和 Word 的摘要中间层。,已实装检查；内容偏轻；更像结构化摘要模板，不是强工具能力。
+thinktank-core,drawio,Draw.io Professional Diagrams,yes,yes,visualization,本地桌面 CLI,1199,4,10,2026-04-13,相比现有 draw.io 候选更完整、验证度更高，适合作为核心包里的主力 draw.io 条目。,已实装检查；带 ERD、类图、时序图、流程图、架构图等细分模板；仍依赖本地 draw.io CLI，但完整度和平台数据优于 drawio-pro-skill。
+thinktank-core,excalidraw-diagram-generator,Excalidraw Diagram Generator,yes,yes,visualization,无,2214,2,21,2026-04-08,适合头脑风暴、草图和早期结构表达。,已实装检查；定位清晰；输出 .excalidraw 文件；适合草图和头脑风暴。
+thinktank-core,excel-xlsx,Excel / XLSX,yes,yes,document_processing,无,47257,186,541,2026-04-08,当前 Excel 类最强头部技能之一，适合作为稳定表格工具链的一部分。,已实装检查；规则完整；覆盖公式、日期、重算、模板保真等关键问题。
+thinktank-core,in-depth-research,Deep Research,yes,yes,information_acquisition,无,6376,7,52,2026-04-08,适合作为智库研究总控入口，能把找资料、扩材料、追证据、形成研究路径串起来。,已实装检查；带 methodology、sources、output-formats，属于完整研究方法框架，不是空壳；未见明确要求 API Key 或绑定特定境外平台。
+thinktank-core,market-research-agent,Market Research Agent,yes,yes,analysis_modeling,分析框架,5392,17,29,2026-04-08,比纯搜索类技能更贴近从资料走向洞察的分析中层。,已实装检查；更像结构化市场研究框架，不是自动抓数工具。
+thinktank-core,markitdown-skill,MarkItDown Skill,yes,yes,document_processing,需 pip 安装命令行工具,1514,0,7,2026-04-09,统一覆盖多类型文档转 Markdown，适合资料清洗和内容提取。,已实装检查；包内容完整；但实际转换依赖 pip 安装的 markitdown CLI。
+thinktank-core,mermaid-diagrams,Mermaid Diagrams,yes,yes,visualization,Mermaid CLI 可选,4503,5,46,2026-04-09,相比 mermaid-architect 更完整、数据更稳，适合作为默认 Mermaid 主力技能。,已实装检查；内容和参考资料完整；平台数据明显优于 mermaid-architect。
+thinktank-core,openclaw-tavily-search,Tavily 搜索,yes,no,information_acquisition,需要 API Key,75851,208,1118,2026-04-09,当前 ClawdHub 上最强的通用搜索类 skill 之一，适合作为默认基础搜索入口。,已实装检查；带本地脚本；本质是 Tavily API 封装，需要 TAVILY_API_KEY。
+thinktank-core,powerpoint-pptx,Powerpoint / PPTX,yes,yes,report_delivery,无,29332,93,299,2026-04-08,研究成果经常以 PPT 交付，这个技能成熟度很高，应作为默认装机项。,已实装检查；方法论完整；适合作为 PPT 主力条目。
+thinktank-core,word-docx,Word / DOCX,yes,yes,report_delivery,无,52576,236,549,2026-04-08,当前 ClawdHub 上最强的 Word 类技能，正式报告和研究成稿都离不开它。,已实装检查；虽主包结构轻，但文档方法论完整，是高质量 DOCX/OOXML 技能。
+thinktank-core,pdf-pro,Pdf Pro,yes,yes,document_processing,本地 Python,859,1,5,2026-04-09,相比其他 PDF 候选更完整，适合作为基础 PDF 处理候选；当前默认源可装，中国镜像暂未收录，后续可继续观察。,已实装检查；带 scripts/pdf_tools.py；覆盖 PDF 合并、分割、提取、旋转、压缩和图片互转；默认源安装成功，但中国镜像安装时报 not found。
+,baoyu-infographic,Baoyu Infographic,no,no,visualization,依赖图像生成工作流,1367,1,44,2026-04-13,不具备独立闭环生成能力，当前不再保留在正式清单中。,已实装检查；更像信息图策划与提示词工作流；最终出图仍依赖外部图像生成能力。
+,office-to-pdf,office-to-pdf,no,no,report_delivery,本地桌面 CLI,257,0,2,2026-04-13,能力范围较窄，当前不再保留在正式清单中。,已实装检查；依赖本地 LibreOffice headless CLI；可用但更像专项补充，不必长期保留在正式 bundle 中。
+,pdf-to-word,pdf-to-word,no,no,document_processing,本地 Python,820,1,6,2026-04-13,能力范围较窄，当前不再保留在正式清单中。,已实装检查；带 convert.py 和 requirements.txt；依赖 pdf2docx；可用但更像专项补充，不必长期保留在正式 bundle 中。
+,interview-analysis,Interview Analysis,no,no,knowledge_structuring,模板工作流,2045,1,10,2026-04-13,默认语境偏招聘面试，当前不再保留在正式清单中。,已实装检查；带 README 和多份模板；但核心场景是招聘访谈分析，不够贴合智库调研材料整理。
+,interview-designer,Interview Designer,no,no,information_acquisition,模板工作流,1847,3,10,2026-04-13,默认语境偏招聘面试，当前不再保留在正式清单中。,已实装检查；带 README、模板和参考资料；但核心场景是招聘面试设计，不够贴合智库调研访谈。
+,betasurvey,Beta Survey Analysis,no,no,knowledge_structuring,本地 Python，需模型 API,48,0,0,2026-04-10,依赖模型 API 且平台验证度偏低，当前先不保留在正式清单中。,已实装检查；带 analyze.py 和示例数据；结构真实；但热度很低，还依赖外部模型能力。
+,limesurvey-openclaw-skill,LimeSurvey Openclaw Skill,no,no,information_acquisition,需要环境变量和平台账号,305,0,1,2026-04-10,平台绑定很强，当前先不保留在正式清单中。,已实装检查；这里的平台是自建或机构已有的 LimeSurvey 系统；依赖 RemoteControl API 地址、服务账号和环境变量。
+,wenjuan-survey,Questionnaire Assistant,no,no,information_acquisition,需要平台登录/授权,30,0,0,2026-04-10,平台绑定很强且验证度偏低，当前先不保留在正式清单中。,已实装检查；这里的平台是问卷网；包体完整，但依赖问卷网账号登录、授权和特定平台流程。
+,market-analysis-cn,Market Analysis CN,no,no,analysis_modeling,付费服务,8330,18,109,2026-04-09,服务化属性明显，当前不再保留在正式清单中。,已实装检查；SKILL.md 和 metadata 都写了定价信息，属于商业分析服务。
+,pdf-ocr,Pdf Ocr,no,no,document_processing,需要 API Key，且有额度限制,4201,1,55,2026-04-09,依赖外部 OCR 且存在安全与额度问题，当前不再保留在正式清单中。,已实装检查；专项能力真实；依赖百度 OCR；SKILL.md 中直接写出 key、secret 和免费额度。
+,trend-watcher,Trend Watcher,no,no,analysis_modeling,GitHub Trending,5369,7,46,2026-04-08,当前实现偏开发者生态趋势监测，不再保留在正式清单中。,已实装检查；实际是 GitHub Trending 和开发者生态监测，不太贴合智库研究场景。
+,data-analyst-pro,Data Analyst,no,no,analysis_modeling,无,5153,5,48,2026-04-08,内容偏薄，当前不再保留在正式清单中。,已实装检查；内容很薄；更像简短代理提示，不像成熟工具技能。
+,cnki-scholar,CNKI Scholar,no,no,information_acquisition,名称易误导,167,0,0,2026-04-08,名称容易让人误判，不建议继续纳入。,已实装检查；更像 OpenAlex 和 Crossref 检索说明，不是真正的 CNKI 接入。
+,drawio-exporter-skill,Draw.io Diagram Generator And Exporter,no,no,visualization,本地桌面 CLI,0,0,0,2026-04-09,本地 draw.io CLI 路线可用，但当前优先保留一个 draw.io 代表项即可。,已实装检查；也是本地 draw.io CLI 路线；当前未纳入以避免重复。
+,drawio-generator,drawio-generator,no,no,visualization,浏览器链接/网页,714,1,6,2026-04-09,被更本地化的 draw.io 方案替代。,已实装检查；更像浏览器打开 draw.io 链接的轻量入口，不如本地 draw.io 方案。
+,drawio-pro-skill,Drawio Skill,no,no,visualization,本地桌面 CLI,83,1,0,2026-04-13,已被更完整的 drawio 条目替代。,已实装检查；同样依赖本地 draw.io CLI；但完整度和平台验证度都弱于 drawio。
+,mermaid-architect,Mermaid Architect,no,no,visualization,文档不完整,1718,0,11,2026-04-09,被内容更完整、数据更稳的 Mermaid 条目替代。,已实装检查；内容和引用不够完整；平台数据也弱于 mermaid-diagrams。
+,patent-scanner,Patent Scanner,no,no,information_acquisition,名称易误导,2528,14,9,2026-04-08,名称与实际能力不符，不建议继续纳入。,已实装检查；实际是可专利性分析模板，不是专利检索或扫描工具。
+,pdf-helper,PDF 助手,no,no,document_processing,付费服务,865,0,3,2026-04-09,明显外部服务型，不建议纳入。,已实装检查；带调用计费信息。
+,pdf-processing,pdf-processing,no,no,document_processing,偏占位/半成品,2292,0,16,2026-04-09,内容偏占位，完成度不足。,已实装检查；包里几乎没有真实脚本。
+,pdf-smart-tool-cn,Pdf Smart Tool Cn,no,no,document_processing,次数限制服务,0,0,0,2026-04-09,存在明显免费次数限制，不适合作为高质量基础能力。,已检查使用限制；免费次数限制明显。
+,pdf-to-markdown,PDF to Markdown,no,no,document_processing,本地 CLI,699,0,6,2026-04-09,质量不错但能力范围偏窄，当前未纳入主清单。,已实装检查；偏本地且结构完整；更适合 PDF 提取和转 Markdown。
+,pdf-toolkit-pro,PDF Toolkit Pro,no,no,document_processing,付费服务,2242,0,23,2026-04-09,存在明确价格分层，不适合作为默认核心能力。,已实装检查；结构完整；但有清晰收费档位。

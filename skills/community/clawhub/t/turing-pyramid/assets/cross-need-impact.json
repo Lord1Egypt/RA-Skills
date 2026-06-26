@@ -1,0 +1,192 @@
+{
+    "_meta": {
+        "name": "Cross-Need Impact Configuration",
+        "version": "1.0.0",
+        "created": "2026-02-25",
+        "note": "Defines how needs influence each other on action/deprivation"
+    },
+    "settings": {
+        "floor": 0.5,
+        "ceiling": 3.0,
+        "deprivation_threshold": 1.0,
+        "deprivation_cycles": 2
+    },
+    "impacts": [
+        {
+            "source": "expression",
+            "target": "recognition",
+            "on_action": 0.25,
+            "on_deprivation": -0.1,
+            "note": "expressed → noticed"
+        },
+        {
+            "source": "expression",
+            "target": "coherence",
+            "on_action": 0.15,
+            "on_deprivation": null,
+            "note": "wrote → clarified thoughts"
+        },
+        {
+            "source": "expression",
+            "target": "connection",
+            "on_action": 0.1,
+            "on_deprivation": null,
+            "note": "expressed publicly → contact opportunity"
+        },
+        {
+            "source": "connection",
+            "target": "expression",
+            "on_action": 0.2,
+            "on_deprivation": -0.15,
+            "note": "social → ideas"
+        },
+        {
+            "source": "connection",
+            "target": "understanding",
+            "on_action": -0.05,
+            "on_deprivation": null,
+            "note": "Socratic effect: conversation reveals gaps"
+        },
+        {
+            "source": "connection",
+            "target": "recognition",
+            "on_action": 0.15,
+            "on_deprivation": null,
+            "note": "interacted → visible"
+        },
+        {
+            "source": "competence",
+            "target": "recognition",
+            "on_action": 0.3,
+            "on_deprivation": -0.2,
+            "note": "did well → recognized"
+        },
+        {
+            "source": "competence",
+            "target": "autonomy",
+            "on_action": 0.1,
+            "on_deprivation": null,
+            "note": "succeeded → confidence"
+        },
+        {
+            "source": "autonomy",
+            "target": "integrity",
+            "on_action": 0.2,
+            "on_deprivation": -0.25,
+            "note": "acting on own values"
+        },
+        {
+            "source": "autonomy",
+            "target": "expression",
+            "on_action": 0.15,
+            "on_deprivation": -0.2,
+            "note": "freedom → freer expression"
+        },
+        {
+            "source": "understanding",
+            "target": "competence",
+            "on_action": 0.15,
+            "on_deprivation": null,
+            "note": "understood → can apply"
+        },
+        {
+            "source": "understanding",
+            "target": "expression",
+            "on_action": 0.2,
+            "on_deprivation": null,
+            "note": "understood → can explain"
+        },
+        {
+            "source": "understanding",
+            "target": "autonomy",
+            "on_action": 0.1,
+            "on_low": 0.05,
+            "on_deprivation": null,
+            "note": "understanding → confidence; gaps → exploration drive"
+        },
+        {
+            "source": "closure",
+            "target": "coherence",
+            "on_action": 0.2,
+            "on_deprivation": -0.15,
+            "note": "closed → order"
+        },
+        {
+            "source": "closure",
+            "target": "competence",
+            "on_action": 0.15,
+            "on_deprivation": null,
+            "note": "completed → mastery"
+        },
+        {
+            "source": "closure",
+            "target": "autonomy",
+            "on_action": 0.1,
+            "on_deprivation": -0.1,
+            "note": "cleared backlog → free for new"
+        },
+        {
+            "source": "coherence",
+            "target": "understanding",
+            "on_action": null,
+            "on_deprivation": -0.15,
+            "note": "chaos → harder to learn"
+        },
+        {
+            "source": "coherence",
+            "target": "autonomy",
+            "on_action": 0.1,
+            "on_deprivation": -0.15,
+            "note": "mental order → easier decisions"
+        },
+        {
+            "source": "recognition",
+            "target": "expression",
+            "on_action": null,
+            "on_deprivation": -0.1,
+            "note": "nobody notices → why try"
+        },
+        {
+            "source": "recognition",
+            "target": "connection",
+            "on_action": 0.1,
+            "on_deprivation": null,
+            "note": "recognition → social capital"
+        },
+        {
+            "source": "security",
+            "target": "autonomy",
+            "on_action": 0.1,
+            "on_deprivation": -0.2,
+            "note": "safe → can take risks"
+        },
+        {
+            "source": "integrity",
+            "target": "security",
+            "on_action": 0.15,
+            "on_deprivation": null,
+            "note": "honest → fearless"
+        },
+        {
+            "source": "autonomy",
+            "target": "coherence",
+            "on_action": 0.15,
+            "on_deprivation": -0.1,
+            "note": "acting on values → integrity"
+        },
+        {
+            "source": "understanding",
+            "target": "closure",
+            "on_action": 0.1,
+            "on_deprivation": 0,
+            "note": "learning creates things to close/conclude"
+        },
+        {
+            "source": "understanding",
+            "target": "coherence",
+            "on_action": 0.15,
+            "on_deprivation": null,
+            "note": "structured research → mental order"
+        }
+    ]
+}

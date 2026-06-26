@@ -1,35 +1,56 @@
----
-name: "Time Awareness"
-description: "Provides accurate current time, market hours, timezone conversions, and prevents stale data by verifying time before responses."
-category: "autonomous-ai-agents"
-source: "ClawHub"
-tags: [agent, backup, hermes, openclaw, ops, utility]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/time-awareness"
-sourceUrl: "https://clawhub.ai/skills/time-awareness"
----
+# SKILL.md - Time Awareness
 
-# Time Awareness
+## Description
+Never make time-sensitive mistakes again. Forces time verification before claims, prevents stale data, handles timezones correctly.
 
-> Provides accurate current time, market hours, timezone conversions, and prevents stale data by verifying time before responses.
+## Price
+Free
 
-- **Category:** AI Agents
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/time-awareness`
-- **Source URL:** [https://clawhub.ai/skills/time-awareness](https://clawhub.ai/skills/time-awareness)
+## Commands
+- "What time is it?" â Current time in multiple zones
+- "Is the market open?" â Check market hours (ES, NQ, etc.)
+- "When does the market open?" â Next market open time
+- "Convert [time] to [timezone]" â Timezone conversion
+- "Set my timezone to [zone]" â Configure your timezone
 
-## Overview
+## Quick Start
+1. Set your timezone: "Set my timezone to America/Denver"
+2. Check market status: "Is ES open?"
+3. Get current time: "What time is it?"
 
+## Core Features
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/time-awareness
+### Time Verification
+- Always verifies current time before claims
+- Prevents stale data (configurable max age)
+- Handles DST transitions correctly
+
+### Market Hours
+- Supports ES, NQ, YM, CL, GC, and more
+- Knows holidays and early closes
+- RTH (Regular Trading Hours) and ETH (Extended)
+
+### Timezone Handling
+- 500+ timezone database
+- Automatic conversion
+- UTC as reference
+
+## Examples
+
 ```
+You: "Is the market open?"
+Agent: "ES is currently CLOSED. Opens Monday at 6:00 PM MT (pre-market)."
+
+You: "What time is it in Tokyo?"
+Agent: "It's 8:15 AM JST (Tuesday) in Tokyo."
+
+You: "When does NQ open?"
+Agent: "NQ opens in 2 hours 15 minutes (6:00 PM MT)."
+```
+
+## Implementation
+
+This skill uses Python's `zoneinfo` and `datetime` modules. No external API keys required.
+
+---
+*Time is money. Know it precisely.*

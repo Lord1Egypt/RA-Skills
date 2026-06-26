@@ -1,35 +1,28 @@
 ---
-name: "Tree Tool"
-description: "Display directory structure as an indented tree. Use for visualizing folder hierarchies and project structure."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/tree-tool"
-sourceUrl: "https://clawhub.ai/skills/tree-tool"
+name: tree-tool
+description: Display directory structure as an indented tree. Use for visualizing folder hierarchies and project structure.
 ---
+# Tree - Directory Listing Tree
 
-# Tree Tool
+Recursively list directory contents in a tree-like format. Shows files and folders with indentation to visualize the complete directory structure.
 
-> Display directory structure as an indented tree. Use for visualizing folder hierarchies and project structure.
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/tree-tool`
-- **Source URL:** [https://clawhub.ai/skills/tree-tool](https://clawhub.ai/skills/tree-tool)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
+## Usage
 ```bash
-hermes skills install clawhub/tree-tool
+tree-tool [options] [path]
+```
+
+## Options
+
+- `-L N`: Limit depth to N levels
+- `-d`: Show directories only
+- `-a`: Show hidden files
+- `-h`: Print file sizes
+- `-I pattern`: Exclude files matching pattern
+
+## Examples
+
+```bash
+tree-tool
+tree-tool -L 2 /home/user
+tree-tool -d -L 1
 ```

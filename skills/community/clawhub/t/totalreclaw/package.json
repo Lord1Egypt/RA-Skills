@@ -1,0 +1,93 @@
+{
+  "name": "@totalreclaw/totalreclaw",
+  "version": "3.3.12-rc.12",
+  "description": "End-to-end encrypted, agent-portable memory for OpenClaw and any LLM-agent runtime. XChaCha20-Poly1305 with protobuf v4 + on-chain Memory Taxonomy v1 (claim / preference / directive / commitment / episode / summary).",
+  "type": "module",
+  "keywords": [
+    "totalreclaw",
+    "openclaw",
+    "ai-memory",
+    "ai-agent",
+    "agent-memory",
+    "portable-memory",
+    "e2e-encryption",
+    "encryption",
+    "e2ee",
+    "xchacha20-poly1305",
+    "bip39",
+    "erc-4337",
+    "lsh",
+    "semantic-search",
+    "memory",
+    "memory-taxonomy",
+    "v1"
+  ],
+  "homepage": "https://totalreclaw.xyz",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/p-diogo/totalreclaw.git",
+    "directory": "skill/plugin"
+  },
+  "author": "TotalReclaw Team",
+  "license": "MIT",
+  "dependencies": {
+    "@scure/bip39": "^2.2.0",
+    "@totalreclaw/client": "^1.3.0",
+    "@totalreclaw/core": "^2.4.0",
+    "@types/qrcode": "^1.5.6",
+    "@types/ws": "^8.5.12",
+    "qrcode": "^1.5.4",
+    "qrcode-terminal": "^0.12.0",
+    "ws": "^8.18.3"
+  },
+  "//": "@huggingface/transformers + onnxruntime-node deliberately omitted from runtime deps. They are heavy native bundles (~700 MB peak install RAM) that OOM-killed the OpenClaw gateway on small VPS during `openclaw plugins install` in rc.21 (issue: 3.7 GB Hetzner host). rc.22 ships them via a lazy GitHub-Releases bundle (`embedder-v1.tar.gz`) downloaded on first call to embed(). See `embedder-network.ts` + `scripts/build-embedder-bundle.mjs`. The dev-deps below are for type-checking + bundle generation only; npm install of the plugin tarball never installs them.",
+  "devDependencies": {
+    "@huggingface/transformers": "^4.0.1",
+    "onnxruntime-node": "^1.24.0",
+    "typescript": "^5.5.0"
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "bin": {
+    "tr": "./dist/tr-cli.js"
+  },
+  "files": [
+    "dist/",
+    "*.ts",
+    "import-adapters/",
+    "!**/*.test.ts",
+    "!pocv2-e2e-test.ts",
+    "openclaw.plugin.json",
+    "postinstall.mjs",
+    "SKILL.md",
+    "README.md",
+    "CHANGELOG.md",
+    "CLAWHUB.md",
+    "skill.json"
+  ],
+  "scripts": {
+    "build": "rm -rf dist && tsc -p tsconfig.json --noCheck",
+    "verify-tarball": "node ../scripts/verify-tarball.mjs",
+    "test": "npx tsx batch-gate.test.ts && npx tsx manifest-shape.test.ts && npx tsx config-schema.test.ts && npx tsx config.test.ts && npx tsx relay-headers.test.ts && npx tsx scope-address-visible.test.ts && npx tsx llm-profile-reader.test.ts && npx tsx llm-client.test.ts && npx tsx llm-client-retry.test.ts && npx tsx llm-client-json-mode.test.ts && npx tsx gateway-url.test.ts && npx tsx retype-setscope.test.ts && npx tsx tool-gating.test.ts && npx tsx onboarding-noninteractive.test.ts && npx tsx pair-cli-json.test.ts && npx tsx pair-qr.test.ts && npx tsx pair-remote-client.test.ts && npx tsx qa-bug-report.test.ts && npx tsx nonce-serialization.test.ts && npx tsx phrase-safety-registry.test.ts && npx tsx test_issue_92_onnx_download_ux.test.ts && npx tsx onboard-pair-only.test.ts && npx tsx import-state.test.ts && npx tsx import-time-smoke.test.ts && npx tsx install-staging-cleanup.test.ts && npx tsx partial-install-detection.test.ts && npx tsx install-reload-idempotency.test.ts && npx tsx json-stdout-cleanliness.test.ts && npx tsx load-manifest.test.ts && npx tsx url-binding.test.ts && npx tsx fs-helpers.test.ts && npx tsx pair-cli-default-mode.test.ts && npx tsx embedding-fallback-tag.test.ts && npx tsx staging-banner-gate.test.ts && npx tsx restart-auth.test.ts && npx tsx inbound-user-tracker.test.ts && npx tsx register-command-name.test.ts && npx tsx skill-md-hybrid-primary.test.ts && npx tsx tr-cli-json-output.test.ts && npx tsx auto-pair-on-load.test.ts && npx tsx pair-pending-injection.test.ts && npx tsx postinstall-validate.test.ts && npx tsx credential-provider.test.ts",
+    "smoke:dist": "npx tsx dist-esm-smoke.test.ts",
+    "check-scanner": "node ../scripts/check-scanner.mjs",
+    "check-version-drift": "node ../scripts/check-version-drift.mjs",
+    "check-url-binding": "node ../scripts/check-url-binding.mjs",
+    "sync-version": "node ../scripts/sync-version.mjs",
+    "preinstall": "node -e \"try{require('fs').writeFileSync('.tr-partial-install','');}catch{}\"",
+    "postinstall": "node ./postinstall.mjs",
+    "prepack": "npm run build",
+    "prepublishOnly": "node ../scripts/check-scanner.mjs && node ../scripts/check-version-drift.mjs && node ../scripts/check-url-binding.mjs --release-type=${TOTALRECLAW_RELEASE_TYPE:-rc}"
+  },
+  "openclaw": {
+    "extensions": [
+      "./dist/index.js"
+    ],
+    "compat": {
+      "pluginApi": ">=2026.5.5"
+    },
+    "build": {
+      "openclawVersion": "2026.4.24"
+    }
+  }
+}

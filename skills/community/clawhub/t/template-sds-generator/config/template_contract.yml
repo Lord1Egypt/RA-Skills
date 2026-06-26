@@ -1,0 +1,95 @@
+contract_version: 1
+placeholders:
+  body:
+    required:
+      - "{{ProductName}}"
+      - "{{CAS}}"
+      - "{{Synonyms}}"
+      - "{{Formula}}"
+      - "{{MW}}"
+      - "{{IssueDate}}"
+      - "{{RevisionDate}}"
+      - "{{Version}}"
+      - "{{GHS No}}"
+      - "{{Signal word}}"
+  header:
+    required:
+      - "{{ProductName}}"
+      - "{{CAS}}"
+anchors:
+  section_headings:
+    - "Section 1: Identification"
+    - "SECTION 2: Hazards Identification"
+    - "SECTION 3: Composition / Information on Ingredients"
+    - "Section 4: First-Aid Measures"
+    - "SECTION 5: Firefighting Measures"
+    - "SECTION 6: Accidental release measures"
+    - "SECTION 7: Handling and storage"
+    - "SECTION 8: Exposure controls / personal protection"
+    - "SECTION 9: Physical and chemical properties"
+    - "SECTION 10: Stability and reactivity"
+    - "SECTION 11: Toxicological information"
+    - "SECTION 12: Ecological information"
+    - "SECTION 13: Disposal considerations"
+    - "SECTION 14: Transport information"
+    - "SECTION 15: Regulatory information"
+    - "SECTION 16: Other information"
+  subsection_headings:
+    - "1.1 Product identifier"
+    - "1.2 Relevant identified uses"
+    - "1.3 Supplier information"
+    - "1.4 Emergency telephone"
+    - "2.1 GHS Classification"
+    - "2.2 GHS Label elements, including precautionary statements"
+    - "2.3 Other hazards"
+    - "3.1 Substances"
+    - "4.1 Description of first-aid measures"
+    - "4.2 Most important symptoms and effects, both acute and delayed"
+    - "4.3 Indication of any immediate medical attention and special treatment needed"
+    - "5.1 Extinguishing media"
+    - "5.2 Special hazards arising from the substance or mixture"
+    - "5.3 Advice for firefighters"
+    - "6.1 Personal precautions, protective equipment and emergency procedures"
+    - "6.2 Environmental precautions"
+    - "6.3 Methods and materials for containment and cleaning up"
+    - "6.4 Reference to other sections"
+    - "7.1 Precautions for safe handling"
+    - "7.2 Conditions for safe storage, including any incompatibilities"
+    - "8.1 Control parameters"
+    - "8.2 Exposure controls"
+    - "9.1 Information on basic physical and chemical properties"
+    - "9.2 Other safety information"
+    - "10.1 Chemical stability"
+    - "10.2 Possibility of hazardous reactions"
+    - "10.3 Conditions to avoid"
+    - "10.4 Incompatible materials"
+    - "11.1 Information on toxicological effects"
+    - "11.2 Additional Information"
+    - "12.1 Toxicity"
+    - "12.2 Persistence and degradability"
+    - "12.3 Bioaccumulative potential"
+    - "12.4 Mobility in soil"
+    - "12.5 Results of PBT and vPvB assessment"
+    - "12.6 Other adverse effects"
+    - "13.1 Waste treatment methods"
+    - "14.1 UN number"
+    - "14.2 UN proper shipping name"
+    - "14.3 Transport hazard class(es)"
+    - "14.4 Packaging group"
+    - "14.5 Environmental hazards"
+    - "14.6 Special precautions for user"
+    - "14.7 Further information"
+preservation:
+  preserve_logo_media: true
+  preserve_separator_lines: true
+  preserve_header_footer_tables: true
+  preserve_page_number_fields: true
+formatting:
+  default_font_family: Arial
+  default_font_size_pt: 12
+  default_text_color: "000000"
+validation:
+  unresolved_placeholder: blocking
+  missing_anchor: blocking
+  missing_header_footer_table: blocking
+  missing_page_number_fields: blocking

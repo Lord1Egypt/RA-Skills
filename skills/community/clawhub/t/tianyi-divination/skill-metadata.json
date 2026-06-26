@@ -1,0 +1,17 @@
+{
+  "name": "tianyi-divination",
+  "version": "1.0.0",
+  "description": "基于《天乙笔记》的六大中国传统术数实战技能，涵盖小六壬占卜、梅花易数、祝由术、八字命理、风水布局、面相解读",
+  "author": "贾维斯 AI <https://seeimg.cn>",
+  "license": "CC BY-NC-SA 4.0",
+  "openclaw": {
+    "skillType": "divination",
+    "requiredVersion": ">=2026.1.0",
+    "tags": ["占卜", "命理", "风水", "祝由", "梅花易数", "小六壬", "传统文化"],
+    "categories": ["生活", "文化", "决策辅助"]
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/seeimg-cn/tianyi-skill"
+  }
+}

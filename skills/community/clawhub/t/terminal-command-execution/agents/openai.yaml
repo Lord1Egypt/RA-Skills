@@ -1,0 +1,4 @@
+interface:
+  display_name: "Terminal Command Execution"
+  short_description: "Safely run and verify terminal commands"
+  default_prompt: "Use this skill to execute shell commands safely, explain outputs, and recover from common terminal errors."

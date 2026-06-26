@@ -1,0 +1,504 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Resume Builder",
+    "version": "0.1.0"
+  },
+  "paths": {
+    "/": {
+      "get": {
+        "summary": "Root",
+        "operationId": "root__get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/status": {
+      "get": {
+        "summary": "Status",
+        "operationId": "status_status_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/generate": {
+      "post": {
+        "summary": "Generate",
+        "operationId": "generate_generate_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GenerateRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/parse-resume": {
+      "post": {
+        "summary": "Parse Resume Endpoint",
+        "operationId": "parse_resume_endpoint_parse_resume_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "additionalProperties": true,
+                "type": "object",
+                "title": "Data"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/download/{filename}": {
+      "get": {
+        "summary": "Download",
+        "operationId": "download_download__filename__get",
+        "parameters": [
+          {
+            "name": "filename",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Filename"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "CoverLetterData": {
+        "properties": {
+          "full_name": {
+            "type": "string",
+            "title": "Full Name"
+          },
+          "email": {
+            "type": "string",
+            "title": "Email"
+          },
+          "phone": {
+            "type": "string",
+            "title": "Phone"
+          },
+          "location": {
+            "type": "string",
+            "title": "Location",
+            "default": ""
+          },
+          "date": {
+            "type": "string",
+            "title": "Date",
+            "default": ""
+          },
+          "hiring_manager": {
+            "type": "string",
+            "title": "Hiring Manager",
+            "default": "Hiring Manager"
+          },
+          "company_name": {
+            "type": "string",
+            "title": "Company Name"
+          },
+          "company_location": {
+            "type": "string",
+            "title": "Company Location",
+            "default": ""
+          },
+          "company_address": {
+            "type": "string",
+            "title": "Company Address",
+            "default": ""
+          },
+          "job_title": {
+            "type": "string",
+            "title": "Job Title"
+          },
+          "job_description": {
+            "type": "string",
+            "title": "Job Description",
+            "default": ""
+          },
+          "opening_paragraph": {
+            "type": "string",
+            "title": "Opening Paragraph",
+            "default": ""
+          },
+          "body_paragraph": {
+            "type": "string",
+            "title": "Body Paragraph",
+            "default": ""
+          },
+          "closing_paragraph": {
+            "type": "string",
+            "title": "Closing Paragraph",
+            "default": ""
+          },
+          "key_highlights": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Key Highlights",
+            "default": []
+          }
+        },
+        "type": "object",
+        "required": [
+          "full_name",
+          "email",
+          "phone",
+          "company_name",
+          "job_title"
+        ],
+        "title": "CoverLetterData"
+      },
+      "Education": {
+        "properties": {
+          "degree": {
+            "type": "string",
+            "title": "Degree",
+            "default": ""
+          },
+          "institution": {
+            "type": "string",
+            "title": "Institution",
+            "default": ""
+          },
+          "location": {
+            "type": "string",
+            "title": "Location",
+            "default": ""
+          },
+          "year": {
+            "type": "string",
+            "title": "Year",
+            "default": ""
+          },
+          "gpa": {
+            "type": "string",
+            "title": "Gpa",
+            "default": ""
+          }
+        },
+        "type": "object",
+        "title": "Education"
+      },
+      "Experience": {
+        "properties": {
+          "title": {
+            "type": "string",
+            "title": "Title",
+            "default": ""
+          },
+          "company": {
+            "type": "string",
+            "title": "Company",
+            "default": ""
+          },
+          "location": {
+            "type": "string",
+            "title": "Location",
+            "default": ""
+          },
+          "start_date": {
+            "type": "string",
+            "title": "Start Date",
+            "default": ""
+          },
+          "end_date": {
+            "type": "string",
+            "title": "End Date",
+            "default": "Present"
+          },
+          "highlights": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Highlights",
+            "default": []
+          }
+        },
+        "type": "object",
+        "title": "Experience"
+      },
+      "GenerateRequest": {
+        "properties": {
+          "resume_data": {
+            "$ref": "#/components/schemas/ResumeData"
+          },
+          "cover_letter_data": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/CoverLetterData"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "generate_cover_letter": {
+            "type": "boolean",
+            "title": "Generate Cover Letter",
+            "default": true
+          }
+        },
+        "type": "object",
+        "required": [
+          "resume_data"
+        ],
+        "title": "GenerateRequest"
+      },
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "type": "array",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
+      },
+      "ResumeData": {
+        "properties": {
+          "full_name": {
+            "type": "string",
+            "title": "Full Name"
+          },
+          "email": {
+            "type": "string",
+            "title": "Email"
+          },
+          "phone": {
+            "type": "string",
+            "title": "Phone"
+          },
+          "location": {
+            "type": "string",
+            "title": "Location",
+            "default": ""
+          },
+          "linkedin": {
+            "type": "string",
+            "title": "Linkedin",
+            "default": ""
+          },
+          "portfolio": {
+            "type": "string",
+            "title": "Portfolio",
+            "default": ""
+          },
+          "tagline": {
+            "type": "string",
+            "title": "Tagline",
+            "default": ""
+          },
+          "availability": {
+            "type": "string",
+            "title": "Availability",
+            "default": ""
+          },
+          "summary": {
+            "type": "string",
+            "title": "Summary",
+            "default": ""
+          },
+          "experiences": {
+            "items": {
+              "$ref": "#/components/schemas/Experience"
+            },
+            "type": "array",
+            "title": "Experiences",
+            "default": []
+          },
+          "education": {
+            "items": {
+              "$ref": "#/components/schemas/Education"
+            },
+            "type": "array",
+            "title": "Education",
+            "default": []
+          },
+          "skills": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Skills",
+            "default": []
+          },
+          "certifications": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Certifications",
+            "default": []
+          },
+          "tools": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Tools",
+            "default": []
+          },
+          "accomplishments": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Accomplishments",
+            "default": []
+          },
+          "other_employers": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Other Employers",
+            "default": []
+          },
+          "job_description": {
+            "type": "string",
+            "title": "Job Description",
+            "default": ""
+          },
+          "original_resume": {
+            "type": "string",
+            "title": "Original Resume",
+            "default": ""
+          }
+        },
+        "type": "object",
+        "required": [
+          "full_name",
+          "email",
+          "phone"
+        ],
+        "title": "ResumeData"
+      },
+      "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Location"
+          },
+          "msg": {
+            "type": "string",
+            "title": "Message"
+          },
+          "type": {
+            "type": "string",
+            "title": "Error Type"
+          }
+        },
+        "type": "object",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError"
+      }
+    }
+  }
+}

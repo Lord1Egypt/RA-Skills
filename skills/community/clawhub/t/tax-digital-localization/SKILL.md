@@ -1,35 +1,141 @@
 ---
-name: "tax-digital-localization"
-description: "用于财税数字化系统程序内文案与相关本地化内容的翻译与轻量润色。适用于将中文页面功能名、表单标签、按钮文案、菜单项、状态词、校验提示、错误提示、成功提示、系统通知，以及发票、税务、申报、合规相关系统文案翻译为目标国家常用语言，尤其适合越南、马来西亚、新加坡、波兰、意大利、德国等市场。用户提到国际化、i18n、多语言..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/tax-digital-localization"
-sourceUrl: "https://clawhub.ai/skills/tax-digital-localization"
+name: tax-digital-localization
+description: 用于财税数字化系统程序内文案与相关本地化内容的翻译与轻量润色。适用于将中文页面功能名、表单标签、按钮文案、菜单项、状态词、校验提示、错误提示、成功提示、系统通知，以及发票、税务、申报、合规相关系统文案翻译为目标国家常用语言，尤其适合越南、马来西亚、新加坡、波兰、意大利、德国等市场。用户提到国际化、i18n、多语言、页面翻译、按钮翻译、提示语翻译、系统文案翻译、发票系统翻译、税务系统翻译或给出明显属于程序界面的中文文案时，都应使用此 skill。
 ---
 
-# tax-digital-localization
-
-> 用于财税数字化系统程序内文案与相关本地化内容的翻译与轻量润色。适用于将中文页面功能名、表单标签、按钮文案、菜单项、状态词、校验提示、错误提示、成功提示、系统通知，以及发票、税务、申报、合规相关系统文案翻译为目标国家常用语言，尤其适合越南、马来西亚、新加坡、波兰、意大利、德国等市场。用户提到国际化、i18n、多语言...
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/tax-digital-localization`
-- **Source URL:** [https://clawhub.ai/skills/tax-digital-localization](https://clawhub.ai/skills/tax-digital-localization)
+# Tax Digital Localization
 
 ## Overview
 
+将中文程序内文案翻译为适合目标国家上线使用的最终译文，重点服务财税、发票、申报、合规类系统。
+默认源语言为中文，按目标国家映射固定目标语言，输出默认只返回可直接落入程序的最终译文。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/tax-digital-localization
-```
+## Default Mapping
+
+按目标国家映射固定目标语言：
+
+- 越南 -> 越南语
+- 马来西亚 -> 马来语
+- 新加坡 -> 英语
+- 波兰 -> 波兰语
+- 意大利 -> 意大利语
+- 德国 -> 德语
+
+如果用户明确指定了目标语言，则以用户指定为准。
+如果用户没有给出目标国家，也没有指定目标语言，先用一句话追问，不要自行猜测。
+
+## Scope
+
+优先处理以下程序内文案：
+
+- 页面名称
+- 菜单项
+- 按钮
+- 表单标签
+- 状态词
+- 校验提示
+- 错误提示
+- 成功提示
+- Toast、弹窗、确认提示
+- 发票、税务、申报、合规相关 UI 文案
+
+默认不处理长篇市场文案、合同条款、法律意见、完整产品说明书和本地法规解读，除非用户明确要求。
+
+## Resource Routing
+
+始终先参考 [ui-patterns.md](./references/ui-patterns.md)。
+
+文案涉及发票、税务、申报、税号、合规，或出现“提交、申报、作废、红冲、认证、校验、开票、抵扣”等高风险语义时，再读取 [tax-terms.md](./references/tax-terms.md)。
+
+按目标国家读取对应的 locale reference：
+
+- [vietnam.md](./references/locales/vietnam.md)
+- [malaysia.md](./references/locales/malaysia.md)
+- [singapore.md](./references/locales/singapore.md)
+- [poland.md](./references/locales/poland.md)
+- [italy.md](./references/locales/italy.md)
+- [germany.md](./references/locales/germany.md)
+
+不要一次性加载所有国家文件，只读取当前目标国家需要的那一份。
+
+## Risk Check
+
+先判断当前请求属于哪一种模式：
+
+- `轻量翻译`：普通页面标题、菜单、按钮、状态词、一般提示语，不涉及税务制度、发票动作、合规后果，也不存在明显专业歧义。
+- `高风险术语`：涉及发票、税务、申报、税号、合规、认证、校验、作废、红冲、抵扣、开票、报送、调整金额、票据状态等语义，或任一关键词可能对应多种业务译法，翻错会影响业务理解。
+
+只要满足以下任一条件，就按 `高风险术语` 处理：
+
+- 包含财税或票税数字化动作
+- 涉及金额、税号、票据状态、申报状态、认证状态
+- 涉及不可逆动作或合规后果
+- 某个关键词明显可能有多种专业译法
+- 出现本地官方系统、标准、平台、编号或回执名称
+
+## Workflow
+
+1. 识别输入属于哪类程序文案。
+2. 确认目标国家或目标语言。
+3. 先执行 `Risk Check`，判断属于 `轻量翻译` 还是 `高风险术语`。
+4. `轻量翻译` 时，只按 `ui-patterns` 和目标国家 locale 生成可直接用于程序的译文。
+5. `高风险术语` 时，先按 `tax-terms` 校准语义，再按目标国家 locale 调整表达。
+6. 如果是 `高风险术语`，且术语存在明显业务或法定歧义，在可联网时优先查证公开的一手或权威资料，再输出译文。
+7. 输出最终译文。
+
+## Rules
+
+- 按语义翻译，不要机械逐字直译。
+- 优先保证程序可用、用户易懂、术语一致。
+- 页面标题、按钮、菜单优先短而清楚。
+- 系统提示语优先明确动作和结果，不要写成市场文案。
+- 财税高风险词优先准确，宁可略正式，也不要轻佻或模糊。
+- 如果涉及本地官方系统、标准、编号、回执或门户名称，优先保留 locale 文件中的官方名称或缩写，不要自由改写。
+- 如果输入是一组文案，保持原有顺序。
+- 如果输入是键值对，只翻译 value，保持 key 不变。
+
+## Preservation
+
+默认保持以下内容不变：
+
+- 变量占位符：`{name}`、`${count}`、`%s`、`%d`、`{{invoiceNo}}`
+- ICU 占位结构：`{count, plural, ...}`
+- HTML、XML、Markdown 结构
+- 编程键名、枚举值、错误码、接口字段名
+- 数字、日期格式占位符、货币代码、税率百分比
+- 缩写型产品名或品牌名
+- 原有换行和列表结构
+
+## Output
+
+默认只输出最终译文，不做解释。
+
+仅在以下情况额外补一行 `注意项：`：
+
+- 原文有明显歧义
+- 直译会造成财税语义误解
+- 占位符限制导致语序不自然
+- 译文长度可能显著影响界面展示
+- 高风险术语经过查证后，仍存在本地法定名称不确定
+
+## Examples
+
+示例 1
+输入：目标国家：新加坡；文案：提交发票
+输出：Submit Invoice
+
+示例 2
+输入：目标国家：马来西亚；文案：保存并继续
+输出：Simpan dan Teruskan
+
+示例 3
+输入：目标国家：德国；文案：税号不能为空
+输出：Die Steuernummer darf nicht leer sein.
+
+示例 4
+输入：目标国家：越南；文案：发票提交失败，请稍后重试
+输出：Gửi hóa đơn thất bại, vui lòng thử lại sau.
+
+示例 5
+输入：目标国家：越南；文案：此发票已无可调整金额，请确认
+输出：Hóa đơn này không còn số tiền có thể điều chỉnh. Vui lòng xác nhận.

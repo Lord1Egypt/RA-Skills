@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>专家团 · 自定义流程</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #0f172a 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+  }
+  .container {
+    width: 100%;
+    max-width: 900px;
+    background: rgba(15, 23, 42, 0.95);
+    border-radius: 20px;
+    border: 1px solid rgba(99, 102, 241, 0.2);
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5), 0 0 80px rgba(99, 102, 241, 0.08);
+    overflow: hidden;
+  }
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 24px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    background: rgba(15, 23, 42, 0.8);
+  }
+  .header-left {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .header-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: #f1f5f9;
+  }
+  .header-subtitle {
+    font-size: 11px;
+    color: #64748b;
+    margin-top: 2px;
+  }
+  .gateway-badge {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    color: #94a3b8;
+  }
+  .gateway-dot {
+    width: 8px; height: 8px;
+    background: #22c55e;
+    border-radius: 50%;
+    box-shadow: 0 0 8px rgba(34, 197, 94, 0.5);
+  }
+  .mode-tabs {
+    display: flex;
+    gap: 4px;
+    background: rgba(30, 41, 59, 0.6);
+    padding: 3px;
+    border-radius: 10px;
+  }
+  .mode-tab {
+    padding: 6px 14px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 500;
+    color: #94a3b8;
+    cursor: pointer;
+    transition: all 0.2s;
+    border: none;
+    background: transparent;
+  }
+  .mode-tab.active {
+    background: linear-gradient(135deg, #6366f1, #8b5cf6);
+    color: #fff;
+    box-shadow: 0 2px 8px rgba(99, 102, 241, 0.3);
+  }
+  .content {
+    padding: 28px 28px 24px;
+  }
+  .section-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #f1f5f9;
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .section-desc {
+    font-size: 13px;
+    color: #64748b;
+    margin-bottom: 24px;
+  }
+  .preset-section {
+    margin-bottom: 24px;
+  }
+  .preset-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: #94a3b8;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .preset-label .icon { color: #fbbf24; }
+  .preset-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .preset-tag {
+    padding: 7px 16px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    border: 1px solid rgba(99, 102, 241, 0.3);
+    background: rgba(99, 102, 241, 0.08);
+    color: #a5b4fc;
+  }
+  .preset-tag:hover {
+    background: rgba(99, 102, 241, 0.15);
+    border-color: rgba(99, 102, 241, 0.5);
+  }
+  .pipeline-section {
+    margin-bottom: 24px;
+  }
+  .pipeline-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: #94a3b8;
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .role-card {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 18px;
+    background: rgba(30, 41, 59, 0.5);
+    border: 1px solid rgba(99, 102, 241, 0.15);
+    border-radius: 12px;
+    margin-bottom: 10px;
+    position: relative;
+    transition: all 0.2s;
+  }
+  .role-card:hover {
+    border-color: rgba(99, 102, 241, 0.3);
+    background: rgba(30, 41, 59, 0.7);
+  }
+  .role-card .drag-handle {
+    color: #475569;
+    cursor: grab;
+    font-size: 14px;
+  }
+  .role-avatar {
+    width: 42px; height: 42px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    flex-shrink: 0;
+    position: relative;
+  }
+  .role-avatar .badge {
+    position: absolute;
+    top: -4px; right: -4px;
+    width: 18px; height: 18px;
+    border-radius: 50%;
+    font-size: 10px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+  }
+  .role-info { flex: 1; }
+  .role-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: #f1f5f9;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .role-name .tag {
+    font-size: 10px;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-weight: 500;
+  }
+  .role-desc {
+    font-size: 12px;
+    color: #64748b;
+    margin-top: 3px;
+  }
+  .role-remove {
+    width: 28px; height: 28px;
+    border-radius: 6px;
+    border: 1px solid rgba(239, 68, 68, 0.3);
+    background: rgba(239, 68, 68, 0.1);
+    color: #ef4444;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.2s;
+  }
+  .role-remove:hover {
+    background: rgba(239, 68, 68, 0.2);
+  }
+  .connector {
+    display: flex;
+    justify-content: center;
+    padding: 2px 0;
+  }
+  .connector-line {
+    width: 2px;
+    height: 16px;
+    background: linear-gradient(to bottom, rgba(99, 102, 241, 0.4), rgba(99, 102, 241, 0.1));
+    position: relative;
+  }
+  .connector-line::after {
+    content: '';
+    position: absolute;
+    bottom: -14px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: rgba(99, 102, 241, 0.4);
+    font-size: 10px;
+  }
+  .available-section {
+    margin-bottom: 24px;
+  }
+  .available-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: #94a3b8;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .available-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .available-card {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 14px;
+    background: rgba(30, 41, 59, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .available-card:hover {
+    border-color: rgba(99, 102, 241, 0.3);
+    background: rgba(30, 41, 59, 0.5);
+  }
+  .available-avatar {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+    background: rgba(30, 41, 59, 0.6);
+  }
+  .available-info { flex: 1; min-width: 0; }
+  .available-name {
+    font-size: 13px;
+    font-weight: 600;
+    color: #cbd5e1;
+  }
+  .available-desc {
+    font-size: 11px;
+    color: #475569;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .available-add {
+    width: 26px; height: 26px;
+    border-radius: 6px;
+    border: 1px solid rgba(99, 102, 241, 0.3);
+    background: transparent;
+    color: #6366f1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.2s;
+    flex-shrink: 0;
+  }
+  .available-add:hover {
+    background: rgba(99, 102, 241, 0.15);
+  }
+  .preview-section {
+    background: rgba(30, 41, 59, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 12px;
+    padding: 16px 18px;
+    margin-bottom: 20px;
+  }
+  .preview-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: #94a3b8;
+    margin-bottom: 12px;
+  }
+  .preview-flow {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .preview-chip {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 500;
+  }
+  .preview-chip .dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+  }
+  .preview-arrow {
+    color: #475569;
+    font-size: 12px;
+  }
+  .execute-btn {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 12px;
+    font-size: 15px;
+    font-weight: 700;
+    color: #fff;
+    background: linear-gradient(135deg, #6366f1, #8b5cf6, #a78bfa);
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    box-shadow: 0 4px 20px rgba(99, 102, 241, 0.3);
+  }
+  .execute-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 25px rgba(99, 102, 241, 0.4);
+  }
+  .execute-btn .play-icon {
+    font-size: 16px;
+  }
+  .color-pm { background: rgba(245, 158, 11, 0.15); }
+  .color-pm .badge { background: #f59e0b; }
+  .color-pm .tag { background: rgba(245, 158, 11, 0.2); color: #fbbf24; }
+  .color-devops { background: rgba(236, 72, 153, 0.15); }
+  .color-devops .badge { background: #ec4899; }
+  .color-devops .tag { background: rgba(236, 72, 153, 0.2); color: #f472b6; }
+  .chip-pm { background: rgba(245, 158, 11, 0.15); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.3); }
+  .chip-pm .dot { background: #f59e0b; }
+  .chip-devops { background: rgba(236, 72, 153, 0.15); color: #f472b6; border: 1px solid rgba(236, 72, 153, 0.3); }
+  .chip-devops .dot { background: #ec4899; }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <div class="header-left">
+      <div>
+        <div class="header-title">专家团 · 群聊协作</div>
+        <div class="header-subtitle">PM → UI → DevOps → BE → FE → 联调 → QA</div>
+      </div>
+      <div class="gateway-badge">
+        <div class="gateway-dot"></div>
+        Gateway
+      </div>
+    </div>
+    <div class="mode-tabs">
+      <button class="mode-tab">👥 Expert Team</button>
+      <button class="mode-tab">🔧 Skill Pipeline</button>
+      <button class="mode-tab active">✨ 自定义</button>
+    </div>
+  </div>
+
+  <div class="content">
+    <div class="section-title">✨ 自定义流程</div>
+    <div class="section-desc">选择需要的角色，拖拽调整执行顺序，灵活组合你的专属工作流</div>
+
+    <div class="preset-section">
+      <div class="preset-label"><span class="icon">💡</span> 预置模板 · 一键选用</div>
+      <div class="preset-tags">
+        <div class="preset-tag">完整项目</div>
+        <div class="preset-tag">快速 Demo</div>
+        <div class="preset-tag">纯后端 API</div>
+        <div class="preset-tag">全栈开发</div>
+        <div class="preset-tag">设计原型</div>
+        <div class="preset-tag">代码审查</div>
+      </div>
+    </div>
+
+    <div class="pipeline-section">
+      <div class="pipeline-label">⠿ 流程节点 · 拖拽排序</div>
+
+      <div class="role-card">
+        <span class="drag-handle">⠿</span>
+        <div class="role-avatar color-pm">
+          🎯
+          <span class="badge">1</span>
+        </div>
+        <div class="role-info">
+          <div class="role-name">产品经理 <span class="tag">pm</span></div>
+          <div class="role-desc">需求分析、PRD输出、接口规范定义、AI产品规划、验收标准制定</div>
+        </div>
+        <div class="role-remove">✕</div>
+      </div>
+
+      <div class="connector"><div class="connector-line"></div></div>
+
+      <div class="role-card">
+        <span class="drag-handle">⠿</span>
+        <div class="role-avatar color-devops">
+          🚀
+          <span class="badge">2</span>
+        </div>
+        <div class="role-info">
+          <div class="role-name">运维工程师 <span class="tag">devops</span></div>
+          <div class="role-desc">环境检测、端口清理、Go编译环境、跨平台打包、预览服务、全流程环境保障</div>
+        </div>
+        <div class="role-remove"></div>
+      </div>
+    </div>
+
+    <div class="available-section">
+      <div class="available-label">＋ 可用角色 · 点击添加</div>
+      <div class="available-grid">
+        <div class="available-card">
+          <div class="available-avatar">🎨</div>
+          <div class="available-info">
+            <div class="available-name">UI 设计师</div>
+            <div class="available-desc">视觉设计、交互规范、响应式页面设计、多屏幕适配</div>
+          </div>
+          <div class="available-add">+</div>
+        </div>
+        <div class="available-card">
+          <div class="available-avatar">⚙️</div>
+          <div class="available-info">
+            <div class="available-name">Go服务端开发</div>
+            <div class="available-desc">纯Go开发、无数据库假数据方案、RESTful API、Mock服务</div>
+          </div>
+          <div class="available-add">+</div>
+        </div>
+        <div class="available-card">
+          <div class="available-avatar">🖥️</div>
+          <div class="available-info">
+            <div class="available-name">Web前端开发</div>
+            <div class="available-desc">Web/H5页面开发、Go接口对接、AI交互功能、响应式适配</div>
+          </div>
+          <div class="available-add">+</div>
+        </div>
+        <div class="available-card">
+          <div class="available-avatar"></div>
+          <div class="available-info">
+            <div class="available-name">联调测试</div>
+            <div class="available-desc">Go接口联调、前后端全链路验证、HTML Demo质量检查</div>
+          </div>
+          <div class="available-add">+</div>
+        </div>
+        <div class="available-card">
+          <div class="available-avatar">✅</div>
+          <div class="available-info">
+            <div class="available-name">测试验收</div>
+            <div class="available-desc">全维度测试、接口测试、兼容性测试、PRD验收</div>
+          </div>
+          <div class="available-add">+</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="preview-section">
+      <div class="preview-title">流程预览 · 2 个角色</div>
+      <div class="preview-flow">
+        <div class="preview-chip chip-pm"><span class="dot"></span> 产品经理</div>
+        <span class="preview-arrow">›</span>
+        <div class="preview-chip chip-devops"><span class="dot"></span> 运维工程师</div>
+      </div>
+    </div>
+
+    <button class="execute-btn">
+      <span class="play-icon">▷</span>
+      执行流程 · 2 角色
+    </button>
+  </div>
+</div>
+</body>
+</html>

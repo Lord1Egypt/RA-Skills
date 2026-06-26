@@ -1,0 +1,25 @@
+{
+  "manifest_version": 3,
+  "name": "Today Earnings",
+  "version": "1.0.0",
+  "description": "从 Yahoo Finance 获取财报日历数据",
+  "permissions": [
+    "tabs",
+    "scripting",
+    "nativeMessaging",
+    "alarms"
+  ],
+  "host_permissions": [
+    "https://finance.yahoo.com/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://finance.yahoo.com/calendar/earnings*"],
+      "js": ["parser.js", "content.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}

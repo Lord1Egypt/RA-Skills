@@ -1,0 +1,10 @@
+{
+  "name": "Tianshu Image",
+  "tagline": "文生图 - 使用通义万相 API，Node.js 实现",
+  "description": "Use Alibaba DashScope (通义万相) to generate images from text. Node.js implementation, no Python/uv required. Say \"画一张\" or \"生成图片\" to create AI images. Configure DASHSCOPE_API_KEY in TsClaw.",
+  "category": "utility",
+  "tags": ["image", "文生图", "通义万相", "dashscope", "tianshu"],
+  "version": "1.0.0",
+  "license": "MIT",
+  "pricing": "free"
+}

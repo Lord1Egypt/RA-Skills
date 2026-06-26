@@ -1,0 +1,4 @@
+interface:
+  display_name: "Tianpuyue Music Generation"
+  short_description: "Generate instrumental music, songs with vocals, or lyrics using Tianpuyue AI, with polling-based status tracking and local download."
+  default_prompt: "Use $tianpuyue_music when the user wants to generate music (instrumental or song with vocals) or lyrics using the Tianpuyue platform."

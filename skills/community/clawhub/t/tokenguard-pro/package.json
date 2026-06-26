@@ -1,0 +1,30 @@
+{
+  "name": "tokenguard-pro",
+  "version": "1.0.0",
+  "description": "Token cost optimizer for OpenClaw agents - cut AI costs by 50-95%",
+  "main": "tokenguard-analyze",
+  "bin": {
+    "tokenguard-analyze": "./tokenguard-analyze"
+  },
+  "keywords": [
+    "openclaw",
+    "token",
+    "cost",
+    "optimization",
+    "ai",
+    "api",
+    "budget"
+  ],
+  "author": "App Incubator",
+  "license": "Commercial",
+  "engines": {
+    "bash": ">=4.0"
+  },
+  "preferGlobal": true,
+  "files": [
+    "SKILL.md",
+    "README.md",
+    "tokenguard-analyze",
+    "clawhub.yaml"
+  ]
+}

@@ -1,0 +1,40 @@
+{
+    "triggers": [
+        {
+            "id": "new-tasks-added",
+            "description": "New items added to task list or inbox",
+            "detector": {"type": "file_modified", "path": "TASKS.md"},
+            "threshold": 1,
+            "boost": {
+                "needs": ["task_completion", "context_awareness"],
+                "amount": 0.05,
+                "label": "[CONTEXT:new-tasks]"
+            },
+            "cooldown_hours": 2
+        },
+        {
+            "id": "schedule-changed",
+            "description": "Calendar or schedule file was updated",
+            "detector": {"type": "file_modified", "path": "SCHEDULE.md"},
+            "threshold": 1,
+            "boost": {
+                "needs": ["context_awareness", "proactivity"],
+                "amount": 0.04,
+                "label": "[CONTEXT:schedule-changed]"
+            },
+            "cooldown_hours": 4
+        },
+        {
+            "id": "workspace-growth",
+            "description": "Significant number of new files in workspace",
+            "detector": {"type": "file_count_delta", "path": "."},
+            "threshold": 5,
+            "boost": {
+                "needs": ["organization"],
+                "amount": 0.04,
+                "label": "[CONTEXT:workspace-growth]"
+            },
+            "cooldown_hours": 12
+        }
+    ]
+}

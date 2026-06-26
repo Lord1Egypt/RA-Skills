@@ -1,35 +1,204 @@
 ---
-name: "文字转语音/Text to Audio"
-description: "使用 edge-tts 将中文或英文文本转为自然语音 MP3。此 Skill 应在以下场景触发： 将图片或文本转成语音、朗读课文或作文、中文文字转语音、英文文字转语音、 TTS 文本朗读、生成音频 MP3、给文章配音、语音合成、 朗读故事、课文朗读、作文朗读、文字转 MP3、英文朗读。 支持晓晓等多款中文 Neu..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/text-to-audio"
-sourceUrl: "https://clawhub.ai/skills/text-to-audio"
+name: 文字转语音（免费）
+description: >
+  使用 edge-tts 将中文或英文文本转为自然语音 MP3。此 Skill 应在以下场景触发：
+  将图片或文本转成语音、朗读课文或作文、中文文字转语音、英文文字转语音、
+  TTS 文本朗读、生成音频 MP3、给文章配音、语音合成、
+  朗读故事、课文朗读、作文朗读、文字转 MP3、英文朗读。
+  支持晓晓等多款中文 Neural 语音，支持 Jenny 等英文 Neural 语音，支持语速调整和语音选择。
 ---
 
-# 文字转语音/Text to Audio
+# 文字转语音（免费）
 
-> 使用 edge-tts 将中文或英文文本转为自然语音 MP3。此 Skill 应在以下场景触发： 将图片或文本转成语音、朗读课文或作文、中文文字转语音、英文文字转语音、 TTS 文本朗读、生成音频 MP3、给文章配音、语音合成、 朗读故事、课文朗读、作文朗读、文字转 MP3、英文朗读。 支持晓晓等多款中文 Neu...
+将中文或英文文本转为自然语音 MP3 文件，使用微软 Edge TTS 在线服务，声音自然、文件小巧、跨设备通用。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/text-to-audio`
-- **Source URL:** [https://clawhub.ai/skills/text-to-audio](https://clawhub.ai/skills/text-to-audio)
+## 前置条件
 
-## Overview
+- Python 3.8+ 已安装
+- edge-tts 包已安装（`pip install edge-tts`）
+- 网络连接可用（需访问微软 TTS 云服务）
 
+## 环境初始化（首次使用时执行）
 
-## Installation
-To install this skill, run the following command in your terminal:
+首次使用此 Skill 时，运行环境检测脚本确认依赖是否就绪：
+
 ```bash
-hermes skills install clawhub/text-to-audio
+python scripts/check_env.py
 ```
+
+该脚本会自动检测并安装缺失的依赖。如果网络不通，提示用户开启 VPN 后重试。
+
+## 工作流程
+
+### 步骤 1：语言检测
+
+**保存文本后，必须先检测文本语言，以决定展示中文还是英文语音选项。**
+
+检测方法：如果文本中英文字母（a-zA-Z）占比超过 60%，判定为**英文**；否则判定为**中文**。
+
+### 步骤 2：让用户选择语音和语速
+
+**在生成 MP3 之前，必须先让用户选择语音和语速。** 使用 `ask_followup_question` 工具向用户展示选项，不要自行假设。
+
+#### 语音选择（根据语言自动切换）
+
+**如果检测为中文**，展示中文语音选项：
+
+```
+问题：请选择朗读语音
+选项：
+- 晓晓（温暖女声，适合课文/故事朗读）
+- 小艺（活泼女声，适合儿童故事）
+- 云希（阳光男声，适合叙事/科普）
+- 云健（激情男声，适合朗诵）
+- 云扬（专业男声，适合新闻/说明文）
+```
+
+**如果检测为英文**，展示英文语音选项：
+
+```
+问题：请选择朗读语音
+选项：
+- Jenny（温暖女声，适合朗读/故事，推荐）
+- Aria（自信女声，适合新闻/叙述）
+- Emma（活泼女声，适合对话/讲解）
+- Guy（激情男声，适合朗诵/叙事）
+- Christopher（权威男声，适合新闻/分析）
+- Michelle（亲切女声，适合日常叙述）
+```
+
+#### 语速选择（输入式）
+
+语速使用 **三选一 + 数字输入** 形式，让用户填写具体百分比：
+
+```
+问题：请选择朗读语速（在方括号中填写数字，0 为正常语速，负数更慢，正数更快）
+选项：
+- A 略慢 [  ]%（推荐填 10，即 -10%）
+- B 正常语速
+- C 略快 [  ]%（推荐填 10，即 +10%）
+```
+
+用户选择 A 或 C 时，解析其填写的数字作为 rate 值：
+- 选 A + 填 10 → `--rate -10`
+- 选 B → `--rate +0`
+- 选 C + 填 10 → `--rate +10`
+
+如果用户没有填写数字，使用推荐默认值（A 为 -10，C 为 +10）。
+
+如果用户在对话中已经明确指定了语音或语速（如"用晓晓的声音"、"读慢一点"），则直接使用用户的选择，无需再次询问。
+
+### 流程 A：图片转语音（最常见）
+
+1. **识别图片文字** — 读取用户上传的图片，识别其中的文字内容
+2. **保存文本** — 将识别的文字保存为 `.txt` 文件（UTF-8 编码）
+3. **语言检测** — 判断文本语言
+4. **让用户选择语音和语速** — 根据语言展示对应语音选项 + 语速选项
+5. **生成 MP3** — 根据用户选择调用 `scripts/tts_generate.py` 生成 MP3 文件
+
+### 流程 B：文本转语音（用户直接提供文本）
+
+1. **保存文本** — 将用户提供的文字保存为 `.txt` 文件
+2. **语言检测** — 判断文本语言
+3. **让用户选择语音和语速** — 根据语言展示对应语音选项 + 语速选项
+4. **生成 MP3** — 根据用户选择调用生成脚本
+
+### 流程 C：批量转换
+
+1. **语言检测** — 判断文本语言
+2. **让用户选择默认语音和语速** — 根据语言展示对应语音选项 + 语速选项
+3. **生成批量配置** — 创建 JSON 配置文件
+4. **执行批量生成** — 使用 `--batch` 参数
+
+## 核心脚本用法
+
+### 单文件生成
+
+```bash
+python scripts/tts_generate.py <文本文件> [选项]
+```
+
+| 参数 | 说明 | 默认值 |
+|------|------|--------|
+| `--output, -o` | 输出 MP3 文件路径 | `<输入名>_<语音别名>.mp3` |
+| `--voice, -v` | 语音别名或完整 ID | `xiaoxiao`（中文）/ `jenny`（英文） |
+| `--rate, -r` | 语速调整 | `+0%` |
+| `--batch, -b` | 批量模式，传入 JSON 配置文件 | — |
+
+### 常用示例
+
+```bash
+# 中文默认（晓晓女声，正常语速）
+python scripts/tts_generate.py story.txt
+
+# 中文活泼女声 + 略慢语速（适合小学课文朗读）
+python scripts/tts_generate.py story.txt --voice xiaoyi --rate -10
+
+# 英文默认（Jenny女声，正常语速）
+python scripts/tts_generate.py english.txt --voice jenny
+
+# 英文男声 + 略慢语速
+python scripts/tts_generate.py english.txt --voice guy --rate -10
+
+# 指定输出文件名
+python scripts/tts_generate.py story.txt -o my_story.mp3
+
+# 批量模式
+python scripts/tts_generate.py --batch batch_config.json
+```
+
+### 批量配置文件格式
+
+```json
+{
+  "defaults": { "voice": "xiaoxiao", "rate": "-10%" },
+  "files": [
+    { "input": "story.txt", "output": "story.mp3" },
+    { "input": "essay.txt", "output": "essay.mp3", "voice": "xiaoyi" }
+  ]
+}
+```
+
+## 语音别名速查
+
+### 中文语音
+
+| 用户选择 | 别名（脚本参数） | 性别 | 气质 | 推荐场景 |
+|----------|------------------|------|------|----------|
+| 晓晓 | `xiaoxiao` | 女 | 温暖 | 课文/故事朗读（默认） |
+| 小艺 | `xiaoyi` | 女 | 活泼 | 儿童故事 |
+| 云希 | `yunxi` | 男 | 阳光 | 叙事/科普 |
+| 云健 | `yunjian` | 男 | 激情 | 朗诵 |
+| 云扬 | `yunyang` | 男 | 专业 | 新闻/说明文 |
+
+### 英文语音
+
+| 用户选择 | 别名（脚本参数） | 性别 | 气质 | 推荐场景 |
+|----------|------------------|------|------|----------|
+| Jenny | `jenny` | 女 | 温暖 | 朗读/故事（默认英文） |
+| Aria | `aria` | 女 | 自信 | 新闻/叙述 |
+| Emma | `emma` | 女 | 活泼 | 对话/讲解 |
+| Guy | `guy` | 男 | 激情 | 朗诵/叙事 |
+| Christopher | `christopher` | 男 | 权威 | 新闻/分析 |
+| Michelle | `michelle` | 女 | 亲切 | 日常叙述 |
+
+用户选择"Jenny" → 脚本参数 `--voice jenny`
+
+## 语速选项速查
+
+| 用户选择 | 脚本参数 | 说明 |
+|----------|----------|------|
+| A 略慢 10 | `--rate -10` | 适合课文朗读（推荐） |
+| A 略慢 20 | `--rate -20` | 适合跟读/低年级 |
+| B 正常语速 | `--rate +0` | 默认语速 |
+| C 略快 10 | `--rate +10` | 快速浏览 |
+
+用户选"A 略慢"且填 15 → 脚本参数 `--rate -15`
+
+## 注意事项
+
+- edge-tts 需要网络连接，如生成失败先检查网络
+- 输出为 MP3 格式，任何设备均可播放
+- 文件大小约 0.5-1MB/分钟音频，远小于 WAV 格式
+- 无需 API Key，完全免费
+- **中文语音读英文会有口音，英文语音读中文效果也差，请根据文本语言选择对应语音组**

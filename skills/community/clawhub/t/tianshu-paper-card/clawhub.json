@@ -1,0 +1,10 @@
+{
+  "name": "Tianshu Paper Card",
+  "tagline": "文献摘要 → 速读卡片",
+  "description": "Turn abstract text into a structured reading card (problem, method, result, limit) for students.",
+  "category": "utility",
+  "tags": ["student", "论文", "文献", "考研", "tianshu"],
+  "version": "1.0.0",
+  "license": "MIT",
+  "pricing": "free"
+}

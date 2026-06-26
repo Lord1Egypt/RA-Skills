@@ -1,0 +1,135 @@
+name: trailsnap_cli
+description: |
+  TrailSnap CLI 命令行工具，用于查询、管理照片、相册、标签、位置和人物等信息。
+  当需要操作照片数据（例如：查询城市照片、获取单张照片信息、删除照片、配置服务端信息等）时，调用此技能。
+command: "python"
+args:
+  - "cli.py"
+
+tools:
+  - name: config
+    description: "配置 TrailSnap 客户端，例如设置 API URL 和 Token。"
+    parameters:
+      type: object
+      properties:
+        subcommand:
+          type: string
+          enum: [set]
+          description: "子命令：set"
+        url:
+          type: string
+          description: "API 基础地址 (例如: http://localhost:8000)"
+        token:
+          type: string
+          description: "API Token (Bearer 凭证)"
+      required: [subcommand, url, token]
+
+  - name: photos
+    description: "查询照片列表、获取单张照片详情或删除照片。"
+    parameters:
+      type: object
+      properties:
+        subcommand:
+          type: string
+          enum: [list, info, delete]
+          description: "子命令：list(查询列表), info(获取详情), delete(删除)"
+        skip:
+          type: integer
+          description: "跳过 N 张照片 (仅 list 可用)"
+        limit:
+          type: integer
+          description: "限制返回 N 张照片 (仅 list 可用)"
+        city:
+          type: string
+          description: "按城市过滤 (仅 list 可用)"
+        photo_id:
+          type: string
+          description: "照片ID (info 和 delete 必须提供)"
+      required: [subcommand]
+
+  - name: albums
+    description: "查询相册列表。"
+    parameters:
+      type: object
+      properties:
+        subcommand:
+          type: string
+          enum: [list]
+          description: "子命令：list"
+        skip:
+          type: integer
+          description: "跳过 N 个相册"
+        limit:
+          type: integer
+          description: "限制返回 N 个相册"
+      required: [subcommand]
+
+  - name: folders
+    description: "查询文件夹列表。"
+    parameters:
+      type: object
+      properties:
+        subcommand:
+          type: string
+          enum: [list]
+          description: "子命令：list"
+      required: [subcommand]
+
+  - name: locations
+    description: "查询位置列表。"
+    parameters:
+      type: object
+      properties:
+        subcommand:
+          type: string
+          enum: [list]
+          description: "子命令：list"
+      required: [subcommand]
+
+  - name: people
+    description: "查询人物列表。"
+    parameters:
+      type: object
+      properties:
+        subcommand:
+          type: string
+          enum: [list]
+          description: "子命令：list"
+      required: [subcommand]
+
+  - name: tags
+    description: "查询标签列表。"
+    parameters:
+      type: object
+      properties:
+        subcommand:
+          type: string
+          enum: [list]
+          description: "子命令：list"
+      required: [subcommand]
+
+  - name: medias
+    description: "获取媒体文件。"
+    parameters:
+      type: object
+      properties:
+        subcommand:
+          type: string
+          enum: [get]
+          description: "子命令：get"
+        photo_id:
+          type: string
+          description: "照片ID"
+      required: [subcommand, photo_id]
+
+examples:
+  - command: "python {baseDir}/cli.py config set --url http://localhost:8000 --token YOUR_TOKEN"
+    description: "设置服务端 API 地址和 Token"
+  - command: "python {baseDir}/cli.py photos list --city 西安市 --limit 5"
+    description: "查询西安市的最新 5 张照片"
+  - command: "python {baseDir}/cli.py photos info --photo-id <photo_id>"
+    description: "获取指定照片的详细信息"
+  - command: "python {baseDir}/cli.py photos delete --photo-id <photo_id>"
+    description: "删除指定照片"
+  - command: "python {baseDir}/cli.py folders list"
+    description: "列出所有文件夹"

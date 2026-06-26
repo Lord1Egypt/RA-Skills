@@ -1,35 +1,30 @@
 ---
-name: "tech-blog-wrtting"
-description: "撰写具有特定格式的技术博客文章。当用户要求撰写关于技术主题的博客文章或教程时使用。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/tech-blog-wrtting"
-sourceUrl: "https://clawhub.ai/skills/tech-blog-wrtting"
+name: tech-blog-writing
+description: 撰写具有特定格式的技术博客文章。当用户要求撰写关于技术主题的博客文章或教程时使用。
 ---
 
-# tech-blog-wrtting
+# 技术博客写作
 
-> 撰写具有特定格式的技术博客文章。当用户要求撰写关于技术主题的博客文章或教程时使用。
+## 工作流程
+1. 明确写作内容
+2. 参考写作规范进行内容创作
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/tech-blog-wrtting`
-- **Source URL:** [https://clawhub.ai/skills/tech-blog-wrtting](https://clawhub.ai/skills/tech-blog-wrtting)
+## 写作规范
 
-## Overview
+### 内容结构
+1. **标题**：简洁有力，包含核心关键词
+2. **开头**：用反直觉的观点或问题抓住读者，不要用「首先让我们来了解...」这种无聊开头
+3. **正文**：
+   - 每个段落不超过 5 句话
+   - 专业术语首次出现时解释
+   - 代码示例必须可运行
+4. **结尾**：总结要点 + 下一步行动建议
 
+### 格式规范
+- 使用 Markdown 格式
+- 代码块要标注语言
+- 重要观点用粗体强调
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/tech-blog-wrtting
-```
+### 输出位置
+将写作完成的博客文章以.md格式保存在当前项目文件下，文件命名为：<具体的写作主题>.md
+

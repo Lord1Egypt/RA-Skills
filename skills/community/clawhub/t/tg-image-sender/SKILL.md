@@ -1,35 +1,35 @@
 ---
-name: "TG Image Sender"
-description: "Send test or generated images directly to Telegram chats using the message tool with Picsum.photos URLs or custom media. Use when the user requests to 'send photo', 'generate image here in TG', or show/test images in Telegram (e.g., 'пришли фото', 'покажи картинку')."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/tg-image-sender"
-sourceUrl: "https://clawhub.ai/skills/tg-image-sender"
+name: tg-image-sender
+description: Send test or generated images directly to Telegram chats using the message tool with Picsum.photos URLs or custom media. Use when the user requests to 'send photo', 'generate image here in TG', or show/test images in Telegram (e.g., 'пришли фото', 'покажи картинку').
 ---
 
 # TG Image Sender
 
-> Send test or generated images directly to Telegram chats using the message tool with Picsum.photos URLs or custom media. Use when the user requests to 'send photo', 'generate image here in TG', or show/test images in Telegram (e.g., 'пришли фото', 'покажи картинку').
+## Quick Usage
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/tg-image-sender`
-- **Source URL:** [https://clawhub.ai/skills/tg-image-sender](https://clawhub.ai/skills/tg-image-sender)
+Call the `message` tool directly:
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/tg-image-sender
 ```
+message action=send channel=telegram media="https://picsum.photos/800/600?random=1" caption="Test image 🦞"
+```
+
+- **Size**: Adjust width/height, e.g., `https://picsum.photos/400/300`
+- **Seed**: `https://picsum.photos/800/600?random=1234` for reproducible.
+- **Real image**: Replace with actual URL/media path.
+- **Caption**: Optional description.
+
+## Examples
+
+- Random photo: `media="https://picsum.photos/800/600?random=1"`
+- Specific: `media="https://picsum.photos/seed/cat/800/600"`
+
+After sending, use `NO_REPLY` to avoid duplicate text.
+
+## Workflow
+
+1. Match user request for TG image.
+2. Generate Picsum URL or use provided.
+3. Send via `message` tool.
+4. NO_REPLY.
+
+No scripts needed—pure tool call.

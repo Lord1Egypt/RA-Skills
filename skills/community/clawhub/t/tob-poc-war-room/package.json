@@ -1,0 +1,15 @@
+{
+  "name": "tob-poc-war-room",
+  "version": "1.0.0",
+  "description": "POC战情室。输入POC目标/客户行业/当前进度/问题清单，输出48h排兵布阵方案+风险预警。基于多行业ToB POC交付实战经验。",
+  "main": "src/generator.js",
+  "bin": {
+    "tob-poc-war-room": "./cli.js"
+  },
+  "scripts": {
+    "start": "node src/generator.js",
+    "test": "node tests/run-tests.js"
+  },
+  "keywords": ["tob", "poc", "war-room", "sales", "delivery"],
+  "license": "MIT-0"
+}

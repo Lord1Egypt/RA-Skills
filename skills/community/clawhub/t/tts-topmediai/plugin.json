@@ -1,0 +1,87 @@
+{
+  "name": "tts_topmediai",
+  "description": "TopMediai TTS skill: key info, voice list, and text-to-speech audio generation.",
+  "metadata": {
+    "env": {
+      "required": ["TOPMEDIAI_API_KEY"],
+      "optional": ["TOPMEDIAI_BASE_URL"]
+    }
+  },
+  "commands": [
+    {
+      "name": "tts_topmediai",
+      "description": "Main command for TopMediai TTS: info|voices|tts",
+      "options": [
+        { "name": "action", "description": "info|voices|tts", "type": "string", "required": true },
+        { "name": "text", "description": "Text to synthesize when action=tts", "type": "string", "required": false },
+        { "name": "speaker", "description": "Speaker/voice id when action=tts", "type": "string", "required": false },
+        { "name": "emotion", "description": "Optional emotion for tts", "type": "string", "required": false }
+      ],
+      "exec": {
+        "type": "process",
+        "command": "python3",
+        "args": [
+          "~/.openclaw/workspace/skills/tts-topmediai/scripts/run_tts_topmediai.py",
+          "--action", "${action}",
+          "--text", "${text}",
+          "--speaker", "${speaker}",
+          "--emotion", "${emotion}"
+        ],
+        "cwd": "~/.openclaw/workspace"
+      },
+      "response": { "type": "text", "template": "Result: ${result}" }
+    },
+    {
+      "name": "topmediai_tts_key_info",
+      "description": "Get current API key entitlement information",
+      "options": [],
+      "exec": {
+        "type": "process",
+        "command": "python3",
+        "args": [
+          "~/.openclaw/workspace/skills/tts-topmediai/scripts/run_tts_topmediai.py",
+          "--action", "info"
+        ],
+        "cwd": "~/.openclaw/workspace"
+      },
+      "response": { "type": "text", "template": "Key info: ${result}" }
+    },
+    {
+      "name": "topmediai_tts_voices",
+      "description": "Get official and cloned voice lists",
+      "options": [],
+      "exec": {
+        "type": "process",
+        "command": "python3",
+        "args": [
+          "~/.openclaw/workspace/skills/tts-topmediai/scripts/run_tts_topmediai.py",
+          "--action", "voices"
+        ],
+        "cwd": "~/.openclaw/workspace"
+      },
+      "response": { "type": "text", "template": "Voices: ${result}" }
+    },
+    {
+      "name": "topmediai_tts_generate",
+      "description": "Generate TTS audio from text",
+      "options": [
+        { "name": "text", "description": "Text content for synthesis", "type": "string", "required": true },
+        { "name": "speaker", "description": "Speaker/voice id", "type": "string", "required": true },
+        { "name": "emotion", "description": "Optional emotion", "type": "string", "required": false }
+      ],
+      "exec": {
+        "type": "process",
+        "command": "python3",
+        "args": [
+          "~/.openclaw/workspace/skills/tts-topmediai/scripts/run_tts_topmediai.py",
+          "--action", "tts",
+          "--text", "${text}",
+          "--speaker", "${speaker}",
+          "--emotion", "${emotion}"
+        ],
+        "cwd": "~/.openclaw/workspace"
+      },
+      "response": { "type": "text", "template": "TTS result: ${result}" }
+    }
+  ]
+}

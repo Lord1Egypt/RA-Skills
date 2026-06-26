@@ -1,0 +1,96 @@
+// Design System
+$bg: #fff8f1;
+$paper: #ffffffcc;
+$ink: #5e3930;
+$muted: #8f6d64;
+$pink: #f7b8c8;
+$pink-deep: #ec89a7;
+$brown: #eab79f;
+$line: #f5e1d8;
+
+page {
+  background: linear-gradient(180deg, #fffdfa 0%, #fff5ec 100%);
+  min-height: 100vh;
+  font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+  color: $ink;
+  box-sizing: border-box;
+}
+
+.safe-bottom {
+  padding-bottom: constant(safe-area-inset-bottom);
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+.card {
+  background: $paper;
+  border: 2px solid #fff;
+  box-shadow: 0 14px 30px rgba(109, 74, 63, 0.08);
+  border-radius: 24px;
+  padding: 16px;
+  margin-bottom: 14px;
+}
+
+.btn-primary {
+  width: 100%;
+  height: 48px;
+  border-radius: 18px;
+  border: 0;
+  font-size: 15px;
+  font-weight: 900;
+  background: linear-gradient(135deg, $pink, $pink-deep);
+  color: #fff;
+  box-shadow: 0 14px 26px rgba(236, 137, 167, 0.24);
+  line-height: 48px;
+}
+
+.btn-ghost {
+  width: 100%;
+  height: 48px;
+  border-radius: 18px;
+  border: 2px solid #f5ddd4;
+  background: #fff;
+  color: #916761;
+  font-size: 15px;
+  font-weight: 900;
+  line-height: 44px;
+}
+
+.pill {
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: #fff3ec;
+  border: 2px solid #f7ddd4;
+  font-size: 12px;
+  font-weight: 700;
+  color: #9e6d61;
+}
+
+.bottom-nav {
+  position: fixed;
+  left: 14px;
+  right: 14px;
+  bottom: 14px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  padding: 10px;
+  border-radius: 22px;
+  background: #fffdf8;
+  border: 2px solid #fff;
+  box-shadow: 0 14px 30px rgba(109, 74, 63, 0.08);
+  z-index: 100;
+
+  .nav-item {
+    font-size: 11px;
+    text-align: center;
+    padding: 6px 0;
+    border-radius: 14px;
+    color: #9a7b71;
+
+    &.active {
+      background: #fff1f4;
+      color: #d96b8a;
+      font-weight: 900;
+    }
+  }
+}

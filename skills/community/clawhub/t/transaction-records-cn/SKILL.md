@@ -1,35 +1,78 @@
----
-name: "交易记录生成"
-description: "根据指定账期的招商银行活期、理财及对公账户源数据生成包含明细和资金汇总的标准化交易记录Excel文件。"
-category: "domain"
-source: "ClawHub"
-tags: [chinese, excel, finance]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/transaction-records-cn"
-sourceUrl: "https://clawhub.ai/skills/transaction-records-cn"
----
+# 交易记录生成技能
 
-# 交易记录生成
+从银行源数据（招行活期/理财/对公账户）生成标准化交易记录表 Excel 文件，包含资金流水汇总 sheet。
 
-> 根据指定账期的招商银行活期、理财及对公账户源数据生成包含明细和资金汇总的标准化交易记录Excel文件。
+## 功能
 
-- **Category:** Business & Finance
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/transaction-records-cn`
-- **Source URL:** [https://clawhub.ai/skills/transaction-records-cn](https://clawhub.ai/skills/transaction-records-cn)
+根据银行源数据生成交易记录表 Excel 文件，并支持自动生成账目表。
 
-## Overview
+## 使用方法
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/transaction-records-cn
+cd skills/交易记录
+python scripts/交易记录.py 202602
 ```
+
+### 参数说明
+
+| 参数 | 必填 | 说明 |
+|------|------|------|
+| `period` | 是 | 账期，格式 YYYYMM（如 202602） |
+| `--input-dir` | 否 | 源文件目录，默认为当前目录 |
+| `--output-dir` | 否 | 输出目录，默认为当前目录 |
+| `--initial-balance` | 否 | 理财期初余额 |
+
+## 源文件要求
+
+需要以下三个源文件（文件名需包含账期 YYYYMM）：
+
+| 文件 | 格式 | 说明 |
+|------|------|------|
+| `招行活期 YYYYMM*.csv` | CSV | 招商银行活期账户交易记录 |
+| `招行理财 YYYYMM*.xlsx` | Excel | 招商银行理财交易记录 |
+| `对公账户 YYYYMM*.xls` | Excel | 对公账户交易记录（.xls 格式） |
+
+## 输出格式
+
+生成 `交易记录 YYYYMM.xlsx`，包含 4 个 sheet：
+1. **招行活期** - 活期账户交易明细
+2. **招行理财** - 理财产品交易明细
+3. **对公账户** - 对公账户交易明细
+4. **资金流水** - 汇总打印 sheet，用于归档
+
+## 依赖
+
+```bash
+pip install openpyxl xlrd
+```
+
+## 文件结构
+
+```
+skills/交易记录/
+├── SKILL.md              # 技能说明（本文件）
+└── scripts/
+    ├── 交易记录.py       # 主程序：生成交易记录表
+    └── 生成账目.py       # 从交易记录生成账目表
+```
+
+## 业务规则
+
+### 招行理财记账规则
+
+| 交易类型 | 收入/支出 | 说明 |
+|----------|----------|------|
+| 申购/活期转理财 | 收入 | 钱进入理财账户 |
+| 赎回/快赎交易/理财转活期 | 支出 | 钱离开理财账户 |
+| 份额分红 | 收入 | 显示份额数（如 39.19），备注"利息" |
+
+## 注意事项
+
+1. **源文件命名**：文件名必须包含账期（YYYYMM）
+2. **期初余额**：首次运行需手动指定 `--initial-balance`
+3. **份额分红**：自动合并统计，显示份额数而非金额
+4. **Excel 公式**：余额列使用 Excel 公式，打开文件时自动计算
+
+---
+
+*最后更新：2026-04-01*

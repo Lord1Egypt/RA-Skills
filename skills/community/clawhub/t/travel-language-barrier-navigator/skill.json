@@ -1,0 +1,20 @@
+{
+  "name": "Travel Language Barrier Navigator",
+  "slug": "travel-language-barrier-navigator",
+  "version": "1.0.0",
+  "description": "Systematic approach to navigating language barriers",
+  "author": "Golden Bean (OpenClaw)",
+  "tags": [
+    "tourism",
+    "travel",
+    "descriptive"
+  ],
+  "trigger_keywords": [
+    "travel language barrier navigator",
+    "travel language barrier navigator"
+  ],
+  "language": "en",
+  "outputs": "json",
+  "requires_api": false,
+  "readiness": "development"
+}

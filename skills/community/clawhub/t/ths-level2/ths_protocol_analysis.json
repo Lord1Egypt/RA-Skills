@@ -1,0 +1,681 @@
+{
+  "analysis_time": "2026-03-21T07:37:38.740383",
+  "total_protocols": 72,
+  "protocols": [
+    {
+      "business": "分时查询",
+      "operation": "个股-分时",
+      "message": "id=207&market=USZA&code=300033&date=0&datatype=13,19,10,1",
+      "params": {
+        "id": "207",
+        "market": "USZA",
+        "code": "300033",
+        "date": "0",
+        "datatype": "13,19,10,1"
+      },
+      "analysis": "TrendData"
+    },
+    {
+      "business": "AI相似个股",
+      "operation": "个股-AI相似个股",
+      "message": "id=1007&urlbase64=L3p4L3JlbGV2YW50Y29kZS5sdWE/b3A9Z2V0JmNvZGU9MzAwMDMz",
+      "params": {
+        "id": "1007",
+        "urlbase64": "/zx/relevantcode.lua?op=get&code=300033"
+      },
+      "analysis": "JObject"
+    },
+    {
+      "business": "个股资讯",
+      "operation": "个股-资讯",
+      "message": "id=1001&market=USZA&code=300033&textid=14339&LastTextTime=0&summary=0",
+      "params": {
+        "id": "1001",
+        "market": "USZA",
+        "code": "300033",
+        "textid": "14339",
+        "LastTextTime": "0",
+        "summary": "0"
+      },
+      "analysis": "InfoReply"
+    },
+    {
+      "business": "个股公告",
+      "operation": "个股-资讯",
+      "message": "id=1001&market=USZA&code=300033&textid=14341&LastTextTime=0&summary=0",
+      "params": {
+        "id": "1001",
+        "market": "USZA",
+        "code": "300033",
+        "textid": "14341",
+        "LastTextTime": "0",
+        "summary": "0"
+      },
+      "analysis": "InfoReply"
+    },
+    {
+      "business": "个股研报",
+      "operation": "个股-研报",
+      "message": "id=1001&market=USZA&code=300033&textid=14364&LastTextTime=0&summary=0",
+      "params": {
+        "id": "1001",
+        "market": "USZA",
+        "code": "300033",
+        "textid": "14364",
+        "LastTextTime": "0",
+        "summary": "0"
+      },
+      "analysis": "InfoReply"
+    },
+    {
+      "business": "个股龙虎榜",
+      "operation": "个股-日线",
+      "message": "id=1007&URL=client/lhb/300033.xml",
+      "params": {
+        "id": "1007",
+        "URL": "client/lhb/300033.xml"
+      },
+      "analysis": "NodeXml"
+    },
+    {
+      "business": "个股历史涨停分析",
+      "operation": "个股-日线",
+      "message": "id=1007&URL=/zx/harden.lua?code=300033",
+      "params": {
+        "id": "1007",
+        "URL": "/zx/harden.lua?code=300033"
+      },
+      "analysis": "RegexMatch"
+    },
+    {
+      "business": "个股财报",
+      "operation": "个股-日线",
+      "message": "id=1007&URL=client/report/300033.xml",
+      "params": {
+        "id": "1007",
+        "URL": "client/report/300033.xml"
+      },
+      "analysis": "NodeXml"
+    },
+    {
+      "business": "个股权息",
+      "operation": "个股-K线",
+      "message": "id=211&market=USZA&code=300033&start=0&end=0&datatype=1,471&period=16384",
+      "params": {
+        "id": "211",
+        "market": "USZA",
+        "code": "300033",
+        "start": "0",
+        "end": "0",
+        "datatype": "1,471",
+        "period": "16384"
+      },
+      "analysis": "Financial"
+    },
+    {
+      "business": "个股流通股变更",
+      "operation": "个股-K线",
+      "message": "id=211&market=USZA&code=300033&start=-1&end=0&datatype=1,899,900&period=16384&fuquan=Q",
+      "params": {
+        "id": "211",
+        "market": "USZA",
+        "code": "300033",
+        "start": "-1",
+        "end": "0",
+        "datatype": "1,899,900",
+        "period": "16384",
+        "fuquan": "Q"
+      },
+      "analysis": "Financial"
+    },
+    {
+      "business": "深市A股市场涨幅排名",
+      "operation": "沪深-沪深A股-深市A股",
+      "message": "id=6&market=USZA&sortbegin=0&sortcount=35&sortid=199112&sortorder=D",
+      "params": {
+        "id": "6",
+        "market": "USZA",
+        "sortbegin": "0",
+        "sortcount": "35",
+        "sortid": "199112",
+        "sortorder": "D"
+      },
+      "analysis": "Unknow"
+    },
+    {
+      "business": "键盘精灵",
+      "operation": "键盘精灵中输入56",
+      "message": "id=8&pattern=56",
+      "params": {
+        "id": "8",
+        "pattern": "56"
+      },
+      "analysis": "Unknow"
+    },
+    {
+      "business": "通过股票代码查询市场",
+      "operation": "初始化股票预警",
+      "message": "id=9&codelist=881154,300033,600001",
+      "params": {
+        "id": "9",
+        "codelist": "881154,300033,600001"
+      },
+      "analysis": "Unknow"
+    },
+    {
+      "business": "成交明细",
+      "operation": "个股-涨跌停股票",
+      "message": "id=10&market=USZA&code=000935&datatype=1,13,14,18",
+      "params": {
+        "id": "10",
+        "market": "USZA",
+        "code": "000935",
+        "datatype": "1,13,14,18"
+      },
+      "analysis": "Unknow"
+    },
+    {
+      "business": "请求所属行业",
+      "operation": "个股-K线-区间统计",
+      "message": "id=102&funcid=14&codelist=USZA(000935)",
+      "params": {
+        "id": "102",
+        "funcid": "14",
+        "codelist": "USZA(000935)"
+      },
+      "analysis": "Unknow"
+    },
+    {
+      "business": "获取板块数据",
+      "operation": "行情登陆",
+      "message": "id=103&reqid=19&filename=stocklink.ini&downloadcrc=0",
+      "params": {
+        "id": "103",
+        "reqid": "19",
+        "filename": "stocklink.ini",
+        "downloadcrc": "0"
+      },
+      "analysis": "Unknow"
+    },
+    {
+      "business": "深指前置数据查询",
+      "operation": "主页底部深指行情",
+      "message": "id=200&market=USZI&codelist=399001&datatype=5,6,10,19",
+      "params": {
+        "id": "200",
+        "market": "USZI",
+        "codelist": "399001",
+        "datatype": "5,6,10,19"
+      },
+      "analysis": "Unknow"
+    },
+    {
+      "business": "创指补充数据查询",
+      "operation": "在有创指的列表中左右拖动",
+      "message": "id=201&market=USZI&codelist=399006&datatype=407,1565,1566",
+      "params": {
+        "id": "201",
+        "market": "USZI",
+        "codelist": "399006",
+        "datatype": "407,1565,1566"
+      },
+      "analysis": "Unknow"
+    },
+    {
+      "business": "5分钟涨速排名",
+      "operation": "个股-盯盘助手",
+      "message": "id=202&market=USHT&codelist=600614&datatype=3934664",
+      "params": {
+        "id": "202",
+        "market": "USHT",
+        "codelist": "600614",
+        "datatype": "3934664"
+      },
+      "analysis": "Unknow"
+    },
+    {
+      "business": "集合竞价数据",
+      "operation": "个股-分时",
+      "message": "id=204&market=USZA&code=000935&start=1574644500&end=1574645100&datatype=10,49,19,27,33",
+      "params": {
+        "id": "204",
+        "market": "USZA",
+        "code": "000935",
+        "start": "1574644500",
+        "end": "1574645100",
+        "datatype": "10,49,19,27,33"
+      },
+      "analysis": "Unknow"
+    },
+    {
+      "business": "个股成交明细",
+      "operation": "个股-明细",
+      "message": "id=205&market=USZA&code=002539&start=-20&end=0&datatype=1,12,49,10,18",
+      "params": {
+        "id": "205",
+        "market": "USZA",
+        "code": "002539",
+        "start": "-20",
+        "end": "0",
+        "datatype": "1,12,49,10,18"
+      },
+      "analysis": "Unknow"
+    },
+    {
+      "business": "个股时间轴获取",
+      "operation": "个股-分时",
+      "message": "id=209&market=USZI&code=399001",
+      "params": {
+        "id": "209",
+        "market": "USZI",
+        "code": "399001"
+      },
+      "analysis": "Unknow"
+    },
+    {
+      "business": "个股主营业务利润",
+      "operation": "个股-财务",
+      "message": "id=211&market=USZA&code=300033&start=0&end=0&datatype=1,605&period=16384",
+      "params": {
+        "id": "211",
+        "market": "USZA",
+        "code": "300033",
+        "start": "0",
+        "end": "0",
+        "datatype": "1,605",
+        "period": "16384"
+      },
+      "analysis": "Unknow"
+    },
+    {
+      "business": "个股换手率",
+      "operation": "个股-换手",
+      "message": "id=212&market=USZA&code=300033&start=-184&end=0&datatype=1,1968584&period=16384&fuquan=Q8",
+      "params": {
+        "id": "212",
+        "market": "USZA",
+        "code": "300033",
+        "start": "-184",
+        "end": "0",
+        "datatype": "1,1968584",
+        "period": "16384",
+        "fuquan": "Q8"
+      },
+      "analysis": "Unknow"
+    },
+    {
+      "business": "个股历史收盘价",
+      "operation": "个股-K线",
+      "message": "id=213&market=USHA&code=688139&start=-852&end=0&datatype=1,6&period=16384&fuquan=Q",
+      "params": {
+        "id": "213",
+        "market": "USHA",
+        "code": "688139",
+        "start": "-852",
+        "end": "0",
+        "datatype": "1,6",
+        "period": "16384",
+        "fuquan": "Q"
+      },
+      "analysis": "Unknow"
+    },
+    {
+      "business": "期货数据查询",
+      "operation": "扩展-期货",
+      "message": "id=240&timemaa=0&market=UCFZ",
+      "params": {
+        "id": "240",
+        "timemaa": "0",
+        "market": "UCFZ"
+      },
+      "analysis": "Unknow"
+    },
+    {
+      "business": "资讯树",
+      "operation": "行情登陆",
+      "message": "id=1000&lastmodify=02",
+      "params": {
+        "id": "1000",
+        "lastmodify": "02"
+      },
+      "analysis": "Unknow"
+    },
+    {
+      "business": "信息地雷",
+      "operation": "工具-启用信息地雷；打开个股日线",
+      "message": "id=1002&market=USHA&code=600331&start=-186&end=0",
+      "params": {
+        "id": "1002",
+        "market": "USHA",
+        "code": "600331",
+        "start": "-186",
+        "end": "0"
+      },
+      "analysis": "Unknow"
+    },
+    {
+      "business": "个股分时",
+      "operation": "工具-启用信息地雷；打开个股分时",
+      "message": "id=1003&market=USZA&code=002156",
+      "params": {
+        "id": "1003",
+        "market": "USZA",
+        "code": "002156"
+      },
+      "analysis": "Unknow"
+    },
+    {
+      "business": "历史信息地雷",
+      "operation": "个股-日线-查看信息地雷",
+      "message": "id=1005&infoid=2053&market=USHA&code=600331&start=20110218&end=20191125",
+      "params": {
+        "id": "1005",
+        "infoid": "2053",
+        "market": "USHA",
+        "code": "600331",
+        "start": "20110218",
+        "end": "20191125"
+      },
+      "analysis": "Unknow"
+    },
+    {
+      "business": "当日信息地雷",
+      "operation": "个股-分时-查看信息地雷",
+      "message": "id=1006&infoid=2054&market=USHA&code=600078&start=1574616335.7596&end=-1",
+      "params": {
+        "id": "1006",
+        "infoid": "2054",
+        "market": "USHA",
+        "code": "600078",
+        "start": "1574616335.7596",
+        "end": "-1"
+      },
+      "analysis": "Unknow"
+    },
+    {
+      "business": "股债联动数据",
+      "operation": "切换个股",
+      "message": "id=1007&URL=zx/stockdebt/relation.json",
+      "params": {
+        "id": "1007",
+        "URL": "zx/stockdebt/relation.json"
+      },
+      "analysis": "Unknow"
+    },
+    {
+      "business": "融资融券数据",
+      "operation": "切换个股",
+      "message": "id=1600&market=USZA&codelist=300033&querykey=融资融券&keyindex=2&timestamp=",
+      "params": {
+        "id": "1600",
+        "market": "USZA",
+        "codelist": "300033",
+        "querykey": "融资融券",
+        "keyindex": "2",
+        "timestamp": ""
+      },
+      "analysis": "Unknow"
+    },
+    {
+      "business": "境外资金",
+      "operation": "个股-上证指数-盘面分析",
+      "message": "id=1007&URL=/zx/freeclient/homepage/hsgtdata/20191217.json",
+      "params": {
+        "id": "1007",
+        "URL": "/zx/freeclient/homepage/hsgtdata/20191217.json"
+      },
+      "analysis": "Unknow"
+    },
+    {
+      "business": "深市短线精灵",
+      "operation": "个股-盯盘助手",
+      "message": "id=1701&market=USZA&maxcount=100",
+      "params": {
+        "id": "1701",
+        "market": "USZA",
+        "maxcount": "100"
+      },
+      "analysis": "Unknow"
+    },
+    {
+      "business": "板块主力净额/量",
+      "operation": "沪深板块-同花顺指数",
+      "message": "id=202&market=URFI&codelist=885639,885875,881157,881155,885808,885573,881156,885826,885570,885853,885754,885781,885814,881102,881114,885769&datatype=68285,592890,1771976",
+      "params": {
+        "id": "202",
+        "market": "URFI",
+        "codelist": "885639,885875,881157,881155,885808,885573,881156,885826,885570,885853,885754,885781,885814,881102,881114,885769",
+        "datatype": "68285,592890,1771976"
+      },
+      "analysis": "Unknow"
+    },
+    {
+      "business": "年初至今涨幅",
+      "operation": "沪深板块-沪深全景-指数",
+      "message": "id=1600&market=URFI&codelist=881157,881101,881166,881124,881114,881121,881162,881119,881127&querykey=年初至今涨幅&keyindex=2&timestamp=20190102-20190620",
+      "params": {
+        "id": "1600",
+        "market": "URFI",
+        "codelist": "881157,881101,881166,881124,881114,881121,881162,881119,881127",
+        "querykey": "年初至今涨幅",
+        "keyindex": "2",
+        "timestamp": "20190102-20190620"
+      },
+      "analysis": "Unknow"
+    },
+    {
+      "business": "深证系列指数",
+      "operation": "沪深指数-深证系列指数",
+      "message": "id=7&blockid=CE3E&reqflag=blockserver&sortbegin=0&sortcount=34&sortid=5&sortorder=A",
+      "params": {
+        "id": "7",
+        "blockid": "CE3E",
+        "reqflag": "blockserver",
+        "sortbegin": "0",
+        "sortcount": "34",
+        "sortid": "5",
+        "sortorder": "A"
+      },
+      "analysis": "Unknow"
+    },
+    {
+      "business": "中小板",
+      "operation": "沪深A股-中小板",
+      "message": "id=7&blockid=EFFD&reqflag=blockserver&sortbegin=0&sortcount=34&sortid=199112&sortorder=D",
+      "params": {
+        "id": "7",
+        "blockid": "EFFD",
+        "reqflag": "blockserver",
+        "sortbegin": "0",
+        "sortcount": "34",
+        "sortid": "199112",
+        "sortorder": "D"
+      },
+      "analysis": "Unknow"
+    },
+    {
+      "business": "创业板",
+      "operation": "沪深A股-创业板",
+      "message": "id=7&blockid=CFE4&reqflag=blockserver&sortbegin=0&sortcount=34&sortid=199112&sortorder=D",
+      "params": {
+        "id": "7",
+        "blockid": "CFE4",
+        "reqflag": "blockserver",
+        "sortbegin": "0",
+        "sortcount": "34",
+        "sortid": "199112",
+        "sortorder": "D"
+      },
+      "analysis": "Unknow"
+    },
+    {
+      "business": "新股已上市个股信息",
+      "operation": "沪深新股-已上市股票",
+      "message": "id=1600&market=USZA&codelist=002970,300810,300792&querykey=封板天数,开板天数,上市至今涨幅,最新主力资金流向,主力资金流向/流通市值,上市首日开盘价&keyindex=2,2,2,2,4,2&timestamp=20180907,20180907,20180907,20180907,20180907,",
+      "params": {
+        "id": "1600",
+        "market": "USZA",
+        "codelist": "002970,300810,300792",
+        "querykey": "封板天数,开板天数,上市至今涨幅,最新主力资金流向,主力资金流向/流通市值,上市首日开盘价",
+        "keyindex": "2,2,2,2,4,2",
+        "timestamp": "20180907,20180907,20180907,20180907,20180907,"
+      },
+      "analysis": "Unknow"
+    },
+    {
+      "business": "新股未上市个股信息",
+      "operation": "沪深新股-未上市股票",
+      "message": "id=201&market=USHA&codelist=688396&datatype=1,402,543,569,574,575,593,602,605,619,915,926,940,1002,1005,1015,1670",
+      "params": {
+        "id": "201",
+        "market": "USHA",
+        "codelist": "688396",
+        "datatype": "1,402,543,569,574,575,593,602,605,619,915,926,940,1002,1005,1015,1670"
+      },
+      "analysis": "Unknow"
+    },
+    {
+      "business": "沪深港通流入/剩余/累计",
+      "operation": "沪深-沪深港通",
+      "message": "id=1007&URL=/zx/shhk.xml",
+      "params": {
+        "id": "1007",
+        "URL": "/zx/shhk.xml"
+      },
+      "analysis": "Unknow"
+    },
+    {
+      "business": "沪深封闭基金",
+      "operation": "沪深-场内基金",
+      "message": "id=7&blockid=6&reqflag=blockserver&sortbegin=0&sortcount=48&sortid=199112&sortorder=D",
+      "params": {
+        "id": "7",
+        "blockid": "6",
+        "reqflag": "blockserver",
+        "sortbegin": "0",
+        "sortcount": "48",
+        "sortid": "199112",
+        "sortorder": "D"
+      },
+      "analysis": "Unknow"
+    },
+    {
+      "business": "深圳封闭基金",
+      "operation": "沪深-场内基金",
+      "message": "id=7&blockid=5&reqflag=blockserver&sortbegin=0&sortcount=34&sortid=199112&sortorder=D",
+      "params": {
+        "id": "7",
+        "blockid": "5",
+        "reqflag": "blockserver",
+        "sortbegin": "0",
+        "sortcount": "34",
+        "sortid": "199112",
+        "sortorder": "D"
+      },
+      "analysis": "Unknow"
+    },
+    {
+      "business": "ETF基金",
+      "operation": "沪深-场内基金",
+      "message": "id=7&blockid=CFF3&reqflag=blockserver&sortbegin=0&sortcount=34&sortid=199112&sortorder=D",
+      "params": {
+        "id": "7",
+        "blockid": "CFF3",
+        "reqflag": "blockserver",
+        "sortbegin": "0",
+        "sortcount": "34",
+        "sortid": "199112",
+        "sortorder": "D"
+      },
+      "analysis": "Unknow"
+    },
+    {
+      "business": "lofs基金",
+      "operation": "沪深-场内基金",
+      "message": "id=7&blockid=EF8C&reqflag=blockserver&sortbegin=0&sortcount=34&sortid=199112&sortorder=D",
+      "params": {
+        "id": "7",
+        "blockid": "EF8C",
+        "reqflag": "blockserver",
+        "sortbegin": "0",
+        "sortcount": "34",
+        "sortid": "199112",
+        "sortorder": "D"
+      },
+      "analysis": "Unknow"
+    },
+    {
+      "business": "t+0基金",
+      "operation": "沪深-场内基金",
+      "message": "id=7&blockid=D90C&reqflag=blockserver&sortbegin=0&sortcount=34&sortid=199112&sortorder=D",
+      "params": {
+        "id": "7",
+        "blockid": "D90C",
+        "reqflag": "blockserver",
+        "sortbegin": "0",
+        "sortcount": "34",
+        "sortid": "199112",
+        "sortorder": "D"
+      },
+      "analysis": "Unknow"
+    },
+    {
+      "business": "分级基金",
+      "operation": "沪深-场内基金",
+      "message": "id=7&blockid=D811&reqflag=blockserver&sortbegin=0&sortcount=34&sortid=199112&sortorder=D",
+      "params": {
+        "id": "7",
+        "blockid": "D811",
+        "reqflag": "blockserver",
+        "sortbegin": "0",
+        "sortcount": "34",
+        "sortid": "199112",
+        "sortorder": "D"
+      },
+      "analysis": "Unknow"
+    },
+    {
+      "business": "港股总市值/流通市值",
+      "operation": "港股-全部港股",
+      "message": "id=202&market=UHKM&codelist=HK1553,HK6193,HK0689,HK1415,HK1400,HK0919,HK0627,HK1402,HK0376,HK1699,HK0433,HK1386,HK0989,HK0575,HK2326,HK1250,HK1621,HK0227,HK1583,HK0403,HK1575,HK0526,HK2060,HK0389&datatype=2942,1771976,3475914,3541450",
+      "params": {
+        "id": "202",
+        "market": "UHKM",
+        "codelist": "HK1553,HK6193,HK0689,HK1415,HK1400,HK0919,HK0627,HK1402,HK0376,HK1699,HK0433,HK1386,HK0989,HK0575,HK2326,HK1250,HK1621,HK0227,HK1583,HK0403,HK1575,HK0526,HK2060,HK0389",
+        "datatype": "2942,1771976,3475914,3541450"
+      },
+      "analysis": "Unknow"
+    }
+  ],
+  "message_ids": [
+    "202",
+    "7",
+    "207",
+    "213",
+    "1003",
+    "8",
+    "1600",
+    "10",
+    "240",
+    "1001",
+    "201",
+    "1007",
+    "205",
+    "6",
+    "204",
+    "9",
+    "209",
+    "1006",
+    "200",
+    "210",
+    "211",
+    "102",
+    "1701",
+    "212",
+    "103",
+    "101",
+    "1005",
+    "1000",
+    "1002"
+  ]
+}

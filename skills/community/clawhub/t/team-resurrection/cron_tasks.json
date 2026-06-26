@@ -1,0 +1,15 @@
+{
+  "description": "Cron 任务清单示例（通用模板）",
+  "note": "这是模板文件，实际 cron 由 migrate.py 根据此模板在新环境创建",
+  "tasks": [
+    {
+      "name": "main 每日自迭代",
+      "schedule": "cron 0 22 * * * Asia/Shanghai",
+      "sessionTarget": "isolated",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "执行每日自迭代：读 memory/、读团队 SOUL/SKILL、更新 MEMORY.md、commit push。"
+      }
+    }
+  ]
+}

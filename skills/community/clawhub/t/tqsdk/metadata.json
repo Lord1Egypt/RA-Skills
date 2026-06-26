@@ -1,0 +1,36 @@
+{
+  "name": "tqsdk",
+  "version": "1.2.0",
+  "description": "天勤量化TqSdk - 开源Python期货/期权交易SDK，提供实时行情、回测和实盘交易功能。",
+  "author": "BossQuant",
+  "tags": [
+    "期货",
+    "期权",
+    "量化交易",
+    "天勤",
+    "TqSdk",
+    "实时行情",
+    "回测",
+    "实盘"
+  ],
+  "repository": "",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "python": ">=3.8",
+    "packages": [
+      "tqsdk>=3.0.0",
+      "pandas>=1.5.0"
+    ]
+  },
+  "openclaw": {
+    "requires": {
+      "bins": [
+        "python3"
+      ],
+      "env": [
+        "TQ_USERNAME",
+        "TQ_PASSWORD"
+      ]
+    }
+  }
+}

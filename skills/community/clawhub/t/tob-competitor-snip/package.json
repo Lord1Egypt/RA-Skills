@@ -1,0 +1,15 @@
+{
+  "name": "tob-competitor-snip",
+  "version": "1.0.0",
+  "description": "ToB竞品狙击卡片生成器。输入竞品和客户关注点，输出差异化对比与反击话术。",
+  "main": "src/generator.js",
+  "bin": {
+    "tob-competitor-snip": "./cli.js"
+  },
+  "scripts": {
+    "start": "node src/generator.js",
+    "test": "node tests/run-tests.js"
+  },
+  "keywords": ["tob", "competitor", "sales", "presales"],
+  "license": "MIT-0"
+}

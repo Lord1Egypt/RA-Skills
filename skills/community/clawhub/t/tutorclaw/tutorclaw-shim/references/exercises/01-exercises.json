@@ -1,0 +1,23 @@
+[
+  {
+    "id": "01-01",
+    "topic": "variables",
+    "difficulty": "easy",
+    "question": "Create a variable called `city` and assign it the value \"London\". Then print it.",
+    "hint": "Use the assignment operator = and the print() function."
+  },
+  {
+    "id": "01-02",
+    "topic": "variables",
+    "difficulty": "easy",
+    "question": "What does `type(3.14)` return? Write the expression and predict the output before running it.",
+    "hint": "type() tells you the data type of any value."
+  },
+  {
+    "id": "01-03",
+    "topic": "variables",
+    "difficulty": "medium",
+    "question": "Assign `x = 10` and `y = 3`. Compute and print: the sum, the difference, the product, and the result of integer division.",
+    "hint": "Integer division uses // instead of /."
+  }
+]

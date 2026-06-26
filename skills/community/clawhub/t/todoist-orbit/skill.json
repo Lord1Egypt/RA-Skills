@@ -1,0 +1,18 @@
+{
+  "name": "todoist-orbit",
+  "description": "Operate Todoist through a deterministic stdlib-only Python CLI backed by the Todoist REST API",
+  "version": "0.1.6",
+  "credentials": [
+    {
+      "name": "TODOIST_API_KEY",
+      "description": "Todoist API token from https://todoist.com/app/settings/integrations/developer",
+      "required": true,
+      "sensitive": true
+    }
+  ],
+  "optional_env": ["TZ"],
+  "install": {
+    "type": "manual",
+    "note": "Install under an OpenClaw skills directory such as ~/.openclaw/skills/todoist-orbit/ and verify the final path before invoking scripts directly"
+  }
+}

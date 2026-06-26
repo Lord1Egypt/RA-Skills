@@ -1,0 +1,71 @@
+{
+  "run_id": "forced_0610_20260405",
+  "generated_at": "2026-04-05 14:10 CST",
+  "source": "RSS + X/cached data",
+  "timestamp_cst": "2026-04-05 14:10 CST",
+  "timestamp_utc": "2026-04-05 06:10 UTC",
+  "timeline": [
+    {"time": "2026-04-05 08:00 CST", "source": "Bloomberg", "content": "Fed官员警告通胀风险上升，利率政策两难", "type": "market"},
+    {"time": "2026-04-05 07:30 CST", "source": "Fox News", "content": "Trump convenes national security team amid escalating Iran conflict", "type": "military"},
+    {"time": "2026-04-05 07:00 CST", "source": "Bloomberg", "content": "Brent crude above $109/barrel amid US military losses in Iran", "type": "market"},
+    {"time": "2026-04-05 06:30 CST", "source": "Reuters", "content": "US military assessing options after Iran refuses ceasefire", "type": "diplomatic"},
+    {"time": "2026-04-04 23:40 CST", "source": "X/KobeissiLetter", "content": "CDS trading volume surged 69pct Q1 2026 to $4.5 trillion, highest on record", "type": "market"},
+    {"time": "2026-04-04 23:30 CST", "source": "X/KobeissiLetter", "content": "US Feb job growth revised DOWN to minus 133K; biggest monthly job loss since Dec 2020. Stagflation signal", "type": "economic"},
+    {"time": "2026-04-04 12:40 CST", "source": "MSN/WSJ", "content": "Trump convenes national security team as US Air Force has worst day in war; Iran refuses ceasefire", "type": "military"},
+    {"time": "2026-04-04 11:40 CST", "source": "X/ZeroHedge", "content": "Trump asked if downed jet to impact talks: No its war (NBC)", "type": "military"},
+    {"time": "2026-04-04 11:40 CST", "source": "X/ZeroHedge", "content": "Second US Warplane Lost: A-10 Warthog Crashes Near Hormuz", "type": "military"},
+    {"time": "2026-04-04 10:40 CST", "source": "X/KobeissiLetter", "content": "ISM Manufacturing PMI prices paid jumped 7.8pts to 78.3, highest since June 2022", "type": "economic"},
+    {"time": "2026-04-04 05:40 CST", "source": "X/KobeissiLetter", "content": "Trump will not say what US will do if missing F-15E pilot is harmed. First aviator shot down over enemy territory since April 2003", "type": "military"},
+    {"time": "2026-04-04 01:40 CST", "source": "X/WSJ", "content": "Iran NOT willing to meet US officials in Pakistan; mediation round dead end. Turkey/Egypt still pushing", "type": "diplomatic"},
+    {"time": "2026-04-04 01:30 CST", "source": "X/Twitter", "content": "Witkoff and Kushner led Iran nuclear negotiations WITHOUT nuclear experts. Vance reportedly opposed the war", "type": "policy"},
+    {"time": "2026-04-04 01:30 CST", "source": "X/Twitter", "content": "Iran downs 2 US warplanes, 2 missiles, 3 drones in single day. Iran calls it black day for US air forces", "type": "military"},
+    {"time": "2026-04-04 01:00 CST", "source": "X/KobeissiLetter", "content": "Trump on Iran: Keep the oil, anyone?", "type": "political"},
+    {"time": "2026-04-03 23:00 CST", "source": "X/Twitter", "content": "Brent crude rose 8pct to above $109/barrel after Trump renewed threats to destroy Iranian infrastructure", "type": "market"},
+    {"time": "2026-04-04 15:26 CST", "source": "CFR", "content": "Trump放松对伊朗和俄罗斯石油制裁是豪赌，能否成功存疑", "type": "analysis"},
+    {"time": "2026-04-04 13:11 CST", "source": "Washington Post", "content": "As Trump doubles down on Iran war, markets shudder and oil prices climb", "type": "market"},
+    {"time": "2026-04-04 06:45 CST", "source": "PBS", "content": "Global leaders work to ease oil price surge as Trump signals more weeks of Iran war", "type": "diplomatic"},
+    {"time": "2026-04-04 06:25 CST", "source": "BBC", "content": "Oil prices jump and shares drop after Trump threatens more Iran strikes", "type": "market"},
+    {"time": "2026-04-04 05:06 CST", "source": "NBC News", "content": "US oil has its biggest one-day price increase in six years", "type": "market"},
+    {"time": "2026-04-04 03:05 CST", "source": "Barron's", "content": "WTI原油涨幅超Brent，Trump讲话后美国油价特殊走强", "type": "market"},
+    {"time": "2026-04-04 02:00 CST", "source": "CBS News", "content": "Trump: hasnt even started destroying whats left of Iran", "type": "military"},
+    {"time": "2026-04-04 01:29 CST", "source": "Fox News", "content": "Trump猛批Obama伊朗核协议是灾难，称撕毁协议是荣幸", "type": "political"},
+    {"time": "2026-04-03 10:37 CST", "source": "NYT", "content": "Oil Stocks and Gas Prices Swing After Trump Speech on Iran", "type": "market"},
+    {"time": "2026-04-03 09:17 CST", "source": "CNBC", "content": "US oil prices soar 11pct as Trump Iran war speech stokes fears of further escalation", "type": "market"},
+    {"time": "2026-04-02 00:29 CST", "source": "Reuters", "content": "US to leave Iran pretty quickly and return if needed, Trump tells Reuters", "type": "diplomatic"},
+    {"time": "2026-04-01 02:29 CST", "source": "NDTV", "content": "US, Iran Negotiating Ceasefire Deal In Exchange For Hormuz Reopening", "type": "diplomatic"},
+    {"time": "2026-03-31 02:22 CST", "source": "Axios", "content": "中巴提出新伊朗协议：停火换取重新开放霍尔木兹海峡", "type": "diplomatic"}
+  ],
+  "sentiment_summary": {
+    "overall": "极度负面/战争升级",
+    "market": "恐慌（油价>$109/桶，股市下跌，滞胀信号）",
+    "diplomatic": "僵局（伊朗拒绝谈判，调解失败）",
+    "military": "激化（美机被击落，飞行员失踪）",
+    "economic": "滞胀风险（ISM PMI 78.3，2月就业-133K）"
+  },
+  "key_findings": [
+    {"theme": "战争升级", "findings": [
+      "伊朗4月4日单日击落2架美机、2枚导弹、3架无人机（美军最黑暗的一天）",
+      "F-15E飞行员失踪，Trump拒绝透露应对方案（2003年来首次）",
+      "Trump：还没开始摧毁伊朗剩余目标",
+      "Trump清洗反对地面战争的将军们"
+    ]},
+    {"theme": "外交僵局", "findings": [
+      "伊朗拒绝Trump 48小时停火最后通牒",
+      "伊朗不愿在巴基斯坦会见美方官员，调解陷入死胡同",
+      "Witkoff和Kushner主导核谈判（无核专家参与），Vance反对战争",
+      "卡塔尔拒绝担任首席调解人"
+    ]},
+    {"theme": "市场恐慌", "findings": [
+      "布伦特原油突破$109/桶，Trump威胁后暴涨8%",
+      "WTI单日暴涨11%，创六年来最大涨幅",
+      "Q1 CDS交易量激增69%至$4.5万亿（历史最高）",
+      "标普五周连跌，市场极度恐慌"
+    ]},
+    {"theme": "滞胀警报", "findings": [
+      "ISM制造业PMI投入价格指数飙升至78.3（2022年6月以来最高）",
+      "2月非农就业下修至-133K（2020年12月以来最大跌幅）",
+      "一年期通胀预期突破5%",
+      "美联储官员：通胀+经济放缓，政策陷入两难"
+    ]}
+  ]
+}

@@ -1,0 +1,160 @@
+# CLAUDE.md
+
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+
+## What This Project Is
+
+SkillPick ("挑选Skill") is a skill recommendation engine — not a search tool or leaderboard, but a **decision-making tool** that helps users choose the best skills to install. It serves two audiences simultaneously:
+
+- **Humans** → browse `index.html` to see ranked categories and TOP3 picks per track
+- **Agents** → call `api.js` CLI to get structured search/recommendation results
+
+## CLI Commands
+
+```bash
+# Agent API (primary interface)
+node api.js top3                    # All category TOP3
+node api.js top3 "AI Agent"         # Specific category
+node api.js search PDF              # Search recommendation
+node api.js similar pdf             # Find alternatives
+node api.js workflow 短视频带货     # Workflow scenario recommendation
+node api.js detail coding-agent     # Skill detail with 13-dim radar
+node api.js quality                 # Global quality distribution report
+node api.js search PDF --show-all   # Include D/F-grade results
+
+# Quality scanner (regenerates data/quality_v2_scores.json)
+node scanner.js                     # Metadata-only scan (fast, <1s)
+node scanner.js --github            # + GitHub API (needs GITHUB_TOKEN)
+node scanner.js --skillhub          # + SkillHub market data
+node scanner.js --github --skillhub # Full 13-dim scan
+node scanner.js one <name>          # Single skill detailed report
+node scanner.js top 10              # Top 10 by quality score
+node scanner.js bottom 10           # Bottom 10
+node scanner.js --report            # Scan + dimension diagnostics
+
+# Frontend: open index.html directly in browser (no server needed, file:// works)
+```
+
+**Command aliases:** `top3`=`categories`/`tracks`, `search`=`find`/`s`, `similar`=`alt`, `workflow`=`combo`/`wf`, `detail`=`info`/`d`, `quality`=`report`/`q`
+
+## Architecture
+
+### Data Flow
+
+```
+data/skills_raw.json          ← raw skill metadata (954 entries)
+         ↓
+scanner.js                    ← 13-dim quality scan engine
+         ↓
+data/quality_v2_scores.json   ← scored results (full detail)
+data/quality_v2_scores.js     ← same data, JS-loadable for frontend
+data/quality_map.json         ← compact name→{q,g,dims} lookup map
+         ↓
+skills_data.js                ← pre-computed enriched skill data (all_skills + categories + workflows)
+         ↓
+api.js  /  index.html         ← both consume skills_data.js + quality data
+```
+
+### Shared Logic: Frontend ↔ CLI Parity
+
+`api.js` and `index.html` share the same algorithms (duplicated, not imported):
+- **`searchScore()`** — multi-field scoring with intent expansion and quality gating
+- **`calcSimilar()`** — similarity via category/tag/description/name overlap
+- **`QUALITY_BOOST_TABLE`** — the single "cockpit" controlling quality behavior for all algorithms
+- **`qualityGate()`** — 3-layer funnel: pass / warn (C-grade −30%) / block (D/F grade = excluded)
+
+When modifying recommendation logic, update both files.
+
+### The 13-Dimension Quality System
+
+`scanner.js` computes quality scores across 13 dimensions, then applies Z-score normalization (mean=55, std=15, range [20,98]):
+
+- **Layer 1 – metadata inference** (no external calls): description quality (12%), tags (7%), install ease (8%), safety signals (14%), dependency complexity (8%), doc structure (7%), error handling (5%), market validation (8%)
+- **Layer 2 – GitHub API** (opt-in, `--github` flag): maintenance activity (10%), test coverage (5%)
+- **Layer 3 – SkillHub API** (opt-in, `--skillhub` flag): market popularity (7%)
+
+Grades: A+(≥85) · A(70-84) · B+(55-69) · B(45-54) · C(30-44) · D(<30)
+
+Safety dimension uses **one-vote-veto**: `curl | bash` patterns, destructive `rm -rf`, eval execution → score goes negative → D-grade → blocked from recommendations.
+
+### Scoring Formula for Search/Recommendations
+
+```
+final_score = textMatchScore × qualityMultiplier (from QUALITY_BOOST_TABLE)
+```
+
+D/F-grade skills are excluded entirely (return −999) unless `--show-all` is passed. C-grade skills are penalized 30% (multiplier=0.70). This means quality gates the entire recommendation pipeline, not just ranking.
+
+### Key Data Structures
+
+Each skill in `skills_data.js` has:
+- `name`, `desc`, `cat`, `tags`, `tags_enhanced`, `stars`, `source`, `confidence` (`high`/`medium`/`low`)
+- `is_cn` (boolean), `install_method`, `install_url`, `install_hint`
+- `final_score`, `score` (raw), `chart_count`, `chart_list` (cross-source validation)
+- Pre-computed: `recommend_reason`, `install_hint`, `best_in_track`, `vs_note`
+
+`data/quality_v2_scores.json` entries add: `quality_score`, `quality_grade`, `dimensions` (13-dim object), `details` (dependencies, signals, github_data, market_data).
+
+### Frontend (`index.html`)
+
+Single self-contained file with no external dependencies (works via `file://`). Four tabs:
+1. **赛道 TOP3** — category grid, human-readable "人话" descriptions generated by `humanizeSkill()`
+2. **搜索推荐** — real-time search with intent expansion via `INTENT_MAP`
+3. **相似替代** — similarity-based alternatives
+4. **工作流推荐** — data-driven workflow scenarios from `data/workflows.json`
+
+Quality data loaded via `<script src="data/quality_v2_scores.js">` (synchronous, avoids CORS issues with `file://`).
+
+### GitHub Token for Scanner
+
+```powershell
+# Windows
+$env:GITHUB_TOKEN="ghp_xxxxxxxxx"
+node scanner.js --github
+```
+```bash
+# Linux/Mac
+export GITHUB_TOKEN="ghp_xxxxxxxxx"
+node scanner.js --github
+```
+
+Without the token, `--github` flag falls back to metadata-only mode automatically.
+
+## 多 Agent 工作流
+
+本项目采用三 Agent 分工协作体系，Agent 定义文件位于 `D:\skillpick\.claude\agents\`。
+
+```
+manageragent（主管，红色）
+├── marcketagent（市场&需求，蓝色）
+├── developagent（实现&架构，绿色）
+└── [验收agent — 待建]
+```
+
+### Agent 职责
+
+| Agent | 模型 | 职责 |
+|-------|------|------|
+| **manageragent** | opus | 统筹协调，任务分发，最终决策；管理其他三个 Agent |
+| **marcketagent** | opus | 产品竞争力分析、市场调研、用户需求挖掘、输出需求优先级 |
+| **developagent** | opus | 系统实现、架构设计、代码质量保障、技术方案评审 |
+| **验收agent** | — | 产品可用性测试、版本发布把关（待建） |
+
+### 标准工作流
+
+```
+marcketagent → 需求分析/PRD
+      ↓
+manageragent → 任务分发 & 优先级
+      ↓
+developagent → 实现 & 架构
+      ↓
+[验收agent] → 可用性验证 & 版本发布
+```
+
+### Agent 记忆目录
+
+各 Agent 持久化记忆（project-scope，随版本控制共享）：
+- `D:\skillpick\.claude\agent-memory\manageragent\`
+- `D:\skillpick\.claude\agent-memory\marcketagent\`
+- `D:\skillpick\.claude\agent-memory\developagent\`

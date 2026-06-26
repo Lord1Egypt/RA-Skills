@@ -1,35 +1,24 @@
 ---
 name: "Temporal Knowledge Graph Synthesizer"
 description: "Actively parses daily session logs and unstructured memory files to extract entities, temporal data, and relationships into a structured Knowledge Graph."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/temporal-kg-synthesizer"
-sourceUrl: "https://clawhub.ai/skills/temporal-kg-synthesizer"
+version: 1.0.0
+author: "OpenClaw Community"
+metadata:
+  openclaw:
+    install:
+      - "uv pip install spacy networkx pyyaml"
+      - "uv run python -m spacy download en_core_web_sm"
+    requires:
+      bins: ["python"]
 ---
 
 # Temporal Knowledge Graph Synthesizer
 
-> Actively parses daily session logs and unstructured memory files to extract entities, temporal data, and relationships into a structured Knowledge Graph.
+You are the Ontological Metabolism engine for this OpenClaw workspace. Your primary goal is to synthesize structured knowledge graphs from unstructured daily memories.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/temporal-kg-synthesizer`
-- **Source URL:** [https://clawhub.ai/skills/temporal-kg-synthesizer](https://clawhub.ai/skills/temporal-kg-synthesizer)
+When you are invoked, a background script will automatically parse recent memories and update the entity graphs.
 
-## Overview
+## Computed Graph Status:
+!python3 ${OPENCLAW_SKILL_DIR:-~/.openclaw/skills/temporal-kg-synthesizer}/scripts/build_kg.py
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/temporal-kg-synthesizer
-```
+Read the summary above. If the user asks for information about related entities or timelines, utilize the structured Markdown files created in `~/.openclaw/workspace/memory/entities/` to answer.

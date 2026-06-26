@@ -1,35 +1,46 @@
 ---
-name: "Nano PDF"
-description: "PDF processing and manipulation"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/terry-nano-pdf"
-sourceUrl: "https://clawhub.ai/skills/terry-nano-pdf"
+name: nano-pdf
+description: PDF processing and manipulation
+version: 1.0.0
+author: ClawdBot
+tags: [pdf, documents]
+requires_bins: []
+requires_env: []
+requires_config: []
+feishu_acl:
+  sensitivity: internal
+  access:
+    owner: full_access
+    team_editors: edit
+    team_viewers: view
+    external: none
+  review_cadence: 90d
 ---
 
 # Nano PDF
 
-> PDF processing and manipulation
+PDF processing and manipulation
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/terry-nano-pdf`
-- **Source URL:** [https://clawhub.ai/skills/terry-nano-pdf](https://clawhub.ai/skills/terry-nano-pdf)
+## Available Tools
 
-## Overview
+This skill uses ClawdBot's standard tools:
+- **bash** - Execute commands
+- **read_file** - Read files
+- **write_file** - Write files  
+- **web_fetch** - Fetch web content
+- **web_search** - Search the web
 
+## Usage Examples
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/terry-nano-pdf
-```
+User: "Help me with nano pdf"
+1. Assess what the user needs
+2. Use appropriate tools
+3. Provide helpful response
+
+## Configuration
+
+Check documentation for specific setup requirements.
+
+## Notes
+
+This skill requires integration with Nano PDF service/application.

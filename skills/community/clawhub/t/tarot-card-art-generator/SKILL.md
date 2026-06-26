@@ -1,35 +1,34 @@
 ---
-name: "Tarot Card Art Generator"
-description: "Generate stunning AI tarot card art and mystical oracle deck illustrations. Create custom major and minor arcana designs, divination card artwork, spiritual..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/tarot-card-art-generator"
-sourceUrl: "https://clawhub.ai/skills/tarot-card-art-generator"
+name: tarot-card-art-generator
+description: Generate stunning AI tarot card art and mystical oracle deck illustrations. Create custom major and minor arcana designs, divination card artwork, spiritual deck imagery, occult-themed illustrations, and fortune card visuals with ornate borders and rich symbolism via the Neta AI image generation API (free trial at neta.art/open).
+tools: Bash
 ---
 
 # Tarot Card Art Generator
 
-> Generate stunning AI tarot card art and mystical oracle deck illustrations. Create custom major and minor arcana designs, divination card artwork, spiritual...
+Generate stunning AI tarot card art and mystical oracle deck illustrations. Create custom major and minor arcana designs, divination card artwork, spiritual deck imagery, occult-themed illustrations, and fortune card visuals with ornate borders and rich symbolism.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/tarot-card-art-generator`
-- **Source URL:** [https://clawhub.ai/skills/tarot-card-art-generator](https://clawhub.ai/skills/tarot-card-art-generator)
+## Token
 
-## Overview
+Requires a Neta API token (free trial at <https://www.neta.art/open/>). Pass it via the `--token` flag.
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/tarot-card-art-generator
+node <script> "your prompt" --token YOUR_TOKEN
+```
+
+## When to use
+Use when someone asks to generate or create tarot card art generator images.
+
+## Quick start
+```bash
+node tarotcardartgenerator.js "your description here" --token YOUR_TOKEN
+```
+
+## Options
+- `--size` — `portrait`, `landscape`, `square`, `tall` (default: `portrait`)
+- `--ref` — reference image UUID for style inheritance
+
+## Install
+```bash
+npx skills add omactiengartelle/tarot-card-art-generator
 ```

@@ -1,35 +1,692 @@
 ---
-name: "tech-news-brief"
-description: "整理并按时效优先筛选最新5天内AI、大模型、半导体、前沿技术等中文及外文科技新闻，生成摘要和DOCX报告并邮件发送。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/tech-news-brief"
-sourceUrl: "https://clawhub.ai/skills/tech-news-brief"
+name: tech-news-brief
+description: 将中文或其他外文科技新闻整理为符合"xx班"规范的原文稿、中文摘要和 DOCX 格式文件，单次对话内完成从发现到邮件交付的全流程。
+emoji: "\U0001f4f0"
+email:237378230@qq.com
+version: 1.0.0
+metadata:
+  openclaw:
+    requires:
+      bins:
+        - python
+      env:
+        - SMTP_SENDER
+        - SMTP_PASSWD
+        - SMTP_TO
+    primaryEnv: SMTP_PASSWD
+    envVars:
+      - name: SMTP_SENDER
+        required: true
+        description: 发件人 QQ 邮箱地址。
+      - name: SMTP_PASSWD
+        required: true
+        description: QQ 邮箱客户端授权码（非登录密码）。
+      - name: SMTP_TO
+        required: true
+        description: 收件人邮箱地址。
+      - name: FIRECRAWL_API_KEY
+        required: false
+        description: Firecrawl API Key，browser MCP 失败时的 fallback 下载方式（非必须）。
+      - name: REPORTS_DIR
+        required: false
+        description: 科技简报输出根目录，不设置时使用脚本内置默认值。
 ---
 
-# tech-news-brief
+# 科技新闻简报
 
-> 整理并按时效优先筛选最新5天内AI、大模型、半导体、前沿技术等中文及外文科技新闻，生成摘要和DOCX报告并邮件发送。
+将中文或其他外文科技新闻整理为符合"xx班"规范的原文稿、中文摘要和 DOCX 格式文件，发送至指定邮箱。**单次对话内完成从发现到交付的全流程。**
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/tech-news-brief`
-- **Source URL:** [https://clawhub.ai/skills/tech-news-brief](https://clawhub.ai/skills/tech-news-brief)
+## 触发方式
 
-## Overview
+> "开始今天的科技新闻整理" / "最近有什么AI新闻" / "今天全球有什么科技动态"
+>
+> "排序1-3下载整理" / "前3条下载整理" / "把第4条的摘要整理一下"
 
+## 全流程概览
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/tech-news-brief
 ```
+┌────────────────────────────────────────────────────────────────────────┐
+│  Phase 1：       发现（多维度分层搜索 → 时效过滤 → AI 评估筛选 → 排序表）│
+│  Phase 2–9：    下载 → 清洗 → 摘要 → DOCX → 打包 → 发送             │
+│  输出：当日目录（md/docx） + zip 包（已发送至邮箱）                     │
+└────────────────────────────────────────────────────────────────────────┘
+```
+
+---
+
+## Phase 1：多维度分层搜索
+
+### 核心原则：时效性第一
+
+> **本 skill 专为每日上报设计。新闻只有在时效期内才有上报价值，过期新闻不上报。**
+
+1. **时效性是最高准入门槛**：仅收录 **5 天以内**发布的新闻，超出此范围一律不收录（除非事件在近 5 天内有重大新进展）
+2. **时效性是最优先排序维度**：同等重要性下，越新的新闻排位越靠前
+3. **搜索词强制包含时效锚点**："今日""近3天""近5天"等，确保搜索结果命中近期内容
+4. **新闻合并时保留最新时间节点**：同一事件的多条报道，合并后以最新一条的发布时间为准
+
+### 新闻源优先级（时效性优先视角）
+
+时效性优先的场景下，来源的**更新速度**与**命中率**同等重要：
+
+| 优先级 | 来源类型 | 时效性 | 用途 |
+|--------|---------|--------|------|
+| **一级（时效首选）** | **AI/科技商业媒体** | **⭐⭐⭐⭐⭐ 最高** | 小时级更新，突发新闻第一落点 |
+| 二级 | 官方权威 | 中高 | 政策、声明、官方动态 |
+| 三级 | 综合门户科技版 | ⭐⭐⭐ 高 | 补充覆盖、突发事件跟进 |
+| 观点类 | 评论来源 | ⭐⭐⭐ 中 | 理解背景，不作事实来源 |
+
+> **搜索时优先命中一级来源**，小时级更新的核心来源每次搜索都应优先使用。
+
+### 多维度分层搜索（最少 8 次，建议 10-12 次）
+
+> **时效性锚点必须出现在每次搜索中**。每个搜索词末尾追加时效锚点，确保只命中 5 天以内的新闻。
+>
+> 时效锚点选择：`今日` / `近3天` / `近5天` ——每日上报场景下任选其一，轮换使用效果更佳。
+
+按以下 **7 个维度** 依次执行搜索，每个维度至少 1 次：
+
+> ⚠️ **新闻筛选核心原则：仅收录与 AI/大模型/半导体/中国科技战略直接相关的科技动态。**
+>
+> - ✅ AI 大模型发布与技术突破（GPT-5、Claude 4、Gemini 2、Llama 4、开源模型等）
+> - ✅ 半导体/芯片动态（出口管制、产能突破、先进制程进展）
+> - ✅ 中国科技产业政策（补贴、监管、扶持措施）
+> - ✅ 中美科技博弈（芯片禁令、TikTok、数据安全、AI 竞争）
+> - ✅ AI 安全与治理（AI 伦理、监管框架、安全事件）
+> - ❌ **纯娱乐/游戏/消费电子新闻（非前沿技术）——不收录**
+> - ❌ 纯股市行情/纯商业并购新闻（无科技战略意义）
+
+#### 维度 A：中文最新 AI 与科技动态（时效优先 🔑）
+
+这是时效性最强的版块，第一时间捕捉所有新发生的 AI 和科技事件。
+
+```
+搜索词：
+- site:jiqizhixin.com 今日 AI OR 大模型
+- site:qubitchina.com 今日 AI OR 模型
+- site:huxiu.com 今日 AI OR 科技
+- site:36kr.com 今日 人工智能 OR 大模型
+- site:thepaper.cn 今日 AI OR 科技 最新
+```
+
+发现最新报道后，用 web_fetch 获取全文，提取所有事件线索。
+
+#### 维度 B：芯片与半导体（时效优先 🔑）
+
+捕捉半导体产业动态——这是最需要时效性的维度。
+
+```
+搜索词：
+- site:jiqizhixin.com 近3天 芯片 OR 半导体 OR 出口管制
+- site:qubitchina.com 今日 芯片 OR 半导体
+- site:huxiu.com 近3天 芯片 OR 算力
+- site:36kr.com 今日 半导体 OR 芯片出口
+- site:eeworld.com.cn 今日 芯片 OR 半导体
+- site:chinadaily.com.cn 芯片 OR 半导体 [近3天]
+```
+
+#### 维度 C：前沿技术（时效优先 🔥）
+
+> **本维度为本项目重点关注方向，优先级靠前，与维度 B 同等重要。**
+> 涵盖：量子计算、脑机接口、合成生物、新能源技术、机器人、自动驾驶等前沿科技动态。
+
+```
+搜索词：
+- site:jiqizhixin.com 今日 量子计算 OR 脑机接口 OR 机器人
+- site:qubitchina.com 近3天 前沿技术 OR 量子 OR 生物计算
+- site:huxiu.com 今日 量子 OR 新能源 OR 机器人
+- site:36kr.com 近3天 自动驾驶 OR 人形机器人 OR 量子
+- site:thepaper.cn 今日 前沿技术 OR 量子计算
+- "量子计算" 最新 OR 突破 [近3天]
+- "脑机接口" 最新 OR 进展 [近3天]
+- "人形机器人" 最新 OR 发布 [今日]
+- "自动驾驶" 最新 OR 进展 [近3天]
+```
+
+#### 维度 D：AI 大模型发布与技术进展（时效优先）
+
+```
+搜索词：
+- site:jiqizhixin.com 今日 大模型 OR GPT OR Claude OR Gemini
+- site:qubitchina.com 近3天 大模型 OR AI 发布
+- site:huxiu.com 今日 模型发布 OR AI 进展
+- site:36kr.com 今日 AI 模型 OR 发布
+- site:thepaper.cn 今日 AI 大模型 最新
+- "GPT" 最新 OR 发布 [今日]
+- "Claude" 最新 OR 模型 [近3天]
+- "Llama" 最新 OR 开源 [今日]
+- site:deepmind.com blog [近3天]
+- site:openai.com blog [近3天]
+```
+
+#### 维度 E：产业政策与监管（时效优先）
+
+```
+搜索词：
+- site:36kr.com 今日 科技政策 OR 监管 OR 补贴
+- site:huxiu.com 近3天 监管 OR AI 法规 OR 数据安全
+- site:gov.cn 今日 科技 OR AI 政策
+- site:sastind.gov.cn 最新 科技政策 [近3天]
+- "AI 监管" 最新 OR 政策 [近3天]
+- "数据安全" 最新 OR 规定 [今日]
+```
+
+#### 维度 F：国际科技博弈（时效优先）
+
+```
+搜索词：
+- site:jiqizhixin.com 近3天 中美科技 OR 芯片禁令 OR TikTok
+- site:qubitchina.com 今日 中美 AI OR 科技竞争
+- site:huxiu.com 近3天 华为 OR 芯片限制 OR 出口管制
+- site:36kr.com 今日 科技博弈 OR 中美竞争
+- "芯片禁令" 最新 OR 进展 [近3天]
+- "华为" 最新 OR 芯片 [今日]
+- site:reuters.com AI China OR chip [近3天]
+```
+
+#### 维度 G：学术与开源（时效优先）
+
+```
+搜索词：
+- site:jiqizhixin.com 近3天 论文 OR arXiv OR 开源模型
+- site:qubitchina.com 今日 顶会论文 OR 开源
+- site:huxiu.com 近3天 GitHub OR 开源 OR 代码
+- "arXiv" 最新 论文 AI [近3天]
+- "开源模型" 最新 OR 发布 [今日]
+```
+
+### 交叉验证与时效过滤
+
+初轮搜索完成后，立即执行时效过滤，然后检查是否有遗漏：
+
+**第一步：时效过滤（必须先做）**
+- 所有搜索结果，逐一核实发布时间
+- 仅保留 **5 天以内（今日 + 近 3 天）**发布的报道
+- 超时报道一律不收录，除非该事件在 5 天内有重大新进展
+
+**第二步：交叉验证**
+- 如果同一事件被 3+ 个不同来源提及 → 大概率是热点，深入搜索获取更多细节
+- 如果官方媒体（如新华社科技版）和商业媒体（如机器之心、量子位）的热点不同 → 两边都要覆盖，互相印证
+- 如果维度 C（前沿技术）有新进展 → 深入搜索，核实技术细节和战略影响
+
+### 搜索关键词设计原则（反模式清单）
+
+| ❌ 不要这样搜 | ✅ 应该这样搜 | 原因 |
+|---|---|---|
+| "AI 新闻 今天"（无来源限定） | `site:jiqizhixin.com 今日 AI` | 前者返回 SEO 聚合页，后者命中实时新闻 |
+| "大模型"（无时效锚点） | `"大模型" 最新 OR 发布 近3天` | 无时效锚点会混入历史报道 |
+| "科技新闻"（无来源+无时效） | `site:jiqizhixin.com 近3天 科技` | 二者缺一不可 |
+| 搜索词中加具体年月日 | 用"今日""近3天""近5天" | 日期限定过死会漏掉临近时间的稿 |
+| 只用英文关键词搜 | 优先中文关键词 + site 限定 | 确保中文媒体来源优先 |
+| 只搜新闻源首页 | 用 site 限定搜具体栏目 | 首页被 SEO 污染严重，栏目更精准 |
+| 只搜 3 次就开始写 | 至少 8 次，覆盖 7 个维度，其中维度 C 前沿技术为重点 | 3 次搜索覆盖率不到 30% |
+| 收录超过 5 天的"老新闻" | 一律过滤，仅收录时效期内的报道 | 过时新闻对每日上报无价值 |
+
+### 时效性 + 重要性双重排序准则
+
+> **两条铁律**：
+> 1. **时效性是入场券**：超出 5 天一律不收录
+> 2. **时效性是第一排序维度**：同等重要性下，越新的新闻越靠前
+
+#### 第一步：时效过滤（入场门槛）
+
+| 时间范围 | 是否收录 | 说明 |
+|---------|---------|------|
+| **今日**（0-24 小时） | ✅ 必录 | 最新报道，直接引用 |
+| **近 3 天**（24-72 小时） | ✅ 录 | 有价值的近期报道，引用时标注发布时间 |
+| **近 5 天**（3-5 天） | ⚠️ 慎录 | 仅当事件在此期间有重大新进展时才收录，标注"后续报道" |
+| **超过 5 天** | ❌ 不录 | 一律不收录，不出现在报告中 |
+
+#### 第二步：重要性分级（时效过滤后，在时效期内按重要性排序）
+
+| 信号 | 重要性等级 | 说明 | 示例 |
+|------|-----------|------|------|
+| 大模型发布 / AI 技术重大突破 | ⭐⭐⭐⭐ **最高级** | 顶级模型发布，技术里程碑 | GPT-5 发布、Gemini 2 超越人类基准 |
+| 半导体/芯片重大突破（国产替代） | ⭐⭐⭐⭐ **最高级** | 国产芯片突破性进展，绕过出口管制 | 中芯国际 7nm 量产、国产 GPU 发布 |
+| 官方权威来源首发 + 多源确认 | ⭐⭐⭐⭐ **最高级** | 政府官网/权威媒体首发 + 3+ 来源交叉 | 工信部政策文件、官方 AI 治理框架 |
+| 芯片出口管制重大升级 | ⭐⭐⭐ **高级** | 美对华芯片禁令重大升级，影响产业格局 | 新增实体清单、ASML 禁运扩大 |
+| AI 安全重大事件 | ⭐⭐⭐ **高级** | AI 系统导致重大事故或安全漏洞披露 | LLM 严重越狱事故、AI 武器化争议 |
+| 中美科技博弈实质性进展 | ⭐⭐⭐ **高级** | 科技战关键节点 | TikTok 法案、华为新限制、数据安全博弈 |
+| 前沿技术突破（量子/机器人/新能源） | ⭐⭐⭐ **高级** | 前沿技术首次公开或实用化进展 | 量子计算超越经典基准、人形机器人量产 |
+| AI 监管政策正式出台 | ⭐⭐ **中级** | 正式法规/监管文件发布 | AI 生成内容标识规定、数据跨境流动规则 |
+| 产业合作与投资 | ⭐⭐ **中级** | 重大并购、合作、投资 | AI 芯片公司获数十亿美元融资 |
+| 开源模型发布 / 学术顶会成果 | ⭐⭐ **中级** | 开源生态重要事件 | Llama 4 发布、GPT-4 架构论文发表 |
+| 常规产品发布 / 公司动态 | ⭐ **一般** | 常规更新，无重大技术事件性 | 普通版本更新、例行发布会 |
+| 股市行情 / 纯商业报道 | ⭐ **一般** | 无科技战略意义 | 股价涨跌、公司财报 |
+
+#### 第三步：时效性打破重要性（同等级内排序）
+
+当同一重要性等级内有多条新闻时，按时效性排序：
+
+```
+今日 > 昨日 > 前日 > 近3天
+（同重要性等级内，越新越靠前）
+```
+
+#### 降权规则
+
+| 情况 | 降级幅度 | 操作 |
+|------|---------|------|
+| 自媒体/无署名报道 | 降 1 级 | 需交叉验证，标注"来源待核实" |
+| 仅有单一来源 | 降 1 级 | 标注"单源，待证实" |
+| 来自立场鲜明来源的独家报道 | 降 1 级 | 注意核实反方声音 |
+| 预测性/前瞻性文章（非事件报道） | 降 2 级 | 归入"值得关注"而非"重要事件" |
+| 来源网站打开失败/内容不可读 | 直接过滤 | 不收录，无法核实的不呈现 |
+
+### 输出格式
+
+按**时效性优先 + 重要性分级**双重排序，输出当日最新科技动态：
+
+```
+## 🔥 科技新闻日报（YYYY-MM-DD）
+
+> 📌 时效说明：仅收录 **5 天以内**发布的新闻 | 搜索覆盖：维度 A/B/C/D/E/F/G
+
+---
+
+### 📍 今日最新（今日发布）
+
+> ⭐⭐⭐⭐ 最高级 ——大模型发布 / 半导体突破 / 官方政策首发
+
+1. **[新闻标题]**
+   > 一句话摘要（不超过 50 字）
+   > ⏰ 今日 HH:MM | 🔗 [来源名称](URL)
+   > 📌 多家媒体报道：来源 A / 来源 B
+
+> ⭐⭐⭐ 高级 ——AI 安全 / 中美博弈 / 前沿技术突破
+
+2. ...
+
+> ⭐⭐ 中级 ——监管政策 / 产业合作 / 开源模型
+
+3. ...
+
+> ⭐ 一般 ——常规动态
+
+4. ...
+
+---
+
+### 📍 近期跟进（近3天发布）
+
+> 5 天内有重大新进展的后续报道
+
+5. **[新闻标题]**（后续报道）
+   > 最新进展摘要
+   > ⏰ X月X日 HH:MM（首次报道）→ 今日最新进展 | 🔗 [来源](URL)
+
+---
+
+### 📌 值得持续关注（可酌情收录）
+
+> 智库报告、前瞻分析、5 天内出现新动态的重大事件后续
+
+6. **[标题]**（值得关注）
+   > 简要说明
+   > 🔗 [来源](URL)
+
+---
+📊 本次共收录 XX 条新闻 | 搜索 XX 次 | 覆盖维度：A/B/C/D/E/F/G
+📅 报道时间窗口：YYYY-MM-DD HH:MM 至 YYYY-MM-DD HH:MM（近 5 天）
+⏰ 生成时间：HH:MM
+```
+
+### 去重与时效合并
+
+- **时效优先去重**：同一事件被多家报道时，以最新一条的发布时间为准，合并为一条，引用最权威/最详细的来源
+- **在同一重要性等级内**：越新的报道越靠前
+- **跨等级不合并**：最高级和高级之间的新闻不因时效合并，保持重要性排序为主
+- **后续报道覆盖旧闻**：若最新报道推翻或修正了早期报道，以最新为准，旧闻不出现在报告中
+- **优先引用中文媒体原文**：中文媒体未报道时引用英文权威媒体并翻译
+- **来自立场鲜明来源的独家报道**：注明来源立场，供用户判断，同时标注"单源，待进一步核实"
+
+> **用户确认后进入 Phase 2。** 数量控制：默认处理前3条，用户可指定不同数量。
+
+---
+
+## Phase 2：下载原文
+
+### 两条下载路径
+
+> **路径 A（browser MCP）为主，路径 B（Firecrawl）为 fallback。**
+> 每条新闻从 URL 开始，先走路径 A，失败才走路径 B。成功即停，不继续尝试后续路径。
+
+#### 路径 A：browser MCP（主路径，所有来源均用此方案）
+
+中文站大量使用 Vue/React 动态渲染，直接请求正文仅能获取 20-30%；browser MCP 返回完整 DOM，是唯一可靠的下载方案。
+
+**操作流程：**
+
+```
+browser_tabs(action="list")           # 1. 检查当前 tab 状态，避免重复开 tab
+browser_navigate(url="<URL>")          # 2. 导航到目标页（自动等待页面 load）
+browser_cdp(method="Runtime.evaluate", # 3. 提取正文文本
+    params={
+        "expression": "document.body.innerText",
+        "returnByValue": true
+    })
+```
+
+**操作规范：**
+1. `browser_navigate` 会自动等待页面 load 事件，无需额外 wait
+2. 正文文本从 `Runtime.evaluate` 的 `result.result.value` 字段获取
+3. 若正文不足 300 字，用 `browser_scroll(direction="down")` 滚动后重新提取（最多滚 3 次）
+4. 若正文仍不足 300 字，用 `browser_take_screenshot(fullPage=true)` 辅助人工判读
+5. 提取标题、发布时间、正文文本后，关闭 tab 或复用 tab 继续下一条
+
+**正文质量判断：**
+- 300 字以上 → 质量合格，进入 Phase 3
+- 不足 300 字 → 滚动重试，仍不足则换路径 B
+
+**重试机制：** 每个 URL 最多尝试 2 次路径 A，第 2 次间隔 10 秒后重试，仍失败则切换路径 B。
+
+> **注意：** `browser_snapshot` 返回 accessibility tree，**不用于提取正文**。正文提取必须用 `browser_cdp` + `Runtime.evaluate`。
+
+#### 路径 B：download.py（Firecrawl，仅 fallback）
+
+> **Firecrawl API 额度有限，非必要不调用。** 仅当路径 A 连续失败 2 次时才使用。
+
+```bash
+python3 scripts/download.py <URL> <输出文件路径>
+```
+
+输出文件为 `*-temp.md`，内容已初步清洗，但仍需经过 Phase 3 字数门槛检查。
+
+API Key 从环境变量 `FIRECRAWL_API_KEY` 读取。`import json` 必须在脚本顶层，不得放在函数内部。
+
+**download.py 输出格式（stdout）：**
+- 第一行：`字数统计: XXXX 字`
+- 第二行：`下载成功: <路径>`
+
+> 英文源仅用于交叉验证，不进入最终输出。
+
+---
+
+## Phase 3：字数门槛检查
+
+读取 Phase 2 获取的正文（路径 A 为 `Runtime.evaluate` 返回的文本，路径 B 为 `*-temp.md`），Agent 统计正文字数：
+
+- **不足 300 字**：跳过，不生成摘要，告知用户原因。被跳过的文章若存在残留摘要文件，必须主动删除。
+- **满足 300 字以上**：进入 Phase 4。
+
+---
+
+## Phase 4：清洗正文
+
+去除干扰内容，保留干净正文：
+
+- 页头导航、页脚、侧边栏
+- 图片说明（除非包含实质性文字信息）
+- 相关文章推荐、"Also on X" 推荐块
+- 广告、赞助内容
+- 原文中的外部链接（非本文 URL）
+
+**清洗后逐项确认清单：**
+
+- [ ] 无页头导航 / 面包屑
+- [ ] 无页脚版权信息
+- [ ] 无 "Related Articles" / "Also on X" 推荐块
+- [ ] 无广告 / 赞助内容
+- [ ] 无图片说明文字（除非含实质性信息）
+- [ ] 无原文中的外部链接
+- [ ] 正文开头是事件内容，不是导语式铺垫
+
+> 清洗结果不得包含 `# 标题`、`## 正文` 等 markdown 标题结构——正文直接写，不加任何节标题。
+
+---
+
+## Phase 5：写入原文稿
+
+**第一步：创建当日目录**
+
+```
+mkdir -p {REPORTS_DIR}/{YYYYMMDD}/
+```
+
+路径变量 `REPORTS_DIR` 来自环境变量（默认 `/home/sml/workspace/InternetInformation`）。
+
+**第二步：写入正式原文文件**
+
+```
+{YYYYMMDD}xx班-科技新闻原文{序号}-{排序ID}.md
+```
+
+**格式模板：**
+
+```markdown
+原文稿{序号}：
+{中文标题}
+
+{YYYY}年{M}月{D}日 【文/{作者}，{来源}】
+
+{清洗后正文段落}
+
+原文链接：{URL}
+```
+
+- 第一行：`原文稿{序号}：`（无其他标题符号）
+- 第二行：中文标题（保留原文）
+- 空一行
+- 第三行：`{YYYY}年{M}月{D}日 【文/{作者}，{来源}】`（年全四位，月日均为实际数字）
+- 空一行
+- 正文段落（清洗后，无 markdown 标题结构）
+- 空一行
+- 末尾：`原文链接：{URL}`
+
+> **排序ID** 固定为 `sml`（xx班客户编号）。
+> **序号** 从 1 开始，按用户给出的排序依次递增。
+> 路径 B（Firecrawl）场景：写入后删除 `*-temp.md`，不留中间文件。
+
+---
+
+## Phase 6：整理摘要
+
+读取 Phase 5 写入的原文稿，自主撰写中文摘要，写入：
+
+```
+{YYYYMMDD}xx班-科技新闻摘要{序号}-{排序ID}.md
+```
+
+### 格式模板
+
+```markdown
+拟投栏目：{栏目名}
+事件时间：{YYYY}年{M}月{D}日
+价值点：{约80字，五段式：[who]在[背景]下，仍[action]，此举[judge本质]，旨在[目的]}
+
+{标题（≤30字，单行，不含换行符）}
+
+{正文（一段，≤400字，含事件概述/关键论据/批判性分析/我方立场，不含换行符）}
+
+{尾注：xx院系，xxx，15888888888（来源：{来源}，{M}月{D}日）（xx学院，{YYYY}年{M}月{D}日）}
+```
+
+### 头部元数据
+
+| 字段 | 规范 |
+|------|------|
+| 拟投栏目 | 5选1（找适合的）：**热点舆情/ 重要信息 / 建言献策 / 观点评论 / 战略博弈** |
+|  | **核心筛选原则**：仅收录与 AI/大模型/半导体/中国科技战略直接相关的新闻 |
+|  | - ✅ AI 大模型发布与技术突破 |
+|  | - ✅ 半导体/芯片动态（出口管制、国产替代） |
+|  | - ✅ 中国科技产业政策（补贴、监管、扶持） |
+|  | - ✅ 中美科技博弈（芯片禁令、TikTok、数据安全） |
+|  | - ✅ AI 安全与治理 |
+|  | - ❌ 纯娱乐/消费电子新闻（非前沿技术） |
+|  | - ❌ 纯股市行情/无战略意义的商业新闻 |
+| 事件时间 | 新闻事件发生的具体日期（全位数字） |
+| 价值点 | **约80字**，五段式结构 |
+
+### 主标题（铁律 1）
+
+- 必须是**纯文本单行**，不得包含换行符 `\n`
+- 字数（不含空格）严格控制在 **30 字以内**
+- 不要照抄原文，截断或改写均可
+
+### 正文一段成文（铁律 2）
+
+- 正文（不含头部和尾注）**不得包含任何换行符 `\n`**
+- 四层逻辑：
+
+| 层次 | 内容 | 字数 |
+|------|------|------|
+| ① 事件概述 | 谁 + 何时 + 说了/做了什么 | ~50字 |
+| ② 关键论据 | 原文核心引述/报道细节 | ~100字 |
+| ③ 批判性分析 | 揭露本质/战略意图/内在矛盾 | ~150字 |
+| ④ 我方立场+总结 | 预测中国官方/产业反应 + 对中国科技战略环境影响 + 定调性总结 | ~100字 |
+
+### 涉华科技新闻摘要特别要求
+
+若原文涉及以下情形，摘要正文**必须将中国立场/中国应对作为独立信息点展开**：
+- 中美芯片/AI 博弈相关事件
+- 国产替代重大突破或受阻
+- 中国科技政策调整
+- 中国大模型/AI 进展
+
+### 尾注格式（单独成段）
+
+> 固定格式，不得添加单位、联系人、电话等信息。
+> `xx院系，xxx，15888888888（来源：{来源}，{M}月{D}日）（xx学院，{YYYY}年{M}月{D}日）`
+
+### 铁律自检（写入前必须执行）
+
+在写入摘要文件前，执行三项检查：
+
+1. **铁律 1 检查**：主标题是否包含 `\n`、字数是否 ≤30 字
+2. **铁律 2 检查**：正文（不含头部和尾注）是否包含 `\n`
+3. **字数检查**：正文（不含头部和尾注）中文字数是否 ≤400 字
+
+> 自检通过后才可写入文件。自检失败不得跳过，须修改至达标。
+
+---
+
+## Phase 7：转换为 DOCX 格式
+
+使用 `scripts/md2doc.py`，MD 文件在 `{REPORTS_DIR}/{YYYYMMDD}/`：
+
+```bash
+python3 scripts/md2doc.py {REPORTS_DIR}/{YYYYMMDD}/{文件名}.md
+```
+
+脚本根据文件名路由：
+- 含"摘要"→ `parse_summary_md()` + `template-summary.docx`
+- 含"原文"→ `parse_original_md()` + `template-original.docx`
+
+> 模板文件 `template-original.docx` 和 `template-summary.docx` 必须存在于 `scripts/` 目录。
+> 依赖：`pip install python-docx lxml`。
+
+---
+
+## Phase 8：打包并发送
+
+### 8.1 打包
+
+```bash
+cd {REPORTS_DIR} && zip -j {YYYYMMDD}.zip {YYYYMMDD}/*.md {YYYYMMDD}/*.docx
+```
+
+### 8.2 发送
+
+```python
+import smtplib, os
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+from email.mime.base import MIMEBase
+from email import encoders
+
+date_str = "{YYYYMMDD}"
+zip_path = f"{REPORTS_DIR}/{date_str}.zip"
+sender = os.environ.get("SMTP_SENDER")
+passwd  = os.environ.get("SMTP_PASSWD")
+
+msg = MIMEMultipart()
+msg['From'] = sender
+msg['To'] = os.environ.get("SMTP_TO")
+msg['Subject'] = f"科技新闻简报-{date_str}"
+msg.attach(MIMEText("见附件，请查收。", 'plain', 'utf-8'))
+
+with open(zip_path, 'rb') as f:
+    part = MIMEBase('application', 'octet-stream')
+    part.set_payload(f.read())
+encoders.encode_base64(part)
+part.add_header('Content-Disposition', f'attachment; filename="{date_str}.zip"')
+msg.attach(part)
+
+with smtplib.SMTP_SSL('smtp.qq.com', 465) as server:
+    server.login(sender, passwd)
+    server.send_message(msg)
+print("邮件发送成功")
+```
+
+### 8.3 清理
+
+发送成功后**立即删除 zip 包**：
+
+```bash
+rm {REPORTS_DIR}/{YYYYMMDD}.zip
+```
+
+> 仅删除 zip 包，保留 `{YYYYMMDD}/` 目录下的原始 md/docx 文件。
+
+---
+
+## 文件命名规范
+
+| 文件类型 | 命名格式 |
+|---------|---------|
+| 原文稿 | `{YYYYMMDD}xx班-科技新闻原文{序号}-{排序ID}.md` |
+| 原文稿（DOCX） | `{YYYYMMDD}xx班-科技新闻原文{序号}-{排序ID}.docx` |
+| 摘要文件 | `{YYYYMMDD}xx班-科技新闻摘要{序号}-{排序ID}.md` |
+| 摘要（DOCX） | `{YYYYMMDD}xx班-科技新闻摘要{序号}-{排序ID}.docx` |
+
+> 日期格式：`YYYYMMDD`，例如 `20250624`。
+> 序号：用户给出的排序号（1=第1条，依次类推），前无横杠：`科技新闻原文1-sml`。
+> 排序ID：固定 `sml`。
+> **路径 B（Firecrawl）产生的 `*-temp.md` 在写入正式文件后立即删除，不保留。**
+
+---
+
+## 执行规范
+
+> 合并自原"注意事项"与"Pitfalls"，去重后保留所有有效规则。
+
+### 下载规范
+- **browser MCP 为下载第一优先**：所有来源均先用路径 A，成功即停。Firecrawl 仅作 fallback（额度有限）。
+- **browser 重试**：每个 URL 最多 2 次，第 2 次间隔 10 秒，仍失败则切换路径 B。
+- **download.py 输出格式**：stdout 第一行 `字数统计: XXXX 字`，第二行 `下载成功: <路径>`。
+- **下载文件体积**：单篇 10KB-50KB 常见，读取时建议 `limit` 200-500 行。
+- **跳过的文章**：字数不足 300 字时跳过，必须主动删除该序号对应的残留摘要文件。
+- **每次下载前**：检查 `scripts/download.py` 是否存在，缺失则重建。
+
+### DOCX 规范
+- **lxml 兼容性**：`Element._parent` 已改为 `.getparent()`，需修改脚本两处。
+- **命令行参数**：`python3 md2doc.py <md_file>`，MD 文件在 `{YYYYMMDD}/`，须用绝对路径。
+- **尾注误判正文**：增加长度门槛（≤50字）+ 手机号强制尾注。
+
+### 文件与工作流规范
+- **`~` 路径展开**：cron job 和脚本中 `~` 解析为 `/home/sml/.hermes/profiles/scienlot/home/`。必须用绝对路径。
+- **Agent 中途中断**：检查时只有 `*-temp.md` 没有正式文件，说明未跑完，须补跑。
+- **文件写入**：摘要稿和原文稿的写入一律使用 `write_file` 工具，**不要**在 `execute_code` 中用 Python f-string 拼接中文正文。
+
+### Cron 规范
+- **已知问题**：cron 任务经常只完成 Phase 2 就中断，不执行 Phase 3-8。修复方式：手动补跑。
+- **`.tick.lock` 残留**：上次超时中断未释放锁，`rm ~/.hermes/profiles/scienlot/cron/.tick.lock`。
+- **日志未保存**：cron output 目录无日志文件时，检查 `{REPORTS_DIR}/` 是否有生成文件。
+
+---
+
+## 推荐新闻源
+
+详见 [`references/sources.md`](references/sources.md)。
+
+## 摘要写作规范
+
+详见 [`references/writing-guide.md`](references/writing-guide.md)。
+
+## Linked Scripts
+
+- [`scripts/download.py`](scripts/download.py) — Firecrawl 网页抓取（**额度有限，仅 fallback**）
+- [`scripts/md2doc.py`](scripts/md2doc.py) — MD 转 DOCX
+- [`scripts/smtp_send.py`](scripts/smtp_send.py) — 邮件发送（备用）
+- [`scripts/template-original.docx`](scripts/template-original.docx) — 原文稿 DOCX 模板
+- [`scripts/template-summary.docx`](scripts/template-summary.docx) — 摘要稿 DOCX 模板

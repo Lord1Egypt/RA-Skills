@@ -1,0 +1,82 @@
+{
+  "id": "totalreclaw",
+  "name": "TotalReclaw",
+  "description": "End-to-end encrypted memory vault for AI agents",
+  "kind": "memory",
+  "contracts": {
+    "tools": [
+      "totalreclaw_remember",
+      "totalreclaw_recall",
+      "totalreclaw_forget",
+      "totalreclaw_export",
+      "totalreclaw_status",
+      "totalreclaw_preload_embedder",
+      "totalreclaw_consolidate",
+      "totalreclaw_pin",
+      "totalreclaw_unpin",
+      "totalreclaw_retype",
+      "totalreclaw_set_scope",
+      "totalreclaw_import_from",
+      "totalreclaw_import_batch",
+      "totalreclaw_upgrade",
+      "totalreclaw_migrate",
+      "totalreclaw_pair",
+      "totalreclaw_report_qa_bug"
+    ]
+  },
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "publicUrl": {
+        "type": "string",
+        "description": "Public gateway URL for QR pairing (e.g. 'https://gateway.example.com:18789'). Overrides the buildPairingUrl auto-resolution cascade."
+      },
+      "extraction": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "enabled": {
+            "type": "boolean",
+            "description": "Enable/disable auto-extraction (default: true)"
+          },
+          "model": {
+            "type": "string",
+            "description": "Shorthand: override just the extraction model (e.g., 'glm-4.5-flash', 'gpt-4.1-mini'). Use extraction.llm for a full provider override."
+          },
+          "interval": {
+            "type": "number",
+            "description": "Number of turns between automatic extractions (default: 3)"
+          },
+          "maxFactsPerExtraction": {
+            "type": "number",
+            "description": "Hard cap on facts extracted per turn (default: 15)"
+          },
+          "llm": {
+            "type": "object",
+            "additionalProperties": false,
+            "description": "Explicit LLM override. Highest-priority tier in the extraction-provider cascade.",
+            "properties": {
+              "provider": {
+                "type": "string",
+                "description": "Provider name: zai | openai | anthropic | gemini | google | mistral | groq | deepseek | openrouter | xai | together | cerebras."
+              },
+              "model": {
+                "type": "string",
+                "description": "Explicit model id. If omitted, a cheap default is derived."
+              },
+              "apiKey": {
+                "type": "string",
+                "description": "API key for the selected provider."
+              },
+              "baseUrl": {
+                "type": "string",
+                "description": "Override the provider base URL (self-hosted / custom gateway setups)."
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

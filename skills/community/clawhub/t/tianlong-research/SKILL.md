@@ -1,35 +1,113 @@
----
-name: "天龙竞品/情报分析专家"
-description: "基于天龙引擎，提供需求解构、复杂度评估与批判性分析，支持产品和决策的结构化智能报告输出。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/tianlong-research"
-sourceUrl: "https://clawhub.ai/skills/tianlong-research"
+# tianlong-analyst - 天龙需求分析专家
+
+> 天龙引擎 V7.4 核心能力产品化 | 批判性思维评分：0.96
+
 ---
 
-# 天龙竞品/情报分析专家
+## 🎯 功能描述
 
-> 基于天龙引擎，提供需求解构、复杂度评估与批判性分析，支持产品和决策的结构化智能报告输出。
+基于天龙引擎 00 分析师的需求解构能力，帮助用户：
+- 挖掘需求本质与问题根因
+- 识别复杂度/类型/优先级
+- 输出结构化分析报告
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/tianlong-research`
-- **Source URL:** [https://clawhub.ai/skills/tianlong-research](https://clawhub.ai/skills/tianlong-research)
+---
 
-## Overview
+## 🔧 使用方式
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/tianlong-research
+# 基础用法
+/tianlong-analyst <需求描述>
+
+# 示例
+/tianlong-analyst 我想做一个 AI 写作助手
 ```
+
+---
+
+## 📋 输出格式
+
+### 1. 需求解构
+- 表面需求 vs 真实需求
+- 用户画像分析
+- 使用场景识别
+
+### 2. 复杂度评估
+| 级别 | 判断标准 | 执行方式 |
+|------|---------|---------|
+| 🟢 绿灯 | 简单、明确、低风险 | 直接执行 |
+| 🟡 黄灯 | 中等复杂、多方案 | 给 2-3 方案 |
+| 🔴 红灯 | 高风险、高成本、战略 | 详细方案 + 决策 |
+
+### 3. 批判性思维质疑
+- 第一性原理分析
+- 激励分析
+- 二阶思维推演
+- 非对称回报评估
+
+### 4. 行动建议
+- 立即执行项
+- 需要决策项
+- 风险预警项
+
+---
+
+## 💡 应用场景
+
+1. **产品需求分析** - 创业想法验证
+2. **技术选型评估** - 架构决策支持
+3. **项目可行性分析** - 接单前评估
+4. **个人决策辅助** - 职业/投资选择
+
+---
+
+## 🏷️ 元数据
+
+```json
+{
+  "name": "tianlong-analyst",
+  "version": "1.0.0",
+  "author": "李依依（一一）",
+  "license": "MIT",
+  "tags": ["需求分析", "批判性思维", "决策辅助"],
+  "pricing": {
+    "type": "free",
+    "reason": "引流技能，建立用户信任"
+  }
+}
+```
+
+---
+
+## 📚 示例
+
+### 示例 1：产品需求分析
+```
+用户输入：我想做一个 AI 写作助手
+
+输出：
+🎯 需求解构
+- 表面需求：AI 写作工具
+- 真实需求：提高内容创作效率 + 降低写作门槛
+- 目标用户：自媒体从业者/营销人员/学生
+
+🟡 复杂度：黄灯（中等复杂）
+- 技术可行性：高（现有 API 充足）
+- 市场竞争：激烈（已有竞品）
+- 差异化机会：垂直领域深耕
+
+🎭 批判性质疑
+- 第一性原理：写作的本质是表达，AI 是辅助而非替代
+- 激励分析：用户愿为"省时间"付费，而非"更聪明"
+- 非对称回报：投入 3 个月验证，成功收益 10 倍+
+
+✅ 行动建议
+1. 先做 MVP（1 周）验证核心功能
+2. 找 10 个目标用户深度访谈
+3. 暂不投入重资源开发
+```
+
+---
+
+**创建时间**: 2026 年 3 月 6 日  
+**状态**: 🚧 开发中

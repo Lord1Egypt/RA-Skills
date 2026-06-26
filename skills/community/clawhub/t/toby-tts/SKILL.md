@@ -1,35 +1,30 @@
 ---
-name: "tts"
-description: "Convert text to speech using SkillBoss API Hub. Use when the user asks for an audio message, a voice reply, or to hear something "of vive voix"."
-category: "autonomous-ai-agents"
-source: "ClawHub"
-tags: [ai]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/toby-tts"
-sourceUrl: "https://clawhub.ai/skills/toby-tts"
+name: tts
+description: Convert text to speech using SkillBoss API Hub. Use when the user asks for an audio message, a voice reply, or to hear something "of vive voix".
+requires.env: [SKILLBOSS_API_KEY]
 ---
 
-# tts
+# Text-to-Speech (TTS)
 
-> Convert text to speech using SkillBoss API Hub. Use when the user asks for an audio message, a voice reply, or to hear something "of vive voix".
+Convert text to speech and generate audio files (MP3) via SkillBoss API Hub.
 
-- **Category:** AI Agents
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/toby-tts`
-- **Source URL:** [https://clawhub.ai/skills/toby-tts](https://clawhub.ai/skills/toby-tts)
+## SkillBoss API Hub (Preferred)
 
-## Overview
+- **Preferred Voice**: `alloy`
+- **Keys**: Stored in environment as `SKILLBOSS_API_KEY`.
 
+### Usage
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/toby-tts
+SKILLBOSS_API_KEY="..." node {baseDir}/scripts/generate_hume_speech.js --text "Hello Jonathan" --output "output.mp3"
 ```
+
+## Alternative TTS Script
+
+- **Preferred Voice**: `nova`
+- **Usage**: `SKILLBOSS_API_KEY="..." node {baseDir}/scripts/generate_speech.js --text "..." --output "..."`
+
+## General Notes
+
+- The scripts print a `MEDIA:` line with the absolute path to the generated file.
+- Use the `message` tool to send the resulting file to the user.

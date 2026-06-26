@@ -1,35 +1,25 @@
 ---
-name: "Token Optimization"
-description: "Reduce unnecessary token usage with the current production-proven workflow. Use when users ask to optimize token consumption, reduce prompt/context bloat, st..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/token-optimization-sinoslug"
-sourceUrl: "https://clawhub.ai/skills/token-optimization-sinoslug"
+name: token-optimization
+description: Reduce unnecessary token usage with the current production-proven workflow. Use when users ask to optimize token consumption, reduce prompt/context bloat, standardize concise replies, or align token-saving behavior across assistants. Includes only currently implemented practices (no future/experimental tactics).
 ---
 
 # Token Optimization
 
-> Reduce unnecessary token usage with the current production-proven workflow. Use when users ask to optimize token consumption, reduce prompt/context bloat, st...
+Use this skill when the task is about reducing token usage while keeping answer quality stable.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/token-optimization-sinoslug`
-- **Source URL:** [https://clawhub.ai/skills/token-optimization-sinoslug](https://clawhub.ai/skills/token-optimization-sinoslug)
+## Workflow
 
-## Overview
+1. Read the current baseline spec first:
+   - `references/current-spec.md`
+2. Apply only the already-implemented rules from that file.
+3. Do not introduce speculative or not-yet-implemented optimization tactics.
+4. If asked to change behavior, update the spec and version it.
 
+## Scope guard
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/token-optimization-sinoslug
-```
+- In scope: concise reply behavior, log/tool-output trimming, current token-show usage flow, and currently active execution process.
+- Out of scope: future ideas not yet implemented (auto-threshold switching, automatic split replies, weekly auto-reviews), unless user explicitly requests a new version update.
+
+## Output expectation
+
+When asked to explain or sync the optimization plan, provide the “current-state only” version and cite that it follows `references/current-spec.md`.

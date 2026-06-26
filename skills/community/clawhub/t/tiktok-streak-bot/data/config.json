@@ -1,0 +1,10 @@
+{
+  "enable_discovery": false,
+  "keywords": ["ستريك", "ستريك_تيك_توك"],
+  "daily_limit": 10,
+  "retry_limit": 2,
+  "message_mode": "text",
+  "texts": ["ستريك", "🔥", "👀"],
+  "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36",
+  "headless": true
+}

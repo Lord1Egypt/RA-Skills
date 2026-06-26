@@ -1,0 +1,99 @@
+# Dogfood TaskOps on its own repo
+
+- projectId: `dogfood-phase1-project`
+- status: `done`
+- goal: Prove the Phase 1 TaskOps contract is usable on a small real workflow
+- description: A richer self-dogfood run that exercises repeated phases, step edges, direct statuses, and expected-vs-actual records
+- steps: 2
+
+## Steps
+- `step-self-dogfood` [implementation] status=`done`
+  - description: Exercise TaskOps against its own Phase 1 contract
+  - phases: 5
+    - phase `phase-diverge-surface-1` [diverge] status=`done`
+      - description: Read the frozen Phase 1 contract surfaces
+      - nodes: 3
+      - edges: 2
+        - node `phase-diverge-surface-1-root` [root] status=`done` — Root
+        - node `node-read-phase1-spec` [work] status=`done` — Read the Phase 1 spec
+          - latestResult: `done` at 2026-04-24T02:43:12+00:00
+          - expected: Recover the frozen Phase 1 hierarchy and operating simplifications
+          - actual: The spec already freezes the project/step/phase hierarchy, shared status vocabulary, direct edits, and expected-vs-actual node results
+          - artifacts: references/phase1-graph-task-spec.md
+        - node `node-read-cli-surface` [work] status=`done` — Read the CLI reference
+          - latestResult: `done` at 2026-04-24T02:43:12+00:00
+          - expected: Recover the live CLI surface for direct graph editing
+          - actual: The CLI already supports init, add-step, add-phase, add-node, connect edges, direct set-status, write-result, validate, and summary
+          - artifacts: references/cli.graph-task.md
+    - phase `phase-verify-surface-1` [verify] status=`done`
+      - description: Confirm the current contract is usable for live dogfooding
+      - nodes: 2
+      - edges: 1
+        - node `phase-verify-surface-1-root` [root] status=`done` — Root
+        - node `node-verify-phase1-usable` [work] status=`done` — Verify the Phase 1 surface is usable
+          - latestResult: `done` at 2026-04-24T02:43:12+00:00
+          - expected: Decide whether the current contract is ready for a live dogfood run
+          - actual: Yes — the Phase 1 surface is already usable for a small real workflow, and the best next check is a richer self-dogfood example
+          - notes: The contract is intentionally direct; the main unanswered question is ergonomics under longer use
+    - phase `phase-diverge-execution-2` [diverge] status=`done`
+      - description: Build a richer self-dogfood example run
+      - nodes: 2
+      - edges: 1
+        - node `phase-diverge-execution-2-root` [root] status=`done` — Root
+        - node `node-build-self-dogfood-example` [work] status=`done` — Build the self-dogfood example
+          - latestResult: `done` at 2026-04-24T02:43:12+00:00
+          - expected: Exercise repeated phases, step edges, statuses, and result records in one real example
+          - actual: Built a richer self-dogfood run that uses repeated phases, a project-level step edge, explicit node edges, and direct status updates
+          - artifacts: examples/self-dogfood-project/graph.json, examples/self-dogfood-project/summary.md
+    - phase `phase-verify-execution-2` [verify] status=`done`
+      - description: Validate the generated run and inspect the summary
+      - nodes: 2
+      - edges: 1
+        - node `phase-verify-execution-2-root` [root] status=`done` — Root
+        - node `node-validate-self-dogfood` [work] status=`done` — Validate the generated run
+          - latestResult: `done` at 2026-04-24T02:43:12+00:00
+          - expected: Prove the generated self-dogfood run stays structurally valid
+          - actual: Validation passed on the generated run and the summary remained inspectable after repeated edits
+          - artifacts: examples/self-dogfood-project/summary.md
+    - phase `phase-commit-execution-1` [commit] status=`done`
+      - description: Lock the main conclusion from the execution step
+      - nodes: 2
+      - edges: 1
+        - node `phase-commit-execution-1-root` [root] status=`done` — Root
+        - node `node-lock-execution-findings` [work] status=`done` — Lock the execution finding
+          - latestResult: `done` at 2026-04-24T02:43:12+00:00
+          - expected: Capture the main conclusion from the execution step
+          - actual: Dogfooding confirmed that the Phase 1 contract is already usable for small real work without a separate mutation engine
+          - notes: The next pressure point is ergonomic help around closing phases and steps
+  - phaseEdges:
+    - `phase-diverge-surface-1` -> `phase-verify-surface-1`
+    - `phase-verify-surface-1` -> `phase-diverge-execution-2`
+    - `phase-diverge-execution-2` -> `phase-verify-execution-2`
+    - `phase-verify-execution-2` -> `phase-commit-execution-1`
+- `step-followups` [review] status=`done`
+  - description: Reduce the dogfood exercise to concrete next-step guidance
+  - phases: 2
+    - phase `phase-converge-findings-1` [converge] status=`done`
+      - description: Synthesize what the dogfood run actually taught us
+      - nodes: 2
+      - edges: 1
+        - node `phase-converge-findings-1-root` [root] status=`done` — Root
+        - node `node-summarize-findings` [work] status=`done` — Summarize the dogfood findings
+          - latestResult: `done` at 2026-04-24T02:43:12+00:00
+          - expected: Reduce the dogfood run to concrete strengths and rough edges
+          - actual: Strengths: repeated phases, step edges, and result records compose cleanly. Rough edge: root, phase, step, and project completion still require explicit direct updates.
+          - notes: That rough edge is acceptable in Phase 1, but it is the clearest future ergonomic target
+    - phase `phase-commit-findings-1` [commit] status=`done`
+      - description: Choose the next smallest improvement without adding hidden automation
+      - nodes: 2
+      - edges: 1
+        - node `phase-commit-findings-1-root` [root] status=`done` — Root
+        - node `node-choose-next-improvement` [work] status=`done` — Choose the next smallest improvement
+          - latestResult: `done` at 2026-04-24T02:43:12+00:00
+          - expected: Pick the next smallest improvement that preserves the direct-edit model
+          - actual: Stay with direct edits, but consider a visible helper later for closing a phase or step without introducing hidden transitions
+  - phaseEdges:
+    - `phase-converge-findings-1` -> `phase-commit-findings-1`
+
+## Step edges
+- `step-self-dogfood` -> `step-followups`

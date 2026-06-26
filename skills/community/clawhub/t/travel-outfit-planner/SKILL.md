@@ -1,35 +1,131 @@
 ---
-name: "Travel Outfit Planner"
-description: "Generate travel capsule-wardrobe plans with outfit formulas, packing lists, layering strategy, and visual lookbook. Use for trip outfits, what to pack, cross..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/travel-outfit-planner"
-sourceUrl: "https://clawhub.ai/skills/travel-outfit-planner"
+name: travel-outfit-planner
+description: "Generate travel capsule-wardrobe plans with outfit formulas, packing lists, layering strategy, and visual lookbook. Use for trip outfits, what to pack, cross-climate wardrobe, or outfit inspiration."
+metadata:
+  clawdbot:
+    requires:
+      bins: ["python3"]
 ---
 
-# Travel Outfit Planner
+# 胶囊衣橱生成器
 
-> Generate travel capsule-wardrobe plans with outfit formulas, packing lists, layering strategy, and visual lookbook. Use for trip outfits, what to pack, cross...
+**重要：所有输出必须使用中文（简体），包括标题、表格内容、说明文字、检索词、图片说明。**
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/travel-outfit-planner`
-- **Source URL:** [https://clawhub.ai/skills/travel-outfit-planner](https://clawhub.ai/skills/travel-outfit-planner)
+把"我要去哪里玩几天，怎么穿、怎么带"转成一份真正能落地的旅行穿搭方案：衣物尽量少、搭配尽量多、信息尽量实用、展示尽量直观。
 
-## Overview
+## 目标
 
+同时解决 4 件事：1）根据行程/天气/场景/风格做胶囊衣橱；2）让用户一眼看懂每天怎么穿；3）保留旅行场景里真正有用的提醒（洗衣、打包、防盗、礼仪、购物留位）；4）在能力允许时加入图片示意，否则给出清晰可搜的参考方向。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/travel-outfit-planner
-```
+## 必须遵守
+
+- **先实用，再好看**：旅行可走、可拍、可应对温差，优先级高于单纯时髦。
+- **锦上添花，不要减内容**：加入图片/色彩示意后，不能删掉行李策略、注意事项、礼仪提醒、防盗提示。
+- **不编造**：不能编造天气来源、图片链接、品牌、平台帖子或具体图像内容。
+
+## 核心原则
+
+### 1. 胶囊衣橱原则
+- 70% 基础款 + 30% 点睛单品，控制在 3-4 个主色以内
+- 优先防皱、速干、好打理、可压缩面料
+- 默认建议把最重的鞋和外套穿在路上
+
+### 2. 温差应对原则
+- 温差超过 10°C 时，优先输出"底层 + 中层 + 外层"分层方案
+- 天气表里直接告诉用户是"薄内搭 + 薄外套"还是"厚内搭 + 厚外套/三层叠穿"
+
+### 3. 旅行完整性原则
+除了衣服本身，还要主动覆盖：行李分装和收纳策略、洗衣计划（7天+）、目的地礼仪/着装规范、防盗/天气/防晒提醒、购物留位、特殊场景装备。
+
+## 工作流
+
+### Step 1：收集并压缩用户信息
+
+必需字段：destinations、start_date、days、scenes、travelers。可选：style_pref。缺失再补问，补问尽量少。
+
+摘要只写 3 行：行程（城市+天数，用 `+` 连接）、风格偏好、出行人。出发日期不要在摘要中出现（体现在天气表和日历中即可）。用"出行人"代替"性别"。多人出行写清楚是谁。
+
+### Step 2：输出天气概况
+
+优先获取真实天气；做不到就用同期历史均温并标注"仅供参考"。
+
+天气表必须包含 `目的地 | 日期 | 温度/天气 | 天气特点 | 建议穿搭` 五列。"建议穿搭"列必须具体到"什么内搭 + 什么外套"的组合，禁止写"注意保暖"等空话。
+
+### Step 3：生成胶囊衣橱
+
+按行程长度控制规模：5-7天 7-9件、8-14天 9-11件、15天+ 10-13件（配合洗衣计划）。夫妻/多人每人分别生成。
+
+#### 色彩系统
+写明主色、辅助色、点缀色，写出 2-3 条配色公式。色彩系统段落下必须加入配色参考图片示意（有图用图，无图用 `🔍 小红书搜索：[检索词]`）。
+
+#### 单品表
+必须使用 5 列结构：`编号 | 单品 | 颜色/材质 | 适用场景 | 图片示意`，"图片示意"列不可省略。无真实图片时用 `🔍 小红书搜索：[风格+颜色+季节+性别+场景]`。
+
+### Step 4：输出每日穿搭日历
+
+每天至少覆盖：日期、目的地、场景、穿搭公式（用单品编号引用）、鞋履、配件、天气提示、图片示意。每天必须给 1 条图片示意（有图用图，无图用景点+穿搭风格的组合检索词）。
+
+详细示例见 `{baseDir}/references/outfit-examples.md`。
+
+### Step 5：补全旅行策略与注意事项（不可省略）
+
+这一步是旅行技能区别于纯穿搭推荐的核心价值。必须覆盖：
+
+- **5.1 打包清单**：去重汇总所有物品，可勾选格式
+- **5.2 行李打包策略**：分装建议、登机穿法、购物留位、收纳技巧
+- **5.3 洗衣计划**：7天内可不洗但建议速干轮换；7-14天标注自助洗衣店；14天+必须详细轮换计划
+- **5.4 特别注意事项**：着装礼仪、防盗提示、天气应对、步行舒适、特殊场景、购物提醒
+
+## 欧洲/大温差场景增强规则
+
+当行程在欧洲、跨多个气候带、或温差 > 10°C 时，必须额外增加"温差穿搭策略"小节。温差策略要写成按温度带分的表格（含直观穿法、适用场景、图片示意），不要只说"洋葱式穿搭"。多人出行时男女方案必须分开写，用 👩/👨 区分。
+
+详细的温差表格示例、男女分开写法示例、欧洲旅行提醒清单见 `{baseDir}/references/outfit-examples.md`。
+
+## 图片示意规则
+
+图片必须出现在 3 个地方：**色彩系统**、**单品表**、**每日穿搭日历**。
+
+- 有联网能力时优先从小红书搜索真实图片
+- 无法取图时用 `🔍 小红书搜索：[检索词]` 替代，绝不编造链接
+- 检索词要具体到：地点 + 季节 + 性别 + 风格 + 核心单品 + 场景
+
+详细的检索词写法规范和好/差示例见 `{baseDir}/references/outfit-examples.md`。
+
+## 输出格式
+
+按以下 8 个章节输出，**每个章节都不可省略**：一、天气概况 → 二、温差穿搭策略（大温差时必须有） → 三、胶囊衣橱（色彩系统+单品表） → 四、场景搭配速看 → 五、每日穿搭日历 → 六、打包清单 → 七、行李打包策略 → 八、特别注意事项。
+
+开头用 3 行摘要（行程/风格/出行人），不要重复出发日期。完整的输出格式模板见 `{baseDir}/references/outfit-examples.md`。
+
+## Step 6：生成 HTML 视觉灵感板（Lookbook）——必须执行
+
+**每次使用本 skill 时，必须同时输出两样东西：**
+1. **完整的 Markdown 穿搭方案**（Step 1-5 的全部内容，不可省略任何章节）
+2. **HTML 视觉灵感板文件**（本步骤生成的 `wardrobe-lookbook.html`）
+
+生成流程：准备 JSON 数据（结构详见 `{baseDir}/references/lookbook-guide.md`）→ 运行 `python3 {baseDir}/scripts/fetch_lookbook_images.py --input wardrobe_data.json --output wardrobe-lookbook.html`（有 Pexels API Key 时加 `--pexels-key YOUR_KEY`）→ 输出 HTML 文件。
+
+在 Markdown 末尾必须加上：
+
+> 📸 我还为你生成了一个**视觉灵感板** `wardrobe-lookbook.html`，包含配色展示、场景氛围图和小红书一键搜索按钮，在浏览器中打开即可查看。
+
+## Edge Cases
+
+| 情况 | 处理方式 |
+|------|----------|
+| 拿不到实时天气 | 使用历史均温，标注仅供参考 |
+| 用户风格笼统 | 默认 1 套稳妥方向 + 1 套可替换风格 |
+| 行程 > 14 天 | 必须补充洗衣计划和轮换策略 |
+| 极端跨气候 | 接受件数略增，仍按分层逻辑收敛 |
+| 用户已有衣物 | 先复用已有，再补足缺口 |
+| 无法联网取图 | 用检索词替代，绝不编造图链 |
+| 欧洲多人出行 | 男女方案分开写，用 👩/👨 区分 |
+| 无 Pexels API Key | CSS 占位符 + 小红书搜索引导 |
+| 用户不需要灵感板 | 可跳过 Step 6 |
+
+## 下游联动
+
+打包清单天然适合继续给 **flight-baggage-check** 做行李合规检查。结尾可主动补一句：
+
+> 如果你愿意，我也可以继续帮你检查这套清单是否符合所乘航司的行李尺寸和重量要求。

@@ -1,35 +1,25 @@
 ---
-name: "Tavily Web Search Skill for OpenClaw 🦀"
-description: "use this when the user asks to search the web, look up recent information, check current events, gather online sources, or research a topic using tavily search."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/tavily-web-search-for-openclaw"
-sourceUrl: "https://clawhub.ai/skills/tavily-web-search-for-openclaw"
+name: tavily
+description: use this when the user asks to search the web, look up recent information, check current events, gather online sources, or research a topic using tavily search.
 ---
 
-# Tavily Web Search Skill for OpenClaw 🦀
+# Tavily Search
 
-> use this when the user asks to search the web, look up recent information, check current events, gather online sources, or research a topic using tavily search.
+Use this skill for web search and lightweight research through the Tavily Search API.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/tavily-web-search-for-openclaw`
-- **Source URL:** [https://clawhub.ai/skills/tavily-web-search-for-openclaw](https://clawhub.ai/skills/tavily-web-search-for-openclaw)
+## Requirements
 
-## Overview
+A valid Tavily API key must be available through one of these methods:
 
+1. `--api-key`
+2. `TAVILY_API_KEY`
+3. `{baseDir}/.secrets/tavily.key`
 
-## Installation
-To install this skill, run the following command in your terminal:
+If no key is available, explain that Tavily search is not configured in this environment.
+
+## Command
+
+Run:
+
 ```bash
-hermes skills install clawhub/tavily-web-search-for-openclaw
-```
+python3 {baseDir}/scripts/tavily_search.py --query "<user query>"

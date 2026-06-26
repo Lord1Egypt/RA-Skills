@@ -1,0 +1,10 @@
+{
+  "watch_symbols": ["BTC/USDT", "ETH/USDT", "SOL/USDT", "BNB/USDT"],
+  "alert_thresholds": {
+    "daily_loss_pct": 5,
+    "disk_usage_pct": 80,
+    "mem_usage_pct": 85
+  },
+  "auto_save": true,
+  "save_path": "/root/.openclaw/workspace/daily_briefing.md"
+}

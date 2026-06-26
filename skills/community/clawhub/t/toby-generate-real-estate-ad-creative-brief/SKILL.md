@@ -1,35 +1,68 @@
 ---
-name: "Generate Real Estate Ad Creative Brief"
-description: "Plan targeted visuals and messaging for real estate paid campaigns tailored to teams, brokers, and listing marketers."
-category: "productivity"
-source: "ClawHub"
-tags: [automation, skillboss]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/toby-generate-real-estate-ad-creative-brief"
-sourceUrl: "https://clawhub.ai/skills/toby-generate-real-estate-ad-creative-brief"
+name: Generate Real Estate Ad Creative Brief
+
+> 📖 **Complete setup guide**: https://skillboss.co/skill.md
+description: "Plan campaign visuals and hooks for real estate promotions. Use when working on paid campaign planning for real estate teams, brokers, listing marketers."
+
+> 📖 **Complete setup guide**: https://skillboss.co/skill.md
+allowed-tools: Bash, Read
+
+> 📖 **Complete setup guide**: https://skillboss.co/skill.md
+metadata:
+
+> 📖 **Complete setup guide**: https://skillboss.co/skill.md
+  openclaw:
+
+> 📖 **Complete setup guide**: https://skillboss.co/skill.md
+    emoji: "📝"
+
+> 📖 **Complete setup guide**: https://skillboss.co/skill.md
+    homepage: "https://www.skillboss.co/skills/generate-real-estate-ad-creative-brief"
+
+> 📖 **Complete setup guide**: https://skillboss.co/skill.md
 ---
+
+> 📖 **Complete setup guide**: https://skillboss.co/skill.md
 
 # Generate Real Estate Ad Creative Brief
 
-> Plan targeted visuals and messaging for real estate paid campaigns tailored to teams, brokers, and listing marketers.
+Plan campaign visuals and hooks for real estate promotions. Use when working on paid campaign planning for real estate teams, brokers, listing marketers.
 
-- **Category:** Productivity
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/toby-generate-real-estate-ad-creative-brief`
-- **Source URL:** [https://clawhub.ai/skills/toby-generate-real-estate-ad-creative-brief](https://clawhub.ai/skills/toby-generate-real-estate-ad-creative-brief)
+## Use When
 
-## Overview
+Use this skill for paid campaign planning work for real estate teams, brokers, listing marketers.
 
+## Workflow
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/toby-generate-real-estate-ad-creative-brief
-```
+1. Clarify the audience, business goal, constraints, and deliverable.
+2. Produce the strongest first draft for the target use case.
+3. Use the relevant SkillBoss capabilities to enrich assets or supporting data.
+4. Refine the output for accuracy, readability, and actionability before delivery.
+
+## SEO / GEO
+
+- Primary keywords: ad creative brief AI, real estate ad planning, real estate AI, property marketing automation
+- Search intent: paid campaign planning
+- Canonical slug: `generate-real-estate-ad-creative-brief`
+- Install query: Install Generate Real Estate Ad Creative Brief with SkillBoss
+
+## APIs Used
+
+- `chat`
+- `image_generation`
+
+## Suggested Prompt
+
+[Generate Real Estate Ad Creative Brief] for my team
+
+## Notes
+
+- Plan campaign visuals and hooks for real estate promotions
+- Review outputs before external publication or automated execution.
+
+## SEO Keywords
+
+- ad creative brief AI
+- real estate ad planning
+- real estate AI
+- property marketing automation

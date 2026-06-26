@@ -1,0 +1,243 @@
+{
+  "market": "US",
+  "output": {
+    "base_dir": "data/tiktok_hotspots_500",
+    "snapshots_dir": "snapshots",
+    "logs_dir": "logs"
+  },
+  "schedule": {
+    "enabled": false,
+    "interval_minutes": 60
+  },
+  "provider": {
+    "type": "apify",
+    "actor_id": "clockworks/tiktok-scraper"
+  },
+  "tiktok_mcp": {
+    "command": "python",
+    "args": [
+      "-m",
+      "tiktok_mcp_service.main"
+    ],
+    "cwd": null,
+    "timeout_seconds": 120,
+    "reject_simulated": true,
+    "env": {}
+  },
+  "apify": {
+    "actor_id": "clockworks/tiktok-scraper",
+    "token_env": "APIFY_TOKEN",
+    "input": {
+      "defaults": {
+        "shouldDownloadVideos": false
+      },
+      "per_source": {
+        "keyword": {
+          "searchQueries": [
+            "{source_value}"
+          ],
+          "searchSection": "/video",
+          "searchSorting": "3",
+          "searchDatePosted": "3",
+          "resultsPerPage": "{limit}"
+        },
+        "hashtag": {
+          "searchQueries": [
+            "#{source_value_without_prefix}"
+          ],
+          "searchSection": "/video",
+          "searchSorting": "3",
+          "searchDatePosted": "3",
+          "resultsPerPage": "{limit}"
+        },
+        "creator": {
+          "profiles": [
+            "{source_value_without_prefix}"
+          ],
+          "profileSorting": "latest",
+          "oldestPostDateUnified": "30 days",
+          "resultsPerPage": "{limit}"
+        },
+        "music": {
+          "postURLs": [
+            "{source_value}"
+          ],
+          "resultsPerPage": "{limit}"
+        }
+      },
+      "crawl_windows": {
+        "keyword": [
+          {
+            "name": "recent_1d_liked",
+            "label": "近24小时高赞",
+            "weight": 4,
+            "input": {
+              "searchSection": "/video",
+              "searchSorting": "1",
+              "searchDatePosted": "1"
+            }
+          },
+          {
+            "name": "recent_7d_liked",
+            "label": "近7天高赞",
+            "weight": 3,
+            "input": {
+              "searchSection": "/video",
+              "searchSorting": "1",
+              "searchDatePosted": "2"
+            }
+          },
+          {
+            "name": "recent_30d_liked",
+            "label": "近30天高赞",
+            "weight": 2,
+            "input": {
+              "searchSection": "/video",
+              "searchSorting": "1",
+              "searchDatePosted": "3"
+            }
+          },
+          {
+            "name": "evergreen_liked",
+            "label": "长期高赞",
+            "weight": 1,
+            "input": {
+              "searchSection": "/video",
+              "searchSorting": "1",
+              "searchDatePosted": "0"
+            }
+          },
+          {
+            "name": "recent_1d_latest",
+            "label": "近24小时最新采样",
+            "weight": 1,
+            "input": {
+              "searchSection": "/video",
+              "searchSorting": "3",
+              "searchDatePosted": "1"
+            }
+          }
+        ],
+        "hashtag": [
+          {
+            "name": "recent_1d_liked",
+            "label": "近24小时高赞",
+            "weight": 4,
+            "input": {
+              "searchSection": "/video",
+              "searchSorting": "1",
+              "searchDatePosted": "1"
+            }
+          },
+          {
+            "name": "recent_7d_liked",
+            "label": "近7天高赞",
+            "weight": 3,
+            "input": {
+              "searchSection": "/video",
+              "searchSorting": "1",
+              "searchDatePosted": "2"
+            }
+          },
+          {
+            "name": "recent_30d_liked",
+            "label": "近30天高赞",
+            "weight": 2,
+            "input": {
+              "searchSection": "/video",
+              "searchSorting": "1",
+              "searchDatePosted": "3"
+            }
+          },
+          {
+            "name": "evergreen_liked",
+            "label": "长期高赞",
+            "weight": 1,
+            "input": {
+              "searchSection": "/video",
+              "searchSorting": "1",
+              "searchDatePosted": "0"
+            }
+          },
+          {
+            "name": "recent_1d_latest",
+            "label": "近24小时最新采样",
+            "weight": 1,
+            "input": {
+              "searchSection": "/video",
+              "searchSorting": "3",
+              "searchDatePosted": "1"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "defaults": {
+    "limit": 50
+  },
+  "sources": [
+    {
+      "type": "keyword",
+      "value": "wedding guest dress",
+      "limit": 50
+    },
+    {
+      "type": "keyword",
+      "value": "summer dresses",
+      "limit": 50
+    },
+    {
+      "type": "keyword",
+      "value": "vacation outfits",
+      "limit": 50
+    },
+    {
+      "type": "keyword",
+      "value": "brunch outfit",
+      "limit": 50
+    },
+    {
+      "type": "keyword",
+      "value": "date night outfit",
+      "limit": 50
+    },
+    {
+      "type": "keyword",
+      "value": "work outfits women",
+      "limit": 50
+    },
+    {
+      "type": "keyword",
+      "value": "plus size fashion",
+      "limit": 50
+    },
+    {
+      "type": "keyword",
+      "value": "amazon fashion finds",
+      "limit": 50
+    },
+    {
+      "type": "keyword",
+      "value": "target finds fashion",
+      "limit": 50
+    },
+    {
+      "type": "keyword",
+      "value": "try on haul women",
+      "limit": 50
+    },
+    {
+      "type": "creator",
+      "value": "",
+      "enabled": false,
+      "limit": 10
+    },
+    {
+      "type": "music",
+      "value": "",
+      "enabled": false,
+      "limit": 10
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "schemaVersion": "toolflow.workflow/v1",
+  "name": "bundled-install-smoke",
+  "description": "Portable bundled smoke workflow intended to run from the OpenClaw skill root after installation.",
+  "inputs": {
+    "topic": "ToolFlow bundled install smoke"
+  },
+  "steps": [
+    {
+      "id": "read_skill_readme",
+      "action": "read_file",
+      "args": {
+        "path": "README.md"
+      }
+    },
+    {
+      "id": "read_plugin_manifest",
+      "action": "read_file",
+      "dependsOn": [
+        "read_skill_readme"
+      ],
+      "args": {
+        "path": "toolflow-bundle/plugin/package.json"
+      }
+    },
+    {
+      "id": "bundle_research_note",
+      "action": "research_note",
+      "dependsOn": [
+        "read_plugin_manifest"
+      ],
+      "args": {
+        "query": "${inputs.topic}",
+        "sources": [
+          "README.md",
+          "skill.json",
+          "toolflow-bundle/plugin/openclaw.plugin.json"
+        ]
+      }
+    },
+    {
+      "id": "bundle_session_note",
+      "action": "session_note",
+      "dependsOn": [
+        "bundle_research_note"
+      ],
+      "args": {
+        "prompt": "Record that the bundled ToolFlow OpenClaw skill smoke workflow completed from the skill root on a clean host."
+      }
+    }
+  ]
+}

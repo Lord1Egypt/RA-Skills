@@ -1,0 +1,126 @@
+{
+  "trigger_source": "nasdaq_sentiment_v6",
+  "collected_at_cst": "2026-04-06 13:18 CST",
+  "trigger": "forced_v6",
+  "items": [
+    {
+      "time_cst": "11:18 CST",
+      "time_offset": "2h ago",
+      "source": "X/@WatcherGuru",
+      "type": "market_reaction",
+      "content": "JUST IN: Brent crude oil falls after reports the US and Iran are discussing a 45-day ceasefire that could permanently end the war.",
+      "engagement": "363 replies, 391 retweets, 2532 likes, 205K views",
+      "market": "Brent crude ↓"
+    },
+    {
+      "time_cst": "07:18 CST",
+      "time_offset": "6h ago",
+      "source": "X/@KobeissiLetter",
+      "type": "market_data",
+      "content": "Oil prices now crossing above $115/barrel in the US. If sustained ~7 weeks, US CPI inflation will rise to ~3.7% — highest since September 2023.",
+      "engagement": "164 replies, 471 retweets, 2788 likes, 285K views",
+      "market": "WTI $115/bbl, CPI inflation risk ↑"
+    },
+    {
+      "time_cst": "06:18 CST",
+      "time_offset": "7h ago",
+      "source": "X/@KobeissiLetter",
+      "type": "breaking",
+      "content": "BREAKING: US stock market futures fall at open as President Trump declares Tuesday as 'Power Plant and Bridge Day' in Iran. S&P: -0.7%, Nasdaq: -0.8%, Dow: -0.7%, WTI Crude: +3.0%, Natural Gas: +1.0%, Gold: -0.9%. Trump's deadline is now active.",
+      "engagement": "203 replies, 343 retweets, 2721 likes, 226K views",
+      "market": "Stocks ↓ Oil ↑ Gold ↓"
+    },
+    {
+      "time_cst": "06:18 CST",
+      "time_offset": "7h ago",
+      "source": "X/@KobeissiLetter",
+      "type": "market_data",
+      "content": "BREAKING: US oil prices surge above $114/barrel as US market futures officially reopen after 3-day weekend.",
+      "engagement": "298 replies, 1686 retweets, 6857 likes, 575K views",
+      "market": "WTI $114/bbl ↑"
+    },
+    {
+      "time_cst": "08:18 CST",
+      "time_offset": "5h ago",
+      "source": "X/@WatcherGuru",
+      "type": "crypto",
+      "content": "JUST IN: $69,000 Bitcoin. $100,000,000 worth of crypto shorts liquidated in past 90 minutes.",
+      "engagement": "350 replies, 684 retweets, 4757 likes, 220K views",
+      "market": "BTC $69K, $100M shorts liquidated"
+    },
+    {
+      "time_cst": "13:16 CST",
+      "time_offset": "2min ago",
+      "source": "X/@RightLineNews",
+      "type": "breaking",
+      "content": "JUST IN: Explosions reportedly ERUPTING in western Tehran near Mehrabad Airport as allied strikes continue. Time RUNNING LOW for Iran to make a deal and cave to Trump. It's about to get a thousand times worse if they keep playing 'tough guy'.",
+      "engagement": "21 views (fresh post)",
+      "market": "Escalation signal"
+    },
+    {
+      "time_cst": "13:15 CST",
+      "time_offset": "3min ago",
+      "source": "X/@PrimusXY",
+      "type": "opinion",
+      "content": "A deal is a win-win for both parties, but when it overwhelmingly benefits one party, it becomes a surrender. Trump wants total surrender, Iran wants mutual benefit.",
+      "engagement": "10 views",
+      "market": "Negotiation dynamics"
+    },
+    {
+      "time_cst": "13:15 CST",
+      "time_offset": "3min ago",
+      "source": "X/@Nigeriaanalytic",
+      "type": "commentary",
+      "content": "Woke up to news of 45-day ceasefire in Iran. Trump has no answer to destroy Iran. He only wants them to bend the knees. Seems he respects Persian civilisation. So he plays games... Take the deal! It's not weakness.",
+      "engagement": "14 views",
+      "market": "Ceasefire speculation"
+    },
+    {
+      "time_cst": "13:13 CST",
+      "time_offset": "5min ago",
+      "source": "X/@amandasome",
+      "type": "news",
+      "content": "End To Iran War In Sight? 45-Day Ceasefire Being Discussed, Says Report. Hopes of partial deal in next 48 hours, within which Trump threatened to hit Iran's infrastructure if Strait of Hormuz not opened.",
+      "engagement": "25 views",
+      "market": "Ceasefire progress"
+    },
+    {
+      "time_cst": "13:13 CST",
+      "time_offset": "5min ago",
+      "source": "X/@deepcryptotalks",
+      "type": "breaking",
+      "content": "BREAKING: US and Iran discussing terms for 45-day ceasefire that could permanently end the war, Axios reports. Plan: 45-day pause in fighting to negotiate, then final deal to end war. Key: Reopening Strait of Hormuz.",
+      "engagement": "1 like, 51 views",
+      "market": "Oil ↓ War risk ↓"
+    },
+    {
+      "time_cst": "13:17 CST",
+      "time_offset": "23sec ago",
+      "source": "X/@Bubbatrading9",
+      "type": "market_take",
+      "content": "GM, I suppose orangetard announced some sort of ceasefire or something? Did Iran already deny it or am I still in time to short?",
+      "engagement": "4 views",
+      "market": "Retail trader skepticism on ceasefire"
+    },
+    {
+      "time_cst": "13:17 CST",
+      "time_offset": "33sec ago",
+      "source": "X/@EverythingAjay",
+      "type": "breaking",
+      "content": "US and Iran are now discussing terms for a potential 45-day CEASEFIRE that could lead to a permanent END to the WAR.",
+      "engagement": "1 like, 1 view",
+      "market": "Ceasefire confirmed"
+    },
+    {
+      "time_cst": "13:17 CST",
+      "time_offset": "38sec ago",
+      "source": "X/@zarrar_11PK",
+      "type": "breaking",
+      "content": "US, Iran, and regional mediators are in discussions over terms of potential 45-day ceasefire that could pave way toward permanent end to the war. Source: Axios.",
+      "engagement": "16 views",
+      "market": "Ceasefire confirmed via Axios"
+    }
+  ],
+  "web_search_results": [],
+  "notes": "Web search API failed (token invalid). X data is primary source. Two parallel narratives: ceasefire negotiations (45-day Axios report) vs. continued explosions in Tehran. WatcherGuru confirms Brent crude FALLING on ceasefire news."
+}

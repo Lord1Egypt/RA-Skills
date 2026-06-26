@@ -1,0 +1,438 @@
+{
+  "data": {
+    "product": {
+      "__typename": "Product",
+      "tcin": "89827259",
+      "category": {
+        "parent_category_id": "fxg7i",
+        "name": "Wired Earbuds",
+        "breadcrumbs": [
+          {
+            "canonical_url": "/",
+            "category_id": "root",
+            "name": "target"
+          },
+          {
+            "canonical_url": "/c/electronics/-/N-5xtg6",
+            "category_id": "5xtg6",
+            "name": "Electronics"
+          },
+          {
+            "canonical_url": "/c/headphones-electronics/-/N-5xteg",
+            "category_id": "5xteg",
+            "name": "Headphones"
+          },
+          {
+            "canonical_url": "/c/wired-wireless-earbuds-headphones-electronics/-/N-fxg7i",
+            "category_id": "fxg7i",
+            "name": "Earbuds"
+          },
+          {
+            "canonical_url": "/c/wired-earbuds-headphones-electronics/-/N-rybm0",
+            "category_id": "rybm0",
+            "name": "Wired Earbuds"
+          }
+        ]
+      },
+      "sales_classification_nodes": {
+        "node_ids": [
+          "rybm0",
+          "9xkd1",
+          "qfi7h",
+          "hsv8q",
+          "7apvr",
+          "6px30",
+          "5aazn",
+          "kwynh",
+          "0vffx",
+          "f7726",
+          "ftglp",
+          "39b38",
+          "sbb2f",
+          "8t398",
+          "ss4de"
+        ]
+      },
+      "ratings_and_reviews": {
+        "has_verified": true,
+        "statistics": {
+          "not_recommended_count": 24,
+          "question_count": 55,
+          "rating": {
+            "average": 4.34,
+            "count": 667,
+            "distribution": {
+              "rating1": 83,
+              "rating2": 12,
+              "rating3": 23,
+              "rating4": 27,
+              "rating5": 522
+            },
+            "secondary_averages": [
+              {
+                "id": "quality",
+                "label": "quality",
+                "range": 5,
+                "type": "RATING",
+                "value": 4.17
+              },
+              {
+                "id": "value",
+                "label": "value",
+                "range": 5,
+                "type": "RATING",
+                "value": 4.3
+              }
+            ]
+          },
+          "recommended_count": 82,
+          "recommended_percentage": 77,
+          "review_count": 148
+        },
+        "most_recent": [
+          {
+            "id": "086600ec-c7b1-44b0-9cec-75dc8b274ed1",
+            "text": "Love the price and quality of sound.",
+            "author": {
+              "nickname": "James",
+              "external_id": "10012615681"
+            },
+            "title": "Unheard-of price for any item from Apple!",
+            "rating": {
+              "value": 5.0,
+              "submitted_at": "2026-04-24T03:41:25.447Z"
+            }
+          },
+          {
+            "id": "d171644f-81fc-45a4-83ed-18e963ecb354",
+            "text": "Terrible",
+            "author": {
+              "nickname": "John",
+              "external_id": "20102240691"
+            },
+            "rating": {
+              "value": 1.0,
+              "submitted_at": "2026-04-21T14:48:48.034Z"
+            }
+          },
+          {
+            "id": "69ccb54f-55d5-4a63-8834-4798c25ad6b9",
+            "text": "love them for gym and travel",
+            "author": {
+              "nickname": "Viv",
+              "external_id": "158223024"
+            },
+            "rating": {
+              "value": 5.0,
+              "submitted_at": "2026-04-16T09:28:11.580Z"
+            }
+          },
+          {
+            "id": "c0245ab9-ee35-4f6c-8116-963e1744a1e2",
+            "text": "The item wasn’t the issue because when we received it, it was the wrong set. Then we were not able to exchange for the correct set which were the exact same price, no difference and then the set of EarPods we needed clearly stated in stock at this specific location which is why we ordered them here and after not being able to find an associate to help us, the girl in customer service told us they were in the back and didn’t even get anyone to help us with them if she couldn’t help us herself.",
+            "author": {
+              "nickname": "Sara",
+              "external_id": "1998027312"
+            },
+            "title": "No item",
+            "rating": {
+              "value": 1.0,
+              "submitted_at": "2026-04-16T04:52:50.077Z"
+            }
+          },
+          {
+            "id": "9ef3b208-082e-46cc-9ea3-941668f59bcc",
+            "text": "Works fine, good sound quality for what they are",
+            "author": {
+              "nickname": "dan",
+              "external_id": "20019825079"
+            },
+            "title": "Good for the price",
+            "rating": {
+              "value": 5.0,
+              "submitted_at": "2026-04-12T17:33:21.245Z"
+            }
+          },
+          {
+            "id": "b9e6a01a-260e-43c1-8683-8fe7e30022f4",
+            "text": "I bought a pair and 3 weeks later it was shocking my ear with electrical static. Target wouldn’t let me return them.",
+            "author": {
+              "nickname": "Stephanie",
+              "external_id": "10039484555"
+            },
+            "title": "Shocking",
+            "rating": {
+              "value": 1.0,
+              "submitted_at": "2026-03-31T21:43:01.756Z"
+            }
+          },
+          {
+            "id": "7554b184-e39f-416d-98f7-7f37ae0e9d0c",
+            "text": "The worst do not work with my iPhone and I can’t return them. I wouldn’t get them to little kids. Waste of money",
+            "author": {
+              "nickname": "LJES",
+              "external_id": "20180046498"
+            },
+            "rating": {
+              "value": 1.0,
+              "submitted_at": "2026-03-30T23:23:34.336Z"
+            }
+          },
+          {
+            "id": "24ff4045-1b45-468b-b991-8b8e72707f5e",
+            "text": "Do not buy! They do not work at all! Returning!",
+            "author": {
+              "nickname": "JS5",
+              "external_id": "2399844407"
+            },
+            "title": "A big NO!",
+            "rating": {
+              "value": 1.0,
+              "submitted_at": "2026-03-29T19:35:31.553Z"
+            }
+          }
+        ],
+        "photos": [
+          "https://target.scene7.com/is/image/Target/GUEST_9bb38de2-8d91-46c6-aba4-88865a5028d6",
+          "https://target.scene7.com/is/image/Target/GUEST_99e98ce1-fc2b-495d-a9ba-a1bb2889af92",
+          "https://target.scene7.com/is/image/Target/GUEST_f0946e36-3d60-4e87-8031-c76953ea637c",
+          "https://target.scene7.com/is/image/Target/GUEST_a70ccfbe-4736-4fb2-b281-ef8daff1c9c1",
+          "https://target.scene7.com/is/image/Target/GUEST_53311a9a-51e2-4fe5-813d-ca19f55620d0",
+          "https://target.scene7.com/is/image/Target/GUEST_ce988899-f1e0-4cc2-af80-d11da3e5970e",
+          "https://target.scene7.com/is/image/Target/GUEST_ed45d4bf-04a3-4570-bc6a-6292f146c3ce",
+          "https://target.scene7.com/is/image/Target/GUEST_91289bb4-6e7a-4bf9-80eb-6ecd5b1cf8f0"
+        ]
+      },
+      "esp": {
+        "tcin": "51514125",
+        "enrichment": {},
+        "price": {
+          "formatted_current_price": "$10.00",
+          "formatted_current_price_type": "reg"
+        },
+        "product_description": {
+          "title": "2 Year Headphones &#38; Speakers Protection Plan with Accidents Coverage ($18-$49.99) - Allstate",
+          "bullet_descriptions": [
+            "<B>Benefits:</B> 24/7 Support, Free 2-Way Shipping, No Deductible, No Additional Cost",
+            "<B>Support:</B> Online, Phone",
+            "<B>Includes:</B> Failures Due to Drops, Accidental Damage From Handling Coverage, Mechanical Defects, Normal Wear and Tear Coverage, Failures Due to Spills, Screen Repair, Electrical Defects",
+            "<B>Minimum Qualifying Item Price:</B> 18",
+            "<B>Maximum Qualifying Item Price:</B> 49.99",
+            "<B>Service plan type:</B> Allstate - Headphones Speakers",
+            "<B>Number of years protected:</B> 2 years"
+          ]
+        }
+      },
+      "free_shipping": {
+        "enabled": false
+      },
+      "desirability_cues": [
+        {
+          "code": "bestseller",
+          "display": "Bestseller",
+          "long_description": "Based on sales and guest views of this item within the last 30 days."
+        }
+      ],
+      "ornaments": [
+        {
+          "ornament": "bestseller",
+          "display": "Bestseller",
+          "long_description": "Based on sales and guest views of this item within the last 30 days.",
+          "ornament_type": "guest",
+          "template_type": "dark_marker_with_trophy"
+        },
+        {
+          "ornament": "low_returns",
+          "display": "Kept by most",
+          "ornament_type": "enterprise",
+          "template_type": "green_heart_with_bold_text",
+          "metadata": "{\"experiments\":[{\"factor\":\"low_returns_ornament\",\"value\":\"treatment_2\",\"default\":false}]}"
+        },
+        {
+          "ornament": "low_returns_thumbs_up",
+          "display": "Rarely Returned",
+          "ornament_type": "enterprise",
+          "template_type": "thumbs_up_with_bold_text",
+          "metadata": "{\"experiments\":[{\"factor\":\"low_returns_ornament\",\"value\":\"treatment_1\",\"default\":false}]}"
+        },
+        {
+          "ornament": "top_specs",
+          "display": "No active noise canceling;Wired;USB-C",
+          "ornament_type": "product",
+          "template_type": "top_spec_text",
+          "metadata": "{\"experiments\":[{\"factor\":\"top_spec_ornament\",\"value\":\"treatment_1\",\"default\":false}]}"
+        },
+        {
+          "ornament": "top_specs_with_pills",
+          "display": "No active noise canceling;Wired;USB-C",
+          "ornament_type": "product",
+          "template_type": "top_spec_pills",
+          "metadata": "{\"experiments\":[{\"factor\":\"top_spec_ornament\",\"value\":\"treatment_2\",\"default\":false}]}"
+        }
+      ],
+      "item": {
+        "product_classification": {
+          "item_type": {
+            "name": "Headphones",
+            "type": "59911919"
+          },
+          "product_type": 542,
+          "product_type_name": "ELECTRONICS",
+          "purchase_behavior": "Discretionary"
+        },
+        "compliance": {},
+        "enrichment": {
+          "buy_url": "https://www.target.com/p/apple-earpods-usb-c/-/A-89827259",
+          "image_info": {
+            "base_url": "//target.scene7.com/is/image/Target/",
+            "primary_image": {
+              "image_name": "GUEST_eedac426-a8ac-449e-9afe-113c7732241f",
+              "url": "https://target.scene7.com/is/image/Target/GUEST_eedac426-a8ac-449e-9afe-113c7732241f"
+            },
+            "content_labels": [
+              {
+                "image_url": "https://target.scene7.com/is/image/Target/GUEST_eedac426-a8ac-449e-9afe-113c7732241f"
+              },
+              {
+                "image_url": "https://target.scene7.com/is/image/Target/GUEST_0d35075c-e20b-463c-bbea-d88a9cd25e4d"
+              },
+              {
+                "image_url": "https://target.scene7.com/is/image/Target/GUEST_dccaa587-0490-4244-8d19-c0533707e804"
+              },
+              {
+                "image_url": "https://target.scene7.com/is/image/Target/GUEST_b637a8f4-274f-4006-b5e4-f1c086c0f556"
+              },
+              {
+                "image_url": "https://target.scene7.com/is/image/Target/GUEST_311f1c4c-7af0-40b0-8265-031dc450ae0a"
+              },
+              {
+                "image_url": "https://target.scene7.com/is/image/Target/GUEST_d91b1775-d9cc-465a-86fd-68ce2452e967"
+              }
+            ],
+            "alternate_images": [
+              {
+                "url": "https://target.scene7.com/is/image/Target/GUEST_0d35075c-e20b-463c-bbea-d88a9cd25e4d",
+                "image_name": "GUEST_0d35075c-e20b-463c-bbea-d88a9cd25e4d"
+              },
+              {
+                "url": "https://target.scene7.com/is/image/Target/GUEST_dccaa587-0490-4244-8d19-c0533707e804",
+                "image_name": "GUEST_dccaa587-0490-4244-8d19-c0533707e804"
+              },
+              {
+                "url": "https://target.scene7.com/is/image/Target/GUEST_d91b1775-d9cc-465a-86fd-68ce2452e967",
+                "image_name": "GUEST_d91b1775-d9cc-465a-86fd-68ce2452e967"
+              },
+              {
+                "url": "https://target.scene7.com/is/image/Target/GUEST_311f1c4c-7af0-40b0-8265-031dc450ae0a",
+                "image_name": "GUEST_311f1c4c-7af0-40b0-8265-031dc450ae0a"
+              },
+              {
+                "url": "https://target.scene7.com/is/image/Target/GUEST_b637a8f4-274f-4006-b5e4-f1c086c0f556",
+                "image_name": "GUEST_b637a8f4-274f-4006-b5e4-f1c086c0f556"
+              }
+            ],
+            "swatch_image": {}
+          },
+          "return_policies": [
+            {
+              "user_type": "regular_guest",
+              "day_count": 14
+            },
+            {
+              "user_type": "best_guest",
+              "day_count": 44
+            }
+          ]
+        },
+        "environmental_segmentation": {
+          "is_hazardous_material": false
+        },
+        "formatted_return_method": "This item can be returned to any Target store or Target.com.",
+        "fulfillment": {
+          "is_gift_wrap_eligible": true,
+          "purchase_limit": 10
+        },
+        "package_dimensions": {
+          "depth": 2.6,
+          "dimension_unit_of_measure": "INCH",
+          "weight": 0.08,
+          "weight_unit_of_measure": "POUND",
+          "height": 0.6,
+          "width": 3.3
+        },
+        "product_description": {
+          "bullet_descriptions": [
+            "<B>Weight:</B> .2 Pounds",
+            "<B>Water Resistance:</B> No Water Resistance Rating",
+            "<B>Ear Cushion Material:</B> ABS (Acrylonitrile Butadiene Styrene)",
+            "<B>Electronics Condition:</B> New",
+            "<B>Connection Type:</B> USB-C",
+            "<B>Package Quantity:</B> 1",
+            "<B>Noise Canceling:</B> No Active Noise Canceling",
+            "<B>Microphone:</B> No Built-In Microphone",
+            "<B>Wireless Type:</B> Wired",
+            "<B>Battery:</B> No Battery Used",
+            "<B>Warranty:</B> 1 Year Limited Warranty. To obtain a copy of the manufacturer's or supplier's warranty for this item prior to purchasing the item, please call Target Guest Services at 1-800-591-3869"
+          ],
+          "downstream_description": "Unlike traditional, circular earbuds, the design of the EarPods is defined by the geometry of the ear. Which makes them more comfortable for more people than any other earbud-style headphones.<br />The speakers inside the EarPods have been engineered to maximize sound output, which means you get high-quality audio.<br />The EarPods (USB-C) also include a built-in remote that lets you adjust the volume, control the playback of music and video, and answer or end calls with a press of the remote.<br /><br />What’s in the Box<br />EarPods with USB-C Connector<br />System Requirements<br />• Mac models with USB-C running macOS Monterey 12.6 or later<br />• iPad models with USB-C running iPadOS 16.4 or later<br />• iPhone models with USB-C running iOS 17 or later<br />Compatibility<br />iPhone Models<br />• iPhone 17 Pro Max<br />• iPhone 17 Pro<br />• iPhone Air<br />• iPhone 17<br />• iPhone 17e<br />• iPhone 16 Pro Max<br />• iPhone 16 Pro<br />• iPhone 16 Plus<br />• iPhone 16<br />• iPhone 16e<br />• iPhone 15 Pro Max<br />• iPhone 15 Pro<br />• iPhone 15<br />• iPhone 15 Plus<br />iPad Models<br />• iPad Pro 13-inch (M5)<br />• iPad Pro 11-inch (M5)<br />• iPad Pro 13-inch (M4)<br />• iPad Pro 12.9-inch (3rd, 4th, 5th, and 6th generation)<br />• iPad Pro 11-inch (M4)<br />• iPad Pro 11-inch (1st, 2nd, 3rd, and 4th generation)<br />• iPad Air 13-inch (M4) <br />• iPad Air 11-inch (M4)<br />• iPad Air 13-inch (M3) <br />• iPad Air 11-inch (M3)<br />• iPad Air 13-inch (M2)<br />• iPad Air 11-inch (M2)<br />• iPad Air (4th and 5th generation)<br />• iPad (A16)<br />• iPad (10th generation) <br />• iPad mini (A17 Pro)<br />• iPad mini (6th generation)<br />Mac Models<br />• MacBook Neo (2026)<br />• MacBook Air (2018 and later)<br />• MacBook Pro (2019 and later)<br />• iMac (2019 and later)<br />• iMac Pro (2017)<br />• Mac mini (2018 and later)<br />• Mac Studio (2022 and later)<br />• Mac Pro (2019 and later)",
+          "soft_bullets": {
+            "bullets": [
+              "Designed by Apple",
+              "Deep, rich bass tones",
+              "Protection from sweat and water",
+              "Control music and video playback",
+              "Answer and end calls"
+            ],
+            "title": "highlights"
+          },
+          "title": "Apple EarPods (USB-C)",
+          "soft_bullet_description": "&bull;Designed by Apple<br>&bull;Deep, rich bass tones<br>&bull;Protection from sweat and water<br>&bull;Control music and video playback<br>&bull;Answer and end calls"
+        },
+        "relationship_type_code": "SA",
+        "return_policies_guest_message": "This item must be returned within 14 days of the date it was purchased in store, delivered to the guest, delivered by a Shipt shopper, or picked up by the guest.",
+        "return_policy_url": "https://www.target.com/help/articles/returns-exchanges/returns",
+        "cart_add_on_threshold": 35.0,
+        "dpci": "057-00-2771",
+        "eligibility_rules": {
+          "hold": {
+            "is_active": true
+          },
+          "scheduled_delivery": {
+            "is_active": true
+          },
+          "ship_to_guest": {
+            "is_active": true
+          }
+        },
+        "handling": {
+          "import_designation_description": "Imported"
+        },
+        "merchandise_classification": {
+          "class_id": 0,
+          "department_id": 57,
+          "department_name": "PORTABLE ELECTRONICS"
+        },
+        "primary_barcode": "195949776212",
+        "primary_brand": {
+          "canonical_url": "/b/apple/-/N-5y3ej",
+          "linking_id": "5y3ej",
+          "name": "Apple"
+        },
+        "return_method": "Mail In or Store"
+      },
+      "price": {
+        "current_retail": 19.99,
+        "display_was_now": false,
+        "formatted_current_price": "$19.99",
+        "formatted_current_price_type": "reg",
+        "reg_retail": 19.99,
+        "location_id": 3991,
+        "external_system_id": "89827259-3991-19.99-2023091302"
+      },
+      "promotions": [],
+      "predictive_search": {
+        "search_term": "apple headphones"
+      }
+    }
+  }
+}

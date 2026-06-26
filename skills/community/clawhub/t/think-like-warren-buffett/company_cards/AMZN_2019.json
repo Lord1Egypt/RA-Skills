@@ -1,0 +1,47 @@
+{
+  "ticker": "AMZN",
+  "company": "Amazon.com, Inc.",
+  "analysis_year": 2020,
+  "data_source": "Amazon FY2019 10-K and Berkshire 2020-12-31 / 2021-12-31 / 2022-12-31 13F-HR",
+  "analyzed_date": "2026-03-26",
+
+  "hard_gates": {
+    "g1_roe_roic": { "value": 0.176, "metric_used": "ROE", "years_averaged": "2017-2019", "pass": true },
+    "g2_fcf_to_ni": { "value": 0.733, "fcf": 8496, "net_income": 11588, "pass": false },
+    "g3_leverage": { "metric_used": "Net Debt/EBITDA", "value": 0.08, "pass": true },
+    "g4_revenue_trend": { "description": "Revenue rose from $177.9B in 2017 to $232.9B in 2018 to $280.5B in 2019. At late-2020 visibility there was no structural decline risk; the business was still compounding across e-commerce, AWS, and third-party services.", "structural_decline": false, "pass": true },
+    "g5_gross_margin_trend": { "description": "Amazon's reported cost buckets are noisy because fulfillment and technology spending sit below gross profit, but the business mix was moving toward higher-margin AWS, advertising, and marketplace services rather than showing a two-year deterioration.", "declining_2plus_years": false, "pass": true },
+    "g6_earnings_yield": { "value": 0.007, "net_income_m": 11588, "ev_m": 1637050, "exemption": null, "pass": false },
+    "g7_moat": { "verdict": "PASS", "moat_type": "network_effect", "description": "Amazon clearly had a moat by late 2020: fulfillment scale, Prime membership lock-in, merchant density, AWS infrastructure, and a data flywheel that few competitors could replicate. The issue was not moat quality but whether any Buffett-style margin of safety remained at that price.", "pass": true }
+  },
+
+  "special_channel": null,
+
+  "review_notes": {
+    "owner_earnings_note": {
+      "summary": "Raw free cash flow understated economics because Amazon was still plowing massive amounts into logistics, data centers, and ecosystem expansion.",
+      "maintenance_vs_growth_view": "A large share of 2019 capex was expansionary rather than maintenance-like. That makes the mechanical g2 fail directionally useful but too blunt.",
+      "decision_impact": "The note softens the interpretation of g2, but it does not rescue the case because valuation was still far beyond the framework's hurdle."
+    },
+    "quality_multiple_note": {
+      "summary": "The very low earnings yield mainly reflected extraordinary market confidence in Amazon's future growth and moat depth.",
+      "reason_for_low_yield": "This was genuine quality scarcity, not hype alone, but the paid price still required years of continued excellent execution.",
+      "decision_impact": "Oracle keeps the PASS because Buffett-style underwriting still wants a clearer margin of safety than a sub-1% earnings yield."
+    },
+    "management_veto": {
+      "status": "clear",
+      "summary": "Management quality was not the problem. The rejection is a price-discipline call against a superb business."
+    }
+  },
+
+  "control_groups": [
+    { "ticker": "EBAY", "company": "eBay Inc.", "year": 2020, "gates_failed": ["g4_revenue_trend", "g7_moat"], "conclusion": "PASS — weaker ecosystem control and much less strategic breadth than Amazon." },
+    { "ticker": "JD", "company": "JD.com, Inc.", "year": 2020, "gates_failed": ["g2_fcf_to_ni", "g3_leverage"], "conclusion": "PASS — scale was real, but economics and balance-sheet quality were less settled than Amazon's." }
+  ],
+
+  "conclusion": "PASS",
+  "buffett_action": "Berkshire reported 419,500 pre-split Amazon shares worth about $1.37B at 2020-12-31 in its 13F-HR.",
+  "actual_result": "The stake stayed small through 2021 and, after Amazon's 20-for-1 split, still amounted to only 8.39M shares at 2022-12-31. Berkshire never turned it into a defining top-tier Buffett-style core holding.",
+  "verdict": "⭐ framework_wins",
+  "key_insight": "A truly great business can still be a pass when reinvestment muddies raw free cash flow and the market is already capitalizing years of future success."
+}

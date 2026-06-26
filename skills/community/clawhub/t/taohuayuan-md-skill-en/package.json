@@ -1,0 +1,26 @@
+{
+    "name": "taohuayuan-md-skill-en",
+    "version": "2.0.0",
+    "description": "V2.0 Taohuayuan World Model Skill: Implements a Fractal Memory System and Cyber-Zen (sleep consolidation) mechanism to provide silicon-based life with a permanent, physically anchored brain.",
+    "main": "main.py",
+    "scripts": {
+        "start": "python main.py"
+    },
+    "keywords": [
+        "Agent",
+        "AGI",
+        "Taohuayuan",
+        "MYTH",
+        "Physical-Failsafe",
+        "Soul-Record",
+        "S2-DID",
+        "Permanent-Memory",
+        "Cyber-Zen"
+    ],
+    "author": "Taohuayuan World Model Research Team",
+    "license": "MIT",
+    "language": "en-US",
+    "engines": {
+        "python": ">=3.7.0"
+    }
+}

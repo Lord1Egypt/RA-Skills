@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{TITLE}}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+        
+        .slide {
+            width: 100vw;
+            height: 100vh;
+            max-width: 100%;
+            max-height: 100%;
+            overflow: hidden;
+            page-break-after: always;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 3rem 5rem;
+            box-sizing: border-box;
+        }
+        
+        .slide-enter { animation: fadeIn 0.3s ease-out; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        /* Navigation bar */
+        .nav-bar {
+            position: fixed;
+            bottom: 1rem;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(8px);
+            border: 1px solid #334155;
+            border-radius: 9999px;
+            padding: 0.5rem 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            z-index: 50;
+            font-size: 0.875rem;
+            color: #cbd5e1;
+            transition: opacity 0.3s;
+        }
+        .nav-bar button {
+            background: none;
+            border: none;
+            color: #cbd5e1;
+            cursor: pointer;
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.25rem;
+        }
+        .nav-bar button:hover { background: #334155; }
+
+        @media print {
+            .slide { page-break-after: always; }
+            .nav-bar { display: none; }
+            body { margin: 0; }
+        }
+    </style>
+</head>
+<body style="background-color: #0f172a; margin: 0; padding: 0;">
+
+    <!-- INSERT SLIDES HERE -->
+
+    <div class="nav-bar">
+        <button onclick="prevSlide()"><i class="fa-solid fa-chevron-left"></i></button>
+        <span id="slide-counter">1 / 1</span>
+        <button onclick="nextSlide()"><i class="fa-solid fa-chevron-right"></i></button>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const counter = document.getElementById('slide-counter');
+        
+        function updateCounter() {
+            counter.textContent = `${currentSlide + 1} / ${slides.length}`;
+        }
+        
+        function showSlide(index) {
+            slides.forEach(s => s.style.display = 'none');
+            slides[index].style.display = 'flex';
+            slides[index].classList.add('slide-enter');
+            currentSlide = index;
+            updateCounter();
+        }
+        
+        function nextSlide() { if (currentSlide < slides.length - 1) showSlide(currentSlide + 1); }
+        function prevSlide() { if (currentSlide > 0) showSlide(currentSlide - 1); }
+        
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); nextSlide(); }
+            else if (e.key === 'ArrowLeft') { e.preventDefault(); prevSlide(); }
+        });
+        
+        // Initialize: show first slide, hide others
+        slides.forEach((s, i) => { s.style.display = i === 0 ? 'flex' : 'none'; });
+        updateCounter();
+    </script>
+
+</body>
+</html>

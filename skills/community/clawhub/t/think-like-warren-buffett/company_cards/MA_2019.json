@@ -1,0 +1,42 @@
+{
+  "ticker": "MA",
+  "company": "Mastercard Incorporated",
+  "analysis_year": 2020,
+  "data_source": "Mastercard FY2019 10-K and Berkshire 2020-12-31 / 2021-12-31 / 2022-12-31 13F-HR",
+  "analyzed_date": "2026-03-26",
+
+  "hard_gates": {
+    "g1_roe_roic": { "value": 0.44, "metric_used": "ROIC", "years_averaged": "2017-2019 (proxy because buybacks compressed reported equity)", "pass": true },
+    "g2_fcf_to_ni": { "value": 0.956, "fcf": 7761, "net_income": 8118, "pass": true },
+    "g3_leverage": { "metric_used": "Net Debt/EBITDA", "value": 0.02, "pass": true },
+    "g4_revenue_trend": { "description": "Revenue rose from $12.5B in 2017 to $15.0B in 2018 to $16.9B in 2019. The business was still compounding strongly before the pandemic temporarily disrupted transaction volumes.", "structural_decline": false, "pass": true },
+    "g5_gross_margin_trend": { "description": "As a global payments network, Mastercard's direct-cost ratio stayed extremely favorable and underlying operating margins remained elite. There was no two-year structural margin decline.", "declining_2plus_years": false, "pass": true },
+    "g6_earnings_yield": { "value": 0.022, "net_income_m": 8118, "ev_m": 364963, "exemption": null, "pass": false },
+    "g7_moat": { "verdict": "PASS", "moat_type": "network_effect", "description": "Mastercard is one of the clearest network-effect moats in public markets: issuer and merchant acceptance scale, regulatory licenses, data, and the impracticality of displacing a trusted global payments rail. The challenge in late 2020 was paying a premium price for that quality.", "pass": true }
+  },
+
+  "special_channel": null,
+
+  "review_notes": {
+    "quality_multiple_note": {
+      "summary": "Mastercard's low earnings yield reflected one of the best network moats in the world, not any doubt about business quality.",
+      "reason_for_low_yield": "The market was capitalizing decades of expected payment-volume growth and extraordinary capital-light economics.",
+      "decision_impact": "This is a documented false negative for the framework: the moat is real, but the flat 6% hurdle still rejects it."
+    },
+    "management_veto": {
+      "status": "clear",
+      "summary": "No management veto applied. The miss comes from valuation rigidity against a world-class network franchise."
+    }
+  },
+
+  "control_groups": [
+    { "ticker": "V", "company": "Visa Inc.", "year": 2020, "gates_failed": ["g6_earnings_yield"], "conclusion": "PASS — similarly superb, but also too expensive on the framework's earnings-yield hurdle." },
+    { "ticker": "AXP", "company": "American Express Company", "year": 2020, "gates_failed": ["g4_revenue_trend", "g6_earnings_yield"], "conclusion": "PASS — a strong franchise, but with more pandemic-era volume disruption and a less pristine network model." }
+  ],
+
+  "conclusion": "PASS",
+  "buffett_action": "Berkshire reported 4,564,756 Mastercard shares worth about $1.63B at 2020-12-31 in its 13F-HR.",
+  "actual_result": "Berkshire still owned 3,986,648 shares at both 2021-12-31 and 2022-12-31. Mastercard remained one of the durable payments-network franchises in Berkshire's portfolio.",
+  "verdict": "❌ framework_wrong",
+  "key_insight": "The current earnings-yield gate still rejects some genuinely exceptional network businesses that Berkshire is willing to own for years."
+}

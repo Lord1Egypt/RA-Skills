@@ -1,0 +1,21 @@
+{
+  "name": "TikTok Research Kit",
+  "tagline": "Extract metadata, captions, and engagement stats from TikTok videos and profiles",
+  "description": "A content research toolkit for TikTok. Extract video captions, engagement stats, sound/music info, creator profiles, hashtag trends, and comments — powered by yt-dlp locally. Perfect for social media analysts, content strategists, and researchers who need structured TikTok data.",
+  "category": "data",
+  "tags": [
+    "tiktok",
+    "social-media",
+    "research",
+    "short-video",
+    "metadata",
+    "content-analysis",
+    "yt-dlp",
+    "trends"
+  ],
+  "version": "1.0.0",
+  "license": "MIT",
+  "pricing": "free",
+  "support_url": "https://github.com/xuya227939/tiktok-research-kit/issues",
+  "homepage": "https://snapvee.com"
+}

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{TRIP_TITLE}} —— 作战指挥页</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<style>
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  body {
+    margin: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif;
+    background: #0a1929; color: #e0e0e0; line-height: 1.6;
+  }
+  .wrap { max-width: 900px; margin: 0 auto; padding: 16px; }
+  .hero {
+    background: linear-gradient(135deg, #1a237e 0%, #0d47a1 100%);
+    padding: 24px 20px; border-radius: 12px; margin-bottom: 20px;
+  }
+  .hero h1 { margin: 0 0 6px; font-size: 22px; letter-spacing: .3px; }
+  .hero .sub { color: #90caf9; font-size: 13px; }
+
+  /* 进度条 */
+  .progress {
+    background: rgba(255,255,255,0.05); border-radius: 10px; padding: 12px 14px;
+    margin-bottom: 16px; border: 1px solid rgba(255,255,255,0.06);
+  }
+  .progress-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; font-size: 13px; color: #cfd8dc; }
+  .progress-bar-wrap { height: 6px; background: rgba(255,255,255,0.08); border-radius: 3px; overflow: hidden; }
+  .progress-bar { height: 100%; background: linear-gradient(90deg, #4fc3f7, #81d4fa); width: 0; transition: width .4s; }
+
+  /* Section */
+  .section { background: rgba(255,255,255,0.03); border-radius: 10px; padding: 16px; margin-bottom: 16px; border: 1px solid rgba(255,255,255,0.05); }
+  .section h2 { font-size: 15px; margin: 0 0 12px; color: #4fc3f7; letter-spacing: .3px; }
+
+  /* Todo */
+  .todo-list { list-style: none; padding: 0; margin: 0; }
+  .todo-item {
+    display: flex; align-items: flex-start; gap: 10px;
+    padding: 10px 12px; background: rgba(255,255,255,0.02);
+    border-radius: 8px; margin-bottom: 6px;
+    cursor: pointer; transition: background .2s, opacity .3s, transform .3s; user-select: none;
+  }
+  .todo-item:active { background: rgba(79,195,247,0.15); }
+  .todo-item.flying { opacity: 0.35; transform: scale(0.98); }
+  .todo-item .cb {
+    width: 18px; height: 18px; border-radius: 4px; border: 2px solid #4fc3f7;
+    flex-shrink: 0; margin-top: 2px; position: relative; transition: all .2s;
+  }
+  .todo-item .txt { font-size: 13px; color: #cfd8dc; line-height: 1.5; flex: 1; }
+  .todo-item .txt small { display: block; font-size: 11px; color: #90a4ae; margin-top: 2px; }
+  .todo-item .urgent {
+    display: inline-block; padding: 1px 6px; margin-left: 6px;
+    background: rgba(244,67,54,0.2); color: #ff8a80; border-radius: 4px; font-size: 10px;
+  }
+  .todo-item.done .cb { background: #4fc3f7; border-color: #4fc3f7; }
+  .todo-item.done .cb::after {
+    content: ''; position: absolute; left: 5px; top: 1px;
+    width: 4px; height: 9px; border: solid #0a1929; border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+  }
+  .todo-item.done .txt { color: #546e7a; text-decoration: line-through; }
+
+  /* Map */
+  #map { height: 360px; border-radius: 8px; margin-top: 8px; }
+
+  /* Icons placeholder */
+  .icon { width: 14px; height: 14px; vertical-align: -2px; margin-right: 4px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="hero">
+    <h1>{{TRIP_TITLE}}</h1>
+    <div class="sub">{{TRIP_SUBTITLE}}</div>
+  </div>
+
+  <!-- 进度条 -->
+  <div class="progress">
+    <div class="progress-head">
+      <span>✅ 进度：<span id="progressText">0 / 0</span></span>
+      <span id="progressPercent">0%</span>
+    </div>
+    <div class="progress-bar-wrap"><div class="progress-bar" id="progressBar"></div></div>
+  </div>
+
+  <!-- 地图 -->
+  <div class="section">
+    <h2>🗺️ 路线地图</h2>
+    <div id="map"></div>
+  </div>
+
+  <!-- 紧急 & 次紧急 Todo -->
+  <div class="section">
+    <h2>🔥 紧急待办（1-3 天内）</h2>
+    <ul class="todo-list" id="todoUrgent">
+      <li class="todo-item" data-id="u0">
+        <div class="cb"></div>
+        <div class="txt">
+          <strong>示例：订 X 酒店</strong>
+          <span class="urgent">紧急</span>
+          <small>去哪订、多少钱、对应行李…</small>
+        </div>
+      </li>
+      <!-- 继续加 li，data-id 顺序 u1 u2 u3... -->
+
+      <li class="todo-item" data-id="i0">
+        <div class="cb"></div>
+        <div class="txt">
+          <strong>示例：次紧急项目</strong>
+          <small>描述</small>
+        </div>
+      </li>
+      <!-- i1 i2 i3... -->
+
+      <li class="todo-item done" data-id="d0">
+        <div class="cb"></div>
+        <div class="txt">已完成示例（会沉到底部）</div>
+      </li>
+    </ul>
+  </div>
+
+  <!-- 装备 / 行李 -->
+  <div class="section">
+    <h2>🎒 装备 & 行李清单</h2>
+    <ul class="todo-list" id="todoPack">
+      <li class="todo-item" data-id="p0">
+        <div class="cb"></div>
+        <div class="txt">
+          <strong>护照 + 签证页复印件</strong>
+          <small>主副本分开放</small>
+        </div>
+      </li>
+      <!-- p1 p2 p3... -->
+    </ul>
+  </div>
+
+</div>
+
+<!-- Leaflet -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+// ========== 地图初始化 ==========
+// DEFAULT_LAT / DEFAULT_LNG 填目的地的大致中心坐标
+const map = L.map('map').setView([{{DEFAULT_LAT}}, {{DEFAULT_LNG}}], {{DEFAULT_ZOOM}});
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  attribution: '© OpenStreetMap'
+}).addTo(map);
+
+// 标点示例：编辑 markers 数组，填你的目的地关键地点
+const markers = [
+  // { lat: 0.00, lng: 0.00, title: '机场', desc: '——' },
+  // { lat: 0.00, lng: 0.00, title: '酒店 1', desc: '——' },
+  // { lat: 0.00, lng: 0.00, title: '景点 1', desc: '——' },
+];
+markers.forEach(m => {
+  L.marker([m.lat, m.lng]).addTo(map).bindPopup('<b>' + m.title + '</b><br>' + m.desc);
+});
+// 有多个点时自动聚焦
+if (markers.length > 1) {
+  const g = L.featureGroup(markers.map(m => L.marker([m.lat, m.lng])));
+  map.fitBounds(g.getBounds().pad(0.15));
+}
+
+// ========== Todo 同步（粘贴 todo-sync.js 到这里） ==========
+// 1. 从 references/templates/todo-sync.js 复制全部内容到这里
+// 2. 修改顶部的 SYNC_ROOM 和 SYNC_BACKEND
+// 3. 如选 gist / jsonbin / workers，填对应配置
+
+</script>
+</body>
+</html>

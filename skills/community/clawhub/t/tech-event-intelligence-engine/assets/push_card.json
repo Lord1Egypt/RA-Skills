@@ -1,0 +1,22 @@
+{
+  "msg_type": "interactive",
+  "card": {
+    "header": {
+      "title": { "tag": "plain_text", "content": "📅 技术活动情报日报 | {{date}}" },
+      "template": "blue"
+    },
+    "elements": [
+      {
+        "tag": "markdown",
+        "content": "{{digest_content}}"
+      },
+      {
+        "tag": "action",
+        "actions": [
+          { "tag": "button", "text": { "content": "👍 标记感兴趣", "type": "plain_text" }, "type": "primary", "value": { "action": "interested" } },
+          { "tag": "button", "text": { "content": "🙅 降低推荐权重", "type": "plain_text" }, "type": "default", "value": { "action": "skip" } }
+        ]
+      }
+    ]
+  }
+}

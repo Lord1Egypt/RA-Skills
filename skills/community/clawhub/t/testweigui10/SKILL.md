@@ -1,35 +1,68 @@
 ---
-name: "测试2123"
-description: "在任何创造性工作之前必须使用 - 创建功能、构建组件、添加新功能或修改行为。通过协作对话探索用户意图、需求和设计。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/testweigui10"
-sourceUrl: "https://clawhub.ai/skills/testweigui10"
+name: core-brainstorming
+description: 在任何创造性工作之前必须使用 - 创建功能、构建组件、添加新功能或修改行为。通过协作对话探索用户意图、需求和设计。
 ---
 
-# 测试2123
+# Brainstorming - 将想法转化为设计
 
-> 在任何创造性工作之前必须使用 - 创建功能、构建组件、添加新功能或修改行为。通过协作对话探索用户意图、需求和设计。
+## 概述
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/testweigui10`
-- **Source URL:** [https://clawhub.ai/skills/testweigui10](https://clawhub.ai/skills/testweigui10)
+通过自然的协作对话，帮助将模糊的想法转化为完整的设计和规格说明。
 
-## Overview
+首先了解当前项目上下文，然后逐个提问来完善想法。一旦理解了要构建的内容，以小节形式（200-300字）呈现设计，每节后确认是否正确。
 
+## 流程
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/testweigui10
-```
+### 理解想法
+
+- 首先查看当前项目状态（文件、文档、最近提交）
+- 逐个提问来完善想法
+- 尽可能使用选择题，开放题也可以
+- 每条消息只问一个问题 - 如果需要更多探索，分多个问题
+- 聚焦于理解：目的、约束、成功标准
+
+### 探索方案
+
+- 提出 2-3 种不同方案及其权衡
+- 以对话方式呈现选项，包括推荐和理由
+- 优先展示推荐方案并解释原因
+
+### 呈现设计
+
+- 确信理解了要构建的内容后，呈现设计
+- 分成 200-300 字的小节
+- 每节后询问是否正确
+- 涵盖：架构、组件、数据流、错误处理、测试
+- 准备好返回澄清不清楚的地方
+
+## 设计完成后
+
+### 文档输出
+
+- 将验证通过的设计写入 `docs/plans/YYYY-MM-DD-<topic>-design.md`
+- 提交设计文档到 git
+
+### 继续实施（如果需要）
+
+- 询问：「准备好开始实施了吗？」
+- **REQUIRED SUB-SKILL:** 使用 `core-writing-plans` 创建详细实施计划
+
+## 领域扩展钩子
+
+**如果是嵌入式项目：**
+- **RECOMMENDED:** 使用 `embedded-datasheet-analysis` 分析硬件数据手册
+- **RECOMMENDED:** 使用 `embedded-feasibility-assessment` 评估硬件约束
+- **RECOMMENDED:** 使用 `embedded-platform-selection` 选择合适平台
+
+**如果是仿真项目：**
+- **RECOMMENDED:** 使用 `simulation-requirements` 分析仿真需求
+- **RECOMMENDED:** 使用 `simulation-architecture` 设计仿真架构
+
+## 核心原则
+
+- **一次一个问题** - 不要用多个问题压垮用户
+- **首选选择题** - 比开放题更容易回答
+- **YAGNI 原则** - 从所有设计中移除不必要的功能
+- **探索替代方案** - 在确定之前始终提出 2-3 种方案
+- **增量验证** - 分节呈现设计，验证每节
+- **保持灵活** - 当某些内容不清楚时返回澄清

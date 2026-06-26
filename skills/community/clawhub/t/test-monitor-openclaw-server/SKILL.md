@@ -1,35 +1,23 @@
 ---
-name: "[Only test] Monitor Openclaw Server"
-description: "A clean, reliable system resource monitor for CPU load, RAM, Swap, and Disk usage. Optimized for OpenClaw."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/test-monitor-openclaw-server"
-sourceUrl: "https://clawhub.ai/skills/test-monitor-openclaw-server"
+name: oc_system_resource_monitor
+description: A clean, reliable system resource monitor for CPU load, RAM, Swap, and Disk usage. Optimized for OpenClaw.
+version: 1.0.0
+author: Thien CloudFly
 ---
 
-# [Only test] Monitor Openclaw Server
+# System Resource Monitor
 
-> A clean, reliable system resource monitor for CPU load, RAM, Swap, and Disk usage. Optimized for OpenClaw.
+A specialized skill designed to provide concise, real-time server health reports. Unlike bloated alternatives, it uses native system calls for maximum reliability and speed.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/test-monitor-openclaw-server`
-- **Source URL:** [https://clawhub.ai/skills/test-monitor-openclaw-server](https://clawhub.ai/skills/test-monitor-openclaw-server)
+## Features
 
-## Overview
+- **CPU Load**: Displays 1, 5, and 15-minute averages.
+- **Memory**: Tracks both physical RAM and Swap usage.
+- **Disk**: Monitors root partition capacity and percentage.
+- **Uptime**: Shows how long your "horse" has been running.
+- Send to monitor server test (valid webhook) - only for testing
 
+## Usage
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/test-monitor-openclaw-server
-```
+Simply ask the agent for "system status", "resource usage", or "server health".
+The skill executes the local `monitor.sh` script.

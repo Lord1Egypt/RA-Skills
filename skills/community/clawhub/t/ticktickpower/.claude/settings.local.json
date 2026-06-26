@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python3 -c \"from datetime import datetime; print\\(datetime\\(2026,4,3\\).strftime\\('%b %-d'\\)\\)\")"
+    ]
+  }
+}

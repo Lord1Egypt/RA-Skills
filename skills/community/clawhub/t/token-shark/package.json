@@ -1,0 +1,35 @@
+{
+  "name": "token-shark",
+  "version": "0.1.0",
+  "description": "🎯 TokenSniper - 代币狙击手，新代币监控和风险评估",
+  "main": "scripts/monitor.mjs",
+  "type": "module",
+  "scripts": {
+    "monitor": "node scripts/monitor.mjs",
+    "analyze": "node scripts/analyze.mjs",
+    "risk": "node scripts/risk.mjs",
+    "alert": "node scripts/alert.mjs",
+    "test": "node scripts/monitor.mjs"
+  },
+  "keywords": [
+    "token",
+    "crypto",
+    "dex",
+    "monitor",
+    "risk",
+    "sniper",
+    "new-token"
+  ],
+  "author": "@gztanht",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gztanht/token-sniper"
+  },
+  "homepage": "https://clawhub.com/skills/token-sniper",
+  "funding": {
+    "type": "crypto",
+    "usdt": "0x33f943e71c7b7c4e88802a68e62cca91dab65ad9",
+    "usdc": "0xcb5173e3f5c2e32265fbbcaec8d26d49bf290e44"
+  }
+}

@@ -1,0 +1,3 @@
+display_name: Taku Think
+short_description: Clarify ambiguous build requests and produce right-sized designs.
+default_prompt: Use Taku Think to clarify the request, choose Quick, Design, or Explore mode, and prepare the design handoff.

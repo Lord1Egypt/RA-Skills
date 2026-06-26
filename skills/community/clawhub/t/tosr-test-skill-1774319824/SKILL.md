@@ -1,35 +1,23 @@
----
-name: "TOSR Test Skill"
-description: "A test skill for validating skill creation, version update, and deletion workflows via the TOSR clawhub REST API."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/tosr-test-skill-1774319824"
-sourceUrl: "https://clawhub.ai/skills/tosr-test-skill-1774319824"
----
-
 # TOSR Test Skill
 
-> A test skill for validating skill creation, version update, and deletion workflows via the TOSR clawhub REST API.
+> 0.1.0 — A test skill for TOSR integration testing.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/tosr-test-skill-1774319824`
-- **Source URL:** [https://clawhub.ai/skills/tosr-test-skill-1774319824](https://clawhub.ai/skills/tosr-test-skill-1774319824)
+## Description
 
-## Overview
+This skill is created by TOSR automated integration tests to verify the clawhub publish/update/delete workflow.
+It exercises the full skill lifecycle: creation, version update, and deletion via the clawhub REST API.
 
+## Features
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/tosr-test-skill-1774319824
-```
+- Validates skill creation via POST /api/v1/skills
+- Validates skill update by publishing a new version
+- Validates skill deletion via DELETE /api/v1/skills/{slug}
+- Uses unique timestamped slugs to avoid conflicts between test runs
+
+## Usage
+
+This skill is for testing purposes only and will be deleted after the test completes.
+
+## Version
+
+0.1.0

@@ -1,0 +1,17 @@
+{
+  "name": "test-skill-demo",
+  "version": "1.0.0",
+  "description": "一个完整的测试技能示例，展示 ClawHub 技能的标准结构和最佳实践",
+  "main": "index.js",
+  "type": "module",
+  "keywords": ["test", "demo", "example", "tutorial", "clawhub", "openclaw"],
+  "author": "agentsignals",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "openclaw": {
+    "minVersion": "2026.1.0",
+    "category": "utilities"
+  }
+}

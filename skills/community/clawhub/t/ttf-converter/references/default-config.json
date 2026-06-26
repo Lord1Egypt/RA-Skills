@@ -1,0 +1,27 @@
+{
+  "target_center": [500, 700],
+  "single_punct": {
+    "tx": 620,
+    "ty": 40,
+    "scale": 0.8,
+    "question_tx": 560
+  },
+  "paired": {
+    "scale": 0.9
+  },
+  "corner_quotes": {
+    "scale": 0.9,
+    "left_bound": 80,
+    "right_bound": 920,
+    "target_cy": 700
+  },
+  "dash": {
+    "scale": 0.9
+  },
+  "ellipsis": {
+    "scale": 0.9
+  },
+  "latin_digits": {
+    "scale": 0.92
+  }
+}

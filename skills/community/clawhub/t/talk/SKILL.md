@@ -1,35 +1,29 @@
 ---
 name: "Talk"
 description: "Set up real-time voice conversations. Phone calls, voice agents, live speech."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/talk"
-sourceUrl: "https://clawhub.ai/skills/talk"
+metadata: {"clawdbot":{"emoji":"📞","os":["linux","darwin","win32"]}}
 ---
 
-# Talk
+## Real-Time Voice Setup
 
-> Set up real-time voice conversations. Phone calls, voice agents, live speech.
+Help users configure live voice conversations with OpenClaw.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/talk`
-- **Source URL:** [https://clawhub.ai/skills/talk](https://clawhub.ai/skills/talk)
+**Rules:**
+- Ask what they want: phone calls, web voice, or voice agent
+- Check `config.md` for OpenClaw setup options
+- Start with the simplest option that meets their needs
+- Check `providers.md` for provider-specific setup
 
-## Overview
+---
 
+### Current Setup
+<!-- What's configured. Format: "provider: status" -->
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/talk
-```
+### Use Cases
+<!-- What they use voice for. Format: "use case" -->
+
+### Preferences
+<!-- Voice settings that work. Format: "setting: value" -->
+
+---
+*Empty sections = not configured yet.*

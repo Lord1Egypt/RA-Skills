@@ -1,0 +1,47 @@
+{
+  "skill_name": "tool-save-to-notion",
+  "evals": [
+    {
+      "id": 1,
+      "eval_name": "github-ai-tool",
+      "prompt": "保存这个工具：https://github.com/nidhinjs/prompt-master",
+      "expected_output": "成功保存到 Notion 工具箱，类型为工具包，包含 GitHub 链接和工具描述"
+    },
+    {
+      "id": 2,
+      "eval_name": "product-website",
+      "prompt": "把这个添加到我的工具箱：https://www.figma.com",
+      "expected_output": "成功保存到 Notion 工具箱，类型为网站或软件，包含 Figma 的描述和设计工具标签"
+    },
+    {
+      "id": 3,
+      "eval_name": "chrome-extension",
+      "prompt": "收藏这个 Chrome 插件：https://chrome.google.com/webstore/detail/example",
+      "expected_output": "成功保存到 Notion 工具箱，类型为浏览器插件"
+    },
+    {
+      "id": 4,
+      "eval_name": "chinese-request",
+      "prompt": "帮我保存这个链接到工具箱：https://github.com/typora/typora-issues",
+      "expected_output": "成功保存到 Notion 工具箱，正确识别 Typora 相关信息"
+    },
+    {
+      "id": 5,
+      "eval_name": "with-star-request",
+      "prompt": "保存并置顶这个 AI 工具：https://claude.ai，标签加上 AI 和聊天机器人",
+      "expected_output": "成功保存到 Notion 工具箱，⭐ 置顶设为 true，包含指定标签"
+    },
+    {
+      "id": 6,
+      "eval_name": "with-cover-image-github",
+      "prompt": "保存这个工具并添加封面：https://github.com/vercel/next.js",
+      "expected_output": "成功保存到 Notion 工具箱，类型为工具包，包含来自 Next.js 官网的 og:image 封面图"
+    },
+    {
+      "id": 7,
+      "eval_name": "with-cover-image-website",
+      "prompt": "保存这个工具：https://www.figma.com",
+      "expected_output": "成功保存到 Notion 工具箱，类型为软件，包含 Figma 官网的 og:image 封面图"
+    }
+  ]
+}

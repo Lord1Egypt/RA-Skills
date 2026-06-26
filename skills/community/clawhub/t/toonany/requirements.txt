@@ -1,0 +1,6 @@
+# Core dependencies for Toonany scripts
+requests>=2.31.0
+Pillow>=10.0.0
+
+# Optional but recommended
+python-dotenv>=1.0.0

@@ -1,0 +1,27 @@
+{
+  "name": "toutiao-publish",
+  "version": "6.0.0",
+  "description": "今日头条自动发布技能 - 支持 AI 推荐图片、免费正版图片库封面、完整自动化流程",
+  "author": "axdlee (https://github.com/axdlee)",
+  "license": "MIT",
+  "keywords": [
+    "toutiao",
+    "头条号",
+    "自动发布",
+    "AI 创作助手",
+    "browser-automation",
+    "openclaw-skill"
+  ],
+  "scripts": {
+    "publish": "./publish-toutiao.sh",
+    "test": "./test-publish.sh"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/axdlee/toutiao-publish.git"
+  },
+  "homepage": "https://github.com/axdlee/toutiao-publish#readme",
+  "bugs": {
+    "url": "https://github.com/axdlee/toutiao-publish/issues"
+  }
+}

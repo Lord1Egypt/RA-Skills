@@ -1,0 +1,76 @@
+{
+  "analysis_scope": "live",
+  "ticker": "01072.HK",
+  "company": "Dongfang Electric Corporation Limited",
+  "analysis_year": 2026,
+  "data_source": "Dongfang Electric 2024 annual report (published 2025-04-30), 2025 interim report (published 2025-08-29), and market valuation data available through 2026-03-12",
+  "analyzed_date": "2026-03-24",
+
+  "hard_gates": {
+    "g1_roe_roic": {
+      "value": 0.0865,
+      "metric_used": "ROE",
+      "years_averaged": "2022-2024",
+      "pass": false
+    },
+    "g2_fcf_to_ni": {
+      "value": 2.42,
+      "fcf": 7060.4,
+      "net_income": 2922.1,
+      "pass": true
+    },
+    "g3_leverage": {
+      "metric_used": "Net Debt/EBITDA",
+      "value": -6.1,
+      "pass": true
+    },
+    "g4_revenue_trend": {
+      "description": "Revenue grew from RMB 55.4bn in 2022 to RMB 60.7bn in 2023 and RMB 69.7bn in 2024; no structural decline signal.",
+      "structural_decline": false,
+      "pass": true
+    },
+    "g5_gross_margin_trend": {
+      "description": "Gross margin fell to about 15.5% in 2024 from about 18.8% in 2023, but the data used does not show a 2+ year consecutive decline.",
+      "declining_2plus_years": false,
+      "pass": true
+    },
+    "g6_earnings_yield": {
+      "value": 0.0247,
+      "net_income_m": 3314.0,
+      "ev_m": 134410.0,
+      "exemption": null,
+      "pass": false
+    },
+    "g7_moat": {
+      "verdict": "FAIL",
+      "moat_type": null,
+      "description": "Dongfang Electric is a major state-backed power equipment supplier with real engineering depth, but this is still a project-driven capital-goods business. I cannot describe a decade-long moat that prevents peers such as Harbin Electric, Shanghai Electric, or global turbine OEMs from replicating enough of the offering to compress returns.",
+      "pass": false
+    }
+  },
+
+  "special_channel": null,
+
+  "control_groups": [
+    {
+      "ticker": "01133.HK",
+      "company": "Harbin Electric Company Limited",
+      "year": 2024,
+      "gates_failed": ["g1_roe_roic", "g6_earnings_yield"],
+      "conclusion": "PASS — 2024 ROE is still below 12%, and the 2025-10-31 market PE implies a sub-6% earnings yield."
+    },
+    {
+      "ticker": "02727.HK",
+      "company": "Shanghai Electric Group Company Limited",
+      "year": 2024,
+      "gates_failed": ["g1_roe_roic", "g6_earnings_yield"],
+      "conclusion": "PASS — even weaker ROE and no valuation edge, so the control group does not improve the case."
+    }
+  ],
+
+  "conclusion": "PASS",
+  "buffett_action": "N/A — live analysis, not a Berkshire historical backtest case",
+  "actual_result": "Open",
+  "verdict": "N/A",
+  "key_insight": "Policy tailwinds and order growth are real, but current returns on capital and earnings yield are too weak for a Buffett-style hold."
+}

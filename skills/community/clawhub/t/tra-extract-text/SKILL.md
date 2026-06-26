@@ -1,35 +1,66 @@
 ---
-name: "tra-extract-text"
-description: "Extract readable text, markdown, HTML, JSON, or XML content from web pages using the trafilatura CLI tool with optional metadata and output formatting."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/tra-extract-text"
-sourceUrl: "https://clawhub.ai/skills/tra-extract-text"
+name: tra-extract-text
+description: Extract text content from web pages using trafilatura CLI. Use when user wants to extract readable text, markdown, or raw HTML from a URL. Triggers on requests like: "extract text from URL", "scrape web page content", "get article text", "convert web page to markdown", "trafilatura".
 ---
 
 # tra-extract-text
 
-> Extract readable text, markdown, HTML, JSON, or XML content from web pages using the trafilatura CLI tool with optional metadata and output formatting.
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/tra-extract-text`
-- **Source URL:** [https://clawhub.ai/skills/tra-extract-text](https://clawhub.ai/skills/tra-extract-text)
-
-## Overview
-
+Extract text from web pages using the `trafilatura` command-line tool.
 
 ## Installation
-To install this skill, run the following command in your terminal:
+
 ```bash
-hermes skills install clawhub/tra-extract-text
+pip install trafilatura
+```
+
+## Usage
+
+### Basic text extraction (Markdown)
+
+```bash
+trafilatura -u URL --markdown
+```
+
+### Extract raw text (no formatting)
+
+```bash
+trafilatura -u URL --text
+```
+
+### Output to file
+
+```bash
+trafilatura -u URL --markdown > output.md
+trafilatura -u URL --text > output.txt
+```
+
+### CLI Options
+
+| Option | Description |
+|--------|-------------|
+| `-u, --url` | Target URL (required) |
+| `--markdown` | Output as Markdown (default) |
+| `--text` | Output as plain text |
+| `--html` | Output as HTML |
+| `--json` | Output as JSON |
+| `--xml` | Output as XML |
+| `-o, --output` | Write to file instead of stdout |
+| `--with-metadata` | Include metadata (title, author, date) |
+| `--license` | Show license info |
+
+## Examples
+
+Extract a Medium article to markdown:
+```bash
+trafilatura -u "https://medium.com/example/article" --markdown
+```
+
+Extract and save:
+```bash
+trafilatura -u "https://news.example.com/article" --markdown -o article.md
+```
+
+Extract with metadata:
+```bash
+trafilatura -u "https://example.com/post" --markdown --with-metadata
 ```

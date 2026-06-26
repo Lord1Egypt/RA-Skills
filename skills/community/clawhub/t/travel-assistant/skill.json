@@ -1,0 +1,18 @@
+{
+  "name": "travel-assistant",
+  "version": "1.0.0",
+  "display_name": "旅行助手",
+  "description": "你的私人旅行规划助手。整理你的旅行信息，智能提醒你可能忽略的细节，如当地天气、签证、注意事项、紧急联系方式等，用起来像真人助手一样贴心。",
+  "author": "heidi1998",
+  "language": "zh-CN",
+  "capabilities": ["reminder", "web_search", "conversation", "planning"],
+  "entry": "prompt.md",
+  "tools": [
+    {
+      "type": "web_search",
+      "provider": "deepseek",
+      "enabled": true
+    }
+  ],
+  "tags": ["travel", "planning", "reminder", "assistant", "weather"]
+}

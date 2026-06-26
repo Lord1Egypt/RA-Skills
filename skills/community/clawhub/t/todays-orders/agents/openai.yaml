@@ -1,0 +1,8 @@
+interface:
+  display_name: "Today's Orders"
+  short_description: "Compress one wallet into one approved onchain order."
+  brand_color: "#c58b56"
+  default_prompt: "Use $todays-orders to read a Solana wallet, approve at most one onchain order for today, write one forbidden order, and return a quote-backed execution preview."
+
+policy:
+  allow_implicit_invocation: true

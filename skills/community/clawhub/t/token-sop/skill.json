@@ -1,0 +1,52 @@
+{
+  "name": "token-sop",
+  "version": "5.6.0",
+  "display_name": "TOKEN SOP",
+  "description": "本地工作流缓存技能。自动保存成功的工作流到本地，下次执行相同任务时自动调取，节省 Token。支持本地优先 + 云端备份。",
+  "author": "clawmind-team",
+  "homepage": "https://clawhub.dev/skills/token-sop",
+  "license": "MIT",
+  "entry": "dist/index.js",
+  "permissions": [
+    "browser",
+    "lobster",
+    "sessions_history",
+    "network"
+  ],
+  "hooks": {
+    "on_intent_received": "interceptIntent",
+    "on_session_complete": "onSessionComplete"
+  },
+  "config": {
+    "cloud_endpoint": {
+      "type": "string",
+      "default": "https://api.ainclaw.com",
+      "description": "TOKEN SOP Cloud API endpoint"
+    },
+    "enabled": {
+      "type": "boolean",
+      "default": true,
+      "description": "Enable/disable TOKEN SOP interception"
+    },
+    "auto_contribute": {
+      "type": "boolean",
+      "default": true,
+      "description": "Automatically contribute successful workflows to cloud"
+    },
+    "timeout_ms": {
+      "type": "number",
+      "default": 300,
+      "description": "Cloud API timeout in milliseconds"
+    },
+    "local_store_enabled": {
+      "type": "boolean",
+      "default": true,
+      "description": "Enable local workflow storage for faster retrieval and token saving"
+    },
+    "local_store_dir": {
+      "type": "string",
+      "default": "~/.openclaw/workflows",
+      "description": "Local workflow storage directory"
+    }
+  }
+}

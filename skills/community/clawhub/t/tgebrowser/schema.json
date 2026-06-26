@@ -1,0 +1,124 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "TgeBrowser MCP Tools",
+  "tools": {
+    "mcp__tgebrowser__open-browser": {
+      "description": "Open a browser environment",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "envId": {
+            "type": "number",
+            "description": "Environment id to open"
+          },
+          "userIndex": {
+            "type": "number",
+            "description": "Environment index to open"
+          },
+          "args": {
+            "type": "array",
+            "items": { "type": "string" },
+            "description": "Extra browser launch args, e.g. [\"--headless\"]"
+          },
+          "port": {
+            "type": "number",
+            "description": "Custom remote debugging port"
+          }
+        }
+      }
+    },
+    "mcp__tgebrowser__create-browser": {
+      "description": "Create a browser environment",
+      "parameters": {
+        "type": "object",
+        "required": ["browserName", "proxy"],
+        "properties": {
+          "browserName": {
+            "type": "string",
+            "description": "Environment name"
+          },
+          "proxy": {
+            "type": "object",
+            "required": ["protocol"],
+            "properties": {
+              "protocol": {
+                "type": "string",
+                "enum": ["http", "https", "socks5", "direct"],
+                "description": "Proxy protocol"
+              },
+              "host": { "type": "string" },
+              "port": { "type": "number" },
+              "username": { "type": "string" },
+              "password": { "type": "string" }
+            }
+          },
+          "fingerprint": {
+            "type": "object",
+            "properties": {
+              "os": {
+                "type": "string",
+                "enum": ["Windows", "macOS", "Android", "iOS"],
+                "description": "Operating system"
+              },
+              "language": { "type": "string" },
+              "timezone": { "type": "string" },
+              "webrtc": { "type": "string" }
+            }
+          },
+          "groupId": {
+            "type": "number",
+            "description": "Group id"
+          },
+          "remark": {
+            "type": "string",
+            "description": "Remarks"
+          }
+        }
+      }
+    },
+    "mcp__tgebrowser__get-browser-list": {
+      "description": "Get the list of browser environments",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "current": {
+            "type": "number",
+            "description": "Page number, default 1"
+          },
+          "pageSize": {
+            "type": "number",
+            "description": "Results per page"
+          },
+          "keyword": {
+            "type": "string",
+            "description": "Search keyword"
+          },
+          "groupId": {
+            "type": "number",
+            "description": "Filter by group id"
+          }
+        }
+      }
+    },
+    "mcp__tgebrowser__close-browser": {
+      "description": "Close a browser environment",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "envId": { "type": "number" },
+          "userIndex": { "type": "number" }
+        }
+      }
+    },
+    "mcp__tgebrowser__delete-browser": {
+      "description": "Delete a browser environment",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "envId": { "type": "number" },
+          "userIndex": { "type": "number" }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "text": "This is a JPG testcase with fixed font size and wrapping across multiple lines.",
+  "width": 500,
+  "height": 260,
+  "format": "jpg",
+  "font_size": 30,
+  "background": "#f6f6f6",
+  "default_color": "#222222",
+  "padding": 20
+}

@@ -1,35 +1,12 @@
----
-name: "Team Manager"
-description: "Управляет расписанием команды, проводит утренние брифинги, вечерние отчеты и напоминает об отчетах с учетом статуса выходных."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/team-manager"
-sourceUrl: "https://clawhub.ai/skills/team-manager"
----
+# Team Manager Skill
 
-# Team Manager
+Управляет распорядком дня команды: приветствия, фокусировка на задачах и вечерние отчеты.
 
-> Управляет расписанием команды, проводит утренние брифинги, вечерние отчеты и напоминает об отчетах с учетом статуса выходных.
+## Возможности
+- Утренний бриф в 10:00 (МСК).
+- Вечерний отчет в 23:59 (МСК).
+- Напоминания каждый час, если отчет не сдан.
+- Обработка статуса "выходной".
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/team-manager`
-- **Source URL:** [https://clawhub.ai/skills/team-manager](https://clawhub.ai/skills/team-manager)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/team-manager
-```
+## Хранение состояния
+Скилл хранит статус ответов пользователей в `state.json`.

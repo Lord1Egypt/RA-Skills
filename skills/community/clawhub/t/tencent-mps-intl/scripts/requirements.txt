@@ -1,0 +1,23 @@
+# Tencent Cloud MPS Skill — Python dependencies
+#
+# Both packages are official Tencent Cloud SDKs (publisher: Tencent Cloud).
+# tencentcloud-sdk-python ships frequent updates (often weekly) to support new
+# MPS models / parameters. pip will install the latest version satisfying the
+# constraint; to force an upgrade later, run:
+#     pip install -r scripts/requirements.txt --upgrade
+#
+#   tencentcloud-sdk-python : Tencent Cloud MPS API client
+#     repo: https://github.com/TencentCloud/tencentcloud-sdk-python
+#     used by 19 scripts (transcode / enhance / erase / AIGC / highlight / ...)
+#
+#   cos-python-sdk-v5       : Tencent Cloud COS object storage client
+#     repo: https://github.com/tencentyun/cos-python-sdk-v5
+#     used by 10 scripts (upload / download / list)
+#
+#   python-dotenv           : .env file loader for environment variables
+#     repo: https://github.com/theskumar/python-dotenv
+#     used by mps_load_env.py (auto-load credentials from dotenv files)
+
+tencentcloud-sdk-python>=3.1.107
+cos-python-sdk-v5>=1.9.30
+python-dotenv>=1.0.0

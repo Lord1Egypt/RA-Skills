@@ -1,0 +1,39 @@
+{
+    "name": "towel-closet-shelf-map",
+    "displayName": "Towel Closet Shelf Map",
+    "version": "1.0.1",
+    "description": "Create a practical linen closet shelf map with towel zones, quantity targets, label text, reset cadence, and restock notes without making medical hygiene claims.",
+    "triggerKeywords": [
+        "towel closet map",
+        "linen closet organization",
+        "towel shelf labels",
+        "bathroom towel storage",
+        "towel quantity targets",
+        "guest towel shelf",
+        "washcloth storage",
+        "closet shelf reset"
+    ],
+    "tags": [
+        "home",
+        "organization",
+        "linen-closet",
+        "printable",
+        "checklist"
+    ],
+    "license": "MIT-0",
+    "language": "en",
+    "promptOnly": true,
+    "hasExecutableCode": false,
+    "requires_api": false,
+    "no_code_execution": true,
+    "execution": "noExec",
+    "no_network": true,
+    "no_credentials": true,
+    "contentType": "document-only",
+    "safety": "Practical towel and linen closet organization only; no medical hygiene, sanitation, infection-prevention, or regulated facility claims.",
+    "slug": "towel-closet-shelf-map",
+    "documentOnly": true,
+    "noExec": true,
+    "noNetwork": true,
+    "noCredentials": true
+}

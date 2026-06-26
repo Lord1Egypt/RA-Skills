@@ -1,0 +1,9 @@
+{
+  "blocked": [
+    {"domain": "baidu.com", "reason": "百度搜索（机器生成/过时内容）"},
+    {"domain": "csdn.net", "reason": "CSDN（爬虫聚合/SEO作弊）"},
+    {"domain": "jianshu.com", "reason": "简书（洗稿/标题党/同质化）"},
+    {"domain": "toutiao.com", "reason": "今日头条（AI垃圾内容重灾区）"},
+    {"domain": "mp.sohu.com", "reason": "搜狐自媒体（营销号聚集地）"}
+  ]
+}

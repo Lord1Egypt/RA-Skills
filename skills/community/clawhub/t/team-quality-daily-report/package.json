@@ -1,0 +1,20 @@
+{
+  "name": "@bondli-skills/team-quality-daily-report",
+  "version": "1.0.2",
+  "description": "Team Quality Daily Report Generator",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "SKILL.md",
+    "README.md",
+    "config.example.json"
+  ],
+  "dependencies": {
+    "@bondli-skills/shared": "^1.0.0",
+    "puppeteer": "^22.0.0",
+    "puppeteer-core": "^22.15.0"
+  },
+  "license": "MIT"
+}

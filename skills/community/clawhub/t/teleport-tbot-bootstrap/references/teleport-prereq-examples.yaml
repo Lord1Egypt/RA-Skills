@@ -1,0 +1,45 @@
+# Teleport-side examples for Machine ID setup (illustrative)
+# Adjust names/labels/policies to your environment.
+
+# Example bot role granting scoped node access + auto host-user creation.
+kind: role
+version: v8
+metadata:
+  name: openclaw-bot-role
+spec:
+  options:
+    create_host_user_mode: insecure-drop
+    create_host_user_default_shell: bash
+  allow:
+    logins: ["claw"]
+    node_labels:
+      openclaw-allowed: "true"
+---
+# Example Bot resource mapped to role(s).
+kind: bot
+version: v1
+metadata:
+  name: openclaw-bot
+spec:
+  roles: ["openclaw-bot-role"]
+---
+# Example token for Bot onboarding (bound keypair preferred + high recovery limit).
+kind: token
+version: v2
+metadata:
+  name: openclaw-bot-token
+spec:
+  roles: ["Bot"]
+  bot_name: openclaw-bot
+  join_method: bound_keypair
+  bound_keypair:
+    recovery:
+      mode: standard
+      limit: 999999
+
+# Retrieve registration secret (first join only):
+# tctl get token/openclaw-bot-token --format json \
+#   | jq -r '.[].status.bound_keypair.registration_secret'
+#
+# Then pass to tbot start/configure as:
+#   --registration-secret <value>

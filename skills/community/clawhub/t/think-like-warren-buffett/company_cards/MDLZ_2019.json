@@ -1,0 +1,47 @@
+{
+  "ticker": "MDLZ",
+  "company": "Mondelez International, Inc.",
+  "analysis_year": 2020,
+  "data_source": "Mondelez FY2019 10-K and Berkshire 2020-12-31 / 2021-12-31 / 2022-12-31 13F-HR",
+  "analyzed_date": "2026-03-26",
+
+  "hard_gates": {
+    "g1_roe_roic": { "value": 0.128, "metric_used": "ROE", "years_averaged": "2017-2019", "pass": true },
+    "g2_fcf_to_ni": { "value": 0.782, "fcf": 3040, "net_income": 3885, "pass": false },
+    "g3_leverage": { "metric_used": "Net Debt/EBITDA", "value": 3.59, "pass": true },
+    "g4_revenue_trend": { "description": "Revenue held roughly flat around $25.9B across 2017-2019. The business was mature, but there was no visible structural decline in the snack portfolio by late 2020.", "structural_decline": false, "pass": true },
+    "g5_gross_margin_trend": { "description": "Gross margin improved from about 38.7% in 2017 to 39.9% in 2018 and 40.0% in 2019. Margin quality was stable to better, not worse.", "declining_2plus_years": false, "pass": true },
+    "g6_earnings_yield": { "value": 0.038, "net_income_m": 3885, "ev_m": 101336, "exemption": null, "pass": false },
+    "g7_moat": { "verdict": "PASS", "moat_type": "brand", "description": "Mondelez had a real brand and distribution moat in global snacks, with scaled shelf presence and consumer habit. The issue was not moat absence, but whether a mature branded-food asset at that price still met a Buffett-style return hurdle.", "pass": true }
+  },
+
+  "special_channel": null,
+
+  "review_notes": {
+    "owner_earnings_note": {
+      "summary": "The modest g2 miss does not signal a broken business; it reflects a mature branded-food company whose cash conversion was fine but not exceptional after capex and working capital.",
+      "maintenance_vs_growth_view": "Capex was not wildly expansionary, so this is closer to a genuine mediocre conversion signal than a Wal-Mart-style reinvestment distortion.",
+      "decision_impact": "The g2 fail is real enough to keep on the record, and it combines with a low earnings yield to hold the conclusion at PASS."
+    },
+    "quality_multiple_note": {
+      "summary": "Mondelez traded on a premium consumer-staples multiple because the market valued its global snack portfolio and defensive cash flows.",
+      "reason_for_low_yield": "The low yield reflected quality and scarcity, but also a world where many branded staples already traded at compressed expected returns.",
+      "decision_impact": "The note explains the valuation backdrop without overturning the PASS."
+    },
+    "management_veto": {
+      "status": "clear",
+      "summary": "No management veto applied. The debate is about adequate return at the paid price, not trust in stewardship."
+    }
+  },
+
+  "control_groups": [
+    { "ticker": "KHC", "company": "The Kraft Heinz Company", "year": 2020, "gates_failed": ["g4_revenue_trend", "g5_gross_margin_trend"], "conclusion": "PASS — another large food company, but with much more visible franchise decay." },
+    { "ticker": "CPB", "company": "Campbell Soup Company", "year": 2020, "gates_failed": ["g4_revenue_trend", "g7_moat"], "conclusion": "PASS — stable business, but without Mondelez's global snack position." }
+  ],
+
+  "conclusion": "PASS",
+  "buffett_action": "Berkshire reported 578,000 Mondelez shares worth about $33.8M at 2020-12-31 in its 13F-HR.",
+  "actual_result": "The small position remained unchanged at 578,000 shares through 2021-12-31 and 2022-12-31. It behaved more like a legacy or tracker position than a major Berkshire thesis.",
+  "verdict": "⭐ framework_wins",
+  "key_insight": "Mature consumer brands can be perfectly sound businesses and still fail the framework when cash conversion is merely okay and the starting earnings yield is under 4%."
+}

@@ -1,35 +1,113 @@
 ---
-name: "文游剧本生成系统"
-description: "根据用户主题生成文字游戏剧本，内置19种成熟模板（古代家族、偶像养成、末日求生、校园恋爱、修仙等），支持导出Word文档到桌面。触发场景：生成文字游戏、文字游戏剧本创作、玩文字游戏、导出Word剧本。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/text-game-generator"
-sourceUrl: "https://clawhub.ai/skills/text-game-generator"
+name: 文字游戏剧本生成大师
+description: 根据用户主题生成文字游戏剧本，内置19种成熟模板（古代家族、偶像养成、末日求生、校园恋爱、修仙等），支持导出Word文档到桌面。触发场景：生成文字游戏、文字游戏剧本创作、玩文字游戏、导出Word剧本。
+version: 1.0.0
+author: AutoClaw
+categories: ["游戏", "创作", "导出"]
 ---
 
-# 文游剧本生成系统
+# 文字游戏剧本生成大师
 
-> 根据用户主题生成文字游戏剧本，内置19种成熟模板（古代家族、偶像养成、末日求生、校园恋爱、修仙等），支持导出Word文档到桌面。触发场景：生成文字游戏、文字游戏剧本创作、玩文字游戏、导出Word剧本。
+根据用户需求生成文字互动游戏剧本，内置多种成熟题材模板，支持导出 Word 文档。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/text-game-generator`
-- **Source URL:** [https://clawhub.ai/skills/text-game-generator](https://clawhub.ai/skills/text-game-generator)
+## 内置题材模板
 
-## Overview
+- 古代家族（基础版/言情版）- 族长后宅养成
+- ABO 家族（现代星际）- 未来家族传承
+- 偶像养成（基础版/言情版）- 娱乐公司经纪人
+- 末日求生 - 慢节奏生存建造
+- 带球跑单亲妈妈 - 现代养成
+- 欧洲女子人生 - 15-16世纪欧洲人生体验
+- 年代文 - 60年代至今人生
+- 经营青楼 - 古代青楼经营
+- 模拟皇帝 - 朝政后宫养成
+- 武侠人生 - 江湖历练修炼
+- 娱乐圈顶流养成 - 现代娱乐圈经营
+- 长公主 - 宫廷养成宫斗
+- 古代种田 - 农家发家致富
+- 红娘牵线 - 古代说媒
+- 高中生活 - 校园恋爱
+- 修仙之路 - 门派修仙
+- 读博模拟 - 考博读博毕业模拟器
 
+完整模板说明见 [references/templates.md](references/templates.md)
 
-## Installation
-To install this skill, run the following command in your terminal:
+## 使用流程
+
+### 1. 理解用户需求
+
+- 用户指定题材 → 直接使用对应模板
+- 用户只说"帮我生成一个文字游戏" → 询问用户想要什么题材，列出19种选项供选择
+- 用户提供自定义设定 → 整合自定义设定+统一格式规范生成剧本
+
+### 2. 生成剧本
+
+1. 读取 `references/templates.md` 获取对应模板设定
+2. 根据用户主题生成完整剧本，包含：
+   - 游戏背景世界观设定
+   - 主角初始信息（姓名、年龄、属性、外貌、性格）
+   - 初始家庭成员/关键NPC信息
+   - 开局场景描写
+   - 可执行选项
+   - 符合要求的排版格式（伪代码块、树状图等）
+
+### 3. 导出 Word
+
+剧本生成完成后，使用 `scripts/export_word.py` 导出到用户桌面：
+
 ```bash
-hermes skills install clawhub/text-game-generator
+python "SKILL_DIR/scripts/export_word.py" "$HOME/Desktop/文字游戏剧本_<标题>.docx" "<标题>" - <<EOF
+<这里放生成的Markdown格式剧本内容>
+EOF
 ```
+
+## 格式规范
+
+生成剧本使用 Markdown 格式，导出后自动转为 Word：
+
+```markdown
+# 游戏标题
+
+## 世界观背景
+
+这里写背景设定...
+
+## 初始设定
+
+### 主角信息
+
+- **姓名**：xxx
+- **年龄**：xx
+- **性格**：xxx
+- **外貌**：xxx
+- ...
+
+### 关键NPC
+
+1. **姓名** - 关系 - 描述
+2. ...
+
+## 开局剧情
+
+这里是开局剧情...
+
+## 可选项
+
+1. 选项一
+2. 选项二
+3. 选项三
+```
+
+## 依赖
+
+需要安装 python-docx：
+```bash
+pip install python-docx
+```
+
+## 输出要求
+
+1. **剧本结构完整**：包含背景、人物、开局、选项四个部分
+2. **符合模板设定**：严格遵循用户选定模板的各项规则
+3. **排版清晰**：使用 Markdown 标题、列表、分隔线区分板块
+4. **导出Word**：完成生成后必须导出到用户桌面，告知用户文件路径

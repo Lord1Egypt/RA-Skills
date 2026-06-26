@@ -1,0 +1,10 @@
+
+{
+  "name": "tavily-summary",
+  "description": "AI-optimized web search with structured summarization - combines Tavily API + proven summarization methodology",
+  "version": "1.0.0",
+  "author": "openclaw",
+  "license": "MIT",
+  "repository": "",
+  "keywords": ["search", "web", "ai", "summary", "tavily", "news"]
+}

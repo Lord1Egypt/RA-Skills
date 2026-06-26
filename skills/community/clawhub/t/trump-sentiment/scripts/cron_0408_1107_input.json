@@ -1,0 +1,115 @@
+{
+  "run_id": "forced_0408_1107",
+  "timestamp_utc": "2026-04-08T03:07:00Z",
+  "timestamp_cst": "2026-04-08 11:07 CST",
+  "source": "nasdaq_trigger_cron",
+  "keyword": "Trump Iran ceasefire deal",
+  "items": [
+    {
+      "id": "kobeissi_1",
+      "time_cst": "09:42",
+      "source": "X@KobeissiLetter",
+      "content": "BREAKING: The two-week ceasefire plan between Iran and the US allows Iran and Oman to charge fees on ships transiting through the Strait of Hormuz. Money would be used for reconstruction of Iran. Iran has been charging $2 million per ship.",
+      "engagement": "128 replies | 149 RTs | 870 likes | 66K views"
+    },
+    {
+      "id": "watcher_1",
+      "time_cst": "09:29",
+      "source": "X@WatcherGuru",
+      "content": "JUST IN: Iran and Oman to charge ships fees to pass through Strait of Hormuz during 2-week ceasefire.",
+      "engagement": "125 replies | 124 RTs | 956 likes | 48K views"
+    },
+    {
+      "id": "watcher_2",
+      "time_cst": "07:56",
+      "source": "X@WatcherGuru",
+      "content": "JUST IN: Iranian Foreign Minister Araghchi officially announces 'safe passage through the Strait of Hormuz' will be granted for 2 weeks.",
+      "engagement": "337 replies | 1824 RTs | 14008 likes | 484K views"
+    },
+    {
+      "id": "watcher_pinned",
+      "time_cst": "06:56",
+      "source": "X@WatcherGuru (Pinned)",
+      "content": "BREAKING: US and Iran agree to 2-week ceasefire, completely reopening Strait of Hormuz.",
+      "engagement": "581 replies | 1339 RTs | 9291 likes | 554K views"
+    },
+    {
+      "id": "x_ktzaleta",
+      "time_cst": "09:52",
+      "source": "X@ktzaleta",
+      "content": "Trump did not agree to all 10 points. What he agreed to: A two-week ceasefire conditional on Iran fully reopening Strait of Hormuz; Using Iran's 10-point plan as basis for further negotiation, not a final deal.",
+      "engagement": "305 views"
+    },
+    {
+      "id": "x_news18",
+      "time_cst": "09:52",
+      "source": "X@CNNnews18",
+      "content": "#BreakingNews: US President Trump announces 2-week ceasefire with Iran after appeal from Pakistan's PM Shehbaz Sharif & Field Marshal Asim Munir. Iran accepts deal, paving way for talks.",
+      "engagement": "127 views"
+    },
+    {
+      "id": "x_jean_andrei",
+      "time_cst": "09:52",
+      "source": "X@JeanAndrei8",
+      "content": "Trump basically gave Iran everything they wanted and we got the Strait of Hormuz opening... which was already open before the war started. ART OF THE DEAL EVERYONE!",
+      "engagement": "45 views"
+    },
+    {
+      "id": "x_mr_penguin",
+      "time_cst": "09:52",
+      "source": "X@MrPenguin289",
+      "content": "We never should have went to war in the first place. Trump said 'no new wars'. Now he has to deal with the consequences of surrendering or worse, a complete ground war in Iran to regime change. That's called losing.",
+      "engagement": "1 reply | 30 views"
+    },
+    {
+      "id": "x_trumpnado",
+      "time_cst": "09:53",
+      "source": "X@trumpnado45",
+      "content": "Did Trump Blink? Looks like Iran was trying to deal. We got our troops back. Next move in 2 weeks.",
+      "engagement": "24 views"
+    },
+    {
+      "id": "x_sam_brandon",
+      "time_cst": "09:53",
+      "source": "X@SamBran51277861",
+      "content": "Trump TACOed after negotiating the worst deal ever. The Democratic President in 2029 will have to renegotiate and get a real deal with Iran.",
+      "engagement": "11 views"
+    },
+    {
+      "id": "x_rogertansey",
+      "time_cst": "09:53",
+      "source": "X@rogertansey",
+      "content": "After starting an illegal war, wasting billions, killing thousands of civilians, Trump got the Strait open but under Iran's military control. Great deal - for Iran! (cites NY Times)",
+      "engagement": "1 like | 23 views"
+    },
+    {
+      "id": "x_kate_kc",
+      "time_cst": "09:55",
+      "source": "X@Kate__KC",
+      "content": "TRUMP: 'Make a deal, Iran or I will end your civilization.' DEMOCRATS: 'Trump is a maniac!!!' TRUMP: 'We have reached a deal with a mutual ceasefire for two weeks.' DEMOCRACTS: 'Trump is a...'",
+      "engagement": "0 likes"
+    },
+    {
+      "id": "x_inthecypher",
+      "time_cst": "09:55",
+      "source": "X@InTheCypherShow",
+      "content": "Trump accepted the same deal Iran offered 6 weeks ago and oil is up over 50% in 8 weeks. Only knuckle-dragging chuckle-fucks would call that a win.",
+      "engagement": "0 likes"
+    },
+    {
+      "id": "x_dmfreeman",
+      "time_cst": "09:55",
+      "source": "X@DMFreeman777",
+      "content": "IRAN is NOT honoring ceasefire. They waited for 8PM to pass, attacked SAUDI ARABIA, QATAR, UAE, TEL AVIV! Trump allowed Vance to cause him to chicken out!",
+      "engagement": "8 views"
+    },
+    {
+      "id": "x_goishadow",
+      "time_cst": "09:55",
+      "source": "X@GoIShadow",
+      "content": "Pakistan ne war rukwa di Paw Paw! Last-minute diplomatic breakthrough: Trump suspended planned military action after discussions with Pakistani leaders. Tehran agreed to two-week ceasefire.",
+      "engagement": "10+ likes"
+    }
+  ],
+  "note": "Web search and browser unavailable at time of run. Data from 09:56 CST forced trigger run."
+}

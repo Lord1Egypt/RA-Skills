@@ -1,0 +1,4 @@
+interface:
+  display_name: "Thesis Discussion Writer"
+  short_description: "Chinese academic discussion chapter writer"
+  default_prompt: "Use $thesis-discussion-writer to write a rigorous Chinese discussion chapter from my findings, theory, literature, limitations, implications, and recommendations."

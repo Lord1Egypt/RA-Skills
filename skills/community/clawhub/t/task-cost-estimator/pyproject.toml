@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=64", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "task-cost-estimator"
+version = "0.1.0"
+description = "Before starting any AI task, find the most cost-effective model and estimated cost. Task profiling + model matching + cost estimation in one command."
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.8"
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+]
+keywords = ["ai", "cost", "model", "task", "estimator", "optimization"]
+urls = { repository = "https://github.com/minirr890112-byte/HermesMade" }
+
+[project.scripts]
+task-cost = "task_cost_estimator.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["task_cost_estimator*"]

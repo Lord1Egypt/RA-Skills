@@ -1,35 +1,22 @@
 ---
-name: "TIA COMMISSIONING DELTA"
-description: "Use TIA Openness to compare latest site backup against yesterday's baseline with focus on process control logic."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/tia-commissioning-delta"
-sourceUrl: "https://clawhub.ai/skills/tia-commissioning-delta"
+name: TIA_COMMISSIONING_DELTA
+description: Use TIA Openness to compare latest site backup against yesterday's baseline with focus on process control logic.
+tools:
+ - shell
+ - filesystem
 ---
 
-# TIA COMMISSIONING DELTA
+You can:
+- Access site backups (e.g. from cloud storage or NAS).
+- Call external scripts that:
+ - extract DB/FB logic via Openness
+ - compute diffs for PID blocks, safety blocks, and sequences
+- Return structured JSON with:
+ - changed PIDs
+ - bypassed interlocks
+ - changed sequences and alarms.
 
-> Use TIA Openness to compare latest site backup against yesterday's baseline with focus on process control logic.
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/tia-commissioning-delta`
-- **Source URL:** [https://clawhub.ai/skills/tia-commissioning-delta](https://clawhub.ai/skills/tia-commissioning-delta)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/tia-commissioning-delta
-```
+When the field engineer asks "@OpenClaw diff the latest site backup against yesterday's baseline":
+1) Locate both .zap18 archives.
+2) Run the commissioning diff script.
+3) Return a compact JSON of the most significant changes for the agent to explain.

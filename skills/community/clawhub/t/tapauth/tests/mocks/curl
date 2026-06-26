@@ -1,0 +1,65 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+method="GET"
+url=""
+write_out=""
+original_args=("$@")
+
+while [ "$#" -gt 0 ]; do
+  case "$1" in
+    -X)
+      method="$2"
+      shift 2 ;;
+    -H|--data-urlencode)
+      shift 2 ;;
+    -w|--write-out)
+      write_out="$2"
+      shift 2 ;;
+    -s|-f|-sf|-fsS|-fs|-S)
+      shift ;;
+    http://mock/*)
+      url="$1"
+      shift ;;
+    *)
+      shift ;;
+  esac
+done
+
+case "$url" in
+  http://mock/api/v1/grants|http://mock/api/v1/grants/*) ;;
+  *)
+    echo "mock curl: unexpected URL '$url'" >&2
+    exit 7 ;;
+esac
+
+mkdir -p "$CURL_MOCK_STATE"
+count_file="${CURL_MOCK_STATE}/count"
+count=0
+if [ -f "$count_file" ]; then
+  count="$(cat "$count_file")"
+fi
+count=$((count + 1))
+printf '%s\n' "$count" > "$count_file"
+printf '%s %s\n' "$method" "$url" >> "${CURL_MOCK_STATE}/calls.log"
+printf '%s\n' "${original_args[@]}" > "${CURL_MOCK_STATE}/call-${count}.args"
+
+response="${CURL_MOCK_RESPONSE}/${count}.env"
+http_status=200
+if [ -f "$response" ]; then
+  first_line="$(sed -n '1p' "$response")"
+  case "$first_line" in
+    CURL_HTTP_STATUS=*)
+      http_status="${first_line#CURL_HTTP_STATUS=}"
+      sed '1d' "$response" ;;
+    *)
+      cat "$response" ;;
+  esac
+fi
+
+if [ -n "$write_out" ]; then
+  case "$write_out" in
+    *'%{http_code}'*) printf '\n%s' "$http_status" ;;
+    *) printf '%b' "$write_out" ;;
+  esac
+fi

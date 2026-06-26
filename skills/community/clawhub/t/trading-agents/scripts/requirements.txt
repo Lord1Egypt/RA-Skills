@@ -1,0 +1,28 @@
+# AgentScope股票诊断智能体系统依赖
+
+# 智能体框架
+agentscope>=0.0.5
+
+# 数据接口
+tushare>=1.2.89
+akshare>=1.12.0
+
+# 阿里云夸克搜索SDK
+alibabacloud_iqs20241111>=1.0.0
+alibabacloud_tea_openapi>=0.3.0
+
+# 基础依赖
+pandas>=2.0.0
+numpy>=1.24.0
+requests>=2.31.0
+
+# LLM支持
+openai>=1.0.0
+
+# Web界面
+streamlit>=1.28.0
+
+# PDF生成
+fpdf2>=2.8.0
+
+python-dotenv

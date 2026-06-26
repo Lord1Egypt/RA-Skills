@@ -1,0 +1,192 @@
+{
+  "timestamp": "2026-04-02T01:09:00+08:00",
+  "keyword_searches": [
+    {
+      "query": "xcancel Trump Iran deal",
+      "posts": [
+        {
+          "time_utc": "2026-04-01T",
+          "time_cst": "2026-04-01",
+          "author": "The Iran War: Day 32",
+          "content": "Rubio: Messages being exchanged with Iran",
+          "engagements": null,
+          "source": "xcancel"
+        },
+        {
+          "time_utc": "2026-04-01T",
+          "time_cst": "2026-04-01",
+          "author": "Multiple accounts",
+          "content": "Iran says they haven't responded to 15-point US proposal; denies formal negotiations",
+          "engagements": null,
+          "source": "xcancel"
+        },
+        {
+          "time_utc": "2026-04-01T",
+          "time_cst": "2026-04-01",
+          "author": "Breaking",
+          "content": "Trump set to address nation on Iran tonight amid uncertainty about how long he's prepared to continue five-week war",
+          "engagements": null,
+          "source": "xcancel"
+        },
+        {
+          "time_utc": "2026-03-31T",
+          "time_cst": "2026-03-31",
+          "author": "Multiple accounts",
+          "content": "Trump touts attack on Iranian munitions depot as drawdown talks continue",
+          "engagements": null,
+          "source": "xcancel"
+        }
+      ]
+    },
+    {
+      "query": "xcancel Iran ceasefire",
+      "posts": [
+        {
+          "time_utc": "2026-04-01T",
+          "time_cst": "2026-04-01",
+          "author": "Multiple accounts",
+          "content": "Oil prices reverse to fall after Trump signals avoiding prolonged conflict; Rubio confirms messages exchanged with Iran",
+          "engagements": null,
+          "source": "xcancel"
+        },
+        {
+          "time_utc": "2026-04-01T",
+          "time_cst": "2026-04-01",
+          "author": "Multiple accounts",
+          "content": "Trump set to address nation on Iran, US seeks war off-ramp",
+          "engagements": null,
+          "source": "xcancel"
+        }
+      ]
+    }
+  ],
+  "big_v_accounts": [
+    {
+      "account": "KobeissiLetter",
+      "last_post_cst": "2026-03-31",
+      "content": "No new posts on April 1 (last was March 31)",
+      "engagements": null,
+      "source": "x.com"
+    },
+    {
+      "account": "WatcherGuru",
+      "last_post_cst": "2026-03-31",
+      "content": "No new posts on April 1 (last was March 31)",
+      "engagements": null,
+      "source": "x.com"
+    },
+    {
+      "account": "zerohedge",
+      "last_post_cst": "2026-04-01T16:44 ET",
+      "content": "Rubio: Messages being exchanged with Iran, potential direct meeting",
+      "engagements": "high",
+      "source": "x.com"
+    }
+  ],
+  "web_search_results": [
+    {
+      "source": "CNN",
+      "time": "7 hours ago",
+      "cst_time": "2026-04-01T18:09",
+      "headline": "Day 31: Trump again threatens to blow up Iran's energy sources",
+      "key_content": "Trump threatened to obliterate Iran's electric plants and oil wells if deal not reached",
+      "market_reaction": "Oil prices rose on threats"
+    },
+    {
+      "source": "CNN",
+      "time": "7 hours ago",
+      "cst_time": "2026-04-01T18:09",
+      "headline": "Day 32: Kuwaiti oil tanker attacked",
+      "key_content": "Fully loaded Kuwaiti tanker struck by drone; Rubio says messages exchanged with Iran",
+      "market_reaction": "Risk-off sentiment"
+    },
+    {
+      "source": "Fox News",
+      "time": "5 hours ago",
+      "cst_time": "2026-04-01T20:09",
+      "headline": "Trump touts attack on Iranian munitions depot as drawdown talks continue",
+      "key_content": "Trump says US campaign to wind down; Iran nearing halfway mark of 10-day pause",
+      "market_reaction": "S&P surged 3% on hopes"
+    },
+    {
+      "source": "NYT",
+      "time": "3 hours ago",
+      "cst_time": "2026-04-01T22:09",
+      "headline": "Trump Says U.S. Campaign to Wind Down and Plans National Address",
+      "key_content": "Trump claims stock prices rose because 'safe country' and regime change in Iran; S&P up 2.9%",
+      "market_reaction": "Market rally on de-escalation hopes"
+    },
+    {
+      "source": "BBC",
+      "time": "16 hours ago",
+      "cst_time": "2026-04-01T09:09",
+      "headline": "Trump says US will leave Iran 'whether we have a deal or not'",
+      "key_content": "War could end without deal; fuel prices will come down as soon as US ends military actions; 'totally unchecked' and 'everything's been bombed out'",
+      "market_reaction": "Relief rally"
+    },
+    {
+      "source": "Bloomberg",
+      "time": "35 min ago",
+      "cst_time": "2026-04-02T00:34",
+      "headline": "Trump Set to Address Nation on Iran as US Seeks War Off-Ramp",
+      "key_content": "Trump to deliver rare primetime address on Iran amid uncertainty about continued five-week war that has shuttered Strait of Hormuz",
+      "market_reaction": "Awaiting address"
+    },
+    {
+      "source": "Bloomberg",
+      "time": "14 hours ago",
+      "cst_time": "2026-04-01T11:09",
+      "headline": "Trump Presses Allies on Iran as Frustration Grows",
+      "key_content": "Trump foresaw ending war within 2-3 weeks; US largely accomplished military goals; will leave resolution of Strait of Hormuz to other nations",
+      "market_reaction": "S&P up 2.9%, relief rally"
+    },
+    {
+      "source": "CNBC",
+      "time": "3 hours ago",
+      "cst_time": "2026-04-01T22:09",
+      "headline": "Dow surges 1,100 points, S&P 500 best day since May",
+      "key_content": "Hopes grow for end of Iran war; S&P 500 +2.9%, Nasdaq +3.8%, Dow +2.5%; oil prices also rose then reversed on de-escalation signals",
+      "market_reaction": "Major rally"
+    },
+    {
+      "source": "The Guardian",
+      "time": "3 hours ago",
+      "cst_time": "2026-04-01T22:09",
+      "headline": "Oil price falls and markets rally after Trump says Iran war over in 2-3 weeks",
+      "key_content": "Trump: 'Now we're finishing the job. I think in two weeks or maybe a few days longer, we'll do the job. We want to knock out everything they've got.'",
+      "market_reaction": "Oil WTI fell, S&P +2.9%"
+    },
+    {
+      "source": "The Guardian",
+      "time": "20 hours ago",
+      "cst_time": "2026-04-01T05:09",
+      "headline": "US average fuel price passes $4 a gallon for first time in 4 years",
+      "key_content": "US gasoline crossed $4/gallon average; S&P up on Tuesday afternoon rally",
+      "market_reaction": "Energy prices elevated despite rally"
+    },
+    {
+      "source": "Business Insider",
+      "time": "1 day ago",
+      "cst_time": "2026-03-31T",
+      "headline": "US Stocks Surge on Iran War End Reports",
+      "key_content": "S&P 500 +2.45% to 6,499.27; Nasdaq +3.34% (+695 pts to 21,490); oil reaction split",
+      "market_reaction": "Relief rally, oil split"
+    },
+    {
+      "source": "AP News",
+      "time": "1 day ago",
+      "cst_time": "2026-03-31T",
+      "headline": "Trump says US negotiating with Iran after renewing threats to oil sites",
+      "key_content": "Trump confirmed talks with Iranian Parliament Speaker Qalibaf in NY Post interview",
+      "market_reaction": "Mixed"
+    },
+    {
+      "source": "The Express",
+      "time": "1 hour ago",
+      "cst_time": "2026-04-02T00:09",
+      "headline": "Fox News issues huge Iran breaking news",
+      "key_content": "Trump's latest update on negotiations revealed on April 1",
+      "market_reaction": "Awaiting address"
+    }
+  ]
+}

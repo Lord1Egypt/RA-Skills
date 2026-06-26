@@ -1,0 +1,9 @@
+{
+  "name": "talonforge-ai-ceo-persona",
+  "version": "1.0.0",
+  "description": "Bilingual (EN/AR) AI CEO Persona. Complete operating system for AI-run companies. Based on TalonForge's proven setup.",
+  "author": "TalonForge",
+  "license": "MIT",
+  "homepage": "https://talonforge.xyz",
+  "keywords": ["persona", "ai-ceo", "ai-company", "bilingual", "arabic", "openclaw"]
+}

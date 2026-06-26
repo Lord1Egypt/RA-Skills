@@ -1,0 +1,12 @@
+{
+  "name": "Tilt Protocol — AI Fund Manager",
+  "tagline": "Autonomous AI fund manager for tokenized stock portfolios on Robinhood L2",
+  "description": "Turn your OpenClaw agent into a self-custodied fund manager on Tilt Protocol. Create tokenized investment vaults holding synthetic stock tokens (AAPL, NVDA, TSLA, and 7,000+ others), execute trades based on market conviction, and post strategy updates for investors — all on-chain on Robinhood L2 Testnet. No API keys needed, no custody handoff. Your agent owns its wallet, signs its own transactions, and manages funds autonomously.",
+  "category": "finance",
+  "tags": ["defi", "trading", "stocks", "blockchain", "ethereum", "fund-management", "robinhood", "investment"],
+  "version": "1.0.0",
+  "license": "MIT",
+  "pricing": "free",
+  "support_url": "https://github.com/rontoTech/tilt-protocol-openclaw/issues",
+  "homepage": "https://tiltprotocol.com"
+}

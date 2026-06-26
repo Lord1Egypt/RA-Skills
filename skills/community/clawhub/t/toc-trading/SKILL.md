@@ -1,35 +1,172 @@
 ---
-name: "Toc Trading"
-description: "TOC 股票助手 - AI股神挑战 + 股票分析 + 交易模拟 功能： - AI股神挑战：AI自主选股决策，每日同步操作和收益 - 四大行业分析：AI/消费品/汽车/医疗板块涨跌 - 市场热点：热门概念、板块资金流向 - 股票池：自选股管理 - 持仓模拟：买入/卖出/盈亏计算 - 演练模式：假设交易收益计算 触发..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/toc-trading"
-sourceUrl: "https://clawhub.ai/skills/toc-trading"
+name: toc-stock
+title: TOC Stock - AI股票助手
+description: |
+  TOC 股票助手 - AI股神挑战 + 股票分析 + 交易模拟
+  
+  功能：
+  - AI股神挑战：AI自主选股决策，每日同步操作和收益
+  - 四大行业分析：AI/消费品/汽车/医疗板块涨跌
+  - 市场热点：热门概念、板块资金流向
+  - 股票池：自选股管理
+  - 持仓模拟：买入/卖出/盈亏计算
+  - 演练模式：假设交易收益计算
+  
+  触发场景：
+  - "开启挑战" / "挑战状态" / "挑战统计"
+  - "四大行业" / "市场概况" / "有什么消息"
+  - "加一只 XXX" / "持仓" / "买 100 手 @ 15.6"
+  - "推荐一只股票" / "如果昨天开盘买入 XXX"
+author: Xiao Wu
+owner: xiaowu
+version: 1.0.0
+tags:
+  - stock
+  - trading
+  - finance
+  - ai
+  - china-a-stock
+requirements:
+  python: 3.7+
+  packages:
+    - akshare
+    - tushare
+  environment_variables:
+    - name: TUSHARE_TOKEN
+      required: false
+      sensitive: true
 ---
 
-# Toc Trading
+# TOC Stock - AI股票助手
 
-> TOC 股票助手 - AI股神挑战 + 股票分析 + 交易模拟 功能： - AI股神挑战：AI自主选股决策，每日同步操作和收益 - 四大行业分析：AI/消费品/汽车/医疗板块涨跌 - 市场热点：热门概念、板块资金流向 - 股票池：自选股管理 - 持仓模拟：买入/卖出/盈亏计算 - 演练模式：假设交易收益计算 触发...
+智能股票分析与模拟交易系统。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/toc-trading`
-- **Source URL:** [https://clawhub.ai/skills/toc-trading](https://clawhub.ai/skills/toc-trading)
+## 功能模块
 
-## Overview
+### 🏆 AI股神挑战
 
+AI自主选股决策，每日同步操作和收益。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/toc-trading
+**命令**：
+- `开启挑战` — 开始月度挑战
+- `挑战状态` — 查看当前状态、资金、剩余交易次数
+- `挑战统计` — 查看详细统计（胜率/连盈/单笔最大）
+- `结束挑战` — 结束并汇总结果
+
+**规则**：
+| 项目 | 说明 |
+|------|------|
+| 初始资金 | 50,000 元 |
+| 每日交易 | 最多 3 笔 |
+| 止损线 | -7% |
+| 决策者 | AI 自主决策 |
+| 同步 | 每日操作 + 收益 + 原因 |
+
+### 📊 四大行业分析
+
+分析 AI/消费品/汽车/医疗 四大行业板块涨跌。
+
+**命令**：
+- `四大行业` — AI/消费品/汽车/医疗板块排行
+- `市场概况` — 热门概念和行业
+- `有什么消息` — 今日市场热点信号
+
+**数据源**：AKShare（东方财富公开数据）
+
+### 📈 股票池
+
+管理自选股列表。
+
+**命令**：
+- `加一只 XXX` — 添加股票到自选
+- `去掉 XXX` — 从自选移除
+- `股票池` — 查看自选股列表
+
+### 💰 持仓模拟
+
+记录买卖，计算实时盈亏。
+
+**命令**：
+- `买 100 手 @ 15.6 招商银行` — 记录买入
+- `卖 50 手 招商银行` — 记录卖出
+- `持仓` — 查看当前持仓和盈亏
+- `历史交易` — 查看成交记录
+
+### 🔍 演练模式
+
+假设交易计算收益。
+
+**命令**：
+- `如果昨天开盘买入 XXX` — 计算假设收益
+
+### 🤖 股票推荐
+
+AI基于市场数据推荐股票。
+
+**命令**：
+- `推荐一只股票` — 基于今日强势推荐
+- `今日金股` — 每日推荐一只
+
+## 使用示例
+
+```
+用户：开启挑战
+小悟：🏆 AI股神挑战已开启！初始资金：50,000 元
+
+用户：四大行业
+小悟：📊 四大行业板块分析
+【AI/人工智能】
+1. 🟢 半导体设备 +2.49%
+   领涨: 先锋精科
+...
+
+用户：买 100 手 @ 185.6 宁德时代
+小悟：✅ 买入记录已保存
+      股票：宁德时代
+      买入价：185.60
+      数量：100手 (10,000股)
+      持仓成本：1,856,000 元
+
+用户：持仓
+小悟：📊 当前持仓
+      股票 | 买入价 | 当前价 | 盈亏 | 盈亏率
+      宁德时代 | 185.60 | 192.30 | +33,500 | +1.80%
+      💰 总盈亏：+33,500 元 (+1.80%)
+```
+
+## 实现文件
+
+```
+src/
+├── toc_app.py           # 主入口，定义 process() 函数
+├── command_parser.py    # 命令解析器
+├── akshare_client.py    # AKShare 数据源（东方财富）
+├── tushare_client.py   # Tushare 数据源（备用）
+├── monitor.py           # 心跳监控
+├── data/
+│   └── storage.py      # JSON 存储
+└── services/
+    ├── stock_pool.py   # 股票池服务
+    ├── position.py      # 持仓服务
+    ├── recommendation.py # 推荐服务
+    └── challenge.py    # 挑战服务
+```
+
+## 数据源
+
+| 数据源 | 说明 | 权限 |
+|--------|------|------|
+| AKShare | 东方财富公开数据 | 无需 API Key |
+| Tushare | A股数据 | 需要 Token（可选） |
+
+## 调用方式
+
+当用户输入交易相关命令时，调用 `src/toc_app.py` 中的 `process()` 函数：
+
+```python
+from toc_app import TOCTTrading
+
+toc = TOCTTrading()
+result = toc.process("四大行业")
+# 返回 Markdown 格式结果
 ```

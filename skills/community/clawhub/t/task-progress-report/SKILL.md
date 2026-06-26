@@ -1,35 +1,186 @@
 ---
-name: "Task Progress Report"
-description: "在运行长任务时，同步开启"任务进展汇报"功能，定时输出当前任务进展情况。当用户提到"汇报进展"、"定时报告"、"任务进度"、"长时间运行"、"监控任务状态"或需要了解长时间任务的执行情况时，使用此技能。特别适用于模型蒸馏、数据训练、批量处理、爬虫任务等需要长时间运行的场景。"
-category: "devops"
-source: "ClawHub"
-tags: [monitoring, progress, report, task]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/task-progress-report"
-sourceUrl: "https://clawhub.ai/skills/task-progress-report"
+name: task-progress-report
+description: 在运行长任务时，同步开启"任务进展汇报"功能，定时输出当前任务进展情况。当用户提到"汇报进展"、"定时报告"、"任务进度"、"长时间运行"、"监控任务状态"或需要了解长时间任务的执行情况时，使用此技能。特别适用于模型蒸馏、数据训练、批量处理、爬虫任务等需要长时间运行的场景。
 ---
 
-# Task Progress Report
+# Task Progress Report - 任务进展汇报
 
-> 在运行长任务时，同步开启"任务进展汇报"功能，定时输出当前任务进展情况。当用户提到"汇报进展"、"定时报告"、"任务进度"、"长时间运行"、"监控任务状态"或需要了解长时间任务的执行情况时，使用此技能。特别适用于模型蒸馏、数据训练、批量处理、爬虫任务等需要长时间运行的场景。
+本技能用于在长任务执行期间，定期生成并输出任务进展报告。
 
-- **Category:** DevOps
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/task-progress-report`
-- **Source URL:** [https://clawhub.ai/skills/task-progress-report](https://clawhub.ai/skills/task-progress-report)
+## 功能概述
 
-## Overview
+- **定时汇报**：按设定间隔自动生成进展报告
+- **智能输出**：简短结论直接显示，详细内容保存文件
+- **文件归档**：完整报告保存至 `/root/.openclaw/workspace/reports/progress/task_progress_report.md`
 
+## 使用方法
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/task-progress-report
+### 1. 启动任务进展汇报
+
+当用户要求开启任务进展汇报时，使用以下步骤：
+
+1. **确认任务信息**：
+   - 任务名称/描述
+   - 预计总时长或总工作量
+   - 汇报间隔（默认每5分钟）
+   - 关键检查点（可选）
+
+2. **初始化报告文件**：
+   ```bash
+   mkdir -p /root/.openclaw/workspace/reports/progress
+   ```
+
+3. **启动定时汇报**（使用 qqbot-cron 或其他定时机制）：
+   - 设置定时任务，按指定间隔触发汇报
+   - 每次汇报时调用本技能的报告生成逻辑
+
+### 2. 生成进展报告
+
+每次汇报时，按以下格式生成内容：
+
+**简短消息（直接发送给用户）**：
 ```
+【任务进展 X/Y】
+✅ 已完成：[关键成果简述]
+🔄 正在：[当前进行的工作]
+⏱️ 预计：[剩余时间/工作量估计]
+💡 建议：[如有可执行建议]
+
+📄 详细报告：/root/.openclaw/workspace/reports/progress/task_progress_report.md
+```
+
+**详细报告文件（Markdown格式）**：
+```markdown
+# 任务进展报告 - [任务名]
+
+## 执行摘要
+- 开始时间：[timestamp]
+- 当前进度：[X/Y] 或 [X%]
+- 已用时间：[duration]
+- 预计剩余：[remaining]
+- 状态：[正常/警告/阻塞]
+
+## 已完成工作
+1. [具体完成项1]
+2. [具体完成项2]
+...
+
+## 当前进行
+[详细描述当前正在执行的操作]
+
+## 遇到的问题
+| 问题 | 严重程度 | 解决方案 |
+|------|----------|----------|
+| [问题1] | [高/中/低] | [建议] |
+
+## 下一步计划
+1. [接下来要做的事]
+2. [...]
+
+## 关键指标
+- [指标1]: [值]
+- [指标2]: [值]
+
+## 资源使用
+- CPU: [X%]
+- 内存: [X%]
+- 磁盘: [X%]
+- 网络: [如有相关]
+
+---
+更新时间: [timestamp]
+```
+
+### 3. 结束汇报
+
+任务完成时：
+1. 生成最终报告
+2. 总结关键成果
+3. 清理定时任务（如需要）
+
+## 输出策略详解
+
+### 何时使用简短消息
+- 常规进展汇报
+- 状态正常无异常
+- 用户只需要了解概况
+
+### 何时包含可执行建议
+- 检测到潜在问题
+- 发现优化机会
+- 需要用户决策
+
+### 详细报告更新规则
+- **追加模式**：保留历史记录，便于追溯
+- **关键信息置顶**：最新状态放在文件开头
+- **日志式记录**：每次更新添加时间戳
+
+## 示例场景
+
+### 场景1：模型训练任务
+```
+用户：帮我训练一个模型，记得定时汇报进展
+
+→ 启动进展汇报
+→ 每5分钟生成报告：
+   简短消息：
+   【任务进展 Epoch 3/10】
+   ✅ 已完成：前3个epoch训练，loss从2.3降至1.1
+   🔄 正在：第4个epoch训练中
+   ⏱️ 预计：还需约12分钟完成全部训练
+   💡 建议：当前学习率合适，可继续保持
+   
+   📄 详细报告：/root/.openclaw/workspace/reports/progress/task_progress_report.md
+```
+
+### 场景2：批量数据处理
+```
+用户：处理这10万条数据，有进展告诉我
+
+→ 启动进展汇报
+→ 按批次（如每1万条）或按时间间隔汇报
+```
+
+### 场景3：多阶段任务
+```
+用户：执行这个多步骤分析任务，每一步都汇报
+
+→ 在每个阶段完成时汇报
+→ 阶段转换时特别标注
+```
+
+## 脚本工具
+
+### 报告生成脚本
+
+使用 `/root/.openclaw/workspace/skills/task-progress-report/scripts/generate_report.py` 辅助生成报告：
+
+```python
+# 示例调用
+python generate_report.py \
+  --task-name "模型训练" \
+  --progress "3/10" \
+  --status "normal" \
+  --summary "loss下降良好" \
+  --details "详见文件"
+```
+
+## 最佳实践
+
+1. **汇报频率**：根据任务总时长设置合理间隔
+   - < 30分钟：每5分钟
+   - 30分钟-2小时：每10分钟
+   - 2-8小时：每30分钟
+   - > 8小时：每1小时
+
+2. **信息粒度**：
+   - 简短消息 ≤ 100字
+   - 详细报告可完整记录
+
+3. **异常处理**：
+   - 发现异常立即汇报，不等待定时点
+   - 明确标注问题严重程度和解决方案
+
+4. **文件管理**：
+   - 任务完成后可选择归档报告
+   - 长期运行的任务可按日期分割报告文件

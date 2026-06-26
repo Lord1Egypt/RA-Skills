@@ -1,0 +1,50 @@
+{
+  "ticker": "BUD",
+  "company": "Anheuser-Busch Companies, Inc.",
+  "analysis_year": 2005,
+  "data_source": "Anheuser-Busch FY2005 annual report, SEC EDGAR; Berkshire 2005 annual report; 2005 Berkshire AGM Q&A",
+  "analyzed_date": "2026-03-25",
+
+  "hard_gates": {
+    "g1_roe_roic": { "value": 0.582, "metric_used": "ROE", "years_averaged": "2003-2005", "pass": true },
+    "g2_fcf_to_ni": { "value": 0.90, "fcf": 1565, "net_income": 1744, "pass": true },
+    "g3_leverage": { "metric_used": "Net Debt/EBITDA", "value": 2.6, "pass": true },
+    "g4_revenue_trend": { "description": "The U.S. beer market was mature and volumes were flat, but the business was not yet in structural decline. Revenue remained stable and the company retained premium category leadership.", "structural_decline": false, "pass": true },
+    "g5_gross_margin_trend": { "description": "Margin pressure existed, but there was not a clean two-year structural collapse; 2005 margins stabilized versus 2004 after a tougher 2005 operating backdrop.", "declining_2plus_years": false, "pass": true },
+    "g6_earnings_yield": { "value": 0.046, "net_income_m": 1744, "ev_m": 37900, "exemption": null, "pass": false },
+    "g7_moat": { "verdict": "PASS", "moat_type": "brand", "description": "Budweiser and the wider Anheuser portfolio still held very strong consumer mindshare, distribution muscle, and category economics. Buffett said in 2005 that the product was easy to understand and that private-label pressure in beer was unusually limited versus many other consumer categories.", "pass": true }
+  },
+
+  "special_channel": null,
+
+  "review_notes": {
+    "quality_multiple_note": {
+      "summary": "Anheuser-Busch traded on a low earnings yield because the market was paying for scarce brand power, distribution muscle, and strategic value in global beer.",
+      "reason_for_low_yield": "The low yield was not pure hype. It reflected a durable brand franchise and the possibility that a strategic buyer would eventually value the asset more highly than a standalone screen would.",
+      "decision_impact": "The note does not automatically overturn the valuation fail, but it explains why a flat 6% hurdle was too crude for this case."
+    },
+    "management_veto": {
+      "status": "clear",
+      "summary": "There was no governance veto here. The debate was about valuation discipline versus brand scarcity, not management trust."
+    }
+  },
+
+  "metrics_snapshot": {
+    "net_sales_2005_usd_m": 15036,
+    "net_income_2005_usd_m": 1744,
+    "operating_cash_flow_2005_usd_m": 2702,
+    "capex_2005_usd_m": 1137,
+    "berkshire_cost_2005_usd_m": 2133
+  },
+
+  "control_groups": [
+    { "ticker": "TAP", "company": "Molson Coors", "year": 2005, "gates_failed": ["g6_earnings_yield", "g7_moat"], "conclusion": "PASS — meaningful brands, but not the same U.S. category dominance and economics." },
+    { "ticker": "HEINY", "company": "Heineken", "year": 2005, "gates_failed": ["g6_earnings_yield"], "conclusion": "PASS — global brand strength was real, but valuation offered similarly limited margin of safety." }
+  ],
+
+  "conclusion": "PASS",
+  "buffett_action": "Berkshire established an Anheuser-Busch position in 2005 and held 43.9M shares at year-end.",
+  "actual_result": "InBev agreed to acquire Anheuser-Busch in 2008 for $70 per share in cash, giving Berkshire a solid gain.",
+  "verdict": "❌ framework_wrong",
+  "key_insight": "The framework still undershoots some strong brands when a strategic buyer later pays more than the standalone earnings yield would justify."
+}

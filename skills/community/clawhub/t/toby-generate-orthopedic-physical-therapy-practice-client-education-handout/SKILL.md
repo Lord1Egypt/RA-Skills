@@ -1,35 +1,62 @@
 ---
-name: "Generate Orthopedic Physical Therapy Practice Client Education Handout"
+name: Generate Orthopedic Physical Therapy Practice Client Education Handout
+
 description: "Create a polished explainer handout with visuals, FAQs, and clear next steps for a physical therapy practice. Use when handling client education work..."
-category: "productivity"
-source: "ClawHub"
-tags: [automation, skillboss]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/toby-generate-orthopedic-physical-therapy-practice-client-education-handout"
-sourceUrl: "https://clawhub.ai/skills/toby-generate-orthopedic-physical-therapy-practice-client-education-handout"
+version: "1.0.0"
+
+allowed-tools: Bash, Read
+
+metadata:
+
+  openclaw:
+
+    emoji: "📝"
+
+    homepage: "https://www.skillboss.co/skills/generate-orthopedic-physical-therapy-practice-client-education-handout"
+
 ---
+
+> 📖 **Complete setup guide**: https://skillboss.co/skill.md
 
 # Generate Orthopedic Physical Therapy Practice Client Education Handout
 
-> Create a polished explainer handout with visuals, FAQs, and clear next steps for a physical therapy practice. Use when handling client education work...
+Create a polished explainer handout with visuals, FAQs, and clear next steps for a physical therapy practice. Use when handling client education work...
 
-- **Category:** Productivity
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/toby-generate-orthopedic-physical-therapy-practice-client-education-handout`
-- **Source URL:** [https://clawhub.ai/skills/toby-generate-orthopedic-physical-therapy-practice-client-education-handout](https://clawhub.ai/skills/toby-generate-orthopedic-physical-therapy-practice-client-education-handout)
+## Use When
 
-## Overview
+Use this skill for client education work for physical therapists, rehab clinic operators.
 
+## Workflow
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/toby-generate-orthopedic-physical-therapy-practice-client-education-handout
-```
+1. Clarify the audience, business goal, constraints, and deliverable.
+2. Produce the strongest first draft for the target use case.
+3. Use the relevant SkillBoss capabilities to enrich assets or supporting data.
+4. Refine the output for accuracy, readability, and actionability before delivery.
+
+## SEO / GEO
+
+- Primary keywords: physical therapy practice education handout, physical therapy practice client explainer, physical therapy practice FAQ guide, physical therapy practice visual handout
+- Search intent: client education
+- Canonical slug: `generate-orthopedic-physical-therapy-practice-client-education-handout`
+- Install query: Install Generate Orthopedic Physical Therapy Practice Client Education Handout with SkillBoss
+
+## APIs Used
+
+- `chat`
+- `image_generation`
+
+## Suggested Prompt
+
+[Generate Orthopedic Physical Therapy Practice Client Education Handout] for my physical therapy practice
+
+## Notes
+
+- Create a polished explainer handout with visuals, FAQs, and clear next steps for a physical therapy practice
+- Use human review before sending patient-facing content or relying on regulated medical claims.
+
+## SEO Keywords
+
+- physical therapy practice education handout
+- physical therapy practice client explainer
+- physical therapy practice FAQ guide
+- physical therapy practice visual handout

@@ -1,0 +1,121 @@
+{
+  "taskClasses": {
+    "summarization": {
+      "baseInputTokens": 1200,
+      "baseOutputTokens": 260,
+      "baseDurationMs": 3600
+    },
+    "code_generation": {
+      "baseInputTokens": 2100,
+      "baseOutputTokens": 620,
+      "baseDurationMs": 6800
+    },
+    "code_audit": {
+      "baseInputTokens": 2600,
+      "baseOutputTokens": 540,
+      "baseDurationMs": 7600
+    },
+    "reasoning": {
+      "baseInputTokens": 1700,
+      "baseOutputTokens": 420,
+      "baseDurationMs": 6100
+    },
+    "creative": {
+      "baseInputTokens": 1400,
+      "baseOutputTokens": 760,
+      "baseDurationMs": 6400
+    },
+    "extraction": {
+      "baseInputTokens": 1800,
+      "baseOutputTokens": 300,
+      "baseDurationMs": 5000
+    },
+    "conversation": {
+      "baseInputTokens": 900,
+      "baseOutputTokens": 220,
+      "baseDurationMs": 2900
+    }
+  },
+  "models": {
+    "claude-haiku-3": {
+      "pricing": {
+        "inputPerMTok": 0.25,
+        "outputPerMTok": 1.25
+      },
+      "qualityScore": 0.72,
+      "retryRate": 0.16,
+      "outputFactor": 0.85,
+      "durationFactor": 0.78
+    },
+    "claude-sonnet-4": {
+      "pricing": {
+        "inputPerMTok": 3,
+        "outputPerMTok": 15
+      },
+      "qualityScore": 0.9,
+      "retryRate": 0.08,
+      "outputFactor": 1,
+      "durationFactor": 1
+    },
+    "claude-opus-4": {
+      "pricing": {
+        "inputPerMTok": 15,
+        "outputPerMTok": 75
+      },
+      "qualityScore": 0.95,
+      "retryRate": 0.05,
+      "outputFactor": 1.07,
+      "durationFactor": 1.25
+    },
+    "gpt-4o": {
+      "pricing": {
+        "inputPerMTok": 2.5,
+        "outputPerMTok": 10
+      },
+      "qualityScore": 0.88,
+      "retryRate": 0.09,
+      "outputFactor": 0.98,
+      "durationFactor": 0.94
+    },
+    "gpt-4o-mini": {
+      "pricing": {
+        "inputPerMTok": 0.15,
+        "outputPerMTok": 0.6
+      },
+      "qualityScore": 0.68,
+      "retryRate": 0.18,
+      "outputFactor": 0.86,
+      "durationFactor": 0.74
+    },
+    "o3": {
+      "pricing": {
+        "inputPerMTok": 10,
+        "outputPerMTok": 40
+      },
+      "qualityScore": 0.93,
+      "retryRate": 0.06,
+      "outputFactor": 1.03,
+      "durationFactor": 1.22
+    },
+    "gemini-flash": {
+      "pricing": {
+        "inputPerMTok": 0.075,
+        "outputPerMTok": 0.3
+      },
+      "qualityScore": 0.66,
+      "retryRate": 0.2,
+      "outputFactor": 0.84,
+      "durationFactor": 0.72
+    },
+    "gemini-pro": {
+      "pricing": {
+        "inputPerMTok": 1.25,
+        "outputPerMTok": 5
+      },
+      "qualityScore": 0.82,
+      "retryRate": 0.12,
+      "outputFactor": 0.95,
+      "durationFactor": 0.9
+    }
+  }
+}

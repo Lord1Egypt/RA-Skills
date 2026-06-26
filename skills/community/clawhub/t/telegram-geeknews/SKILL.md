@@ -1,35 +1,183 @@
 ---
-name: "geeknews-bot"
-description: "매일 GeekNews(news.hada.io)에서 오늘의 HOT 이슈 5개를 큐레이션하고, 오픈소스 출시·GitHub star 급상승 프로젝트를 우선 선정하여 텔레그램으로 전송하는 데일리 브리프 에이전트 스킬. 사용자가 "긱뉴스 요약", "오늘 개발 뉴스", "OSS 뉴스", "텔..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/telegram-geeknews"
-sourceUrl: "https://clawhub.ai/skills/telegram-geeknews"
+name: geeknews-oss-brief
+description: >
+  매일 GeekNews(news.hada.io)에서 오늘의 HOT 이슈 5개를 큐레이션하고,
+  오픈소스 출시·GitHub star 급상승 프로젝트를 우선 선정하여
+  텔레그램으로 전송하는 데일리 브리프 에이전트 스킬.
+  사용자가 "긱뉴스 요약", "오늘 개발 뉴스", "OSS 뉴스", "텔레그램 브리프",
+  "데일리 다이제스트", "개발자 뉴스 큐레이션" 등을 언급하면 이 스킬을 사용한다.
+  cron이나 스케줄러와 결합해 매일 오전 8시 자동 실행에도 사용한다.
 ---
 
-# geeknews-bot
+# GeekNews OSS Daily Brief
 
-> 매일 GeekNews(news.hada.io)에서 오늘의 HOT 이슈 5개를 큐레이션하고, 오픈소스 출시·GitHub star 급상승 프로젝트를 우선 선정하여 텔레그램으로 전송하는 데일리 브리프 에이전트 스킬. 사용자가 "긱뉴스 요약", "오늘 개발 뉴스", "OSS 뉴스", "텔...
+GeekNews(news.hada.io)에서 매일 가장 HOT한 이슈 5개를 선정하고,
+오픈소스/GitHub 생태계 중심으로 큐레이션하여 텔레그램으로 전송하는 스킬.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/telegram-geeknews`
-- **Source URL:** [https://clawhub.ai/skills/telegram-geeknews](https://clawhub.ai/skills/telegram-geeknews)
+---
 
-## Overview
+## 1. 데이터 수집
 
+GeekNews 페이지를 스크래핑하거나 RSS 피드를 파싱하여 당일 게시물을 수집한다.
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/telegram-geeknews
+### 수집 소스 (우선순위 순)
+1. **RSS 피드**: `https://news.hada.io/rss` — 가장 안정적
+2. **웹 스크래핑**: `https://news.hada.io/` 메인페이지 — RSS가 실패하면 fallback
+3. **토픽 페이지**: `https://news.hada.io/topics` — 추가 컨텍스트용
+
+### 수집 항목
+각 게시물에서 다음을 추출한다:
+- 제목
+- 원문 링크
+- 긱뉴스 내부 링크 (hada.io URL)
+- 추천수 (points)
+- 댓글수
+- 게시 시각
+- 요약 텍스트 (있으면)
+
+---
+
+## 2. 선정 기준 — 우선순위 점수
+
+아래 기준으로 **가중 점수**를 매겨 상위 5개를 선정한다.
+
+### Tier 1 — 최우선 (가중치 ×3)
+- **새로운 오픈소스 공개 또는 메이저 릴리스**
+  - 키워드: "오픈소스", "open source", "release", "v1", "launch", "공개"
+- **GitHub star 급상승 프로젝트**
+  - 제목이나 본문에 GitHub 링크가 포함된 경우
+  - star 수를 확인할 수 있으면 최근 증가 추세 체크
+
+### Tier 2 — 우선 (가중치 ×2)
+- **개발 생산성 / AI devtools / 인프라 관련 화제**
+  - 키워드: "AI", "LLM", "devtools", "infra", "Kubernetes", "database"
+- **커뮤니티 반응이 강한 프로젝트**
+  - 추천수 상위 10% 또는 댓글 15개 이상
+
+### Tier 3 — 기본 (가중치 ×1)
+- **긱뉴스 내 일반 반응** (추천수, 댓글수, 조회수 기준 상위)
+- 일반 테크 뉴스는 **정말 핫한 경우에만** 포함
+
+### 제거/병합 규칙
+- 같은 주제가 2개 이상이면 **대표 이슈 하나로 통합**
+- 광고성/홍보성 게시물은 제외
+- 3일 이상 된 오래된 뉴스는 제외 (리서핑 방지)
+
+---
+
+## 3. 요약 작성 규칙
+
+각 이슈에 대해 아래를 작성한다:
+
+| 항목 | 설명 |
+|------|------|
+| 제목 | 원문 제목 (한국어 우선, 필요시 영문 병기) |
+| 왜 중요함 | 한 줄로 "오늘 왜 이게 중요한지" 설명 |
+| 태그 | `🆕 신규 OSS` `⭐ GitHub 화제` `🔥 커뮤니티 핫` `🤖 AI/LLM` `🛠 DevTools` 중 해당 태그 |
+| GitHub 정보 | 저장소가 있으면: star 수, 최근 관심도, 왜 퍼지는지 짧게 |
+| 링크 | 원문 링크 |
+
+---
+
+## 4. 텔레그램 메시지 포맷
+
+아래 포맷으로 텔레그램 메시지를 구성한다. Markdown V2 파싱 모드를 사용한다.
+
 ```
+📰 *오늘의 GeekNews HOT 5*
+{날짜} | 오픈소스·개발 생태계 중심
+
+💬 한줄 총평: {오늘의 전반적 트렌드 한 문장}
+
+━━━━━━━━━━━━━━━
+
+1️⃣ *{제목}*
+→ {왜 중요한지 한 줄}
+{태그}
+{GitHub 정보 (있으면)}
+🔗 {링크}
+
+2️⃣ *{제목}*
+→ {왜 중요한지 한 줄}
+{태그}
+🔗 {링크}
+
+... (3~5번 동일 구조)
+
+━━━━━━━━━━━━━━━
+
+🤖 Curated by geeknews-oss-brief
+```
+
+### 포맷 규칙
+- 전체 길이: 텔레그램 한 메시지 제한(4096자) 이내로 유지
+- 이모지는 가독성 위해 적절히 사용하되 과하지 않게
+- 링크는 반드시 클릭 가능하게
+
+---
+
+## 5. 텔레그램 전송
+
+### 전송 방법
+`scripts/send_telegram.py` 스크립트를 사용한다.
+실행 전 아래 환경변수가 설정되어 있어야 한다:
+
+- `TELEGRAM_BOT_TOKEN` — 텔레그램 봇 토큰
+- `TELEGRAM_CHAT_ID` — 수신할 채팅 ID
+
+```bash
+python3 scripts/send_telegram.py --message-file /tmp/geeknews_brief.md
+```
+
+봇 토큰과 채팅 ID가 없으면 사용자에게 설정 방법을 안내한다.
+`references/telegram_setup.md` 참조.
+
+---
+
+## 6. 자동 실행 (Cron)
+
+매일 오전 8시(KST) 자동 실행을 위한 cron 설정:
+
+```
+# 매일 오전 8시(KST = UTC+9 → UTC 23:00 전날)
+0 23 * * * /path/to/run_geeknews_brief.sh
+```
+
+또는 KST 타임존이 설정된 서버라면:
+```
+0 8 * * * /path/to/run_geeknews_brief.sh
+```
+
+`scripts/run_geeknews_brief.sh`가 전체 파이프라인을 실행한다:
+1. GeekNews 수집
+2. 큐레이션 & 요약 생성
+3. 텔레그램 전송
+
+---
+
+## 7. 실행 흐름 요약
+
+```
+[Cron 08:00 KST]
+    ↓
+[GeekNews RSS/웹 수집]
+    ↓
+[우선순위 점수 계산 & 상위 5개 선정]
+    ↓
+[각 이슈 요약 + GitHub 정보 보강]
+    ↓
+[텔레그램 메시지 포맷 구성]
+    ↓
+[텔레그램 전송]
+    ↓
+[완료 로그 기록]
+```
+
+---
+
+## 트러블슈팅
+
+- **RSS 파싱 실패**: 웹 스크래핑 fallback 사용
+- **GitHub API rate limit**: 인증 토큰 없이는 시간당 60회 제한. 가능하면 `GITHUB_TOKEN` 환경변수 설정 권장
+- **텔레그램 전송 실패**: 봇 토큰/채팅 ID 재확인, 봇이 채팅방에 추가되어 있는지 확인
+- **게시물이 5개 미만**: 있는 만큼만 전송하고 "오늘은 N개만 선정" 표기

@@ -1,0 +1,27 @@
+{
+  "version": "1.0",
+  "active": true,
+  "period": "2026-03",
+  "start_date": "2026-03-01",
+  "end_date": "2026-03-31",
+  "initial_capital": 50000,
+  "current_capital": 50000,
+  "max_daily_trades": 3,
+  "stop_loss_pct": -7,
+  "trades_count": 0,
+  "win_count": 0,
+  "loss_count": 0,
+  "win_rate": 0,
+  "max_profit_trade": 0,
+  "max_loss_trade": 0,
+  "max_consecutive_wins": 0,
+  "max_consecutive_losses": 0,
+  "daily_trades": [],
+  "equity_curve": [
+    {
+      "date": "2026-03-01",
+      "capital": 50000
+    }
+  ],
+  "created_at": "2026-03-29T14:56:46.958098"
+}

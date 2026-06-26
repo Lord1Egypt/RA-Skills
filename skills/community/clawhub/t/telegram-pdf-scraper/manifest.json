@@ -1,0 +1,27 @@
+{
+  "name": "telegram_safe_pdf_scraper",
+  "version": "1.1.0",
+  "description": "Safely scrapes Telegram channels for internal PDF files, ignores malicious external links, and categorizes them into local folders based on chat headers. Uses native browser automation.",
+  "author": "OpenClaw Dev",
+  "entry_point": "main.py",
+  "requirements_file": "requirements.txt",
+  "inputs": {
+    "channel_name": {
+      "type": "string",
+      "description": "The exact name of the Telegram channel to search for.",
+      "required": true
+    },
+    "download_directory": {
+      "type": "string",
+      "description": "Base directory on your PC to save the files (e.g., C:/StudyMaterials).",
+      "required": true,
+      "default": "./Telegram_Study_Materials"
+    },
+    "scroll_limit": {
+      "type": "integer",
+      "description": "Number of message batches to scroll up and scan. Prevents infinite scrolling.",
+      "required": false,
+      "default": 5
+    }
+  }
+}

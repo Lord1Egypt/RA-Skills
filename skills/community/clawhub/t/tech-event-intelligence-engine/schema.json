@@ -1,0 +1,28 @@
+{
+  "name": "tech_event_intelligence_parser",
+  "description": "技术活动情报解析与过滤引擎，支持从原始搜索结果中精准抽取字段、去重、时效校验与相关性打分，输出标准化推送清单",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "raw_search_data": {
+        "type": "string",
+        "description": "搜索引擎返回的原始结果（JSON数组或Markdown列表，含标题、摘要、链接、抓取时间）"
+      },
+      "config": {
+        "type": "object",
+        "description": "订阅过滤配置（可选，留空则使用默认阈值）",
+        "properties": {
+          "window_days": { "type": "integer", "default": 30 },
+          "max_results": { "type": "integer", "default": 15 },
+          "min_score": { "type": "number", "default": 0.55 },
+          "region_filter": { "type": "string", "default": "全国" }
+        },
+        "additionalProperties": false
+      }
+    },
+    "required": ["raw_search_data"],
+    "additionalProperties": false
+  },
+  "output_format": "markdown",
+  "strict_mode": true
+}

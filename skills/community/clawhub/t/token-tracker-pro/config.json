@@ -1,0 +1,8 @@
+{
+  "default_period": "week",
+  "output_format": "table",
+  "show_details": true,
+  "daily_reminder": true,
+  "weekly_summary": true,
+  "model_priority": ["zai/glm-4.7-flash", "unknown"]
+}

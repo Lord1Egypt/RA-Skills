@@ -1,0 +1,62 @@
+{
+  "data": {
+    "id": "quick-start-demo",
+    "topic": "Which frontend framework should we use?",
+    "description": "React vs Vue technology selection",
+    "status": "max_rounds_reached",
+    "current_round": 2,
+    "max_rounds": 2,
+    "consensus_level": "none",
+    "created_at": 1234567890,
+    "started_at": 1234567891,
+    "participants": [
+      {
+        "agent_id": "architect",
+        "role_id": "architect",
+        "status": "joined"
+      },
+      {
+        "agent_id": "frontend-dev",
+        "role_id": "devops",
+        "status": "joined"
+      }
+    ],
+    "rounds": [
+      {
+        "round_number": 1,
+        "status": "completed",
+        "messages": [
+          {
+            "sender": {"agent_id": "architect"},
+            "content": {"text": "As architect, I support using React. React has a rich ecosystem and efficient component-based development."},
+            "type": "proposal"
+          },
+          {
+            "sender": {"agent_id": "frontend-dev"},
+            "content": {"text": "As frontend-dev, I support using Vue. Vue has a gentle learning curve and intuitive template syntax."},
+            "type": "proposal"
+          }
+        ]
+      },
+      {
+        "round_number": 2,
+        "status": "completed",
+        "messages": [
+          {
+            "sender": {"agent_id": "frontend-dev"},
+            "content": {"text": "I maintain my position on Vue. I disagree with @architect's view."},
+            "type": "statement"
+          },
+          {
+            "sender": {"agent_id": "architect"},
+            "content": {"text": "I maintain my position on React. Both frameworks have their strengths."},
+            "type": "statement"
+          }
+        ]
+      }
+    ]
+  },
+  "version": 5,
+  "updated_at": 1234567899,
+  "updated_by": "orchestrator"
+}

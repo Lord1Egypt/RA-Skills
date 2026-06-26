@@ -1,35 +1,34 @@
 ---
-name: "交易教练Pro"
+name: trading-coach-pro
+displayName: 交易教练Pro
+slug: trading-coach-pro
 description: "AI交易教练——基于七窍玲珑战法v4.0的智能交易辅助系统。功能：(1)九维排查逐项检查 (2)趋势/震荡模式自动判定 (3)凯利仓位计算 (4)连亏管理 (5)交易日志自动生成 (6)裸K形态识别 (7)格兰维尔信号定位。输入K线数据或描述，输出完整交易决策建议。"
-category: "autonomous-ai-agents"
-source: "ClawHub"
-tags: [ai-assistant, coaching, forex, trading]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/trading-coach-pro"
-sourceUrl: "https://clawhub.ai/skills/trading-coach-pro"
+version: "1.0.0"
+author: "智美人团队"
+tags:
+  - trading
+  - coaching
+  - forex
+  - ai-assistant
+  - risk-management
+metadata:
+  openclaw:
+    emoji: "🎯"
 ---
 
 # 交易教练Pro
 
-> AI交易教练——基于七窍玲珑战法v4.0的智能交易辅助系统。功能：(1)九维排查逐项检查 (2)趋势/震荡模式自动判定 (3)凯利仓位计算 (4)连亏管理 (5)交易日志自动生成 (6)裸K形态识别 (7)格兰维尔信号定位。输入K线数据或描述，输出完整交易决策建议。
+> 你的AI交易教练，基于七窍玲珑战法v4.0
 
-- **Category:** AI Agents
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/trading-coach-pro`
-- **Source URL:** [https://clawhub.ai/skills/trading-coach-pro](https://clawhub.ai/skills/trading-coach-pro)
+## 核心能力
 
-## Overview
+1. **九维排查引擎** - 逐项检查七窍结构/趋势/位置/形态/级别/时间/信号/仓位
+2. **模式自动判定** - ADX分析判断趋势/震荡，自动切换策略
+3. **凯利仓位计算** - 基于胜率+盈亏比最优仓位
+4. **连亏管理** - 3连亏降仓/5连亏暂停/连胜恢复
+5. **交易日志** - 自动生成结构化复盘日志
+6. **裸K形态识别** - Pin Bar/吞没/刺透/乌云盖顶识别
 
+## 使用方式
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/trading-coach-pro
-```
+输入当前的K线结构描述或截图分析，输出完整交易建议。

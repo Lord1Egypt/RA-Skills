@@ -1,0 +1,327 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>旅行安全与禁忌 · {place}</title>
+  <style>
+    :root{
+      --bg:#070c16;
+      --card:#0f1730;
+      --text:#eaf2ff;
+      --muted:#a8b9df;
+      --line:rgba(255,255,255,.10);
+      --shadow:0 18px 45px rgba(0,0,0,.45);
+      --radius:18px;
+
+      --cyan:#6ae4ff;
+      --green:#4ef0a3;
+      --amber:#ffcc66;
+      --red:#ff5c7a;
+      --purple:#c084fc;
+      --blue:#60a5fa;
+
+      --chip:rgba(255,255,255,.07);
+      --chip2:rgba(255,255,255,.05);
+    }
+
+    *{box-sizing:border-box;}
+
+    body{
+      margin:0;
+      font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"PingFang SC","Microsoft YaHei",sans-serif;
+      background:
+        radial-gradient(900px 520px at 12% 8%,rgba(106,228,255,.20),transparent 55%),
+        radial-gradient(800px 520px at 88% 12%,rgba(78,240,163,.14),transparent 52%),
+        radial-gradient(700px 460px at 55% 95%,rgba(192,132,252,.10),transparent 58%),
+        var(--bg);
+      color:var(--text);
+      line-height:1.7;
+      padding:28px 16px 48px;
+    }
+
+    .wrap{max-width:1080px;margin:0 auto;}
+
+    /* ── Header ── */
+    .header{
+      border:1px solid var(--line);
+      background:linear-gradient(135deg,rgba(106,228,255,.16),rgba(192,132,252,.08),rgba(255,255,255,.04));
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      padding:24px 22px;
+      position:relative;
+      overflow:hidden;
+    }
+    .header::after{
+      content:"";position:absolute;right:-60px;top:-40px;
+      width:200px;height:200px;
+      background:radial-gradient(circle,rgba(78,240,163,.20),transparent 65%);
+      pointer-events:none;
+    }
+    .h1{margin:0;font-size:24px;font-weight:900;letter-spacing:.3px;}
+    .sub{margin:6px 0 0;color:var(--muted);font-size:13px;}
+    .meta{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px;}
+    .pill{
+      border:1px solid rgba(255,255,255,.14);
+      background:var(--chip);
+      border-radius:999px;
+      padding:7px 14px;
+      font-size:13px;
+      color:var(--text);
+    }
+    .pill strong{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;}
+    .bar{
+      height:8px;border-radius:999px;
+      background:linear-gradient(90deg,var(--cyan),var(--green),var(--amber),var(--red));
+      margin-top:16px;opacity:.85;
+    }
+
+    /* ── Grid ── */
+    .grid{
+      margin-top:16px;
+      display:grid;
+      grid-template-columns:1fr;
+      gap:16px;
+    }
+    @media(min-width:760px){
+      .grid{grid-template-columns:1fr 1fr;}
+      .span2{grid-column:span 2;}
+    }
+
+    /* ── Card ── */
+    .card{
+      position:relative;
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.015));
+      box-shadow:var(--shadow);
+      padding:20px 20px 16px;
+      overflow:hidden;
+    }
+    .card::before{
+      content:"";position:absolute;
+      left:-50px;top:-70px;
+      width:180px;height:180px;
+      border-radius:50%;
+      pointer-events:none;
+      opacity:.6;
+    }
+    .card.mod-safe::before{background:radial-gradient(circle,rgba(78,240,163,.30),transparent 60%);}
+    .card.mod-caution::before{background:radial-gradient(circle,rgba(255,204,102,.30),transparent 60%);}
+    .card.mod-taboo::before{background:radial-gradient(circle,rgba(255,92,122,.25),transparent 60%);}
+    .card.mod-emergency::before{background:radial-gradient(circle,rgba(96,165,250,.30),transparent 60%);}
+    .card.mod-transport::before{background:radial-gradient(circle,rgba(192,132,252,.25),transparent 60%);}
+    .card.mod-scam::before{background:radial-gradient(circle,rgba(255,204,102,.25),transparent 60%);}
+
+    .card h3{
+      margin:0 0 8px;font-size:16px;font-weight:800;
+      display:flex;align-items:center;gap:10px;letter-spacing:.2px;
+    }
+
+    /* ── Icon badges ── */
+    .icon{
+      width:28px;height:28px;border-radius:10px;
+      display:inline-flex;align-items:center;justify-content:center;
+      font-size:14px;
+      border:1px solid rgba(255,255,255,.16);
+      box-shadow:0 10px 24px rgba(0,0,0,.25);
+      flex-shrink:0;
+    }
+    .icon.green{background:rgba(78,240,163,.14);color:var(--green);}
+    .icon.amber{background:rgba(255,204,102,.14);color:var(--amber);}
+    .icon.red{background:rgba(255,92,122,.14);color:var(--red);}
+    .icon.blue{background:rgba(96,165,250,.14);color:var(--blue);}
+    .icon.purple{background:rgba(192,132,252,.14);color:var(--purple);}
+    .icon.cyan{background:rgba(106,228,255,.14);color:var(--cyan);}
+
+    /* ── Tag pills inside cards ── */
+    .tag{
+      display:inline-flex;align-items:center;gap:6px;
+      padding:5px 10px;border-radius:999px;
+      border:1px solid rgba(255,255,255,.12);
+      background:var(--chip2);color:var(--muted);font-size:12px;
+      margin-bottom:6px;
+    }
+
+    /* ── Lists ── */
+    ul{margin:8px 0 0;padding-left:18px;}
+    li{margin:6px 0;font-size:14px;color:var(--text);}
+    li b{color:var(--cyan);}
+    .sep{height:1px;background:var(--line);margin:10px 0;}
+    .muted{color:var(--muted);font-size:12px;margin-top:10px;line-height:1.55;}
+
+    /* ── Emergency table ── */
+    .etable{width:100%;border-collapse:collapse;margin-top:8px;}
+    .etable td{
+      padding:8px 10px;font-size:14px;
+      border-bottom:1px solid var(--line);
+    }
+    .etable td:first-child{
+      color:var(--muted);font-size:13px;white-space:nowrap;width:90px;
+    }
+    .etable td:last-child{font-weight:600;}
+    .etable .num{
+      font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+      color:var(--cyan);font-size:15px;letter-spacing:.5px;
+    }
+
+    /* ── App chips ── */
+    .apps{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px;}
+    .app-chip{
+      padding:6px 12px;border-radius:10px;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.05);
+      font-size:13px;color:var(--text);
+    }
+
+    /* ── Scam cards ── */
+    .scam-item{
+      border:1px solid rgba(255,204,102,.15);
+      background:rgba(255,204,102,.04);
+      border-radius:12px;
+      padding:10px 14px;
+      margin-top:8px;
+    }
+    .scam-item b{color:var(--amber);font-size:13px;}
+    .scam-item p{margin:4px 0 0;font-size:13px;color:var(--muted);}
+
+    /* ── Footer ── */
+    .footer{
+      margin-top:16px;
+      border-radius:var(--radius);
+      border:1px dashed rgba(255,255,255,.18);
+      background:rgba(255,255,255,.03);
+      padding:16px 18px;
+      color:var(--muted);font-size:13px;
+      box-shadow:var(--shadow);
+    }
+    .footer b{color:var(--text);}
+  </style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- ╔═══════════════ HEADER ═══════════════╗ -->
+  <div class="header">
+    <h1 class="h1">旅行安全与禁忌 · {place}</h1>
+    <p class="sub">面向普通观光游客 · 时间：{time_of_day} · 出行：{travel_party}</p>
+    <div class="meta">
+      <div class="pill">偏好：<strong>{pref}</strong></div>
+      <div class="pill">模式：<strong>合规安全</strong></div>
+      <div class="pill">{safety_tip}</div>
+    </div>
+    <div class="bar"></div>
+  </div>
+
+  <div class="grid">
+
+    <!-- ╔═══════ MODULE 1-A: 游客常去区域 ═══════╗ -->
+    <section class="card mod-safe">
+      <h3><span class="icon green">&#10003;</span>适合步行游览的区域</h3>
+      <div class="tag">建议：白天优先 · 走正规交通</div>
+      <div class="sep"></div>
+      <ul>
+        <li>{friendly_zone_1}</li>
+        <li>{friendly_zone_2}</li>
+        <li>{friendly_zone_3}</li>
+        {friendly_zone_4_optional}
+      </ul>
+    </section>
+
+    <!-- ╔═══════ MODULE 1-B: 需额外留意的区域 ═══════╗ -->
+    <section class="card mod-caution">
+      <h3><span class="icon amber">&#9888;</span>需额外留意的区域 / 情境</h3>
+      <div class="tag">原则：不夜间独行 · 避免跟随陌生人</div>
+      <div class="sep"></div>
+      <ul>
+        <li>{caution_zone_1}</li>
+        <li>{caution_zone_2}</li>
+        <li>{caution_zone_3}</li>
+      </ul>
+      <div class="muted">本卡片不提供非旅游区域的具体定位或进入路线。如需了解当地社会议题，建议选择博物馆、展览或有资质的社区项目。</div>
+    </section>
+
+    <!-- ╔═══════ MODULE 2: 禁忌与法律礼仪 ═══════╗ -->
+    <section class="card mod-taboo span2">
+      <h3><span class="icon red">&#128683;</span>当地禁忌与法律礼仪</h3>
+      <div class="sep"></div>
+      <ul>
+        <li><b>宗教 / 神圣场所：</b>{taboo_religion}</li>
+        <li><b>着装要求：</b>{taboo_dress}</li>
+        <li><b>公共礼仪：</b>{taboo_public}</li>
+        <li><b>法律禁令：</b>{taboo_law}</li>
+        <li><b>摄影规范：</b>{taboo_photo}</li>
+        <li><b>敏感话题：</b>{taboo_topic}</li>
+        <li><b>小费习惯：</b>{taboo_tipping}</li>
+      </ul>
+      <div class="muted">温和措辞、尊重当地工作人员与信仰者；不确定时先观察或礼貌询问。</div>
+    </section>
+
+    <!-- ╔═══════ MODULE 3: 紧急联系与实用信息 ═══════╗ -->
+    <section class="card mod-emergency">
+      <h3><span class="icon blue">&#128222;</span>紧急联系方式</h3>
+      <div class="sep"></div>
+      <table class="etable">
+        <tr><td>报警电话</td><td class="num">{emergency_police}</td></tr>
+        <tr><td>急救电话</td><td class="num">{emergency_ambulance}</td></tr>
+        <tr><td>火警电话</td><td class="num">{emergency_fire}</td></tr>
+      </table>
+      <div class="sep"></div>
+      <div style="font-size:13px;color:var(--muted);">
+        <b style="color:var(--text);">中国使领馆：</b>{embassy_info}
+      </div>
+      <div class="sep"></div>
+      <div style="font-size:13px;color:var(--muted);">
+        <b style="color:var(--text);">就医提示：</b>{medical_tip}
+      </div>
+    </section>
+
+    <!-- ╔═══════ MODULE 3-B: 实用App ═══════╗ -->
+    <section class="card mod-emergency">
+      <h3><span class="icon cyan">&#128241;</span>推荐实用工具</h3>
+      <div class="sep"></div>
+      <div class="apps">
+        <div class="app-chip">{useful_app_1}</div>
+        <div class="app-chip">{useful_app_2}</div>
+        <div class="app-chip">{useful_app_3}</div>
+      </div>
+      <div class="muted">建议出发前下载安装并完成注册；部分 App 可能需要当地手机号。</div>
+    </section>
+
+    <!-- ╔═══════ MODULE 4-A: 交通出行 ═══════╗ -->
+    <section class="card mod-transport">
+      <h3><span class="icon purple">&#128663;</span>交通与出行安全</h3>
+      <div class="sep"></div>
+      <ul>
+        <li><b>打车 / 网约车：</b>{transport_taxi}</li>
+        <li><b>公共交通：</b>{transport_public}</li>
+        <li><b>步行安全：</b>{transport_walk}</li>
+      </ul>
+    </section>
+
+    <!-- ╔═══════ MODULE 4-B: 常见骗局 ═══════╗ -->
+    <section class="card mod-scam">
+      <h3><span class="icon amber">&#128065;</span>常见旅游骗局提示</h3>
+      <div class="sep"></div>
+      <div class="scam-item">
+        <b>{scam_1}</b>
+      </div>
+      <div class="scam-item">
+        <b>{scam_2}</b>
+      </div>
+      <div class="scam-item">
+        <b>{scam_3}</b>
+      </div>
+      <div class="muted">遇到纠纷优先保证人身安全；保留证据后寻求警方或使领馆协助。</div>
+    </section>
+
+  </div>
+
+  <!-- ╔═══════ FOOTER ═══════╗ -->
+  <div class="footer">
+    <b>温馨提示：</b>出发前请查阅目的地官方旅行警示与中国领事服务网公告。本卡片信息仅供参考，不构成专业安全建议。遇到紧急情况，优先确保人身安全并联系当地求助渠道或中国使领馆。
+  </div>
+
+</div>
+</body>
+</html>

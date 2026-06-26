@@ -1,0 +1,37 @@
+{
+  "ticker": "LZ",
+  "company": "The Lubrizol Corporation",
+  "analysis_year": 2010,
+  "data_source": "Lubrizol FY2010 10-K, SEC EDGAR; Berkshire 2011 annual report",
+  "analyzed_date": "2026-03-25",
+
+  "hard_gates": {
+    "g1_roe_roic": { "value": 0.201, "metric_used": "ROE", "years_averaged": "2008-2010 normalized", "pass": true },
+    "g2_fcf_to_ni": { "value": 1.00, "fcf": 734, "net_income": 733, "pass": true },
+    "g3_leverage": { "metric_used": "Net Debt/EBITDA", "value": 0.9, "pass": true },
+    "g4_revenue_trend": { "description": "2010 revenue and earnings rebounded strongly after the crisis. The underlying additive and specialty-chemical franchises did not show structural decay.", "structural_decline": false, "pass": true },
+    "g5_gross_margin_trend": { "description": "Gross margin did not show a two-year structural decline. The 2009 downturn was cyclical, and 2010 gross profit recovered meaningfully.", "declining_2plus_years": false, "pass": true },
+    "g6_earnings_yield": { "value": 0.077, "net_income_m": 733, "ev_m": 9560, "exemption": null, "pass": true },
+    "g7_moat": { "verdict": "PASS", "moat_type": "switching_cost", "description": "Lubrizol's additive packages sat inside mission-critical lubricants and engine formulations that required testing, qualification, and OEM acceptance. Customers could switch, but not casually: reformulation risk, certification cost, and performance liability created real switching friction. That turned an industrial-chemical business into something much harder to dislodge than a plain commodity producer.", "pass": true }
+  },
+
+  "special_channel": null,
+
+  "metrics_snapshot": {
+    "net_sales_2010_usd_m": 5421,
+    "net_income_2010_usd_m": 733,
+    "operating_cash_flow_2010_usd_m": 945,
+    "capital_expenditure_2010_usd_m": 210
+  },
+
+  "control_groups": [
+    { "ticker": "ASH", "company": "Ashland Inc.", "year": 2011, "gates_failed": ["g3_leverage", "g5_gross_margin_trend"], "conclusion": "PASS — a less focused specialty portfolio with more balance-sheet strain and weaker economics." },
+    { "ticker": "FOE", "company": "Ferro Corporation", "year": 2011, "gates_failed": ["g4_revenue_trend", "g6_earnings_yield"], "conclusion": "PASS — more cyclical materials exposure and no Lubrizol-style qualification moat." }
+  ],
+
+  "conclusion": "BUY",
+  "buffett_action": "Berkshire agreed to acquire Lubrizol for $135 per share in 2011.",
+  "actual_result": "Lubrizol became a durable wholly owned Berkshire operating asset rather than a headline stock-market home run.",
+  "verdict": "✅ aligned",
+  "key_insight": "Industrial businesses can qualify as Buffett-grade when customer qualification costs and formulation risk create real switching friction."
+}

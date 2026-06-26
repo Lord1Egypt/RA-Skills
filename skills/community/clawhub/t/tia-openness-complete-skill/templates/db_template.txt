@@ -1,0 +1,11 @@
+DATA_BLOCK "{{ block_name }}"
+{ S7_Optimized_Access := 'TRUE' }
+VERSION : 0.1
+NON_RETAIN
+   VAR
+      {% for var in variables %}
+      {{ var.name }} : {{ var.type }};
+      {% endfor %}
+   END_VAR
+BEGIN
+END_DATA_BLOCK

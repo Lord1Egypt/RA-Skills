@@ -1,0 +1,25 @@
+{
+  "name": "Tax Deduction Optimizer",
+  "slug": "tax-deduction-optimizer",
+  "version": "1.0.0",
+  "description": "Maps deduction scenarios, record-keeping gaps, and deduction-vs-risk tradeoffs for freelancers, small businesses, and salaried taxpayers.",
+  "author": "Golden Bean (OpenClaw)",
+  "tags": [
+    "finance",
+    "tax-planning",
+    "deductions",
+    "compliance",
+    "record-keeping"
+  ],
+  "trigger_keywords": [
+    "tax deduction strategy",
+    "standard vs itemized",
+    "business expense deductions",
+    "receipt organization",
+    "tax write-offs"
+  ],
+  "language": "en",
+  "outputs": "json",
+  "requires_api": false,
+  "readiness": "stable"
+}

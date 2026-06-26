@@ -1,0 +1,38 @@
+name: Telegram Tools Suite
+slug: telegram-tools-suite
+version: 1.3.0
+description: Telegram自动化工具包，支持群关键词监控、群组搜索、批量加群、定时消息发送
+author: ClawHub Community
+tags:
+  - telegram
+  - automation
+  - monitoring
+  - marketing
+requiredEnv:
+  - name: TELEGRAM_API_ID
+    description: Telegram官方申请的API ID
+    required: true
+  - name: TELEGRAM_API_HASH
+    description: Telegram官方申请的API HASH
+    required: true
+  - name: TELEGRAM_PHONE
+    description: 绑定Telegram账号的手机号，国际格式，例如+8613800138000
+    required: true
+  - name: ENABLE_HIGH_RISK_OPERATIONS
+    description: 高风险功能总开关，开启批量加群、定时群发必须设置为true，默认禁用
+    required: false
+    default: "false"
+  - name: TG_ENABLE_PERSISTENT_JOIN
+    description: 批量加群长驻模式开关，开启长驻定时批量加群需要额外设置为true，默认禁用
+    required: false
+    default: "false"
+security:
+  riskLevel: high
+  warnings:
+    - 高风险功能默认禁用，需显式开启
+    - 运行会生成高敏感的.session会话文件，禁止外传
+    - 使用不当可能导致Telegram账号永久封禁
+    - 禁止用于发送垃圾消息、骚扰他人等非法用途
+  designNotes:
+    - 临时会话复制逻辑：为避免多进程同时读写主会话文件导致数据库锁死，代码会自动生成临时会话副本，单次任务结束后自动删除，不会留存或外传任何会话数据
+    - 无对外数据传输：所有网络请求仅与Telegram官方服务器通信，无任何第三方数据上报或外传逻辑

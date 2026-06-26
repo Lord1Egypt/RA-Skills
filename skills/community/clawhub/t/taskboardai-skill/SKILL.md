@@ -1,35 +1,25 @@
 ---
-name: "TaskboardAI Skill"
-description: "Manage tasks and projects using the TaskBoardAI Kanban system. Includes MCP server integration."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/taskboardai-skill"
-sourceUrl: "https://clawhub.ai/skills/taskboardai-skill"
+name: taskboard-skill
+description: Manage tasks and projects using the TaskBoardAI Kanban system. Includes MCP server integration.
 ---
 
-# TaskboardAI Skill
-
-> Manage tasks and projects using the TaskBoardAI Kanban system. Includes MCP server integration.
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/taskboardai-skill`
-- **Source URL:** [https://clawhub.ai/skills/taskboardai-skill](https://clawhub.ai/skills/taskboardai-skill)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/taskboardai-skill
-```
+<skill>
+  <name>taskboard</name>
+  <description>
+    Manage tasks and projects using the TaskBoardAI Kanban system.
+    
+    CRITICAL LIFECYCLE RULES:
+    1. **Create**: When a new task is identified, create it in the 'To Do' column.
+    2. **Execute**: IMMEDIATELY after creating a task (or when asked to work on one), move it to 'In Progress' (Doing). Do not leave active tasks in 'To Do'.
+    3. **Block**: If a task cannot be completed (e.g., missing API key, network error), move it to 'Blocked' and note the reason in the content.
+    4. **Complete**: When finished, update the card content with the FINAL RESULT/SUMMARY, then move it to 'Done'.
+    
+    NOTE: The main body/result of the card must be stored in the 'content' field (Markdown supported), not 'description'.
+  </description>
+  <mcp_server>
+    <command>node</command>
+    <args>
+      <arg>/opt/homebrew/lib/node_modules/taskboardai/server/mcp/kanbanMcpServer.js</arg>
+    </args>
+  </mcp_server>
+</skill>

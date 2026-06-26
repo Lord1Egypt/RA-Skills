@@ -1,35 +1,28 @@
 ---
-name: "Hello World"
-description: "Say hello with a minimal custom skill. Use when the user asks for a greeting, tests a simple skill, says hello/hi, or wants a friendly short reply."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/tp-hello-world"
-sourceUrl: "https://clawhub.ai/skills/tp-hello-world"
+name: hello-world
+description: Say hello with a minimal custom skill. Use when the user asks for a greeting, tests a simple skill, says hello/hi, or wants a friendly short reply.
 ---
 
-# Hello World
+# Hello World Skill
 
-> Say hello with a minimal custom skill. Use when the user asks for a greeting, tests a simple skill, says hello/hi, or wants a friendly short reply.
+Reply with a short greeting when the user greets you.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/tp-hello-world`
-- **Source URL:** [https://clawhub.ai/skills/tp-hello-world](https://clawhub.ai/skills/tp-hello-world)
+## Default reply
 
-## Overview
+Use:
 
+`Hello from your custom skill!`
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/tp-hello-world
-```
+## Variations
+
+Use a natural short greeting for common inputs:
+
+- `你好` / `您好` / `hello` / `hi` → `Hello from your custom skill!`
+- `早上好` → `早上好！Hello from your custom skill!`
+- `晚上好` → `晚上好！Hello from your custom skill!`
+
+## Style
+
+- Keep it short.
+- Be friendly.
+- Do not add long explanations unless the user asks.

@@ -1,35 +1,61 @@
 ---
-name: "Threat Modeling Expert"
-description: "Threat modeling with STRIDE, PASTA, and attack trees. Analyze architectures for security gaps, extract security requirements, build data flow diagrams, and p..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/threat-modeling-expert"
-sourceUrl: "https://clawhub.ai/skills/threat-modeling-expert"
+name: threat-modeling-expert
+version: 1.0.0
+description: "Threat modeling with STRIDE, PASTA, and attack trees. Analyze architectures for security gaps, extract security requirements, build data flow diagrams, and prioritize risks. For secure-by-design planning and security architecture reviews."
 ---
 
 # Threat Modeling Expert
 
-> Threat modeling with STRIDE, PASTA, and attack trees. Analyze architectures for security gaps, extract security requirements, build data flow diagrams, and p...
+Expert in threat modeling methodologies, security architecture review, and risk assessment. Masters STRIDE, PASTA, attack trees, and security requirement extraction. Use PROACTIVELY for security architecture reviews, threat identification, or building secure-by-design systems.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/threat-modeling-expert`
-- **Source URL:** [https://clawhub.ai/skills/threat-modeling-expert](https://clawhub.ai/skills/threat-modeling-expert)
+## Capabilities
 
-## Overview
+- STRIDE threat analysis
+- Attack tree construction
+- Data flow diagram analysis
+- Security requirement extraction
+- Risk prioritization and scoring
+- Mitigation strategy design
+- Security control mapping
 
+## Use this skill when
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/threat-modeling-expert
-```
+- Designing new systems or features
+- Reviewing architecture for security gaps
+- Preparing for security audits
+- Identifying attack vectors
+- Prioritizing security investments
+- Creating security documentation
+- Training teams on security thinking
+
+## Do not use this skill when
+
+- You lack scope or authorization for security review
+- You need legal or compliance certification
+- You only need automated scanning without human review
+
+## Instructions
+
+1. Define system scope and trust boundaries
+2. Create data flow diagrams
+3. Identify assets and entry points
+4. Apply STRIDE to each component
+5. Build attack trees for critical paths
+6. Score and prioritize threats
+7. Design mitigations
+8. Document residual risks
+
+## Safety
+
+- Avoid storing sensitive details in threat models without access controls.
+- Keep threat models updated after architecture changes.
+
+## Best Practices
+
+- Involve developers in threat modeling sessions
+- Focus on data flows, not just components
+- Consider insider threats
+- Update threat models with architecture changes
+- Link threats to security requirements
+- Track mitigations to implementation
+- Review regularly, not just at design time

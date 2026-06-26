@@ -1,0 +1,41 @@
+{
+  "name": "task-killer",
+  "version": "1.0.0",
+  "description": "快速中断正在执行的任务，节省 token 和时间",
+  "author": "OpenClaw",
+  "license": "MIT",
+  "trigger": "中断 | 停止 | 取消 | 别做了 | 停下 | 终止 | 任务不对 | 方向错了 | kill | stop | cancel",
+  "tools": [
+    "subagents",
+    "process",
+    "filesystem"
+  ],
+  "priority": "high",
+  "interruptible": false,
+  "autoResponse": "🛑 已中断当前任务",
+  "keywords": [
+    "中断",
+    "停止",
+    "取消",
+    "终止",
+    "kill",
+    "stop",
+    "cancel",
+    "别做了",
+    "停下",
+    "不对",
+    "错了",
+    "重新来"
+  ],
+  "cleanup": {
+    "subagents": true,
+    "processes": true,
+    "tempFiles": false
+  },
+  "responseTime": "<1s",
+  "tokenSaving": {
+    "early": "90%+",
+    "mid": "50%",
+    "late": "20%"
+  }
+}

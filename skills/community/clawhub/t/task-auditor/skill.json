@@ -1,0 +1,38 @@
+{
+  "name": "task-auditor",
+  "version": "1.0.0",
+  "description": "任务审计与防偷懒系统 - 独立验收任务质量，防止执行者偷懒",
+  "author": "Assistant for 总裁",
+  "main": "audit.sh",
+  "scripts": {
+    "run": "bash audit.sh",
+    "audit": "bash audit.sh"
+  },
+  "config": {
+    "quality-thresholds": {
+      "excellent": 80,
+      "pass": 60,
+      "warning": 40,
+      "fail": 0
+    },
+    "check-items": {
+      "log-lines": 20,
+      "iterations": 5,
+      "report-size": 1000
+    }
+  },
+  "features": [
+    "独立质量验收",
+    "量化指标检查",
+    "自动警报系统",
+    "审计报告生成",
+    "防偷懒机制"
+  ],
+  "triggers": [
+    "任务审计",
+    "quality check",
+    "audit task",
+    "验收任务",
+    "防偷懒"
+  ]
+}

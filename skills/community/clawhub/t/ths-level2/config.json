@@ -1,0 +1,12 @@
+{
+  "tushare_token": "",
+  "ths_path": "D:\\同花顺远航版",
+  "default_stocks": [
+    {"code": "600276.SH", "name": "恒瑞医药"},
+    {"code": "600760.SH", "name": "中航沈飞"},
+    {"code": "600999.SH", "name": "招商证券"},
+    {"code": "601888.SH", "name": "中国中免"},
+    {"code": "002202.SZ", "name": "金风科技"},
+    {"code": "300188.SZ", "name": "国投智能"}
+  ]
+}

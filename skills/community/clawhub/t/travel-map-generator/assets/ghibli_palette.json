@@ -1,0 +1,16 @@
+{
+  "road": "#C4A882",
+  "water": "#7EB8C9",
+  "vegetation": "#8FB573",
+  "building": "#F5E6D0",
+  "background": "#FFF8E7",
+  "route_line": "#8B7355",
+  "label_bg": "#FFF8E7",
+  "label_bg_alpha": 220,
+  "title": "#5D4E37",
+  "shadow": "#000000",
+  "shadow_alpha": 80,
+  "border": "#8B7355",
+  "accent": "#D4956A",
+  "highlight": "#F2D98C"
+}

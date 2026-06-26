@@ -1,0 +1,23 @@
+# Tencent Cloud VOD Skill — Python dependencies
+#
+# Both packages are official open-source libraries.
+# tencentcloud-sdk-python ships frequent updates (often weekly) to support new
+# VOD models / parameters. pip will install the latest version satisfying the
+# constraint; to force an upgrade later, run:
+#     pip install -r scripts/requirements.txt --upgrade
+#
+#   tencentcloud-sdk-python : Tencent Cloud VOD API client (publisher: Tencent Cloud)
+#     repo: https://github.com/TencentCloud/tencentcloud-sdk-python
+#     used by 16 scripts (upload / transcode / AIGC / search / ...)
+#
+#   requests                : HTTP client used for AIGC LLM streaming responses
+#     repo: https://github.com/psf/requests
+#     used by 1 script (vod_aigc_chat.py)
+#
+#   python-dotenv           : Load credentials from .env files (used by vod_load_env.py)
+#     repo: https://github.com/theskumar/python-dotenv
+#     used by 1 script (vod_load_env.py) for automatic dotenv loading
+
+tencentcloud-sdk-python>=3.1.107
+requests>=2.31.0
+python-dotenv>=1.0.0

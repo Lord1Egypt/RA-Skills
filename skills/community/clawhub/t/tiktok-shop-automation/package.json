@@ -1,0 +1,42 @@
+{
+  "name": "tiktok-shop-automation",
+  "version": "1.0.0",
+  "description": "TikTok Shop 自动化运营技能 - 商品管理、订单处理、数据分析、营销自动化",
+  "author": "ClawHub",
+  "license": "MIT",
+  "keywords": [
+    "tiktok",
+    "ecommerce",
+    "automation",
+    "shop",
+    "marketing",
+    "order-management",
+    "analytics"
+  ],
+  "pricing": {
+    "model": "subscription",
+    "min": 99,
+    "max": 299,
+    "currency": "USD",
+    "period": "month"
+  },
+  "features": [
+    "商品自动上架与管理",
+    "订单自动处理与发货",
+    "销售数据分析与报告",
+    "营销活动自动化",
+    "库存智能监控",
+    "评论自动回复",
+    "竞品价格追踪",
+    "多店铺管理"
+  ],
+  "requirements": [
+    "TikTok Shop Seller Account",
+    "TikTok Shop API Access",
+    "Node.js 18+",
+    "OpenClaw Runtime"
+  ],
+  "category": "ecommerce",
+  "difficulty": "intermediate",
+  "setupTime": "30-60 minutes"
+}

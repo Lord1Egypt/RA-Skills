@@ -1,0 +1,37 @@
+{
+  "ticker": "NICO",
+  "company": "National Indemnity Company",
+  "analysis_year": 1967,
+  "data_source": "Berkshire Hathaway 2017 annual report and 2014 special letter",
+  "analyzed_date": "2026-03-25",
+
+  "hard_gates": {
+    "g1_roe_roic": { "value": null, "metric_used": "ROE", "years_averaged": "1967 acquisition economics", "pass": null },
+    "g2_fcf_to_ni": { "value": null, "fcf": null, "net_income": null, "pass": null },
+    "g3_leverage": { "metric_used": "Float/Tangible Net Worth", "value": 2.9, "pass": true },
+    "g4_revenue_trend": { "description": "Buffett later disclosed that premium volume at National Indemnity and its sister operations was $22M in 1967 and grew dramatically over time without new Berkshire shares being issued.", "structural_decline": false, "pass": true },
+    "g5_gross_margin_trend": { "description": "The attraction was disciplined underwriting, not aggressive premium growth. Buffett described the business as one that usually delivered an underwriting profit.", "declining_2plus_years": false, "pass": true },
+    "g6_earnings_yield": { "value": 0.221, "net_income_m": 1.9, "ev_m": 8.6, "exemption": null, "pass": true },
+    "g7_moat": { "verdict": "PASS", "moat_type": "cost_advantage", "description": "National Indemnity's moat was disciplined underwriting culture plus the structural advantage of insurance float. Buffett was effectively paying a modest premium over tangible net worth for a business that usually earned an underwriting profit while delivering investable float equal to almost three times that net worth. That combination created a financing advantage most industrial businesses simply do not have.", "pass": true }
+  },
+
+  "special_channel": null,
+
+  "metrics_snapshot": {
+    "purchase_price_1967_m": 8.6,
+    "tangible_net_worth_1967_m": 6.7,
+    "float_1967_m": 19.4,
+    "premium_volume_1967_m": 22
+  },
+
+  "control_groups": [
+    { "ticker": "TRV", "company": "Travelers", "year": 1967, "gates_failed": ["g7_moat"], "conclusion": "PASS — large insurer, but without the same owner-operator purchase economics or uniquely attractive float-to-price relationship." },
+    { "ticker": "AET", "company": "Aetna Casualty", "year": 1967, "gates_failed": ["g7_moat"], "conclusion": "PASS — a respectable insurer, but not available on anything like National Indemnity's purchase terms." }
+  ],
+
+  "conclusion": "BUY",
+  "buffett_action": "Berkshire bought National Indemnity and a smaller sister company for $8.6M in early 1967.",
+  "actual_result": "The foundational Berkshire acquisition. Insurance float became the engine that financed decades of compounding.",
+  "verdict": "✅ aligned",
+  "key_insight": "Buffett was not just buying earnings; he was buying a conservative underwriting machine attached to permanently reusable capital."
+}

@@ -1,35 +1,210 @@
----
-name: "task killer"
-description: "快速识别并立即中断当前执行任务，清理所有相关资源，节省 token 和时间，准备执行新任务。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/task-killer"
-sourceUrl: "https://clawhub.ai/skills/task-killer"
----
+# 任务中断技能 (Task Killer)
 
-# task killer
+**快速中断正在执行的任务，节省 token 和时间**
 
-> 快速识别并立即中断当前执行任务，清理所有相关资源，节省 token 和时间，准备执行新任务。
+## 触发词
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/task-killer`
-- **Source URL:** [https://clawhub.ai/skills/task-killer](https://clawhub.ai/skills/task-killer)
+当用户说以下任意内容时，立即使用本技能：
+- "中断"
+- "停止"
+- "取消"
+- "别做了"
+- "停下"
+- "终止任务"
+- "kill"
+- "stop"
+- "cancel"
+- "任务不对"
+- "方向错了"
+- "重新来"
 
-## Overview
+## 使用场景
 
+1. **任务方向错误** - 执行开始时就不对，立即中断
+2. **需求变更** - 用户改变主意，不需要继续
+3. **资源节省** - 发现会浪费大量 token，提前止损
+4. **紧急插队** - 有更重要的任务需要处理
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/task-killer
+## 中断流程
+
+### Step 1: 确认中断请求
 ```
+收到中断指令后，立即回复：
+"🛑 已中断当前任务"
+```
+
+### Step 2: 清理资源
+```javascript
+// 1. 检查并终止子代理
+subagents(action="list")
+如果有活跃子代理 → subagents(action="kill", target="xxx")
+
+// 2. 检查并终止后台进程
+process(action="list")
+如果有活跃进程 → process(action="kill", sessionId="xxx")
+
+// 3. 清理临时文件（可选）
+删除输出目录中的未完成文件
+```
+
+### Step 3: 确认中断完成
+```
+回复用户：
+"✅ 已清理：
+- 终止子代理：X 个
+- 终止后台进程：X 个
+- 清理临时文件：X 个
+
+准备好执行新任务了 👍"
+```
+
+## 快速指令
+
+### 微信/Telegram/Discord 快捷命令
+```
+/kill - 立即中断当前任务
+/stop - 同上
+/reset - 中断并清理会话
+```
+
+### 语音命令（如支持 TTS）
+```
+"停止任务"
+"中断"
+"别做了"
+```
+
+## Token 节省估算
+
+| 任务类型 | 已消耗 | 预计总消耗 | 中断后节省 |
+|----------|--------|------------|------------|
+| 小红书图文 | 2K | 15K | **13K** |
+| 热榜汇总 | 3K | 25K | **22K** |
+| 公众号文章 | 5K | 50K | **45K** |
+| 代码生成 | 1K | 30K | **29K** |
+| 深度调研 | 2K | 80K | **78K** |
+
+**早中断 = 省 token = 省时间 = 省成本** 💰
+
+## 中断时机判断
+
+### ✅ 应该中断的情况
+- [ ] 任务方向明显错误
+- [ ] 用户需求变更
+- [ ] 缺少关键信息无法继续
+- [ ] 发现更简单的解决方案
+- [ ] 外部依赖失败（API 挂了等）
+- [ ] 用户明确表示"不对"
+
+### ❌ 不建议中断的情况
+- [ ] 只是执行速度慢（等待中）
+- [ ] 即将完成（>80% 进度）
+- [ ] 只是输出格式小问题
+- [ ] 用户没有明确要求中断
+
+## 示例对话
+
+### 示例 1：方向错误
+```
+用户：帮我写一篇关于 DLSS5 的公众号文章
+Agent: 好的，正在收集资料...（开始搜索）
+用户：等等，方向不对，我要的是小红书图文不是公众号
+Agent: 🛑 已中断当前任务
+       ✅ 已清理公众号文章草稿
+       准备好生成小红书图文了 👍
+```
+
+### 示例 2：需求变更
+```
+用户：拉取脉脉、Google Trends、Reddit 热榜
+Agent: 正在打开浏览器...
+用户：算了，只要脉脉就可以了
+Agent: 🛑 已中断多平台拉取任务
+       ✅ 已终止后台浏览器进程
+       正在单独拉取脉脉热榜...
+```
+
+### 示例 3：资源节省
+```
+用户：帮我深度调研 AI 行业发展趋势
+Agent: 正在搜索 50 个来源...（已消耗 2K token）
+用户：停，太复杂了，简单总结一下就行
+Agent: 🛑 已中断深度调研任务
+       ✅ 节省约 78K token
+       正在生成简要总结...
+```
+
+## 技能配置
+
+### skill.json
+```json
+{
+  "name": "task-killer",
+  "version": "1.0.0",
+  "description": "快速中断正在执行的任务，节省 token",
+  "trigger": "中断 | 停止 | 取消 | 别做了 | 停下 | 终止 | kill | stop | cancel",
+  "tools": ["subagents", "process", "filesystem"],
+  "priority": "high",
+  "interruptible": false
+}
+```
+
+### 自动响应规则
+```yaml
+# 当检测到中断关键词时
+on_interrupt_keyword:
+  action: confirm_and_kill
+  response_time: <1s
+  cleanup:
+    - subagents: true
+    - processes: true
+    - temp_files: optional
+  confirmation: required
+```
+
+## 注意事项
+
+1. **中断确认** - 除非用户明确说"立即中断"，否则先确认
+2. **进度保存** - 如果已完成>50%，询问是否保存进度
+3. **资源清理** - 确保后台进程和子代理被正确终止
+4. **状态恢复** - 中断后恢复到可执行新任务的状态
+
+## 最佳实践
+
+### 1. 快速响应
+```
+用户说"停" → 1 秒内回复"🛑 已中断"
+不要继续执行任何工具调用
+```
+
+### 2. 清理彻底
+```
+检查所有可能的资源：
+- subagents list
+- process list  
+- 临时输出目录
+- 浏览器标签页
+```
+
+### 3. 明确反馈
+```
+告诉用户：
+- 中断了什么
+- 清理了什么
+- 现在可以做什么
+```
+
+### 4. 预防性建议
+```
+如果用户频繁中断，建议：
+"注意到任务方向经常变化，建议：
+1. 执行前先确认需求
+2. 分阶段执行（先确认方向再继续）
+3. 使用小步快跑模式"
+```
+
+---
+
+**最后更新：** 2026-03-18  
+**版本：** v1.0  
+**基于需求：** 任务执行方向错误时快速中断节省 token

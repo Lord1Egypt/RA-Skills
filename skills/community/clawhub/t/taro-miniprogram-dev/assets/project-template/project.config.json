@@ -1,0 +1,18 @@
+{
+  "miniprogramRoot": "dist/",
+  "projectname": "{{projectName}}",
+  "description": "{{projectDescription}}",
+  "appid": "touristappid",
+  "setting": {
+    "urlCheck": false,
+    "es6": true,
+    "enhance": true,
+    "postcss": true,
+    "minified": true,
+    "newFeature": true,
+    "coverView": true,
+    "autoAudits": false
+  },
+  "compileType": "miniprogram",
+  "libVersion": "2.25.0"
+}

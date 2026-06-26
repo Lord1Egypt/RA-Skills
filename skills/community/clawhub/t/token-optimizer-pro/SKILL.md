@@ -1,35 +1,37 @@
 ---
-name: "Token Optimizer Pro"
-description: "Monitor OpenClaw token usage, analyze usage patterns, estimate cost, and provide practical optimization suggestions. Use when reviewing token consumption by..."
-category: "data-science"
-source: "ClawHub"
-tags: [analytics, monitoring, utility]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/token-optimizer-pro"
-sourceUrl: "https://clawhub.ai/skills/token-optimizer-pro"
+name: token-optimizer-pro
+description: "Agent token usage optimizer. Input usage logs, transcript excerpts, model bills, or runtime traces; output token/cost breakdown, waste patterns, context compaction opportunities, caching suggestions, and before/after optimization actions. Privacy boundary: redact secrets and do not upload sensitive logs unless the user explicitly chooses an external tool."
 ---
 
 # Token Optimizer Pro
 
-> Monitor OpenClaw token usage, analyze usage patterns, estimate cost, and provide practical optimization suggestions. Use when reviewing token consumption by...
+Use this skill when the user wants to understand where token usage and model cost are going, then reduce waste without hurting task quality.
 
-- **Category:** Data Science
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/token-optimizer-pro`
-- **Source URL:** [https://clawhub.ai/skills/token-optimizer-pro](https://clawhub.ai/skills/token-optimizer-pro)
+## Inputs
 
-## Overview
+- Token usage exports
+- Model billing summaries
+- Agent runtime logs
+- Conversation transcripts or excerpts
+- Prompt templates and tool traces
 
+## Outputs
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/token-optimizer-pro
-```
+- Cost and token breakdown by task, model, phase, or tool
+- High-waste patterns: repeated context, oversized prompts, unused files, verbose tool output, weak summarization
+- Optimization checklist: compaction, caching, retrieval boundaries, shorter outputs, batching, cheaper model routing
+- Before/after estimate with caveats
+
+## Safety
+
+- Redact API keys, credentials, private customer data, and personal identifiers.
+- Do not upload logs or transcripts to an external service unless the user explicitly chooses that route.
+- Treat cost estimates as approximate unless the user provides official billing exports.
+
+## Example Prompts
+
+1. `Analyze this agent run log and tell me where token usage was wasted.`
+2. `Given these model bills, identify the top 5 cost drivers and how to reduce them.`
+3. `Review this prompt template and make it cheaper without losing task quality.`
+4. `Compare before/after token usage for these two runs.`
+5. `Design a token budget and compaction strategy for a long-running coding agent.`

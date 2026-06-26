@@ -1,0 +1,267 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "ITSM Security Maturity Assessment",
+    "description": "Comprehensive ITSM/ITIL Security Maturity Evaluation Platform",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/": {
+      "get": {
+        "summary": "Root",
+        "description": "Health check endpoint",
+        "operationId": "root__get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/itsm/assess": {
+      "post": {
+        "summary": "Assess Maturity",
+        "description": "Assess ITSM security maturity",
+        "operationId": "assess_maturity_api_itsm_assess_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AssessmentRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/itsm/maturity-levels": {
+      "get": {
+        "summary": "Get Maturity Levels",
+        "description": "Get maturity level definitions",
+        "operationId": "get_maturity_levels_api_itsm_maturity_levels_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/itsm/process-definitions": {
+      "get": {
+        "summary": "Get Process Definitions",
+        "description": "Get ITSM process definitions",
+        "operationId": "get_process_definitions_api_itsm_process_definitions_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "AssessmentData": {
+        "properties": {
+          "incident_management": {
+            "$ref": "#/components/schemas/ProcessAssessment"
+          },
+          "problem_management": {
+            "$ref": "#/components/schemas/ProcessAssessment"
+          },
+          "change_management": {
+            "$ref": "#/components/schemas/ProcessAssessment"
+          },
+          "release_management": {
+            "$ref": "#/components/schemas/ProcessAssessment"
+          },
+          "asset_management": {
+            "$ref": "#/components/schemas/ProcessAssessment"
+          },
+          "service_desk": {
+            "$ref": "#/components/schemas/ProcessAssessment"
+          },
+          "knowledge_management": {
+            "$ref": "#/components/schemas/ProcessAssessment"
+          },
+          "sla_management": {
+            "$ref": "#/components/schemas/ProcessAssessment"
+          },
+          "sessionId": {
+            "type": "string",
+            "title": "Sessionid"
+          },
+          "timestamp": {
+            "type": "string",
+            "title": "Timestamp"
+          }
+        },
+        "type": "object",
+        "required": [
+          "incident_management",
+          "problem_management",
+          "change_management",
+          "release_management",
+          "asset_management",
+          "service_desk",
+          "knowledge_management",
+          "sla_management",
+          "sessionId",
+          "timestamp"
+        ],
+        "title": "AssessmentData"
+      },
+      "AssessmentRequest": {
+        "properties": {
+          "assessmentData": {
+            "$ref": "#/components/schemas/AssessmentData"
+          },
+          "sessionId": {
+            "type": "string",
+            "title": "Sessionid"
+          },
+          "userId": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Userid"
+          },
+          "timestamp": {
+            "type": "string",
+            "title": "Timestamp"
+          }
+        },
+        "type": "object",
+        "required": [
+          "assessmentData",
+          "sessionId",
+          "timestamp"
+        ],
+        "title": "AssessmentRequest"
+      },
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "type": "array",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
+      },
+      "ProcessAssessment": {
+        "properties": {
+          "q1": {
+            "type": "integer",
+            "maximum": 5.0,
+            "minimum": 0.0,
+            "title": "Q1"
+          },
+          "q2": {
+            "type": "integer",
+            "maximum": 5.0,
+            "minimum": 0.0,
+            "title": "Q2"
+          },
+          "q3": {
+            "type": "integer",
+            "maximum": 5.0,
+            "minimum": 0.0,
+            "title": "Q3"
+          },
+          "q4": {
+            "type": "integer",
+            "maximum": 5.0,
+            "minimum": 0.0,
+            "title": "Q4"
+          }
+        },
+        "type": "object",
+        "required": [
+          "q1",
+          "q2",
+          "q3",
+          "q4"
+        ],
+        "title": "ProcessAssessment"
+      },
+      "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Location"
+          },
+          "msg": {
+            "type": "string",
+            "title": "Message"
+          },
+          "type": {
+            "type": "string",
+            "title": "Error Type"
+          }
+        },
+        "type": "object",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError"
+      }
+    }
+  }
+}

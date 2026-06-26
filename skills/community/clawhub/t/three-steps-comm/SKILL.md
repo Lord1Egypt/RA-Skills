@@ -1,35 +1,48 @@
----
-name: "沟通三部曲"
-description: "通过思考、执行和复盘三步，系统分析和优化所有类型的沟通，提高交流效果和目标达成率。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/three-steps-comm"
-sourceUrl: "https://clawhub.ai/skills/three-steps-comm"
----
-
 # 沟通三部曲
 
-> 通过思考、执行和复盘三步，系统分析和优化所有类型的沟通，提高交流效果和目标达成率。
+> 思考 → 执行 → 复盘
+> 所有沟通都是沟通，哪怕是问候、确认、闲聊——全部走三步。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/three-steps-comm`
-- **Source URL:** [https://clawhub.ai/skills/three-steps-comm](https://clawhub.ai/skills/three-steps-comm)
+---
 
-## Overview
+## 三步核心
 
+### 第一步：思考
+- 听到了什么？（事实）
+- 对方真正想要什么？（需求）
+- 我的判断是什么？（分析）
+- 我的目标是什么？（意图）
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/three-steps-comm
+### 第二步：执行
+- 按判断行动
+- 过程中观察反应
+- 必要时调整
+
+### 第三步：复盘
+- 目标达成了吗？
+- 判断对了吗？
+- 下次怎么改进？
+
+---
+
+## 使用方法
+
+在 agents.md 里添加：
+
 ```
+- skill: three-steps-comm
+  path: ~/.openclaw/skills/subscribed/three-steps-comm/
+```
+
+然后说"执行沟通三部曲"测试。
+
+---
+
+## TTL 授权说明
+
+**免费体验**：下载后自带 7 天免费使用
+**续费方式**：访问 https://www.kaiwu8.com 订阅获取 API_KEY，填入下方空位
+
+---
+
+*沟通即修行 v1.0（2026-04-20）*

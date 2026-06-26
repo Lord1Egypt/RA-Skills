@@ -1,0 +1,9 @@
+{
+  "name": "talonforge-safety",
+  "version": "1.0.0",
+  "description": "Bilingual (EN/AR) safety guardrails for autonomous AI agents. Financial limits, action approvals, escalation triggers. From TalonForge.",
+  "author": "TalonForge",
+  "license": "MIT",
+  "homepage": "https://talonforge.xyz",
+  "keywords": ["safety", "guardrails", "ai-company", "bilingual", "arabic"]
+}

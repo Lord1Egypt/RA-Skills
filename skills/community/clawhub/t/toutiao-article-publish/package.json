@@ -1,0 +1,41 @@
+{
+  "name": "toutiao-article-publish",
+  "version": "4.0.0",
+  "description": "今日头条（头条号）全链路自动发布技能。支持微头条和头条文章两种内容形式的自动化发布，覆盖选题 → 写作 → 配图上传 → 发布全流程。集成 browser-cdp 支持 CDP 直连浏览器。",
+  "keywords": [
+    "今日头条",
+    "头条号",
+    "微头条",
+    "文章发布",
+    "内容创作",
+    "browser-cdp",
+    "自动化"
+  ],
+  "author": "MR.W",
+  "license": "MIT",
+  "dependencies": {
+    "browser-cdp": ">=1.0.0"
+  },
+  "openclaw": {
+    "skill": true,
+    "emoji": "📰",
+    "triggers": [
+      "发布文章",
+      "头条文章",
+      "微头条",
+      "头条号发布",
+      "发布头条",
+      "写文章发布",
+      "文章配图"
+    ]
+  },
+  "files": [
+    "SKILL.md",
+    "scripts/",
+    "assets/",
+    "references/"
+  ],
+  "scripts": {
+    "test": "python scripts/toutiao_cdp_publisher.py"
+  }
+}

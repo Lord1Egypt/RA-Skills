@@ -1,35 +1,28 @@
 ---
-name: "TCM Video Factory"
-description: "Automate health video production planning (Topic Research - Script - Character - Image/Video Prompts) using Perplexity API. Based on TCM Video Factory workflow."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/tcm-video-factory"
-sourceUrl: "https://clawhub.ai/skills/tcm-video-factory"
+name: tcm-video-factory
+description: Automate health video production planning (Topic Research - Script - Character - Image/Video Prompts) using Perplexity API. Based on TCM Video Factory workflow.
+metadata: {"clawdbot":{"emoji":"🎬","requires":{"bins":["node"],"env":["PERPLEXITY_API_KEY"]},"primaryEnv":"PERPLEXITY_API_KEY"}}
 ---
 
 # TCM Video Factory
 
-> Automate health video production planning (Topic Research - Script - Character - Image/Video Prompts) using Perplexity API. Based on TCM Video Factory workflow.
+Automated workflow to generate a complete video production plan including scripts, character design, and AI generation prompts (Nano Banana/VEO3).
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/tcm-video-factory`
-- **Source URL:** [https://clawhub.ai/skills/tcm-video-factory](https://clawhub.ai/skills/tcm-video-factory)
+## Usage
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/tcm-video-factory
+# Generate a plan for a specific topic
+node skills/tcm-video-factory/index.mjs "Trà gừng mật ong"
+
+# Generate a plan for a general theme (auto-research)
+node skills/tcm-video-factory/index.mjs "Mẹo ngủ ngon"
 ```
+
+## Output
+
+Generates a `PLAN_[Timestamp].md` file in the current directory containing:
+1.  Selected Topic
+2.  Character Design Prompt (Pixar 3D)
+3.  4-Part Script (32s total)
+4.  Image Prompts (Start/End for each part)
+5.  VEO3 Video Prompts (with Lip-sync)

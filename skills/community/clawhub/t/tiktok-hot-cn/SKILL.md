@@ -1,35 +1,89 @@
 ---
-name: "douyin-hot"
+name: douyin-hot
 description: "自动抓取抖音热搜榜 Top 50，包含热度值"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/tiktok-hot-cn"
-sourceUrl: "https://clawhub.ai/skills/tiktok-hot-cn"
+metadata: { "openclaw": { "emoji": "📱", "requires": { "bins": ["node"] } } }
 ---
 
-# douyin-hot
+# Skill: 抖音热搜抓取
 
-> 自动抓取抖音热搜榜 Top 50，包含热度值
+自动抓取抖音热搜榜 Top 50，包含热度值。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/tiktok-hot-cn`
-- **Source URL:** [https://clawhub.ai/skills/tiktok-hot-cn](https://clawhub.ai/skills/tiktok-hot-cn)
+## 触发方式
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/tiktok-hot-cn
 ```
+抖音热搜
+获取抖音热榜
+douyin hot
+```
+
+## 能力
+
+- **直接API调用**：使用抖音官方API端点 `/aweme/v1/web/hot/search/list/`
+- 高性能：不依赖浏览器，响应快速（约3秒）
+- 清洗、排序、格式化热度值
+- 返回结构化列表（排名、标题、热度、原始热度值、标签、描述）
+
+## 输出格式
+
+```json
+[
+  {
+    "rank": 1,
+    "title": "金价一周大跌11%",
+    "heat": "1208.2万",
+    "heat_value": 12108917
+  }
+]
+```
+
+控制台输出示例：
+
+```
+📊 抖音热搜榜（Top 50）
+========================================
+ 1. 金价一周大跌11% 🔥 1208.2万
+ 2. 随手一拍都是春日大片 🔥 1189.5万
+ ...
+```
+
+## 配置
+
+**依赖：Node.js 18+**（无额外依赖，使用内置https模块）
+
+## 性能优化
+
+- **v2.0版本**：使用直接API调用，替代Puppeteer浏览器模拟
+- **速度提升**：从20-30秒降至3-5秒
+- **稳定性提升**：避免浏览器兼容性和网络问题
+- **资源消耗**：无需下载Chromium（节省100MB+）
+
+## 错误处理
+
+- 网络超时：自动重试，增加等待时间
+- API 变更：提示更新选择器
+- 无数据：检查网络或使用 Cookie
+
+## 数据存储
+
+抓取结果保存到：`workspace/scripts/douyin-hot-clean.json`
+
+## 示例对话
+
+```
+用户: 抖音热搜
+助手: 📊 抖音热搜榜（Top 50）:
+      1. 金价一周大跌11% 🔥 1208.2万
+      2. 随手一拍都是春日大片 🔥 1189.5万
+      ...
+      ✅ 已保存到 douyin-hot-clean.json
+```
+
+## 限制
+
+- 需要网络访问
+- API端点可能变更（但抖音官方API相对稳定）
+- 某些需要登录的热搜可能无法获取
+
+## 维护
+
+更新脚本位置：`skills/douyin-hot/douyin-hot.js`

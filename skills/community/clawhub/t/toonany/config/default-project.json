@@ -1,0 +1,39 @@
+{
+  "name": "{{PROJECT_NAME}}",
+  "type": "都市",
+  "artStyle": "2D动漫风格",
+  "videoRatio": "16:9",
+  "episodeCount": 1,
+  "chapters": [],
+  "styleReference": null,
+  "versions": {},
+  "models": {
+    "text": {
+      "provider": "deepseek",
+      "model": "deepseek-v4-pro",
+      "apiKey": "${DEEPSEEK_API_KEY}",
+      "baseUrl": "https://api.deepseek.com"
+    },
+    "image": {
+      "provider": "volcengine",
+      "model": "doubao-seedream-4-5-251128",
+      "apiKey": "${VOLC_API_KEY}",
+      "baseUrl": "https://ark.cn-beijing.volces.com/api/v3"
+    },
+    "video": {
+      "provider": "volcengine",
+      "model": "doubao-seedance-2-0-260128",
+      "apiKey": "${VOLC_API_KEY}",
+      "baseUrl": "https://ark.cn-beijing.volces.com/api/v3"
+    },
+    "audio": {
+      "provider": "volcengine",
+      "model": "zh_male_shaonianzixin_uranus_bigtts",
+      "apiKey": "${VOLC_TTS_API_KEY}",
+      "baseUrl": "https://openspeech.bytedance.com/api/v3/tts"
+    }
+  },
+  "characters": [],
+  "scenes": [],
+  "props": []
+}

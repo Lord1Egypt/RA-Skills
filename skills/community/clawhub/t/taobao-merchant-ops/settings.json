@@ -1,0 +1,14 @@
+{
+  "capture_script": "scripts/rpa_from_yingdao.py",
+  "inspection_script": "scripts/shop_inspection_fresh_run_universal.py",
+  "parse_script": "scripts/parse_taobao_report.py",
+  "mapping_path": "mapping.final.json",
+  "downloads_dir": "scripts/downloads",
+  "output_dir": "output",
+  "run_log_dir": "scripts/downloads/run_logs",
+  "license_file": "license/license.json",
+  "inspection_modules": "evaluation,frontend,backend,shipping",
+  "storage_state_file": "scripts/yingdao_storage_state.json",
+  "report_name_prefix": "生意参谋报表",
+  "version": "1.0.7"
+}

@@ -1,0 +1,75 @@
+# RBAC 角色模板配置
+# 每个模板定义了对应角色的 Kubernetes RBAC 规则
+# 由 k8s_cli.py rbac-create-tenant 命令使用
+
+templates:
+  readonly:
+    description: "只读权限 - 查看集群资源"
+    cluster_role: false
+    rules:
+      - apiGroups: [""]
+        resources: ["pods", "services", "endpoints", "configmaps", "secrets",
+                     "persistentvolumeclaims", "events", "namespaces",
+                     "replicationcontrollers", "serviceaccounts"]
+        verbs: ["get", "list", "watch"]
+      - apiGroups: ["apps"]
+        resources: ["deployments", "daemonsets", "replicasets", "statefulsets"]
+        verbs: ["get", "list", "watch"]
+      - apiGroups: ["batch"]
+        resources: ["jobs", "cronjobs"]
+        verbs: ["get", "list", "watch"]
+      - apiGroups: ["networking.k8s.io"]
+        resources: ["ingresses", "networkpolicies"]
+        verbs: ["get", "list", "watch"]
+      - apiGroups: ["autoscaling"]
+        resources: ["horizontalpodautoscalers"]
+        verbs: ["get", "list", "watch"]
+
+  developer:
+    description: "开发者权限 - 查看+管理工作负载和配置"
+    cluster_role: false
+    rules:
+      # 全资源查看权限
+      - apiGroups: [""]
+        resources: ["pods", "services", "endpoints", "configmaps", "secrets",
+                     "persistentvolumeclaims", "events", "namespaces",
+                     "replicationcontrollers", "serviceaccounts"]
+        verbs: ["get", "list", "watch"]
+      - apiGroups: ["apps"]
+        resources: ["deployments", "daemonsets", "replicasets", "statefulsets"]
+        verbs: ["get", "list", "watch"]
+      - apiGroups: ["batch"]
+        resources: ["jobs", "cronjobs"]
+        verbs: ["get", "list", "watch"]
+      - apiGroups: ["networking.k8s.io"]
+        resources: ["ingresses", "networkpolicies"]
+        verbs: ["get", "list", "watch"]
+      - apiGroups: ["autoscaling"]
+        resources: ["horizontalpodautoscalers"]
+        verbs: ["get", "list", "watch"]
+      # 工作负载管理权限
+      - apiGroups: ["apps"]
+        resources: ["deployments", "statefulsets"]
+        verbs: ["create", "update", "patch", "delete"]
+      - apiGroups: [""]
+        resources: ["services", "configmaps", "secrets", "pods"]
+        verbs: ["create", "update", "patch", "delete"]
+      - apiGroups: [""]
+        resources: ["pods/log", "pods/exec"]
+        verbs: ["get", "create"]
+      - apiGroups: ["batch"]
+        resources: ["jobs", "cronjobs"]
+        verbs: ["create", "update", "patch", "delete"]
+
+  admin:
+    description: "管理员权限 - 命名空间内完全控制（绑定 K8s 内置 ClusterRole admin）"
+    cluster_role: true
+    cluster_role_ref: "admin"
+    rules: []
+
+  # custom 模板不在此文件中定义 rules
+  # 用户通过 --rules-file 参数传入自定义规则文件
+  custom:
+    description: "自定义权限 - 用户自定义规则"
+    cluster_role: false
+    rules: []

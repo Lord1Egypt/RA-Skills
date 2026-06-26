@@ -1,35 +1,334 @@
 ---
-name: "TCM Dietary Therapy"
-description: "TCM dietary therapy knowledge base with syndrome differentiation, food therapy, tea formulas, and Dao Yin exercises. 28 ancient texts, 9 structured databases. HTTPS API with free 10 calls/day, $5/month unlimited."
-category: "health"
-source: "ClawHub"
-tags: [chinese-medicine, food-therapy, herbal-medicine, nutrition, recipe, syndrome-differentiation, tcm, tea, wellness]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/tcm-dietary"
-sourceUrl: "https://clawhub.ai/skills/tcm-dietary"
+name: tcm-dietary
+description: 中医食疗辨证论治知识库。提供体质辨证、食材性味归经查询、食疗方案推荐、茶饮配方检索。基于 28 本中医古籍结构化知识库。所有输出为信息参考，不构成医疗建议。
+version: 2.2.1
+author: 饭去病
+engine_version: V5.4
+license: MIT-0
+tags: [中医, 食疗, 辨证, 养生, 体质调理, 功能改善, 慢病调理, 生活方式]
 ---
 
-# TCM Dietary Therapy
+# 中医食疗辨证论治系统
 
-> TCM dietary therapy knowledge base with syndrome differentiation, food therapy, tea formulas, and Dao Yin exercises. 28 ancient texts, 9 structured databases. HTTPS API with free 10 calls/day, $5/month unlimited.
+基于完整的中医食疗理论体系：**理 → 法 → 方 → 药（食）**，为 AI Agent 和终端用户提供专业的中医食疗能力。通过 HTTP API 调用 VPS 后端服务，引擎和知识库托管在云端。
 
-- **Category:** Health
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/tcm-dietary`
-- **Source URL:** [https://clawhub.ai/skills/tcm-dietary](https://clawhub.ai/skills/tcm-dietary)
+---
 
-## Overview
+## 🚀 接入方式
 
+### API 端点
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/tcm-dietary
 ```
+Base URL: https://api.tcmplate.com
+```
+
+| 端点 | 方法 | 说明 |
+|------|------|------|
+| `/api/diagnose` | POST | 中医辨证（症状→证型+食疗方案） |
+| `/api/search` | POST | 知识库检索（28本古籍+9个知识库） |
+| `/subscribe` | GET | 订阅页面（PayPal $5/月） |
+| `/health` | GET | 健康检查 |
+
+**认证方式**：所有 API 调用需在 Header 中携带 `Authorization: Bearer <api_key>`
+
+### 定价
+
+| 方案 | 额度 | 价格 |
+|------|------|------|
+| **免费** | 10 次/日（按 IP 计数） | $0 |
+| **付费订阅** | 不限次数 | **$5/月**（PayPal） |
+
+超额后 API 返回 `429 Too Many Requests`，引导至订阅页面。
+
+### 获取 API Key
+
+1. **免费试用**：无需注册，直接调用 API，每个 IP 每日 10 次免费额度
+2. **付费订阅**：访问 [https://api.tcmplate.com/subscribe](https://api.tcmplate.com/subscribe) → PayPal $5/月 → 输入邮箱领取 API Key
+
+### 快速开始
+
+```python
+# 安装：零依赖，标准库即可
+# 将 skill 目录放到项目中，或将 core/ 复制过去
+
+import sys
+sys.path.insert(0, "path/to/tcm-dietary")  # 指向包含 core/ 的目录
+
+import core
+core.set_api_key("tcm_your_api_key_here")
+
+from core.syndrome import diagnose
+from core.knowledge import search
+
+# 辨证
+result = diagnose(["失眠", "心悸", "健忘", "食欲不振"])
+print(result["syndrome"]["pattern"])      # → "心脾两虚证"
+print(result["recommended_foods"][:5])    # → 推荐食材列表
+print(result["foods_to_avoid"][:5])       # → 禁忌食材列表
+print(result["tea_recipes"][:3])          # → 推荐茶饮
+print(result["meal_plan"])                # → 膳食计划
+
+# 知识检索
+results = search("ingredients", ["生姜"])
+```
+
+### curl 调用示例
+
+```bash
+# 辨证
+curl -X POST https://api.tcmplate.com/api/diagnose \
+  -H "Authorization: Bearer YOUR_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{"symptoms":["失眠","心悸","健忘"]}'
+
+# 知识检索
+curl -X POST https://api.tcmplate.com/api/search \
+  -H "Authorization: Bearer YOUR_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{"category":"ingredients","keywords":["生姜"]}'
+
+# 免费试用（无 API Key 也可，限 10次/日/IP）
+curl -X POST https://api.tcmplate.com/api/diagnose \
+  -H "Authorization: Bearer free" \
+  -H "Content-Type: application/json" \
+  -d '{"symptoms":["头痛","口干"]}'
+```
+
+### 错误码
+
+| 状态码 | 含义 | 处理建议 |
+|--------|------|----------|
+| 200 | 成功 | — |
+| 400 | 参数错误 | 检查请求格式 |
+| 403 | API Key 无效 | 检查 key 是否正确，或重新获取 |
+| 429 | 免费额度用尽 | 等待次日重置，或订阅 $5/月 |
+| 500 | 服务器内部错误 | 联系管理员 |
+
+---
+
+## ⚠️ 常见失败模式（必须先读）
+
+以下是在辨证和食疗推荐中反复出现的 Agent 失败模式。每一条都曾导致真实诊断错误，处理每个请求前检查本节。
+
+### 失败模式 1: 古籍噪声污染
+**现象**: 知识库中的古文本（《辨证录·中妖门》《证治汇补》等）包含异质条目（如"山魈吸气证""鬼魅侵扰证"），这些条目文本短且包含常见单字（"眠""热""痛"），易被关键词匹配命中。
+**为什么会失败**: `match_from_knowledge()` 对古文本做子串匹配时，"口渴"+"多饮"+"多尿" 可能命中《中妖门》条目，因为古文本包含"饮""渴"等单字。
+**正确做法**: 
+- 知识库匹配结果中，来源为"陈士铎-中妖门"或匹配度<0.15 的条目，自动降权
+- 优先使用疾病桥接（`_try_disease_bridge`）结果，桥接命中时以桥接为准
+- 桥接未命中时才使用知识库匹配，且必须通过八纲一致性校验
+
+### 失败模式 2: 疾病桥接压制器官信号
+**现象**: 症状列表中的某单一症状（如"月经不调"）触发了疾病桥接，桥接返回的分型（如"肾虚型"）覆盖了其他症状（"胁痛""情绪低落"）强烈指向的脏腑（肝）。
+**为什么会失败**: `_try_disease_bridge()` 取症状列表中的第一个匹配病名决定桥接方向，但第一个匹配的疾病未必是主病。
+**正确做法**:
+- 桥接结果必须与五脏辨证结果交叉验证
+- 如果五脏得分最高的脏与桥接TOP1证型不匹配，且五行推演吻合度≥2，则五行推演优先
+- 检查桥接证型是否覆盖了所有主要症状，不能只看第一个匹配
+
+### 失败模式 3: 寒热矛盾误判
+**现象**: 输入同时包含寒性症状（怕冷）和热性症状（盗汗、口干），八纲辨证简单取"得分最高"维度，可能判为"实证寒证"而忽略"盗汗"的热象。
+**为什么会失败**: `_resolve_nature()` 对虚实和寒热分别取最高分维度，差值≤1时判为"不明显"。但两个维度的得分差异在≤1时仍存在有意义的临床信号。
+**正确做法**:
+- 寒热得分差≤1且两边都>0时 → 检查是否有阴虚+阳虚共存的可能（阴阳两虚）
+- 虚实得分差≤1且两边都>0时 → 检查是否有上热下寒或本虚标实的复合病机
+- 不要仅凭"寒热不明显"就忽略矛盾信号，要返回"可能存在复合证型"提示
+
+### 失败模式 4: 食材禁忌漏检
+**现象**: 针对消渴患者推荐含高糖食材（红枣、桂圆），或痛风患者推荐高嘌呤食材（海鲜、动物内脏）。
+**为什么会失败**: 辨证和食谱推荐是两个独立步骤，食谱推荐没有自动交叉验证辨证结果中的禁忌约束。
+**正确做法**:
+- 生成食疗方案前，必须查 `chronic-diseases.json` 中对应疾病的 `avoid_foods` / `禁忌食材`
+- 如果找不到结构化禁忌数据，至少查 `ingredients.json` 中学名对应食材的性味，交叉验证与证型的冲突
+- 推荐食材列表输出时必须附禁忌食材列表，且两者不能有交集
+
+### 失败模式 5: 症状过少时过度推断
+**现象**: 仅 1-2 个症状（如"乏力"）就给出精确证型结论（"肺气虚"），而实际上"乏力"是 80% 证型的共有症状。
+**为什么会失败**: 辨证引擎对输入症状数没有下限校验，`_determine_syndrome` 在知识库无匹配时会 fallback 到八纲+五脏关键词匹配，但 1-2 个症状的匹配噪音极高。
+**正确做法**:
+- 症状<3 个时，仅返回八纲/五脏的宽泛指向，不输出精确证型名
+- 在结果中明确标注"症状信息不足，建议补充更多症状以获得精确辨证"
+- 知识库匹配度<0.2 且动态证型映射无高置信度命中时，不要输出具体证型名
+
+---
+
+## 辨证 SOP（标准操作流程）
+
+每次 `diagnose()` 调用按以下步骤执行，不允许跳过任何步骤：
+
+### Step 1: 症状收集与扩展
+- 使用 `expand_symptoms()` 将用户输入症状扩展同义词（如"怕冷"→"畏寒/四肢不温/形寒"）
+- 检查症状列表长度：<3 个 → 标记为"信息不足"，跳至 Step 6 返回宽泛结论
+
+### Step 2: 五引擎并行辨证
+必须同时运行以下五个引擎，不可只取一个结果：
+
+| 引擎 | 函数 | 核心作用 |
+|------|------|----------|
+| 八纲辨证 | `_score_bagua()` | 确定虚实·寒热·阴阳大方向 |
+| 五脏辨证 | `_organ_differentiation()` | 确定病变脏腑（返回全部脏器得分，不取max） |
+| 五行因果 | `wuzang_engine.analyze()` | 五行生克推演主证+兼证（心→脾→肺→肾→肝传变路径） |
+| 气血辨证 | `qi_blood_engine.differentiate()` | 判断气虚/血虚/气滞/血瘀/痰湿维度 |
+| 病因辨证 | `xie_qi_engine.differentiate()` | 判断六淫（风寒暑湿燥火）+七情+饮食+劳倦 |
+
+### Step 3: 知识库匹配（知识驱动层）
+- 先跑 `_try_disease_bridge(symptoms)`：症状→疾病名→辨证分型（数据源：中医病证诊断疗效标准/证因脉治等）
+- 桥接未命中 → 跑 `match_from_knowledge(expanded_symptoms)` 全文检索
+- 匹配结果必须通过八纲一致性校验：证型的八纲属性与 `_score_bagua()` 结果矛盾 → 过滤
+- 来源为"陈士铎-中妖门"或"陈士铎-鬼魅门"的条目 → 强制降权（匹配度×0.1）
+
+### Step 4: 冲突检测与优先级
+遇到以下冲突时的处理优先级：
+
+| 冲突类型 | 处理规则 |
+|----------|----------|
+| 桥接证型 vs 五行推演主证不一致 | 五行推演吻合度≥2 → 五行优先；否则桥接优先 |
+| 八纲 vs 知识库证型矛盾 | 八纲一致性校验自动过滤矛盾候选 |
+| 多脏得分接近（前两名差≤1） | 必须输出复合证型，不能只取最高分 |
+
+### Step 5: 确定证型与治则
+- 使用 `_determine_syndrome()` 综合所有引擎结果
+- 检查动态证型映射（2999条）中的复合证型匹配（心脾两虚/肝肾阴虚/脾肾阳虚/心肾不交等）
+- 证型名含"吐血""疟""妖""鬼"等非食疗适用词 → 不直接使用，改为功能描述
+
+### Step 6: 方案生成与禁忌检查
+- 证型确定后，查 `chronic-diseases.json` 获取推荐食材和禁忌食材
+- 查 `ingredients.json` 获取每个推荐食材的性味归经
+- 验证推荐食材与证型不冲突（如阴虚证不推荐温热食材）
+- 输出必须包含：证型、治则、推荐食材、禁忌食材、食疗原则
+
+---
+
+## 🚫 禁止操作（High-Risk Action Blacklist）
+
+以下操作在任何情况下都不得执行。违反将导致输出质量严重下降，已被评测验证为有害：
+
+| # | 禁止操作 | 替代方案 |
+|---|----------|----------|
+| 1 | **禁止基于 <3 个症状给出精确证型诊断** | 返回八纲宽泛结论 + "建议补充更多症状" |
+| 2 | **禁止将来自"中妖门""鬼魅门"的古籍条目作为证型输出** | 自动降权过滤，不得出现在 TOP5 候选 |
+| 3 | **禁止输出含"吐血""疟""妖""鬼"的证型名（除非用户明确讨论该主题）** | 改为功能描述：如"虚火扰心（肾肝相关）"替代"肾肝虚火久吐血证" |
+| 4 | **禁止在未查 `chronic-diseases.json` 禁忌字段的情况下推荐食材** | 先查禁忌，再推荐 |
+| 5 | **禁止将中医证型名（如"消渴"）直接等同于西医诊断（如"糖尿病"）向用户陈述** | 使用中医术语，括号注明"常见于现代医学的XX" |
+| 6 | **禁止推荐含附子/乌头/细辛/马钱子/斑蝥/砒石等毒性药材的食疗方，除非明确标注剂量限制和禁忌人群** | 如有必要提及，必须附带完整的安全警告 |
+| 7 | **禁止跳过食材禁忌交叉验证** | 推荐食材 ∩ 禁忌食材 = ∅，必须验证 |
+| 8 | **禁止在疾病桥接命中后跳过五脏辨证引擎** | 桥接和五脏必须并行，用于交叉验证 |
+
+---
+
+## 服务范围
+
+| 服务 | 说明 |
+|------|------|
+| **基础调理** | 9 种体质辨识 + 针对性调理方案（平和/气虚/阳虚/阴虚/痰湿/湿热/血瘀/气郁/特禀） |
+| **功能改善** | 针对具体症状（失眠/便秘/脱发/痛经/口腔溃疡/乏力等）辨证施治 |
+| **生活方式** | 四季养生、食疗茶饮、日常食谱、饮食禁忌等生活化建议 |
+| **慢病调理** | 617 种疾病的辨证分型 + 食疗原则（糖尿病/高血压/痛风/胃炎等） |
+
+## API 响应格式
+
+### diagnose 响应
+
+```json
+{
+  "constitution": {
+    "type": "qi_deficiency",
+    "name_en": "Qi Deficiency Constitution",
+    "name_cn": "气虚质",
+    "confidence": 0.85
+  },
+  "syndrome": {
+    "pattern": "心脾两虚证",
+    "organ": "心·脾"
+  },
+  "recommended_foods": ["龙眼", "红枣", "黄芪", "山药", "莲子"],
+  "foods_to_avoid": ["生冷瓜果", "萝卜", "浓茶"],
+  "tea_recipes": [
+    {"name": "黄芪红枣茶", "effects": "补气养血"}
+  ],
+  "exercises": [
+    {"name": "八段锦·调理脾胃须单举", "target": "脾胃"}
+  ],
+  "meal_plan": [
+    {"meal": "breakfast", "dish": "山药红枣粥", "reason": "健脾益气"}
+  ],
+  "language": "zh"
+}
+```
+
+### search 响应
+
+```json
+{
+  "results": [/* matching knowledge entries */],
+  "count": 15
+}
+```
+
+---
+
+## 理论框架
+
+```
+理（辨证基础）
+  ├─ 体质辨证：9 种体质（平和/气虚/阳虚/阴虚/痰湿/湿热/血瘀/气郁/特禀）
+  ├─ 八纲辨证：阴阳·表里·寒热·虚实
+  ├─ 五脏辨证：心·肝·脾·肺·肾
+  └─ 五行因果：母病及子/子盗母气/相乘/相侮/以克为生
+         ↓
+法（调理方法）→ 汗·吐·下·和·温·清·消·补
+         ↓
+方（配伍方法）→ 君臣佐使·相须相使
+         ↓
+药/食（食材应用）→ 性味归经·功效主治·禁忌·现代营养
+```
+
+## 知识库
+
+| 知识库 | 条目数 | 说明 |
+|--------|--------|------|
+| tcm-theory.json | 460 | 证型库：八纲/五脏/六经/气血/卫气营血/病因，含辨证要点、治则、食疗原则 |
+| ingredients.json | 3,372 | 食材性味归经功效（含 150 种全球食材） |
+| dishes.json | 8,673 | 药膳食疗方 |
+| chronic-diseases.json | 619 | 慢病辨证分型与食疗原则 |
+| symptoms.json | 4,283 | 症状→证型映射 |
+| cosmetic_formulas.json | 15 | 中医美容方剂（护发/面部/瘢痣/手足等） |
+| daoyin_module.json | 154 | 导引功法（八段锦/五禽戏/太极拳等） |
+| 茶饮保健 | 997 | 16 功效分类保健茶饮配方 |
+| 古代房中秘方 | 102 | 传统房中养生方药 |
+
+## 目录结构
+
+```
+tcm-dietary/
+├── core/                 # HTTP API 客户端
+│   ├── __init__.py       # 入口：set_api_key() + API_BASE
+│   ├── syndrome.py       # 辨证引擎 (POST /api/diagnose)
+│   ├── knowledge.py      # 知识检索 (POST /api/search)
+│   ├── recipe.py         # 食谱/菜品改良
+│   ├── daoyin.py         # 导引推荐
+│   └── tea.py            # 茶饮推荐
+├── SKILL_FULL.md         # 完整文档（Agent 深度使用）
+└── CHANGELOG.md
+```
+
+## 使用许可
+
+MIT-0 (MIT No Attribution)。可自由使用、修改和重新分发。无需署名。
+
+## ⚠️ 重要免责声明
+
+**本 Skill 为信息参考工具，不提供医疗服务。**
+
+- 所有证型分析、食疗建议、茶饮配方、功法推荐等输出仅供学习和参考
+- **不构成医疗诊断、处方或治疗建议**
+- 如有健康问题，请咨询持有执业资格的中医师或西医医师
+- 本 Skill 不自作主张为他人提供诊断结论
+- 食材禁忌和过敏信息请以专业医师意见为准
+
+## 安全边界
+
+- **无自动学习**：本 Skill 不配置任何定时/自动学习任务，所有知识提取需用户主动触发
+- **无网络爬取**：不主动访问外部网站进行数据采集
+- **只读知识库**：日常使用不修改知识库文件（仅在用户明确要求扩展知识时写入）
+- **本地文件访问**：仅读取 workspace 内明确定义的书籍目录，需用户显式授权

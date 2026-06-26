@@ -1,0 +1,24 @@
+[project]
+name = "technical-spec-design-scripts"
+version = "1.0.0"
+description = "Scripts for technical-spec-design skill"
+requires-python = ">=3.8"
+license = { text = "MIT" }
+authors = []
+keywords = ["technical-spec", "documentation", "claude-skills"]
+
+[project.scripts]
+generate-spec = "generate_spec:main"
+validate-skill = "validate:main"
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.black]
+line-length = 100
+target-version = ['py38']
+
+[tool.isort]
+profile = "black"
+line_length = 100

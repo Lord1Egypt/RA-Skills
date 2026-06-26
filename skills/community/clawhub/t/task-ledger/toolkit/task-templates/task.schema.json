@@ -1,0 +1,151 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://openclaw.local/task-ledger/task.schema.json",
+  "title": "task-ledger task schema",
+  "type": "object",
+  "required": [
+    "taskId",
+    "title",
+    "status",
+    "priority",
+    "createdAt",
+    "updatedAt",
+    "ownerSession",
+    "owner",
+    "executionMode",
+    "stage",
+    "stages",
+    "nextAction",
+    "reporting",
+    "artifacts",
+    "process",
+    "subtask",
+    "cron",
+    "rollback",
+    "notifications",
+    "events"
+  ],
+  "properties": {
+    "taskId": { "type": "string" },
+    "title": { "type": "string" },
+    "goal": { "type": "string" },
+    "status": {
+      "type": "string",
+      "enum": ["pending", "running", "waiting", "blocked", "succeeded", "failed", "cancelled", "partial"]
+    },
+    "priority": {
+      "type": "string",
+      "enum": ["low", "normal", "high", "urgent"]
+    },
+    "createdAt": { "type": ["string", "null"] },
+    "startedAt": { "type": ["string", "null"] },
+    "updatedAt": { "type": ["string", "null"] },
+    "completedAt": { "type": ["string", "null"] },
+    "lastVerifiedAt": { "type": ["string", "null"] },
+    "ownerSession": { "type": "string" },
+    "owner": { "type": "string" },
+    "assignedAgent": { "type": ["string", "null"] },
+    "parentTaskId": { "type": ["string", "null"] },
+    "childTaskIds": { "type": "array", "items": { "type": "string" } },
+    "executionMode": { "type": "string" },
+    "idempotent": { "type": "boolean" },
+    "canResume": { "type": "boolean" },
+    "retryCount": { "type": "integer" },
+    "maxRetries": { "type": "integer" },
+    "stage": { "type": "string" },
+    "stages": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "status"],
+        "properties": {
+          "id": { "type": "string" },
+          "status": {
+            "type": "string",
+            "enum": ["todo", "running", "done", "failed", "skipped"]
+          }
+        }
+      }
+    },
+    "dependsOn": { "type": "array", "items": { "type": "string" } },
+    "blockedBy": { "type": "array", "items": { "type": "string" } },
+    "blockedReason": { "type": ["string", "null"] },
+    "nextAction": { "type": "string" },
+    "resumeHint": { "type": ["string", "null"] },
+    "decisionNotes": { "type": "string" },
+    "workingSummary": { "type": "string" },
+    "readiness": {
+      "type": "object",
+      "required": ["successPolicy", "allowStartWhen", "allowPartialDependencies"],
+      "properties": {
+        "successPolicy": {
+          "type": "string",
+          "enum": ["all-succeeded", "fail-fast", "wait-all", "partial-allowed"]
+        },
+        "allowStartWhen": {
+          "type": "string",
+          "enum": ["deps-satisfied", "deps-closed"]
+        },
+        "allowPartialDependencies": { "type": "boolean" }
+      }
+    },
+    "reporting": {
+      "type": "object",
+      "required": ["mode", "preferFileBackedReports", "longReportPath"],
+      "properties": {
+        "mode": { "type": "string", "enum": ["short-first", "normal", "detailed"] },
+        "preferFileBackedReports": { "type": "boolean" },
+        "longReportPath": { "type": ["string", "null"] }
+      }
+    },
+    "artifacts": {
+      "type": "object",
+      "required": ["logPath", "outputDir", "files"],
+      "properties": {
+        "logPath": { "type": "string" },
+        "outputDir": { "type": "string" },
+        "files": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "process": { "type": "object" },
+    "subtask": { "type": "object" },
+    "cron": { "type": "object" },
+    "rollback": {
+      "type": "object",
+      "required": ["available", "strategy", "status", "artifacts"],
+      "properties": {
+        "available": { "type": "boolean" },
+        "strategy": { "type": ["string", "null"] },
+        "status": {
+          "type": "string",
+          "enum": ["not-applicable", "available", "in-progress", "completed", "failed", "not-needed"]
+        },
+        "artifacts": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "notifications": {
+      "type": "object",
+      "required": ["notifiedStart", "notifiedCompletion", "notifiedRecovery"],
+      "properties": {
+        "notifiedStart": { "type": "boolean" },
+        "notifiedCompletion": { "type": "boolean" },
+        "notifiedRecovery": { "type": "boolean" }
+      }
+    },
+    "events": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["ts", "type", "message", "details"],
+        "properties": {
+          "ts": { "type": "string" },
+          "type": { "type": "string" },
+          "message": { "type": "string" },
+          "details": { "type": ["object", "array", "string", "number", "boolean", "null"] }
+        }
+      }
+    },
+    "result": {},
+    "error": {}
+  }
+}

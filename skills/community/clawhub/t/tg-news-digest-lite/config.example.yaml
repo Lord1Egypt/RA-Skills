@@ -1,0 +1,53 @@
+# tg-news-digest-lite configuration template
+# Copy to config.yaml and customize
+
+monitoring:
+  # List of public Telegram channels to monitor
+  # Supported formats:
+  #   - "username"          (e.g., "durov")
+  #   - "@username"         (e.g., "@telegram")
+  #   - "https://t.me/s/username"  (full URL)
+  #   - "https://t.me/username"    (also works)
+  channels:
+    - "durov"
+    - "telegram"
+    - "tjournal"
+  
+  # How many recent messages to check per channel (for catching up)
+  fetch_window: 20
+  
+  # Delay between HTTP requests to avoid rate limiting (milliseconds)
+  # Increase if you get "429 Too Many Requests" errors
+  rate_limit_ms: 2000
+  
+  # User-Agent string for HTTP requests
+  # Change if Telegram blocks the default one
+  user_agent: "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+
+digest:
+  # Language for AI-generated summaries
+  # Supported: "en", "ru", "es", "fr", "de", etc. (depends on your LLM)
+  language: "en"
+  
+  # Maximum tokens for the summary per channel
+  # ~100 tokens = 2-3 short paragraphs
+  max_tokens_per_channel: 300
+  
+  # Output format for the digest
+  # Options: "markdown" (rich formatting), "html", "text" (plain)
+  format: "markdown"
+  
+  # How to group messages in the digest
+  # "time" = chronological order across channels
+  # "channel" = group by source channel
+  # "none" = flat list
+  group_by: "time"
+  
+  # Which OpenClaw channel to send the digest to
+  # "default" = use the current session's output channel
+  # "telegram", "discord", "webhook" = explicit routing
+  notify_channel: "default"
+  
+  # Minimum number of new messages required to trigger summarization
+  # Prevents noise from single-message updates
+  min_messages_for_summary: 2

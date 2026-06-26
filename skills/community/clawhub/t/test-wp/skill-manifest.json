@@ -1,0 +1,60 @@
+{
+  "schemaVersion": "1.0.0",
+  "skill": {
+    "id": "wordpress-auto-publish",
+    "name": "WordPress Auto-Publish",
+    "version": "1.0.0",
+    "description": "自动将Markdown文章发布到WordPress博客",
+    "author": "OpenClaw Assistant",
+    "license": "MIT",
+    "homepage": "https://docs.openclaw.ai/skills/wordpress-auto-publish",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/openclaw/skills/wordpress-auto-publish"
+    },
+    "keywords": [
+      "wordpress",
+      "automation",
+      "publishing",
+      "markdown",
+      "blog",
+      "openclaw"
+    ],
+    "compatibility": {
+      "openclaw": ">=2026.3.0"
+    },
+    "requirements": [
+      "Node.js >= 14.0.0",
+      "WordPress 5.0+ with REST API enabled",
+      "WordPress application password"
+    ],
+    "triggerKeywords": [
+      "wordpress",
+      "publish",
+      "自动发布",
+      "文章发布",
+      "markdown to wordpress",
+      "wordpress api",
+      "博客发布",
+      "wordpress自动化"
+    ],
+    "files": [
+      "SKILL.md",
+      "README.md",
+      "package.json",
+      "skill-manifest.json",
+      "config.js",
+      "config.example.js",
+      "wordpress-api.js",
+      "publish.js",
+      "batch-publish.js",
+      "list-posts.js",
+      "test-connection.js",
+      "posts/",
+      "scripts/"
+    ],
+    "installScript": "scripts/setup-wordpress.sh",
+    "created": "2026-04-04T14:45:00Z",
+    "updated": "2026-04-04T14:45:00Z"
+  }
+}

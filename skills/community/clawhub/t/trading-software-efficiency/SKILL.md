@@ -1,35 +1,54 @@
 ---
-name: "a-stock-trading-software"
-description: "用快捷键和自定义功能提升看盘和交易效率。用于A股操作效率提升。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/trading-software-efficiency"
-sourceUrl: "https://clawhub.ai/skills/trading-software-efficiency"
+name: trading-software-efficiency
+description: 用快捷键和自定义功能提升看盘和交易效率。用于A股操作效率提升。
 ---
 
-# a-stock-trading-software
+# 交易软件高效操作 Skill
 
-> 用快捷键和自定义功能提升看盘和交易效率。用于A股操作效率提升。
+## 核心能力
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/trading-software-efficiency`
-- **Source URL:** [https://clawhub.ai/skills/trading-software-efficiency](https://clawhub.ai/skills/trading-software-efficiency)
+用快捷键和自定义功能提升看盘和交易效率。
 
-## Overview
+## 常用快捷键
 
+### 看盘快捷键
+- F5：切换分时/K线
+- F10：看基本面
+- .400：看板块热点
+- 60+回车：看涨幅榜
+- 80+回车：看跌幅榜
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/trading-software-efficiency
-```
+### 快速下单
+- 数字键盘：快速输入价格
+- F12：打开交易窗口
+
+### 行情查看
+- 创业板：300+回车
+- 科创板：688+回车
+- 上海：600/601+回车
+- 深圳：000/002/003+回车
+
+## 自定义界面设置
+
+### 指标叠加
+- 均线：MA5, MA10, MA20, MA60
+- MACD：默认参数
+- 成交量：VOL
+
+### 条件预警
+- 设置涨停预警
+- 设置跌破预警
+- 设置突破预警
+
+## 条件单使用
+
+- "突破20元自动买入"
+- "跌破18元自动卖出"
+- 不用时刻盯盘，触发条件自动执行
+
+## 触发场景
+
+- "怎么快速看盘"
+- "有什么快捷键"
+- "怎么设置条件单"
+- "F10怎么看"

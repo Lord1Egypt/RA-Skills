@@ -1,0 +1,10 @@
+{
+  "default_location": "Your City, Country",
+  "daily_locations": {
+    "2026-05-10": "Paris, France",
+    "2026-05-11": "Paris, France",
+    "2026-05-12": "Lyon, France",
+    "2026-05-13": "Lyon, France",
+    "2026-05-14": "Nice, France"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "version": "1.0.0",
+  "description": "用戶政治評論偏好設定",
+  "settings": {
+    "default_region": "tw",
+    "preferred_style": "中立客觀型",
+    "preferred_format": "完整評論文章",
+    "output_language": "繁體中文",
+    "notification_enabled": false
+  },
+  "interests": {
+    "topics": [],
+    "regions": [],
+    "sources": []
+  },
+  "history": {
+    "commented_topics": [],
+    "last_updated": null
+  }
+}

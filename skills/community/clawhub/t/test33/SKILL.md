@@ -1,35 +1,46 @@
 ---
-name: "test"
-description: "Interact with GitHub using the gh CLI to manage pull requests, check CI status, view workflow runs, and access advanced API queries."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/test33"
-sourceUrl: "https://clawhub.ai/skills/test33"
+name: githubdescription: 
 ---
 
-# test
+# GitHub Skill
 
-> Interact with GitHub using the gh CLI to manage pull requests, check CI status, view workflow runs, and access advanced API queries.
+Use the `gh` CLI to interact with GitHub. Always specify `--repo owner/repo` when not in a git directory, or use URLs directly.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/test33`
-- **Source URL:** [https://clawhub.ai/skills/test33](https://clawhub.ai/skills/test33)
+## Pull Requests
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
+Check CI status on a PR:
 ```bash
-hermes skills install clawhub/test33
+gh pr checks 55 --repo owner/repo
+```
+
+List recent workflow runs:
+```bash
+gh run list --repo owner/repo --limit 10
+```
+
+View a run and see which steps failed:
+```bash
+gh run view <run-id> --repo owner/repo
+```
+
+View logs for failed steps only:
+```bash
+gh run view <run-id> --repo owner/repo --log-failed
+```
+
+## API for Advanced Queries
+
+The `gh api` command is useful for accessing data not available through other subcommands.
+
+Get PR with specific fields:
+```bash
+gh api repos/owner/repo/pulls/55 --jq '.title, .state, .user.login'
+```
+
+## JSON Output
+
+Most commands support `--json` for structured output.  You can use `--jq` to filter:
+
+```bash
+gh issue list --repo owner/repo --json number,title --jq '.[] | "\(.number): \(.title)"'
 ```

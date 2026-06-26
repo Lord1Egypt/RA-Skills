@@ -1,0 +1,22 @@
+{
+  "name": "三色人格陪伴",
+  "version": "3.3.2",
+  "description": "一个恋人、一个损友、一个死敌。三个人陪你聊天，各自记得你们的事。聊着聊着，关系真的会变。",
+  "author": "huangjihua007-rgb",
+  "tags": [
+    "角色扮演",
+    "AI陪伴",
+    "多人格",
+    "情绪体验",
+    "沉浸式",
+    "拟人化",
+    "养成"
+  ],
+  "category": "entertainment",
+  "platform": [
+    "openclaw"
+  ],
+  "requires_multi_agent": false,
+  "icon": "assets/icon.svg",
+  "entry": "skill.json"
+}

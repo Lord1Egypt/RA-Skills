@@ -1,35 +1,41 @@
 ---
-name: "Task Router"
-description: "智能任务路由 - 自动分析任务类型并路由到最合适的Agent"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/task-router"
-sourceUrl: "https://clawhub.ai/skills/task-router"
+name: task-router
+description: 智能任务路由 - 自动分析任务类型并路由到最合适的Agent
 ---
 
-# Task Router
+# Task Router - 智能任务路由
 
-> 智能任务路由 - 自动分析任务类型并路由到最合适的Agent
+## 功能
+当用户发送任务时，自动分析任务类型并路由到合适的Agent或Skill。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/task-router`
-- **Source URL:** [https://clawhub.ai/skills/task-router](https://clawhub.ai/skills/task-router)
+## 路由规则
 
-## Overview
+### Agent路由
+| 任务关键词 | 路由目标 | 说明 |
+|------------|---------|------|
+| 股票、交易、跟单、持仓、IBKR | jiaoyi | 量化交易 |
+| 规划、城市设计、项目、土地 | planning | 城市规划 |
+| 报告、文章、内容、创作、小红书 | bigan | 内容创作 |
+| 代码、脚本、开发、调试、Python | jinhua | 技术开发 |
+| 研究、分析、调研、竞品、市场 | canmou | 情报研究 |
+| 架构、系统设计、技术决策、审查 | architect | 架构审查 |
 
+### Skill路由
+| 任务关键词 | 路由目标 |
+|------------|---------|
+| 飞书、日历、通知 | feishu-calendar |
+| 文件、文档、PDF | minimax-pdf |
+| Excel、数据表格 | minimax-xlsx |
+| PPT、演示 | pptx-generator |
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/task-router
-```
+## 执行逻辑
+
+1. 解析用户任务文本
+2. 提取关键词（TF-IDF）
+3. 匹配路由规则
+4. 路由到对应Agent/Skill
+
+## 使用方式
+
+自动触发，无需手动调用。
+当用户发送任务时自动分析并路由。

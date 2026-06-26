@@ -1,0 +1,12 @@
+{
+  "segments": [
+    { "text": "Red ", "color": "#ff4d4f" },
+    { "text": "Blue ", "color": "#1677ff" },
+    { "text": "Green", "color": "#52c41a" }
+  ],
+  "width": 640,
+  "height": 240,
+  "format": "png",
+  "background": "#ffffff",
+  "padding": 24
+}

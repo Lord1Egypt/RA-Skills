@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "tc-migrate"
+version = "1.0.0"
+description = "腾讯云跨账号 VPC 迁移 + CCN 打通 CLI 工具"
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+
+dependencies = [
+    "click>=8.1.0",
+    "pyyaml>=6.0",
+    "rich>=13.0.0",
+    "pydantic>=2.0.0",
+    "jinja2>=3.1.0",
+    "tencentcloud-sdk-python>=3.0.0",
+]
+
+[project.scripts]
+tc-migrate = "tc_migrate.cli:cli"
+
+[tool.setuptools.packages.find]
+where = ["."]

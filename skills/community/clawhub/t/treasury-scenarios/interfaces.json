@@ -1,0 +1,327 @@
+{
+  "version": "1.0.0",
+  "interfaces": {
+    "601113": {
+      "name": "查询租户下直连账户列表",
+      "description": "查询租户下所有直连银行账户信息",
+      "securityLevel": "10",
+      "requestFields": [
+        {"field": "txCode", "desc": "交易代码", "value": "100011"},
+        {"field": "tenantID", "desc": "租户 ID", "required": true},
+        {"field": "sendTime", "desc": "发起日期", "format": "YYYYMMDDHHMMSS"},
+        {"field": "pageIndex", "desc": "页码", "required": true},
+        {"field": "pageSize", "desc": "每页条数", "range": "1-100"}
+      ],
+      "responseFields": [
+        {"field": "accName", "desc": "户名"},
+        {"field": "bankAccno", "desc": "账号"},
+        {"field": "accBal", "desc": "账户余额"},
+        {"field": "avalBal", "desc": "可用余额"},
+        {"field": "accStatus", "desc": "账户状态", "values": "1-未启用，2-正常，3-已销户"}
+      ]
+    },
+    "601114": {
+      "name": "批量工资代发",
+      "description": "通过文件方式批量发放员工工资",
+      "securityLevel": "10",
+      "requestFields": [
+        {"field": "txCode", "desc": "交易代码", "value": "100012"},
+        {"field": "fileName", "desc": "文件名", "format": "租户编号+SPA+ 日期 + 序列号.i"},
+        {"field": "fileContent", "desc": "文件内容", "format": "Base64 压缩"},
+        {"field": "payerAccno", "desc": "付款人账号", "required": true},
+        {"field": "batchNo", "desc": "批次号", "required": false}
+      ],
+      "responseFields": [
+        {"field": "respCode", "desc": "响应码", "values": "000000-成功"},
+        {"field": "respInfo", "desc": "响应信息"}
+      ]
+    },
+    "601115": {
+      "name": "批量工资代发结果查询",
+      "description": "查询批量工资代发执行结果",
+      "securityLevel": "10",
+      "requestFields": [
+        {"field": "txCode", "desc": "交易代码", "value": "100013"},
+        {"field": "fileName", "desc": "文件名", "required": true},
+        {"field": "importDate", "desc": "导入日期", "format": "YYYYMMDD"},
+        {"field": "payerAccno", "desc": "付款人账号", "required": true}
+      ],
+      "responseFields": [
+        {"field": "importFileStsCd", "desc": "导入文件状态", "values": "1-校验中，2-校验通过，3-不通过，6-付款中，7-付款成功，8-付款失败"},
+        {"field": "appFormStaCd", "desc": "申请单状态"},
+        {"field": "fileContent", "desc": "结果文件内容", "format": "Base64"}
+      ]
+    },
+    "601116": {
+      "name": "生成单笔支付申请单或支付单",
+      "description": "创建单笔支付指令",
+      "securityLevel": "10",
+      "requestFields": [
+        {"field": "txCode", "desc": "交易代码", "value": "100014"},
+        {"field": "txType", "desc": "交易类型", "values": "1-对公，2-对私"},
+        {"field": "busiTypeCode", "desc": "业务类型", "required": true},
+        {"field": "batchNo", "desc": "批次号", "required": true},
+        {"field": "payerAccno", "desc": "付款人账号", "required": true},
+        {"field": "payAmt", "desc": "支付金额", "required": true},
+        {"field": "payeeAccno", "desc": "收款人账号", "required": true},
+        {"field": "payeeAccname", "desc": "收款人户名", "required": true},
+        {"field": "paymDate", "desc": "应付日期", "format": "YYYYMMDD"},
+        {"field": "payType", "desc": "支付模式", "values": "1-即时，2-预约"}
+      ],
+      "responseFields": [
+        {"field": "respCode", "desc": "响应码"},
+        {"field": "respInfo", "desc": "响应信息"}
+      ]
+    },
+    "601117": {
+      "name": "单笔支付申请单或者支付单结果查询",
+      "description": "查询单笔支付执行状态",
+      "securityLevel": "10",
+      "requestFields": [
+        {"field": "txCode", "desc": "交易代码", "value": "100015"},
+        {"field": "batchNo", "desc": "批次号", "required": true},
+        {"field": "txType", "desc": "交易类型", "values": "1-对公，2-对私"}
+      ],
+      "responseFields": [
+        {"field": "payStatus", "desc": "支付状态", "values": "1-待送审，2-审批中，3-驳回，4-待付款，5-付款中，6-付款成功，7-部分成功，8-付款失败"},
+        {"field": "bankSriNo", "desc": "银行流水号"},
+        {"field": "finishDate", "desc": "支付完成时间"}
+      ]
+    },
+    "601118": {
+      "name": "账户余额实时查询",
+      "description": "实时查询账户当前余额",
+      "securityLevel": "10",
+      "requestFields": [
+        {"field": "txCode", "desc": "交易代码", "value": "100016"},
+        {"field": "bankAccno", "desc": "账号", "required": true}
+      ],
+      "responseFields": [
+        {"field": "bankAccno", "desc": "账号"},
+        {"field": "accBal", "desc": "余额"},
+        {"field": "accAvalBal", "desc": "可用余额"}
+      ]
+    },
+    "601119": {
+      "name": "查询明细",
+      "description": "查询账户交易明细",
+      "securityLevel": "10",
+      "requestFields": [
+        {"field": "txCode", "desc": "交易代码", "value": "100017"},
+        {"field": "bankAccno", "desc": "账号", "required": true},
+        {"field": "txStartDate", "desc": "交易开始时间", "format": "yyyyMMdd"},
+        {"field": "txEndDate", "desc": "交易结束时间", "format": "yyyyMMdd"},
+        {"field": "pageIndex", "desc": "页码"},
+        {"field": "pageSize", "desc": "每页条数", "range": "1-100"}
+      ],
+      "responseFields": [
+        {"field": "txDate", "desc": "交易日期"},
+        {"field": "txTime", "desc": "交易时间"},
+        {"field": "txAmt", "desc": "交易金额"},
+        {"field": "accBal", "desc": "账户余额"},
+        {"field": "opsAccNo", "desc": "交易对手账号"},
+        {"field": "opsAccName", "desc": "交易对手户名"},
+        {"field": "txSriNo", "desc": "银行流水号"},
+        {"field": "batchNo", "desc": "批次号"}
+      ]
+    },
+    "601120": {
+      "name": "账户历史余额查询",
+      "description": "查询指定日期范围内的历史余额",
+      "securityLevel": "10",
+      "requestFields": [
+        {"field": "txCode", "desc": "交易代码", "value": "100018"},
+        {"field": "bankAccno", "desc": "账号", "required": true},
+        {"field": "startDate", "desc": "开始日期", "format": "yyyy-MM-dd"},
+        {"field": "endDate", "desc": "结束日期", "format": "yyyy-MM-dd"}
+      ],
+      "responseFields": [
+        {"field": "date", "desc": "日期"},
+        {"field": "accBal", "desc": "当天余额"},
+        {"field": "avalBal", "desc": "可用余额"}
+      ]
+    },
+    "601203": {
+      "name": "明细关联回单信息查询",
+      "description": "根据明细 ID 获取电子回单",
+      "securityLevel": "15",
+      "requestFields": [
+        {"field": "txCode", "desc": "交易代码", "value": "100019"},
+        {"field": "id", "desc": "明细 ID", "required": true}
+      ],
+      "responseFields": [
+        {"field": "file", "desc": "回单文件", "format": "Base64"},
+        {"field": "fileType", "desc": "文件类型", "values": "pdf, png"}
+      ]
+    },
+    "601303": {
+      "name": "查询资金归集明细",
+      "description": "查询资金归集交易明细",
+      "securityLevel": "10",
+      "requestFields": [
+        {"field": "txCode", "desc": "交易代码", "value": "100024"},
+        {"field": "bankAccno", "desc": "账号", "required": true},
+        {"field": "txStartDate", "desc": "开始日期"},
+        {"field": "txEndDate", "desc": "结束日期"}
+      ],
+      "responseFields": [
+        {"field": "txSumm", "desc": "摘要", "values": "手工存放上级/下级存放/下拨下级/上级下拨"},
+        {"field": "txAmt", "desc": "交易金额"}
+      ]
+    },
+    "601304": {
+      "name": "手工下拨",
+      "description": "从上级账户向下级账户划拨资金",
+      "securityLevel": "10",
+      "requestFields": [
+        {"field": "txCode", "desc": "交易代码", "value": "100025"},
+        {"field": "bankAccno", "desc": "付款账号", "required": true},
+        {"field": "opsAccNo", "desc": "下拨对手账号", "required": true},
+        {"field": "txAmt", "desc": "下拨金额", "required": true},
+        {"field": "postscript", "desc": "附言"}
+      ],
+      "responseFields": [
+        {"field": "txSriNo", "desc": "银行流水号"},
+        {"field": "applyNo", "desc": "申请单编号"}
+      ]
+    },
+    "601311": {
+      "name": "融资中心付款单获取",
+      "description": "获取融资还款付款单信息",
+      "securityLevel": "10",
+      "requestFields": [
+        {"field": "txCode", "desc": "交易代码", "value": "100023"},
+        {"field": "deptNo", "desc": "付款单位", "required": true}
+      ],
+      "responseFields": [
+        {"field": "repayNo", "desc": "还款计划编号"},
+        {"field": "repayType", "desc": "业务类型", "values": "还本/付息/还本付息"},
+        {"field": "repayDate", "desc": "预计还款日期"},
+        {"field": "repayAmt", "desc": "付款金额"},
+        {"field": "payeeName", "desc": "收款人 (贷款机构)"}
+      ]
+    },
+    "601324": {
+      "name": "新增申请单",
+      "description": "创建付款申请单 (新菜单)",
+      "securityLevel": "10",
+      "requestFields": [
+        {"field": "txCode", "desc": "交易代码", "value": "100021"},
+        {"field": "oldBatchNo", "desc": "来源系统批次号", "required": true},
+        {"field": "payblAmt", "desc": "应付金额", "required": true},
+        {"field": "payeeAccno", "desc": "收方账号", "required": true},
+        {"field": "payeeAccname", "desc": "收方户名", "required": true}
+      ],
+      "responseFields": [
+        {"field": "respCode", "desc": "响应码"},
+        {"field": "respInfo", "desc": "响应信息"}
+      ]
+    },
+    "601325": {
+      "name": "申请单结果查询",
+      "description": "查询申请单及支付单状态 (新菜单)",
+      "securityLevel": "10",
+      "requestFields": [
+        {"field": "txCode", "desc": "交易代码", "value": "100022"},
+        {"field": "oldBatchNo", "desc": "来源系统批次号", "required": true}
+      ],
+      "responseFields": [
+        {"field": "payStatus", "desc": "申请单状态"},
+        {"field": "applyNo", "desc": "申请单编号"},
+        {"field": "payList", "desc": "支付单列表"}
+      ]
+    },
+    "601383": {
+      "name": "获取免密登录令牌",
+      "description": "获取免密登录链接",
+      "securityLevel": "10",
+      "requestFields": [
+        {"field": "txCode", "desc": "交易代码", "value": "100027"},
+        {"field": "userAccNo", "desc": "用户账号 (手机号)", "required": true},
+        {"field": "tenantNo", "desc": "令牌类型", "value": "PASS_TOKEN"}
+      ],
+      "responseFields": [
+        {"field": "urlWithToken", "desc": "带令牌的登录链接"}
+      ]
+    },
+    "601417": {
+      "name": "资金计划科目同步",
+      "description": "同步预算科目到司库系统",
+      "securityLevel": "10",
+      "requestFields": [
+        {"field": "txCode", "desc": "交易代码", "value": "100028"},
+        {"field": "type", "desc": "同步类型", "values": "1-新增，2-修改，3-停用，4-删除"},
+        {"field": "items", "desc": "科目列表", "required": true}
+      ],
+      "responseFields": [
+        {"field": "itemCode", "desc": "科目编码"},
+        {"field": "itemName", "desc": "科目名称"}
+      ]
+    },
+    "601418": {
+      "name": "资金计划填报",
+      "description": "上报资金计划金额",
+      "securityLevel": "10",
+      "requestFields": [
+        {"field": "txCode", "desc": "交易代码", "value": "100029"},
+        {"field": "timePeriod", "desc": "预算类型", "values": "1-年，2-季，3-月，4-旬，5-周"},
+        {"field": "beginDate", "desc": "预算开始日"},
+        {"field": "endDate", "desc": "预算结束日"},
+        {"field": "items", "desc": "预算明细列表", "required": true}
+      ],
+      "responseFields": [
+        {"field": "respCode", "desc": "响应码"}
+      ]
+    },
+    "601419": {
+      "name": "资金计划追加",
+      "description": "追加或减少本期资金计划",
+      "securityLevel": "10",
+      "requestFields": [
+        {"field": "txCode", "desc": "交易代码", "value": "100030"},
+        {"field": "timePeriod", "desc": "预算类型"},
+        {"field": "beginDate", "desc": "预算开始日"},
+        {"field": "endDate", "desc": "预算结束日"},
+        {"field": "items", "desc": "追加明细", "required": true}
+      ],
+      "responseFields": [
+        {"field": "respCode", "desc": "响应码"}
+      ]
+    },
+    "601420": {
+      "name": "资金计划占用情况查询",
+      "description": "查询资金计划执行情况",
+      "securityLevel": "10",
+      "requestFields": [
+        {"field": "txCode", "desc": "交易代码", "value": "100031"},
+        {"field": "timePeriod", "desc": "预算类型"},
+        {"field": "beginDate", "desc": "开始时间"},
+        {"field": "endDate", "desc": "结束时间"},
+        {"field": "current", "desc": "当前页"},
+        {"field": "size", "desc": "每页数量"}
+      ],
+      "responseFields": [
+        {"field": "budgetInSumAmount", "desc": "资金收入预算总额"},
+        {"field": "inCarrySumAmount", "desc": "资金收入执行总额"},
+        {"field": "budgetOutSumAmount", "desc": "资金支出预算总额"},
+        {"field": "outCarrySumAmount", "desc": "资金支出执行总额"},
+        {"field": "items", "desc": "明细执行数据"}
+      ]
+    },
+    "601732": {
+      "name": "手工下拨结果查询",
+      "description": "查询手工下拨执行结果",
+      "securityLevel": "10",
+      "requestFields": [
+        {"field": "txCode", "desc": "交易代码", "value": "100032"},
+        {"field": "applyNo", "desc": "申请单编号", "required": true}
+      ],
+      "responseFields": [
+        {"field": "applyStatus", "desc": "审批状态", "values": "9-审批中，4-审批通过，5-驳回"},
+        {"field": "payStatus", "desc": "支付状态", "values": "0-待支付，1-支付中，3-支付成功，4-支付失败"},
+        {"field": "failReason", "desc": "失败原因"},
+        {"field": "finishDate", "desc": "支付完成时间"}
+      ]
+    }
+  }
+}

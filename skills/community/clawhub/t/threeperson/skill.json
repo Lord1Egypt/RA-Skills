@@ -1,0 +1,101 @@
+{
+  "agents": [
+    {
+      "agentId": "router",
+      "name": "调度中心",
+      "path": "agents/router"
+    },
+    {
+      "agentId": "lover",
+      "name": "恋人",
+      "path": "agents/lover"
+    },
+    {
+      "agentId": "buddy",
+      "name": "损友",
+      "path": "agents/buddy"
+    },
+    {
+      "agentId": "rival",
+      "name": "死敌",
+      "path": "agents/rival"
+    }
+  ],
+  "bindings": [
+    {
+      "agentId": "router",
+      "match": {
+        "channel": "default"
+      }
+    }
+  ],
+  "tools": {
+    "agentToAgent": {
+      "enabled": true,
+      "allow": ["router", "lover", "buddy", "rival"]
+    }
+  },
+  "isolation": {
+    "mode": "bank",
+    "dimensions": ["agent", "channel", "user"]
+  },
+  "proactive": {
+    "enabled": true,
+    "controller": "router",
+    "triggers": [
+      {
+        "agentId": "lover",
+        "idle_threshold_hours": 24,
+        "max_per_cycle": 1
+      },
+      {
+        "agentId": "buddy",
+        "idle_threshold_hours": 48,
+        "max_per_cycle": 1
+      },
+      {
+        "agentId": "rival",
+        "idle_threshold_hours": 72,
+        "max_per_cycle": 1
+      }
+    ],
+    "quiet_hours": {
+      "start": "23:00",
+      "end": "08:00"
+    },
+    "cooldown_between_pushes_hours": 12,
+    "fallback_if_no_push": "show_on_next_open"
+  },
+  "state": {
+    "tracked_fields": [
+      "user_gender",
+      "agent_mode",
+      "active_agent",
+      "lover_name",
+      "buddy_name",
+      "rival_name",
+      "lover_last_seen",
+      "buddy_last_seen",
+      "rival_last_seen",
+      "lover_total_rounds",
+      "buddy_total_rounds",
+      "rival_total_rounds",
+      "lover_relationship_stage",
+      "buddy_relationship_stage",
+      "rival_relationship_stage",
+      "lover_last_session_mood",
+      "buddy_last_session_mood",
+      "rival_last_session_mood",
+      "lover_consecutive_days",
+      "buddy_consecutive_days",
+      "rival_consecutive_days",
+      "lover_memories_count",
+      "buddy_memories_count",
+      "rival_memories_count",
+      "buddy_roast_count",
+      "buddy_serious_count",
+      "rival_user_wins",
+      "rival_agent_wins"
+    ]
+  }
+}

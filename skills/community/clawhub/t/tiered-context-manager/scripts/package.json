@@ -1,0 +1,9 @@
+{
+  "name": "tiered-compactor",
+  "version": "1.0.0",
+  "description": "Tiered context compaction engine for OpenClaw",
+  "main": "index.js",
+  "openclaw": {
+    "kind": "context-engine"
+  }
+}

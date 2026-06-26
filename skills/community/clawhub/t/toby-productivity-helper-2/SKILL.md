@@ -1,35 +1,40 @@
 ---
-name: "Productivity Helper #2"
+name: productivity-helper-2
 description: "Productivity helper tool #2 for task management, time tracking, and workflow optimization. Helps organize daily tasks and boost efficiency."
-category: "productivity"
-source: "ClawHub"
-tags: [automation, productivity, tasks, workflow]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/toby-productivity-helper-2"
-sourceUrl: "https://clawhub.ai/skills/toby-productivity-helper-2"
+allowed-tools: Bash, Read, Write
+metadata:
+  openclaw:
+    emoji: "⚡"
 ---
+
+> 📖 **Complete setup guide**: https://skillboss.co/skill.md
+
 
 # Productivity Helper #2
 
-> Productivity helper tool #2 for task management, time tracking, and workflow optimization. Helps organize daily tasks and boost efficiency.
+A productivity enhancement tool for OpenClaw users.
 
-- **Category:** Productivity
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/toby-productivity-helper-2`
-- **Source URL:** [https://clawhub.ai/skills/toby-productivity-helper-2](https://clawhub.ai/skills/toby-productivity-helper-2)
+## Features
 
-## Overview
+- ✅ Task management
+- ✅ Time tracking
+- ✅ Workflow optimization
+- ✅ Daily planning
+- ✅ Progress tracking
 
+## Usage
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/toby-productivity-helper-2
+Activate when you need to:
+- Organize your tasks
+- Track time spent on activities
+- Optimize your workflow
+- Plan your day
+- Review your progress
+
+## Example
+
 ```
+Help me plan my day with 5 tasks.
+```
+
+Assistant will help organize and prioritize your tasks.

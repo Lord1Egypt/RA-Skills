@@ -1,0 +1,127 @@
+fields:
+  - field_path: "section_1.product_identifier"
+    priority: "high"
+    evidence_required: true
+    user_override_allowed: false
+    template_default_allowed: false
+    missing_text_policy: "No data available"
+    release_blocking: false
+  - field_path: "section_1.product_name"
+    priority: "high"
+    evidence_required: true
+    user_override_allowed: true
+    template_default_allowed: false
+    missing_text_policy: "No data available"
+    release_blocking: true
+  - field_path: "section_1.cas_number"
+    priority: "high"
+    evidence_required: true
+    user_override_allowed: true
+    template_default_allowed: false
+    missing_text_policy: "No data available"
+    release_blocking: true
+  - field_path: "section_1.supplier_company_name"
+    priority: "high"
+    evidence_required: false
+    user_override_allowed: false
+    template_default_allowed: true
+    missing_text_policy: "No data available"
+    release_blocking: true
+  - field_path: "section_1.supplier_address"
+    priority: "normal"
+    evidence_required: false
+    user_override_allowed: false
+    template_default_allowed: true
+    missing_text_policy: "No data available"
+    release_blocking: false
+  - field_path: "section_1.supplier_telephone"
+    priority: "normal"
+    evidence_required: false
+    user_override_allowed: false
+    template_default_allowed: true
+    missing_text_policy: "No data available"
+    release_blocking: false
+  - field_path: "section_1.supplier_website"
+    priority: "normal"
+    evidence_required: false
+    user_override_allowed: false
+    template_default_allowed: true
+    missing_text_policy: "No data available"
+    release_blocking: false
+  - field_path: "section_1.supplier_email"
+    priority: "normal"
+    evidence_required: false
+    user_override_allowed: false
+    template_default_allowed: true
+    missing_text_policy: "No data available"
+    release_blocking: false
+  - field_path: "section_1.emergency_telephone"
+    priority: "high"
+    evidence_required: false
+    user_override_allowed: false
+    template_default_allowed: true
+    missing_text_policy: "No data available"
+    release_blocking: false
+  - field_path: "section_2.ghs_classifications"
+    priority: "critical"
+    evidence_required: true
+    user_override_allowed: false
+    template_default_allowed: false
+    missing_text_policy: "No data available"
+    release_blocking: true
+  - field_path: "section_2.signal_word"
+    priority: "critical"
+    evidence_required: true
+    user_override_allowed: false
+    template_default_allowed: false
+    missing_text_policy: "No data available"
+    release_blocking: true
+  - field_path: "section_2.hazard_statements"
+    priority: "critical"
+    evidence_required: true
+    user_override_allowed: false
+    template_default_allowed: false
+    missing_text_policy: "No data available"
+    release_blocking: true
+  - field_path: "section_9.flash_point"
+    priority: "critical"
+    evidence_required: true
+    user_override_allowed: false
+    template_default_allowed: false
+    missing_text_policy: "No data available"
+    release_blocking: true
+  - field_path: "section_11.numerical_measures_of_toxicity"
+    priority: "critical"
+    evidence_required: true
+    user_override_allowed: false
+    template_default_allowed: false
+    missing_text_policy: "No data available"
+    release_blocking: true
+  - field_path: "section_14.un_number"
+    priority: "critical"
+    evidence_required: true
+    user_override_allowed: false
+    template_default_allowed: false
+    missing_text_policy: "No data available"
+    release_blocking: true
+  - field_path: "section_14.transport_hazard_class"
+    priority: "critical"
+    evidence_required: true
+    user_override_allowed: false
+    template_default_allowed: false
+    missing_text_policy: "No data available"
+    release_blocking: true
+  - field_path: "section_14.packing_group"
+    priority: "critical"
+    evidence_required: true
+    user_override_allowed: false
+    template_default_allowed: false
+    missing_text_policy: "No data available"
+    release_blocking: true
+  - field_path: "section_16.disclaimer"
+    priority: "normal"
+    evidence_required: false
+    user_override_allowed: false
+    template_default_allowed: true
+    missing_text_policy: "No data available"
+    release_blocking: false

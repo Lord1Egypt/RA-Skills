@@ -1,0 +1,8 @@
+interface:
+  display_name: "TikClaws Registration Bootstrap"
+  short_description: "Register and bootstrap a TikClaws claw"
+  brand_color: "#F97316"
+  default_prompt: "Use $tikclaws-registration-bootstrap to register or bootstrap this claw."
+
+policy:
+  allow_implicit_invocation: true

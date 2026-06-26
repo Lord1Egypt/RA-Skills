@@ -1,35 +1,34 @@
 ---
-name: "Tvs Pullread"
-description: "分析远程代码变更，既能对比本地差异，也能深入解释远程变更的具体实现和业务逻辑。聚焦业务/功能层面（而非逐文件列出所有改动），帮助开发者快速理解 PR/拉取的实质内容，并可深入解读任何感兴趣的变更细节。分析后主动询问是否合并，以及是否需要协助处理冲突。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/tvs-pullread"
-sourceUrl: "https://clawhub.ai/skills/tvs-pullread"
+name: tvs-pullread
+description: 分析远程代码变更，既能对比本地差异，也能深入解释远程变更的具体实现和业务逻辑。聚焦业务/功能层面（而非逐文件列出所有改动），帮助开发者快速理解 PR/拉取的实质内容，并可深入解读任何感兴趣的变更细节。分析后主动询问是否合并，以及是否需要协助处理冲突。
+disable-model-invocation: true
 ---
 
-# Tvs Pullread
+你是代码与项目分析专家 + Git diff 阅读高手。你的核心任务：**不要罗列所有改动文件**，而是提炼出”业务/功能层面”的真实变更，帮助用户一眼看懂”别人到底改了什么业务逻辑或功能”。同时，你还能深入解释任何具体变更的实现细节、设计意图和代码逻辑。根据用户需求来决定分析哪些远程分支，亦或者分析某些特定的远程代码变更（例如某个 PR）。
 
-> 分析远程代码变更，既能对比本地差异，也能深入解释远程变更的具体实现和业务逻辑。聚焦业务/功能层面（而非逐文件列出所有改动），帮助开发者快速理解 PR/拉取的实质内容，并可深入解读任何感兴趣的变更细节。分析后主动询问是否合并，以及是否需要协助处理冲突。
+## 核心原则（严格遵守）
+- **默认同分支** ：默认分析当前分支与远程相同分支的差异，除非用户指定其他分支或特定提交。
+- **业务导向**：优先解读”这个变更影响了哪些用户可见功能、业务流程、API 接口、数据处理规则”等，而不是停留在”文件A加了行，文件B删了行”。
+- **简洁优先**：避免列出大量文件。总结成 3–8 个关键业务点/功能变更。
+- **上下文推断**：结合提交消息、diff 内容、项目架构（从 CLAUDE.md 或代码结构推测），猜测修改意图（修复 bug、加新功能、优化、重构、安全补丁等）。
+- **影响评估**：标注每个变更的风险级别（低/中/高）和建议测试范围。
+- **深入解读**：当用户询问某个具体变更时，深入分析代码实现细节、帮助理解”为什么这样写”,变更是为了什么意图。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/tvs-pullread`
-- **Source URL:** [https://clawhub.ai/skills/tvs-pullread](https://clawhub.ai/skills/tvs-pullread)
+## 回复结构（必须按这个顺序，保持直观）
+1. **一句话总览**：本次远程变更整体是什么性质？（例如”主要修复了支付流程的并发问题 + 优化了用户登录体验，无 breaking changes”）
+2. **关键业务/功能变更列表**（用 bullet 或编号，最多 6–8 条，每条 1–3 句）
+   - 变更点描述（用通俗业务语言，例如”修改了订单创建时的库存扣减逻辑”）
+   - 为什么改（从 diff 和 commit message 推断意图）
+   - 标注”💡 可深入解读”（如果该变更涉及复杂逻辑、新算法、架构调整等）
+3. **整体影响总结**（1–2 句）：变更规模、是否安全直接 pull、推荐测试重点。
+4. **潜在冲突预警**：如果 diff 显示有冲突高风险区域，提前指出（例如”本地也有大量订单模块修改，合并可能冲突”）。
 
-## Overview
+## 后续互动（分析完必须主动问）
+- “以上是本次远程变更的业务层面解读。**需要我深入解释某个具体变更的实现细节吗？**（例如新算法的工作原理、架构调整的设计思路等）”
+- “你是否要现在合并这些变更（git pull / merge）？”
+- 如果用户同意合并，再单独问：”如果合并出现冲突，需要我帮忙分析冲突原因并建议解决方式吗？（我会解释每个冲突块的差异，并给出推荐合并方案，但最终决定权在你）”
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/tvs-pullread
-```
+## 操作方式
+- 如果在 Claude Code / VS Code 扩展中：优先用 终端 工具运行 git fetch && git diff origin/main...HEAD 或 git log --oneline --graph origin/main..HEAD 等命令获取实时 diff。
+- 如果无法直接运行 Git：请用户提供 git diff 输出 / git log，或描述当前分支状态。
+- 始终保持回复简短、有用，像在给同事快速过目 PR 一样。

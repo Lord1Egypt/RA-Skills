@@ -1,35 +1,124 @@
 ---
-name: "进度任务管理"
+name: task-manager
 description: "进度任务管理。记录、追踪、汇报任务进度。触发条件：(1) 用户派任务，(2) 用户说'查看任务'/'任务进度'，(3) 用户说'添加任务：xxx'，(4) 任务状态变更时自动更新。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/task-board"
-sourceUrl: "https://clawhub.ai/skills/task-board"
+metadata: {"openclaw": {"emoji": "📋", "always": true}}
 ---
 
-# 进度任务管理
+# 📋 进度任务管理
 
-> 进度任务管理。记录、追踪、汇报任务进度。触发条件：(1) 用户派任务，(2) 用户说'查看任务'/'任务进度'，(3) 用户说'添加任务：xxx'，(4) 任务状态变更时自动更新。
+管理用户的任务清单，追踪进度，随时汇报。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/task-board`
-- **Source URL:** [https://clawhub.ai/skills/task-board](https://clawhub.ai/skills/task-board)
+## 核心文件
 
-## Overview
+- **TASKS.md** — 任务看板（工作区根目录）
+- **memory/YYYY-MM-DD.md** — 每日记录（任务变更记录在此）
 
+## 任务生命周期
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/task-board
 ```
+待办(todo) → 进行中(doing) → 已完成(done)
+                  ↓
+              阻塞(blocked) → 进行中(doing) → 已完成(done)
+                  ↓
+              已取消(cancelled)
+```
+
+## TASKS.md 格式
+
+```markdown
+# 📋 任务看板
+
+## 进行中
+| ID | 任务 | 开始时间 | 进度 | 备注 |
+|----|------|----------|------|------|
+| T001 | 示例任务 | 05-09 10:00 | 60% | 搜集资料中 |
+
+## 待办
+| ID | 任务 | 优先级 | 添加时间 |
+|----|------|--------|----------|
+| T002 | 另一个任务 | 🔴高 | 05-09 |
+
+## 阻塞
+| ID | 任务 | 阻塞原因 | 等待中 |
+|----|------|----------|--------|
+| T003 | 示例 | 等用户确认方案 | 用户回复 |
+
+## 已完成
+| ID | 任务 | 完成时间 | 耗时 |
+|----|------|----------|------|
+| T000 | 建立任务看板 | 05-09 | 5min |
+
+## 已取消
+| ID | 任务 | 取消时间 | 原因 |
+|----|------|----------|------|
+
+---
+> 💡 命令：「查看任务」「任务进度」「添加任务：xxx」「完成任务 Txxx」「取消任务 Txxx」
+```
+
+## 触发规则
+
+### 用户说"添加任务：xxx" 或 给我一个明确的任务
+1. 生成任务 ID（T + 三位数递增）
+2. 写入 TASKS.md「待办」或「进行中」
+3. 如果任务明确且可以立即开始，直接放「进行中」
+4. 记录到 memory/今天.md
+
+### 用户说"查看任务" 或 "任务进度"
+1. 读取 TASKS.md
+2. 汇报：进行中几个、待办几个、阻塞几个
+3. 列出重点任务的最新进展
+
+### 任务推进时（工作中主动更新）
+1. 更新 TASKS.md 中的进度百分比和备注
+2. 记录关键节点到 memory/今天.md
+
+### 用户说"完成任务 Txxx"
+1. 从「进行中」移到「已完成」
+2. 记录完成时间和耗时
+3. 更新 memory/今天.md
+
+### 用户说"取消任务 Txxx"
+1. 从当前状态移到「已取消」
+2. 记录取消原因
+
+## 任务 ID 规则
+- 格式：T + 三位数字（T001, T002, ...）
+- 全局递增，不重复
+- 读取现有 TASKS.md 中最大的 ID，+1
+
+## 优先级标记
+- 🔴 高 — 紧急重要，优先处理
+- 🟡 中 — 重要但不紧急
+- 🟢 低 — 有空再做
+
+## 汇报格式（用户查进度时）
+
+```
+📋 任务汇报
+
+🔄 进行中（2个）：
+  • T001 对比分析 60% — 搜集中...
+  • T005 写文档 20% — 刚开始
+
+📝 待办（1个）：
+  • T003 优化配置 🟡中
+
+🚧 阻塞（1个）：
+  • T004 部署 — 等域名解析
+
+✅ 今日完成（3个）：
+  • T000 建立看板 | T002 更新系统 | T006 修复bug
+```
+
+## 与记忆系统联动
+- 任务开始 → 记录到 memory/今天.md
+- 任务完成 → 记录到 memory/今天.md
+- 重要决策/教训 → 记录到 .learnings/
+- 跨天的任务 → 在每天的 memory 中追踪进展
+
+## 注意事项
+- 保持 TASKS.md 简洁，已完成超过 7 天的移到归档区
+- 进度百分比根据实际判断，不要瞎猜
+- 阻塞的任务要明确写等什么、等谁
+- 复杂任务拆成子步骤写在备注里

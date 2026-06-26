@@ -1,35 +1,32 @@
----
-name: "Task Watchdog"
-description: "Monitors subagent failures, exec errors, and stale tasks, auto-notifying sessions on abnormal events and periodically checking task health."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/task-watchdog-plugin"
-sourceUrl: "https://clawhub.ai/skills/task-watchdog-plugin"
----
-
 # Task Watchdog
 
-> Monitors subagent failures, exec errors, and stale tasks, auto-notifying sessions on abnormal events and periodically checking task health.
+OpenClaw plugin that auto-notifies on subagent failures, exec errors, and stale tasks.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/task-watchdog-plugin`
-- **Source URL:** [https://clawhub.ai/skills/task-watchdog-plugin](https://clawhub.ai/skills/task-watchdog-plugin)
+## Hooks
 
-## Overview
+- **subagent_ended**: Detects abnormal outcomes (error/timeout/killed/reset/deleted) and notifies parent session
+- **after_tool_call (exec)**: Watches for abnormal exec exits (non-zero, OOM, signals)
+- **heartbeat_prompt_contribution**: Injects stale-task patrol instructions into heartbeat cycles
+- **gateway_start**: Timer-based patrol that periodically triggers heartbeat checks
 
+## Install
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/task-watchdog-plugin
+openclaw plugin install openclaw-task-watchdog
+```
+
+## Config
+
+All optional — works with defaults:
+
+```json
+{
+  "task-watchdog": {
+    "subagentNotifyOn": ["error", "timeout", "killed"],
+    "execNotifyOnAbnormal": true,
+    "timerPatrol": true,
+    "timerPatrolIntervalMs": 120000,
+    "staleThresholdMs": 1800000
+  }
+}
 ```

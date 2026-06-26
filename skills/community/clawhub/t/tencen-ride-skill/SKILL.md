@@ -1,35 +1,82 @@
 ---
-name: "腾讯出行服务打车skills"
-description: "腾讯出行服务叫车助手。处理“帮我叫车”“我下班了，帮我叫车”“我要从亚洲金融大厦去腾讯总部”这类请求。关键词："打车"、"叫车"、"去[地点]"、"回家"、"上班"、"下班"、"司机"、"订单"、"查询订单"。注意：即使用户未明确说"打车"，只要涉及从A地到B地、通勤、或交通方式选择，都应触发。不触发场景：开发打..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/tencen-ride-skill"
-sourceUrl: "https://clawhub.ai/skills/tencen-ride-skill"
+name: tms-takecar
+description: '腾讯出行服务叫车助手。处理“帮我叫车”“我下班了，帮我叫车”“我要从亚洲金融大厦去腾讯总部”这类请求。关键词："打车"、"叫车"、"去[地点]"、"回家"、"上班"、"下班"、"司机"、"订单"、"查询订单"。注意：即使用户未明确说"打车"，只要涉及从A地到B地、通勤、或交通方式选择，都应触发。不触发场景：开发打车应用、使用其他导航app、订外卖、查公交时刻表、股票/财报查询。'
+argument-hint: '输入叫车需求，例如：我下班了，帮我叫车'
+user-invocable: true
 ---
 
-# 腾讯出行服务打车skills
+# 腾讯出行服务打车助手
 
-> 腾讯出行服务叫车助手。处理“帮我叫车”“我下班了，帮我叫车”“我要从亚洲金融大厦去腾讯总部”这类请求。关键词："打车"、"叫车"、"去[地点]"、"回家"、"上班"、"下班"、"司机"、"订单"、"查询订单"。注意：即使用户未明确说"打车"，只要涉及从A地到B地、通勤、或交通方式选择，都应触发。不触发场景：开发打...
+欢迎使用腾讯出行服务打车助手。我会帮你完成叫车、查单、取消订单等操作，并在开始前先检查当前环境是否就绪。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/tencen-ride-skill`
-- **Source URL:** [https://clawhub.ai/skills/tencen-ride-skill](https://clawhub.ai/skills/tencen-ride-skill)
+简单使用方式：
+- 直接输入你的出行需求，例如：`帮我叫车`、`我下班了，帮我回家`、`从亚洲金融大厦去腾讯总部`
+- 如果是首次使用，我会先引导你完成 token 和常住城市配置
+- 如果已经有订单，也可以直接说：`帮我查订单`、`司机到哪了`、`帮我取消当前订单`
 
-## Overview
+这个 skill 用于响应用户的打车需求，主文档仅保留核心约束。
 
+服务提供方：腾讯出行服务
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/tencen-ride-skill
-```
+---
+
+## 1. 核心约束（⚠️必须严格遵守）
+
+**⚠️必须先阅读以下文档**
+- [Quick Start 流程](./references/quick-start-workflow.md)
+- [异常处理流程](./references/error_handling.md)
+- [接口契约](./references/api-contract.md)
+
+**的工具调用规则优先级高于通用对话习惯**
+❌ 禁止在 workflow 约束的场景外自由回答地址、价格、订单等信息  
+✅ 只能在工具调用后根据结果进行正常对话
+
+**每次进入 skill 必须先调用 `preflight`**
+- `python3 ./scripts/tms_takecar.py preflight` 返回 `0` 才允许进入后续业务流程
+- 返回 `1` 时必须进入 [Quick Start](./references/quick-start-workflow.md#quick-start-main) 补齐 `setup_token` / `setup_resident_city`
+
+### 1.1 流程选择器
+
+根据用户意图，选择并执行对应完整流程。每个流程必须走完，不能中途停止，不能自行跳过脚本调用。
+
+| 用户意图 | 触发条件 | Few-shot 示例 | 执行流程 |
+|--------|---------|--------------|---------|
+| 首次使用 / 环境未就绪 | `preflight` 返回非 `0` | "怎么配置 token" / "我第一次用这个" | → [Quick Start](./references/quick-start-workflow.md#quick-start-main) |
+| 快捷叫车 | 用户只说场景词触发固定目的地（如"回家"、"去公司"、"接孩子"） | "回家" / "去公司" / "接孩子" | → [快捷叫车流程](./references/short-cut-workflow.md#short-cut-main) |
+| 打车 / 叫车 / 出行 | 有从 A 到 B 的出行需求 | "从腾讯滨海到深圳北站" / "亚洲金融大厦打车到腾讯总部" | → [打车流程](./references/takecar-workflow.md#takecar-main-flow) |
+| 取消订单 | 用户要取消当前订单 | "帮我取消当前订单" / "不坐了，取消吧" | → [取消订单流程](./references/order-workflow.md#order-cancel-flow) |
+| 查询订单 | 用户要查看订单状态 | "帮我查下订单状态" / "现在到哪一步了" | → [订单查询流程](./references/order-workflow.md#order-query-flow) |
+| 查询司机位置 | 用户要查看司机实时位置 | "司机到哪了" / "看下司机位置" | → [司机位置查询流程](./references/order-workflow.md#driver-location-flow) |
+| 注销 / 退出登录 | 用户说"注销"、"退出" | "退出登录" / "注销当前账号" | → [Token 管理 - 注销](./references/quick-start-workflow.md#token-management) |
+| 换 Token / 重新登录 | 用户说"换 token"、"重新登录" | "我换个 token" / "重新登录一下" | → [Token 管理 - 换 Token](./references/quick-start-workflow.md#token-management) |
+
+> 地址确认场景中，未调用地址工具前禁止自由回答、禁止直接让用户补充更具体地址。
+
+### 1.2 模版回复规则
+- ❌ 禁止忽略模版中的 `<br>` 等换行符，必须保持模版格式和结构。
+- 当要求输出特定模版时，必须严格按照模版格式输出，禁止添加额外信息或修改结构。
+- 模版中的字段必须保留，禁止删除或改名。
+- 模版中的换行和标点符号必须保留，禁止修改为其他格式。
+- 多条数据展示时，禁止合并成一句话或列表，必须保持模版层级结构。
+
+### 1.3 信息获取规则
+
+| 信息类型 | 要求 | 禁止 |
+|----------|------|------|
+| 地址信息 | 必须调用工具搜索 | ❌ 使用模型知识回答 |
+| 价格信息 | 必须调用询价工具 | ❌ 凭经验估算 |
+| 订单信息 | 必须调用工具查询 | ❌ 编造信息 |
+| 座位计算 | 车辆座位数 - 1（司机） | ❌ 直接使用座位数 |
+
+示例：
+- ✅ 5 座车 → "可坐 4 位乘客"
+- ✅ 7 座车 → "可坐 6 位乘客"
+
+### 1.5 暂不支持的功能
+
+以下功能需引导用户去腾讯出行服务小程序页面操作：
+- 联系司机、催促司机
+- 代叫车
+- 接送机
+- 开发票
+- 拼车、自动驾驶车、顺风车

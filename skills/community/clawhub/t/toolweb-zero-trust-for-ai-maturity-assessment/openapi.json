@@ -1,0 +1,280 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Zero Trust for AI Maturity Assessment",
+    "description": "Evaluates Zero Trust maturity across 6 principles for both Conventional (Infrastructure) and AI Era (Data & Model) dimensions",
+    "version": "2.0.0"
+  },
+  "paths": {
+    "/": {
+      "get": {
+        "summary": "Root",
+        "description": "Health check endpoint",
+        "operationId": "root__get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/zt-ai/assess": {
+      "post": {
+        "summary": "Assess Zt Maturity",
+        "description": "Generate comprehensive Zero Trust for AI maturity assessment",
+        "operationId": "assess_zt_maturity_api_zt_ai_assess_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AssessmentRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/zt-ai/principles": {
+      "get": {
+        "summary": "Get Principles",
+        "description": "Get all Zero Trust principle definitions",
+        "operationId": "get_principles_api_zt_ai_principles_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/zt-ai/domain/{domain_key}": {
+      "get": {
+        "summary": "Get Domain Details",
+        "description": "Get detailed information for a specific domain",
+        "operationId": "get_domain_details_api_zt_ai_domain__domain_key__get",
+        "parameters": [
+          {
+            "name": "domain_key",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Domain Key"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "AssessmentData": {
+        "properties": {
+          "verification_conventional": {
+            "type": "object",
+            "title": "Verification Conventional",
+            "default": {}
+          },
+          "verification_ai": {
+            "type": "object",
+            "title": "Verification Ai",
+            "default": {}
+          },
+          "least_privilege_conventional": {
+            "type": "object",
+            "title": "Least Privilege Conventional",
+            "default": {}
+          },
+          "least_privilege_ai": {
+            "type": "object",
+            "title": "Least Privilege Ai",
+            "default": {}
+          },
+          "assume_breach_conventional": {
+            "type": "object",
+            "title": "Assume Breach Conventional",
+            "default": {}
+          },
+          "assume_breach_ai": {
+            "type": "object",
+            "title": "Assume Breach Ai",
+            "default": {}
+          },
+          "microsegmentation_conventional": {
+            "type": "object",
+            "title": "Microsegmentation Conventional",
+            "default": {}
+          },
+          "microsegmentation_ai": {
+            "type": "object",
+            "title": "Microsegmentation Ai",
+            "default": {}
+          },
+          "continuous_monitoring_conventional": {
+            "type": "object",
+            "title": "Continuous Monitoring Conventional",
+            "default": {}
+          },
+          "continuous_monitoring_ai": {
+            "type": "object",
+            "title": "Continuous Monitoring Ai",
+            "default": {}
+          },
+          "supply_chain_conventional": {
+            "type": "object",
+            "title": "Supply Chain Conventional",
+            "default": {}
+          },
+          "supply_chain_ai": {
+            "type": "object",
+            "title": "Supply Chain Ai",
+            "default": {}
+          },
+          "sessionId": {
+            "type": "string",
+            "title": "Sessionid"
+          },
+          "timestamp": {
+            "type": "string",
+            "title": "Timestamp"
+          }
+        },
+        "type": "object",
+        "required": [
+          "sessionId",
+          "timestamp"
+        ],
+        "title": "AssessmentData"
+      },
+      "AssessmentRequest": {
+        "properties": {
+          "assessmentData": {
+            "$ref": "#/components/schemas/AssessmentData"
+          },
+          "sessionId": {
+            "type": "string",
+            "title": "Sessionid"
+          },
+          "userId": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Userid"
+          },
+          "timestamp": {
+            "type": "string",
+            "title": "Timestamp"
+          }
+        },
+        "type": "object",
+        "required": [
+          "assessmentData",
+          "sessionId",
+          "timestamp"
+        ],
+        "title": "AssessmentRequest"
+      },
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "type": "array",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
+      },
+      "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Location"
+          },
+          "msg": {
+            "type": "string",
+            "title": "Message"
+          },
+          "type": {
+            "type": "string",
+            "title": "Error Type"
+          }
+        },
+        "type": "object",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError"
+      }
+    }
+  }
+}

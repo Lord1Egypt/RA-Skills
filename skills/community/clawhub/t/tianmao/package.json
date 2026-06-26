@@ -1,0 +1,21 @@
+{
+  "name": "tianmao",
+  "version": "2.0.0",
+  "description": "天猫购物助手 Skill - 支持搜索、官方旗舰店、品牌验证、加购物车，支付环节留给用户",
+  "main": "SKILL.md",
+  "keywords": [
+    "tianmao",
+    "tmall",
+    "天猫",
+    "shopping",
+    "official-store",
+    "ecommerce",
+    "openclaw-skill"
+  ],
+  "author": "harrylabsj",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/harrylabsj/tianmao.git"
+  }
+}

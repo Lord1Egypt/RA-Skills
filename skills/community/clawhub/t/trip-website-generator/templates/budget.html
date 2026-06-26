@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>预算参考 - {{TRIP_TITLE}}</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-container">
+    <div class="page-header">
+      <h1>预算参考</h1>
+      <p>{{TRAVELERS}} {{DURATION}}费用预估</p>
+    </div>
+
+    <div class="container">
+      <div class="budget-total-card animate-in">
+        <div class="budget-total-icon">💰</div>
+        <div class="budget-total-info">
+          <div class="budget-total-label">预估总费用</div>
+          <div class="budget-total-amount">{{TOTAL_BUDGET}}</div>
+          <div class="budget-total-note">{{TRAVELERS}} · {{DURATION}}</div>
+        </div>
+      </div>
+
+      <!-- BUDGET_SECTION_START -->
+      <div class="budget-section animate-in" style="animation-delay: {{ANIMATION_DELAY}}">
+        <div class="budget-section-title">
+          <span class="budget-section-icon">{{SECTION_ICON}}</span>
+          {{SECTION_TITLE}}
+        </div>
+        <div class="budget-card">
+          <!-- BUDGET_ITEM_START -->
+          <div class="budget-row">
+            <div class="budget-item-name">
+              <span class="budget-item-dot"></span>
+              {{ITEM_NAME}}
+            </div>
+            <div class="budget-item-price">
+              {{ITEM_PRICE}}
+              <!-- ITEM_NOTE_START --><span class="budget-item-note">{{ITEM_NOTE}}</span><!-- ITEM_NOTE_END -->
+              <!-- ITEM_INCLUDED_START --><span class="budget-item-included">{{ITEM_INCLUDED}}</span><!-- ITEM_INCLUDED_END -->
+            </div>
+          </div>
+          <!-- BUDGET_ITEM_END -->
+        </div>
+      </div>
+      <!-- BUDGET_SECTION_END -->
+
+      <div class="budget-tip-card animate-in" style="animation-delay: 0.25s">
+        <div class="budget-tip-icon">💡</div>
+        <div class="budget-tip-content">
+          <strong>温馨提示</strong>
+          <p>{{TIP}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+  <script>renderTabbar('budget');</script>
+</body>
+</html>

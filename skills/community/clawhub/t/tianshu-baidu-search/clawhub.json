@@ -1,0 +1,10 @@
+{
+  "name": "Tianshu Baidu Search",
+  "tagline": "百度 AI 搜索，Node.js 实现",
+  "description": "Search the web via Baidu AI Search API. Node.js implementation, no Python required. Configure BAIDU_API_KEY in TsClaw.",
+  "category": "utility",
+  "tags": ["search", "baidu", "百度", "tianshu"],
+  "version": "1.0.0",
+  "license": "MIT",
+  "pricing": "free"
+}

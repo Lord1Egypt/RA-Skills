@@ -1,0 +1,30 @@
+{
+  "ticker": "BIIB",
+  "company": "Biogen Inc.",
+  "analysis_year": 2020,
+  "data_source": "Biogen FY2019 10-K and Berkshire 2020-12-31 / 2021-12-31 / 2022-12-31 13F-HR",
+  "analyzed_date": "2026-03-26",
+
+  "hard_gates": {
+    "g1_roe_roic": { "value": 0.332, "metric_used": "ROE", "years_averaged": "2017-2019", "pass": true },
+    "g2_fcf_to_ni": { "value": 1.115, "fcf": 6564, "net_income": 5889, "pass": true },
+    "g3_leverage": { "metric_used": "Net Debt/EBITDA", "value": 0.85, "pass": true },
+    "g4_revenue_trend": { "description": "Revenue rose from $12.27B in 2017 to $13.45B in 2018 to $14.38B in 2019. The near-term issue was product concentration and pipeline durability, not an already-visible structural collapse.", "structural_decline": false, "pass": true },
+    "g5_gross_margin_trend": { "description": "Product economics stayed very high; nothing in the pre-2021 public numbers showed a two-year structural margin deterioration.", "declining_2plus_years": false, "pass": true },
+    "g6_earnings_yield": { "value": 0.133, "net_income_m": 5889, "ev_m": 44380, "exemption": null, "pass": true },
+    "g7_moat": { "verdict": "FAIL", "moat_type": "ip", "description": "Biogen had important neurology assets and scientific depth, but the whole company still depended on a relatively narrow portfolio and ongoing R&D renewal. That is a good biotech platform, not a decade-long Buffett tollbooth whose economics are easy to describe and hard to copy.", "pass": false }
+  },
+
+  "special_channel": null,
+
+  "control_groups": [
+    { "ticker": "GILD", "company": "Gilead Sciences, Inc.", "year": 2020, "gates_failed": ["g4_revenue_trend", "g7_moat"], "conclusion": "PASS — similarly profitable, but the franchise already showed more visible product concentration and revenue pressure." },
+    { "ticker": "TEVA", "company": "Teva Pharmaceutical Industries Limited", "year": 2020, "gates_failed": ["g1_roe_roic", "g3_leverage", "g4_revenue_trend", "g7_moat"], "conclusion": "PASS — weaker balance sheet and much less dependable economics." }
+  ],
+
+  "conclusion": "PASS",
+  "buffett_action": "Berkshire reported 643,022 Biogen shares worth about $157.5M at 2020-12-31 in its 13F-HR.",
+  "actual_result": "The position was still there at 2021-03-31, but it no longer appeared by 2021-12-31. It behaved like a tactical biotech allocation rather than a lasting Buffett franchise bet.",
+  "verdict": "⭐ framework_wins",
+  "key_insight": "A biotech can screen cheaply and still fail Buffett-style underwriting if moat durability depends on continually replacing a narrow product portfolio."
+}

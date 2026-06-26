@@ -1,35 +1,148 @@
----
-name: "Token Shark"
-description: "实时监控新上线代币，提供多维风险评估、交易数据和价格提醒，助您把握投资机会。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/token-shark"
-sourceUrl: "https://clawhub.ai/skills/token-shark"
----
+# TokenSniper Skill - SKILL.md
 
-# Token Shark
+**🎯 代币狙击手 - 新代币上线监控，第一时间发现机会**
 
-> 实时监控新上线代币，提供多维风险评估、交易数据和价格提醒，助您把握投资机会。
+## 基本信息
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/token-shark`
-- **Source URL:** [https://clawhub.ai/skills/token-shark](https://clawhub.ai/skills/token-shark)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/token-shark
+```json
+{
+  "name": "token-shark",
+  "version": "0.1.0",
+  "description": "代币狙击手 - 新代币上线监控，风险评估",
+  "author": "@gztanht",
+  "license": "MIT"
+}
 ```
+
+## 命令系统
+
+| 命令 | 描述 | 参数 |
+|------|------|------|
+| `monitor` | 查看新代币列表 | `--chain`, `--limit` |
+| `analyze` | 代币详情分析 | `<address>` |
+| `risk` | 风险评估 | `<address>` |
+| `alert` | 价格提醒管理 | `add`, `list`, `remove` |
+
+## 功能说明
+
+### 1. 新代币监控 (`monitor.mjs`)
+
+显示最近上线的代币：
+- 代币名称和符号
+- 上线时间
+- 当前价格
+- 流动性
+- 风险等级
+- 24h 交易量
+
+**参数**:
+- `--chain [ethereum|bsc|base|arbitrum]` - 按链筛选
+- `--limit N` - 限制显示数量
+
+### 2. 代币分析 (`analyze.mjs`)
+
+详细分析特定代币：
+- 价格信息
+- 市值和流动性
+- 持有者分析
+- 风险评估
+- 交易建议
+
+**参数**:
+- `<address>` - 代币合约地址
+
+### 3. 风险评估 (`risk.mjs`)
+
+多维度风险评分：
+- 合约安全
+- 流动性风险
+- 持有者集中度
+- 开发团队
+- 社区活跃度
+
+**参数**:
+- `<address>` - 代币合约地址
+
+### 4. 价格提醒 (`alert.mjs`)
+
+设置和管理价格提醒：
+- 添加新提醒
+- 查看所有提醒
+- 删除已触发提醒
+
+**参数**:
+- `add --token <addr> --price <price>` - 添加提醒
+- `list` - 查看提醒列表
+- `remove <id>` - 删除提醒
+
+## 风险评分算法
+
+```
+整体评分 = (
+  合约安全 * 0.25 +
+  流动性风险 * 0.20 +
+  持有者集中度 * 0.20 +
+  开发团队 * 0.15 +
+  社区活跃度 * 0.20
+)
+```
+
+### 评分标准
+
+| 维度 | 权重 | 评估项 |
+|------|------|--------|
+| 合约安全 | 25% | 审计状态/所有权/honeypot 检测 |
+| 流动性风险 | 20% | 流动性大小/锁定期/集中度 |
+| 持有者集中度 | 20% | Top10 持仓/大户变动 |
+| 开发团队 | 15% | 实名状态/历史记录/代码质量 |
+| 社区活跃度 | 20% | 社交媒体/Discord/持有者增长 |
+
+## 输出格式
+
+### 监控列表输出
+```
+🎯 TokenSniper - 新代币监控
+
+时间        代币名称        链        价格        流动性    风险    24h 交易
+────────────────────────────────────────────────────────────────────────────────
+10 分钟前   PEPE2.0       Ethereum  $0.00012   $50K     🟡 中    $12K
+```
+
+### 风险评估输出
+```
+风险维度              评分      状态
+─────────────────────────────────────────────────────
+合约安全              70/100    🟡 中等
+流动性风险            60/100    🟡 中等
+整体评分              65/100    🟡 中等风险
+```
+
+## 定价策略
+
+- **免费版**: 5 次查询/天
+- **赞助版**: 0.5 USDT/USDC → 无限查询
+
+## 数据源
+
+- DEX 流动性池数据
+- 链上持有人数据
+- 社交媒体 API
+- 合约分析工具
+
+## 安全注意事项
+
+技能必须显示安全提示：
+- 新代币可能归零
+- 警惕 rug pull
+- 检查合约和流动性
+- 小额测试
+
+## 未来规划
+
+- v0.2.0 - 实时价格推送
+- v0.3.0 - 自动交易集成
+- v1.0.0 - AI 风险评估
+
+---
+
+**🎯 TokenSniper v0.1.0 - Snipe Before Moon**

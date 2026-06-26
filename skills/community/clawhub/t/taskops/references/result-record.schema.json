@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "graph-task.result-record.schema.v1",
+  "title": "graphTaskResultRecord",
+  "description": "Minimal expected-vs-actual writeback record appended to a work node.",
+  "type": "object",
+  "required": ["id", "nodeId", "expected", "actual", "status", "at"],
+  "properties": {
+    "id": { "type": "string" },
+    "nodeId": { "type": "string" },
+    "expected": { "type": "string" },
+    "actual": { "type": "string" },
+    "status": {
+      "type": "string",
+      "enum": ["pending", "active", "done", "blocked", "cancelled"]
+    },
+    "artifacts": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "notes": { "type": "string" },
+    "at": { "type": "string" }
+  },
+  "additionalProperties": false
+}

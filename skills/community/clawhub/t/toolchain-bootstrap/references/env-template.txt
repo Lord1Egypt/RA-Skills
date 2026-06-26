@@ -1,0 +1,42 @@
+# OpenClaw Toolchain — PATH 模板参考
+# ============================================================
+#
+# 如果需要手动配置，在 ~/.bashrc 或 ~/.zshrc 中添加：
+#
+# export TOOLCHAIN=/workspace/toolchain
+# export PATH=$TOOLCHAIN/go/bin:$TOOLCHAIN/erlang/bin:$TOOLCHAIN/elixir/bin:$TOOLCHAIN/ruby/bin:$TOOLCHAIN/lua/bin:$TOOLCHAIN/apache-maven-3.9.6/bin:$TOOLCHAIN/bin:$PATH
+# export JAVA_HOME=$TOOLCHAIN/jdk-21.0.10+7
+# export RUSTUP_HOME=$TOOLCHAIN/rust
+# export CARGO_HOME=$TOOLCHAIN/rust/.cargo
+# Rust 路径: $TOOLCHAIN/rust/rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin/rustc
+# export LD_LIBRARY_PATH=$TOOLCHAIN/erlang/lib:$LD_LIBRARY_PATH
+#
+# ============================================================
+#
+# Docker / Kubernetes 环境变量示例：
+#
+# env:
+#   - name: TOOLCHAIN
+#     value: /workspace/toolchain
+#   - name: JAVA_HOME
+#     value: /workspace/toolchain/jdk-21.0.10+7
+#   - name: PATH
+#     value: /workspace/toolchain/go/bin:/workspace/toolchain/erlang/bin:/workspace/toolchain/elixir/bin:/workspace/toolchain/ruby/bin:/workspace/toolchain/lua/bin:/workspace/toolchain/apache-maven-3.9.6/bin:/workspace/toolchain/bin:/usr/local/bin:/usr/bin:/bin
+#
+# ============================================================
+#
+# 工具快速命令参考：
+#
+# Go:       go version
+# Java:     java -version
+# Maven:    mvn -version
+# Erlang:   erl -eval 'erlang:display(erlang:system_info(otp_release)),halt().' -noshell
+# Elixir:  elixir --version
+# Rust:    rustc --version
+# Ruby:    ruby --version
+# Lua:     lua -v
+# Node:    node --version
+# Python:  python3 --version
+# GCC:     gcc --version
+#
+# ============================================================

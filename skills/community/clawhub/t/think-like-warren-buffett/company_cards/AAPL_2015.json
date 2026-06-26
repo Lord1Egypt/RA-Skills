@@ -1,0 +1,30 @@
+{
+  "ticker": "AAPL",
+  "company": "Apple Inc.",
+  "analysis_year": 2016,
+  "data_source": "FY2015 10-K, SEC EDGAR",
+  "analyzed_date": "2026-03-10",
+
+  "hard_gates": {
+    "g1_roe_roic": { "value": 0.46, "metric_used": "ROE", "years_averaged": "2013-2015", "pass": true },
+    "g2_fcf_to_ni": { "value": 1.31, "fcf": 69800, "net_income": 53400, "pass": true },
+    "g3_leverage": { "metric_used": "Net Debt/EBITDA", "value": -1.5, "pass": true },
+    "g4_revenue_trend": { "description": "Strong growth driven by iPhone ecosystem", "structural_decline": false, "pass": true },
+    "g5_gross_margin_trend": { "description": "~40% gross margin, stable to expanding", "declining_2plus_years": false, "pass": true },
+    "g6_earnings_yield": { "value": 0.12, "net_income_m": 53400, "ev_m": 445000, "exemption": null, "pass": true },
+    "g7_moat": { "verdict": "PASS", "moat_type": "switching_cost", "description": "iPhone ecosystem: App Store, iMessage, AirDrop, iCloud, Apple Watch integration create switching costs estimated at $1,000+ per customer. 1B+ active devices. Services revenue growing rapidly. Consumer brand among most trusted globally.", "pass": true }
+  },
+
+  "special_channel": null,
+
+  "control_groups": [
+    { "ticker": "MSFT", "company": "Microsoft", "year": 2015, "gates_failed": [], "conclusion": "BUY — also passes. Buffett chose Apple due to consumer product understandability. Both are correct choices." },
+    { "ticker": "GOOGL", "company": "Alphabet", "year": 2015, "gates_failed": ["g6_earnings_yield"], "conclusion": "PASS — earnings yield ~5%, just below threshold" }
+  ],
+
+  "conclusion": "BUY",
+  "buffett_action": "Started buying in Q1 2016, peaked at $17.7B position",
+  "actual_result": "Historic win — largest position in Berkshire portfolio, 10x+ return",
+  "verdict": "✅ aligned",
+  "key_insight": "All 7 gates passed with wide margin. Microsoft also passes — framework correctly identifies the quality tier, final selection comes from circle of competence (Buffett understood iPhone as consumer product, not as tech company)."
+}

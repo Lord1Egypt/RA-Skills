@@ -1,35 +1,16 @@
----
-name: "我的技能"
-description: "我的技能用于解决XXX场景下的XXX问题，支持实现XXX、XXX和XXX核心操作，提高工作效率。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/test-slug-a"
-sourceUrl: "https://clawhub.ai/skills/test-slug-a"
----
+# 技能名称：XXX
+## 技能功能
+本技能用于解决XXX场景下的XXX问题，可实现XXX、XXX、XXX核心操作。
 
-# 我的技能
+## 具体能力
+1. XXX（详细描述功能1）
+2. XXX（详细描述功能2）
+3. XXX（详细描述功能3）
 
-> 我的技能用于解决XXX场景下的XXX问题，支持实现XXX、XXX和XXX核心操作，提高工作效率。
+## 使用方法
+输入内容：XXX
+输出结果：XXX
+调用方式：XXX
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/test-slug-a`
-- **Source URL:** [https://clawhub.ai/skills/test-slug-a](https://clawhub.ai/skills/test-slug-a)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/test-slug-a
-```
+## 适用场景
+适用于XXX行业/XXX工作，提升XXX效率，减少XXX人工操作。

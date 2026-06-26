@@ -1,0 +1,15 @@
+# PDF 解析
+pdfplumber>=0.10.0
+PyMuPDF>=1.23.0
+
+# HTTP 请求 (图片生成 API)
+requests>=2.31.0
+
+# 图片处理
+Pillow>=10.0.0
+
+# 可选: OCR (扫描型 PDF)
+# pytesseract>=0.3.10
+
+# 可选: 火山引擎 SDK (即梦图片生成)
+# volcengine-python-sdk

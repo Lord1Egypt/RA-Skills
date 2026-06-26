@@ -1,0 +1,4 @@
+interface:
+  display_name: "Token Risk Explainer"
+  short_description: "Bilingual token risk explanations and community alerts"
+  default_prompt: "Explain token risk from contract-level audit signals, compare multiple contracts, and generate bilingual community warning copy."

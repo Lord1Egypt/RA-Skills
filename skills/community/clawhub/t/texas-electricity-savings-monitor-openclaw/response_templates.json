@@ -1,0 +1,23 @@
+{
+  "address_prompt_full": "Please send the full Texas service address, including the street address, city, and ZIP code, and I will check it for you.",
+  "address_prompt_city_zip": "Please send the Texas city and ZIP code so I can check the correct service address.",
+  "address_prompt_street": "Please send the full street number and street name for the Texas service address.",
+  "address_prompt_unit": "If this is an apartment, unit, suite, or lot address, please include the unit number too.",
+  "address_prompt_corrected_full": "Please send the full correct Texas service address and I will check it again.",
+  "address_ambiguous_intro": "I found a few close matches for that Texas service address. Please choose the exact one.",
+  "candidate_selection_prompt": "Reply with the number that matches your address, or send the full correct Texas service address if none of these are right.",
+  "candidate_selection_retry": "Please reply with the number that matches your address, or send the full correct Texas service address if none of these are right.",
+  "candidate_selection_no_match": "Those addresses do not match. Please send the full correct Texas service address and I will check it again.",
+  "address_confirmed": "I found this Texas service address:\\n{{normalized_address}}",
+  "esiid_line": "ESIID: {{esiid}}",
+  "usage_summary": "For this address, estimated electricity usage is about {{estimated_usage_summary.average_monthly_kwh}} kWh per month on average and {{estimated_usage_summary.annual_total_kwh}} kWh per year.",
+  "best_plan_summary": "Based on this address and usage, the best current option I found is {{current_best_plan.provider}} - {{current_best_plan.plan_name}} at {{current_best_plan.rate}}{{current_best_plan.rate_unit}} with a base rate of {{current_best_plan.base_rate}}{{current_best_plan.base_rate_unit}} for {{current_best_plan.contract_length}}.",
+  "top_plan_table_intro": "Here are the current plan options I found for this address, sorted from lowest rate to highest:",
+  "top_plan_item": "{{index}}. {{plan.plan_name}}\\nProvider: {{plan.provider}}\\nRate: {{plan.rate}}{{plan.rate_unit}}\\nBase rate: {{plan.base_rate}}{{plan.base_rate_unit}}\\nContract: {{plan.contract_length}}",
+  "destination_cta": "You can review this address and its current plan details here:\\n{{personalized_energy_url}}",
+  "self_select_redirect": "If you want to review the current plans for this address yourself, you can continue here:\\n{{personalized_energy_url}}",
+  "monitoring_cta": "Texas electricity prices can change. I recommend {{recommended_frequency}} monitoring so I can keep watching this address for a better option.",
+  "lookup_retry": "I still need the full Texas service address before I can finish this check. Please send the street address, city, and ZIP code.",
+  "plan_lookup_unavailable": "I confirmed the address, but I am not seeing current plan details for it right now. You can still review this address here:\\n{{personalized_energy_url}}",
+  "new_best_plan_alert": "I found a new best plan for your Texas address. You can review the current details here:\\n{{personalized_energy_url}}"
+}

@@ -1,0 +1,7 @@
+{
+  "name": "token-optimizer-pro",
+  "version": "1.0.2",
+  "description": "Agent token usage optimizer. Input usage logs, transcript excerpts, model bills, or runtime traces; output token/cost breakdown, waste patterns, context compaction opportunities, caching suggestions, and before/after optimization actions.",
+  "author": "harrylabsj",
+  "license": "MIT-0"
+}

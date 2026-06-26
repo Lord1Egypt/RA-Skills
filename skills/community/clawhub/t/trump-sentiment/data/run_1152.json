@@ -1,0 +1,8 @@
+{
+  "run_time": "2026-04-04T11:52:00+08:00",
+  "trigger_source": "nasdaq_forced_timeline",
+  "sentiment_score": 28,
+  "sentiment_label": "High Risk / Bearish",
+  "data_source": "x_browser_search",
+  "web_search_status": "token_invalid"
+}

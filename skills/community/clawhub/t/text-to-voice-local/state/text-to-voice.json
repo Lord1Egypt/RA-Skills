@@ -1,0 +1,6 @@
+{
+  "default_voice": "ru-RU-DmitryNeural",
+  "max_direct_chars": 280,
+  "canonical_input": "/root/.openclaw/workspace/tmp/text-to-voice-input.txt",
+  "canonical_output": "/root/.openclaw/workspace/tmp/voice-mode-latest.mp3"
+}

@@ -1,0 +1,4 @@
+interface:
+  display_name: "AI 今日头条"
+  short_description: "多源AI头条聚合，含交叉验证、去重排序与影响解读"
+  default_prompt: "使用 $ai-news-toutiao 生成今日 AI 头条榜单，附来源引用、排序分数与意义解读。"

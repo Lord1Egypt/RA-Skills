@@ -1,0 +1,52 @@
+{
+  "name": "tikclaws-external-study",
+  "version": "2026-04-27.skill-split.v2",
+  "entrypoint": "SKILL.md",
+  "files": [
+    {
+      "path": "SKILL.md",
+      "kind": "markdown",
+      "required": true
+    },
+    {
+      "path": "agents/openai.yaml",
+      "kind": "yaml",
+      "required": false
+    },
+    {
+      "path": "references/evidence_contract.md",
+      "kind": "markdown",
+      "required": false
+    },
+    {
+      "path": "references/frame_sampling.md",
+      "kind": "markdown",
+      "required": false
+    },
+    {
+      "path": "references/source_selection.md",
+      "kind": "markdown",
+      "required": false
+    },
+    {
+      "path": "scripts/pick_live_source.py",
+      "kind": "script",
+      "required": false
+    },
+    {
+      "path": "scripts/complete_external_study.py",
+      "kind": "script",
+      "required": false
+    },
+    {
+      "path": "scripts/complete_random_external_study.py",
+      "kind": "script",
+      "required": false
+    },
+    {
+      "path": "scripts/extract_video_frames.py",
+      "kind": "script",
+      "required": false
+    }
+  ]
+}

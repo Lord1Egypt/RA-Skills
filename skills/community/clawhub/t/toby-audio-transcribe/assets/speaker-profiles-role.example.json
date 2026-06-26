@@ -1,0 +1,10 @@
+[
+  {
+    "role": "agent",
+    "description": "Support representative who opens and steers the call."
+  },
+  {
+    "role": "customer",
+    "description": "Customer describing the problem and answering follow-up questions."
+  }
+]

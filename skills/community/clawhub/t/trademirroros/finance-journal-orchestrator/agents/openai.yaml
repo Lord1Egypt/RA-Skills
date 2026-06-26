@@ -1,0 +1,3 @@
+﻿interface:
+  display_name: "TradeMirrorOS Orchestrator"
+  short_description: "Structure journaling, memory framing, and vault-style outputs for local review workflows"

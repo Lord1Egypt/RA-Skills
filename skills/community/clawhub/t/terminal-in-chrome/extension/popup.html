@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      padding: 12px;
+      width: 250px;
+    }
+    .form-group {
+      margin-bottom: 12px;
+    }
+    label {
+      display: block;
+      margin-bottom: 4px;
+      font-size: 14px;
+      color: #333;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 6px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+      font-family: inherit;
+    }
+    textarea {
+      resize: vertical;
+    }
+    button {
+      width: 100%;
+      padding: 8px;
+      background: #0969da;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+    button:hover {
+      background: #0550ae;
+    }
+    #status {
+      margin-top: 8px;
+      font-size: 12px;
+      color: #2da44e;
+      display: none;
+    }
+    select {
+      width: 100%;
+      padding: 6px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+      font-family: inherit;
+    }
+  </style>
+</head>
+<body>
+  <div class="form-group">
+    <label for="portInput">Terminal Server Port:</label>
+    <input type="number" id="portInput" placeholder="8989" min="1" max="65535">
+  </div>
+  
+  <div class="form-group">
+    <label for="themeSelect">Terminal Theme:</label>
+    <select id="themeSelect">
+      <option value="dark">Dark</option>
+      <option value="light">Light</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label for="sharedPathsInput">Shared Terminal Paths (e.g. localhost:3000/app):</label>
+    <textarea id="sharedPathsInput" rows="3" placeholder="localhost:3000/app&#10;github.com/yayayahei"></textarea>
+  </div>
+  
+  <div class="form-group">
+    <label for="blockedSitesInput">Blocked Sites (one per line, e.g. google.com):</label>
+    <textarea id="blockedSitesInput" rows="4" placeholder="google.com&#10;github.com"></textarea>
+  </div>
+  
+  <button id="saveBtn">Save Settings</button>
+  <div id="status">Settings saved successfully!</div>
+  
+  <script src="popup.js"></script>
+</body>
+</html>

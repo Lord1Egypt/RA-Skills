@@ -1,35 +1,40 @@
 ---
-name: "Tencent IMA Skill"
-description: "Control the IMA (ima.copilot) desktop application for AI search and private knowledge retrieval."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/tencent-ima-skill"
-sourceUrl: "https://clawhub.ai/skills/tencent-ima-skill"
+name: ima-agent-skill
+description: Control the IMA (ima.copilot) desktop application for AI search and private knowledge retrieval.
 ---
 
-# Tencent IMA Skill
+# IMA Skill
 
-> Control the IMA (ima.copilot) desktop application for AI search and private knowledge retrieval.
+Control the **IMA (ima.copilot)** desktop application for AI search and private knowledge retrieval.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/tencent-ima-skill`
-- **Source URL:** [https://clawhub.ai/skills/tencent-ima-skill](https://clawhub.ai/skills/tencent-ima-skill)
+## Tools
 
-## Overview
+### ima_search
+Launches IMA and performs a search. Supports "Private Knowledge Base" mode via special tags.
 
+- **query** (required): The search query. Prefix with `@个人知识库` or `@knowledge` to search your private knowledge base (requires `config.json`).
+- **autoclose** (optional): "true" to close the app after searching. Default: "false".
 
-## Installation
-To install this skill, run the following command in your terminal:
+**Implementation:**
 ```bash
-hermes skills install clawhub/tencent-ima-skill
+/usr/bin/python3 /opt/homebrew/lib/node_modules/clawdbot/skills/ima/scripts/ima.py "{query}" --autoclose="{autoclose}"
 ```
+
+## Configuration
+
+To enable private knowledge base search, you must providing your `knowledge_id`.
+The script looks for config in:
+1. `~/.clawd_ima_config.json`
+2. `skills/ima/config.json`
+
+**Format:**
+```json
+{
+  "knowledge_id": "your_id_string"
+}
+```
+
+## Examples
+
+- **Public:** `clawdbot ima_search query="DeepSeek analysis"`
+- **Private:** `clawdbot ima_search query="@knowledge project update"`

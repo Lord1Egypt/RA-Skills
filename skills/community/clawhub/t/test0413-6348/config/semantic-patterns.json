@@ -1,0 +1,82 @@
+{
+  "dangerous_patterns": [
+    {
+      "name": "eval",
+      "severity": "high",
+      "needles": ["eval(", "eval "]
+    },
+    {
+      "name": "exec",
+      "severity": "high",
+      "needles": ["exec(", "exec "]
+    },
+    {
+      "name": "subprocess_shell",
+      "severity": "high",
+      "needles": ["shell=True", "subprocess.Popen(", "subprocess.run("]
+    },
+    {
+      "name": "os_system",
+      "severity": "high",
+      "needles": ["os.system("]
+    },
+    {
+      "name": "curl_pipe_shell",
+      "severity": "extreme",
+      "needles": ["curl | sh", "curl|sh", "wget | bash", "wget|bash"]
+    },
+    {
+      "name": "base64_exec",
+      "severity": "extreme",
+      "needles": ["base64 -d", "| bash", "| sh"]
+    },
+    {
+      "name": "network_fetch",
+      "severity": "medium",
+      "needles": ["requests.get(", "requests.post(", "urlopen(", "http://", "https://"]
+    },
+    {
+      "name": "file_write",
+      "severity": "medium",
+      "needles": ["write_text(", "open(", "\"w\"", "'w'", "\"a\"", "'a'"]
+    },
+    {
+      "name": "cron_systemd",
+      "severity": "high",
+      "needles": ["crontab", "systemctl", "/etc/systemd", "cron."]
+    },
+    {
+      "name": "sensitive_path",
+      "severity": "high",
+      "needles": ["~/.ssh", "~/.aws", "/etc/passwd", "authorized_keys"]
+    }
+  ],
+  "capability_patterns": [
+    {
+      "tag": "network",
+      "needles": ["requests.", "urlopen(", "http://", "https://", "socket", "curl ", "wget "]
+    },
+    {
+      "tag": "filesystem",
+      "needles": ["open(", "write_text(", "mkdir(", "unlink(", "rename(", "shutil."]
+    },
+    {
+      "tag": "process",
+      "needles": ["subprocess.", "os.system(", "exec(", "eval("]
+    },
+    {
+      "tag": "cron",
+      "needles": ["crontab", "cron", "schedule", "systemd", "timer"]
+    },
+    {
+      "tag": "git",
+      "needles": ["git ", "git-", "rev-parse", "diff --git"]
+    },
+    {
+      "tag": "config",
+      "needles": ["json.load(", "yaml", "toml", ".env", "config/"]
+    }
+  ],
+  "shell_markers": ["curl | sh", "curl|sh", "wget | bash", "wget|bash", "base64 -d"],
+  "medium_shell_markers": ["base64 -d"]
+}

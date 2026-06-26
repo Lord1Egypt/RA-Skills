@@ -1,35 +1,49 @@
 ---
-name: "Taopiaopiao"
-description: "Provides summaries of movie showtimes, prices, ratings, and basic info from Taopiaopiao's public pages without booking or bulk scraping capabilities."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/taopiaopiao"
-sourceUrl: "https://clawhub.ai/skills/taopiaopiao"
+name: taopiaopiao-hot-trend
+description: 注册“淘票票”热门技能；当需要访问或自动化淘票票相关内容时调用。
+homepage: `https://dianying.taobao.com/`
+metadata: {"clawdbot":{"emoji":"🔥"}}
 ---
 
-# Taopiaopiao
+# 淘票票
 
-> Provides summaries of movie showtimes, prices, ratings, and basic info from Taopiaopiao's public pages without booking or bulk scraping capabilities.
+用途与边界
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/taopiaopiao`
-- **Source URL:** [https://clawhub.ai/skills/taopiaopiao](https://clawhub.ai/skills/taopiaopiao)
+- 面向公开电影/影院页的检索与场次/价格摘要
+- 不提供下单、接口逆向或突破风控能力
+- 仅用于公开页面的轻量分析与提醒
 
-## Overview
+关键入口
 
+- 主页：https://dianying.taobao.com/
+- 电影页/影院页：站点入口
+- 搜索入口：站内搜索
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/taopiaopiao
-```
+常见任务
+
+- 指定城市/影院的场次列表摘要（时间、厅型、价格区间）
+- 电影页的口碑评分/片长/主演整理
+- 同片在不同影院的价格与时段对比
+
+数据字段
+
+- 影院名称、地址、场次时间、厅型、价格区间、链接
+- 电影名称、评分、片长、主演、上映时间、链接
+- 采集时间、来源链接
+
+自动化要点
+
+- 页面动态渲染与定位依赖，建议人工打开后触发解析
+- 场次与价格随时间与区域变动，需标注采集时间与区域
+- 频率控制，不进行批量抓取
+
+示例流程
+
+- 影院场次：输入城市/影院 → 抽取场次 → 输出时间/价格摘要
+- 电影摘要：访问电影页 → 提取评分/片长/主演 → 输出卡片
+- 同片对比：选择多影院 → 对比不同时段/价格 → 输出差异点
+
+合规提示
+
+- 遵守平台与地理位置授权规则，不进行接口调用或批量采集
+- 结果仅用于内部分析与提醒

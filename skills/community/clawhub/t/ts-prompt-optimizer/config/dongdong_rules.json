@@ -1,0 +1,36 @@
+{
+  "preferred_roles": {
+    "technical": "资深全栈工程师",
+    "writing": "专业文案策划师",
+    "analysis": "数据分析专家",
+    "creative": "创意策划专家",
+    "general": "资深AI助手专家"
+  },
+  "output_formats": {
+    "code": "完整可运行代码 + 详细注释 + 使用说明 + 测试用例",
+    "report": "Markdown格式 + 清晰结构 + 数据可视化 + 结论总结",
+    "email": "正式商务邮件格式 + 专业语气 + 明确行动项",
+    "document": "结构化文档 + 章节划分 + 重点突出",
+    "analysis": "数据表格 + 图表展示 + 结论总结 + 可行建议",
+    "plan": "详细计划 + 时间节点 + 资源需求 + 风险评估"
+  },
+  "quality_constraints": {
+    "default_word_count": 500,
+    "preferred_tech_stack": ["Python", "JavaScript", "TypeScript", "React", "Node.js", "PostgreSQL"],
+    "writing_style": "专业、简洁、实用、准确、有说服力",
+    "code_style": "符合PEP 8/Python或ESLint/JavaScript规范，有完整注释和文档",
+    "analysis_style": "数据驱动、客观准确、洞察深刻、建议可行"
+  },
+  "optimization_levels": {
+    "minimal": ["角色定义", "任务澄清"],
+    "standard": ["角色定义", "任务澄清", "输出格式", "质量约束"],
+    "full": ["角色定义", "任务澄清", "上下文补充", "输出格式", "质量约束", "示例参考"]
+  },
+  "dongdong_preferences": {
+    "preferred_detail_level": "详细但不过度",
+    "preferred_examples": true,
+    "preferred_structure": "逻辑清晰，分点说明",
+    "preferred_tone": "专业但友好",
+    "learning_focus": ["技术实现", "业务分析", "效率优化"]
+  }
+}

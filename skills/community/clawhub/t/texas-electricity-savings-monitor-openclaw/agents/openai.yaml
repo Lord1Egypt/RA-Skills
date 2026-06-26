@@ -1,0 +1,4 @@
+interface:
+  display_name: "Texas Electricity Savings Monitor"
+  short_description: "Texas electricity advisor"
+  default_prompt: "Use $texas-electricity-savings-monitor-openclaw to act as a single English-speaking Texas electricity advisor who checks the service address, confirms the right match, reviews usage, recommends a current plan, or routes the user to the right Personalized Energy address page."

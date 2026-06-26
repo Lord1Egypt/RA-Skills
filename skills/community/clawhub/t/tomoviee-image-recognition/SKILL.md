@@ -1,35 +1,77 @@
 ---
-name: "Tomoviee Image Recognition"
-description: "Auto-generate masks for objects/regions in images. Use when users request image_recognition operations or related tasks."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/tomoviee-image-recognition"
-sourceUrl: "https://clawhub.ai/skills/tomoviee-image-recognition"
+name: tomoviee-recognition
+description: Auto-generate masks for objects/regions in images. Use when users request image_recognition operations or related tasks.
 ---
 
-# Tomoviee Image Recognition
-
-> Auto-generate masks for objects/regions in images. Use when users request image_recognition operations or related tasks.
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/tomoviee-image-recognition`
-- **Source URL:** [https://clawhub.ai/skills/tomoviee-image-recognition](https://clawhub.ai/skills/tomoviee-image-recognition)
+# Tomoviee AI - 图像识别 (Image Recognition)
 
 ## Overview
 
+Auto-generate masks for objects/regions in images.
 
-## Installation
-To install this skill, run the following command in your terminal:
+**API**: `tm_reference_img2mask`
+
+## Quick Start
+
+### Authentication
+
 ```bash
-hermes skills install clawhub/tomoviee-image-recognition
+python scripts/generate_auth_token.py YOUR_APP_KEY YOUR_APP_SECRET
 ```
+
+### Python Client
+
+```python
+from scripts.tomoviee_image_recognition_client import TomovieeClient
+
+client = TomovieeClient("app_key", "app_secret")
+```
+
+## API Usage
+
+### Basic Example
+
+```python
+task_id = client._make_request({
+    image='https://example.com/photo.jpg'
+    control_type='2'  # subject/default
+})
+
+result = client.poll_until_complete(task_id)
+import json
+output = json.loads(result['result'])
+```
+
+### Parameters
+
+- `image` (required): Image URL to analyze
+- `control_type`: 0=edge, 1=pose, 2=subject, 3=depth
+
+## Async Workflow
+
+1. **Create task**: Get `task_id` from API call
+2. **Poll for completion**: Use `poll_until_complete(task_id)`
+3. **Extract result**: Parse returned JSON for output URLs
+
+**Status codes**:
+- 1 = Queued
+- 2 = Processing
+- 3 = Success (ready)
+- 4 = Failed
+- 5 = Cancelled
+- 6 = Timeout
+
+## Resources
+
+### scripts/
+- `tomoviee_image_recognition_client.py` - API client
+- `generate_auth_token.py` - Auth token generator
+
+### references/
+See bundled reference documents for detailed API documentation and examples.
+
+## External Resources
+
+- **Developer Portal**: https://www.tomoviee.ai/developers.html
+- **API Documentation**: https://www.tomoviee.ai/doc/
+- **Get API Credentials**: Register at developer portal

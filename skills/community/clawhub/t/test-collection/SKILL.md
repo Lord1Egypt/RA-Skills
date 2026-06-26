@@ -1,35 +1,30 @@
 ---
-name: "Test Collection"
-description: "用于测试采集功能的简单 skill，无实际业务逻辑"
-category: "software-development"
-source: "ClawHub"
-tags: [example, testing]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/test-collection"
-sourceUrl: "https://clawhub.ai/skills/test-collection"
+name: test-collection
+description: 用于测试采集功能的简单 skill，无实际业务逻辑
+metadata:
+  {
+    "openclaw":
+      {
+        "emoji": "🧪",
+        "always": true
+      }
+  }
 ---
 
-# Test Collection
+# Test Collection Skill
 
-> 用于测试采集功能的简单 skill，无实际业务逻辑
+这是一个用于测试 skill 采集功能的示例 skill。
 
-- **Category:** Software Dev
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/test-collection`
-- **Source URL:** [https://clawhub.ai/skills/test-collection](https://clawhub.ai/skills/test-collection)
+## 用途
 
-## Overview
+- 验证 skill 发现机制
+- 测试 skill 优先级覆盖
+- 验证配置注入
 
+## 使用方式
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/test-collection
-```
+这个 skill 不需要任何特殊操作，只要能被 OpenClaw 发现并加载到系统提示词中即表示成功。
+
+## 变更记录
+
+- v1.0.0: 初始版本，用于测试

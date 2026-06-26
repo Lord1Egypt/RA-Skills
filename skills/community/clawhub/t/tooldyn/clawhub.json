@@ -1,0 +1,9 @@
+{
+    "name": "@peter7397/dynamic-tool-policy",
+    "tagline": "Intent-based tool policy for small-model OpenClaw agents",
+    "description": "Recommend which tools to expose for each user message (weather→exec, search→web_search, doc→feishu_doc) to reduce tokens and avoid tool loops.",
+    "category": "productivity",
+    "tags": ["tools", "policy", "ollama", "feishu", "token-optimization"],
+    "license": "MIT",
+    "version": "1.0.0"
+  }

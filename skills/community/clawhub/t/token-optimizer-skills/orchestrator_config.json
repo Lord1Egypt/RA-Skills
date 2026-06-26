@@ -1,0 +1,71 @@
+{
+  "_comment": "Neuromorphic Agent Orchestrator — Single source of truth for routing, memory, and tool dispatch.",
+  "version": "3.0-neuromorphic",
+
+  "context_thresholds": {
+    "auto_distill_every_n_turns": 20,
+    "warning_pct": 0.65,
+    "distill_pct": 0.80,
+    "hard_limit_pct": 0.95
+  },
+
+  "memory": {
+    "distill_script": "scripts/distill_memory.py",
+    "episodic_store_path": ".openclaw/memory/episodic",
+    "mcp_enabled": false,
+    "mcp_tool_write": "memory_write",
+    "mcp_tool_search": "memory_search",
+    "flush_on_distill": true
+  },
+
+  "tool_registry": {
+    "count_tokens":    { "script": "scripts/count_tokens.py",    "args_schema": ["--input", "--model", "--estimate"] },
+    "analyze_skills":  { "script": "scripts/analyze_skills.py",  "args_schema": [] },
+    "distill_memory":  { "script": "scripts/distill_memory.py",  "args_schema": ["--input", "--output"] },
+    "compress_prompt": { "script": "scripts/compress_prompt.py", "args_schema": ["--input", "--ratio", "--dry-run"],
+                         "guardrail": "OFFLINE_ONLY" }
+  },
+
+  "procedural_signatures": {
+    "count_tokens": [
+      "how many tokens", "token count", "count tokens", "token usage",
+      "how full is", "context size", "audit tokens", "token audit"
+    ],
+    "analyze_skills": [
+      "bloated skills", "skill metadata", "analyze skills", "skill footprint",
+      "skill audit", "which skills are heavy"
+    ],
+    "distill_memory": [
+      "distill", "summarize history", "compress memory", "compress history",
+      "extract facts", "flush context", "save memory", "archive conversation"
+    ],
+    "compress_prompt": [
+      "compress this document", "compress this text", "shrink this doc",
+      "compress for context", "reduce this file"
+    ]
+  },
+
+  "reasoning_keywords": [
+    "why", "explain", "how does", "design", "plan", "architect",
+    "compare", "what is", "should i", "which is better", "help me think"
+  ],
+
+  "agent_roles": {
+    "orchestrator": {
+      "description": "Plans and delegates only. Never executes directly.",
+      "max_context_pct": 0.30,
+      "holds": ["current_goal", "routing_decision", "turn_count"]
+    },
+    "skill_agent": {
+      "description": "Executes compiled procedural scripts. Zero LLM tokens for known tasks.",
+      "scripts_dir": "scripts/",
+      "never_rethinks_known_procedures": true
+    },
+    "memory_agent": {
+      "description": "Continuous background loop. Watches triggers. Distills and archives.",
+      "triggers": ["turn_limit", "token_threshold", "task_complete"],
+      "autonomous": true,
+      "_note": "Turn interval is controlled by context_thresholds.auto_distill_every_n_turns — single source of truth."
+    }
+  }
+}

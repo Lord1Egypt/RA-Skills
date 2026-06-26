@@ -1,35 +1,47 @@
 ---
-name: "testSkillX"
-description: "Simple test skill that calls a GET endpoint to fetch a daily post. No authentication required."
-category: "software-development"
-source: "ClawHub"
-tags: [test]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/testskillx"
-sourceUrl: "https://clawhub.ai/skills/testskillx"
+name: dailypost-test
+description: Simple test skill that calls a GET endpoint to fetch a daily post. No authentication required.
+version: 0.1.0
+author: NatX.eth
+tags:
+  - test
+  - api
+  - daily
+compatibility: [openclaw]
+invoke: auto
 ---
 
-# testSkillX
+# DailyPost Test
 
-> Simple test skill that calls a GET endpoint to fetch a daily post. No authentication required.
+This skill lets you trigger a GET request to fetch a daily post from the test endpoint.
 
-- **Category:** Software Dev
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/testskillx`
-- **Source URL:** [https://clawhub.ai/skills/testskillx](https://clawhub.ai/skills/testskillx)
+## 🚀 How to use it
 
-## Overview
+Just say one of these (or similar):
 
+* "Show me the daily post"
+* "Get today's post"
+* "Fetch daily post"
+* "Run dailypost"
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/testskillx
-```
+The assistant will immediately make a **GET** request to:
+`https://b024a53917d6.ngrok-free.app/agent/dailyPost`
+
+---
+
+## 🛠️ What happens
+
+1.  **Recognition:** I recognize your request via the defined triggers.
+2.  **Execution:** I perform the following HTTP call:
+    ```bash
+    curl [https://b024a53917d6.ngrok-free.app/agent/dailyPost](https://b024a53917d6.ngrok-free.app/agent/dailyPost)
+    ```
+3.  **Response:** I return whatever the endpoint sends back (text, JSON, etc.) directly to the chat.
+
+---
+
+## 🔒 Safety Notes
+
+* **No Authentication:** No headers or private keys are sent with this request.
+* **Public Access:** This is a standard public GET request.
+* **Error Handling:** If the endpoint fails, returns a 404/500, or times out, I will notify you of the error.

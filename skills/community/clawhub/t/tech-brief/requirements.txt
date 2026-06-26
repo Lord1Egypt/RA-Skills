@@ -1,0 +1,7 @@
+# Tech Brief 依赖
+
+requests>=2.28.0
+beautifulsoup4>=4.12.0
+lxml>=4.9.0
+python-dateutil>=2.8.0
+feedparser>=6.0.0

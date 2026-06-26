@@ -1,0 +1,49 @@
+{
+  "name": "clawdoctor",
+  "version": "0.4.13",
+  "description": "Self-healing doctor for OpenClaw. Watches gateway, crons, and sessions, sends Telegram alerts, and auto-fixes what it can.",
+  "main": "dist/index.js",
+  "bin": {
+    "clawdoctor": "dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "ts-node src/index.ts",
+    "test": "node --test dist/test/**/*.js",
+    "test:src": "npx ts-node --test src/test/**/*.ts",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "openclaw",
+    "monitor",
+    "cli",
+    "agent",
+    "self-healing"
+  ],
+  "author": "Matt Turley",
+  "license": "MIT",
+  "dependencies": {
+    "better-sqlite3": "^9.4.3",
+    "commander": "^12.1.0"
+  },
+  "devDependencies": {
+    "@types/better-sqlite3": "^7.6.8",
+    "@types/node": "^20.12.7",
+    "typescript": "^5.4.5"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "files": [
+    "dist/**/*",
+    "README.md"
+  ],
+  "homepage": "https://clawdoctor.dev",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/turleydesigns/clawdoctor.git"
+  },
+  "bugs": {
+    "url": "https://github.com/turleydesigns/clawdoctor/issues"
+  }
+}

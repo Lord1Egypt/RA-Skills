@@ -1,35 +1,89 @@
----
-name: "Token Decision"
-description: "实时分析任务类型并基于多维评分推荐最优国产大模型，自动执行并跟踪Token消耗与预算。"
-category: "other"
-source: "ClawHub"
-tags: [benchmark, chinese-llm, cost-optimization, model-routing, token]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/token-decision"
-sourceUrl: "https://clawhub.ai/skills/token-decision"
----
+大模型Token用量及效果实时决策 v2.0
 
-# Token Decision
+输入 prompt，自动推荐最优模型并直接执行
+比价 + 评估 + ROI + TokenPlan换算
+多维加权评分 | 上下文自动决策 | 故障转移 | 预算追踪
 
-> 实时分析任务类型并基于多维评分推荐最优国产大模型，自动执行并跟踪Token消耗与预算。
+用法：加 `/token决策`，或说"推荐模型/最便宜/性价比"自动触发
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/token-decision`
-- **Source URL:** [https://clawhub.ai/skills/token-decision](https://clawhub.ai/skills/token-decision)
+开发者：乙春
 
-## Overview
+自动触发：当用户说"推荐模型/最便宜/性价比/质量高/用哪个好/划算/对比"时，自动调用。
 
+## 核心能力
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/token-decision
+1. 任务分类 → 8类（写作/编程/翻译/分析/知识问答/总结摘要/数学推理/闲聊）
+   - 关键词匹配 + 置信度评估（≥3高/1-2中/0未知 fallback）
+   - 未知 prompt 自动语义 fallback 分类
+2. 多维加权评分 → 每类任务 5-6 个维度独立权重
+   - 编程重 efficiency(30%)，写作重 conciseness(30%)，数学重 accuracy(50%)
+3. 模型对比 → 9款国产模型实测数据，质量+成本+延迟
+4. 上下文自动决策 → 长文本(>2000字符)自动推荐大窗口模型
+5. 故障转移 → API调用失败自动切换备选模型（最多2次）
+6. 省钱计算 → 比次优方案省了多少一目了然
+7. 计费透明 → Token Plan 积分消耗换算
+8. 预算追踪 → 今日累计消耗显示
+9. 聚类进化 → cluster.py 自动发现新关键词并更新分类规则
+10. 直接执行 → 推荐即调用模型 API，返回结果
+
+## 版本改进 (v1.0 → v2.0)
+
+| 改进项 | 说明 |
+|--------|------|
+| 智能分类 | 关键词 + 置信度 + fallback，不再一律兜底"闲聊" |
+| 多维评分 | 8类任务 × 5-6维独立权重，替代单一 overall 公式 |
+| 上下文决策 | 长文本自动切换大窗口模型，不再仅 ⚠️ 提示 |
+| 故障转移 | API失败自动回退备选模型，最多3次尝试 |
+| Token估算 | tiktoken 准确编码，替代 char×1.5 粗糙估算 |
+| 预算追踪 | 每次推荐显示今日消耗 |
+| 累计报表 | stats.py 新增今日/本周/累计节省统计 |
+| 自动进化 | cluster.py --update 自动更新关键词 |
+
+## 输出示例
+
+```
+=======================================================
+  大模型Token用量及效果实时决策 v2.0
+  开发：乙春 | 数据驱动 · 多维评分 · 智能路由
+=======================================================
+  任务识别: 写作 | 模式: 均衡
+
+  🎯 推荐: deepseek-v3.2 (🏆 综合最优)
+     加权质量: 93.5/100 | 预估: 1250token | ¥0.000462
+
+  📊 备选模型（同一任务实测数据）
+  模型                    质量     成本¥     延迟     评价
+  -------------------------------------------------------
+  deepseek-v3.2          93.5    0.000462    3531ms 🏆推荐
+  deepseek-v4-flash      92.0    0.000839       0ms 长窗
+  hy3-preview            89.0    0.000000       0ms 免费
+
+  💰 比 deepseek-v4-flash 省 ¥0.000377
+  🪙 Token Plan 消耗估算:
+     基础token: 1250 × 计费系数1.3 = 1625 积分
+     参考: Token Plan 40元/月约可调用 246 次此类任务
+
+  📊 今日消耗 ¥0.001234
+=======================================================
+```
+
+## 依赖
+- Python 3.x + openai + python-dotenv + tiktoken
+- `benchmark.db` (9 模型 × 8 类实测)
+- `.env` (API Key，仅执行时需要)
+
+## 数据来源
+- 9 款国产大模型实测 benchmark
+- Deepseek-V4-Pro 在线 8 维评分（accuracy/completeness/format_score/creativity/readability/conciseness/relevance/efficiency）
+- tiktoken o200k_base 编码器（GPT-4o 通用编码）
+
+## 文件结构
+```
+token-decision/
+  SKILL.md        # 本文件
+  token_eval.py   # 主程序：分类+评分+推荐+执行+预算
+  cluster.py      # 聚类分析+关键词自动更新
+  stats.py        # 使用统计面板（含累计节省）
+  benchmark.db    # 9模型×8类实测数据库
+  .env            # API Keys（不纳入版本管理）
 ```

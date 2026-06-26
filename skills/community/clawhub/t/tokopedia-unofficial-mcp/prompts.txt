@@ -1,0 +1,19 @@
+Prompt templates for Tokopedia Unofficial MCP Skill
+
+1) Broad product discovery
+Find [product type] on Tokopedia with budget up to [max budget]. Search broadly, then shortlist at least [N] candidates with links and key metrics.
+
+2) Shortlist comparison
+Compare [N] relevant products and rank them by overall value for my needs. Include price, rating, review count, sold count, and product URL.
+
+3) Feature-focused filtering
+Find products for [category] with these required features: [feature list], budget [range], and preferred brands [optional].
+
+4) Variant-aware buying decision
+For shortlisted products with variants, compare variant prices/stock and recommend the best value variant.
+
+5) Shop confidence check
+For the top candidates, include seller quality context from shop info and highlight any confidence risks.
+
+6) Review insight summary
+Summarize review trends for shortlisted products: common praise, common complaints, and who each product is best suited for.

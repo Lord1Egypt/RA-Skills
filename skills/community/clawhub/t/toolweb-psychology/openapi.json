@@ -1,0 +1,312 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Psychology Entry Level Roadmap API",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/api/psychology/entry-roadmap": {
+      "post": {
+        "summary": "Generate Psychology Roadmap",
+        "description": "Generate personalized psychology entry-level career roadmap.",
+        "operationId": "generate_psychology_roadmap_api_psychology_entry_roadmap_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RoadmapRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RoadmapResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/health": {
+      "get": {
+        "summary": "Health Check",
+        "description": "Health check endpoint.",
+        "operationId": "health_check_health_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/": {
+      "get": {
+        "summary": "Root",
+        "description": "Root endpoint.",
+        "operationId": "root__get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "AssessmentData": {
+        "properties": {
+          "education": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "type": "object",
+            "title": "Education"
+          },
+          "interests": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Interests"
+          },
+          "experience": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Experience"
+          },
+          "skills": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Skills"
+          },
+          "goals": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "type": "object",
+            "title": "Goals"
+          },
+          "sessionId": {
+            "type": "string",
+            "title": "Sessionid"
+          },
+          "timestamp": {
+            "type": "string",
+            "title": "Timestamp"
+          }
+        },
+        "type": "object",
+        "required": [
+          "education",
+          "interests",
+          "experience",
+          "skills",
+          "goals",
+          "sessionId",
+          "timestamp"
+        ],
+        "title": "AssessmentData"
+      },
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "type": "array",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
+      },
+      "RoadmapRequest": {
+        "properties": {
+          "assessmentData": {
+            "$ref": "#/components/schemas/AssessmentData"
+          },
+          "sessionId": {
+            "type": "string",
+            "title": "Sessionid"
+          },
+          "userId": {
+            "type": "integer",
+            "title": "Userid"
+          },
+          "timestamp": {
+            "type": "string",
+            "title": "Timestamp"
+          }
+        },
+        "type": "object",
+        "required": [
+          "assessmentData",
+          "sessionId",
+          "userId",
+          "timestamp"
+        ],
+        "title": "RoadmapRequest"
+      },
+      "RoadmapResponse": {
+        "properties": {
+          "overview": {
+            "type": "string",
+            "title": "Overview"
+          },
+          "immediateSteps": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Immediatesteps"
+          },
+          "shortTerm": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Shortterm"
+          },
+          "mediumTerm": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Mediumterm"
+          },
+          "longTerm": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Longterm"
+          },
+          "education": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Education"
+          },
+          "certifications": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Certifications"
+          },
+          "skills": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Skills"
+          },
+          "resources": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Resources"
+          },
+          "tips": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Tips"
+          },
+          "sessionId": {
+            "type": "string",
+            "title": "Sessionid"
+          },
+          "generatedAt": {
+            "type": "string",
+            "title": "Generatedat"
+          }
+        },
+        "type": "object",
+        "required": [
+          "overview",
+          "immediateSteps",
+          "shortTerm",
+          "mediumTerm",
+          "longTerm",
+          "education",
+          "certifications",
+          "skills",
+          "resources",
+          "tips",
+          "sessionId",
+          "generatedAt"
+        ],
+        "title": "RoadmapResponse"
+      },
+      "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Location"
+          },
+          "msg": {
+            "type": "string",
+            "title": "Message"
+          },
+          "type": {
+            "type": "string",
+            "title": "Error Type"
+          }
+        },
+        "type": "object",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError"
+      }
+    }
+  }
+}

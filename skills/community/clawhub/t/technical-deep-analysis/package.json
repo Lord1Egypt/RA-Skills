@@ -1,0 +1,12 @@
+{
+  "name": "technical-deep-analysis",
+  "version": "1.0.0",
+  "description": "Technical analysis skill for OpenClaw",
+  "main": "SKILL.md",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": ["technical", "analysis", "openclaw"],
+  "author": "Vincent",
+  "license": "MIT"
+}

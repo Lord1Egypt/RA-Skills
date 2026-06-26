@@ -1,0 +1,20 @@
+{
+  "name": "tokenflow",
+  "version": "2.0.0",
+  "description": "Convert files and URLs to structured text using the TokenFlow API — agent-agnostic with per-filetype configuration.",
+  "author": "Iron Lion International",
+  "license": "MIT",
+  "keywords": ["tokenflow", "convert", "file", "url", "document", "pdf", "docx", "xlsx", "audio"],
+  "commands": [
+    {
+      "name": "flow",
+      "description": "Convert attached file or URL to structured text",
+      "usage": "/flow"
+    },
+    {
+      "name": "flow-settings",
+      "description": "Show TokenFlow preferences from config.json",
+      "usage": "/flow settings"
+    }
+  ]
+}

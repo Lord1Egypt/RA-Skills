@@ -1,0 +1,12 @@
+{
+  "text": "ClawHub makes text visible",
+  "highlight_texts": [
+    { "match": "ClawHub", "color": "#1677ff" },
+    { "match": "visible", "color": "#fa541c" }
+  ],
+  "width": 900,
+  "height": 260,
+  "format": "png",
+  "background": "#ffffff",
+  "padding": 24
+}

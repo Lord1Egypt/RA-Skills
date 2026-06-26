@@ -1,0 +1,4 @@
+interface:
+  display_name: "测试用例评审器"
+  short_description: "评审已有测试用例的质量、覆盖和执行风险"
+  default_prompt: "使用 $test-case-reviewer 帮我评审这批测试用例。"

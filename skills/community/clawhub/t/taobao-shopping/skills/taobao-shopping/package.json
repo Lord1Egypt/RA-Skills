@@ -1,0 +1,21 @@
+{
+  "name": "taobao-shopping-skill",
+  "version": "2.0.0",
+  "description": "淘宝购物助手 Skill - 支持搜索、比价、看评论、加购物车",
+  "main": "SKILL.md",
+  "keywords": [
+    "taobao",
+    "淘宝",
+    "shopping",
+    "e-commerce",
+    "openclaw",
+    "skill"
+  ],
+  "author": "harrylabsj",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/harrylabsj/taobao-shopping.git"
+  },
+  "homepage": "https://clawhub.ai/harrylabsj/taobao-shopping"
+}

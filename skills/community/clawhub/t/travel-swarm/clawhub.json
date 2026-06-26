@@ -1,0 +1,34 @@
+{
+  "name": "openclaw-travel-swarm-v8",
+  "version": "1.0.0",
+  "description": "多MCP集成智能旅行规划系统 - FlyAI+高德+腾讯+美团+麦当劳",
+  "author": "海狸🦫",
+  "license": "MIT",
+  "tags": ["travel", "mcp", "flyai", "gaode", "meituan", "food"],
+  "repository": "https://gitee.com/timo2026/travel-swarm-v8",
+  "main": "main_v8.py",
+  "keywords": [
+    "旅行规划",
+    "旅游攻略",
+    "订票",
+    "美食推荐",
+    "FlyAI",
+    "高德地图",
+    "美团"
+  ],
+  "scripts": {
+    "start": "python3.8 main_v8.py",
+    "test": "python3.8 tests/test_api.py"
+  },
+  "dependencies": {
+    "flask": ">=2.0.0",
+    "requests": ">=2.28.0"
+  },
+  "engines": {
+    "python": ">=3.8"
+  },
+  "trigger": {
+    "regex": "(旅行|旅游|攻略|订票|美食)",
+    "commands": ["旅行规划", "旅游攻略", "订票", "美食推荐"]
+  }
+}

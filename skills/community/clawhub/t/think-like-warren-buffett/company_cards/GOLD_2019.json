@@ -1,0 +1,48 @@
+{
+  "ticker": "GOLD",
+  "company": "Barrick Gold Corporation",
+  "analysis_year": 2020,
+  "data_source": "Barrick Gold FY2019 Form 40-F, Barrick Gold Q3 2020 6-K / Exhibit 99.2, Berkshire 2020-09-30 13F-HR, Berkshire 2020-12-31 13F-HR, and Berkshire 2021-03-31 13F-HR",
+  "analyzed_date": "2026-03-26",
+
+  "hard_gates": {
+    "g1_roe_roic": { "value": 0.063, "metric_used": "ROE", "years_averaged": "2017-2019", "pass": false },
+    "g2_fcf_to_ni": { "value": 0.74, "fcf": 2700, "net_income": 3631, "pass": false },
+    "g3_leverage": { "metric_used": "Net Debt/9M 2020 Adjusted EBITDA proxy", "value": 0.08, "pass": true },
+    "g4_revenue_trend": { "description": "Revenue fell from $8.37B in 2017 to $7.24B in 2018, then recovered sharply to $9.72B in 2019 as gold prices and portfolio quality improved. That pattern looks cyclical and commodity-linked rather than structurally broken.", "structural_decline": false, "pass": true },
+    "g5_gross_margin_trend": { "description": "Gross margin moved from roughly 36.7% in 2017 to 27.9% in 2018 and back up to 28.9% in 2019. Margins were volatile, but there was not a two-year consecutive deterioration.", "declining_2plus_years": false, "pass": true },
+    "g6_earnings_yield": { "value": 0.072, "net_income_m": 3631, "ev_m": 50397, "exemption": null, "pass": true },
+    "g7_moat": { "verdict": "FAIL", "moat_type": null, "description": "Barrick in late 2020 had become a better-run gold miner with lower leverage and a stronger asset base, but it was still fundamentally a commodity producer. Its economics were heavily influenced by gold prices, reserve quality, and operating discipline rather than by a structurally irreplicable tollbooth. Competitors could not copy a world-class mine overnight, yet the business still lacked the kind of durable pricing power and customer captivity this framework wants for a long-duration core holding.", "pass": false }
+  },
+
+  "special_channel": null,
+
+  "metrics_snapshot": {
+    "sales_2019_usd_m": 9717,
+    "net_income_2019_usd_m": 4574,
+    "operating_cash_flow_2019_usd_m": 2833,
+    "capital_expenditures_2019_usd_m": 1701,
+    "cash_2020q3_usd_m": 4744,
+    "debt_2020q3_usd_m": 5161,
+    "net_debt_2020q3_usd_m": 417,
+    "adjusted_ebitda_9m_2020_usd_m": 5386,
+    "ttm_net_income_2020q3_usd_m": 3631,
+    "ttm_operating_cash_flow_2020q3_usd_m": 4654,
+    "ttm_capex_2020q3_usd_m": 1954,
+    "implied_price_2020q3_usd": 28.11,
+    "market_value_2020q3_usd_m": 49980,
+    "berkshire_shares_2020q3_m": 12.0,
+    "berkshire_value_2020q3_usd_m": 337.3
+  },
+
+  "control_groups": [
+    { "ticker": "NEM", "company": "Newmont Corporation", "year": 2020, "gates_failed": ["g2_fcf_to_ni", "g7_moat"], "conclusion": "PASS — another high-quality gold miner, but still a commodity business whose long-term economics depend more on metal prices than on an irreplicable franchise." },
+    { "ticker": "AEM", "company": "Agnico Eagle Mines Limited", "year": 2020, "gates_failed": ["g1_roe_roic", "g7_moat"], "conclusion": "PASS — operationally respected, but still not the kind of decade-long customer-captive moat this framework underwrites." }
+  ],
+
+  "conclusion": "PASS",
+  "buffett_action": "Berkshire disclosed 12,000,000 Barrick Gold shares worth about $337.3M at September 30, 2020 via its 13F-HR.",
+  "actual_result": "The stake was already gone by Berkshire's 2020-12-31 13F, which makes the case look far more like a short-lived macro or commodity expression than a core Buffett-style franchise investment.",
+  "verdict": "⭐ framework_wins",
+  "key_insight": "A miner can look optically cheap and financially repaired, yet still be a pass if returns are cyclical, cash conversion is not consistently strong, and the moat is really just exposure to the commodity cycle."
+}

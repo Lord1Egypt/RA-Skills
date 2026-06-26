@@ -1,0 +1,38 @@
+{
+  "ticker": "BRKTEXTILE",
+  "company": "Berkshire Hathaway textile operations",
+  "analysis_year": 1965,
+  "data_source": "Berkshire Hathaway 2014 special letter 'Berkshire – Past, Present and Future' and Berkshire 1972/1976 shareholder letters",
+  "analyzed_date": "2026-03-25",
+
+  "hard_gates": {
+    "g1_roe_roic": { "value": null, "metric_used": "ROE", "years_averaged": "1955-1964", "pass": false },
+    "g2_fcf_to_ni": { "value": null, "fcf": null, "net_income": null, "pass": null },
+    "g3_leverage": { "metric_used": "Net Debt/Equity", "value": 0.114, "pass": true },
+    "g4_revenue_trend": { "description": "The New England textile industry had been in long-term decline for decades. Berkshire's own 1954 board minutes said the trend must continue until supply and demand balanced.", "structural_decline": true, "pass": false },
+    "g5_gross_margin_trend": { "description": "By Buffett's later description, return on sales and return on capital employed were inadequate and the company had already suffered years of operating losses before control changed hands.", "declining_2plus_years": true, "pass": false },
+    "g6_earnings_yield": { "value": null, "net_income_m": null, "ev_m": null, "exemption": null, "pass": null },
+    "g7_moat": { "verdict": "FAIL", "moat_type": null, "description": "Berkshire textile had no durable competitive advantage. It was a capital-intensive commodity manufacturer in a region losing cost competitiveness, unable to change the industry's direction even though the problems were long understood.", "pass": false }
+  },
+
+  "special_channel": null,
+
+  "metrics_snapshot": {
+    "share_price_1962": 7.5,
+    "working_capital_per_share_1962": 10.25,
+    "book_value_per_share_1962": 20.2,
+    "net_worth_1964_m": 22,
+    "bank_debt_1964_m": 2.5
+  },
+
+  "control_groups": [
+    { "ticker": "JPSTEVENS", "company": "J.P. Stevens", "year": 1965, "gates_failed": ["g4_revenue_trend", "g7_moat"], "conclusion": "PASS — same structurally declining textile economics with no moat." },
+    { "ticker": "BURL", "company": "Burlington Industries", "year": 1965, "gates_failed": ["g4_revenue_trend", "g7_moat"], "conclusion": "PASS — a larger operator, but still trapped in a deteriorating commodity textile industry." }
+  ],
+
+  "conclusion": "PASS",
+  "buffett_action": "Buffett Partnership took control of Berkshire Hathaway in 1965 after accumulating 392,633 shares.",
+  "actual_result": "Buffett later called the decision monumentally stupid and eventually shut the textile operation in 1985 after two decades of frustration.",
+  "verdict": "⭐ framework_wins",
+  "key_insight": "Cheap working capital and book value can still be a trap when the business is structurally dying and every dollar stays imprisoned in the operation."
+}

@@ -1,0 +1,235 @@
+{
+  "skill_name": "turf-skills",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Calculate the distance between Beijing (116.397428, 39.90923) and Shanghai (121.473701, 31.230416) in kilometers",
+      "expected_output": "Distance result around 1067-1070 km",
+      "files": [],
+      "assertions": [
+        {
+          "type": "json_contains",
+          "target": "console",
+          "path": "$.result",
+          "expected": 1067,
+          "operator": "gte",
+          "description": "Distance should be >= 1067 km"
+        },
+        {
+          "type": "json_contains",
+          "target": "console",
+          "path": "$.result",
+          "expected": 1070,
+          "operator": "lte",
+          "description": "Distance should be <= 1070 km"
+        },
+        {
+          "type": "contains",
+          "target": "console",
+          "value": "turf-skills",
+          "description": "Should use turf-skills command"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Check if the point (120.5, 30.5) is inside the polygon with coordinates [[120,30],[121,30],[121,31],[120,31],[120,30]]",
+      "expected_output": "Boolean result: true (point is inside)",
+      "files": [],
+      "assertions": [
+        {
+          "type": "json_contains",
+          "target": "console",
+          "path": "$.result",
+          "expected": true,
+          "operator": "eq",
+          "description": "Point should be inside polygon"
+        },
+        {
+          "type": "contains",
+          "target": "console",
+          "value": "booleanPointInPolygon",
+          "description": "Should use booleanPointInPolygon action"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Create a 5km buffer around the point at coordinates [116.397428, 39.90923] and output as GeoJSON",
+      "expected_output": "GeoJSON Polygon representing the buffer zone",
+      "files": [],
+      "assertions": [
+        {
+          "type": "contains",
+          "target": "console",
+          "value": "buffer",
+          "description": "Should use buffer action"
+        },
+        {
+          "type": "contains",
+          "target": "console",
+          "value": "Polygon",
+          "description": "Output should contain Polygon type"
+        },
+        {
+          "type": "json_valid",
+          "target": "console",
+          "path": "$.result",
+          "description": "Result should be valid GeoJSON"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "Calculate the area of a square polygon with corners at [0,0], [1,0], [1,1], [0,1], [0,0]",
+      "expected_output": "Area around 12300-12400 square kilometers (at equator scale)",
+      "files": [],
+      "assertions": [
+        {
+          "type": "json_contains",
+          "target": "console",
+          "path": "$.result",
+          "expected": 12000,
+          "operator": "gte",
+          "description": "Area should be >= 12000 m²"
+        },
+        {
+          "type": "json_contains",
+          "target": "console",
+          "path": "$.result",
+          "expected": 12500,
+          "operator": "lte",
+          "description": "Area should be <= 12500 m²"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "Generate a hexagonal grid covering the bounding box [116, 39, 117, 40] with cell size of 10 kilometers",
+      "expected_output": "GeoJSON FeatureCollection with hexagonal polygons",
+      "files": [],
+      "assertions": [
+        {
+          "type": "contains",
+          "target": "console",
+          "value": "hexGrid",
+          "description": "Should use hexGrid action"
+        },
+        {
+          "type": "json_contains",
+          "target": "console",
+          "path": "$.result.features",
+          "expected": [],
+          "operator": "exists",
+          "description": "Result should have features array"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "prompt": "Find the convex hull of these three points: [0,0], [1,0], [0.5,1]",
+      "expected_output": "GeoJSON Polygon forming a triangle containing all points",
+      "files": [],
+      "assertions": [
+        {
+          "type": "contains",
+          "target": "console",
+          "value": "convex",
+          "description": "Should use convex action"
+        },
+        {
+          "type": "contains",
+          "target": "console",
+          "value": "Polygon",
+          "description": "Output should be a Polygon"
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "prompt": "Given a collection of 5 random points within bbox [120,30,121,31], cluster them into 2 groups using K-means",
+      "expected_output": "GeoJSON FeatureCollection with cluster labels in properties",
+      "files": [],
+      "assertions": [
+        {
+          "type": "contains",
+          "target": "console",
+          "value": "clustersKmeans",
+          "description": "Should use clustersKmeans action"
+        },
+        {
+          "type": "contains",
+          "target": "console",
+          "value": "randomPoint",
+          "description": "Should use randomPoint to generate test data"
+        },
+        {
+          "type": "json_contains",
+          "target": "console",
+          "path": "$.result.features[0].properties.cluster",
+          "expected": null,
+          "operator": "exists",
+          "description": "Features should have cluster property"
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "prompt": "Simplify a line with many points: coordinates [[0,0],[0.1,0.01],[0.2,0],[0.3,0.01],[0.4,0],[0.5,0]] with tolerance 0.1",
+      "expected_output": "Simplified line with fewer points",
+      "files": [],
+      "assertions": [
+        {
+          "type": "contains",
+          "target": "console",
+          "value": "simplify",
+          "description": "Should use simplify action"
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "prompt": "Calculate the bearing from New York (-74.006, 40.7128) to Los Angeles (-118.2437, 34.0522)",
+      "expected_output": "Bearing around 275-280 degrees (west-southwest)",
+      "files": [],
+      "assertions": [
+        {
+          "type": "json_contains",
+          "target": "console",
+          "path": "$.result",
+          "expected": 275,
+          "operator": "gte",
+          "description": "Bearing should be >= 275 degrees"
+        },
+        {
+          "type": "json_contains",
+          "target": "console",
+          "path": "$.result",
+          "expected": 280,
+          "operator": "lte",
+          "description": "Bearing should be <= 280 degrees"
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "prompt": "Find the nearest point to [120, 30] from a collection of points at [120.1, 30.1], [119.9, 29.9], [121, 31]",
+      "expected_output": "The point [120.1, 30.1] as the nearest",
+      "files": [],
+      "assertions": [
+        {
+          "type": "contains",
+          "target": "console",
+          "value": "nearestPoint",
+          "description": "Should use nearestPoint action"
+        },
+        {
+          "type": "contains",
+          "target": "console",
+          "value": "120.1",
+          "description": "Should identify [120.1, 30.1] as nearest"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "name": "tolstoy-mcp",
+  "version": "1.0.0",
+  "description": "Connect OpenClaw to Tolstoy's video commerce platform via MCP. Create widgets, manage media, generate AI videos, and publish to Shopify/Instagram/TikTok.",
+  "author": "tolstoy",
+  "license": "MIT",
+  "permissions": ["network"],
+  "entry": "SKILL.md",
+  "tags": ["mcp", "tolstoy", "video-commerce", "e-commerce", "shopify", "ai-video", "widgets"],
+  "category": "integrations"
+}

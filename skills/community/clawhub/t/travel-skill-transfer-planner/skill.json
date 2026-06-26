@@ -1,0 +1,20 @@
+{
+  "name": "Travel Skill Transfer Planner",
+  "slug": "travel-skill-transfer-planner",
+  "version": "1.0.0",
+  "description": "Helps plan skill development through travel",
+  "author": "Golden Bean (OpenClaw)",
+  "tags": [
+    "tourism",
+    "travel",
+    "descriptive"
+  ],
+  "trigger_keywords": [
+    "travel skill transfer planner",
+    "travel skill transfer planner"
+  ],
+  "language": "en",
+  "outputs": "json",
+  "requires_api": false,
+  "readiness": "development"
+}

@@ -1,35 +1,143 @@
 ---
-name: "Taobao Ecommerce System"
+name: taobao-ecommerce-system
+slug: taobao-ecommerce-system
+version: 2.0.0
 description: "2026 无货源电商运营系统 - 智能选品、标准化上架、万相台测款、订单自动化、智能客服"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/taobao-ecommerce-system"
-sourceUrl: "https://clawhub.ai/skills/taobao-ecommerce-system"
+changelog: "v2.0.0 基于全网实战教程重构：乘法电商选品模型、4+2 测款模型、1688 推单自动化、客服话术库"
+metadata: {"clawdbot":{"emoji":"🛍️","requires":{"bins":["python3"],"python_deps":["requests","pandas","openpyxl","Pillow"]},"os":["win32"]}}
 ---
 
-# Taobao Ecommerce System
+# 2026 无货源电商运营系统
 
-> 2026 无货源电商运营系统 - 智能选品、标准化上架、万相台测款、订单自动化、智能客服
+## ⚠️ 重要安全声明
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/taobao-ecommerce-system`
-- **Source URL:** [https://clawhub.ai/skills/taobao-ecommerce-system](https://clawhub.ai/skills/taobao-ecommerce-system)
+**本系统严格遵守：**
+1. **仅人工触发** - 所有操作需人工确认
+2. **官方 API** - 仅通过淘宝/1688 官方 API
+3. **合规第一** - 100% 符合 2026 淘宝最新规则
+4. **数据驱动** - 用数据决策，不用感觉
 
-## Overview
+---
 
+## 🎯 核心功能模块
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/taobao-ecommerce-system
+### 1. 智能选品系统（乘法电商·精细化选品 2026 版）
+
+**功能：**
+- ✅ 网商园/1688批量采集
+- ✅ 淘宝同款数据查询
+- ✅ 5 个数据指标自动筛选
+- ✅ 利润精算（含所有成本）
+- ✅ 侵权风险检测
+- ✅ 档口联系方式提取
+
+**选品标准：**
 ```
+1. 淘宝同款数 < 5000（竞争小）
+2. 头部垄断度 < 60%（垄断低）
+3. 新品机会 > 15%（新品有机会）
+4. 价格空间 > 100%（有利润空间）
+5. 搜索趋势上升（趋势向上）
+6. 净利率 > 20%（可做）
+```
+
+### 2. 标准化上架系统
+
+**功能：**
+- ✅ 标题优化（3 步法）
+- ✅ 主图处理（去水印、调色）
+- ✅ 详情页模板（5 个可复用）
+- ✅ 价格设置（保本计算）
+- ✅ 属性填写（合规检测）
+
+### 3. 智能推广系统（万相台无界·4+2 模型）
+
+**功能：**
+- ✅ 4 个拉新计划自动搭建
+- ✅ 2 个收割计划自动开启
+- ✅ 实时数据监控
+- ✅ 达标线自动判断
+- ✅ 止损规则自动执行
+
+**测款标准（7 天周期）：**
+```
+✅ 爆款潜力：
+- 点击率 > 3.5%
+- 收藏加购率 > 15%
+- 转化率 > 3.5%
+- ROI > 2.5
+
+❌ 停止推广：
+- 点击率 < 2.5%
+- 收藏加购率 < 10%
+- 转化率 < 2%
+- ROI < 1.5
+```
+
+### 4. 订单自动化系统
+
+**功能：**
+- ✅ 1688 推单 API 对接
+- ✅ 网商园下单辅助
+- ✅ 自动回填单号
+- ✅ 物流实时监控
+- ✅ 异常自动预警
+
+### 5. 智能客服系统
+
+**功能：**
+- ✅ 快捷回复话术库
+- ✅ 意图自动识别
+- ✅ 售后自动分类
+- ✅ 高风险预警
+- ✅ 差评挽回话术
+
+---
+
+## 📋 使用命令
+
+### 智能选品
+```bash
+python scripts/ecommerce_main.py select-product --source "网商园链接" --batch
+```
+
+### 标准化上架
+```bash
+python scripts/ecommerce_main.py upload-product --product-id KZ20260326
+```
+
+### 推广监控
+```bash
+python scripts/ecommerce_main.py marketing-monitor --plan-id 12345
+```
+
+### 订单处理
+```bash
+python scripts/ecommerce_main.py process-orders --auto
+```
+
+### 客服辅助
+```bash
+python scripts/ecommerce_main.py cs-helper --start
+```
+
+---
+
+## 🛡️ 安全与合规
+
+**本系统不会：**
+- ❌ 自动上架发布（仅生成草稿）
+- ❌ 自动调整投流（仅生成建议）
+- ❌ 自动处理大额退款（仅 3 类低风险）
+- ❌ 超范围调用 API
+- ❌ 抓取非公开数据
+
+**本系统仅支持：**
+- ✅ 生成方案/建议/报告
+- ✅ 人工确认后执行
+- ✅ 官方 API 操作
+- ✅ 合规风控预警
+
+---
+
+*🛍️ 2026 无货源电商运营系统 — 数据驱动，合规第一*

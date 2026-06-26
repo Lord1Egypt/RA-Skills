@@ -1,0 +1,22 @@
+{
+  "name": "tradingview-signal",
+  "version": "1.0.0",
+  "main": "index.js",
+  "skill": {
+    "name": "TradingView Signal Parser",
+    "description": "Parse and analyze TradingView trading signals with risk/reward calculation",
+    "price": "0.001 USDT per request",
+    "category": "trading",
+    "tags": ["tradingview", "trading", "signal", "crypto", "analysis"]
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": ["tradingview", "trading", "signal", "crypto"],
+  "author": "sanuei",
+  "license": "ISC",
+  "description": "Parse TradingView signals and provide structured analysis",
+  "dependencies": {
+    "axios": "^1.13.6"
+  }
+}

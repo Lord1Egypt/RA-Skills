@@ -1,35 +1,57 @@
 ---
-name: "Translator Pro Test"
+name: "translator-pro-test"
+version: "3.0.0"
 description: "Test translation quality with built-in dictionaries and comparison tools. Use when evaluating translations."
-category: "software-development"
-source: "ClawHub"
-tags: [test]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/translator-pro-test"
-sourceUrl: "https://clawhub.ai/skills/translator-pro-test"
+author: "BytesAgain"
+homepage: "https://bytesagain.com"
 ---
 
-# Translator Pro Test
+# translator-pro-test
 
-> Test translation quality with built-in dictionaries and comparison tools. Use when evaluating translations.
+Test translation quality with built-in dictionaries and comparison tools. Use when evaluating translations.
 
-- **Category:** Software Dev
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/translator-pro-test`
-- **Source URL:** [https://clawhub.ai/skills/translator-pro-test](https://clawhub.ai/skills/translator-pro-test)
+## Commands
 
-## Overview
+### `test`
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/translator-pro-test
+scripts/script.sh test <text from to>
 ```
+
+### `dict`
+
+```bash
+scripts/script.sh dict <word>
+```
+
+### `compare`
+
+```bash
+scripts/script.sh compare <text l1 l2>
+```
+
+### `glossary`
+
+```bash
+scripts/script.sh glossary <term>
+```
+
+### `quality`
+
+```bash
+scripts/script.sh quality <original translated>
+```
+
+### `batch`
+
+```bash
+scripts/script.sh batch <file to>
+```
+
+## Data Storage
+
+Data stored in `~/.local/share/translator-pro-test/`.
+
+---
+
+*Powered by BytesAgain | bytesagain.com | hello@bytesagain.com*

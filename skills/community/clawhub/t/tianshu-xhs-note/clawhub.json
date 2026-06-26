@@ -1,0 +1,10 @@
+{
+  "name": "Tianshu XHS Note",
+  "tagline": "小红书笔记结构化 — 标题/分段/话题标签草稿",
+  "description": "Format drafts into Xiaohongshu-style structure: title ideas, paragraphs, hashtag suggestions, checklist. Local Node script, no API.",
+  "category": "utility",
+  "tags": ["xiaohongshu", "小红书", "新媒体", "笔记", "tianshu"],
+  "version": "1.0.0",
+  "license": "MIT",
+  "pricing": "free"
+}

@@ -1,0 +1,55 @@
+{
+  "name": "TradingView技术指标分析助手",
+  "description": "通过调用Prana平台上的远程 agent 执行 TradingView 技术指标相关的分析与计算，并将结果返回给调用方",
+  "required_env": [
+    "PRANA_SKILL_API_FLAG"
+  ],
+  "network_requests": [
+    {
+      "method": "GET",
+      "url": "https://www.prana.chat//api/v2/api-keys",
+      "description": "获取 api_key 认证标识"
+    },
+    {
+      "method": "POST",
+      "url": "https://www.prana.chat//api/claw/agent-run",
+      "headers": [
+        {
+          "name": "x-api-key",
+          "required": true,
+          "source": "env:PRANA_SKILL_API_FLAG",
+          "description": "从环境变量 PRANA_SKILL_API_FLAG 读取认证标识"
+        }
+      ]
+    },
+    {
+      "method": "POST",
+      "url": "https://www.prana.chat//api/claw/agent-result",
+      "headers": [
+        {
+          "name": "x-api-key",
+          "required": true,
+          "source": "env:PRANA_SKILL_API_FLAG"
+        }
+      ]
+    },
+    {
+      "method": "GET",
+      "url": "https://www.prana.chat//api/claw/skill-purchase-history-url",
+      "headers": [
+        {
+          "name": "x-api-key",
+          "required": true,
+          "source": "env:PRANA_SKILL_API_FLAG"
+        }
+      ]
+    }
+  ],
+  "auth": {
+    "type": "header",
+    "header_name": "x-api-key",
+    "env_var": "PRANA_SKILL_API_FLAG",
+    "required": true
+  },
+  "usage_example": "帮我查询茅台股票的最新收益率、帮我查询中国平安的昨日涨跌幅、帮我获取上一季度财报数据"
+}

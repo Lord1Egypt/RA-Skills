@@ -1,0 +1,22 @@
+{
+  "name": "tikclaws-registration-bootstrap",
+  "version": "2026-04-27.skill-split.v1",
+  "entrypoint": "SKILL.md",
+  "files": [
+    {
+      "path": "SKILL.md",
+      "kind": "markdown",
+      "required": true
+    },
+    {
+      "path": "agents/openai.yaml",
+      "kind": "yaml",
+      "required": false
+    },
+    {
+      "path": "references/bootstrap.md",
+      "kind": "markdown",
+      "required": false
+    }
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "skill_name": "tiny-css",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Set up a complete base stylesheet for my personal portfolio site. It's a small static site — just one CSS file, no build step.",
+      "expected_output": "A minimal base stylesheet that sets color-scheme, system-ui font, font-feature-settings, text-wrap on headings/paragraphs, responsive media embeds, SVG fill, pointer cursor on interactive elements, forced-colors button border, and smooth scrolling wrapped in prefers-reduced-motion. No font-size reset. No hardcoded colors on body.",
+      "files": [],
+      "assertions": [
+        "Does not set font-size on :root, html, or body",
+        "Does not declare color or background-color on body or :root",
+        "Sets color-scheme: light dark on :root",
+        "Sets font-family: system-ui on :root",
+        "Sets font-feature-settings: 'ss06' for better glyph rendering",
+        "Applies text-wrap: balance to headings",
+        "Applies text-wrap: pretty to paragraphs",
+        "Makes img, svg, video, iframe responsive with max-inline-size: 100% and block-size: auto",
+        "Sets fill: currentColor on svg",
+        "Adds cursor: pointer to button, input[type='checkbox'], input[type='radio'], select, and label using :where()",
+        "Wraps button border in @media (forced-colors: active)",
+        "Wraps scroll-behavior: smooth in @media (prefers-reduced-motion: no-preference)"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Add a slide-up entrance animation to the hero section of my page. The hero should fade in and rise slightly when the page loads.",
+      "expected_output": "Defines a @keyframes animation. Applies it to the hero only inside a @media (prefers-reduced-motion: no-preference) block so users who prefer reduced motion aren't affected.",
+      "files": [],
+      "assertions": [
+        "Defines a @keyframes animation for the slide-up and fade effect",
+        "Applies the animation inside @media (prefers-reduced-motion: no-preference) — not unconditionally",
+        "Does not apply animation: none inside prefers-reduced-motion — the animation simply isn't applied outside the query"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Build a simple two-column layout for an 'About' section — photo on the left, bio text on the right. On small screens it should stack vertically. Use modern CSS.",
+      "expected_output": "Uses CSS Grid or Flexbox. Uses logical properties (margin-inline, padding-block, inline-size) instead of physical margin-left/right/width/height. No px for layout sizing — uses rem or logical shorthands.",
+      "files": [],
+      "assertions": [
+        "Uses CSS Grid or Flexbox for the two-column layout",
+        "Uses logical properties for margin and padding (margin-inline, padding-block, etc.) — not physical margin-left, margin-right, padding-top, padding-bottom",
+        "Uses inline-size or max-inline-size instead of width or max-width for the image or container",
+        "Stacks to a single column on small screens (either via a media query or auto-fit grid)"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "My blog post headings keep breaking awkwardly mid-phrase, leaving a single short word dangling on the last line. How do I fix this with CSS?",
+      "expected_output": "Applies text-wrap: balance to headings using :where(h1, h2, h3, h4, h5, h6). Does not reach for JavaScript solutions or orphan-control hacks.",
+      "files": [],
+      "assertions": [
+        "Applies text-wrap: balance to headings",
+        "Targets headings using :where() to avoid specificity side effects",
+        "Does not use JavaScript or manual &nbsp; insertion",
+        "Does not apply text-wrap: balance to body text (that would use text-wrap: pretty)"
+      ]
+    }
+  ]
+}

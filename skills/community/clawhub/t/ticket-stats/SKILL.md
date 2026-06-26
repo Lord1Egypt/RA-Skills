@@ -1,35 +1,68 @@
 ---
-name: "Ticket Stats"
-description: "企业内部咨询工单统计分析。用于处理Excel格式的工单数据，统计每日接收工单数量、处理完成数量、未及时回复数量，并根据关键词自动归类到功能模块（订单交易、经营数据、门店设置、账号管理、商品管理、营销活动、顾客评价），生成带可视化图表的每日摘要报告。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ticket-stats"
-sourceUrl: "https://clawhub.ai/skills/ticket-stats"
+name: ticket-stats
+version: 1.0.0
+description: 企业内部咨询工单统计分析。用于处理Excel格式的工单数据，统计每日接收工单数量、处理完成数量、未及时回复数量，并根据关键词自动归类到功能模块（订单交易、经营数据、门店设置、账号管理、商品管理、营销活动、顾客评价），生成带可视化图表的每日摘要报告。
 ---
 
-# Ticket Stats
+# 工单统计分析 Skill
 
-> 企业内部咨询工单统计分析。用于处理Excel格式的工单数据，统计每日接收工单数量、处理完成数量、未及时回复数量，并根据关键词自动归类到功能模块（订单交易、经营数据、门店设置、账号管理、商品管理、营销活动、顾客评价），生成带可视化图表的每日摘要报告。
+## 数据要求
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ticket-stats`
-- **Source URL:** [https://clawhub.ai/skills/ticket-stats](https://clawhub.ai/skills/ticket-stats)
+Excel表格需包含以下列：
+- `工单编号` - 唯一标识
+- `提交时间` - 工单创建时间
+- `状态` - 待处理/处理中/已解决
+- `问题描述` - 工单内容文本
+- `回复时间` - 首次回复时间（可选，用于计算响应时长）
 
-## Overview
+## 功能模块关键词
 
+| 模块 | 关键词 |
+|------|--------|
+| 订单交易 | 订单、支付、退款、下单、交易、订单查询 |
+| 经营数据 | 报表、销售额、营收、流水、统计、经营分析 |
+| 门店设置 | 门店、店铺、营业时间、地址、门店配置 |
+| 账号管理 | 账号、登录、密码、权限、角色、用户 |
+| 商品管理 | 商品、上架、下架、库存、SKU、商品信息 |
+| 营销活动 | 优惠券、活动、折扣、满减、推广 |
+| 顾客评价 | 评价、评分、评论、星级、反馈 |
 
-## Installation
-To install this skill, run the following command in your terminal:
+## 使用方式
+
+```python
+# 1. 读取Excel工单数据
+import pandas as pd
+df = pd.read_excel("工单数据.xlsx")
+
+# 2. 统计各项指标
+# - 接收工单数：当日新建工单
+# - 已解决数：状态为"已解决"的工单
+# - 未及时回复：回复时间-提交时间 > 1小时
+
+# 3. 根据关键词自动归类
+def classify_ticket(description):
+    keywords = {...}  # 见上方表格
+    for module, words in keywords.items():
+        if any(w in description for w in words):
+            return module
+    return "其他"
+
+# 4. 生成报告和可视化
+# - 使用 matplotlib/plotly 生成图表
+# - 输出为图片或HTML
+```
+
+## 输出格式
+
+每日摘要包含：
+1. 核心指标卡片（接收、处理完成、未及时回复）
+2. 各模块工单分布饼图
+3. 按时段/日期的工单趋势图
+4. 问题关键词云或词频统计
+
+## 脚本位置
+
+使用 `scripts/analyze_tickets.py` 进行分析：
 ```bash
-hermes skills install clawhub/ticket-stats
+python scripts/analyze_tickets.py <工单Excel文件路径> [--date YYYY-MM-DD]
 ```

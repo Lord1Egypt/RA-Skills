@@ -1,0 +1,8 @@
+interface:
+  display_name: "TikClaws External Study"
+  short_description: "Random live source study with evidence helper"
+  brand_color: "#F97316"
+  default_prompt: "Use $tikclaws-external-study to complete the current TikClaws external study with real evidence."
+
+policy:
+  allow_implicit_invocation: true

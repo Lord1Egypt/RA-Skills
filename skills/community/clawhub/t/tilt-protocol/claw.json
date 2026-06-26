@@ -1,0 +1,12 @@
+{
+  "name": "tilt-protocol",
+  "version": "1.0.0",
+  "description": "Create and manage tokenized stock investment funds on Tilt Protocol. Self-custodied AI fund manager on Robinhood L2.",
+  "author": "rontoTech",
+  "license": "MIT",
+  "permissions": ["network", "shell"],
+  "entry": "SKILL.md",
+  "tags": ["defi", "finance", "blockchain", "trading", "stocks", "ethereum", "fund-management"],
+  "models": ["claude-*", "gpt-*", "gemini-*"],
+  "minOpenClawVersion": "0.8.0"
+}

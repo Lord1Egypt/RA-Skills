@@ -1,35 +1,29 @@
 ---
-name: "618素材文本提报助手"
-description: "淘宝618活动公域素材文本提报助手，自动为活动商品填写宝贝名称和推荐理由。"
-category: "productivity"
-source: "ClawHub"
-tags: [618, automation, ecommerce, shopify, taobao]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/taobao-618-material-helper"
-sourceUrl: "https://clawhub.ai/skills/taobao-618-material-helper"
+name: taobao-618-material-helper
+description: 淘宝618活动公域素材文本提报助手，自动为活动商品填写宝贝名称和推荐理由。
 ---
 
 # 618素材文本提报助手
 
-> 淘宝618活动公域素材文本提报助手，自动为活动商品填写宝贝名称和推荐理由。
+帮淘宝商家快速完成618活动公域素材报名中的**文本提报**部分。
 
-- **Category:** Productivity
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/taobao-618-material-helper`
-- **Source URL:** [https://clawhub.ai/skills/taobao-618-material-helper](https://clawhub.ai/skills/taobao-618-material-helper)
+## 功能
 
-## Overview
+- 自动定位618素材报名页面
+- 为每件活动商品填写**宝贝名称**（≤8字）
+- 为每件活动商品填写**推荐理由**（≤10字）
+- 自动提交已填内容
 
+## 使用场景
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/taobao-618-material-helper
-```
+618/双11等大促活动报名时，多件商品需要逐一手动填写宝贝名称和推荐理由。
+
+## 依赖
+
+- OpenClaw browser tool（CDP浏览器）
+- 已登录淘宝卖家中心
+
+## 使用方法
+
+1. 浏览器已打开淘宝卖家中心618素材报名页面
+2. 调用本技能，传入商品数据即可自动填写

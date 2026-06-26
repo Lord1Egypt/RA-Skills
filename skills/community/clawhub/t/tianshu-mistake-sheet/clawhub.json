@@ -1,0 +1,10 @@
+{
+  "name": "Tianshu Mistake Sheet",
+  "tagline": "错题本表格（模板或从管道文本生成）",
+  "description": "Empty mistake notebook template or parse lines like 题目|错因|知识点 into a Markdown table.",
+  "category": "utility",
+  "tags": ["student", "错题", "复盘", "考研", "tianshu"],
+  "version": "1.0.0",
+  "license": "MIT",
+  "pricing": "free"
+}

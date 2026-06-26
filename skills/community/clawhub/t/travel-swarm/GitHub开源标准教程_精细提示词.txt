@@ -1,0 +1,669 @@
+================================================================================
+                    GitHub开源标准 + OpenClaw部署教程 + 精细提示词
+================================================================================
+
+创建时间: 2026-04-11 17:16
+作者: 海狸🦫 | 靠得住、能干事、在状态
+目标用户: 另一个OpenClaw用户（不会弄）
+格式: TXT（用户偏好）
+
+================================================================================
+第一部分：GitHub开源标准（永久规则）
+================================================================================
+
+§1 开源项目必备文件清单
+
+每个GitHub开源项目必须包含以下文件：
+
+| 文件名 | 必须存在 | 功能说明 |
+|--------|----------|----------|
+| README.md | ✅ 必须 | 项目说明、快速开始、使用文档 |
+| LICENSE | ✅ 必须 | 开源协议（MIT/Apache/GPL） |
+| .gitignore | ✅ 必须 | 忽略文件（.env、__pycache__、logs） |
+| requirements.txt | ✅ 必须 | Python依赖清单 |
+| setup.py | 🟡 建议 | pip安装配置 |
+| CHANGELOG.md | 🟡 建议 | 版本变更记录 |
+| CONTRIBUTING.md | 🟡 建议 | 贡献指南 |
+| .env.example | ✅ 必须 | 环境变量示例（不含真实密钥） |
+
+§2 README.md标准格式
+
+```markdown
+# 🧳 项目名称 - 一句话说明
+
+## 核心特性
+
+✅ 特性1
+✅ 特性2
+✅ 特性3
+
+## 快速部署
+
+### 1. 配置环境变量
+```bash
+cp .env.example .env
+# 编辑.env填入真实API Key
+```
+
+### 2. 安装依赖
+```bash
+pip install -r requirements.txt
+```
+
+### 3. 启动服务
+```bash
+python main.py
+```
+
+## 文件清单
+
+| 文件 | 功能 |
+|------|------|
+| main.py | 主入口 |
+| config.py | 配置管理 |
+| utils.py | 工具函数 |
+
+## API接口
+
+| 接口 | 说明 |
+|------|------|
+| /health | 健康检查 |
+| /api/main | 主功能 |
+
+## 许可协议
+
+MIT License
+
+🦫 作者 | 联系方式
+```
+
+§3 .gitignore标准内容
+
+```
+# 环境变量（必须忽略）
+.env
+*.env.local
+
+# Python缓存
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+
+# 日志文件
+logs/
+*.log
+
+# IDE配置
+.vscode/
+.idea/
+
+# 系统文件
+.DS_Store
+Thumbs.db
+
+# 临时文件
+tmp/
+*.tmp
+*.bak
+```
+
+§4 requirements.txt标准格式
+
+```
+# 核心依赖
+flask>=2.0.0
+requests>=2.28.0
+
+# 工具库
+python-dotenv>=1.0.0
+
+# 数据处理
+pandas>=2.0.0
+openpyxl>=3.1.0
+
+# 前端生成
+reportlab>=4.0.0
+```
+
+§5 .env.example标准格式
+
+```
+# API配置（填入真实值）
+MINIMAX_API_KEY=你的API_Key
+AMAP_API_KEY=你的高德API_Key
+
+# 服务配置
+SERVER_PORT=7860
+LOG_LEVEL=INFO
+```
+
+§6 LICENSE选择建议
+
+| 协议 | 适用场景 |
+|------|----------|
+| MIT | 最宽松，允许商用 |
+| Apache 2.0 | 专利保护 |
+| GPL | 强开源，衍生必须开源 |
+| BSD | 类似MIT |
+
+推荐：MIT License（最通用）
+
+================================================================================
+第二部分：OpenClaw部署教程（给不会弄的用户）
+================================================================================
+
+§1 OpenClaw是什么？
+
+OpenClaw是一个AI Agent框架，可以：
+- 连接多个AI模型（MiniMax/Kimi/GLM等）
+- 部署Skills技能模块
+- 通过QQ/飞书/钉钉等渠道交互
+- 运行Web服务（Flask/Gradio）
+
+§2 OpenClaw目录结构
+
+```
+/home/admin/.openclaw/
+├── workspace/                # 工作空间
+│   ├── AGENTS.md            # Agent规则
+│   ├── SOUL.md              # 身份定义
+│   ├── USER.md              # 用户信息
+│   ├── MEMORY.md            # 长期记忆
+│   ├── memory/              # 每日记录
+│   ├── skills/              # Skills技能
+│   └── docs/                # 文档
+├── extensions/              # 扩展插件
+│   ├── qqbot/               # QQ机器人
+│   ├── feishu/              # 飞书
+│   └── wecom/               # 企业微信
+└── gateway/                 # Gateway守护进程
+```
+
+§3 OpenClaw启动流程
+
+步骤1：检查Gateway状态
+```bash
+openclaw gateway status
+```
+
+步骤2：启动Gateway
+```bash
+openclaw gateway start
+```
+
+步骤3：检查端口
+```bash
+netstat -tlnp | grep 7860
+```
+
+步骤4：访问UI
+```
+http://47.253.101.130:7860/
+```
+
+§4 部署TravelMaster V6教程
+
+步骤1：解压ZIP
+```bash
+unzip TravelMaster_V6_完整包.zip
+cd TravelMaster_V6
+```
+
+步骤2：配置环境变量
+```bash
+cp .env.example .env
+nano .env
+# 填入真实API Key
+```
+
+步骤3：安装依赖
+```bash
+pip install flask requests python-dotenv
+```
+
+步骤4：启动服务
+```bash
+python3.8 main_v4_2.py
+```
+
+步骤5：启动续命机制（可选）
+```bash
+python3.8 watchdog_v6_resurrection.py &
+```
+
+步骤6：访问UI
+```
+http://localhost:7860/
+```
+
+§5 常见问题解决
+
+问题1：端口被占用
+```bash
+# 杀掉旧进程
+kill -9 $(netstat -tlnp | grep 7860 | awk '{print $7}' | cut -d'/' -f1)
+
+# 重启
+python3.8 main_v4_2.py
+```
+
+问题2：API Key无效
+```bash
+# 检查.env文件
+cat .env
+
+# 测试API
+curl -H "Authorization: Bearer 你的Key" https://api.minimax.chat/v1/models
+```
+
+问题3：Python缓存导致问题
+```bash
+# 清除缓存
+rm -rf __pycache__ backend/__pycache__
+
+# 重启服务
+python3.8 main_v4_2.py
+```
+
+================================================================================
+第三部分：精细提示词（给另一个OpenClaw）
+================================================================================
+
+§1 开源发布提示词（完整流程）
+
+```
+【开源发布任务】
+
+请按照以下步骤执行GitHub开源发布：
+
+步骤1：检查项目文件
+- 确认README.md存在
+- 确认LICENSE存在
+- 确认.gitignore存在
+- 确认requirements.txt存在
+- 确认.env.example存在（不含真实密钥）
+
+步骤2：创建GitHub仓库
+- 仓库名：项目名称（如cnc-smart-quote-system）
+- 描述：一句话说明项目功能
+- 公开：Public
+- License：MIT
+
+步骤3：本地Git操作
+```bash
+git init
+git add .
+git commit -m "首次提交：项目初始化"
+git branch -M main
+git remote add origin https://github.com/用户名/项目名.git
+git push -u origin main
+```
+
+步骤4：验证发布
+- 访问 https://github.com/用户名/项目名
+- 确认README显示正常
+- 确认文件完整
+
+步骤5：发送QQ通知
+<qqfile>https://github.com/用户名/项目名</qqfile>
+
+执行完成后报告：
+- 仓库地址
+- 文件数量
+- README状态
+```
+
+§2 部署服务提示词（完整流程）
+
+```
+【服务部署任务】
+
+请按照以下步骤部署7860端口服务：
+
+步骤1：检查端口状态
+```bash
+netstat -tlnp | grep 7860
+```
+
+步骤2：如果端口被占用
+```bash
+kill -9 $(netstat -tlnp | grep 7860 | awk '{print $7}' | cut -d'/' -f1)
+```
+
+步骤3：清除Python缓存
+```bash
+rm -rf __pycache__ backend/__pycache__
+```
+
+步骤4：启动服务
+```bash
+python3.8 main_v4_2.py > logs/service.log 2>&1 &
+sleep 8
+```
+
+步骤5：验证启动
+```bash
+curl http://127.0.0.1:7860/health
+```
+
+步骤6：启动续命机制
+```bash
+python3.8 watchdog_v6_resurrection.py > logs/resurrection.log 2>&1 &
+```
+
+步骤7：发送QQ通知
+报告：
+- 端口状态
+- 服务健康
+- 续命进程PID
+- UI地址：http://47.253.101.130:7860/
+```
+
+§3 生成HTML提示词（完整流程）
+
+```
+【HTML生成任务】
+
+请按照以下步骤生成旅行HTML攻略：
+
+步骤1：接收用户输入
+输入格式：目的地+天数+人数+预算+偏好
+示例：五一去西安5天，2大1小，预算5000，慢生活，不吃辣，高铁
+
+步骤2：调用API接口
+```bash
+curl -X POST http://127.0.0.1:7860/api/travel \
+  -H "Content-Type: application/json" \
+  -d '{"message": "用户输入"}'
+```
+
+步骤3：等待收敛
+检查返回的anchor.convergence_rate
+如果<0.8，继续追问
+
+步骤4：选择方案
+```bash
+curl -X POST http://127.0.0.1:7860/api/select_plan \
+  -H "Content-Type: application/json" \
+  -d '{"plan": "A"}'
+```
+
+步骤5：验证HTML特征
+检查返回的html_report：
+- 包含高德MCP链接（m.amap.com/poi/）
+- 不包含携程链接（ctrip.com）
+- 包含行程总流程图
+- 包含终极温馨提示
+
+步骤6：发送HTML文件
+<qqfile>生成的HTML路径</qqfile>
+
+执行完成后报告：
+- HTML大小
+- 景点数量
+- 高德POI链接数
+- 无携程链接确认
+```
+
+§4 续命机制提示词（完整流程）
+
+```
+【续命机制部署任务】
+
+请按照以下步骤部署自动复活系统：
+
+步骤1：创建watchdog脚本
+文件：watchdog_v6_resurrection.py
+功能：
+- 每30秒检查7860端口
+- 自动重启异常服务
+- 进度持久化记录
+- 熔断保护（最大重试3次）
+
+步骤2：启动续命进程
+```bash
+python3.8 watchdog_v6_resurrection.py > logs/resurrection.log 2>&1 &
+echo $! > logs/resurrection.pid
+```
+
+步骤3：验证续命运行
+```bash
+ps aux | grep resurrection
+cat logs/resurrection_state.json
+```
+
+步骤4：测试自动复活
+```bash
+# 模拟杀掉7860
+kill -9 $(netstat -tlnp | grep 7860 | awk '{print $7}' | cut -d'/' -f1)
+
+# 等待30秒
+sleep 35
+
+# 检查是否复活
+netstat -tlnp | grep 7860
+curl http://127.0.0.1:7860/health
+```
+
+步骤5：发送QQ通知
+报告：
+- 续命进程PID
+- 检查间隔
+- 测试复活结果
+- 状态文件路径
+```
+
+§5 打包发布提示词（完整流程）
+
+```
+【打包发布任务】
+
+请按照以下步骤打包项目ZIP：
+
+步骤1：创建打包目录
+```bash
+mkdir -p /tmp/project_package
+cd /tmp/project_package
+```
+
+步骤2：复制核心文件
+复制以下文件：
+- main.py（主入口）
+- config.py（配置）
+- utils.py（工具）
+- README.md（文档）
+- requirements.txt（依赖）
+- .env.example（配置示例）
+- LICENSE（协议）
+
+步骤3：创建README
+```bash
+cat > README.md << 'EOF'
+# 项目名称
+
+## 快速开始
+
+1. 配置.env
+2. pip install -r requirements.txt
+3. python main.py
+
+🦫 作者
+EOF
+```
+
+步骤4：打包ZIP
+```bash
+zip -r 项目名_完整包.zip ./* -x "*.pyc" -x "__pycache__/*"
+```
+
+步骤5：发送ZIP文件
+<qqfile>ZIP文件路径</qqfile>
+
+执行完成后报告：
+- ZIP大小
+- 文件数量
+- 核心文件清单
+```
+
+================================================================================
+第四部分：常见错误解决方案
+================================================================================
+
+§1 端口占用问题
+
+错误现象：
+```
+OSError: [Errno 98] Address already in use
+```
+
+解决方案：
+```bash
+# 查找占用进程
+netstat -tlnp | grep 7860
+
+# 杀掉进程
+kill -9 PID
+
+# 清除缓存
+rm -rf __pycache__
+
+# 重启服务
+python3.8 main_v4_2.py
+```
+
+§2 API Key无效问题
+
+错误现象：
+```
+{"error": "Invalid API Key"}
+```
+
+解决方案：
+```bash
+# 检查.env文件
+cat .env
+
+# 测试API Key
+curl -H "Authorization: Bearer 你的Key" \
+  https://api.minimax.chat/v1/models
+
+# 更新.env
+nano .env
+```
+
+§3 Python缓存导致问题
+
+错误现象：
+```
+ImportError: cannot import name
+```
+
+解决方案：
+```bash
+# 清除所有缓存
+find . -name "*.pyc" -delete
+rm -rf __pycache__ backend/__pycache__
+
+# 重启服务
+python3.8 main_v4_2.py
+```
+
+§4 服务意外终止问题
+
+错误现象：
+```
+服务运行一段时间后突然消失
+```
+
+解决方案：
+```bash
+# 启动续命机制
+python3.8 watchdog_v6_resurrection.py &
+
+# 检查日志
+tail -f logs/resurrection.log
+
+# 查看状态
+cat logs/resurrection_state.json
+```
+
+§5 HTML生成失败问题
+
+错误现象：
+```
+{"error": "HTML generation failed"}
+```
+
+解决方案：
+```bash
+# 检查模板文件
+ls -la backend/utils/report_generator_v6.py
+
+# 检查高德API
+curl "https://restapi.amap.com/v3/place/text?key=你的Key&keywords=景点"
+
+# 重启服务
+kill -9 PID
+python3.8 main_v4_2.py
+```
+
+================================================================================
+第五部分：最佳实践总结
+================================================================================
+
+§1 开源发布检查清单
+
+✅ README.md完整
+✅ LICENSE存在
+✅ .gitignore正确
+✅ requirements.txt完整
+✅ .env.example不含真实密钥
+✅ GitHub仓库已创建
+✅ Git推送成功
+✅ QQ通知已发送
+
+§2 服务部署检查清单
+
+✅ 端口已释放
+✅ Python缓存已清除
+✅ .env配置正确
+✅ 服务启动成功
+✅ 健康检查正常
+✅ 续命机制运行
+✅ UI可访问
+✅ QQ通知已发送
+
+§3 HTML生成检查清单
+
+✅ 用户输入完整
+✅ 收敛度>80%
+✅ 方案已选择
+✅ HTML特征验证
+✅ 高德POI链接真实
+✅ 无携程链接
+✅ 流程图存在
+✅ 终极提示存在
+✅ QQ文件已发送
+
+§4 续命机制检查清单
+
+✅ watchdog脚本存在
+✅ 续命进程运行
+✅ 状态文件生成
+✅ 测试复活成功
+✅ 端口正常监听
+✅ 服务健康正常
+✅ QQ通知已发送
+
+================================================================================
+结束
+================================================================================
+
+创建时间: 2026-04-11 17:16
+作者: 海狸🦫 | 靠得住、能干事、在状态
+版本: V1.0
+格式: TXT（UTF-8编码）
+用途: GitHub开源标准 + OpenClaw部署教程 + 精细提示词
+
+================================================================================

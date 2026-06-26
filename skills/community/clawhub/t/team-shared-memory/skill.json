@@ -1,0 +1,17 @@
+{
+  "name": "Team Shared Memory",
+  "description": "团队记忆同步服务，多工作区/实例间共享记忆",
+  "version": "1.0.1",
+  "identifier": "team-shared-memory",
+  "author": "c32",
+  "category": "memory",
+  "tags": [
+    "memory",
+    "team",
+    "sync",
+    "shared"
+  ],
+  "requirements": {
+    "node": ">=18.0.0"
+  }
+}

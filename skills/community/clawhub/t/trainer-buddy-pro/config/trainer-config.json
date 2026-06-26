@@ -1,0 +1,40 @@
+{
+  "units": "imperial",
+  "default_session_duration_minutes": 60,
+  "default_rest_seconds": {
+    "compound": 120,
+    "accessory": 90,
+    "isolation": 60,
+    "superset": 60
+  },
+  "progressive_overload": {
+    "upper_body_increment_lbs": 5,
+    "lower_body_increment_lbs": 10,
+    "rep_range_buffer": 2
+  },
+  "warmup_enabled": true,
+  "cooldown_enabled": true,
+  "deload_frequency_weeks": 5,
+  "deload_intensity_reduction_pct": 40,
+  "default_goal": "build_muscle",
+  "default_experience_level": "beginner",
+  "rep_ranges": {
+    "strength": { "min": 3, "max": 6 },
+    "hypertrophy": { "min": 8, "max": 12 },
+    "endurance": { "min": 15, "max": 20 },
+    "fat_loss": { "min": 10, "max": 15 }
+  },
+  "max_exercises_per_session": 8,
+  "min_exercises_per_session": 4,
+  "rest_day_minimum_hours": 48,
+  "pr_celebration_enabled": true,
+  "advanced_techniques_enabled": false,
+  "favorite_exercises": [],
+  "excluded_exercises": [],
+  "available_equipment_presets": {
+    "full_commercial_gym": ["barbell", "dumbbells", "cables", "machines", "pull-up bar", "bench", "squat rack"],
+    "home_basic": ["dumbbells", "pull-up bar", "resistance bands"],
+    "hotel_gym": ["dumbbells", "cable machine", "adjustable bench", "treadmill"],
+    "bodyweight_only": []
+  }
+}

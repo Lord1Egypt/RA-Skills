@@ -1,0 +1,13 @@
+interface:
+  display_name: "Event Staffing — Hire & Quote (TempGuru)"
+  short_description: "Hire event staff, book brand ambassadors, get W-2 staffing quotes for trade shows, festivals, conferences"
+  icon_small: "https://mcp.tempguru.co/logo.svg"
+  default_prompt: "I need to hire event staff for my trade show in Chicago next month."
+
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "tempguru-event-staffing"
+      description: "TempGuru MCP server — city coverage, roles, pricing, availability, and compliance"
+      transport: "streamable_http"
+      url: "https://mcp.tempguru.co/mcp"

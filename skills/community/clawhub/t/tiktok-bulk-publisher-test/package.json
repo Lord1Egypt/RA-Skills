@@ -1,0 +1,20 @@
+{
+  "name": "tiktok-bulk-publisher",
+  "version": "1.0.0",
+  "description": "TikTok批量视频发布技能，支持自动上传、隐私设置、评论控制等功能",
+  "author": "fly3094",
+  "license": "MIT",
+  "keywords": [
+    "tiktok",
+    "video",
+    "publish",
+    "bulk",
+    "autopost",
+    "social-media"
+  ],
+  "repository": "https://github.com/lobsterlabs/tiktok-bulk-publisher",
+  "support": {
+    "paypal": "492227637@qq.com",
+    "email": "492227637@qq.com"
+  }
+}

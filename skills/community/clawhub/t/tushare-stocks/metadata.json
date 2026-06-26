@@ -1,0 +1,40 @@
+{
+  "name": "tushare-stock-data",
+  "version": "1.0.0",
+  "description": "Tushare 股票数据接口集合 - 提供行情、基础信息、基本面、特色数据等23个明确的数据接口。",
+  "author": "真圆氦狗",
+  "tags": [
+    "股票",
+    "行情",
+    "A股",
+    "tushare",
+    "量化",
+    "金融数据",
+    "明确接口"
+  ],
+  "repository": "",
+  "license": "MIT",
+  "dependencies": {
+    "python": ">=3.8",
+    "packages": [
+      "tushare>=1.2.89",
+      "pandas>=1.5.0"
+    ]
+  },
+  "openclaw": {
+    "requires": {
+      "bins": [
+        "python3"
+      ],
+      "env": [
+        "TUSHARE_TOKEN"
+      ]
+    }
+  },
+  "environment_variables": ["TUSHARE_TOKEN"],
+  "runtime": {
+    "type": "python3",
+    "entrypoint": "handler"
+  }
+}
+

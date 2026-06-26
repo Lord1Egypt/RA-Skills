@@ -1,0 +1,72 @@
+name: tiktok-shop-launch
+version: 1.0.0
+description: TikTok Shop跨境出海助手，提供区域化策略、本土化内容建议、直播脚本、合规准入和投流策略指导
+author: ClawHub
+tags:
+  - tiktok
+  - cross-border
+  - e-commerce
+  - marketing
+  - live-streaming
+  - localization
+category: business
+keywords:
+  - TikTok Shop
+  - 出海
+  - 跨境电商
+  - 区域化策略
+  - 本土化营销
+  - 直播带货
+  - 合规准入
+  - 投流策略
+inputs:
+  - name: product_description
+    type: text
+    required: true
+    description: 产品描述（功能、特点、卖点）
+  - name: target_market
+    type: select
+    required: true
+    options:
+      - 美区
+      - 东南亚
+      - 欧洲
+      - 日本
+    description: 目标市场
+  - name: budget
+    type: text
+    required: false
+    description: 预算范围（可选）
+outputs:
+  - name: market_insight
+    type: text
+    description: 市场洞察
+  - name: content_strategy
+    type: text
+    description: 内容策略建议
+  - name: live_script
+    type: text
+    description: 直播脚本框架
+  - name: compliance_checklist
+    type: text
+    description: 合规要点清单
+  - name: ad_strategy
+    type: text
+    description: 投流策略建议
+changelog:
+  - version: 1.0.0
+    date: "2024-01-01"
+    changes:
+      - Initial release
+      - 支持美区/东南亚/欧洲/日本四大市场
+      - 提供区域化策略、本土化内容建议
+      - 直播脚本生成功能
+      - 合规准入指导
+      - 投流策略建议
+examples:
+  - input: |
+      产品描述：一款便携式咖啡机，轻便易用，适合上班族
+      目标市场：美区
+      预算：$2000/月
+    output: |
+      美区市场洞察 + 品牌故事内容策略 + 直播脚本框架 + 合规要点 + 投流建议

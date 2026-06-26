@@ -1,0 +1,22 @@
+{
+  "hazard_statements": {
+    "H400": "Very toxic to aquatic life.",
+    "H410": "Very toxic to aquatic life with long lasting effects."
+  },
+  "precautionary_statements": {
+    "P273": "Avoid release to the environment.",
+    "P391": "Collect spillage.",
+    "P501": "Dispose of contents/container to an approved waste disposal plant."
+  },
+  "pictograms": {
+    "GHS01": "Exploding Bomb",
+    "GHS02": "Flame",
+    "GHS03": "Flame Over Circle",
+    "GHS04": "Gas Cylinder",
+    "GHS05": "Corrosion",
+    "GHS06": "Skull and Crossbones",
+    "GHS07": "Exclamation Mark",
+    "GHS08": "Health Hazard",
+    "GHS09": "Environment"
+  }
+}

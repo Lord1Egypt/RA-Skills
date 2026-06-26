@@ -1,0 +1,54 @@
+# 投流方案生成&全周期运营指导 Skill 配置
+# 版本：1.0.0
+
+# ==================== 测款方案配置 ====================
+test_plan:
+  default_days: 7                     # 默认测款周期（7 天）
+  min_budget: 1000                    # 最低预算（元）
+  max_budget: 50000                   # 最高预算（元）
+  channels:
+    - 万相台无界
+    - 直通车
+ 达标阈值:
+    点击率: 0.03                      # 3%
+    收藏加购率: 0.10                  # 10%
+    ROI: 1.5
+
+# ==================== 优化建议配置 ====================
+optimization:
+  check_interval_hours: 2             # 数据监控间隔（2 小时）
+  compare_industry_avg: true          # 对比行业均值
+  check_break_even_roi: true          # 检查保本 ROI
+
+# ==================== 复盘报告配置 ====================
+review_report:
+  daily_report_time: "23:00"          # 日报生成时间
+  weekly_report_day: "Monday"         # 周报生成时间
+  monthly_report_day: 1               # 月报生成日期
+
+# ==================== 全周期运营指导配置 ====================
+lifecycle:
+  stages:
+    - 新品期
+    - 成长期
+    - 爆发期
+    - 换季期
+  new_product_days: 14                # 新品期天数
+  growth_days: 30                     # 成长期天数
+
+# ==================== 男装类目特性配置 ====================
+menswear:
+  seasonal_keywords:
+    春: ["春秋", "春季", "新款"]
+    夏: ["夏季", "薄款", "透气"]
+    秋: ["秋季", "春秋", "外套"]
+    冬: ["冬季", "加绒", "保暖"]
+  category_features:
+    - 多 SKU
+    - 视觉驱动
+    - 季节性强
+
+# ==================== 日志配置 ====================
+logging:
+  level: "INFO"
+  file: "./logs/advisor.log"

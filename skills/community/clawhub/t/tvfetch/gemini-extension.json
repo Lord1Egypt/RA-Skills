@@ -1,0 +1,25 @@
+{
+  "name": "tvfetch",
+  "version": "1.0.0",
+  "description": "Fetch TradingView market data — historical OHLCV, live streaming, indicators, analysis",
+  "settings": [
+    {
+      "name": "TV_AUTH_TOKEN",
+      "description": "TradingView auth token (JWT) for paid plan access. Anonymous mode works without it (daily/weekly/monthly get full history). Get via browser: DevTools Console > document.cookie.split('; ').find(c=>c.startsWith('auth_token=')).split('=').slice(1).join('=')",
+      "sensitive": true,
+      "required": false
+    },
+    {
+      "name": "TVFETCH_CACHE_PATH",
+      "description": "Custom path for SQLite cache file (default: ~/.tvfetch/cache.db)",
+      "sensitive": false,
+      "required": false
+    },
+    {
+      "name": "TVFETCH_PROXY",
+      "description": "HTTPS proxy URL for WebSocket and HTTP connections",
+      "sensitive": false,
+      "required": false
+    }
+  ]
+}

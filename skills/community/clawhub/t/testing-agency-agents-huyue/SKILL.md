@@ -1,35 +1,38 @@
----
-name: "Testing Skill for Agency Agents"
-description: "Provides automated testing and integration validation for OpenClaw's skill management in agency-agents projects with error handling and logging."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/testing-agency-agents-huyue"
-sourceUrl: "https://clawhub.ai/skills/testing-agency-agents-huyue"
----
+# Testing Skill
 
-# Testing Skill for Agency Agents
+This is a comprehensive testing skill designed for validating OpenClaw's skill management system.
 
-> Provides automated testing and integration validation for OpenClaw's skill management in agency-agents projects with error handling and logging.
+## Description
+This skill provides a robust framework for testing various OpenClaw functionalities including installation, updates, and integration with other systems. It's specifically designed for developers working on agency-agents projects.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/testing-agency-agents-huyue`
-- **Source URL:** [https://clawhub.ai/skills/testing-agency-agents-huyue](https://clawhub.ai/skills/testing-agency-agents-huyue)
-
-## Overview
-
+## Features
+- Automated testing capabilities
+- Integration with OpenClaw's core systems
+- Support for both local and remote skill deployment
+- Comprehensive error handling and logging
 
 ## Installation
-To install this skill, run the following command in your terminal:
+1. Clone the repository
+2. Run `clawhub install testing`
+3. Verify installation with `clawhub list`
+
+## Usage Examples
 ```bash
-hermes skills install clawhub/testing-agency-agents-huyue
+# Basic usage
+clawhub run testing --command validate
+
+# Advanced usage with parameters
+clawhub run testing --command test-all --verbose --output results.json
 ```
+
+## Troubleshooting
+If you encounter issues during installation:
+- Ensure you have the latest version of ClawHub CLI
+- Verify your internet connection
+- Check that you're logged in with `clawhub whoami`
+- Contact support if problems persist
+
+## Version History
+- 1.0.0: Initial release with core testing functionality
+- 1.0.1: Added verbose logging option
+- 1.1.0: Added JSON output support

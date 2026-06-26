@@ -1,0 +1,15 @@
+{
+  "id": "truth",
+  "name": "Truth (求真) - 事实核查",
+  "version": "1.3.0",
+  "description": "AI Content Authenticity Verification Tool. 事实核查技能，6层深度核查（含区块链存证验证），识别AI幻觉、虚假信息，输出可信度评分和问题标注。适配2核2G环境，支持批量核查。",
+  "author": "tangtaozhanshen",
+  "homepage": "https://clawhub.ai/tangtaozhanshen/truth-seeking-fact-check",
+  "license": "MIT-0",
+  "main": "main.py",
+  "type": "python",
+  "category": "productivity",
+  "icon": "🔍",
+  "permissions": ["content_verify", "file_read"],
+  "configSchema": {}
+}

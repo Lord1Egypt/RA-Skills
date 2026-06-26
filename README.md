@@ -15,12 +15,13 @@
 - **`skills/`**: The core repository of skills:
   - **`built-in/`**: Official built-in Hermes Agent skills with full prompt content.
   - **`optional/`**: Official optional Hermes Agent skills with full prompt content.
-  - **`community/`**: Structured registry of over 90,726 community skills (from ClawHub, skills.sh, LobeHub, browse.sh, gstack). Organized efficiently to avoid filesystem bottlenecks:
-    - Path format: `skills/community/<source>/<first_char>/<identifier>/SKILL.md`
+  - **`community/`**: Structured registry of over 90,726 community skills (from ClawHub, skills.sh, LobeHub, browse.sh, gstack). **~88% are stored as complete, fully-offline skill folders** — not just metadata — so you get the real `SKILL.md` plus its bundled `scripts/`, `references/`, `skill-card.md`, `_meta.json`, and assets. Organized efficiently to avoid filesystem bottlenecks:
+    - Path format: `skills/community/<source>/<first_char>/<identifier>/`
 - **`registry.json`**: Consolidated metadata catalog for fast search.
 - **`tools/`**: Command-line utilities to search and fetch content:
   - **`tools/search.py`**: Find any skill in milliseconds.
-  - **`tools/fetch_content.py`**: Download community skill implementations on-demand.
+  - **`tools/fetch_content.py`**: Fetch a single skill's content on-demand (for the ~12% not yet bundled, or to refresh).
+  - **`tools/bulk_download.py`**: Bulk-download **full skill folders** for every community source (resumable).
 
 ---
 
@@ -41,16 +42,35 @@ python3 tools/search.py "security" --source "ClawHub" --category "security"
 
 ---
 
-## 📥 How to Fetch Community Skills Content
+## 📥 Offline Content & Downloading
 
-Since community skills are hosted on external platforms, their `SKILL.md` contains metadata. You can download the actual content for any community skill with `tools/fetch_content.py`:
+Most community skills (~88%) already ship as **complete offline folders** in this repo — open `skills/community/<source>/<first_char>/<identifier>/` and you'll find the real `SKILL.md` alongside its scripts, references, and assets. No network needed.
+
+For the remaining skills (genuinely delisted/removed upstream), or to refresh a skill, use the downloaders:
 
 ```bash
-# Download content for a community skill by name or identifier
+# Fetch one skill's full folder by name or identifier
 python3 tools/fetch_content.py "aso-playbook"
+
+# Bulk-download full folders for a whole source (resumable via .ra_complete markers)
+CLAWHUB_TOKEN=<token> GITHUB_TOKEN=$(gh auth token) \
+  python3 tools/bulk_download.py --source clawhub,skills_sh --threads 10
 ```
 
-The script will fetch the raw contents from the source URL and save it as `CONTENT.md` within the skill's subdirectory.
+Tokens: `CLAWHUB_TOKEN` authenticates the ClawHub API; `GITHUB_TOKEN` raises GitHub's rate limit (5,000/hr vs 60) for skills.sh/gstack.
+
+### Offline coverage
+
+| Source | Full folders | Total | % |
+|--------|-------------:|------:|--:|
+| ClawHub | 61,934 | 69,842 | 89% |
+| skills.sh | 16,952 | 19,938 | 85% |
+| LobeHub | 476 | 505 | 94% |
+| gstack | 51 | 52 | 98% |
+| browse.sh | 13 | 389 | 3% ¹ |
+| **Total** | **79,426** | **90,726** | **88%** |
+
+¹ The upstream `browserbase/browse.sh` repository was removed from GitHub, so most browse.sh skills are no longer fetchable.
 
 ---
 

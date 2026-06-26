@@ -1,0 +1,4 @@
+interface:
+  display_name: "Codex Session Image Scrubber"
+  short_description: "Remove heavy image payloads from Codex sessions"
+  default_prompt: "Use $codex-session-image-scrubber to clean heavy image/base64 payloads from this Codex thread."
